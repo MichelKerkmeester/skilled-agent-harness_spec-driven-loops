@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/001-memory-storage-and-search",
+  "description": "Feature Specification: Memory Store/Search/Save Write-Path Remediation",
+  "keywords": [
+    "feature",
+    "specification",
+    "memory",
+    "store",
+    "search",
+    "save",
+    "write-path",
+    "remediation"
+  ],
+  "lastUpdated": "2026-06-16T12:27:05.206Z",
+  "specId": "001",
+  "folderSlug": "memory-storage-and-search",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "005-verification-and-remediation",
+    "005-fresh-regression-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

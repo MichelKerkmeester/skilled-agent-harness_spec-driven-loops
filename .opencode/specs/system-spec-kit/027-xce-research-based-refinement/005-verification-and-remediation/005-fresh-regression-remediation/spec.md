@@ -1,11 +1,10 @@
 ---
-title: "Feature Specification: Fresh+Regression Deep-Review Remediation"
-description: "Remediate the verified findings from the 027 fresh+regression deep-review (75 seats, three models): 5 adversarially-confirmed code defects (save-lock liveness, history-rebuild transaction, causal-generation bump, launcher TTL, provenance carry), a host-confirmed parent-metadata drift cluster, and ~19 cited-but-unverified doc-truth P1s to confirm-then-fix."
+title: "Feature Specification: Fresh+Regression Deep-Review Remediation (Phase Parent)"
+description: "Phase parent coordinating remediation of ALL 113 findings from the 027 fresh+regression deep-review, decomposed into 6 subsystem sub-phases (memory-storage, daemon-launcher, code-graph, CLI front-doors, spec-folder metadata, doc-truth/mirrors). Scaffold only — every finding carried as a task; no fixes applied."
 trigger_phrases:
   - "fresh regression remediation"
   - "027 review round 3 remediation"
-  - "save-lock twin remediation"
-  - "parent metadata drift remediation"
+  - "remediate every deep-review finding"
 importance_tier: "important"
 contextType: "general"
 _memory:
@@ -13,13 +12,12 @@ _memory:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation"
     last_updated_at: "2026-06-16T00:00:00Z"
     last_updated_by: "deep-review-orchestrator"
-    recent_action: "Scaffolded remediation packet from fresh-regression-75 verified findings"
-    next_safe_action: "Confirm each asserted doc-truth P1, then fix the 5 code defects first"
+    recent_action: "Decomposed remediation into 6 subsystem sub-phases; all 113 findings carried as tasks"
+    next_safe_action: "Operator review; then implement sub-phases code-first (001-004) then docs (005-006)"
     blockers: []
     key_files:
       - "spec.md"
-      - "plan.md"
-      - "tasks.md"
+      - "fix-coverage.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "027-fresh-regression-remediation-scaffold"
@@ -29,16 +27,9 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Fresh+Regression Deep-Review Remediation
+# Feature Specification: Fresh+Regression Deep-Review Remediation (Phase Parent)
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
-- Remove placeholders, stale status, and claims that are not backed by a check.
-FAILURE MODES:
-- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
--->
+<!-- SPECKIT_LEVEL: 2 -->
 
 ---
 
@@ -47,33 +38,23 @@ FAILURE MODES:
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
+| **Level** | Phase parent (control file) |
 | **Priority** | P1 |
-| **Status** | Planned (findings verified; no fixes applied) |
+| **Status** | Scaffolded — 6 sub-phases created; no fixes applied |
 | **Created** | 2026-06-16 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Spec** | ../spec.md |
-| **Predecessor** | 004-residual-design-units |
-| **Successor** | None |
-| **Handoff Criteria** | Each confirmed code defect fixed with a regression test; each parent-metadata drift reconciled; each asserted doc P1 confirmed-then-fixed or refuted. |
+| **Sub-phases** | 6 |
+| **Findings carried** | 113 (40 P1 / 73 P2) |
+| **Handoff Criteria** | Every one of the 113 findings fixed-or-refuted-with-reason in its sub-phase; code phases (001-004) test-gated; doc/metadata phases (005-006) validate.sh --strict clean. |
 <!-- /ANCHOR:metadata -->
-
----
-
-<!-- ANCHOR:phase-context -->
-## Phase Context
-
-This packet remediates the verified output of the third independent deep-review of the 027 epic — the **fresh+regression** round (`review/fresh-regression-75/`): 75 single-pass read-only seats across Opus 4.8 (claude2), GPT-5.5-fast and Kimi K2.7 (cli-opencode), with opposite-model adversarial Round-2 verification of every code-defect P1. That review found **0 P0** and reduced 16 code-defect P1 candidates to **5 confirmed** (7 downgraded, 3 refuted, 1 unverified), plus a host-confirmed parent-metadata drift cluster.
-
-**Scope Boundary**: Only the deep-review's verified/cited findings. Does NOT reopen prior epic-sweep findings; does NOT touch refuted findings. The 7 Round-2 downgrades land in the P2 backlog, not here.
-<!-- /ANCHOR:phase-context -->
 
 ---
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-Three independent review rounds keep surfacing the same two failure classes on newer phases: (1) small write-path / lifecycle code defects that escaped per-phase verification, and (2) control-metadata (description.json / spec.md phase maps / graph-metadata pointers) drifting ahead of or behind shipped code. This packet fixes the confirmed instances and confirms-then-fixes the cited-but-unverified ones, so the epic can reach a clean release-readiness state.
+The 75-seat fresh+regression deep-review of the 027 epic surfaced 113 unique findings (0 P0 · 40 P1 · 73 P2) in `../../review/fresh-regression-75/deep-review-findings-registry.json`. Per operator directive, every finding must be addressed — refuted ones carried as hardening, asserted ones fixed as stated. This phase parent decomposes that work by subsystem so each sub-phase has a coherent verification gate, and tracks full coverage via `fix-coverage.json`.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -81,57 +62,41 @@ Three independent review rounds keep surfacing the same two failure classes on n
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
-**In scope**
-- 5 confirmed code defects: `spec-folder-mutex.ts:37`, `history.ts:103`, `vector-index-mutations.ts:101`, `mk-code-index-launcher.cjs:839`, `pe-gating.ts:351`.
-- Parent-metadata drift: 3 omitted children (000/003/004 description.json + 000 spec.md), stale phase-parent pointers, feature-catalog 37→39 tool count.
-- ~19 asserted doc-truth P1s (confirm each against cited file:line, then fix or mark refuted).
-- 1 unverified P1 (`validate.sh:1062` CONTINUITY_FRESHNESS claim) — re-verify.
+**In scope**: all 113 findings, each assigned to exactly one sub-phase by `fix-coverage.json` (union = 113, no dupes, no orphans). Code-defect fixes (sub-phases 001-004) are test-gated; metadata/doc reconciliation (005-006) is validate.sh-gated.
 
-**Out of scope**
-- The 3 refuted findings (advisor `--trusted` gating, reconsolidation default-off, benchmark stderr).
-- The ~80 P2 advisory surface (separate backlog).
-- Any new feature work.
+**Out of scope**: new feature work; reopening prior epic-sweep findings; applying any fix during this scaffold step. The 3 Round-2-refuted findings are carried as hardening tasks (tagged) rather than dropped, per directive.
 <!-- /ANCHOR:scope -->
 
 ---
 
-<!-- ANCHOR:requirements -->
-## 4. REQUIREMENTS
+<!-- ANCHOR:phase-map -->
+## PHASE DOCUMENTATION MAP
 
-- **R1** — Port the `generate-context.ts` save-lock liveness pattern (pid `process.kill(p,0)` gate + mtime heartbeat; reap only on dead/unknown) into `spec-folder-mutex.ts`.
-- **R2** — Wrap the legacy history-table rebuild in a transaction so a mid-migration crash cannot lose the audit log.
-- **R3** — Bump the causal-edges generation on the delete sweep path (`vector-index-mutations.ts`), restoring the epic-sweep fix-#4 invariant for deletes.
-- **R4** — Retune the `mk-code-index-launcher` bootstrap-lock so the reclaim threshold ≤ the wait deadline (dead-socket respawn unblocked); apply the same audit to `mk-spec-memory-launcher`.
-- **R5** — Preserve the manual `source_kind` carry through `pe-gating.ts` append-version/supersede paths.
-- **R6** — Reconcile parent control metadata: add the 3 omitted children to their `description.json`/`spec.md`, refresh stale pointers, correct the tool count to the live `TOOL_DEFINITIONS.length`.
-- **R7** — For each asserted doc-truth P1, open the cited file:line; fix if confirmed, mark refuted with reason otherwise.
-<!-- /ANCHOR:requirements -->
+| Sub-phase | Theme | Findings | Verification |
+|-----------|-------|----------|--------------|
+| `001-memory-storage-and-search` | mk-spec-memory write-path/search/save + advisor-lib code | 34 | vitest per fix; baseline→delta |
+| `002-daemon-launcher-lifecycle` | launcher reclaim/reap/escalation, owner-lease, socket-server, fanout | 15 | vitest in isolated fake-root harness |
+| `003-code-graph-robustness` | mk-code-index engine (db/query/context/bm25) | 8 | vitest per fix |
+| `004-cli-frontdoor-safety` | the 3 bin CLIs + bridge (socket trust, exit codes, mutation gating) | 6 | vitest + shell exit-code assertions |
+| `005-spec-folder-metadata-reconciliation` | description.json/graph-metadata/pointers/context-index | 8 | validate.sh --strict --recursive |
+| `006-doc-truth-completion-and-mirrors` | completion claims, catalog/playbook, Gate B, benchmark, runtime mirrors | 42 | validate.sh --strict; cross-runtime diff |
 
----
-
-<!-- ANCHOR:success-criteria -->
-## 5. SUCCESS CRITERIA
-
-- All 5 confirmed code defects fixed, each with a regression test asserting the corrected behaviour; full stack gate green with a captured baseline→after delta.
-- Parent metadata reconciled; `validate.sh --strict --recursive` clean for the 027 tree.
-- Every asserted doc P1 resolved (fixed or refuted-with-reason); registry updated.
-- No regression to the prior epic-sweep remediations.
-<!-- /ANCHOR:success-criteria -->
-
----
-
-<!-- ANCHOR:risks -->
-## 6. RISKS & DEPENDENCIES
-
-- Save-lock and launcher changes touch live daemon lifecycle — require the isolated test-daemon harness, not live recycles.
-- Causal-generation and provenance fixes touch default-path write code — gate behind regression tests before any deploy.
-- The ~19 asserted P1s may include false positives (Round-2 refuted 3 of 16 code candidates); confirm before fixing.
-<!-- /ANCHOR:risks -->
+Coverage is machine-checked in `fix-coverage.json`. Round-2 status is tagged per task (confirmed / downgraded→P2 / refuted-Round2→harden-anyway / asserted / P2).
+<!-- /ANCHOR:phase-map -->
 
 ---
 
 <!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
+## 4. OPEN QUESTIONS
 
-- Should the downgraded socket-trust P2s (`spec-memory-cli.ts:753`, `code-index-cli.ts:924`) be hardened now or deferred (single-user dev tool; server already enforces uid)?
+- None at scaffold time. Each sub-phase confirms its asserted findings against the cited code before fixing (Round-2 refuted 3/16 code candidates, so assertion ≠ truth).
 <!-- /ANCHOR:questions -->
+
+---
+
+## RELATED DOCUMENTS
+
+- Findings registry: `../../review/fresh-regression-75/deep-review-findings-registry.json`
+- Round-2 verdicts: `../../review/fresh-regression-75/round2/code-verdicts.json`
+- Coverage manifest: `./fix-coverage.json`
+- Review report: `../../review/fresh-regression-75/review-report.md`
