@@ -379,3 +379,38 @@ describe('packed BM25 width promotion', () => {
     expect(doc!.termIds.length).toBeGreaterThan(MAX_NARROW);
   });
 });
+
+describe('packed BM25 numericId recycling', () => {
+  interface FreeListInternals {
+    packedDocIds: Array<string | undefined>;
+    packedDocNumbersById: Map<string, number>;
+  }
+  const asFreeList = (index: BM25Index): FreeListInternals =>
+    index as unknown as FreeListInternals;
+
+  it('recycles freed numericId slots instead of growing packedDocIds under update churn', () => {
+    const index = new BM25Index(undefined, undefined, 'packed-inmemory');
+    index.addDocumentFields('a', { body: 'alpha one' });
+    index.addDocumentFields('b', { body: 'beta two' });
+    index.finalizePackedPostings();
+
+    const internals = asFreeList(index);
+    expect(internals.packedDocIds.length).toBe(2);
+
+    // Churn: remove and re-add many times. Old behavior pushed a new slot every
+    // re-add, growing packedDocIds without bound; the free-list keeps it pinned
+    // to the live document count.
+    for (let i = 0; i < 50; i += 1) {
+      index.removeDocument('b');
+      index.addDocumentFields('b', { body: `beta ${i}` });
+    }
+    index.finalizePackedPostings();
+
+    expect(internals.packedDocIds.length).toBe(2);
+    expect(internals.packedDocNumbersById.size).toBe(2);
+
+    // Search still resolves both docs correctly after the churn.
+    const results = index.search('alpha', 5);
+    expect(results.some((r) => r.id === 'a')).toBe(true);
+  });
+});

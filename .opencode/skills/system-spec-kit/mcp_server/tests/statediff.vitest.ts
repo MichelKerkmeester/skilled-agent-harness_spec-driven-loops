@@ -4,8 +4,10 @@ import {
   applyStatediffActions,
   createStatediffAction,
   flattenCompositeTarget,
+  notifyStatediffSubscribers,
   planStatediff,
   type JsonValue,
+  type StatediffSubscriber,
   type StatediffTargetSink,
   type TargetStateRow,
 } from '../lib/storage/statediff';
@@ -88,5 +90,25 @@ describe('statediff action planning', () => {
     expect(applied).toEqual(['insert:a', 'delete:b']);
     expect(batch.actions).toHaveLength(2);
     expect(batch.sourceOperation).toBe('test');
+  });
+
+  it('notifies subscribers that opt in and reports per-subscriber success/failure', async () => {
+    const actions = [
+      createStatediffAction('insert', { target: 'memory_index', key: 'a', sourceOperation: 'test' }),
+    ];
+    const ran: string[] = [];
+    const subscribers: StatediffSubscriber[] = [
+      { name: 'skipped', shouldRun: () => false, run: () => { ran.push('skipped'); } },
+      { name: 'ok', shouldRun: () => true, run: () => { ran.push('ok'); } },
+      { name: 'boom', shouldRun: () => true, run: () => { throw new Error('subscriber failed'); } },
+    ];
+
+    const reports = await notifyStatediffSubscribers(actions, subscribers);
+
+    expect(ran).toEqual(['ok']);
+    expect(reports).toEqual([
+      { name: 'ok', actionCount: 1, ok: true },
+      { name: 'boom', actionCount: 1, ok: false, error: 'subscriber failed' },
+    ]);
   });
 });

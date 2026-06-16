@@ -2,6 +2,12 @@
 // MODULE: Edge Tier Basement
 // ───────────────────────────────────────────────────────────────
 // Keeps edge-derived retention floors aligned with retrieval tier caps.
+//
+// STAGED: resolveEdgeTierBasement defines the edge retention-floor policy but is
+// not yet consumed by the retention sweep's edge path — only by unit tests. The
+// edge-floor protection it describes is therefore not applied to live retention
+// candidates until the sweep is wired to call it. Kept as the canonical policy
+// so the floor logic does not drift before that wiring lands.
 
 import { STATE_LIMITS } from '../search/pipeline/stage4-filter.js';
 

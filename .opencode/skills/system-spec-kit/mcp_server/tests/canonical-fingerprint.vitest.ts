@@ -24,4 +24,14 @@ describe('canonical fingerprint storage helper', () => {
     expect(before).not.toBe(after);
     expect(before).toHaveLength(64);
   });
+
+  it('handles non-JSON values uniformly across containers (array -> null, object key dropped)', () => {
+    const fn = () => undefined;
+    // Old behavior: a function as an array element threw while undefined became
+    // null — the failure depended on the container. Now both coerce to null in
+    // arrays and are dropped as object keys, mirroring JSON.stringify.
+    expect(() => canonicalizeInput([fn, undefined, 1])).not.toThrow();
+    expect(canonicalizeInput([fn, undefined, 1])).toBe(JSON.stringify([null, null, 1]));
+    expect(canonicalizeInput({ a: fn, b: undefined, c: 1 })).toBe(JSON.stringify({ c: 1 }));
+  });
 });

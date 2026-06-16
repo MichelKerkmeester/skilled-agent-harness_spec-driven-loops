@@ -98,6 +98,50 @@ describe('generate-context canonical save lock', () => {
     }
   });
 
+  it('reaps an aged lock whose owner file is missing (unknown + stale)', () => {
+    const specFolder = makeTempSpecFolder();
+    const lockPath = path.join(specFolder, '.canonical-save.lock');
+    fsSync.mkdirSync(lockPath);
+    // No owner file written -> owner state is 'unknown'.
+    const oldTime = new Date(Date.now() - CANONICAL_SAVE_STALE_MS - 1_000);
+    fsSync.utimesSync(lockPath, oldTime, oldTime);
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+
+    const acquiredLock = acquireCanonicalSaveLock(specFolder);
+
+    try {
+      expect(acquiredLock).toBe(lockPath);
+      expect(fsSync.readFileSync(path.join(lockPath, 'owner'), 'utf8')).toMatch(new RegExp(`^${process.pid}\\n`));
+      expect(warnSpy).toHaveBeenCalledWith(expect.stringContaining('removing abandoned canonical save lock'));
+    } finally {
+      releaseCanonicalSaveLock(acquiredLock);
+    }
+  });
+
+  it('refuses an unknown-owner lock that is still within the stale window', () => {
+    const specFolder = makeTempSpecFolder();
+    const lockPath = path.join(specFolder, '.canonical-save.lock');
+    fsSync.mkdirSync(lockPath);
+    // Fresh dir, no owner file -> 'unknown' but not yet stale: must not reap.
+    expect(() => acquireCanonicalSaveLock(specFolder)).toThrow(/Canonical save lock is active/);
+    expect(fsSync.existsSync(lockPath)).toBe(true);
+  });
+
+  it('writes the owner record without leaving a temp artifact behind', () => {
+    const specFolder = makeTempSpecFolder();
+    const lockPath = acquireCanonicalSaveLock(specFolder);
+    try {
+      expect(lockPath).not.toBeNull();
+      // The owner file is published via a temp-file rename, so the held lock dir
+      // carries exactly the owner record with no leftover *.tmp staging file.
+      expect(fsSync.existsSync(path.join(lockPath as string, 'owner'))).toBe(true);
+      const leftovers = fsSync.readdirSync(lockPath as string).filter((entry) => entry.endsWith('.tmp'));
+      expect(leftovers).toEqual([]);
+    } finally {
+      releaseCanonicalSaveLock(lockPath);
+    }
+  });
+
   it('refreshes lock directory mtime while held', async () => {
     const specFolder = makeTempSpecFolder();
     const realNow = Date.now();

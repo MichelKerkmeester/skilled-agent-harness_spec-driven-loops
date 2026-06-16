@@ -100,37 +100,42 @@ export function init(database: Database.Database): void {
   ).get() as { sql: string } | undefined;
   if (tableInfo?.sql && (tableInfo.sql.includes('CHECK(actor IN') || tableInfo.sql.includes('FOREIGN KEY'))) {
     const hasMemoryIndexTable = hasTable(database, 'memory_index');
-    database.exec(`
-      ALTER TABLE memory_history RENAME TO memory_history_old;
-      CREATE TABLE memory_history (
-        id TEXT PRIMARY KEY,
-        memory_id INTEGER NOT NULL,
-        spec_folder TEXT,
-        prev_value TEXT,
-        new_value TEXT,
-        event TEXT NOT NULL CHECK(event IN ('ADD', 'UPDATE', 'DELETE')),
-        timestamp TEXT DEFAULT CURRENT_TIMESTAMP,
-        is_deleted INTEGER DEFAULT 0,
-        actor TEXT DEFAULT 'system'
-      );
-    `);
+    // Rebuild atomically: a crash between RENAME and INSERT would otherwise leave
+    // an empty new table whose schema no longer trips the legacy guard above, so
+    // the copy never re-runs and the audit-log rows are stranded permanently.
+    database.transaction(() => {
+      database.exec(`
+        ALTER TABLE memory_history RENAME TO memory_history_old;
+        CREATE TABLE memory_history (
+          id TEXT PRIMARY KEY,
+          memory_id INTEGER NOT NULL,
+          spec_folder TEXT,
+          prev_value TEXT,
+          new_value TEXT,
+          event TEXT NOT NULL CHECK(event IN ('ADD', 'UPDATE', 'DELETE')),
+          timestamp TEXT DEFAULT CURRENT_TIMESTAMP,
+          is_deleted INTEGER DEFAULT 0,
+          actor TEXT DEFAULT 'system'
+        );
+      `);
 
-    if (hasMemoryIndexTable) {
-      database.exec(`
-        INSERT INTO memory_history (id, memory_id, spec_folder, prev_value, new_value, event, timestamp, is_deleted, actor)
-        SELECT h.id, h.memory_id, m.spec_folder, h.prev_value, h.new_value, h.event, h.timestamp, h.is_deleted, h.actor
-        FROM memory_history_old h
-        LEFT JOIN memory_index m ON m.id = h.memory_id;
-        DROP TABLE memory_history_old;
-      `);
-    } else {
-      database.exec(`
-        INSERT INTO memory_history (id, memory_id, spec_folder, prev_value, new_value, event, timestamp, is_deleted, actor)
-        SELECT id, memory_id, NULL, prev_value, new_value, event, timestamp, is_deleted, actor
-        FROM memory_history_old;
-        DROP TABLE memory_history_old;
-      `);
-    }
+      if (hasMemoryIndexTable) {
+        database.exec(`
+          INSERT INTO memory_history (id, memory_id, spec_folder, prev_value, new_value, event, timestamp, is_deleted, actor)
+          SELECT h.id, h.memory_id, m.spec_folder, h.prev_value, h.new_value, h.event, h.timestamp, h.is_deleted, h.actor
+          FROM memory_history_old h
+          LEFT JOIN memory_index m ON m.id = h.memory_id;
+          DROP TABLE memory_history_old;
+        `);
+      } else {
+        database.exec(`
+          INSERT INTO memory_history (id, memory_id, spec_folder, prev_value, new_value, event, timestamp, is_deleted, actor)
+          SELECT id, memory_id, NULL, prev_value, new_value, event, timestamp, is_deleted, actor
+          FROM memory_history_old;
+          DROP TABLE memory_history_old;
+        `);
+      }
+    })();
   }
 
   if (!hasColumn(database, 'memory_history', 'spec_folder')) {

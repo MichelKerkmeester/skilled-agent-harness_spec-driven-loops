@@ -304,8 +304,16 @@ export class BetterSqliteVectorStore<TMetadata extends VectorMetadata = VectorMe
   async clear(): Promise<void> {
     this._ensureInitialized();
     const database = this._getDatabase();
+    // Under a non-default embedder the payload also lives in a per-dim shard; the
+    // per-record delete clears it, so a full reset must too — otherwise the shard
+    // retains orphaned vectors after clear().
+    const { activeDimVectorSource } = await getMutationsModule();
+    const dimSource = activeDimVectorSource(database);
     database.transaction(() => {
       database.prepare(`DELETE FROM ${activeVectorSource('vec_memories')}`).run();
+      if (dimSource) {
+        database.prepare(`DELETE FROM ${dimSource}`).run();
+      }
       database.prepare('DELETE FROM active_memory_projection').run();
       database.prepare('DELETE FROM memory_index').run();
     })();

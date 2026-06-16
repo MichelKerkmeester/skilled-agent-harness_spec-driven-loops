@@ -741,8 +741,18 @@ function planMemoizedIndexing(
   const memoStore = createMemoStore(database);
   const changedPaths: string[] = [];
   for (const input of inputs) {
-    const inputFingerprint = canonicalFingerprint(input.canonicalInput);
-    const memo = memoStore.getMemoRecord(input.componentPath, inputFingerprint, input.codeHash);
+    // An unfingerprintable input (e.g. a non-finite number) must not abort the
+    // whole batch plan — treat it as a memo miss for this one input so the
+    // remaining inputs are still planned.
+    let inputFingerprint: string | null = null;
+    try {
+      inputFingerprint = canonicalFingerprint(input.canonicalInput);
+    } catch (_error: unknown) {
+      inputFingerprint = null;
+    }
+    const memo = inputFingerprint === null
+      ? undefined
+      : memoStore.getMemoRecord(input.componentPath, inputFingerprint, input.codeHash);
     if (memo) {
       result.memoHits++;
       result.unchangedComponentPaths.push(input.componentPath);

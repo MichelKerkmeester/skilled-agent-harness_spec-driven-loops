@@ -61,6 +61,9 @@ function expandedTokens(prompt: string): string[] {
 export function scoreLexicalLane(prompt: string, projection: AdvisorProjection): LaneMatch[] {
   const lower = prompt.toLowerCase();
   const tokens = expandedTokens(prompt);
+  // Normalize against the un-expanded prompt length so injected synonyms only add
+  // recall and never enlarge the denominator against a literally-matching skill.
+  const originalTokenCount = tokenize(prompt).length;
   const matches: LaneMatch[] = [];
 
   for (const skill of projection.skills) {
@@ -72,7 +75,7 @@ export function scoreLexicalLane(prompt: string, projection: AdvisorProjection):
       ...skill.domains,
       ...skill.intentSignals,
       ...skill.keywords,
-    ]);
+    ], originalTokenCount);
 
     for (const hint of CATEGORY_HINTS[skill.id] ?? []) {
       if (matchesPhraseBoundary(lower, hint)) {

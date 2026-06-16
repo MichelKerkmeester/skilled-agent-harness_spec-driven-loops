@@ -997,6 +997,34 @@ function mergeCheckpointCatalogRows(database: Database.Database, rows: Array<Rec
   }
 }
 
+function pruneCheckpointCatalogRowsMissingSnapshots(database: Database.Database): void {
+  // The restored snapshot-main DB carries the full checkpoints table as of the
+  // snapshot, including v2 rows whose snapshot dir was deleted after the snapshot
+  // was taken. Those rows would resurface in listCheckpoints with no restorable
+  // dir, so drop any v2 row whose snapshot_path no longer exists on disk.
+  // Best-effort: never throw out of the restore path.
+  try {
+    if (!tableExists(database, 'checkpoints')) {
+      return;
+    }
+    const checkpointColumns = new Set(getTableColumns(database, 'checkpoints'));
+    if (!checkpointColumns.has('snapshot_path') || !checkpointColumns.has('snapshot_format')) {
+      return;
+    }
+    const rows = database.prepare(
+      "SELECT id, snapshot_path FROM checkpoints WHERE snapshot_format = 'v2' AND snapshot_path IS NOT NULL AND snapshot_path <> ''",
+    ).all() as Array<{ id: number; snapshot_path: string }>;
+    for (const row of rows) {
+      if (!fs.existsSync(row.snapshot_path)) {
+        database.prepare('DELETE FROM checkpoints WHERE id = ?').run(row.id);
+        console.warn(`[checkpoints] Dropped restored catalog row with missing snapshot dir: ${row.snapshot_path}`);
+      }
+    }
+  } catch (error: unknown) {
+    console.warn(`[checkpoints] Post-restore catalog reconciliation skipped (non-fatal): ${toErrorMessage(error)}`);
+  }
+}
+
 function statPathBytes(targetPath: string): number {
   try {
     const stats = fs.statSync(targetPath);
@@ -2625,6 +2653,16 @@ function restoreCheckpointV2(
     }
     shouldRestoreVec = manifest.vecTables.length > 0;
     if (shouldRestoreVec) {
+      // A null snapshot embedder slug means the equality guard above could not
+      // verify embedder/dimension compatibility. Restoring an unverified vec
+      // shard over the live one risks a dimension mismatch that corrupts
+      // similarity search, so refuse rather than trust an unknown embedder.
+      if (manifest.embedderSlug === null) {
+        throw new CheckpointRestoreError(
+          'CHECKPOINT_RESTORE_EMBEDDER_MISMATCH',
+          'Checkpoint v2 restore refused because the snapshot embedder slug is unknown and the vector shard cannot be verified as compatible.',
+        );
+      }
       if (!liveShardPath) {
         throw new CheckpointRestoreError(
           'CHECKPOINT_RESTORE_PATH_UNRESOLVED',
@@ -2740,6 +2778,7 @@ function restoreCheckpointV2(
     try {
       init(newDb);
       mergeCheckpointCatalogRows(newDb, liveCheckpointCatalogRows);
+      pruneCheckpointCatalogRowsMissingSnapshots(newDb);
       const rebuildSummary = runPostRestoreRebuilds(newDb, null);
       if (!isDerivedRebuildComplete(rebuildSummary)) {
         try {
@@ -2752,7 +2791,13 @@ function restoreCheckpointV2(
           console.warn(`[checkpoints] Failed to write needs-rebuild sentinel after restore (non-fatal): ${toErrorMessage(sentinelError)}`);
         }
       }
-      result.restored = manifest.memoryCount;
+      // Report the rows actually swapped in, not the manifest's create-time
+      // count, so a count drift or truncated-but-openable snapshot cannot make
+      // restore claim a memory total that is not present post-swap.
+      result.restored = countTableRows(newDb, 'memory_index');
+      if (result.restored !== manifest.memoryCount) {
+        console.warn(`[checkpoints] Restored memory_index row count ${result.restored} diverges from manifest memoryCount ${manifest.memoryCount}`);
+      }
       result.workingMemoryRestored = countTableRows(newDb, 'working_memory');
       if (restoreJournalPath) {
         clearRestoreJournal(restoreJournalPath);

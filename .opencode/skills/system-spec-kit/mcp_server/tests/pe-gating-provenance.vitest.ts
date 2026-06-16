@@ -79,7 +79,7 @@ function parsedMemory() {
   };
 }
 
-async function loadPeGating() {
+async function loadPeGating(reindexCarry: { importanceTier: string; sourceKind: string } | null = null) {
   vi.resetModules();
 
   vi.doMock('../utils/index.js', () => ({
@@ -130,7 +130,7 @@ async function loadPeGating() {
   }));
   vi.doMock('../lib/storage/lineage-state.js', () => ({
     recordLineageTransition: vi.fn(),
-    retirePredecessorForActiveReindex: vi.fn(),
+    retirePredecessorForActiveReindex: vi.fn(() => reindexCarry),
   }));
   vi.doMock('../lib/search/encoding-intent.js', () => ({
     classifyEncodingIntent: vi.fn(() => 'document'),
@@ -183,6 +183,30 @@ describe('PE mutation provenance', () => {
       provenance_source: 'agent-save',
       provenance_actor: 'opencode-agent',
     });
+  });
+
+  it('carries a retired human predecessor source_kind/tier onto the appended PE update successor', async () => {
+    seedMemory();
+    // The retire helper surfaces a human predecessor's tier + source-kind so the
+    // append-version successor keeps its overwrite protection instead of being
+    // relabelled to the automated default. Old behavior re-stamped 'agent'.
+    const { updateExistingMemory } = await loadPeGating({ importanceTier: 'constitutional', sourceKind: 'human' });
+
+    const result = updateExistingMemory(
+      101,
+      parsedMemory(),
+      new Float32Array([0.2, 0.8]),
+      {},
+      { provenanceSource: 'agent-save', provenanceActor: 'opencode-agent', tool: 'memory_save' },
+    );
+
+    expect(result.status).toBe('updated');
+    const row = database.prepare(`
+      SELECT source_kind, importance_tier
+      FROM memory_index
+      WHERE id = ?
+    `).get(result.id) as { source_kind: string; importance_tier: string };
+    expect(row).toEqual({ source_kind: 'human', importance_tier: 'constitutional' });
   });
 
   it('preserves protected source_kind when PE reinforce records automated provenance', async () => {

@@ -437,9 +437,12 @@ describe('memory idempotency receipts and near-duplicate markers', () => {
       });
       expect(storeIdempotencyReceipt(database, oldKey, responseFor(1), null)).toBe(true);
       expect(storeIdempotencyReceipt(database, freshKey, responseFor(2), null)).toBe(true);
+      // Receipts are insert-only (ON CONFLICT DO NOTHING) so created_at is the
+      // immutable, indexed age key the prune now filters on; age the old row by
+      // created_at to match how production rows actually age.
       database.prepare(`
         UPDATE memory_idempotency_receipts
-        SET updated_at = datetime('now', '-45 days')
+        SET created_at = datetime('now', '-45 days')
         WHERE receipt_key = ?
       `).run(oldKey.receiptKey);
 

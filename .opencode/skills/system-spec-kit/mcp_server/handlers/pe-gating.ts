@@ -20,6 +20,7 @@ import {
   normalizeSourceKind,
   persistProvenanceMetadata,
   persistSourceKind,
+  type SourceKind,
   type WriteProvenanceContext,
 } from '../lib/storage/write-provenance.js';
 
@@ -347,8 +348,9 @@ function updateExistingMemory(
 
   const appendVersion = database.transaction(() => {
     // Retire the predecessor before the append insert so the active-row uniqueness
-    // guard holds at insert time; lineage and history persist.
-    retirePredecessorForActiveReindex(database, memoryId);
+    // guard holds at insert time; lineage and history persist. The carry surfaces a
+    // human's tier/source-kind so it survives the reindex instead of being relabelled.
+    const reindexCarry = retirePredecessorForActiveReindex(database, memoryId);
 
     const nextMemoryId = vectorIndex.indexMemory({
       specFolder: parsed.specFolder,
@@ -384,6 +386,16 @@ function updateExistingMemory(
       scope,
       ...provenance,
     });
+
+    // Re-stamp after provenance so a manual predecessor's tier and human
+    // source-kind carry to the successor instead of resetting to the automated
+    // default — keeping the automated-writers-never-overwrite-manual guarantee.
+    if (reindexCarry != null) {
+      database
+        .prepare('UPDATE memory_index SET importance_tier = ? WHERE id = ?')
+        .run(reindexCarry.importanceTier, nextMemoryId);
+      persistSourceKind(database, nextMemoryId, reindexCarry.sourceKind as SourceKind);
+    }
 
     recordLineageTransition(database, nextMemoryId, {
       actor: 'mcp:memory_save',

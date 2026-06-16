@@ -455,6 +455,7 @@ class BM25Index {
   private documents: Map<string, LegacyDocumentRecord>;
   private packedDocuments: Map<string, PackedDocumentRecord>;
   private packedDocIds: Array<string | undefined>;
+  private packedFreeNumericIds: number[];
   private packedDocNumbersById: Map<string, number>;
   private packedMutablePostings: Map<string, PackedPostingMutable>;
   private packedPostings: Map<string, PackedPostingList>;
@@ -485,6 +486,7 @@ class BM25Index {
     this.documents = new Map();
     this.packedDocuments = new Map();
     this.packedDocIds = [];
+    this.packedFreeNumericIds = [];
     this.packedDocNumbersById = new Map();
     this.packedMutablePostings = new Map();
     this.packedPostings = new Map();
@@ -666,6 +668,7 @@ class BM25Index {
     this.documents.clear();
     this.packedDocuments.clear();
     this.packedDocIds = [];
+    this.packedFreeNumericIds = [];
     this.packedDocNumbersById.clear();
     this.packedMutablePostings.clear();
     this.packedPostings.clear();
@@ -845,8 +848,11 @@ class BM25Index {
       return existing;
     }
 
-    const numericId = this.packedDocIds.length;
-    this.packedDocIds.push(id);
+    // Reuse a slot freed by a prior removal before extending, so packedDocIds is
+    // bounded by the live document count rather than cumulative write volume.
+    const recycled = this.packedFreeNumericIds.pop();
+    const numericId = recycled ?? this.packedDocIds.length;
+    this.packedDocIds[numericId] = id;
     this.packedDocNumbersById.set(id, numericId);
     return numericId;
   }
@@ -957,6 +963,7 @@ class BM25Index {
 
     this.packedDocuments.delete(id);
     this.packedDocIds[doc.numericId] = undefined;
+    this.packedFreeNumericIds.push(doc.numericId);
     this.packedDocNumbersById.delete(id);
     return true;
   }

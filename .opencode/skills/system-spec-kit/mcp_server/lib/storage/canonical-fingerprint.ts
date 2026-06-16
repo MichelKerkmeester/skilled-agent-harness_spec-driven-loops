@@ -16,6 +16,15 @@ function normalizeNumber(value: number): number {
   return Object.is(value, -0) ? 0 : value;
 }
 
+// Contract (mirrors JSON.stringify so the fingerprint matches its serialized
+// form): undefined / function / symbol are non-JSON values handled uniformly —
+// dropped as object keys and coerced to null as array elements. Any remaining
+// unfingerprintable type (e.g. bigint) throws in every container, so the failure
+// mode never depends on whether the value sits in an object or an array.
+function isNonJsonValue(value: unknown): boolean {
+  return typeof value === 'undefined' || typeof value === 'function' || typeof value === 'symbol';
+}
+
 function toCanonicalJson(value: unknown): CanonicalJson {
   if (value === null || typeof value === 'boolean') {
     return value;
@@ -29,8 +38,12 @@ function toCanonicalJson(value: unknown): CanonicalJson {
     return normalizeNumber(value);
   }
 
+  if (isNonJsonValue(value)) {
+    return null;
+  }
+
   if (Array.isArray(value)) {
-    return value.map((item) => toCanonicalJson(item));
+    return value.map((item) => (isNonJsonValue(item) ? null : toCanonicalJson(item)));
   }
 
   if (typeof value === 'object') {
@@ -38,16 +51,12 @@ function toCanonicalJson(value: unknown): CanonicalJson {
     const normalized: { [key: string]: CanonicalJson } = {};
     for (const key of Object.keys(input).sort()) {
       const child = input[key];
-      if (typeof child === 'undefined' || typeof child === 'function' || typeof child === 'symbol') {
+      if (isNonJsonValue(child)) {
         continue;
       }
       normalized[key] = toCanonicalJson(child);
     }
     return normalized;
-  }
-
-  if (typeof value === 'undefined') {
-    return null;
   }
 
   throw new TypeError(`Cannot fingerprint value of type ${typeof value}`);

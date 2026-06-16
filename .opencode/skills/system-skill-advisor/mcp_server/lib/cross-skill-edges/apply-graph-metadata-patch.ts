@@ -92,6 +92,11 @@ export async function applyEnhanceEdge(
       existingEdge.weight = candidate.weight;
       existingEdge.context = candidate.context;
       existingEdge.source_kind = sourceKind;
+      // A trusted overwrite supersedes any earlier automated origin; drop the
+      // automated-provenance markers so the edge cannot carry contradictory
+      // {source_kind:'trusted', auto_added_reason:...} provenance.
+      delete existingEdge.auto_added_at;
+      delete existingEdge.auto_added_reason;
       await writeFile(candidate.sourcePath, JSON.stringify(parsed, null, 2) + '\n', 'utf-8');
       return { applied: true, reason: 'edge updated by trusted maintainer' };
     }

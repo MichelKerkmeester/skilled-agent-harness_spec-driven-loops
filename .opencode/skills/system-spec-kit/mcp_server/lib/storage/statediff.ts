@@ -165,7 +165,13 @@ export function planStatediff<TPayload extends JsonValue>(
   return actions;
 }
 
-/** Flattens a parent target plus child projections into deterministic row order. */
+/**
+ * Flattens a parent target plus child projections into deterministic row order.
+ *
+ * Staged helper for composite (parent + child-projection) planning: it is
+ * covered by unit tests but planStatediff does not yet route through it. Kept as
+ * the intended entry point for composite-target plans rather than inlined.
+ */
 export function flattenCompositeTarget<TPayload extends JsonValue>(
   composite: CompositeTarget<TPayload>,
 ): TargetStateRow<TPayload>[] {
@@ -226,7 +232,14 @@ export async function applyStatediffActions<TPayload extends JsonValue>(
   };
 }
 
-/** Runs action subscribers after durable sinks have applied. */
+/**
+ * Runs action subscribers after durable sinks have applied.
+ *
+ * Staged post-apply notification phase: the durable apply path
+ * (applyStatediffActions) is wired in production, but no caller fans out to
+ * subscribers yet. Kept as the intended extension point and covered by a unit
+ * test so its contract does not silently drift.
+ */
 export async function notifyStatediffSubscribers<TPayload extends JsonValue>(
   actions: readonly StatediffAction<TPayload>[],
   subscribers: readonly StatediffSubscriber<TPayload>[],

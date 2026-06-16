@@ -360,8 +360,11 @@ export function runHebbianCycle(database: Database.Database): { strengthened: nu
             : newStrength;
 
           if (cappedStrength > edge.strength) {
-            updateEdge(edge.id, { strength: cappedStrength }, 'hebbian', 'hebbian-strengthening');
-            strengthened++;
+            // Only count edges that were actually mutated so the reported
+            // telemetry cannot overstate the DB writes when updateEdge no-ops.
+            if (updateEdge(edge.id, { strength: cappedStrength }, 'hebbian', 'hebbian-strengthening')) {
+              strengthened++;
+            }
           }
         }
       }
@@ -376,14 +379,20 @@ export function runHebbianCycle(database: Database.Database): { strengthened: nu
       for (const edge of staleDecayEdges) {
         const newStrength = Math.max(0, edge.strength - DECAY_STRENGTH_AMOUNT);
         if (newStrength < edge.strength) {
-          updateEdge(edge.id, { strength: newStrength }, 'hebbian', 'decay-30-day');
-          decayed++;
+          if (updateEdge(edge.id, { strength: newStrength }, 'hebbian', 'decay-30-day')) {
+            decayed++;
+          }
         }
       }
     })();
   } catch (error: unknown) {
     const msg = error instanceof Error ? error.message : String(error);
     console.warn(`[consolidation] runHebbianCycle error: ${msg}`);
+    // Re-throw so the outer cycle rolls back and does NOT advance last_run_at:
+    // the inner savepoint already rolled back these writes, and swallowing here
+    // would book a partially-failed pass as a completed cycle, suppressing the
+    // next consolidation for the full cadence interval.
+    throw error;
   }
 
   return { strengthened, decayed };

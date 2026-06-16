@@ -353,7 +353,11 @@ function resolveExistingSpecFolderPath(rawArg: string | null): string | null {
   if (!rawArg) return null;
 
   if (path.isAbsolute(rawArg)) {
-    return fsSync.existsSync(rawArg) ? path.resolve(rawArg) : null;
+    if (!fsSync.existsSync(rawArg)) return null;
+    // Defense-in-depth at the write sink: enforce containment here so an
+    // absolute path that bypassed the main() argument gate can never resolve to
+    // a lock dir / metadata write outside the approved specs roots.
+    return validateFilePath(path.resolve(rawArg), getSpecsDirectories());
   }
 
   const projectScoped = path.resolve(CONFIG.PROJECT_ROOT, rawArg);
@@ -436,6 +440,16 @@ function getCanonicalSaveLockOwnerState(lockPath: string): CanonicalSaveLockOwne
   }
 }
 
+function ownsCanonicalSaveLock(lockPath: string): boolean {
+  try {
+    const ownerRaw = fsSync.readFileSync(path.join(lockPath, 'owner'), 'utf8');
+    const ownerPid = Number(ownerRaw.split(/\r?\n/, 1)[0]?.trim());
+    return Number.isInteger(ownerPid) && ownerPid === process.pid;
+  } catch (_error: unknown) {
+    return false;
+  }
+}
+
 function stopCanonicalSaveLockHeartbeat(lockPath: string): void {
   const heartbeat = canonicalSaveHeartbeats.get(lockPath);
   if (!heartbeat) {
@@ -461,8 +475,15 @@ function startCanonicalSaveLockHeartbeat(lockPath: string): void {
 }
 
 function createCanonicalSaveLock(lockPath: string): string {
+  // mkdir is the atomic acquire gate: it fails EEXIST when a lock dir already
+  // exists, so the caller's age/owner-state reclaim logic stays authoritative
+  // (an empty dir must not be silently reclaimed outside that gate). The owner
+  // record is then written via a temp file renamed into place so a visible lock
+  // dir converges to having an owner without a partial-write artifact.
   fsSync.mkdirSync(lockPath);
-  fsSync.writeFileSync(path.join(lockPath, 'owner'), `${process.pid}\n${new Date().toISOString()}\n`, 'utf8');
+  const ownerTmp = path.join(lockPath, `.owner.${process.pid}.tmp`);
+  fsSync.writeFileSync(ownerTmp, `${process.pid}\n${new Date().toISOString()}\n`, 'utf8');
+  fsSync.renameSync(ownerTmp, path.join(lockPath, 'owner'));
   startCanonicalSaveLockHeartbeat(lockPath);
   return lockPath;
 }
@@ -485,7 +506,15 @@ function acquireCanonicalSaveLock(specFolderPath: string | null): string | null 
     if (ownerState === 'dead' || (ownerState === 'unknown' && ageMs > CANONICAL_SAVE_STALE_MS)) {
       console.warn(`Warning: removing abandoned canonical save lock (${ownerState}, ${Math.round(ageMs)}ms): ${lockPath}`);
       fsSync.rmSync(lockPath, { recursive: true, force: true });
-      return createCanonicalSaveLock(lockPath);
+      const reclaimed = createCanonicalSaveLock(lockPath);
+      // Reap-then-create is not a single atomic step, so a second reaper could
+      // have published its own lock in the gap. Confirm we actually own the
+      // visible lock; if another pid won, release our heartbeat and fail closed.
+      if (!ownsCanonicalSaveLock(lockPath)) {
+        stopCanonicalSaveLockHeartbeat(reclaimed);
+        throw new Error(`Canonical save lock is active: ${lockPath}`);
+      }
+      return reclaimed;
     }
     throw new Error(`Canonical save lock is active: ${lockPath}`);
   }

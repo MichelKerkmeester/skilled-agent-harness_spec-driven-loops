@@ -262,9 +262,12 @@ export function pruneExpiredIdempotencyReceipts(
   const envRaw = Number.parseInt(process.env.SPECKIT_IDEMPOTENCY_RECEIPT_TTL_DAYS ?? '', 10);
   const days = Math.max(1, ttlDays ?? (Number.isFinite(envRaw) && envRaw > 0 ? envRaw : 30));
   try {
+    // Prune on created_at: it is indexed and, since receipts are insert-only
+    // (ON CONFLICT DO NOTHING), updated_at is immutable and equals created_at —
+    // so this is behaviorally identical but avoids a full table scan.
     const info = database.prepare(`
       DELETE FROM memory_idempotency_receipts
-      WHERE updated_at < datetime('now', ?)
+      WHERE created_at < datetime('now', ?)
     `).run(`-${days} days`);
     return info.changes;
   } catch {

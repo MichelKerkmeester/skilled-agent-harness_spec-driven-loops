@@ -209,8 +209,16 @@ function runWithWriteLock<T>(
     if (isPromiseLike(result)) {
       return result.then(
         (value) => {
-          database.exec('COMMIT');
-          return value;
+          // Guard the async COMMIT too: a throw here would otherwise leak an
+          // open transaction on the shared connection, after which later
+          // write-lock attempts silently fall back to running inside it.
+          try {
+            database.exec('COMMIT');
+            return value;
+          } catch (commitError: unknown) {
+            rollbackQuietly(database);
+            throw commitError;
+          }
         },
         (error: unknown) => {
           rollbackQuietly(database);

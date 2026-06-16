@@ -86,10 +86,11 @@ function isSessionTraceCausalInferenceEnabled(): boolean {
   return normalizeBooleanEnv(process.env.SPECKIT_SESSION_TRACE_CAUSAL_INFERENCE);
 }
 
-function enabledRelation(): RelationType | null {
-  const relation = RELATION_TYPES.ENABLED;
-  return (Object.values(RELATION_TYPES) as string[]).includes(relation) ? relation : null;
-}
+// The session-trace reducer only ever emits the ENABLED relation. This is a
+// compile-time constant from RELATION_TYPES, so there is no runtime validation
+// to perform — exposing it directly avoids a tautological guard that reads like
+// a gate but can never trip.
+const SESSION_TRACE_RELATION: RelationType = RELATION_TYPES.ENABLED;
 
 function sortFeedbackEvents(events: FeedbackEventRow[]): FeedbackEventRow[] {
   return [...events].sort((a, b) => {
@@ -194,10 +195,7 @@ function runSessionTraceCausalReducer(
     return createNoopResult(runAt, windowStart, windowEnd, dryRun, 'flag_off');
   }
 
-  const relation = enabledRelation();
-  if (!relation) {
-    return createNoopResult(runAt, windowStart, windowEnd, dryRun, 'insert_rejected');
-  }
+  const relation = SESSION_TRACE_RELATION;
 
   initFeedbackLedger(db);
   if (!dryRun) initCausalEdges(db);

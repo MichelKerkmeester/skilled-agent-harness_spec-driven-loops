@@ -389,13 +389,16 @@ export async function executeMerge(
       clear_search_cache();
 
       try {
-        recordHistory(newId, 'ADD', null, mergedTitle || existingMemory.file_path, 'mcp:reconsolidation');
+        recordHistory(newId, 'ADD', null, mergedTitle || existingMemory.file_path, 'mcp:reconsolidation', existingMemory.spec_folder);
         recordHistory(
           existingMemory.id,
           'UPDATE',
           existingMemory.title ?? existingMemory.file_path,
           mergedTitle || existingMemory.file_path,
           'mcp:reconsolidation',
+          // Pass the folder explicitly so the history spec_folder cache is
+          // refreshed rather than attributing the row to a stale cached folder.
+          existingMemory.spec_folder,
         );
       } catch (_historyErr: unknown) {
         // Best-effort history tracking during reconsolidation merge

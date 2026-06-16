@@ -20,6 +20,7 @@ import { createLogger } from '../utils/logger.js';
 import { deleteByContentHash } from '../cache/embedding-cache.js';
 import { clearDegreeCacheForDb } from './graph-search-fn.js';
 import { sweepCausalEdges } from '../causal/sweep.js';
+import { bumpCausalEdgesGeneration } from '../storage/causal-generation.js';
 import * as bm25Index from './bm25-index.js';
 import {
   clear_search_cache,
@@ -99,6 +100,11 @@ function deleteActiveVectorPayload(database: Database.Database, id: bigint): voi
 }
 
 function invalidateGraphCaches(database: Database.Database): void {
+  // Bump the generation FIRST so every cache key that includes it (e.g.
+  // memory_search with causal boost) goes stale before the per-db caches clear;
+  // without this, memory-delete sweeps served stale causal-boosted search results.
+  bumpCausalEdgesGeneration();
+
   try {
     clearDegreeCacheForDb(database);
   } catch (_error: unknown) {
@@ -191,11 +197,12 @@ function deleteAncillaryMemoryRows(database: Database.Database, id: number): voi
       invalidateGraphCaches(database);
     }
   } catch (error: unknown) {
-    // Tolerate only legacy databases that predate causal-edge tables. Any other
-    // sweep failure must propagate so the surrounding delete transaction rolls
-    // back instead of committing a hard delete without its tombstone audit row.
+    // Tolerate only legacy databases that predate the causal-edge tables. Scope
+    // the match to those table names so an unrelated missing-table error still
+    // propagates and rolls back the surrounding delete instead of committing a
+    // hard delete without its tombstone audit row.
     const message = error instanceof Error ? error.message : String(error);
-    if (!/no such table/i.test(message)) {
+    if (!/no such table:\s*causal_edge/i.test(message)) {
       throw error;
     }
   }
@@ -998,6 +1005,10 @@ export function update_confidence(
     return false;
   }
 }
+
+// Exported so the store-port clear() can resolve and purge the active per-dim
+// vector shard, mirroring the per-record delete path.
+export { activeDimVectorSource };
 
 // CamelCase aliases
 export { index_memory as indexMemory };

@@ -8,6 +8,7 @@ import type Database from 'better-sqlite3';
 import { perFolderDescriptionSchema } from '../description/description-schema.js';
 import { validateGraphMetadataContent } from '../graph/graph-metadata-parser.js';
 import * as causalEdges from '../storage/causal-edges.js';
+import { bumpCausalEdgesGeneration } from '../storage/causal-generation.js';
 import { sweepCausalEdges } from './sweep.js';
 
 type PromotedField = 'parent_id' | 'children_ids' | 'parentChain';
@@ -403,6 +404,13 @@ function promoteMetadataEdges(database: Database.Database, input: PromotionInput
     if (edgeId !== null) {
       result.inserted++;
     }
+  }
+
+  // The sweep and per-edge inserts above suppress their own cache invalidation,
+  // so bump once here when anything changed — otherwise a causal-boost search
+  // keeps serving a payload cached before this scan rewrote the edges.
+  if (result.staleDeleted > 0 || result.inserted > 0) {
+    bumpCausalEdgesGeneration();
   }
 
   return result;
