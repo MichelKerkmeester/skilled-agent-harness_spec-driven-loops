@@ -44,8 +44,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] C7-S1 Capture the consolidation vitest baseline (pass/fail counts).
-- [ ] C7-S2 Locate the current `BEGIN IMMEDIATE` + read-only scan and the threaded-vs-global handle sites (line numbers drifted after 001's edits — find by symptom).
+- [x] C7-S1 Capture the consolidation vitest baseline (pass/fail counts). Evidence: baseline 245/246 across n3lite-consolidation + 4 causal-edges suites; 1 pre-existing failure (`causal-edges.vitest.ts:633` T045 — `insertEdgesBatch` now returns `skippedManual`, out of scope, untouched).
+- [x] C7-S2 Locate the current `BEGIN IMMEDIATE` + read-only scan and the threaded-vs-global handle sites. Evidence: R1 = `runConsolidationCycleIfEnabled` `BEGIN IMMEDIATE` then `runConsolidationCycle`→`scanContradictions` (consolidation.ts); R2 = `detectStaleEdges(_database)` ignored its param while `getStaleEdges` uses the module-global. Registry IDs `opus-memory-daemon-i2-f3` (R1) and `-f4` (R2). Single-connection invariant confirmed: runtime caller `handlers/save/response-builder.ts:852` passes `requireDb()` (= `vectorIndex.getDb()`), the same handle `causalEdges.init()` binds.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -53,8 +53,8 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] C7-T001 R1 lock-ordering: hoist the read-only scan/cluster/bounds before `BEGIN IMMEDIATE`; re-check the cadence guard after acquiring the lock; keep writes inside the immediate-lock transaction.
-- [ ] C7-T002 R2 handle-consistency: make `getStaleEdges`/`updateEdge`/`countEdgesForNode` share the cycle connection (drop unused `database` params or thread the handle).
+- [x] C7-T001 R1 lock-ordering: hoisted the read-only scan/cluster/bounds before `BEGIN IMMEDIATE`; re-check the cadence guard after acquiring the lock; writes (Hebbian + `last_run_at`) stay inside the immediate-lock transaction. Evidence: extracted `scanReadOnly()` helper; `runConsolidationCycleIfEnabled` now pre-checks cadence + runs `scanReadOnly` lock-free, then `BEGIN IMMEDIATE` → re-check cadence → `runHebbianCycle` → `last_run_at` → COMMIT (consolidation.ts). Return shape `{contradictions, hebbian, stale, edgeBounds}` and decision semantics preserved.
+- [x] C7-T002 R2 handle-consistency: dropped the unused `database` param from `detectStaleEdges()` (smallest safe diff). Evidence: it already delegated to `getStaleEdges()` on the module-global; `checkEdgeBounds`/`scanContradictions`/`runHebbianCycle` retain their threaded `database`, which IS the single shared connection (invariant from C7-S2). No `causal-edges.ts` change needed — its module-global-only design already guarantees one connection; threading handles into the whole edge API was the larger alternative R2 explicitly lists.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -62,9 +62,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] C7-V1 Concurrency test: a concurrent write is not blocked during the scan (fails on old code, passes on fix).
-- [ ] C7-V2 Handle/atomicity test: reads + writes share one connection within the cycle transaction.
-- [ ] C7-V3 Existing consolidation suite green; baseline→after delta reported.
+- [x] C7-V1 Concurrency test: a concurrent write is not blocked during the scan (fails on old code, passes on fix). Evidence: `T-LOCK-01` (n3lite-consolidation.vitest.ts) — two connections on a file DB; a probe write on conn B fires when the scan touches `memory_index`. RED proven by temporarily reverting R1 (scan inside `BEGIN IMMEDIATE`): `inTransactionDuringScan` was `true` + conn B got SQLITE_BUSY → assertion failed; GREEN on the fix. Plus `T-LOCK-02` proves the under-lock cadence re-check blocks double-apply.
+- [x] C7-V2 Handle/atomicity test: reads + writes share one connection within the cycle transaction. Evidence: `T-HANDLE-01` — Hebbian write (via module-global) is visible on the same connection passed to the cycle (strength 0.5→0.55) + weight_history row lands on it; `T-HANDLE-02` — `detectStaleEdges()` reads via the module-global with no threaded handle.
+- [x] C7-V3 Existing consolidation suite green; baseline→after delta reported. Evidence: 245/246 → 249/250 (+4 new tests; same 1 pre-existing out-of-scope failure; no regressions). tsc `--noEmit` exit 0; comment-hygiene clean; `verify_alignment_drift.py` PASS (0 findings).
 <!-- /ANCHOR:phase-3 -->
 
 ---

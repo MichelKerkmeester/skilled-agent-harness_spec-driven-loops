@@ -1,8 +1,11 @@
 // TESTS: N3-lite Consolidation Engine
 // Covers: contradiction scan, Hebbian strengthening, staleness
 // Detection, edge bounds, cluster surfacing, weight_history.
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import Database from 'better-sqlite3';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
 import {
   hasNegationConflict,
   scanContradictions,
@@ -405,7 +408,7 @@ describe('T002c: Staleness detection', () => {
     // Set extracted_at to 91 days ago (no last_accessed)
     db.prepare("UPDATE causal_edges SET extracted_at = datetime('now', '-91 days') WHERE source_id = '1'").run();
 
-    const stale = detectStaleEdges(db);
+    const stale = detectStaleEdges();
     expect(stale.length).toBeGreaterThanOrEqual(1);
   });
 
@@ -416,7 +419,7 @@ describe('T002c: Staleness detection', () => {
     insertEdge('1', '2', 'caused', 0.5);
     db.prepare("UPDATE causal_edges SET last_accessed = datetime('now') WHERE source_id = '1'").run();
 
-    const stale = detectStaleEdges(db);
+    const stale = detectStaleEdges();
     expect(stale).toHaveLength(0);
   });
 });
@@ -559,5 +562,205 @@ describe('T002: Full consolidation cycle', () => {
 
     if (saved === undefined) delete process.env.SPECKIT_CONSOLIDATION;
     else process.env.SPECKIT_CONSOLIDATION = saved;
+  });
+});
+
+/* : Lock ordering + handle consistency (hardening) -- */
+
+/** Apply the test schema to an already-open connection (file-backed). */
+function applySchema(db: Database.Database): void {
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS memory_index (
+      id INTEGER PRIMARY KEY,
+      spec_folder TEXT NOT NULL DEFAULT 'test',
+      file_path TEXT NOT NULL DEFAULT 'test.md',
+      title TEXT,
+      content_text TEXT,
+      importance_tier TEXT DEFAULT 'normal',
+      parent_id INTEGER,
+      created_at TEXT DEFAULT (datetime('now')),
+      updated_at TEXT DEFAULT (datetime('now'))
+    )
+  `);
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS causal_edges (
+      id INTEGER PRIMARY KEY,
+      source_id TEXT NOT NULL,
+      target_id TEXT NOT NULL,
+      relation TEXT NOT NULL CHECK(relation IN (
+        'caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'
+      )),
+      strength REAL DEFAULT 1.0 CHECK(strength >= 0.0 AND strength <= 1.0),
+      evidence TEXT,
+      extracted_at TEXT DEFAULT (datetime('now')),
+      created_by TEXT DEFAULT 'manual',
+      source_anchor TEXT,
+      target_anchor TEXT,
+      last_accessed TEXT,
+      UNIQUE(source_id, target_id, relation)
+    )
+  `);
+  db.exec('CREATE INDEX IF NOT EXISTS idx_causal_source ON causal_edges(source_id)');
+  db.exec('CREATE INDEX IF NOT EXISTS idx_causal_target ON causal_edges(target_id)');
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS weight_history (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      edge_id INTEGER NOT NULL REFERENCES causal_edges(id) ON DELETE CASCADE,
+      old_strength REAL NOT NULL,
+      new_strength REAL NOT NULL,
+      changed_by TEXT DEFAULT 'manual',
+      changed_at TEXT DEFAULT (datetime('now')),
+      reason TEXT
+    )
+  `);
+}
+
+describe('T002f: Consolidation lock ordering (R1)', () => {
+  let tmpDir: string | null = null;
+  const savedFlag = process.env.SPECKIT_CONSOLIDATION;
+
+  afterEach(() => {
+    if (savedFlag === undefined) delete process.env.SPECKIT_CONSOLIDATION;
+    else process.env.SPECKIT_CONSOLIDATION = savedFlag;
+    if (tmpDir) {
+      fs.rmSync(tmpDir, { recursive: true, force: true });
+      tmpDir = null;
+    }
+  });
+
+  it('T-LOCK-01: read-only scan does NOT hold the write lock (concurrent write not blocked)', () => {
+    process.env.SPECKIT_CONSOLIDATION = 'true';
+    tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'consolidation-lock-'));
+    const dbPath = path.join(tmpDir, 'graph.db');
+
+    // Connection A drives the cycle; connection B is an independent writer
+    // sharing the same on-disk DB (mirrors a separate CLI front-door process).
+    const connA = new Database(dbPath);
+    const connB = new Database(dbPath);
+    // Fail fast on lock contention instead of blocking the test for 30s.
+    connB.pragma('busy_timeout = 0');
+
+    try {
+      applySchema(connA);
+      // Scratch table for the probe writer (avoids touching consolidation rows).
+      connA.exec('CREATE TABLE IF NOT EXISTS probe_writes (id INTEGER PRIMARY KEY)');
+      seedContradictingMemories(connA);
+      initCausalEdges(connA);
+
+      // Observe lock state + probe a concurrent write at the exact moment the
+      // read-only contradiction scan touches memory_index. On the OLD ordering
+      // this fires while BEGIN IMMEDIATE is held → connB write throws SQLITE_BUSY
+      // and connA.inTransaction is true. On the fixed ordering the scan runs
+      // before the lock → connB write succeeds and connA is not in a txn.
+      let probeFired = false;
+      let inTransactionDuringScan: boolean | null = null;
+      let concurrentWriteSucceeded = false;
+      let concurrentWriteError: string | null = null;
+
+      const originalPrepare = connA.prepare.bind(connA);
+      // @ts-expect-error — test-only proxy over the better-sqlite3 prepare().
+      connA.prepare = (sql: string) => {
+        if (!probeFired && /FROM\s+memory_index/i.test(sql)) {
+          probeFired = true;
+          inTransactionDuringScan = connA.inTransaction;
+          try {
+            connB.prepare('INSERT INTO probe_writes (id) VALUES (1)').run();
+            concurrentWriteSucceeded = true;
+          } catch (err) {
+            concurrentWriteError = err instanceof Error ? err.message : String(err);
+          }
+        }
+        return originalPrepare(sql);
+      };
+
+      const result = runConsolidationCycleIfEnabled(connA);
+
+      // Sanity: the scan actually ran and produced the expected contradiction.
+      expect(probeFired).toBe(true);
+      expect(result).not.toBeNull();
+
+      // RED on old ordering: scan ran inside BEGIN IMMEDIATE.
+      expect(inTransactionDuringScan).toBe(false);
+      // RED on old ordering: connB was blocked (SQLITE_BUSY) during the scan.
+      expect(concurrentWriteError).toBeNull();
+      expect(concurrentWriteSucceeded).toBe(true);
+
+      // The concurrent write is durable and the cycle still committed.
+      const probeCount = (connA.prepare('SELECT COUNT(*) AS c FROM probe_writes').get() as { c: number }).c;
+      expect(probeCount).toBe(1);
+    } finally {
+      connA.close();
+      connB.close();
+    }
+  });
+
+  it('T-LOCK-02: cadence re-check under the lock prevents double-apply', () => {
+    process.env.SPECKIT_CONSOLIDATION = 'true';
+    const db = createTestDb();
+    initCausalEdges(db);
+    seedMemories(db, 2);
+    const edgeId = insertEdge('1', '2', 'caused', 0.5);
+    db.prepare("UPDATE causal_edges SET last_accessed = datetime('now') WHERE id = ?").run(edgeId);
+
+    // First cycle runs and advances last_run_at.
+    const first = runConsolidationCycleIfEnabled(db);
+    expect(first).not.toBeNull();
+    const strengthAfterFirst = (db.prepare('SELECT strength FROM causal_edges WHERE id = ?')
+      .get(edgeId!) as { strength: number }).strength;
+
+    // Second cycle is not due → returns null and applies no further strengthening.
+    const second = runConsolidationCycleIfEnabled(db);
+    expect(second).toBeNull();
+    const strengthAfterSecond = (db.prepare('SELECT strength FROM causal_edges WHERE id = ?')
+      .get(edgeId!) as { strength: number }).strength;
+    expect(strengthAfterSecond).toBe(strengthAfterFirst);
+  });
+});
+
+describe('T002g: Consolidation handle consistency (R2)', () => {
+  const savedFlag = process.env.SPECKIT_CONSOLIDATION;
+
+  afterEach(() => {
+    if (savedFlag === undefined) delete process.env.SPECKIT_CONSOLIDATION;
+    else process.env.SPECKIT_CONSOLIDATION = savedFlag;
+  });
+
+  it('T-HANDLE-01: cycle reads and writes occur on the one connection passed in', () => {
+    process.env.SPECKIT_CONSOLIDATION = 'true';
+    const db = createTestDb();
+    // init binds the causal-edges module-global to THIS connection; the cycle is
+    // also driven with THIS connection. The Hebbian write goes through the
+    // module-global while the scan/bounds reads go through the threaded handle —
+    // a strengthen landing on `db` proves both share one connection.
+    initCausalEdges(db);
+    seedMemories(db, 2);
+    const edgeId = insertEdge('1', '2', 'caused', 0.5);
+    db.prepare("UPDATE causal_edges SET last_accessed = datetime('now') WHERE id = ?").run(edgeId);
+
+    const result = runConsolidationCycleIfEnabled(db);
+    expect(result).not.toBeNull();
+    expect(result!.hebbian.strengthened).toBeGreaterThanOrEqual(1);
+
+    // The write (via module-global) is visible on the same connection the cycle
+    // read from and the caller holds — atomicity covers reads + writes.
+    const edge = db.prepare('SELECT strength FROM causal_edges WHERE id = ?')
+      .get(edgeId!) as { strength: number };
+    expect(edge.strength).toBe(0.5 + MAX_STRENGTH_INCREASE_PER_CYCLE);
+
+    // And the weight_history audit row landed on the same connection.
+    const history = getWeightHistory(edgeId!);
+    expect(history.length).toBeGreaterThanOrEqual(1);
+    expect(history[0].changed_by).toBe('hebbian');
+  });
+
+  it('T-HANDLE-02: detectStaleEdges reads via the module-global (no threaded handle)', () => {
+    const db = createTestDb();
+    initCausalEdges(db);
+    insertEdge('1', '2', 'caused', 0.5);
+    db.prepare("UPDATE causal_edges SET extracted_at = datetime('now', '-91 days') WHERE source_id = '1'").run();
+
+    // No database argument is threaded — staleness reads the single shared handle.
+    const stale = detectStaleEdges();
+    expect(stale.length).toBeGreaterThanOrEqual(1);
   });
 });

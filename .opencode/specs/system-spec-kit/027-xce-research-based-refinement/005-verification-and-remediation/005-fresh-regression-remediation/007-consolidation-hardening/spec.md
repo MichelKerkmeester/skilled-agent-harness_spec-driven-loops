@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/007-consolidation-hardening"
     last_updated_at: "2026-06-16T00:00:00Z"
     last_updated_by: "deep-review-orchestrator"
-    recent_action: "Scaffolded consolidation-hardening packet for the 2 deferred consolidation findings"
-    next_safe_action: "Implement lock-ordering + handle-consistency with a concurrency regression test"
+    recent_action: "Implemented lock-ordering + handle-consistency, regression-tested"
+    next_safe_action: "Orchestrator commits scoped; dist rebuild + recycle deferred"
     blockers: []
     key_files:
       - "spec.md"
@@ -41,7 +41,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Planned (deferred from 001 as a delicate default-ON refactor) |
+| **Status** | Implemented and test-gated (live activation deferred to a separate dist rebuild + recycle) |
 | **Created** | 2026-06-16 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Spec** | ../spec.md |
