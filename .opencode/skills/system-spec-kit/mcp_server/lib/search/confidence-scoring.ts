@@ -24,7 +24,12 @@
 // IMPORTANT: This module only models ranking confidence for retrieval ordering.
 // It is not freshness authority and it is not a substitute for StructuralTrust.
 import { resolveEffectiveScore, resolveAbsoluteRelevance, type PipelineRow } from './pipeline/types.js';
-import { isAbsoluteRelevanceCalibrationEnabled } from './search-flags.js';
+import {
+  isAbsoluteRelevanceCalibrationEnabled,
+  isConfidenceCalibrationEnabled,
+  getConfidenceCalibrationModelPath,
+} from './search-flags.js';
+import { applyCalibration, loadCalibrationModel, type CalibrationModel } from './confidence-calibration.js';
 
 declare const rankingConfidenceBrand: unique symbol;
 
@@ -40,6 +45,15 @@ const LOW_THRESHOLD = 0.4;
 const WEIGHT_MARGIN = 0.35;
 const WEIGHT_CHANNEL_AGREEMENT = 0.30;
 const WEIGHT_ANCHOR_DENSITY = 0.15;
+
+// Blend of the heuristic signal (margin/channel/anchor) and the absolute
+// relevance prior into the final per-result value. Relevance is intentionally
+// weighted higher than the heuristics so the band is monotonic in relevance: a
+// strong-but-isolated cosine hit (single channel, no anchors, tail margin) must
+// not be capped at "medium" purely because the heuristic signals are weak.
+// These two must sum to 1.0.
+const WEIGHT_HEURISTIC = 0.45;
+const WEIGHT_SCORE_PRIOR = 0.55;
 
 // Margin thresholds (gap between top score and next score, 0–1 scale)
 const LARGE_MARGIN_THRESHOLD = 0.15;
@@ -145,6 +159,36 @@ function resolveCalibrationScore(result: ScoredResult): number {
   return isAbsoluteRelevanceCalibrationEnabled()
     ? resolveAbsoluteRelevance(result as PipelineRow)
     : resolveEffectiveScore(result as PipelineRow);
+}
+
+// Lazily-loaded calibration model, memoized by its source path so the search
+// hot path reads the file at most once per path. `undefined` = not yet looked
+// up; `null` = looked up and absent/invalid (degrade to identity).
+let cachedCalibrationModel: CalibrationModel | null | undefined;
+let cachedCalibrationModelPath: string | undefined;
+
+function resolveCalibrationModel(): CalibrationModel | null {
+  const path = getConfidenceCalibrationModelPath();
+  if (!path) return null;
+  if (cachedCalibrationModel !== undefined && cachedCalibrationModelPath === path) {
+    return cachedCalibrationModel;
+  }
+  cachedCalibrationModelPath = path;
+  cachedCalibrationModel = loadCalibrationModel(path);
+  return cachedCalibrationModel;
+}
+
+/**
+ * Map a rebalanced confidence value through the empirical calibration model
+ * when enabled. Default OFF and a no-op when no model is configured, so the
+ * returned value is identical to the rebalance-only path until a validated
+ * model is wired in.
+ */
+function maybeCalibrate(value: number): number {
+  if (!isConfidenceCalibrationEnabled()) return value;
+  const model = resolveCalibrationModel();
+  if (!model) return value;
+  return applyCalibration(model, value);
 }
 
 /**
@@ -268,9 +312,15 @@ export function computeResultConfidence(results: ScoredResult[]): ResultConfiden
     // should reflect that even when heuristic signals are weak. Use the absolute
     // relevance (cosine) here, not the RRF ordering score — an RRF magnitude of
     // ~0.03 would make this prior contribute ~0.01 and defeat its purpose.
-    const scorePrior = resolveCalibrationScore(result) * 0.4;
-    const heuristicValue = rawValue * 0.6;
-    const value = Math.max(0, Math.min(1, heuristicValue + scorePrior));
+    // Relevance carries the larger weight so the band stays monotonic in it.
+    const scorePrior = resolveCalibrationScore(result) * WEIGHT_SCORE_PRIOR;
+    const heuristicValue = rawValue * WEIGHT_HEURISTIC;
+    const rebalancedValue = Math.max(0, Math.min(1, heuristicValue + scorePrior));
+
+    // Optional empirical calibration to P(relevant). Default OFF: only applied
+    // when the flag is on AND a fitted model is available, so production
+    // confidence is the rebalance-only value until a validated model exists.
+    const value = maybeCalibrate(rebalancedValue);
 
     const drivers: ConfidenceDriver[] = [];
     if (margin >= LARGE_MARGIN_THRESHOLD) drivers.push('large_margin');

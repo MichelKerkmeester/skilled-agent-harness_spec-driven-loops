@@ -1,0 +1,220 @@
+// ───────────────────────────────────────────────────────────────
+// TEST: Confidence Calibration (flag-gated, default-OFF infrastructure)
+// ───────────────────────────────────────────────────────────────
+// Covers the isotonic fit/apply math (monotonicity + 0–1 bounds), the
+// labeled-set loader validation, and the default-OFF wiring guarantee:
+// with the calibration flag unset, per-result confidence is the
+// rebalance-only value, untouched by any configured model.
+
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { mkdtempSync, writeFileSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+
+import {
+  fitCalibration,
+  applyCalibration,
+  loadLabeledSet,
+  loadCalibrationModel,
+  type CalibrationSample,
+  type CalibrationModel,
+} from '../lib/search/confidence-calibration';
+import { computeResultConfidence, type ScoredResult } from '../lib/search/confidence-scoring';
+
+const FLAG = 'SPECKIT_CONFIDENCE_CALIBRATION';
+const MODEL_PATH_VAR = 'SPECKIT_CONFIDENCE_CALIBRATION_MODEL';
+
+// -- Fit math --
+
+describe('fitCalibration() — isotonic PAV', () => {
+  it('produces a non-decreasing curve from noisy labels', () => {
+    // Relevance trends up with rawValue but with local noise; PAV must pool
+    // the violators into a monotonic curve.
+    const samples: CalibrationSample[] = [
+      { rawValue: 0.1, relevant: 0 },
+      { rawValue: 0.2, relevant: 1 }, // noise — out of order vs neighbor
+      { rawValue: 0.3, relevant: 0 },
+      { rawValue: 0.4, relevant: 0 },
+      { rawValue: 0.5, relevant: 1 },
+      { rawValue: 0.6, relevant: 0 }, // noise
+      { rawValue: 0.7, relevant: 1 },
+      { rawValue: 0.8, relevant: 1 },
+      { rawValue: 0.9, relevant: 1 },
+    ];
+    const model = fitCalibration(samples);
+    expect(model.method).toBe('isotonic');
+    expect(model.fittedFrom).toBe(samples.length);
+    expect(model.points.length).toBeGreaterThan(0);
+
+    for (let i = 1; i < model.points.length; i++) {
+      expect(model.points[i].y).toBeGreaterThanOrEqual(model.points[i - 1].y);
+      expect(model.points[i].x).toBeGreaterThanOrEqual(model.points[i - 1].x);
+      expect(model.points[i].y).toBeGreaterThanOrEqual(0);
+      expect(model.points[i].y).toBeLessThanOrEqual(1);
+    }
+  });
+
+  it('returns an empty (identity) model for no usable samples', () => {
+    const model = fitCalibration([]);
+    expect(model.points).toHaveLength(0);
+    expect(model.fittedFrom).toBe(0);
+    // Empty model is the identity transform.
+    expect(applyCalibration(model, 0.42)).toBeCloseTo(0.42, 5);
+  });
+
+  it('filters out non-finite / non-binary samples', () => {
+    const model = fitCalibration([
+      { rawValue: Number.NaN, relevant: 1 },
+      { rawValue: 0.5, relevant: 2 as unknown as 0 },
+      { rawValue: 0.6, relevant: 1 },
+    ]);
+    expect(model.fittedFrom).toBe(1);
+  });
+});
+
+// -- Apply math --
+
+describe('applyCalibration() — bounded + monotonic', () => {
+  const model: CalibrationModel = fitCalibration([
+    { rawValue: 0.0, relevant: 0 },
+    { rawValue: 0.25, relevant: 0 },
+    { rawValue: 0.5, relevant: 1 },
+    { rawValue: 0.75, relevant: 1 },
+    { rawValue: 1.0, relevant: 1 },
+  ]);
+
+  it('is monotonic non-decreasing across a dense sweep', () => {
+    let prev = -Infinity;
+    for (let x = 0; x <= 1.0001; x += 0.01) {
+      const y = applyCalibration(model, x);
+      expect(y).toBeGreaterThanOrEqual(0);
+      expect(y).toBeLessThanOrEqual(1);
+      expect(y).toBeGreaterThanOrEqual(prev - 1e-9);
+      prev = y;
+    }
+  });
+
+  it('clamps out-of-range raw values to the curve endpoints', () => {
+    const lo = applyCalibration(model, -5);
+    const hi = applyCalibration(model, 5);
+    expect(lo).toBeGreaterThanOrEqual(0);
+    expect(hi).toBeLessThanOrEqual(1);
+    expect(hi).toBeGreaterThanOrEqual(lo);
+  });
+});
+
+// -- Labeled-set loader --
+
+describe('loadLabeledSet()', () => {
+  it('accepts well-formed pairs', () => {
+    const pairs = loadLabeledSet([
+      { query: 'token budget truncation', memoryId: 42, relevant: 1 },
+      { query: 'token budget truncation', memoryId: 'spec/foo', relevant: 0 },
+    ]);
+    expect(pairs).toHaveLength(2);
+    expect(pairs[0].relevant).toBe(1);
+  });
+
+  it('rejects a non-array', () => {
+    expect(() => loadLabeledSet({} as unknown)).toThrow();
+  });
+
+  it('rejects malformed entries', () => {
+    expect(() => loadLabeledSet([{ query: '', memoryId: 1, relevant: 1 }])).toThrow();
+    expect(() => loadLabeledSet([{ query: 'q', memoryId: null, relevant: 1 }])).toThrow();
+    expect(() => loadLabeledSet([{ query: 'q', memoryId: 1, relevant: 2 }])).toThrow();
+  });
+});
+
+// -- Model file loader --
+
+describe('loadCalibrationModel()', () => {
+  let dir: string;
+  beforeEach(() => {
+    dir = mkdtempSync(join(tmpdir(), 'calib-'));
+  });
+  afterEach(() => {
+    rmSync(dir, { recursive: true, force: true });
+  });
+
+  it('returns null for a missing path', () => {
+    expect(loadCalibrationModel(join(dir, 'nope.json'))).toBeNull();
+  });
+
+  it('returns null for an invalid model shape', () => {
+    const p = join(dir, 'bad.json');
+    writeFileSync(p, JSON.stringify({ method: 'platt', points: [] }));
+    expect(loadCalibrationModel(p)).toBeNull();
+  });
+
+  it('round-trips a fitted model', () => {
+    const model = fitCalibration([
+      { rawValue: 0.1, relevant: 0 },
+      { rawValue: 0.9, relevant: 1 },
+    ]);
+    const p = join(dir, 'model.json');
+    writeFileSync(p, JSON.stringify(model));
+    const loaded = loadCalibrationModel(p);
+    expect(loaded).not.toBeNull();
+    expect(loaded!.method).toBe('isotonic');
+    expect(loaded!.points.length).toBe(model.points.length);
+  });
+});
+
+// -- Wiring: default-OFF guarantee --
+
+describe('confidence-scoring wiring — calibration default OFF', () => {
+  let dir: string;
+  const sample: ScoredResult[] = [
+    { id: 1, similarity: 80, sources: ['vector', 'fts'], anchorMetadata: [{ id: 'a' }, { id: 'b' }] },
+    { id: 2, similarity: 40 },
+  ];
+
+  beforeEach(() => {
+    dir = mkdtempSync(join(tmpdir(), 'calib-wire-'));
+    delete process.env[FLAG];
+    delete process.env[MODEL_PATH_VAR];
+  });
+  afterEach(() => {
+    delete process.env[FLAG];
+    delete process.env[MODEL_PATH_VAR];
+    rmSync(dir, { recursive: true, force: true });
+  });
+
+  it('leaves value at the rebalance-only path when the flag is unset, even with a model configured', () => {
+    const baseline = computeResultConfidence(sample)[0].confidence.value;
+
+    // A model that would collapse everything to ~0 if it were applied.
+    const flatModel: CalibrationModel = {
+      method: 'isotonic',
+      points: [{ x: 0, y: 0.01 }, { x: 1, y: 0.01 }],
+      fittedFrom: 2,
+    };
+    const p = join(dir, 'flat.json');
+    writeFileSync(p, JSON.stringify(flatModel));
+    process.env[MODEL_PATH_VAR] = p;
+    // Flag still OFF — model must be ignored.
+
+    const withModelButFlagOff = computeResultConfidence(sample)[0].confidence.value;
+    expect(withModelButFlagOff).toBeCloseTo(baseline, 6);
+  });
+
+  it('applies the model only when the flag is ON and a model is configured', () => {
+    const baseline = computeResultConfidence(sample)[0].confidence.value;
+    expect(baseline).toBeGreaterThan(0.1); // rebalance-only value is healthy
+
+    const flatModel: CalibrationModel = {
+      method: 'isotonic',
+      points: [{ x: 0, y: 0.01 }, { x: 1, y: 0.01 }],
+      fittedFrom: 2,
+    };
+    const p = join(dir, 'flat.json');
+    writeFileSync(p, JSON.stringify(flatModel));
+    process.env[MODEL_PATH_VAR] = p;
+    process.env[FLAG] = 'true';
+
+    const calibrated = computeResultConfidence(sample)[0].confidence.value;
+    expect(calibrated).toBeLessThan(baseline);
+    expect(calibrated).toBeCloseTo(0.01, 3);
+  });
+});

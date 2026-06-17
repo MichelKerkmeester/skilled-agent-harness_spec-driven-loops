@@ -611,6 +611,25 @@ export function isAbsoluteRelevanceCalibrationEnabled(): boolean {
 }
 
 /**
+ * Map per-result confidence values through a fitted isotonic calibration model
+ * so confidence.value approximates P(relevant). Opt-in (default OFF): the only
+ * labeled set available today is a corpus-derived PROXY, not human-judged live
+ * `memory_search` traffic, so the model is unvalidated and must not silently
+ * reshape production confidence. A model is applied only when this flag is ON
+ * AND SPECKIT_CONFIDENCE_CALIBRATION_MODEL points at a readable model file.
+ * Set SPECKIT_CONFIDENCE_CALIBRATION=true to enable once a validated set exists.
+ */
+export function isConfidenceCalibrationEnabled(): boolean {
+  return isOptInEnabled('SPECKIT_CONFIDENCE_CALIBRATION');
+}
+
+/** Filesystem path to a fitted CalibrationModel JSON, or undefined when unset. */
+export function getConfidenceCalibrationModelPath(): string | undefined {
+  const raw = process.env.SPECKIT_CONFIDENCE_CALIBRATION_MODEL?.trim();
+  return raw && raw.length > 0 ? raw : undefined;
+}
+
+/**
  * Include archived/cold (deprecated-tier) memories in retrieval for everyone,
  * instead of hard-excluding them. The FSRS temperature system already ranks
  * memories by retrievability (deprecated decays at 0.25x → coldest), so a hard
