@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/149-kimi-k2-7-code-support/002-framework-bakeoff",
+  "description": "Feature Specification: Phase 2: framework-bakeoff",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "framework-bakeoff"
+  ],
+  "lastUpdated": "2026-06-15T18:16:13.771Z",
+  "specId": "002",
+  "folderSlug": "framework-bakeoff",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "149-kimi-k2-7-code-support"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

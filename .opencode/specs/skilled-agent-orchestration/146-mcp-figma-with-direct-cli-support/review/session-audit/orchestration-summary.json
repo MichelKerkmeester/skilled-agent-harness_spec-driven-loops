@@ -1,0 +1,11 @@
+{
+  "run_id": "1781459141456-y67ab1",
+  "loop_type": "review",
+  "spec_folder": "skilled-agent-orchestration/146-mcp-figma-with-direct-cli-support",
+  "base_artifact_dir": ".opencode/specs/skilled-agent-orchestration/146-mcp-figma-with-direct-cli-support/review/session-audit",
+  "total_cli_lineages": 2,
+  "total": 2,
+  "succeeded": 2,
+  "failed": 0,
+  "all_failed": false
+}

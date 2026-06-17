@@ -117,14 +117,3 @@ If the deferred cleanup is pursued: a Level-2 packet "catalog/playbook stale-ent
 
 **Tooling (reusable, in `review/baseline/`):**
 - `link-audit.cjs` — deterministic markdown-link resolver (dual-base, template/placeholder aware)
-- `fix-resolver.cjs` — basename-index correct-target proposer (unique/ranked/ambiguous/no_match)
-- `apply-fixes.cjs` / `apply-ambiguous.cjs` / `apply-sameskill.cjs` / `catalog-repoint.cjs` — deterministic appliers (dry-run default)
-- `build-prompt.cjs` / `parse-result.cjs` / `reduce.cjs` — DeepSeek dispatch + NDJSON parse + reduce
-
-**Iterations:** 10/10 (`review/iterations/iteration-NNN.md`, `review/deltas/iter-NNN.jsonl`). iters 1–6 triage (baseline-seeded), 7–10 hunt (regex-missed); 9 & 10 re-run narrower at 1200s after broad-scope timeouts.
-
-**Executor:** DeepSeek-v4-pro via cli-opencode (`--pure`, read-only, no `--agent`), orchestrator-applied state (Gate-3 / RM-8 safe — no `--dangerously-skip-permissions`).
-
-**Provenance numbers:** baseline 295 broken md-links → 210 after remediation; ~46 additional non-md-link literal fixes; 0 #133-caused; 5 model false-positives rejected.
-
-Review verdict: CONDITIONAL

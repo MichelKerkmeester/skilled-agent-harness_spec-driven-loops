@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/144-operate-like-fable-5/008-fail-loud-provenance",
+  "description": "Feature Specification: Fail-loud executor provenance: requested-versus-actual model comparison in the executor audit, emitting error on mismatch",
+  "keywords": [
+    "feature",
+    "specification",
+    "fail-loud",
+    "executor",
+    "provenance",
+    "requested-versus-actual",
+    "model",
+    "comparison",
+    "audit",
+    "emitting",
+    "error",
+    "mismatch"
+  ],
+  "lastUpdated": "2026-06-16T05:08:05.929Z",
+  "specId": "008",
+  "folderSlug": "fail-loud-provenance",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "144-operate-like-fable-5"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

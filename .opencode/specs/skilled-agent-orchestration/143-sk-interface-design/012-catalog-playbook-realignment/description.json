@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/143-sk-interface-design/012-catalog-playbook-realignment",
+  "description": "Feature Specification: Phase 12: catalog-playbook-realignment",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "catalog-playbook-realignment",
+    "sk-interface-design",
+    "mobbin-refero"
+  ],
+  "lastUpdated": "2026-06-17T00:00:00.000Z",
+  "specId": "012",
+  "folderSlug": "catalog-playbook-realignment",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "143-sk-interface-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

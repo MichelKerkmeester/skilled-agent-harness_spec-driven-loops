@@ -1,0 +1,34 @@
+## CONTEXT
+READ-ONLY deep-research seat. Do NOT write/edit files — analysis text only. Spec folder ...142-sk-code-ponytail-based-refinement pre-approved (Gate 3); read-only regardless.
+
+NOTE: the ponytail source is GITIGNORED (your search/glob tools will NOT find external/ponytail-main). The relevant ponytail text is EMBEDDED below — use it directly, do not search for it. For sk-code / sk-code-review and CLAUDE.md, read the on-disk files normally.
+
+### EMBEDDED PONYTAIL SOURCE — ceiling-comment rule (external/ponytail-main/skills/ponytail/SKILL.md L50)
+> Mark deliberate simplifications with a `ponytail:` comment (`// ponytail: this exists`), simple reads as intent, not ignorance. Shortcut with a known ceiling (global lock, O(n^2) scan, naive heuristic)? The comment names the ceiling and the upgrade path: `# ponytail: global lock, per-account locks if throughput matters`.
+
+Related ponytail rules (same SKILL.md): "Deletion over addition. Boring over clever." / "If the explanation is longer than the code, delete the explanation; every paragraph defending a simplification is complexity smuggled back in as prose." / "Non-trivial logic leaves ONE runnable check behind."
+
+## OUR COMMENT-HYGIENE RULE (the conflict to evaluate)
+Our repo has a comment-hygiene HARD BLOCK: code comments must NOT embed ephemeral-artifact labels (spec paths, ADR/REQ/task/checklist/finding ids). The durable WHY is REQUIRED; perishable labels are forbidden. Allowed stable refs: CWE-79, RFC 2616, POSIX. sk-code enforces via scripts/check-comment-hygiene.sh + a PostToolUse hook; the checker has an escape: a line containing `hygiene-ok` is suppressed.
+
+## OBJECTIVE (iteration 004 of 10)
+Angle: "Ceiling comments vs comment-hygiene" — (a) does a `// ponytail:`-style ceiling comment PASS or VIOLATE our comment-hygiene rule, and (b) can sk-code-review use intentional-simplification markers to cut over-engineering / "this is too simple" false positives?
+
+## STEPS (read these on-disk files; ponytail is embedded above)
+- .opencode/skills/sk-code/scripts/check-comment-hygiene.sh   (what it flags; the hygiene-ok escape)
+- .opencode/skills/sk-code/SKILL.md   (the comment-hygiene enforcement section)
+- CLAUDE.md (repo root)   (the Comment Hygiene [HARD] BLOCK: forbidden vs allowed lists — quote them)
+- .opencode/skills/sk-code-review/references/code_quality_checklist.md
+- .opencode/skills/sk-code-review/references/fix-completeness-checklist.md
+
+## ANSWER
+1. VERDICT (the crux): a ceiling comment that names a shortcut + its ceiling + upgrade path — is it "durable WHY" (ALLOWED) or an ephemeral label (FORBIDDEN)? The literal `ponytail:` brand prefix specifically — allowed or a perishable/cargo-cult label? Quote the CLAUDE.md allowed/forbidden lists + check-comment-hygiene.sh behavior. Be precise.
+2. If the CONTENT is allowed, should sk-code adopt a recognized ceiling-comment CONVENTION (a stable prefix that is NOT a brand label) so reviewers/tools detect intentional simplification? Does the hygiene checker need a tweak (or does `hygiene-ok` already cover it)?
+3. Could sk-code-review treat a present ceiling comment as evidence that a "too simple / missing-feature" finding is intentional (downgrade/suppress)? Which checklist / finding-class does this touch?
+4. Integration-risk + negative knowledge: ceiling comments rotting; or becoming an excuse to skip real fixes.
+
+## FORMAT
+Terse, cite file/section. End with a fenced ```json block:
+```json
+{"seat":"gpt-2","lens":"ceiling-comments-vs-comment-hygiene","findings":[{"id":"F1","title":"","ponytail_source":"external/ponytail-main/skills/ponytail/SKILL.md#L50","target":"sk-code:<file> or sk-code-review:<file>","mechanism":"","recommendation":"","value":"high|medium|low","effort":"S|M|L","integration_risk":"","redundant_with":"","confidence":"high|medium|low"}],"newInfoRatio":0.0,"negative_knowledge":[""]}
+```

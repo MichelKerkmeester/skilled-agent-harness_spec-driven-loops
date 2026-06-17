@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/143-sk-interface-design/002-ui-ux-pro-max-merge-research",
+  "description": "Research Specification: ui-ux-pro-max merge into sk-interface-design",
+  "keywords": [
+    "research",
+    "specification",
+    "ui-ux-pro-max-merge-research",
+    "sk-interface-design",
+    "phase",
+    "deep-research"
+  ],
+  "lastUpdated": "2026-06-13T16:30:00Z",
+  "specId": "002",
+  "folderSlug": "ui-ux-pro-max-merge-research",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "143-sk-interface-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/145-mcp-open-design/011-mandatory-interface-design-coupling",
+  "description": "Feature Specification: Phase 11: mandatory-interface-design-coupling",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "mandatory-interface-design-coupling",
+    "mcp-open-design",
+    "sk-interface-design"
+  ],
+  "lastUpdated": "2026-06-16T00:00:00.000Z",
+  "specId": "011",
+  "folderSlug": "mandatory-interface-design-coupling",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "145-mcp-open-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

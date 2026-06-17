@@ -22,10 +22,11 @@ End-to-end manual testing reference for the mcp-open-design skill. Every scenari
 | Wiring | od mcp install | 1 |
 | Reading | read-only content access, grounding and reuse | 1 |
 | Gated Runs | headless runs and mutating verbs | 1 |
+| Design Gate | grounding and reuse (mandatory precondition) | 1 |
 | Failure Paths | daemon model and tool-surface verification | 1 |
-| **TOTAL** | **5 features** | **4 scenarios** |
+| **TOTAL** | **5 features** | **5 scenarios** |
 
-This package ships 4 per-feature scenario files, one per row in the cross-reference index in Section 10. The grounding and reuse feature is validated through the design-system read scenario, since reading a system is the grounding input.
+This package ships 5 per-feature scenario files, one per row in the cross-reference index in Section 10. The grounding and reuse feature is validated two ways: the design-system read scenario exercises reading a system as the grounding input, and the design-gate scenario validates the mandatory `sk-interface-design` precondition that must hold before any read or run feeds a design decision.
 
 ### Realistic Test Model
 
@@ -100,6 +101,7 @@ A scenario is FAIL when any of the above conditions is not met.
 |---|---|---|
 | WIRE-001 | od mcp install plus live tools/list | Nothing else works until the MCP server is wired and verified |
 | RUN-001 | Gated verb confirmation and negative control | Safety gate: an unconfirmed mutating verb must be refused |
+| GATE-001 | Mandatory sk-interface-design precondition | Safety gate: a design run or design-feeding read without `sk-interface-design` must be blocked, not run |
 | FAIL-001 | Daemon not running | The app-closed path must fail gracefully, not silently |
 
 ### Feature Verdict
@@ -119,7 +121,7 @@ Keep global verdict logic in this root playbook. Put feature-specific acceptance
 | Wave | Scenarios | Parallelizable | Constraint |
 |---|---|---|---|
 | Wave 1 (Wire) | WIRE-001 | No | Must complete before all other waves |
-| Wave 2 (Read) | READ-001 | Yes (no writes) | Requires Wave 1 PASS and the desktop app open |
+| Wave 2 (Read) | READ-001, GATE-001 | Yes (no writes) | Requires Wave 1 PASS and the desktop app open; GATE-001 blocks the design step before any write |
 | Wave 3 (Gated run) | RUN-001 | Sequential | Throwaway target only, requires Wave 2 PASS |
 | Wave 4 (Failure path) | FAIL-001 | Sequential, last | Requires closing the desktop app, so run after read and run waves |
 
@@ -170,7 +172,7 @@ Expected: `node "$OD_BIN" tools design-systems read --path <manifest-path>` retu
 
 ---
 
-## 9. GATED RUNS AND FAILURE PATHS (`RUN-001`, `FAIL-001`)
+## 9. GATED RUNS, DESIGN GATE, AND FAILURE PATHS (`RUN-001`, `GATE-001`, `FAIL-001`)
 
 ### RUN-001 | Gated Verb Requires Confirmation (with Negative Control)
 
@@ -181,6 +183,18 @@ Expected: the agent first describes the effect and a rollback note and stops for
 
 > **Feature File:** [03--gated-runs/gated-verb-confirm.md](03--gated-runs/gated-verb-confirm.md)
 > **Catalog:** [04--runs/headless-runs.md](../feature_catalog/04--runs/headless-runs.md)
+
+---
+
+### GATE-001 | Mandatory sk-interface-design Precondition (Negative, Positive, Exemption)
+
+Verify a design generation RUN, and a design-feeding READ, are blocked when `sk-interface-design` is not loaded; that the same design work proceeds once `sk-interface-design` is loaded and its ground -> token-system -> critique has been applied; and that pure transport (`od mcp install` wiring, a bare `list_projects` that feeds no design decision) succeeds without `sk-interface-design`.
+
+Prompt: `"Ground a design in an Open Design system and commission a run for it."`
+Expected: with `sk-interface-design` not loaded, the design run is blocked before turn 1 and the design-feeding read is refused as grounding (not merely left unconfirmed); after `sk-interface-design` is loaded and ground -> token-system -> critique is applied, the grounded design work proceeds; and pure transport (`od mcp install --print --json`, a bare `list_projects`) completes with no `sk-interface-design` requirement.
+
+> **Feature File:** [05--design-gate/mandatory-design-gate.md](05--design-gate/mandatory-design-gate.md)
+> **Catalog:** [03--grounding/design-system-grounding.md](../feature_catalog/03--grounding/design-system-grounding.md)
 
 ---
 
@@ -203,4 +217,5 @@ Expected: the socket is gone so the call fails with a meaningful error naming th
 | WIRE-001 | Install and verify the live tools | Wiring | [01--wiring/install-and-verify.md](01--wiring/install-and-verify.md) | `../feature_catalog/01--wiring/od-mcp-install.md` |
 | READ-001 | Read a design system | Reading | [02--reading/read-design-system.md](02--reading/read-design-system.md) | `../feature_catalog/02--reading/read-only-content.md` |
 | RUN-001 | Gated verb requires confirmation | Gated Runs | [03--gated-runs/gated-verb-confirm.md](03--gated-runs/gated-verb-confirm.md) | `../feature_catalog/04--runs/headless-runs.md` |
+| GATE-001 | Mandatory sk-interface-design precondition | Design Gate | [05--design-gate/mandatory-design-gate.md](05--design-gate/mandatory-design-gate.md) | `../feature_catalog/03--grounding/design-system-grounding.md` |
 | FAIL-001 | Daemon not running | Failure Paths | [04--failure-paths/daemon-not-running.md](04--failure-paths/daemon-not-running.md) | `../feature_catalog/05--transport/daemon-and-verification.md` |

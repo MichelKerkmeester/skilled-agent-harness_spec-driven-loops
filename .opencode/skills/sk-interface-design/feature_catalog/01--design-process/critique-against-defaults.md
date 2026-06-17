@@ -39,6 +39,7 @@ Each part of the plan is tested by working through a similar prompt to see wheth
 | `SKILL.md` | Shared | Section 3 names the three default looks and the rule to not spend a free axis on them, and the Section 4 NEVER rule forbids shipping a templated default. |
 | `references/design-process/design_principles.md` | Shared | Section 4 carries the default calibration and the revise-and-justify second review. |
 | `references/design-grounding/design_inventory.md` | Shared | Supplies the expected-pattern naming used to deviate deliberately during the critique. |
+| `references/design-grounding/design_references_mcp.md` | Shared | Consulted at the critique step (STEP 2) for convention-heavy categories via the initiative/ask/fall-back gate: reads ONE real-world shipped-UI reference live (Mobbin or Refero) to name the real-world default to deviate from. |
 
 ### Validation And Tests
 

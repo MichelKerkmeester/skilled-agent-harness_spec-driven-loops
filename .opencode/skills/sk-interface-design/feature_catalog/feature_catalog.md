@@ -22,7 +22,7 @@ Use this catalog as the canonical inventory for the live `sk-interface-design` f
 |---|---:|---|
 | Design process | 4 features | `SKILL.md`, `references/design-process/design_principles.md` |
 | Quality floor | 1 feature | `references/design-process/ux_quality_reference.md` |
-| Design grounding | 1 feature | `references/design-grounding/design_inventory.md`, `references/design-process/real_ui_loop.md` |
+| Design grounding | 2 features | `references/design-grounding/design_inventory.md`, `references/design-grounding/design_references_mcp.md`, `references/design-process/real_ui_loop.md` |
 | Interface writing | 1 feature | `references/design-process/design_principles.md` (Section 6) |
 | Integration boundary | 1 feature | `SKILL.md` (Sections 2 and 7) |
 | Real-UI loop | 3 features | `references/design-process/real_ui_loop.md`, `SKILL.md` (Sections 2 and 5) |
@@ -119,7 +119,7 @@ See [`02--quality-floor/objective-quality-floor.md`](02--quality-floor/objective
 
 ## 4. DESIGN GROUNDING
 
-This entry covers how the skill grounds in a real design system: read live from wherever you keep it, used as either reuse-ground or the named default to deviate from. One system is resolved from the subject, never a chooser, and nothing is cached into the skill.
+These entries cover how the skill grounds in concrete, fully-realized looks: a real design system you own, read live as either reuse-ground or the named default to deviate from, and real-world shipped UI read live via the Mobbin and Refero MCPs as the named real-world default to deviate from. In both cases exactly one reference is resolved from the subject, never a chooser, and nothing is cached into the skill.
 
 ### Design-system grounding
 
@@ -134,6 +134,22 @@ When you have access to a real design system, the skill reads one matching syste
 #### Source Files
 
 See [`03--design-grounding/design-system-grounding.md`](03--design-grounding/design-system-grounding.md) for full implementation and validation file listings.
+
+---
+
+### Design-references grounding
+
+#### Description
+
+Reads real-world shipped UI live via the Mobbin and Refero MCPs as the named real-world default to deviate from, deciding on its own initiative or by asking the user.
+
+#### Current Reality
+
+At the critique step the skill judges whether a real-world reference would sharpen the default to deviate from, then routes a hybrid initiative/ask decision. It takes the initiative to pull ONE reference when the brief sits in a convention-heavy category (checkout, onboarding, settings, dashboards, feeds, pricing, data tables, scheduling, messaging, search) AND a Mobbin/Refero subscription is connected, naming the default in one line and citing its URL; it asks the user first when the case is borderline or the subscription status is unknown; and it falls back to the generic anti-default process when no subscription is connected or the user declines, which is never blocking. Mobbin sources native and iOS app screens and flows, Refero sources web pages and visual styles with styles searched first. Exactly one reference is resolved from the subject, never a list surfaced as a chooser, the read is live and never cached or copied into the skill, the reference is input to judgment rather than the design decision, grounding stays upstream, and a pinned brief always wins.
+
+#### Source Files
+
+See [`03--design-grounding/design-references-grounding.md`](03--design-grounding/design-references-grounding.md) for full implementation and validation file listings.
 
 ---
 

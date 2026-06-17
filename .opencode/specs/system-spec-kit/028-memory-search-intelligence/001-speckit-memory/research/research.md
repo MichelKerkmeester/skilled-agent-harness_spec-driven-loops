@@ -26,10 +26,3 @@ The live Memory MCP modules located across iterations 1–4, with file:line anch
 ---
 
 ## Broadening Addendum (100-iteration campaign — Memory corrections)
-
-> Pass-1 was 7 iterations; broadened to **38**. Authoritative cross-cutting record: `../../research/roadmap.md` → "BROADENING ADDENDUM". Memory-specific corrections:
-
-- **C3-A is NOT a clean flag flip.** `SPECKIT_TEMPORAL_EDGES` is **already ON** (`ENV_REFERENCE.md:296`, `search-flags.ts:706`); making "currentness = edge presence" the live retirement path needs a **read-side build + temporal-store reconciliation** (causal-edge vs lineage at `vector-index-schema.ts:184-185` must unify, not fork). It is no longer Ship-First #3.
-- **C4-A is the one literal off-state flip that survived** the audit — confident, reversible, but **no measured benefit number**.
-- **Shared infra:** the determinism candidates (C5-B / C-X1 / C5-A) all need a **hand-written total comparator + content-derived id tiebreak** — JS `(a,b)=>b-a` is not a total order (NaN/−0 poison it). Build once, reuse. The bi-temporal window shape (C3-B) is shared with Code Graph Q1-C1.
-- **New gap (security-adjacent):** the untrusted-recall wrapper (`envelope.ts:284-295`, C8) is bypassed by the ingest path (`extraction-adapter.ts:247`) — untrusted content can enter without crossing the trust boundary.

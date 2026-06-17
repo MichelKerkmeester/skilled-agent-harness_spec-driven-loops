@@ -62,7 +62,7 @@ When an Open Design read feeds a design decision, the work becomes design work a
 
 ### Grounding and reuse loop
 
-`sk-interface-design` is applied whenever a read or run feeds a design decision. The agent loads its design principles and runs ground then token-system then critique before deciding, then reuses the resolved system's `tokens.css` and `components.html` at build time in the target app. Reuse happens live: Open Design content is never copied or cached into a repo, because its per-source licenses would attach. At most one system is resolved from the subject and brief, never surfaced as a pick-a-vibe menu across the roughly 150 available systems.
+`sk-interface-design` is a hard precondition: any read or run that feeds a design decision MUST load it first (only pure transport — wiring, a bare inventory that feeds no design decision — is exempt). The agent loads its design principles and runs ground then token-system then critique before deciding, then reuses the resolved system's `tokens.css` and `components.html` at build time in the target app. Reuse happens live: Open Design content is never copied or cached into a repo, because its per-source licenses would attach. At most one system is resolved from the subject and brief, never surfaced as a pick-a-vibe menu across the roughly 150 available systems.
 
 See [`03--grounding/design-system-grounding.md`](03--grounding/design-system-grounding.md) for the integration contract and the guardrails that must survive.
 

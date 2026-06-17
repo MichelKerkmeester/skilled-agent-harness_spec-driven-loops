@@ -44,8 +44,8 @@
     "skilled-agent-orchestration/132-cli-gemini-deprecation",
     "skilled-agent-orchestration/137-deep-context-workflow-adoption",
     "skilled-agent-orchestration/145-advisor-doc-trigger-harvest",
-    "skilled-agent-orchestration/146-sk-code-ponytail-based-refinement",
-    "skilled-agent-orchestration/149-operate-like-fable-5"
+    "skilled-agent-orchestration/142-sk-code-ponytail-based-refinement",
+    "skilled-agent-orchestration/144-operate-like-fable-5"
   ],
   "manual": {
     "depends_on": [],

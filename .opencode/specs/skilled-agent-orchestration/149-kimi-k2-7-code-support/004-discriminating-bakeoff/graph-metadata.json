@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/149-kimi-k2-7-code-support/004-discriminating-bakeoff",
+  "spec_folder": "skilled-agent-orchestration/149-kimi-k2-7-code-support/004-discriminating-bakeoff",
+  "parent_id": "skilled-agent-orchestration/149-kimi-k2-7-code-support",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "kimi discriminating bakeoff",
+      "run 007 strict validators",
+      "rcaf retired costar promoted",
+      "framework separation",
+      "phase 004 spec",
+      "kimi bakeoff plan",
+      "strict validator profile",
+      "sweep engine throttled serial",
+      "promote run 007",
+      "phase 004 plan",
+      "kimi bakeoff tasks",
+      "phase 004 tasks"
+    ],
+    "key_topics": [
+      "kimi",
+      "discriminating",
+      "bakeoff",
+      "run",
+      "007",
+      "strict",
+      "validators",
+      "rcaf",
+      "retired",
+      "costar",
+      "promoted",
+      "framework"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/kimi-k2.7-discriminating.json",
+      ".opencode/skills/sk-prompt-small-model/assets/model-profiles.json",
+      ".opencode/skills/sk-prompt-small-model/references/models/kimi-k2.7-code.md",
+      ".opencode/skills/sk-prompt-small-model/references/models/_index.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "kimi-k2.7-discriminating.json",
+        "kind": "config",
+        "path": ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/kimi-k2.7-discriminating.json",
+        "source": "derived"
+      },
+      {
+        "name": "model-profiles.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-prompt-small-model/assets/model-profiles.json",
+        "source": "derived"
+      },
+      {
+        "name": "kimi-k2.7-code.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt-small-model/references/models/kimi-k2.7-code.md",
+        "source": "derived"
+      },
+      {
+        "name": "_index.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt-small-model/references/models/_index.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Clone",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Profile",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "throttled",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This is **Phase 4** of the kimi-k2-7-code-support specification, the discriminating re-run of the phase 002 framework bakeoff.",
+    "created_at": "2026-06-15T11:56:39Z",
+    "last_save_at": "2026-06-16T14:27:20.581Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

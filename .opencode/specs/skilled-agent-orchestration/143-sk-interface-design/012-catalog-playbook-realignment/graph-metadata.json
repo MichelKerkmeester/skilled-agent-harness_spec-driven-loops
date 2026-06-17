@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/143-sk-interface-design/012-catalog-playbook-realignment",
+  "spec_folder": "skilled-agent-orchestration/143-sk-interface-design/012-catalog-playbook-realignment",
+  "parent_id": "skilled-agent-orchestration/143-sk-interface-design",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "skilled-agent-orchestration/143-sk-interface-design/011-mobbin-refero-smart-routing"
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-interface-design catalog playbook realignment",
+      "mobbin refero feature catalog",
+      "design references routing scenario",
+      "phase 012 spec"
+    ],
+    "key_topics": [
+      "sk-interface-design",
+      "feature-catalog",
+      "manual-testing-playbook",
+      "mobbin-refero",
+      "design-references",
+      "realignment"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-interface-design/feature_catalog/feature_catalog.md",
+      ".opencode/skills/sk-interface-design/manual_testing_playbook/manual_testing_playbook.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "feature_catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-interface-design/feature_catalog/feature_catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-interface-design/manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 12 of sk-interface-design: realign the feature_catalog and manual_testing_playbook to the post-011 reality by cataloguing the Mobbin/Refero design-references capability and its hybrid initiative/ask routing, cross-referencing it from the critique-against feature, and adding a manual-testing scenario for the routing. Doc-only; no behavior change and no Open Design naming reintroduced.",
+    "created_at": "2026-06-17T00:00:00Z",
+    "last_save_at": "2026-06-17T00:00:00.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

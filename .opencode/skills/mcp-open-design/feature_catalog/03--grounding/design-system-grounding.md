@@ -1,6 +1,6 @@
 ---
 title: "Grounding and reuse loop"
-description: "Apply sk-interface-design whenever an Open Design read or run feeds a design decision: ground, build a token system, critique, and reuse one resolved system live."
+description: "Any Open Design read or run that feeds a design decision MUST load sk-interface-design first (a hard precondition): ground, build a token system, critique, and reuse one resolved system live. Pure transport (wiring, bare inventory) is exempt."
 trigger_phrases:
   - "ground a design in open design"
   - "reuse open design tokens"
@@ -16,7 +16,7 @@ importance_tier: "important"
 
 ## 1. OVERVIEW
 
-Turns a read of an Open Design system into a grounded design decision. The transport belongs to this skill, but the taste belongs to `sk-interface-design`, which is applied whenever a read or run feeds a design decision.
+Turns a read of an Open Design system into a grounded design decision. The transport belongs to this skill, but the taste belongs to `sk-interface-design`, which is a hard precondition: any read or run that feeds a design decision MUST load `sk-interface-design` first. Only pure transport — wiring the MCP server, a bare inventory listing that feeds no design decision — is exempt.
 
 The point of the loop is to reuse a real, lint-governed design system instead of drifting into AI defaults. An Open Design system is an input to judgment, never the authority. The two skills share the real-UI loop in `sk-interface-design/references/design-process/real_ui_loop.md`, and this skill's Open Design transport for that loop lives in `references/design_parity_transport.md`.
 
@@ -26,11 +26,11 @@ The point of the loop is to reuse a real, lint-governed design system instead of
 
 ### Apply the judgment layer
 
-When grounding a design in an Open Design system, or on any read that feeds a design decision, the agent loads `sk-interface-design`'s design principles and runs ground then token-system then critique before deciding. The Open Design read supplies the raw material: a system's `DESIGN.md`, its `tokens.css`, and its `components.html`. The design skill decides what to keep, adapt, and reject against its quality floor and anti-default critique.
+When grounding a design in an Open Design system, or on any read or run that feeds a design decision, the agent MUST load `sk-interface-design`'s design principles first and run ground then token-system then critique before deciding — there is no design output without it. The Open Design read supplies the raw material: a system's `DESIGN.md`, its `tokens.css`, and its `components.html`. The design skill decides what to keep, adapt, and reject against its quality floor and anti-default critique. A design step composed without `sk-interface-design` loaded is blocked, not merely flagged.
 
 ### Reuse before generate, and the guardrails that survive
 
-Reuse before generating: prefer one resolved system's tokens and components, and author net-new only when nothing fits. Reuse happens at build time in the target app, never by caching Open Design files into a repo. Several guardrails must survive the integration. There is no style chooser, so the roughly 150 Open Design systems are never surfaced as a pick-a-vibe menu. At most one system is resolved from the subject and brief. `sk-interface-design` only reads Open Design through this skill and never generates into it. The integration stays optional and on-demand, the same posture the design skill already had, and depends on this skill being wired first.
+Reuse before generating: prefer one resolved system's tokens and components, and author net-new only when nothing fits. Reuse happens at build time in the target app, never by caching Open Design files into a repo. Several guardrails must survive the integration. There is no style chooser, so the roughly 150 Open Design systems are never surfaced as a pick-a-vibe menu. At most one system is resolved from the subject and brief. `sk-interface-design` only reads Open Design through this skill and never generates into it. The integration is mandatory, not optional: any read or run that feeds a design decision MUST load `sk-interface-design` first (a hard precondition), and the loop depends on this skill being wired first. Only pure transport — wiring, or a bare inventory that feeds no design decision — is exempt.
 
 ---
 

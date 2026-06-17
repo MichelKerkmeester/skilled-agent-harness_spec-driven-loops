@@ -1,0 +1,29 @@
+{
+  "level": "3",
+  "specFolder": "skilled-agent-orchestration/144-operate-like-fable-5/003-measurement-baseline",
+  "description": "Feature Specification: Measurement baseline for fable-5 efficiency: a fable-metrics script, post-dispatch behavioral advisories, and a doctor/benchmar",
+  "keywords": [
+    "feature",
+    "specification",
+    "measurement",
+    "baseline",
+    "fable-5",
+    "efficiency",
+    "fable-metrics",
+    "script",
+    "post-dispatch",
+    "behavioral",
+    "advisories",
+    "doctor",
+    "benchmar"
+  ],
+  "lastUpdated": "2026-06-16T15:23:34.527Z",
+  "specId": "003",
+  "folderSlug": "measurement-baseline",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "144-operate-like-fable-5"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

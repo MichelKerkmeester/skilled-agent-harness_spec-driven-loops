@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/142-sk-code-ponytail-based-refinement/004-mirror-stackfolder-drift-guards",
+  "description": "Phase 4: Drift Guards — Agent Mirrors + STACK_FOLDERS Binding",
+  "keywords": [
+    "phase",
+    "drift",
+    "guards",
+    "agent",
+    "mirrors",
+    "binding"
+  ],
+  "lastUpdated": "2026-06-13T13:57:23.267Z",
+  "specId": "004",
+  "folderSlug": "mirror-stackfolder-drift-guards",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "142-sk-code-ponytail-based-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

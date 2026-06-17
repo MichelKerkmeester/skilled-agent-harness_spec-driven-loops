@@ -34,13 +34,3 @@ The in-scope structural map of the code graph, with file:line evidence. All **[C
 ## Broadening Addendum (100-iteration campaign — Code Graph corrections)
 
 > Pass-1 was 4 iterations; broadened to **24**. Authoritative cross-cutting record: `../../research/roadmap.md` → "BROADENING ADDENDUM". Code-Graph-specific corrections:
-
-- **Q4-C1 must be RRF-additive, not multiplicative-neutral.** A `score × reliability` fallback with neutral = 1 **fails** against the rowid baseline (it re-orders ties). Blend trust additively into the RRF instead.
-- **Q6-C2 bump site at `ensure-ready.ts:497` is REFUTED** — `:497` is `setLastGitHead` (git-HEAD bookkeeping) inside an out-of-scope branch, NOT a generation bump. Q6-C2 needs a different, scan-commit-atomic bump site.
-- **Q6-C1 / closed-vocab are WEAKER** than their pass-1 billing (see roadmap §6 caveats); each still ships in Wave-0 with its caveat.
-- **New gap:** incremental **edge staleness** — `structural-indexer.ts:2171-2177` skips re-index on unchanged mtime, so a file whose dependency changed but whose own mtime is stable leaves stale edges, with no current repair path.
-- **Shared infra:** the bi-temporal validity-window schema (Q1-C1 `code_edges`) shares its column shape with Memory C3-B — reconcile rather than fork.
-
----
-
-## Candidate Catalog

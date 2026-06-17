@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/148-mcp-skill-install-doctor-standardization",
+  "spec_folder": "skilled-agent-orchestration/148-mcp-skill-install-doctor-standardization",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp skill install standardization",
+      "doctor.sh for mcp skills",
+      "mcp-open-design install guide",
+      "design skill cross-references",
+      "mcp-figma 1.0.0.0",
+      "mcp skill standardization plan",
+      "doctor.sh implementation",
+      "install guide parity",
+      "design skill cross-reference plan",
+      "mcp skill standardization tasks",
+      "doctor.sh tasks",
+      "install guide tasks"
+    ],
+    "key_topics": [
+      "mcp",
+      "skill",
+      "install",
+      "standardization",
+      "doctor",
+      "skills",
+      "mcp-open-design",
+      "guide",
+      "design",
+      "cross-references",
+      "mcp-figma",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "review",
+    "key_files": [
+      "scripts/doctor.sh",
+      ".opencode/skills/mcp-figma/changelog/v1.0.0.0.md",
+      ".opencode/skills/mcp-open-design/INSTALL_GUIDE.md",
+      ".opencode/skills/mcp-chrome-devtools/scripts/doctor.sh",
+      ".opencode/skills/mcp-click-up/scripts/doctor.sh",
+      ".opencode/commands/doctor/assets/doctor_mcp_install.yaml",
+      ".opencode/commands/doctor/mcp.md",
+      ".opencode/skills/mcp-open-design/mcp-servers/open-design/README.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "doctor.sh",
+        "kind": "script",
+        "path": "scripts/doctor.sh",
+        "source": "derived"
+      },
+      {
+        "name": "v1.0.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-figma/changelog/v1.0.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "INSTALL_GUIDE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-open-design/INSTALL_GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor_mcp_install.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/assets/doctor_mcp_install.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/mcp.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-open-design/mcp-servers/open-design/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Shared",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The five mcp-* skills had drifted out of a shared shape. mcp-figma was still labelled pre-1.0 (`0.1.0`) even though its CLI was live-verified and an embedded install scaffold was added. mcp-open-design had no INSTALL_GUIDE and no `scripts/` at all, so it could not be installed or diagnosed like its siblings. mcp-chrome-devtools and mcp-click-up had an `install.sh` but no read-only `doctor.sh`. The central `/doctor:mcp` command knew only the registered MCP servers, so the CLI-primary design skills were invisible to it. Finally, the three design skills (mcp-figma, mcp-open-design, sk-interface-design) referenced each other only partially.",
+    "created_at": "2026-06-15T05:45:12Z",
+    "last_save_at": "2026-06-15T09:09:33.213Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

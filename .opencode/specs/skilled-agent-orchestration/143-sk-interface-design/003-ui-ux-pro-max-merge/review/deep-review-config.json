@@ -1,0 +1,40 @@
+{
+  "topic": "Deep review of the 003 ui-ux-pro-max merge plan",
+  "sessionId": "deep-review-148-003",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 10,
+  "convergenceThreshold": 0.10,
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/143-sk-interface-design/003-ui-ux-pro-max-merge",
+  "createdAt": "2026-06-13T17:30:00Z",
+  "status": "initialized",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "openai/gpt-5.5-fast",
+    "reasoningEffort": "high",
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": ".opencode/specs/skilled-agent-orchestration/143-sk-interface-design/003-ui-ux-pro-max-merge",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "completeness",
+    "traceability",
+    "maintainability"
+  ],
+  "severityThreshold": "P2",
+  "qualityGateThreshold": true,
+  "reducerScriptPath": ".opencode/skills/deep-review/scripts/reduce-state.cjs"
+}

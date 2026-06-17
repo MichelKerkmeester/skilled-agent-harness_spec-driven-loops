@@ -22,14 +22,15 @@ Canonical package artifacts:
 - `05--abstention-and-routing/`
 - `06--licensing-and-provenance/`
 - `07--real-ui-loop/`
+- `08--design-references-routing/`
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides 9 deterministic scenarios across 7 categories validating the `sk-interface-design` skill surface. Each scenario maps to a dedicated per-feature file with exact prompt, command sequence, expected signals, evidence, pass/fail criteria, and failure triage.
+This playbook provides 10 deterministic scenarios across 8 categories validating the `sk-interface-design` skill surface. Each scenario maps to a dedicated per-feature file with exact prompt, command sequence, expected signals, evidence, pass/fail criteria, and failure triage.
 
-Coverage note (2026-06-14): the playbook covers the free-axis brainstorm-critique-deviate process against the three named AI-default clusters, brief-pinning precedence where the brief always wins, the objective quality-floor gate sourced from `ux_quality_reference.md`, the system-as-critique-against use where a real design system is read live as the default to deviate from with a negative control that it is never surfaced as a chooser and never copied, abstention and routing to `sk-code` for pure-logic work and to `sk-doc` for documentation work, licensing and provenance integrity confirming the skill is Apache-2.0 only with no vendored MIT material remaining, and the real-UI loop covering reuse-before-generate when a design system is present and the render fidelity check gated on the quality floor and the anti-default critique, each with a negative control. Per-feature files anchor directly to `SKILL.md`, the `references/` docs, and the `feature_catalog/` entries on disk.
+Coverage note (2026-06-17): the playbook covers the free-axis brainstorm-critique-deviate process against the three named AI-default clusters, brief-pinning precedence where the brief always wins, the objective quality-floor gate sourced from `ux_quality_reference.md`, the system-as-critique-against use where a real design system is read live as the default to deviate from with a negative control that it is never surfaced as a chooser and never copied, abstention and routing to `sk-code` for pure-logic work and to `sk-doc` for documentation work, licensing and provenance integrity confirming the skill is Apache-2.0 only with no vendored MIT material remaining, the real-UI loop covering reuse-before-generate when a design system is present and the render fidelity check gated on the quality floor and the anti-default critique each with a negative control, and the design-references hybrid initiative/ask routing where the skill pulls one real-world Mobbin or Refero reference on its own initiative when a convention-heavy category benefits and a subscription is connected, asks the user when borderline or unknown, and falls back to the generic process otherwise, with a negative control that it is never a chooser and never copied. Per-feature files anchor directly to `SKILL.md`, the `references/` docs, and the `feature_catalog/` entries on disk.
 
 ### Realistic Test Model
 
@@ -54,7 +55,7 @@ Coverage note (2026-06-14): the playbook covers the free-axis brainstorm-critiqu
 2. `.opencode/skills/sk-interface-design/SKILL.md` and all files under `.opencode/skills/sk-interface-design/references/` resolve on disk.
 3. `.opencode/skills/sk-interface-design/LICENSE.txt` resolves on disk and is the skill's single Apache-2.0 license.
 4. The operator can run `python3`, `rg`, and `git diff` from the repository root.
-5. Routing scenarios assume `sk-code` and `sk-doc` are installed under `.opencode/skills/`; the design-system grounding scenario assumes a real design system you own is available to read live, and the render fidelity scenario assumes `mcp-chrome-devtools`, otherwise record SKIP with the missing dependency.
+5. Routing scenarios assume `sk-code` and `sk-doc` are installed under `.opencode/skills/`; the design-system grounding scenario assumes a real design system you own is available to read live, the render fidelity scenario assumes `mcp-chrome-devtools`, and the design-references routing scenario assumes the Mobbin or Refero MCPs resolve through Code Mode with a connected subscription for its initiative path (its fall-back path stays exercisable without one), otherwise record SKIP with the missing dependency.
 6. No scenario writes design-system files, copies any external design-system content into the skill, or edits the skill's reference files. Any such mutation is contradictory evidence.
 
 ---
@@ -89,7 +90,7 @@ Coverage note (2026-06-14): the playbook covers the free-axis brainstorm-critiqu
 1. `manual_testing_playbook.md`
 2. Referenced per-feature files under `manual_testing_playbook/NN--category-name/`
 3. Scenario execution evidence from section 3
-4. Feature-to-scenario coverage map from section 13
+4. Feature-to-scenario coverage map from section 16
 5. Triage notes for every PARTIAL, FAIL, or SKIP verdict
 
 ### Scenario Acceptance Rules
@@ -124,7 +125,7 @@ Release is READY only when:
 
 1. No feature verdict is FAIL.
 2. All critical-path scenarios are PASS or explicitly SKIP for environment-only reasons.
-3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES == 9`).
+3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES == 10`).
 4. No unresolved blocking triage item remains.
 5. No scenario exposed a generator or persistence surface and no scenario overrode a pinned brief.
 
@@ -137,7 +138,7 @@ Keep global verdict logic in this root playbook. Put scenario-specific caveats, 
 Before declaring this playbook release-ready, confirm:
 
 1. Root validator is clean.
-2. Per-feature structural sweep checks all 9 files.
+2. Per-feature structural sweep checks all 10 files.
 3. No forbidden sidecars exist.
 4. Every table row has exactly 9 columns.
 5. Every scenario prompt is realistic per the RCAF-vs-natural-human heuristic in sk-doc creation reference section 5.
@@ -146,7 +147,8 @@ Before declaring this playbook release-ready, confirm:
 8. The system-as-critique-against scenario records both the named default look and the no-chooser, no-cache negative control.
 9. The licensing scenario records the actual provenance state honestly, confirming the skill is Apache-2.0 only with no vendored MIT material remaining.
 10. The real-UI loop scenarios record their negative controls: no style-preset menu for reuse-before-generate, and no finished-design claim from a build that never rendered or a file write with no visible UI for the fidelity check.
-11. The final report separates playbook defects from sk-interface-design product defects.
+11. The design-references routing scenario records its three branches (initiative, ask, fall-back), the Mobbin-vs-Refero source pick, and its negative control: no chooser or gallery, no copied or cached reference, read live, and grounding kept upstream.
+12. The final report separates playbook defects from sk-interface-design product defects.
 
 ---
 
@@ -154,7 +156,7 @@ Before declaring this playbook release-ready, confirm:
 
 ### Purpose
 
-This section records wave planning and capacity guidance for executing the 9-scenario design battery. It is not a runtime support matrix by itself.
+This section records wave planning and capacity guidance for executing the 10-scenario design battery. It is not a runtime support matrix by itself.
 
 ### Operational Rules
 
@@ -174,7 +176,8 @@ This section records wave planning and capacity guidance for executing the 9-sce
 | 2 | Quality floor + system critique | ID-003, ID-004 | The objective gate reads on-disk references while the critique-against scenario reads one real design system live, and both are read-only and isolate cleanly |
 | 3 | Abstention and routing | ID-005, ID-006 | Routing away from non-visual work is read-only and isolates from the design path |
 | 4 | Real-UI loop | ID-008, ID-009 | Reuse-before-generate and the fidelity check share the real-UI loop protocol and the render surface |
-| 5 | Licensing and provenance | ID-007 | Provenance integrity is a static-inspection check and runs last |
+| 5 | Design-references routing | ID-010 | The initiative/ask/fall-back gate reads one design-references doc and exercises a paid-lookup decision, so it runs in its own wave to isolate the subscription-status branch |
+| 6 | Licensing and provenance | ID-007 | Provenance integrity is a static-inspection check and runs last |
 
 ### What Belongs In Per-Feature Files
 
@@ -373,7 +376,29 @@ Desired user-visible outcome: A fidelity verdict over the real render that names
 
 ---
 
-## 14. AUTOMATED TEST CROSS-REFERENCE
+## 14. DESIGN-REFERENCES ROUTING (ID-010)
+
+This category covers 1 scenario while the linked feature file remains the canonical execution contract.
+
+### ID-010 | Design-references initiative/ask routing for Mobbin and Refero
+
+#### Description
+
+The hybrid initiative/ask routing pulls ONE real-world Mobbin or Refero reference on its own initiative when a convention-heavy category benefits and a subscription is connected, asks the user when borderline or the subscription is unknown, and falls back to the generic anti-default process otherwise, picking Mobbin for app/iOS and Refero for web/styles, with a negative control proving it is never a chooser and never copied.
+
+#### Scenario Contract
+
+Prompt: `Design the checkout flow for our new payments app; ground it against the real-world default for this kind of screen, then deviate deliberately.`
+
+Desired user-visible outcome: A single named real-world default with its cited URL when the initiative path runs, an explicit one-line ask before any paid lookup when borderline or unknown, a clean non-blocking fall-back when not connected or declined, the correct Mobbin-vs-Refero source pick, and confirmation that no chooser is offered, nothing is copied, and grounding stays upstream.
+
+#### Test Execution
+
+> **Feature File:** [ID-010](08--design-references-routing/initiative-ask-fallback-routing.md)
+
+---
+
+## 15. AUTOMATED TEST CROSS-REFERENCE
 
 The current repository has no dedicated automated test module for `sk-interface-design/manual_testing_playbook/`, and the sk-doc validator currently checks the root playbook only. The scenarios exercise the on-disk reference surface and a live design-system read directly.
 
@@ -382,12 +407,13 @@ The current repository has no dedicated automated test module for `sk-interface-
 | `references/design-grounding/design_inventory.md` | The reuse-ground and critique-against framing over a live design system; the no-chooser and no-cache hard rules | ID-004 |
 | `references/design-process/ux_quality_reference.md` | Objective quality-floor rule set used as the pass/fail gate | ID-003, ID-009 |
 | `references/design-process/real_ui_loop.md` | The shared real-UI loop: reuse-before-generate, the fidelity check, and the no-style-presets guardrail | ID-008, ID-009 |
+| `references/design-grounding/design_references_mcp.md` | The design-references initiative/ask/fall-back gate, the Mobbin-vs-Refero source pick, and the no-chooser, read-live, never-copied hard rules | ID-010 |
 
 Validator limitation: per-feature file completeness requires the structural sweep described in this playbook until `validate_document.py` recurses into category folders.
 
 ---
 
-## 15. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 16. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 | Feature ID | Feature Name | Category | Feature File |
 |---|---|---|---|
@@ -400,3 +426,4 @@ Validator limitation: per-feature file completeness requires the structural swee
 | ID-007 | Licensing and provenance integrity | LICENSING AND PROVENANCE | [ID-007](06--licensing-and-provenance/licensing-and-provenance-integrity.md) |
 | ID-008 | Reuse before generate when a design system is present | REAL-UI LOOP | [ID-008](07--real-ui-loop/reuse-before-generate-with-design-system.md) |
 | ID-009 | Render fidelity check gated on the quality floor and anti-default critique | REAL-UI LOOP | [ID-009](07--real-ui-loop/render-fidelity-check.md) |
+| ID-010 | Design-references initiative/ask routing for Mobbin and Refero | DESIGN-REFERENCES ROUTING | [ID-010](08--design-references-routing/initiative-ask-fallback-routing.md) |

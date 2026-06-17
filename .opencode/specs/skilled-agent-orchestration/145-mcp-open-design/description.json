@@ -1,0 +1,21 @@
+{
+  "level": "phase",
+  "specFolder": "skilled-agent-orchestration/145-mcp-open-design",
+  "description": "Feature Specification: mcp-open-design skill, integration, and verification",
+  "keywords": [
+    "feature",
+    "specification",
+    "mcp-open-design",
+    "skill",
+    "integration",
+    "verification"
+  ],
+  "lastUpdated": "2026-06-16T18:43:35.944Z",
+  "specId": "150",
+  "folderSlug": "mcp-open-design",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

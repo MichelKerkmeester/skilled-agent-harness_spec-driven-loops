@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/142-sk-code-ponytail-based-refinement/002-ceiling-comment-convention",
+  "description": "Phase 2: Intentional-Simplification (ceiling:) Comment Convention",
+  "keywords": [
+    "phase",
+    "intentional-simplification",
+    "ceiling",
+    "comment",
+    "convention"
+  ],
+  "lastUpdated": "2026-06-13T13:42:38.218Z",
+  "specId": "002",
+  "folderSlug": "ceiling-comment-convention",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "142-sk-code-ponytail-based-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

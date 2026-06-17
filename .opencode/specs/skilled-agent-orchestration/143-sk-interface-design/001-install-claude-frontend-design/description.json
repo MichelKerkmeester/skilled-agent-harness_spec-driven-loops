@@ -1,0 +1,19 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/143-sk-interface-design/001-install-claude-frontend-design",
+  "description": "Feature Specification: install-claude-frontend-design",
+  "keywords": [
+    "feature",
+    "specification",
+    "install-claude-frontend-design"
+  ],
+  "lastUpdated": "2026-06-13T17:55:07.460Z",
+  "specId": "001",
+  "folderSlug": "install-claude-frontend-design",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "143-sk-interface-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
