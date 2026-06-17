@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/008-retrieval-evaluation",
+  "description": "Feature Specification: Retrieval Evaluation & Post-027/002 Research Angles",
+  "keywords": [
+    "feature",
+    "specification",
+    "retrieval",
+    "evaluation",
+    "post-027-002",
+    "angles",
+    "eval-harness"
+  ],
+  "lastUpdated": "2026-06-17T14:00:00Z",
+  "specId": "008",
+  "folderSlug": "retrieval-evaluation",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
