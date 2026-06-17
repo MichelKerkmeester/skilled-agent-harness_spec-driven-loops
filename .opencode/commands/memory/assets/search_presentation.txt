@@ -14,7 +14,9 @@ Start with the matching render contract before drafting any response:
 
 ## 1. Startup Question Policy
 
-When `$ARGUMENTS` is empty, ask one open-ended question:
+This section applies ONLY when the command's `ARGUMENT RESOLUTION` header reported `ARGS_PRESENT=false`. If `ARGS_PRESENT=true`, skip this section entirely and render the retrieval or analysis result for the resolved `QUERY` — never ask the startup question over a populated query.
+
+When `ARGS_PRESENT=false` (bare invocation), ask one open-ended question:
 
 ```text
 What would you like to retrieve or analyze?

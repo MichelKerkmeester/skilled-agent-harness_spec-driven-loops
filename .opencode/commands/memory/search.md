@@ -8,6 +8,17 @@ allowed-tools: Read, mcp__mk_spec_memory__memory_context, mcp__mk_spec_memory__m
 
 Thin router for memory retrieval and analysis.
 
+## 0. ARGUMENT RESOLUTION (deterministic — read this first)
+
+The shell line below is evaluated before you read any policy. It is the ground truth for this invocation. The `bash -c` wrapper joins every `$ARGUMENTS` word into one string (the injection expands `$ARGUMENTS` like `"$@"`, one word per argument, so the renderer must join argv itself) and reports whether any argument was supplied.
+
+!`bash -c 'if [ "$#" -gt 0 ]; then q="$*"; q="${q//\"/\\\"}"; printf "ARGS_PRESENT=true\nQUERY=\"%s\"\n" "$q"; else printf "ARGS_PRESENT=false\nQUERY=\"\"\n"; fi' -- $ARGUMENTS`
+
+Bind your control flow to the two values above — never re-derive arg-presence from your own reading of the prompt:
+
+- **When `ARGS_PRESENT=true`: you MUST execute retrieval (or the analysis route) on `QUERY` now.** Do NOT ask the startup question, and do NOT treat a populated `QUERY` as empty. Go to §3 RETRIEVAL MODE, or §4 ANALYSIS MODE when the first token of `QUERY` is a known analysis subcommand.
+- **ONLY IF `ARGS_PRESENT=false`:** go to §5 STARTUP ROUTING and ask the one open-ended question.
+
 ## 1. ROUTING ASSETS
 
 | Asset | Path | Status | Purpose |
@@ -19,33 +30,17 @@ Before asking startup questions or displaying results, read the presentation ass
 
 ## 2. EXECUTION ORDER
 
-1. Read `.opencode/commands/memory/assets/search_presentation.txt` before responding.
-2. Parse `$ARGUMENTS` into retrieval mode, analysis mode, or the empty-argument startup question.
-3. Execute the selected retrieval or analysis route.
-4. Render the response from the presentation contract; retrieval results must use the inline contract below.
+1. Read the §0 ARGUMENT RESOLUTION header output: `ARGS_PRESENT` and `QUERY` are already computed for you.
+2. Read `.opencode/commands/memory/assets/search_presentation.txt` before rendering any response.
+3. **If `ARGS_PRESENT=true`:** route `QUERY` to retrieval mode (§3), or to analysis mode (§4) when the first token of `QUERY` is a known analysis subcommand. Execute now — do NOT ask the startup question.
+4. **ONLY IF `ARGS_PRESENT=false`:** go to startup routing (§5) and ask the one open-ended question.
+5. Render the response from the presentation contract; retrieval results must use the inline contract below.
 
-## 3. STARTUP ROUTING
+## 3. RETRIEVAL MODE
 
-If `$ARGUMENTS` is empty, ask one open-ended question from the presentation asset. Do not dump the full intent/menu list at startup. Treat a custom answer as the retrieval query.
+Enter this mode when `ARGS_PRESENT=true` and `QUERY` is not an analysis subcommand. Parse an optional `--intent:<type>` from `QUERY`; otherwise let the server or local router infer intent from the query.
 
-If the first token is an analysis subcommand, route to analysis mode.
-
-Known analysis subcommands:
-- `preflight`
-- `postflight`
-- `history`
-- `causal`
-- `link`
-- `unlink`
-- `causal-stats`
-- `ablation`
-- `dashboard`
-
-Any other non-empty input routes to retrieval mode. Parse optional `--intent:<type>`; otherwise let the server or local router infer intent from the query.
-
-## 4. RETRIEVAL MODE
-
-1. Extract `query` and optional intent override.
+1. Extract `query` (the resolved `QUERY`) and optional intent override.
 2. Prefer `memory_context({ input: query, mode: "auto", intent, includeContent: true, enableDedup: true })`.
 3. Use `memory_quick_search` for fast query-only fallback.
 4. Use `memory_search` only when fine-grained search parameters are needed.
@@ -68,6 +63,8 @@ MEMORY:SEARCH "<query>" intent=<detected_intent> results=<count>
 STATUS=OK RESULTS=<count> INTENT=<detected_intent>
 ```
 
+Arg-echo rule: the query echoed in `"<query>"` MUST equal the resolved `QUERY`. A mismatch means the query was dropped — re-emit with `QUERY`.
+
 Slot rule: `<score>` is the 0–1 similarity rendered to two decimals (`0.79`, never `79.44` — divide percentage-scaled scores by 100).
 
 Self-check: before finishing, verify the emitted block includes the `MEMORY:SEARCH` header and `STATUS` footer.
@@ -81,7 +78,20 @@ Supported intents:
 - `find_spec`
 - `find_decision`
 
-## 5. ANALYSIS MODE
+## 4. ANALYSIS MODE
+
+Enter this mode when `ARGS_PRESENT=true` and the first token of `QUERY` is one of the analysis subcommands below.
+
+Known analysis subcommands:
+- `preflight`
+- `postflight`
+- `history`
+- `causal`
+- `link`
+- `unlink`
+- `causal-stats`
+- `ablation`
+- `dashboard`
 
 | Subcommand | Tool | Purpose |
 | --- | --- | --- |
@@ -95,9 +105,15 @@ Supported intents:
 | `ablation` | `eval_run_ablation` | Run channel ablation when enabled. |
 | `dashboard` | `eval_reporting_dashboard` | Show evaluation trends. |
 
+## 5. STARTUP ROUTING
+
+**Reach this section ONLY IF `ARGS_PRESENT=false`.** A populated `QUERY` never reaches here — if `ARGS_PRESENT=true`, you already executed §3 or §4.
+
+When `ARGS_PRESENT=false`, ask one open-ended question from the presentation asset. Do not dump the full intent/menu list at startup. Treat a custom answer as the retrieval query.
+
 ## 6. HARD RULES
 
-- Do not infer a query from prior conversation when `$ARGUMENTS` is empty; ask the open-ended startup question.
+- Do not infer a query from prior conversation when `ARGS_PRESENT=false`; ask the open-ended startup question.
 - Ask targeted follow-up questions only when the query is genuinely ambiguous.
 - Do not display the old option dump at startup.
 - Do not use forbidden memory/result labels listed in the presentation asset.
