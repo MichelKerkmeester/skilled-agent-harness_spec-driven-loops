@@ -16,7 +16,7 @@ _memory:
     recent_action: "007 memory-systems mining: iters 1-4 banked, 24 candidates, 4 systems"
     next_safe_action: "Resume 007 per its research.md CONTINUATION RECIPE (debug Kimi)"
     blockers:
-      - "Kimi kimi-for-coding/k2p7 --variant high times out 2x at 600s; 10-iter lineage blocked"
+      - "Kimi k2p7 over-explores past 600s (diagnosed, not broken); fix=1200s timeout + read-cap in prompt"
     key_files:
       - "007-memory-systems/research/research.md"
       - "research/roadmap.md"
@@ -42,7 +42,7 @@ Packet 028 pass-1 + the synthesis review are **complete** (`research/synthesis/0
 
 - **State:** iters 1–4 banked = **24 novelty-tagged candidates across all 4 systems** (Mem0 5, Cognee 8, Graphiti 6, Letta 5); ~36 iterations remain. `reduce-state.cjs` runs clean; registry + dashboard emitted.
 - **▶ Resume here:** `007-memory-systems/research/research.md` → the **CONTINUATION RECIPE** (proven dispatch contracts + live slugs + per-lineage plan + orchestrator-writes contract + remaining angles + finish steps). `/speckit:resume system-spec-kit/028-memory-search-intelligence/007-memory-systems/`.
-- **🚧 BLOCKER:** `kimi-for-coding/k2p7 --variant high` timed out **2× at 600s (0 bytes)** — its 10-iter lineage is blocked. Try `kimi-for-coding/kimi-k2-thinking`, drop `--variant high`, raise the timeout, or reassign. (Letta was covered via DeepSeek, so all 4 systems are mined.)
+- **🩺 KIMI (diagnosed, NOT broken):** timed out 2× at 600s with 0 stdout, but its 65 KB stderr shows it was **productively reading `external/letta` by explicit path** (gitignore-fix worked) and just **over-explored past the 600s budget** before emitting — opencode only flushes the *final* message to stdout, so a mid-stream kill = 0 bytes. Root cause = under-budgeted + over-scoped at `--variant high` on a 1185-file repo. **Fix for its lineage:** timeout **1200s+** + a hard read-cap in the prompt ("read ≤N files then emit, stop browsing"), optionally drop `--variant high`. A confirming tight+1200s relaunch is in flight. (Letta itself is already mined via DeepSeek.)
 - **⚠ GOTCHA:** opencode search respects `.gitignore`; `external/` is gitignored → seats must read it by explicit path / `cat`, not Glob (MiMo fell back to fetching Graphiti from GitHub — valid, approx line numbers).
 - **Proven dispatch contracts:** `deepseek/deepseek-v4-pro --variant high`, `xiaomi/mimo-v2.5-pro --variant high` (both `opencode run`); Opus via `claude2` `-p --model opus --permission-mode bypassPermissions` + a hard read-only prompt (NOT `--permission-mode plan`, which truncates claude2 stdout).
 - **Don't re-mine `xce-mcp`:** verified a thin config/steering wrapper over a closed cloud service (388 lines, no source); 027 already declared it exhausted.
