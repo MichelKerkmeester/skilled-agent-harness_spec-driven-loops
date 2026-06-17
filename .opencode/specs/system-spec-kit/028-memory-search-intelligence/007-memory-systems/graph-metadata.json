@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/007-memory-systems",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/007-memory-systems",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "028 memory systems mining",
+      "mem0 graphiti letta cognee mining",
+      "agent memory search intelligence",
+      "bi-temporal fact graph contradiction",
+      "memory tiers consolidation forgetting"
+    ],
+    "key_topics": [
+      "028",
+      "memory",
+      "systems",
+      "mem0",
+      "graphiti",
+      "letta",
+      "cognee",
+      "retrieval",
+      "ranking",
+      "consolidation",
+      "currentness",
+      "fusion"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "research/research.md"
+    ],
+    "entities": [],
+    "causal_summary": "Mining four external agent-memory systems (Mem0 fact-extraction/consolidation, Graphiti bi-temporal fact graph + hybrid retrieval, Letta self-editing memory tiers, Cognee ECL knowledge graph) for un-mined search-intelligence techniques that improve the Memory MCP (+ Advisor fusion, Deep-Loop continuity), novelty-diffed against aionforge/galadriel/OpenLTM/memclaw.",
+    "created_at": "2026-06-17T09:30:00Z",
+    "last_save_at": "2026-06-17T09:30:00Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research/research.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -9,7 +9,8 @@
     "system-spec-kit/028-memory-search-intelligence/003-skill-advisor",
     "system-spec-kit/028-memory-search-intelligence/004-deep-loop",
     "system-spec-kit/028-memory-search-intelligence/005-revisit-027",
-    "system-spec-kit/028-memory-search-intelligence/006-sibling-revisit"
+    "system-spec-kit/028-memory-search-intelligence/006-sibling-revisit",
+    "system-spec-kit/028-memory-search-intelligence/007-memory-systems"
   ],
   "manual": {
     "depends_on": [],

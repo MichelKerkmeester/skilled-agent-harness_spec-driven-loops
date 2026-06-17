@@ -122,6 +122,7 @@ Run a decomposed deep-research campaign that mines the two external systems for 
 | 004 | `004-deep-loop/` | Mine external systems for Deep Loop runtime improvements | Complete |
 | 005 | `005-revisit-027/` | Cross-packet revisit: reconcile 027's shipped refinements against the 028 findings | Complete |
 | 006 | `006-sibling-revisit/` | Sibling-subsystem revisit (028 Advisor + Code-Graph × 027) + aionforge-procedural + GO re-verify | Complete |
+| 007 | `007-memory-systems/` | Mine external memory systems (Mem0/Graphiti/Letta/Cognee) for Memory MCP search-intelligence (+ Advisor fusion, Deep-Loop continuity); 4-model sweep | In Progress |
 
 ### Phase Transition Rules
 
