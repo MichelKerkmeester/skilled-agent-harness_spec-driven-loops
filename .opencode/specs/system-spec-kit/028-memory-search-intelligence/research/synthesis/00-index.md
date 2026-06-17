@@ -23,7 +23,7 @@
 
 | Doc | Read it for |
 |---|---|
-| **`05-all-findings-plain-language.md`** | **Start here for the whole picture in plain English** — every finding + recommendation from all 200 iterations, no jargon, with the "what we're NOT doing" list and the honest caveats. |
+| **`05-all-findings-plain-language.md`** | **Start here for the whole picture in plain English** — every finding from all 200 iterations as a **before → after feature change** (NEW vs EXISTING, what we'd do, current vs resulting behavior, the catch), grouped by subsystem with priority, plus the "what we're NOT doing" table and the honest caveats. |
 | **`01-go-candidates.md`** | THE actionable list — every surviving candidate, deduplicated, dependency-ordered Wave-0/1/2, with corrected effort/seam. The input to a 028 *implementation* packet. (Now includes the 006 net-new folded into the Waves + a **dropped-candidate-recovery** section surfaced by the fresh-agent synthesis review.) |
 | **`02-cross-packet-reconciliation.md`** | The 027↔028 verdict ledger + reverse transfers + methodology convergence + the 2 sibling-subsystem follow-ups. (Full detail: `../../005-revisit-027/research/research.md`.) |
 | **`03-corrections-caveats-and-residuals.md`** | The honesty layer — what the campaign refuted/downgraded about its own claims, the GO-evidence caveats, and the single-most-likely-wrong items to verify before building. |
