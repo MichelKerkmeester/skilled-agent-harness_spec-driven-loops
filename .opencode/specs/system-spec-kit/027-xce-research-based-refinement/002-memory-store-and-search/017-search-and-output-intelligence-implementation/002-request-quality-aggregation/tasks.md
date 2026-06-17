@@ -10,18 +10,20 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/002-request-quality-aggregation"
-    last_updated_at: "2026-06-17T06:03:03Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "017-search-and-output-intelligence-implementation/002-request-quality-aggregation"
+    last_updated_at: "2026-06-17T08:30:00Z"
+    last_updated_by: "implementation-engineer"
+    recent_action: "Shipped top-dominant + margin-aware request-quality verdict; tasks superseded"
+    next_safe_action: "Rebuild mcp_server dist so the runtime picks up the source change"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/request-quality-aggregation.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/002-request-quality-aggregation"
+      session_id: "impl-017-002-request-quality-aggregation"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -50,9 +52,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Locate the existing `assessRequestQuality` gate and the `computeMargin` helper to reuse
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +60,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T004 Add top-dominant `good` branch (`topScore >= 0.8`) (confidence-scoring.ts)
+- [x] T005 Add margin-aware `good` (`topScore >= 0.7` AND (`qualityRatio >= 0.6` OR `topMargin >= 0.15`))
+- [x] T006 Cap `qualityRatio` at `min(N, QUALITY_RATIO_HEAD=5)`; add `TOP_DOMINANT_THRESHOLD` constant
+- [x] T007 Preserve `weak`/`gap` thresholds (do-not-cite safety net)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +71,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T008 New `request-quality-aggregation.vitest.ts`: good-via-margin, good-top-dominant, recall-no-depress
+- [x] T009 Edge cases: weak preserved, gap preserved
+- [x] T010 `implementation-summary.md` written
 <!-- /ANCHOR:phase-3 -->
 
 ---

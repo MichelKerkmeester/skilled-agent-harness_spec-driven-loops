@@ -90,7 +90,7 @@ The unit test (`maintenance-marker.vitest.ts`) exercises the reference-counted l
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-No new packages. Builds on the 019 launcher adopt guard and marker schema (reused unchanged), the existing background scan IIFE in `handlers/memory-index.ts`, and the existing `runBackgroundJob` empty-queue guard and `finally` in `lib/providers/retry-manager.ts`. Uses Node's `fs` and a timer for the 20s self-refresh. The default retry batch and interval here are tuned (`SPECKIT_RETRY_BATCH_SIZE=100`, `SPECKIT_RETRY_INTERVAL_MS=5000`); with the stock 300s interval each busy tick still re-marks via the per-tick `beginMaintenance`.
+No new packages. Builds on the 019 launcher adopt guard and the same marker file, reusing its launcher-read fields (`childPid`, `activeUntilMs`), TTL, and dir resolution unchanged (the `labels[]` auxiliary payload was already introduced in 019's writer), plus the existing background scan IIFE in `handlers/memory-index.ts`, and the existing `runBackgroundJob` empty-queue guard and `finally` in `lib/providers/retry-manager.ts`. Uses Node's `fs` and a timer for the 20s self-refresh. The default retry batch and interval here are tuned (`SPECKIT_RETRY_BATCH_SIZE=100`, `SPECKIT_RETRY_INTERVAL_MS=5000`); with the stock 300s interval each busy tick still re-marks via the per-tick `beginMaintenance`.
 <!-- /ANCHOR:dependencies -->
 
 ---

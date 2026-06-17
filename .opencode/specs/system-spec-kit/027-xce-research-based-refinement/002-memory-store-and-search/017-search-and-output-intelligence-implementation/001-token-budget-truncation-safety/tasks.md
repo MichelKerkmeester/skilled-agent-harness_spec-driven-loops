@@ -10,18 +10,21 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-token-budget-truncation-safety"
-    last_updated_at: "2026-06-17T06:03:02Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "027/002/017/001-token-budget-truncation-safety"
+    last_updated_at: "2026-06-17T08:15:00Z"
+    last_updated_by: "implementation-engineer"
+    recent_action: "Shipped Problem 3 token-budget truncation safety; tasks superseded by impl-summary"
+    next_safe_action: "Orchestrator review + commit"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/token-budget-skip-and-floor.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-token-budget-truncation-safety"
+      session_id: "impl-027-002-017-001-token-budget-truncation-safety"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -50,9 +53,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Capture baseline search-test failures before the change
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +61,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T004 Skip-and-continue packing in `truncateToBudget` (hybrid-search.ts)
+- [x] T005 `min(limit, 3)` floor + summary-first overflow routing (hybrid-search.ts)
+- [x] T006 `lowSignal` weak-query budget floor (dynamic-token-budget.ts)
+- [x] T007 Re-sort accepted set after promotion; preserve highest-score-first contract
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +72,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T008 New `token-budget-skip-and-floor.vitest.ts` proves skip + floor + small-limit cap
+- [x] T009 Edge cases: no-limit ≥1 fallback; `includeContent=false` overflow
+- [x] T010 `implementation-summary.md` written
 <!-- /ANCHOR:phase-3 -->
 
 ---

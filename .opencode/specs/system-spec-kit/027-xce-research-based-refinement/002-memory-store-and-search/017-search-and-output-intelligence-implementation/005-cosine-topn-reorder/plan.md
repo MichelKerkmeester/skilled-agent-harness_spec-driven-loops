@@ -11,19 +11,24 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/005-cosine-topn-reorder"
-    last_updated_at: "2026-06-17T06:03:05Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "027/002/017/005-cosine-topn-reorder"
+    last_updated_at: "2026-06-17T09:15:00Z"
+    last_updated_by: "implementation-engineer"
+    recent_action: "Shipped cosine-primary top-N head reorder; plan superseded by impl-summary"
+    next_safe_action: "Measure precision@1 on a labeled set (research step b) to validate the lift"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/cosine-topn-reorder.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/hybrid-search.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/005-cosine-topn-reorder"
+      session_id: "impl-017/005-cosine-topn-reorder"
       parent_session_id: null
-    completion_pct: 0
-    open_questions: []
+    completion_pct: 100
+    open_questions:
+      - "Does the head reorder improve precision@1 in practice? Unmeasured — no labeled set yet."
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
@@ -47,13 +52,13 @@ FAILURE MODES:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | TypeScript (MCP server) |
+| **Framework** | None (Node library code) |
+| **Storage** | None |
+| **Testing** | Vitest |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+A pure `reorderTopNByCosine` helper stably re-sorts the top-10 survivors by `resolveAbsoluteRelevance`, wired into `enrichFusedResults` right after `truncateToBudget` and gated by a default-ON, reversible flag. Unit-tested in isolation, then verified against the hybrid-search / ranking / pipeline suites. See `implementation-summary.md` for the delivered detail.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -78,14 +83,14 @@ FAILURE MODES:
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Library function in the search pipeline (no new architecture).
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **`reorderTopNByCosine` (hybrid-search.ts)**: Stable head reorder by `resolveAbsoluteRelevance`, depth `COSINE_TOPN_REORDER_DEPTH` (10).
+- **`isCosineTopnReorderEnabled` (search-flags.ts)**: Default-ON `SPECKIT_COSINE_TOPN_REORDER` gate.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+`enrichFusedResults` runs `truncateToBudget` to fix membership by fused score, then (flag-on, non-eval mode) reorders the top-10 survivors by absolute cosine; the tail beyond 10 keeps RRF order.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -97,8 +102,10 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| `enrichFusedResults` (hybrid-search.ts) | Final ordering of budgeted survivors | update (gated head reorder after `truncateToBudget`) | `cosine-topn-reorder.vitest.ts` |
+| `search-flags.ts` | Feature-flag policy | update (`isCosineTopnReorderEnabled`, default-ON) | `hybrid-search-flags` vitest green |
+| `tests/hybrid-search.vitest.ts` | Degree-fusion regression assertion | update to cosine-correct order | Suite green incl. updated assertion |
+| `resolveAbsoluteRelevance` / fusion math | Provide the cosine signal | unchanged (read-only) | Reorder reads it; fusion untouched |
 
 Required inventories:
 - Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
@@ -113,19 +120,17 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [x] Identified `enrichFusedResults` / `truncateToBudget` as the final-ordering insertion point
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [x] `reorderTopNByCosine` helper + `COSINE_TOPN_REORDER_DEPTH` (hybrid-search.ts)
+- [x] Gated reorder applied after `truncateToBudget`; skipped in `evaluationMode`
+- [x] `isCosineTopnReorderEnabled()` default-ON flag (search-flags.ts)
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [x] `cosine-topn-reorder.vitest.ts` passing (9/9)
+- [x] Edge cases: tie stability, head-only scope, lexical fallback, flag reversible
+- [x] Degree-fusion regression assertion updated; `implementation-summary.md` written
 <!-- /ANCHOR:phases -->
 
 ---
@@ -135,9 +140,9 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Unit | `reorderTopNByCosine` (promotion, tie stability, invariants, lexical fallback, flag) | Vitest |
+| Regression | hybrid-search, token-budget, adaptive-ranking, pipeline-integration suites | Vitest |
+| Manual | None | - |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -147,7 +152,7 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| `resolveAbsoluteRelevance` (packet-015 scale) | Internal | Green | No absolute cosine signal to reorder by |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -155,8 +160,8 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Labeled-set measurement shows the reorder harms precision@1, or a head-ordering regression.
+- **Procedure**: Set `SPECKIT_COSINE_TOPN_REORDER=false` (instant, no redeploy); the reorder is fully reversible.
 <!-- /ANCHOR:rollback -->
 
 ---

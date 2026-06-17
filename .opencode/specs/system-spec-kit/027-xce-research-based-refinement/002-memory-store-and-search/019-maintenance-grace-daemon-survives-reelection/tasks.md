@@ -41,7 +41,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- T001 Read the launcher reap paths and the IPC bridge to confirm re-election fires because the busy daemon cannot answer the JSON-RPC liveness probe during a CPU block (`bin/mk-spec-memory-launcher.cjs` ~line 1680, `bin/lib/launcher-ipc-bridge.cjs`).
+- T001 Read the launcher reap paths and the IPC bridge to confirm re-election fires because the busy daemon cannot answer the JSON-RPC liveness probe during a CPU block (`.opencode/bin/mk-spec-memory-launcher.cjs` ~line 1680, `.opencode/bin/lib/launcher-ipc-bridge.cjs`).
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -49,9 +49,9 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- T002 Add the maintenance-active marker writer to the background scan IIFE: write `.maintenance-active.json` on start, refresh every 20s with a 60s TTL, and clear the timer plus remove the marker in a `finally` on every terminal exit (`handlers/memory-index.ts`).
-- T003 Add the pure `maintenanceMarkerPath` / `readMaintenanceMarker` / `shouldAdoptDespiteProbe` predicate with injectable fs/now and export it (`bin/lib/model-server-supervision.cjs`).
-- T004 Add env-aware `maintenanceMarkerDir()` with the same DB-dir precedence as the daemon, re-export the predicate, and call the guard at both the stale-reclaim adopt path and the dead-socket respawn path so a fresh marker naming the live child adopts/refuses respawn (`bin/mk-spec-memory-launcher.cjs`).
+- T002 Add the shared reference-counted writer `lib/storage/maintenance-marker.ts` (`beginMaintenance(label) -> { refresh(), end() }`, 180s TTL, 20s self-refresh) and call `beginMaintenance('index_scan')` from the background scan in `handlers/memory-index.ts`: write `.maintenance-active.json` on start, refresh every 20s plus at phase boundaries, and `end()` it in a `finally` on every terminal exit.
+- T003 Add the pure `maintenanceMarkerPath` / `readMaintenanceMarker` / `shouldAdoptDespiteProbe` predicate with injectable fs/now and export it (`.opencode/bin/lib/model-server-supervision.cjs`).
+- T004 Add env-aware `maintenanceMarkerDir()` with the same DB-dir precedence as the daemon, re-export the predicate, and call the guard at both the stale-reclaim adopt path and the dead-socket respawn path so a fresh marker naming the live child adopts/refuses respawn (`.opencode/bin/mk-spec-memory-launcher.cjs`).
 - T005 Add the unit test through the launcher require and extend the isolated harness with adopt and stale-marker negative-control cases (`tests/launcher-maintenance-guard.vitest.ts`, `stress_test/durability/daemon-reelection-adoption-live.vitest.ts`).
 <!-- /ANCHOR:phase-2 -->
 

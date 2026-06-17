@@ -105,7 +105,7 @@ The maintenance marker now covers both the scan and the post-scan background-emb
 - The background-embedding queue: `runBackgroundJob` in `retry-manager.ts` calls `beginMaintenance('embedding-queue')` ONLY after its empty-queue guard and `end()`s in its existing `finally`.
 
 ### Out of Scope
-- The 019 launcher-side adopt/reap guard, the marker schema, the TTL, and the marker-dir resolution; this phase only widens who writes the marker, not how the launcher reads it.
+- The 019 launcher-side adopt/reap guard, the launcher-read marker fields (`childPid`, `activeUntilMs`), the TTL, the marker file, and the marker-dir resolution; this phase only widens who writes the marker, not how the launcher reads it. (The auxiliary payload field `jobId` → `labels[]` already changed in 019's writer to support the reference-counted overlap; 020 reuses that `labels[]` shape and does not change it further.)
 - Making the heaviest synchronous embedding phases cooperative (chunk-and-yield) so the daemon stays responsive rather than only un-reaped; that is a noted follow-on.
 - A full live end-to-end reindex run; that is the deploy-time confirmation, not a code deliverable.
 
@@ -156,7 +156,7 @@ The maintenance marker now covers both the scan and the post-scan background-emb
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Risk | A holder leaks its reference and pins the marker | If `end()` is missed the marker could outlive its work and shield a daemon that is no longer busy | The 180s TTL bounds the leak: an un-refreshed marker expires and the normal reap resumes; `end()` is idempotent and the embedding queue ends in its existing `finally` |
-| Dependency | The 019 launcher adopt guard and marker schema | This phase reuses the same marker file, TTL, and dir resolution unchanged; only the writer is widened | Keeping the schema and dir resolution identical means the launcher reads the marker exactly as in 019 |
+| Dependency | The 019 launcher adopt guard and marker file | This phase reuses the same marker file, the launcher-read fields (`childPid`, `activeUntilMs`), TTL, and dir resolution unchanged; only the writer is widened (the `labels[]` auxiliary payload was already introduced in 019) | Keeping the launcher-read fields and dir resolution identical means the launcher reads the marker exactly as in 019 |
 <!-- /ANCHOR:risks -->
 
 ---

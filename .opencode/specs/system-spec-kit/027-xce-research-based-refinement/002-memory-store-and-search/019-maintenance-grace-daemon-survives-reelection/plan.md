@@ -52,7 +52,7 @@ After 018 made the scan cooperative, a full reindex still could not finish: when
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-Three cooperating pieces. The daemon writer in `handlers/memory-index.ts` writes `<DATABASE_DIR>/.maintenance-active.json` (`{ childPid, activeUntilMs, jobId, refreshedAtIso }`, 60s TTL) when a background scan starts and refreshes it every 20s; a `finally` clears the timer and removes the marker on every terminal exit. The pure predicate in `model-server-supervision.cjs` (`maintenanceMarkerPath` / `readMaintenanceMarker` / `shouldAdoptDespiteProbe`, with injectable fs/now) reads the marker and decides adopt-vs-reap. The launcher in `mk-spec-memory-launcher.cjs` resolves the marker dir with the same DB-dir precedence, re-exports the predicate, and calls it at both reap sites — the stale-reclaim adopt path and the dead-socket respawn path — so a fresh marker naming the live child adopts or refuses respawn instead of reaping.
+Three cooperating pieces. A shared reference-counted writer module `lib/storage/maintenance-marker.ts` (`beginMaintenance(label) -> { refresh(), end() }`) writes `<DATABASE_DIR>/.maintenance-active.json` (`{ childPid, activeUntilMs, labels, refreshedAtIso }`, 180s TTL) and self-refreshes every 20s; the background scan in `handlers/memory-index.ts` calls `beginMaintenance('index_scan')` and `end()`s it on every terminal exit. (`labels` is a `string[]` so the same module can later hold the marker for the post-scan embedding queue; the launcher reads only `childPid`/`activeUntilMs`.) The pure predicate in `model-server-supervision.cjs` (`maintenanceMarkerPath` / `readMaintenanceMarker` / `shouldAdoptDespiteProbe`, with injectable fs/now) reads the marker and decides adopt-vs-reap. The launcher in `mk-spec-memory-launcher.cjs` resolves the marker dir with the same DB-dir precedence, re-exports the predicate, and calls it at both reap sites — the stale-reclaim adopt path and the dead-socket respawn path — so a fresh marker naming the live child adopts or refuses respawn instead of reaping.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -60,9 +60,11 @@ Three cooperating pieces. The daemon writer in `handlers/memory-index.ts` writes
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-- `handlers/memory-index.ts`: the background scan IIFE marker writer plus the `finally` timer-clear and marker-removal.
-- `bin/lib/model-server-supervision.cjs`: the pure `maintenanceMarkerPath` / `readMaintenanceMarker` / `shouldAdoptDespiteProbe` plus their exports.
-- `bin/mk-spec-memory-launcher.cjs`: env-aware `maintenanceMarkerDir()`, the two guard sites, and the re-exports.
+- `lib/storage/maintenance-marker.ts`: the shared reference-counted writer module (`beginMaintenance` / `refresh` / `end`, 180s TTL, 20s self-refresh) consumed by the scan and (in 020) the embedding queue.
+- `handlers/memory-index.ts`: the background scan calls `beginMaintenance('index_scan')` on the shared module plus the `finally` `end()`.
+- `lib/providers/retry-manager.ts`: `runBackgroundJob` calls `beginMaintenance('embedding-queue')`, ending in its existing `finally` (the post-scan embedding-queue holder).
+- `.opencode/bin/lib/model-server-supervision.cjs`: the pure `maintenanceMarkerPath` / `readMaintenanceMarker` / `shouldAdoptDespiteProbe` plus their exports.
+- `.opencode/bin/mk-spec-memory-launcher.cjs`: env-aware `maintenanceMarkerDir()`, the two guard sites, and the re-exports.
 - `tests/launcher-maintenance-guard.vitest.ts` and `stress_test/durability/daemon-reelection-adoption-live.vitest.ts`: predicate coverage and isolated-harness adopt plus negative-control cases.
 <!-- /ANCHOR:affected-surfaces -->
 
@@ -71,7 +73,7 @@ Three cooperating pieces. The daemon writer in `handlers/memory-index.ts` writes
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-1. Add the marker writer to the background scan IIFE in `memory-index.ts`: write on start, refresh every 20s, and clear the timer and remove the marker in a `finally` on every terminal exit.
+1. Add the shared reference-counted writer module `lib/storage/maintenance-marker.ts` (`beginMaintenance(label) -> { refresh(), end() }`, 180s TTL, 20s self-refresh), and have the background scan in `memory-index.ts` call `beginMaintenance('index_scan')` on start, refresh at phase boundaries, and `end()` it in a `finally` on every terminal exit.
 2. Add the pure `maintenanceMarkerPath` / `readMaintenanceMarker` / `shouldAdoptDespiteProbe` predicate (injectable fs/now) and its exports to `model-server-supervision.cjs`.
 3. Wire the launcher: env-aware `maintenanceMarkerDir()` with the same DB-dir precedence, re-exports, and the guard call at both the stale-reclaim adopt path and the dead-socket respawn path.
 4. Add the unit test; extend the isolated harness with adopt and stale-marker negative-control cases; build and `node --check`.

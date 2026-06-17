@@ -10,18 +10,22 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-confidence-calibration-labeled-set"
-    last_updated_at: "2026-06-17T06:03:05Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "027/002/017/004-confidence-calibration-labeled-set"
+    last_updated_at: "2026-06-17T09:05:00Z"
+    last_updated_by: "implementer"
+    recent_action: "Shipped (A) 0.45/0.55 rebalance + (B) flag-gated calibration infra; tasks superseded"
+    next_safe_action: "Collect labeled live traffic, refit, validate before enabling calibration flag"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-calibration.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/confidence-calibration.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/004-confidence-calibration-labeled-set"
+      session_id: "impl-027-002-017-004-confidence-calibration-labeled-set"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -50,9 +54,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Locate the inline 0.6/0.4 blend in `confidence-scoring.ts`; confirm S2 must stay intact
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +62,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T004 (A) Rebalance `value` to `WEIGHT_HEURISTIC = 0.45` / `WEIGHT_SCORE_PRIOR = 0.55` constants (default-ON)
+- [x] T005 (B) Isotonic `fitCalibration`/`applyCalibration` + labeled-set + model loaders (confidence-calibration.ts)
+- [x] T006 (B) `isConfidenceCalibrationEnabled()` (default-OFF) + lazy model load + `maybeCalibrate()` hook
+- [x] T007 (B) Generate corpus-derived proxy labeled set + demo model under `assets/`
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +73,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T008 `confidence-calibration.vitest.ts`: fit/apply, loader validation, default-OFF wiring guarantee
+- [x] T009 Edge cases: existing absolute-relevance + d5 assertions stay green under the new band
+- [x] T010 `implementation-summary.md` written (real judged labeled set is the documented follow-up)
 <!-- /ANCHOR:phase-3 -->
 
 ---

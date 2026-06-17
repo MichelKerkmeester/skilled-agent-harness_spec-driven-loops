@@ -75,7 +75,7 @@ Confirmed the gap 019 flagged: the scan defers embeddings, so the live re-electi
 
 - **Shared reference-counted module so scan and embedding queue overlap.** Both the scan (which defers embeddings) and the embedding queue (which drains them) can hold the marker through their overlap; reference counting means neither one's `end()` removes the file while the other still holds it, so the daemon stays protected across the whole reindex.
 - **Begin only when a tick has work; end in the existing finally.** In the embedding job, `beginMaintenance('embedding-queue')` is called after the empty-queue guard, so an idle tick never writes or leaves a lingering marker, and the holder is ended in the job's existing `finally` so it is always released.
-- **The 019 launcher guard is unchanged.** This phase only widens who writes the marker. The marker file, schema, TTL, and dir resolution are reused exactly, so the launcher reads it as before and the change stays additive.
+- **The 019 launcher guard is unchanged.** This phase only widens who writes the marker. The marker file, the launcher-read fields (`childPid`, `activeUntilMs`), the TTL, and the dir resolution are reused exactly, so the launcher reads it as before and the change stays additive. (The auxiliary payload changed `jobId` → `labels[]` back in 019's writer to support the reference-counted overlap; the launcher never reads that field, so the launcher-read contract is genuinely unchanged.)
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -90,6 +90,7 @@ Confirmed the gap 019 flagged: the scan defers embeddings, so the live re-electi
 | Existing scan-job + launcher-guard suites | PASS: the scan-job and launcher-guard suites still pass after the refactor |
 | Pre-existing flake (not introduced) | NOTED: a cross-file test-isolation flake in `retry-manager.vitest.ts` T49 is present without these changes |
 | Full live reindex + post-scan embedding burst | PASS (deploy verification): a full force reindex plus its post-scan embedding burst ran with the daemon surviving |
+| Protection scope | Marker protection covers the background scan and the post-scan background-embedding queue; the synchronous foreground `memory_index_scan` path (`!args.background → runIndexScan(args, {})`) writes no marker by design — it is request-bound and blocks its caller, not a fire-and-forget daemon burst the launcher could reap as wedged-but-busy |
 <!-- /ANCHOR:verification -->
 
 ---

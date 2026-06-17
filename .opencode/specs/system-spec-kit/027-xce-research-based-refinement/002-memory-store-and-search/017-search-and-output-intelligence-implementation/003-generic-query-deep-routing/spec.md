@@ -11,19 +11,24 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/003-generic-query-deep-routing"
-    last_updated_at: "2026-06-17T06:03:04Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "027/002/017/003-generic-query-deep-routing"
+    last_updated_at: "2026-06-17T08:48:00Z"
+    last_updated_by: "implementation-engineer"
+    recent_action: "Shipped generic-query deep routing; spec superseded by impl-summary"
+    next_safe_action: "Tune LOW_SIGNAL_STOPWORD_RATIO against real memory_search traffic"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/query-expander.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/generic-query-deep-routing.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/003-generic-query-deep-routing"
+      session_id: "impl-027-002-017-003"
       parent_session_id: null
-    completion_pct: 0
-    open_questions: []
+    completion_pct: 100
+    open_questions:
+      - "Optimal LOW_SIGNAL_STOPWORD_RATIO threshold under real traffic"
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
@@ -46,15 +51,15 @@ FAILURE MODES:
 | Field | Value |
 |-------|-------|
 | **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Priority** | P1 |
+| **Status** | Complete |
 | **Created** | 2026-06-17 |
-| **Branch** | `scaffold/003-generic-query-deep-routing` |
+| **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 3 of 7 |
 | **Predecessor** | 002-request-quality-aggregation |
 | **Successor** | 004-confidence-calibration-labeled-set |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Handoff Criteria** | Low-signal short queries escalate to full channels + expansion, with no new LLM calls; recovery returns actionable suggestions |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -62,15 +67,17 @@ FAILURE MODES:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 3** of the Implementation phase specification.
+This is **Phase 3** of the search-and-output-intelligence implementation: generic-query deep routing (S3).
 
-**Scope Boundary**: [To be defined during planning]
+**Scope Boundary**: The classifier escalation, the domain synonym map, and the recovery-suggestion append. `query-plan.ts` (telemetry-only) and `hyde.ts` (deep-mode gate outside the write set) are intentionally untouched - editing them would raise LLM cost.
 
 **Dependencies**:
-- [To be defined during planning]
+- Existing channel-selection + expansion guards (both key off the classifier tier) and `expandQuery` (shared expander).
 
 **Deliverables**:
-- [To be defined during planning]
+- Classifier escalation of low-signal short queries to `complex`/`low` (≥2 terms, no trigger anchor, stop-word ratio ≥ `LOW_SIGNAL_STOPWORD_RATIO`), turning on all five channels + expansion with NO new LLM calls.
+- `generateSuggestedQueries` appends `expandQuery` synonym variants (best-effort, capped at three).
+- Enriched `DOMAIN_VOCABULARY_MAP` (`semantic`, `retrieval`, `agent`, `skill`, `council`).
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
@@ -82,10 +89,10 @@ This is **Phase 3** of the Implementation phase specification.
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+Generic short queries read "weak" because the cheap `simple` route stripped them of the recall machinery they need: a ≤3-term query was trimmed to two channels with both rule-based and embedding expansion suppressed, and produced an empty `suggestedQueries` list, so the agent had no way to broaden.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+Route low-signal short queries to the full pipeline and hand back concrete broaden suggestions, while leaving confident short queries on the fast path so cost does not balloon.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -94,19 +101,22 @@ This is **Phase 3** of the Implementation phase specification.
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- Classifier escalation of low-signal short queries to `complex`/`low` (`isLowSignalShortQuery`, `LOW_SIGNAL_STOPWORD_RATIO`).
+- `expandQuery` synonym variants appended to `suggestedQueries` (best-effort, capped at three).
+- Five new entries in `DOMAIN_VOCABULARY_MAP`.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- `query-plan.ts` - telemetry-only; made no routing decision to change.
+- `hyde.ts` / LLM reformulation - deep-mode gate outside the write set; editing it would raise LLM cost (forbidden by the brief).
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `mcp_server/lib/search/query-classifier.ts` | Modify | Escalate low-signal short queries to `complex`/`low` (full channels + expansion); add `LOW_SIGNAL_STOPWORD_RATIO` + `isLowSignalShortQuery` |
+| `mcp_server/lib/search/query-expander.ts` | Modify | Add `semantic`, `retrieval`, `agent`, `skill`, `council` to the domain synonym map |
+| `mcp_server/lib/search/recovery-payload.ts` | Modify | Append `expandQuery` variants to `suggestedQueries` (best-effort, capped) |
+| `mcp_server/tests/generic-query-deep-routing.vitest.ts` | Create | Pin escalation, cost-control, and recovery-suggestion contracts |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -118,13 +128,14 @@ This is **Phase 3** of the Implementation phase specification.
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | Low-signal short queries escalate to full channels + expansion with NO new LLM calls | Test: escalation turns on five channels + expansion; no HyDE/LLM call added |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-002 | A low-signal query returns actionable broaden suggestions | Test: `semantic search` yields non-empty `suggestedQueries` (capped at three) |
+| REQ-003 | Confident short queries stay on the fast path | Test: a high-signal short query is not escalated |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -132,8 +143,8 @@ This is **Phase 3** of the Implementation phase specification.
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: A generic 2-3 word query (e.g. `semantic search`) runs the full pipeline and returns non-empty `suggestedQueries`.
+- **SC-002**: No new LLM/HyDE calls are introduced by the escalation (cost-control test green).
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -143,8 +154,8 @@ This is **Phase 3** of the Implementation phase specification.
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Dependency | Classifier tier drives channel selection + expansion guards | A single escalation enables five channels + expansion | Reuses existing tier semantics; no new branching |
+| Risk | `LOW_SIGNAL_STOPWORD_RATIO` (0.5) is untuned against real traffic | Med | Documented open question; threshold tunable; confident short queries stay on the fast path |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -152,8 +163,7 @@ This is **Phase 3** of the Implementation phase specification.
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- Optimal `LOW_SIGNAL_STOPWORD_RATIO` threshold under real `memory_search` traffic (currently 0.5, untuned). See `implementation-summary.md`.
 <!-- /ANCHOR:questions -->
 
 ---

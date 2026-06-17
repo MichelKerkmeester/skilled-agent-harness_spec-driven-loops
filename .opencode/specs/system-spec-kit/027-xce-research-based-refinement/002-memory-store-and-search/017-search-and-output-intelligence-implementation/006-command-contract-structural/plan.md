@@ -11,20 +11,23 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/006-command-contract-structural"
-    last_updated_at: "2026-06-17T06:03:06Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "017-search-and-output-intelligence-implementation/006-command-contract-structural"
+    last_updated_at: "2026-06-17T08:30:00Z"
+    last_updated_by: "implementer"
+    recent_action: "Shipped /memory:search arg header + salience inversion; plan superseded"
+    next_safe_action: "FOLLOW-UP: live A/B --command execute-rate run on Kimi/MiMo (cannot run here)"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/commands/memory/search.md"
+      - ".opencode/commands/memory/assets/search_presentation.txt"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/006-command-contract-structural"
+      session_id: "impl-006-command-contract-structural"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "How to stop weak models dropping the query? -> compute ARGS_PRESENT/QUERY in shell, invert salience, gate the ask-path."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: Phase 6: command-contract-structural
@@ -47,13 +50,13 @@ FAILURE MODES:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | OpenCode/Claude slash-command markdown + an inline `bash` shell header |
+| **Framework** | None (command contract + presentation asset) |
+| **Storage** | None |
+| **Testing** | Live cross-model A/B `--command` execute-rate (no vitest; not runnable here) |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Move the arg-presence branch out of model judgment into a §0 shell header that emits deterministic `ARGS_PRESENT`/`QUERY` lines, then invert the contract's salience so the execute-path is read first and the ask-path is physically last and gated. See `implementation-summary.md` for the delivered detail.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -78,14 +81,15 @@ FAILURE MODES:
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Command-contract markdown with an inline shell-resolution header (no application architecture).
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **§0 ARGUMENT RESOLUTION header (`search.md`)**: `bash -c` block joining `$ARGUMENTS` into `QUERY` and emitting `ARGS_PRESENT`.
+- **Salience-inverted sections (`search.md`)**: RETRIEVAL/ANALYSIS first; STARTUP last, gated on `ARGS_PRESENT=false`.
+- **Presentation gate (`search_presentation.txt`)**: §1 Startup Question Policy gated the same way so the asset cannot re-anchor the model.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+The renderer runs §0 before the model reads policy; the model binds on `ARGS_PRESENT`/`QUERY`, executes retrieval when true, and only reaches the gated STARTUP ask-path when false.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -97,8 +101,8 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| `.opencode/commands/memory/search.md` | The `/memory:search` command contract | update (§0 header, salience inversion, no-ask guard) | `grep -n ARGS_PRESENT search.md` |
+| `.opencode/commands/memory/assets/search_presentation.txt` | Presentation policy the model reads alongside the command | update (gate §1 on `ARGS_PRESENT=false`) | `grep -n ARGS_PRESENT search_presentation.txt` |
 
 Required inventories:
 - Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
@@ -113,19 +117,17 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [x] Confirmed the renderer expands `$ARGUMENTS` one word per argument inside `` !`…` `` injections
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [x] §0 shell header joins argv into `QUERY`, escapes quotes, emits `ARGS_PRESENT`
+- [x] Reordered sections: RETRIEVAL/ANALYSIS lead; STARTUP last, gated on `ARGS_PRESENT=false`
+- [x] No-ask guard + arg-echo self-correction rule bound to `ARGS_PRESENT`/`QUERY`
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [x] Presentation asset §1 gated the same way
+- [x] Edge cases handled (multi-word query, embedded double-quotes)
+- [x] `implementation-summary.md` written
 <!-- /ANCHOR:phases -->
 
 ---
@@ -135,9 +137,8 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Behavioral A/B | `--command` execute-rate on Kimi K2.7 / MiMo v2.5 Pro | Live cross-model run (follow-up; not runnable here) |
+| Manual | `/memory:search "<query>"` executes vs falls back to startup | Manual probe |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -147,7 +148,7 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Slash-command renderer `$ARGUMENTS` substitution | External (runtime) | Green | §0 header cannot resolve argv |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -155,8 +156,8 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: The §0 header misfires (e.g. a query rendered as empty) or models regress on execute-rate.
+- **Procedure**: Revert `search.md` and `search_presentation.txt` to the prior contract; both are markdown, fully reversible with no code dependency.
 <!-- /ANCHOR:rollback -->
 
 ---

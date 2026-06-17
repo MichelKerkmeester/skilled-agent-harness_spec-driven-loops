@@ -11,18 +11,20 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/002-request-quality-aggregation"
-    last_updated_at: "2026-06-17T06:03:03Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "017-search-and-output-intelligence-implementation/002-request-quality-aggregation"
+    last_updated_at: "2026-06-17T08:30:00Z"
+    last_updated_by: "implementation-engineer"
+    recent_action: "Shipped top-dominant + margin-aware request-quality verdict; plan superseded"
+    next_safe_action: "Rebuild mcp_server dist so the runtime picks up the source change"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/request-quality-aggregation.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/002-request-quality-aggregation"
+      session_id: "impl-017-002-request-quality-aggregation"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -47,13 +49,13 @@ FAILURE MODES:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | TypeScript (MCP server) |
+| **Framework** | None (Node library code) |
+| **Storage** | None |
+| **Testing** | Vitest |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Rewrite the `assessRequestQuality` verdict as a disjunction that respects a dominant top hit and an absolute top-margin, and cap `qualityRatio` at the ranking head so recall expansion stops fighting the quality verdict. Ordering is untouched. See `implementation-summary.md` for the delivered detail.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -78,14 +80,14 @@ FAILURE MODES:
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Library function in the search pipeline (no new architecture).
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **`assessRequestQuality` (confidence-scoring.ts)**: Top-dominant + margin-aware "good" disjunction; head-capped quality ratio.
+- **`computeMargin` / `resolveCalibrationScore`**: Reused to compute `topMargin` against the cosine-calibrated score.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+After results are scored and ordered, `assessRequestQuality` reads `topScore`, `topMargin` (result[0] vs result[1]), and `qualityRatio` over the head to emit the request-level verdict; ordering is unchanged.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -97,8 +99,8 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| `assessRequestQuality` (confidence-scoring.ts) | Owns the request-level quality verdict | update (disjunction + head-capped ratio) | New `request-quality-aggregation.vitest.ts` |
+| `resolveEffectiveScore` / `resolveAbsoluteRelevance` (ordering) | Own result ordering | unchanged (not a consumer of the verdict) | Ordering tests still green; no edit |
 
 Required inventories:
 - Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
@@ -113,19 +115,17 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [x] Identified the existing `assessRequestQuality` gate and the `computeMargin` helper to reuse
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [x] Top-dominant `good` (`topScore >= 0.8`) branch
+- [x] Margin-aware `good` (`topScore >= 0.7` AND (`qualityRatio >= 0.6` OR `topMargin >= 0.15`))
+- [x] Cap `qualityRatio` at `min(N, QUALITY_RATIO_HEAD=5)`
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [x] New `request-quality-aggregation.vitest.ts` covers good-via-margin, top-dominant, recall-no-depress
+- [x] Edge cases: weak / gap verdicts preserved
+- [x] `implementation-summary.md` written
 <!-- /ANCHOR:phases -->
 
 ---
@@ -135,9 +135,9 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Unit | `assessRequestQuality` verdict (margin, top-dominant, head-cap, weak/gap) | Vitest |
+| Regression | Existing confidence-scoring / absolute-relevance suites | Vitest |
+| Manual | None | - |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -147,7 +147,7 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| `computeMargin` / `resolveCalibrationScore` | Internal | Green | Margin path cannot compute `topMargin` |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -155,8 +155,8 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Over-citing a weak set, or a regression in the existing confidence-scoring suites.
+- **Procedure**: Revert the `assessRequestQuality` edit in `confidence-scoring.ts`; the change is confined to the verdict function.
 <!-- /ANCHOR:rollback -->
 
 ---

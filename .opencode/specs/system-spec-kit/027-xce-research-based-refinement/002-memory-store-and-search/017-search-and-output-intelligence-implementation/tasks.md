@@ -10,18 +10,19 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/017-search-and-output-intelligence-implementation"
-    last_updated_at: "2026-06-17T06:03:01Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "027/002/017-search-and-output-intelligence-implementation"
+    last_updated_at: "2026-06-17T09:57:00Z"
+    last_updated_by: "implementation-engineer"
+    recent_action: "Phase parent: task tracking lives in the 7 phase children; control file reconciled"
+    next_safe_action: "Per-child orchestrator review + commit"
     blockers: []
-    key_files: []
+    key_files:
+      - "spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/017-search-and-output-intelligence-implementation"
+      session_id: "impl-027-002-017-search-and-output-intelligence-implementation"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -50,9 +51,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+> Phase-parent control file. Per-finding task lists live in each phase child's `tasks.md`; this file tracks the children as units.
+
+- [x] T001 Prioritize 016 findings; scaffold one phase child per finding (001-007)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +61,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T004 Ship S1 token-budget safety (child 001) and S2 request-quality aggregation (child 002)
+- [x] T005 Ship S3 generic-query routing (child 003) and S4 calibration infra, default-OFF (child 004)
+- [x] T006 Ship S5 cosine top-N reorder (child 005)
+- [x] T007 Ship O1 command-contract args (child 006) and O2 output surface-parity (child 007)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +72,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T008 Each child passes `validate.sh --strict`
+- [x] T009 Touched-surface test sweeps green per child; P5 dispositioned as no-change
+- [x] T010 Per-child `implementation-summary.md` written; parent phase map updated
 <!-- /ANCHOR:phase-3 -->
 
 ---

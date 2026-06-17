@@ -11,20 +11,23 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/007-output-surface-parity"
-    last_updated_at: "2026-06-17T06:03:07Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "027/002/017/007-output-surface-parity"
+    last_updated_at: "2026-06-17T08:40:00Z"
+    last_updated_by: "contract-engineer"
+    recent_action: "Mandated similarity-only render + surface-parity clause; spec superseded by impl-summary"
+    next_safe_action: "Run live cross-model A/B render-consistency probe"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/commands/memory/search.md"
+      - ".opencode/commands/memory/assets/search_presentation.txt"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/007-output-surface-parity"
+      session_id: "system-speckit/027-017/007-output-surface-parity"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Which single metric governs rendered output? similarity, 0–1, two decimals, on every surface."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Phase 7: output-surface-parity
@@ -46,15 +49,15 @@ FAILURE MODES:
 | Field | Value |
 |-------|-------|
 | **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Priority** | P1 |
+| **Status** | Complete |
 | **Created** | 2026-06-17 |
-| **Branch** | `scaffold/007-output-surface-parity` |
+| **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 7 of 7 |
 | **Predecessor** | 006-command-contract-structural |
 | **Successor** | None |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Handoff Criteria** | Contract mandates similarity 0–1 / 2dp + five core slots + surface-parity clause; cross-file grep + `validate.sh --strict` green |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -62,15 +65,17 @@ FAILURE MODES:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 7** of the Implementation phase specification.
+This is **Phase 7** of the search-and-output-intelligence implementation: `/memory:search` output surface-parity (recommendations #4/#5 / O2).
 
-**Scope Boundary**: [To be defined during planning]
+**Scope Boundary**: The `/memory:search` contract and presentation asset render policy only. No `lib/search/` code change; builds on the O1 (phase 006) structural layer without touching it.
 
 **Dependencies**:
-- [To be defined during planning]
+- Phase 006 (O1) structural arg-resolution layer - left untouched; this phase edits only the render/contract layer above it.
 
 **Deliverables**:
-- [To be defined during planning]
+- A hard mandate: `similarity`, 0–1, two decimals as the sole per-row metric, with `confidence`/percentage explicitly banned in rendered output.
+- Five named mandatory core slots (query echo, similarity, id, title, STATUS footer) + an extended render self-check.
+- A surface-parity clause (same field set/names/scale across `--command`, direct prompt, and conversation) and two named optional trailing fields (`requestQuality`, `citationPolicy`).
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
@@ -82,10 +87,10 @@ This is **Phase 7** of the Implementation phase specification.
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The same retrieval result rendered differently per model: DeepSeek showed `confidence 0.36` while Kimi showed `similarity 0.68` for the identical row, so two surfaces could not be compared or diffed. The previous contract only soft-hinted "render as 0–1 two decimals" and left slot/field presence to model latitude.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+Make `/memory:search` mandate one score, one scale, one name on every surface, with named mandatory slots and sanctioned optional fields, so any two surfaces return comparable, diffable rows.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -94,19 +99,20 @@ This is **Phase 7** of the Implementation phase specification.
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- Hard mandate of `similarity` (0–1, two decimals) as the sole rendered metric; explicit ban on `confidence`/percentage.
+- Five named mandatory core slots + extended render self-check.
+- Surface-parity clause + two named optional trailing fields (`requestQuality`, `citationPolicy`) + a COSTAR register note.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- Any `lib/search/` code change - this is a contract/render-policy change only.
+- Mechanical enforcement (a lint/guard rejecting a bad render) - the ban is contract-level, a separate change.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `.opencode/commands/memory/search.md` | Modify | COSTAR note; §3 score mandate + ban, core-slot mandate, surface-parity clause, named optional fields, extended self-check; §7 boundary entry |
+| `.opencode/commands/memory/assets/search_presentation.txt` | Modify | COSTAR note; §2 core-slot mandate, score mandate + ban, surface-parity clause, named optional-field rendering example |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -118,13 +124,14 @@ This is **Phase 7** of the Implementation phase specification.
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | Mandate `similarity` 0–1 / two-decimals as the sole rendered metric; ban `confidence`/percentage | Grep: mandate + ban present in both files; percentage divided by 100 before emit |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-002 | Name five mandatory core slots; extend the render self-check | Grep: five slots named mandatory; self-check confirms presence + no `confidence`/percentage |
+| REQ-003 | Add a surface-parity clause + two named optional trailing fields | Grep: surface-parity clause + `requestQuality`/`citationPolicy` named optional in both files |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -132,8 +139,8 @@ This is **Phase 7** of the Implementation phase specification.
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: A row that renders `confidence` or a percentage is contract-violating; only `similarity` 0–1 / 2dp is valid.
+- **SC-002**: Cross-file consistency grep + `validate.sh --strict` both green (0 errors, 0 warnings).
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -143,8 +150,9 @@ This is **Phase 7** of the Implementation phase specification.
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Dependency | Phase 006 (O1) structural layer | Builds on it; must not regress §0/salience/startup gating | Left untouched; verified by grep that O1 lines are unchanged |
+| Risk | Enforcement is contract-level, not mechanical | Med — a model could still emit a bad render | Render self-check + the explicit ban; a lint/guard is a separate change |
+| Risk | Render consistency under the new contract is unmeasured live | Med | Documented cross-model A/B follow-up via `--command` |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -152,8 +160,7 @@ This is **Phase 7** of the Implementation phase specification.
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- None. Shipped; see `implementation-summary.md`. The live cross-model A/B render-consistency probe is a documented follow-up, not a blocking question.
 <!-- /ANCHOR:questions -->
 
 ---

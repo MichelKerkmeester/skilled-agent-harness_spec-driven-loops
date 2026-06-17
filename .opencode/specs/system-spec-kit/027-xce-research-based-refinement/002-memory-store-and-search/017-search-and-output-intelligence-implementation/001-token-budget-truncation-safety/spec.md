@@ -11,18 +11,21 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-token-budget-truncation-safety"
-    last_updated_at: "2026-06-17T06:03:02Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "027/002/017/001-token-budget-truncation-safety"
+    last_updated_at: "2026-06-17T08:15:00Z"
+    last_updated_by: "implementation-engineer"
+    recent_action: "Shipped Problem 3 token-budget truncation safety; spec superseded by impl-summary"
+    next_safe_action: "Orchestrator review + commit"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/dynamic-token-budget.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/token-budget-skip-and-floor.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-token-budget-truncation-safety"
+      session_id: "impl-027-002-017-001-token-budget-truncation-safety"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -46,15 +49,15 @@ FAILURE MODES:
 | Field | Value |
 |-------|-------|
 | **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Priority** | P1 |
+| **Status** | Complete |
 | **Created** | 2026-06-17 |
-| **Branch** | `scaffold/001-token-budget-truncation-safety` |
+| **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 1 of 7 |
 | **Predecessor** | None |
 | **Successor** | 002-request-quality-aggregation |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Handoff Criteria** | Skip-and-continue + min(limit,3) floor land; search test sweep green; no new failures vs baseline |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -62,15 +65,17 @@ FAILURE MODES:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 1** of the Implementation phase specification.
+This is **Phase 1** of the search-and-output-intelligence implementation: token-budget truncation safety (Problem 3 / S1).
 
-**Scope Boundary**: [To be defined during planning]
+**Scope Boundary**: `truncateToBudget` packing behaviour and the dynamic-token-budget weak-query floor in `lib/search/`. No change to the MCP response envelope.
 
 **Dependencies**:
-- [To be defined during planning]
+- Existing `progressive-disclosure.ts` and `confidence-truncation.ts` primitives (reused, not modified).
 
 **Deliverables**:
-- [To be defined during planning]
+- Skip-and-continue packing so one oversized top hit no longer collapses a populated page to a single result.
+- A `min(limit, 3)` detailed-count floor that promotes token-cheap summaries, plus summary-first overflow routing regardless of `includeContent`.
+- A `lowSignal` budget flag that floors weak/low-signal queries at `DEFAULT_BUDGET`.
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
@@ -82,10 +87,10 @@ This is **Phase 1** of the Implementation phase specification.
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The token-budget truncator sorted candidates by score and hard-stopped on the first result that overflowed the budget, so one large top memory starved every smaller fitting result and collapsed a populated search to a single result (5→1). Weak queries, which depend on breadth, were also trimmed below the full budget.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+A populated search returns a usable set: oversized hits are skipped not fatal, a minimum detailed count is guaranteed, overflow is surfaced not dropped, and weak queries keep the full budget.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -94,19 +99,21 @@ This is **Phase 1** of the Implementation phase specification.
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- Skip-and-continue packing in `truncateToBudget`.
+- `min(limit, 3)` detailed-count floor + summary-first overflow routing.
+- `lowSignal` weak-query budget floor in `getDynamicTokenBudget`.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- Wiring the `progressive` overflow envelope into the MCP response layer - deferred to a later phase; remainder is preserved, not yet paged.
+- Cross-cutting changes to the search response shape - additive `progressive` field only.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `mcp_server/lib/search/hybrid-search.ts` | Modify | Skip-and-continue + floor + summary-first remainder; `limit`/`query` options; `progressive` field; low-signal budget at call site |
+| `mcp_server/lib/search/dynamic-token-budget.ts` | Modify | `getDynamicTokenBudget` `lowSignal` floors weak-query budget at `DEFAULT_BUDGET` |
+| `mcp_server/tests/token-budget-skip-and-floor.vitest.ts` | Create | Proves skip-and-continue, the ≥3 floor, and small-`limit` capping |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -118,13 +125,14 @@ This is **Phase 1** of the Implementation phase specification.
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | A too-large result must not collapse the page; the truncator skips it and keeps packing | Test: a smaller fitting result still returned when the top hit overflows |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-002 | A populated search surfaces at least `min(limit, 3)` results, promoting summaries if needed | Test: ≥3 floor promotes summaries incl. `includeContent=false`; small `limit` caps the floor |
+| REQ-003 | Weak / low-signal queries keep the full `DEFAULT_BUDGET` | `getDynamicTokenBudget` floors the budget when `lowSignal` is set |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -132,8 +140,8 @@ This is **Phase 1** of the Implementation phase specification.
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: The headline 5→1 collapse no longer occurs when the top hit is oversized.
+- **SC-002**: Search test sweep green with zero new failures vs the captured baseline.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -143,8 +151,8 @@ This is **Phase 1** of the Implementation phase specification.
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Dependency | `progressive-disclosure.ts` / `confidence-truncation.ts` primitives | Reuse `buildProgressiveResponse` / `DEFAULT_MIN_RESULTS` | Read-only reuse, no modification |
+| Risk | Floor can exceed the strict token budget by ~3 summary entries | Low - intended trade-off | Documented limitation; minimum usable set takes priority |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -152,8 +160,7 @@ This is **Phase 1** of the Implementation phase specification.
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- None. Shipped; see `implementation-summary.md` for the delivered behaviour, decisions, and verification.
 <!-- /ANCHOR:questions -->
 
 ---

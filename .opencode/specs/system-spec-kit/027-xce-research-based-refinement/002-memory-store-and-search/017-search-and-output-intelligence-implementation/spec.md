@@ -11,18 +11,23 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/017-search-and-output-intelligence-implementation"
-    last_updated_at: "2026-06-17T06:03:01Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "027/002/017-search-and-output-intelligence-implementation"
+    last_updated_at: "2026-06-17T09:57:00Z"
+    last_updated_by: "implementation-engineer"
+    recent_action: "All 7 phase children shipped (S1-S5 + O1-O2); parent control file reconciled"
+    next_safe_action: "Per-child orchestrator review + commit; live A/B render-parity probes"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts"
+      - ".opencode/commands/memory/search.md"
+      - ".opencode/commands/memory/assets/search_presentation.txt"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/017-search-and-output-intelligence-implementation"
+      session_id: "impl-027-002-017-search-and-output-intelligence-implementation"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -123,17 +128,20 @@ Make a genuinely relevant search read as citable and render comparably on every 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
+> Requirements are realized in the phase children (one child per finding). Each child carries its own detailed REQ/SC; this parent tracks them at the aggregate level.
+
 ### P0 - Blockers (MUST complete)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | A genuinely relevant search reads as citable and renders comparably on every surface, without re-embedding or a reranker | All 7 phase children pass `validate.sh --strict`; touched-surface test sweep green |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-002 | Code findings S1-S5 ship in `lib/search/*` and are flag-reconciled (default-OFF where unvalidated) | Per-child impl-summaries + flag reconciliation; S4 calibration default-OFF, S5 reorder default-ON |
+| REQ-003 | Command-contract findings O1-O2 ship in `/memory:search` + presentation asset (deterministic args, output parity) | Children 006/007 impl-summaries; render self-check mandates similarity-only 0-1 two-decimal |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -141,8 +149,8 @@ Make a genuinely relevant search read as citable and render comparably on every 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: All 7 phase children (S1-S5, O1-O2) shipped and pass `validate.sh --strict`; P5 documented as a deliberate no-change.
+- **SC-002**: Touched-surface test sweep green with no new failures vs baseline; each code change flag-reconciled.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -152,8 +160,10 @@ Make a genuinely relevant search read as citable and render comparably on every 
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Dependency | 015 `resolveAbsoluteRelevance` cosine calibration | These phases tune the gate built on top of it | Already live; reused read-only |
+| Dependency | 016 research lineages (KQ1-KQ5, recs #1-#7) | The evidence base each phase implements | Findings prioritized; one child per finding |
+| Risk | S4 calibration model is an unvalidated proxy seed | Med - must not be trusted in ranking yet | Flag-gated default-OFF; live labeled set is the documented follow-up |
+| Risk | Output-parity and command-contract rely on weak-model instruction-following | Low/Med | Deterministic shell arg-resolution + render self-check; live A/B probe is follow-up |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -161,8 +171,8 @@ Make a genuinely relevant search read as citable and render comparably on every 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- Does the S4 calibration model improve ranking once fit on real judged traffic? Unvalidated until a live labeled set is collected (default-OFF).
+- Do the S5 head reorder and the O1/O2 contract changes hold up under live cross-model A/B probes? Follow-up, not run here.
 <!-- /ANCHOR:questions -->
 
 ---
@@ -216,12 +226,14 @@ REQ-008
 
 ### Phase Handoff Criteria
 
+> These children implement independent findings and were executed in parallel (one claude2 Opus agent per finding), not as a strict serial handoff. Each child's gate is its own `validate.sh --strict` pass plus a touched-surface test sweep; the rows below record that shared completion criterion.
+
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
-| 001-token-budget-truncation-safety | 002-request-quality-aggregation | [Criteria TBD] | [Verification TBD] |
-| 002-request-quality-aggregation | 003-generic-query-deep-routing | [Criteria TBD] | [Verification TBD] |
-| 003-generic-query-deep-routing | 004-confidence-calibration-labeled-set | [Criteria TBD] | [Verification TBD] |
-| 004-confidence-calibration-labeled-set | 005-cosine-topn-reorder | [Criteria TBD] | [Verification TBD] |
-| 005-cosine-topn-reorder | 006-command-contract-structural | [Criteria TBD] | [Verification TBD] |
-| 006-command-contract-structural | 007-output-surface-parity | [Criteria TBD] | [Verification TBD] |
+| 001-token-budget-truncation-safety | 002-request-quality-aggregation | Child shipped + validates strict | Per-child `validate.sh --strict` exit 0 |
+| 002-request-quality-aggregation | 003-generic-query-deep-routing | Child shipped + validates strict | Per-child `validate.sh --strict` exit 0 |
+| 003-generic-query-deep-routing | 004-confidence-calibration-labeled-set | Child shipped + validates strict | Per-child `validate.sh --strict` exit 0 |
+| 004-confidence-calibration-labeled-set | 005-cosine-topn-reorder | Child shipped + validates strict (calibration flag-gated OFF) | Per-child `validate.sh --strict` exit 0 |
+| 005-cosine-topn-reorder | 006-command-contract-structural | Child shipped + validates strict | Per-child `validate.sh --strict` exit 0 |
+| 006-command-contract-structural | 007-output-surface-parity | Child shipped + validates strict | Per-child `validate.sh --strict` exit 0 |
 <!-- /ANCHOR:phase-map -->

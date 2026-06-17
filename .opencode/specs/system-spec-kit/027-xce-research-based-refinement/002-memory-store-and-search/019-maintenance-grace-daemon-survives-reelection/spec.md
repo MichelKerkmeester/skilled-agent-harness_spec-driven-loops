@@ -18,8 +18,9 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts"
-      - ".opencode/skills/system-spec-kit/mcp_server/bin/lib/model-server-supervision.cjs"
-      - ".opencode/skills/system-spec-kit/mcp_server/bin/mk-spec-memory-launcher.cjs"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/storage/maintenance-marker.ts"
+      - ".opencode/bin/lib/model-server-supervision.cjs"
+      - ".opencode/bin/mk-spec-memory-launcher.cjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "027-002-019-maintenance-grace"
@@ -100,7 +101,7 @@ The launcher distinguishes a daemon that is busy with a known background mainten
 ## 3. SCOPE
 
 ### In Scope
-- A daemon-written `<DATABASE_DIR>/.maintenance-active.json` marker (`{ childPid, activeUntilMs, jobId, refreshedAtIso }`, 60s TTL) written when a background scan runs and refreshed every 20s, cleared on every terminal exit.
+- A daemon-written `<DATABASE_DIR>/.maintenance-active.json` marker (`{ childPid, activeUntilMs, labels, refreshedAtIso }`, 180s TTL) written when a background scan runs and refreshed every 20s, cleared on every terminal exit. `labels` is a `string[]` so a reference-counted writer can hold the marker across overlapping maintenance sources (the scan and the post-scan embedding queue); only `childPid` and `activeUntilMs` are read by the launcher.
 - A pure supervision predicate (`maintenanceMarkerPath` / `readMaintenanceMarker` / `shouldAdoptDespiteProbe`) with injectable fs/now in `model-server-supervision.cjs`.
 - Adopt/refuse-respawn guards at both the stale-reclaim adopt path and the dead-socket respawn path in `mk-spec-memory-launcher.cjs`, resolving the marker dir with the same DB-dir precedence as the daemon writer.
 
@@ -113,9 +114,11 @@ The launcher distinguishes a daemon that is busy with a known background mainten
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `mcp_server/handlers/memory-index.ts` | Modify | Daemon marker writer in the background scan IIFE plus `finally` cleanup |
-| `mcp_server/bin/lib/model-server-supervision.cjs` | Modify | Pure `maintenanceMarkerPath` / `readMaintenanceMarker` / `shouldAdoptDespiteProbe` plus exports |
-| `mcp_server/bin/mk-spec-memory-launcher.cjs` | Modify | Env-aware `maintenanceMarkerDir()`, the two guard sites, re-exports |
+| `mcp_server/lib/storage/maintenance-marker.ts` | Add | Shared reference-counted marker writer (`beginMaintenance(label) -> { refresh(), end() }`, 180s TTL, 20s self-refresh), consumed by the scan and (in 020) the embedding queue |
+| `mcp_server/handlers/memory-index.ts` | Modify | Background scan calls `beginMaintenance('index_scan')` on the shared module plus `finally` cleanup |
+| `mcp_server/lib/providers/retry-manager.ts` | Modify | `runBackgroundJob` calls `beginMaintenance('embedding-queue')`, ending in its existing `finally` (the post-scan embedding-queue protection) |
+| `.opencode/bin/lib/model-server-supervision.cjs` | Modify | Pure `maintenanceMarkerPath` / `readMaintenanceMarker` / `shouldAdoptDespiteProbe` plus exports |
+| `.opencode/bin/mk-spec-memory-launcher.cjs` | Modify | Env-aware `maintenanceMarkerDir()`, the two guard sites, re-exports |
 | `mcp_server/tests/launcher-maintenance-guard.vitest.ts` | Add | New unit test for the predicate via the launcher require |
 | `mcp_server/stress_test/durability/daemon-reelection-adoption-live.vitest.ts` | Modify | Extend the isolated harness with adopt and stale-marker negative-control cases |
 <!-- /ANCHOR:scope -->
@@ -129,7 +132,7 @@ The launcher distinguishes a daemon that is busy with a known background mainten
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | The daemon advertises a live maintenance scan | A background scan writes `.maintenance-active.json` naming the live child pid, refreshes it every ~20s with a 60s TTL, and removes it on every terminal exit |
+| REQ-001 | The daemon advertises a live maintenance scan | A background scan writes `.maintenance-active.json` naming the live child pid, refreshes it every ~20s with a 180s TTL, and removes it on every terminal exit |
 | REQ-002 | The launcher adopts a busy-but-healthy daemon at both guard sites | A fresh marker naming the live child causes both the stale-reclaim adopt path and the dead-socket respawn path to adopt or refuse respawn instead of reaping |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -146,7 +149,7 @@ The launcher distinguishes a daemon that is busy with a known background mainten
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: The unit test (`launcher-maintenance-guard.vitest.ts`) and the isolated harness adopt and stale-marker negative-control cases pass.
-- **SC-002**: A healthy scan keeps its 20s refresh timer firing so the marker stays fresh and the daemon is protected, while a genuinely wedged daemon cannot fire the timer, its marker expires within 60s, and it is reaped as before.
+- **SC-002**: A healthy scan keeps its 20s refresh timer (and per-phase-boundary refresh) firing so the marker stays fresh and the daemon is protected, while a genuinely wedged daemon cannot fire the timer, its marker expires within the 180s TTL, and it is reaped as before.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -156,7 +159,7 @@ The launcher distinguishes a daemon that is busy with a known background mainten
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Risk | A recently-wedged daemon is protected by its still-fresh marker | A daemon that wedges between refreshes is shielded for up to the TTL before expiry-driven reaping resumes | Accepted bounded window: the marker expires within 60s, after which the normal reap fires |
+| Risk | A recently-wedged daemon is protected by its still-fresh marker | A daemon that wedges between refreshes is shielded for up to the TTL before expiry-driven reaping resumes | Accepted bounded window: the marker expires within the 180s TTL, after which the normal reap fires |
 | Dependency | 018 cooperative yields | If a scan stopped yielding, its refresh timer would not fire and the marker would expire, removing protection | This is by design: the 20s refresh firing is exactly what distinguishes healthy from wedged |
 <!-- /ANCHOR:risks -->
 

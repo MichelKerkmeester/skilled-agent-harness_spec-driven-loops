@@ -10,19 +10,24 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/003-generic-query-deep-routing"
-    last_updated_at: "2026-06-17T06:03:04Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "027/002/017/003-generic-query-deep-routing"
+    last_updated_at: "2026-06-17T08:48:00Z"
+    last_updated_by: "implementation-engineer"
+    recent_action: "Shipped generic-query deep routing; tasks superseded by impl-summary"
+    next_safe_action: "Tune LOW_SIGNAL_STOPWORD_RATIO against real memory_search traffic"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/query-expander.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/generic-query-deep-routing.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/003-generic-query-deep-routing"
+      session_id: "impl-027-002-017-003"
       parent_session_id: null
-    completion_pct: 0
-    open_questions: []
+    completion_pct: 100
+    open_questions:
+      - "Optimal LOW_SIGNAL_STOPWORD_RATIO threshold under real traffic"
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
@@ -50,9 +55,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Confirm channel selection + both expansion guards key off the classifier tier
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +63,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T004 Add `isLowSignalShortQuery` + escalation to `complex`/`low` with `LOW_SIGNAL_STOPWORD_RATIO` (query-classifier.ts)
+- [x] T005 Append `expandQuery` synonym variants to `suggestedQueries`, capped at three (recovery-payload.ts)
+- [x] T006 Add `semantic`/`retrieval`/`agent`/`skill`/`council` to `DOMAIN_VOCABULARY_MAP` (query-expander.ts)
+- [x] T007 Ensure escalation adds NO LLM call (HyDE/LLM gates left outside the write set)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +74,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T008 New `generic-query-deep-routing.vitest.ts` pins escalation, cost-control, recovery
+- [x] T009 Edge cases: confident short query stays simple; capped suggestions
+- [x] T010 `implementation-summary.md` written
 <!-- /ANCHOR:phase-3 -->
 
 ---

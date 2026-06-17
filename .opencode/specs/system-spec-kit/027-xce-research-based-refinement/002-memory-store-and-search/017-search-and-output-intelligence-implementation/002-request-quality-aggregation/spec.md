@@ -11,18 +11,20 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/002-request-quality-aggregation"
-    last_updated_at: "2026-06-17T06:03:03Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "017-search-and-output-intelligence-implementation/002-request-quality-aggregation"
+    last_updated_at: "2026-06-17T08:30:00Z"
+    last_updated_by: "implementation-engineer"
+    recent_action: "Shipped top-dominant + margin-aware request-quality verdict; spec superseded"
+    next_safe_action: "Rebuild mcp_server dist so the runtime picks up the source change"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/request-quality-aggregation.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/002-request-quality-aggregation"
+      session_id: "impl-017-002-request-quality-aggregation"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -46,15 +48,15 @@ FAILURE MODES:
 | Field | Value |
 |-------|-------|
 | **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Priority** | P1 |
+| **Status** | Complete |
 | **Created** | 2026-06-17 |
-| **Branch** | `scaffold/002-request-quality-aggregation` |
+| **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 2 of 7 |
 | **Predecessor** | 001-token-budget-truncation-safety |
 | **Successor** | 003-generic-query-deep-routing |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Handoff Criteria** | "good" disjunction lands (top-dominant + margin-aware); quality ratio capped at head K=5; recall-expansion no longer depresses the verdict |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -62,15 +64,17 @@ FAILURE MODES:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 2** of the Implementation phase specification.
+This is **Phase 2** of the search-and-output-intelligence implementation: request-quality aggregation (S2).
 
-**Scope Boundary**: [To be defined during planning]
+**Scope Boundary**: The `assessRequestQuality` request-level verdict logic in `confidence-scoring.ts` only. Ordering (`resolveEffectiveScore` / `resolveAbsoluteRelevance`, the packet-015 scale) is untouched.
 
 **Dependencies**:
-- [To be defined during planning]
+- `computeMargin` / `resolveCalibrationScore` (the cosine-calibrated score `topScore` reads) - reused for the margin path.
 
 **Deliverables**:
-- [To be defined during planning]
+- A "good" disjunction: top-dominant (`topScore >= 0.8`) OR `topScore >= 0.7` AND (`qualityRatio >= 0.6` OR `topMargin >= 0.15`).
+- `qualityRatio` computed over the ranking head `min(N, K)` with `K = 5` (`QUALITY_RATIO_HEAD`) so recall expansion no longer depresses it.
+- `weak` / `gap` thresholds unchanged so a genuinely low-signal set still trips the do-not-cite net.
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
@@ -82,10 +86,10 @@ This is **Phase 2** of the Implementation phase specification.
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The request-quality verdict was gated on `topScore >= 0.7 AND qualityRatio >= 0.6` with the ratio computed over the whole result set. A strong top hit (e.g. 0.751) above a mediocre tail failed the ratio test, and pulling more candidates for recall mechanically lowered the ratio - so recall improvements fought the quality verdict.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+A search with one strong, clearly-best memory reads `good` instead of being dragged to `weak`, and recall expansion never depresses the verdict.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -94,19 +98,20 @@ This is **Phase 2** of the Implementation phase specification.
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- Top-dominant + margin-aware "good" disjunction in `assessRequestQuality`.
+- `qualityRatio` capped at the ranking head (`QUALITY_RATIO_HEAD = 5`).
+- `TOP_DOMINANT_THRESHOLD = 0.8` constant.
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- Result ordering / scoring (`resolveEffectiveScore`, `resolveAbsoluteRelevance`, the packet-015 scale) - only the request-level verdict changed.
+- `weak` / `gap` threshold tuning - left unchanged to preserve the do-not-cite safety net.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `mcp_server/lib/search/confidence-scoring.ts` | Modify | Rewrote `assessRequestQuality` (top-dominant + margin-aware); added `TOP_DOMINANT_THRESHOLD = 0.8` and `QUALITY_RATIO_HEAD = 5` |
+| `mcp_server/tests/request-quality-aggregation.vitest.ts` | Create | good-via-margin, good-top-dominant, recall-expansion does not depress, weak/gap preserved |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -118,13 +123,14 @@ This is **Phase 2** of the Implementation phase specification.
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
+| REQ-001 | A strong, clearly-best top hit reads `good`, not `weak` | Test: good-via-margin and good-top-dominant cases pass |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| REQ-002 | Recall expansion must not depress the verdict | Test: appending weaker tail candidates does not flip `good` to `weak` |
+| REQ-003 | The do-not-cite safety net is preserved | Test: a genuinely low-signal set still reads `weak`/`gap` |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -132,8 +138,8 @@ This is **Phase 2** of the Implementation phase specification.
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
+- **SC-001**: A 0.751 top hit above a mediocre tail reads `good` (via top-margin), where it previously read `weak`.
+- **SC-002**: The quality verdict is decoupled from result-set size (capped at head K=5).
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -143,8 +149,8 @@ This is **Phase 2** of the Implementation phase specification.
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Dependency | `computeMargin` / `resolveCalibrationScore` | Margin path reuses the cosine-calibrated score | Same score `topScore` reads; no new scale introduced |
+| Risk | Loosening "good" could over-cite a weak set | Med | `weak`/`gap` thresholds unchanged; margin/top-dominant gates only relax the strong-hit case |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -152,8 +158,7 @@ This is **Phase 2** of the Implementation phase specification.
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+- None. Shipped; see `implementation-summary.md` for the delivered verdict logic, decisions, and verification.
 <!-- /ANCHOR:questions -->
 
 ---

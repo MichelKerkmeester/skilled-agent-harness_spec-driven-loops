@@ -10,20 +10,23 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/007-output-surface-parity"
-    last_updated_at: "2026-06-17T06:03:07Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "027/002/017/007-output-surface-parity"
+    last_updated_at: "2026-06-17T08:40:00Z"
+    last_updated_by: "contract-engineer"
+    recent_action: "Mandated similarity-only render + surface-parity clause; tasks superseded"
+    next_safe_action: "Run live cross-model A/B render-consistency probe"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/commands/memory/search.md"
+      - ".opencode/commands/memory/assets/search_presentation.txt"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/007-output-surface-parity"
+      session_id: "system-speckit/027-017/007-output-surface-parity"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Which single metric governs rendered output? similarity, 0–1, two decimals, on every surface."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 # Tasks: Phase 7: output-surface-parity
@@ -50,9 +53,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Identify the two render surfaces (search.md contract + search_presentation.txt asset) and the O1 layer to leave untouched
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +61,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T004 Mandate `similarity` 0–1 / two-decimals as the sole rendered metric; ban `confidence`/percentage (both files)
+- [x] T005 Name five mandatory core slots + extend the render self-check (search.md, search_presentation.txt)
+- [x] T006 Add surface-parity clause + two named optional trailing fields (`requestQuality`, `citationPolicy`)
+- [x] T007 Add the COSTAR register note to both files; §7 boundary entry in search.md
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +72,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T008 Cross-file consistency grep: mandate + ban + slots + clause present in both files
+- [x] T009 Edge case: a percentage-scaled value is divided by 100 before emit (79.44 -> 0.79)
+- [x] T010 `implementation-summary.md` written (live A/B render-consistency probe is a documented follow-up)
 <!-- /ANCHOR:phase-3 -->
 
 ---
