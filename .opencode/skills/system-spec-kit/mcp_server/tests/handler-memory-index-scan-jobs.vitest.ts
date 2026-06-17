@@ -104,6 +104,7 @@ const jobStore = vi.hoisted(() => {
       if (job) job.cancelRequested = true;
     }),
     isCancelRequested: vi.fn((id: string) => jobs.get(id)?.cancelRequested ?? false),
+    isCancelRequestedFast: vi.fn((id: string) => jobs.get(id)?.cancelRequested ?? false),
     completeJob: vi.fn(async (id: string, options: { state: string; result?: unknown }) => {
       const job = jobs.get(id);
       if (job) { job.state = options.state; job.result = options.result ?? null; }

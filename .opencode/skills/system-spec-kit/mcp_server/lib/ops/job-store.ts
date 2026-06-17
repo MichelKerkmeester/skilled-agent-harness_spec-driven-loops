@@ -66,6 +66,14 @@ export const MAX_STORED_ERRORS = 50;
 
 const TERMINAL_STATES = new Set<JobLifecycleState>(['complete', 'failed', 'cancelled']);
 
+// In-process mirror of cancel_requested. A running job polls this from a hot loop
+// to decide whether to stop, avoiding a DB SELECT on the single shared connection
+// every check. The cancel request runs in this same process, so the Set is
+// authoritative for an in-flight run; the durable column still backs status
+// responses and crash recovery. Entries are cleared when a job reaches a terminal
+// state so the Set cannot grow without bound across many jobs.
+const cancelledJobIds = new Set<string>();
+
 const ALLOWED_TRANSITIONS: Record<JobLifecycleState, Set<JobLifecycleState>> = {
   queued: new Set<JobLifecycleState>(['running', 'cancelled', 'failed']),
   running: new Set<JobLifecycleState>(['complete', 'failed', 'cancelled']),
@@ -306,6 +314,9 @@ export async function appendJobError(jobId: string, source: string, error: unkno
 }
 
 export async function requestCancel(jobId: string): Promise<void> {
+  // Set the in-process flag first so a running loop observes the cancel even if the
+  // durable write contends on the shared connection.
+  cancelledJobIds.add(jobId);
   const db = requireDb();
   await withBusyRetry(() =>
     db.prepare(`UPDATE maintenance_jobs SET cancel_requested = 1, updated_at = ? WHERE id = ?`)
@@ -319,6 +330,14 @@ export function isCancelRequested(jobId: string): boolean {
   const row = db.prepare(`SELECT cancel_requested FROM maintenance_jobs WHERE id = ?`)
     .get(jobId) as { cancel_requested?: number } | undefined;
   return !!row && row.cancel_requested === 1;
+}
+
+// Allocation- and IO-free cancel check for hot loops. Reads only the in-process
+// mirror, so it is safe to call thousands of times during a scan without touching
+// the shared SQLite connection. Use isCancelRequested when durability across the
+// in-memory boundary matters (status responses, post-restart).
+export function isCancelRequestedFast(jobId: string): boolean {
+  return cancelledJobIds.has(jobId);
 }
 
 export async function completeJob(
@@ -347,6 +366,7 @@ export async function completeJob(
     throw new Error(`Maintenance job state changed concurrently: ${jobId}`);
   }
 
+  cancelledJobIds.delete(jobId);
   return { ...current, state: options.state, result: options.result ?? null, updatedAt };
 }
 
@@ -374,6 +394,9 @@ export function resetRunningJobsForKind(
     `).run(options.to, nowIso(), kind)
   );
 
+  for (const row of rows) {
+    cancelledJobIds.delete(row.id);
+  }
   return rows.map((r) => r.id);
 }
 

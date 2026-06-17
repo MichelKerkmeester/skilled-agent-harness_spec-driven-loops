@@ -11,6 +11,11 @@ import { isTransientError, userFriendlyError } from '../lib/errors/core.js';
 export interface RetryOptions {
   maxRetries?: number;
   retryDelay?: number;
+  // Early-abort hook. When it returns true the batch loop stops immediately,
+  // skipping every remaining batch AND its inter-batch pacing delay. Without
+  // this a cancelled long run still drains thousands of no-op batches (and their
+  // delays) before the caller's post-loop cancel check is reached.
+  shouldAbort?: () => boolean;
 }
 
 /** Default retry configuration */
@@ -142,6 +147,7 @@ export async function processBatches<T, R>(
   let processedSinceYield = 0;
 
   for (let i = 0; i < items.length; i += effectiveBatchSize) {
+    if (retryOptions.shouldAbort?.()) break;
     currentBatch++;
     console.error(`[batch-processor] Processing batch ${currentBatch}/${totalBatches}`);
 

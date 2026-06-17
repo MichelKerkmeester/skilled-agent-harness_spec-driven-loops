@@ -66,7 +66,7 @@ import {
   setJobProgress,
   appendJobError,
   completeJob,
-  isCancelRequested,
+  isCancelRequestedFast,
 } from '../lib/ops/job-store.js';
 
 // Shared handler types
@@ -997,7 +997,7 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
       processedInScan += 1;
       ctx.onProgress?.({ processed: processedInScan, total: filesToIndex.length });
       return indexResult;
-    }, scanBatchSize);
+    }, scanBatchSize, undefined, { shouldAbort: () => ctx.isCancelled?.() ?? false });
 
     for (let i = 0; i < batchResults.length; i++) {
       const result = batchResults[i];
@@ -1131,7 +1131,20 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
 
   if (include_spec_docs) {
     const database = requireDb();
+    let promoterYieldCount = 0;
     for (const fileResult of results.files) {
+      // This sweep is synchronous SQLite over EVERY indexed row. On a force scan
+      // that is the whole corpus, so without a periodic macrotask yield the event
+      // loop is starved for the duration and no IPC (status, cancel, health,
+      // search) can be serviced. Yield and re-check cancellation between rows; the
+      // yield lands between self-contained promoteMetadataEdges transactions, never
+      // inside one, so atomicity on the shared connection is preserved.
+      if (++promoterYieldCount % 200 === 0) {
+        if (ctx.isCancelled?.()) {
+          return cancelledScanEnvelope(scanKey);
+        }
+        await new Promise<void>((resolve) => setImmediate(resolve));
+      }
       if (!fileResult.id || !fileResult.filePath || fileResult.status === 'failed') {
         continue;
       }
@@ -1237,8 +1250,18 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
 
         let chainsCreated = 0;
         let foldersProcessed = 0;
+        let chainYieldCount = 0;
 
         for (const folder of affectedSpecFolders) {
+          // Per-folder synchronous DB work; yield + cancel-check between folders so a
+          // large affected set cannot block the event loop (same rationale as the
+          // metadata-edge sweep above).
+          if (++chainYieldCount % 50 === 0) {
+            if (ctx.isCancelled?.()) {
+              return cancelledScanEnvelope(scanKey);
+            }
+            await new Promise<void>((resolve) => setImmediate(resolve));
+          }
           const rows = selectDocIds.all(folder) as Array<{ document_type: string; id: number }>;
           const docIds: Record<string, number> = {};
 
@@ -1418,7 +1441,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
       try {
         await setJobState(jobId, 'running');
         const response = await runIndexScan(args, {
-          isCancelled: () => isCancelRequested(jobId),
+          isCancelled: () => isCancelRequestedFast(jobId),
           onPhase: (phase) => { void setJobPhase(jobId, phase).catch(() => {}); },
           onProgress: (progress) => { void setJobProgress(jobId, progress).catch(() => {}); },
         });
