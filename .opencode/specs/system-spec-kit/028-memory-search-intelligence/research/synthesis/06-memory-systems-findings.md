@@ -53,9 +53,9 @@ N. Plain name  (id)  · [NEW] or [EXISTING: …]  · Wave
 - **Before:** pressure is one global `tokens/budget` ratio; tier limits cap result *counts* but every surviving result is returned at full content.
 - **After:** the prompt stays in budget by trimming the right section/tier first, keeping coverage of distant memories as compact stubs.
 
-**6. Summarize before you truncate**  `(LT-compaction-fallback-ladder)` · **[NEW]** · Wave 1
-- **Do:** when recall exceeds budget, add a "summarize the lowest-value results" tier *before* the existing drop-results truncation.
-- **Before:** `enforceTokenBudget` goes straight to char-slicing content and dropping whole results under pressure.
+**6. Summarize before you truncate**  `(LT-compaction-fallback-ladder)` · **[EXISTING: partial]** · Wave 1
+- **Do:** add a "summarize the lowest-value results" rung *on top of* the graceful truncation ladder that 027/002 phase 017/001 already shipped.
+- **Before:** `enforceTokenBudget` (`memory-context.ts:778-816`) already softens truncation — it content-trims to ~500 chars first, drops whole results only under a count floor, keeps dropped results as metadata-only stubs, and has a binary-search compaction tier below that. **~70% of this ladder already exists; only the LLM-summarize rung is net-new.** *(Before corrected 2026-06-17 against 027/002 015-019 — was "goes straight to char-slicing and dropping," which is now the fixed pre-017/001 state. See `07-reconciliation-with-027-002.md`.)*
 - **After:** a graceful ladder (summarize → then truncate) preserves more signal before anything is discarded.
 
 **7. Multi-pass cascade extraction**  `(CG-cascade-extraction)` · **[NEW]** · Wave 1
@@ -162,7 +162,9 @@ Letta runs memory reorganization *after* the foreground turn, on a cadence — a
 
 ## Honest caveats (what might be wrong)
 
-- **No benefit numbers.** Every leverage/effort tag is structural inference from reading code — none is benchmarked. This is the single biggest residual (same as `05`).
+- **No benefit numbers — but now a *cleared blocker*, not an inherent limit.** Every leverage/effort tag is structural inference; none is benchmarked. *Update (2026-06-17, vs 027/002 015):* the campaign couldn't produce benefit numbers partly because it ran on a **broken measurement instrument** — the request-quality gate read RRF fusion scores (~0.03) against cosine thresholds (0.7/0.4), pinning every verdict at `weak/do_not_cite`. **027/002 phase 015 fixed it** (a 0.89 cosine match now reads `good/cite_results`). Re-stamp: these candidates are **measurable once the reindex runs**, not inherently unmeasurable. See `07-reconciliation-with-027-002.md`.
+- **Reindex is gate-zero.** Per 027/002 §13, the deferred corpus reindex (restoring ~25% cold/un-embedded rows) is the precondition for benchmarking *any* recall candidate — you can't measure recall against a quarter-dark index. The implementation packet's **first** action is the reindex + a re-run of the recall/saturation checks (which may now read true), *before* building the smallest candidate.
+- **Adopt the 027 doctrine-class axis (orthogonal to the Wave tiers).** Wave-0/1/2 sizes the *build*; 027's shipped principle decides whether an item can ever default-on: **correctness ships always-on** (#1 reader-transparent invalidation, #10 config refactor) vs **new results-affecting intelligence ships shadow-gated/default-off and earns activation on live evidence** (Initiative A — LLM-judged dedup can silently merge two distinct facts, highest tail-risk; Initiative B — mutates archival off-turn; #3/#14 — loop in a deterministic hot path; #4 — new fusion lane + ablation-retune). Every intelligence-class item must be built behind a flag with shadow telemetry from day one — never a "Wave-1 follow-on that just turns on."
 - **The "semantic edge layer" is the recurring gate.** Five edge-intelligence candidates all need it; none ships cheaply without it. Treat A as one prove-first initiative, not five quick wins.
 - **Finder estimates ran optimistic.** Blast-radius scoping deflated two headline candidates (`CG-agentic-tool-loop` H/L→L, `MEM-fused-summary-channel` M/M→L). Assume any un-scoped GO is optimistic until a blast-radius pass confirms it.
 - **Two candidates are unverified:** `CG-content-hash-reprocessing-trigger` and `CG-graph-neighborhood-projection` (may overlap the existing reindex path / `enableCausalBoost`) — verify before building.
