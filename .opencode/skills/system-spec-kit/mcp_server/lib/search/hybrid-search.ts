@@ -25,7 +25,9 @@ import {
   isDegreeBoostEnabled,
   isContextHeadersEnabled,
   isArchivedRetrievalIncludedByDefault,
+  isCosineTopnReorderEnabled,
 } from './search-flags.js';
+import { resolveAbsoluteRelevance, type PipelineRow } from './pipeline/types.js';
 import { computeDegreeScores } from './graph-search-fn.js';
 import type { GraphSearchFn } from './search-types.js';
 
@@ -2011,6 +2013,16 @@ async function enrichFusedResults(
     reranked = budgeted.results;
     budgetTruncated = budgeted.truncated;
     budgetLimit = budgetResult.budget;
+
+    // Cosine-primary head reorder (SPECKIT_COSINE_TOPN_REORDER, default-ON).
+    // Must run AFTER truncateToBudget: that step re-sorts the survivors by the
+    // fused `score`, so a pre-truncation reorder would be clobbered. Applied to
+    // the budgeted survivors it is the last word on order without disturbing the
+    // budget membership decision. Skipped in evaluationMode so the labeled-set
+    // top-K window stays exactly as fused.
+    if (isCosineTopnReorderEnabled() && reranked.length > 1) {
+      reranked = reorderTopNByCosine(reranked);
+    }
   }
 
   if (reranked.length > 0) {
@@ -2398,6 +2410,38 @@ function applyResultLimit(results: HybridSearchResult[], limit?: number): Hybrid
     return results;
   }
   return results.slice(0, limit);
+}
+
+/** Depth of the result head rebalanced by the cosine-primary reorder. */
+const COSINE_TOPN_REORDER_DEPTH = 10;
+
+/**
+ * Cosine-primary reorder of the result head.
+ *
+ * Reorders only the top-N by absolute cosine relevance (resolveAbsoluteRelevance),
+ * as a STABLE sort so equal-relevance items keep their incoming fused (RRF) order.
+ * RRF fusion remains the ranking baseline; only the head — where position 1 is now
+ * decisive for downstream consumers — is rebalanced toward the strongest absolute
+ * semantic signal. Vector hits carry a real cosine; lexical-only hits fall back to
+ * the effective score, so a strong lexical hit is not unfairly zeroed out. Length
+ * and membership are invariant — this only permutes the head.
+ */
+function reorderTopNByCosine(
+  results: HybridSearchResult[],
+  depth: number = COSINE_TOPN_REORDER_DEPTH
+): HybridSearchResult[] {
+  const headCount = Math.min(depth, results.length);
+  if (headCount <= 1) return results;
+
+  const head = results.slice(0, headCount);
+  // Decorate with the original index so equal-relevance ties resolve to fused
+  // order regardless of the engine's sort stability.
+  const reordered = head
+    .map((row, index) => ({ row, index, relevance: resolveAbsoluteRelevance(row as PipelineRow) }))
+    .sort((a, b) => (b.relevance - a.relevance) || (a.index - b.index))
+    .map((entry) => entry.row);
+
+  return [...reordered, ...results.slice(headCount)];
 }
 
 /** Tier-3 structural results are capped at this fraction of the top existing score. */
@@ -2868,6 +2912,8 @@ export const __testables = {
   extractSpecSegments,
   injectContextualTree,
   applyResultLimit,
+  reorderTopNByCosine,
+  COSINE_TOPN_REORDER_DEPTH,
   calibrateTier3Scores,
   checkDegradation,
   mergeResults,

@@ -1436,8 +1436,15 @@ describe('Degree channel fusion regression coverage', () => {
       }
     );
 
-    expect(results[0]?.id).toBe(2);
-    expect((results[0] as Record<string, unknown>).sources).toContain('degree');
+    // SPECKIT_COSINE_TOPN_REORDER (default-ON) re-asserts absolute cosine over the
+    // fused RRF/degree magnitudes at the head, so the higher-cosine id 1 (0.9) now
+    // leads the degree-promoted id 2 (0.8). The degree ranking is still kept in the
+    // final fusion — id 2 survives with its degree provenance, it just no longer
+    // wins position 1.
+    expect(results[0]?.id).toBe(1);
+    const degreePromoted = results.find((r) => r.id === 2);
+    expect(degreePromoted).toBeDefined();
+    expect((degreePromoted as Record<string, unknown>).sources).toContain('degree');
   });
 
   it('T022: useGraph=false also suppresses the degree channel', async () => {

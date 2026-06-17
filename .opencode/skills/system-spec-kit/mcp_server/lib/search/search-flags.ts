@@ -623,6 +623,20 @@ export function isConfidenceCalibrationEnabled(): boolean {
   return isOptInEnabled('SPECKIT_CONFIDENCE_CALIBRATION');
 }
 
+/**
+ * Cosine-primary reorder of the result head before truncation.
+ *
+ * Reorders only the top-N of the final ranked list by absolute cosine relevance
+ * (a stable sort, so ties keep their fused RRF order). RRF fusion stays the
+ * ordering baseline; only the head is rebalanced toward the strongest absolute
+ * semantic signal, which matters now that downstream consumers treat position 1
+ * as decisive. Near-zero latency and no model/LLM involved — a pure reorder.
+ * Default: TRUE (graduated, low-risk lift). Set SPECKIT_COSINE_TOPN_REORDER=false to disable.
+ */
+export function isCosineTopnReorderEnabled(): boolean {
+  return isFeatureEnabled('SPECKIT_COSINE_TOPN_REORDER');
+}
+
 /** Filesystem path to a fitted CalibrationModel JSON, or undefined when unset. */
 export function getConfidenceCalibrationModelPath(): string | undefined {
   const raw = process.env.SPECKIT_CONFIDENCE_CALIBRATION_MODEL?.trim();
