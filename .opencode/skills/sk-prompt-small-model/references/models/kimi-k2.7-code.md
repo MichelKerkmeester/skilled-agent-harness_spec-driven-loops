@@ -44,7 +44,7 @@ COSTAR + lean pre-planning, framed for the task and output shape — the 256k wi
 | Context window | 262,144 tokens (256k); 32,768-token output |
 | Primary quota pool | `kimi-for-coding` (dedicated Kimi For Coding subscription pool) |
 | Executor path | `cli-opencode` → provider `kimi-for-coding` → pool `kimi-for-coding` |
-| Avg iteration wall-clock | not yet measured |
+| Avg iteration wall-clock | not formally measured; OBSERVED 2026-06-17 — a bounded ≤4-read task finished well within 1200s, but a broad large-repo task at `--variant high` exceeded 600s (over-exploration). Budget **1200s+** for broad scopes; cap reads. |
 | Fallback target | none |
 
 Kimi-k2.7-code is the **coding-optimized large-context** Kimi in the rotation — 256k tokens makes it a strong choice for sprawling diff reviews, long-file inspection, multi-repo evidence gathering, and cross-cutting refactors. It runs on the Kimi For Coding subscription plan (dispatch cost shows 0), on a quota pool independent of `opencode-go`.
@@ -125,7 +125,7 @@ A senior engineer who will run the output against a strict hidden-test oracle.
 
 - Keep `Context` as the longest block — this is where the 256k window earns its place; name files in a stable order (large-context Kimi is sensitive to ordering mismatches).
 - The decisive lever is the `Objective`: enumerate adversarial edge cases explicitly. That is exactly where benchmark 007 separated the frameworks — rcaf/cidi let strict-validator edges slip; costar/race/tidd-ec did not.
-- Scope to one concern per dispatch; avoid open-ended directives like "analyse and improve" — keeps output verifiable against the oracle.
+- Scope to one concern per dispatch with a **hard read-cap** ("read ≤N files, then emit and stop browsing"); avoid open-ended directives like "analyse and improve." **This is load-bearing, not just for verifiability:** on a broad / large-repo task at `--variant high`, k2.7-code was observed to **over-explore (many sequential file reads) and blow past a 600s dispatch timeout without ever emitting** — and opencode flushes only the *final* assistant message to stdout, so the killed run yields **0 bytes** (it looks like a hang, but the model was working productively the whole time). Mitigate with the read-cap above + a **1200s+ timeout** in the executor wrapper, and **consider omitting `--variant high`** for bounded tasks. (Observed 2026-06-17, n=few — see §6.)
 - For the tersest correct output (token budget), TIDD-EC (the fallback) was the most token-efficient of the perfect tier in benchmark 007.
 
 ---
@@ -137,7 +137,7 @@ Model-specific capability fields and flags are sourced from the `kimi-k2.7-code`
 | Field | Value | Implication |
 | --- | --- | --- |
 | `model_slug` | `kimi-for-coding/k2p7` | Pass as-is to the executor (`--model kimi-for-coding/k2p7`). Provider-prefixed; not the bare `k2p7`. |
-| `variant_flag` | `--variant` (accepted-unverified) | `--variant high` is accepted without error (smoke-tested 2026-06-15) but its reasoning-effort effect is not benchmark-confirmed; safe to pass, do not depend on it. |
+| `variant_flag` | `--variant` (accepted-unverified) | `--variant high` is accepted without error (smoke-tested 2026-06-15) but its reasoning-effort effect is not benchmark-confirmed; safe to pass, do not depend on it. **Operational caveat (observed 2026-06-17):** on broad / large-repo scopes it appears to drive **over-exploration → 600s-timeout → 0-bytes** (see §5) — prefer **omitting it** for bounded tasks, and always pair a broad scope with a read-cap + 1200s+ timeout. Whether `--variant high` is the specific driver is not isolated (scope, variant, and timeout all changed in the fix run), but tight-scope + 1200s + no-`--variant` returned cleanly. |
 | `agent_policy` | `omit-general` | Do NOT pass `--agent` at the top level — opencode rejects named agents there. State the role in the prompt body. |
 | `format_mode` | `json` | Dispatch via `opencode run --format json` for the normalized token/cost/latency envelope. |
 | `quota_pool` | `kimi-for-coding` | Dedicated Kimi For Coding subscription pool, independent of `opencode-go`/`minimax`/`xiaomi`. Dispatch cost shows 0. No same-pool fallback target configured. |

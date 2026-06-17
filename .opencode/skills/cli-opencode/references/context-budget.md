@@ -61,10 +61,10 @@ The active cli-opencode small-model set is registry-driven, not duplicated here.
 | Model | Context window | cli-opencode note |
 | --- | ---: | --- |
 | `deepseek-v4-pro` | 64,000 | Default cli-opencode model; keep prompts tight. |
-| `kimi-k2.6` | 200,000 | Largest active window; useful for long-file inspection, still follows the canonical budget pattern. |
+| `kimi-k2.7-code` | 262,144 | Largest active window (256k via `kimi-for-coding/k2p7`; supersedes the retired `kimi-k2.6`); useful for long-file inspection, still follows the canonical budget pattern. At `--variant high` cap reads + budget 1200s+ (over-explores broad scopes — observed 2026-06-17). |
 | `qwen3.6` | 32,000 | Smallest active cli-opencode window; needs the strictest scope and file anchors. |
 
-Larger windows change what can be retained, not the rule shape. The caller may include more evidence for Kimi-k2.6, but should still apply the canonical summary threshold, truncation marker, and eviction priority from `../../sk-prompt-small-model/references/context_budget.md`.
+Larger windows change what can be retained, not the rule shape. The caller may include more evidence for Kimi-k2.7-code, but should still apply the canonical summary threshold, truncation marker, and eviction priority from `../../sk-prompt-small-model/references/context_budget.md`.
 
 ---
 

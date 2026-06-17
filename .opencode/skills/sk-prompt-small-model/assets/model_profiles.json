@@ -90,7 +90,8 @@
       "weaknesses": [
         "single executor path (no fallback if the kimi-for-coding pool is exhausted)",
         "weaker framings (rcaf/cidi) occasionally miss adversarial edge cases on strict validators (benchmark 007) - use costar/race/tidd-ec",
-        "--variant effect unverified (flag accepted, reasoning-effort impact not benchmark-confirmed)"
+        "--variant effect unverified (flag accepted, reasoning-effort impact not benchmark-confirmed)",
+        "at --variant high on broad/large-repo scopes, over-explores (many sequential reads) and can exceed a 600s dispatch timeout WITHOUT emitting (opencode flushes only the final message -> 0 bytes; looks like a hang but is working); mitigate with a hard read-cap in the prompt + 1200s+ timeout, or omit --variant (observed 2026-06-17, n=few)"
       ],
       "avg_iter_wall_clock_min": null,
       "status": "active",

@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/149-kimi-k2-7-code-support/006-broad-scope-timeout-caveat",
+  "description": "Feature Specification: Phase 6: broad-scope-timeout-caveat",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "kimi",
+    "timeout",
+    "caveat",
+    "over-exploration"
+  ],
+  "lastUpdated": "2026-06-17T11:00:00Z",
+  "specId": "006",
+  "folderSlug": "broad-scope-timeout-caveat",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "149-kimi-k2-7-code-support"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

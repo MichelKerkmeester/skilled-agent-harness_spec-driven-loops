@@ -242,7 +242,7 @@ OpenCode resolves models through configured providers. The cli-opencode skill su
 | `opencode-go` (DEFAULT) | `opencode-go/deepseek-v4-pro` | Default — deep reasoning at low cost via OpenCode Go gateway |
 | `opencode-go` | `opencode-go/deepseek-v4-flash` | Latency-optimized DeepSeek sibling |
 | `opencode-go` | `opencode-go/glm-5.1` | Open-weight alternative |
-| `opencode-go` | `opencode-go/kimi-k2.6` | Long-context Kimi via opencode-go |
+| `kimi-for-coding` | `kimi-for-coding/k2p7` | Long-context Kimi K2.7 Code (256k; subscription plan; supersedes the retired `opencode-go/kimi-k2.6`) — at `--variant high` cap reads + budget 1200s+ (over-explores broad scopes) |
 | `opencode-go` | `opencode-go/qwen3.6-plus` | Qwen 3.6 routed through opencode-go |
 | `deepseek` | `deepseek/deepseek-v4-pro` | Direct DeepSeek API — bypasses opencode-go |
 | `deepseek` | `deepseek/deepseek-v4-flash` | Latency-optimized direct-API sibling |
