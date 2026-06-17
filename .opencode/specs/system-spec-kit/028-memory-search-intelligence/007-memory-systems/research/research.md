@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/007-memory-systems"
     last_updated_at: "2026-06-17T13:10:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Banked iters 19-22: Cognee ECL + Letta sleep-time frontier, 2 new initiatives"
-    next_safe_action: "Verify/scope wave 23-26, then write synthesis/06 + roadmap addendum"
+    recent_action: "CLOSED at 22/40 (saturation); synthesis/06 + roadmap addendum + 00-index written"
+    next_safe_action: "Done — implementation is a separate later packet (028 §3); nothing to resume"
     blockers: []
     key_files:
       - "research/research.md"
@@ -22,14 +22,14 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-17-028-007-memory-systems"
       parent_session_id: null
-    completion_pct: 55
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 
 # Research Report: External Memory Systems — Search-Intelligence Mining
 
-> **Status: PARTIAL (first wave banked).** 4-model sweep (DeepSeek v4 Pro · MiMo v2.5 Pro · Kimi K2.7 · Opus 4.8) mining Mem0, Graphiti/Zep, Letta/MemGPT, Cognee for Memory MCP (+ Advisor fusion, Deep-Loop continuity). Every candidate is novelty-tagged vs already-mined work (aionforge + galadriel [028]; OpenLTM + memclaw [027]). Research-only.
+> **Status: CLOSED at 22/40 (honest saturation point) — synthesis written.** 4-model sweep (DeepSeek v4 Pro · MiMo v2.5 Pro · Kimi K2.7 · Opus 4.8 native) mining Mem0, Graphiti/Zep, Letta/MemGPT, Cognee for Memory MCP (+ Advisor fusion, Deep-Loop continuity). Every candidate novelty-tagged vs already-mined work (aionforge + galadriel [028]; OpenLTM + memclaw [027]). **Deliverable: `../../research/synthesis/06-memory-systems-findings.md` (before→after) + the roadmap addendum + the top-7 below.** Discovery saturated (Mem0/determinism veins returned 0 net-new); padding to 40 was deliberately declined per the strategy STOP CONDITION. Research-only — implementation is a separate later packet.
 
 ## Progress (banked)
 | Iter | Model | System | Candidates | Status |

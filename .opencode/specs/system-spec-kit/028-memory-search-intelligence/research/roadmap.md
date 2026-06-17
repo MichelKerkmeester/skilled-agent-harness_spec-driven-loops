@@ -302,3 +302,34 @@ A single ranked list of the highest-leverage, lowest-effort, lowest-conflict can
 - **028 Code-Graph cluster (Q1-C1 / Q6-C1 / CG-edge-staleness) × 027 codegraph-tombstone-audit** — edge-currentness overlap the Memory-scoped revisit bounced as "Code-Graph-scoped."
 
 > **Single most-likely-wrong (whole revisit):** the C8 verdict — its seam moved once under adversarial pressure and its leverage rests on the threat model strength. Runner-up: the C3-B four-timestamp additivity claim (no migration spec exists to verify). The revisit was net-deflationary and fabricated no benefit numbers.
+
+---
+
+# MEMORY-SYSTEMS ADDENDUM (child `007-memory-systems`, 22 iterations) — EXTERNAL AGENT-MEMORY MINING
+
+> 4-model mining (DeepSeek v4 Pro · MiMo v2.5 Pro · Kimi K2.7 · Opus 4.8 native) of **Mem0 · Graphiti/Zep · Letta/MemGPT · Cognee**, novelty-diffed against everything 027/028 already shipped. Stopped at **22 of a planned 40** at the honest saturation point. Plain-language before→after: `synthesis/06-memory-systems-findings.md`. Full evidence: `007-memory-systems/research/{research.md, iterations/, deltas/}`. **Research-only.**
+
+## Headline
+A **top-7 roadmap** + **2 new initiatives**, net-deflationary: 3 "net-new" claims were refuted as already-implemented (community detection, query decomposition, the determinism layer), and 2 headline candidates were downsized by blast-radius (`CG-agentic-tool-loop` H/L→L; `MEM-fused-summary-channel` M/M→L). The durable spearhead is **event-time fact-invalidation (H/S, reader-transparent)**.
+
+## Top-7 (ranked; feeds the same Wave structure as `synthesis/01`)
+| # | id | value | lev/eff | seam | subsystem |
+|---|---|---|---|---|---|
+| 1 | `MEM-fact-invalidation-event-time` | close superseded edges at event-time not now() — correct bitemporal history | H/**S** | `lib/graph/temporal-edges.ts:81-96` | Memory |
+| 2 | `CG-iterative-context-extension` | answer-as-next-query recall w/ convergence stop (smallest safe new build) | H/M | `handlers/memory-context.ts` (new strategy) | Memory (+Deep-Loop) |
+| 3 | `MEM-tiered-recall-budget` | per-section/per-tier budgets vs one flat pressure ratio | H/M | `lib/cognitive/pressure-monitor.ts` + `memory-context.ts` | Memory |
+| 4 | `LT-compaction-fallback-ladder` | summarize tier before hard truncation | M/S | `handlers/memory-context.ts:492-532` | Memory |
+| 5 | `MEM-fused-summary-channel` | promote built community/summaries from fallback → fused RRF lane | **L** (corrected) | `lib/search/hybrid-search.ts` (~5 sites + weights) | Memory |
+| 6 | `DL-iterative-retrieval-loop` | derive next-focus from prior answer (convergence already built) | H/M | `deep-research/scripts/reduce-state.cjs:538` | Deep-Loop |
+| 7 | `CG-agentic-tool-loop` | ReAct tool-loop as a new memory_context strategy | **L** (corrected) | `handlers/memory-context.ts:1291-1311` + greenfield governor | Memory |
+
+Plus cheap wins: `CG-declarative-regex-entity-config` (L/S), `GR-temporal-ordering-invalidation` (H/S, scope to conflicting relation-pairs), `M0-bm25-sigmoid-calibration` / `M0-entity-cardinality-penalty` / `M0-spacy-lemmatization-bm25` (small ranking gains), `LT-turn-cadence-trigger` (M/S).
+
+## Two new initiatives (Wave-2, prove-first)
+- **Semantic edge layer** — per-edge embeddings + semantic edge retrieval (the substrate the memory-ID graph lacks). Unlocks `CG-edge-vector-index`, `CG-edge-aware-triplet-search`, `GR-fact-embedding-on-edge`, `GR-semantic-fact-dedup-merge`, `GR-semantic-invalidation-discovery` *together*. One coherent build, not five ships.
+- **Async sleep-time consolidation** — background, cadence-gated memory reorganization (`LT-bg-sleeptime-agent` + `LT-turn-cadence-trigger` + `LT-llm-transcript-chunking`), distinct from our synchronous on-save reconsolidation. `LT-tool-rule-memory-chain` is the loop-governor that de-risks the agentic-tool-loop (#7).
+
+## What this mining did NOT change (already internal)
+Community detection (`community-detection.ts`, wired, default-on) · query decomposition (`query-decomposer.ts`, wired) · composite-edge dedup (`insertEdge` superset key) · the C5 determinism layer (complete) · Mem0 entity-cleanup-on-update + pre-fusion gate · Graphiti 3-channel RRF (ours supersets). Episode-model candidates are gated (no episode model). Letta char-limit eviction refuted (advisory only).
+
+> **Single most-likely-wrong (this addendum):** `CG-content-hash-reprocessing-trigger` and `CG-graph-neighborhood-projection` are unverified against the existing reindex / `enableCausalBoost` paths — verify before building. No benefit number is measured anywhere; all lev/eff are structural inference.
