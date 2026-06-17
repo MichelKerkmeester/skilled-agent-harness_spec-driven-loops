@@ -252,9 +252,9 @@ A single ranked list of the highest-leverage, lowest-effort, lowest-conflict can
 
 ## 5. Three new gaps surfaced by the broadening (net-new, beyond the pass-1 6 spines)
 
-1. **CG incremental-edge-staleness repair** — `structural-indexer.ts:2171-2177` skips re-index on unchanged **mtime**, so a file whose dependency changed but whose own mtime is stable leaves **stale edges**. No current repair path. (Code Graph.)
+1. **CG incremental-edge-staleness repair** — ~~`structural-indexer.ts:2171-2177` skips re-index on unchanged **mtime**~~ **[CORRECTED by 006: the skip is content-hash-gated, NOT mtime (`isFileStale code-graph-db.ts:1046-1056`); the real gap is dependency-transitivity — `queryFileImportDependents` is wired only to the read path, so a file whose *dependency* changed (own content-hash stable) leaves stale edges. See `synthesis/04` + the `01` CG-edge-staleness GO.]** (Code Graph.)
 2. **DL newInfoRatio audit** — `convergence.cjs:285, :107-141, :378-381` self-grades `newInfoRatio` but the grade is **never ingested** back into the loop's stop/continue decision — a self-assessment that is computed and dropped. (Deep Loop.)
-3. **Recall-trust spine + ingest bypass** — the untrusted-recall wrapper (`envelope.ts:284-295`, C8) exists at the render boundary, but the **ingest path bypasses it** (`extraction-adapter.ts:247`) — untrusted content can enter without passing the trust boundary. (Memory; security-adjacent.)
+3. **Recall-trust spine + ingest bypass** — the untrusted-recall wrapper (`envelope.ts:284-295`, C8) exists at the render boundary; ~~the **ingest path bypasses it** (`extraction-adapter.ts:247`)~~ **[SUPERSEDED — REFUTED by the 027-REVISIT ADDENDUM edit #3 below + `synthesis/03 §A`: `working_memory` carries no content; ingest is pointer-only. C8 is a real *render*-gap, not an ingest-bypass.]** (Memory; security-adjacent.)
 
 ## 6. GO-evidence caveats (read before quoting any leverage)
 

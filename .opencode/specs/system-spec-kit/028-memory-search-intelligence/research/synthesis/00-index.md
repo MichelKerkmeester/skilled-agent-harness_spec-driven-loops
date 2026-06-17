@@ -1,4 +1,4 @@
-# Packet 028 — Synthesis Index (150-iteration campaign)
+# Packet 028 — Synthesis Index (200-iteration campaign)
 
 > **Why this directory exists.** The 028 campaign ran **150 read-only research iterations** across **5 children** + **2 external systems** + a **cross-packet revisit**. That volume outgrew a single `roadmap.md`, which now carries three stacked layers (pass-1 + broadening + 027-revisit). These `synthesis/*` docs are the **consolidated, digestible view**; `roadmap.md` and the per-child `research.md` remain the detailed/historical record.
 
@@ -23,7 +23,7 @@
 
 | Doc | Read it for |
 |---|---|
-| **`01-go-candidates.md`** | THE actionable list — every surviving candidate, deduplicated, dependency-ordered Wave-0/1/2, with corrected effort/seam. The input to a 028 *implementation* packet. |
+| **`01-go-candidates.md`** | THE actionable list — every surviving candidate, deduplicated, dependency-ordered Wave-0/1/2, with corrected effort/seam. The input to a 028 *implementation* packet. (Now includes the 006 net-new folded into the Waves + a **dropped-candidate-recovery** section surfaced by the fresh-agent synthesis review.) |
 | **`02-cross-packet-reconciliation.md`** | The 027↔028 verdict ledger + reverse transfers + methodology convergence + the 2 sibling-subsystem follow-ups. (Full detail: `../../005-revisit-027/research/research.md`.) |
 | **`03-corrections-caveats-and-residuals.md`** | The honesty layer — what the campaign refuted/downgraded about its own claims, the GO-evidence caveats, and the single-most-likely-wrong items to verify before building. |
 | **`04-sibling-and-cross-cutting.md`** | The 006 additions (+50 → 200): cross-cutting net-new (ANN tie-stability, constitutional self-edit guard, source_kind-gated render escaper, fan-out retry, red-team probe-gate) + the deferrals/refutations (C1/QCR/codegraph-bi-temporal deferred; cross-cutting-C8 refuted; procedural→proxy-only) + corrections to 01–03. Full ledger: `../../006-sibling-revisit/research/research.md`. |

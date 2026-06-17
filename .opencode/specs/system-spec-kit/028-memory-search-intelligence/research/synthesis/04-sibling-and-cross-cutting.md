@@ -29,6 +29,11 @@
 - **procedural-outcome-ranking → PROXY-ONLY** — no execution-success emitter exists (the Completion-Verification gate has zero skill attribution; only recommendation-acceptance is captured). A real emitter is a net-new build, not a free byproduct.
 - **CG-edge-staleness** — corrected: the skip is **content-hash-gated, not mtime**; the real gap is **dependency-transitivity** (`queryFileImportDependents` wired only to reads).
 
+### Cross-subsystem overlaps (noted for the implementation packet; not separate GOs)
+
+- **Idempotent async-consolidation → Advisor projection.** The receipt + retry-budget/dead-letter pattern (C4-A, PQ2/PQ4) maps onto the Advisor's async **embedding projection** (SA8): the same "durable cursor + bounded retry + idempotency token" shape applies to the projection rebuild, not just memory save. Build the shared primitive once, reuse on the advisor side.
+- **Seeded-PPR (Q3-C1) × 027's existing causal-BFS traversal.** The net-new query-seeded multi-hop impact ranking should **reuse 027's already-shipped causal-edge BFS traversal substrate** rather than stand up a second graph-walk engine — confirm the traversal API is reusable before building PPR.
+
 ## Corrections to the earlier synthesis docs
 
 - **`01-go-candidates.md` keystone** — refine: the **total-comparator alone** is the true keystone (every determinism candidate needs it); content-id A/B is a 2nd-tier dependency for the identity/tiebreak subset. Both gate-free Wave-0.
@@ -37,7 +42,7 @@
 
 ## No-transfer / deflations (don't pursue)
 
-CRDT/concurrent-merge (single-writer correct-by-design) · provenance-signing (no distrusted writer) · galadriel palace (loci-over-folder-scoping; no traversal) · decay-importance (aionforge importance is an anchor, FSRS is richer) · Code-Mode transport (different subsystem; receipt can't lift to external APIs) · galadriel zero-token tier (prompt-caching ≠ retrieval; marginal beyond C9) · attestation-quorum (mostly already mined as D4/C4; quorum half decorative for flag-graduation).
+CRDT/concurrent-merge (single-writer correct-by-design) · provenance-signing (no distrusted writer) · galadriel palace (loci-over-folder-scoping; no traversal) · decay-importance (aionforge importance is an anchor, FSRS is richer) · Code-Mode transport (different subsystem; receipt can't lift to external APIs) · galadriel zero-token tier (prompt-caching ≠ retrieval; marginal beyond C9) · attestation-quorum (mostly already mined as D4/C4; quorum half decorative for flag-graduation) · **namespace-authorization** (EXTENDS-low: recall scoping is opt-in not enforced, but cross-namespace recall is a *feature* in a single-tenant store — only an opt-in strict-isolation mode is worth flagging; the erasure-path variant `M-namespace-authorize-before-erase` from 001 iter-12 carries the same disposition — reuse write-authorization on the destructive path *only if* strict isolation is ever adopted).
 
 ## Honest note
 

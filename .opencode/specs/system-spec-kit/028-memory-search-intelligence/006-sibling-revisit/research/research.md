@@ -11,9 +11,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/006-sibling-revisit"
-    last_updated_at: "2026-06-17T06:15:00Z"
+    last_updated_at: "2026-06-17T07:30:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Synthesized the 006 sibling + cross-cutting ledger from 50 read-only iterations"
+    recent_action: "Reconciled 006 ledger tally to NET-NEW x10 + orphaned-row dispositions"
     next_safe_action: "Fold the 006 net-new candidates + deflations into a 028 implementation packet"
     blockers: []
     key_files:
@@ -104,6 +104,7 @@ The round was **net-additive with heavy, self-correcting deflation**. The siblin
 ## Syntheses (cross-cutting structure)
 
 - **Keystone build module** (SA7): the **determinism foundation** (total-comparator + content-id primitives A/B) unblocks ~7 candidates across 3 subsystems and is gate-free → build first, in parallel with the source_kind escaper. *Correction:* the **total-comparator alone** is the true keystone (every determinism candidate); content-id A/B is a 2nd-tier dependency for the identity/tiebreak subset. Bi-temporal + Beta trail (schema/benchmark gated).
+- **Identifier recipe** (RC2, iter-25 — grounds 04's C4-B/C5-B revisions in this ledger): the content-id primitives should follow the aionforge identifier discipline — the `derived_id` **must include anchors** (the legacy UNIQUE is anchor-inclusive, so an anchor-excluding backfill rejects), order the canonical fields deterministically + add a kind-tag, and a restore must **preserve** the id (rowid-alias PK, not AUTOINCREMENT). This is the source-of-truth for the recipe summarized in `04`.
 - **D3 convergence framing corrected** (SA4): the STOP decision (`convergence.cjs:378-381`) is *already* a non-trading per-signal conjunction with blocking-guards — it does **not** consume the composite score. D3's real job is to **reliability-weight the existing conjunction's signals**, not to "add a gate to the composite."
 - **Shared Beta `reliability()`** (RC6): one f64 primitive `(α₀+s)/(α₀+β₀+s+f)` + thin per-consumer adapters — NOT "one module, three identical callers." The live integer scorer **throws on the fractional inputs D2 needs** (`bayesian-scorer.ts:183-191`); C4 consumes it as a weight-delta not a multiplier; the 3rd consumer (procedural) is proxy-only. Build the f64 primitive beside `rrf-fusion.ts`, carry the flood-resistance invariants, adapt per consumer.
 
@@ -111,7 +112,9 @@ The round was **net-additive with heavy, self-correcting deflation**. The siblin
 
 ## Honest close
 
-- **Verdict tally (006):** EXTENDS ×7 (C3, C5, C4, Q4-C1, Q2-C1, CG-edge-staleness, namespace-auth) · NET-NEW ×6 (Q3-PPR, RC3 self-edit, RC4 ANN-tie, RC5 fanout, SA8 advisor-staleness, SB7 probe-gate) · DEFER ×3 (C1, QCR, codegraph-bi-temporal) · NO-TRANSFER ×6 (CRDT, provenance-signing, galadriel-palace, decay-importance, code-mode, zero-token-marginal) · PROXY-ONLY ×1 (procedural) · REFUTED ×1 (cross-cutting-C8 → reachability-gated). Net-deflationary, no fabricated benefit numbers.
+- **Verdict tally (006):** EXTENDS ×7 (C3, C5, C4, Q4-C1, Q2-C1, CG-edge-staleness, namespace-auth) · NET-NEW ×10 (Q3-PPR, RC3 self-edit, RC4 ANN-tie, RC5 fanout, SA8 advisor-staleness, SB7 probe-gate, **SB8 source_kind-escaper, PQ4 transport-idempotency, PQ5 fingerprint-absence, PQ2 enrichment-retry-budget**) · DEFER ×3 (C1, QCR, codegraph-bi-temporal) · NO-TRANSFER ×6 (CRDT, provenance-signing, galadriel-palace, decay-importance, code-mode, zero-token-marginal) · PROXY-ONLY ×1 (procedural) · REFUTED ×1 (cross-cutting-C8 → reachability-gated). **(Tally correction:** an earlier draft undercounted NET-NEW as ×6 — the four cross-cutting candidates confirmed real via RD3/SB8 belong in the count, matching the 10-row NET-NEW table in `../research/synthesis/04-sibling-and-cross-cutting.md`.)
+- **Explored angles with no separate GO/defer verdict (every state row accounted for):** PQ1 cost/prompt-cache, RC7 operator-workflow, SA1 test-scaffolding, SA2 failure-mode-chaos, SA5 /doctor-diagnostics, PQ8 / `capture-near-dup-guard`, the embedding-staleness **sweep** half (PQ6 — folded into SA8's advisor-projection staleness signal), and the **tamper-evident-audit** half of PQ7/RD4 (RD4 confirmed it *real*, but it is no-transfer to a single-tenant store — only the seeded-PPR half graduated to Q3-C1) → all **no-transfer / folded**, no separate candidate. **SB5 attestation-quorum** = already-mined (folds into D4/C4), not separately counted.
+- Net-deflationary, no fabricated benefit numbers.
 - **Single most-likely-wrong:** still the **C8 / untrusted-content verdict** — its leverage rests on the unverified threat model ("can untrusted content become a recalled memory"). 005 said yes (via `memory_save`); RD1 narrowed the *generalization* to reachability-gated. The source_kind-gated escaper is the robust residual; the broad framework-wide claim is not.
 - **Runner-up wrong:** C3-B bi-temporal additivity (no migration spec to verify) and the procedural write-path (no execution-success emitter exists).
 - **200-readiness:** the research is complete and banked; this research.md is authoritative (per-iteration deltas consolidated here under the sprint deviation; `deep-research-state.jsonl` carries the 50-row count). The net-new candidates + deflations are folded into `../research/synthesis/04-sibling-and-cross-cutting.md`.
