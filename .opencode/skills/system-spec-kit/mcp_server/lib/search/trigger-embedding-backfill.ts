@@ -29,11 +29,12 @@ interface PendingTriggerEmbeddingRow {
 interface TriggerEmbeddingBackfillOptions {
   enabled?: boolean;
   limit?: number;
+  isCancelled?: () => boolean;
 }
 
 export interface TriggerEmbeddingBackfillResult {
   enabled: boolean;
-  status: 'skipped_default_off' | 'complete' | 'complete_with_pending' | 'failed';
+  status: 'skipped_default_off' | 'complete' | 'complete_with_pending' | 'failed' | 'cancelled';
   scannedMemories: number;
   phrasesSeen: number;
   pendingRows: number;
@@ -46,6 +47,12 @@ export interface TriggerEmbeddingBackfillResult {
 }
 
 const DEFAULT_TRIGGER_BACKFILL_LIMIT = 100;
+// The phrase-sync upserts the entire eligible corpus. better-sqlite3 transactions
+// run synchronously, so the corpus is processed in chunks and the loop yields
+// between chunk transactions — never inside one, which would suspend an open write
+// transaction and risk a partial commit. Chunking keeps the daemon able to service
+// IPC (status, cancel, health, a competing launcher's probe) throughout the sync.
+const PHRASE_SYNC_CHUNK_ROWS = 200;
 const TRIGGER_BACKFILL_FLAG = 'SPECKIT_TRIGGER_EMBEDDING_BACKFILL';
 const TRIGGER_INPUT_KIND: TriggerEmbeddingInputKind = 'document';
 
@@ -159,7 +166,7 @@ export async function runTriggerEmbeddingBackfill(
 
     result.scannedMemories = sourceRows.length;
 
-    const syncPhraseRows = database.transaction((rows: TriggerSourceRow[]) => {
+    const syncPhraseChunk = database.transaction((rows: TriggerSourceRow[]) => {
       const upsertPending = database.prepare(`
         INSERT INTO memory_trigger_embeddings (
           memory_id,
@@ -237,7 +244,19 @@ export async function runTriggerEmbeddingBackfill(
       }
     });
 
-    syncPhraseRows(sourceRows);
+    for (let offset = 0; offset < sourceRows.length; offset += PHRASE_SYNC_CHUNK_ROWS) {
+      if (options.isCancelled?.()) {
+        result.status = 'cancelled';
+        result.warnings.push('Trigger embedding backfill cancelled during phrase sync');
+        return result;
+      }
+      syncPhraseChunk(sourceRows.slice(offset, offset + PHRASE_SYNC_CHUNK_ROWS));
+      // Yield between self-contained chunk transactions, never inside one. Per-chunk
+      // atomicity replaces whole-corpus atomicity; safe here because the upserts are
+      // idempotent (ON CONFLICT DO UPDATE) and the deletes are per-memory-id, so a
+      // mid-sync cancel leaves a consistent partial state the next scan reconciles.
+      await new Promise<void>((resolve) => setImmediate(resolve));
+    }
 
     const pendingRows = database.prepare(`
       SELECT memory_id, phrase_hash
@@ -251,7 +270,18 @@ export async function runTriggerEmbeddingBackfill(
 
     result.pendingRows = pendingRows.length;
 
+    let processedSinceYield = 0;
     for (const row of pendingRows) {
+      if (options.isCancelled?.()) {
+        result.status = 'cancelled';
+        result.warnings.push('Trigger embedding backfill cancelled during embedding generation');
+        return result;
+      }
+      // The cache-hit and missing-phrase branches below `continue` without awaiting
+      // network I/O, so a long run of them would starve the loop; yield periodically.
+      if (++processedSinceYield % 50 === 0) {
+        await new Promise<void>((resolve) => setImmediate(resolve));
+      }
       const phrase = phraseByHash.get(row.phrase_hash);
       if (!phrase) {
         markTriggerEmbeddingStatus(database, row, profileKey, TRIGGER_INPUT_KIND, 'failed', 'Trigger phrase source unavailable');

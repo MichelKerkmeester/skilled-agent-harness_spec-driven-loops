@@ -144,4 +144,73 @@ describe('trigger embedding backfill', () => {
     expect(row.failure_reason).toContain('store failed');
     expect(cacheCount.count).toBe(0);
   });
+
+  // Returns false for the first `n` calls, then true. Lets a test cancel at a
+  // precise loop boundary (the cancel check sits at the top of each chunk/row).
+  function cancelAfter(n: number): () => boolean {
+    let calls = 0;
+    return () => ++calls > n;
+  }
+
+  it('cancels before any phrase sync when isCancelled is immediately true', async () => {
+    for (let id = 1; id <= 300; id++) {
+      insertMemory(database, id, [`trigger phrase ${id}`]);
+    }
+
+    const result = await runTriggerEmbeddingBackfill(database, {
+      enabled: true,
+      isCancelled: cancelAfter(0),
+    });
+
+    const derivedCount = database.prepare('SELECT COUNT(*) AS count FROM memory_trigger_embeddings').get() as { count: number };
+    expect(result.status).toBe('cancelled');
+    expect(derivedCount.count).toBe(0);
+    expect(embeddingMocks.generateDocumentEmbedding).not.toHaveBeenCalled();
+  });
+
+  it('cancels at a chunk boundary, leaving a partial sync and never reaching embedding generation', async () => {
+    // 300 rows span two 200-row phrase-sync chunks. Cancelling on the second chunk
+    // check proves the corpus is processed in self-contained chunks (whole-corpus
+    // atomicity would leave 0 or 300, never a clean chunk-sized partial).
+    for (let id = 1; id <= 300; id++) {
+      insertMemory(database, id, [`trigger phrase ${id}`]);
+    }
+
+    const result = await runTriggerEmbeddingBackfill(database, {
+      enabled: true,
+      isCancelled: cancelAfter(1),
+    });
+
+    const derivedCount = database.prepare('SELECT COUNT(*) AS count FROM memory_trigger_embeddings').get() as { count: number };
+    expect(result.status).toBe('cancelled');
+    expect(derivedCount.count).toBe(200);
+    expect(embeddingMocks.generateDocumentEmbedding).not.toHaveBeenCalled();
+  });
+
+  it('yields the event loop during a multi-chunk backfill so concurrent work can run', async () => {
+    for (let id = 1; id <= 500; id++) {
+      insertMemory(database, id, [`trigger phrase ${id}`]);
+    }
+
+    // A competing macrotask loop: it can only advance if the backfill releases the
+    // event loop. With a single blocking transaction it would never tick until the
+    // backfill returned; chunk-and-yield lets it interleave.
+    let ticks = 0;
+    let running = true;
+    const tick = (): void => {
+      if (running) {
+        ticks += 1;
+        setImmediate(tick);
+      }
+    };
+    setImmediate(tick);
+
+    const result = await runTriggerEmbeddingBackfill(database, { enabled: true });
+    running = false;
+
+    // 500 phrases exceed the default per-run limit, so a healthy run reports
+    // complete_with_pending; either success value proves it was not cancelled/failed.
+    expect(['complete', 'complete_with_pending']).toContain(result.status);
+    expect(ticks).toBeGreaterThan(0);
+  });
 });

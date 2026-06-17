@@ -233,6 +233,14 @@ interface OrphanSweepCandidates {
 
 const ORPHAN_SWEEP_LIMIT = 200;
 
+// Scan responsiveness diagnostics. A blocked event loop is the failure mode that
+// breaks daemon re-election: it cannot answer a competing launcher's probe, so the
+// launcher spawns a second daemon. Sampling timer drift distinguishes a true
+// event-loop block from a phase that is merely slow but yields — the two need
+// different fixes (chunk-and-yield vs launcher-side probe tolerance).
+const LOOP_LAG_SAMPLE_MS = 250;
+const LOOP_LAG_WARN_MS = 1000;
+
 function emptyCheckpointRepairReport(): CheckpointRepairReport {
   return {
     sentinelPresent: false,
@@ -488,11 +496,34 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
   const leaseHeartbeatMs = Math.max(10000, Math.floor(leaseExpiryMs / 3));
   let leaseHeartbeat: ReturnType<typeof setInterval> | null = null;
 
+  // Background scans pass an onPhase hook; the synchronous foreground path does not.
+  // Gate diagnostics on it so the synchronous path's behavior stays identical.
+  const instrument = typeof ctx.onPhase === 'function';
+  let loopLagTimer: ReturnType<typeof setInterval> | null = null;
+  let maxLoopLagMs = 0;
+
   try {
   leaseHeartbeat = setInterval(() => {
     refreshScanLease();
   }, leaseHeartbeatMs);
   leaseHeartbeat.unref?.();
+
+  if (instrument) {
+    let loopLagExpectedAt = Date.now() + LOOP_LAG_SAMPLE_MS;
+    loopLagTimer = setInterval(() => {
+      const sampledAt = Date.now();
+      const lag = sampledAt - loopLagExpectedAt;
+      loopLagExpectedAt = sampledAt + LOOP_LAG_SAMPLE_MS;
+      if (lag > maxLoopLagMs) maxLoopLagMs = lag;
+      if (lag > LOOP_LAG_WARN_MS) {
+        // A late sample means the loop was blocked since the prior tick; logged
+        // adjacent to the phase=... line of whatever phase just ran, so the daemon
+        // log timeline fingers the blocking phase.
+        console.error(`[memory-index-scan] event-loop blocked ~${lag}ms between samples`);
+      }
+    }, LOOP_LAG_SAMPLE_MS);
+    loopLagTimer.unref?.();
+  }
 
   if (ctx.isCancelled?.()) {
     await releaseScanLease();
@@ -768,7 +799,9 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
       }
     }
 
-    const triggerEmbeddingBackfill = await runTriggerEmbeddingBackfill(requireDb());
+    const triggerEmbeddingBackfill = await runTriggerEmbeddingBackfill(requireDb(), {
+      isCancelled: () => ctx.isCancelled?.() ?? false,
+    });
 
     if (orphanSweepResult.swept > 0) {
       runScanInvalidationHooks({
@@ -1186,14 +1219,31 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
     }
   }
 
-  const orphanSweepResult = runGlobalOrphanSweep();
+  // Time each un-yielded tail phase: because these phases do not yield, their
+  // wall-clock equals their event-loop-block duration, so this pinpoints a blocking
+  // phase when read alongside the event-loop lag sampler. Entering a phase also fires
+  // onPhase, which refreshes the busy marker — giving each phase a full TTL ahead.
+  const timedPhase = async <T>(phase: string, fn: () => Promise<T> | T): Promise<T> => {
+    ctx.onPhase?.(phase);
+    if (!instrument) {
+      return await fn();
+    }
+    const startedAt = Date.now();
+    try {
+      return await fn();
+    } finally {
+      console.error(`[memory-index-scan] phase=${phase} ms=${Date.now() - startedAt}`);
+    }
+  };
+
+  const orphanSweepResult = await timedPhase('orphan-sweep', () => runGlobalOrphanSweep());
   results.orphanSwept = orphanSweepResult.swept;
   results.orphanSweepFailed = orphanSweepResult.failed;
   results.orphanSweepScanned = orphanSweepResult.scannedRows;
   results.orphanSweepNextCursor = orphanSweepResult.nextCursor;
   scanAppliedActions.push(...orphanSweepResult.actions);
 
-  results.postInsertEnrichmentRepaired = await runPostInsertEnrichmentRepairBackfill();
+  results.postInsertEnrichmentRepaired = await timedPhase('enrichment-repair', () => runPostInsertEnrichmentRepairBackfill());
   if (results.postInsertEnrichmentRepaired > 0) {
     scanAppliedActions.push(createStatediffAction('upsert', {
       target: 'graph_edge',
@@ -1203,11 +1253,12 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
     }));
   }
 
-  results.triggerEmbeddingBackfill = await runTriggerEmbeddingBackfill(requireDb());
+  results.triggerEmbeddingBackfill = await timedPhase('trigger-backfill', () =>
+    runTriggerEmbeddingBackfill(requireDb(), { isCancelled: () => ctx.isCancelled?.() ?? false }));
   if (triggerBackfillChangedRows(results.triggerEmbeddingBackfill)) {
     scanAppliedActions.push(createTriggerBackfillAction(results.triggerEmbeddingBackfill));
   }
-  await runNearDuplicateRepairBackfill();
+  await timedPhase('near-dup-repair', () => runNearDuplicateRepairBackfill());
 
   // Create causal chains between spec folder documents.
   // Includes deferred indexing outcomes and incremental single-file updates.
@@ -1422,6 +1473,11 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
     if (leaseHeartbeat) {
       clearInterval(leaseHeartbeat);
       leaseHeartbeat = null;
+    }
+    if (loopLagTimer) {
+      clearInterval(loopLagTimer);
+      loopLagTimer = null;
+      console.error(`[memory-index-scan] max-event-loop-lag ms=${maxLoopLagMs}`);
     }
     await releaseScanLease();
   }
