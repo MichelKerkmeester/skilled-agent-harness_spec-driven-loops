@@ -12,7 +12,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement"
-    last_updated_at: "2026-06-17T13:31:04Z"
+    last_updated_at: "2026-06-17T14:00:15Z"
     recent_action: "Regenerated chronological timeline from git history"
     next_safe_action: "Use this file to find the most recent / oldest spec folder"
     completion_pct: 100
@@ -21,7 +21,7 @@ _memory:
 
 <!-- GENERATED FILE — do not hand-edit. Regenerate: `python3 scratch/gen-timeline.py > timeline.md` (run from the 027 root). -->
 
-> **Generated:** 2026-06-17T13:31:04Z — regenerate before relying on intra-day ordering; same-day commits made
+> **Generated:** 2026-06-17T14:00:15Z — regenerate before relying on intra-day ordering; same-day commits made
 > after this stamp are not reflected until the next run.
 > **Sort key:** git last-commit timestamp touching each folder subtree, **newest → oldest** (the
 > recency view), taken from one atomic `git log` snapshot. The last-active column shows
@@ -38,30 +38,30 @@ _memory:
 > (docs-only, research, or work consolidated into a parent rollup) show `(none)`. Phase parents link
 > their `-root.md` rollup, which indexes the child phase changelogs.
 >
-> **Most recent live spec folder:** `002-memory-store-and-search/019-maintenance-grace-daemon-survives-reelection`
+> **Most recent live spec folder:** `002-memory-store-and-search/020-maintenance-grace-background-embedding`
 > **Oldest live spec folder:** `000-release-cleanup/001-public-root-readme`
-> **Counts:** 183 live spec folders · 0 archived (`z_archive/`).
+> **Counts:** 184 live spec folders · 0 archived (`z_archive/`).
 
 ---
 
 ## 0. Most recent 15 (quick answer to "what was worked on last")
 
 ```
- 1. 2026-06-17 15:27  002-memory-store-and-search/019-maintenance-grace-daemon-survives-reelection
- 2. 2026-06-17 15:27  002-memory-store-and-search
- 3. 2026-06-17 14:06  002-memory-store-and-search/018-reindex-scan-responsiveness-and-cancellation
- 4. 2026-06-17 12:39  002-memory-store-and-search/017-search-and-output-intelligence-implementation/004-confidence-calibration-labeled-set
- 5. 2026-06-17 12:39  002-memory-store-and-search/017-search-and-output-intelligence-implementation
- 6. 2026-06-17 09:32  002-memory-store-and-search/017-search-and-output-intelligence-implementation/007-output-surface-parity
- 7. 2026-06-17 09:26  002-memory-store-and-search/017-search-and-output-intelligence-implementation/006-command-contract-structural
- 8. 2026-06-17 09:18  002-memory-store-and-search/017-search-and-output-intelligence-implementation/005-cosine-topn-reorder
- 9. 2026-06-17 08:51  002-memory-store-and-search/017-search-and-output-intelligence-implementation/003-generic-query-deep-routing
-10. 2026-06-17 08:37  002-memory-store-and-search/017-search-and-output-intelligence-implementation/002-request-quality-aggregation
-11. 2026-06-17 08:22  005-verification-and-remediation/005-fresh-regression-remediation/007-consolidation-hardening
-12. 2026-06-17 08:22  005-verification-and-remediation/005-fresh-regression-remediation
-13. 2026-06-17 08:22  003-advisor-and-codegraph/004-skill-advisor-suite-repair
-14. 2026-06-17 08:22  005-verification-and-remediation
-15. 2026-06-17 08:22  004-shared-infrastructure
+ 1. 2026-06-17 15:57  002-memory-store-and-search/020-maintenance-grace-background-embedding
+ 2. 2026-06-17 15:57  002-memory-store-and-search
+ 3. 2026-06-17 15:32  002-memory-store-and-search/019-maintenance-grace-daemon-survives-reelection
+ 4. 2026-06-17 14:06  002-memory-store-and-search/018-reindex-scan-responsiveness-and-cancellation
+ 5. 2026-06-17 12:39  002-memory-store-and-search/017-search-and-output-intelligence-implementation/004-confidence-calibration-labeled-set
+ 6. 2026-06-17 12:39  002-memory-store-and-search/017-search-and-output-intelligence-implementation
+ 7. 2026-06-17 09:32  002-memory-store-and-search/017-search-and-output-intelligence-implementation/007-output-surface-parity
+ 8. 2026-06-17 09:26  002-memory-store-and-search/017-search-and-output-intelligence-implementation/006-command-contract-structural
+ 9. 2026-06-17 09:18  002-memory-store-and-search/017-search-and-output-intelligence-implementation/005-cosine-topn-reorder
+10. 2026-06-17 08:51  002-memory-store-and-search/017-search-and-output-intelligence-implementation/003-generic-query-deep-routing
+11. 2026-06-17 08:37  002-memory-store-and-search/017-search-and-output-intelligence-implementation/002-request-quality-aggregation
+12. 2026-06-17 08:22  005-verification-and-remediation/005-fresh-regression-remediation/007-consolidation-hardening
+13. 2026-06-17 08:22  005-verification-and-remediation/005-fresh-regression-remediation
+14. 2026-06-17 08:22  003-advisor-and-codegraph/004-skill-advisor-suite-repair
+15. 2026-06-17 08:22  005-verification-and-remediation
 ```
 
 ---
@@ -73,7 +73,7 @@ traces through the reorg `git mv` history to each track's true origin.
 
 | Rank | Last active | Born | Track |
 |------|------------------|------------|-------|
-| 1 | 2026-06-17 15:27 | 2026-06-14 | `002-memory-store-and-search/` |
+| 1 | 2026-06-17 15:57 | 2026-06-14 | `002-memory-store-and-search/` |
 | 2 | 2026-06-17 08:22 | 2026-06-14 | `005-verification-and-remediation/` |
 | 3 | 2026-06-17 08:22 | 2026-06-14 | `004-shared-infrastructure/` |
 | 4 | 2026-06-17 08:22 | 2026-06-14 | `003-advisor-and-codegraph/` |
@@ -92,8 +92,9 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 (a shipped hint). Folders with no committed git history (uncommitted) show `??????????` and sort last.
 
 ```
-2026-06-17 15:27  born:2026-06-17  impl  002-memory-store-and-search/019-maintenance-grace-daemon-survives-reelection
-2026-06-17 15:27  born:2026-06-14        002-memory-store-and-search
+2026-06-17 15:57  born:2026-06-17  impl  002-memory-store-and-search/020-maintenance-grace-background-embedding
+2026-06-17 15:57  born:2026-06-14        002-memory-store-and-search
+2026-06-17 15:32  born:2026-06-17  impl  002-memory-store-and-search/019-maintenance-grace-daemon-survives-reelection
 2026-06-17 14:06  born:2026-06-17  impl  002-memory-store-and-search/018-reindex-scan-responsiveness-and-cancellation
 2026-06-17 12:39  born:??????????  impl  002-memory-store-and-search/017-search-and-output-intelligence-implementation/004-confidence-calibration-labeled-set
 2026-06-17 12:39  born:??????????  impl  002-memory-store-and-search/017-search-and-output-intelligence-implementation
@@ -300,8 +301,9 @@ changelogs the rollup covers). Links resolve relative to this file.
 
 | Spec folder | impl | Changelog |
 |-------------|------|-----------|
-| `002-memory-store-and-search/019-maintenance-grace-daemon-survives-reelection` | impl | [changelog-002-019-maintenance-grace-daemon-survives-reelection.md](./changelog/002-memory-store-and-search/changelog-002-019-maintenance-grace-daemon-survives-reelection.md) |
+| `002-memory-store-and-search/020-maintenance-grace-background-embedding` | impl | [changelog-002-020-maintenance-grace-background-embedding.md](./changelog/002-memory-store-and-search/changelog-002-020-maintenance-grace-background-embedding.md) |
 | `002-memory-store-and-search` |  | [changelog-002-memory-store-and-search-root.md](./changelog/002-memory-store-and-search/changelog-002-memory-store-and-search-root.md) |
+| `002-memory-store-and-search/019-maintenance-grace-daemon-survives-reelection` | impl | [changelog-002-019-maintenance-grace-daemon-survives-reelection.md](./changelog/002-memory-store-and-search/changelog-002-019-maintenance-grace-daemon-survives-reelection.md) |
 | `002-memory-store-and-search/018-reindex-scan-responsiveness-and-cancellation` | impl | [changelog-002-018-reindex-scan-responsiveness-and-cancellation.md](./changelog/002-memory-store-and-search/changelog-002-018-reindex-scan-responsiveness-and-cancellation.md) |
 | `002-memory-store-and-search/017-search-and-output-intelligence-implementation/004-confidence-calibration-labeled-set` | impl | [changelog-002-017-004-confidence-calibration-labeled-set.md](./changelog/002-memory-store-and-search/changelog-002-017-004-confidence-calibration-labeled-set.md) |
 | `002-memory-store-and-search/017-search-and-output-intelligence-implementation` | impl | [changelog-002-017-search-and-output-intelligence-implementation-root.md](./changelog/002-memory-store-and-search/changelog-002-017-search-and-output-intelligence-implementation-root.md) |
