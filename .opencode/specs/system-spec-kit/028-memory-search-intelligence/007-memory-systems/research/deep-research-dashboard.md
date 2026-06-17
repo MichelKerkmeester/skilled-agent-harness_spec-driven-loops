@@ -18,7 +18,7 @@ Reducer-generated observability surface for the active research packet.
 - Topic: Mine four external agent-memory systems (Mem0, Graphiti/Zep, Letta/MemGPT, Cognee) for evidence-backed, code-mapped, NOVELTY-DIFFED improvements to Memory MCP retrieval/ranking/consolidation/currentness/forgetting (+ Skill-Advisor fusion, Deep-Loop continuity). 4-model sweep: DeepSeek v4 Pro (deep-extract cores), MiMo v2.5 Pro (broad cross-system sweep), Kimi K2.7 (seam-map to internals), Opus 4.8 (adversarial-verify + novelty-diff + synthesis). Read-only seats; orchestrator writes state.
 - Started: 2026-06-17T09:30:00Z
 - Status: IN_PROGRESS
-- Iteration: 6 of 40
+- Iteration: 10 of 40
 - Session ID: 2026-06-17-028-007-memory-systems
 - Parent Session: none
 - Lifecycle Mode: new
@@ -37,8 +37,12 @@ Reducer-generated observability surface for the active research packet.
 | undefined | letta-memory-tiers-compaction-budgeting | - | 0.80 | 5 | insight |
 | undefined | kimi-fix-proof-letta-charlimit-crosscheck | - | 0.30 | 1 | insight |
 | undefined | opus-native-adversarial-verify-top-candidates | - | 0.70 | 8 | insight |
+| undefined | deepseek-mem0-merge-logic-and-scoring-deep-dive | - | 0.30 | 5 | insight |
+| undefined | mimo-graphiti-community-and-cognee-retrievers | - | 0.80 | 8 | insight |
+| undefined | opus-native-verify2-remaining-banked-candidates | - | 0.50 | 12 | insight |
+| undefined | opus-native-blast-radius-GR-llm-fact-invalidation | - | 0.40 | 2 | insight |
 
-- iterationsCompleted: 6
+- iterationsCompleted: 10
 - keyFindings: 0
 - openQuestions: 10
 - resolvedQuestions: 0
@@ -76,10 +80,10 @@ Reducer-generated observability surface for the active research packet.
 <!-- /ANCHOR:uncovered-questions -->
 <!-- ANCHOR:trend -->
 ## 5. TREND
-- Last 3 ratios: 0.80 -> 0.30 -> 0.70
+- Last 3 ratios: 0.80 -> 0.50 -> 0.40
 - Stuck count: 0
 - Guard violations: none recorded by the reducer pass
-- convergenceScore: 0.70
+- convergenceScore: 0.40
 - coverageBySources: {}
 
 <!-- /ANCHOR:trend -->
