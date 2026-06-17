@@ -1,0 +1,11 @@
+{
+  "run_id": "1781674914960-6gfnu8",
+  "loop_type": "research",
+  "spec_folder": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence-research/002-ai-output-command-vs-conversation",
+  "base_artifact_dir": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence-research/002-ai-output-command-vs-conversation/research",
+  "total_cli_lineages": 1,
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false
+}

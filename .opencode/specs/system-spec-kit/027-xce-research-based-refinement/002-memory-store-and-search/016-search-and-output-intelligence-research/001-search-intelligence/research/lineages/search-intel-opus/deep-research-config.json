@@ -1,0 +1,23 @@
+{
+  "type": "config",
+  "topic": "Further improve spec-kit memory retrieval/search intelligence: generic-query recall, request-quality aggregation, token-budget truncation, lightweight reranker, FSRS cold-tier tuning, calibration headroom",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.05,
+  "stuckThreshold": 3,
+  "specFolder": "001-search-intelligence",
+  "createdAt": "2026-06-17T05:42:44Z",
+  "status": "in_progress",
+  "executor": {
+    "kind": "cli-claude-code",
+    "model": "opus"
+  },
+  "lineage": {
+    "label": "search-intel-opus",
+    "sessionId": "fanout-search-intel-opus-1781674824664-mi07pi",
+    "generation": 1,
+    "lineageMode": "new"
+  },
+  "progressiveSynthesis": true,
+  "resource_map_present": false,
+  "artifactDir": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence-research/001-search-intelligence/research/lineages/search-intel-opus"
+}

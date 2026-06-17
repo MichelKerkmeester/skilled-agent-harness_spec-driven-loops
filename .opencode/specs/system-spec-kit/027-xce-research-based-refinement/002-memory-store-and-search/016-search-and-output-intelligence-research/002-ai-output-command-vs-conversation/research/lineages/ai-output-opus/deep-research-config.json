@@ -1,0 +1,58 @@
+{
+  "topic": "Improving AI output quality: slash-commands (--command) vs natural conversation — command-argument robustness, deterministic-renderer vs model-driven flow, startup-question fallback hazard, mandated output fields, per-model prompt-framework fit",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.05,
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence-research/002-ai-output-command-vs-conversation",
+  "createdAt": "2026-06-17T07:45:00Z",
+  "status": "running",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-claude-code",
+    "model": "opus",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-ai-output-opus-1781674914960-6gfnu8",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "lineageLabel": "ai-output-opus",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "deep-research-findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "next-focus"
+    ]
+  },
+  "artifactDir": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence-research/002-ai-output-command-vs-conversation/research/lineages/ai-output-opus",
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "deep-research-findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "run_id": "1781674824664-mi07pi",
+  "loop_type": "research",
+  "spec_folder": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence-research/001-search-intelligence",
+  "base_artifact_dir": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence-research/001-search-intelligence/research",
+  "total_cli_lineages": 1,
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false
+}
