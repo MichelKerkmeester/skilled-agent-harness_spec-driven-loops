@@ -37,9 +37,9 @@ _memory:
 | 1 | DeepSeek v4 Pro | Mem0 | 5 | ✅ banked |
 | 2 | Opus 4.8 (claude2) | Cognee | 8 (+novelty-diff) | ✅ banked |
 | 3 | MiMo v2.5 Pro | Graphiti/Zep | 6 | ✅ banked |
-| 4 | DeepSeek (Kimi timed out 2×) | Letta/MemGPT | — | ⏳ in flight |
+| 4 | DeepSeek (Kimi reassigned — timed out 2×) | Letta/MemGPT | 5 | ✅ banked |
 
-**19 candidates banked across 3 systems.** Per-iteration detail: `iterations/iteration-00{1,2,3}.md` + `deltas/iter-00{1,2,3}.jsonl`.
+**24 candidates banked across all 4 systems.** Per-iteration detail: `iterations/iteration-00{1..4}.md` + `deltas/iter-00{1..4}.jsonl`.
 
 ## Top picks so far (by leverage × effort)
 - **CG-uuid5-entity-merge** (Cognee, NET-NEW, **H/S**) — deterministic `uuid5(normalized-name)` entity identity → same name auto-merges at write, zero LLM. → causal-graph entity creation.
@@ -53,7 +53,7 @@ _memory:
 - **Mem0** (iter 1): entity-store boost, adaptive channel-gated additive fusion (alt to RRF), query-length-adaptive BM25 sigmoid (EXTENDS aionforge), entity cardinality penalty, LLM memory-linking at extraction (EXTENDS memclaw).
 - **Cognee** (iter 2): uuid5 entity-merge, composite-edge dedup, incremental edge merge, ontology canonicalization, iterative context-extension retrieval, neighborhood rescore ranking (EXTENDS Mem0), cascade extraction (EXTENDS Mem0), schema-driven edges. Supersedes Mem0's dedup half (zero-LLM).
 - **Graphiti** (iter 3): 5-timestamp edge (EXTENDS C3-B), LLM fact-invalidation (EXTENDS C3-A/B), episode provenance, fact-embedding-on-edge, episode-window context; **NO-TRANSFER** on 3-channel RRF (ours is a superset).
-- **Letta** (iter 4): pending (DeepSeek in flight).
+- **Letta** (iter 4, DeepSeek — Kimi reassigned): self-edit char-limit blocks (EXTENDS C7-A, H/M — model-aware eviction vs blind cap), compaction fallback ladder (NET-NEW), sliding-window %-keep (EXTENDS C7-A), external-memory-size-injected-into-prompt, approx token counter (bytes/4×1.3).
 
 ## Honest status / open issues
 - **Kimi K2.7 (`kimi-for-coding/k2p7 --variant high`) timed out twice at 600s with zero output** (once in-wave, once alone). Its assigned 10-iter lineage is BLOCKED until resolved — try `kimi-for-coding/kimi-k2-thinking`, drop `--variant high`, raise the timeout, or reassign the lineage to a proven model. This is the one un-proven dispatch contract.

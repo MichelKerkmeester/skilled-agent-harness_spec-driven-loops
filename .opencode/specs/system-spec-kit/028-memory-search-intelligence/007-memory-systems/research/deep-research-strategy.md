@@ -41,6 +41,7 @@ Mine four external agent-memory systems vendored under `.opencode/specs/system-s
 - [ ] Q8: NOVELTY GATE — what do these four encode that aionforge/galadriel (028) + OpenLTM/memclaw (027) do NOT already cover? Refute re-discoveries.
 - [ ] Q9: Cross-cutting — which techniques generalize to Deep-Loop continuity (episode provenance, self-editing memory) + Skill-Advisor?
 - [ ] Q10: Which candidates are GO (additive/reversible) vs NEEDS-BENCHMARK vs NO-TRANSFER, ranked by leverage x effort?
+
 <!-- /ANCHOR:key-questions -->
 
 ---
@@ -102,7 +103,7 @@ Mine four external agent-memory systems vendored under `.opencode/specs/system-s
 
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-Q1 (DeepSeek lineage): Mem0 memory extraction + update/consolidation + scoring vs aionforge consolidation + the Memory MCP save path. Then Q2 Graphiti bi-temporal invalidation vs C3-x.
+Q1: Mem0 — what does its LLM memory extraction + add/update/delete + consolidation/scoring add beyond aionforge's consolidation + the Memory MCP save path? Where would it map (`mcp_server/.../save`, `rrf-fusion.ts`)?
 
 <!-- /ANCHOR:next-focus -->
 
