@@ -9,9 +9,11 @@
   "progressiveSynthesis": true,
   "specFolder": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/008-retrieval-evaluation",
   "resource_map_present": false,
-  "resource_map": { "emit": false },
+  "resource_map": {
+    "emit": false
+  },
   "createdAt": "2026-06-17T14:00:00Z",
-  "status": "in_progress",
+  "status": "complete",
   "executionMode": "auto",
   "executor": {
     "kind": "claude2-opus",
@@ -25,8 +27,15 @@
     "sessionId": "2026-06-17-028-008-retrieval-evaluation",
     "parentSessionId": null,
     "lineageMode": "new",
-    "allowedModes": ["new", "resume", "restart"],
-    "deferredModes": ["fork", "completed-continue"],
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
     "generation": 1,
     "continuedFromRun": null
   },

@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/008-retrieval-evaluation"
     last_updated_at: "2026-06-17T14:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Banked wave-4 (verify+synthesis) iters 10-12; VERDICT GO; saturation=stop"
-    next_safe_action: "Decision: write synthesis/08 + finalize at 12, OR continue to literal 20"
+    recent_action: "CLOSED at 12/20 (saturation); synthesis/08 + 00-index written"
+    next_safe_action: "Done — the C9->A8 build spine is the implementation packets plan; nothing to resume"
     blockers: []
     key_files:
       - "research/research.md"
@@ -22,14 +22,14 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-17-028-008-retrieval-evaluation"
       parent_session_id: null
-    completion_pct: 60
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 
 # Research Report: Retrieval Evaluation & Post-027/002 Angles
 
-> **Status: PARTIAL — wave-1 dispatched.** 20-iteration deep research (Opus 4.8 via claude2 acct#2) on the angle space the shipped 027/002 015-019 search-intelligence work opened up. Born from the 028/007 ↔ 027/002 reconciliation (`../../research/synthesis/07`). Every candidate novelty-diffed vs the 016 research (027/002) + the 028/007 roadmap (`synthesis/06`). Research-only.
+> **Status: CLOSED at 12/20 (honest saturation point) — synthesis written (`../../research/synthesis/08`).** 20-iteration deep research (Opus 4.8 via claude2 acct#2) on the angle space the shipped 027/002 015-019 search-intelligence work opened up. Born from the 028/007 ↔ 027/002 reconciliation (`../../research/synthesis/07`). Every candidate novelty-diffed vs the 016 research (027/002) + the 028/007 roadmap (`synthesis/06`). Research-only.
 
 ## The 8 angles (→ iteration plan)
 - **A1 (keystone)** — memory-retrieval eval harness on the now-working cosine gate. → iters 1, (+11-12 deepen)

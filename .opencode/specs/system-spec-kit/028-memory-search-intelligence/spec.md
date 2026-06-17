@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence"
     last_updated_at: "2026-06-17T10:10:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "007 closed (22/40); started 008 retrieval-eval (A1-A8), wave-1 dispatched"
-    next_safe_action: "Bank 008 wave-1; continue 20-iter angle research per 008 recipe"
+    recent_action: "008 retrieval-eval CLOSED (12/20 saturation); synthesis/08 + C9-A8 build spine"
+    next_safe_action: "Children 001-008 all complete; implementation is a separate later packet"
     blockers: []
     key_files:
       - "spec.md"
@@ -123,7 +123,7 @@ Run a decomposed deep-research campaign that mines the two external systems for 
 | 005 | `005-revisit-027/` | Cross-packet revisit: reconcile 027's shipped refinements against the 028 findings | Complete |
 | 006 | `006-sibling-revisit/` | Sibling-subsystem revisit (028 Advisor + Code-Graph × 027) + aionforge-procedural + GO re-verify | Complete |
 | 007 | `007-memory-systems/` | Mine external memory systems (Mem0/Graphiti/Letta/Cognee) for Memory MCP search-intelligence (+ Advisor fusion, Deep-Loop continuity); 4-model sweep | Complete (22/40, saturation) |
-| 008 | `008-retrieval-evaluation/` | Research the retrieval-evaluation + post-027/002 angle space (A1-A8) the shipped 015-019 work opened up; 20-iter Opus-via-claude2 | In Progress |
+| 008 | `008-retrieval-evaluation/` | Research the retrieval-evaluation + post-027/002 angle space (A1-A8) the shipped 015-019 work opened up; Opus-via-claude2 | Complete (12/20, saturation) |
 
 ### Phase Transition Rules
 
