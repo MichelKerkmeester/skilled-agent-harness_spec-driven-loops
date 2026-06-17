@@ -158,6 +158,7 @@ workflow:
           node .opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs \
             --spec-folder {spec_folder} \
             --loop-type research \
+            --research-topic "{research_topic}" \
             --fanout-config-json '{config.fanout_json}' \
             --base-artifact-dir {artifact_dir}
         working_directory: "{repo_root}"

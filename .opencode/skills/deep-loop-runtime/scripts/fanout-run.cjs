@@ -117,7 +117,7 @@ function expandHomeDir(inputPath) {
  * The subprocess reads this, loads the skill, and runs the loop to convergence
  * with config.fanout_lineage_artifact_dir overriding step_resolve_artifact_root.
  */
-function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage) {
+function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, researchTopic) {
   const skillFile =
     loopType === 'review'
       ? '.opencode/skills/deep-loop-workflows/deep-review/SKILL.md'
@@ -136,6 +136,12 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage) {
     `  executor: ${lineage.kind} model=${lineage.model || 'default'}`,
     `  loop_type: ${loopType}`,
   ];
+  if (researchTopic) {
+    // A research lineage's phase_init binds research_topic from this line. Without it a
+    // fan-out research loop has no question to investigate and degrades to an empty topic.
+    // Review and context loops scope by spec_folder and intentionally pass no topic.
+    params.push(`  research_topic: ${researchTopic}`);
+  }
   if (hasIterationCap) {
     params.push(`  config.maxIterations: ${lineage.iterations}`);
   }
@@ -335,6 +341,11 @@ async function main() {
   if (loopType !== 'research' && loopType !== 'review' && loopType !== 'context') {
     throw inputError('loopType must be "research", "review", or "context"');
   }
+  // Optional shared research question, threaded into each lineage prompt so a research
+  // fan-out can bind research_topic. Absent for review/context, which scope by folder.
+  const researchTopic = typeof args.researchTopic === 'string' && args.researchTopic.trim()
+    ? args.researchTopic.trim()
+    : null;
   const fanoutConfigJson = ensureString(args, 'fanoutConfigJson');
   const baseArtifactDir = ensureString(args, 'baseArtifactDir');
   // Defense-in-depth: baseArtifactDir is host-provided, but reject path-traversal
@@ -390,7 +401,7 @@ async function main() {
       fs.mkdirSync(stateDir, { recursive: true });
 
       const sessionId = `fanout-${lineage.label}-${runId}`;
-      const prompt = buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage);
+      const prompt = buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, researchTopic);
 
       // Sandbox resolution stays write-capable by default even for review lineages:
       // the review subprocess writes its own iteration artifacts (iterations/iteration-NNN.md,
