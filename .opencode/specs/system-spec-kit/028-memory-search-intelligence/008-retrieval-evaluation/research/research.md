@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/008-retrieval-evaluation"
     last_updated_at: "2026-06-17T14:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Banked wave-2 (A2/A3/A5): 3 harness-lanes + S5 silent-regression + 016-confirm"
-    next_safe_action: "Dispatch wave-3 (A7/A8 + A1/A6 deepen) per recipe; continue toward 20"
+    recent_action: "Banked wave-3 (A7/A8/A1-deepen): the C9+A8 implementation spine emerged"
+    next_safe_action: "Wave-4: adversarial-verify sharpest candidates + GO/no-go synthesis toward 20"
     blockers: []
     key_files:
       - "research/research.md"
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-17-028-008-retrieval-evaluation"
       parent_session_id: null
-    completion_pct: 30
+    completion_pct: 45
     open_questions: []
     answered_questions: []
 ---
@@ -51,6 +51,11 @@ _memory:
 | 4 | A2 isotonic calibration | 5 — proxy-seed is a phantom; no ECE metric → promote unexecutable | ✅ banked |
 | 5 | A3 A/B shipped levers | 4 — S5 harness blind-spot + S5 demotes correctly-fused non-vector hits | ✅ banked |
 | 6 | A5 cold-tier re-measure | 4 — re-measure blocked by 2 preconditions; 016 "inert" holds operationally | ✅ banked |
+| 7 | A7 reindex-as-consolidation | 5 — reindex IS the host (cosine half); 019 TTL = a relationship; resolves #12 | ✅ banked |
+| 8 | A8 shadow-eval methodology | 5 — ONE gate welded to ONE class; intersection-blindness; flag-lifecycle | ✅ banked |
+| 9 | A1-deepen (three lanes) | 4 — the 3 missing lanes are ONE harness extension, forced build order | ✅ banked |
+
+**Wave-3 headline — the implementation spine emerged.** A8 (iter-8): there's exactly *one* promotion gate, welded to ranking-levers, and structurally **blind to recall/new-channel candidates** (`compareRanks` scores only the live∩shadow intersection) — keep its spine, swap a per-class metric panel; the isotonic flag is frozen *because no CLASS-G gate exists to make its promote evidence*. A1-deepen (iter-9): the three "missing accuracy lanes" (gate-verdict/ECE/cold) are **one harness extension** with a forced build order (embedding-coverage precondition → single-pass emit → `enrichGroundTruth` tagging → three corpus metrics); C9-3's ECE *is* the gate that graduates isotonic. A7 (iter-7): 018's responsive scan already IS the cadence-reorg host `synthesis/06` thought didn't exist (LLM-free half grafts as a 4th phase; LLM-transcript stays separate), and the open **019 TTL gap** resolves to `ownerLease.ttlMs × K (K>2)` + a no-phase-exceeds-TTL/2 invariant. **C9 builds the metrics; A8 gates on them — that pair is the spine for the whole intelligence-class roadmap.**
 
 **Wave-2 headline:** a recurring shape — **three "accuracy/coverage lanes the harness lacks"** (A1 gate-verdict, A2 calibration-ECE, A5 cold-tier), all EXTENDS into the live 110-query harness, all feeding A8's methodology. Plus two shipped-lever corrections: A2's isotonic "proxy seed" is a phantom + no ECE metric exists (promote-on-evidence unexecutable until built); A3's S5 reorder is both invisible to the harness (`evaluationMode` skip) AND has a confirmed silent-regression (demotes RRF-high/cosine-absent hits). A5 honestly refuted its own brief's premises + confirmed 016's FSRS call.
 
