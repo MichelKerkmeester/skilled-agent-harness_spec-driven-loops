@@ -22,7 +22,7 @@
 // starts are signalled, tracked by pid, and force-reaped in teardown.
 
 import { spawn, spawnSync, type ChildProcess } from 'node:child_process';
-import { cpSync, copyFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync } from 'node:fs';
+import { cpSync, copyFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -163,6 +163,48 @@ async function startSession(
   return { child, client };
 }
 
+// Spawn a competing launcher and send it an initialize WITHOUT requiring a completed MCP handshake.
+// When the marked daemon is busy-but-healthy, the launcher's contract is to refuse the respawn and
+// report lease-held on stdout, then exit 0 — it does NOT bridge the contending session into a live
+// transport (that session is told to back off, not adopted). So this helper observes the launcher's
+// decision (its stdout report + exit) rather than driving real MCP calls through it.
+async function spawnCompetingLauncher(
+  paths: { base: string; sockDir: string; dbDir: string; launcher: string },
+  extraEnv: Record<string, string> = {},
+): Promise<{ child: ChildProcess; settled: () => { exited: boolean; code: number | null; stdout: string } }> {
+  const child = spawn(process.execPath, [paths.launcher], {
+    cwd: paths.base,
+    env: {
+      ...process.env,
+      SPECKIT_DAEMON_REELECTION: '1',
+      SPECKIT_IPC_SOCKET_DIR: paths.sockDir,
+      SPEC_KIT_DB_DIR: paths.dbDir,
+      SPECKIT_LAUNCHER_LOG: '1',
+      AI_SESSION_CHILD: '1',
+      ...extraEnv,
+    },
+    stdio: ['pipe', 'pipe', 'pipe'],
+  });
+  track(child.pid);
+  let stdout = '';
+  let exited = false;
+  let code: number | null = null;
+  child.stdout!.setEncoding('utf8');
+  child.stdout!.on('data', (c: string) => { stdout += c; });
+  child.stderr!.setEncoding('utf8');
+  child.stderr!.on('data', () => { /* swallow launcher stderr */ });
+  child.on('exit', (c) => { exited = true; code = c; });
+  // A bare initialize so a launcher that DID hand us a transport would answer; under refusal it
+  // instead emits its lease-held report and exits.
+  try {
+    child.stdin!.write(JSON.stringify({
+      jsonrpc: '2.0', id: 1, method: 'initialize',
+      params: { protocolVersion: '2024-11-05', capabilities: {}, clientInfo: { name: 'reelect-compete', version: '1.0' } },
+    }) + '\n');
+  } catch { /* launcher may already be exiting */ }
+  return { child, settled: () => ({ exited, code, stdout }) };
+}
+
 function leaseDaemonPid(base: string): number | null {
   const f = join(base, '.opencode/skills/system-spec-kit/mcp_server/database/.mk-spec-memory-launcher.json');
   try { return (JSON.parse(readFileSync(f, 'utf8')).childPid as number) ?? null; } catch { return null; }
@@ -289,6 +331,127 @@ describe('daemon re-election: live two-session adoption', () => {
 
     // Recovery invariant: the wedged daemon was reaped (not adopted) and a fresh daemon replaced it.
     expect(newPid).not.toBe(orphanPid);
+    await waitForExit(orphanPid!, 10_000);
+    expect(isAlive(orphanPid!)).toBe(false);
+    await delay(800);
+
+    // Single-writer invariant still holds: exactly one pid holds the sqlite open under the DB dir.
+    const dbWriters = sqliteOpenerPids(paths.dbDir);
+    expect(dbWriters.length).toBe(1);
+  }, 60_000);
+
+  it('a daemon holding a FRESH maintenance marker is ADOPTED, not reaped, despite a non-responsive probe', async () => {
+    const paths = buildFakeRoot();
+
+    const owner = await startSession(paths, true);
+    expect(await statsOk(owner.client)).toBe(true);
+    const orphanPid = leaseDaemonPid(paths.base);
+    expect(orphanPid).toBeTypeOf('number');
+    track(orphanPid!);
+
+    // Dispose the owner: with reelection the daemon is RELEASED (survives), not killed.
+    owner.child.kill('SIGTERM');
+    await waitForExit(owner.child.pid!, 8_000);
+    await delay(1_200);
+    expect(isAlive(orphanPid!)).toBe(true);
+
+    // Publish a FRESH maintenance marker naming the live child: the daemon is mid-scan and is
+    // intentionally too busy to service the probe. The launcher resolves the marker dir from
+    // SPEC_KIT_DB_DIR (paths.dbDir), the same dir leaseDaemonPid reads.
+    writeFileSync(
+      join(paths.dbDir, '.maintenance-active.json'),
+      JSON.stringify({
+        childPid: orphanPid,
+        activeUntilMs: Date.now() + 60_000,
+        jobId: 'test',
+        refreshedAtIso: new Date().toISOString(),
+      }),
+    );
+
+    // WEDGE the marked daemon so the ADOPTION probe will NOT reply: SIGSTOP freezes its event loop —
+    // the exact observable shape of a daemon CPU-blocked mid index-scan. A pre-fix launcher that
+    // probes on liveness alone would reap a daemon doing legitimate maintenance; the fix reads the
+    // fresh marker, recognizes "busy, not dead", and REFUSES the respawn.
+    process.kill(orphanPid!, 'SIGSTOP');
+
+    // A competing launcher arrives with a short probe so its not-responsive verdict is fast and
+    // deterministic. The maintenance-grace contract is to ADOPT/refuse-respawn the busy daemon (it is
+    // reported lease-held and exits 0), NOT to bridge this contender into a live transport — so we
+    // observe the launcher's decision and the daemon's survival, not a working MCP call through it.
+    const compete = await spawnCompetingLauncher(paths, {
+      SPECKIT_PROBE_TIMEOUT_MS: '800',
+      SPECKIT_LEASE_PROBE_RETRY_TIMEOUT_MS: '800',
+      SPECKIT_LEASE_PROBE_RETRIES: '0',
+    });
+    await waitForExit(compete.child.pid!, 20_000);
+    const settled = compete.settled();
+    // The competing launcher refused to respawn the busy daemon and reported lease-held, then exited 0.
+    expect(settled.exited).toBe(true);
+    expect(settled.code).toBe(0);
+    expect(settled.stdout).toMatch(/LEASE_HELD_BY/);
+    expect(settled.stdout).toMatch(/maintenance-active/);
+
+    // Let the marked daemon run again so teardown and the writer checks see a normal process.
+    process.kill(orphanPid!, 'SIGCONT');
+    await delay(800);
+
+    // Adoption invariant: the FRESH marker pins the busy daemon. It is reused (same pid, still alive),
+    // never reaped and respawned, despite the probe failing while it was stopped.
+    expect(leaseDaemonPid(paths.base)).toBe(orphanPid);
+    expect(isAlive(orphanPid!)).toBe(true);
+
+    // Airtight co-residency check: exactly one pid holds the sqlite open under the DB dir.
+    const dbWriters = sqliteOpenerPids(paths.dbDir);
+    expect(dbWriters.length).toBe(1);
+  }, 60_000);
+
+  it('a STALE maintenance marker does NOT block reaping a wedged daemon', async () => {
+    const paths = buildFakeRoot();
+
+    const owner = await startSession(paths, true);
+    expect(await statsOk(owner.client)).toBe(true);
+    const orphanPid = leaseDaemonPid(paths.base);
+    expect(orphanPid).toBeTypeOf('number');
+    track(orphanPid!);
+
+    // Dispose the owner: with reelection the daemon is RELEASED (survives), not killed.
+    owner.child.kill('SIGTERM');
+    await waitForExit(owner.child.pid!, 8_000);
+    await delay(1_200);
+    expect(isAlive(orphanPid!)).toBe(true);
+
+    // Publish a STALE maintenance marker (already expired): it names the live child but its
+    // activeUntilMs is in the past, so the launcher must treat the daemon as unprotected.
+    writeFileSync(
+      join(paths.dbDir, '.maintenance-active.json'),
+      JSON.stringify({
+        childPid: orphanPid,
+        activeUntilMs: Date.now() - 1_000,
+        jobId: 'test',
+        refreshedAtIso: new Date().toISOString(),
+      }),
+    );
+
+    // WEDGE the released daemon. SIGSTOP freezes its event loop, so it never services a probe.
+    process.kill(orphanPid!, 'SIGSTOP');
+
+    // Fresh session with a short probe so the not-alive verdict is fast and deterministic.
+    const fresh = await startSession(paths, true, {
+      SPECKIT_PROBE_TIMEOUT_MS: '800',
+      SPECKIT_LEASE_PROBE_RETRY_TIMEOUT_MS: '800',
+      SPECKIT_LEASE_PROBE_RETRIES: '0',
+    });
+    expect(await statsOk(fresh.client, 20_000)).toBe(true);
+    const newPid = leaseDaemonPid(paths.base);
+    expect(newPid).toBeTypeOf('number');
+    track(newPid!);
+
+    // Recovery invariant: the STALE marker does NOT pin the wedged daemon. It was reaped (not adopted)
+    // and a fresh daemon replaced it.
+    expect(newPid).not.toBe(orphanPid);
+    // The reap SIGKILLs the stopped orphan, so it may already be gone — SIGCONT only to be sure a
+    // surviving stopped process is resumable for teardown; tolerate ESRCH when it is already reaped.
+    try { process.kill(orphanPid!, 'SIGCONT'); } catch { /* already reaped */ }
     await waitForExit(orphanPid!, 10_000);
     expect(isAlive(orphanPid!)).toBe(false);
     await delay(800);

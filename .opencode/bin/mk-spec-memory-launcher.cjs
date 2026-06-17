@@ -33,6 +33,8 @@ const {
   normalizeWatchdogGraceMs,
   parseProcessRows,
   processLiveness,
+  readMaintenanceMarker,
+  shouldAdoptDespiteProbe,
   releaseRespawnLockFile,
   sampleProcessTreeRssMb,
   shouldAbortRelaunchOnFire,
@@ -318,6 +320,16 @@ function writeState(payload) {
 
 function resolvedDbDir() {
   return canonicalizePath(dbDir);
+}
+
+// Resolve the dir the daemon writes its maintenance marker into. Must mirror the
+// daemon's DATABASE_DIR precedence (SPEC_KIT_DB_DIR / SPECKIT_DB_DIR override,
+// resolved against cwd, else the default DB dir) so both sides agree on the path
+// even under a test fake-root that sets SPEC_KIT_DB_DIR.
+function maintenanceMarkerDir() {
+  const override = process.env.SPEC_KIT_DB_DIR?.trim() || process.env.SPECKIT_DB_DIR?.trim();
+  if (override) return canonicalizePath(path.resolve(process.cwd(), override));
+  return resolvedDbDir();
 }
 
 function leasePath() {
@@ -797,6 +809,19 @@ async function respawnAfterDeadSocket(leaseResult, decision) {
     log('confirmed-dead socket but lease has no childPid; child-pid gate keeps respawn inert');
     writeLeaseHeldDiagnostic(leaseResult, ' (dead-socket-no-child-pid)');
     return { action: 'report', reason: 'missing-child-pid', socketPath: decision.socketPath };
+  }
+
+  // A daemon mid-maintenance (e.g. a background index scan) legitimately fails the
+  // deep liveness probe because its event loop is busy, not dead. If it holds a
+  // fresh marker naming this exact live child, refuse the respawn and leave it
+  // running. The marker lapses if the daemon is genuinely wedged (it can no longer
+  // refresh it), so a real death still respawns once the marker expires. Checked
+  // before the respawn lock and any reap so a bail unwinds nothing.
+  const deadSocketMarker = readMaintenanceMarker(maintenanceMarkerDir());
+  if (shouldAdoptDespiteProbe({ marker: deadSocketMarker, childPid, childLiveness: processLiveness(childPid) })) {
+    log(`confirmed-dead socket but child pid ${childPid} holds a fresh maintenance marker (activeUntil ${new Date(deadSocketMarker.activeUntilMs).toISOString()}); refusing respawn (busy, not dead)`);
+    writeLeaseHeldDiagnostic(leaseResult, ' (dead-socket-maintenance-active)');
+    return { action: 'report', reason: 'maintenance-active', socketPath: decision.socketPath };
   }
 
   let bootstrapLockHeld = false;
@@ -1657,6 +1682,16 @@ async function main() {
               await bridgeOrReportLeaseHeldAndExit(adoptResult);
               return;
             }
+            // The probe can fail because the daemon is busy-by-design (a background
+            // index scan starves its event loop), not wedged. A fresh maintenance
+            // marker naming this live child means adopt rather than reap+respawn.
+            const adoptMarker = readMaintenanceMarker(maintenanceMarkerDir());
+            if (shouldAdoptDespiteProbe({ marker: adoptMarker, childPid: orphanChildPid, childLiveness: processLiveness(orphanChildPid) })) {
+              log(`stale-reclaim adopting busy daemon pid ${orphanChildPid} via bridge: probe failed (${probe.reason}) but a fresh maintenance marker is active (until ${new Date(adoptMarker.activeUntilMs).toISOString()})`);
+              clearOwnerLeaseFile();
+              await bridgeOrReportLeaseHeldAndExit(adoptResult);
+              return;
+            }
             log(`stale-reclaim NOT adopting pid ${orphanChildPid}: liveness probe failed (${probe.reason}); reaping and respawning instead`);
           }
         }
@@ -1807,6 +1842,9 @@ module.exports = {
   getModelServerWatchdogConfig,
   getWatchdogConfig,
   isRespawnLockStale,
+  maintenanceMarkerDir,
+  readMaintenanceMarker,
+  shouldAdoptDespiteProbe,
   launchModelServer,
   launcherLogIsEnabled,
   launcherLogMaxBytes,

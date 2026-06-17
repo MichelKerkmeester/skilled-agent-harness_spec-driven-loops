@@ -9,7 +9,10 @@ import { createHash } from 'node:crypto';
 ──────────────────────────────────────────────────────────────── */
 
 import { checkDatabaseUpdated } from '../core/index.js';
-import { INDEX_SCAN_COOLDOWN, DEFAULT_BASE_PATH, BATCH_SIZE } from '../core/config.js';
+import { rmSync } from 'node:fs';
+
+import { INDEX_SCAN_COOLDOWN, DEFAULT_BASE_PATH, BATCH_SIZE, DATABASE_DIR } from '../core/config.js';
+import { atomicWriteFile } from '../lib/storage/transaction-manager.js';
 import { acquireIndexScanLease, completeIndexScanLease, refreshScanLease } from '../core/db-state.js';
 import { processBatches, requireDb, toErrorMessage, type RetryErrorResult } from '../utils/index.js';
 import { ensureMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-guard.js';
@@ -1426,6 +1429,15 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
   }
 }
 
+// Maintenance-active marker written beside the DB while a BACKGROUND scan runs, so
+// a competing launcher adopts this daemon (busy-by-design) rather than reaping it
+// as wedged. The TTL outlives several refreshes; a healthy scan's cooperative
+// yields keep the refresh timer firing, so only a genuinely wedged daemon (no
+// yields) lets the marker lapse and become reapable again.
+const MAINTENANCE_MARKER_FILE = '.maintenance-active.json';
+const MAINTENANCE_MARKER_TTL_MS = 60_000;
+const MAINTENANCE_MARKER_REFRESH_MS = 20_000;
+
 /** Handle memory_index_scan tool — dispatches to a synchronous run or a background job.
  *  Without background the call is byte-for-byte identical to the prior synchronous path. */
 async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
@@ -1438,8 +1450,25 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
 
   setImmediate(() => {
     void (async () => {
+      let maintenanceTimer: ReturnType<typeof setInterval> | null = null;
+      const markerPath = path.join(DATABASE_DIR, MAINTENANCE_MARKER_FILE);
+      const writeMaintenanceMarker = (): void => {
+        atomicWriteFile(markerPath, `${JSON.stringify({
+          childPid: process.pid,
+          activeUntilMs: Date.now() + MAINTENANCE_MARKER_TTL_MS,
+          jobId,
+          refreshedAtIso: new Date().toISOString(),
+        }, null, 2)}\n`);
+      };
       try {
         await setJobState(jobId, 'running');
+        // Tell the launcher this daemon is busy-by-design so a competing launcher
+        // adopts it rather than reaping it mid-scan. Refresh on a timer (a healthy
+        // scan's cooperative yields keep it firing); unref so it never holds the
+        // process open at shutdown.
+        writeMaintenanceMarker();
+        maintenanceTimer = setInterval(writeMaintenanceMarker, MAINTENANCE_MARKER_REFRESH_MS);
+        maintenanceTimer.unref?.();
         const response = await runIndexScan(args, {
           isCancelled: () => isCancelRequestedFast(jobId),
           onPhase: (phase) => { void setJobPhase(jobId, phase).catch(() => {}); },
@@ -1466,6 +1495,12 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
         } catch (_secondaryError: unknown) {
           // Best-effort failure record; never surface a background unhandled rejection.
         }
+      } finally {
+        // Covers all four terminal exits (complete / cancelled / failed-envelope /
+        // thrown). Stop refreshing and remove the marker so the daemon is reapable
+        // again the instant the scan ends.
+        if (maintenanceTimer) { clearInterval(maintenanceTimer); maintenanceTimer = null; }
+        try { rmSync(markerPath, { force: true }); } catch { /* best-effort marker cleanup */ }
       }
     })();
   });
