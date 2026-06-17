@@ -62,13 +62,19 @@ const DEFAULT_TOKEN_BUDGET_CONFIG: TokenBudgetConfig = {
  *   moderate → 2500 tokens
  *   complex  → 4000 tokens
  *
- * @param tier   - The complexity tier from the query classifier
- * @param config - Optional custom budget config (overrides DEFAULT_TOKEN_BUDGET_CONFIG)
+ * Low-signal / weak queries are never trimmed below the full budget: they
+ * carry the least relevance signal and depend on breadth to recover anything,
+ * so shrinking their budget would truncate away the recall they most need.
+ *
+ * @param tier    - The complexity tier from the query classifier
+ * @param config  - Optional custom budget config (overrides DEFAULT_TOKEN_BUDGET_CONFIG)
+ * @param options - Optional flags; lowSignal floors the budget at DEFAULT_BUDGET
  * @returns BudgetResult with tier, budget, and applied flag
  */
 function getDynamicTokenBudget(
   tier: QueryComplexityTier,
   config?: TokenBudgetConfig,
+  options?: { lowSignal?: boolean },
 ): BudgetResult {
   // Feature flag gate: return default when disabled
   if (!isDynamicTokenBudgetEnabled()) {
@@ -80,7 +86,10 @@ function getDynamicTokenBudget(
   }
 
   const effectiveConfig = config ?? DEFAULT_TOKEN_BUDGET_CONFIG;
-  const budget = effectiveConfig[tier] ?? DEFAULT_BUDGET;
+  const tierBudget = effectiveConfig[tier] ?? DEFAULT_BUDGET;
+  const budget = options?.lowSignal
+    ? Math.max(tierBudget, DEFAULT_BUDGET)
+    : tierBudget;
 
   return {
     tier,

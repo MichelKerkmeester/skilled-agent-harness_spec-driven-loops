@@ -47,6 +47,14 @@ import {
   isDynamicTokenBudgetEnabled,
   DEFAULT_TOKEN_BUDGET_CONFIG,
 } from './dynamic-token-budget.js';
+import {
+  buildProgressiveResponse,
+  DEFAULT_PAGE_SIZE,
+} from './progressive-disclosure.js';
+import type {
+  ProgressiveResponse,
+  DisclosureResult,
+} from './progressive-disclosure.js';
 import { resolveFusionIntentContract } from './search-utils.js';
 import { ensureDescriptionCache, getSpecsBasePaths } from './folder-discovery.js';
 import {
@@ -1325,7 +1333,13 @@ async function collectAndFuseHybridResults(
     // -- Stage E: Dynamic Token Budget (SPECKIT_DYNAMIC_TOKEN_BUDGET) --
     // Compute tier-aware budget early so it's available for downstream truncation.
     // When disabled, getDynamicTokenBudget returns the default 4000 budget with applied=false.
-    const budgetResult = getDynamicTokenBudget(routeResult.tier);
+    // Weak / low-confidence queries keep the full budget so recall is not trimmed away.
+    const lowSignalQuery =
+      routeResult.classification.confidence === 'low' ||
+      routeResult.classification.confidence === 'fallback';
+    const budgetResult = getDynamicTokenBudget(routeResult.tier, undefined, {
+      lowSignal: lowSignalQuery,
+    });
     if (budgetResult.applied && !evaluationMode) {
       s3meta.tokenBudget = {
         tier: budgetResult.tier,
@@ -1991,6 +2005,8 @@ async function enrichFusedResults(
     const budgeted = truncateToBudget(reranked, adjustedBudget, {
       includeContent: options.includeContent ?? false,
       queryId: `hybrid-${Date.now()}`,
+      limit: options.limit,
+      query,
     });
     reranked = budgeted.results;
     budgetTruncated = budgeted.truncated;
@@ -2584,6 +2600,10 @@ interface TruncateToBudgetResult {
   results: HybridSearchResult[];
   truncated: boolean;
   overflow?: OverflowLogEntry;
+  /** Progressive-disclosure envelope (summary + first page + cursor) for the
+   * overflow remainder that did not fit the immediate payload. Present only
+   * when results overflowed the budget and some remainder was deferred. */
+  progressive?: ProgressiveResponse;
 }
 
 /**
@@ -2698,20 +2718,33 @@ function createSummaryFallback(result: HybridSearchResult, budget: number): Hybr
 }
 
 /**
- * Truncate a result set to fit within a token budget using greedy highest-scoring-first strategy.
+ * Truncate a result set to fit within a token budget.
+ *
+ * Results are sorted highest-score-first. On overflow the accumulator
+ * skips a too-large result and keeps scanning, so a single large top memory
+ * never starves smaller lower-ranked results that still fit. The detailed
+ * count is floored at min(limit, DEFAULT_MIN_RESULTS): when fewer full results
+ * fit, the highest-scoring overflow remainder is promoted as token-cheap
+ * summaries so a populated search never collapses to a near-empty payload.
+ * Whatever remains after the floor is routed through progressive disclosure
+ * (summary + first page + cursor) rather than discarded.
+ *
  * @param results - The full result set to truncate.
  * @param budget - Optional token budget override (defaults to SPECKIT_TOKEN_BUDGET env / 2000).
- * @param options - Optional includeContent flag and queryId for overflow logging.
- * @returns Object with truncated results, truncation flag, and optional overflow log entry.
+ * @param options - Optional includeContent flag, queryId for overflow logging,
+ *   result limit (for the detailed-count floor), and query text (for cursors).
+ * @returns Object with truncated results, truncation flag, optional overflow log
+ *   entry, and an optional progressive-disclosure envelope for the remainder.
  */
 function truncateToBudget(
   results: HybridSearchResult[],
   budget?: number,
-  options?: { includeContent?: boolean; queryId?: string }
+  options?: { includeContent?: boolean; queryId?: string; limit?: number; query?: string }
 ): TruncateToBudgetResult {
   const effectiveBudget = (budget && budget > 0) ? budget : getTokenBudget();
   const includeContent = options?.includeContent ?? false;
   const queryId = options?.queryId ?? `q-${Date.now()}`;
+  const query = options?.query ?? '';
 
   if (results.length === 0) {
     return { results: [], truncated: false };
@@ -2758,43 +2791,50 @@ function truncateToBudget(
     return { results: [outputResult], truncated: true, overflow };
   }
 
-  // Greedy accumulation: take highest-scoring results until budget exhausted
+  // Skip-and-continue accumulation: take highest-scoring results that fit, but
+  // skip (don't break on) a too-large result so smaller lower-ranked results
+  // still get a chance to fit. A single large top memory must not starve the tail.
   const accepted: HybridSearchResult[] = [];
+  const overflowRemainder: HybridSearchResult[] = [];
   let accumulated = 0;
 
   for (const result of sorted) {
     const tokens = getTokenEstimate(result);
     if (accumulated + tokens > effectiveBudget) {
-      if (accepted.length > 0) {
-        break;
-      }
+      overflowRemainder.push(result);
       continue;
     }
     accepted.push(result);
     accumulated += tokens;
-    if (accumulated >= effectiveBudget) break;
   }
 
-  if (accepted.length === 0 && sorted.length > 0) {
-    const outputResult = includeContent
-      ? createSummaryFallback(sorted[0]!, effectiveBudget)
-      : sorted[0]!;
-    const overflow: OverflowLogEntry = {
-      queryId,
-      candidateCount: results.length,
-      totalTokens,
-      budgetLimit: effectiveBudget,
-      truncatedToCount: 1,
-      timestamp: new Date().toISOString(),
-    };
-
-    console.warn(
-      `[hybrid-search] Token budget overflow (top-result fallback): ` +
-      `${totalTokens} tokens > ${effectiveBudget} budget`
-    );
-
-    return { results: [outputResult], truncated: true, overflow };
+  // Floor the detailed count at min(limit, DEFAULT_MIN_RESULTS): promote the
+  // highest-scoring skipped results as token-cheap summaries so an overflowing
+  // search still surfaces a usable set instead of collapsing to one result.
+  // Summary-first applies regardless of includeContent — the common
+  // metadata-only call would otherwise discard the remainder entirely.
+  // The floor is defined against the caller's limit; with no limit there is
+  // nothing to floor against, so fall back to the historical ≥1 guarantee.
+  const floorTarget = options?.limit !== undefined
+    ? Math.max(1, Math.min(options.limit, DEFAULT_MIN_RESULTS))
+    : 1;
+  while (accepted.length < floorTarget && overflowRemainder.length > 0) {
+    accepted.push(createSummaryFallback(overflowRemainder.shift()!, effectiveBudget));
   }
+
+  // Re-establish highest-score-first ordering: a promoted summary may outrank
+  // an already-accepted full result.
+  accepted.sort((a, b) => b.score - a.score);
+
+  // Route whatever still did not fit through progressive disclosure (summary +
+  // first snippet page + continuation cursor) rather than discarding it.
+  const progressive: ProgressiveResponse | undefined = overflowRemainder.length > 0
+    ? buildProgressiveResponse(
+        overflowRemainder as unknown as DisclosureResult[],
+        DEFAULT_PAGE_SIZE,
+        query,
+      )
+    : undefined;
 
   const overflow: OverflowLogEntry = {
     queryId,
@@ -2807,10 +2847,16 @@ function truncateToBudget(
 
   console.warn(
     `[hybrid-search] Token budget overflow: ${totalTokens} tokens > ${effectiveBudget} budget, ` +
-    `truncated ${results.length} → ${accepted.length} results`
+    `truncated ${results.length} → ${accepted.length} results` +
+    (progressive ? ` (${overflowRemainder.length} deferred to progressive disclosure)` : '')
   );
 
-  return { results: accepted, truncated: true, overflow };
+  return {
+    results: accepted,
+    truncated: true,
+    overflow,
+    ...(progressive ? { progressive } : {}),
+  };
 }
 
 // 15. EXPORTS
