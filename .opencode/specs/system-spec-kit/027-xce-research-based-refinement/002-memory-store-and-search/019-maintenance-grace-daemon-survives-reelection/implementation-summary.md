@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary [template:level_1/implementation-summary.md]"
-description: "The daemon now writes a refreshed maintenance-active marker during a background scan, and both launcher reap paths adopt a busy-but-healthy daemon instead of reaping it, so a heavy reindex survives launcher contention. The 018 cooperative yields are the discriminator that keeps a healthy scan's marker fresh; a wedged daemon's marker expires within 60s and is reaped as before."
+description: "The daemon now writes a refreshed maintenance-active marker during a background scan, and both launcher reap paths adopt a busy-but-healthy daemon instead of reaping it, so a heavy reindex survives launcher contention. The 018 cooperative yields plus a phase-boundary refresh keep a healthy scan's marker fresh; a wedged daemon's marker expires within its TTL and is reaped as before. Confirmed live: a full reindex completed in 330s without the daemon being reaped."
 trigger_phrases:
   - "maintenance grace daemon survives re-election summary"
   - "maintenance-active marker launcher adopt shipped"
@@ -53,11 +53,11 @@ _memory:
 
 A maintenance-grace marker that lets the launcher tell a busy maintenance scan apart from a wedged daemon. Three changes:
 
-- **A daemon marker writer** in `handlers/memory-index.ts`. When a background scan runs, the scan IIFE writes `<DATABASE_DIR>/.maintenance-active.json` (`{ childPid, activeUntilMs, jobId, refreshedAtIso }`, 60s TTL) and refreshes it every 20s. A `finally` clears the refresh timer and removes the marker on every terminal exit, so the marker exists only while a scan is genuinely running.
+- **A daemon marker writer** in `handlers/memory-index.ts`. When a background scan runs, the scan IIFE writes `<DATABASE_DIR>/.maintenance-active.json` (`{ childPid, activeUntilMs, jobId, refreshedAtIso }`, 180s TTL) and refreshes it both on a 20s interval timer and at every scan phase boundary. A `finally` clears the refresh timer and removes the marker on every terminal exit, so the marker exists only while a scan is genuinely running. The TTL must exceed the longest single synchronous scan phase: a phase that does not yield cannot fire the interval timer, so it only gets the phase-boundary refresh at its start, and the marker must outlast that phase. The first live run exposed this — a 60s TTL lapsed during a ~79s blocking tail phase and the daemon was reaped — which is why the TTL is 180s and the phase-boundary refresh was added.
 - **A pure supervision predicate** in `bin/lib/model-server-supervision.cjs`. `maintenanceMarkerPath`, `readMaintenanceMarker`, and `shouldAdoptDespiteProbe` (with injectable fs/now) read the marker and decide adopt-vs-reap, and are exported for both the launcher and the unit test.
 - **Adopt guards at both launcher reap sites** in `bin/mk-spec-memory-launcher.cjs`. An env-aware `maintenanceMarkerDir()` resolves the marker dir with the same DB-dir precedence as the daemon, and the guard is called at both the stale-reclaim adopt path and the dead-socket respawn path. A daemon with a fresh marker naming the live child is treated as alive-busy and adopted (or respawn is refused) instead of being reaped.
 
-The 018 cooperative yields are the discriminator: a healthy scan keeps its 20s refresh timer firing, so the marker stays fresh and the daemon is protected; a genuinely wedged daemon cannot fire the timer, so its marker expires within 60s and it is reaped exactly as before.
+The 018 cooperative yields plus the phase-boundary refresh are the discriminator: a healthy scan keeps its marker fresh, so the daemon is protected; a genuinely wedged daemon stops emitting phases and stops firing the timer, so its marker expires within the TTL and it is reaped exactly as before.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -90,7 +90,7 @@ Traced the re-election to `mk-spec-memory-launcher.cjs` (~line 1680) and `lib/la
 | Syntax | PASS: `node --check` OK on both touched `.cjs` files |
 | Unit test | PASS (see test files): `tests/launcher-maintenance-guard.vitest.ts` |
 | Isolated harness | PASS (see test files): `stress_test/durability/daemon-reelection-adoption-live.vitest.ts` adopt and stale-marker negative-control cases |
-| Full live reindex completion | DEFERRED: the deploy-time check (a real reindex running end-to-end on the live daemon) |
+| Full live reindex completion | PASS: a full force reindex completed in 330s on the live daemon (pid unchanged throughout — survived contention; the launcher log shows the marker driving repeated adopt/refuse-respawn decisions) after the TTL was raised to 180s |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -98,7 +98,7 @@ Traced the re-election to `mk-spec-memory-launcher.cjs` (~line 1680) and `lib/la
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-- The marker protects a recently-wedged daemon for up to its TTL (<=60s) before expiry-driven reaping resumes. This is an accepted bounded window: a daemon that wedges between refreshes keeps a fresh marker until it expires, after which the normal reap fires.
+- The marker protects a recently-wedged daemon for up to its TTL (<=180s) before expiry-driven reaping resumes. This is an accepted bounded window: a daemon that wedges between refreshes keeps a fresh marker until it expires, after which the normal reap fires.
 - The guarantee is that the busy daemon is not reaped, not that the contending launcher gets a live transport. A launcher that finds a marker-protected daemon reports lease-held and exits cleanly rather than bridging into a non-responsive socket, so a client reconnecting mid-scan (for example the editor MCP) is refused until the scan finishes and the daemon answers again. The running scan completes either way, which is the point.
-- Full live confirmation — a real reindex completing end-to-end on the live daemon — is the deploy-time check, not something the unit and isolated-harness tests assert.
+- The 180s TTL is a margin over the longest blocking tail phase observed (~79s), not a guarantee. The exact phase that blocks was not pinned down on the live daemon: the strongest static candidate is `runTriggerEmbeddingBackfill`'s unbounded `syncPhraseRows` transaction (`lib/search/trigger-embedding-backfill.ts`), but that path is gated by `SPECKIT_TRIGGER_EMBEDDING_BACKFILL`, which is off in this daemon, so the live blocker is elsewhere. Identifying it and making it cooperative (chunk-and-yield between transactions, as in 018) so the daemon stays responsive through it — rather than only unreaped — is the open follow-on. The unbounded trigger-backfill transaction should also be chunked before that flag is ever enabled.
 <!-- /ANCHOR:limitations -->

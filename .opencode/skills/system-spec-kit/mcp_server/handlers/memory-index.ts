@@ -1431,11 +1431,14 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
 
 // Maintenance-active marker written beside the DB while a BACKGROUND scan runs, so
 // a competing launcher adopts this daemon (busy-by-design) rather than reaping it
-// as wedged. The TTL outlives several refreshes; a healthy scan's cooperative
-// yields keep the refresh timer firing, so only a genuinely wedged daemon (no
-// yields) lets the marker lapse and become reapable again.
+// as wedged. The marker is refreshed by an interval timer AND at every phase
+// boundary. The TTL must exceed the longest single synchronous scan phase (a phase
+// that does not yield cannot fire the interval timer, so it only gets the
+// phase-boundary refresh at its start). A genuinely wedged daemon stops emitting
+// phases and stops firing the timer, so the marker still lapses and it becomes
+// reapable again.
 const MAINTENANCE_MARKER_FILE = '.maintenance-active.json';
-const MAINTENANCE_MARKER_TTL_MS = 60_000;
+const MAINTENANCE_MARKER_TTL_MS = 180_000;
 const MAINTENANCE_MARKER_REFRESH_MS = 20_000;
 
 /** Handle memory_index_scan tool — dispatches to a synchronous run or a background job.
@@ -1471,7 +1474,12 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
         maintenanceTimer.unref?.();
         const response = await runIndexScan(args, {
           isCancelled: () => isCancelRequestedFast(jobId),
-          onPhase: (phase) => { void setJobPhase(jobId, phase).catch(() => {}); },
+          onPhase: (phase) => {
+            // Refresh at each phase boundary so a long synchronous tail phase (which
+            // cannot fire the interval timer) still enters with a full TTL ahead.
+            writeMaintenanceMarker();
+            void setJobPhase(jobId, phase).catch(() => {});
+          },
           onProgress: (progress) => { void setJobProgress(jobId, progress).catch(() => {}); },
         });
         const scanData = extractEnvelopeData(response);
