@@ -15,7 +15,7 @@ contextType: implementation
 
 Prompt-craft for the design-generation tool the framework drives from the terminal: `mcp-open-design` (headless `start_run` against the installed Open Design app). The visible design it emits is driven by the generation prompt, so the prompt is where quality is won or lost.
 
-This reference owns the PROMPT only. The look and the anti-default mandate belong to `sk-interface-design` (`design_principles.md`). The run mechanics, gating, and reuse-before-generate loop belong to `mcp-open-design` and the shared `claude_design_parity.md`. Read this when a request is to write or improve a prompt that will be fed to that tool.
+This reference owns the PROMPT only. The look and the anti-default mandate belong to `sk-interface-design` (`design_principles.md`) and its `real_ui_loop.md`. The run mechanics and gating belong to `mcp-open-design`. Read this when a request is to write or improve a prompt that will be fed to that tool.
 
 ---
 
@@ -74,7 +74,7 @@ Ask a model for N design variations and it tends to emit the most-probable look 
 
 ### Guardrail (critical)
 
-The indexed options MUST be directions grounded in this subject and brief (the `claude_design_parity.md` §7 pre-build direction gate: two or three brief-specific sketches, each grounded in the subject). They must NOT be a reusable style menu, a pick-a-vibe list, or named aesthetic dials such as boldness or density. If the option set could be reused across briefs unchanged, it has become a preset and must not ship (`claude_design_parity.md` §8). The seed picks which grounded angle to commit to first. It never picks a canned style.
+The indexed options MUST be directions grounded in this subject and brief (the `real_ui_loop.md` §7 pre-build direction gate: two or three brief-specific sketches, each grounded in the subject). They must NOT be a reusable style menu, a pick-a-vibe list, or named aesthetic dials such as boldness or density. If the option set could be reused across briefs unchanged, it has become a preset and must not ship (`real_ui_loop.md` §8). The seed picks which grounded angle to commit to first. It never picks a canned style.
 
 ---
 
@@ -98,7 +98,7 @@ If the form still surfaces, answer it with `od ui respond --run <runId> <surface
 
 ## 5. HANDOFF TO sk-code
 
-When a generated design heads into application code, the handoff is already owned: emit the handoff manifest in `claude_design_parity.md` §6 (token system, files changed, key interactions, checks run, open risks, next `sk-code` steps), and let `sk-code` govern how generated or installed source is wired, adapted, and verified. Do not duplicate a handoff schema in the prompt. The prompt's job ends at the brief.
+When a generated design heads into application code, the handoff is already owned: emit the handoff manifest in `real_ui_loop.md` §6 (token system, files changed, key interactions, checks run, open risks, next `sk-code` steps), and let `sk-code` govern how generated or installed source is wired, adapted, and verified. Do not duplicate a handoff schema in the prompt. The prompt's job ends at the brief.
 
 ---
 
@@ -115,6 +115,6 @@ When a generated design heads into application code, the handoff is already owne
 
 - [patterns_evaluation.md](./patterns_evaluation.md) is the source of truth for COSTAR, CRISPE, CRAFT, and CLEAR scoring.
 - [depth_framework.md](./depth_framework.md) owns the DEPTH pass and the context-aware CLEAR weighting this pattern leans on.
-- `.opencode/skills/sk-interface-design/references/design-process/claude_design_parity.md` owns the reuse-before-generate loop, the pre-build direction gate (§7), the handoff manifest (§6), and the no-preset guardrail (§8).
+- `.opencode/skills/sk-interface-design/references/design-process/real_ui_loop.md` owns the reuse-before-generate loop, the pre-build direction gate (§7), the handoff manifest (§6), and the no-preset guardrail (§8).
 - `.opencode/skills/sk-interface-design/references/design-process/design_principles.md` owns the look and the anti-default mandate.
 - `.opencode/skills/mcp-open-design/SKILL.md` owns the run transport this brief feeds.

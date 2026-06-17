@@ -43,7 +43,6 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-interface-design/references/variation_diversity.md",
       ".opencode/skills/sk-interface-design/SKILL.md",
       ".opencode/skills/sk-interface-design/changelog/v1.2.0.0.md",
       ".opencode/skills/sk-interface-design/graph-metadata.json",
@@ -55,12 +54,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "variation_diversity.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-interface-design/references/variation_diversity.md",
-        "source": "derived"
-      },
       {
         "name": "SKILL.md",
         "kind": "doc",
@@ -198,11 +191,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Adapt the string seed-of-thought technique to the skill's grounded, anti-default philosophy and ship it as a reference plus a lean SKILL.md hook. A committed random seed sets a non-median starting point inside a subject-grounded option space, then the remaining directions are spread to be genuinely distinct. Grounding, the critique against AI-default looks, and the quality floor stay primary. The seed only breaks the tie the median would otherwise win.",
     "created_at": "2026-06-14T14:30:00Z",
-    "last_save_at": "2026-06-15T09:09:33.187Z",
+    "last_save_at": "2026-06-16T14:27:20.549Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

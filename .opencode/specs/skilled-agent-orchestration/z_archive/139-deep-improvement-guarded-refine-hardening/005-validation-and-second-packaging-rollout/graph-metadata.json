@@ -1,0 +1,11 @@
+Packet: skilled-agent-orchestration/139-deep-improvement-guarded-refine-hardening/005-validation-and-second-packaging-rollout
+Spec Folder: skilled-agent-orchestration/139-deep-improvement-guarded-refine-hardening/005-validation-and-second-packaging-rollout
+Status: planned
+Importance Tier: important
+Summary: Prove the hardened system end to end on the pilot, then demonstrate the contract generalizes by onboarding a second packaging — closing the loop the council demanded: no autonomy claims without live evidence.
+Parent: skilled-agent-orchestration/139-deep-improvement-guarded-refine-hardening
+Migrated: true
+Migration Source: legacy
+Key Topics: prove, hardened, system, end, pilot, demonstrate, contract, generalizes, onboarding, second, packaging, closing
+Key Files: spec.md
+Source Docs: spec.md

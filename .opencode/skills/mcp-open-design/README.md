@@ -102,7 +102,7 @@ Generation is multi-turn. `start_run(prompt, ...)` (MCP) or `od run start` (CLI)
 
 ### Design Grounding And Reuse
 
-When a read or run feeds a design decision, the work becomes design work, and the judgment belongs to `sk-interface-design` as a **hard precondition, not an option**. The agent MUST load it and run ground then token-system then critique BEFORE deciding, shape the brief and discovery-form answers with that judgment, and only then reuse one resolved system's tokens and components at build time. It can never produce or shape an interface from Open Design without `sk-interface-design`; this skill owns the transport and that skill owns the non-negotiable taste. Only pure transport (wiring the MCP server, bare inventory that feeds no design decision) is exempt. The two skills share the reuse-before-generate protocol in `claude_design_parity.md`. Guardrails survive the integration: no style chooser across the roughly 150 systems, at most one system resolved from the brief, and Open Design as input to judgment rather than authority.
+When a read or run feeds a design decision, the work becomes design work, and the judgment belongs to `sk-interface-design` as a **hard precondition, not an option**. The agent MUST load it and run ground then token-system then critique BEFORE deciding, shape the brief and discovery-form answers with that judgment, and only then reuse one resolved system's tokens and components at build time. It can never produce or shape an interface from Open Design without `sk-interface-design`; this skill owns the transport and that skill owns the non-negotiable taste. Only pure transport (wiring the MCP server, bare inventory that feeds no design decision) is exempt. The two skills share the reuse-before-generate protocol in the real-UI loop (`sk-interface-design`'s `real_ui_loop.md`; this skill's Open Design transport for it is in `references/design_parity_transport.md`). Guardrails survive the integration: no style chooser across the roughly 150 systems, at most one system resolved from the brief, and Open Design as input to judgment rather than authority.
 
 ---
 
@@ -116,7 +116,7 @@ Reach for this skill whenever a user mentions Open Design, wants to wire it into
 
 | Skill | Relationship |
 |---|---|
-| `sk-interface-design` | **MANDATORY partner for all design work.** Owns the design judgment; any generation run or design-feeding read MUST load it and run ground → token-system → critique first, and you can never produce or shape UI from Open Design without it. This skill is the transport, that skill is the non-negotiable taste. Pure transport (wiring, bare inventory) is exempt. The two share `claude_design_parity.md`. |
+| `sk-interface-design` | **MANDATORY partner for all design work.** Owns the design judgment; any generation run or design-feeding read MUST load it and run ground → token-system → critique first, and you can never produce or shape UI from Open Design without it. This skill is the transport, that skill is the non-negotiable taste. Pure transport (wiring, bare inventory) is exempt. The two share the real-UI loop (`real_ui_loop.md`). |
 | `sk-code` | Owns application-code standards for adapting any reused tokens or components into a real app. |
 | `mcp-figma` | The sibling terminal-driven design tool for Figma Desktop, a CLI plus optional MCP hybrid with the same daemon and gating shape. |
 | `mcp-chrome-devtools` | A real-browser surface for a last-mile visual preview only. It is never the way to operate Open Design. |
@@ -188,5 +188,5 @@ A: This skill is the transport that reads and writes Open Design content. `sk-in
 | [`references/od_cli_reference.md`](./references/od_cli_reference.md) | Locating the CLI, the daemon socket model, and the full verb surface with read-only vs mutating classification |
 | [`references/mcp_wiring.md`](./references/mcp_wiring.md) | Wiring the MCP server into opencode and Claude Code, the written config shape, and the manual fallback |
 | [`references/tool_surface.md`](./references/tool_surface.md) | The roughly 18 MCP tools, the surface, gate, and omit policy, and the live-verification requirement |
-| [`claude_design_parity.md`](../sk-interface-design/references/design-process/claude_design_parity.md) | The shared reuse-before-generate and critique protocol that grounding follows |
+| [`references/design_parity_transport.md`](./references/design_parity_transport.md) | The Open Design transport mechanics for the real-UI loop (the loop itself lives in `sk-interface-design`) |
 | [Skills Library](../README.md) | The skill catalog and routing front door |

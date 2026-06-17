@@ -29,6 +29,8 @@ How to put real-world shipped UI to work as judgment input without letting it tu
 - When a flow carries strong user-expectation conventions (checkout, onboarding, settings) and you want to honor the convention where it serves the user and break it only where breaking it earns its keep.
 - When you want to name the expected real-world look for a brief in one line, then deviate deliberately.
 
+The skill decides whether to reach for a reference on its own initiative or by asking the user; Section 3 owns that decision gate and the Mobbin-vs-Refero source pick.
+
 ### Source Of The References
 
 - **Mobbin** (`mobbin.*` via Code Mode): real iOS and web app screens and flows. Two tools, `mobbin_search_screens` and `mobbin_search_flows`, take a natural-language `query` and a required `platform` of `ios` or `web`. Each result carries a `mobbin_url` worth citing back to the user.
@@ -67,12 +69,24 @@ Unlike a design system in `design_inventory.md`, which the user owns locally and
 
 ## 3. HOW TO USE IT IN THE PROCESS
 
-This plugs into **STEP 2 (critique the plan against the defaults)** of the `design_principles.md` process, alongside `design_inventory.md`:
+This plugs into **STEP 2 (critique the plan against the defaults)** of the `design_principles.md` process, alongside `design_inventory.md`. The skill decides for itself whether to consult, by initiative or by asking, rather than waiting to be told.
 
-1. Name the subject and brief (STEP 0-1).
-2. Resolve one real-world reference from the subject and brief through Code Mode. Name the single closest realized default for the category.
-3. Write one line: "the real-world default here is X." That X is now a constraint to push against. Note any convention genuinely worth honoring.
-4. Take your one justified aesthetic risk away from the named default. Keep the quality floor.
+### Deciding whether to consult (initiative or ask)
+
+After grounding the subject (STEP 0-1), judge whether a real-world reference would actually sharpen the work, then choose how to act:
+
+1. **Does it help?** A reference is worth pulling when the brief sits in a convention-heavy or crowded category where the real-world default is strong and worth naming to push against: checkout and payment, onboarding and auth, settings and account, dashboards and analytics, social feeds, pricing pages, data tables, calendars and scheduling, messaging and chat, search and filters. It helps little for a highly novel or bespoke brief, or when the brief already pins the direction.
+2. **Initiative or ask:**
+   - **Take the initiative** when the category clearly benefits AND a Mobbin/Refero subscription is connected: resolve ONE reference, name the default in one line, cite its URL back to the user, and proceed. Say that you did it.
+   - **Ask the user first** when it is borderline, when the subscription status is unknown, or when an unprompted paid lookup would be surprising: one line, for example "This is a <category> UI — want me to pull a real-world reference from Mobbin or Refero to name the default and deviate?" Proceed on yes.
+   - **Fall back** when no subscription is connected or the user declines: the free-axis anti-default process in `design_principles.md` governs exactly as before. This is never blocking.
+3. **Pick the source by surface:** Mobbin for native/iOS or in-app screens and flows; Refero for web marketing/product pages and visual-style direction (search styles first). If both could fit, match the design target's platform.
+
+### Then name the default and deviate
+
+1. Resolve one real-world reference from the subject and brief through Code Mode. Name the single closest realized default for the category.
+2. Write one line: "the real-world default here is X." That X is now a constraint to push against. Note any convention genuinely worth honoring.
+3. Take your one justified aesthetic risk away from the named default. Keep the quality floor.
 
 If a brief explicitly pins the direction, the brief wins (NEVER override a pinned brief), even when it asks for the real-world default look.
 
@@ -91,7 +105,7 @@ If a brief explicitly pins the direction, the brief wins (NEVER override a pinne
 ## 5. RELATED RESOURCES
 
 - [design_principles.md](../design-process/design_principles.md) sets the aesthetic direction and the anti-default mandate this reference helps you deviate from, and stays the authority.
-- [design_inventory.md](./design_inventory.md) is the sibling critique-against (and reuse-ground) path for a real design system read via `mcp-open-design`. Same one-reference, no-chooser, read-live discipline.
+- [design_inventory.md](./design_inventory.md) is the sibling critique-against (and reuse-ground) path for a real design system you own. Same one-reference, no-chooser, read-live discipline.
 - [mobbin_tools.md](../mcp-tooling/mobbin_tools.md) and [refero_tools.md](../mcp-tooling/refero_tools.md) are the tool catalogs for the two MCPs: arguments, the verified Code Mode call convention, result shapes, and troubleshooting.
 - [ux_quality_reference.md](../design-process/ux_quality_reference.md) holds the quality floor every deviation must still clear.
-- [claude_design_parity.md](../design-process/claude_design_parity.md) owns the no-chooser guardrail across the design loop.
+- [real_ui_loop.md](../design-process/real_ui_loop.md) owns the no-chooser guardrail across the design loop.

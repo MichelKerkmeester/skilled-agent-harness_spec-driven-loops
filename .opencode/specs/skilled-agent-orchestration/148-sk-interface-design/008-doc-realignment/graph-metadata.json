@@ -39,7 +39,6 @@
     "status": "complete",
     "key_files": [
       "scripts/README.md",
-      ".opencode/skills/sk-interface-design/references/claude_design_parity.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -50,12 +49,6 @@
         "name": "README.md",
         "kind": "doc",
         "path": "scripts/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "claude_design_parity.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-interface-design/references/claude_design_parity.md",
         "source": "derived"
       },
       {
@@ -189,11 +182,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 007 keystone added the Claude Design parity protocol (`claude_design_parity.md`), the `previewImageUrl` fidelity loop, reuse-before-generate, and the `design_fidelity.py` helper. But the feature catalog, manual testing playbook, and README for `sk-interface-design` were authored in 004 (before 007), and `mcp-magicpath`'s README + scripts README predate its new canvas-side parity rule + helper. These docs no longer match reality.",
     "created_at": "2026-06-14T10:00:00Z",
-    "last_save_at": "2026-06-15T09:09:33.176Z",
+    "last_save_at": "2026-06-16T14:27:20.529Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

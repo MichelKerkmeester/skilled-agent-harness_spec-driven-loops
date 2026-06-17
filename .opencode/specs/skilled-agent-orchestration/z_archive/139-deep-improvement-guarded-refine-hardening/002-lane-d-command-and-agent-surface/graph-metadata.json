@@ -1,0 +1,11 @@
+Packet: skilled-agent-orchestration/139-deep-improvement-guarded-refine-hardening/002-lane-d-command-and-agent-surface
+Spec Folder: skilled-agent-orchestration/139-deep-improvement-guarded-refine-hardening/002-lane-d-command-and-agent-surface
+Status: planned
+Importance Tier: important
+Summary: Give Lane D first-class parity with lanes A/B/C: a Layer-2 command, advisor routing, and the skill's standard documentation surfaces. Today Lane D is reachable only by invoking `loop-host.cjs` directly.
+Parent: skilled-agent-orchestration/139-deep-improvement-guarded-refine-hardening
+Migrated: true
+Migration Source: legacy
+Key Topics: give, lane, first-class, parity, lanes, layer-2, command, advisor, routing, skill, standard, documentation
+Key Files: spec.md
+Source Docs: spec.md

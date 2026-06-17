@@ -26,7 +26,7 @@ Asked for five variations, a model tends to return five versions of the same saf
 ### When to Use
 
 - Whenever the brief asks for more than one direction, a set of options, or "a few" layouts to compare.
-- As the debiasing engine behind the pre-build direction gate in [`claude_design_parity.md`](./claude_design_parity.md) Section 7, which sketches and critiques two or three brief-specific directions before building.
+- As the debiasing engine behind the pre-build direction gate in [`real_ui_loop.md`](./real_ui_loop.md) Section 7, which sketches and critiques two or three brief-specific directions before building.
 
 ### The Role of the Seed
 
@@ -110,7 +110,7 @@ The difference from the raw recipe is the index space. The raw recipe indexes in
 ## 6. GUARDRAILS
 
 - **Never a style chooser.** The candidate set and the seed math live in the agent's reasoning and the handoff trail. The user is never shown a pick-a-vibe or pick-a-layout menu. The seed indexes into a grounded space, it does not surface that space as a selectable list.
-- **Never a reusable preset.** The candidates are generated from this subject. If the same option set could be dropped onto a different brief, it has become a preset and must not ship, the same bar the parity protocol sets in [`claude_design_parity.md`](./claude_design_parity.md) Sections 7 and 8.
+- **Never a reusable preset.** The candidates are generated from this subject. If the same option set could be dropped onto a different brief, it has become a preset and must not ship, the same bar the parity protocol sets in [`real_ui_loop.md`](./real_ui_loop.md) Sections 7 and 8.
 - **Never overrides grounding.** A seed selection that fails the critique is dropped, not kept. The seed has no authority over what is correct for the subject.
 - **Single direction is out of scope.** When one design is wanted, the standard critique against defaults already does the debiasing. Do not invent extra variations to justify a seed.
 
@@ -119,5 +119,5 @@ The difference from the raw recipe is the index space. The raw recipe indexes in
 ## 7. RELATED RESOURCES
 
 - [design_principles.md](./design_principles.md) owns the grounded, anti-default process this mechanism protects.
-- [claude_design_parity.md](./claude_design_parity.md) Section 7 is the pre-build direction gate this mechanism debiases, and Sections 7 and 8 set the no-preset guardrail.
+- [real_ui_loop.md](./real_ui_loop.md) Section 7 is the pre-build direction gate this mechanism debiases, and Sections 7 and 8 set the no-preset guardrail.
 - [ux_quality_reference.md](./ux_quality_reference.md) is the objective floor each produced direction must clear before it ships.

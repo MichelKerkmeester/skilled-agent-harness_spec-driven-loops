@@ -44,7 +44,6 @@
     "status": "complete",
     "key_files": [
       ".opencode/skills/sk-interface-design/SKILL.md",
-      ".opencode/skills/sk-interface-design/references/design_principles.md",
       ".opencode/skills/sk-interface-design/LICENSE.txt",
       ".opencode/skills/sk-interface-design/README.md",
       ".opencode/skills/sk-interface-design/graph-metadata.json",
@@ -61,12 +60,6 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-interface-design/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "design_principles.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-interface-design/references/design_principles.md",
         "source": "derived"
       },
       {
@@ -200,11 +193,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "operator",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The framework produced templated, generic UI when asked for design work (a MagicPath sector variation that did not read as on-brand). There was no reusable, advisor-routable guidance for distinctive visual design. Anthropic publishes a strong `frontend-design` skill, but it is shaped for its own plugin ecosystem, not this repository's curated `.opencode/skills` conventions (family prefixes, house SKILL/README/reference templates, schema-2 graph metadata, catalog index, advisor SQLite graph).",
     "created_at": "2026-06-13T15:00:00Z",
-    "last_save_at": "2026-06-15T09:09:33.165Z",
+    "last_save_at": "2026-06-16T14:27:20.520Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

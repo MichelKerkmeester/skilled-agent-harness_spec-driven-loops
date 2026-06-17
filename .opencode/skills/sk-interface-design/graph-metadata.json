@@ -22,11 +22,6 @@
     "conflicts_with": [],
     "prerequisite_for": [
       {
-        "target": "mcp-open-design",
-        "weight": 0.7,
-        "context": "mcp-open-design applies this skill's anti-default judgment whenever an Open Design read or run feeds a design decision"
-      },
-      {
         "target": "mcp-figma",
         "weight": 0.7,
         "context": "mcp-figma applies this skill's anti-default judgment whenever a Figma read or export feeds a design decision"
@@ -35,7 +30,7 @@
   },
   "manual": {
     "depends_on": [],
-    "related_to": ["sk-code", "sk-code-review", "mcp-chrome-devtools", "mcp-open-design", "mcp-figma"]
+    "related_to": ["sk-code", "sk-code-review", "mcp-chrome-devtools", "mcp-figma"]
   },
   "domains": ["frontend", "ui-design", "visual-design", "typography", "design-systems"],
   "intent_signals": [
@@ -79,7 +74,7 @@
       "avoiding AI-default looks",
       "brainstorm-critique-build process",
       "interface writing",
-      "live open design grounding via mcp-open-design",
+      "real design system grounding (reuse or critique-against)",
       "ux quality-floor reference",
       "reuse-ground or critique-against design system",
       "seed-of-thought variation diversity"
@@ -100,7 +95,7 @@
       ".opencode/skills/sk-interface-design/references/design-process/design_principles.md",
       ".opencode/skills/sk-interface-design/references/design-process/ux_quality_reference.md",
       ".opencode/skills/sk-interface-design/references/design-grounding/design_inventory.md",
-      ".opencode/skills/sk-interface-design/references/design-process/claude_design_parity.md",
+      ".opencode/skills/sk-interface-design/references/design-process/real_ui_loop.md",
       ".opencode/skills/sk-interface-design/references/design-process/variation_diversity.md",
       ".opencode/skills/sk-interface-design/references/design-grounding/design_references_mcp.md",
       ".opencode/skills/sk-interface-design/references/mcp-tooling/mobbin_tools.md",
@@ -129,7 +124,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "sk-interface-design vendored from Anthropic's frontend-design skill (Apache-2.0) to give the framework reusable, advisor-routable guidance for distinctive UI design. It owns aesthetic direction (palette, typography, layout, motion, copy) and a brainstorm-critique-build process that avoids templated AI defaults; sk-code owns the implementation. Lean house-template SKILL.md routes to the full principles in references/design-process/design_principles.md. The skill is Apache-2.0 only: the design principles are unchanged vendored Apache content and LICENSE.txt is its single license. The aesthetic inventory is sourced live from a real Open Design design system through the mcp-open-design skill, read only when that app is installed, and used as either reuse-ground (reuse its tokens and components before generating) or critique-against (name the closest realized default, then deviate). Exactly one system is resolved from the subject, never a chooser, and nothing is cached into the skill, which keeps it free of any third party license burden. The objective quality floor stays authored in references/design-process/ux_quality_reference.md as paraphrased non-copyrightable facts. When a brief asks for two or more directions, references/design-process/variation_diversity.md applies a seed-of-thought debias so the set is not N safe copies of the median: a committed random seed picks a non-median start in a subject-grounded option space and the rest are spread to be distinct, with grounding and the anti-default critique still primary and never a style chooser. The skill ships a feature_catalog/ and a manual_testing_playbook/ for sk-doc alignment.",
+    "causal_summary": "sk-interface-design vendored from Anthropic's frontend-design skill (Apache-2.0) to give the framework reusable, advisor-routable guidance for distinctive UI design. It owns aesthetic direction (palette, typography, layout, motion, copy) and a brainstorm-critique-build process that avoids templated AI defaults; sk-code owns the implementation. Lean house-template SKILL.md routes to the full principles in references/design-process/design_principles.md. The skill is Apache-2.0 only: the design principles are unchanged vendored Apache content and LICENSE.txt is its single license. The aesthetic inventory can be sourced live from a real design system you own, used as either reuse-ground (reuse its tokens and components before generating) or critique-against (name the closest realized default, then deviate). Exactly one system is resolved from the subject, never a chooser, and nothing is cached into the skill, which keeps it free of any third party license burden. The objective quality floor stays authored in references/design-process/ux_quality_reference.md as paraphrased non-copyrightable facts. When a brief asks for two or more directions, references/design-process/variation_diversity.md applies a seed-of-thought debias so the set is not N safe copies of the median: a committed random seed picks a non-median start in a subject-grounded option space and the rest are spread to be distinct, with grounding and the anti-default critique still primary and never a style chooser. The skill ships a feature_catalog/ and a manual_testing_playbook/ for sk-doc alignment.",
     "source_docs": [
       "SKILL.md",
       "README.md",

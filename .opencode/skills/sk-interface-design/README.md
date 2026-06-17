@@ -88,7 +88,7 @@ Words exist to make an interface easier to use. The skill writes from the end us
 
 ### Producing Real UI
 
-When the work moves past a plan into a real render, on a recreated repo, an Open Design generation run, or code, the skill follows a shared parity loop with `mcp-open-design`: ground in the design system, reuse components and tokens before generating, check the real render against the quality floor and the anti-default critique, then hand off cleanly. It stays a loop, not a product, and never adds a style-preset menu. The loop lives in [`references/design-process/claude_design_parity.md`](./references/design-process/claude_design_parity.md).
+When the work moves past a plan into a real render, on a recreated repo, a generation run, or code, the skill follows the real-UI loop: ground in the design system, reuse components and tokens before generating, check the real render against the quality floor and the anti-default critique, then hand off cleanly. It stays a loop, not a product, and never adds a style-preset menu. The loop lives in [`references/design-process/real_ui_loop.md`](./references/design-process/real_ui_loop.md).
 
 ### Where The Detail Lives
 
@@ -160,11 +160,10 @@ A: It is vendored from Anthropic's official `frontend-design` skill under Apache
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, REFERENCES (house template) |
 | [`references/design-process/design_principles.md`](./references/design-process/design_principles.md) | Full verbatim guidance: grounding, design principles, two-pass process, restraint, interface writing |
-| [`references/design-process/claude_design_parity.md`](./references/design-process/claude_design_parity.md) | The shared parity loop with `mcp-open-design`: ground in a system, reuse before generating, fidelity check, handoff |
+| [`references/design-process/real_ui_loop.md`](./references/design-process/real_ui_loop.md) | The real-UI loop: ground in a system, reuse before generating, fidelity check, handoff |
 | [`references/design-process/variation_diversity.md`](./references/design-process/variation_diversity.md) | Seed-of-thought debias for two or more directions: a non-median start in a grounded option space, spread to be distinct, never a style chooser |
 | [`references/design-grounding/design_references_mcp.md`](./references/design-grounding/design_references_mcp.md) | Real-world critique-against references (Mobbin, Refero via Code Mode): name the category's real-world default, then deviate. One reference, read live, never copied. Tool catalogs in `references/mcp-tooling/` |
 | [`LICENSE.txt`](./LICENSE.txt) | Apache-2.0 license and attribution for the vendored Anthropic content |
 | [`sk-code`](../sk-code/README.md) | Implementation partner: builds and verifies the design for the target web surface |
-| [`mcp-open-design`](../mcp-open-design/README.md) | Optional transport to a real Open Design design system for grounding and reuse, through the shared parity loop |
-| [`mcp-figma`](../mcp-figma/README.md) | Sibling transport (Figma Desktop). This skill judges the design decisions its reads and exports feed, as it does for `mcp-open-design` |
+| [`mcp-figma`](../mcp-figma/README.md) | Sibling transport (Figma Desktop). This skill judges the design decisions its reads and exports feed |
 | [Skills Library](../README.md) | The skill catalog and routing front door |

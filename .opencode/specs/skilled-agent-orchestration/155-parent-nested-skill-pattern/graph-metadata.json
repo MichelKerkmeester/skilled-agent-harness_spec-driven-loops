@@ -38,9 +38,7 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      "research/research.md",
-      ".opencode/commands/create/parent-skill.md",
-      "001-rename-fix-and-shared-decision/decision-record.md"
+      "research/research.md"
     ],
     "entities": [
       {
@@ -53,12 +51,6 @@
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "parent-skill.md",
-        "kind": "doc",
-        "path": ".opencode/commands/create/parent-skill.md",
         "source": "derived"
       },
       {
@@ -116,12 +108,6 @@
         "source": "derived"
       },
       {
-        "name": "Apply Correction",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
         "name": "nested",
         "kind": "key_phrase",
         "path": "research/research.md",
@@ -132,11 +118,17 @@
         "kind": "key_phrase",
         "path": "research/research.md",
         "source": "derived"
+      },
+      {
+        "name": "three",
+        "kind": "key_phrase",
+        "path": "research/research.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 152 epic merged five deep-loop skills into one `deep-loop-workflows` skill structured as a thin hub `SKILL.md` + `mode-registry.json` + five internal mode packets, with the packets deliberately **non-discoverable** (one advisor identity). That made `deep-loop-workflows` the framework's **first parent skill with nested sub-skills**. The operator then **renamed four packet folders** to carry the `deep-` prefix that matches each packet's own `SKILL.md` `name:` (`context→deep-context`, `research→deep-research`, `review→deep-review`, `improvement→deep-improvement`; `ai-council` left as-is). This (a) **broke the path references the 152 build had wired to the bare names**, and (b) crystallized a one-off structure into something the operator wants to turn into a **deliberate, advisor-optimized, documented and tooled architectural standard**. A core finding sharpens the optimization target: `mode-registry.json` — the nominal \"single source of truth\" — is **not actually consumed by the advisor**; routing is hardcoded in Python (`skill_advisor.py` `DEEP_ROUTING_MODE_BY_KEY`) and TypeScript (`aliases.ts` `DEEP_MODE_BY_CANONICAL`) and can drift from the registry.",
     "created_at": "2026-06-15T09:09:33.215Z",
-    "last_save_at": "2026-06-15T14:54:58.382Z",
+    "last_save_at": "2026-06-16T14:27:20.582Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

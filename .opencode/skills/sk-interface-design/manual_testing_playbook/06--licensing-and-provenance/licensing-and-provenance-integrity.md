@@ -15,7 +15,7 @@ This scenario validates Licensing and provenance integrity for `ID-007`. It focu
 
 ### Why This Matters
 
-ID-007 protects the skill's right to ship. After the de-vendor, the only licensed content is the vendored Apache-2.0 guidance from Anthropic's `frontend-design` skill. The vendored MIT data and search were removed, and the aesthetic inventory is now sourced live from a real Open Design system through `mcp-open-design` and never copied into the skill. If the Apache principles drift from upstream, if `LICENSE.txt` is missing, or if any leftover vendored MIT data, search-script, vendored-license, or third party notice material is left behind, the skill carries a provenance defect that blocks release regardless of how good the design output is. A clean grep over the legacy de-vendor tokens is the pass signal.
+ID-007 protects the skill's right to ship. After the de-vendor, the only licensed content is the vendored Apache-2.0 guidance from Anthropic's `frontend-design` skill. The vendored MIT data and search were removed, and the aesthetic inventory is now sourced live from a real design system and never copied into the skill. If the Apache principles drift from upstream, if `LICENSE.txt` is missing, or if any leftover vendored MIT data, search-script, vendored-license, or third party notice material is left behind, the skill carries a provenance defect that blocks release regardless of how good the design output is. A clean grep over the legacy de-vendor tokens is the pass signal.
 
 ---
 

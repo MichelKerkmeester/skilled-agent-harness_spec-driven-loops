@@ -41,8 +41,6 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-doc/assets/command_template.md",
-      ".opencode/skills/sk-doc/assets/command_presentation_template.md",
       "spec.md",
       "plan.md",
       ".opencode/commands/speckit/plan.md",
@@ -50,18 +48,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "command_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/command_template.md",
-        "source": "derived"
-      },
-      {
-        "name": "command_presentation_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/command_presentation_template.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -193,11 +179,23 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Router Contract",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Owned Assets",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 011 separated workflow routing from Markdown presentation contracts across four command families — memory, speckit, create, and doctor. Each command in those families became a thin router that resolves mode and loads three owned assets: `_auto.yaml` (auto workflow), `_confirm.yaml` (confirm workflow), and `_presentation.md` (startup questions, dashboards, results display).",
     "created_at": "2026-06-11T00:00:00Z",
-    "last_save_at": "2026-06-12T04:40:47.911Z",
+    "last_save_at": "2026-06-16T14:27:21.618Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -133,6 +133,9 @@ Summary of aggregate file scope. Per-phase detail lives in each child's plan.md.
 | 013 | `013-provenance-injection/` | Automated reducer/feedback writers inject source-kind provenance so the write-ingress guard holds | Complete |
 | 014 | `014-idempotency-flag-on-correctness/` | Flag-ON correctness for memory idempotency — verbatim replay, immutable first-write receipts | Complete |
 
+| 15 | 015-retrieval-gating-and-recall-recovery/ | [Phase 15 scope] | Pending |
+| 16 | 016-search-and-output-intelligence-research/ | [Phase 16 scope] | Pending |
+| 17 | 017-search-and-output-intelligence-implementation/ | [Phase 17 scope] | Pending |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins.
@@ -145,6 +148,9 @@ Summary of aggregate file scope. Per-phase detail lives in each child's plan.md.
 | From | To | Criteria | Verification |
 |------|----|----------|--------------|
 | (per-child) | (next child) | Each child ships and validates independently under tolerant policy | Per-child strict validation evidence |
+| 014-idempotency-flag-on-correctness | 015-retrieval-gating-and-recall-recovery | [Criteria TBD] | [Verification TBD] |
+| 015-retrieval-gating-and-recall-recovery | 016-search-and-output-intelligence-research | [Criteria TBD] | [Verification TBD] |
+| 016-search-and-output-intelligence-research | 017-search-and-output-intelligence-implementation | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

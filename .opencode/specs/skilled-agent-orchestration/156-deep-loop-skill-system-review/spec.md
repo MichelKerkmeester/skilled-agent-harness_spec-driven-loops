@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/156-deep-loop-skill-system-review"
+    packet_pointer: "skilled-agent-orchestration/152-deep-loop-workflows/010-deep-loop-skill-system-review"
     last_updated_at: "2026-06-15T19:40:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Authored control docs for the delivered review workspace"
@@ -38,15 +38,15 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-| Field | Value |
-|-------|-------|
-| **Level** | 2 |
-| **Priority** | P1 |
-| **Status** | Complete |
-| **Created** | 2026-06-15 |
-| **Branch** | `system-speckit/027-xce-research-based-refinement` |
-| **Type** | Read-only deep review (review workspace, not a feature packet) |
-| **Reviews** | `../152-deep-loop-workflows`, `../153-mcp-skill-install-doctor-standardization`, `../155-parent-nested-skill-pattern` |
+| Field        | Value                                                                                                                          |
+| --------------| --------------------------------------------------------------------------------------------------------------------------------|
+| **Level**    | 2                                                                                                                              |
+| **Priority** | P1                                                                                                                             |
+| **Status**   | Complete                                                                                                                       |
+| **Created**  | 2026-06-15                                                                                                                     |
+| **Branch**   | `system-speckit/027-xce-research-based-refinement`                                                                             |
+| **Type**     | Read-only deep review (review workspace, not a feature packet)                                                                 |
+| **Reviews**  | `../../152-deep-loop-workflows`, `../../153-mcp-skill-install-doctor-standardization`, `../../155-parent-nested-skill-pattern` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -121,7 +121,7 @@ This review is complete when:
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-**Depends on:** the three reviewed packets (`../152-deep-loop-workflows`, `../153-mcp-skill-install-doctor-standardization`, `../155-parent-nested-skill-pattern`) existing in their shipped form, and the `review/deep-review-config.json` executor stack being reachable.
+**Depends on:** the three reviewed packets (`../../152-deep-loop-workflows`, `../../153-mcp-skill-install-doctor-standardization`, `../../155-parent-nested-skill-pattern`) existing in their shipped form, and the `review/deep-review-config.json` executor stack being reachable.
 
 - **False escalation** (a discovery seat over-reports a P1 that is correct-by-design) — mitigated by the round-2 refute pass, which downgraded/refuted ~7 of the escalated findings.
 - **False completion read** (treating a finding as confirmed without opening the cited code) — mitigated by file:line evidence on every surviving finding and an orchestrator-executed resolution check (the 23-require resolution that refuted the "broken requires" hypothesis).
@@ -175,5 +175,5 @@ None blocking the review (it is delivered). The one operator decision the report
 - **The deliverable**: `review/review-report.md` (verdict, findings, refuted list, remediation plan).
 - **Review config**: `review/deep-review-config.json` (executor stack, allocation, round structure).
 - **Evidence**: `review/deltas/iter-00*.jsonl` (per-iteration findings), `review/iterations/iteration-000-scope-foundation.md`.
-- **Reviewed packets**: `../152-deep-loop-workflows`, `../153-mcp-skill-install-doctor-standardization`, `../155-parent-nested-skill-pattern`.
+- **Reviewed packets**: `../../152-deep-loop-workflows`, `../../153-mcp-skill-install-doctor-standardization`, `../../155-parent-nested-skill-pattern`.
 - **Top remediation target**: `.opencode/skills/sk-doc/references/skill_creation.md` (the dissection candidate).

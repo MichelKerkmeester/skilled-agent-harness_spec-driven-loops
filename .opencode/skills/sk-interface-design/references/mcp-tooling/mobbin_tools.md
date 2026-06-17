@@ -76,7 +76,7 @@ Each tool returns the MCP **content array**. The FIRST block is the parsed data 
 
 | Symptom | Cause | Fix |
 |---------|-------|-----|
-| Every call returns `-32000 Connection closed` and the whole Code Mode connection drops | Code Mode is on Node 25 (isolated-vm SIGSEGV at isolate creation) | Run Code Mode on Node 24 and rebuild isolated-vm (see `mcp-open-design/references/mcp_wiring.md` and the launcher pin) |
+| Every call returns `-32000 Connection closed` and the whole Code Mode connection drops | Code Mode is on Node 25 (isolated-vm SIGSEGV at isolate creation) | Run Code Mode on Node 24 and rebuild isolated-vm (the Code Mode launcher pin) |
 | `mobbin.*` tools do not resolve | Manual not loaded, or OAuth not completed | Reconnect Code Mode (manuals load at startup); complete the browser OAuth |
 | `await is only valid in async functions...` | Top-level `await` in the call_tool_chain body | Call synchronously, no `await` |
 

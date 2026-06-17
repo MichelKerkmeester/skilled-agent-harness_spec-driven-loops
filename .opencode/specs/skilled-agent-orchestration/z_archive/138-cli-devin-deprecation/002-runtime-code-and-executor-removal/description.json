@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/138-cli-devin-deprecation/002-runtime-code-and-executor-removal",
+  "description": "Feature Specification: Phase 2: runtime-code-and-executor-removal",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "runtime-code-and-executor-removal"
+  ],
+  "lastUpdated": "2026-06-15T18:16:13.847Z",
+  "specId": "002",
+  "folderSlug": "runtime-code-and-executor-removal",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "138-cli-devin-deprecation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -88,6 +88,8 @@ Build `sk-interface-design` as a framework-native design skill and improve it th
 | 7 | `007-claude-design-parity-build/` | Implement the keystone: one shared claude_design_parity.md protocol + minimal hooks in both skills (reuse-before-generate, previewImageUrl fidelity check, revision grammar) | Complete |
 | 8 | `008-doc-realignment/` | Realign feature catalog, playbook, READMEs to the post-007 reality (parity protocol, fidelity loop, helper) | Complete |
 | 9 | `009-mobbin-refero-design-reference-integration/` | Wire the Mobbin and Refero design-reference MCPs into Code Mode and integrate them into the skill as a critique-against reference (name the real-world default, then deviate) | Review |
+| 10 | `010-decouple-from-open-design/` | Make the skill standalone: strip all `mcp-open-design` / Open Design naming, split the shared parity doc into vendor-neutral `real_ui_loop.md` (here) + `design_parity_transport.md` (mcp-open-design); the reverse mandatory coupling is preserved | Complete |
+| 11 | `011-mobbin-refero-smart-routing/` | Hybrid initiative/ask decision gate for when to consult Mobbin/Refero, with a Mobbin-vs-Refero source pick by surface | Complete |
 
 ### Phase Transition Rules
 

@@ -10,17 +10,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/152-deep-loop-workflows/009-old-skill-deletion-and-validation"
-    last_updated_at: "2026-06-15T22:30:00Z"
+    last_updated_at: "2026-06-16T12:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Ran 009 gate sign-off: 12/18 P0 verified"
-    next_safe_action: "Skill-graph rebuild on quiescent tree (CHK-060); replay baseline (CHK-065)"
+    recent_action: "Closed CHK-060 via skill_graph_scan rejectedEdges=0; descoped CHK-065"
+    next_safe_action: "Ratify CHK-065 descope; clear 4 circumstantial P0 (001/010/021/030)"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-152-009-old-skill-deletion-and-validation-verificationchecklist"
       parent_session_id: null
-    completion_pct: 67
+    completion_pct: 72
     open_questions: []
     answered_questions: []
 ---
@@ -89,8 +89,8 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-060 [P0] Skill graph rebuild passes with rejectedEdges=0.
-  - **Evidence**: NOT run — the live skill-graph loads, the advisor routes correctly, and the drift-guard passes (read-only), but a full skill_graph_scan rebuild was deferred because a concurrent session currently holds uncommitted graph-metadata edits; a clean rebuild belongs to a quiescent tree.
+- [x] CHK-060 [P0] Skill graph rebuild passes with rejectedEdges=0.
+  - **Evidence**: `skill-advisor.cjs skill_graph_scan --trusted` → status:ok, **rejectedEdges:0**, indexedEdges:82, embeddings failed:0, generation 7013→7014 (2026-06-16). Scan inputs were quiescent: zero dirty graph-metadata under `.opencode/skills/`; the concurrent session's ~366 dirty files are all spec-side, which the skill scan does not read. Four advisory WEIGHT-BAND notes (non-blocking, not rejections) and six NON-SKILL-METADATA test-fixture skips (expected) accompanied the clean result.
 - [x] CHK-061 [P0] Advisor validation passes and asserts skill plus mode.
   - **Evidence**: `skill_advisor.py --dump-routing-maps` Python DEEP_ROUTING_MODE_BY_KEY == registry lexical projection (True; keys deep-research/deep-review/deep-ai-council); live prompts route to deep-loop-workflows + correct mode (2026-06-15).
 - [x] CHK-062 [P0] Agent three-way mirror parity passes.
@@ -100,7 +100,7 @@ _memory:
 - [x] CHK-064 [P0] convergence.cjs still accepts exactly research\|review\|council\|context and no improvement loop type.
   - **Evidence**: `convergence.cjs:300` rejects any loopType outside research|review|council|context; no improvement loop type (2026-06-15).
 - [ ] CHK-065 [P0] Full phase-001 parity rerun is byte-identical for all five modes and eight commands.
-  - **Evidence**: NOT cleanly replayable — the captured baseline is PRE-merge source hashes at old paths, which the merge's intentional moves + path rewrites invalidate (no artifact-hash baseline or path-rewrite map exists). The merge's behavioral correctness is instead evidenced by the 351 passing deep-loop-runtime tests + the packet-156 wave-2/3 registry↔reality, mirror-parity, and runtime-promotion verifications. A true single-executor artifact replay is a separate task.
+  - **Evidence**: DESCOPED via `decision-record.md` ADR-001 (Accepted, 2026-06-16). The captured baseline (`001-parity-baseline-and-runtime-ownership-adr/baseline/file-hashes.txt`, 924 entries) is PRE-merge source hashes at old paths (e.g. `deep/ask-ai-council.md` → now `deep/ai-council.md`; `deep_start-*-loop_*.yaml`); the merge's intentional moves + path rewrites invalidate a byte-identical rerun and no path-rewrite map exists, so the literal criterion is unrecoverable. Behavioral parity is instead evidenced by the 351 passing deep-loop-runtime tests + the packet-156 wave-2/3 registry↔reality, mirror-parity, and runtime-promotion verifications. Box stays unchecked to mark a descoped (not byte-verified) P0; see decision-record.md for full rationale, alternatives, and accepted substitute evidence.
 - [x] CHK-066 [P0] validate.sh --strict passes for phase 009 and parent recursive validation is green.
   - **Evidence**: 009 --strict PASSED (0/0); 152 parent control file --strict PASSED (0/0); full recursive 152 sweep GREEN — all 9 children pass --strict (the 004/005/006/008 missing-impl-summary gap was closed this session) (2026-06-16).
 
@@ -145,11 +145,11 @@ _memory:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 18 | 12/18 |
+| P0 Items | 18 | 13/18 |
 | P1 Items | 6 | 0/6 |
 | P2 Items | 2 | 0/2 |
 
-**Verification Date**: 2026-06-15 (partial sign-off: 12/18 P0 verified; CHK-060 deferred (concurrent tree), CHK-065 not cleanly replayable, 4 process gates circumstantial)
-**Verified By**: claude-opus (B1 council-graph remediation under packet 156 deep-review)
+**Verification Date**: 2026-06-16 (sign-off: 13/18 P0 verified; CHK-060 closed via clean skill_graph_scan rejectedEdges=0; CHK-065 descoped via decision-record.md ADR-001 — baseline unrecoverable, substitute evidence accepted; 4 process gates CHK-001/010/021/030 remain circumstantial)
+**Verified By**: claude-opus (009 final gate close: CHK-060 + CHK-065)
 
 <!-- /ANCHOR:summary -->

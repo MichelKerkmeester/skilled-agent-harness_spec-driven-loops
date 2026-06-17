@@ -48,6 +48,15 @@ const SMALL_MARGIN_THRESHOLD = 0.05;
 // Channel count thresholds
 const STRONG_CHANNEL_AGREEMENT_MIN = 2;
 
+// Request-quality aggregation: a top hit at or above this absolute relevance
+// stands on its own, so a weak tail cannot drag the verdict below "good".
+const TOP_DOMINANT_THRESHOLD = 0.8;
+
+// Cap the quality-ratio denominator at the head of the ranking. Pulling deeper
+// for recall appends weaker tail results; counting them would mechanically
+// depress the ratio and penalize a query for retrieving more candidates.
+const QUALITY_RATIO_HEAD = 5;
+
 // -- Types --
 
 /** Confidence label for a single result. */
@@ -281,9 +290,14 @@ export function computeResultConfidence(results: ScoredResult[]): ResultConfiden
 /**
  * Compute request-level quality assessment based on the overall result set.
  *
- * - "good":  most results have high/medium confidence and a healthy top score
+ * - "good":  a dominant top hit, or a healthy top score with confident head / clear margin
  * - "weak":  results exist but signals are mixed or low
  * - "gap":   no results, or all results have low confidence
+ *
+ * The "good" rule is top-dominant and margin-aware: a single strong, well-separated
+ * top hit is citable even when the tail is weak. Without this, a strong top result
+ * is dragged to "weak" by a weaker tail, and expanding recall (more tail candidates)
+ * mechanically lowers the quality ratio — penalizing the very recall that found the hit.
  *
  * @param results   - The scored results for the query.
  * @param confidences - Parallel confidence array from `computeResultConfidence`.
@@ -296,21 +310,38 @@ export function assessRequestQuality(
     return { requestQuality: { label: 'gap' } };
   }
 
-  const highOrMediumCount = confidences.filter(
-    (c) => c.confidence.label === 'high' || c.confidence.label === 'medium',
-  ).length;
-
   // Absolute relevance, not the RRF ordering score: HIGH_THRESHOLD/LOW_THRESHOLD
   // are calibrated for a 0–1 cosine scale, so an RRF-magnitude topScore (~0.03)
   // would put "good" out of reach and collapse every query to weak/gap.
   const topScore = resolveCalibrationScore(results[0]);
 
-  const qualityRatio = highOrMediumCount / results.length;
+  // Quality ratio over the head of the ranking only, so recall expansion does
+  // not depress it (see QUALITY_RATIO_HEAD).
+  const head = Math.min(confidences.length, QUALITY_RATIO_HEAD);
+  const highOrMediumCount = confidences
+    .slice(0, head)
+    .filter((c) => c.confidence.label === 'high' || c.confidence.label === 'medium')
+    .length;
+  const qualityRatio = head > 0 ? highOrMediumCount / head : 0;
 
-  if (topScore >= HIGH_THRESHOLD && qualityRatio >= 0.6) {
+  // Margin between #1 and #2 on the same absolute scale as topScore. A clear gap
+  // to the runner-up marks a dominant top hit even when the tail is weak.
+  const topMargin = results.length > 1
+    ? computeMargin(topScore, resolveCalibrationScore(results[1]))
+    : 0;
+
+  // A sufficiently strong top hit is citable on its own, regardless of the tail.
+  if (topScore >= TOP_DOMINANT_THRESHOLD) {
     return { requestQuality: { label: 'good' } };
   }
-  if (results.length > 0 && (topScore >= LOW_THRESHOLD || qualityRatio >= 0.3)) {
+  // Otherwise a healthy top hit reads "good" when the head is mostly confident
+  // OR the top hit clearly dominates the runner-up.
+  if (topScore >= HIGH_THRESHOLD && (qualityRatio >= 0.6 || topMargin >= LARGE_MARGIN_THRESHOLD)) {
+    return { requestQuality: { label: 'good' } };
+  }
+  // weak/gap thresholds unchanged — preserves the do-not-cite safety net for
+  // genuinely low-signal queries.
+  if (topScore >= LOW_THRESHOLD || qualityRatio >= 0.3) {
     return { requestQuality: { label: 'weak' } };
   }
   return { requestQuality: { label: 'gap' } };

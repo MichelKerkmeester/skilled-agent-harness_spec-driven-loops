@@ -41,7 +41,6 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-prompt-small-model/references/models/minimax-2.7.md",
       ".opencode/skills/sk-prompt-small-model/references/models/_index.md",
       ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
       ".opencode/skills/sk-prompt-small-model/assets/cli_prompt_quality_card.md",
@@ -52,12 +51,6 @@
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "minimax-2.7.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-prompt-small-model/references/models/minimax-2.7.md",
-        "source": "derived"
-      },
       {
         "name": "_index.md",
         "kind": "doc",
@@ -195,11 +188,17 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This is **Phase 19** of the Skill reference and asset frontmatter alignment across all public-repo skills specification.",
     "created_at": "2026-06-11T05:47:37Z",
-    "last_save_at": "2026-06-12T04:40:47.844Z",
+    "last_save_at": "2026-06-16T14:27:21.515Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

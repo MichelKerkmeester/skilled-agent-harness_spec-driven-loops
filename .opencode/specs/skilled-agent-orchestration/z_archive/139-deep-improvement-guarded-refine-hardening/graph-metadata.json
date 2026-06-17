@@ -1,0 +1,11 @@
+Packet: skilled-agent-orchestration/139-deep-improvement-guarded-refine-hardening
+Spec Folder: skilled-agent-orchestration/139-deep-improvement-guarded-refine-hardening
+Status: planned
+Importance Tier: important
+Summary: The Copywriter pilot built and live-validated a **guarded autonomous benchmark-and-refine loop**: benchmark a multi-packaging AI system (CLI runtime / claude.ai Project / native skill), re-grade outputs with an independent different-family grader, propose bounded technique-doc edits, and promote only inside an isolated git worktree when held-out grades do not regress. It was folded into the shared `deep-improvement` skill as **Lane D** (`packaging-benchmark-refine`), with the loop host living packaging-side (`<packaging-root>/_loop/loop.py` contract).
+Migrated: true
+Migration Source: legacy
+Children: skilled-agent-orchestration/139-deep-improvement-guarded-refine-hardening/001-lane-d-loop-hardening, skilled-agent-orchestration/139-deep-improvement-guarded-refine-hardening/002-lane-d-command-and-agent-surface, skilled-agent-orchestration/139-deep-improvement-guarded-refine-hardening/003-anti-goodhart-cross-lane-adoption, skilled-agent-orchestration/139-deep-improvement-guarded-refine-hardening/004-fixture-and-grader-infrastructure, skilled-agent-orchestration/139-deep-improvement-guarded-refine-hardening/005-validation-and-second-packaging-rollout
+Key Topics: copywriter, pilot, built, live-validated, guarded, autonomous, benchmark-and-refine, loop, benchmark, multi-packaging, system, cli
+Key Files: spec.md
+Source Docs: spec.md

@@ -45,7 +45,7 @@ SELF-CHECK: Are you operating as the @general agent?
     │   │ general-agent based.                                       │
     │   │                                                            │
     │   │ To proceed, restart with:                                  │
-    │   │   /deep:context [arguments]                     │
+    │   │   /deep:context [arguments]                                │ 
     │   └────────────────────────────────────────────────────────────┘
     │
     └─ RETURN: STATUS=FAIL ERROR="General agent required"

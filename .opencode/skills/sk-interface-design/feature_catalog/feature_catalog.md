@@ -10,7 +10,7 @@ last_updated: "2026-06-14"
 
 # sk-interface-design: Feature Catalog
 
-This document combines the current feature inventory for the `sk-interface-design` system into a single reference. The root catalog acts as the system-level directory: it summarizes the design process, the objective quality floor, design grounding through Open Design, interface writing, the integration boundary, and the Claude Design parity loop, and it points to the per-feature files that carry the deeper behavior and source anchors.
+This document combines the current feature inventory for the `sk-interface-design` system into a single reference. The root catalog acts as the system-level directory: it summarizes the design process, the objective quality floor, design grounding in a real design system, interface writing, the integration boundary, and the real-UI loop, and it points to the per-feature files that carry the deeper behavior and source anchors.
 
 ---
 
@@ -22,10 +22,10 @@ Use this catalog as the canonical inventory for the live `sk-interface-design` f
 |---|---:|---|
 | Design process | 4 features | `SKILL.md`, `references/design-process/design_principles.md` |
 | Quality floor | 1 feature | `references/design-process/ux_quality_reference.md` |
-| Design grounding | 1 feature | `references/design-grounding/design_inventory.md`, `references/design-process/claude_design_parity.md` |
+| Design grounding | 1 feature | `references/design-grounding/design_inventory.md`, `references/design-process/real_ui_loop.md` |
 | Interface writing | 1 feature | `references/design-process/design_principles.md` (Section 6) |
 | Integration boundary | 1 feature | `SKILL.md` (Sections 2 and 7) |
-| Claude Design parity loop | 3 features | `references/design-process/claude_design_parity.md`, `SKILL.md` (Sections 2 and 5) |
+| Real-UI loop | 3 features | `references/design-process/real_ui_loop.md`, `SKILL.md` (Sections 2 and 5) |
 
 ---
 
@@ -119,21 +119,21 @@ See [`02--quality-floor/objective-quality-floor.md`](02--quality-floor/objective
 
 ## 4. DESIGN GROUNDING
 
-This entry covers how the skill grounds in a real design system: read live via `mcp-open-design` when that app is installed, used as either reuse-ground or the named default to deviate from. One system is resolved from the subject, never a chooser, and nothing is cached into the skill.
+This entry covers how the skill grounds in a real design system: read live from wherever you keep it, used as either reuse-ground or the named default to deviate from. One system is resolved from the subject, never a chooser, and nothing is cached into the skill.
 
-### Open Design grounding
+### Design-system grounding
 
 #### Description
 
-Uses a real Open Design design system, read live via `mcp-open-design`, as either reuse-ground or the named default to deviate from.
+Uses a real design system you own, read live and never copied, as either reuse-ground or the named default to deviate from.
 
 #### Current Reality
 
-When the Open Design app is installed, `mcp-open-design` reads one matching system live: `DESIGN.md` for direction, `tokens.css` for paste-ready tokens, and `components.html` for reusable markup. The system serves one of two anti-default-safe roles, chosen by the brief. As reuse-ground it is reused before authoring net-new, and as critique-against it is the closest realized example of the generic default that a deliberate move pushes against. Exactly one system is resolved from the subject, never a list surfaced as a chooser, the read is live and never cached into the skill, and `design_principles.md` remains the authority. The grounding is optional, and when no real system fits the free-axis anti-default process governs as before.
+When you have access to a real design system, the skill reads one matching system live: its direction, its paste-ready tokens, and its reusable component markup. The system serves one of two anti-default-safe roles, chosen by the brief. As reuse-ground it is reused before authoring net-new, and as critique-against it is the closest realized example of the generic default that a deliberate move pushes against. Exactly one system is resolved from the subject, never a list surfaced as a chooser, the read is live and never cached into the skill, and `design_principles.md` remains the authority. The grounding is optional, and when no real system fits the free-axis anti-default process governs as before.
 
 #### Source Files
 
-See [`03--design-grounding/open-design-grounding.md`](03--design-grounding/open-design-grounding.md) for full implementation and validation file listings.
+See [`03--design-grounding/design-system-grounding.md`](03--design-grounding/design-system-grounding.md) for full implementation and validation file listings.
 
 ---
 
@@ -169,7 +169,7 @@ The boundary where this skill decides the look and hands implementation and veri
 
 #### Current Reality
 
-This skill owns the look and stops at the design decision. Implementation belongs to `sk-code`, which builds the direction to the detected web surface's standards and verifies it, and `sk-code-review` can audit the built UI against those standards. The screenshot step in the self-critique uses a real-browser tool. The skill itself does not write or run application code. When the work runs through the canvas and CLI, the Claude Design parity loop in Section 7 governs how this skill's judgment reaches a verified, handed-off result.
+This skill owns the look and stops at the design decision. Implementation belongs to `sk-code`, which builds the direction to the detected web surface's standards and verifies it, and `sk-code-review` can audit the built UI against those standards. The screenshot step in the self-critique uses a real-browser tool. The skill itself does not write or run application code. When the work runs from a plan into a real render, the real-UI loop in Section 7 governs how this skill's judgment reaches a verified, handed-off result.
 
 #### Source Files
 
@@ -177,9 +177,9 @@ See [`05--integration-boundary/design-and-implementation-boundary.md`](05--integ
 
 ---
 
-## 7. CLAUDE DESIGN PARITY LOOP
+## 7. REAL-UI LOOP
 
-These entries cover the shared cross-skill protocol that moves this skill's judgment closer to Claude Design without becoming a templated generator. The protocol is a loop, not a product: ground, reuse before generate, render, check the real render, revise, then hand off. This skill owns the judgment and `mcp-open-design` owns the Open Design terminal transport, and the single source for the protocol is `references/design-process/claude_design_parity.md`. The entries below summarize it and never duplicate its content.
+These entries cover the shared protocol that moves this skill's judgment from a plan to a verified, handed-off render without becoming a templated generator. The protocol is a loop, not a product: ground, reuse before generate, render, check the real render, revise, then hand off. This skill owns the judgment and stays transport-agnostic about how a render is produced, and the single source for the protocol is `references/design-process/real_ui_loop.md`. The entries below summarize it and never duplicate its content.
 
 ### Ground and reuse before generate
 
@@ -193,7 +193,7 @@ Before choosing anything, the loop captures the subject, audience, page job, any
 
 #### Source Files
 
-See [`07--claude-design-parity/ground-and-reuse-before-generate.md`](07--claude-design-parity/ground-and-reuse-before-generate.md) for full implementation and validation file listings.
+See [`07--real-ui-loop/ground-and-reuse-before-generate.md`](07--real-ui-loop/ground-and-reuse-before-generate.md) for full implementation and validation file listings.
 
 ---
 
@@ -205,15 +205,15 @@ Checks the real render against the quality floor and anti-default critique, then
 
 #### Current Reality
 
-The loop checks the latest render rather than treating "compiles" as done. For an Open Design generation run it uses the completed run's `previewUrl` and written files read via `get_artifact`, and on a local dev-server UI it uses a real-browser screenshot. The render must clear the quality floor and survive the anti-default critique, and because automated comparison is unreliable for subtle differences, the check is judgment over a render rather than pixel diffing. Revisions name the target, the visual evidence, the change, the scope, the expected verification, and whether the feedback is broad, which re-plans, or targeted, which scopes one edit.
+The loop checks the latest render rather than treating "compiles" as done. On a local dev-server UI it uses an `mcp-chrome-devtools` screenshot of the running build. The render must clear the quality floor and survive the anti-default critique, and because automated comparison is unreliable for subtle differences, the check is judgment over a render rather than pixel diffing. Revisions name the target, the visual evidence, the change, the scope, the expected verification, and whether the feedback is broad, which re-plans, or targeted, which scopes one edit.
 
 #### Source Files
 
-See [`07--claude-design-parity/fidelity-check-and-revision-grammar.md`](07--claude-design-parity/fidelity-check-and-revision-grammar.md) for full implementation and validation file listings.
+See [`07--real-ui-loop/fidelity-check-and-revision-grammar.md`](07--real-ui-loop/fidelity-check-and-revision-grammar.md) for full implementation and validation file listings.
 
 ---
 
-### Handoff and parity guardrails
+### Handoff and loop guardrails
 
 #### Description
 
@@ -221,8 +221,8 @@ Keeps generated source separate, emits an optional handoff manifest, and holds t
 
 #### Current Reality
 
-The loop keeps generated source, wrapper or adaptation files, and business logic distinct, imports installed components rather than copying them, and treats generated source as one-way. At the end it can emit one small handoff block covering the token system, files changed, key interactions, the checks run, open risks, and the next `sk-code` steps. A guarded direction gate may sketch a few brief-specific directions only when each is grounded in the subject, and the protocol holds a hard line against style presets, named aesthetic dials, turning the design inventory into a generator, multi-format export, comment threads, unsanctioned write-back beyond Open Design's gated verbs, backend or deploy ownership, and any heavyweight visual-regression engine.
+The loop keeps generated source, wrapper or adaptation files, and business logic distinct, reuses components by reading them live rather than copying them, and treats generated source as one-way. At the end it can emit one small handoff block covering the token system, files changed, key interactions, the checks run, open risks, and the next `sk-code` steps. A guarded direction gate may sketch a few brief-specific directions only when each is grounded in the subject, and the protocol holds a hard line against style presets, named aesthetic dials, turning a matched design system into a generator, multi-format export, comment threads, unsanctioned write-back to a source system, backend or deploy ownership, and any heavyweight visual-regression engine.
 
 #### Source Files
 
-See [`07--claude-design-parity/handoff-and-parity-guardrails.md`](07--claude-design-parity/handoff-and-parity-guardrails.md) for full implementation and validation file listings.
+See [`07--real-ui-loop/handoff-and-parity-guardrails.md`](07--real-ui-loop/handoff-and-parity-guardrails.md) for full implementation and validation file listings.

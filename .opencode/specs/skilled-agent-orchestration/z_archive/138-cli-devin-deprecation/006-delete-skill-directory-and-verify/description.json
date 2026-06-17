@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/138-cli-devin-deprecation/006-delete-skill-directory-and-verify",
+  "description": "Feature Specification: Phase 6: delete-skill-directory-and-verify",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "delete-skill-directory-and-verify"
+  ],
+  "lastUpdated": "2026-06-15T18:16:13.866Z",
+  "specId": "006",
+  "folderSlug": "delete-skill-directory-and-verify",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "138-cli-devin-deprecation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

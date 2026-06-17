@@ -39,7 +39,7 @@ Open Design is a desktop app for reading and generating design systems, projects
 - **The MCP server** is optional. Wiring it registers an `open-design` MCP entry in an agent's config so the agent can call Open Design tools directly. The same daemon backs both surfaces.
 - **The daemon** is hosted by the desktop app. Every tool call proxies to it, so the app must be open. It is discovered over a Unix socket, and its HTTP port is ephemeral and rotates on every restart, so nothing here hardcodes a port.
 
-Design judgment stays with `sk-interface-design`: this skill owns the transport, that skill owns the taste. The two share the reuse-before-generate parity loop in `../sk-interface-design/references/design-process/claude_design_parity.md`.
+Design judgment stays with `sk-interface-design`: this skill owns the transport, that skill owns the taste. The real-UI loop lives in `sk-interface-design` (`real_ui_loop.md`); this skill's Open Design transport mechanics for it are in `references/design_parity_transport.md`.
 
 ---
 
@@ -170,7 +170,7 @@ Commands are classified read-only, mutating, and destructive, and every mutating
 - [references/od_cli_reference.md](references/od_cli_reference.md) - locating the CLI, the daemon/socket model, the full verb surface with read-only vs mutating classification.
 - [references/mcp_wiring.md](references/mcp_wiring.md) - wiring the MCP server into opencode and Claude Code, the written config shape, the manual fallback, daemon-URL discovery.
 - [references/tool_surface.md](references/tool_surface.md) - the read-only / mutating / destructive taxonomy.
-- [`../sk-interface-design/references/design-process/claude_design_parity.md`](../sk-interface-design/references/design-process/claude_design_parity.md) - the shared reuse-before-generate parity loop.
+- [`references/design_parity_transport.md`](references/design_parity_transport.md) - the Open Design transport for the real-UI loop (the loop itself lives in `sk-interface-design`).
 
 Sibling terminal-driven design skills with the same install-and-doctor shape: [`mcp-figma`](../mcp-figma/INSTALL_GUIDE.md) (Figma Desktop via the silships figma-ds-cli) and [`mcp-chrome-devtools`](../mcp-chrome-devtools/INSTALL_GUIDE.md) (a real-browser surface for last-mile preview).
 

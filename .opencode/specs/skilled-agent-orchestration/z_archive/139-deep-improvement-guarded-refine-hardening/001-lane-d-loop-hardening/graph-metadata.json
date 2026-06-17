@@ -1,0 +1,11 @@
+Packet: skilled-agent-orchestration/139-deep-improvement-guarded-refine-hardening/001-lane-d-loop-hardening
+Spec Folder: skilled-agent-orchestration/139-deep-improvement-guarded-refine-hardening/001-lane-d-loop-hardening
+Status: planned
+Importance Tier: important
+Summary: Take the packaging-side loop host (`<packaging-root>/_loop/loop.py`, pilot at `Barter/Copywriter/_loop/loop.py`) from "live-validated prototype" to production grade: resumable, session-kill-safe, portable, observable, with the promotion-accept path proven by a controlled live firing.
+Parent: skilled-agent-orchestration/139-deep-improvement-guarded-refine-hardening
+Migrated: true
+Migration Source: legacy
+Key Topics: take, packaging-side, loop, host, packaging-root, pilot, barter, copywriter, live-validated, prototype, production, grade
+Key Files: spec.md
+Source Docs: spec.md

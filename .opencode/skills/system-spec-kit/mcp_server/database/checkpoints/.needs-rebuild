@@ -1,0 +1,6 @@
+{
+  "formatVersion": 1,
+  "createdAt": "2026-06-12T07:56:58.869Z",
+  "source": "post_crash_integrity_probe",
+  "reason": "*** in database main ***\nTree 8 page 23172: btreeInitPage() returns error code 11"
+}

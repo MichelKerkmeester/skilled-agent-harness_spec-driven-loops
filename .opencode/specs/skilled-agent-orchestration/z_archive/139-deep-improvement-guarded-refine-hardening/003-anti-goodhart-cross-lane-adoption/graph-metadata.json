@@ -1,0 +1,11 @@
+Packet: skilled-agent-orchestration/139-deep-improvement-guarded-refine-hardening/003-anti-goodhart-cross-lane-adoption
+Spec Folder: skilled-agent-orchestration/139-deep-improvement-guarded-refine-hardening/003-anti-goodhart-cross-lane-adoption
+Status: planned
+Importance Tier: important
+Summary: The pilot's strongest findings are not packaging-specific. Back-port them to lanes A/B/C so every deep-improvement run gets the same protection against reward-hacking and noise — without breaking the byte-identical agent-improvement default path.
+Parent: skilled-agent-orchestration/139-deep-improvement-guarded-refine-hardening
+Migrated: true
+Migration Source: legacy
+Key Topics: pilot, strongest, findings, packaging-specific, back-port, them, lanes, every, deep-improvement, run, gets, same
+Key Files: spec.md
+Source Docs: spec.md

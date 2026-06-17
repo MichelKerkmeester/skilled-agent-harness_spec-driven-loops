@@ -96,6 +96,7 @@ Collapse the five persona surfaces into ONE public skill, `deep-loop-workflows`,
 | 7 | `007-governance-consolidation/` | One unified governance tree partitioned by mode; mode-qualify CP- ID collisions at the index (no file renumber); normalize council casing | Complete — R1 (one-root) superseded by decision-record; per-mode trees intentional |
 | 8 | `008-framework-docs-sweep/` | Rewrite framework docs from the 5-skill to the 2-skill model (root README, CLAUDE.md/AGENTS.md, runtime README, constitutional, sibling lines); stamp v1.0.0; preserve per-mode changelog history | Complete |
 | 9 | `009-old-skill-deletion-and-validation/` | Delete the 5 old skill directories; run the full-surface Acceptance Gate set; resolve the `/doctor` council-graph coverage blocker (B1) | Partial — 12/18 P0 (deletion + B1 + advisor/mirror/registry/strict-validation verified; skill-graph rebuild deferred to a quiescent tree; byte-parity replay not cleanly replayable) |
+| 10 | `010-deep-loop-skill-system-review/` | Post-merge release-readiness deep review of the 152/153/155 trio (read-only — review-report + remediation plan; appended, not part of the serial 001→009 parity chain) | Complete |
 
 ### Phase Transition Rules
 - Each phase MUST pass `validate.sh` independently before the next phase begins.

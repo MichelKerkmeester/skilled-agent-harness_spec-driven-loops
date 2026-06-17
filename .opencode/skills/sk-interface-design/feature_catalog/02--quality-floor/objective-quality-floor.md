@@ -54,4 +54,4 @@ The responsive floor sets the viewport meta tag, designs from mobile up, avoids 
 
 Related references:
 - [../01--design-process/build-and-self-critique.md](../01--design-process/build-and-self-critique.md) - Build and self-critique
-- [../03--design-grounding/open-design-grounding.md](../03--design-grounding/open-design-grounding.md) - Open Design grounding
+- [../03--design-grounding/design-system-grounding.md](../03--design-grounding/design-system-grounding.md) - Design-system grounding

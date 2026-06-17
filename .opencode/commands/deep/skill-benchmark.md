@@ -47,7 +47,7 @@ SELF-CHECK: Are you operating as the @general agent?
     │   │ skill-benchmark mode and runs general-agent based.         │
     │   │                                                            │
     │   │ To proceed, restart with:                                  │
-    │   │   /deep:skill-benchmark [arguments]             │
+    │   │   /deep:skill-benchmark [arguments]                        │
     │   └────────────────────────────────────────────────────────────┘
     │
     └─ RETURN: STATUS=FAIL ERROR="General agent required"

@@ -1,16 +1,18 @@
 {
   "level": "phase",
-  "specFolder": "154-kimi-k2-7-code-support",
-  "description": "kimi discriminating bakeoff",
+  "specFolder": "skilled-agent-orchestration/154-kimi-k2-7-code-support",
+  "description": "Feature Specification: kimi-k2-7-code-support",
   "keywords": [
-    "kimi",
-    "discriminating",
-    "bakeoff"
+    "feature",
+    "specification",
+    "kimi-k2-7-code-support"
   ],
-  "lastUpdated": "2026-06-15T16:19:17.726Z",
+  "lastUpdated": "2026-06-16T18:08:47.280Z",
   "specId": "154",
   "folderSlug": "kimi-k2-7-code-support",
-  "parentChain": [],
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
   "memorySequence": 1,
   "memoryNameHistory": [
     "15-06-26_17-19__added-kimi-k2-7-code-slug-kimi-for-coding-k2p7.md"

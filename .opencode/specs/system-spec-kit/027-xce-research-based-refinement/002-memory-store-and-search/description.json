@@ -17,24 +17,25 @@
     "013-provenance-injection",
     "014-idempotency-flag-on-correctness"
   ],
-  "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search",
-  "description": "Feature Specification: Memory Store and Search (Phase Parent)",
+  "specFolder": "002-memory-store-and-search",
+  "description": "Implement the search-intelligence and AI-output findings from the 016 deep-research via fresh claude2 Opus agents",
   "keywords": [
-    "feature",
-    "specification",
-    "memory",
-    "store",
-    "search",
-    "phase",
-    "parent"
+    "implement",
+    "search-intelligence",
+    "ai-output",
+    "findings",
+    "016",
+    "deep-research",
+    "via",
+    "fresh",
+    "claude2",
+    "opus",
+    "agents"
   ],
-  "lastUpdated": "2026-06-14T09:49:51.050Z",
+  "lastUpdated": "2026-06-17T06:03:00.900Z",
   "specId": "002",
   "folderSlug": "memory-store-and-search",
-  "parentChain": [
-    "system-spec-kit",
-    "027-xce-research-based-refinement"
-  ],
+  "parentChain": [],
   "memorySequence": 0,
   "memoryNameHistory": []
 }

@@ -56,7 +56,7 @@ SELF-CHECK: Are you operating as the @general agent?
     │   │ model-benchmark mode and runs general-agent based.         │
     │   │                                                            │
     │   │ To proceed, restart with:                                  │
-    │   │   /deep:model-benchmark [arguments]             │
+    │   │   /deep:model-benchmark [arguments]                        │
     │   └────────────────────────────────────────────────────────────┘
     │
     └─ RETURN: STATUS=FAIL ERROR="General agent required"

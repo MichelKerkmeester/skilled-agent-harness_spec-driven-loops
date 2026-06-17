@@ -10,25 +10,57 @@
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": [
-      "cli front-door safety remediation",
-      "004-cli-frontdoor-safety remediation",
-      "fresh regression remediation sub-phase"
-    ],
+    "trigger_phrases": [],
     "key_topics": [
-      "cli",
-      "frontdoor",
-      "safety"
+      "sub-phase",
+      "005-fresh-regression-remediation",
+      "phase",
+      "parent",
+      "owns",
+      "subsystem",
+      "cluster",
+      "fresh",
+      "regression",
+      "deep-review",
+      "findings",
+      "registry"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "resolved_(5_fixed,_1_refuted_then_hardened;_cli_vitest_green)",
     "key_files": [
+      "dist/spec-memory-cli.js",
+      "tasks.md",
+      "tests/spec-memory-cli-socket-perimeter.vitest.ts",
+      "tests/spec-memory-cli.vitest.ts",
       "spec.md",
       "plan.md",
-      "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec-memory-cli.js",
+        "kind": "code",
+        "path": "dist/spec-memory-cli.js",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-memory-cli-socket-perimeter.vitest.ts",
+        "kind": "test",
+        "path": "tests/spec-memory-cli-socket-perimeter.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-memory-cli.vitest.ts",
+        "kind": "test",
+        "path": "tests/spec-memory-cli.vitest.ts",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -42,21 +74,117 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Door Safety Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context Sub",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. IMPLEMENTATION PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation One",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Remediation sub-phase carrying 6 fresh+regression deep-review findings in the CLI Front-Door Safety Remediation subsystem. Scaffold only; no fixes applied.",
+    "causal_summary": "Sub-phase of `005-fresh-regression-remediation` (phase parent). It owns the subsystem cluster from the fresh+regression deep-review's findings registry. Per operator directive every finding is carried (refuted ones as hardening, asserted ones fix-as-stated). Source: `../../review/fresh-regression-75/deep-review-findings-registry.json`.",
     "created_at": "2026-06-16T00:00:00Z",
-    "last_save_at": "2026-06-16T00:00:00Z",
+    "last_save_at": "2026-06-16T14:27:21.646Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

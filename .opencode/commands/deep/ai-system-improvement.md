@@ -44,10 +44,10 @@ SELF-CHECK: Are you operating as the @general agent?
     │   │ ⛔ GENERAL AGENT REQUIRED                                  │
     │   │                                                            │
     │   │ This command orchestrates the deep-improvement skill in    │
-    │   │ packaging-refine mode and runs general-agent based.        │
+    │   │ packaging-refine mode and runs general-agent based.         │
     │   │                                                            │
     │   │ To proceed, restart with:                                  │
-    │   │   /deep:ai-system-improvement [arguments]            │
+    │   │   /deep:ai-system-improvement [arguments]                  │
     │   └────────────────────────────────────────────────────────────┘
     │
     └─ RETURN: STATUS=FAIL ERROR="General agent required"

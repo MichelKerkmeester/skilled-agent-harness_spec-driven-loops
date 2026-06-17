@@ -6,7 +6,7 @@ metadata:
   author: nexu-io (Open Design)
   source: https://github.com/nexu-io/open-design
 allowed-tools: [Read, Bash]
-version: 1.3.0.0
+version: 1.4.0.0
 user-invocable: true
 ---
 
@@ -90,7 +90,7 @@ TASK CONTEXT
 | CONDITIONAL | WIRE intent | `references/mcp_wiring.md` (opencode + Claude Code config, manual fallback) |
 | CONDITIONAL | READ / RUN intent | `references/tool_surface.md` (the MCP tools, the surface/gate/omit policy) |
 | ⛔ MANDATORY (any design step) | ANY generation/RUN, or any READ feeding a design decision (grounding, reusing tokens/components) | `sk-interface-design` — load it and run ground → token-system → critique BEFORE deciding. Hard precondition: a design step without it is blocked. |
-| ⛔ MANDATORY (any design step) | Reuse-before-generate / fidelity / handoff | `../sk-interface-design/references/design-process/claude_design_parity.md` (the shared loop), applied with `sk-interface-design`'s judgment |
+| ⛔ MANDATORY (any design step) | Reuse-before-generate / fidelity / handoff | `references/design_parity_transport.md` (Open Design transport for the real-UI loop), applied with `sk-interface-design`'s judgment |
 
 ### Smart Router Pseudocode
 
@@ -324,7 +324,7 @@ The `od mcp --help` text lists only a documentation subset (8 tools); the runnin
 
 ### Related Skills
 
-- **`sk-interface-design`** owns the design judgment and is a **MANDATORY partner for all design work** — every generation/RUN and every read that feeds a design decision MUST load it and run ground → token-system → critique first. This skill is the transport; that skill is the non-negotiable taste, never skipped or substituted. Pure transport (wiring, bare inventory) is exempt. The two share `claude_design_parity.md`.
+- **`sk-interface-design`** owns the design judgment and is a **MANDATORY partner for all design work** — every generation/RUN and every read that feeds a design decision MUST load it and run ground → token-system → critique first. This skill is the transport; that skill is the non-negotiable taste, never skipped or substituted. Pure transport (wiring, bare inventory) is exempt. The two share the real-UI loop in `sk-interface-design` (`real_ui_loop.md`), with this skill's Open Design transport for it in `references/design_parity_transport.md`.
 - **`sk-code`** owns application-code standards for adapting any reused tokens/components into a real app.
 - **`mcp-figma`** is the sibling terminal-driven design tool for Figma Desktop, a CLI plus optional MCP hybrid with the same daemon model and gating taxonomy.
 - **`mcp-chrome-devtools`** can drive a real browser only if a last-mile visual preview is needed; it is never the way to operate Open Design.

@@ -46,7 +46,7 @@ SELF-CHECK: Are you operating as the @general agent?
     │   │ runs general-agent based.                                  │
     │   │                                                            │
     │   │ To proceed, restart with:                                  │
-    │   │   /deep:ai-council [arguments]                         │
+    │   │   /deep:ai-council [arguments]                             │
     │   └────────────────────────────────────────────────────────────┘
     │
     └─ RETURN: STATUS=FAIL ERROR="General agent required"

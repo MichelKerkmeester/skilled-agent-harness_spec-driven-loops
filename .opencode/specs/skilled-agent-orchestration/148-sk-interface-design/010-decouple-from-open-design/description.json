@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/148-sk-interface-design/010-decouple-from-open-design",
+  "description": "Feature Specification: Phase 10: decouple-from-open-design",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "decouple-from-open-design",
+    "sk-interface-design",
+    "real_ui_loop"
+  ],
+  "lastUpdated": "2026-06-17T00:00:00.000Z",
+  "specId": "010",
+  "folderSlug": "decouple-from-open-design",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "148-sk-interface-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

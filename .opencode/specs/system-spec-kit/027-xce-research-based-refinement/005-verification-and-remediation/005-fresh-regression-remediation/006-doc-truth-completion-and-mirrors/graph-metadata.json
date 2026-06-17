@@ -10,37 +10,54 @@
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": [
-      "doc-truth, completion-claim & runtime-mirror reconciliation",
-      "006-doc-truth-completion-and-mirrors remediation",
-      "fresh regression remediation sub-phase"
-    ],
+    "trigger_phrases": [],
     "key_topics": [
-      "doc",
-      "truth",
-      "completion",
-      "and",
-      "mirrors"
+      "sub-phase",
+      "005-fresh-regression-remediation",
+      "phase",
+      "parent",
+      "owns",
+      "subsystem",
+      "cluster",
+      "fresh",
+      "regression",
+      "deep-review",
+      "findings",
+      "registry"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "implemented_(35_fixed/refuted;_7_deferred_to_a_code_phase)",
     "key_files": [
-      "spec.md",
+      ".claude/agents/deep-review.md",
+      ".codex/agents/orchestrate.toml",
       "plan.md",
+      "spec.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "spec.md",
+        "name": "deep-review.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".claude/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.toml",
+        "kind": "file",
+        "path": ".codex/agents/orchestrate.toml",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -54,11 +71,119 @@
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mirror Reconciliation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context Sub",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. IMPLEMENTATION PHASES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation One",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Path Convention",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Doc",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Remediation sub-phase carrying 42 fresh+regression deep-review findings in the Doc-Truth, Completion-Claim & Runtime-Mirror Reconciliation subsystem. Scaffold only; no fixes applied.",
+    "causal_summary": "Sub-phase of `005-fresh-regression-remediation` (phase parent). It owns the subsystem cluster from the fresh+regression deep-review's findings registry. Per operator directive every finding is carried (refuted ones as hardening, asserted ones fix-as-stated). Source: `../../review/fresh-regression-75/deep-review-findings-registry.json`.",
     "created_at": "2026-06-16T00:00:00Z",
-    "last_save_at": "2026-06-16T00:00:00Z",
+    "last_save_at": "2026-06-16T14:27:21.649Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

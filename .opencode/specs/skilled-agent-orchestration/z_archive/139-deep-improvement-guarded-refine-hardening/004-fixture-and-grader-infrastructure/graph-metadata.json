@@ -1,0 +1,11 @@
+Packet: skilled-agent-orchestration/139-deep-improvement-guarded-refine-hardening/004-fixture-and-grader-infrastructure
+Spec Folder: skilled-agent-orchestration/139-deep-improvement-guarded-refine-hardening/004-fixture-and-grader-infrastructure
+Status: planned
+Importance Tier: important
+Summary: Codify the testing-infrastructure lessons as shared, reusable conventions: fixtures that can actually be graded, held-out discipline, grader calibration, and dispatch pre-flight — so every future loop inherits them instead of rediscovering them live.
+Parent: skilled-agent-orchestration/139-deep-improvement-guarded-refine-hardening
+Migrated: true
+Migration Source: legacy
+Key Topics: codify, testing-infrastructure, lessons, shared, reusable, conventions, fixtures, actually, graded, held-out, discipline, grader
+Key Files: spec.md
+Source Docs: spec.md

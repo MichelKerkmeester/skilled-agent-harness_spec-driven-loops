@@ -12,7 +12,9 @@
     "skilled-agent-orchestration/148-sk-interface-design/006-competitor-design-tools-research",
     "skilled-agent-orchestration/148-sk-interface-design/007-claude-design-parity-build",
     "skilled-agent-orchestration/148-sk-interface-design/008-doc-realignment",
-    "skilled-agent-orchestration/148-sk-interface-design/009-mobbin-refero-design-reference-integration"
+    "skilled-agent-orchestration/148-sk-interface-design/009-mobbin-refero-design-reference-integration",
+    "skilled-agent-orchestration/148-sk-interface-design/010-decouple-from-open-design",
+    "skilled-agent-orchestration/148-sk-interface-design/011-mobbin-refero-smart-routing"
   ],
   "migrated": true,
   "migration_source": "legacy",

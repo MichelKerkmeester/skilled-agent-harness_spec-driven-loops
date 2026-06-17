@@ -1,9 +1,9 @@
 ---
 title: "Design Inventory (reuse-ground or critique-against)"
-description: "How to use a real Open Design design system, read live via mcp-open-design when that app is installed, as either reuse-ground or the named default to critique against. Resolve one system from the subject, never a pick-a-vibe menu."
+description: "How to use a real design system you own, read live, as either reuse-ground or the named default to critique against. Resolve one system from the subject, never a pick-a-vibe menu, never copied into the repo."
 trigger_phrases:
   - "design inventory reuse ground critique against"
-  - "open design system ground or deviate"
+  - "real design system ground or deviate"
   - "name the default to deviate from"
   - "real design system reuse before generate"
   - "deviate from templated default"
@@ -13,7 +13,7 @@ contextType: implementation
 
 # Design Inventory (reuse-ground or critique-against)
 
-How to put a real, fully-realized design system to work without letting it turn the skill into a chooser. When the Open Design app is installed, `mcp-open-design` can read one matching system live. That system is either the ground to reuse or the named default to deviate from. It is never a menu of vibes to pick.
+How to put a real, fully-realized design system to work without letting it turn the skill into a chooser. When you have access to a real design system you own, read one matching system live. That system is either the ground to reuse or the named default to deviate from. It is never a menu of vibes to pick.
 
 ---
 
@@ -31,9 +31,9 @@ How to put a real, fully-realized design system to work without letting it turn 
 
 ### Source Of The Systems
 
-- An Open Design design system, read live via `mcp-open-design` when that app is installed (`od mcp` get_file/search_files, or `od tools design-systems read`). Read `DESIGN.md` for direction, `tokens.css` for the paste-ready `:root` tokens, and `components.html` for reusable component markup.
-- The read is live and never cached. Open Design content is never copied into this skill, which keeps the skill Apache-2.0 only and free of any new third party notice burden.
-- `mcp-open-design` is optional and never required. When no real system fits, the free-axis anti-default process in `design_principles.md` governs exactly as before.
+- A real design system you own or have access to: its direction document, its paste-ready `:root` tokens, and its reusable component markup. Read whatever the system exposes (a `DESIGN.md`-style brief, a `tokens.css`, a `components.html`, or the equivalent).
+- The read is live and never cached. A real system's content is never copied into this skill, which keeps the skill Apache-2.0 only and free of any new third party notice burden.
+- Grounding in a real system is optional and never required. When no real system fits, the free-axis anti-default process in `design_principles.md` governs exactly as before.
 
 ---
 
@@ -43,7 +43,7 @@ A resolved system is put to work in one of two ways, chosen by the brief.
 
 ### Reuse-ground (reuse before generate)
 
-When a real brand or aesthetic fits the subject, treat its system as the ground. Reuse its `tokens.css` tokens and `components.html` components before authoring anything net-new, the same reuse-before-generate move the parity loop defines. Reuse is anti-default by construction, so grounding in a real system strengthens the mandate rather than diluting it. The one justified aesthetic risk is still spent, now within the grounded system.
+When a real brand or aesthetic fits the subject, treat its system as the ground. Reuse its tokens and components before authoring anything net-new, the same reuse-before-generate move the real-UI loop defines. Reuse is anti-default by construction, so grounding in a real system strengthens the mandate rather than diluting it. The one justified aesthetic risk is still spent, now within the grounded system.
 
 ### Critique-against (name the default, then move off it)
 
@@ -66,10 +66,10 @@ If a brief explicitly pins the direction, the brief wins (NEVER override a pinne
 
 ## 4. HARD RULES FOR THIS INVENTORY
 
-- **NEVER surface a list of systems as a chooser.** Resolve exactly one system from the subject and brief. A pick-a-vibe menu is precisely the templated default the skill resists, and `claude_design_parity.md` Section 8 already forbids it.
-- **NEVER wire a system into an auto-recommend or generator flow.** A real system is input to judgment, read only. Generation and handoff belong to `mcp-open-design` and `sk-code`.
+- **NEVER surface a list of systems as a chooser.** Resolve exactly one system from the subject and brief. A pick-a-vibe menu is precisely the templated default the skill resists, and `real_ui_loop.md` Section 8 already forbids it.
+- **NEVER wire a system into an auto-recommend or generator flow.** A real system is input to judgment, read only. Generation and handoff belong to `sk-code` (and whatever generation transport you drive).
 - **NEVER present a reused or named system as the design decision.** It is the ground to reuse or the baseline to deviate from. The decision comes from the subject and the brief, per `design_principles.md`.
-- **NEVER cache or copy a system into the skill.** Read it live via `mcp-open-design`. Copying its `DESIGN.md`, `tokens.css`, or `components.html` into the repo would attach that source's license and require a new third party notice.
+- **NEVER cache or copy a system into the skill.** Read it live. Copying its direction doc, tokens, or component markup into the repo would attach that source's license and require a new third party notice.
 - **The quality floor still applies.** A deviation that breaks contrast, touch targets, or motion sensitivity is not a bold choice, it is a defect (`ux_quality_reference.md`).
 
 ---
@@ -78,5 +78,5 @@ If a brief explicitly pins the direction, the brief wins (NEVER override a pinne
 
 - [design_principles.md](../design-process/design_principles.md) sets the aesthetic direction this inventory grounds in or helps you deviate from, and stays the authority.
 - [ux_quality_reference.md](../design-process/ux_quality_reference.md) holds the quality floor every reuse and every deviation must still clear.
-- [claude_design_parity.md](../design-process/claude_design_parity.md) is the shared loop where reuse-before-generate from a real system happens, and it owns the no-chooser guardrail.
+- [real_ui_loop.md](../design-process/real_ui_loop.md) is the loop where reuse-before-generate from a real system happens, and it owns the no-chooser guardrail.
 - [design_references_mcp.md](./design_references_mcp.md) is the sibling critique-against path for real-world shipped UI (Mobbin and Refero via Code Mode). When the default to name and deviate from is a real-world category convention rather than a design system, resolve it there, under the same one-reference, no-chooser, read-live discipline.

@@ -39,7 +39,6 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-interface-design/references/claude_design_parity.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -47,12 +46,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "claude_design_parity.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-interface-design/references/claude_design_parity.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -190,11 +183,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 005 (hardened) and 006 research converged on a keystone: wire `sk-interface-design` (judgment) and `mcp-magicpath` (canvas/CLI) into the loop Claude Design has, grounded in a real design system, without cloning a hosted product or adding a style chooser. The connective protocol did not exist.",
     "created_at": "2026-06-14T09:35:00Z",
-    "last_save_at": "2026-06-15T09:09:33.174Z",
+    "last_save_at": "2026-06-16T14:27:20.528Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

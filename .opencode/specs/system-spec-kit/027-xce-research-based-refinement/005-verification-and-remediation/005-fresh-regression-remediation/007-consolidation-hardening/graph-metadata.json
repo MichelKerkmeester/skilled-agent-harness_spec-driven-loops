@@ -4,10 +4,10 @@
   "spec_folder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/007-consolidation-hardening",
   "parent_id": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/001-memory-storage-and-search"
-    ],
+    "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
@@ -17,22 +17,189 @@
       "consolidation write-lock ordering",
       "consolidation db handle consistency"
     ],
-    "key_topics": ["consolidation", "write-lock", "db-handle", "concurrency", "hardening"],
-    "importance_tier": "important",
-    "status": "planned",
-    "key_files": ["spec.md", "plan.md", "tasks.md", "implementation-summary.md"],
-    "entities": [
-      { "name": "spec.md", "kind": "doc", "path": "spec.md", "source": "derived" },
-      { "name": "plan.md", "kind": "doc", "path": "plan.md", "source": "derived" },
-      { "name": "tasks.md", "kind": "doc", "path": "tasks.md", "source": "derived" },
-      { "name": "implementation-summary.md", "kind": "doc", "path": "implementation-summary.md", "source": "derived" }
+    "key_topics": [
+      "consolidation",
+      "hardening",
+      "write-lock",
+      "ordering",
+      "handle",
+      "consistency",
+      "two",
+      "findings",
+      "surfaced",
+      "027",
+      "fresh",
+      "regression"
     ],
-    "causal_summary": "Dedicated packet for the two consolidation.ts findings deferred from sub-phase 001: read-only contradiction scan holding the BEGIN IMMEDIATE write lock, and inconsistent DB-handle threading. Default-ON consolidation cycle; concurrency-gated refactor. Scaffold only.",
+    "importance_tier": "important",
+    "status": "implemented_and_test_gated_(live_activation_deferred_to_a_separate_dist_rebuild_+_recycle)",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts",
+      "mcp_server/lib/storage/consolidation.ts",
+      "mcp_server/lib/storage/causal-edges.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "consolidation.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts",
+        "source": "derived"
+      },
+      {
+        "name": "n3lite-consolidation.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/n3lite-consolidation.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "causal-edges.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/storage/causal-edges.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Consolidation Cycle Hardening",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context These",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria Both",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "module-global",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "These two findings were surfaced by the 027 fresh+regression deep-review (`../../review/fresh-regression-75/`) in sub-phase 001 and deferred there because they require a structural refactor of the exported consolidation cycle on a **default-ON path** — disproportionate to fold into a broad sweep, warranting a dedicated packet with its own concurrency gate.",
     "created_at": "2026-06-16T00:00:00Z",
-    "last_save_at": "2026-06-16T00:00:00Z",
+    "last_save_at": "2026-06-16T17:00:43.966Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md", "plan.md", "tasks.md", "implementation-summary.md"],
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
     "last_active_child_id": null,
     "last_active_at": null
   }
