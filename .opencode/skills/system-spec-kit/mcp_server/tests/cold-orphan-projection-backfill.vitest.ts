@@ -107,10 +107,12 @@ describe('backfillColdOrphanProjection (flag ON)', () => {
   });
 });
 
-describe('backfillColdOrphanProjection (flag OFF, default)', () => {
+describe('backfillColdOrphanProjection (flag explicitly OFF)', () => {
+  // The flag is graduated default-ON; the unset case (default-ON admit) is covered above.
+  // Disabling requires an explicit false value.
   afterEach(() => { delete process.env[FLAG]; });
-  it('does nothing when the opt-in flag is unset', () => {
-    delete process.env[FLAG];
+  it('does nothing when the flag is explicitly disabled', () => {
+    process.env[FLAG] = 'false';
     const db = makeDb();
     insertMemory(db, { id: 60, spec_folder: 'z/4', file_path: '/g/spec.md', importance_tier: 'deprecated', embedding_status: 'success', updated_at: '2026-01-01' });
     const res = backfillColdOrphanProjection(db);
