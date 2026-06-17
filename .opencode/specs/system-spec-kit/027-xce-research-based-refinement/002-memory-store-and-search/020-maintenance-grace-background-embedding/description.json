@@ -1,0 +1,27 @@
+{
+  "specFolder": "020-maintenance-grace-background-embedding",
+  "description": "Feature Specification: maintenance-grace covers background embedding",
+  "keywords": [
+    "feature",
+    "specification",
+    "maintenance-grace",
+    "covers",
+    "background",
+    "embedding"
+  ],
+  "lastUpdated": "2026-06-17T13:56:34.988Z",
+  "specId": "020",
+  "folderSlug": "maintenance-grace-background-embedding",
+  "parentChain": [
+    "..",
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "002-memory-store-and-search"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "17-06-26_14-56__extend-the-maintenance-grace-marker-to-the-post.md"
+  ]
+}
