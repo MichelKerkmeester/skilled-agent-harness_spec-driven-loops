@@ -17,6 +17,8 @@
 //   "recommendedAction": "retry_broader" | "switch_mode" | "save_memory" | "ask_user" | "ask_disambiguation" | "refuse_without_evidence" | "broaden_or_ask"
 // }
 
+import { expandQuery } from './query-expander.js';
+
 // -- Types --
 
 /** The retrieval outcome state. */
@@ -146,6 +148,20 @@ function generateSuggestedQueries(ctx: RecoveryContext): string[] {
   // 4. If spec folder filter was active, suggest the same query without it
   if (ctx.hasSpecFolderFilter && !suggestions.includes(q)) {
     suggestions.push(q); // exact same query but without folder constraint
+  }
+
+  // 5. Synonym-expansion variants — turn a low-signal query into concrete
+  // broaden prompts. Reuses the deep-path expander so a weak result surfaces
+  // the same alternatives the recall pipeline would try, instead of an empty
+  // list. Best-effort: expansion never blocks recovery.
+  try {
+    for (const variant of expandQuery(q)) {
+      if (variant !== q && !suggestions.includes(variant)) {
+        suggestions.push(variant);
+      }
+    }
+  } catch {
+    // Expansion is advisory; fall back to heuristic suggestions on any failure.
   }
 
   // Deduplicate, remove empties, cap at 3
