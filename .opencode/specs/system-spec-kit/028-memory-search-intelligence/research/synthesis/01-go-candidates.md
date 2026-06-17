@@ -98,6 +98,8 @@ The fresh-agent synthesis review found candidates **confirmed in the banked reco
 
 **Residual (not a GO — a known non-consumption defect):** **DL-newInfoRatio** is computed and named in the STOP rationale but **never consumed** in the *structured* convergence module (`convergence.cjs:285,378-381`) — wire it into the structured consumer, or track as a known residual. (The prose loop does consume it.)
 
+**Deep-Loop verification + benchmark residuals (004 iters 11/12/13):** an **order-invariance property test** (iter-11) should be the verification gate on the captured merge-tiebreak GO; the **shutdown-summary heartbeat half** (iter-12 — distinct from graceful-self-stop's `stopped` marker: periodic progress within a long single lineage) and a **cross-lineage contradiction record** (keep-both, iter-13) are needs-benchmark residuals, not GOs.
+
 **Caveat correction — Advisor C5 is not a free fix:** naive runtime-empty lane elision can't distinguish a **degraded-empty** lane (mid-rebuild) from a **matched-nothing-empty** lane, so it would over-credit non-matching skills — skew *opposite* the bug it fixes. It needs a **runtime lane-health signal as a P0 prerequisite** (003 iter-14 G14-03, iter-16 J16-01): elide only lanes flagged runtime-degraded, not zero-match.
 
 **Note on C4-A:** its surviving value is **receipt-default-on + content-addressed idempotent ids**; the "wire replay/conflict into the deferred-save path" leg was refuted (001 iter-27) — see `03 §A`.
