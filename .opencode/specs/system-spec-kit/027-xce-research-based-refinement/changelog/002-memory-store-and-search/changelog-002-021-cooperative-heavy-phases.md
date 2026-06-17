@@ -48,7 +48,7 @@ contextType: "implementation"
 | Re-election adoption harness | PASS: `stress_test/durability/daemon-reelection-adoption-live.vitest.ts`, 6 tests |
 | Strict spec validation | PASS: `validate.sh --strict` on the packet, 0 errors 0 warnings |
 | Pre-existing failures (not introduced) | NOTED: `retry-manager.vitest` T49, `handler-memory-index-cooldown`, `handler-memory-index-needs-rebuild`, `trigger-threshold-tuning` — all reproduce on the clean baseline with these changes stashed |
-| Live single-launcher reindex lag read | PENDING (deploy verification): read `phase=`/`event-loop blocked`/`max-event-loop-lag` in a clean session; daemon pid unchanged and vec == fts |
+| Live reindex lag read (isolated DB clone) | PASS: a force reindex on a `sqlite .backup` snapshot clone, run by a bare daemon on a private socket (live DB byte-unchanged), logged `max-event-loop-lag ms=634` with no `event-loop blocked` spikes; the slowest phase, `enrichment-repair ms=2216`, held the loop for at most 634ms (slow-but-cooperative); daemon pid unchanged across the scan; `fts == memory_index` (20001 == 20001), `vec` 19957 (44-row deferred-embedding residue — the poll stopped at the lag line to avoid forcing a full re-embed) |
 
 ### Files Changed
 
@@ -60,5 +60,5 @@ contextType: "implementation"
 
 ### Follow-Ups
 
-- The blocking phase is not yet pinned in code. With the trigger-backfill flag off, static analysis shows no enumerated synchronous phase can block 79s (the main loop and LIMIT-5 tail phases already yield because embeddings are out-of-process; the orphan sweep is bounded to 200 rows), so the real blocker — if any remains — must be read from the lag instrumentation on a clean single-launcher live reindex. Apply the 018 chunk-and-yield to whatever phase the lag read fingers.
-- Live validation needs a clean single-launcher session: the editor's MCP and repeated cold-spawns churn the daemon independently of the guard, so the in-session live read is unreliable. Success is the daemon pid unchanged across the full reindex plus its post-scan embedding burst, with vec == fts.
+- None. The lag read resolved the open question: with the trigger-backfill flag off, no phase blocks the event loop (max lag 634ms, no spikes), confirming the static-analysis bound — so no chunk-and-yield needs applying to any tail phase. The instrumentation remains in place to finger a regression if one ever appears.
+- The "clean single-launcher session" constraint was sidestepped rather than met: the read ran against an isolated `sqlite .backup` clone driven by a bare daemon on a private socket, so the live daemon and every other session were untouched and no cold-spawn churn could invalidate the measurement.

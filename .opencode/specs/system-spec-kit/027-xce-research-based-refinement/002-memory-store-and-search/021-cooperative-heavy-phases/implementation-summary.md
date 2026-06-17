@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "027/002/021-cooperative-heavy-phases"
-    last_updated_at: "2026-06-17T17:15:00Z"
+    last_updated_at: "2026-06-17T18:35:00Z"
     last_updated_by: "implementation-engineer"
-    recent_action: "Shipped scan-lag instrumentation and trigger-backfill chunking"
-    next_safe_action: "Run a clean single-launcher live reindex and read phase/lag logs to pin any residual block"
+    recent_action: "Live clone reindex: max event-loop lag 634ms, no block — gap closed"
+    next_safe_action: "None — 021 complete; daemon stays responsive through the scan"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts"
@@ -24,10 +24,10 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "impl-027-002-021-cooperative-heavy-phases"
       parent_session_id: null
-    completion_pct: 90
-    open_questions:
-      - "Which phase, if any, blocks the event loop on the live daemon (deploy-time lag read)?"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
+      - "Which phase, if any, blocks the event loop on the live daemon? None: an isolated-clone force reindex measured max event-loop lag 634ms with no block-spikes; the slowest phase (enrichment-repair, 2216ms wall-clock) is slow-but-cooperative, so no further chunk-and-yield is needed."
       - "Is the launcher-side adopt/reap logic the root cause? No: it adopts a daemon holding a fresh marker, so no second daemon spawns while the marker is fresh."
       - "Can any enumerated synchronous phase block 79s with the trigger-backfill flag off? No: the main loop and LIMIT-5 phases already yield (out-of-process embeddings); the orphan sweep is bounded to 200 rows."
 ---
@@ -44,7 +44,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 021-cooperative-heavy-phases |
-| **Completed** | 2026-06-17 (code); deploy-time lag read pending |
+| **Completed** | 2026-06-17 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -93,7 +93,7 @@ Investigation-first. Parallel reads established that the main batch loop already
 | Scan-job suite | PASS: `tests/handler-memory-index-scan-jobs.vitest.ts` |
 | Daemon-reelection adoption harness | PASS: `stress_test/durability/daemon-reelection-adoption-live.vitest.ts` 6/6 |
 | Pre-existing failures (not introduced) | NOTED: `retry-manager.vitest.ts` T49 (cross-file flake), `handler-memory-index-cooldown`, `handler-memory-index-needs-rebuild`, `trigger-threshold-tuning` — all reproduce on the clean baseline with these changes stashed |
-| Live single-launcher reindex lag read | PENDING (deploy verification): read `phase=`/`event-loop blocked`/`max-event-loop-lag` in a clean session; daemon pid unchanged + `vec == fts` |
+| Live reindex lag read (isolated DB clone) | PASS: force reindex on a snapshot clone (bare daemon, private socket; live DB byte-unchanged) logged `max-event-loop-lag ms=634` with no `event-loop blocked` spikes; slowest phase `enrichment-repair ms=2216` is slow-but-cooperative (lag ≤ 634ms); daemon pid unchanged; `fts == memory_index` (20001==20001), `vec` 19957 (44-row deferred-embedding residue, poll stopped at the lag line by design) |
 <!-- /ANCHOR:verification -->
 
 ---

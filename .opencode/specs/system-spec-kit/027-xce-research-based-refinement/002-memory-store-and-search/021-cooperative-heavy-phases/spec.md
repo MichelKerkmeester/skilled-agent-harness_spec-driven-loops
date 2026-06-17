@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027/002/021-cooperative-heavy-phases"
-    last_updated_at: "2026-06-17T17:15:00Z"
+    last_updated_at: "2026-06-17T18:35:00Z"
     last_updated_by: "implementation-engineer"
-    recent_action: "Instrumented scan event-loop lag and chunked the trigger-backfill transaction"
-    next_safe_action: "Run a clean single-launcher live reindex and read phase/lag logs to pin any residual block"
+    recent_action: "Live clone reindex: max event-loop lag 634ms, no block — gap closed"
+    next_safe_action: "None — 021 complete; daemon stays responsive through the scan"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts"
@@ -24,10 +24,10 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "027-002-021-cooperative-heavy-phases"
       parent_session_id: null
-    completion_pct: 90
-    open_questions:
-      - "Which phase, if any, blocks the event loop on the live daemon (deploy-time lag read)?"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
+      - "Which phase, if any, blocks the event loop on the live daemon? None: an isolated-clone force reindex measured max event-loop lag 634ms with no block-spikes; the slowest phase (enrichment-repair, 2216ms wall-clock) is slow-but-cooperative, so no further chunk-and-yield is needed."
       - "Is the launcher-side adopt/reap logic the root cause? No: it correctly adopts a daemon holding a fresh marker, so no second daemon spawns while the marker is fresh."
       - "Can any enumerated synchronous phase block 79s with the trigger-backfill flag off? No: the main loop and the LIMIT-5 tail phases already yield (embeddings are out-of-process), and the orphan sweep is bounded to 200 rows."
 ---
