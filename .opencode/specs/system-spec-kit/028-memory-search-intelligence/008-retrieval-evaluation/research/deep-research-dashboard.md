@@ -18,7 +18,7 @@ Reducer-generated observability surface for the active research packet.
 - Topic: Research the retrieval-evaluation + post-027/002 angle space the shipped 015-019 search-intelligence work opened up: (A1) a memory-retrieval eval harness on the now-working cosine gate, (A2) closing 017/S4's flag-off isotonic calibration from real labels, (A3) A/B-ing the default-on levers 017 shipped (cosine-reorder/generic-query-escalation/top-dominant-verdict), (A4) gate/rank divergence as a signal, (A5) post-015 cold-tier surfacing re-measurement, (A6) a unified semantic-embedding substrate (triggers+edges+summaries), (A7) reindex-as-consolidation + maintenance-grace TTL, (A8) a shadow-eval promotion methodology. 20 iterations, Opus 4.8 via claude2 (acct#2). Read-only seats; orchestrator writes state. Every candidate novelty-diffed vs 016 (027/002 research) + the 028/007 roadmap.
 - Started: 2026-06-17T14:00:00Z
 - Status: IN_PROGRESS
-- Iteration: 9 of 20
+- Iteration: 12 of 20
 - Session ID: 2026-06-17-028-008-retrieval-evaluation
 - Parent Session: none
 - Lifecycle Mode: new
@@ -40,8 +40,11 @@ Reducer-generated observability surface for the active research packet.
 | undefined | A7-reindex-consolidation | - | 0.70 | 5 | insight |
 | undefined | A8-shadow-eval-methodology | - | 0.70 | 5 | insight |
 | undefined | A1-deepen-three-lanes | - | 0.60 | 4 | insight |
+| undefined | verify-correctness | - | 0.60 | 5 | insight |
+| undefined | verify-harness | - | 0.50 | 6 | insight |
+| undefined | GO-nogo-synthesis-tiering | - | 0.40 | 4 | insight |
 
-- iterationsCompleted: 9
+- iterationsCompleted: 12
 - keyFindings: 0
 - openQuestions: 10
 - resolvedQuestions: 0
@@ -79,10 +82,10 @@ Reducer-generated observability surface for the active research packet.
 <!-- /ANCHOR:uncovered-questions -->
 <!-- ANCHOR:trend -->
 ## 5. TREND
-- Last 3 ratios: 0.70 -> 0.70 -> 0.60
+- Last 3 ratios: 0.60 -> 0.50 -> 0.40
 - Stuck count: 0
 - Guard violations: none recorded by the reducer pass
-- convergenceScore: 0.60
+- convergenceScore: 0.40
 - coverageBySources: {}
 
 <!-- /ANCHOR:trend -->

@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/008-retrieval-evaluation"
     last_updated_at: "2026-06-17T14:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Banked wave-3 (A7/A8/A1-deepen): the C9+A8 implementation spine emerged"
-    next_safe_action: "Wave-4: adversarial-verify sharpest candidates + GO/no-go synthesis toward 20"
+    recent_action: "Banked wave-4 (verify+synthesis) iters 10-12; VERDICT GO; saturation=stop"
+    next_safe_action: "Decision: write synthesis/08 + finalize at 12, OR continue to literal 20"
     blockers: []
     key_files:
       - "research/research.md"
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-17-028-008-retrieval-evaluation"
       parent_session_id: null
-    completion_pct: 45
+    completion_pct: 60
     open_questions: []
     answered_questions: []
 ---
@@ -54,6 +54,11 @@ _memory:
 | 7 | A7 reindex-as-consolidation | 5 — reindex IS the host (cosine half); 019 TTL = a relationship; resolves #12 | ✅ banked |
 | 8 | A8 shadow-eval methodology | 5 — ONE gate welded to ONE class; intersection-blindness; flag-lifecycle | ✅ banked |
 | 9 | A1-deepen (three lanes) | 4 — the 3 missing lanes are ONE harness extension, forced build order | ✅ banked |
+| 10 | verify-correctness | 5 — A8-blindness REFUTED, S5-demotion REFINED (bounded), A7-1+A2 CONFIRMED | ✅ banked |
+| 11 | verify-harness | 6 — host ~80% built CONFIRMED; the 3 new lanes are greenfield metrics | ✅ banked |
+| 12 | GO/no-go synthesis | GO; WAVE-0/1/2 tiering + top-7 + forced C9→A8 chain; saturation=stop | ✅ banked |
+
+**Wave-4 (verify + synthesis) — CONVERGED.** Adversarial verify was net-deflationary (1 refute: A8's "structural blindness" headline; 1 refine: S5-demotion is bounded/rare; 2 confirm: A7-1 LLM-free, A2 phantom-proxy). Synthesis verdict **GO**, with an independent saturation read that **agrees with the orchestrator: 11 iters enough, stop research, open the build** (newInfoRatio 0.7→0.6→0.5; wave-3 converged A8+C9 into one buildable pair; the spine is file:line-specified). **The deliverable spine: GATE-ZERO reindex → `C9-4 → C9-1 → C9-2 → C9-3 → A8-1(+A8-2/A8-5/A8-4)` → WAVE-2 consumers (A2/A3/A5/A6/A7-1), each shadow→promote on the gate; WAVE-0 correctness (A7-4 TTL, A7-5, A4-residual, S5-evalMode-fix) ships in parallel.**
 
 **Wave-3 headline — the implementation spine emerged.** A8 (iter-8): there's exactly *one* promotion gate, welded to ranking-levers, and structurally **blind to recall/new-channel candidates** (`compareRanks` scores only the live∩shadow intersection) — keep its spine, swap a per-class metric panel; the isotonic flag is frozen *because no CLASS-G gate exists to make its promote evidence*. A1-deepen (iter-9): the three "missing accuracy lanes" (gate-verdict/ECE/cold) are **one harness extension** with a forced build order (embedding-coverage precondition → single-pass emit → `enrichGroundTruth` tagging → three corpus metrics); C9-3's ECE *is* the gate that graduates isotonic. A7 (iter-7): 018's responsive scan already IS the cadence-reorg host `synthesis/06` thought didn't exist (LLM-free half grafts as a 4th phase; LLM-transcript stays separate), and the open **019 TTL gap** resolves to `ownerLease.ttlMs × K (K>2)` + a no-phase-exceeds-TTL/2 invariant. **C9 builds the metrics; A8 gates on them — that pair is the spine for the whole intelligence-class roadmap.**
 
