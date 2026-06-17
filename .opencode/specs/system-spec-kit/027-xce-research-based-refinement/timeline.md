@@ -12,7 +12,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement"
-    last_updated_at: "2026-06-17T16:48:07Z"
+    last_updated_at: "2026-06-17T20:58:16Z"
     recent_action: "Regenerated chronological timeline from git history"
     next_safe_action: "Use this file to find the most recent / oldest spec folder"
     completion_pct: 100
@@ -21,7 +21,7 @@ _memory:
 
 <!-- GENERATED FILE — do not hand-edit. Regenerate: `python3 scratch/gen-timeline.py > timeline.md` (run from the 027 root). -->
 
-> **Generated:** 2026-06-17T16:48:07Z — regenerate before relying on intra-day ordering; same-day commits made
+> **Generated:** 2026-06-17T20:58:16Z — regenerate before relying on intra-day ordering; same-day commits made
 > after this stamp are not reflected until the next run.
 > **Sort key:** git last-commit timestamp touching each folder subtree, **newest → oldest** (the
 > recency view), taken from one atomic `git log` snapshot. The last-active column shows
@@ -38,30 +38,30 @@ _memory:
 > (docs-only, research, or work consolidated into a parent rollup) show `(none)`. Phase parents link
 > their `-root.md` rollup, which indexes the child phase changelogs.
 >
-> **Most recent live spec folder:** `002-memory-store-and-search/021-cooperative-heavy-phases`
+> **Most recent live spec folder:** `005-verification-and-remediation/006-deep-review-017-021-remediation`
 > **Oldest live spec folder:** `000-release-cleanup/001-public-root-readme`
-> **Counts:** 185 live spec folders · 0 archived (`z_archive/`).
+> **Counts:** 186 live spec folders · 0 archived (`z_archive/`).
 
 ---
 
 ## 0. Most recent 15 (quick answer to "what was worked on last")
 
 ```
- 1. 2026-06-17 18:37  002-memory-store-and-search/021-cooperative-heavy-phases
- 2. 2026-06-17 18:37  002-memory-store-and-search
- 3. 2026-06-17 15:57  002-memory-store-and-search/020-maintenance-grace-background-embedding
- 4. 2026-06-17 15:32  002-memory-store-and-search/019-maintenance-grace-daemon-survives-reelection
- 5. 2026-06-17 14:06  002-memory-store-and-search/018-reindex-scan-responsiveness-and-cancellation
- 6. 2026-06-17 12:39  002-memory-store-and-search/017-search-and-output-intelligence-implementation/004-confidence-calibration-labeled-set
- 7. 2026-06-17 12:39  002-memory-store-and-search/017-search-and-output-intelligence-implementation
- 8. 2026-06-17 09:32  002-memory-store-and-search/017-search-and-output-intelligence-implementation/007-output-surface-parity
- 9. 2026-06-17 09:26  002-memory-store-and-search/017-search-and-output-intelligence-implementation/006-command-contract-structural
-10. 2026-06-17 09:18  002-memory-store-and-search/017-search-and-output-intelligence-implementation/005-cosine-topn-reorder
-11. 2026-06-17 08:51  002-memory-store-and-search/017-search-and-output-intelligence-implementation/003-generic-query-deep-routing
-12. 2026-06-17 08:37  002-memory-store-and-search/017-search-and-output-intelligence-implementation/002-request-quality-aggregation
-13. 2026-06-17 08:22  005-verification-and-remediation/005-fresh-regression-remediation/007-consolidation-hardening
-14. 2026-06-17 08:22  005-verification-and-remediation/005-fresh-regression-remediation
-15. 2026-06-17 08:22  003-advisor-and-codegraph/004-skill-advisor-suite-repair
+ 1. 2026-06-17 22:53  005-verification-and-remediation/006-deep-review-017-021-remediation
+ 2. 2026-06-17 22:53  002-memory-store-and-search/017-search-and-output-intelligence-implementation/007-output-surface-parity
+ 3. 2026-06-17 22:53  002-memory-store-and-search/017-search-and-output-intelligence-implementation/006-command-contract-structural
+ 4. 2026-06-17 22:53  002-memory-store-and-search/017-search-and-output-intelligence-implementation/005-cosine-topn-reorder
+ 5. 2026-06-17 22:53  002-memory-store-and-search/017-search-and-output-intelligence-implementation/004-confidence-calibration-labeled-set
+ 6. 2026-06-17 22:53  002-memory-store-and-search/017-search-and-output-intelligence-implementation/003-generic-query-deep-routing
+ 7. 2026-06-17 22:53  002-memory-store-and-search/017-search-and-output-intelligence-implementation/002-request-quality-aggregation
+ 8. 2026-06-17 22:53  002-memory-store-and-search/017-search-and-output-intelligence-implementation/001-token-budget-truncation-safety
+ 9. 2026-06-17 22:53  002-memory-store-and-search/017-search-and-output-intelligence-implementation
+10. 2026-06-17 22:53  002-memory-store-and-search/020-maintenance-grace-background-embedding
+11. 2026-06-17 22:53  002-memory-store-and-search/019-maintenance-grace-daemon-survives-reelection
+12. 2026-06-17 22:53  005-verification-and-remediation
+13. 2026-06-17 22:53  002-memory-store-and-search
+14. 2026-06-17 18:37  002-memory-store-and-search/021-cooperative-heavy-phases
+15. 2026-06-17 14:06  002-memory-store-and-search/018-reindex-scan-responsiveness-and-cancellation
 ```
 
 ---
@@ -73,8 +73,8 @@ traces through the reorg `git mv` history to each track's true origin.
 
 | Rank | Last active | Born | Track |
 |------|------------------|------------|-------|
-| 1 | 2026-06-17 18:37 | 2026-06-14 | `002-memory-store-and-search/` |
-| 2 | 2026-06-17 08:22 | 2026-06-14 | `005-verification-and-remediation/` |
+| 1 | 2026-06-17 22:53 | 2026-06-14 | `005-verification-and-remediation/` |
+| 2 | 2026-06-17 22:53 | 2026-06-14 | `002-memory-store-and-search/` |
 | 3 | 2026-06-17 08:22 | 2026-06-14 | `004-shared-infrastructure/` |
 | 4 | 2026-06-17 08:22 | 2026-06-14 | `003-advisor-and-codegraph/` |
 | 5 | 2026-06-17 08:22 | 2026-06-14 | `001-research-and-doctrine/` |
@@ -92,22 +92,33 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 (a shipped hint). Folders with no committed git history (uncommitted) show `??????????` and sort last.
 
 ```
+2026-06-17 22:53  born:2026-06-17  impl  005-verification-and-remediation/006-deep-review-017-021-remediation
+2026-06-17 22:53  born:2026-06-17  impl  002-memory-store-and-search/017-search-and-output-intelligence-implementation/007-output-surface-parity
+2026-06-17 22:53  born:2026-06-17  impl  002-memory-store-and-search/017-search-and-output-intelligence-implementation/006-command-contract-structural
+2026-06-17 22:53  born:2026-06-17  impl  002-memory-store-and-search/017-search-and-output-intelligence-implementation/005-cosine-topn-reorder
+2026-06-17 22:53  born:2026-06-17  impl  002-memory-store-and-search/017-search-and-output-intelligence-implementation/004-confidence-calibration-labeled-set
+2026-06-17 22:53  born:2026-06-17  impl  002-memory-store-and-search/017-search-and-output-intelligence-implementation/003-generic-query-deep-routing
+2026-06-17 22:53  born:2026-06-17  impl  002-memory-store-and-search/017-search-and-output-intelligence-implementation/002-request-quality-aggregation
+2026-06-17 22:53  born:2026-06-17  impl  002-memory-store-and-search/017-search-and-output-intelligence-implementation/001-token-budget-truncation-safety
+2026-06-17 22:53  born:2026-06-17  impl  002-memory-store-and-search/017-search-and-output-intelligence-implementation
+2026-06-17 22:53  born:2026-06-17  impl  002-memory-store-and-search/020-maintenance-grace-background-embedding
+2026-06-17 22:53  born:2026-06-17  impl  002-memory-store-and-search/019-maintenance-grace-daemon-survives-reelection
+2026-06-17 22:53  born:2026-06-14        005-verification-and-remediation
+2026-06-17 22:53  born:2026-06-14        002-memory-store-and-search
 2026-06-17 18:37  born:2026-06-17  impl  002-memory-store-and-search/021-cooperative-heavy-phases
-2026-06-17 18:37  born:2026-06-14        002-memory-store-and-search
-2026-06-17 15:57  born:2026-06-17  impl  002-memory-store-and-search/020-maintenance-grace-background-embedding
-2026-06-17 15:32  born:2026-06-17  impl  002-memory-store-and-search/019-maintenance-grace-daemon-survives-reelection
 2026-06-17 14:06  born:2026-06-17  impl  002-memory-store-and-search/018-reindex-scan-responsiveness-and-cancellation
-2026-06-17 12:39  born:??????????  impl  002-memory-store-and-search/017-search-and-output-intelligence-implementation/004-confidence-calibration-labeled-set
-2026-06-17 12:39  born:??????????  impl  002-memory-store-and-search/017-search-and-output-intelligence-implementation
-2026-06-17 09:32  born:??????????  impl  002-memory-store-and-search/017-search-and-output-intelligence-implementation/007-output-surface-parity
-2026-06-17 09:26  born:??????????  impl  002-memory-store-and-search/017-search-and-output-intelligence-implementation/006-command-contract-structural
-2026-06-17 09:18  born:??????????  impl  002-memory-store-and-search/017-search-and-output-intelligence-implementation/005-cosine-topn-reorder
-2026-06-17 08:51  born:??????????  impl  002-memory-store-and-search/017-search-and-output-intelligence-implementation/003-generic-query-deep-routing
-2026-06-17 08:37  born:??????????  impl  002-memory-store-and-search/017-search-and-output-intelligence-implementation/002-request-quality-aggregation
+2026-06-17 08:22  born:2026-06-17  impl  005-verification-and-remediation/005-fresh-regression-remediation/006-doc-truth-completion-and-mirrors
+2026-06-17 08:22  born:2026-06-17  impl  005-verification-and-remediation/005-fresh-regression-remediation/005-spec-folder-metadata-reconciliation
+2026-06-17 08:22  born:2026-06-17  impl  005-verification-and-remediation/005-fresh-regression-remediation/004-cli-frontdoor-safety
+2026-06-17 08:22  born:2026-06-17  impl  005-verification-and-remediation/005-fresh-regression-remediation/003-code-graph-robustness
+2026-06-17 08:22  born:2026-06-17  impl  005-verification-and-remediation/005-fresh-regression-remediation/002-daemon-launcher-lifecycle
+2026-06-17 08:22  born:2026-06-17  impl  005-verification-and-remediation/005-fresh-regression-remediation/001-memory-storage-and-search
+2026-06-17 08:22  born:2026-06-17  impl  002-memory-store-and-search/016-search-and-output-intelligence-research/002-ai-output-command-vs-conversation
+2026-06-17 08:22  born:2026-06-17  impl  002-memory-store-and-search/016-search-and-output-intelligence-research/001-search-intelligence
+2026-06-17 08:22  born:2026-06-17  impl  002-memory-store-and-search/016-search-and-output-intelligence-research
 2026-06-17 08:22  born:2026-06-16  impl  005-verification-and-remediation/005-fresh-regression-remediation/007-consolidation-hardening
 2026-06-17 08:22  born:2026-06-16        005-verification-and-remediation/005-fresh-regression-remediation
 2026-06-17 08:22  born:2026-06-15  impl  003-advisor-and-codegraph/004-skill-advisor-suite-repair
-2026-06-17 08:22  born:2026-06-14        005-verification-and-remediation
 2026-06-17 08:22  born:2026-06-14        004-shared-infrastructure
 2026-06-17 08:22  born:2026-06-14        003-advisor-and-codegraph
 2026-06-17 08:22  born:2026-06-14        001-research-and-doctrine
@@ -125,17 +136,7 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 2026-06-17 08:22  born:2026-06-06  impl  001-research-and-doctrine/002-gem-team-adoption/002-scoped-preexec-and-handoff-gates
 2026-06-17 08:22  born:2026-06-06        001-research-and-doctrine/002-gem-team-adoption
 2026-06-17 08:22  born:2026-06-02        001-research-and-doctrine/001-peck-teachings-adoption
-2026-06-17 08:22  born:??????????  impl  005-verification-and-remediation/005-fresh-regression-remediation/006-doc-truth-completion-and-mirrors
-2026-06-17 08:22  born:??????????  impl  005-verification-and-remediation/005-fresh-regression-remediation/005-spec-folder-metadata-reconciliation
-2026-06-17 08:22  born:??????????  impl  005-verification-and-remediation/005-fresh-regression-remediation/004-cli-frontdoor-safety
-2026-06-17 08:22  born:??????????  impl  005-verification-and-remediation/005-fresh-regression-remediation/003-code-graph-robustness
-2026-06-17 08:22  born:??????????  impl  005-verification-and-remediation/005-fresh-regression-remediation/002-daemon-launcher-lifecycle
-2026-06-17 08:22  born:??????????  impl  005-verification-and-remediation/005-fresh-regression-remediation/001-memory-storage-and-search
-2026-06-17 08:22  born:??????????  impl  002-memory-store-and-search/016-search-and-output-intelligence-research/002-ai-output-command-vs-conversation
-2026-06-17 08:22  born:??????????  impl  002-memory-store-and-search/016-search-and-output-intelligence-research/001-search-intelligence
-2026-06-17 08:22  born:??????????  impl  002-memory-store-and-search/016-search-and-output-intelligence-research
-2026-06-17 08:19  born:??????????  impl  002-memory-store-and-search/017-search-and-output-intelligence-implementation/001-token-budget-truncation-safety
-2026-06-17 08:02  born:??????????  impl  002-memory-store-and-search/015-retrieval-gating-and-recall-recovery
+2026-06-17 08:02  born:2026-06-17  impl  002-memory-store-and-search/015-retrieval-gating-and-recall-recovery
 2026-06-16 16:59  born:2026-05-12  impl  002-memory-store-and-search/004-learning-feedback-reducers/004-retention-reducer
 2026-06-16 16:59  born:2026-05-09        002-memory-store-and-search/004-learning-feedback-reducers
 2026-06-16 15:46  born:2026-06-11        005-verification-and-remediation/001-finding-remediation
@@ -302,22 +303,33 @@ changelogs the rollup covers). Links resolve relative to this file.
 
 | Spec folder | impl | Changelog |
 |-------------|------|-----------|
-| `002-memory-store-and-search/021-cooperative-heavy-phases` | impl | [changelog-002-021-cooperative-heavy-phases.md](./changelog/002-memory-store-and-search/changelog-002-021-cooperative-heavy-phases.md) |
-| `002-memory-store-and-search` |  | [changelog-002-memory-store-and-search-root.md](./changelog/002-memory-store-and-search/changelog-002-memory-store-and-search-root.md) |
-| `002-memory-store-and-search/020-maintenance-grace-background-embedding` | impl | [changelog-002-020-maintenance-grace-background-embedding.md](./changelog/002-memory-store-and-search/changelog-002-020-maintenance-grace-background-embedding.md) |
-| `002-memory-store-and-search/019-maintenance-grace-daemon-survives-reelection` | impl | [changelog-002-019-maintenance-grace-daemon-survives-reelection.md](./changelog/002-memory-store-and-search/changelog-002-019-maintenance-grace-daemon-survives-reelection.md) |
-| `002-memory-store-and-search/018-reindex-scan-responsiveness-and-cancellation` | impl | [changelog-002-018-reindex-scan-responsiveness-and-cancellation.md](./changelog/002-memory-store-and-search/changelog-002-018-reindex-scan-responsiveness-and-cancellation.md) |
-| `002-memory-store-and-search/017-search-and-output-intelligence-implementation/004-confidence-calibration-labeled-set` | impl | [changelog-002-017-004-confidence-calibration-labeled-set.md](./changelog/002-memory-store-and-search/changelog-002-017-004-confidence-calibration-labeled-set.md) |
-| `002-memory-store-and-search/017-search-and-output-intelligence-implementation` | impl | [changelog-002-017-search-and-output-intelligence-implementation-root.md](./changelog/002-memory-store-and-search/changelog-002-017-search-and-output-intelligence-implementation-root.md) |
+| `005-verification-and-remediation/006-deep-review-017-021-remediation` | impl | (none) |
 | `002-memory-store-and-search/017-search-and-output-intelligence-implementation/007-output-surface-parity` | impl | [changelog-002-017-007-output-surface-parity.md](./changelog/002-memory-store-and-search/changelog-002-017-007-output-surface-parity.md) |
 | `002-memory-store-and-search/017-search-and-output-intelligence-implementation/006-command-contract-structural` | impl | [changelog-002-017-006-command-contract-structural.md](./changelog/002-memory-store-and-search/changelog-002-017-006-command-contract-structural.md) |
 | `002-memory-store-and-search/017-search-and-output-intelligence-implementation/005-cosine-topn-reorder` | impl | [changelog-002-017-005-cosine-topn-reorder.md](./changelog/002-memory-store-and-search/changelog-002-017-005-cosine-topn-reorder.md) |
+| `002-memory-store-and-search/017-search-and-output-intelligence-implementation/004-confidence-calibration-labeled-set` | impl | [changelog-002-017-004-confidence-calibration-labeled-set.md](./changelog/002-memory-store-and-search/changelog-002-017-004-confidence-calibration-labeled-set.md) |
 | `002-memory-store-and-search/017-search-and-output-intelligence-implementation/003-generic-query-deep-routing` | impl | [changelog-002-017-003-generic-query-deep-routing.md](./changelog/002-memory-store-and-search/changelog-002-017-003-generic-query-deep-routing.md) |
 | `002-memory-store-and-search/017-search-and-output-intelligence-implementation/002-request-quality-aggregation` | impl | [changelog-002-017-002-request-quality-aggregation.md](./changelog/002-memory-store-and-search/changelog-002-017-002-request-quality-aggregation.md) |
+| `002-memory-store-and-search/017-search-and-output-intelligence-implementation/001-token-budget-truncation-safety` | impl | [changelog-002-017-001-token-budget-truncation-safety.md](./changelog/002-memory-store-and-search/changelog-002-017-001-token-budget-truncation-safety.md) |
+| `002-memory-store-and-search/017-search-and-output-intelligence-implementation` | impl | [changelog-002-017-search-and-output-intelligence-implementation-root.md](./changelog/002-memory-store-and-search/changelog-002-017-search-and-output-intelligence-implementation-root.md) |
+| `002-memory-store-and-search/020-maintenance-grace-background-embedding` | impl | [changelog-002-020-maintenance-grace-background-embedding.md](./changelog/002-memory-store-and-search/changelog-002-020-maintenance-grace-background-embedding.md) |
+| `002-memory-store-and-search/019-maintenance-grace-daemon-survives-reelection` | impl | [changelog-002-019-maintenance-grace-daemon-survives-reelection.md](./changelog/002-memory-store-and-search/changelog-002-019-maintenance-grace-daemon-survives-reelection.md) |
+| `005-verification-and-remediation` |  | [changelog-005-verification-and-remediation-root.md](./changelog/005-verification-and-remediation/changelog-005-verification-and-remediation-root.md) |
+| `002-memory-store-and-search` |  | [changelog-002-memory-store-and-search-root.md](./changelog/002-memory-store-and-search/changelog-002-memory-store-and-search-root.md) |
+| `002-memory-store-and-search/021-cooperative-heavy-phases` | impl | [changelog-002-021-cooperative-heavy-phases.md](./changelog/002-memory-store-and-search/changelog-002-021-cooperative-heavy-phases.md) |
+| `002-memory-store-and-search/018-reindex-scan-responsiveness-and-cancellation` | impl | [changelog-002-018-reindex-scan-responsiveness-and-cancellation.md](./changelog/002-memory-store-and-search/changelog-002-018-reindex-scan-responsiveness-and-cancellation.md) |
+| `005-verification-and-remediation/005-fresh-regression-remediation/006-doc-truth-completion-and-mirrors` | impl | [changelog-005-005-006-doc-truth-completion-and-mirrors.md](./changelog/005-verification-and-remediation/changelog-005-005-006-doc-truth-completion-and-mirrors.md) |
+| `005-verification-and-remediation/005-fresh-regression-remediation/005-spec-folder-metadata-reconciliation` | impl | [changelog-005-005-005-spec-folder-metadata-reconciliation.md](./changelog/005-verification-and-remediation/changelog-005-005-005-spec-folder-metadata-reconciliation.md) |
+| `005-verification-and-remediation/005-fresh-regression-remediation/004-cli-frontdoor-safety` | impl | [changelog-005-005-004-cli-frontdoor-safety.md](./changelog/005-verification-and-remediation/changelog-005-005-004-cli-frontdoor-safety.md) |
+| `005-verification-and-remediation/005-fresh-regression-remediation/003-code-graph-robustness` | impl | [changelog-005-005-003-code-graph-robustness.md](./changelog/005-verification-and-remediation/changelog-005-005-003-code-graph-robustness.md) |
+| `005-verification-and-remediation/005-fresh-regression-remediation/002-daemon-launcher-lifecycle` | impl | [changelog-005-005-002-daemon-launcher-lifecycle.md](./changelog/005-verification-and-remediation/changelog-005-005-002-daemon-launcher-lifecycle.md) |
+| `005-verification-and-remediation/005-fresh-regression-remediation/001-memory-storage-and-search` | impl | [changelog-005-005-001-memory-storage-and-search.md](./changelog/005-verification-and-remediation/changelog-005-005-001-memory-storage-and-search.md) |
+| `002-memory-store-and-search/016-search-and-output-intelligence-research/002-ai-output-command-vs-conversation` | impl | (none) |
+| `002-memory-store-and-search/016-search-and-output-intelligence-research/001-search-intelligence` | impl | (none) |
+| `002-memory-store-and-search/016-search-and-output-intelligence-research` | impl | [changelog-002-016-search-and-output-intelligence-research.md](./changelog/002-memory-store-and-search/changelog-002-016-search-and-output-intelligence-research.md) |
 | `005-verification-and-remediation/005-fresh-regression-remediation/007-consolidation-hardening` | impl | [changelog-005-005-007-consolidation-hardening.md](./changelog/005-verification-and-remediation/changelog-005-005-007-consolidation-hardening.md) |
 | `005-verification-and-remediation/005-fresh-regression-remediation` |  | [changelog-005-005-fresh-regression-remediation-root.md](./changelog/005-verification-and-remediation/changelog-005-005-fresh-regression-remediation-root.md) |
 | `003-advisor-and-codegraph/004-skill-advisor-suite-repair` | impl | [changelog-003-004-skill-advisor-suite-repair.md](./changelog/003-advisor-and-codegraph/changelog-003-004-skill-advisor-suite-repair.md) |
-| `005-verification-and-remediation` |  | [changelog-005-verification-and-remediation-root.md](./changelog/005-verification-and-remediation/changelog-005-verification-and-remediation-root.md) |
 | `004-shared-infrastructure` |  | [changelog-004-shared-infrastructure-root.md](./changelog/004-shared-infrastructure/changelog-004-shared-infrastructure-root.md) |
 | `003-advisor-and-codegraph` |  | [changelog-003-advisor-and-codegraph-root.md](./changelog/003-advisor-and-codegraph/changelog-003-advisor-and-codegraph-root.md) |
 | `001-research-and-doctrine` |  | [changelog-001-research-and-doctrine-root.md](./changelog/001-research-and-doctrine/changelog-001-research-and-doctrine-root.md) |
@@ -335,16 +347,6 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `001-research-and-doctrine/002-gem-team-adoption/002-scoped-preexec-and-handoff-gates` | impl | [changelog-001-002-002-scoped-preexec-and-handoff-gates.md](./changelog/001-research-and-doctrine/changelog-001-002-002-scoped-preexec-and-handoff-gates.md) |
 | `001-research-and-doctrine/002-gem-team-adoption` |  | [changelog-001-002-gem-team-adoption-root.md](./changelog/001-research-and-doctrine/changelog-001-002-gem-team-adoption-root.md) |
 | `001-research-and-doctrine/001-peck-teachings-adoption` |  | [changelog-001-001-peck-teachings-adoption-root.md](./changelog/001-research-and-doctrine/changelog-001-001-peck-teachings-adoption-root.md) |
-| `005-verification-and-remediation/005-fresh-regression-remediation/006-doc-truth-completion-and-mirrors` | impl | [changelog-005-005-006-doc-truth-completion-and-mirrors.md](./changelog/005-verification-and-remediation/changelog-005-005-006-doc-truth-completion-and-mirrors.md) |
-| `005-verification-and-remediation/005-fresh-regression-remediation/005-spec-folder-metadata-reconciliation` | impl | [changelog-005-005-005-spec-folder-metadata-reconciliation.md](./changelog/005-verification-and-remediation/changelog-005-005-005-spec-folder-metadata-reconciliation.md) |
-| `005-verification-and-remediation/005-fresh-regression-remediation/004-cli-frontdoor-safety` | impl | [changelog-005-005-004-cli-frontdoor-safety.md](./changelog/005-verification-and-remediation/changelog-005-005-004-cli-frontdoor-safety.md) |
-| `005-verification-and-remediation/005-fresh-regression-remediation/003-code-graph-robustness` | impl | [changelog-005-005-003-code-graph-robustness.md](./changelog/005-verification-and-remediation/changelog-005-005-003-code-graph-robustness.md) |
-| `005-verification-and-remediation/005-fresh-regression-remediation/002-daemon-launcher-lifecycle` | impl | [changelog-005-005-002-daemon-launcher-lifecycle.md](./changelog/005-verification-and-remediation/changelog-005-005-002-daemon-launcher-lifecycle.md) |
-| `005-verification-and-remediation/005-fresh-regression-remediation/001-memory-storage-and-search` | impl | [changelog-005-005-001-memory-storage-and-search.md](./changelog/005-verification-and-remediation/changelog-005-005-001-memory-storage-and-search.md) |
-| `002-memory-store-and-search/016-search-and-output-intelligence-research/002-ai-output-command-vs-conversation` | impl | (none) |
-| `002-memory-store-and-search/016-search-and-output-intelligence-research/001-search-intelligence` | impl | (none) |
-| `002-memory-store-and-search/016-search-and-output-intelligence-research` | impl | [changelog-002-016-search-and-output-intelligence-research.md](./changelog/002-memory-store-and-search/changelog-002-016-search-and-output-intelligence-research.md) |
-| `002-memory-store-and-search/017-search-and-output-intelligence-implementation/001-token-budget-truncation-safety` | impl | [changelog-002-017-001-token-budget-truncation-safety.md](./changelog/002-memory-store-and-search/changelog-002-017-001-token-budget-truncation-safety.md) |
 | `002-memory-store-and-search/015-retrieval-gating-and-recall-recovery` | impl | [changelog-002-015-retrieval-gating-and-recall-recovery.md](./changelog/002-memory-store-and-search/changelog-002-015-retrieval-gating-and-recall-recovery.md) |
 | `002-memory-store-and-search/004-learning-feedback-reducers/004-retention-reducer` | impl | [changelog-002-004-004-feedback-retention-reducer.md](./changelog/002-memory-store-and-search/changelog-002-004-004-feedback-retention-reducer.md) |
 | `002-memory-store-and-search/004-learning-feedback-reducers` |  | [changelog-002-004-learning-feedback-reducers-root.md](./changelog/002-memory-store-and-search/changelog-002-004-learning-feedback-reducers-root.md) |
