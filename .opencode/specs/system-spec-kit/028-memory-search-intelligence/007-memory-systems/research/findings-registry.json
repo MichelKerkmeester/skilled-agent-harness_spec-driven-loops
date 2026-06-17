@@ -87,11 +87,11 @@
   "graphDecision": null,
   "graphBlockers": [],
   "metrics": {
-    "iterationsCompleted": 14,
+    "iterationsCompleted": 18,
     "openQuestions": 10,
     "resolvedQuestions": 0,
     "keyFindings": 0,
-    "convergenceScore": 0.7,
+    "convergenceScore": 0.5,
     "coverageBySources": {}
   },
   "corruptionWarnings": [],

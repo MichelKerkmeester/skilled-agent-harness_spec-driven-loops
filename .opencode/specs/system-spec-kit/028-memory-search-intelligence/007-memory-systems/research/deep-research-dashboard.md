@@ -18,7 +18,7 @@ Reducer-generated observability surface for the active research packet.
 - Topic: Mine four external agent-memory systems (Mem0, Graphiti/Zep, Letta/MemGPT, Cognee) for evidence-backed, code-mapped, NOVELTY-DIFFED improvements to Memory MCP retrieval/ranking/consolidation/currentness/forgetting (+ Skill-Advisor fusion, Deep-Loop continuity). 4-model sweep: DeepSeek v4 Pro (deep-extract cores), MiMo v2.5 Pro (broad cross-system sweep), Kimi K2.7 (seam-map to internals), Opus 4.8 (adversarial-verify + novelty-diff + synthesis). Read-only seats; orchestrator writes state.
 - Started: 2026-06-17T09:30:00Z
 - Status: IN_PROGRESS
-- Iteration: 14 of 40
+- Iteration: 18 of 40
 - Session ID: 2026-06-17-028-007-memory-systems
 - Parent Session: none
 - Lifecycle Mode: new
@@ -45,8 +45,12 @@ Reducer-generated observability surface for the active research packet.
 | undefined | mimo-letta-tiers-budgeting-and-cognee-summary | - | 0.60 | 5 | insight |
 | undefined | opus-native-verify-iter8-cognee-community-candidates | - | 0.60 | 8 | insight |
 | undefined | opus-native-crosscutting-advisor-deeploop-transfers | - | 0.70 | 11 | insight |
+| undefined | deepseek-forgetting-decay-contradiction | - | 0.50 | 5 | insight |
+| undefined | mimo-ranking-determinism-Q6 | - | 0.10 | 2 | saturating |
+| undefined | opus-native-verify-iter11-12-netnews | - | 0.40 | 5 | insight |
+| undefined | opus-native-consolidation-tiering | - | 0.50 | 6 | insight |
 
-- iterationsCompleted: 14
+- iterationsCompleted: 18
 - keyFindings: 0
 - openQuestions: 10
 - resolvedQuestions: 0
@@ -84,10 +88,10 @@ Reducer-generated observability surface for the active research packet.
 <!-- /ANCHOR:uncovered-questions -->
 <!-- ANCHOR:trend -->
 ## 5. TREND
-- Last 3 ratios: 0.60 -> 0.60 -> 0.70
+- Last 3 ratios: 0.10 -> 0.40 -> 0.50
 - Stuck count: 0
 - Guard violations: none recorded by the reducer pass
-- convergenceScore: 0.70
+- convergenceScore: 0.50
 - coverageBySources: {}
 
 <!-- /ANCHOR:trend -->
