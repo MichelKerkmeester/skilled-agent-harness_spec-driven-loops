@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence"
-    last_updated_at: "2026-06-17T00:45:00Z"
+    last_updated_at: "2026-06-17T06:15:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Completed 027-revisit child 005 to 150 total; reconciliation ledger shipped"
-    next_safe_action: "Hand the GO list + 5 roadmap edits to a 028 implementation packet"
+    recent_action: "Completed 006 sibling child to 200 total; 6-child synthesis shipped"
+    next_safe_action: "Hand GO list + deflations to a 028 implementation packet"
     blockers: []
     key_files:
       - "spec.md"
@@ -35,6 +35,7 @@ _memory:
       - "Cross-cutting spine themes that span >1 subsystem: determinism, bi-temporal currentness, query-class routing, graceful degradation, bounded reliability-weighted learning, idempotent async consolidation."
       - "Each child sustained ~4-7 productive iterations before genuine saturation; ~54 candidates surfaced total."
       - "027-revisit (child 005, 50 iters): 028 is net-additive to 027 (0 supersedes, 0 contradicts; EXTENDS x6/ALREADY-COVERED x1/NO-TRANSFER x3); 027's shipped doctrine reverse-validates 028's deflation."
+      - "Sibling + cross-cutting (child 006, 50 iters → 200 total): Advisor/Code-Graph x 027 mostly EXTENDS; net-new cross-cutting wins (ANN tie-stability, constitutional self-edit guard, source_kind-gated render escaper); deferred C1/QCR/codegraph-bi-temporal; refuted cross-cutting-C8; procedural downgraded to proxy-only."
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
@@ -119,6 +120,7 @@ Run a decomposed deep-research campaign that mines the two external systems for 
 | 003 | `003-skill-advisor/` | Mine external systems for Skill Advisor improvements | Complete |
 | 004 | `004-deep-loop/` | Mine external systems for Deep Loop runtime improvements | Complete |
 | 005 | `005-revisit-027/` | Cross-packet revisit: reconcile 027's shipped refinements against the 028 findings | Complete |
+| 006 | `006-sibling-revisit/` | Sibling-subsystem revisit (028 Advisor + Code-Graph × 027) + aionforge-procedural + GO re-verify | Complete |
 
 ### Phase Transition Rules
 
