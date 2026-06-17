@@ -259,6 +259,14 @@ export async function setJobState(jobId: string, nextState: JobLifecycleState): 
     throw new Error(`State transition conflict: job ${jobId} state was changed by another process (expected '${current.state}')`);
   }
 
+  // Every terminal transition must release the in-process cancel mirror, not just
+  // completeJob/resetRunningJobsForKind. A cancel-then-fail-while-running race
+  // routes through setJobState('failed'); without this the job-id would leak,
+  // contradicting the cancelledJobIds bounded-growth guarantee.
+  if (isTerminalJobState(nextState)) {
+    cancelledJobIds.delete(jobId);
+  }
+
   return { ...current, state: nextState, updatedAt };
 }
 

@@ -12,9 +12,9 @@ Thin router for memory retrieval and analysis.
 
 ## 0. ARGUMENT RESOLUTION (deterministic — read this first)
 
-The shell line below is evaluated before you read any policy. It is the ground truth for this invocation. The `bash -c` wrapper joins every `$ARGUMENTS` word into one string (the injection expands `$ARGUMENTS` like `"$@"`, one word per argument, so the renderer must join argv itself) and reports whether any argument was supplied.
+The shell line below is evaluated before you read any policy. It is the ground truth for this invocation. The renderer substitutes the raw query text where `$ARGUMENTS` appears, so it is single-quoted in the command below: this keeps shell metacharacters in the query (`*`, `$(…)`, backticks, `;`, `|`) literal instead of letting the outer shell expand them before the protective `bash -c` runs. The wrapper then joins the query into one string and reports whether any argument was supplied.
 
-!`bash -c 'if [ "$#" -gt 0 ]; then q="$*"; q="${q//\"/\\\"}"; printf "ARGS_PRESENT=true\nQUERY=\"%s\"\n" "$q"; else printf "ARGS_PRESENT=false\nQUERY=\"\"\n"; fi' -- $ARGUMENTS`
+!`bash -c 'if [ "$#" -gt 0 ]; then q="$*"; q="${q//\"/\\\"}"; printf "ARGS_PRESENT=true\nQUERY=\"%s\"\n" "$q"; else printf "ARGS_PRESENT=false\nQUERY=\"\"\n"; fi' -- '$ARGUMENTS'`
 
 Bind your control flow to the two values above — never re-derive arg-presence from your own reading of the prompt:
 

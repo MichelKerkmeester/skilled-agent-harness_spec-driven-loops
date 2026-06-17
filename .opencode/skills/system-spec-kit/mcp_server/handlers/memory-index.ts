@@ -157,6 +157,7 @@ interface ScanResults {
   staleDeleted: number;
   staleDeleteFailed: number;
   postInsertEnrichmentRepaired: number;
+  nearDuplicateRepaired: number;
   orphanSwept: number;
   orphanSweepFailed: number;
   orphanSweepScanned: number;
@@ -782,12 +783,29 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
     }
   };
 
+  // Time each un-yielded tail phase: because these phases do not yield, their
+  // wall-clock equals their event-loop-block duration, so this pinpoints a blocking
+  // phase when read alongside the event-loop lag sampler. Entering a phase also fires
+  // onPhase, which refreshes the busy marker — giving each phase a full TTL ahead.
+  const timedPhase = async <T>(phase: string, fn: () => Promise<T> | T): Promise<T> => {
+    ctx.onPhase?.(phase);
+    if (!instrument) {
+      return await fn();
+    }
+    const startedAt = Date.now();
+    try {
+      return await fn();
+    } finally {
+      console.error(`[memory-index-scan] phase=${phase} ms=${Date.now() - startedAt}`);
+    }
+  };
+
   if (files.length === 0) {
     let staleDeleted = 0;
     let staleDeleteFailed = 0;
-    const orphanSweepResult = runGlobalOrphanSweep();
-    const postInsertEnrichmentRepaired = await runPostInsertEnrichmentRepairBackfill();
-    await runNearDuplicateRepairBackfill();
+    const orphanSweepResult = await timedPhase('orphan-sweep', () => runGlobalOrphanSweep());
+    const postInsertEnrichmentRepaired = await timedPhase('enrichment-repair', () => runPostInsertEnrichmentRepairBackfill());
+    const nearDuplicateRepaired = await timedPhase('near-dup-repair', () => runNearDuplicateRepairBackfill());
 
     if (incremental && !force) {
       const categorized: CategorizedFiles = incrementalIndex.categorizeFilesForIndexing([]);
@@ -799,9 +817,10 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
       }
     }
 
-    const triggerEmbeddingBackfill = await runTriggerEmbeddingBackfill(requireDb(), {
-      isCancelled: () => ctx.isCancelled?.() ?? false,
-    });
+    const triggerEmbeddingBackfill = await timedPhase('trigger-backfill', () =>
+      runTriggerEmbeddingBackfill(requireDb(), {
+        isCancelled: () => ctx.isCancelled?.() ?? false,
+      }));
 
     if (orphanSweepResult.swept > 0) {
       runScanInvalidationHooks({
@@ -857,6 +876,7 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
         staleDeleted,
         staleDeleteFailed,
         postInsertEnrichmentRepaired,
+        nearDuplicateRepaired,
         triggerEmbeddingBackfill,
         orphanSwept: orphanSweepResult.swept,
         orphanSweepFailed: orphanSweepResult.failed,
@@ -869,6 +889,7 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
       hints: [
         ...(staleDeleted > 0 ? [`Removed ${staleDeleted} stale index record(s) for deleted files`] : []),
         ...(postInsertEnrichmentRepaired > 0 ? [`Repaired ${postInsertEnrichmentRepaired} incomplete post-insert enrichment marker(s)`] : []),
+        ...(nearDuplicateRepaired > 0 ? [`Repaired ${nearDuplicateRepaired} near-duplicate marker(s)`] : []),
         ...(triggerEmbeddingBackfill.readyRows > 0 ? [`Backfilled ${triggerEmbeddingBackfill.readyRows} trigger embedding row(s)`] : []),
         ...(triggerEmbeddingBackfill.failedRows > 0 ? [`${triggerEmbeddingBackfill.failedRows} trigger embedding row(s) failed backfill`] : []),
         ...(orphanSweepResult.swept > 0 ? [`Swept ${orphanSweepResult.swept} orphan index record(s)`] : []),
@@ -896,6 +917,7 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
     staleDeleted: 0,
     staleDeleteFailed: 0,
     postInsertEnrichmentRepaired: 0,
+    nearDuplicateRepaired: 0,
     orphanSwept: 0,
     orphanSweepFailed: 0,
     orphanSweepScanned: 0,
@@ -1056,7 +1078,10 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
           result.status === 'reinforced' ||
           result.status === 'duplicate' ||
           result.status === 'deferred';
-        if (!isSuccessfulStatus) {
+        // A cancelled file was never indexed and was never going to be: counting it
+        // as a failure would attribute an operator-requested stop to a file error.
+        // It is neither success nor failure, so it falls through both tallies.
+        if (!isSuccessfulStatus && result.status !== 'cancelled') {
           results.failed++;
         }
 
@@ -1219,23 +1244,6 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
     }
   }
 
-  // Time each un-yielded tail phase: because these phases do not yield, their
-  // wall-clock equals their event-loop-block duration, so this pinpoints a blocking
-  // phase when read alongside the event-loop lag sampler. Entering a phase also fires
-  // onPhase, which refreshes the busy marker — giving each phase a full TTL ahead.
-  const timedPhase = async <T>(phase: string, fn: () => Promise<T> | T): Promise<T> => {
-    ctx.onPhase?.(phase);
-    if (!instrument) {
-      return await fn();
-    }
-    const startedAt = Date.now();
-    try {
-      return await fn();
-    } finally {
-      console.error(`[memory-index-scan] phase=${phase} ms=${Date.now() - startedAt}`);
-    }
-  };
-
   const orphanSweepResult = await timedPhase('orphan-sweep', () => runGlobalOrphanSweep());
   results.orphanSwept = orphanSweepResult.swept;
   results.orphanSweepFailed = orphanSweepResult.failed;
@@ -1258,7 +1266,7 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
   if (triggerBackfillChangedRows(results.triggerEmbeddingBackfill)) {
     scanAppliedActions.push(createTriggerBackfillAction(results.triggerEmbeddingBackfill));
   }
-  await timedPhase('near-dup-repair', () => runNearDuplicateRepairBackfill());
+  results.nearDuplicateRepaired = await timedPhase('near-dup-repair', () => runNearDuplicateRepairBackfill());
 
   // Create causal chains between spec folder documents.
   // Includes deferred indexing outcomes and incremental single-file updates.
@@ -1383,6 +1391,9 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
   }
   if (results.postInsertEnrichmentRepaired > 0) {
     hints.push(`Repaired ${results.postInsertEnrichmentRepaired} incomplete post-insert enrichment marker(s)`);
+  }
+  if (results.nearDuplicateRepaired > 0) {
+    hints.push(`Repaired ${results.nearDuplicateRepaired} near-duplicate marker(s)`);
   }
   if (results.triggerEmbeddingBackfill?.readyRows) {
     hints.push(`Backfilled ${results.triggerEmbeddingBackfill.readyRows} trigger embedding row(s)`);

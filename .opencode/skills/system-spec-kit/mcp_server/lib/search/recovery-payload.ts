@@ -84,7 +84,13 @@ function classifyStatus(ctx: RecoveryContext): RecoveryStatus {
     ctx.avgConfidence < threshold
   ) return 'low_confidence';
   if (ctx.resultCount < PARTIAL_RESULT_MIN) return 'partial';
-  return 'low_confidence'; // fallback — should only be called when recovery is warranted
+  // Conservative fallback: results exist, are above the confidence threshold,
+  // and meet the count floor, yet recovery was still requested. The label
+  // intentionally repeats the `:81-85` value — `low_confidence` is the safest
+  // "recovery warranted but no specific cause matched" verdict, and the contract
+  // requires a valid RecoveryStatus here (callers branch on the literal, so a
+  // throw or new sentinel would be a behavior change, not a clarification).
+  return 'low_confidence';
 }
 
 /**
@@ -283,7 +289,12 @@ export function buildGraphExpandedFallback(
     const seedIds = seedRows.map((r) => String(r.id));
     const seedPlaceholdersSql = seedIds.map(() => '?').join(', ');
 
-    // Step 2: Walk 1-hop causal edges from seeds to find neighbor nodes
+    // Step 2: Walk 1-hop causal edges from seeds to find neighbor nodes. The
+    // query binds the seed list once per IN(...) clause; build the param array
+    // from the same clause count so the placeholders and bound values cannot
+    // drift if a clause is added or removed.
+    const seedInClauseCount = 3; // source_id IN, target_id IN, NOT IN
+    const seedParams = Array.from({ length: seedInClauseCount }, () => seedIds).flat();
     const neighborRows = (db.prepare(`
       SELECT DISTINCT mi.title
       FROM causal_edges ce
@@ -294,11 +305,7 @@ export function buildGraphExpandedFallback(
       )
       WHERE mi.id NOT IN (${seedPlaceholdersSql})
       LIMIT 10
-    `) as Database.Statement).all(
-      ...seedIds,
-      ...seedIds,
-      ...seedIds,
-    ) as Array<{ title: string }>;
+    `) as Database.Statement).all(...seedParams) as Array<{ title: string }>;
 
     if (neighborRows.length === 0) return [];
 

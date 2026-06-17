@@ -165,6 +165,10 @@ describe('trigger embedding backfill', () => {
     const derivedCount = database.prepare('SELECT COUNT(*) AS count FROM memory_trigger_embeddings').get() as { count: number };
     expect(result.status).toBe('cancelled');
     expect(derivedCount.count).toBe(0);
+    // No chunk committed, so the cancelled run reports zero backlog and triggers
+    // no statediff action — the counter fix must not over-report on a no-work cancel.
+    expect(result.pendingRemaining).toBe(0);
+    expect(result.pendingRows).toBe(0);
     expect(embeddingMocks.generateDocumentEmbedding).not.toHaveBeenCalled();
   });
 
@@ -184,6 +188,11 @@ describe('trigger embedding backfill', () => {
     const derivedCount = database.prepare('SELECT COUNT(*) AS count FROM memory_trigger_embeddings').get() as { count: number };
     expect(result.status).toBe('cancelled');
     expect(derivedCount.count).toBe(200);
+    // The cancelled envelope must report the committed-but-pending backlog so it
+    // does not under-report remaining work and so the caller's pendingRows-keyed
+    // change-detection emits a statediff action for the 200 committed rows.
+    expect(result.pendingRemaining).toBe(200);
+    expect(result.pendingRows).toBe(200);
     expect(embeddingMocks.generateDocumentEmbedding).not.toHaveBeenCalled();
   });
 

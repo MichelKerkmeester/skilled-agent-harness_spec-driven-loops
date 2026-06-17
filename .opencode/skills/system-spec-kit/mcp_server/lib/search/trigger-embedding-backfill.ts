@@ -114,6 +114,21 @@ function countPendingRows(database: Database.Database, profileKey: string, input
   return row.count;
 }
 
+// On a cancel return the per-pass counters were never finalized, so populate them
+// from the live committed-pending backlog. This keeps a cancelled envelope honest
+// about remaining work and lets the caller's change-detection (which keys on
+// pendingRows) emit a statediff action for rows committed as 'pending' before the cancel.
+function reportCommittedPending(
+  database: Database.Database,
+  profileKey: string,
+  inputKind: TriggerEmbeddingInputKind,
+  result: TriggerEmbeddingBackfillResult,
+): void {
+  const pending = countPendingRows(database, profileKey, inputKind);
+  result.pendingRemaining = pending;
+  result.pendingRows = pending;
+}
+
 function markTriggerEmbeddingStatus(
   database: Database.Database,
   row: PendingTriggerEmbeddingRow,
@@ -248,6 +263,11 @@ export async function runTriggerEmbeddingBackfill(
       if (options.isCancelled?.()) {
         result.status = 'cancelled';
         result.warnings.push('Trigger embedding backfill cancelled during phrase sync');
+        // Already-committed chunks may have inserted 'pending' rows. Report that
+        // backlog so a cancelled run does not under-report remaining work and so
+        // downstream change-detection sees the committed-but-pending rows. The
+        // rows stay inert until embedded and the next scan reconciles them.
+        reportCommittedPending(database, profileKey, TRIGGER_INPUT_KIND, result);
         return result;
       }
       syncPhraseChunk(sourceRows.slice(offset, offset + PHRASE_SYNC_CHUNK_ROWS));
@@ -275,6 +295,10 @@ export async function runTriggerEmbeddingBackfill(
       if (options.isCancelled?.()) {
         result.status = 'cancelled';
         result.warnings.push('Trigger embedding backfill cancelled during embedding generation');
+        // Some rows in this pass may already be 'ready' and others still 'pending'.
+        // Report the live pending backlog so the cancelled envelope reflects true
+        // remaining work; the next scan reconciles the rest.
+        reportCommittedPending(database, profileKey, TRIGGER_INPUT_KIND, result);
         return result;
       }
       // The cache-hit and missing-phrase branches below `continue` without awaiting

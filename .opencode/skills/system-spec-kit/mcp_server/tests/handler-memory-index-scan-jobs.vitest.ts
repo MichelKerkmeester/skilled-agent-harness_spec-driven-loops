@@ -368,6 +368,54 @@ describe('memory_index_scan background dispatch', () => {
     expect(missingPayload.code).toBe('E404');
   });
 
+  it('counts a cancelled file as neither failed nor success', async () => {
+    // A file whose worker returns 'cancelled' (operator-requested stop mid-batch)
+    // must not inflate the failure tally — the cancel is not a file error.
+    mocks.mockIndexMemoryFile.mockResolvedValue({ status: 'cancelled' });
+
+    const result = await scanHandler.handleMemoryIndexScan({
+      includeConstitutional: false,
+      includeSpecDocs: true,
+      incremental: false,
+      force: false,
+    });
+
+    const { data } = parseEnvelope(result);
+    expect(data.failed).toBe(0);
+    expect(data.indexed).toBe(0);
+    expect(data.updated).toBe(0);
+  });
+
+  it('instruments the empty-files tail phases via timedPhase (onPhase markers)', async () => {
+    // No discoverable files routes through the empty-files branch; that branch must
+    // still fire onPhase for each tail maintenance phase so the busy marker refreshes
+    // and per-phase timing is emitted — symmetry with the main scan path.
+    mocks.mockFindSpecDocuments.mockReturnValue([]);
+    mocks.mockFindConstitutionalFiles.mockReturnValue([]);
+
+    const started = await scanHandler.handleMemoryIndexScan({
+      background: true,
+      includeConstitutional: false,
+      includeSpecDocs: true,
+      incremental: false,
+      force: false,
+    });
+    const jobId = parseEnvelope(started).data.jobId as string;
+    await waitFor(() => jobStore.jobs.get(jobId)?.state === 'complete');
+
+    const phases = jobStore.setJobPhase.mock.calls.map((call) => call[1]);
+    expect(phases).toContain('orphan-sweep');
+    expect(phases).toContain('enrichment-repair');
+    expect(phases).toContain('near-dup-repair');
+    expect(phases).toContain('trigger-backfill');
+
+    // The empty-files branch never enters the indexing loop.
+    expect(mocks.mockIndexMemoryFile).not.toHaveBeenCalled();
+    const statusRes = await scanJobHandlers.handleMemoryIndexScanStatus({ jobId });
+    const echoed = parseEnvelope(statusRes).data.result as Record<string, unknown>;
+    expect(echoed.status).toBe('complete');
+  });
+
   it('cancel stops the runner at a phase boundary, releases the lease, and is idempotent', async () => {
     const { gate, release } = createBatchGate();
     mocks.mockProcessBatches.mockImplementation(async (files: string[], worker: (file: string) => Promise<unknown>) => {

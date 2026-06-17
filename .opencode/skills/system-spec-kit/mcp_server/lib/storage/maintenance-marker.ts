@@ -75,6 +75,10 @@ export function beginMaintenance(label: string): MaintenanceMarkerHandle {
       activeCount = Math.max(0, activeCount - 1);
       const idx = activeLabels.indexOf(label);
       if (idx >= 0) activeLabels.splice(idx, 1);
+      // A non-final end() prunes the in-memory label only; the on-disk labels[]
+      // is not re-serialized here and stays best-effort diagnostic until the next
+      // write (begin/refresh/timer). The launcher reads only childPid +
+      // activeUntilMs, so a momentarily stale label set is harmless.
       if (activeCount === 0) {
         if (refreshTimer) { clearInterval(refreshTimer); refreshTimer = null; }
         try { rmSync(markerPath(), { force: true }); } catch { /* best-effort cleanup */ }
@@ -83,9 +87,11 @@ export function beginMaintenance(label: string): MaintenanceMarkerHandle {
   };
 }
 
-// Test-only: reset module state between cases.
+// Test-only: reset module state between cases. Removes the on-disk marker too,
+// so a later test reusing the same DATABASE_DIR cannot observe a stale marker.
 export function __resetMaintenanceMarkerForTest(): void {
   if (refreshTimer) { clearInterval(refreshTimer); refreshTimer = null; }
+  try { rmSync(markerPath(), { force: true }); } catch { /* best-effort cleanup */ }
   activeCount = 0;
   activeLabels = [];
 }

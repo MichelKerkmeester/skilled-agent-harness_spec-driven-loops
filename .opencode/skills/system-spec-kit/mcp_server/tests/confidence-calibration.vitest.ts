@@ -70,6 +70,100 @@ describe('fitCalibration() — isotonic PAV', () => {
     ]);
     expect(model.fittedFrom).toBe(1);
   });
+
+  it('collapses adjacent equal-mean blocks into a single point', () => {
+    // Three samples whose pooled means stay equal (all-positive, then a mix that
+    // pools back to the same 0.5 mean) must not serialize as separate adjacent
+    // points. Pooling equal means leaves y unchanged, so this is a size-only
+    // guarantee — the curve and its interpolation are identical either way.
+    const model = fitCalibration([
+      { rawValue: 0.2, relevant: 1 },
+      { rawValue: 0.4, relevant: 0 },
+      { rawValue: 0.6, relevant: 1 },
+      { rawValue: 0.8, relevant: 0 },
+    ]);
+    // After PAV all four pool to one block (mean y = 0.5); no two adjacent
+    // emitted points share a y.
+    for (let i = 1; i < model.points.length; i++) {
+      expect(model.points[i].y).not.toBeCloseTo(model.points[i - 1].y, 12);
+    }
+    // monotonic + bounded still holds
+    for (let i = 1; i < model.points.length; i++) {
+      expect(model.points[i].y).toBeGreaterThanOrEqual(model.points[i - 1].y);
+    }
+  });
+});
+
+// -- Drift guard: lib PAV vs the offline seed generator --
+//
+// `004-…/assets/fit-calibration.mjs` carries a second, near-identical PAV loop
+// for offline seed generation. The two are intentionally allowed to diverge in
+// one respect — the offline asset breaks on `prev <= curr` (keeps adjacent
+// equal-mean blocks) while the lib breaks on `prev < curr` (collapses them).
+// This guard locks the lib's pooling contract so a future edit to the lib loop
+// is caught by an assertion rather than silently desyncing from its own spec.
+
+describe('fitCalibration() — PAV pooling contract (drift guard)', () => {
+  // A reference PAV that mirrors the lib's break condition (`prev < curr`,
+  // i.e. collapse equal means). If the lib diverges from this, the parity
+  // assertion below fails.
+  function referencePav(
+    samples: CalibrationSample[],
+  ): Array<{ x: number; y: number }> {
+    const clean = samples
+      .filter((s) => Number.isFinite(s.rawValue) && (s.relevant === 0 || s.relevant === 1))
+      .map((s) => ({ x: Math.max(0, Math.min(1, s.rawValue)), y: s.relevant as number }))
+      .sort((a, b) => a.x - b.x);
+    const blocks: Array<{ sumX: number; sumY: number; count: number }> = [];
+    for (const { x, y } of clean) {
+      blocks.push({ sumX: x, sumY: y, count: 1 });
+      while (blocks.length >= 2) {
+        const curr = blocks[blocks.length - 1]!;
+        const prev = blocks[blocks.length - 2]!;
+        if (prev.sumY / prev.count < curr.sumY / curr.count) break;
+        prev.sumX += curr.sumX;
+        prev.sumY += curr.sumY;
+        prev.count += curr.count;
+        blocks.pop();
+      }
+    }
+    return blocks.map((b) => ({ x: b.sumX / b.count, y: Math.max(0, Math.min(1, b.sumY / b.count)) }));
+  }
+
+  it('matches the reference PAV across noisy and equal-mean inputs', () => {
+    const cases: CalibrationSample[][] = [
+      [
+        { rawValue: 0.1, relevant: 0 },
+        { rawValue: 0.2, relevant: 1 },
+        { rawValue: 0.3, relevant: 0 },
+        { rawValue: 0.4, relevant: 0 },
+        { rawValue: 0.5, relevant: 1 },
+        { rawValue: 0.6, relevant: 0 },
+        { rawValue: 0.7, relevant: 1 },
+        { rawValue: 0.8, relevant: 1 },
+        { rawValue: 0.9, relevant: 1 },
+      ],
+      [
+        { rawValue: 0.2, relevant: 1 },
+        { rawValue: 0.4, relevant: 0 },
+        { rawValue: 0.6, relevant: 1 },
+        { rawValue: 0.8, relevant: 0 },
+      ],
+      [
+        { rawValue: 0.0, relevant: 0 },
+        { rawValue: 1.0, relevant: 1 },
+      ],
+    ];
+    for (const samples of cases) {
+      const lib = fitCalibration(samples).points;
+      const ref = referencePav(samples);
+      expect(lib.length).toBe(ref.length);
+      for (let i = 0; i < lib.length; i++) {
+        expect(lib[i].x).toBeCloseTo(ref[i].x, 12);
+        expect(lib[i].y).toBeCloseTo(ref[i].y, 12);
+      }
+    }
+  });
 });
 
 // -- Apply math --

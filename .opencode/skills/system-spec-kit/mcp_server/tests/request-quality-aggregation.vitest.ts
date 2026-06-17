@@ -84,4 +84,16 @@ describe('assessRequestQuality — top-dominant + margin-aware (calibration ON)'
   it('returns "gap" for an empty result set', () => {
     expect(assessRequestQuality([], []).requestQuality.label).toBe('gap');
   });
+
+  it('degrades to "gap" when the confidences array is not parallel to results', () => {
+    // results/confidences are a parallel pair; a length mismatch would pair a
+    // result with an unrelated confidence head. A would-be "good" set must not
+    // emit a quality label off misaligned arrays — it falls back to do-not-cite.
+    const results = [strong(1, 81), weak(2, 75)];
+    const fullConfidences = computeResultConfidence(results);
+    expect(assessRequestQuality(results, fullConfidences).requestQuality.label).toBe('good');
+    // Drop one confidence so the arrays desync.
+    const shortConfidences = fullConfidences.slice(0, 1);
+    expect(assessRequestQuality(results, shortConfidences).requestQuality.label).toBe('gap');
+  });
 });

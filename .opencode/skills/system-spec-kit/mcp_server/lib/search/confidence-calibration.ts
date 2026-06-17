@@ -153,8 +153,12 @@ export function fitCalibration(samples: CalibrationSample[]): CalibrationModel {
   }
 
   // Each block tracks the pooled sum of x and y plus the sample count so a
-  // merge is O(1). PAV merges left while the previous block's mean y exceeds
-  // the current block's mean y (a monotonicity violation).
+  // merge is O(1). PAV merges left while the previous block's mean y is greater
+  // than OR equal to the current block's mean y. The `>` case repairs a
+  // monotonicity violation; the `===` case collapses adjacent equal-mean blocks
+  // into one — pooling equal means leaves the mean (and therefore y) unchanged,
+  // so it is purely a serialization-size reduction with no effect on the fitted
+  // curve or its interpolation.
   interface Block {
     sumX: number;
     sumY: number;
@@ -166,7 +170,7 @@ export function fitCalibration(samples: CalibrationSample[]): CalibrationModel {
     while (blocks.length >= 2) {
       const curr = blocks[blocks.length - 1]!;
       const prev = blocks[blocks.length - 2]!;
-      if (prev.sumY / prev.count <= curr.sumY / curr.count) break;
+      if (prev.sumY / prev.count < curr.sumY / curr.count) break;
       prev.sumX += curr.sumX;
       prev.sumY += curr.sumY;
       prev.count += curr.count;

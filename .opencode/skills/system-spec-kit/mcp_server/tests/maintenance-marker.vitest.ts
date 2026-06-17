@@ -151,4 +151,40 @@ describe('maintenance-marker', () => {
     c.end();
     expect(markerExists()).toBe(false);
   });
+
+  it('__resetMaintenanceMarkerForTest removes the on-disk marker, not just in-memory state', () => {
+    // Leave a holder active so the marker is on disk and the ref count is non-zero.
+    beginMaintenance('scan');
+    expect(markerExists()).toBe(true);
+
+    __resetMaintenanceMarkerForTest();
+
+    // The reset must clear the on-disk marker so a later test reusing the same
+    // DATABASE_DIR cannot observe a stale marker.
+    expect(markerExists()).toBe(false);
+
+    // A fresh begin after reset starts from a clean slate (no leaked labels).
+    const handle = beginMaintenance('embedding-queue');
+    const marker = readMarker();
+    expect(marker.labels).toEqual(['embedding-queue']);
+    handle.end();
+  });
+
+  it('two holders sharing a label: ending one keeps the marker until the other ends', () => {
+    const first = beginMaintenance('scan');
+    const second = beginMaintenance('scan');
+    expect(markerExists()).toBe(true);
+
+    // Ending one of two same-label holders leaves the marker present (ref count 1).
+    first.end();
+    expect(markerExists()).toBe(true);
+
+    // The surviving holder still sees the shared label on the next write.
+    second.refresh();
+    expect(readMarker().labels).toContain('scan');
+
+    // Ending the last holder removes the marker.
+    second.end();
+    expect(markerExists()).toBe(false);
+  });
 });

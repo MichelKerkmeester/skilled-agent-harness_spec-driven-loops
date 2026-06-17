@@ -23,6 +23,7 @@
 //
 // IMPORTANT: This module only models ranking confidence for retrieval ordering.
 // It is not freshness authority and it is not a substitute for StructuralTrust.
+import { statSync } from 'node:fs';
 import { resolveEffectiveScore, resolveAbsoluteRelevance, type PipelineRow } from './pipeline/types.js';
 import {
   isAbsoluteRelevanceCalibrationEnabled,
@@ -54,6 +55,16 @@ const WEIGHT_ANCHOR_DENSITY = 0.15;
 // These two must sum to 1.0.
 const WEIGHT_HEURISTIC = 0.45;
 const WEIGHT_SCORE_PRIOR = 0.55;
+
+// Guard the sum-to-1.0 invariant at module load: if either weight is retuned
+// without adjusting the other, the rebalanced value would no longer be a convex
+// blend and could exceed 1 before clamping (silently distorting the band). Fail
+// loudly instead. Tolerance absorbs float representation error (0.45 + 0.55).
+if (Math.abs(WEIGHT_HEURISTIC + WEIGHT_SCORE_PRIOR - 1.0) > 1e-9) {
+  throw new Error(
+    `confidence-scoring: WEIGHT_HEURISTIC (${WEIGHT_HEURISTIC}) + WEIGHT_SCORE_PRIOR (${WEIGHT_SCORE_PRIOR}) must sum to 1.0`,
+  );
+}
 
 // Margin thresholds (gap between top score and next score, 0–1 scale)
 const LARGE_MARGIN_THRESHOLD = 0.15;
@@ -161,19 +172,38 @@ function resolveCalibrationScore(result: ScoredResult): number {
     : resolveEffectiveScore(result as PipelineRow);
 }
 
-// Lazily-loaded calibration model, memoized by its source path so the search
-// hot path reads the file at most once per path. `undefined` = not yet looked
-// up; `null` = looked up and absent/invalid (degrade to identity).
+// Lazily-loaded calibration model, memoized so the search hot path reads the
+// file at most once per (path, mtime) pair. The mtime is part of the cache key
+// so editing the model in place re-reads it; without it a path-stable file
+// rewritten on disk would serve the stale fitted curve indefinitely.
+// `undefined` = not yet looked up; `null` = looked up and absent/invalid
+// (degrade to identity).
 let cachedCalibrationModel: CalibrationModel | null | undefined;
 let cachedCalibrationModelPath: string | undefined;
+let cachedCalibrationModelMtimeMs: number | undefined;
+
+/** Best-effort mtime; `undefined` when the path is unreadable (treated as a miss). */
+function calibrationModelMtimeMs(path: string): number | undefined {
+  try {
+    return statSync(path).mtimeMs;
+  } catch {
+    return undefined;
+  }
+}
 
 function resolveCalibrationModel(): CalibrationModel | null {
   const path = getConfidenceCalibrationModelPath();
   if (!path) return null;
-  if (cachedCalibrationModel !== undefined && cachedCalibrationModelPath === path) {
+  const mtimeMs = calibrationModelMtimeMs(path);
+  if (
+    cachedCalibrationModel !== undefined &&
+    cachedCalibrationModelPath === path &&
+    cachedCalibrationModelMtimeMs === mtimeMs
+  ) {
     return cachedCalibrationModel;
   }
   cachedCalibrationModelPath = path;
+  cachedCalibrationModelMtimeMs = mtimeMs;
   cachedCalibrationModel = loadCalibrationModel(path);
   return cachedCalibrationModel;
 }
@@ -357,6 +387,15 @@ export function assessRequestQuality(
   confidences: ResultConfidence[],
 ): RequestQualityAssessment {
   if (!Array.isArray(results) || results.length === 0) {
+    return { requestQuality: { label: 'gap' } };
+  }
+
+  // `results` and `confidences` are a parallel pair (confidences come from
+  // computeResultConfidence(results)). A length mismatch means the head slice
+  // below would pair results[i] with an unrelated confidence, so degrade to the
+  // conservative do-not-cite verdict rather than emit a quality label off
+  // misaligned data. Holds at every call site today — defensive only.
+  if (!Array.isArray(confidences) || confidences.length !== results.length) {
     return { requestQuality: { label: 'gap' } };
   }
 
