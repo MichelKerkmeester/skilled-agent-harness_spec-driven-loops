@@ -2,6 +2,8 @@
 
 Single source of truth for `/memory:search` startup questions, analysis dashboards, and result displays.
 
+Register (COSTAR): these contracts are written objective-first for an automated-pipeline audience — fixed response shapes, no preamble, no conversational framing inside the rendered block. This is the wording style of the contract itself, not a prompt framework imposed on callers.
+
 ## Template Index
 
 Start with the matching render contract before drafting any response:
@@ -78,6 +80,40 @@ Field mapping:
 | `result.score`, `result.similarity`, or normalized relevance score | `<score>` — render as 0–1 similarity with two decimals (`0.79`, never `79.44`; divide percentage-scaled scores by 100) |
 | `result.id` or `result.memory_id` | `#<id>` |
 | `result.title` | `<title>` |
+
+Core-slot mandate (all five, every result, every surface):
+- `"<query>"` query echo
+- `<score>` similarity
+- `#<id>`
+- `<title>`
+- `STATUS` footer carrying `RESULTS` and `INTENT`
+
+None of the five is optional. Render every one for any non-empty result set; the only omission path is the empty-result fallback in Section 3.
+
+Score mandate — one score, one scale, one name:
+- The sole ranking metric is `similarity`, on a 0–1 scale, two decimals (`0.79`). It is the only score shown per row.
+- BANNED in rendered output: `confidence` as a metric name, and any percentage score. Divide a percentage-scaled value by 100 before emitting (`79.44` → `0.79`).
+- Do not add a second ranking number under any other name, and do not relabel `similarity` as `confidence`.
+
+Surface-parity clause:
+- The core-slot set and the 0–1 / two-decimal similarity scale are mandatory on every surface: `--command` dispatch, a direct prompt, and natural conversation.
+- Conversational answers may wrap the block in prose, but the field set, field names, and scale do not change — two surfaces return comparable, diffable rows for the same result.
+
+Named optional fields:
+- `requestQuality` and `citationPolicy` are the only sanctioned extras beyond the core slots.
+- When present, render each as a named trailing field between the scored result block and the `STATUS` footer, so the footer stays the terminal line:
+
+```text
+<leaf-folder>/
+  <score>  #<id>  <title>
+
+requestQuality <value>
+citationPolicy <value>
+
+STATUS=OK RESULTS=<count> INTENT=<detected_intent>
+```
+
+- Absence is valid. When present, use these exact field names — never an unnamed, renamed, or ad-hoc metric, and never folded into the `<score>` slot.
 
 Folder display rules:
 - Group by spec folder.

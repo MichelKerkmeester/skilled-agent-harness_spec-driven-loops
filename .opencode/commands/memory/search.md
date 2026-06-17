@@ -8,6 +8,8 @@ allowed-tools: Read, mcp__mk_spec_memory__memory_context, mcp__mk_spec_memory__m
 
 Thin router for memory retrieval and analysis.
 
+> **Contract register (COSTAR).** This contract is written objective-first for an automated-pipeline audience: a fixed response shape, no preamble, no conversational framing inside the rendered block. Weak instruction-followers tolerate this register best, so it is the contract's own wording style — not a prompt framework imposed on callers, and not a single global framework applied to every command.
+
 ## 0. ARGUMENT RESOLUTION (deterministic — read this first)
 
 The shell line below is evaluated before you read any policy. It is the ground truth for this invocation. The `bash -c` wrapper joins every `$ARGUMENTS` word into one string (the injection expands `$ARGUMENTS` like `"$@"`, one word per argument, so the renderer must join argv itself) and reports whether any argument was supplied.
@@ -63,11 +65,17 @@ MEMORY:SEARCH "<query>" intent=<detected_intent> results=<count>
 STATUS=OK RESULTS=<count> INTENT=<detected_intent>
 ```
 
+Core-slot mandate: every retrieval response MUST render all five core slots — (1) the query echo `"<query>"`, (2) the `<score>` similarity, (3) `#<id>`, (4) `<title>`, and (5) the `STATUS` footer carrying `RESULTS` and `INTENT`. None is optional; the only exception is an empty result set, which uses the empty-result fallback in the presentation asset.
+
+Score mandate — one score, one scale, one name: `<score>` is `similarity` on a 0–1 scale rendered to two decimals (`0.79`), and it is the SOLE ranking metric per row. Never render `confidence`, and never render a percentage — divide any percentage-scaled value by 100 before emitting (`79.44` → `0.79`). Do not add a second ranking number under any other name.
+
 Arg-echo rule: the query echoed in `"<query>"` MUST equal the resolved `QUERY`. A mismatch means the query was dropped — re-emit with `QUERY`.
 
-Slot rule: `<score>` is the 0–1 similarity rendered to two decimals (`0.79`, never `79.44` — divide percentage-scaled scores by 100).
+Surface-parity clause: the five core slots and the similarity 0–1 / two-decimal scale are mandatory regardless of how this command was reached — `--command` dispatch, a direct prompt, or natural conversation. Conversational phrasing may wrap the block in prose, but the core field set, field names, and scale never change, so any two surfaces return diffable, comparable rows for the same result.
 
-Self-check: before finishing, verify the emitted block includes the `MEMORY:SEARCH` header and `STATUS` footer.
+Named optional fields: `requestQuality` and `citationPolicy` are the only sanctioned extras beyond the core slots. When present, render each as a named trailing field per the presentation asset — never as an unnamed, renamed, or ad-hoc metric. Their absence is valid; their presence must be unambiguous.
+
+Self-check: before finishing, verify the emitted block includes the `MEMORY:SEARCH` header, all five core slots, and the `STATUS` footer, and that no row carries `confidence` or a percentage score.
 
 Supported intents:
 - `add_feature`
@@ -129,6 +137,7 @@ The following content must come from the presentation asset, not from router pro
 - Empty-argument startup question and targeted follow-up wording.
 - Analysis overview, preflight, postflight, history, causal, link, unlink, causal-stats, ablation, dashboard, empty-result, and error displays.
 - Forbidden vocabulary, result labels, fallback labels, examples, and recovery text.
+- Named optional trailing-field placement and exact field names (`requestQuality`, `citationPolicy`).
 
 ## 8. RELATED COMMANDS
 
