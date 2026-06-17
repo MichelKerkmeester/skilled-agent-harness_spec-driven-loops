@@ -1,6 +1,6 @@
 ---
-title: "Session Handover: 028 Memory Search Intelligence — Broadening Rounds"
-description: "Handover for an AI starting broadening rounds on the completed 4-child deep-research mining campaign (packet 028)."
+title: "Session Handover: 028 Memory Search Intelligence — child 007 memory-systems mining"
+description: "Continue the 4-model memory-systems mining in child 007 (4/40 iters banked; remaining iterations + the Kimi blocker). Earlier broadening-rounds content retained below as machinery reference."
 trigger_phrases:
   - "028 broadening rounds handover"
   - "memory search intelligence broadening"
@@ -11,12 +11,14 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence"
-    last_updated_at: "2026-06-17T00:45:00Z"
+    last_updated_at: "2026-06-17T10:25:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "027-revisit child 005 complete to 150; ledger + roadmap addendum shipped"
-    next_safe_action: "Hand GO list + 5 roadmap edits to a 028 implementation packet"
-    blockers: []
+    recent_action: "007 memory-systems mining: iters 1-4 banked, 24 candidates, 4 systems"
+    next_safe_action: "Resume 007 per its research.md CONTINUATION RECIPE (debug Kimi)"
+    blockers:
+      - "Kimi kimi-for-coding/k2p7 --variant high times out 2x at 600s; 10-iter lineage blocked"
     key_files:
+      - "007-memory-systems/research/research.md"
       - "research/roadmap.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -31,6 +33,21 @@ _memory:
 Handover for continuing packet 028 with **broadening rounds**: adversarial verification of the roadmap's inferred cross-system claims, deeper external-source mining, and per-candidate feasibility/migration-risk. Research-only — no production code changes.
 
 <!-- SPECKIT_TEMPLATE_SOURCE: handover | v1.0 -->
+
+---
+
+## ⏭️ LATEST — 2026-06-17 (supersedes the broadening-rounds content below)
+
+Packet 028 pass-1 + the synthesis review are **complete** (`research/synthesis/00-05` + `roadmap.md` shipped). The **active work** is now child **`007-memory-systems`**: a 40-iteration, 4-model sweep (DeepSeek v4 Pro · MiMo v2.5 Pro · Kimi K2.7 · Opus 4.8) mining four external agent-memory systems (Mem0, Graphiti/Zep, Letta/MemGPT, Cognee) for Memory-MCP (+ Advisor fusion, Deep-Loop continuity) improvements.
+
+- **State:** iters 1–4 banked = **24 novelty-tagged candidates across all 4 systems** (Mem0 5, Cognee 8, Graphiti 6, Letta 5); ~36 iterations remain. `reduce-state.cjs` runs clean; registry + dashboard emitted.
+- **▶ Resume here:** `007-memory-systems/research/research.md` → the **CONTINUATION RECIPE** (proven dispatch contracts + live slugs + per-lineage plan + orchestrator-writes contract + remaining angles + finish steps). `/speckit:resume system-spec-kit/028-memory-search-intelligence/007-memory-systems/`.
+- **🚧 BLOCKER:** `kimi-for-coding/k2p7 --variant high` timed out **2× at 600s (0 bytes)** — its 10-iter lineage is blocked. Try `kimi-for-coding/kimi-k2-thinking`, drop `--variant high`, raise the timeout, or reassign. (Letta was covered via DeepSeek, so all 4 systems are mined.)
+- **⚠ GOTCHA:** opencode search respects `.gitignore`; `external/` is gitignored → seats must read it by explicit path / `cat`, not Glob (MiMo fell back to fetching Graphiti from GitHub — valid, approx line numbers).
+- **Proven dispatch contracts:** `deepseek/deepseek-v4-pro --variant high`, `xiaomi/mimo-v2.5-pro --variant high` (both `opencode run`); Opus via `claude2` `-p --model opus --permission-mode bypassPermissions` + a hard read-only prompt (NOT `--permission-mode plan`, which truncates claude2 stdout).
+- **Don't re-mine `xce-mcp`:** verified a thin config/steering wrapper over a closed cloud service (388 lines, no source); 027 already declared it exhausted.
+
+The §1–§5 below describe the earlier (completed) broadening rounds — retain as **machinery reference** (the per-iteration orchestration recipe in §5 still applies).
 
 ---
 
