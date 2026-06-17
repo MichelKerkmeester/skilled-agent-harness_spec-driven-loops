@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/008-retrieval-evaluation"
     last_updated_at: "2026-06-17T14:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Banked wave-1 (A1/A4/A6): 13 candidates; A1 harness already ~80% built"
-    next_safe_action: "Dispatch wave-2 (A2/A3/A5) per recipe; continue toward 20"
+    recent_action: "Banked wave-2 (A2/A3/A5): 3 harness-lanes + S5 silent-regression + 016-confirm"
+    next_safe_action: "Dispatch wave-3 (A7/A8 + A1/A6 deepen) per recipe; continue toward 20"
     blockers: []
     key_files:
       - "research/research.md"
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-17-028-008-retrieval-evaluation"
       parent_session_id: null
-    completion_pct: 15
+    completion_pct: 30
     open_questions: []
     answered_questions: []
 ---
@@ -48,6 +48,11 @@ _memory:
 | 1 | A1 eval harness (keystone) | 4 — harness already ~80% built; keystone = gate-accuracy lane (NET-NEW H/S) | ✅ banked |
 | 2 | A4 gate/rank divergence | 4 + 015-residual-bug + similarity-gate boundary | ✅ banked |
 | 3 | A6 unified semantic substrate | 5 — "shared rails, separate cars" + a 06/07 conflation fix | ✅ banked |
+| 4 | A2 isotonic calibration | 5 — proxy-seed is a phantom; no ECE metric → promote unexecutable | ✅ banked |
+| 5 | A3 A/B shipped levers | 4 — S5 harness blind-spot + S5 demotes correctly-fused non-vector hits | ✅ banked |
+| 6 | A5 cold-tier re-measure | 4 — re-measure blocked by 2 preconditions; 016 "inert" holds operationally | ✅ banked |
+
+**Wave-2 headline:** a recurring shape — **three "accuracy/coverage lanes the harness lacks"** (A1 gate-verdict, A2 calibration-ECE, A5 cold-tier), all EXTENDS into the live 110-query harness, all feeding A8's methodology. Plus two shipped-lever corrections: A2's isotonic "proxy seed" is a phantom + no ECE metric exists (promote-on-evidence unexecutable until built); A3's S5 reorder is both invisible to the harness (`evaluationMode` skip) AND has a confirmed silent-regression (demotes RRF-high/cosine-absent hits). A5 honestly refuted its own brief's premises + confirmed 016's FSRS call.
 
 **Wave-1 headline:** the eval-harness keystone is **extend-not-greenfield** (a live harness already exists: 110-query graded golden set, 12 metrics, `eval_run_ablation` live runner, baseline+dashboard+5-table DB, traffic-feedback scaffolding) — the one NET-NEW is a gate-verdict-accuracy lane (H/S), and it produces the labeled set A2 (isotonic) is blocked on. A4 found the system already bets on divergence-direction (reorder) but discards its magnitude (free telemetry win) + a residual of the 015 fix (`resolveSearchScore` still reads RRF scale). A6 = unify bottom (3× cosine dup) + top (one shadow gate), keep middle per-channel.
 
