@@ -9,6 +9,7 @@
 import { BM25_FTS5_WEIGHTS } from './bm25-index.js';
 import { specFolderLikePattern } from './vector-index-types.js';
 import { normalizeLexicalQueryTokens } from './lexical-normalizer.js';
+import { isArchivedRetrievalIncludedByDefault } from './search-flags.js';
 import type Database from 'better-sqlite3';
 
 // ───────────────────────────────────────────────────────────────
@@ -167,7 +168,9 @@ function fts5Bm25Search(
   options: FtsBm25Options = {}
 ): FtsBm25Result[] {
   const { limit = 20, specFolder, includeArchived = false } = options;
-  void includeArchived;
+  // Include cold/deprecated-tier rows by default (or on explicit includeArchived) —
+  // FSRS retrievability ranks them below hot memories, so no hard wall is needed.
+  const includeCold = includeArchived || isArchivedRetrievalIncludedByDefault();
 
   // Sanitize via shared tokenizer, then join quoted terms with OR for recall.
   const sanitized = normalizeLexicalQueryTokens(query).fts;
@@ -180,8 +183,9 @@ function fts5Bm25Search(
   const folderFilter = specFolder
     ? "AND (m.spec_folder = ? OR m.spec_folder LIKE ? ESCAPE '\\')"
     : '';
-  const deprecatedTierFilter =
-    "AND (m.importance_tier IS NULL OR m.importance_tier != 'deprecated')";
+  const deprecatedTierFilter = includeCold
+    ? ''
+    : "AND (m.importance_tier IS NULL OR m.importance_tier != 'deprecated')";
 
   const params: (string | number)[] = specFolder
     ? [sanitized, specFolder, specFolderLikePattern(specFolder), limit]

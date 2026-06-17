@@ -599,6 +599,48 @@ export function isResultConfidenceEnabled(): boolean {
 }
 
 /**
+ * Calibrate confidence/request-quality and result-set digests on an absolute
+ * relevance signal (cosine similarity) instead of the RRF fusion score. RRF
+ * magnitudes (~0.01–0.05) understate relevance and make "good" unreachable, so
+ * every hybrid query degrades to "weak"/"gap". Ordering is unaffected — this
+ * only changes the calibration/display scale.
+ * Default: TRUE (graduated). Set SPECKIT_ABSOLUTE_RELEVANCE_CALIBRATION=false to disable.
+ */
+export function isAbsoluteRelevanceCalibrationEnabled(): boolean {
+  return isFeatureEnabled('SPECKIT_ABSOLUTE_RELEVANCE_CALIBRATION');
+}
+
+/**
+ * Include archived/cold (deprecated-tier) memories in retrieval for everyone,
+ * instead of hard-excluding them. The FSRS temperature system already ranks
+ * memories by retrievability (deprecated decays at 0.25x → coldest), so a hard
+ * exclusion is redundant and hides legitimately-cold-but-relevant history (e.g.
+ * z_archive specs). Cold rows are included and naturally rank below hot ones.
+ * Applies to the query-time channels (lexical FTS/BM25, trigger); the vector lane
+ * filters via the active_memory_projection and is included separately when that
+ * projection is rebuilt. Constitutional rows stay on their own injected path.
+ * Default: TRUE (graduated). Set SPECKIT_INCLUDE_ARCHIVED_DEFAULT=false to restore
+ * the hard exclusion.
+ */
+export function isArchivedRetrievalIncludedByDefault(): boolean {
+  return isFeatureEnabled('SPECKIT_INCLUDE_ARCHIVED_DEFAULT');
+}
+
+/**
+ * Extend cold/archived (deprecated-tier) inclusion to the VECTOR (semantic) lane.
+ * The vector lane joins `active_memory_projection`, which holds one active row per
+ * logical key, so cold rows are admitted to the projection (option A: only rows
+ * whose logical key has no active winner) by a boot-time backfill, and the
+ * query-time deprecated filter is relaxed. Graduated to default ON alongside the
+ * other cold-tier channels; the backfill is idempotent and preserves the
+ * one-active-per-key UNIQUE invariant. Set SPECKIT_INCLUDE_ARCHIVED_VECTOR=false
+ * to restore the vector-lane exclusion.
+ */
+export function isArchivedVectorInclusionEnabled(): boolean {
+  return isFeatureEnabled('SPECKIT_INCLUDE_ARCHIVED_VECTOR');
+}
+
+/**
  * Weekly batch feedback learning pipeline.
  * Default: TRUE (graduated). Set SPECKIT_BATCH_LEARNED_FEEDBACK=false to disable.
  */

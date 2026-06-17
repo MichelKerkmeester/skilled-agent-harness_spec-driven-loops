@@ -23,7 +23,8 @@
 //
 // IMPORTANT: This module only models ranking confidence for retrieval ordering.
 // It is not freshness authority and it is not a substitute for StructuralTrust.
-import { resolveEffectiveScore, type PipelineRow } from './pipeline/types.js';
+import { resolveEffectiveScore, resolveAbsoluteRelevance, type PipelineRow } from './pipeline/types.js';
+import { isAbsoluteRelevanceCalibrationEnabled } from './search-flags.js';
 
 declare const rankingConfidenceBrand: unique symbol;
 
@@ -123,6 +124,18 @@ export interface ScoredResult extends Record<string, unknown> {
 
 function resolveScore(result: ScoredResult): number {
   return resolveEffectiveScore(result as PipelineRow);
+}
+
+/**
+ * Absolute relevance used for confidence calibration and request-quality — keeps
+ * ordering on the RRF/effective score while reading an absolute 0–1 signal for
+ * "how good is this", so the 0.7/0.4 thresholds mean what they say. Reverts to the
+ * effective score when SPECKIT_ABSOLUTE_RELEVANCE_CALIBRATION is disabled.
+ */
+function resolveCalibrationScore(result: ScoredResult): number {
+  return isAbsoluteRelevanceCalibrationEnabled()
+    ? resolveAbsoluteRelevance(result as PipelineRow)
+    : resolveEffectiveScore(result as PipelineRow);
 }
 
 /**
@@ -243,8 +256,10 @@ export function computeResultConfidence(results: ScoredResult[]): ResultConfiden
       WEIGHT_ANCHOR_DENSITY * anchorFactor;
 
     // Base score is a strong prior: if the score itself is very high, confidence
-    // should reflect that even when heuristic signals are weak.
-    const scorePrior = score * 0.4;
+    // should reflect that even when heuristic signals are weak. Use the absolute
+    // relevance (cosine) here, not the RRF ordering score — an RRF magnitude of
+    // ~0.03 would make this prior contribute ~0.01 and defeat its purpose.
+    const scorePrior = resolveCalibrationScore(result) * 0.4;
     const heuristicValue = rawValue * 0.6;
     const value = Math.max(0, Math.min(1, heuristicValue + scorePrior));
 
@@ -285,7 +300,10 @@ export function assessRequestQuality(
     (c) => c.confidence.label === 'high' || c.confidence.label === 'medium',
   ).length;
 
-  const topScore = resolveScore(results[0]);
+  // Absolute relevance, not the RRF ordering score: HIGH_THRESHOLD/LOW_THRESHOLD
+  // are calibrated for a 0–1 cosine scale, so an RRF-magnitude topScore (~0.03)
+  // would put "good" out of reach and collapse every query to weak/gap.
+  const topScore = resolveCalibrationScore(results[0]);
 
   const qualityRatio = highOrMediumCount / results.length;
 

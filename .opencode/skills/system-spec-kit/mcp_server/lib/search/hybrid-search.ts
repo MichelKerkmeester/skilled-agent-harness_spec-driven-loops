@@ -24,6 +24,7 @@ import {
   isDocscoreAggregationEnabled,
   isDegreeBoostEnabled,
   isContextHeadersEnabled,
+  isArchivedRetrievalIncludedByDefault,
 } from './search-flags.js';
 import { computeDegreeScores } from './graph-search-fn.js';
 import type { GraphSearchFn } from './search-types.js';
@@ -511,10 +512,13 @@ function bm25Search(
       }
     }
 
+    const excludeCold = !isArchivedRetrievalIncludedByDefault();
     return results
       .filter((r: { id: string }) => {
         const metadata = memoryMetadataMap?.get(Number(r.id));
-        if (metadata?.importanceTier === 'deprecated') return false;
+        // Cold/deprecated rows are included by default (FSRS ranks them lower);
+        // only drop them when archived retrieval is disabled.
+        if (excludeCold && metadata?.importanceTier === 'deprecated') return false;
         if (!specFolder) return true;
         if (!metadata) return false;
         const folder = metadata.specFolder;
@@ -705,7 +709,12 @@ function exactTriggerSearch(
     `m.trigger_phrases IS NOT NULL`,
     `m.trigger_phrases != ''`,
     `m.trigger_phrases != '[]'`,
-    `(m.importance_tier IS NULL OR m.importance_tier != 'deprecated')`,
+    // Cold/deprecated-tier rows are included by default (FSRS retrievability ranks
+    // them below hot memories); the hard exclusion only applies when archived
+    // retrieval is disabled.
+    ...(isArchivedRetrievalIncludedByDefault()
+      ? []
+      : [`(m.importance_tier IS NULL OR m.importance_tier != 'deprecated')`]),
     `(m.expires_at IS NULL OR m.expires_at > datetime('now'))`,
     `(${tokens.map(() => 'LOWER(m.trigger_phrases) LIKE ?').join(' OR ')})`,
   ];

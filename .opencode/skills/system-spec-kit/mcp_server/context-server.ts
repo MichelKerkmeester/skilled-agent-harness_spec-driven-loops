@@ -84,7 +84,7 @@ import { VectorIndexError, VectorIndexErrorCode } from './lib/search/vector-inde
 import * as _embeddings from './lib/providers/embeddings.js';
 import * as checkpointsLib from './lib/storage/checkpoints.js';
 import * as accessTracker from './lib/storage/access-tracker.js';
-import { runLineageBackfill } from './lib/storage/lineage-state.js';
+import { runLineageBackfill, backfillColdOrphanProjection } from './lib/storage/lineage-state.js';
 import * as hybridSearch from './lib/search/hybrid-search.js';
 import { createUnifiedGraphSearchFn } from './lib/search/graph-search-fn.js';
 import { isGraphUnifiedEnabled } from './lib/search/graph-flags.js';
@@ -1829,6 +1829,16 @@ async function main(): Promise<void> {
       const prunedReceipts = pruneExpiredIdempotencyReceipts(startupDb);
       if (prunedReceipts > 0) {
         console.error(`[context-server] Pruned ${prunedReceipts} expired idempotency receipt(s)`);
+      }
+    } catch (_: unknown) { /* best-effort */ }
+
+    // Opt-in (SPECKIT_INCLUDE_ARCHIVED_VECTOR, default off): admit archived/cold rows
+    // whose logical key has no active winner into the vector projection so the semantic
+    // lane can reach them. Self-gated and idempotent; best-effort never blocks boot.
+    try {
+      const cold = backfillColdOrphanProjection(startupDb);
+      if (cold.admitted > 0) {
+        console.error(`[context-server] Admitted ${cold.admitted} archived/cold row(s) into the vector projection`);
       }
     } catch (_: unknown) { /* best-effort */ }
 

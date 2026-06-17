@@ -21,7 +21,8 @@
 // original full response is returned unchanged.
 
 import { estimateTokens } from '../../formatters/token-metrics.js';
-import { resolveEffectiveScore, type PipelineRow } from '../search/pipeline/types.js';
+import { resolveEffectiveScore, resolveAbsoluteRelevance, type PipelineRow } from '../search/pipeline/types.js';
+import { isAbsoluteRelevanceCalibrationEnabled } from '../search/search-flags.js';
 
 // ── Types ──────────────────────────────────────────────────────
 
@@ -142,7 +143,12 @@ function resolveScore(result: SearchResultEntry): number {
       ? (result.similarity > 1 ? result.similarity : result.similarity * 100)
       : undefined,
   };
-  return resolveEffectiveScore(row);
+  // The evidence digest ("avg score …") and per-result "why" report an absolute
+  // relevance, not the RRF ordering magnitude — otherwise a strong cosine match
+  // (0.72) is shown as ~0.14 and reads as a failed search.
+  return isAbsoluteRelevanceCalibrationEnabled()
+    ? resolveAbsoluteRelevance(row)
+    : resolveEffectiveScore(row);
 }
 
 function getOneLineWhy(result: SearchResultEntry, rank: number): string {

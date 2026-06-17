@@ -359,6 +359,12 @@ describe('Hybrid Search Unit Tests (T031+)', () => {
       bm25Index.resetIndex();
     });
 
+    afterEach(() => {
+      // Tests that exercise the legacy deprecated-exclusion path opt out via this
+      // flag; always clear it so the default (include cold tiers) is restored.
+      delete process.env.SPECKIT_INCLUDE_ARCHIVED_DEFAULT;
+    });
+
     it('T031-BM25-01: is_bm25_available() returns false when empty', () => {
       const available = hybridSearch.isBm25Available();
       expect(available).toBe(false);
@@ -462,7 +468,7 @@ describe('Hybrid Search Unit Tests (T031+)', () => {
       );
     });
 
-    it('T031-BM25-08: bm25_search() excludes deprecated memory rows', () => {
+    it('T031-BM25-08: bm25_search() includes deprecated rows by default, excludes them when archived retrieval is disabled', () => {
       const metadataDb = {
         prepare(sql: string) {
           if (sql.includes('memory_fts')) {
@@ -507,11 +513,24 @@ describe('Hybrid Search Unit Tests (T031+)', () => {
         'shared transaction filter regression candidate deprecated document with enough words for indexing',
       );
 
-      const results = hybridSearch.bm25Search('transaction filter regression candidate', { limit: 10 });
-      const ids = results.map((result) => String(result.id));
+      // Default: cold/deprecated rows are INCLUDED (FSRS retrievability ranks them lower).
+      const includedIds = hybridSearch
+        .bm25Search('transaction filter regression candidate', { limit: 10 })
+        .map((result) => String(result.id));
+      expect(includedIds).toContain('1');
+      expect(includedIds).toContain('2');
 
-      expect(ids).toContain('1');
-      expect(ids).not.toContain('2');
+      // Flag off restores the legacy hard exclusion.
+      process.env.SPECKIT_INCLUDE_ARCHIVED_DEFAULT = 'false';
+      try {
+        const excludedIds = hybridSearch
+          .bm25Search('transaction filter regression candidate', { limit: 10 })
+          .map((result) => String(result.id));
+        expect(excludedIds).toContain('1');
+        expect(excludedIds).not.toContain('2');
+      } finally {
+        delete process.env.SPECKIT_INCLUDE_ARCHIVED_DEFAULT;
+      }
     });
 
     it('bm25_search() fills scoped limit after higher-ranked out-of-scope hits are filtered', () => {
@@ -539,6 +558,7 @@ describe('Hybrid Search Unit Tests (T031+)', () => {
     });
 
     it('bm25_search() fills limit after higher-ranked deprecated hits are filtered', () => {
+      process.env.SPECKIT_INCLUDE_ARCHIVED_DEFAULT = 'false'; // exercise the legacy exclusion path
       const rowsById = new Map<number, { spec_folder: string; importance_tier: string | null }>();
       const docs = [
         { id: 1, folder: 'specs/active', tier: 'deprecated', text: `${'deprecated survivor '.repeat(12)}old candidate with enough lexical context` },
@@ -587,6 +607,7 @@ describe('Hybrid Search Unit Tests (T031+)', () => {
     });
 
     it('bm25_search() fills scoped+non-deprecated limit past higher-ranked out-of-scope and deprecated hits', () => {
+      process.env.SPECKIT_INCLUDE_ARCHIVED_DEFAULT = 'false'; // exercise the legacy exclusion path
       const rowsById = new Map<number, { spec_folder: string; importance_tier: string | null }>();
       // Unique ids and a unique query term keep this case independent of other tests'
       // in-memory index state. The highest-ranked hits are out-of-scope or deprecated (or

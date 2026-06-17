@@ -15,7 +15,7 @@ import { get_embedding_dim, refresh_interference_scores_for_folder, sqlite_vec_a
 import { to_embedding_buffer } from '../search/vector-index-types.js';
 import type { ParsedMemory } from '../parsing/memory-parser.js';
 import { classifyEncodingIntent } from '../search/encoding-intent.js';
-import { isEncodingIntentEnabled } from '../search/search-flags.js';
+import { isEncodingIntentEnabled, isArchivedVectorInclusionEnabled } from '../search/search-flags.js';
 import { createLogger } from '../utils/logger.js';
 import { detectSpecLevelFromParsed } from '../spec/spec-level.js';
 import { getHistoryEventsForLineage, init as initHistory, recordHistory, type HistoryLineageEvent } from './history.js';
@@ -444,6 +444,70 @@ function upsertActiveProjection(
       active_memory_id = excluded.active_memory_id,
       updated_at = excluded.updated_at
   `).run(logicalKey, rootMemoryId, activeMemoryId, updatedAt);
+}
+
+/**
+ * Admit archived/cold (deprecated-tier) rows into `active_memory_projection` so the
+ * vector (semantic) lane — which joins the projection — can reach them. Option A:
+ * only rows whose logical key has NO active winner already in the projection, so the
+ * one-active-per-logical-key UNIQUE invariant is preserved and superseded
+ * dedup-losers are not surfaced. Picks the most recent embedded row per key.
+ *
+ * Uses `buildLogicalKey` (the same key builder the incremental upsert uses) — a
+ * SQL key expression would not match the stored `logical_key` format. Idempotent:
+ * keys already present are skipped, so re-running admits nothing new.
+ *
+ * Opt-in (default OFF) via SPECKIT_INCLUDE_ARCHIVED_VECTOR — a live projection
+ * mutation whose correctness is confirmed against the running daemon.
+ */
+export function backfillColdOrphanProjection(
+  database: Database.Database,
+): { scanned: number; admitted: number; skippedActiveKey: number } {
+  if (!isArchivedVectorInclusionEnabled()) {
+    return { scanned: 0, admitted: 0, skippedActiveKey: 0 };
+  }
+  let rows: MemoryIndexRow[];
+  try {
+    rows = database.prepare(`
+      SELECT id, spec_folder, file_path, canonical_file_path, anchor_id,
+             tenant_id, user_id, agent_id, session_id, updated_at
+      FROM memory_index
+      WHERE COALESCE(importance_tier, 'normal') = 'deprecated'
+        AND embedding_status = 'success'
+      ORDER BY updated_at DESC, id DESC
+    `).all() as MemoryIndexRow[];
+  } catch (_error: unknown) {
+    // Legacy DBs without the columns/tables — nothing to backfill.
+    return { scanned: 0, admitted: 0, skippedActiveKey: 0 };
+  }
+
+  const insert = database.prepare(`
+    INSERT OR IGNORE INTO active_memory_projection (logical_key, root_memory_id, active_memory_id, updated_at)
+    VALUES (?, ?, ?, ?)
+  `);
+  const seen = new Set<string>();
+  let admitted = 0;
+  let skippedActiveKey = 0;
+
+  const run = database.transaction(() => {
+    for (const row of rows) {
+      const logicalKey = buildLogicalKey(row);
+      if (seen.has(logicalKey)) continue; // already admitted the best orphan for this key
+      seen.add(logicalKey);
+      if (getActiveProjection(database, logicalKey)) {
+        // A non-deprecated winner already owns this key — option A leaves it alone.
+        skippedActiveKey += 1;
+        continue;
+      }
+      const id = Number(row.id);
+      const updatedAt = typeof row.updated_at === 'string' ? row.updated_at : String(row.updated_at ?? '');
+      const result = insert.run(logicalKey, id, id, updatedAt) as { changes: number };
+      if (result.changes > 0) admitted += 1;
+    }
+  });
+  run();
+
+  return { scanned: rows.length, admitted, skippedActiveKey };
 }
 
 function bindHistory(database: Database.Database): void {

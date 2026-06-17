@@ -83,6 +83,16 @@ Folder display rules:
 - Each result line shows only score, id, and title.
 - Include trace/provenance only when requested or needed to explain a degraded result.
 
+Truncation-resilient rendering:
+- When `meta.tokenBudgetTruncated` is true (or `meta.returnedResultCount` < `meta.originalResultCount`),
+  the fully-materialized `data.results` array was trimmed to fit the token budget — it is NOT the
+  true result count. Render every entry from `data.progressiveDisclosure.results` (id + title from
+  the snippet), not just the 1–2 detailed rows that survived truncation. Use `meta.originalResultCount`
+  for `results=<count>`.
+- Constitutional rows are context, not ranked hits: exclude any result whose `isConstitutional` is
+  true (or `importanceTier` is `constitutional`) from the ranked block. List them, if relevant, under
+  a separate `Constitutional rules` heading — never as scored result lines.
+
 ## 3. Empty Result Fallback
 
 ```text

@@ -11,6 +11,7 @@ import type Database from 'better-sqlite3';
 import { formatAgeString as format_age_string } from '../utils/format-helpers.js';
 import { createLogger } from '../utils/logger.js';
 import { recordHistory } from '../storage/history.js';
+import { isArchivedVectorInclusionEnabled } from './search-flags.js';
 import * as embeddingsProvider from '../providers/embeddings.js';
 import { getStartupEmbeddingProfile } from '@spec-kit/shared/embeddings';
 import { DEFAULT_ACTIVE_EMBEDDER, getActiveEmbedder } from '../embedders/schema.js';
@@ -420,6 +421,10 @@ export function vector_search(
   } else if (tier) {
     where_clauses.push('m.importance_tier = ?');
     params.push(tier);
+  } else if (isArchivedVectorInclusionEnabled()) {
+    // Cold/archived rows admitted to the projection (option A) must not be re-excluded
+    // here; still keep constitutional on its own injected path.
+    where_clauses.push('(m.importance_tier IS NULL OR m.importance_tier != \'constitutional\')');
   } else {
     where_clauses.push('(m.importance_tier IS NULL OR m.importance_tier NOT IN (\'deprecated\', \'constitutional\'))');
   }
