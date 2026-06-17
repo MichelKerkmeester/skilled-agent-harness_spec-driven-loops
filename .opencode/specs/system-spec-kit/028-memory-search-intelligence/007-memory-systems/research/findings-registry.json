@@ -87,7 +87,7 @@
   "graphDecision": null,
   "graphBlockers": [],
   "metrics": {
-    "iterationsCompleted": 18,
+    "iterationsCompleted": 22,
     "openQuestions": 10,
     "resolvedQuestions": 0,
     "keyFindings": 0,

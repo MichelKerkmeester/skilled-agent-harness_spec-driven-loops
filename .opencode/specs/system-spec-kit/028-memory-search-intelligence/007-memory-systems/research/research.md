@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/007-memory-systems"
     last_updated_at: "2026-06-17T13:10:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Banked iters 15-18: Q7 invalidation, Q6 saturated, verify, consolidation"
-    next_safe_action: "Wave 19-22: Cognee ECL, Letta sleep-time, blast-radius; then synthesis/06"
+    recent_action: "Banked iters 19-22: Cognee ECL + Letta sleep-time frontier, 2 new initiatives"
+    next_safe_action: "Verify/scope wave 23-26, then write synthesis/06 + roadmap addendum"
     blockers: []
     key_files:
       - "research/research.md"
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-17-028-007-memory-systems"
       parent_session_id: null
-    completion_pct: 45
+    completion_pct: 55
     open_questions: []
     answered_questions: []
 ---
@@ -52,8 +52,12 @@ _memory:
 | 16 | MiMo v2.5 Pro | ranking determinism (Q6) | **0 new — internal C5 already complete** | ✅ banked |
 | 17 | **Opus 4.8 NATIVE** | verify iter-11/12 NET-NEWs | 2 GO + 2 REFINE + merge confirmed | ✅ banked |
 | 18 | **Opus 4.8 NATIVE** | consolidation + tiering (synthesis input) | 5 merges, Wave-0/1/2, top-7 | ✅ banked |
+| 19 | DeepSeek v4 Pro | Cognee ECL ingest + retriever depth | 1 cheap win + 2 → semantic-edge-layer | ✅ banked |
+| 20 | MiMo v2.5 Pro | Letta sleep-time / archival / blocks | 3 → async-sleeptime-consolidation + governor | ✅ banked |
+| 21 | **Opus 4.8 NATIVE** | Graphiti dedup + verify iter-15 invalidation | 2 GO + 1 Wave-2 + semantic-edge convergence | ✅ banked |
+| 22 | **Opus 4.8 NATIVE** | blast-radius scope top-3 GOs | 2 effort corrections (L not H/L · L not M/M) | ✅ banked |
 
-**~50 candidates surfaced across all 4 systems (net of refutes); all 4 model contracts proven (18 of 40 iters complete). Banked set has CONVERGED — see Saturation read below.** Per-iteration detail: `iterations/iteration-0{01..10}.md` + `deltas/iter-0{01..10}.jsonl`. **Iter-6 native-Opus adversarial-verify (net-deflationary): 1 REFUTED — `CG-composite-edge-dedup` is already implemented (insertEdge superset key); 2 DOWNGRADED NET-NEW→EXTENDS (`CG-uuid5-entity-merge`, `M0-adaptive-additive-fusion`); 1 clean GO (`GR-llm-fact-invalidation`); 1 REFUTE-as-framed (`LT-self-edit-char-limit-blocks`). Iter-9 verify-2 settled the remainder (7 GO, 0 hard-refutes; `CG-incremental-edge-merge` re-scoped to perf-only). Iter-10 scoped the spearhead: `GR-llm-fact-invalidation` event-time-close half = SMALL + reader-transparent, fits C3-A, no C3-B. Systemic caveat: the internal causal graph is memory-ID→memory-ID, NOT entity-node, and there is NO episode model — every Cognee/Graphiti community/episode `maps_to` carries a structural prerequisite.**
+**~60 candidates surfaced across all 4 systems (net of refutes); all 4 model contracts proven (22 of 40 iters complete). Wave 19-22 frontier was genuinely productive — two new initiatives + roadmap effort corrections (below).** Per-iteration detail: `iterations/iteration-0{01..10}.md` + `deltas/iter-0{01..10}.jsonl`. **Iter-6 native-Opus adversarial-verify (net-deflationary): 1 REFUTED — `CG-composite-edge-dedup` is already implemented (insertEdge superset key); 2 DOWNGRADED NET-NEW→EXTENDS (`CG-uuid5-entity-merge`, `M0-adaptive-additive-fusion`); 1 clean GO (`GR-llm-fact-invalidation`); 1 REFUTE-as-framed (`LT-self-edit-char-limit-blocks`). Iter-9 verify-2 settled the remainder (7 GO, 0 hard-refutes; `CG-incremental-edge-merge` re-scoped to perf-only). Iter-10 scoped the spearhead: `GR-llm-fact-invalidation` event-time-close half = SMALL + reader-transparent, fits C3-A, no C3-B. Systemic caveat: the internal causal graph is memory-ID→memory-ID, NOT entity-node, and there is NO episode model — every Cognee/Graphiti community/episode `maps_to` carries a structural prerequisite.**
 
 ## Top picks so far (by leverage × effort)
 - **CG-uuid5-entity-merge** (Cognee, NET-NEW, **H/S**) — deterministic `uuid5(normalized-name)` entity identity → same name auto-merges at write, zero LLM. → causal-graph entity creation.
@@ -104,8 +108,22 @@ Five merged candidates + the top-7. **Research-only: this is the candidate roadm
 
 Merges: `MEM-fact-invalidation-event-time` = GR-llm-fact-invalidation(event-time) + GR-five-timestamp(expired_at) + GR-temporal-ordering + GR-semantic-invalidation. `MEM-fused-summary-channel` = CG-summary-retrieval-channel + GR-community-search-channel. `MEM-tiered-recall-budget` = LT-per-component + LT-tiered-compression + LT-eviction-ratchet. `DL-iterative-retrieval-loop` = CG-iterative-context-extension + CG-cot + CG-query-decomposition + CG-question-type-router (deep-loop targets).
 
-## Saturation read (18/40)
-**The banked set has CONVERGED.** newInfoRatio fell 0.9→0.85→…→0.1 (iter-16), with iters 13/16 spending budget *overturning/auditing* rather than adding net-new. Settled & host-verified: memory-ID graph (not entity-node), no episode model, internal already has community detection + query-decomposition + multi-channel RRF + FSRS retention + a complete determinism layer. **Genuine frontier remaining for 19-40:** (a) Cognee ECL/DLT ingest + `graph_completion` variants + `CG-schema-driven-edges` (unverified); (b) Letta sleep-time compute / archival rerank / block-eviction; (c) Graphiti `resolve_extracted_edge` dedup; (d) per-candidate blast-radius scoping (only the spearhead has had an iter-10-style pass). Per the strategy STOP CONDITION, the remaining iters should mine (a)-(c) + scope (d) — **not pad with determinism/Mem0 re-mines.**
+### Wave-5 corrections + two new initiatives (iters 19-22)
+**Blast-radius effort corrections (iter 22 — finder lev/eff was optimistic):**
+- **`CG-agentic-tool-loop`: H/L → actually L effort.** Same clean new-`case` seam, but it injects an LLM into the *synchronous deterministic* retrieval hot path with no loop/cost governor (all greenfield). Needs its own design packet — NOT the cheap top-3 win it looked like. (Mitigant: `LT-tool-rule-memory-chain` below is a ready governor.)
+- **`MEM-fused-summary-channel`: M/M → actually L.** Not single-site — 5 hardcoded channel-list sites + the adaptive-weight model has no per-channel slot + double-counting risk + an ablation-tuned retune obligation.
+- **Smallest safe ships remain `MEM-fact-invalidation-event-time` (H/S) and `CG-iterative-context-extension` (M, one-site, flag-gated, only net-new = convergence-stop).**
+
+**New initiative A — "semantic edge layer" (Wave-2, high-effort):** consolidates `CG-edge-vector-index` + `CG-edge-aware-triplet-search` (iter 19) + `GR-semantic-fact-dedup-merge` (iter 21) + `GR-semantic-invalidation-discovery` + `GR-fact-embedding-on-edge`. All require the *same* substrate our memory-ID graph lacks: per-edge embeddings + semantic edge retrieval. One coherent initiative, not separate ships.
+
+**New initiative B — "async sleep-time consolidation" (NET-NEW architectural direction):** `LT-bg-sleeptime-agent` (H/M) + `LT-turn-cadence-trigger` (M/S) + `LT-llm-transcript-chunking` (M/M). Background, cadence-gated memory reorganization that LLM-selects transcript ranges to archive — distinct from our synchronous on-save `reconsolidation-bridge.ts`.
+
+**Cheap wins added:** `CG-declarative-regex-entity-config` (L/S — JSON entity patterns vs hardcoded 5 rules) · `LT-turn-cadence-trigger` (M/S) · `GR-temporal-ordering-invalidation` (H/S, scope to conflicting relation-pairs). **To verify:** `CG-content-hash-reprocessing-trigger` + `CG-graph-neighborhood-projection` (vs existing reindex / `enableCausalBoost`).
+
+## Saturation read (22/40)
+**The Mem0/determinism/verify backbone is saturated; the Cognee-ECL + Letta-sleep-time frontier (waves 19-22) was genuinely productive — two new initiatives + a cheap-win + roadmap effort corrections.** newInfoRatio: Mem0/determinism veins collapsed (iter-16 = 0.1), but the un-mined ingest/sleep-time veins returned 0.7. Settled & host-verified: memory-ID graph (not entity-node), no episode model, internal already has community detection + query-decomposition + multi-channel RRF + FSRS + a complete determinism layer; the recurring gate is the absent **semantic edge layer** (per-edge embeddings).
+
+**Frontier now largely covered.** Remaining genuine work for 23-40: (a) **verify** `CG-content-hash-reprocessing-trigger` + `CG-graph-neighborhood-projection` (vs reindex / `enableCausalBoost`) + the iter-19/20 NET-NEWs; (b) **blast-radius scope** the remaining GOs (MEM-tiered-recall-budget, the two new initiatives, LT-bg-sleeptime-agent); (c) **synthesis/06** (before→after, matching sibling 05) + roadmap addendum. Per the strategy STOP CONDITION, this is verify + scope + synthesize — discovery is near-exhausted (further finder waves would re-surface or pad). **Recommendation: 1 verify/scope wave (23-26), then write synthesis/06 and present; padding to exactly 40 with low-yield finder iterations is explicitly discouraged by the strategy.**
 
 ## Honest status / open issues
 - **Kimi K2.7 timeout — DIAGNOSED (not broken).** `kimi-for-coding/k2p7 --variant high` timed out 2× at 600s with **zero stdout**, but its 65 KB **stderr shows it was working productively the whole time** — it read `external/letta/` by explicit path (`rg --no-ignore` + explicit `Read`s; the gitignore-fix worked) and simply **over-explored past the 600s budget** (many file reads across agent_manager/block_manager/orm/context-window/passage/archive) before reaching the final-output stage. opencode writes only the *final* assistant message to stdout, so a mid-stream `gtimeout` kill = 0 bytes. Root cause: **under-budgeted + over-scoped at high reasoning on a 1185-file repo** (DeepSeek finished the same task because it's more decisive). **Fix for the Kimi lineage:** (a) timeout **1200s+**, (b) hard per-seat scope + read-cap in the prompt ("read ≤N files then emit, do not keep browsing"), optionally (c) drop `--variant high`. **CONFIRMED FIXED:** the tight + ≤4-read-cap + 1200s + no-`--variant` relaunch returned a **clean 863-byte block in exactly 4 reads (exit 0)** — Kimi's contract is proven and its 10-iter lineage is unblocked with this config. (Bonus: Kimi's read refined iter-4 — Letta's core-memory char-limit is *advisory only* with no auto-eviction, so a block-size compaction trigger is net-new / NO-TRANSFER — see iter-5.) **All four model dispatch contracts now proven.**

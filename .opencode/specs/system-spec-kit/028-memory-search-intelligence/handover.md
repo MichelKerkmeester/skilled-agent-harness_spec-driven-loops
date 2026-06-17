@@ -1,6 +1,6 @@
 ---
 title: "Session Handover: 028 Memory Search Intelligence — child 007 memory-systems mining"
-description: "Continue the 4-model memory-systems mining in child 007 (4/40 iters banked; remaining iterations + the Kimi blocker). Earlier broadening-rounds content retained below as machinery reference."
+description: "Continue the 4-model memory-systems mining in child 007 (18/40 iters banked + committed; consolidated top-7 roadmap exists; banked set converged; wave 19-22 frontier in flight). Earlier broadening-rounds content retained below as machinery reference."
 trigger_phrases:
   - "028 broadening rounds handover"
   - "memory search intelligence broadening"
@@ -11,12 +11,11 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence"
-    last_updated_at: "2026-06-17T10:25:00Z"
+    last_updated_at: "2026-06-17T13:15:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "007 memory-systems mining: iters 1-4 banked, 24 candidates, 4 systems"
-    next_safe_action: "Resume 007 per its research.md CONTINUATION RECIPE (debug Kimi)"
-    blockers:
-      - "Kimi k2p7 over-explores past 600s (diagnosed, not broken); fix=1200s timeout + read-cap in prompt"
+    recent_action: "007 mining: 18/40 banked + committed; top-7 roadmap; banked set converged"
+    next_safe_action: "Collect wave 19-22 seats; bank; then synthesis/06 + roadmap addendum"
+    blockers: []
     key_files:
       - "007-memory-systems/research/research.md"
       - "research/roadmap.md"
@@ -24,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-16-028-memory-search-intelligence"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 45
     open_questions: []
     answered_questions: []
 ---
