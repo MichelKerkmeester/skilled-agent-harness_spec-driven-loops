@@ -1,0 +1,507 @@
+{
+  "_note": "CORPUS-DERIVED PROXY, NOT human-judged traffic. Spec keywords as query, the spec memory as positive, a mismatched spec as negative. Replace with ~50-100 labeled pairs from live memory_search before trusting any fitted model.",
+  "generatedFrom": ".opencode/specs",
+  "docCount": 50,
+  "pairs": [
+    {
+      "query": "system architecture barter agent ecosystem",
+      "memoryId": ".opencode/specs/ai-systems/001-ai-system-architecture",
+      "relevant": 1
+    },
+    {
+      "query": "system architecture barter agent ecosystem",
+      "memoryId": ".opencode/specs/barter/001-reel-video-flicker-expo",
+      "relevant": 0
+    },
+    {
+      "query": "two-runtime packaging architecture design copywriter pilot",
+      "memoryId": ".opencode/specs/ai-systems/001-ai-system-architecture/001-two-runtime-packaging-design",
+      "relevant": 1
+    },
+    {
+      "query": "two-runtime packaging architecture design copywriter pilot",
+      "memoryId": ".opencode/specs/barter/002-text-wrap-balance-react-native",
+      "relevant": 0
+    },
+    {
+      "query": "copywriter build claude projects packaging",
+      "memoryId": ".opencode/specs/ai-systems/001-ai-system-architecture/002-copywriter-projects-build",
+      "relevant": 1
+    },
+    {
+      "query": "copywriter build claude projects packaging",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration",
+      "relevant": 0
+    },
+    {
+      "query": "copywriter validate projects cli parity",
+      "memoryId": ".opencode/specs/ai-systems/001-ai-system-architecture/003-copywriter-projects-validation",
+      "relevant": 1
+    },
+    {
+      "query": "copywriter validate projects cli parity",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration/146-sk-code-ponytail-based-refinement",
+      "relevant": 0
+    },
+    {
+      "query": "global-pack template kernel-template drift-audit reuse projects-skeleton",
+      "memoryId": ".opencode/specs/ai-systems/001-ai-system-architecture/004-global-pack-and-template",
+      "relevant": 1
+    },
+    {
+      "query": "global-pack template kernel-template drift-audit reuse projects-skeleton",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration/146-sk-code-ponytail-based-refinement/002-ceiling-comment-convention",
+      "relevant": 0
+    },
+    {
+      "query": "roll projects packaging remaining systems",
+      "memoryId": ".opencode/specs/ai-systems/001-ai-system-architecture/005-rollout-to-remaining-systems",
+      "relevant": 1
+    },
+    {
+      "query": "roll projects packaging remaining systems",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration/146-sk-code-ponytail-based-refinement/003-wording-invariant-guards",
+      "relevant": 0
+    },
+    {
+      "query": "sales direct communication speed optimization copywriter",
+      "memoryId": ".opencode/specs/ai-systems/001-ai-system-architecture/006-sales-dc-speed-optimization",
+      "relevant": 1
+    },
+    {
+      "query": "sales direct communication speed optimization copywriter",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration/146-sk-code-ponytail-based-refinement/004-mirror-stackfolder-drift-guards",
+      "relevant": 0
+    },
+    {
+      "query": "linkedin voice kernel speed refinement",
+      "memoryId": ".opencode/specs/ai-systems/001-ai-system-architecture/007-linkedin-speed-voice-refinement",
+      "relevant": 1
+    },
+    {
+      "query": "linkedin voice kernel speed refinement",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration/146-sk-code-ponytail-based-refinement/005-design-restraint-ladder",
+      "relevant": 0
+    },
+    {
+      "query": "skill-port quality audit assets references trim",
+      "memoryId": ".opencode/specs/ai-systems/002-skill-port-quality-audit",
+      "relevant": 1
+    },
+    {
+      "query": "skill-port quality audit assets references trim",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration/146-sk-code-ponytail-based-refinement/006-optional-addons",
+      "relevant": 0
+    },
+    {
+      "query": "skill-port quality audit sales direct communication",
+      "memoryId": ".opencode/specs/ai-systems/002-skill-port-quality-audit/003-sales-direct-communication",
+      "relevant": 1
+    },
+    {
+      "query": "skill-port quality audit sales direct communication",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration/148-sk-interface-design/002-ui-ux-pro-max-merge-research",
+      "relevant": 0
+    },
+    {
+      "query": "skill-port quality audit sales hubspot sequences",
+      "memoryId": ".opencode/specs/ai-systems/002-skill-port-quality-audit/004-sales-hubspot-sequences",
+      "relevant": 1
+    },
+    {
+      "query": "skill-port quality audit sales hubspot sequences",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration/148-sk-interface-design/004-doc-alignment-catalog-playbook",
+      "relevant": 0
+    },
+    {
+      "query": "skill-port quality audit sales process automation",
+      "memoryId": ".opencode/specs/ai-systems/002-skill-port-quality-audit/005-sales-process-automation",
+      "relevant": 1
+    },
+    {
+      "query": "skill-port quality audit sales process automation",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration/148-sk-interface-design/005-claude-design-parity-research",
+      "relevant": 0
+    },
+    {
+      "query": "skill-port quality audit product owner",
+      "memoryId": ".opencode/specs/ai-systems/002-skill-port-quality-audit/006-product-owner",
+      "relevant": 1
+    },
+    {
+      "query": "skill-port quality audit product owner",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration/148-sk-interface-design/006-competitor-design-tools-research",
+      "relevant": 0
+    },
+    {
+      "query": "skill-port quality audit prompt improver",
+      "memoryId": ".opencode/specs/ai-systems/002-skill-port-quality-audit/007-prompt-improver",
+      "relevant": 1
+    },
+    {
+      "query": "skill-port quality audit prompt improver",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration/148-sk-interface-design/007-claude-design-parity-build",
+      "relevant": 0
+    },
+    {
+      "query": "skill-port quality audit linkedin nigel lange",
+      "memoryId": ".opencode/specs/ai-systems/002-skill-port-quality-audit/008-linkedin-nigel-de-lange",
+      "relevant": 1
+    },
+    {
+      "query": "skill-port quality audit linkedin nigel lange",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration/148-sk-interface-design/008-doc-realignment",
+      "relevant": 0
+    },
+    {
+      "query": "skill-port quality audit linkedin pieter bertram",
+      "memoryId": ".opencode/specs/ai-systems/002-skill-port-quality-audit/009-linkedin-pieter-bertram",
+      "relevant": 1
+    },
+    {
+      "query": "skill-port quality audit linkedin pieter bertram",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration/148-sk-interface-design/009-mobbin-refero-design-reference-integration",
+      "relevant": 0
+    },
+    {
+      "query": "skill-port quality audit tiktok seo creative",
+      "memoryId": ".opencode/specs/ai-systems/002-skill-port-quality-audit/010-tiktok-seo-creative-strategy",
+      "relevant": 1
+    },
+    {
+      "query": "skill-port quality audit tiktok seo creative",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration/148-sk-interface-design/010-decouple-from-open-design",
+      "relevant": 0
+    },
+    {
+      "query": "skill consolidation one brain per system",
+      "memoryId": ".opencode/specs/ai-systems/003-skill-consolidation",
+      "relevant": 1
+    },
+    {
+      "query": "skill consolidation one brain per system",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration/148-sk-interface-design/011-mobbin-refero-smart-routing",
+      "relevant": 0
+    },
+    {
+      "query": "feature specification sales hubspot automation merge",
+      "memoryId": ".opencode/specs/ai-systems/005-sales-hubspot-automation-merge",
+      "relevant": 1
+    },
+    {
+      "query": "feature specification sales hubspot automation merge",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5",
+      "relevant": 0
+    },
+    {
+      "query": "feature specification barter blog posts generalization",
+      "memoryId": ".opencode/specs/ai-systems/006-blog-posts-generalization",
+      "relevant": 1
+    },
+    {
+      "query": "feature specification barter blog posts generalization",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5/002-fable-mode-efficiency-research",
+      "relevant": 0
+    },
+    {
+      "query": "feature specification reference overview fast-or-deep prompt",
+      "memoryId": ".opencode/specs/ai-systems/007-reference-overview-and-fast-prompt",
+      "relevant": 1
+    },
+    {
+      "query": "feature specification reference overview fast-or-deep prompt",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5/003-measurement-baseline",
+      "relevant": 0
+    },
+    {
+      "query": "product-owner verbosity scope scaling concise ticket",
+      "memoryId": ".opencode/specs/ai-systems/008-product-owner-scope-aware-verbosity",
+      "relevant": 1
+    },
+    {
+      "query": "product-owner verbosity scope scaling concise ticket",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5/004-doctrine-quick-wins",
+      "relevant": 0
+    },
+    {
+      "query": "feature specification text link button disabled",
+      "memoryId": ".opencode/specs/anobel.com/001-button-text-link-disabled-state",
+      "relevant": 1
+    },
+    {
+      "query": "feature specification text link button disabled",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5/005-governor-capsule-hook",
+      "relevant": 0
+    },
+    {
+      "query": "feature specification link card collapse expand",
+      "memoryId": ".opencode/specs/anobel.com/002-link-card-button-and-mobile-animation",
+      "relevant": 1
+    },
+    {
+      "query": "feature specification link card collapse expand",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5/006-subagent-governor-recursion",
+      "relevant": 0
+    },
+    {
+      "query": "slider carousel testimonial timeline refactor Motion.dev",
+      "memoryId": ".opencode/specs/anobel.com/003-slider-refactor",
+      "relevant": 1
+    },
+    {
+      "query": "slider carousel testimonial timeline refactor Motion.dev",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5/007-sk-code-rituals",
+      "relevant": 0
+    },
+    {
+      "query": "research specification reels black-screen flicker root-cause",
+      "memoryId": ".opencode/specs/barter/001-reel-video-flicker-expo",
+      "relevant": 1
+    },
+    {
+      "query": "research specification reels black-screen flicker root-cause",
+      "memoryId": ".opencode/specs/ai-systems/001-ai-system-architecture",
+      "relevant": 0
+    },
+    {
+      "query": "research specification text-wrap balance react native",
+      "memoryId": ".opencode/specs/barter/002-text-wrap-balance-react-native",
+      "relevant": 1
+    },
+    {
+      "query": "research specification text-wrap balance react native",
+      "memoryId": ".opencode/specs/ai-systems/001-ai-system-architecture/001-two-runtime-packaging-design",
+      "relevant": 0
+    },
+    {
+      "query": "skilled-agent orchestration track skill agent command",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration",
+      "relevant": 1
+    },
+    {
+      "query": "skilled-agent orchestration track skill agent command",
+      "memoryId": ".opencode/specs/ai-systems/001-ai-system-architecture/002-copywriter-projects-build",
+      "relevant": 0
+    },
+    {
+      "query": "research specification ponytail-based refinement sk-code sk-code-review",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration/146-sk-code-ponytail-based-refinement",
+      "relevant": 1
+    },
+    {
+      "query": "research specification ponytail-based refinement sk-code sk-code-review",
+      "memoryId": ".opencode/specs/ai-systems/001-ai-system-architecture/003-copywriter-projects-validation",
+      "relevant": 0
+    },
+    {
+      "query": "phase intentional-simplification ceiling comment convention",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration/146-sk-code-ponytail-based-refinement/002-ceiling-comment-convention",
+      "relevant": 1
+    },
+    {
+      "query": "phase intentional-simplification ceiling comment convention",
+      "memoryId": ".opencode/specs/ai-systems/001-ai-system-architecture/004-global-pack-and-template",
+      "relevant": 0
+    },
+    {
+      "query": "phase exact-wording guards iron law cleanup",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration/146-sk-code-ponytail-based-refinement/003-wording-invariant-guards",
+      "relevant": 1
+    },
+    {
+      "query": "phase exact-wording guards iron law cleanup",
+      "memoryId": ".opencode/specs/ai-systems/001-ai-system-architecture/005-rollout-to-remaining-systems",
+      "relevant": 0
+    },
+    {
+      "query": "phase drift guards agent mirrors binding",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration/146-sk-code-ponytail-based-refinement/004-mirror-stackfolder-drift-guards",
+      "relevant": 1
+    },
+    {
+      "query": "phase drift guards agent mirrors binding",
+      "memoryId": ".opencode/specs/ai-systems/001-ai-system-architecture/006-sales-dc-speed-optimization",
+      "relevant": 0
+    },
+    {
+      "query": "phase design restraint ladder sk-code",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration/146-sk-code-ponytail-based-refinement/005-design-restraint-ladder",
+      "relevant": 1
+    },
+    {
+      "query": "phase design restraint ladder sk-code",
+      "memoryId": ".opencode/specs/ai-systems/001-ai-system-architecture/007-linkedin-speed-voice-refinement",
+      "relevant": 0
+    },
+    {
+      "query": "phase optional smaller heavier add-ons",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration/146-sk-code-ponytail-based-refinement/006-optional-addons",
+      "relevant": 1
+    },
+    {
+      "query": "phase optional smaller heavier add-ons",
+      "memoryId": ".opencode/specs/ai-systems/002-skill-port-quality-audit",
+      "relevant": 0
+    },
+    {
+      "query": "research specification ui-ux-pro-max-merge-research sk-interface-design phase deep-research",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration/148-sk-interface-design/002-ui-ux-pro-max-merge-research",
+      "relevant": 1
+    },
+    {
+      "query": "research specification ui-ux-pro-max-merge-research sk-interface-design phase deep-research",
+      "memoryId": ".opencode/specs/ai-systems/002-skill-port-quality-audit/003-sales-direct-communication",
+      "relevant": 0
+    },
+    {
+      "query": "feature specification sk-interface-design doc alignment catalog",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration/148-sk-interface-design/004-doc-alignment-catalog-playbook",
+      "relevant": 1
+    },
+    {
+      "query": "feature specification sk-interface-design doc alignment catalog",
+      "memoryId": ".opencode/specs/ai-systems/002-skill-port-quality-audit/004-sales-hubspot-sequences",
+      "relevant": 0
+    },
+    {
+      "query": "research specification claude design parity sk-interface-design",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration/148-sk-interface-design/005-claude-design-parity-research",
+      "relevant": 1
+    },
+    {
+      "query": "research specification claude design parity sk-interface-design",
+      "memoryId": ".opencode/specs/ai-systems/002-skill-port-quality-audit/005-sales-process-automation",
+      "relevant": 0
+    },
+    {
+      "query": "research specification competitor design-tool ideas sk-interface-design",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration/148-sk-interface-design/006-competitor-design-tools-research",
+      "relevant": 1
+    },
+    {
+      "query": "research specification competitor design-tool ideas sk-interface-design",
+      "memoryId": ".opencode/specs/ai-systems/002-skill-port-quality-audit/006-product-owner",
+      "relevant": 0
+    },
+    {
+      "query": "feature specification claude design parity keystone",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration/148-sk-interface-design/007-claude-design-parity-build",
+      "relevant": 1
+    },
+    {
+      "query": "feature specification claude design parity keystone",
+      "memoryId": ".opencode/specs/ai-systems/002-skill-port-quality-audit/007-prompt-improver",
+      "relevant": 0
+    },
+    {
+      "query": "feature specification doc realignment parity keystone",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration/148-sk-interface-design/008-doc-realignment",
+      "relevant": 1
+    },
+    {
+      "query": "feature specification doc realignment parity keystone",
+      "memoryId": ".opencode/specs/ai-systems/002-skill-port-quality-audit/008-linkedin-nigel-de-lange",
+      "relevant": 0
+    },
+    {
+      "query": "feature specification mobbin refero design-reference integration",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration/148-sk-interface-design/009-mobbin-refero-design-reference-integration",
+      "relevant": 1
+    },
+    {
+      "query": "feature specification mobbin refero design-reference integration",
+      "memoryId": ".opencode/specs/ai-systems/002-skill-port-quality-audit/009-linkedin-pieter-bertram",
+      "relevant": 0
+    },
+    {
+      "query": "feature specification phase decouple-from-open-design sk-interface-design real_ui_loop",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration/148-sk-interface-design/010-decouple-from-open-design",
+      "relevant": 1
+    },
+    {
+      "query": "feature specification phase decouple-from-open-design sk-interface-design real_ui_loop",
+      "memoryId": ".opencode/specs/ai-systems/002-skill-port-quality-audit/010-tiktok-seo-creative-strategy",
+      "relevant": 0
+    },
+    {
+      "query": "feature specification phase mobbin-refero-smart-routing sk-interface-design design-references",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration/148-sk-interface-design/011-mobbin-refero-smart-routing",
+      "relevant": 1
+    },
+    {
+      "query": "feature specification phase mobbin-refero-smart-routing sk-interface-design design-references",
+      "memoryId": ".opencode/specs/ai-systems/003-skill-consolidation",
+      "relevant": 0
+    },
+    {
+      "query": "feature specification operate like fable-5",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5",
+      "relevant": 1
+    },
+    {
+      "query": "feature specification operate like fable-5",
+      "memoryId": ".opencode/specs/ai-systems/005-sales-hubspot-automation-merge",
+      "relevant": 0
+    },
+    {
+      "query": "feature specification fable-5 efficiency map every",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5/002-fable-mode-efficiency-research",
+      "relevant": 1
+    },
+    {
+      "query": "feature specification fable-5 efficiency map every",
+      "memoryId": ".opencode/specs/ai-systems/006-blog-posts-generalization",
+      "relevant": 0
+    },
+    {
+      "query": "feature specification measurement baseline fable-5 efficiency",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5/003-measurement-baseline",
+      "relevant": 1
+    },
+    {
+      "query": "feature specification measurement baseline fable-5 efficiency",
+      "memoryId": ".opencode/specs/ai-systems/007-reference-overview-and-fast-prompt",
+      "relevant": 0
+    },
+    {
+      "query": "feature specification doctrine quick-wins fix agents",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5/004-doctrine-quick-wins",
+      "relevant": 1
+    },
+    {
+      "query": "feature specification doctrine quick-wins fix agents",
+      "memoryId": ".opencode/specs/ai-systems/008-product-owner-scope-aware-verbosity",
+      "relevant": 0
+    },
+    {
+      "query": "feature specification compact fable-5 governor capsule",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5/005-governor-capsule-hook",
+      "relevant": 1
+    },
+    {
+      "query": "feature specification compact fable-5 governor capsule",
+      "memoryId": ".opencode/specs/anobel.com/001-button-text-link-disabled-state",
+      "relevant": 0
+    },
+    {
+      "query": "feature specification sub-agent governor injection via",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5/006-subagent-governor-recursion",
+      "relevant": 1
+    },
+    {
+      "query": "feature specification sub-agent governor injection via",
+      "memoryId": ".opencode/specs/anobel.com/002-link-card-button-and-mobile-animation",
+      "relevant": 0
+    },
+    {
+      "query": "feature specification sk-code engineering rituals mutation-check",
+      "memoryId": ".opencode/specs/skilled-agent-orchestration/149-operate-like-fable-5/007-sk-code-rituals",
+      "relevant": 1
+    },
+    {
+      "query": "feature specification sk-code engineering rituals mutation-check",
+      "memoryId": ".opencode/specs/anobel.com/003-slider-refactor",
+      "relevant": 0
+    }
+  ]
+}

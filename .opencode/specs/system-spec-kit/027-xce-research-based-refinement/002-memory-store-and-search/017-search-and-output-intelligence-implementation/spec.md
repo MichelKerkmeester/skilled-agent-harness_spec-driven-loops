@@ -45,16 +45,16 @@ FAILURE MODES:
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Level** | 1 (phase parent — control file) |
+| **Priority** | P1 |
+| **Status** | Complete |
 | **Created** | 2026-06-17 |
-| **Branch** | `scaffold/017-search-and-output-intelligence-implementation` |
+| **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 17 of 17 |
 | **Predecessor** | 016-search-and-output-intelligence-research |
 | **Successor** | None |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Handoff Criteria** | All 7 phase children pass `validate.sh --strict`; touched-surface test sweep green; each code change flag-reconciled |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -62,15 +62,18 @@ FAILURE MODES:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 17** of the Implement the search-intelligence and AI-output findings from the 016 deep-research via fresh claude2 Opus agents specification.
+This is **Phase 17** of the search-and-output-intelligence work: implementing the prioritized findings from the 016 deep-research (KQ1–KQ5 + recommendations #1–#7) via fresh claude2 Opus agents, one phase child per finding.
 
-**Scope Boundary**: [To be defined during planning]
+**Scope Boundary**: Retrieval-gating calibration, generic-query recall routing, and `/memory:search` output-contract parity. Builds on the already-shipped 015 `resolveAbsoluteRelevance` cosine calibration and the cold/deprecated-tier inclusion. Excludes index re-embedding (deferred, CPU-heavy) and a cross-encoder reranker (explicitly out per operator decision).
 
 **Dependencies**:
-- [To be defined during planning]
+- 015 (`resolveAbsoluteRelevance`) — cosine-based calibration already live; these phases tune the gate built on top of it.
+- 016 research lineages — the evidence base each phase implements.
 
 **Deliverables**:
-- [To be defined during planning]
+- S1–S5 code phases (token-budget safety, request-quality aggregation, generic-query routing, confidence-calibration infra, cosine top-N reorder).
+- O1–O2 command-contract phases (deterministic arg handling + salience inversion; output surface-parity).
+- P5 disposition (FSRS cold-tier ranking): documented no-change — see §3.
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
@@ -82,10 +85,10 @@ This is **Phase 17** of the Implement the search-intelligence and AI-output find
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+After 015 fixed the dominant RRF-vs-cosine miscalibration, on-topic searches still under-report: generic 2–3 word queries read `weak`/`do_not_cite` despite mixed-but-relevant matches, a strong top hit is dragged down by a weaker tail, token-budget truncation hides results (5→1), and weak models render non-comparable output fields (`confidence` vs `similarity`) across surfaces. These are gate-aggregation, recall-routing, and output-contract gaps, not a retrieval miss.
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+Make a genuinely relevant search read as citable and render comparably on every surface, without re-embedding the corpus or adding a reranker.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -94,19 +97,25 @@ This is **Phase 17** of the Implement the search-intelligence and AI-output find
 ## 3. SCOPE
 
 ### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
+- Token-budget truncation safety so weak queries still surface all results (S1).
+- Request-quality aggregation that lets a strong top hit earn citable (S2).
+- Generic short-query routing that escalates low-signal queries for better recall (S3).
+- Confidence-calibration infrastructure (isotonic fit/apply), flag-gated default-OFF (S4).
+- Cosine top-N reorder of the head by absolute relevance (S5).
+- `/memory:search` command-contract: deterministic arg handling + salience inversion (O1) and output surface-parity — one score/scale/name (O2).
 
 ### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
+- **Corpus re-embedding / index repair** — CPU-heavy; deferred until the operator is home and confirms. Not a code change in this packet.
+- **Cross-encoder reranker** — explicitly excluded per operator decision ("Dont add reranker"); Stage-3 stays `provider:'none'`.
+- **P5 — FSRS cold-tier ranking tuning — NO-CHANGE.** The 5th research problem (tune how cold/deprecated tiers rank) needs no code phase: 015 already admits cold/deprecated rows into the lexical + trigger channels and default-ON vector-lane Option-A backfill, and FSRS already supplies the temperature decay that ranks them. There is no miscalibration to fix here — over-tuning would fight the FSRS scheduler. Revisit only if live traffic shows cold rows mis-ordered against hot peers.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+| `mcp_server/lib/search/*` (per-phase) | Modify | S1–S5 calibration/recall changes (see phase children for exact files) |
+| `.opencode/commands/memory/search.md` + `assets/search_presentation.txt` | Modify | O1–O2 command/output contract |
+| (none) | — | P5 is a documented no-change disposition |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -188,13 +197,15 @@ REQ-008
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-token-budget-truncation-safety/ | [Phase 1 scope] | Pending |
-| 2 | 002-request-quality-aggregation/ | [Phase 2 scope] | Pending |
-| 3 | 003-generic-query-deep-routing/ | [Phase 3 scope] | Pending |
-| 4 | 004-confidence-calibration-labeled-set/ | [Phase 4 scope] | Pending |
-| 5 | 005-cosine-topn-reorder/ | [Phase 5 scope] | Pending |
-| 6 | 006-command-contract-structural/ | [Phase 6 scope] | Pending |
-| 7 | 007-output-surface-parity/ | [Phase 7 scope] | Pending |
+| 1 | 001-token-budget-truncation-safety/ | S1 — skip-don't-break truncation + floor(3) + progressive disclosure | Complete |
+| 2 | 002-request-quality-aggregation/ | S2 — top-dominant + margin-aware citable verdict | Complete |
+| 3 | 003-generic-query-deep-routing/ | S3 — escalate low-signal short queries for recall | Complete |
+| 4 | 004-confidence-calibration-labeled-set/ | S4 — isotonic calibration infra (flag-gated default-OFF) + proxy seed | Complete |
+| 5 | 005-cosine-topn-reorder/ | S5 — stable head reorder by absolute relevance | Complete |
+| 6 | 006-command-contract-structural/ | O1 — deterministic arg handling + salience inversion | Complete |
+| 7 | 007-output-surface-parity/ | O2 — one score/scale/name across surfaces | Complete |
+
+> P5 (FSRS cold-tier ranking) is intentionally **not** a phase child — see §3 Out of Scope for the no-change rationale.
 
 ### Phase Transition Rules
 
