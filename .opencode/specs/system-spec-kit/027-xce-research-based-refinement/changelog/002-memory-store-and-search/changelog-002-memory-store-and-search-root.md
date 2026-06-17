@@ -22,3 +22,6 @@ Top rollup for the `002-memory-store-and-search/` themed track. Each row links t
 | `002-memory-store-and-search/012` hybrid search scope then limit | [changelog-002-012-hybrid-search-scope-then-limit.md](./changelog-002-012-hybrid-search-scope-then-limit.md) |
 | `002-memory-store-and-search/013` provenance injection | [changelog-002-013-provenance-injection.md](./changelog-002-013-provenance-injection.md) |
 | `002-memory-store-and-search/014` idempotency flag on correctness | [changelog-002-014-idempotency-flag-on-correctness.md](./changelog-002-014-idempotency-flag-on-correctness.md) |
+| `002-memory-store-and-search/015` retrieval gating and recall recovery | [changelog-002-015-retrieval-gating-and-recall-recovery.md](./changelog-002-015-retrieval-gating-and-recall-recovery.md) |
+| `002-memory-store-and-search/016` search and output intelligence research | [changelog-002-016-search-and-output-intelligence-research.md](./changelog-002-016-search-and-output-intelligence-research.md) |
+| `002-memory-store-and-search/017` search and output intelligence implementation (rollup) | [changelog-002-017-search-and-output-intelligence-implementation-root.md](./changelog-002-017-search-and-output-intelligence-implementation-root.md) |
