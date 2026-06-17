@@ -39,8 +39,9 @@ _memory:
 | 3 | MiMo v2.5 Pro | Graphiti/Zep | 6 | ✅ banked |
 | 4 | DeepSeek (Kimi reassigned — timed out 2×) | Letta/MemGPT | 5 | ✅ banked |
 | 5 | Kimi K2.7 (fix proven: tight+1200s+no-variant) | Letta (cross-check) | 1 | ✅ banked |
+| 6 | **Opus 4.8 NATIVE** (Agent `model:opus`, not claude2) | adversarial-verify (all systems) | verdicts | ✅ banked |
 
-**25 candidates banked across all 4 systems; all 4 model dispatch contracts proven.** Per-iteration detail: `iterations/iteration-00{1..5}.md` + `deltas/iter-00{1..5}.jsonl`.
+**25 candidates banked across all 4 systems; all 4 model contracts proven.** Per-iteration detail: `iterations/iteration-00{1..6}.md` + `deltas/iter-00{1..6}.jsonl`. **Iter-6 native-Opus adversarial-verify (net-deflationary): 1 REFUTED — `CG-composite-edge-dedup` is already implemented (insertEdge superset key); 2 DOWNGRADED NET-NEW→EXTENDS (`CG-uuid5-entity-merge`, `M0-adaptive-additive-fusion`); 1 clean GO (`GR-llm-fact-invalidation`); 1 REFUTE-as-framed (`LT-self-edit-char-limit-blocks`). Systemic caveat: the internal causal graph is memory-ID→memory-ID, NOT entity-node — every Cognee/Graphiti `maps_to` glossed this.**
 
 ## Top picks so far (by leverage × effort)
 - **CG-uuid5-entity-merge** (Cognee, NET-NEW, **H/S**) — deterministic `uuid5(normalized-name)` entity identity → same name auto-merges at write, zero LLM. → causal-graph entity creation.
@@ -49,6 +50,8 @@ _memory:
 - **M0-entity-store-boost** (Mem0, NET-NEW, H/M) — separate entity vector index boosting linked memories at search.
 - **GR-fact-embedding-on-edge** (Graphiti, NET-NEW, M/M) — semantic embedding on edges → semantic edge dedup + similarity edge retrieval.
 - **CG-iterative-context-extension** (Cognee, NET-NEW, H/M) — answer-as-next-query graph retrieval with convergence stop.
+
+> **⚠ Corrected by iter-6 native-Opus adversarial-verify (vs live internal code):** `CG-composite-edge-dedup` is **REFUTED** (already implemented — drop it). `CG-uuid5-entity-merge` is **EXTENDS not NET-NEW** (entity_catalog already merges on normalized canonical name) and is mis-mapped (causal graph is memory-ID, not entity-node). The durable spearhead is **`GR-llm-fact-invalidation`** (event-time-close half = small, well-scoped GO). Treat any candidate whose `maps_to` assumes an entity-node graph as needing a memory-ID-graph reframe first.
 
 ## Per-system findings
 - **Mem0** (iter 1): entity-store boost, adaptive channel-gated additive fusion (alt to RRF), query-length-adaptive BM25 sigmoid (EXTENDS aionforge), entity cardinality penalty, LLM memory-linking at extraction (EXTENDS memclaw).
@@ -72,9 +75,11 @@ _memory:
 ```
 opencode run --model deepseek/deepseek-v4-pro --variant high --dir <ROOT> "<prompt>" </dev/null
 opencode run --model xiaomi/mimo-v2.5-pro --variant high --dir <ROOT> "<prompt>" </dev/null
-USER=$USER LOGNAME=$LOGNAME CLAUDE_CONFIG_DIR=$HOME/.claude-account2 CLAUDE_CODE_OAUTH_TOKEN=$(<~/.claude-account2/.oauth-token) gtimeout -k 30s 600s /Users/michelkerkmeester/.superset/bin/claude -p --model opus --permission-mode bypassPermissions "<prompt>" </dev/null
+# Opus 4.8 — NATIVE via the Agent tool (NOT claude2; operator directive 2026-06-17, proven on iter-6):
+#   Agent(subagent_type: "general-purpose", model: "opus", prompt: "<read-only prompt + return findings block>")
+#   Read-only + orchestrator-writes; runs in-process (returns its findings to the orchestrator on completion).
 ```
-Concurrency: ≤2 `opencode run` at once (launch-race). claude2 runs in parallel. Each seat READ-ONLY; prompt every external-repo seat with the gitignore-access note (ls + explicit Read, not Glob).
+Concurrency: ≤2 `opencode run` at once (launch-race). Native-Opus Agent seats run in parallel with opencode. Each seat READ-ONLY; prompt every external-repo seat with the gitignore-access note (ls + explicit Read, not Glob — applies to native Agent Grep too).
 
 **Orchestrator-writes per iteration:** append a `{"type":"iteration","iteration":N,...,"model":...,"graphEvents":[...]}` row to `deep-research-state.jsonl`, write `iterations/iteration-NNN.md`, write `deltas/iter-NNN.jsonl` (iteration row + finding/candidate rows). Prompt files live in `/tmp/028-007/`.
 
