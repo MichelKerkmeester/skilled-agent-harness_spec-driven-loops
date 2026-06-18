@@ -1,16 +1,68 @@
 ---
 title: "Deep-Review 017-021 Remediation: Search/Output Intelligence, Reindex Cancellation, Maintenance Grace and Cooperative Heavy Phases"
-description: "A 50-pass multi-model deep review of 027/002 phases 017-021 returned four PASS and one CONDITIONAL with zero confirmed P0, one confirmed P1 and the rest P2 or doc-drift. The one P1 command-quoting exposure was hardened, five confirmed code defects across the 017 calibration cluster, 018 cancellation accuracy and 021 instrumentation were fixed, and the 017/019/020 scaffold-vs-shipped doc drift was reconciled. Typecheck clean, unit suites 30/30 to 58/58, strict validation green."
+description: "A 50-pass multi-model deep review of 027/002 phases 017-021 returned four PASS and one CONDITIONAL with zero confirmed P0, one confirmed P1 and the rest P2 or doc-drift. The one P1 command-quoting exposure was hardened, five confirmed code defects across the 017 calibration cluster, 018 cancellation accuracy and 021 instrumentation were fixed, and the 017/019/020 scaffold-vs-shipped doc drift was reconciled. Typecheck clean, unit suites 30/30 to 58/58, strict validation green. A follow-on 30-pass gpt-5.5 broaden review then closed nine more fixes — headlined by a default-on cross-tenant retrieval scope leak in retrieval-rescue's Stage-2 injection path — plus a P0 regression test; the rebuilt dist was deployed to the live daemon and a durable wedged-daemon CLI-fallback rule was baked across the deep-loop and review agents."
 trigger_phrases:
   - "005/006 deep review 017-021 remediation changelog"
   - "memory search ARGUMENTS quoting fix"
   - "017 021 instrumentation cancellation remediation"
+  - "027/006 broaden round retrieval scope leak fix"
 importance_tier: "important"
 contextType: "implementation"
 ---
 # Changelog
 
 <!-- SPECKIT_TEMPLATE_SOURCE: changelog/phase.md | v1.0 -->
+
+## 2026-06-18
+
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`
+
+### Summary
+
+After the 017-021 remediation closed, a 30-pass gpt-5.5-fast xhigh "broaden" review swept three dimensions the earlier passes had not centered — search/retrieval, store/index, and server infrastructure — and surfaced 52 findings. Eight refute-first verifiers triaged them to nine real fixes; the rest were by-design, default-off, or refuted. The headline was a default-on cross-tenant scope leak: `retrieval-rescue`'s Stage-2 lexical-backfill and sibling-injection path re-queried the index without re-applying the governance + `spec_folder` scope filter that the constitutional and community paths already perform, so a scoped search could smuggle cross-scope rows back in through the one injection path that skipped the re-filter. It was fixed and locked behind a new P0 scope-isolation regression test. The nine fixes landed in `55b977951d`, with the full disposition in `review-r2/broaden-synthesis.md` and the synthesis commit `0ac83c99ce`. This session then built the committed source into `dist/` and recycled the live spec-memory daemon onto it — closing the inert-until-recycle follow-up from the 2026-06-17 section — and shipped a durable wedged-daemon CLI-fallback rule across the deep-loop and review agents (`61b5aab102`).
+
+### Changed
+
+- **Search scope isolation.** `retrieval-rescue` re-applies the governance + `spec_folder` scope predicate to Stage-2-injected backfill and sibling rows; the community-fallback path filters members by `spec_folder` prefix; the summary lane pushes scope into SQL so the result cap applies after scoping, with a prefix-aware folder match and an active/expiry gate.
+- **Ranking determinism.** `folderBoost` is now part of the rerank cache key — a same-query / different-boost call previously collided on a stale cached result — and its clamp ceiling was corrected from `1.0` to `100` to match the 0-100 similarity scale.
+- **Public schema honesty.** `memory_search` gained `retrievalLevel` in its public schema with an accurate description, and `includeArchived` was reworded as the documented no-op it actually is.
+- **Store / infra hygiene.** `memory_save` probes the filesystem path only after allowed-root validation; `hf-model-server` asserts socket-directory ownership on first bind; the memory-index stale-cleanup wraps the edge + row delete in a single transaction, row first; and `ENV_REFERENCE.md` drops the stale `tcp://` daemon-IPC claim (the transport is deliberately unix-socket only).
+- **Agent resilience (wedged-daemon CLI-fallback).** A durable "NEVER block on a hung MCP call" rule was baked into the eight daemon-using sub-agents across all three runtime mirrors (`.opencode` / `.claude` / `.codex`). Bash-enabled agents (`deep-review`, `deep-research`, `review`, `debug`, `deep-improvement`) fall back to Grep/Read or the warm-daemon CLI front doors; Bash-denied agents (`context`, `deep-context`, `ai-council`) fall back to Grep/Read and report memory/graph unavailability rather than stalling. Committed in `61b5aab102`.
+
+### Fixed
+
+- **[P0] cross-tenant retrieval scope leak** (`lib/search/rerank/retrieval-rescue.ts`): the Stage-2 lexical-backfill and sibling fetches re-queried the index but skipped the scope re-filter that the constitutional and community injection paths run, so a scoped query could return rows outside its tenant / `spec_folder`. The scope predicate is now re-applied to every injected row and a P0 scope-isolation regression test pins the behavior.
+
+### Verification
+
+| Check | Result |
+|-------|--------|
+| Full package typecheck | PASS (0 errors) |
+| Affected unit suites | 448 affected tests PASS + new P0 scope-isolation test |
+| Regression baseline | 0 new failures vs known baseline; the 2 pre-existing failing files reproduce identically with the changes stashed |
+| Live deploy | `dist/` rebuilt from the committed source; live spec-memory daemon recycled onto it and serving the fresh code (scope-fix present in compiled `retrieval-rescue.js`) |
+| Agent-mirror parity | Pre-commit `agent-mirror-sync` gate confirmed all 8 agents' `.opencode` / `.claude` / `.codex` mirrors in sync |
+| Refuted / deferred | `memory_delete` id+specFolder (id is a unique PK), session-proxy replay (rowid-idempotent), retention-sweep (logic inverted), atomic-save ordering (startup-recovered); soft-delete tombstone completion is default-off and maintainer-deferred → its own follow-on packet |
+
+### Files Changed
+
+| File | Action | What changed |
+|------|--------|--------------|
+| `lib/search/rerank/retrieval-rescue.ts` (+ vitest) | Modified | [P0] re-apply governance + `spec_folder` scope to Stage-2-injected rows; new scope-isolation regression test |
+| `handlers/memory-search.ts` | Modified | Community-fallback member filtering by `spec_folder` prefix; `retrievalLevel` schema + `includeArchived` wording |
+| `lib/search/memory-summaries.ts` | Modified | Scope pushed into SQL, prefix-aware folder match, active/expiry gate |
+| `lib/search/pipeline/stage1-candidate-gen.ts`, `lib/search/pipeline/stage2-fusion.ts`, `lib/search/search-utils.ts` | Modified | `folderBoost` cache-key inclusion and clamp-ceiling correction |
+| `handlers/memory-save.ts` | Modified | Probe path only after allowed-root validation |
+| `handlers/memory-index.ts` | Modified | Single-transaction stale-cleanup (row-first) |
+| `.opencode/bin/hf-model-server.cjs` | Modified | Socket-directory ownership assertion on first bind |
+| `ENV_REFERENCE.md`, `tool-schemas.ts` | Modified | Drop `tcp://` IPC claim; schema description accuracy |
+| 8 agents × 3 runtime mirrors | Modified | Durable wedged-daemon CLI-fallback rule (`61b5aab102`) |
+
+### Follow-Ups
+
+- The inert-until-recycle follow-up from the 2026-06-17 section is **closed**: `dist/` was rebuilt and the live daemon recycled onto it on 2026-06-18. The recycle was not transparent — the daemon child had been reparented to init (PPID 1) with no healthy lease-holder, so the SIGTERM took the shared daemon and its launchers down; it was recovered via a deliberate CLI-front-door cold-start, which left a properly-supervised launcher + daemon pair running the fresh dist.
+- **Soft-delete tombstone completion** remains its own dedicated packet: `SPECKIT_SOFT_DELETE_TOMBSTONES` is default-off until recall/list/dedup paths filter `deleted_at IS NULL` (≈8 paths) and the tombstone child-cascade plus tests are in place.
 
 ## 2026-06-17
 
