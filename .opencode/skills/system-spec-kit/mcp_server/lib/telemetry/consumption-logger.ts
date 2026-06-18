@@ -2,15 +2,18 @@
 // MODULE: Consumption Logger (Agent Ux Instrumentation)
 // ───────────────────────────────────────────────────────────────
 // Feature catalog: Agent consumption instrumentation
-// Logs agent consumption events to a SQLite table for G-NEW-2
+// Logs agent consumption events to a SQLite table
 // Requirement analysis: what agents query, what results they get,
 // And (via hooks) which results they actually use.
 //
 // Table: consumption_log
 // Feature flag: SPECKIT_CONSUMPTION_LOG (graduated, default ON)
 //
-// PRIVACY: raw query text is never stored. Each query is reduced
-// to a short fingerprint (prefix:hash) before reaching the DB.
+// PRIVACY: raw query text is never stored. Each non-empty query is
+// stored as the first 16 hex chars of SHA-256(query) — a 64-bit
+// truncated, unsalted fingerprint. This supports exact grouping of
+// identical queries but is NOT a strong non-reversibility guarantee:
+// low-entropy or guessable queries remain dictionary-testable.
 import { createHash } from 'node:crypto';
 import Database from 'better-sqlite3';
 import { isFeatureEnabled } from '../cognitive/rollout-policy.js';
@@ -102,18 +105,17 @@ function isConsumptionLogEnabled(): boolean {
 /**
  * Reduce a raw query string to a privacy-safe fingerprint.
  *
- * Format: <first-8-chars-of-query>:<first-16-hex-chars-of-sha256>
- *
- * The prefix makes fingerprints human-readable for diagnostics while the
- * hash enables exact deduplication without retaining query content.
+ * Format: <first-16-hex-chars-of-sha256> — hash only. A readable query
+ * prefix was deliberately removed: any retained substring IS retained
+ * query content, which can carry credentials or personal data and
+ * contradicts this module's privacy contract. The hash alone still
+ * supports exact deduplication and grouping.
  *
  * Returns null when the input is null/empty — no fingerprint is stored.
  */
 function computeQueryFingerprint(query: string | null | undefined): string | null {
   if (!query) return null;
-  const prefix = query.slice(0, 8);
-  const hex = createHash('sha256').update(query).digest('hex').slice(0, 16);
-  return `${prefix}:${hex}`;
+  return createHash('sha256').update(query).digest('hex').slice(0, 16);
 }
 
 /* ───────────────────────────────────────────────────────────────
@@ -123,6 +125,8 @@ function computeQueryFingerprint(query: string | null | undefined): string | nul
 /**
  * Create consumption_log table if it doesn't exist.
  * Safe to call multiple times (idempotent).
+ * Operational handlers only write this telemetry; analytics reads remain
+ * test/maintenance entry points until an operational read surface is added.
  *
  * Migration: if the table exists with the old `query_text` column, it is
  * dropped before recreation. All rows in that table are disposable telemetry;
@@ -166,6 +170,13 @@ function initConsumptionLog(db: Database.Database): void {
     CREATE INDEX IF NOT EXISTS idx_consumption_log_timestamp
       ON consumption_log (timestamp);
   `);
+
+  // Purge legacy fingerprints that retained a raw query prefix (the old
+  // `prefix:hash` format) — the prefix IS retained query content, and the
+  // pattern examples re-surface it verbatim. Rows are disposable
+  // instrumentation data, same remediation precedent as the query_text drop
+  // above. Current-format fingerprints are pure hex and never contain ':'.
+  db.exec(`DELETE FROM consumption_log WHERE query_hash LIKE '%:%'`);
 }
 
 /* ───────────────────────────────────────────────────────────────
@@ -227,6 +238,7 @@ function logConsumptionEvent(db: Database.Database, event: ConsumptionEvent): vo
 
 /**
  * Return aggregate statistics from consumption_log.
+ * Test/maintenance-only instrumentation; not wired to an operational read surface.
  * Returns default empty stats if the table doesn't exist or query fails.
  */
 function getConsumptionStats(db: Database.Database, options: ConsumptionStatsOptions = {}): ConsumptionStats {
@@ -320,6 +332,7 @@ function getConsumptionStats(db: Database.Database, options: ConsumptionStatsOpt
 
 /**
  * Identify consumption pattern categories from logged events.
+ * Test/maintenance-only instrumentation; not wired to an operational read surface.
  *
  * Returns at least 5 categories:
  * 1. high-frequency-query   — fingerprints repeated >3 times

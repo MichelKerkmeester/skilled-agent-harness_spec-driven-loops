@@ -1,6 +1,13 @@
 ---
 title: Spec Memory Launcher Lease
 description: PID-file single-writer lease for the mk-spec-memory launcher.
+trigger_phrases:
+  - "spec memory launcher lease"
+  - "pid-file single-writer lease"
+  - "stale reclaim path"
+  - "lease env-var override"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Spec Memory Launcher Lease

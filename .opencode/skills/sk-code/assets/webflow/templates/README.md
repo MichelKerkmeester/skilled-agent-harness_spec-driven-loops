@@ -26,9 +26,9 @@ Use this file to identify the folder boundary, the likely verification path, and
 
 | Metric | Value |
 |---|---:|
-| Code files | 1 |
+| Template files | 5 |
 | README scope | Direct files in this folder |
-| Audit context | Internal validation notes |
+| Review context | Current refinement and release-alignment review. The 026 audit is completed predecessor context. |
 
 ---
 
@@ -58,7 +58,7 @@ Load this folder through the owning skill workflow or MCP server entrypoint.
 |---|---|
 | Folder boundary | Documents direct code files under `assets/webflow/templates`. |
 | sk-code alignment | Points reviewers at OpenCode naming, header, error-handling, and type-discipline checks. |
-| Verification handoff | Records the expected owner and audit packet for follow-up work. |
+| Verification handoff | Records the expected owner and current refinement context for follow-up work. |
 
 ---
 
@@ -67,6 +67,10 @@ Load this folder through the owning skill workflow or MCP server entrypoint.
 | Path | Purpose |
 |---|---|
 | `component_template.js` | JS source file in this folder. |
+| `component_template.css` | CSS source template in this folder. |
+| `form_scaffold_template.html` | HTML form scaffold template in this folder. |
+| `embed_template.html` | HTML embed template in this folder. |
+| `head_footer_code_template.html` | HTML head/footer code template in this folder. |
 
 ---
 
@@ -86,7 +90,7 @@ Load this folder through the owning skill workflow or MCP server entrypoint.
 ```text
 User request: Check .opencode/skills/sk-code/assets/webflow/templates for sk-code and README coverage.
 Skill routing: sk-code plus sk-doc.
-Expected output: Findings recorded in the 026 audit report.
+Expected output: Findings recorded in the current refinement and release-alignment review. Use the completed 026 audit only as predecessor context.
 ```
 
 ---
@@ -95,7 +99,7 @@ Expected output: Findings recorded in the 026 audit report.
 
 | What You See | Cause | Fix |
 |---|---|---|
-| README appears stale | Source files changed after this audit | Refresh the structure table and rerun the 026 audit check. |
+| README appears stale | Source files changed after the predecessor audit | Refresh the structure table and rerun the current release-alignment review check. |
 | Verification command is unclear | Folder is a helper boundary | Use the nearest package or skill-level verification command. |
 
 ---

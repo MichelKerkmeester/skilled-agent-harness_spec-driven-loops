@@ -1,0 +1,203 @@
+Read-only mode noted. I’ll inspect the named research artifacts and the relevant launcher/hook/supervision code, then produce the requested architecture deliverable without editing files.
+SKILL ROUTING: `sk-code` recommended at confidence 0.8826. I’m loading it for stack-specific code-reading and verification guidance, while keeping the work read-only as requested.
+The repo’s runnable CLI front doors appear under `.opencode/bin/*.cjs` rather than the globbed `dist` path. I’m switching to the actual generated launcher files and using targeted searches for the hook and launcher branches.
+The research artifacts confirm the requested root cause, including warm-only probes exiting 75 instead of spawning and the current LaunchAgent being sweep-only. I’m now opening the exact CLI branches, hooks, supervision helpers, and sweeper/plist for line-cited design details.
+The warm fallback helpers are deliberately “bounded reads without cold starts”: they probe with ~80 ms budget, return skipped/75 on dead sockets, and only invoke the CLI with `--warm-only` after a live probe. That is the C2 insertion point.
+Skill-advisor’s prompt fallback lives in its own skill tree (`system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts`), while spec-memory and code-index hook fallbacks live under `system-spec-kit`. I’m including all three for the change-site map.
+The current RSS watchdog already supports controlled self-exit only when an explicit max-RSS env and `*_RSS_SELF_EXIT=1` are set; otherwise it logs but does not recycle. I’m checking the HF sidecar launch/restart/give-up path and daemon launcher signal paths next.
+The C1 design needs to account for current session-owned launcher shutdown semantics: spec-memory has a release-for-adopt branch, while advisor and code-index still kill their child on session signal. I’m opening those launcher sections to ground the coexistence/replacement plan.
+The bridge/proxy layer is already suitable for C1 client-only sessions: `maybeBridgeLeaseHolder` deep-probes before bridging or respawn, and the session proxy can reattach/replay safe frames during backend recycle. The remaining architecture decision is ownership: who is allowed to spawn/kill and under which bootstrap.
+The evidence points to an 80/20 split: C2 can close the prompt-time warm-probe trap with minimal changes, but only C1 or OS supervision gives true last-owner SIGKILL/OOM resurrection. I’m doing one final pass on environment/RSS docs before drafting the deliverable.
+OpenCode plugin bridges also run warm-only CLI calls, so C2 should include them if the fix target is “all prompt-time warm paths,” not only Claude/Codex hooks.
+## IT6 — Fix C: supervisor process (C1) + cold-start self-heal (C2)
+Recommendation: ship C2 first as the 80/20 fix, then build C1 only if “always warm” and last-owner SIGKILL/OOM survival are required. C1’s chicken-and-egg is real: a pure Node supervisor cannot keep itself alive after it is killed. The durable C1 bootstrap is one small OS unit for the supervisor, not cron.
+
+### C1 dedicated supervisor (design + bootstrap chicken-and-egg solution)
+Design a new pure-Node supervisor, for example `.opencode/bin/mk-daemon-supervisor.cjs`, as the lifecycle owner for:
+
+| Service | Existing entrypoint | Current issue |
+| --- | --- | --- |
+| `mk-spec-memory` | `.opencode/bin/mk-spec-memory-launcher.cjs` | Re-election releases/adopts, but does not resurrect after the released daemon dies. Evidence: `mk-spec-memory-launcher.cjs:196-215`, `mk-spec-memory-launcher.cjs:1570-1615`. |
+| `mk-code-index` | `.opencode/bin/mk-code-index-launcher.cjs` | Session-owned launcher kills/clears on exit. Evidence: `mk-code-index-launcher.cjs:893-928`. |
+| `mk-skill-advisor` | `.opencode/bin/mk-skill-advisor-launcher.cjs` | Session-owned launcher kills/clears on exit. Evidence: `mk-skill-advisor-launcher.cjs:1156-1200`. |
+| Shared HF sidecar | `.opencode/bin/hf-model-server.cjs` | Shared by spec-memory/advisor; current ownership can cross-kill. Evidence: `ENV_REFERENCE.md:472-485`, `mk-spec-memory-launcher.cjs:1453-1464`. |
+
+Core supervisor behavior:
+
+- The supervisor is the control plane. Tool traffic should still go directly to daemon IPC sockets through the existing session proxy/bridge path, not through the supervisor.
+- The supervisor exposes a small admin socket, for example `/tmp/mk-daemon-supervisor/<repo-hash>/supervisor.sock`, with `status`, `ensureService`, `restartService`, and `shutdown` commands.
+- Sessions discover it by reading a supervisor state file plus probing the admin socket. If live, they ask `ensureService(serviceName)` and receive the daemon socket path.
+- Sessions then bridge using the existing deep-probe and session-proxy machinery. `maybeBridgeLeaseHolder()` already deep-probes before bridge/respawn (`launcher-ipc-bridge.cjs:360-437`), and `createSessionProxy()` already supports reattach/replay (`launcher-session-proxy.cjs:725-837`).
+- Add explicit supervised-owner mode to each launcher, for example `SPECKIT_SUPERVISOR_OWNER=1`. Do not run the current session launchers unchanged as the durable owner.
+- In supervised-owner mode, launchers write leases with `ownerPid = supervisor pid`, `childPid = daemon pid`, and `socketPath`, but do not attach to client stdio or clear leases for session exits.
+- In client-only mode, runtime-spawned launchers never kill children or clear daemon leases. They only discover the supervisor/service socket and bridge.
+- For spec-memory, backend-only plumbing already exists: the launcher spawns the context server with `SPECKIT_BACKEND_ONLY=1` (`mk-spec-memory-launcher.cjs:1317-1325`), and the server skips stdio in backend-only mode (`context-server.ts:2267-2272`). Code-index and skill-advisor need equivalent explicit supervised-owner behavior if not already present in their server entrypoints.
+- For HF, make the supervisor the single owner of the demand listener and resident model server. Reuse `model-server-supervision.cjs` primitives rather than duplicating them: `createModelServerSupervisor`, `createModelServerControl`, RSS watchdog, respawn lock, give-up cooldown, and socket/path safety are exported at `model-server-supervision.cjs:1355-1416`.
+
+Death detection:
+
+- Primary signal: child `exit`.
+- Secondary signal: periodic deep socket probes using `probeDaemon(..., deepProbe: true)`, which requires a JSON-RPC reply, not just connect success (`launcher-ipc-bridge.cjs:145-217`).
+- If process is alive but socket probe fails repeatedly, treat it as wedged: SIGTERM, grace, SIGKILL, then restart.
+- If socket file is stale, let the daemon bind path or existing bridge respawn paths reclaim it under the existing same-user/socket guards.
+
+Restart policy:
+
+- Use the existing crash-loop parameters as defaults: max deaths/window/backoff are defined in `model-server-supervision.cjs:25-28`, computed in `createCrashLoopGuard()` at `model-server-supervision.cjs:215-235`, and applied in `superviseChildExit()` at `model-server-supervision.cjs:251-271`.
+- For main daemons, do not “give up forever.” Enter `crash-loop-cooldown`, surface degraded status, and retry after cooldown.
+- For HF, keep the existing give-up cooldown behavior: demand requests return `503 crash-loop-cooldown` during cooldown (`model-server-supervision.cjs:1228-1236`).
+
+Bootstrap recommendation:
+
+- Recommended durable C1 bootstrap: one OS unit for the supervisor only. On macOS, a new LaunchAgent with `RunAtLoad=true` and `KeepAlive=true`; on Linux, a user `systemd` unit with `Restart=always`.
+- Default zero-install fallback: first SessionStart or first non-warm CLI spawns the supervisor detached and returns immediately.
+- Do not use cron as the primary bootstrap. It is coarse, slower to heal, and can race with active sessions unless heavily locked.
+- The existing plist is not a supervisor. It is a dry-run orphan sweeper template, not installed by default, with `StartInterval=600`, `RunAtLoad=false`, and no `KeepAlive` (`com.michelkerkmeester.orphan-sweep.plist:5-63`; research confirmation at `orchestrator-verifications.md:5-8`).
+
+Chicken-and-egg answer:
+
+- Pure Node C1 fixes daemon death only while the supervisor is alive.
+- If the supervisor itself is SIGKILLed/OOM-killed, only an external supervisor or a later client-triggered bootstrap can bring it back.
+- Therefore, C1’s durable bootstrap should be the one-unit OS supervisor. First-session detached spawn is useful as a fallback, not the full durability story.
+
+### C2 cold-start-on-demand self-heal (exact change sites + safety)
+Exact CLI change:
+
+Current warm-only behavior is the same in all three CLIs: probe, return if alive, throw retryable 75 if `warmOnly`, otherwise `spawnLauncher()` and wait.
+
+Change the warm-only branch to kick a detached cold-start before throwing 75:
+
+```ts
+if (warmOnly) {
+  kickBackgroundColdStart(paths, {
+    serviceName,
+    reason: initialProbe.reason ?? initialProbe.status,
+  });
+  throw new CliRetryableError(`backend unavailable: ${initialProbe.reason ?? initialProbe.status}`);
+}
+```
+
+Change sites:
+
+| Service | Warm-only branch | Existing detached spawn helper |
+| --- | --- | --- |
+| spec-memory | `spec-memory-cli.ts:914-922` | `spec-memory-cli.ts:770-778` |
+| code-index | `code-index-cli.ts:1085-1092` | `code-index-cli.ts:941-949` |
+| skill-advisor | `skill-advisor-cli.ts:1188-1195` | `skill-advisor-cli.ts:1034-1042` |
+
+`kickBackgroundColdStart()` should:
+
+- Use `detached: true`, `stdio: 'ignore'`, and `unref()`.
+- Return immediately and preserve current prompt-time exit 75 behavior.
+- Add a small throttle file or lock in the service socket dir, for example 10-30 seconds, so every prompt does not spawn a redundant launcher.
+- Add an opt-out env such as `SPECKIT_PROMPT_SELF_HEAL=0`.
+- Set an env marker such as `SPECKIT_BACKGROUND_SELF_HEAL=1` for diagnostics.
+
+Hook and prompt-time change sites:
+
+| Prompt-time surface | Current behavior | C2 insertion |
+| --- | --- | --- |
+| spec-memory warm fallback | Returns skipped/75 on failed probe at `spec-memory-cli-fallback.ts:168-179`; later invokes CLI with `--warm-only` at `spec-memory-cli-fallback.ts:193-203`. | Kick background cold-start before returning skipped. |
+| code-index warm fallback | Returns skipped/75 at `code-index-cli-fallback.ts:171-182`; later invokes CLI with `--warm-only` at `code-index-cli-fallback.ts:196-204`. | Kick background cold-start before returning skipped. |
+| skill-advisor CLI fallback | Failed warm probe returns 75 at `skill-advisor-cli-fallback.ts:512-523`; CLI invocation uses `--warm-only` at `skill-advisor-cli-fallback.ts:275-285`. | Kick background cold-start before returning fail-open. |
+| Claude SessionStart | Appends warm fallbacks at `session-prime.ts:415-416`. | Kick all three services immediately after SessionStart is parsed/logged, around `session-prime.ts:384-386`, before fallbacks. |
+| Codex SessionStart | Appends warm fallbacks at `session-start.ts:225-226`. | Kick all three services around `session-start.ts:218-226`. |
+| Claude UserPromptSubmit | Skill-advisor native + CLI fallback runs at `user-prompt-submit.ts:183-200`. | Kick advisor if native result is unavailable before CLI fallback, or rely on shared fallback kick. |
+| Codex UserPromptSubmit | Skill-advisor native + CLI fallback runs at `user-prompt-submit.ts:327-349`. | Same as Claude. |
+| OpenCode plugin bridges | spec-memory returns warm-probe skipped at `mk-spec-memory-bridge.mjs:238-248`; code-index at `mk-code-graph-bridge.mjs:310-319`; advisor invokes CLI with `--warm-only` at `mk-skill-advisor-bridge.mjs:643-652`. | Include these if the goal is all prompt-time warm paths, not just Claude/Codex. |
+
+Safety:
+
+- Prompt-time stays fast because the current call still returns skipped/75; the detached launcher heals for the next call.
+- Duplicate spawn risk is already bounded by owner leases, bootstrap locks, and respawn locks. Code-index serializes dead-socket respawn at `mk-code-index-launcher.cjs:639-682`; skill-advisor does the same at `mk-skill-advisor-launcher.cjs:616-677`; spec-memory serializes stale reclaim/respawn at `mk-spec-memory-launcher.cjs:1570-1615`.
+- Add a throttle anyway to reduce noisy concurrent kicks.
+- `shouldAbortRelaunchOnFire()` prevents relaunch under a disposing owner (`model-server-supervision.cjs:313-320`). C2 does not rely on that relaunch timer; it starts a new detached launcher. That is safe, but it also proves C2 is not a durable supervisor.
+- Crash loops are bounded by `createCrashLoopGuard()` and `superviseChildExit()` (`model-server-supervision.cjs:215-271`), so repeated C2 kicks should enter cooldown/degraded behavior rather than unbounded flapping.
+
+Important caveat:
+
+- A fire-and-forget SessionStart kick makes recovery likely by the first prompt, but it cannot guarantee the first prompt has warm context unless SessionStart waits for readiness. If “never one turn dead” is a hard guarantee, add a tiny SessionStart-only wait budget or use C1/A.
+
+### SIGKILL/OOM resilience (which fixes actually survive it)
+Only a process outside the killed process can restart it. A daemon cannot respawn itself after SIGKILL or OOM.
+
+| Fix | Survives SIGKILL/OOM of daemon child? | Survives SIGKILL/OOM of last resident owner? |
+| --- | --- | --- |
+| A: launchd/systemd per daemon | Yes, if session launchers become clients and OS owns the daemons. | Yes. This is the strongest answer. |
+| B: uniform pure-Node launcher hardening | Yes only while the launcher owner is alive. | No. If the last owner/launcher dies, there is no resurrector. |
+| C1: pure Node supervisor | Yes while supervisor is alive. | No if the supervisor itself is killed, unless bootstrapped by an OS unit. With one OS unit for supervisor, yes. |
+| C2: cold-start self-heal | Not autonomously. It heals on the next prompt/session/CLI call. | No autonomous survival. It is client-triggered resurrection, not supervision. |
+
+So the precise answer is: A and OS-bootstrapped C1 survive SIGKILL/OOM of the last resident owner. Pure B and pure C2 do not. Pure C1 survives child death, not supervisor death.
+
+### OOM-prevention (RSS cap / recycle) tie-in
+C1/C2 fix resurrection, not the underlying memory pressure.
+
+RC-1 still needs RSS prevention:
+
+- The HF model-server RSS ceiling exists but is disabled by default: `SPECKIT_HF_MODEL_SERVER_MAX_RSS_MB` unset disables it, and `_RSS_SELF_EXIT=1` is required (`ENV_REFERENCE.md:474-475`).
+- Prior research says the watchdog is sound but uncalibrated/default-off, with no memory preflight before spawn (`D1.md:28-30`).
+- The shared watchdog can sample process-tree RSS and trigger breach handling (`model-server-supervision.cjs:167-195`, `model-server-supervision.cjs:359-412`).
+- Spec-memory already has in-place RSS recycle for its daemon/HF process tree (`mk-spec-memory-launcher.cjs:1156-1205`).
+- HF demand handling is the right place for a free-memory preflight before model load (`model-server-supervision.cjs:1214-1260`).
+
+Recommendation:
+
+- Set calibrated defaults for `SPECKIT_HF_MODEL_SERVER_MAX_RSS_MB` and enable `SPECKIT_HF_MODEL_SERVER_RSS_SELF_EXIT=1` under supervisor-managed deployments.
+- Add a free-RAM preflight before HF model spawn and degrade/fail-open instead of letting the OS OOM-kill the resident.
+- Under C1, put RSS policy in the supervisor for all four managed processes.
+- Under C2, enable the existing RSS caps, but treat them as prevention only; they do not replace an external resurrector.
+
+### C1 vs C2 (80/20 immediate vs durable)
+C2 is the immediate 80/20 fix:
+
+- Smallest code change.
+- Targets the observed warm-probe trap directly.
+- Keeps prompt-time non-blocking.
+- Heals dead daemons within roughly one prompt/session start.
+- Does not require OS setup or ownership migration.
+
+C2 is not enough when:
+
+- The machine sits idle with dead daemons and no prompt occurs.
+- You require daemons always warm before the first prompt.
+- You require survival after SIGKILL/OOM of the last owner.
+- You need a single owner for the shared HF sidecar.
+
+C1 is worth it when:
+
+- Multiple runtimes/sessions are common.
+- You want session launchers to become pure clients.
+- You want one place for restart policy, RSS policy, logs, metrics, and sidecar ownership.
+- You can accept a new long-running component plus a small bootstrap story.
+
+Recommended rollout:
+
+1. Ship C2 first.
+2. Add metrics/logging for background kicks, successful heals, and repeated crash-loop cooldowns.
+3. Build C1 behind a supervisor mode flag.
+4. Install one OS unit for the supervisor only where true SIGKILL/OOM durability is required.
+
+### Failure-mode map (C1 and C2, per mode)
+| Root-cause mode | C1 | C2 |
+| --- | --- | --- |
+| No always-on supervisor / session-coupled liveness | Fully fixed if supervisor is running; fully durable only with one OS bootstrap unit. | Partially fixed. Next prompt/session heals, but no autonomous liveness. |
+| Spec-memory-only re-election + adopt-not-resurrect | Fully fixed by central ownership; re-election becomes migration/compat only. | Partially fixed. A prompt can trigger reactive respawn, but released daemon death still needs a client event. |
+| Advisor/code-index kill-on-shutdown / cross-session kill | Fully fixed only if sessions become client-only and stop killing children. | Partially fixed. It restores later, but does not prevent the kill/drop. |
+| Warm-probe trap | Fully fixed; supervisor keeps services warm or handles `ensureService`. | Mostly fixed. Current call still returns skipped/75, but background cold-start heals the next call. |
+| Stale sockets reaped only reactively | Fully fixed if supervisor probes/restarts proactively. | Partially fixed. Still reactive, but prompt-time reaction becomes automatic. |
+| Ungraceful death: SIGKILL/OOM/crash-loop give-up | Fully fixed only while supervisor is alive; fully durable with one OS unit. | Partially fixed on next client event; not autonomous and not preventive. |
+
+Process-based leases remain a design constraint. C1 should reinterpret them as supervisor-owned leases; C2 leaves them as-is.
+
+### Confidence + unknowns
+Confidence: high on C2 change sites and SIGKILL/OOM analysis; medium-high on C1 architecture.
+
+Unknowns:
+
+- Whether code-index and skill-advisor can support supervised backend-only mode with minimal changes, or need explicit new server mode.
+- Real HF RSS ceiling values; current evidence says they need measurement before defaulting.
+- Whether first-prompt readiness can be guaranteed without a small wait budget.
+- Exact live kill event remains unrecoverable from current logs, consistent with `live-diagnosis.md:10`.
+
+No files were edited.

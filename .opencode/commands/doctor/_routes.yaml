@@ -36,6 +36,8 @@ routes:
       - mcp__mk_spec_memory__memory_drift_why
       - mcp__mk_spec_memory__memory_search
       - mcp__mk_spec_memory__memory_stats
+    script_invocations:
+      - 'Warm-only: probe the existing mk-spec-memory IPC socket first; only when it answers, run node .opencode/bin/spec-memory.cjs memory_health --format json --timeout-ms 500 --warm-only (the flag guarantees no daemon start; exit 75 = backend unavailable, retryable)'
     trigger_phrases:
       - "memory continuity index drift"
       - "memory health rebuild"
@@ -76,7 +78,7 @@ routes:
     setup_vars: [execution_mode, scope]
     allowed_flags:
       - "--scope=stale|missed|bloat|all|excludes"
-      - "--operation=rescan|prune-excludes|repair-nodes|recover-sqlite-corruption|rollback-bad-run"
+      - "--operation=rescan|prune-excludes|repair-nodes|recover-sqlite-corruption|rollback-bad-apply"
       - "--dry-run"
       - "--confirm"
     mutating: read-only
@@ -88,6 +90,8 @@ routes:
       - mcp__mk_code_index__detect_changes
       - mcp__mk_spec_memory__memory_context
       - mcp__mk_spec_memory__memory_search
+    script_invocations:
+      - 'Warm-only: probe the existing mk-code-index IPC socket first; only when it answers, run node .opencode/bin/code-index.cjs code_graph_status --format json --timeout-ms 500 --warm-only (the flag guarantees no daemon start; exit 75 = backend unavailable, retryable)'
     trigger_phrases:
       - "code-graph index drift"
       - "code-graph rebuild"
@@ -97,9 +101,9 @@ routes:
   - target: deep-loop
     yaml: doctor_deep-loop.yaml
     setup_vars: [execution_mode, intent, scope, no_snapshot, dry_run]
-    allowed_flags: ["--scope=research|review|both", "--no-snapshot", "--dry-run"]
+    allowed_flags: ["--scope=research|review|council|both|all", "--no-snapshot", "--dry-run"]
     mutating: read-only
-    gate3_location: "n/a (read-only diagnostic; reads coverage graph + iteration folders, never upserts)"
+    gate3_location: "n/a (read-only diagnostic; reads coverage + council graphs and iteration folders + ai-council artifacts, never upserts)"
     mcp_tools: []
     script_invocations:
       - 'node .opencode/skills/deep-loop-runtime/scripts/status.cjs --spec-folder "{spec_folder}" --loop-type "{loop_type}" --session-id "{session_id}"'
@@ -127,6 +131,8 @@ routes:
       - mcp__mk_skill_advisor__skill_graph_status
       - mcp__mk_spec_memory__memory_context
       - mcp__mk_spec_memory__memory_search
+    script_invocations:
+      - 'Warm-only: probe the existing mk-skill-advisor IPC socket first; only when it answers, run node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json --timeout-ms 500 --warm-only (the flag guarantees no daemon start; exit 75 = backend unavailable, retryable)'
     trigger_phrases:
       - "skill advisor scoring"
       - "skill advisor rebuild"
@@ -140,11 +146,43 @@ routes:
     mutating: read-only
     gate3_location: "n/a (read-only audit; no spec folder required)"
     mcp_tools: []   # script-only audit; no MCP calls
+    script_invocations:
+      - 'Warm-only: probe the existing mk-skill-advisor IPC socket first; only when it answers, run node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json --timeout-ms 500 --warm-only (the flag guarantees no daemon start; exit 75 = backend unavailable, retryable)'
     trigger_phrases:
       - "skill budget audit"
       - "description budget check"
       - "skill char count drift"
       - "frontmatter description trim"
+
+  - target: parent-skill
+    yaml: doctor_parent-skill.yaml
+    setup_vars: [execution_mode, parent_skill_dir]
+    allowed_flags: ["--dir=<path>"]
+    mutating: read-only
+    gate3_location: "n/a (read-only structural audit; inspects a parent skill's graph-metadata/registry and reports, no writes)"
+    mcp_tools: []   # script-only structural audit; no MCP calls
+    script_invocations:
+      - 'node .opencode/commands/doctor/scripts/parent-skill-check.cjs "{parent_skill_dir}"'
+    trigger_phrases:
+      - "parent skill structure audit"
+      - "nested mode packet check"
+      - "mode-registry drift guard"
+      - "single graph-metadata identity"
+
+  - target: fable-mode
+    yaml: doctor_fable-mode.yaml
+    setup_vars: [execution_mode, target_dir]
+    allowed_flags: ["--dir=<path>", "--baseline=<path>"]
+    mutating: read-only
+    gate3_location: "n/a (read-only behavioral-metric diagnostic; reads deep-loop state + iteration markdown + baseline snapshot, writes no files)"
+    mcp_tools: []   # script-only behavioral-metric read; no MCP calls
+    script_invocations:
+      - 'node .opencode/commands/doctor/scripts/fable-mode-check.cjs --dir "{target_dir}"'
+    trigger_phrases:
+      - "fable-5 behavioral metrics"
+      - "fable mode efficiency check"
+      - "tool text ratio diagnostic"
+      - "result-first opener metric"
 
 # ─────────────────────────────────────────────────────────────────
 # COMPANION COMMAND ROUTES (/doctor:mcp sub-actions)

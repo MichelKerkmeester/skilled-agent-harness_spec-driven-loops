@@ -26,6 +26,8 @@ phase_a_invariant: |
 # ─────────────────────────────────────────────────────────────────
 upstream_assets:
   contract: "local command design contract"
+  cli_health_command: "node .opencode/bin/code-index.cjs code_graph_status --format json --timeout-ms 500 --warm-only"
+  cli_health_policy: "Warm-only: probe the existing mk-code-index IPC socket first. The --warm-only flag guarantees the CLI never starts a daemon; if the socket is absent or dead it exits 75 (backend unavailable) — report CLI availability as retryable-unavailable."
   files:
     spec: "spec.md"  # REQ-### for code-graph doctor
     decision_record: "decision-record.md"  # ADRs for code-graph diagnostic / apply modes
@@ -132,6 +134,7 @@ workflow:
   phase_0_discovery:
     purpose: Gather index status + filesystem snapshot + bloat-dir candidates
     activities:
+      - "Apply upstream_assets.cli_health_policy, then run upstream_assets.cli_health_command only when the warm socket probe succeeds; report CLI availability, freshness, trustState, and exit code"
       - "Invoke code_graph_status({}) → capture indexed_count, last_scan_at, edge_count, freshness flags, activeScope"
       - "Resolve active scope policy from activeScope fingerprint; accept v2, treat v1/null parser result as NEEDS_FULL_SCAN instead of error"
       - "Filesystem walk: count source files by language"
@@ -139,6 +142,7 @@ workflow:
       - "Build initial inventory"
       - "Display summary to user before proceeding"
     outputs:
+      - cli_availability: available|retryable-unavailable|failed
       - indexed_count: N
       - file_count: M
       - last_scan_at: timestamp
@@ -151,7 +155,7 @@ workflow:
   phase_1_analysis:
     purpose: Compute stale + missed + bloat sets via code_graph_status + policy-aware filesystem walk
     activities:
-      - "If detect_changes available: invoke detect_changes({}) to obtain stale set"
+      - "If code_graph_status available: invoke code_graph_status({}) and derive stale set from freshness/manifest fields"
       - "Before stale/missed/bloat set construction, filter filesystem paths through active_scope_policy so default-excluded roots are intentionally absent unless opted in"
       - "Compute missed set: policy-included files-on-disk minus files-in-index"
       - "Compute bloat set: policy-included bloat_candidates intersected with files-in-index"

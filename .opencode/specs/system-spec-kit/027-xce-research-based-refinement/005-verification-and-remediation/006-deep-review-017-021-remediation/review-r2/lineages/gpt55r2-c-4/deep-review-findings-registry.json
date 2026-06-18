@@ -1,0 +1,50 @@
+{
+  "sessionId": "fanout-gpt55r2-c-4-1781761364358-6qni37",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "id": "F001",
+      "severity": "P1",
+      "category": "correctness-concurrency",
+      "finding_class": "contract_safety",
+      "title": "Proxy replays memory_save while server-side idempotency is default-off",
+      "evidence": [
+        ".opencode/bin/lib/launcher-session-proxy.cjs:33-39",
+        ".opencode/bin/lib/launcher-session-proxy.cjs:146-153",
+        ".opencode/bin/lib/launcher-session-proxy.cjs:649-663",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:3547-3580",
+        ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:95"
+      ],
+      "content_hash": "8584db2aeddf3d77357c1d7f0b26931fb6908d04bfd7afd7142649c2326dd4a0",
+      "firstSeenIteration": 1,
+      "latestSeenIteration": 1,
+      "status": "active",
+      "claimAdjudication": {
+        "finalSeverity": "P1",
+        "confidence": 0.82
+      }
+    }
+  ],
+  "resolvedFindings": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": false,
+    "traceability": false,
+    "maintainability": false
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 0
+  },
+  "openFindingsCount": 1,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.25,
+  "searchDebt": [],
+  "searchCoverage": {
+    "graphCoverageMode": "graph_not_used",
+    "requiredBugClasses": []
+  }
+}

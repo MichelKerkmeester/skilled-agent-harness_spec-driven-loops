@@ -6,7 +6,8 @@ trigger_phrases:
   - "scorer weight change"
   - "advisor weight calibration"
   - "lane weight sweep"
-importance_tier: "important"
+importance_tier: "normal"
+contextType: "implementation"
 ---
 
 # Lane Weight Tuning Guide
@@ -69,7 +70,7 @@ npm --prefix .opencode/skills/system-skill-advisor/mcp_server run build
 mcp__mk_skill_advisor__advisor_validate({ "confirmHeavyRun": true })
 ```
 
-Save the response. Key fields to retain: `overallAccuracy`, `slices.corpus.topOne`, `slices.holdout.topOne`, `slices.parity`, `telemetry.lanesDominantCount`, `perSkill[]`.
+Save the response. Key fields to retain: `overallAccuracy`, `slices.corpus.full_corpus_top1`, `slices.corpus.unknown_count`, `slices.holdout.holdout_top1`, `slices.parity`, `slices.safety`, `slices.latency.regression_suite_status`, `telemetry`, `perSkill[]`.
 
 **Step 2: Run the lane-weight sweep.**
 
@@ -82,7 +83,7 @@ This harness exercises each lane weight individually across a small grid plus re
 
 **Step 3: Make the change.**
 
-Edit `mcp_server/lib/scorer/lane-registry.ts:7-19` (live weights) or `lane-registry.ts:32-38` (shadow weights). Keep both sums close to 1.0 to preserve the calibration assumptions in `scoring-constants.ts`.
+Edit `mcp_server/lib/scorer/lane-registry.ts:7-19` (live weights) or `lane-registry.ts:32-38` (shadow weights). Keep both sums close to 1.0 to preserve the calibration assumptions in `scoring-constants.ts`. For experiments, `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON` is allowlisted through the launcher and read by `lane-registry.ts`; it requires a daemon restart to apply and suits short-lived experiments only — durable tuning stays a source edit shipped with measured evidence.
 
 **Step 4: Capture the comparison.**
 

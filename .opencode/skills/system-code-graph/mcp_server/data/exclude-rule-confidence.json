@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "tiers": {
+    "high": {
+      "definition": "Patterns that never contain first-party source and are safe to exclude from the code graph without prompting.",
+      "default_action": "exclude_without_prompt",
+      "patterns": [
+        { "pattern": "**/.git/**", "rationale": "Version-control metadata, never source code." },
+        { "pattern": "**/node_modules/**", "rationale": "Third-party dependencies, not first-party source." }
+      ]
+    },
+    "medium": {
+      "definition": "Generated build output that is usually safe to exclude but can shadow real source symbols; requires confirm.",
+      "default_action": "prompt",
+      "patterns": [
+        { "pattern": "**/dist/**", "rationale": "Compiled build output mirrors source symbols.", "false_positive_examples": ["a project whose hand-written sources live under a dist/ directory"] },
+        { "pattern": "**/build/**", "rationale": "Build output directory." },
+        { "pattern": "**/coverage/**", "rationale": "Coverage report artifacts." }
+      ]
+    },
+    "low": {
+      "definition": "Patterns that may include hand-maintained code; excluded only with explicit opt-in.",
+      "default_action": "opt_in",
+      "patterns": [
+        { "pattern": "**/*.min.js", "rationale": "Minified bundles are usually generated but are occasionally vendored source.", "false_positive_examples": ["a vendored library shipped only in minified form"] }
+      ]
+    }
+  }
+}

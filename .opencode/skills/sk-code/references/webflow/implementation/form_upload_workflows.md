@@ -1,6 +1,13 @@
 ---
 title: Form Upload Workflows
 description: Complete architecture reference for the FilePond-to-R2 file upload pipeline, including Cloudflare Worker proxy, state management, and Webflow integration.
+trigger_phrases:
+  - "webflow form upload"
+  - "filepond r2 pipeline"
+  - "cloudflare worker upload proxy"
+  - "file upload state management"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Form Upload Workflows

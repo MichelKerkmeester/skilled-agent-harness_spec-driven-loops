@@ -32,8 +32,6 @@
     "importance_tier": "important",
     "status": "draft",
     "key_files": [
-      ".opencode/commands/deep/start-review-loop.md",
-      ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml",
       "evidence/dry-run-verification.txt",
       "implementation-summary.md",
       "tasks.md",
@@ -42,18 +40,6 @@
       "plan.md"
     ],
     "entities": [
-      {
-        "name": "start-review-loop.md",
-        "kind": "doc",
-        "path": ".opencode/commands/deep/start-review-loop.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep_start-review-loop_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml",
-        "source": "derived"
-      },
       {
         "name": "dry-run-verification.txt",
         "kind": "file",
@@ -185,11 +171,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Runtime",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Concrete incident: 2026-05-11 102/004 Stage E first dispatch hung 3 minutes at the setup gate; second dispatch (with pre-bound answers in the prompt) ran the full 5-iteration deep-review and converged.",
     "created_at": "2026-05-11T09:32:52Z",
-    "last_save_at": "2026-06-07T09:00:45.710Z",
+    "last_save_at": "2026-06-15T09:09:33.593Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

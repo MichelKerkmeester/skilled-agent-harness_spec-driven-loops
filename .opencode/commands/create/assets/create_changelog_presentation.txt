@@ -1,0 +1,161 @@
+# /create:changelog Presentation Contract
+
+This file is the single source of truth for user-facing presentation in `/create:changelog`: startup questions, setup/status dashboards, release-option prompts, and result display. The command router owns asset routing only. The workflow YAML owns execution behavior.
+
+## 1. Phase 0 Verification Display
+
+Run this automatic self-check before setup. This is not a user question.
+
+```text
+SELF-CHECK: Are you operating as the @markdown agent?
+
+Indicators:
+- Invoked with @markdown prefix
+- Template-first workflow capabilities are available
+- Changelog format validation behavior is available
+- Version number verification behavior is available
+
+If all indicators are present:
+- create_agent_verified = true
+- Continue to setup
+
+If any indicator is missing or uncertain:
+- Stop before loading workflow YAML
+- Display the hard-block message below
+```
+
+Hard-block message:
+
+```text
+MARKDOWN AGENT REQUIRED
+
+This command requires the @markdown agent for:
+- Template-first workflow
+- Changelog format validation
+- Version number verification
+
+Restart with:
+@markdown /create:changelog [spec-folder-or-component]
+
+STATUS=FAIL ERROR="Markdown agent required"
+```
+
+## 2. Auto Setup Resolution
+
+For `:auto`, resolve setup using the system auto-mode contract, then load `create_changelog_auto.yaml` only when every required field is available.
+
+Resolution tiers:
+
+| Tier | Use When | Output |
+| --- | --- | --- |
+| Tier 1 | `$ARGUMENTS`, flags, pre-bound answers, and defaults resolve all required fields | Persist config and load auto workflow |
+| Tier 2 | One or two required fields remain genuinely ambiguous | Ask one narrow question per missing field |
+| Tier 3 | Required fields remain unresolved | Emit missing-inputs error and do not load YAML |
+
+Pre-bound setup schema:
+
+```yaml
+PRE-BOUND SETUP ANSWERS:
+  source_type: spec_folder
+  spec_folder: <spec-folder>
+  component_hint: system-spec-kit
+  version_bump: minor
+  execution_mode: AUTONOMOUS
+  publish_release: false
+  nested: false
+```
+
+Default resolution table:
+
+| Field | Required | Resolves Via | Default | Tier-2 Candidate |
+| --- | --- | --- | --- | --- |
+| `source_type` | Yes | Positional source, marker `source_type`, or path-vs-component detection | inferred only | Yes, when ambiguous |
+| `spec_folder` | Conditional | Positional path or marker `spec_folder` | none | No |
+| `component_hint` | Conditional | Positional component, marker, or spec artifact detection | none | No |
+| `version_bump` | Yes | `--bump`, marker, or targeted choice | none | Yes |
+| `execution_mode` | Yes | `:auto`, `:confirm`, or marker | `AUTONOMOUS` under `:auto` | No |
+| `publish_release` | Yes | `--release`, marker, or default | `false` | No |
+| `nested` | No | `--nested`, marker, or default | `false` | No |
+
+## 3. Consolidated Startup Prompt
+
+Ask one prompt containing only applicable questions. Do not split these questions across turns.
+
+```text
+Before proceeding, please answer:
+
+Q0. Source (if not provided)
+What should we create a changelog for?
+A) Spec folder path: [suggest recent specs if found]
+B) Component name, for example sk-doc, commands, system-spec-kit
+C) Recent git commits, auto-detect from history
+
+Q1. Version Bump (if no --bump flag)
+A) Minor - new feature or significant addition
+B) Patch - bug fix, refactor, or incremental improvement
+C) Major - breaking change or architectural overhaul
+D) Build - hotfix on an already-published version
+E) Auto-detect from change type
+
+Q2. Execution Mode (if no :auto/:confirm suffix)
+A) Autonomous - execute without prompts
+B) Interactive - confirm at each step
+
+Q3. Publish Release? (if no --release flag)
+A) Yes - create tag and GitHub release after changelog
+B) No - only create the changelog file
+
+Reply with answers, for example: A <spec-folder>, E, A, B
+```
+
+Hard stops:
+
+- Do not proceed until all applicable questions are answered.
+- Do not auto-create changelog files without completing workflow setup.
+- Do not auto-select execution mode without suffix or explicit choice.
+- Do not infer the source from context, screenshots, or conversation history.
+
+## 4. Setup Dashboard
+
+| Field | Required | Value | Source |
+| --- | --- | --- | --- |
+| `create_agent_verified` | Yes | `[value]` | Phase 0 self-check |
+| `source_type` | Yes | `[value]` | Q0 or `$ARGUMENTS` |
+| `spec_folder` | Conditional | `[value]` | Q0 path or null |
+| `component_hint` | Conditional | `[value]` | Q0 name or null |
+| `version_bump` | Yes | `[value]` | `--bump` or Q1 |
+| `execution_mode` | Yes | `[value]` | Suffix or Q2 |
+| `publish_release` | Yes | `[value]` | `--release` or Q3 |
+| `nested` | No | `[value]` | `--nested` or marker |
+
+Proceed only when every required field has a value.
+
+## 5. Completion Result Template
+
+```text
+Changelog Created
+
+Component: [primary_component or packet-local]
+Version: [next_version or nested changelog]
+File: [output_path]
+
+Summary: [summary_first_sentence]
+
+Sections: [section_count] highlight categories
+Files Tracked: [files_changed_count]
+Release Published: [yes/no/not requested]
+
+STATUS=OK PATH=[output_path]
+```
+
+Failure display:
+
+```text
+Changelog Creation Failed
+
+Error: [error]
+Step: [failed_step]
+Component: [primary_component if resolved]
+
+STATUS=FAIL ERROR="[error message]"
+```

@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/138-cli-devin-deprecation/005-historical-record-reference-sweep",
+  "description": "Feature Specification: Phase 5: historical-record-reference-sweep",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "historical-record-reference-sweep"
+  ],
+  "lastUpdated": "2026-06-15T18:16:13.862Z",
+  "specId": "005",
+  "folderSlug": "historical-record-reference-sweep",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "138-cli-devin-deprecation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

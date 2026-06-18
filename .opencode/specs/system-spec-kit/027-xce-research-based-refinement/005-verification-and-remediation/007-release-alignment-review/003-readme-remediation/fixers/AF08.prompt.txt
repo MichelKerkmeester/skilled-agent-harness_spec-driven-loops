@@ -1,0 +1,29 @@
+Act as a markdown documentation-fixer (seat AF08). Spec folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation (PRE-APPROVED at Gate 3 — make the edits below directly with the Edit/Write tools; do NOT re-ask Gate 3 and do NOT ask the user anything).
+
+You fix STALE content in README files so they match current repo reality. SURGICAL edits only — fix the cited claims, keep everything else intact. Find the correct current value by reading the cited file PLUS its SKILL.md / source / config before editing.
+
+ALLOWED WRITE PATHS (edit ONLY these files):
+- .opencode/skills/sk-code/assets/scripts/README.md
+- .opencode/skills/sk-code/assets/universal/patterns/README.md
+- .opencode/skills/sk-code/assets/webflow/integrations/README.md
+- .opencode/skills/sk-code/assets/webflow/patterns/README.md
+- .opencode/skills/sk-code/assets/webflow/scripts/README.md
+BANNED: no delete, no rename, no new files, no edits outside the listed files, no --no-verify.
+
+DO-NOT-FIX (binding — confirmed false positives; leave untouched):
+- The CLI front-door "37 tools" figure: `spec-memory.cjs` CLI is genuinely 37; only the MCP-server/daemon surface is 39. Fix a "37" ONLY when the sentence is about the MCP server/daemon, NOT the CLI front door.
+- Any `// Feature catalog:` comments and TSDoc `@example` values.
+- Any cited claim that does NOT actually reproduce against the live file — mark it refuted; never invent a fix.
+
+FINDINGS TO FIX (confirm-then-fix each; P0/P1/P2 all in scope, including cosmetic/style):
+- [P1] .opencode/skills/sk-code/assets/scripts/README.md:29 — Code-file count misses stack-folder validator | stale: Code files: 2, listing only test_verify_alignment_drift.py and verify_alignment_drift.py. -> correct: The folder also contains verify_stack_folders.py.
+- [P2] .opencode/skills/sk-code/assets/scripts/README.md:90 — Obsolete 026 audit handoff | stale: Expected output is findings recorded in the 026 audit report, and troubleshooting says to rerun the 026 audit check. -> correct: 027 is the current refinement/release-alignment context; 026 is described as the completed predecessor.
+- [P2] .opencode/skills/sk-code/assets/universal/patterns/README.md:90 — Obsolete 026 audit handoff | stale: Expected output is findings recorded in the 026 audit report, and troubleshooting says to rerun the 026 audit check. -> correct: 027 is the current refinement/release-alignment context; 026 is described as the completed predecessor.
+- [P2] .opencode/skills/sk-code/assets/webflow/integrations/README.md:90 — Obsolete 026 audit handoff | stale: Expected output is findings recorded in the 026 audit report, and troubleshooting says to rerun the 026 audit check. -> correct: 027 is the current refinement/release-alignment context; 026 is described as the completed predecessor.
+- [P2] .opencode/skills/sk-code/assets/webflow/patterns/README.md:92 — Obsolete 026 audit handoff | stale: Expected output is findings recorded in the 026 audit report, and troubleshooting says to rerun the 026 audit check. -> correct: 027 is the current refinement/release-alignment context; 026 is described as the completed predecessor.
+- [P2] .opencode/skills/sk-code/assets/webflow/scripts/README.md:91 — Obsolete 026 audit handoff | stale: Expected output is findings recorded in the 026 audit report, and troubleshooting says to rerun the 026 audit check. -> correct: 027 is the current refinement/release-alignment context; 026 is described as the completed predecessor.
+
+After editing, re-read each edited line to verify. Your final message MUST be exactly one fenced json block:
+```json
+{"seat":"AF08","fixed":[{"file":"path","claim":"what was stale","after":"what it now says"}],"refuted":[{"file":"path","why":"why skipped"}]}
+```

@@ -28,8 +28,8 @@ export function clampStage2GraphBonus(value: number): number {
 /**
  * Compare rows deterministically so ties resolve the same way across runs.
  *
- * A1 FIX: Primary score now delegates to resolveEffectiveScore (canonical chain
- * in types.ts) so sorting, filtering, and score resolution always agree.
+ * Primary score delegates to resolveEffectiveScore so sorting, filtering, and
+ * score resolution always agree.
  * Tiebreaker on raw similarity is preserved (different purpose than score resolution).
  *
  * @param a - First ranked row.

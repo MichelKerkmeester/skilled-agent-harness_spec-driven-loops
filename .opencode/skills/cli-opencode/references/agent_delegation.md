@@ -1,6 +1,14 @@
 ---
 title: "OpenCode CLI - Agent Delegation"
 description: "Agent routing matrix for opencode run dispatches. Documents the agent slugs available via .opencode/agents/, the cli pattern As @<agent> for prompt-time routing, and the orchestration principle: calling AI decides WHAT, agent shapes HOW."
+trigger_phrases:
+  - "opencode agent delegation"
+  - "opencode agent routing matrix"
+  - "opencode agent slug selection"
+  - "opencode leaf agent constraints"
+  - "opencode multi-agent workflow"
+importance_tier: normal
+contextType: implementation
 ---
 
 # OpenCode CLI - Agent Delegation
@@ -119,10 +127,10 @@ The repo ships these agents under `.opencode/agents/`. The cli-opencode skill ca
 | `write` | Documentation generation | Creating READMEs, skills, guides |
 | `review` | Code review and PR analysis | Pre-merge reviews, quality gates. READ-ONLY |
 | `debug` | Fresh-perspective debugging | Root cause analysis after 3+ failed debug attempts. Exclusive write access for `debug-delegation.md` |
-| `deep-research` | Iterative research loop executor | Single research-cycle dispatches. State externalized to JSONL + strategy.md. Dispatched only by `/deep:start-research-loop` command |
-| `deep-review` | Iterative code review loop executor | Single review-cycle dispatches. P0/P1/P2 findings, severity-weighted convergence. Dispatched only by `/deep:start-review-loop` command |
+| `deep-research` | Iterative research loop executor | Single research-cycle dispatches. State externalized to JSONL + strategy.md. Dispatched only by `/deep:research` command |
+| `deep-review` | Iterative code review loop executor | Single review-cycle dispatches. P0/P1/P2 findings, severity-weighted convergence. Dispatched only by `/deep:review` command |
 | `ai-council` | Multi-strategy planning architect | Complex planning that benefits from comparing multiple solution strategies. PLANNING-ONLY |
-| `deep-agent-improvement` | Proposal-only mutator for bounded agent improvement | Agent evaluation via `/deep:start-agent-improvement-loop` command loop |
+| `deep-agent-improvement` | Proposal-only mutator for bounded agent improvement | Agent evaluation via `/deep:agent-improvement` command loop |
 
 ---
 
@@ -195,8 +203,8 @@ These two agents are dispatched only by their parent commands. The calling AI do
 
 | Slug | Parent command | Loop role |
 |------|----------------|-----------|
-| `deep-research` | `/deep:start-research-loop` | Single research iteration with externalized JSONL + strategy.md state |
-| `deep-review` | `/deep:start-review-loop` | Single review iteration with P0/P1/P2 findings and severity-weighted convergence |
+| `deep-research` | `/deep:research` | Single research iteration with externalized JSONL + strategy.md state |
+| `deep-review` | `/deep:review` | Single review iteration with P0/P1/P2 findings and severity-weighted convergence |
 
 Both are LEAF agents. Each iteration is fresh-context. The parent command owns convergence detection and state continuity.
 
@@ -213,10 +221,10 @@ Pick the agent that matches the task type. Default to `general` when no speciali
 | Documentation generation | `write` | `opencode run --agent write --variant high --format json --dir /repo "Generate README for the cli-opencode skill"` |
 | Code review | `review` | `opencode run --agent review --variant high --format json --dir /repo "Review @src/auth.ts for security issues"` |
 | Root cause debugging | `debug` | `opencode run --agent debug --variant high --format json --dir /repo "Debug this error: <error>"` |
-| Iterative research loop | `deep-research` | **Command-only.** Dispatch via `/deep:start-research-loop` (or `/deep:start-research-loop:auto`). Direct `opencode run --agent deep-research` is forbidden; the parent command owns iteration state, JSONL, and convergence. <!-- F-007-B2-02 --> |
-| Iterative code review loop | `deep-review` | **Command-only.** Dispatch via `/deep:start-review-loop` (or `/deep:start-review-loop:auto`). Direct `opencode run --agent deep-review` is forbidden; the parent command owns iteration state and severity-weighted convergence. <!-- F-007-B2-02 --> |
+| Iterative research loop | `deep-research` | **Command-only.** Dispatch via `/deep:research` (or `/deep:research:auto`). Direct `opencode run --agent deep-research` is forbidden; the parent command owns iteration state, JSONL, and convergence. <!-- F-007-B2-02 --> |
+| Iterative code review loop | `deep-review` | **Command-only.** Dispatch via `/deep:review` (or `/deep:review:auto`). Direct `opencode run --agent deep-review` is forbidden; the parent command owns iteration state and severity-weighted convergence. <!-- F-007-B2-02 --> |
 | Multi-strategy planning | `ai-council` | `opencode run --agent ai-council --variant high --format json --dir /repo "Plan the authentication redesign — compare three strategies."` |
-| Agent improvement | `deep-agent-improvement` | **Command-only.** Dispatch via `/deep:start-agent-improvement-loop`. Direct `opencode run --agent deep-agent-improvement` is forbidden; the parent command owns evaluation, candidates, and promotion. <!-- F-007-B2-02 --> |
+| Agent improvement | `deep-agent-improvement` | **Command-only.** Dispatch via `/deep:agent-improvement`. Direct `opencode run --agent deep-agent-improvement` is forbidden; the parent command owns evaluation, candidates, and promotion. <!-- F-007-B2-02 --> |
 | Default / unspecified | `general` | `opencode run --agent general --variant high --format json --dir /repo "<prompt>"` |
 
 ---

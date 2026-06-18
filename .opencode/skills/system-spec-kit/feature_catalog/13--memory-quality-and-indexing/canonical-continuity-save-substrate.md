@@ -35,11 +35,11 @@ Together these modules make spec-doc writes canonical while leaving the continui
 
 ### Post-Action Behavior
 
-The same canonical save pass also refreshes `graph-metadata.json` for the packet. That derived surface is now checklist-aware and normalized: `status` falls back to `implementation-summary.md` presence plus checklist completion when explicit status is absent, stored values are lowercase, `trigger_phrases` are deduplicated and capped at 12, `key_files` are sanitized before storage, and entity rows are deduplicated with canonical-path preference.
+The generate-context save lane also refreshes `graph-metadata.json` for the packet. That derived surface is now checklist-aware and normalized: `status` falls back to `implementation-summary.md` presence plus checklist completion when explicit status is absent, stored values are lowercase, `trigger_phrases` are deduplicated and capped at 12, `key_files` are sanitized before storage, and entity rows are deduplicated with canonical-path preference. Direct MCP `memory_save({ filePath })` is the content-indexing lane; its success envelope reports `metadataRefresh.refreshed:false` when packet metadata was not refreshed there.
 
 ### Quality Gates & Validation
 
-The implementation fixed the remaining metadata gap in that substrate. Commit `aaf0f49a8` changed canonical save so every successful invocation refreshes packet metadata instead of skipping the metadata write when the merge looked structurally unchanged, commit `88063287b` backfills missing research-iteration metadata during the same workflow, and commit `32a180bba` added a continuity-freshness validator that warns when `_memory.continuity.last_updated_at` lags the packet metadata write by more than 10 minutes. The writer substrate is therefore now responsible for both the canonical spec-doc write and the metadata freshness contract that hangs off it.
+The implementation fixed the remaining metadata gap in the generate-context substrate. That workflow refreshes packet metadata instead of skipping the metadata write when the merge looks structurally unchanged, backfills missing iteration-pack metadata during the same workflow, and uses the continuity-freshness validator to warn when `_memory.continuity.last_updated_at` lags the packet metadata write by more than 10 minutes. The writer substrate is therefore responsible for both the canonical spec-doc write and the metadata freshness contract that hangs off it; the raw MCP content-indexing lane advertises when it did not refresh metadata.
 
 ## 3. SOURCE FILES
 

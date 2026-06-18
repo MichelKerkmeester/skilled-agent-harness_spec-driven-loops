@@ -1,6 +1,15 @@
 ---
 title: "Codex CLI Built-in Tools Reference"
 description: "Reference for Codex CLI built-in capabilities including /review command, web search, MCP integration, session management, and image input, with Claude Code equivalents comparison."
+trigger_phrases:
+  - "codex review command"
+  - "codex web search flag"
+  - "codex built-in tools"
+  - "codex mcp integration"
+  - "codex vs claude code capabilities"
+  - "codex image input"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Codex CLI Built-in Tools Reference

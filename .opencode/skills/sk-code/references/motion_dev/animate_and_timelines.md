@@ -1,6 +1,14 @@
 ---
 title: "Motion.dev Animate and Timelines"
 description: "Core animate API, sequence/timeline patterns, animateMini guidance, and local examples."
+trigger_phrases:
+  - "motion dev animate api"
+  - "motion dev timeline sequence"
+  - "animate keyframes options"
+  - "motion animatemini usage"
+  - "javascript animation timeline"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Motion.dev Animate and Timelines

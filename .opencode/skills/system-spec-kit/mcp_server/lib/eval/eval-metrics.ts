@@ -18,7 +18,7 @@ export interface EvalResult {
   rank: number;
 }
 
-// H16 FIX: Use contiguous 1-based position within the topK slice, not external sparse rank.
+// Use contiguous 1-based position within the topK slice, not external sparse rank.
 // External ranks can be non-contiguous after filtering/reranking, which would systematically
 // understate MRR/NDCG/MAP if used directly.
 function getRankAtIndex(_result: EvalResult, index: number): number {

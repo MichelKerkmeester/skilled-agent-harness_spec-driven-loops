@@ -3,18 +3,20 @@
 // ───────────────────────────────────────────────────────────────
 // Hierarchical scope filtering, governed ingest validation,
 // provenance normalization, and governance audit persistence.
+
+/* ───────────────────────────────────────────────────────────────
+   1. IMPORTS
+──────────────────────────────────────────────────────────────── */
+
 import { ensureGovernanceTables } from '../search/vector-index-schema.js';
 
 import type Database from 'better-sqlite3';
 
 // Feature catalog: Hierarchical scope governance, governed ingest, retention, and audit
 
-/**
- * Default TTL for ephemeral memories when the caller doesn't supply an explicit deleteAfter.
- * 24h is conservative: short enough to clean up active test fixtures, long
- * enough to survive a typical autonomous workflow.
- */
-export const DEFAULT_EPHEMERAL_TTL_MS = 24 * 60 * 60 * 1000;
+/* ───────────────────────────────────────────────────────────────
+   2. TYPES
+──────────────────────────────────────────────────────────────── */
 
 /**
  * Retention modes applied during governed ingest.
@@ -120,12 +122,6 @@ export interface GovernanceAuditReviewResult {
   summary: GovernanceAuditReviewSummary;
 }
 
-export const GOVERNANCE_AUDIT_ACTIONS = {
-  TIER_DOWNGRADE_NON_CONSTITUTIONAL_PATH: 'tier_downgrade_non_constitutional_path',
-  TIER_DOWNGRADE_NON_CONSTITUTIONAL_PATH_CLEANUP: 'tier_downgrade_non_constitutional_path_cleanup',
-  CHECKPOINT_RESTORE_EXCLUDED_PATH_REJECTED: 'checkpoint_restore_excluded_path_rejected',
-} as const;
-
 export type GovernanceAuditAction =
   typeof GOVERNANCE_AUDIT_ACTIONS[keyof typeof GOVERNANCE_AUDIT_ACTIONS];
 
@@ -162,11 +158,36 @@ export interface ScopeFilterBenchmarkResult {
   averageMsPerIteration: number;
 }
 
+/* ───────────────────────────────────────────────────────────────
+   3. CONSTANTS
+──────────────────────────────────────────────────────────────── */
+
+/**
+ * Default TTL for ephemeral memories when the caller doesn't supply an explicit deleteAfter.
+ * 24h is conservative: short enough to clean up active test fixtures, long
+ * enough to survive a typical autonomous workflow.
+ */
+export const DEFAULT_EPHEMERAL_TTL_MS = 24 * 60 * 60 * 1000;
+
+export const GOVERNANCE_AUDIT_ACTIONS = {
+  TIER_DOWNGRADE_NON_CONSTITUTIONAL_PATH: 'tier_downgrade_non_constitutional_path',
+  TIER_DOWNGRADE_NON_CONSTITUTIONAL_PATH_CLEANUP: 'tier_downgrade_non_constitutional_path_cleanup',
+  CHECKPOINT_RESTORE_EXCLUDED_PATH_REJECTED: 'checkpoint_restore_excluded_path_rejected',
+} as const;
+
+/* ───────────────────────────────────────────────────────────────
+   4. HELPERS
+──────────────────────────────────────────────────────────────── */
+
 function normalizeId(value: unknown): string | undefined {
   if (typeof value !== 'string') return undefined;
   const trimmed = value.trim();
   return trimmed.length > 0 ? trimmed : undefined;
 }
+
+/* ───────────────────────────────────────────────────────────────
+   5. CORE LOGIC
+──────────────────────────────────────────────────────────────── */
 
 /**
  * Canonical single-string scope normalizer.
@@ -264,7 +285,7 @@ export function validateGovernedIngest(input: GovernedIngestInput): GovernanceDe
         ? new Date(Date.now() + DEFAULT_EPHEMERAL_TTL_MS).toISOString()
         : null
     );
-    // B8: Return null instead of empty string for optional scope fields
+    // Return null instead of empty string for optional scope fields
     // when governance is not required, to avoid persisting false-y placeholders.
     return {
       allowed: true,
@@ -291,7 +312,7 @@ export function validateGovernedIngest(input: GovernedIngestInput): GovernanceDe
   if (deleteAfter && new Date(deleteAfter).getTime() <= new Date(governedAt).getTime()) {
     issues.push('deleteAfter must be later than governedAt');
   }
-  // H21 FIX: Require valid future deleteAfter for ephemeral retention policy
+  // Require valid future deleteAfter for ephemeral retention policy
   // The memory retention sweep enforces this field via memory_index.delete_after;
   // keep ephemeral rows paired with a concrete timestamp for auditability.
   if (retentionPolicy === 'ephemeral' && !deleteAfter) {

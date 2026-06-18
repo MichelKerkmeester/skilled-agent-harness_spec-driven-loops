@@ -1,0 +1,25 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/020-maintenance-grace-background-embedding",
+  "artifactDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/review/lineages/p020-mimo-2",
+  "maxIterations": 1,
+  "convergenceThreshold": 0.10,
+  "rollingStopThreshold": 0.08,
+  "noProgressThreshold": 0.05,
+  "stuckThreshold": 2,
+  "minStabilizationPasses": 1,
+  "dimensions": ["correctness", "security", "traceability", "maintainability"],
+  "severityThreshold": "P2",
+  "executor": "cli-opencode",
+  "model": "xiaomi/mimo-v2.5-pro",
+  "sessionId": "fanout-p020-mimo-2-1781721166412-nlwse6",
+  "loopType": "review",
+  "resource_map_present": false,
+  "lineage": {
+    "sessionId": "fanout-p020-mimo-2-1781721166412-nlwse6",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null,
+    "releaseReadinessState": "in-progress"
+  }
+}

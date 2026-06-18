@@ -1,0 +1,82 @@
+{
+  "sessionId": "fanout-gpt55-p021b-1-1781755522521-77gcjs",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Live deploy check is marked PASS without satisfying vec == fts",
+      "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/021-cooperative-heavy-phases/implementation-summary.md",
+      "line": 96,
+      "lineRange": "96",
+      "evidence": [
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/021-cooperative-heavy-phases/spec.md:148-149",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/021-cooperative-heavy-phases/tasks.md:69",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/021-cooperative-heavy-phases/implementation-summary.md:96"
+      ],
+      "finding_class": "contract_safety",
+      "content_hash": "sha256:e64434b6687904d0fd6a7a05e7f3106153065fe9d6cd0d6233c1684d9d7874d9",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "claimAdjudication": {
+        "passed": true,
+        "finalSeverity": "P1",
+        "confidence": 0.9
+      }
+    },
+    {
+      "findingId": "F002",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "timedPhase comment overstates wall-clock as block duration for async phases",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+      "line": 786,
+      "lineRange": "786-790",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:786-790",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:713-718",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:729-760"
+      ],
+      "finding_class": "maintainability",
+      "content_hash": "sha256:1fd55b907aa23dfab2fc8fbc202e78239a1fdba1bbc4795f8f9b6452d2887b0b",
+      "firstSeen": 1,
+      "lastSeen": 1
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": false,
+    "security": false,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 1
+  },
+  "openFindingsCount": 2,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.45,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": [],
+  "searchDebt": [
+    {
+      "id": "coverage-correctness-security",
+      "status": "deferred",
+      "reason": "config.maxIterations=1 stopped this fan-out lineage before correctness and security passes."
+    }
+  ]
+}

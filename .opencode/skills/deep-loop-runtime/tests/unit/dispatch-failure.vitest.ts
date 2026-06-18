@@ -34,6 +34,7 @@ describe('dispatch-failure end-to-end', () => {
     const executor: ExecutorConfig = {
       kind: 'cli-codex',
       model: 'gpt-5.4',
+      configDir: null,
       reasoningEffort: 'high',
       serviceTier: 'priority',
       sandboxMode: null,
@@ -66,6 +67,7 @@ describe('dispatch-failure end-to-end', () => {
     const executor: ExecutorConfig = {
       kind: 'cli-codex',
       model: 'gpt-5.4-mini',
+      configDir: null,
       reasoningEffort: 'medium',
       serviceTier: 'standard',
       sandboxMode: null,

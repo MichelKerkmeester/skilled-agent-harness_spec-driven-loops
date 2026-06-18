@@ -2,6 +2,8 @@
 title: "CLI DISPATCH — Skill Preload Mandate"
 importanceTier: constitutional
 contextType: decision
+last_confirmed: "2026-06-08"
+last_confirmed_source: "git-log-last-touch"
 triggerPhrases:
   # CLI binaries
   - cli-codex

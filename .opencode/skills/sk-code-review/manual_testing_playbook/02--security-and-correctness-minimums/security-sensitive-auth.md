@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `CR-004` and confirm the
 - Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against sk-code-review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
 - Expected signals: Step 1: auth diff visible; Step 2: security findings lead; Step 3: grep evidence supports scope
 - Desired user-visible outcome: a security findings report that a real maintainer can act on without asking for missing scope or evidence.
-- Pass/fail: PASS if missing authz on mutation is flagged per references/security_checklist.md section 3 and evidence cites file:line per references/review_core.md; FAIL if auth risk is downgraded to style
+- Pass/fail: PASS if missing authz on mutation is flagged per assets/security_checklist.md section 3 and evidence cites file:line per references/review_core.md; FAIL if auth risk is downgraded to style
 
 ---
 
@@ -45,7 +45,7 @@ Operators run the exact prompt and command sequence for `CR-004` and confirm the
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CR-004 | Security-sensitive auth | Confirm auth and authorization gaps are treated as mandatory baseline risks. | `Review this auth-sensitive diff for missing auth or ownership checks, treating likely authorization gaps as P1/P0 risks.` | bash: git diff --staged -- '*auth*' '*session*' '*permission*' -> agent: @review security-sensitive diff -> bash: rg -n -e "auth" -e "authorize" -e "owner" -e "tenant" -e "permission" path/to/changed/files | Step 1: auth diff visible; Step 2: security findings lead; Step 3: grep evidence supports scope | Diff excerpt, grep transcript, final P0/P1 findings | PASS if missing authz on mutation is flagged per references/security_checklist.md section 3 and evidence cites file:line per references/review_core.md; FAIL if auth risk is downgraded to style | 1. Check security_checklist.md section 3; 2. Confirm mutation path; 3. Search sibling entry points for same guard pattern |
+| CR-004 | Security-sensitive auth | Confirm auth and authorization gaps are treated as mandatory baseline risks. | `Review this auth-sensitive diff for missing auth or ownership checks, treating likely authorization gaps as P1/P0 risks.` | bash: git diff --staged -- '*auth*' '*session*' '*permission*' -> agent: @review security-sensitive diff -> bash: rg -n -e "auth" -e "authorize" -e "owner" -e "tenant" -e "permission" path/to/changed/files | Step 1: auth diff visible; Step 2: security findings lead; Step 3: grep evidence supports scope | Diff excerpt, grep transcript, final P0/P1 findings | PASS if missing authz on mutation is flagged per assets/security_checklist.md section 3 and evidence cites file:line per references/review_core.md; FAIL if auth risk is downgraded to style | 1. Check security_checklist.md section 3; 2. Confirm mutation path; 3. Search sibling entry points for same guard pattern |
 
 ### Optional Supplemental Checks
 
@@ -66,7 +66,7 @@ If the primary run passes, repeat the scenario against a second tiny fixture or 
 
 | File | Role |
 |---|---|
-| `../../references/security_checklist.md` | Security, authz, secrets, injection, abuse, and reliability checks |
+| `../../assets/security_checklist.md` | Security, authz, secrets, injection, abuse, and reliability checks |
 | `../../references/review_core.md` | Mandatory P0/P1 evidence and baseline minimums |
 | `../../SKILL.md` | Baseline plus sk-code surface-evidence contract |
 

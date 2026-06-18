@@ -1,0 +1,30 @@
+{
+  "title": "Feature Specification: Advisor and Code Graph (Phase Parent)",
+  "type": "coordination-parent",
+  "childTopology": [
+    "001-causal-traversal-bfs",
+    "002-xce-feature-adoption-advisor-codegraph",
+    "003-skill-advisor-cross-session-reconnect",
+    "004-skill-advisor-suite-repair"
+  ],
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph",
+  "description": "Feature Specification: Advisor and Code Graph (Phase Parent)",
+  "keywords": [
+    "feature",
+    "specification",
+    "advisor",
+    "code",
+    "graph",
+    "phase",
+    "parent"
+  ],
+  "lastUpdated": "2026-06-15T18:16:13.948Z",
+  "specId": "003",
+  "folderSlug": "advisor-and-codegraph",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

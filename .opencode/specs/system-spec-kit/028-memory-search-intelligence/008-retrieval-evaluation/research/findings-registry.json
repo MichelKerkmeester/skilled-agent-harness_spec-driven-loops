@@ -1,0 +1,99 @@
+{
+  "sessionId": "2026-06-17-028-008-retrieval-evaluation",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "openQuestions": [
+    {
+      "id": "question-1-q1-a1-keystone-eval-harness-what-golden-query-set-relevance-label-schema-label-b",
+      "text": "Q1 (A1, keystone): Eval harness — what golden-query set + relevance-label schema + label-bootstrap (from live traffic / existing specs) makes Memory MCP retrieval measurable on the now-working cosine gate? Cite the gate seam (`resolveAbsoluteRelevance`, `confidence-scoring.ts`).",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-q2-a2-isotonic-calibration-how-to-collect-real-labels-fit-validate-and-promote-0",
+      "text": "Q2 (A2): Isotonic calibration — how to collect real labels, fit, validate, and promote 017/S4's flag-off isotonic infra (replacing the proxy seed)? What live-evidence threshold justifies default-on?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-q3-a3-a-b-methodology-expected-result-for-the-default-on-levers-017-shipped-unme",
+      "text": "Q3 (A3): A/B methodology + expected result for the default-on levers 017 shipped unmeasured — cosine top-N reorder (S5), generic-query escalation (S3), top-dominant verdict (S2). Does reorder ever demote a correctly-fused hit?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-q4-a4-gate-rank-divergence-now-the-gate-reads-cosine-while-rrf-ranks-characteriz",
+      "text": "Q4 (A4): Gate/rank divergence — now the gate reads cosine while RRF ranks; characterize when they disagree and what the divergence signals (fusion miscalibration vs ambiguous query). Where to surface it?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-q5-a5-re-measure-cold-tier-surfacing-rate-precision-post-015-admission-016-found",
+      "text": "Q5 (A5): Re-measure cold-tier surfacing rate + precision POST-015 admission (016 found \"~2 rows, inert\" pre-admission). Does admission change the distribution?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-6-q6-a6-unified-semantic-embedding-substrate-can-027-s-semantic-trigger-fallback-t",
+      "text": "Q6 (A6): Unified semantic-embedding substrate — can 027's semantic-trigger fallback + the 028/007 semantic-edge-layer + the fused-summary-channel collapse into ONE embeddable-channel framework instead of three bolt-ons? Architecture + shadow-promotion economics.",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-7-q7-a7-reindex-as-consolidation-can-async-sleep-time-reorganization-028-007-initi",
+      "text": "Q7 (A7): Reindex-as-consolidation — can async sleep-time reorganization (028/007 Initiative B) be hosted inside 018's now-responsive/cancellable scan? + maintenance-grace TTL tuning (019 open gap: avoid premature reap AND zombie pileup).",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-8-q8-a8-shadow-eval-methodology-which-shadow-metrics-false-positive-rate-recall-de",
+      "text": "Q8 (A8): Shadow-eval methodology — which shadow metrics (false-positive rate, recall delta, latency, cost) predict promotion-worthiness? Define one reusable promotion gate for all intelligence-class candidates.",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-9-q9-novelty-gate-vs-016-027-002-research-028-007-roadmap-the-live-015-019-code-re",
+      "text": "Q9 (NOVELTY GATE): vs 016 (027/002 research) + 028/007 roadmap + the live 015-019 code — refute re-discoveries; confirm each angle is genuinely un-covered.",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-10-q10-go-no-go-rank-every-surfaced-candidate-go-additive-reversible-vs-needs-bench",
+      "text": "Q10 (GO/no-go): rank every surfaced candidate GO (additive/reversible) vs NEEDS-BENCHMARK vs NO-TRANSFER by leverage x effort; assign 027 doctrine-class (correctness-always-on vs intelligence-shadow-gated).",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "uncoveredQuestions": [
+    "Q1 (A1, keystone): Eval harness — what golden-query set + relevance-label schema + label-bootstrap (from live traffic / existing specs) makes Memory MCP retrieval measurable on the now-working cosine gate? Cite the gate seam (`resolveAbsoluteRelevance`, `confidence-scoring.ts`).",
+    "Q2 (A2): Isotonic calibration — how to collect real labels, fit, validate, and promote 017/S4's flag-off isotonic infra (replacing the proxy seed)? What live-evidence threshold justifies default-on?",
+    "Q3 (A3): A/B methodology + expected result for the default-on levers 017 shipped unmeasured — cosine top-N reorder (S5), generic-query escalation (S3), top-dominant verdict (S2). Does reorder ever demote a correctly-fused hit?",
+    "Q4 (A4): Gate/rank divergence — now the gate reads cosine while RRF ranks; characterize when they disagree and what the divergence signals (fusion miscalibration vs ambiguous query). Where to surface it?",
+    "Q5 (A5): Re-measure cold-tier surfacing rate + precision POST-015 admission (016 found \"~2 rows, inert\" pre-admission). Does admission change the distribution?",
+    "Q6 (A6): Unified semantic-embedding substrate — can 027's semantic-trigger fallback + the 028/007 semantic-edge-layer + the fused-summary-channel collapse into ONE embeddable-channel framework instead of three bolt-ons? Architecture + shadow-promotion economics.",
+    "Q7 (A7): Reindex-as-consolidation — can async sleep-time reorganization (028/007 Initiative B) be hosted inside 018's now-responsive/cancellable scan? + maintenance-grace TTL tuning (019 open gap: avoid premature reap AND zombie pileup).",
+    "Q8 (A8): Shadow-eval methodology — which shadow metrics (false-positive rate, recall delta, latency, cost) predict promotion-worthiness? Define one reusable promotion gate for all intelligence-class candidates.",
+    "Q9 (NOVELTY GATE): vs 016 (027/002 research) + 028/007 roadmap + the live 015-019 code — refute re-discoveries; confirm each angle is genuinely un-covered.",
+    "Q10 (GO/no-go): rank every surfaced candidate GO (additive/reversible) vs NEEDS-BENCHMARK vs NO-TRANSFER by leverage x effort; assign 027 doctrine-class (correctness-always-on vs intelligence-shadow-gated)."
+  ],
+  "keyFindings": [],
+  "ruledOutDirections": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "metrics": {
+    "iterationsCompleted": 12,
+    "openQuestions": 10,
+    "resolvedQuestions": 0,
+    "keyFindings": 0,
+    "convergenceScore": 0.4,
+    "coverageBySources": {}
+  },
+  "corruptionWarnings": [],
+  "status": "IN_PROGRESS"
+}

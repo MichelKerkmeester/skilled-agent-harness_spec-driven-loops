@@ -9,15 +9,15 @@ description: "Domain logic library consumed by scripts and tests across three su
 
 ## 1. OVERVIEW
 
-Shared domain logic for the three deep-* sibling skills: deep-review, deep-research, and deep-ai-council. Each subdomain isolates its own concerns. This is the domain layer; CLI-specific infrastructure lives in `scripts/lib/` instead.
+Shared domain logic for the `deep-loop-workflows` hub, which routes context, research, review, ai-council, and four improvement lanes. Graph-backed workflow modes use `runtimeLoopType` values `research`, `review`, `council`, or `context`; improvement lanes keep `runtimeLoopType: null`. Each subdomain isolates its own concerns. This is the domain layer; CLI-specific infrastructure lives in `scripts/lib/` instead.
 
 ## 2. LIBRARY DOMAINS
 
 | Domain | Purpose | Primary Consumers |
 |--------|---------|-------------------|
-| `council/` | Multi-seat dispatch, adjudicator-verdict scoring, cost guards | deep-ai-council orchestrators |
-| `coverage-graph/` | Schema, queries, Bayesian convergence signals | deep-review, deep-research |
-| `deep-loop/` | Atomic state, loop locking, JSONL repair, executor config | all three deep-* skills |
+| `council/` | Multi-seat dispatch, adjudicator-verdict scoring, cost guards | ai-council workflow packets |
+| `coverage-graph/` | Schema, queries, Bayesian convergence signals | research, review, and context graph-backed modes |
+| `deep-loop/` | Atomic state, loop locking, JSONL repair, executor config | `deep-loop-workflows` modes via the shared runtime backend |
 
 ## 3. RELATED RESOURCES
 

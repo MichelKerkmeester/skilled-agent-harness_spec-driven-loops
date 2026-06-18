@@ -38,10 +38,6 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/commands/deep/start-research-loop.md",
-      ".opencode/commands/deep/start-review-loop.md",
-      ".opencode/commands/deep/assets/deep_start-research-loop_auto.yaml",
-      ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml",
       ".opencode/agents/deep-research.md",
       ".opencode/agents/deep-review.md",
       "research/gpt-5.5-review.md",
@@ -53,30 +49,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "start-research-loop.md",
-        "kind": "doc",
-        "path": ".opencode/commands/deep/start-research-loop.md",
-        "source": "derived"
-      },
-      {
-        "name": "start-review-loop.md",
-        "kind": "doc",
-        "path": ".opencode/commands/deep/start-review-loop.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep_start-research-loop_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_start-research-loop_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "deep_start-review-loop_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml",
-        "source": "derived"
-      },
       {
         "name": "deep-research.md",
         "kind": "doc",
@@ -196,11 +168,35 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Map",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packets 056 + 058 dispatched ~40 cli-devin SWE 1.6 iter via custom orchestration because:",
     "created_at": "2026-05-15T19:00:00Z",
-    "last_save_at": "2026-06-08T17:32:20.979Z",
+    "last_save_at": "2026-06-15T09:09:34.309Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

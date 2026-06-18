@@ -1,0 +1,29 @@
+Act as a tech lead writing an implementation plan. READ-ONLY MODE: do NOT write/edit files. Final message IS the deliverable — use the skeleton.
+
+# Inputs (READ all under .../031-daemon-flap-root-cause-research/research/)
+iterations/iteration-001..008.md, orchestrator-verifications.md, live-diagnosis.md.
+
+# Decision context (honor it)
+- Root cause: daemon liveness is session-coupled with no always-on resurrector; advisor/code-index kill-on-shutdown; warm-only prompt-time probes never cold-spawn (a NON-warm CLI already does); stale sockets reaped only reactively; SIGKILL/OOM has no resurrector. (RC-1 = RSS/OOM pressure.)
+- IT7 recommends a layered fix (C2→B→C1+one OS unit + RSS prevention). IT8 RED-TEAM verdict = DESCOPE: ship C2-minimal only first (flagged, SessionStart-kick-preferred, atomic throttle lock + 7-runtime stress test + telemetry); DEFER B (reopens the 028 double-writer class), the supervisor/client-only mode (auth/SPOF/multi-repo/029-cross-kill), the OS unit, and HF-refcount; and RSS-prevention must PRECEDE any always-warm default.
+
+# Task: produce the concrete PHASED, RISK-GATED implementation plan that reflects the descope verdict.
+For EACH phase give: scope (1-2 lines), concrete change sites (file:line from the iterations), flags/defaults, tests (incl. the 7-runtime stress test for Phase 1), telemetry, rollback, and the ENTRY-CRITERIA (what data/proof must exist before starting it) + KILL-CRITERIA (what aborts/blocks it). Phases (refine if needed):
+- **Phase 1 — C2-minimal (ship now):** SessionStart background non-warm kick (preferred) + optional warm-only-probe self-heal behind `SPECKIT_PROMPT_SELF_HEAL` (decide opt-in vs opt-out); atomic per-service/per-repo throttle lock w/ stale-lock recovery; telemetry (kick/skip/heal/first-success-latency/fail); do NOT kick from Stop/compact/shutdown hooks; update orphan-sweeper preservation rules so it never reaps a self-healed/released resident. Detail the exact CLI + hook change sites.
+- **Phase 2 — RSS prevention (before any always-warm):** measure steady-state RSS across the daemons+HF over N sessions; calibrate + enable `SPECKIT_HF_MODEL_SERVER_MAX_RSS_MB` + self-exit + a free-RAM preflight before HF model load.
+- **Phase 3 — B uniform hardening (gated):** give advisor+code-index spec-memory's release/adopt + active-client fail-open + proactive stale-socket sweep + HF refcount + lease mode/version fencing; REQUIRES single-writer invariant + two-launcher live tests per daemon (the 028 risk) before default-on.
+- **Phase 4 — C1 supervisor + ONE OS unit (durable, gated on data that 1-3 are insufficient):** single supervisor owns all daemons+HF, sessions become pure clients; authenticated admin socket + capability token; repo-fingerprinted socket namespace; version-hash stale self-restart; explicit install/uninstall/upgrade + visible rollback.
+Also: an **immediate operator remediation** (no code) for the current down state, and how each phase maps to the existing 026/007 phase ledger (extend vs supersede; note this research is phase 031, so impl would be new follow-on phases).
+
+# Output skeleton
+## IT9 — phased, risk-gated implementation plan
+### Immediate operator remediation (no code)
+### Phase 1 — C2-minimal (change sites, flags, throttle, tests, telemetry, rollback, entry/kill criteria)
+### Phase 2 — RSS prevention (measure-then-enable)
+### Phase 3 — B uniform hardening (gated; single-writer tests)
+### Phase 4 — C1 supervisor + one OS unit (gated; auth/portability)
+### Phase→ledger mapping (extend/supersede vs 017-030)
+### Sequencing + what each phase must PROVE before the next
+### Confidence + unknowns
+
+Be concrete and buildable; cite iterations/code for change sites.

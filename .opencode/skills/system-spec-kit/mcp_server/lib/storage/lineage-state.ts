@@ -15,12 +15,13 @@ import { get_embedding_dim, refresh_interference_scores_for_folder, sqlite_vec_a
 import { to_embedding_buffer } from '../search/vector-index-types.js';
 import type { ParsedMemory } from '../parsing/memory-parser.js';
 import { classifyEncodingIntent } from '../search/encoding-intent.js';
-import { isEncodingIntentEnabled } from '../search/search-flags.js';
+import { isEncodingIntentEnabled, isArchivedVectorInclusionEnabled } from '../search/search-flags.js';
 import { createLogger } from '../utils/logger.js';
 import { detectSpecLevelFromParsed } from '../spec/spec-level.js';
 import { getHistoryEventsForLineage, init as initHistory, recordHistory, type HistoryLineageEvent } from './history.js';
 import { calculateDocumentWeight, isSpecDocumentType } from './document-helpers.js';
 import { applyPostInsertMetadata } from './post-insert-metadata.js';
+import { isManualSourceKind } from './write-provenance.js';
 
 // Feature catalog: Lineage state active projection and asOf resolution
 const logger = createLogger('LineageState');
@@ -445,6 +446,70 @@ function upsertActiveProjection(
   `).run(logicalKey, rootMemoryId, activeMemoryId, updatedAt);
 }
 
+/**
+ * Admit archived/cold (deprecated-tier) rows into `active_memory_projection` so the
+ * vector (semantic) lane — which joins the projection — can reach them. Option A:
+ * only rows whose logical key has NO active winner already in the projection, so the
+ * one-active-per-logical-key UNIQUE invariant is preserved and superseded
+ * dedup-losers are not surfaced. Picks the most recent embedded row per key.
+ *
+ * Uses `buildLogicalKey` (the same key builder the incremental upsert uses) — a
+ * SQL key expression would not match the stored `logical_key` format. Idempotent:
+ * keys already present are skipped, so re-running admits nothing new.
+ *
+ * Opt-in (default OFF) via SPECKIT_INCLUDE_ARCHIVED_VECTOR — a live projection
+ * mutation whose correctness is confirmed against the running daemon.
+ */
+export function backfillColdOrphanProjection(
+  database: Database.Database,
+): { scanned: number; admitted: number; skippedActiveKey: number } {
+  if (!isArchivedVectorInclusionEnabled()) {
+    return { scanned: 0, admitted: 0, skippedActiveKey: 0 };
+  }
+  let rows: MemoryIndexRow[];
+  try {
+    rows = database.prepare(`
+      SELECT id, spec_folder, file_path, canonical_file_path, anchor_id,
+             tenant_id, user_id, agent_id, session_id, updated_at
+      FROM memory_index
+      WHERE COALESCE(importance_tier, 'normal') = 'deprecated'
+        AND embedding_status = 'success'
+      ORDER BY updated_at DESC, id DESC
+    `).all() as MemoryIndexRow[];
+  } catch (_error: unknown) {
+    // Legacy DBs without the columns/tables — nothing to backfill.
+    return { scanned: 0, admitted: 0, skippedActiveKey: 0 };
+  }
+
+  const insert = database.prepare(`
+    INSERT OR IGNORE INTO active_memory_projection (logical_key, root_memory_id, active_memory_id, updated_at)
+    VALUES (?, ?, ?, ?)
+  `);
+  const seen = new Set<string>();
+  let admitted = 0;
+  let skippedActiveKey = 0;
+
+  const run = database.transaction(() => {
+    for (const row of rows) {
+      const logicalKey = buildLogicalKey(row);
+      if (seen.has(logicalKey)) continue; // already admitted the best orphan for this key
+      seen.add(logicalKey);
+      if (getActiveProjection(database, logicalKey)) {
+        // A non-deprecated winner already owns this key — option A leaves it alone.
+        skippedActiveKey += 1;
+        continue;
+      }
+      const id = Number(row.id);
+      const updatedAt = typeof row.updated_at === 'string' ? row.updated_at : String(row.updated_at ?? '');
+      const result = insert.run(logicalKey, id, id, updatedAt) as { changes: number };
+      if (result.changes > 0) admitted += 1;
+    }
+  });
+  run();
+
+  return { scanned: rows.length, admitted, skippedActiveKey };
+}
+
 function bindHistory(database: Database.Database): void {
   if (typeof (database as Database.Database & { exec?: unknown }).exec === 'function') {
     initHistory(database);
@@ -714,7 +779,7 @@ export function recordLineageTransition(
   if (cached) return cached;
 
   for (let attempt = 0; attempt <= MAX_LINEAGE_VERSION_RETRIES; attempt += 1) {
-    // A1/B14: Wrap predecessor UPDATE + lineage INSERT + projection UPSERT in a transaction.
+    // Wrap predecessor UPDATE + lineage INSERT + projection UPSERT in a transaction.
     const recordTransitionTx = database.transaction(() => {
       const row = getMemoryRow(database, memoryId);
       const rowLogicalKey = buildLogicalKey(row);
@@ -948,7 +1013,7 @@ export function summarizeLineageInspection(
     if (row.version_number !== expectedVersion) {
       hasVersionGaps = true;
     }
-    // B7: Use version_number ordering for predecessor chain validation
+    // Use version_number ordering for predecessor chain validation
     // rather than assuming sequential array positions match predecessor IDs.
     if (index > 0) {
       const prevRow = rows[index - 1];
@@ -1156,7 +1221,7 @@ export function backfillLineageState(
       const predecessor = index > 0 ? group[index - 1] : null;
       const successor = index < group.length - 1 ? group[index + 1] : null;
       const existing = getLineageRow(database, row.id);
-      // B3: Align dry-run timestamp source with execution path.
+      // Align dry-run timestamp source with execution path.
       const historyEventsForDryRun = getSafeHistoryEvents(database, row.id);
       const expectedValidFrom = historyEventsForDryRun[0]?.timestamp
         ?? normalizeTimestamp(row.created_at ?? row.updated_at);
@@ -1322,7 +1387,7 @@ export function recordLineageVersion(
   },
 ): RecordedLineageTransition {
   if (typeof (database as Database.Database & { exec?: unknown }).exec !== 'function') {
-    // B6: Mock path returns memoryId as root — predecessor's root is unavailable
+    // Mock path returns memoryId as root — predecessor's root is unavailable
     // without DB access, and using predecessor ID itself is incorrect.
     return {
       logicalKey: `mock:${params.memoryId}`,
@@ -1358,27 +1423,47 @@ export function recordLineageVersion(
  * @param database - Database connection that stores lineage and index state.
  * @param predecessorMemoryId - Memory id being superseded by a same-key successor.
  */
+export interface RetiredPredecessorCarry {
+  /** Importance tier a human/manual writer set on the retired predecessor. */
+  importanceTier: string;
+  /** Source kind to re-stamp so the carried tier keeps its manual protection. */
+  sourceKind: string;
+}
+
 export function retirePredecessorForActiveReindex(
   database: Database.Database,
   predecessorMemoryId: number,
-): void {
+): RetiredPredecessorCarry | null {
   const predecessor = database
-    .prepare('SELECT importance_tier FROM memory_index WHERE id = ?')
-    .get(predecessorMemoryId) as { importance_tier: string | null } | undefined;
+    .prepare('SELECT importance_tier, source_kind FROM memory_index WHERE id = ?')
+    .get(predecessorMemoryId) as { importance_tier: string | null; source_kind: string | null } | undefined;
   if (!predecessor) {
-    return;
+    return null;
   }
   // Constitutional rows are exempt from the active-row guard and must keep their
   // always-surface tier — deprecating one would declassify it. Leave it active and
   // let the lineage transition supersede it without a tier change.
   if (predecessor.importance_tier === 'constitutional') {
-    return;
+    return null;
   }
+
+  // A manual/human tier decision must survive a reindex. The predecessor still
+  // has to be deprecated to free the active-row uniqueness slot for the incoming
+  // successor — skipping the retire would collide on the active unique index —
+  // so instead we surface the manual tier to the caller, which re-applies it to
+  // the successor. The human's classification carries forward rather than being
+  // silently reset to the reindexed default.
+  const carry: RetiredPredecessorCarry | null =
+    isManualSourceKind(predecessor.source_kind) && predecessor.importance_tier
+      ? { importanceTier: predecessor.importance_tier, sourceKind: 'human' }
+      : null;
 
   seedLineageFromCurrentState(database, predecessorMemoryId, { transitionEvent: 'BACKFILL' });
   database
     .prepare("UPDATE memory_index SET importance_tier = 'deprecated', updated_at = ? WHERE id = ?")
     .run(normalizeTimestamp(null), predecessorMemoryId);
+
+  return carry;
 }
 
 /**

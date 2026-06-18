@@ -1,6 +1,15 @@
 ---
 title: "OpenCode CLI - Integration Patterns and Use Cases"
 description: "The three documented use cases for cli-opencode (external runtime to OpenCode, in-OpenCode parallel detached session, cross-AI orchestration handback) with copy-paste prompt templates, smart-router signals, and the self-invocation guard decision tree."
+trigger_phrases:
+  - "opencode integration patterns"
+  - "opencode self-invocation guard"
+  - "opencode parallel detached session"
+  - "opencode cross-ai handback"
+  - "opencode stdin dev null rule"
+  - "opencode run hang non-interactive"
+importance_tier: important
+contextType: implementation
 ---
 
 # OpenCode CLI - Integration Patterns

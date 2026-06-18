@@ -1,0 +1,40 @@
+{
+  "title": "deep-command @general + setup hard-blocker gates",
+  "trigger_phrases": [
+    "deep command phase 0 gate",
+    "general agent verification deep command",
+    "unskippable setup phase deep command",
+    "deep command hard blocker",
+    "deep loop command gating"
+  ],
+  "level": 2,
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/134-deep-context-gathering/007-deep-command-gate-hardening",
+  "status": "complete",
+  "parent_id": "skilled-agent-orchestration/134-deep-context-gathering",
+  "importance_tier": "normal",
+  "created_at": "2026-06-07T11:59:30Z",
+  "completed_at": "2026-06-07T12:00:00Z",
+  "is_phase_parent": false,
+  "children": [],
+  "specFolder": "skilled-agent-orchestration/134-deep-context-gathering/007-deep-command-gate-hardening",
+  "description": "Feature Specification: Deep-command @general + setup hard-blocker gates",
+  "keywords": [
+    "feature",
+    "specification",
+    "deep-command",
+    "general",
+    "setup",
+    "hard-blocker",
+    "gates"
+  ],
+  "lastUpdated": "2026-06-10T04:53:30.726Z",
+  "specId": "007",
+  "folderSlug": "deep-command-gate-hardening",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "134-deep-context-gathering"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

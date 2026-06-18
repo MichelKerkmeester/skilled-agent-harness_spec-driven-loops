@@ -1,6 +1,14 @@
 ---
 title: Five Checks Framework
 description: Evaluation framework for validating significant decisions before implementation
+trigger_phrases:
+  - "five checks framework"
+  - "necessary beyond local maxima"
+  - "sufficient fits goal"
+  - "open horizons check"
+  - "decision evaluation framework"
+importance_tier: normal
+contextType: planning
 ---
 
 # Five Checks Framework

@@ -1,0 +1,13 @@
+The review loop is complete. All canonical artifacts are written within the lineage directory only.
+
+**Verdict: PASS** (`hasAdvisories: true`) — 0 P0, 0 P1, 4 P2 advisories across the 020-maintenance-grace-background-embedding deliverables.
+
+Key results:
+- **Correctness/Traceability:** All four requirements (REQ-001..004) map to shipped code. The load-bearing claim "the 019 launcher reads the marker exactly as before" is **confirmed by source** — `readMaintenanceMarker`/`shouldAdoptDespiteProbe` consume only `childPid` + `activeUntilMs`, so dropping `jobId` and adding `labels` is read-compatible. Idle-tick-never-marks (REQ-004) and reference-counted overlap (REQ-003) both verified.
+- **Security:** No secrets, fixed path (no traversal), internal-only labels, TTL-bounded leak. Clean.
+- **P2 advisories:** F001 (refcount incremented before throwable `writeMarker()` with no rollback), F002 (embedding queue's refresh-free protection relies on an undocumented per-`await` yield), F003 (cosmetic stale `labels` between writes), F004 (bounded idle-window gap when scan and first embedding tick don't overlap).
+- **Limitation, stated honestly:** live `vitest`/`npm build` could not run (sandbox command-approval blocked); the review rests on static analysis plus the packet's documented verification table.
+
+Phase 4 memory save (`generate-context.js`) was intentionally skipped — it writes to the target spec folder's continuity surfaces, which is outside the lineage path boundary and is owned by the fan-out merge step, not an individual lineage.
+
+FANOUT_LINEAGE_COMPLETE:p020-opus-4

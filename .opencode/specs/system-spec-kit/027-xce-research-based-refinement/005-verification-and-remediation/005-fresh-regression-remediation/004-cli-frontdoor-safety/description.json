@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/004-cli-frontdoor-safety",
+  "description": "Feature Specification: CLI Front-Door Safety Remediation",
+  "keywords": [
+    "feature",
+    "specification",
+    "cli",
+    "front-door",
+    "safety",
+    "remediation"
+  ],
+  "lastUpdated": "2026-06-16T15:23:34.785Z",
+  "specId": "004",
+  "folderSlug": "cli-frontdoor-safety",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "005-verification-and-remediation",
+    "005-fresh-regression-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

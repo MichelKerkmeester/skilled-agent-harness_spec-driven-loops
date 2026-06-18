@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "anobel.com/003-slider-refactor"
-    last_updated_at: "2026-06-06T10:20:00Z"
-    last_updated_by: "opencode"
-    recent_action: "All repo work complete — variant-safe wrappers, timeline-only underline styling, mobile pagination handling, minified outputs, and Webflow guides are verified"
-    next_safe_action: "No repo follow-on required; use webflow-update-guide.md for external Webflow Designer updates"
+    last_updated_at: "2026-06-13T08:35:00Z"
+    last_updated_by: "claude"
+    recent_action: "Fixed native image-drag blocking slider swipe; re-minified both variants"
+    next_safe_action: "Upload updated z_minified slider bundles to R2 and bump ?v= cache-buster"
     blockers: []
     key_files:
       - "a_nobel_en_zn/2_javascript/slider_testimonial.js"
@@ -132,6 +132,25 @@ Tab active states are split across two layers — unchanged by this work, docume
 
 ---
 
+## Follow-up Fix (2026-06-13): native image-drag blocked swipe over images
+
+**Symptom:** On `/nl/drafts`, both sliders dragged from empty viewport area but not when the press started on a slide image.
+
+**Root cause:** Slide images are bare `<img class="image is--dynamic">` (not anchor-wrapped, no `draggable="false"`). A mouse press on one starts the browser's native HTML5 image drag, which dispatches `pointercancel` to the viewport. The viewport's `pointercancel → handle_pointer_release` listener then aborts the in-progress swipe, so `pointermove` never drives `position.set()`.
+
+**Fix:** Added one viewport-scoped listener in both `slider_testimonial.js` and `slider_timeline.js`, reusing the existing AbortController `signal`:
+
+```js
+viewport.addEventListener('dragstart', (e) => e.preventDefault(), { signal });
+```
+
+This suppresses native drag for any descendant (images, etc.) so pointer-drag works uniformly over images and empty space. It does not affect clicks/taps (`dragstart` only fires on a drag gesture) and is torn down by `controller.abort()` in `destroy()`. Touch was never affected (`touch-action: pan-y`); this was a desktop/mouse-only bug.
+
+**Verification (re-run):** comment hygiene clean; `verify-minification.mjs` 58/58 PASS; `test-minified-runtime.mjs` 58/58 PASS with `__sliderTestimonialCdnInit` / `__sliderTimelineCdnInit` set; `dragstart` present in both minified bundles.
+
+---
+
 ## Follow-on Work Required
 
-- No repo follow-on is required. External Webflow Designer edits may still be needed on live pages; follow `webflow-update-guide.md` and `testimonial-tab-update-guide.md` when applying those page-level changes.
+- **Deploy the drag fix:** upload the regenerated `z_minified/slider_testimonial.min.js` and `z_minified/slider_timeline.min.js` to R2 (`pub-53729c3289024c618f90a09ec4c63bf9.r2.dev`) and bump the `?v=` cache-buster on both `<script>` embeds (currently `?v=1.0.7`). The fix is not live until this is done.
+- External Webflow Designer edits may still be needed on live pages; follow `webflow-update-guide.md` and `testimonial-tab-update-guide.md` when applying those page-level changes.

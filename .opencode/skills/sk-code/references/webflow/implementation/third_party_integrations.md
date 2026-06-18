@@ -1,6 +1,13 @@
 ---
 title: Third-Party Library Integrations
 description: Reference guide for integrating external JavaScript libraries in Webflow projects, with production-tested patterns.
+trigger_phrases:
+  - "webflow third party libraries"
+  - "hls js video streaming"
+  - "external library integration"
+  - "library loading pattern webflow"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Third-Party Library Integrations

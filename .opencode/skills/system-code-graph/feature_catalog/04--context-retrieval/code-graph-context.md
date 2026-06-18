@@ -29,6 +29,8 @@ half. The tool self-checks readiness on invocation. No ambient hook calls it aut
 
 Blocked responses omit graph answers. Follow `requiredAction:"code_graph_scan"` or use semantic search plus `rg`.
 
+Debug callers can pass `includeTrace:true` to request `graphContext[].why_included` breadcrumbs. These trace-only breadcrumbs describe why an anchor or section was included, including one-hop call/import/export edges with confidence, provenance, evidence class, reason, step and bounded truncation details. Default responses omit `why_included` to preserve the compact response shape.
+
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -37,6 +39,7 @@ Blocked responses omit graph answers. Follow `requiredAction:"code_graph_scan"` 
 |---|---|---|
 | `.opencode/skills/system-code-graph/mcp_server/handlers/context.ts:154-169` | Handler | runs read-path readiness with selective indexing allowed and full scans suppressed |
 | `.opencode/skills/system-code-graph/mcp_server/handlers/context.ts:184-229` | Handler | returns blocked payloads with required action and fallback decision |
+| `.opencode/skills/system-code-graph/mcp_server/lib/code-graph-context.ts` | Library | emits trace-only context breadcrumbs |
 | `.opencode/skills/system-code-graph/mcp_server/tool-schemas.ts:79-117` | Schema | defines the public schema, seed formats and blocked-read contract |
 | `.opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts:75-76` | Tool surface | dispatches the handler |
 
@@ -45,6 +48,7 @@ Blocked responses omit graph answers. Follow `requiredAction:"code_graph_scan"` 
 | File | Type | Role |
 |---|---|---|
 | `../../manual_testing_playbook/04--context-retrieval/` | Manual Playbook | Operator-facing manual scenarios for this feature category |
+| `.opencode/skills/system-code-graph/mcp_server/tests/code-graph-context-handler.vitest.ts` | Automated test | trace-on and default-off breadcrumb behavior |
 
 ## 4. SOURCE METADATA
 

@@ -1,0 +1,34 @@
+Act as a markdown documentation-fixer (seat AF09). Spec folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation (PRE-APPROVED at Gate 3 — make the edits below directly with the Edit/Write tools; do NOT re-ask Gate 3 and do NOT ask the user anything).
+
+You fix STALE content in README files so they match current repo reality. SURGICAL edits only — fix the cited claims, keep everything else intact. Find the correct current value by reading the cited file PLUS its SKILL.md / source / config before editing.
+
+ALLOWED WRITE PATHS (edit ONLY these files):
+- .opencode/skills/sk-code/assets/webflow/templates/README.md
+- .opencode/skills/sk-code/benchmark/README.md
+- .opencode/skills/sk-code/benchmark/d4r-live/README.md
+- .opencode/skills/sk-doc/README.md
+- .opencode/skills/sk-doc/references/readme_creation.md
+BANNED: no delete, no rename, no new files, no edits outside the listed files, no --no-verify.
+
+DO-NOT-FIX (binding — confirmed false positives; leave untouched):
+- The CLI front-door "37 tools" figure: `spec-memory.cjs` CLI is genuinely 37; only the MCP-server/daemon surface is 39. Fix a "37" ONLY when the sentence is about the MCP server/daemon, NOT the CLI front door.
+- Any `// Feature catalog:` comments and TSDoc `@example` values.
+- Any cited claim that does NOT actually reproduce against the live file — mark it refuted; never invent a fix.
+
+FINDINGS TO FIX (confirm-then-fix each; P0/P1/P2 all in scope, including cosmetic/style):
+- [P1] .opencode/skills/sk-code/assets/webflow/templates/README.md:29 — Template file inventory omits CSS and HTML templates | stale: Code files: 1 and structure only lists component_template.js. -> correct: The direct template files also include component_template.css, form_scaffold_template.html, embed_template.html and head_footer_code_template.html.
+- [P2] .opencode/skills/sk-code/assets/webflow/templates/README.md:89 — Obsolete 026 audit handoff | stale: Expected output is findings recorded in the 026 audit report, and troubleshooting says to rerun the 026 audit check. -> correct: 027 is the current refinement/release-alignment context; 026 is described as the completed predecessor.
+- [P1] .opencode/skills/sk-code/benchmark/README.md:29 — Benchmark corpus count omits current design-restraint scenarios | stale: Corpus is sk-code manual_testing_playbook with 24 scenarios: 15 routing, 2 advisor, 7 browser. -> correct: The current sk-code manual testing playbook has 28 deterministic scenarios across 8 categories, including DR-001..DR-004.
+- [P1] .opencode/skills/sk-code/benchmark/README.md:31 — Latest router aggregate is stale | stale: Latest router verdict is FAIL, aggregate 40. -> correct: The current router-final benchmark report says FAIL, aggregate 44/100.
+- [P1] .opencode/skills/sk-code/benchmark/README.md:132 — Related command path is dead | stale: Related document points to ../../../commands/deep/start-skill-benchmark-loop. -> correct: The current command surface is /deep:skill-benchmark in .opencode/commands/deep/skill-benchmark.md.
+- [P0] .opencode/skills/sk-code/benchmark/d4r-live/README.md:29 — Reproduce command writes output to wrong relative path | stale: The reproduce block says to cd into .opencode/skills/deep-loop-workflows/deep-improvement/scripts and then pass --outputs-dir .opencode/skills/sk-code/benchmark/d4r-live. -> correct: run-skill-benchmark resolves --outputs-dir with path.resolve() relative to the current working directory, so after that cd the relative .opencode/... path resolves under the scripts directory, not the repo root.
+- [P1] .opencode/skills/sk-doc/README.md:112 — Create command roster omits parent-skill command | stale: The README says sk-doc is reached through six /create:* commands and lists /create:agent, /create:sk-skill, /create:feature-catalog, /create:testing-playbook, /create:folder_readme and /create:changelog. -> correct: The current create command group has seven shipped commands, including /create:sk-skill-parent.
+- [P1] .opencode/skills/sk-doc/README.md:141 — Spec-kit file contract is incomplete | stale: The README says system-spec-kit creates spec.md, plan.md, tasks.md and checklist.md. -> correct: Current Level 1 requires spec.md, plan.md, tasks.md and implementation-summary.md; Level 2 adds checklist.md; packet metadata also includes description.json and graph-metadata.json for phase parents and save/resume metadata.
+- [P1] .opencode/skills/sk-doc/references/readme_creation.md:33 — README guide hard-codes obsolete 9-section contract | stale: The guide says all READMEs follow a 9-section structure, with Quick Start, Features, Troubleshooting and related sections treated as broadly required. -> correct: The current README template says to use only sections that fit the audience, and code-folder READMEs must not force Quick Start, Features, FAQ or Troubleshooting unless earned.
+- [P1] .opencode/skills/sk-doc/references/readme_creation.md:89 — README guide has dead template section references | stale: The guide says readme_template.md Section 3 contains the section-by-type requirements matrix and Section 5 contains detailed must-include lists. -> correct: Current readme_template.md Section 3 is Skill and Project Profile, and Section 5 is Frontmatter; those referenced matrices/lists are no longer there.
+- [P1] .opencode/skills/sk-doc/references/readme_creation.md:229 — Spec-memory tool-count example is stale | stale: The README example table says MCP Tools = 33 across 7 layers. -> correct: The current spec-memory surface exposes 39 tools through the MCP registration and full-parity daemon-backed CLI.
+
+After editing, re-read each edited line to verify. Your final message MUST be exactly one fenced json block:
+```json
+{"seat":"AF09","fixed":[{"file":"path","claim":"what was stale","after":"what it now says"}],"refuted":[{"file":"path","why":"why skipped"}]}
+```

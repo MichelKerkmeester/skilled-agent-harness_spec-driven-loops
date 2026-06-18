@@ -1,0 +1,23 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/017-search-and-output-intelligence-implementation/004-confidence-calibration-labeled-set",
+  "artifactDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/review/lineages/p017c004-mimo",
+  "sessionId": "fanout-p017c004-mimo-1781723255698-wb4jwh",
+  "maxIterations": 1,
+  "convergenceThreshold": 0.10,
+  "rollingStopThreshold": 0.08,
+  "noProgressThreshold": 0.05,
+  "stuckThreshold": 2,
+  "minStabilizationPasses": 1,
+  "dimensions": ["correctness", "security", "traceability", "maintainability"],
+  "severityThreshold": "P2",
+  "lineage": {
+    "sessionId": "fanout-p017c004-mimo-1781723255698-wb4jwh",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null,
+    "releaseReadinessState": "in-progress"
+  },
+  "resource_map_present": false,
+  "createdAt": "2026-06-17T10:00:00Z"
+}

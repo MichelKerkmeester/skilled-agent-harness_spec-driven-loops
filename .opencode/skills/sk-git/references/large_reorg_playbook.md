@@ -1,6 +1,15 @@
 ---
 title: Large Reorg Playbook - Rename/Renumber in a Worktree, Merge to Main
 description: Step-ordered runbook for executing a large rename/reorg (hundreds-to-thousands of git mv) in a worktree and merging it to main without the known failure modes.
+trigger_phrases:
+  - "large rename reorg"
+  - "mass git mv renames"
+  - "rename status verification"
+  - "gitignored database snapshot"
+  - "leftover ignored cruft cleanup"
+  - "toolchain on main after merge"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Large Reorg Playbook - Rename/Renumber in a Worktree

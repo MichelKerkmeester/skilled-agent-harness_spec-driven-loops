@@ -26,7 +26,7 @@
 #   deploy-mcp.sh            # build all dists + report (safe, no recycle)
 #   deploy-mcp.sh --recycle  # also transparently recycle the mk-spec-memory daemon
 
-set -uo pipefail
+set -euo pipefail
 REPO="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
 cd "$REPO" || exit 1
 RECYCLE=0; [ "${1:-}" = "--recycle" ] && RECYCLE=1
@@ -67,7 +67,7 @@ echo "== Launcher .cjs change check =="
 CJS_CHANGED="$(
   { git diff --name-only -- '.opencode/bin/*.cjs' '.opencode/bin/lib/*.cjs' 2>/dev/null
     git diff --name-only HEAD~1 HEAD -- '.opencode/bin/*.cjs' '.opencode/bin/lib/*.cjs' 2>/dev/null
-  } | sort -u
+  } | sort -u || true
 )"
 if [ -n "$CJS_CHANGED" ]; then
   echo "  WARNING: launcher .cjs changed — recycle CANNOT activate these."
@@ -79,14 +79,14 @@ fi
 
 if [ "$RECYCLE" -eq 1 ]; then
   echo "== Recycling mk-spec-memory daemon (transparent) =="
-  CHILD="$(pgrep -f 'system-spec-kit/mcp_server/dist/context-server.js' | head -1)"
+  CHILD="$(pgrep -f 'system-spec-kit/mcp_server/dist/context-server.js' | head -1 || true)"
   if [ -z "$CHILD" ]; then
     echo "  No running mk-spec-memory daemon child found — it will load fresh dist on next start."
   else
     kill -TERM "$CHILD" && echo "  SIGTERM sent to daemon child $CHILD; owner launcher will respawn from fresh dist."
     i=0
     while [ $i -lt 60 ]; do
-      NEW="$(pgrep -f 'system-spec-kit/mcp_server/dist/context-server.js' | grep -v "^$CHILD$" | head -1)"
+      NEW="$(pgrep -f 'system-spec-kit/mcp_server/dist/context-server.js' | grep -v "^$CHILD$" | head -1 || true)"
       [ -n "$NEW" ] && { echo "  Respawned daemon child: $NEW"; break; }
       sleep 0.5; i=$((i+1))
     done

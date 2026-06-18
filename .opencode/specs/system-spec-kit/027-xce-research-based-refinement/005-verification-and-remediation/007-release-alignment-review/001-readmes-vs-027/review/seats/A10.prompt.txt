@@ -1,0 +1,26 @@
+Act as a READ-ONLY documentation-alignment reviewer (seat A10). Do NOT modify, create, or delete ANY file. Spec folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/001-readmes-vs-027 (pre-approved -- skip Gate 3).
+
+SCOPE (read-only): README and code-README files under these paths/globs:
+.opencode/skills/deep-loop-runtime
+
+GOAL: find places where these READMEs are STALE or WRONG vs the current post-"027" reality of this repo. The 027 epic ("xce-research-based-refinement") changed, among other things:
+- spec-memory MCP tool count is now 39 (older docs say 37); skill-advisor exposes 9 tools, code-index 8.
+- schema version is v37.
+- daemon re-election is default-ON in all runtime configs.
+- daemon-backed CLI front doors exist now: spec-memory.cjs, code-index.cjs, skill-advisor.cjs.
+- background memory_index_scan plus memory_index_scan_status / memory_index_scan_cancel tools were added.
+- some search "signals" earlier docs described were removed / were fictional.
+- agent rosters, deep-loop modes (context/research/review/ai-council/improvement), and command surfaces evolved.
+- soft-delete tombstones remain default-OFF.
+Treat these as EXAMPLES, not a closed list -- verify every README claim against the actual current code/config you can read before reporting it.
+
+METHOD:
+1. Discover the README files under the scope paths (read root / SKILL.md / index READMEs first).
+2. Read at MOST 12 of the highest-traffic ones; note which you read and how many you skipped.
+3. For each stale/incorrect/contradictory claim, verify against the real current file BEFORE reporting.
+
+OUTPUT: your final message MUST be EXACTLY ONE fenced json block and nothing after it:
+```json
+{"seat":"A10","track":"readmes-vs-027","area":"deep-loop-runtime READMEs","findings":[{"severity":"P0|P1|P2","file":"path","line":0,"title":"short","stale_claim":"what the README says","current_truth":"what is actually true now","evidence":"file:line you verified against"}],"files_read":["..."],"files_skipped_count":0,"clean":["files confirmed accurate"]}
+```
+Severity: P0 = actively misleading instructions a reader would follow into failure; P1 = materially stale facts (wrong counts, removed features described as present, dead paths); P2 = minor drift/typo/cosmetic. If nothing is stale, return "findings":[] with "clean" populated.

@@ -1,6 +1,15 @@
 ---
 title: "Claude Code CLI Built-in Tools Reference"
 description: "Reference for Claude Code CLI unique capabilities including extended thinking, Edit tool, Agent tool, structured output, permission modes, and comparison with Codex CLI."
+trigger_phrases:
+  - "claude code built-in tools"
+  - "claude extended thinking dispatch"
+  - "claude code vs codex comparison"
+  - "claude code structured output schema"
+  - "claude code budget cap flag"
+  - "claude code plan mode read-only"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Claude Code CLI Built-in Tools Reference

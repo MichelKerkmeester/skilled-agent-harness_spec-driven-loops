@@ -64,7 +64,18 @@ contextType: "verification"
    ```
    Expected: result count ≤ unfiltered count (high-confidence edges only).
 
-5. **Readiness refusal:** if you can artificially mark the graph stale (e.g., touch a file mtime), repeat step 1. Expected: `status:"blocked"`, `requiredAction:"code_graph_scan"`, NO affectedFiles returned (hard refuse, not soft degrade per the readiness invariant in architecture.md §6).
+5. **Trace breadcrumbs:**
+   ```json
+   mcp__mk_code_index__code_graph_query({
+     "operation": "blast_radius",
+     "subject": ".opencode/skills/system-spec-kit/shared/embeddings.ts",
+     "includeTrace": true,
+     "limit": 20
+   })
+   ```
+   Expected: affected entries include `why_included` breadcrumbs with depth and an import `edgeChain` for non-seed files. The same query without `includeTrace` omits `why_included`.
+
+6. **Readiness refusal:** if you can artificially mark the graph stale (e.g., touch a file mtime), repeat step 1. Expected: `status:"blocked"`, `requiredAction:"code_graph_scan"`, NO affectedFiles returned (hard refuse, not soft degrade per the readiness invariant in architecture.md §6).
 
 ## Pass criteria
 
@@ -74,10 +85,11 @@ contextType: "verification"
 | 2 | Multi-subject union ≥ single-subject | ☐ |
 | 3 | Transitive expansion > non-transitive | ☐ |
 | 4 | minConfidence filter reduces count | ☐ |
-| 5 | Stale graph returns blocked (hard refuse) | ☐ |
+| 5 | `includeTrace:true` adds `why_included`; default response omits it | ☐ |
+| 6 | Stale graph returns blocked (hard refuse) | ☐ |
 
 ## Notes
 
-Tests the path in `mcp_server/handlers/query.ts`. Multi-subject union logic is in the blast-radius assembler; transitive BFS uses the maxDepth bound to prevent runaway traversal.
+Tests the path in `mcp_server/handlers/query.ts`. Multi-subject union logic is in the blast-radius assembler; transitive BFS uses the maxDepth bound to prevent runaway traversal. Trace breadcrumbs are built from `.opencode/skills/system-code-graph/mcp_server/lib/graph/bfs-traversal.ts` and are covered by `.opencode/skills/system-code-graph/mcp_server/tests/code-graph-query-handler.vitest.ts`.
 
 > **Contract (fixed in packet 029 phase 008, F-022-1):** `blast_radius` honors `includeTransitive`. Default (flag absent) returns **direct importers only (depth 1)**; `includeTransitive:true` opts into multi-hop closure up to `maxDepth` (default 3). Step 3's `transitive > non-transitive` assertion therefore depends on step 1 running WITHOUT `includeTransitive` (depth-1 baseline) and step 3 WITH it. Before the fix the flag was ignored and blast_radius was always multi-hop, so this assertion was unsatisfiable.

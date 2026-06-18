@@ -4,7 +4,7 @@
 
 import { z } from 'zod';
 import { existsSync, realpathSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { resolve, sep } from 'node:path';
 import { tmpdir } from 'node:os';
 import { SCORER_LANE_IDS } from '../lib/scorer/lane-registry.js';
 
@@ -34,7 +34,29 @@ function detectRepoRoot(): string {
     if (parent === current) break;
     current = parent;
   }
-  return resolve(process.cwd());
+  // Lockstep with findAdvisorWorkspaceRoot: when the sentinel is unreachable,
+  // never anchor the allowlist on a directory inside a specs/ packet tree —
+  // hoist to the workspace root above it so caller-supplied workspaceRoots are
+  // bounded to the real root, not a spec subdir.
+  return hoistAboveSpecsTree(process.cwd()) ?? resolve(process.cwd());
+}
+
+// Inlined twin of lib/utils/workspace-root.ts:hoistAboveSpecsTree. Kept local
+// to avoid a circular import between schemas/ and lib/ — the two must stay in
+// lockstep so the schema allowlist and the handler agree on the workspace root.
+function hoistAboveSpecsTree(dir: string): string | null {
+  const parts = resolve(dir).split(sep);
+  for (let index = parts.length - 2; index >= 1; index -= 1) {
+    if (parts[index] === '.opencode' && parts[index + 1] === 'specs') {
+      return parts.slice(0, index).join(sep) || sep;
+    }
+  }
+  for (let index = parts.length - 1; index >= 1; index -= 1) {
+    if (parts[index] === 'specs') {
+      return parts.slice(0, index).join(sep) || sep;
+    }
+  }
+  return null;
 }
 
 function canonicalize(input: string): string {
@@ -120,6 +142,39 @@ const laneBreakdownSchema = z.object({
   shadowOnly: z.boolean(),
 }).strict();
 
+const whyRecommendedLaneSchema = laneBreakdownSchema.extend({
+  evidenceTypes: z.array(z.string().min(1)),
+  evidenceCount: z.number().int().nonnegative(),
+}).strict();
+
+const whyRecommendedSchema = z.object({
+  reason: z.string().min(1),
+  dominantLane: AdvisorLaneSchema.nullable(),
+  topLanes: z.array(whyRecommendedLaneSchema),
+  matchedSkillFeatures: z.array(z.object({
+    lane: AdvisorLaneSchema,
+    feature: z.string().min(1),
+  }).strict()),
+}).strict();
+
+const semanticLaneHealthSchema = z.object({
+  activeEmbedder: z.object({
+    name: z.string().min(1),
+    dim: z.number().int().nonnegative(),
+    adapterDim: z.number().int().positive().nullable(),
+  }).strict().nullable(),
+  vectorCoverage: z.object({
+    embedded: z.number().int().nonnegative(),
+    total: z.number().int().nonnegative(),
+    ratio: z.number().min(0).max(1),
+  }).strict(),
+  dimMismatch: z.boolean(),
+  lastRefresh: z.string().nullable(),
+  disabledReason: z.string().nullable(),
+  laneEnabled: z.boolean(),
+  checkedAt: z.string().datetime(),
+}).strict();
+
 // NOTE (DEFER decision):
 // `AdvisorScoringOptions.affordances` (see `lib/scorer/types.ts:94`) is a
 // COMPILE-TIME-ONLY internal seam used by the scorer fusion path. Affordance
@@ -152,6 +207,8 @@ export const AdvisorRecommendationSchema = z.object({
   uncertainty: z.number().min(0).max(1),
   dominantLane: AdvisorLaneSchema.nullable(),
   laneBreakdown: z.array(laneBreakdownSchema).optional(),
+  why_recommended: whyRecommendedSchema.optional(),
+  matchedDocs: z.array(z.string().min(1)).max(3).optional(),
   redirectFrom: z.array(z.string().min(1)).optional(),
   redirectTo: z.string().min(1).optional(),
   status: z.enum(['active', 'deprecated', 'archived', 'future']).optional(),
@@ -198,6 +255,13 @@ export const AdvisorStatusInputSchema = z.object({
   // Bound workspaceRoot to allowed prefix set.
   workspaceRoot: BoundedWorkspaceRootSchema,
   maxMetadataFiles: z.number().int().positive().max(10_000).optional(),
+  includeSemanticHealth: z.boolean().optional(),
+  // Run a read-only SQLite quick_check on the artifact so genuine corruption
+  // downgrades freshness to stale (and advisor_rebuild repairs it). Off by
+  // default so the read-style advisor_recommend path pays no per-call probe;
+  // the advisor_status diagnostic and advisor_rebuild pre-read opt in.
+  checkArtifactIntegrity: z.boolean().optional(),
+  debug: z.boolean().optional(),
 }).strict();
 
 export const AdvisorStatusOutputSchema = z.object({
@@ -214,6 +278,7 @@ export const AdvisorStatusOutputSchema = z.object({
   lastScanAt: z.string().datetime().nullable(),
   skillCount: z.number().int().nonnegative(),
   laneWeights: z.record(AdvisorLaneSchema, z.number().min(0)),
+  semanticLaneHealth: semanticLaneHealthSchema.optional(),
   daemonPid: z.number().int().positive().optional(),
   errors: z.array(z.string()).optional(),
 }).strict();
@@ -242,6 +307,13 @@ export const AdvisorValidateInputSchema = z.object({
   // Bound workspaceRoot to allowed prefix set.
   workspaceRoot: BoundedWorkspaceRootSchema.optional(),
   skillSlug: z.string().min(1).nullable().optional(),
+  // Outcome events carry only skill ids + the accept/correct/ignore signal —
+  // never the prompt, scenario, or expected skill. This omission is deliberate
+  // prompt-safety: telemetry must not store routable prompt content. The
+  // consequence is that real misroutes cannot be harvested from telemetry into
+  // gold regression cases; gold cases are authored by hand, not reconstructed.
+  // Capturing prompts to close that gap would violate the prompt-safety
+  // invariant and is intentionally not supported.
   outcomeEvents: z.array(z.object({
     runtime: z.enum(['claude', 'copilot', 'codex']),
     outcome: z.enum(['accepted', 'corrected', 'ignored']),

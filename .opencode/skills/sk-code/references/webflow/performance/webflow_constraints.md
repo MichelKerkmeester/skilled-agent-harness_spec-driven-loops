@@ -1,6 +1,13 @@
 ---
 title: Webflow Performance Constraints
 description: Platform-imposed limitations on performance optimization and available workarounds.
+trigger_phrases:
+  - "webflow performance constraints"
+  - "typekit adobe fonts limitation"
+  - "jquery webflow js constraint"
+  - "platform imposed limitations"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Webflow Performance Constraints

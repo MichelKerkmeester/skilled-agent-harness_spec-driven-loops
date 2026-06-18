@@ -5,6 +5,8 @@ trigger_phrases:
   - "system skill advisor db path"
   - "skill-graph.sqlite advisor path"
   - "advisor database policy"
+importance_tier: "important"
+contextType: "implementation"
 ---
 
 # System Skill Advisor DB Path Policy

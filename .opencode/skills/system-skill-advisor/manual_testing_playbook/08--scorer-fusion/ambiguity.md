@@ -38,23 +38,23 @@ Validate that `lib/scorer/ambiguity.ts` returns an ambiguous brief when the top 
 advisor_recommend({"prompt":"<ambiguous prompt from corpus>","options":{"topK":2,"includeAttribution":true}})
 ```
 
-2. Inspect the response for an `ambiguous: true` flag or equivalent ambiguity brief field.
-3. Record the top-1 and top-2 aggregate scores and confirm delta <= 0.05.
+2. Inspect the response: every member of the ambiguity cluster carries an `ambiguousWith` array listing the other members.
+3. Record the top-1/top-2 score AND confidence gaps - a candidate clusters when EITHER gap is <= 0.05 (score margin keeps ranking alignment; confidence margin catches near-tied confidence even when the score gap just exceeds 0.05).
 4. Cross-check behavior against scenario NC-004.
 
 ### Expected Signals
 
-- Response carries an explicit ambiguity signal when the top-2 delta <= 0.05.
+- Every cluster member carries `ambiguousWith` naming the other members when the score OR confidence gap is <= 0.05.
 - Both candidates are exposed (not hidden behind a single top-1).
 - Rendering path (for hook output) presents both candidates with lane attribution.
-- When delta > 0.05, ambiguity flag is absent and top-1 is singular.
+- When BOTH gaps exceed 0.05, no `ambiguousWith` tags appear and top-1 is singular.
 
 ### Failure Modes
 
 | Symptom | Detection | Action |
 | --- | --- | --- |
-| Ambiguity missed | Delta <= 0.05 but single top-1 returned | Inspect `ambiguity.ts` delta check. |
-| Ambiguity over-triggered | Delta > 0.05 flagged as ambiguous | Verify threshold constant. |
+| Ambiguity missed | Either gap <= 0.05 but no ambiguousWith tags | Inspect `ambiguity.ts` cluster check. |
+| Ambiguity over-triggered | Both gaps > 0.05 yet tags appear | Verify the two margin constants. |
 | Ambiguity hides top-1 | Both candidates suppressed | Rendering bug. Confirm `lib/render.ts`. |
 
 ---

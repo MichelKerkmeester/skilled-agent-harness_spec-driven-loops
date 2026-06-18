@@ -1,0 +1,2212 @@
+{
+  "profile": {
+    "id": "kimi-k2.7-frameworks",
+    "mode": "framework-bakeoff",
+    "version": "1.0"
+  },
+  "rows": [
+    {
+      "cellId": "cli-opencode::k2p7::default::rcaf::t3-lower-bound",
+      "mode": "framework-bakeoff",
+      "model": "k2p7",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "rcaf",
+      "fixture": "t3-lower-bound",
+      "sample": 0,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 11,
+      "assertions_total": 11,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 48,
+      "output_chars": 242,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "empty array inserts at 0",
+          "ok": true
+        },
+        {
+          "name": "insert at front",
+          "ok": true
+        },
+        {
+          "name": "insert in middle",
+          "ok": true
+        },
+        {
+          "name": "insert past end",
+          "ok": true
+        },
+        {
+          "name": "leftmost of duplicate run",
+          "ok": true
+        },
+        {
+          "name": "target below all elements",
+          "ok": true
+        },
+        {
+          "name": "target equals first element",
+          "ok": true
+        },
+        {
+          "name": "target equals last element",
+          "ok": true
+        },
+        {
+          "name": "single element, target above",
+          "ok": true
+        },
+        {
+          "name": "single element, target below",
+          "ok": true
+        },
+        {
+          "name": "all duplicates equal target returns 0",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 11829,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::k2p7::default::rcaf::t3-lower-bound",
+      "mode": "framework-bakeoff",
+      "model": "k2p7",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "rcaf",
+      "fixture": "t3-lower-bound",
+      "sample": 1,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 11,
+      "assertions_total": 11,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 48,
+      "output_chars": 266,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "empty array inserts at 0",
+          "ok": true
+        },
+        {
+          "name": "insert at front",
+          "ok": true
+        },
+        {
+          "name": "insert in middle",
+          "ok": true
+        },
+        {
+          "name": "insert past end",
+          "ok": true
+        },
+        {
+          "name": "leftmost of duplicate run",
+          "ok": true
+        },
+        {
+          "name": "target below all elements",
+          "ok": true
+        },
+        {
+          "name": "target equals first element",
+          "ok": true
+        },
+        {
+          "name": "target equals last element",
+          "ok": true
+        },
+        {
+          "name": "single element, target above",
+          "ok": true
+        },
+        {
+          "name": "single element, target below",
+          "ok": true
+        },
+        {
+          "name": "all duplicates equal target returns 0",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 8100,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::k2p7::default::rcaf::t3-lower-bound",
+      "mode": "framework-bakeoff",
+      "model": "k2p7",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "rcaf",
+      "fixture": "t3-lower-bound",
+      "sample": 2,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 11,
+      "assertions_total": 11,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 48,
+      "output_chars": 242,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "empty array inserts at 0",
+          "ok": true
+        },
+        {
+          "name": "insert at front",
+          "ok": true
+        },
+        {
+          "name": "insert in middle",
+          "ok": true
+        },
+        {
+          "name": "insert past end",
+          "ok": true
+        },
+        {
+          "name": "leftmost of duplicate run",
+          "ok": true
+        },
+        {
+          "name": "target below all elements",
+          "ok": true
+        },
+        {
+          "name": "target equals first element",
+          "ok": true
+        },
+        {
+          "name": "target equals last element",
+          "ok": true
+        },
+        {
+          "name": "single element, target above",
+          "ok": true
+        },
+        {
+          "name": "single element, target below",
+          "ok": true
+        },
+        {
+          "name": "all duplicates equal target returns 0",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 6034,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::k2p7::default::rcaf::t3-compare-versions",
+      "mode": "framework-bakeoff",
+      "model": "k2p7",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "rcaf",
+      "fixture": "t3-compare-versions",
+      "sample": 0,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 12,
+      "assertions_total": 12,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 203,
+      "output_chars": 1169,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "identical versions are equal",
+          "ok": true
+        },
+        {
+          "name": "major dominates",
+          "ok": true
+        },
+        {
+          "name": "patch numeric not lexical",
+          "ok": true
+        },
+        {
+          "name": "release outranks prerelease",
+          "ok": true
+        },
+        {
+          "name": "alpha before beta",
+          "ok": true
+        },
+        {
+          "name": "minor field decides",
+          "ok": true
+        },
+        {
+          "name": "prerelease lower than release",
+          "ok": true
+        },
+        {
+          "name": "numeric prerelease identifiers numeric order",
+          "ok": true
+        },
+        {
+          "name": "numeric identifier ranks below alphanumeric",
+          "ok": true
+        },
+        {
+          "name": "alpha.1 before alpha.beta",
+          "ok": true
+        },
+        {
+          "name": "fewer prerelease identifiers ranks lower",
+          "ok": true
+        },
+        {
+          "name": "numeric prerelease compared numerically",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 75258,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::k2p7::default::rcaf::t3-compare-versions",
+      "mode": "framework-bakeoff",
+      "model": "k2p7",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "rcaf",
+      "fixture": "t3-compare-versions",
+      "sample": 1,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 12,
+      "assertions_total": 12,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 202,
+      "output_chars": 1140,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "identical versions are equal",
+          "ok": true
+        },
+        {
+          "name": "major dominates",
+          "ok": true
+        },
+        {
+          "name": "patch numeric not lexical",
+          "ok": true
+        },
+        {
+          "name": "release outranks prerelease",
+          "ok": true
+        },
+        {
+          "name": "alpha before beta",
+          "ok": true
+        },
+        {
+          "name": "minor field decides",
+          "ok": true
+        },
+        {
+          "name": "prerelease lower than release",
+          "ok": true
+        },
+        {
+          "name": "numeric prerelease identifiers numeric order",
+          "ok": true
+        },
+        {
+          "name": "numeric identifier ranks below alphanumeric",
+          "ok": true
+        },
+        {
+          "name": "alpha.1 before alpha.beta",
+          "ok": true
+        },
+        {
+          "name": "fewer prerelease identifiers ranks lower",
+          "ok": true
+        },
+        {
+          "name": "numeric prerelease compared numerically",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 73472,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::k2p7::default::rcaf::t3-compare-versions",
+      "mode": "framework-bakeoff",
+      "model": "k2p7",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "rcaf",
+      "fixture": "t3-compare-versions",
+      "sample": 2,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 12,
+      "assertions_total": 12,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 206,
+      "output_chars": 1271,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "identical versions are equal",
+          "ok": true
+        },
+        {
+          "name": "major dominates",
+          "ok": true
+        },
+        {
+          "name": "patch numeric not lexical",
+          "ok": true
+        },
+        {
+          "name": "release outranks prerelease",
+          "ok": true
+        },
+        {
+          "name": "alpha before beta",
+          "ok": true
+        },
+        {
+          "name": "minor field decides",
+          "ok": true
+        },
+        {
+          "name": "prerelease lower than release",
+          "ok": true
+        },
+        {
+          "name": "numeric prerelease identifiers numeric order",
+          "ok": true
+        },
+        {
+          "name": "numeric identifier ranks below alphanumeric",
+          "ok": true
+        },
+        {
+          "name": "alpha.1 before alpha.beta",
+          "ok": true
+        },
+        {
+          "name": "fewer prerelease identifiers ranks lower",
+          "ok": true
+        },
+        {
+          "name": "numeric prerelease compared numerically",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 27314,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::k2p7::default::race::t3-lower-bound",
+      "mode": "framework-bakeoff",
+      "model": "k2p7",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "race",
+      "fixture": "t3-lower-bound",
+      "sample": 0,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 11,
+      "assertions_total": 11,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 48,
+      "output_chars": 266,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "empty array inserts at 0",
+          "ok": true
+        },
+        {
+          "name": "insert at front",
+          "ok": true
+        },
+        {
+          "name": "insert in middle",
+          "ok": true
+        },
+        {
+          "name": "insert past end",
+          "ok": true
+        },
+        {
+          "name": "leftmost of duplicate run",
+          "ok": true
+        },
+        {
+          "name": "target below all elements",
+          "ok": true
+        },
+        {
+          "name": "target equals first element",
+          "ok": true
+        },
+        {
+          "name": "target equals last element",
+          "ok": true
+        },
+        {
+          "name": "single element, target above",
+          "ok": true
+        },
+        {
+          "name": "single element, target below",
+          "ok": true
+        },
+        {
+          "name": "all duplicates equal target returns 0",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 7250,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::k2p7::default::race::t3-lower-bound",
+      "mode": "framework-bakeoff",
+      "model": "k2p7",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "race",
+      "fixture": "t3-lower-bound",
+      "sample": 1,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 11,
+      "assertions_total": 11,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 46,
+      "output_chars": 259,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "empty array inserts at 0",
+          "ok": true
+        },
+        {
+          "name": "insert at front",
+          "ok": true
+        },
+        {
+          "name": "insert in middle",
+          "ok": true
+        },
+        {
+          "name": "insert past end",
+          "ok": true
+        },
+        {
+          "name": "leftmost of duplicate run",
+          "ok": true
+        },
+        {
+          "name": "target below all elements",
+          "ok": true
+        },
+        {
+          "name": "target equals first element",
+          "ok": true
+        },
+        {
+          "name": "target equals last element",
+          "ok": true
+        },
+        {
+          "name": "single element, target above",
+          "ok": true
+        },
+        {
+          "name": "single element, target below",
+          "ok": true
+        },
+        {
+          "name": "all duplicates equal target returns 0",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 5120,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::k2p7::default::race::t3-lower-bound",
+      "mode": "framework-bakeoff",
+      "model": "k2p7",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "race",
+      "fixture": "t3-lower-bound",
+      "sample": 2,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 11,
+      "assertions_total": 11,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 48,
+      "output_chars": 242,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "empty array inserts at 0",
+          "ok": true
+        },
+        {
+          "name": "insert at front",
+          "ok": true
+        },
+        {
+          "name": "insert in middle",
+          "ok": true
+        },
+        {
+          "name": "insert past end",
+          "ok": true
+        },
+        {
+          "name": "leftmost of duplicate run",
+          "ok": true
+        },
+        {
+          "name": "target below all elements",
+          "ok": true
+        },
+        {
+          "name": "target equals first element",
+          "ok": true
+        },
+        {
+          "name": "target equals last element",
+          "ok": true
+        },
+        {
+          "name": "single element, target above",
+          "ok": true
+        },
+        {
+          "name": "single element, target below",
+          "ok": true
+        },
+        {
+          "name": "all duplicates equal target returns 0",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 12668,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::k2p7::default::race::t3-compare-versions",
+      "mode": "framework-bakeoff",
+      "model": "k2p7",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "race",
+      "fixture": "t3-compare-versions",
+      "sample": 0,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 12,
+      "assertions_total": 12,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 211,
+      "output_chars": 1356,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "identical versions are equal",
+          "ok": true
+        },
+        {
+          "name": "major dominates",
+          "ok": true
+        },
+        {
+          "name": "patch numeric not lexical",
+          "ok": true
+        },
+        {
+          "name": "release outranks prerelease",
+          "ok": true
+        },
+        {
+          "name": "alpha before beta",
+          "ok": true
+        },
+        {
+          "name": "minor field decides",
+          "ok": true
+        },
+        {
+          "name": "prerelease lower than release",
+          "ok": true
+        },
+        {
+          "name": "numeric prerelease identifiers numeric order",
+          "ok": true
+        },
+        {
+          "name": "numeric identifier ranks below alphanumeric",
+          "ok": true
+        },
+        {
+          "name": "alpha.1 before alpha.beta",
+          "ok": true
+        },
+        {
+          "name": "fewer prerelease identifiers ranks lower",
+          "ok": true
+        },
+        {
+          "name": "numeric prerelease compared numerically",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 30145,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::k2p7::default::race::t3-compare-versions",
+      "mode": "framework-bakeoff",
+      "model": "k2p7",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "race",
+      "fixture": "t3-compare-versions",
+      "sample": 1,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 12,
+      "assertions_total": 12,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 242,
+      "output_chars": 1434,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "identical versions are equal",
+          "ok": true
+        },
+        {
+          "name": "major dominates",
+          "ok": true
+        },
+        {
+          "name": "patch numeric not lexical",
+          "ok": true
+        },
+        {
+          "name": "release outranks prerelease",
+          "ok": true
+        },
+        {
+          "name": "alpha before beta",
+          "ok": true
+        },
+        {
+          "name": "minor field decides",
+          "ok": true
+        },
+        {
+          "name": "prerelease lower than release",
+          "ok": true
+        },
+        {
+          "name": "numeric prerelease identifiers numeric order",
+          "ok": true
+        },
+        {
+          "name": "numeric identifier ranks below alphanumeric",
+          "ok": true
+        },
+        {
+          "name": "alpha.1 before alpha.beta",
+          "ok": true
+        },
+        {
+          "name": "fewer prerelease identifiers ranks lower",
+          "ok": true
+        },
+        {
+          "name": "numeric prerelease compared numerically",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 96935,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::k2p7::default::race::t3-compare-versions",
+      "mode": "framework-bakeoff",
+      "model": "k2p7",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "race",
+      "fixture": "t3-compare-versions",
+      "sample": 2,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 12,
+      "assertions_total": 12,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 199,
+      "output_chars": 1236,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "identical versions are equal",
+          "ok": true
+        },
+        {
+          "name": "major dominates",
+          "ok": true
+        },
+        {
+          "name": "patch numeric not lexical",
+          "ok": true
+        },
+        {
+          "name": "release outranks prerelease",
+          "ok": true
+        },
+        {
+          "name": "alpha before beta",
+          "ok": true
+        },
+        {
+          "name": "minor field decides",
+          "ok": true
+        },
+        {
+          "name": "prerelease lower than release",
+          "ok": true
+        },
+        {
+          "name": "numeric prerelease identifiers numeric order",
+          "ok": true
+        },
+        {
+          "name": "numeric identifier ranks below alphanumeric",
+          "ok": true
+        },
+        {
+          "name": "alpha.1 before alpha.beta",
+          "ok": true
+        },
+        {
+          "name": "fewer prerelease identifiers ranks lower",
+          "ok": true
+        },
+        {
+          "name": "numeric prerelease compared numerically",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 14292,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::k2p7::default::cidi::t3-lower-bound",
+      "mode": "framework-bakeoff",
+      "model": "k2p7",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "cidi",
+      "fixture": "t3-lower-bound",
+      "sample": 0,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 11,
+      "assertions_total": 11,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 46,
+      "output_chars": 227,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "empty array inserts at 0",
+          "ok": true
+        },
+        {
+          "name": "insert at front",
+          "ok": true
+        },
+        {
+          "name": "insert in middle",
+          "ok": true
+        },
+        {
+          "name": "insert past end",
+          "ok": true
+        },
+        {
+          "name": "leftmost of duplicate run",
+          "ok": true
+        },
+        {
+          "name": "target below all elements",
+          "ok": true
+        },
+        {
+          "name": "target equals first element",
+          "ok": true
+        },
+        {
+          "name": "target equals last element",
+          "ok": true
+        },
+        {
+          "name": "single element, target above",
+          "ok": true
+        },
+        {
+          "name": "single element, target below",
+          "ok": true
+        },
+        {
+          "name": "all duplicates equal target returns 0",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 8098,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::k2p7::default::cidi::t3-lower-bound",
+      "mode": "framework-bakeoff",
+      "model": "k2p7",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "cidi",
+      "fixture": "t3-lower-bound",
+      "sample": 1,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 11,
+      "assertions_total": 11,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 48,
+      "output_chars": 280,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "empty array inserts at 0",
+          "ok": true
+        },
+        {
+          "name": "insert at front",
+          "ok": true
+        },
+        {
+          "name": "insert in middle",
+          "ok": true
+        },
+        {
+          "name": "insert past end",
+          "ok": true
+        },
+        {
+          "name": "leftmost of duplicate run",
+          "ok": true
+        },
+        {
+          "name": "target below all elements",
+          "ok": true
+        },
+        {
+          "name": "target equals first element",
+          "ok": true
+        },
+        {
+          "name": "target equals last element",
+          "ok": true
+        },
+        {
+          "name": "single element, target above",
+          "ok": true
+        },
+        {
+          "name": "single element, target below",
+          "ok": true
+        },
+        {
+          "name": "all duplicates equal target returns 0",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 8647,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::k2p7::default::cidi::t3-lower-bound",
+      "mode": "framework-bakeoff",
+      "model": "k2p7",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "cidi",
+      "fixture": "t3-lower-bound",
+      "sample": 2,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 11,
+      "assertions_total": 11,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 48,
+      "output_chars": 266,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "empty array inserts at 0",
+          "ok": true
+        },
+        {
+          "name": "insert at front",
+          "ok": true
+        },
+        {
+          "name": "insert in middle",
+          "ok": true
+        },
+        {
+          "name": "insert past end",
+          "ok": true
+        },
+        {
+          "name": "leftmost of duplicate run",
+          "ok": true
+        },
+        {
+          "name": "target below all elements",
+          "ok": true
+        },
+        {
+          "name": "target equals first element",
+          "ok": true
+        },
+        {
+          "name": "target equals last element",
+          "ok": true
+        },
+        {
+          "name": "single element, target above",
+          "ok": true
+        },
+        {
+          "name": "single element, target below",
+          "ok": true
+        },
+        {
+          "name": "all duplicates equal target returns 0",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 10522,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::k2p7::default::cidi::t3-compare-versions",
+      "mode": "framework-bakeoff",
+      "model": "k2p7",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "cidi",
+      "fixture": "t3-compare-versions",
+      "sample": 0,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 12,
+      "assertions_total": 12,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 197,
+      "output_chars": 1103,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "identical versions are equal",
+          "ok": true
+        },
+        {
+          "name": "major dominates",
+          "ok": true
+        },
+        {
+          "name": "patch numeric not lexical",
+          "ok": true
+        },
+        {
+          "name": "release outranks prerelease",
+          "ok": true
+        },
+        {
+          "name": "alpha before beta",
+          "ok": true
+        },
+        {
+          "name": "minor field decides",
+          "ok": true
+        },
+        {
+          "name": "prerelease lower than release",
+          "ok": true
+        },
+        {
+          "name": "numeric prerelease identifiers numeric order",
+          "ok": true
+        },
+        {
+          "name": "numeric identifier ranks below alphanumeric",
+          "ok": true
+        },
+        {
+          "name": "alpha.1 before alpha.beta",
+          "ok": true
+        },
+        {
+          "name": "fewer prerelease identifiers ranks lower",
+          "ok": true
+        },
+        {
+          "name": "numeric prerelease compared numerically",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 54415,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::k2p7::default::cidi::t3-compare-versions",
+      "mode": "framework-bakeoff",
+      "model": "k2p7",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "cidi",
+      "fixture": "t3-compare-versions",
+      "sample": 1,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 12,
+      "assertions_total": 12,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 202,
+      "output_chars": 1321,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "identical versions are equal",
+          "ok": true
+        },
+        {
+          "name": "major dominates",
+          "ok": true
+        },
+        {
+          "name": "patch numeric not lexical",
+          "ok": true
+        },
+        {
+          "name": "release outranks prerelease",
+          "ok": true
+        },
+        {
+          "name": "alpha before beta",
+          "ok": true
+        },
+        {
+          "name": "minor field decides",
+          "ok": true
+        },
+        {
+          "name": "prerelease lower than release",
+          "ok": true
+        },
+        {
+          "name": "numeric prerelease identifiers numeric order",
+          "ok": true
+        },
+        {
+          "name": "numeric identifier ranks below alphanumeric",
+          "ok": true
+        },
+        {
+          "name": "alpha.1 before alpha.beta",
+          "ok": true
+        },
+        {
+          "name": "fewer prerelease identifiers ranks lower",
+          "ok": true
+        },
+        {
+          "name": "numeric prerelease compared numerically",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 52574,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::k2p7::default::cidi::t3-compare-versions",
+      "mode": "framework-bakeoff",
+      "model": "k2p7",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "cidi",
+      "fixture": "t3-compare-versions",
+      "sample": 2,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 12,
+      "assertions_total": 12,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 212,
+      "output_chars": 1275,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "identical versions are equal",
+          "ok": true
+        },
+        {
+          "name": "major dominates",
+          "ok": true
+        },
+        {
+          "name": "patch numeric not lexical",
+          "ok": true
+        },
+        {
+          "name": "release outranks prerelease",
+          "ok": true
+        },
+        {
+          "name": "alpha before beta",
+          "ok": true
+        },
+        {
+          "name": "minor field decides",
+          "ok": true
+        },
+        {
+          "name": "prerelease lower than release",
+          "ok": true
+        },
+        {
+          "name": "numeric prerelease identifiers numeric order",
+          "ok": true
+        },
+        {
+          "name": "numeric identifier ranks below alphanumeric",
+          "ok": true
+        },
+        {
+          "name": "alpha.1 before alpha.beta",
+          "ok": true
+        },
+        {
+          "name": "fewer prerelease identifiers ranks lower",
+          "ok": true
+        },
+        {
+          "name": "numeric prerelease compared numerically",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 55593,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::k2p7::default::tidd-ec::t3-lower-bound",
+      "mode": "framework-bakeoff",
+      "model": "k2p7",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "tidd-ec",
+      "fixture": "t3-lower-bound",
+      "sample": 0,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 11,
+      "assertions_total": 11,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 46,
+      "output_chars": 249,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "empty array inserts at 0",
+          "ok": true
+        },
+        {
+          "name": "insert at front",
+          "ok": true
+        },
+        {
+          "name": "insert in middle",
+          "ok": true
+        },
+        {
+          "name": "insert past end",
+          "ok": true
+        },
+        {
+          "name": "leftmost of duplicate run",
+          "ok": true
+        },
+        {
+          "name": "target below all elements",
+          "ok": true
+        },
+        {
+          "name": "target equals first element",
+          "ok": true
+        },
+        {
+          "name": "target equals last element",
+          "ok": true
+        },
+        {
+          "name": "single element, target above",
+          "ok": true
+        },
+        {
+          "name": "single element, target below",
+          "ok": true
+        },
+        {
+          "name": "all duplicates equal target returns 0",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 16359,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::k2p7::default::tidd-ec::t3-lower-bound",
+      "mode": "framework-bakeoff",
+      "model": "k2p7",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "tidd-ec",
+      "fixture": "t3-lower-bound",
+      "sample": 1,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 11,
+      "assertions_total": 11,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 48,
+      "output_chars": 280,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "empty array inserts at 0",
+          "ok": true
+        },
+        {
+          "name": "insert at front",
+          "ok": true
+        },
+        {
+          "name": "insert in middle",
+          "ok": true
+        },
+        {
+          "name": "insert past end",
+          "ok": true
+        },
+        {
+          "name": "leftmost of duplicate run",
+          "ok": true
+        },
+        {
+          "name": "target below all elements",
+          "ok": true
+        },
+        {
+          "name": "target equals first element",
+          "ok": true
+        },
+        {
+          "name": "target equals last element",
+          "ok": true
+        },
+        {
+          "name": "single element, target above",
+          "ok": true
+        },
+        {
+          "name": "single element, target below",
+          "ok": true
+        },
+        {
+          "name": "all duplicates equal target returns 0",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 12299,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::k2p7::default::tidd-ec::t3-lower-bound",
+      "mode": "framework-bakeoff",
+      "model": "k2p7",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "tidd-ec",
+      "fixture": "t3-lower-bound",
+      "sample": 2,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 11,
+      "assertions_total": 11,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 48,
+      "output_chars": 242,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "empty array inserts at 0",
+          "ok": true
+        },
+        {
+          "name": "insert at front",
+          "ok": true
+        },
+        {
+          "name": "insert in middle",
+          "ok": true
+        },
+        {
+          "name": "insert past end",
+          "ok": true
+        },
+        {
+          "name": "leftmost of duplicate run",
+          "ok": true
+        },
+        {
+          "name": "target below all elements",
+          "ok": true
+        },
+        {
+          "name": "target equals first element",
+          "ok": true
+        },
+        {
+          "name": "target equals last element",
+          "ok": true
+        },
+        {
+          "name": "single element, target above",
+          "ok": true
+        },
+        {
+          "name": "single element, target below",
+          "ok": true
+        },
+        {
+          "name": "all duplicates equal target returns 0",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 5669,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::k2p7::default::tidd-ec::t3-compare-versions",
+      "mode": "framework-bakeoff",
+      "model": "k2p7",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "tidd-ec",
+      "fixture": "t3-compare-versions",
+      "sample": 0,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 12,
+      "assertions_total": 12,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 239,
+      "output_chars": 1340,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "identical versions are equal",
+          "ok": true
+        },
+        {
+          "name": "major dominates",
+          "ok": true
+        },
+        {
+          "name": "patch numeric not lexical",
+          "ok": true
+        },
+        {
+          "name": "release outranks prerelease",
+          "ok": true
+        },
+        {
+          "name": "alpha before beta",
+          "ok": true
+        },
+        {
+          "name": "minor field decides",
+          "ok": true
+        },
+        {
+          "name": "prerelease lower than release",
+          "ok": true
+        },
+        {
+          "name": "numeric prerelease identifiers numeric order",
+          "ok": true
+        },
+        {
+          "name": "numeric identifier ranks below alphanumeric",
+          "ok": true
+        },
+        {
+          "name": "alpha.1 before alpha.beta",
+          "ok": true
+        },
+        {
+          "name": "fewer prerelease identifiers ranks lower",
+          "ok": true
+        },
+        {
+          "name": "numeric prerelease compared numerically",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 100246,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::k2p7::default::tidd-ec::t3-compare-versions",
+      "mode": "framework-bakeoff",
+      "model": "k2p7",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "tidd-ec",
+      "fixture": "t3-compare-versions",
+      "sample": 1,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 12,
+      "assertions_total": 12,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 226,
+      "output_chars": 1591,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "identical versions are equal",
+          "ok": true
+        },
+        {
+          "name": "major dominates",
+          "ok": true
+        },
+        {
+          "name": "patch numeric not lexical",
+          "ok": true
+        },
+        {
+          "name": "release outranks prerelease",
+          "ok": true
+        },
+        {
+          "name": "alpha before beta",
+          "ok": true
+        },
+        {
+          "name": "minor field decides",
+          "ok": true
+        },
+        {
+          "name": "prerelease lower than release",
+          "ok": true
+        },
+        {
+          "name": "numeric prerelease identifiers numeric order",
+          "ok": true
+        },
+        {
+          "name": "numeric identifier ranks below alphanumeric",
+          "ok": true
+        },
+        {
+          "name": "alpha.1 before alpha.beta",
+          "ok": true
+        },
+        {
+          "name": "fewer prerelease identifiers ranks lower",
+          "ok": true
+        },
+        {
+          "name": "numeric prerelease compared numerically",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 98148,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::k2p7::default::tidd-ec::t3-compare-versions",
+      "mode": "framework-bakeoff",
+      "model": "k2p7",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "tidd-ec",
+      "fixture": "t3-compare-versions",
+      "sample": 2,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 12,
+      "assertions_total": 12,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 228,
+      "output_chars": 1360,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "identical versions are equal",
+          "ok": true
+        },
+        {
+          "name": "major dominates",
+          "ok": true
+        },
+        {
+          "name": "patch numeric not lexical",
+          "ok": true
+        },
+        {
+          "name": "release outranks prerelease",
+          "ok": true
+        },
+        {
+          "name": "alpha before beta",
+          "ok": true
+        },
+        {
+          "name": "minor field decides",
+          "ok": true
+        },
+        {
+          "name": "prerelease lower than release",
+          "ok": true
+        },
+        {
+          "name": "numeric prerelease identifiers numeric order",
+          "ok": true
+        },
+        {
+          "name": "numeric identifier ranks below alphanumeric",
+          "ok": true
+        },
+        {
+          "name": "alpha.1 before alpha.beta",
+          "ok": true
+        },
+        {
+          "name": "fewer prerelease identifiers ranks lower",
+          "ok": true
+        },
+        {
+          "name": "numeric prerelease compared numerically",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 48012,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::k2p7::default::costar::t3-lower-bound",
+      "mode": "framework-bakeoff",
+      "model": "k2p7",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "costar",
+      "fixture": "t3-lower-bound",
+      "sample": 0,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 11,
+      "assertions_total": 11,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 46,
+      "output_chars": 227,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "empty array inserts at 0",
+          "ok": true
+        },
+        {
+          "name": "insert at front",
+          "ok": true
+        },
+        {
+          "name": "insert in middle",
+          "ok": true
+        },
+        {
+          "name": "insert past end",
+          "ok": true
+        },
+        {
+          "name": "leftmost of duplicate run",
+          "ok": true
+        },
+        {
+          "name": "target below all elements",
+          "ok": true
+        },
+        {
+          "name": "target equals first element",
+          "ok": true
+        },
+        {
+          "name": "target equals last element",
+          "ok": true
+        },
+        {
+          "name": "single element, target above",
+          "ok": true
+        },
+        {
+          "name": "single element, target below",
+          "ok": true
+        },
+        {
+          "name": "all duplicates equal target returns 0",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 8582,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::k2p7::default::costar::t3-lower-bound",
+      "mode": "framework-bakeoff",
+      "model": "k2p7",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "costar",
+      "fixture": "t3-lower-bound",
+      "sample": 1,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 11,
+      "assertions_total": 11,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 46,
+      "output_chars": 265,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "empty array inserts at 0",
+          "ok": true
+        },
+        {
+          "name": "insert at front",
+          "ok": true
+        },
+        {
+          "name": "insert in middle",
+          "ok": true
+        },
+        {
+          "name": "insert past end",
+          "ok": true
+        },
+        {
+          "name": "leftmost of duplicate run",
+          "ok": true
+        },
+        {
+          "name": "target below all elements",
+          "ok": true
+        },
+        {
+          "name": "target equals first element",
+          "ok": true
+        },
+        {
+          "name": "target equals last element",
+          "ok": true
+        },
+        {
+          "name": "single element, target above",
+          "ok": true
+        },
+        {
+          "name": "single element, target below",
+          "ok": true
+        },
+        {
+          "name": "all duplicates equal target returns 0",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 8998,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::k2p7::default::costar::t3-lower-bound",
+      "mode": "framework-bakeoff",
+      "model": "k2p7",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "costar",
+      "fixture": "t3-lower-bound",
+      "sample": 2,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 11,
+      "assertions_total": 11,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 48,
+      "output_chars": 280,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "empty array inserts at 0",
+          "ok": true
+        },
+        {
+          "name": "insert at front",
+          "ok": true
+        },
+        {
+          "name": "insert in middle",
+          "ok": true
+        },
+        {
+          "name": "insert past end",
+          "ok": true
+        },
+        {
+          "name": "leftmost of duplicate run",
+          "ok": true
+        },
+        {
+          "name": "target below all elements",
+          "ok": true
+        },
+        {
+          "name": "target equals first element",
+          "ok": true
+        },
+        {
+          "name": "target equals last element",
+          "ok": true
+        },
+        {
+          "name": "single element, target above",
+          "ok": true
+        },
+        {
+          "name": "single element, target below",
+          "ok": true
+        },
+        {
+          "name": "all duplicates equal target returns 0",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 5926,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::k2p7::default::costar::t3-compare-versions",
+      "mode": "framework-bakeoff",
+      "model": "k2p7",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "costar",
+      "fixture": "t3-compare-versions",
+      "sample": 0,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 12,
+      "assertions_total": 12,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 210,
+      "output_chars": 1288,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "identical versions are equal",
+          "ok": true
+        },
+        {
+          "name": "major dominates",
+          "ok": true
+        },
+        {
+          "name": "patch numeric not lexical",
+          "ok": true
+        },
+        {
+          "name": "release outranks prerelease",
+          "ok": true
+        },
+        {
+          "name": "alpha before beta",
+          "ok": true
+        },
+        {
+          "name": "minor field decides",
+          "ok": true
+        },
+        {
+          "name": "prerelease lower than release",
+          "ok": true
+        },
+        {
+          "name": "numeric prerelease identifiers numeric order",
+          "ok": true
+        },
+        {
+          "name": "numeric identifier ranks below alphanumeric",
+          "ok": true
+        },
+        {
+          "name": "alpha.1 before alpha.beta",
+          "ok": true
+        },
+        {
+          "name": "fewer prerelease identifiers ranks lower",
+          "ok": true
+        },
+        {
+          "name": "numeric prerelease compared numerically",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 61486,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::k2p7::default::costar::t3-compare-versions",
+      "mode": "framework-bakeoff",
+      "model": "k2p7",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "costar",
+      "fixture": "t3-compare-versions",
+      "sample": 1,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 12,
+      "assertions_total": 12,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 203,
+      "output_chars": 1182,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "identical versions are equal",
+          "ok": true
+        },
+        {
+          "name": "major dominates",
+          "ok": true
+        },
+        {
+          "name": "patch numeric not lexical",
+          "ok": true
+        },
+        {
+          "name": "release outranks prerelease",
+          "ok": true
+        },
+        {
+          "name": "alpha before beta",
+          "ok": true
+        },
+        {
+          "name": "minor field decides",
+          "ok": true
+        },
+        {
+          "name": "prerelease lower than release",
+          "ok": true
+        },
+        {
+          "name": "numeric prerelease identifiers numeric order",
+          "ok": true
+        },
+        {
+          "name": "numeric identifier ranks below alphanumeric",
+          "ok": true
+        },
+        {
+          "name": "alpha.1 before alpha.beta",
+          "ok": true
+        },
+        {
+          "name": "fewer prerelease identifiers ranks lower",
+          "ok": true
+        },
+        {
+          "name": "numeric prerelease compared numerically",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 85000,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::k2p7::default::costar::t3-compare-versions",
+      "mode": "framework-bakeoff",
+      "model": "k2p7",
+      "executor": "cli-opencode",
+      "variant": "default",
+      "framework": "costar",
+      "fixture": "t3-compare-versions",
+      "sample": 2,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 12,
+      "assertions_total": 12,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 198,
+      "output_chars": 1150,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "identical versions are equal",
+          "ok": true
+        },
+        {
+          "name": "major dominates",
+          "ok": true
+        },
+        {
+          "name": "patch numeric not lexical",
+          "ok": true
+        },
+        {
+          "name": "release outranks prerelease",
+          "ok": true
+        },
+        {
+          "name": "alpha before beta",
+          "ok": true
+        },
+        {
+          "name": "minor field decides",
+          "ok": true
+        },
+        {
+          "name": "prerelease lower than release",
+          "ok": true
+        },
+        {
+          "name": "numeric prerelease identifiers numeric order",
+          "ok": true
+        },
+        {
+          "name": "numeric identifier ranks below alphanumeric",
+          "ok": true
+        },
+        {
+          "name": "alpha.1 before alpha.beta",
+          "ok": true
+        },
+        {
+          "name": "fewer prerelease identifiers ranks lower",
+          "ok": true
+        },
+        {
+          "name": "numeric prerelease compared numerically",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 64726,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    }
+  ],
+  "meta": {
+    "axes": {
+      "models": 1,
+      "variants": 1,
+      "frameworks": 5,
+      "fixtures": 2,
+      "samples": 3
+    },
+    "cellCount": 10,
+    "sampleCount": 30,
+    "mock": false,
+    "generated_at": "2026-06-15T10:05:12.591Z"
+  }
+}

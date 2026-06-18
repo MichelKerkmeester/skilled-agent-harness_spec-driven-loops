@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The carousel slider was named and attributed specifically for testimonials (`testimonial.js`, `data-testimonial-slider`, `--testimonial-slide-x`, `__testimonialSliderCdnInit`, etc.). This prevented the same engine from being reused for other slider patterns without renaming collisions and conflicting injected styles.",
     "created_at": "2026-05-31T00:00:00Z",
-    "last_save_at": "2026-06-06T10:22:02.565Z",
+    "last_save_at": "2026-06-15T09:09:32.954Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

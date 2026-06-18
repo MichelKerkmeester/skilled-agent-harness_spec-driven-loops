@@ -1,0 +1,36 @@
+{
+  "findings": [
+    {
+      "id": "P2-001",
+      "severity": "P2",
+      "category": "correctness",
+      "file": "maintenance-marker.ts",
+      "line": 60,
+      "finding_class": "cosmetic",
+      "content_hash": "sha256:label-dup-accumulation",
+      "summary": "activeLabels accumulates duplicate entries without deduplication",
+      "status": "active",
+      "iteration": 1
+    },
+    {
+      "id": "P2-002",
+      "severity": "P2",
+      "category": "correctness",
+      "file": "maintenance-marker.ts",
+      "line": 73,
+      "finding_class": "cosmetic",
+      "content_hash": "sha256:label-before-count-decrement",
+      "summary": "Label removal precedes activeCount decrement in end()",
+      "status": "active",
+      "iteration": 1
+    }
+  ],
+  "totals": {
+    "p0": 0,
+    "p1": 0,
+    "p2": 2,
+    "total": 2
+  },
+  "dimensionsCovered": ["correctness"],
+  "dimensionsRemaining": ["security", "traceability", "maintainability"]
+}

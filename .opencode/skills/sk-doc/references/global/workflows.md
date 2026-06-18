@@ -1,6 +1,13 @@
 ---
 title: Document Quality Workflows - Mode 1 Reference
 description: Execution modes, validation patterns, and phase interactions for Mode 1 document quality workflows.
+trigger_phrases:
+  - "document quality workflows"
+  - "doc improvement modes"
+  - "validation first workflow"
+  - "mode one document quality"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Document Quality Workflows - Mode 1 Reference
@@ -21,7 +28,7 @@ Workflows define the execution patterns and operational modes for the markdown d
 - **Phase orchestration** - Sequential or independent phase execution
 - **Error handling** - Graceful degradation with clear error messages
 
-> **📍 Context**: This is a Level 3 reference file (loaded on-demand). For the complete progressive disclosure architecture, see [skill_creation.md § Progressive Disclosure](../skill_creation.md#progressive-disclosure).
+> **📍 Context**: This is a Level 3 reference file (loaded on-demand). For the complete progressive disclosure architecture, see [skill_creation/overview.md § Skill Structure System](../skill_creation/overview.md#3-skill-structure-system).
 
 This reference provides deep-dive technical guidance on execution modes, validation patterns, and workflow orchestration.
 
@@ -296,4 +303,4 @@ done
 
 ### Templates
 - [skill_md_template.md](../../assets/skill/skill_md_template.md) - SKILL.md file templates
-- [command_template.md](../../assets/command_template.md) - Command file templates
+- [command_template.md](../../assets/command/command_template.md) - Command file templates

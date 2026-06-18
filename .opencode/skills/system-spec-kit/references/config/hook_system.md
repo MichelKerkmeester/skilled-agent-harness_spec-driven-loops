@@ -1,6 +1,14 @@
 ---
 title: Hook System Reference
 description: Current hook registration, runtime vocabulary, lifecycle behavior, and fallback contracts for Spec Kit prompt-time and session hooks.
+trigger_phrases:
+  - "hook system reference"
+  - "hook registration matrix"
+  - "runtime hook vocabulary"
+  - "hook lifecycle behavior"
+  - "codex timeout fallback"
+importance_tier: important
+contextType: implementation
 ---
 
 # Hook System Reference
@@ -51,7 +59,7 @@ Use support names first, then map to the runtime-local surface below when wiring
 | Support | Claude / Codex / Copilot | OpenCode | Trigger / fallback |
 | --- | --- | --- | --- |
 | Prompt-time advisor | `UserPromptSubmit` | `experimental.chat.system.transform` | Runtime prompt hook; Copilot is NEXT-PROMPT freshness, so current prompt sees PRIOR turn's brief; fallback is explicit `skill_advisor.py` or advisor MCP tooling |
-| Session priming | `SessionStart` | `event` startup handlers | Runtime startup hook; fallback is `/spec_kit:resume` or `session_bootstrap()` |
+| Session priming | `SessionStart` | `event` startup handlers | Runtime startup hook; fallback is `/speckit:resume` or `session_bootstrap()` |
 | Compaction | `PreCompact` | `event` compact handlers / compact plugin | Runtime compaction event; fallback is resume ladder |
 | Session cleanup | `Stop` | `event` cleanup handlers | Runtime session-end event where supported; fallback is `/memory:save` |
 
@@ -100,10 +108,10 @@ Prompt hooks and lifecycle hooks are separate support. A runtime can support pro
 
 | Runtime | Prompt hook | Lifecycle hook | Compaction | Stop | Trigger / default | Manual fallback |
 | --- | --- | --- | --- | --- | --- | --- |
-| Claude | yes (`UserPromptSubmit`) | yes (`SessionStart`) | yes (`PreCompact`) | yes (`Stop`) | `.claude/settings.local.json` hook events | `/spec_kit:resume`, `/memory:save`, direct MCP tools |
-| Codex | yes (`UserPromptSubmit`) | yes (`SessionStart`, live only when `codex_hooks` and `hooks.json` are both present) | no | no Spec Kit cleanup hook | `[features].codex_hooks = true` plus user/workspace `hooks.json`; `.codex/settings.json` is template-only | `/spec_kit:resume`, `session_bootstrap()`, prompt-wrapper fallback |
-| Copilot | yes (file-based custom instructions; NEXT-PROMPT freshness; current prompt sees PRIOR turn's brief) | yes (`SessionStart` writer) | limited cache/writer path; no model-visible precompute injection | n/a | Copilot-supported writer scripts; see `mcp_server/hooks/copilot/README.md` | Managed instructions file or `/spec_kit:resume` |
-| OpenCode | yes (`experimental.chat.system.transform`) | yes (`event` startup handlers) | yes (`event` compact handlers / compact plugin) | yes (`event` cleanup handlers) | Plugin bridge and event handlers | `/spec_kit:resume`, direct MCP tools |
+| Claude | yes (`UserPromptSubmit`) | yes (`SessionStart`) | yes (`PreCompact`) | yes (`Stop`) | `.claude/settings.local.json` hook events | `/speckit:resume`, `/memory:save`, direct MCP tools |
+| Codex | yes (`UserPromptSubmit`) | yes (`SessionStart`, live only when `codex_hooks` and `hooks.json` are both present) | no | no Spec Kit cleanup hook | `[features].codex_hooks = true` plus user/workspace `hooks.json`; `.codex/settings.json` is template-only | `/speckit:resume`, `session_bootstrap()`, prompt-wrapper fallback |
+| Copilot | yes (file-based custom instructions; NEXT-PROMPT freshness; current prompt sees PRIOR turn's brief) | yes (`SessionStart` writer) | limited cache/writer path; no model-visible precompute injection | n/a | Copilot-supported writer scripts; see `mcp_server/hooks/copilot/README.md` | Managed instructions file or `/speckit:resume` |
+| OpenCode | yes (`experimental.chat.system.transform`) | yes (`event` startup handlers) | yes (`event` compact handlers / compact plugin) | yes (`event` cleanup handlers) | Plugin bridge and event handlers | `/speckit:resume`, direct MCP tools |
 
 ### Codex Timeout Fallback Semantics
 
@@ -113,7 +121,9 @@ Codex `UserPromptSubmit` uses `SPECKIT_CODEX_HOOK_TIMEOUT_MS` (default `3000`) f
 
 ## 9. CROSS-RUNTIME FALLBACK
 
-Claude Code uses native `UserPromptSubmit`, `SessionStart`, `PreCompact`, and `Stop` hooks. Copilot CLI uses Copilot-supported writer scripts that refresh the Spec Kit managed block in `$HOME/.copilot/copilot-instructions.md`; hook output remains `{}` with NEXT-PROMPT freshness semantics, so the current prompt sees the PRIOR turn's brief, and the registration contract is documented in `mcp_server/hooks/copilot/README.md`. Do not use the stale merged `.claude/settings.local.json` wrapper shape for Copilot. OpenCode uses plugin-based transport rather than shell wrappers: `.opencode/plugins/mk-skill-advisor.js` delivers prompt-time advisor briefs through `experimental.chat.system.transform`, while `.opencode/plugins/mk-code-graph.js` and plugin `event` handlers cover startup, compaction, readiness, and session cleanup. Codex CLI only reports live native-hook readiness when `[features].codex_hooks = true` is enabled in `~/.codex/config.toml` or equivalent launch flags and user/workspace `hooks.json` is wired; on `UserPromptSubmit` timeout, Codex returns a stale fallback marker (`stale:true`, `reason:"timeout-fallback"`) and logs a structured warning instead of silently serving cold-start context. Use `/spec_kit:resume` when hooks are unavailable or disabled. If automatic hook delivery is unavailable in any runtime, or the advisor hook path is intentionally disabled (`SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1`), fall back to the canonical operator path: start with `/spec_kit:resume`, rebuild packet continuity from `handover.md -> _memory.continuity -> spec docs`, then use `session_bootstrap()` or `session_resume()` only when you need lower-level structural health or merged recovery detail.
+Claude Code uses native `UserPromptSubmit`, `SessionStart`, `PreCompact`, and `Stop` hooks. Copilot CLI uses Copilot-supported writer scripts that refresh the Spec Kit managed block in `$HOME/.copilot/copilot-instructions.md`; hook output remains `{}` with NEXT-PROMPT freshness semantics, so the current prompt sees the PRIOR turn's brief, and the registration contract is documented in `mcp_server/hooks/copilot/README.md`. Do not use the stale merged `.claude/settings.local.json` wrapper shape for Copilot. OpenCode uses plugin-based transport rather than shell wrappers: `.opencode/plugins/mk-skill-advisor.js` delivers prompt-time advisor briefs through `experimental.chat.system.transform`, `.opencode/plugins/mk-spec-memory.js` bridges Spec Kit Memory tools through the warm daemon-backed spec-memory CLI, while `.opencode/plugins/mk-code-graph.js` (CLI-backed via its plugin bridge) and plugin `event` handlers cover startup, compaction, readiness, and session cleanup. Codex CLI only reports live native-hook readiness when `[features].codex_hooks = true` is enabled in `~/.codex/config.toml` or equivalent launch flags and user/workspace `hooks.json` is wired; on `UserPromptSubmit` timeout, Codex returns a stale fallback marker (`stale:true`, `reason:"timeout-fallback"`) and logs a structured warning instead of silently serving cold-start context. Use `/speckit:resume` when hooks are unavailable or disabled. If automatic hook delivery is unavailable in any runtime, or the advisor hook path is intentionally disabled (`SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1`), fall back to the canonical operator path: start with `/speckit:resume`, rebuild packet continuity from `handover.md -> _memory.continuity -> spec docs`, then use `session_bootstrap()` or `session_resume()` only when you need lower-level structural health or merged recovery detail.
+
+MCP remains the registered primary transport for all three daemons; the daemon-backed CLI shims (`.opencode/bin/spec-memory.cjs`, `.opencode/bin/code-index.cjs`, `.opencode/bin/skill-advisor.cjs`) are an additive dual-stack fallback over the same warm daemons. When a runtime's MCP tools are missing, fail to initialize, or return transport errors while the daemon is otherwise expected to be warm, hooks and operators route through the CLI in warm-only mode: probe the daemon IPC socket first and skip if absent — prompt-time paths must never cold-spawn a daemon — and treat exit `75` as retryable daemon/IPC unavailability rather than user error.
 
 ---
 
@@ -158,5 +168,14 @@ The same retrieval building blocks power both hook delivery and explicit recover
 1. `memory_match_triggers(prompt)` — Fast turn-start context
 2. `memory_context({ mode: "resume", profile: "resume" })` — Continuation and compaction recovery core
 3. `session_bootstrap()` / `session_resume()` — Session-oriented wrappers that layer health and structural context around resume retrieval
+
+---
+
+## 13. READ-ONLY GOVERNANCE DIAGNOSTICS
+
+Two passive governance checks fire from existing surfaces and do not change recall or write stored memory data:
+
+- `memory_health` includes `data.exclusionAudit`, derived from the hard-exclusion predicates exposed by `hybrid-search.ts`. `/doctor memory` reads that block through the existing health call and raises `hard_exclusion_risk` when deprecated-tier exclusions are risky or when an exclusion source is unclassified.
+- The tool-ownership map is generated from `TOOL_DEFINITIONS` and checked by the project pre-commit hook. Drift between `mcp_server/tests/fixtures/tool-ownership-map.json` and the live definitions blocks commits; the map and this document are outputs, never inputs to the ownership source of truth.
 
 ---

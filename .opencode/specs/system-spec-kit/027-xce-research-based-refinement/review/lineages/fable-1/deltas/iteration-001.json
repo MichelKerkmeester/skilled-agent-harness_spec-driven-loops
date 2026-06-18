@@ -1,0 +1,15 @@
+{
+  "iteration": 1,
+  "focus": "correctness",
+  "newFindingsRatio": 0.6,
+  "findingsNew": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 1
+  },
+  "findingRefs": [
+    "F001",
+    "F002",
+    "F003"
+  ]
+}

@@ -1,6 +1,14 @@
 ---
 title: Tool Catalog - Complete List of Available MCP Tools
 description: Reference catalog of 170+ tools across 7 MCP servers.
+trigger_phrases:
+  - "code mode tool catalog"
+  - "available mcp tools list"
+  - "search tools discovery"
+  - "tools per mcp server"
+  - "tool name lookup"
+importance_tier: normal
+contextType: general
 ---
 
 # Tool Catalog - Complete List of Available MCP Tools

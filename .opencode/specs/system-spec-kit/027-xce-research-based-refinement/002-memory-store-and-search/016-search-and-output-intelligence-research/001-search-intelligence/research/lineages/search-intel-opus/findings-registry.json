@@ -1,0 +1,31 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    "Q1: generic-query recall lift — simple-tier route skips channels + HyDE gated to deep/low-confidence; route generic/low-confidence queries to the deep expansion path",
+    "Q2: request-quality aggregation — replace AND-gate with top-dominant + margin-OR-ratio disjunction; compute qualityRatio over min(N,K)",
+    "Q3: 10->1 truncation — truncateToBudget greedy hard-break starves tail (hybrid-search.ts:2768); skip-don't-break + min-floor + summary-first",
+    "Q4: reranker — do NOT re-add a model reranker first; free cosine-primary top-N reorder, measure, then maybe LLM-judge on deep path only",
+    "Q5: FSRS cold-tier — leave as-is; cold crowding empirically near-inert; lowest priority",
+    "Q6: calibration — band non-monotonic in relevance (cosine only 40% weight); rebalance scorePrior + recalibrate against labeled set"
+  ],
+  "keyFindings": [
+    "Shared root cause: pipeline reads relative ranking signals (RRF magnitude, heuristic set-agreement) where it needs absolute relevance, then compounds with conservative AND-gates and hard truncations. Packet-015 fixed only the calibration-prior instance.",
+    "HyDE gate is 'deep + low-confidence queries only' (hyde.ts:6); simple-tier (<=3 terms) queries get channel-reduced routes (query-plan.ts:239) — recall machinery is suppressed exactly where it is most needed.",
+    "assessRequestQuality AND-gate (topScore>=0.7 AND qualityRatio>=0.6) lets a weak tail veto a strong top hit (confidence-scoring.ts:310-312).",
+    "truncateToBudget runs unconditionally at budget 4000 and hard-breaks on first overflow (hybrid-search.ts:1991,2768) — a single large top memory starves the tail -> count:1.",
+    "Cross-encoder reranker was an inert no-op before removal (stage3-rerank.ts:109-116); cheapest win is a cosine-primary reorder of top-N.",
+    "FSRS deprecated tier = 0.25x stability (4x faster decay); cold crowding near-inert; leave unchanged.",
+    "Confidence band caps at 0.88 and is non-monotonic in relevance: a 0.89 cosine isolated hit scores only 0.446 'medium' (confidence-scoring.ts:253-264).",
+    "The six fixes are coupled and must ship as one dependency-sequenced bundle: P3 floor -> P2 quality -> P1 recall -> P6 calibration -> P4 reorder -> (P5 no-op)."
+  ],
+  "ruledOutDirections": [
+    "Flags are off (they are ON; problem is per-query routing)",
+    "Embedding model too weak for short queries (channel-reduction explains symptom)",
+    "Gate request-quality on topScore only (keep margin-OR-ratio guard)",
+    "Dynamic token budget OFF disables truncation (it runs at default 4000)",
+    "stage4 per-tier state limits cause count:1 (stateLimitsApplied:false live)",
+    "Re-add cross-encoder/local reranker as first step (was inert, no lift evidence)",
+    "Retune cold-tier FSRS multipliers (cold crowding near-inert)",
+    "Raise 0.88 cap toward 1.0 (fix monotonicity + calibration instead)"
+  ]
+}

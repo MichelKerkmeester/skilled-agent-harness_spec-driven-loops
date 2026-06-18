@@ -1,6 +1,15 @@
 ---
 title: "Cross-AI Orchestration Patterns: Calling AI + Codex CLI"
 description: "Proven patterns for orchestrating Codex CLI from any AI assistant session, including implementation templates and practical considerations."
+trigger_phrases:
+  - "codex orchestration patterns"
+  - "codex generate review fix cycle"
+  - "codex background execution"
+  - "codex cross validation"
+  - "codex sandbox strategy"
+  - "codex validation pipeline"
+importance_tier: normal
+contextType: planning
 ---
 
 # Cross-AI Orchestration Patterns: Calling AI + Codex CLI

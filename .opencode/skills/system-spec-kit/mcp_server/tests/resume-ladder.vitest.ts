@@ -213,6 +213,34 @@ describe('resume-ladder', () => {
     expect(result.keyFiles).toContain('mcp_server/tests/session-resume.vitest.ts');
   });
 
+  it('renders only budget-restored items in restore panel markdown', () => {
+    const workspacePath = createWorkspace();
+    workspacesToRemove.push(workspacePath);
+    const specFolder = 'system-spec-kit/026-root/004-gate-d';
+    const keyFiles = Array.from({ length: 12 }, (_, index) => `mcp_server/tests/recovery-${index}.ts`);
+    const blockers = Array.from({ length: 8 }, (_, index) => `cache note ${index}`);
+
+    writeDoc(workspacePath, specFolder, 'handover.md', buildHandover({
+      blockers: blockers.join('; '),
+      keyFiles: keyFiles.join(', '),
+    }));
+
+    const result = buildResumeLadder({ specFolder, workspacePath });
+
+    expect(result.restorePanel.restoredCount).toBe(result.restorePanel.maxItems);
+    expect(result.restorePanel.omittedCount).toBeGreaterThan(0);
+    expect(result.restorePanel.omittedByReason['item-budget']).toBeGreaterThan(0);
+    expect(result.restorePanel.markdown.length).toBeLessThanOrEqual(result.restorePanel.maxChars);
+    expect(result.restorePanel.markdown).toContain(`Restored: ${result.restorePanel.restoredCount}`);
+    expect(result.restorePanel.markdown).toContain(`Not restored: ${result.restorePanel.omittedCount}`);
+    for (const item of result.restorePanel.restored) {
+      expect(result.restorePanel.markdown).toContain(item.text);
+    }
+    expect(result.restorePanel.markdown).not.toContain('cache note 3');
+    expect(result.restorePanel.markdown).not.toContain('Recovered ');
+    expect(result.restorePanel.facets.gotcha).not.toContain('cache note 3');
+  });
+
   // Add absolute and out-of-root specFolder rejection tests
   it('rejects absolute specFolder values that escape the workspace root', () => {
     const workspacePath = createWorkspace();

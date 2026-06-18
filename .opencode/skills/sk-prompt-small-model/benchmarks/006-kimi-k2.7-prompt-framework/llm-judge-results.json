@@ -1,0 +1,192 @@
+[
+  {
+    "framework": "rcaf",
+    "fixture": "t3-lower-bound",
+    "kimi_ok": true,
+    "kimi_words": 48,
+    "judge": {
+      "ok": true,
+      "scores": {
+        "D1_correctness": 1,
+        "D2_edge_coverage": 1,
+        "D3_spec_adherence": 1,
+        "D4_clarity": 1,
+        "D5_conciseness": 1,
+        "overall": 1,
+        "rationale": "The implementation uses a correct half-open binary search that returns the leftmost insertion point, handles empty arrays, boundaries, and duplicates, and adheres exactly to the requested pure function scope."
+      },
+      "exit": 0
+    }
+  },
+  {
+    "framework": "rcaf",
+    "fixture": "t3-compare-versions",
+    "kimi_ok": true,
+    "kimi_words": 192,
+    "judge": {
+      "ok": true,
+      "scores": {
+        "D1_correctness": 0.2,
+        "D2_edge_coverage": 0.15,
+        "D3_spec_adherence": 1,
+        "D4_clarity": 0.55,
+        "D5_conciseness": 0.9,
+        "overall": 0.4525,
+        "rationale": "The function is pure and mostly concise, but release comparison is fatally broken because it compares each left release field to bParts.length instead of the corresponding right field, causing equality, ordering, and most pre-release cases to fail."
+      },
+      "exit": 0
+    }
+  },
+  {
+    "framework": "race",
+    "fixture": "t3-lower-bound",
+    "kimi_ok": true,
+    "kimi_words": 48,
+    "judge": {
+      "ok": true,
+      "scores": {
+        "D1_correctness": 1,
+        "D2_edge_coverage": 1,
+        "D3_spec_adherence": 1,
+        "D4_clarity": 1,
+        "D5_conciseness": 1,
+        "overall": 1,
+        "rationale": "The implementation uses a correct half-open binary search that returns the leftmost insertion point, handles empty arrays, boundaries, and duplicates as specified, and remains pure and concise."
+      },
+      "exit": 0
+    }
+  },
+  {
+    "framework": "race",
+    "fixture": "t3-compare-versions",
+    "kimi_ok": true,
+    "kimi_words": 236,
+    "judge": {
+      "ok": true,
+      "scores": {
+        "D1_correctness": 0.72,
+        "D2_edge_coverage": 0.5,
+        "D3_spec_adherence": 1,
+        "D4_clarity": 0.9,
+        "D5_conciseness": 0.95,
+        "overall": 0.762,
+        "rationale": "The implementation handles numeric release comparison and pre-release precedence mostly correctly, but it throws when both versions have equal releases and no pre-release tag because it calls split on null, so equality and missing-field-equivalent stable versions fail."
+      },
+      "exit": 0
+    }
+  },
+  {
+    "framework": "cidi",
+    "fixture": "t3-lower-bound",
+    "kimi_ok": true,
+    "kimi_words": 48,
+    "judge": {
+      "ok": true,
+      "scores": {
+        "D1_correctness": 1,
+        "D2_edge_coverage": 1,
+        "D3_spec_adherence": 1,
+        "D4_clarity": 1,
+        "D5_conciseness": 1,
+        "overall": 1,
+        "rationale": "The implementation is a standard half-open binary search that returns the leftmost index with arr[i] >= target, handles empty arrays, duplicates, and boundary insertion points, and adheres exactly to the pure-function scope."
+      },
+      "exit": 0
+    }
+  },
+  {
+    "framework": "cidi",
+    "fixture": "t3-compare-versions",
+    "kimi_ok": true,
+    "kimi_words": 232,
+    "judge": {
+      "ok": true,
+      "scores": {
+        "D1_correctness": 1,
+        "D2_edge_coverage": 0.95,
+        "D3_spec_adherence": 1,
+        "D4_clarity": 0.95,
+        "D5_conciseness": 0.95,
+        "overall": 0.9775,
+        "rationale": "The implementation correctly handles numeric release comparison, missing release fields, release-over-prerelease precedence, numeric-vs-alphanumeric prerelease ordering, lexical ASCII comparison, and prerelease length tiebreaking while remaining pure and concise."
+      },
+      "exit": 0
+    }
+  },
+  {
+    "framework": "tidd-ec",
+    "fixture": "t3-lower-bound",
+    "kimi_ok": true,
+    "kimi_words": 46,
+    "judge": {
+      "ok": true,
+      "scores": {
+        "D1_correctness": 1,
+        "D2_edge_coverage": 1,
+        "D3_spec_adherence": 1,
+        "D4_clarity": 1,
+        "D5_conciseness": 1,
+        "overall": 1,
+        "rationale": "The implementation uses a correct half-open binary search that returns the leftmost insertion point, handles empty arrays and duplicates, preserves purity and signature, and is clear and concise."
+      },
+      "exit": 0
+    }
+  },
+  {
+    "framework": "tidd-ec",
+    "fixture": "t3-compare-versions",
+    "kimi_ok": true,
+    "kimi_words": 248,
+    "judge": {
+      "ok": true,
+      "scores": {
+        "D1_correctness": 0.98,
+        "D2_edge_coverage": 0.95,
+        "D3_spec_adherence": 1,
+        "D4_clarity": 0.9,
+        "D5_conciseness": 0.95,
+        "overall": 0.9655,
+        "rationale": "The implementation correctly handles numeric release comparison, missing release fields, release-vs-prerelease precedence, and SemVer prerelease ordering, with only minor clarity redundancy in an unreachable final length check."
+      },
+      "exit": 0
+    }
+  },
+  {
+    "framework": "costar",
+    "fixture": "t3-lower-bound",
+    "kimi_ok": true,
+    "kimi_words": 46,
+    "judge": {
+      "ok": true,
+      "scores": {
+        "D1_correctness": 1,
+        "D2_edge_coverage": 1,
+        "D3_spec_adherence": 1,
+        "D4_clarity": 1,
+        "D5_conciseness": 1,
+        "overall": 1,
+        "rationale": "The implementation uses a correct half-open binary search that returns the leftmost index with arr[i] >= target, including empty arrays, duplicates, and targets outside the array range, while preserving the required pure function scope."
+      },
+      "exit": 0
+    }
+  },
+  {
+    "framework": "costar",
+    "fixture": "t3-compare-versions",
+    "kimi_ok": true,
+    "kimi_words": 291,
+    "judge": {
+      "ok": true,
+      "scores": {
+        "D1_correctness": 1,
+        "D2_edge_coverage": 0.95,
+        "D3_spec_adherence": 1,
+        "D4_clarity": 0.95,
+        "D5_conciseness": 0.95,
+        "overall": 0.9775,
+        "rationale": "The implementation correctly handles numeric release comparison, missing release fields as zero, release-over-prerelease precedence, and SemVer prerelease ordering while remaining pure and concise, with only minor edge-coverage uncertainty for unspecified malformed inputs."
+      },
+      "exit": 0
+    }
+  }
+]

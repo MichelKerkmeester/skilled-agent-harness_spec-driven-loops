@@ -1,6 +1,13 @@
 ---
 title: Focus Management - Accessibility Patterns
 description: Focus trap implementation, focus restoration, and touch detection patterns for accessible modal dialogs.
+trigger_phrases:
+  - "webflow focus management"
+  - "focus trap modal"
+  - "focus restoration pattern"
+  - "focusable selector accessibility"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Focus Management - Accessibility Patterns

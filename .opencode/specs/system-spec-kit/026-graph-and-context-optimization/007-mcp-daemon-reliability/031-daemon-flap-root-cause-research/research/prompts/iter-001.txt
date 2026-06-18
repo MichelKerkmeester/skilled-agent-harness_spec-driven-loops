@@ -1,0 +1,27 @@
+Act as a senior systems-reliability researcher auditing a long-running daemon-reliability effort. READ-ONLY MODE: do NOT write or edit any files. Your final message IS the deliverable — return it as markdown in the skeleton at the end.
+
+# Context
+The repo has a daemon-reliability packet `system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability` with 30 child phases (001-030) that have been fixing the lifecycle of three shared, owner-leased local daemons (mk-spec-memory, mk-code-index, mk-skill-advisor). DESPITE all of this, the daemons are currently dead with stale sockets (see the live diagnosis). This iteration establishes EXACTLY what has already been fixed and the CURRENT shipped state, so a root-cause investigation can build on it instead of re-deriving it.
+
+# READ FIRST (use the Read tool; --dir is the repo root)
+- .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/live-diagnosis.md  (the current confirmed failure)
+- .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/spec.md  (the parent)
+- The spec.md AND implementation-summary.md of these key child phases (read each that exists):
+  003-daemon-reliability-research, 017-daemon-disposal-flap-guard, 018-persistent-launcher-log, 019-dead-socket-reap-hardening, 020-code-index-reconnecting-proxy, 021-orphan-sweep-stop-hook-activation, 022-daemon-ownership-reelection, 026-daemon-reliability-followups, 027-reelection-default-on-rollout, 028-live-session-reelection-validation, 029-cross-session-kill-scoping, 030-client-side-reconnect-survival
+  (paths: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/<phase>/...)
+
+# Questions to answer precisely (cite the phase + file for each claim)
+1. PHASE LEDGER: for each key phase above, a 1-2 line summary of WHAT it fixed and the MECHANISM (e.g. "017: guards SIGTERM during provider disposal by classifying intentional vs accidental kill in shutdownLauncherForSignal").
+2. CURRENT SHIPPED STATE: what is DEFAULT-ON vs flag-gated / DEFAULT-OFF right now? Specifically: daemon ownership re-election, the orphan-sweep Stop-hook (021), the code-index reconnecting proxy (020), dead-socket reap (019). Name the flags/env vars and their default values if stated.
+3. DEFERRALS / RESIDUE: what did each phase explicitly DEFER, mark as "by-decision", or leave unsolved? Collect the open residue across all 30 phases.
+4. THE GAP: given the live failure (skill-advisor + spec-memory daemons dead with stale sockets, code-index launchers piled up 3x, all while re-election is reportedly default-on) — which already-shipped fix SHOULD have prevented this, and what is the apparent gap between the shipped design and the observed reality? Form a specific hypothesis.
+
+# Output skeleton (return EXACTLY this)
+## IT1 — daemon-reliability phase ledger + current state
+### Phase ledger (key phases: what + mechanism)
+### Current shipped state (default-on vs flag-gated, with flag names + defaults)
+### Deferrals / unsolved residue (across all 30 phases)
+### The gap (why the live failure persists despite the fixes — hypothesis)
+### Confidence + what you could NOT read/verify
+
+Cite the phase folder + file for each non-obvious claim. If a file is missing, say so.

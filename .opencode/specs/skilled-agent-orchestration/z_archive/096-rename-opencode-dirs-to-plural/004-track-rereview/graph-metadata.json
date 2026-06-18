@@ -47,7 +47,6 @@
       "review/review-report.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
-      ".opencode/skills/deep-review/scripts/reduce-state.cjs",
       "spec.md",
       "plan.md",
       "review/deep-review-dashboard.md",
@@ -71,12 +70,6 @@
         "name": "review-research-paths.cjs",
         "kind": "file",
         "path": ".opencode/skills/system-spec-kit/shared/review-research-paths.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "reduce-state.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-review/scripts/reduce-state.cjs",
         "source": "derived"
       },
       {
@@ -198,11 +191,17 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "generate-context.js",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 097 (track-review of 093-096) converged with verdict FAIL on 2026-05-07: 1 active P0 (live",
     "created_at": "2026-05-07T19:05:00Z",
-    "last_save_at": "2026-06-05T12:47:32.908Z",
+    "last_save_at": "2026-06-15T09:09:33.559Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

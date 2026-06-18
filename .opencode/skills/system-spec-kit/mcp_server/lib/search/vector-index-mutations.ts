@@ -19,6 +19,8 @@ import { isIndexableConstitutionalMemoryPath } from '../utils/index-scope.js';
 import { createLogger } from '../utils/logger.js';
 import { deleteByContentHash } from '../cache/embedding-cache.js';
 import { clearDegreeCacheForDb } from './graph-search-fn.js';
+import { sweepCausalEdges } from '../causal/sweep.js';
+import { bumpCausalEdgesGeneration } from '../storage/causal-generation.js';
 import * as bm25Index from './bm25-index.js';
 import {
   clear_search_cache,
@@ -39,6 +41,7 @@ import {
   sqlite_vec_available as get_sqlite_vec_available,
   activeVectorSource,
 } from './vector-index-store.js';
+import { DEFAULT_ACTIVE_EMBEDDER, getActiveEmbedder, vecTableNameForDim } from '../embedders/schema.js';
 import type {
   IndexMemoryParams as SharedIndexMemoryParams,
   MemoryScopeParams,
@@ -53,7 +56,55 @@ function isExpectedMissingVecMemoriesTable(error: unknown): boolean {
   return message.includes('no such table') && message.includes('vec_memories');
 }
 
+function activeVectorTableExists(database: Database.Database, tableName: string): boolean {
+  try {
+    const row = database.prepare(`
+      SELECT 1 AS found
+      FROM ${activeVectorSource('sqlite_master')}
+      WHERE type = 'table' AND name = ?
+      LIMIT 1
+    `).get(tableName) as { found?: number } | undefined;
+    return row?.found === 1;
+  } catch (_error: unknown) {
+    return false;
+  }
+}
+
+function activeDimVectorSource(database: Database.Database): string | null {
+  const active = getActiveEmbedder(database);
+  if (active.name === DEFAULT_ACTIVE_EMBEDDER.name) {
+    return null;
+  }
+  const tableName = vecTableNameForDim(active.dim);
+  return activeVectorTableExists(database, tableName) ? activeVectorSource(tableName) : null;
+}
+
+function writeActiveVectorPayload(database: Database.Database, id: bigint, embeddingBuffer: Buffer): void {
+  database.prepare(`DELETE FROM ${activeVectorSource('vec_memories')} WHERE rowid = ?`).run(id);
+  database.prepare(`
+    INSERT INTO ${activeVectorSource('vec_memories')} (rowid, embedding) VALUES (?, ?)
+  `).run(id, embeddingBuffer);
+
+  const dimSource = activeDimVectorSource(database);
+  if (dimSource) {
+    database.prepare(`INSERT OR REPLACE INTO ${dimSource} (id, vec) VALUES (?, ?)`).run(id, embeddingBuffer);
+  }
+}
+
+function deleteActiveVectorPayload(database: Database.Database, id: bigint): void {
+  database.prepare(`DELETE FROM ${activeVectorSource('vec_memories')} WHERE rowid = ?`).run(id);
+  const dimSource = activeDimVectorSource(database);
+  if (dimSource) {
+    database.prepare(`DELETE FROM ${dimSource} WHERE id = ?`).run(id);
+  }
+}
+
 function invalidateGraphCaches(database: Database.Database): void {
+  // Bump the generation FIRST so every cache key that includes it (e.g.
+  // memory_search with causal boost) goes stale before the per-db caches clear;
+  // without this, memory-delete sweeps served stale causal-boosted search results.
+  bumpCausalEdgesGeneration();
+
   try {
     clearDegreeCacheForDb(database);
   } catch (_error: unknown) {
@@ -127,7 +178,7 @@ function deleteAncillaryMemoryRows(database: Database.Database, id: number): voi
     }
   }
 
-  // B10: Clean active_memory_projection rows referencing this memory.
+  // Clean active_memory_projection rows referencing this memory.
   try {
     database.prepare('DELETE FROM active_memory_projection WHERE active_memory_id = ?').run(id);
   } catch (_error: unknown) {
@@ -135,15 +186,25 @@ function deleteAncillaryMemoryRows(database: Database.Database, id: number): voi
   }
 
   try {
-    const memoryIdText = String(id);
-    database.prepare(`
-      DELETE FROM causal_edges
-      WHERE source_id IN (?, ?)
-         OR target_id IN (?, ?)
-    `).run(id, memoryIdText, id, memoryIdText);
-    invalidateGraphCaches(database);
-  } catch (_error: unknown) {
-    // Best-effort for legacy databases that may not have causal edges yet.
+    const result = sweepCausalEdges(database, {
+      memoryIds: [id, String(id)],
+      reason: 'memory row mutation cleanup',
+      command: 'vector-index-mutations.deleteAncillaryMemoryRows',
+      restoreContext: { memoryId: id },
+      invalidateCaches: false,
+    });
+    if (result.deleted > 0) {
+      invalidateGraphCaches(database);
+    }
+  } catch (error: unknown) {
+    // Tolerate only legacy databases that predate the causal-edge tables. Scope
+    // the match to those table names so an unrelated missing-table error still
+    // propagates and rolls back the surrounding delete instead of committing a
+    // hard delete without its tombstone audit row.
+    const message = error instanceof Error ? error.message : String(error);
+    if (!/no such table:\s*causal_edge/i.test(message)) {
+      throw error;
+    }
   }
 }
 
@@ -189,6 +250,9 @@ type IndexMemoryDeferredParams = Omit<IndexMemoryParams, 'embedding'> & {
 };
 type UpdateMemoryParams = Readonly<SharedUpdateMemoryParams> & {
   readonly canonicalFilePath?: string;
+  // Set when the row's document now lives at a new on-disk location, so a
+  // moved file repoints its existing row instead of leaving a stale path.
+  readonly filePath?: string;
 };
 
 type NormalizedMemoryScope = {
@@ -269,6 +333,8 @@ export function index_memory(
         specFolder,
         canonicalFilePath,
         filePath,
+        canonicalFilePath,
+        filePath,
         anchorId,
         scope.tenant_id,
         scope.user_id,
@@ -290,6 +356,7 @@ export function index_memory(
       qualityScore,
       qualityFlags,
       canonicalFilePath,
+      filePath,
     }, database);
   }
 
@@ -319,15 +386,10 @@ export function index_memory(
     upsert_active_projection(database, specFolder, canonicalFilePath, anchorId, metadata_id, now, scope);
 
     if (sqlite_vec) {
-      // Remove orphaned vec_memories entry before insert
-      database.prepare(`DELETE FROM ${activeVectorSource('vec_memories')} WHERE rowid = ?`).run(row_id);
-      database.prepare(`
-        INSERT INTO ${activeVectorSource('vec_memories')} (rowid, embedding) VALUES (?, ?)
-      `).run(row_id, embedding_buffer);
+      writeActiveVectorPayload(database, row_id, embedding_buffer);
     }
 
     refresh_interference_scores_for_folder(database, specFolder);
-    // H3 FIX: Invalidate search cache after insert
     clear_search_cache();
 
     return metadata_id;
@@ -376,6 +438,8 @@ export function index_memory_deferred(
         specFolder,
         canonicalFilePath,
         filePath,
+        canonicalFilePath,
+        filePath,
         anchorId,
         scope.tenant_id,
         scope.user_id,
@@ -390,6 +454,7 @@ export function index_memory_deferred(
         SET title = ?,
             trigger_phrases = ?,
             importance_weight = ?,
+            file_path = ?,
             canonical_file_path = ?,
             embedding_status = 'pending',
             failure_reason = ?,
@@ -403,7 +468,7 @@ export function index_memory_deferred(
             retry_count = 0,
             last_retry_at = NULL
         WHERE id = ?
-      `).run(title, triggers_json, importanceWeight, canonicalFilePath, failureReason, now, encodingIntent, documentType, specLevel, contentText, qualityScore, JSON.stringify(qualityFlags), existing.id);
+      `).run(title, triggers_json, importanceWeight, filePath, canonicalFilePath, failureReason, now, encodingIntent, documentType, specLevel, contentText, qualityScore, JSON.stringify(qualityFlags), existing.id);
       upsert_active_projection(database, specFolder, canonicalFilePath, anchorId, existing.id, now, scope);
       refresh_interference_scores_for_folder(database, specFolder);
       return existing.id;
@@ -456,6 +521,7 @@ export function update_memory(
     importanceTier,
     embedding,
     canonicalFilePath,
+    filePath,
     encodingIntent,
     documentType,
     specLevel,
@@ -538,6 +604,10 @@ export function update_memory(
       updates.push('canonical_file_path = ?');
       values.push(canonicalFilePath);
     }
+    if (filePath !== undefined) {
+      updates.push('file_path = ?');
+      values.push(filePath);
+    }
     if (encodingIntent !== undefined) {
       updates.push('encoding_intent = ?');
       values.push(encodingIntent);
@@ -565,7 +635,6 @@ export function update_memory(
     if (embedding) {
       updates.push('embedding_model = ?');
       updates.push('embedding_generated_at = ?');
-      // H1 FIX: Set 'pending' until vector write is confirmed
       updates.push('embedding_status = ?');
       values.push(embeddingsProvider.getModelName(), now, 'pending');
     }
@@ -576,7 +645,7 @@ export function update_memory(
       UPDATE memory_index SET ${updates.join(', ')} WHERE id = ?
     `).run(...values);
 
-    // B11: Return early if the target row no longer exists.
+    // Return early if the target row no longer exists.
     if (updateResult.changes === 0) {
       return id;
     }
@@ -593,11 +662,7 @@ export function update_memory(
       }
 
       const embedding_buffer = to_embedding_buffer(embedding);
-      database.prepare(`DELETE FROM ${activeVectorSource('vec_memories')} WHERE rowid = ?`).run(BigInt(id));
-      database.prepare(`
-        INSERT INTO ${activeVectorSource('vec_memories')} (rowid, embedding) VALUES (?, ?)
-      `).run(BigInt(id), embedding_buffer);
-      // H1 FIX: Mark success only after vector write confirmed
+      writeActiveVectorPayload(database, BigInt(id), embedding_buffer);
       database.prepare('UPDATE memory_index SET embedding_status = ? WHERE id = ?').run('success', id);
     }
 
@@ -616,7 +681,6 @@ export function update_memory(
     if (existingRow?.spec_folder) {
       refresh_interference_scores_for_folder(database, existingRow.spec_folder);
     }
-    // H3 FIX: Invalidate search cache after update
     clear_search_cache();
 
     return id;
@@ -662,7 +726,7 @@ export function delete_memory_from_database(database: Database.Database, id: num
 
     if (sqlite_vec) {
       try {
-        database.prepare(`DELETE FROM ${activeVectorSource('vec_memories')} WHERE rowid = ? /* DELETE FROM vec_memories */`).run(BigInt(id));
+        deleteActiveVectorPayload(database, BigInt(id));
       } catch (e: unknown) {
         if (!isExpectedMissingVecMemoriesTable(e)) {
           throw new VectorIndexError(
@@ -804,7 +868,7 @@ export function delete_memories(
       try {
         if (sqlite_vec) {
           try {
-            database.prepare(`DELETE FROM ${activeVectorSource('vec_memories')} WHERE rowid = ?`).run(BigInt(id));
+            deleteActiveVectorPayload(database, BigInt(id));
           } catch (vec_error: unknown) {
             console.warn(`[VectorIndex] Failed to delete vector for memory ${id}: ${get_error_message(vec_error)}`);
           }
@@ -941,6 +1005,10 @@ export function update_confidence(
     return false;
   }
 }
+
+// Exported so the store-port clear() can resolve and purge the active per-dim
+// vector shard, mirroring the per-record delete path.
+export { activeDimVectorSource };
 
 // CamelCase aliases
 export { index_memory as indexMemory };

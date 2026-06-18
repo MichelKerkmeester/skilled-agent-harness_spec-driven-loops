@@ -1,0 +1,5 @@
+{"iteration":1,"executor":{"kind":"cli-opencode","model":"openai/gpt-5.5-fast"},"status":"complete","timestamp":"2026-06-10T17:08:00Z"}
+{"iteration":2,"executor":{"kind":"cli-opencode","model":"openai/gpt-5.5-fast"},"status":"complete","timestamp":"2026-06-10T17:11:00Z"}
+{"iteration":3,"executor":{"kind":"cli-opencode","model":"openai/gpt-5.5-fast"},"status":"complete","timestamp":"2026-06-10T17:15:00Z"}
+{"iteration":4,"executor":{"kind":"cli-opencode","model":"openai/gpt-5.5-fast"},"status":"complete","timestamp":"2026-06-10T17:19:00Z"}
+{"iteration":5,"executor":{"kind":"cli-opencode","model":"openai/gpt-5.5-fast"},"status":"complete","timestamp":"2026-06-10T17:23:00Z"}

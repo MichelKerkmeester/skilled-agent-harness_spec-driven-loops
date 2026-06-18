@@ -2,7 +2,7 @@
 title: "249 -- SessionStart injects post-compact context"
 description: "This scenario validates SessionStart priming (compact) for 249. It focuses on SessionStart reads cached payload and injects via stdout."
 audited_post_018: true
-phase_018_change: "Updated the fallback recovery instruction to point at /spec_kit:resume and the canonical packet continuity chain."
+phase_018_change: "Updated the fallback recovery instruction to point at /speckit:resume and the canonical packet continuity chain."
 ---
 
 # 249 -- SessionStart injects post-compact context
@@ -16,11 +16,11 @@ This scenario validates SessionStart priming (compact).
 ## 2. SCENARIO CONTRACT
 
 
-- Objective: Verify that the SessionStart hook, when triggered with `source=compact`, reads the cached PreCompact payload from hook state, injects it to stdout with "Recovered Context (Post-Compaction)" and "Recovery Instructions" sections, includes the last spec folder if known, clears the `pendingCompactPrime` from state after injection, points recovery back to `/spec_kit:resume` when the cache is missing, and stays within the 4000-token budget (COMPACTION_TOKEN_BUDGET).
-- Real user request: `` Please validate SessionStart injects post-compact context against cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/hook-session-start.vitest.ts and tell me whether the expected signals are present: All vitest tests in `hook-session-start.vitest.ts` pass for compact source; `loadState(sessionId)` returns object with `pendingCompactPrime.payload` and `pendingCompactPrime.cachedAt`; Stdout contains `## Recovered Context (Post-Compaction)` followed by the cached payload text; Stdout contains `## Recovery Instructions` mentioning "3-source merge (Memory + Code Graph + Code Graph)" and `/spec_kit:resume`; After injection, `updateState()` sets `pendingCompactPrime: null`; When `state.lastSpecFolder` is set, stdout includes `## Active Spec Folder` with the path; When no cached payload exists, fallback output instructs calling `/spec_kit:resume`. ``
+- Objective: Verify that the SessionStart hook, when triggered with `source=compact`, reads the cached PreCompact payload from hook state, injects it to stdout with "Recovered Context (Post-Compaction)" and "Recovery Instructions" sections, includes the last spec folder if known, clears the `pendingCompactPrime` from state after injection, points recovery back to `/speckit:resume` when the cache is missing, and stays within the 4000-token budget (COMPACTION_TOKEN_BUDGET).
+- Real user request: `` Please validate SessionStart injects post-compact context against cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/hook-session-start.vitest.ts and tell me whether the expected signals are present: All vitest tests in `hook-session-start.vitest.ts` pass for compact source; `loadState(sessionId)` returns object with `pendingCompactPrime.payload` and `pendingCompactPrime.cachedAt`; Stdout contains `## Recovered Context (Post-Compaction)` followed by the cached payload text; Stdout contains `## Recovery Instructions` mentioning "3-source merge (Memory + Code Graph + Code Graph)" and `/speckit:resume`; After injection, `updateState()` sets `pendingCompactPrime: null`; When `state.lastSpecFolder` is set, stdout includes `## Active Spec Folder` with the path; When no cached payload exists, fallback output instructs calling `/speckit:resume`. ``
 - Prompt: `Validate SessionStart post-compact context injection with the hook-session-start vitest suite.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
-- Expected signals: All vitest tests in `hook-session-start.vitest.ts` pass for compact source; `loadState(sessionId)` returns object with `pendingCompactPrime.payload` and `pendingCompactPrime.cachedAt`; Stdout contains `## Recovered Context (Post-Compaction)` followed by the cached payload text; Stdout contains `## Recovery Instructions` mentioning "3-source merge (Memory + Code Graph + Code Graph)" and `/spec_kit:resume`; After injection, `updateState()` sets `pendingCompactPrime: null`; When `state.lastSpecFolder` is set, stdout includes `## Active Spec Folder` with the path; When no cached payload exists, fallback output instructs calling `/spec_kit:resume`
+- Expected signals: All vitest tests in `hook-session-start.vitest.ts` pass for compact source; `loadState(sessionId)` returns object with `pendingCompactPrime.payload` and `pendingCompactPrime.cachedAt`; Stdout contains `## Recovered Context (Post-Compaction)` followed by the cached payload text; Stdout contains `## Recovery Instructions` mentioning "3-source merge (Memory + Code Graph + Code Graph)" and `/speckit:resume`; After injection, `updateState()` sets `pendingCompactPrime: null`; When `state.lastSpecFolder` is set, stdout includes `## Active Spec Folder` with the path; When no cached payload exists, fallback output instructs calling `/speckit:resume`
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
 - Pass/fail: PASS: Cached payload injected to stdout, sections correctly formatted, state cleared after injection, budget respected; FAIL: Payload not found in stdout, pendingCompactPrime not cleared, or output exceeds 4000 tokens
 
@@ -89,7 +89,7 @@ Check `hook-state.ts` updateState logic
 ### Prompt
 
 ```
-As a context-and-code-graph validation operator, validate Fallback when no cached payload exists against cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/hook-session-start.vitest.ts. Verify stdout contains "Context Recovery" section instructing /spec_kit:resume. Return a concise pass/fail verdict with the main reason and cited evidence.
+As a context-and-code-graph validation operator, validate Fallback when no cached payload exists against cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/hook-session-start.vitest.ts. Verify stdout contains "Context Recovery" section instructing /speckit:resume. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 ### Commands
@@ -98,7 +98,7 @@ As a context-and-code-graph validation operator, validate Fallback when no cache
 
 ### Expected
 
-Stdout contains "Context Recovery" section instructing `/spec_kit:resume`
+Stdout contains "Context Recovery" section instructing `/speckit:resume`
 
 ### Evidence
 

@@ -2,12 +2,13 @@
 title: "Webflow Staging vs Production Workflow"
 description: "Promotion workflow from Webflow staging subdomain (.webflow.io) to production custom domain, including CSS export workflow, asset versioning, and per-environment custom code panel sync."
 trigger_phrases:
-  - "webflow staging"
-  - "webflow production"
-  - "webflow promotion"
-  - "webflow.io"
+  - "webflow staging production"
+  - "webflow promotion workflow"
+  - "webflow io subdomain"
   - "css export workflow"
-  - "per-environment custom code"
+  - "per environment custom code"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Webflow Staging vs Production Workflow

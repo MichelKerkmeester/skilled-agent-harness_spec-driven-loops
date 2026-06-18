@@ -1,6 +1,13 @@
 ---
 title: Config Style Guide
 description: Formatting standards and conventions for JSON and JSONC configuration files in the OpenCode development environment.
+trigger_phrases:
+  - "opencode config style guide"
+  - "jsonc formatting standards"
+  - "config section organization"
+  - "json style conventions"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Config Style Guide

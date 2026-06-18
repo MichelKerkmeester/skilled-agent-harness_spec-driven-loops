@@ -1,0 +1,465 @@
+{
+  "total": 113,
+  "byPhase": {
+    "001-memory-storage-and-search": 34,
+    "002-daemon-launcher-lifecycle": 15,
+    "003-code-graph-robustness": 8,
+    "004-cli-frontdoor-safety": 6,
+    "005-spec-folder-metadata-reconciliation": 8,
+    "006-doc-truth-completion-and-mirrors": 42
+  },
+  "coverage": {
+    "opus-concurrency-race-i4-f1": {
+      "phase": "002-daemon-launcher-lifecycle",
+      "taskId": "002-T001"
+    },
+    "gpt-cli-frontdoors-i1-f1": {
+      "phase": "004-cli-frontdoor-safety",
+      "taskId": "004-T001"
+    },
+    "gpt-continuity-metadata-i2-f2": {
+      "phase": "005-spec-folder-metadata-reconciliation",
+      "taskId": "005-T001"
+    },
+    "opus-regression-code-i3-f1": {
+      "phase": "001-memory-storage-and-search",
+      "taskId": "001-T001"
+    },
+    "opus-memory-daemon-i1-f1": {
+      "phase": "001-memory-storage-and-search",
+      "taskId": "001-T002"
+    },
+    "opus-memory-daemon-i4-f1": {
+      "phase": "001-memory-storage-and-search",
+      "taskId": "001-T003"
+    },
+    "opus-launcher-lifecycle-i2-f1": {
+      "phase": "002-daemon-launcher-lifecycle",
+      "taskId": "002-T002"
+    },
+    "opus-concurrency-race-i3-f1": {
+      "phase": "002-daemon-launcher-lifecycle",
+      "taskId": "002-T003"
+    },
+    "opus-concurrency-race-i3-f2": {
+      "phase": "002-daemon-launcher-lifecycle",
+      "taskId": "002-T004"
+    },
+    "opus-followons-i1-f1": {
+      "phase": "001-memory-storage-and-search",
+      "taskId": "001-T004"
+    },
+    "opus-followons-i1-f2": {
+      "phase": "001-memory-storage-and-search",
+      "taskId": "001-T005"
+    },
+    "gpt-regression-doctruth-i1-f1": {
+      "phase": "006-doc-truth-completion-and-mirrors",
+      "taskId": "006-T001"
+    },
+    "gpt-regression-doctruth-i1-f2": {
+      "phase": "006-doc-truth-completion-and-mirrors",
+      "taskId": "006-T002"
+    },
+    "gpt-regression-doctruth-i2-f1": {
+      "phase": "006-doc-truth-completion-and-mirrors",
+      "taskId": "006-T003"
+    },
+    "gpt-regression-doctruth-i2-f2": {
+      "phase": "006-doc-truth-completion-and-mirrors",
+      "taskId": "006-T004"
+    },
+    "gpt-regression-doctruth-i3-f1": {
+      "phase": "006-doc-truth-completion-and-mirrors",
+      "taskId": "006-T005"
+    },
+    "gpt-regression-doctruth-i3-f2": {
+      "phase": "006-doc-truth-completion-and-mirrors",
+      "taskId": "006-T006"
+    },
+    "gpt-regression-doctruth-i4-f1": {
+      "phase": "006-doc-truth-completion-and-mirrors",
+      "taskId": "006-T007"
+    },
+    "gpt-regression-doctruth-i5-f1": {
+      "phase": "006-doc-truth-completion-and-mirrors",
+      "taskId": "006-T008"
+    },
+    "gpt-regression-doctruth-i5-f2": {
+      "phase": "006-doc-truth-completion-and-mirrors",
+      "taskId": "006-T009"
+    },
+    "gpt-cli-frontdoors-i2-f1": {
+      "phase": "004-cli-frontdoor-safety",
+      "taskId": "004-T002"
+    },
+    "gpt-cli-frontdoors-i3-f1": {
+      "phase": "004-cli-frontdoor-safety",
+      "taskId": "004-T003"
+    },
+    "gpt-cli-frontdoors-i3-f2": {
+      "phase": "004-cli-frontdoor-safety",
+      "taskId": "004-T004"
+    },
+    "gpt-cli-frontdoors-i4-f1": {
+      "phase": "004-cli-frontdoor-safety",
+      "taskId": "004-T005"
+    },
+    "gpt-continuity-metadata-i1-f1": {
+      "phase": "005-spec-folder-metadata-reconciliation",
+      "taskId": "005-T002"
+    },
+    "gpt-continuity-metadata-i1-f2": {
+      "phase": "005-spec-folder-metadata-reconciliation",
+      "taskId": "005-T003"
+    },
+    "gpt-continuity-metadata-i1-f3": {
+      "phase": "005-spec-folder-metadata-reconciliation",
+      "taskId": "005-T004"
+    },
+    "gpt-continuity-metadata-i2-f1": {
+      "phase": "005-spec-folder-metadata-reconciliation",
+      "taskId": "005-T005"
+    },
+    "gpt-wip-doctrine-i1-f1": {
+      "phase": "006-doc-truth-completion-and-mirrors",
+      "taskId": "006-T010"
+    },
+    "gpt-wip-doctrine-i3-f1": {
+      "phase": "006-doc-truth-completion-and-mirrors",
+      "taskId": "006-T011"
+    },
+    "gpt-wip-doctrine-i4-f1": {
+      "phase": "006-doc-truth-completion-and-mirrors",
+      "taskId": "006-T012"
+    },
+    "gpt-wip-doctrine-i4-f2": {
+      "phase": "006-doc-truth-completion-and-mirrors",
+      "taskId": "006-T013"
+    },
+    "gpt-wip-doctrine-i4-f3": {
+      "phase": "006-doc-truth-completion-and-mirrors",
+      "taskId": "006-T014"
+    },
+    "gpt-wip-doctrine-i4-f4": {
+      "phase": "006-doc-truth-completion-and-mirrors",
+      "taskId": "006-T015"
+    },
+    "gpt-wip-verification-i2-f1": {
+      "phase": "006-doc-truth-completion-and-mirrors",
+      "taskId": "006-T016"
+    },
+    "gpt-wip-verification-i2-f2": {
+      "phase": "006-doc-truth-completion-and-mirrors",
+      "taskId": "006-T017"
+    },
+    "gpt-wip-verification-i2-f3": {
+      "phase": "006-doc-truth-completion-and-mirrors",
+      "taskId": "006-T018"
+    },
+    "gpt-wip-verification-i2-f4": {
+      "phase": "006-doc-truth-completion-and-mirrors",
+      "taskId": "006-T019"
+    },
+    "gpt-wip-verification-i2-f5": {
+      "phase": "006-doc-truth-completion-and-mirrors",
+      "taskId": "006-T020"
+    },
+    "gpt-wip-verification-i3-f1": {
+      "phase": "006-doc-truth-completion-and-mirrors",
+      "taskId": "006-T021"
+    },
+    "opus-regression-code-i2-f1": {
+      "phase": "001-memory-storage-and-search",
+      "taskId": "001-T006"
+    },
+    "opus-regression-code-i3-f2": {
+      "phase": "001-memory-storage-and-search",
+      "taskId": "001-T007"
+    },
+    "opus-regression-code-i4-f1": {
+      "phase": "001-memory-storage-and-search",
+      "taskId": "001-T008"
+    },
+    "opus-regression-code-i4-f2": {
+      "phase": "001-memory-storage-and-search",
+      "taskId": "001-T009"
+    },
+    "opus-regression-code-i4-f3": {
+      "phase": "001-memory-storage-and-search",
+      "taskId": "001-T010"
+    },
+    "opus-memory-daemon-i2-f1": {
+      "phase": "001-memory-storage-and-search",
+      "taskId": "001-T011"
+    },
+    "opus-memory-daemon-i2-f2": {
+      "phase": "001-memory-storage-and-search",
+      "taskId": "001-T012"
+    },
+    "opus-memory-daemon-i2-f3": {
+      "phase": "001-memory-storage-and-search",
+      "taskId": "001-T013"
+    },
+    "opus-memory-daemon-i2-f4": {
+      "phase": "001-memory-storage-and-search",
+      "taskId": "001-T014"
+    },
+    "opus-memory-daemon-i3-f1": {
+      "phase": "001-memory-storage-and-search",
+      "taskId": "001-T015"
+    },
+    "opus-memory-daemon-i3-f2": {
+      "phase": "001-memory-storage-and-search",
+      "taskId": "001-T016"
+    },
+    "opus-memory-daemon-i3-f3": {
+      "phase": "001-memory-storage-and-search",
+      "taskId": "001-T017"
+    },
+    "opus-memory-daemon-i4-f2": {
+      "phase": "001-memory-storage-and-search",
+      "taskId": "001-T018"
+    },
+    "opus-memory-daemon-i4-f3": {
+      "phase": "001-memory-storage-and-search",
+      "taskId": "001-T019"
+    },
+    "opus-memory-daemon-i5-f1": {
+      "phase": "001-memory-storage-and-search",
+      "taskId": "001-T020"
+    },
+    "opus-memory-daemon-i5-f2": {
+      "phase": "001-memory-storage-and-search",
+      "taskId": "001-T021"
+    },
+    "opus-memory-daemon-i6-f1": {
+      "phase": "001-memory-storage-and-search",
+      "taskId": "001-T022"
+    },
+    "opus-memory-daemon-i6-f2": {
+      "phase": "001-memory-storage-and-search",
+      "taskId": "001-T023"
+    },
+    "opus-advisor-daemon-i1-f1": {
+      "phase": "001-memory-storage-and-search",
+      "taskId": "001-T024"
+    },
+    "opus-advisor-daemon-i3-f1": {
+      "phase": "001-memory-storage-and-search",
+      "taskId": "001-T025"
+    },
+    "opus-codegraph-daemon-i1-f1": {
+      "phase": "003-code-graph-robustness",
+      "taskId": "003-T001"
+    },
+    "opus-codegraph-daemon-i1-f2": {
+      "phase": "003-code-graph-robustness",
+      "taskId": "003-T002"
+    },
+    "opus-codegraph-daemon-i2-f1": {
+      "phase": "003-code-graph-robustness",
+      "taskId": "003-T003"
+    },
+    "opus-codegraph-daemon-i3-f1": {
+      "phase": "003-code-graph-robustness",
+      "taskId": "003-T004"
+    },
+    "opus-codegraph-daemon-i3-f2": {
+      "phase": "003-code-graph-robustness",
+      "taskId": "003-T005"
+    },
+    "opus-codegraph-daemon-i3-f3": {
+      "phase": "003-code-graph-robustness",
+      "taskId": "003-T006"
+    },
+    "opus-codegraph-daemon-i3-f4": {
+      "phase": "003-code-graph-robustness",
+      "taskId": "003-T007"
+    },
+    "opus-codegraph-daemon-i4-f1": {
+      "phase": "003-code-graph-robustness",
+      "taskId": "003-T008"
+    },
+    "opus-launcher-lifecycle-i1-f1": {
+      "phase": "002-daemon-launcher-lifecycle",
+      "taskId": "002-T005"
+    },
+    "opus-launcher-lifecycle-i3-f1": {
+      "phase": "002-daemon-launcher-lifecycle",
+      "taskId": "002-T006"
+    },
+    "opus-launcher-lifecycle-i4-f1": {
+      "phase": "002-daemon-launcher-lifecycle",
+      "taskId": "002-T007"
+    },
+    "opus-launcher-lifecycle-i5-f1": {
+      "phase": "002-daemon-launcher-lifecycle",
+      "taskId": "002-T008"
+    },
+    "opus-launcher-lifecycle-i6-f1": {
+      "phase": "002-daemon-launcher-lifecycle",
+      "taskId": "002-T009"
+    },
+    "opus-launcher-lifecycle-i6-f2": {
+      "phase": "002-daemon-launcher-lifecycle",
+      "taskId": "002-T010"
+    },
+    "opus-concurrency-race-i1-f1": {
+      "phase": "002-daemon-launcher-lifecycle",
+      "taskId": "002-T011"
+    },
+    "opus-concurrency-race-i1-f2": {
+      "phase": "002-daemon-launcher-lifecycle",
+      "taskId": "002-T012"
+    },
+    "opus-concurrency-race-i2-f1": {
+      "phase": "002-daemon-launcher-lifecycle",
+      "taskId": "002-T013"
+    },
+    "opus-concurrency-race-i2-f2": {
+      "phase": "002-daemon-launcher-lifecycle",
+      "taskId": "002-T014"
+    },
+    "opus-concurrency-race-i4-f2": {
+      "phase": "002-daemon-launcher-lifecycle",
+      "taskId": "002-T015"
+    },
+    "opus-memory-track-002-i1-f1": {
+      "phase": "006-doc-truth-completion-and-mirrors",
+      "taskId": "006-T022"
+    },
+    "opus-memory-track-002-i2-f1": {
+      "phase": "006-doc-truth-completion-and-mirrors",
+      "taskId": "006-T023"
+    },
+    "opus-memory-track-002-i3-f1": {
+      "phase": "001-memory-storage-and-search",
+      "taskId": "001-T026"
+    },
+    "opus-memory-track-002-i5-f1": {
+      "phase": "006-doc-truth-completion-and-mirrors",
+      "taskId": "006-T024"
+    },
+    "opus-memory-track-002-i6-f1": {
+      "phase": "001-memory-storage-and-search",
+      "taskId": "001-T027"
+    },
+    "opus-followons-i2-f1": {
+      "phase": "006-doc-truth-completion-and-mirrors",
+      "taskId": "006-T025"
+    },
+    "opus-followons-i2-f2": {
+      "phase": "006-doc-truth-completion-and-mirrors",
+      "taskId": "006-T026"
+    },
+    "opus-followons-i2-f3": {
+      "phase": "006-doc-truth-completion-and-mirrors",
+      "taskId": "006-T027"
+    },
+    "opus-followons-i2-f4": {
+      "phase": "001-memory-storage-and-search",
+      "taskId": "001-T028"
+    },
+    "opus-followons-i3-f1": {
+      "phase": "001-memory-storage-and-search",
+      "taskId": "001-T029"
+    },
+    "gpt-regression-doctruth-i4-f2": {
+      "phase": "006-doc-truth-completion-and-mirrors",
+      "taskId": "006-T028"
+    },
+    "gpt-cli-frontdoors-i2-f2": {
+      "phase": "004-cli-frontdoor-safety",
+      "taskId": "004-T006"
+    },
+    "gpt-continuity-metadata-i3-f1": {
+      "phase": "006-doc-truth-completion-and-mirrors",
+      "taskId": "006-T029"
+    },
+    "gpt-continuity-metadata-i4-f1": {
+      "phase": "006-doc-truth-completion-and-mirrors",
+      "taskId": "006-T030"
+    },
+    "gpt-continuity-metadata-i5-f1": {
+      "phase": "005-spec-folder-metadata-reconciliation",
+      "taskId": "005-T006"
+    },
+    "gpt-dead-code-i1-f1": {
+      "phase": "006-doc-truth-completion-and-mirrors",
+      "taskId": "006-T031"
+    },
+    "gpt-dead-code-i4-f1": {
+      "phase": "006-doc-truth-completion-and-mirrors",
+      "taskId": "006-T032"
+    },
+    "gpt-dead-code-i5-f1": {
+      "phase": "001-memory-storage-and-search",
+      "taskId": "001-T030"
+    },
+    "gpt-dead-code-i5-f2": {
+      "phase": "001-memory-storage-and-search",
+      "taskId": "001-T031"
+    },
+    "gpt-dead-code-i5-f3": {
+      "phase": "001-memory-storage-and-search",
+      "taskId": "001-T032"
+    },
+    "gpt-dead-code-i5-f4": {
+      "phase": "001-memory-storage-and-search",
+      "taskId": "001-T033"
+    },
+    "gpt-mirror-parity-i1-f1": {
+      "phase": "006-doc-truth-completion-and-mirrors",
+      "taskId": "006-T033"
+    },
+    "gpt-mirror-parity-i2-f1": {
+      "phase": "006-doc-truth-completion-and-mirrors",
+      "taskId": "006-T034"
+    },
+    "gpt-mirror-parity-i4-f1": {
+      "phase": "006-doc-truth-completion-and-mirrors",
+      "taskId": "006-T035"
+    },
+    "gpt-wip-doctrine-i2-f1": {
+      "phase": "006-doc-truth-completion-and-mirrors",
+      "taskId": "006-T036"
+    },
+    "gpt-wip-doctrine-i3-f2": {
+      "phase": "006-doc-truth-completion-and-mirrors",
+      "taskId": "006-T037"
+    },
+    "gpt-wip-verification-i1-f1": {
+      "phase": "006-doc-truth-completion-and-mirrors",
+      "taskId": "006-T038"
+    },
+    "gpt-wip-verification-i1-f2": {
+      "phase": "005-spec-folder-metadata-reconciliation",
+      "taskId": "005-T007"
+    },
+    "gpt-wip-verification-i2-f6": {
+      "phase": "006-doc-truth-completion-and-mirrors",
+      "taskId": "006-T039"
+    },
+    "gpt-wip-verification-i2-f7": {
+      "phase": "005-spec-folder-metadata-reconciliation",
+      "taskId": "005-T008"
+    },
+    "gpt-wip-verification-i3-f2": {
+      "phase": "006-doc-truth-completion-and-mirrors",
+      "taskId": "006-T040"
+    },
+    "gpt-comment-hygiene-scope-i2-f1": {
+      "phase": "006-doc-truth-completion-and-mirrors",
+      "taskId": "006-T041"
+    },
+    "gpt-comment-hygiene-scope-i3-f1": {
+      "phase": "006-doc-truth-completion-and-mirrors",
+      "taskId": "006-T042"
+    },
+    "gpt-security-i2-f1": {
+      "phase": "001-memory-storage-and-search",
+      "taskId": "001-T034"
+    }
+  }
+}

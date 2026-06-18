@@ -1,7 +1,7 @@
 // MODULE: Deep-Loop Prompt Pack Renderer
 
 import { readFileSync } from 'node:fs';
-import { z } from '../../../system-spec-kit/mcp_server/node_modules/zod/index.js';
+import { z } from 'zod';
 
 // ───── TYPE DEFINITIONS ─────
 

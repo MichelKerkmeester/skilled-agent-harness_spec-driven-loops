@@ -1,0 +1,18 @@
+{
+  "specFolder": "skilled-agent-orchestration/132-cli-gemini-deprecation",
+  "description": "Feature Specification: Gemini Deprecation",
+  "keywords": [
+    "feature",
+    "specification",
+    "gemini",
+    "deprecation"
+  ],
+  "lastUpdated": "2026-06-10T04:53:30.675Z",
+  "specId": "132",
+  "folderSlug": "cli-gemini-deprecation",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

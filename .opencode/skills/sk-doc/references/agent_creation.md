@@ -1,6 +1,14 @@
 ---
 title: Agent Creation - Standards and Workflow
 description: Standards and workflow guidance for creating OpenCode agents with runtime-aware placement, unified permission frontmatter, clear authority boundaries, and validation-first delivery.
+trigger_phrases:
+  - "agent creation standards"
+  - "create opencode agent"
+  - "agent permission frontmatter"
+  - "agent authority boundaries"
+  - "runtime agent placement"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Agent Creation - Standards and Workflow
@@ -223,7 +231,7 @@ Before delivery, verify both document quality and runtime correctness.
 ## 10. RELATED RESOURCES
 
 - [agent_template.md](../assets/agent_template.md) - canonical agent scaffold
-- [command_template.md](../assets/command_template.md) - companion scaffold for slash-command entry points
+- [command_template.md](../assets/command/command_template.md) - companion scaffold for slash-command entry points
 - [skill_creation.md](./skill_creation.md) - companion workflow for reusable knowledge bundles
 - [quick_reference.md](global/quick_reference.md) - condensed commands and file locations
 - [workflows.md](global/workflows.md) - execution-mode reference

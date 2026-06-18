@@ -76,5 +76,3 @@ All P1-confirmed + actioned P2 findings remediated; verdict cleared from CONDITI
 ---
 
 ## Post-Deploy Operational Incident — memory DB corruption (contained)
-
-During R6 verification, `PRAGMA quick_check` found real B-tree corruption in `memory_index` (rootpage 4) of the live `context-index.sqlite`. **Root cause:** the one-time enrichment backfill ran as a **direct second SQLite connection** against the production DB while the daemon was also live — concurrent cross-process writers violated the single-writer discipline and corrupted overflow pages. **Not** caused by the remediation or the daemon recycle (the recycled child had the DB closed). **Containment:** backfill writer killed; corrupt files backed up (`/tmp/context-index-corrupt-backup/`); non-destructive `.recover` produced a clean DB (`quick_check: ok`, 9932/10023 rows; ~91 on damaged pages, re-fillable from source markdown). Recovery (swap-in vs full reindex) pending operator decision. **Lesson:** future backfills must route through the daemon (single writer) or run with the daemon stopped — never a concurrent direct connection.

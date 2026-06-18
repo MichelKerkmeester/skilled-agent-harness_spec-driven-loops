@@ -1,0 +1,12 @@
+{
+  "name": "Tiny Notes Export",
+  "specFolder": ".opencode/skills/system-spec-kit/scripts/test-fixtures/002-valid-level1",
+  "description": "A tiny fixture feature that exports one note to a text file for validation baseline checks.",
+  "level": "1",
+  "status": "review",
+  "trigger_phrases": [
+    "tiny notes export",
+    "level 1 fixture",
+    "valid baseline"
+  ]
+}

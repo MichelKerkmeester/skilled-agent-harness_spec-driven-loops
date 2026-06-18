@@ -582,7 +582,7 @@ Commands are slash-prefixed shortcuts for common workflows.
 | `/create:feature-catalog` | Create or update feature catalog    | Rooted `feature_catalog/` package |
 | `/create:folder_readme`   | Unified README + install guide      | README.md or install guide output |
 | `/create:prompt`          | Create or improve prompt artifact   | Prompt markdown                   |
-| `/create:skill`        | Unified skill command               | Skill create/update/file flows    |
+| `/create:sk-skill`        | Unified skill command               | Skill create/update/file flows    |
 | `/create:testing-playbook` | Create or update testing playbook | Rooted `manual_testing_playbook/` package |
 
 **Memory Commands (4)**
@@ -599,7 +599,7 @@ Commands are slash-prefixed shortcuts for common workflows.
 | Command               | Description                           | Output                      |
 | --------------------- | ------------------------------------- | --------------------------- |
 | `/speckit:complete`  | Full spec workflow (plan + implement) | Complete implementation     |
-| `/deep:start-research-loop` | Iterative deep research workflow | Research findings and state |
+| `/deep:research` | Iterative deep research workflow | Research findings and state |
 | `/speckit:implement` | Execute pre-planned work              | Implementation from plan    |
 | `/speckit:plan :with-phases` | Phase decomposition (integrated into plan/complete) | Parent and child spec packs |
 | `/speckit:plan`      | Planning phase only                   | Plan without implementation |

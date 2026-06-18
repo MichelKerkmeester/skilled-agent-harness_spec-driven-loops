@@ -7,6 +7,8 @@ trigger_phrases:
   - "confidence thresholds"
   - "scorer calibration"
   - "prompt isolation safety"
+importance_tier: "normal"
+contextType: "implementation"
 ---
 
 # Advisor Scorer: Lane Attribution and Confidence Calibration
@@ -55,7 +57,7 @@ Lane weights live in `mcp_server/lib/scorer/lane-registry.ts:7-19`. The derived-
 
 ### Shadow vs live weight mechanics
 
-Shadow weights live alongside live weights as `DEFAULT_SHADOW_SCORER_LANE_WEIGHTS` in `mcp_server/lib/scorer/lane-registry.ts`. Shadow mode (set via `SPECKIT_ADVISOR_SHADOW_MODE=1`) routes scoring through the shadow weights for evaluation runs without affecting the live ranking. Effective shadow-only status is derived per lane from registry liveness in fusion (`shadowOnly = !isLiveScorerLane(lane)`), not from any per-match flag. Because `semantic_shadow` is live in the registry, its raw match tag is overridden to `shadowOnly:false`, so it contributes to both the live ranking (at weight 0.05) and dominant-lane detection.
+Shadow weights live alongside live weights as `DEFAULT_SHADOW_SCORER_LANE_WEIGHTS` in `mcp_server/lib/scorer/lane-registry.ts`. `SPECKIT_ADVISOR_SHADOW_MODE` is currently inert: it documents intended operator control, but the runtime has no reader for it and scoring does not branch on that variable. Effective shadow-only status is derived per lane from registry liveness in fusion (`shadowOnly = !isLiveScorerLane(lane)`), not from any per-match flag. Because `semantic_shadow` is live in the registry, its raw match tag is overridden to `shadowOnly:false`, so it contributes to both the live ranking (at weight 0.05) and dominant-lane detection.
 
 ---
 
@@ -85,7 +87,7 @@ Traversal uses BFS with `maxDepth=2` and `maxBreadth=4`, decaying signal by `1/(
 
 ## 6. EXPLICIT AUTHOR LANE
 
-The explicit author lane uses curated `TOKEN_BOOSTS` and `PHRASE_BOOSTS` mappings for high-confidence routing, plus pattern-based disambiguation rules. Token boosts map single tokens to skill scores (e.g., `git` to sk-code at 1.0, `readme` to sk-doc at 0.95) defined in `mcp_server/lib/scorer/lanes/explicit.ts:8-90`.
+The explicit author lane uses curated `TOKEN_BOOSTS` and `PHRASE_BOOSTS` mappings for high-confidence routing, plus pattern-based disambiguation rules. Token boosts map single tokens to skill scores (e.g., `git` to sk-git at 1.0, `readme` to sk-doc at 0.95) defined in `mcp_server/lib/scorer/lanes/explicit.ts:8-90`.
 
 Phrase boosts handle multi-word patterns (e.g., `deep research` to deep-research at 1.3, `chrome devtools` to mcp-chrome-devtools at 1.0) defined in `mcp_server/lib/scorer/lanes/explicit.ts:92-186`. Review-plus-write disambiguation applies +3.0 to sk-code and -2.0 to sk-code-review when both `review` and write verbs appear together (`mcp_server/lib/scorer/lanes/explicit.ts:230-245`).
 

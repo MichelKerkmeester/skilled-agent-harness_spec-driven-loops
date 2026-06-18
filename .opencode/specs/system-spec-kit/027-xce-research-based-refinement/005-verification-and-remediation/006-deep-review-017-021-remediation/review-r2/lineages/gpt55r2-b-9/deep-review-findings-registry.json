@@ -1,0 +1,86 @@
+{
+  "sessionId": "fanout-gpt55r2-b-9-1781761339355-o7qylx",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "data-integrity",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Soft-delete path leaves tombstoned rows visible through active projection retrieval",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts",
+      "line": 82,
+      "lineRange": "82-99",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:82-99",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:718-743",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:232-236"
+      ],
+      "finding_class": "contract_safety",
+      "content_hash": "3a373dd06d01d31d34f8f6cbf98bc304fce70978bcc0aebb83c46cd51427bbf4",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "category": "retention",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Soft-delete retention mode skips expired active rows instead of sweeping delete_after records",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts",
+      "line": 142,
+      "lineRange": "142-173",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts:142-173",
+        ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:503-506",
+        ".opencode/skills/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts:143-176"
+      ],
+      "finding_class": "contract_safety",
+      "content_hash": "3322ef1d8280be4ad34f4167ab11545b6e337eda8e1b2e600939f291d106e5f9",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 0
+  },
+  "openFindingsCount": 2,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

@@ -67,6 +67,19 @@ export interface GetFeedbackEventsOptions {
   offset?: number;
 }
 
+export const FEEDBACK_LEDGER_SHADOW_ONLY_TABLES = Object.freeze(['feedback_events'] as const);
+
+export function assertFeedbackLedgerShadowOnlyTables(
+  tables: readonly string[] = FEEDBACK_LEDGER_SHADOW_ONLY_TABLES,
+): true {
+  const allowed = new Set<string>(FEEDBACK_LEDGER_SHADOW_ONLY_TABLES);
+  const unexpected = tables.filter((table) => !allowed.has(table));
+  if (unexpected.length > 0) {
+    throw new Error(`Feedback ledger must remain shadow-only; unexpected live table(s): ${unexpected.join(', ')}`);
+  }
+  return true;
+}
+
 /* ───────────────────────────────────────────────────────────────
    2. CONFIDENCE TIER MAPPING
 ----------------------------------------------------------------*/

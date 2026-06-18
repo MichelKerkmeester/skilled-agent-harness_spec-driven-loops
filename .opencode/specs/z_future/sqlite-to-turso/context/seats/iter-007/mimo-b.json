@@ -1,0 +1,175 @@
+{
+  "findings": [
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts",
+      "symbol": "initDb",
+      "kind": "integration_point",
+      "signature": "db.pragma('journal_mode = WAL') with fallback to DELETE on SQLITE_READONLY/CANTOPEN/IOERR",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts:320",
+      "relevance": 0.8,
+      "notes": "WAL mode pragma with file-system error fallback; Turso has no .pragma() API — this entire pattern must be replaced or removed."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts",
+      "symbol": "initDb",
+      "kind": "integration_point",
+      "signature": "db.pragma('foreign_keys = ON')",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts:332",
+      "relevance": 0.7,
+      "notes": "Foreign key enforcement via pragma; Turso enables FKs by default but lacks .pragma() — must verify Turso FK behavior or remove call."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts",
+      "symbol": "checkpointWal",
+      "kind": "integration_point",
+      "signature": "database.pragma('wal_checkpoint(FULL)') with SQLITE_BUSY suppression",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts:427",
+      "relevance": 0.9,
+      "notes": "WAL checkpoint is a local-file-only concept; Turso/libSQL uses different replication — this entire function is migration-blocking dead code."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts",
+      "symbol": "ensureSchemaMigrations",
+      "kind": "integration_point",
+      "signature": "database.exec(`CREATE TABLE IF NOT EXISTS ... CREATE INDEX IF NOT EXISTS ...`)",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts:278",
+      "relevance": 0.4,
+      "notes": "Multi-statement .exec() DDL; Turso supports this but schema migration pattern couples to synchronous better-sqlite3 .exec() semantics."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts",
+      "symbol": "ensureSchemaMigrations",
+      "kind": "integration_point",
+      "signature": "database.prepare('PRAGMA table_info(skill_nodes)').all()",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts:290",
+      "relevance": 0.7,
+      "notes": "PRAGMA table_info for column detection during migration; Turso lacks PRAGMA introspection — must use sqlite_master parsing or information_schema."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts",
+      "symbol": "recoverMalformedDatabase",
+      "kind": "dependency",
+      "signature": "renameSync(databasePath, backupPath) / rmSync(databasePath, { force: true })",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts:266",
+      "relevance": 0.9,
+      "notes": "File-level destructive recovery (rename/rm the .sqlite file); Turso DB is a remote service — file-based corruption recovery is impossible, needs service-level replacement."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts",
+      "symbol": "indexSkillMetadata",
+      "kind": "reuse_candidate",
+      "signature": "const tx = database.transaction(() => { deleteMissingNodes + upsertNode + deleteEdgesBySource + insertEdge })",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts:775",
+      "relevance": 0.6,
+      "notes": "Synchronous transaction wrapper over better-sqlite3; Turso/libSQL JS client uses async transactions — this entire block must become async."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts",
+      "symbol": "setMetadata",
+      "kind": "integration_point",
+      "signature": "INSERT INTO skill_graph_metadata ... ON CONFLICT(key) DO UPDATE SET",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts:418",
+      "relevance": 0.3,
+      "notes": "Upsert via ON CONFLICT; Turso supports this but synchronous .prepare().run() pattern must become async."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts",
+      "symbol": "refreshSkillEmbeddingsViaAdapter",
+      "kind": "integration_point",
+      "signature": "INSERT INTO ${tableName} (skill_id, embedding, ...) ON CONFLICT(skill_id) DO UPDATE SET",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts:950",
+      "relevance": 0.8,
+      "notes": "Dynamic table name (vec_<dim>) with embedding BLOB upsert; Turso lacks vec0 virtual tables and vector indexes — the entire adapter path is migration-blocking."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts",
+      "symbol": "getDbReadOnly",
+      "kind": "integration_point",
+      "signature": "new Database(databasePath, { readonly: true, fileMustExist: true })",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts:379",
+      "relevance": 0.7,
+      "notes": "Read-only mode via better-sqlite3 constructor flag; Turso connections are inherently read-replicas — the readonly concept maps differently."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts",
+      "symbol": "isWalFallbackError",
+      "kind": "convention",
+      "signature": "/^(?:SQLITE_READONLY|SQLITE_CANTOPEN|SQLITE_IOERR)(?:_|$)/.test(code)",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts:147",
+      "relevance": 0.6,
+      "notes": "WAL fallback error detection pattern; Turso has no WAL mode — this error-handling convention is migration-blocking dead code."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/daemon/lease.ts",
+      "symbol": "ensureSchema",
+      "kind": "integration_point",
+      "signature": "db.exec(`PRAGMA journal_mode = WAL; CREATE TABLE IF NOT EXISTS skill_graph_daemon_lease ...`)",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/lib/daemon/lease.ts:123",
+      "relevance": 0.9,
+      "notes": "Lease DB sets WAL mode inline with DDL in a single .exec() call; Turso has no PRAGMA journal_mode — lease DB must use a different concurrency model entirely."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/daemon/lease.ts",
+      "symbol": "acquireSkillGraphLease",
+      "kind": "reuse_candidate",
+      "signature": "const reserve = db.transaction((): LeaseAcquireResult => { SELECT + INSERT ... ON CONFLICT DO UPDATE })",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/lib/daemon/lease.ts:300",
+      "relevance": 0.9,
+      "notes": "Heartbeat-based lease acquisition in synchronous transaction; the entire single-writer lease model assumes local-file WAL locking — Turso's remote locking model invalidates this design."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/daemon/lease.ts",
+      "symbol": "heartbeat",
+      "kind": "integration_point",
+      "signature": "UPDATE skill_graph_daemon_lease SET heartbeat_at = ?, pid = ? WHERE workspace_key = ? AND owner_id = ?",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/lib/daemon/lease.ts:345",
+      "relevance": 0.8,
+      "notes": "Periodic heartbeat UPDATE on lease row; if Turso connection drops, heartbeat fails silently — needs connection-liveness detection absent in current code."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/daemon/lease.ts",
+      "symbol": "release",
+      "kind": "integration_point",
+      "signature": "DELETE FROM skill_graph_daemon_lease WHERE workspace_key = ? AND owner_id = ?",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/lib/daemon/lease.ts:357",
+      "relevance": 0.5,
+      "notes": "Lease release via DELETE; Turso supports DELETE but the lease model's correctness depends on local-file atomicity guarantees that Turso remote connections may not provide."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/daemon/state-mutation.ts",
+      "symbol": "runDaemonStateMutation",
+      "kind": "reuse_candidate",
+      "signature": "function runDaemonStateMutation<T>(dbPath, initialize, mutate, attempts=3): T with SQLITE_BUSY retry loop",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/lib/daemon/state-mutation.ts:18",
+      "relevance": 0.8,
+      "notes": "Generic SQLITE_BUSY retry wrapper opening a fresh DB per attempt; Turso has different error codes for contention — the retry predicate must be updated."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/daemon/state-mutation.ts",
+      "symbol": "openDaemonStateDb",
+      "kind": "dependency",
+      "signature": "new Database(dbPath) — no WAL, no busy_timeout, no pragmas",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/lib/daemon/state-mutation.ts:43",
+      "relevance": 0.7,
+      "notes": "Opens daemon state DB with zero pragmas (no WAL, no busy_timeout); relies on caller retry logic — Turso connection pooling semantics would change this."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/freshness/sqlite-integrity.ts",
+      "symbol": "checkSqliteIntegrity",
+      "kind": "integration_point",
+      "signature": "db.prepare('PRAGMA quick_check').get()",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/lib/freshness/sqlite-integrity.ts:22",
+      "relevance": 0.9,
+      "notes": "PRAGMA quick_check is a local-file integrity probe; Turso/libSQL remote has no equivalent — this entire module is migration-blocking dead code."
+    },
+    {
+      "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/freshness/sqlite-integrity.ts",
+      "symbol": "checkSqliteIntegrity",
+      "kind": "integration_point",
+      "signature": "new Database(dbPath, { readonly: true, fileMustExist: true }) + db.pragma('busy_timeout = 5000')",
+      "evidence": ".opencode/skills/system-skill-advisor/mcp_server/lib/freshness/sqlite-integrity.ts:20",
+      "relevance": 0.6,
+      "notes": "Integrity probe opens read-only with busy_timeout pragma; Turso connections don't support .pragma() — must wrap with Turso-specific connection config."
+    }
+  ]
+}

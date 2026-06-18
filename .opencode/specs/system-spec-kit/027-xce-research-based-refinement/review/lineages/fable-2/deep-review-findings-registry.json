@@ -1,0 +1,205 @@
+{
+  "sessionId": "fanout-fable-2-1781112180955-4japyt",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Parent description.json children inventory lags on-disk children by five (011-015); spec.md map and graph-metadata healed mid-review by concurrent session",
+      "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/description.json",
+      "line": 28,
+      "evidence": [
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/description.json:28-38",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:140-144",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/graph-metadata.json:18-22",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/011-command-presentation-workflow-separation/spec.md:56"
+      ],
+      "finding_class": "spec-metadata-drift",
+      "content_hash": "sha256:fable2-f001-parent-inventory-omits-011",
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P1", "reason": "Initial discovery: all three parent surfaces omitted 011" },
+        { "iteration": 5, "from": "P1", "to": "P1", "reason": "Refined: concurrent session updated spec.md map + graph-metadata to 015; description.json remains stale (lone lagging surface)" }
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Phase-map Status cells (002/008/009 'Spec-scaffolded', 000 'Placeholder') and 'scaffolded and planned, not implemented' narrative contradict on-disk child statuses and the changelog index's ten shipped tracks",
+      "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md",
+      "line": 131,
+      "evidence": [
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:131",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:137-138",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:146",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/spec.md:60",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-openltm-retrieval-observability/spec.md:45",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/009-openltm-continuity-resilience/spec.md:45",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/006-gem-team-adoption/001-typed-agent-io-adapter/spec.md:65",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-memclaw-derived-memory-hardening/001-provenance-and-audit/spec.md:43",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/spec.md:55",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/changelog/README.md:14"
+      ],
+      "finding_class": "stale-status-claim",
+      "content_hash": "sha256:fable2-f002-phase-map-status-stale",
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P1", "reason": "Initial discovery" },
+        { "iteration": 4, "from": "P1", "to": "P1", "reason": "Evidence widened: changelog index + fresh timeline confirm parent map is the stale surface" }
+      ]
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Child metadata stale (002 description.json 'spec-scaffolded' vs spec Complete) or schema-inconsistent (008/009/011 missing status key, divergent schema vintage)",
+      "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/description.json",
+      "line": 13,
+      "evidence": [
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/description.json:13",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/spec.md:60",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-openltm-retrieval-observability/description.json:1-30"
+      ],
+      "finding_class": "spec-metadata-drift",
+      "content_hash": "sha256:fable2-f003-child-metadata-stale-or-schema-drift",
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "Machine-local home paths in research/review dispatch artifacts; .out/.err/state files escape the *.log gitignore rule in a public repo",
+      "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/prompts/iteration-018.err",
+      "line": 1,
+      "evidence": [
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/006-peck-source-deep-mining/prompts/iteration-018.err:1",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research/research/gap-audit/lineages/gpt-gap/deep-research-config.json:1",
+        ".gitignore:125",
+        ".gitignore:168"
+      ],
+      "finding_class": "information-disclosure-advisory",
+      "content_hash": "sha256:fable2-f004-home-paths-escape-log-ignore",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "transitions": [
+        { "iteration": 2, "from": null, "to": "P2", "reason": "Initial discovery; P1 considered and rejected (non-credential content)" }
+      ]
+    },
+    {
+      "findingId": "F005",
+      "severity": "P1",
+      "category": "resource-map-coverage",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Parent resource-map.md scope-frozen at 2026-06-04; omits implementation surfaces for phases 002-015; stale 'last active child' claim contradicts graph-metadata null",
+      "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/resource-map.md",
+      "line": 30,
+      "evidence": [
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/resource-map.md:30-34",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/resource-map.md:74",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/graph-metadata.json:240",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/tasks.md:78"
+      ],
+      "finding_class": "resource-map-gap",
+      "content_hash": "sha256:fable2-f005-resource-map-scope-frozen",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "transitions": [
+        { "iteration": 3, "from": null, "to": "P1", "reason": "Mandatory resource-map coverage pass" },
+        { "iteration": 5, "from": "P1", "to": "P1", "reason": "Refined: gap widened to 002-015 after concurrent child additions" }
+      ]
+    },
+    {
+      "findingId": "F006",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "context-index.md 'Current 027 child folder' column stale and self-inconsistent after the 003 consolidation (double-booked 004/005 slots; nested children listed as top-level)",
+      "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/context-index.md",
+      "line": 35,
+      "evidence": [
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/context-index.md:35-38",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/context-index.md:39-40"
+      ],
+      "finding_class": "stale-migration-bridge",
+      "content_hash": "sha256:fable2-f006-context-index-stale-column",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "transitions": [
+        { "iteration": 3, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F007",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Parent _memory.continuity stale on every progress field (next_safe_action already completed; completion_pct 0; Updated-date mismatch)",
+      "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md",
+      "line": 24,
+      "evidence": [
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:24-27",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:44",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:73"
+      ],
+      "finding_class": "stale-continuity-handoff",
+      "content_hash": "sha256:fable2-f007-parent-continuity-stale",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "transitions": [
+        { "iteration": 4, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F008",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Changelog index internally inconsistent: 000 shipped-but-listed-planned with no changelog folder ('every shipped phase has a changelog' false); 001 'shipped' vs child 'In Progress'",
+      "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/changelog/README.md",
+      "line": 14,
+      "evidence": [
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/changelog/README.md:14",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/changelog/README.md:20-21",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/001-public-root-readme/spec.md:48",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/spec.md:57"
+      ],
+      "finding_class": "status-vocabulary-drift",
+      "content_hash": "sha256:fable2-f008-changelog-index-inconsistent",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "transitions": [
+        { "iteration": 4, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "metrics": {
+    "dimensionsCovered": ["correctness", "security", "traceability", "maintainability"],
+    "findingsBySeverity": { "P0": 0, "P1": 3, "P2": 5 },
+    "openFindings": 8,
+    "resolvedFindings": 0,
+    "convergenceScore": 0.79,
+    "newFindingsRatioSeries": [0.6, 0.15, 0.45, 0.2, 0.05]
+  }
+}

@@ -1,0 +1,26 @@
+Act as a READ-ONLY documentation accuracy auditor (seat AUD01). Do NOT modify, create, or delete ANY file.
+
+A prior automated fix pass edited the README files below (in git commit 83f36b8050) to correct stale content. Your job is adversarial: catch any fix that wrote a FACTUALLY WRONG or materially imprecise NEW value (a plausible-but-incorrect "current truth"). You are NOT re-reviewing the whole file — only the lines the fix changed.
+
+FILES TO AUDIT:
+- .opencode/skills/cli-claude-code/README.md
+- .opencode/skills/cli-codex/README.md
+- .opencode/skills/cli-opencode/README.md
+- .opencode/skills/deep-loop-runtime/README.md
+- .opencode/skills/deep-loop-runtime/database/README.md
+- .opencode/skills/deep-loop-runtime/lib/README.md
+- .opencode/skills/deep-loop-runtime/lib/coverage-graph/README.md
+- .opencode/skills/deep-loop-runtime/lib/deep-loop/README.md
+
+METHOD, per file:
+1. See exactly what the fix changed: run `git show 83f36b8050 -- <file>` (added lines are the new values to check).
+2. For each CHANGED/added claim, verify it against the LIVE source it describes — read the actual SKILL.md / code / config / model_profiles.json / agent definitions / tool list. Do not trust the README; trust the source.
+3. Flag ONLY a new value that is WRONG or materially imprecise. A correct fix needs no action. Do NOT re-flag pre-existing issues the fix did not touch, and do NOT flag style.
+
+Surface nuance to respect: the spec-memory CLI front door is 37 tools while the MCP server is 39 — both can be correct depending on which surface the sentence describes.
+
+OUTPUT: your final message MUST be exactly one fenced json block:
+```json
+{"seat":"AUD01","audited_files":0,"wrong":[{"file":"path","new_value":"what the fix wrote","actual_truth":"what it should be","evidence":"file:line you checked"}],"confirmed_ok":0}
+```
+If every fix in your batch is accurate, return "wrong":[].

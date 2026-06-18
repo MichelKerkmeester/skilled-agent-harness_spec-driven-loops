@@ -247,6 +247,12 @@ def main() -> int:
     parser.add_argument("--out", default="", help="Optional path to write JSON report.")
     parser.add_argument("--threshold", type=float, default=0.8, help="Confidence threshold for evaluations.")
     parser.add_argument("--uncertainty", type=float, default=0.35, help="Uncertainty threshold for dual-threshold evaluations.")
+    parser.add_argument(
+        "--min-total-cases",
+        type=int,
+        default=50,
+        help="Minimum fixture corpus size; guards against a silently shrunken case file.",
+    )
     parser.add_argument("--min-top1-accuracy", type=float, default=0.92, help="Minimum acceptable top-1 accuracy.")
     parser.add_argument("--max-command-bridge-fp-rate", type=float, default=0.05, help="Maximum command bridge FP rate on non-slash prompts.")
     parser.add_argument("--min-p0-pass-rate", type=float, default=1.0, help="Minimum P0 pass rate.")
@@ -286,6 +292,9 @@ def main() -> int:
         "command_bridge_fp_rate": metrics["command_bridge_fp_rate"] <= args.max_command_bridge_fp_rate,
         "p0_pass_rate": metrics["p0_pass_rate"] >= args.min_p0_pass_rate,
         "all_cases_passed": metrics["failed_cases"] == 0,
+        # Rates alone cannot catch a shrunken fixture: a truncated corpus
+        # passes every ratio gate while measuring almost nothing.
+        "total_cases": metrics["total_cases"] >= args.min_total_cases,
     }
     overall_pass = all(gates.values())
 

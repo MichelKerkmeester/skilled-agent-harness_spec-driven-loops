@@ -10,6 +10,7 @@ import {
   updateEdge,
   getStaleEdges,
   countEdgesForNode,
+  isAutoEdgeCreator,
   MAX_EDGES_PER_NODE,
   MAX_AUTO_STRENGTH,
   MAX_STRENGTH_INCREASE_PER_CYCLE,
@@ -353,14 +354,17 @@ export function runHebbianCycle(database: Database.Database): { strengthened: nu
         const increase = Math.min(MAX_STRENGTH_INCREASE_PER_CYCLE, 1.0 - edge.strength);
         if (increase > 0) {
           const newStrength = Math.min(1.0, edge.strength + increase);
-          // Auto edges cannot exceed MAX_AUTO_STRENGTH
-          const cappedStrength = edge.created_by === 'auto'
+          // Auto edges (incl. namespaced auto-* creators) cannot exceed MAX_AUTO_STRENGTH
+          const cappedStrength = isAutoEdgeCreator(edge.created_by)
             ? Math.min(newStrength, MAX_AUTO_STRENGTH)
             : newStrength;
 
           if (cappedStrength > edge.strength) {
-            updateEdge(edge.id, { strength: cappedStrength }, 'hebbian', 'hebbian-strengthening');
-            strengthened++;
+            // Only count edges that were actually mutated so the reported
+            // telemetry cannot overstate the DB writes when updateEdge no-ops.
+            if (updateEdge(edge.id, { strength: cappedStrength }, 'hebbian', 'hebbian-strengthening')) {
+              strengthened++;
+            }
           }
         }
       }
@@ -375,14 +379,20 @@ export function runHebbianCycle(database: Database.Database): { strengthened: nu
       for (const edge of staleDecayEdges) {
         const newStrength = Math.max(0, edge.strength - DECAY_STRENGTH_AMOUNT);
         if (newStrength < edge.strength) {
-          updateEdge(edge.id, { strength: newStrength }, 'hebbian', 'decay-30-day');
-          decayed++;
+          if (updateEdge(edge.id, { strength: newStrength }, 'hebbian', 'decay-30-day')) {
+            decayed++;
+          }
         }
       }
     })();
   } catch (error: unknown) {
     const msg = error instanceof Error ? error.message : String(error);
     console.warn(`[consolidation] runHebbianCycle error: ${msg}`);
+    // Re-throw so the outer cycle rolls back and does NOT advance last_run_at:
+    // the inner savepoint already rolled back these writes, and swallowing here
+    // would book a partially-failed pass as a completed cycle, suppressing the
+    // next consolidation for the full cadence interval.
+    throw error;
   }
 
   return { strengthened, decayed };
@@ -395,8 +405,13 @@ export function runHebbianCycle(database: Database.Database): { strengthened: nu
 /**
  * Detect stale edges (not accessed in 90+ days).
  * Flags them for review without deletion.
+ *
+ * Reads through the causal-edges module-global connection (the single shared
+ * handle every consolidation read and write already runs on), so no database
+ * handle is threaded here — a threaded-but-ignored param previously implied a
+ * second connection that never existed and could mask a real handle split.
  */
-export function detectStaleEdges(_database: Database.Database): CausalEdge[] {
+export function detectStaleEdges(): CausalEdge[] {
   return getStaleEdges(STALENESS_THRESHOLD_DAYS);
 }
 
@@ -427,24 +442,24 @@ export function checkEdgeBounds(
 ----------------------------------------------------------------*/
 
 /**
- * Run a full N3-lite consolidation cycle:
- * 1. Contradiction scan
- * 2. Hebbian strengthening + decay
- * 3. Staleness detection
- * 4. Edge bounds check
+ * Read-only portion of a consolidation cycle: contradiction scan + cluster
+ * surfacing, staleness detection, and the per-node edge-bounds count.
  *
- * Designed to run as a weekly batch job.
+ * Split out so the runtime hook can run this expensive O(n^2) work WITHOUT
+ * holding a write lock; only the Hebbian write phase needs the lock. Touches
+ * no rows, so it is safe to run before BEGIN IMMEDIATE.
  */
-export function runConsolidationCycle(database: Database.Database): ConsolidationResult {
+function scanReadOnly(database: Database.Database): {
+  contradictions: ContradictionCluster[];
+  stale: { flagged: number };
+  edgeBounds: { rejected: number };
+} {
   // Contradiction scan + cluster surfacing
   const contradictionPairs = scanContradictions(database);
   const contradictions = buildContradictionClusters(database, contradictionPairs);
 
-  // Hebbian strengthening + decay
-  const hebbian = runHebbianCycle(database);
-
   // Staleness detection
-  const staleEdges = detectStaleEdges(database);
+  const staleEdges = detectStaleEdges();
 
   // Edge bounds — check counts (enforcement happens at insertEdge)
   let rejectedCount = 0;
@@ -467,15 +482,79 @@ export function runConsolidationCycle(database: Database.Database): Consolidatio
 
   return {
     contradictions,
-    hebbian,
     stale: { flagged: staleEdges.length },
     edgeBounds: { rejected: rejectedCount },
   };
 }
 
 /**
+ * Run a full N3-lite consolidation cycle:
+ * 1. Contradiction scan
+ * 2. Hebbian strengthening + decay
+ * 3. Staleness detection
+ * 4. Edge bounds check
+ *
+ * Designed to run as a weekly batch job.
+ */
+export function runConsolidationCycle(database: Database.Database): ConsolidationResult {
+  // Contradiction scan + cluster surfacing + staleness + bounds (read-only)
+  const { contradictions, stale, edgeBounds } = scanReadOnly(database);
+
+  // Hebbian strengthening + decay
+  const hebbian = runHebbianCycle(database);
+
+  return {
+    contradictions,
+    hebbian,
+    stale,
+    edgeBounds,
+  };
+}
+
+/**
+ * Ensure the cadence bookkeeping table exists. Idempotent DDL; safe to call
+ * outside a transaction.
+ */
+function ensureConsolidationStateTable(database: Database.Database): void {
+  (database.prepare(`
+    CREATE TABLE IF NOT EXISTS consolidation_state (
+      id INTEGER PRIMARY KEY CHECK(id = 1),
+      last_run_at TEXT
+    )
+  `) as Database.Statement).run();
+}
+
+/**
+ * Whether a consolidation cycle is due per the weekly cadence. A missing row or
+ * NULL last_run_at counts as due (first run). Read-only.
+ */
+function isConsolidationDue(database: Database.Database): boolean {
+  const row = (database.prepare(
+    'SELECT last_run_at FROM consolidation_state WHERE id = 1'
+  ) as Database.Statement).get() as { last_run_at: string | null } | undefined;
+
+  if (!row?.last_run_at) return true;
+
+  const due = (database.prepare(`
+    SELECT CASE
+      WHEN ? <= datetime('now', '-' || ? || ' days') THEN 1
+      ELSE 0
+    END AS is_due
+  `) as Database.Statement).get(row.last_run_at, CONSOLIDATION_INTERVAL_DAYS) as {
+    is_due: number;
+  };
+
+  return due.is_due === 1;
+}
+
+/**
  * Runtime gate for N3-lite consolidation.
  * Returns null when consolidation is disabled.
+ *
+ * Lock ordering: the expensive read-only scan/cluster/staleness/bounds work
+ * runs BEFORE the BEGIN IMMEDIATE write lock so concurrent writers are not
+ * blocked for the duration of the O(n^2) scan. The immediate lock covers only
+ * the cadence re-check + the Hebbian write phase + the last_run_at advance.
  */
 export function runConsolidationCycleIfEnabled(
   database: Database.Database,
@@ -484,42 +563,33 @@ export function runConsolidationCycleIfEnabled(
 
   let beganImmediate = false;
   try {
+    // Cadence pre-check WITHOUT the write lock. Skip cheaply when not due.
+    ensureConsolidationStateTable(database);
+    if (!isConsolidationDue(database)) {
+      return null;
+    }
+
+    // Expensive read-only phase WITHOUT the write lock so other writers proceed.
+    const { contradictions, stale, edgeBounds } = scanReadOnly(database);
+
     if (!database.inTransaction) {
       database.exec('BEGIN IMMEDIATE');
       beganImmediate = true;
     }
 
-    (database.prepare(`
-      CREATE TABLE IF NOT EXISTS consolidation_state (
-        id INTEGER PRIMARY KEY CHECK(id = 1),
-        last_run_at TEXT
-      )
-    `) as Database.Statement).run();
-
-    const row = (database.prepare(
-      'SELECT last_run_at FROM consolidation_state WHERE id = 1'
-    ) as Database.Statement).get() as { last_run_at: string | null } | undefined;
-
-    if (row?.last_run_at) {
-      const due = (database.prepare(`
-        SELECT CASE
-          WHEN ? <= datetime('now', '-' || ? || ' days') THEN 1
-          ELSE 0
-        END AS is_due
-      `) as Database.Statement).get(row.last_run_at, CONSOLIDATION_INTERVAL_DAYS) as {
-        is_due: number;
-      };
-
-      if (due.is_due !== 1) {
-        if (beganImmediate) {
-          database.exec('COMMIT');
-          beganImmediate = false;
-        }
-        return null;
+    // Re-check the cadence under the lock: a concurrent cycle may have advanced
+    // last_run_at in the gap between the pre-check and acquiring the lock. If so,
+    // do not double-apply the Hebbian writes or re-advance the cadence.
+    if (!isConsolidationDue(database)) {
+      if (beganImmediate) {
+        database.exec('COMMIT');
+        beganImmediate = false;
       }
+      return null;
     }
 
-    const result = runConsolidationCycle(database);
+    // Write phase under the immediate lock: Hebbian strengthening + decay.
+    const hebbian = runHebbianCycle(database);
 
     (database.prepare(`
       INSERT INTO consolidation_state (id, last_run_at)
@@ -532,7 +602,7 @@ export function runConsolidationCycleIfEnabled(
       beganImmediate = false;
     }
 
-    return result;
+    return { contradictions, hebbian, stale, edgeBounds };
   } catch (err: unknown) {
     if (beganImmediate) {
       try {

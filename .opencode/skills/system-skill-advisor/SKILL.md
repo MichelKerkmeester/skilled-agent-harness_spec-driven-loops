@@ -258,7 +258,14 @@ return {
 - **Low confidence:** load default runtime references, emit `UNKNOWN_FALLBACK_CHECKLIST`, and ask for the missing intent/path/tool signal.
 - **Ambiguous intent scores:** load the top two resource domains and disclose the ambiguity instead of picking one silently.
 - **Known intent with no resources:** return a "no knowledge base found" notice naming the missing intent.
-- **Advisor MCP unavailable:** fall back to Python `skill_advisor.py` shim, then to keyword matching against each skill's frontmatter `trigger_phrases`. Announce the degraded mode in the response.
+- **Advisor MCP unavailable:** for normal Gate 2 routing, fall back to Python `skill_advisor.py` only when the caller needs the legacy JSON-array facade or MCP/CLI transport is unavailable. Use `node .opencode/bin/skill-advisor.cjs <tool> --format json --timeout-ms N` for operator checks, doctor routes and runtime fallbacks that have already verified a warm `mk-skill-advisor` daemon socket. Prompt-time hooks must probe the socket first, never cold-spawn the daemon, and fail open on CLI exit 75 before keyword matching against frontmatter `trigger_phrases`. Full cross-daemon CLI behavior, recovery, exit taxonomy, stale-dist build commands, per-command `--help`, offline smoke, and `jsonl` semantics live in [`../system-spec-kit/references/cli/daemon_cli_reference.md`](../system-spec-kit/references/cli/daemon_cli_reference.md).
+
+### Gate 2 caller guidance
+
+- Prefer `mcp__mk_skill_advisor__advisor_recommend` for live runtime routing when MCP transport is healthy.
+- Use `skill_advisor.py` for the legacy facade contract: AGENTS.md fallback checks, compatibility scripts expecting the JSON-array shape, or environments without the daemon-backed CLI.
+- Use `.opencode/bin/skill-advisor.cjs` for full-parity daemon-backed CLI checks and runtime fallback only after a warm-socket probe succeeds; all 9 advisor tools are reachable over the same daemon, exit 75 is retryable fail-open, and a later evolution could make the CLI the primary or sole transport without breaking existing MCP workflows.
+- CLI calls are sent untrusted by default. Mutations (`advisor_rebuild`, `skill_graph_scan`, apply-mode `skill_graph_propagate_enhances`) require `--trusted` or `MK_SKILL_ADVISOR_CLI_TRUSTED=1` — the maintainer path. Read tools never need it.
 
 ### Anti-patterns
 
@@ -274,9 +281,9 @@ return {
 
 ADR-001 locks the target shape as **Standalone Advisor MCP With Legacy Tool Bridge**.
 
-The package owns a dedicated MCP server named `mk_skill_advisor`. It registers **8 public tools plus 1 internal trusted-caller tool** (9 total). The tool ids stay stable:
+The package owns a dedicated MCP server named `mk_skill_advisor`. It lists all **9 tools** on the MCP surface. The tool ids stay stable:
 
-Public (8):
+Tools (9):
 
 - `advisor_recommend`
 - `advisor_rebuild`
@@ -286,12 +293,13 @@ Public (8):
 - `skill_graph_query`
 - `skill_graph_status`
 - `skill_graph_validate`
+- `skill_graph_propagate_enhances`
 
-Internal trusted-caller (1):
-
-- `skill_graph_propagate_enhances`, gated behind trusted-caller auth (see `references/runtime/tool_ids_reference.md` §4)
+`skill_graph_propagate_enhances` is trust-gated only for real apply writes (`mode=apply` with `dryRun` not `true`); report, propose and dry-run apply calls remain read-safe.
 
 The stable tool ids matter because live consumers already call them from hooks, Python compatibility shims, plugin bridges, doctor workflows, install guides and MCP clients. Server-level namespacing supplies the boundary, so callers use the standalone server without learning a new advisor vocabulary.
+
+The surface is dual-stack: the same 9 tools are callable through the full-parity daemon-backed CLI `node .opencode/bin/skill-advisor.cjs <tool_name>` over the same daemon (the MCP registration is unchanged). MCP remains the primary in-session transport today; use the CLI when MCP transport is missing, failed or not reconnecting while the daemon is warm, and for hooks, cron, CI and operator shell diagnostics. Recovery example: `node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --warm-only --format json --timeout-ms 3000`. CLI exit taxonomy: `0` success, `1` runtime, `64` usage/schema or trusted-mutation refusal, `69` protocol/dist mismatch or stale dist, `75` retryable daemon error. Because this CLI already has full parity, a later evolution could make it the primary or sole transport without breaking existing MCP workflows; that is a possible direction, not a committed plan. `--format jsonl` renders one complete JSON payload on one stdout line; it is not streaming JSON Lines. Trust resolution fails closed: the daemon treats a caller as untrusted when transport `_meta` is absent or unknown, the CLI sends `callerAuthority: untrusted` unless `--trusted`/`MK_SKILL_ADVISOR_CLI_TRUSTED=1` is supplied, and native MCP surfaces whose clients send no `_meta` are re-granted default trust only through `MK_SKILL_ADVISOR_TRUST_DEFAULT=trusted` in the daemon's own environment (set in the committed MCP registrations: `.mcp.json`, `opencode.json`, `.codex/config.toml`), which callers cannot forge. An env-gated tri-daemon drill (`SPECKIT_RUN_TRI_DAEMON_DRILL=1`, `mcp_server/tests/tri-daemon-drill.vitest.ts`) exercises all three daemon-backed CLIs together.
 
 The advisor implementation, skill-graph library and package-local database now live under this skill package, while memory remains focused on memory tools.
 
@@ -376,8 +384,9 @@ Current package state:
 
 Expected consumers:
 
-- Prompt-time hooks for Claude, Codex and OpenCode.
+- Prompt-time hooks for Claude, Codex and OpenCode. The Claude/Codex hooks share the warm-only CLI fallback helper `hooks/lib/skill-advisor-cli-fallback.ts`; the OpenCode plugin bridge (`mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs`) falls back to `node .opencode/bin/skill-advisor.cjs --warm-only` when its bridge path is unavailable.
 - MCP clients that call `advisor_recommend`, `advisor_status`, `advisor_rebuild`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate` or `skill_graph_propagate_enhances`.
+- Daemon-backed CLI callers (`node .opencode/bin/skill-advisor.cjs <tool>`) for doctor routes, scripts and CI — untrusted by default, `--trusted` for maintainer mutations.
 - Doctor workflows that validate advisor health and rebuild state.
 - Skill graph indexers and routing accuracy checks.
 

@@ -89,7 +89,7 @@ The `checkpoints` table inside `context-index.sqlite` stores each checkpoint's `
 
 - **Create** — `checkpoint_create` (handler `handlers/checkpoints.ts` → `lib/storage/checkpoints.ts:createCheckpoint`) makes `checkpoints/<name>/` at mode `0700` and runs `VACUUM main INTO` and `VACUUM active_vec INTO` (busy-retry with backoff). `memory_bulk_delete` takes the same kind of safety checkpoint before a destructive delete.
 - **List** — `checkpoint_list` reads the `checkpoints` table, filtered by spec-folder scope.
-- **Restore** — `checkpoint_restore` writes the restore journal, copies the target into `restore-backups/`, then atomically renames the snapshot into place (`live ⇄ backup`). `restoreCheckpointV2` validates the manifest before swapping.
+- **Restore** — `checkpoint_restore` writes the restore journal, renames the live database files to sibling `.bak` files during the file-swap, then atomically renames the snapshot into place (`live ⇄ backup`). `restoreCheckpointV2` validates the manifest before swapping. The `restore-backups/` directory is used by the raw restore migration script, not the MCP restore handler.
 - **Self-heal** — on boot / pre-scan / scan-lease, the daemon sweeps stale checkpoint temp dirs and orphan snapshot dirs, and `repairNeedsRebuildSentinel` acts on a leftover `.needs-rebuild`.
 - **Delete** — `checkpoint_delete` removes the row and its snapshot subdirectory.
 

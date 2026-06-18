@@ -1,0 +1,771 @@
+{
+  "sessionId": "2026-06-11T09:05:00Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "IN-PROGRESS",
+  "openFindings": [
+    {
+      "findingId": "R1-P0-001",
+      "severity": "P0",
+      "title": "Stale launcher lease ignores recorded live childPid before spawning a replacement",
+      "file": ".opencode/bin/mk-skill-advisor-launcher.cjs",
+      "line": 558,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P0",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P0-002",
+      "severity": "P0",
+      "title": "Dead-socket respawn decision is dropped, leaving the secondary with no bridge or JSON-RPC error",
+      "file": "bin/mk-skill-advisor-launcher.cjs",
+      "line": 537,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P0",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P0-003",
+      "severity": "P0",
+      "title": "Signal and heartbeat shutdown still kill the shared advisor daemon instead of releasing it",
+      "file": "bin/mk-skill-advisor-launcher.cjs",
+      "line": 914,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P0",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P0-004",
+      "severity": "P0",
+      "title": "Stale launcher lease with a live daemon child is not adopted before respawn",
+      "file": "bin/mk-skill-advisor-launcher.cjs",
+      "line": 564,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P0",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P0-005",
+      "severity": "P0",
+      "title": "Stale-owner reclaim is not serialized, so two reclaimers can both spawn daemons",
+      "file": "bin/mk-skill-advisor-launcher.cjs",
+      "line": 444,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P0",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P1",
+      "title": "Bridge respawn decisions are returned but never acted on",
+      "file": ".opencode/bin/mk-skill-advisor-launcher.cjs",
+      "line": 537,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P1-002",
+      "severity": "P1",
+      "title": "Owner child exit clears leases and exits instead of relaunching a backend for bridged clients",
+      "file": "bin/mk-skill-advisor-launcher.cjs",
+      "line": 878,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P1-003",
+      "severity": "P1",
+      "title": "Deep-probe respawn decisions are ignored by the skill-advisor launcher",
+      "file": "bin/mk-skill-advisor-launcher.cjs",
+      "line": 537,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P1-004",
+      "severity": "P1",
+      "title": "Model-server shutdown clears the pid record without killing or escalating the sidecar root",
+      "file": "bin/mk-skill-advisor-launcher.cjs",
+      "line": 723,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P1-005",
+      "severity": "P1",
+      "title": "Stale-lease test does not exercise the new owner-lease double-writer risk",
+      "file": ".opencode/skills/system-skill-advisor/mcp_server/tests/skill-advisor-launcher-orphan-reaping.vitest.ts",
+      "line": 340,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P1-006",
+      "severity": "P1",
+      "title": "Warm-daemon adoption test proves no respawn, but not that bridged traffic works",
+      "file": ".opencode/skills/system-skill-advisor/mcp_server/tests/skill-advisor-launcher-orphan-reaping.vitest.ts",
+      "line": 388,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P1-007",
+      "severity": "P1",
+      "title": "Implementation summary claims completion while remaining scaffold text",
+      "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/003-skill-advisor-cross-session-reconnect/implementation-summary.md",
+      "line": 41,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P1-008",
+      "severity": "P1",
+      "title": "New spec docs contain banned ephemeral labels in comments",
+      "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/003-skill-advisor-cross-session-reconnect/spec.md",
+      "line": 169,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "Replayable set includes advisor calls with telemetry side effects",
+      "file": "bin/mk-skill-advisor-launcher.cjs",
+      "line": 171,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "Dead-pid fixture has a low-probability PID reuse race",
+      "file": ".opencode/skills/system-skill-advisor/mcp_server/tests/skill-advisor-launcher-orphan-reaping.vitest.ts",
+      "line": 200,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": false,
+    "security": false,
+    "traceability": false,
+    "maintainability": false
+  },
+  "findingsBySeverity": {
+    "P0": 5,
+    "P1": 8,
+    "P2": 2
+  },
+  "openFindingsCount": 15,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [
+      "framing",
+      "host-safety",
+      "lease-wipe",
+      "race|lease",
+      "reaping",
+      "test-gap"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "race|lease": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "framing": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "lease-wipe": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "reaping": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "host-safety": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "test-gap": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 2,
+      "id": "SL-2-1",
+      "dimension": "lease-correctness",
+      "targetRefs": [
+        ".opencode/bin/mk-skill-advisor-launcher.cjs:339"
+      ],
+      "bugClass": "race|lease",
+      "disposition": "ruled_out",
+      "rationale": "Two launchers starting from no owner lease cannot both atomically create .skill-advisor-owner.json. A loser either bridges/reports or, if ownership changes before spawn, launchServer refuses to spawn.",
+      "evidenceRefs": [
+        ".opencode/bin/mk-skill-advisor-launcher.cjs:339"
+      ],
+      "reason": "O_CREAT|O_EXCL-style acquisition plus owner reprobes prevent the no-prior-lease double-writer interleaving."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-3-1",
+      "dimension": "reconnect-bridging",
+      "targetRefs": [
+        "bin/lib/launcher-session-proxy.cjs:74"
+      ],
+      "bugClass": "framing",
+      "disposition": "ruled_out",
+      "rationale": "No skill-advisor-specific truncation/interleaving defect found in the message framing path. Partial reads, multibyte boundaries, and request/response tracking are handled in the shared proxy rather than reimplemented in the skill-advisor launcher.",
+      "evidenceRefs": [
+        "bin/lib/launcher-session-proxy.cjs:74"
+      ],
+      "reason": "Proven-equivalent shared implementation to mk-spec-memory for framing; no divergent skill-advisor bridge code on this path."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-4-1",
+      "dimension": "lifecycle-reaping",
+      "targetRefs": [
+        "bin/mk-skill-advisor-launcher.cjs:500"
+      ],
+      "bugClass": "lease-wipe",
+      "disposition": "ruled_out",
+      "rationale": "The prior bug class was an exit handler deleting a lease still owned by another live launcher. I do not see that specific interleaving in this target.",
+      "evidenceRefs": [
+        "bin/mk-skill-advisor-launcher.cjs:500"
+      ],
+      "reason": "Lease release is conditional on local ownership for the owner lease and on local pid/current child for the PID lease. The remaining lease-deletion risk is the missing release/adoption path covered by the P0 findings, not wiping another live owner's lease."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-4-2",
+      "dimension": "lifecycle-reaping",
+      "targetRefs": [
+        "bin/mk-skill-advisor-launcher.cjs:537"
+      ],
+      "bugClass": "reaping",
+      "disposition": "ruled_out",
+      "rationale": "The target does not itself reap on the first missed probe. The concrete defect is the opposite: after the delegated bridge reports a respawn decision, the target ignores it.",
+      "evidenceRefs": [
+        "bin/mk-skill-advisor-launcher.cjs:537"
+      ],
+      "reason": "No target-side one-probe healthy-daemon reap path was found."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-5-1",
+      "dimension": "test-rigor",
+      "targetRefs": [
+        ".opencode/skills/system-skill-advisor/mcp_server/tests/skill-advisor-launcher-orphan-reaping.vitest.ts:146"
+      ],
+      "bugClass": "host-safety",
+      "disposition": "ruled_out",
+      "rationale": "The tests do not bind the production socket path or use the production skill-advisor database for the reviewed launcher scenarios.",
+      "evidenceRefs": [
+        ".opencode/skills/system-skill-advisor/mcp_server/tests/skill-advisor-launcher-orphan-reaping.vitest.ts:146"
+      ],
+      "reason": "Sandbox-critical env vars and fixture paths are temp-scoped for the reviewed tests."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-5-2",
+      "dimension": "test-rigor",
+      "targetRefs": [
+        ".opencode/skills/system-skill-advisor/mcp_server/tests/skill-advisor-launcher-orphan-reaping.vitest.ts:304"
+      ],
+      "bugClass": "test-gap",
+      "disposition": "ruled_out",
+      "rationale": "This is not merely socket-open coverage; it proves a client frame traverses the lease-holder session proxy and a daemon response reaches stdout.",
+      "evidenceRefs": [
+        ".opencode/skills/system-skill-advisor/mcp_server/tests/skill-advisor-launcher-orphan-reaping.vitest.ts:304"
+      ],
+      "reason": "The asserted stdout response is end-to-end evidence for this specific test."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 2,
+      "id": "SL-2-1",
+      "dimension": "lease-correctness",
+      "targetRefs": [
+        ".opencode/bin/mk-skill-advisor-launcher.cjs:339"
+      ],
+      "bugClass": "race|lease",
+      "disposition": "ruled_out",
+      "rationale": "Two launchers starting from no owner lease cannot both atomically create .skill-advisor-owner.json. A loser either bridges/reports or, if ownership changes before spawn, launchServer refuses to spawn.",
+      "evidenceRefs": [
+        ".opencode/bin/mk-skill-advisor-launcher.cjs:339"
+      ],
+      "proof": "O_CREAT|O_EXCL-style acquisition plus owner reprobes prevent the no-prior-lease double-writer interleaving."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-3-1",
+      "dimension": "reconnect-bridging",
+      "targetRefs": [
+        "bin/lib/launcher-session-proxy.cjs:74"
+      ],
+      "bugClass": "framing",
+      "disposition": "ruled_out",
+      "rationale": "No skill-advisor-specific truncation/interleaving defect found in the message framing path. Partial reads, multibyte boundaries, and request/response tracking are handled in the shared proxy rather than reimplemented in the skill-advisor launcher.",
+      "evidenceRefs": [
+        "bin/lib/launcher-session-proxy.cjs:74"
+      ],
+      "proof": "Proven-equivalent shared implementation to mk-spec-memory for framing; no divergent skill-advisor bridge code on this path."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-4-1",
+      "dimension": "lifecycle-reaping",
+      "targetRefs": [
+        "bin/mk-skill-advisor-launcher.cjs:500"
+      ],
+      "bugClass": "lease-wipe",
+      "disposition": "ruled_out",
+      "rationale": "The prior bug class was an exit handler deleting a lease still owned by another live launcher. I do not see that specific interleaving in this target.",
+      "evidenceRefs": [
+        "bin/mk-skill-advisor-launcher.cjs:500"
+      ],
+      "proof": "Lease release is conditional on local ownership for the owner lease and on local pid/current child for the PID lease. The remaining lease-deletion risk is the missing release/adoption path covered by the P0 findings, not wiping another live owner's lease."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-4-2",
+      "dimension": "lifecycle-reaping",
+      "targetRefs": [
+        "bin/mk-skill-advisor-launcher.cjs:537"
+      ],
+      "bugClass": "reaping",
+      "disposition": "ruled_out",
+      "rationale": "The target does not itself reap on the first missed probe. The concrete defect is the opposite: after the delegated bridge reports a respawn decision, the target ignores it.",
+      "evidenceRefs": [
+        "bin/mk-skill-advisor-launcher.cjs:537"
+      ],
+      "proof": "No target-side one-probe healthy-daemon reap path was found."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-5-1",
+      "dimension": "test-rigor",
+      "targetRefs": [
+        ".opencode/skills/system-skill-advisor/mcp_server/tests/skill-advisor-launcher-orphan-reaping.vitest.ts:146"
+      ],
+      "bugClass": "host-safety",
+      "disposition": "ruled_out",
+      "rationale": "The tests do not bind the production socket path or use the production skill-advisor database for the reviewed launcher scenarios.",
+      "evidenceRefs": [
+        ".opencode/skills/system-skill-advisor/mcp_server/tests/skill-advisor-launcher-orphan-reaping.vitest.ts:146"
+      ],
+      "proof": "Sandbox-critical env vars and fixture paths are temp-scoped for the reviewed tests."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-5-2",
+      "dimension": "test-rigor",
+      "targetRefs": [
+        ".opencode/skills/system-skill-advisor/mcp_server/tests/skill-advisor-launcher-orphan-reaping.vitest.ts:304"
+      ],
+      "bugClass": "test-gap",
+      "disposition": "ruled_out",
+      "rationale": "This is not merely socket-open coverage; it proves a client frame traverses the lease-holder session proxy and a daemon response reaches stdout.",
+      "evidenceRefs": [
+        ".opencode/skills/system-skill-advisor/mcp_server/tests/skill-advisor-launcher-orphan-reaping.vitest.ts:304"
+      ],
+      "proof": "The asserted stdout response is end-to-end evidence for this specific test."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "fieldWarnings": [
+    {
+      "index": 1,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 2,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 3,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 4,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 5,
+      "rule": "findingsNew-severity-keys",
+      "detail": "findingsNew must contain P0, P1, P2 keys"
+    }
+  ],
+  "corruptionWarnings": []
+}

@@ -1,0 +1,92 @@
+{
+  "sessionId": "fanout-gpt55r2-a-2-1781761314338-6u1ztm",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Community fallback ignores specFolder and can append cross-scope memories",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+      "line": 1171,
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/community-search.ts:124-170",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1171-1183",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1185-1198",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1214-1218",
+        ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:846-850"
+      ],
+      "finding_class": "scope_filter_bypass",
+      "content_hash": "finding:F001:memory-search-community-fallback-specfolder-scope",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery with direct code evidence"
+        }
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Summary-embedding channel filters scoped parent folders by exact equality only",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts",
+      "line": 139,
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:139-147",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1309-1323",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1341-1343",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts:33-35"
+      ],
+      "finding_class": "scoped_recall_gap",
+      "content_hash": "finding:F002:stage1-summary-channel-parent-scope-exact-match",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery with direct code evidence"
+        }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": false,
+    "performance": false,
+    "concurrency-cancellation": false,
+    "maintainability": false,
+    "spec-vs-code-drift": false
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 1
+  },
+  "openFindingsCount": 2,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.1667,
+  "graphConvergenceScore": 0,
+  "graphDecision": "MAX_ITERATIONS_REACHED",
+  "graphBlockers": [
+    "dimensionCoverageGate",
+    "stabilizationGate"
+  ],
+  "corruptionWarnings": []
+}

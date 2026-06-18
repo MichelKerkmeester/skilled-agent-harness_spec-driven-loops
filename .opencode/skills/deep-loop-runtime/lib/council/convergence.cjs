@@ -4,7 +4,15 @@
 'use strict';
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 1. CONSTANTS
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
+const path = require('node:path');
+
+const { acquireWriterLock } = require('../../scripts/lib/cli-guards.cjs');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
 const THRESHOLDS = {
@@ -16,7 +24,7 @@ const THRESHOLDS = {
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 2. HELPERS
+// 3. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function loadCouncilModules() {
@@ -72,7 +80,7 @@ function bridgePayload(data) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 3. CORE LOGIC
+// 4. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function computeCouncilSignals(ns) {
@@ -180,14 +188,21 @@ async function evaluateCouncilConvergence(ns, options = {}) {
   );
 
   if (options.persistSnapshot) {
-    db.createSnapshot({
-      specFolder: ns.specFolder,
-      sessionId: ns.sessionId,
-      roundId: options.roundId,
-      metrics: { ...signals },
-      nodeCount: stats.totalNodes,
-      edgeCount: stats.totalEdges,
-    });
+    // Snapshot writes share the council graph DB with upsert.cjs, so they must
+    // take the same writer lock to avoid a concurrent-write race.
+    const releaseWriterLock = acquireWriterLock(path.join(db.COUNCIL_GRAPH_STORAGE_DIR, '.council-graph-writer.lock'));
+    try {
+      db.createSnapshot({
+        specFolder: ns.specFolder,
+        sessionId: ns.sessionId,
+        roundId: options.roundId,
+        metrics: { ...signals },
+        nodeCount: stats.totalNodes,
+        edgeCount: stats.totalEdges,
+      });
+    } finally {
+      releaseWriterLock();
+    }
   }
 
   return {
@@ -209,7 +224,7 @@ async function evaluateCouncilConvergence(ns, options = {}) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 4. EXPORTS
+// 5. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {

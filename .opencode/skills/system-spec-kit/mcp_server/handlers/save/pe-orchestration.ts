@@ -14,6 +14,7 @@ import {
   logPeDecision,
 } from '../pe-gating.js';
 import type { PeDecision, SimilarMemory, IndexResult } from './types.js';
+import type { WriteProvenanceContext } from '../../lib/storage/write-provenance.js';
 
 // Feature catalog: Prediction-error save arbitration
 // Feature catalog: Memory indexing (memory_save)
@@ -48,6 +49,7 @@ export function evaluateAndApplyPeDecision(
   embeddingStatus: string,
   filePath: string,
   scope?: { tenantId?: string | null; userId?: string | null; agentId?: string | null; sessionId?: string | null },
+  writeProvenance?: WriteProvenanceContext,
 ): PeOrchestrationResult {
   let peDecision: PeDecision = { action: 'CREATE', similarity: 0 };
   let candidates: SimilarMemory[] = [];
@@ -113,7 +115,7 @@ export function evaluateAndApplyPeDecision(
         const existingId = peDecision.existingMemoryId as number;
         const priorSnapshot = getMemoryHashSnapshot(database, existingId);
         console.error(`[PE-Gate] REINFORCE: Duplicate detected (${peDecision.similarity.toFixed(1)}%)`);
-        const reinforced = reinforceExistingMemory(existingId, parsed);
+        const reinforced = reinforceExistingMemory(existingId, parsed, writeProvenance);
         reinforced.pe_action = 'REINFORCE';
         reinforced.pe_reason = peDecision.reason;
         reinforced.warnings = validationWarnings;
@@ -166,7 +168,7 @@ export function evaluateAndApplyPeDecision(
           );
           break;
         }
-        const updated = updateExistingMemory(existingId, parsed, embedding, scope);
+        const updated = updateExistingMemory(existingId, parsed, embedding, scope, writeProvenance);
         updated.pe_action = 'UPDATE';
         updated.pe_reason = peDecision.reason;
         updated.warnings = validationWarnings;

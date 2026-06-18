@@ -179,7 +179,7 @@ function captureMemoryStateBaselineSnapshot(
   const targetEvalDbDir = path.dirname(contextDbPath);
   const previousEvalDbPath = getEvalDbPath();
 
-  // H17 FIX: Wrap the entire path switch in try/finally so the previous DB is
+  // Wrap the entire path switch in try/finally so the previous DB is
   // restored even when initEvalDb() fails after closing the prior singleton.
   let evalDb: ReturnType<typeof initEvalDb> | null = null;
   let contextDb: ReturnType<typeof openContextDb> | null = null;

@@ -2,7 +2,8 @@
 # ───────────────────────────────────────────────────────────────
 # COMPONENT: INIT SKILL GRAPH
 # ───────────────────────────────────────────────────────────────
-# Validate skill graph metadata, refresh the JSON fallback, and
+# Validate skill graph metadata, rebuild the SQLite skill graph the
+# runtime actually loads, refresh the JSON diagnostic export, and
 # report the current advisor health from the repository root.
 
 set -euo pipefail
@@ -55,7 +56,24 @@ fi
 log_step "Validating graph metadata"
 run_from_repo python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_graph_compiler.py --validate-only
 
-log_step "Exporting JSON skill graph"
+# The runtime loads ONLY the SQLite graph; the JSON export is a diagnostic
+# artifact it ignores. Rebuild SQLite through the warm daemon when one owns
+# the database (single-writer discipline), else index directly from the
+# built dist — a cold maintenance context has no competing writer.
+log_step "Rebuilding SQLite skill graph (runtime source of truth)"
+if run_from_repo node .opencode/bin/skill-advisor.cjs skill_graph_scan --trusted --warm-only --format json --timeout-ms 60000 >/dev/null 2>&1; then
+    log_step "SQLite rebuilt via warm advisor daemon"
+else
+    log_step "No warm daemon; indexing SQLite directly from dist"
+    run_from_repo node --input-type=module -e "
+        const { indexSkillMetadata } = await import('${REPO_ROOT}/.opencode/skills/system-skill-advisor/mcp_server/dist/mcp_server/lib/skill-graph/skill-graph-db.js');
+        const result = indexSkillMetadata('.opencode/skills');
+        console.log('[init-skill-graph] SQLite indexed:', result.indexedNodes, 'nodes,', result.indexedEdges, 'edges (', result.indexedFiles, 'files indexed,', result.skippedFiles, 'unchanged )');
+        for (const warning of result.warnings.slice(0, 10)) console.warn('[init-skill-graph]', warning);
+    "
+fi
+
+log_step "Exporting JSON skill graph (diagnostic only; ignored by the runtime)"
 run_from_repo python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_graph_compiler.py --export-json
 
 log_step "Running advisor health check"

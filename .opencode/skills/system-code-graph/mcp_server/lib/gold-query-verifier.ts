@@ -6,14 +6,11 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { createLogger } from './shared/logger.js';
 import {
   isRecord,
   parseOutlineQueryResult,
   type CodeGraphQueryResponse,
 } from './query-result-adapter.js';
-
-const logger = createLogger('GoldQueryVerifier');
 
 /** Path inside the workspace, anchored at the project root, to the v1 gold battery. */
 const GOLD_BATTERY_RELATIVE_PATH =
@@ -62,12 +59,6 @@ export const DEFAULT_GOLD_BATTERY_PATH = resolve(
   GOLD_BATTERY_RELATIVE_PATH,
 );
 
-interface GoldQueryProbe {
-  operation: string;
-  subject: string;
-  expectedSymbolsPath: string;
-}
-
 export interface GoldQuery {
   id: string;
   category: string;
@@ -75,7 +66,6 @@ export interface GoldQuery {
   source_file: string;
   source_line?: number;
   expected_top_K_symbols: string[];
-  probe?: GoldQueryProbe;
 }
 
 export interface GoldBattery {
@@ -153,26 +143,6 @@ function getRequiredString(
   return value;
 }
 
-function getOptionalProbe(
-  record: Record<string, unknown>,
-  context: string,
-): GoldQueryProbe | undefined {
-  const probe = record.probe;
-  if (probe === undefined) {
-    return undefined;
-  }
-
-  if (!isRecord(probe)) {
-    throw new Error(`${context}.probe must be an object when present`);
-  }
-
-  return {
-    operation: getRequiredString(probe, 'operation', `${context}.probe`),
-    subject: getRequiredString(probe, 'subject', `${context}.probe`),
-    expectedSymbolsPath: getRequiredString(probe, 'expectedSymbolsPath', `${context}.probe`),
-  };
-}
-
 function getRequiredStringArray(
   record: Record<string, unknown>,
   fieldName: string,
@@ -242,6 +212,15 @@ function parseSourceLocation(queryRecord: Record<string, unknown>, context: stri
   };
 }
 
+// The v1 battery validates that each expected symbol is DISCOVERABLE in the
+// outline of its source file — a presence check, not a relevance-ranked
+// query-result-count check. Fields that imply richer semantics (a per-entry
+// `probe` hook, or an `expected_count` of relevance-ranked query hits) are
+// not part of v1: the runner always probes via `outline`, so a count tied to
+// the semantic `query` string is not comparable to outline output and is left
+// unenforced rather than asserted against the wrong signal. Extra asset fields
+// are tolerated and ignored so the battery JSON can carry research metadata
+// without changing what the gate actually proves.
 function parseQuery(record: unknown, index: number): GoldQuery {
   const context = `gold battery query at index ${index}`;
   if (!isRecord(record)) {
@@ -249,15 +228,6 @@ function parseQuery(record: unknown, index: number): GoldQuery {
   }
 
   const sourceLocation = parseSourceLocation(record, context);
-  const probe = getOptionalProbe(record, context);
-  if (probe) {
-    logger.warn('Ignoring unsupported v2 probe hook in v1 gold battery query', {
-      queryId: record.id,
-      operation: probe.operation,
-      subject: probe.subject,
-      expectedSymbolsPath: probe.expectedSymbolsPath,
-    });
-  }
 
   return {
     id: getRequiredString(record, 'id', context),
@@ -266,7 +236,6 @@ function parseQuery(record: unknown, index: number): GoldQuery {
     source_file: sourceLocation.source_file,
     ...(sourceLocation.source_line !== undefined ? { source_line: sourceLocation.source_line } : {}),
     expected_top_K_symbols: getRequiredStringArray(record, 'expected_top_K_symbols', context),
-    ...(probe ? { probe } : {}),
   };
 }
 

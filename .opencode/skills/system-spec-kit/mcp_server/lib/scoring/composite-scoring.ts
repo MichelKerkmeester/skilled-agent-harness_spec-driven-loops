@@ -510,7 +510,7 @@ export function calculateRecencyScore(timestamp: string | undefined, tier: strin
 // ───────────────────────────────────────────────────────────────
 
 /**
- * BUG-013 FIX: Use centralized tier values from importance-tiers.js.
+ * Use centralized tier values from importance-tiers.js.
  *
  * @param tier - Importance tier string
  * @returns Boost value for the tier
@@ -564,7 +564,7 @@ function applyPostProcessingAndObserve(
         queryId: `${queryIdPrefix}-${Date.now()}`,
         timestamp: new Date().toISOString(),
         memoryAgeDays: isNaN(createdMs) ? 0 : (Date.now() - createdMs) / 86400000,
-        // Graduated flag — default ON. Use !== 'false' to match graduated semantics (BUG-4 fix).
+        // Graduated flag — default ON. Use !== 'false' to match graduated semantics.
         interferenceApplied: interferenceScore > 0 && process.env.SPECKIT_INTERFERENCE_SCORE?.toLowerCase() !== 'false',
         interferenceScore,
         interferencePenalty: process.env.SPECKIT_INTERFERENCE_SCORE?.toLowerCase() !== 'false' && interferenceScore > 0

@@ -1,0 +1,18 @@
+{"type":"iteration","iteration":1,"newInfoRatio":0.92,"status":"insight","focus":"baseline-map-and-q1-q2","keyQuestions":["Q1","Q2"],"answeredQuestions":["Q1-partial","Q2-partial"],"findingsCount":13,"durationMs":0,"timestamp":"2026-06-16T14:40:00Z","sessionId":"2026-06-16-028-001-speckit-memory","generation":1}
+{"type":"finding","id":"f-iter001-001","label":"Core RRF fusion in shared/algorithms/rrf-fusion.ts; DEFAULT_K=40 (not 60), SPECKIT_RRF_K override (rrf-fusion.ts:37-38,150-164)","iteration":1}
+{"type":"finding","id":"f-iter001-002","label":"Channels gated at runtime: vector+fts5 always, bm25/graph/degree flag-gated (context-server.ts:911-914)","iteration":1}
+{"type":"finding","id":"f-iter001-003","label":"Graph channel default 1.5x weight boost GRAPH_WEIGHT_BOOST (rrf-fusion.ts:40-42,302)","iteration":1}
+{"type":"finding","id":"f-iter001-004","label":"Real ranking is 4-stage pipeline with fixed 13-step signal order, score-modified-once invariant (stage2-fusion.ts:21-45)","iteration":1}
+{"type":"finding","id":"f-iter001-005","label":"Causal-graph store causal-edges.ts (insert :434,:561); schema vector-index-schema.ts:1107; tombstones causal_edge_tombstones sweep.ts:70","iteration":1}
+{"type":"finding","id":"f-iter001-006","label":"FSRS two-part: rank-time structural freshness fsrs.ts:26-44 AND access-time write-back strengthenOnAccess UPDATE memory_index (stage2-fusion.ts:574-615)","iteration":1}
+{"type":"finding","id":"f-iter001-007","label":"Degree channel weight capped 0.15 DEGREE_BOOST_CAP (graph-search-fn.ts:53-56)","iteration":1}
+{"type":"finding","id":"f-iter001-008","label":"Recall serialization via envelope.ts:99 serializeEnvelope; no content-derived SerializationId ordering or untrusted-XML wrapper found (Q5/Q8 gap)","iteration":1}
+{"type":"finding","id":"f-iter001-009","label":"Two orthogonal internal classifiers: complexity-tier (query-classifier.ts:13) and task-intent (intent-classifier.ts:13) — neither is a retrieval-shape query-class router","iteration":1}
+{"type":"finding","id":"f-iter001-010","label":"aionforge 8 signals: Lexical/LexicalAnchor/Dense/Support/Graph search + Trust/Importance/Recency re-ranks that never widen recall (retrieval.md:34-54)","iteration":1}
+{"type":"finding","id":"f-iter001-011","label":"aionforge RRF k=60, per-mode weights, zero-weight elides signal entirely; 4 weight levels HEAVY/MODERATE/LIGHT/OFF (retrieval.md:79-92,130-133)","iteration":1}
+{"type":"finding","id":"f-iter001-012","label":"aionforge 5-class router (SingleHopFactual/MultiHop/Temporal/Entity/Quote) MANDATORY, regex most-specific-first, each->RetrievalProfile weights+flags, gates graph_expansion (retrieval.md:108-143)","iteration":1}
+{"type":"finding","id":"f-iter001-013","label":"aionforge never writes back at rank time; internal strengthenOnAccess does UPDATE memory_index — KEY Q6 contrast (retrieval.md:316-319 vs stage2-fusion.ts:603)","iteration":1}
+{"type":"observation","id":"o-iter001-001","label":"Internal query-class router would be additive THIRD axis at query-router.ts RouteResult seam; per-class weights feed existing RankedList.weight (rrf-fusion.ts:83-87,298-306)","iteration":1}
+{"type":"observation","id":"o-iter001-002","label":"Conflict candidate: aionforge re-ranks-never-widen + zero-weight-elide vs internal every-signal-applied-once G2 double-weighting guard (stage2-fusion.ts:11,37-40)","iteration":1}
+{"type":"edge","id":"e-iter001-001","label":"aionforge LexicalAnchor and Trust signals have NO internal equivalent (gaps)","iteration":1}
+{"type":"ruled_out","id":"r-iter001-001","label":"query-classifier.ts complexity tier and intent-classifier.ts task intent are NOT substitutes for aionforge retrieval-shape classes — orthogonal axes","iteration":1}

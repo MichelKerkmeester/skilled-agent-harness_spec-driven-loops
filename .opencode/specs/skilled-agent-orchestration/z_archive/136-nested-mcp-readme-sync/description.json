@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/136-nested-mcp-readme-sync",
+  "description": "Feature Specification: nested MCP README sync",
+  "keywords": [
+    "feature",
+    "specification",
+    "nested",
+    "mcp",
+    "readme",
+    "sync"
+  ],
+  "lastUpdated": "2026-06-10T04:53:30.839Z",
+  "specId": "136",
+  "folderSlug": "nested-mcp-readme-sync",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

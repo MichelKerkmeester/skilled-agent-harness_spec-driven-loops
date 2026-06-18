@@ -1,6 +1,13 @@
 ---
 title: Performance Verification Checklist
 description: Before/after verification protocol for performance optimization work using PageSpeed Insights.
+trigger_phrases:
+  - "webflow performance verification"
+  - "pagespeed before after"
+  - "baseline metrics capture"
+  - "performance verification protocol"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Performance Verification Checklist

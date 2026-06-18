@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/000-code-index-cli-research",
+  "description": "Feature Specification: Code-Index CLI Feasibility",
+  "keywords": [
+    "feature",
+    "specification",
+    "code-index",
+    "cli",
+    "feasibility"
+  ],
+  "lastUpdated": "2026-06-07T14:08:18.231Z",
+  "specId": "000",
+  "folderSlug": "code-index-cli-research",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "004-shared-infrastructure",
+    "001-mcp-to-cli-tool-transition",
+    "002-code-index-cli"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "06-06-26_15-11__daemon-backed-cli-over-existing-ipc-not-daemon.md"
+  ]
+}

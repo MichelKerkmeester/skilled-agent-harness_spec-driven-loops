@@ -15,7 +15,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`skill_advisor/schemas/` defines contract shapes used by advisor tools, daemon status reporting, compatibility validation and generated skill metadata. These files keep prompt-safe tool surfaces and generated metadata shapes separate from handler orchestration.
+`mcp_server/schemas/` defines contract shapes used by advisor tools, daemon status reporting, compatibility validation and generated skill metadata. Handlers import these schemas via `../schemas/advisor-tool-schemas.js`, keeping prompt-safe tool surfaces and generated metadata shapes separate from handler orchestration.
 
 Current state:
 

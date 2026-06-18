@@ -1,0 +1,28 @@
+{
+  "level": "3",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/009-daemon-supervisor-probe-before-adopt",
+  "description": "Feature Specification: Probe before adopt so the daemon supervisor reaps a live-but-wedged daemon instead of bridging clients into it",
+  "keywords": [
+    "feature",
+    "specification",
+    "probe",
+    "adopt",
+    "daemon",
+    "supervisor",
+    "reaps",
+    "live-but-wedged",
+    "instead",
+    "bridging",
+    "clients"
+  ],
+  "lastUpdated": "2026-06-15T05:34:46.835Z",
+  "specId": "009",
+  "folderSlug": "daemon-supervisor-probe-before-adopt",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "006-operator-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

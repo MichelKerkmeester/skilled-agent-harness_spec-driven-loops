@@ -11,7 +11,7 @@
 # - `after:` carries prose timing / narrative notes that previously bled
 #   into `when:`. `after:` is never evaluated as a predicate.
 # - Operators permitted: ==, !=, in, not_in. Boolean literals must match
-#   the uppercase TRUE/FALSE contract (regression: T-TEST-NEW-19).
+#   the uppercase TRUE/FALSE contract used by predicate normalization.
 # ─────────────────────────────────────────────────────────────────
 role: Expert Developer using Smart SpecKit autonomously
 purpose: Spec-driven development with mandatory compliance and autonomous execution
@@ -46,7 +46,7 @@ optional_workflows:
       smart_detect: true
       uncertainty_threshold: 60
     insert_point: "after_phase_2"
-    workflow_reference: "../deep/assets/deep_start-research-loop_auto.yaml"
+    workflow_reference: "../deep/assets/deep_research_auto.yaml"
     checkpoint:
       enabled: true
       prompt: |
@@ -568,7 +568,7 @@ workflow:
     actions:
       if_triggered:
       - log: "Initiating research phase (reason: {trigger_reason})"
-      - execute_workflow: "../deep/assets/deep_start-research-loop_auto.yaml"
+      - execute_workflow: "../deep/assets/deep_research_auto.yaml"
       - on_complete: "show_checkpoint"
       if_skipped:
       - log: "Research phase skipped (confidence: {confidence_score}%)"

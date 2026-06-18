@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/013-mcp-code-mode",
+  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/013-mcp-code-mode",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp-code-mode frontmatter alignment",
+      "mcp-code-mode reference frontmatter",
+      "skill frontmatter standardization",
+      "mcp-code-mode frontmatter plan",
+      "code mode doc contract",
+      "skill doc frontmatter authoring",
+      "mcp-code-mode frontmatter tasks",
+      "code mode doc contract tasks",
+      "frontmatter authoring tasks",
+      "mcp-code-mode frontmatter summary",
+      "code mode doc contract evidence",
+      "frontmatter authoring complete"
+    ],
+    "key_topics": [
+      "mcp-code-mode",
+      "frontmatter",
+      "alignment",
+      "reference",
+      "skill",
+      "standardization",
+      "plan",
+      "code",
+      "mode",
+      "doc",
+      "contract",
+      "authoring"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/mcp-code-mode/references/architecture.md",
+      ".opencode/skills/mcp-code-mode/references/configuration.md",
+      ".opencode/skills/mcp-code-mode/references/naming_convention.md",
+      ".opencode/skills/mcp-code-mode/references/tool_catalog.md",
+      ".opencode/skills/mcp-code-mode/references/workflows.md",
+      ".opencode/skills/mcp-code-mode/assets/config_template.md",
+      ".opencode/skills/mcp-code-mode/assets/env_template.md",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "architecture.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-code-mode/references/architecture.md",
+        "source": "derived"
+      },
+      {
+        "name": "configuration.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-code-mode/references/configuration.md",
+        "source": "derived"
+      },
+      {
+        "name": "naming_convention.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-code-mode/references/naming_convention.md",
+        "source": "derived"
+      },
+      {
+        "name": "tool_catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-code-mode/references/tool_catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "workflows.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-code-mode/references/workflows.md",
+        "source": "derived"
+      },
+      {
+        "name": "config_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-code-mode/assets/config_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "env_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-code-mode/assets/env_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Frontmatter Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Frontmatter",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This is **Phase 13** of the Skill reference and asset frontmatter alignment across all public-repo skills specification.",
+    "created_at": "2026-06-11T05:47:31Z",
+    "last_save_at": "2026-06-12T04:40:47.838Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

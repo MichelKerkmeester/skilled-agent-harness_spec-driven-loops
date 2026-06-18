@@ -8,6 +8,7 @@ export interface MemoryIndexTestDatabaseOptions {
   includeWorkingMemory?: boolean;
   includeActiveProjection?: boolean;
   includeContentColumns?: boolean;
+  includeRetentionColumns?: boolean;
 }
 
 export function createMemoryIndexTestDatabase(options: MemoryIndexTestDatabaseOptions = {}): Database.Database {
@@ -17,6 +18,7 @@ export function createMemoryIndexTestDatabase(options: MemoryIndexTestDatabaseOp
     includeWorkingMemory = false,
     includeActiveProjection = false,
     includeContentColumns = false,
+    includeRetentionColumns = false,
   } = options;
   const db = new Database(filename);
   db.exec(`
@@ -34,6 +36,7 @@ export function createMemoryIndexTestDatabase(options: MemoryIndexTestDatabaseOp
       updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
       importance_tier TEXT DEFAULT 'normal',
       ${includeContentColumns ? "content_text TEXT, embedding_status TEXT DEFAULT 'success', parent_id INTEGER," : ''}
+      ${includeRetentionColumns ? 'decay_half_life_days REAL DEFAULT 90.0, is_pinned INTEGER DEFAULT 0, access_count INTEGER DEFAULT 0, last_accessed INTEGER DEFAULT 0,' : ''}
       tenant_id TEXT,
       user_id TEXT,
       agent_id TEXT,

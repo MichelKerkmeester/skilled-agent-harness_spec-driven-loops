@@ -1,0 +1,13 @@
+{
+  "type": "iteration",
+  "mode": "review",
+  "run": 1,
+  "status": "complete",
+  "focus": "correctness/data-integrity write lifecycle",
+  "dimensions": ["correctness"],
+  "findingsSummary": { "P0": 0, "P1": 2, "P2": 1 },
+  "findingsNew": { "P0": 0, "P1": 2, "P2": 1 },
+  "newFindingsRatio": 1,
+  "findingRefs": ["F001", "F002", "F003"],
+  "verdict": "CONDITIONAL"
+}

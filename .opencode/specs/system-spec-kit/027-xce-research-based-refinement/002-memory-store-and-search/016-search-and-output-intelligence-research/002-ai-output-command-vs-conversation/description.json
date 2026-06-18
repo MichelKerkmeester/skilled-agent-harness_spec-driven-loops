@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence-research/002-ai-output-command-vs-conversation",
+  "description": "Feature Specification: Phase 2: ai-output-command-vs-conversation",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "ai-output-command-vs-conversation"
+  ],
+  "lastUpdated": "2026-06-17T06:11:08.643Z",
+  "specId": "002",
+  "folderSlug": "ai-output-command-vs-conversation",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "002-memory-store-and-search",
+    "016-search-and-output-intelligence-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

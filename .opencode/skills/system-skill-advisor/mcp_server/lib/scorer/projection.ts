@@ -3,14 +3,15 @@
 // ───────────────────────────────────────────────────────────────
 
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
-import { dirname, join, resolve } from 'node:path';
+import { dirname, isAbsolute, join, resolve } from 'node:path';
 
 import Database from 'better-sqlite3';
 
 import { lifecycleStatusForPath } from '../lifecycle/archive-handling.js';
+import { docTierWeight, isDocTriggerHarvestEnabled } from '../skill-graph/doc-frontmatter.js';
 import { parseJsonObject, parseJsonStringArray, readJsonObject } from '../utils/json-guard.js';
 import { parseSkillFrontmatter } from '../utils/skill-markdown.js';
-import type { AdvisorProjection, SkillEdgeProjection, SkillLifecycleStatus, SkillProjection } from './types.js';
+import type { AdvisorProjection, SkillDocTriggerProjection, SkillEdgeProjection, SkillLifecycleStatus, SkillProjection } from './types.js';
 import { phraseVariants, unique } from './text.js';
 
 interface SkillNodeRow {
@@ -220,6 +221,13 @@ function projectionFromRow(row: SkillNodeRow): SkillProjection {
     derivedTriggers,
     derivedKeywords,
     derivedDemotion: boundedDemotion(derived.demotion),
+    // V2 derived sync stamps generated_at (the canonical author/sync time of
+    // the derived block); older shapes carried last_updated_at/created_at.
+    // generated_at leads the chain so a V2 block's real freshness wins over a
+    // stray legacy field. This value is AUTHOR-TIME, not runtime: rebuild
+    // re-indexes the existing block without re-stamping it; only a
+    // derived-content change through sync re-stamps generated_at.
+    derivedGeneratedAt: isoTimestampOrNull(derived.generated_at ?? derived.last_updated_at ?? derived.created_at),
     sourcePath: row.source_path,
     lifecycleStatus: lifecycle,
     redirectTo,
@@ -227,8 +235,53 @@ function projectionFromRow(row: SkillNodeRow): SkillProjection {
   };
 }
 
+function isoTimestampOrNull(value: unknown): string | null {
+  if (typeof value !== 'string' || value.trim().length === 0) return null;
+  return Number.isNaN(Date.parse(value)) ? null : value;
+}
+
+interface SkillDocRow {
+  readonly skill_id: string;
+  readonly doc_path: string;
+  readonly trigger_phrases: string;
+  readonly importance_tier: string | null;
+}
+
+/**
+ * Load doc-level trigger projections grouped by skill id. Tolerates a
+ * pre-migration database (missing skill_docs table) by returning an
+ * empty map — the read-only recommend path never runs migrations.
+ */
+function loadDocTriggersBySkill(db: Database.Database): Map<string, SkillDocTriggerProjection[]> {
+  const bySkill = new Map<string, SkillDocTriggerProjection[]>();
+  if (!isDocTriggerHarvestEnabled()) return bySkill;
+  let docRows: SkillDocRow[];
+  try {
+    docRows = db.prepare(`
+      SELECT skill_id, doc_path, trigger_phrases, importance_tier
+      FROM skill_docs
+      ORDER BY skill_id ASC, doc_path ASC
+    `).all() as SkillDocRow[];
+  } catch {
+    return bySkill;
+  }
+  for (const row of docRows) {
+    const phrases = unique(parseJsonStringArray(row.trigger_phrases).flatMap((entry) => phraseVariants(entry)));
+    if (phrases.length === 0) continue;
+    const entry: SkillDocTriggerProjection = {
+      docPath: row.doc_path,
+      phrases,
+      tierWeight: docTierWeight(row.importance_tier),
+    };
+    const existing = bySkill.get(row.skill_id);
+    if (existing) existing.push(entry);
+    else bySkill.set(row.skill_id, [entry]);
+  }
+  return bySkill;
+}
+
 function loadSqliteProjection(workspaceRoot: string): AdvisorProjection | null {
-  const dbPath = join(workspaceRoot, SKILL_GRAPH_DB);
+  const dbPath = isAbsolute(SKILL_GRAPH_DB) ? SKILL_GRAPH_DB : join(workspaceRoot, SKILL_GRAPH_DB);
   if (!existsSync(dbPath)) return null;
   const db = new Database(dbPath, { readonly: true, fileMustExist: true });
   try {
@@ -242,8 +295,16 @@ function loadSqliteProjection(workspaceRoot: string): AdvisorProjection | null {
       FROM skill_edges
       ORDER BY source_id ASC, edge_type ASC, target_id ASC
     `).all() as SkillEdgeRow[];
+    const docTriggersBySkill = loadDocTriggersBySkill(db);
     return {
-      skills: [...rows.map(projectionFromRow), ...COMMAND_BRIDGES],
+      skills: [
+        ...rows.map((row) => {
+          const projection = projectionFromRow(row);
+          const docTriggers = docTriggersBySkill.get(row.id);
+          return docTriggers && docTriggers.length > 0 ? { ...projection, docTriggers } : projection;
+        }),
+        ...COMMAND_BRIDGES,
+      ],
       edges: edgeRows.map((row) => ({
         sourceId: row.source_id,
         targetId: row.target_id,
@@ -302,6 +363,9 @@ function loadFilesystemProjection(workspaceRoot: string): AdvisorProjection {
       derivedTriggers,
       derivedKeywords,
       derivedDemotion: boundedDemotion(derived.demotion),
+      // generated_at leads the chain (canonical V2 author/sync time); see the
+      // SQLite branch above for why this is author-time, not runtime.
+      derivedGeneratedAt: isoTimestampOrNull(derived.generated_at ?? derived.last_updated_at ?? derived.created_at),
       sourcePath: metadataPath,
       lifecycleStatus: lifecycleStatus(metadata.lifecycle_status ?? derived.lifecycle_status, metadataPath),
       redirectTo: typeof metadata.redirect_to === 'string' ? metadata.redirect_to : undefined,

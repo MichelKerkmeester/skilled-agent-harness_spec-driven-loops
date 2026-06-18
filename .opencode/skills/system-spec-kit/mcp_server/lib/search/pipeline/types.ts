@@ -77,6 +77,25 @@ export function resolveEffectiveScore(row: PipelineRow): number {
 }
 
 /**
+ * Absolute 0–1 relevance for confidence calibration and result-set digests —
+ * NOT for ordering. Prefers cosine similarity (an absolute relevance signal)
+ * over the RRF fusion score, whose magnitude (~0.01–0.05) is only meaningful as
+ * relative rank and badly understates relevance when read as an absolute 0–1
+ * quality. Feeding RRF magnitudes into 0.7/0.4-scaled thresholds makes "good"
+ * unreachable, so every hybrid query degrades to "weak"/"gap". Vector hits carry
+ * a real cosine; lexical-only hits (no similarity) fall back to the effective
+ * score, preserving their current behavior.
+ */
+export function resolveAbsoluteRelevance(row: PipelineRow): number {
+  if (typeof row.similarity === 'number' && Number.isFinite(row.similarity)) {
+    // sqlite-vec emits cosine on a 0–100 scale; normalize. Already-0–1 inputs pass through.
+    const normalized = row.similarity > 1 ? row.similarity / 100 : row.similarity;
+    return Math.max(0, Math.min(1, normalized));
+  }
+  return resolveEffectiveScore(row);
+}
+
+/**
  * Stage 4 read-only row — compile-time enforcement that Stage 4 cannot modify scores.
  * OQ-S5-001 CLOSED: Primary enforcement via TypeScript read-only type guards.
  * All score-related fields are Readonly to prevent mutation in Stage 4.
@@ -217,7 +236,7 @@ export interface Stage1Output {
 
 /**
  * Tri-state for signal application metadata.
- * B6 FIX: Replaces boolean flags so callers can distinguish "feature disabled
+ * Replaces boolean flags so callers can distinguish "feature disabled
  * by config" ('off') from "feature crashed" ('failed') from "feature applied
  * successfully" ('applied').
  */
@@ -334,9 +353,9 @@ export interface PipelineResult {
     stage2: Stage2Output['metadata'];
     stage3: Stage3Output['metadata'];
     stage4: Stage4Output['metadata'];
-    /** B1: Per-stage and total timing in milliseconds for latency observability. */
+    /** Per-stage and total timing in milliseconds for latency observability. */
     timing?: Record<string, number>;
-    /** B1: True when one or more stages fell back to degraded output. */
+    /** True when one or more stages fell back to degraded output. */
     degraded?: boolean;
   };
   annotations: Stage4Output['annotations'];

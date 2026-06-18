@@ -19,8 +19,9 @@ from typing import Any, Dict, List, Optional, Tuple
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 # Path layout: .opencode/skills/system-skill-advisor/mcp_server/scripts/routing-accuracy/<script>
-# parents[0]=routing-accuracy, [1]=scripts, [2]=mcp_server, [3]=system-skill-advisor, [4]=skills, [5]=.opencode, [6]=repo root
-REPO_ROOT = SCRIPT_DIR.parents[6]
+# SCRIPT_DIR is routing-accuracy itself, so parents[0]=scripts, [1]=mcp_server,
+# [2]=system-skill-advisor, [3]=skills, [4]=.opencode, [5]=repo root
+REPO_ROOT = SCRIPT_DIR.parents[5]
 DEFAULT_DATASET = SCRIPT_DIR / "labeled-prompts.jsonl"
 ADVISOR_PATH = (
     REPO_ROOT

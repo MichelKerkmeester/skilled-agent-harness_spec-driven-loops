@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/126-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark",
+  "spec_folder": "skilled-agent-orchestration/z_archive/126-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark",
+  "parent_id": "skilled-agent-orchestration/z_archive/126-cli-opencode-mimo-pro-optimization",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mimo prompt framework benchmark",
+      "mimo-v2.5-pro best framework",
+      "mimo tidd-ec rcaf benchmark",
+      "mimo benchmark plan",
+      "mimo eval rig port",
+      "mimo-v2.5-pro dispatch bench",
+      "mimo benchmark tasks",
+      "mimo eval rig tasks",
+      "mimo framework bake-off tasks",
+      "verification",
+      "checklist",
+      "mimo"
+    ],
+    "key_topics": [
+      "mimo",
+      "prompt",
+      "framework",
+      "benchmark",
+      "mimo-v2",
+      "5-pro",
+      "best",
+      "tidd-ec",
+      "rcaf",
+      "plan",
+      "eval",
+      "rig"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/cli-opencode/assets/prompt_templates.md",
+      ".opencode/skills/cli-opencode/assets/prompt_quality_card.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "prompt_templates.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/assets/prompt_templates.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt_quality_card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/assets/prompt_quality_card.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context Mirrors",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement We",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Lean",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Mirrors `120/003` (the MiniMax prompt-framework benchmark, which found TIDD-EC + dense pre-planning beat RCAF). The user wants the same treatment for MiMo: \"what prompting techniques work best for MiMo if used by another AI through cli-opencode,\" like the SWE-1.6 and MiniMax-2.7 benchmarks. Phase 002 ensures MiMo dispatches cleanly through the deep-improvement model-benchmark lane (no `--agent general`), and a live probe confirmed `xiaomi-token-plan-ams/mimo-v2.5-pro` responds — so **real dispatches are feasible**, not scaffold-only.",
+    "created_at": "2026-06-01T20:21:29.319Z",
+    "last_save_at": "2026-06-17T19:57:23.720Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

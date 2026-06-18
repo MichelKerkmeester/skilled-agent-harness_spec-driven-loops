@@ -1,0 +1,139 @@
+{
+  "findings": [
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts",
+      "symbol": "SCHEMA_SQL",
+      "kind": "integration_point",
+      "signature": "CREATE TABLE IF NOT EXISTS session_sent_memories (session_id TEXT NOT NULL, memory_hash TEXT NOT NULL, ..., PRIMARY KEY (session_id, memory_hash))",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:469",
+      "relevance": 0.4,
+      "notes": "Standard DDL with composite PK — Turso compatible as-is, but table must be replicated in migration."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts",
+      "symbol": "SESSION_STATE_SCHEMA_SQL",
+      "kind": "integration_point",
+      "signature": "CREATE TABLE IF NOT EXISTS session_state (session_id TEXT PRIMARY KEY, status TEXT NOT NULL DEFAULT 'active' CHECK(status IN ('active', 'completed', 'interrupted')), ...)",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:986",
+      "relevance": 0.4,
+      "notes": "CHECK constraint on status column — Turso supports CHECK; no blocker."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts",
+      "symbol": "SESSION_STATE_MIGRATIONS",
+      "kind": "integration_point",
+      "signature": "ALTER TABLE session_state ADD COLUMN tenant_id TEXT / user_id TEXT / agent_id TEXT",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1007",
+      "relevance": 0.5,
+      "notes": "ALTER TABLE ADD COLUMN migration array — Turso supports ALTER TABLE ADD COLUMN; migration strategy must be preserved."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts",
+      "symbol": "getTableColumns",
+      "kind": "dependency",
+      "signature": "db.prepare(`PRAGMA table_info(${tableName})`).all()",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1018",
+      "relevance": 0.9,
+      "notes": "PRAGMA table_info via better-sqlite3 .prepare() — Turso lacks .pragma() API; must use db.exec('PRAGMA table_info(...)') or alternative schema introspection."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts",
+      "symbol": "shouldSendMemoriesBatch",
+      "kind": "dependency",
+      "signature": "db.exec('BEGIN IMMEDIATE') / db.exec('COMMIT') / db.exec('ROLLBACK')",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:631",
+      "relevance": 0.7,
+      "notes": "Manual BEGIN IMMEDIATE transaction control — Turso/libSQL uses different transaction API; must wrap in Turso-compatible transaction pattern."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts",
+      "symbol": "initSessionAnalyticsDb",
+      "kind": "dependency",
+      "signature": "db.pragma('journal_mode = WAL'); db.pragma('busy_timeout = 5000'); db.pragma('foreign_keys = ON')",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:299",
+      "relevance": 0.95,
+      "notes": "Three .pragma() calls (WAL, busy_timeout, foreign_keys) — Turso does not support .pragma() method; must use db.exec('PRAGMA ...') or configure via connection options."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts",
+      "symbol": "SESSION_ANALYTICS_SCHEMA_SQL",
+      "kind": "integration_point",
+      "signature": "CREATE TABLE IF NOT EXISTS analytics_turns (id INTEGER PRIMARY KEY AUTOINCREMENT, ..., UNIQUE(claude_session_id, transcript_path, byte_start))",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:94",
+      "relevance": 0.5,
+      "notes": "AUTOINCREMENT + UNIQUE constraint combo — Turso supports both; schema must be replicated."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts",
+      "symbol": "upsertSessionRow",
+      "kind": "integration_point",
+      "signature": "INSERT INTO analytics_sessions ... ON CONFLICT(claude_session_id) DO UPDATE SET ...",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:446",
+      "relevance": 0.3,
+      "notes": "Standard SQL upsert — Turso compatible; no migration impact."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts",
+      "symbol": "hasActiveVectorShard",
+      "kind": "dependency",
+      "signature": "db.prepare('PRAGMA database_list').all()",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:134",
+      "relevance": 0.95,
+      "notes": "PRAGMA database_list for attached shard detection — Turso does not support PRAGMA database_list; must use alternative shard discovery mechanism."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts",
+      "symbol": "getTableColumns",
+      "kind": "dependency",
+      "signature": "db.prepare(`PRAGMA ${ACTIVE_VECTOR_SCHEMA}.table_info(${tableName})`).all()",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:124",
+      "relevance": 0.9,
+      "notes": "PRAGMA table_info with attached schema prefix — Turso lacks .pragma() and attached DB introspection; requires complete rework for shard-aware column detection."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts",
+      "symbol": "migrateEmbeddingCacheSchema",
+      "kind": "integration_point",
+      "signature": "ALTER TABLE RENAME TO / INSERT OR REPLACE FROM / DROP TABLE migration chain",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:232",
+      "relevance": 0.6,
+      "notes": "Multi-step migration with RENAME/INSERT/DROP across attached schemas — Turso supports DDL but attached-schema prefixes must be reworked."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts",
+      "symbol": "shrinkSqliteMemory",
+      "kind": "dependency",
+      "signature": "db.pragma('shrink_memory')",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:366",
+      "relevance": 0.85,
+      "notes": "PRAGMA shrink_memory via .pragma() API — Turso lacks .pragma(); memory management pragma not available in libSQL."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-db.ts",
+      "symbol": "initEvalDb",
+      "kind": "dependency",
+      "signature": "db.pragma('journal_mode = WAL'); db.pragma('busy_timeout = 5000'); db.pragma('foreign_keys = ON')",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-db.ts:147",
+      "relevance": 0.95,
+      "notes": "Three .pragma() calls (WAL, busy_timeout, foreign_keys) — same blocker as session-analytics-db; Turso requires alternative pragma configuration."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts",
+      "symbol": "retryEmbedding",
+      "kind": "gap",
+      "signature": "db.prepare('DELETE FROM vec_memories WHERE rowid = ?').run(BigInt(id)); db.prepare('INSERT INTO vec_memories (rowid, embedding) VALUES (?, ?)').run(BigInt(id), embeddingBuffer)",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:756",
+      "relevance": 1,
+      "notes": "vec_memories is a vec0 virtual table (sqlite-vec) — Turso/libSQL has NO vector index support; this is a migration blocker requiring alternative vector storage."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts",
+      "symbol": "claimRetryCandidate",
+      "kind": "integration_point",
+      "signature": "UPDATE memory_index SET embedding_status = 'retry' WHERE id = ? AND embedding_status = 'pending' AND retry_count = ? AND ((? IS NULL AND last_retry_at IS NULL) OR last_retry_at = ?)",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:305",
+      "relevance": 0.4,
+      "notes": "Optimistic locking via conditional UPDATE — standard SQL; Turso compatible."
+    }
+  ]
+}

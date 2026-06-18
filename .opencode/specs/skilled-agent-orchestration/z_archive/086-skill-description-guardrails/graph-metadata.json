@@ -43,7 +43,6 @@
     "key_files": [
       ".opencode/skills/sk-doc/assets/skill/skill_md_template.md",
       ".opencode/skills/sk-doc/assets/agent_template.md",
-      ".opencode/skills/sk-doc/assets/command_template.md",
       ".opencode/skills/sk-doc/scripts/quick_validate.py",
       ".opencode/skills/sk-doc/scripts/tests/test_quick_validate_086.py",
       ".opencode/commands/create/assets/create_sk_skill_confirm.yaml",
@@ -67,12 +66,6 @@
         "name": "agent_template.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-doc/assets/agent_template.md",
-        "source": "derived"
-      },
-      {
-        "name": "command_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/assets/command_template.md",
         "source": "derived"
       },
       {
@@ -200,11 +193,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packets 083 (skill description budget trim) and 084 (ambiguity dual-margin fix) revealed that skill/command/agent description authoring has hidden constraints with no current enforcement: (1) total skill-metadata budget caps at 8,000 chars (`SLASH_COMMAND_TOOL_CHAR_BUDGET`); (2) per-item hard cap is 1,536 chars; (3) a memory-rule \"stack-agnostic phrasing\" forbids enumerating Webflow/Go/Next.js etc. in descriptions; (4) advisor routing depends on keyword density. Packet 083 had to manually trim 36 frontmatter descriptions because authoring guidance was thin and contradictory: `frontmatter_templates.md:198` says \"10-200 characters\", `skill_md_template.md:75` says \"150-300 chars\", `skill_creation.md:397` says nothing about length. Zero create-time validation. Zero permanent drift audit. Without guardrails, the next dropped-from-discovery warning is a matter of when, not if.",
     "created_at": "2026-05-06T13:33:18.960Z",
-    "last_save_at": "2026-06-05T12:47:32.868Z",
+    "last_save_at": "2026-06-17T19:57:23.349Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

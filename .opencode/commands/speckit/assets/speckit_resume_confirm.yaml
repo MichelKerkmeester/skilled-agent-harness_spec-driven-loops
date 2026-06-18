@@ -90,6 +90,7 @@ memory_loading:
     tool: memory_context
     note: "Call MCP tools directly - NEVER through Code Mode"
     parameters: { input: "resume previous work continue session", mode: "resume", profile: "resume", specFolder: "{spec_folder_path}", includeContent: true }
+    transport_fallback: "If the MCP tools are missing or erroring while the daemon is otherwise warm, use the daemon-backed CLI: node .opencode/bin/spec-memory.cjs memory_context --json '{\"input\":\"resume previous work\",\"mode\":\"resume\"}' --format json --timeout-ms 3000 --warm-only. Exit 75 = retryable backend unavailability; the file-based recovery ladder needs no MCP."
 
 smart_memory_logic:
   objective: "Recover enough state to continue safely, then let the user choose whether to deepen context"

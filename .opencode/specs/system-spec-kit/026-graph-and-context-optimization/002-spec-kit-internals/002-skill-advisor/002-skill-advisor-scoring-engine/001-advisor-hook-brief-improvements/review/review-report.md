@@ -94,14 +94,3 @@ This review followed the packet docs in the requested order, then audited every 
 - Convergence did not trigger early because each middle iteration still added non-trivial new information, but novelty fell steadily to `0.05` by iteration 10.
 
 ## References
-
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-advisor-hook-brief-improvements/spec.md`
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-advisor-hook-brief-improvements/implementation-summary.md`
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-advisor-hook-brief-improvements/checklist.md`
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-advisor-hook-brief-improvements/resource-map.md`
-- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-recommend.ts`
-- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/prompt-cache.ts`
-- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/skill-advisor-brief.ts`
-- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/render.ts`
-- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/lib/metrics.ts`
-- `.opencode/skills/system-spec-kit/mcp_server/skill-advisor/handlers/advisor-validate.ts`

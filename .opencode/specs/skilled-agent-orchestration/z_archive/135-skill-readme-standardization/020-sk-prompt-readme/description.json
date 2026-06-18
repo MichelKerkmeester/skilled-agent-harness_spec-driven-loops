@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/135-skill-readme-standardization/020-sk-prompt-readme",
+  "description": "Feature Specification: sk-prompt README",
+  "keywords": [
+    "feature",
+    "specification",
+    "sk-prompt",
+    "readme"
+  ],
+  "lastUpdated": "2026-06-10T04:53:30.819Z",
+  "specId": "020",
+  "folderSlug": "sk-prompt-readme",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "135-skill-readme-standardization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

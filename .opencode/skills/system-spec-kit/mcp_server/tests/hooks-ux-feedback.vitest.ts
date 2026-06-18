@@ -26,7 +26,8 @@ describe('Hooks UX feedback', () => {
       errors: [],
     });
 
-    expect(feedback.hints.some((hint) => hint.includes('Post-mutation cache clear'))).toBe(true);
+    expect(feedback.hints.some((hint) => hint.includes('Post-mutation subscribers'))).toBe(true);
+    expect(feedback.hints.some((hint) => hint.includes('constitutional=failed'))).toBe(true);
     expect(feedback.hints.some((hint) => hint.includes('Tool cache invalidation'))).toBe(true);
     expect(feedback.hints.some((hint) => hint.includes('non-fatal'))).toBe(true);
   });

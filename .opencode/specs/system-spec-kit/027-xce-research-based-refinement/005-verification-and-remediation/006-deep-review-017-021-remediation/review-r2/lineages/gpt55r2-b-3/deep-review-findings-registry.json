@@ -1,0 +1,86 @@
+{
+  "sessionId": "fanout-gpt55r2-b-3-1781761339355-o7qylx",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Atomic save can commit index state before durable file promotion",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/handlers/save/atomic-index-memory.ts",
+      "line": 362,
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/save/atomic-index-memory.ts:360-378",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:2564-2685",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts:310-365"
+      ],
+      "finding_class": "contract_safety",
+      "content_hash": "c89c39dd8f7ce9b7322b201df2b6361d04feea779d19b50bf0dec584f882eff8",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "category": "data-integrity",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Soft-delete tombstones do not tombstone chunk children",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts",
+      "line": 91,
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:82-98",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:137-141",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/chunking-orchestrator.ts:344-351",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:3121",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts:148-171"
+      ],
+      "finding_class": "contract_safety",
+      "content_hash": "f61900e5f9163f9f49c88170b118ae390089e2b053b1dd4471cff00ee0d201d8",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 0
+  },
+  "openFindingsCount": 2,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

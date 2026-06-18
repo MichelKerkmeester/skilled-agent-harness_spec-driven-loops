@@ -1,6 +1,14 @@
 ---
 title: Destructive Scope Violations under cli-opencode Deep-Loop Dispatch (RM-8)
-description: Root cause + prevention for destructive filesystem writes when cli-opencode dispatches a long-running model (e.g. deepseek-v4-pro under /deep:start-review-loop:auto) and the model hallucinates a cleanup action.
+description: Root cause + prevention for destructive filesystem writes when cli-opencode dispatches a long-running model (e.g. deepseek-v4-pro under /deep:review:auto) and the model hallucinates a cleanup action.
+trigger_phrases:
+  - "opencode destructive scope violation"
+  - "opencode deep-loop dispatch safety"
+  - "dangerously skip permissions risk"
+  - "opencode worktree isolation dispatch"
+  - "rm-8 prevention playbook"
+importance_tier: important
+contextType: implementation
 ---
 
 # Destructive Scope Violations under cli-opencode Deep-Loop Dispatch (RM-8)
@@ -17,7 +25,7 @@ Record the 2026-05-04 destructive scope violation (RM-8), explain its root cause
 
 ### When to Use
 
-Read this before any non-interactive `opencode run` deep-loop dispatch that uses `--dangerously-skip-permissions` against a populated worktree, especially long-running `/deep:start-research-loop:auto` and `/deep:start-review-loop:auto` runs.
+Read this before any non-interactive `opencode run` deep-loop dispatch that uses `--dangerously-skip-permissions` against a populated worktree, especially long-running `/deep:research:auto` and `/deep:review:auto` runs.
 
 ### Core Principle
 
@@ -29,7 +37,7 @@ An instruction-only scope guard layered on `--dangerously-skip-permissions` is t
 
 Source-of-truth: local destructive-scope violation policy.
 
-- **What ran**: `/deep:start-review-loop:auto` against a phase parent across two of its phase children.
+- **What ran**: `/deep:review:auto` against a phase parent across two of its phase children.
 - **Executor**: cli-opencode (`opencode run`) with `--model opencode-go/deepseek-v4-pro --variant high --dangerously-skip-permissions --pure --dir <repo-root>`.
 - **Damage**: **44 files deleted** across the two phase children. Spec docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `description.json`, `graph-metadata.json`) **and** the `review/` packet subtrees were physically removed.
 - **Recovery**: `git restore` from commit `7beb80769` (a pre-dispatch "bundled session sync") — single command. **No findings lost**, but ≈30 minutes of recovery time and trust damage.
@@ -44,7 +52,7 @@ Two contributing layers, both required to enable the failure:
 
 ### Layer A — unrestricted filesystem write capability
 
-The YAML dispatch wrapper (`.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` step `if_cli_opencode`) hands the executor:
+The YAML dispatch wrapper (`.opencode/commands/deep/assets/deep_review_auto.yaml` step `if_cli_opencode`) hands the executor:
 
 ```bash
 opencode run \
@@ -63,7 +71,7 @@ opencode run \
 
 ### Layer B — instruction-only guard
 
-Before the RM-8 mitigation shipped, the only safeguard against the model was a single prose line in `.opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl` §CONSTRAINTS:
+Before the RM-8 mitigation shipped, the only safeguard against the model was a single prose line in `.opencode/skills/deep-loop-workflows/deep-review/assets/prompt_pack_iteration.md.tmpl` §CONSTRAINTS:
 
 > "Review target is READ-ONLY. Do not modify reviewed files."
 
@@ -75,11 +83,11 @@ That line **is not enforced anywhere**. The harness reads it as documentation; O
 
 ## 4. PREVENTION — APPLY BEFORE EVERY DEEP-LOOP DISPATCH
 
-The default risk surface for cli-opencode is **any non-interactive `opencode run` invocation that uses `--dangerously-skip-permissions` against a populated worktree**, especially long-running deep-loop dispatches like `/deep:start-research-loop:auto` and `/deep:start-review-loop:auto`. Apply all four layers before dispatch:
+The default risk surface for cli-opencode is **any non-interactive `opencode run` invocation that uses `--dangerously-skip-permissions` against a populated worktree**, especially long-running deep-loop dispatches like `/deep:research:auto` and `/deep:review:auto`. Apply all four layers before dispatch:
 
 ### Layer 1 (REQUIRED) — RM-8 prompt hardening, already shipped
 
-`.opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl` §CONSTRAINTS now includes:
+`.opencode/skills/deep-loop-workflows/deep-review/assets/prompt_pack_iteration.md.tmpl` §CONSTRAINTS now includes:
 
 - An **ALLOWED WRITE PATHS** list enumerating the five state-path tokens (`{state_paths_iteration_pattern}`, `{state_paths_state_log}`, `{state_paths_delta_pattern}`, `{state_paths_strategy}`, `{state_paths_findings_registry}`)
 - A **BANNED OPERATIONS** list naming `rm`, `rm -rf`, `git rm`, `mv`, `sed -i` (including `sed -i ''`), `rmdir`, `find ... -delete`, and shell output-redirect truncate `>` against any non-allowed path
@@ -131,7 +139,7 @@ The commit hash is the recovery baseline. Surface it to the operator before disp
 
 ### Layer 4 (FALLBACK) — model selection
 
-The 2026-05-04 incident was specifically observed with `opencode-go/deepseek-v4-pro` under `/deep:start-review-loop:auto`. Until a runtime scope guard ships (see §5), the cross-phase synthesis recommendation stands: **for multi-phase deep-review work, prefer `cli-copilot` with `gpt-5.5 --reasoning-effort high`** when available, and fall back to deepseek only with Layers 1+2+3 all in place. Memory feedback `feedback_copilot_concurrency_override.md` caps Copilot at 3 parallel dispatches; sequence the work accordingly.
+The 2026-05-04 incident was specifically observed with `opencode-go/deepseek-v4-pro` under `/deep:review:auto`. Until a runtime scope guard ships (see §5), the cross-phase synthesis recommendation stands: **for multi-phase deep-review work, prefer `cli-copilot` with `gpt-5.5 --reasoning-effort high`** when available, and fall back to deepseek only with Layers 1+2+3 all in place. Memory feedback `feedback_copilot_concurrency_override.md` caps Copilot at 3 parallel dispatches; sequence the work accordingly.
 
 ---
 
@@ -160,6 +168,6 @@ This requires changes to the YAML wrapper (pre/post hooks) and is a separate pac
 
 - **Incident source**: local destructive-scope violation policy
 - **RM-8 hardening context**: local destructive-scope violation policy
-- **Hardened prompt template**: `.opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl` §CONSTRAINTS
-- **YAML dispatch surface**: `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml` step `if_cli_opencode`
+- **Hardened prompt template**: `.opencode/skills/deep-loop-workflows/deep-review/assets/prompt_pack_iteration.md.tmpl` §CONSTRAINTS
+- **YAML dispatch surface**: `.opencode/commands/deep/assets/deep_review_auto.yaml` step `if_cli_opencode`
 - **Memory feedback**: `feedback_opencode_run_requires_dev_null_stdin.md`, `feedback_opencode_provider_fallback.md`, `feedback_cli_executor_only_when_requested.md`

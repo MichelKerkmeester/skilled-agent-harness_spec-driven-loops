@@ -11,7 +11,11 @@ import path from 'node:path';
 // other lib code; the handler implementation stays the source of truth.
 import { findSpecDocuments } from '../discovery/spec-document-finder.js';
 import {
+  buildContinuityFacets,
+  renderContinuityFacets,
   readThinContinuityRecord,
+  type ContinuityFacetName,
+  type ContinuityFacets,
   type ThinContinuityRecord,
 } from '../continuity/thin-continuity-record.js';
 
@@ -45,6 +49,32 @@ export interface ResumeLadderResult {
   hints: string[];
   documents: ResumeLadderDocument[];
   freshnessWinner: 'handover' | 'continuity' | 'spec-docs' | null;
+  restorePanel: ResumeRestorePanel;
+}
+
+export interface ResumeRestorePanelItem {
+  facet: ContinuityFacetName;
+  label: string;
+  source: ResumeLadderSource;
+  text: string;
+}
+
+export interface ResumeRestorePanelOmission {
+  facet: ContinuityFacetName;
+  label: string;
+  reason: 'item-budget' | 'char-budget';
+}
+
+export interface ResumeRestorePanel {
+  maxItems: number;
+  maxChars: number;
+  restoredCount: number;
+  omittedCount: number;
+  omittedByReason: Record<ResumeRestorePanelOmission['reason'], number>;
+  facets: ContinuityFacets;
+  restored: ResumeRestorePanelItem[];
+  omitted: ResumeRestorePanelOmission[];
+  markdown: string;
 }
 
 export interface ResumeLadderOptions {
@@ -87,6 +117,84 @@ const SPEC_DOC_PRIORITY = [
   'handover.md',
   'resource-map.md',
 ] as const;
+const RESTORE_PANEL_MAX_ITEMS = 8;
+const RESTORE_PANEL_MAX_CHARS = 1200;
+const PHASE_PARENT_REDIRECT_MAX_DEPTH = 5;
+const PHASE_CHILD_NAME_RE = /^[0-9]{3}-[a-z0-9-]+$/u;
+
+/**
+ * Follow a phase parent's `derived.last_active_child_id` pointer down to the
+ * live child packet. Phase parents keep only the lean control trio at their
+ * root, so resuming on the parent itself recovers stale or empty context —
+ * the chronology pointer in graph-metadata.json names where work actually
+ * lives. Bounded depth + an existence/shape check on every hop keep a stale
+ * or malformed pointer from escaping the packet tree.
+ */
+function followPhaseParentRedirect(
+  startFolderPath: string,
+  startSpecFolder: string,
+  hints: string[],
+): { folderPath: string; specFolder: string } {
+  let folderPath = startFolderPath;
+  let specFolder = startSpecFolder;
+
+  for (let depth = 0; depth < PHASE_PARENT_REDIRECT_MAX_DEPTH; depth += 1) {
+    const metadataPath = path.join(folderPath, 'graph-metadata.json');
+    if (!fs.existsSync(metadataPath)) {
+      break;
+    }
+
+    let pointer: string | null = null;
+    try {
+      const metadata = JSON.parse(fs.readFileSync(metadataPath, 'utf8')) as {
+        derived?: { last_active_child_id?: unknown } | null;
+      };
+      const raw = metadata?.derived?.last_active_child_id;
+      pointer = typeof raw === 'string' && raw.trim().length > 0 ? raw.trim().replace(/\\/g, '/').replace(/\/+$/u, '') : null;
+    } catch {
+      hints.push(`Skipping phase-parent redirect: ${path.basename(folderPath)}/graph-metadata.json is unreadable.`);
+      break;
+    }
+
+    if (!pointer) {
+      break;
+    }
+
+    // The pointer ships in two shapes: a bare child id ("001-phase") or a
+    // track-relative spec-folder path that extends the current packet
+    // ("track/parent/001-phase"). Reduce both to child segments under the
+    // current folder and refuse anything that doesn't stay inside it.
+    let childSegments: string[] | null = null;
+    if (PHASE_CHILD_NAME_RE.test(pointer)) {
+      childSegments = [pointer];
+    } else if (pointer.startsWith(`${specFolder}/`)) {
+      childSegments = pointer.slice(specFolder.length + 1).split('/');
+    }
+    if (!childSegments
+      || childSegments.length === 0
+      || !childSegments.every((segment) => PHASE_CHILD_NAME_RE.test(segment))) {
+      if (pointer !== specFolder) {
+        hints.push(`Ignoring phase-parent pointer ${pointer}: it does not name a child phase of ${specFolder}.`);
+      }
+      break;
+    }
+
+    const childPath = path.join(folderPath, ...childSegments);
+    const childIsPacket = fs.existsSync(childPath)
+      && fs.statSync(childPath).isDirectory()
+      && (fs.existsSync(path.join(childPath, 'spec.md')) || fs.existsSync(path.join(childPath, 'description.json')));
+    if (!childIsPacket) {
+      hints.push(`Ignoring stale phase-parent pointer ${pointer}: child packet not found under ${specFolder}.`);
+      break;
+    }
+
+    folderPath = childPath;
+    specFolder = `${specFolder}/${childSegments.join('/')}`;
+    hints.push(`Phase-parent redirect: followed derived.last_active_child_id into ${specFolder}.`);
+  }
+
+  return { folderPath, specFolder };
+}
 
 function normalizeSpecFolder(specFolder: string | null | undefined): string | null {
   if (typeof specFolder !== 'string') {
@@ -267,6 +375,129 @@ function uniqueStrings(values: Array<string | null | undefined>): string[] {
   }
 
   return result;
+}
+
+function pushPanelCandidate(
+  candidates: ResumeRestorePanelItem[],
+  seen: Set<string>,
+  item: ResumeRestorePanelItem,
+): void {
+  const normalized = item.text.trim();
+  if (normalized.length === 0) {
+    return;
+  }
+  const key = `${item.facet}:${item.label}:${normalized}`;
+  if (seen.has(key)) {
+    return;
+  }
+  seen.add(key);
+  candidates.push({ ...item, text: normalized });
+}
+
+function buildRestoredFacets(restored: ResumeRestorePanelItem[]): ContinuityFacets {
+  const filtered: ContinuityFacets = {
+    goal: [],
+    decision: [],
+    progress: [],
+    gotcha: [],
+  };
+
+  for (const item of restored) {
+    filtered[item.facet].push(item.text);
+  }
+
+  return filtered;
+}
+
+function enforceMarkdownBudget(markdown: string, maxChars: number): string {
+  if (markdown.length <= maxChars) {
+    return markdown;
+  }
+
+  return markdown.slice(0, maxChars);
+}
+
+function buildRestorePanel(params: {
+  source: ResumeLadderSource;
+  summary: string;
+  recentAction: string | null;
+  nextSafeAction: string | null;
+  blockers: string[];
+  keyFiles: string[];
+  documents: ResumeLadderDocument[];
+}): ResumeRestorePanel {
+  const facets = buildContinuityFacets({
+    summary: params.summary,
+    recentAction: params.recentAction,
+    nextSafeAction: params.nextSafeAction,
+    blockers: params.blockers,
+    keyFiles: params.keyFiles,
+  });
+  const candidates: ResumeRestorePanelItem[] = [];
+  const seen = new Set<string>();
+  const source = params.source;
+
+  for (const text of facets.goal) {
+    pushPanelCandidate(candidates, seen, { facet: 'goal', label: 'next-safe-action', source, text });
+  }
+  for (const text of facets.decision) {
+    pushPanelCandidate(candidates, seen, { facet: 'decision', label: 'answered-question', source, text });
+  }
+  for (const text of facets.progress) {
+    pushPanelCandidate(candidates, seen, { facet: 'progress', label: 'progress', source, text });
+  }
+  for (const text of facets.gotcha) {
+    pushPanelCandidate(candidates, seen, { facet: 'gotcha', label: 'gotcha', source, text });
+  }
+  for (const document of params.documents) {
+    pushPanelCandidate(candidates, seen, {
+      facet: 'progress',
+      label: document.relativePath,
+      source: document.type === 'spec-doc' ? 'spec-docs' : document.type,
+      text: `Recovered ${document.relativePath}`,
+    });
+  }
+
+  const restored: ResumeRestorePanelItem[] = [];
+  const omitted: ResumeRestorePanelOmission[] = [];
+  let charCount = 0;
+  for (const candidate of candidates) {
+    const nextChars = candidate.text.length + candidate.label.length + 8;
+    if (restored.length >= RESTORE_PANEL_MAX_ITEMS) {
+      omitted.push({ facet: candidate.facet, label: candidate.label, reason: 'item-budget' });
+      continue;
+    }
+    if (charCount + nextChars > RESTORE_PANEL_MAX_CHARS) {
+      omitted.push({ facet: candidate.facet, label: candidate.label, reason: 'char-budget' });
+      continue;
+    }
+    restored.push(candidate);
+    charCount += nextChars;
+  }
+
+  const omittedByReason = omitted.reduce<Record<ResumeRestorePanelOmission['reason'], number>>((counts, item) => {
+    counts[item.reason] += 1;
+    return counts;
+  }, { 'item-budget': 0, 'char-budget': 0 });
+  const restoredFacets = buildRestoredFacets(restored);
+  const markdown = enforceMarkdownBudget([
+    `Restored: ${restored.length}`,
+    `Not restored: ${omitted.length}`,
+    '',
+    renderContinuityFacets(restoredFacets),
+  ].join('\n'), RESTORE_PANEL_MAX_CHARS);
+
+  return {
+    maxItems: RESTORE_PANEL_MAX_ITEMS,
+    maxChars: RESTORE_PANEL_MAX_CHARS,
+    restoredCount: restored.length,
+    omittedCount: omitted.length,
+    omittedByReason,
+    facets: restoredFacets,
+    restored,
+    omitted,
+    markdown,
+  };
 }
 
 function getPriorityIndex(basename: string): number {
@@ -466,21 +697,35 @@ function synthesizeResult(params: {
     }
   }
 
+  const summary = uniqueStrings([
+    primary.summary,
+    secondary?.summary ?? null,
+  ]).join(' | ');
+  const recentAction = primary.recentAction ?? secondary?.recentAction ?? null;
+  const nextSafeAction = primary.nextSafeAction ?? secondary?.nextSafeAction ?? null;
+  const restorePanel = buildRestorePanel({
+    source: primary.source,
+    summary,
+    recentAction,
+    nextSafeAction,
+    blockers: mergedBlockers,
+    keyFiles: mergedKeyFiles,
+    documents: mergedDocuments,
+  });
+
   return {
     source: primary.source,
     specFolder: resolution.resolvedSpecFolder,
     resolution,
-    summary: uniqueStrings([
-      primary.summary,
-      secondary?.summary ?? null,
-    ]).join(' | '),
-    recentAction: primary.recentAction ?? secondary?.recentAction ?? null,
-    nextSafeAction: primary.nextSafeAction ?? secondary?.nextSafeAction ?? null,
+    summary,
+    recentAction,
+    nextSafeAction,
     blockers: mergedBlockers,
     keyFiles: mergedKeyFiles,
     hints,
     documents: mergedDocuments,
     freshnessWinner: primary.source,
+    restorePanel,
   };
 }
 
@@ -502,6 +747,15 @@ function buildNoRecoveryResult(
     hints,
     documents: [],
     freshnessWinner: null,
+    restorePanel: buildRestorePanel({
+      source: 'none',
+      summary: '',
+      recentAction: null,
+      nextSafeAction: null,
+      blockers: [],
+      keyFiles: [],
+      documents: [],
+    }),
   };
 }
 
@@ -627,6 +881,12 @@ export function buildResumeLadder(options: ResumeLadderOptions = {}): ResumeLadd
 
   if (!resolution.folderPath || !resolution.resolvedSpecFolder) {
     return buildNoRecoveryResult(resolution, hints);
+  }
+
+  const redirect = followPhaseParentRedirect(resolution.folderPath, resolution.resolvedSpecFolder, hints);
+  if (redirect.specFolder !== resolution.resolvedSpecFolder) {
+    resolution.folderPath = redirect.folderPath;
+    resolution.resolvedSpecFolder = redirect.specFolder;
   }
 
   const folderPath: string = resolution.folderPath;

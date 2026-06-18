@@ -1,6 +1,13 @@
 ---
 title: Evergreen Packet ID Rule
 description: Prevents runtime-state documentation from referencing mutable spec or phase packet numbers.
+trigger_phrases:
+  - "evergreen packet id rule"
+  - "no packet numbers in docs"
+  - "runtime state documentation rule"
+  - "feature names over packet ids"
+importance_tier: important
+contextType: general
 ---
 
 # Evergreen Packet ID Rule

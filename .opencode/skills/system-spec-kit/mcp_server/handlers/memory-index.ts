@@ -10,10 +10,15 @@ import { createHash } from 'node:crypto';
 
 import { checkDatabaseUpdated } from '../core/index.js';
 import { INDEX_SCAN_COOLDOWN, DEFAULT_BASE_PATH, BATCH_SIZE } from '../core/config.js';
+import { beginMaintenance } from '../lib/storage/maintenance-marker.js';
 import { acquireIndexScanLease, completeIndexScanLease, refreshScanLease } from '../core/db-state.js';
 import { processBatches, requireDb, toErrorMessage, type RetryErrorResult } from '../utils/index.js';
 import { ensureMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-guard.js';
 import { getCanonicalPathKey } from '../lib/utils/canonical-path.js';
+import {
+  runTriggerEmbeddingBackfill,
+  type TriggerEmbeddingBackfillResult,
+} from '../lib/search/trigger-embedding-backfill.js';
 
 /* ───────────────────────────────────────────────────────────────
    2. LIB MODULE IMPORTS
@@ -24,9 +29,14 @@ import * as checkpoints from '../lib/storage/checkpoints.js';
 import * as memoryParser from '../lib/parsing/memory-parser.js';
 import * as embeddings from '../lib/providers/embeddings.js';
 import * as incrementalIndex from '../lib/storage/incremental-index.js';
+import * as causalEdges from '../lib/storage/causal-edges.js';
 import * as vectorIndex from '../lib/search/vector-index.js';
+import { promoteMetadataEdges } from '../lib/causal/frontmatter-promoter.js';
 import { runPostMutationHooks } from './mutation-hooks.js';
+import { createStatediffAction } from '../lib/storage/statediff.js';
 import { repairIncompleteMarkers } from './save/enrichment-state.js';
+import { isMemoryIdempotencyEnabled } from '../lib/storage/idempotency-receipts.js';
+import { recordNearDuplicateCheck } from '../lib/storage/near-duplicate.js';
 import {
   findConstitutionalFiles,
   findGraphMetadataFiles,
@@ -47,17 +57,29 @@ import {
 
 // Standardized response structure
 import { createMCPSuccessResponse, createMCPErrorResponse } from '../lib/response/envelope.js';
-import { validateGovernedIngest } from '../lib/governance/scope-governance.js';
+import { requiresGovernedIngest, validateGovernedIngest } from '../lib/governance/scope-governance.js';
+import { recordMaintenanceRun } from '../lib/observability/retrieval-observability.js';
+import {
+  createJobId,
+  createMaintenanceJob,
+  setJobState,
+  setJobPhase,
+  setJobProgress,
+  appendJobError,
+  completeJob,
+  isCancelRequestedFast,
+} from '../lib/ops/job-store.js';
 
 // Shared handler types
 import type { MCPResponse, EmbeddingProfile } from './types.js';
+import type { StatediffAction } from '../lib/storage/statediff.js';
 
 // Feature catalog: Workspace scanning and indexing (memory_index_scan)
 // Feature catalog: Async ingestion job lifecycle
 
 
 /* ───────────────────────────────────────────────────────────────
-   4. TYPES
+   3. TYPES
 ──────────────────────────────────────────────────────────────── */
 
 interface IndexResult {
@@ -135,6 +157,7 @@ interface ScanResults {
   staleDeleted: number;
   staleDeleteFailed: number;
   postInsertEnrichmentRepaired: number;
+  nearDuplicateRepaired: number;
   orphanSwept: number;
   orphanSweepFailed: number;
   orphanSweepScanned: number;
@@ -150,6 +173,15 @@ interface ScanResults {
     enabled: boolean;
     fast_path_skips: number;
     mtime_changed: number;
+    metadataPromoter: {
+      processed: number;
+      resolved: number;
+      inserted: number;
+      skippedManual: number;
+      staleTombstoned: number;
+      staleDeleted: number;
+      warnings: number;
+    };
   };
   dedup: {
     inputTotal: number;
@@ -159,6 +191,7 @@ interface ScanResults {
   aliasConflicts: AliasConflictSummary;
   divergenceReconcile: DivergenceReconcileSummary;
   checkpointRepair: CheckpointRepairReport;
+  triggerEmbeddingBackfill?: TriggerEmbeddingBackfillResult;
   warnings: string[];
   capExceeded: DiscoveryCapExceeded;
 }
@@ -181,6 +214,7 @@ interface ScanKeyOptions {
 interface RecordDeleteResult {
   deleted: number;
   failed: number;
+  actions: StatediffAction[];
 }
 
 interface OrphanSweepDeleteResult {
@@ -188,6 +222,7 @@ interface OrphanSweepDeleteResult {
   failed: number;
   scannedRows: number;
   nextCursor: number | null;
+  actions: StatediffAction[];
 }
 
 interface OrphanSweepCandidates {
@@ -198,6 +233,14 @@ interface OrphanSweepCandidates {
 }
 
 const ORPHAN_SWEEP_LIMIT = 200;
+
+// Scan responsiveness diagnostics. A blocked event loop is the failure mode that
+// breaks daemon re-election: it cannot answer a competing launcher's probe, so the
+// launcher spawns a second daemon. Sampling timer drift distinguishes a true
+// event-loop block from a phase that is merely slow but yields — the two need
+// different fixes (chunk-and-yield vs launcher-side probe tolerance).
+const LOOP_LAG_SAMPLE_MS = 250;
+const LOOP_LAG_WARN_MS = 1000;
 
 function emptyCheckpointRepairReport(): CheckpointRepairReport {
   return {
@@ -257,6 +300,8 @@ interface ScanArgs {
   includeConstitutional?: boolean;
   includeSpecDocs?: boolean;
   incremental?: boolean;
+  // Opt-in: run the scan as a background job and return a jobId immediately.
+  background?: boolean;
   tenantId?: string;
   userId?: string;
   agentId?: string;
@@ -269,11 +314,12 @@ interface ScanArgs {
 }
 
 /* ───────────────────────────────────────────────────────────────
-   5. SHARED INDEXING LOGIC
+   4. SHARED INDEXING LOGIC
 ──────────────────────────────────────────────────────────────── */
 
 import { indexMemoryFile } from './memory-save.js';
 import type { GovernanceDecision } from '../lib/governance/scope-governance.js';
+import type { WriteProvenanceContext } from '../lib/storage/write-provenance.js';
 
 /** Index a single memory file, delegating to the shared indexMemoryFile logic */
 async function indexSingleFile(
@@ -284,6 +330,7 @@ async function indexSingleFile(
     fromScan?: boolean;
     asyncEmbedding?: boolean;
     governance?: GovernanceDecision;
+    provenance?: WriteProvenanceContext;
   },
 ): Promise<IndexResult> {
   return indexMemoryFile(filePath, {
@@ -292,18 +339,61 @@ async function indexSingleFile(
     fromScan: options?.fromScan,
     asyncEmbedding: options?.asyncEmbedding,
     governance: options?.governance,
+    provenance: options?.provenance,
   });
 }
 
 /* ───────────────────────────────────────────────────────────────
-   6. MEMORY INDEX SCAN HANDLER
+   5. MEMORY INDEX SCAN HANDLER
 ──────────────────────────────────────────────────────────────── */
 
-/** Handle memory_index_scan tool - scans and indexes memory files with incremental support */
-async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
+// Hooks let a background runner observe cancellation and report phase/progress.
+// On the synchronous path every hook is undefined, so behavior is identical.
+interface ScanRunContext {
+  isCancelled?: () => boolean;
+  onPhase?: (phase: string) => void;
+  onProgress?: (progress: { processed: number; total: number }) => void;
+}
+
+// Pull the envelope.data field back out of an MCP response so status can echo it.
+function extractEnvelopeData(response: MCPResponse): unknown {
+  try {
+    const text = (response as { content?: Array<{ text?: string }> })?.content?.[0]?.text;
+    if (typeof text !== 'string') return null;
+    const parsed = JSON.parse(text) as { data?: unknown };
+    return parsed?.data ?? null;
+  } catch (_error: unknown) {
+    return null;
+  }
+}
+
+// Persisted payload for debugging: scan shape only, no governance identifiers.
+function redactScanArgs(args: ScanArgs): Record<string, unknown> {
+  return {
+    specFolder: args.specFolder ?? null,
+    force: !!args.force,
+    includeConstitutional: args.includeConstitutional !== false,
+    includeSpecDocs: args.includeSpecDocs !== false,
+    incremental: args.incremental !== false,
+    background: true,
+  };
+}
+
+function cancelledScanEnvelope(scanKey: string): MCPResponse {
+  return createMCPSuccessResponse({
+    tool: 'memory_index_scan',
+    summary: 'Index scan cancelled before completion',
+    data: { status: 'cancelled', cancelled: true, scanKey },
+    hints: ['The scan was cancelled via memory_index_scan_cancel'],
+  });
+}
+
+/** Run the full memory_index_scan operation. Hooks are no-ops on the synchronous path. */
+async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<MCPResponse> {
   await ensureMemoryRuntimeInitialized('handler:memory_index_scan');
   const restoreBarrier = checkpoints.getRestoreBarrierStatus();
   if (restoreBarrier) {
+    recordMaintenanceRun('memory_index_scan', { status: 'error' });
     return createMCPErrorResponse({
       tool: 'memory_index_scan',
       error: restoreBarrier.message,
@@ -330,6 +420,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     include_constitutional,
     include_spec_docs,
   });
+  const governedIngest = requiresGovernedIngest(args);
   const governanceDecision = validateGovernedIngest(args);
   if (!governanceDecision.allowed) {
     throw new Error(`Governed ingest rejected: ${governanceDecision.issues.join('; ')}`);
@@ -364,6 +455,11 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     } else {
       message = 'A scan recently completed; this call coalesced onto the recent scan window.';
     }
+    recordMaintenanceRun('memory_index_scan', {
+      status: 'coalesced',
+      counts: { waitSeconds: lease.waitSeconds },
+      staleCandidates: 0,
+    });
     return createMCPSuccessResponse({
       tool: 'memory_index_scan',
       summary: message,
@@ -401,11 +497,40 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
   const leaseHeartbeatMs = Math.max(10000, Math.floor(leaseExpiryMs / 3));
   let leaseHeartbeat: ReturnType<typeof setInterval> | null = null;
 
+  // Background scans pass an onPhase hook; the synchronous foreground path does not.
+  // Gate diagnostics on it so the synchronous path's behavior stays identical.
+  const instrument = typeof ctx.onPhase === 'function';
+  let loopLagTimer: ReturnType<typeof setInterval> | null = null;
+  let maxLoopLagMs = 0;
+
   try {
   leaseHeartbeat = setInterval(() => {
     refreshScanLease();
   }, leaseHeartbeatMs);
   leaseHeartbeat.unref?.();
+
+  if (instrument) {
+    let loopLagExpectedAt = Date.now() + LOOP_LAG_SAMPLE_MS;
+    loopLagTimer = setInterval(() => {
+      const sampledAt = Date.now();
+      const lag = sampledAt - loopLagExpectedAt;
+      loopLagExpectedAt = sampledAt + LOOP_LAG_SAMPLE_MS;
+      if (lag > maxLoopLagMs) maxLoopLagMs = lag;
+      if (lag > LOOP_LAG_WARN_MS) {
+        // A late sample means the loop was blocked since the prior tick; logged
+        // adjacent to the phase=... line of whatever phase just ran, so the daemon
+        // log timeline fingers the blocking phase.
+        console.error(`[memory-index-scan] event-loop blocked ~${lag}ms between samples`);
+      }
+    }, LOOP_LAG_SAMPLE_MS);
+    loopLagTimer.unref?.();
+  }
+
+  if (ctx.isCancelled?.()) {
+    await releaseScanLease();
+    return cancelledScanEnvelope(scanKey);
+  }
+  ctx.onPhase?.('discovering');
 
   const workspacePath: string = DEFAULT_BASE_PATH;
 
@@ -458,20 +583,56 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
 
   const deleteIndexedRecordIds = (recordIds: number[]): RecordDeleteResult => {
     if (recordIds.length === 0) {
-      return { deleted: 0, failed: 0 };
+      return { deleted: 0, failed: 0, actions: [] };
     }
 
     let deleted = 0;
     let failed = 0;
+    const actions: StatediffAction[] = [];
 
     for (const staleRecordId of recordIds) {
       try {
-        const staleSnapshot = vectorIndex.getDb()?.prepare(
+        const database = vectorIndex.getDb();
+        const staleSnapshot = database?.prepare(
           'SELECT spec_folder, file_path FROM memory_index WHERE id = ?'
         ).get(staleRecordId) as { spec_folder?: string | null; file_path?: string | null } | undefined;
 
-        if (vectorIndex.deleteMemory(staleRecordId)) {
+        // Mirror the CRUD/bulk-delete ordering: drop the memory row first, then its
+        // causal edges, atomically in one transaction. The previous edges-then-row
+        // sequence in two separate statements left a crash window where edges were
+        // gone but the row survived, and deleted edges for a row that may not exist.
+        const rowDeleted = database
+          ? database.transaction(() => {
+              if (!vectorIndex.deleteMemory(staleRecordId)) {
+                return false;
+              }
+              causalEdges.init(database);
+              causalEdges.deleteEdgesForMemory(String(staleRecordId), {
+                reason: 'memory_index stale record cleanup',
+                command: 'memory-index.deleteIndexedRecordIds',
+                restoreContext: {
+                  memoryId: staleRecordId,
+                  specFolder: staleSnapshot?.spec_folder ?? null,
+                  filePath: staleSnapshot?.file_path ?? null,
+                },
+              });
+              return true;
+            })()
+          : vectorIndex.deleteMemory(staleRecordId);
+
+        if (rowDeleted) {
           deleted++;
+          actions.push(createStatediffAction('delete', {
+            target: 'memory_index',
+            key: String(staleRecordId),
+            sourceOperation: 'scan',
+            oldStateHash: null,
+            newStateHash: null,
+            metadata: {
+              filePath: staleSnapshot?.file_path ?? null,
+              specFolder: staleSnapshot?.spec_folder ?? null,
+            },
+          }));
           // Record DELETE history only after confirmed deletion.
           try {
             recordHistory(
@@ -493,12 +654,12 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
       }
     }
 
-    return { deleted, failed };
+    return { deleted, failed, actions };
   };
 
   const deleteStaleIndexedRecords = (paths: string[]): RecordDeleteResult => {
     if (paths.length === 0) {
-      return { deleted: 0, failed: 0 };
+      return { deleted: 0, failed: 0, actions: [] };
     }
 
     return deleteIndexedRecordIds(incrementalIndex.listIndexedRecordIdsForDeletedPaths(paths));
@@ -506,7 +667,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
 
   const runGlobalOrphanSweep = (): OrphanSweepDeleteResult => {
     if (!('sweepOrphanIndexRows' in incrementalIndex)) {
-      return { swept: 0, failed: 0, scannedRows: 0, nextCursor: null };
+      return { swept: 0, failed: 0, scannedRows: 0, nextCursor: null, actions: [] };
     }
 
     const sweepOrphanIndexRows = (incrementalIndex as {
@@ -514,7 +675,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     }).sweepOrphanIndexRows;
 
     if (typeof sweepOrphanIndexRows !== 'function') {
-      return { swept: 0, failed: 0, scannedRows: 0, nextCursor: null };
+      return { swept: 0, failed: 0, scannedRows: 0, nextCursor: null, actions: [] };
     }
 
     const sweep = sweepOrphanIndexRows({ limit: ORPHAN_SWEEP_LIMIT });
@@ -524,15 +685,39 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
       failed: deleteResult.failed,
       scannedRows: sweep.scannedRows,
       nextCursor: sweep.nextCursor,
+      actions: deleteResult.actions,
     };
   };
 
-  const runScanInvalidationHooks = (context: Record<string, unknown>): void => {
+  const runScanInvalidationHooks = (context: Record<string, unknown>, actions: readonly StatediffAction[]): void => {
     try {
-      runPostMutationHooks('scan', context);
+      runPostMutationHooks('scan', { ...context, statediffActions: actions });
     } catch (error: unknown) {
       console.warn('[memory-index-scan] Post-mutation invalidation failed:', toErrorMessage(error));
     }
+  };
+
+  const triggerBackfillChangedRows = (result: TriggerEmbeddingBackfillResult): boolean => (
+    result.readyRows > 0 || result.failedRows > 0 || result.pendingRows > 0
+  );
+
+  const createTriggerBackfillAction = (result: TriggerEmbeddingBackfillResult): StatediffAction => createStatediffAction('upsert', {
+    target: 'memory_index',
+    key: 'trigger-embedding-backfill',
+    sourceOperation: 'scan',
+    metadata: {
+      readyRows: result.readyRows,
+      failedRows: result.failedRows,
+      pendingRows: result.pendingRows,
+    },
+  });
+
+  const runScanHygieneSubscribers = (actions: readonly StatediffAction[]): void => {
+    if (actions.length === 0) {
+      return;
+    }
+    results.aliasConflicts = detectAliasConflictsFromIndex();
+    results.divergenceReconcile = runDivergenceReconcileHooks(results.aliasConflicts);
   };
 
   const runPostInsertEnrichmentRepairBackfill = async (): Promise<number> => {
@@ -551,11 +736,86 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     }
   };
 
+  const runNearDuplicateRepairBackfill = async (): Promise<number> => {
+    if (!isMemoryIdempotencyEnabled()) {
+      return 0;
+    }
+    try {
+      const database = requireDb();
+      const rows = database.prepare(`
+        SELECT id, spec_folder, title, content_text, content_hash,
+               tenant_id, user_id, agent_id, session_id
+        FROM memory_index
+        WHERE parent_id IS NULL
+          AND embedding_status = 'success'
+          AND content_text IS NOT NULL
+          AND (last_dedup_checked_at IS NULL OR updated_at > last_dedup_checked_at)
+        ORDER BY id ASC
+        LIMIT ?
+      `).all(BATCH_SIZE) as Array<{
+        id: number;
+        spec_folder: string;
+        title: string | null;
+        content_text: string;
+        content_hash: string | null;
+        tenant_id: string | null;
+        user_id: string | null;
+        agent_id: string | null;
+        session_id: string | null;
+      }>;
+      let repaired = 0;
+      for (const row of rows) {
+        try {
+          const embeddingInput = row.title ? `${row.title}\n\n${row.content_text}` : row.content_text;
+          const embedding = await embeddings.generateDocumentEmbedding(embeddingInput);
+          recordNearDuplicateCheck({
+            database,
+            memoryId: row.id,
+            specFolder: row.spec_folder,
+            contentHash: row.content_hash,
+            embedding,
+            scope: {
+              tenantId: row.tenant_id,
+              userId: row.user_id,
+              agentId: row.agent_id,
+              sessionId: row.session_id,
+            },
+          });
+          repaired++;
+        } catch (error: unknown) {
+          console.warn(`[memory-index-scan] Near-duplicate repair skipped for memory ${row.id}: ${toErrorMessage(error)}`);
+        }
+      }
+      return repaired;
+    } catch (error: unknown) {
+      console.warn('[memory-index-scan] Near-duplicate repair skipped:', toErrorMessage(error));
+      return 0;
+    }
+  };
+
+  // Time each un-yielded tail phase: because these phases do not yield, their
+  // wall-clock equals their event-loop-block duration, so this pinpoints a blocking
+  // phase when read alongside the event-loop lag sampler. Entering a phase also fires
+  // onPhase, which refreshes the busy marker — giving each phase a full TTL ahead.
+  const timedPhase = async <T>(phase: string, fn: () => Promise<T> | T): Promise<T> => {
+    ctx.onPhase?.(phase);
+    if (!instrument) {
+      return await fn();
+    }
+    const startedAt = Date.now();
+    try {
+      return await fn();
+    } finally {
+      console.error(`[memory-index-scan] phase=${phase} ms=${Date.now() - startedAt}`);
+    }
+  };
+
   if (files.length === 0) {
     let staleDeleted = 0;
     let staleDeleteFailed = 0;
-    const orphanSweepResult = runGlobalOrphanSweep();
-    const postInsertEnrichmentRepaired = await runPostInsertEnrichmentRepairBackfill();
+    const orphanSweepResult = await timedPhase('orphan-sweep', () => runGlobalOrphanSweep());
+    const postInsertEnrichmentRepaired = await timedPhase('enrichment-repair', () => runPostInsertEnrichmentRepairBackfill());
+    const nearDuplicateRepaired = await timedPhase('near-dup-repair', () => runNearDuplicateRepairBackfill());
 
     if (incremental && !force) {
       const categorized: CategorizedFiles = incrementalIndex.categorizeFilesForIndexing([]);
@@ -563,24 +823,54 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
       staleDeleted = staleDeleteResult.deleted;
       staleDeleteFailed = staleDeleteResult.failed;
       if (staleDeleted > 0) {
-        runScanInvalidationHooks({ staleDeleted, staleDeleteFailed, operation: 'stale-delete' });
+        runScanInvalidationHooks({ staleDeleted, staleDeleteFailed, operation: 'stale-delete' }, staleDeleteResult.actions);
       }
     }
+
+    const triggerEmbeddingBackfill = await timedPhase('trigger-backfill', () =>
+      runTriggerEmbeddingBackfill(requireDb(), {
+        isCancelled: () => ctx.isCancelled?.() ?? false,
+      }));
 
     if (orphanSweepResult.swept > 0) {
       runScanInvalidationHooks({
         orphanSwept: orphanSweepResult.swept,
         orphanSweepFailed: orphanSweepResult.failed,
         operation: 'orphan-sweep',
-      });
+      }, orphanSweepResult.actions);
     }
     if (postInsertEnrichmentRepaired > 0) {
       runScanInvalidationHooks({
         postInsertEnrichmentRepaired,
         operation: 'post-insert-enrichment-repair',
-      });
+      }, [createStatediffAction('upsert', {
+        target: 'graph_edge',
+        key: 'post-insert-enrichment-repair',
+        sourceOperation: 'scan',
+        metadata: { postInsertEnrichmentRepaired },
+      })]);
+    }
+    if (triggerBackfillChangedRows(triggerEmbeddingBackfill)) {
+      runScanInvalidationHooks({
+        triggerEmbeddingBackfill,
+        operation: 'trigger-embedding-backfill',
+      }, [createTriggerBackfillAction(triggerEmbeddingBackfill)]);
     }
 
+    recordMaintenanceRun('memory_index_scan', {
+      status: 'success',
+      counts: {
+        scanned: 0,
+        indexed: 0,
+        updated: 0,
+        unchanged: 0,
+        failed: 0,
+        staleDeleted,
+        staleDeleteFailed,
+        orphanSwept: orphanSweepResult.swept,
+      },
+      staleCandidates: staleDeleted + staleDeleteFailed,
+    });
     await releaseScanLease();
     return createMCPSuccessResponse({
       tool: 'memory_index_scan',
@@ -596,6 +886,8 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
         staleDeleted,
         staleDeleteFailed,
         postInsertEnrichmentRepaired,
+        nearDuplicateRepaired,
+        triggerEmbeddingBackfill,
         orphanSwept: orphanSweepResult.swept,
         orphanSweepFailed: orphanSweepResult.failed,
         orphanSweepScanned: orphanSweepResult.scannedRows,
@@ -607,6 +899,9 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
       hints: [
         ...(staleDeleted > 0 ? [`Removed ${staleDeleted} stale index record(s) for deleted files`] : []),
         ...(postInsertEnrichmentRepaired > 0 ? [`Repaired ${postInsertEnrichmentRepaired} incomplete post-insert enrichment marker(s)`] : []),
+        ...(nearDuplicateRepaired > 0 ? [`Repaired ${nearDuplicateRepaired} near-duplicate marker(s)`] : []),
+        ...(triggerEmbeddingBackfill.readyRows > 0 ? [`Backfilled ${triggerEmbeddingBackfill.readyRows} trigger embedding row(s)`] : []),
+        ...(triggerEmbeddingBackfill.failedRows > 0 ? [`${triggerEmbeddingBackfill.failedRows} trigger embedding row(s) failed backfill`] : []),
         ...(orphanSweepResult.swept > 0 ? [`Swept ${orphanSweepResult.swept} orphan index record(s)`] : []),
         ...(orphanSweepResult.failed > 0 ? [`${orphanSweepResult.failed} orphan index record(s) could not be removed`] : []),
         ...(checkpointRepair.cleared ? [`Cleared checkpoint derived rebuild sentinel after repairing ${checkpointRepair.completed} step(s)`] : []),
@@ -632,6 +927,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     staleDeleted: 0,
     staleDeleteFailed: 0,
     postInsertEnrichmentRepaired: 0,
+    nearDuplicateRepaired: 0,
     orphanSwept: 0,
     orphanSweepFailed: 0,
     orphanSweepScanned: 0,
@@ -645,7 +941,16 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     incremental: {
       enabled: incremental && !force,
       fast_path_skips: 0,
-      mtime_changed: 0
+      mtime_changed: 0,
+      metadataPromoter: {
+        processed: 0,
+        resolved: 0,
+        inserted: 0,
+        skippedManual: 0,
+        staleTombstoned: 0,
+        staleDeleted: 0,
+        warnings: 0,
+      }
     },
     dedup: {
       inputTotal: mergedFiles.length,
@@ -658,6 +963,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     warnings: walkerWarnings,
     capExceeded: walkerCapExceeded,
   };
+  const scanAppliedActions: StatediffAction[] = [];
 
   let filesToIndex: string[] = files;
   let filesToDelete: string[] = [];
@@ -699,6 +1005,24 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     }
   }
 
+  const plannedScanActions = [
+    ...filesToIndex.map((filePath) => createStatediffAction('upsert', {
+      target: 'memory_index',
+      key: getCachedKey(filePath),
+      sourceOperation: 'scan',
+      metadata: { filePath },
+    })),
+    ...filesToDelete.map((filePath) => createStatediffAction('delete', {
+      target: 'memory_index',
+      key: getCachedKey(filePath),
+      sourceOperation: 'scan',
+      metadata: { filePath },
+    })),
+  ];
+  if (plannedScanActions.length > 0) {
+    console.error(`[memory-index-scan] Statediff plan: ${plannedScanActions.length} action(s) before scan writes`);
+  }
+
   // Track successfully indexed files for post-indexing mtime update.
   // SAFETY INVARIANT: mtime markers are updated ONLY after indexing succeeds.
   // Failed files keep their old mtime so shouldReindex() returns 'modified'
@@ -708,8 +1032,17 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
   const successfullyIndexedFiles: string[] = [];
   const scanBatchSize = BATCH_SIZE;
 
+  ctx.onPhase?.('indexing');
+  ctx.onProgress?.({ processed: 0, total: filesToIndex.length });
+
   if (filesToIndex.length > 0) {
+    let processedInScan = 0;
     const batchResults = await processBatches(filesToIndex, async (filePath: string) => {
+      // Cancellation is checked between files (mirrors ingest). A cancelled file is
+      // returned as a no-op so its mtime is never bumped, preserving retry on re-run.
+      if (ctx.isCancelled?.()) {
+        return { status: 'cancelled' } as IndexResult;
+      }
       const isSpecDoc = specDocKeySet.has(getCachedKey(filePath));
       // Constitutional markdown is policy text, not evidence-bearing memory.
       // It does not carry primary-evidence sections or ANCHOR tags by design, so the
@@ -721,13 +1054,16 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
       // everything that has valid frontmatter, not to enforce template contracts on
       // older files created before current templates were established.
       const useWarnOnly = force || isSpecDoc || isConstitutional;
-      return await indexSingleFile(filePath, force, {
+      const indexResult = await indexSingleFile(filePath, force, {
         ...(useWarnOnly ? { qualityGateMode: 'warn-only' as const } : {}),
         fromScan: true,
         asyncEmbedding: true,
-        governance: governanceDecision,
+        governance: governedIngest ? governanceDecision : undefined,
       });
-    }, scanBatchSize);
+      processedInScan += 1;
+      ctx.onProgress?.({ processed: processedInScan, total: filesToIndex.length });
+      return indexResult;
+    }, scanBatchSize, undefined, { shouldAbort: () => ctx.isCancelled?.() ?? false });
 
     for (let i = 0; i < batchResults.length; i++) {
       const result = batchResults[i];
@@ -752,22 +1088,43 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
           result.status === 'reinforced' ||
           result.status === 'duplicate' ||
           result.status === 'deferred';
-        if (!isSuccessfulStatus) {
+        // A cancelled file was never indexed and was never going to be: counting it
+        // as a failure would attribute an operator-requested stop to a file error.
+        // It is neither success nor failure, so it falls through both tallies.
+        if (!isSuccessfulStatus && result.status !== 'cancelled') {
           results.failed++;
         }
 
         if (result.status === 'indexed') {
           results.indexed++;
           successfullyIndexedFiles.push(filePath);
+          scanAppliedActions.push(createStatediffAction('insert', {
+            target: 'memory_index',
+            key: String(result.id ?? getCachedKey(filePath)),
+            sourceOperation: 'scan',
+            metadata: { filePath, specFolder: result.specFolder ?? null, status: result.status },
+          }));
         } else if (result.status === 'updated') {
           results.updated++;
           successfullyIndexedFiles.push(filePath);
+          scanAppliedActions.push(createStatediffAction('upsert', {
+            target: 'memory_index',
+            key: String(result.id ?? getCachedKey(filePath)),
+            sourceOperation: 'scan',
+            metadata: { filePath, specFolder: result.specFolder ?? null, status: result.status },
+          }));
         } else if (result.status === 'unchanged') {
           results.unchanged++;
           successfullyIndexedFiles.push(filePath);
         } else if (result.status === 'reinforced') {
           results.updated++;
           successfullyIndexedFiles.push(filePath);
+          scanAppliedActions.push(createStatediffAction('upsert', {
+            target: 'memory_index',
+            key: String(result.id ?? getCachedKey(filePath)),
+            sourceOperation: 'scan',
+            metadata: { filePath, specFolder: result.specFolder ?? null, status: result.status },
+          }));
         } else if (result.status === 'duplicate') {
           results.unchanged++;
           successfullyIndexedFiles.push(filePath);
@@ -775,6 +1132,12 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
           results.indexed++;
           results.deferred++;
           successfullyIndexedFiles.push(filePath);
+          scanAppliedActions.push(createStatediffAction('insert', {
+            target: 'memory_index',
+            key: String(result.id ?? getCachedKey(filePath)),
+            sourceOperation: 'scan',
+            metadata: { filePath, specFolder: result.specFolder ?? null, status: result.status },
+          }));
         }
 
         if (isConstitutional) {
@@ -835,23 +1198,85 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     results.mtimeUpdates = mtimeUpdateResult.updated;
   }
 
+  if (include_spec_docs) {
+    const database = requireDb();
+    let promoterYieldCount = 0;
+    for (const fileResult of results.files) {
+      // This sweep is synchronous SQLite over EVERY indexed row. On a force scan
+      // that is the whole corpus, so without a periodic macrotask yield the event
+      // loop is starved for the duration and no IPC (status, cancel, health,
+      // search) can be serviced. Yield and re-check cancellation between rows; the
+      // yield lands between self-contained promoteMetadataEdges transactions, never
+      // inside one, so atomicity on the shared connection is preserved.
+      if (++promoterYieldCount % 200 === 0) {
+        if (ctx.isCancelled?.()) {
+          return cancelledScanEnvelope(scanKey);
+        }
+        await new Promise<void>((resolve) => setImmediate(resolve));
+      }
+      if (!fileResult.id || !fileResult.filePath || fileResult.status === 'failed') {
+        continue;
+      }
+      try {
+        const promotion = promoteMetadataEdges(database, {
+          memoryId: fileResult.id,
+          filePath: fileResult.filePath,
+        });
+        results.incremental.metadataPromoter.processed += promotion.processed;
+        results.incremental.metadataPromoter.resolved += promotion.resolved;
+        results.incremental.metadataPromoter.inserted += promotion.inserted;
+        results.incremental.metadataPromoter.skippedManual += promotion.skippedManual;
+        results.incremental.metadataPromoter.staleTombstoned += promotion.staleTombstoned;
+        results.incremental.metadataPromoter.staleDeleted += promotion.staleDeleted;
+        results.incremental.metadataPromoter.warnings += promotion.warnings.length;
+        for (const warning of promotion.warnings) {
+          results.warnings.push(`Metadata edge promoter: ${warning.field} ${warning.reference}: ${warning.message}`);
+        }
+      } catch (error: unknown) {
+        results.warnings.push(`Metadata edge promoter failed for ${fileResult.filePath}: ${toErrorMessage(error)}`);
+      }
+    }
+  }
+
+  if (ctx.isCancelled?.()) {
+    return cancelledScanEnvelope(scanKey);
+  }
+  ctx.onPhase?.('post-processing');
+
   if (filesToDelete.length > 0) {
     if (results.failed === 0) {
       const staleDeleteResult = deleteStaleIndexedRecords(filesToDelete);
       results.staleDeleted = staleDeleteResult.deleted;
       results.staleDeleteFailed = staleDeleteResult.failed;
+      scanAppliedActions.push(...staleDeleteResult.actions);
     } else {
       console.warn('[memory-index-scan] Deferring stale cleanup because one or more replacement files failed to index');
     }
   }
 
-  const orphanSweepResult = runGlobalOrphanSweep();
+  const orphanSweepResult = await timedPhase('orphan-sweep', () => runGlobalOrphanSweep());
   results.orphanSwept = orphanSweepResult.swept;
   results.orphanSweepFailed = orphanSweepResult.failed;
   results.orphanSweepScanned = orphanSweepResult.scannedRows;
   results.orphanSweepNextCursor = orphanSweepResult.nextCursor;
+  scanAppliedActions.push(...orphanSweepResult.actions);
 
-  results.postInsertEnrichmentRepaired = await runPostInsertEnrichmentRepairBackfill();
+  results.postInsertEnrichmentRepaired = await timedPhase('enrichment-repair', () => runPostInsertEnrichmentRepairBackfill());
+  if (results.postInsertEnrichmentRepaired > 0) {
+    scanAppliedActions.push(createStatediffAction('upsert', {
+      target: 'graph_edge',
+      key: 'post-insert-enrichment-repair',
+      sourceOperation: 'scan',
+      metadata: { postInsertEnrichmentRepaired: results.postInsertEnrichmentRepaired },
+    }));
+  }
+
+  results.triggerEmbeddingBackfill = await timedPhase('trigger-backfill', () =>
+    runTriggerEmbeddingBackfill(requireDb(), { isCancelled: () => ctx.isCancelled?.() ?? false }));
+  if (triggerBackfillChangedRows(results.triggerEmbeddingBackfill)) {
+    scanAppliedActions.push(createTriggerBackfillAction(results.triggerEmbeddingBackfill));
+  }
+  results.nearDuplicateRepaired = await timedPhase('near-dup-repair', () => runNearDuplicateRepairBackfill());
 
   // Create causal chains between spec folder documents.
   // Includes deferred indexing outcomes and incremental single-file updates.
@@ -895,8 +1320,18 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
 
         let chainsCreated = 0;
         let foldersProcessed = 0;
+        let chainYieldCount = 0;
 
         for (const folder of affectedSpecFolders) {
+          // Per-folder synchronous DB work; yield + cancel-check between folders so a
+          // large affected set cannot block the event loop (same rationale as the
+          // metadata-edge sweep above).
+          if (++chainYieldCount % 50 === 0) {
+            if (ctx.isCancelled?.()) {
+              return cancelledScanEnvelope(scanKey);
+            }
+            await new Promise<void>((resolve) => setImmediate(resolve));
+          }
           const rows = selectDocIds.all(folder) as Array<{ document_type: string; id: number }>;
           const docIds: Record<string, number> = {};
 
@@ -914,21 +1349,24 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
         }
 
         if (chainsCreated > 0) {
-          console.error(`[memory-index-scan] Spec 126: Created ${chainsCreated} causal chain edges across ${foldersProcessed} spec folders`);
+          console.error(`[memory-index-scan] Created ${chainsCreated} causal chain edges across ${foldersProcessed} spec folders`);
         }
       }
     } catch (err: unknown) {
       const message = toErrorMessage(err);
-      console.warn('[memory-index-scan] Spec 126: Causal chain creation failed:', message);
+      console.warn('[memory-index-scan] Causal chain creation failed:', message);
     }
   }
 
-  if (results.indexed > 0 || results.updated > 0 || results.staleDeleted > 0 || results.orphanSwept > 0 || results.postInsertEnrichmentRepaired > 0) {
+  if (results.indexed > 0 || results.updated > 0 || results.staleDeleted > 0 || results.orphanSwept > 0 || results.postInsertEnrichmentRepaired > 0 || triggerBackfillChangedRows(results.triggerEmbeddingBackfill)) {
     runScanInvalidationHooks({
       indexed: results.indexed,
       updated: results.updated,
       staleDeleted: results.staleDeleted,
       staleDeleteFailed: results.staleDeleteFailed,
+      ...(triggerBackfillChangedRows(results.triggerEmbeddingBackfill)
+        ? { triggerEmbeddingBackfill: results.triggerEmbeddingBackfill }
+        : {}),
       ...(results.postInsertEnrichmentRepaired > 0
         ? { postInsertEnrichmentRepaired: results.postInsertEnrichmentRepaired }
         : {}),
@@ -938,11 +1376,10 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
             orphanSweepFailed: results.orphanSweepFailed,
           }
         : {}),
-    });
+    }, scanAppliedActions);
   }
 
-  results.aliasConflicts = detectAliasConflictsFromIndex();
-  results.divergenceReconcile = runDivergenceReconcileHooks(results.aliasConflicts);
+  runScanHygieneSubscribers(scanAppliedActions);
 
   const summary = `Scan complete: ${results.indexed} indexed, ${results.updated} updated, ${results.unchanged} unchanged, ${results.staleDeleted} deleted, ${results.orphanSwept} orphan swept, ${results.failed} failed`;
 
@@ -964,6 +1401,15 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
   }
   if (results.postInsertEnrichmentRepaired > 0) {
     hints.push(`Repaired ${results.postInsertEnrichmentRepaired} incomplete post-insert enrichment marker(s)`);
+  }
+  if (results.nearDuplicateRepaired > 0) {
+    hints.push(`Repaired ${results.nearDuplicateRepaired} near-duplicate marker(s)`);
+  }
+  if (results.triggerEmbeddingBackfill?.readyRows) {
+    hints.push(`Backfilled ${results.triggerEmbeddingBackfill.readyRows} trigger embedding row(s)`);
+  }
+  if (results.triggerEmbeddingBackfill?.failedRows) {
+    hints.push(`${results.triggerEmbeddingBackfill.failedRows} trigger embedding row(s) failed backfill`);
   }
   if (results.orphanSweepFailed > 0) {
     hints.push(`${results.orphanSweepFailed} orphan index record(s) could not be removed`);
@@ -1004,6 +1450,21 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
 
   await releaseScanLease();
 
+  recordMaintenanceRun('memory_index_scan', {
+    status: 'success',
+    counts: {
+      scanned: results.scanned,
+      indexed: results.indexed,
+      updated: results.updated,
+      unchanged: results.unchanged,
+      failed: results.failed,
+      staleDeleted: results.staleDeleted,
+      staleDeleteFailed: results.staleDeleteFailed,
+      orphanSwept: results.orphanSwept,
+    },
+    staleCandidates: filesToDelete.length,
+  });
+
   return createMCPSuccessResponse({
     tool: 'memory_index_scan',
     summary,
@@ -1034,12 +1495,87 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
       clearInterval(leaseHeartbeat);
       leaseHeartbeat = null;
     }
+    if (loopLagTimer) {
+      clearInterval(loopLagTimer);
+      loopLagTimer = null;
+      console.error(`[memory-index-scan] max-event-loop-lag ms=${maxLoopLagMs}`);
+    }
     await releaseScanLease();
   }
 }
 
+/** Handle memory_index_scan tool — dispatches to a synchronous run or a background job.
+ *  Without background the call is byte-for-byte identical to the prior synchronous path. */
+async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
+  if (!args.background) {
+    return runIndexScan(args, {});
+  }
+
+  const jobId = createJobId();
+  await createMaintenanceJob({ id: jobId, kind: 'index_scan', payload: redactScanArgs(args) });
+
+  setImmediate(() => {
+    void (async () => {
+      // Mark the daemon busy-by-design so a competing launcher adopts it rather
+      // than reaping it mid-scan. The shared marker is reference-counted, so the
+      // background-embedding queue draining this scan's deferred embeddings can
+      // keep it held past the scan itself.
+      const maintenance = beginMaintenance('index_scan');
+      try {
+        await setJobState(jobId, 'running');
+        const response = await runIndexScan(args, {
+          isCancelled: () => isCancelRequestedFast(jobId),
+          onPhase: (phase) => {
+            // Refresh at each phase boundary so a long synchronous tail phase (which
+            // cannot fire the interval timer) still enters with a full TTL ahead.
+            maintenance.refresh();
+            void setJobPhase(jobId, phase).catch(() => {});
+          },
+          onProgress: (progress) => { void setJobProgress(jobId, progress).catch(() => {}); },
+        });
+        const scanData = extractEnvelopeData(response);
+        const wasCancelled = !!(scanData && typeof scanData === 'object'
+          && (scanData as { cancelled?: unknown }).cancelled === true);
+        if (wasCancelled) {
+          // The run itself short-circuited on cancellation. A cancel that arrives
+          // after the scan already finished does not retroactively cancel it.
+          await completeJob(jobId, { state: 'cancelled', result: scanData });
+        } else if (response.isError === true) {
+          // An error envelope (not a thrown error) still means the scan failed.
+          await appendJobError(jobId, '__scan__', scanData);
+          await setJobState(jobId, 'failed');
+        } else {
+          await completeJob(jobId, { state: 'complete', result: scanData });
+        }
+      } catch (error: unknown) {
+        try {
+          await appendJobError(jobId, '__job__', error);
+          await setJobState(jobId, 'failed');
+        } catch (_secondaryError: unknown) {
+          // Best-effort failure record; never surface a background unhandled rejection.
+        }
+      } finally {
+        // Covers every terminal exit (complete / cancelled / failed / thrown).
+        // Release this scan's hold; the marker stays present only while the
+        // background-embedding queue still holds it.
+        maintenance.end();
+      }
+    })();
+  });
+
+  return createMCPSuccessResponse({
+    tool: 'memory_index_scan',
+    summary: `Queued background index scan ${jobId}`,
+    data: { jobId, state: 'queued', background: true },
+    hints: [
+      'Use memory_index_scan_status with jobId to poll progress',
+      'Use memory_index_scan_cancel with jobId to stop the scan',
+    ],
+  });
+}
+
 /* ───────────────────────────────────────────────────────────────
-   9. EXPORTS
+   6. EXPORTS
 ──────────────────────────────────────────────────────────────── */
 
 export {

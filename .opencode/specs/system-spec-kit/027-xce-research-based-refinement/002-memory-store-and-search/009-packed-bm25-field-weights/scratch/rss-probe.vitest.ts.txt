@@ -1,0 +1,46 @@
+// Temporary measurement probe — not part of the committed suite.
+import { describe, expect, it } from 'vitest';
+import { BM25Index, buildBm25DocumentFields } from '../lib/search/bm25-index';
+import { iterateCorpusSizedDocuments } from '../lib/eval/fixtures/bm25-packed-fixture';
+
+const MB = 1024 * 1024;
+
+describe('scratch rss probes', () => {
+  it('probe: batched warmup spike, retained-after-gc, heap', async () => {
+    const gc = (globalThis as { gc?: () => void }).gc;
+    console.info(`[probe] expose-gc available: ${typeof gc === 'function'}`);
+
+    gc?.();
+    const before = process.memoryUsage().rss;
+    const heapBefore = process.memoryUsage().heapUsed;
+    const index = new BM25Index(undefined, undefined, 'packed-inmemory');
+    let n = 0;
+    for (const doc of iterateCorpusSizedDocuments()) {
+      index.addDocumentFields(String(doc.id), buildBm25DocumentFields({
+        title: doc.title,
+        content_text: doc.content_text,
+        trigger_phrases: doc.trigger_phrases,
+        file_path: doc.file_path,
+      }));
+      n += 1;
+      if (n % 250 === 0) {
+        await new Promise((resolve) => setImmediate(resolve));
+      }
+    }
+    index.finalizePackedPostings();
+    const spike = (process.memoryUsage().rss - before) / MB;
+    gc?.();
+    const retainedRss = (process.memoryUsage().rss - before) / MB;
+    const retainedHeap = (process.memoryUsage().heapUsed - heapBefore) / MB;
+    const { writeFileSync } = await import('node:fs');
+    writeFileSync('/tmp/bm25-rss-probe.txt', [
+      `expose-gc=${typeof gc === 'function'}`,
+      `batchedSpike=${spike.toFixed(1)}MB`,
+      `retainedRssAfterGc=${retainedRss.toFixed(1)}MB`,
+      `retainedHeap=${retainedHeap.toFixed(1)}MB`,
+      `terms=${index.getStats().termCount}`,
+      `avgDocLength=${index.getStats().avgDocLength.toFixed(1)}`,
+    ].join('\n'));
+    expect(index.getStats().documentCount).toBe(10_245);
+  }, 120_000);
+});

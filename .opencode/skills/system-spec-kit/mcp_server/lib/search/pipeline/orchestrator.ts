@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────
 // 4-stage pipeline execution with per-stage error handling and timeouts.
 //
-// B1 FIX: Each stage is wrapped in try/catch with withTimeout().
+// Each stage is wrapped in try/catch with withTimeout().
 // Stage 1 is mandatory (throws on failure — no candidates = no results).
 // Stages 2-4 fall back to previous stage output with degraded metadata.
 // Timing is recorded for latency observability.
@@ -19,22 +19,22 @@
 // Side effects:
 //     - Delegates to each stage; see individual stage modules for their side effects
 
+import { MemoryError, withTimeout } from '../../errors/core.js';
+import { executeStage1 } from './stage1-candidate-gen.js';
+import { executeStage2 } from './stage2-fusion.js';
+import { executeStage3 } from './stage3-rerank.js';
+import { executeStage4 } from './stage4-filter.js';
+
 import type {
   PipelineConfig,
   PipelineResult,
+  SignalStatus,
   Stage1Output,
   Stage2Output,
   Stage3Output,
   Stage4Output,
   Stage4ReadonlyRow,
-  SignalStatus,
 } from './types.js';
-
-import { executeStage1 } from './stage1-candidate-gen.js';
-import { executeStage2 } from './stage2-fusion.js';
-import { executeStage3 } from './stage3-rerank.js';
-import { executeStage4 } from './stage4-filter.js';
-import { MemoryError, withTimeout } from '../../errors/core.js';
 
 // Feature catalog: 4-stage pipeline architecture
 // Feature catalog: 4-stage pipeline refactor
@@ -69,7 +69,7 @@ export async function executePipeline(config: PipelineConfig): Promise<PipelineR
       'Stage 1: Candidate Generation',
     );
     timing.stage1 = Date.now() - t0;
-  } catch (err) {
+  } catch (err: unknown) {
     throw new MemoryError(
       'PIPELINE_STAGE1_FAILED',
       `Candidate generation failed: ${err instanceof Error ? err.message : String(err)}`,
@@ -91,7 +91,7 @@ export async function executePipeline(config: PipelineConfig): Promise<PipelineR
       'Stage 2: Fusion',
     );
     timing.stage2 = Date.now() - t0;
-  } catch (err) {
+  } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : String(err);
     console.warn(`[pipeline] Stage 2 failed, returning unscored candidates: ${msg}`);
     degraded = true;
@@ -123,7 +123,7 @@ export async function executePipeline(config: PipelineConfig): Promise<PipelineR
       'Stage 3: Rerank',
     );
     timing.stage3 = Date.now() - t0;
-  } catch (err) {
+  } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : String(err);
     console.warn(`[pipeline] Stage 3 failed, returning unranked results: ${msg}`);
     degraded = true;
@@ -157,7 +157,7 @@ export async function executePipeline(config: PipelineConfig): Promise<PipelineR
       'Stage 4: Filter',
     );
     timing.stage4 = Date.now() - t0;
-  } catch (err) {
+  } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : String(err);
     console.warn(`[pipeline] Stage 4 failed, returning unfiltered results: ${msg}`);
     degraded = true;

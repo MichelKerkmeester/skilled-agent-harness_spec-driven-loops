@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine",
+  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement",
+  "children_ids": [
+    "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption",
+    "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "027 research and doctrine",
+      "peck teachings adoption",
+      "gem team agent io contract",
+      "self-check templates",
+      "reviewer benchmark substrate"
+    ],
+    "key_topics": [
+      "027",
+      "research",
+      "doctrine",
+      "peck",
+      "teachings",
+      "adoption",
+      "gem",
+      "team",
+      "agent",
+      "contract",
+      "self-check",
+      "templates"
+    ],
+    "importance_tier": "important",
+    "status": "phase_parent",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 027 program drew on external research sources whose doctrine had to be adopted into Spec Kit process and agent surfaces. These adoptions share a research provenance and a process-quality target, so they belong under one themed parent that points to the per-source child phases.",
+    "created_at": "2026-06-14T00:00:00Z",
+    "last_save_at": "2026-06-15T09:09:34.744Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

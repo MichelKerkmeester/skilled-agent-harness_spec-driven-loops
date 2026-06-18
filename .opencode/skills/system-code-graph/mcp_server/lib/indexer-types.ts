@@ -166,7 +166,9 @@ export function getDefaultConfig(
     '**/*.sh',
     '**/*.bash',
     '**/*.zsh',
-    '**/*.md',
+    // Markdown/prose docs are deliberately NOT indexed: the code graph models code
+    // structure and structured config, not documentation. Config formats below still
+    // index as `language='doc'` rows. A caller can re-add docs per-scan via includeGlobs.
     '**/*.json',
     '**/*.jsonc',
     '**/*.yaml',

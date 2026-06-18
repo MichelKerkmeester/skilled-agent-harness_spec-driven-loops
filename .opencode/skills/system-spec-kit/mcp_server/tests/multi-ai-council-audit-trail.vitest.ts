@@ -11,14 +11,14 @@ const WORKSPACE_ROOT = resolve(TEST_DIR, '../../../../../');
 const require = createRequire(import.meta.url);
 const audit = require(join(
   WORKSPACE_ROOT,
-  '.opencode/skills/deep-ai-council/scripts/lib/audit-trail.cjs',
+  '.opencode/skills/deep-loop-workflows/ai-council/scripts/lib/audit-trail.cjs',
 )) as {
   computeChecksum: (content: string) => string;
   appendArtifactWrittenEvent: (statePath: string, event: Record<string, unknown>) => string;
 };
 const helper = require(join(
   WORKSPACE_ROOT,
-  '.opencode/skills/deep-ai-council/scripts/persist-artifacts.cjs',
+  '.opencode/skills/deep-loop-workflows/ai-council/scripts/persist-artifacts.cjs',
 )) as {
   parseStateLog: (jsonl: string) => Array<Record<string, unknown>>;
 };

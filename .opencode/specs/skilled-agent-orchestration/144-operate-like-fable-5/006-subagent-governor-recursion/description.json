@@ -1,0 +1,29 @@
+{
+  "level": "3",
+  "specFolder": "skilled-agent-orchestration/144-operate-like-fable-5/006-subagent-governor-recursion",
+  "description": "Feature Specification: Sub-agent governor injection via prompt-pack and agent prompts, a recursion-control rule, and an executor-config governor field",
+  "keywords": [
+    "feature",
+    "specification",
+    "sub-agent",
+    "governor",
+    "injection",
+    "via",
+    "prompt-pack",
+    "agent",
+    "prompts",
+    "recursion-control",
+    "rule",
+    "executor-config",
+    "field"
+  ],
+  "lastUpdated": "2026-06-16T15:23:34.544Z",
+  "specId": "006",
+  "folderSlug": "subagent-governor-recursion",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "144-operate-like-fable-5"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

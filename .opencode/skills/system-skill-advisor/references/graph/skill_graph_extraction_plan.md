@@ -3,8 +3,10 @@ title: "Skill Graph Library Extraction Status"
 description: "Current state and roadmap for lib/skill-graph/ ownership inside system-skill-advisor after migration from system-spec-kit."
 trigger_phrases:
   - "skill graph extraction"
-  - "lib/skill-graph"
-  - "skill graph database"
+  - "skill graph library ownership"
+  - "skill graph migration status"
+importance_tier: "normal"
+contextType: "planning"
 ---
 
 # Skill Graph Library Extraction Status

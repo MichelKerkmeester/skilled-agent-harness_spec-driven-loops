@@ -5,7 +5,8 @@ trigger_phrases:
   - "skill graph drift"
   - "graph-metadata reconciliation"
   - "skill graph rebuild"
-importance_tier: "important"
+importance_tier: "normal"
+contextType: "implementation"
 ---
 
 # Skill Graph Drift Reconciliation

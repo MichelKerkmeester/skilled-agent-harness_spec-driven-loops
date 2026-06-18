@@ -1,0 +1,406 @@
+# ─────────────────────────────────────────────────────────────────
+# OPENCODE CREATE: PARENT SKILL WORKFLOW (AUTO MODE)
+# ─────────────────────────────────────────────────────────────────
+# Mode: autonomous execution (no approval checkpoints)
+# Entrypoint: /create:sk-skill-parent
+# Operations: create | update
+# ─────────────────────────────────────────────────────────────────
+role: Parent Skill Creator using sk-doc
+purpose: Scaffold a parent skill with nested mode packets (one hub identity, registry source of truth)
+action: Normalize inputs, load standards, generate the hub + registry + packets + shared, validate identity, and report completion
+
+# ─────────────────────────────────────────────────────────────────
+# PREREQUISITE: @markdown AGENT VERIFICATION
+# ─────────────────────────────────────────────────────────────────
+# This workflow REQUIRES the @markdown agent for:
+#   - Template-first generation
+#   - sk-doc standards enforcement
+#   - Hub document validation
+#
+# PHASE 0 in the command markdown verifies @markdown agent BEFORE
+# this YAML workflow loads. If you are executing this workflow,
+# @markdown verification has already passed.
+# ─────────────────────────────────────────────────────────────────
+
+operating_mode:
+  workflow: unified_6_step
+  workflow_compliance: MANDATORY
+  workflow_execution: autonomous
+  approvals: none
+  tracking: progressive_status_logging
+  validation: continuous_self_validation
+  supports_operations:
+    - create
+    - update
+  description: |
+    Executes the 6-step parent-skill scaffolding workflow without step-by-step approval.
+    Pauses only if confidence drops below threshold or existence semantics conflict.
+
+development_philosophy:
+  principle: "One discoverable hub identity, the registry as the single declarative source of truth"
+  approach: "Normalize -> Plan modes -> Scaffold -> Validate identity -> Report"
+  mandate: "Prefer the shipped sk-doc parent-skill pattern over ad-hoc nested-skill layouts"
+
+runtime_agent_path_resolution:
+  default: .opencode/agent
+  claude: .claude/agents
+  codex: .codex/agents
+
+# ─────────────────────────────────────────────────────────────────
+# CONFIDENCE & CLARIFICATION FRAMEWORK
+# ─────────────────────────────────────────────────────────────────
+confidence_framework:
+  thresholds:
+    high: { range: "80-100%", action: "Proceed with deterministic defaults" }
+    medium: { range: "40-79%", action: "Proceed with caution and log assumptions" }
+    low: { range: "0-39%", action: "STOP and request clarification" }
+  scoring_weights:
+    input_completeness: 0.30
+    routing_clarity: 0.20
+    contract_alignment: 0.30
+    validation_readiness: 0.20
+  low_confidence_behavior:
+    action: "Stop before generation and ask one consolidated clarification"
+
+# ─────────────────────────────────────────────────────────────────
+# REQUEST ANALYSIS FRAMEWORK
+# ─────────────────────────────────────────────────────────────────
+request_analysis_framework:
+  code_search_note: "Use Code Graph structural queries (code_graph_query) + Grep for concept discovery; verify hits with Read. memory_search is for spec docs/memory, not arbitrary code."
+  solution_flow:
+    - "Parse command arguments and normalize execution mode"
+    - "Verify create/update semantics against the real target path"
+    - "Load the creation reference and both templates before writing"
+    - "Derive the mode list and per-mode packet plan"
+    - "Generate the hub, registry, packets, and shared dir with one hub identity"
+    - "Validate hub structure, per-packet structure, registry coverage, and the one-identity invariant"
+  pre_change_validation:
+    items:
+      - "create_agent_verified is true"
+      - "skill_name is present"
+      - "operation is create or update"
+      - "modes is present and non-empty"
+      - "execution_mode is :auto"
+    stop_conditions:
+      - "Any required input missing"
+      - "Operation does not match real target existence"
+    stop_action: "STOP and correct setup before generation"
+
+input_contract:
+  required:
+    - create_agent_verified
+    - skill_name
+    - operation
+    - modes
+    - execution_mode
+  optional:
+    - skill_path
+    - spec_choice
+    - spec_path
+    - memory_choice
+
+field_handling:
+  skill_name:
+    validation: "hyphen-case folder name; becomes the hub skill identity"
+    required: true
+  operation:
+    validation: "must be one of: create, update"
+    required: true
+  modes:
+    validation: "comma-separated hyphen-case mode names; one packet per mode"
+    required: true
+  execution_mode:
+    validation: "must be :auto"
+    required: true
+
+documentation_level:
+  default: "Level 2 (Verification)"
+  required_files:
+    - spec.md
+    - plan.md
+    - tasks.md
+    - checklist.md
+  note: "Parent-skill scaffolding spans a hub, a registry, multiple packets, and an identity invariant, so it needs verification"
+
+defaults:
+  skill_path: .opencode/skills/
+  registry_filename: mode-registry.json
+  graph_metadata_filename: graph-metadata.json
+  shared_dirname: shared
+  packet_prefix: deep-
+  execution_mode: :auto
+  dqi_hard_minimum: 75
+
+operation_router:
+  create:
+    requires_existing_skill: false
+    output_scope:
+      - SKILL.md
+      - mode-registry.json
+      - graph-metadata.json
+      - deep-<mode>/SKILL.md
+      - shared/
+  update:
+    requires_existing_skill: true
+    output_scope:
+      - SKILL.md
+      - mode-registry.json
+      - graph-metadata.json
+      - deep-<mode>/SKILL.md
+      - shared/
+
+reference_sources:
+  specific_creation: .opencode/skills/sk-doc/references/skill_creation.md
+  pattern_section: "Parent Skills with Nested Mode Packets"
+  core_standards: .opencode/skills/sk-doc/references/global/core_standards.md
+  validation: .opencode/skills/sk-doc/references/global/validation.md
+  canonical_example: .opencode/skills/deep-loop-workflows
+
+template_sources:
+  hub_skill: .opencode/skills/sk-doc/assets/skill/parent_skill_hub_template.md
+  mode_registry: .opencode/skills/sk-doc/assets/skill/parent_skill_registry_template.json
+  hub_graph_metadata: .opencode/skills/sk-doc/assets/skill/parent_skill_graph_metadata_template.json
+
+validation_scripts:
+  validate_document: .opencode/skills/sk-doc/scripts/validate_document.py
+  extract_structure: .opencode/skills/sk-doc/scripts/extract_structure.py
+
+quality_standards:
+  template_first: required
+  frontmatter_required: true
+  hub_requirements:
+    - thin routing-only SKILL.md (no per-mode logic)
+    - "exactly one graph-metadata.json at the hub root (from parent_skill_graph_metadata_template.json) with skill_id == hub folder name and family in {cli, mcp, sk-code, deep-loop, sk-util, system}"
+    - mode-registry.json present and valid JSON
+  registry_requirements:
+    - "each mode carries the 3-tier discriminator: workflowMode (string), runtimeLoopType (present, may be null, NEVER inferred from workflowMode), backendKind (one of runtime-loop-type | improvement-host | external-adapter)"
+    - "each mode has a top-level packet field naming its packet sub-directory (a direct child of the hub)"
+    - one advisorRouting block per mode
+    - "advisorRouting fields: routingClass (lexical | alias-fold | metadata | command-bridge), legacyAdvisorId (lexical + alias-fold modes only), advisorDefaultMode (optional, alias-fold default), legacyAliases (system-id alias set, lexical + alias-fold only), packetSkillName"
+    - "registry keys (mode.packet) match packet folder names; canonical default folder == packetSkillName == deep-<mode>, grandfathered mismatches recorded via packetSkillName"
+    - "runtimeLoopType allowed set when non-null: research | review | council | context"
+  packet_requirements:
+    - "RECOMMENDED DEFAULT for a net-new single-mode packet: folder == packetSkillName == deep-<mode> (soft guidance, not a hard gate)"
+    - "ALLOWED: many modes mapping to one packet folder (canonical: 4 improvement modes -> deep-improvement)"
+    - "ALLOWED: grandfathered packets where folder != packetSkillName (canonical: folder ai-council, packetSkillName deep-ai-council)"
+    - each packet has its own SKILL.md
+    - "each mode's packet folder is a direct child of the hub (no absolute or ../ paths)"
+    - NO per-packet graph-metadata.json
+  shared_requirements:
+    - non-discoverable shared/ for packet-shared workflow-layer helpers (synthesis, not execution primitives)
+    - NO graph-metadata.json inside shared/
+  one_identity_rule: "Exactly one graph-metadata.json (the hub's). A nested graph-metadata.json creates a rogue advisor identity."
+  validation_pipeline:
+    - "python3 .opencode/skills/sk-doc/scripts/validate_document.py [skill_root]/SKILL.md"
+    - "python3 .opencode/skills/sk-doc/scripts/extract_structure.py [skill_root]/SKILL.md"
+
+gate_logic:
+  hard:
+    H0_write_verified:
+      description: "create_agent_verified must be true"
+      fail_action: "STOP and return to setup"
+    H1_required_fields:
+      description: "All required setup fields must be present (including a non-empty mode list)"
+      fail_action: "STOP and collect missing fields"
+    H2_existence_semantics:
+      description: "create/update must match real skill-root existence"
+      fail_action: "STOP and reroute or correct target"
+    H3_contract_shape:
+      description: "Generated package must match the parent-skill pattern (hub + registry + packets + shared)"
+      fail_action: "Fix structure before continuing"
+    H4_one_identity:
+      description: "Exactly one graph-metadata.json at the hub; zero inside packets or shared"
+      fail_action: "Remove rogue identities and re-validate"
+    H5_validation_gate:
+      description: "Hub validation, registry coverage, and per-packet structure checks must pass"
+      fail_action: "Run fix-and-revalidate loop"
+  soft:
+    S1_packet_naming:
+      description: "DEFAULT for a net-new single-mode packet: folder == packetSkillName == deep-<mode>. NOT a hard gate. Many-modes-to-one-packet and grandfathered folder!=packetSkillName names are valid (canonical: 4 modes -> deep-improvement; ai-council/deep-ai-council)."
+      fail_action: "Proceed with a logged assumption when grandfathering an existing packet or mapping several modes to one packet"
+
+workflow_overview:
+  steps:
+    - id: step_1_preflight
+      purpose: "Normalize inputs and enforce H0-H2"
+    - id: step_2_mode_planning
+      purpose: "Resolve the mode list and per-packet plan"
+    - id: step_3_template_loading
+      purpose: "Load the reference and both hub/registry templates"
+    - id: step_4_package_generation
+      purpose: "Create or update hub, registry, packets, and shared with one identity"
+    - id: step_5_validation
+      purpose: "Run hub validation, registry coverage, and the one-identity invariant"
+    - id: step_6_completion
+      purpose: "Emit deterministic completion report"
+
+workflow:
+  step_1_preflight:
+    purpose: Normalize and verify required fields
+    activities:
+      - Normalize skill_path to default when omitted
+      - Derive skill_root as "[skill_path]/[skill_name]"
+      - Validate operation token to supported value
+      - Parse modes into a normalized hyphen-case list
+      - Validate execution_mode is :auto
+      - Check whether skill_root already exists
+    outputs:
+      - normalized_inputs
+      - mode_list
+      - target_existence_state
+
+  step_2_mode_planning:
+    purpose: Resolve the mode list and per-packet plan
+    activities:
+      - "For a net-new single-mode packet, default packetSkillName = \"deep-[mode]\" and a packet folder of the same name (recommended, not enforced)"
+      - "Allow several modes to share one packet folder (canonical: 4 improvement modes -> deep-improvement); allow a grandfathered packet whose folder != packetSkillName (canonical: ai-council/deep-ai-council)"
+      - "Set each mode's top-level packet field to its packet sub-directory and plan the 3-tier discriminator (workflowMode, runtimeLoopType may be null, backendKind)"
+      - Plan the advisorRouting block per mode (routingClass, legacyAdvisorId for lexical/alias-fold, advisorDefaultMode, legacyAliases, packetSkillName)
+      - Preserve existing packet names, registry keys, and routing blocks when update mode
+      - "When several modes intentionally share one packet folder, log it as an assumption — do not treat it as a duplicate-folder failure"
+    outputs:
+      - packet_plan
+      - registry_plan
+
+  step_3_template_loading:
+    purpose: Load standards and templates before generation
+    activities:
+      - Read skill_creation/parent_skills_nested_packets.md for the Parent Skills with Nested Mode Packets pattern
+      - Read parent_skill_hub_template.md
+      - Read parent_skill_registry_template.json
+      - Read parent_skill_graph_metadata_template.json
+      - Extract the hub SKILL.md, registry, and hub graph-metadata contracts
+    outputs:
+      - template_contract_loaded
+
+  step_4_package_generation:
+    purpose: Generate or update the parent-skill package
+    activities:
+      - Ensure skill_root exists
+      - Create or update the thin hub SKILL.md (routing only)
+      - Create or update mode-registry.json with the 3-tier discriminator, a top-level packet, and one advisorRouting block per mode
+      - "Create or update exactly one hub graph-metadata.json from parent_skill_graph_metadata_template.json (skill_id == hub folder, family in the allowed set)"
+      - "Create or update one packet dir per distinct packet value (default folder == packetSkillName == deep-<mode>; reuse a shared packet folder when several modes map to one), each with its own SKILL.md"
+      - Create the non-discoverable shared/ dir
+      - Never write a graph-metadata.json inside any packet or inside shared/
+    outputs:
+      - generated_hub
+      - generated_registry
+      - generated_packets
+      - generated_shared
+
+  step_5_validation:
+    purpose: Verify generated package and identity (success gate == the /doctor parent-skill-check gate)
+    activities:
+      - Run validate_document.py on the hub SKILL.md
+      - "Assert the hub graph-metadata.json has skill_id == hub folder name AND family in {cli, mcp, sk-code, deep-loop, sk-util, system} (else the hub is undiscoverable and fails /doctor)"
+      - Check mode-registry.json is valid JSON and has one advisorRouting block per mode
+      - "Per mode, assert the 3-tier discriminator: workflowMode is a non-empty string; runtimeLoopType key is present and is null or one of {research, review, council, context}; backendKind is one of {runtime-loop-type, improvement-host, external-adapter}"
+      - "Per mode, assert an advisorRouting block with routingClass in {lexical, alias-fold, metadata, command-bridge}"
+      - "Check each mode's top-level packet resolves to an existing direct-child sub-directory (no absolute or ../ paths) that contains its own SKILL.md; the default folder == packetSkillName == deep-<mode> is recommended, NOT required (allow many-modes-to-one-packet and grandfathered folder!=packetSkillName)"
+      - Count graph-metadata.json files under skill_root; assert exactly 1 (the hub) and 0 inside packets/shared
+    outputs:
+      - hub_validation_passed
+      - hub_identity_passed
+      - registry_coverage_passed
+      - discriminator_passed
+      - packet_structure_passed
+      - one_identity_passed
+
+  step_6_completion:
+    purpose: Emit completion status
+    activities:
+      - Summarize operation, mode list, and generated paths
+      - Report identity counts and validation results
+      - "Emit the advisor-map sync warning when any mode is routingClass lexical or alias-fold (see advisor_map_sync_note): the registry block is registry-declared but INERT until the hardcoded advisor maps and a per-skill drift-guard test are hand-added"
+      - Return STATUS=OK PATH=[skill_root]
+    outputs:
+      - completion_report
+
+  advisor_map_sync_note:
+    when: "any generated mode has advisorRouting.routingClass == lexical or alias-fold"
+    warning: |
+      Advisor routing for lexical/alias-fold modes is registry-declared, NOT live.
+      The advisor does NOT read mode-registry.json at runtime. Each such mode is
+      INERT until you hand-add the matching hardcoded projection-map entries and a
+      per-skill drift-guard test:
+        - Python  DEEP_ROUTING_MODE_BY_KEY  (skill_advisor.py)
+        - TypeScript  DEEP_MODE_BY_CANONICAL  (advisor scorer)
+        - a drift-guard vitest asserting (hardcoded maps == this registry projection)
+      Until then the mode will not route, and adding a lexical/alias-fold mode by
+      update without this wiring will turn an existing drift-guard test RED.
+      metadata and command-bridge modes need no advisor-map entry.
+
+error_recovery:
+  missing_skill_on_update:
+    action: "Stop and recommend reroute to create"
+  existing_skill_on_create:
+    action: "Stop and recommend reroute to update"
+  missing_hub_template:
+    action: "Stop because the parent-skill contract cannot be enforced"
+  rogue_packet_identity:
+    action: "Remove the per-packet or shared graph-metadata.json and re-validate"
+  hub_validation_failure:
+    action: "Enter fix-and-revalidate loop"
+
+circuit_breaker:
+  trigger_threshold: 3
+  reset_condition: "Hub validation passes, registry coverage passes, and exactly one graph-metadata.json resolves"
+  actions:
+    - "Stop autonomous generation"
+    - "Report the failing gate and affected path"
+    - "Return STATUS=FAIL with next-step guidance"
+
+autonomous_execution:
+  principle: "Advance automatically once hard gates pass"
+  status_reporting:
+    cadence: "Report at major workflow boundaries"
+    include:
+      - operation
+      - mode_list
+      - target_path
+      - identity_count
+      - validation_state
+
+completion_report_template: |
+  Parent Skill Command Complete
+
+  Skill: [skill_name]
+  Operation: [operation]
+  Modes: [mode_list]
+  Mode: :auto
+  Target: [skill_root]
+
+  Identity:
+  - Hub graph-metadata.json count: [count, must be 1]
+  - Per-packet graph-metadata.json count: [count, must be 0]
+
+  Validation:
+  - Hub structure: [passed/failed]
+  - Hub identity (skill_id == folder, family in allowed set): [passed/failed]
+  - Registry advisorRouting: registry-declared (advisor map sync required) [present/missing per mode]
+  - Mode discriminator (workflowMode/runtimeLoopType/backendKind): [passed/failed]
+  - Per-packet structure: [passed/failed]
+  - One-identity invariant: [passed/failed]
+
+  Advisor map sync (lexical/alias-fold modes only):
+  - [none | REQUIRED: hand-add Python/TS projection maps + drift-guard test before the mode routes]
+
+  STATUS=[OK|FAIL] PATH=[skill_root]
+
+termination:
+  success_signal: "STATUS=OK PATH=[skill_root]"
+  failure_signal: "STATUS=FAIL PATH=[skill_root]"
+  rule: "Do not claim completion until identity counts and validation output are included"
+
+rules:
+  must:
+    - "Load the creation reference and both templates before writing"
+    - "Keep the hub SKILL.md thin and routing-only"
+    - "Resolve modes through the registry; keep per-mode contracts in packets"
+    - "Keep exactly one graph-metadata.json (the hub's)"
+  must_not:
+    - "Add a graph-metadata.json inside a packet or inside shared/"
+    - "Infer runtimeLoopType from workflowMode"
+    - "Move synthesis helpers into the execution backend"
+    - "Widen the behavior-parity contract to chase coverage"

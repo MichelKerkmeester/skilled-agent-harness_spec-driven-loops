@@ -1,0 +1,11 @@
+{
+  "run_id": "1781367602693-9nehlm",
+  "loop_type": "research",
+  "spec_folder": ".opencode/specs/skilled-agent-orchestration/143-sk-interface-design/002-ui-ux-pro-max-merge-research",
+  "base_artifact_dir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/143-sk-interface-design/002-ui-ux-pro-max-merge-research/research",
+  "total_cli_lineages": 2,
+  "total": 2,
+  "succeeded": 2,
+  "failed": 0,
+  "all_failed": false
+}

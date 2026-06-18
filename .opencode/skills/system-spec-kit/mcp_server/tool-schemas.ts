@@ -33,6 +33,177 @@ export interface ToolDefinition {
   outputSchema?: Record<string, unknown>;
 }
 
+/** Lifecycle stability advertised for generated MCP tool ownership entries. */
+export type ToolOwnershipStability = 'stable' | 'deprecated';
+
+/** Ownership metadata derived from a tool's description contract. */
+export interface ToolOwnershipEntry {
+  name: string;
+  owner: string;
+  stability: ToolOwnershipStability;
+  level: string;
+  category: string;
+}
+
+/** Generated ownership map used to detect committed schema drift. */
+export interface ToolOwnershipMap {
+  schemaVersion: 1;
+  generatedFrom: 'TOOL_DEFINITIONS';
+  tools: ToolOwnershipEntry[];
+}
+
+/** Comparison result between generated and committed ownership metadata. */
+export interface ToolOwnershipDriftReport {
+  ok: boolean;
+  missingFromCommitted: string[];
+  extraInCommitted: string[];
+  changed: Array<{
+    name: string;
+    field: keyof Omit<ToolOwnershipEntry, 'name'>;
+    expected: string;
+    actual: string;
+  }>;
+  expectedMap: ToolOwnershipMap;
+}
+
+const TOOL_OWNER_BY_CATEGORY: Record<string, string> = Object.freeze({
+  Orchestration: 'memory-orchestration',
+  Core: 'memory-core',
+  Discovery: 'memory-discovery',
+  Mutation: 'memory-mutation',
+  Lifecycle: 'memory-lifecycle',
+  Analysis: 'memory-analysis',
+  Maintenance: 'memory-maintenance',
+});
+
+function readToolContract(definition: ToolDefinition): { level: string; category: string } {
+  const match = /^\[([^:\]]+):([^\]]+)\]/.exec(definition.description);
+  if (!match) {
+    return { level: 'unclassified', category: 'unclassified' };
+  }
+  return {
+    level: match[1] ?? 'unclassified',
+    category: match[2] ?? 'unclassified',
+  };
+}
+
+function deriveToolOwnershipEntry(definition: ToolDefinition): ToolOwnershipEntry {
+  const contract = readToolContract(definition);
+  return {
+    name: definition.name,
+    owner: TOOL_OWNER_BY_CATEGORY[contract.category] ?? 'memory-unclassified',
+    stability: /^\[deprecated\]/i.test(definition.description) ? 'deprecated' : 'stable',
+    level: contract.level,
+    category: contract.category,
+  };
+}
+
+function normalizeToolOwnershipMap(map: ToolOwnershipMap): ToolOwnershipMap {
+  return {
+    schemaVersion: 1,
+    generatedFrom: 'TOOL_DEFINITIONS',
+    tools: [...map.tools].sort((a, b) => a.name.localeCompare(b.name)),
+  };
+}
+
+function isToolOwnershipEntry(value: unknown): value is ToolOwnershipEntry {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return false;
+  const record = value as Record<string, unknown>;
+  return (
+    typeof record.name === 'string' &&
+    typeof record.owner === 'string' &&
+    (record.stability === 'stable' || record.stability === 'deprecated') &&
+    typeof record.level === 'string' &&
+    typeof record.category === 'string'
+  );
+}
+
+function parseToolOwnershipMap(value: unknown): ToolOwnershipMap | null {
+  let parsed: unknown;
+  try {
+    parsed = typeof value === 'string' ? JSON.parse(value) as unknown : value;
+  } catch (_error: unknown) {
+    return null;
+  }
+  if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return null;
+  const record = parsed as Record<string, unknown>;
+  if (record.schemaVersion !== 1 || record.generatedFrom !== 'TOOL_DEFINITIONS') return null;
+  if (!Array.isArray(record.tools) || !record.tools.every(isToolOwnershipEntry)) return null;
+  return normalizeToolOwnershipMap({
+    schemaVersion: 1,
+    generatedFrom: 'TOOL_DEFINITIONS',
+    tools: record.tools,
+  });
+}
+
+/** Derive the deterministic tool ownership map from live tool definitions. */
+export function deriveToolOwnershipMap(
+  toolDefinitions: readonly ToolDefinition[] = TOOL_DEFINITIONS,
+): ToolOwnershipMap {
+  return normalizeToolOwnershipMap({
+    schemaVersion: 1,
+    generatedFrom: 'TOOL_DEFINITIONS',
+    tools: toolDefinitions.map(deriveToolOwnershipEntry),
+  });
+}
+
+/** Serialize a derived ownership map for byte-identical generated output. */
+export function serializeToolOwnershipMap(map: ToolOwnershipMap = deriveToolOwnershipMap()): string {
+  return `${JSON.stringify(normalizeToolOwnershipMap(map), null, 2)}\n`;
+}
+
+/** Compare a committed ownership map with a fresh derivation. */
+export function lintToolOwnershipMapDrift(
+  committedMap: unknown,
+  toolDefinitions: readonly ToolDefinition[] = TOOL_DEFINITIONS,
+): ToolOwnershipDriftReport {
+  const expectedMap = deriveToolOwnershipMap(toolDefinitions);
+  const parsed = parseToolOwnershipMap(committedMap);
+  if (!parsed) {
+    return {
+      ok: false,
+      missingFromCommitted: expectedMap.tools.map((tool) => tool.name),
+      extraInCommitted: [],
+      changed: [],
+      expectedMap,
+    };
+  }
+
+  const expectedByName = new Map(expectedMap.tools.map((tool) => [tool.name, tool]));
+  const actualByName = new Map(parsed.tools.map((tool) => [tool.name, tool]));
+  const missingFromCommitted = expectedMap.tools
+    .filter((tool) => !actualByName.has(tool.name))
+    .map((tool) => tool.name);
+  const extraInCommitted = parsed.tools
+    .filter((tool) => !expectedByName.has(tool.name))
+    .map((tool) => tool.name);
+  const changed: ToolOwnershipDriftReport['changed'] = [];
+  const fields: Array<keyof Omit<ToolOwnershipEntry, 'name'>> = ['owner', 'stability', 'level', 'category'];
+
+  for (const expected of expectedMap.tools) {
+    const actual = actualByName.get(expected.name);
+    if (!actual) continue;
+    for (const field of fields) {
+      if (expected[field] !== actual[field]) {
+        changed.push({
+          name: expected.name,
+          field,
+          expected: expected[field],
+          actual: actual[field],
+        });
+      }
+    }
+  }
+
+  return {
+    ok: missingFromCommitted.length === 0 && extraInCommitted.length === 0 && changed.length === 0,
+    missingFromCommitted,
+    extraInCommitted,
+    changed,
+    expectedMap,
+  };
+}
+
 // ───────────────────────────────────────────────────────────────
 // 2. TOOL DEFINITIONS
 
@@ -169,7 +340,7 @@ const memorySearch: ToolDefinition = {
       includeArchived: {
         type: 'boolean',
         default: false,
-        description: 'Include archived spec-doc records in search results. Default: false (archived excluded).'
+        description: 'Not supported: archived spec-doc records are always excluded by canonical-source policy. This flag is accepted for back-compat but has no effect.'
       },
       mode: {
         type: 'string',
@@ -181,6 +352,12 @@ const memorySearch: ToolDefinition = {
         type: 'boolean',
         default: false,
         description: 'When true (or when SPECKIT_RESPONSE_TRACE=true), include provenance-rich scores/source/trace envelope fields in each result.'
+      },
+      retrievalLevel: {
+        type: 'string',
+        enum: ['local', 'global', 'auto'],
+        default: 'auto',
+        description: 'Graph retrieval scope for entity- vs community-level search: "local" returns entity-level matches only; "global" and "auto" (default) also permit a community-level fallback (graph community detection) when direct matches are sparse.'
       }
     }
   },
@@ -217,22 +394,26 @@ const memorySave: ToolDefinition = {
   inputSchema: { type: 'object', additionalProperties: false, properties: { filePath: { type: 'string', minLength: 1, description: 'Absolute path to a spec document under specs/**/ or .opencode/specs/**/ (spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, handover.md, research.md, resource-map.md, description.json, graph-metadata.json) or a constitutional memory under .opencode/skills/*/constitutional/' }, force: { type: 'boolean', default: false, description: 'Force re-index even if content hash unchanged' }, dryRun: { type: 'boolean', default: false, description: 'Validate only without saving. Returns validation results including anchor format, duplicate check, and token budget estimation' }, skipPreflight: { type: 'boolean', default: false, description: 'Skip pre-flight validation checks (not recommended)' }, asyncEmbedding: { type: 'boolean', default: false, description: 'When true, embedding generation is deferred for non-blocking saves. The spec-doc record is immediately saved with pending status and an async background attempt is triggered. Default false preserves synchronous embedding behavior.' }, routeAs: { type: 'string', enum: ['narrative_progress', 'narrative_delivery', 'decision', 'handover_state', 'research_finding', 'task_update', 'metadata_only', 'drop'], description: 'Optional routing override hint for canonical continuity saves.' }, mergeModeHint: { type: 'string', enum: ['append-as-paragraph', 'insert-new-adr', 'append-table-row', 'update-in-place', 'append-section'], description: 'Optional merge-mode hint for routed canonical continuity saves.' }, tenantId: { type: 'string', description: 'Tenant boundary for governed ingest.' }, userId: { type: 'string', description: 'User boundary for governed ingest.' }, agentId: { type: 'string', description: 'Agent boundary for governed ingest.' }, sessionId: { type: 'string', description: 'Session boundary for governed ingest.' }, provenanceSource: { type: 'string', description: 'Required provenance source when governed ingest validation applies.' }, provenanceActor: { type: 'string', description: 'Required provenance actor when governed ingest validation applies.' }, governedAt: { type: 'string', description: 'ISO timestamp for governed ingest. Defaults to now when omitted.' }, retentionPolicy: { type: 'string', enum: ['keep', 'ephemeral'], description: 'Retention class applied to the saved spec-doc record.' }, deleteAfter: { type: 'string', description: 'Optional ISO timestamp after which retention sweep may delete the spec-doc record.' } }, required: ['filePath'] },
 };
 
-// L3: Discovery - Browse and explore (Token Budget: 800)
+const memorySaveProperties = memorySave.inputSchema.properties as Record<string, unknown>;
+memorySaveProperties.plannerMode = { type: 'string', enum: ['plan-only', 'hybrid', 'full-auto'], description: 'Optional routed-save planner execution mode.' };
+memorySaveProperties.targetAnchorId = { type: 'string', description: 'Optional target anchor for routed continuity saves.' };
+
+// L3: Discovery - Browse and explore (Token Budget: 1000)
 const memoryList: ToolDefinition = {
   name: 'memory_list',
-  description: '[L3:Discovery] Browse stored spec-doc records with pagination. Use to discover what is indexed and find IDs for delete/update. Token Budget: 800.',
+  description: '[L3:Discovery] Browse stored spec-doc records with pagination. Use to discover what is indexed and find IDs for delete/update. Token Budget: 1000.',
   inputSchema: { type: 'object', additionalProperties: false, properties: { limit: { type: 'number', default: 20, minimum: 1, maximum: 100, description: 'Maximum results to return (max 100)' }, offset: { type: 'number', default: 0, minimum: 0, description: 'Number of results to skip (for pagination)' }, specFolder: { type: 'string', description: 'Filter by spec folder' }, sortBy: { type: 'string', enum: ['created_at', 'updated_at', 'importance_weight'], description: 'Sort order (default: created_at DESC)' }, includeChunks: { type: 'boolean', default: false, description: 'Include chunk child rows. Default false returns parent spec-doc records only for cleaner browsing.' } } },
 };
 
 const memoryStats: ToolDefinition = {
   name: 'memory_stats',
-  description: '[L3:Discovery] Get indexed-continuity statistics. Shows counts, dates, status breakdown, and top folders. Supports multiple ranking modes including composite scoring. Token Budget: 800.',
+  description: '[L3:Discovery] Get indexed-continuity statistics. Shows counts, dates, status breakdown, and top folders. Supports multiple ranking modes including composite scoring. Token Budget: 1000.',
   inputSchema: { type: 'object', additionalProperties: false, properties: { folderRanking: { type: 'string', enum: ['count', 'recency', 'importance', 'composite'], description: 'How to rank folders: count (default, by indexed record count), recency (most recent first), importance (by tier), composite (weighted multi-factor score)', default: 'count' }, excludePatterns: { type: 'array', items: { type: 'string' }, description: 'Regex patterns to exclude folders (e.g., ["z_archive", "scratch"])' }, includeScores: { type: 'boolean', description: 'Include score breakdown for each folder', default: false }, includeArchived: { type: 'boolean', description: 'Include archived/test/scratch folders in results', default: false }, limit: { type: 'number', minimum: 1, maximum: 100, description: 'Maximum number of folders to return', default: 10 } } },
 };
 
 const memoryHealth: ToolDefinition = {
   name: 'memory_health',
-  description: '[L3:Discovery] Check health status of the indexed-continuity store. Token Budget: 800.',
+  description: '[L3:Discovery] Check health status of the indexed-continuity store. Token Budget: 1500.',
   inputSchema: {
     type: 'object',
     additionalProperties: false,
@@ -538,7 +719,33 @@ const evalReportingDashboard: ToolDefinition = {
 const memoryIndexScan: ToolDefinition = {
   name: 'memory_index_scan',
   description: '[L7:Maintenance] Scan workspace for new/changed spec-doc files and index them. Useful for bulk indexing after creating multiple spec-doc files. Token Budget: 1000.',
-  inputSchema: { type: 'object', additionalProperties: false, properties: { specFolder: { type: 'string', description: 'Limit scan to specific spec folder (e.g., "005-memory")' }, force: { type: 'boolean', default: false, description: 'Force re-index all files (ignore content hash)' }, includeConstitutional: { type: 'boolean', default: true, description: 'Whether to scan .opencode/skills/*/constitutional/ directories' }, includeSpecDocs: { type: 'boolean', default: true, description: 'Whether to scan .opencode/specs/ directories for spec folder documents (spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, research/research.md, handover.md, resource-map.md). Iteration artifacts under research/iterations/ and review/iterations/ are excluded from spec-doc indexing. Set SPECKIT_INDEX_SPEC_DOCS=false env var to disable globally.' }, incremental: { type: 'boolean', default: true, description: 'Enable incremental indexing. When true (default), skips files whose mtime and content hash are unchanged since last index. Set to false to re-evaluate all files regardless of change detection.' }, tenantId: { type: 'string', description: 'Tenant boundary for governed ingest.' }, userId: { type: 'string', description: 'User boundary for governed ingest.' }, agentId: { type: 'string', description: 'Agent boundary for governed ingest.' }, sessionId: { type: 'string', description: 'Session boundary for governed ingest.' }, provenanceSource: { type: 'string', description: 'Required provenance source when governed ingest validation applies.' }, provenanceActor: { type: 'string', description: 'Required provenance actor when governed ingest validation applies.' }, governedAt: { type: 'string', description: 'ISO timestamp for governed ingest. Defaults to now when omitted.' }, retentionPolicy: { type: 'string', enum: ['keep', 'ephemeral'], description: 'Retention class applied to the saved spec-doc record.' }, deleteAfter: { type: 'string', description: 'Optional ISO timestamp after which retention sweep may delete the spec-doc record.' } }, required: [] },
+  inputSchema: { type: 'object', additionalProperties: false, properties: { specFolder: { type: 'string', description: 'Limit scan to specific spec folder (e.g., "005-memory")' }, force: { type: 'boolean', default: false, description: 'Force re-index all files (ignore content hash)' }, includeConstitutional: { type: 'boolean', default: true, description: 'Whether to scan .opencode/skills/*/constitutional/ directories' }, includeSpecDocs: { type: 'boolean', default: true, description: 'Whether to scan .opencode/specs/ directories for spec folder documents (spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, research/research.md, handover.md, resource-map.md). Iteration artifacts under research/iterations/ and review/iterations/ are excluded from spec-doc indexing. Set SPECKIT_INDEX_SPEC_DOCS=false env var to disable globally.' }, incremental: { type: 'boolean', default: true, description: 'Enable incremental indexing. When true (default), skips files whose mtime and content hash are unchanged since last index. Set to false to re-evaluate all files regardless of change detection.' }, background: { type: 'boolean', default: false, description: 'Run the scan as a background job; returns a jobId immediately instead of blocking. Poll with memory_index_scan_status and stop with memory_index_scan_cancel.' }, tenantId: { type: 'string', description: 'Tenant boundary for governed ingest.' }, userId: { type: 'string', description: 'User boundary for governed ingest.' }, agentId: { type: 'string', description: 'Agent boundary for governed ingest.' }, sessionId: { type: 'string', description: 'Session boundary for governed ingest.' }, provenanceSource: { type: 'string', description: 'Required provenance source when governed ingest validation applies.' }, provenanceActor: { type: 'string', description: 'Required provenance actor when governed ingest validation applies.' }, governedAt: { type: 'string', description: 'ISO timestamp for governed ingest. Defaults to now when omitted.' }, retentionPolicy: { type: 'string', enum: ['keep', 'ephemeral'], description: 'Retention class applied to the saved spec-doc record.' }, deleteAfter: { type: 'string', description: 'Optional ISO timestamp after which retention sweep may delete the spec-doc record.' } }, required: [] },
+};
+
+const memoryIndexScanStatus: ToolDefinition = {
+  name: 'memory_index_scan_status',
+  description: '[L7:Maintenance] Get current state and progress for a background memory_index_scan job started with background:true.',
+  inputSchema: {
+    type: 'object',
+    additionalProperties: false,
+    properties: {
+      jobId: { type: 'string', minLength: 1, description: 'Background index scan job identifier (required).' },
+    },
+    required: ['jobId'],
+  },
+};
+
+const memoryIndexScanCancel: ToolDefinition = {
+  name: 'memory_index_scan_cancel',
+  description: '[L7:Maintenance] Request cancellation of a running background memory_index_scan job. Cancellation is checked between files and at phase boundaries.',
+  inputSchema: {
+    type: 'object',
+    additionalProperties: false,
+    properties: {
+      jobId: { type: 'string', minLength: 1, description: 'Background index scan job identifier (required).' },
+    },
+    required: ['jobId'],
+  },
 };
 
 const memoryGetLearningHistory: ToolDefinition = {
@@ -744,6 +951,8 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
   evalReportingDashboard,
   // L7: Maintenance
   memoryIndexScan,
+  memoryIndexScanStatus,
+  memoryIndexScanCancel,
   memoryGetLearningHistory,
   memoryIngestStart,
   memoryIngestStatus,

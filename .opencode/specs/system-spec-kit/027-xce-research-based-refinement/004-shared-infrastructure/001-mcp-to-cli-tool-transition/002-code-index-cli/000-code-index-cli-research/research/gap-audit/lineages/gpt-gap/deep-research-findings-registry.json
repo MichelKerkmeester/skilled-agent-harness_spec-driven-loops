@@ -1,0 +1,144 @@
+{
+  "sessionId": "fanout-gpt-gap-1780758130805-1e67fs",
+  "parentSessionId": "dr-20260606T153500-gap-code-index",
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 5,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-06-06T15:13:00Z"
+  },
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-lens-1-coverage-cross-check",
+      "text": "LENS-1: Coverage cross-check (parity matrix vs phase ownership)",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-lens-2-delta-req-traceability",
+      "text": "LENS-2: Delta/REQ traceability both directions",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-3-lens-3-runtime-pairing-completeness",
+      "text": "LENS-3: Runtime pairing completeness vs actual adapter/plugin inventory",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-4-lens-4-sequencing-shared-infra",
+      "text": "LENS-4: Sequencing/estimates plus cross-workstream shared-infra risks",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-5-lens-5-residual-sweep",
+      "text": "LENS-5: Adversarial residual sweep",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-g1-phase-3-surface-inventory",
+      "severity": "P1",
+      "finding": "Phase 3 lacks an exact affected-surface inventory even though actual work spans runtime hook registration files, MCP configs, OpenCode plugin entrypoint, and bridge.",
+      "sources": [
+        "file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/003-runtime-integration/plan.md:86",
+        "file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/003-runtime-integration/spec.md:107",
+        "file:.claude/settings.local.json:56",
+        "file:.codex/settings.json:3",
+        "file:.devin/hooks.v1.json:14"
+      ]
+    },
+    {
+      "id": "finding-g2-prompt-time-dual-failure",
+      "severity": "P1",
+      "finding": "Prompt-time MCP-down plus daemon-down fail-open/no-cold-spawn behavior is not explicitly accepted or tested.",
+      "sources": [
+        "file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/001-cli-core/spec.md:126",
+        "file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/003-runtime-integration/spec.md:94",
+        "file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/003-runtime-integration/spec.md:119",
+        "file:.claude/settings.local.json:61",
+        "file:.codex/settings.json:7",
+        "file:.devin/hooks.v1.json:19"
+      ]
+    },
+    {
+      "id": "finding-g3-db-note-drift",
+      "severity": "P2",
+      "finding": "Codex config carries a stale code-index DB default note that contradicts current launcher/server source and other runtime configs.",
+      "sources": [
+        "file:.codex/config.toml:99",
+        "file:.opencode/bin/mk-code-index-launcher.cjs:99",
+        "file:.opencode/skills/system-code-graph/mcp_server/core/config.ts:14",
+        "file:.claude/mcp.json:68"
+      ]
+    },
+    {
+      "id": "finding-g4-truncated-not-zod",
+      "severity": "P2",
+      "finding": "Phase-1 spec and tasks truncate the NOT Zod validation note.",
+      "sources": [
+        "file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/001-cli-core/spec.md:68",
+        "file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/001-cli-core/tasks.md:58"
+      ]
+    },
+    {
+      "id": "finding-g5-parent-files-to-change-stale",
+      "severity": "P2",
+      "finding": "The code-index parent Files to Change table is stale relative to the scaffolded phase map.",
+      "sources": [
+        "file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/spec.md:83",
+        "file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/002-code-index-cli/spec.md:100"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-mcp-removal",
+      "text": "MCP removal is out of scope during the dual-stack window.",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-zod-reuse",
+      "text": "Zod reuse is not required for code-index; validation parity uses validateToolArgs plus dispatcher required checks.",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-gemini-required",
+      "text": "Gemini hooks are not required under the current code-index runtime pairing scope.",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-socket-dir-collision",
+      "text": "Literal socket directory collision is not present in active runtime configs.",
+      "addedAtIteration": 4
+    }
+  ],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "keyFindings": 5,
+    "convergenceScore": 0.34,
+    "gapCounts": {
+      "P0": 0,
+      "P1": 2,
+      "P2": 3
+    },
+    "coverageBySources": {
+      "specs": 14,
+      "runtime-config": 7,
+      "source": 8,
+      "plugin": 3
+    }
+  },
+  "status": "COMPLETE"
+}

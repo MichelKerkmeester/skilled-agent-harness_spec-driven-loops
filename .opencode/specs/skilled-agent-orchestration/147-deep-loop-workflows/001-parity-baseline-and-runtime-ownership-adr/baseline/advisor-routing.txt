@@ -1,0 +1,5 @@
+PROMPT: deep research loop investigate topic =>     "skill": "deep-research",     "kind": "skill",     "reason": "Matched: !deep research loop(signal), !deep research(explicit), !deep research(keyword), !deep research(phrase), !deep research(signal) [Candidate-3 deep routing: deep-research MED]", 
+PROMPT: deep review loop code audit findings =>     "skill": "deep-review",     "kind": "skill",     "reason": "Matched: !code audit(keyword), !code audit(signal), !deep review loop(signal), !deep review(explicit), !deep review(keyword) [Candidate-3 deep routing: deep-review HIGH]", 
+PROMPT: deep context gathering reuse codebase =>     "skill": "deep-context",     "kind": "skill",     "skill": "sk-git", 
+PROMPT: ai council multi-seat planning deliberation =>     "skill": "deep-ai-council",     "kind": "skill",     "reason": "Matched: !ai council(keyword), !ai council(signal), !multi-seat planning(keyword), council(name), multi [Candidate-3 deep routing: deep-ai-council HIGH]", 
+PROMPT: agent improvement evaluator benchmark loop =>     "skill": "deep-improvement",     "kind": "skill",     "skill": "sk-code", 

@@ -619,8 +619,8 @@ describe('structural-indexer', () => {
 
     it('indexes doc file rows for opted-in .opencode folders across the extension matrix', async () => {
       const tempDir = mkdtempSync(join(tmpdir(), 'code-graph-doc-scope-fixture-'));
-      const folders = ['agent', 'command', 'specs', 'plugins'] as const;
-      const extensions = ['md', 'json', 'jsonc', 'yaml', 'yml', 'toml'] as const;
+      const folders = ['agents', 'commands', 'specs', 'plugins'] as const;
+      const extensions = ['json', 'jsonc', 'yaml', 'yml', 'toml'] as const;
       const expectedRelativePaths = folders.flatMap((folder) => (
         extensions.map((extension) => `.opencode/${folder}/doc-${folder}.${extension}`)
       ));
@@ -630,6 +630,9 @@ describe('structural-indexer', () => {
         for (const relativePath of expectedRelativePaths) {
           writeWorkspaceFile(tempDir, relativePath, `title: ${relativePath}\n`);
         }
+        // Markdown is excluded from the code graph even in opted-in folders; only
+        // structured config indexes as 'doc'. This .md file must NOT appear below.
+        writeWorkspaceFile(tempDir, '.opencode/agents/excluded.md', '# excluded\n');
 
         const results = await indexFiles(
           getDefaultConfig(tempDir, {
@@ -656,7 +659,7 @@ describe('structural-indexer', () => {
           parse_health: string;
         }>;
 
-        expect(rows).toHaveLength(24);
+        expect(rows).toHaveLength(20);
         expect(rows.map((row) => relative(tempDir, row.file_path).replace(/\\/g, '/')).sort())
           .toEqual([...expectedRelativePaths].sort());
         for (const row of rows) {
@@ -672,15 +675,17 @@ describe('structural-indexer', () => {
       }
     });
 
-    // drift: verified against shipped behavior during Unit H
-    it('indexes selected skill and agent doc rows without opening other default-excluded folders', async () => {
+    // Opted-in skills/agents index their structured config, but never their markdown docs.
+    it('indexes selected skill and agent config rows without opening other default-excluded folders', async () => {
       const tempDir = mkdtempSync(join(tmpdir(), 'code-graph-doc-selected-skill-fixture-'));
       const expectedRelativePaths = [
-        '.opencode/agents/code.md',
-        '.opencode/skills/sk-code-review/SKILL.md',
         '.opencode/skills/sk-code-review/rules.json',
       ];
+      // Markdown is excluded even in opted-in folders; these .md files are created
+      // but must NOT index as 'doc' (only structured config like rules.json does).
       const excludedRelativePaths = [
+        '.opencode/agents/code.md',
+        '.opencode/skills/sk-code-review/SKILL.md',
         '.opencode/skills/sk-doc/SKILL.md',
         '.opencode/commands/run.yaml',
       ];
@@ -753,6 +758,36 @@ describe('structural-indexer', () => {
 
         expect(results).toHaveLength(0);
         expect(docRows.count).toBe(0);
+      } finally {
+        rmSync(tempDir, { recursive: true, force: true });
+      }
+    });
+
+    // The incremental / stale-file reindex path (specificFiles) must enforce the
+    // same file-type allowlist as the full walk, or an edited markdown file would
+    // re-enter the graph as a 'doc' row even though markdown is excluded.
+    it('applies the include-glob file-type policy to specificFiles, excluding markdown', async () => {
+      const tempDir = mkdtempSync(join(tmpdir(), 'code-graph-specific-files-fixture-'));
+      try {
+        initDb(tempDir);
+        const tsPath = writeWorkspaceFile(tempDir, 'kept.ts', 'export const value = 1;\n');
+        const jsonPath = writeWorkspaceFile(tempDir, 'kept.json', '{"title":"kept"}\n');
+        const mdPath = writeWorkspaceFile(tempDir, 'dropped.md', '# dropped\n');
+
+        const results = await indexFiles(
+          getDefaultConfig(tempDir),
+          { specificFiles: [tsPath, jsonPath, mdPath], skipFreshFiles: false },
+        );
+        persistIndexResults(results);
+
+        const persisted = (getDb().prepare(`
+          SELECT file_path FROM code_files ORDER BY file_path
+        `).all() as Array<{ file_path: string }>)
+          .map((row) => relative(tempDir, row.file_path).replace(/\\/g, '/'))
+          .sort();
+
+        expect(persisted).toEqual(['kept.json', 'kept.ts']);
+        expect(persisted).not.toContain('dropped.md');
       } finally {
         rmSync(tempDir, { recursive: true, force: true });
       }

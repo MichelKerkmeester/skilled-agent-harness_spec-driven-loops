@@ -10,13 +10,14 @@ const launcher = require('../../../../bin/mk-spec-memory-launcher.cjs') as {
 };
 
 describe('daemon re-election flag', () => {
-  it('is off by default and on only for explicit 1/on', () => {
-    // Default OFF is the safety contract: every other code path collapses to today's behavior.
-    expect(launcher.daemonReelectionEnabled({})).toBe(false);
+  it('is on by default and off only for explicit 0/off', () => {
+    // Default ON is the shipped contract: the shared daemon outlives its owning session unless explicitly disabled.
+    expect(launcher.daemonReelectionEnabled({})).toBe(true);
     expect(launcher.daemonReelectionEnabled({ SPECKIT_DAEMON_REELECTION: '1' })).toBe(true);
     expect(launcher.daemonReelectionEnabled({ SPECKIT_DAEMON_REELECTION: 'on' })).toBe(true);
     expect(launcher.daemonReelectionEnabled({ SPECKIT_DAEMON_REELECTION: '0' })).toBe(false);
-    expect(launcher.daemonReelectionEnabled({ SPECKIT_DAEMON_REELECTION: 'yes' })).toBe(false);
+    expect(launcher.daemonReelectionEnabled({ SPECKIT_DAEMON_REELECTION: 'off' })).toBe(false);
+    expect(launcher.daemonReelectionEnabled({ SPECKIT_DAEMON_REELECTION: 'yes' })).toBe(true);
   });
 });
 

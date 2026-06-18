@@ -1,0 +1,29 @@
+{
+  "title": "Feature Specification: Verification and Remediation (Phase Parent)",
+  "type": "coordination-parent",
+  "childTopology": [
+    "001-finding-remediation",
+    "002-tri-system-deep-research",
+    "003-deep-research-remediation",
+    "004-residual-design-units"
+  ],
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation",
+  "description": "Feature Specification: Verification and Remediation (Phase Parent)",
+  "keywords": [
+    "feature",
+    "specification",
+    "verification",
+    "remediation",
+    "phase",
+    "parent"
+  ],
+  "lastUpdated": "2026-06-16T15:23:34.768Z",
+  "specId": "005",
+  "folderSlug": "verification-and-remediation",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

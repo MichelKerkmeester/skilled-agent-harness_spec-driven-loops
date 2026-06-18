@@ -67,7 +67,7 @@ mcp__mk_code_index__code_graph_query({
 })
 ```
 
-Returns the reverse import impact set: every file that imports the subject, transitively, with `affectedSymbols`, `affectedFiles` and `readiness` metadata confirming the answer is grounded.
+Returns the reverse import impact set: every file that imports the subject, transitively, with `sourceFiles`, `nodes`, `affectedFiles`, `depthGroups`, `riskLevel`, `minConfidence` and ambiguity fields. `affectedSymbols` belongs to `detect_changes`, not `blast_radius`.
 
 **Step 4: Verify the runtime.**
 
@@ -78,13 +78,24 @@ Returns the reverse import impact set: every file that imports the subject, tran
 
 TypeScript exits 0. The focused Vitest code-graph suite passes.
 
+**Prefer a shell?** The daemon-backed CLI has full parity with the MCP surface: the same 8 code-graph tools are callable through `node .opencode/bin/code-index.cjs`, over the same daemon the MCP registration uses:
+
+```bash
+node .opencode/bin/code-index.cjs list-tools --format text     # offline, no daemon contact
+node .opencode/bin/code-index.cjs code_graph_status --format json
+```
+
+Use MCP as the primary in-session transport today. Use the CLI when MCP transport is missing, failed or not reconnecting while the daemon is warm, and for hooks, cron, CI and operator shell diagnostics. Exit codes are `0` success, `1` runtime error, `64` usage/schema error, `69` protocol/dist mismatch, `75` retryable daemon error. The false-safe contract carries through: a `status: "blocked"` readiness refusal exits `0` deliberately — blocked is an actionable answer (run the surfaced `requiredAction`), not a CLI failure — while a malformed diff to `detect_changes` (`status: "parse_error"`) exits `64`. Pass `--warm-only` in prompt-time contexts so a cold daemon yields exit `75` instead of a cold spawn. Because the CLI already has full parity, a later evolution could make it the primary or sole transport without breaking existing MCP workflows; that is a possible direction, not a committed plan.
+
 ---
 
 ## 4. HOW IT WORKS
 
 ### The Structural Index
 
-A tree-sitter parser walks your workspace and converts each source file into a graph node. Symbols, calls, imports and definitions become typed edges in a SQLite database. The indexer skips unchanged files by content hash, so incremental scans stay fast. Files that fail to parse land in a quarantine skip-list, surfaced through `code_graph_status` output under `parserHealth` and `parserSkipList`. They do not poison the graph but they do reduce coverage.
+A tree-sitter parser walks your workspace and converts each source file into a graph node. Symbols, calls, imports and definitions become typed edges in a SQLite database. The indexer skips unchanged files by content hash, so incremental scans stay fast. Parser crash cohorts classified as B1/B2 land in a quarantine skip-list, surfaced through `code_graph_status` output under `parserHealth` and `parserSkipList`. Syntax-error partial parses surface parse diagnostics without adding a skip-list row. They do not poison the graph but they do reduce coverage.
+
+The default scan globs include JSON, JSONC, YAML, YML and TOML as the `doc` lane, but deliberately omit Markdown/prose docs. The doc lane is file-row coverage only today: config-format files are recorded with content hashes and clean parse health, while symbol nodes and relationship edges stay empty (`node_count: 0`, `edge_count: 0`). Re-add Markdown only with explicit `includeGlobs`, and treat doc-lane file counts as inventory coverage, not structural extraction.
 
 This structural model is what lets the tools answer "what calls this" with precision. The relationship is a first-class graph edge, not a text-match guess. A function call from file A to file B is an edge you can query, traverse transitively and surface in an impact report.
 
@@ -96,7 +107,7 @@ The four freshness values are `fresh`, `stale`, `empty` and `error`. `blocked` i
 
 A separate trust-state signal tracks whether the gold-query battery passed recently. A graph can be `fresh` while `goldVerificationTrust` is `absent` if nobody has run `code_graph_verify` since the last structural change. High-stakes queries should check both before acting on results.
 
-A scope fingerprint, a hash of the scan include and exclude globs plus feature flags, is compared on every read. A mismatch blocks the read and recommends a full rescan. Widening the scope allows an incremental rebuild. Narrowing it needs a full scan.
+A scope fingerprint, a hash of the scan include and exclude globs plus feature flags, is compared on every read. `code_graph_status.data.activeScope` exposes both the human label and structured `includeGlobs` / `excludeGlobs` arrays. When globs narrow the scan, the label says `narrowed by includeGlobs: ...` and/or `excludeGlobs: ...` so a `*.ts`-only scan does not look like full-workspace coverage. A mismatch blocks the read and recommends a full rescan. Widening the scope allows an incremental rebuild. Narrowing it needs a full scan.
 
 ### Blast Radius and Change Detection
 
@@ -140,10 +151,12 @@ The boundary with text search is simple. Use Grep when you know the exact token 
 |---|---|---|
 | `status: "blocked"` with `requiredAction: "code_graph_scan"` | The graph is stale, empty or scope-mismatched | Run `code_graph_scan` with the intended scope. Use `incremental: false` for scope changes |
 | A tool returns `blocked` after you changed scan flags | The stored scope fingerprint differs from the current scan inputs | Run a full scan (`incremental: false`) so the fingerprint updates. Widening the scope allows an incremental rebuild, narrowing needs a fresh scan |
-| `parserHealth` shows quarantined files | One or more files failed parsing and landed in the skip-list | Inspect `parserSkipList.sample` from `code_graph_status`. Repair the file or accept the quarantine for this scan run |
+| `parserHealth` shows quarantined files | One or more parser crash cohorts landed in the skip-list | Inspect `parserSkipList.sample` from `code_graph_status`. Repair the file or accept the quarantine for this scan run |
 | Skill files do not appear in scan results | `.opencode/skills/**` is excluded by default | Set `SPECKIT_CODE_GRAPH_INDEX_SKILLS=true` or pass the `includeSkills` array on the scan call |
 | `code_graph_query` returns fewer results than expected | Some files are not indexed due to parse failures or scope exclusions | Check `parserHealth` and `nodesByKind` in `code_graph_status` output |
-| Plugin bridge fails on startup with missing `dist/handlers/session-resume.js` | The bridge imports modules that moved to `system-spec-kit` after extraction | See `mcp_server/plugin_bridges/README.md` section 1 for the broken-import table |
+| `code-index.cjs` exits 69 | The CLI dist entrypoint is missing or stale relative to its sources | Run `tsc -p .opencode/skills/system-code-graph/tsconfig.json` (dev loops can set `SPECKIT_CODE_INDEX_CLI_DEV_ALLOW_STALE=1`) |
+| `code-index.cjs` exits 75 under `--warm-only` | The daemon is cold and warm-only forbids a cold spawn | Expected at prompt time; retry without `--warm-only` to auto-spawn via the launcher |
+| Plugin bridge reports skipped or fail-open status | The bridge runs prompt-time warm-only and does not cold-spawn missing daemons or sockets | It routes through `.opencode/bin/code-index.cjs` and the launcher IPC bridge; see `mcp_server/plugin_bridges/README.md` |
 | An old doc references `system_code_graph` (underscore form) | A pre-rename reference survived the standalone server rename | Use `mk-code-index`, `mk_code_index` and `mcp__mk_code_index__*` for current runtime docs |
 
 ---
@@ -180,6 +193,7 @@ A: Readiness answers whether the graph reflects the current workspace. The four 
 | Vitest code-graph suite | `.opencode/skills/system-code-graph/node_modules/.bin/vitest --config .opencode/skills/system-code-graph/vitest.config.ts --run code-graph` passes all tests |
 | README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-code-graph/README.md --type readme` reports zero issues |
 | Gold-query battery | `mcp__mk_code_index__code_graph_verify({})` returns `passed` status on a fresh graph |
+| CLI front door | `node .opencode/bin/code-index.cjs list-tools --format text` prints the eight tool names offline and exits 0 |
 | Skill graph integrity | `mcp__mk_skill_advisor__skill_graph_scan({})` and `mcp__mk_skill_advisor__skill_graph_validate({})` report no errors |
 
 ---

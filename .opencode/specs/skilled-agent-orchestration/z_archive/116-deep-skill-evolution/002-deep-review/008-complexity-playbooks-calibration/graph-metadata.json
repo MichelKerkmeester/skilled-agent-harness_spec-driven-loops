@@ -42,16 +42,6 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      ".opencode/skills/deep-review/SKILL.md",
-      ".opencode/skills/deep-review/assets/deep_review_config.json",
-      ".opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl",
-      ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/validator-warn-rollout.md",
-      ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/validator-strict-v2.md",
-      ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/reducer-search-debt.md",
-      ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/stop-gate-candidate-coverage.md",
-      ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/stop-gate-graphless-fallback.md",
-      ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/graph-vocabulary.md",
-      ".opencode/skills/deep-review/scripts/reduce-state.cjs",
       ".opencode/skills/deep-loop-runtime/tests/integration/review-depth-validator.vitest.ts",
       ".opencode/skills/deep-loop-runtime/tests/integration/review-depth-convergence.vitest.ts",
       ".opencode/skills/deep-loop-runtime/tests/integration/review-depth-graph.vitest.ts",
@@ -87,66 +77,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-review/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep_review_config.json",
-        "kind": "config",
-        "path": ".opencode/skills/deep-review/assets/deep_review_config.json",
-        "source": "derived"
-      },
-      {
-        "name": "prompt_pack_iteration.md.tmpl",
-        "kind": "file",
-        "path": ".opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl",
-        "source": "derived"
-      },
-      {
-        "name": "validator-warn-rollout.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/validator-warn-rollout.md",
-        "source": "derived"
-      },
-      {
-        "name": "validator-strict-v2.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/validator-strict-v2.md",
-        "source": "derived"
-      },
-      {
-        "name": "reducer-search-debt.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/reducer-search-debt.md",
-        "source": "derived"
-      },
-      {
-        "name": "stop-gate-candidate-coverage.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/stop-gate-candidate-coverage.md",
-        "source": "derived"
-      },
-      {
-        "name": "stop-gate-graphless-fallback.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/stop-gate-graphless-fallback.md",
-        "source": "derived"
-      },
-      {
-        "name": "graph-vocabulary.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/graph-vocabulary.md",
-        "source": "derived"
-      },
-      {
-        "name": "reduce-state.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-review/scripts/reduce-state.cjs",
         "source": "derived"
       },
       {
@@ -202,11 +132,71 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Primary Constraint",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rollout Mode",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Read Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Inspect Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phases 002-007 shipped the v2 review-depth contract across fixtures, schema, validator, reducer, STOP gates, and graph vocabulary. Operators now need a compact manual playbook that exercises those shipped surfaces without changing production defaults prematurely.",
     "created_at": "2026-05-22T00:00:00Z",
-    "last_save_at": "2026-06-07T09:00:45.867Z",
+    "last_save_at": "2026-06-15T09:09:33.757Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,6 +1,13 @@
 ---
 title: JavaScript Minification Guide
 description: Safe minification workflow for Webflow projects with verification to prevent breaking functionality.
+trigger_phrases:
+  - "webflow minification guide"
+  - "terser minification workflow"
+  - "safe javascript minification"
+  - "minified ast verification"
+importance_tier: normal
+contextType: implementation
 ---
 
 # JavaScript Minification Guide

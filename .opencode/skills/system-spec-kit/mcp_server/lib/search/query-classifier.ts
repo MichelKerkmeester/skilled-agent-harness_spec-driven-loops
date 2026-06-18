@@ -28,6 +28,16 @@ interface ClassificationResult {
 const SIMPLE_TERM_THRESHOLD = 3;
 const COMPLEX_TERM_THRESHOLD = 8;
 
+/**
+ * Stop-word ratio at or above which a short, trigger-less query is treated as
+ * low-signal. Such queries carry too little lexical anchor for the cheap simple
+ * route — which suppresses extra channels and synonym/embedding expansion — to
+ * recall reliably, so they are escalated to the full pipeline. Set above the
+ * one-stop-word-in-three ratio of ordinary verb-noun queries (e.g. "fix the
+ * bug" = 0.333) so only genuinely vague queries escalate.
+ */
+const LOW_SIGNAL_STOPWORD_RATIO = 0.5;
+
 /** Common English stop words for semantic complexity heuristic */
 const STOP_WORDS: ReadonlySet<string> = new Set([
   'the', 'a', 'an', 'is', 'are', 'was', 'were',
@@ -130,12 +140,42 @@ function determineConfidence(
 }
 
 /**
+ * Detect a short query that lacks a confident retrieval anchor.
+ *
+ * A multi-term query within the simple term budget, with no trigger-phrase
+ * match and a high stop-word ratio, is generic: the cheap simple route would
+ * strip it of the extra channels and synonym/embedding expansion it most needs,
+ * so a real match reads as a weak result. Content-rich short queries (low
+ * stop-word ratio), trigger-anchored queries, and single tokens are excluded —
+ * they stay on the fast path.
+ *
+ * @param termCount     - Number of query terms.
+ * @param hasTrigger    - Whether a trigger phrase matched.
+ * @param stopWordRatio - Ratio of stop words in the query.
+ * @returns True when the query should escalate to the full pipeline.
+ */
+function isLowSignalShortQuery(
+  termCount: number,
+  hasTrigger: boolean,
+  stopWordRatio: number,
+): boolean {
+  return termCount >= 2
+    && termCount <= SIMPLE_TERM_THRESHOLD
+    && !hasTrigger
+    && stopWordRatio >= LOW_SIGNAL_STOPWORD_RATIO;
+}
+
+/**
  * Classify a query's complexity into one of three tiers: simple, moderate, or complex.
  *
  * Classification boundaries:
  * - Simple: ≤3 terms OR trigger phrase match
  * - Complex: >8 terms AND no trigger match
  * - Moderate: everything else (interior)
+ *
+ * A simple-tier query with no trigger anchor and a high stop-word ratio is
+ * escalated to complex (full pipeline) with low confidence — see
+ * isLowSignalShortQuery — so generic short queries are not starved of recall.
  *
  * When the SPECKIT_COMPLEXITY_ROUTER feature flag is disabled (enabled by default,
  * graduated), all queries classify as "complex" (safe fallback — full pipeline).
@@ -193,7 +233,19 @@ function classifyQueryComplexity(
       tier = 'moderate';
     }
 
-    const confidence = determineConfidence(tier, termCount, triggerMatch, stopWordRatio);
+    let confidence: 'high' | 'medium' | 'low' | 'fallback' =
+      determineConfidence(tier, termCount, triggerMatch, stopWordRatio);
+
+    // Generic-query deep routing: a low-signal short query is escalated off the
+    // channel-reduced simple route to the full pipeline, where the extra
+    // channels and synonym/embedding expansion give it a chance to recall.
+    // Confidence is marked 'low' so downstream recall-preserving paths (token
+    // budget, weak-result recovery) also engage. This adds no LLM calls — HyDE
+    // and reformulation gate separately on deep request mode.
+    if (tier === 'simple' && isLowSignalShortQuery(termCount, triggerMatch, stopWordRatio)) {
+      tier = 'complex';
+      confidence = 'low';
+    }
 
     return {
       tier,

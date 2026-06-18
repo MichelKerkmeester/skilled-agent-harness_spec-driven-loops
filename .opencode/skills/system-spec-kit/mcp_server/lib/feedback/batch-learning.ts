@@ -24,7 +24,7 @@ import {
   initFeedbackLedger,
   getFeedbackEvents,
 } from './feedback-ledger.js';
-import type { FeedbackConfidence } from './feedback-ledger.js';
+import type { FeedbackConfidence, FeedbackEventType } from './feedback-ledger.js';
 
 /* ───────────────────────────────────────────────────────────────
    1. CONSTANTS
@@ -58,6 +58,36 @@ export const CONFIDENCE_WEIGHTS: Record<FeedbackConfidence, number> = {
  */
 export const SCORE_NORMALIZATION = 10.0;
 
+export const FUTURE_REDUCER_DAMPING_CONTRACT = Object.freeze({
+  positiveSignalDamping: 0.1,
+  negativeSignalDamping: 0.1,
+});
+
+const PROTECTED_FEEDBACK_TIERS = new Set(['constitutional', 'critical', 'important']);
+
+export interface FutureFeedbackReducerTarget {
+  importanceTier?: string | null;
+  protectedMemory?: boolean;
+  userConfirmed?: boolean;
+  sparseDomain?: boolean;
+}
+
+export function assertFutureReducerDampingIsSymmetric(
+  contract: { positiveSignalDamping: number; negativeSignalDamping: number } = FUTURE_REDUCER_DAMPING_CONTRACT,
+): true {
+  if (contract.positiveSignalDamping !== contract.negativeSignalDamping) {
+    throw new Error('Future feedback reducers must use symmetric soft damping, not asymmetric penalties.');
+  }
+  return true;
+}
+
+export function isFutureFeedbackDemotionPermitted(target: FutureFeedbackReducerTarget): boolean {
+  const tier = target.importanceTier?.trim().toLowerCase();
+  if (target.protectedMemory || target.userConfirmed || target.sparseDomain) return false;
+  if (tier && PROTECTED_FEEDBACK_TIERS.has(tier)) return false;
+  return true;
+}
+
 /* ───────────────────────────────────────────────────────────────
    2. TYPES
 ----------------------------------------------------------------*/
@@ -67,12 +97,22 @@ export interface AggregatedSignal {
   memoryId: string;
   /** Number of distinct sessions that contributed events. */
   sessionCount: number;
+  /** Number of distinct queries that contributed events. */
+  queryCount?: number;
   /** Raw count of strong-tier events. */
   strongCount: number;
   /** Raw count of medium-tier events. */
   mediumCount: number;
   /** Raw count of weak-tier events. */
   weakCount: number;
+  /** Earliest event timestamp in the aggregation window. */
+  firstSeen?: number;
+  /** Latest event timestamp in the aggregation window. */
+  lastSeen?: number;
+  /** Positive-signal hit count with reformulation damping and zero floor. */
+  weightedHitCount?: number;
+  /** Semantic duplicates suppressed before reducer-facing scoring fields. */
+  duplicateCount?: number;
   /** Confidence-weighted composite score. */
   weightedScore: number;
   /**
@@ -80,6 +120,34 @@ export interface AggregatedSignal {
    * Computed as: min(normalizedWeightedScore, MAX_BOOST_DELTA)
    */
   computedBoost: number;
+}
+
+type FeedbackEventTypeCounts = Record<FeedbackEventType, number>;
+
+interface AggregationBucket {
+  sessions: Set<string>;
+  queries: Set<string>;
+  strong: number;
+  medium: number;
+  weak: number;
+  firstSeen: number;
+  lastSeen: number;
+  typeCounts: FeedbackEventTypeCounts;
+  duplicateCount: number;
+}
+
+function createEventTypeCounts(): FeedbackEventTypeCounts {
+  return {
+    search_shown: 0,
+    result_cited: 0,
+    query_reformulated: 0,
+    same_topic_requery: 0,
+    follow_on_tool_use: 0,
+  };
+}
+
+function feedbackEventDedupKey(event: { type: FeedbackEventType; memory_id: string; query_id: string; confidence: FeedbackConfidence; timestamp: number; session_id: string | null }): string {
+  return [event.type, event.memory_id, event.query_id, event.confidence, String(event.timestamp), event.session_id ?? ''].join('\u0000');
 }
 
 /** Record written to batch_learning_log after a shadow-apply cycle. */
@@ -203,24 +271,41 @@ export function aggregateEvents(
     // Fetch all events in the window
     const events = getFeedbackEvents(db, { since, until });
 
-    // Group by memoryId
-    const byMemory = new Map<string, {
-      sessions: Set<string>;
-      strong: number;
-      medium: number;
-      weak: number;
-    }>();
+    const byMemory = new Map<string, AggregationBucket>();
+    const seenEvents = new Map<string, AggregationBucket>();
 
     for (const ev of events) {
+      const dedupKey = feedbackEventDedupKey(ev);
+      const original = seenEvents.get(dedupKey);
+      if (original) {
+        original.duplicateCount++;
+        continue;
+      }
+
       let entry = byMemory.get(ev.memory_id);
       if (!entry) {
-        entry = { sessions: new Set<string>(), strong: 0, medium: 0, weak: 0 };
+        entry = {
+          sessions: new Set<string>(),
+          queries: new Set<string>(),
+          strong: 0,
+          medium: 0,
+          weak: 0,
+          firstSeen: ev.timestamp,
+          lastSeen: ev.timestamp,
+          typeCounts: createEventTypeCounts(),
+          duplicateCount: 0,
+        };
         byMemory.set(ev.memory_id, entry);
       }
+      seenEvents.set(dedupKey, entry);
       // Count distinct sessions (null session_id treated as each own distinct pseudo-session)
       const sessionKey = ev.session_id ?? `__null_${ev.id}`;
       entry.sessions.add(sessionKey);
+      entry.queries.add(ev.query_id);
+      entry.firstSeen = Math.min(entry.firstSeen, ev.timestamp);
+      entry.lastSeen = Math.max(entry.lastSeen, ev.timestamp);
       entry[ev.confidence]++;
+      entry.typeCounts[ev.type]++;
     }
 
     // Build AggregatedSignal array
@@ -240,19 +325,31 @@ export function aggregateEvents(
         MAX_BOOST_DELTA
       );
 
+      const weightedHitCount = Math.max(
+        0,
+        data.strong +
+          (0.25 * data.typeCounts.same_topic_requery) -
+          (0.5 * data.typeCounts.query_reformulated)
+      );
+
       signals.push({
         memoryId,
         sessionCount:  data.sessions.size,
+        queryCount:    data.queries.size,
         strongCount:   data.strong,
         mediumCount:   data.medium,
         weakCount:     data.weak,
+        firstSeen:     data.firstSeen,
+        lastSeen:      data.lastSeen,
+        weightedHitCount,
+        duplicateCount: data.duplicateCount,
         weightedScore,
         computedBoost,
       });
     }
 
-    // Sort descending by weightedScore for deterministic output
-    signals.sort((a, b) => b.weightedScore - a.weightedScore);
+    // Stable tie-breaker keeps equal-score output reproducible across SQLite plans.
+    signals.sort((a, b) => (b.weightedScore - a.weightedScore) || a.memoryId.localeCompare(b.memoryId));
 
     return signals;
   } catch (err: unknown) {
@@ -450,12 +547,13 @@ export function runBatchLearning(
     const { eligible, skipped } = applyMinSupportFilter(allSignals, minSupport);
 
     // Steps 4 + 5: Cap + shadow-apply each eligible signal
+    const cappedCandidates = eligible.map((signal) => ({
+      ...signal,
+      computedBoost: enforceBoostCap(signal.computedBoost, maxBoost),
+    }));
     let shadowApplied = 0;
-    for (const signal of eligible) {
-      // Re-cap with the caller-provided maxBoostDelta (may differ from default)
-      const cappedBoost = enforceBoostCap(signal.computedBoost, maxBoost);
-      const cappedSignal: AggregatedSignal = { ...signal, computedBoost: cappedBoost };
-      const logId = shadowApply(db, cappedSignal, runAt);
+    for (const signal of cappedCandidates) {
+      const logId = shadowApply(db, signal, runAt);
       if (logId !== null) shadowApplied++;
     }
 
@@ -466,7 +564,7 @@ export function runBatchLearning(
       candidatesEvaluated:  eligible.length,
       shadowApplied,
       skippedMinSupport:    skipped.length,
-      candidates:           eligible,
+      candidates:           cappedCandidates,
     };
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : String(err);

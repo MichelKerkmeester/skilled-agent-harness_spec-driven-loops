@@ -1,6 +1,14 @@
 ---
 title: Phase System
 description: Knowledge node for the SpecKit phase decomposition system, covering detection, scoring, folder structure, lifecycle, and validation for complex multi-session specifications.
+trigger_phrases:
+  - "speckit phase system"
+  - "phase complexity scoring"
+  - "phase count mapping"
+  - "phase lifecycle status"
+  - "phase parent structure"
+importance_tier: normal
+contextType: planning
 ---
 
 # Phase System

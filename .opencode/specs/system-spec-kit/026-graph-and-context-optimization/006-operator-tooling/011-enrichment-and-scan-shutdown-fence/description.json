@@ -1,0 +1,26 @@
+{
+  "level": "3",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/011-enrichment-and-scan-shutdown-fence",
+  "description": "Feature Specification: Fence the enrichment scheduler and startup scan in fatalShutdown before closeDb",
+  "keywords": [
+    "feature",
+    "specification",
+    "fence",
+    "enrichment",
+    "scheduler",
+    "startup",
+    "scan",
+    "fatalshutdown",
+    "closedb"
+  ],
+  "lastUpdated": "2026-06-15T08:49:57.544Z",
+  "specId": "011",
+  "folderSlug": "enrichment-and-scan-shutdown-fence",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "006-operator-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

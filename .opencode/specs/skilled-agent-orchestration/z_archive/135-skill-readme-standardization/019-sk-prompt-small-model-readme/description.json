@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/135-skill-readme-standardization/019-sk-prompt-small-model-readme",
+  "description": "Feature Specification: sk-prompt-small-model README",
+  "keywords": [
+    "feature",
+    "specification",
+    "sk-prompt-small-model",
+    "readme"
+  ],
+  "lastUpdated": "2026-06-10T04:53:30.814Z",
+  "specId": "019",
+  "folderSlug": "sk-prompt-small-model-readme",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "135-skill-readme-standardization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

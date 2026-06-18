@@ -11,7 +11,7 @@
     "restart",
     "loop"
   ],
-  "lastUpdated": "2026-06-08T14:44:11.048Z",
+  "lastUpdated": "2026-06-10T04:53:31.117Z",
   "specId": "005",
   "folderSlug": "fix-bootstrap-symlink-restart-loop",
   "parentChain": [

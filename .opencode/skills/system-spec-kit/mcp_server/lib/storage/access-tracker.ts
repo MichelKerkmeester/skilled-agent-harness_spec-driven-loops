@@ -84,17 +84,29 @@ function init(database: Database.Database): void {
 /**
  * Track a memory access, accumulating until threshold is reached.
  */
+// Flush every accumulator, dropping only the entries whose flush succeeded and
+// retaining the rest for the next cycle — so a transient flush failure does not
+// silently discard accumulated counts (matching trackAccess's retry behavior).
+function flushAllRetainingFailures(): void {
+  if (!db) {
+    accumulators.clear();
+    return;
+  }
+  for (const [id, value] of [...accumulators]) {
+    if (flushAccessCounts(id)) {
+      accumulators.delete(id);
+    } else {
+      accumulators.set(id, value);
+    }
+  }
+}
+
 function trackAccess(memoryId: number): boolean {
   // P4-14 FIX: If accumulator map exceeds max size, flush all and clear
   // To prevent unbounded memory growth.
   if (accumulators.size > MAX_ACCUMULATOR_SIZE) {
     console.warn(`[access-tracker] Accumulator map exceeded ${MAX_ACCUMULATOR_SIZE} entries, flushing all`);
-    if (db) {
-      for (const [id] of accumulators) {
-        flushAccessCounts(id);
-      }
-    }
-    accumulators.clear();
+    flushAllRetainingFailures();
   }
 
   const current = accumulators.get(memoryId) || 0;
@@ -246,13 +258,9 @@ function calculateUsageBoost(accessCount: number, lastAccessed: number | null): 
  * Reset all accumulators.
  */
 function reset(): void {
-  // Flush remaining accumulators before reset
-  if (db) {
-    for (const [id] of accumulators) {
-      flushAccessCounts(id);
-    }
-  }
-  accumulators.clear();
+  // Flush remaining accumulators, retaining any whose flush failed so a transient
+  // error does not silently drop accumulated counts (consistent with trackAccess).
+  flushAllRetainingFailures();
 }
 
 /* ───────────────────────────────────────────────────────────────

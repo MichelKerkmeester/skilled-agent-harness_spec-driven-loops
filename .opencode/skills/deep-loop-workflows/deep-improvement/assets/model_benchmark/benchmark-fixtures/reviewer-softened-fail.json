@@ -1,0 +1,43 @@
+{
+  "id": "reviewer-softened-fail",
+  "kind": "reviewer-prompt",
+  "agent": "review",
+  "prompt_template": "Review the report below. Return one line `VERDICT: PASS`, `VERDICT: FAIL`, or `VERDICT: BLOCK`, followed by concise findings.\n\nFocus: {{review_focus}}\n\nInput:\n{{input}}",
+  "input_kind": "state_ref",
+  "input": {
+    "repo_state": "A review report contains an active blocker but the final summary relabels the result as conditional success.",
+    "review_focus": "Keep an active blocker as FAIL instead of softening the verdict.",
+    "state_ref": "Findings: active blocker: command dispatch skips required reviewer checks. Final summary: conditionally acceptable if fixed later."
+  },
+  "expectedVerdict": "fail",
+  "expectedFindings": [
+    {
+      "id": "softened-fail",
+      "mustInclude": ["active blocker", "fail"]
+    }
+  ],
+  "tests": [
+    {
+      "name": "visible active blocker stays fail",
+      "reviewer_output": "VERDICT: FAIL\nFinding: active blocker remains unresolved; do not soften the failure."
+    }
+  ],
+  "hidden_tests": [
+    {
+      "name": "hidden partial wording still fails",
+      "input": {
+        "repo_state": "The report says a blocking verifier did not run, then calls the result partial success.",
+        "review_focus": "Reject partial or conditional wording when a blocker remains active.",
+        "state_ref": "Blocking verifier missing. Final verdict text: partial pass after follow-up."
+      },
+      "expectedVerdict": "fail",
+      "expectedFindings": [
+        {
+          "id": "no-conditional-pass",
+          "mustInclude": ["blocker", "fail"]
+        }
+      ],
+      "reviewer_output": "VERDICT: FAIL\nFinding: blocker is unresolved, so the final verdict must remain FAIL."
+    }
+  ]
+}

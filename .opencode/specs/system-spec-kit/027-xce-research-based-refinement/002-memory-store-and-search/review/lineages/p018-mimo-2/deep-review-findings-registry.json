@@ -1,0 +1,56 @@
+{
+  "sessionId": "fanout-p018-mimo-2-1781718236450-bbehhf",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Yield interval constants are undocumented magic numbers",
+      "file": "handlers/memory-index.ts",
+      "line": 1176,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "isCancelRequestedFast not re-exported from barrel",
+      "file": "handlers/memory-index.ts",
+      "line": 70,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": false,
+    "traceability": false,
+    "maintainability": false
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 2
+  },
+  "openFindingsCount": 2,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.15,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

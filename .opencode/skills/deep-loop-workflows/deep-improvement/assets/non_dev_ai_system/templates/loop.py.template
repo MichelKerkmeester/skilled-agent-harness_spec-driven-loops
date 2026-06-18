@@ -1,0 +1,669 @@
+#!/usr/bin/env python3
+"""Guarded-autonomous benchmark-and-refine loop for {{SYSTEM_NAME}}.
+
+The loop the whole initiative was building. One iteration:
+
+  1. PRE-FLIGHT GATES   gates.py check (frozen scoring surface intact) + derive.py check
+                        (copies in sync). Either failing is a kill-switch HALT.
+  2. BENCHMARK          run.sh for each variant x fixture -> fresh <DELIVERABLE> outputs.
+  3. RE-GRADE           regrade.py on a DIFFERENT model family -> independent score + floors.
+  4. ANALYZE GAP        find the weakest dimension / floor failures -> a TECHNIQUE-doc target
+                        (never the frozen scoring surface).
+  5. PROPOSE            dispatch the proposer in an isolated git worktree to draft a bounded
+                        edit to that technique doc only.
+  6. GUARDED PROMOTE-N  in the worktree: gates.py check (candidate must NOT touch the frozen
+                        surface), apply to the CLI source, derive.py (regenerate copies),
+                        re-benchmark + re-grade -> must improve the INDEPENDENT
+                        grade with no floor regression. The pre-edit held-out baseline is
+                        measured once per session and reused on later iterations (HEAD cannot
+                        change mid-run; candidate measurements are never cached). Pass -> keep
+                        the worktree for operator merge and end the session (re-sampling
+                        unchanged HEAD could not observe the kept improvement); fail ->
+                        promote_reject and the loop continues to the next iteration.
+  7. CONVERGENCE        continue only while independent score is non-decreasing AND the
+                        phantom-gap is shrinking AND zero frozen-surface diff AND iter < max.
+
+The loop optimizes the INDEPENDENT grade, never the model's self-reported score (proven inflated
+by ~6 points). HARD kill-switches that HALT the loop: frozen-surface drift, derivation drift,
+an HVR violation in candidate held-out output, grader==proposer family, and the single-writer
+lock. A new floor breach or held-out regression is a promote_reject - the candidate is dropped
+and the loop CONTINUES to the next iteration; the first accepted promotion or the iteration
+ceiling ends the session.
+
+  loop.py --dry-run            exercise gates + gap analysis on existing grades, no dispatches
+  loop.py --run [--max-iters N]   the real autonomous loop (dispatches + worktree promotion)
+
+Dispatch discipline (per run.sh / regrade.py): single dispatch per call, </dev/null, never
+pkill 'opencode run'.
+"""
+import argparse
+import hashlib
+import json
+import os
+import re
+import subprocess
+import sys
+import time
+from typing import Any, Dict, List, Optional, Tuple
+
+# Layout: <packaging>/benchmark/_loop/loop.py -> packaging root is three levels up
+HERE = os.path.dirname(os.path.abspath(__file__))
+CW = os.environ.get("{{PACKAGING_ROOT_ENV}}") or os.path.dirname(os.path.dirname(HERE))
+# The repo (or worktree) root containing the packaging
+BARTER = os.path.dirname(CW)
+BENCH = os.path.join(CW, "benchmark")
+GATES = os.path.join(CW, "benchmark", "_gates")
+GRADER = os.path.join(BENCH, "grader")
+STATE_DIR = os.path.join(HERE, "state")
+JOURNAL = os.path.join(STATE_DIR, "loop-journal.jsonl")
+REGRADE_JSONL = os.path.join(BENCH, "results", "regrade.jsonl")
+
+PROPOSER_MODEL = os.environ.get("PROPOSER_MODEL", "{{PROPOSER_MODEL}}")
+GRADER_MODEL = os.environ.get("GRADER_MODEL", "{{GRADER_MODEL}}")
+PROPOSER_FAMILY = "{{PROPOSER_FAMILY}}"
+
+FIXTURES = os.environ.get("LOOP_FIXTURES", {{FIXTURES_VISIBLE_CSV}}).split(",")
+HELD_OUT = os.environ.get("LOOP_HELD_OUT", {{FIXTURES_HELD_OUT_CSV}}).split(",")
+VARIANTS = os.environ.get("LOOP_VARIANTS", {{FIXTURES_VARIANTS_CSV}}).split(",")
+SAMPLES = int(os.environ.get("LOOP_SAMPLES", "3"))
+MAX_ITERS = 5
+TARGET_INDEP = {{SHIP_THRESHOLD}}
+
+FLOORS = {{DIMENSIONS_FLOORS}}
+MAXES = {{DIMENSIONS_MAXES}}
+
+DIM_TO_DOC = {{TECHNIQUE_DOC_MAP}}
+
+
+class KillSwitch(Exception):
+    """Raised on any council kill-switch. The loop halts and promotes nothing."""
+
+
+def sh(cmd: List[str], env: Optional[Dict[str, str]] = None, timeout: int = 900) -> subprocess.CompletedProcess:
+    """Run a subprocess with captured output, merged env, and no stdin."""
+    e = dict(os.environ)
+    e.update(env or {})
+    return subprocess.run(cmd, capture_output=True, text=True, env=e, timeout=timeout, stdin=subprocess.DEVNULL)
+
+
+def journal(event: str, **fields: Any) -> Dict[str, Any]:
+    """Append a timestamped event record to the loop journal."""
+    os.makedirs(STATE_DIR, exist_ok=True)
+    rec = {"ts": int(time.time()), "event": event, **fields}
+    with open(JOURNAL, "a", encoding="utf-8") as f:
+        f.write(json.dumps(rec, ensure_ascii=False) + "\n")
+    return rec
+
+
+# ---------------------------------------------------------------- state: lock / resume / taxonomy
+LOCK = os.path.join(STATE_DIR, "loop.lock")
+# Seconds before a lock is considered stale
+LOCK_TTL = int(os.environ.get("LOOP_LOCK_TTL", "7200"))
+# Required held-out improvement beyond non-regression
+ACCEPT_MARGIN = float(os.environ.get("LOOP_ACCEPT_MARGIN", "0"))
+
+# Deep-improvement journal stop-reason taxonomy; loop-local reasons map onto it
+CANONICAL_REASONS = {"converged", "maxIterationsReached", "blockedStop", "manualStop", "error", "stuckRecovery"}
+REASON_MAP = {"noTarget": "converged", "promotedStop": "converged", "killSwitch": "blockedStop", "visibleUnmeasurable": "error"}
+
+
+def _pid_alive(pid: Optional[int]) -> bool:
+    """Check whether a process with the given PID is still running."""
+    try:
+        os.kill(pid, 0); return True
+    except (ProcessLookupError, PermissionError, TypeError):
+        return False
+
+
+def acquire_lock():
+    """Single-writer lock (mirrors deep-loop-runtime's loop-lock contract): refuse a second
+    concurrent run; evict a stale lock (dead pid or TTL exceeded)."""
+    os.makedirs(STATE_DIR, exist_ok=True)
+    for _ in range(3):
+        try:
+            fd = os.open(LOCK, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+            os.write(fd, json.dumps({"pid": os.getpid(), "ts": int(time.time()), "ttl": LOCK_TTL}).encode())
+            os.close(fd)
+            return
+        except FileExistsError:
+            pass
+        try:
+            held = json.load(open(LOCK, encoding="utf-8"))
+        except Exception:
+            held = {}
+        stale = (not _pid_alive(held.get("pid"))) or (time.time() - held.get("ts", 0) > LOCK_TTL)
+        if not stale:
+            raise KillSwitch(f"another loop run is active (pid {held.get('pid')}, lock {LOCK}); refusing concurrent run")
+        journal("lock_evicted", stale_pid=held.get("pid"), age_s=int(time.time() - held.get("ts", 0)))
+        try:
+            os.remove(LOCK)
+        except FileNotFoundError:
+            pass
+    raise KillSwitch("could not acquire the loop lock after stale eviction retries")
+
+
+def release_lock() -> None:
+    try:
+        held = json.load(open(LOCK, encoding="utf-8"))
+        if held.get("pid") == os.getpid():
+            os.remove(LOCK)
+    except FileNotFoundError:
+        pass
+    except Exception:
+        pass
+
+
+def end_session(reason: str, **fields: Any) -> None:
+    canonical = reason if reason in CANONICAL_REASONS else REASON_MAP.get(reason, "error")
+    journal("session_end", reason=reason, canonical=canonical, **fields)
+
+
+def _config_hash() -> str:
+    # R8-P2-001
+    blob = json.dumps([FIXTURES, VARIANTS, HELD_OUT, SAMPLES, GRADER_MODEL, PROPOSER_MODEL])
+    return hashlib.sha256(blob.encode()).hexdigest()[:12]
+
+
+def head_sha() -> str:
+    return sh(["git", "-C", BARTER, "rev-parse", "HEAD"]).stdout.strip()
+
+
+def read_journal() -> List[Dict[str, Any]]:
+    if not os.path.exists(JOURNAL):
+        return []
+    out = []
+    for l in open(JOURNAL, encoding="utf-8"):
+        try:
+            out.append(json.loads(l))
+        except Exception:
+            continue
+    return out
+
+
+def find_orphans(recs: List[Dict[str, Any]]) -> List[int]:
+    """Return session_start timestamps with no session_end after them (killed runs)."""
+    orphans, open_ts = [], None
+    for r in recs:
+        if r["event"] == "session_start":
+            if open_ts is not None:
+                orphans.append(open_ts)
+            open_ts = r["ts"]
+        elif r["event"] == "session_end" and open_ts is not None:
+            open_ts = None
+    if open_ts is not None:
+        orphans.append(open_ts)
+    return orphans
+
+
+def sweep_stale_worktrees(kept_paths: set) -> None:
+    """Remove loop-owned worktrees leaked by killed runs. NEVER touches kept (promotion-accepted)
+    worktrees or anything not under .worktrees/{{WORKTREE_PREFIX}}*."""
+    wl = sh(["git", "-C", BARTER, "worktree", "list", "--porcelain"]).stdout
+    prefix = os.path.join(BARTER, ".worktrees", "{{WORKTREE_PREFIX}}")
+    for line in wl.splitlines():
+        if not line.startswith("worktree "):
+            continue
+        path = line.split(" ", 1)[1]
+        if path.startswith(prefix) and path not in kept_paths:
+            sh(["git", "-C", BARTER, "worktree", "remove", "--force", path])
+            journal("worktree_swept", path=path)
+
+
+def build_resume_cache(recs: List[Dict[str, Any]], cfg: str, sha: str) -> Dict[str, Any]:
+    """Per-sample grade cache from orphaned sessions. Valid only for the same config hash and the
+    same packaging HEAD (content identical). Candidate-phase grades are never reused (they depend
+    on a proposer edit that died with its worktree)."""
+    cache = {}
+    for r in recs:
+        if r["event"] == "grade" and r.get("cfg") == cfg and r.get("head") == sha \
+                and r.get("phase") in ("visible", "baseline"):
+            cache[r["key"]] = r["rec"]
+    return cache
+
+
+# ---------------------------------------------------------------- guardrails
+def assert_grader_family() -> None:
+    if PROPOSER_FAMILY in GRADER_MODEL.lower():
+        raise KillSwitch(f"grader '{GRADER_MODEL}' is the proposer family '{PROPOSER_FAMILY}'")
+
+
+def preflight_gates(root: str = CW) -> bool:
+    """Frozen scoring surface intact + copies in sync. Either failing halts the loop."""
+    env = {"{{PACKAGING_ROOT_ENV}}": root}
+    g = sh(["python3", f"{root}/benchmark/_gates/gates.py", "check"], env=env)
+    if g.returncode != 0:
+        raise KillSwitch("frozen scoring surface drift:\n" + g.stdout.strip())
+    d = sh(["python3", f"{root}/benchmark/_gates/derive.py", "check"], env=env)
+    if d.returncode != 0:
+        raise KillSwitch("copy derivation drift:\n" + d.stdout.strip())
+    return True
+
+
+# ---------------------------------------------------------------- phases
+def benchmark_one(v: str, t: str, run: int, root: str) -> str:
+    """One run-tagged benchmark dispatch -> a fresh <DELIVERABLE> output path."""
+    # Repo or worktree root that contains the packaging
+    barter_root = os.path.dirname(root)
+    r = sh(["bash", f"{root}/benchmark/run.sh", v, t, str(run)], env={"BENCH_BARTER": barter_root}, timeout=900)
+    out = f"{root}/benchmark/results/{v}/{t}.run{run}.txt"
+    journal("benchmark", variant=v, fixture=t, run=run, rc=r.returncode, out=out)
+    return out
+
+
+def _aggregate(key: str, recs: List[Dict[str, Any]]) -> Dict[str, Any]:
+    """Fold N per-run grade records into one noise-robust grade for a (variant,fixture) pair."""
+    scored = [r for r in recs if r.get("independent_meqt") is not None]
+    n = len(scored)
+    mean = lambda vals: (sum(vals) / len(vals)) if vals else None
+    dims = {}
+    for k in FLOORS:
+        ds = [(r.get("dims") or {}).get(k) for r in scored]
+        ds = [d for d in ds if isinstance(d, (int, float))]
+        if ds:
+            dims[k] = mean(ds)
+    scores = [r["independent_meqt"] for r in scored]
+    m = mean(scores)
+    std = (sum((s - m) ** 2 for s in scores) / (n - 1)) ** 0.5 if n > 1 else (0.0 if n else None)
+    return {
+        "file": key,
+        "independent_meqt": m,
+        "self_meqt": mean([r["self_meqt"] for r in scored if r.get("self_meqt") is not None]),
+        "dims": dims,
+        "sample_scores": scores,
+        "std": std,
+        "grader_floors_met": all(r.get("grader_floors_met") for r in scored) if n else False,
+        "floor_pass_rate": (sum(1 for r in scored if r.get("grader_floors_met")) / n) if n else 0.0,
+        "hvr_lint_clean": all(r.get("hvr_lint_clean") for r in scored) if n else False,
+        "samples": n,
+    }
+
+
+def sample(fixtures: List[str], variants: List[str], root: str = CW, phase: str = "visible", it: int = 0, cache: Optional[Dict] = None) -> List[Dict[str, Any]]:
+    """SAMPLES runs per (variant,fixture) -> one aggregated grade per pair (mean indep + mean dims +
+    all-samples floor/hvr pass). Averaging makes the propose-or-decline decision noise-robust.
+    Each per-sample grade is journaled (event 'grade') keyed by (phase,iter,variant,fixture,run) so
+    a killed run can resume; cache hits skip the dispatch entirely."""
+    out, cfg, sha = [], _config_hash(), head_sha()
+    for v in variants:
+        for t in fixtures:
+            recs = []
+            for run in range(1, SAMPLES + 1):
+                # Iteration-agnostic: same HEAD across iterations (cfg+sha guarded)
+                key = f"{phase}:{v}:{t}:{run}"
+                if cache and key in cache:
+                    journal("grade_cached", key=key)
+                    recs.append(cache[key])
+                    continue
+                rs = regrade([benchmark_one(v, t, run, root)])
+                if rs:
+                    journal("grade", key=key, phase=phase, cfg=cfg, head=sha, rec=rs[0])
+                    recs.append(rs[0])
+            out.append(_aggregate(f"{v}/{t}", recs))
+    journal("sample", phase=phase, pairs=len(out), samples=SAMPLES)
+    return out
+
+
+def regrade(outputs: List[str]) -> List[Dict[str, Any]]:
+    assert_grader_family()
+    r = sh(["python3", f"{GRADER}/regrade.py", *outputs], env={"GRADER_MODEL": GRADER_MODEL}, timeout=1800)
+    recs = [json.loads(l) for l in r.stdout.splitlines() if l.strip().startswith("{")]
+    journal("regrade", grader=GRADER_MODEL, rc=r.returncode, n=len(recs))
+    return recs
+
+
+def load_grades() -> List[Dict[str, Any]]:
+    if not os.path.exists(REGRADE_JSONL):
+        return []
+    return [json.loads(l) for l in open(REGRADE_JSONL, encoding="utf-8") if l.strip()]
+
+
+def _dim_deficits(grades: List[Dict[str, Any]]) -> Tuple[Dict[str, float], Dict[str, int]]:
+    """Aggregate floor deficit per dimension across graded deliverables.
+    Uses per-dimension scores when present; else infers floor failures from grader notes."""
+    deficit = {k: 0.0 for k in FLOORS}
+    fails = {k: 0 for k in FLOORS}
+    for g in grades:
+        dims = g.get("dims") or {}
+        for k, floor in FLOORS.items():
+            v = dims.get(k)
+            if isinstance(v, (int, float)):
+                if v < floor:
+                    deficit[k] += (floor - v); fails[k] += 1
+            # Fall back to notes: "<X> floor fail/missed/missing"
+            else:
+                note = (g.get("grader_notes") or "").upper()
+                if f"{k} FLOOR" in note or f"{k}-FLOOR" in note:
+                    deficit[k] += 1; fails[k] += 1
+    return deficit, fails
+
+
+def analyze_gap(grades: List[Dict[str, Any]]) -> Optional[Dict[str, Any]]:
+    """Pick the worst dimension and the technique doc to refine. Never a scoring doc.
+    Default: only floor deficits are actionable (decline-when-clean). LOOP_POLISH=1 opts in to
+    lowest-margin targeting when all floors pass (margin = mean dim score minus its floor,
+    normalised by dim max so an 8-point dim compares fairly with a 3-point one)."""
+    if not grades:
+        return None
+    deficit, fails = _dim_deficits(grades)
+    worst = max(deficit, key=lambda k: (deficit[k], fails[k]))
+    if deficit[worst] == 0:
+        if os.environ.get("LOOP_POLISH") != "1":
+            return {"dimension": None, "rationale": "no floor deficits; decline-when-clean (set LOOP_POLISH=1 to target the lowest-margin dimension)"}
+        margins = {}
+        for k in FLOORS:
+            vals = [(g.get("dims") or {}).get(k) for g in grades]
+            vals = [v for v in vals if isinstance(v, (int, float))]
+            if vals:
+                margins[k] = (sum(vals) / len(vals) - FLOORS[k]) / MAXES[k]
+        if not margins:
+            return {"dimension": None, "rationale": "no per-dimension scores available for polish targeting"}
+        # Smallest normalised margin above floor
+        worst = min(margins, key=lambda dim: margins[dim])
+        themes = [g.get("grader_notes") for g in grades if g.get("grader_notes")]
+        return {
+            "dimension": worst, "doc": DIM_TO_DOC[worst], "deficit": 0.0, "polish": True,
+            "failing_deliverables": 0, "all_deficits": deficit, "grader_themes": themes,
+            "instruction": (
+                f"All floors pass; this is a POLISH pass. {worst} has the lowest margin above its floor "
+                f"(floor {FLOORS[worst]}/{MAXES[worst]}). Strengthen the TECHNIQUE guidance in "
+                f"'{os.path.basename(DIM_TO_DOC[worst])}' to raise {worst} without regressing other dimensions. "
+                f"Do NOT touch any scoring rubric, HVR rule, or floor."
+            ),
+        }
+    themes = [g.get("grader_notes") for g in grades if g.get("grader_notes")]
+    return {
+        "dimension": worst,
+        "doc": DIM_TO_DOC[worst],
+        "deficit": deficit[worst],
+        "failing_deliverables": fails[worst],
+        "all_deficits": deficit,
+        "grader_themes": themes,
+        "instruction": (
+            f"The independent grader fails the {worst} floor (need >= {FLOORS[worst]}/{MAXES[worst]}) "
+            f"on {fails[worst]} of {len(grades)} deliverables. Strengthen the TECHNIQUE guidance in "
+            f"'{os.path.basename(DIM_TO_DOC[worst])}' so generated output reliably clears it. Do NOT touch "
+            f"any scoring rubric, HVR rule, or floor — only the how-to-write-better guidance."
+        ),
+    }
+
+
+def propose(target: Dict[str, Any], worktree: str) -> bool:
+    """Dispatch the proposer (in the worktree) to draft a bounded edit to the technique doc."""
+    doc = os.path.join(worktree, target["doc"])
+    prompt = (
+        f"You are refining ONE {{SYSTEM_NAME_SHORT}} technique doc to close a measured quality gap. "
+        f"{target['instruction']}\n\nGrader feedback themes:\n- " + "\n- ".join(target["grader_themes"][:6]) +
+        f"\n\nEdit ONLY this file: {doc}\nFIRST check whether any existing guidance in this file plausibly "
+        f"CAUSES the measured deficit; removing or correcting harmful guidance is as valid as adding new "
+        f"guidance. Then make ONE small, surgical change (remove, correct or add a concrete requirement). "
+        f"Do NOT add banned HVR vocabulary, do NOT touch the scoring rubric or floors, do NOT edit any other "
+        f"file. Apply the edit directly with your file tools."
+    )
+    r = sh(["opencode", "run", "--model", PROPOSER_MODEL, "--variant", "high", "--dir", worktree, prompt], timeout=900)
+    journal("propose", doc=target["doc"], rc=r.returncode)
+    return r.returncode == 0
+
+
+def measure(fixtures: List[str], variants: List[str], root: str, phase: str = "visible", it: int = 0, cache: Optional[Dict] = None) -> Tuple[Optional[float], Optional[bool], Optional[bool], int]:
+    """SAMPLES-averaged benchmark + re-grade -> (avg_indep, all_floors_ok, hvr_ok, n_measured).
+    Returns None for indep/floors/hvr when nothing was gradeable (n_measured == 0) so callers can
+    distinguish 'no gradeable output' from an actual failure."""
+    grades = sample(fixtures, variants, root, phase=phase, it=it, cache=cache)
+    scored = [g for g in grades if g.get("independent_meqt") is not None]
+    n = len(scored)
+    if not n:
+        return None, None, None, 0
+    indep = sum(g["independent_meqt"] for g in scored) / n
+    floors_ok = all(g.get("grader_floors_met") for g in scored)
+    hvr_ok = all(g.get("hvr_lint_clean") for g in scored)
+    return indep, floors_ok, hvr_ok, n
+
+
+def guarded_promote(worktree: str, base_indep: Optional[float], base_floors_ok: Optional[bool]) -> Tuple[bool, Optional[float]]:
+    """In the worktree (post-edit): gate the candidate, regenerate copies, re-grade held-out vs the
+    pre-edit baseline. Returns (promoted, indep). Raises KillSwitch only on a hard safety breach."""
+    env = {"{{PACKAGING_ROOT_ENV}}": worktree}
+    # 1. KILL-SWITCH: the candidate must not have touched the frozen scoring surface
+    g = sh(["python3", f"{worktree}/benchmark/_gates/gates.py", "check"], env=env)
+    if g.returncode != 0:
+        raise KillSwitch("candidate touched the frozen scoring surface:\n" + g.stdout.strip())
+    # 2. Regenerate the derived copies from the edited CLI source, then verify in-sync
+    dr = sh(["python3", f"{worktree}/benchmark/_gates/derive.py", "derive"], env=env)
+    if dr.returncode != 0:
+        raise KillSwitch("derive regeneration failed in the worktree:\n" + (dr.stdout + dr.stderr).strip()[-300:])
+    d = sh(["python3", f"{worktree}/benchmark/_gates/derive.py", "check"], env=env)
+    if d.returncode != 0:
+        raise KillSwitch("derived copies out of sync after regeneration:\n" + d.stdout.strip())
+    # 3. Candidate held-out evidence vs the pre-edit baseline (candidate grades are never cached:
+    #    they depend on this worktree's proposer edit)
+    indep, floors_ok, hvr_ok, n = measure(HELD_OUT, VARIANTS, worktree, phase="candidate")
+    # Nothing gradeable -> cannot evaluate (not a failure)
+    if n == 0:
+        journal("promote_reject", reason="held-out unmeasurable (no gradeable deliverable)"); return False, None
+    # A real HVR violation in graded output
+    if hvr_ok is False:
+        raise KillSwitch("HVR lint failed on the candidate's held-out output")
+    # Candidate introduced a NEW floor breach
+    if base_floors_ok and floors_ok is False:
+        journal("promote_reject", reason="new floor breach", indep=indep); return False, indep
+    # Held-out must not regress; with LOOP_ACCEPT_MARGIN > 0 it must IMPROVE beyond the noise band
+    if base_indep is not None and indep < base_indep - 0.01 + ACCEPT_MARGIN:
+        journal("promote_reject", reason="held-out regression or below accept margin",
+                indep=indep, baseline=base_indep, margin=ACCEPT_MARGIN); return False, indep
+    journal("promote_accept", indep=indep, baseline=base_indep, margin=ACCEPT_MARGIN); return True, indep
+
+
+def check_convergence(history: List[Dict[str, Any]], max_iters: int = MAX_ITERS) -> str:
+    if len(history) >= max_iters:
+        return "maxIterationsReached"
+    if len(history) >= 3:
+        last3 = [h["indep"] for h in history[-3:]]
+        gaps3 = [h["gap"] for h in history[-3:]]
+        improving = last3[-1] > last3[0] + 0.1
+        gap_shrinking = gaps3[-1] < gaps3[0] - 0.1
+        if last3[-1] >= TARGET_INDEP and not improving and not gap_shrinking:
+            return "converged"
+        plateaued = (max(last3) - min(last3)) < 0.5
+        if last3[-1] < TARGET_INDEP and plateaued and not gap_shrinking:
+            return "stuckRecovery"
+    return "continue"
+
+
+# ---------------------------------------------------------------- drivers
+def dry_run() -> None:
+    print("== PRE-FLIGHT GATES ==")
+    try:
+        preflight_gates(); print("  frozen surface + copy derivation: OK")
+    except KillSwitch as e:
+        print(f"  KILL-SWITCH: {e}"); return
+    assert_grader_family(); print(f"  grader '{GRADER_MODEL}' != proposer family '{PROPOSER_FAMILY}': OK")
+    print("\n== LOAD GRADES (existing regrade.jsonl) ==")
+    grades = load_grades()
+    for g in grades:
+        print(f"  {g['file']:42} indep={g.get('independent_meqt')} floors={g.get('grader_floors_met')} dims={g.get('dims')}")
+    print("\n== ANALYZE GAP ==")
+    target = analyze_gap(grades)
+    if not target:
+        print("  no grades to analyze"); return
+    print(json.dumps(target, ensure_ascii=False, indent=2))
+    print("\n== WOULD PROPOSE ==")
+    if target.get("dimension"):
+        print(f"  dispatch proposer ({PROPOSER_MODEL}) in a worktree to edit:")
+        print(f"    {target['doc']}")
+        print(f"  then guarded-promote-N (gates -> derive -> re-grade held-out {HELD_OUT}) or rollback.")
+    print("\n(dry-run: no dispatches, no edits, no promotion)")
+
+
+def probe_provider(model: str) -> None:
+    """T11 auth pre-flight: one minimal dispatch before any batch. An expired credential must
+    fail the run in one probe, not burn N benchmark/grading dispatches returning auth errors."""
+    r = sh(["opencode", "run", "--model", model, "Reply with exactly: OK"], timeout=180)
+    ok = r.returncode == 0 and "invalid api key" not in (r.stdout + r.stderr).lower()
+    journal("provider_probe", model=model, ok=ok)
+    if not ok:
+        raise KillSwitch(f"provider probe failed for '{model}': " + (r.stdout + r.stderr).strip()[-200:])
+
+
+def lint_held_out() -> None:
+    """T6: held-out fixtures must be gradeable (deliverable-producing). Classify from RECORDED
+    outputs; fixtures whose every recorded output lacks a <DELIVERABLE> region fail fast before
+    any paid dispatch. Unrecorded fixtures pass (the first run records them)."""
+    bad = []
+    for v in VARIANTS:
+        for t in HELD_OUT:
+            d = os.path.join(BENCH, "results", v)
+            # R8-P2-002
+            run_re = re.compile(r"^" + re.escape(t) + r"\.run\d+\.")
+            outs = [f for f in os.listdir(d) if run_re.match(f)] if os.path.isdir(d) else []
+            if outs and not any("<DELIVERABLE>" in open(os.path.join(d, f), encoding="utf-8", errors="replace").read()
+                                for f in outs):
+                bad.append(f"{v}/{t}")
+    if bad:
+        raise KillSwitch("held-out fixtures are not gradeable (no <DELIVERABLE> in any recorded output): "
+                         + ", ".join(bad) + " — interactive/uncontracted fixtures cannot gate promotion (T6)")
+
+
+def staleness_pathspecs() -> List[str]:
+    """Pathspecs whose uncommitted changes would make a HEAD worktree stale for this packaging:
+    the knowledge base itself PLUS the real targets of its symlinked (shared global) docs, which
+    live outside the packaging dir and would otherwise dodge the dirty check."""
+    kb = os.path.join(CW, "knowledge base")
+    specs = {os.path.relpath(kb, BARTER)}
+    for dirpath, _, files in os.walk(kb):
+        for f in files:
+            p = os.path.join(dirpath, f)
+            if os.path.islink(p):
+                real = os.path.realpath(p)
+                if real.startswith(BARTER + os.sep):
+                    specs.add(os.path.relpath(real, BARTER))
+    return sorted(specs)
+
+
+def run(max_iters: int) -> None:
+    dirty = sh(["git", "-C", BARTER, "status", "--porcelain", "--", *staleness_pathspecs()]).stdout.strip()
+    if dirty:
+        raise KillSwitch("uncommitted changes in the knowledge base or its shared global doc targets — "
+                         "commit first; worktree promotion branches from HEAD and would otherwise be stale:\n"
+                         + dirty[:500])
+    acquire_lock()
+    history = []
+    # (indep, floors_ok, n) measured once per session: --run refuses a dirty tree and an accepted
+    # promotion ends the session, so HEAD — and with it the held-out baseline — cannot change mid-run
+    heldout_base = None
+    try:
+        # Recovery from killed runs: mark orphans, sweep their leaked worktrees, build the resume cache
+        prior = read_journal()
+        orphans = find_orphans(prior)
+        for o in orphans:
+            journal("session_orphaned", started=o)
+        kept = {r.get("path") for r in prior if r.get("event") == "worktree_kept"}
+        sweep_stale_worktrees(kept)
+        cfg, sha = _config_hash(), head_sha()
+        cache = build_resume_cache(prior, cfg, sha) if orphans else {}
+        if cache:
+            journal("resume", cached_grades=len(cache))
+        # T6: gradeable held-out gate, pre-dispatch
+        lint_held_out()
+        # T11: auth pre-flight before the batch
+        if os.environ.get("LOOP_SKIP_PROBE") != "1":
+            probe_provider(PROPOSER_MODEL)
+            probe_provider(GRADER_MODEL)
+        journal("session_start", proposer=PROPOSER_MODEL, grader=GRADER_MODEL,
+                fixtures=FIXTURES, held_out=HELD_OUT, cfg=cfg, head=sha)
+        for i in range(max_iters):
+            preflight_gates()
+            grades = sample(FIXTURES, VARIANTS, phase="visible", it=i, cache=cache)
+            scored = [g for g in grades if g.get("independent_meqt") is not None]
+            if not scored:
+                end_session("visibleUnmeasurable", detail="visible sampling produced no gradeable output (measurement gap, not a quality signal)", history=history)
+                print("STOP: visible sampling unmeasurable"); return
+            indep = sum(g["independent_meqt"] for g in scored) / len(scored)
+            selfs = [g["self_meqt"] for g in grades if g.get("self_meqt") is not None]
+            self_avg = sum(selfs) / max(1, len(selfs))
+            gap = self_avg - indep
+            history.append({"iter": i, "indep": indep, "gap": gap})
+            journal("iteration", iter=i, indep=indep, phantom_gap=gap)
+            stop = check_convergence(history, max_iters)
+            if stop != "continue":
+                end_session(stop, history=history); print(f"STOP: {stop}"); return
+            target = analyze_gap(grades)
+            if not target or not target.get("dimension"):
+                end_session("noTarget", history=history); print("STOP: no target"); return
+            wt = make_worktree(i)
+            promoted = False
+            wt_base = None
+            try:
+                if heldout_base is None:
+                    base_indep, base_floors_ok, _, base_n = measure(HELD_OUT, VARIANTS, wt,
+                                                                    phase="baseline", it=i, cache=cache)
+                    journal("heldout_baseline", iter=i, indep=base_indep, floors_ok=base_floors_ok,
+                            n=base_n, cached=False)
+                    # Only a measurable baseline is worth keeping; an unmeasurable one is
+                    # re-tried fresh next iteration (dispatch output is stochastic)
+                    if base_n > 0:
+                        heldout_base = (base_indep, base_floors_ok, base_n)
+                else:
+                    base_indep, base_floors_ok, base_n = heldout_base
+                    journal("heldout_baseline", iter=i, indep=base_indep, floors_ok=base_floors_ok,
+                            n=base_n, cached=True)
+                if base_n == 0:
+                    journal("promote_skip", reason="held-out unmeasurable (baseline has no gradeable deliverable)")
+                elif propose(target, wt):
+                    promoted = guarded_promote(wt, base_indep, base_floors_ok)[0]
+                else:
+                    journal("promote_skip", reason="proposer dispatch failed (not a quality rejection)")
+            finally:
+                # Always clean up, even on KillSwitch
+                wt_base = cleanup_worktree(wt, keep=promoted)
+            journal("promotion", iter=i, doc=target["doc"], promoted=bool(promoted))
+            if promoted:
+                # Later iterations would re-sample unchanged HEAD and could never observe the
+                # kept (unmerged) improvement — burned dispatches with no promotable signal
+                end_session("promotedStop", worktree=wt_base, history=history)
+                print(f"STOP: promotedStop — kept worktree for operator merge: {wt_base}")
+                return
+        end_session("maxIterationsReached", history=history)
+    except KillSwitch as e:
+        end_session("killSwitch", detail=str(e), history=history)
+        print(f"KILL-SWITCH HALT: {e}")
+    except Exception as e:
+        end_session("error", detail=f"{type(e).__name__}: {e}", history=history)
+        raise
+    finally:
+        release_lock()
+
+
+def make_worktree(i: int) -> str:
+    base = os.path.join(BARTER, ".worktrees", f"{{WORKTREE_PREFIX}}{i}")
+    sh(["git", "-C", BARTER, "worktree", "add", "-d", base, "HEAD"])
+    # The packaging root inside the worktree, derived from CW so a renamed or relocated
+    # A packaging can never point the loop at a sibling packaging (deep-review R1-P1-001).
+    return os.path.join(base, os.path.basename(CW))
+
+
+def cleanup_worktree(wt_cw: str, keep: bool) -> str:
+    """Remove (or keep) the iteration worktree; returns its base path for operator messaging."""
+    # R8-P2-003: walk up to the directory whose PARENT is .worktrees instead of one dirname() hop.
+    base = wt_cw
+    while os.path.basename(os.path.dirname(base)) != ".worktrees" and base != os.path.dirname(base):
+        base = os.path.dirname(base)
+    if keep:
+        journal("worktree_kept", path=base); return base
+    sh(["git", "-C", BARTER, "worktree", "remove", "--force", base])
+    return base
+
+
+def main() -> None:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--run", action="store_true")
+    ap.add_argument("--max-iters", type=int, default=MAX_ITERS)
+    a = ap.parse_args()
+    if a.run:
+        run(a.max_iters)
+    else:
+        dry_run()
+
+
+if __name__ == "__main__":
+    main()

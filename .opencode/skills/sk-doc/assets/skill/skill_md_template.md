@@ -1,6 +1,13 @@
 ---
 title: SKILL.md File Templates - Creation Guide
 description: Templates and guidelines for creating effective SKILL.md files for AI agent skills with complete scaffolds and section guidance.
+trigger_phrases:
+  - "skill md template"
+  - "skill file scaffold"
+  - "skill frontmatter requirements"
+  - "skill section guidance"
+importance_tier: normal
+contextType: general
 ---
 
 # SKILL.md File Templates - Creation Guide
@@ -1035,7 +1042,7 @@ mode_detection:
 ## 5. COMMON PITFALLS
 
 For the complete list of 8 common pitfalls with before/after examples, see:
-→ **[skill_creation.md § 5. COMMON PITFALLS](../../references/skill_creation.md#5-common-pitfalls)**
+→ **[common_pitfalls.md](../../references/skill_creation/common_pitfalls.md)**
 
 **Quick Summary:**
 1. Generic descriptions → Be specific about capabilities

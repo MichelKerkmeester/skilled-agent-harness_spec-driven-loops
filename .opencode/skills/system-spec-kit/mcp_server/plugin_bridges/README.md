@@ -16,9 +16,9 @@ trigger_phrases:
 
 Current state:
 
-- Code-graph bridge lives at `.opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs`.
+- Spec-memory plugin bridge lives here as `mk-spec-memory-bridge.mjs` and routes through the daemon-backed `spec-memory.cjs` CLI.
 - Message-shape helpers for safe synthetic text-part insertion live here.
-- Skill advisor subprocess bridge with native and local fallback paths lives here.
+- Code-graph bridge lives at `.opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs`.
 
 ---
 
@@ -26,8 +26,8 @@ Current state:
 
 ```text
 plugin_bridges/
++-- mk-spec-memory-bridge.mjs              # Calls the spec-memory CLI front door for plugin payloads
 +-- spec-kit-opencode-message-schema.mjs    # Validates OpenCode message parts and markers
-+-- spec-kit-skill-advisor-bridge.mjs       # Calls advisor compat handlers over stdin and stdout
 `-- README.md
 ```
 
@@ -39,8 +39,8 @@ Note: the code-graph bridge was relocated to `.opencode/skills/system-code-graph
 
 | File | Responsibility |
 |---|---|
+| `mk-spec-memory-bridge.mjs` | Reads bridge input from stdin, calls `.opencode/bin/spec-memory.cjs` over the warm daemon CLI path, and emits one JSON response. |
 | `spec-kit-opencode-message-schema.mjs` | Defines message-anchor checks, synthetic text-part creation and unsafe part detection. |
-| `spec-kit-skill-advisor-bridge.mjs` | Reads bridge input from stdin, calls advisor compat modules and emits one JSON response. |
 
 ---
 

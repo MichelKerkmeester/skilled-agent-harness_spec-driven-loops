@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering",
+  "spec_folder": "skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering",
+  "parent_id": null,
+  "children_ids": [
+    "skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering/001-design-architecture-and-data-contract",
+    "skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering/002-repair-and-extend-sync-substrate",
+    "skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering/003-land-recommended-frameworks-data",
+    "skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering/004-model-hub-and-priority-profiles",
+    "skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering/005-backfill-remaining-profiles",
+    "skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering/006-thin-and-standardize-cli-cards",
+    "skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering/007-wire-precedence-and-crosslinks",
+    "skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering/008-validate-sweep-changelog-reindex",
+    "skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering/009-refine-hub-cli-connections",
+    "skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering/010-hub-doc-alignment-and-router",
+    "skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering/011-model-profiles-and-benchmark-merge",
+    "skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering/012-cli-doc-alignment",
+    "skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering/013-card-relocation-and-guard",
+    "skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering/014-doc-divider-sweep-and-sk-prompt-cleanup",
+    "skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering/015-deferred-cleanup-entangled-playbook-assets",
+    "skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering/016-sk-prompt-playbook-forkability-decouple"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "130-prompt-knowledge-layering",
+      "phase parent"
+    ],
+    "key_topics": [
+      "130-prompt-knowledge-layering",
+      "phase",
+      "parent",
+      "prompt-engineering",
+      "knowledge",
+      "across",
+      "skills",
+      "system",
+      "duplicated",
+      "structurally",
+      "inconsistent",
+      "poorly"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "research/research.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Prompt",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Establish",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Research",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "file",
+        "kind": "key_phrase",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. Research question",
+        "kind": "heading",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. Method",
+        "kind": "heading",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Prompt-engineering knowledge across the skills system is duplicated, structurally inconsistent, and poorly connected. The 7-framework table + CLEAR check are copy-pasted across the CLI quality cards even though a canonical card already exists; the card sync-checker is wired to a non-existent path and covers only 3 of 5 CLIs; per-model prompt-craft (MiniMax M3, MiMo V2.5 Pro, SWE-1.6, …) is stranded inside individual CLI skills with no single source of truth for \"model → best framework + scaffold + gotchas\"; and `sk-prompt-small-model` is referenced by zero CLI SKILL.md files while delegation rules contradict each other (cli-devin mandates sk-prompt; four others escalate to @prompt-improver).",
+    "created_at": "2026-06-02T18:04:09Z",
+    "last_save_at": "2026-06-17T19:57:23.738Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research/research.md"
+    ],
+    "last_active_child_id": "skilled-agent-orchestration/130-prompt-knowledge-layering/009-refine-hub-cli-connections",
+    "last_active_at": "2026-06-03T07:05:23.009Z"
+  }
+}

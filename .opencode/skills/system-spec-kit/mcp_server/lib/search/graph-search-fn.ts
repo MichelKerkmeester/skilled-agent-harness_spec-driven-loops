@@ -6,6 +6,7 @@
 
 import { sanitizeFTS5Query } from './bm25-index.js';
 import { queryHierarchyMemories } from './spec-folder-hierarchy.js';
+import { escapeLikePattern } from './vector-index-types.js';
 import { registerDatabaseRebindListener } from '../../core/db-state.js';
 
 import type Database from 'better-sqlite3';
@@ -260,8 +261,10 @@ function queryCausalEdgesLikeFallback(
   query: string,
   limit: number
 ): Array<Record<string, unknown>> {
-  const escaped = query.replace(/[%_]/g, '\\$&');
-  const likeParam = `%${escaped}%`;
+  // Use the shared escaper so a literal backslash in the query is neutralized
+  // (escaped first) consistently with every other LIKE site; the hand-rolled
+  // version below missed backslash, leaving a dangling ESCAPE introducer.
+  const likeParam = `%${escapeLikePattern(query)}%`;
   const oversampleLimit = limit * 3;
 
   const rows = (database.prepare(`
@@ -628,7 +631,7 @@ function computeDegreeScores(
  * Call this on causal edge mutations (insert, update, delete)
  * to ensure stale scores are not served.
  */
-// H20 FIX: Clear degree cache — clears for all DB instances
+// Clear degree cache — clears for all DB instances
 function clearDegreeCache(): void {
   degreeCachePerDb = new WeakMap<Database.Database, DegreeCacheState>();
   ftsTableAvailabilityPerDb = new WeakMap<Database.Database, boolean>();

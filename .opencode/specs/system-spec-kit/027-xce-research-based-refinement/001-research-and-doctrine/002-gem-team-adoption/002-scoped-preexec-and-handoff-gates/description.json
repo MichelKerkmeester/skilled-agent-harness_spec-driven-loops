@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption/002-scoped-preexec-and-handoff-gates",
+  "description": "Feature Specification: 002 — Scoped Pre-Execution & Handoff Gates",
+  "keywords": [
+    "feature",
+    "specification",
+    "002",
+    "scoped",
+    "pre-execution",
+    "handoff",
+    "gates"
+  ],
+  "lastUpdated": "2026-06-16T15:23:34.752Z",
+  "specId": "002",
+  "folderSlug": "scoped-preexec-and-handoff-gates",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "001-research-and-doctrine",
+    "002-gem-team-adoption"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

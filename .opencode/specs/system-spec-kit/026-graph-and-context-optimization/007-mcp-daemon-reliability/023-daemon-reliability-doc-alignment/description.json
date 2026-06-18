@@ -17,19 +17,22 @@
   "is_phase_parent": false,
   "children": [],
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/023-daemon-reliability-doc-alignment",
-  "description": "Align the operator-facing docs with the 018-022 daemon-reliability features, which a gpt-5.5 (cli-codex) doc audit + grep pre-scan found in zero surfaces. Adds 8 ENV_REFERENCE flag rows (launcher log / lease-probe retries / orphan-sweep / re-election), 5 feature_catalog entries (4 pipeline-architecture + 1 tooling) with index sections, 5 manual_testing_playbook scenarios (IDs 422-426) with big-table rows + the file-count self-check bump (386->391), a 419->425 cross-reference, and lifecycle rows / flag pointers in mcp_server/bin/root/database READMEs + SKILL.md. Authored via two @markdown agents (per-entry files, grep-verified) + orchestrator-owned indexes/counts. Counts match (391/325), 0 broken links, validate.sh --strict passes. Docs-only, no code change.",
+  "description": "Feature Specification: Daemon-reliability doc alignment",
   "keywords": [
-    "doc-alignment",
-    "feature-catalog",
-    "playbook",
-    "env-reference",
+    "feature",
+    "specification",
     "daemon-reliability",
-    "readme"
+    "doc",
+    "alignment"
   ],
-  "lastUpdated": "2026-06-07T18:10:00.000Z",
+  "lastUpdated": "2026-06-10T04:53:31.173Z",
   "specId": "023",
   "folderSlug": "daemon-reliability-doc-alignment",
-  "parentChain": [],
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "007-mcp-daemon-reliability"
+  ],
   "memorySequence": 0,
   "memoryNameHistory": []
 }

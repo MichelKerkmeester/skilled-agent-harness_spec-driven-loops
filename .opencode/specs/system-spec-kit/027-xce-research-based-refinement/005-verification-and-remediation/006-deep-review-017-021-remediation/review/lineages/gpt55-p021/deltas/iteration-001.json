@@ -1,0 +1,47 @@
+{
+  "type": "iteration",
+  "mode": "review",
+  "run": 1,
+  "iteration": 1,
+  "status": "complete",
+  "focus": "correctness",
+  "dimensions": [
+    "correctness"
+  ],
+  "filesReviewed": [
+    ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/021-cooperative-heavy-phases/spec.md",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/search/trigger-embedding-backfill.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+    ".opencode/bin/mk-spec-memory-launcher.cjs"
+  ],
+  "findingsSummary": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 0
+  },
+  "findingsNew": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 0
+  },
+  "findingDetails": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "correctness",
+      "finding_class": "contract_safety",
+      "content_hash": "bf6fbea0db8088d7588ca100c51b2f596cb17c7180fe69066cae95e3beaff635",
+      "evidence": [
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/021-cooperative-heavy-phases/spec.md:132-134",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/trigger-embedding-backfill.ts:173-180",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/trigger-embedding-backfill.ts:262-278"
+      ]
+    }
+  ],
+  "newFindingsRatio": 1,
+  "sessionId": "fanout-gpt55-p021-1781754954084-qylfz6",
+  "generation": 1,
+  "lineageMode": "new",
+  "timestamp": "2026-06-18T03:59:56Z",
+  "durationMs": 0
+}

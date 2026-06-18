@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/150-parent-nested-skill-pattern/001-rename-fix-and-shared-decision",
+  "spec_folder": "skilled-agent-orchestration/150-parent-nested-skill-pattern/001-rename-fix-and-shared-decision",
+  "parent_id": "skilled-agent-orchestration/150-parent-nested-skill-pattern",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-loop-workflows folder rename fix",
+      "deep- prefix packet rename",
+      "shared stays in deep-loop-workflows",
+      "deep-loop-workflows rename fix plan",
+      "parent-nested-skill-pattern phase 001 plan",
+      "deep- prefix sweep plan",
+      "deep-loop-workflows rename fix tasks",
+      "parent-nested-skill-pattern phase 001 tasks",
+      "deep- prefix sweep tasks",
+      "deep-loop-workflows rename fix checklist",
+      "parent-nested-skill-pattern phase 001 checklist",
+      "deep- prefix sweep verification"
+    ],
+    "key_topics": [
+      "deep-loop-workflows",
+      "folder",
+      "rename",
+      "fix",
+      "deep",
+      "prefix",
+      "packet",
+      "shared",
+      "stays",
+      "plan",
+      "parent-nested-skill-pattern",
+      "phase"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "decision-record.md",
+      "spec.md",
+      ".opencode/skills/deep-loop-workflows/mode-registry.json",
+      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+      ".opencode/skills/cli-opencode/references/destructive_scope_violations.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/deep-loop-workflows/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "destructive_scope_violations.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/references/destructive_scope_violations.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Questions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Deterministic",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parallel Groups",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Write Split Orchestrator",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 152 merge wired `deep-loop-workflows`'s internal references to bare packet names (`context/`, `research/`, `review/`, `improvement/`, `ai-council/`). The operator then renamed four of those folders to carry the `deep-` prefix that matches each packet's own `SKILL.md` `name:` — `context→deep-context`, `research→deep-research`, `review→deep-review`, `improvement→deep-improvement` — leaving `ai-council` as-is. Every reference to the four renamed paths is now broken: the `mode-registry.json` packet keys, the `/deep:*` command YAML assets, `deep-loop-runtime/scripts/fanout-run.cjs`'s loop-prompt SKILL.md paths, the hub `graph-metadata.json` `key_files`, the hub `SKILL.md`/`README.md`, and the internal docs inside each packet. Separately, the epic raised whether the packet-shared `shared/` directory belongs in the frozen `deep-loop-runtime` backend instead of in `deep-loop-workflows`.",
+    "created_at": "2026-06-15T09:09:33.216Z",
+    "last_save_at": "2026-06-15T09:09:33.216Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

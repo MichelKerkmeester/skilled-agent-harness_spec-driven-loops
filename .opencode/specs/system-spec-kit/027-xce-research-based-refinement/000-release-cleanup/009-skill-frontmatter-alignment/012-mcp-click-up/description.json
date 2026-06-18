@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/012-mcp-click-up",
+  "description": "Feature Specification: Phase 12: mcp-click-up Frontmatter Alignment",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "mcp-click-up",
+    "frontmatter",
+    "alignment"
+  ],
+  "lastUpdated": "2026-06-11T10:46:03.607Z",
+  "specId": "012",
+  "folderSlug": "mcp-click-up",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "000-release-cleanup",
+    "009-skill-frontmatter-alignment"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/145-mcp-open-design/012-catalog-playbook-realignment",
+  "description": "Feature Specification: Phase 12: catalog-playbook-realignment",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "catalog-playbook-realignment"
+  ],
+  "lastUpdated": "2026-06-17T11:16:05.142Z",
+  "specId": "012",
+  "folderSlug": "catalog-playbook-realignment",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "145-mcp-open-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

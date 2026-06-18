@@ -5,6 +5,7 @@ import * as handler from '../handlers/memory-crud';
 import * as core from '../core';
 import * as vectorIndex from '../lib/search/vector-index';
 import type { HealthArgs, StatsArgs } from '../handlers/memory-crud-types';
+import { getTokenBudget } from '../lib/architecture/layer-definitions';
 
 type ErrorLike = {
   name?: string;
@@ -232,11 +233,68 @@ describe('Handler Memory CRUD (T519) [deferred - requires DB test fixtures]', ()
   });
 
   describe('handleMemoryHealth', () => {
+    it('default health report omits exclusionAudit.entries but keeps status and diagnostics', async () => {
+      const result = await handler.handleMemoryHealth({});
+      const parsed = parseResponse(result);
+      const ea = (parsed.data as Record<string, unknown>)?.exclusionAudit as Record<string, unknown>;
+      expect(ea).toBeDefined();
+      expect(ea.entries).toBeUndefined();
+      expect(ea.status).toEqual(expect.any(String));
+      expect(Array.isArray(ea.diagnostics)).toBe(true);
+    });
+
+    it('includeFullReport restores exclusionAudit.entries', async () => {
+      const result = await handler.handleMemoryHealth({ includeFullReport: true });
+      const parsed = parseResponse(result);
+      const ea = (parsed.data as Record<string, unknown>)?.exclusionAudit as Record<string, unknown>;
+      expect(Array.isArray(ea.entries)).toBe(true);
+    });
+
+    it('default health report fits its token budget', async () => {
+      const result = await handler.handleMemoryHealth({});
+      const parsed = parseResponse(result);
+      const tokenCount = (parsed.meta as Record<string, unknown>)?.tokenCount;
+      expect(typeof tokenCount).toBe('number');
+      expect(tokenCount as number).toBeLessThanOrEqual(getTokenBudget('memory_health'));
+    });
+
+    it('memory_health carries a per-tool budget override that does not leak to siblings', () => {
+      expect(getTokenBudget('memory_health')).toBe(1500);
+      expect(getTokenBudget('memory_list')).toBe(1000);
+    });
     it('T519-H1: Health handler returns status', async () => {
       const result = await handler.handleMemoryHealth({});
       const parsed = parseResponse(result);
       expect(result.isError).toBe(false);
       expect(typeof parsed.data?.status).toBe('string');
+    });
+
+    it('Health handler exposes graph routing contribution counters', async () => {
+      const result = await handler.handleMemoryHealth({});
+      const parsed = parseResponse(result);
+      const routing = parsed.data?.routing;
+
+      expect(result.isError).toBe(false);
+      expect(routing).toEqual(expect.objectContaining({
+        graphChannelInvocationRate: expect.any(Number),
+        channelInvocationCounts: expect.objectContaining({
+          graph: expect.any(Number),
+          degree: expect.any(Number),
+        }),
+        channelInvocationRates: expect.objectContaining({
+          graph: expect.any(Number),
+          degree: expect.any(Number),
+        }),
+        graphContributionCounters: expect.objectContaining({
+          graphHits: expect.any(Number),
+          graphResultCount: expect.any(Number),
+          graphMultiSourceResults: expect.any(Number),
+        }),
+        degreeContributionCounters: expect.objectContaining({
+          degreeHits: expect.any(Number),
+          degreeResultCount: expect.any(Number),
+        }),
+      }));
     });
 
     it('T519-H3: Invalid reportMode returns error response', async () => {

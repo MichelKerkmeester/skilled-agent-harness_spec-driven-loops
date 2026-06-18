@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/003-storage-adapter-ports",
+  "description": "Storage Adapter Ports complete: five storage seams, conservative routing, fakes, contracts, and justified coupling exceptions",
+  "keywords": [
+    "feature",
+    "specification",
+    "storage",
+    "adapter",
+    "ports",
+    "five",
+    "divergence",
+    "seams"
+  ],
+  "lastUpdated": "2026-06-11T00:43:00.000Z",
+  "specId": "003",
+  "folderSlug": "storage-adapter-ports",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "004-shared-infrastructure"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -2,15 +2,15 @@
 title: "Webflow JavaScript Quality Standards"
 description: "Defensive code patterns for Webflow JS: CDN-safe initialization (MANDATORY), DOM safety, error handling, async, observers, validation, performance, animation quality, state management, cleanup/destroy, shared document listeners, WeakMap/WeakSet caching. Includes JS naming and initialization-pattern enforcement."
 trigger_phrases:
-  - "webflow javascript quality"
-  - "webflow js quality standards"
-  - "INIT_FLAG webflow"
-  - "INIT_DELAY_MS"
-  - "Webflow.push"
-  - "WeakMap webflow"
+  - "webflow javascript quality standards"
+  - "cdn safe initialization"
+  - "init flag webflow"
+  - "webflow push pattern"
+  - "weakmap caching webflow"
   - "shared document listener"
-  - "snake_case enforcement"
-  - "javascript initialization enforcement"
+  - "cleanup destroy pattern"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Webflow JavaScript Quality Standards

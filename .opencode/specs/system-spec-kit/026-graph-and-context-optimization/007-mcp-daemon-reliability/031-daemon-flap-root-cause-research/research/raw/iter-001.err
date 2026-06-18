@@ -1,0 +1,92 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m→ [0mSkill "system-spec-kit"
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/live-diagnosis.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/spec.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/003-daemon-reliability-research/spec.md[90m [offset=1, limit=1200][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/003-daemon-reliability-research/implementation-summary.md[90m [offset=1, limit=1200][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/017-daemon-disposal-flap-guard/spec.md[90m [offset=1, limit=1200][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/017-daemon-disposal-flap-guard/implementation-summary.md[90m [offset=1, limit=1200][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/018-persistent-launcher-log/spec.md[90m [offset=1, limit=1200][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/018-persistent-launcher-log/implementation-summary.md[90m [offset=1, limit=1200][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/019-dead-socket-reap-hardening/spec.md[90m [offset=1, limit=1200][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/019-dead-socket-reap-hardening/implementation-summary.md[90m [offset=1, limit=1200][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/020-code-index-reconnecting-proxy/spec.md[90m [offset=1, limit=1200][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/020-code-index-reconnecting-proxy/implementation-summary.md[90m [offset=1, limit=1200][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/021-orphan-sweep-stop-hook-activation/spec.md[90m [offset=1, limit=1400][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/021-orphan-sweep-stop-hook-activation/implementation-summary.md[90m [offset=1, limit=1400][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/022-daemon-ownership-reelection/spec.md[90m [offset=1, limit=1600][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/022-daemon-ownership-reelection/implementation-summary.md[90m [offset=1, limit=1600][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/026-daemon-reliability-followups/spec.md[90m [offset=1, limit=1600][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/026-daemon-reliability-followups/implementation-summary.md[90m [offset=1, limit=1600][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/027-reelection-default-on-rollout/spec.md[90m [offset=1, limit=1600][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/027-reelection-default-on-rollout/implementation-summary.md[90m [offset=1, limit=1600][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/028-live-session-reelection-validation/spec.md[90m [offset=1, limit=1600][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/028-live-session-reelection-validation/implementation-summary.md[90m [offset=1, limit=1600][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/029-cross-session-kill-scoping/spec.md[90m [offset=1, limit=1800][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/029-cross-session-kill-scoping/implementation-summary.md[90m [offset=1, limit=1800][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/030-client-side-reconnect-survival/spec.md[90m [offset=1, limit=1800][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/030-client-side-reconnect-survival/implementation-summary.md[90m [offset=1, limit=1800][0m
+[0m✱ [0mGlob ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/[0-9][0-9][0-9]-*/spec.md"[90m in . · 30 matches[0m
+[0m✱ [0mGlob ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/[0-9][0-9][0-9]-*/implementation-summary.md"[90m in . · 28 matches[0m
+[0m✱ [0mGrep "(?i)\b(defer(?:red|ral)?|by-decision|out of scope|known limitations?|open questions?|not yet|not run|runtime-unverified|runtime validation|under live observation|follow-up|future|pending|not started|planned|owed|residual|residue|unsolved|not implemented|cannot|needs? .*validation|default-off|default off)\b"[90m in .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability · 100 matches[0m
+[0m✱ [0mGrep "(?i)\b(SPECKIT_DAEMON_REELECTION|SPECKIT_STOP_HOOK_ORPHAN_SWEEP|SPECKIT_LEASE_PROBE_RETRIES|SPECKIT_LAUNCHER_LOG|SPECKIT_LAUNCHER_LOG_PATH|SPECKIT_LAUNCHER_LOG_MAX_BYTES|SPECKIT_LEASE_PROBE_RETRY_TIMEOUT_MS|SPECKIT_LEASE_PROBE_RETRY_BACKOFF_MS)\b"[90m in .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability · 49 matches[0m
+[0m✱ [0mGrep "(?i)default(?:s)?\s+(?:on|off)|default-on|default-off|default\s*=|unset|flag\s+off|flag\s+on|config-default-on"[90m in .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability · 100 matches[0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/001-ipc-socket-dir-canonicalize/implementation-summary.md[90m [offset=1, limit=900][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/002-code-graph-initial-scan/implementation-summary.md[90m [offset=1, limit=900][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/004-nondestructive-build/implementation-summary.md[90m [offset=1, limit=900][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/005-provider-dispose/implementation-summary.md[90m [offset=1, limit=900][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/006-graceful-exit-watchdog/implementation-summary.md[90m [offset=1, limit=900][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/007-bridge-liveness-reap/implementation-summary.md[90m [offset=1, limit=900][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/008-spec-memory-graceful-wal-checkpoint-on-close/implementation-summary.md[90m [offset=1, limit=900][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/010-at-rest-wal-durability/implementation-summary.md[90m [offset=1, limit=900][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/009-shutdown-durability/implementation-summary.md[90m [offset=1, limit=900][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/011-deep-review-shutdown-and-codegraph/implementation-summary.md[90m [offset=1, limit=900][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/012-boot-integrity-retention-probe/implementation-summary.md[90m [offset=1, limit=900][0m
+[0m✗ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/implementation-summary.md failed[90m [offset=1, limit=900][0m
+[91m[1mError: [0mFile not found: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/implementation-summary.md
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/013-standalone-save-second-writer-guard/implementation-summary.md[90m [offset=1, limit=900][0m
+[0m✗ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/implementation-summary.md failed[90m [offset=1, limit=900][0m
+[91m[1mError: [0mFile not found: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/implementation-summary.md
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-substrate-harness-hardening/implementation-summary.md[90m [offset=1, limit=900][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/023-daemon-reliability-doc-alignment/implementation-summary.md[90m [offset=1, limit=900][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/024-import-purity-and-comment-hygiene-coverage/implementation-summary.md[90m [offset=1, limit=900][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/025-repo-wide-comment-hygiene-scrub/implementation-summary.md[90m [offset=1, limit=900][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/spec.md[90m [offset=1, limit=1200][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/spec.md[90m [offset=1, limit=1200][0m
+[0m✱ [0mGlob ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/[0-9][0-9][0-9]-*/implementation-summary.md"[90m in . · 2 matches[0m
+[0m✱ [0mGlob ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/[0-9][0-9][0-9]-*/spec.md"[90m in . · 2 matches[0m
+[0m✱ [0mGlob ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/[0-9][0-9][0-9]-*/implementation-summary.md"[90m in . · 6 matches[0m
+[0m✱ [0mGlob ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/[0-9][0-9][0-9]-*/spec.md"[90m in . · 6 matches[0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/001-infra-investigation-findings/implementation-summary.md[90m [offset=1, limit=900][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/002-daemon-lifecycle-healing/implementation-summary.md[90m [offset=1, limit=900][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/001-live-two-launcher-test/implementation-summary.md[90m [offset=1, limit=900][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/002-substrate-codegraph-scenarios/implementation-summary.md[90m [offset=1, limit=900][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/003-worktree-child-marker-dispatch/implementation-summary.md[90m [offset=1, limit=900][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/004-cli-child-marker-propagation/implementation-summary.md[90m [offset=1, limit=900][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/005-substrate-codegraph-2nd-daemon/implementation-summary.md[90m [offset=1, limit=900][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/006-sessionstart-worktree-guard/implementation-summary.md[90m [offset=1, limit=900][0m
+[0m✱ [0mGrep "SPECKIT_DAEMON_REELECTION|SPECKIT_STOP_HOOK_ORPHAN_SWEEP|SPECKIT_LEASE_PROBE_RETRIES|SPECKIT_LAUNCHER_LOG|SPECKIT_LEASE_PROBE_RETRY|code-index reconnect|reconnecting proxy|config-default-on|default-on|default-off"[90m in .opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md · 8 matches[0m
+[0m✱ [0mGrep "SPECKIT_DAEMON_REELECTION|SPECKIT_STOP_HOOK_ORPHAN_SWEEP|SPECKIT_LEASE_PROBE_RETRIES|SPECKIT_LAUNCHER_LOG"[90m in .claude · 1 match[0m
+[0m✱ [0mGrep "SPECKIT_DAEMON_REELECTION|SPECKIT_STOP_HOOK_ORPHAN_SWEEP|SPECKIT_LEASE_PROBE_RETRIES|SPECKIT_LAUNCHER_LOG"[90m in . · 1 match[0m
+[0m✱ [0mGrep "SPECKIT_DAEMON_REELECTION|SPECKIT_STOP_HOOK_ORPHAN_SWEEP|SPECKIT_LEASE_PROBE_RETRIES|SPECKIT_LAUNCHER_LOG"[90m in .codex · 1 match[0m
+[0m✱ [0mGrep "SPECKIT_DAEMON_REELECTION|SPECKIT_STOP_HOOK_ORPHAN_SWEEP|SPECKIT_LEASE_PROBE_RETRIES|SPECKIT_LEASE_PROBE_RETRY_TIMEOUT_MS|SPECKIT_LEASE_PROBE_RETRY_BACKOFF_MS|SPECKIT_LAUNCHER_LOG|bridgeStdioThroughSessionProxy|createClassifyFrame|LEASE_PROBE|daemonReelectionEnabled|launcherLogIsEnabled"[90m in .opencode/bin · 34 matches[0m
+[0m✱ [0mGrep "(?i)skill-advisor|mk-skill-advisor|advisor|SPECKIT_DAEMON_REELECTION|daemonReelection|re-election|reelection"[90m in .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability · 100 matches[0m
+[0m✱ [0mGrep "daemonReelectionEnabled|SPECKIT_DAEMON_REELECTION|shouldReleaseDaemonForReelection|releaseDaemon|shutdownLauncherForSignal|child.kill\(|bridgeStdioThroughSessionProxy|SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN"[90m in .opencode/bin · 25 matches[0m
+[0m→ [0mRead .opencode/bin/mk-spec-memory-launcher.cjs[90m [offset=180, limit=80][0m
+[0m→ [0mRead .opencode/bin/mk-spec-memory-launcher.cjs[90m [offset=1430, limit=70][0m
+[0m→ [0mRead .opencode/bin/mk-skill-advisor-launcher.cjs[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/bin/mk-code-index-launcher.cjs[90m [offset=150, limit=70][0m
+[0m→ [0mRead .opencode/bin/mk-code-index-launcher.cjs[90m [offset=660, limit=70][0m
+[0m→ [0mRead .opencode/bin/mk-skill-advisor-launcher.cjs[90m [offset=1260, limit=120][0m
+[0m→ [0mRead .opencode/bin/mk-skill-advisor-launcher.cjs[90m [offset=890, limit=70][0m
+[0m→ [0mRead .opencode/bin/mk-skill-advisor-launcher.cjs[90m [offset=960, limit=90][0m
+[0m→ [0mRead .opencode/bin/mk-code-index-launcher.cjs[90m [offset=960, limit=90][0m
+[0m→ [0mRead .opencode/bin/mk-code-index-launcher.cjs[90m [offset=1050, limit=45][0m
+[0m✱ [0mGrep "process\.on\(|SIGTERM|SIGINT|shutdown|child\.kill|clearAllLeaseFiles|clearLeaseFile|launchServer\(|detached|stdio"[90m in .opencode/bin/mk-skill-advisor-launcher.cjs · 34 matches[0m
+[0m✱ [0mGrep "process\.on\(|SIGTERM|SIGINT|shutdown|child\.kill|clearAllLeaseFiles|clearLeaseFile|launchServer\(|detached|stdio"[90m in .opencode/bin/mk-code-index-launcher.cjs · 22 matches[0m
+[0m✱ [0mGrep "process\.on\(|SIGTERM|SIGINT|shutdown|child\.kill|clearAllLeaseFiles|clearLeaseFile|launchServer\(|detached|stdio|daemonReelectionEnabled"[90m in .opencode/bin/mk-spec-memory-launcher.cjs · 56 matches[0m
+[0m→ [0mRead .opencode/bin/mk-skill-advisor-launcher.cjs[90m [offset=1135, limit=95][0m
+[0m→ [0mRead .opencode/bin/mk-code-index-launcher.cjs[90m [offset=850, limit=100][0m
+[0m→ [0mRead .opencode/bin/mk-spec-memory-launcher.cjs[90m [offset=1290, limit=90][0m

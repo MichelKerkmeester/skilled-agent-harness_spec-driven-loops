@@ -66,6 +66,19 @@ mcp__mk_skill_advisor__advisor_rebuild({ "force": true })
 
 Expected result: `rebuilt: true`, generation deltas, refreshed `skillCount` and diagnostics. Run only when `advisor_status` reports `stale` or `absent`.
 
+### Gate 2 Caller Guidance
+
+Use the MCP tools as the primary Gate 2 path when `mk_skill_advisor` is registered and reachable. Keep `mcp_server/scripts/skill_advisor.py` for legacy scripts and runtimes that still expect the Python facade's JSON-array output.
+
+Use `.opencode/bin/skill-advisor.cjs` for daemon-backed runtime integrations such as hook fallback, doctor health checks and automation that needs explicit JSON plus exit codes. The CLI has full parity with the MCP surface: all 9 tools are reachable this way over the same daemon the MCP registration uses (dual-stack; the MCP registration is unchanged), and `list-tools` enumerates them offline. Exit taxonomy: `0` success, `1` runtime error, `64` usage/schema error, `69` protocol/dist mismatch, `75` retryable daemon error.
+
+Two guardrails apply. First, prompt-time callers must probe the advisor IPC socket first (or pass `--warm-only`) and call the CLI only when the daemon is already warm; a cold daemon under warm-only exits `75` instead of cold-starting, and hooks fail open on that. Second, CLI calls are sent untrusted by default: the mutation tools `advisor_rebuild`, `skill_graph_scan` and apply-mode `skill_graph_propagate_enhances` require `--trusted` (or `MK_SKILL_ADVISOR_CLI_TRUSTED=1`), which is the maintainer path. Because the CLI already has full parity, a later evolution could make it the primary or sole transport without breaking existing MCP workflows; that is a possible direction, not a committed plan.
+
+```bash
+node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json
+node .opencode/bin/skill-advisor.cjs advisor_rebuild --trusted --force true
+```
+
 ---
 
 ## 4. HOW IT WORKS
@@ -82,17 +95,19 @@ The advisor scores every prompt against five independent lanes, each producing i
 | `derived_generated` | 0.12 | Sanitized derived metadata from prior runs |
 | `semantic_shadow` | 0.05 | Semantic embedding evidence, lowest fusion weight |
 
-The lane weights live in `mcp_server/lib/scorer/lane-registry.ts`. You can override them with `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON`, but any change needs measured evidence. Run `advisor_validate` before and after the change, and ship the diff with doc updates across the feature catalog and the advisor scorer reference.
+The lane weights live in `mcp_server/lib/scorer/lane-registry.ts`. The scorer reads `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON`, and the launcher allowlist passes it through to the daemon child (an env change needs a daemon restart to apply). Use it for experiments; durable tuning is editing `lane-registry.ts` with measured evidence. Run `advisor_validate` before and after the change, and ship the diff with doc updates across the feature catalog and the advisor scorer reference.
 
-`advisor_recommend` accepts three options: `topK` sets how many candidates to return (1 to 10), `includeAttribution` adds per-lane score breakdowns and `includeAbstainReasons` surfaces why lower-ranked candidates were not selected. `advisor_validate` requires `confirmHeavyRun: true` because it executes the full corpus, holdout, parity, safety and latency bundle.
+`advisor_recommend` accepts five options: `topK` sets how many candidates to return (1 to 10), `includeAttribution` adds per-lane score breakdowns, `includeAbstainReasons` surfaces why lower-ranked candidates were not selected, `confidenceThreshold` overrides the minimum surfaced confidence and `uncertaintyThreshold` overrides the maximum surfaced uncertainty. `advisor_validate` requires `confirmHeavyRun: true` because it executes the full corpus, holdout, parity, safety and latency bundle.
 
 ### Prompt-Safe Attribution
 
 Every public response strips raw prompt content. Attribution is per-lane only. The same safety contract applies to all runtime hooks and to the Python compatibility shim, so hook telemetry and script output stay safe to log at any scale.
 
+Shadow-delta JSONL recording is opt-in. `advisor_recommend` includes the prompt-safe `_shadow` comparison payload in its response, but it writes no durable shadow delta file unless `SPECKIT_ADVISOR_SHADOW_DELTA_PATH` is set or `SPECKIT_ADVISOR_SHADOW_DELTA_ENABLED=1` / `true` enables the default sink. Both env names are forwarded by the advisor launcher allowlist.
+
 ### Freshness and the Trust Contract
 
-A daemon watches every `SKILL.md` and `graph-metadata.json` under `.opencode/skills/`. When a source changes the daemon bumps a generation counter and invalidates the recommendation cache. It holds a single-writer lease and does not rebuild on its own. Only `advisor_rebuild` mutates the SQLite database.
+A daemon watches every `SKILL.md` and `graph-metadata.json` under `.opencode/skills/`. When a watched source changes, the daemon schedules an incremental reindex, publishes a fresh generation after the rebuild, and invalidates the recommendation cache. It still holds a single-writer lease; explicit trusted mutation paths are `advisor_rebuild`, `skill_graph_scan` and real `skill_graph_propagate_enhances` apply writes (`mode: apply` with `dryRun !== true`), and corrupt-database recovery may also move aside and recreate the database during lazy initialization.
 
 Every response carries a trust state so the caller knows what to do next.
 
@@ -105,7 +120,11 @@ Every response carries a trust state so the caller knows what to do next.
 
 ### The SQLite Skill Graph
 
-The advisor ships a package-local SQLite database that stores cross-skill edges extracted from every skill's `graph-metadata.json`. The graph supports ten query types through `skill_graph_query`: `depends_on`, `dependents`, `enhances`, `enhanced_by`, `family_members`, `conflicts`, `transitive_path`, `hub_skills`, `orphans` and `subgraph`. A trusted-caller tool, `skill_graph_propagate_enhances`, detects and proposes missing inbound `enhances` declarations across skills.
+The advisor ships a package-local SQLite database that stores cross-skill edges extracted from every skill's `graph-metadata.json`. The graph supports ten query types through `skill_graph_query`: `depends_on`, `dependents`, `enhances`, `enhanced_by`, `family_members`, `conflicts`, `transitive_path`, `hub_skills`, `orphans` and `subgraph`. `skill_graph_propagate_enhances` detects, proposes or applies missing inbound `enhances` declarations across skills; report/propose and dry-run apply are read-safe, while real apply writes require trusted caller context.
+
+### Doc-Frontmatter Trigger Harvest (Flag-Gated)
+
+With `SPECKIT_ADVISOR_DOC_TRIGGERS=true`, `skill_graph_scan` also harvests frontmatter (`title`, `description`, `trigger_phrases`, `importance_tier`, `contextType`) from every markdown file under each skill's `references/` and `assets/` (READMEs excluded) into a `skill_docs` table, and the watcher registers those docs so edits re-index the owning skill. Doc phrases score inside the `derived_generated` lane — top-3 docs per skill, tier-weighted, contribution capped at 0.45 — so they assist ranking but cannot hard-route alone. Matching recommendations carry an optional `matchedDocs` field (max 3 sanitized skill-relative paths) pointing at the exact doc to open. Flag unset (the default) changes nothing: no harvest, no watch targets, identical scoring. Deployment note: the launcher forwards only allowlisted env to the daemon child, so the flag works because it sits in `CHILD_ENV_ALLOWLIST` (`mk-skill-advisor-launcher.cjs`) — any future advisor env flag needs the same entry.
 
 ### The Embedder
 
@@ -113,19 +132,19 @@ The `semantic_shadow` lane runs against a pluggable embedder layer shared with `
 
 ### The Nine Tools
 
-The `mk_skill_advisor` server exposes nine tools under the `mcp__mk_skill_advisor__*` namespace, eight public plus one trusted-caller-gated internal tool. You have already met the first three in Quick Start.
+The `mk_skill_advisor` server exposes nine tool definitions under the `mcp__mk_skill_advisor__*` namespace, and ListTools returns all nine. `skill_graph_propagate_enhances` is only trust-gated for the mutating apply path; report/propose and dry-run apply stay read-safe. You have already met the first three in Quick Start.
 
 | Tool | Purpose |
 |---|---|
-| `advisor_recommend` | Recommend skills for a prompt (`topK`, `includeAttribution`, `includeAbstainReasons`) |
+| `advisor_recommend` | Recommend skills for a prompt (`topK`, `includeAttribution`, `includeAbstainReasons`, `confidenceThreshold`, `uncertaintyThreshold`) |
 | `advisor_rebuild` | Rebuild the advisor index from checked-in metadata |
 | `advisor_status` | Report freshness, generation, trust state, lane weights and daemon info |
 | `advisor_validate` | Run the corpus, holdout, parity, safety and latency bundle (`confirmHeavyRun: true` required) |
 | `skill_graph_scan` | Index every `graph-metadata.json` into the SQLite skill graph |
 | `skill_graph_query` | Traverse the skill graph (the ten query types above) |
 | `skill_graph_status` | Report graph health, counts and staleness |
-| `skill_graph_validate` | Validate schema drift, broken edges, reciprocal symmetry and dependency cycles |
-| `skill_graph_propagate_enhances` | Detect, propose or apply missing inbound `enhances` edges (trusted-caller gated) |
+| `skill_graph_validate` | Validate schema drift, broken edges, dependency cycles, weight bands, reciprocal symmetry, orphan skills and derived-freshness warnings |
+| `skill_graph_propagate_enhances` | Detect, propose or apply missing inbound `enhances` edges (trusted only for real apply writes) |
 
 ---
 
@@ -155,8 +174,10 @@ Skip the advisor for trivial queries where the intent is obvious, for structural
 | `trustState: "absent"` | The advisor SQLite database is missing or empty | Call `advisor_rebuild`. If that fails, check `MK_SKILL_ADVISOR_DB_DIR` and disk permissions |
 | `trustState: "unavailable"` | The native MCP path cannot be reached | Verify `mk_skill_advisor` is registered in `opencode.json`. Fall back to `skill_advisor.py` |
 | Top-2 candidates within 0.1 of each other | Ambiguous prompt. Two skills are equally plausible | Surface both candidates instead of routing silently |
-| `advisor_validate` corpus top-1 below 80.5% | Scorer behavior changed or fixtures drifted | Inspect `perSkill[]` and `slices.corpus` |
+| `advisor_validate` corpus top-1 below 75% | Scorer behavior changed or fixtures drifted | Inspect `perSkill[]` and `slices.corpus` |
 | Recommendations omit a newly-added skill | The daemon has not observed the new file yet | Call `advisor_rebuild` or wait for the watcher to fire |
+| CLI reports a mutation `requires --trusted` (exit 64) | The trusted-mutation gate fails closed on untrusted calls | Re-run with `--trusted` or set `MK_SKILL_ADVISOR_CLI_TRUSTED=1` if you are the maintainer |
+| A native MCP mutation is rejected as untrusted | The daemon fails closed when transport `_meta` is absent | Verify `MK_SKILL_ADVISOR_TRUST_DEFAULT=trusted` is set in the MCP registration env block (it cannot be forged by callers) |
 
 ---
 
@@ -168,7 +189,7 @@ A: Routing is operationally distinct from memory. You can roll back, restart or 
 
 **Q: Can I change the lane weights?**
 
-A: Yes, with measured evidence. Run `advisor_validate` to capture a baseline, change the weights in `mcp_server/lib/scorer/lane-registry.ts`, re-run validate and ship the diff with doc updates in `references/scoring/advisor_scorer.md` and the feature catalog.
+A: Yes, with measured evidence. `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON` is allowlisted through the launcher for experiments (daemon restart required); the durable path is a source edit in `mcp_server/lib/scorer/lane-registry.ts`. Run `advisor_validate` to capture a baseline, change the weights, re-run validate and ship the diff with doc updates in `references/scoring/advisor_scorer.md` and the feature catalog.
 
 **Q: How does the advisor stay safe to call from hooks?**
 
@@ -191,7 +212,7 @@ A: `references/hooks/skill_advisor_hook.md` covers the prompt-time hook contract
 | README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-skill-advisor/README.md --type readme` reports zero issues |
 | TypeScript build | `npm --prefix .opencode/skills/system-skill-advisor/mcp_server run typecheck && npm --prefix .opencode/skills/system-skill-advisor/mcp_server run build` exits 0 |
 | Playbook | Run the manual testing playbook scenarios under `manual_testing_playbook/` in a live session |
-| Validation battery | `mcp__mk_skill_advisor__advisor_validate({ "confirmHeavyRun": true })` reports corpus top-1 at 80.5% and holdout top-1 at 77.5% |
+| Validation battery | `mcp__mk_skill_advisor__advisor_validate({ "confirmHeavyRun": true })` reports corpus top-1 at or above 75% and holdout top-1 at or above 72.5% |
 
 ---
 

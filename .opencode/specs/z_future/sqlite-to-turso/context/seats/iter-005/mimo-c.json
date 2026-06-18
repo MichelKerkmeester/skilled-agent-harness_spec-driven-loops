@@ -1,0 +1,184 @@
+{
+  "findings": [
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts",
+      "symbol": "database.pragma",
+      "kind": "gap",
+      "signature": "database.pragma('busy_timeout = 5000')",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:2267",
+      "relevance": 0.9,
+      "notes": "better-sqlite3 .pragma() method has no equivalent in Turso/libSQL; must use SET or PRAGMA SQL statements via .exec()"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts",
+      "symbol": "VACUUM main INTO",
+      "kind": "gap",
+      "signature": "database.exec('VACUUM main INTO ${quoteSqlString(mainSnapshotPath)}')",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:2281",
+      "relevance": 1,
+      "notes": "VACUUM INTO is the core v2 checkpoint snapshot mechanism; Turso/libSQL lacks this — blocks checkpoint creation as-is"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts",
+      "symbol": "memory_fts",
+      "kind": "gap",
+      "signature": "INSERT INTO memory_fts(memory_fts) VALUES('delete-all')",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1606",
+      "relevance": 0.95,
+      "notes": "FTS5 'delete-all' command has no Turso/libSQL equivalent; blocks FTS table clearing during restore"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts",
+      "symbol": "memory_fts",
+      "kind": "gap",
+      "signature": "INSERT INTO memory_fts(memory_fts) VALUES('rebuild')",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1930",
+      "relevance": 0.95,
+      "notes": "FTS5 'rebuild' command has no Turso/libSQL equivalent; blocks post-restore FTS rebuild"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts",
+      "symbol": "PRAGMA database_list",
+      "kind": "gap",
+      "signature": "database.prepare('PRAGMA database_list').all()",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:616",
+      "relevance": 0.8,
+      "notes": "PRAGMA as prepared-statement result set; Turso may not return rows from PRAGMA — used to resolve main/vec shard paths"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts",
+      "symbol": "PRAGMA table_info",
+      "kind": "gap",
+      "signature": "database.prepare('PRAGMA table_info(memory_index)').all()",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1169",
+      "relevance": 0.7,
+      "notes": "PRAGMA table_info used extensively for dynamic column discovery; Turso PRAGMA support differs"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts",
+      "symbol": "sqlite_master",
+      "kind": "gap",
+      "signature": "SELECT 1 AS found FROM sqlite_master WHERE type IN ('table','view') AND name = ?",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1087",
+      "relevance": 0.7,
+      "notes": "Direct sqlite_master queries for table existence checks; Turso uses information_schema or different catalog"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts",
+      "symbol": "active_vec.sqlite_master",
+      "kind": "gap",
+      "signature": "SELECT 1 AS found FROM active_vec.sqlite_master WHERE type IN ('table','view') AND name = 'vec_memories'",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1122",
+      "relevance": 0.9,
+      "notes": "ATTACH'd database catalog query; Turso/libSQL lacks ATTACH — blocks vector shard introspection"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts",
+      "symbol": "SAVEPOINT",
+      "kind": "gap",
+      "signature": "database.exec('SAVEPOINT checkpoint_merge_${tableName}')",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1779",
+      "relevance": 0.6,
+      "notes": "SAVEPOINT/RELEASE/ROLLBACK TO SAVEPOINT for nested transactions; Turso/libSQL SAVEPOINT support is limited"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts",
+      "symbol": "lastInsertRowid",
+      "kind": "dependency",
+      "signature": "(result as { lastInsertRowid: number | bigint }).lastInsertRowid",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:2359",
+      "relevance": 0.5,
+      "notes": "better-sqlite3's lastInsertRowid return shape; Turso/libSQL uses .lastInsertRowid property on different result type"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts",
+      "symbol": "database.pragma",
+      "kind": "gap",
+      "signature": "database.pragma('foreign_keys = OFF')",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:268",
+      "relevance": 0.9,
+      "notes": ".pragma() for foreign_keys toggle before DDL migration; Turso requires SET foreign_keys = OFF SQL"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts",
+      "symbol": "CREATE VIRTUAL TABLE ... USING fts5",
+      "kind": "gap",
+      "signature": "CREATE VIRTUAL TABLE IF NOT EXISTS memory_fts USING fts5(title, trigger_phrases, file_path, content_text, content='memory_index', content_rowid='id')",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:205",
+      "relevance": 1,
+      "notes": "FTS5 virtual table creation; Turso/libSQL has no FTS5 — blocks schema downgrade path entirely"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts",
+      "symbol": "memory_fts_insert",
+      "kind": "gap",
+      "signature": "CREATE TRIGGER IF NOT EXISTS memory_fts_insert AFTER INSERT ON memory_index BEGIN INSERT INTO memory_fts...",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:212",
+      "relevance": 0.95,
+      "notes": "FTS5 sync triggers for content='memory_index' external-content table; no Turso equivalent — blocks automatic FTS maintenance"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts",
+      "symbol": "database.pragma",
+      "kind": "gap",
+      "signature": "database.pragma('auto_vacuum', { simple: true })",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts:351",
+      "relevance": 0.8,
+      "notes": ".pragma() with { simple: true } option for scalar return; Turso has no .pragma() API — blocks auto_vacuum mode check"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts",
+      "symbol": "database.pragma",
+      "kind": "gap",
+      "signature": "database.pragma('incremental_vacuum')",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts:360",
+      "relevance": 0.7,
+      "notes": ".pragma() for incremental vacuum after retention deletes; Turso requires PRAGMA incremental_vacuum SQL"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts",
+      "symbol": "database.pragma",
+      "kind": "gap",
+      "signature": "database.pragma('wal_checkpoint(TRUNCATE)')",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts:368",
+      "relevance": 0.7,
+      "notes": ".pragma() for WAL checkpoint; Turso has no WAL model — blocks post-delete maintenance"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts",
+      "symbol": "memory_fts",
+      "kind": "gap",
+      "signature": "INSERT INTO memory_fts(memory_fts) VALUES('optimize')",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts:343",
+      "relevance": 0.9,
+      "notes": "FTS5 'optimize' command for post-delete maintenance; Turso has no FTS5 — blocks retention sweep cleanup"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts",
+      "symbol": "database.inTransaction",
+      "kind": "dependency",
+      "signature": "database.inTransaction",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:488",
+      "relevance": 0.6,
+      "notes": "better-sqlite3 .inTransaction property for guard; Turso/libSQL driver may not expose this property"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+All artifacts are written and the loop is complete. 
+
+**Review summary — lineage p021-opus-4** (target: `021-cooperative-heavy-phases`, Level 1):
+
+- **Verdict: PASS** (hasAdvisories=true) — 0 P0, 0 P1, 2 P2
+- **Stop reason:** max_iterations_reached (maxIterations=1)
+- **Dimensions:** all 4 covered in one breadth pass (justified by the 3-file blast radius)
+- **Traceability:** REQ-001..REQ-004 all map to shipped code at file:line; `checklist_evidence` n/a (no checklist.md on a Level 1 packet)
+
+**Confirmed (not inferred):** no double trigger-backfill run (mutually-exclusive branches at `memory-index.ts:802` vs `:1256`); `await setImmediate` sits between chunk transactions, never inside `database.transaction()`; lag timer cleared in `finally` + `unref`'d; parameterized SQL throughout; comment-hygiene clean (grep returned no ADR/REQ/spec-path refs); no launcher file in the diff (REQ-004).
+
+**Two P2 advisories (non-blocking):** F001 — the "byte-identical foreground path" doc claim is imprecise (the `timedPhase` wrapper converts the sync orphan-sweep to an awaited call unconditionally; only the *logging* is gated); F002 — the incremental early-return path runs orphan-sweep/backfill without the per-phase `onPhase` marker refresh.
+
+**Audit limitation recorded:** unit suite and `tsc` could not be independently re-run (execution permission-gated); test logic was verified by reading against the implementation. Per the fan-out contract and the explicit path boundary, I did not run the continuity-save phase (`generate-context.js` would write outside the lineage dir); the parent merge owns aggregation.
+
+FANOUT_LINEAGE_COMPLETE:p021-opus-4

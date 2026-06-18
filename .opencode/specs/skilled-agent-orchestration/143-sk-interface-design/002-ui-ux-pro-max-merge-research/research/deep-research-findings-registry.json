@@ -1,0 +1,486 @@
+{
+  "mergedFrom": [
+    "gpt55fast",
+    "opus48"
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-asset-classification",
+      "text": "Which external asset classes should be ADOPTED, ADAPTED, or SKIPPED for sk-interface-design?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "answer": "Adopt core data references; adapt QA, landing, mobile, generated examples, quick-reference taxonomy, and optional search/generator tooling; skip direct icon-library preference, direct React performance merge, and external templates.",
+      "_lineages": [
+        "gpt55fast"
+      ]
+    },
+    {
+      "id": "question-2-house-structure",
+      "text": "How should reusable external assets fit the house skill structure without making SKILL.md too large?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "answer": "Keep SKILL.md lean, keep design_principles.md primary, and add optional references/design_intelligence assets plus notices if implemented later.",
+      "_lineages": [
+        "gpt55fast"
+      ]
+    },
+    {
+      "id": "question-3-stack-ownership",
+      "text": "Should stack-specific CSVs be adopted, adapted, or left to sk-code ownership?",
+      "addedAtIteration": 2,
+      "resolvedAtIteration": 3,
+      "answer": "Skip direct stack CSV merge into sk-interface-design; adapt only cross-cutting design quality fragments and leave real implementation-stack adoption to future sk-code surface work.",
+      "_lineages": [
+        "gpt55fast"
+      ]
+    },
+    {
+      "id": "question-4-license-attribution",
+      "text": "What license and attribution path is required for mixing MIT external content with the existing Apache-2.0 vendored Anthropic skill?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "answer": "Preserve existing Apache-2.0 attribution and add a separate MIT notice/license file for ui-ux-pro-max-derived content.",
+      "_lineages": [
+        "gpt55fast"
+      ]
+    },
+    {
+      "id": "question-5-negative-knowledge",
+      "text": "What negative knowledge and merge risks should the final cross-lineage synthesis preserve?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "answer": "Skip platform plumbing, SKILL.md data dumps, replacing design_principles.md, mandatory generators, Phosphor defaults, stack-rule absorption, current sk-code overclaiming, deterministic reasoning data, and single-license collapse.",
+      "_lineages": [
+        "gpt55fast"
+      ]
+    },
+    {
+      "id": "Q1",
+      "answer": "Per-asset-class ADOPT/ADAPT/SKIP table (see research.md). ADOPT: ux-guidelines/charts/app-interface/react-performance. ADAPT: colors/typography/styles/ui-reasoning/products/landing/icons + core.py/search.py. SKIP: design_system.py, stacks, google-fonts(inline), published SKILL.md, CLI/marketplace/platform-configs/sibling-skills.",
+      "iterations": [
+        1,
+        2,
+        5
+      ],
+      "_lineages": [
+        "opus48"
+      ]
+    },
+    {
+      "id": "Q2",
+      "answer": "assets/data/ for CSVs (not a new data/ dir), scripts/ for adapted search (re-rooted, trimmed), references/{ux_quality_reference,design_inventory}.md, ~20-line SKILL.md routing block, scoped advisor-routing additions, Python3 prereq.",
+      "iterations": [
+        3
+      ],
+      "_lineages": [
+        "opus48"
+      ]
+    },
+    {
+      "id": "Q3",
+      "answer": "Mixed-license skill (MIT data+scripts ⊕ Apache-2.0 principles). Retain MIT notice via LICENSE-ui-ux-pro-max.txt + THIRD-PARTY-NOTICES.md, per-file provenance headers, updated license:/metadata.source frontmatter. No relicensing, no copyleft.",
+      "iterations": [
+        4
+      ],
+      "_lineages": [
+        "opus48"
+      ]
+    },
+    {
+      "id": "Q4",
+      "answer": "Adopt objective quality-floor data outright (orthogonal to aesthetics); adopt recommendation/aesthetic data only reframed as an inventory of common patterns to CRITIQUE AGAINST — never as an authoritative generator, which would manufacture the templated defaults the skill resists.",
+      "iterations": [
+        2
+      ],
+      "_lineages": [
+        "opus48"
+      ]
+    },
+    {
+      "id": "Q5",
+      "answer": "Negative knowledge consolidated (10 ruled-out directions); one concrete first integration step attached per ADOPT/ADAPT class; cross-lineage divergence framed (recommender aggressiveness, design_system.py retention, curated-doc vs raw-CSV).",
+      "iterations": [
+        4,
+        5
+      ],
+      "_lineages": [
+        "opus48"
+      ]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "f-iter001-asset-taxonomy",
+      "iteration": 1,
+      "summary": "External repo is a data-driven design intelligence toolkit with styles, colors, typography, UX, chart, stack, and reasoning datasets.",
+      "source": ".opencode/specs/skilled-agent-orchestration/143-sk-interface-design/external/ui-ux-pro-max-skill-main/README.md:151-159",
+      "_lineages": [
+        "gpt55fast"
+      ]
+    },
+    {
+      "id": "f-iter001-mit-license",
+      "iteration": 1,
+      "summary": "MIT content can be merged or adapted if copyright and permission notices are preserved.",
+      "source": ".opencode/specs/skilled-agent-orchestration/143-sk-interface-design/external/ui-ux-pro-max-skill-main/LICENSE:1-13",
+      "_lineages": [
+        "gpt55fast"
+      ]
+    },
+    {
+      "id": "f-iter002-adopt-core-data",
+      "iteration": 2,
+      "summary": "products, styles, colors, typography, ui-reasoning, and charts are strong ADOPT candidates as data references rather than SKILL.md prose.",
+      "source": ".opencode/specs/skilled-agent-orchestration/143-sk-interface-design/external/ui-ux-pro-max-skill-main/src/ui-ux-pro-max/data/styles.csv:1-10",
+      "_lineages": [
+        "gpt55fast"
+      ]
+    },
+    {
+      "id": "f-iter002-adapt-qa-patterns",
+      "iteration": 2,
+      "summary": "ux-guidelines, landing, app-interface, design.csv, and quick-reference content are useful but need adaptation, compression, and house-style framing.",
+      "source": ".opencode/specs/skilled-agent-orchestration/143-sk-interface-design/external/ui-ux-pro-max-skill-main/src/ui-ux-pro-max/templates/base/quick-reference.md:39-54",
+      "_lineages": [
+        "gpt55fast"
+      ]
+    },
+    {
+      "id": "f-iter002-scripts-optional",
+      "iteration": 2,
+      "summary": "search.py/core.py and design_system.py are useful optional lookup/generation tooling, not mandatory runtime workflow for every design task.",
+      "source": ".opencode/specs/skilled-agent-orchestration/143-sk-interface-design/external/ui-ux-pro-max-skill-main/src/ui-ux-pro-max/scripts/search.py:56-114",
+      "_lineages": [
+        "gpt55fast"
+      ]
+    },
+    {
+      "id": "f-iter003-lean-layout",
+      "iteration": 3,
+      "summary": "Future merge should keep SKILL.md lean and add optional references/design_intelligence assets rather than replacing design_principles.md.",
+      "source": ".opencode/skills/sk-interface-design/SKILL.md:65-82",
+      "_lineages": [
+        "gpt55fast"
+      ]
+    },
+    {
+      "id": "f-iter003-stack-boundary",
+      "iteration": 3,
+      "summary": "Stack CSVs are mostly implementation checklists; skip direct merge into sk-interface-design and leave true stack adoption to future sk-code surface expansion.",
+      "source": ".opencode/skills/sk-code/SKILL.md:240-245",
+      "_lineages": [
+        "gpt55fast"
+      ]
+    },
+    {
+      "id": "f-iter003-license-path",
+      "iteration": 3,
+      "summary": "Mixed-source merge requires preserving the existing Apache-2.0 notice and adding a separate MIT notice/file for ui-ux-pro-max-derived content.",
+      "source": ".opencode/specs/skilled-agent-orchestration/143-sk-interface-design/external/ui-ux-pro-max-skill-main/LICENSE:1-13",
+      "_lineages": [
+        "gpt55fast"
+      ]
+    },
+    {
+      "id": "f-iter004-negative-knowledge-stable",
+      "iteration": 4,
+      "summary": "Final negative knowledge is stable: skip platform plumbing, data dumps, mandatory generators, icon preference, stack-rule absorption, current sk-code overclaim, and single-license collapse.",
+      "source": ".opencode/specs/skilled-agent-orchestration/143-sk-interface-design/002-ui-ux-pro-max-merge-research/research/lineages/gpt55fast/iterations/iteration-004.md:29-41",
+      "_lineages": [
+        "gpt55fast"
+      ]
+    },
+    {
+      "id": "f-iter004-converged",
+      "iteration": 4,
+      "summary": "Lineage converged at iteration 4 with newInfoRatio 0.03 and all key questions answered.",
+      "source": ".opencode/specs/skilled-agent-orchestration/143-sk-interface-design/002-ui-ux-pro-max-merge-research/research/lineages/gpt55fast/iterations/iteration-004.md:45-51",
+      "_lineages": [
+        "gpt55fast"
+      ]
+    },
+    {
+      "id": "F1",
+      "label": "Marketing asset counts drift from measured data and are internally inconsistent; regenerate from CSVs",
+      "iteration": 1,
+      "_lineages": [
+        "opus48"
+      ]
+    },
+    {
+      "id": "F2",
+      "label": "Published SKILL.md is React-Native-specialized and ~660L; not a portable house artifact",
+      "iteration": 1,
+      "_lineages": [
+        "opus48"
+      ]
+    },
+    {
+      "id": "F3",
+      "label": "Data CSVs are the asset of value; scripts are small/stdlib; rest is distribution/consumer packaging",
+      "iteration": 1,
+      "_lineages": [
+        "opus48"
+      ]
+    },
+    {
+      "id": "F4",
+      "label": "Data splits into objective quality-floor rules vs best-match recommendation data — they reconcile very differently",
+      "iteration": 2,
+      "_lineages": [
+        "opus48"
+      ]
+    },
+    {
+      "id": "F5",
+      "label": "Reconciliation: adopt recommender as inventory to critique against, not as generator — strengthens the anti-default step",
+      "iteration": 2,
+      "_lineages": [
+        "opus48"
+      ]
+    },
+    {
+      "id": "F6",
+      "label": "colors.csv carries reusable semantic-token structure + WCAG discipline separable from specific palettes",
+      "iteration": 2,
+      "_lineages": [
+        "opus48"
+      ]
+    },
+    {
+      "id": "F7",
+      "label": "stacks/*.csv overlap sk-code; must not land in the design skill",
+      "iteration": 2,
+      "_lineages": [
+        "opus48"
+      ]
+    },
+    {
+      "id": "F9",
+      "label": "assets/data/ is the convention-following home (0 skills use top-level data/); scripts/ well-precedented",
+      "iteration": 3,
+      "_lineages": [
+        "opus48"
+      ]
+    },
+    {
+      "id": "F10",
+      "label": "SKILL.md budget (186-466L) forbids inlining the ~660L Quick Reference; route instead",
+      "iteration": 3,
+      "_lineages": [
+        "opus48"
+      ]
+    },
+    {
+      "id": "F11",
+      "label": "core.py/search.py adaptation is small (rename, re-root, trim); adds a met Python3 prereq",
+      "iteration": 3,
+      "_lineages": [
+        "opus48"
+      ]
+    },
+    {
+      "id": "F12",
+      "label": "Advisor routing extends with color/font/chart/ux signals but must avoid sk-code's stack/impl signals",
+      "iteration": 3,
+      "_lineages": [
+        "opus48"
+      ]
+    },
+    {
+      "id": "F13",
+      "label": "design_system.py (1148L) is the weakest candidate; default SKIP",
+      "iteration": 3,
+      "_lineages": [
+        "opus48"
+      ]
+    },
+    {
+      "id": "F14",
+      "label": "MIT→Apache-2.0 combination is clean and permissive; no copyleft; mixed-license skill",
+      "iteration": 4,
+      "_lineages": [
+        "opus48"
+      ]
+    },
+    {
+      "id": "F15",
+      "label": "MIT obligation = notice retention (LICENSE file + THIRD-PARTY-NOTICES + provenance headers)",
+      "iteration": 4,
+      "_lineages": [
+        "opus48"
+      ]
+    },
+    {
+      "id": "F16",
+      "label": "sk-interface-design is the only house skill shipping LICENSE.txt/license: frontmatter; extend that precedent",
+      "iteration": 4,
+      "_lineages": [
+        "opus48"
+      ]
+    },
+    {
+      "id": "F18",
+      "label": "Merge is worth doing but asymmetric: quality-floor = high-confidence win; aesthetic data = reframed only; packaging = SKIP",
+      "iteration": 5,
+      "_lineages": [
+        "opus48"
+      ]
+    },
+    {
+      "id": "F19",
+      "label": "Cross-lineage divergence to reconcile: recommender aggressiveness, design_system.py retention, curated-doc vs raw-CSV",
+      "iteration": 5,
+      "_lineages": [
+        "opus48"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "direction": "Installer/platform-template direct merge",
+      "iteration": 1,
+      "reason": "Packaging plumbing does not improve sk-interface-design guidance and conflicts with lean house packaging.",
+      "_lineages": [
+        "gpt55fast"
+      ]
+    },
+    {
+      "direction": "Direct icon-library preference",
+      "iteration": 2,
+      "reason": "Phosphor-specific imports should not override the app's existing icon system.",
+      "_lineages": [
+        "gpt55fast"
+      ]
+    },
+    {
+      "direction": "Direct React performance merge",
+      "iteration": 2,
+      "reason": "Performance/code implementation guidance belongs to sk-code.",
+      "_lineages": [
+        "gpt55fast"
+      ]
+    },
+    {
+      "direction": "Wholesale generated design-system corpus merge",
+      "iteration": 2,
+      "reason": "The giant design.csv corpus would bloat the lean house skill and undermine brief-specific critique.",
+      "_lineages": [
+        "gpt55fast"
+      ]
+    },
+    {
+      "direction": "Wholesale stack CSV merge",
+      "iteration": 3,
+      "reason": "Most stack guidance is framework implementation, not design direction.",
+      "_lineages": [
+        "gpt55fast"
+      ]
+    },
+    {
+      "direction": "Single-license replacement",
+      "iteration": 3,
+      "reason": "Apache-2.0 and MIT notices both need preservation for mixed-source content.",
+      "_lineages": [
+        "gpt55fast"
+      ]
+    },
+    {
+      "direction": "Iteration 5 without new evidence",
+      "iteration": 4,
+      "reason": "All key questions are answered and novelty is below threshold.",
+      "_lineages": [
+        "gpt55fast"
+      ]
+    },
+    {
+      "direction": "Lift published SKILL.md verbatim",
+      "reason": "RN-specialized + ~660L breaks lean house convention",
+      "iteration": 1,
+      "_lineages": [
+        "opus48"
+      ]
+    },
+    {
+      "direction": "Trust repo headline asset counts",
+      "reason": "Drift from data + internally inconsistent",
+      "iteration": 1,
+      "_lineages": [
+        "opus48"
+      ]
+    },
+    {
+      "direction": "Wire design_system.py --design-system as default",
+      "reason": "Manufactures the templated defaults the skill resists",
+      "iteration": 2,
+      "_lineages": [
+        "opus48"
+      ]
+    },
+    {
+      "direction": "Import 16 stacks/*.csv into the design skill",
+      "reason": "Overlaps sk-code ownership",
+      "iteration": 2,
+      "_lineages": [
+        "opus48"
+      ]
+    },
+    {
+      "direction": "Inline google-fonts.csv (1922 rows)",
+      "reason": "Lookup index, not design judgment",
+      "iteration": 2,
+      "_lineages": [
+        "opus48"
+      ]
+    },
+    {
+      "direction": "New top-level data/ dir",
+      "reason": "No house skill uses one; assets/data/",
+      "iteration": 3,
+      "_lineages": [
+        "opus48"
+      ]
+    },
+    {
+      "direction": "Inline adopted rules into SKILL.md",
+      "reason": "Exceeds largest house SKILL.md",
+      "iteration": 3,
+      "_lineages": [
+        "opus48"
+      ]
+    },
+    {
+      "direction": "Adopt design_system.py wholesale (1148L)",
+      "reason": "Generator + persistence beyond scope; philosophy-conflicting",
+      "iteration": 3,
+      "_lineages": [
+        "opus48"
+      ]
+    },
+    {
+      "direction": "Adopt sibling sub-skills / CLI / marketplace / platform configs",
+      "reason": "Distribution/consumer packaging, out of scope",
+      "iteration": 1,
+      "_lineages": [
+        "opus48"
+      ]
+    },
+    {
+      "direction": "Relicense Apache↔MIT",
+      "reason": "Unnecessary; permissive licenses coexist file-by-file",
+      "iteration": 4,
+      "_lineages": [
+        "opus48"
+      ]
+    }
+  ],
+  "metrics": {
+    "iterationsCompleted": 4,
+    "openQuestions": 0,
+    "resolvedQuestions": 10,
+    "keyFindings": 27,
+    "convergenceScore": 0.485,
+    "coverageBySources": {}
+  }
+}

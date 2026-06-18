@@ -4,9 +4,13 @@ import * as path from 'node:path';
 import Database from 'better-sqlite3';
 
 // ───────────────────────────────────────────────────────────────
-// fs mock — controls which graph-metadata.json files "exist"
+// fs mock — controls which graph-metadata.json files "exist".
+// vi.hoisted keeps the state binding initialized before the hoisted
+// mock factory can run: a module-level const sits in the temporal
+// dead zone when an import chain triggers existsSync during mock
+// setup, throwing "Cannot access before initialization".
 // ───────────────────────────────────────────────────────────────
-const mockFsState: Record<string, string | null> = {};
+const mockFsState = vi.hoisted(() => ({}) as Record<string, string | null>);
 
 vi.mock('fs', async (importOriginal) => {
   const real = await importOriginal<typeof import('fs')>();

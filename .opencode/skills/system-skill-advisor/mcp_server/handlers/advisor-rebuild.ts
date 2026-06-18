@@ -5,6 +5,7 @@
 import { resolve } from 'node:path';
 
 import { indexSkillMetadata } from '../lib/skill-graph/skill-graph-db.js';
+import { requireTrustedCaller } from '../lib/auth/trusted-caller.js';
 import { computeAdvisorSourceSignature } from '../lib/freshness.js';
 import { publishSkillGraphGeneration } from '../lib/freshness/generation.js';
 import {
@@ -13,6 +14,7 @@ import {
 } from '../schemas/advisor-tool-schemas.js';
 import { readAdvisorStatus } from './advisor-status.js';
 
+import type { MCPCallerContext } from '../lib/context/caller-context.js';
 import type { SkillGraphIndexResult } from '../lib/skill-graph/skill-graph-db.js';
 import type {
   AdvisorFreshness,
@@ -63,7 +65,9 @@ export function rebuildAdvisorIndex(
   const args = AdvisorRebuildInputSchema.parse(input);
   const workspaceRoot = resolve(args.workspaceRoot ?? dependencies.workspaceRoot ?? process.cwd());
   const readStatus = dependencies.readStatus ?? readAdvisorStatus;
-  const before = readStatus({ workspaceRoot });
+  // Opt into the artifact integrity probe so a corrupt-on-disk SQLite reads as
+  // stale and is repaired here rather than skipped on a 'live' generation.
+  const before = readStatus({ workspaceRoot, checkArtifactIntegrity: true });
   const reason = reasonFor(before.freshness, args.force === true);
 
   if (shouldSkipRebuild(before, args.force === true)) {
@@ -106,8 +110,30 @@ export function rebuildAdvisorIndex(
   });
 }
 
-/** Handle the advisor_rebuild MCP tool request. */
-export async function handleAdvisorRebuild(args: unknown): Promise<HandlerResponse> {
+/** Handle the advisor_rebuild MCP tool request.
+ *
+ * Rebuild mutates the shared skill graph, so it requires a trusted caller
+ * just like skill_graph_scan; untrusted callers are rejected before any
+ * status read or index write happens.
+ */
+export async function handleAdvisorRebuild(
+  args: unknown,
+  callerContext?: MCPCallerContext | null,
+): Promise<HandlerResponse> {
+  const trustedCaller = requireTrustedCaller(callerContext, 'advisor_rebuild');
+  if (!trustedCaller.ok) {
+    return {
+      content: [{
+        type: 'text',
+        text: JSON.stringify({
+          status: 'error',
+          error: 'advisor_rebuild requires trusted caller context',
+          code: trustedCaller.code,
+        }),
+      }],
+    };
+  }
+
   const data = rebuildAdvisorIndex(AdvisorRebuildInputSchema.parse(args));
   return {
     content: [{

@@ -1,0 +1,43 @@
+name: Routing Registry Drift Guard
+
+# Makes the C-plus guarantee real: a change to the advisor's hardcoded routing
+# maps without a matching mode-registry.json change (or vice-versa) fails CI here.
+# Pairs with the local drift-guard test; this is the authoritative gate.
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.opencode/skills/deep-loop-workflows/mode-registry.json'
+      - '.opencode/skills/system-skill-advisor/mcp_server/**'
+      - '.opencode/commands/doctor/scripts/parent-skill-check.cjs'
+
+jobs:
+  routing-drift:
+    name: Registry == advisor maps; parent-skill structure
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Routing-registry drift-guard + parity suites
+        working-directory: .opencode/skills/system-skill-advisor/mcp_server
+        # The drift-guard asserts the hardcoded Python/TS routing maps equal the
+        # registry projection; the parity suites assert per-mode routing. The
+        # routing surface is dependency-free (aliases.ts has no imports;
+        # workspace-root.ts is node-only) and the suites shell to a stdlib-only
+        # python3 dump — so the gate installs only vitest on demand rather than the
+        # full skill (which carries native + ML deps unrelated to routing).
+        run: |
+          set -euo pipefail
+          npx --yes vitest@4.0.18 run \
+            tests/routing-registry-drift-guard.vitest.ts \
+            tests/routing-parity-deep-skills.vitest.ts \
+            tests/routing-parity-deep-council.vitest.ts
+      - name: Parent-skill structural invariants (one identity, registry coverage)
+        run: node .opencode/commands/doctor/scripts/parent-skill-check.cjs

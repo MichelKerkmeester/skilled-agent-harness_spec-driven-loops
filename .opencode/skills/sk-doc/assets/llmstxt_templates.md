@@ -1,6 +1,13 @@
 ---
 title: llms.txt Templates
 description: Templates and patterns for creating effective llms.txt files that help AI assistants understand projects.
+trigger_phrases:
+  - "llms txt templates"
+  - "llms txt specification"
+  - "ai assistant project context"
+  - "curated documentation entry point"
+importance_tier: normal
+contextType: general
 ---
 
 # llms.txt Templates - Document Type Reference

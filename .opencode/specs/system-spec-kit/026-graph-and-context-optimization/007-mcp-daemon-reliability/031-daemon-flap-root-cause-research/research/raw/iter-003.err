@@ -1,0 +1,120 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m→ [0mSkill "sk-code"
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/live-diagnosis.md[90m [offset=1, limit=240][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/iterations/iteration-001.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/iterations/iteration-002.md[90m [offset=1, limit=300][0m
+[0m→ [0mRead opencode.json[90m [offset=1, limit=260][0m
+[0m→ [0mRead .codex/config.toml[90m [offset=1, limit=220][0m
+[0m→ [0mRead .claude/mcp.json[90m [offset=1, limit=200][0m
+[0m→ [0mRead .opencode/bin/README.md[90m [offset=1, limit=360][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md[90m [offset=1, limit=360][0m
+[0m✱ [0mGrep "SessionStart|warm-only|session_bootstrap|prewarm"[90m in .claude · 1 match[0m
+[0m✱ [0mGrep "SessionStart|warm-only|session_bootstrap|prewarm"[90m in .opencode · 100 matches[0m
+[0m✱ [0mGrep "CLAUDE_CODE_PROMPT_TIME|OPENCODE_PROMPT_TIME|CODEX_PROMPT_TIME|SPECKIT_CLI_PROMPT_TIME|warm-only"[90m in .opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md · 9 matches[0m
+[0m✱ [0mGrep "warm-only|PROMPT_TIME|prewarm|session_bootstrap|code_graph_status|advisor_recommend|memory_context"[90m in .opencode · 100 matches[0m
+[0m→ [0mRead .claude/settings.json[90m [offset=1, limit=180][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-prime.js[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/user-prompt-submit.js[90m [offset=1, limit=320][0m
+[0m→ [0mRead .opencode/scripts/session-cleanup.sh[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md[90m [offset=552, limit=35][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/plugin_bridges/mk-spec-memory-bridge.mjs[90m [offset=240, limit=80][0m
+[0m→ [0mRead .opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs[90m [offset=300, limit=80][0m
+[0m→ [0mRead .opencode/skills/system-code-graph/mcp_server/plugin_bridges/README.md[90m [offset=1, limit=100][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/dist/hooks/claude/user-prompt-submit.js[90m [offset=1, limit=320][0m
+[0m✗ [0mRead .opencode/skills/system-spec-kit/mcp_server/dist/spec-memory-cli-fallback.js failed[90m [offset=1, limit=280][0m
+[91m[1mError: [0mFile not found: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/dist/spec-memory-cli-fallback.js
+[0m✗ [0mRead .opencode/skills/system-spec-kit/mcp_server/dist/code-index-cli-fallback.js failed[90m [offset=1, limit=260][0m
+[91m[1mError: [0mFile not found: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/dist/code-index-cli-fallback.js
+[0m✱ [0mGrep "runWarm|warm-only|CLI_PROMPT_TIME|spawnSync|spawn\("[90m in .opencode/skills/system-skill-advisor/mcp_server/dist/hooks · 6 matches[0m
+[0m✱ [0mGrep "code-index|spec-memory|skill-advisor|warm-only|PROMPT_TIME|SessionStart|UserPromptSubmit"[90m in .opencode/plugins · 14 matches[0m
+[0m✱ [0mGrep "warm-only|prompt-time|OPENCODE_PROMPT_TIME|CODEX_PROMPT_TIME|CLAUDE_CODE_PROMPT_TIME|session_bootstrap|prewarm"[90m in .opencode/skills/system-skill-advisor/mcp_server/dist · 10 matches[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/dist/lib/code-graph-boundary.js[90m [offset=1, limit=260][0m
+[0m✱ [0mGrep "warm-only|prompt-time|SPECKIT_.*PROMPT_TIME|CLAUDE_CODE_PROMPT_TIME|spawnSync|mk-.*launcher"[90m in .opencode/skills/system-spec-kit/mcp_server/dist · 32 matches[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/dist/hooks/spec-memory-cli-fallback.js[90m [offset=120, limit=90][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/dist/hooks/code-index-cli-fallback.js[90m [offset=120, limit=90][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/dist/spec-memory-cli.js[90m [offset=260, limit=90][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/dist/hooks/lib/skill-advisor-cli-fallback.js[90m [offset=120, limit=100][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/dist/spec-memory-cli.js[90m [offset=520, limit=170][0m
+[0m→ [0mRead .opencode/skills/system-code-graph/mcp_server/dist/code-index-cli.js[90m [offset=420, limit=90][0m
+[0m→ [0mRead .opencode/skills/system-code-graph/mcp_server/dist/code-index-cli.js[90m [offset=730, limit=160][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/dist/mcp_server/skill-advisor-cli.js[90m [offset=246, limit=140][0m
+[0m✱ [0mGrep "warmOnly|spawnLauncher|waitForDaemon|backend unavailable|cold"[90m in .opencode/skills/system-spec-kit/mcp_server/dist/spec-memory-cli.js · 20 matches[0m
+[0m✱ [0mGrep "warmOnly|spawnLauncher|waitForDaemon|backend unavailable|cold"[90m in .opencode/skills/system-code-graph/mcp_server/dist/code-index-cli.js · 20 matches[0m
+[0m✱ [0mGrep "warmOnly|spawnLauncher|waitForDaemon|backend unavailable|cold"[90m in .opencode/skills/system-skill-advisor/mcp_server/dist/mcp_server/skill-advisor-cli.js · 27 matches[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/dist/spec-memory-cli.js[90m [offset=792, limit=82][0m
+[0m→ [0mRead .opencode/skills/system-code-graph/mcp_server/dist/code-index-cli.js[90m [offset=950, limit=82][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/dist/mcp_server/skill-advisor-cli.js[90m [offset=1060, limit=130][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/dist/hooks/lib/skill-advisor-cli-fallback.js[90m [offset=220, limit=130][0m
+[0m✱ [0mGrep "daemonReelectionEnabled|shouldReleaseDaemonForReelection|release|adopt|shutdownLauncherForSignal|SIGTERM|child.kill|process.on\('SIGTERM|bridgeStdioThroughSessionProxy|probeDaemon|recordedOwnerPid|childPid|active secondary"[90m in .opencode/bin/mk-spec-memory-launcher.cjs · 89 matches[0m
+[0m✱ [0mGrep "shutdown.*Signal|SIGTERM|child.kill|shutdownModelServerForLauncherExit|clear.*lease|bridgeStdioThroughSessionProxy|process.on\('SIGTERM|probeDaemon"[90m in .opencode/bin/mk-skill-advisor-launcher.cjs · 12 matches[0m
+[0m✱ [0mGrep "shutdown.*Signal|SIGTERM|child.kill|clear.*lease|bridgeStdioThroughSessionProxy|launcher-session-proxy|process.on\('SIGTERM|probeDaemon"[90m in .opencode/bin/mk-code-index-launcher.cjs · 6 matches[0m
+[0m✱ [0mGrep "owner|lease|stale|probeDaemon|EADDRINUSE|unlink|bridgeStdio|secondary|deepProbe|reap|childPid|launcherPid|released"[90m in .opencode/bin/lib/launcher-ipc-bridge.cjs · 32 matches[0m
+[0m✱ [0mGrep "EADDRINUSE|unlink|same-UID|foreign|socket|server.close|listen"[90m in .opencode/skills/system-spec-kit/mcp_server/lib/ipc/socket-server.ts · 4 matches[0m
+[0m✱ [0mGrep "active secondary|secondary|idle|SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN|connections|clients|keep.*alive|self-exit"[90m in .opencode/skills · 100 matches[0m
+[0m→ [0mRead .opencode/bin/mk-spec-memory-launcher.cjs[90m [offset=190, limit=35][0m
+[0m→ [0mRead .opencode/bin/mk-spec-memory-launcher.cjs[90m [offset=1440, limit=75][0m
+[0m→ [0mRead .opencode/bin/mk-spec-memory-launcher.cjs[90m [offset=1568, limit=90][0m
+[0m→ [0mRead .opencode/bin/mk-skill-advisor-launcher.cjs[90m [offset=1138, limit=70][0m
+[0m→ [0mRead .opencode/bin/mk-code-index-launcher.cjs[90m [offset=890, limit=55][0m
+[0m→ [0mRead .opencode/bin/lib/launcher-ipc-bridge.cjs[90m [offset=360, limit=75][0m
+[0m→ [0mRead .opencode/bin/lib/launcher-session-proxy.cjs[90m [offset=800, limit=60][0m
+[0m✱ [0mGlob "**/shared/ipc/socket-server.*"[90m in .opencode · 1 match[0m
+[0m✱ [0mGrep "buildSharedLeaseObject|ownerPid|childPid|startedAt|runtime|lease|pid"[90m in .opencode/bin/lib/model-server-supervision.cjs · 100 matches[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/shared/ipc/socket-server.ts[90m [offset=280, limit=110][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/ipc/launcher-idle-timeout.ts[90m [offset=1, limit=140][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts[90m [offset=300, limit=28][0m
+[0m→ [0mRead .opencode/skills/system-code-graph/mcp_server/index.ts[90m [offset=136, limit=22][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/context-server.ts[90m [offset=2270, limit=24][0m
+[0m→ [0mRead .opencode/bin/mk-skill-advisor-launcher.cjs[90m [offset=680, limit=42][0m
+[0m→ [0mRead .opencode/bin/mk-code-index-launcher.cjs[90m [offset=680, limit=35][0m
+[0m→ [0mRead .opencode/bin/lib/model-server-supervision.cjs[90m [offset=700, limit=28][0m
+[0m✱ [0mGrep "function acquireOwnerLeaseFile|startedAtIso|ownerPid|runtime|claude|opencode|codex"[90m in .opencode/bin/mk-skill-advisor-launcher.cjs · 60 matches[0m
+[0m✱ [0mGrep "ownerSocketPath|PID_FILE_NAME|writeLeaseFile|ownerPid|runtime|claude|opencode|codex"[90m in .opencode/bin/mk-code-index-launcher.cjs · 76 matches[0m
+[0m→ [0mRead .opencode/bin/mk-skill-advisor-launcher.cjs[90m [offset=500, limit=65][0m
+[0m→ [0mRead .opencode/bin/mk-code-index-launcher.cjs[90m [offset=600, limit=30][0m
+[0m→ [0mRead .opencode/bin/mk-skill-advisor-launcher.cjs[90m [offset=368, limit=42][0m
+[0m→ [0mRead .opencode/bin/mk-code-index-launcher.cjs[90m [offset=378, limit=22][0m
+[0m→ [0mRead .opencode/bin/mk-code-index-launcher.cjs[90m [offset=950, limit=35][0m
+[0m→ [0mRead .opencode/bin/mk-skill-advisor-launcher.cjs[90m [offset=716, limit=38][0m
+[0m✱ [0mGrep "UserPromptSubmit|SessionStart|session-start|prompt-wrapper|warm-only|PROMPT_TIME|prewarm|session_bootstrap"[90m in .codex · 6 matches[0m
+[0m✗ [0mGrep "UserPromptSubmit|SessionStart|Prompt|warm-only|PROMPT_TIME|prewarm|session_bootstrap|mk-code-graph|mk-spec-memory|mk-skill-advisor" failed[90m in .opencode[0m
+[91m[1mError: [0mRipgrep JSON record exceeded 65536 bytes
+[0m✱ [0mGrep "hooks|plugin|UserPromptSubmit|SessionStart|warm-only|PROMPT_TIME|mk-skill-advisor|mk-spec-memory|mk-code-graph"[90m in opencode.json · 9 matches[0m
+[0m→ [0mRead .codex/hooks.json[90m [offset=1, limit=70][0m
+[0m→ [0mRead .codex/settings.json[90m [offset=1, limit=70][0m
+[0m→ [0mRead .opencode/plugins/mk-spec-memory.js[90m [offset=390, limit=80][0m
+[0m→ [0mRead .opencode/plugins/mk-code-graph.js[90m [offset=380, limit=70][0m
+[0m→ [0mRead .opencode/plugins/mk-skill-advisor.js[90m [offset=420, limit=105][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/user-prompt-submit.js[90m [offset=1, limit=60][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/session-start.js[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs[90m [offset=220, limit=170][0m
+[0m→ [0mRead .opencode/plugins/mk-spec-memory.js[90m [offset=1, limit=160][0m
+[0m→ [0mRead .opencode/plugins/mk-code-graph.js[90m [offset=1, limit=160][0m
+[0m✱ [0mGrep "probeCliWarmDaemon|runCli|ADVISOR_CLI_RETRYABLE_EXIT|callAdvisorTool|build.*Brief|warm|fallback|advisor_recommend"[90m in .opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs · 39 matches[0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs[90m [offset=380, limit=90][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs[90m [offset=620, limit=105][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs[90m [offset=780, limit=80][0m
+[0m→ [0mRead .opencode/bin/mk-skill-advisor-launcher.cjs[90m [offset=210, limit=45][0m
+[0m→ [0mRead .opencode/bin/mk-code-index-launcher.cjs[90m [offset=174, limit=34][0m
+[0m→ [0mRead .opencode/bin/mk-spec-memory-launcher.cjs[90m [offset=284, limit=34][0m
+[0m→ [0mRead .opencode/bin/lib/launcher-session-proxy.cjs[90m [offset=1, limit=120][0m
+[0m→ [0mRead .opencode/bin/lib/launcher-ipc-bridge.cjs[90m [offset=90, limit=75][0m
+[0m✱ [0mGrep "reattach|attachFreshSocket|KEEPALIVE|socket.*close|retry|backend recycled|stop\(\)|MAX_REATTACH"[90m in .opencode/bin/lib/launcher-session-proxy.cjs · 43 matches[0m
+[0m→ [0mRead .opencode/bin/lib/launcher-session-proxy.cjs[90m [offset=200, limit=90][0m
+[0m→ [0mRead .opencode/bin/lib/launcher-session-proxy.cjs[90m [offset=660, limit=125][0m
+[0m✱ [0mGrep "buildWarmSessionResumeSection|buildWarmCodeGraphStatusSection|maybeAppend|warm"[90m in .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-prime.js · 10 matches[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-prime.js[90m [offset=261, limit=92][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/shared/ipc/socket-server.ts[90m [offset=389, limit=50][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts[90m [offset=323, limit=18][0m
+[0m→ [0mRead .opencode/skills/system-code-graph/mcp_server/index.ts[90m [offset=157, limit=20][0m
+[0m✱ [0mGrep "function shutdownAdvisor|async function shutdownAdvisor|ipcBridge.*close|shutdownAdvisor"[90m in .opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts · 6 matches[0m
+[0m✱ [0mGrep "function shutdownCodeIndex|async function shutdownCodeIndex|ipcBridge.*close|shutdownCodeIndex"[90m in .opencode/skills/system-code-graph/mcp_server/index.ts · 5 matches[0m
+[0m✱ [0mGrep "function fatalShutdown|async function fatalShutdown|ipcBridge.*close|fatalShutdown"[90m in .opencode/skills/system-spec-kit/mcp_server/context-server.ts · 10 matches[0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts[90m [offset=160, limit=32][0m
+[0m→ [0mRead .opencode/skills/system-code-graph/mcp_server/index.ts[90m [offset=88, limit=40][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/context-server.ts[90m [offset=1600, limit=62][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/context-server.ts[90m [offset=1726, limit=20][0m

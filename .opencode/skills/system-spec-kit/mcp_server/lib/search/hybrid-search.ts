@@ -5,68 +5,76 @@
 
 // 1. IMPORTS
 
-// Local
+import { adaptiveFuse, getAdaptiveWeights, isAdaptiveFusionEnabled } from '@spec-kit/shared/algorithms/adaptive-fusion';
+import { applyMMR } from '@spec-kit/shared/algorithms/mmr-reranker';
+import { fuseResultsMulti } from '@spec-kit/shared/algorithms/rrf-fusion';
+
+import { CO_ACTIVATION_CONFIG, spreadActivation } from '../cognitive/co-activation.js';
+import { collapseAndReassembleChunkResults } from '../scoring/mpab-aggregation.js';
 import {
   getIndex,
   isBm25Enabled,
   shouldUseSqliteLexicalEngine,
 } from './bm25-index.js';
-import { fuseResultsMulti } from '@spec-kit/shared/algorithms/rrf-fusion';
-import { adaptiveFuse, getAdaptiveWeights, isAdaptiveFusionEnabled } from '@spec-kit/shared/algorithms/adaptive-fusion';
-import { CO_ACTIVATION_CONFIG, spreadActivation } from '../cognitive/co-activation.js';
-import { applyMMR } from '@spec-kit/shared/algorithms/mmr-reranker';
-import { INTENT_LAMBDA_MAP, classifyIntent } from './intent-classifier.js';
-import { fts5Bm25Search } from './sqlite-fts.js';
-import { DEGREE_CHANNEL_WEIGHT } from './graph-search-fn.js';
+import { enforceChannelRepresentation } from './channel-enforcement.js';
 import {
+  DEFAULT_MIN_RESULTS,
+  GAP_THRESHOLD_MULTIPLIER,
+  isConfidenceTruncationEnabled,
+  truncateByConfidence,
+} from './confidence-truncation.js';
+import {
+  DEFAULT_TOKEN_BUDGET_CONFIG,
+  getDynamicTokenBudget,
+  isDynamicTokenBudgetEnabled,
+} from './dynamic-token-budget.js';
+import { ensureDescriptionCache, getSpecsBasePaths } from './folder-discovery.js';
+import {
+  computeFolderRelevanceScores,
+  enrichResultsWithFolderScores,
+  isFolderScoringEnabled,
+  lookupFolders,
+  twoPhaseRetrieval,
+} from './folder-relevance.js';
+import { computeDegreeScores, DEGREE_CHANNEL_WEIGHT } from './graph-search-fn.js';
+import { INTENT_LAMBDA_MAP, classifyIntent } from './intent-classifier.js';
+import { resolveAbsoluteRelevance } from './pipeline/types.js';
+import {
+  DEFAULT_PAGE_SIZE,
+  buildProgressiveResponse,
+} from './progressive-disclosure.js';
+import { isComplexityRouterEnabled } from './query-classifier.js';
+import { routeQuery } from './query-router.js';
+import {
+  isArchivedRetrievalIncludedByDefault,
+  isContextHeadersEnabled,
+  isCosineTopnReorderEnabled,
+  isDegreeBoostEnabled,
+  isDocscoreAggregationEnabled,
   isMMREnabled,
   isSearchFallbackEnabled,
-  isDocscoreAggregationEnabled,
-  isDegreeBoostEnabled,
-  isContextHeadersEnabled,
 } from './search-flags.js';
-import { computeDegreeScores } from './graph-search-fn.js';
-import type { GraphSearchFn } from './search-types.js';
+import { resolveFusionIntentContract } from './search-utils.js';
+import { fts5Bm25Search } from './sqlite-fts.js';
+import { parse_trigger_phrases, specFolderLikePattern } from './vector-index-types.js';
 
-// Feature catalog: Hybrid search pipeline
+import type Database from 'better-sqlite3';
+import type { MMRCandidate } from '@spec-kit/shared/algorithms/mmr-reranker';
+import type { FusionResult } from '@spec-kit/shared/algorithms/rrf-fusion';
+import type { SpreadResult } from '../cognitive/co-activation.js';
+import type { EnforcementResult } from './channel-enforcement.js';
+import type { TruncationResult } from './confidence-truncation.js';
+import type { PipelineRow } from './pipeline/types.js';
+import type {
+  DisclosureResult,
+  ProgressiveResponse,
+} from './progressive-disclosure.js';
+import type { ChannelName } from './query-router.js';
+import type { GraphSearchFn } from './search-types.js';
 
 export type { GraphSearchFn } from './search-types.js';
 
-import { routeQuery } from './query-router.js';
-import { isComplexityRouterEnabled } from './query-classifier.js';
-import { enforceChannelRepresentation } from './channel-enforcement.js';
-import {
-  truncateByConfidence,
-  isConfidenceTruncationEnabled,
-  DEFAULT_MIN_RESULTS,
-  GAP_THRESHOLD_MULTIPLIER,
-} from './confidence-truncation.js';
-import {
-  getDynamicTokenBudget,
-  isDynamicTokenBudgetEnabled,
-  DEFAULT_TOKEN_BUDGET_CONFIG,
-} from './dynamic-token-budget.js';
-import { resolveFusionIntentContract } from './search-utils.js';
-import { ensureDescriptionCache, getSpecsBasePaths } from './folder-discovery.js';
-import {
-  isFolderScoringEnabled,
-  lookupFolders,
-  computeFolderRelevanceScores,
-  enrichResultsWithFolderScores,
-  twoPhaseRetrieval,
-} from './folder-relevance.js';
-import { parse_trigger_phrases } from './vector-index-types.js';
-
-import { collapseAndReassembleChunkResults } from '../scoring/mpab-aggregation.js';
-
-// Type-only
-import type Database from 'better-sqlite3';
-import type { SpreadResult } from '../cognitive/co-activation.js';
-import type { MMRCandidate } from '@spec-kit/shared/algorithms/mmr-reranker';
-import type { FusionResult } from '@spec-kit/shared/algorithms/rrf-fusion';
-import type { ChannelName } from './query-router.js';
-import type { EnforcementResult } from './channel-enforcement.js';
-import type { TruncationResult } from './confidence-truncation.js';
+// Feature catalog: Hybrid search pipeline
 
 // 2. INTERFACES
 
@@ -129,6 +137,66 @@ interface HybridSearchResult {
   source: string;
   title?: string;
   [key: string]: unknown;
+}
+
+type HardExclusionSource = 'archived-tier' | 'deprecated-tier';
+type HardExclusionClassification = 'intended' | 'silent-risk' | 'unclassified';
+
+interface HardExclusionPredicate {
+  id: string;
+  source: HardExclusionSource;
+  channel: string;
+  predicate: string;
+  defaultApplied: boolean;
+  classification: HardExclusionClassification;
+}
+
+const HARD_EXCLUSION_PREDICATES: readonly HardExclusionPredicate[] = Object.freeze([
+  {
+    id: 'includeArchived-default',
+    source: 'archived-tier',
+    channel: 'vector/fts',
+    predicate: 'includeArchived defaults to false',
+    defaultApplied: true,
+    classification: 'intended',
+  },
+  {
+    id: 'fts-deprecated-tier',
+    source: 'deprecated-tier',
+    channel: 'fts',
+    predicate: "m.importance_tier IS NULL OR m.importance_tier != 'deprecated'",
+    defaultApplied: true,
+    classification: 'silent-risk',
+  },
+  {
+    id: 'bm25-deprecated-tier',
+    source: 'deprecated-tier',
+    channel: 'bm25',
+    predicate: "importance_tier != 'deprecated'",
+    defaultApplied: true,
+    classification: 'silent-risk',
+  },
+  {
+    id: 'trigger-deprecated-tier',
+    source: 'deprecated-tier',
+    channel: 'trigger',
+    predicate: "m.importance_tier IS NULL OR m.importance_tier != 'deprecated'",
+    defaultApplied: true,
+    classification: 'silent-risk',
+  },
+  {
+    id: 'structural-deprecated-archived-tier',
+    source: 'deprecated-tier',
+    channel: 'structural',
+    predicate: "importance_tier IS NULL OR importance_tier NOT IN ('deprecated', 'archived')",
+    defaultApplied: true,
+    classification: 'silent-risk',
+  },
+]);
+
+/** Return recall-path exclusion metadata without executing or changing search. */
+function getHardExclusionPredicates(): HardExclusionPredicate[] {
+  return HARD_EXCLUSION_PREDICATES.map((predicate) => ({ ...predicate }));
 }
 
 type Bm25MemoryMetadata = {
@@ -274,26 +342,39 @@ let enrichFusedResultsObserver: (() => void) | null = null;
 interface GraphChannelMetrics {
   totalQueries: number;
   graphHits: number;
+  graphResultCount: number;
   graphOnlyResults: number;
+  graphMultiSourceResults: number;
   multiSourceResults: number;
+  degreeQueries: number;
+  degreeHits: number;
+  degreeResultCount: number;
 }
 
 const graphMetrics: GraphChannelMetrics = {
   totalQueries: 0,
   graphHits: 0,
+  graphResultCount: 0,
   graphOnlyResults: 0,
+  graphMultiSourceResults: 0,
   multiSourceResults: 0,
+  degreeQueries: 0,
+  degreeHits: 0,
+  degreeResultCount: 0,
 };
 
 /**
  * Return current graph channel metrics for health check reporting.
  * graphHitRate is computed as graphHits / totalQueries.
  */
-function getGraphMetrics(): GraphChannelMetrics & { graphHitRate: number } {
+function getGraphMetrics(): GraphChannelMetrics & { graphHitRate: number; degreeHitRate: number } {
   return {
     ...graphMetrics,
     graphHitRate: graphMetrics.totalQueries > 0
       ? graphMetrics.graphHits / graphMetrics.totalQueries
+      : 0,
+    degreeHitRate: graphMetrics.degreeQueries > 0
+      ? graphMetrics.degreeHits / graphMetrics.degreeQueries
       : 0,
   };
 }
@@ -302,8 +383,13 @@ function getGraphMetrics(): GraphChannelMetrics & { graphHitRate: number } {
 function resetGraphMetrics(): void {
   graphMetrics.totalQueries = 0;
   graphMetrics.graphHits = 0;
+  graphMetrics.graphResultCount = 0;
   graphMetrics.graphOnlyResults = 0;
+  graphMetrics.graphMultiSourceResults = 0;
   graphMetrics.multiSourceResults = 0;
+  graphMetrics.degreeQueries = 0;
+  graphMetrics.degreeHits = 0;
+  graphMetrics.degreeResultCount = 0;
 }
 
 // 7. INITIALIZATION
@@ -364,8 +450,21 @@ function bm25Search(
       }));
     }
 
+    // Spec-folder scope can only be resolved from DB metadata; fail closed before
+    // searching when the DB is unavailable rather than over-fetching the whole
+    // corpus and then discarding it.
+    if (specFolder && !db) {
+      console.warn('[BM25] Spec-folder scope requested without a database; returning empty scoped results');
+      return [];
+    }
+
     const index = getIndex();
-    const results = index.search(query, limit);
+    const candidateLimit = (specFolder || db)
+      ? index.getStats().documentCount
+      : limit;
+    // Metadata filters run after in-memory scoring, so fetch the corpus-bounded
+    // candidate set whenever those filters can remove otherwise top-ranked hits.
+    const results = index.search(query, candidateLimit);
 
     // BM25 document IDs are stringified
     // Numeric memory IDs (e.g., "42"), not spec folder paths. The old filter compared
@@ -385,16 +484,24 @@ function bm25Search(
       } else {
         try {
           const ids = results.map((r: { id: string }) => Number(r.id));
-          const placeholders = ids.map(() => '?').join(',');
-          const rows = db.prepare(
-            `SELECT id, spec_folder, importance_tier FROM memory_index WHERE id IN (${placeholders})`
-          ).all(...ids) as Array<{ id: number; spec_folder: string | null; importance_tier: string | null }>;
           memoryMetadataMap = new Map();
-          for (const row of rows) {
-            memoryMetadataMap.set(row.id, {
-              specFolder: row.spec_folder,
-              importanceTier: row.importance_tier,
-            });
+          // Resolve metadata in bounded batches. The candidate set can now be
+          // corpus-sized (over-fetch for scope/tier filtering), and a single
+          // IN (...) with one bind per id would exceed SQLite's parameter limit
+          // and throw — which the catch below turns into an empty result.
+          const METADATA_BATCH = 500;
+          for (let offset = 0; offset < ids.length; offset += METADATA_BATCH) {
+            const batch = ids.slice(offset, offset + METADATA_BATCH);
+            const placeholders = batch.map(() => '?').join(',');
+            const rows = db.prepare(
+              `SELECT id, spec_folder, importance_tier FROM memory_index WHERE id IN (${placeholders})`
+            ).all(...batch) as Array<{ id: number; spec_folder: string | null; importance_tier: string | null }>;
+            for (const row of rows) {
+              memoryMetadataMap.set(row.id, {
+                specFolder: row.spec_folder,
+                importanceTier: row.importance_tier,
+              });
+            }
           }
         } catch (error: unknown) {
           console.warn('[BM25] Spec-folder scope lookup failed, returning empty scoped results:', error);
@@ -412,16 +519,20 @@ function bm25Search(
       }
     }
 
+    const excludeCold = !isArchivedRetrievalIncludedByDefault();
     return results
       .filter((r: { id: string }) => {
         const metadata = memoryMetadataMap?.get(Number(r.id));
-        if (metadata?.importanceTier === 'deprecated') return false;
+        // Cold/deprecated rows are included by default (FSRS ranks them lower);
+        // only drop them when archived retrieval is disabled.
+        if (excludeCold && metadata?.importanceTier === 'deprecated') return false;
         if (!specFolder) return true;
         if (!metadata) return false;
         const folder = metadata.specFolder;
         if (!folder) return false;
         return folder === specFolder || folder.startsWith(specFolder + '/');
       })
+      .slice(0, limit)
       .map((r: { id: string; score: number }) => ({
         ...r,
         source: 'bm25',
@@ -605,15 +716,20 @@ function exactTriggerSearch(
     `m.trigger_phrases IS NOT NULL`,
     `m.trigger_phrases != ''`,
     `m.trigger_phrases != '[]'`,
-    `(m.importance_tier IS NULL OR m.importance_tier != 'deprecated')`,
+    // Cold/deprecated-tier rows are included by default (FSRS retrievability ranks
+    // them below hot memories); the hard exclusion only applies when archived
+    // retrieval is disabled.
+    ...(isArchivedRetrievalIncludedByDefault()
+      ? []
+      : [`(m.importance_tier IS NULL OR m.importance_tier != 'deprecated')`]),
     `(m.expires_at IS NULL OR m.expires_at > datetime('now'))`,
     `(${tokens.map(() => 'LOWER(m.trigger_phrases) LIKE ?').join(' OR ')})`,
   ];
   const params: unknown[] = tokens.map((token) => `%${token}%`);
 
   if (specFolder) {
-    conditions.push(`(m.spec_folder = ? OR m.spec_folder LIKE ?)`);
-    params.push(specFolder, `${specFolder}/%`);
+    conditions.push(`(m.spec_folder = ? OR m.spec_folder LIKE ? ESCAPE '\\')`);
+    params.push(specFolder, specFolderLikePattern(specFolder));
   }
 
   try {
@@ -1083,6 +1199,7 @@ async function hybridSearch(
   // Graph search
   if (useGraph && graphSearchFn) {
     try {
+      graphMetrics.totalQueries++;
       const graphResults = graphSearchFn(query, { limit, specFolder });
       for (const r of graphResults) {
         results.push({
@@ -1091,6 +1208,10 @@ async function hybridSearch(
           score: (r.score as number) || 0,
           source: 'graph',
         });
+      }
+      if (graphResults.length > 0) {
+        graphMetrics.graphHits++;
+        graphMetrics.graphResultCount += graphResults.length;
       }
     } catch (error: unknown) {
       const msg = error instanceof Error ? error.message : String(error);
@@ -1211,7 +1332,13 @@ async function collectAndFuseHybridResults(
     // -- Stage E: Dynamic Token Budget (SPECKIT_DYNAMIC_TOKEN_BUDGET) --
     // Compute tier-aware budget early so it's available for downstream truncation.
     // When disabled, getDynamicTokenBudget returns the default 4000 budget with applied=false.
-    const budgetResult = getDynamicTokenBudget(routeResult.tier);
+    // Weak / low-confidence queries keep the full budget so recall is not trimmed away.
+    const lowSignalQuery =
+      routeResult.classification.confidence === 'low' ||
+      routeResult.classification.confidence === 'fallback';
+    const budgetResult = getDynamicTokenBudget(routeResult.tier, undefined, {
+      lowSignal: lowSignalQuery,
+    });
     if (budgetResult.applied && !evaluationMode) {
       s3meta.tokenBudget = {
         tier: budgetResult.tier,
@@ -1305,6 +1432,7 @@ async function collectAndFuseHybridResults(
         });
         if (graphResults.length > 0) {
           graphMetrics.graphHits++;
+          graphMetrics.graphResultCount += graphResults.length;
           lists.push({ source: 'graph', results: graphResults.map((r: Record<string, unknown>) => ({
             ...r,
             id: r.id as number | string,
@@ -1321,6 +1449,7 @@ async function collectAndFuseHybridResults(
     // Degree channel — also gated by query-complexity routing
     if (activeChannels.has('degree') && db && isDegreeBoostEnabled()) {
       try {
+        graphMetrics.degreeQueries++;
         // Collect all numeric IDs from existing channels
         const allResultIds = new Set<number>();
         for (const list of lists) {
@@ -1344,6 +1473,8 @@ async function collectAndFuseHybridResults(
           degreeItems.sort((a, b) => b.degreeScore - a.degreeScore);
 
           if (degreeItems.length > 0) {
+            graphMetrics.degreeHits++;
+            graphMetrics.degreeResultCount += degreeItems.length;
             lists.push({
               source: 'degree',
               results: degreeItems.map(item => ({
@@ -1397,6 +1528,7 @@ async function collectAndFuseHybridResults(
     }
     for (const [, sources] of sourceMap) {
       if (sources.size > 1) graphMetrics.multiSourceResults++;
+      if (sources.size > 1 && sources.has('graph')) graphMetrics.graphMultiSourceResults++;
       if (sources.size === 1 && sources.has('graph')) graphMetrics.graphOnlyResults++;
     }
 
@@ -1688,7 +1820,7 @@ async function enrichFusedResults(
           const mmrLambda = INTENT_LAMBDA_MAP[intent] ?? MMR_DEFAULT_LAMBDA;
           const diversified = applyMMR(mmrCandidates, { lambda: mmrLambda, limit });
 
-          // FIX #6: Same fix as stage3-rerank FIX #5 — MMR can only diversify
+          // MMR can only diversify
           // rows that have embeddings. Non-embedded rows (lexical-only hits,
           // graph injections) must be preserved and merged back in their
           // original relative order instead of being silently dropped.
@@ -1872,10 +2004,22 @@ async function enrichFusedResults(
     const budgeted = truncateToBudget(reranked, adjustedBudget, {
       includeContent: options.includeContent ?? false,
       queryId: `hybrid-${Date.now()}`,
+      limit: options.limit,
+      query,
     });
     reranked = budgeted.results;
     budgetTruncated = budgeted.truncated;
     budgetLimit = budgetResult.budget;
+
+    // Cosine-primary head reorder (SPECKIT_COSINE_TOPN_REORDER, default-ON).
+    // Must run AFTER truncateToBudget: that step re-sorts the survivors by the
+    // fused `score`, so a pre-truncation reorder would be clobbered. Applied to
+    // the budgeted survivors it is the last word on order without disturbing the
+    // budget membership decision. Skipped in evaluationMode so the labeled-set
+    // top-K window stays exactly as fused.
+    if (isCosineTopnReorderEnabled() && reranked.length > 1) {
+      reranked = reorderTopNByCosine(reranked);
+    }
   }
 
   if (reranked.length > 0) {
@@ -2056,15 +2200,15 @@ function structuralSearch(
 
   try {
     // Build SQL with optional specFolder filter
-    // H13 FIX: Exclude archived rows unless explicitly requested
+    // Exclude archived rows unless explicitly requested
     const conditions = [
       `(importance_tier IS NULL OR importance_tier NOT IN ('deprecated', 'archived'))`,
     ];
     const params: unknown[] = [];
 
     if (options.specFolder) {
-      conditions.push(`(spec_folder = ? OR spec_folder LIKE ?)`);
-      params.push(options.specFolder, `${options.specFolder}/%`);
+      conditions.push(`(spec_folder = ? OR spec_folder LIKE ? ESCAPE '\\')`);
+      params.push(options.specFolder, specFolderLikePattern(options.specFolder));
     }
 
     const whereClause = conditions.join(' AND ');
@@ -2263,6 +2407,38 @@ function applyResultLimit(results: HybridSearchResult[], limit?: number): Hybrid
     return results;
   }
   return results.slice(0, limit);
+}
+
+/** Depth of the result head rebalanced by the cosine-primary reorder. */
+const COSINE_TOPN_REORDER_DEPTH = 10;
+
+/**
+ * Cosine-primary reorder of the result head.
+ *
+ * Reorders only the top-N by absolute cosine relevance (resolveAbsoluteRelevance),
+ * as a STABLE sort so equal-relevance items keep their incoming fused (RRF) order.
+ * RRF fusion remains the ranking baseline; only the head — where position 1 is now
+ * decisive for downstream consumers — is rebalanced toward the strongest absolute
+ * semantic signal. Vector hits carry a real cosine; lexical-only hits fall back to
+ * the effective score, so a strong lexical hit is not unfairly zeroed out. Length
+ * and membership are invariant — this only permutes the head.
+ */
+function reorderTopNByCosine(
+  results: HybridSearchResult[],
+  depth: number = COSINE_TOPN_REORDER_DEPTH
+): HybridSearchResult[] {
+  const headCount = Math.min(depth, results.length);
+  if (headCount <= 1) return results;
+
+  const head = results.slice(0, headCount);
+  // Decorate with the original index so equal-relevance ties resolve to fused
+  // order regardless of the engine's sort stability.
+  const reordered = head
+    .map((row, index) => ({ row, index, relevance: resolveAbsoluteRelevance(row as PipelineRow) }))
+    .sort((a, b) => (b.relevance - a.relevance) || (a.index - b.index))
+    .map((entry) => entry.row);
+
+  return [...reordered, ...results.slice(headCount)];
 }
 
 /** Tier-3 structural results are capped at this fraction of the top existing score. */
@@ -2465,6 +2641,10 @@ interface TruncateToBudgetResult {
   results: HybridSearchResult[];
   truncated: boolean;
   overflow?: OverflowLogEntry;
+  /** Progressive-disclosure envelope (summary + first page + cursor) for the
+   * overflow remainder that did not fit the immediate payload. Present only
+   * when results overflowed the budget and some remainder was deferred. */
+  progressive?: ProgressiveResponse;
 }
 
 /**
@@ -2579,20 +2759,33 @@ function createSummaryFallback(result: HybridSearchResult, budget: number): Hybr
 }
 
 /**
- * Truncate a result set to fit within a token budget using greedy highest-scoring-first strategy.
+ * Truncate a result set to fit within a token budget.
+ *
+ * Results are sorted highest-score-first. On overflow the accumulator
+ * skips a too-large result and keeps scanning, so a single large top memory
+ * never starves smaller lower-ranked results that still fit. The detailed
+ * count is floored at min(limit, DEFAULT_MIN_RESULTS): when fewer full results
+ * fit, the highest-scoring overflow remainder is promoted as token-cheap
+ * summaries so a populated search never collapses to a near-empty payload.
+ * Whatever remains after the floor is routed through progressive disclosure
+ * (summary + first page + cursor) rather than discarded.
+ *
  * @param results - The full result set to truncate.
  * @param budget - Optional token budget override (defaults to SPECKIT_TOKEN_BUDGET env / 2000).
- * @param options - Optional includeContent flag and queryId for overflow logging.
- * @returns Object with truncated results, truncation flag, and optional overflow log entry.
+ * @param options - Optional includeContent flag, queryId for overflow logging,
+ *   result limit (for the detailed-count floor), and query text (for cursors).
+ * @returns Object with truncated results, truncation flag, optional overflow log
+ *   entry, and an optional progressive-disclosure envelope for the remainder.
  */
 function truncateToBudget(
   results: HybridSearchResult[],
   budget?: number,
-  options?: { includeContent?: boolean; queryId?: string }
+  options?: { includeContent?: boolean; queryId?: string; limit?: number; query?: string }
 ): TruncateToBudgetResult {
   const effectiveBudget = (budget && budget > 0) ? budget : getTokenBudget();
   const includeContent = options?.includeContent ?? false;
   const queryId = options?.queryId ?? `q-${Date.now()}`;
+  const query = options?.query ?? '';
 
   if (results.length === 0) {
     return { results: [], truncated: false };
@@ -2639,43 +2832,50 @@ function truncateToBudget(
     return { results: [outputResult], truncated: true, overflow };
   }
 
-  // Greedy accumulation: take highest-scoring results until budget exhausted
+  // Skip-and-continue accumulation: take highest-scoring results that fit, but
+  // skip (don't break on) a too-large result so smaller lower-ranked results
+  // still get a chance to fit. A single large top memory must not starve the tail.
   const accepted: HybridSearchResult[] = [];
+  const overflowRemainder: HybridSearchResult[] = [];
   let accumulated = 0;
 
   for (const result of sorted) {
     const tokens = getTokenEstimate(result);
     if (accumulated + tokens > effectiveBudget) {
-      if (accepted.length > 0) {
-        break;
-      }
+      overflowRemainder.push(result);
       continue;
     }
     accepted.push(result);
     accumulated += tokens;
-    if (accumulated >= effectiveBudget) break;
   }
 
-  if (accepted.length === 0 && sorted.length > 0) {
-    const outputResult = includeContent
-      ? createSummaryFallback(sorted[0]!, effectiveBudget)
-      : sorted[0]!;
-    const overflow: OverflowLogEntry = {
-      queryId,
-      candidateCount: results.length,
-      totalTokens,
-      budgetLimit: effectiveBudget,
-      truncatedToCount: 1,
-      timestamp: new Date().toISOString(),
-    };
-
-    console.warn(
-      `[hybrid-search] Token budget overflow (top-result fallback): ` +
-      `${totalTokens} tokens > ${effectiveBudget} budget`
-    );
-
-    return { results: [outputResult], truncated: true, overflow };
+  // Floor the detailed count at min(limit, DEFAULT_MIN_RESULTS): promote the
+  // highest-scoring skipped results as token-cheap summaries so an overflowing
+  // search still surfaces a usable set instead of collapsing to one result.
+  // Summary-first applies regardless of includeContent — the common
+  // metadata-only call would otherwise discard the remainder entirely.
+  // The floor is defined against the caller's limit; with no limit there is
+  // nothing to floor against, so fall back to the historical ≥1 guarantee.
+  const floorTarget = options?.limit !== undefined
+    ? Math.max(1, Math.min(options.limit, DEFAULT_MIN_RESULTS))
+    : 1;
+  while (accepted.length < floorTarget && overflowRemainder.length > 0) {
+    accepted.push(createSummaryFallback(overflowRemainder.shift()!, effectiveBudget));
   }
+
+  // Re-establish highest-score-first ordering: a promoted summary may outrank
+  // an already-accepted full result.
+  accepted.sort((a, b) => b.score - a.score);
+
+  // Route whatever still did not fit through progressive disclosure (summary +
+  // first snippet page + continuation cursor) rather than discarding it.
+  const progressive: ProgressiveResponse | undefined = overflowRemainder.length > 0
+    ? buildProgressiveResponse(
+        overflowRemainder as unknown as DisclosureResult[],
+        DEFAULT_PAGE_SIZE,
+        query,
+      )
+    : undefined;
 
   const overflow: OverflowLogEntry = {
     queryId,
@@ -2688,20 +2888,29 @@ function truncateToBudget(
 
   console.warn(
     `[hybrid-search] Token budget overflow: ${totalTokens} tokens > ${effectiveBudget} budget, ` +
-    `truncated ${results.length} → ${accepted.length} results`
+    `truncated ${results.length} → ${accepted.length} results` +
+    (progressive ? ` (${overflowRemainder.length} deferred to progressive disclosure)` : '')
   );
 
-  return { results: accepted, truncated: true, overflow };
+  return {
+    results: accepted,
+    truncated: true,
+    overflow,
+    ...(progressive ? { progressive } : {}),
+  };
 }
 
 // 15. EXPORTS
 
 export const __testables = {
   canonicalResultId,
+  getHardExclusionPredicates,
   truncateChars,
   extractSpecSegments,
   injectContextualTree,
   applyResultLimit,
+  reorderTopNByCosine,
+  COSINE_TOPN_REORDER_DEPTH,
   calibrateTier3Scores,
   checkDegradation,
   mergeResults,
@@ -2722,6 +2931,7 @@ export {
   hybridSearch,
   hybridSearchEnhanced,
   searchWithFallback,
+  getHardExclusionPredicates,
   getGraphMetrics,
   resetGraphMetrics,
   // Token budget validation
@@ -2744,6 +2954,9 @@ export {
 export type {
   HybridSearchOptions,
   HybridSearchResult,
+  HardExclusionClassification,
+  HardExclusionPredicate,
+  HardExclusionSource,
   VectorSearchFn,
   // Token budget types
   OverflowLogEntry,

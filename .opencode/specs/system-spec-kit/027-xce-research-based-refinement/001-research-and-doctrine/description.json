@@ -1,0 +1,27 @@
+{
+  "title": "Feature Specification: Research and Doctrine (Phase Parent)",
+  "type": "coordination-parent",
+  "childTopology": [
+    "001-peck-teachings-adoption",
+    "002-gem-team-adoption"
+  ],
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine",
+  "description": "Feature Specification: Research and Doctrine (Phase Parent)",
+  "keywords": [
+    "feature",
+    "specification",
+    "research",
+    "doctrine",
+    "phase",
+    "parent"
+  ],
+  "lastUpdated": "2026-06-16T15:23:34.742Z",
+  "specId": "001",
+  "folderSlug": "research-and-doctrine",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

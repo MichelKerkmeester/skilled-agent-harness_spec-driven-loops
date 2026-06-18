@@ -22,6 +22,10 @@ import {
   persistAdvisorHookDiagnosticRecord,
   serializeAdvisorHookDiagnosticRecord,
 } from '../../mcp_server/lib/metrics.js';
+import {
+  buildSkillAdvisorBriefFromCli,
+  shouldTrySkillAdvisorCliFallback,
+} from '../lib/skill-advisor-cli-fallback.js';
 
 const IS_CLI_ENTRY = process.argv[1]
   ? resolve(process.argv[1]) === fileURLToPath(import.meta.url)
@@ -54,6 +58,7 @@ export type CodexUserPromptSubmitOutput = CodexHookSpecificOutput | Record<strin
 
 export interface CodexUserPromptSubmitDependencies {
   readonly buildBrief?: typeof buildSkillAdvisorBrief;
+  readonly buildCliBrief?: typeof buildSkillAdvisorBriefFromCli;
   readonly renderBrief?: typeof renderAdvisorBrief;
   readonly now?: () => number;
   readonly writeDiagnostic?: (line: string) => void;
@@ -321,18 +326,47 @@ export async function handleCodexUserPromptSubmit(
 
     const buildBrief = dependencies.buildBrief ?? buildCodexAdvisorBrief;
     const renderBrief = dependencies.renderBrief ?? renderAdvisorBrief;
-    const result = await buildBrief(prompt, {
+    let result = await buildBrief(prompt, {
       runtime: 'codex',
       workspaceRoot,
       subprocessTimeoutMs: codexHookTimeoutMs(),
     });
+
+    const buildCliBrief = dependencies.buildCliBrief ?? (dependencies.buildBrief ? null : buildSkillAdvisorBriefFromCli);
+    const cliFallbackAttempted = buildCliBrief !== null && shouldTrySkillAdvisorCliFallback(result);
+    // The fallback rewrites diagnostics (its failures surface as
+    // NON_ZERO_EXIT, never TIMEOUT), so the native timeout fact must be
+    // captured BEFORE the fallback overwrites it.
+    const nativeTimedOut = result.status === 'fail_open' && result.diagnostics?.errorCode === 'TIMEOUT';
+    if (buildCliBrief && cliFallbackAttempted) {
+      result = await buildCliBrief(prompt, {
+        runtime: 'codex',
+        workspaceRoot,
+        timeoutMs: Math.max(1, codexHookTimeoutMs() - elapsed()),
+      }, {
+        now: dependencies.now,
+      });
+    }
+
+    result = {
+      ...result,
+      metrics: {
+        ...result.metrics,
+        durationMs: elapsed(),
+      },
+    };
     const brief = renderBrief(result, {
       thresholdConfig: {
         confidenceThreshold: DEFAULT_ADVISOR_CONFIDENCE_THRESHOLD,
         uncertaintyThreshold: DEFAULT_ADVISOR_UNCERTAINTY_THRESHOLD,
       },
     });
-    if (result.status === 'fail_open' && result.diagnostics?.errorCode === 'TIMEOUT') {
+    // Emit the timeout warning whenever the FINAL outcome is fail_open and
+    // a timeout occurred anywhere along the way: the final diagnostics for
+    // a fallback-that-also-failed read NON_ZERO_EXIT, so the captured
+    // native-timeout fact is what keeps this reachable on the default
+    // path. A successful fallback leaves fail_open and skips the branch.
+    if (result.status === 'fail_open' && (result.diagnostics?.errorCode === 'TIMEOUT' || nativeTimedOut)) {
       emitTimeoutFallbackWarning(workspaceRoot, result.metrics.durationMs, writeDiagnostic);
       emitDiagnostic({
         workspaceRoot,

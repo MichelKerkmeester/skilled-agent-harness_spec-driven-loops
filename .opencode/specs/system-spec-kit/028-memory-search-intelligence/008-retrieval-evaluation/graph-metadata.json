@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/008-retrieval-evaluation",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/008-retrieval-evaluation",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "028 retrieval evaluation research",
+      "post-027-002 angles deep research",
+      "memory eval harness isotonic calibration",
+      "gate rank divergence shadow-eval",
+      "reindex as consolidation semantic substrate",
+      "028 retrieval evaluation research report",
+      "post-027-002 angles A1-A8 findings",
+      "memory eval harness research"
+    ],
+    "key_topics": [
+      "028",
+      "retrieval",
+      "evaluation",
+      "research",
+      "post-027-002",
+      "angles",
+      "deep",
+      "memory",
+      "eval",
+      "harness",
+      "isotonic",
+      "calibration"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "research/research.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Retrieval Evaluation",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Angles",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Report",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "claude2",
+        "kind": "key_phrase",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 027/002 shipped phases 015-019 to the live Memory MCP (cosine-gate fix, truncation safety, verdict aggregation, generic-query routing, confidence calibration incl. a flag-off isotonic infra, cosine reorder, output parity, responsive reindex, daemon maintenance-grace). The 028/007 ↔ 027/002 reconciliation (`../research/synthesis/07`) found this **changed the ground** under both research efforts: it fixed the *broken request-quality gate* (measurement was structurally impossible before), and surfaced flag-off / deferred / unmeasured levers. Eight research angles (A1-A8) emerged that neither the 016 research nor the 028/007 campaign covered.",
+    "created_at": "2026-06-17T14:00:00Z",
+    "last_save_at": "2026-06-17T19:57:25.220Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research/research.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

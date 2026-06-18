@@ -27,6 +27,7 @@ export function calculateDocumentWeight(filePath: string, documentType?: string)
         tasks: 0.6,
         implementation_summary: 0.6,
         research: 0.6,
+        review_report: 0.6,
         checklist: 0.5,
         handover: 0.5,
         description_metadata: 0.55,

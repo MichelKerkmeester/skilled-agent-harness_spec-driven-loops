@@ -1,0 +1,60 @@
+{
+  "sessionId": "fanout-gpt55-p021-1781754954084-qylfz6",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Trigger backfill still has an unbounded synchronous pre-chunk SELECT",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/lib/search/trigger-embedding-backfill.ts",
+      "line": 173,
+      "lineRange": "173-180",
+      "finding_class": "contract_safety",
+      "content_hash": "bf6fbea0db8088d7588ca100c51b2f596cb17c7180fe69066cae95e3beaff635",
+      "evidence": [
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/021-cooperative-heavy-phases/spec.md:132-134",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/trigger-embedding-backfill.ts:173-180",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/trigger-embedding-backfill.ts:262-278"
+      ],
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery during correctness review."
+        }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": false,
+    "traceability": false,
+    "maintainability": false
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 0
+  },
+  "openFindingsCount": 1,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.25,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": [],
+  "releaseReadinessState": "in-progress",
+  "verdict": "CONDITIONAL"
+}

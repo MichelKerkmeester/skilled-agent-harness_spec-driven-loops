@@ -44,9 +44,6 @@
     "status": "complete",
     "key_files": [
       ".opencode/commands/prompt.md",
-      ".opencode/commands/deep/start-agent-improvement-loop.md",
-      ".opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml",
-      ".opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml",
       ".opencode/commands/README.txt",
       "spec.md",
       "checklist.md",
@@ -60,24 +57,6 @@
         "name": "prompt.md",
         "kind": "doc",
         "path": ".opencode/commands/prompt.md",
-        "source": "derived"
-      },
-      {
-        "name": "start-agent-improvement-loop.md",
-        "kind": "doc",
-        "path": ".opencode/commands/deep/start-agent-improvement-loop.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep_start-agent-improvement-loop_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "deep_start-agent-improvement-loop_confirm.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml",
         "source": "derived"
       },
       {
@@ -199,11 +178,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Wide Rewrite",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Populate Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The legacy improve command family is removed from the live command surface. Deep-agent-improvement now belongs to `/deep:start-agent-improvement-loop`, prompt improvement belongs to root `/prompt`, and runtime mirrors/docs must not point users at removed command folders.",
     "created_at": "2026-05-24T06:47:43Z",
-    "last_save_at": "2026-06-07T09:00:45.915Z",
+    "last_save_at": "2026-06-15T09:09:33.812Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,0 +1,194 @@
+READ-ONLY MODE honored. I’ll load the relevant planning skill, then read the specified research artifacts and produce the implementation plan as the final deliverable without editing files.
+Research packet found at `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research`. I’m reading the requested iteration and diagnosis artifacts now.
+The research artifacts establish the descope decision: C2-minimal first, no B/C1/OS-unit/HF-refcount until gated. I’m doing a read-only spot check of the named code/hook files so the plan’s change sites are buildable rather than purely inferred from the iteration summaries.
+The code spot check confirms the key C2 edit points: all three source CLIs currently throw on `warmOnly` before spawning, and the session/plugin bridges pre-probe warm availability before invoking `--warm-only`. I’m also checking the RSS and launcher-hardening sites cited by the research for the gated later phases.
+I have enough source and research evidence to produce the plan. I’ll keep the final as the deliverable only and won’t modify or run remediation commands.
+The final plan will cite both the research artifacts and the spot-checked source lines. Since this is read-only planning, no validation or remediation commands were executed.
+## IT9 — phased, risk-gated implementation plan
+Decision: ship **C2-minimal only** first. Do not ship B, C1, OS units, always-warm defaults, or HF refcount in the first implementation. This follows the IT8 DESCOPE verdict (`iteration-008.md:36-41`) and the verified fact that non-warm CLI already resurrects daemons while prompt-time warm-only probes do not (`orchestrator-verifications.md:14-20`).
+
+### Immediate operator remediation (no code)
+Run one **non-warm** CLI call per dead daemon to cold-spawn the existing launcher path:
+
+```bash
+node .opencode/bin/spec-memory.cjs memory_health --format json --timeout-ms 10000
+node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json --timeout-ms 10000
+node .opencode/bin/code-index.cjs code-graph-status --format json --timeout-ms 10000
+```
+
+Then inspect the code-index launcher pile-up before killing anything:
+
+```bash
+bash .opencode/scripts/orphan-mcp-sweeper.sh --dry-run --verbose
+```
+
+Only run the live sweeper if the dry-run output targets stale helpers, not active session descendants. The current down state and stale sockets are confirmed in `live-diagnosis.md:5-11`; non-warm CLI resurrection is confirmed in `orchestrator-verifications.md:14-20`.
+
+### Phase 1 — C2-minimal (change sites, flags, throttle, tests, telemetry, rollback, entry/kill criteria)
+**Scope:** Add low-frequency prompt self-heal: SessionStart fires background non-warm kicks; optional warm-only-probe self-heal remains explicitly gated. First prompt may still see exit `75`, but next probe should succeed.
+
+**Core change sites:**
+| Area | Site |
+|---|---|
+| Spec Memory CLI warm branch | `.opencode/skills/system-spec-kit/mcp_server/spec-memory-cli.ts:770-778`, `:914-922` |
+| Code Index CLI warm branch | `.opencode/skills/system-code-graph/mcp_server/code-index-cli.ts:941-949`, `:1085-1092` |
+| Skill Advisor CLI warm branch | `.opencode/skills/system-skill-advisor/mcp_server/skill-advisor-cli.ts:1034-1042`, `:1188-1195` |
+| Claude SessionStart kick/fallback | `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts:335-416` |
+| Codex SessionStart kick/fallback | `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/session-start.ts:130-182`, `:218-226` |
+| Spec Memory hook fallback | `.opencode/skills/system-spec-kit/mcp_server/hooks/spec-memory-cli-fallback.ts:193-218` |
+| Code Index hook fallback | `.opencode/skills/system-spec-kit/mcp_server/hooks/code-index-cli-fallback.ts:196-219` |
+| OpenCode Spec Memory bridge | `.opencode/skills/system-spec-kit/mcp_server/plugin_bridges/mk-spec-memory-bridge.mjs:238-248`, `:263-280` |
+| OpenCode Code Graph bridge | `.opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs:310-331` |
+| OpenCode Skill Advisor bridge | `.opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs:249-268`, `:691-693`, `:643-652` |
+| Orphan sweeper preservation | `.opencode/scripts/orphan-mcp-sweeper.sh:181-190`, `:275-343` |
+| Explicit no-kick exclusions | `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts:213-222`, `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:103-127` |
+
+**Flags/defaults:**
+| Flag value | Behavior |
+|---|---|
+| `SPECKIT_PROMPT_SELF_HEAL=0/off` | Disable all prompt self-heal; current warm-only behavior preserved. |
+| unset or `session-start` | Default Phase 1 behavior after stress gate: SessionStart-only background non-warm kick. |
+| `SPECKIT_PROMPT_SELF_HEAL=all` | Opt-in warm-only-probe self-heal from CLI/plugin warm branches. Not default in Phase 1. |
+
+**Throttle:** Use an atomic per-service/per-repo lock in the service socket dir, keyed by `repoFingerprint + serviceName`. Use `mkdir` or `open(O_CREAT|O_EXCL)` semantics, write `{pid, service, repoFingerprint, reason, createdAt, expiresAt}`. Recover stale locks only when age exceeds TTL or recorded PID is dead. Initial TTL: 30s. The lock gates kick attempts, not normal CLI calls.
+
+**Kick behavior:** A dead warm probe schedules `spawnLauncher(paths)` as detached/unref and still returns retryable `75`. SessionStart should kick `mk-spec-memory`, `mk-code-index`, and `mk-skill-advisor`; Stop, compact, shutdown, and cleanup hooks must force self-heal disabled.
+
+**Orphan sweeper update:** Preserve the active resident recorded by a live owner/child lease or a successful deep socket probe, even when it is detached from an interactive session. Reap duplicates, but never reap the one self-healed or released resident. This extends the current session-tree/freshest-instance logic in `orphan-mcp-sweeper.sh:275-343`.
+
+**Tests:**
+| Test | Required proof |
+|---|---|
+| CLI unit tests | With flag off, warm-only dead probe still returns `75` and spawns nothing. With `all`, it returns `75`, writes telemetry, and schedules one background kick. |
+| Lock tests | 100 concurrent kicks for same repo/service produce one lock owner and skip the rest; stale lock recovers; foreign/out-of-root lock refuses. |
+| 7-runtime stress test | Simulate seven concurrent runtime prompt/startup surfaces against stale sockets for all three daemons. Required result: `<=1` launcher spawned per service per repo; lock skips recorded; first calls may return `75`; follow-up warm probe succeeds within SLO. |
+| Hook exclusion tests | Compact and Stop paths do not kick. Sites: `compact-inject.ts:213-222`, `session-stop.ts:103-127`. |
+| Existing stress update | Adjust `.opencode/skills/system-spec-kit/mcp_server/stress_test/durability/release-cleanup-new-surfaces-stress.vitest.ts:353-382` so old no-spawn expectation is retained only with self-heal disabled. |
+| Tri-daemon drill | Extend `.opencode/skills/system-skill-advisor/mcp_server/tests/tri-daemon-drill.vitest.ts:358-409` to include self-healed residents and post-kick warm success. |
+
+**Telemetry:** Emit JSONL events for `kick_attempted`, `lock_skipped`, `stale_lock_recovered`, `kick_spawn_failed`, `daemon_healed`, `first_success_latency_ms`, and `kick_disabled`. Include `service`, `repoFingerprint`, `runtime`, `source`, `reason`, `pid`, `exitCode`, and `durationMs`.
+
+**Rollback:** Set `SPECKIT_PROMPT_SELF_HEAL=0`, remove stale throttle locks under `/tmp/mk-*`, and restart the affected runtime session. No schema rollback should be needed.
+
+**Entry criteria:** Research verdict accepted; non-warm CLI remediation confirmed; implementation owner accepts SessionStart process creation as default-on after stress gate; telemetry sink chosen.
+
+**Kill criteria:** Any 7-runtime stress run spawns more than one launcher per service; Stop/compact/shutdown kicks; orphan sweeper reaps the resident; first-success latency does not improve; RSS spikes materially under concurrent kicks; throttle lock wedges recovery.
+
+### Phase 2 — RSS prevention (measure-then-enable)
+**Scope:** Before any always-warm default, measure steady-state RSS for daemons plus HF sidecar across representative sessions, then calibrate caps and preflight.
+
+**Change sites:**
+| Area | Site |
+|---|---|
+| Existing HF RSS env parsing | `.opencode/bin/lib/model-server-supervision.cjs:167-195` |
+| Existing RSS watchdog | `.opencode/bin/lib/model-server-supervision.cjs:359-412` |
+| HF spawn preflight insertion point | `.opencode/bin/lib/model-server-supervision.cjs:824-846` |
+| Spec Memory recycle path | `.opencode/bin/mk-spec-memory-launcher.cjs:1156-1205`, `:1207-1223` |
+| Advisor HF shutdown path | `.opencode/bin/mk-skill-advisor-launcher.cjs:877-898`, `:935-969` |
+
+**Flags/defaults:** Keep `SPECKIT_HF_MODEL_SERVER_MAX_RSS_MB` unset and `SPECKIT_HF_MODEL_SERVER_RSS_SELF_EXIT` off during measurement. Add or reuse a telemetry-only mode for RSS sampling. After calibration, set `SPECKIT_HF_MODEL_SERVER_MAX_RSS_MB=<measured cap>` and `SPECKIT_HF_MODEL_SERVER_RSS_SELF_EXIT=1` only where the cap is validated.
+
+**Measurement gate:** Use at least `N=35` starts: seven concurrent runtimes across five cycles, plus one long idle window and one embedding-heavy path. Record p50/p95/p99 RSS, free RAM, self-heal frequency, HF load time, and daemon uptime.
+
+**Free-RAM preflight:** Before spawning `hf-model-server.cjs`, check available RAM against `modelLoadFloorMb + safetyMarginMb`. If below floor, do not load HF; degrade to no-local-embedding or fail-open with telemetry instead of risking OS OOM.
+
+**Tests:** Unit-test watchdog cap parsing, self-exit disabled/enabled behavior, free-RAM preflight allow/deny paths, and no crash-loop under repeated memory-denied loads.
+
+**Telemetry:** Emit `rss_sample`, `rss_cap_breach`, `rss_self_exit`, `hf_preflight_denied`, `hf_preflight_allowed`, `hf_load_ms`, `free_ram_mb`, and `oom_suspected`.
+
+**Rollback:** Unset `SPECKIT_HF_MODEL_SERVER_MAX_RSS_MB`, set `SPECKIT_HF_MODEL_SERVER_RSS_SELF_EXIT=0`, and disable the free-RAM preflight flag if introduced.
+
+**Entry criteria:** Phase 1 telemetry exists; RSS sampling harness ready; operator-defined free-RAM floor exists.
+
+**Kill criteria:** No stable cap can be selected; self-exit loops; preflight denies healthy machines; embedding paths lose required functionality without graceful fallback.
+
+### Phase 3 — B uniform hardening (gated; single-writer tests)
+**Scope:** Only after Phase 2, generalize spec-memory’s safer release/adopt behavior to advisor and code-index. Add active-client fail-open, proactive stale-socket sweep, HF refcount, and lease mode/version fencing.
+
+**Change sites:**
+| Area | Site |
+|---|---|
+| Shared relaunch primitives | `.opencode/bin/lib/model-server-supervision.cjs:251-272`, `:313-321`, `:705-724` |
+| Advisor kill-on-exit/signal to replace | `.opencode/bin/mk-skill-advisor-launcher.cjs:1156-1200` |
+| Code-index kill-on-exit/signal to replace | `.opencode/bin/mk-code-index-launcher.cjs:881-928` |
+| Spec-memory backend-only reference | `.opencode/bin/mk-spec-memory-launcher.cjs:1315-1327` |
+| Backend-only server reference | `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:2267-2281` |
+| Socket stats and client counts | `.opencode/skills/system-spec-kit/shared/ipc/socket-server.ts:184-190`, `:302-340` |
+| Stale socket reclaim fence | `.opencode/skills/system-spec-kit/shared/ipc/socket-server.ts:146-182`, `:370-385` |
+| HF shared sidecar control | `.opencode/bin/lib/model-server-supervision.cjs:745-846`, `:911+`; advisor use at `.opencode/bin/mk-skill-advisor-launcher.cjs:877-969` |
+
+**Flags/defaults:** Default off. Use a new gated flag such as `SPECKIT_UNIFORM_LAUNCHER_HARDENING=1`. Add lease `mode` and `version` fields so old kill-on-signal launchers cannot own or reap a new released/supervised backend.
+
+**Required invariant:** One service, one repo, one writable daemon owner. No old launcher may kill a backend used by another session. This directly gates the 028 double-writer risk called out in `iteration-008.md:11-17`.
+
+**Tests:** Two-launcher live tests per daemon before default-on. Required cases: concurrent cold start, owner exits while secondary client active, stale socket with live child, stale socket with dead child, old-version launcher sees new lease and bridges/refuses instead of killing, HF refcount shared by spec-memory and advisor, and WAL/single-writer assertions.
+
+**Telemetry:** Emit `lease_mode_version_mismatch`, `release_for_adopt`, `adopt_success`, `adopt_refused`, `active_client_fail_open`, `stale_socket_swept`, `hf_ref_acquire`, `hf_ref_release`, and `single_writer_violation`.
+
+**Rollback:** Disable `SPECKIT_UNIFORM_LAUNCHER_HARDENING`, remove new lease-mode default, and fall back to Phase 1 self-heal plus current launcher semantics.
+
+**Entry criteria:** Phase 2 RSS cap/preflight passes; 028-style double-writer tests exist per daemon; old/new launcher compatibility matrix exists; lease fencing is implemented before behavior changes.
+
+**Kill criteria:** Any double writer; old launcher kills new backend; active-client fail-open cannot be proven; HF refcount leaks or cross-kills; proactive socket sweep removes a live or foreign socket.
+
+### Phase 4 — C1 supervisor + one OS unit (gated; auth/portability)
+**Scope:** Build only if Phases 1-3 still leave unacceptable liveness gaps. A single supervisor owns all daemons plus HF; sessions become pure clients. One OS unit keeps the supervisor alive, not one unit per daemon.
+
+**Change sites:**
+| Area | Site |
+|---|---|
+| New supervisor entrypoint | `.opencode/bin/mk-daemon-supervisor.cjs` |
+| Existing bridge path to reuse | `.opencode/bin/lib/launcher-ipc-bridge.cjs:360-437` |
+| Existing reconnecting proxy to reuse | `.opencode/bin/lib/launcher-session-proxy.cjs:725-837` |
+| Spec-memory backend-only reference | `.opencode/bin/mk-spec-memory-launcher.cjs:1315-1327` |
+| Backend-only server reference | `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:2267-2281` |
+| Existing LaunchAgent pattern is only sweeper | `.opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist`, verified as not daemon supervision in `orchestrator-verifications.md:5-8` |
+
+**Flags/defaults:** Default off. Use `SPECKIT_SUPERVISOR_MODE=1` and `SPECKIT_SUPERVISOR_OWNER=1` only after explicit install. Client launchers must refuse destructive lifecycle actions in supervisor mode.
+
+**Security requirements:** Admin socket requires same-user ownership, mode `0600`, repo-fingerprinted namespace, and a capability token. No unauthenticated `restartService` or `shutdownService`. This is mandatory because IT8 identifies supervisor admin control as a new same-UID attack surface (`iteration-008.md:14-15`) and 029 already removed unsafe cross-session kill paths (`iteration-008.md:22-23`).
+
+**OS unit:** Provide explicit install, uninstall, upgrade, status, and rollback commands. macOS uses one LaunchAgent with `RunAtLoad=true` and `KeepAlive`; Linux/WSL uses one `systemd --user` unit with `Restart=always`. The unit supervises only the supervisor.
+
+**Version drift:** Supervisor must compute a dist/version hash and self-restart or refuse stale clients on hash drift. IT8 calls stale supervisor after `git pull` a P2 risk (`iteration-008.md:17`).
+
+**Tests:** Auth failure tests, token rotation, repo namespace isolation, stale-version self-restart, install/uninstall dry-run, supervisor restart after SIGKILL, child daemon restart after SIGKILL, and client-only launcher cannot spawn/kill when supervisor mode is active.
+
+**Telemetry:** Emit `supervisor_start`, `ensure_service`, `service_restart`, `auth_denied`, `token_rotated`, `version_hash_drift`, `os_unit_installed`, `os_unit_uninstalled`, and `rollback_invoked`.
+
+**Rollback:** Unload the OS unit, stop the supervisor, kill only supervisor-owned daemons, unset supervisor flags, and return launchers to Phase 1/3 behavior.
+
+**Entry criteria:** Phase 1-3 telemetry proves insufficiency, such as repeated last-owner SIGKILL/OOM incidents, unacceptable first-success latency, or unrecovered daemon-down windows. Security design and install/rollback UX must be approved first.
+
+**Kill criteria:** No capability token; repo namespace collision; uninstall cannot return to normal launcher mode; stale dist remains resident after upgrade; supervisor becomes SPOF without visible degraded state.
+
+### Phase→ledger mapping (extend/supersede vs 017-030)
+| Existing phase | Mapping |
+|---|---|
+| 017 disposal-flap guard | Phase 1 extends it by forbidding kicks from Stop/compact/shutdown paths. |
+| 019 dead-socket reap | Phase 1 does not add proactive sweep; it relies on existing non-warm launcher bind/reap. Phase 3 may extend with proactive sweep after tests. |
+| 020 code-index reconnecting proxy | Phase 3/4 reuse the proxy; Phase 1 does not change it. |
+| 021 orphan sweeper | Phase 1 extends preservation rules so self-healed/released residents are not reaped. It does not make live sweeping default-on. |
+| 022 ownership re-election | Phase 3 generalizes the idea, but only after lease mode/version fencing and single-writer tests. |
+| 027 re-election default-on | Kept for current spec-memory path; not treated as protection for advisor/code-index. |
+| 028 live two-launcher validation | Phase 3 is blocked until the 028 double-writer class has per-daemon live tests. |
+| 029 cross-session kill scoping | Phase 3/4 must not reintroduce global kills; supervisor shutdown requires auth and operator scope. |
+| 030 client-side reconnect survival | Not superseded; remains harness-owned. Phase 4 reuses existing proxy behavior where possible. |
+| 031 research | Research-only packet. Implementation should be new follow-on child phases, e.g. `032-c2-minimal-prompt-self-heal`, `033-hf-rss-prevention`, `034-uniform-launcher-hardening-gated`, `035-supervisor-os-unit-gated`. |
+
+### Sequencing + what each phase must PROVE before the next
+| Sequence | Proof required |
+|---|---|
+| Start Phase 1 | C2 scope accepted; no B/C1/OS/HF-refcount in first ship; flag/default decision accepted. |
+| Finish Phase 1 | 7-runtime stress proves `<=1` launcher per service per repo; telemetry proves kick/skip/heal/latency; no teardown hook kicks; orphan sweeper preserves residents. |
+| Start Phase 2 | Phase 1 produces resident-daemon telemetry or any always-warm default is being considered. |
+| Finish Phase 2 | RSS baseline exists; cap and free-RAM preflight are calibrated; HF self-exit does not loop; degraded embedding behavior is acceptable. |
+| Start Phase 3 | Phase 2 is complete; old/new lease fencing design exists; two-launcher tests per daemon are ready. |
+| Finish Phase 3 | Advisor/code-index no longer cross-kill active clients; single-writer invariant holds; HF refcount does not leak or cross-kill. |
+| Start Phase 4 | Data proves Phases 1-3 insufficient for required durability, especially last-owner SIGKILL/OOM survival. |
+| Finish Phase 4 | Authenticated supervisor survives daemon death, OS unit survives supervisor death, install/uninstall/upgrade rollback is visible and tested. |
+
+### Confidence + unknowns
+Confidence is high on the root cause and descope: liveness is session-coupled, warm-only probes do not cold-spawn, advisor/code-index kill on shutdown, and IT8 explicitly blocks the broader first ship.
+
+Unknowns: exact live kill event, real HF RSS ceiling, operator tolerance for default SessionStart process creation, advisor/code-index backend-only feasibility, and how much old-launcher compatibility is required during rollout.

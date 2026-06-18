@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux",
+  "description": "Feature Specification: Daemon CLI Front-Door UX Hardening (Phase Parent)",
+  "keywords": [
+    "feature",
+    "specification",
+    "daemon",
+    "cli",
+    "front-door",
+    "hardening",
+    "phase",
+    "parent"
+  ],
+  "lastUpdated": "2026-06-12T14:18:51.276Z",
+  "specId": "004",
+  "folderSlug": "cli-tooling-ux",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "004-shared-infrastructure"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

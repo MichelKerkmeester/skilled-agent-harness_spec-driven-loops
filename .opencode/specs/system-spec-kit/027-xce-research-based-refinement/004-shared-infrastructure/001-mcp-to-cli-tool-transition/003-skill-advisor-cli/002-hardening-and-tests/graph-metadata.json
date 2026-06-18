@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/002-hardening-and-tests",
+  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli/002-hardening-and-tests",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/003-skill-advisor-cli",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill-advisor hardening and tests",
+      "003 002-hardening-and-tests",
+      "skill-advisor phase 2",
+      "skill-advisor hardening and tests plan",
+      "003 002-hardening-and-tests plan",
+      "skill-advisor phase 2 plan",
+      "skill-advisor hardening and tests tasks",
+      "003 002-hardening-and-tests tasks",
+      "skill-advisor phase 2 tasks",
+      "skill-advisor hardening and tests result",
+      "003 002-hardening-and-tests result",
+      "skill-advisor phase 2 result"
+    ],
+    "key_topics": [
+      "skill-advisor",
+      "hardening",
+      "tests",
+      "003",
+      "002-hardening-and-tests",
+      "phase",
+      "plan",
+      "tasks",
+      "result",
+      "dual-stack",
+      "cli",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "planned_(not_implemented)",
+    "key_files": [
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/skill-advisor-cli-parity.vitest.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/skill-advisor-cli-job-semantics.vitest.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/skill-advisor-launcher-orphan-reaping.vitest.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/skill-advisor-cli-dual-client.vitest.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/tri-daemon-drill.vitest.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/skill-advisor-cli-test-utils.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/tsconfig.tests.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "skill-advisor-cli-parity.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/skill-advisor-cli-parity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-cli-job-semantics.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/skill-advisor-cli-job-semantics.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-launcher-orphan-reaping.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/skill-advisor-launcher-orphan-reaping.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-cli-dual-client.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/skill-advisor-cli-dual-client.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tri-daemon-drill.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/tri-daemon-drill.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-cli-test-utils.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/skill-advisor-cli-test-utils.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tsconfig.tests.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/tsconfig.tests.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Shipped",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Thin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This is **Phase 2** of the skill-advisor dual-stack CLI implementation (workstream 003-skill-advisor-cli), paired with runtime hooks and the OpenCode plugin per the program-wide pairing rule.",
+    "created_at": "2026-06-06T14:45:17Z",
+    "last_save_at": "2026-06-10T19:22:14.976Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

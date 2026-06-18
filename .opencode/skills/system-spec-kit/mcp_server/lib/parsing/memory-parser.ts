@@ -35,6 +35,7 @@ import {
   perFolderDescriptionSchema,
   formatDescriptionSchemaIssues,
 } from '../description/description-schema.js';
+import { scrubSecretsDetailed } from './secret-scrubber.js';
 
 export { getCanonicalPathKey };
 
@@ -79,6 +80,17 @@ export interface ParsedMemory {
   documentType: string;
   qualityScore: number;
   qualityFlags: string[];
+}
+
+export type StableChunkKind = 'anchor' | 'heading' | 'window';
+
+export interface StableMemoryChunk {
+  chunkId: string;
+  chunkFingerprint: string;
+  chunkKind: StableChunkKind;
+  chunkStartLine: number;
+  chunkEndLine: number;
+  content: string;
 }
 
 /** Anchor validation result */
@@ -215,7 +227,7 @@ export function readFileWithEncoding(filePath: string): string {
   }
 
   // UTF-16 BE BOM: FE FF
-  // BUG-020 FIX: Node.js Buffer doesn't support 'utf16be' encoding natively.
+  // Node.js Buffer doesn't support 'utf16be' encoding natively.
   // Convert UTF-16 BE to LE by swapping bytes, then decode as utf16le.
   if (buffer.length >= 2 &&
       buffer[0] === 0xFE &&
@@ -256,6 +268,19 @@ export function parseMemoryContent(
   content: string,
   options: { lastModified?: string } = {},
 ): ParsedMemory {
+  // Secret redaction runs at the head of the write/index path, BEFORE
+  // content-hash, embedding, FTS, and every persisted field derived from
+  // content (title, trigger phrases, normalized text). A scrubber failure
+  // throws and refuses the write (fail-closed) instead of persisting raw
+  // text; clean content passes through unchanged.
+  const scrubResult = scrubSecretsDetailed(content);
+  if (scrubResult.redactions > 0) {
+    console.warn(
+      `[memory-parser] Redacted ${scrubResult.redactions} secret(s) [${scrubResult.kinds.join(', ')}] from ${path.basename(filePath)} before indexing`,
+    );
+    content = scrubResult.text;
+  }
+
   // Infer document type from file path.
   const documentType = extractDocumentType(filePath);
 
@@ -888,6 +913,159 @@ export function extractImportanceTier(content: string, options: ExtractImportanc
 /** Compute SHA-256 hash of content for change detection */
 export function computeContentHash(content: string): string {
   return crypto.createHash('sha256').update(content, 'utf-8').digest('hex');
+}
+
+function lineNumberAtOffset(lineStarts: number[], offset: number): number {
+  let low = 0;
+  let high = lineStarts.length - 1;
+  while (low <= high) {
+    const mid = Math.floor((low + high) / 2);
+    if (lineStarts[mid] <= offset) {
+      low = mid + 1;
+    } else {
+      high = mid - 1;
+    }
+  }
+  return Math.max(1, high + 1);
+}
+
+function getLineStarts(content: string): number[] {
+  const starts = [0];
+  for (let i = 0; i < content.length; i++) {
+    if (content[i] === '\n') {
+      starts.push(i + 1);
+    }
+  }
+  return starts;
+}
+
+function normalizeChunkContent(content: string): string {
+  return content
+    .replace(/\r\n/g, '\n')
+    .replace(/\r/g, '\n')
+    .split('\n')
+    .map((line) => line.trimEnd())
+    .join('\n')
+    .trim();
+}
+
+function slugifyHeading(heading: string): string {
+  const slug = heading
+    .toLowerCase()
+    .replace(/`+/g, '')
+    .replace(/<[^>]*>/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+  return slug || 'section';
+}
+
+function makeStableChunk(
+  content: string,
+  lineStarts: number[],
+  startOffset: number,
+  endOffsetExclusive: number,
+  chunkId: string,
+  chunkKind: StableChunkKind,
+): StableMemoryChunk | null {
+  const chunkContent = content.slice(startOffset, endOffsetExclusive).trim();
+  if (!chunkContent) {
+    return null;
+  }
+
+  const endOffset = Math.max(startOffset, endOffsetExclusive - 1);
+  return {
+    chunkId,
+    chunkFingerprint: computeContentHash(normalizeChunkContent(chunkContent)),
+    chunkKind,
+    chunkStartLine: lineNumberAtOffset(lineStarts, startOffset),
+    chunkEndLine: lineNumberAtOffset(lineStarts, endOffset),
+    content: chunkContent,
+  };
+}
+
+function extractAnchorChunks(content: string, lineStarts: number[]): StableMemoryChunk[] {
+  const chunks: StableMemoryChunk[] = [];
+  const openPattern = /<!--\s*(?:ANCHOR|anchor):\s*([^>\s]+)\s*-->/gi;
+  let match: RegExpExecArray | null;
+  while ((match = openPattern.exec(content)) !== null) {
+    const anchorId = match[1].trim();
+    const closingPattern = new RegExp(`<!--\\s*/(?:ANCHOR|anchor):\\s*${escapeRegex(anchorId)}\\s*-->`, 'i');
+    const afterOpenOffset = match.index + match[0].length;
+    const closeMatch = closingPattern.exec(content.slice(afterOpenOffset));
+    if (!closeMatch || closeMatch.index === undefined) {
+      continue;
+    }
+
+    const endOffset = afterOpenOffset + closeMatch.index + closeMatch[0].length;
+    const chunk = makeStableChunk(
+      content,
+      lineStarts,
+      match.index,
+      endOffset,
+      `anchor:${anchorId}`,
+      'anchor',
+    );
+    if (chunk) {
+      chunks.push(chunk);
+    }
+    openPattern.lastIndex = endOffset;
+  }
+  return chunks;
+}
+
+function extractHeadingChunks(content: string, lineStarts: number[]): StableMemoryChunk[] {
+  const headingPattern = /^##\s+(.+)$/gm;
+  const headings: Array<{ start: number; title: string }> = [];
+  let match: RegExpExecArray | null;
+  while ((match = headingPattern.exec(content)) !== null) {
+    headings.push({ start: match.index, title: match[1].trim() });
+  }
+
+  const chunks: StableMemoryChunk[] = [];
+  const slugCounts = new Map<string, number>();
+  for (let i = 0; i < headings.length; i++) {
+    const heading = headings[i];
+    const baseSlug = slugifyHeading(heading.title);
+    const seen = slugCounts.get(baseSlug) ?? 0;
+    slugCounts.set(baseSlug, seen + 1);
+    const slug = seen === 0 ? baseSlug : `${baseSlug}-${seen + 1}`;
+    const end = headings[i + 1]?.start ?? content.length;
+    const chunk = makeStableChunk(content, lineStarts, heading.start, end, `heading:${slug}`, 'heading');
+    if (chunk) {
+      chunks.push(chunk);
+    }
+  }
+  return chunks;
+}
+
+function extractWindowChunks(content: string, lineStarts: number[], windowLines: number): StableMemoryChunk[] {
+  const lines = content.replace(/\r\n/g, '\n').replace(/\r/g, '\n').split('\n');
+  const chunks: StableMemoryChunk[] = [];
+  for (let startLine = 1; startLine <= lines.length; startLine += windowLines) {
+    const endLine = Math.min(lines.length, startLine + windowLines - 1);
+    const startOffset = lineStarts[startLine - 1] ?? 0;
+    const endOffset = endLine < lines.length ? lineStarts[endLine] : content.length;
+    const chunk = makeStableChunk(content, lineStarts, startOffset, endOffset, `window:${startLine}-${endLine}`, 'window');
+    if (chunk) {
+      chunks.push(chunk);
+    }
+  }
+  return chunks;
+}
+
+export function extractStableMemoryChunks(content: string, options: { windowLines?: number } = {}): StableMemoryChunk[] {
+  const lineStarts = getLineStarts(content);
+  const anchorChunks = extractAnchorChunks(content, lineStarts);
+  if (anchorChunks.length > 0) {
+    return anchorChunks;
+  }
+
+  const headingChunks = extractHeadingChunks(content, lineStarts);
+  if (headingChunks.length > 0) {
+    return headingChunks;
+  }
+
+  return extractWindowChunks(content, lineStarts, Math.max(1, options.windowLines ?? 80));
 }
 
 /**

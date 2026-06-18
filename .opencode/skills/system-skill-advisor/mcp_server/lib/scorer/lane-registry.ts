@@ -3,6 +3,7 @@
 // ───────────────────────────────────────────────────────────────
 
 import type { LaneDampingConfig } from './types.js';
+import { ADVISOR_BM25_LEXICAL_SHADOW_LANE_ID } from './lanes/bm25.js';
 
 const LANE_DEFINITIONS = [
   { id: 'explicit_author', defaultWeight: 0.42, defaultShadowWeight: 0.40, live: true },
@@ -16,6 +17,16 @@ const LANE_DEFINITIONS = [
   readonly defaultShadowWeight: number;
   readonly live: boolean;
 }[];
+
+export const SHADOW_SCORER_LANE_DEFINITIONS = [
+  {
+    id: ADVISOR_BM25_LEXICAL_SHADOW_LANE_ID,
+    defaultWeight: 0,
+    defaultShadowWeight: 0.10,
+    live: false,
+    envFlag: 'SPECKIT_ADVISOR_BM25_LEXICAL_SHADOW',
+  },
+] as const;
 
 export type ScorerLaneId = (typeof LANE_DEFINITIONS)[number]['id'];
 

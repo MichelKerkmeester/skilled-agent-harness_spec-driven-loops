@@ -1,0 +1,26 @@
+{
+  "type": "iteration_delta",
+  "mode": "review",
+  "run": 1,
+  "status": "complete",
+  "focus": "traceability",
+  "dimensions": [
+    "traceability"
+  ],
+  "findingsSummary": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 0
+  },
+  "findingsNew": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 0
+  },
+  "findingRefs": [
+    "F001"
+  ],
+  "newFindingsRatio": 1,
+  "verdict": "CONDITIONAL",
+  "timestamp": "2026-06-18T04:08:28Z"
+}

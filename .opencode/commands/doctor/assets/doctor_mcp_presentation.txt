@@ -1,0 +1,205 @@
+# /doctor:mcp Presentation Contract
+
+This file is the single source of truth for user-facing presentation in `/doctor:mcp`: startup questions, MCP assessment dashboards, install/repair prompts, verification summaries, final reports, troubleshooting, and next-step text. The command router owns sub-action routing only. The workflow YAML owns execution behavior.
+
+## 1. Startup Presentation
+
+When `$ARGUMENTS` lacks a positional sub-action, ask this prompt first.
+
+```text
+What do you want to do with MCP servers?
+   1) Install fresh    (all 5 MCP servers from install guides)
+   2) Debug + repair   (diagnose failures, apply guided fixes)
+   X) Cancel
+```
+
+Accepted answers:
+
+| Answer | Result |
+|--------|--------|
+| `1`, `I`, `install` | sub_action = `install` |
+| `2`, `D`, `debug` | sub_action = `debug` |
+| `X`, empty, `cancel` | `STATUS=CANCEL` |
+
+### Unknown Sub-Action Failure
+
+```text
+Unknown sub-action '[sub_action]'. Valid: install, debug. Try `/doctor:mcp install` or `/doctor:mcp debug`.
+STATUS=FAIL ERROR="unknown_sub_action"
+```
+
+### Cross-Sub-Action Flag Failures
+
+```text
+Flag '--fix' is only valid for `debug`. Did you mean `/doctor:mcp debug --fix`?
+STATUS=FAIL ERROR="cross_sub_action_flag_injection"
+```
+
+```text
+Flag '--runtime' is only valid for `install`. Did you mean `/doctor:mcp install --runtime <name>`?
+STATUS=FAIL ERROR="cross_sub_action_flag_injection"
+```
+
+## 2. Setup Dashboard
+
+Render after sub-action and flags resolve.
+
+```text
+DOCTOR MCP SETUP
+Sub-action: [install|debug]
+Workflow: .opencode/commands/doctor/assets/[doctor_mcp_install.yaml|doctor_mcp_debug.yaml]
+Server filter: [name|all]
+Runtime filter: [name|detected|n/a]
+Fix mode: [true|false|n/a]
+Presentation: .opencode/commands/doctor/assets/doctor_mcp_presentation.txt
+Next: load workflow YAML
+```
+
+## 3. Install Presentation
+
+### Assessment Table
+
+```text
+MCP INSTALL ASSESSMENT
+
+| Server | Status | Detail |
+|--------|--------|--------|
+| Spec Kit Memory | [INSTALLED|STALE|MISSING|SKIPPED] | [detail] |
+| Skill Advisor | [INSTALLED|STALE|MISSING|SKIPPED] | [detail] |
+| System Code Graph | [INSTALLED|STALE|MISSING|SKIPPED] | [detail] |
+| Code Mode | [INSTALLED|STALE|MISSING|SKIPPED] | [detail] |
+| Sequential Thinking | [INSTALLED|STALE|MISSING|SKIPPED] | [detail] |
+```
+
+### Install Decision Prompt
+
+```text
+Assessment complete. How would you like to proceed?
+
+A) Install/reinstall all that need it (MISSING + STALE)
+B) Walk through each server interactively
+C) Only install MISSING servers (skip STALE)
+D) Cancel
+```
+
+### Per-Server Install Prompt
+
+```text
+Ready to install [server label]:
+Commands: [install steps]
+Proceed? [Y/n/skip]
+```
+
+## 4. Debug Presentation
+
+### Diagnostic Findings Table
+
+```text
+MCP DEBUG FINDINGS
+
+| Server | Status | Issues |
+|--------|--------|--------|
+| Spec Kit Memory | [PASS|WARN|FAIL] | [summary] |
+| Skill Advisor | [PASS|WARN|FAIL] | [summary] |
+| System Code Graph | [PASS|WARN|FAIL] | [summary] |
+| Code Mode | [PASS|WARN|FAIL] | [summary] |
+| Sequential Thinking | [PASS|WARN|FAIL] | [summary] |
+```
+
+### Repair Decision Prompt
+
+```text
+[fail_count] failure(s) and [warn_count] warning(s) found.
+
+A) Fix all issues automatically
+B) Walk through each issue interactively
+C) Show detailed report and stop
+```
+
+### Per-Issue Prompt
+
+```text
+Issue: [server] - [check]
+Detail: [detail]
+Root cause: [hypothesis]
+Proposed fix: [repair description]
+Command: [repair command]
+
+Fix now? [Y/n/skip]
+```
+
+### Re-Verification Prompt
+
+```text
+Verification complete: [resolved_count] fixed, [remaining_count] remaining.
+
+A) Investigate remaining issues
+B) Accept current state
+```
+
+## 5. Final Report Templates
+
+### Install Final Report
+
+```text
+MCP Install - Final Report
+
+| Server | Before | After | Action Taken |
+|--------|--------|-------|--------------|
+| Spec Kit Memory | [before] | [after] | [action] |
+| Skill Advisor | [before] | [after] | [action] |
+| System Code Graph | [before] | [after] | [action] |
+| Code Mode | [before] | [after] | [action] |
+| Sequential Thinking | [before] | [after] | [action] |
+
+Config wiring: [config_summary]
+
+Next Steps:
+- Restart your AI client to pick up MCP servers.
+- Test each registered MCP tool.
+- If issues persist: /doctor:mcp debug
+
+STATUS=[OK|CANCELLED|FAIL]
+```
+
+### Debug Final Report
+
+```text
+MCP Doctor - Final Report
+
+| Server | Before | After | Status |
+|--------|--------|-------|--------|
+| Spec Kit Memory | [before] | [after] | [status] |
+| Skill Advisor | [before] | [after] | [status] |
+| System Code Graph | [before] | [after] | [status] |
+| Code Mode | [before] | [after] | [status] |
+| Sequential Thinking | [before] | [after] | [status] |
+
+Config wiring: [config_summary]
+Next Steps: [next_steps]
+STATUS=[OK|CANCELLED|FAIL]
+```
+
+## 6. Examples Display
+
+```text
+Examples:
+  /doctor:mcp install
+  /doctor:mcp install --server mk-spec-memory
+  /doctor:mcp install --runtime claude
+  /doctor:mcp debug
+  /doctor:mcp debug --fix
+  /doctor:mcp debug --server mk_code_index --fix
+```
+
+## 7. Troubleshooting Display
+
+| Situation | Suggested Action |
+|-----------|------------------|
+| Install just finished | The install workflow runs the health check automatically |
+| Install prerequisites missing | Install Node >= 20.11.0, Python >= 3.11, npm, and npx, then rerun |
+| Debug repair did not take | Read the cited install guide and apply the manual install section |
+| MCP is OK but subsystem doctor fails | Use `/doctor <target>` for subsystem diagnostics |
+| Need full spec-kit rebuild | Run `/doctor:mcp debug --fix`, then `/doctor:update` |
+
+End interactive presentations with: `What would you like to do next?`

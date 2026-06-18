@@ -1,6 +1,13 @@
 ---
 title: Systematic Debugging Checklist
 description: Step-by-step checklist for investigating frontend technical issues
+trigger_phrases:
+  - "webflow debugging checklist"
+  - "systematic frontend debugging"
+  - "root cause before fix"
+  - "frontend issue investigation"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Systematic Debugging Checklist

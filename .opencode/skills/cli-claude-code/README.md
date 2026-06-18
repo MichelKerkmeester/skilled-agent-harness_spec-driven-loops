@@ -105,19 +105,22 @@ When any layer matches, the skill returns a refusal and loads nothing. The cli-X
 
 ### Agent Delegation
 
-Route to a specialized agent with `--agent <name>`. Claude Code agents live in `.claude/agents/*.md` and shape how Claude Code processes the task. SKILL.md documents nine:
+Route to a specialized agent with `--agent <name>`. In this repo, Claude Code agent definitions resolve from `.opencode/agents/<name>.md` and shape how Claude Code processes the task. The current roster includes:
 
 | Agent | Purpose |
 |---|---|
+| `ai-council` | Multi-strategy planning with scoped council artifacts |
+| `code` | Application-code implementation via `sk-code`; orchestrator-only |
 | `context` | Codebase exploration and architecture mapping |
 | `debug` | Systematic debugging and root-cause analysis |
-| `handover` | Session state capture for continuity |
+| `deep-context` | Read-only deep context analysis |
+| `deep-improvement` | Proposal-only deep-improvement candidate generation |
+| `deep-research` | Single-iteration deep research execution |
+| `deep-review` | Single-iteration deep review execution |
+| `markdown` | Template-first markdown and documentation execution |
 | `orchestrate` | Multi-agent coordination |
-| `research` | Evidence gathering and best-practice lookup |
+| `prompt-improver` | Dispatch-ready prompt package generation |
 | `review` | Code review and security audit (pair with `--permission-mode plan`) |
-| `speckit` | Spec documentation |
-| `ai-council` | Multi-strategy planning |
-| `write` | Documentation generation |
 
 Example: `claude -p "Review @src/auth.ts for security issues" --agent review --permission-mode plan --output-format text 2>&1`
 

@@ -122,19 +122,19 @@ Validate 267d runtime instruction routing tables
 
 ### Commands
 
-1. cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && rg -n "Code Graph|semantic search|Tool Routing Enforcement|SEARCH ROUTING" CLAUDE.md .claude/CLAUDE.md .codex/CODEX.md
+1. cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && rg -n "Code Graph|semantic search|Tool Routing Enforcement|SEARCH ROUTING" CLAUDE.md .claude/CLAUDE.md AGENTS.md
 
 ### Expected
 
-All 4 runtime instruction files contain routing enforcement language for semantic vs structural queries
+All 3 runtime instruction files contain routing enforcement language for semantic vs structural queries (the Codex chain reads the root `AGENTS.md`; `.codex/AGENTS.md` is voice-only by design and defers framework matters to it)
 
 ### Evidence
 
-Grep output with matches from all 4 files
+Grep output with matches from all 3 files
 
 ### Pass / Fail
 
-- **Pass**: all 4 files contain routing enforcement
+- **Pass**: all 3 files contain routing enforcement
 - **Fail**: Any contradicting evidence appears or the pass condition is not met.
 
 ### Failure Triage
@@ -151,7 +151,7 @@ Validate 267e resume/bootstrap routing contract
 
 ### Commands
 
-1. cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && rg -n "session_bootstrap|session_resume|/spec_kit:resume|SEARCH ROUTING|code_graph_query|mcp__mk_code_index__code_graph_query" .opencode/commands/spec_kit/README.txt .opencode/commands/spec_kit/resume.md .opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/tool-routing-enforcement.md
+1. cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && rg -n "session_bootstrap|session_resume|/speckit:resume|SEARCH ROUTING|code_graph_query|mcp__mk_code_index__code_graph_query" .opencode/commands/speckit/README.txt .opencode/commands/speckit/resume.md .opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/tool-routing-enforcement.md
 
 ### Expected
 

@@ -1,0 +1,14 @@
+{
+  "iteration": 2,
+  "dimensions": ["security", "correctness"],
+  "filesReviewed": [
+    ".opencode/skills/system-skill-advisor/mcp_server/tools/advisor-status.ts",
+    ".opencode/skills/system-skill-advisor/mcp_server/schemas/advisor-tool-schemas.ts",
+    ".opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-status.ts",
+    ".opencode/skills/system-skill-advisor/mcp_server/skill-advisor-cli-manifest.ts",
+    ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/018-xce-feature-adoption-advisor-codegraph/001-advisor-observability/implementation-summary.md"
+  ],
+  "findingsNew": { "P0": 0, "P1": 1, "P2": 0 },
+  "newFindingsRatio": 0.5,
+  "verdict": "CONDITIONAL"
+}

@@ -15,7 +15,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`skill_advisor/lib/` owns the TypeScript helper layer behind advisor recommendation, prompt-safe rendering, daemon freshness checks, lifecycle metadata, compatibility probes and scorer behavior. Handlers and scripts call these modules instead of duplicating advisor logic.
+`mcp_server/lib/` owns the TypeScript helper layer behind advisor recommendation, prompt-safe rendering, daemon freshness checks, lifecycle metadata, compatibility probes and scorer behavior. Handlers import `../lib/...` modules, and scripts call these modules instead of duplicating advisor logic.
 
 Current state:
 

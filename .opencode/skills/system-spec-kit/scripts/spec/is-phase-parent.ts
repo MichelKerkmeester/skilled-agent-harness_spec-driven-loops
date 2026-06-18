@@ -13,14 +13,19 @@ const PHASE_CHILD_REGEX = /^[0-9]{3}-[a-z0-9][a-z0-9-]*$/;
 export const PHASE_PARENT_WARNING_THRESHOLD = 20;
 export const PHASE_PARENT_ERROR_THRESHOLD = 40;
 
+/** Advisory status bucket for a phase-parent folder's direct child count. */
 export type PhaseParentHealthStatus = 'ok' | 'warning' | 'error' | 'not_phase_parent';
 
+/** Advisory health summary for a candidate phase-parent folder. */
 export interface PhaseParentHealth {
   childCount: number;
   status: PhaseParentHealthStatus;
   recommendation: string;
 }
 
+/**
+ * Return true when a folder has at least one direct phase child with spec metadata.
+ */
 export function isPhaseParent(specFolderAbsPath: string): boolean {
   let entries: string[];
 
@@ -73,6 +78,7 @@ function countPhaseChildren(specFolderAbsPath: string): number {
 
 // Lightweight advisory health record — same logic as
 // mcp_server/lib/spec/is-phase-parent.ts so shell and TS runtime agree.
+/** Assess the manifest-size health of a phase-parent folder. */
 export function assessPhaseParentHealth(specFolderAbsPath: string): PhaseParentHealth {
   if (!isPhaseParent(specFolderAbsPath)) {
     return {

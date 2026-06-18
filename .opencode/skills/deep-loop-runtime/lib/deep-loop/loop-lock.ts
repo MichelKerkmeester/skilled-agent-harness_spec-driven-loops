@@ -149,6 +149,35 @@ function writeLoopLockExclusive(lockPath: string, data: LoopLockData): boolean {
   return true;
 }
 
+/**
+ * Atomically claim a stale lock so exactly one reclaimer can replace it.
+ *
+ * rename() of a single inode succeeds for only the first caller; every
+ * other concurrent reclaimer finds the source already gone (ENOENT) and
+ * loses the race. The winner moves the stale file aside, then takes the
+ * now-vacant path via the same O_EXCL create the fresh path uses, so two
+ * reclaimers can never both end up holding the lock. A plain temp+rename
+ * write would be last-writer-wins and let both believe they acquired.
+ */
+function tryReclaimStaleLoopLock(lockPath: string, data: LoopLockData): boolean {
+  const reclaimPath = `${lockPath}.reclaiming.${process.pid}.${Date.now()}.${Math.random().toString(36).slice(2)}`;
+  try {
+    renameSync(lockPath, reclaimPath);
+  } catch (error: unknown) {
+    const code = error && typeof error === 'object' && 'code' in error ? (error as NodeJS.ErrnoException).code : undefined;
+    if (code === 'ENOENT') {
+      return false;
+    }
+    throw error;
+  }
+
+  try {
+    return writeLoopLockExclusive(lockPath, data);
+  } finally {
+    rmSync(reclaimPath, { force: true });
+  }
+}
+
 // ───── EXPORTS ─────
 
 /**
@@ -216,8 +245,11 @@ export function acquireLoopLock(lockPath: string, data: LoopLockData): LoopLockA
     return { acquired: false, holder: current ?? data };
   }
 
-  writeLoopLockAtomic(lockPath, data);
-  return holder ? { acquired: true, lock: data, reclaimed: holder } : { acquired: true, lock: data };
+  if (tryReclaimStaleLoopLock(lockPath, data)) {
+    return { acquired: true, lock: data, reclaimed: holder };
+  }
+  const current = readLoopLock(lockPath);
+  return { acquired: false, holder: current ?? holder };
 }
 
 /**

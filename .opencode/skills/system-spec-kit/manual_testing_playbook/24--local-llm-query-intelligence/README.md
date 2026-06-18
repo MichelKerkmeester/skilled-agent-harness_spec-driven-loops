@@ -1,6 +1,6 @@
 ---
 title: "24 — Local-LLM memory substrate (query intelligence + causal graph + cross-AI handoff)"
-description: "Operator-driven scenarios that evaluate the real-world behavior of the post-014 local-LLM stack (BGE local fallback 300m q8 via ollama on Apple Silicon Metal, with hf-local ONNX fallback) as a SHARED memory substrate for AI assistants. Goes beyond mechanical embedding shape checks: tests query intelligence, causal-graph quality, drift detection, cross-AI memory handoff, and concurrent multi-AI safety."
+description: "Operator-driven scenarios that evaluate the real-world behavior of the local-first LLM stack (Ollama nomic-embed-text-v1.5 by default, with hf-local nomic-ai/nomic-embed-text-v1.5 fallback via the Hugging Face hub cache) as a SHARED memory substrate for AI assistants. Goes beyond mechanical embedding shape checks: tests query intelligence, causal-graph quality, drift detection, cross-AI memory handoff, and concurrent multi-AI safety."
 audited_post_018: true
 ---
 
@@ -10,7 +10,7 @@ audited_post_018: true
 
 The vitest-style tests in `mcp_server/tests/local-llm-features/` verify the **mechanical** properties of the local-LLM stack: vector shape, determinism, L2 normalization, cascade resolution, profile-keyed DB filenames, auto-migration, native module loading. Those are necessary but not sufficient — they cannot tell you whether the system **actually behaves correctly** for the AI assistants that depend on it.
 
-This playbook fills that gap. The local LLM (BGE local fallback via ollama) is the embedding backbone that powers:
+This playbook fills that gap. The local LLM stack (Ollama `nomic-embed-text-v1.5` by default, then hf-local `nomic-ai/nomic-embed-text-v1.5` through the Hugging Face hub cache) is the embedding backbone that powers:
 
 - **Query intelligence** — does a paraphrased query find the right memory?
 - **Causal graph quality** — does the embedding give the edge builder enough signal to connect related memories without false-linking unrelated ones?
@@ -18,7 +18,7 @@ This playbook fills that gap. The local LLM (BGE local fallback via ollama) is t
 - **Cross-AI handoff** — when Claude stores something, can Codex find it later in a separate CLI session?
 - **Concurrent safety** — when two AIs interleave save + search against the same DB, does the substrate stay coherent?
 
-Each scenario fires a realistic AI-to-CLI handoff prompt that mimics the actual production pattern: one AI (the orchestrator) dispatching another AI (an external CLI like cli-codex / cli-claude-code) to exercise the Memory MCP through its own MCP client. The pattern reflects how the Memory MCP is actually used — never by humans typing directly, always by AI assistants invoking each other.
+Each scenario fires a realistic AI-to-CLI handoff prompt that mimics the actual production pattern: one AI (the orchestrator) dispatching another AI (an external CLI like cli-codex / cli-claude-code) to exercise the Memory MCP through its own MCP client. The memory surface is dual-stack: `spec-memory.cjs` is the full-parity CLI front door for hooks, cron, CI, operator shell diagnostics, and transport-down recovery in addition to MCP sessions.
 
 ## Prompt convention: AI-to-CLI handoff
 
@@ -26,7 +26,7 @@ Every scenario uses this prompt shape (mirrors production):
 
 ```
 You are <external-CLI-name>. I am <orchestrating-AI> running <scenario-title>.
-The local LLM (BGE local fallback via ollama) is the embedding backbone.
+The local LLM stack (Ollama `nomic-embed-text-v1.5` by default, then hf-local `nomic-ai/nomic-embed-text-v1.5`) is the embedding backbone.
 
 I need you to:
 1. <concrete action through MCP tool>
@@ -39,9 +39,9 @@ The orchestrating AI invokes the external CLI through `codex exec` or `claude -p
 ## Pre-flight (run once before the suite)
 
 ```bash
-# Confirm the active provider is the canonical ollama path:
-test -f ~/.cache/huggingface/gguf/bge-base-en-v1.5/bge-base-en-v1.5-300M-Q8_0.gguf \
-  && echo "ollama ready" || echo "ollama missing — scenarios will exercise hf-local fallback instead"
+# Confirm the active provider is the canonical local-first path:
+ollama list | grep -q 'nomic-embed-text' \
+  && echo "ollama nomic ready" || echo "ollama missing — scenarios will exercise hf-local fallback instead"
 
 # Confirm the Memory MCP database exists and is the active profile:
 ls .opencode/skills/system-spec-kit/mcp_server/database/context-index__*.sqlite | head -3
@@ -97,9 +97,9 @@ Each file follows the same shape:
 ## Grading rubric
 
 - **PASS** — Top-K matches expected signals, observed within latency bounds, all AI-to-CLI handoffs returned coherent JSON, no errors in any transcript.
-- **PARTIAL** — Result contains the expected target but with a notable deviation (ranked below threshold but still in top-10, one of 3 CLIs failed but the other 2 passed, etc.). Still actionable, with specifics noted.
 - **FAIL** — Expected target absent from top-K, OR cross-AI handoff produced corrupt JSON / errors, OR concurrent reads returned inconsistent data.
 - **SKIP** — Pre-flight missing (no ollama + hf-local both unavailable, no indexed corpus, no external CLI for cross-AI scenarios). Document the blocker.
+- **UNAUTOMATABLE** — Scenario cannot be run deterministically by the harness; document the manual blocker and evidence needed.
 
 Aggregate the 15 scenarios into a single packet-level summary in `_sandbox/24--local-llm-query-intelligence/evidence/summary.md`.
 

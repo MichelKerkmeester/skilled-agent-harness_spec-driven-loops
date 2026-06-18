@@ -113,16 +113,17 @@ Spec-kit treats canonical spec documents as the durable continuity record. Gener
 
 **Read path (`/spec_kit:resume`):**
 
-1. Look for `handover.md` at the spec folder root.
-2. Fall back to `_memory.continuity` frontmatter blocks inside `implementation-summary.md`.
-3. Fall back to canonical spec docs in this order: `implementation-summary.md`, `tasks.md`, `plan.md`, `spec.md`.
-4. Surface graph-metadata pointers (`derived.last_active_child_id`, `derived.last_active_at`) for phase parents.
+1. Resolve the requested spec folder, following a valid phase-parent `derived.last_active_child_id` into a child before reading continuity.
+2. Look for `handover.md` at the resolved folder root.
+3. Fall back to `_memory.continuity` frontmatter blocks inside `implementation-summary.md`.
+4. Fall back to canonical spec docs in this order: `implementation-summary.md`, `tasks.md`, `plan.md`, `spec.md`.
 
 **Write path (`/memory:save`):**
 
 1. AI composes structured JSON describing session context.
 2. `generate-context.js` routes content into the right canonical doc (`implementation-summary.md`, `decision-record.md`, `handover.md`) and refreshes `description.json` + `graph-metadata.json`.
-3. The indexed-continuity store re-indexes the touched docs for hybrid retrieval.
+3. Direct MCP `memory_save({ filePath })` indexes content only and returns a `metadataRefresh` advisory when packet metadata was not refreshed by that lane.
+4. The indexed-continuity store re-indexes the touched docs for hybrid retrieval.
 
 **Key modules:**
 
@@ -170,7 +171,7 @@ Spec-kit's quality gates run at three layers.
 
 **Save gate.** Every `/memory:save` runs through 3 layers: intake validation (input schema + duplicate detection), content router (places content in the right canonical doc), and post-save quality review (DQI scoring + structural lint).
 
-**Test surfaces.** Default `npm test` runs unit + integration suites under `mcp_server/tests/` and `scripts/tests/`. Stress suites are opt-in via `npm run stress`. Matrix runner evaluation is opt-in via the runner-specific commands under `matrix_runners/`.
+**Test surfaces.** Default `npm test` runs unit + integration suites and, through `mcp_server/package.json` `test:spec-validation`, the tracked spec-validation shell suites. Stress suites are opt-in via `npm run stress`. Matrix runner evaluation is opt-in via the runner-specific commands under `matrix_runners/`.
 
 ---
 

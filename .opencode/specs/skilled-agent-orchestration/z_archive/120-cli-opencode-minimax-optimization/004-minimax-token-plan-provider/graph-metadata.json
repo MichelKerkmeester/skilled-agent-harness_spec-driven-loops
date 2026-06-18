@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/120-cli-opencode-minimax-optimization/004-minimax-token-plan-provider",
+  "spec_folder": "skilled-agent-orchestration/z_archive/120-cli-opencode-minimax-optimization/004-minimax-token-plan-provider",
+  "parent_id": "skilled-agent-orchestration/z_archive/120-cli-opencode-minimax-optimization",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "minimax token plan provider",
+      "minimax coding plan default",
+      "minimax m3 highspeed cli-opencode",
+      "minimax direct api fallback",
+      "minimax token plan plan",
+      "minimax coding plan integration plan",
+      "minimax default provider switch",
+      "minimax token plan tasks",
+      "minimax coding plan task list",
+      "tasks",
+      "name",
+      "minimax token plan checklist"
+    ],
+    "key_topics": [
+      "minimax",
+      "token",
+      "plan",
+      "provider",
+      "coding",
+      "default",
+      "highspeed",
+      "cli-opencode",
+      "direct",
+      "api",
+      "fallback",
+      "integration"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/cli-opencode/SKILL.md",
+      ".opencode/skills/cli-opencode/references/cli_reference.md",
+      ".opencode/skills/cli-opencode/assets/prompt_templates.md",
+      ".opencode/skills/cli-opencode/assets/prompt_quality_card.md",
+      ".opencode/skills/cli-opencode/graph-metadata.json",
+      ".opencode/skills/sk-prompt-small-model/SKILL.md",
+      ".opencode/skills/sk-prompt-small-model/description.json",
+      ".opencode/skills/sk-prompt-small-model/graph-metadata.json",
+      ".opencode/skills/deep-loop-runtime/tests/unit/executor-config.vitest.ts",
+      ".opencode/skills/sk-prompt-small-model/README.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli_reference.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/references/cli_reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt_templates.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/assets/prompt_templates.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt_quality_card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/assets/prompt_quality_card.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/cli-opencode/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-prompt-small-model/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/executor-config.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt-small-model/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Token Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Switch",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The account holder switched from MiniMax pay-per-token (Direct API) to the **MiniMax Token Plan** (subscription, minimax.io). Phase 001 wired MiniMax in as a *direct-API* provider (`minimax` → `MINIMAX_API_KEY`, model `minimax/MiniMax-M2.7`). This phase re-points the default MiniMax path at the Token Plan while keeping the Direct API selectable.",
+    "created_at": "2026-06-01T06:32:01.035Z",
+    "last_save_at": "2026-06-17T19:57:23.638Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

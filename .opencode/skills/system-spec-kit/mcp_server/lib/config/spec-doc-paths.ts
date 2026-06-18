@@ -14,6 +14,7 @@ export const SPEC_DOCUMENT_FILENAMES = new Set([
   'research.md',
   'resource-map.md',
   'handover.md',
+  'review-report.md',
   'description.json',
 ]);
 
@@ -26,11 +27,15 @@ const WORKING_ARTIFACT_SEGMENTS = [
   '/review/iterations/',
 ] as const;
 
+// '/review/' as a whole is NOT excluded: the workflow-owned verdict document
+// review-report.md lives at <packet>/review/review-report.md and is a
+// first-class retrieval document. The filename allowlist keeps the review
+// machinery (state JSONL, strategy, dashboard, registry) out, and iteration
+// working files stay excluded by segment below.
 const SPEC_DOCUMENT_ONLY_EXCLUDED_SEGMENTS = [
   '/memory/',
   '/scratch/',
   '/temp/',
-  '/review/',
   '/research/iterations/',
   '/review/iterations/',
   '/node_modules/',
@@ -45,11 +50,16 @@ const GRAPH_METADATA_ONLY_EXCLUDED_SEGMENTS = [
   '/node_modules/',
 ] as const;
 
+// 'iterations' directories ARE descended: the research-metadata backfill
+// deliberately creates description.json/graph-metadata.json inside
+// <NNN-pack>/iterations/ so iteration packs share the packet metadata
+// contract, and discovery must be able to see what the backfill writes.
+// Iteration working files (iteration-NNN.md, deltas, logs) never match the
+// document filename allowlist, so descending stays metadata-only.
 const SPEC_DISCOVERY_ONLY_EXCLUDE_DIRS = new Set([
   'scratch',
   'memory',
   'node_modules',
-  'iterations',
 ]);
 
 // Accept both canonical packet leaves like "010-feature" and numeric leaves like "010".
@@ -143,6 +153,18 @@ export function matchesSpecDocumentPath(
     return isSpecLeafSegment(parent);
   }
 
+  // The deep-review workflow owns <packet>/review/review-report.md as the
+  // canonical verdict document; accept it there as well as directly in a leaf.
+  if (normalizedBasename === 'review-report.md' && parent === 'review') {
+    return isSpecLeafSegment(grandParent);
+  }
+
+  // The research-metadata backfill places description.json inside
+  // <NNN-pack>/iterations/ so iteration packs carry packet metadata.
+  if (normalizedBasename === 'description.json' && parent === 'iterations') {
+    return isSpecLeafSegment(grandParent);
+  }
+
   return (
     (normalizedPath.endsWith(`/${normalizedBasename}`) || normalizedPath === normalizedBasename)
     && isSpecLeafSegment(parent)
@@ -161,6 +183,11 @@ export function isGraphMetadataPath(filePath: string | null | undefined): boolea
 
   const segments = normalizedPath.split('/').filter(Boolean);
   const parent = segments[segments.length - 2] || '';
+  if (parent === 'iterations') {
+    // Iteration packs carry backfilled graph metadata one level below the leaf.
+    const grandParent = segments[segments.length - 3] || '';
+    return isSpecLeafSegment(grandParent);
+  }
   return isSpecLeafSegment(parent);
 }
 
@@ -184,7 +211,12 @@ export function extractSpecFolderFromSpecDocumentPath(
   }
 
   const parent = segments[segments.length - 2] || '';
-  if (basename === 'research.md' && parent === 'research') {
+  // research.md and review-report.md live one level below the packet leaf
+  // (in research/ and review/), so strip that parent to resolve the doc to
+  // its owning packet rather than a phantom '<packet>/research'|'/review'
+  // folder that carries no metadata of its own.
+  if ((basename === 'research.md' || basename === 'review-report.md')
+    && (parent === 'research' || parent === 'review')) {
     return segments.slice(specsIndex + 1, segments.length - 2).join('/');
   }
 

@@ -38,7 +38,7 @@ Code Mode replaces that upfront load with progressive disclosure. The AI sees on
 
 Code Mode is the execution engine that all the other `mcp-*` skills build on. It wraps every external MCP tool behind a single `call_tool_chain` call that runs TypeScript in a sandboxed V8 isolate. You search for tools with `search_tools`, confirm the callable signature with `tool_info`, write your tool calls inside a `call_tool_chain({ code: "..." })` block and return structured results. The four core tools are `search_tools`, `list_tools`, `tool_info` and `call_tool_chain`. Auxiliary runtime tools such as `register_manual` and `get_required_keys_for_tool` handle dynamic server registration and credential checks.
 
-Code Mode does not reach native MCP servers registered in `opencode.json`. Spec Kit Memory, Sequential Thinking and Code Graph are called directly. Code Mode is also not for local file operations. Its boundary is `.utcp_config.json` tools only.
+Code Mode does not reach native MCP servers registered in `opencode.json`. Spec Kit Memory, Skill Advisor, Sequential Thinking and Code Graph are called directly. Code Mode is also not for local file operations. Its boundary is `.utcp_config.json` tools only.
 
 ---
 
@@ -47,14 +47,14 @@ Code Mode does not reach native MCP servers registered in `opencode.json`. Spec 
 **Step 1: Discover tools with search_tools.** Before calling any external tool, search by task description to get the registered name. Never guess tool names.
 
 ```typescript
-search_tools({ task_description: "clickup task management", limit: 10 })
+search_tools({ task_description: "ClickUp task management", limit: 10 })
 // Returns matching tool names and descriptions
 ```
 
-**Step 2: Confirm the callable signature with tool_info.** Use the exact name to get the TypeScript interface before writing parameterised code.
+**Step 2: Confirm the callable signature with tool_info.** Use the registered dotted name returned by `list_tools()` to get the TypeScript interface before writing parameterised code.
 
 ```typescript
-tool_info({ tool_name: "clickup.clickup_create_task" })
+tool_info({ tool_name: "clickup_official.clickup_official.create_task" })
 // Returns the full TypeScript function signature with parameter types
 ```
 
@@ -63,7 +63,7 @@ tool_info({ tool_name: "clickup.clickup_create_task" })
 ```typescript
 call_tool_chain({
   code: `
-    const task = await clickup.clickup_create_task({
+    const task = await clickup_official.clickup_official_create_task({
       name: "New Feature",
       listName: "Development Sprint",
       description: "Implement user authentication"
@@ -81,7 +81,7 @@ call_tool_chain({
 call_tool_chain({
   code: `
     const design = await figma.figma_get_file({ fileId: "abc123" });
-    const task = await clickup.clickup_create_task({
+    const task = await clickup_official.clickup_official_create_task({
       name: \`Implement: \${design.name}\`,
       listName: "Frontend Sprint"
     });
@@ -110,7 +110,7 @@ The reason context stays flat is that tool schemas are never loaded upfront. The
 
 Every tool call follows `{manual_name}.{manual_name}_{tool_name}`. The manual name comes from the `name` field in `.utcp_config.json`. The tool name comes from the MCP server and uses snake_case, joined to the manual name with an underscore.
 
-The most common error is the naming translation mismatch. `list_tools()` returns names in dotted `a.b.c` form, for example `clickup.clickup.create_task`. A call uses the dot-then-underscore form `clickup.clickup_create_task()`. The `tool_info` function always shows the correct callable syntax. When in doubt, run `tool_info` on the tool name before writing the call.
+The most common error is the naming translation mismatch. `list_tools()` returns names in dotted `a.b.c` form, for example `clickup_official.clickup_official.create_task`. `tool_info` expects that registered dotted name. A call uses the dot-then-underscore form `clickup_official.clickup_official_create_task()`. When in doubt, run `tool_info` on the registered dotted name before writing the call.
 
 ### State Persistence and Error Handling
 
@@ -120,7 +120,7 @@ An unhandled exception stops the entire execution. Wrap multi-step flows in `try
 
 ### The .env Prefix Rule
 
-Code Mode prefixes every environment variable with the manual name from `.utcp_config.json`. If the manual name is `clickup` and the config references `${CLICKUP_API_KEY}`, your `.env` file must declare `clickup_CLICKUP_API_KEY`. Using the unprefixed form `CLICKUP_API_KEY` produces a runtime error. Run `get_required_keys_for_tool` before a workflow to confirm the exact prefixed variable names a tool expects.
+Code Mode prefixes every environment variable with the manual name from `.utcp_config.json`. If the manual name is `clickup_official` and the config references `${CLICKUP_API_KEY}`, your `.env` file must declare `clickup_official_CLICKUP_API_KEY`. Using the unprefixed form `CLICKUP_API_KEY` produces a runtime error. Run `get_required_keys_for_tool` before a workflow to confirm the exact prefixed variable names a tool expects.
 
 ---
 
@@ -130,7 +130,7 @@ Code Mode prefixes every environment variable with the manual name from `.utcp_c
 
 Reach for Code Mode whenever you need to call an external MCP tool: ClickUp for task management, Figma for design files, MyService for CMS operations, Notion for documentation, Chrome DevTools for browser automation or any other server registered in `.utcp_config.json`. Reach for it too when you need to chain several of those tools into a single workflow.
 
-Skip Code Mode for native MCP tools in `opencode.json` (Spec Kit Memory, Sequential Thinking, Code Graph), for local file operations (Read, Write, Edit, Grep, Glob, Bash) and for any first-class tool the active runtime already exposes directly. Calling native tools through Code Mode adds overhead without giving you access to them because Code Mode only sees what is in `.utcp_config.json`.
+Skip Code Mode for native MCP tools in `opencode.json` (Spec Kit Memory, Skill Advisor, Sequential Thinking, Code Graph), for local file operations (Read, Write, Edit, Grep, Glob, Bash) and for any first-class tool the active runtime already exposes directly. Calling native tools through Code Mode adds overhead without giving you access to them because Code Mode only sees what is in `.utcp_config.json`.
 
 ### Related Skills
 
@@ -147,7 +147,7 @@ Skip Code Mode for native MCP tools in `opencode.json` (Spec Kit Memory, Sequent
 |---|---|---|
 | `Tool not found` or `Cannot read properties of undefined` | Missing manual prefix. Calling `myservice.sites_list()` instead of `myservice.myservice_sites_list()` | Use `search_tools()` to get the exact registered name, then `tool_info()` to confirm the callable syntax |
 | `TypeError: myservice.myservice is not a function` | Double-dot notation where an underscore belongs. `manual.manual.tool` instead of `manual.manual_tool` | Replace the second dot with an underscore: `myservice.myservice_sites_list()` |
-| `Variable 'clickup_CLICKUP_API_KEY' not found` | `.env` uses the unprefixed key. Code Mode expects `clickup_CLICKUP_API_KEY` | Prepend the manual name from `.utcp_config.json` to the key in `.env`. Run `get_required_keys_for_tool` to see the expected names |
+| `Variable 'clickup_official_CLICKUP_API_KEY' not found` | `.env` uses the unprefixed key. Code Mode expects `clickup_official_CLICKUP_API_KEY` | Prepend the manual name from `.utcp_config.json` to the key in `.env`. Run `get_required_keys_for_tool` to see the expected names |
 | `Execution timeout exceeded` | Workflow calls more tools than the default 30-second timeout allows | Set `timeout: 60000` for 3 to 5 tools or `timeout: 120000` for 6 or more |
 | Config file not found | `UTCP_CONFIG_FILE` points to a relative path or the file is missing | Use an absolute path in the `UTCP_CONFIG_FILE` value and confirm the file exists with `ls -la` |
 | A tool is missing from `list_tools()` | The tool is a native MCP tool in `opencode.json`. Code Mode only sees `.utcp_config.json` tools | Call native MCP tools directly by their function name without using `call_tool_chain` |
@@ -160,7 +160,7 @@ Skip Code Mode for native MCP tools in `opencode.json` (Spec Kit Memory, Sequent
 
 A: Use `call_tool_chain` for every tool registered in `.utcp_config.json`. Call native MCP tools from `opencode.json` directly. File operations (Read, Write, Edit, Grep, Glob, Bash) always go direct. The boundary is simple: if the tool exists because of an entry in `.utcp_config.json`, it goes through Code Mode.
 
-**Q: Why does `list_tools()` not show Sequential Thinking or Spec Kit Memory?**
+**Q: Why does `list_tools()` not show Sequential Thinking, Spec Kit Memory, Skill Advisor or Code Graph?**
 
 A: Those are native MCP tools in `opencode.json`. Code Mode discovery tools only see what is registered in `.utcp_config.json`. Native MCP tools are called directly by their function name and never appear in Code Mode tool listings.
 

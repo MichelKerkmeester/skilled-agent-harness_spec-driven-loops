@@ -1,6 +1,13 @@
 ---
 title: Feature Catalog Creation - Templates and Standards
 description: Templates for creating feature-catalog-style inventories with a root catalog, numbered category sections, current frontmatter conventions, and per-feature reference files.
+trigger_phrases:
+  - "feature catalog template"
+  - "root catalog scaffold"
+  - "capability inventory template"
+  - "numbered category sections"
+importance_tier: normal
+contextType: general
 ---
 
 # Feature Catalog Creation - Templates and Standards

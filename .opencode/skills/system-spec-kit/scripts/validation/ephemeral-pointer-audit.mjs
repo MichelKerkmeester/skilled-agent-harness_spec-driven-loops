@@ -13,7 +13,7 @@
  *   - Durable/structural numbers: HTTP status codes, embedding dims, token tiers,
  *     rolling-window sizes, schema-version tags ("V16:").
  *   - JSDoc @example / parser-format illustrations that show input SHAPE
- *     (e.g. "019-system-hardening", "specs/001-demo", a quoted "NNN-name").
+ *     (e.g. "019-system-hardening", "specs/001-demo", a quoted "NNN-name"). hygiene-ok
  *   - Runtime path constants the code actually reads (DEFAULT_ROOT-style lines).
  *
  * Standalone, dependency-free (Node ESM, stdlib only). Exit nonzero on any hit
@@ -66,69 +66,69 @@ const SHEBANG_PY = /^#!.*\bpython[0-9.]*\b/;
 //
 // PRECISION OVER RECALL: each pattern is deliberately narrowed to the SHAPE of a
 // real ephemeral tracking id and explicitly avoids durable look-alikes the live
-// tree is full of — HTTP-code pairs (401/403), source line ranges (280-316),
-// token-budget ranges (250-400), ratios (100/100), and externally-versioned
+// tree is full of — HTTP-code pairs (401/403), source line ranges (280-316), hygiene-ok
+// token-budget ranges (250-400), ratios (100/100), and externally-versioned hygiene-ok
 // standards (SHA-256, UTF-16, CWE-502, RFC-7231). Those carve-outs live both
 // here (in the regex itself) and in the ALLOW table below.
 const FORBIDDEN = [
   {
     name: "spec-folder-ref",
-    // "Spec 031", "Phase 005", "Packet 117", "Iteration 12" — an explicit
+    // "Spec 031", "Phase 005", "Packet 117", "Iteration 12" — an explicit hygiene-ok
     // tracking-artifact WORD immediately followed by a number. The leading word
     // is what makes this unambiguous (a bare number is never flagged here).
     re: /\b(?:spec|phase|packet|iteration|sprint)\s+0*\d{1,4}\b/i,
   },
   {
     name: "spec-pair-ref",
-    // A spec / sub-phase pair: "031/005", "029/001", "005-001", "026/007/013".
+    // A spec / sub-phase pair: "031/005", "029/001", "005-001", "026/007/013". hygiene-ok
     // CRITICAL precision constraint: at least ONE side must be a 3-digit
     // ZERO-PADDED number (leading 0), which is the spec-folder numbering
-    // convention. This is what separates a real "029/003" from HTTP "401/403",
-    // a line range "280-316", or a ratio "100/100" — none of which are
-    // zero-padded. Optional third segment catches "026/007/013".
+    // convention. This is what separates a real "029/003" from HTTP "401/403", hygiene-ok
+    // a line range "280-316", or a ratio "100/100" — none of which are hygiene-ok
+    // zero-padded. Optional third segment catches "026/007/013". hygiene-ok
     re: /\b(?:0\d{2}[\/-]\d{3}|\d{3}[\/-]0\d{2})(?:[\/-]\d{3})?\b/,
   },
   {
     name: "spec-slug",
-    // "031-embedding-stack-hardening" — 3-digit prefix + a kebab word slug.
-    // Format-illustration shapes ("019-system-hardening" in an @example,
-    // "specs/001-demo") are suppressed by the ALLOW table, not here.
+    // "031-embedding-stack-hardening" — 3-digit prefix + a kebab word slug. hygiene-ok
+    // Format-illustration shapes ("019-system-hardening" in an @example, hygiene-ok
+    // "specs/001-demo") are suppressed by the ALLOW table, not here. hygiene-ok
     re: /\b\d{3}-[a-z][a-z0-9]*(?:-[a-z0-9]+)+\b/,
   },
   {
     name: "task-id",
-    // Task ids: "T043", "T-123", "T73". Requires the token to be a STANDALONE
+    // Task ids: "T043", "T-123", "T73". Requires the token to be a STANDALONE hygiene-ok
     // T+digits word (>=2 digits) and NOT immediately preceded by a letter, so
     // it never fires inside identifiers. Two-digit floor avoids loop vars (T1).
     re: /\bT-?\d{2,}\b/,
   },
   {
     name: "checklist-id",
-    // "CHK-160", "CHK069" — checklist item ids.
+    // "CHK-160", "CHK069" — checklist item ids. hygiene-ok
     re: /\bCHK-?\d{2,}\b/i,
   },
   {
     name: "requirement-id",
-    // "REQ-005", "REQ007" — requirement ids.
+    // "REQ-005", "REQ007" — requirement ids. hygiene-ok
     re: /\bREQ-?\d{2,}\b/i,
   },
   {
     name: "adr-id",
-    // "ADR-004", "ADR014" — architecture-decision-record ids.
+    // "ADR-004", "ADR014" — architecture-decision-record ids. hygiene-ok
     re: /\bADR-?\d{1,}\b/i,
   },
   {
     name: "review-finding-id",
-    // Deep-review / agent finding tags: "DR-008", "WS-1", "OR-R-01", "F-001-005",
-    // "P0-3", "P1-09", "P2-14", "DEC-12". Uppercase finding-prefix + dash +
-    // digits, with optional extra dash-segments ("F-001-005", "A6-P2-2" tail).
+    // Deep-review / agent finding tags: "DR-008", "WS-1", "OR-R-01", "F-001-005", hygiene-ok
+    // "P0-3", "P1-09", "P2-14", "DEC-12". Uppercase finding-prefix + dash + hygiene-ok
+    // digits, with optional extra dash-segments ("F-001-005", "A6-P2-2" tail). hygiene-ok
     // The prefix set is an allow-list of KNOWN review schemes, NOT a generic
     // [A-Z]+ catch-all — that is what stops it eating SHA-256 / UTF-16 / CWE-22.
     re: /\b(?:DR|WS|OR(?:-R)?|F|P[012]|DEC|FND)-\d{1,}(?:-\d{1,})*\b/,
   },
   {
     name: "github-issue-ref",
-    // "#456", "(#456)", "Fix #16", "Safeguard #10" — issue/PR references.
+    // "#456", "(#456)", "Fix #16", "Safeguard #10" — issue/PR references. hygiene-ok
     // Standalone #-number token only (preceded by start / whitespace / bracket).
     re: /(?:^|[\s(\[])#\d{2,}\b/,
   },
@@ -149,9 +149,9 @@ const FORBIDDEN = [
 const ALLOW = {
   // Format-illustration / example / JSDoc-shape context: suppress the spec-shaped
   // rules. These show input SHAPE, not a live traceability pointer.
-  //   * @example specs/001-demo/spec.md
-  //   format: "019-system-hardening" or "NNN-name"
-  //   // e.g. specs/001-demo   |   // Parses folder paths like "...140-hybrid-rag/006-sprint-5"
+  //   * @example specs/001-demo/spec.md hygiene-ok
+  //   format: "019-system-hardening" or "NNN-name" hygiene-ok
+  //   // e.g. specs/001-demo   |   // Parses folder paths like "...140-hybrid-rag/006-sprint-5" hygiene-ok
   exampleContext:
     /@example\b|@param\b|@returns?\b|\be\.?g\.?\b|\bi\.?e\.?\b|\bformat\s*[:=]|\bNNN\b|\bpattern\s*[:=]|\bspecs?\/|\bsuch as\b|\bfolder paths? like\b|\blike\s+"|->/i,
 
@@ -177,22 +177,22 @@ const ALLOW = {
   // This suppresses spec-pair-ref ONLY (the rule whose shape a range can mimic).
   sourceLineRange: /\blines?\b|\.(?:ts|tsx|js|mjs|cjs|jsx|py):\d/i,
 
-  // HTTP status pairs / token-budget ranges / score ratios. "401/403", "250-400",
-  // "100/100", "404, retry on 500". Numbers here are durable values, not spec ids.
+  // HTTP status pairs / token-budget ranges / score ratios. "401/403", "250-400", hygiene-ok
+  // "100/100", "404, retry on 500". Numbers here are durable values, not spec ids. hygiene-ok
   // Recognized when the comment also names HTTP/status/token/budget/error context
   // OR when the pair is plainly non-zero-padded (already excluded by the rule's
-  // own zero-pad constraint, but this catches narration like "map 401/403").
+  // own zero-pad constraint, but this catches narration like "map 401/403"). hygiene-ok
   numericValueContext:
     /\b(?:HTTP|status|code|token|budget|tier|ms|ratio|score|retry|error|backoff|dims?|dimensions?)\b/i,
 
-  // Internal enumerated safeguards ("Safeguard #10") are durable design labels —
+  // Internal enumerated safeguards ("Safeguard #10") are durable design labels — hygiene-ok
   // learned-feedback.ts documents a numbered "10 Safeguards" list — not GitHub issues.
   safeguardEnum: /\bsafeguards?\s+#?\d/i,
 };
 
 // Map each allow-context to the forbidden rule names it is permitted to suppress.
 // Allow-contexts are deliberately narrow so a real id elsewhere on the line still
-// fires (e.g. an @example line that ALSO drops a "DR-008" still reports DR-008,
+// fires (e.g. an @example line that ALSO drops a "DR-008" still reports DR-008, hygiene-ok
 // because exampleContext does not suppress review-finding-id).
 const ALLOW_SUPPRESSES = {
   exampleContext: new Set(["spec-slug", "spec-pair-ref", "spec-folder-ref", "github-issue-ref"]),

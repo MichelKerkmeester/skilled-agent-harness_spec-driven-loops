@@ -1,6 +1,13 @@
 ---
 title: "Motion.dev Playbook Entries"
 description: "Scenario-ready entries for Packet 1's motion.dev and animation regression playbook category."
+trigger_phrases:
+  - "motion dev playbook entries"
+  - "animation regression playbook"
+  - "motion api smoke test"
+  - "prefers reduced motion scenario"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Motion.dev Playbook Entries

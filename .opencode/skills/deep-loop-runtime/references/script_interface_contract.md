@@ -6,8 +6,8 @@ trigger_phrases:
   - "script interface contract"
   - "deep_loop_graph replacement scripts"
   - "coverage graph script exit codes"
-importance_tier: normal
-contextType: reference
+importance_tier: important
+contextType: implementation
 ---
 
 # Deep Loop Runtime Script Interface Contract

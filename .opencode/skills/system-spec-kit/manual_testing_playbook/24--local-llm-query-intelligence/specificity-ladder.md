@@ -38,30 +38,21 @@ Fire 3 queries on BGE local fallback at abstract/mid/specific levels and verify 
 
 **Level 1 — ABSTRACT:**
 ```
-mcp__mk_code_index__code_graph_query({
-  query: "local embeddings for memory and code search",
-  num_results: 5,
-})
+memory_search({ query: "local embeddings for memory and code search", limit: 5 })
 ```
-Expected top-3: high-level READMEs (`shared/README.md`, `mcp_server/INSTALL_GUIDE.md`, install_guides README) — not source code.
+Expected top-3: high-level overview memories and README-grade docs — not entries pinned to one exact constant.
 
 **Level 2 — MID:**
 ```
-mcp__mk_code_index__code_graph_query({
-  query: "Q8_0 GGUF quantization for sentence embeddings via ollama",
-  num_results: 5,
-})
+memory_search({ query: "Q8_0 GGUF quantization for sentence embeddings via ollama", limit: 5 })
 ```
-Expected top-3: design/architecture docs + the ollama provider source (`shared/embeddings/providers/ollama.ts`, `references/memory/embedding_resilience.md`).
+Expected top-3: design/architecture-grade memories (e.g. embedding-resilience or provider-design docs) sitting between overview and exact-reference entries.
 
 **Level 3 — SPECIFIC:**
 ```
-mcp__mk_code_index__code_graph_query({
-  query: "OLLAMA_DEFAULT_MODEL_PATH constant in ollama-availability",
-  num_results: 5,
-})
+memory_search({ query: "OLLAMA_DEFAULT_MODEL_PATH constant in ollama-availability", limit: 5 })
 ```
-Expected top-3: `shared/embeddings/ollama-availability.ts` ranked #1 with the exact constant cited.
+Expected top-3: the memory entry citing `OLLAMA_DEFAULT_MODEL_PATH` / `ollama-availability` ranked #1 with the exact reference cited.
 
 For each level, classify the top-3 results as:
 - `A` — Abstract (README, overview doc, high-level reference)

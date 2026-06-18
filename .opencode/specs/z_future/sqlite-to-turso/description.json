@@ -1,0 +1,18 @@
+{
+  "level": "1",
+  "specFolder": "z_future/sqlite-to-turso",
+  "description": "Feature Specification: sqlite-to-turso",
+  "keywords": [
+    "feature",
+    "specification",
+    "sqlite-to-turso"
+  ],
+  "lastUpdated": "2026-06-10T21:52:41.838Z",
+  "specId": "",
+  "folderSlug": "sqlite-to-turso",
+  "parentChain": [
+    "z_future"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -8,6 +8,8 @@ trigger_phrases:
   - "bulk create tasks"
   - "clickup webhooks"
   - "mcp tools"
+importance_tier: "normal"
+contextType: "implementation"
 ---
 
 # Official ClickUp MCP Tools Reference

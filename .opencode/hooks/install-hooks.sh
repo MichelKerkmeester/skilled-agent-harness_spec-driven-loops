@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
-# Install repo hooks into .git/hooks/
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: OPENCODE HOOK INSTALLER
+# ───────────────────────────────────────────────────────────────
+# Install repo hooks into .git/hooks/.
+#
+# Usage: .opencode/hooks/install-hooks.sh
 set -euo pipefail
 REPO_ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 HOOKS_SRC="$REPO_ROOT/.opencode/hooks"

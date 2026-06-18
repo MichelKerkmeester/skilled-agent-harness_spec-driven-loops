@@ -6,7 +6,6 @@
 // Shutdown, and main orchestration only.
 import fs from 'fs';
 import path from 'path';
-import type Database from 'better-sqlite3';
 
 /* ───────────────────────────────────────────────────────────────
    1. MODULE IMPORTS
@@ -40,6 +39,7 @@ import {
 } from './handlers/index.js';
 import * as memoryIndexDiscovery from './handlers/memory-index-discovery.js';
 import { runPostMutationHooks } from './handlers/mutation-hooks.js';
+import { shutdownBackgroundEnrichment } from './handlers/memory-save.js';
 
 // Utils
 import { validateInputLengths } from './utils/index.js';
@@ -47,6 +47,7 @@ import { validateInputLengths } from './utils/index.js';
 // History (audit trail for file-watcher deletes)
 import { recordHistory } from './lib/storage/history.js';
 import * as historyStore from './lib/storage/history.js';
+import { pruneExpiredIdempotencyReceipts } from './lib/storage/idempotency-receipts.js';
 
 // Hooks
 import {
@@ -61,7 +62,7 @@ import {
   recordToolCall,
 } from './hooks/index.js';
 import { primeSessionIfNeeded } from './hooks/memory-surface.js';
-import { runWithCallerContext, type MCPCallerContext } from './lib/context/caller-context.js';
+import { runWithCallerContext } from './lib/context/caller-context.js';
 
 // Architecture
 import { getTokenBudget } from './lib/architecture/layer-definitions.js';
@@ -77,15 +78,17 @@ import {
 
 // Lib modules (for initialization only)
 import * as vectorIndex from './lib/search/vector-index.js';
+import { acquireDbInstanceLock } from './lib/search/db-instance-lock.js';
+import { VectorIndexError, VectorIndexErrorCode } from './lib/search/vector-index-types.js';
 import * as _embeddings from './lib/providers/embeddings.js';
 import * as checkpointsLib from './lib/storage/checkpoints.js';
 import * as accessTracker from './lib/storage/access-tracker.js';
-import { runLineageBackfill } from './lib/storage/lineage-state.js';
+import { runLineageBackfill, backfillColdOrphanProjection } from './lib/storage/lineage-state.js';
 import * as hybridSearch from './lib/search/hybrid-search.js';
 import { createUnifiedGraphSearchFn } from './lib/search/graph-search-fn.js';
 import { isGraphUnifiedEnabled } from './lib/search/graph-flags.js';
 import { callCodeGraphTool } from './lib/code-graph-boundary.js';
-import { detectRuntime, type RuntimeInfo } from './lib/runtime-detection.js';
+import { detectRuntime } from './lib/runtime-detection.js';
 import {
   ensureMemoryRuntimeInitialized,
   isMemoryRuntimeInitialized,
@@ -115,11 +118,9 @@ import {
   getIpcBridgeStats,
   resolveIpcSocketPath,
   startIpcSocketServer,
-  type IpcSocketServerHandle,
 } from './lib/ipc/socket-server.js';
 import {
   createLauncherIdleMonitor,
-  type LauncherIdleMonitor,
 } from './lib/ipc/launcher-idle-timeout.js';
 import * as workingMemory from './lib/cognitive/working-memory.js';
 import * as attentionDecay from './lib/cognitive/attention-decay.js';
@@ -135,22 +136,31 @@ import * as shadowEvaluationRuntime from './lib/feedback/shadow-evaluation-runti
 // Context metrics — lightweight session quality tracking
 import { recordMetricEvent } from './lib/session/context-metrics.js';
 
-// P4-12/P4-19: Incremental index (passed to db-state for stale handle refresh)
+// Incremental index is passed to db-state for stale handle refresh.
 import * as incrementalIndex from './lib/storage/incremental-index.js';
 // Transaction manager for pending file recovery on startup
 import * as transactionManager from './lib/storage/transaction-manager.js';
-// KL-4: Tool cache cleanup on shutdown
+// Tool cache cleanup on shutdown prevents stale cross-session entries.
 import * as toolCache from './lib/cache/tool-cache.js';
 import { initExtractionAdapter, rebindExtractionAdapter } from './lib/extraction/extraction-adapter.js';
 import { migrateLearnedTriggers, verifyFts5Isolation } from './lib/storage/learned-triggers-schema.js';
 import { isLearnedFeedbackEnabled } from './lib/search/learned-feedback.js';
 import { initIngestJobQueue, stopWorker as stopIngestWorker } from './lib/ops/job-queue.js';
-import { startFileWatcher, type FSWatcher } from './lib/ops/file-watcher.js';
+import { ensureMaintenanceJobsTable, resetRunningJobsForKind } from './lib/ops/job-store.js';
+import { startFileWatcher } from './lib/ops/file-watcher.js';
 import { getCanonicalPathKey } from './lib/utils/canonical-path.js';
 import { runBatchLearning } from './lib/feedback/batch-learning.js';
 import { getSessionSnapshot } from './lib/session/session-snapshot.js';
 import { resumeReindexJobs } from './lib/embedders/reindex.js';
 import { ensureActiveEmbedder } from './lib/embedders/schema.js';
+
+// Type-only imports
+import type Database from 'better-sqlite3';
+import type { MCPCallerContext } from './lib/context/caller-context.js';
+import type { RuntimeInfo } from './lib/runtime-detection.js';
+import type { IpcSocketServerHandle } from './lib/ipc/socket-server.js';
+import type { LauncherIdleMonitor } from './lib/ipc/launcher-idle-timeout.js';
+import type { FSWatcher } from './lib/ops/file-watcher.js';
 
 /* ───────────────────────────────────────────────────────────────
    2. TYPES
@@ -250,6 +260,8 @@ const MEMORY_RUNTIME_TOOL_NAMES = new Set<string>([
   'memory_retention_sweep',
   'memory_embedding_reconcile',
   'memory_index_scan',
+  'memory_index_scan_status',
+  'memory_index_scan_cancel',
   'memory_ingest_start',
   'memory_ingest_status',
   'memory_ingest_cancel',
@@ -1027,7 +1039,7 @@ const serverWithInstructions = server as unknown as { setInstructions?: (instruc
 const KNOWN_TOOL_NAMES = new Set(TOOL_DEFINITIONS.map((tool) => tool.name));
 
 /* ───────────────────────────────────────────────────────────────
-   TOOL DEFINITIONS
+   4. TOOL DEFINITIONS
 ──────────────────────────────────────────────────────────────── */
 
 function registerContextServerHandlers(targetServer: Server): void {
@@ -1036,10 +1048,12 @@ function registerContextServerHandlers(targetServer: Server): void {
   }));
 
 /* ───────────────────────────────────────────────────────────────
-   TOOL DISPATCH
+   5. TOOL DISPATCH
 ──────────────────────────────────────────────────────────────── */
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // MCP SDK call-tool response typing is generated from schema internals that
+  // are not exported as a stable public type by the installed SDK version.
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   targetServer.setRequestHandler(CallToolRequestSchema, async (request, _extra: unknown): Promise<any> => {
   const requestParams = request.params as { name: string; arguments?: Record<string, unknown> };
   const { name } = requestParams;
@@ -1050,7 +1064,7 @@ function registerContextServerHandlers(targetServer: Server): void {
   if (sessionTrackingId) lastKnownSessionId = sessionTrackingId;
 
   try {
-    // SEC-003: Validate input lengths before processing (CWE-400 mitigation)
+    // Validate input lengths before processing (CWE-400 mitigation).
     validateInputLengths(args);
     // Validate at the server boundary before metrics, session priming, and
     // auto-surface logic can observe malformed raw tool arguments.
@@ -1101,7 +1115,7 @@ function registerContextServerHandlers(targetServer: Server): void {
       }
     }
 
-    // SK-004: Auto-surface memories before dispatch (after validation)
+    // Auto-surface memories before dispatch (after validation)
     let autoSurfacedContext: AutoSurfaceResult | null = null;
     const isCompactionLifecycleCall =
       name === 'memory_context' && validatedArgs.mode === 'resume';
@@ -1208,7 +1222,7 @@ function registerContextServerHandlers(targetServer: Server): void {
       }
     }
 
-    // F057: Passive context enrichment pipeline — adds code graph symbols
+    // Passive context enrichment pipeline — adds code graph symbols
     // near mentioned file paths and session continuity warnings.
     if (result && !result.isError && result.content?.[0]?.text) {
       try {
@@ -1233,7 +1247,7 @@ function registerContextServerHandlers(targetServer: Server): void {
       }
     }
 
-    // SK-004: Inject auto-surface hints before token-budget enforcement so
+    // Inject auto-surface hints before token-budget enforcement so
     // The final envelope metadata reflects the fully decorated response.
     if (autoSurfacedContext && result && !result.isError) {
       appendAutoSurfaceHints(result, autoSurfacedContext);
@@ -1270,9 +1284,36 @@ function registerContextServerHandlers(targetServer: Server): void {
           if (typeof meta.tokenCount === 'number' && meta.tokenCount > budget) {
             console.error(`[token-budget] ${name} response (${meta.tokenCount} tokens) exceeds budget (${budget})`);
 
-            // Attempt to truncate results array to fit within budget
+            // First-call session priming rides along in meta and can dwarf a
+            // small tool's own payload. Slim it BEFORE touching the tool's
+            // results: the tool's answer is the caller's data, the priming
+            // payload is recoverable via memory_search/memory_context.
+            if (isRecord(meta.sessionPriming)) {
+              const priming = meta.sessionPriming as Record<string, unknown>;
+              const alreadyTrimmed = priming.trimmed === true;
+              if (!alreadyTrimmed) {
+                const constitutionalCount = Array.isArray(priming.constitutional)
+                  ? priming.constitutional.length
+                  : 0;
+                meta.sessionPriming = {
+                  trimmed: true,
+                  constitutionalCount,
+                  ...(isRecord(priming.primePackage) ? { primePackage: priming.primePackage } : {}),
+                };
+                syncEnvelopeTokenCount(envelope);
+                if (Array.isArray(envelope.hints)) {
+                  envelope.hints.push(`Session priming trimmed to fit the ${budget} token budget; full constitutional content remains retrievable via memory_search`);
+                }
+                meta.sessionPrimingTrimmed = true;
+              }
+            }
+
+            // Attempt to truncate results array to fit within budget — only
+            // when still over after the priming slim above, because the loop
+            // below pops a result before it re-measures.
+            const stillOverBudget = typeof meta.tokenCount === 'number' && meta.tokenCount > budget;
             const innerResults = data?.results;
-            if (Array.isArray(innerResults) && innerResults.length > 1) {
+            if (stillOverBudget && Array.isArray(innerResults) && innerResults.length > 1) {
               const originalCount = innerResults.length;
               // Results are typically sorted by score (highest first)
               // Remove from end (lowest-scored) until within budget
@@ -1306,7 +1347,7 @@ function registerContextServerHandlers(targetServer: Server): void {
               meta.tokenBudgetTruncated = true;
               meta.originalResultCount = originalCount;
               meta.returnedResultCount = innerResults.length;
-            } else {
+            } else if (stillOverBudget) {
               // No truncatable results array — add warning hint only
               if (Array.isArray(envelope.hints)) {
                 envelope.hints.push(`Response exceeds token budget (${meta.tokenCount}/${budget})`);
@@ -1350,6 +1391,9 @@ registerContextServerHandlers(server);
 ──────────────────────────────────────────────────────────────── */
 
 let startupScanInProgress = false;
+// Tracked (not fire-and-forget) so fatalShutdown can await the scan to a safe stopping point before
+// closeDb — a resuming scan writes through the DB and would otherwise reopen a closed connection.
+let startupScanPromise: Promise<void> | null = null;
 
 function getStartupWorkspaceRoots(basePath: string): string[] {
   const configuredMemoryRoot = process.env.MEMORY_BASE_PATH?.trim();
@@ -1392,7 +1436,7 @@ async function recoverPendingFiles(basePath: string): Promise<PendingRecoveryRes
   console.error('[context-server] Checking for pending memory files...');
 
   try {
-    // BUG-028 FIX: Restrict scan to known memory file locations to prevent OOM when scanning large workspaces.
+    // Restrict scan to known memory file locations to prevent OOM when scanning large workspaces.
     // Share the same allowed-root expansion that startup indexing uses.
     const existingScanLocations = getPendingRecoveryLocations(basePath);
 
@@ -1443,6 +1487,7 @@ async function startupScan(basePath: string): Promise<void> {
 
   startupScanInProgress = true;
   try {
+    if (shuttingDown) return; // shutdown began before/at scan start — do not touch the DB before closeDb (the loop below also breaks on shuttingDown)
     // Recover any pending files from previous failed index operations
     await recoverPendingFiles(basePath);
 
@@ -1485,6 +1530,7 @@ async function startupScan(basePath: string): Promise<void> {
     let indexed = 0, updated = 0, unchanged = 0, failed = 0;
 
     for (const filePath of allFiles) {
+      if (shuttingDown) break; // stop touching the DB once shutdown begins so closeDb's checkpoint stays clean
       try {
         const result: IndexResult = await indexSingleFile(filePath, false);
         if (result.status === 'indexed') indexed++;
@@ -1494,6 +1540,12 @@ async function startupScan(basePath: string): Promise<void> {
         failed++;
         const message = error instanceof Error ? error.message : String(error);
         console.error(`[context-server] Failed to index ${path.basename(filePath)}: ${message}`);
+      }
+      // Yield to the poll phase periodically. indexSingleFile is mostly synchronous better-sqlite3
+      // work, so a large scan would otherwise drain as one uninterrupted microtask run and starve the
+      // IPC accept() loop for the scan's full duration. setImmediate hands control back between batches.
+      if ((indexed + updated + unchanged + failed) % 50 === 0) {
+        await new Promise<void>((resolve) => setImmediate(resolve));
       }
     }
 
@@ -1545,6 +1597,15 @@ let launcherIdleMonitor: LauncherIdleMonitor | null = null;
 /** Maximum time (ms) to wait for async cleanup before force-exiting. */
 const SHUTDOWN_DEADLINE_MS = 5000;
 
+/**
+ * Exit code telling the launcher "another live process holds the database
+ * single-writer lock": bridge to that owner instead of counting this exit
+ * toward the crash loop. Chosen clear of the daemon's 0/1, the launcher's
+ * 0/1/128, and the CLI contract's 0/1/64/69/75. Mirrored in
+ * mk-spec-memory-launcher.cjs.
+ */
+const EXIT_DB_LOCK_HELD = 86;
+
 export const __testables = {
   runCleanupStep,
   runAsyncCleanupStep,
@@ -1562,6 +1623,10 @@ async function fatalShutdown(reason: string, exitCode: number): Promise<void> {
 
   runCleanupStep('sessionManager', () => sessionManager.shutdown());
   runCleanupStep('retryManager', () => retryManager.stopBackgroundJob());
+  // Fence the background-enrichment scheduler synchronously here, before the awaited drains below: a
+  // queued/in-flight enrichment run re-resolves the DB via requireDb() (which reopens a closed
+  // connection), so without this it could reopen the DB and re-dirty the WAL after closeDb's checkpoint.
+  runCleanupStep('backgroundEnrichment', () => shutdownBackgroundEnrichment());
   runCleanupStep('shadowEvaluationRuntime', () => shadowEvaluationRuntime.stopShadowEvaluationScheduler());
   runCleanupStep('scheduledGraphRefresh', () => cancelScheduledRefresh());
   runCleanupStep('accessTracker', () => accessTracker.reset());
@@ -1575,6 +1640,12 @@ async function fatalShutdown(reason: string, exitCode: number): Promise<void> {
 
   let deadlineTimer: NodeJS.Timeout | undefined;
   const cleanup = (async () => {
+    // Fence the startup scan before closeDb: it is otherwise fire-and-forget and writes through the
+    // DB, so a resuming scan would reopen a closed connection. It breaks on `shuttingDown` at its loop
+    // head, so awaiting it here resolves within the current file (and is bounded by SHUTDOWN_DEADLINE).
+    await runAsyncCleanupStep('startupScan', async () => {
+      if (startupScanPromise) await startupScanPromise;
+    });
     // Drain the file watcher FIRST: fileWatcher.close() awaits in-flight reindex/remove tasks,
     // which write through requireDb()/getDb() — and getDb() REOPENS the connection if it was
     // already closed. So closeDb() must run AFTER the drain, otherwise a draining task reopens
@@ -1722,11 +1793,61 @@ async function main(): Promise<void> {
 
   validateConfiguredEmbeddingsProvider();
 
+  // Refuse to boot as a second writer BEFORE anything else initializes. The
+  // kernel-held sidecar lock survives every crash mode; a losing cold-spawn
+  // must exit before it can touch the database, and the launcher converts
+  // this exit code into a bridge to the live owner.
+  try {
+    acquireDbInstanceLock(vectorIndex.getDbPath() || DATABASE_PATH);
+  } catch (error: unknown) {
+    if (error instanceof VectorIndexError && error.code === VectorIndexErrorCode.DB_LOCK_HELD) {
+      console.error(`[context-server] ${error.message}`);
+      process.exit(EXIT_DB_LOCK_HELD);
+    }
+    throw error;
+  }
+
   registerInitTasks(async () => {
     console.error('[context-server] Initializing database...');
-    const startupDb = vectorIndex.initializeDb();
+    let startupDb: Database.Database;
+    try {
+      startupDb = vectorIndex.initializeDb();
+    } catch (error: unknown) {
+      if (error instanceof VectorIndexError && error.code === VectorIndexErrorCode.DB_LOCK_HELD) {
+        // Fail this caller's request with a structured error, then exit with
+        // the lock-held code so the launcher bridges to the live owner
+        // instead of relaunching a doomed second writer.
+        setImmediate(() => { void fatalShutdown(error.message, EXIT_DB_LOCK_HELD); });
+      }
+      throw error;
+    }
     console.error('[context-server] Database initialized');
     console.error('[context-server] Database path: ' + DATABASE_PATH);
+
+    // Idempotency receipts are replay caches. This is the ONLY sweep: it runs
+    // once at boot, so the TTL is enforced across daemon restarts only. A warm
+    // daemon running longer than the receipt TTL never re-sweeps, so rows past
+    // TTL persist and the table grows until the next restart. That unbounded
+    // growth is the accepted tradeoff (receipts are small and stale replays are
+    // already gated by the active-row identity recheck at lookup time); if a
+    // long-lived daemon needs mid-run expiry, add a bounded periodic/on-write
+    // sweep here. Best-effort: a sweep failure never blocks boot.
+    try {
+      const prunedReceipts = pruneExpiredIdempotencyReceipts(startupDb);
+      if (prunedReceipts > 0) {
+        console.error(`[context-server] Pruned ${prunedReceipts} expired idempotency receipt(s)`);
+      }
+    } catch (_: unknown) { /* best-effort */ }
+
+    // Opt-in (SPECKIT_INCLUDE_ARCHIVED_VECTOR, default off): admit archived/cold rows
+    // whose logical key has no active winner into the vector projection so the semantic
+    // lane can reach them. Self-gated and idempotent; best-effort never blocks boot.
+    try {
+      const cold = backfillColdOrphanProjection(startupDb);
+      if (cold.admitted > 0) {
+        console.error(`[context-server] Admitted ${cold.admitted} archived/cold row(s) into the vector projection`);
+      }
+    } catch (_: unknown) { /* best-effort */ }
 
   try {
     const active = await ensureActiveEmbedder(startupDb, { timeoutMs: API_KEY_VALIDATION_TIMEOUT_MS });
@@ -1820,8 +1941,8 @@ async function main(): Promise<void> {
   }
 
   // Initialize db-state module with dependencies
-  // P4-12/P4-19 FIX: Pass sessionManager and incrementalIndex so db-state can
-  // Refresh their DB handles during reinitializeDatabase(), preventing stale refs.
+  // Pass sessionManager and incrementalIndex so db-state can refresh their DB
+  // handles during reinitializeDatabase(), preventing stale refs.
   initDbState({
     vectorIndex,
     checkpoints: checkpointsLib,
@@ -2084,7 +2205,15 @@ async function main(): Promise<void> {
     try {
       const ingestInit = initIngestJobQueue({
         processFile: async (filePath: string, governance) => {
-          await indexSingleFile(filePath, false, governance ? { governance } : undefined);
+          await indexSingleFile(filePath, false, governance
+            ? { governance }
+            : {
+                provenance: {
+                  provenanceSource: 'memory_ingest_start',
+                  provenanceActor: 'async-ingest',
+                  tool: 'memory_ingest_start',
+                },
+              });
         },
       });
       if (ingestInit.resetCount > 0) {
@@ -2093,6 +2222,20 @@ async function main(): Promise<void> {
     } catch (ingestInitErr: unknown) {
       const message = ingestInitErr instanceof Error ? ingestInitErr.message : String(ingestInitErr);
       console.warn('[context-server] Ingest queue init failed:', message);
+    }
+
+    // Background index-scan job store init + crash-recovery reset. An interrupted
+    // scan re-runs fresh, so incomplete jobs are marked failed (never re-enqueued);
+    // a hard-crash scan lease is already reaped by the lease-expiry path.
+    try {
+      ensureMaintenanceJobsTable();
+      const resetScanJobs = resetRunningJobsForKind('index_scan', { to: 'failed' });
+      if (resetScanJobs.length > 0) {
+        console.error(`[context-server] Index scan crash recovery marked ${resetScanJobs.length} incomplete job(s) failed`);
+      }
+    } catch (scanJobInitErr: unknown) {
+      const message = scanJobInitErr instanceof Error ? scanJobInitErr.message : String(scanJobInitErr);
+      console.warn('[context-server] Maintenance job store init failed:', message);
     }
 
     // Optional real-time markdown watcher for automatic re-indexing.
@@ -2148,7 +2291,7 @@ async function main(): Promise<void> {
         const message = repairErr instanceof Error ? repairErr.message : String(repairErr);
         console.warn('[context-server] Pre-scan checkpoint derived rebuild repair failed (non-fatal):', message);
       }
-      void startupScan(DEFAULT_BASE_PATH);
+      startupScanPromise = startupScan(DEFAULT_BASE_PATH);
     });
   });
 

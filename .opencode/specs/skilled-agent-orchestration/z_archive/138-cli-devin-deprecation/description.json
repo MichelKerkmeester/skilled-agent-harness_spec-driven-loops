@@ -1,0 +1,20 @@
+{
+  "level": "phase",
+  "specFolder": "skilled-agent-orchestration/z_archive/138-cli-devin-deprecation",
+  "description": "Feature Specification: cli-devin Deprecation",
+  "keywords": [
+    "feature",
+    "specification",
+    "cli-devin",
+    "deprecation"
+  ],
+  "lastUpdated": "2026-06-15T18:16:13.835Z",
+  "specId": "138",
+  "folderSlug": "cli-devin-deprecation",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

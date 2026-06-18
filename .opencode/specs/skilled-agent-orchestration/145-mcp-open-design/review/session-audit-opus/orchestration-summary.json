@@ -1,0 +1,11 @@
+{
+  "run_id": "1781463166092-7z2xer",
+  "loop_type": "review",
+  "spec_folder": "skilled-agent-orchestration/150-open-design-terminal-and-interface-integration",
+  "base_artifact_dir": ".opencode/specs/skilled-agent-orchestration/150-open-design-terminal-and-interface-integration/review/session-audit-opus",
+  "total_cli_lineages": 1,
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false
+}

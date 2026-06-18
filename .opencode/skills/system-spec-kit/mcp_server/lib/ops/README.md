@@ -43,6 +43,7 @@ Maintenance role:
           ▼                            ▼
 ┌──────────────────────────────────────────────────┐
 │ Indexing, embedding, progress, retry, recovery   │
+│ job-store.ts  ·  sqlite-busy-retry.ts            │
 └──────────────────────────────────────────────────┘
 ```
 
@@ -52,6 +53,8 @@ Maintenance role:
 | --- | --- |
 | `file-watcher.ts` | Watches Markdown files, filters unsafe paths, debounces changes, compares content hashes, and triggers bounded re-indexing. |
 | `job-queue.ts` | SQLite-backed ingestion jobs with queued, parsing, embedding, indexing, complete, failed, and cancelled states. |
+| `job-store.ts` | Kind-agnostic `maintenance_jobs` store: jobId, queued/running/complete/failed/cancelled state machine, progress and error capture, cancel flag, and crash-recovery reset. |
+| `sqlite-busy-retry.ts` | SQLITE_BUSY retry helpers shared across ops modules; lifted from `job-queue.ts` to avoid duplication. |
 
 ## 4. BOUNDARIES
 

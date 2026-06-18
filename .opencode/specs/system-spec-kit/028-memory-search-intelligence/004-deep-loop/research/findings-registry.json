@@ -1,0 +1,78 @@
+{
+  "sessionId": "2026-06-16-028-004-deep-loop",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "openQuestions": [
+    {
+      "id": "question-1-q1-can-a-bounded-reliability-weighted-beta-posterior-make-convergence-resistant-",
+      "text": "Q1: Can a bounded reliability-weighted Beta posterior make convergence resistant to a flood of weak findings (vs vote-count)? Map to aionforge attestation. Where is the Bayesian convergence scorer (`bayesian-scorer.ts`)?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-q2-should-contradictions-be-modeled-as-edges-that-quarantine-the-lower-trust-fin",
+      "text": "Q2: Should contradictions be modeled as edges that quarantine the lower-trust finding rather than dropping either side? Map to aionforge CONTRADICTS-edge quarantine. Where are coverage-graph contradiction nodes + adjudicator verdict weighting?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-q3-can-fan-out-recovery-classify-branches-transient-vs-fatal-and-retry-from-dura",
+      "text": "Q3: Can fan-out recovery classify branches transient vs fatal and retry from durable state instead of re-running the whole loop? Map to aionforge consolidation crash-safety. Where is the fan-out router + salvage?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-q4-what-is-the-minimal-enforceable-cost-ceiling-with-observable-backpressure-lag",
+      "text": "Q4: What is the minimal enforceable cost ceiling with observable backpressure (lag/pending/failed gauges)? Map to aionforge observability gauges. Where are cost guards (`cost-guards.cjs`)?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-q5-does-galadriel-threaded-ambient-reflection-suggest-cheaper-cross-iteration-qu",
+      "text": "Q5: Does galadriel threaded ambient reflection suggest cheaper cross-iteration question continuity? Where is prompt-pack context injection?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-6-q6-confirm-the-reducer-anchor-gap-the-shipped-deep-research-strategy-md-template",
+      "text": "Q6: CONFIRM the reducer-anchor gap: the shipped `deep_research_strategy.md` template lacks the `<!-- ANCHOR:* -->` markers (key-questions, answered-questions, what-worked, what-failed, exhausted-approaches, ruled-out-directions, next-focus) that `reduce-state.cjs` `replaceAnchorSection` requires, so the reducer hard-fails \"Missing anchor section\" on a freshly-copied strategy. Is this a real bug? Propose the fix.",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-7-q7-which-001-determinism-primitives-reuse-here-reproducible-convergence-newinfor",
+      "text": "Q7: Which 001 determinism primitives reuse here — reproducible convergence/newInfoRatio folding, content-derived ordering, apply-once invariant?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "uncoveredQuestions": [
+    "Q1: Can a bounded reliability-weighted Beta posterior make convergence resistant to a flood of weak findings (vs vote-count)? Map to aionforge attestation. Where is the Bayesian convergence scorer (`bayesian-scorer.ts`)?",
+    "Q2: Should contradictions be modeled as edges that quarantine the lower-trust finding rather than dropping either side? Map to aionforge CONTRADICTS-edge quarantine. Where are coverage-graph contradiction nodes + adjudicator verdict weighting?",
+    "Q3: Can fan-out recovery classify branches transient vs fatal and retry from durable state instead of re-running the whole loop? Map to aionforge consolidation crash-safety. Where is the fan-out router + salvage?",
+    "Q4: What is the minimal enforceable cost ceiling with observable backpressure (lag/pending/failed gauges)? Map to aionforge observability gauges. Where are cost guards (`cost-guards.cjs`)?",
+    "Q5: Does galadriel threaded ambient reflection suggest cheaper cross-iteration question continuity? Where is prompt-pack context injection?",
+    "Q6: CONFIRM the reducer-anchor gap: the shipped `deep_research_strategy.md` template lacks the `<!-- ANCHOR:* -->` markers (key-questions, answered-questions, what-worked, what-failed, exhausted-approaches, ruled-out-directions, next-focus) that `reduce-state.cjs` `replaceAnchorSection` requires, so the reducer hard-fails \"Missing anchor section\" on a freshly-copied strategy. Is this a real bug? Propose the fix.",
+    "Q7: Which 001 determinism primitives reuse here — reproducible convergence/newInfoRatio folding, content-derived ordering, apply-once invariant?"
+  ],
+  "keyFindings": [],
+  "ruledOutDirections": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "metrics": {
+    "iterationsCompleted": 20,
+    "openQuestions": 7,
+    "resolvedQuestions": 0,
+    "keyFindings": 0,
+    "convergenceScore": 0.1,
+    "coverageBySources": {}
+  },
+  "corruptionWarnings": [],
+  "status": "IN_PROGRESS"
+}

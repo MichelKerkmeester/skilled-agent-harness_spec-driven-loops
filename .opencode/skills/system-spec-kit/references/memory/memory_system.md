@@ -1,6 +1,14 @@
 ---
 title: Memory System Reference
 description: Detailed documentation for Spec Kit Memory MCP tools, behavior notes, and configuration
+trigger_phrases:
+  - "memory system reference"
+  - "spec kit memory tools"
+  - "importance tier behavior"
+  - "memory search behavior"
+  - "indexable content sources"
+importance_tier: normal
+contextType: general
 ---
 
 # Memory System Reference - MCP Tools & Behavior
@@ -11,7 +19,7 @@ Spec Kit Memory MCP tools, behavior notes, and configuration options.
 
 ## 1. OVERVIEW
 
-Current baseline: schema v30 (`document_type`, `spec_level`), 3 indexed content sources, 7 intent types, and `includeSpecDocs: true` by default.
+Current baseline: schema v37 (`document_type`, `spec_level`, trigger embeddings, provenance `source_kind`, idempotency receipts, near-duplicate hints and tombstone partitions), 3 active indexed content sources, 7 intent types, and `includeSpecDocs: true` by default.
 
 The Spec Kit Memory system provides context preservation across sessions through vector-based semantic search and packet-first continuity. Phase 018 makes `handover.md -> _memory.continuity -> spec docs` the canonical recovery chain; retired `[spec]/memory/*.md` artifacts are no longer produced at save time and only matter when older packets still contain them. This reference covers MCP tool behavior, importance tiers, decay scoring, and configuration.
 
@@ -22,6 +30,7 @@ When a save mutates indexed state, the runtime also updates the `DB_UPDATED_FILE
 | Component | Location | Purpose |
 |-----------|----------|---------|
 | MCP Server | `mcp_server/context-server.ts` | Spec Kit Memory MCP with vector search |
+| CLI Shim | `.opencode/bin/spec-memory.cjs` | Daemon-backed CLI over the same tool surface; additive warm-only fallback when runtime MCP transport is unavailable (exit `75` = retryable daemon/IPC unavailability) |
 | Database | `mcp_server/database/context-index__*.sqlite` | SQLite with FTS5 + vector embeddings; active profile filename resolved by `shared/embeddings/profile.ts:resolveActiveProfileDbPath` |
 | Constitutional | `constitutional/` | Always-surface rules (Gate 3 enforcement) |
 | Scripts | runtime `scripts/dist/memory/generate-context.js` (source: `scripts/memory/generate-context.ts`) | Canonical continuity save entrypoint for packet docs |
@@ -36,25 +45,27 @@ When a save mutates indexed state, the runtime also updates the `DB_UPDATED_FILE
 
 ### Indexable Content Sources
 
-The indexed-continuity store indexes content from two active sources, plus a retired-compatibility row preserved for read-side retrieval against historical packets:
+The indexed-continuity store indexes content from three active source families, plus a retired-compatibility row preserved for read-side retrieval against historical packets:
 
 | Source | Location Pattern | Memory Type | Default Tier | Discovery |
 |--------|-----------------|-------------|--------------|-----------|
 | **Spec Documents** | `specs/**/*.md` and `<active-spec-folder>/**/*.md` | Per-type (spec, plan, tasks, etc.) | `normal` | `findSpecDocuments()` |
 | **Constitutional Rules** | `.opencode/skills/*/constitutional/*.md` | `meta-cognitive` | `constitutional` | `findConstitutionalFiles()` |
+| **Graph Metadata** | `graph-metadata.json` adjacent to spec docs | `graph_metadata` | `important` | `findGraphMetadataFiles()` |
 | **Retired Compatibility Artifacts** | Older `specs/*/memory/*.{md,txt}` files already present in historical packets | Varies (episodic, procedural, etc.) | `normal` | Historical compatibility only |
 
 **Content Source Behavior:**
 
 - **Spec Documents** — Canonical packet continuity source. Recovery should read `handover.md`, then `_memory.continuity`, then the rest of the packet docs before widening into search.
 - **Constitutional Rules** — Always-surface critical rules. Injected at top of every search result. No decay.
+- **Graph Metadata** — Packet metadata source discovered alongside spec documents and indexed with the `graph_metadata` document type.
 - **Retired Compatibility Artifacts** — Older session notes may still exist in historical packets, but save workflows no longer produce them and operators should not treat them as an active surface.
 
 **Spec Document Indexing Pipeline:**
 1. `findSpecDocuments()` walks both supported specs roots and discovers supported doc filenames
 2. `isMemoryFile()` validates each document as an indexable file
 3. `extractDocumentType()` infers `document_type` (spec/plan/tasks/etc.) for scoring
-4. Documents are indexed alongside memory and constitutional files
+4. Spec documents, constitutional files, and `graph-metadata.json` files are merged and indexed together
 5. `createSpecDocumentChain()` links lifecycle docs for causal traversal
 
 ---
@@ -93,9 +104,9 @@ Six-tier system for prioritizing memory relevance:
 
 > **Note:** MCP tool names use plain names such as `memory_search`, `memory_save`, and `checkpoint_create`.
 
-### Tool Reference (36 `mk-spec-memory` tools)
+### Tool Reference (39 `mk-spec-memory` MCP tools)
 
-The public surface is 36 local descriptors in `TOOL_DEFINITIONS` from `mcp_server/tool-schemas.ts`.
+The public MCP surface is 39 local descriptors in `TOOL_DEFINITIONS` from `mcp_server/tool-schemas.ts`.
 Code Graph and Skill Advisor descriptors are exposed by their own MCP servers, not this registry.
 
 | Layer | Tool | Purpose | Example Use |
@@ -115,6 +126,8 @@ Code Graph and Skill Advisor descriptors are exposed by their own MCP servers, n
 | L4: Mutation | `memory_update()` | Update memory metadata (title, tier, triggers) | Correct memory properties |
 | L4: Mutation | `memory_validate()` | Mark memory as useful/not useful | Confidence scoring |
 | L4: Mutation | `memory_bulk_delete()` | Bulk delete memories by spec folder with confirmation | Clean up entire spec folder memories |
+| L4: Mutation | `memory_retention_sweep()` | Audit or delete expired governed spec-doc records | Retention cleanup with dry-run evidence |
+| L4: Mutation | `memory_embedding_reconcile()` | Reconcile embedding status against active vector coverage | Repair stale pending/failed vector rows |
 | L5: Lifecycle | `checkpoint_create()` | Save named state snapshot | Before risky changes |
 | L5: Lifecycle | `checkpoint_list()` | List available checkpoints | Find restore points |
 | L5: Lifecycle | `checkpoint_restore()` | Restore from checkpoint | Rollback if needed |
@@ -124,19 +137,24 @@ Code Graph and Skill Advisor descriptors are exposed by their own MCP servers, n
 | L6: Analysis | `memory_drift_why()` | Trace causal chain for a spec-doc record ("why was this decided?") | Understand decision lineage |
 | L6: Analysis | `memory_causal_link()` | Create causal relationship between two memories | Link decision to its cause |
 | L6: Analysis | `memory_causal_stats()` | Get statistics about the causal memory graph | Check causal coverage |
+| L6: Analysis | `memory_causal_unlink()` | Remove a causal relationship | Correct bad causal edges |
 | L6: Analysis | `eval_run_ablation()` | Run ablation study on memory scoring components | Compare scoring strategies |
 | L6: Analysis | `eval_reporting_dashboard()` | Generate evaluation and reporting dashboard data | Review system metrics |
-| L6: Analysis | `code_graph_query()` | Query structural relationships such as callers, imports, and outlines | Find what calls a symbol or which files import a module |
-| L6: Analysis | `code_graph_context()` | Expand Code Graph or symbol seeds into compact graph neighborhoods | Pull structural context for an LLM prompt |
 | L7: Maintenance | `memory_index_scan()` | Bulk scan and index packet docs, constitutional files, and graph metadata | After continuity or spec-doc updates |
+| L7: Maintenance | `memory_index_scan_status()` | Get progress for a background index scan | Poll a `background:true` scan job |
+| L7: Maintenance | `memory_index_scan_cancel()` | Cancel a running background index scan | Stop a runaway scan job |
+| L7: Maintenance | `memory_get_learning_history()` | Return preflight/postflight learning history | Analyze learning patterns |
 | L7: Maintenance | `memory_ingest_start()` | Start async bulk memory ingestion | Import large memory sets |
 | L7: Maintenance | `memory_ingest_status()` | Check status of running ingestion job | Monitor import progress |
 | L7: Maintenance | `memory_ingest_cancel()` | Cancel a running ingestion job | Stop runaway imports |
-| L7: Maintenance | `memory_get_learning_history()` | Get learning history (preflight/postflight records) | Analyze learning patterns |
-| L7: Maintenance | `code_graph_scan()` | Build or refresh the structural code graph index | Re-index after branch switches or large code changes |
-| L7: Maintenance | `code_graph_status()` | Report code graph freshness and node/edge counts | Check whether the structural index is usable |
+| L7: Maintenance | `embedder_list()` | List available embedder profiles | Inspect local/cloud embedding options |
+| L7: Maintenance | `embedder_set()` | Change the active embedder profile | Controlled embedder swap |
+| L7: Maintenance | `embedder_status()` | Report active embedder health and profile | Diagnose embedding readiness |
+| L7: Maintenance | `session_health()` | Report session priming and freshness status | Detect context drift during long sessions |
+| L7: Maintenance | `session_resume()` | Resume memory and structural readiness context | Detailed recovery payload after reconnect |
+| L7: Maintenance | `session_bootstrap()` | Composite bootstrap for resume and health checks | Fresh-session readiness bundle |
 
-Code-graph implementation and package docs are owned by `.opencode/skills/system-code-graph/`; memory keeps the L6/L7 routing surface because the stable MCP tool IDs remain co-resident.
+Code-graph implementation and package docs are owned by `.opencode/skills/system-code-graph/`; use `mk-code-index` for structural `code_graph_*` tools.
 
 ### memory_index_scan() Parameters
 
@@ -147,6 +165,10 @@ Code-graph implementation and package docs are owned by `.opencode/skills/system
 | `includeConstitutional` | boolean | true | Scan `.opencode/skills/*/constitutional/` directories |
 | `includeSpecDocs` | boolean | true | Scan for spec folder documents in `.opencode/specs/`. When true, discovers and indexes specs, plans, tasks, decision records, etc. with document-type scoring multipliers (11 types). Also controllable via `SPECKIT_INDEX_SPEC_DOCS` env var. |
 | `incremental` | boolean | true | Skip files whose mtime and content hash are unchanged since last index |
+| `background` | boolean | false | Queue a background scan job; poll with `memory_index_scan_status` and stop with `memory_index_scan_cancel` |
+| `tenantId`, `userId`, `agentId`, `sessionId` | string | - | Governance boundaries for scoped ingest |
+| `provenanceSource`, `provenanceActor`, `governedAt` | string | - | Provenance metadata for governed ingest validation |
+| `retentionPolicy`, `deleteAfter` | string | - | Retention metadata for governed spec-doc records |
 
 ---
 
@@ -446,7 +468,7 @@ Real-time file watching is optional rather than always-on. By default, use `memo
 
 ### Rate Limiting
 
-The `memory_index_scan` operation has a 30-second cooldown between scans to prevent resource exhaustion. If called within the cooldown period, it returns an error with the remaining wait time.
+The `memory_index_scan` operation is self-maintaining. Overlapping scans coalesce into a successful `coalesced: true` envelope instead of failing with the old cooldown error, and rows become BM25/FTS-searchable while embeddings drain in the background.
 
 ---
 
@@ -474,20 +496,33 @@ Constitutional files are stored in:
 - Matched via trigger phrases for fast keyword matching
 - Not affected by decay scoring
 
+### Review Cadence
+
+Constitutional rules are fixed-visibility records, so operators should review them on a calendar cadence instead of relying on decay. Each active rule file should carry `last_confirmed` and `last_confirmed_source` frontmatter fields. Use the standalone staleness diagnostic to list active rules by age:
+
+```bash
+node .opencode/skills/system-spec-kit/scripts/constitutional-rule-staleness.cjs
+```
+
+Default cadence: review any rule older than 180 days. The diagnostic computes `review_by` at report time and performs no writes. A stale result is a human review signal only; it must not auto-delete, auto-demote, or change the always-surface behavior.
+
 ### Creating Constitutional Rules
 
 1. Create file in `constitutional/` folder
-2. Add YAML frontmatter with triggers:
-   ```yaml
-   ---
-   title: Gate 3 Enforcement
-   triggers:
-     - "file modification"
-     - "gate 3"
-     - "spec folder"
-   importanceTier: constitutional
-   ---
-   ```
+2. Add YAML frontmatter with triggers and review metadata:
+    ```yaml
+    ---
+    title: Gate 3 Enforcement
+    importanceTier: constitutional
+    contextType: decision
+    last_confirmed: "2026-06-10"
+    last_confirmed_source: "human-review"
+    triggerPhrases:
+      - "file modification"
+      - "gate 3"
+      - "spec folder"
+    ---
+    ```
 3. Restart MCP server or use `memory_index_scan()`
 
 ---

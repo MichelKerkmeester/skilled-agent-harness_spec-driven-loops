@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode",
+  "description": "Read-only review: code vs sk-code OpenCode standards",
+  "keywords": [
+    "read-only",
+    "review",
+    "code",
+    "sk-code",
+    "opencode",
+    "standards"
+  ],
+  "lastUpdated": "2026-06-18T12:37:51.761Z",
+  "specId": "002",
+  "folderSlug": "code-vs-sk-code-opencode",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "005-verification-and-remediation",
+    "007-release-alignment-review"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

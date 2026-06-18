@@ -1,6 +1,15 @@
 ---
 title: "Cross-AI Orchestration Patterns: External AI + Claude Code CLI"
 description: "Proven patterns for orchestrating Claude Code CLI from external AI sessions, with reversed conductor/executor model."
+trigger_phrases:
+  - "cross-ai orchestration patterns"
+  - "generate review fix cycle"
+  - "claude code deep reasoning delegation"
+  - "claude code background execution"
+  - "claude code model selection strategy"
+  - "orchestrate claude code from external ai"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Cross-AI Orchestration Patterns: External AI + Claude Code CLI

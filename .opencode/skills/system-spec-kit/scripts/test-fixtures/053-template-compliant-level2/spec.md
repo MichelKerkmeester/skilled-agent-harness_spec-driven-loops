@@ -1,25 +1,28 @@
 ---
-title: "Feature Specification: Template Fixture [template:level_2/spec.md]"
-description: "Validator fixture for live template compliance checks."
+title: "Feature Specification: Template Compliant Level 2 Fixture [template:examples/level_2/spec.md]"
+description: "Current-template Level 2 validator fixture for clean strict validation coverage."
 trigger_phrases:
   - "fixture"
+  - "template"
+  - "level 2"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/scripts/test-fixtures/053-template-compliant-level2"
-    last_updated_at: "2026-04-19T00:00:00Z"
+    last_updated_at: "2026-06-11T00:00:00Z"
     last_updated_by: "validator-fixture"
-    recent_action: "Maintained compliant Level 2 validator fixture"
-    next_safe_action: "Use for validator regression coverage"
+    recent_action: "Regenerated the Level 2 template-compliant fixture"
+    next_safe_action: "Run strict validation for fixture 053"
 ---
-# Feature Specification: Template Fixture
+# Feature Specification: Template Compliant Level 2 Fixture
 
 <!-- SPECKIT_LEVEL: 2 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
 
 ---
 
+<!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
@@ -27,115 +30,148 @@ _memory:
 | **Level** | 2 |
 | **Priority** | P1 |
 | **Status** | Complete |
-| **Created** | 2026-03-16 |
-| **Branch** | `codex/template-fixture` |
+| **Created** | 2026-06-11 |
+| **Branch** | `template-compliant-level2-fixture` |
 
+<!-- /ANCHOR:metadata -->
 ---
 
+<!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Validation fixtures used minimal headers and did not exercise live template comparison.
+Validator regression fixtures must represent valid packets. This fixture had drifted from current Level 2 headers, anchors, and summary evidence expectations.
 
 ### Purpose
-Provide a structurally compliant Level 2 folder that the validator should accept without warnings.
+Provide a clean Level 2 packet that strict validation can use to prove current template compliance for specifications, plans, tasks, checklists, and implementation summaries.
 
+<!-- /ANCHOR:problem -->
 ---
 
+<!-- ANCHOR:scope -->
 ## 3. SCOPE
 
 ### In Scope
-- Validate live header order
-- Validate required anchor order
-- Exercise checklist formatting rules
+- Current-template Level 2 `spec.md` coverage.
+- Current-template Level 2 plan, tasks, checklist, and implementation summary coverage.
+- Concrete fixture file citations for sufficiency checks.
 
 ### Out of Scope
-- Semantic field validation
-- Decision-record validation
+- Intentional warning fixtures such as `054-template-extra-header`.
+- Level 3 decision-record coverage.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/*` | Create | Template compliance fixtures |
+| `.opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/spec.md` | Regenerate | Level 2 specification fixture |
+| `.opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/plan.md` | Regenerate | Level 2 plan fixture |
+| `.opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/tasks.md` | Regenerate | Level 2 task fixture |
+| `.opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/checklist.md` | Regenerate | Level 2 checklist fixture |
+| `.opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2/implementation-summary.md` | Regenerate | Level 2 summary fixture |
 
+<!-- /ANCHOR:scope -->
 ---
 
+<!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
 ### P0 - Blockers (MUST complete)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Required headers stay in template order | `validate.sh` returns exit code 0 |
-| REQ-002 | Required anchors stay in template order | `ANCHORS_VALID` passes |
-| REQ-003 | Optional anchors from the template stay allowed | No extra-anchor warning is emitted |
+| REQ-001 | Required Level 2 files are present | `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, and `implementation-summary.md` exist |
+| REQ-002 | Headers and anchors match current templates | Strict validation exits 0 |
+| REQ-003 | Checklist evidence is concrete | `checklist.md` contains completed CHK items with evidence |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-004 | Checklist formatting matches the live template | `TEMPLATE_HEADERS` passes |
-| REQ-005 | Strict validation has no residual warnings | `validate.sh --strict` returns exit code 0 |
+| REQ-004 | Summary sufficiency checks pass | `implementation-summary.md` cites fixture files and a concrete validation command |
 
+<!-- /ANCHOR:requirements -->
 ---
 
+<!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: The fixture passes `validate.sh` with no warnings.
-- **SC-002**: Optional sections do not count as extra custom sections.
-- **SC-003**: **Given** strict mode is enabled, **Then** the compliant fixture still succeeds.
-- **SC-004**: **Given** live template comparison is active, **Then** optional template anchors are allowed.
-- **SC-005**: **Given** the checklist uses CHK identifiers, **Then** the checklist format passes.
-- **SC-006**: **Given** the live Level 2 templates are active, **Then** header order remains compliant.
+- **SC-001**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2 --strict` exits 0.
+- **SC-002**: The fixture remains a clean valid example for Level 2 template compliance tests.
+- **SC-003**: Summary and checklist evidence cite this fixture's own files.
 
+<!-- /ANCHOR:success-criteria -->
 ---
 
+<!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Risk | Fixture drift from template | Medium | Keep structure aligned with live templates |
+| Dependency | Current Level 2 templates | Fixture cannot prove live compliance if stale | Regenerate from current template anchors and headers |
+| Risk | Overfitting to negative fixtures | Clean fixture may accidentally encode warning behavior | Keep intentional warning behavior isolated in 054 |
 
+<!-- /ANCHOR:risks -->
 ---
 
-## L2: NON-FUNCTIONAL REQUIREMENTS
+<!-- ANCHOR:nfr -->
+## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
-- **NFR-P01**: Validation finishes quickly on local fixtures.
+- **NFR-P01**: Strict validation finishes quickly on this local fixture.
 
 ### Security
-- **NFR-S01**: Fixture content contains no secrets.
+- **NFR-S01**: Fixture content contains no secrets or credentials.
 
 ### Reliability
-- **NFR-R01**: The fixture is deterministic across runs.
+- **NFR-R01**: Fixture validation is deterministic across repeated runs.
 
+<!-- /ANCHOR:nfr -->
 ---
 
-## L2: EDGE CASES
+<!-- ANCHOR:edge-cases -->
+## 8. EDGE CASES
 
 ### Data Boundaries
-- Empty input: handled by negative fixtures.
+- Empty input is handled by separate negative fixtures.
+- This fixture keeps content short while preserving required template sections.
 
 ### Error Scenarios
-- Header drift: covered by failure fixtures.
+- Header drift is expected to fail strict validation.
+- Missing evidence is expected to fail sufficiency checks.
 
-### State Transitions
-- Strict mode: covered by CLI tests.
+### Concurrent Operations
+- Multiple validator runs should read the same static files without mutation.
 
+<!-- /ANCHOR:edge-cases -->
 ---
 
+<!-- ANCHOR:complexity -->
 ## L2: COMPLEXITY ASSESSMENT
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | 10/25 | Fixture-only coverage |
-| Risk | 8/25 | Validator behavior only |
-| Research | 6/20 | Uses current templates |
+| Scope | 10/25 | Static Level 2 fixture files only |
+| Risk | 8/25 | Validator regression coverage |
+| Research | 6/20 | Current template contract read |
 | **Total** | **24/70** | **Level 2** |
 
+<!-- /ANCHOR:complexity -->
 ---
 
-## 10. OPEN QUESTIONS
+<!-- ANCHOR:questions -->
+## 9. OPEN QUESTIONS
 
 - None.
+
+<!-- /ANCHOR:questions -->
+---
+
+<!-- ANCHOR:related-docs -->
+## RELATED DOCUMENTS
+
+- **Implementation Plan**: See `plan.md`
+- **Task Breakdown**: See `tasks.md`
+- **Verification Checklist**: See `checklist.md`
+
+<!-- /ANCHOR:related-docs -->

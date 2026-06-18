@@ -1,6 +1,13 @@
 ---
 title: Universal Debugging Methodology
 description: Stack-agnostic 5-phase debugging approach applicable to any technology.
+trigger_phrases:
+  - "universal debugging methodology"
+  - "five phase debugging"
+  - "hypothesis challenge re-rank"
+  - "stack-agnostic debugging"
+importance_tier: normal
+contextType: general
 ---
 
 # Universal Debugging Methodology

@@ -1,0 +1,450 @@
+{
+ "review": "027 epic multi-model deep-review sweep",
+ "date": "2026-06-11",
+ "seat_matrix": "per phase: 3x gpt-5.5-fast xhigh (correctness, docs-vs-code, regression) + 1x MiMo v2.5 Pro (fresh-eyes) + 1x Fable 5 xhigh (adversarial synthesis); 24 phases x 5 = 120 seats",
+ "verification": "every strong P1 cluster (Fable-flagged or 2+ seat corroborated) re-verified by refute-first Fable 5 seats with file:line proof",
+ "totals": {
+  "seats": 120,
+  "p0_findings": 0,
+  "strong_clusters_verified": 41,
+  "confirmed": 23,
+  "refuted": 2,
+  "downgraded_p2": 11
+ },
+ "remediation_commits": {
+  "round1_doc_truth": "ba3dddad1d",
+  "round2a_code": "ef0eb88a4a",
+  "round2b_continuity_savelock": "7c17b07e01",
+  "round3_tail": "8bf4c89813"
+ },
+ "phase_verdicts": {
+  "000-release-cleanup": {
+   "gpt-correctness": "FAIL",
+   "gpt-docs-vs-code": "CONDITIONAL",
+   "gpt-regression": "CONDITIONAL",
+   "mimo": "PASS",
+   "fable": "CONDITIONAL"
+  },
+  "001-peck-teachings-adoption": {
+   "gpt-correctness": "CONDITIONAL",
+   "gpt-docs-vs-code": "CONDITIONAL",
+   "gpt-regression": "CONDITIONAL",
+   "mimo": "PASS",
+   "fable": "CONDITIONAL"
+  },
+  "002-memory-write-safety": {
+   "gpt-correctness": "CONDITIONAL",
+   "gpt-docs-vs-code": "CONDITIONAL",
+   "gpt-regression": "CONDITIONAL",
+   "mimo": "CONDITIONAL",
+   "fable": "CONDITIONAL"
+  },
+  "003-memory-index-causal-lifecycle": {
+   "gpt-correctness": "CONDITIONAL",
+   "gpt-docs-vs-code": "CONDITIONAL",
+   "gpt-regression": "CONDITIONAL",
+   "mimo": "CONDITIONAL",
+   "fable": "CONDITIONAL"
+  },
+  "004-semantic-trigger-fallback": {
+   "gpt-correctness": "CONDITIONAL",
+   "gpt-docs-vs-code": "CONDITIONAL",
+   "gpt-regression": "CONDITIONAL",
+   "mimo": "PASS",
+   "fable": "CONDITIONAL"
+  },
+  "005-learning-feedback-reducers": {
+   "gpt-correctness": "CONDITIONAL",
+   "gpt-docs-vs-code": "PASS",
+   "gpt-regression": "CONDITIONAL",
+   "mimo": "PASS",
+   "fable": "CONDITIONAL"
+  },
+  "006-gem-team-adoption": {
+   "gpt-correctness": "CONDITIONAL",
+   "gpt-docs-vs-code": "CONDITIONAL",
+   "gpt-regression": "CONDITIONAL",
+   "mimo": "PASS",
+   "fable": "CONDITIONAL"
+  },
+  "007-memclaw-derived-memory-hardening": {
+   "gpt-correctness": "CONDITIONAL",
+   "gpt-docs-vs-code": "CONDITIONAL",
+   "gpt-regression": "CONDITIONAL",
+   "mimo": "CONDITIONAL",
+   "fable": "CONDITIONAL"
+  },
+  "008-openltm-retrieval-observability": {
+   "gpt-correctness": "CONDITIONAL",
+   "gpt-docs-vs-code": "CONDITIONAL",
+   "gpt-regression": "CONDITIONAL",
+   "mimo": "PASS",
+   "fable": "PASS"
+  },
+  "009-openltm-continuity-resilience": {
+   "gpt-correctness": "CONDITIONAL",
+   "gpt-docs-vs-code": "CONDITIONAL",
+   "gpt-regression": "CONDITIONAL",
+   "mimo": "CONDITIONAL",
+   "fable": "CONDITIONAL"
+  },
+  "010-mcp-to-cli-tool-transition": {
+   "gpt-correctness": "CONDITIONAL",
+   "gpt-docs-vs-code": "CONDITIONAL",
+   "gpt-regression": "CONDITIONAL",
+   "mimo": "PASS",
+   "fable": "PASS"
+  },
+  "011-command-presentation-workflow-separation": {
+   "gpt-correctness": "CONDITIONAL",
+   "gpt-docs-vs-code": "CONDITIONAL",
+   "gpt-regression": "CONDITIONAL",
+   "mimo": "PASS",
+   "fable": "PASS"
+  },
+  "012-causal-traversal-bfs": {
+   "gpt-correctness": "CONDITIONAL",
+   "gpt-docs-vs-code": "CONDITIONAL",
+   "gpt-regression": "CONDITIONAL",
+   "mimo": "PASS",
+   "fable": "PASS"
+  },
+  "013-vector-read-path-resilience": {
+   "gpt-correctness": "CONDITIONAL",
+   "gpt-docs-vs-code": "CONDITIONAL",
+   "gpt-regression": "CONDITIONAL",
+   "mimo": "PASS",
+   "fable": "CONDITIONAL"
+  },
+  "014-packed-bm25-field-weights": {
+   "gpt-correctness": "CONDITIONAL",
+   "gpt-docs-vs-code": "CONDITIONAL",
+   "gpt-regression": "CONDITIONAL",
+   "mimo": "CONDITIONAL",
+   "fable": "CONDITIONAL"
+  },
+  "015-storage-adapter-ports": {
+   "gpt-correctness": "PASS",
+   "gpt-docs-vs-code": "PASS",
+   "gpt-regression": "CONDITIONAL",
+   "mimo": "PASS",
+   "fable": "PASS"
+  },
+  "016-cli-tooling-ux": {
+   "gpt-correctness": "PASS",
+   "gpt-docs-vs-code": "PASS",
+   "gpt-regression": "CONDITIONAL",
+   "mimo": "PASS",
+   "fable": "PASS"
+  },
+  "017-bm25-warmup-churn-reduction": {
+   "gpt-correctness": "PASS",
+   "gpt-docs-vs-code": "CONDITIONAL",
+   "gpt-regression": "CONDITIONAL",
+   "mimo": "PASS",
+   "fable": "PASS"
+  },
+  "018-xce-feature-adoption-advisor-codegraph": {
+   "gpt-correctness": "CONDITIONAL",
+   "gpt-docs-vs-code": "CONDITIONAL",
+   "gpt-regression": "CONDITIONAL",
+   "mimo": "PASS",
+   "fable": "PASS"
+  },
+  "019-skill-advisor-cross-session-reconnect": {
+   "gpt-correctness": "CONDITIONAL",
+   "gpt-docs-vs-code": "CONDITIONAL",
+   "gpt-regression": "CONDITIONAL",
+   "mimo": "PASS",
+   "fable": "PASS"
+  },
+  "020-vector-resilience-durability": {
+   "gpt-correctness": "FAIL",
+   "gpt-docs-vs-code": "PASS",
+   "gpt-regression": "CONDITIONAL",
+   "mimo": "PASS",
+   "fable": "PASS"
+  },
+  "021-hybrid-search-scope-then-limit": {
+   "gpt-correctness": "PASS",
+   "gpt-docs-vs-code": "CONDITIONAL",
+   "gpt-regression": "PASS",
+   "mimo": "PASS",
+   "fable": "PASS"
+  },
+  "022-provenance-injection": {
+   "gpt-correctness": "CONDITIONAL",
+   "gpt-docs-vs-code": "CONDITIONAL",
+   "gpt-regression": "FAIL",
+   "mimo": "PASS",
+   "fable": "CONDITIONAL"
+  },
+  "023-idempotency-flag-on-correctness": {
+   "gpt-correctness": "CONDITIONAL",
+   "gpt-docs-vs-code": "CONDITIONAL",
+   "gpt-regression": "CONDITIONAL",
+   "mimo": "PASS",
+   "fable": "CONDITIONAL"
+  }
+ },
+ "registry": {
+  "confirmed": [
+   {
+    "batch": "T1-router-search",
+    "phase": "013-vector-read-path-resilience",
+    "title": "Changelog mislabels restart durability as REQ-003",
+    "proof": "changelog-013:60 ('Durability across a restart mid-repair is the deferred REQ-003 work, shipped in phase 020') is materially false: spec.md:111 defines REQ-003 as the KNN scalar-JOIN vs vec0-MATCH live-corpus benchmark with an evidence-pending deferral blocked by daemon E040, and phase 020's spec/implementation-summary contain no KNN benchmark content; the line-33 claim 'read queries respect the degraded/quarantined shard state' is also false \u2014 vector-index-queries.ts has zero degraded/quarantine references (only sqlite-vec availability checks at lines 363/506/1523).",
+    "fix_sketch": "Reword the follow-up to attribute restart-mid-repair durability to phase 020 without the REQ-003 label (REQ-003's live-corpus KNN rerun remains deferred), and fix line 33 to describe the actual change (KNN query-shape benchmark helpers)."
+   },
+   {
+    "batch": "T1-router-search",
+    "phase": "013-vector-read-path-resilience",
+    "title": "Staged-shard rename over live attachment orphans writes",
+    "proof": "reindex.ts:613-623 unlinks sidecars and renameSync's the staged shard over activeShardPath without detaching, on the same live connection the repair was started with (vector-index-store.ts:703 passes `db: database` into startVectorShardRepairReindex \u2192 enqueueJob \u2192 runJob); the follow-up attachActiveVectorShard (reindex.ts:667-669) compares only the PRAGMA database_list path string (vector-index-store.ts:456-458) so it takes the path-equality branch at vector-index-store.ts:1501, and the attached-shard probe (lines 492-507: quick_check + table existence) passes against the stale healthy inode, keeping the attachment \u2014 subsequent writes via the temp aliases land in the unlinked old inode and are lost on restart.",
+    "fix_sketch": "Checkpoint and DETACH active_vec before the staging rename and re-attach after, or make attachActiveVectorShard compare on-disk vs attached inode (fs.statSync ino) and force detach/re-attach on mismatch."
+   },
+   {
+    "batch": "T1-router-search",
+    "phase": "014-packed-bm25-field-weights",
+    "title": "Changelog byte-identical ranking parity claim",
+    "proof": "changelog-014:23 and :44 claim ranking was 'byte-identical to legacy', but tests/bm25-packed-inmemory.vitest.ts:231-233 asserts the engines rank differently by design (legacyTop !== '101', packedTop === '101'), runBM25EngineComparison only gates packedAtLeastLegacy/titleSignalRestored (bm25-baseline.ts:228-236), and the phase's own evidence records packed MRR@5 1.0000 vs legacy 0.9000 (implementation-summary.md:105) \u2014 a materially false shipped verification claim.",
+    "fix_sketch": "Replace 'byte-identical' with the actual proven gate: packed meets-or-beats legacy on all baseline metrics and restores the title/trigger signal; only warmed-vs-direct packed parity is identical."
+   },
+   {
+    "batch": "T1-router-search",
+    "phase": "014-packed-bm25-field-weights",
+    "title": "Repudiated 111 MB RSS still shown as P0 PASS evidence",
+    "proof": "implementation-summary.md:103 still records 'Current corpus budget fixture | PASS ... RSS spike 111,017,984 bytes' and line 116 says 'The current corpus gate passed, so the minisearch contingency is not triggered', while the same packet's spec.md:139 explicitly repudiates that measurement (stop-word fixture, realistic re-validation 686.8 MB breach, 'the RAM gate test is left failing and the contingency decision fires') and changelog-014:46 records 'Warmup RSS | OVER BUDGET at this phase' \u2014 the impl summary contradicts the phase's own current record.",
+    "fix_sketch": "Replace the budget-fixture PASS row and line-116 limitation with the realistic-fixture breach evidence plus the phase-017 closure pointer, and reconcile the continuity block (no blockers, completion_pct 100) with spec.md's re-opened contingency."
+   },
+   {
+    "batch": "T1-router-search",
+    "phase": "014-packed-bm25-field-weights",
+    "title": "Impl summary claims RSS gate passed after phase recorded failure",
+    "proof": "Same defect as the previous finding: implementation-summary.md:103 (PASS at 111,017,984 bytes) vs spec.md:139 (686.8 MB breach, RAM gate test left failing, contingency fired) and changelog-014:46 (OVER BUDGET) \u2014 duplicate seat reports of one confirmed doc-truth defect.",
+    "fix_sketch": "Single fix shared with the previous finding: reconcile implementation-summary.md's verification table, limitations, and continuity with spec.md and the changelog."
+   },
+   {
+    "batch": "T2-adoption-write",
+    "phase": "020-vector-resilience-durability",
+    "title": "Repair de-dup lost across restart",
+    "proof": "reindex.ts:124 vectorShardRepairJobs is module-local and only populated at job creation (742-744); resumeReindexJobs (777-793) re-enqueues persisted queued/running jobs without rebuilding it, and startVectorShardRepairReindex (809-822) de-dupes only by scanning that map, so after a crash mid-repair the sentinel path (vector-index-store.ts:677-684 \u2192 1231-1245 \u2192 700-712) schedules a second same-shard repair alongside the resumed job \u2014 violating the phase's shipped de-dup claim (spec.md:109, implementation-summary.md:71) with no Known-Limitations entry covering restart (implementation-summary.md:129-135).",
+    "fix_sketch": "Persist repair reason/shardPath with the embedder_jobs row (or side table), rebuild the map in resumeReindexJobs, and have the guard query persisted queued/running same-shard repairs before inserting."
+   },
+   {
+    "batch": "T2-adoption-write",
+    "phase": "022-provenance-injection",
+    "title": "filePath fallback tags human saves as 'import'",
+    "proof": "write-provenance.ts:90-93 maps any untagged write whose path word-matches import|ingest|scan|index to 'import'; memory-save.ts:2272-2276 always threads filePath and a plain memory_save passes no provenance labels (3529-3531, tool='memory_save' matches no label regex), real spec folders match the regex (e.g. 027/003-memory-index-causal-lifecycle, 026/.../012-memory-index-scan-ux-hardening), and memory-crud-update.ts:88-91 protects only null/'human'/constitutional rows \u2014 so the heuristic strips manual-overwrite protection while genuine scan/ingest writers already tag explicitly (memory-save.ts:2858-2862), directly contradicting the changelog's 'Default safety PASS: an untagged write derives human, never automated' (changelog line 46).",
+    "fix_sketch": "Delete the filePath branch from deriveSourceKindFromContext so untagged writes truly default to 'human', and rely on the explicit provenanceSource tags the real scan/ingest paths already set."
+   },
+   {
+    "batch": "T2-adoption-write",
+    "phase": "022-provenance-injection",
+    "title": "Status Complete with 4 of 5 handoff gates never run",
+    "proof": "implementation-summary.md:46 says Status Complete (Completed 2026-06-11) while its own Verification table lines 118-121 lists tsc, the provenance/guard suite, validate.sh --strict, and comment-hygiene as 'Pending final run' (continuity completion_pct 95, next_safe_action 'Record final ... results after they run'); checklist.md CHK-021/022/023 are unchecked 'To be filled after final run', yet spec.md:46 says Complete with completion_pct 100 and the changelog verification table claims those suites PASS \u2014 three shipped docs make irreconcilable completion claims against the handoff criteria at spec.md:52.",
+    "fix_sketch": "Run the four gates and record real results in the verification table and checklist evidence rows, or downgrade spec/summary Status until they are recorded."
+   },
+   {
+    "batch": "T2-adoption-write",
+    "phase": "022-provenance-injection",
+    "title": "Changelog overstates guard enforcement",
+    "proof": "changelog-022 frontmatter line 3 and summary line 23 claim 'the write-ingress guard enforces the constitutional rule that automated writers never overwrite manual or constitutional memory' / 'the guard now holds the line', while the phase's own spec.md:237-241 and implementation-summary.md:143-144 document P0-class same-path-retire and auto-promotion paths where automated writers can still overwrite manual rows, and spec.md phase context states the phase 'does not expand guard enforcement beyond tagging' \u2014 the unqualified enforcement claim is materially false despite the trailing follow-ons sentence.",
+    "fix_sketch": "Rewrite frontmatter/summary to claim provenance tagging plus existing memory_update guard coverage only, explicitly naming same-path retire and auto-promotion enforcement as open follow-ons."
+   },
+   {
+    "batch": "T2-adoption-write",
+    "phase": "023-idempotency-flag-on-correctness",
+    "title": "Impl-summary documents pre-remediation state",
+    "proof": "Commit 76cf460eaa shipped BOTH the 12-test suite (commit message: 'flag-ON suite 12/12 (was 10)', adding the won/lost store contract, lookupIdempotencyReceiptByKey, and the 'signals won/lost on store so a concurrent loser replays the winner by key' test at vitest line 122) AND implementation-summary.md:104 claiming 'PASS ... 10 tests passed' with What Was Built (lines 53-72) listing only three fixes \u2014 the canonical completion record is materially stale relative to the code in its own commit.",
+    "fix_sketch": "Patch the verification table to the 12/12 result and add the fourth remediation (won/lost store contract + lookupIdempotencyReceiptByKey concurrent-loser replay) to What Was Built."
+   },
+   {
+    "batch": "V1-write-safety",
+    "phase": "002-memory-write-safety",
+    "title": "Secret scrubber covers index artifacts only; raw secret persisted to canonical markdown",
+    "proof": "memory-parser.ts:276-281 scrubs only the parsed/index copy, while the same save request persists raw input: memory-save.ts:3705-3707 falls back to raw currentContent (written via writePendingFile/promotePendingFile at 3772-3778), and the canonical routed path feeds raw params.content into buildCanonicalMergePayload (memory-save.ts:1664-1670), whose 'append-section' branch embeds it as body text (1429) into a second, server-authored durable doc \u2014 contradicting implementation-summary.md:72 ('so secrets never reach durable storage') and checked-off CHK-061 (checklist.md:111 claims body coverage); the scrubbed alternative (preparedMemory.parsed.content) exists and is even used when quality-loop fixes apply (runQualityLoop runs on parsed.content at memory-save.ts:518), making the raw-persist branches an inconsistency, not a convention \u2014 mitigation: the non-canonical branch only re-writes bytes already in the agent-authored source file (content is read from disk at memory-save.ts:3490), so the live contract breach is the canonical merge copying raw secrets into the target doc.",
+    "fix_sketch": "Scrub once at the head of atomicSaveMemory (fail-closed on SecretScrubberError) and feed the scrubbed string to both the merge payload (use preparedMemory.parsed.content instead of params.content) and the persistedContent fallback."
+   },
+   {
+    "batch": "V1-write-safety",
+    "phase": "002-memory-write-safety",
+    "title": "memory_update provenance metadata bypasses the secret scrubber",
+    "proof": "scrubSecrets has exactly two call sites repo-wide (memory-parser.ts:276, memory-crud-update.ts:173-177) \u2014 provenance strings are never scrubbed: memory-crud-update.ts:325 persists getInternalProvenanceContext(args) raw, and write-provenance.ts:111-152 writes provenance_source/provenance_actor verbatim into memory_index, breaching spec.md:273 ('provenance strings (not content-only)') and CHK-061 which is checked [x] with evidence that never mentions provenance (checklist.md:111); while the cited memory_update vector is internal-only on default config (strict memoryUpdateSchema at tool-input-schemas.ts:300-307 rejects __provenanceContext), the identical unscrubbed sink is externally reachable TODAY via memory_save's allowlisted provenanceSource/provenanceActor params (tool-input-schemas.ts:610) flowing through applyWriteProvenance at handlers/save/create-record.ts:368-373.",
+    "fix_sketch": "Scrub provenanceSource/provenanceActor (and other persisted provenance strings) fail-closed inside buildPostInsertProvenanceFields in write-provenance.ts so every sink (memory_update, memory_save, index scan, auto-promotion) is covered at one choke point."
+   },
+   {
+    "batch": "V2-index-causal",
+    "phase": "003-memory-index-causal-lifecycle",
+    "title": "Low-level memory delete can commit after causal tombstone sweep failure",
+    "proof": "vector-index-mutations.ts:149-151 swallows every sweepCausalEdges error before delete_memory_from_database commits 'DELETE FROM memory_index' at :692 inside the same transaction (:660) \u2014 the catch's 'legacy databases' rationale is already handled inside sweep.ts:225-227 (missing causal_edges returns emptySweepResult), and the repo's own contract at causal-edges.ts:864-866 ('Let errors propagate so callers inside transactions see failures... previously swallowed') is exactly what this path violates; with no SAVEPOINTs (transaction-manager.ts:261), a mid-sweep failure can even commit partial tombstones while leaving active orphan edges and a deleted memory row.",
+    "fix_sketch": "Drop (or narrow to nothing) the catch around sweepCausalEdges in deleteAncillaryMemoryRows so sweep/tombstone failures propagate and roll back the surrounding delete transaction; the missing-table no-op already lives inside sweepCausalEdges."
+   },
+   {
+    "batch": "V2-index-causal",
+    "phase": "003-memory-index-causal-lifecycle",
+    "title": "Direct tombstone sweeps do not bump the causal-edge generation cache key",
+    "proof": "sweep.ts:211-222 invalidateGraphCaches clears only degree/graph-signal caches while the generation counter is bumped solely in causal-edges.ts:201-225 (documented at :190-195 as 'bumped on every causal-edge mutation'), and memory-search.ts:952-987 keys the tool cache on getCausalEdgesGeneration() with causal boost default-ON (search-flags.ts:48-50) and the 60s tool cache default-ON (tool-cache.ts:65-66); the checkpoint-restore path is reachable today and unmitigated \u2014 handlers/checkpoints.ts:549/563 sweeps edges via checkpoints.ts:1645-1660 but clears only the legacy query_cache (vector-index-aliases.ts:231) and never runs runPostMutationHooks, so stale causal-boosted memory_search payloads survive under unchanged keys (corrections.ts:191/620-665 has the same gap at library level; only the MCP delete handlers are saved by memory-crud-delete.ts:289 \u2192 invalidateOnWrite).",
+    "fix_sketch": "Move bumpCausalEdgesGeneration into sweep.ts's shared invalidation (or a single exported causal-graph invalidator used by both sweepCausalEdges and causal-edges.ts), and add a regression asserting a direct sweep changes getCausalEdgesGeneration()."
+   },
+   {
+    "batch": "V3-triggers-observability",
+    "phase": "004-semantic-trigger-fallback",
+    "title": "Shadow stats via console.info pollute stdout MCP JSON-RPC channel",
+    "proof": "memory-triggers.ts:569 uses console.info (stdout in Node) while context-server.ts:2179 runs StdioServerTransport where stdout carries JSON-RPC frames; rg confirms no console.log/info reassignment anywhere in mcp_server, and every other runtime log in the same handler uses stderr-bound console.warn/error (lines 557, 582, 624), so when SPECKIT_SEMANTIC_TRIGGERS=true in the default shadow mode (memory-triggers.ts:182-186) \u2014 the phase's documented handoff criterion 'shadow telemetry recorded' (004-tests-goldens-shadow-eval/spec.md:49) \u2014 every weak-lexical trigger call injects a non-JSON inspect blob into the protocol channel, breaking the MCP stdio framing contract.",
+    "fix_sketch": "Change console.info at memory-triggers.ts:569 to console.error so shadow telemetry goes to stderr like every other server log."
+   },
+   {
+    "batch": "V3-triggers-observability",
+    "phase": "008-openltm-retrieval-observability",
+    "title": "Failed maintenance runs are not recorded as last-run errors",
+    "proof": "memory-embedding-reconcile.ts:79-89 records recordMaintenanceRun only with status:'success' while all failure paths (lines 23-35, 47-59, 97-122) return without recording, memory-retention-sweep.ts:53-62 vs its catch at 88-110 has the identical gap, and rg confirms no caller in the codebase ever records status:'error' even though the module's own contract defines it (retrieval-observability.ts:60, 294-296); memory_health exposes the snapshot unconditionally (memory-crud-health.ts:863), so on a default configuration a failed reconcile/sweep leaves memory_health reporting the previous success as the 'last run', breaking REQ-005/SC-004 (008 spec.md:126, 138) and the impl-summary claim that operators see 'what the latest maintenance passes counted' (implementation-summary.md:57), with no documented deferral (known limitations cover only process-restart reset, implementation-summary.md:121).",
+    "fix_sketch": "Call recordMaintenanceRun with status:'error' plus sanitized error metadata in every early-abort and catch path of the scan/reconcile/retention handlers."
+   },
+   {
+    "batch": "V4-continuity",
+    "phase": "009-openltm-continuity-resilience",
+    "title": "Restore panel markdown bypasses the restored/omitted budget",
+    "proof": "resume-ladder.ts:393-398 renders renderContinuityFacets(facets) \u2014 the full unbudgeted facet set \u2014 while the budgeted restored/omitted selection computed at resume-ladder.ts:362-377 is used only for the counts; the markdown flows unconditionally (no flag gate) into the default startup payload via session-resume.ts:649 and session-bootstrap.ts:358-364, breaking the documented REQ-001 contract (spec.md:119 'Restore output respects a fixed budget'); markdown also omits the 'Recovered <doc>' document candidates counted as restored, so counts contradict rendered content in both directions; tests (openltm-continuity-resilience.vitest.ts:128-135) assert only counts and headings, never that omitted text is absent.",
+    "fix_sketch": "Render markdown from the budget-selected restored items grouped by facet (or filter facets to the restored set before renderContinuityFacets) and add a regression test asserting an over-budget item is absent from restorePanel.markdown."
+   },
+   {
+    "batch": "V4-continuity",
+    "phase": "009-openltm-continuity-resilience",
+    "title": "Opt-in PreCompact snapshot wipes authored continuity fields",
+    "proof": "authored-continuity-snapshot.ts:124-126 hardcodes completion_pct: 0 and empty open/answered_questions and never sets session_dedup; mergeFrontmatterWithContinuity (thin-continuity-record.ts:913-929) replaces the entire _memory.continuity mapping with buildOrderedRecord(record, false), and buildOrderedRecord:837 only emits session_dedup when present on the new record \u2014 so an authored completion_pct (test fixture has 50 at openltm-continuity-resilience.vitest.ts:93), the session_dedup fingerprint that SPECKIT_COMPLETION_FRESHNESS validates, and question state are all destroyed on every enabled PreCompact; though flag-gated (default off), this breaks the documented REQ-002 contract (spec.md:120 'summarizes existing state') and is irreversible data loss in the authored source-of-truth docs.",
+    "fix_sketch": "Read the existing thin continuity record from implementation-summary.md and merge, preserving completion_pct, session_dedup, open_questions, and answered_questions unless the ladder supplies explicit new values."
+   },
+   {
+    "batch": "V4-continuity",
+    "phase": "009-openltm-continuity-resilience",
+    "title": "PreCompact spec-folder detection turns spec doc file paths into nonexistent folders",
+    "proof": "compact-inject.ts:116 regex /\\.opencode\\/specs\\/[\\w/-]+/g excludes dots, so '.../implementation-summary.md' is captured as '.../implementation-summary'; the strip at compact-inject.ts:123 requires a '.ext' suffix in the captured match and never fires, and the bogus path is passed at compact-inject.ts:403 to refreshAuthoredContinuitySnapshot, whose resolveSpecFolderPath (authored-continuity-snapshot.ts:157-167) skips with 'Resolved spec folder does not exist' \u2014 defeating documented SC-002 for the common file-mention transcript shape when enabled, and the same bug feeds a wrong 'Active spec folder' line into the default merged compaction context at compact-inject.ts:246 (dotted track dirs like specs/anobel.com break entirely).",
+    "fix_sketch": "Allow dots in the candidate match (or capture to whitespace/quote boundary), strip known file components after matching, and add a compact-inject test with an implementation-summary.md transcript path."
+   },
+   {
+    "batch": "V4-continuity",
+    "phase": "009-openltm-continuity-resilience",
+    "title": "Restore panel renders unbudgeted facet content after computing omissions",
+    "proof": "Same defect as the first finding group: resume-ladder.ts:393-398 assembles markdown from the unfiltered facets while the 8-item/1200-char budget (resume-ladder.ts:120-121, applied at 362-377) shapes only the structured restored/omitted arrays, so over-budget facet text still renders in the user-facing panel while omittedCount claims it was not restored.",
+    "fix_sketch": "Build a filtered ContinuityFacets from the restored selection before calling renderContinuityFacets, and enforce maxChars on the final markdown."
+   },
+   {
+    "batch": "V4-continuity",
+    "phase": "009-openltm-continuity-resilience",
+    "title": "Authored snapshot refresh erases continuity completion and question state",
+    "proof": "Same defect as the snapshot finding above: buildContinuityRecord (authored-continuity-snapshot.ts:109-128) emits a zeroed/empty record that upsertThinContinuityInMarkdown writes via full-mapping replacement (thin-continuity-record.ts:921-928 spreads frontmatter but overwrites continuity wholesale), so a completed packet's authored completion_pct, question state, and session_dedup are regressed to 0/empty/absent on every enabled refresh.",
+    "fix_sketch": "Preserve existing continuity fields by reading the current record and merging rather than rebuilding from ladder defaults."
+   },
+   {
+    "batch": "V5-agents-idempotency",
+    "phase": "006-gem-team-adoption",
+    "title": "Claude/Codex orchestrator templates point at .opencode agent definitions",
+    "proof": ".claude/agents/orchestrate.md:19 mandates '.claude/agents/*.md' as the only runtime path and :162 requires .claude/agents/code.md be loaded, yet the mandatory Task Format at :195, the PDR example at :277, and the anti-pattern text near :820 all instruct loading .opencode/agents/<name>.md; .codex/agents/orchestrate.toml has the identical contradiction (:24 '.codex/agents/*.toml' vs :200, :282, ~:825), while the .opencode canonical is internally consistent \u2014 the mirrors were runtime-adapted at the convention/guard/table lines but missed in the dispatch templates, so following the mandatory template in Claude/Codex loads the wrong runtime mirror and contradicts the file's own consistency guard today, with no flag gating.",
+    "fix_sketch": "In the mirror conversion, render the Task Format, PDR example, and anti-pattern paths as the runtime-local directory (.claude/agents/<name>.md, .codex/agents/<name>.toml) instead of hard-coded .opencode paths."
+   },
+   {
+    "batch": "V5-agents-idempotency",
+    "phase": "006-gem-team-adoption",
+    "title": "Canonical save lock can expire during a live save",
+    "proof": "generate-context.ts:57 sets CANONICAL_SAVE_STALE_MS=30_000 and acquireCanonicalSaveLock:415-423 reaps any lock whose directory mtime exceeds it \u2014 the owner file written at :409/:421 records a PID that is never read back, and nothing refreshes the lock mtime \u2014 while :786-806 shows the lock brackets the entire runWorkflow (full canonical save including embedding generation and doc regeneration), which can plausibly exceed 30s, so a second save started during a long live save reaps the active lock and runs concurrently against the same canonical files; this is the default, unflagged save path and no packet doc documents the 30s reap as an accepted policy.",
+    "fix_sketch": "Check the recorded owner PID for liveness (and/or heartbeat-refresh the lock mtime during the workflow) before reaping, and fail closed when the owner cannot be proven dead."
+   }
+  ],
+  "refuted": [
+   {
+    "batch": "V1-write-safety",
+    "phase": "002-memory-write-safety",
+    "title": "memory_retention_sweep handler drops feedbackRetention options",
+    "proof": "Nothing is silently dropped: the published MCP contract declares dryRun as the only input with additionalProperties:false (tool-schemas.ts:499-503), and the strict-by-default zod schema (tool-input-schemas.ts:28-31, 332-334, allowlist at 618) loudly rejects feedbackRetention as an unrecognized key before the handler runs; the narrow surface is intentional defense \u2014 the same validation layer declares feedback signals 'system-generated only' (tool-input-schemas.ts:667-698), so forwarding caller-supplied signals/shadowEvaluationPassed as the suggested fix proposes would open a feedback-spoofing surface, and the feature is opt-in default-off anyway (memory-retention-sweep.ts:408 isFeedbackRetentionLearningEnabled) with the blocked active gate failing safe (audit-only, no deletions).",
+    "fix_sketch": null
+   },
+   {
+    "batch": "V5-agents-idempotency",
+    "phase": "007-memclaw-derived-memory-hardening",
+    "title": "Receipt replay never sets the promised replayed marker",
+    "proof": "The verbatim replay is the documented intended behavior, not a defect: changelog/023-idempotency-flag-on-correctness/changelog-023-idempotency-flag-on-correctness.md:23,36 explicitly records 'Replay returns the original response verbatim instead of stamping a replayed:true marker \u2014 a replayed call is indistinguishable from the first call, which is the point of idempotency', and before-vs-after.md:71 repeats it; the seats cite the older 007/002 spec and changelog promise that 023 deliberately superseded; the only residue is stale doc drift in feature_catalog/02--mutation/memory-idempotency-receipts-and-near-duplicate-hints.md:27 and manual_testing_playbook/19--feature-flag-reference/memory-idempotency-replay-and-conflict.md:20,48, which still describe the retired replayed:true contract \u2014 a doc-sync chore, not a runtime defect.",
+    "fix_sketch": null
+   }
+  ],
+  "downgraded_p2": [
+   {
+    "batch": "T1-router-search",
+    "phase": "011-command-presentation-workflow-separation",
+    "title": "Auto setup config path vs artifact_dir",
+    "proof": "deep_start-review-loop_presentation.md:19 does instruct a flat `{spec_folder}/review/deep-review-config.json` write and lines 247/252 claim child phases always use `{packet}-pt-{NN}/`, contradicting the flat-first resolver (review-research-paths.cjs:267-274 returns flat for a child-phase first run); however the auto YAML independently resolves artifact_dir (deep_start-review-loop_auto.yaml:127) and writes the canonical config at `{artifact_dir}/deep-review-config.json` via step_create_config (state_paths line 92), so on default first-run/root configurations the flat path and artifact_dir coincide and runtime behavior is unchanged \u2014 this is a stale presentation contract (also deep_start-context-loop_presentation.md:118), not a runtime defect.",
+    "fix_sketch": null
+   },
+   {
+    "batch": "T1-router-search",
+    "phase": "012-causal-traversal-bfs",
+    "title": "Bench gate asserts mean, SC-002 names p95",
+    "proof": "causal-traversal-bfs-equivalence.vitest.ts:264-265 gates `bfs.mean <= cte.mean` while spec.md:119 states SC-002 as p95-at-or-below-CTE \u2014 the mismatch is real in current source; but the gate is opt-in (SPECKIT_BENCH_GATE=1, advisory warn by default at line 266-268) and implementation-summary.md:84,124,130 already discloses that the wall-clock comparison is advisory and p95 overlaps within noise, so there is no default-config runtime impact; gpt-regression's P1 overstates an opt-in path.",
+    "fix_sketch": null
+   },
+   {
+    "batch": "T1-router-search",
+    "phase": "014-packed-bm25-field-weights",
+    "title": "Comparison helper ignores configured NDCG cutoff",
+    "proof": "bm25-baseline.ts:267 hardcodes computeNDCG(...,10) while runComparisonMetrics receives k (line 244) and the doc comments promise k applies to NDCG (lines 43, 'NDCG at configured K' on the ndcg10 field) \u2014 real code-vs-doc mismatch; but both engines are measured at the same cutoff so packed-vs-legacy comparisons are not skewed between engines, the shipped evidence is correctly labeled 'NDCG@10' (implementation-summary.md:105), and the field is explicitly named ndcg10 \u2014 an eval-harness API doc inconsistency, not a P1; mimo's 'skews comparisons' overstates.",
+    "fix_sketch": null
+   },
+   {
+    "batch": "T2-adoption-write",
+    "phase": "018-xce-feature-adoption-advisor-codegraph",
+    "title": "Read-only embedding load runs schema-ensure helpers",
+    "proof": "skill-graph-db.ts:1242-1245 does call ensureVecTableForDim/hasActiveEmbedderPointer (DDL in embedders/schema.ts:57-101), but empirically CREATE TABLE IF NOT EXISTS on a readonly better-sqlite3 handle is a no-op when the table exists and only throws when it is missing \u2014 and the sole caller catches that throw and degrades to an empty lane with a disabledReason (semantic-shadow.ts:195-207), which is exactly the graceful degradation getDbReadOnly's contract (skill-graph-db.ts:404-411) requires; remaining issue is the comment-vs-code mismatch at line 1236 and an imprecise disabled reason, not a runtime break.",
+    "fix_sketch": ""
+   },
+   {
+    "batch": "T2-adoption-write",
+    "phase": "023-idempotency-flag-on-correctness",
+    "title": "Lost-store conflict falls through to divergent success",
+    "proof": "The code gap is real \u2014 memory-save.ts:3611-3619 handles only winner.status==='replay' and falls through to `return response` at 3625 while lookupIdempotencyReceiptByKey can return 'conflict' (idempotency-receipts.ts:136-137) \u2014 but the entire path is gated on SPECKIT_MEMORY_IDEMPOTENCY which is default-OFF (idempotency-receipts.ts:54-57), the sequential conflict contract REQ-004 is enforced and tested pre-save (memory-save.ts:3469-3479), and hitting the gap needs a concurrent miss/miss race with identical fingerprint but different payload after the loser's mutation already persisted \u2014 no default-configuration runtime impact today.",
+    "fix_sketch": ""
+   },
+   {
+    "batch": "V2-index-causal",
+    "phase": "005-learning-feedback-reducers",
+    "title": "Duplicate source dedupe can defeat same-query causal preference (+ no blank-id gate)",
+    "proof": "Both logic flaws are reproducible in source \u2014 session-trace-causal-reducer.ts:113-116 dedupes per memory_id by newest timestamp ignoring query_id before the same-query preference sort at :121-126, so a later different-query sighting displaces same-query evidence under the 5-source cap; and :233-263 copies memory ids into insertEdge with no blank-id guard while insertEdge (causal-edges.ts:304-341) only rejects self-loops/non-finite strength and feedback_events.memory_id permits empty strings (feedback-ledger.ts:135, no CHECK) \u2014 but SPECKIT_SESSION_TRACE_CAUSAL_INFERENCE defaults OFF (ENV_REFERENCE.md:92), the reducer noops with 'flag_off' at :187-189, and grep finds zero production call sites (module header :5: 'No live feedback logging path imports or invokes this module'), so nothing changes on a default configuration today.",
+    "fix_sketch": ""
+   },
+   {
+    "batch": "V3-triggers-observability",
+    "phase": "004-semantic-trigger-fallback",
+    "title": "Empty trigger responses drop semantic-trigger telemetry",
+    "proof": "Code-true \u2014 memory-triggers.ts:585-608 returns createMCPEmptyResponse without the semanticTriggerShadow/semanticTriggerUnion extraMeta that only the success path attaches at 783-789 \u2014 but the flag is default-off, shadow stats are still emitted via the (spec-documented) log path at line 569 which runs before the empty branch, the phase contract documents shadow telemetry as logging not response annotation ('log would-have-fired hits', 004-tests-goldens-shadow-eval/spec.md:97) with the cold-start no_query_embedding signal asserted at matcher level (trigger-cold-start.vitest.ts:59-61), and union mode is documented as blocked pending promotion evidence (parent spec.md:66), so no default-config behavior or documented contract breaks today.",
+    "fix_sketch": ""
+   },
+   {
+    "batch": "V3-triggers-observability",
+    "phase": "008-openltm-retrieval-observability",
+    "title": "Trace observability can go stale on memory_search cache hits",
+    "proof": "Code-true \u2014 memory-search.ts:1000-1001 returns the cached payload, vectorDegradation is computed only on the fresh path at 1249-1252 from isVectorSearchAvailable() at build time, and cache args at 957-988 carry no vector-health generation while the cache is on by default with a 60s TTL (tool-cache.ts:65-66) \u2014 but the staleness is bounded to one deliberate 60s cache window whose key design consciously handles invalidation (causal-edges generation comment at 947-954), the cached trace faithfully describes the retrieval that produced the cached results rather than silently returning lexical-only results, and REQ-004's other surface memory_health computes the degraded-vector signal live on every call (memory-crud-health.ts:862), so this is bounded diagnostics staleness, not a P1 correctness break.",
+    "fix_sketch": ""
+   },
+   {
+    "batch": "V5-agents-idempotency",
+    "phase": "001-peck-teachings-adoption",
+    "title": "Completion-claim detection misses Status table / evidence markers",
+    "proof": "The gap is real \u2014 continuity-freshness.ts:114,128 reads status only from YAML frontmatter and :221-223 only matches literal 'Evidence:' while templates/manifest/spec.md.tmpl puts Status in the metadata table and validation_rules.md:522-525 documents [Test:]/[File:]/[Source:]/[Commit:] markers \u2014 but the rule is default-off (validate.sh:831,1046 gate on SPECKIT_COMPLETION_FRESHNESS), warn-only without ENFORCE, fails only in the skip/false-negative direction consistent with the phase's explicit 'must not over-block / no-false-positive' constraint (006-peck-verification-discipline/spec.md), and the canonical save flow stamps completion_pct:100 in continuity frontmatter which line 226 does detect, so the standard completion path is covered today.",
+    "fix_sketch": null
+   },
+   {
+    "batch": "V5-agents-idempotency",
+    "phase": "007-memclaw-derived-memory-hardening",
+    "title": "memory_update receipt key never varies per logical update (fable)",
+    "proof": "The defect logic reproduces exactly: memory-crud-update.ts:225-228 fingerprints only {id, contentHash}, idempotency-receipts.ts:90-97 excludes the payload from the receipt key, vector-index-mutations.ts updateMemory sets only updated_at/title/trigger_phrases/importance_weight/importance_tier (never content_hash), :542-544 stores a receipt after the first success, no code deletes from memory_idempotency_receipts, and the :250 recovery hint 'submit a fresh logical update' is structurally unsatisfiable \u2014 but SPECKIT_MEMORY_IDEMPOTENCY is default-off and changelog-023 explicitly documents the flag as staying off pending a deliberate enablement decision with enablement gating (force-retry-conflict, receipt TTL) named as remaining work, so it changes no runtime behavior today on a default configuration; the update-key gap is a real pre-enablement blocker that should be added to that 023 follow-up worklist.",
+    "fix_sketch": null
+   },
+   {
+    "batch": "V5-agents-idempotency",
+    "phase": "007-memclaw-derived-memory-hardening",
+    "title": "memory_update idempotency blocks later metadata updates (gpt seats)",
+    "proof": "Same defect as the fable finding and equally reproducible (memory-crud-update.ts:221-237 key-vs-payload split, idempotency-receipts.ts:136-137 conflict on changed payload_hash, :243-253 fail-closed response): a second distinct metadata update on an unchanged-content memory derives the same receipt key and is rejected as a conflict \u2014 but it is gated behind default-off SPECKIT_MEMORY_IDEMPOTENCY, which changelog-023-idempotency-flag-on-correctness.md documents as remaining off pending enablement gating, so no default-configuration behavior changes today; downgrade to a pre-enablement correctness item.",
+    "fix_sketch": null
+   }
+  ]
+ }
+}

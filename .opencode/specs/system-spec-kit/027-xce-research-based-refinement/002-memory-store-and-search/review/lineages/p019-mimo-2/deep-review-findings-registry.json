@@ -1,0 +1,11 @@
+{
+  "openFindings": ["P1-001", "P1-002", "P2-001", "P2-002", "P2-003"],
+  "resolvedFindings": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": { "status": "reviewed", "iteration": 1 },
+    "traceability": { "status": "partial", "iteration": 1 }
+  },
+  "findingsBySeverity": { "P0": 0, "P1": 2, "P2": 3 },
+  "convergenceScore": 0.45
+}

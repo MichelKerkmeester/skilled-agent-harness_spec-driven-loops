@@ -1,0 +1,42 @@
+{
+  "sessionId": "fanout-mimo-1781422660235-ysuwb4",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {"findingId":"F001","severity":"P1","category":"correctness","status":"active","dimension":"correctness","title":"Parent spec.md phase-map status stale for 000-release-cleanup","file":"spec.md","line":127,"firstSeen":1,"lastSeen":5,"transitions":[]},
+    {"findingId":"F002","severity":"P1","category":"correctness","status":"active","dimension":"correctness","title":"004-shared-infrastructure phase map omits child 008","file":"004-shared-infrastructure/spec.md","line":109,"firstSeen":1,"lastSeen":5,"transitions":[]},
+    {"findingId":"F003","severity":"P1","category":"correctness","status":"active","dimension":"correctness","title":"description.json.description stale from pre-regrouping","file":"description.json","line":36,"firstSeen":1,"lastSeen":5,"transitions":[]},
+    {"findingId":"F004","severity":"P2","category":"correctness","status":"active","dimension":"correctness","title":"002-memory-store-and-search key_files incomplete (7 of 14 children)","file":"002-memory-store-and-search/spec.md","line":22,"firstSeen":1,"lastSeen":5,"transitions":[]},
+    {"findingId":"F005","severity":"P2","category":"correctness","status":"active","dimension":"correctness","title":"004-shared-infrastructure key_files incomplete (7 of 8 children)","file":"004-shared-infrastructure/spec.md","line":22,"firstSeen":1,"lastSeen":5,"transitions":[]},
+    {"findingId":"F006","severity":"P2","category":"security","status":"active","dimension":"security","title":"Local temp paths in handover.md","file":"handover.md","line":42,"firstSeen":2,"lastSeen":5,"transitions":[]},
+    {"findingId":"F007","severity":"P1","category":"resource-map-coverage","status":"active","dimension":"traceability","title":"resource-map.md scope-frozen at 2026-06-04; omits six-track regrouping","file":"resource-map.md","line":33,"firstSeen":3,"lastSeen":5,"transitions":[]},
+    {"findingId":"F008","severity":"P1","category":"traceability","status":"active","dimension":"traceability","title":"changelog/README.md lists only 7 children for track 004","file":"changelog/README.md","line":60,"firstSeen":3,"lastSeen":5,"transitions":[]},
+    {"findingId":"F009","severity":"P2","category":"traceability","status":"active","dimension":"traceability","title":"Status vocabulary conflict across changelog, parent spec, and child spec for track 001","file":"changelog/README.md","line":30,"firstSeen":3,"lastSeen":5,"transitions":[]},
+    {"findingId":"F010","severity":"P2","category":"maintainability","status":"active","dimension":"maintainability","title":"Parent spec.md _memory.continuity.next_safe_action stale","file":"spec.md","line":27,"firstSeen":4,"lastSeen":5,"transitions":[]},
+    {"findingId":"F011","severity":"P2","category":"maintainability","status":"active","dimension":"maintainability","title":"000-release-cleanup next_safe_action contradicts completion_pct: 100","file":"000-release-cleanup/spec.md","line":17,"firstSeen":4,"lastSeen":5,"transitions":[]},
+    {"findingId":"F012","severity":"P2","category":"maintainability","status":"active","dimension":"maintainability","title":"handover.md _memory.continuity stale on all progress fields","file":"handover.md","line":14,"firstSeen":4,"lastSeen":5,"transitions":[]}
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 5,
+    "P2": 7
+  },
+  "openFindingsCount": 12,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.78,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

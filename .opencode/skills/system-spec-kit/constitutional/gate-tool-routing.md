@@ -2,6 +2,8 @@
 title: "TOOL ROUTING - Search & Retrieval Decision Tree"
 importanceTier: constitutional
 contextType: decision
+last_confirmed: "2026-06-05"
+last_confirmed_source: "git-log-last-touch"
 triggerPhrases:
   # Search routing
   - search
@@ -22,7 +24,6 @@ triggerPhrases:
   - local search
   # Tool selection
   - which tool
-  - Code Graph
   - Code Graph
   - memory_search
   - memory_context
@@ -73,21 +74,8 @@ This ensures no query goes unanswered even when embeddings or the graph index ar
 - **Graph-expanded fallback**: Walks causal edges for expanded terms (SPECKIT_GRAPH_FALLBACK)
 - **Result provenance**: graphEvidence field shows contributing edges and communities (SPECKIT_RESULT_PROVENANCE)
 
-## Code References
+## Maintenance
 
-Implementation surfaces backing this routing contract:
-
-| Tool | Source File | Role |
-|------|-------------|------|
-| `mcp__mk_code_index__code_graph_query` | `.opencode/skills/system-code-graph/SKILL.md` | Semantic code search via vector embeddings |
-| `code_graph_query` | `.opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts` | Structural query handler (callers/imports/deps) |
-| `code_graph_context` | `.opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts` | Bounded code-graph context retrieval |
-| `memory_search` | `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` | 3-channel hybrid search with RRF fusion |
-| `memory_context` | `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts` | Intent-routed context retrieval (L1 entry point) |
-| `memory_match_triggers` | `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts` | Trigger-phrase matcher (constitutional + tier-aware) |
-| FTS5 fallback | `.opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts` | Full-text exact-keyword channel |
-| BM25 reranker | `.opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts` | Relevance-ranked keyword channel |
-
-Decision tables in this file are derived from these handlers. When a handler signature or routing contract changes, update both the handler docstrings and this rule together.
+These routing tables are derived from the search handlers in `system-code-graph/` and `system-spec-kit/mcp_server/handlers/` (`memory-search`, `memory-context`, `memory-triggers`) plus the FTS5/BM25 search lib. When a handler's routing contract changes, update its docstring and this rule together.
 
 *Constitutional rule — always surfaces at top of search results*

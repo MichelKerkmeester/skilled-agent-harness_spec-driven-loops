@@ -28,6 +28,10 @@ import { calculateDocumentWeight, isSpecDocumentType } from '../pe-gating.js';
 import { detectSpecLevelFromParsed } from '../handler-utils.js';
 import { applyPostInsertMetadata, hasReconsolidationCheckpoint } from './db-helpers.js';
 import { buildScopePostInsertMetadata } from './create-record.js';
+import {
+  applyWriteProvenance,
+  type WriteProvenanceContext,
+} from '../../lib/storage/write-provenance.js';
 import type {
   AssistiveRecommendation,
   IndexResult,
@@ -197,6 +201,7 @@ export interface ReconsolidationBridgeResult {
 
 export interface ReconsolidationBridgeOptions {
   plannerMode?: SavePlannerMode;
+  provenance?: WriteProvenanceContext;
 }
 
 function repairBm25Document(args: {
@@ -491,7 +496,7 @@ export async function runReconsolidationIfEnabled(
   scope?: { tenantId?: string | null; userId?: string | null; agentId?: string | null; sessionId?: string | null },
   options: ReconsolidationBridgeOptions = {},
 ): Promise<ReconsolidationBridgeResult> {
-  // BUG-2 fix: Track reconsolidation warnings for structured MCP response (not just console.warn)
+  // Track reconsolidation warnings for structured MCP response (not just console.warn)
   const reconWarnings = [] as ReconWarningList;
   const plannerMode = options.plannerMode ?? 'plan-only';
   const allowSaveTimeReconsolidation = plannerMode === 'full-auto' || isSaveReconsolidationEnabled();
@@ -605,6 +610,12 @@ export async function runReconsolidationIfEnabled(
                   quality_score: parsed.qualityScore ?? 0,
                   quality_flags: JSON.stringify(parsed.qualityFlags ?? []),
                   ...buildScopePostInsertMetadata(scope),
+                });
+                applyWriteProvenance(database, id, {
+                  tool: 'memory_save',
+                  filePath: memory.filePath,
+                  scope,
+                  ...options.provenance,
                 });
 
                 if (bm25Index.isBm25Enabled()) {

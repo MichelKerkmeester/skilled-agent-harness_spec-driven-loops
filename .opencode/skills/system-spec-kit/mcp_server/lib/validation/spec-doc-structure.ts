@@ -29,6 +29,8 @@ export interface RuleResult {
   diagnostics: RuleDiagnostic[];
 }
 
+export const ZERO_CONTINUITY_FINGERPRINT = `sha256:${'0'.repeat(64)}`;
+
 export interface MergePlan {
   targetFile?: string;
   targetAnchor?: string;
@@ -279,8 +281,8 @@ function extractFrontmatter(content: string): ParsedFrontmatter {
     memoryBlock = blockLines.join('\n');
     try {
       validateMemoryYamlBlock(memoryBlock);
-    } catch (error) {
-      memoryError = (error as Error).message;
+    } catch (error: unknown) {
+      memoryError = error instanceof Error ? error.message : String(error);
     }
 
     let continuityStart = -1;
@@ -556,6 +558,17 @@ function parseAnchors(content: string): { anchors: AnchorOccurrence[]; errors: s
   }
 
   return { anchors, errors };
+}
+
+export function normalizeForContinuityFingerprint(content: string): string {
+  return content
+    .replace(/\r\n/g, '\n')
+    .replace(/^(\s{6}fingerprint:\s*)(?:["'])?sha256:[a-f0-9]{64}(?:["'])?(\s*(?:#.*)?)$/gm, `$1"${ZERO_CONTINUITY_FINGERPRINT}"$2`)
+    .replace(/[ \t]+$/gm, '');
+}
+
+export function buildContinuityFingerprint(content: string): string {
+  return `sha256:${createHash('sha256').update(normalizeForContinuityFingerprint(content), 'utf8').digest('hex')}`;
 }
 
 function computeNormalizedFingerprint(content: string): string {
@@ -1118,11 +1131,12 @@ function validatePostSaveFingerprint(folder: string, postSavePlan: PostSavePlan 
     if (typeof postSavePlan.snapshotContent === 'string') {
       try {
         fs.writeFileSync(targetPath, postSavePlan.snapshotContent, 'utf8');
-      } catch (error) {
+      } catch (error: unknown) {
+        const message = error instanceof Error ? error.message : String(error);
         diagnostics.push({
           code: 'SPECDOC_FINGERPRINT_003',
           severity: 'error',
-          detail: `rollback failed after fingerprint mismatch: ${(error as Error).message}`,
+          detail: `rollback failed after fingerprint mismatch: ${message}`,
         });
       }
     }
@@ -1257,7 +1271,7 @@ function main(argv: string[]): number {
 if (import.meta.url === `file://${process.argv[1]}`) {
   try {
     process.exitCode = main(process.argv.slice(2));
-  } catch (error) {
+  } catch (error: unknown) {
     const message = error instanceof Error ? error.message : String(error);
     console.error(message);
     process.exitCode = 2;

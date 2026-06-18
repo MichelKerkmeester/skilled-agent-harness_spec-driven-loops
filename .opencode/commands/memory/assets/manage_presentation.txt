@@ -1,0 +1,269 @@
+# Memory Manage Presentation Contract
+
+Single source of truth for `/memory:manage` dashboards, confirmations, and results.
+
+## 1. General Display Rules
+
+- Use stable labels and a single `STATUS=` line.
+- Ask confirmation before scans, deletes, restores, and mutating retention sweeps.
+- Never suggest raw SQL recovery.
+- Keep dashboards compact enough for model dispatch.
+
+## 2. Stats Dashboard
+
+```text
+MEMORY:STATS
+--------------------------------------------------
+Total       <count>
+Size        <size>
+Indexed     <date>
+
+Tier distribution
+constitutional <count>
+critical       <count>
+important      <count>
+normal         <count>
+temporary      <count>
+deprecated     <count>
+
+Top folders
+<folder_1> <count>
+<folder_2> <count>
+<folder_3> <count>
+
+Actions: scan | cleanup | health | checkpoint
+STATUS=OK ACTION=stats
+```
+
+Filled example:
+
+```text
+MEMORY:STATS
+--------------------------------------------------
+Total       1284
+Size        42.6 MB
+Indexed     2026-06-12
+
+Tier distribution
+constitutional 18
+critical       42
+important      311
+normal         846
+temporary      51
+deprecated     16
+
+Top folders
+system-spec-kit 612
+skilled-agent-orchestration 244
+memory-upgrade 97
+
+Actions: scan | cleanup | health | checkpoint
+STATUS=OK ACTION=stats
+```
+
+Field mapping:
+
+| Source field | Template slot |
+| --- | --- |
+| `memory_stats.totalRecords` or total indexed record count | `Total <count>` |
+| `memory_stats.dbSize`, `dbFileSize`, or formatted store size | `Size <size>` |
+| `memory_stats.lastIndexed`, `lastScanAt`, or latest indexed timestamp | `Indexed <date>` |
+| `memory_stats.byTier.constitutional` | `constitutional <count>` |
+| `memory_stats.byTier.critical` | `critical <count>` |
+| `memory_stats.byTier.important` | `important <count>` |
+| `memory_stats.byTier.normal` | `normal <count>` |
+| `memory_stats.byTier.temporary` | `temporary <count>` |
+| `memory_stats.byTier.deprecated` | `deprecated <count>` |
+| `memory_stats.topFolders[].folder` | `<folder_n>` |
+| `memory_stats.topFolders[].count` | Top-folder `<count>` |
+
+## 3. Scan Confirmation and Result
+
+```text
+MEMORY:SCAN
+--------------------------------------------------
+Mode choices
+[n] normal incremental scan
+[f] force full re-index
+[b] back
+
+STATUS=AWAITING_INPUT ACTION=scan
+```
+
+```text
+MEMORY:SCAN
+--------------------------------------------------
+Mode        <normal|force>
+Indexed     <count>
+Skipped     <count>
+Updated     <count>
+Errors      <count>
+
+STATUS=OK INDEXED=<count> SKIPPED=<count> UPDATED=<count>
+```
+
+## 4. Cleanup Display
+
+```text
+MEMORY:CLEANUP
+--------------------------------------------------
+Candidates  <count>
+
+ID    Tier          Title                  Age       Accesses
+<id>  <tier>        <title>                <age>     <count>
+
+Protected: constitutional <count> | critical <count> | important <count>
+Actions: [a] remove all | [r] review each | [n] keep all | [b] back
+STATUS=AWAITING_INPUT ACTION=cleanup
+```
+
+```text
+MEMORY:CLEANUP
+--------------------------------------------------
+Checkpoint  <checkpoint_name>
+Removed     <count>
+Kept        <count>
+Undo        /memory:manage checkpoint restore <checkpoint_name>
+
+STATUS=OK REMOVED=<count> KEPT=<count> CHECKPOINT=<name>
+```
+
+## 5. Retention and Bulk Delete
+
+```text
+MEMORY:RETENTION-SWEEP
+--------------------------------------------------
+Mode        <dry-run|apply>
+Expired     <count>
+Deleted     <count>
+
+STATUS=OK ACTION=retention-sweep EXPIRED=<count> DELETED=<count>
+```
+
+```text
+MEMORY:BULK-DELETE
+--------------------------------------------------
+Tier        <tier>
+Scope       <all|folder>
+Age Filter  <all|older than N days>
+Affected    <count> spec-doc records
+
+Confirm: [y] delete all | [n] cancel
+STATUS=AWAITING_INPUT ACTION=bulk-delete
+```
+
+```text
+MEMORY:BULK-DELETE
+--------------------------------------------------
+Tier        <tier>
+Removed     <count>
+Checkpoint  <checkpoint_name>
+
+STATUS=OK REMOVED=<count> TIER=<tier>
+```
+
+## 6. Tier, Triggers, Validate, Delete
+
+```text
+MEMORY:TIER
+--------------------------------------------------
+Record      #<id> "<title>"
+Old Tier    <old_tier>
+New Tier    <new_tier>
+
+STATUS=OK ID=<id> TIER=<tier>
+```
+
+```text
+MEMORY:TRIGGERS
+--------------------------------------------------
+Record      #<id> "<title>"
+
+Current triggers
+1. <phrase_1>
+2. <phrase_2>
+
+Actions: [a] add | [r] remove number | [s] save | [b] back
+STATUS=OK ID=<id> TRIGGERS=<count>
+```
+
+```text
+MEMORY:VALIDATE
+--------------------------------------------------
+Record      #<id> "<title>"
+Feedback    <useful|not useful>
+Confidence  <old> -> <new>
+
+STATUS=OK ID=<id> USEFUL=<true|false>
+```
+
+```text
+MEMORY:DELETE
+--------------------------------------------------
+Record      #<id> "<title>"
+Tier        <tier>
+
+Confirm: [y] delete | [n] cancel
+STATUS=AWAITING_INPUT ACTION=delete
+```
+
+```text
+MEMORY:DELETE
+--------------------------------------------------
+Removed     #<id> "<title>"
+
+STATUS=OK DELETED=<id>
+```
+
+## 7. Health Dashboard
+
+```text
+MEMORY:HEALTH
+--------------------------------------------------
+Status      <healthy|degraded|error>
+Schema      v<version>
+Total       <count>
+
+Index
+Summary     <summary>
+Pending     <count>
+Failed      <count>
+
+Checks
+<check_name> <PASS|WARN|FAIL>
+
+STATUS=OK HEALTH=<status> SCHEMA=v<version>
+```
+
+## 8. Checkpoint and Ingest
+
+```text
+MEMORY:CHECKPOINT
+--------------------------------------------------
+Action      <create|restore|list|delete>
+Name        <checkpoint_name>
+Status      <status>
+
+STATUS=OK ACTION=<action> CHECKPOINT=<name>
+```
+
+```text
+MEMORY:INGEST
+--------------------------------------------------
+Job ID      <jobId>
+Status      <running|completed|cancelled|failed>
+Progress    <completed>/<total> files
+
+STATUS=OK ACTION=ingest JOB=<jobId>
+```
+
+## 9. Error Display
+
+```text
+MEMORY:MANAGE
+--------------------------------------------------
+FAIL        <short reason>
+Recovery    <next safe action>
+
+STATUS=FAIL ERROR="<message>"
+```

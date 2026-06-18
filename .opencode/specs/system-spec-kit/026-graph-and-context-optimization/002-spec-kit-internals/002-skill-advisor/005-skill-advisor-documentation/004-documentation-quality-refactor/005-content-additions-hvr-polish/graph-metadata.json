@@ -37,7 +37,6 @@
     "importance_tier": "important",
     "status": "pending_(gated_by_001_synthesis_+_004_completion)",
     "key_files": [
-      "references/hooks/skill-advisor-hook.md",
       "spec.md",
       "plan.md",
       ".opencode/skills/sk-doc/references/global/hvr_rules.md",
@@ -45,12 +44,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "skill-advisor-hook.md",
-        "kind": "doc",
-        "path": "references/hooks/skill-advisor-hook.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -188,11 +181,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The package has identifiable content gaps surfaced by audit: no lane-weight tuning guide, no skill-graph query cookbook, no validation baselines troubleshooting, no daemon lease contract, no skill-graph drift reconciliation guide, and the hook-reference link is broken because the canonical file lives in system-spec-kit. HVR compliance also needs a sweep after all 004 alignment edits.",
     "created_at": "2026-05-16T00:00:00Z",
-    "last_save_at": "2026-06-05T12:47:33.407Z",
+    "last_save_at": "2026-06-12T04:40:47.283Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

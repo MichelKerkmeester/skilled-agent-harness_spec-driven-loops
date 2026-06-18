@@ -1,6 +1,15 @@
 ---
 title: Git Finish - Detailed Workflow Reference
 description: Complete workflow documentation for completing development work with structured integration options.
+trigger_phrases:
+  - "merge back to main locally"
+  - "push and create a pull request"
+  - "four integration options"
+  - "worktree cleanup after merge"
+  - "create github release tag"
+  - "discard failed experiment branch"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Git Finish - Detailed Workflow Reference

@@ -1,0 +1,13 @@
+{
+  "iteration": 1,
+  "dimensions": ["correctness", "traceability"],
+  "filesReviewed": [
+    ".opencode/skills/system-code-graph/mcp_server/tool-schemas.ts",
+    ".opencode/skills/system-code-graph/mcp_server/handlers/query.ts",
+    ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-query-handler.vitest.ts",
+    ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/018-xce-feature-adoption-advisor-codegraph/008-codegraph-why-included/implementation-summary.md"
+  ],
+  "findingsNew": { "P0": 0, "P1": 1, "P2": 0 },
+  "newFindingsRatio": 1,
+  "verdict": "CONDITIONAL"
+}

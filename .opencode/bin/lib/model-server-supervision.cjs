@@ -598,6 +598,47 @@ function readModelServerGiveUpUntil(socketPath, options = {}) {
   }
 }
 
+// ── Maintenance-active marker ────────────────────────────────────────────────
+// A background index scan can legitimately keep the daemon's event loop busy for
+// stretches, so a competing launcher's deep liveness probe sees an unresponsive
+// socket and would reap+respawn the daemon mid-scan (killing the scan). The
+// daemon writes this marker beside its DB and refreshes it on a timer; the
+// launcher uses it to tell "busy-by-design" from "wedged": a fresh marker naming
+// the live daemon child means ADOPT, not reap. A genuinely wedged daemon cannot
+// fire its refresh timer, so the marker expires and normal reaping resumes.
+const MAINTENANCE_MARKER_FILE_NAME = '.maintenance-active.json';
+
+function maintenanceMarkerPath(dbDir) {
+  return path.join(dbDir, MAINTENANCE_MARKER_FILE_NAME);
+}
+
+function readMaintenanceMarker(dbDir, options = {}) {
+  const fsApi = { ...fs, ...(options.fs || {}) };
+  try {
+    const parsed = JSON.parse(fsApi.readFileSync(maintenanceMarkerPath(dbDir), 'utf8'));
+    if (Number.isInteger(parsed?.childPid) && parsed.childPid > 0 && Number.isFinite(parsed?.activeUntilMs)) {
+      return parsed;
+    }
+  } catch {
+    // Missing or corrupt marker => treat as no active maintenance.
+  }
+  return null;
+}
+
+// Pure adopt-vs-reap decision. Returns true only when a fresh marker names this
+// exact live child. Fail-safe toward reaping: a missing/expired marker, a
+// childPid mismatch, or a non-'alive' child all fall through to the normal reap
+// path so a stale marker can never pin a genuinely dead or wedged daemon.
+function shouldAdoptDespiteProbe(options = {}) {
+  const { marker, childPid, childLiveness } = options;
+  if (!marker) return false;
+  if (!Number.isInteger(childPid) || childPid <= 0) return false;
+  if (marker.childPid !== childPid) return false;
+  if (!(Number.isFinite(marker.activeUntilMs) && marker.activeUntilMs > nowMsFromOptions(options))) return false;
+  if (childLiveness !== 'alive') return false;
+  return true;
+}
+
 function isRespawnLockStale(raw, options = {}) {
   const liveness = options.liveness || processLiveness;
   const nowMs = typeof options.nowMs === 'number' ? options.nowMs : Date.now();
@@ -664,8 +705,21 @@ function acquireRespawnLockFileAt(lockPath, label = 'respawn', options = {}) {
     if (readErr.code !== 'ENOENT') throw readErr;
   }
   if (raw === '' || isRespawnLockStale(raw, options)) {
+    // Atomically CLAIM the stale lock via rename before deleting it, then re-open
+    // exclusively. A bare unlink+open is not mutually exclusive: two racers can
+    // interleave (A unlink, A open/holds, B unlink removes A's fresh lock, B
+    // open/holds) and both believe they hold the exclusive lock. Renaming a path
+    // only one racer can win serializes the reclaim — a loser's rename throws
+    // ENOENT and falls through to return acquired:false.
+    const staleClaim = `${currentLockPath}.stale.${process.pid}.${Date.now()}`;
     try {
-      fsApi.unlinkSync(currentLockPath);
+      fsApi.renameSync(currentLockPath, staleClaim);
+    } catch (renameErr) {
+      if (renameErr.code === 'ENOENT') return { acquired: false, path: currentLockPath };
+      throw renameErr;
+    }
+    try {
+      fsApi.unlinkSync(staleClaim);
     } catch (unlinkErr) {
       if (unlinkErr.code !== 'ENOENT') throw unlinkErr;
     }
@@ -1369,7 +1423,11 @@ module.exports = {
   HF_MODEL_SERVER_RESPAWN_LOCK_FILE_NAME,
   HF_MODEL_SERVER_PID_FILE_NAME,
   HF_MODEL_SERVER_GIVEUP_FILE_NAME,
+  MAINTENANCE_MARKER_FILE_NAME,
   MODEL_SERVER_DEMAND_STATUS,
+  maintenanceMarkerPath,
+  readMaintenanceMarker,
+  shouldAdoptDespiteProbe,
   acquireModelServerRespawnLockFile,
   acquireRespawnLockFileAt,
   buildLeaseObject,

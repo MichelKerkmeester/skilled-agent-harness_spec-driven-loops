@@ -1,0 +1,16 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m→ [0mSkill "system-spec-kit"
+[0m✱ [0mGlob "**/031-daemon-flap-root-cause-research/research/{iterations/iteration-00[1-6].md,orchestrator-verifications.md,live-diagnosis.md}"[90m in . · 7 matches[0m
+[0m✱ [0mGlob "**/031-daemon-flap-root-cause-research/research/*verification*.md"[90m in . · 0 matches[0m
+[0m✱ [0mGlob "**/031-daemon-flap-root-cause-research/research/*.md"[90m in . · 1 match[0m
+[0m✱ [0mGlob "**/031-daemon-flap-root-cause-research/research/**/*.md"[90m in . · 8 matches[0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/iterations/iteration-001.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/iterations/iteration-002.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/iterations/iteration-003.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/iterations/iteration-004.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/iterations/iteration-005.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/iterations/iteration-006.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/iterations/orchestrator-verifications.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/live-diagnosis.md[90m [offset=1, limit=2000][0m

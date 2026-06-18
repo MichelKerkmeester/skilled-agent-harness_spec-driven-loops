@@ -1,6 +1,15 @@
 ---
 title: Review Core Doctrine
 description: Shared findings-first review doctrine for both single-pass and deep-review workflows.
+trigger_phrases:
+  - "findings first severity ordering"
+  - "review finding schema"
+  - "severity contract for merge decisions"
+  - "evidence file line citation"
+  - "baseline surface precedence"
+  - "baseline check families"
+importance_tier: important
+contextType: implementation
 ---
 
 # Review Core Doctrine
@@ -24,6 +33,10 @@ Shared findings-first review doctrine for both single-pass and deep-review workf
 | P2 | Suggestion: non-blocking improvement, documentation polish, style or maintainability follow-up | Optional or schedule follow-up |
 
 Escalation rule: if confidence is low but impact is high, classify toward the higher severity and state the uncertainty explicitly.
+
+### Numeric Severity Calibration
+
+Numeric scores are advisory context, not the gate. A reviewer may add an optional `riskScore` to a finding and adjust it by `+/-2` for local context such as exploitability, blast radius, user impact, confidence, or proven containment. The merge/block decision remains the severity contract above: `P0` blocks, `P1` requires remediation, and `P2` is advisory. Do not adopt `score>=4` or any numeric threshold as a blocker.
 
 ---
 
@@ -85,6 +98,7 @@ Each finding should provide:
 | `findingClass` | One of `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation` |
 | `scopeProof` | Grep/test/audit evidence that the recommendation covers same-class sites and consumers, or proves the finding is instance-only |
 | `affectedSurfaceHints` | Optional string array of producer/consumer surfaces the fix should address; recommended for actionable findings, required for cross-consumer findings. Use free-form short strings, max about 5 entries. Optional for instance-only findings. |
+| `riskScore` | Optional advisory number for relative risk calibration; never gating and never a substitute for `severity` |
 | `recommendation` | Specific, scope-proportional fix or follow-up |
 
 Suggested shape:
@@ -96,6 +110,7 @@ Suggested shape:
 - Finding class: cross-consumer
 - Scope proof: `rg -n "permission guard|write path" path/to` shows the write handler is the only unchecked consumer.
 - Affected surface hints: ["request handler", "write path", "permission guard"]
+- riskScore: 6 (advisory only)
 - Recommendation: Enforce the existing permission guard before mutation.
 ```
 
@@ -105,7 +120,7 @@ Suggested shape:
 
 - [review_ux_single_pass.md](./review_ux_single_pass.md) - Interactive single-pass report flow and next-step prompts.
 - [quick_reference.md](./quick_reference.md) - Lightweight index across baseline review references.
-- [security_checklist.md](./security_checklist.md) - Security and reliability checks.
-- [code_quality_checklist.md](./code_quality_checklist.md) - Correctness, KISS, DRY, and maintainability checks.
+- [security_checklist.md](../assets/security_checklist.md) - Security and reliability checks.
+- [code_quality_checklist.md](../assets/code_quality_checklist.md) - Correctness, KISS, DRY, and maintainability checks.
 
 ---

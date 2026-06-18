@@ -1,9 +1,12 @@
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Deep-Loop Post-Dispatch Validator
+// ───────────────────────────────────────────────────────────────────
 
 import { existsSync, readFileSync, statSync } from 'node:fs';
 
-import type { ExecutorKind } from './executor-config.js';
+import { validateEvidenceContract } from './evidence-contract.js';
 import { appendJsonlRecord, repairJsonlTail } from './jsonl-repair.js';
+import type { ExecutorKind } from './executor-config.js';
 
 // ───── TYPE DEFINITIONS ─────
 
@@ -268,6 +271,33 @@ function getV2EnforcementMode(): V2EnforcementMode {
   return 'warn';
 }
 
+// The evidence contract defaults to advisory: malformed metadata warns, absent
+// metadata is silent, and only an explicit strict opt-in turns it into a hard
+// failure. This mirrors the v2 off/warn/strict pattern so operators tune it the
+// same way; the default keeps every legacy exchange passing.
+function getEvidenceEnforcementMode(): V2EnforcementMode {
+  const raw = process.env.DEEP_LOOP_EVIDENCE_ENFORCEMENT?.trim().toLowerCase();
+  if (raw === 'strict' || raw === 'off' || raw === 'warn') {
+    return raw;
+  }
+  return 'warn';
+}
+
+// Turn an evidence-contract validation into advisory warnings. Absent and
+// well-formed payloads produce nothing; a malformed payload produces one
+// advisory per offending field path. Never throws, never blocks.
+function evidenceAdvisories(record: Record<string, unknown>): PostDispatchAdvisory[] {
+  const validation = validateEvidenceContract(record.evidence);
+  if (validation.status !== 'malformed') {
+    return [];
+  }
+  return validation.issues.map((issue) => ({
+    code: 'evidence_contract_malformed',
+    detail: issue.detail,
+    fieldPath: `evidence.${issue.fieldPath}`,
+  }));
+}
+
 function isLegacyNonTrivialReviewRecord(record: Record<string, unknown>): boolean {
   return (Array.isArray(record.findingDetails) && record.findingDetails.length > 0)
     || (Array.isArray(record.dimensions) && record.dimensions.length > 1);
@@ -512,6 +542,33 @@ export function runOptionalVerificationPass(
  * @param input - Validation input with paths, field requirements, and config.
  * @returns Validation result indicating pass/fail with details.
  */
+// Heuristic behavioral signals for an iteration's prose — drift nudges toward the
+// fable-5 signature (result-first openers, lean hedging, evidence-backed claims).
+// These are advisory only: callers see them in `warnings`, never in the `ok` verdict.
+function computeBehavioralAdvisories(text: string): PostDispatchAdvisory[] {
+  const out: PostDispatchAdvisory[] = [];
+  const firstLine = (text.split('\n').find((l) => l.trim() && !l.trim().startsWith('#')) || '').trim();
+  if (/^(?:I'?ll\b|I will\b|Let me\b|Let's\b|I'?m going to\b|Now I\b|First,?\s+I\b|I need to\b)/i.test(firstLine)) {
+    out.push({ code: 'behavioral_self_opener', detail: 'iteration opens with self-narration; prefer a result-first opener' });
+  }
+  const caveats = (text.match(/\b(?:however|that said|worth noting|keep in mind|bear in mind|on the other hand|to be fair)\b/gi) || []).length;
+  if (caveats >= 4) {
+    out.push({ code: 'behavioral_high_caveat', detail: `${caveats} hedging caveats; keep only load-bearing qualifiers` });
+  }
+  let claims = 0;
+  let backed = 0;
+  for (const sentence of text.split(/(?<=[.!?])\s+/)) {
+    if (/\b(?:done|completed?|verified|passes|passing|works|confirmed|shipped)\b/i.test(sentence)) {
+      claims += 1;
+      if (/(?:\[SOURCE:|`[^`]+`|\b[\w./-]+\.(?:ts|js|cjs|py|sh|md|json|yaml)\b|:\d+\b|\bvalidate\.sh\b|\bvitest\b|\bPASS)/.test(sentence)) backed += 1;
+    }
+  }
+  if (claims >= 2 && backed / claims < 0.5) {
+    out.push({ code: 'behavioral_uncited_completion', detail: `${claims - backed}/${claims} completion claims lack nearby evidence` });
+  }
+  return out;
+}
+
 export function validateIterationOutputs(input: PostDispatchValidateInput): PostDispatchValidateResult {
   const warnings: PostDispatchAdvisory[] = [];
 
@@ -687,6 +744,24 @@ export function validateIterationOutputs(input: PostDispatchValidateInput): Post
       }
     }
 
+    // Optional evidence contract: malformed metadata warns, absent metadata is
+    // silent, and the verdict stays ok:true so a legacy exchange that omits the
+    // metadata still passes. No new blocking failure reason is introduced; the
+    // strict opt-in marks the advisory without rejecting the exchange.
+    if (getEvidenceEnforcementMode() !== 'off') {
+      const evidenceWarnings = evidenceAdvisories(parsedRecord);
+      if (evidenceWarnings.length > 0) {
+        if (getEvidenceEnforcementMode() === 'strict') {
+          warnings.push({
+            code: 'evidence_contract_strict_unenforced',
+            detail: 'DEEP_LOOP_EVIDENCE_ENFORCEMENT=strict surfaced malformed evidence as advisories; no blocking reason is defined yet',
+            fieldPath: 'evidence',
+          });
+        }
+        warnings.push(...evidenceWarnings);
+      }
+    }
+
     const verificationResult = runOptionalVerificationPass(input.iterationFile, input.recipeConfig);
     if (!verificationResult.ok) {
       appendJsonlRecord(
@@ -707,6 +782,12 @@ export function validateIterationOutputs(input: PostDispatchValidateInput): Post
   } catch (error: unknown) {
     const details = error instanceof Error ? error.message : String(error);
     return { ok: false, reason: 'jsonl_parse_error', details };
+  }
+
+  try {
+    warnings.push(...computeBehavioralAdvisories(readFileSync(input.iterationFile, 'utf8')));
+  } catch {
+    // Behavioral advisory is best-effort and verdict-neutral; never fail on it.
   }
 
   return warnings.length > 0 ? { ok: true, warnings } : { ok: true };

@@ -34,8 +34,6 @@
     "status": "planned",
     "key_files": [
       ".opencode/skills/deep-loop-runtime/tests/unit/loop-lock.vitest.ts",
-      ".opencode/commands/deep/assets/deep_start-research-loop_auto.yaml",
-      ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml",
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
@@ -46,18 +44,6 @@
         "name": "loop-lock.vitest.ts",
         "kind": "test",
         "path": ".opencode/skills/deep-loop-runtime/tests/unit/loop-lock.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "deep_start-research-loop_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_start-research-loop_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "deep_start-review-loop_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml",
         "source": "derived"
       },
       {
@@ -185,11 +171,23 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Phase",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This is phase 4 of the memory leak remediation arc. It is scoped from source evidence in `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/020-cli-process-memory-leak-deep-research` and `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/024-cli-deep-research-memory-leak-audit`.",
     "created_at": "2026-05-22T10:20:00Z",
-    "last_save_at": "2026-06-05T12:47:33.844Z",
+    "last_save_at": "2026-06-15T09:09:34.428Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

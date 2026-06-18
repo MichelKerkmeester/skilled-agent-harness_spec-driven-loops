@@ -2,6 +2,8 @@
 title: "POST-IMPLEMENTATION DEEP-REVIEW — Mandatory after substantive ship"
 importanceTier: constitutional
 contextType: decision
+last_confirmed: "2026-06-08"
+last_confirmed_source: "git-log-last-touch"
 triggerPhrases:
   - "deep-review"
   - "deep review"
@@ -21,7 +23,7 @@ triggerPhrases:
 
 ## Rule
 
-**Run `/deep:start-review-loop` after EVERY substantive implementation phase OR whenever the main agent is uncertain about correctness of shipped code.**
+**Run `/deep:review` after EVERY substantive implementation phase OR whenever the main agent is uncertain about correctness of shipped code.**
 
 ## What counts as "substantive implementation"
 
@@ -47,53 +49,20 @@ triggerPhrases:
 
 ## How to dispatch
 
-**Two roles, two executors:**
+Run it through `/deep:review`, which owns iter sequencing, convergence, the per-iter prompt contract, and the `review/` output. Two roles: a **native Anthropic Agent** as loop-manager (iter adjudication + synthesis) and a **CLI review worker** (`cli-codex` / `cli-opencode`) per iteration — preload the executor's SKILL.md first per `cli-dispatch-skill-preload.md`. Default **10 iterations** (3-7 for a single patch/commit, ~20 for a full umbrella stack); convergence default 0.10, early-stop after 3 iters with no new P0/P1.
 
-| Role | Executor | Why |
-|---|---|---|
-| **Loop-manager orchestrator** (manages iter sequencing, convergence, synthesis, commit) | **Native Anthropic Agent** (Agent tool with `subagent_type=claude` / `code` / `orchestrate`) | Per the "Native Opus preference for implementation work" mandate in AGENTS.md. Opus has the judgment for iter-by-iter adjudication + final synthesis. |
-| **Per-iter review worker** (one dimension/pass, P0/P1/P2 finding) | **A CLI review executor of the operator's choice, e.g. `cli-codex` or `cli-opencode`** | Read the chosen executor's SKILL.md before composing per-iter prompts. Follow the cli-dispatch constitutional preload rule (`cli-dispatch-skill-preload.md`). |
+## Verdict → next action
 
-**Per-iter prompt contract** (the loop manager enforces this when authoring each iter prompt):
-- Explicit ROLE + CONTEXT + ACTION + FORMAT sections
-- Pre-planning block (3-4 ordered steps with per-step acceptance)
-- `<ref_file>` tags around every cited path
-- sequential_thinking mandate
-- Spec folder pre-approved (Gate 3 skip)
-
-### Iteration count tiering
-
-| Scope | iter | Wall time |
-|---|---|---|
-| Full umbrella stack (10+ packets like 016) | 20 | ~50 min |
-| Single sub-phase implementation (1-3 commits) | **10** | ~25 min |
-| Single P0/P1 remediation commit | **5-7** | ~15-18 min |
-| Single bug-fix patch | **3-5** | ~10-15 min |
-
-Default to **10 iter** for a typical post-implementation review unless the scope is unusually large or narrow.
-
-### Convergence threshold
-
-Use the deep-review default (0.10) — early-stop if 3 consecutive iters yield no new P0/P1.
-
-## Output
-
-Every post-implementation deep-review emits a `review/review-report.md` (9 sections) + `review/iterations/iteration-NNN.md` per iter + `review/deep-review-state.jsonl`. Findings get tiered P0 / P1 / P2 and the main agent decides:
+Findings are tiered P0/P1/P2; the main agent decides:
 
 | Verdict | Next action |
 |---|---|
 | PASS | Move on |
 | PASS hasAdvisories=true | Move on; queue P2 backlog |
 | CONDITIONAL | **Dispatch remediation** (cli-codex), then re-run deep-review (this rule self-iterates) |
-| FAIL | Halt — likely architecture-level issue; escalate to operator |
+| FAIL | Halt — likely architecture-level; escalate to operator |
 
-## Where review packets live
-
-Post-implementation reviews live UNDER the packet they review:
-- For a 016/010/001 implementation review → `016/010/001/review/`
-- For an 016/008 remediation re-review → `016/008/review-NN/` (or sibling `016/008-002-rereview/` if the original review packet is locked)
-
-Don't create new top-level packets just for follow-up reviews. Keep them packet-local.
+Output (`review/review-report.md` + per-iter files + state JSONL) and review-packet placement (packet-local — never a new top-level packet for a follow-up review) follow the deep-review SKILL.md and spec-folder conventions.
 
 ## Skip exceptions
 
@@ -110,5 +79,5 @@ The 020 deep-review surfaced 3 confirmed P0 in code that had passed all unit tes
 ## Cross-references
 
 - `cli-dispatch-skill-preload.md` — preload the chosen CLI executor's SKILL.md first
-- `.opencode/commands/deep/start-review-loop.md` — workflow surface
+- `.opencode/commands/deep/review.md` — workflow surface
 - AGENTS.md OPERATIONAL MANDATES — adjacent rule

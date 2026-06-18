@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/135-skill-readme-standardization/009-deep-loop-runtime-readme",
+  "description": "Feature Specification: deep-loop-runtime README",
+  "keywords": [
+    "feature",
+    "specification",
+    "deep-loop-runtime",
+    "readme"
+  ],
+  "lastUpdated": "2026-06-10T04:53:30.771Z",
+  "specId": "009",
+  "folderSlug": "deep-loop-runtime-readme",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "135-skill-readme-standardization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

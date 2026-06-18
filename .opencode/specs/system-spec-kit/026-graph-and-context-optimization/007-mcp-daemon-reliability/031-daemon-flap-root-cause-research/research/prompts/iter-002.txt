@@ -1,0 +1,33 @@
+Act as a senior systems engineer reverse-engineering daemon-supervision code. READ-ONLY MODE: do NOT write or edit any files. Your final message IS the deliverable — return it as markdown in the skeleton at the end.
+
+# Context
+Three shared, owner-leased local daemons (mk-spec-memory, mk-code-index, mk-skill-advisor) are managed by per-daemon launcher scripts plus a shared supervision library. Right now skill-advisor + spec-memory are DEAD (stale sockets), while code-index has 3 launcher processes alive. This iteration traces the ACTUAL lifecycle logic in the current code to locate where teardown/relaunch/reap diverges from the intended design.
+
+# READ (use the Read tool; --dir is the repo root)
+- .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/live-diagnosis.md  (the current failure)
+- .opencode/bin/lib/model-server-supervision.cjs  (the shared relaunch/lease/reap helpers — READ FULLY)
+- .opencode/bin/mk-skill-advisor-launcher.cjs
+- .opencode/bin/mk-spec-memory-launcher.cjs
+- .opencode/bin/mk-code-index-launcher.cjs
+- The re-election flags in the runtime configs: opencode.json, .claude/ (settings/config), .codex/ (config) — grep for "reelection"/"re-election"/"REELECT"/"ownership"/"OWNER"/"LEASE" to find the flags.
+- Any nearby README: .opencode/bin/README.md (worktree/session/daemon notes)
+
+# Questions to answer precisely (cite file:line / function names)
+1. LIFECYCLE TRACE: walk the daemon lifecycle in code — launcher startup, owner-lease acquisition, child daemon spawn, liveness/health check, SIGTERM/shutdown handling (shutdownLauncherForSignal and friends), the relaunch DECISION, dead-socket reap, and socket bind/unbind. Name the functions.
+2. RELAUNCH DECISION: the exact predicate in model-server-supervision.cjs that decides relaunch-vs-exit on child death/SIGTERM. Under what conditions does the launcher RESPAWN the child vs EXIT itself? Quote the condition.
+3. STALE SOCKET HANDLING: does any code unlink/reap a leftover socket on startup or on a failed connect? If a daemon dies leaving a socket file, what reclaims it — and does anything BLOCK on a stale socket (e.g. refuse to start because the path exists)?
+4. LAUNCHER DIVERGENCE: why would skill-advisor + spec-memory launchers be ABSENT (gone) while code-index has 3 alive? Identify the behavioral difference between the launchers (e.g. spec-memory respawns child transparently vs code-index exits-on-SIGTERM-and-each-session-spawns-its-own). Cite the divergent code.
+5. RE-ELECTION REALITY: where is ownership re-election wired, what gates it (flag/env default), and does it actually RE-SPAWN a daemon that has fully died when there is no live owner — or only adopt an already-running warm daemon? This is the crux: re-election that only ADOPTS won't resurrect a fully-dead daemon.
+6. CROSS-SESSION: how does a SECOND concurrent session interact with the lease — can one session's exit kill the daemon another session still needs? (memory notes a lease-liveness bug keyed on dead owner pid vs live childPid.)
+
+# Output skeleton (return EXACTLY this)
+## IT2 — live supervision code trace
+### Lifecycle trace (functions + flow)
+### Relaunch decision (exact predicate)
+### Stale-socket handling (reap? block-on-exists?)
+### Launcher divergence (why advisor/spec-memory dead, code-index x3)
+### Re-election reality (resurrect vs adopt-only; gating flag + default)
+### Cross-session lease interaction (kill-what-another-needs?)
+### Confidence + what you could NOT read/verify
+
+Cite file:line or function name for each non-obvious claim. If something is ambiguous in the code, say so explicitly.

@@ -9,22 +9,23 @@
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
-import type {
-  ParseResult, SupportedLanguage, SymbolKind, EdgeType,
-} from './indexer-types.js';
 import { generateContentHash } from './indexer-types.js';
 import { detectorProvenanceFromParserBackend } from './structural-indexer.js';
 import {
   extractEdges,
   capturesToNodes,
   rememberParseResultCaptures,
-  type RawCapture,
 } from './structural-indexer.js';
 import { isSpeckitMetricsEnabled, speckitMetrics } from './shared/metrics-stub.js';
-import { addToSkipList, lookupSkipList, type SkipListEntry } from './parser-skip-list.js';
+import { addToSkipList, lookupSkipList } from './parser-skip-list.js';
+import type {
+  ParseResult, SupportedLanguage, SymbolKind, EdgeType,
+} from './indexer-types.js';
+import type { RawCapture } from './structural-indexer.js';
+import type { SkipListEntry } from './parser-skip-list.js';
 
 // ── Types ──────────────────────────────────────────────────────
-// F043: RawCapture is now imported from structural-indexer.ts (single source of truth)
+// RawCapture is imported from structural-indexer.ts (single source of truth)
 
 /** ParserAdapter interface — mirrors structural-indexer.ts:16-18 */
 interface ParserAdapter {
@@ -36,18 +37,35 @@ interface ParserAdapter {
   ): ParseResult;
 }
 
+type TreeSitterLanguage = object;
+
+interface TreeSitterTree {
+  rootNode: TSNode;
+  delete?: () => void;
+}
+
+interface TreeSitterParserInstance {
+  setLanguage(language: TreeSitterLanguage): void;
+  parse(content: string): TreeSitterTree;
+}
+
+interface TreeSitterParserConstructor {
+  new(): TreeSitterParserInstance;
+  init(): Promise<void>;
+  Language: {
+    load(grammarPath: string): Promise<TreeSitterLanguage>;
+  };
+}
+
 // ── Lazy initialization state ──────────────────────────────────
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let ParserClass: any = null;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let parserInstance: any = null;
+let ParserClass: TreeSitterParserConstructor | null = null;
+let parserInstance: TreeSitterParserInstance | null = null;
 let initPromise: Promise<void> | null = null;
 let parserHealth: 'ok' | 'quarantined' = 'ok';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const grammarCache = new Map<SupportedLanguage, any>();
 type ParserLanguage = Exclude<SupportedLanguage, 'doc'>;
+const grammarCache = new Map<ParserLanguage, TreeSitterLanguage>();
 const SUPPORTED_LANGUAGES: ParserLanguage[] = ['javascript', 'typescript', 'python', 'bash'];
 const SKIP_LIST_ENABLED = process.env.SPECKIT_PARSER_SKIP_LIST_ENABLED !== 'false';
 
@@ -122,7 +140,7 @@ function earlyReturnSentinel(
   };
 }
 
-// FIX-011-FOLLOWUP-3: resolve grammar path via the tree-sitter-wasms package
+// Resolve grammar path via the tree-sitter-wasms package
 // itself (Node module resolution) rather than a relative `../../` walk.
 // Pre-fix used `resolve(__dirname, '../../node_modules/tree-sitter-wasms/out', ...)`
 // which works when running from src (`mcp_server/lib/`) but fails from compiled
@@ -154,10 +172,11 @@ async function ensureInit(): Promise<void> {
   initPromise = (async () => {
     try {
       const mod = await import('web-tree-sitter');
-      ParserClass = mod.default ?? mod;
-      await ParserClass.init();
-      parserInstance = new ParserClass();
-    } catch (err) {
+      const parserCtor = ((mod as { default?: unknown }).default ?? mod) as TreeSitterParserConstructor;
+      ParserClass = parserCtor;
+      await parserCtor.init();
+      parserInstance = new parserCtor();
+    } catch (err: unknown) {
       // Reset so the next call retries instead of being stuck with a rejected promise
       initPromise = null;
       parserInstance = null;
@@ -175,7 +194,7 @@ async function getLanguageGrammar(language: ParserLanguage): Promise<unknown> {
   await ensureInit();
 
   const grammarPath = getGrammarPath(language);
-  const lang = await ParserClass.Language.load(grammarPath);
+  const lang = await ParserClass!.Language.load(grammarPath);
   grammarCache.set(language, lang);
   return lang;
 }
@@ -424,7 +443,7 @@ function resolveKind(node: TSNode, language: SupportedLanguage): SymbolKind | nu
       if (child.type === 'variable_declarator') {
         const value = child.childForFieldName('value');
         if (value) {
-          // F031-ext: Match all expression forms that resolveKind(variable_declarator) handles
+          // Match all expression forms that resolveKind(variable_declarator) handles
           if (value.type === 'arrow_function' || value.type === 'function_expression'
             || value.type === 'function' || value.type === 'generator_function') {
             return 'function';
@@ -445,7 +464,7 @@ function resolveKind(node: TSNode, language: SupportedLanguage): SymbolKind | nu
   return kindMap[node.type] ?? null;
 }
 
-// ── F032: Per-specifier import/export helpers ─────────────────
+// ── Per-specifier import/export helpers ─────────────────
 
 function emitImportCaptures(
   node: TSNode,
@@ -601,14 +620,14 @@ function walkAST(
       || nodeType === 'variable_declarator'
       || nodeType === 'lexical_declaration';
 
-    // F032: Emit one capture per import specifier / namespace import / default import
+    // Emit one capture per import specifier / namespace import / default import
     if (nodeType === 'import_statement' || nodeType === 'import_declaration'
       || nodeType === 'import_from_statement') {
       emitImportCaptures(node, language, lines, captures);
       return;
     }
 
-    // F032: Export with named_exports → emit one capture per export_specifier
+    // Export with named_exports → emit one capture per export_specifier
     if (nodeType === 'export_statement' || nodeType === 'export_declaration') {
       emitExportCaptures(node, language, lines, captures, parentClassName);
       // Also visit inner declaration (e.g. `export function foo()`)
@@ -721,7 +740,7 @@ function walkAST(
   return captures;
 }
 
-// F043: capturesToNodes and RawCapture are now imported from structural-indexer.ts
+// capturesToNodes and RawCapture are imported from structural-indexer.ts
 
 // ── TreeSitterParser class ─────────────────────────────────────
 

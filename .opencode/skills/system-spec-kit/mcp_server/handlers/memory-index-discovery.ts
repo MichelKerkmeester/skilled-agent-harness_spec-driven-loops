@@ -90,7 +90,7 @@ function attachDiscoveryMetadata(results: string[], state: DiscoveryWalkState): 
 }
 
 // Callers pass the scope in several natural shapes: the specs-root-relative
-// form, the workspace path that still carries the `.opencode/specs/` segment,
+// form, the workspace path that still carries the configured specs-root marker,
 // an absolute filesystem path, or a bare leaf folder name. Reduce all of them
 // to the specs-root-relative form so the comparison against relativePath is
 // stable regardless of which shape the caller used.
@@ -128,13 +128,15 @@ function matchesScopedSpecFolder(candidatePath: string, specsRoot: string, specF
 }
 
 /**
- * Discover spec folder documents (.opencode/specs/ directory tree).
+ * Discover spec folder documents in the configured specs directory tree.
  * Gated by SPEC_DOCUMENT_FILENAMES (see lib/config/spec-doc-paths.ts) —
  * currently: spec.md, plan.md, tasks.md, checklist.md, decision-record.md,
  * implementation-summary.md, research.md (incl. research/research.md),
- * handover.md, resource-map.md, description.json.
+ * handover.md, resource-map.md, review-report.md (review/), description.json
+ * (incl. iteration packs' backfilled metadata under <pack>/iterations/).
  *
- * Excludes scratch/, memory/, iterations/, and hidden directories.
+ * Excludes scratch/, memory/, and hidden directories; iteration dirs are
+ * descended but only allowlisted filenames are collected.
  */
 export function findSpecDocuments(workspacePath: string, options: SpecDiscoveryOptions = {}): DiscoveryFileList {
   // Respect explicit opt-out to disable spec document indexing.

@@ -1,0 +1,30 @@
+{
+  "topic": "Adoptable ideas from competitor AI design tools (v0, Lovable, Figma Make, Subframe, and similar) for sk-interface-design and mcp-magicpath",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.05,
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/143-sk-interface-design/006-competitor-design-tools-research",
+  "artifactDir": ".opencode/specs/skilled-agent-orchestration/143-sk-interface-design/006-competitor-design-tools-research/research/lineages/opus48-claude2",
+  "createdAt": "2026-06-14T09:06:00Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-claude-code",
+    "model": "claude-opus-4-8",
+    "configDir": "~/.claude-account2",
+    "reasoningEffort": "xhigh",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "label": "opus48-claude2",
+    "sessionId": "fanout-opus48-claude2-1781420686076-jgor8g",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null,
+    "fanout": true
+  },
+  "resource_map_present": false,
+  "reducerScriptPath": ".opencode/skills/deep-research/scripts/reduce-state.cjs"
+}

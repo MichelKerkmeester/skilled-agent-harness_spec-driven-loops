@@ -7,6 +7,8 @@ trigger_phrases:
   - "readme standards"
   - "readme workflow"
   - "readme quality"
+importance_tier: normal
+contextType: implementation
 ---
 
 # README Creation - Workflow and Quality Standards
@@ -28,9 +30,9 @@ This reference defines standards for README documentation. READMEs are the entry
 - **Consistency** -- Same format across all project documentation
 
 **Requirements**:
-- All READMEs follow a 9-section structure (sections 1-9)
-- Section 1 (Overview) must answer "what is this?" in 2-3 sentences
-- Section 2 (Quick Start) must be achievable in under 2 minutes
+- Use only the sections that fit the audience and folder purpose
+- Overview must answer "what is this?" in 2-3 sentences
+- Add Quick Start, Features, FAQ or Troubleshooting only when the reader needs setup, capability explanation or known-problem help
 - All content follows Human Voice Rules ([hvr_rules.md](global/hvr_rules.md))
 
 ---
@@ -41,11 +43,11 @@ This reference defines standards for README documentation. READMEs are the entry
 
 ```
 Is this a project root?
-├─ YES → Comprehensive README (all 9 sections)
+├─ YES → General README using the sections the audience needs
 └─ NO → Is this a reusable component?
-        ├─ YES → Component README (Overview, Quick Start, Usage, Troubleshooting)
+        ├─ YES → Component README trimmed to API, examples, configuration and known issues
         └─ NO → Is someone likely to "land here"?
-                ├─ YES → Minimal README (Overview, Quick Start)
+                ├─ YES → Focused README with Overview plus needed navigation or usage
                 └─ NO → Skip README, use inline comments
 ```
 
@@ -84,15 +86,15 @@ Project, Skill and Feature READMEs use both tiers. Component and Code Folder REA
 
 ## 3. REQUIRED SECTIONS
 
-Every README follows a 9-section structure. For the full section-by-type requirements matrix (which sections are required, optional or skipped per README type), see [readme_template.md](../assets/readme/readme_template.md) Section 3.
+README sections are fit-for-purpose, not a fixed 9-section contract. For include-when guidance by section and README type, see [readme_template.md](../assets/readme/readme_template.md) Section 2 and [readme_code_template.md](../assets/readme/readme_code_template.md) for code-folder READMEs.
 
-**Minimum viable README**: Overview + Quick Start + Troubleshooting (for most non-root directories).
+**Minimum viable README**: Overview plus the navigation, usage or related-resource links the reader actually needs. Code-folder READMEs must not force Quick Start, Features, FAQ or Troubleshooting unless the directory has runnable commands, meaningful capabilities or known reader problems.
 
 ---
 
 ## 4. SECTION WRITING STANDARDS
 
-For detailed "Must include" lists per section, see [readme_template.md](../assets/readme/readme_template.md) Section 5. This section covers workflow guidance and writing tips unique to each section.
+For the current fillable scaffold, see [readme_template.md](../assets/readme/readme_template.md) Section 6. This section covers workflow guidance and writing tips for sections you choose to include.
 
 ### Overview (Section 1)
 
@@ -224,7 +226,7 @@ Tables are scannable. Use them for feature comparisons, configuration options, f
 ```markdown
 | Category | Count | Details |
 |----------|-------|---------|
-| MCP Tools | 33 | Across 7 layers |
+| Spec Memory tools | 39 | MCP registration and full-parity daemon-backed CLI |
 | Commands | 14 | 8 spec_kit + 6 memory |
 ```
 
@@ -291,7 +293,9 @@ Use `[PLACEHOLDER]` format with descriptive names:
 | **Content** | 35% | Commands tested, expected outputs shown, examples provided, completeness |
 | **Style** | 25% | HVR compliance, consistent formatting, code blocks with language tags |
 
-### Minimum Requirements Per Section
+### Quality Checks For Included Sections
+
+Apply these checks only to sections that fit the README audience and purpose.
 
 | Section | Requirements |
 |---------|-------------|
@@ -364,7 +368,8 @@ Use `[PLACEHOLDER]` format with descriptive names:
 ## 8. CROSS-REFERENCES
 
 ### Templates
-- [readme_template.md](../assets/readme/readme_template.md) - Copy-paste scaffold for new READMEs (section structure, "Must include" lists, complete template)
+- [readme_template.md](../assets/readme/readme_template.md) - Selection guide and copy-paste scaffold for new READMEs
+- [readme_code_template.md](../assets/readme/readme_code_template.md) - Code-folder README template for developer topology and boundaries
 
 ### Standards
 - [hvr_rules.md](global/hvr_rules.md) - Human Voice Rules (writing standards)

@@ -1,0 +1,13 @@
+You are an adversarial deep-review worker (iteration 1 of up to 10). RED-TEAM the diff at /tmp/010-fix.diff. Read it and the surrounding source as needed (read-only):
+- .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts (scheduleBackgroundEnrichment, MAX_BACKGROUND_ENRICHMENTS, activeBackgroundEnrichments, backgroundEnrichmentQueue)
+- .opencode/skills/system-spec-kit/mcp_server/context-server.ts (startupScan loop)
+
+CONTEXT: This fixes a daemon that wedged at ~100% CPU because the background-enrichment concurrency cap was defeated — the in-flight counter was incremented INSIDE the deferred setImmediate callback, so a burst (a startup scan calling the scheduler per row) read a stale zero, all passed the `< 4` gate, and piled up unbounded setImmediate callbacks that self-drained as a synchronous microtask chain, starving the IPC accept(). The fix: a `start(task)` helper increments the counter THEN setImmediate(task); the run's `finally` decrements once and re-arms the next queued task via `start()`; and the startup-scan loop awaits a setImmediate every 50 files.
+
+REVIEW DIMENSIONS — hunt hard in each:
+1. SLOT ACCOUNTING: Is it exactly one increment per scheduled/dequeued run and one decrement per completion? Any path that leaks a slot (counter drifts up → permanent throttle) or double-counts (cap effectively lower)? Does the cap hold under a burst of N >> 4? Does the queue always fully drain (no stuck tail)? What if MAX runs finish near-simultaneously?
+2. EVENT-LOOP YIELDING: Does re-arming via setImmediate actually return to the poll phase? Does the scan-loop yield (every 50 files) change index counts, skip files, or interact badly with the per-row enrichment scheduling?
+3. ENRICHMENT REGRESSION: Same deferred-result semantics? Does runPostInsertEnrichment / recordEnrichmentResult / the enrichment-pending backfill path still behave identically?
+4. ERROR PATHS: throw inside the async run (does finally still decrement + re-arm?), requireDb() failure early-return (slot still released?), superseded/deprecated-row early return (slot released?).
+
+OUTPUT (strict): a findings list. For each finding: `SEVERITY` (P0/P1/P2), `file:line`, the concrete failure scenario, the minimal fix, and `confidence` (high/med/low). If a dimension is sound, state so explicitly and name what you verified (file:line). Default to skepticism — try to find a real bug. No preamble, no praise.

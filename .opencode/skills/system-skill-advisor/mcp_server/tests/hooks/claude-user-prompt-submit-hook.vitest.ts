@@ -7,6 +7,7 @@ import { performance } from 'node:perf_hooks';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
+  DEFAULT_CLAUDE_HOOK_TIMEOUT_MS,
   handleClaudeUserPromptSubmit,
   parseClaudeUserPromptSubmitInput,
   type ClaudeUserPromptSubmitInput,
@@ -17,7 +18,7 @@ import { validateAdvisorHookDiagnosticRecord } from '../../lib/metrics.js';
 import type { AdvisorHookResult } from '../../lib/skill-advisor-brief.js';
 
 const fixturesDir = join(import.meta.dirname, '..', 'legacy', 'advisor-fixtures');
-const EXPECTED_ADVISOR_CONTEXT = 'Advisor: live; use sk-code 0.91/0.23 pass.\nComment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.';
+const EXPECTED_ADVISOR_CONTEXT = 'Advisor: live; use sk-code 0.91/0.23 pass.\nComment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.\nFable-5 governor: reason about the problem and the person, not yourself; lead with the result and act rather than narrate (batch tool calls, report at checkpoints); treat reversible decisions as cheap — decide, mark // DECISION:, move on; qualify only when it changes what the reader should do.';
 
 function fixture(name: string): AdvisorHookResult {
   return JSON.parse(readFileSync(join(fixturesDir, name), 'utf8')) as AdvisorHookResult;
@@ -68,6 +69,7 @@ describe('Claude UserPromptSubmit advisor hook', () => {
     expect(buildBrief).toHaveBeenCalledWith('implement a TypeScript hook', {
       runtime: 'claude',
       workspaceRoot: '/workspace/project',
+      subprocessTimeoutMs: DEFAULT_CLAUDE_HOOK_TIMEOUT_MS,
     });
     expect(diagnostics.records).toHaveLength(1);
     const diagnostic = parseDiagnostic(diagnostics.records[0] ?? '{}');

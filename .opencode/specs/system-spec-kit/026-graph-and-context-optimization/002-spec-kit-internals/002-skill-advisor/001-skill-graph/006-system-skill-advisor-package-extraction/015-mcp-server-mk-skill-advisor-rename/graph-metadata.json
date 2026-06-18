@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The Skill Advisor MCP server currently advertises the runtime id `system_skill_advisor`, while the custom MCP naming pattern has moved to `mk_*` ids such as `mk_code_index`. This packet renames only the MCP runtime identity and launcher surface to `mk_skill_advisor`.",
     "created_at": "2026-05-14T20:09:35Z",
-    "last_save_at": "2026-06-05T12:47:33.321Z",
+    "last_save_at": "2026-06-17T19:57:24.186Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

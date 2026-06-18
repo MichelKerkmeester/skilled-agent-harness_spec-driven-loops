@@ -17,9 +17,35 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { spawnSync } = require('node:child_process');
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 1. HELPERS
+// 1. TSX BOOTSTRAP
+// ─────────────────────────────────────────────────────────────────────────────
+
+const TSX_LOADER = require.resolve('tsx');
+
+// The merged registry and attribution share the runtime's atomic-state helpers,
+// which are TypeScript ESM. Re-exec once under the tsx loader so the dynamic
+// import below resolves them; mirrors convergence.cjs. Only the CLI entrypoint
+// re-execs — module consumers (unit tests) import the pure helpers directly.
+if (require.main === module && process.env.DEEP_LOOP_TSX_LOADED !== '1') {
+  const child = spawnSync(
+    process.execPath,
+    ['--import', TSX_LOADER, __filename, ...process.argv.slice(2)],
+    {
+      cwd: process.cwd(),
+      env: { ...process.env, DEEP_LOOP_TSX_LOADED: '1' },
+      encoding: 'utf8',
+    },
+  );
+  if (child.stdout) process.stdout.write(child.stdout);
+  if (child.stderr) process.stderr.write(child.stderr);
+  process.exit(child.status === null ? 1 : child.status);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
 
 function inputError(message) {
@@ -80,7 +106,7 @@ function readStateLog(stateLogPath) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 2. RESEARCH MERGE
+// 3. RESEARCH MERGE
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
@@ -170,7 +196,7 @@ function mergeResearchRegistries(lineageData) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 3. REVIEW MERGE  (strongest-restriction)
+// 4. REVIEW MERGE  (strongest-restriction)
 // ─────────────────────────────────────────────────────────────────────────────
 
 const SEVERITY_RANK = { P0: 3, P1: 2, P2: 1 };
@@ -252,7 +278,7 @@ function mergeReviewRegistries(lineageData) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 4. ATTRIBUTION
+// 5. ATTRIBUTION
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
@@ -288,10 +314,11 @@ function buildAttributionMd(lineageData, loopType) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 5. MAIN
+// 6. MAIN
 // ─────────────────────────────────────────────────────────────────────────────
 
-function main() {
+async function main() {
+  const { writeStateAtomic, writeTextAtomic } = await import('../lib/deep-loop/atomic-state.ts');
   const args = parseArgs();
   const loopType = ensureString(args, 'loopType');
   if (loopType !== 'research' && loopType !== 'review' && loopType !== 'context') {
@@ -346,13 +373,15 @@ function main() {
     mergedRegistry = mergeResearchRegistries(lineagesWithRegistry);
   }
 
-  // Write merged registry to base artifact dir (replacing single-executor path)
+  // Write merged registry to base artifact dir (replacing single-executor path).
+  // Atomic temp+fsync+rename so a mid-write kill never hands synthesis a
+  // truncated registry — readers see the prior file or the complete new one.
   const mergedRegistryPath = path.join(artifactDir, registryName);
-  fs.writeFileSync(mergedRegistryPath, JSON.stringify(mergedRegistry, null, 2), 'utf8');
+  writeStateAtomic(mergedRegistryPath, mergedRegistry);
 
-  // Write attribution markdown
+  // Write attribution markdown atomically (same torn-write guarantee; text, not JSON).
   const attributionPath = path.join(artifactDir, 'fanout-attribution.md');
-  fs.writeFileSync(attributionPath, buildAttributionMd(lineageData, loopType), 'utf8');
+  writeTextAtomic(attributionPath, buildAttributionMd(lineageData, loopType));
 
   jsonOut({
     status: 'ok',
@@ -371,9 +400,7 @@ function main() {
 module.exports = { mergeResearchRegistries, mergeReviewRegistries, buildAttributionMd };
 
 if (require.main === module) {
-  try {
-    main();
-  } catch (err) {
+  main().catch((err) => {
     const code = err && err.code === 'INPUT_VALIDATION' ? 3 : 1;
     jsonOut({
       status: 'error',
@@ -386,5 +413,5 @@ if (require.main === module) {
       );
     }
     process.exit(code);
-  }
+  });
 }

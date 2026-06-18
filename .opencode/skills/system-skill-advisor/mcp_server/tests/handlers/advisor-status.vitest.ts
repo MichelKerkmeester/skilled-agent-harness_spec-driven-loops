@@ -5,6 +5,7 @@
 import { mkdtempSync, mkdirSync, utimesSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
+import Database from 'better-sqlite3';
 
 import { describe, expect, it } from 'vitest';
 
@@ -43,6 +44,58 @@ function writeDb(root: string): void {
   writeFileSync(join(root, ADVISOR_DB_RELATIVE_PATH), '', 'utf8');
 }
 
+function writeHealthDb(root: string): void {
+  const database = new Database(join(root, ADVISOR_DB_RELATIVE_PATH));
+  try {
+    database.exec(`
+      CREATE TABLE skill_nodes (
+        id TEXT PRIMARY KEY,
+        embedding BLOB,
+        embedding_model_id TEXT,
+        embedding_content_hash TEXT
+      );
+      CREATE TABLE vec_metadata (key TEXT PRIMARY KEY, value TEXT NOT NULL);
+      CREATE TABLE vec_768 (
+        skill_id TEXT PRIMARY KEY,
+        embedding BLOB NOT NULL,
+        model_id TEXT NOT NULL,
+        content_hash TEXT NOT NULL,
+        updated_at TEXT DEFAULT (datetime('now'))
+      );
+    `);
+    database.prepare('INSERT INTO skill_nodes (id) VALUES (?)').run('alpha');
+    database.prepare('INSERT INTO skill_nodes (id) VALUES (?)').run('beta');
+    database.prepare('INSERT INTO vec_metadata (key, value) VALUES (?, ?)').run('active_embedder_name', 'nomic-embed-text-v1.5');
+    database.prepare('INSERT INTO vec_metadata (key, value) VALUES (?, ?)').run('active_embedder_dim', '768');
+    database.prepare('INSERT INTO vec_768 (skill_id, embedding, model_id, content_hash, updated_at) VALUES (?, ?, ?, ?, ?)')
+      .run('alpha', Buffer.from([1, 2, 3]), 'nomic-embed-text-v1.5', 'hash-alpha', '2026-04-20T00:00:00.000Z');
+  } finally {
+    database.close();
+  }
+}
+
+function writeDimMismatchHealthDb(root: string): void {
+  const database = new Database(join(root, ADVISOR_DB_RELATIVE_PATH));
+  try {
+    database.exec(`
+      CREATE TABLE skill_nodes (id TEXT PRIMARY KEY, embedding BLOB);
+      CREATE TABLE vec_metadata (key TEXT PRIMARY KEY, value TEXT NOT NULL);
+      CREATE TABLE vec_123 (
+        skill_id TEXT PRIMARY KEY,
+        embedding BLOB NOT NULL,
+        model_id TEXT NOT NULL,
+        content_hash TEXT NOT NULL,
+        updated_at TEXT DEFAULT (datetime('now'))
+      );
+    `);
+    database.prepare('INSERT INTO skill_nodes (id) VALUES (?)').run('alpha');
+    database.prepare('INSERT INTO vec_metadata (key, value) VALUES (?, ?)').run('active_embedder_name', 'nomic-embed-text-v1.5');
+    database.prepare('INSERT INTO vec_metadata (key, value) VALUES (?, ?)').run('active_embedder_dim', '123');
+  } finally {
+    database.close();
+  }
+}
+
 describe('advisor_status handler', () => {
   // drift: verified against shipped behavior during Unit H
   it('reports live freshness', () => {
@@ -59,6 +112,53 @@ describe('advisor_status handler', () => {
     expect(status.lastScanAt).toBe('2026-04-20T00:00:00.000Z');
     expect(status.skillCount).toBe(1);
     expect(status.laneWeights.explicit_author).toBe(0.42);
+    expect(status.semanticLaneHealth).toBeUndefined();
+  });
+
+  it('reports semantic-lane health only when requested', () => {
+    const root = workspace('semantic-health');
+    writeHealthDb(root);
+    writeGeneration(root, 'live', 8);
+
+    const compact = readAdvisorStatus({ workspaceRoot: root });
+    const detailed = readAdvisorStatus({ workspaceRoot: root, includeSemanticHealth: true });
+
+    expect(compact.semanticLaneHealth).toBeUndefined();
+    expect(detailed.semanticLaneHealth).toEqual(expect.objectContaining({
+      activeEmbedder: expect.objectContaining({
+        name: 'nomic-embed-text-v1.5',
+        dim: 768,
+        adapterDim: 768,
+      }),
+      vectorCoverage: {
+        embedded: 1,
+        total: 2,
+        ratio: 0.5,
+      },
+      dimMismatch: false,
+      lastRefresh: '2026-04-20T00:00:00.000Z',
+      disabledReason: null,
+      laneEnabled: true,
+    }));
+  });
+
+  it('surfaces semantic-lane dim mismatch as a disabled reason', () => {
+    const root = workspace('semantic-dim-mismatch');
+    writeDimMismatchHealthDb(root);
+    writeGeneration(root, 'live', 9);
+
+    const status = readAdvisorStatus({ workspaceRoot: root, includeSemanticHealth: true });
+
+    expect(status.semanticLaneHealth).toEqual(expect.objectContaining({
+      activeEmbedder: expect.objectContaining({
+        name: 'nomic-embed-text-v1.5',
+        dim: 123,
+        adapterDim: 768,
+      }),
+      dimMismatch: true,
+      disabledReason: 'dim_mismatch',
+      laneEnabled: false,
+    }));
   });
 
   // drift: verified against shipped behavior during Unit H
@@ -157,5 +257,50 @@ describe('advisor_status handler', () => {
     expect(status.errors).toEqual([
       expect.stringContaining('metadata scan capped at 1 files'),
     ]);
+  });
+
+  it('probes the env-override artifact path the writer uses, read live', () => {
+    // The probe must target the file the writing daemon actually opens. With an
+    // env override set, the writer resolves there; the probe must too, even
+    // when called with an unrelated workspaceRoot. A healthy DB under the
+    // workspace would mask a corrupt override DB if the probe used the wrong
+    // base.
+    const workspaceRootDir = workspace('override-probe-workspace');
+    writeDb(workspaceRootDir);
+    writeGeneration(workspaceRootDir, 'live', 11);
+
+    const overrideDir = mkdtempSync(join(tmpdir(), 'advisor-status-override-'));
+    writeFileSync(join(overrideDir, 'skill-graph.sqlite'), 'not-a-sqlite-database-file-at-all-this-is-corrupt', 'utf8');
+
+    const previous = process.env.MK_SKILL_ADVISOR_DB_DIR;
+    process.env.MK_SKILL_ADVISOR_DB_DIR = overrideDir;
+    try {
+      const status = readAdvisorStatus({ workspaceRoot: workspaceRootDir, checkArtifactIntegrity: true });
+      // Corruption is read from the OVERRIDE artifact, not the healthy
+      // workspace-relative DB, so freshness downgrades to stale.
+      expect(status.freshness).toBe('stale');
+      expect(status.errors?.some((message) => message.includes('integrity check failed'))).toBe(true);
+    } finally {
+      if (previous === undefined) {
+        delete process.env.MK_SKILL_ADVISOR_DB_DIR;
+      } else {
+        process.env.MK_SKILL_ADVISOR_DB_DIR = previous;
+      }
+    }
+  });
+
+  it('downgrades a corrupt artifact from live to stale only when integrity is checked', () => {
+    const root = workspace('corrupt-artifact');
+    writeFileSync(join(root, ADVISOR_DB_RELATIVE_PATH), 'definitely-not-a-valid-sqlite-database-header', 'utf8');
+    writeGeneration(root, 'live', 12);
+
+    // Without the integrity opt-in the generation counters alone report live.
+    const optimistic = readAdvisorStatus({ workspaceRoot: root });
+    expect(optimistic.freshness).toBe('live');
+
+    // The recommend path opts in, so the same corrupt artifact reads stale.
+    const guarded = readAdvisorStatus({ workspaceRoot: root, checkArtifactIntegrity: true });
+    expect(guarded.freshness).toBe('stale');
+    expect(guarded.errors?.some((message) => message.includes('integrity check failed'))).toBe(true);
   });
 });

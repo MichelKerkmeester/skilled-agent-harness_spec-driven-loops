@@ -61,11 +61,11 @@ Create and manage OpenCode components (skills, agents, commands). Each component
 **Component Types:**
 - **Skills** (.opencode/skills/) - Knowledge bundles with workflows → [skill_creation.md](./references/skill_creation.md)
 - **Agents** (.opencode/agents/) - AI personas with tool permissions → [agent_creation.md](./references/agent_creation.md)
-- **Commands** (.opencode/commands/) - Slash commands for user invocation → [command_template.md](./assets/command_template.md)
+- **Commands** (.opencode/commands/) - Slash commands for user invocation → [command_template.md](./assets/command/command_template.md)
 
 For larger skills, split deep content into focused reference files and keep concise navigation in `SKILL.md` or `README.md`. When a skill has both cross-cutting standards and document-family guides, prefer `references/global/` for shared rules and the `references/` root for creation-specific workflows.
 
-Start with: [skill_creation.md](./references/skill_creation.md) (Section 9)
+Start with: [skill_creation.md](./references/skill_creation.md), then [overview.md](./references/skill_creation/overview.md) for skill structure
 Primary templates:
 - [skill_md_template.md](./assets/skill/skill_md_template.md)
 - [skill_readme_template.md](./assets/skill/skill_readme_template.md)
@@ -181,7 +181,7 @@ The router discovers markdown resources recursively from `references/` and `asse
 - `references/global/` for documentation standards, validation rules, optimization guidance, voice rules, and shared execution workflows.
 - `references/` root for document-family and component creation guides such as skill creation, agent creation, install guides, feature catalogs, and manual testing playbooks.
 - `assets/readme/` for README and install-guide scaffolds; `assets/changelog_template.md`, `assets/frontmatter_templates.md`, and `assets/llmstxt_templates.md` at the assets/ root for cross-cutting templates.
-- `assets/skill/` for skill creation templates, including `SKILL.md`, skill README, reference and asset scaffolds; `assets/agent_template.md` and `assets/command_template.md` at the assets/ root for agent and command creation templates.
+- `assets/skill/` for skill creation templates, including `SKILL.md`, skill README, reference and asset scaffolds; `assets/agent_template.md` at the assets/ root and `assets/command/command_template.md` (with `assets/command/command_presentation_template.md`) for agent and command creation templates.
 - `assets/feature_catalog/` and `assets/testing_playbook/` at the assets/ root for feature catalog and manual testing playbook package templates.
 - `assets/benchmark/` for skill-local benchmark folder templates (`benchmark_report_template.md`, `source_template.md`).
 - `assets/flowcharts/` for reusable ASCII flowchart patterns and diagram examples.
@@ -231,7 +231,7 @@ RESOURCE_MAP = {
     "DOC_QUALITY": ["references/global/validation.md", "references/global/workflows.md", "references/global/core_standards.md", "references/global/evergreen_packet_id_rule.md"],
     "OPTIMIZATION": ["references/global/optimization.md", "assets/llmstxt_templates.md"],
     "SKILL_CREATION": ["references/skill_creation.md", "assets/skill/skill_md_template.md", "assets/skill/skill_readme_template.md", "assets/skill/skill_reference_template.md"],
-    "AGENT_COMMAND": ["references/agent_creation.md", "assets/agent_template.md", "assets/command_template.md"],
+    "AGENT_COMMAND": ["references/agent_creation.md", "assets/agent_template.md", "assets/command/command_template.md"],
     "FLOWCHART": ["assets/flowcharts/simple_workflow.md", "assets/flowcharts/decision_tree_flow.md"],
     "INSTALL_GUIDE": ["assets/readme/install_guide_template.md", "references/install_guide_creation.md"],
     "HVR": ["references/global/hvr_rules.md"],
@@ -459,7 +459,7 @@ Need fast navigation? See [quick_reference.md](./references/global/quick_referen
 
 ## 8. REFERENCES AND RELATED RESOURCES
 
-The router discovers reference, asset, and script docs dynamically. Start with `references/global/quick_reference.md`, routed references under references/global/ and the references root, templates under assets/ root (`agent_template.md`, `command_template.md`, `feature_catalog/`, `testing_playbook/`) plus assets/readme/, assets/skill/ (`skill_md_template.md`, `skill_readme_template.md`, reference and asset scaffolds), and assets/flowcharts/, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
+The router discovers reference, asset, and script docs dynamically. Start with `references/global/quick_reference.md`, routed references under references/global/ and the references root, templates under assets/ root (`agent_template.md`, `feature_catalog/`, `testing_playbook/`) plus assets/command/ (`command_template.md`, `command_presentation_template.md`), assets/readme/, assets/skill/ (`skill_md_template.md`, `skill_readme_template.md`, reference and asset scaffolds), and assets/flowcharts/, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
 
 Scripts: `scripts/validate_document.py`, `scripts/extract_structure.py`, `scripts/init_skill.py`, `scripts/package_skill.py`, `scripts/quick_validate.py`, `scripts/validate_flowchart.sh`.
 

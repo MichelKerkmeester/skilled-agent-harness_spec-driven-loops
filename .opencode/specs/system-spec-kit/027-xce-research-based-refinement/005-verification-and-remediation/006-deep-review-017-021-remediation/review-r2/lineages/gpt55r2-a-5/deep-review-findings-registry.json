@@ -1,0 +1,125 @@
+{
+  "sessionId": "fanout-gpt55r2-a-5-1781761314338-6u1ztm",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "folderBoost responses collide in the memory_search cache",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+      "line": 1070,
+      "lineRange": "651-678,1070-1101,1230,1443-1445",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1276-1279",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:993-997",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:651-678",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1070-1101",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1230",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1443-1445"
+      ],
+      "finding_class": "contract_safety",
+      "content_hash": "09216a503ba6d5588a3ad02db1e3b1aebbb72cf0f9599c86c1411d7fac61cadb",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "folderBoost clamps raw 0..100 similarity to 1.0 and can demote boosted vector hits",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+      "line": 662,
+      "lineRange": "651-678",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:446-448",
+        ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:77-88",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts:64-75",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:651-678",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1664-1729"
+      ],
+      "finding_class": "correctness",
+      "content_hash": "c5ba37ed6939b97a1f7c3aacc4c5c159bb0ba0d40cca5a6461677ed450bc903f",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Advertised retrievalLevel is rejected by strict public schemas",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+      "line": 186,
+      "lineRange": "28-32,186-220,620-623",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/context-server.ts:919-925",
+        ".opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts:447-453",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:320-358",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:827",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1160-1168",
+        ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:28-32",
+        ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:186-220",
+        ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:620-623",
+        ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:240-351"
+      ],
+      "finding_class": "contract_safety",
+      "content_hash": "b4d315a3e6b7c45cb87a0bf36cb6681c796691bb024f10991b90fbb21db66a38",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": false,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 0
+  },
+  "openFindingsCount": 3,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.45,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

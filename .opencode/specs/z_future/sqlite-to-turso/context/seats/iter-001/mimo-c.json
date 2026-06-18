@@ -1,0 +1,204 @@
+{
+  "findings": [
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+      "symbol": "sqliteVec.load",
+      "kind": "dependency",
+      "signature": "sqliteVec.load(database) — loadExtension equivalent",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:1090",
+      "relevance": 1,
+      "notes": "Turso has no loadExtension(); sqlite-vec native extension cannot be loaded — entire vector search pipeline blocks"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+      "symbol": "new Database",
+      "kind": "dependency",
+      "signature": "new Database(target_path) — synchronous constructor",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:1545",
+      "relevance": 0.9,
+      "notes": "better-sqlite3 synchronous constructor; Turso/libSQL driver is async-first — every call site needs await"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+      "symbol": "database.pragma",
+      "kind": "integration_point",
+      "signature": "database.pragma('journal_mode = WAL')",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:1095",
+      "relevance": 0.9,
+      "notes": "Turso has no .pragma() API; WAL mode and all 8 pragma calls in initialize_db (lines 1579-1586) must use connection options or SQL PRAGMA statements"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+      "symbol": "database.exec",
+      "kind": "integration_point",
+      "signature": "database.exec('ATTACH DATABASE ? AS active_vec')",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:1122",
+      "relevance": 1,
+      "notes": "ATTACH/DETACH DATABASE used for vector shard architecture; Turso has no ATTACH — shard model requires complete redesign"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+      "symbol": "ensure_vector_shard_schema",
+      "kind": "integration_point",
+      "signature": "CREATE VIRTUAL TABLE ... USING vec0(embedding FLOAT[dim])",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:518",
+      "relevance": 1,
+      "notes": "vec0 virtual table from sqlite-vec; Turso has no sqlite-vec extension — vector index storage must be external or use Turso's native vector (if available)"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+      "symbol": "database.pragma",
+      "kind": "integration_point",
+      "signature": "database.pragma('wal_checkpoint(TRUNCATE)')",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:1700",
+      "relevance": 0.7,
+      "notes": "Explicit WAL TRUNCATE checkpoint used on close; Turso manages checkpoints differently — migration must remove or replace"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+      "symbol": "database.pragma",
+      "kind": "integration_point",
+      "signature": "database.pragma('quick_check(1)')",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:1598",
+      "relevance": 0.6,
+      "notes": "PRAGMA quick_check used for post-crash integrity probe; Turso has no pragma() method — needs SQL pragma or alternative"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+      "symbol": "CREATE VIRTUAL TABLE memory_fts USING fts5",
+      "kind": "dependency",
+      "signature": "CREATE VIRTUAL TABLE memory_fts USING fts5(title, trigger_phrases, file_path, content_text, ...)",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1256",
+      "relevance": 1,
+      "notes": "FTS5 virtual table + 3 sync triggers; Turso lacks FTS5 — full-text search must use external engine or Turso's FTS alternative"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts",
+      "symbol": "vec_distance_cosine",
+      "kind": "dependency",
+      "signature": "vec_distance_cosine(v.embedding, ?) as distance",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:314",
+      "relevance": 1,
+      "notes": "sqlite-vec scalar function used in every vector search query (also lines 403, 407); Turso has no vec_distance_cosine — must compute externally"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts",
+      "symbol": "julianday",
+      "kind": "convention",
+      "signature": "julianday('now') - julianday(m.last_review)",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:265",
+      "relevance": 0.4,
+      "notes": "julianday() is core SQLite; Turso supports it — low risk but verify parity"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+      "symbol": "database.prepare",
+      "kind": "integration_point",
+      "signature": "PRAGMA table_info(tableName)",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:264",
+      "relevance": 0.5,
+      "notes": "PRAGMA table_info for schema introspection; Turso pragma() API differs — may need SQL pragma statement"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/db-shard-migration.ts",
+      "symbol": "sqliteVec.load",
+      "kind": "dependency",
+      "signature": "sqliteVec.load(canonical)",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/db-shard-migration.ts:242",
+      "relevance": 1,
+      "notes": "loadExtension during shard migration; Turso blocks extension loading — migration logic cannot create vec0 tables"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/db-shard-migration.ts",
+      "symbol": "new Database",
+      "kind": "dependency",
+      "signature": "new Database(legacyPath, { readonly: true, fileMustExist: true })",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/db-shard-migration.ts:150",
+      "relevance": 0.9,
+      "notes": "Synchronous constructor with options; Turso connect() is async and options differ (no fileMustExist)"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/db-shard-migration.ts",
+      "symbol": "canonical.exec",
+      "kind": "integration_point",
+      "signature": "ATTACH DATABASE ? AS legacy / DETACH DATABASE shard",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/db-shard-migration.ts:243",
+      "relevance": 1,
+      "notes": "ATTACH/DETACH used for 3-database migration (legacy→canonical→shard); Turso has no ATTACH — requires architectural redesign"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/db-shard-migration.ts",
+      "symbol": "canonical.exec",
+      "kind": "integration_point",
+      "signature": "CREATE VIRTUAL TABLE shard.vec_memories USING vec0(embedding FLOAT[dim])",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/db-shard-migration.ts:72",
+      "relevance": 1,
+      "notes": "vec0 virtual table creation during shard migration; Turso cannot create vec0 tables — blocks shard migration entirely"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/db-shard-migration.ts",
+      "symbol": "canonical.exec",
+      "kind": "integration_point",
+      "signature": "VACUUM",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/db-shard-migration.ts:274",
+      "relevance": 0.5,
+      "notes": "VACUUM used post-migration; Turso may not support standalone VACUUM — verify availability"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
+      "symbol": "sqliteVec.load",
+      "kind": "dependency",
+      "signature": "sqliteVec.load(shard)",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:430",
+      "relevance": 1,
+      "notes": "loadExtension in reindex shard writer; Turso blocks extension loading — reindex cannot populate vec0 KNN table"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
+      "symbol": "new Database",
+      "kind": "dependency",
+      "signature": "new Database(shardPath ?? profile.getVectorShardPath(databaseDir))",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:420",
+      "relevance": 0.9,
+      "notes": "Synchronous constructor for staging shard; Turso async connect() — reindex loop needs async rewrite"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
+      "symbol": "shard.pragma",
+      "kind": "integration_point",
+      "signature": "shard.pragma('journal_mode = WAL')",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:422",
+      "relevance": 0.7,
+      "notes": "WAL pragma on staging shard; Turso has no .pragma() — use connection config or SQL PRAGMA"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
+      "symbol": "BigInt",
+      "kind": "convention",
+      "signature": "del.run(BigInt(row.id)) / ins.run(BigInt(row.id), ...)",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:375",
+      "relevance": 0.4,
+      "notes": "BigInt for sqlite-vec rowid; better-sqlite3 specific integer handling — Turso driver may handle differently"
+    }
+  ]
+}

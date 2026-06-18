@@ -1,6 +1,15 @@
 ---
 title: "Patterns and Evaluation - Framework Library and CLEAR Scoring"
 description: "Framework library, enhancement patterns, and CLEAR evaluation methodology for systematic prompt engineering. Covers 7 frameworks (RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, CRAFT), the CLEAR 50-point scoring system, power combinations, and enhancement priority protocols."
+trigger_phrases:
+  - "clear scoring rubric"
+  - "framework selection matrix"
+  - "repair recovery protocol"
+  - "enhancement priority matrix"
+  - "framework fusion patterns"
+  - "prompt weakness detection"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Prompt Patterns & Evaluation Reference

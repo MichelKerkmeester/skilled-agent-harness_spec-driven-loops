@@ -57,6 +57,7 @@ const codeGraphQuery: ToolDefinition = {
       includeTransitive: { type: 'boolean', default: false, description: 'Enable multi-hop BFS traversal (follows edges transitively)' },
       maxDepth: { type: 'number', minimum: 1, maximum: 20, default: 3, description: 'Max traversal depth when includeTransitive is true (handler clamps to 20)' },
       minConfidence: { type: 'number', minimum: 0, maximum: 1, description: 'Minimum confidence threshold (0-1) for blast_radius dependency edges; defaults to 0 (include all). Filters import-edge confidences before blast-radius assembly.' },
+      includeTrace: { type: 'boolean', description: 'Include trace metadata in response for debugging' },
     },
     required: ['operation', 'subject'],
   },
@@ -155,10 +156,10 @@ const codeGraphApply: ToolDefinition = {
         enum: ['rescan', 'prune-excludes', 'repair-nodes', 'recover-sqlite-corruption', 'rollback-bad-apply'],
         description: 'Apply operation to run. Defaults to re-scan routing based on staleness state.',
       },
-      confirm: { type: 'boolean', description: 'Required for hard-stale recovery before any mutation.' },
+      confirm: { type: 'boolean', description: 'Required for hard-stale recovery; for prune-excludes when any candidate pattern classifies medium-tier; and for every destructive operation (recover-sqlite-corruption, rollback-bad-apply) regardless of staleness. Low-tier prune-excludes additionally requires lowTierOptIn=true.' },
       dryRun: { type: 'boolean', description: 'Run pre/post batteries and classification, but skip operation dispatch.' },
-      crashRootCauseAddressed: { type: 'boolean', description: 'Required true before repair-nodes re-parses parser_skip_list candidates.' },
-      quarantineOlderThanDays: { type: 'number', minimum: 1, maximum: 365, description: 'Minimum parser_skip_list age for repair-nodes eligibility.' },
+      crashRootCauseAddressed: { type: 'boolean', description: 'Required true before repair-nodes triages parser_skip_list candidates. repair-nodes REPORTS stale quarantined files for manual remediation; it does not auto-re-parse them (the skip-list is intentionally not self-healing).' },
+      quarantineOlderThanDays: { type: 'number', minimum: 1, maximum: 365, description: 'Minimum parser_skip_list age for repair-nodes triage eligibility.' },
       lowTierOptIn: { type: 'boolean', description: 'Required to include low-tier exclude-rule patterns.' },
       excludePatterns: { type: 'array', items: { type: 'string' }, description: 'Candidate exclude patterns for prune-excludes classification.' },
       batteryPath: { type: 'string', description: 'Optional gold-query battery path under approved asset roots.' },
@@ -198,7 +199,7 @@ export const CODE_GRAPH_TOOL_SCHEMAS: ToolDefinition[] = [
 export const TOOL_DEFINITIONS = CODE_GRAPH_TOOL_SCHEMAS;
 
 /**
- * Validate raw MCP input against a tool's published inputSchema (BUG-04 fix).
+ * Validate raw MCP input against a tool's published inputSchema.
  *
  * Previously this only checked tool existence and object-shape, so the
  * advertised `additionalProperties:false`, `enum`, and `minLength` constraints

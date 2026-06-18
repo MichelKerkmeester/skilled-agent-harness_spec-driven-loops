@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/135-skill-readme-standardization/018-sk-git-readme",
+  "description": "Feature Specification: sk-git README",
+  "keywords": [
+    "feature",
+    "specification",
+    "sk-git",
+    "readme"
+  ],
+  "lastUpdated": "2026-06-10T04:53:30.810Z",
+  "specId": "018",
+  "folderSlug": "sk-git-readme",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "135-skill-readme-standardization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

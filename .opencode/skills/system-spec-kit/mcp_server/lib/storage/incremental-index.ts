@@ -14,6 +14,8 @@ import type Database from 'better-sqlite3';
 // Internal modules
 import { getCanonicalPathKey } from '../utils/canonical-path.js';
 import { extractSpecFolder, extractDocumentType } from '../parsing/memory-parser.js';
+import { canonicalFingerprint } from './canonical-fingerprint.js';
+import { createMemoStore } from './memo.js';
 
 /* ───────────────────────────────────────────────────────────────
    1. CONSTANTS
@@ -509,6 +511,33 @@ interface ReconcileMovesResult {
   filteredToIndex: string[];
 }
 
+interface IncrementalChunkFingerprint {
+  chunkId: string;
+  chunkFingerprint: string;
+}
+
+interface MemoizedPlanningInput {
+  componentPath: string;
+  canonicalInput: unknown;
+  codeHash: string;
+  chunks?: IncrementalChunkFingerprint[];
+}
+
+interface MemoizedPlanningOptions {
+  invalidateDependents?: boolean;
+}
+
+interface MemoizedPlanningResult {
+  memoHits: number;
+  memoMisses: number;
+  chunkHits: number;
+  chunkMisses: number;
+  dependencyInvalidated: number;
+  changedComponentPaths: string[];
+  unchangedComponentPaths: string[];
+  invalidatedComponentPaths: string[];
+}
+
 function reconcileMoves(
   toDelete: string[],
   toIndex: string[],
@@ -516,6 +545,7 @@ function reconcileMoves(
   if (!db || toDelete.length === 0 || toIndex.length === 0) {
     return { reconciled: [], filteredToDelete: toDelete, filteredToIndex: toIndex };
   }
+  const database = db;
 
   // Build a map: packet_id → [{newPath, docType, newGrandparent}] from the toIndex files.
   // Reads graph-metadata.json from the NEW location only — the old one may be gone after a move.
@@ -531,8 +561,12 @@ function reconcileMoves(
       if (typeof packetId !== 'string' || packetId.length === 0) continue;
       const docType = path.basename(newPath, path.extname(newPath));
       const newGrandparent = path.dirname(newSpecFolder);
-      if (!newByPacketId.has(packetId)) newByPacketId.set(packetId, []);
-      newByPacketId.get(packetId)!.push({ newPath, docType, newGrandparent });
+      let packetCandidates = newByPacketId.get(packetId);
+      if (!packetCandidates) {
+        packetCandidates = [];
+        newByPacketId.set(packetId, packetCandidates);
+      }
+      packetCandidates.push({ newPath, docType, newGrandparent });
     } catch {
       // skip unreadable or non-JSON graph-metadata
     }
@@ -578,7 +612,7 @@ function reconcileMoves(
       const canonicalOld = getCanonicalPathKey(oldPath);
 
       // Verify in DB: exactly one live row for this old path (uniqueness guard).
-      const rows = db!.prepare(selectSql).all(oldPath, canonicalOld) as Array<{ id: number; document_type?: string | null }>;
+      const rows = database.prepare(selectSql).all(oldPath, canonicalOld) as Array<{ id: number; document_type?: string | null }>;
       if (rows.length !== 1) continue;
 
       // Cross-verify document kind: the stored document_type must agree with the doc type
@@ -600,7 +634,7 @@ function reconcileMoves(
       // Update the row's path in place (preserves embedding, id, history). A reconciled
       // move is a folder rename, so spec_folder is repointed with the same canonicalization
       // indexMemoryFile/migration 23 use — otherwise WHERE spec_folder=? grouping goes stale.
-      const updated = db!.prepare(`
+      const updated = database.prepare(`
         UPDATE memory_index
         SET file_path = ?,
             canonical_file_path = ?,
@@ -653,6 +687,100 @@ function batchUpdateMtimes(filePaths: string[]): { updated: number; failed: numb
   return { updated, failed };
 }
 
+function countChunkFingerprintHits(database: Database.Database, input: MemoizedPlanningInput): { hits: number; misses: number } {
+  if (!input.chunks || input.chunks.length === 0) {
+    return { hits: 0, misses: 0 };
+  }
+
+  try {
+    const stmt = database.prepare(`
+      SELECT 1 AS hit
+      FROM memory_index
+      WHERE (canonical_file_path = ? OR file_path = ?)
+        AND chunk_id = ?
+        AND chunk_fingerprint = ?
+      LIMIT 1
+    `);
+    const canonicalPath = getCanonicalPathKey(input.componentPath);
+    let hits = 0;
+    let misses = 0;
+    for (const chunk of input.chunks) {
+      const row = stmt.get(canonicalPath, input.componentPath, chunk.chunkId, chunk.chunkFingerprint) as { hit?: number } | undefined;
+      if (row?.hit === 1) {
+        hits++;
+      } else {
+        misses++;
+      }
+    }
+    return { hits, misses };
+  } catch (error: unknown) {
+    const msg = error instanceof Error ? error.message : String(error);
+    console.warn(`[incremental-index] countChunkFingerprintHits error: ${msg}`);
+    return { hits: 0, misses: input.chunks.length };
+  }
+}
+
+function planMemoizedIndexing(
+  inputs: readonly MemoizedPlanningInput[],
+  options: MemoizedPlanningOptions = {},
+  database: Database.Database | null = db,
+): MemoizedPlanningResult {
+  const result: MemoizedPlanningResult = {
+    memoHits: 0,
+    memoMisses: 0,
+    chunkHits: 0,
+    chunkMisses: 0,
+    dependencyInvalidated: 0,
+    changedComponentPaths: [],
+    unchangedComponentPaths: [],
+    invalidatedComponentPaths: [],
+  };
+
+  if (!database) {
+    result.changedComponentPaths = inputs.map((input) => input.componentPath);
+    result.memoMisses = inputs.length;
+    result.chunkMisses = inputs.reduce((count, input) => count + (input.chunks?.length ?? 0), 0);
+    return result;
+  }
+
+  const memoStore = createMemoStore(database);
+  const changedPaths: string[] = [];
+  for (const input of inputs) {
+    // An unfingerprintable input (e.g. a non-finite number) must not abort the
+    // whole batch plan — treat it as a memo miss for this one input so the
+    // remaining inputs are still planned.
+    let inputFingerprint: string | null = null;
+    try {
+      inputFingerprint = canonicalFingerprint(input.canonicalInput);
+    } catch (_error: unknown) {
+      inputFingerprint = null;
+    }
+    const memo = inputFingerprint === null
+      ? undefined
+      : memoStore.getMemoRecord(input.componentPath, inputFingerprint, input.codeHash);
+    if (memo) {
+      result.memoHits++;
+      result.unchangedComponentPaths.push(input.componentPath);
+    } else {
+      result.memoMisses++;
+      result.changedComponentPaths.push(input.componentPath);
+      changedPaths.push(input.componentPath);
+    }
+
+    const chunkCounts = countChunkFingerprintHits(database, input);
+    result.chunkHits += chunkCounts.hits;
+    result.chunkMisses += chunkCounts.misses;
+  }
+
+  if (options.invalidateDependents !== false && changedPaths.length > 0) {
+    const invalidation = memoStore.invalidateDependents(changedPaths);
+    result.invalidatedComponentPaths = invalidation.invalidatedPaths;
+    result.dependencyInvalidated = invalidation.invalidatedPaths.length;
+  }
+
+  return result;
+}
+
 /* ───────────────────────────────────────────────────────────────
    8. EXPORTS
 ----------------------------------------------------------------*/
@@ -672,6 +800,7 @@ export {
   sweepOrphanIndexRows,
   reconcileMoves,
   batchUpdateMtimes,
+  planMemoizedIndexing,
 };
 
 /**
@@ -686,4 +815,8 @@ export type {
   OrphanSweepResult,
   MoveReconcileCandidate,
   ReconcileMovesResult,
+  IncrementalChunkFingerprint,
+  MemoizedPlanningInput,
+  MemoizedPlanningOptions,
+  MemoizedPlanningResult,
 };

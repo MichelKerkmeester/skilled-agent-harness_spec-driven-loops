@@ -33,10 +33,7 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-research/scripts/reduce-state.cjs",
       ".opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts",
-      ".opencode/skills/deep-research/scripts/verify-yaml-script-paths.sh",
-      ".opencode/skills/deep-research/SKILL.md",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -45,27 +42,9 @@
     ],
     "entities": [
       {
-        "name": "reduce-state.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-research/scripts/reduce-state.cjs",
-        "source": "derived"
-      },
-      {
         "name": "deep-research-reducer.vitest.ts",
         "kind": "test",
         "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "verify-yaml-script-paths.sh",
-        "kind": "script",
-        "path": ".opencode/skills/deep-research/scripts/verify-yaml-script-paths.sh",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-research/SKILL.md",
         "source": "derived"
       },
       {
@@ -187,11 +166,29 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 119 identified three P2 hygiene gaps: duplicate ruled-out directions could accumulate, workflow YAML script references lacked a direct existence check, and the deep-research skill allowed-tools list needed post-118 pruning verification.",
     "created_at": "2026-05-23T03:56:52.844Z",
-    "last_save_at": "2026-06-07T09:00:45.901Z",
+    "last_save_at": "2026-06-15T09:09:33.798Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

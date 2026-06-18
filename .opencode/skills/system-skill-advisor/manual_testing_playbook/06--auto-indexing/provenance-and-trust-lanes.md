@@ -33,8 +33,8 @@ Validate that `lib/derived/provenance.ts` writes provenance fingerprints for eac
 > **Structure deviation note (007-deferred-final).** This scenario uses a numbered-step plus Expected Signals plus Failure Modes shape instead of the canonical Prompt/Commands/Expected/Evidence/Pass-Fail/Failure-Triage subsections. The deviation is intentional for this skill playbook category to keep scenario semantics tightly bound to runtime output checks. See `references/decisions/deferred_decisions.md` §F34 for rationale.
 
 1. Read the target skill's `graph-metadata.json.derived` block for the current state.
-2. Identify at least one derived entry per lane source present in the target.
-3. For each entry, confirm the presence of a provenance fingerprint (hash or stable ID) and a `lane` field.
+2. Identify the derived lane sources present in the target (frontmatter terms, fenced examples, local docs, body n-grams).
+3. Confirm the derived block carries the block-level `provenance_fingerprint` and `trust_lane` fields (provenance is tracked per derived block, not per entry).
 4. Touch the target skill to force a reindex:
 
 ```bash
@@ -45,8 +45,8 @@ touch .opencode/skills/sk-doc/SKILL.md
 
 ### Expected Signals
 
-- Every derived entry has both `provenance` and `lane` fields.
-- Lane assignment matches the source of the extracted token (frontmatter terms → `frontmatter`, fenced code → `examples`, references/assets docs → `local_docs`, n-grams from SKILL.md body → `body` or `derived_local`).
+- The derived block carries block-level `provenance_fingerprint` and `trust_lane` fields; per-entry provenance/lane fields are not part of the shipped schema.
+- The trust lane matches the block's source tier (author-tier frontmatter signals resolve to the author lane; harvested content resolves to the derived lane).
 - Fingerprints are stable across reindex for unchanged content and change only when the underlying source bytes change.
 - Author-tier tokens (intent_signals in frontmatter) resolve to the `author` lane.
 

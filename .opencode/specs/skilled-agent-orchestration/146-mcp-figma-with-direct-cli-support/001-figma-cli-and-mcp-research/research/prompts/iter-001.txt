@@ -1,0 +1,43 @@
+Act as a senior technical researcher analyzing a CLI tool for a skill-authoring project. READ-ONLY MODE: do NOT write, create, or edit any files. Your final message IS the deliverable — return it as markdown in the exact skeleton given at the end.
+
+# Context
+We are building an OpenCode / Claude-Code "skill" called `mcp-figma`. Its PRIMARY tool is the `figma-cli` by silships (https://github.com/silships/figma-cli). The official Figma MCP server is an OPTIONAL secondary path (researched separately — NOT your job here). This iteration researches figma-cli ONLY, exhaustively.
+
+# Known facts (verify, correct, and extend — do not just repeat)
+- figma-cli drives Figma Desktop locally with NO API key.
+- Default "yolo" mode applies a small reversible patch to Figma Desktop; "safe" mode uses a FigCli plugin (Plugins -> Development -> FigCli) that must stay open.
+- `figma-cli init-agent` generates agent rule files (AGENTS.md, .cursor/rules/figma-cli.mdc) and a DESIGN.md token file.
+- Imports from Tailwind config / CSS custom properties / tokens.json / Storybook. Exports PNG/SVG/JSX/Storybook/CSS/Tailwind/DESIGN.md. ~40 shadcn/ui components with Lucide icons.
+- Command groups seen: tokens, var, bind, create, render, render-batch, set, sizing, padding/gap/align, find/select/get, canvas, arrange, duplicate/delete, node, slot, combos, sizes, export, export-jsx, export-storybook, lint, analyze, eval, raw, recreate-url/analyze-url, fj (figjam), daemon (status/diagnose/start/restart/stop), connect (--safe).
+
+# Sources to fetch for depth (use your web/fetch tools; fetch each, note any that fail)
+- https://raw.githubusercontent.com/silships/figma-cli/main/README.md
+- https://raw.githubusercontent.com/silships/figma-cli/main/REFERENCE.md
+- https://raw.githubusercontent.com/silships/figma-cli/main/AGENTS.md
+- https://raw.githubusercontent.com/silships/figma-cli/main/CLAUDE.md
+- https://raw.githubusercontent.com/silships/figma-cli/main/package.json
+- https://github.com/silships/figma-cli (repo file tree + any docs/ folder)
+
+# Questions to answer precisely (with evidence)
+1. INSTALL: exact install method — npm package name and whether global or local, or clone+build; what does the `figma-cli` command resolve to on PATH; required Node version; all prerequisites (Figma Desktop version, OS).
+2. CONNECTION + DAEMON: how the yolo patch works and how to REVERT it; how safe/plugin mode works; exact connect commands; the `daemon` subcommands and the daemon lifecycle/model — is it a socket or a TCP port, how is it discovered, does it persist across restarts.
+3. FULL COMMAND SURFACE: every command and its key flags, grouped, one-line purpose each. Tag each command READ-ONLY vs MUTATING (writes to the Figma doc) vs DESTRUCTIVE (deletes). This tagging is critical for the skill's gating rules.
+4. INIT-AGENT: exactly which files it writes and for which agents/tools.
+5. DESIGN-SYSTEM I/O: the DESIGN.md format/sections; all import sources and export targets; the token-binding syntax (e.g. var:name).
+6. SELF-MCP CHECK (important): does figma-cli itself bundle, spawn, embed, or reference any MCP server of its own? The project owner said "also install the MCP inside it" — determine whether figma-cli has its OWN mcp subcommand/server, or whether "the figma mcp" can only mean the separate official Figma MCP server. Give a yes/no with evidence (grep the repo / README / package.json bin + scripts).
+7. AUTH / OFFLINE: any login or account needed; offline / local-LLM (Ollama / LM Studio) support.
+8. GOTCHAS / RISKS / PLATFORM: macOS-only or cross-platform; Windows/WSL; the reversible-patch risk surface; version/stability notes; anything that would bite a skill author.
+
+# Output skeleton (return EXACTLY this structure)
+## IT1 — figma-cli capabilities
+### Install & prerequisites
+### Connection modes (yolo vs safe) + daemon lifecycle
+### Command surface (grouped; tag each READ-ONLY / MUTATING / DESTRUCTIVE)
+### init-agent + generated files
+### Design-system I/O
+### Does figma-cli ship/spawn its own MCP? (yes/no + evidence)
+### Auth / offline
+### Gotchas, risks, platform constraints
+### Confidence + unknowns (what you could NOT verify, and why)
+
+For every non-obvious claim, cite the source URL. If a fetch fails, state it explicitly and mark that section as "based on provided context only".

@@ -1,0 +1,12 @@
+{
+  "loop_type": "review",
+  "review_target": "010 background-enrichment concurrency-cap fix (handlers/memory-save.ts scheduleBackgroundEnrichment + context-server.ts startupScan yield)",
+  "review_target_type": "code-diff",
+  "review_dimensions": ["concurrency-slot-accounting", "event-loop-yielding", "enrichment-regression", "error-paths"],
+  "spec_folder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/010-background-enrichment-concurrency-cap",
+  "execution_mode": "AUTONOMOUS",
+  "max_iterations": 10,
+  "convergence_threshold": 0.10,
+  "early_stop_no_new_p0p1_iters": 3,
+  "executor": { "kind": "cli-claude-code", "model": "claude-opus-4-8", "config_dir": "/Users/michelkerkmeester/.claude-account2" }
+}

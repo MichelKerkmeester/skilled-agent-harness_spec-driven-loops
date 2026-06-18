@@ -1,0 +1,24 @@
+## CONTEXT
+READ-ONLY code review. Do NOT edit/write. Spec folder ...146 pre-approved (Gate 3); read-only. Load sk-code-review + sk-code (OPENCODE). This change refines a 3-runtime agent-mirror drift checker so it stops false-flagging legitimate per-runtime text, and fixes one real drift.
+
+## OBJECTIVE (review dimension 2 of 5): mirror-sync normalizer change + the context drift fix
+The normalizer `normalizeRuntimeSpecificText` in `.opencode/skills/deep-improvement/scripts/lib/mirror-sync-verify.cjs` was extended so that legitimate per-runtime self-description (the "this runtime's mirror; the canonical source lives in .opencode/agents/" clause, and bare format extensions .md/.toml/.mdc) no longer registers as drift. Separately, `.codex/agents/context.toml` was edited to restore a dropped table row. The CRUX QUESTION: is the normalizer still CONSERVATIVE — i.e., does it now mask any REAL body drift?
+
+## STEPS
+- `git diff .opencode/skills/deep-improvement/scripts/lib/mirror-sync-verify.cjs` — read the added regex rules in full context of the function.
+- Read the whole `normalizeRuntimeSpecificText` + `compareBodyTokens` to understand how tokens are compared.
+- `git diff .codex/agents/context.toml` — read the restored row; compare to `.opencode/agents/context.md` line ~76.
+- Run `node .opencode/skills/deep-improvement/scripts/check-agent-mirror-sync.cjs --all` (read-only).
+
+## REVIEW FOR (cite file:line)
+- OVER-MASKING (the key risk): `.replace(/\.(?:toml|mdc|md)(?![A-Za-z0-9])/gi, '<runtime-format-ext>')` collapses EVERY ".md/.toml/.mdc" mention to one token — not just self-references. Could a REAL difference where one mirror legitimately references a different filename/extension now be hidden? Construct a concrete drift the checker would now MISS.
+- The `(this runtime.s mirror;[^)]*\)` regex: does it over-match (greedy/multiline)? Could it strip legitimate body text in some agent?
+- Ordering: the new rules run after the agent-path rules — is the comment's claim about ordering correct, and does it matter?
+- context.toml fix: is the restored row IDENTICAL to canonical (not approximately)? Did the fix introduce any new divergence?
+- Does the change weaken the gate's value (i.e., is the gate now too lenient to catch the drift it's meant to catch)?
+
+## FORMAT
+Terse, evidence-led, cite file:line. End with the fenced ```json block EXACTLY:
+```json
+{"seat":"rv-2","dimension":"mirror-normalizer-and-context-fix","findings":[{"id":"F1","severity":"P0|P1|P2","title":"","file":"path","line":"NN","evidence":"","recommendation":""}],"severityCounts":{"P0":0,"P1":0,"P2":0},"newInfoRatio":0.0}
+```

@@ -1,0 +1,99 @@
+{
+  "sessionId": "2026-06-17-028-007-memory-systems",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "openQuestions": [
+    {
+      "id": "question-1-q1-mem0-what-does-its-llm-memory-extraction-add-update-delete-consolidation-scor",
+      "text": "Q1: Mem0 — what does its LLM memory extraction + add/update/delete + consolidation/scoring add beyond aionforge's consolidation + the Memory MCP save path? Where would it map (`mcp_server/.../save`, `rrf-fusion.ts`)?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-q2-graphiti-does-its-bi-temporal-fact-graph-fact-invalidation-over-time-supersed",
+      "text": "Q2: Graphiti — does its bi-temporal fact graph + fact-invalidation-over-time SUPERSEDE or EXTEND 028's bi-temporal candidates (C3-x) and contradiction-detection? Cite Graphiti + internal `temporal-edges.ts`/`contradiction-detection.ts`.",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-q3-graphiti-does-its-hybrid-retrieval-semantic-keyword-graph-traversal-fusion-ad",
+      "text": "Q3: Graphiti — does its hybrid retrieval (semantic + keyword + graph traversal fusion) add a fusion technique beyond the 5-channel RRF / Advisor fusion?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-q4-letta-memgpt-do-self-editing-memory-tiers-core-in-context-blocks-archival-rec",
+      "text": "Q4: Letta/MemGPT — do self-editing memory tiers (core in-context blocks + archival + recall + char-limit eviction) map to Memory recall assembly / context budgeting / dominance cap (C7-A)?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-q5-cognee-does-its-ecl-extract-cognify-load-pipeline-entity-extraction-add-a-gra",
+      "text": "Q5: Cognee — does its ECL (extract-cognify-load) pipeline + entity extraction add a graph-build / dedup technique for the causal graph?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-6-q6-across-all-four-ranking-scoring-determinism-mem0-relevance-scoring-graphiti-e",
+      "text": "Q6: Across all four — ranking/scoring + determinism (Mem0 relevance scoring, Graphiti edge weighting, content-addressed memory ids) → Memory ranking determinism (C5) + Advisor.",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-7-q7-forgetting-decay-contradiction-resolution-mem0-selective-forgetting-graphiti-",
+      "text": "Q7: Forgetting/decay/contradiction-resolution (Mem0 selective forgetting, Graphiti invalidation) → Memory retention / forget-allowlist / FSRS.",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-8-q8-novelty-gate-what-do-these-four-encode-that-aionforge-galadriel-028-openltm-m",
+      "text": "Q8: NOVELTY GATE — what do these four encode that aionforge/galadriel (028) + OpenLTM/memclaw (027) do NOT already cover? Refute re-discoveries.",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-9-q9-cross-cutting-which-techniques-generalize-to-deep-loop-continuity-episode-pro",
+      "text": "Q9: Cross-cutting — which techniques generalize to Deep-Loop continuity (episode provenance, self-editing memory) + Skill-Advisor?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-10-q10-which-candidates-are-go-additive-reversible-vs-needs-benchmark-vs-no-transfe",
+      "text": "Q10: Which candidates are GO (additive/reversible) vs NEEDS-BENCHMARK vs NO-TRANSFER, ranked by leverage x effort?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "uncoveredQuestions": [
+    "Q1: Mem0 — what does its LLM memory extraction + add/update/delete + consolidation/scoring add beyond aionforge's consolidation + the Memory MCP save path? Where would it map (`mcp_server/.../save`, `rrf-fusion.ts`)?",
+    "Q2: Graphiti — does its bi-temporal fact graph + fact-invalidation-over-time SUPERSEDE or EXTEND 028's bi-temporal candidates (C3-x) and contradiction-detection? Cite Graphiti + internal `temporal-edges.ts`/`contradiction-detection.ts`.",
+    "Q3: Graphiti — does its hybrid retrieval (semantic + keyword + graph traversal fusion) add a fusion technique beyond the 5-channel RRF / Advisor fusion?",
+    "Q4: Letta/MemGPT — do self-editing memory tiers (core in-context blocks + archival + recall + char-limit eviction) map to Memory recall assembly / context budgeting / dominance cap (C7-A)?",
+    "Q5: Cognee — does its ECL (extract-cognify-load) pipeline + entity extraction add a graph-build / dedup technique for the causal graph?",
+    "Q6: Across all four — ranking/scoring + determinism (Mem0 relevance scoring, Graphiti edge weighting, content-addressed memory ids) → Memory ranking determinism (C5) + Advisor.",
+    "Q7: Forgetting/decay/contradiction-resolution (Mem0 selective forgetting, Graphiti invalidation) → Memory retention / forget-allowlist / FSRS.",
+    "Q8: NOVELTY GATE — what do these four encode that aionforge/galadriel (028) + OpenLTM/memclaw (027) do NOT already cover? Refute re-discoveries.",
+    "Q9: Cross-cutting — which techniques generalize to Deep-Loop continuity (episode provenance, self-editing memory) + Skill-Advisor?",
+    "Q10: Which candidates are GO (additive/reversible) vs NEEDS-BENCHMARK vs NO-TRANSFER, ranked by leverage x effort?"
+  ],
+  "keyFindings": [],
+  "ruledOutDirections": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "metrics": {
+    "iterationsCompleted": 22,
+    "openQuestions": 10,
+    "resolvedQuestions": 0,
+    "keyFindings": 0,
+    "convergenceScore": 0.5,
+    "coverageBySources": {}
+  },
+  "corruptionWarnings": [],
+  "status": "IN_PROGRESS"
+}

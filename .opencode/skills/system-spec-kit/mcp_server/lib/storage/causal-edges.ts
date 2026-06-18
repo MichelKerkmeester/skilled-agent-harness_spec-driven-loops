@@ -10,6 +10,9 @@ import { detectContradictions } from '../graph/contradiction-detection.js';
 import { ensureTemporalColumns } from '../graph/temporal-edges.js';
 import { isTemporalEdgesEnabled } from '../search/search-flags.js';
 import { runInTransaction } from './transaction-manager.js';
+import { sweepCausalEdges } from '../causal/sweep.js';
+import { bumpCausalEdgesGeneration, getCausalEdgesGeneration } from './causal-generation.js';
+import type { CausalEdgeSweepResult } from '../causal/sweep.js';
 
 /* ───────────────────────────────────────────────────────────────
    1. CONSTANTS
@@ -42,7 +45,7 @@ const RELATION_WEIGHTS: Record<string, number> = {
 const DEFAULT_MAX_DEPTH = 3;
 const MAX_EDGES_LIMIT = 100;
 
-// Edge bounds for the lightweight runtime path (NFR-R01, SC-005)
+// Edge bounds for the lightweight runtime path.
 const MAX_EDGES_PER_NODE = 20;
 const MAX_AUTO_STRENGTH = 0.5;
 const MAX_STRENGTH_INCREASE_PER_CYCLE = 0.05;
@@ -61,6 +64,17 @@ function parsePositiveIntegerEnv(name: string, fallback: number): number {
 
 function isFiniteNumber(value: unknown): value is number {
   return typeof value === 'number' && Number.isFinite(value);
+}
+
+/**
+ * Classify edge provenance as automatic. Covers the legacy 'auto' creator and
+ * namespaced automatic creators such as 'auto-session'. Shared by the insert
+ * cap path and the consolidation strengthening cap so the two sites cannot
+ * drift. Non-auto values ('manual', 'automatic', 'author') must not match.
+ */
+function isAutoEdgeCreator(createdBy: string | null | undefined): boolean {
+  return createdBy === 'auto'
+    || (typeof createdBy === 'string' && createdBy.startsWith('auto-'));
 }
 
 function clampStrength(strength: number): number | null {
@@ -139,6 +153,23 @@ interface GraphStats {
   uniqueTargets: number;
 }
 
+interface DeleteEdgeOptions {
+  reason?: string;
+  command?: string;
+  restoreContext?: Record<string, unknown>;
+}
+
+interface InsertEdgeMetadataOptions {
+  confidence?: number;
+  extractionMethod?: string;
+}
+
+interface InsertEdgeOutcome {
+  status: 'inserted' | 'updated' | 'skipped';
+  reason: string | null;
+  edgeId: number | null;
+}
+
 interface CausalChainNode {
   id: string;
   edgeId?: number;          // Preserve causal_edges.id for unlink workflow
@@ -155,6 +186,7 @@ interface CausalChainNode {
 ----------------------------------------------------------------*/
 
 let db: Database.Database | null = null;
+let lastInsertEdgeOutcome: InsertEdgeOutcome | null = null;
 
 /**
  * Monotonically-increasing generation counter bumped on every causal-edge
@@ -165,18 +197,15 @@ let db: Database.Database | null = null;
  *
  * targeted memory_search cache invalidation.
  */
-let causalEdgesGeneration = 0;
+// Counter lives in causal-generation.ts so the tombstone sweep (which this
+// module imports) can bump it without a circular import.
 
-function bumpCausalEdgesGeneration(): void {
-  // Wrap counter near MAX_SAFE_INTEGER to avoid overflow in ultra-long-lived
-  // Processes; consumers only compare for inequality, so wrapping is safe.
-  causalEdgesGeneration = causalEdgesGeneration >= Number.MAX_SAFE_INTEGER
-    ? 1
-    : causalEdgesGeneration + 1;
+function setLastInsertEdgeOutcome(outcome: InsertEdgeOutcome): void {
+  lastInsertEdgeOutcome = outcome;
 }
 
-function getCausalEdgesGeneration(): number {
-  return causalEdgesGeneration;
+function getLastInsertEdgeOutcome(): InsertEdgeOutcome | null {
+  return lastInsertEdgeOutcome;
 }
 
 function invalidateDegreeCache(): void {
@@ -186,7 +215,7 @@ function invalidateDegreeCache(): void {
   bumpCausalEdgesGeneration();
 
   try {
-    // H1 FIX: Use db-specific cache invalidation instead of the no-op global version
+    // Use db-specific cache invalidation instead of the no-op global version
     if (db) {
       clearDegreeCacheForDb(db);
     }
@@ -259,31 +288,36 @@ function insertEdge(
   shouldInvalidateCache: boolean = true,
   createdBy: string = 'manual',
   anchors: { sourceAnchor?: string | null; targetAnchor?: string | null } = {},
+  metadata: InsertEdgeMetadataOptions = {},
 ): number | null {
+  lastInsertEdgeOutcome = null;
   if (!db) {
     console.warn('[causal-edges] Database not initialized. Server may still be starting up.');
+    setLastInsertEdgeOutcome({ status: 'skipped', reason: 'database not initialized', edgeId: null });
     return null;
   }
   const database = db;
 
-  // NFR-R01: Auto edges capped at MAX_AUTO_STRENGTH
-  const effectiveStrength = createdBy === 'auto'
+  // Auto edges capped at MAX_AUTO_STRENGTH.
+  const effectiveStrength = isAutoEdgeCreator(createdBy)
     ? Math.min(strength, MAX_AUTO_STRENGTH)
     : strength;
 
   // Prevent self-loops
   if (sourceId === targetId) {
+    setLastInsertEdgeOutcome({ status: 'skipped', reason: 'self-loop', edgeId: null });
     return null;
   }
 
   // FK check deferred — test environments use synthetic IDs not in memory_index.
   // Implementing FK validation would require seeding memory_index in 20+ causal edge tests.
 
-  // NFR-R01: Edge bounds — reject if node already has MAX_EDGES_PER_NODE auto edges
-  if (createdBy === 'auto') {
+  // Edge bounds reject inserts when a node already has the maximum auto-edge count.
+  if (isAutoEdgeCreator(createdBy)) {
     const edgeCount = countEdgesForNode(sourceId);
     if (edgeCount >= MAX_EDGES_PER_NODE) {
       console.warn(`[causal-edges] Edge bounds: node ${sourceId} has ${edgeCount} edges (max ${MAX_EDGES_PER_NODE}), rejecting auto edge`);
+      setLastInsertEdgeOutcome({ status: 'skipped', reason: 'edge bounds exceeded', edgeId: null });
       return null;
     }
   }
@@ -292,6 +326,7 @@ function insertEdge(
     const clampedStrength = clampStrength(effectiveStrength);
     if (clampedStrength === null) {
       console.warn('[causal-edges] insertEdge rejected non-finite strength');
+      setLastInsertEdgeOutcome({ status: 'skipped', reason: 'non-finite strength', edgeId: null });
       return null;
     }
 
@@ -311,7 +346,7 @@ function insertEdge(
       // To write a weight_history row after the upsert. The subsequent INSERT
       // Uses last_insert_rowid() to avoid a second post-upsert SELECT.
       const existing = (database.prepare(`
-        SELECT id, strength FROM causal_edges
+        SELECT id, strength, evidence, created_by FROM causal_edges
         WHERE source_id = ? AND target_id = ? AND relation = ?
           AND COALESCE(source_anchor, '') = COALESCE(?, '')
           AND COALESCE(target_anchor, '') = COALESCE(?, '')
@@ -321,39 +356,62 @@ function insertEdge(
         relation,
         anchors.sourceAnchor ?? null,
         anchors.targetAnchor ?? null,
-      ) as { id: number; strength: number } | undefined;
+      ) as { id: number; strength: number; evidence: string | null; created_by: string | null } | undefined;
+
+      // Manual/curated edges must never be overwritten by automatic writers:
+      // an auto upsert against a non-auto row is skipped so curated provenance
+      // and strength survive. Auto-to-auto updates remain allowed under caps.
+      if (existing && isAutoEdgeCreator(createdBy) && !isAutoEdgeCreator(existing.created_by ?? 'manual')) {
+        console.warn(
+          `[causal-edges] skipped manual edge ${existing.id} (created_by=${existing.created_by ?? 'manual'}); skipped overwrite by ${createdBy}`,
+        );
+        setLastInsertEdgeOutcome({ status: 'skipped', reason: 'skipped manual edge', edgeId: existing.id });
+        return 0;
+      }
+
+      const columns = new Set((database.prepare('PRAGMA table_info(causal_edges)').all() as Array<{ name: string }>)
+        .map((column) => column.name));
 
       if (existing) {
+        const assignments = [
+          'strength = ?',
+          'evidence = COALESCE(?, evidence)',
+          'created_by = ?',
+        ];
+        const params: unknown[] = [clampedStrength, evidence, createdBy];
+        if (columns.has('confidence') && metadata.confidence !== undefined) {
+          assignments.push('confidence = ?');
+          params.push(metadata.confidence);
+        }
+        if (columns.has('extraction_method') && metadata.extractionMethod !== undefined) {
+          assignments.push('extraction_method = ?');
+          params.push(metadata.extractionMethod);
+        }
+        params.push(existing.id);
+
         (database.prepare(`
           UPDATE causal_edges
-          SET strength = ?,
-              evidence = COALESCE(?, evidence),
-              created_by = ?
+          SET ${assignments.join(',\n              ')}
           WHERE id = ?
-        `) as Database.Statement).run(
-          clampedStrength,
-          evidence,
-          createdBy,
-          existing.id,
-        );
+        `) as Database.Statement).run(...params);
+        setLastInsertEdgeOutcome({ status: 'updated', reason: null, edgeId: existing.id });
       } else {
         if (!enforceRelationWindowCap(relation, database)) {
+          setLastInsertEdgeOutcome({ status: 'skipped', reason: 'relation cap exceeded', edgeId: null });
           return 0;
         }
 
-        (database.prepare(`
-          INSERT INTO causal_edges (
-            source_id,
-            target_id,
-            source_anchor,
-            target_anchor,
-            relation,
-            strength,
-            evidence,
-            created_by
-          )
-          VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-        `) as Database.Statement).run(
+        const insertColumns = [
+          'source_id',
+          'target_id',
+          'source_anchor',
+          'target_anchor',
+          'relation',
+          'strength',
+          'evidence',
+          'created_by',
+        ];
+        const insertValues: unknown[] = [
           sourceId,
           targetId,
           anchors.sourceAnchor ?? null,
@@ -362,7 +420,22 @@ function insertEdge(
           clampedStrength,
           evidence,
           createdBy,
-        );
+        ];
+        if (columns.has('confidence') && metadata.confidence !== undefined) {
+          insertColumns.push('confidence');
+          insertValues.push(metadata.confidence);
+        }
+        if (columns.has('extraction_method') && metadata.extractionMethod !== undefined) {
+          insertColumns.push('extraction_method');
+          insertValues.push(metadata.extractionMethod);
+        }
+
+        (database.prepare(`
+          INSERT INTO causal_edges (
+            ${insertColumns.join(',\n            ')}
+          )
+          VALUES (${insertColumns.map(() => '?').join(', ')})
+        `) as Database.Statement).run(...insertValues);
       }
 
       const row = (database.prepare(`
@@ -378,6 +451,9 @@ function insertEdge(
         anchors.targetAnchor ?? null,
       ) as { id: number } | undefined;
       const rowId = row ? row.id : 0;
+      if (!existing && rowId) {
+        setLastInsertEdgeOutcome({ status: 'inserted', reason: null, edgeId: rowId });
+      }
 
       // Log weight change on conflict update
       if (existing && rowId && isFiniteNumber(existing.strength) && existing.strength !== clampedStrength) {
@@ -395,6 +471,7 @@ function insertEdge(
   } catch (error: unknown) {
     const msg = error instanceof Error ? error.message : String(error);
     console.warn(`[causal-edges] insertEdge error: ${msg}`);
+    setLastInsertEdgeOutcome({ status: 'skipped', reason: msg, edgeId: null });
     if (/SQLITE_BUSY|SQLITE_LOCKED|database is locked/i.test(msg)) {
       throw error;
     }
@@ -412,12 +489,15 @@ function insertEdgesBatch(
     createdBy?: string;
     sourceAnchor?: string | null;
     targetAnchor?: string | null;
+    confidence?: number;
+    extractionMethod?: string;
   }>
-): { inserted: number; failed: number } {
-  if (!db) return { inserted: 0, failed: edges.length };
+): { inserted: number; failed: number; skippedManual: number } {
+  if (!db) return { inserted: 0, failed: edges.length, skippedManual: 0 };
 
   let inserted = 0;
   let failed = 0;
+  let skippedManual = 0;
 
   const insertTx = db.transaction(() => {
     for (const edge of edges) {
@@ -433,9 +513,18 @@ function insertEdgesBatch(
           sourceAnchor: edge.sourceAnchor ?? null,
           targetAnchor: edge.targetAnchor ?? null,
         },
+        {
+          confidence: edge.confidence,
+          extractionMethod: edge.extractionMethod,
+        },
       );
       if (id !== null) inserted++;
-      else failed++;
+      else {
+        failed++;
+        if (getLastInsertEdgeOutcome()?.reason === 'skipped manual edge') {
+          skippedManual++;
+        }
+      }
     }
   });
 
@@ -449,7 +538,7 @@ function insertEdgesBatch(
     console.warn(`[causal-edges] insertEdgesBatch error: ${msg}`);
   }
 
-  return { inserted, failed };
+  return { inserted, failed, skippedManual };
 }
 
 function bulkInsertEdges(edges: Array<Record<string, unknown>>): { inserted: number; failed: number } {
@@ -740,17 +829,21 @@ function updateEdge(
   }
 }
 
-function deleteEdge(edgeId: number): boolean {
+function deleteEdge(edgeId: number, options: DeleteEdgeOptions = {}): boolean {
   if (!db) return false;
 
   try {
-    const result = (db.prepare(
-      'DELETE FROM causal_edges WHERE id = ?'
-    ) as Database.Statement).run(edgeId);
-    if ((result as { changes: number }).changes > 0) {
+    const result = sweepCausalEdges(db, {
+      edgeIds: [edgeId],
+      reason: options.reason ?? 'causal edge unlink',
+      command: options.command ?? 'causal_edges.deleteEdge',
+      restoreContext: options.restoreContext,
+      invalidateCaches: false,
+    });
+    if (result.deleted > 0) {
       invalidateDegreeCache();
     }
-    return (result as { changes: number }).changes > 0;
+    return result.deleted > 0;
   } catch (error: unknown) {
     const msg = error instanceof Error ? error.message : String(error);
     console.warn(`[causal-edges] deleteEdge error: ${msg}`);
@@ -761,17 +854,23 @@ function deleteEdge(edgeId: number): boolean {
 // Let errors propagate so callers inside transactions see failures.
 // Previously errors were caught and swallowed, which hid edge-cleanup failures
 // From transactional callers (e.g., memory-bulk-delete, memory-crud-delete).
-function deleteEdgesForMemory(memoryId: string): number {
+function deleteEdgesForMemory(memoryId: string, options: DeleteEdgeOptions = {}): number {
   if (!db) return 0;
 
-  const result = (db.prepare(`
-    DELETE FROM causal_edges
-    WHERE source_id = ? OR target_id = ?
-  `) as Database.Statement).run(memoryId, memoryId);
-  if ((result as { changes: number }).changes > 0) {
+  const result = sweepCausalEdges(db, {
+    memoryIds: [memoryId],
+    reason: options.reason ?? 'memory delete causal cleanup',
+    command: options.command ?? 'causal_edges.deleteEdgesForMemory',
+    restoreContext: {
+      memoryId,
+      ...(options.restoreContext ?? {}),
+    },
+    invalidateCaches: false,
+  });
+  if (result.deleted > 0) {
     invalidateDegreeCache();
   }
-  return (result as { changes: number }).changes;
+  return result.deleted;
 }
 
 /* ───────────────────────────────────────────────────────────────
@@ -826,22 +925,37 @@ function findOrphanedEdges(): CausalEdge[] {
 }
 
 // Automated orphan edge cleanup
-function cleanupOrphanedEdges(): { deleted: number } {
-  if (!db) return { deleted: 0 };
+function cleanupOrphanedEdges(): { deleted: number; tombstoned: number; edgeIds: number[] } {
+  if (!db) return { deleted: 0, tombstoned: 0, edgeIds: [] };
+  const database = db;
   try {
     const orphaned = findOrphanedEdges();
-    const deleted = runInTransaction(db, () => {
-      let count = 0;
-      for (const edge of orphaned) {
-        if (deleteEdge(edge.id)) count++;
+    const result = runInTransaction(database, () => {
+      if (orphaned.length === 0) {
+        return { deleted: 0, tombstoned: 0, edgeIds: [] };
       }
-      return count;
+      return sweepCausalEdges(database, {
+        edgeIds: orphaned.map((edge) => edge.id),
+        reason: 'orphan causal edge cleanup',
+        command: 'causal_edges.cleanupOrphanedEdges',
+        restoreContext: {
+          orphanedEndpoints: orphaned.map((edge) => ({
+            edgeId: edge.id,
+            sourceId: edge.source_id,
+            targetId: edge.target_id,
+          })),
+        },
+        invalidateCaches: false,
+      });
     });
-    return { deleted };
+    if (result.deleted > 0) {
+      invalidateDegreeCache();
+    }
+    return { deleted: result.deleted, tombstoned: result.tombstoned, edgeIds: result.edgeIds };
   } catch (error: unknown) {
     const msg = error instanceof Error ? error.message : String(error);
     console.warn(`[causal-edges] cleanupOrphanedEdges error: ${msg}`);
-    return { deleted: 0 };
+    return { deleted: 0, tombstoned: 0, edgeIds: [] };
   }
 }
 
@@ -995,7 +1109,7 @@ function rollbackWeights(edgeId: number, toTimestamp: string): boolean {
 }
 
 /* ───────────────────────────────────────────────────────────────
-   11. EDGE BOUNDS & COUNTING (N3-lite NFR-R01)
+   11. EDGE BOUNDS & COUNTING
 ----------------------------------------------------------------*/
 
 function countEdgesForNode(nodeId: string): number {
@@ -1056,6 +1170,8 @@ export {
   DECAY_PERIOD_DAYS,
 
   init,
+  isAutoEdgeCreator,
+  getLastInsertEdgeOutcome,
   enforceRelationWindowCap,
   insertEdge,
   insertEdgesBatch,
@@ -1084,6 +1200,7 @@ export {
 
   // Generation counter for memory_search cache invalidation
   getCausalEdgesGeneration,
+  bumpCausalEdgesGeneration,
 };
 
 /**
@@ -1096,4 +1213,5 @@ export type {
   WeightHistoryEntry,
   GraphStats,
   CausalChainNode,
+  CausalEdgeSweepResult,
 };

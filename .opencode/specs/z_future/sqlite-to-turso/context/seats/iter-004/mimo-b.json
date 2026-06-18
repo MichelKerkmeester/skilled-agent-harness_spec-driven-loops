@@ -1,0 +1,174 @@
+{
+  "findings": [
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts",
+      "symbol": "initLedger",
+      "kind": "integration_point",
+      "signature": "db.exec(LEDGER_SCHEMA_SQL); db.exec(LEDGER_INDEX_SQL); db.exec(LEDGER_TRIGGER_SQL)",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:143",
+      "relevance": 0.95,
+      "notes": "Three db.exec calls use raw SQL DDL including CREATE TRIGGER with BEFORE UPDATE/DELETE and RAISE(ABORT). Turso lacks CREATE TRIGGER support; append-only enforcement must move to application layer."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts",
+      "symbol": "LEDGER_INDEX_SQL",
+      "kind": "dependency",
+      "signature": "CREATE INDEX ... ON mutation_ledger(CAST(json_extract(linked_memory_ids, '$[0]') AS INTEGER), mutation_type, timestamp)",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:125",
+      "relevance": 0.9,
+      "notes": "Index expression uses json_extract and CAST inside CREATE INDEX. Turso does not support json_extract in index expressions; must denormalize or drop this index."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts",
+      "symbol": "LEDGER_TRIGGER_SQL",
+      "kind": "dependency",
+      "signature": "CREATE TRIGGER prevent_ledger_update BEFORE UPDATE ON mutation_ledger BEGIN SELECT RAISE(ABORT, ...) END",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:132",
+      "relevance": 0.95,
+      "notes": "BEFORE UPDATE and BEFORE DELETE triggers with RAISE(ABORT) enforce append-only. Turso has no trigger support; immutability must be enforced in application code."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts",
+      "symbol": "appendEntry",
+      "kind": "integration_point",
+      "signature": "INSERT INTO mutation_ledger (mutation_type, reason, prior_hash, new_hash, linked_memory_ids, decision_meta, actor, session_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:165",
+      "relevance": 0.4,
+      "notes": "Standard INSERT; lastInsertRowid cast to number. Compatible with Turso but must verify BigInt handling differs from better-sqlite3."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts",
+      "symbol": "getLinkedEntries",
+      "kind": "dependency",
+      "signature": "SELECT ml.* FROM mutation_ledger ml, json_each(ml.linked_memory_ids) je WHERE je.value = ?",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:293",
+      "relevance": 0.9,
+      "notes": "Uses json_each() table-valued function to expand JSON arrays in JOIN. Turso does not support json_each; must denormalize linked_memory_ids into a junction table."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts",
+      "symbol": "getDivergenceReconcileAttemptCount",
+      "kind": "dependency",
+      "signature": "SELECT COUNT(*) AS cnt FROM mutation_ledger WHERE json_extract(decision_meta, '$.normalizedPath') = ?",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:361",
+      "relevance": 0.85,
+      "notes": "WHERE clause uses json_extract on decision_meta column. Turso lacks json_extract; must extract normalizedPath into a dedicated column."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts",
+      "symbol": "verifyAppendOnly",
+      "kind": "integration_point",
+      "signature": "SELECT name FROM sqlite_master WHERE type = 'trigger' AND tbl_name = 'mutation_ledger'",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:310",
+      "relevance": 0.8,
+      "notes": "Queries sqlite_master for trigger existence. Turso sqlite_master may not list triggers if unsupported; verification logic needs rework."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts",
+      "symbol": "recordDivergenceReconcileHook",
+      "kind": "reuse_candidate",
+      "signature": "runInTransaction(db, () => { ... appendEntry(...) ... appendEntry(...) ... })",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts:440",
+      "relevance": 0.5,
+      "notes": "Wraps read-then-append in runInTransaction. Turso transactions work differently (HTTP-based); retry logic must adapt."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts",
+      "symbol": "updateFileMtime",
+      "kind": "integration_point",
+      "signature": "UPDATE memory_index SET file_mtime_ms = ? WHERE canonical_file_path = ? OR file_path = ?",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts:240",
+      "relevance": 0.3,
+      "notes": "Standard UPDATE with OR predicate. Compatible with Turso; verify statement preparation API matches."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts",
+      "symbol": "reconcileMoves",
+      "kind": "integration_point",
+      "signature": "UPDATE memory_index SET file_path=?, canonical_file_path=?, spec_folder=?, file_mtime_ms=?, updated_at=datetime('now') WHERE id=? AND embedding_status != 'failed'",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts:632",
+      "relevance": 0.35,
+      "notes": "Uses datetime('now') in SET clause and prepared statement .run(). Compatible with Turso datetime(); verify lastInsertRowid behavior."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts",
+      "symbol": "batchUpdateMtimes",
+      "kind": "reuse_candidate",
+      "signature": "const updateTx = db.transaction(() => { ... setIndexedMtime(filePath) ... }); updateTx()",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts:665",
+      "relevance": 0.45,
+      "notes": "Uses better-sqlite3 synchronous db.transaction() wrapper. Turso uses async transactions over HTTP; must convert to async."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts",
+      "symbol": "hasCanonicalPathColumn",
+      "kind": "convention",
+      "signature": "db.prepare('PRAGMA table_info(memory_index)').all()",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts:98",
+      "relevance": 0.7,
+      "notes": "PRAGMA table_info for schema introspection. Turso/libSQL may return different PRAGMA result shapes; verify compatibility."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/idempotency-receipts.ts",
+      "symbol": "storeIdempotencyReceipt",
+      "kind": "integration_point",
+      "signature": "INSERT INTO memory_idempotency_receipts (...) VALUES (...) ON CONFLICT(receipt_key) DO UPDATE SET response_payload=excluded.response_payload, memory_id=excluded.memory_id, updated_at=datetime('now')",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/idempotency-receipts.ts:156",
+      "relevance": 0.3,
+      "notes": "INSERT ON CONFLICT DO UPDATE (upsert) with datetime('now'). Turso supports upsert; verify .run() return shape matches better-sqlite3."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/near-duplicate.ts",
+      "symbol": "clearNearDuplicateCheck",
+      "kind": "integration_point",
+      "signature": "UPDATE memory_index SET near_duplicate_of = NULL, last_dedup_checked_at = NULL WHERE id = ?",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/near-duplicate.ts:79",
+      "relevance": 0.3,
+      "notes": "Standard UPDATE with NULL assignments. Compatible with Turso; low migration friction."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/near-duplicate.ts",
+      "symbol": "recordNearDuplicateCheck",
+      "kind": "integration_point",
+      "signature": "UPDATE memory_index SET near_duplicate_of = ?, last_dedup_checked_at = datetime('now') WHERE id = ?",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/near-duplicate.ts:144",
+      "relevance": 0.3,
+      "notes": "UPDATE with datetime('now') and JSON.stringify of hint. Compatible with Turso; low migration friction."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/observability/retrieval-observability.ts",
+      "symbol": "findInlineConflictWarnings",
+      "kind": "dependency",
+      "signature": "SELECT source_id, target_id, relation FROM causal_edges WHERE relation IN ('contradicts','supersedes') AND source_id IN (?) AND target_id IN (?)",
+      "reuse": "compose",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/observability/retrieval-observability.ts:208",
+      "relevance": 0.25,
+      "notes": "Read-only query on causal_edges with IN-list and string interpolation for placeholders. Compatible with Turso; uses prepared statement."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/statediff.ts",
+      "symbol": "applyStatediffActions",
+      "kind": "convention",
+      "signature": "async applyStatediffActions(actions, sinks) → await sink.apply(action) for each ordered action",
+      "reuse": "compose",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/statediff.ts:205",
+      "relevance": 0.5,
+      "notes": "Async sink-based write dispatch. Already async-native; Turso async transaction model fits naturally. Sinks own the actual SQL."
+    }
+  ]
+}

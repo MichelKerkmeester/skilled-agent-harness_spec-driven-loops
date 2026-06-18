@@ -44,11 +44,9 @@ import { addTraceEntry } from '@spec-kit/shared/contracts/retrieval-trace';
 // Feature catalog: Confidence-based result truncation
 
 
-// ───────────────────────────────────────────────────────────────
-// 2. CONSTANTS
-
-
-// ───────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────
+   1. CONSTANTS
+   ──────────────────────────────────────────────────────────────── */
 /**
  * Memory state priority map. Higher number = higher priority.
  * Used to compare states numerically so filtering is O(1) per row.
@@ -96,11 +94,9 @@ function resolveStateForFiltering(row: Stage4ReadonlyRow): string {
   return 'UNKNOWN';
 }
 
-// ───────────────────────────────────────────────────────────────
-// 3. TYPES
-
-
-// ───────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────
+   2. TYPES
+   ──────────────────────────────────────────────────────────────── */
 /**
  * Per-state tally produced by `filterByMemoryState`.
  * Keys are state names (e.g. "HOT", "WARM"); values are counts.
@@ -196,7 +192,7 @@ export function filterByMemoryState(
 }
 
 /* ───────────────────────────────────────────────────────────────
-   4. INTERNAL: extractScoringValues
+   4. INTERNAL: extractScoringValue
    ──────────────────────────────────────────────────────────────── */
 
 /**
@@ -204,9 +200,9 @@ export function filterByMemoryState(
  * analysis. Delegates to resolveEffectiveScore (canonical chain in types.ts)
  * so scoring, sorting, and filtering all agree on precedence and normalization.
  *
- * A1 FIX: Previously used a different precedence order (rrfScore first) and
- * did NOT divide similarity by 100, causing a 100x scale mismatch on rows
- * that only had the similarity field set.
+ * Previously used a different precedence order (rrfScore first) and did NOT
+ * divide similarity by 100, causing a scale mismatch on rows that only had
+ * the similarity field set.
  *
  * @param row - A Stage4ReadonlyRow to inspect.
  * @returns The best available numeric score clamped to [0,1], or 0.
@@ -350,11 +346,9 @@ export async function executeStage4(input: Stage4Input): Promise<Stage4Output> {
   };
 }
 
-// ───────────────────────────────────────────────────────────────
-// 4. TEST SURFACE
-
-
-// ───────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────
+   6. TEST SURFACE
+   ──────────────────────────────────────────────────────────────── */
 /**
  * Exported internals for unit testing.
  * Not intended for production use outside the test harness.

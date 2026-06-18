@@ -1,0 +1,328 @@
+# Memory Search Presentation Contract
+
+Single source of truth for `/memory:search` startup questions, analysis dashboards, and result displays.
+
+Register (COSTAR): these contracts are written objective-first for an automated-pipeline audience — fixed response shapes, no preamble, no conversational framing inside the rendered block. This is the wording style of the contract itself, not a prompt framework imposed on callers.
+
+## Template Index
+
+Start with the matching render contract before drafting any response:
+
+- Retrieval results: Section 2, `MEMORY:SEARCH "<query>" ... STATUS=OK RESULTS=<count>`.
+- Empty results: Section 3, trigger fallback and constitutional rows.
+- Analysis overview: Section 5.
+- Analysis subcommands: Section 6.
+- Errors: Section 7.
+
+## 1. Startup Question Policy
+
+This section applies ONLY when the command's `ARGUMENT RESOLUTION` header reported `ARGS_PRESENT=false`. If `ARGS_PRESENT=true`, skip this section entirely and render the retrieval or analysis result for the resolved `QUERY` — never ask the startup question over a populated query.
+
+When `ARGS_PRESENT=false` (bare invocation), ask one open-ended question:
+
+```text
+What would you like to retrieve or analyze?
+```
+
+Accept any natural-language answer as the retrieval query. Do not dump the full intent or subcommand menu at startup.
+
+Ask a targeted follow-up only when genuinely ambiguous:
+
+| Ambiguity | Targeted question |
+| --- | --- |
+| User asks for `history` without a folder | `Which spec folder should I show learning history for?` |
+| User asks for `causal` without an id | `Which spec-doc record ID should I trace?` |
+| User asks for `preflight` or `postflight` without required fields | `Which spec folder and task id should I use?` |
+| User says `dashboard` or `ablation` | Route directly to analysis mode. |
+
+If the user asks what is available, show the analysis overview in Section 5.
+
+## 2. Retrieval Result Display
+
+Use compact, parseable output for model dispatch. No option dumps, score bars, long previews, or hidden metadata unless trace was requested.
+
+```text
+MEMORY:SEARCH "<query>" intent=<detected_intent> results=<count>
+--------------------------------------------------
+<leaf-folder>/
+  <score>  #<id>  <title>
+  <score>  #<id>  <title>
+
+<leaf-folder>/
+  <score>  #<id>  <title>
+
+STATUS=OK RESULTS=<count> INTENT=<detected_intent>
+```
+
+Filled example:
+
+```text
+MEMORY:SEARCH "deep research remediation handover" intent=find_spec results=3
+--------------------------------------------------
+L8-command-adherence/
+  0.91  #1842  Command adherence remediation handover
+  0.87  #1819  Dynamic presentation contract findings
+
+029-deep-research-remediation/
+  0.74  #1763  Research-based refinement implementation summary
+
+STATUS=OK RESULTS=3 INTENT=find_spec
+```
+
+Field mapping:
+
+| Source field | Template slot |
+| --- | --- |
+| User query or `memory_context.input` | `"<query>"` |
+| Detected or explicit intent | `intent=<detected_intent>` and `INTENT=<detected_intent>` |
+| Returned result count | `results=<count>` and `RESULTS=<count>` |
+| `result.specFolder` leaf | `<leaf-folder>/` |
+| `result.score`, `result.similarity`, or normalized relevance score | `<score>` — render as 0–1 similarity with two decimals (`0.79`, never `79.44`; divide percentage-scaled scores by 100) |
+| `result.id` or `result.memory_id` | `#<id>` |
+| `result.title` | `<title>` |
+
+Core-slot mandate (all five, every result, every surface):
+- `"<query>"` query echo
+- `<score>` similarity
+- `#<id>`
+- `<title>`
+- `STATUS` footer carrying `RESULTS` and `INTENT`
+
+None of the five is optional. Render every one for any non-empty result set; the only omission path is the empty-result fallback in Section 3.
+
+Score mandate — one score, one scale, one name:
+- The sole ranking metric is `similarity`, on a 0–1 scale, two decimals (`0.79`). It is the only score shown per row.
+- BANNED in rendered output: `confidence` as a metric name, and any percentage score. Divide a percentage-scaled value by 100 before emitting (`79.44` → `0.79`).
+- Do not add a second ranking number under any other name, and do not relabel `similarity` as `confidence`.
+
+Surface-parity clause:
+- The core-slot set and the 0–1 / two-decimal similarity scale are mandatory on every surface: `--command` dispatch, a direct prompt, and natural conversation.
+- Conversational answers may wrap the block in prose, but the field set, field names, and scale do not change — two surfaces return comparable, diffable rows for the same result.
+
+Named optional fields:
+- `requestQuality` and `citationPolicy` are the only sanctioned extras beyond the core slots.
+- When present, render each as a named trailing field between the scored result block and the `STATUS` footer, so the footer stays the terminal line:
+
+```text
+<leaf-folder>/
+  <score>  #<id>  <title>
+
+requestQuality <value>
+citationPolicy <value>
+
+STATUS=OK RESULTS=<count> INTENT=<detected_intent>
+```
+
+- Absence is valid. When present, use these exact field names — never an unnamed, renamed, or ad-hoc metric, and never folded into the `<score>` slot.
+
+Folder display rules:
+- Group by spec folder.
+- Show only the leaf folder name unless two leaves collide.
+- Each result line shows only score, id, and title.
+- Include trace/provenance only when requested or needed to explain a degraded result.
+
+Truncation-resilient rendering:
+- When `meta.tokenBudgetTruncated` is true (or `meta.returnedResultCount` < `meta.originalResultCount`),
+  the fully-materialized `data.results` array was trimmed to fit the token budget — it is NOT the
+  true result count. Render every entry from `data.progressiveDisclosure.results` (id + title from
+  the snippet), not just the 1–2 detailed rows that survived truncation. Use `meta.originalResultCount`
+  for `results=<count>`.
+- Constitutional rows are context, not ranked hits: exclude any result whose `isConstitutional` is
+  true (or `importanceTier` is `constitutional`) from the ranked block. List them, if relevant, under
+  a separate `Constitutional rules` heading — never as scored result lines.
+
+## 3. Empty Result Fallback
+
+```text
+MEMORY:SEARCH "<query>" intent=<detected_intent> results=0
+--------------------------------------------------
+No spec-doc records matched this query via semantic or lexical search.
+
+Trigger-matched spec-doc records
+  <leaf-folder>/
+    #<id>  <title>
+
+Constitutional rules
+  #<id>  <title>
+
+STATUS=OK RESULTS=0 TRIGGERED=<n> CONSTITUTIONAL=<n>
+```
+
+After the block, ask at most one clarifying follow-up if the query was broad.
+
+## 4. Forbidden Vocabulary
+
+Never emit legacy labels that combine trigger wording with the generic noun `memory` or `memories`, and never label constitutional rows with the generic noun `memory` or `memories`.
+
+Required labels:
+- Trigger fallback rows: `Trigger-matched spec-doc records` or `Trigger-matched spec-doc record`.
+- Constitutional rows: `Constitutional rules` or `Constitutional rule`.
+- Generic result-class label: `Spec-doc record`.
+
+Pre-render gate: scan the candidate output case-insensitively for legacy trigger labels and legacy constitutional-result labels, then rewrite them before emitting.
+
+## 5. Analysis Overview
+
+Show only when requested or when the user selected analysis tools.
+
+```text
+MEMORY:SEARCH ANALYSIS
+--------------------------------------------------
+Epistemic
+  preflight <specFolder> <taskId>
+  postflight <specFolder> <taskId>
+  history <specFolder>
+
+Causal graph
+  causal <memoryId>
+  link <sourceId> <targetId> <relation>
+  unlink <edgeId>
+  causal-stats
+
+Evaluation
+  ablation
+  dashboard
+
+STATUS=OK ACTION=overview
+```
+
+## 6. Analysis Result Displays
+
+### Preflight
+
+```text
+MEMORY:SEARCH PREFLIGHT
+--------------------------------------------------
+Spec        <specFolder>
+Task        <taskId>
+Knowledge   <score>/100
+Uncertainty <score>/100
+Context     <score>/100
+
+Gaps
+- <gap>
+
+STATUS=OK ACTION=preflight
+```
+
+### Postflight
+
+```text
+MEMORY:SEARCH POSTFLIGHT
+--------------------------------------------------
+Spec        <specFolder>
+Task        <taskId>
+Knowledge   <pre> -> <post> (delta <delta>)
+Uncertainty <pre> -> <post> (delta <delta>)
+Context     <pre> -> <post> (delta <delta>)
+Learning    <value> (<interpretation>)
+
+STATUS=OK ACTION=postflight LI=<value>
+```
+
+### History
+
+```text
+MEMORY:SEARCH HISTORY
+--------------------------------------------------
+Spec        <specFolder>
+Records     <count>
+
+<taskId>  K <pre>-><post>  U <pre>-><post>  C <pre>-><post>  LI <value>
+
+STATUS=OK ACTION=history
+```
+
+### Causal
+
+```text
+MEMORY:SEARCH CAUSAL
+--------------------------------------------------
+Record      #<id> "<title>"
+Depth       <maxDepth>
+Direction   <direction>
+
+Chain
+- #<id> "<title>" --<relation>--> #<id2> "<title2>"
+
+STATUS=OK ACTION=causal EDGES=<count>
+```
+
+### Link and Unlink
+
+```text
+MEMORY:SEARCH LINK
+--------------------------------------------------
+Source      #<sourceId>
+Target      #<targetId>
+Relation    <relation>
+
+STATUS=OK ACTION=link
+```
+
+```text
+MEMORY:SEARCH UNLINK
+--------------------------------------------------
+Removed     Edge #<edgeId>
+
+STATUS=OK ACTION=unlink
+```
+
+### Causal Stats
+
+```text
+MEMORY:SEARCH CAUSAL-STATS
+--------------------------------------------------
+Total Edges <count>
+Coverage    <pct>% (<linked>/<total> spec-doc records)
+
+By relation
+caused       <count>
+enabled      <count>
+supersedes   <count>
+contradicts  <count>
+derived_from <count>
+supports     <count>
+
+STATUS=OK ACTION=causal-stats COVERAGE=<pct>%
+```
+
+### Evaluation
+
+```text
+MEMORY:SEARCH ABLATION
+--------------------------------------------------
+Recall@<K> deltas
+-vector   <delta>
+-bm25     <delta>
+-fts5     <delta>
+-graph    <delta>
+-trigger  <delta>
+
+STATUS=OK ACTION=ablation
+```
+
+```text
+MEMORY:SEARCH DASHBOARD
+--------------------------------------------------
+Sprint trends
+<sprint>  Recall@20 <value>  MRR <value>
+
+Channel performance
+vector <value>
+bm25   <value>
+fts5   <value>
+
+STATUS=OK ACTION=dashboard
+```
+
+## 7. Error Display
+
+```text
+MEMORY:SEARCH
+--------------------------------------------------
+FAIL        <short reason>
+Recovery    <next safe action>
+
+STATUS=FAIL ERROR="<message>"
+```

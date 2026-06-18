@@ -38,15 +38,15 @@ Validate that `lib/scorer/projection.ts` projects `skill_nodes` and `skill_edges
 advisor_recommend({"prompt":"help me commit my changes","options":{"includeAttribution":true}})
 ```
 
-2. In the response, inspect the `graph_causal` lane attribution for a projected node list.
+2. In the response, inspect the lane attribution: laneBreakdown entries expose exactly lane, rawScore, weightedScore, weight, and shadowOnly (the strict schema; projected node ids and edge types are not part of the shipped response).
 3. Search the projected output for any fragment of the input prompt.
 4. Run `advisor_validate` and inspect the parity slice against Python fallback to confirm projection consistency.
 
 ### Expected Signals
 
-- Projection exposes only documented fields (node ids, edge types, weights).
+- Lane attribution exposes only the documented laneBreakdown fields (lane, rawScore, weightedScore, weight, shadowOnly).
 - No substring of the input prompt appears in projection metadata.
-- The number of projected nodes is bounded and consistent across equivalent calls.
+- The laneBreakdown is bounded and consistent across equivalent calls.
 - Parity slice in `advisor_validate` shows zero regressions on Python-correct prompts.
 
 ### Failure Modes
@@ -54,7 +54,7 @@ advisor_recommend({"prompt":"help me commit my changes","options":{"includeAttri
 | Symptom | Detection | Action |
 | --- | --- | --- |
 | Prompt fragment in projection | Grep for prompt substring hits | Block release as privacy failure. |
-| Unbounded projection | Graph_causal attribution grows with prompt length | Inspect projection caps in `projection.ts`. |
+| Unbounded projection | Graph_causal attribution grows with prompt length | Inspect traversal bounds in `mcp_server/lib/scorer/lanes/graph-causal.ts`; `projection.ts` only clamps stored edge weights. |
 | Parity regression | Python-correct cases now fail | Audit projection logic for divergence from Python expectation. |
 
 ---

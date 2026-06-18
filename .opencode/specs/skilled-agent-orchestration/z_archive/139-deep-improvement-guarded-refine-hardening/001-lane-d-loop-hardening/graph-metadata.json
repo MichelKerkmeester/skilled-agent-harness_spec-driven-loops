@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/139-deep-improvement-guarded-refine-hardening/001-lane-d-loop-hardening",
+  "spec_folder": "skilled-agent-orchestration/z_archive/139-deep-improvement-guarded-refine-hardening/001-lane-d-loop-hardening",
+  "parent_id": "skilled-agent-orchestration/z_archive/139-deep-improvement-guarded-refine-hardening",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "take",
+      "packaging-side",
+      "loop",
+      "host",
+      "packaging-root",
+      "pilot",
+      "barter",
+      "copywriter",
+      "live-validated",
+      "prototype",
+      "production",
+      "grade"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Hardening",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Goal Take",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "N",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "TTL",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "flag",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Take the packaging-side loop host (`<packaging-root>/_loop/loop.py`, pilot at `Barter/Copywriter/_loop/loop.py`) from \"live-validated prototype\" to production grade: resumable, session-kill-safe, portable, observable, with the promotion-accept path proven by a controlled live firing.",
+    "created_at": "2026-06-18T12:37:48.873Z",
+    "last_save_at": "2026-06-18T12:37:48.873Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

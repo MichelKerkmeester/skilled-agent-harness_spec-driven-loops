@@ -15,10 +15,10 @@ function readWorkspaceFile(relativePath: string): string {
 describe('deep-review reducer and schema contract', () => {
   it('keeps reducer, severity, and release-readiness schemas stable in the canonical assets', () => {
     const contract = yaml.load(
-      readWorkspaceFile('.opencode/skills/deep-review/assets/review_mode_contract.yaml'),
+      readWorkspaceFile('.opencode/skills/deep-loop-workflows/deep-review/assets/review_mode_contract.yaml'),
     ) as Record<string, any>;
     const config = JSON.parse(
-      readWorkspaceFile('.opencode/skills/deep-review/assets/deep_review_config.json'),
+      readWorkspaceFile('.opencode/skills/deep-loop-workflows/deep-review/assets/deep_review_config.json'),
     ) as Record<string, any>;
 
     expect(contract.contract.severities.map((item: { id: string }) => item.id)).toEqual(['P0', 'P1', 'P2']);
@@ -62,8 +62,8 @@ describe('deep-review reducer and schema contract', () => {
   });
 
   it('wires reducer refresh and machine-owned report guidance into both review workflows', () => {
-    const autoYaml = readWorkspaceFile('.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml');
-    const confirmYaml = readWorkspaceFile('.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml');
+    const autoYaml = readWorkspaceFile('.opencode/commands/deep/assets/deep_review_auto.yaml');
+    const confirmYaml = readWorkspaceFile('.opencode/commands/deep/assets/deep_review_confirm.yaml');
 
     for (const [docPath, content] of [
       ['auto', autoYaml],
@@ -83,7 +83,7 @@ describe('deep-review reducer and schema contract', () => {
         'deep-review-findings-registry.json',
       );
       expect(content, `${docPath} workflow should invoke the reducer script`).toContain(
-        'node .opencode/skills/deep-review/scripts/reduce-state.cjs',
+        'node .opencode/skills/deep-loop-workflows/deep-review/scripts/reduce-state.cjs',
       );
       expect(content, `${docPath} workflow should treat reducer reruns as idempotent`).toMatch(/[Ii]dempotent/);
       expect(content, `${docPath} workflow should carry release readiness through synthesis`).toContain(
@@ -105,9 +105,9 @@ describe('deep-review reducer and schema contract', () => {
   });
 
   it('documents reducer metrics and machine-owned report boundaries in the review references', () => {
-    const stateFormat = readWorkspaceFile('.opencode/skills/deep-review/references/state/state_format.md');
-    const loopProtocol = readWorkspaceFile('.opencode/skills/deep-review/references/protocol/loop_protocol.md');
-    const convergence = readWorkspaceFile('.opencode/skills/deep-review/references/convergence/convergence.md');
+    const stateFormat = readWorkspaceFile('.opencode/skills/deep-loop-workflows/deep-review/references/state/state_format.md');
+    const loopProtocol = readWorkspaceFile('.opencode/skills/deep-loop-workflows/deep-review/references/protocol/loop_protocol.md');
+    const convergence = readWorkspaceFile('.opencode/skills/deep-loop-workflows/deep-review/references/convergence/convergence.md');
 
     expect(stateFormat).toContain('deep-review-findings-registry.json');
     expect(stateFormat).toContain('releaseReadinessState');

@@ -1,6 +1,13 @@
 ---
 title: Phase Detection and Lifecycle
 description: Phase 1/2/3 development lifecycle (Implementation / Testing+Debugging / Verification) with per-surface resource expectations.
+trigger_phrases:
+  - "sk-code phase lifecycle"
+  - "phase detection routing"
+  - "implementation testing verification phases"
+  - "per surface phase map"
+importance_tier: normal
+contextType: general
 ---
 
 # Router Reference - Phase Lifecycle
@@ -28,8 +35,8 @@ Phase lifecycle defines the gated progression from research through verification
 
 ### Key Sources
 
-- [code_surface_detection.md](./stack_detection.md)
-- [intent_classification.md](./smart_routing.md)
+- [stack_detection.md](./stack_detection.md) — surface detection and OPENCODE language sub-detection
+- [smart_routing.md](./smart_routing.md) — intent classification and resource maps
 
 ---
 
@@ -86,7 +93,7 @@ OPENCODE previously had standards-only behavior. In the merged `sk-code`, it rec
 
 ## 6. TRANSITIONS
 
-- 0 -> 1: enough context and plan exists.
+- 0 -> 1: enough context and plan exists, and — for implementation intent — the laziest viable rung of the Design Restraint Ladder (see universal code quality standards) has been selected.
 - 1 -> 1.5: code written or modified.
 - 1.5 -> 2: P0 quality issue or failing check found.
 - 2 -> 1.5: fix applied.
@@ -98,6 +105,5 @@ OPENCODE previously had standards-only behavior. In the merged `sk-code`, it rec
 
 ## 7. RELATED RESOURCES
 
-- [code_surface_detection.md](./stack_detection.md)
-- [intent_classification.md](./smart_routing.md)
-- [resource_loading.md](./smart_routing.md)
+- [stack_detection.md](./stack_detection.md) — surface detection and OPENCODE language sub-detection
+- [smart_routing.md](./smart_routing.md) — intent classification, resource maps, and load tiers

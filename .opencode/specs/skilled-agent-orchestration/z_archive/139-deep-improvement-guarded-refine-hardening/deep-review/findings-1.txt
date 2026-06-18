@@ -1,0 +1,13 @@
+[0m
+> build · mimo-v2.5-pro
+[0m
+[0m→ [0mRead /Users/michelkerkmeester/MEGA/Development/AI_Systems/Barter/Copywriter/_loop/loop.py
+P1|loop.py|Division by zero in score averaging|line 534: `sum(...) / max(1, len(scored))` — `max(1,...)` silently produces 0.0 instead of signaling n=0, but `self_avg` at line 536 uses the same pattern; the real issue is `gap = self_avg - indep` becomes 0.0−0.0 = 0.0 when nothing graded, fabricating a phantom-gap of zero and potentially triggering "noTarget" exit or "converged" with no evidence.
+
+P1|loop.py|Convergence misses stuck-below-target plateau|line 429: `if last3[-1] >= TARGET_INDEP and not improving and not gap_shrinking` — when indep stabilizes below 19 AND the phantom-gap stops shrinking, `check_convergence` returns "continue", wasting all remaining iterations on a dead loop until `maxIterationsReached` instead of stopping at "stuckRecovery".
+
+P2|loop.py|Population std dev in aggregation|line 239: divides by `n` (population formula) instead of `n-1` (sample formula); at SAMPLES=3 this underestimates noise by ~22%, masking whether score differences are signal vs. noise.
+
+P2|loop.py|Resume cache is dead code for crash recovery|lines 264/192: cached grade keys embed the iteration number (`visible:{it}:...`), but `run()` always restarts `it` at 0 on resume, so orphaned grade records from a killed mid-iteration run (which have keys like `visible:2:...`) never match and are silently ignored.
+
+VERDICT: 4 findings.

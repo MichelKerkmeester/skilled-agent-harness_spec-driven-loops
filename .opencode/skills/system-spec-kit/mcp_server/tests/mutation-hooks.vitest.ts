@@ -90,10 +90,10 @@ describe('Mutation hooks', () => {
     expect(result.constitutionalCacheCleared).toBe(true);
     expect(result.graphSignalsCacheCleared).toBe(true);
     expect(result.coactivationCacheCleared).toBe(true);
-    expect(result.errors).toEqual(['triggerMatcher.clearCache: trigger cache failure']);
+    expect(result.errors).toEqual(['trigger-cache: trigger cache failure']);
 
     expect(warnSpy).toHaveBeenCalledWith(
-      '[mutation-hooks] triggerMatcher.clearCache failed for operation="update":',
+      '[mutation-hooks] subscriber "trigger-cache" failed for operation="update":',
       'trigger cache failure'
     );
 
@@ -113,10 +113,29 @@ describe('Mutation hooks', () => {
     const result = runPostMutationHooks('delete', { memoryId: 99 });
 
     expect(result.graphSignalsCacheCleared).toBe(false);
-    expect(result.errors).toContain('graphCacheInvalidation: degree cache failure');
+    expect(result.errors).toContain('graph-cache: degree cache failure');
     expect(warnSpy).toHaveBeenCalledWith(
-      '[mutation-hooks] graph cache invalidation failed for operation="delete":',
+      '[mutation-hooks] subscriber "graph-cache" failed for operation="delete":',
       'degree cache failure'
+    );
+  });
+
+  it('treats automated audit append failures as non-fatal hook warnings', () => {
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    const result = runPostMutationHooks('update', {
+      database: { prepare: vi.fn() },
+      memoryId: 42,
+      sourceKind: 'system',
+      actor: 'system:hook',
+      auditReason: 'memory_update:42:title',
+    });
+
+    expect(result.triggerCacheCleared).toBe(true);
+    expect(result.toolCacheInvalidated).toBe(3);
+    expect(result.errors.some((error) => error.startsWith('automated-audit:'))).toBe(true);
+    expect(warnSpy).toHaveBeenCalledWith(
+      '[mutation-hooks] automated audit append failed for operation="update":',
+      expect.any(String),
     );
   });
 });

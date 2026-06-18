@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption/003-planner-review-focus-and-drift-hint",
+  "description": "Feature Specification: 003 — Planner Reviewer-Focus & Spec-Drift Hint",
+  "keywords": [
+    "feature",
+    "specification",
+    "003",
+    "planner",
+    "reviewer-focus",
+    "spec-drift",
+    "hint"
+  ],
+  "lastUpdated": "2026-06-14T08:30:50.941Z",
+  "specId": "003",
+  "folderSlug": "planner-review-focus-and-drift-hint",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "001-research-and-doctrine",
+    "002-gem-team-adoption"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

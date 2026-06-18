@@ -7,6 +7,7 @@ import * as vectorIndex from '../lib/search/vector-index.js';
 import { runMemoryEmbeddingReconcile, ActiveShardGuardError } from '../lib/embedders/embedding-reconcile.js';
 import { createMCPErrorResponse, createMCPSuccessResponse } from '../lib/response/envelope.js';
 import { toErrorMessage } from '../utils/index.js';
+import { recordMaintenanceRun } from '../lib/observability/retrieval-observability.js';
 
 import type { MCPResponse } from './types.js';
 import type { EmbeddingReconcileArgs } from '../lib/embedders/embedding-reconcile.js';
@@ -20,6 +21,7 @@ async function handleMemoryEmbeddingReconcile(args: EmbeddingReconcileArgs): Pro
 
   const database = vectorIndex.getDb();
   if (!database) {
+    recordMaintenanceRun('memory_embedding_reconcile', { status: 'error' });
     return createMCPErrorResponse({
       tool: 'memory_embedding_reconcile',
       error: 'Embedding reconcile aborted: database unavailable',
@@ -44,6 +46,7 @@ async function handleMemoryEmbeddingReconcile(args: EmbeddingReconcileArgs): Pro
     vectorIndex.attachActiveVectorShardForActiveProfile(database);
   } catch (attachErr: unknown) {
     if (mode === 'apply') {
+      recordMaintenanceRun('memory_embedding_reconcile', { status: 'error' });
       return createMCPErrorResponse({
         tool: 'memory_embedding_reconcile',
         error: `Embedding reconcile aborted: could not attach the active vector shard (${toErrorMessage(attachErr)})`,
@@ -75,6 +78,17 @@ async function handleMemoryEmbeddingReconcile(args: EmbeddingReconcileArgs): Pro
     } else if (result.mode === 'dry-run' && stale > 0) {
       hints.push('Run memory_embedding_reconcile({ mode: "apply" }) to converge embedding_status to success.');
     }
+    recordMaintenanceRun('memory_embedding_reconcile', {
+      status: 'success',
+      counts: {
+        vectorPresentStatusStale: stale,
+        missingActiveVectorRetryEligible: missing,
+        reconciledToSuccess: result.applied?.reconciledToSuccess ?? 0,
+        resetToRetry: result.applied?.resetToRetry ?? 0,
+        successCoverageReset: coverageReset,
+      },
+      staleCandidates: stale + missing,
+    });
 
     return createMCPSuccessResponse({
       tool: 'memory_embedding_reconcile',
@@ -83,6 +97,9 @@ async function handleMemoryEmbeddingReconcile(args: EmbeddingReconcileArgs): Pro
       hints,
     });
   } catch (error: unknown) {
+    // Health reads last-run state; a failed run must be visible there, not
+    // only in the error response of the call that happened to observe it.
+    recordMaintenanceRun('memory_embedding_reconcile', { status: 'error' });
     if (error instanceof ActiveShardGuardError) {
       return createMCPErrorResponse({
         tool: 'memory_embedding_reconcile',

@@ -37,16 +37,16 @@ update_orchestrator_invariant: |
 upstream_assets:
   contract: "local command design contract"
   files:
-    spec: "spec.md"  # REQ-004..REQ-017 orchestrator contract
-    decision_record: "decision-record.md"  # ADR-001..ADR-008 safety decisions
-    council_spec: "decision-record.md#adr-002"  # council 10-line /doctor:update spec family
-    checklist: "checklist.md#doctor-update-orchestrator"  # CHK-502..CHK-511 acceptance bars
+    spec: "spec.md"  # orchestrator contract
+    decision_record: "decision-record.md"  # safety decisions
+    council_spec: "decision-record.md#adr-002"  # council /doctor:update spec family
+    checklist: "checklist.md#doctor-update-orchestrator"  # acceptance bars
   pass_policy:
-    flock_required: true  # ADR-005 / REQ-005
-    full_snapshot_required: true  # ADR-002 / REQ-006 unless --no-snapshot
-    retry_backoff_seconds: 5  # ADR-004
-    sigint_settle_seconds: 5  # ADR-001 revises ADR-007 timing
-    snapshot_retention_days: 30  # ADR-002 cleanup policy unless --keep-snapshots
+    flock_required: true  # single-instance guard
+    full_snapshot_required: true  # full rollback coverage unless --no-snapshot
+    retry_backoff_seconds: 5  # bounded retry backoff
+    sigint_settle_seconds: 5  # SQLite settle timing before restore
+    snapshot_retention_days: 30  # cleanup policy unless --keep-snapshots
 
 # ─────────────────────────────────────────────────────────────────
 # USER INPUTS
@@ -406,7 +406,7 @@ workflow:
             const fs = require('fs');
             const path = require('path');
             const dir = '.opencode/skills/system-spec-kit/mcp_server/database';
-            // TODO(022): use resolveActiveProfileDbPath from shared/embeddings/profile.js for unambiguous active-profile selection when multiple provider DBs coexist.
+            // Picks the first context-index shard for the coverage count; when multiple provider DBs coexist this is ambiguous. Unambiguous active-profile selection (via shared/embeddings/profile.js resolveActiveProfileDbPath) is tracked as a follow-on code task, not wired here.
             const file = fs.readdirSync(dir).find((name) => /^context-index__.*\.sqlite$/.test(name));
             if (!file) {
               console.log(0);

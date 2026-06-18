@@ -1,0 +1,25 @@
+{
+  "level": "phase",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation",
+  "description": "Feature Specification: Command Presentation Workflow Separation (Phase Parent)",
+  "keywords": [
+    "feature",
+    "specification",
+    "command",
+    "presentation",
+    "workflow",
+    "separation",
+    "phase",
+    "parent"
+  ],
+  "lastUpdated": "2026-06-11T14:51:05.203Z",
+  "specId": "002",
+  "folderSlug": "command-presentation-workflow-separation",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "004-shared-infrastructure"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

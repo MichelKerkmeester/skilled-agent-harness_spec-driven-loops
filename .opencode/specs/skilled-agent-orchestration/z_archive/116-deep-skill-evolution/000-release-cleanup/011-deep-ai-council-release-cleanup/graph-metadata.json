@@ -49,9 +49,6 @@
       "checklist.md",
       "decision-record.md",
       "research/convergence-summary.md",
-      ".opencode/skills/deep-ai-council/README.md",
-      ".opencode/skills/deep-ai-council/SKILL.md",
-      ".opencode/skills/deep-ai-council/changelog/v2.1.0.0.md",
       "schemas/audit-finding.schema.json",
       ".opencode/skills/sk-doc/references/global/hvr_rules.md",
       "scripts/spec/validate.sh",
@@ -60,7 +57,6 @@
       "schemas/iteration-output.schema.json",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/README.md",
-      ".opencode/skills/deep-ai-council/graph-metadata.json",
       ".opencode/skills/sk-prompt-small-model/SKILL.md"
     ],
     "entities": [
@@ -98,24 +94,6 @@
         "name": "convergence-summary.md",
         "kind": "doc",
         "path": "research/convergence-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-ai-council/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-ai-council/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "v2.1.0.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-ai-council/changelog/v2.1.0.0.md",
         "source": "derived"
       },
       {
@@ -161,9 +139,15 @@
         "source": "derived"
       },
       {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/skills/deep-ai-council/graph-metadata.json",
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt-small-model/SKILL.md",
         "source": "derived"
       },
       {
@@ -207,11 +191,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Sequential",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `deep-ai-council` skill (v2.0.0.0) is a mature planning-only council capability — multi-seat deliberation, two-of-three convergence, packet-local `ai-council/**` artifact persistence, and a derived council-graph projection. It pre-dates the most recent sk-doc template revisions and has never been audited end-to-end against the current creation standards. Before downstream evolution work in the `116-deep-skill-evolution` arc continues, this sub-phase brings the skill's documentation surface to 100% sk-doc conformance, fixes latent bugs, rewrites the README in current marketing-leaning HVR voice, and seeds a deep-research loop on top of a validated baseline.",
     "created_at": "2026-05-23T21:45:00.000Z",
-    "last_save_at": "2026-06-08T17:32:20.485Z",
+    "last_save_at": "2026-06-15T09:09:33.708Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

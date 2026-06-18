@@ -1,0 +1,184 @@
+{
+  "findings": [
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/memo.ts",
+      "symbol": "ensureMemoStorageSchema",
+      "kind": "integration_point",
+      "signature": "database.exec() DDL: CREATE TABLE memoization_records + dependency_edges + indexes",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/memo.ts:37",
+      "relevance": 0.7,
+      "notes": "database.exec() runs multi-statement DDL; Turso lacks loadExtension and exec() multi-statement batching may behave differently."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/memo.ts",
+      "symbol": "upsertMemoRecord",
+      "kind": "integration_point",
+      "signature": "INSERT ... ON CONFLICT DO UPDATE SET (3-column composite PK)",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/memo.ts:119",
+      "relevance": 0.5,
+      "notes": "Standard upsert; Turso supports ON CONFLICT but datetime() default expressions need verification."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/memo.ts",
+      "symbol": "collectDependents",
+      "kind": "gap",
+      "signature": "WITH RECURSIVE dependents(child_path) AS (SELECT ... UNION SELECT ... JOIN dependents) ORDER BY",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/memo.ts:192",
+      "relevance": 0.9,
+      "notes": "Recursive CTE for dependency traversal; Turso lacks WITH RECURSIVE — must be rewritten as iterative application-side loop."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/memo.ts",
+      "symbol": "addDependencyEdge",
+      "kind": "integration_point",
+      "signature": "INSERT OR IGNORE INTO dependency_edges with cycle detection guard",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/memo.ts:178",
+      "relevance": 0.4,
+      "notes": "INSERT OR IGNORE is supported by Turso; cycle detection calls collectDependents which uses recursive CTE."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
+      "symbol": "init",
+      "kind": "integration_point",
+      "signature": "CREATE INDEX IF NOT EXISTS + ensureTemporalColumns(database)",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:280",
+      "relevance": 0.5,
+      "notes": "CREATE INDEX IF NOT EXISTS is Turso-compatible; ensureTemporalColumns() needs separate audit for DDL surface."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
+      "symbol": "insertEdge",
+      "kind": "reuse_candidate",
+      "signature": "database.transaction(() => { SELECT + UPSERT + logWeightChange })",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:344",
+      "relevance": 0.8,
+      "notes": "Explicit better-sqlite3 synchronous transaction wrapper; Turso transactions are async (await tx()). Entire function must become async."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
+      "symbol": "insertEdgesBatch",
+      "kind": "reuse_candidate",
+      "signature": "db.transaction(() => { for edge: insertEdge() }) with cache invalidation",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:512",
+      "relevance": 0.8,
+      "notes": "Nested transaction (calls insertEdge which also wraps in transaction); better-sqlite3 supports savepoints but Turso transaction API differs."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
+      "symbol": "bulkInsertEdges",
+      "kind": "reuse_candidate",
+      "signature": "database.transaction(() => { PRAGMA table_info + INSERT OR IGNORE loop })",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:575",
+      "relevance": 0.7,
+      "notes": "PRAGMA table_info() inside transaction for dynamic column discovery; Turso PRAGMA support is limited — may need schema caching."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
+      "symbol": "updateEdge",
+      "kind": "reuse_candidate",
+      "signature": "database.transaction(() => { SELECT strength + UPDATE + logWeightChange })",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:802",
+      "relevance": 0.8,
+      "notes": "Synchronous transaction wrapping read-modify-write for atomicity; must become async for Turso."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
+      "symbol": "rollbackWeights",
+      "kind": "reuse_candidate",
+      "signature": "database.transaction(() => { SELECT current + SELECT history + UPDATE + logWeightChange })",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:1061",
+      "relevance": 0.8,
+      "notes": "Multi-statement transaction with fallback SELECT chain; synchronous transaction wrapper blocks Turso migration."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
+      "symbol": "touchEdgeAccess",
+      "kind": "integration_point",
+      "signature": "UPDATE causal_edges SET last_accessed = datetime('now') WHERE id = ?",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:1141",
+      "relevance": 0.3,
+      "notes": "Simple UPDATE; Turso-compatible but datetime() function behavior needs verification."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
+      "symbol": "logWeightChange",
+      "kind": "integration_point",
+      "signature": "INSERT INTO weight_history (edge_id, old_strength, new_strength, changed_by, reason)",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:1034",
+      "relevance": 0.4,
+      "notes": "Simple INSERT; Turso-compatible. No transaction wrapper — relies on caller's transaction context."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
+      "symbol": "cleanupOrphanedEdges",
+      "kind": "reuse_candidate",
+      "signature": "runInTransaction(db, () => { sweepCausalEdges() })",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:942",
+      "relevance": 0.7,
+      "notes": "Uses runInTransaction wrapper (from transaction-manager.ts) — that wrapper must become async for Turso."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/sweep.ts",
+      "symbol": "ensureCausalEdgeTombstoneSchema",
+      "kind": "integration_point",
+      "signature": "database.exec() DDL: CREATE TABLE causal_edge_tombstones + 3 indexes",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/sweep.ts:68",
+      "relevance": 0.6,
+      "notes": "Multi-statement DDL via database.exec(); Turso exec() may not support multi-statement batching — must split."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/sweep.ts",
+      "symbol": "sweepCausalEdges",
+      "kind": "reuse_candidate",
+      "signature": "runInTransaction(database, () => { ensureSchema + readEdges + INSERT tombstones + DELETE edges })",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/sweep.ts:229",
+      "relevance": 0.9,
+      "notes": "Core tombstone lifecycle: read edges → insert tombstones → delete edges in single transaction. Uses runInTransaction which must become async."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/sweep.ts",
+      "symbol": "deleteEdgesByIds",
+      "kind": "integration_point",
+      "signature": "DELETE FROM causal_edges WHERE id = ? (per-id loop)",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/sweep.ts:203",
+      "relevance": 0.4,
+      "notes": "Per-row DELETE loop inside transaction; could be batched but Turso supports parameterized DELETE."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/frontmatter-promoter.ts",
+      "symbol": "promoteMetadataEdges",
+      "kind": "reuse_candidate",
+      "signature": "causalEdges.init() + cleanupStaleGeneratedEdges() + causalEdges.insertEdge() loop",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/frontmatter-promoter.ts:345",
+      "relevance": 0.7,
+      "notes": "Orchestrates multiple write calls (sweep + insert) without wrapping in own transaction; relies on per-call transactionality."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/frontmatter-promoter.ts",
+      "symbol": "cleanupStaleGeneratedEdges",
+      "kind": "reuse_candidate",
+      "signature": "SELECT stale edges + sweepCausalEdges(database, { edgeIds: staleIds })",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/frontmatter-promoter.ts:291",
+      "relevance": 0.6,
+      "notes": "Reads stale edges then delegates to sweep for tombstoning+deletion; two-phase read-then-write pattern needs atomicity guarantee."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts",
+      "symbol": "getNeighborBoosts",
+      "kind": "gap",
+      "signature": "WITH RECURSIVE causal_walk(origin_id, node_id, hop_distance, walk_score) AS ... maxHops",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts:431",
+      "relevance": 1,
+      "notes": "Core recursive CTE for graph traversal with bidirectional edges and relation-weighted scoring. Turso lacks WITH RECURSIVE — must rewrite as iterative BFS in application code."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
+      "symbol": "enforceRelationWindowCap",
+      "kind": "integration_point",
+      "signature": "SELECT COUNT(*) FROM causal_edges WHERE relation=? AND datetime(extracted_at) >= datetime(?)",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:250",
+      "relevance": 0.3,
+      "notes": "Rate-limiting query using datetime() comparison; Turso supports datetime() but behavior edge cases differ."
+    }
+  ]
+}

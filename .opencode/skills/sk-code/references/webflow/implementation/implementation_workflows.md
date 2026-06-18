@@ -1,6 +1,13 @@
 ---
 title: Implementation Workflows - Phase 1
 description: Three specialized workflows for writing robust frontend code with proper timing, validation, and cache management.
+trigger_phrases:
+  - "webflow implementation workflows"
+  - "condition based waiting"
+  - "frontend timing validation"
+  - "cache management workflow"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Implementation Workflows - Phase 1

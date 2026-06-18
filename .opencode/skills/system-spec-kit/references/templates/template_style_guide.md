@@ -1,6 +1,13 @@
 ---
 title: Template Style Guide
 description: Conventions and standards for system-spec-kit templates ensuring documentation consistency across all spec folders.
+trigger_phrases:
+  - "template style guide"
+  - "template formatting standards"
+  - "metadata format conventions"
+  - "placeholder syntax types"
+importance_tier: normal
+contextType: general
 ---
 
 # Template Style Guide - Formatting Standards

@@ -1,6 +1,14 @@
 ---
 title: Trigger Configuration
 description: Complete configuration guide for memory trigger phrases and the fast trigger matching system.
+trigger_phrases:
+  - "trigger phrase configuration"
+  - "fast trigger matching"
+  - "trigger detection logic"
+  - "trigger sanitization rules"
+  - "manual save triggers"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Trigger Configuration - Keywords and Manual Save Settings

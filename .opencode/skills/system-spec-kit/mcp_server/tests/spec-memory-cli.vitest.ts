@@ -204,6 +204,39 @@ describe('spec-memory daemon-backed CLI', () => {
     }
   });
 
+  it('exits 1 when the daemon returns a status:error payload inside a success envelope', async () => {
+    const socketDir = createSocketDir();
+    const daemon = await startFakeDaemon(socketDir, {
+      toolPayload: { status: 'error', error: 'memory operation failed' },
+    });
+    const io = captureIo();
+
+    try {
+      const exitCode = await runSpecMemoryCli(['memory_stats', '--format', 'json', '--timeout-ms', '1000'], io);
+      const parsed = JSON.parse(io.output().stdout) as { status: string };
+
+      expect(exitCode).toBe(__testing.EXIT_RUNTIME);
+      expect(parsed.status).toBe('error');
+    } finally {
+      await closeServer(daemon.server);
+    }
+  });
+
+  it('still exits 0 on a status:ok payload', async () => {
+    const socketDir = createSocketDir();
+    const daemon = await startFakeDaemon(socketDir, {
+      toolPayload: { status: 'ok', summary: 'all good' },
+    });
+    const io = captureIo();
+
+    try {
+      const exitCode = await runSpecMemoryCli(['memory_stats', '--format', 'json', '--timeout-ms', '1000'], io);
+      expect(exitCode).toBe(0);
+    } finally {
+      await closeServer(daemon.server);
+    }
+  });
+
   it('fails closed on protocol-version drift', async () => {
     const socketDir = createSocketDir();
     const daemon = await startFakeDaemon(socketDir, {

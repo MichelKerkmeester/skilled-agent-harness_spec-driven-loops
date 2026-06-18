@@ -1,6 +1,14 @@
 ---
 title: Rollback Runbook
 description: Rollback flow for working-memory automation features and feature-flag re-enable sequencing
+trigger_phrases:
+  - "rollback runbook"
+  - "working memory rollback"
+  - "disable feature flags"
+  - "controlled re-enable sequence"
+  - "rollback smoke tests"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Rollback Runbook: Working Memory Automation

@@ -1,6 +1,13 @@
 ---
 title: Resource Loading Patterns
 description: Resource hints and loading strategies for optimal performance in Webflow sites.
+trigger_phrases:
+  - "webflow resource loading"
+  - "preconnect resource hints"
+  - "loading strategy webflow"
+  - "critical resource prioritization"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Resource Loading Patterns

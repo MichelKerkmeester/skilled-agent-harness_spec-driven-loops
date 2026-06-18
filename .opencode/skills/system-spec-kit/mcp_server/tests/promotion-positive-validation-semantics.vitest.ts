@@ -22,12 +22,13 @@ function insertMemory(
     tier = 'normal',
     confidence = 0.95,
     validationCount = 0,
-  }: { tier?: string; confidence?: number; validationCount?: number } = {},
+    sourceKind = 'feedback',
+  }: { tier?: string; confidence?: number; validationCount?: number; sourceKind?: string } = {},
 ): void {
   db.prepare(`
-    INSERT INTO memory_index (id, title, confidence, validation_count, importance_tier, updated_at)
-    VALUES (?, ?, ?, ?, ?, ?)
-  `).run(id, `memory-${id}`, confidence, validationCount, tier, new Date().toISOString());
+    INSERT INTO memory_index (id, title, confidence, validation_count, importance_tier, source_kind, updated_at)
+    VALUES (?, ?, ?, ?, ?, ?, ?)
+  `).run(id, `memory-${id}`, confidence, validationCount, tier, sourceKind, new Date().toISOString());
 }
 
 describe('T055: positive-validation semantics for promotion thresholds', () => {
@@ -41,6 +42,9 @@ describe('T055: positive-validation semantics for promotion thresholds', () => {
         confidence REAL DEFAULT 0.5,
         validation_count INTEGER DEFAULT 0,
         importance_tier TEXT DEFAULT 'normal',
+        source_kind TEXT DEFAULT 'human',
+        provenance_source TEXT,
+        provenance_actor TEXT,
         updated_at TEXT
       )
     `);
@@ -108,10 +112,20 @@ describe('T055: positive-validation semantics for promotion thresholds', () => {
 
     const executed = executeAutoPromotion(db, 4);
     expect(executed.promoted).toBe(true);
-    const row = db.prepare('SELECT importance_tier FROM memory_index WHERE id = 4').get() as {
+    const row = db.prepare(`
+      SELECT importance_tier, source_kind, provenance_source, provenance_actor
+      FROM memory_index
+      WHERE id = 4
+    `).get() as {
       importance_tier: string;
+      source_kind: string;
+      provenance_source: string | null;
+      provenance_actor: string | null;
     };
     expect(row.importance_tier).toBe('important');
+    expect(row.source_kind).toBe('feedback');
+    expect(row.provenance_source).toBe('auto-promotion');
+    expect(row.provenance_actor).toBe('memory_validate');
   });
 
   it('scanForPromotions only returns rows that meet positive thresholds', () => {

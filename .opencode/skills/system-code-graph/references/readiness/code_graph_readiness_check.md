@@ -3,9 +3,11 @@ title: "Code Graph Readiness Check"
 description: "Reference for ensureCodeGraphReady() preconditions, gates, failure modes, recovery procedures, handler integration and diagnostics payload."
 trigger_phrases:
   - "code graph readiness"
-  - "ensureCodeGraphReady"
+  - "ensure code graph ready"
   - "readiness gates"
   - "code graph recovery procedures"
+importance_tier: "normal"
+contextType: "implementation"
 ---
 
 # Code Graph Readiness Check

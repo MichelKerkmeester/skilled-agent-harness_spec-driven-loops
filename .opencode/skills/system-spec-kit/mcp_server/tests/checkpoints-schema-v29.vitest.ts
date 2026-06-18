@@ -70,14 +70,14 @@ describe('checkpoints schema v29', () => {
     }
   });
 
-  it('initializes fresh databases at schema version 29 with checkpoint snapshot columns', () => {
+  it('initializes fresh databases with checkpoint snapshot columns', () => {
     const { database } = createTestDb();
 
     initializeDatabase(database);
 
     const version = database.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number };
-    expect(SCHEMA_VERSION).toBe(29);
-    expect(version.version).toBe(29);
+    expect(SCHEMA_VERSION).toBeGreaterThanOrEqual(29);
+    expect(version.version).toBe(SCHEMA_VERSION);
     expect(checkpointColumns(database)).toEqual(expect.arrayContaining([
       'snapshot_format',
       'snapshot_path',
@@ -106,7 +106,7 @@ describe('checkpoints schema v29', () => {
     };
     const listed = checkpoints.listCheckpoints(null, 10);
 
-    expect(version.version).toBe(29);
+    expect(version.version).toBe(SCHEMA_VERSION);
     expect(columns).toEqual(expect.arrayContaining(['snapshot_format', 'snapshot_path']));
     expect(row).toEqual({ snapshot_format: 'v1', snapshot_path: null });
     expect(listed[0]).toMatchObject({

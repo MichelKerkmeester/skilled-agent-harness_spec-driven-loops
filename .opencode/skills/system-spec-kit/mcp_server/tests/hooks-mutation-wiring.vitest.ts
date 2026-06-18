@@ -107,7 +107,7 @@ describe('Hooks mutation wiring', () => {
       expect.arrayContaining([expect.stringContaining('coactivation hook blew up')])
     );
     expect(warnSpy).toHaveBeenCalledWith(
-      '[mutation-hooks] clearRelatedCache failed for operation="delete":',
+      '[mutation-hooks] subscriber "coactivation-cache" failed for operation="delete":',
       'coactivation hook blew up'
     );
   });

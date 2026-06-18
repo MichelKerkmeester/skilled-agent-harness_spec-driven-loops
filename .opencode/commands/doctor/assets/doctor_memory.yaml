@@ -28,11 +28,13 @@ memory_doctor_invariant: |
 
 upstream_assets:
   contract: "local command design contract"
+  cli_health_command: "node .opencode/bin/spec-memory.cjs memory_health --format json --timeout-ms 500 --warm-only"
+  cli_health_policy: "Warm-only: probe the existing mk-spec-memory IPC socket first. The --warm-only flag guarantees the CLI never starts a daemon; if the socket is absent or dead it exits 75 (backend unavailable) — report CLI availability as retryable-unavailable."
   files:
-    spec: "spec.md"  # REQ-005..REQ-007 cover flock, snapshots, dashboard
-    decision_record: "decision-record.md"  # ADR-001 documents memory_index_scan tx model
+    spec: "spec.md"  # flock, snapshots, and dashboard contract
+    decision_record: "decision-record.md"  # memory_index_scan transaction model rationale
     tx_model: "decision-record.md#adr-001"  # per-file transactions + ~5 sec SIGINT settle
-    checklist: "checklist.md#doctor-memory"  # CHK-104 gold-battery acceptance bar
+    checklist: "checklist.md#doctor-memory"  # gold-battery acceptance bar
   pass_policy:
     minimum_result_count_per_query: 1  # existing memory gold-battery floor
     post_result_count_floor_ratio: 0.80  # preserve current workflow threshold
@@ -132,6 +134,9 @@ staleness_signals:
   divergent_alias_groups:
     detection: "Same canonical name routed to different record IDs"
     severity: high
+  hard_exclusion_risk:
+    detection: "memory_health data.exclusionAudit diagnostics include hard-exclusion-risk or exclusion-unclassified"
+    severity: high
 
 # ─────────────────────────────────────────────────────────────────
 # WORKFLOW
@@ -140,11 +145,14 @@ workflow:
   phase_0_discovery:
     purpose: Probe memory_health + memory_stats; capture baseline
     activities:
+      - "Apply upstream_assets.cli_health_policy, then run upstream_assets.cli_health_command only when the warm socket probe succeeds; report CLI availability, freshness, trustState, and exit code"
       - "Run: memory_health({reportMode: 'full'})"
+      - "Inspect memory_health.data.exclusionAudit; classify hard_exclusion_risk from diagnostics without changing recall"
       - "Run: memory_stats({})"
       - "Bash: stat -f '%m %z' database/context-index__*.sqlite (mtime + size for present profile DBs)"
       - "Interactive gate: before_phase_1_analysis"
     outputs:
+      - cli_availability: available|retryable-unavailable|failed
       - total_records: N
       - last_index_at: ISO_timestamp
       - fts_health: ok|degraded|missing
@@ -172,6 +180,7 @@ workflow:
           trigger_phrase_drift: L
           embedding_provider_change: P
           divergent_alias_groups: Q
+          hard_exclusion_risk: R
       - sample_drift_explanations: [up to 5 entries]
       - severity_max: low|medium|high
     validation: analysis_complete

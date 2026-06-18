@@ -61,7 +61,7 @@ function isPathInside(candidate: string, prefix: string): boolean {
 }
 
 function computeDatabasePaths(): DatabasePaths {
-  // H8 FIX: Re-check SPEC_KIT_DB_DIR at call time to support runtime overrides
+  // Re-check SPEC_KIT_DB_DIR at call time to support runtime overrides
   // (e.g. tests that set the env var after module import). Fall back to the
   // import-time DB_PATH when no runtime override is present.
   const runtimeDbDir = process.env.SPEC_KIT_DB_DIR?.trim() || process.env.SPECKIT_DB_DIR?.trim();

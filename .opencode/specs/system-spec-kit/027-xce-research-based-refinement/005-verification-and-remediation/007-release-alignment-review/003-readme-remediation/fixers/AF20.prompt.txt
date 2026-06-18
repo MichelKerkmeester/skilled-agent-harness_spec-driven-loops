@@ -1,0 +1,36 @@
+Act as a markdown documentation-fixer (seat AF20). Spec folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation (PRE-APPROVED at Gate 3 — make the edits below directly with the Edit/Write tools; do NOT re-ask Gate 3 and do NOT ask the user anything).
+
+You fix STALE content in README files so they match current repo reality. SURGICAL edits only — fix the cited claims, keep everything else intact. Find the correct current value by reading the cited file PLUS its SKILL.md / source / config before editing.
+
+ALLOWED WRITE PATHS (edit ONLY these files):
+- .opencode/skills/system-spec-kit/scripts/spec/README.md
+- .opencode/skills/system-spec-kit/shared/README.md
+- .opencode/skills/system-spec-kit/templates/README.md
+- .opencode/skills/system-spec-kit/templates/changelog/README.md
+- .opencode/skills/system-spec-kit/templates/examples/README.md
+BANNED: no delete, no rename, no new files, no edits outside the listed files, no --no-verify.
+
+DO-NOT-FIX (binding — confirmed false positives; leave untouched):
+- The CLI front-door "37 tools" figure: `spec-memory.cjs` CLI is genuinely 37; only the MCP-server/daemon surface is 39. Fix a "37" ONLY when the sentence is about the MCP server/daemon, NOT the CLI front door.
+- Any `// Feature catalog:` comments and TSDoc `@example` values.
+- Any cited claim that does NOT actually reproduce against the live file — mark it refuted; never invent a fix.
+
+FINDINGS TO FIX (confirm-then-fix each; P0/P1/P2 all in scope, including cosmetic/style):
+- [P2] .opencode/skills/system-spec-kit/scripts/spec/README.md:57 — spec script tree omits current entrypoints | stale: The spec/ package topology lists lifecycle shell scripts but omits scaffold-debug-delegation.sh, check-smart-router.sh and the legacy test-validation.sh wrapper. -> correct: Those files exist and are current: debug-delegation scaffold generation, SKILL.md smart-router validation and a wrapper forwarding to scripts/tests/test-validation.sh.
+- [P1] .opencode/skills/system-spec-kit/shared/README.md:87 — Shared package Node requirement is too low | stale: Node.js minimum is 18+. -> correct: The shared package engine requires Node >=20.11.0.
+- [P1] .opencode/skills/system-spec-kit/shared/README.md:321 — Embedding auto-selection order is reversed | stale: Auto-cascade chooses Voyage when VOYAGE_API_KEY is set, then OpenAI, then ollama, then HF local. -> correct: Auto mode is local-first: explicit EMBEDDINGS_PROVIDER is the only normal cloud auto-select path; otherwise persisted/reachable Ollama wins, then hf-local, with cloud only explicit or last-resort fallback.
+- [P1] .opencode/skills/system-spec-kit/shared/README.md:310 — Old BGE/GGUF embedder defaults remain documented | stale: OLLAMA_EMBEDDINGS_MODEL defaults to unsloth/bge-base-en-v1.5-GGUF and HF_EMBEDDINGS_MODEL defaults to onnx-community/bge-base-en-v1.5-ONNX. -> correct: The local canonical fallback is nomic-embed-text-v1.5 for Ollama and nomic-ai/nomic-embed-text-v1.5 for hf-local.
+- [P2] .opencode/skills/system-spec-kit/shared/README.md:25 — Legacy slash command spelling | stale: Continuity recovery uses /spec_kit:resume. -> correct: The active command is /speckit:resume.
+- [P1] .opencode/skills/system-spec-kit/shared/README.md:25 — Shared README uses obsolete resume command spelling | stale: `/spec_kit:resume` rebuilds active context from handover.md -> _memory.continuity -> spec docs. -> correct: The current command surface is `/speckit:resume`, implemented by .opencode/commands/speckit/resume.md.
+- [P1] .opencode/skills/system-spec-kit/shared/README.md:67 — Shared package inventory omits current modules | stale: README says there are 8 top-level TS modules and lists an older shared/ structure without newer daemon/contract modules. -> correct: The shared package now exports and contains additional top-level modules such as budget-allocator, compact-merger, and code-graph-contracts, plus ipc/ and predicates/ subdirectories.
+- [P1] .opencode/skills/system-spec-kit/shared/README.md:87 — Node minimum is stale | stale: Requirements table says Node.js minimum is 18+ and 20+ is recommended. -> correct: The current shared package requires Node >=20.11.0.
+- [P1] .opencode/skills/system-spec-kit/shared/README.md:310 — Embedding defaults are stale | stale: README lists OLLAMA_EMBEDDINGS_MODEL default as unsloth/bge-base-en-v1.5-GGUF, OLLAMA_EMBEDDINGS_GGUF_FILE as bge-base-en-v1.5-300M-Q8_0.gguf, HF_EMBEDDINGS_MODEL as onnx-community/bge-base-en-v1.5-ONNX, and MEMORY_AUTO_MIGRATE_HF_TO_LLAMA as an enabled migration flag. -> correct: Current defaults derive from the registry: ollama uses nomic-embed-text-v1.5 / nomic-embed-text:v1.5, hf-local uses nomic-ai/nomic-embed-text-v1.5, and the old HF-to-llama migration flag is not present in the current TS code path.
+- [P1] .opencode/skills/system-spec-kit/shared/README.md:321 — Provider precedence contradicts current local-first cascade | stale: Provider selection precedence says auto-cascade tries Voyage first, then OpenAI, then Ollama, then HF local. -> correct: Current auto-select is local-first: ollama, then hf-local, then openai, then voyage; explicit EMBEDDINGS_PROVIDER is tried first and then falls back to that cascade.
+- [P2] .opencode/skills/system-spec-kit/templates/README.md:137 — Example directory names are wrong | stale: Directory tree lists examples as level-1, level-2, level-3, level-3-plus, and phase-parent. -> correct: Rendered examples currently use level_1, level_2, level_3, and level_3+; phase-parent is a manifest template contract, not an examples/phase-parent directory.
+- [P1] .opencode/skills/system-spec-kit/templates/changelog/README.md:36 — Changelog README uses obsolete resume command spelling | stale: Recovery still flows through `/spec_kit:resume`. -> correct: The current command surface is `/speckit:resume`, implemented by .opencode/commands/speckit/resume.md.
+- [P1] .opencode/skills/system-spec-kit/templates/examples/README.md:74 — Examples README points to non-existent copy-source folders | stale: README says to copy from sibling level_* template folders and links ../level_1/README.md, ../level_2/README.md, ../level_3/README.md, and ../level_3+/README.md. -> correct: Current source templates live under templates/manifest/*.md.tmpl and the manifest maps public levels to those templates; there are no sibling template folders with README files at those paths.
+
+After editing, re-read each edited line to verify. Your final message MUST be exactly one fenced json block:
+```json
+{"seat":"AF20","fixed":[{"file":"path","claim":"what was stale","after":"what it now says"}],"refuted":[{"file":"path","why":"why skipped"}]}
+```

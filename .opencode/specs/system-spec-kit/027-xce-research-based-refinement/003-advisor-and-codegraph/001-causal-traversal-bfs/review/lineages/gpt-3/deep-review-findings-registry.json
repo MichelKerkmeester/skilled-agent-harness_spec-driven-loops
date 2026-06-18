@@ -1,0 +1,61 @@
+{
+  "sessionId": "fanout-gpt-3-1781150497099-u77yte",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Production comments still describe the removed traversal as CTE-based",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts",
+      "line": 7,
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts:7",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts:80-87"
+      ],
+      "finding_class": "docs-vs-code-drift",
+      "content_hash": "sha256:f001-causal-boost-stale-cte-comments",
+      "firstSeen": 3,
+      "lastSeen": 6,
+      "transitions": [{ "iteration": 3, "from": null, "to": "P2", "reason": "Initial discovery" }]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Latency benchmark uses a direct wall-clock ordering assertion",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/tests/causal-traversal-bfs-equivalence.vitest.ts",
+      "line": 233,
+      "evidence": [".opencode/skills/system-spec-kit/mcp_server/tests/causal-traversal-bfs-equivalence.vitest.ts:226-233"],
+      "finding_class": "test-flakiness-risk",
+      "content_hash": "sha256:f002-bfs-benchmark-wall-clock-assertion",
+      "firstSeen": 4,
+      "lastSeen": 6,
+      "transitions": [{ "iteration": 4, "from": null, "to": "P2", "reason": "Initial discovery" }]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": ["F001", "F002"],
+  "severityChanged": [],
+  "repeatedFindings": ["F001", "F002"],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": { "P0": 0, "P1": 0, "P2": 2 },
+  "openFindingsCount": 2,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 1,
+  "graphDecision": "STOP_ALLOWED",
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

@@ -1,0 +1,85 @@
+{
+  "sessionId": "fanout-gpt55r2-c-10-1781761364358-6qni37",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Documented tcp IPC fallback is not passed through by the daemon-side resolver",
+      "file": ".opencode/skills/system-spec-kit/shared/ipc/socket-server.ts",
+      "line": 201,
+      "evidence": [
+        ".opencode/bin/spec-memory.cjs:107-113",
+        ".opencode/bin/lib/launcher-ipc-bridge.cjs:80-87",
+        ".opencode/skills/system-spec-kit/shared/ipc/socket-server.ts:201-211",
+        ".opencode/skills/system-spec-kit/mcp_server/context-server.ts:2319-2321"
+      ],
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "content_hash": "5a6d406e39876d5cc4e1219295a8f25390afee04e21ec5e859ec5caff8f47662",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "Async ingest path prevalidation falls back on missing targets and later follows whatever path exists",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts",
+      "line": 198,
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:198-205",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:252-258",
+        ".opencode/skills/system-spec-kit/mcp_server/context-server.ts:2199-2203",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:2833-2850",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts:251-257"
+      ],
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "content_hash": "ca74fc4e67a530a009d50bceed506ebacc276bd6608e0c736c50884f3a170c16",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": false
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 0
+  },
+  "openFindingsCount": 2,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.0,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

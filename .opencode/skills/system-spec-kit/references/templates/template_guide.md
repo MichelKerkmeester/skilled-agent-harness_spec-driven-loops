@@ -1,6 +1,13 @@
 ---
 title: Template Guide
 description: Comprehensive guide to template selection, copying, adaptation, and quality standards using the progressive enhancement model.
+trigger_phrases:
+  - "template selection guide"
+  - "template adaptation standards"
+  - "progressive enhancement model"
+  - "template composition reference"
+importance_tier: normal
+contextType: general
 ---
 
 # Template Guide - Template Selection, Adaptation & Quality Standards

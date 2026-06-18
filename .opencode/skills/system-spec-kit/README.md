@@ -84,7 +84,7 @@ Or use the command shorthand:
 /memory:save 042-my-feature
 ```
 
-Every canonical save now refreshes `description.json.lastUpdated` and `graph-metadata.json.derived.*`, so the default `/memory:save` path is no longer a metadata no-op.
+The `/memory:save` command's generate-context lane refreshes `description.json.lastUpdated` and `graph-metadata.json.derived.*`. Direct MCP `memory_save({ filePath })` indexes content only; on mutating packet-doc saves it returns a `metadataRefresh` advisory with `refreshed:false` and points callers back to the generate-context save lane when packet metadata must be current.
 
 ### Resume Work From a Previous Session
 
@@ -94,7 +94,7 @@ Start a new session on work you did before:
 /speckit:resume
 ```
 
-The system rebuilds continuation context in a fixed order: `handover.md` first, then `_memory.continuity`, then the packet's canonical spec docs. It presents the current state, prior decisions, touched files and next steps before you start.
+The system first resolves the requested folder. If it is a phase parent with a valid `derived.last_active_child_id`, resume follows that pointer into the active child before comparing folder-local `handover.md` and `_memory.continuity` in `implementation-summary.md`; it then falls back to the packet's canonical spec docs. It presents the current state, prior decisions, touched files and next steps before you start.
 
 ### Search for Context
 
@@ -109,7 +109,7 @@ The system reads your question, figures out you are looking for a past decision 
 ### Validate a Spec Folder
 
 ```bash
-# Run all 20 validation rules
+# Run the default validation set (36 non-strict rules; registry has 38 total)
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
   .opencode/specs/[project]/042-my-feature/
 
@@ -128,6 +128,18 @@ Check that Spec Kit Memory tools are available:
 ```
 
 The response should return `status: "ok"` and database table counts. If it returns an error, see [Troubleshooting](#7-troubleshooting).
+
+The same check works from a shell through the daemon-backed CLI, which fronts the identical 39-tool surface:
+
+```bash
+# Enumerate the tools without touching the daemon
+node .opencode/bin/spec-memory.cjs list-tools --format text
+
+# Call a tool against the live daemon (auto-spawns it when cold)
+node .opencode/bin/spec-memory.cjs memory_health --json '{"reportMode":"full"}' --format json
+```
+
+Exit codes: `0` success, `1` runtime error, `64` usage/schema error, `69` protocol/dist mismatch, `75` retryable daemon error. Pass `--warm-only` in prompt-time contexts so a cold daemon yields exit `75` instead of a cold spawn.
 
 Codex CLI note: if the MCP server runs in a restricted or read-only repo context, point `SPEC_KIT_DB_DIR` at a writable directory such as one under your home folder or `/tmp`. Use `MEMORY_DB_PATH` only when you intentionally need one fixed sqlite file.
 
@@ -180,9 +192,9 @@ specs/<###-feature-name>/
 └── scratch/                     # Temporary workspace files (gitignored)
 ```
 
-`generate-context.js` updates the packet's continuity state for `/speckit:resume`, refreshes `description.json.lastUpdated` and rewrites `graph-metadata.json` derived fields on every canonical save. Recovery then rebuilds context from `handover.md`, `_memory.continuity` and the packet docs.
+`generate-context.js` updates the packet's continuity state for `/speckit:resume`, refreshes `description.json.lastUpdated` and rewrites `graph-metadata.json` derived fields on every generate-context save-lane run. Direct MCP `memory_save({ filePath })` does not refresh those metadata files; its success response includes a `metadataRefresh` advisory when packet metadata may now lag. Recovery then compares folder-local `handover.md` and `_memory.continuity` freshness, with packet docs as fallback.
 
-**Phase parents** are an exception. When a folder contains phase children (matching `^[0-9]{3}-[a-z0-9-]+$` with their own `spec.md` or `description.json`), the parent only requires the **lean trio**: `spec.md`, `description.json`, `graph-metadata.json`. Heavy docs (`plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`) live exclusively in the children where they stay accurate to that phase's actual work. The parent's `spec.md` carries a Phase Documentation Map. The parent's `graph-metadata.json` carries `derived.last_active_child_id` + `derived.last_active_at` pointer fields that the generator atomically updates on every save (parent saves write `null`, child saves bubble up the child's `packet_id`). `/speckit:resume` reads the pointer first when the target is a phase parent. A fresh pointer (<24h) recurses directly into the active child. A stale or missing pointer falls back to listing children with statuses. Detection is a single source of truth: `is_phase_parent()` (shell) and `isPhaseParent()` (ESM JS) MUST agree.
+**Phase parents** are an exception. When a folder contains phase children (matching `^[0-9]{3}-[a-z0-9-]+$` with their own `spec.md` or `description.json`), the parent only requires the **lean trio**: `spec.md`, `description.json`, `graph-metadata.json`. Heavy docs (`plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`) live exclusively in the children where they stay accurate to that phase's actual work. The parent's `spec.md` carries a Phase Documentation Map. The parent's `graph-metadata.json` carries `derived.last_active_child_id` + `derived.last_active_at` pointer fields that the generator atomically updates on every save (parent saves write `null`, child saves bubble up the child's `packet_id`). `/speckit:resume` reads `derived.last_active_child_id` first when the target is a phase parent and follows valid bare child ids (`001-phase`) or track-relative child paths under the parent. The redirect is bounded and escape-safe; missing, malformed, stale-to-missing-child, or non-child pointers leave resume on the requested folder instead of escaping the packet tree. Detection is a single source of truth: `is_phase_parent()` (shell) and `isPhaseParent()` (ESM JS) MUST agree.
 
 #### Checklist Priority System (Level 2+)
 
@@ -239,7 +251,11 @@ The indexed-continuity store lives in an MCP server that gives AI assistants per
 
 Think of it like a personal librarian that keeps notes on every conversation, files them by topic and hands you the right ones when you start a new task. Switch from Claude to GPT and back. The spec-doc record stays the same because it lives on your machine, not inside any AI's context window.
 
-For full architecture details, the 37-tool API reference, search pipeline internals and configuration, see [`mcp_server/README.md`](./mcp_server/README.md).
+For full architecture details, the 39-tool API reference, search pipeline internals and configuration, see [`mcp_server/README.md`](./mcp_server/README.md).
+
+#### Dual-Stack Access: MCP and CLI
+
+The memory surface is dual-stack. The `mk-spec-memory` MCP registration stays the native in-session path today, and `node .opencode/bin/spec-memory.cjs` is a full-parity CLI front door over the **same daemon** with the identical 39 tools — nothing about the daemon changed, only the IPC transport. Use MCP for live in-session calls. Use the CLI for hooks, cron jobs, CI, operator shell diagnostics and transport-down recovery: when an MCP transport drops mid-session and the client never reconnects it, the CLI still reaches every tool. Prompt-time callers must probe warm-only first; exit `75` means retryable daemon or IPC unavailability. `list-tools` answers offline; every other command speaks JSON-RPC to the daemon over the IPC socket. Shared exit taxonomy across the three sibling CLIs (`spec-memory`, `code-index`, `skill-advisor`): `0`/`1`/`64`/`69`/`75`. The shim refuses to run a stale build (exit `69`; `SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1` for dev loops), and `--warm-only` plus the prompt-time env flags keep prompt-time hooks from ever cold-spawning the daemon. Because this CLI already has full parity, a later evolution could make the CLI the primary or sole transport without breaking existing MCP workflows; that is a possible direction, not a committed plan. See [`mcp_server/ENV_REFERENCE.md`](./mcp_server/ENV_REFERENCE.md) for the CLI env-flag table.
 
 #### Hybrid Search
 
@@ -260,7 +276,7 @@ Results from all channels are combined using Reciprocal Rank Fusion (RRF) with a
 Every search goes through four stages, like an assembly line where each station has one clear job:
 
 1. **Gather**: collect candidates from active channels in parallel. Constitutional memories are always injected regardless of score.
-2. **Score**: fuse channel results with RRF, then apply 8 post-fusion scoring signals (co-activation boost, FSRS decay, interference penalty, cold-start boost, session recency, causal 2-hop, intent weights, channel min-representation).
+2. **Score**: fuse channel results with RRF, then apply the post-fusion scoring signals in one authoritative pass (session boost, recency fusion, causal boost, co-activation spreading, community co-retrieval, graph signals, FSRS testing effect, intent weights, artifact routing, feedback signals, anchor and validation metadata enrichment). Intent weights are applied here only for non-hybrid search, so hybrid results are never double-weighted.
 3. **Rerank**: apply MMR diversity reranking (algorithmic, no model) to reduce near-duplicate results, then collapse chunks back to parent memories.
 4. **Filter**: enforce score immutability, apply state filtering, annotate with confidence labels (high/medium/low) and truncate at the confidence gap.
 
@@ -346,17 +362,33 @@ Short decision-type memories can bypass the content-length gate when SPECKIT_SAV
 | `degraded_needs_repair` | Failed rows require `memory_embedding_reconcile` |
 | `unavailable` | Index state could not be read |
 
-#### Index Schema History (v28 -> v30) and the `.needs-rebuild` Sentinel
+#### Index Schema History (v34 -> v37) and the `.needs-rebuild` Sentinel
 
-The SQLite index schema (`mcp_server/lib/search/vector-index-schema.ts`, `SCHEMA_VERSION = 30`) advanced three migrations during the 013 roadmap. Each is additive and applied automatically at server boot:
+The SQLite index schema (`mcp_server/lib/search/vector-index-schema.ts`, `SCHEMA_VERSION = 37`) advanced four migrations during the shipped memory hardening work. Each is additive and applied automatically at server boot:
 
 | Migration | Adds | Effect |
 | --- | --- | --- |
-| **v28** | Active-row partial unique index `idx_memory_logical_key_active_unique` | Enforces one non-deprecated row per logical key (spec folder + canonical path + anchor + tenant/user/agent/session), excluding `constitutional` and `deprecated` tiers. Backs the deprecate-before-insert dedup guard so a re-index can no longer create a duplicate active row. |
-| **v29** | Checkpoint-v2 metadata columns `snapshot_format`, `snapshot_path` | Lets a checkpoint record a file-snapshot format and on-disk path so checkpoint-v2 can restore from a `VACUUM ... INTO` snapshot rather than an inline blob. |
-| **v30** | Enrichment marker columns `post_insert_enrichment_status`, `post_insert_enrichment_state`, `post_insert_enrichment_completed_at`, `post_insert_enrichment_version` + partial index `idx_post_insert_enrichment_incomplete` | Tracks whether the optional save-time enrichment bundle finished for a row, so incomplete enrichment can be found and resumed without re-saving. |
+| **v34** | `memory_trigger_embeddings` table and status index | Stores derived trigger-phrase embeddings for default-off semantic trigger shadow matching. Lexical trigger matching remains primary unless the semantic trigger flags are explicitly enabled. |
+| **v35** | `memory_index.source_kind` with provenance backfill | Normalizes saved row provenance into `human`, `agent`, `system`, `import` or `feedback` while preserving safe defaults for older rows. |
+| **v36** | `memory_idempotency_receipts`, `delete_after`, `near_duplicate_of`, `last_dedup_checked_at` | Adds server-derived replay receipts for save/update paths and advisory near-duplicate hints without making the feature active unless `SPECKIT_MEMORY_IDEMPOTENCY=true`. |
+| **v37** | `deleted_at`, active recall index, purgeable retention index | Adds tombstone-ready partitions so delete and retention paths can use soft-delete tombstones when `SPECKIT_SOFT_DELETE_TOMBSTONES=true`. |
 
 After a checkpoint restore that swaps the live DB files, the runtime writes a `.needs-rebuild` sentinel (`NEEDS_REBUILD_SENTINEL_NAME` in `mcp_server/lib/storage/checkpoints.ts`) beside the restored DB. The next boot detects it through `repairNeedsRebuildSentinel()` and rebuilds the derived indexes (FTS5/BM25 shadow and vector profile) before serving, so a restored snapshot never serves from a stale shadow. The sentinel is cleared once the rebuild completes.
+
+#### Memory Hardening and Observability
+
+The shipped memory-hardening surface is intentionally conservative. Semantic trigger scoring, feedback retention learning, session-trace causal inference, idempotency receipts, soft-delete tombstones and completion freshness all default OFF. When enabled, the first step is shadow, audit or advisory output so operators can compare behavior before changing live recall or retention.
+
+| Feature | Default | Operator-facing behavior |
+| --- | --- | --- |
+| Semantic-trigger shadow | OFF | Computes semantic trigger candidates while lexical triggers remain primary; `union` mode still requires the master flag. |
+| Idempotency and provenance | OFF for receipts; `source_kind` always present | Adds replay receipts and near-duplicate hints only when enabled; provenance is normalized as `human`, `agent`, `system`, `import` or `feedback`. |
+| Soft-delete tombstones | OFF | Adds tombstone-aware delete and retention partitions behind `SPECKIT_SOFT_DELETE_TOMBSTONES`. Keep OFF until recall filters tombstoned rows consistently. |
+| Retrieval observability | OFF by default | `SPECKIT_RESPONSE_TRACE=true` adds search trace payloads for debugging without changing the default concise response shape. |
+| Feedback reducers | OFF | Session-trace causal inference and feedback-aware retention run only behind explicit gates; retention is shadow-first unless active mode has evidence. |
+| Completion freshness | OFF | Strict validation can compare stored continuity fingerprints with packet content and optionally promote stale findings to errors. |
+
+Stale-audit and tool-ownership lint are live guardrails around this surface: health checks report stale conditions, and pre-commit compares the generated tool-ownership map against live `TOOL_DEFINITIONS` so command ownership cannot drift silently.
 
 #### MCP Front-Proxy and In-Place Daemon Recycle
 
@@ -385,7 +417,7 @@ The indexed-continuity store includes built-in tools for measuring search qualit
 
 ### 4.3 COMMANDS
 
-Spec Kit exposes its core workflow through the `/speckit:*` commands (`complete`, `implement`, `plan` and `resume`, where `plan` also has an `--intake-only` variant) plus the `/memory:*` operations. Repository-wide command entry points also include the `/deep:*` loop commands (one of which, `start-agent-improvement-loop`, supersedes the former `improve` commands), the `/create:*` commands, the `/doctor` diagnostics and the `agent_router` and `prompt` utilities. Each command opens access to a specific set of tools.
+Spec Kit exposes its core workflow through the `/speckit:*` commands (`complete`, `implement`, `plan` and `resume`, where `plan` also has an `--intake-only` variant) plus the `/memory:*` operations. Repository-wide command entry points also include the `/deep:*` loop commands (one of which, `agent-improvement`, supersedes the former `improve` commands), the `/create:*` commands, the `/doctor` diagnostics and the `agent_router` and `prompt` utilities. Each command opens access to a specific set of tools.
 
 #### Spec Kit Commands
 
@@ -396,8 +428,8 @@ Spec Kit exposes its core workflow through the `/speckit:*` commands (`complete`
 | `/speckit:plan`        | 7     | Planning only: spec through plan, no implementation, with the shared intake contract from [intake_contract.md](./references/workflows/intake_contract.md) for `no-spec`, `partial-folder`, `repair-mode` or `placeholder-upgrade` packets |
 | `/speckit:implement`   | 9     | Execute pre-planned work. Requires existing `plan.md`. Packet-aware targets also generate local changelog output during closeout |
 | `/speckit:resume`      | 4     | Resume a previous session on an existing spec folder                                                                             |
-| `/deep:start-research-loop` | N/A | Autonomous research loop with convergence detection plus bounded `spec.md` anchoring under [spec_check_protocol.md](../deep-research/references/protocol/spec_check_protocol.md) |
-| `/deep:start-review-loop` | N/A   | Autonomous code review loop with convergence detection                                                                           |
+| `/deep:research` | N/A | Autonomous research loop with convergence detection plus bounded `spec.md` anchoring under [spec_check_protocol.md](../deep-loop-workflows/deep-research/references/protocol/spec_check_protocol.md) |
+| `/deep:review` | N/A   | Autonomous code review loop with convergence detection                                                                           |
 
 **Mode Suffixes** change how commands run:
 
@@ -419,7 +451,7 @@ Spec Kit exposes its core workflow through the `/speckit:*` commands (`complete`
 | `/memory:manage` | 20         | Database maintenance and lifecycle operations: stats, scan, cleanup, bulk-delete, checkpoints and ingest |
 | `/memory:learn`  | 6          | Constitutional memory manager: create, list, edit, remove always-surface rules                                                          |
 
-Session recovery lives in `/speckit:resume`, which rebuilds packet context in this order: `handover.md`, then `_memory.continuity`, then canonical spec docs before deeper memory retrieval is needed.
+Session recovery lives in `/speckit:resume`, which compares folder-local `handover.md` and `_memory.continuity` in `implementation-summary.md`, selects the fresher source, then falls back to canonical spec docs before deeper memory retrieval is needed.
 
 Some commands own their tools (they are the primary home) while others borrow tools from `/memory:search` or `/memory:manage`. A borrowed tool works the same way, it is just administered somewhere else.
 
@@ -472,7 +504,7 @@ The `scripts/spec/` directory holds the scripts that manage the full lifecycle o
 | Script                        | Purpose                                                                                        |
 | ----------------------------- | ---------------------------------------------------------------------------------------------- |
 | `create.sh`                   | Create spec folders with level-appropriate templates. Use `--phase` for parent + child folders |
-| `validate.sh`                 | Run 20 validation rules. Use `--recursive` for phase folders, `--verbose` for details          |
+| `validate.sh`                 | Run the 36-rule default validation set from the 38-rule registry; strict-only rules are gated by `--strict` and env. Use `--recursive` for phase folders, `--verbose` for details |
 | `upgrade-level.sh`            | Render additional Level contract sections for a higher documentation level                     |
 | `recommend-level.sh`          | Analyze scope and risk to recommend the right documentation level                              |
 | `calculate-completeness.sh`   | Calculate spec folder completeness as a percentage                                             |
@@ -564,7 +596,7 @@ Template changes flow through the manifest source, Level contract resolver and i
 | [`SKILL.md`](./SKILL.md)                                                     | AI agent instructions: routing rules, gates, validation procedures, template application             |
 | [`README.md`](./README.md)                                                   | This file: what Spec Kit does, how to use it, where to find things                                 |
 | [`ARCHITECTURE.md`](./ARCHITECTURE.md)                                       | API boundary contract between `scripts/` and `mcp_server/`                                           |
-| [`mcp_server/README.md`](./mcp_server/README.md)                             | Full MCP architecture: 37-tool API reference, search pipeline, graph intelligence and configuration |
+| [`mcp_server/README.md`](./mcp_server/README.md)                             | Full MCP architecture: 39-tool API reference, search pipeline, graph intelligence and configuration |
 | [`mcp_server/INSTALL_GUIDE.md`](./mcp_server/INSTALL_GUIDE.md)               | Step-by-step installation with embedding providers and environment                                   |
 | [`scripts/spec/create.sh`](./scripts/spec/create.sh)                         | Create spec folders with level-appropriate template files                                            |
 | [`scripts/spec/validate.sh`](./scripts/spec/validate.sh)                     | Run 20-rule validation on any spec folder                                                            |
@@ -577,11 +609,11 @@ Think of Spec Kit as a filing system with a librarian attached.
 
 The **spec folder workflow** is the filing system. Every time you modify files, it creates a numbered folder with the right paperwork (specification, plan, tasks). Templates make sure every folder follows the same structure. Validation checks that nothing is missing.
 
-The **memory system** is the librarian. When a session ends, `generate-context.js` updates the packet's canonical continuity surfaces so the next session can recover from packet-local sources first. The MCP server indexes those packet docs into vector, FTS5 and BM25 surfaces, while graph and degree signals are computed at retrieval time. When a new session starts, `/speckit:resume` rebuilds context from `handover.md`, `_memory.continuity` and the packet docs. If you need deeper retrieval after that, `session_bootstrap()` bundles resume context, health and structural readiness into one follow-up recovery call before broader `memory_context` work begins.
+The **memory system** is the librarian. When a session ends, `generate-context.js` updates the packet's canonical continuity surfaces so the next session can recover from packet-local sources first. The MCP server indexes those packet docs into vector, FTS5 and BM25 surfaces, while graph and degree signals are computed at retrieval time. When a new session starts, `/speckit:resume` compares folder-local `handover.md` and `_memory.continuity` in `implementation-summary.md`, selects the fresher source, then falls back to the packet docs. If you need deeper retrieval after that, `session_bootstrap()` bundles resume context, health and structural readiness into one follow-up recovery call before broader `memory_context` work begins.
 
-The **commands** are the doors into the system. Each command opens access to the tools it needs. `/speckit:plan --intake-only` owns the standalone intake surface, `/speckit:plan` and `/speckit:complete` reuse the shared intake contract from [intake_contract.md](./references/workflows/intake_contract.md) when the Step 0 local `folder_state` requires delegation, and downstream callers should consume the returned `start_state` as the canonical intake enum. `/deep:start-research-loop` anchors research to `spec.md` through [spec_check_protocol.md](../deep-research/references/protocol/spec_check_protocol.md). `/memory:save` updates packet continuity. `/speckit:resume` recovers or continues a previous session.
+The **commands** are the doors into the system. Each command opens access to the tools it needs. `/speckit:plan --intake-only` owns the standalone intake surface, `/speckit:plan` and `/speckit:complete` reuse the shared intake contract from [intake_contract.md](./references/workflows/intake_contract.md) when the Step 0 local `folder_state` requires delegation, and downstream callers should consume the returned `start_state` as the canonical intake enum. `/deep:research` anchors research to `spec.md` through [spec_check_protocol.md](../deep-loop-workflows/deep-research/references/protocol/spec_check_protocol.md). `/memory:save` updates packet continuity. `/speckit:resume` recovers or continues a previous session.
 
-The common packet lifecycle now uses `/speckit:plan --intake-only` for standalone trio creation or repair. `/deep:start-research-loop` can enrich that packet under the bounded `spec_check_protocol.md` rules. `/speckit:plan` or `/speckit:complete` then continue from the same folder without reopening intake unless the local `folder_state` still requires repair. When intake does run, `start_state` is the canonical downstream field.
+The common packet lifecycle now uses `/speckit:plan --intake-only` for standalone trio creation or repair. `/deep:research` can enrich that packet under the bounded `spec_check_protocol.md` rules. `/speckit:plan` or `/speckit:complete` then continue from the same folder without reopening intake unless the local `folder_state` still requires repair. When intake does run, `start_state` is the canonical downstream field.
 
 ```text
 Session starts
@@ -600,7 +632,7 @@ Session starts
             │
             ▼
   Next session starts
-  └─► /speckit:resume reads handover.md -> _memory.continuity -> packet docs
+  └─► /speckit:resume compares handover.md and _memory.continuity freshness, then falls back to packet docs
        └─► session_bootstrap() or memory_context() deepen retrieval when needed
        └─► AI resumes with context + health + structural readiness
 ```
@@ -771,7 +803,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
   .opencode/specs/[project]/022-big-feature/ --recursive
 ```
 
-**Result**: A pass/warn/error report across 20 rules with actionable fix instructions.
+**Result**: A pass/warn/error report for the selected validation set from the 38-rule registry, with actionable fix instructions.
 
 ### Common Patterns
 
@@ -887,7 +919,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh \
 
 **What you see**: `memory_health` returns a status of `corrupt` or the server logs show `FTS5 SHADOW INDEX CORRUPTION DETECTED` at boot.
 
-**What happens**: At boot, when the `.unclean-shutdown` crash marker is present, the server runs two probes. A whole-database `PRAGMA quick_check` guards the main index: on failure it writes the checkpoint `.needs-rebuild` sentinel and refuses to start rather than serve corrupted data. The `memory_fts` shadow check remains detect-only: a failure there is logged and the server continues in a degraded state (BM25/FTS5 searches return empty or partial results). Clean shutdowns skip both probes.
+**What happens**: At boot, when the `.unclean-shutdown` crash marker is present, the server runs two probes. A whole-database `PRAGMA quick_check` guards the main index: on failure it writes the checkpoint `.needs-rebuild` sentinel and refuses to start rather than serve corrupted data. The `memory_fts` shadow check is auto-healed by default because the shadow table is fully derived from `memory_index`; the server rebuilds it and re-runs the integrity probe; if the rebuild fails to verify, it logs the failure and continues serving in a degraded state with the health flag set. Set `SPECKIT_BOOT_FTS_AUTOHEAL=0` for detect-only mode, where a failure is logged and the server continues in degraded state. Clean shutdowns skip both probes.
 
 **Fix**:
 
@@ -927,10 +959,12 @@ The MCP daemon serializes writes through its own handler queue. Only fall back t
 | `generate-context.js` not found  | Run `npm run build` in `system-spec-kit/`                                       |
 | Spec folder fails validation     | Run `validate.sh --verbose` and read each failing rule                          |
 | Memory context seems wrong       | Call `memory_stats({})` to check index counts                                   |
-| Session context lost after crash | Use `/speckit:resume` to rebuild from `handover.md`, `_memory.continuity` and packet docs |
+| Session context lost after crash | Use `/speckit:resume` to select the fresher folder-local handover or continuity source, with packet docs as fallback |
 | Placeholder check fails          | Run `check-placeholders.sh` and replace all `[PLACEHOLDER]` values              |
 | Stale results after save         | Call `memory_index_scan({ specFolder: "..." })` to force re-index               |
 | Too many near-duplicate results  | Check that interference penalty is active in feature flags                      |
+| `spec-memory.cjs` exits 69       | CLI dist is missing or stale: run `npm run build --workspace=@spec-kit/mcp-server` |
+| `spec-memory.cjs` exits 75 with `--warm-only` | Expected when the daemon is cold: retry without `--warm-only` or start a session that spawns it |
 
 ### Diagnostic Commands
 
@@ -974,7 +1008,7 @@ A: Level 3 adds a `decision-record.md` for architecture decision records. Use it
 
 **Q: How do spec folders and memory work together?**
 
-A: Spec folders capture what happened in structured documentation. `generate-context.js` updates the packet's canonical continuity surfaces, and `/speckit:resume` rebuilds the next session from `handover.md`, `_memory.continuity` and the packet docs. The MCP server indexes those packet-local sources so deeper retrieval can still use `session_bootstrap()`, `memory_context()` or `memory_match_triggers()` after the canonical resume step. One side captures, the recovery surfaces retrieve.
+A: Spec folders capture what happened in structured documentation. `generate-context.js` updates the packet's canonical continuity surfaces, and `/speckit:resume` rebuilds the next session by comparing folder-local `handover.md` and `_memory.continuity` freshness, then falling back to packet docs. The MCP server indexes those packet-local sources so deeper retrieval can still use `session_bootstrap()`, `memory_context()` or `memory_match_triggers()` after the canonical resume step. One side captures, the recovery surfaces retrieve.
 
 ---
 
@@ -986,7 +1020,7 @@ A: The indexed-continuity store can index any markdown file, beyond spec folder 
 
 **Q: What is the difference between this README and the MCP server README?**
 
-A: This README covers the whole skill: spec folders, documentation levels, commands, templates, scripts and a high-level summary of the indexed-continuity store. The MCP server README (`mcp_server/README.md`) goes deep on the indexed-continuity store: the 37-tool API reference, 5 core retrieval channels, session lifecycle tooling, canonical resume and bootstrap behavior, save pipeline, causal graph, query intelligence and evaluation infrastructure.
+A: This README covers the whole skill: spec folders, documentation levels, commands, templates, scripts and a high-level summary of the indexed-continuity store. The MCP server README (`mcp_server/README.md`) goes deep on the indexed-continuity store: the 39-tool API reference, 5 core retrieval channels, session lifecycle tooling, canonical resume and bootstrap behavior, save pipeline, causal graph, query intelligence and evaluation infrastructure.
 
 ---
 
@@ -1021,7 +1055,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh \
 | ------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------- |
 | [`SKILL.md`](./SKILL.md)                                                                         | AI agent instructions: routing, gates, validation, template application                              |
 | [`ARCHITECTURE.md`](./ARCHITECTURE.md)                                                           | API boundary contract between `scripts/` and `mcp_server/`                                           |
-| [`mcp_server/README.md`](./mcp_server/README.md)                                                 | Full MCP architecture: 37-tool API reference, search pipeline, graph intelligence and configuration |
+| [`mcp_server/README.md`](./mcp_server/README.md)                                                 | Full MCP architecture: 39-tool API reference, search pipeline, graph intelligence and configuration |
 | [`mcp_server/INSTALL_GUIDE.md`](./mcp_server/INSTALL_GUIDE.md)                                   | Step-by-step installation with embedding providers and environment variables                         |
 | [`references/memory/memory_system.md`](./references/memory/memory_system.md)                     | Detailed memory system reference                                                                     |
 | [`references/memory/embedder_architecture.md`](./references/memory/embedder_architecture.md)     | Active embedder pointer, vector shard, dim-table and swap architecture                              |
@@ -1029,7 +1063,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh \
 | [`references/memory/embedder_pluggability.md`](./references/memory/embedder_pluggability.md)     | Cross-MCP embedder defaults, swap flows, device selection and support matrix                        |
 | [`references/workflows/intake_contract.md`](./references/workflows/intake_contract.md)           | Shared spec-folder intake contract for `/speckit:plan`, `/speckit:complete` and resume re-entry     |
 | [`references/workflows/rename_pattern.md`](./references/workflows/rename_pattern.md)             | Mechanical rename workflow and live-vs-historical surface discipline                                 |
-| [`references/validation/validation_rules.md`](./references/validation/validation_rules.md)       | All 20 validation rules with fixes                                                                   |
+| [`references/validation/validation_rules.md`](./references/validation/validation_rules.md)       | Partial validation-rule reference; the 38-rule registry is authoritative                             |
 | Level specifications reference                                                                    | Level definitions and template size guidance                                                         |
 | [`references/templates/template_guide.md`](./references/templates/template_guide.md)             | Template usage and composition rules                                                                 |
 | [`references/config/environment_variables.md`](./references/config/environment_variables.md)     | Full environment variable reference                                                                  |
@@ -1054,7 +1088,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh \
 | ----------------------------- | ---------------------------------------------------------------------------- |
 | `AGENTS.md` (project root)    | Gate definitions, AI behavior framework, mandatory workflow rules            |
 | `.opencode/specs/`            | All spec folders created by Spec Kit                                         |
-| `.opencode/commands/speckit/` | Spec Kit command definitions (8 commands)                                    |
+| `.opencode/commands/speckit/` | Spec Kit command folder: 4 speckit command Markdown files plus README/assets; the command index lists 7 rows including deep workflow and intake-only entries |
 | `.opencode/commands/memory/`   | Memory command definitions (4 top-level commands plus subcommand namespaces) |
 
 ### External Resources
@@ -1064,4 +1098,3 @@ bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh \
 | [Model Context Protocol](https://modelcontextprotocol.io/)            | MCP specification                                     |
 | [FSRS algorithm](https://github.com/open-spaced-repetition/fsrs4anki) | Free Spaced Repetition Scheduler (memory decay model) |
 | [sqlite-vec](https://github.com/asg017/sqlite-vec)                    | SQLite vector search extension                        |
-

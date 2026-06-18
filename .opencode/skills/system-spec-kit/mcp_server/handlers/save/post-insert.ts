@@ -141,6 +141,7 @@ function emitCausalLinkRetryTelemetry(
   });
 }
 
+/** Determine whether post-insert enrichment should run for the save mode. */
 export function shouldRunPostInsertEnrichment(plannerMode: SavePlannerMode = 'plan-only'): boolean {
   return plannerMode === 'full-auto' || isPostInsertEnrichmentEnabled();
 }
@@ -310,7 +311,8 @@ async function runCausalLinksStep(
     'causalLinks',
     () => parsed.hasCausalLinks && Boolean(parsed.causalLinks),
     async () => {
-      state.result = processCausalLinks(database, id, parsed.causalLinks!);
+      const causalLinks = parsed.causalLinks;
+      state.result = processCausalLinks(database, id, causalLinks);
       return state.result;
     },
     (result) => buildCausalLinksStepResult(id, result, state),

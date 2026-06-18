@@ -393,7 +393,13 @@ async function runBulkDelete(): Promise<void> {
         } catch (_histErr: unknown) {
           // History recording is best-effort
         }
-        try { causalEdges.deleteEdgesForMemory(String(memory.id)); } catch { /* ignore */ }
+        try {
+          causalEdges.deleteEdgesForMemory(String(memory.id), {
+            reason: 'cli bulk-delete cleanup',
+            command: 'cli.bulkDeleteByTier',
+            restoreContext: { memoryId: memory.id, tier, specFolder, checkpointName },
+          });
+        } catch { /* ignore */ }
       }
     }
   });

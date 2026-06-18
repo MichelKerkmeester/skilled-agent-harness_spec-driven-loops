@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/135-skill-readme-standardization/005-cli-opencode-readme",
+  "description": "Feature Specification: cli-opencode README",
+  "keywords": [
+    "feature",
+    "specification",
+    "cli-opencode",
+    "readme"
+  ],
+  "lastUpdated": "2026-06-10T04:53:30.756Z",
+  "specId": "005",
+  "folderSlug": "cli-opencode-readme",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "135-skill-readme-standardization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

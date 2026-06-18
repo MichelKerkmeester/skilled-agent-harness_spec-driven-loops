@@ -1,0 +1,53 @@
+{
+  "sessionId": "fanout-gpt55r2-b-8-1781761339355-o7qylx",
+  "generation": 1,
+  "lineageMode": "fanout-lineage",
+  "openFindings": [],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "candidateRejected": [
+    {
+      "candidateId": "R001",
+      "title": "Async ingest path canonicalization TOCTOU",
+      "status": "rejected",
+      "reason": "The queued path is canonicalized before enqueue, and the downstream memory_save handler re-validates the file path and canonical index scope before indexing.",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:198-215 resolves symlinks and only queues allowed roots.",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:3187-3197 validates and canonicalizes the direct save path before accepting an indexable memory file.",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:2850 parses the validated file through the normal indexing path."
+      ]
+    },
+    {
+      "candidateId": "R002",
+      "title": "Retention sweep excludes active expired rows with tombstones enabled",
+      "status": "rejected",
+      "reason": "Flag-on soft-delete tombstone retention intentionally targets the purgeable tombstone partition, while the default flag-off path still reaps active expired rows.",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts:143-170 selects the purgeable tombstone partition only when the flag and deleted_at are present.",
+        ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:93 documents soft-delete tombstones as default OFF and tied to purgeable retention partition.",
+        ".opencode/skills/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts:115-169 covers default active-row reaping and flag-on purgeable tombstone selection."
+      ]
+    },
+    {
+      "candidateId": "R003",
+      "title": "Cancelled index scan writes last_index_scan cooldown",
+      "status": "rejected",
+      "reason": "The scan lease/cooldown is explicitly a coalescing and race-prevention mechanism; cancellation releases the lease through the same completion path and has direct regression coverage.",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:480-484 defines releaseScanLease as completeIndexScanLease(Date.now()).",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:1483-1494 always releases the lease in finally.",
+        ".opencode/skills/system-spec-kit/mcp_server/core/db-state.ts:554-570 documents and implements completion by writing last_index_scan and clearing scan_started_at.",
+        ".opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-index-scan-jobs.vitest.ts:419-444 asserts cancellation releases the lease and prevents file indexing.",
+        ".opencode/skills/system-spec-kit/changelog/v3.0.1.3.md:26-28 documents the atomic lease/cooldown as intentional anti-overlap behavior."
+      ]
+    }
+  ],
+  "summary": {
+    "activeP0": 0,
+    "activeP1": 0,
+    "activeP2": 0,
+    "hasAdvisories": false,
+    "verdict": "PASS"
+  }
+}

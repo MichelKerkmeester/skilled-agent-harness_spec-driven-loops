@@ -1,0 +1,10 @@
+{
+  "run": 1,
+  "status": "complete",
+  "dimensions": ["correctness"],
+  "filesReviewed": 9,
+  "findingsNew": { "P0": 0, "P1": 2, "P2": 0 },
+  "newFindingsRatio": 1,
+  "findingIds": ["F001", "F002"],
+  "verdict": "CONDITIONAL"
+}

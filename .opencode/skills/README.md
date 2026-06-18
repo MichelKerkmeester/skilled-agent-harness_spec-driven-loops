@@ -1,6 +1,6 @@
 ---
 title: "Skills Library"
-description: "Catalog and front door to 22 on-demand skills across five families, with routing guidance and creation workflow."
+description: "Catalog and front door to 20 on-demand skills across five families, with routing guidance and creation workflow."
 trigger_phrases:
   - "skills library"
   - "available skills"
@@ -21,7 +21,7 @@ trigger_phrases:
 |---|---|
 | **Use it for** | Finding the skill that matches your task and understanding how routing picks it |
 | **Invoke with** | Gate 2 auto-routing, a direct read of the skill's `SKILL.md`, or keyword triggers like "commit changes" |
-| **Families** | Five: `cli-*` (4), `deep-*` (6), `mcp-*` (3), `sk-*` (6), `system-*` (3) |
+| **Families** | Five: `cli-*` (3), `deep-*` (2), `mcp-*` (5), `sk-*` (7), `system-*` (3) |
 | **Catalog** | A family-by-family table below that links every skill's own README |
 
 ---
@@ -30,7 +30,7 @@ trigger_phrases:
 
 ### Why This Library Exists
 
-Twenty-two skills live under `.opencode/skills/`. A reader lands here and faces the same question every time: which one handles this task? The right skill loads focused guidance, a one-page reference and scripts that are proven to work. The wrong skill wastes context on irrelevant instructions. Worse, a reader might not know that a skill for the task exists at all. The library solves that. It catalogs every skill by family, links each one's README and explains how routing picks the match before you open a single file.
+Twenty skills live under `.opencode/skills/`. A reader lands here and faces the same question every time: which one handles this task? The right skill loads focused guidance, a one-page reference and scripts that are proven to work. The wrong skill wastes context on irrelevant instructions. Worse, a reader might not know that a skill for the task exists at all. The library solves that. It catalogs every skill by family, links each one's README and explains how routing picks the match before you open a single file.
 
 ### What It Is
 
@@ -54,12 +54,8 @@ Each skill name links to its own README. The one-line descriptions come from the
 
 | Skill | What it does |
 |---|---|
-| [`deep-ai-council`](deep-ai-council/README.md) | Put multiple reasoning lenses on a plan, let them disagree honestly and converge only when they earn it |
-| [`deep-context`](deep-context/README.md) | Map the existing code you can reuse, connect and follow before you write a single line |
-| [`deep-improvement`](deep-improvement/README.md) | Score a packet-local agent candidate across five dimensions before you ship it |
+| [`deep-loop-workflows`](deep-loop-workflows/README.md) | The unified deep-loop skill: routes a request to one of five modes (context, research, review, ai-council, improvement) over the shared runtime |
 | [`deep-loop-runtime`](deep-loop-runtime/README.md) | The shared foundation every deep loop rides, a runtime library rather than a loop you invoke directly |
-| [`deep-research`](deep-research/README.md) | Run an autonomous research loop that stores findings on disk and dispatches a fresh agent per iteration |
-| [`deep-review`](deep-review/README.md) | Run an autonomous review loop that audits one dimension per pass with fresh context and classifies findings |
 
 ### mcp-*: External Tool Surfaces
 
@@ -68,6 +64,8 @@ Each skill name links to its own README. The one-line descriptions come from the
 | [`mcp-chrome-devtools`](mcp-chrome-devtools/README.md) | Drive a real browser from your agent or terminal, with a fast CLI and an MCP fallback |
 | [`mcp-click-up`](mcp-click-up/README.md) | Manage ClickUp tasks from your agent or terminal |
 | [`mcp-code-mode`](mcp-code-mode/README.md) | Execute TypeScript with direct access to every external MCP tool registered in `.utcp_config.json` |
+| [`mcp-open-design`](mcp-open-design/README.md) | Drive the installed Open Design desktop app from the terminal: read and reuse local design systems and commission gated generation runs, via the `od` CLI and MCP |
+| [`mcp-figma`](mcp-figma/README.md) | Drive Figma Desktop from the terminal to read, author, modify, and export designs, tokens, and components, with an optional Figma MCP via Code Mode |
 
 ### sk-*: Code, Docs, Git and Prompts
 
@@ -77,6 +75,7 @@ Each skill name links to its own README. The one-line descriptions come from the
 | [`sk-code-review`](sk-code-review/README.md) | Stack-agnostic findings-first code review that classifies each finding by severity |
 | [`sk-doc`](sk-doc/README.md) | Document quality that starts with structure, with a deterministic script that extracts and scores |
 | [`sk-git`](sk-git/README.md) | Move from a clean workspace to a merged PR, with worktree setup, Conventional Commits and branch discipline |
+| [`sk-interface-design`](sk-interface-design/README.md) | Set distinctive visual direction (palette, typography, layout, motion) that avoids templated AI defaults, grounding against real design systems (`mcp-open-design`) and shipped-UI references (Mobbin/Refero via Code Mode), then hand the build to sk-code |
 | [`sk-prompt`](sk-prompt/README.md) | Turn a vague ask into a structured prompt, auto-selected from seven frameworks |
 | [`sk-prompt-small-model`](sk-prompt-small-model/README.md) | Before you dispatch any small model, read that model's prompt-craft profile here |
 
@@ -84,9 +83,9 @@ Each skill name links to its own README. The one-line descriptions come from the
 
 | Skill | What it does |
 |---|---|
-| [`system-code-graph`](system-code-graph/README.md) | The structural half of code intelligence. Answer what depends on what, and refuse on a stale graph |
-| [`system-skill-advisor`](system-skill-advisor/README.md) | Pick the right skill for any prompt with a calibrated score, and refuse on a stale index |
-| [`system-spec-kit`](system-spec-kit/README.md) | Documentation and memory for AI-assisted development. Every file change gets a spec folder |
+| [`system-code-graph`](system-code-graph/README.md) | The structural half of code intelligence. Answer what depends on what, and refuse on a stale graph — over MCP or the daemon-backed `code-index` CLI |
+| [`system-skill-advisor`](system-skill-advisor/README.md) | Pick the right skill for any prompt with a calibrated score, and refuse on a stale index — over MCP or the daemon-backed `skill-advisor` CLI |
+| [`system-spec-kit`](system-spec-kit/README.md) | Documentation and memory for AI-assisted development. Every file change gets a spec folder, and the memory daemon answers over MCP or the `spec-memory` CLI |
 
 ---
 

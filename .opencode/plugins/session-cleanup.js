@@ -1,4 +1,30 @@
-#!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: Session Cleanup OpenCode Plugin                              ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Run bounded MCP helper cleanup when the OpenCode plugin         ║
+// ║          lifecycle reports session or server teardown.                   ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+'use strict';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
+import { spawnSync } from 'node:child_process';
+import { dirname, join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
+
+const PLUGIN_ROOT = dirname(fileURLToPath(import.meta.url));
+const REPO_ROOT = resolve(PLUGIN_ROOT, '..', '..');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. PLUGIN FACTORY
+// ─────────────────────────────────────────────────────────────────────────────
+
 /**
  * OpenCode Plugin: session MCP cleanup
  *
@@ -12,14 +38,9 @@
  *
  * Plugin signature follows opencode's plugin API: a default-exported async
  * factory that returns lifecycle hooks.
+ *
+ * @returns {Promise<Object>} Hooks object for the OpenCode plugin loader
  */
-
-const { spawnSync } = require("node:child_process");
-const path = require("node:path");
-
-const PLUGIN_ROOT = __dirname;
-const REPO_ROOT = path.resolve(PLUGIN_ROOT, "..", "..");
-
 export default async function sessionCleanupPlugin() {
   return {
     // The host invokes this for every lifecycle event.
@@ -30,12 +51,12 @@ export default async function sessionCleanupPlugin() {
 
       if (eventType === 'server.instance.disposed' || eventType === 'global.disposed') {
         try {
-          spawnSync('bash', [path.join(REPO_ROOT, '.opencode/scripts/session-cleanup.sh')], {
+          spawnSync('bash', [join(REPO_ROOT, '.opencode/scripts/session-cleanup.sh')], {
             cwd: REPO_ROOT,
             timeout: 8000,
           });
         } catch (_) {
-          // best-effort; never block teardown
+          // Best-effort; never block teardown.
         }
       }
     },

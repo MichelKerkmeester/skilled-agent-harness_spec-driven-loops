@@ -20,6 +20,7 @@ const path = require('node:path');
 const { spawnSync } = require('node:child_process');
 
 const {
+  acquireWriterLock,
   classifyExitCode,
   installSignalHandlers,
   maybeThrowTestFault,
@@ -30,17 +31,7 @@ const {
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const TSX_LOADER = path.resolve(
-  __dirname,
-  '..',
-  '..',
-  'system-spec-kit',
-  'scripts',
-  'node_modules',
-  'tsx',
-  'dist',
-  'loader.mjs',
-);
+const TSX_LOADER = require.resolve('tsx');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. TSX BOOTSTRAP
@@ -397,15 +388,22 @@ async function main() {
         }));
 
     if (asBoolean(args.persistSnapshot) && args.iteration !== undefined) {
-      db.createSnapshot({
-        specFolder,
-        loopType,
-        sessionId,
-        iteration: Number(args.iteration),
-        metrics: { ...signals, nodeCount: stats.totalNodes, edgeCount: stats.totalEdges },
-        nodeCount: stats.totalNodes,
-        edgeCount: stats.totalEdges,
-      });
+      // Snapshot writes share the deep-loop graph DB with upsert.cjs, so they
+      // must take the same writer lock to avoid a concurrent-write race.
+      const releaseWriterLock = acquireWriterLock(path.join(db.COVERAGE_GRAPH_DATABASE_DIR, '.deep-loop-graph-writer.lock'));
+      try {
+        db.createSnapshot({
+          specFolder,
+          loopType,
+          sessionId,
+          iteration: Number(args.iteration),
+          metrics: { ...signals, nodeCount: stats.totalNodes, edgeCount: stats.totalEdges },
+          nodeCount: stats.totalNodes,
+          edgeCount: stats.totalEdges,
+        });
+      } finally {
+        releaseWriterLock();
+      }
     }
 
     const data = {

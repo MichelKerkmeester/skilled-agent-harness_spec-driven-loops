@@ -3,14 +3,13 @@ title: "Webflow JavaScript Quick Reference"
 description: "Copy-paste-ready JS snippets and one-liners for Webflow: condition-based waiting (waitForElement, waitForLibrary), validation wrapper, MutationObserver, IntersectionObserver, Lenis scrollTo, Motion.dev animate/inView, Webflow guard flag, custom event dispatch, safe optional chaining."
 trigger_phrases:
   - "webflow javascript quick reference"
-  - "webflow js snippets"
-  - "waitForElement"
-  - "waitForLibrary"
-  - "MutationObserver one liner"
-  - "IntersectionObserver one liner"
-  - "Lenis scrollTo"
-  - "Motion.dev animate"
-  - "Webflow guard flag"
+  - "waitforelement helper"
+  - "waitforlibrary helper"
+  - "lenis scrollto snippet"
+  - "motion dev animate snippet"
+  - "webflow guard flag"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Webflow JavaScript Quick Reference

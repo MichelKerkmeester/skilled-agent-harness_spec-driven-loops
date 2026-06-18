@@ -789,6 +789,8 @@ npm --prefix .opencode/skills/system-skill-advisor/mcp_server run build
         "_NOTE_1_DB": "Database lives at .opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite by default; MK_SKILL_ADVISOR_DB_DIR overrides.",
         "_NOTE_2_TOOLS": "Registers 8 tools: advisor_recommend/rebuild/status/validate plus skill_graph_scan/query/status/validate. MCP namespace: mcp__mk_skill_advisor__*",
         "MK_SKILL_ADVISOR_DB_DIR": ".opencode/skills/system-skill-advisor/mcp_server/database",
+        "MK_SKILL_ADVISOR_TRUST_DEFAULT": "trusted",
+        "_NOTE_3_SHADOW_MODE": "SPECKIT_ADVISOR_SHADOW_MODE is currently inert: documented intent only, no runtime reader yet.",
         "SPECKIT_ADVISOR_SHADOW_MODE": "0",
         "SPECKIT_SKILL_ADVISOR_HOOK_DISABLED": "0"
       }
@@ -1331,12 +1333,12 @@ You have completed the installation. Here is your roadmap for getting started.
 
 | Category | Commands                                                                                                |
 | -------- | ------------------------------------------------------------------------------------------------------- |
-| Create   | `/create:agent`, `/create:changelog`, `/create:feature-catalog`, `/create:folder_readme`, `/create:prompt`, `/create:skill`, `/create:testing-playbook` |
+| Create   | `/create:agent`, `/create:changelog`, `/create:feature-catalog`, `/create:folder_readme`, `/create:prompt`, `/create:sk-skill`, `/create:testing-playbook` |
 | Memory   | `/memory:search`, `/memory:learn`, `/memory:manage`, `/memory:save` |
-| SpecKit  | `/speckit:complete`, `/deep:start-research-loop`, `/deep:start-review-loop`, `/speckit:implement`, `/speckit:plan`, `/speckit:plan --intake-only`, `/speckit:resume` |
+| SpecKit  | `/speckit:complete`, `/deep:research`, `/deep:review`, `/speckit:implement`, `/speckit:plan`, `/speckit:plan --intake-only`, `/speckit:resume` |
 | Utility  | `/agent_router` |
 
-For the SpecKit chain, `/speckit:plan --intake-only` is the standalone intake entry, `/speckit:plan` and `/speckit:complete` reuse the shared intake contract in [`../skills/system-spec-kit/references/intake-contract.md`](../skills/system-spec-kit/references/intake-contract.md) when packet state still needs repair, and `/deep:start-research-loop` now anchors each run to `spec.md` through `spec_check_protocol.md`.
+For the SpecKit chain, `/speckit:plan --intake-only` is the standalone intake entry, `/speckit:plan` and `/speckit:complete` reuse the shared intake contract in [`../skills/system-spec-kit/references/intake-contract.md`](../skills/system-spec-kit/references/intake-contract.md) when packet state still needs repair, and `/deep:research` now anchors each run to `spec.md` through `spec_check_protocol.md`.
 
 ### 16.4 Learning Resources
 

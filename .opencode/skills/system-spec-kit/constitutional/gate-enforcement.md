@@ -2,6 +2,8 @@
 title: "GATE ENFORCEMENT - Edge Cases & Cross-Reference"
 importanceTier: constitutional
 contextType: decision
+last_confirmed: "2026-05-26"
+last_confirmed_source: "git-log-last-touch"
 triggerPhrases:
   # File modification → Gate 3 (HARD BLOCK)
   - fix

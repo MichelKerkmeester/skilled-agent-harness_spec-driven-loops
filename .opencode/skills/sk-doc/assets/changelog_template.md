@@ -1,6 +1,13 @@
 ---
 title: Changelog & Release Notes Templates
 description: Templates and writing-style rules for global component changelogs at .opencode/changelog/{NN--component}/v{VERSION}.md and the matching GitHub release notes.
+trigger_phrases:
+  - "changelog format templates"
+  - "release notes template"
+  - "compact changelog format"
+  - "expanded changelog format"
+importance_tier: normal
+contextType: general
 ---
 
 # Changelog & Release Notes Templates - Format Reference

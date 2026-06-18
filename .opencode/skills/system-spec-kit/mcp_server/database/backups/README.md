@@ -16,7 +16,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`database/backups/` holds point-in-time copies of the canonical metadata database (`context-index.sqlite`) made before operations that cannot be cleanly undone, together with corrupt databases that were moved aside during recovery.
+`database/backups/` holds point-in-time copies of the canonical metadata database (`context-index.sqlite`) made before operations that cannot be cleanly undone, together with corrupt databases that an operator moved aside during recovery. Some runtime and maintenance paths leave `.corrupt-*` and `.pre-repair-*` copies in the parent `database/` root instead; those are real recovery artifacts even when this folder is empty.
 
 Unlike the sibling runtime directories, this one has **no automatic writer in the current source tree**. A grep of `mcp_server/lib`, `mcp_server/handlers`, and `mcp_server/scripts` finds no code that targets `database/backups/`; the only `backups` path the daemon manages is `../checkpoints/restore-backups/` (see [`../checkpoints/README.md`](../checkpoints/README.md)). Copies land here through two channels:
 
@@ -36,6 +36,8 @@ These copies follow conventional, human-readable names rather than a code-enforc
 | `context-index-PRE-BC-<YYYYMMDD-HHMMSS>.sqlite` | Copy taken **before a breaking change** to the database or its handling. |
 | `context-index-PRE-V<NN>-<YYYYMMDD-HHMMSS>.sqlite` | Copy taken **before migrating to schema version `NN`** (e.g. `PRE-V30` before the schema-v30 migration). |
 | `context-index.CORRUPT-<YYYYMMDD-HHMMSS>.sqlite` | A database **quarantined after corruption** was detected, kept for diagnosis. |
+| `../context-index.sqlite.corrupt-*` | Root-level corruption quarantine artifact created or left outside `backups/`; apply the same retention rule. |
+| `../context-index.sqlite.pre-repair-*` | Root-level pre-repair safety copy created or left outside `backups/`; apply the same retention rule. |
 | `*-shm` / `*-wal` siblings | SQLite sidecar files copied alongside a snapshot. They carry no value once the main file is at rest and can be discarded with it. |
 
 Because the names are a convention, keep them descriptive (what was about to happen + a timestamp) so a future reader can tell why each copy exists.
@@ -75,7 +77,7 @@ Do **not** use this folder for the mechanisms the daemon already manages:
 | Ownership | Operator/recovery-maintained. No runtime code reads or writes this folder, so nothing prunes it automatically. |
 | Restoring | Never put a `.CORRUPT` file back as the live database. Restore from a `PRE-*` copy or a verified checkpoint instead. |
 | Verify first | Confirm a copy opens as SQLite (`PRAGMA integrity_check`) before trusting it as a restore source. |
-| Retention | Keep the most recent `PRE-*` copy until the new schema/behavior is proven, then prune older ones — these files are large. A `.CORRUPT` quarantine can be deleted once recovery is confirmed and a healthy backup exists. |
+| Retention | Keep the most recent `PRE-*` or `.pre-repair-*` copy until the new schema/behavior is proven, then prune older ones — these files are large. A `.CORRUPT` or `.corrupt-*` quarantine can be deleted once recovery is confirmed and a healthy backup exists, whether it lives here or in the parent database root. |
 | Commits | Do not commit `.sqlite`, `-shm`, or `-wal` files. The repo-root `.gitignore` already covers `database/**/*.sqlite*`. |
 
 ---

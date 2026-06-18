@@ -9,10 +9,6 @@
 import { readFileSync, readdirSync, realpathSync, statSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { dirname, extname, join, relative, resolve } from 'node:path';
-import type {
-  CodeNode, CodeEdge, ParseResult, SupportedLanguage,
-  IndexerConfig, SymbolKind, DetectorProvenance, EdgeType,
-} from './indexer-types.js';
 import {
   DEFAULT_EDGE_WEIGHTS,
   generateSymbolId,
@@ -23,8 +19,13 @@ import { isFileStale } from './code-graph-db.js';
 import { shouldIndexForCodeGraph } from './shared/index-scope.js';
 import { resolveCanonicalPath } from './shared/canonical-path.js';
 import { isSpeckitMetricsEnabled, speckitMetrics } from './shared/metrics-stub.js';
-import { runPhases, type Phase } from './phase-runner.js';
+import { runPhases } from './phase-runner.js';
 import { CODE_GRAPH_DEFAULTS } from './config-defaults.js';
+import type {
+  CodeNode, CodeEdge, ParseResult, SupportedLanguage,
+  IndexerConfig, SymbolKind, DetectorProvenance, EdgeType,
+} from './indexer-types.js';
+import type { Phase } from './phase-runner.js';
 
 interface IgnoreInstance {
   add(patterns: string | string[]): IgnoreInstance;
@@ -74,13 +75,14 @@ interface WorkspaceCandidate {
 export interface IndexFilesOptions {
   skipFreshFiles?: boolean;
   specificFiles?: string[];
-  /** BUG-06: optional deadline signal; runPhases checks it between phases so a
+  /** Optional deadline signal; runPhases checks it between phases so a
    *  timed-out auto-index stops instead of running to completion in the background. */
   signal?: AbortSignal;
 }
 
 export interface IndexFilesResult extends Array<ParseResult> {
   preParseSkippedCount: number;
+  unsupportedLanguageSkipped: number;
   warnings: string[];
   capExceeded: FileFindResult['capExceeded'];
 }
@@ -1470,6 +1472,7 @@ function findFiles(config: IndexerConfig, pattern: string): FileFindResult {
 
 function collectSpecificFiles(config: IndexerConfig, specificFiles: string[]): string[] {
   const { rootDir, maxFileSizeBytes } = config;
+  const includePatterns = config.includeGlobs.map(globToRegExp);
   const dedupedFiles: string[] = [];
   const seenFiles = new Set<string>();
   const canonicalWorkspaceRoot = resolveCanonicalPath(resolve(rootDir));
@@ -1483,6 +1486,13 @@ function collectSpecificFiles(config: IndexerConfig, specificFiles: string[]): s
 
     const relativePath = normalizeGlobPath(relative(rootDir, workspaceCandidate.originalPath));
     if (relativePath === '..' || relativePath.startsWith('../')) {
+      continue;
+    }
+    // Apply the same file-type allowlist the full walk enforces: an incremental
+    // or stale-file reindex must still match an include glob, so excluded types
+    // such as markdown are not re-added through this path when scope would allow
+    // the folder.
+    if (!includePatterns.some((pattern) => pattern.test(relativePath))) {
       continue;
     }
     if (!shouldIndexForCodeGraph(workspaceCandidate.canonicalPath, config.scopePolicy)) {
@@ -2075,8 +2085,18 @@ type FindCandidatesOutput = {
   warnings: string[];
   capExceeded: FileFindResult['capExceeded'];
 };
-type ParseCandidatesOutput = FindCandidatesOutput & { results: ParseResult[]; preParseSkippedCount: number };
-type FinalizeOutput = { finalizedResults: ParseResult[]; preParseSkippedCount: number; warnings: string[]; capExceeded: FileFindResult['capExceeded'] };
+type ParseCandidatesOutput = FindCandidatesOutput & {
+  results: ParseResult[];
+  preParseSkippedCount: number;
+  unsupportedLanguageSkipped: number;
+};
+type FinalizeOutput = {
+  finalizedResults: ParseResult[];
+  preParseSkippedCount: number;
+  unsupportedLanguageSkipped: number;
+  warnings: string[];
+  capExceeded: FileFindResult['capExceeded'];
+};
 
 function buildIndexPhases(
   config: IndexerConfig,
@@ -2133,6 +2153,7 @@ function buildIndexPhases(
       const { candidateFiles, warnings, capExceeded } = deps['find-candidates'];
       const results: ParseResult[] = [];
       let preParseSkippedCount = 0;
+      let unsupportedLanguageSkipped = 0;
 
       for (const file of candidateFiles) {
         // Cooperative cancellation runs inside the parse phase. runPhases only
@@ -2143,7 +2164,10 @@ function buildIndexPhases(
           throw new Error(`parse-candidates aborted (deadline signal) after ${results.length} parsed`);
         }
         const language = detectLanguage(file);
-        if (!language || !config.languages.includes(language)) continue;
+        if (!language || !config.languages.includes(language)) {
+          unsupportedLanguageSkipped++;
+          continue;
+        }
 
         // P1 perf: skip read+parse for files whose mtime matches the DB record.
         // isFileStale returns true when the file is absent from the DB or its
@@ -2160,7 +2184,11 @@ function buildIndexPhases(
         } catch { /* skip unreadable */ }
       }
 
-      return { candidateFiles, results, preParseSkippedCount, warnings, capExceeded };
+      if (unsupportedLanguageSkipped > 0) {
+        warnings.push(`[structural-indexer] Skipped ${unsupportedLanguageSkipped} candidate file(s) before parsing because their language is unsupported or disabled by config.languages`);
+      }
+
+      return { candidateFiles, results, preParseSkippedCount, unsupportedLanguageSkipped, warnings, capExceeded };
     },
   };
 
@@ -2168,9 +2196,9 @@ function buildIndexPhases(
     name: 'finalize',
     inputs: ['parse-candidates'],
     run(deps) {
-      const { results, preParseSkippedCount, warnings, capExceeded } = deps['parse-candidates'];
+      const { results, preParseSkippedCount, unsupportedLanguageSkipped, warnings, capExceeded } = deps['parse-candidates'];
       const finalizedResults = finalizeIndexResults(results, moduleResolver, config.edgeWeights);
-      return { finalizedResults, preParseSkippedCount, warnings, capExceeded };
+      return { finalizedResults, preParseSkippedCount, unsupportedLanguageSkipped, warnings, capExceeded };
     },
   };
 
@@ -2218,11 +2246,12 @@ export async function indexFiles(config: IndexerConfig, options: IndexFilesOptio
     const outputs = await runPhases(phases, options.signal);
     const emitOutput = outputs['emit-metrics'] as FinalizeOutput;
 
-    // Preserve the array-with-preParseSkippedCount shape exported by the
+    // Preserve the array-with-scan-metadata shape exported by the
     // historical inline flow so existing callers (handlers/scan.ts,
     // ensure-ready.ts) keep working unchanged for backward compatibility.
     const finalizedResults = emitOutput.finalizedResults as IndexFilesResult;
     finalizedResults.preParseSkippedCount = emitOutput.preParseSkippedCount;
+    finalizedResults.unsupportedLanguageSkipped = emitOutput.unsupportedLanguageSkipped;
     finalizedResults.warnings = emitOutput.warnings;
     finalizedResults.capExceeded = emitOutput.capExceeded;
     return finalizedResults;

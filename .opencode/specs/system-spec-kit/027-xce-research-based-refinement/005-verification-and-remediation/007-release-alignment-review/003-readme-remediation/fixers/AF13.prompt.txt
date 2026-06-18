@@ -1,0 +1,34 @@
+Act as a markdown documentation-fixer (seat AF13). Spec folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation (PRE-APPROVED at Gate 3 — make the edits below directly with the Edit/Write tools; do NOT re-ask Gate 3 and do NOT ask the user anything).
+
+You fix STALE content in README files so they match current repo reality. SURGICAL edits only — fix the cited claims, keep everything else intact. Find the correct current value by reading the cited file PLUS its SKILL.md / source / config before editing.
+
+ALLOWED WRITE PATHS (edit ONLY these files):
+- .opencode/skills/system-skill-advisor/SKILL.md
+- .opencode/skills/system-skill-advisor/mcp_server/README.md
+- .opencode/skills/system-skill-advisor/mcp_server/handlers/README.md
+- .opencode/skills/system-skill-advisor/mcp_server/lib/README.md
+- .opencode/skills/system-skill-advisor/mcp_server/lib/scorer/README.md
+BANNED: no delete, no rename, no new files, no edits outside the listed files, no --no-verify.
+
+DO-NOT-FIX (binding — confirmed false positives; leave untouched):
+- The CLI front-door "37 tools" figure: `spec-memory.cjs` CLI is genuinely 37; only the MCP-server/daemon surface is 39. Fix a "37" ONLY when the sentence is about the MCP server/daemon, NOT the CLI front door.
+- Any `// Feature catalog:` comments and TSDoc `@example` values.
+- Any cited claim that does NOT actually reproduce against the live file — mark it refuted; never invent a fix.
+
+FINDINGS TO FIX (confirm-then-fix each; P0/P1/P2 all in scope, including cosmetic/style):
+- [P1] .opencode/skills/system-skill-advisor/SKILL.md:284 — SKILL.md misclassifies the ninth tool as internal | stale: `mk_skill_advisor` registers 8 public tools plus 1 internal trusted-caller tool. -> correct: The MCP server lists all 9 tools; `skill_graph_propagate_enhances` is only trust-gated when it performs a real apply write.
+- [P1] .opencode/skills/system-skill-advisor/mcp_server/README.md:26 — Library topology count is stale | stale: `lib/` carries runtime helpers across 11 subdirectories and lists only scorer, daemon, freshness, lifecycle, derived, compat, auth, corpus, cross-skill-edges, context, and shadow. -> correct: Current runtime code also imports package-local `lib/skill-graph/`, `lib/embedders/`, and `lib/ipc/`; the live lib directory also contains additional subdirectories such as `shared/` and `utils/`.
+- [P2] .opencode/skills/system-skill-advisor/mcp_server/README.md:55 — Architecture diagram uses wrong database filename | stale: The diagram labels the database as `database/skill-graph.db`. -> correct: The current database filename is `skill-graph.sqlite`.
+- [P1] .opencode/skills/system-skill-advisor/mcp_server/README.md:55 — Architecture diagram names dead SQLite file | stale: The database node is labeled `skill-graph.db`. -> correct: The runtime database filename is `skill-graph.sqlite`.
+- [P2] .opencode/skills/system-skill-advisor/mcp_server/README.md:26 — Library subdirectory count is stale | stale: `lib/` carries runtime helpers across 11 subdirectories and lists an older subset. -> correct: The library now has additional active subpackages including IPC, skill-graph, embedders, shared and utils paths; the 11-subdirectory summary is no longer current.
+- [P1] .opencode/skills/system-skill-advisor/mcp_server/handlers/README.md:18 — Handlers README uses removed skill_advisor path | stale: `skill_advisor/handlers/` contains MCP tool handlers. -> correct: Handlers live directly under `mcp_server/handlers/`; the tool registry imports `../handlers/index.js`.
+- [P2] .opencode/skills/system-skill-advisor/mcp_server/handlers/README.md:18 — Handler README uses legacy pseudo-path | stale: `skill_advisor/handlers/` contains MCP tool handlers. -> correct: The current TypeScript package path is under `mcp_server/handlers/`.
+- [P1] .opencode/skills/system-skill-advisor/mcp_server/lib/README.md:18 — Library README uses removed skill_advisor path | stale: `skill_advisor/lib/` owns the TypeScript helper layer. -> correct: Runtime helpers live directly under `mcp_server/lib/`; handlers import `../lib/...` modules.
+- [P2] .opencode/skills/system-skill-advisor/mcp_server/lib/README.md:18 — Library README uses legacy pseudo-path | stale: `skill_advisor/lib/` owns the TypeScript helper layer. -> correct: The current library sources are under `mcp_server/lib/`.
+- [P2] .opencode/skills/system-skill-advisor/mcp_server/lib/scorer/README.md:31 — Scorer directory tree omits feedback calibration module | stale: The scorer directory tree lists the scorer modules but omits `feedback-calibration.ts`. -> correct: `feedback-calibration.ts` exists as the Advisor Feedback Calibration Reducer module in `lib/scorer/`.
+- [P2] .opencode/skills/system-skill-advisor/mcp_server/lib/scorer/README.md:31 — Scorer tree omits feedback calibration module | stale: The scorer directory tree lists scorer files but omits `feedback-calibration.ts`. -> correct: `feedback-calibration.ts` is a current scorer module for the advisor feedback calibration reducer.
+
+After editing, re-read each edited line to verify. Your final message MUST be exactly one fenced json block:
+```json
+{"seat":"AF13","fixed":[{"file":"path","claim":"what was stale","after":"what it now says"}],"refuted":[{"file":"path","why":"why skipped"}]}
+```

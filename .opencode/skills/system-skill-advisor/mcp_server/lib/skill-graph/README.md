@@ -42,10 +42,10 @@ skill-graph/
 
 ## 6. VALIDATION
 
-Run from the repository root:
+Run from the skill advisor MCP server package directory, or from the repository root with `npm --prefix` because the root package has no `test` script:
 
 ```bash
-npm test -- --runInBand
+npm --prefix .opencode/skills/system-skill-advisor/mcp_server test -- --no-file-parallelism --maxWorkers=1
 ```
 
 ## 7. RELATED

@@ -1,6 +1,13 @@
 ---
 title: Nested Changelog Workflow
 description: Generate packet-local changelog files for spec roots and phase child folders.
+trigger_phrases:
+  - "nested changelog workflow"
+  - "packet-local changelog"
+  - "changelog generator modes"
+  - "changelog evidence stack"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Nested Changelog Workflow

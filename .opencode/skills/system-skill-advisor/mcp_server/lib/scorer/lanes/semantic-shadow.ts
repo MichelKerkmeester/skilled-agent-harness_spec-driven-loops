@@ -4,13 +4,41 @@
 
 import { getAdapter } from '../../embedders/registry.js';
 import { getActiveEmbedder } from '../../embedders/schema.js';
-import { getDb, loadSkillEmbeddings } from '../../skill-graph/skill-graph-db.js';
+import { getDbReadOnly, loadSkillEmbeddings } from '../../skill-graph/skill-graph-db.js';
 import { scoreTokenOverlap, tokenize } from '../text.js';
 import type { AdvisorProjection, LaneMatch } from '../types.js';
 
 const COSINE_THRESHOLD = 0.2;
 
 let activePromptEmbedding: { prompt: string; vector: Float32Array } | null = null;
+
+export interface SemanticShadowRuntimeHealth {
+  readonly checkedAt: string;
+  readonly activeEmbedder: { readonly name: string; readonly dim: number; readonly adapterDim: number | null } | null;
+  readonly dimMismatch: boolean;
+  readonly disabledReason: string | null;
+  readonly lastPromptEmbeddingAt: string | null;
+}
+
+let runtimeHealth: SemanticShadowRuntimeHealth = {
+  checkedAt: new Date(0).toISOString(),
+  activeEmbedder: null,
+  dimMismatch: false,
+  disabledReason: null,
+  lastPromptEmbeddingAt: null,
+};
+
+function setRuntimeHealth(update: Partial<SemanticShadowRuntimeHealth>): void {
+  runtimeHealth = {
+    ...runtimeHealth,
+    ...update,
+    checkedAt: new Date().toISOString(),
+  };
+}
+
+export function getSemanticShadowRuntimeHealth(): SemanticShadowRuntimeHealth {
+  return runtimeHealth;
+}
 
 function toFloat32Array(vector: Float32Array | readonly number[]): Float32Array {
   return vector instanceof Float32Array ? vector : Float32Array.from(vector);
@@ -67,18 +95,50 @@ export async function withSemanticShadowPromptEmbedding<T>(prompt: string, run: 
   }
 
   try {
-    const database = getDb();
+    // Read-only access: recommend calls must never open the daemon-owned
+    // database read-write (dual-writer hazard) or create it when absent.
+    const database = getDbReadOnly();
+    if (!database) {
+      setRuntimeHealth({
+        activeEmbedder: null,
+        dimMismatch: false,
+        disabledReason: 'database_absent',
+      });
+      throw new Error('skill graph database is absent; shadow scoring disabled');
+    }
     const active = getActiveEmbedder(database);
     const adapter = getAdapter(active.name);
     if (!adapter) {
+      setRuntimeHealth({
+        activeEmbedder: { name: active.name, dim: active.dim, adapterDim: null },
+        dimMismatch: false,
+        disabledReason: 'adapter_unavailable',
+      });
       throw new Error(`active embedder is not registered: ${active.name}`);
+    }
+    if (adapter.dim !== active.dim) {
+      setRuntimeHealth({
+        activeEmbedder: { name: active.name, dim: active.dim, adapterDim: adapter.dim },
+        dimMismatch: true,
+        disabledReason: 'dim_mismatch',
+      });
+      throw new Error(`active embedder dimension mismatch: ${active.name} reports ${adapter.dim}, pointer expects ${active.dim}`);
     }
 
     const [vector] = await adapter.embed([prompt], { inputType: 'query' });
     setSemanticShadowPromptEmbedding(prompt, vector ?? null);
+    setRuntimeHealth({
+      activeEmbedder: { name: active.name, dim: active.dim, adapterDim: adapter.dim },
+      dimMismatch: false,
+      disabledReason: vector ? null : 'prompt_embedding_empty',
+      lastPromptEmbeddingAt: vector ? new Date().toISOString() : runtimeHealth.lastPromptEmbeddingAt,
+    });
   } catch (error: unknown) {
     setSemanticShadowPromptEmbedding(prompt, null);
     const message = error instanceof Error ? error.message : String(error);
+    if (!runtimeHealth.disabledReason) {
+      setRuntimeHealth({ disabledReason: 'prompt_embedding_failed' });
+    }
     console.warn(`[semantic-shadow] Prompt embedding failed; cosine lane disabled for this call (${message})`);
   }
 
@@ -140,9 +200,14 @@ export function scoreSemanticShadowLane(prompt: string, projection: AdvisorProje
   } catch (error: unknown) {
     if (projection.source !== 'fixture') {
       const message = error instanceof Error ? error.message : String(error);
+      setRuntimeHealth({ disabledReason: 'skill_embedding_load_failed' });
       console.warn(`[semantic-shadow] Skill embedding load failed; cosine lane disabled (${message})`);
       return [];
     }
+  }
+
+  if (projection.source !== 'fixture' && process.env.VITEST !== 'true' && projection.skills.length > 0 && cachedVectors.size === 0) {
+    setRuntimeHealth({ disabledReason: 'no_skill_vectors' });
   }
 
   return projection.skills

@@ -1,0 +1,204 @@
+{
+  "findings": [
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts",
+      "symbol": "VACUUM main INTO",
+      "kind": "dependency",
+      "signature": "database.exec(`VACUUM main INTO ${quoteSqlString(mainSnapshotPath)}`)",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:2281",
+      "relevance": 1,
+      "notes": "VACUUM INTO is a SQLite-specific snapshot mechanism; Turso/libSQL lacks this — must replace with serialize()/file-copy or Turso snapshot API"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts",
+      "symbol": "VACUUM active_vec INTO",
+      "kind": "dependency",
+      "signature": "database.exec(`VACUUM active_vec INTO ${quoteSqlString(vecSnapshotPath)}`)",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:2284",
+      "relevance": 1,
+      "notes": "VACUUM INTO on attached shard — Turso cannot attach databases or VACUUM INTO; snapshot strategy must change entirely"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts",
+      "symbol": "database.pragma",
+      "kind": "dependency",
+      "signature": "database.pragma('busy_timeout = 5000')",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:2267",
+      "relevance": 0.8,
+      "notes": "Turso/libSQL driver lacks .pragma() method; busy_timeout must be set via connection string or config"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts",
+      "symbol": "removeSqliteSidecars",
+      "kind": "convention",
+      "signature": "fs.rmSync(`${databasePath}-wal`, `${databasePath}-shm`)",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:823",
+      "relevance": 0.7,
+      "notes": "WAL/SHM sidecar cleanup assumes local SQLite file model; Turso remote databases have no sidecar files"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts",
+      "symbol": "restoreCheckpointV2",
+      "kind": "integration_point",
+      "signature": "fs.renameSync + fs.copyFileSync file-swap restore with journal",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:2689-2708",
+      "relevance": 1,
+      "notes": "v2 restore is entirely file-copy based (rename live→backup, copy snapshot→live); Turso remote DB cannot fs.copyFileSync — needs API-level restore"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts",
+      "symbol": "memory_fts",
+      "kind": "dependency",
+      "signature": "INSERT INTO memory_fts(memory_fts) VALUES('delete-all')",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1606",
+      "relevance": 1,
+      "notes": "FTS5 delete-all command; Turso/libSQL has no FTS5 — must replace with external search or Trigram/other index"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts",
+      "symbol": "MUTATION_LEDGER_TRIGGER_SQL",
+      "kind": "dependency",
+      "signature": "CREATE TRIGGER IF NOT EXISTS prevent_ledger_update BEFORE UPDATE ON mutation_ledger",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:184-189",
+      "relevance": 0.6,
+      "notes": "BEFORE UPDATE/DELETE triggers for append-only enforcement; Turso supports triggers but verify compatibility"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts",
+      "symbol": "database.exec",
+      "kind": "integration_point",
+      "signature": "database.exec(`SAVEPOINT ${savepointName}`) / RELEASE / ROLLBACK TO",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1779-1794",
+      "relevance": 0.7,
+      "notes": "SAVEPOINT-based merge-restore atomicity; verify Turso/libSQL driver supports SAVEPOINT in remote mode"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts",
+      "symbol": "sqlite_master",
+      "kind": "dependency",
+      "signature": "SELECT name FROM sqlite_master WHERE type IN ('table','view')",
+      "reuse": "import",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1132",
+      "relevance": 0.5,
+      "notes": "Direct sqlite_master queries for table existence; Turso may require information_schema or different catalog"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts",
+      "symbol": "PRAGMA database_list",
+      "kind": "dependency",
+      "signature": "database.prepare('PRAGMA database_list').all()",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:616",
+      "relevance": 0.8,
+      "notes": "Used to resolve attached shard paths; Turso cannot ATTACH databases — sharding model must change"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts",
+      "symbol": "database.pragma",
+      "kind": "dependency",
+      "signature": "database.pragma('foreign_keys = OFF') / database.pragma('foreign_keys = ON')",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:268-303",
+      "relevance": 0.8,
+      "notes": "Foreign key pragma toggle around DDL transaction; Turso driver lacks .pragma() — use SQL SET or connection config"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts",
+      "symbol": "createFtsArtifacts",
+      "kind": "dependency",
+      "signature": "CREATE VIRTUAL TABLE IF NOT EXISTS memory_fts USING fts5(...) + triggers + rebuild",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:203-235",
+      "relevance": 1,
+      "notes": "Full FTS5 virtual table creation with content-sync triggers and rebuild; Turso has no FTS5 or loadExtension — blocks schema downgrade path"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts",
+      "symbol": "sweepTx",
+      "kind": "integration_point",
+      "signature": "database.transaction(() => { ... DELETE / UPDATE ... })",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts:475-589",
+      "relevance": 0.7,
+      "notes": "Large sweep transaction with TOCTOU re-validation, DELETE + governance audit + history + ledger; verify Turso transaction semantics for long-running writes"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts",
+      "symbol": "database.pragma",
+      "kind": "dependency",
+      "signature": "database.pragma('auto_vacuum', { simple: true }) / database.pragma('incremental_vacuum') / database.pragma('wal_checkpoint(TRUNCATE)')",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts:351-372",
+      "relevance": 0.9,
+      "notes": "Three pragma calls for vacuum and WAL checkpoint post-delete maintenance; Turso has no .pragma() and no WAL — must remove or replace with Turso compaction API"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts",
+      "symbol": "memory_fts",
+      "kind": "dependency",
+      "signature": "INSERT INTO memory_fts(memory_fts) VALUES('optimize')",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts:343",
+      "relevance": 1,
+      "notes": "FTS5 optimize command after bulk deletes; Turso has no FTS5 — must remove or replace"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts",
+      "symbol": "executeMerge",
+      "kind": "integration_point",
+      "signature": "db.transaction(() => { INSERT INTO memory_index + INSERT INTO vec_memories + supersedes edge })",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:273-399",
+      "relevance": 0.7,
+      "notes": "Complex merge transaction: retire predecessor, insert merged row, insert vector, insert causal edge, BM25 update — all in one sync transaction"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts",
+      "symbol": "executeAtomicReconsolidationTxn",
+      "kind": "integration_point",
+      "signature": "db.transaction(() => { SELECT + UPDATE memory_index + UPDATE vec_memories })",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:942-961",
+      "relevance": 0.6,
+      "notes": "Compare-and-swap pattern inside sync transaction; Turso remote transactions may have different latency/locking semantics"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts",
+      "symbol": "ensureBm25RepairFlagColumn",
+      "kind": "dependency",
+      "signature": "ALTER TABLE memory_index ADD COLUMN bm25_repair_needed INTEGER DEFAULT 0",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:826",
+      "relevance": 0.5,
+      "notes": "Online ALTER TABLE ADD COLUMN; Turso supports this but verify default value handling in remote mode"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts",
+      "symbol": "runConsolidationCycleIfEnabled",
+      "kind": "integration_point",
+      "signature": "database.exec('BEGIN IMMEDIATE') ... database.exec('COMMIT') / database.exec('ROLLBACK')",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:489-549",
+      "relevance": 0.7,
+      "notes": "Manual BEGIN IMMEDIATE transaction control for cadence bookkeeping; Turso remote driver may not support raw exec('BEGIN') — use driver transaction API"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts",
+      "symbol": "consolidation_state",
+      "kind": "integration_point",
+      "signature": "CREATE TABLE IF NOT EXISTS consolidation_state + INSERT ... ON CONFLICT(id) DO UPDATE",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts:494-529",
+      "relevance": 0.5,
+      "notes": "Upsert cadence state table; Turso supports UPSERT but verify in remote mode with BEGIN IMMEDIATE"
+    }
+  ]
+}

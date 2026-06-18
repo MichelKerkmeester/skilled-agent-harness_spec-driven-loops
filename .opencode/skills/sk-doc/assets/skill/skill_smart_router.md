@@ -1,6 +1,13 @@
 ---
 title: Skill Smart Router - Resilience Pattern
 description: Canonical resilient smart-router pattern for skill resource discovery, guarded loading, runtime routing keys, and graceful fallback.
+trigger_phrases:
+  - "skill smart router"
+  - "resilient resource discovery"
+  - "guarded reference loading"
+  - "router fallback pattern"
+importance_tier: normal
+contextType: general
 ---
 
 # Skill Smart Router - Resilience Pattern

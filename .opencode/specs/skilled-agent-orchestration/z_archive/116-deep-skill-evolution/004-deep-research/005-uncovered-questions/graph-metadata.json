@@ -35,7 +35,6 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-research/scripts/reduce-state.cjs",
       ".opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts",
       "plan.md",
       "tasks.md",
@@ -45,12 +44,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "reduce-state.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-research/scripts/reduce-state.cjs",
-        "source": "derived"
-      },
       {
         "name": "deep-research-reducer.vitest.ts",
         "kind": "test",
@@ -188,11 +181,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 121 closes DR-003 from the 119 uplift roadmap by adding a reducer-owned `uncoveredQuestions` field to the deep-research findings registry and dashboard. The contract is additive: compute uncovered questions from the strategy question list minus the union of iteration `answeredQuestions`.",
     "created_at": "2026-05-23T03:56:52.598Z",
-    "last_save_at": "2026-06-07T09:00:45.900Z",
+    "last_save_at": "2026-06-15T09:09:33.797Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

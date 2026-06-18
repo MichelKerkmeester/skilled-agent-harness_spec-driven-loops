@@ -1,15 +1,9 @@
 #!/usr/bin/env node
-// [mk-code-index-launcher] MCP child-process launcher for the mk-code-index server
-// (system-code-graph). Loads project-local env overrides, applies the maintainer-mode
-// INDEX_* override when SPECKIT_CODE_GRAPH_MAINTAINER_MODE=true, auto-migrates the
-// code-graph database from the former shared location (.opencode/.spec-kit/code-graph/database/)
-// back to the skill-local location (mcp_server/database/), ensures dist
-// artifacts are built and current, serializes concurrent starts via a filesystem bootstrap
-// lock, sets SPECKIT_CODE_GRAPH_DB_DIR for the child process (operator override wins),
-// then spawns the code-graph MCP server child. All stderr lines are tagged with the
-// bracketed module prefix for ops grepping. See .opencode/skills/system-code-graph/ for
-// the standalone skill that owns the server source.
-
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: mk-code-index Launcher                                      ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Prepares code-graph state and launches the MCP server child.   ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
 const fs = require('fs');
@@ -64,6 +58,25 @@ function isStrictModeDisabled(value) {
   return v === '0' || v === 'false' || v === 'no' || v === 'off' || v === '';
 }
 
+// Category -> INDEX_* env key. Module-level so the launcher and its tests share one source.
+const MAINTAINER_CATEGORY_ENV = {
+  skills: 'SPECKIT_CODE_GRAPH_INDEX_SKILLS',
+  agents: 'SPECKIT_CODE_GRAPH_INDEX_AGENTS',
+  commands: 'SPECKIT_CODE_GRAPH_INDEX_COMMANDS',
+  specs: 'SPECKIT_CODE_GRAPH_INDEX_SPECS',
+  plugins: 'SPECKIT_CODE_GRAPH_INDEX_PLUGINS',
+};
+
+// Pure resolver for SPECKIT_CODE_GRAPH_MAINTAINER_MODE: "true" forces every category (back-compat),
+// "false"/empty/unset forces none, and a comma list forces the recognized subset (unknown names
+// dropped). Returns category names; the caller maps them to env keys via MAINTAINER_CATEGORY_ENV.
+function resolveMaintainerModeCategories(rawValue) {
+  const raw = (rawValue || '').trim().toLowerCase();
+  if (raw === 'true') return Object.keys(MAINTAINER_CATEGORY_ENV);
+  if (!raw || raw === 'false') return [];
+  return raw.split(',').map((c) => c.trim()).filter((c) => Object.hasOwn(MAINTAINER_CATEGORY_ENV, c));
+}
+
 function bootstrapLauncherEnv() {
   for (const fname of ['.env.local', '.env']) {
     const p = path.join(root, fname);
@@ -73,26 +86,20 @@ function bootstrapLauncherEnv() {
     }
   }
 
-  // Maintainer-mode override: when SPECKIT_CODE_GRAPH_MAINTAINER_MODE=true is set in
-  // .env.local (gitignored maintainer-only file), force all 5 INDEX_* flags to "true"
-  // regardless of what the runtime's MCP config injected. Committed configs ship "false"
-  // defaults (end-user safe); the maintainer flips this one flag locally to enable
-  // indexing of .opencode/{skills,agents,commands,specs,plugins} on their machine only.
-  // Per-call code_graph_scan args (includeSkills, etc.) still override env for fine-grained
-  // control. See ENV_REFERENCE.md § GRAPH.
-  if (process.env.SPECKIT_CODE_GRAPH_MAINTAINER_MODE === 'true') {
-    const INDEX_KEYS = [
-      'SPECKIT_CODE_GRAPH_INDEX_SKILLS',
-      'SPECKIT_CODE_GRAPH_INDEX_AGENTS',
-      'SPECKIT_CODE_GRAPH_INDEX_COMMANDS',
-      'SPECKIT_CODE_GRAPH_INDEX_SPECS',
-      'SPECKIT_CODE_GRAPH_INDEX_PLUGINS',
-    ];
-    for (const key of INDEX_KEYS) {
-      process.env[key] = 'true';
-    }
+  // Maintainer-mode override: SPECKIT_CODE_GRAPH_MAINTAINER_MODE selects which .opencode
+  // categories to force-index on this machine, overriding whatever the runtime's MCP config
+  // injected. Committed configs ship "false" (end-user safe: only code outside .opencode is
+  // graphed); a maintainer opts in locally via .env.local (gitignored). Accepts "true" (all
+  // five categories, back-compat) or a comma-separated subset such as "skills,plugins" so a
+  // maintainer can index just the .opencode folders that hold code without pulling in the rest.
+  // Per-call code_graph_scan args (includeSkills, etc.) still override env. See ENV_REFERENCE.md § GRAPH.
+  const maintainerCategories = resolveMaintainerModeCategories(process.env.SPECKIT_CODE_GRAPH_MAINTAINER_MODE);
+  for (const cat of maintainerCategories) {
+    process.env[MAINTAINER_CATEGORY_ENV[cat]] = 'true';
+  }
+  if (maintainerCategories.length > 0) {
     process.stderr.write(
-      '[mk-code-index-launcher] MAINTAINER_MODE=true: forcing all 5 INDEX_* to "true"\n'
+      `[mk-code-index-launcher] MAINTAINER_MODE: forcing INDEX_* to "true" for ${maintainerCategories.join(', ')}\n`
     );
   }
 }
@@ -323,6 +330,49 @@ function writeOwnerLeaseFileExclusive(lease) {
   }
 }
 
+// The socket path this owner's environment computes. Recording it in the
+// leases lets a secondary under a divergent SPECKIT_IPC_SOCKET_DIR bridge
+// to the REAL socket instead of probing a recomputed wrong one and
+// misreporting a healthy owner as no-bridge-socket.
+function ownerSocketPath() {
+  try {
+    const { getIpcSocketPath } = loadBridgeModule();
+    if (typeof getIpcSocketPath !== 'function') return null;
+    return getIpcSocketPath('mk-code-index', { dbDir: resolvedDbDir() }) ?? null;
+  } catch {
+    return null;
+  }
+}
+
+let ownerLeaseHeartbeatTimer = null;
+
+function clearOwnerLeaseHeartbeat() {
+  if (ownerLeaseHeartbeatTimer) {
+    clearInterval(ownerLeaseHeartbeatTimer);
+    ownerLeaseHeartbeatTimer = null;
+  }
+}
+
+// Without a periodic refresh, every healthy long-running owner classifies
+// as stale-heartbeat-reclaim about two minutes after spawn, so each later
+// secondary start rewrites the owner lease before rediscovering the live
+// PID lease — churn plus reclaim-race exposure for nothing.
+function startOwnerLeaseHeartbeat(ownerPid) {
+  clearOwnerLeaseHeartbeat();
+  const lease = readOwnerLeaseFile();
+  const ttlMs = Number.isFinite(lease?.ttlMs) && lease.ttlMs > 0 ? lease.ttlMs : 60000;
+  const intervalMs = Math.max(1000, Math.floor(ttlMs / 2));
+  ownerLeaseHeartbeatTimer = setInterval(() => {
+    if (refreshOwnerLeaseFile(ownerPid)) return;
+    // A failed refresh means a concurrent reclaim superseded this owner;
+    // this launcher exits with its child rather than supervising relaunches,
+    // so stop heartbeating instead of fighting the new owner.
+    log('owner lease heartbeat refresh failed (superseded); stopping heartbeat');
+    clearOwnerLeaseHeartbeat();
+  }, intervalMs);
+  ownerLeaseHeartbeatTimer.unref?.();
+}
+
 function buildOwnerLease(ownerPid = process.pid) {
   return {
     ownerPid,
@@ -332,6 +382,7 @@ function buildOwnerLease(ownerPid = process.pid) {
     lastHeartbeatIso: new Date().toISOString(),
     ttlMs: 60000,
     canonicalDbDir: resolvedDbDir(),
+    socketPath: ownerSocketPath(),
   };
 }
 
@@ -399,29 +450,23 @@ function acquireOwnerLeaseFile() {
   }
 
   const lease = buildOwnerLease(process.pid);
-  if (!existing) {
-    if (!writeOwnerLeaseFileExclusive(lease)) {
-      const holder = readOwnerLeaseFile(currentOwnerLeasePath);
-      return {
-        acquired: false,
-        holder: holder || lease,
-        classification: holder ? classifyOwnerLease(holder) : 'live-owner',
-      };
+  // Reclaim a stale lease by removing it first, then claim exclusively (O_EXCL).
+  // This collapses the fresh-acquire and stale-reclaim paths into a single CAS so
+  // only one racer can win: the loser's exclusive create hits EEXIST and returns
+  // acquired:false instead of last-writer-wins overwriting the winner's lease.
+  if (existing) {
+    try {
+      fs.unlinkSync(currentOwnerLeasePath);
+    } catch (error) {
+      if (error.code !== 'ENOENT') throw error;
     }
-    ownerLeasePid = process.pid;
-    return { acquired: true, lease, reclaimed: existing };
   }
-
-  // The reclaim path is last-writer-wins (writeOwnerLeaseFile is an atomic
-  // tmp+rename). Re-read after the rename and confirm we are the surviving owner; if a
-  // concurrent launcher reclaimed the same stale lease, exactly one will see its own pid.
-  writeOwnerLeaseFile(lease);
-  const reread = readOwnerLeaseFile(currentOwnerLeasePath);
-  if (!reread || reread.ownerPid !== process.pid) {
+  if (!writeOwnerLeaseFileExclusive(lease)) {
+    const holder = readOwnerLeaseFile(currentOwnerLeasePath);
     return {
       acquired: false,
-      holder: reread || lease,
-      classification: reread ? classifyOwnerLease(reread) : 'live-owner',
+      holder: holder || lease,
+      classification: holder ? classifyOwnerLease(holder) : 'live-owner',
     };
   }
   ownerLeasePid = process.pid;
@@ -495,27 +540,30 @@ function formerLocationOwnerLive(dir) {
 
 function leaseHeldFromFile(filePath, legacyPath = null) {
   const lease = readLeaseFile(filePath);
-  if (!lease) return { held: false, ownerPid: null, staleReclaimable: false, startedAt: null, legacyPath };
+  if (!lease) return { held: false, ownerPid: null, staleReclaimable: false, startedAt: null, legacyPath, socketPath: null };
+  // Surface the owner-recorded socket path so the bridge prefers it over
+  // recomputing one that may diverge under a different SPECKIT_IPC_SOCKET_DIR.
+  const socketPath = typeof lease.socketPath === 'string' && lease.socketPath.length > 0 ? lease.socketPath : null;
   // Do not bridge to a LEGACY-location lease unless its lease file is owned by the
   // current user. A foreign-owned lease in a shared/former path could otherwise point this
   // client at a spoofed IPC socket.
   if (legacyPath && typeof process.getuid === 'function') {
     try {
       if (fs.statSync(filePath).uid !== process.getuid()) {
-        return { held: false, ownerPid: null, staleReclaimable: false, startedAt: null, legacyPath };
+        return { held: false, ownerPid: null, staleReclaimable: false, startedAt: null, legacyPath, socketPath: null };
       }
     } catch {
-      return { held: false, ownerPid: null, staleReclaimable: false, startedAt: null, legacyPath };
+      return { held: false, ownerPid: null, staleReclaimable: false, startedAt: null, legacyPath, socketPath: null };
     }
   }
   const startedAt = lease.startedAt ?? new Date(0).toISOString();
   try {
     process.kill(lease.pid, 0);
-    return { held: true, ownerPid: lease.pid, staleReclaimable: false, startedAt, legacyPath };
+    return { held: true, ownerPid: lease.pid, staleReclaimable: false, startedAt, legacyPath, socketPath };
   } catch (error) {
-    if (error.code === 'ESRCH') return { held: false, ownerPid: lease.pid, staleReclaimable: true, startedAt, legacyPath };
+    if (error.code === 'ESRCH') return { held: false, ownerPid: lease.pid, staleReclaimable: true, startedAt, legacyPath, socketPath };
     // Mirror skill-advisor parity — EPERM means the process exists but we lack permission (e.g. sandbox); treat as live lease.
-    if (error.code === 'EPERM') return { held: true, ownerPid: lease.pid, staleReclaimable: false, startedAt, legacyPath };
+    if (error.code === 'EPERM') return { held: true, ownerPid: lease.pid, staleReclaimable: false, startedAt, legacyPath, socketPath };
     throw error;
   }
 }
@@ -645,7 +693,7 @@ async function bridgeOrReportLeaseHeld(leaseResult, options = {}) {
 function writeLeaseFile() {
   const currentLeasePath = path.join(ensureCanonicalDir(path.dirname(leasePath())), PID_FILE_NAME);
   const tmp = currentLeasePath + '.tmp.' + process.pid;
-  fs.writeFileSync(tmp, JSON.stringify({ pid: process.pid, startedAt: new Date().toISOString() }, null, 2), { mode: 0o600 });
+  fs.writeFileSync(tmp, JSON.stringify({ pid: process.pid, startedAt: new Date().toISOString(), socketPath: ownerSocketPath() }, null, 2), { mode: 0o600 });
   fs.renameSync(tmp, currentLeasePath);
 }
 
@@ -659,6 +707,7 @@ function clearLeaseFile() {
 }
 
 function clearAllLeaseFiles() {
+  clearOwnerLeaseHeartbeat();
   clearLeaseFile();
   clearOwnerLeaseFile();
 }
@@ -754,14 +803,73 @@ function buildIfNeeded(actions) {
   }
 }
 
+const BOOTSTRAP_LOCK_STALE_MS = 5 * 60 * 1000; // 5 minutes — fallback for unstamped (legacy) lock dirs
+const BOOTSTRAP_LOCK_TIMEOUT_MS = 120000;
+const BOOTSTRAP_LOCK_OWNER_FILE = 'owner.pid';
+
+// Returns the pid recorded inside the lock dir, or null when no readable pid
+// stamp exists (legacy lock dirs, or a holder that died before stamping).
+function readBootstrapLockOwnerPid() {
+  try {
+    const raw = fs.readFileSync(path.join(lockDir, BOOTSTRAP_LOCK_OWNER_FILE), 'utf8').trim();
+    const pid = Number.parseInt(raw, 10);
+    return Number.isInteger(pid) && pid > 0 ? pid : null;
+  } catch {
+    return null;
+  }
+}
+
+// Reclaim a stale bootstrap lockdir. A lock is reclaimable as soon as its
+// recorded holder is provably dead; the mtime TTL is only a fallback for lock
+// dirs with no readable pid stamp (legacy dirs) or a holder whose liveness
+// cannot be determined. Without the dead-holder check, a holder killed less than
+// staleMs ago wedges every requireLock respawn for the full wait deadline.
+function removeStaleBootstrapLock(staleMs = BOOTSTRAP_LOCK_STALE_MS) {
+  let ageMs;
+  try {
+    ageMs = Date.now() - fs.statSync(lockDir).mtimeMs;
+  } catch (error) {
+    if (error.code === 'ENOENT') return false;
+    throw error;
+  }
+  const ownerPid = readBootstrapLockOwnerPid();
+  const ownerDead = ownerPid !== null && processLiveness(ownerPid) === 'dead';
+  if (!ownerDead && ageMs <= staleMs) {
+    return false;
+  }
+  // Atomically CLAIM the stale lockdir via rename before deleting it. Only one
+  // racer wins the rename; a successor that mkdir's a fresh lockDir after our stat
+  // creates a NEW inode that our rename/rmSync cannot touch, so we never delete a
+  // live successor lock. A losing racer's rename throws ENOENT and falls through to
+  // the outer retry.
+  const staleClaim = `${lockDir}.stale.${process.pid}.${Date.now()}`;
+  try {
+    fs.renameSync(lockDir, staleClaim);
+    fs.rmSync(staleClaim, { recursive: true, force: true });
+    const reason = ownerDead ? `dead holder pid=${ownerPid}` : `mtime ${Math.round(ageMs / 1000)}s old`;
+    log(`reclaiming stale bootstrap lock ${rel(lockDir)} (${reason})`);
+    return true;
+  } catch (error) {
+    if (error.code === 'ENOENT' || error.code === 'ENOTEMPTY') return false;
+    throw error;
+  }
+}
+
 async function acquireBootstrapLock(options = {}) {
   const requireLock = options.requireLock === true;
   fs.mkdirSync(dbDir, { recursive: true });
-  const deadline = Date.now() + 120000;
-  const STALE_LOCK_MS = 5 * 60 * 1000; // 5 minutes — covers SIGKILL'd prior launchers
+  const deadline = Date.now() + (options.timeoutMs ?? BOOTSTRAP_LOCK_TIMEOUT_MS);
+  const staleMs = options.staleMs ?? BOOTSTRAP_LOCK_STALE_MS;
+  const retrySleepMs = options.retrySleepMs ?? 1000;
   while (true) {
     try {
       fs.mkdirSync(lockDir);
+      // Stamp the holder pid so a later launcher can reclaim this lock the
+      // instant we die, instead of waiting out the mtime TTL. Best-effort: a
+      // failed stamp degrades to the TTL path, never blocks acquisition.
+      try {
+        fs.writeFileSync(path.join(lockDir, BOOTSTRAP_LOCK_OWNER_FILE), String(process.pid), { mode: 0o600 });
+      } catch { /* TTL fallback covers an unstamped lock */ }
       return true;
     } catch (error) {
       if (error.code !== 'EEXIST') {
@@ -770,31 +878,13 @@ async function acquireBootstrapLock(options = {}) {
       if (artifactsReady() && !requireLock) {
         return false;
       }
-      // Detect stale lockdir from SIGKILL'd predecessor.
-      // Existing process should refresh the dir; an mtime older than 5min
-      // implies the holder is gone. Remove and retry.
-      try {
-        const lockStat = fs.statSync(lockDir);
-        if (Date.now() - lockStat.mtimeMs > STALE_LOCK_MS) {
-          process.stderr.write(
-            `[mk-code-index-launcher] stale bootstrap lock (mtime ${Math.round((Date.now() - lockStat.mtimeMs) / 1000)}s old); reclaiming ${rel(lockDir)}\n`
-          );
-          // Atomically CLAIM the stale lockdir via rename before deleting it. Only one
-          // racer wins the rename; a successor that mkdir's a fresh lockDir after our stat creates
-          // a NEW inode that our rename/rmSync cannot touch, so we never delete a live successor
-          // lock. A losing racer's rename throws ENOENT and falls through to the outer retry.
-          const staleClaim = `${lockDir}.stale.${process.pid}.${Date.now()}`;
-          fs.renameSync(lockDir, staleClaim);
-          fs.rmSync(staleClaim, { recursive: true, force: true });
-          continue;
-        }
-      } catch {
-        // stat/rename race — lock disappeared or was reclaimed by another launcher; retry mkdirSync
+      if (removeStaleBootstrapLock(staleMs)) {
+        continue;
       }
       if (Date.now() > deadline) {
         throw new Error(`bootstrap lock timed out at ${rel(lockDir)}`);
       }
-      await sleep(1000);
+      await sleep(retrySleepMs);
     }
   }
 }
@@ -826,12 +916,20 @@ function launchServer() {
     if (!refreshed) {
       log('owner lease refresh to child pid failed; launcher pid remains the recorded owner');
     }
+    startOwnerLeaseHeartbeat(refreshed ? childProcess.pid : process.pid);
   }
 
   childProcess.on('exit', (code, signal) => {
     if (signal) {
       // Clear the lease before mirroring the signal; process.on('exit') does not fire on SIGKILL.
       clearAllLeaseFiles();
+      // Remove our own handler for this signal first. Without this, the self-sent
+      // catchable signal (SIGTERM/SIGINT/SIGHUP/SIGQUIT) re-enters installSignalHandlers'
+      // handler, which — for an externally-killed child (childProcess.killed === false) —
+      // exits 0, so a supervising runtime misreads abnormal daemon death as a clean
+      // shutdown. Removing the handler lets the re-raised signal terminate this process
+      // with the signaled status (128 + n). SIGKILL is uncatchable and already mirrors.
+      process.removeAllListeners(signal);
       process.kill(process.pid, signal);
       return;
     }
@@ -879,6 +977,12 @@ async function launcherMain() {
   const started = now();
   const actions = [];
   let lockHeld = false;
+  // Orphan daemon pid recorded by a reclaimed prior owner lease. A SIGKILL'd
+  // launcher leaves its non-detached child reparented to init while still holding
+  // the SQLite DB; reap it before spawning a successor so we never run two writers
+  // against the same DB (mirrors the dead-socket respawn reap and the sibling
+  // launchers' adopt-or-reap guards).
+  let reclaimedOrphanPid = null;
 
   try {
     installSignalHandlers();
@@ -891,6 +995,13 @@ async function launcherMain() {
     const strictSingleWriter = !isStrictModeDisabled(process.env.MK_CODE_INDEX_STRICT_SINGLE_WRITER);
     if (strictSingleWriter) {
       const ownerLeaseResult = acquireOwnerLeaseFile();
+      if (ownerLeaseResult.acquired
+          && ownerLeaseResult.reclaimed
+          && Number.isInteger(ownerLeaseResult.reclaimed.ownerPid)
+          && ownerLeaseResult.reclaimed.ownerPid > 0
+          && ownerLeaseResult.reclaimed.ownerPid !== process.pid) {
+        reclaimedOrphanPid = ownerLeaseResult.reclaimed.ownerPid;
+      }
       if (!ownerLeaseResult.acquired) {
         // A live owner already holds the single-writer lease. Bridge this
         // client's stdio to the owner's IPC socket so additional sessions and
@@ -901,6 +1012,7 @@ async function launcherMain() {
         await bridgeOrReportLeaseHeld({
           ownerPid: ownerLeaseResult.holder.ownerPid,
           startedAt: ownerLeaseResult.holder.startedAtIso,
+          socketPath: typeof ownerLeaseResult.holder.socketPath === 'string' ? ownerLeaseResult.holder.socketPath : null,
         }, {
           respawnChildPid: ownerLeaseResult.holder.ownerPid,
         });
@@ -988,6 +1100,18 @@ async function launcherMain() {
       log(`ready: ${JSON.stringify({ start: started, end: now(), actions, server: rel(path.join(kitDir, 'mcp_server', 'dist', 'index.js')) })}`);
     }
 
+    // Reap the orphan daemon recorded by the reclaimed prior owner lease before
+    // spawning a successor. The bootstrap lock above serializes this so only the
+    // winning launcher reaps + respawns; a still-live orphan would otherwise keep
+    // writing the SQLite DB alongside the new daemon.
+    if (Number.isInteger(reclaimedOrphanPid) && reclaimedOrphanPid > 0) {
+      const reapResult = await reapOwnerBeforeRespawn(reclaimedOrphanPid);
+      if (!reapResult.allowed) {
+        log(`reclaimed orphan daemon pid ${reclaimedOrphanPid} could not be reaped (${reapResult.reason}); not spawning a second daemon`);
+        process.exit(0);
+      }
+    }
+
     writeLeaseFile();
     const reprobe = readLeaseFile();
     if (!reprobe || reprobe.pid !== process.pid) {
@@ -1014,9 +1138,29 @@ if (require.main === module) {
   void launcherMain();
 }
 
+function configureLauncherPathsForTesting(nextPaths) {
+  if (nextPaths.skillsDir) skillsDir = nextPaths.skillsDir;
+  if (nextPaths.kitDir) kitDir = nextPaths.kitDir;
+  if (nextPaths.dbDir) dbDir = nextPaths.dbDir;
+  if (nextPaths.lockDir) lockDir = nextPaths.lockDir;
+  if (nextPaths.stateFile) stateFile = nextPaths.stateFile;
+}
+
 module.exports = {
   CODE_INDEX_REPLAYABLE_TOOL_NAMES,
   CODE_INDEX_UNSAFE_TOOL_NAMES,
   classifyCodeIndexFrame,
   bridgeStdioThroughSessionProxy,
+  MAINTAINER_CATEGORY_ENV,
+  resolveMaintainerModeCategories,
+  acquireBootstrapLock,
+  acquireOwnerLeaseFile,
+  artifactsReady,
+  clearOwnerLeaseFile,
+  ownerLeasePath,
+  readOwnerLeaseFile,
+  reapOwnerBeforeRespawn,
+  removeStaleBootstrapLock,
+  readBootstrapLockOwnerPid,
+  configureLauncherPathsForTesting,
 };

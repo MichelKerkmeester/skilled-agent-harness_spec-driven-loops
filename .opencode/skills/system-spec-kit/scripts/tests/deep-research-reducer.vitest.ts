@@ -12,7 +12,7 @@ const require = createRequire(import.meta.url);
 
 const reducerModule = require(path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/deep-research/scripts/reduce-state.cjs',
+  '.opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs',
 )) as {
   reduceResearchState: (specFolder: string, options?: { write?: boolean }) => {
     registry: {

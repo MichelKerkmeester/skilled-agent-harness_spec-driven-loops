@@ -1,6 +1,13 @@
 ---
 title: Debugging Workflows - Phase 2
 description: Systematic debugging with four-phase investigation, root cause tracing, and performance profiling.
+trigger_phrases:
+  - "webflow debugging workflows"
+  - "four phase debugging"
+  - "root cause investigation"
+  - "browser devtools profiling"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Debugging Workflows - Phase 2

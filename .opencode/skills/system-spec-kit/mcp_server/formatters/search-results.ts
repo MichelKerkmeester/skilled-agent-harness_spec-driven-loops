@@ -16,7 +16,7 @@ import {
 } from '../lib/search/session-transition.js';
 import { formatAgeString } from '../lib/utils/format-helpers.js';
 
-// Import memory parser for anchor extraction (SK-005)
+// Import memory parser for anchor extraction
 import * as memoryParser from '../lib/parsing/memory-parser.js';
 import { requireDb } from '../utils/index.js';
 
@@ -50,6 +50,12 @@ import {
   isResultExplainEnabled,
   type ExplainabilityOptions,
 } from '../lib/search/result-explainability.js';
+import {
+  buildWhyRankedTrace,
+  findInlineConflictWarnings,
+  type RetrievalConflictWarning,
+  type WhyRankedTrace,
+} from '../lib/observability/retrieval-observability.js';
 
 // Consolidated path validation from core/config.js (single source of truth)
 import { ALLOWED_BASE_PATHS } from '../core/config.js';
@@ -189,6 +195,7 @@ export interface MemoryResultEnvelope extends FormattedSearchResult {
   scores?: MemoryResultScores;
   source?: MemoryResultSource;
   trace?: MemoryResultTrace;
+  why_ranked?: WhyRankedTrace;
   trustBadges?: MemoryTrustBadges;
   /** Phase C: Graph evidence provenance — edges, communities, and boost factors. */
   graphEvidence?: {
@@ -293,6 +300,18 @@ function clampConfidence(value: unknown): number | null {
   const numeric = toNullableNumber(value);
   if (numeric === null) return null;
   return Math.max(0, Math.min(1, numeric));
+}
+
+function toExplainabilityRow(rawResult: RawSearchResult): Parameters<typeof attachExplainabilityToResults>[0][number] {
+  const finalRankScore = toNullableNumber(rawResult.finalRankScore);
+  if (finalRankScore === null) {
+    return rawResult as Parameters<typeof attachExplainabilityToResults>[0][number];
+  }
+
+  return {
+    ...rawResult,
+    intentAdjustedScore: Math.max(0, Math.min(1, finalRankScore)),
+  } as Parameters<typeof attachExplainabilityToResults>[0][number];
 }
 
 function deriveResponsePolicy(
@@ -824,7 +843,7 @@ export async function formatSearchResults(
   const constitutionalCount = results.filter(rawResult => rawResult.isConstitutional).length;
   const trustBadgeFetch = fetchTrustBadgeSnapshots(results);
 
-  const formatted: MemoryResultEnvelope[] = await Promise.all(results.map(async (rawResult: RawSearchResult) => {
+  const formatted: MemoryResultEnvelope[] = await Promise.all(results.map(async (rawResult: RawSearchResult, index: number) => {
     const resultId = toNullableNumber(rawResult.id);
     const formattedResult: MemoryResultEnvelope = {
       id: typeof rawResult.id === 'number' ? rawResult.id : Number.parseInt(rawResult.id, 10),
@@ -882,6 +901,7 @@ export async function formatSearchResults(
         memoryState: typeof rawResult.memoryState === 'string' ? rawResult.memoryState : null,
       };
       formattedResult.trace = extractTrace(rawResult, extraData);
+      formattedResult.why_ranked = buildWhyRankedTrace(rawResult, index + 1);
       // stamp the badge-derivation observability
       // fields onto the trace so operators can distinguish
       // explicit-vs-derived without inspecting logs.
@@ -944,10 +964,10 @@ export async function formatSearchResults(
           return formattedResult;
         }
 
-        // SK-005: Anchor System Implementation
+        // Anchor System Implementation
         const parser: MemoryParserLike = parserOverride || memoryParser;
         if (anchors && Array.isArray(anchors) && anchors.length > 0 && parser && typeof content === 'string') {
-          // BUG-017 FIX: Capture original tokens BEFORE any content reassignment
+          // Capture original tokens BEFORE any content reassignment
           const originalTokens = estimateTokens(content);
 
           const extracted = parser.extractAnchors(content);
@@ -955,7 +975,7 @@ export async function formatSearchResults(
           let foundCount = 0;
 
           for (const anchorId of anchors) {
-            // SK-005 Prefix matching: try exact match first, then fall back to
+            // Prefix matching: try exact match first, then fall back to
             // Prefix match for composite anchor IDs (e.g. 'summary' matches
             // 'summary-session-1770903150838-...'). Prefers shortest match to
             // Select the most specific key when multiple keys share a prefix.
@@ -972,7 +992,7 @@ export async function formatSearchResults(
           }
 
           if (filteredParts.length > 0) {
-            // SK-005 Fix: Warn about missing anchors in partial match
+            // Warn about missing anchors in partial match
             // Use same prefix-matching logic for consistency
             const missingAnchors = anchors.filter(a => {
               if (extracted[a] !== undefined) return false;
@@ -1013,7 +1033,7 @@ export async function formatSearchResults(
       } catch (err: unknown) {
         formattedResult.content = null;
         const message = err instanceof Error ? err.message : String(err);
-        // BUG-023 FIX: Sanitize error messages to prevent information leakage
+        // Sanitize error messages to prevent information leakage
         formattedResult.contentError = message.includes('Access denied')
           ? 'Security: Access denied'
           : message.includes('ENOENT')
@@ -1076,43 +1096,48 @@ export async function formatSearchResults(
     hints.push('Some files could not be read - check file paths');
   }
 
-  // Merge per-result confidence into the formatted result array (additive)
-  const resultsWithConfidence: Array<Record<string, unknown>> = formatted.map(
-    (r, i): Record<string, unknown> => {
-      if (!confidenceData) return r as unknown as Record<string, unknown>;
-      const conf = confidenceData[i];
-      if (!conf) return r as unknown as Record<string, unknown>;
-      return { ...(r as unknown as Record<string, unknown>), ...conf };
-    }
-  );
-
-  // Attach explainability (slim tier) to every result when flag is ON.
-  // Pass results as PipelineRow-compatible — they share the same Record<string,unknown> base.
-  // Debug tier is opt-in via SPECKIT_RESULT_EXPLAIN_DEBUG env var.
   const explainOptions: ExplainabilityOptions = {
     debugEnabled: process.env.SPECKIT_RESULT_EXPLAIN_DEBUG?.toLowerCase().trim() === 'true',
   };
-  const resultsWithExplain = isResultExplainEnabled()
+  const explainedRawResults = isResultExplainEnabled()
     ? attachExplainabilityToResults(
-        resultsWithConfidence as Parameters<typeof attachExplainabilityToResults>[0],
+        results.map(toExplainabilityRow),
         explainOptions
-      ) as Array<Record<string, unknown>>
-    : resultsWithConfidence;
+      )
+    : null;
+
+  // Merge per-result confidence into the formatted result array (additive)
+  const resultsWithConfidence: Array<Record<string, unknown>> = formatted.map(
+    (r, i): Record<string, unknown> => {
+      const explainedWhy = explainedRawResults?.[i]?.why;
+      const base = explainedWhy
+        ? { ...(r as unknown as Record<string, unknown>), why: explainedWhy }
+        : r as unknown as Record<string, unknown>;
+      if (!confidenceData) return base;
+      const conf = confidenceData[i];
+      if (!conf) return base;
+      return { ...base, ...conf };
+    }
+  );
 
   const responsePolicy = deriveResponsePolicy(requestQualityData, recoveryPayload);
   const citationPolicy = deriveCitationPolicy(requestQualityData);
+  const inlineWarnings: RetrievalConflictWarning[] = includeTrace
+    ? findInlineConflictWarnings(results, requireDb)
+    : [];
 
   // Use standardized success response envelope
   const responseData: Record<string, unknown> = {
     searchType: searchType,
     count: formatted.length,
     constitutionalCount: constitutionalCount,
-    results: resultsWithExplain,
+    results: resultsWithConfidence,
     // Request-level quality assessment (additive)
     ...(requestQualityData !== null ? requestQualityData : {}),
     // Recovery payload for weak/partial results (additive)
     ...(recoveryPayload !== null ? { recovery: recoveryPayload } : {}),
     citationPolicy,
+    ...(inlineWarnings.length > 0 ? { inlineWarnings, retrievalWarnings: inlineWarnings } : {}),
     ...(responsePolicy !== null ? { responsePolicy } : {}),
   };
   // Preserve caller metadata, but keep trace-only fields opt-in.

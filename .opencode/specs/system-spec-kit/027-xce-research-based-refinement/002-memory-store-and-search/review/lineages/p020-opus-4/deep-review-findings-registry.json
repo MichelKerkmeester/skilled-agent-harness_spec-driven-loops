@@ -1,0 +1,82 @@
+{
+  "sessionId": "fanout-p020-opus-4-1781721166412-nlwse6",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Refcount increment precedes throwable marker write with no rollback",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/maintenance-marker.ts",
+      "line": 59,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [{ "iteration": 1, "from": null, "to": "P2", "reason": "Initial discovery" }]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Embedding-queue refresh-free protection relies on undocumented per-await yield",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts",
+      "line": 1038,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [{ "iteration": 1, "from": null, "to": "P2", "reason": "Initial discovery" }]
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "On-disk labels field goes stale between writes (cosmetic; launcher ignores labels)",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/maintenance-marker.ts",
+      "line": 72,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [{ "iteration": 1, "from": null, "to": "P2", "reason": "Initial discovery" }]
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Residual unprotected window between scan-end and first embedding tick when they do not overlap",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts",
+      "line": 1032,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [{ "iteration": 1, "from": null, "to": "P2", "reason": "Initial discovery" }]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 4
+  },
+  "openFindingsCount": 4,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1.0,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

@@ -23,7 +23,7 @@ Current state:
 - `advisor_status` reports freshness, trust state and daemon availability.
 - `advisor_rebuild` rebuilds checked-in skill metadata when status is stale or absent.
 - `advisor_validate` runs the heavier advisor validation bundle after explicit confirmation.
-- `skill_graph_scan`, `skill_graph_query`, `skill_graph_status` and `skill_graph_validate` expose the advisor-owned skill graph MCP surface, and `skill_graph_propagate_enhances` proposes missing inbound `enhances` edges under a trusted-caller gate.
+- `skill_graph_scan`, `skill_graph_query`, `skill_graph_status` and `skill_graph_validate` expose the advisor-owned skill graph MCP surface, and `skill_graph_propagate_enhances` reports or proposes missing inbound `enhances` edges without trusted-caller authority; only real apply mode (`mode: "apply"` with `dryRun` not true) requires a trusted caller.
 
 ---
 
@@ -96,7 +96,7 @@ Advisor handler validates input and runs logic
 | `skillGraphQueryTool` | Descriptor | Registers `skill_graph_query`. |
 | `skillGraphStatusTool` | Descriptor | Registers `skill_graph_status`. |
 | `skillGraphValidateTool` | Descriptor | Registers `skill_graph_validate`. |
-| `skillGraphPropagateEnhancesTool` | Descriptor | Registers `skill_graph_propagate_enhances` (trusted-caller gated). |
+| `skillGraphPropagateEnhancesTool` | Descriptor | Registers `skill_graph_propagate_enhances` (trusted only for real apply mode). |
 
 ---
 

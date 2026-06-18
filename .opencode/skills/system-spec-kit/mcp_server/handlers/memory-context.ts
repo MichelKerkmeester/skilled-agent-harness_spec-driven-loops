@@ -51,7 +51,7 @@ import * as vectorIndex from '../lib/search/vector-index.js';
 // Shared handler types
 import type { MCPResponse } from './types.js';
 
-// PI-B3: Folder discovery integration
+// Folder discovery integration
 import { discoverSpecFolder, getSpecsBasePaths } from '../lib/search/folder-discovery.js';
 import {
   isAutoResumeEnabled,
@@ -1207,7 +1207,8 @@ function resolveEffectiveMode(
   }
 
   if (requestedMode === 'auto') {
-    effectiveMode = INTENT_TO_MODE[detectedIntent!] || 'focused';
+    const modeIntent = detectedIntent ?? 'understand';
+    effectiveMode = INTENT_TO_MODE[modeIntent] || 'focused';
 
     if (normalizedInput.length < 50 || /^(what|how|where|when|why)\s/i.test(normalizedInput)) {
       effectiveMode = 'focused';
@@ -1485,7 +1486,7 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
           matchedKeywords: classification.matchedKeywords,
         };
 
-        // F050: Extract a symbol-like token from the query instead of passing
+        // Extract a symbol-like token from the query instead of passing
         // raw prose to buildContext({ subject }). resolveSubjectToRef() matches
         // against code_nodes.name / fq_name, so prose never resolves.
         // Heuristic: pick the first token that looks like a code identifier
@@ -1592,6 +1593,7 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
     }
 
     // Build options object for strategy executors
+    const debugProfileRequested = args.profile === 'debug';
     const options: ContextOptions = {
       specFolder: spec_folder,
       tenantId: args.tenantId,
@@ -1601,7 +1603,7 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
       sessionId: effectiveSessionId,
       enableDedup: enableDedup,
       includeContent: include_content,
-      includeTrace: (args as unknown as Record<string, unknown>).includeTrace === true, // Forward to internal memory_search calls
+      includeTrace: (args as unknown as Record<string, unknown>).includeTrace === true || debugProfileRequested,
       anchors,
       profile: args.profile,
     };

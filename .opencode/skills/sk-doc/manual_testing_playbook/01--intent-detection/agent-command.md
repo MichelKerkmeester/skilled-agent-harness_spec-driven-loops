@@ -6,7 +6,7 @@ expected_intent: AGENT_COMMAND
 expected_resources:
   - references/agent_creation.md
   - assets/agent_template.md
-  - assets/command_template.md
+  - assets/command/command_template.md
 expected_token_range_input: 1000-2500
 expected_token_range_output: 1500-3000
 created: 2026-05-05
@@ -58,7 +58,7 @@ Author an @analyze agent and paired /create:analyze command using the standard t
 - **Resources loaded**:
   - `references/agent_creation.md`
   - `assets/agent_template.md`
-  - `assets/command_template.md`
+  - `assets/command/command_template.md`
 - **Outcome**: CLI loads agent-creation reference + both templates and produces two file scaffolds (`@analyze` agent definition and `/create:analyze` command) with the dispatch wiring described in `agent_creation.md`.
 
 ## Cross-CLI Variants

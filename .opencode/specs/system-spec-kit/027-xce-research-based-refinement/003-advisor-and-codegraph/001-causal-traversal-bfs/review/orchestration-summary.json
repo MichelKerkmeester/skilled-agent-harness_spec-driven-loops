@@ -1,0 +1,11 @@
+{
+  "run_id": "1781150497099-u77yte",
+  "loop_type": "review",
+  "spec_folder": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/012-causal-traversal-bfs",
+  "base_artifact_dir": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/012-causal-traversal-bfs/review",
+  "total_cli_lineages": 3,
+  "total": 3,
+  "succeeded": 3,
+  "failed": 0,
+  "all_failed": false
+}

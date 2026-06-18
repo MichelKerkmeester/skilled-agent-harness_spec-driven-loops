@@ -20,7 +20,7 @@ Current responsibilities:
 - Store local memory index, FTS and checkpoint data at runtime.
 - Store per-embedder vector shards under `vectors/` per ADR-012.
 - Store checkpoint-v2 snapshots and restore bookkeeping under `checkpoints/`.
-- Hold pre-migration safety copies and quarantined corrupt databases under `backups/`.
+- Hold generated repair and corruption artifacts beside the live database when runtime or maintenance paths create root-level `.corrupt-*` or `.pre-repair-*` copies; `backups/` remains an operator-maintained holding area.
 - Hold reserved space for future per-server schema migrations under `migrations/`.
 - Store structural code graph and evaluation databases when the default path is active.
 - Provide marker files used by runtime state checks.
@@ -28,7 +28,7 @@ Current responsibilities:
 
 The default path is resolved through shared path and config helpers. Runtime variables such as `MEMORY_DB_PATH`, `SPEC_KIT_DB_DIR` and `SPECKIT_DB_DIR` can point storage elsewhere.
 
-Four subdirectories live alongside the SQLite databases. `vectors/` holds per-embedder shard files split out by ADR-012, with one shard per provider, model and dimension. `checkpoints/` holds checkpoint-v2 snapshots plus the restore journal and `.needs-rebuild` sentinel, written by the daemon. `backups/` is an operator- and recovery-maintained area for pre-migration safety copies and quarantined corrupt databases, with no wired runtime writer. `migrations/` is reserved infrastructure for future per-server schema migrations and is empty today. See [`./vectors/README.md`](./vectors/README.md), [`./checkpoints/README.md`](./checkpoints/README.md), [`./backups/README.md`](./backups/README.md), and [`./migrations/README.md`](./migrations/README.md) for the rules that govern each folder.
+Four subdirectories live alongside the SQLite databases. `vectors/` holds per-embedder shard files, with one shard per provider, model and dimension. `checkpoints/` holds checkpoint-v2 snapshots plus the restore journal and `.needs-rebuild` sentinel, written by the daemon. `backups/` is an operator- and recovery-maintained area for manually placed pre-migration safety copies and quarantined corrupt databases, with no wired runtime writer. Runtime and maintenance repair paths may instead leave `context-index.sqlite.corrupt-*` or `context-index.sqlite.pre-repair-*` files in the database root; prune those root-level artifacts with the same verification and retention rules as backups. `migrations/` is reserved infrastructure for future per-server schema migrations and is empty today. See [`./vectors/README.md`](./vectors/README.md), [`./checkpoints/README.md`](./checkpoints/README.md), [`./backups/README.md`](./backups/README.md), and [`./migrations/README.md`](./migrations/README.md) for the rules that govern each folder.
 
 ---
 
@@ -75,6 +75,8 @@ database/
 +-- .gitkeep
 +-- .db-updated
 +-- *.sqlite                       # Generated runtime databases
++-- *.sqlite.corrupt-*             # Root-level corruption quarantine artifacts
++-- *.sqlite.pre-repair-*          # Root-level pre-repair safety copies
 +-- *.db                           # Generated runtime databases
 +-- *-wal                          # Generated SQLite write-ahead logs
 +-- *-shm                          # Generated SQLite shared-memory files
@@ -103,10 +105,10 @@ database/
 | `.db-updated` | Stores the last database update timestamp for runtime refresh checks. |
 | `vectors/` | Per-embedder vector shard directory governed by ADR-012. See [`./vectors/README.md`](./vectors/README.md). |
 | `checkpoints/` | Checkpoint-v2 snapshots, restore journal, and `.needs-rebuild` sentinel, written by the daemon. See [`./checkpoints/README.md`](./checkpoints/README.md). |
-| `backups/` | Operator/recovery safety copies of the metadata DB and quarantined corrupt databases. See [`./backups/README.md`](./backups/README.md). |
+| `backups/` | Operator/recovery safety copies of the metadata DB and quarantined corrupt databases when manually moved there. See [`./backups/README.md`](./backups/README.md). |
 | `migrations/` | Reserved directory for future per-server schema migrations. See [`./migrations/README.md`](./migrations/README.md). |
 
-Runtime artifacts include `context-index*.sqlite`, `code-graph.sqlite`, `speckit-eval.db`, `*-wal` and `*-shm` files. Vector shards live in `vectors/` as `context-vectors__<provider>__<model>__<dim>[__<quant>].sqlite`. The active production shard today is `context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite` at about 15 MB. Treat all of these as generated data, not source files.
+Runtime artifacts include `context-index*.sqlite`, `code-graph.sqlite`, `speckit-eval.db`, `*-wal` and `*-shm` files. Root-level `context-index.sqlite.corrupt-*` files are quarantined corrupt copies, and root-level `context-index.sqlite.pre-repair-*` files are pre-repair safety copies; keep only the most recent copy needed for recovery evidence and delete stale ones after the live database has passed health checks. Vector shards live in `vectors/` as `context-vectors__<provider>__<model>__<dim>[__<quant>].sqlite`. The active production shard today is `context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite` at about 15 MB. Treat all of these as generated data, not source files.
 
 ---
 

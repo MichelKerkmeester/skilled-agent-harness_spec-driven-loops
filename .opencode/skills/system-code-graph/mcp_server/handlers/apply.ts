@@ -17,6 +17,7 @@ function buildResponse(payload: object): { content: Array<{ type: 'text'; text: 
   };
 }
 
+/** Run a verification-gated code-graph recovery operation. */
 export async function handleCodeGraphApply(
   args: CodeGraphApplyArgs,
 ): Promise<{ content: Array<{ type: 'text'; text: string }> }> {
@@ -26,7 +27,7 @@ export async function handleCodeGraphApply(
       status: result.status,
       result,
     });
-  } catch (error) {
+  } catch (error: unknown) {
     return buildResponse({
       status: 'error',
       error: `code_graph_apply failed: ${error instanceof Error ? error.message : String(error)}`,

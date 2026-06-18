@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/145-mcp-open-design/002-mcp-open-design-skill-build",
+  "description": "Feature Specification: mcp-open-design skill build",
+  "keywords": [
+    "feature",
+    "specification",
+    "mcp-open-design",
+    "skill",
+    "build"
+  ],
+  "lastUpdated": "2026-06-15T13:45:21.695Z",
+  "specId": "002",
+  "folderSlug": "mcp-open-design-skill-build",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "145-mcp-open-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

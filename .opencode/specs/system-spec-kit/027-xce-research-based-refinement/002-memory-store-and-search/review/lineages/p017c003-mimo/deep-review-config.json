@@ -1,0 +1,22 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/017-search-and-output-intelligence-implementation/003-generic-query-deep-routing",
+  "artifactDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/review/lineages/p017c003-mimo",
+  "sessionId": "fanout-p017c003-mimo-1781723046064-9uo58o",
+  "executor": "cli-opencode",
+  "model": "xiaomi/mimo-v2.5-pro",
+  "loopType": "review",
+  "maxIterations": 1,
+  "convergenceThreshold": 0.7,
+  "minStabilizationPasses": 1,
+  "dimensions": ["correctness", "security", "spec-alignment", "completeness"],
+  "lineage": {
+    "sessionId": "fanout-p017c003-mimo-1781723046064-9uo58o",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null,
+    "releaseReadinessState": "in-progress"
+  },
+  "resource_map_present": false,
+  "createdAt": "2026-06-17T12:24:06Z"
+}

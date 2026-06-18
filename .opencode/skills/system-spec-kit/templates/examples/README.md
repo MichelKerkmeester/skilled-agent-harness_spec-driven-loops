@@ -71,7 +71,7 @@ examples/
 `-- level_3+/     # Governance and coordination example
 ```
 
-Example folders mirror level contracts, but they are not source templates. Copy from sibling `level_*` template folders instead.
+Example folders mirror level contracts, but they are not source templates. Source templates live under `templates/manifest/*.md.tmpl`, and the manifest maps public levels to those templates.
 
 <!-- /ANCHOR:package-topology -->
 
@@ -122,7 +122,7 @@ Use this directory for reference only. Do not start new specs by copying from `e
 Recommended flow:
 
 ```text
-choose level from task risk -> copy sibling level template -> author spec docs -> compare against examples -> validate
+choose level from task risk -> render templates from manifest -> author spec docs -> compare against examples -> validate
 ```
 
 <!-- /ANCHOR:boundaries-and-flow -->
@@ -148,9 +148,7 @@ For spec packet validation, run the system-spec-kit validator against the target
 ## 8. RELATED
 
 - `../README.md`
-- `../level_1/README.md`
-- `../level_2/README.md`
-- `../level_3/README.md`
-- `../level_3+/README.md`
+- `../manifest/README.md`
+- `../manifest/spec-kit-docs.json`
 
 <!-- /ANCHOR:related -->

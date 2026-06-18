@@ -1,0 +1,175 @@
+{
+  "findings": [
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+      "symbol": "vec0",
+      "kind": "dependency",
+      "signature": "CREATE VIRTUAL TABLE vec_memories USING vec0(embedding FLOAT[dim])",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:518",
+      "relevance": 1,
+      "notes": "Core sqlite-vec virtual table for KNN search. Turso lacks loadExtension and vec0 — blocks vector search entirely."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+      "symbol": "sqliteVec.load",
+      "kind": "dependency",
+      "signature": "sqliteVec.load(database) via better-sqlite3 loadExtension",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:1091",
+      "relevance": 1,
+      "notes": "LoadExtension API for sqlite-vec. Turso (Rust) has no loadExtension — must reimplement vector search natively or via external service."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+      "symbol": "database.pragma",
+      "kind": "dependency",
+      "signature": "database.pragma('journal_mode = WAL') + 7 other pragmas in initialize_db",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:1579",
+      "relevance": 0.8,
+      "notes": "better-sqlite3 .pragma() API used for WAL, busy_timeout, foreign_keys, cache_size, mmap_size, synchronous, wal_autocheckpoint, temp_store. Turso has different pragma interface."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+      "symbol": "ACTIVE_VECTOR_SCHEMA",
+      "kind": "convention",
+      "signature": "ATTACH DATABASE shardPath AS active_vec",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:1122",
+      "relevance": 0.9,
+      "notes": "Multi-database ATTACH/DETACH for per-embedder shard isolation. Turso libSQL has different attach semantics and may not support cross-file attach."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+      "symbol": "vec_distance_cosine",
+      "kind": "dependency",
+      "signature": "vec_distance_cosine(v.embedding, ?) as distance",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:314",
+      "relevance": 1,
+      "notes": "sqlite-vec distance function for KNN queries. Must be reimplemented if Turso lacks vec extension support."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+      "symbol": "vector_table_name_for_profile",
+      "kind": "convention",
+      "signature": "vec_${profile.dim} dimension-suffixed table naming",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:411",
+      "relevance": 0.7,
+      "notes": "Per-dimension blob tables (e.g. vec_768) for fallback storage. Naming convention must be preserved during migration."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+      "symbol": "memory_fts",
+      "kind": "dependency",
+      "signature": "CREATE VIRTUAL TABLE memory_fts USING fts5(title, trigger_phrases, file_path, content_text, content='memory_index', content_rowid='id')",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:3164",
+      "relevance": 1,
+      "notes": "FTS5 virtual table for BM25 full-text search. Turso lacks FTS5 — must use external search engine or Turso's native text search."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+      "symbol": "bm25",
+      "kind": "dependency",
+      "signature": "bm25(memory_fts, 10.0, 5.0, 2.0, 1.0) weighted scoring",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:556",
+      "relevance": 1,
+      "notes": "FTS5 bm25() ranking function with per-column weights. No equivalent in Turso — requires external BM25 implementation."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+      "symbol": "memory_fts_insert",
+      "kind": "dependency",
+      "signature": "CREATE TRIGGER memory_fts_insert AFTER INSERT ON memory_index ... INSERT INTO memory_fts",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:3172",
+      "relevance": 0.9,
+      "notes": "FTS5 sync triggers for insert/update/delete. Turso triggers may have different behavior; FTS5 itself must be replaced first."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+      "symbol": "SCHEMA_VERSION",
+      "kind": "convention",
+      "signature": "SCHEMA_VERSION = 37 with 37 numbered migration steps",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:626",
+      "relevance": 0.5,
+      "notes": "Schema version tracking with incremental migrations. Migration logic itself is portable but each migration's SQL must be validated against Turso."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+      "symbol": "vec_metadata",
+      "kind": "convention",
+      "signature": "CREATE TABLE vec_metadata (key TEXT PRIMARY KEY, value TEXT NOT NULL)",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:441",
+      "relevance": 0.6,
+      "notes": "Metadata table storing embedding dim/provider/model per shard. Schema is portable but lives in attached shard database."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/db-shard-migration.ts",
+      "symbol": "migrateLegacySingleDbToShardSync",
+      "kind": "integration_point",
+      "signature": "Legacy profile DB → canonical + vector shard split with ATTACH DATABASE",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/db-shard-migration.ts:209",
+      "relevance": 0.9,
+      "notes": "Migration uses ATTACH DATABASE, vec0 virtual table recreation, and VACUUM. All three need Turso-compatible equivalents."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+      "symbol": "PRAGMA database_list",
+      "kind": "dependency",
+      "signature": "database.prepare('PRAGMA database_list').all()",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:211",
+      "relevance": 0.7,
+      "notes": "Used to inspect attached databases for shard management. Turso's pragma interface differs from SQLite."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+      "symbol": "temp.vec_memories",
+      "kind": "dependency",
+      "signature": "CREATE TEMP VIEW vec_memories AS SELECT rowid, embedding FROM active_vec.vec_memories",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:558",
+      "relevance": 0.8,
+      "notes": "Temp views and INSTEAD OF triggers for legacy compatibility aliases. Turso temp object support may differ."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+      "symbol": "quick_check",
+      "kind": "dependency",
+      "signature": "database.pragma('quick_check(1)') for post-crash integrity probe",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:1598",
+      "relevance": 0.6,
+      "notes": "Integrity check pragma used for corruption detection. Turso has different integrity verification mechanisms."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
+      "symbol": "writeVectorsToShard",
+      "kind": "integration_point",
+      "signature": "Staging shard → atomic rename over active shard per reindex job",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:406",
+      "relevance": 0.8,
+      "notes": "Reindex writes to staging shard then atomically renames. Uses vec0 virtual table creation inside shard. Migration must preserve atomic swap semantics."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+      "symbol": "ensure_schema_version",
+      "kind": "integration_point",
+      "signature": "CREATE TABLE IF NOT EXISTS schema_version (id INTEGER PRIMARY KEY CHECK (id = 1), version INTEGER NOT NULL)",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1988",
+      "relevance": 0.5,
+      "notes": "Schema version table with single-row CHECK constraint. Portable to Turso but CHECK(id=1) pattern should be validated."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+      "symbol": "wal_checkpoint(TRUNCATE)",
+      "kind": "dependency",
+      "signature": "db.pragma('wal_checkpoint(TRUNCATE)') and schema-scoped variant",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:1700",
+      "relevance": 0.7,
+      "notes": "Explicit WAL TRUNCATE checkpoint before close for corruption prevention. Turso has different WAL/checkpoint semantics."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+      "symbol": "idx_memory_logical_key_active_unique",
+      "kind": "convention",
+      "signature": "CREATE UNIQUE INDEX ... ON memory_index(spec_folder, COALESCE(...), ...) WHERE importance_tier NOT IN ('constitutional','deprecated')",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1841",
+      "relevance": 0.6,
+      "notes": "Partial unique index with COALESCE expressions and WHERE predicate. Turso should support this but needs validation."
+    }
+  ]
+}

@@ -304,6 +304,11 @@ export async function handleSessionBootstrap(args: SessionBootstrapArgs): Promis
   if (skillGraphTopology.status === 'unavailable') {
     allHints.push('Skill graph topology summary is unavailable; call `skill_graph_status` for details.');
   }
+  const memoryResume = resumeData.memory as Record<string, unknown> | undefined;
+  const restorePanel = memoryResume?.restorePanel as { markdown?: unknown; restoredCount?: unknown; omittedCount?: unknown } | undefined;
+  if (typeof restorePanel?.markdown === 'string') {
+    allHints.push(`Startup restore panel restored ${String(restorePanel.restoredCount ?? 0)} item(s) and omitted ${String(restorePanel.omittedCount ?? 0)} item(s).`);
+  }
 
   // Deduplicate hints
   const uniqueHints = [...new Set(allHints)];
@@ -350,6 +355,15 @@ export async function handleSessionBootstrap(args: SessionBootstrapArgs): Promis
       certainty: resumeCertainty,
     },
   ];
+  if (typeof restorePanel?.markdown === 'string') {
+    payloadSections.push({
+      key: 'startup-restore-panel',
+      title: 'Startup Restore Panel',
+      content: restorePanel.markdown,
+      source: 'memory',
+      certainty: resumeCertainty,
+    });
+  }
   if (cachedSummary?.status === 'accepted' && cachedSummary.cachedSummary) {
     payloadSections.push({
       key: 'cached-continuity',

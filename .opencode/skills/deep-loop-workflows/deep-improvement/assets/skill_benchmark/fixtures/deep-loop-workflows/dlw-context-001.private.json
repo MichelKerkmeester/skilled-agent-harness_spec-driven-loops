@@ -1,0 +1,25 @@
+{
+  "scenarioId": "dlw-context-001",
+  "expected": {
+    "skillId": "deep-loop-workflows",
+    "mode": "context",
+    "advisorLane": "deep-context",
+    "intentKeys": [],
+    "resources": [],
+    "negativeActivation": false
+  },
+  "rubric": {
+    "usefulnessChecks": [
+      "routing lands on deep-loop-workflows + context mode"
+    ],
+    "harmChecks": [
+      "does not route to a sibling mode"
+    ]
+  },
+  "packetContext": {
+    "artifacts": [
+      "context/context-report.md"
+    ]
+  },
+  "notes": "Parent-skill routing dogfood: skill-level gold is deep-loop-workflows; mode-level precision is additionally enforced by the advisor routing-parity fixtures + the registry drift-guard."
+}

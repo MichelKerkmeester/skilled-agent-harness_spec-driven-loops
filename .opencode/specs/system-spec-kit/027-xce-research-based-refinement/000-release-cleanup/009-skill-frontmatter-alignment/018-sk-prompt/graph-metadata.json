@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/018-sk-prompt",
+  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/018-sk-prompt",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-prompt frontmatter alignment",
+      "sk-prompt reference frontmatter",
+      "skill frontmatter standardization",
+      "sk-prompt frontmatter plan",
+      "prompt skill doc contract",
+      "format guide frontmatter authoring",
+      "sk-prompt frontmatter tasks",
+      "prompt skill doc authoring tasks",
+      "format guide contract tasks",
+      "sk-prompt frontmatter summary",
+      "prompt skill doc contract evidence",
+      "format guide frontmatter complete"
+    ],
+    "key_topics": [
+      "sk-prompt",
+      "frontmatter",
+      "alignment",
+      "reference",
+      "skill",
+      "standardization",
+      "plan",
+      "prompt",
+      "doc",
+      "contract",
+      "format",
+      "guide"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-prompt/assets/format_guide_json.md",
+      ".opencode/skills/sk-prompt/assets/format_guide_markdown.md",
+      ".opencode/skills/sk-prompt/assets/format_guide_yaml.md",
+      ".opencode/skills/sk-prompt/references/depth_framework.md",
+      ".opencode/skills/sk-prompt/references/patterns_evaluation.md",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "format_guide_json.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/assets/format_guide_json.md",
+        "source": "derived"
+      },
+      {
+        "name": "format_guide_markdown.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/assets/format_guide_markdown.md",
+        "source": "derived"
+      },
+      {
+        "name": "format_guide_yaml.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/assets/format_guide_yaml.md",
+        "source": "derived"
+      },
+      {
+        "name": "depth_framework.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/references/depth_framework.md",
+        "source": "derived"
+      },
+      {
+        "name": "patterns_evaluation.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/references/patterns_evaluation.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Frontmatter Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Frontmatter",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This is **Phase 18** of the Skill reference and asset frontmatter alignment across all public-repo skills specification.",
+    "created_at": "2026-06-11T05:47:36Z",
+    "last_save_at": "2026-06-12T04:40:47.842Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,6 +1,14 @@
 ---
 title: Auto Mode Contract Reference
 description: Canonical three-tier `:auto` setup-resolution contract shared by every user-invokable `/command:*:auto` surface. Defines tier semantics (resolve → targeted ask → fail-fast), `PRE-BOUND SETUP ANSWERS:` marker grammar, default-resolution table format, fail-fast error template, `:confirm` invariance, and verification protocol.
+trigger_phrases:
+  - "auto mode contract"
+  - "three-tier setup resolution"
+  - "pre-bound setup answers"
+  - "fail-fast error template"
+  - "confirm invariance"
+importance_tier: important
+contextType: implementation
 ---
 
 # Auto Mode Contract Reference
@@ -173,7 +181,7 @@ For each command adopting this contract, the §0 of the command markdown:
 
 Commands that have adopted this contract:
 
-- `/deep:start-review-loop` (prototype) — see `.../103/001-deep-review-three-tier-setup/`
+- `/deep:review` (prototype) — see `.../103/001-deep-review-three-tier-setup/`
 - (to be appended as `.../103/002-...` rolls out)
 
 ---

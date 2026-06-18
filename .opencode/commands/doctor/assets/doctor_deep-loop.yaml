@@ -2,7 +2,7 @@
 # DOCTOR: DEEP LOOP COVERAGE GRAPH WORKFLOW (INTERACTIVE DIAGNOSTIC MODE)
 # ─────────────────────────────────────────────────────────────────
 role: Expert Operator running deep-loop coverage graph diagnostics in interactive mode
-purpose: Read-only deep-loop graph status and lazy-init analysis with user review gates. No mutations.
+purpose: Read-only deep-loop + council graph status and lazy-init analysis with user review gates. No mutations.
 action: Discovery -> gate -> analysis -> gate -> recommendation -> report
 
 # ─────────────────────────────────────────────────────────────────
@@ -22,12 +22,14 @@ operating_mode:
 # DEEP LOOP DOCTOR INVARIANT
 # ─────────────────────────────────────────────────────────────────
 deep_loop_doctor_invariant: |
-  Deep-loop doctor is read-only by contract. It reads graph nodes and edges and
-  the research/review iteration folders to assess coverage, without modifying the
-  source markdown files or the coverage graph. It never calls
-  deep_loop_graph_upsert; rebuilds are owned by /doctor:update. Lazy-init is
-  surfaced only as a recommendation when the graph is empty and iteration folders
-  provide a readable source inventory.
+  Deep-loop doctor is read-only by contract. It reads graph nodes and edges from
+  both the deep-loop coverage graph (research/review/context) and the council
+  graph, plus the research/review iteration folders and ai-council artifacts that
+  back them, to assess coverage without modifying the source files or either
+  graph. It never calls deep_loop_graph_upsert; rebuilds are owned by
+  /doctor:update (coverage graph) and replay-graph-from-artifacts.cjs (council).
+  Lazy-init is surfaced only as a recommendation when a graph is empty and its
+  source inventory (iteration folders or ai-council artifacts) is readable.
 
 # ─────────────────────────────────────────────────────────────────
 # UPSTREAM ASSETS
@@ -47,7 +49,7 @@ upstream_assets:
 # DEEP LOOP DOCTOR PHILOSOPHY
 # ─────────────────────────────────────────────────────────────────
 deep_loop_doctor_philosophy:
-  principle: "Coverage graph reads should prove whether research/review iteration evidence is represented without changing the graph."
+  principle: "Coverage graph reads should prove whether research/review iteration evidence and ai-council artifacts are represented in the deep-loop and council graphs without changing either graph."
   approach: "Discover iteration folders -> let user review -> sample status/query/convergence -> let user review -> emit recommendation."
   mandate: "This command is read-only by contract."
 
@@ -57,7 +59,7 @@ deep_loop_doctor_philosophy:
 user_inputs:
   execution_mode: "[EXECUTION_MODE] - INTERACTIVE (this YAML)"
   intent: "[INTENT] - DIAGNOSE (this YAML)"
-  scope: "[SCOPE] - research|review|both; default both"
+  scope: "[SCOPE] - research|review|council|both|all; default all"
 
 
 # ─────────────────────────────────────────────────────────────────
@@ -65,11 +67,13 @@ user_inputs:
 # ─────────────────────────────────────────────────────────────────
 field_handling:
   defaults:
-    scope_empty: "both"
+    scope_empty: "all"
   scope_policy:
     research: "inspect research/iterations only"
     review: "inspect review/iterations only"
-    both: "inspect both research and review iteration folders"
+    council: "inspect ai-council/** artifacts and the council graph only"
+    both: "inspect research and review iteration folders (deep-loop coverage graph only)"
+    all: "inspect research and review iteration folders plus ai-council/** artifacts (deep-loop and council graphs)"
 
 # ─────────────────────────────────────────────────────────────────
 # MUTATION BOUNDARIES
@@ -78,9 +82,12 @@ mutation_boundaries:
   allowed_targets:
     - ".opencode/skills/deep-loop-runtime/database/deep-loop-graph.sqlite"  # coverage graph DB
     - ".opencode/skills/deep-loop-runtime/database/deep-loop-graph.sqlite.pre-doctor-deep-loop.*.bak"  # deep-loop snapshot files only
+    - ".opencode/skills/deep-loop-runtime/database/council-graph.sqlite"  # council graph DB
+    - ".opencode/skills/deep-loop-runtime/database/council-graph.sqlite.pre-doctor-deep-loop.*.bak"  # council snapshot files only
   forbidden_targets:
     - "<active-spec-folder>/research/iterations/*.md"  # read-only source inputs, never rewritten
     - "<active-spec-folder>/review/iterations/*.md"  # read-only source inputs, never rewritten
+    - "<active-spec-folder>/ai-council/**"  # read-only council artifacts, never rewritten
     - "<active-spec-folder>/**/*.md"  # no spec packet doc writes from deep-loop doctor
     - "<active-spec-folder>/description.json"  # metadata not deep-loop storage
     - "<active-spec-folder>/graph-metadata.json"
@@ -139,10 +146,10 @@ interactive_gates:
 # ─────────────────────────────────────────────────────────────────
 staleness_signals:
   empty_graph:
-    detection: "deep_loop_graph_status reports totalNodes == 0 while iteration folders exist"
+    detection: "deep_loop_graph_status reports totalNodes == 0 while iteration folders or ai-council artifacts exist (per scope)"
     severity: high
   stale_graph:
-    detection: "deep-loop-graph.sqlite last write age > 7 days OR older than newest iteration file"
+    detection: "deep-loop-graph.sqlite or council-graph.sqlite last write age > 7 days OR older than its newest source file (iteration .md / ai-council artifact)"
     severity: medium
   orphan_nodes:
     detection: "deep_loop_graph_query coverage_gaps returns nodes missing incoming coverage edges"
@@ -160,16 +167,19 @@ workflow:
     activities:
       - "Glob: <active-spec-folder>/research/iterations/*.md when scope includes research."
       - "Glob: <active-spec-folder>/review/iterations/*.md when scope includes review."
+      - "Glob: <active-spec-folder>/ai-council/** when scope includes council."
       - "Bash: stat -f '%m %z' .opencode/skills/deep-loop-runtime/database/deep-loop-graph.sqlite when present."
-      - "Group iteration files by specFolder, loopType, and inferred sessionId from iteration metadata or folder path."
-      - "Run deep_loop_graph_status({specFolder, loopType, sessionId}) for up to 10 sampled packet/session namespaces."
-      - "Set lazy_init.available=true when empty_graph=true and iteration_folder_count > 0."
+      - "Bash: stat -f '%m %z' .opencode/skills/deep-loop-runtime/database/council-graph.sqlite when present and scope includes council."
+      - "Group iteration files and ai-council artifacts by specFolder, loopType (research|review|context|council), and inferred sessionId from metadata or folder path."
+      - "Run deep_loop_graph_status({specFolder, loopType, sessionId}) for up to 10 sampled packet/session namespaces; use loopType='council' for ai-council namespaces when scope includes council."
+      - "Set lazy_init.available=true when empty_graph=true and (iteration_folder_count > 0 or ai_council_artifact_count > 0)."
       - "Interactive gate: before_phase_1_analysis."
     outputs:
       - graph_present: true|false
       - empty_graph: true|false
       - stale_graph: true|false
       - iteration_folder_count: N
+      - ai_council_artifact_count: N
       - sampled_status: list
       - lazy_init_available: true|false
     validation: discovery_complete
@@ -183,6 +193,7 @@ workflow:
       - "For sampled research namespaces, run deep_loop_graph_query({queryType: 'uncovered_questions', limit: 50})."
       - "For sampled research namespaces, run deep_loop_graph_query({queryType: 'unverified_claims', limit: 50})."
       - "For packets with >= 3 iterations, run deep_loop_graph_convergence({specFolder, loopType, sessionId, iteration: latest_iteration, persistSnapshot: false})."
+      - "For ai-council packets with council artifacts (scope includes council), run deep_loop_graph_status/query/convergence with loopType='council' against the council graph (council_nodes/council_edges/council_snapshots)."
       - "Classify drift as empty_graph, stale_graph, orphan_nodes, missing_convergence_signal, or coverage_gaps."
       - "Never call deep_loop_graph_upsert in diagnostic mode."
       - "Interactive gate: before_phase_2_recommendation."
@@ -203,6 +214,7 @@ workflow:
       - "If empty_graph=true and lazy_init_available=true -> recommend a coverage-graph rebuild via /doctor:update."
       - "If missing_convergence_signal > 0 -> recommend a coverage-graph rebuild via /doctor:update."
       - "If stale_graph=true or orphan_nodes > 0 -> recommend a coverage-graph rebuild via /doctor:update."
+      - "If council graph drift is detected (empty/stale council graph while ai-council artifacts exist) -> recommend a council graph replay via ai-council replay-graph-from-artifacts.cjs (the council graph is not rebuilt by /doctor:update)."
       - "If no drift -> status=OK, no action needed."
     outputs:
       - status: OK|EMPTY|STALE|ATTENTION|MISSING|CANCELLED|FAIL
@@ -244,7 +256,7 @@ output_contract:
       timestamp: ISO_8601
       duration_seconds: number
       status: OK|EMPTY|STALE|ATTENTION|MISSING|CANCELLED|FAIL
-      scope: research|review|both
+      scope: research|review|council|both|all
       drift_classes: object
       lazy_init: object
       recommendation: string

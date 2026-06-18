@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/135-skill-readme-standardization/014-mcp-code-mode-readme",
+  "description": "Feature Specification: mcp-code-mode README",
+  "keywords": [
+    "feature",
+    "specification",
+    "mcp-code-mode",
+    "readme"
+  ],
+  "lastUpdated": "2026-06-10T04:53:30.792Z",
+  "specId": "014",
+  "folderSlug": "mcp-code-mode-readme",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "135-skill-readme-standardization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -2,7 +2,9 @@
 // MODULE: Code Graph Exclude Rule Classifier
 // ───────────────────────────────────────────────────────────────
 
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
+import { basename, dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 export type ExcludeRuleTier = 'high' | 'medium' | 'low';
 
@@ -88,4 +90,52 @@ export function classifyExcludeRules(
   patterns: string[],
 ): ClassifiedExcludeRule[] {
   return patterns.map((pattern) => classifyExcludeRule(artifact, pattern));
+}
+
+export const DEFAULT_EXCLUDE_RULE_CONFIDENCE_FILENAME = 'exclude-rule-confidence.json';
+
+/**
+ * Resolve the shipped default confidence artifact. The classifier module
+ * always lives under `<workspace>/.opencode/skills/system-code-graph/
+ * mcp_server/{lib,dist/...}`, so anchoring on the on-path `.opencode` segment
+ * resolves the SOURCE data file the same whether we run from dist or source —
+ * no build-time copy of the artifact is required.
+ */
+export function defaultExcludeRuleConfidencePath(): string {
+  let current = dirname(fileURLToPath(import.meta.url));
+  for (let i = 0; i < 12; i += 1) {
+    if (basename(current) === '.opencode') {
+      return join(
+        dirname(current), '.opencode', 'skills', 'system-code-graph', 'mcp_server', 'data',
+        DEFAULT_EXCLUDE_RULE_CONFIDENCE_FILENAME,
+      );
+    }
+    const parent = dirname(current);
+    if (parent === current) break;
+    current = parent;
+  }
+  return join(process.cwd(), '.opencode', 'skills', 'system-code-graph', 'mcp_server', 'data', DEFAULT_EXCLUDE_RULE_CONFIDENCE_FILENAME);
+}
+
+/**
+ * Resolve the confidence artifact for a prune-excludes run. An explicit path
+ * is the operator's responsibility and throws on missing/invalid input. With
+ * no explicit path we fall back to the shipped default; if that is absent or
+ * unreadable we return null so the caller degrades to the conservative
+ * unknown-everything no-op rather than breaking an apply on a stripped
+ * install.
+ */
+export function resolveExcludeRuleConfidence(explicitPath?: string): ExcludeRuleConfidenceArtifact | null {
+  if (explicitPath) {
+    return loadExcludeRuleConfidence(explicitPath);
+  }
+  const defaultPath = defaultExcludeRuleConfidencePath();
+  if (!existsSync(defaultPath)) {
+    return null;
+  }
+  try {
+    return loadExcludeRuleConfidence(defaultPath);
+  } catch {
+    return null;
+  }
 }

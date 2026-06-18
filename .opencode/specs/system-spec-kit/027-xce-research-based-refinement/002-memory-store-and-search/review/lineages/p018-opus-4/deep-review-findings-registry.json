@@ -1,0 +1,27 @@
+{
+  "sessionId": "fanout-p018-opus-4-1781718236450-bbehhf",
+  "lineage": "p018-opus-4",
+  "generatedAt": "2026-06-17T20:00:00Z",
+  "totals": { "P0": 0, "P1": 0, "P2": 1 },
+  "verdict": "PASS",
+  "hasAdvisories": true,
+  "releaseReadinessState": "converged",
+  "findings": [
+    {
+      "id": "P2-001",
+      "severity": "P2",
+      "category": "correctness",
+      "finding_class": "invariant-violation",
+      "title": "In-process cancelledJobIds Set not cleared on the setJobState 'failed' terminal transition",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/lib/ops/job-store.ts",
+      "line": 72,
+      "evidence": "Invariant comment at job-store.ts:72-74 claims entries are cleared at every terminal state; only completeJob (369) and resetRunningJobsForKind (397-400) delete. setJobState (234-263) does not, and the background dispatch routes failures through setJobState(jobId,'failed') (memory-index.ts:1525,1532). A cancel-requested job that then fails leaks its id permanently.",
+      "riskScore": 0.15,
+      "status": "active",
+      "blocking": false,
+      "suggestedFix": "Delete from cancelledJobIds on every terminal transition (e.g. inside setJobState when isTerminalJobState(nextState), or in the two failed-path branches).",
+      "content_hash": "p018-p2-001-setjobstate-failed-set-leak"
+    }
+  ],
+  "reducerOwned": true
+}

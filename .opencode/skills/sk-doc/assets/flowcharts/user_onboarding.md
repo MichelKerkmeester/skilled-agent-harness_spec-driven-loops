@@ -1,3 +1,14 @@
+---
+title: User Onboarding Flow Example - Complete Multi-Step Journey
+description: Complete user onboarding journey with embedded multi-step processes.
+trigger_phrases:
+  - "user onboarding flowchart"
+  - "multi step journey diagram"
+  - "onboarding completion states"
+importance_tier: normal
+contextType: general
+---
+
 # User Onboarding Flow Example - Complete Multi-Step Journey
 
 Complete user onboarding journey with embedded multi-step processes.

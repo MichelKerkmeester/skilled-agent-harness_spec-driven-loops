@@ -1,0 +1,64 @@
+{
+  "version": "1.0",
+  "lineageLabel": "ai-output-opus",
+  "sessionId": "fanout-ai-output-opus-1781674914960-6gfnu8",
+  "generatedAt": "2026-06-17T08:03:00Z",
+  "keyQuestions": {
+    "KQ1": {"label": "Command-argument robustness across models", "status": "answered", "iteration": 1},
+    "KQ2": {"label": "--command vs direct-prompt vs natural conversation", "status": "answered", "iteration": 2},
+    "KQ3": {"label": "Startup-question fallback hazard / structural arg-presence", "status": "answered", "iteration": 3},
+    "KQ4": {"label": "Which output fields the contract should mandate", "status": "answered", "iteration": 4},
+    "KQ5": {"label": "Per-model prompt-framework fit", "status": "answered", "iteration": 5}
+  },
+  "findings": [
+    {
+      "id": "F1",
+      "kq": "KQ1",
+      "title": "Adherence gap is salience-driven conditional misfire, not broken $ARGUMENTS injection",
+      "confidence": "high",
+      "evidence": ["grounding-evidence.md:11-26", "cli-opencode/SKILL.md:269", "search_presentation.txt:15-21", "search.md:100"],
+      "claimType": "confirmed"
+    },
+    {
+      "id": "F2",
+      "kq": "KQ2",
+      "title": "Deterministic renderer trades latitude for cross-model consistency; model-driven trades consistency for richness",
+      "confidence": "high",
+      "evidence": ["cli-opencode/SKILL.md:269", "grounding-evidence.md:9-22", "search_presentation.txt:38-39"],
+      "claimType": "confirmed"
+    },
+    {
+      "id": "F3",
+      "kq": "KQ3",
+      "title": "Four-layer robust contract: deterministic ARGS_PRESENT flag, salience inversion, imperative no-ask guard, explicit arg echo",
+      "confidence": "high",
+      "evidence": ["cli-opencode/SKILL.md:269", "search_presentation.txt:15-21", "search.md:58-60,73,100", "grounding-evidence.md:33"],
+      "claimType": "inferred-design",
+      "wouldConfirm": "A/B live --command run of the patched contract on Kimi/MiMo measuring execute-rate"
+    },
+    {
+      "id": "F4",
+      "kq": "KQ4",
+      "title": "Mandate one score/scale/name (similarity 0-1, 2dp) + query/id/title/STATUS on ALL surfaces; richness as named optional fields",
+      "confidence": "high",
+      "evidence": ["grounding-evidence.md:42-45,17-18", "search.md:58-71", "search_presentation.txt:70-94"],
+      "claimType": "confirmed-extension"
+    },
+    {
+      "id": "F5",
+      "kq": "KQ5",
+      "title": "Framework fit is a secondary lever; COSTAR register is the shared intersection for weak followers; structural fix is primary",
+      "confidence": "medium",
+      "evidence": ["deepseek-v4-pro.md:54-66", "kimi-k2.7-code.md:57-63,83", "mimo-v2.5-pro.md:57-67"],
+      "claimType": "inferred",
+      "wouldConfirm": "A command-control-flow benchmark (not coding fixtures) across the three models with/without COSTAR framing"
+    }
+  ],
+  "exhaustedApproaches": [
+    "$ARGUMENTS injection broken hypothesis",
+    "raw slash-text adherence probe",
+    "strengthen-wording-only fix",
+    "per-model metric latitude",
+    "one global framework for all commands"
+  ]
+}

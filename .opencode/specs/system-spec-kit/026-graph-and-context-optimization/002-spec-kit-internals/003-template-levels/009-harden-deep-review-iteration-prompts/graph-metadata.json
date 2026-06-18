@@ -41,19 +41,12 @@
     "importance_tier": "high",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "prompt_pack_iteration.md.tmpl",
-        "kind": "file",
-        "path": ".opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -191,11 +184,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This is **Phase 9** of the 008-template-levels parent, addressing the operational risk recorded as **RM-8** in `../cross-phase-review-synthesis.md`. The destructive event documented at §5 (≈11:00–11:55 UTC, 2026-05-04) occurred when `opencode + deepseek-v4-pro` under `/deep:start-review-loop:auto` deleted 44 files across phases 007 and 008. Spec docs (spec.md/plan.md/tasks.md/checklist.md/decision-record.md/implementation-summary.md/description.json/graph-metadata.json) AND review/ subtrees were removed despite the dispatch prompt stating the target is read-only.",
     "created_at": "2026-05-11T05:45:03Z",
-    "last_save_at": "2026-06-05T12:47:33.463Z",
+    "last_save_at": "2026-06-15T09:09:34.226Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

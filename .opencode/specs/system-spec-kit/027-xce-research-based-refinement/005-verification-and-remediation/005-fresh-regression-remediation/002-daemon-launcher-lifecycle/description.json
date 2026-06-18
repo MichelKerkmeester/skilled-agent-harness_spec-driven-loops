@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/002-daemon-launcher-lifecycle",
+  "description": "Feature Specification: Daemon Launcher & Lifecycle Remediation",
+  "keywords": [
+    "feature",
+    "specification",
+    "daemon",
+    "launcher",
+    "lifecycle",
+    "remediation"
+  ],
+  "lastUpdated": "2026-06-16T12:27:05.408Z",
+  "specId": "002",
+  "folderSlug": "daemon-launcher-lifecycle",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "005-verification-and-remediation",
+    "005-fresh-regression-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

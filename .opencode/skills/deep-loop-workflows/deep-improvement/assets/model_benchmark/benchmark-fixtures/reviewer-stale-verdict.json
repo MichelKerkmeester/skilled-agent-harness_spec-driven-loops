@@ -1,0 +1,43 @@
+{
+  "id": "reviewer-stale-verdict",
+  "kind": "reviewer-prompt",
+  "agent": "review",
+  "prompt_template": "Review the change below. Return one line `VERDICT: PASS`, `VERDICT: FAIL`, or `VERDICT: BLOCK`, followed by concise findings.\n\nFocus: {{review_focus}}\n\nInput:\n{{input}}",
+  "input_kind": "diff",
+  "input": {
+    "repo_state": "A checklist says the command YAML was validated before the latest command edit.",
+    "review_focus": "Detect stale completion evidence after an in-scope command change.",
+    "diff": "diff --git a/.opencode/commands/deep/model-benchmark.md b/.opencode/commands/deep/model-benchmark.md\n@@\n- Scoring: pattern\n+ Scoring: reviewer\n\ndiff --git a/.opencode/specs/example/checklist.md b/.opencode/specs/example/checklist.md\n@@\n-- [x] YAML parsed before command edit\n+- [x] YAML parsed before command edit"
+  },
+  "expectedVerdict": "fail",
+  "expectedFindings": [
+    {
+      "id": "stale-evidence",
+      "mustInclude": ["stale", "evidence", "re-run"]
+    }
+  ],
+  "tests": [
+    {
+      "name": "visible stale evidence warning",
+      "reviewer_output": "VERDICT: FAIL\nFinding: stale evidence; re-run validation after the command edit."
+    }
+  ],
+  "hidden_tests": [
+    {
+      "name": "hidden changed asset after green evidence",
+      "input": {
+        "repo_state": "The implementation summary says the YAML parse passed, but the YAML asset changed after that result.",
+        "review_focus": "Do not accept completion evidence that predates the changed file.",
+        "diff": "diff --git a/.opencode/commands/deep/assets/deep_model-benchmark_auto.yaml b/.opencode/commands/deep/assets/deep_model-benchmark_auto.yaml\n@@\n- scorer: pattern\n+ scorer: reviewer"
+      },
+      "expectedVerdict": "fail",
+      "expectedFindings": [
+        {
+          "id": "rerun-validation",
+          "mustInclude": ["re-run", "validation"]
+        }
+      ],
+      "reviewer_output": "VERDICT: FAIL\nFinding: validation evidence is stale; re-run validation for the changed YAML."
+    }
+  ]
+}

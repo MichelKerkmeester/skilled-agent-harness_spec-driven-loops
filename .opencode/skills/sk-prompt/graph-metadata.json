@@ -24,7 +24,7 @@
     ],
     "siblings": [
       {
-        "target": "deep-improvement",
+        "target": "deep-loop-workflows",
         "weight": 0.4,
         "context": "improvement utility peer"
       }

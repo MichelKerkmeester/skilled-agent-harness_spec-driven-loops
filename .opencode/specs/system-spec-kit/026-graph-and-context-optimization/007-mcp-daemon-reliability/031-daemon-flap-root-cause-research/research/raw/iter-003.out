@@ -1,0 +1,83 @@
+High-blast analysis, read-only: I’ll verify the prior research, runtime configs, hook wiring, and daemon policy docs directly, then synthesize only cited findings in the requested skeleton.
+The config/read pass confirms all three runtimes register the same three local `node .opencode/bin/mk-*-launcher.cjs` entries and share `/tmp/mk-*` socket directories. Next I’m narrowing the hooks and launcher branches that determine whether a dead socket is healed or only reported.
+Found the Claude hooks: `SessionStart` calls `session-prime.js`, `UserPromptSubmit` delegates to the skill-advisor hook, and `Stop` runs session-stop plus session cleanup. The prompt-time bridge code I found explicitly sets `--warm-only` and prompt-time env flags, so I’m checking whether those paths ever cold-start launchers.
+The SessionStart startup brief reads a marker file and falls back to “Code Graph: unavailable” rather than spawning `mk-code-index`; the prompt hook’s advisor fallback routes through a warm-only CLI. I’m reading the CLI front doors now to cite the exact exit-75/cold-spawn branch.
+The CLI code confirms the trap: every CLI first probes; if probe isn’t `alive` and `warmOnly` is true, it throws a retryable backend-unavailable error instead of calling `spawnLauncher()`. Without warm-only, the same function does spawn the launcher.
+The launcher divergence is visible in the current code: spec-memory has a release/adopt path; skill-advisor and code-index do not. I’m reading the exact line ranges now for ownership/bridging and shutdown behavior.
+Spec-memory’s own comments/code state the release path keeps the daemon lease and drops only owner lease; the stale-reclaim branch adopts a live released daemon or serializes reap+respawn if dead. Skill-advisor/code-index signal handlers kill their child and clear leases instead.
+The lease payloads I found store process identity (`pid`/`ownerPid`/`childPid`/socket path), not a runtime label. Cross-runtime sharing is therefore purely process/socket lease contention, not Claude-vs-OpenCode-vs-Codex ownership.
+Owner lease heartbeats shut the launcher down if the lease refresh fails; that’s another process-level, not runtime-level, ownership rule. No lease field I’ve found records “Claude/OpenCode/Codex.”
+OpenCode’s plugin layer does not use the MCP stdio registrations for prompt injection; it spawns bridge subprocesses. Code graph/spec-memory bridges are warm-only; skill-advisor’s bridge has both a direct launcher path and a warm CLI fallback, so its behavior is less purely warm-only.
+For the exact sequence, the strongest evidence is not “launcher never started.” The repo config would start launchers as MCP servers; the live diagnosis says the advisor transport disconnected mid-session, which implies at least one transport existed and then dropped.
+A stale socket after shutdown points to either an unclean daemon exit or a path where no later non-warm binder reclaimed the file. Clean `startIpcSocketServer().close()` unlinks the Unix socket; bind-time `EADDRINUSE` can also reclaim a same-UID stale socket.
+Skill-advisor handles SIGTERM by calling `shutdownAdvisor()`, which closes the IPC bridge; a clean path should unlink the socket. The observed stale socket therefore needs either an unclean/forced exit, a race, or an already-dead socket that has not yet been touched by a non-warm bind.
+## IT3 — cross-runtime lifecycle + exact live-failure sequence
+### Claude vs OpenCode vs Codex daemon lifecycle (how each spawns/keeps/kills)
+- CONFIRMED: Claude, OpenCode, and Codex all wire the same three local stdio MCP launchers: `mk-spec-memory`, `mk_skill_advisor`, and `mk_code_index`. Claude uses `.claude/mcp.json:9-13`, `.claude/mcp.json:37-41`, `.claude/mcp.json:57-61`; OpenCode uses `opencode.json:18-23`, `opencode.json:47-52`, `opencode.json:68-73`; Codex uses `.codex/config.toml:60-63`, `.codex/config.toml:86-88`, `.codex/config.toml:102-104`.
+- CONFIRMED: The intended launcher flow is runtime → `mk-*-launcher.cjs` → MCP child → stdio/socket bridge → runtime talks to live daemon. That flow is documented in `.opencode/bin/README.md:105-134`.
+- CONFIRMED: `mk-spec-memory` is the only hardened re-election reference. On owner shutdown it can release the detached context-server for adoption instead of killing it; `mk-code-index` and `mk-skill-advisor` stop with their child and rely on fresh-session reload plus bridge/respawn paths. See `.opencode/bin/README.md:93`.
+- CONFIRMED: `mk-spec-memory` release path keeps the daemon lease, drops only owner lease, and exits without killing the context-server when re-election is enabled. See `.opencode/bin/mk-spec-memory-launcher.cjs:1449-1470`.
+- CONFIRMED: `mk-skill-advisor` signal handling kills the child, waits, SIGKILLs if needed, clears leases, and exits. See `.opencode/bin/mk-skill-advisor-launcher.cjs:1185-1200`.
+- CONFIRMED: `mk-code-index` signal handling kills the child, clears leases, and exits. See `.opencode/bin/mk-code-index-launcher.cjs:911-928`.
+- INFERRED: Claude likely keeps each stdio launcher resident while the MCP transport is connected, because the launchers bridge process stdin/stdout to the daemon session proxy. The repo does not contain Claude Code’s host lifecycle implementation, so exact “restart on disconnect” behavior is UNKNOWN from repo evidence.
+- CONFIRMED: Claude has a `Stop` hook that runs `session-cleanup.sh`; that script kills only proven descendants of `CLAUDE_SESSION_PID` with `SIGTERM`. See `.claude/settings.json:55-63` and `.opencode/scripts/session-cleanup.sh:130-143`.
+- CONFIRMED: If `CLAUDE_SESSION_PID` is absent, the cleanup script skips unless the orphan sweeper is explicitly enabled; the default orphan-sweep mode is off. See `.opencode/scripts/session-cleanup.sh:121-123` and `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:178`.
+- CONFIRMED: Codex has SessionStart/UserPromptSubmit hooks, and its SessionStart hook appends warm-only CLI fallback sections for spec-memory and code-index. See `.codex/hooks.json:3-25` and `.opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/session-start.js:79-121`.
+- CONFIRMED: OpenCode also has plugin prompt/system-transform bridges. The code-graph bridge explicitly runs warm-only and skips cold spawning at prompt time. See `.opencode/skills/system-code-graph/mcp_server/plugin_bridges/README.md:23-28`.
+
+### The exact live-failure sequence (ranked candidates with evidence)
+1. Rank 1: candidate (c), owner session exited or daemon idle-timed-out while this Claude session only had warm-only probes available.
+- CONFIRMED: The live state to explain is `mk-skill-advisor` and `mk-spec-memory` dead with stale sockets, while `mk-code-index` is up via three launchers/proxies. See `research/live-diagnosis.md:5-11`.
+- CONFIRMED: Advisor and code-index owners kill their child on signal rather than release it. See `.opencode/bin/mk-skill-advisor-launcher.cjs:1185-1200` and `.opencode/bin/mk-code-index-launcher.cjs:911-928`.
+- CONFIRMED: Released spec-memory is adopt/reactive-respawn only; if the detached daemon later dies, no resident launcher remains to resurrect it. Iteration 002 states this directly at `research/iterations/iteration-002.md:18-22`.
+- CONFIRMED: All three daemons have an idle monitor; active secondary clients keep them alive, but no clients plus timeout triggers shutdown. See `.opencode/skills/system-spec-kit/mcp_server/lib/ipc/launcher-idle-timeout.ts:98-123`.
+- INFERRED: The most likely live path is: another runtime owned advisor/spec-memory; that owner exited or the daemon later idled/crashed; current Claude then only saw warm-only hook probes, which refuse cold-start, so the dead state persisted.
+
+2. Rank 2: candidate (b), this Claude session started a launcher, bridged to an existing owner socket, then the owner/backend died and the bridged transport failed.
+- CONFIRMED: Secondary launchers bridge to the current owner through `maybeBridgeLeaseHolder()` after deep liveness probes. See `.opencode/bin/lib/launcher-ipc-bridge.cjs:387-427`.
+- CONFIRMED: Code-index explicitly bridges secondary sessions to the owner IPC socket, and live diagnosis reports three code-index launchers alive. See `.opencode/bin/mk-code-index-launcher.cjs:950-970` and `research/live-diagnosis.md:8`.
+- CONFIRMED: Session proxies can reattach to a backend socket, but if reattach attempts exhaust they fail pending requests and close. See `.opencode/bin/lib/launcher-session-proxy.cjs:725-751`.
+- CONFIRMED: The live diagnosis says the skill-advisor MCP transport disconnected mid-session, which supports “there was a transport, then it dropped.” See `research/live-diagnosis.md:11`.
+- INFERRED: This is likely part of the same sequence as rank 1: bridger survives only while some owner/backend comes back; without a fresh non-warm owner, it eventually reports retryable backend unavailable.
+
+3. Rank 3: candidate (d), ungraceful death, SIGKILL, OOM, or crash-loop give-up.
+- CONFIRMED: Clean IPC bridge close unlinks the Unix socket. See `.opencode/skills/system-spec-kit/shared/ipc/socket-server.ts:406-430`.
+- CONFIRMED: Bind-time `EADDRINUSE` can reclaim a same-UID stale socket, but only when a later binder runs. See `.opencode/skills/system-spec-kit/shared/ipc/socket-server.ts:371-385`.
+- CONFIRMED: The live state has socket files present but no listeners. See `research/live-diagnosis.md:6-7`.
+- INFERRED: A stale socket file makes an unclean daemon exit or forced kill plausible as the socket-creation sub-event, but it does not explain persistence by itself. Persistence is still caused by no warm-time cold spawn and no always-on supervisor.
+
+4. Rank 4: candidate (a), launcher never started.
+- CONFIRMED AGAINST: Claude config does register the launchers, and the live diagnosis says skill-advisor disconnected mid-session, not merely absent. See `.claude/mcp.json:9-13`, `.claude/mcp.json:37-41`, `.claude/mcp.json:57-61`, and `research/live-diagnosis.md:11`.
+- INFERRED: “Never started” may still be true for one service instance in this Claude session after MCP initialization failed, but it is weaker than the bridge/owner-death sequence.
+
+### Cross-runtime lease contention (who owns, who bridges, who kills)
+- CONFIRMED: The lease payloads are process/socket based, not runtime based. Spec-memory lease fields are `pid`, `ownerPid`, optional `childPid`, `modelServerPid`, and `socketPath`; no Claude/OpenCode/Codex field exists. See `.opencode/bin/lib/model-server-supervision.cjs:705-724`.
+- CONFIRMED: Skill-advisor owner lease records `ownerPid`, `ppid`, `executablePath`, timestamps, TTL, and DB dir; no runtime identity. See `.opencode/bin/mk-skill-advisor-launcher.cjs:373-382`.
+- CONFIRMED: Code-index owner lease is the same style plus `socketPath`; no runtime identity. See `.opencode/bin/mk-code-index-launcher.cjs:382-392`.
+- CONFIRMED: A secondary runtime that loses the owner lease bridges to the owner’s socket instead of starting a second writer. See `.opencode/bin/mk-skill-advisor-launcher.cjs:716-729` and `.opencode/bin/mk-code-index-launcher.cjs:950-970`.
+- CONFIRMED: One runtime can kill a daemon others need if that runtime is the owner for `mk-skill-advisor` or `mk-code-index`, because owner shutdown kills the child and clears leases without checking active secondary IPC clients. See `.opencode/bin/mk-skill-advisor-launcher.cjs:1185-1200` and `.opencode/bin/mk-code-index-launcher.cjs:911-928`.
+- CONFIRMED: Spec-memory is the exception on normal owner shutdown: it releases for adoption instead of killing the context-server. See `.opencode/bin/mk-spec-memory-launcher.cjs:1449-1470`.
+- CONFIRMED: Spec-memory adoption is reactive. A later non-warm launcher can adopt a live released daemon or serialize reap/respawn if dead. See `.opencode/bin/mk-spec-memory-launcher.cjs:1570-1615`.
+- CONFIRMED: The shared HF embed socket is pinned identically for spec-memory and skill-advisor. See `opencode.json:40` and `opencode.json:65`.
+- CONFIRMED: Iteration 002 flags that spec-memory release kills the non-adoptable HF sidecar while that socket is shared with skill-advisor. See `research/iterations/iteration-002.md:33-37`.
+
+### The warm-probe trap (cold-start refusal -> never resurrects)
+- CONFIRMED: CLI prompt-time/warm-only mode probes the daemon and exits `75` instead of cold-spawning. Without warm-only, a cold daemon is auto-spawned through the matching launcher. See `.opencode/bin/README.md:161-164` and `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:560-575`.
+- CONFIRMED: Claude `SessionStart` appends spec-memory and code-index warm CLI fallback sections after startup/resume. See `.opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-prime.js:273-340`.
+- CONFIRMED: Those hook fallbacks call the CLIs with `--warm-only` and prompt-time envs. See `.opencode/skills/system-spec-kit/mcp_server/dist/hooks/spec-memory-cli-fallback.js:142-163` and `.opencode/skills/system-spec-kit/mcp_server/dist/hooks/code-index-cli-fallback.js:145-164`.
+- CONFIRMED: Claude `UserPromptSubmit` delegates to the skill-advisor hook, and the skill-advisor fallback calls `skill-advisor.cjs advisor_recommend --warm-only`. See `.opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/user-prompt-submit.js:7-15` and `.opencode/skills/system-skill-advisor/mcp_server/dist/hooks/lib/skill-advisor-cli-fallback.js:171-183`.
+- CONFIRMED: The CLI implementation branches exactly as expected: probe first; if not alive and `warmOnly` is true, throw retryable backend unavailable; only the non-warm path calls `spawnLauncher()`. See spec-memory `.opencode/skills/system-spec-kit/mcp_server/dist/spec-memory-cli.js:800-808`, code-index `.opencode/skills/system-code-graph/mcp_server/dist/code-index-cli.js:958-966`, and skill-advisor `.opencode/skills/system-skill-advisor/mcp_server/dist/mcp_server/skill-advisor-cli.js:1068-1076`.
+- CONFIRMED: I found no `prewarm` hook in the read configs. The located startup/prompt hooks are warm-probe or marker/fallback paths, not cold-start supervisors.
+
+### Claude-specific or universal?
+- CONFIRMED: The underlying failure is universal across Claude/OpenCode/Codex because all three share the same launcher code, same `/tmp/mk-*` sockets, and same process-based owner leases. See `.claude/mcp.json:9-74`, `opencode.json:18-85`, and `.codex/config.toml:60-113`.
+- CONFIRMED: Warm-only prompt-time behavior is also cross-runtime, not Claude-only. Codex SessionStart uses the same warm fallbacks, and OpenCode code-graph bridge is explicitly warm-only. See `.opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/session-start.js:79-121` and `.opencode/skills/system-code-graph/mcp_server/plugin_bridges/README.md:23-28`.
+- INFERRED: Claude makes this worse in the observed session because its SessionStart/UserPrompt hooks only report warm availability, and no repo-owned path proves Claude restarts a disconnected stdio MCP launcher mid-session.
+- INFERRED: OpenCode-only or Codex-only worlds can hit the same owner-exit dead-daemon condition when multiple sessions share the same sockets and owner lease. OpenCode’s skill-advisor plugin has an in-process/native route before warm CLI fallback, so advisor prompt guidance may degrade differently, but the underlying daemon lifecycle is still shared. See `.opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs:807-843`.
+- UNKNOWN: The repo does not prove Claude Code’s exact host policy for automatic MCP server restart after stdio disconnect. Iteration 001 says client-side stdio auto-reconnect was planned but not shipped and is harness-owned. See `research/iterations/iteration-001.md:21-22`.
+
+### Confidence + unknowns
+- Confidence: high on static launcher/config/hook behavior.
+- Confidence: medium on the exact live sequence, because no persistent daemon/launcher log exists for the kill event. See `research/live-diagnosis.md:10`.
+- Biggest unknown: which runtime owned `mk-skill-advisor` and `mk-spec-memory` at the moment they died.
+- Biggest likely-wrong claim: whether the stale socket came from SIGKILL/crash versus a cleanup race; the socket evidence supports an unclean close, but the precise event is not recoverable from current logs.

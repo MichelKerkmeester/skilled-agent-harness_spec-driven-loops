@@ -39,6 +39,8 @@ The `memory` command group provides operations for the Spec Kit Memory MCP syste
 
 All commands interact with the memory MCP server tools (`mk_spec_memory_*`). They follow a gate-based argument validation pattern: if required arguments are missing, the command prompts the user before proceeding.
 
+The memory backend is dual-stack: when the MCP tools are missing from the runtime or the transport is down while the daemon is still warm, the daemon-backed `spec-memory` CLI (`node .opencode/bin/spec-memory.cjs <tool> --json '{...}' --format json --warm-only`) reaches the same daemon and tool surface. Warm-only invocations never start a daemon; exit 75 means the backend is unavailable (retry after MCP reconnect or daemon prewarm).
+
 ### Canonical Section Order
 
 All 4 memory commands follow a consistent user-first section order:

@@ -33,7 +33,7 @@ const STRUCTURAL_KEYWORDS = new Set([
   'edges', 'nodes', 'symbols', 'hierarchy',
   // Structural patterns
   'inheritance', 'call chain', 'import tree', 'export map',
-  // F038: Missing inflections
+  // Missing inflections
   'import', 'export', 'caller', 'callee', 'decorator',
   'type_alias', 'defined', 'inherit', 'override',
   'superclass', 'subclass',
@@ -42,7 +42,7 @@ const STRUCTURAL_KEYWORDS = new Set([
 const STRUCTURAL_PATTERNS = [
   /who\s+calls/i,
   /what\s+(?:calls|imports|exports|extends|implements)/i,
-  // F052: "what {functions|classes|...} {call|import|...} X" — allow a noun between "what" and the verb
+  // "what {functions|classes|...} {call|import|...} X" — allow a noun between "what" and the verb
   /what\s+(?:functions?|classes|methods?|modules?|interfaces?|types?)\s+(?:call|calls|import|imports|extend|extends|implement|implements|override|overrides|reference|references|use|uses|invoke|invokes)/i,
   /(?:show|list|get)\s+(?:callers|callees|dependencies|imports|exports)/i,
   /(?:class|function|method)\s+(?:hierarchy|tree)/i,
@@ -61,7 +61,7 @@ function countKeywordHits(tokens: string[], keywords: Set<string>): { count: num
   for (const token of tokens) {
     if (keywords.has(token)) matched.push(token);
   }
-  // F036: Multi-word phrases with word-boundary matching to avoid false positives
+  // Multi-word phrases with word-boundary matching to avoid false positives
   const lowerQuery = tokens.join(' ');
   for (const kw of keywords) {
     if (kw.includes(' ')) {
@@ -112,7 +112,7 @@ export function classifyQueryIntent(query: string): ClassificationResult {
 
   const structuralRatio = structuralScore / total;
 
-  // F037: Confidence depends on BOTH ratio AND absolute count.
+  // Confidence depends on BOTH ratio AND absolute count.
   // Single-hit max ~0.60, requires multiple signals to reach 0.95.
   // Formula: 0.5 + ratio * 0.25 + min(total, 5) * 0.05
   const computeConfidence = (ratio: number): number =>

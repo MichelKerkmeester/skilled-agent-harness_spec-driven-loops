@@ -7,6 +7,7 @@ import * as vectorIndex from '../lib/search/vector-index.js';
 import { runMemoryRetentionSweep } from '../lib/governance/memory-retention-sweep.js';
 import { createMCPErrorResponse, createMCPSuccessResponse } from '../lib/response/envelope.js';
 import { toErrorMessage } from '../utils/index.js';
+import { recordMaintenanceRun } from '../lib/observability/retrieval-observability.js';
 
 import type { MCPResponse } from './types.js';
 import type { MemoryRetentionSweepArgs } from '../lib/governance/memory-retention-sweep.js';
@@ -18,6 +19,7 @@ async function handleMemoryRetentionSweep(args: MemoryRetentionSweepArgs): Promi
 
   const database = vectorIndex.getDb();
   if (!database) {
+    recordMaintenanceRun('memory_retention_sweep', { status: 'error' });
     return createMCPErrorResponse({
       tool: 'memory_retention_sweep',
       error: 'Retention sweep aborted: database unavailable',
@@ -34,10 +36,16 @@ async function handleMemoryRetentionSweep(args: MemoryRetentionSweepArgs): Promi
   }
 
   try {
-    const result = runMemoryRetentionSweep(database, { dryRun: args?.dryRun === true });
+    const result = runMemoryRetentionSweep(database, {
+      dryRun: args?.dryRun === true,
+      feedbackRetention: args?.feedbackRetention,
+    });
+    const protectedSuffix = result.protectedCount > 0
+      ? `; protected ${result.protectedCount} high-tier/pinned row(s)`
+      : '';
     const summary = result.dryRun
-      ? `Dry-run found ${result.candidates.length} expired memory row(s); no rows deleted`
-      : `Swept ${result.swept} expired memory row(s); retained ${result.retained}`;
+      ? `Dry-run found ${result.candidates.length} expired memory row(s); no rows deleted${protectedSuffix}`
+      : `Swept ${result.swept} expired memory row(s); retained ${result.retained}${protectedSuffix}`;
 
     const hints: string[] = [];
     if (result.ledgerRecorded === false) {
@@ -46,6 +54,16 @@ async function handleMemoryRetentionSweep(args: MemoryRetentionSweepArgs): Promi
     if (result.dryRun && result.candidates.length > 0) {
       hints.push('Run memory_retention_sweep({ dryRun: false }) to delete expired rows.');
     }
+    recordMaintenanceRun('memory_retention_sweep', {
+      status: 'success',
+      counts: {
+        swept: result.swept,
+        retained: result.retained,
+        candidates: result.candidates.length,
+        protectedCount: result.protectedCount,
+      },
+      staleCandidates: result.candidates.length,
+    });
 
     return createMCPSuccessResponse({
       tool: 'memory_retention_sweep',
@@ -62,11 +80,26 @@ async function handleMemoryRetentionSweep(args: MemoryRetentionSweepArgs): Promi
           filePath: candidate.filePath,
         })),
         deletedIds: result.deletedIds,
+        protectedCount: result.protectedCount,
+        protectedIds: result.protectedIds,
         ledgerRecorded: result.ledgerRecorded,
+        ...(result.feedbackRetention ? {
+          feedbackRetention: {
+            mode: result.feedbackRetention.mode,
+            activeGatePassed: result.feedbackRetention.activeGatePassed,
+            activeBlocked: result.feedbackRetention.activeBlocked,
+            auditCount: result.feedbackRetention.auditCount,
+            protectedCount: result.feedbackRetention.protectedIds.length,
+            extendedCount: result.feedbackRetention.extendedIds.length,
+            deletedCount: result.feedbackRetention.deletedIds.length,
+          },
+          extendedIds: result.feedbackRetention.extendedIds,
+        } : {}),
       },
       hints,
     });
   } catch (error: unknown) {
+    recordMaintenanceRun('memory_retention_sweep', { status: 'error' });
     return createMCPErrorResponse({
       tool: 'memory_retention_sweep',
       error: `Retention sweep failed: ${toErrorMessage(error)}`,

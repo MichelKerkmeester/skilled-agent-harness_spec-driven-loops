@@ -28,7 +28,7 @@ The pt-04 audit also cited three live infrastructure pieces that are directly re
 
 However, an important discrepancy emerged during this research: the current `005-learning-feedback-reducers/spec.md` (`005-learning-feedback-reducers/spec.md:L37-L38`) already maps its hard dependency to `002-memory-write-safety`, NOT to a child sub-phase named "P0 correctness fixes." The spec's metadata reads:
 
-> `Hard Dependency: system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety`
+> `Hard Dependency: system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/001-memory-write-safety`
 > — `005-learning-feedback-reducers/spec.md:L37`
 
 This means the P0 correctness split prescribed by pt-04 has already been resolved architecturally: the correctness fixes live in sibling packet `002-memory-write-safety`, not as a child of 008.

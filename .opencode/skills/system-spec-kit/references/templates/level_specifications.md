@@ -1,6 +1,13 @@
 ---
 title: Level Specifications
 description: Complete specifications for all documentation levels using the manifest-backed Level contract architecture.
+trigger_phrases:
+  - "level specifications"
+  - "manifest-backed level contracts"
+  - "required files by level"
+  - "progressive enhancement levels"
+importance_tier: important
+contextType: planning
 ---
 
 # Level Specifications - Complete Level 1-3+ Requirements

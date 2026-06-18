@@ -1,6 +1,15 @@
 ---
 title: Troubleshooting Guide
 description: Error resolution guide for common bdg issues with diagnostic steps and solutions.
+trigger_phrases:
+  - "bdg command not found"
+  - "bdg troubleshooting diagnostics"
+  - "browser launch fails"
+  - "bdg session not starting"
+  - "cdp method not found"
+  - "jq parse error bdg output"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Troubleshooting Guide

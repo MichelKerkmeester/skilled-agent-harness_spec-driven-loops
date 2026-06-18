@@ -1,6 +1,14 @@
 ---
 title: Shared Smart-Router Helpers for cli-* Skills
 description: Canonical helper-function bodies (_task_text, _guard_in_skill, discover_markdown_resources, score_intents, select_intents, route_<provider>_resources) shared across the three cli-* sibling skills. Each cli-* skill provides its own INTENT_SIGNALS, RESOURCE_MAP, LOADING_LEVELS, UNKNOWN_FALLBACK_CHECKLIST inline.
+trigger_phrases:
+  - "shared smart router helpers"
+  - "intent signals dictionary"
+  - "loading level semantics"
+  - "unknown fallback checklist"
+  - "resource map scoring"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Shared Smart-Router Helpers (cli-* family)
@@ -20,6 +28,7 @@ Canonical helper-function bodies (_task_text, _guard_in_skill, discover_markdown
 ## 2. HELPER FUNCTIONS
 
 ```python
+import re
 from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
@@ -47,12 +56,16 @@ def discover_markdown_resources() -> set[str]:
             docs.extend(p for p in base.rglob("*.md") if p.is_file())
     return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
 
+def keyword_present(keyword: str, text: str) -> bool:
+    """Boundary-aware match: bare substrings misroute ('pr' in 'improve prompt')."""
+    return re.search(rf"(?<![a-z0-9]){re.escape(keyword)}(?![a-z0-9])", text) is not None
+
 def score_intents(task) -> dict[str, float]:
     text = _task_text(task)
     scores = {intent: 0.0 for intent in INTENT_SIGNALS}
     for intent, cfg in INTENT_SIGNALS.items():
         for keyword in cfg["keywords"]:
-            if keyword in text:
+            if keyword_present(keyword, text):
                 scores[intent] += cfg["weight"]
     return scores
 
@@ -108,7 +121,7 @@ def route_<PROVIDER>_resources(task):
 
     # 4. ON_DEMAND: explicit keyword triggers
     text = _task_text(task)
-    if any(keyword in text for keyword in LOADING_LEVELS["ON_DEMAND_KEYWORDS"]):
+    if any(keyword_present(keyword, text) for keyword in LOADING_LEVELS["ON_DEMAND_KEYWORDS"]):
         for relative_path in LOADING_LEVELS["ON_DEMAND"]:
             load_if_available(relative_path)
 

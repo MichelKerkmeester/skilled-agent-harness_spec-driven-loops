@@ -1,6 +1,13 @@
 ---
 title: Validation - Quality Assessment and Gates
 description: Quality gates, DQI scoring, and improvement recommendations for markdown documentation.
+trigger_phrases:
+  - "dqi scoring bands"
+  - "document quality gates"
+  - "quality assessment framework"
+  - "validation quality dimensions"
+importance_tier: important
+contextType: general
 ---
 
 # Validation - Quality Assessment and Gates
@@ -21,7 +28,7 @@ Validation provides a comprehensive quality assessment framework for markdown do
 - **Improvement guidance** - Actionable recommendations based on AI analysis
 - **Checklist validation** - Automated structural checks via script
 
-> **📍 Context**: This is a Level 3 reference file (loaded on-demand). For the complete progressive disclosure architecture, see [skill_creation.md § Progressive Disclosure](../skill_creation.md#progressive-disclosure).
+> **📍 Context**: This is a Level 3 reference file (loaded on-demand). For the complete progressive disclosure architecture, see [skill_creation/overview.md § Skill Structure System](../skill_creation/overview.md#3-skill-structure-system).
 
 This reference provides deep-dive technical guidance on qualitative assessment, quality gates, and interpretation patterns.
 
@@ -530,7 +537,7 @@ fi
 - [skill_md_template.md](../../assets/skill/skill_md_template.md) - SKILL.md file templates
 - [skill_asset_template.md](../../assets/skill/skill_asset_template.md) - Bundled asset structure
 - [readme_template.md](../../assets/readme/readme_template.md) - Comprehensive README guide (13 sections)
-- [command_template.md](../../assets/command_template.md) - Command creation guide (19 sections)
+- [command_template.md](../../assets/command/command_template.md) - Command creation guide (19 sections)
 - [install_guide_template.md](../../assets/readme/install_guide_template.md) - Install guide template (14 sections)
 - [llmstxt_templates.md](../../assets/llmstxt_templates.md) - llms.txt with decision framework
 - [frontmatter_templates.md](../../assets/frontmatter_templates.md) - Frontmatter validation & templates (11 sections)

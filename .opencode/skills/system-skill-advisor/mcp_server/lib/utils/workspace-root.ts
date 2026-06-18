@@ -8,7 +8,7 @@
 // start dir, depth cap, and sentinel path.
 
 import { existsSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { resolve, sep } from 'node:path';
 
 export interface AdvisorWorkspaceRootOptions {
   readonly maxDepth?: number;
@@ -24,6 +24,34 @@ const DEFAULT_MAX_DEPTH = 14;
 // `schemas/advisor-tool-schemas.ts:detectRepoRoot` uses the same strict
 // sentinel for the same reason — keep these two in lockstep.
 const DEFAULT_SENTINEL = '.opencode/skills/system-spec-kit/SKILL.md';
+
+/**
+ * When the sentinel walk-up fails, the resolver must never hand back a
+ * directory that sits *inside* a `specs/` packet tree. The advisor writes
+ * runtime state (e.g. `.opencode/skills/.advisor-state/...`) under whatever
+ * root this returns; a dispatched executor whose cwd is a packet subdir would
+ * otherwise materialize a stray `.opencode/skills/...` tree inside that packet
+ * on every run — gitignored noise that also re-anchors future walk-ups.
+ *
+ * If `dir` lives under a `.opencode/specs/` (canonical) or bare `specs/`
+ * (symlink alias) segment, hoist to the directory that *contains* that tree —
+ * the workspace root — instead. Returns null when `dir` is not inside a specs
+ * tree, so callers keep their prior fallback for ordinary paths.
+ */
+function hoistAboveSpecsTree(dir: string): string | null {
+  const parts = resolve(dir).split(sep);
+  for (let index = parts.length - 2; index >= 1; index -= 1) {
+    if (parts[index] === '.opencode' && parts[index + 1] === 'specs') {
+      return parts.slice(0, index).join(sep) || sep;
+    }
+  }
+  for (let index = parts.length - 1; index >= 1; index -= 1) {
+    if (parts[index] === 'specs') {
+      return parts.slice(0, index).join(sep) || sep;
+    }
+  }
+  return null;
+}
 
 /**
  * Walk up parent directories from `start` until the `sentinel` path is found
@@ -58,5 +86,7 @@ export function findAdvisorWorkspaceRoot(
     if (parent === current) break;
     current = parent;
   }
-  return resolve(start);
+  // Sentinel not found within maxDepth. Never fall back to a path inside a
+  // specs/ packet tree — hoist to the workspace root above it when possible.
+  return hoistAboveSpecsTree(start) ?? resolve(start);
 }

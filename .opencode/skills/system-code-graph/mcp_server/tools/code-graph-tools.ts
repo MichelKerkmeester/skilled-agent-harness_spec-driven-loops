@@ -14,22 +14,17 @@ import {
   // Reserved import slots for future hld/lld, trace, and impact-analysis handlers.
 } from '../handlers/index.js';
 
-import type { MCPResponse } from '../lib/shared/mcp-types.js';
 import { parseArgs } from '../lib/shared/mcp-types.js';
-import { validateToolArgs } from '../tool-schemas.js';
+import { CODE_GRAPH_TOOL_SCHEMAS, validateToolArgs } from '../tool-schemas.js';
+import type { MCPResponse } from '../lib/shared/mcp-types.js';
 
-/** Tool names handled by this module */
-export const TOOL_NAMES = new Set([
-  'code_graph_scan',
-  'code_graph_query',
-  'code_graph_status',
-  'code_graph_context',
-  'code_graph_classify_query_intent',
-  'code_graph_verify',
-  'code_graph_apply',
-  'detect_changes',
-  // Reserved tool-name slots for future hld/lld, trace, and impact-analysis tools.
-]);
+/**
+ * Tool names handled by this module, derived from the schema registry so the
+ * membership gate cannot drift from the advertised tool surface. tool-schemas
+ * is the single source of truth; the dispatch switch below adds the one thing
+ * a schema can't carry — which handler each name maps to.
+ */
+export const TOOL_NAMES = new Set(CODE_GRAPH_TOOL_SCHEMAS.map((schema) => schema.name));
 
 /** Coerce handler response to MCPResponse (fix type literal narrowing) */
 function toMCP(result: { content: Array<{ type: string; text: string }> }): MCPResponse {
@@ -60,14 +55,14 @@ function validationError(tool: string, missingKeys: string[]): MCPResponse {
 
 /** Dispatch a tool call. Returns null if tool name not handled. */
 export async function handleTool(name: string, args: Record<string, unknown>): Promise<MCPResponse | null> {
-  // BUG-04 fix: enforce the published inputSchema (enum / additionalProperties /
+  // Enforce the published inputSchema (enum / additionalProperties /
   // minLength) before dispatch for known tools, so malformed calls are rejected
   // with a field-specific error rather than reaching handlers. Required-field
   // presence is still checked per-case below; numeric range stays handler-clamped.
   if (TOOL_NAMES.has(name)) {
     try {
       validateToolArgs(name, args);
-    } catch (err) {
+    } catch (err: unknown) {
       return {
         content: [{
           type: 'text',

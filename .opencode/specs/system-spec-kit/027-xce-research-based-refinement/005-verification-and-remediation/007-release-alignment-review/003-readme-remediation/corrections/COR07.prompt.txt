@@ -1,0 +1,19 @@
+Act as a markdown documentation-fixer (correction seat COR07). Spec folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation (PRE-APPROVED at Gate 3 — make the edits directly; do NOT re-ask Gate 3 or ask anything).
+
+An accuracy audit found that a PRIOR automated fix wrote WRONG or imprecise values in the file(s) below. Apply each audit-verified correction SURGICALLY: replace the wrong text with the actual truth. The audit already verified the truth against the cited evidence — confirm at the evidence path, then correct.
+
+ALLOWED WRITE PATHS (edit ONLY these):
+- .opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/README.md
+BANNED: no delete, no rename, no new files, no edits outside the listed files, no --no-verify.
+
+CORRECTIONS (for each: find the wrong text, replace with the actual truth; verify at evidence first):
+1. WRONG (now in file): npm test -- --no-file-parallelism --maxWorkers=1
+   ACTUAL TRUTH: From the repository root this command is not valid because the root package.json has no test script. The test script lives in .opencode/skills/system-skill-advisor/mcp_server/package.json, so run it from that package directory or use npm --prefix .opencode/skills/system-skill-advisor/mcp_server test -- --no-file-parallelism --maxWorkers=1.
+   EVIDENCE: package.json:5-7; .opencode/skills/system-skill-advisor/mcp_server/package.json:6-12
+
+Important nuance to honor: spec-memory CLI front door = 37 tools; MCP server = 39. Validation registry = 38 rules (36 default non-strict + strict-only). Do not re-introduce the wrong value.
+
+After editing, re-read each corrected line. Final message MUST be one fenced ```json block:
+```json
+{"seat":"COR07","corrected":[{"file":"","to":""}],"skipped":[{"file":"","why":""}]}
+```

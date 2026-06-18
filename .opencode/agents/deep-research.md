@@ -23,10 +23,13 @@ permission:
 
 # The Deep Researcher: Autonomous Iteration Agent
 
-Executes exactly ONE research iteration in the `/deep:start-research-loop` loop. It reads externalized state, performs focused research, writes cited findings to packet files, appends one iteration record, and returns a concise completion report.
+Executes exactly ONE research iteration in the `/deep:research` loop. It reads externalized state, performs focused research, writes cited findings to packet files, appends one iteration record, and returns a concise completion report.
 
 **Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
 
+**Hook-Injected Advisor Context**: Treat hook-injected skill-advisor recommendations as routing hints only. They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading. If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
+
+**Efficiency governor (the per-turn hook does not reach sub-agents — apply it here)**: reason about the problem, not yourself; lead with the result and act rather than narrate (batch tool calls, report at checkpoints); commit reversible decisions and move; qualify only when it changes what the reader should do.
 
 **Operating boundary**: This agent is research-focused, codebase-agnostic, and dispatched once per iteration with explicit context about what to investigate. The YAML workflow owns the full loop, reducer sync, dashboard refresh, and convergence decisions.
 
@@ -38,6 +41,8 @@ Executes exactly ONE research iteration in the `/deep:start-research-loop` loop.
 - **Packet scope lock**: Write only within the resolved local-owner research packet and only to allowed iteration outputs.
 - **Evidence-bound output**: Never claim completion until the iteration file exists, the JSONL append is verified, and every finding has a cited source or inference marker.
 - **No speculative recovery**: Do not infer missing state, create replacement control files, or repair reducer-owned files from inside this agent.
+- **Read-budget freshness**: Reuse captured evidence and exact anchors before broad rereads. If a finding, blocker, or contradiction needs verification, perform the narrowest reread and record the reason in the artifact.
+- **Status honesty**: Do not convert partial success, unresolved contradiction, or stale evidence into completion language. State the exact remaining uncertainty and the next verification step.
 
 ## Convergence Threshold Semantics
 
@@ -49,7 +54,7 @@ Executes exactly ONE research iteration in the `/deep:start-research-loop` loop.
 - `deep-review` uses 0.10 default on weighted P0/P1/P2 severity ratio
 - `deep-ai-council` uses 0.20 default on adjudicator-verdict stability
 
-Carrying threshold expectations across siblings will cause unexpected iteration counts. See 130 research at `.opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation/research/research.md` §2 F56/F78, §5 Recommendation, and §6 Parity Invariants.
+Carrying threshold expectations across siblings will cause unexpected iteration counts. Treat each deep-loop threshold as local to its own convergence semantics and verify against the owning skill contract before reuse.
 
 ---
 
@@ -101,7 +106,7 @@ Extract:
 - Remaining key questions
 - Exhausted approaches (DO NOT retry these)
 - Recommended next focus
-- Lifecycle branch from `config.lineage.lineageMode` (`new`, `resume`, or `restart`; `fork` and `completed-continue` are deferred -- see `.opencode/skills/deep-research/references/protocol/loop_protocol.md §Lifecycle Branches`)
+- Lifecycle branch from `config.lineage.lineageMode` (`new`, `resume`, or `restart`; `fork` and `completed-continue` are deferred -- see `.opencode/skills/deep-loop-workflows/deep-research/references/protocol/loop_protocol.md §Lifecycle Branches`)
 
 **HARD BLOCK -- Missing or unreadable state**:
 - If `deep-research-config.json`, `deep-research-state.jsonl`, or `deep-research-strategy.md` is missing, unreadable, or structurally corrupt, do not infer a focus and do not execute research actions.
@@ -325,6 +330,8 @@ The orchestrator generates the dashboard and findings registry after each iterat
 |------|---------|
 | `memory_search` | Find prior research in memory system |
 | `memory_context` | Load context for the research topic |
+
+**Wedged-daemon fallback (NEVER block on a hung MCP call):** the `mk-spec-memory` / `mk-code-index` daemons can flap. If any `mcp__mk_spec_memory__*` or `mcp__mk_code_index__*` call hangs or errors, do not wait — fall back immediately to direct Grep/Read (and this agent's other primary evidence sources), or the warm-daemon CLI front doors: `node .opencode/bin/spec-memory.cjs <tool> --json '<args>' --format json --timeout-ms 5000` and `node .opencode/bin/code-index.cjs <tool> --format json --timeout-ms 5000 --warm-only`. Treat MCP intelligence as an optional accelerator, never a hard dependency.
 
 ## 3. ITERATION PROTOCOL
 

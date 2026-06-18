@@ -40,6 +40,7 @@ Session handover template for preserving context and enabling seamless continuat
 - **To Session:** [YOUR_VALUE_HERE: next_session]
 - **Phase Completed:** [YOUR_VALUE_HERE: RESEARCH / PLANNING / IMPLEMENTATION]
 - **Handover Time:** [YOUR_VALUE_HERE: timestamp]
+- **Recent action**: [YOUR_VALUE_HERE: latest completed action]
 <!-- /ANCHOR:handover-summary -->
 
 ---
@@ -54,14 +55,25 @@ Session handover template for preserving context and enabling seamless continuat
 | [YOUR_VALUE_HERE: decision_2] | [YOUR_VALUE_HERE: why] | [YOUR_VALUE_HERE: files/areas affected] |
 
 ### 2.2 Blockers Encountered
+**Blockers**: [YOUR_VALUE_HERE: comma-separated blockers or none]
+
 | Blocker     | Status          | Resolution/Workaround |
 | ----------- | --------------- | --------------------- |
 | [YOUR_VALUE_HERE: blocker_1] | [YOUR_VALUE_HERE: resolved/open] | [YOUR_VALUE_HERE: how it was handled] |
 
 ### 2.3 Files Modified
+**Key files**: [YOUR_VALUE_HERE: comma-separated file paths]
+
 | File        | Change Summary | Status                 |
 | ----------- | -------------- | ---------------------- |
 | [YOUR_VALUE_HERE: file_path] | [YOUR_VALUE_HERE: what changed] | [YOUR_VALUE_HERE: complete/in_progress] |
+
+### 2.4 Traps & Scar Tissue
+Carry only what the next reader cannot re-derive: where a trap bit, what triggers it, and whether the guard is load-bearing or defensive. A green tree does not erase a trap.
+
+| Trap / blast site | Activation condition | Load-bearing or defensive? | How to avoid re-paying it |
+| ----------------- | -------------------- | -------------------------- | ------------------------- |
+| [YOUR_VALUE_HERE: where it bit] | [YOUR_VALUE_HERE: what triggers it] | [YOUR_VALUE_HERE: load-bearing / defensive] | [YOUR_VALUE_HERE: the guard or step that avoids it] |
 <!-- /ANCHOR:context-transfer -->
 
 ---
@@ -71,6 +83,8 @@ Session handover template for preserving context and enabling seamless continuat
 
 ### 3.1 Recommended Starting Point
 - **File:** [YOUR_VALUE_HERE: file:line_number]
+- **Next safe action**: [YOUR_VALUE_HERE: first concrete action for next session]
+- **Cold-read order** (role-play a reader who knows nothing): [YOUR_VALUE_HERE: 1. file → 2. file → 3. file — the minimal numbered path to context]
 - **Context:** [YOUR_VALUE_HERE: what to focus on first]
 
 ### 3.2 Priority Tasks Remaining

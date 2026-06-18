@@ -1,6 +1,13 @@
 ---
 title: Code Folder README Template
 description: Template for source-directory READMEs that explain purpose, architecture zones, package topology, boundaries, entrypoints and validation.
+trigger_phrases:
+  - "code folder readme template"
+  - "source directory readme"
+  - "package topology readme"
+  - "architecture zones readme"
+importance_tier: normal
+contextType: general
 ---
 
 # Code Folder README Template

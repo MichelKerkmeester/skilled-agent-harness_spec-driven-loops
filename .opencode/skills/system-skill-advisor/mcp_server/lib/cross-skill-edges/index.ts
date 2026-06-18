@@ -33,17 +33,22 @@ export async function propagateInboundEnhances(options: PropagateEnhancesOptions
   };
   const candidates = detectInboundEnhances(skills, detectOpts);
 
+  // Resolve once so the apply gate and the reported value can never diverge:
+  // writes happen only on an explicit dryRun:false, and the result reports
+  // exactly the value that gated the writes.
+  const dryRun = options.dryRun ?? true;
+
   const result: PropagateEnhancesResult = {
     candidates,
     applied: [],
     skipped_existing: [],
     errors: [...loaderErrors],
-    dryRun: options.dryRun ?? true,
+    dryRun,
     mode: options.mode,
   };
 
-  // Apply mode with optional dry run
-  if (options.mode === 'apply' && (options.dryRun !== true)) {
+  // Apply mode requires an explicit dryRun:false opt-in
+  if (options.mode === 'apply' && dryRun === false) {
     const toApply = candidates.filter(c => {
       // Apply if explicitly selected by ID
       if (options.applyCandidateIds?.includes(c.id)) return true;
@@ -54,10 +59,10 @@ export async function propagateInboundEnhances(options: PropagateEnhancesOptions
 
     for (const c of toApply) {
       // Pass skillsRoot to enforce path-boundary at write time
-      const r = await applyEnhanceEdge(c, options.skillsRoot);
+      const r = await applyEnhanceEdge(c, options.skillsRoot, options.writeIntent ?? 'automated');
       if (r.applied) {
         result.applied.push(c.id);
-      } else if (r.reason === 'edge already exists') {
+      } else if (r.reason.startsWith('edge already exists')) {
         result.skipped_existing.push(c.id);
       } else {
         result.errors.push({ skillId: c.sourceSkillId, error: r.reason });

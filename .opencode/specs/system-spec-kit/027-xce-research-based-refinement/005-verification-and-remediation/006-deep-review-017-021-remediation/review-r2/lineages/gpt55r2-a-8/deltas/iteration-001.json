@@ -1,0 +1,21 @@
+{
+  "type": "iteration",
+  "mode": "review",
+  "run": 1,
+  "status": "complete",
+  "focus": "security and correctness scope-boundary audit",
+  "dimensions": ["security", "correctness", "traceability"],
+  "filesReviewed": [
+    ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/search/rerank/retrieval-rescue.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/search/community-search.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts"
+  ],
+  "findingsSummary": { "P0": 1, "P1": 1, "P2": 0 },
+  "findingsNew": { "P0": 1, "P1": 1, "P2": 0 },
+  "newFindingsRatio": 1,
+  "findingRefs": ["F001", "F002"],
+  "timestamp": "2026-06-18T06:25:05Z"
+}

@@ -1,6 +1,13 @@
 ---
 title: Shell Quick Reference
 description: Fast lookup for Bash scripting patterns, syntax, and common structures in OpenCode.
+trigger_phrases:
+  - "opencode shell quick reference"
+  - "bash file template"
+  - "bash array patterns"
+  - "shell conditionals reference"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Shell Quick Reference

@@ -13,7 +13,7 @@ import {
 } from '../cognitive/adaptive-ranking.js';
 import { isSessionBoostEnabled, isCausalBoostEnabled } from '../search/search-flags.js';
 import { executePipeline, type PipelineConfig } from '../search/pipeline/index.js';
-import { initConsumptionLog } from '../telemetry/consumption-logger.js';
+import { buildSyntheticReplayCorpus, type SyntheticReplayCorpus } from './shadow-replay-corpus.js';
 import type { RankedItem } from './rank-metrics.js';
 import {
   DEFAULT_HOLDOUT_PERCENT,
@@ -30,11 +30,6 @@ import { registerShutdownHook } from '../runtime/shutdown-hooks.js';
 /* ───────────────────────────────────────────────────────────────
    1. TYPES
 ──────────────────────────────────────────────────────────────── */
-
-interface ConsumptionQueryRow {
-  id: number;
-  query_text: string;
-}
 
 interface ShadowReplayRanks {
   live: RankedItem[];
@@ -191,32 +186,6 @@ function isShadowEvaluationDue(db: Database.Database, now: number = Date.now()):
 }
 
 /**
- * Load a recent pool of distinct production queries from consumption telemetry.
- */
-function loadRecentSearchQueries(
-  db: Database.Database,
-  now: number,
-  queryLookbackMs: number,
-  maxQueryPoolSize: number,
-): ConsumptionQueryRow[] {
-  initConsumptionLog(db);
-
-  const sinceIso = new Date(now - queryLookbackMs).toISOString();
-  return db.prepare(`
-    SELECT MAX(id) AS id, query_text
-    FROM consumption_log
-    WHERE event_type = 'search'
-      AND query_text IS NOT NULL
-      AND TRIM(query_text) != ''
-      AND COALESCE(result_count, 0) > 0
-      AND timestamp >= ?
-    GROUP BY query_text
-    ORDER BY MAX(timestamp) DESC
-    LIMIT ?
-  `).all(sinceIso, maxQueryPoolSize) as ConsumptionQueryRow[];
-}
-
-/**
  * Convert a production query text into the side-effect-free pipeline config
  * used for scheduled shadow replay.
  */
@@ -250,7 +219,7 @@ function buildReplayRanks(
   database: Database.Database,
   liveRows: ShadowSearchResultRow[],
   shadowRows: ShadowProposalRow[],
-  queryText?: string,
+  queryText?: string | null,
 ): ShadowReplayRanks | null {
   if (liveRows.length === 0 || shadowRows.length === 0) {
     return null;
@@ -334,7 +303,10 @@ async function replayQueryForShadowEvaluation(
     return null;
   }
 
-  return buildReplayRanks(db, liveRows, shadowProposal.rows as ShadowProposalRow[], queryText);
+  // Synthetic class strings carry no per-query feedback, so relevance labels
+  // come from memory-id-level signal aggregation (the unfiltered branch). A
+  // synthetic string must never be used as a relevance query filter.
+  return buildReplayRanks(db, liveRows, shadowProposal.rows as ShadowProposalRow[], null);
 }
 
 /**
@@ -342,19 +314,22 @@ async function replayQueryForShadowEvaluation(
  */
 async function buildHoldoutReplayMap(
   db: Database.Database,
-  queries: ConsumptionQueryRow[],
+  corpus: SyntheticReplayCorpus,
   holdoutPercent: number,
   seed: number,
   searchLimit: number,
 ): Promise<Map<string, ShadowReplayRanks>> {
   const queryIdToText = new Map<string, string>();
-  const allQueryIds = queries.map((row) => {
-    const queryId = `consumption:${row.id}`;
-    queryIdToText.set(queryId, row.query_text);
-    return queryId;
+  const allQueryIds = corpus.classes.map((queryClass) => {
+    queryIdToText.set(queryClass.classKey, queryClass.syntheticQuery);
+    return queryClass.classKey;
   });
 
-  const holdoutQueryIds = selectHoldoutQueries(allQueryIds, { holdoutPercent, seed });
+  const holdoutQueryIds = selectHoldoutQueries(allQueryIds, {
+    holdoutPercent,
+    seed,
+    intentClasses: corpus.intentClasses,
+  });
   const replayed = new Map<string, ShadowReplayRanks>();
 
   for (const queryId of holdoutQueryIds) {
@@ -411,13 +386,17 @@ async function runScheduledShadowEvaluationCycle(
   try {
     await checkDatabaseUpdated();
 
-    const queryRows = loadRecentSearchQueries(db, now, queryLookbackMs, maxQueryPoolSize);
-    if (queryRows.length === 0) {
-      console.warn('[shadow-evaluation-runtime] skipped cycle: no recent search queries available');
+    const corpus = buildSyntheticReplayCorpus(db, {
+      now,
+      lookbackMs: queryLookbackMs,
+      maxClasses: maxQueryPoolSize,
+    });
+    if (corpus.corpusAbsent) {
+      console.warn('[shadow-evaluation-runtime] skipped cycle: no consumption telemetry to derive query classes');
       return null;
     }
 
-    const replayed = await buildHoldoutReplayMap(db, queryRows, holdoutPercent, seed, searchLimit);
+    const replayed = await buildHoldoutReplayMap(db, corpus, holdoutPercent, seed, searchLimit);
     if (replayed.size === 0) {
       console.warn('[shadow-evaluation-runtime] skipped cycle: no holdout queries produced shadow proposals');
       return null;
@@ -436,6 +415,7 @@ async function runScheduledShadowEvaluationCycle(
         seed,
         cycleId,
         evaluatedAt,
+        intentClasses: corpus.intentClasses,
       },
     );
 

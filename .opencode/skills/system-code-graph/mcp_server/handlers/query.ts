@@ -20,6 +20,16 @@ import type {
   OutlineQueryNode,
   RelationshipQueryEdge,
 } from '../lib/query-result-adapter.js';
+import {
+  traverseGraphBfs,
+  type GraphBfsNeighbor,
+  type GraphBfsPathStep,
+} from '../lib/graph/bfs-traversal.js';
+import {
+  isCodeGraphBm25SymbolResolverEnabled,
+  resolveSymbolBm25Candidates,
+  type SymbolBm25Candidate,
+} from '../lib/symbol-bm25-resolver.js';
 // Emit a stable failure-counter metric so operators can distinguish DB /
 // compute failures from legitimately empty blast radii.
 import { isSpeckitMetricsEnabled, speckitMetrics } from '../lib/shared/metrics-stub.js';
@@ -34,6 +44,7 @@ export interface QueryArgs {
   maxDepth?: number;
   unionMode?: 'single' | 'multi';
   minConfidence?: number;
+  includeTrace?: boolean;
   verificationGateBypass?: 'gold-query-verifier';
 }
 
@@ -52,6 +63,7 @@ const SUPPORTED_EDGE_TYPES = [
 
 const SUPPORTED_EDGE_TYPE_SET = new Set<string>(SUPPORTED_EDGE_TYPES);
 const AMBIGUOUS_SUBJECT_WARNING_CANDIDATE_LIMIT = 10;
+const SYMBOL_BM25_SUGGESTION_LIMIT = 5;
 const SUPPORTED_RELATIONSHIP_OPERATIONS = [
   'calls_from',
   'calls_to',
@@ -131,6 +143,7 @@ interface ResolvedSubject {
   symbolId: string | null;
   selectedCandidate?: SubjectCandidateMetadata;
   warnings?: AmbiguousSubjectWarning[];
+  suggestions?: SymbolBm25Candidate[];
 }
 
 interface SubjectCandidateMetadata {
@@ -157,10 +170,26 @@ interface BlastRadiusDependency {
   confidence: number;
 }
 
+interface WhyIncludedEdgeChainStep {
+  fromFile: string;
+  toFile: string;
+  edgeType: 'IMPORTS';
+  confidence: number;
+}
+
+interface BlastRadiusWhyIncluded {
+  depth: number;
+  edgeChain: WhyIncludedEdgeChainStep[];
+  confidence: number;
+  ambiguous: boolean;
+  truncationReason: 'max_depth' | 'result_limit' | null;
+}
+
 interface BlastRadiusAffectedFile {
   filePath: string;
   depth: number;
   hotFileBreadcrumb?: HotFileBreadcrumb;
+  why_included?: BlastRadiusWhyIncluded;
 }
 
 interface BlastRadiusFailureFallback {
@@ -345,6 +374,41 @@ function buildAmbiguousSubjectWarning(
   };
 }
 
+function querySymbolBm25Suggestions(subject: string): SymbolBm25Candidate[] {
+  if (!isCodeGraphBm25SymbolResolverEnabled()) {
+    return [];
+  }
+
+  return resolveSymbolBm25Candidates(
+    subject,
+    graphDb.querySymbolIndexRows(),
+    { limit: SYMBOL_BM25_SUGGESTION_LIMIT },
+  );
+}
+
+function buildUnresolvedSubjectError(subject: string, suggestions: SymbolBm25Candidate[]) {
+  const base = {
+    status: 'error' as const,
+    error: `Could not resolve subject: ${subject}`,
+  };
+
+  if (suggestions.length === 0) {
+    return base;
+  }
+
+  return {
+    ...base,
+    data: {
+      symbolResolution: {
+        resolver: 'bm25',
+        disambiguationOnly: true,
+        message: 'No exact symbol match was found. These are candidate symbols only; use a symbolId, fqName, or exact name to run a structural query.',
+        candidates: suggestions,
+      },
+    },
+  };
+}
+
 /** Resolve a subject string to a symbolId */
 function resolveSubject(
   subject: string,
@@ -417,7 +481,7 @@ function resolveSubject(
     };
   }
 
-  return { symbolId: null };
+  return { symbolId: null, suggestions: querySymbolBm25Suggestions(subject) };
 }
 
 // Readiness helpers extracted to lib/code-graph/readiness-contract.ts so the
@@ -534,6 +598,11 @@ interface TransitiveTraversalResult {
   warnings?: DanglingEdgeWarning[];
 }
 
+interface TransitiveTraversalNeighbor {
+  readonly symbolId: string;
+  readonly node: CodeNode | null;
+}
+
 function transitiveTraversal(
   startId: string,
   edgeType: string,
@@ -542,84 +611,52 @@ function transitiveTraversal(
   limit: number,
   operation: QueryArgs['operation'],
 ): TransitiveTraversalResult {
-  const visited = new Set<string>();
   const resultSymbolIds = new Set<string>();
-  const results: TransitiveTraversalResult['nodes'] = [];
-  const danglingSymbolIds: string[] = [];
-  let frontier = [{ id: startId, depth: 0 }];
   const missingEndpoint: DanglingEdgeWarning['missingEndpoint'] = direction === 'from' ? 'target' : 'source';
-
-  while (frontier.length > 0 && results.length < limit) {
-    const next: typeof frontier = [];
-    for (const item of frontier) {
-      if (visited.has(item.id) || item.depth >= maxDepth) continue;
-      visited.add(item.id);
-
+  const traversal = traverseGraphBfs<string, TransitiveTraversalNeighbor, TransitiveTraversalResult['nodes'][number]>({
+    startIds: [startId],
+    maxDepth,
+    resultLimit: limit,
+    visitTiming: 'dequeue',
+    stopEnqueueWhenResultLimitReached: true,
+    getNeighbors: (item) => {
       if (direction === 'from') {
-        for (const { edge, targetNode } of graphDb.queryEdgesFrom(item.id, edgeType)) {
-          const nextDepth = item.depth + 1;
-          if (nextDepth > maxDepth) {
-            continue;
-          }
-          if (targetNode == null) {
-            danglingSymbolIds.push(edge.targetId);
-            continue;
-          }
-          if (!visited.has(edge.targetId)) {
-            if (!resultSymbolIds.has(edge.targetId)) {
-              resultSymbolIds.add(edge.targetId);
-              results.push({
-                symbolId: edge.targetId,
-                fqName: targetNode.fqName ?? null,
-                filePath: targetNode.filePath ?? null,
-                line: targetNode.startLine ?? null,
-                depth: nextDepth,
-              });
-            }
-            if (results.length >= limit) break;
-            next.push({ id: edge.targetId, depth: nextDepth });
-          }
-        }
-      } else {
-        for (const { edge, sourceNode } of graphDb.queryEdgesTo(item.id, edgeType)) {
-          const nextDepth = item.depth + 1;
-          if (nextDepth > maxDepth) {
-            continue;
-          }
-          if (sourceNode == null) {
-            danglingSymbolIds.push(edge.sourceId);
-            continue;
-          }
-          if (!visited.has(edge.sourceId)) {
-            if (!resultSymbolIds.has(edge.sourceId)) {
-              resultSymbolIds.add(edge.sourceId);
-              results.push({
-                symbolId: edge.sourceId,
-                fqName: sourceNode.fqName ?? null,
-                filePath: sourceNode.filePath ?? null,
-                line: sourceNode.startLine ?? null,
-                depth: nextDepth,
-              });
-            }
-            if (results.length >= limit) break;
-            next.push({ id: edge.sourceId, depth: nextDepth });
-          }
-        }
+        return graphDb.queryEdgesFrom(item.id, edgeType).map<GraphBfsNeighbor<string, TransitiveTraversalNeighbor>>(({ edge, targetNode }) => ({
+          id: edge.targetId,
+          payload: { symbolId: edge.targetId, node: targetNode },
+          ...(targetNode == null ? { danglingId: edge.targetId } : {}),
+        }));
       }
 
-      if (results.length >= limit) break;
-    }
-    frontier = next;
+      return graphDb.queryEdgesTo(item.id, edgeType).map<GraphBfsNeighbor<string, TransitiveTraversalNeighbor>>(({ edge, sourceNode }) => ({
+        id: edge.sourceId,
+        payload: { symbolId: edge.sourceId, node: sourceNode },
+        ...(sourceNode == null ? { danglingId: edge.sourceId } : {}),
+      }));
+    },
+    mapResult: (visit) => {
+      if (resultSymbolIds.has(visit.payload.symbolId) || visit.payload.node == null) {
+        return null;
+      }
+      resultSymbolIds.add(visit.payload.symbolId);
+      return {
+        symbolId: visit.payload.symbolId,
+        fqName: visit.payload.node.fqName ?? null,
+        filePath: visit.payload.node.filePath ?? null,
+        line: visit.payload.node.startLine ?? null,
+        depth: visit.depth,
+      };
+    },
+  });
+
+  const nodes = traversal.results.map((entry) => entry.value).slice(0, limit);
+  if (traversal.dangling.length === 0) {
+    return { nodes };
   }
 
-  const truncated = results.slice(0, limit);
-  if (danglingSymbolIds.length === 0) {
-    return { nodes: truncated };
-  }
-
-  const uniqueDangling = [...new Set(danglingSymbolIds)];
+  const uniqueDangling = [...new Set(traversal.dangling.map((entry) => entry.id))];
   return {
-    nodes: truncated,
+    nodes,
     warnings: [{
       code: 'dangling_edge',
       operation,
@@ -864,7 +901,7 @@ function summarizeWeakestGraphEdgeEnrichment(
 }
 
 function shouldBlockReadPath(readiness: ReadyResult, verificationGateBypassed = false): boolean {
-  // False-safe contract (BUG-01 fix): answer ONLY on a fresh graph. Any
+  // False-safe contract: answer ONLY on a fresh graph. Any
   // non-fresh state must block rather than return a possibly-wrong structural
   // answer with status:'ok'. The previous predicate keyed only on
   // `action === 'full_scan' && !inlineIndexPerformed`, which let two non-fresh
@@ -975,8 +1012,8 @@ function parseEdgeMetadataConfidence(metadataJson: unknown, weight: unknown): nu
   return clampNumericConfidence(weight);
 }
 
-function queryImportDependentsForBlastRadius(minConfidence: number): BlastRadiusDependency[] {
-  if (minConfidence <= 0) {
+function queryImportDependentsForBlastRadius(minConfidence: number, includeTrace = false): BlastRadiusDependency[] {
+  if (minConfidence <= 0 && !includeTrace) {
     return graphDb.queryFileImportDependents().map((edge) => ({
       ...edge,
       confidence: 1,
@@ -1029,7 +1066,7 @@ function buildDepthGroups(
 /**
  * Classify a blast-radius response by depth-one fanout.
  *
- * Thresholds (008/D9 — documented):
+ * Thresholds:
  *   - **high**: any of (a) ambiguityCandidates non-empty, (b) depth-one fanout > 10
  *   - **medium**: depth-one fanout in [4, 10]
  *   - **low**: depth-one fanout in [0, 3]
@@ -1071,60 +1108,88 @@ function computeBlastRadius(
   limit: number,
   minConfidence = 0,
   ambiguityCandidates: SubjectCandidateMetadata[] = [],
+  includeTrace = false,
 ) {
-  const importedBy = new Map<string, Set<string>>();
-  const importEdges = queryImportDependentsForBlastRadius(minConfidence);
+  const importedBy = new Map<string, BlastRadiusDependency[]>();
+  const importEdges = queryImportDependentsForBlastRadius(minConfidence, includeTrace);
   for (const edge of importEdges) {
-    const importers = importedBy.get(edge.importedFilePath) ?? new Set<string>();
-    importers.add(edge.importerFilePath);
+    const importers = importedBy.get(edge.importedFilePath) ?? [];
+    if (!importers.some((existing) => existing.importerFilePath === edge.importerFilePath)) {
+      importers.push(edge);
+    }
     importedBy.set(edge.importedFilePath, importers);
   }
 
-  const affectedByFile = new Map<string, number>();
+  const affectedByFile = new Map<string, { depth: number; why_included?: BlastRadiusWhyIncluded }>();
   const normalizedSources = [...new Set(sourceFiles)];
-
-  // Tracks whether the BFS frontier still held unexpanded, never-visited
-  // neighbors when it hit `maxDepth`. Without this, a caller asking "what
-  // depends on X" cannot distinguish a fully-traversed graph from one cut off
-  // at the depth bound: `overflowed` only reports the count-based slice, not
-  // the depth horizon. We flip this only when a neighbor was dropped *solely*
-  // because it lay beyond `maxDepth` (not because it was already visited at a
-  // shallower depth, where no reachability information is lost).
   let depthTruncated = false;
+  let overflowed = false;
+
+  const buildWhyIncluded = (
+    depth: number,
+    path: ReadonlyArray<GraphBfsPathStep<string, BlastRadiusDependency>>,
+    truncationReason: BlastRadiusWhyIncluded['truncationReason'],
+  ): BlastRadiusWhyIncluded => {
+    const edgeChain = path.map((step) => ({
+      fromFile: step.payload.importedFilePath,
+      toFile: step.payload.importerFilePath,
+      edgeType: 'IMPORTS' as const,
+      confidence: step.payload.confidence,
+    }));
+    // Neutral seed for a min-reduce over confidences clamped to [0,1]; an
+    // empty chain yields 1 (no edge constrains the confidence).
+    const confidence = edgeChain.reduce(
+      (minimum, step) => Math.min(minimum, step.confidence),
+      1,
+    );
+    return {
+      depth,
+      edgeChain,
+      confidence,
+      ambiguous: ambiguityCandidates.length > 0,
+      truncationReason,
+    };
+  };
 
   for (const sourceFile of normalizedSources) {
-    const visited = new Set<string>([sourceFile]);
-    const queue: Array<{ filePath: string; depth: number }> = [{ filePath: sourceFile, depth: 0 }];
+    const traversal = traverseGraphBfs<string, BlastRadiusDependency, BlastRadiusAffectedFile>({
+      startIds: [sourceFile],
+      maxDepth,
+      preVisitedIds: [sourceFile],
+      visitTiming: 'enqueue',
+      inspectDepthBoundary: true,
+      getNeighbors: (item) => [...(importedBy.get(item.id) ?? [])]
+        .sort((left, right) => left.importerFilePath.localeCompare(right.importerFilePath))
+        .map((edge) => ({
+          id: edge.importerFilePath,
+          payload: edge,
+        })),
+      mapResult: (visit) => normalizedSources.includes(visit.id)
+        ? null
+        : {
+          filePath: visit.id,
+          depth: visit.depth,
+          ...(includeTrace
+            ? { why_included: buildWhyIncluded(visit.depth, visit.path, null) }
+            : {}),
+        },
+    });
 
-    while (queue.length > 0) {
-      const current = queue.shift();
-      if (!current) break;
-
-      const importers = importedBy.get(current.filePath);
-      if (!importers) continue;
-
-      for (const importerFilePath of importers) {
-        const nextDepth = current.depth + 1;
-        if (visited.has(importerFilePath)) {
-          continue;
-        }
-        if (nextDepth > maxDepth) {
-          // A reachable, never-visited dependent exists beyond the depth bound,
-          // so the reported set is depth-incomplete.
-          depthTruncated = true;
-          continue;
-        }
-        visited.add(importerFilePath);
-        queue.push({ filePath: importerFilePath, depth: nextDepth });
-
-        if (normalizedSources.includes(importerFilePath)) {
-          continue;
-        }
-
-        const previousDepth = affectedByFile.get(importerFilePath);
-        if (previousDepth === undefined || nextDepth < previousDepth) {
-          affectedByFile.set(importerFilePath, nextDepth);
-        }
+    depthTruncated ||= traversal.depthTruncated;
+    const maxDepthTruncatedFrom = new Set(traversal.truncated.map((entry) => entry.fromId));
+    for (const affectedFile of traversal.results.map((entry) => entry.value)) {
+      if (includeTrace && affectedFile.why_included && maxDepthTruncatedFrom.has(affectedFile.filePath)) {
+        affectedFile.why_included = {
+          ...affectedFile.why_included,
+          truncationReason: 'max_depth',
+        };
+      }
+      const previous = affectedByFile.get(affectedFile.filePath);
+      if (previous === undefined || affectedFile.depth < previous.depth) {
+        affectedByFile.set(affectedFile.filePath, {
+          depth: affectedFile.depth,
+          ...(affectedFile.why_included ? { why_included: affectedFile.why_included } : {}),
+        });
       }
     }
   }
@@ -1137,10 +1202,23 @@ function computeBlastRadius(
   // recording overflow.
   const totalAffectedBeforeSlice = affectedByFile.size;
   let affectedFiles = [...affectedByFile.entries()]
-    .map(([filePath, depth]) => ({ filePath, depth }))
+    .map(([filePath, entry]) => ({
+      filePath,
+      depth: entry.depth,
+      ...(entry.why_included ? { why_included: entry.why_included } : {}),
+    }))
     .sort((left, right) => left.depth - right.depth || left.filePath.localeCompare(right.filePath))
     .slice(0, limit);
-  const overflowed = totalAffectedBeforeSlice > limit;
+  overflowed = totalAffectedBeforeSlice > limit;
+  if (includeTrace && overflowed && affectedFiles.length > 0) {
+    const lastIncluded = affectedFiles[affectedFiles.length - 1];
+    if (lastIncluded.why_included && lastIncluded.why_included.truncationReason == null) {
+      lastIncluded.why_included = {
+        ...lastIncluded.why_included,
+        truncationReason: 'result_limit',
+      };
+    }
+  }
   const breadcrumbByFile = new Map(
     buildHotFileBreadcrumbs([
       ...normalizedSources,
@@ -1156,6 +1234,11 @@ function computeBlastRadius(
     filePath,
     depth: 0,
     isSeed: true,
+    ...(includeTrace
+      ? {
+        why_included: buildWhyIncluded(0, [], null),
+      }
+      : {}),
     ...(breadcrumbByFile.get(filePath) ? { hotFileBreadcrumb: breadcrumbByFile.get(filePath) } : {}),
   }));
   const depthGroups = buildDepthGroups(affectedFiles, maxDepth);
@@ -1229,7 +1312,7 @@ export async function handleCodeGraphQuery(args: QueryArgs): Promise<{ content: 
       content: [{
         type: 'text',
         text: JSON.stringify({
-          // BUG-07: align with code_graph_context + detect_changes — a non-fresh
+          // Align with code_graph_context + detect_changes — a non-fresh
           // / unavailable graph (here: readiness probe crashed) refuses with
           // status:'blocked', not 'error', so all three read handlers share one
           // refusal token. The structured readiness block + rg fallback are
@@ -1451,7 +1534,14 @@ export async function handleCodeGraphQuery(args: QueryArgs): Promise<{ content: 
 
     let blastRadius;
     try {
-      blastRadius = graphDb.getDb().transaction(() => computeBlastRadius(sourceFiles, effectiveDepth, limit, minConfidence, ambiguityCandidates))();
+      blastRadius = graphDb.getDb().transaction(() => computeBlastRadius(
+        sourceFiles,
+        effectiveDepth,
+        limit,
+        minConfidence,
+        ambiguityCandidates,
+        args.includeTrace === true,
+      ))();
     } catch (error) {
       const depthGroups = buildDepthGroups([], effectiveDepth);
       const reason = error instanceof Error ? error.message : String(error);
@@ -1556,7 +1646,7 @@ export async function handleCodeGraphQuery(args: QueryArgs): Promise<{ content: 
     return {
       content: [{
         type: 'text',
-        text: JSON.stringify({ status: 'error', error: `Could not resolve subject: ${subject}` }),
+        text: JSON.stringify(buildUnresolvedSubjectError(subject, resolvedSubject.suggestions ?? [])),
       }],
     };
   }

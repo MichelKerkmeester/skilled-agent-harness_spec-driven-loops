@@ -1,0 +1,254 @@
+#!/usr/bin/env python3
+"""Red-team gauntlet for the guarded refine loop.
+
+Runs the attack battery DISPATCH-FREE (zero model calls): real gates.py / derive.py /
+deterministic_lint.py against a throwaway git worktree, with the dispatch-shaped functions
+monkeypatched. Every attack must be caught by the loop's guardrails; any unexpected outcome
+fails the gauntlet (exit 1).
+
+  A1  candidate edits the frozen scoring surface      -> guarded_promote KillSwitch
+  A2  derived copy drifts from the CLI source         -> preflight KillSwitch
+  A3  grader in the proposer's model family           -> regrade.py refuses (no dispatch)
+  A4  held-out unmeasurable (no gradeable deliverable)-> promote_reject, never an HVR kill
+  A5  HVR hard violation in a deliverable             -> code linter flags it
+  A6  synonym-laundered AI vocabulary                 -> KNOWN BOUNDARY: code lint passes it;
+                                                          the independent LLM grader layer owns it
+  A7  KillSwitch mid-promotion                        -> worktree cleaned up (no leak)
+  A8  dirty knowledge base on --run                   -> refused before any work
+  A9  concurrent run / stale lock                     -> second run refused; dead-pid lock evicted
+
+Usage: python3 {{WORKTREE_SUBDIR}}/benchmark/_loop/gauntlet.py    (from the packaging's repo root)
+"""
+import importlib.util
+import json
+import os
+import subprocess
+import sys
+from typing import Any, List, Optional
+
+# Layout: <packaging>/benchmark/_loop/gauntlet.py -> packaging root is three levels up
+HERE = os.path.dirname(os.path.abspath(__file__))
+MAIN_CW = os.path.dirname(os.path.dirname(HERE))
+MAIN_ROOT = os.path.dirname(MAIN_CW)
+WT_BASE = os.path.join(MAIN_ROOT, ".worktrees", "gauntlet")
+WT_CW = os.path.join(WT_BASE, "{{WORKTREE_SUBDIR}}")
+
+RESULTS = []
+
+
+def check(name: str, ok: bool, detail: str = "") -> None:
+    RESULTS.append((name, ok, detail))
+    print(f"  [{'PASS' if ok else 'FAIL'}] {name}" + (f" — {detail}" if detail else ""))
+
+
+def shell(cmd: List[str], **kw: Any) -> subprocess.CompletedProcess:
+    """Run a subprocess with captured output and no stdin."""
+    return subprocess.run(cmd, capture_output=True, text=True, stdin=subprocess.DEVNULL, **kw)
+
+
+def load_loop() -> Any:
+    """Import the working-tree loop.py pointed at the gauntlet worktree.
+
+    Sets {{PACKAGING_ROOT_ENV}} so current code is tested against isolated data.
+    """
+    os.environ["{{PACKAGING_ROOT_ENV}}"] = WT_CW
+    spec = importlib.util.spec_from_file_location("loop_under_test", os.path.join(MAIN_CW, "benchmark", "_loop", "loop.py"))
+    m = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(m)
+    return m
+
+
+def git_wt(*args: str) -> subprocess.CompletedProcess:
+    """Run a git worktree subcommand against the main repo."""
+    return shell(["git", "-C", MAIN_ROOT, "worktree", *args])
+
+
+def reset_wt_file(rel: str) -> None:
+    """Restore an attack-mutated file from the LIVE tree. The worktree data mirrors the live
+    packaging (see the overlay in main), and files relocated since HEAD do not exist for a
+    `git checkout` to restore."""
+    import shutil
+    shutil.copyfile(os.path.join(MAIN_ROOT, rel), os.path.join(WT_BASE, rel))
+
+
+def main() -> None:
+    """Run the full attack battery against the loop's guardrails."""
+    git_wt("remove", "--force", WT_BASE)
+    r = git_wt("add", "-d", WT_BASE, "HEAD")
+    if r.returncode != 0:
+        sys.exit("gauntlet: could not create worktree: " + r.stderr)
+    # Overlay the LIVE packaging onto the worktree: HEAD lacks uncommitted layout changes
+    # (e.g. relocated frozen scoring files), and the battery must test current code against
+    # current data while attacks still mutate only the isolated copy. -L materializes
+    # external symlinks (shared globals) as file content so the sandbox is self-contained
+    # even when the symlink targets were renamed/moved without being committed.
+    ov = shell(["rsync", "-aL", "--delete", MAIN_CW + "/", WT_CW + "/"])
+    if ov.returncode != 0:
+        sys.exit("gauntlet: could not overlay live packaging: " + ov.stderr)
+    try:
+        loop = load_loop()
+        # Neutralize anything dispatch-shaped unless an attack overrides it
+        loop.benchmark_one = lambda *a, **k: (_ for _ in ()).throw(AssertionError("unexpected dispatch"))
+        loop.regrade = lambda outs: (_ for _ in ()).throw(AssertionError("unexpected regrade dispatch"))
+
+        print("== A1: candidate edits the frozen scoring surface ==")
+        _gauntlet_a1(loop, WT_CW)
+
+        print("== A2: derived-copy drift ==")
+        _gauntlet_a2(loop, WT_CW)
+
+        print("== A3: same-family grader refused ==")
+        # The same-family grader is constructed from the rendered proposer family so the
+        # attack fires for ANY packaging, not just deepseek-proposed ones
+        r = shell(["python3", os.path.join(MAIN_CW, "benchmark", "grader", "regrade.py"), "/dev/null"],
+                  env={**os.environ, "GRADER_MODEL": "test/{{PROPOSER_FAMILY}}-same-family"})
+        check("A3 same-family grader refused", r.returncode != 0 and "KILL-SWITCH" in (r.stdout + r.stderr))
+
+        print("== A4: unmeasurable held-out is a reject, not an HVR kill ==")
+        loop.sample = lambda *a, **k: [{"file": "x", "independent_meqt": None, "dims": {},
+                                        "grader_floors_met": False, "hvr_lint_clean": False, "samples": 0}]
+        try:
+            promoted, indep = loop.guarded_promote(WT_CW, 10.0, True)
+            check("A4 unmeasurable held-out -> reject (not kill)", promoted is False and indep is None)
+        except loop.KillSwitch as e:
+            check("A4 unmeasurable held-out -> reject (not kill)", False, f"false kill: {e}")
+
+        print("== A5: HVR hard violation caught by the code linter ==")
+        bad = os.path.join(WT_BASE, "a5.txt")
+        open(bad, "w", encoding="utf-8").write("<DELIVERABLE>Reach influencers — leverage our platform; sign up.</DELIVERABLE>")
+        r = shell(["python3", os.path.join(MAIN_CW, "benchmark", "grader", "deterministic_lint.py"), bad])
+        d = json.loads(r.stdout)
+        check("A5 HVR violations flagged", d["clean"] is False and d["hard_violations"] >= 3,
+              f"hard={d['hard_violations']}")
+
+        print("== A6: synonym laundering (documented code-lint boundary) ==")
+        laundered = os.path.join(WT_BASE, "a6.txt")
+        open(laundered, "w", encoding="utf-8").write("<DELIVERABLE>Spearhead your brand's ascent with our transformative platform.</DELIVERABLE>")
+        r = shell(["python3", os.path.join(MAIN_CW, "benchmark", "grader", "deterministic_lint.py"), laundered])
+        d = json.loads(r.stdout)
+        check("A6 laundering passes code lint (LLM-grader layer owns it)", d["clean"] is True,
+              "boundary documented: lexical lint is necessary, not sufficient")
+
+        print("== A7: worktree cleaned up on KillSwitch mid-promotion ==")
+        wt7 = loop.make_worktree(97)
+        try:
+            try:
+                raise loop.KillSwitch("forced")
+            finally:
+                loop.cleanup_worktree(wt7, keep=False)
+        except loop.KillSwitch:
+            pass
+        gone = "{{WORKTREE_PREFIX}}97" not in git_wt("list").stdout
+        check("A7 worktree removed despite KillSwitch", gone)
+
+        print("== A8: dirty knowledge base refuses --run ==")
+        _gauntlet_a8(loop, WT_CW)
+
+        print("== A9: lock — concurrent refused, stale evicted ==")
+        loop.acquire_lock()
+        try:
+            loop.acquire_lock()
+            check("A9a concurrent run refused", False, "second acquire succeeded")
+        except loop.KillSwitch:
+            check("A9a concurrent run refused", True)
+        loop.release_lock()
+        # Dead pid + expired
+        json.dump({"pid": 99999999, "ts": 0, "ttl": 1}, open(loop.LOCK, "w"))
+        try:
+            loop.acquire_lock()
+            check("A9b stale lock evicted", os.path.exists(loop.LOCK))
+        except loop.KillSwitch as e:
+            check("A9b stale lock evicted", False, f"stale lock not evicted: {e}")
+        loop.release_lock()
+
+    finally:
+        git_wt("remove", "--force", WT_BASE)
+        shell(["git", "-C", MAIN_ROOT, "worktree", "prune"])
+
+    fails = [n for n, ok, _ in RESULTS if not ok]
+    print(f"\nGAUNTLET: {len(RESULTS) - len(fails)}/{len(RESULTS)} passed" + (f" — FAILURES: {fails}" if fails else " — all guardrails hold"))
+    sys.exit(1 if fails else 0)
+
+
+def _gauntlet_a1(loop: Any, WT_CW: str) -> None:
+    """Attack A1: candidate edits the frozen scoring surface.
+
+    Requires at least one frozen source file to exist inside the worktree copy;
+    the gauntlet mutates the first.
+    """
+    # frozen_surface entries are under {{PACKAGING_ROOT_ENV}} root
+    gates_dir = WT_CW
+    kb_root = os.path.join(gates_dir, "knowledge base")
+    # Walk the frozen_surface manifest (if it exists) or try common knowledge-base files
+    manifest_path = os.path.join(gates_dir, "benchmark", "_gates", "MANIFEST.json")
+    if os.path.exists(manifest_path):
+        m = json.load(open(manifest_path))
+        target = m["sources"][0]
+        sp = os.path.join(gates_dir, target["live"])
+    else:
+        # Fallback: look for any markdown file under knowledge base/
+        for dirpath, _, files in os.walk(kb_root):
+            mds = [f for f in files if f.endswith(".md")]
+            if mds:
+                sp = os.path.join(dirpath, mds[0])
+                break
+        else:
+            check("A1 frozen-surface edit halts promotion", False, "no .md files found in worktree knowledge base")
+            return
+    s = open(sp, encoding="utf-8").read()
+    open(sp, "w", encoding="utf-8").write(s.replace(" ", " X ", 1))
+    try:
+        loop.guarded_promote(WT_CW, 10.0, True)
+        check("A1 frozen-surface edit halts promotion", False, "no KillSwitch raised")
+    except loop.KillSwitch as e:
+        check("A1 frozen-surface edit halts promotion", "frozen scoring surface" in str(e))
+    shell(["git", "-C", WT_CW, "checkout", "--", os.path.relpath(sp, WT_CW)])
+
+
+def _gauntlet_a2(loop: Any, WT_CW: str) -> None:
+    """Attack A2: derived-copy drift. Mutate a derived target under the worktree."""
+    derive_root = os.path.join(WT_CW, "benchmark", "_gates")
+    manifest_path = os.path.join(derive_root, "MANIFEST.json")
+    # Mutate ANY derived target: find one via derive.py's internal config
+    # Best effort: look for any file in claude project/ or a skill ref dir
+    for base in [os.path.join(WT_CW, "claude project"), WT_CW]:
+        for dirpath, _, files in os.walk(base):
+            # Skip symlinked targets: appending writes THROUGH the link and git checkout cannot restore it
+            mds = [f for f in files if f.endswith(".md")
+                   and os.path.relpath(dirpath, WT_CW) != "knowledge base"
+                   and not os.path.islink(os.path.join(dirpath, f))]
+            if mds:
+                ref = os.path.join(dirpath, mds[0])
+                if os.path.exists(ref):
+                    open(ref, "a", encoding="utf-8").write("\ndrifted\n")
+                    try:
+                        loop.preflight_gates(WT_CW)
+                        check("A2 derived-copy drift halts preflight", False, "no KillSwitch raised")
+                    except loop.KillSwitch as e:
+                        check("A2 derived-copy drift halts preflight", "derivation drift" in str(e))
+                    shell(["git", "-C", WT_CW, "checkout", "--", os.path.relpath(ref, WT_CW)])
+                    return
+    check("A2 derived-copy drift halts preflight", False, "no derivable files found to mutate")
+
+
+def _gauntlet_a8(loop: Any, WT_CW: str) -> None:
+    """Attack A8: dirty knowledge base refuses --run."""
+    kb_root = os.path.join(WT_CW, "knowledge base")
+    for dirpath, _, files in os.walk(kb_root):
+        # Skip symlinked docs: appending writes THROUGH the link and git checkout cannot restore it
+        mds = [f for f in files if f.endswith(".md") and not os.path.islink(os.path.join(dirpath, f))]
+        if mds:
+            dirty = os.path.join(dirpath, mds[0])
+            open(dirty, "a", encoding="utf-8").write("\ndirty\n")
+            try:
+                loop.run(0)
+                check("A8 dirty tree refused", False, "run() proceeded")
+            except loop.KillSwitch as e:
+                check("A8 dirty tree refused", "uncommitted changes" in str(e))
+            shell(["git", "-C", WT_CW, "checkout", "--", os.path.relpath(dirty, WT_CW)])
+            return
+    check("A8 dirty tree refused", False, "no files found in knowledge base to dirty")
+
+
+if __name__ == "__main__":
+    main()

@@ -6,6 +6,7 @@ import { createHash } from 'node:crypto';
 import { closeSync, existsSync, fsyncSync, mkdirSync, openSync, readFileSync, readdirSync, renameSync, rmSync, writeFileSync } from 'node:fs';
 import { basename, dirname, join, relative, resolve, sep } from 'node:path';
 import { indexSkillMetadata } from '../skill-graph/skill-graph-db.js';
+import { isDocTriggerHarvestEnabled, listSkillDocFiles } from '../skill-graph/doc-frontmatter.js';
 import { runDaemonStateMutation } from './state-mutation.js';
 import { workspaceRelativeFilePath } from '../derived/provenance.js';
 import { errorMessage } from '../utils/error-format.js';
@@ -23,7 +24,7 @@ import {
 export interface WatchTarget {
   readonly path: string;
   readonly skillSlug: string;
-  readonly reason: 'skill-md' | 'graph-metadata' | 'derived-key-file';
+  readonly reason: 'skill-md' | 'graph-metadata' | 'derived-key-file' | 'doc-frontmatter';
 }
 
 export interface ReindexRequest {
@@ -242,6 +243,11 @@ export function discoverWatchTargets(
       targets.push({ path: graphMetadata, skillSlug, reason: 'graph-metadata' });
       for (const keyFile of parseDerivedKeyFiles(graphMetadata, root, onMalformed)) {
         targets.push({ path: keyFile, skillSlug, reason: 'derived-key-file' });
+      }
+    }
+    if (isDocTriggerHarvestEnabled()) {
+      for (const docFile of listSkillDocFiles(skillDir)) {
+        targets.push({ path: docFile, skillSlug, reason: 'doc-frontmatter' });
       }
     }
   }

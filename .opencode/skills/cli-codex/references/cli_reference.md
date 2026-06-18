@@ -1,6 +1,15 @@
 ---
 title: "Codex CLI - Complete Command Reference"
 description: "Comprehensive reference for Codex CLI flags, commands, models, configuration, authentication, sandbox modes, and troubleshooting."
+trigger_phrases:
+  - "codex cli flags"
+  - "codex exec command reference"
+  - "codex sandbox modes"
+  - "codex reasoning effort"
+  - "codex config toml"
+  - "codex session resume fork"
+importance_tier: important
+contextType: implementation
 ---
 
 # Codex CLI - Complete Command Reference

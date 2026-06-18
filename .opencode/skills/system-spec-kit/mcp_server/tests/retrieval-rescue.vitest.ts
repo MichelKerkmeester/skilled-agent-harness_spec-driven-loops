@@ -146,3 +146,36 @@ describe('retrieval rescue layer', () => {
     expect(top3Hits).toBeGreaterThanOrEqual(8);
   }, 30_000);
 });
+
+describe('retrieval rescue — injected-row scope boundary', () => {
+  // Guards against the cross-scope leak where rescue-injected backfill/sibling
+  // rows (fetched in Stage 2, after Stage-1 scope filtering) bypass the caller's
+  // governance/spec_folder boundary. The other two injection paths (constitutional,
+  // community-fallback) re-apply scope; rescue must too.
+  type RescueOpts = Parameters<typeof __testables.buildInjectionBoundary>[0];
+  const boundary = (o: Partial<RescueOpts>) =>
+    __testables.buildInjectionBoundary(o as RescueOpts);
+  const row = (spec_folder: string, extra: Record<string, unknown> = {}): PipelineRow =>
+    ({ id: 1, spec_folder, ...extra }) as unknown as PipelineRow;
+
+  it('returns no boundary when neither scope nor specFolder is set', () => {
+    expect(boundary({})).toBeNull();
+  });
+
+  it('keeps in-folder rows (exact + descendant) and drops out-of-folder rows', () => {
+    const gate = boundary({ specFolder: 'specs/A' });
+    expect(gate).not.toBeNull();
+    expect(gate!(row('specs/A'))).toBe(true); // exact
+    expect(gate!(row('specs/A/child'))).toBe(true); // descendant
+    expect(gate!(row('specs/B'))).toBe(false); // sibling — the leak this fix closes
+    expect(gate!(row('specs/AB'))).toBe(false); // prefix without a path separator must not match
+    expect(gate!(row(''))).toBe(false); // missing folder
+  });
+
+  it('drops rows outside the governance (tenant) scope', () => {
+    const gate = boundary({ scopeFilter: { tenantId: 't1' } });
+    expect(gate).not.toBeNull();
+    expect(gate!(row('specs/A', { tenant_id: 't1' }))).toBe(true);
+    expect(gate!(row('specs/A', { tenant_id: 't2' }))).toBe(false);
+  });
+});

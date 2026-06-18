@@ -1,0 +1,89 @@
+{
+  "sessionId": "fanout-gpt-2-1781151207242-p6s19u",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Repair completion leaves the live connection attached to the pre-swap shard handle",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
+      "line": 608,
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:598-608",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:650-651",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:1233-1256",
+        ".opencode/skills/system-spec-kit/mcp_server/tests/vector-shard-read-path-resilience.vitest.ts:152-160"
+      ],
+      "firstSeen": 1,
+      "lastSeen": 6,
+      "content_hash": "sha256:f001-live-attachment-stale-after-repair",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Dimension mismatch warning mislabels profile-derived dimensions as schema-derived",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+      "line": 306,
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:162-166",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:236-253",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:305-307"
+      ],
+      "firstSeen": 4,
+      "lastSeen": 6,
+      "content_hash": "sha256:f002-dimension-source-warning-label",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    "F001",
+    "F002"
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    "F001",
+    "F002"
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 1
+  },
+  "openFindingsCount": 2,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.78,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

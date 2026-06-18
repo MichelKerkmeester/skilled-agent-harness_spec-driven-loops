@@ -1,9 +1,14 @@
 ---
 title: Format Guide -- JSON
-description: >
-  Deep-dive formatting guide for JSON output in prompt engineering.
-  Covers fundamentals, data types, delivery standards, RCAF/CRAFT structures,
-  advanced patterns, syntax validation, and best practices for JSON prompt output.
+description: Deep-dive formatting guide for JSON prompt output covering fundamentals, data types, delivery standards, RCAF/CRAFT structures, advanced patterns, syntax validation, and best practices.
+trigger_phrases:
+  - "json prompt output mode"
+  - "rcaf json structure"
+  - "json format lock protocol"
+  - "api-ready prompt structure"
+  - "json syntax validation checklist"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Format Guide -- JSON

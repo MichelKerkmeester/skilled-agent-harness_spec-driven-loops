@@ -6,6 +6,8 @@ trigger_phrases:
   - "codex hook contract"
   - "codex startup context"
   - "codex advisor brief"
+importance_tier: important
+contextType: implementation
 ---
 
 # Codex CLI Hook Contract

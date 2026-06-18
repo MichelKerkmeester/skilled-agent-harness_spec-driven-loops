@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/135-skill-readme-standardization/001-readme-template-and-standard",
+  "description": "Feature Specification: README template and standard",
+  "keywords": [
+    "feature",
+    "specification",
+    "readme",
+    "template",
+    "standard"
+  ],
+  "lastUpdated": "2026-06-10T04:53:30.739Z",
+  "specId": "001",
+  "folderSlug": "readme-template-and-standard",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "135-skill-readme-standardization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

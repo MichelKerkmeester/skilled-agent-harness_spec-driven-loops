@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/135-skill-readme-standardization/006-deep-ai-council-readme",
+  "description": "Feature Specification: deep-ai-council README",
+  "keywords": [
+    "feature",
+    "specification",
+    "deep-ai-council",
+    "readme"
+  ],
+  "lastUpdated": "2026-06-10T04:53:30.760Z",
+  "specId": "006",
+  "folderSlug": "deep-ai-council-readme",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "135-skill-readme-standardization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

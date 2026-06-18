@@ -1,0 +1,17 @@
+{
+  "iteration": 4,
+  "focus": "maintainability",
+  "newFindingsRatio": 0.35,
+  "findingsNew": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 2
+  },
+  "findingRefs": [
+    "F007",
+    "F008"
+  ],
+  "refinedFindings": [
+    "F002"
+  ]
+}

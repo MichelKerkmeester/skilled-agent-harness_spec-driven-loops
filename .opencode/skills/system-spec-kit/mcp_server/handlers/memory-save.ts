@@ -27,6 +27,7 @@ import {
 // Internal modules
 import { ALLOWED_BASE_PATHS, checkDatabaseUpdated } from '../core/index.js';
 import { ensureMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-guard.js';
+import { scrubSecretsDetailed } from '../lib/parsing/secret-scrubber.js';
 import { createFilePathValidator } from '../utils/validators.js';
 import * as memoryParser from '../lib/parsing/memory-parser.js';
 import * as transactionManager from '../lib/storage/transaction-manager.js';
@@ -46,7 +47,6 @@ import {
   isSaveReconsolidationEnabled,
   resolveSavePlannerMode,
 } from '../lib/search/search-flags.js';
-import { invalidateEntityDensityCache } from '../lib/search/entity-density.js';
 
 import { getCanonicalPathKey, resolveCanonicalPath } from '../lib/utils/canonical-path.js';
 import { isIndexableConstitutionalMemoryPath, shouldIndexForMemory } from '../lib/utils/index-scope.js';
@@ -164,6 +164,25 @@ import {
   type PostSavePlan,
 } from '../lib/validation/spec-doc-structure.js';
 import { detectSpecLevelFromParsed } from './handler-utils.js';
+import { createStatediffAction } from '../lib/storage/statediff.js';
+import {
+  applyWriteProvenance,
+  persistSourceKind,
+  type SourceKind,
+  type WriteProvenanceContext,
+} from '../lib/storage/write-provenance.js';
+import {
+  deleteIdempotencyReceiptByKey,
+  extractMemoryIdFromResponse,
+  isMemoryIdempotencyEnabled,
+  lookupIdempotencyReceipt,
+  lookupIdempotencyReceiptByKey,
+  markResponseWithReceiptStoreConflict,
+  shouldStoreMemorySaveReceipt,
+  storeIdempotencyReceipt,
+  type IdempotencyReceiptKey,
+} from '../lib/storage/idempotency-receipts.js';
+import { recordNearDuplicateCheck } from '../lib/storage/near-duplicate.js';
 
 // Extracted sub-modules
 import { withSpecFolderLock } from './save/spec-folder-mutex.js';
@@ -193,18 +212,20 @@ const MANUAL_FALLBACK_SOURCE_CLASSIFICATION = 'manual-fallback' as const;
 export const MEMORY_INDEX_SCOPE_EXCLUDED_ERROR_CODE = 'E_MEMORY_INDEX_SCOPE_EXCLUDED';
 const ROUTED_CONTINUITY_ANCHOR_ID = '_memory.continuity';
 const tier3RoutingCache = new InMemoryRouterCache();
-let warnedEntityDensityInvalidationFailure = false;
 
-function invalidateEntityDensityCacheAfterSave(): void {
+function emitPostInsertEnrichmentSubscribers(memoryId: number, sourceOperation: string): void {
   try {
-    invalidateEntityDensityCache();
+    runPostMutationHooks(sourceOperation, {
+      memoryId,
+      statediffActions: [createStatediffAction('upsert', {
+        target: 'graph_edge',
+        key: String(memoryId),
+        sourceOperation,
+      })],
+    });
   } catch (err: unknown) {
-    if (warnedEntityDensityInvalidationFailure) {
-      return;
-    }
-    warnedEntityDensityInvalidationFailure = true;
     const message = err instanceof Error ? err.message : String(err);
-    console.warn(`[memory-save] Entity-density cache invalidation failed after save: ${message}`);
+    console.warn(`[memory-save] Post-insert enrichment subscriber dispatch failed: ${message}`);
   }
 }
 
@@ -2139,6 +2160,7 @@ async function processPreparedMemory(
     scope?: MemoryScopeMatch;
     qualityGateMode?: 'enforce' | 'warn-only';
     routing?: RoutedSaveOptions;
+    provenance?: WriteProvenanceContext;
   } = {},
 ): Promise<IndexResult> {
   const {
@@ -2153,6 +2175,7 @@ async function processPreparedMemory(
     scope = {},
     qualityGateMode = 'enforce',
     routing = {},
+    provenance = {},
   } = options;
   const plannerMode = requestedPlannerMode ?? resolveSavePlannerMode();
   const indexingOrigin = resolveIndexingOrigin({ origin, fromScan });
@@ -2250,6 +2273,12 @@ async function processPreparedMemory(
       finalizedFileContent,
     } = activePrepared;
     const routedFilePath = routing.targetDocPath ?? filePath;
+    const writeProvenance: WriteProvenanceContext = {
+      tool: 'memory_save',
+      filePath: routedFilePath,
+      scope,
+      ...provenance,
+    };
     const routedParsed = Object.keys(routing).length > 0
       ? applyRoutedSaveHints(parsed, {
           ...routing,
@@ -2380,7 +2409,7 @@ async function processPreparedMemory(
 
     // PE GATING
     const peResult = evaluateAndApplyPeDecision(
-      database, routedParsed, embedding, force, validation.warnings, embeddingStatus, routedFilePath, scope,
+      database, routedParsed, embedding, force, validation.warnings, embeddingStatus, routedFilePath, scope, writeProvenance,
     );
     if (peResult.earlyReturn) return peResult.earlyReturn;
 
@@ -2403,7 +2432,7 @@ async function processPreparedMemory(
       force,
       embedding,
       scope,
-      { plannerMode },
+      { plannerMode, provenance: writeProvenance },
     );
     if (reconResult.earlyReturn) return reconResult.earlyReturn;
     if (reconResult.saveTimeReconsolidation.status === 'failed') {
@@ -2430,6 +2459,7 @@ async function processPreparedMemory(
       const chunkedResult = await indexChunkedMemoryFile(routedFilePath, routedParsed, {
         force,
         scope,
+        provenance: writeProvenance,
         applyPostInsertMetadata: (db, memoryId, fields) => {
           applyPostInsertMetadata(db, memoryId, fields);
           trackChunkedInsert(chunkedInsertTracker, memoryId, fields as Record<string, unknown>);
@@ -2584,9 +2614,9 @@ async function processPreparedMemory(
       // active-row uniqueness guard holds at insert time. Deprecating (not deleting)
       // keeps the predecessor row, its lineage chain, and its history intact while
       // removing it from the active-row guard; the new version supersedes it in place.
-      if (samePathSupersededPredecessorId != null) {
-        retirePredecessorForActiveReindex(database, samePathSupersededPredecessorId);
-      }
+      const reindexTierCarry = samePathSupersededPredecessorId != null
+        ? retirePredecessorForActiveReindex(database, samePathSupersededPredecessorId)
+        : null;
 
       const memoryId = samePathSupersededPredecessorId != null
         ? createAppendOnlyMemoryRecord({
@@ -2612,7 +2642,22 @@ async function processPreparedMemory(
             peResult.decision,
             scope,
             recordIdentity,
+            writeProvenance,
           );
+
+      if (samePathSupersededPredecessorId != null) {
+        applyWriteProvenance(database, memoryId, writeProvenance);
+      }
+
+      // A human's tier decision on the retired predecessor carries forward to the
+      // reindexed successor. Re-stamp after provenance so the manual tier and its
+      // human source-kind survive the reindex instead of resetting to the default.
+      if (reindexTierCarry != null) {
+        database
+          .prepare('UPDATE memory_index SET importance_tier = ? WHERE id = ?')
+          .run(reindexTierCarry.importanceTier, memoryId);
+        persistSourceKind(database, memoryId, reindexTierCarry.sourceKind as SourceKind);
+      }
 
       // F1.01 fix: Mark superseded memory AFTER new record creation, inside
       // the same transaction, so a creation failure rolls back both operations.
@@ -2681,6 +2726,22 @@ async function processPreparedMemory(
       }
     }
 
+    if (embedding) {
+      try {
+        recordNearDuplicateCheck({
+          database,
+          memoryId: id,
+          specFolder: routedParsed.specFolder,
+          contentHash: routedParsed.contentHash,
+          embedding,
+          scope,
+        });
+      } catch (error: unknown) {
+        const message = error instanceof Error ? error.message : String(error);
+        console.warn(`[memory-save] Near-duplicate advisory skipped: ${message}`);
+      }
+    }
+
     // POST-INSERT ENRICHMENT: causal links, entities, summaries, entity linking.
     // When enrichment is enabled and async (default), run the bundle in the background so the
     // save returns immediately. The row was marked enrichment-pending inside the commit
@@ -2699,9 +2760,9 @@ async function processPreparedMemory(
         { plannerMode },
       );
       recordEnrichmentResult(database, id, postInsertEnrichmentResult);
+      emitPostInsertEnrichmentSubscribers(id, 'post-insert-enrichment');
     }
     const { causalLinksResult, enrichmentStatus, executionStatus } = postInsertEnrichmentResult;
-    invalidateEntityDensityCacheAfterSave();
 
     if (reconResult.assistiveRecommendation) {
       reconResult.assistiveRecommendation.advisory_stale = true;
@@ -2751,6 +2812,7 @@ type BaseIndexMemoryFileOptions = {
   scope?: MemoryScopeMatch;
   qualityGateMode?: 'enforce' | 'warn-only';
   routing?: RoutedSaveOptions;
+  provenance?: WriteProvenanceContext;
   // Validated governance decision threaded from the bulk scan/ingest paths so
   // their indexed rows carry the same provenance/retention/scope metadata the
   // direct memory_save path applies post-insert. Omitted for ungoverned saves.
@@ -2778,6 +2840,7 @@ async function indexMemoryFile(
     scope = {} as MemoryScopeMatch,
     qualityGateMode = 'enforce' as 'enforce' | 'warn-only',
     routing,
+    provenance,
     governance,
     ...originOptions
   }: IndexMemoryFileOptions | LegacyIndexMemoryFileOptions = {},
@@ -2806,6 +2869,13 @@ async function indexMemoryFile(
         sessionId: governance.normalized.sessionId ?? null,
       }
     : scope;
+  const effectiveProvenance: WriteProvenanceContext | undefined = provenance ?? (governance || indexingOrigin === 'scan'
+    ? {
+        provenanceSource: governance?.normalized.provenanceSource || (indexingOrigin === 'scan' ? 'memory_index_scan' : undefined),
+        provenanceActor: governance?.normalized.provenanceActor || (indexingOrigin === 'scan' ? 'system-scan' : undefined),
+        tool: indexingOrigin === 'scan' ? 'memory_index_scan' : 'memory_save',
+      }
+    : undefined);
 
   const result = await processPreparedMemory(prepared, filePath, {
     force,
@@ -2817,6 +2887,7 @@ async function indexMemoryFile(
     scope: effectiveScope,
     qualityGateMode,
     routing,
+    provenance: effectiveProvenance,
   });
 
   // Apply provenance/retention/deleteAfter metadata post-insert, mirroring the
@@ -2849,9 +2920,63 @@ const MAX_BACKGROUND_ENRICHMENTS = 4;
 let activeBackgroundEnrichments = 0;
 const backgroundEnrichmentQueue: Array<() => void> = [];
 
+// Set during shutdown BEFORE closeDb. A deferred/queued enrichment run re-resolves the DB handle via
+// requireDb(), which REOPENS a closed connection — so without this fence a run firing during the
+// shutdown drain would reopen the DB and write fresh WAL frames after the TRUNCATE checkpoint, leaving
+// a non-empty WAL at rest and defeating the close durability guarantee. Same hazard the fileWatcher
+// and ingestWorker fences guard against.
+let enrichmentShuttingDown = false;
+
+/**
+ * Fence the background-enrichment scheduler for shutdown: stop accepting/draining work and let any
+ * in-flight run bail before it touches the DB. Synchronous so fatalShutdown can call it in its
+ * pre-close fence block, before any await lets a queued setImmediate run fire. Dropped rows remain
+ * enrichment-pending in the commit transaction and are recovered by the backfill path on next boot.
+ */
+export function shutdownBackgroundEnrichment(): void {
+  enrichmentShuttingDown = true;
+  backgroundEnrichmentQueue.length = 0;
+}
+
+// Bound the OVERFLOW queue, not just concurrency. A sustained live-save flood (saves arriving faster
+// than the 4-wide drain) would otherwise grow the queue — and the parsed payload each entry retains —
+// without bound. On overflow we DROP rather than push: the row is enrichment-pending in the commit
+// transaction, so the backfill path re-enriches it. The counters below make a backed-up or failing
+// scheduler visible through memory_health (otherwise a stuck scheduler is a silent enrichment outage).
+const MAX_QUEUED_ENRICHMENTS = 2000;
+let enrichmentDroppedTotal = 0;
+let enrichmentFailureTotal = 0;
+let enrichmentLastError: string | null = null;
+let enrichmentLastErrorAt: string | null = null;
+let enrichmentSuppressedWarnings = 0;
+
+/** Scheduler observability snapshot for memory_health — module-local counters only, no DB access. */
+export function getBackgroundEnrichmentStats(): {
+  active: number;
+  queued: number;
+  max: number;
+  maxQueued: number;
+  droppedTotal: number;
+  failureTotal: number;
+  lastError: string | null;
+  lastErrorAt: string | null;
+} {
+  return {
+    active: activeBackgroundEnrichments,
+    queued: backgroundEnrichmentQueue.length,
+    max: MAX_BACKGROUND_ENRICHMENTS,
+    maxQueued: MAX_QUEUED_ENRICHMENTS,
+    droppedTotal: enrichmentDroppedTotal,
+    failureTotal: enrichmentFailureTotal,
+    lastError: enrichmentLastError,
+    lastErrorAt: enrichmentLastErrorAt,
+  };
+}
+
 /**
  * Run post-insert enrichment for a just-saved row in the background, bounded and crash-safe:
- * - re-resolves the DB handle at run time (the save-time handle may have been recycled),
+ * - re-resolves the DB handle when the run starts (covers a recycle before the run begins; a recycle
+ *   mid-run throws on the post-await write and the row falls back to the pending-marker backfill),
  * - skips rows that were superseded/deprecated before the deferred run starts, so it never
  *   repopulates purged entity/graph data for an inactive row,
  * - caps concurrency. The row was marked enrichment-pending inside the commit transaction, so a
@@ -2861,10 +2986,24 @@ function scheduleBackgroundEnrichment(
   memoryId: number,
   parsed: ReturnType<typeof memoryParser.parseMemoryFile>,
 ): void {
-  const run = (): void => {
+  if (enrichmentShuttingDown) return; // do not schedule new enrichment work during shutdown
+  // Reserve a slot and schedule on a macrotask. The counter MUST be incremented here, at schedule
+  // time — not inside the deferred callback. If it were bumped inside the callback, a burst (a startup
+  // scan calling this once per row) would race: every call reads the still-zero counter before any
+  // callback runs, all pass the cap, and unbounded setImmediate callbacks pile up that then drain as a
+  // synchronous microtask chain and starve the event loop, so the daemon's IPC accept() never runs.
+  // Re-arming dequeued work through setImmediate (rather than calling it inline from the finally)
+  // returns control to the poll phase between runs.
+  const start = (task: () => void): void => {
     activeBackgroundEnrichments++;
+    // setImmediate (a MACROTASK boundary) is required here, not queueMicrotask: only a macrotask hands
+    // control back to libuv's poll phase, so the IPC accept() runs between enrichment runs.
+    setImmediate(task);
+  };
+  const run = (): void => {
     void (async () => {
       try {
+        if (enrichmentShuttingDown) return; // fenced before this run started — do not reopen the DB during shutdown
         let db: ReturnType<typeof requireDb>;
         try {
           db = requireDb();
@@ -2878,21 +3017,41 @@ function scheduleBackgroundEnrichment(
           return; // superseded/removed/archived since the save — do not repopulate stale graph/entity data (mirrors the search layer's inactive-tier exclusion)
         }
         const result = await runPostInsertEnrichment(db, memoryId, parsed);
+        if (enrichmentShuttingDown) return; // shutdown began during the embed await — do not write after the close checkpoint
         recordEnrichmentResult(db, memoryId, result);
-        invalidateEntityDensityCacheAfterSave();
+        emitPostInsertEnrichmentSubscribers(memoryId, 'post-insert-enrichment-async');
       } catch (bgErr: unknown) {
-        console.warn(`[memory-save] background enrichment failed for #${memoryId}: ${bgErr instanceof Error ? bgErr.message : String(bgErr)}`);
+        enrichmentFailureTotal++;
+        enrichmentLastError = bgErr instanceof Error ? bgErr.message : String(bgErr);
+        enrichmentLastErrorAt = new Date().toISOString();
+        // Rate-limit the per-failure warning so a systemic failure burst cannot spam the log; the
+        // running total + last error stay available via memory_health. Log the first few, then suppress
+        // and fold a suppressed-count summary into the next emitted line.
+        if (enrichmentFailureTotal <= 5 || enrichmentFailureTotal % 100 === 0) {
+          const suppressed = enrichmentSuppressedWarnings;
+          enrichmentSuppressedWarnings = 0;
+          console.warn(`[memory-save] background enrichment failed for #${memoryId}: ${enrichmentLastError} (total=${enrichmentFailureTotal}${suppressed ? `, ${suppressed} suppressed since last log` : ''})`);
+        } else {
+          enrichmentSuppressedWarnings++;
+        }
       } finally {
         activeBackgroundEnrichments--;
-        const next = backgroundEnrichmentQueue.shift();
-        if (next) next();
+        if (!enrichmentShuttingDown) {
+          const next = backgroundEnrichmentQueue.shift();
+          if (next) start(next);
+        }
       }
     })();
   };
   if (activeBackgroundEnrichments < MAX_BACKGROUND_ENRICHMENTS) {
-    setImmediate(run);
-  } else {
+    start(run);
+  } else if (backgroundEnrichmentQueue.length < MAX_QUEUED_ENRICHMENTS) {
     backgroundEnrichmentQueue.push(run);
+  } else {
+    // Overflow: drop rather than grow the queue (and its retained parsed payloads) without bound under
+    // a sustained save flood. The row is enrichment-pending in the commit transaction, so the backfill
+    // path re-enriches it later. Surfaced via the dropped counter in memory_health.
+    enrichmentDroppedTotal++;
   }
 }
 
@@ -2942,28 +3101,6 @@ async function handleMemorySave(args: SaveArgs): Promise<MCPResponse> {
 
 async function handleMemorySaveInner(args: SaveArgs, requestId: string): Promise<MCPResponse> {
   await ensureMemoryRuntimeInitialized('handler:memory_save');
-
-  // Fail fast with a clear message when the target file does not exist, before any
-  // path/db processing flattens it into the generic "unexpected error" (E081). The
-  // caller-supplied path is safe to echo back.
-  if (typeof args.filePath === 'string' && args.filePath.length > 0) {
-    const probePath = path.isAbsolute(args.filePath)
-      ? args.filePath
-      : path.resolve(process.cwd(), args.filePath);
-    if (!fs.existsSync(probePath)) {
-      return createMCPErrorResponse({
-        tool: 'memory_save',
-        error: `File not found: ${probePath}`,
-        code: 'E089',
-        details: { requestId, filePath: probePath },
-        recovery: {
-          hint: 'Create the file before indexing it; for a new spec folder, generate description.json and graph-metadata.json first.',
-          actions: ['Verify the path exists', 'Scaffold the spec folder metadata before saving its docs'],
-          severity: 'warning',
-        },
-      });
-    }
-  }
 
   const restoreBarrier = checkpoints.getRestoreBarrierStatus();
 
@@ -3026,6 +3163,25 @@ async function handleMemorySaveInner(args: SaveArgs, requestId: string): Promise
   await checkDatabaseUpdated();
 
   const validatedPath: string = validateFilePathLocal(file_path);
+
+  // Fail fast with a clear message when the target file does not exist, before any
+  // db processing flattens it into the generic "unexpected error" (E081). Probing
+  // the validated path (not the raw caller path) avoids a path-existence oracle on
+  // unvalidated input.
+  if (!fs.existsSync(validatedPath)) {
+    return createMCPErrorResponse({
+      tool: 'memory_save',
+      error: `File not found: ${validatedPath}`,
+      code: 'E089',
+      details: { requestId, filePath: validatedPath },
+      recovery: {
+        hint: 'Create the file before indexing it; for a new spec folder, generate description.json and graph-metadata.json first.',
+        actions: ['Verify the path exists', 'Scaffold the spec folder metadata before saving its docs'],
+        severity: 'warning',
+      },
+    });
+  }
+
   const canonicalValidatedPath = resolveCanonicalPath(validatedPath);
   const database = requireDb();
 
@@ -3038,7 +3194,7 @@ async function handleMemorySaveInner(args: SaveArgs, requestId: string): Promise
   if (!memoryParser.isMemoryFile(validatedPath)) {
     return createMCPErrorResponse({
       tool: 'memory_save',
-      error: 'File must be a canonical spec document under specs/**/ (spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, handover.md, research.md, resource-map.md, description.json, graph-metadata.json) or a constitutional memory under .opencode/skills/*/constitutional/',
+      error: 'File must be a canonical spec document under specs/**/ (spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, handover.md, research.md, resource-map.md, review-report.md, description.json, graph-metadata.json) or a constitutional memory under .opencode/skills/*/constitutional/',
       code: 'E089',
       details: { requestId, filePath: validatedPath },
       recovery: {
@@ -3227,6 +3383,7 @@ async function handleMemorySaveInner(args: SaveArgs, requestId: string): Promise
     agentId: governanceDecision.normalized.agentId ?? null,
     sessionId: governanceDecision.normalized.sessionId,
   };
+  let idempotencyKey: IdempotencyReceiptKey | null = null;
 
   // PRE-FLIGHT VALIDATION
   let parsedForPreflight: ReturnType<typeof memoryParser.parseMemoryFile> | null = null;
@@ -3384,6 +3541,114 @@ async function handleMemorySaveInner(args: SaveArgs, requestId: string): Promise
     }
   }
 
+  if (!shouldPlanCanonicalSave && isMemoryIdempotencyEnabled()) {
+    try {
+      const parsedForIdempotency = parsedForPreflight ?? memoryParser.parseMemoryFile(validatedPath);
+      // The compared payload IS the fingerprint object: both lookup inputs
+      // below point at this same idempotencySemantics value, so payloadHash
+      // always equals requestFingerprintHash and the receiptKey is derived from
+      // it. Consequence: distinct logical requests always produce distinct
+      // keys, so the same-key/different-payload 'conflict' status can never fire
+      // from this caller (a force-flip yields a key MISS, not a conflict). The
+      // conflict branch below is fail-safe defense-in-depth, not active
+      // protection. To make conflicts detectable, the payload would have to
+      // carry MORE than the key material (e.g. execution-mode flags); it
+      // deliberately does not, so a benign flag flip cannot become a false
+      // hard conflict.
+      const idempotencySemantics = {
+        filePath: canonicalValidatedPath,
+        contentHash: parsedForIdempotency.contentHash,
+        routeAs: routeAs ?? null,
+        mergeModeHint: mergeModeHint ?? null,
+        targetAnchorId: targetAnchorId ?? null,
+        scope: saveScope,
+        // A force-flipped retry is a DIFFERENT logical request: keeping force in
+        // the key material makes it a distinct key (a clean MISS that re-runs),
+        // never a collision with the non-forced receipt.
+        force: force === true,
+      };
+      const lookup = lookupIdempotencyReceipt(database, {
+        operation: 'memory_save',
+        contentHash: parsedForIdempotency.contentHash,
+        requestFingerprint: idempotencySemantics,
+        payload: idempotencySemantics,
+      });
+      idempotencyKey = lookup.key;
+      if (lookup.status === 'replay') {
+        // A receipt is a replay cache, not proof the cached response still
+        // describes the live state. After an A->B->A revert the receipt for A
+        // is intact but the active row now holds B (or, after deletion, a
+        // superseded row), so replaying A's old response would diverge from
+        // the index. Honor the replay ONLY when the active row for this logical
+        // identity still carries the receipt's content_hash AND is the same row
+        // the cached response reports. Content alone is insufficient: a planner
+        // re-create of identical content (the planner branch skips this whole
+        // block and never refreshes the receipt) produces a NEW id, so a
+        // content-only match would replay a response naming a deleted id and
+        // strand a follow-up update by that id. Mirror the handler's own
+        // active-row identity (findSamePathExistingMemory) and exclude retired
+        // tiers so a deprecated/archived predecessor cannot satisfy the match.
+        const activeRow = database.prepare(`
+          SELECT id, content_hash
+          FROM memory_index
+          WHERE spec_folder = ?
+            AND parent_id IS NULL
+            AND (canonical_file_path = ? OR file_path = ?)
+            AND ${targetAnchorId != null ? 'anchor_id = ?' : 'anchor_id IS NULL'}
+            AND ((? IS NULL AND tenant_id IS NULL) OR tenant_id = ?)
+            AND ((? IS NULL AND user_id IS NULL) OR user_id = ?)
+            AND ((? IS NULL AND agent_id IS NULL) OR agent_id = ?)
+            AND ((? IS NULL AND session_id IS NULL) OR session_id = ?)
+            AND COALESCE(importance_tier, 'normal') NOT IN ('deprecated', 'archived')
+          ORDER BY id DESC
+          LIMIT 1
+        `).get(
+          parsedForIdempotency.specFolder,
+          canonicalValidatedPath,
+          validatedPath,
+          ...(targetAnchorId != null ? [targetAnchorId] : []),
+          saveScope.tenantId ?? null, saveScope.tenantId ?? null,
+          saveScope.userId ?? null, saveScope.userId ?? null,
+          saveScope.agentId ?? null, saveScope.agentId ?? null,
+          saveScope.sessionId ?? null, saveScope.sessionId ?? null,
+        ) as { id: number; content_hash: string } | undefined;
+
+        const replayMemoryId = extractMemoryIdFromResponse(lookup.response);
+        if (
+          activeRow
+          && activeRow.content_hash === lookup.key.contentHash
+          && (replayMemoryId == null || activeRow.id === replayMemoryId)
+        ) {
+          return lookup.response;
+        }
+        // Stale receipt for this attempt: drop the cache entry so the
+        // re-indexed write stores its current response (the post-write store
+        // uses ON CONFLICT DO NOTHING and would otherwise lose to and re-serve
+        // the stale receipt), then fall through to the normal save/reindex path.
+        deleteIdempotencyReceiptByKey(database, lookup.key);
+      } else if (lookup.status === 'conflict') {
+        // Unreachable from this caller: payload === requestFingerprint (above),
+        // so a key match implies a payload match and lookup never returns
+        // 'conflict'. Kept as fail-safe defense-in-depth in case the key
+        // material and payload ever diverge.
+        return createMCPErrorResponse({
+          tool: 'memory_save',
+          error: 'Idempotency key conflict: same server-derived key with changed payload',
+          code: 'idempotency_key_conflict',
+          details: { requestId, receiptKey: lookup.key.receiptKey },
+          recovery: {
+            hint: 'Retry the original byte-identical request or submit a fresh logical write.',
+            severity: 'warning',
+          },
+        });
+      }
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : String(error);
+      console.warn(`[memory-save] idempotency receipt lookup skipped: ${message}`);
+      idempotencyKey = null;
+    }
+  }
+
   if (shouldPlanCanonicalSave) {
     const plannerResult = await atomicSaveMemory({
       file_path: validatedPath,
@@ -3425,6 +3690,9 @@ async function handleMemorySaveInner(args: SaveArgs, requestId: string): Promise
       plannerMode,
       scope: saveScope,
       routing: buildRoutedSaveOptions(validatedPath, routeAs, mergeModeHint, targetAnchorId),
+      provenance: (provenanceSource || provenanceActor)
+        ? { provenanceSource, provenanceActor, tool: 'memory_save' }
+        : undefined,
     });
   } catch (error: unknown) {
     if (error instanceof VRuleUnavailableError) {
@@ -3457,7 +3725,7 @@ async function handleMemorySaveInner(args: SaveArgs, requestId: string): Promise
   }
 
   if (typeof result.id === 'number' && result.id > 0 && result.status !== 'unchanged' && result.status !== 'duplicate') {
-    // B13 + H5 FIX: Wrap governance metadata in a transaction with rollback on failure.
+    // Wrap governance metadata in a transaction with rollback on failure.
     // If governance application fails, delete the orphaned memory row to prevent
     // persisted rows without tenant/session/retention metadata.
     const applyGovernanceTx = database.transaction(() => {
@@ -3500,7 +3768,32 @@ async function handleMemorySaveInner(args: SaveArgs, requestId: string): Promise
     }
   }
 
-  return buildSaveResponse({ result, filePath: file_path, asyncEmbedding, requestId });
+  const response = buildSaveResponse({ result, filePath: file_path, asyncEmbedding, requestId });
+  if (idempotencyKey && shouldStoreMemorySaveReceipt(result, response)) {
+    try {
+      const won = storeIdempotencyReceipt(database, idempotencyKey, response, extractMemoryIdFromResponse(response));
+      if (!won) {
+        // A concurrent same-key save already stored the canonical receipt. Replay the
+        // first winner's response so this mutating loser returns the idempotent result
+        // instead of its own separately-created response.
+        const winner = lookupIdempotencyReceiptByKey(database, idempotencyKey);
+        if (winner.status === 'replay') {
+          return winner.response;
+        }
+        if (winner.status === 'conflict') {
+          // Different-payload winner: this loser's mutation landed, so an
+          // error would lie and replaying the winner would answer a
+          // different request — return the loser's response with the
+          // conflict made visible instead of silent.
+          return markResponseWithReceiptStoreConflict(response, idempotencyKey, winner.storedPayloadHash);
+        }
+      }
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : String(error);
+      console.warn(`[memory-save] idempotency receipt store failed; continuing without replay receipt: ${message}`);
+    }
+  }
+  return response;
 }
 
 /* --- 10. ATOMIC MEMORY SAVE --- */
@@ -3514,6 +3807,19 @@ async function handleMemorySaveInner(args: SaveArgs, requestId: string): Promise
  * is restored before the error is returned and before the lock is released.
  */
 async function atomicSaveMemory(params: AtomicSaveParams, options: AtomicSaveOptions = {}): Promise<AtomicSaveResult> {
+  // Scrub once at the entry so every durably persisted artifact (canonical
+  // markdown, continuity merge, pending-file promotion) carries redacted text,
+  // not only the parsed/index copy the parser scrubs. Fail-closed: a scrubber
+  // failure throws and refuses the write rather than persisting raw content.
+  if (typeof params.content === 'string' && params.content.length > 0) {
+    const scrubResult = scrubSecretsDetailed(params.content);
+    if (scrubResult.redactions > 0) {
+      console.warn(
+        `[memory-save] Redacted ${scrubResult.redactions} secret(s) [${scrubResult.kinds.join(', ')}] before durable save`,
+      );
+      params = { ...params, content: scrubResult.text };
+    }
+  }
   const { file_path, routeAs, mergeModeHint, targetAnchorId } = params;
   const database = requireDb();
   const routing = buildRoutedSaveOptions(file_path, routeAs, mergeModeHint, targetAnchorId);
@@ -3675,6 +3981,16 @@ async function atomicSaveMemory(params: AtomicSaveParams, options: AtomicSaveOpt
             filePath: routedTargetDocPath,
             specFolder: indexResult.specFolder,
             memoryId: indexResult.id,
+            statediffActions: [createStatediffAction('upsert', {
+              target: 'memory_index',
+              key: String(indexResult.id),
+              sourceOperation: 'atomic-save',
+              metadata: {
+                filePath: routedTargetDocPath ?? null,
+                specFolder: indexResult.specFolder ?? null,
+                status: indexResult.status ?? null,
+              },
+            })],
           });
         } catch (hookError: unknown) {
           const msg = hookError instanceof Error ? hookError.message : String(hookError);

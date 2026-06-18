@@ -250,6 +250,40 @@ function createTriggerPhraseMockDb(): Database.Database {
   } as unknown as Database.Database;
 }
 
+function createBm25MetadataDb(
+  rowsById: Map<number, { spec_folder: string; importance_tier: string | null }>
+): Database.Database {
+  return {
+    prepare(sql: string) {
+      return {
+        get() {
+          if (sql.includes('memory_fts')) {
+            return { count: 1 };
+          }
+          return null;
+        },
+        all(...ids: unknown[]) {
+          if (sql.includes('SELECT id, spec_folder, importance_tier FROM memory_index')) {
+            return ids
+              .map((id) => {
+                const numericId = Number(id);
+                const metadata = rowsById.get(numericId);
+                if (!metadata) return null;
+                return {
+                  id: numericId,
+                  spec_folder: metadata.spec_folder,
+                  importance_tier: metadata.importance_tier,
+                };
+              })
+              .filter((row): row is { id: number; spec_folder: string; importance_tier: string | null } => row !== null);
+          }
+          return [];
+        },
+      };
+    },
+  } as unknown as Database.Database;
+}
+
 function approxEqual(a: number, b: number, epsilon: number = 0.0001): boolean {
   return Math.abs(a - b) < epsilon;
 }
@@ -323,6 +357,12 @@ describe('Hybrid Search Unit Tests (T031+)', () => {
 
     beforeEach(() => {
       bm25Index.resetIndex();
+    });
+
+    afterEach(() => {
+      // Tests that exercise the legacy deprecated-exclusion path opt out via this
+      // flag; always clear it so the default (include cold tiers) is restored.
+      delete process.env.SPECKIT_INCLUDE_ARCHIVED_DEFAULT;
     });
 
     it('T031-BM25-01: is_bm25_available() returns false when empty', () => {
@@ -428,7 +468,7 @@ describe('Hybrid Search Unit Tests (T031+)', () => {
       );
     });
 
-    it('T031-BM25-08: bm25_search() excludes deprecated memory rows', () => {
+    it('T031-BM25-08: bm25_search() includes deprecated rows by default, excludes them when archived retrieval is disabled', () => {
       const metadataDb = {
         prepare(sql: string) {
           if (sql.includes('memory_fts')) {
@@ -473,11 +513,126 @@ describe('Hybrid Search Unit Tests (T031+)', () => {
         'shared transaction filter regression candidate deprecated document with enough words for indexing',
       );
 
-      const results = hybridSearch.bm25Search('transaction filter regression candidate', { limit: 10 });
+      // Default: cold/deprecated rows are INCLUDED (FSRS retrievability ranks them lower).
+      const includedIds = hybridSearch
+        .bm25Search('transaction filter regression candidate', { limit: 10 })
+        .map((result) => String(result.id));
+      expect(includedIds).toContain('1');
+      expect(includedIds).toContain('2');
+
+      // Flag off restores the legacy hard exclusion.
+      process.env.SPECKIT_INCLUDE_ARCHIVED_DEFAULT = 'false';
+      try {
+        const excludedIds = hybridSearch
+          .bm25Search('transaction filter regression candidate', { limit: 10 })
+          .map((result) => String(result.id));
+        expect(excludedIds).toContain('1');
+        expect(excludedIds).not.toContain('2');
+      } finally {
+        delete process.env.SPECKIT_INCLUDE_ARCHIVED_DEFAULT;
+      }
+    });
+
+    it('bm25_search() fills scoped limit after higher-ranked out-of-scope hits are filtered', () => {
+      const rowsById = new Map<number, { spec_folder: string; importance_tier: string | null }>();
+      const docs = [
+        { id: 1, folder: 'specs/other', tier: 'normal', text: `${'scope survivor '.repeat(12)}outside candidate with enough lexical context` },
+        { id: 2, folder: 'specs/other', tier: 'normal', text: `${'scope survivor '.repeat(11)}outside candidate with enough lexical context` },
+        { id: 3, folder: 'specs/other', tier: 'normal', text: `${'scope survivor '.repeat(10)}outside candidate with enough lexical context` },
+        { id: 4, folder: 'specs/target', tier: 'normal', text: 'scope survivor target candidate alpha with enough lexical context for indexing' },
+        { id: 5, folder: 'specs/target', tier: 'normal', text: 'scope survivor target candidate beta with enough lexical context for indexing' },
+        { id: 6, folder: 'specs/target/child', tier: 'normal', text: 'scope survivor target child candidate with enough lexical context for indexing' },
+      ];
+
+      hybridSearch.init(createBm25MetadataDb(rowsById), mockVectorSearch, mockGraphSearch);
+      const bm25 = bm25Index.getIndex();
+      for (const doc of docs) {
+        rowsById.set(doc.id, { spec_folder: doc.folder, importance_tier: doc.tier });
+        bm25.addDocument(String(doc.id), doc.text);
+      }
+
+      const results = hybridSearch.bm25Search('scope survivor', { limit: 3, specFolder: 'specs/target' });
+
+      expect(results).toHaveLength(3);
+      expect(results.every((result) => ['4', '5', '6'].includes(String(result.id)))).toBe(true);
+    });
+
+    it('bm25_search() fills limit after higher-ranked deprecated hits are filtered', () => {
+      process.env.SPECKIT_INCLUDE_ARCHIVED_DEFAULT = 'false'; // exercise the legacy exclusion path
+      const rowsById = new Map<number, { spec_folder: string; importance_tier: string | null }>();
+      const docs = [
+        { id: 1, folder: 'specs/active', tier: 'deprecated', text: `${'deprecated survivor '.repeat(12)}old candidate with enough lexical context` },
+        { id: 2, folder: 'specs/active', tier: 'deprecated', text: `${'deprecated survivor '.repeat(11)}old candidate with enough lexical context` },
+        { id: 3, folder: 'specs/active', tier: 'deprecated', text: `${'deprecated survivor '.repeat(10)}old candidate with enough lexical context` },
+        { id: 4, folder: 'specs/active', tier: 'normal', text: 'deprecated survivor active candidate alpha with enough lexical context for indexing' },
+        { id: 5, folder: 'specs/active', tier: 'normal', text: 'deprecated survivor active candidate beta with enough lexical context for indexing' },
+        { id: 6, folder: 'specs/active', tier: 'important', text: 'deprecated survivor active candidate gamma with enough lexical context for indexing' },
+      ];
+
+      hybridSearch.init(createBm25MetadataDb(rowsById), mockVectorSearch, mockGraphSearch);
+      const bm25 = bm25Index.getIndex();
+      for (const doc of docs) {
+        rowsById.set(doc.id, { spec_folder: doc.folder, importance_tier: doc.tier });
+        bm25.addDocument(String(doc.id), doc.text);
+      }
+
+      const results = hybridSearch.bm25Search('deprecated survivor', { limit: 3 });
       const ids = results.map((result) => String(result.id));
 
-      expect(ids).toContain('1');
-      expect(ids).not.toContain('2');
+      expect(results).toHaveLength(3);
+      expect(ids).toEqual(['4', '5', '6']);
+    });
+
+    it('bm25_search() preserves unscoped order when metadata filtering removes nothing', () => {
+      const rowsById = new Map<number, { spec_folder: string; importance_tier: string | null }>();
+      const docs = [
+        { id: 1, folder: 'specs/stable', text: `${'stable order '.repeat(9)}candidate one with enough lexical context` },
+        { id: 2, folder: 'specs/stable', text: `${'stable order '.repeat(7)}candidate two with enough lexical context` },
+        { id: 3, folder: 'specs/stable', text: `${'stable order '.repeat(5)}candidate three with enough lexical context` },
+        { id: 4, folder: 'specs/stable', text: `${'stable order '.repeat(3)}candidate four with enough lexical context` },
+        { id: 5, folder: 'specs/stable', text: `${'stable order '.repeat(2)}candidate five with enough lexical context` },
+      ];
+
+      hybridSearch.init(createBm25MetadataDb(rowsById), mockVectorSearch, mockGraphSearch);
+      const bm25 = bm25Index.getIndex();
+      for (const doc of docs) {
+        rowsById.set(doc.id, { spec_folder: doc.folder, importance_tier: 'normal' });
+        bm25.addDocument(String(doc.id), doc.text);
+      }
+      const expectedIds = bm25.search('stable order', 3).map((result) => result.id);
+
+      const results = hybridSearch.bm25Search('stable order', { limit: 3 });
+
+      expect(results.map((result) => String(result.id))).toEqual(expectedIds);
+    });
+
+    it('bm25_search() fills scoped+non-deprecated limit past higher-ranked out-of-scope and deprecated hits', () => {
+      process.env.SPECKIT_INCLUDE_ARCHIVED_DEFAULT = 'false'; // exercise the legacy exclusion path
+      const rowsById = new Map<number, { spec_folder: string; importance_tier: string | null }>();
+      // Unique ids and a unique query term keep this case independent of other tests'
+      // in-memory index state. The highest-ranked hits are out-of-scope or deprecated (or
+      // both); only the three lower-ranked in-scope, non-deprecated docs should survive.
+      // Both the scope and tier filters must apply before the limit cut, or this under-returns.
+      const docs = [
+        { id: 201, folder: 'specs/other', tier: 'normal', text: `${'combosurvivor '.repeat(12)}out-of-scope candidate with enough lexical context` },
+        { id: 202, folder: 'specs/target', tier: 'deprecated', text: `${'combosurvivor '.repeat(11)}in-scope deprecated candidate with enough lexical context` },
+        { id: 203, folder: 'specs/other', tier: 'deprecated', text: `${'combosurvivor '.repeat(10)}out-of-scope deprecated candidate with enough lexical context` },
+        { id: 204, folder: 'specs/target', tier: 'normal', text: 'combosurvivor target candidate alpha with enough lexical context for indexing' },
+        { id: 205, folder: 'specs/target', tier: 'important', text: 'combosurvivor target candidate beta with enough lexical context for indexing' },
+        { id: 206, folder: 'specs/target/child', tier: 'normal', text: 'combosurvivor target child candidate with enough lexical context for indexing' },
+      ];
+
+      hybridSearch.init(createBm25MetadataDb(rowsById), mockVectorSearch, mockGraphSearch);
+      const bm25 = bm25Index.getIndex();
+      for (const doc of docs) {
+        rowsById.set(doc.id, { spec_folder: doc.folder, importance_tier: doc.tier });
+        bm25.addDocument(String(doc.id), doc.text);
+      }
+
+      const results = hybridSearch.bm25Search('combosurvivor', { limit: 3, specFolder: 'specs/target' });
+
+      expect(results).toHaveLength(3);
+      expect(results.every((result) => ['204', '205', '206'].includes(String(result.id)))).toBe(true);
     });
   });
 
@@ -1281,8 +1436,15 @@ describe('Degree channel fusion regression coverage', () => {
       }
     );
 
-    expect(results[0]?.id).toBe(2);
-    expect((results[0] as Record<string, unknown>).sources).toContain('degree');
+    // SPECKIT_COSINE_TOPN_REORDER (default-ON) re-asserts absolute cosine over the
+    // fused RRF/degree magnitudes at the head, so the higher-cosine id 1 (0.9) now
+    // leads the degree-promoted id 2 (0.8). The degree ranking is still kept in the
+    // final fusion — id 2 survives with its degree provenance, it just no longer
+    // wins position 1.
+    expect(results[0]?.id).toBe(1);
+    const degreePromoted = results.find((r) => r.id === 2);
+    expect(degreePromoted).toBeDefined();
+    expect((degreePromoted as Record<string, unknown>).sources).toContain('degree');
   });
 
   it('T022: useGraph=false also suppresses the degree channel', async () => {

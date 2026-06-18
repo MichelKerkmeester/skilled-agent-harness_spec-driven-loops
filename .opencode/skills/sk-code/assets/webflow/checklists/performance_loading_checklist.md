@@ -1,6 +1,13 @@
 ---
 title: Performance Loading Checklist - Deferred Loading Verification
 description: Measurable checks for interaction-gated and deferred loading changes.
+trigger_phrases:
+  - "performance loading checklist"
+  - "deferred loading verification"
+  - "interaction gated checklist"
+  - "startup wins measurement"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Performance Loading Checklist - Deferred Loading Verification

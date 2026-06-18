@@ -15,6 +15,7 @@ import {
   withTimeout, HOOK_TIMEOUT_MS, COMPACTION_TOKEN_BUDGET, getRequiredSessionId,
 } from './shared.js';
 import { ensureStateDir, updateState } from './hook-state.js';
+import { buildWarmMemoryContextSection } from '../spec-memory-cli-fallback.js';
 import { mergeCompactBrief, type MergeInput } from '@spec-kit/shared/compact-merger';
 import { autoSurfaceAtCompaction } from '../../hooks/memory-surface.js';
 import {
@@ -26,6 +27,7 @@ import {
   CANONICAL_FOLD_VERSION,
   getUnicodeRuntimeFingerprint,
 } from '@spec-kit/shared/unicode-normalization';
+import { refreshAuthoredContinuitySnapshot } from '../../lib/continuity/authored-continuity-snapshot.js';
 
 const COMPACT_FEEDBACK_GUARDS = [
   /^\s*\[SOURCE:\s*hook-cache/i,
@@ -110,15 +112,15 @@ function extractAttentionSignals(lines: string[]): string[] {
 }
 
 /** Detect active spec folder paths from transcript lines */
-function detectSpecFolder(lines: string[]): string | null {
-  const specFolderRe = /\.opencode\/specs\/[\w/-]+/g;
+export function detectSpecFolder(lines: string[]): string | null {
+  const specFolderRe = /\.opencode\/specs\/[^\s"'`]+/g;
   const freq = new Map<string, number>();
   for (const line of lines) {
     const matches = line.match(specFolderRe);
     if (matches) {
       for (const m of matches) {
-        // Normalize to folder (strip trailing file component if present)
-        const folder = m.replace(/\/[^/]+\.\w+$/, '');
+        const candidate = m.replace(/[),.;:!?]+$/u, '');
+        const folder = candidate.replace(/\/[^/]+\.[A-Za-z0-9]+$/u, '');
         freq.set(folder, (freq.get(folder) ?? 0) + 1);
       }
     }
@@ -126,6 +128,12 @@ function detectSpecFolder(lines: string[]): string | null {
   if (freq.size === 0) return null;
   // Return the most-referenced spec folder
   return [...freq.entries()].sort((a, b) => b[1] - a[1])[0][0];
+}
+
+function authoredSnapshotEnabled(input: Record<string, unknown>): boolean {
+  return input.authored_continuity_snapshot === true
+    || input.continuity_snapshot === 'authored'
+    || process.env.SPECKIT_AUTHORED_CONTINUITY_SNAPSHOT === '1';
 }
 
 /** Build compact context from transcript analysis (legacy fallback) */
@@ -200,6 +208,18 @@ function renderTriggeredMemories(
   });
 
   return `## Relevant Memories\n${lines.join('\n')}`;
+}
+
+async function renderCliCompactionFallback(sessionState: string): Promise<string> {
+  const section = await buildWarmMemoryContextSection({
+    title: 'Spec Memory CLI Fallback',
+    input: sessionState,
+    timeoutMs: 600,
+    onResult: (result) => {
+      hookLog('info', 'compact-inject', `CLI warm fallback ${result.status} reason=${result.reason ?? 'none'} exit=${result.exitCode ?? 'none'} duration=${result.durationMs}ms`);
+    },
+  });
+  return section ? `## ${section.title}\n${section.content}` : '';
 }
 
 /**
@@ -283,7 +303,10 @@ async function buildMergedContext(transcriptLines: string[]): Promise<string> {
 
   const autoSurfaced = await autoSurfaceAtCompaction(sessionState);
   if (!autoSurfaced) {
-    return merged.text;
+    const cliFallback = await renderCliCompactionFallback(sessionState || sanitizedLines.slice(-10).join('\n'));
+    return cliFallback && merged.text
+      ? `${cliFallback}\n\n${merged.text}`
+      : (cliFallback || merged.text);
   }
 
   hookLog(
@@ -373,6 +396,22 @@ async function main(): Promise<void> {
   if (input.transcript_path) {
     transcriptLines = tailFile(input.transcript_path, 50);
     hookLog('info', 'compact-inject', `Read ${transcriptLines.length} transcript lines`);
+  }
+
+  try {
+    const snapshotResult = refreshAuthoredContinuitySnapshot({
+      enabled: authoredSnapshotEnabled(input),
+      specFolder: detectSpecFolder(transcriptLines),
+      sessionId,
+      actor: 'precompact-hook',
+    });
+    if (snapshotResult.status === 'updated') {
+      hookLog('info', 'compact-inject', `Authored continuity snapshot refreshed ${snapshotResult.docsUpdated.length} doc(s); memory records=${snapshotResult.createdMemoryRecords}; index mutations=${snapshotResult.indexMutations}`);
+    } else if (snapshotResult.status === 'skipped') {
+      hookLog('warn', 'compact-inject', `Authored continuity snapshot skipped: ${snapshotResult.reason}`);
+    }
+  } catch (error: unknown) {
+    hookLog('warn', 'compact-inject', `Authored continuity snapshot failed: ${error instanceof Error ? error.message : String(error)}`);
   }
 
   // Use the 3-source merge pipeline, falling back to legacy on error

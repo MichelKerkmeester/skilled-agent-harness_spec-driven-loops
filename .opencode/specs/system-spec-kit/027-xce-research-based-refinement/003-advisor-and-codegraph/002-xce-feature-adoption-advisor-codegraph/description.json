@@ -1,0 +1,29 @@
+{
+  "level": "phase",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph",
+  "description": "Completed phase parent: adopted proven spec-027 memory-system features into the skill advisor and code graph systems across nine implemented child phases",
+  "keywords": [
+    "feature",
+    "specification",
+    "adopt",
+    "proven",
+    "spec-027",
+    "memory-system",
+    "features",
+    "skill",
+    "advisor",
+    "code",
+    "graph",
+    "systems"
+  ],
+  "lastUpdated": "2026-06-11T00:00:00.000Z",
+  "specId": "002",
+  "folderSlug": "xce-feature-adoption-advisor-codegraph",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "003-advisor-and-codegraph"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

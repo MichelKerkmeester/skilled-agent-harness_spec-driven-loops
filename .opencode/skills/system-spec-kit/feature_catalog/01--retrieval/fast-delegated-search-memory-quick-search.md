@@ -63,4 +63,4 @@ The constructed `SearchArgs` are passed directly to `handleMemorySearch()`, the 
 - Feature file path: `01--retrieval/fast-delegated-search-memory-quick-search.md`
 Related references:
 - [tool-result-extraction-to-working-memory.md](tool-result-extraction-to-working-memory.md) — Tool-result extraction to working memory
-- [session-recovery-spec-kit-resume.md](session-recovery-spec-kit-resume.md) — Session recovery via /spec_kit:resume
+- [session-recovery-spec-kit-resume.md](session-recovery-spec-kit-resume.md) — Session recovery via /speckit:resume

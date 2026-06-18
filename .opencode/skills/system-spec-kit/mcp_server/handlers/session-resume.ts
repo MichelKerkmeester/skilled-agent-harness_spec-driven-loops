@@ -543,7 +543,7 @@ export async function handleSessionResume(args: SessionResumeArgs): Promise<MCPR
     }
   }
 
-  // F052: Record memory recovery metric for session_resume
+  // Record memory recovery metric for session_resume
   recordMetricEvent({ kind: 'memory_recovery' });
 
   // Record bootstrap telemetry

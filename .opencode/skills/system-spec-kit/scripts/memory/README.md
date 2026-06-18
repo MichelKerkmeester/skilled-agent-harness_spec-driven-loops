@@ -141,7 +141,7 @@ scripts/memory/
 | Boundary | Rule |
 |---|---|
 | Inputs | Prefer structured JSON through `--stdin` or `--json`. JSON file mode is valid when the file path is session-scoped. |
-| Outputs | Write generated context artifacts, packet metadata, memory index updates, embedding rows, reports, or cleanup results only through explicit CLI behavior. |
+| Outputs | Write generated context artifacts, packet metadata, reports, and cleanup results. Step 11.5 only gates save-time canonical spec-doc indexing; embedding/vector rows can also be written by the Step 12 retry queue and memory maintenance CLIs. |
 | Ownership | This folder owns CLI surfaces for memory save and maintenance. MCP tool schemas, database connection internals, templates, and spec-folder authoring rules live outside this folder. |
 
 Canonical save flow:
@@ -178,7 +178,8 @@ Canonical save flow:
                    │
                    ▼
 ╭──────────────────────────────────────────╮
-│ context artifacts and index are updated  │
+│ context artifacts are updated; indexing  │
+│ may run, defer or hand off to MCP scan    │
 ╰──────────────────────────────────────────╯
 ```
 

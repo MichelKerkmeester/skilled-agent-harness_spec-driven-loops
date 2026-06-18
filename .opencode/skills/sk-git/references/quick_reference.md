@@ -1,6 +1,14 @@
 ---
 title: Git Workflows - Quick Reference
 description: One-page cheat sheet for git-worktrees, git-commit, and git-finish workflows.
+trigger_phrases:
+  - "git workflow cheat sheet"
+  - "worktree commit finish phases"
+  - "skill selection flowchart"
+  - "branch strategy table"
+  - "essential git commands"
+importance_tier: normal
+contextType: general
 ---
 
 # Git Workflows - Quick Reference

@@ -1,0 +1,26 @@
+{
+  "specFolder": "018-reindex-scan-responsiveness-and-cancellation",
+  "description": "Feature Specification: reindex-scan responsiveness and cancellation",
+  "keywords": [
+    "feature",
+    "specification",
+    "reindex-scan",
+    "responsiveness",
+    "cancellation"
+  ],
+  "lastUpdated": "2026-06-17T12:03:13.967Z",
+  "specId": "018",
+  "folderSlug": "reindex-scan-responsiveness-and-cancellation",
+  "parentChain": [
+    "..",
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "002-memory-store-and-search"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "17-06-26_13-03__made-the-background-memory-index-scan-yield-the.md"
+  ]
+}

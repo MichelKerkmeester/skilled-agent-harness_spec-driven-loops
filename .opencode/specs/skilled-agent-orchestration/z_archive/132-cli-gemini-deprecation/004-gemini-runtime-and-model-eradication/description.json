@@ -1,0 +1,26 @@
+{
+  "level": "3",
+  "specFolder": "skilled-agent-orchestration/132-cli-gemini-deprecation/004-gemini-runtime-and-model-eradication",
+  "description": "Feature Specification: Eradicate Gemini as a host runtime and as a model everywhere outside specs",
+  "keywords": [
+    "feature",
+    "specification",
+    "eradicate",
+    "gemini",
+    "host",
+    "runtime",
+    "model",
+    "everywhere",
+    "outside",
+    "specs"
+  ],
+  "lastUpdated": "2026-06-10T04:53:30.693Z",
+  "specId": "004",
+  "folderSlug": "gemini-runtime-and-model-eradication",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "132-cli-gemini-deprecation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

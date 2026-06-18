@@ -6,11 +6,11 @@
 // Deprecated/temporary memories at scale.
 import { checkDatabaseUpdated } from '../core/index.js';
 import { ensureMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-guard.js';
-import { invalidateEntityDensityCache } from '../lib/search/entity-density.js';
 import * as vectorIndex from '../lib/search/vector-index.js';
 import * as checkpoints from '../lib/storage/checkpoints.js';
 import * as mutationLedger from '../lib/storage/mutation-ledger.js';
 import * as causalEdges from '../lib/storage/causal-edges.js';
+import { createStatediffAction } from '../lib/storage/statediff.js';
 import { createMCPErrorResponse, createMCPSuccessResponse } from '../lib/response/envelope.js';
 import { toErrorMessage } from '../utils/index.js';
 
@@ -25,22 +25,6 @@ import type { MCPResponse } from './types.js';
 // Feature catalog: Tier-based bulk deletion (memory_bulk_delete)
 // Feature catalog: Per-memory history log
 
-let warnedEntityDensityInvalidationFailure = false;
-
-function invalidateEntityDensityCacheAfterBulkDelete(): void {
-  try {
-    invalidateEntityDensityCache();
-  } catch (err: unknown) {
-    if (warnedEntityDensityInvalidationFailure) {
-      return;
-    }
-    warnedEntityDensityInvalidationFailure = true;
-    const message = err instanceof Error ? err.message : String(err);
-    console.warn(`[memory-bulk-delete] Entity-density cache invalidation failed after bulk delete: ${message}`);
-  }
-}
-
-
 /* ───────────────────────────────────────────────────────────────
    1. TYPES
 ──────────────────────────────────────────────────────────────── */
@@ -53,8 +37,41 @@ interface BulkDeleteArgs {
   skipCheckpoint?: boolean;
 }
 
+function hasDeletedAtColumn(database: ReturnType<typeof vectorIndex.getDb>): boolean {
+  if (!database || !('prepare' in database)) return false;
+  try {
+    const columns = database.prepare('PRAGMA table_info(memory_index)').all() as Array<{ name: string }>;
+    return columns.some((column) => column.name === 'deleted_at');
+  } catch {
+    return false;
+  }
+}
+
+function isSoftDeleteTombstonesEnabled(): boolean {
+  return process.env.SPECKIT_SOFT_DELETE_TOMBSTONES?.trim().toLowerCase() === 'true';
+}
+
+function tombstoneMemory(database: NonNullable<ReturnType<typeof vectorIndex.getDb>>, memoryId: number): boolean {
+  if (!isSoftDeleteTombstonesEnabled()) {
+    return vectorIndex.deleteMemory(memoryId, database);
+  }
+
+  if (!hasDeletedAtColumn(database)) {
+    return vectorIndex.deleteMemory(memoryId, database);
+  }
+
+  const deletedAt = new Date().toISOString();
+  const result = database.prepare(`
+    UPDATE memory_index
+    SET deleted_at = COALESCE(deleted_at, ?),
+        updated_at = datetime('now')
+    WHERE id = ?
+  `).run(deletedAt, memoryId);
+  return result.changes > 0;
+}
+
 /* ───────────────────────────────────────────────────────────────
-   2. HANDLER
+    2. HANDLER
 ──────────────────────────────────────────────────────────────── */
 
 async function handleMemoryBulkDelete(args: BulkDeleteArgs): Promise<MCPResponse> {
@@ -148,7 +165,6 @@ async function handleMemoryBulkDelete(args: BulkDeleteArgs): Promise<MCPResponse
   const affectedCount = countResult.count;
 
   if (affectedCount === 0) {
-    invalidateEntityDensityCacheAfterBulkDelete();
     return createMCPSuccessResponse({
       tool: 'memory_bulk_delete',
       summary: `No spec-doc records found with tier="${tier}"${specFolder ? ` in folder "${specFolder}"` : ''}${olderThanDays ? ` older than ${olderThanDays} days` : ''}`,
@@ -228,7 +244,7 @@ async function handleMemoryBulkDelete(args: BulkDeleteArgs): Promise<MCPResponse
 
   const bulkDeleteTx = database.transaction(() => {
     for (const memory of memoriesToDelete) {
-      if (vectorIndex.deleteMemory(memory.id)) {
+      if (tombstoneMemory(database, memory.id)) {
         // Record DELETE history after confirmed delete (no FK, history rows survive).
         try {
           recordHistory(
@@ -249,13 +265,16 @@ async function handleMemoryBulkDelete(args: BulkDeleteArgs): Promise<MCPResponse
         // Propagate edge-cleanup errors to fail the transaction.
         // Previously errors were caught and logged, leaving orphan causal edges
         // When memory rows were successfully deleted but edge cleanup failed.
-        causalEdges.deleteEdgesForMemory(String(memory.id));
+        causalEdges.deleteEdgesForMemory(String(memory.id), {
+          reason: 'memory row mutation cleanup',
+          command: 'memory-bulk-delete.handleMemoryBulkDelete',
+          restoreContext: { memoryId: memory.id, tier, specFolder: memory.spec_folder, checkpointName },
+        });
       }
     }
   });
 
   bulkDeleteTx();
-  invalidateEntityDensityCacheAfterBulkDelete();
 
   // Record in mutation ledger (single entry for bulk operation)
   const ledgerRecorded = appendMutationLedgerSafe(database, {
@@ -281,7 +300,17 @@ async function handleMemoryBulkDelete(args: BulkDeleteArgs): Promise<MCPResponse
   if (deletedCount > 0) {
     let postMutationHooks: import('./mutation-hooks.js').MutationHookResult;
     try {
-      postMutationHooks = runPostMutationHooks('bulk-delete', { specFolder, tier, deletedCount });
+      postMutationHooks = runPostMutationHooks('bulk-delete', {
+        specFolder,
+        tier,
+        deletedCount,
+        statediffActions: deletedIds.map((id) => createStatediffAction('delete', {
+          target: 'memory_index',
+          key: String(id),
+          sourceOperation: 'bulk-delete',
+          metadata: { tier, specFolder: specFolder ?? null },
+        })),
+      });
     } catch (hookError: unknown) {
       const msg = hookError instanceof Error ? hookError.message : String(hookError);
       postMutationHooks = {

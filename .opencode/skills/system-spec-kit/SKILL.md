@@ -37,7 +37,7 @@ Think of it as a "project folder" for AI-assisted development - it keeps context
 - "Add/implement/create [feature]"
 - "Fix/update/refactor [code]"
 - "Modify/change [configuration]"
-- Any keyword: add, implement, fix, update, create, modify, rename, delete, configure, analyze, phase
+- Positive keywords include add, implement, fix, update, create, modify, rename, delete and configure. The authoritative Gate 3 classifier intentionally omits `analyze`, `decompose` and `phase` from positive triggers; `analyze` is a read-only disqualifier unless a real write, memory-save or resume trigger is also present.
 
 **Example triggers:**
 - "Add email validation to the signup form" → Level 1-2
@@ -58,7 +58,7 @@ Status: ✅ This requirement applies immediately once file edits are requested.
 
 ### Distributed Governance Rule
 
-Any agent writing authored spec folder docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`, `decision-record.md`, `handover.md`, `review-report.md`, `debug-delegation.md`, `resource-map.md` (optional)) MUST use contract-backed templates through `create.sh` or the inline renderer. This is a workflow-required gate, not a runtime hook: run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` after authored spec-doc writes and before completion claims, then route continuity updates through /memory:save. Deep-research workflow-owned packet markdown (`research/iterations/*.md`, `research/deep-research-*.md`, and progressive `research/research.md` loop updates) is exempt from that generic per-write rule; `/deep:start-research-loop` must instead run targeted strict validation after every `spec.md` mutation it performs. @deep-research retains exclusive write access for `research/research.md`; @debug retains exclusive write access for `debug-delegation.md`.
+Any agent writing authored spec folder docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`, `decision-record.md`, `handover.md`, `review-report.md`, `debug-delegation.md`, `resource-map.md` (optional)) MUST use contract-backed templates through `create.sh` or the inline renderer. This is a workflow-required gate, not a runtime hook: run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` after authored spec-doc writes and before completion claims, then route continuity updates through /memory:save. Deep-research workflow-owned packet markdown (`research/iterations/*.md`, `research/deep-research-*.md`, and progressive `research/research.md` loop updates) is exempt from that generic per-write rule; `/deep:research` must instead run targeted strict validation after every `spec.md` mutation it performs. @deep-research retains exclusive write access for `research/research.md`; @debug retains exclusive write access for `debug-delegation.md`.
 
 - `handover.md` stays in the canonical recovery ladder and is maintained through `/memory:save` handover_state routing using the handover template for initial creation.
 - `review-report.md` remains owned by `@deep-review` when deep review workflows synthesize findings.
@@ -108,7 +108,7 @@ Primary operational scripts:
 - `spec/recommend-level.sh`
 - `mcp_server/lib/templates/level-contract-resolver.ts`
 
-CLI exit codes:
+Spec-script exit codes (`spec/*.sh`; distinct from the daemon-backed memory CLI taxonomy in §3):
 - `0`: success.
 - `1`: user error such as bad flags or invalid input.
 - `2`: validation error.
@@ -122,7 +122,7 @@ CLI exit codes:
 | CONDITIONAL | If intent signals match   | Intent-mapped references     |
 | ON_DEMAND   | Only on explicit request   | Deep-dive quality standards  |
 
-`references/workflows/quick_reference.md` is the primary first-touch command surface. Keep the compact `spec_kit` and `memory` command map there, including `/speckit:plan --intake-only` as the standalone intake entry, `/speckit:plan` and `/speckit:complete` smart delegation notes, and the pointer from `/deep:start-research-loop` to `../deep-research/references/protocol/spec_check_protocol.md`, and use this file only to point readers to it rather than duplicating the full matrix.
+`references/workflows/quick_reference.md` is the primary first-touch command surface. Keep the compact `spec_kit` and `memory` command map there, including `/speckit:plan --intake-only` as the standalone intake entry, `/speckit:plan` and `/speckit:complete` smart delegation notes, and the pointer from `/deep:research` to `../deep-loop-workflows/deep-research/references/protocol/spec_check_protocol.md`, and use this file only to point readers to it rather than duplicating the full matrix.
 
 ### Smart Router Pseudocode
 
@@ -408,15 +408,19 @@ def route_speckit_resources(task):
 
 ### Spec Kit Memory
 
-Spec Kit Memory provides context retrieval, search, save, checkpoint, health, and indexing surfaces. Use `memory_context()` or `/speckit:resume` for recovery; use `memory_search()` for targeted retrieval; use `generate-context.js` for canonical saves. Detailed behavior, flags, scoring, and MCP tool reference live in `references/memory/memory_system.md`, `references/memory/save_workflow.md`, and `mcp_server/ENV_REFERENCE.md`. Launcher/daemon reliability is operator-tunable via the `SPECKIT_LAUNCHER_LOG`, `SPECKIT_LEASE_PROBE_RETRIES`, `SPECKIT_STOP_HOOK_ORPHAN_SWEEP`, and `SPECKIT_DAEMON_REELECTION` (default-on in the runtime configs: a disposing owner releases the shared daemon for a live secondary, and a fresh session reaps the released daemon before respawn for a single writer) flags, all documented in `mcp_server/ENV_REFERENCE.md`.
+Spec Kit Memory provides context retrieval, search, save, checkpoint, health, and indexing surfaces. Use `memory_context()` or `/speckit:resume` for recovery; use `memory_search()` for targeted retrieval; use `generate-context.js` for canonical saves.
+
+The surface is dual-stack: alongside the `mk-spec-memory` MCP registration, all 39 tools are callable through the full-parity daemon-backed CLI `node .opencode/bin/spec-memory.cjs <tool_name> [--json '{...}' | --param value]` against the same daemon. MCP remains the primary in-session transport today; use the CLI when MCP transport is missing, failed or not reconnecting while the daemon is warm, and for hooks, cron, CI and operator shell diagnostics. Recovery example: `node .opencode/bin/spec-memory.cjs memory_context --json '{"input":"resume previous work","mode":"resume"}' --format json --timeout-ms 3000`. CLI exit taxonomy: `0` success, `1` runtime, `64` usage/schema, `69` protocol/dist mismatch or stale dist, `75` retryable daemon error. Prompt-time callers must pass `--warm-only` (probe-only, exit `75` instead of cold-spawning); non-prompt contexts auto-spawn the daemon through the launcher. Because this CLI already has full parity, a later evolution could make it the primary or sole transport without breaking existing MCP workflows; that is a possible direction, not a committed plan. `--format jsonl` renders one complete JSON payload on one stdout line; it is not streaming JSON Lines. Full cross-daemon CLI behavior, recovery, stale-dist build commands, per-command `--help`, offline smoke, and safety rules live in [`references/cli/daemon_cli_reference.md`](references/cli/daemon_cli_reference.md). See `mcp_server/ENV_REFERENCE.md` ("CLI front door") for the warm-only/prompt-time env flags. Detailed behavior, flags, scoring, and MCP tool reference live in `references/memory/memory_system.md`, `references/memory/save_workflow.md`, and `mcp_server/ENV_REFERENCE.md`. Launcher/daemon reliability is operator-tunable via the `SPECKIT_LAUNCHER_LOG`, `SPECKIT_LEASE_PROBE_RETRIES`, `SPECKIT_STOP_HOOK_ORPHAN_SWEEP`, and `SPECKIT_DAEMON_REELECTION` (default-on in the runtime configs: a disposing owner releases the shared daemon for a live secondary, and a fresh session reaps the released daemon before respawn for a single writer) flags, all documented in `mcp_server/ENV_REFERENCE.md`.
 
 `memory_index_scan` is self-maintaining: overlapping scan calls return a `coalesced:true` success envelope instead of a raw E429 error. Rows become BM25/FTS-searchable immediately as `pending` while vectors drain (`complete_with_pending_vectors` with a `pendingVectors` count). Move reconciliation heals renamed spec folders by packet identity without re-embedding. Each scan also runs a bounded global orphan sweep. `memory_health` now includes an `index` block with a summary enum (`healthy_fresh`, `healthy_lagging_vectors`, `stale_needs_scan`, `degraded_needs_repair`, `unavailable`) and counts for indexed/pending/failed rows.
 
 `memory_embedding_reconcile` is a net-new public MCP maintenance tool on the `mk-spec-memory` surface. It converges `embedding_status` for vector-present stale rows and resets genuinely missing-vector retry rows inside one guarded `BEGIN IMMEDIATE` transaction. It runs dry-run by default so operators can inspect the proposed changes before committing them.
 
-### Reranking (removed)
+The current memory baseline is schema v37. The 027 hardening features ship behind conservative defaults: semantic-trigger shadow matching, session-trace causal inference, feedback-retention reducers, soft-delete tombstones, memory idempotency receipts, authored continuity snapshots, and completion freshness all stay opt-in. `source_kind` provenance, retrieval observability, stale-audit signals, and tool-ownership linting are documented in the memory and ENV references rather than duplicated here.
 
-Cross-encoder reranking was removed in the 014 deprecation: the spec-memory local rerank path was removed in phase 003 and the local rerank sidecar skill was deleted in phase 004 (cloud rerankers were removed earlier in 022/013). Memory search returns fused vector/BM25/FTS/graph/degree results with no rerank stage; the `SPECKIT_CROSS_ENCODER`/`RERANKER_LOCAL` flags are no longer wired.
+### Reranking
+
+Model-based cross-encoder/local-GGUF reranking was removed in the 014 deprecation: the spec-memory local model path was removed in phase 003 and the local rerank sidecar skill was deleted in phase 004 (cloud rerankers were removed earlier in 022/013). Memory search still has a Stage 3 rerank step: MMR diversity reranking plus MPAB chunk collapse, with the `memory_search` `rerank` option defaulting to true. The `SPECKIT_CROSS_ENCODER`/`RERANKER_LOCAL` flags are no longer wired.
 
 ## Security
 
@@ -425,11 +429,11 @@ Cross-encoder reranking was removed in the 014 deprecation: the spec-memory loca
 
 ### Validation and Recovery
 
-Run `.opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` before completion claims. Validation errors block completion; warnings must be addressed or documented. Startup, resume, hook, code graph, and Code Graph readiness details live in `references/config/hook_system.md`, `references/hooks/skill_advisor_hook.md`, `mcp_server/hooks/copilot/README.md`, and the code graph references.
+Run `.opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` before completion claims. Validation errors block completion; warnings must be addressed or documented. Startup, resume, hook, code graph, and Code Graph readiness details live in `references/config/hook_system.md`, `references/hooks/skill_advisor_hook.md`, `mcp_server/hooks/README.md` (Claude and Codex hook folders; OpenCode uses the plugin bridge), and the code graph references.
 
 ### Code Graph and Search Routing
 
-Use Grep/Glob for semantic/token discovery, Code Graph for structural relationships, and Spec Kit Memory for prior decisions and continuity. `code_graph_scan`, `code_graph_query`, `code_graph_context`, `code_graph_status`, and `detect_changes` (under MCP namespace `mcp__mk_code_index__*`, owned by the standalone `system-code-graph` skill) share the readiness contract and return blocked/degraded payloads rather than silent empty answers when graph state is stale.
+Use Grep/Glob for semantic/token discovery, Code Graph for structural relationships, and Spec Kit Memory for prior decisions and continuity. The `system-code-graph` skill owns the full `mcp__mk_code_index__*` family split: `code_graph_status` is always answerable, `code_graph_classify_query_intent` is text-only, read tools (`code_graph_query`, `code_graph_context`, `detect_changes`) return blocked/degraded payloads under the readiness contract, and maintenance tools (`code_graph_scan`, `code_graph_apply`, `code_graph_verify`) handle recovery and verification, with verify blocking when graph state is not fresh.
 
 ---
 
@@ -505,13 +509,14 @@ P0 blocks, P1 requires completion or approved deferral, and P2 is optional. Code
 | Validate | `.opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/007-feature/` |
 | Verify code alignment drift | `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit` |
 | Save context | `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data-<session-id>.json specs/007-feature/` |
+| Memory CLI (dual-stack) | `node .opencode/bin/spec-memory.cjs <tool> --format json` calls any of the 39 memory tools over the live daemon; `list-tools` enumerates them offline; `--warm-only` for prompt-time contexts |
 | Next spec number | `ls -d specs/[0-9]*/ \| sed 's/.*\/\([0-9]*\)-.*/\1/' \| sort -n \| tail -1` |
 | Upgrade level | `bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh specs/007-feature/ --to 2` |
 | Completeness | `.opencode/skills/system-spec-kit/scripts/spec/calculate-completeness.sh specs/007-feature/` |
 | Worktree isolation | `.opencode/bin/worktree-session.sh` creates a per-session git worktree with isolated `SPEC_KIT_DB_DIR` / `SPECKIT_CODE_GRAPH_DB_DIR` / `SPECKIT_IPC_SOCKET_DIR`. Pair with `worktree-reaper.sh` for teardown and `worktree-guard.sh` for lock enforcement |
 | Session cleanup | `.opencode/scripts/session-cleanup.sh` (renamed from `claude-session-cleanup.sh` with a back-compat shim retained) resolves PIDs across claude/opencode/codex runtimes |
 
-Canonical command lifecycle: `/speckit:plan --intake-only` establishes or repairs the packet when standalone intake is needed, `/deep:start-research-loop` follows `../deep-research/references/protocol/spec_check_protocol.md` when research needs bounded `spec.md` anchoring, and `/speckit:plan` or `/speckit:complete` continue from the same folder while reusing the shared intake contract (`.opencode/skills/system-spec-kit/references/workflows/intake_contract.md`) only when the local `folder_state` still needs repair. When intake runs, the returned `start_state` is the canonical downstream field.
+Canonical command lifecycle: `/speckit:plan --intake-only` establishes or repairs the packet when standalone intake is needed, `/deep:research` follows `../deep-loop-workflows/deep-research/references/protocol/spec_check_protocol.md` when research needs bounded `spec.md` anchoring, and `/speckit:plan` or `/speckit:complete` continue from the same folder while reusing the shared intake contract (`.opencode/skills/system-spec-kit/references/workflows/intake_contract.md`) only when the local `folder_state` still needs repair. When intake runs, the returned `start_state` is the canonical downstream field.
 
 **Remember**: This skill is the foundational documentation orchestrator. It enforces structure, template usage, context preservation, and workflow-required validation for all file modifications. Every conversation that modifies files MUST have a spec folder.
 
@@ -523,4 +528,4 @@ The router discovers reference, asset, and script docs dynamically. Start with `
 
 Scripts: `scripts/spec/validate.sh`, `scripts/spec/create.sh`, `scripts/dist/memory/generate-context.js`, `scripts/spec/check-completion.sh`.
 
-Related skills: `sk-doc` for authored documentation quality, `sk-code` for code changes, `sk-git` for git handoff, `deep-research` for iterative research, and `deep-review` for iterative audit workflows.
+Related skills: `sk-doc` for authored documentation quality, `sk-code` for code changes, `sk-git` for git handoff, and `deep-loop-workflows` for iterative research and audit (its `research` and `review` modes).

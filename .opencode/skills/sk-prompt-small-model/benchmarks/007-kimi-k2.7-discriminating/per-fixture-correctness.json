@@ -1,0 +1,87 @@
+{
+  "rcaf": {
+    "validate-ipv4": {
+      "mean": 1,
+      "scored_n": 6,
+      "null_n": 0
+    },
+    "validate-date": {
+      "mean": 1,
+      "scored_n": 6,
+      "null_n": 0
+    },
+    "validate-semver": {
+      "mean": 0.9761904761904763,
+      "scored_n": 6,
+      "null_n": 0
+    }
+  },
+  "race": {
+    "validate-ipv4": {
+      "mean": 1,
+      "scored_n": 6,
+      "null_n": 0
+    },
+    "validate-date": {
+      "mean": 1,
+      "scored_n": 6,
+      "null_n": 0
+    },
+    "validate-semver": {
+      "mean": 1,
+      "scored_n": 6,
+      "null_n": 0
+    }
+  },
+  "cidi": {
+    "validate-ipv4": {
+      "mean": 1,
+      "scored_n": 6,
+      "null_n": 0
+    },
+    "validate-date": {
+      "mean": 1,
+      "scored_n": 6,
+      "null_n": 0
+    },
+    "validate-semver": {
+      "mean": 0.9880952380952381,
+      "scored_n": 6,
+      "null_n": 0
+    }
+  },
+  "tidd-ec": {
+    "validate-ipv4": {
+      "mean": 1,
+      "scored_n": 6,
+      "null_n": 0
+    },
+    "validate-date": {
+      "mean": 1,
+      "scored_n": 6,
+      "null_n": 0
+    },
+    "validate-semver": {
+      "mean": 1,
+      "scored_n": 6,
+      "null_n": 0
+    }
+  },
+  "costar": {
+    "validate-ipv4": {
+      "mean": 1,
+      "scored_n": 6,
+      "null_n": 0
+    },
+    "validate-date": {
+      "mean": 1,
+      "scored_n": 6,
+      "null_n": 0
+    },
+    "validate-semver": {
+      "mean": 1,
+      "scored_n": 6,
+      "null_n": 0
+    }
+  }
+}

@@ -122,7 +122,11 @@ check_prerequisites() {
     log_info "Node.js path: $(which node)"
 
     # Clear stale npx cache to prevent ERR_DLOPEN_FAILED
-    rm -rf ~/.npm/_npx/* 2>/dev/null || true
+    if [[ "${DRY_RUN}" == "true" ]]; then
+        log_info "[DRY-RUN] Would clear stale npx cache: ~/.npm/_npx/*"
+    else
+        rm -rf ~/.npm/_npx/* 2>/dev/null || true
+    fi
 
     log_success "All prerequisites met"
     return 0

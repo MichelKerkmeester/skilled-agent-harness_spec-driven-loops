@@ -61,11 +61,14 @@ Dependency direction: runtime folders ───▶ shared helpers ───▶ M
 mcp_server/hooks/
 ├── claude/                        # Claude session, prompt, compaction, and transcript hooks
 ├── codex/                         # Codex session, prompt, pre-tool, and wrapper hooks
+├── code-index-cli-fallback.ts      # Warm-only code-index CLI fallback helper
 ├── index.ts                       # Public helper exports
 ├── memory-surface.ts              # Context extraction and constitutional cache helpers
 ├── mutation-feedback.ts           # Post-mutation feedback payloads
 ├── response-hints.ts              # Auto-surface hints and token count sync
 ├── shared-provenance.ts           # Provenance-wrapped transport helpers
+├── spec-memory-cli-fallback.ts     # Warm-only spec-memory CLI fallback helper
+├── warm-cli-fallback-envelope.ts   # Bounded warm CLI fallback envelope helpers
 └── README.md
 ```
 
@@ -77,11 +80,14 @@ mcp_server/hooks/
 |---|---|
 | `claude/` | Claude runtime hook scripts and README. |
 | `codex/` | Codex native hook scripts plus prompt-wrapper fallback. |
+| `code-index-cli-fallback.ts` | Bounded warm-only CLI recovery for code-index hook contexts. |
 | `index.ts` | Public export barrel for in-process helper modules. |
 | `memory-surface.ts` | Extracts context hints and surfaces constitutional or triggered memory. |
 | `mutation-feedback.ts` | Maps `MutationHookResult` values into public `postMutationHooks` response payloads. |
 | `response-hints.ts` | Adds auto-surface hints and token counts to MCP JSON envelopes. |
 | `shared-provenance.ts` | Wraps hook transport with provenance metadata. |
+| `spec-memory-cli-fallback.ts` | Bounded warm-only CLI recovery for spec-memory hook contexts. |
+| `warm-cli-fallback-envelope.ts` | Shared response envelope for warm CLI fallback attempts. |
 
 ---
 

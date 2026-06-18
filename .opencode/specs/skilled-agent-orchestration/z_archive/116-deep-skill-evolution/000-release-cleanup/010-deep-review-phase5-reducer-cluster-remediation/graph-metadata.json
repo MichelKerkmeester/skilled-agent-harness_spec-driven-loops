@@ -40,7 +40,6 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-review/scripts/reduce-state.cjs",
       "decision-record.md",
       "plan.md",
       "tasks.md",
@@ -50,12 +49,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "reduce-state.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-review/scripts/reduce-state.cjs",
-        "source": "derived"
-      },
       {
         "name": "decision-record.md",
         "kind": "doc",
@@ -193,11 +186,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `003-deep-review` packet deferred all reducer-behavior gaps under ADR-002 (the reducer was bug-scan only in that packet). The `007` parent reopens that decision per operator directive. Each of the 9 deferred reducer gaps was re-verified against the current `scripts/reduce-state.cjs` (1657 LOC):",
     "created_at": "2026-05-23T19:05:00.000Z",
-    "last_save_at": "2026-06-07T09:00:45.815Z",
+    "last_save_at": "2026-06-15T09:09:33.705Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

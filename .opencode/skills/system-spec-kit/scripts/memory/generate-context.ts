@@ -1,6 +1,6 @@
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Generate Context
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 // ───────────────────────────────────────────────────────────────
 // 1. GENERATE CONTEXT
@@ -14,7 +14,6 @@ import * as fsSync from 'fs';
 // Internal modules
 import { validateFilePath } from '@spec-kit/shared/utils/path-security';
 import { graphMetadataSchema } from '@spec-kit/mcp-server/api';
-import type { GraphMetadata } from '@spec-kit/mcp-server/api';
 import {
   CONFIG,
   getSessionScopedSaveContextExample,
@@ -30,6 +29,7 @@ import { loadCollectedData } from '../loaders/index.js';
 import { collectSessionData } from '../extractors/collect-session-data.js';
 import { isMainModule } from '../lib/esm-entry.js';
 import { isPhaseParent } from '../spec/is-phase-parent.js';
+import type { GraphMetadata } from '@spec-kit/mcp-server/api';
 
 type StructuredCollectedData = Record<string, unknown> & { _source: 'file' };
 
@@ -55,6 +55,10 @@ const SESSION_SCOPED_SAVE_CONTEXT_EXAMPLE = getSessionScopedSaveContextExample()
 const GRAPH_METADATA_FILE = 'graph-metadata.json';
 const CANONICAL_SAVE_LOCK_DIR = '.canonical-save.lock';
 const CANONICAL_SAVE_STALE_MS = 30_000;
+const CANONICAL_SAVE_HEARTBEAT_MS = 10_000;
+const canonicalSaveHeartbeats = new Map<string, ReturnType<typeof setInterval>>();
+
+type CanonicalSaveLockOwnerState = 'alive' | 'dead' | 'unknown';
 
 // ───────────────────────────────────────────────────────────────
 // 3. HELP TEXT
@@ -137,6 +141,7 @@ JSON Data Format (with preflight/postflight, session/git, and tool/exchange enri
 
   Structured JSON compatibility hints (JSON-mode only):
   - Top-level routeAs / mergeModeHint are accepted for compatibility with routed save workflows
+  - Top-level specDrift / reviewerFocus are accepted as optional advisory context; absence means none
   - Explicit CLI spec-folder targets remain authoritative over payload specFolder values
 
   Learning Delta Calculation:
@@ -348,7 +353,11 @@ function resolveExistingSpecFolderPath(rawArg: string | null): string | null {
   if (!rawArg) return null;
 
   if (path.isAbsolute(rawArg)) {
-    return fsSync.existsSync(rawArg) ? path.resolve(rawArg) : null;
+    if (!fsSync.existsSync(rawArg)) return null;
+    // Defense-in-depth at the write sink: enforce containment here so an
+    // absolute path that bypassed the main() argument gate can never resolve to
+    // a lock dir / metadata write outside the approved specs roots.
+    return validateFilePath(path.resolve(rawArg), getSpecsDirectories());
   }
 
   const projectScoped = path.resolve(CONFIG.PROJECT_ROOT, rawArg);
@@ -397,6 +406,88 @@ function atomicWriteJson(filePath: string, value: unknown): void {
   fsSync.renameSync(tempPath, filePath);
 }
 
+function getNodeErrorCode(error: unknown): string | null {
+  return typeof error === 'object' && error !== null && 'code' in error
+    ? String((error as { code?: unknown }).code)
+    : null;
+}
+
+function getCanonicalSaveLockOwnerState(lockPath: string): CanonicalSaveLockOwnerState {
+  let ownerRaw: string;
+  try {
+    ownerRaw = fsSync.readFileSync(path.join(lockPath, 'owner'), 'utf8');
+  } catch (_error: unknown) {
+    return 'unknown';
+  }
+
+  const ownerPid = Number(ownerRaw.split(/\r?\n/, 1)[0]?.trim());
+  if (!Number.isInteger(ownerPid) || ownerPid <= 0) {
+    return 'unknown';
+  }
+
+  try {
+    process.kill(ownerPid, 0);
+    return 'alive';
+  } catch (error: unknown) {
+    const code = getNodeErrorCode(error);
+    if (code === 'ESRCH') {
+      return 'dead';
+    }
+    if (code === 'EPERM') {
+      return 'alive';
+    }
+    return 'unknown';
+  }
+}
+
+function ownsCanonicalSaveLock(lockPath: string): boolean {
+  try {
+    const ownerRaw = fsSync.readFileSync(path.join(lockPath, 'owner'), 'utf8');
+    const ownerPid = Number(ownerRaw.split(/\r?\n/, 1)[0]?.trim());
+    return Number.isInteger(ownerPid) && ownerPid === process.pid;
+  } catch (_error: unknown) {
+    return false;
+  }
+}
+
+function stopCanonicalSaveLockHeartbeat(lockPath: string): void {
+  const heartbeat = canonicalSaveHeartbeats.get(lockPath);
+  if (!heartbeat) {
+    return;
+  }
+  clearInterval(heartbeat);
+  canonicalSaveHeartbeats.delete(lockPath);
+}
+
+function startCanonicalSaveLockHeartbeat(lockPath: string): void {
+  stopCanonicalSaveLockHeartbeat(lockPath);
+  const heartbeat = setInterval(() => {
+    try {
+      const now = new Date();
+      fsSync.utimesSync(lockPath, now, now);
+    } catch (_error: unknown) {
+      stopCanonicalSaveLockHeartbeat(lockPath);
+    }
+  }, CANONICAL_SAVE_HEARTBEAT_MS);
+  const unref = (heartbeat as { unref?: () => void }).unref;
+  unref?.call(heartbeat);
+  canonicalSaveHeartbeats.set(lockPath, heartbeat);
+}
+
+function createCanonicalSaveLock(lockPath: string): string {
+  // mkdir is the atomic acquire gate: it fails EEXIST when a lock dir already
+  // exists, so the caller's age/owner-state reclaim logic stays authoritative
+  // (an empty dir must not be silently reclaimed outside that gate). The owner
+  // record is then written via a temp file renamed into place so a visible lock
+  // dir converges to having an owner without a partial-write artifact.
+  fsSync.mkdirSync(lockPath);
+  const ownerTmp = path.join(lockPath, `.owner.${process.pid}.tmp`);
+  fsSync.writeFileSync(ownerTmp, `${process.pid}\n${new Date().toISOString()}\n`, 'utf8');
+  fsSync.renameSync(ownerTmp, path.join(lockPath, 'owner'));
+  startCanonicalSaveLockHeartbeat(lockPath);
+  return lockPath;
+}
+
 function acquireCanonicalSaveLock(specFolderPath: string | null): string | null {
   if (!specFolderPath) {
     return null;
@@ -404,21 +495,26 @@ function acquireCanonicalSaveLock(specFolderPath: string | null): string | null 
 
   const lockPath = path.join(specFolderPath, CANONICAL_SAVE_LOCK_DIR);
   try {
-    fsSync.mkdirSync(lockPath);
-    fsSync.writeFileSync(path.join(lockPath, 'owner'), `${process.pid}\n${new Date().toISOString()}\n`, 'utf8');
-    return lockPath;
+    return createCanonicalSaveLock(lockPath);
   } catch (error: unknown) {
     if (!fsSync.existsSync(lockPath)) {
       throw error;
     }
     const stat = fsSync.statSync(lockPath);
     const ageMs = Date.now() - stat.mtimeMs;
-    if (ageMs > CANONICAL_SAVE_STALE_MS) {
-      console.warn(`Warning: removing stale canonical save lock (${Math.round(ageMs)}ms): ${lockPath}`);
+    const ownerState = getCanonicalSaveLockOwnerState(lockPath);
+    if (ownerState === 'dead' || (ownerState === 'unknown' && ageMs > CANONICAL_SAVE_STALE_MS)) {
+      console.warn(`Warning: removing abandoned canonical save lock (${ownerState}, ${Math.round(ageMs)}ms): ${lockPath}`);
       fsSync.rmSync(lockPath, { recursive: true, force: true });
-      fsSync.mkdirSync(lockPath);
-      fsSync.writeFileSync(path.join(lockPath, 'owner'), `${process.pid}\n${new Date().toISOString()}\n`, 'utf8');
-      return lockPath;
+      const reclaimed = createCanonicalSaveLock(lockPath);
+      // Reap-then-create is not a single atomic step, so a second reaper could
+      // have published its own lock in the gap. Confirm we actually own the
+      // visible lock; if another pid won, release our heartbeat and fail closed.
+      if (!ownsCanonicalSaveLock(lockPath)) {
+        stopCanonicalSaveLockHeartbeat(reclaimed);
+        throw new Error(`Canonical save lock is active: ${lockPath}`);
+      }
+      return reclaimed;
     }
     throw new Error(`Canonical save lock is active: ${lockPath}`);
   }
@@ -428,6 +524,7 @@ function releaseCanonicalSaveLock(lockPath: string | null): void {
   if (!lockPath) {
     return;
   }
+  stopCanonicalSaveLockHeartbeat(lockPath);
   fsSync.rmSync(lockPath, { recursive: true, force: true });
 }
 
@@ -806,7 +903,7 @@ async function main(
     }
   } catch (error: unknown) {
     const errMsg = error instanceof Error ? error.message : String(error);
-    const isExpected = /Spec folder not found|No spec folders|specs\/ directory|retry attempts|Expected|Invalid JSON provided|requires a target spec folder|requires an inline JSON string|required a non-empty JSON object|JSON object payload|no longer supported|session-id requires/.test(errMsg);
+    const isExpected = /Spec folder not found|No spec folders|specs\/ directory|retry attempts|Expected|Invalid JSON provided|requires a target spec folder|requires an inline JSON string|requires? a non-empty JSON object|JSON object payload|no longer supported|session-id requires/.test(errMsg);
 
     if (isExpected) {
       console.error(`\nError: ${errMsg}`);
@@ -842,4 +939,8 @@ export {
   validateArguments,
   isValidSpecFolder,
   extractPayloadSpecFolder,
+  acquireCanonicalSaveLock,
+  releaseCanonicalSaveLock,
+  CANONICAL_SAVE_HEARTBEAT_MS,
+  CANONICAL_SAVE_STALE_MS,
 };

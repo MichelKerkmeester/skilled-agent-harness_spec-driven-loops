@@ -4,6 +4,10 @@
 // SQLite storage for skill graph metadata (nodes + edges).
 // Uses the advisor package-local skill-graph.sqlite runtime database.
 
+import { createHash } from 'node:crypto';
+import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, rmSync, statSync } from 'node:fs';
+import { basename, dirname, join, relative, resolve } from 'node:path';
+
 import Database from 'better-sqlite3';
 // NOTE: lib/shared/embeddings is a symlink to system-spec-kit/shared/embeddings.
 // The symlink in the file tree makes the cross-skill dependency on
@@ -12,9 +16,7 @@ import Database from 'better-sqlite3';
 // deleted, both the symlink and the alias dangle and embeddings-backed features break — the
 // dangling symlink in the file tree is the documenting failure signal.
 import { createEmbeddingsProvider } from '@spec-kit/shared/embeddings/factory.js';
-import { createHash } from 'node:crypto';
-import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, rmSync, statSync } from 'node:fs';
-import { basename, dirname, join, relative, resolve } from 'node:path';
+
 import {
   ensureVecMetadataTable,
   ensureVecTableForDim,
@@ -23,9 +25,15 @@ import {
   vecTableNameForDim,
 } from '../embedders/schema.js';
 import { getAdapter } from '../embedders/registry.js';
-import type { EmbedderAdapter } from '../embedders/adapter.js';
 import { checkSqliteIntegrity } from '../freshness/sqlite-integrity.js';
 import { parseSkillFrontmatter } from '../utils/skill-markdown.js';
+import {
+  isDocTriggerHarvestEnabled,
+  listSkillDocFiles,
+  parseDocFrontmatter,
+} from './doc-frontmatter.js';
+
+import type { EmbedderAdapter } from '../embedders/adapter.js';
 
 // ───────────────────────────────────────────────────────────────
 // 1. TYPES
@@ -81,6 +89,15 @@ export interface SkillGraphIndexResult {
   rejectedEdges: number;
   deletedNodes: number;
   warnings: string[];
+  /** Present only when the doc-trigger harvest flag is enabled. */
+  docs?: SkillDocHarvestResult;
+}
+
+export interface SkillDocHarvestResult {
+  scannedDocs: number;
+  indexedDocs: number;
+  skippedDocs: number;
+  deletedDocs: number;
 }
 
 export interface SkillEmbeddingRefreshResult {
@@ -199,6 +216,22 @@ const SCHEMA_SQL = `
     created_at TEXT DEFAULT (datetime('now'))
   );
 
+  CREATE TABLE IF NOT EXISTS skill_docs (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    skill_id TEXT NOT NULL REFERENCES skill_nodes(id) ON DELETE CASCADE,
+    doc_path TEXT NOT NULL,
+    title TEXT,
+    description TEXT,
+    trigger_phrases TEXT NOT NULL,
+    importance_tier TEXT NOT NULL DEFAULT 'normal',
+    context_type TEXT NOT NULL DEFAULT 'general',
+    content_hash TEXT NOT NULL,
+    indexed_at TEXT DEFAULT (datetime('now')),
+    UNIQUE(skill_id, doc_path)
+  );
+
+  CREATE INDEX IF NOT EXISTS idx_skill_docs_skill ON skill_docs(skill_id);
+
   CREATE INDEX IF NOT EXISTS idx_skill_nodes_family ON skill_nodes(family);
   CREATE INDEX IF NOT EXISTS idx_skill_nodes_category ON skill_nodes(category);
   CREATE INDEX IF NOT EXISTS idx_skill_nodes_hash ON skill_nodes(content_hash);
@@ -213,14 +246,20 @@ const SCHEMA_SQL = `
 
 let db: Database.Database | null = null;
 let dbPath: string | null = null;
+let readOnlyDb: Database.Database | null = null;
 
-export function resolveSkillGraphDbDir(): string {
+// The env override is read on every call (never captured at module load) so a
+// diagnostic probe and the writing daemon always agree on the artifact path
+// even if the override is set after either module first loaded. `baseRoot`
+// defaults to the writer's cwd; a caller resolving for a specific workspace
+// (e.g. the status probe) passes that root so both sides target one file.
+export function resolveSkillGraphDbDir(baseRoot: string = process.cwd()): string {
   const overrideDbDir = process.env.MK_SKILL_ADVISOR_DB_DIR ?? process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
   if (overrideDbDir) {
     return resolve(overrideDbDir);
   }
   return resolve(
-    process.cwd(),
+    baseRoot,
     '.opencode',
     'skills',
     'system-skill-advisor',
@@ -231,6 +270,28 @@ export function resolveSkillGraphDbDir(): string {
 
 export function getSkillGraphDbPath(): string {
   return dbPath ?? join(resolveSkillGraphDbDir(), DB_FILENAME);
+}
+
+const CORRUPTION_REASON_PATTERN = /SQLITE_CORRUPT|SQLITE_NOTADB|database disk image is malformed|file is not a database|malformed/i;
+const TRANSIENT_REASON_PATTERN = /database is locked|SQLITE_BUSY|SQLITE_LOCKED|SQLITE_PROTOCOL|EIO|EPERM|EACCES|EROFS|ENOSPC/i;
+
+/**
+ * Only genuine on-disk corruption may trigger destructive recovery.
+ *
+ * Transient conditions (lock contention from a concurrent daemon, I/O or
+ * permission errors) must never rename/delete the live database out from
+ * under its owner, so they fail this check and initDb proceeds to a normal
+ * open (busy_timeout handles contention).
+ */
+export function isGenuineCorruptionReason(reason: string): boolean {
+  if (reason.startsWith('SQLITE_CHECK_FAILED') || TRANSIENT_REASON_PATTERN.test(reason)) {
+    return false;
+  }
+  // quick_check completed and reported integrity violations
+  if (reason.startsWith('SQLITE_QUICK_CHECK_')) {
+    return true;
+  }
+  return CORRUPTION_REASON_PATTERN.test(reason);
 }
 
 function recoverMalformedDatabase(databasePath: string, reason: string): void {
@@ -258,6 +319,20 @@ function ensureSchemaMigrations(database: Database.Database): void {
       value TEXT,
       updated_at TEXT DEFAULT (datetime('now'))
     );
+    CREATE TABLE IF NOT EXISTS skill_docs (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      skill_id TEXT NOT NULL REFERENCES skill_nodes(id) ON DELETE CASCADE,
+      doc_path TEXT NOT NULL,
+      title TEXT,
+      description TEXT,
+      trigger_phrases TEXT NOT NULL,
+      importance_tier TEXT NOT NULL DEFAULT 'normal',
+      context_type TEXT NOT NULL DEFAULT 'general',
+      content_hash TEXT NOT NULL,
+      indexed_at TEXT DEFAULT (datetime('now')),
+      UNIQUE(skill_id, doc_path)
+    );
+    CREATE INDEX IF NOT EXISTS idx_skill_docs_skill ON skill_docs(skill_id);
     CREATE INDEX IF NOT EXISTS idx_skill_nodes_family ON skill_nodes(family);
     CREATE INDEX IF NOT EXISTS idx_skill_edges_source ON skill_edges(source_id, edge_type);
     CREATE INDEX IF NOT EXISTS idx_skill_edges_target ON skill_edges(target_id, edge_type);
@@ -290,7 +365,7 @@ export function initDb(dbDir: string): Database.Database {
     mkdirSync(dbDir, { recursive: true });
     dbPath = join(dbDir, DB_FILENAME);
     const integrity = checkSqliteIntegrity(dbPath);
-    if (!integrity.ok && integrity.reason !== 'SQLITE_ABSENT') {
+    if (!integrity.ok && integrity.reason !== 'SQLITE_ABSENT' && isGenuineCorruptionReason(integrity.reason)) {
       recoverMalformedDatabase(dbPath, integrity.reason);
     }
     db = new Database(dbPath);
@@ -318,7 +393,7 @@ export function initDb(dbDir: string): Database.Database {
     }
 
     return db;
-  } catch (error) {
+  } catch (error: unknown) {
     if (db) {
       try { db.close(); } catch { /* best effort cleanup for failed init */ }
     }
@@ -331,7 +406,53 @@ export function initDb(dbDir: string): Database.Database {
 /** Get the current database instance (lazy-initializes if needed). */
 export function getDb(): Database.Database {
   if (!db) initDb(resolveSkillGraphDbDir());
+  // Database initialization either assigns the module-level handle or throws.
   return db!;
+}
+
+/**
+ * Read-only corruption probe for status surfaces. Returns null when this
+ * process already owns a live read-write handle: the on-disk database is
+ * healthy by construction, because initDb would have recovered any genuine
+ * corruption before that handle opened. Otherwise probes the file with
+ * quick_check WITHOUT opening the read-write handle or running destructive
+ * recovery, so a read-only status call can REPORT corruption rather than
+ * silently quarantining the database as a side effect of being asked for
+ * counts.
+ */
+export function probeStatusIntegrity(): { ok: true } | { ok: false; reason: string } | null {
+  if (db) return null;
+  return checkSqliteIntegrity(getSkillGraphDbPath());
+}
+
+/**
+ * Read-only database access for recommend-path consumers (semantic shadow
+ * lane). Never creates the database file, never runs schema migrations, and
+ * never triggers malformed-database recovery, so secondary/bridge processes
+ * cannot become a second writer on the daemon-owned skill graph. Reuses the
+ * read-write handle when this process already owns one (daemon path).
+ * Returns null when the database file is absent or unopenable; callers must
+ * degrade gracefully (no shadow scoring).
+ */
+export function getDbReadOnly(): Database.Database | null {
+  if (db) return db;
+  if (readOnlyDb) return readOnlyDb;
+
+  const databasePath = join(resolveSkillGraphDbDir(), DB_FILENAME);
+  if (!existsSync(databasePath)) {
+    return null;
+  }
+
+  try {
+    const handle = new Database(databasePath, { readonly: true, fileMustExist: true });
+    handle.pragma('busy_timeout = 5000');
+    readOnlyDb = handle;
+    return readOnlyDb;
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.warn(`[skill-graph] Read-only open failed (${message}); shadow scoring degraded for this process`);
+    return null;
+  }
 }
 
 /** Close the database connection. */
@@ -340,6 +461,12 @@ export function closeDb(): void {
     db.close();
     db = null;
     dbPath = null;
+  }
+  if (readOnlyDb) {
+    try {
+      readOnlyDb.close();
+    } catch { /* best effort: read-only handle teardown */ }
+    readOnlyDb = null;
   }
 }
 
@@ -484,6 +611,7 @@ function discoverGraphMetadataFiles(skillDir: string): string[] {
   const stack: string[] = [skillDir];
 
   while (stack.length > 0) {
+    // The loop guard guarantees a directory is available to pop.
     const currentDir = stack.pop()!;
     const entries = readdirSync(currentDir, { withFileTypes: true });
     for (const entry of entries) {
@@ -605,6 +733,105 @@ function deleteMissingNodes(database: Database.Database, skillIds: string[]): nu
   const placeholders = skillIds.map(() => '?').join(', ');
   const result = database.prepare(`DELETE FROM skill_nodes WHERE id NOT IN (${placeholders})`).run(...skillIds);
   return result.changes;
+}
+
+/**
+ * Harvest reference/asset doc frontmatter into skill_docs rows.
+ *
+ * Runs only when the doc-trigger flag is on. Unchanged docs are skipped
+ * via per-doc content hashes; docs that disappeared from disk (or lost
+ * their trigger_phrases) are deleted per skill so the table mirrors the
+ * harvestable surface exactly.
+ */
+function harvestSkillDocs(
+  database: Database.Database,
+  skills: ReadonlyArray<{ skillId: string; skillDir: string }>,
+  warnings: string[],
+): SkillDocHarvestResult {
+  const result: SkillDocHarvestResult = {
+    scannedDocs: 0,
+    indexedDocs: 0,
+    skippedDocs: 0,
+    deletedDocs: 0,
+  };
+
+  const selectExistingDoc = database.prepare(
+    'SELECT content_hash FROM skill_docs WHERE skill_id = ? AND doc_path = ?',
+  );
+  const upsertDoc = database.prepare(`
+    INSERT INTO skill_docs (
+      skill_id, doc_path, title, description, trigger_phrases,
+      importance_tier, context_type, content_hash, indexed_at
+    )
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    ON CONFLICT(skill_id, doc_path) DO UPDATE SET
+      title = excluded.title,
+      description = excluded.description,
+      trigger_phrases = excluded.trigger_phrases,
+      importance_tier = excluded.importance_tier,
+      context_type = excluded.context_type,
+      content_hash = excluded.content_hash,
+      indexed_at = excluded.indexed_at
+  `);
+
+  const tx = database.transaction(() => {
+    for (const { skillId, skillDir } of skills) {
+      const docFiles = listSkillDocFiles(skillDir);
+      const keptPaths: string[] = [];
+
+      for (const absolutePath of docFiles) {
+        result.scannedDocs++;
+        const docPath = relative(skillDir, absolutePath);
+        let raw: string;
+        try {
+          raw = readFileSync(absolutePath, 'utf8');
+        } catch (error: unknown) {
+          keptPaths.push(docPath);
+          warnings.push(`DOC-READ-FAILED: ${toDisplayPath(absolutePath)} (${error instanceof Error ? error.message : String(error)})`);
+          continue;
+        }
+
+        const parsed = parseDocFrontmatter(raw);
+        if (!parsed) continue;
+
+        keptPaths.push(docPath);
+
+        const contentHash = computeContentHash(raw);
+        const existing = selectExistingDoc.get(skillId, docPath) as { content_hash: string } | undefined;
+        if (existing && existing.content_hash === contentHash) {
+          result.skippedDocs++;
+          continue;
+        }
+
+        upsertDoc.run(
+          skillId,
+          docPath,
+          parsed.title,
+          parsed.description,
+          JSON.stringify(parsed.triggerPhrases),
+          parsed.importanceTier,
+          parsed.contextType,
+          contentHash,
+          new Date().toISOString(),
+        );
+        result.indexedDocs++;
+      }
+
+      if (keptPaths.length === 0) {
+        const deleted = database.prepare('DELETE FROM skill_docs WHERE skill_id = ?').run(skillId);
+        result.deletedDocs += deleted.changes;
+      } else {
+        const placeholders = keptPaths.map(() => '?').join(', ');
+        const deleted = database
+          .prepare(`DELETE FROM skill_docs WHERE skill_id = ? AND doc_path NOT IN (${placeholders})`)
+          .run(skillId, ...keptPaths);
+        result.deletedDocs += deleted.changes;
+      }
+    }
+  });
+
+  tx();
+  return result;
 }
 
 // ───────────────────────────────────────────────────────────────
@@ -783,6 +1010,22 @@ export function indexSkillMetadata(skillDir: string): SkillGraphIndexResult {
 
   tx();
 
+  // Doc-trigger harvest runs after the node transaction and for EVERY
+  // skill (not just changed nodes): reference/asset edits never touch
+  // graph-metadata.json, so node content hashes cannot gate doc work.
+  // Per-doc content hashes keep unchanged docs cheap.
+  let docsResult: SkillDocHarvestResult | undefined;
+  if (isDocTriggerHarvestEnabled()) {
+    docsResult = harvestSkillDocs(
+      database,
+      parsedMetadata.map((entry) => ({
+        skillId: entry.node.id,
+        skillDir: dirname(entry.node.sourcePath),
+      })),
+      warnings,
+    );
+  }
+
   const summary: SkillGraphIndexResult = {
     scannedFiles: discoveredFiles.length,
     indexedFiles,
@@ -792,6 +1035,7 @@ export function indexSkillMetadata(skillDir: string): SkillGraphIndexResult {
     rejectedEdges,
     deletedNodes,
     warnings,
+    ...(docsResult ? { docs: docsResult } : {}),
   };
 
   setMetadata('last_scan_timestamp', new Date().toISOString());
@@ -842,9 +1086,8 @@ async function refreshSkillEmbeddingsViaAdapter(
     if (!resolved) {
       const warning = `ADAPTER-UNAVAILABLE: ${active.name} (manifest not found in registry)`;
       console.warn(`[skill-graph] ${warning}`);
-      // F review P2-1: failed = total skill_nodes count so refresh-watchers
-      // see an outage signal instead of "0 failed / 0 skipped" which looks
-      // like an empty corpus.
+      // Report every skill node as failed so refresh-watchers see an outage
+      // signal instead of an empty-corpus-looking zero count.
       const rowCount = (database.prepare('SELECT COUNT(*) AS c FROM skill_nodes').get() as { c: number }).c;
       return { embedded: 0, skipped: 0, failed: rowCount, warnings: [warning] };
     }
@@ -857,8 +1100,8 @@ async function refreshSkillEmbeddingsViaAdapter(
     return { embedded: 0, skipped: 0, failed: rowCount, warnings: [warning] };
   }
 
-  // F review P1-1: fail fast on adapter-vs-pointer dim mismatch instead of
-  // per-row EMBEDDING-FAILED noise + accidental vec_<dim> table emptying.
+  // Fail fast on adapter-vs-pointer dim mismatch instead of per-row embedding
+  // noise and accidental table emptying.
   if (adapter.dim !== active.dim) {
     const warning = `ADAPTER-DIM-MISMATCH: ${active.name} reports dim=${adapter.dim} but vec_metadata pointer dim=${active.dim}; fix configuration before refresh`;
     console.warn(`[skill-graph] ${warning}`);
@@ -1015,11 +1258,34 @@ async function refreshSkillEmbeddingsLegacy(
 }
 
 export function loadSkillEmbeddings(skillIds?: readonly string[]): SkillEmbeddingRow[] {
-  const database = getDb();
-  if (hasActiveEmbedderPointer(database)) {
-    const active = getActiveEmbedder(database);
-    const tableName = vecTableNameForDim(active.dim);
-    ensureVecTableForDim(database, active.dim);
+  // Recommend-path read: must not lazily create or migrate the database.
+  // Absent database means no embeddings; the shadow lane degrades to empty.
+  const database = getDbReadOnly();
+  if (!database) {
+    return [];
+  }
+  const hasTable = (tableName: string): boolean => Boolean(database.prepare(`
+    SELECT 1 AS present
+    FROM sqlite_master
+    WHERE type = 'table' AND name = ?
+    LIMIT 1
+  `).get(tableName));
+
+  const activeRows = hasTable('vec_metadata')
+    ? database.prepare(`
+        SELECT key, value
+        FROM vec_metadata
+        WHERE key IN (?, ?)
+      `).all('active_embedder_name', 'active_embedder_dim') as Array<{ key: string; value: string }>
+    : [];
+  const activeValues = new Map(activeRows.map((row) => [row.key, row.value]));
+  const activeName = activeValues.get('active_embedder_name');
+  const activeDim = Number.parseInt(activeValues.get('active_embedder_dim') ?? '', 10);
+  if (activeName && Number.isInteger(activeDim) && activeDim > 0) {
+    const tableName = vecTableNameForDim(activeDim);
+    if (!hasTable(tableName)) {
+      return [];
+    }
 
     const activeRows = skillIds && skillIds.length > 0
       ? database.prepare(`

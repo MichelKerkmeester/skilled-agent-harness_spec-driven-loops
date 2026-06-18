@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation",
+  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation",
+  "children_ids": [
+    "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/001-memory-storage-and-search",
+    "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/002-daemon-launcher-lifecycle",
+    "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/003-code-graph-robustness",
+    "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/004-cli-frontdoor-safety",
+    "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/005-spec-folder-metadata-reconciliation",
+    "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/006-doc-truth-completion-and-mirrors",
+    "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/007-consolidation-hardening"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fresh regression remediation",
+      "027 review round 3 remediation",
+      "remediate every deep-review finding"
+    ],
+    "key_topics": [
+      "fresh",
+      "regression",
+      "remediation",
+      "027",
+      "review",
+      "round",
+      "remediate",
+      "every",
+      "deep-review",
+      "finding",
+      "75-seat",
+      "epic"
+    ],
+    "importance_tier": "important",
+    "status": "scaffolded_—_6_sub_phases_created;_no_fixes_applied",
+    "key_files": [
+      "fix-coverage.json",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "fix-coverage.json",
+        "kind": "config",
+        "path": "fix-coverage.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Regression Deep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 75-seat fresh+regression deep-review of the 027 epic surfaced 113 unique findings (0 P0 · 40 P1 · 73 P2) in `../../review/fresh-regression-75/deep-review-findings-registry.json`. Per operator directive, every finding must be addressed — refuted ones carried as hardening, asserted ones fixed as stated. This phase parent decomposes that work by subsystem so each sub-phase has a coherent verification gate, and tracks full coverage via `fix-coverage.json`.",
+    "created_at": "2026-06-16T00:00:00Z",
+    "last_save_at": "2026-06-16T14:27:21.642Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

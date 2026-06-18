@@ -1,6 +1,13 @@
 ---
 title: Parallel Dispatch Configuration
 description: Complexity scoring and agent dispatch configuration for parallel task execution.
+trigger_phrases:
+  - "parallel dispatch configuration"
+  - "agent parallelization thresholds"
+  - "tiered spec creation"
+  - "workstream file ownership"
+importance_tier: normal
+contextType: planning
 ---
 
 # Parallel Dispatch Configuration - Agent Parallelization Settings

@@ -28,7 +28,7 @@ Use this file to identify the folder boundary, the likely verification path, and
 |---|---:|
 | Code files | 1 |
 | README scope | Direct files in this folder |
-| Audit context | Internal validation notes |
+| Test focus | `code_graph_classify_query_intent` dispatch on the 8-tool surface |
 
 ---
 
@@ -58,7 +58,7 @@ Run the owning package test command from the nearest package boundary.
 |---|---|
 | Folder boundary | Documents direct code files under `mcp_server/tests/handlers`. |
 | sk-code alignment | Points reviewers at OpenCode naming, header, error-handling and type-discipline checks. |
-| Verification handoff | Records the expected owner and audit packet for follow-up work. |
+| Verification handoff | Points reviewers at the owning package test command for follow-up work. |
 
 ---
 
@@ -81,12 +81,12 @@ Run the owning package test command from the nearest package boundary.
 
 ## 6. USAGE EXAMPLES
 
-**Audit this folder**
+**Validate this folder**
 
 ```text
-User request: Check .opencode/skills/system-code-graph/mcp_server/tests/handlers for sk-code and README coverage.
+User request: Check .opencode/skills/system-code-graph/mcp_server/tests/handlers for current handler test coverage.
 Skill routing: sk-code plus sk-doc.
-Expected output: Findings recorded in the 026 audit report.
+Expected output: Current `code_graph_classify_query_intent` dispatch coverage for the 8-tool surface is verified with the owning package tests.
 ```
 
 ---
@@ -95,7 +95,7 @@ Expected output: Findings recorded in the 026 audit report.
 
 | What You See | Cause | Fix |
 |---|---|---|
-| README appears stale | Source files changed after this audit | Refresh the structure table and rerun the 026 audit check. |
+| README appears stale | Source files changed after this README was refreshed | Refresh the structure table and rerun the owning package tests. |
 | Verification command is unclear | Folder is a helper boundary | Use the nearest package or skill-level verification command. |
 
 ---

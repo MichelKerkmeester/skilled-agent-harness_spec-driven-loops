@@ -92,8 +92,16 @@ function testPhaseFolderContracts() {
       `/speckit:${doc.name} documents --phase-folder contract`
     );
 
+    // Presentation docs own argument surfaces; phase-child behavior prose
+    // lives in the workflow YAML assets, so check the command's full surface.
+    const assetTexts = ['auto', 'confirm']
+      .map((mode) => path.join(ASSETS_ROOT, `speckit_${doc.name}_${mode}.yaml`))
+      .filter((assetPath) => exists(assetPath))
+      .map((assetPath) => readFile(assetPath));
+    const combinedText = [text, ...assetTexts].join('\n');
+
     assertTrue(
-      text.includes('Option E') || text.includes('phase child') || text.includes('Phase folder'),
+      combinedText.includes('Option E') || combinedText.includes('phase child') || combinedText.includes('Phase folder'),
       `/speckit:${doc.name} includes Option E/phase-child behavior`
     );
   }

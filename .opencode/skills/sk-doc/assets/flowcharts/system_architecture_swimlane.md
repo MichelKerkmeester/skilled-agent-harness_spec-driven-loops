@@ -1,3 +1,14 @@
+---
+title: System Architecture Flow (Swimlane) - Multi-Tier System Interaction
+description: Multi-tier system architecture showing interaction between different layers and components.
+trigger_phrases:
+  - "swimlane architecture diagram"
+  - "multi tier system flow"
+  - "microservices data flow diagram"
+importance_tier: normal
+contextType: general
+---
+
 # System Architecture Flow (Swimlane) - Multi-Tier System Interaction
 
 Multi-tier system architecture showing interaction between different layers and components.

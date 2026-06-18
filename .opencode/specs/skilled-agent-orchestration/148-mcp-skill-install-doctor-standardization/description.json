@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/148-mcp-skill-install-doctor-standardization",
+  "description": "Feature Specification: Standardize the mcp-* skills into the install-guide and doctor system",
+  "keywords": [
+    "feature",
+    "specification",
+    "standardize",
+    "mcp",
+    "skills",
+    "install-guide",
+    "doctor",
+    "system"
+  ],
+  "lastUpdated": "2026-06-15T08:49:57.415Z",
+  "specId": "153",
+  "folderSlug": "mcp-skill-install-doctor-standardization",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

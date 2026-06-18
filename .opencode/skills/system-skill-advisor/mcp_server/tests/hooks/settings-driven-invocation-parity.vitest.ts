@@ -4,10 +4,12 @@
 //
 // PURPOSE
 // -------
-// Locks in the canonical NESTED shape of `.claude/settings.local.json` so a
-// regression like the one PR 2 fixed (F23.1: top-level `bash:` field firing the
-// copilot adapter alongside the nested claude adapter, causing duplicate
-// briefs) cannot land again.
+// Locks in the canonical NESTED shape of the committed, shared
+// `.claude/settings.json` so a regression like the one PR 2 fixed (F23.1:
+// top-level `bash:` field firing the copilot adapter alongside the nested
+// claude adapter, causing duplicate briefs) cannot land again. The committed
+// file is the source of truth; the gitignored `.claude/settings.local.json` is
+// a machine-local override that does not carry the canonical hooks contract.
 //
 // CANONICAL SHAPE (per Claude Code's hook schema)
 // -----------------------------------------------
@@ -44,10 +46,13 @@
 // ALWAYS-ON JSON SHAPE
 // --------------------
 // The JSON shape contract is runtime-independent: CI and autonomous runs on
-// Codex / Copilot must still assert the production
-// `.claude/settings.local.json` contents. Only true Claude interpreter behavior
-// belongs behind a Claude runtime guard; this suite intentionally stays at the
-// checked-in JSON boundary.
+// Codex / Copilot must still assert the committed `.claude/settings.json`
+// contents. Only true Claude interpreter behavior belongs behind a Claude
+// runtime guard; this suite intentionally stays at the checked-in JSON
+// boundary. The committed commands use the portable form
+// `bash -c 'cd "${CLAUDE_PROJECT_DIR:-$PWD}" && node .opencode/...'` so they
+// resolve correctly across worktrees and machines, rather than pinning an
+// absolute repo root or an absolute node binary.
 //
 // NON-GOALS (intentional brittleness budget)
 // ------------------------------------------
@@ -58,7 +63,7 @@
 // - Does NOT mock Claude Code's closed-source hook-schema interpreter — the
 //   contract is enforced at the JSON-shape boundary.
 //
-// SOURCES: iter-9 F46, iter-10 F51, iter-11 F56; .claude/settings.local.json (post-PR-2 nested shape).
+// SOURCES: iter-9 F46, iter-10 F51, iter-11 F56; .claude/settings.json (committed, post-PR-2 nested portable shape).
 
 import { execFileSync } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
@@ -71,7 +76,7 @@ import { findAdvisorWorkspaceRoot } from '../../lib/utils/workspace-root.js';
 // ───────────────────────────────────────────────────────────────
 
 const REPO_ROOT = findAdvisorWorkspaceRoot(import.meta.dirname);
-const SETTINGS_PATH = resolve(REPO_ROOT, '.claude/settings.local.json');
+const SETTINGS_PATH = resolve(REPO_ROOT, '.claude/settings.json');
 const SETTINGS_EXISTS = existsSync(SETTINGS_PATH);
 const RAW_SETTINGS = SETTINGS_EXISTS ? readFileSync(SETTINGS_PATH, 'utf8') : '';
 const SETTINGS = RAW_SETTINGS ? JSON.parse(RAW_SETTINGS) as ClaudeSettings : {};
@@ -182,13 +187,17 @@ describe('settings-driven invocation parity (F23.1 / F25 / F46 / F56)', () => {
           expect(cmd).not.toContain('hooks/codex/');
         });
 
-        it('command is anchored to the canonical repo root and pinned node binary', () => {
+        it('command is anchored to the portable project dir and invokes the claude adapter via node', () => {
           const cmd = getHook()?.command ?? '';
-          expect(cmd).toContain(`cd "${REPO_ROOT}"`);
-          expect(cmd).toMatch(/&& \/[^'"\s]+\/node\s+\.opencode\/skills\/system-spec-kit\/mcp_server\/dist\/hooks\/claude\//);
+          // Portable anchor: resolve the project dir at runtime rather than
+          // pinning an absolute repo root, so the command works across
+          // worktrees and machines.
+          expect(cmd).toContain('cd "${CLAUDE_PROJECT_DIR:-$PWD}"');
+          // Bare `node` (relying on PATH) running the relative adapter path —
+          // not a pinned absolute node binary.
+          expect(cmd).toMatch(/&& node \.opencode\/skills\/system-spec-kit\/mcp_server\/dist\/hooks\/claude\//);
           expect(cmd).not.toContain('git rev-parse');
           expect(cmd).not.toContain('|| pwd');
-          expect(cmd).not.toContain('&& node ');
         });
 
         it('command terminates in a .js script reference', () => {

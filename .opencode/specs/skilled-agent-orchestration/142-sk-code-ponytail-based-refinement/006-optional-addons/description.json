@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/142-sk-code-ponytail-based-refinement/006-optional-addons",
+  "description": "Phase 6 (optional): Smaller + Heavier Add-ons",
+  "keywords": [
+    "phase",
+    "optional",
+    "smaller",
+    "heavier",
+    "add-ons"
+  ],
+  "lastUpdated": "2026-06-13T17:55:07.446Z",
+  "specId": "006",
+  "folderSlug": "optional-addons",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "142-sk-code-ponytail-based-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

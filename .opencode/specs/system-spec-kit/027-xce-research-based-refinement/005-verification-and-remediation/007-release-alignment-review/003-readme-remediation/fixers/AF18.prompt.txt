@@ -1,0 +1,30 @@
+Act as a markdown documentation-fixer (seat AF18). Spec folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation (PRE-APPROVED at Gate 3 — make the edits below directly with the Edit/Write tools; do NOT re-ask Gate 3 and do NOT ask the user anything).
+
+You fix STALE content in README files so they match current repo reality. SURGICAL edits only — fix the cited claims, keep everything else intact. Find the correct current value by reading the cited file PLUS its SKILL.md / source / config before editing.
+
+ALLOWED WRITE PATHS (edit ONLY these files):
+- .opencode/skills/system-spec-kit/references/config/environment_variables.md
+- .opencode/skills/system-spec-kit/references/config/hook_system.md
+- .opencode/skills/system-spec-kit/references/memory/memory_system.md
+- .opencode/skills/system-spec-kit/references/memory/save_workflow.md
+- .opencode/skills/system-spec-kit/references/structure/folder_structure.md
+BANNED: no delete, no rename, no new files, no edits outside the listed files, no --no-verify.
+
+DO-NOT-FIX (binding — confirmed false positives; leave untouched):
+- The CLI front-door "37 tools" figure: `spec-memory.cjs` CLI is genuinely 37; only the MCP-server/daemon surface is 39. Fix a "37" ONLY when the sentence is about the MCP server/daemon, NOT the CLI front door.
+- Any `// Feature catalog:` comments and TSDoc `@example` values.
+- Any cited claim that does NOT actually reproduce against the live file — mark it refuted; never invent a fix.
+
+FINDINGS TO FIX (confirm-then-fix each; P0/P1/P2 all in scope, including cosmetic/style):
+- [P1] .opencode/skills/system-spec-kit/references/config/environment_variables.md:33 — Strict schema flag describes old tool surface | stale: SPECKIT_STRICT_SCHEMAS enforces validation for the 37-tool mk-spec-memory surface. -> correct: The mk-spec-memory surface is 39 tools.
+- [P1] .opencode/skills/system-spec-kit/references/config/hook_system.md:124 — Hook fallback names old resume command | stale: Hook fallback tells operators to use /spec_kit:resume. -> correct: The current command namespace is /speckit, with resume implemented at .opencode/commands/speckit/resume.md.
+- [P1] .opencode/skills/system-spec-kit/references/memory/memory_system.md:105 — Memory tool reference count is stale | stale: Tool Reference says 37 mk-spec-memory tools and public surface is 37 descriptors. -> correct: TOOL_DEFINITIONS is currently 39 tools.
+- [P1] .opencode/skills/system-spec-kit/references/memory/memory_system.md:22 — Indexed source count omits graph metadata | stale: Current baseline says 2 active indexed content sources plus retired compatibility artifacts. -> correct: memory_index_scan discovers constitutional files, spec documents, and graph-metadata.json files, merges all three, and graph-metadata.json has its own graph_metadata document type.
+- [P1] .opencode/skills/system-spec-kit/references/memory/memory_system.md:155 — memory_index_scan parameter docs miss background jobs | stale: memory_index_scan parameters list only specFolder, force, includeConstitutional, includeSpecDocs, and incremental. -> correct: memory_index_scan also supports background:true and governance/retention fields, and background jobs are polled/cancelled through memory_index_scan_status and memory_index_scan_cancel.
+- [P1] .opencode/skills/system-spec-kit/references/memory/save_workflow.md:369 — Save workflow cites old schema version | stale: Spec documents use schema v23 fields. -> correct: The current vector index schema version is v37.
+- [P1] .opencode/skills/system-spec-kit/references/structure/folder_structure.md:99 — Legacy memory folder documented as active | stale: Level sections and the memory/ special folder describe memory/ as context preservation for future sessions with DD-MM-YY files. -> correct: The current save workflow skips legacy [spec]/memory/*.md writes; canonical continuity lives in packet docs and graph/description metadata.
+
+After editing, re-read each edited line to verify. Your final message MUST be exactly one fenced json block:
+```json
+{"seat":"AF18","fixed":[{"file":"path","claim":"what was stale","after":"what it now says"}],"refuted":[{"file":"path","why":"why skipped"}]}
+```

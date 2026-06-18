@@ -2,15 +2,15 @@
 title: "Webflow CSS Quality Standards"
 description: "CSS quality patterns for Webflow: will-change management (set in JS, cleanup after), GPU-accelerated properties (transform/opacity only), Motion.dev-aligned easing, fluid typography. Includes CSS enforcement: custom property naming (--font-/--vw-/--component-/--state-/--global-), attribute selector case-insensitivity (i flag), BEM naming, animation property restrictions."
 trigger_phrases:
-  - "webflow css quality"
-  - "webflow css standards"
-  - "will-change"
-  - "GPU accelerated"
+  - "webflow css quality standards"
+  - "will change management"
+  - "gpu accelerated properties"
   - "css custom property prefix"
-  - "BEM enforcement"
-  - "css attribute selector i flag"
-  - "fluid typography"
-  - "css animation property enforcement"
+  - "bem naming enforcement"
+  - "css attribute selector flag"
+  - "fluid typography webflow"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Webflow CSS Quality Standards

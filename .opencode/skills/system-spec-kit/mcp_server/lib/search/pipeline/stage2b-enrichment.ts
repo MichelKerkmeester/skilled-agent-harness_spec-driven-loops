@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Stage 2b Enrichment
 // ───────────────────────────────────────────────────────────────
-// B4 DECOMPOSITION: Extracted from stage2-fusion.ts steps 8-9.
+// Extracted from stage2-fusion.ts steps 8-9.
 // Pure annotation — no score mutation. Separated to clarify that
 // enrichment is logically distinct from scoring (steps 1-7).
 //

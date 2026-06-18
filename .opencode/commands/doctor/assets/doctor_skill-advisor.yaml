@@ -32,6 +32,8 @@ skill_advisor_doctor_invariant: |
 # ─────────────────────────────────────────────────────────────────
 upstream_assets:
   contract: "local command design contract"
+  cli_health_command: "node .opencode/bin/skill-advisor.cjs advisor_status --workspace-root \"$PWD\" --format json --timeout-ms 500 --warm-only"
+  cli_health_policy: "Warm-only: probe the existing mk-skill-advisor IPC socket first. The --warm-only flag guarantees the CLI never starts a daemon; if the socket is absent or dead it exits 75 (backend unavailable) — report CLI availability as retryable-unavailable."
   files:
     spec: "spec.md"  # advisor system requirements
     decision_record: "decision-record.md"  # ADRs for scoring lanes + thresholds
@@ -204,12 +206,14 @@ workflow:
       - "List all skill folders: ls -d .opencode/skills/*/"
       - "Read each SKILL.md frontmatter (name, description, trigger phrases)"
       - "Check skill graph status: mk_skill_advisor.skill_graph_status({})"
+      - "Apply upstream_assets.cli_health_policy, then run upstream_assets.cli_health_command only when the warm socket probe succeeds; report CLI availability, freshness, trustState, and exit code"
       - "Detect repo context: package.json, tsconfig.json, requirements.txt, language hints"
       - "Build skill inventory with current trigger coverage"
       - "Display summary to user before proceeding"
     outputs:
       - skill_count: N
       - graph_health: healthy|stale|missing
+      - cli_availability: available|retryable-unavailable|failed
       - repo_context: { languages, frameworks, project_type }
       - inventory: { skill_name, skill_path, has_skill_md, has_graph_metadata, trigger_count }
     validation: discovery_complete

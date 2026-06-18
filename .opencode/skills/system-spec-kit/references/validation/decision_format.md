@@ -1,6 +1,14 @@
 ---
 title: Structured Gate Decision Format
 description: Standardized format for documenting gate decisions to ensure auditability and traceability
+trigger_phrases:
+  - "structured gate decision format"
+  - "gate decision fields"
+  - "compact decision format"
+  - "decision auditability"
+  - "adr decision records"
+importance_tier: important
+contextType: general
 ---
 
 # Structured Gate Decision Format

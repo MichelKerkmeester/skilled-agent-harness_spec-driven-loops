@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption/001-typed-agent-io-adapter",
+  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption/001-typed-agent-io-adapter",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "027 phase 006/001",
+      "typed agent io adapter",
+      "agent-io-contract",
+      "AGENT_IO_DISPATCH header",
+      "AGENT_IO_RESULT envelope",
+      "dispatch header output envelope",
+      "agent io result"
+    ],
+    "key_topics": [
+      "027",
+      "phase",
+      "006",
+      "001",
+      "typed",
+      "agent",
+      "adapter",
+      "agent-io-contract",
+      "header",
+      "envelope",
+      "dispatch",
+      "output"
+    ],
+    "importance_tier": "important",
+    "status": "implemented",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md",
+      ".opencode/agents/orchestrate.md",
+      ".opencode/agents/code.md",
+      ".opencode/agents/review.md",
+      ".opencode/agents/context.md",
+      ".opencode/agents/debug.md",
+      ".opencode/commands/speckit/assets/speckit_plan_auto.yaml",
+      ".opencode/commands/speckit/assets/speckit_plan_confirm.yaml",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "agent-io-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".opencode/agents/orchestrate.md",
+        "source": "derived"
+      },
+      {
+        "name": "code.md",
+        "kind": "doc",
+        "path": ".opencode/agents/code.md",
+        "source": "derived"
+      },
+      {
+        "name": "review.md",
+        "kind": "doc",
+        "path": ".opencode/agents/review.md",
+        "source": "derived"
+      },
+      {
+        "name": "context.md",
+        "kind": "doc",
+        "path": ".opencode/agents/context.md",
+        "source": "derived"
+      },
+      {
+        "name": "debug.md",
+        "kind": "doc",
+        "path": ".opencode/agents/debug.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit_plan_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/speckit/assets/speckit_plan_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "speckit_plan_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/speckit/assets/speckit_plan_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Typed Agent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Gem Team",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Adapter",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 001 is the substrate child of the Gem Team adoption work in 027. The phase-007 study (19 iterations) and the phase-009 integration synthesis (5 iterations) converged on one finding: the spec-kit's agents already carry rich, evidence-first contracts, but the orchestration-relevant facts (status, confidence, failure class, dispatch intent) are expressed in scattered prose and are not machine-parseable. This packet adds a typed, OPTIONAL adapter layer over the existing contracts — never replacing the rich-markdown bodies.",
+    "created_at": "2026-06-06T10:11:05.143Z",
+    "last_save_at": "2026-06-10T19:22:14.949Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

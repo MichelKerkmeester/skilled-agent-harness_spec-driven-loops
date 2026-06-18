@@ -13,6 +13,16 @@ import { applyPostInsertMetadata } from '../lib/storage/post-insert-metadata.js'
 import { detectSpecLevelFromParsed } from '../lib/spec/spec-level.js';
 import { getCanonicalPathKey } from '../lib/utils/canonical-path.js';
 import { requireDb, toErrorMessage } from '../utils/index.js';
+import { isConstitutionalPath } from '../lib/utils/index-scope.js';
+import {
+  applyWriteProvenance,
+  deriveSourceKindFromContext,
+  normalizeSourceKind,
+  persistProvenanceMetadata,
+  persistSourceKind,
+  type SourceKind,
+  type WriteProvenanceContext,
+} from '../lib/storage/write-provenance.js';
 
 // Feature catalog: Prediction-error save arbitration
 // Feature catalog: Memory indexing (memory_save)
@@ -43,6 +53,34 @@ interface SimilarMemory {
   file_path: string;
   canonical_file_path?: string | null;
   [key: string]: unknown;
+}
+
+function isProtectedForReinforcement(memory: Record<string, unknown>): boolean {
+  const sourceKind = normalizeSourceKind(memory.source_kind);
+  const importanceTier = typeof memory.importance_tier === 'string' ? memory.importance_tier : null;
+  const pathCandidate = [memory.canonical_file_path, memory.file_path]
+    .find((value) => typeof value === 'string' && value.length > 0);
+  const rowPath = typeof pathCandidate === 'string' ? pathCandidate : null;
+
+  return sourceKind === null
+    || sourceKind === 'human'
+    || importanceTier === 'constitutional'
+    || (rowPath !== null && isConstitutionalPath(rowPath));
+}
+
+function applyReinforcementProvenance(
+  database: ReturnType<typeof requireDb>,
+  memoryId: number,
+  context: WriteProvenanceContext,
+  memory: Record<string, unknown>,
+): void {
+  if (isProtectedForReinforcement(memory)) {
+    persistProvenanceMetadata(database, memoryId, context);
+    return;
+  }
+
+  persistSourceKind(database, memoryId, deriveSourceKindFromContext(context));
+  persistProvenanceMetadata(database, memoryId, context);
 }
 
 import type { PeDecision } from './save/types.js';
@@ -123,7 +161,7 @@ function findSimilarMemories(
         if (!matchesScopedValue(tenantId, r.tenant_id)) continue;
         if (!matchesScopedValue(userId, r.user_id)) continue;
         if (!matchesScopedValue(agentId, r.agent_id)) continue;
-        // H9 FIX: Filter by sessionId to prevent false duplicate/supersede decisions across sessions
+        // Filter by sessionId to prevent false duplicate/supersede decisions across sessions
         if (!matchesScopedValue(sessionId, r.session_id)) continue;
         const candidateCanonicalPath = typeof r.canonical_file_path === 'string'
           ? getCanonicalPathKey(r.canonical_file_path)
@@ -174,12 +212,17 @@ function findSimilarMemories(
 }
 
 /** Reinforce an existing memory's stability via FSRS scheduling instead of creating a duplicate */
-function reinforceExistingMemory(memoryId: number, parsed: ParsedMemory): IndexResult {
+function reinforceExistingMemory(
+  memoryId: number,
+  parsed: ParsedMemory,
+  provenance: WriteProvenanceContext = {},
+): IndexResult {
   const database = requireDb();
 
   try {
     const memory = database.prepare(`
-      SELECT id, stability, difficulty, last_review, review_count, title
+      SELECT id, stability, difficulty, last_review, review_count, title,
+             source_kind, importance_tier, canonical_file_path, file_path
       FROM memory_index
       WHERE id = ?
     `).get(memoryId) as Record<string, unknown> | undefined;
@@ -219,6 +262,12 @@ function reinforceExistingMemory(memoryId: number, parsed: ParsedMemory): IndexR
     if ((updateResult as { changes: number }).changes === 0) {
       throw new Error(`PE reinforcement UPDATE matched 0 rows for memory ${memoryId}`);
     }
+
+    applyReinforcementProvenance(database, memoryId, {
+      tool: 'memory_save',
+      filePath: parsed.filePath,
+      ...provenance,
+    }, memory);
 
     return {
       status: 'reinforced',
@@ -268,6 +317,7 @@ function updateExistingMemory(
   parsed: ParsedMemory,
   embedding: Float32Array,
   scope: { tenantId?: string | null; userId?: string | null; agentId?: string | null; sessionId?: string | null } = {},
+  provenance: WriteProvenanceContext = {},
 ): IndexResult {
   const database = requireDb();
 
@@ -298,8 +348,9 @@ function updateExistingMemory(
 
   const appendVersion = database.transaction(() => {
     // Retire the predecessor before the append insert so the active-row uniqueness
-    // guard holds at insert time; lineage and history persist.
-    retirePredecessorForActiveReindex(database, memoryId);
+    // guard holds at insert time; lineage and history persist. The carry surfaces a
+    // human's tier/source-kind so it survives the reindex instead of being relabelled.
+    const reindexCarry = retirePredecessorForActiveReindex(database, memoryId);
 
     const nextMemoryId = vectorIndex.indexMemory({
       specFolder: parsed.specFolder,
@@ -329,6 +380,22 @@ function updateExistingMemory(
       quality_score: parsed.qualityScore ?? 0,
       quality_flags: JSON.stringify(parsed.qualityFlags ?? []),
     });
+    applyWriteProvenance(database, nextMemoryId, {
+      tool: 'memory_save',
+      filePath: parsed.filePath,
+      scope,
+      ...provenance,
+    });
+
+    // Re-stamp after provenance so a manual predecessor's tier and human
+    // source-kind carry to the successor instead of resetting to the automated
+    // default — keeping the automated-writers-never-overwrite-manual guarantee.
+    if (reindexCarry != null) {
+      database
+        .prepare('UPDATE memory_index SET importance_tier = ? WHERE id = ?')
+        .run(reindexCarry.importanceTier, nextMemoryId);
+      persistSourceKind(database, nextMemoryId, reindexCarry.sourceKind as SourceKind);
+    }
 
     recordLineageTransition(database, nextMemoryId, {
       actor: 'mcp:memory_save',

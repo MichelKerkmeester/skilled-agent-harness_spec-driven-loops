@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/005-advisor-feedback-calibration",
+  "description": "Shadow-only advisor feedback calibration from advisor_validate outcomes",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "advisor-feedback-calibration"
+  ],
+  "lastUpdated": "2026-06-10T23:45:00.000Z",
+  "specId": "005",
+  "folderSlug": "advisor-feedback-calibration",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "003-advisor-and-codegraph",
+    "002-xce-feature-adoption-advisor-codegraph"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

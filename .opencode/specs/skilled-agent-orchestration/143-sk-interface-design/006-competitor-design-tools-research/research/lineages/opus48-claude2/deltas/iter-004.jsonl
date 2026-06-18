@@ -1,0 +1,11 @@
+{"type":"iteration","iteration":4,"newInfoRatio":0.4,"status":"complete","focus":"Broader field + consolidation"}
+{"type":"finding","id":"f-iter004-001","label":"Onlook: direct visual edits written back to a REAL local codebase + tokens panel (strongest T1 instance, closest to CLI skills)","iteration":4}
+{"type":"finding","id":"f-iter004-002","label":"Builder Visual Copilot: Figma node->your component mapping (T2 instance; plugin out-of-scope)","iteration":4}
+{"type":"finding","id":"f-iter004-003","label":"Google Stitch: text/image->UI + multiple themed variants (T6 multi-variant; anti-default caution)","iteration":4}
+{"type":"finding","id":"f-iter004-004","label":"Uizard: screenshot/sketch->UI + theme swap (T8 image-brief OVERLAP; theme-swap=SKIP for anti-default)","iteration":4}
+{"type":"finding","id":"f-iter004-005","label":"Relume: AI wireframes from a fixed component library + style-guide gen (T2 instance + token-export overlap)","iteration":4}
+{"type":"finding","id":"f-iter004-006","label":"tweakcn: visual shadcn token editor -> exports CSS vars (T7 token-export OVERLAP)","iteration":4}
+{"type":"invariant","id":"inv-iter004-001","label":"Every adopted idea must pass the anti-default mandate and be hostable by a lean CLI skill (no platform/backend/plugin/hosted-canvas)","iteration":4}
+{"type":"edge","id":"e-iter004-001","relation":"STRENGTHENS","source":"f-iter004-001","target":"f-iter001-001","iteration":4}
+{"type":"edge","id":"e-iter004-002","relation":"STRENGTHENS","source":"f-iter004-005","target":"f-iter003-003","iteration":4}
+{"type":"ruled_out","direction":"No new theme beyond T1-T8; discovery saturated at 4 additional tools with 0 new themes","reason":"theme space converged","iteration":4}

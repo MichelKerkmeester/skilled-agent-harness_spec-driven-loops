@@ -26,9 +26,9 @@ Two trace modes score the same playbook corpus:
 
 | Metric | Value |
 |---|---|
-| Corpus | sk-code `manual_testing_playbook` (24 scenarios: 15 routing, 2 advisor, 7 browser) |
+| Corpus | sk-code `manual_testing_playbook` (28 deterministic scenarios across 8 categories, including `DR-001`..`DR-004`) |
 | Trace modes | router (deterministic CI gate), live (real dispatch) |
-| Latest router verdict | FAIL, aggregate 40 |
+| Latest router verdict | FAIL, aggregate 44/100 |
 | Latest live verdict | CONDITIONAL, aggregate 71 |
 | D4 usefulness (approximate) | about 49 |
 
@@ -49,7 +49,7 @@ Run from the repository root.
 Router mode (deterministic, no network):
 
 ```bash
-node .opencode/skills/deep-improvement/scripts/shared/loop-host.cjs \
+node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/loop-host.cjs \
   --mode=skill-benchmark --skill=sk-code \
   --outputs-dir=.opencode/skills/sk-code/benchmark/router-final \
   --trace-mode=router
@@ -59,7 +59,7 @@ Live mode (dispatches through cli-opencode, needs a configured provider):
 
 ```bash
 SKILL_BENCH_OPENCODE_MODEL=openai/gpt-5.5-fast SKILL_BENCH_OPENCODE_VARIANT=high \
-node .opencode/skills/deep-improvement/scripts/shared/loop-host.cjs \
+node .opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/loop-host.cjs \
   --mode=skill-benchmark --skill=sk-code \
   --outputs-dir=.opencode/skills/sk-code/benchmark/live-final \
   --trace-mode=live --advisor-mode=python \
@@ -121,7 +121,7 @@ Start with the `.md` file for the verdict and the ranked bottlenecks. Open the `
 
 | Skill | Relationship | Use When |
 |---|---|---|
-| [`deep-improvement`](../../deep-improvement/SKILL.md) | Owns the Lane C benchmark harness | Running or extending the benchmark |
+| [`deep-improvement`](../../deep-loop-workflows/deep-improvement/SKILL.md) | Owns the Lane C benchmark harness | Running or extending the benchmark |
 | [`sk-code`](../SKILL.md) | The skill under measurement | Reading or tuning the router being scored |
 
 ### Related Documents
@@ -129,4 +129,4 @@ Start with the `.md` file for the verdict and the ranked bottlenecks. Open the `
 | Document | Purpose |
 |---|---|
 | [`smart_routing.md`](../references/smart_routing.md) | The machine-readable router the benchmark replays |
-| [`start-skill-benchmark-loop`](../../../commands/deep/start-skill-benchmark-loop.md) | The command that drives a benchmark run |
+| [`/deep:skill-benchmark`](../../../commands/deep/skill-benchmark.md) | The command that drives a benchmark run |

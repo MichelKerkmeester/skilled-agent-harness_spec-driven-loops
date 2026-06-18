@@ -634,29 +634,23 @@ describe('Handler Checkpoints (T521, T102) [deferred - requires DB test fixtures
       await expect(handler.handleMemoryValidate({ id: '7abc', wasUseful: true })).rejects.toThrow(/id.*integer|id.*number/i);
     });
 
-    it('T521-V5: Stores resolved query text for adaptive validation signals', async () => {
+    it('T521-V5: Stores raw-text queryId for adaptive validation signals', async () => {
       const db = vectorIndexMod.getDb();
       const memoryId = 900051;
-      const queryLogId = 900151;
       const now = new Date().toISOString();
       const previousAdaptiveFlag = process.env.SPECKIT_MEMORY_ADAPTIVE_RANKING;
 
-      initConsumptionLog(db);
       db.prepare(`
         INSERT INTO memory_index (id, spec_folder, file_path, created_at, updated_at)
         VALUES (?, ?, ?, ?, ?)
       `).run(memoryId, 'specs/test', `specs/test/memory-${memoryId}.md`, now, now);
-      db.prepare(`
-        INSERT INTO consumption_log (id, event_type, query_text, result_count, timestamp)
-        VALUES (?, 'search', ?, 1, ?)
-      `).run(queryLogId, 'resolved validation query', now);
 
       try {
         process.env.SPECKIT_MEMORY_ADAPTIVE_RANKING = 'true';
         const response = await handler.handleMemoryValidate({
           id: memoryId,
           wasUseful: true,
-          queryId: `consumption:${queryLogId}`,
+          queryId: 'resolved validation query',
         });
         const parsed = JSON.parse(response.content[0].text);
         const signal = db.prepare(`
@@ -671,7 +665,7 @@ describe('Handler Checkpoints (T521, T102) [deferred - requires DB test fixtures
         expect(parsed.data?.memoryId).toBe(memoryId);
         expect(signal?.query).toBe('resolved validation query');
         expect(JSON.parse(signal?.metadata ?? '{}')).toMatchObject({
-          queryId: `consumption:${queryLogId}`,
+          queryId: 'resolved validation query',
           queryText: 'resolved validation query',
         });
       } finally {
@@ -681,7 +675,99 @@ describe('Handler Checkpoints (T521, T102) [deferred - requires DB test fixtures
           process.env.SPECKIT_MEMORY_ADAPTIVE_RANKING = previousAdaptiveFlag;
         }
         db.prepare('DELETE FROM adaptive_signal_events WHERE memory_id = ?').run(memoryId);
+        db.prepare('DELETE FROM memory_index WHERE id = ?').run(memoryId);
+      }
+    });
+
+    it('T521-V6: consumption queryId on the fingerprint-only schema resolves to null without throwing', async () => {
+      const db = vectorIndexMod.getDb();
+      const memoryId = 900052;
+      const queryLogId = 900152;
+      const now = new Date().toISOString();
+      const previousAdaptiveFlag = process.env.SPECKIT_MEMORY_ADAPTIVE_RANKING;
+
+      initConsumptionLog(db);
+      db.prepare(`
+        INSERT INTO memory_index (id, spec_folder, file_path, created_at, updated_at)
+        VALUES (?, ?, ?, ?, ?)
+      `).run(memoryId, 'specs/test', `specs/test/memory-${memoryId}.md`, now, now);
+      db.prepare(`
+        INSERT INTO consumption_log (id, event_type, query_hash, result_count, timestamp)
+        VALUES (?, 'search', 'fp-900152', 1, ?)
+      `).run(queryLogId, now);
+
+      try {
+        process.env.SPECKIT_MEMORY_ADAPTIVE_RANKING = 'true';
+        const response = await handler.handleMemoryValidate({
+          id: memoryId,
+          wasUseful: true,
+          queryId: `consumption:${queryLogId}`,
+        });
+        const parsed = JSON.parse(response.content[0].text);
+
+        expect(response.isError).toBeFalsy();
+        expect(parsed.data?.memoryId).toBe(memoryId);
+        const signal = db.prepare(`
+          SELECT query
+          FROM adaptive_signal_events
+          WHERE memory_id = ?
+          ORDER BY id DESC
+          LIMIT 1
+        `).get(memoryId) as { query?: string | null } | undefined;
+        if (signal) {
+          expect(signal.query ?? null).not.toBe('fp-900152');
+        }
+      } finally {
+        if (previousAdaptiveFlag === undefined) {
+          delete process.env.SPECKIT_MEMORY_ADAPTIVE_RANKING;
+        } else {
+          process.env.SPECKIT_MEMORY_ADAPTIVE_RANKING = previousAdaptiveFlag;
+        }
+        db.prepare('DELETE FROM adaptive_signal_events WHERE memory_id = ?').run(memoryId);
         db.prepare('DELETE FROM consumption_log WHERE id = ?').run(queryLogId);
+        db.prepare('DELETE FROM memory_index WHERE id = ?').run(memoryId);
+      }
+    });
+
+    it('T521-V7: an untrusted caller sessionId is not used as the adaptive-signal actor', async () => {
+      const db = vectorIndexMod.getDb();
+      const memoryId = 900053;
+      const now = new Date().toISOString();
+      const previousAdaptiveFlag = process.env.SPECKIT_MEMORY_ADAPTIVE_RANKING;
+
+      db.prepare(`
+        INSERT INTO memory_index (id, spec_folder, file_path, created_at, updated_at)
+        VALUES (?, ?, ?, ?, ?)
+      `).run(memoryId, 'specs/test', `specs/test/memory-${memoryId}.md`, now, now);
+
+      try {
+        process.env.SPECKIT_MEMORY_ADAPTIVE_RANKING = 'true';
+        const response = await handler.handleMemoryValidate({
+          id: memoryId,
+          wasUseful: true,
+          queryId: 'session-trust validation query',
+          sessionId: 'forged-untracked-session',
+        });
+        const signal = db.prepare(`
+          SELECT actor
+          FROM adaptive_signal_events
+          WHERE memory_id = ?
+          ORDER BY id DESC
+          LIMIT 1
+        `).get(memoryId) as { actor?: string | null } | undefined;
+
+        expect(response.isError).toBeFalsy();
+        // A forged or untracked sessionId must not become the attributed actor;
+        // it degrades to the default actor instead of spoofing another session.
+        expect(signal?.actor).toBe('memory_validate');
+        expect(signal?.actor).not.toBe('forged-untracked-session');
+      } finally {
+        if (previousAdaptiveFlag === undefined) {
+          delete process.env.SPECKIT_MEMORY_ADAPTIVE_RANKING;
+        } else {
+          process.env.SPECKIT_MEMORY_ADAPTIVE_RANKING = previousAdaptiveFlag;
+        }
+        db.prepare('DELETE FROM adaptive_signal_events WHERE memory_id = ?').run(memoryId);
         db.prepare('DELETE FROM memory_index WHERE id = ?').run(memoryId);
       }
     });

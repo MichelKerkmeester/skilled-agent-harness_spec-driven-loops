@@ -173,8 +173,16 @@ function buildFingerprint(policy: Omit<IndexScopePolicy, 'fingerprint' | 'label'
 }
 
 function buildLabel(policy: Omit<IndexScopePolicy, 'fingerprint' | 'label'>): string {
+  // A skills allowlist indexes a different surface than "all skills"; disclose
+  // the named subset so `includeSkills:['sk-code']` is not reported the same as
+  // `includeSkills:true`.
+  const skillsLabel = policy.includedSkillsList === 'all'
+    ? 'skills'
+    : Array.isArray(policy.includedSkillsList) && policy.includedSkillsList.length > 0
+      ? `skills: ${[...policy.includedSkillsList].sort().join(', ')}`
+      : null;
   const includedFolders = [
-    policy.includeSkills ? 'skills' : null,
+    skillsLabel,
     policy.includeAgents ? 'agents' : null,
     policy.includeCommands ? 'commands' : null,
     policy.includeSpecs ? 'specs' : null,
@@ -183,7 +191,17 @@ function buildLabel(policy: Omit<IndexScopePolicy, 'fingerprint' | 'label'>): st
   const includedSuffix = includedFolders.length > 0
     ? `; opted-in .opencode folders: ${includedFolders.join(', ')}`
     : '; .opencode skill, agent, command, specs and plugins excluded';
-  return `end-user code only${includedSuffix}`;
+  // Glob narrowing changes what the graph can answer about; hiding it behind
+  // the generic folder summary made a *.ts-only scan read as a full scan.
+  const globSegments: string[] = [];
+  if (policy.includeGlobs.length > 0) {
+    globSegments.push(`includeGlobs: ${policy.includeGlobs.join(', ')}`);
+  }
+  if (policy.excludeGlobs.length > 0) {
+    globSegments.push(`excludeGlobs: ${policy.excludeGlobs.join(', ')}`);
+  }
+  const globSuffix = globSegments.length > 0 ? `; narrowed by ${globSegments.join('; ')}` : '';
+  return `end-user code only${includedSuffix}${globSuffix}`;
 }
 
 function buildIndexScopePolicy(input: {

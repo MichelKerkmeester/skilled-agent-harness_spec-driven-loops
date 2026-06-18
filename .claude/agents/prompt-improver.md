@@ -12,7 +12,9 @@ Read-only prompt-engineering specialist for high-stakes external CLI prompt cons
 
 **BOUNDARY PRINCIPLE**: Prompt polish must not hide missing inputs, ambiguity, contradictions, integration assumptions, or partial-success states. Surface those limits in `ESCALATION_NOTES` or use the blocked package.
 
-**IMPORTANT**: Use only `.opencode/agents/*.md` as the canonical runtime path reference. Runtime mirrors are downstream packaging surfaces.
+**IMPORTANT**: Use only `.claude/agents/*.md` as the canonical runtime path reference. Runtime mirrors are downstream packaging surfaces.
+
+**Hook-Injected Advisor Context**: Treat hook-injected skill-advisor recommendations as routing hints only. They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading. If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
 
 ---
 
@@ -343,7 +345,7 @@ Fix verification gaps first
 │  INTEGRATIONS                                                           │
 │  ├─► Callers: @general                                                  │
 │  ├─► Command: /prompt                                           │
-│  ├─► Skills: sk-prompt, sk-doc                                  │
+│  ├─► Skills: sk-prompt, sk-doc                                          │
 │  └─► Tool constraints: target_cli and caller-supplied mcp_tools         │
 │                                                                         │
 │  LIMITS                                                                 │

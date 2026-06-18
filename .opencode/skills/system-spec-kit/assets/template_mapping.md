@@ -1,6 +1,13 @@
 ---
 title: Template Mapping
 description: Complete mapping of documentation levels to templates with scaffold and render commands.
+trigger_phrases:
+  - "template mapping"
+  - "level to template assignments"
+  - "template scaffold commands"
+  - "required templates by level"
+importance_tier: normal
+contextType: planning
 ---
 
 # Template Mapping - Level to File Assignments

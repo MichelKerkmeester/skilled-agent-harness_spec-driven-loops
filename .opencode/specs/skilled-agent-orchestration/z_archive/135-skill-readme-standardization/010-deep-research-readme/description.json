@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/135-skill-readme-standardization/010-deep-research-readme",
+  "description": "Feature Specification: deep-research README",
+  "keywords": [
+    "feature",
+    "specification",
+    "deep-research",
+    "readme"
+  ],
+  "lastUpdated": "2026-06-10T04:53:30.775Z",
+  "specId": "010",
+  "folderSlug": "deep-research-readme",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "135-skill-readme-standardization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

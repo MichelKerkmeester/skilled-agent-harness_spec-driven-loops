@@ -7,7 +7,7 @@ trigger_phrases:
   - "spec kit MCP feature inventory"
   - "what does spec kit memory do"
   - "memory MCP feature catalog"
-last_updated: "2026-05-31"
+last_updated: "2026-06-11"
 ---
 
 # Spec Kit Memory: Feature Catalog
@@ -45,19 +45,19 @@ Code-graph hook docs now point at the extracted `system-code-graph` skill for gr
 
 ### Command-Surface Contract
 
-The Spec Kit Memory MCP server exposes **37 tools** overall across the 7-layer MCP surface (canonical source: `TOOL_DEFINITIONS.length` in `mcp_server/tool-schemas.ts`; deferred / internal-only handlers do NOT count), matching the README's 37-tool API reference. The command layer wraps the spec-doc record-focused subset under **4 top-level memory slash commands**, with session recovery still owned by `/spec_kit:resume` as a spec-folder workflow using the spec-doc record/session recovery stack. Each command declares its allowed tools in frontmatter; tools not listed are inaccessible to that command. The canonical source for primary tool ownership is the coverage matrix in `.opencode/commands/memory/README.txt`, while each command file's `allowed-tools` frontmatter shows the full operational surface. Recovery behavior is documented in `.opencode/commands/spec_kit/resume.md`.
+The Spec Kit Memory MCP server exposes **39 tools** overall across the 7-layer MCP surface (canonical source: `TOOL_DEFINITIONS.length` in `mcp_server/tool-schemas.ts`; deferred / internal-only handlers do NOT count), matching the README's 39-tool API reference. The command layer wraps the spec-doc record-focused subset under **4 top-level memory slash commands**, with session recovery still owned by `/speckit:resume` as a spec-folder workflow using the spec-doc record/session recovery stack. Each command declares its allowed tools in frontmatter; tools not listed are inaccessible to that command. The canonical source for primary tool ownership is the coverage matrix in `.opencode/commands/memory/README.txt`, while each command file's `allowed-tools` frontmatter shows the full operational surface. Recovery behavior is documented in `.opencode/commands/speckit/resume.md`.
 
 | Command | Tools | Ownership | Tool Names |
 |---------|-------|-----------|------------|
 | `/memory:search` | 13 | owns | `memory_context`, `memory_quick_search`, `memory_search`, `memory_match_triggers`, `task_preflight`, `task_postflight`, `memory_drift_why`, `memory_causal_link`, `memory_causal_stats`, `memory_causal_unlink`, `eval_run_ablation`, `eval_reporting_dashboard`, `memory_get_learning_history` |
 | `/memory:learn` | 6 | shared | `memory_save`, `memory_search`, `memory_stats`, `memory_list`, `memory_delete`, `memory_index_scan` |
-| `/memory:manage` | 20 primary + 1 helper | owns + borrows | Primary home: `memory_stats`, `memory_list`, `memory_index_scan`, `memory_validate`, `memory_update`, `memory_delete`, `memory_bulk_delete`, `memory_retention_sweep`, `memory_health`, `checkpoint_create`, `checkpoint_restore`, `checkpoint_list`, `checkpoint_delete`, `memory_ingest_start`, `memory_ingest_status`, `memory_ingest_cancel`; helper access: `memory_search` |
+| `/memory:manage` | 16 primary + 1 helper | owns + borrows | Primary home: `memory_stats`, `memory_list`, `memory_index_scan`, `memory_validate`, `memory_update`, `memory_delete`, `memory_bulk_delete`, `memory_retention_sweep`, `memory_health`, `checkpoint_create`, `checkpoint_restore`, `checkpoint_list`, `checkpoint_delete`, `memory_ingest_start`, `memory_ingest_status`, `memory_ingest_cancel`; helper access: `memory_search` |
 | `/memory:save` | 4 | shared | `memory_save`, `memory_index_scan`, `memory_stats`, `memory_update` |
-| `/spec_kit:resume` | broader helper surface | shared | Primary recovery chain: `memory_context`, `memory_search`, `memory_list`; wrapper also allows `memory_stats`, `memory_match_triggers`, `memory_delete`, `memory_update`, plus health, indexing, validation, checkpoint, and Code Graph helpers |
+| `/speckit:resume` | broader helper surface | shared | Primary recovery chain: `memory_context`, `memory_search`, `memory_list`; wrapper also allows `memory_stats`, `memory_match_triggers`, `memory_delete`, `memory_update`, plus health, indexing, validation, checkpoint, and Code Graph helpers |
 
 **Owns** means the command is the primary home for those tools. **Shared** means the command borrows tools whose primary home is another command (typically `/memory:search` or `/memory:manage`).
 
-Current catalog entries include surfaced runtime and tooling features such as `memory_retention_sweep` for governed `delete_after` closure, CLI matrix adapter runners under `mcp_server/matrix_runners/`, the Codex `freshness-smoke-check` helper, orphan MCP sweeper documentation, and the launcher idle-timeout knob. The Skill Advisor catalog owns the detailed `advisor_rebuild` MCP entry; it belongs to the separate Skill Advisor server and is NOT part of the mk-spec-memory 37-tool `TOOL_DEFINITIONS` surface counted above.
+Current catalog entries include surfaced runtime and tooling features such as `memory_retention_sweep` for governed `delete_after` closure, CLI matrix adapter runners under `mcp_server/matrix_runners/`, the Codex `freshness-smoke-check` helper, orphan MCP sweeper documentation, and the launcher idle-timeout knob. The Skill Advisor catalog owns the detailed `advisor_rebuild` MCP entry; it belongs to the separate Skill Advisor server and is NOT part of the mk-spec-memory 39-tool `TOOL_DEFINITIONS` surface counted above.
 
 ---
 
@@ -150,6 +150,38 @@ The cognitive path fetches 2x the requested limit from the trigger matcher to gi
 #### Source Files
 
 See [`01--retrieval/trigger-phrase-matching-memorymatchtriggers.md`](01--retrieval/trigger-phrase-matching-memorymatchtriggers.md) for full implementation and test file listings.
+
+---
+
+### Semantic trigger shadow matcher and hybrid handler
+
+#### Description
+
+Trigger matching can now compute semantic trigger candidates from cached embeddings without changing lexical results by default. Operators may enable shadow diagnostics with `SPECKIT_SEMANTIC_TRIGGERS`; `SPECKIT_SEMANTIC_TRIGGERS_MODE=union` is the explicit opt-in that lets semantic hits supplement weak lexical matches.
+
+#### How It Works
+
+The semantic matcher reads cached prompt and trigger embeddings, applies cosine threshold, margin, and max-result gates, and returns shadow metadata when the master flag is on. The hybrid handler keeps lexical matches first, degrades to lexical-only on cache misses or matcher failures, and caps semantic-only activation when union mode is explicitly enabled.
+
+#### Source Files
+
+See [`01--retrieval/semantic-trigger-shadow-matcher-and-hybrid-handler.md`](01--retrieval/semantic-trigger-shadow-matcher-and-hybrid-handler.md) for full implementation and test file listings.
+
+---
+
+### Trigger embedding backfill
+
+#### Description
+
+The trigger matcher has a derived embedding substrate for trigger phrases. The backfill helper populates `memory_trigger_embeddings` only when explicitly enabled, so lexical trigger behavior remains unchanged until semantic trigger evaluation is intentionally turned on.
+
+#### How It Works
+
+Schema v34 adds the derived table, and the scan completion path calls a resumable helper that reuses the embedding cache, keys rows by profile, and prevents duplicate ready rows on re-run. When the backfill flag is off, the helper makes no provider call and creates no rows.
+
+#### Source Files
+
+See [`01--retrieval/trigger-embedding-backfill.md`](01--retrieval/trigger-embedding-backfill.md) for full implementation and test file listings.
 
 ---
 
@@ -277,7 +309,7 @@ See [`01--retrieval/tool-result-extraction-to-working-memory.md`](01--retrieval/
 
 ---
 
-### Session recovery via /spec_kit:resume
+### Session recovery via /speckit:resume
 
 #### Description
 
@@ -285,7 +317,7 @@ When a session is interrupted by a crash, context compaction, timeout, or an ord
 
 #### How It Works
 
-**SHIPPED.** `/spec_kit:resume` owns session recovery and continuation. Its primary recovery chain relies on 3 borrowed tools: `memory_context`, `memory_search`, and `memory_list`. `memory_stats` remains diagnostic/helper access, and the live wrapper also permits `memory_match_triggers`, `memory_delete`, `memory_update`, health, indexing, validation, checkpoint, and Code Graph helpers that support the broader recovery workflow.
+**SHIPPED.** `/speckit:resume` owns session recovery and continuation. Its primary recovery chain relies on 3 borrowed tools: `memory_context`, `memory_search`, and `memory_list`. `memory_stats` remains diagnostic/helper access, and the live wrapper also permits `memory_match_triggers`, `memory_delete`, `memory_update`, health, indexing, validation, checkpoint, and Code Graph helpers that support the broader recovery workflow.
 
 The primary recovery path calls `memory_context` in `resume` mode with anchors targeting `state`, `next-steps`, `summary`, and `blockers`. Resume mode uses a 1200-token budget with `minState=WARM`, `includeContent=true`, dedup and decay both disabled.
 
@@ -293,13 +325,13 @@ Two recovery modes are available: **auto** resolves the strongest session candid
 
 The recovery chain prioritizes: (1) fresh `handover.md` when present, (2) `memory_context` in resume mode, (3) `CONTINUE_SESSION.md` crash breadcrumb, (4) anchored `memory_search` for thin summaries, (5) `memory_list` for recent-candidate discovery, and (6) user confirmation as final fallback.
 
-After recovery, the command continues directly inside `/spec_kit:resume` for structured spec-folder work or routes to `/memory:search history` for broader historical analysis, depending on user intent.
+After recovery, the command continues directly inside `/speckit:resume` for structured spec-folder work or routes to `/memory:search history` for broader historical analysis, depending on user intent.
 
 #### Source Files
 
 | File | Role |
 |------|------|
-| `.opencode/commands/spec_kit/resume.md` | `/spec_kit:resume` command definition with continuation and recovery workflows |
+| `.opencode/commands/speckit/resume.md` | `/speckit:resume` command definition with continuation and recovery workflows |
 
 See [`01--retrieval/session-recovery-spec-kit-resume.md`](01--retrieval/session-recovery-spec-kit-resume.md) for full details.
 
@@ -307,7 +339,7 @@ See [`01--retrieval/session-recovery-spec-kit-resume.md`](01--retrieval/session-
 
 ## 3. MUTATION
 
-This section documents 12 mutation features.
+This section documents 13 mutation features.
 
 ### Memory indexing (memory_save)
 
@@ -317,7 +349,7 @@ This is how you add new knowledge to the system. You point it at a file and it r
 
 #### How It Works
 
-`memory_save` is the save entry point for the canonical packet continuity path. You point it at a packet document or other supported markdown input, and it routes the content through `contentRouter`, applies the selected merge behavior via `anchorMergeOperation`, and writes the result through `atomicIndexMemory` inside the existing spec-folder lock. `_memory.continuity` now lives as supporting frontmatter state inside the spec doc, and `/spec_kit:resume` remains the canonical recovery surface.
+`memory_save` is the save entry point for the canonical packet continuity path. You point it at a packet document or other supported markdown input, and it routes the content through `contentRouter`, applies the selected merge behavior via `anchorMergeOperation`, and writes the result through `atomicIndexMemory` inside the existing spec-folder lock. `_memory.continuity` now lives as supporting frontmatter state inside the spec doc, and `/speckit:resume` remains the canonical recovery surface.
 
 hardened the canonical save follow-up behavior. Successful canonical saves now refresh current metadata on every invocation instead of treating repeat saves as a structural no-op, and research spec folders can trigger metadata backfill for missing iteration metadata under the same workflow.
 
@@ -354,6 +386,38 @@ Document type affects importance weighting automatically: constitutional files g
 #### Source Files
 
 See [`02--mutation/memory-indexing-memorysave.md`](02--mutation/memory-indexing-memorysave.md) for full implementation and test file listings.
+
+---
+
+### Provenance source_kind write-ingress guard and mutation audit
+
+#### Description
+
+Memory writes now carry server-derived provenance instead of trusting caller-authored provenance fields. The write path persists `source_kind`, blocks automated overwrites of protected manual or constitutional fields, and records deduplicated mutation-audit events without making audit append failures roll back the successful write.
+
+#### How It Works
+
+Schema v35 adds `memory_index.source_kind` with a safe backfill. Create and update handlers derive the source kind from server-side provenance context, reject forged provenance input, skip protected automated overwrites before mutation, and append deterministic mutation-ledger records keyed by actor, source, and reason. The two ingress paths that originally bypassed the guard are now covered as well: same-path reindex retirement carries a manual predecessor's tier decision forward instead of silently deprecating it, and feedback auto-promotion refuses to overwrite a protected manual tier (checked before selection and atomically at update time). Guarded surfaces are the create/update handlers, same-path reindex retirement, and feedback auto-promotion; the prediction-error supersede/update and reconsolidation merge paths do not yet consult `source_kind` (tracked follow-on).
+
+#### Source Files
+
+See [`02--mutation/provenance-source-kind-write-ingress-guard-and-mutation-audit.md`](02--mutation/provenance-source-kind-write-ingress-guard-and-mutation-audit.md) for full implementation and test file listings.
+
+---
+
+### Memory idempotency receipts and near-duplicate hints
+
+#### Description
+
+Memory save and update paths can now replay identical retries and report advisory near-duplicate hints when `SPECKIT_MEMORY_IDEMPOTENCY=true`. With the flag off, the schema is present but existing writes behave as before.
+
+#### How It Works
+
+Schema v36 adds the receipt table plus `near_duplicate_of` and `last_dedup_checked_at` markers. The handlers derive receipt keys from operation and content data, strip caller-supplied idempotency tokens, replay exact matches, fail closed on changed-payload retries, and attach `near_duplicate_of` as an advisory response field after successful writes.
+
+#### Source Files
+
+See [`02--mutation/memory-idempotency-receipts-and-near-duplicate-hints.md`](02--mutation/memory-idempotency-receipts-and-near-duplicate-hints.md) for full implementation and test file listings.
 
 ---
 
@@ -400,6 +464,22 @@ Bulk deletes by spec folder are more involved. The system first creates an auto-
 #### Source Files
 
 See [`02--mutation/single-and-folder-delete-memorydelete.md`](02--mutation/single-and-folder-delete-memorydelete.md) for full implementation and test file listings.
+
+---
+
+### Soft-delete tombstones and active/purgeable partitions
+
+#### Description
+
+Delete and retention paths now have default-off tombstone infrastructure behind `SPECKIT_SOFT_DELETE_TOMBSTONES`. The default remains hard deletion, while the opt-in path preserves the first `deleted_at` timestamp and lets retention sweeps target purgeable tombstoned rows.
+
+#### How It Works
+
+Schema v37 adds `deleted_at`, an active partial index for live rows, and a purgeable partial index for tombstoned rows. Single delete, bulk delete, and retention sweep handlers check the flag: off keeps prior hard-delete behavior, while on writes tombstones with `COALESCE(deleted_at, now)` and reports tombstone-state details from retention sweeps.
+
+#### Source Files
+
+See [`02--mutation/soft-delete-tombstones-and-active-purgeable-partitions.md`](02--mutation/soft-delete-tombstones-and-active-purgeable-partitions.md) for full implementation and test file listings.
 
 ---
 
@@ -623,9 +703,9 @@ This is the tool that keeps the spec-doc record database synchronized with the f
 
 Spec documents are still indexed by default. During scan they flow through `memory_save` with `qualityGateMode: 'warn-only'`, so template, sufficiency, and quality issues surface as warnings instead of silently bypassing retrieval.
 
-The scanner discovers files from three sources: constitutional files (`.opencode/skills/*/constitutional/*.md`), canonical spec documents (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `research/research.md`, `handover.md`), and graph metadata files (`graph-metadata.json`). The retired `specs/**/memory/*.md` surface is no longer discovered and the runtime rejects saves into it. Canonical path deduplication prevents the same file from being indexed twice under different paths (the `specs/` vs `.opencode/specs/` symlink problem).
+The scanner discovers files from three sources: constitutional files (`.opencode/skills/*/constitutional/*.md`), canonical spec documents (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `research.md`, `research/research.md`, `resource-map.md`, `handover.md`, root-level `review-report.md`, `<packet>/review/review-report.md`, and `description.json`), and graph metadata files (`graph-metadata.json`). Metadata files backfilled under `<packet>/iterations/` are discoverable, while `research/iterations/` and `review/iterations/` markdown remain working artifacts. The retired `specs/**/memory/*.md` surface is no longer discovered and the runtime rejects saves into it. Canonical path deduplication prevents the same file from being indexed twice under different paths (the `specs/` vs `.opencode/specs/` symlink problem).
 
-In incremental mode (the default), the scanner categorizes every discovered file into one of four buckets: to-index (new files), to-update (changed mtime or content hash), to-skip (unchanged mtime and matching content hash) and to-delete (files that disappeared from disk). The content-hash secondary check catches timestamp-preserving rewrites that would otherwise look unchanged from mtime alone. Batch processing with a configurable `BATCH_SIZE` handles large workspaces, but oversized requests are clamped to the hard runtime maximum with a warning instead of exploding fan-out. Scan throttling uses an atomic lease: `acquireIndexScanLease()` reads `last_index_scan` and `scan_started_at` in one transaction, expires stale leases left behind by crashed scans, reserves a fresh run by writing `scan_started_at`, rejects overlapping fresh scans with `reason: 'lease_active'`, and still enforces `INDEX_SCAN_COOLDOWN` after completed runs with `reason: 'cooldown'`. The handler returns an E429 response with the computed wait time whenever either guard rejects the request. `completeIndexScanLease()` runs after the scan response is assembled, converts the active lease into `last_index_scan`, and clears the active lease row so the cooldown clock ties to completed scans instead of request start time.
+In incremental mode (the default), the scanner categorizes every discovered file into one of four buckets: to-index (new files), to-update (changed mtime or content hash), to-skip (unchanged mtime and matching content hash) and to-delete (files that disappeared from disk). The content-hash secondary check catches timestamp-preserving rewrites that would otherwise look unchanged from mtime alone. Batch processing with a configurable `BATCH_SIZE` handles large workspaces, but oversized requests are clamped to the hard runtime maximum with a warning instead of exploding fan-out. Scan throttling uses an atomic lease: `acquireIndexScanLease()` reads `last_index_scan` and `scan_started_at` in one transaction, expires stale leases left behind by crashed scans, reserves a fresh run by writing `scan_started_at`, coalesces overlapping fresh scans with `reason: 'lease_active'`, and still enforces `INDEX_SCAN_COOLDOWN` after completed runs with `reason: 'cooldown'`. Lease-active and cooldown guards now return a success envelope with `coalesced: true`, `status: 'coalesced'`, the computed wait time, and polling hints instead of a raw E429. `completeIndexScanLease()` runs after the scan response is assembled, converts the active lease into `last_index_scan`, and clears the active lease row so the cooldown clock ties to completed scans instead of request start time. The public scan schema also exposes `background: true`; queued scans can be observed with `memory_index_scan_status` and cancelled with `memory_index_scan_cancel`.
 
 Each file that passes through to indexing goes through the full `memory_save` pipeline, which means content normalization, quality gating, reconsolidation, chunk thinning and encoding-intent capture all apply automatically. Large files are split into chunks, and anchor-aware chunk thinning drops low-scoring chunks before they enter the index.
 
@@ -858,6 +938,22 @@ See [`06--analysis/causal-edge-deletion-memorycausalunlink.md`](06--analysis/cau
 
 ---
 
+### Causal tombstone sweep and metadata-edge promoter
+
+#### Description
+
+Causal graph maintenance now preserves delete lineage and promotes validated packet metadata into generated causal edges. Active causal-edge deletions write compact tombstone rows before removal, and scan indexing can derive deterministic packet lineage edges from `graph-metadata.json` and `description.json` without overwriting manual edges.
+
+#### How It Works
+
+The sweep helper snapshots matching active edges, writes tombstones with restore metadata, hard-deletes by active edge id, and clears graph caches. The metadata promoter reads parent, child, and parent-chain metadata, resolves packet memory rows, inserts generated `derived_from` or `enabled` edges with provenance columns, and tombstones stale generated edges during scan repair.
+
+#### Source Files
+
+See [`06--analysis/causal-tombstone-sweep-and-metadata-edge-promoter.md`](06--analysis/causal-tombstone-sweep-and-metadata-edge-promoter.md) for full implementation and test file listings.
+
+---
+
 ### Causal chain tracing (memory_drift_why)
 
 #### Description
@@ -941,6 +1037,22 @@ Pass `onlyComplete: true` to restrict results to tasks where both preflight and 
 #### Source Files
 
 See [`06--analysis/learning-history-memorygetlearninghistory.md`](06--analysis/learning-history-memorygetlearninghistory.md) for full implementation and test file listings.
+
+---
+
+### Learning feedback reducers
+
+#### Description
+
+Feedback learning now has three reducer surfaces: a read-only shared aggregator, a default-off deferred session-trace causal reducer, and a feedback-aware retention reducer that requires shadow-first safety evidence before active changes. The reducers share aggregate fields while preserving independent default-off behavior.
+
+#### How It Works
+
+`aggregateEvents` emits per-memory counts and weighted hit metadata without writes. The session-trace causal reducer can insert weak `auto-session` edges only when `SPECKIT_SESSION_TRACE_CAUSAL_INFERENCE` is enabled. The retention reducer is gated by `SPECKIT_FEEDBACK_RETENTION_LEARNING`, `SPECKIT_FEEDBACK_RETENTION_MODE`, and caller-supplied shadow evidence before it mutates retention state; shadow mode writes audit rows only.
+
+#### Source Files
+
+See [`06--analysis/learning-feedback-reducers.md`](06--analysis/learning-feedback-reducers.md) for full implementation and test file listings.
 
 ---
 
@@ -1224,7 +1336,7 @@ Three error codes from different subsystems are easy to confuse. This unifies th
 
 #### How It Works
 
-`E429` (`RATE_LIMITED`) is the `memory_index_scan` lease/cooldown rejection; it carries the wait time and a `reason` of `lease_active` or `cooldown`, and is retryable after the wait. `-32001` (`RETRYABLE_RECYCLE_ERROR`, `{ retryable: true }`) is the launcher proxy's still-live "backend recycled; retry" signal for in-flight non-replayable requests during an in-place daemon recycle — it is NOT removed; only the unrelated index vector-drain outage path stopped surfacing its own `-32001` class. `-32002` (`PROTOCOL_MISMATCH_ERROR`, `{ retryable: false }`) is emitted when a re-handshaked backend negotiates a different protocol version; the proxy fails closed to a terminal `CLOSED` state and the client must reconnect from scratch.
+`memory_index_scan` lease-active and cooldown cases no longer surface `E429`; they return a success envelope with `coalesced: true`, `status: 'coalesced'`, a wait time, and `reason: 'lease_active'` or `reason: 'cooldown'`. `-32001` (`RETRYABLE_RECYCLE_ERROR`, `{ retryable: true }`) is the launcher proxy's still-live "backend recycled; retry" signal for in-flight non-replayable requests during an in-place daemon recycle — it is NOT removed; only the unrelated index vector-drain outage path stopped surfacing its own `-32001` class. `-32002` (`PROTOCOL_MISMATCH_ERROR`, `{ retryable: false }`) is emitted when a re-handshaked backend negotiates a different protocol version; the proxy fails closed to a terminal `CLOSED` state and the client must reconnect from scratch.
 
 #### Source Files
 
@@ -2904,7 +3016,7 @@ Weekly batch feedback learning aggregates implicit feedback events from the ledg
 
 #### How It Works
 
-The batch learning pipeline runs on a 7-day window. It reads implicit feedback events and aggregates per-record signals with confidence-weighted scoring: strong = 1.0, medium = 0.5, weak = 0.1. Guards: minimum 3 distinct sessions required before a signal is eligible, max boost delta of 0.10 per cycle. Results are logged for auditability. Shadow-only: no live ranking columns are mutated. Default OFF, set `SPECKIT_BATCH_LEARNED_FEEDBACK=true` to enable.
+The batch learning pipeline runs on a 7-day window. It reads implicit feedback events and aggregates per-record signals with confidence-weighted scoring: strong = 1.0, medium = 0.5, weak = 0.1. Guards: minimum 3 distinct sessions required before a signal is eligible, max boost delta of 0.10 per cycle. Results are logged for auditability. Shadow-only: no live ranking columns are mutated. Default ON (graduated); set `SPECKIT_BATCH_LEARNED_FEEDBACK=false` to disable.
 
 
 ---
@@ -3245,7 +3357,7 @@ AI assistants sometimes invent parameters that do not exist when calling tools. 
 
 #### How It Works
 
-**IMPLEMENTED (Sprint 019, later expanded by session/code-graph additions).** All 37 live mk-spec-memory MCP tool definitions (L1-L7) have Zod runtime schemas defined in `mcp_server/schemas/tool-input-schemas.ts` (re-exported via `tool-schemas.ts`), controlled by `SPECKIT_STRICT_SCHEMAS` (`.strict()` vs `.passthrough()`). Hallucinated parameters from calling LLMs are rejected with clear Zod errors and logged to stderr for audit trail (CHK-029). Adds `zod` dependency.
+**IMPLEMENTED (Sprint 019, later expanded by session/code-graph additions).** All 39 live mk-spec-memory MCP tool definitions (L1-L7) have Zod runtime schemas defined in `mcp_server/schemas/tool-input-schemas.ts` (re-exported via `tool-schemas.ts`), controlled by `SPECKIT_STRICT_SCHEMAS` (`.strict()` vs `.passthrough()`). Hallucinated parameters from calling LLMs are rejected with clear Zod errors and logged to stderr for audit trail (CHK-029). Adds `zod` dependency.
 
 #### Source Files
 
@@ -3502,11 +3614,11 @@ See [`14--pipeline-architecture/mcp-code-index-reconnecting-proxy.md`](14--pipel
 
 #### Description
 
-The shared daemon used to die with its owner because the owner killed it on shutdown. Re-election lets the daemon outlive its owner so secondary sessions keep the backend. It is default-on in the committed runtime configs.
+The shared daemon used to die with its owner because the owner killed it on shutdown. Re-election lets the daemon outlive its owner so secondary sessions keep the backend. It is still default-on, but the launcher code is now the source of that default; runtime configs no longer set `SPECKIT_DAEMON_REELECTION`.
 
 #### How It Works
 
-When `SPECKIT_DAEMON_REELECTION` is on (the default in the runtime configs; the launcher code default stays off so the configs are the on-switch), the owner spawns the daemon detached and, on shutdown, releases it (keeps the daemon lease, drops only the owner lease, detaches the exit handler so it does not wipe the lease) so a connected live secondary keeps MCP transport. A fresh session that finds the released daemon under the now-stale owner lease reaps the recorded child before respawn, so the database keeps a single writer and a cold restart matches the prior behavior. An unadopted released daemon is bounded by its idle self-exit. Validated by the hermetic release-vs-kill test and the live two-session adoption test `daemon-reelection-adoption-live.vitest.ts`.
+When `SPECKIT_DAEMON_REELECTION` is on (the launcher code default; set `0` or `off` to disable), the owner spawns the daemon detached and, on shutdown, releases it (keeps the daemon lease, drops only the owner lease, detaches the exit handler so it does not wipe the lease) so a connected live secondary keeps MCP transport. A fresh session that finds the released daemon under the now-stale owner lease reaps the recorded child before respawn, so the database keeps a single writer and a cold restart matches the prior behavior. An unadopted released daemon is bounded by its idle self-exit. Validated by the hermetic release-vs-kill test and the live two-session adoption test `daemon-reelection-adoption-live.vitest.ts`.
 
 #### Source Files
 
@@ -3759,6 +3871,22 @@ See [`16--tooling-and-scripts/progressive-validation-for-spec-documents.md`](16-
 
 ---
 
+### Completion-verdict freshness validation
+
+#### Description
+
+Strict validation can now check whether a completion claim is still fresh after packet-local edits. The rule is default-off behind `SPECKIT_COMPLETION_FRESHNESS`, warns first, and can promote stale findings to errors with `SPECKIT_COMPLETION_FRESHNESS_ENFORCE`.
+
+#### How It Works
+
+The validator recomputes the normalized continuity fingerprint, compares it with stored `_memory.continuity.session_dedup.fingerprint`, and checks packet-scoped dirty paths. With the flag unset, validation output remains unchanged. With enforcement enabled, stale freshness findings block completion rather than only warning.
+
+#### Source Files
+
+See [`16--tooling-and-scripts/completion-verdict-freshness-validation.md`](16--tooling-and-scripts/completion-verdict-freshness-validation.md) for full implementation and test file listings.
+
+---
+
 ### Dead code removal
 
 #### Description
@@ -3848,6 +3976,74 @@ Non-MCP `spec-kit-cli` entry point (`cli.ts`) for database maintenance. Four com
 See [`16--tooling-and-scripts/standalone-admin-cli.md`](16--tooling-and-scripts/standalone-admin-cli.md) for full implementation and test file listings.
 
 > **Playbook:** [113](../manual_testing_playbook/manual_testing_playbook.md)
+
+---
+
+### Daemon-backed spec-memory CLI surface
+
+#### Description
+
+The 028 MCP-to-CLI program shipped `node .opencode/bin/spec-memory.cjs` as a second IPC client over the unchanged mk-spec-memory daemon: all 39 tools become CLI commands generated at runtime from `TOOL_DEFINITIONS`, so the surface cannot drift from the MCP registration. The CLI is the resilience and universal surface for hooks, cron, CI, and transport-down recovery; the MCP registration stays untouched through the dual-stack window. Sibling skills ship the same pattern (`code-index.cjs`, 8 tools; `skill-advisor.cjs`, 9 tools with a fail-closed trusted-mutation gate).
+
+#### How It Works
+
+The shim defaults unset `SPECKIT_IPC_SOCKET_DIR` to `/tmp/mk-spec-memory`, guards Darwin socket-path length, and refuses missing or stale dist with exit 69 (`SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1` is the development override). The entrypoint validates argv with the existing Zod schemas, sends `tools/call` JSON-RPC frames over `daemon-ipc.sock`, auto-spawns via `mk-spec-memory-launcher.cjs` on probe failure, and maps results to the shared exit taxonomy: 0 success, 1 runtime, 64 usage/validation, 69 protocol/dist-freshness, 75 retryable backend-unavailable. `--warm-only` (default-on via `SPECKIT_SPEC_MEMORY_CLI_WARM_ONLY`) probes the socket first and exits 75 instead of cold-spawning — the contract prompt-time hooks rely on. `spec-memory list-tools --format json` returns `{ status: "ok", data: { count: 39 } }` as the one-command parity check.
+
+#### Source Files
+
+See [`16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md`](16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md) for full implementation and test file listings.
+
+> **Playbook:** [427](../manual_testing_playbook/manual_testing_playbook.md), [428](../manual_testing_playbook/manual_testing_playbook.md), [429](../manual_testing_playbook/manual_testing_playbook.md), [432](../manual_testing_playbook/manual_testing_playbook.md), [434](../manual_testing_playbook/manual_testing_playbook.md), [435](../manual_testing_playbook/manual_testing_playbook.md), [436](../manual_testing_playbook/manual_testing_playbook.md)
+
+---
+
+### Daemon-backed code-index CLI surface
+
+#### Description
+
+The code graph daemon has a second CLI front door at `node .opencode/bin/code-index.cjs`. It exposes the mk-code-index tool set over the same daemon/IPC transport used by MCP, including warm-only reads for prompt-time fallback and maintenance-command guardrails.
+
+#### How It Works
+
+The stable shim checks dist freshness and socket readiness, while the CLI entrypoint validates commands against the code-index manifest and sends JSON-RPC calls over the daemon socket. Runtime hooks and the OpenCode bridge use the CLI path only when the warm daemon is available, preserving no-cold-spawn prompt behavior and avoiding in-process DB imports.
+
+#### Source Files
+
+See [`16--tooling-and-scripts/code-index-cli-daemon-backed-surface.md`](16--tooling-and-scripts/code-index-cli-daemon-backed-surface.md) for full implementation and test file listings.
+
+---
+
+### Daemon-backed skill-advisor CLI surface
+
+#### Description
+
+The skill-advisor daemon has a second CLI front door at `node .opencode/bin/skill-advisor.cjs`. It exposes advisor and skill-graph commands over the same daemon/IPC transport, with trusted mutations gated and warm-only fallback available for Gate 2 recovery.
+
+#### How It Works
+
+The CLI manifest defines the advisor command surface, the shim handles dist/socket guardrails, and runtime integrations call it with `--warm-only` so prompt-time fallback never cold-spawns the daemon. Mutation commands require explicit trusted execution, while read paths can fail open when the daemon is unavailable.
+
+#### Source Files
+
+See [`16--tooling-and-scripts/skill-advisor-cli-daemon-backed-surface.md`](16--tooling-and-scripts/skill-advisor-cli-daemon-backed-surface.md) for full implementation and test file listings.
+
+---
+
+### Warm-only CLI hook fallbacks and plugin bridges
+
+#### Description
+
+Every 028 CLI workstream shipped paired runtime integrations, because a CLI nobody's runtime calls does not close the transport-down incident class. Claude and Codex prompt-time hooks gained warm-only CLI fallback helpers (socket probe first, fast fail-open when no socket exists, no prompt-time cold spawn), and OpenCode gained a per-system plugin route: a new `mk-spec-memory` plugin, a repaired `mk-code-graph` bridge on the CLI route, and CLI fallback routing in `mk-skill-advisor`.
+
+#### How It Works
+
+The shared helpers (`spec-memory-cli-fallback.ts`, `code-index-cli-fallback.ts`, and the skill-advisor `skill-advisor-cli-fallback.ts`) wrap the CLIs with a socket probe plus `--warm-only --timeout-ms` invocation: no socket fails open in about a millisecond, warm calls measured 117-198 ms, and the 824.8 ms one-shot native bridge stays banned from the prompt path. All plugin bridges use CLI/IPC transport only — zero in-process database imports, so the dual-writer hazard that forced the earlier mk-code-graph revert cannot return. `.codex/settings.json` allowlists the CLI invocations; `AGENTS.md` carries the transport-down guidance.
+
+#### Source Files
+
+See [`16--tooling-and-scripts/cli-runtime-warm-only-fallbacks.md`](16--tooling-and-scripts/cli-runtime-warm-only-fallbacks.md) for full implementation and test file listings.
+
+> **Playbook:** [433](../manual_testing_playbook/manual_testing_playbook.md)
 
 ---
 
@@ -4171,6 +4367,22 @@ See [`16--tooling-and-scripts/markdown-link-integrity-guard.md`](16--tooling-and
 
 ---
 
+### Stale-exclusion audit and tool-ownership lint
+
+#### Description
+
+The memory health surface now reports read-only hard-exclusion audit metadata, and pre-commit tooling can fail on drift in the 39-tool ownership map. Recall behavior and stored data are unchanged; the feature exists to expose silent-risk exclusions and keep command/tool ownership documentation synchronized with the registered tool definitions.
+
+#### How It Works
+
+`memory_health` reads hard-exclusion predicate metadata from the retrieval layer and classifies archived, deprecated, or unclassified exclusions for diagnostics. The ownership lint derives a deterministic map from `TOOL_DEFINITIONS`, compares it with the committed fixture, and blocks missing tools, extra tools, field drift, malformed maps, or unreadable definitions.
+
+#### Source Files
+
+See [`16--tooling-and-scripts/stale-exclusion-audit-and-tool-ownership-lint.md`](16--tooling-and-scripts/stale-exclusion-audit-and-tool-ownership-lint.md) for full implementation and test file listings.
+
+---
+
 ## 18. GOVERNANCE
 
 ### Feature flag governance
@@ -4242,6 +4454,38 @@ The governance audit trail captures scope decisions so policy behavior can be re
 See [`17--governance/hierarchical-scope-governance-governed-ingest-retention-and-audit.md`](17--governance/hierarchical-scope-governance-governed-ingest-retention-and-audit.md) for full implementation and test file listings.
 
 > **Playbook:** [122](../manual_testing_playbook/manual_testing_playbook.md)
+
+---
+
+### Automated writers never overwrite manual constitutional rule
+
+#### Description
+
+The constitutional memory pack includes an advisory rule that automated writers must not overwrite protected manual or constitutional material. It pairs with the write-ingress guard so generated or automated updates skip protected fields instead of silently replacing human-authored truth.
+
+#### How It Works
+
+The rule is stored as a constitutional memory and indexed through the existing always-surface constitutional loader. The write path derives provenance server-side and applies the protected-field guard before mutation, so the advisory rule is backed by executable write-ingress behavior.
+
+#### Source Files
+
+See [`17--governance/automated-writers-never-overwrite-manual-constitutional-rule.md`](17--governance/automated-writers-never-overwrite-manual-constitutional-rule.md) for full implementation and test file listings.
+
+---
+
+### Entity co-occurrence is not causal constitutional rule
+
+#### Description
+
+The constitutional memory pack includes an advisory rule that entity co-occurrence and similarity evidence must not be promoted as causal truth. It keeps recall signals separate from causal lineage unless an explicit causal relationship is authored or generated by a validated causal promoter.
+
+#### How It Works
+
+The rule is stored as a constitutional memory and loaded with the other always-surface governance rules. It complements the tombstone and metadata-edge work by requiring causal graph writers to preserve provenance and avoid treating entity overlap as proof of causation.
+
+#### Source Files
+
+See [`17--governance/entity-cooccurrence-is-not-causal-constitutional-rule.md`](17--governance/entity-cooccurrence-is-not-causal-constitutional-rule.md) for full implementation and test file listings.
 
 ---
 
@@ -4532,6 +4776,22 @@ See [`18--ux-hooks/result-explainability.md`](18--ux-hooks/result-explainability
 
 ---
 
+### Retrieval observability diagnostics
+
+#### Description
+
+Retrieval can now expose additive diagnostics for why results ranked, whether returned records conflict, whether vector recall is degraded, and what maintenance counters last reported. These diagnostics are opt-in or health-only surfaces and do not change ranking, schema, or write behavior.
+
+#### How It Works
+
+`memory_search(includeTrace: true)` can include `why_ranked` from the actual ranker and inline contradiction or supersession warnings from existing causal edges. Search/context debug paths surface degraded-vector trace metadata, health and embedder status report recall degradation, and index scan, embedding reconcile, and retention sweep handlers publish process-local last-run counters to health.
+
+#### Source Files
+
+See [`18--ux-hooks/retrieval-observability-diagnostics.md`](18--ux-hooks/retrieval-observability-diagnostics.md) for full implementation and test file listings.
+
+---
+
 ### Mode-aware response profiles
 
 #### Description
@@ -4604,7 +4864,7 @@ Shell script: `.opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh`
 
 The `--phases <N>` option controls how many child phase folders are generated (default is determined by the phase scoring algorithm if `recommend-level.sh` was run first). The `--phase-names` option accepts a comma-separated list of descriptive names for each phase, which are used in both folder naming and the Phase Documentation Map entries. When `--phase-names` is omitted, child folders receive sequential numeric names. The parent folder receives the standard spec kit template files at the specified level, while each child phase folder receives its own independent set of template files.
 
-**Literal naming requirement**: Phase names must be LITERAL slugs describing the concrete work (e.g., `data-model-design`, `api-implementation`, `ui-integration`) — NOT generic placeholders like `phase-1` or `remediation`. When `--phase-names` is omitted, `create.sh` now emits `PROVIDE-DESCRIPTIVE-SLUG` placeholder names with stderr warnings. The YAML workflow P2 step in `/spec_kit:plan` and `/spec_kit:complete` enforces literal naming guidance, and SKILL.md rule 20 provides the full naming convention for AI-derived spec folders and phases.
+**Literal naming requirement**: Phase names must be LITERAL slugs describing the concrete work (e.g., `data-model-design`, `api-implementation`, `ui-integration`) — NOT generic placeholders like `phase-1` or `remediation`. When `--phase-names` is omitted, `create.sh` now emits `PROVIDE-DESCRIPTIVE-SLUG` placeholder names with stderr warnings. The YAML workflow P2 step in `/speckit:plan` and `/speckit:complete` enforces literal naming guidance, and SKILL.md rule 20 provides the full naming convention for AI-derived spec folders and phases.
 
 #### How It Works
 
@@ -4863,10 +5123,10 @@ These settings pick which embedding and reranking providers the system uses and 
 
 | Name | Default | Type | Source File | Description |
 |---|---|---|---|---|
-| `EMBEDDING_DIM` | _(provider default)_ | number | `lib/search/vector-index-store.ts`, `shared/embeddings/factory.ts` | Compatibility check and startup override for the stored vector dimension. Any positive explicit `EMBEDDING_DIM` value is honored first; otherwise runtime dimension selection comes from the active provider profile (Voyage 1024, OpenAI 1536, local BGE local fallback 768). |
-| `EMBEDDINGS_PROVIDER` | `'auto'` | string | `shared/embeddings/factory.ts` | Selects the embedding provider. Valid values include `'auto'`, `'openai'`, `'hf-local'`, `'ollama'`, and `'voyage'`. In `'auto'` mode, resolution precedence is explicit `EMBEDDINGS_PROVIDER` -> `VOYAGE_API_KEY` -> `OPENAI_API_KEY` -> local `ollama` default -> `hf-local` fallback. The local default model is `nomic-embed-text-v1.5` (Ollama); the hf-local fallback model is `nomic-ai/nomic-embed-text-v1.5` (ADR-014 local-first cascade). |
-| `OPENAI_API_KEY` | _(none)_ | string | `tests/embeddings.vitest.ts` | API key for the OpenAI embeddings provider. Required when `EMBEDDINGS_PROVIDER` is `'openai'` or when `'auto'` mode selects OpenAI as the available provider. |
-| `VOYAGE_API_KEY` | _(none)_ | string | `tests/embeddings.vitest.ts` | API key for the Voyage AI embeddings provider. In `'auto'` mode, Voyage is preferred over OpenAI and local providers when this key is present. (Voyage reranker support was removed in 022/013.) |
+| `EMBEDDING_DIM` | _(provider default)_ | number | `lib/search/vector-index-store.ts`, `shared/embeddings/factory.ts` | Compatibility check and startup override for the stored vector dimension. Any positive explicit `EMBEDDING_DIM` value is honored first; otherwise runtime dimension selection comes from the active provider profile (Voyage 1024, OpenAI 1536, local nomic 768). |
+| `EMBEDDINGS_PROVIDER` | `'auto'` | string | `shared/embeddings/factory.ts` | Selects the embedding provider. Valid values include `'auto'`, `'openai'`, `'hf-local'`, `'ollama'`, and `'voyage'`. Provider resolution is local-first: an explicit non-auto `EMBEDDINGS_PROVIDER` is the only direct cloud selector, then auto mode uses persisted/reachable Ollama, then `hf-local`. The local default model is `nomic-embed-text-v1.5` (Ollama); the hf-local fallback model is `nomic-ai/nomic-embed-text-v1.5`. |
+| `OPENAI_API_KEY` | _(none)_ | string | `tests/embeddings.vitest.ts` | API key for the OpenAI embeddings provider. Required when `EMBEDDINGS_PROVIDER` is explicitly set to `'openai'`; auto mode does not select OpenAI merely because this key is present. |
+| `VOYAGE_API_KEY` | _(none)_ | string | `tests/embeddings.vitest.ts` | API key for the Voyage AI embeddings provider. Required when `EMBEDDINGS_PROVIDER` is explicitly set to `'voyage'`; auto mode does not select Voyage merely because this key is present. (Voyage reranker support was removed in 022/013.) |
 
 #### Source Files
 
@@ -4941,3 +5201,19 @@ The active package includes a dedicated category folder with feature records for
 - Category overview: [`22--context-preservation/category-overview.md`](22--context-preservation/category-overview.md)
 - Latest feature: [`22--context-preservation/resource-map-template.md`](22--context-preservation/resource-map-template.md)
 - Playbook counterpart: [`../manual_testing_playbook/22--context-preservation/`](../manual_testing_playbook/22--context-preservation/)
+
+---
+
+### OpenLTM continuity resilience
+
+#### Description
+
+Session continuity now has a bounded restore panel, an opt-in authored PreCompact snapshot path, and a goal/decision/progress/gotcha facet taxonomy. The feature is markdown-native, creates no memory rows, performs no index mutations, and is gated by `SPECKIT_AUTHORED_CONTINUITY_SNAPSHOT` for authored snapshots.
+
+#### How It Works
+
+The resume ladder formats restored and omitted counts from existing `handover.md`, `_memory.continuity`, and spec-doc fallback sources. Session bootstrap includes the restore-panel section, the thin-continuity formatter renders facets, and the Claude compact hook can refresh authored continuity snapshots before compaction when the flag is enabled.
+
+#### Source Files
+
+See [`22--context-preservation/openltm-continuity-resilience.md`](22--context-preservation/openltm-continuity-resilience.md) for full implementation and test file listings.

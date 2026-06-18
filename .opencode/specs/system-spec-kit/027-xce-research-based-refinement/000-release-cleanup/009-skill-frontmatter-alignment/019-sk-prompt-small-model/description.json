@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/019-sk-prompt-small-model",
+  "description": "Feature Specification: Phase 19: sk-prompt-small-model Frontmatter Alignment",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "sk-prompt-small-model",
+    "frontmatter",
+    "alignment"
+  ],
+  "lastUpdated": "2026-06-11T10:46:03.637Z",
+  "specId": "019",
+  "folderSlug": "sk-prompt-small-model",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "000-release-cleanup",
+    "009-skill-frontmatter-alignment"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

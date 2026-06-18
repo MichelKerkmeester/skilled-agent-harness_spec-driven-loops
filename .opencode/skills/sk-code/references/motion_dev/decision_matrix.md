@@ -1,6 +1,14 @@
 ---
 title: "Motion.dev Decision Matrix"
 description: "When to choose CSS, Motion.dev, GSAP, or direct Web Animations API for animation work."
+trigger_phrases:
+  - "motion dev decision matrix"
+  - "css vs motion dev"
+  - "motion vs gsap choice"
+  - "web animations api choice"
+  - "smallest animation tool"
+importance_tier: normal
+contextType: planning
 ---
 
 # Motion.dev Decision Matrix

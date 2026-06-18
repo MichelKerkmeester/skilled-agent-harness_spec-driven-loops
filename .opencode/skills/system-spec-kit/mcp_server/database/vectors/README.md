@@ -20,7 +20,7 @@ Current state:
 - The active metadata DB `context-index.sqlite` in the parent `database/` folder attaches exactly one shard from this directory at runtime under the SQL alias `active_vec`.
 - The active production shard is `context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite` (Ollama nomic-embed-text v1.5, 768 dimensions).
 - A quantised hf-local shard may also be created for `nomic-ai/nomic-embed-text-v1.5` at 768 dimensions with q8 quantisation.
-- Legacy and experimental shards get deleted once they fall out of the active rotation. This folder is not an archive.
+- Legacy and experimental shards normally get deleted once they fall out of the active rotation. Repair code can also retain a bad shard triplet beside the active shard as `.quarantined-*` files. This folder is not a long-term archive; prune quarantines after repair is confirmed and the active shard passes health checks.
 - The `.gitkeep` file keeps the directory tracked. The `.sqlite`, `.sqlite-shm` and `.sqlite-wal` files are runtime artifacts and stay ignored by git under the same rule the parent `database/README.md` documents.
 
 ---
@@ -66,6 +66,9 @@ vectors/
 +-- context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite        # Active production shard
 +-- context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite-shm    # Runtime sidecar
 +-- context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite-wal    # Runtime sidecar
++-- context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite.quarantined-<stamp>-<pid>     # Repair quarantine
++-- context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite.quarantined-<stamp>-<pid>-shm # Quarantine sidecar
++-- context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite.quarantined-<stamp>-<pid>-wal # Quarantine sidecar
 +-- context-vectors__hf-local__nomic-ai_nomic-embed-text-v1.5__768__q8.sqlite  # Optional hf-local shard
 +-- context-vectors__hf-local__nomic-ai_nomic-embed-text-v1.5__768__q8.sqlite-shm
 `-- context-vectors__hf-local__nomic-ai_nomic-embed-text-v1.5__768__q8.sqlite-wal
@@ -85,7 +88,7 @@ context-vectors__<provider>__<model>__<dim>[__<quant>].sqlite
 |---|---|---|---|
 | `provider` | Yes | `ollama`, `hf-local` | Backend that produced the embeddings |
 | `model` | Yes | `nomic-embed-text-v1.5`, `nomic-ai_nomic-embed-text-v1.5` | Embedder model identifier, with `/` replaced by `_` |
-| `dim` | Yes | `768`, `1024` | Embedding dimension, drives the `vec_<dim>` virtual table name |
+| `dim` | Yes | `768`, `1024` | Embedding dimension, drives the `vec_<dim>` plain table name |
 | `quant` | Optional | `q8` | Quantisation tag when the shard stores quantised vectors |
 
 Examples that exist today:
@@ -99,15 +102,18 @@ The double-underscore separator is load-bearing. Single underscores inside a tok
 
 ## 5. SHARD SCHEMA
 
-Every shard contains three logical sections, created lazily on first attach:
+Every shard contains these storage and query surfaces, created lazily on first attach:
 
 | Table | Type | Purpose |
 |---|---|---|
 | `vec_metadata` | Key/value | Stores `provider`, `model`, `dim` and `embedding_dim` for the shard. Used by attach-time integrity checks. |
 | `embedding_cache` | Plain table | Caches recent embeddings keyed by content hash and embedder profile. |
-| `vec_<dim>` | Virtual table (`sqlite-vec`) | Vector index sized to the embedder dimension. `vec_768` for 768-dim profiles, `vec_1024` for 1024-dim profiles, and so on. |
+| `vec_<dim>` | Plain table | Dimension-tagged BLOB payload table sized to the embedder dimension. `vec_768` for 768-dim profiles, `vec_1024` for 1024-dim profiles, and so on. |
+| `vec_memories` | sqlite-vec `vec0` virtual table | Query/index surface for sqlite-vec nearest-neighbor operations when sqlite-vec is available. |
 
-The virtual-table name is derived from the profile's `dim` by `vector_table_name_for_profile` in `dist/lib/search/vector-index-store.js`. Queries read through the `active_vec` schema alias, so handler code refers to `active_vec.vec_768` rather than the physical shard filename.
+The dim-tagged table name is derived from the profile's `dim` by `vector_table_name_for_profile` in `dist/lib/search/vector-index-store.js`. Queries read through the `active_vec` schema alias, so handler code refers to `active_vec.vec_768` rather than the physical shard filename.
+
+**Dual surfaces and divergence.** `vec_<dim>` (BLOB payload) and `vec_memories` (sqlite-vec `vec0` index) are dual-written and should track each other row-for-row. A persistent row-count divergence signals dual-write or coverage drift; `verify_integrity` / `memory_health` report it as `vectorSurfaceDivergence` (active-surface count, `vec_memories` count, and the difference) so an operator can act on it. Reconciliation is an operator-triggered maintenance step — resolve via `memory_embedding_reconcile` after taking a backup — not an automatic mutation on the read path.
 
 ---
 
@@ -122,6 +128,7 @@ This folder owns storage location only. Schema creation, attach and detach, lazy
 | Manual edits | Do not hand-edit shards. Dim mismatches between `vec_metadata` and the `vec_<dim>` table corrupt the index. |
 | Commits | Do not commit `.sqlite`, `.sqlite-shm` or `.sqlite-wal` files. The parent `database/README.md` covers the gitignore rule for this directory. |
 | Rotation | Legacy and test shards get deleted, not archived, once the active embedder profile changes. |
+| Quarantine | A failed repair can rename a shard and its sidecars to `.quarantined-<stamp>-<pid>` files in this same folder. Keep them only until recovery is confirmed and a healthy active shard exists. |
 
 Main flow:
 

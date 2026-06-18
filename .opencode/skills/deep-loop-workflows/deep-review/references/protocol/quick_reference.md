@@ -1,0 +1,228 @@
+---
+title: Deep Review Quick Reference
+description: One-page cheat sheet for the autonomous deep review loop.
+trigger_phrases:
+  - "deep review quick reference"
+  - "review loop cheat sheet"
+  - "p0 p1 p2 severity ladder"
+  - "release readiness verdicts"
+  - "review loop troubleshooting"
+importance_tier: normal
+contextType: general
+---
+
+# Deep Review Quick Reference
+
+One-page cheat sheet for the autonomous deep review loop.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Use this quick reference when you need the command shape, artifact names, convergence rules, and synthesis outputs for the autonomous deep-review loop without loading the full protocol references.
+
+### When to Use
+
+- Looking up the canonical `/deep:review` invocation without re-reading the full SKILL.md.
+- Confirming default thresholds, verdicts, or release-readiness states at a glance.
+- Refreshing the artifact-name and packet-file checklist before a manual orchestration pass.
+- Triaging a stuck loop and need the fastest path to convergence semantics.
+
+### Commands
+
+| Command | Description |
+|---------|-------------|
+| `/deep:review:auto "target"` | Run autonomous review (no approval gates) |
+| `/deep:review:confirm "target"` | Run review with approval gates at each iteration |
+| `/deep:review "target"` | Ask which mode to use |
+
+### Parameters
+
+| Parameter | Default | Description |
+|-----------|---------|-------------|
+| `--max-iterations` | 7 | Maximum review iterations |
+| `--convergence` | 0.10 | Base sensitivity for review convergence |
+| `--spec-folder` | auto | Target spec folder path |
+| `--severity-threshold` | P2 | Minimum severity to report |
+
+---
+
+## 2. WHEN TO USE
+
+| Scenario | Use |
+|----------|-----|
+| Multi-pass code quality audit | `/deep:review` |
+| Simple single-pass code review | `sk-code-review` |
+| Pre-release readiness check | `/deep:review:auto "spec folder"` |
+| Spec/implementation alignment check | `/deep:review:auto "skill sk-name"` |
+| Deep technical investigation | `/deep:research` (different skill) |
+
+---
+
+## 3. ARCHITECTURE
+
+```
+/deep:review  -->  YAML workflow  -->  @deep-review agent (LEAF)
+    |                    |                      |
+    |                    |                      +-- Read state
+    |                    |                      +-- Review (3-5 actions)
+    |                    |                      +-- Write findings (P0/P1/P2)
+    |                    |                      +-- Update state
+    |                    |
+    |                    +-- Init (config, strategy, state)
+    |                    +-- Loop (dispatch, evaluate, decide)
+    |                    +-- Synthesize (review-report.md)
+    |                    +-- Save (memory context)
+```
+
+---
+
+## 4. STATE FILES
+
+Review mode stores its packet under the resolved local review path rooted at `{spec_folder}/review/`:
+
+| File | Location | Format | Purpose |
+|------|----------|--------|---------|
+| Config | `review/deep-review-config.json` | JSON | Review parameters (immutable) |
+| State | `review/deep-review-state.jsonl` | JSONL | Iteration log (append-only) |
+| Registry | `review/deep-review-findings-registry.json` | JSON | Reducer-owned finding registry |
+| Strategy | `review/deep-review-strategy.md` | Markdown | Dimensions, findings, next focus |
+| Dashboard | `review/deep-review-dashboard.md` | Markdown | Auto-generated review dashboard |
+| Iterations | `review/iterations/iteration-NNN.md` | Markdown | Per-iteration findings (write-once) |
+| Report | `review/review-report.md` | Markdown | Final 9-section review report |
+| Pause | `review/.deep-review-pause` | Sentinel | Pause between iterations |
+
+### Lifecycle Modes
+
+| Mode | Effect |
+|------|--------|
+| `resume` | Continue the current review lineage without resetting generation |
+| `restart` | Archive current review state and start a new generation |
+| `fork` (deferred) | Reserved. Start a sibling lineage branch with explicit parent linkage. Not runtime-wired. |
+| `completed-continue` (deferred) | Reserved. Snapshot the completed review and reopen it for amendment-only review deltas. Not runtime-wired. |
+
+---
+
+## 5. REVIEW DIMENSIONS
+
+| ID | Dimension | Priority | Description |
+|----|-----------|----------|-------------|
+| D1 | Correctness | 1 | Logic errors, off-by-one, wrong return types, broken invariants |
+| D2 | Security | 2 | Injection, auth bypass, secrets exposure, unsafe deserialization |
+| D3 | Traceability | 3 | Spec/code alignment, checklist evidence, cross-reference integrity |
+| D4 | Maintainability | 4 | Patterns, clarity, documentation quality, ease of safe follow-on changes |
+
+---
+
+## 6. REVIEW VERDICTS
+
+| Verdict | Condition | Meaning | Next Command |
+|---------|-----------|---------|--------------|
+| FAIL | Active P0 findings remain OR any binary gate fails | Does not meet quality standards | `/speckit:plan` for remediation |
+| CONDITIONAL | No P0, but active P1 findings remain | Meets threshold but has required fixes | `/speckit:plan` for fixes |
+| PASS | No active P0/P1 findings | Shippable, set `hasAdvisories=true` when P2 findings remain | `/create:changelog` |
+
+### Release Readiness
+
+`releaseReadinessState` is the canonical config/report field for review readiness tracking.
+
+| State | Meaning |
+|-------|---------|
+| `in-progress` | Review still running or required coverage incomplete |
+| `converged` | All 4 dimensions covered and the stabilization pass found no new P0/P1 findings |
+| `release-blocking` | At least one unresolved P0 remains active |
+
+---
+
+## 7. REVIEW QUALITY GUARDS
+
+| Gate | Rule |
+|------|------|
+| Evidence | Every active finding has file:line evidence and is not inference-only |
+| Scope | Findings and reviewed files stay within declared review scope |
+| Coverage | Configured dimensions plus required traceability protocols are covered before STOP |
+
+---
+
+## 8. REVIEW CONVERGENCE
+
+| Signal | Weight | Description |
+|--------|--------|-------------|
+| Rolling Average | 0.30 | Last 2 severity-weighted `newFindingsRatio` values average below `0.08` |
+| MAD Noise Floor | 0.25 | Latest ratio within noise floor |
+| Dimension Coverage | 0.45 | All 4 dimensions plus required traceability protocols covered, with `minStabilizationPasses >= 1` |
+
+**Key defaults:** `maxIterations=7`, `convergenceThreshold=0.10`, `rollingStopThreshold=0.08`, `noProgressThreshold=0.05`, `stuckThreshold=2`, `minStabilizationPasses=1`
+
+**P0 override:** Any new P0 finding sets `newFindingsRatio >= 0.50`, blocking convergence.
+
+---
+
+## 9. AGENT ITERATION CHECKLIST
+
+Each @deep-review iteration:
+1. Read `deep-review-state.jsonl`, `deep-review-findings-registry.json`, and `deep-review-strategy.md`
+2. Determine focus dimension from strategy "Next Focus"
+3. Execute 3-5 review actions (Read, Grep, Glob, code_graph_query + Grep)
+4. Write `review/iterations/iteration-NNN.md` with P0/P1/P2 findings
+5. Run adversarial self-check on any P0 findings (Hunter/Skeptic/Referee)
+6. Update `deep-review-strategy.md` (findings, coverage, next focus)
+7. Append iteration record to `deep-review-state.jsonl`
+
+---
+
+## 10. REVIEW REPORT SECTIONS
+
+| # | Section | Purpose |
+|---|---------|---------|
+| 1 | Executive Summary | Verdict, active P0/P1/P2 counts, scope, `hasAdvisories` |
+| 2 | Planning Trigger | Why the verdict routes to planning or changelog follow-up |
+| 3 | Active Finding Registry | Deduped active findings with evidence and final severity |
+| 4 | Remediation Workstreams | Grouped action lanes derived from active findings |
+| 5 | Spec Seed | Minimal spec delta derived from review results |
+| 6 | Plan Seed | Action-ready plan starter for remediation |
+| 7 | Traceability Status | Core vs overlay protocol status and unresolved gaps |
+| 8 | Deferred Items | P2 advisories, blocked checks, and follow-up items |
+| 9 | Audit Appendix | Coverage, replay validation, and convergence evidence |
+
+---
+
+## 11. TUNING GUIDE
+
+| Goal | Adjustment |
+|------|------------|
+| Deeper review | Lower convergence (0.05), raise max iterations (10) |
+| Faster completion | Raise convergence (0.15), lower max iterations (5) |
+| Focus on security | Specify `--dimensions security,correctness` |
+| Broad coverage | Use all 4 default dimensions and allow the stabilization pass to run |
+
+---
+
+## 12. TROUBLESHOOTING
+
+| Problem | Fix |
+|---------|-----|
+| Stops too early | Lower `--convergence` from 0.10 to 0.05 |
+| Stuck on one dimension | Check strategy.md "Next Focus" rotation |
+| P0 findings blocking convergence | Expected behavior: P0 override prevents premature stop |
+| Review-report missing sections | Verify synthesis phase completed (check state.jsonl for synthesis event) |
+| Agent ignores state | Verify file paths in dispatch prompt |
+
+---
+
+## 13. RELATED
+
+| Resource | Purpose |
+|----------|---------|
+| `deep-research` | Investigation/research (not review) |
+| `sk-code-review` | Single-pass code review |
+| `@deep-review` | Single review iteration agent (LEAF) |
+| `@context` | Single-pass codebase search |
+| `generate-context.js` | Memory save script |
+
+For review-specific protocol documentation, see local `references/`:
+- `loop_protocol.md`, Review loop lifecycle (4 phases)
+- `../state/state_format.md`, Review state file schemas
+- `../convergence/convergence.md`, Review convergence algorithms

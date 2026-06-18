@@ -1,0 +1,75 @@
+I’ll keep this read-only and ground the review in the requested research iterations plus the concrete launcher/supervision code paths, then return only the adversarial deliverable.
+The requested `orchestrator-verifications.md` was not found under the named research directory; I’m using the six iteration files and `live-diagnosis.md`, plus the launcher/supervision/orphan-sweeper code, and I’ll call out that missing artifact as an unknown.
+Correction: the verification artifact is present at `research/iterations/orchestrator-verifications.md`; I found it and am including it.
+## IT8 — adversarial red-team of the layered fix
+### Top risks (ranked, with severity + likelihood + concrete trigger)
+- **P0 / High likelihood: migration split-brain.** Trigger: one old advisor/code-index launcher still uses kill-on-signal while new sessions are client-only or supervisor-backed. Current code kills/clears on exit in advisor `.opencode/bin/mk-skill-advisor-launcher.cjs:1156-1200` and code-index `.opencode/bin/mk-code-index-launcher.cjs:893-928`. Mitigation: do not ship client-only mode until launchers enforce a min lease schema/version and old owners are fenced or forced to bridge.
+- **P1 / High likelihood: warm-kick storm under dead-daemon + 7 runtimes.** Trigger: SessionStart/UserPromptSubmit/plugin bridges all hit warm-only while sockets are stale, matching `live-diagnosis.md:5-11`. Current CLIs throw before spawn under `warmOnly` (`spec-memory-cli.ts:914-921`, `code-index-cli.ts:1085-1092`, `skill-advisor-cli.ts:1188-1195`). Mitigation: atomic per-service/per-repo throttle lock with pid+timestamp+liveness, plus a stress test proving 7 concurrent hooks create at most one launcher per service.
+- **P1 / Medium-high likelihood: always-warm worsens the OOM root cause.** Trigger: main daemons no-idle plus resident supervisor plus HF sidecar. RSS caps are disabled unless both a ceiling and self-exit flag are set (`model-server-supervision.cjs:167-195`, `iteration-006.md:33-34`). Kill-criterion: do not enable always-warm by default until measured steady-state RSS plus HF load stays below an agreed free-RAM floor.
+- **P1 / Medium likelihood: supervisor becomes a same-UID shutdown/restart API.** Trigger: admin socket exposes `ensureService/restartService/shutdown` without authentication. Existing sockets use ownership/perms hardening (`socket-server.ts:268-300`, `hf-model-server.cjs:180-220`); the proposed supervisor must meet or exceed that. Kill-criterion: no unauthenticated `restartService` or `shutdown` from arbitrary same-UID processes.
+- **P1 / Medium likelihood: Layer 1 reintroduces second-writer failure closed by 028.** Trigger: true adopt/release across advisor/code-index without the same stale-lease serialization that 028 needed after it found two live daemons on one WAL DB (`028.../implementation-summary.md:56-63`). Mitigation: mixed old/new and two-launcher live tests per service before default-on.
+- **P2 / High likelihood: OS-unit lifecycle friction causes stale supervisors.** Trigger: `git pull` changes supervisor code while launchd/systemd keeps the old process resident. Current LaunchAgent template already has machine-specific absolute paths and is not a daemon supervisor (`orchestrator-verifications.md:5-8`, plist lines `31-47`). Mitigation: supervisor protocol/version hash must refuse stale clients or self-restart on code/dist hash drift.
+
+### Migration split-brain analysis
+- **Old owner kills new clients’ backend.** Advisor and code-index still kill the child and clear leases on signal (`mk-skill-advisor-launcher.cjs:1185-1200`, `mk-code-index-launcher.cjs:911-928`). A new client-only session depending on that daemon loses transport when an old owning session exits. Gate: block client-only default until every old launcher either refuses ownership under a supervisor lease or has aged out.
+- **Two owners race the same daemon.** A new supervisor can spawn while an old launcher still believes it owns the lease. Code-index even rewrites owner lease identity toward the child PID (`mk-code-index-launcher.cjs:881-890`), which is exactly the sort of lease ambiguity a supervisor must not inherit. Gate: introduce a lease `mode/version` and require old launchers to treat `supervisor-owned` as bridge-only.
+- **Client-only session with absent supervisor becomes permanently cold.** If launchers become pure clients before an OS unit or first-session bootstrap is installed, no process is responsible for spawning. `iteration-006.md:10-15` correctly admits pure Node cannot keep the supervisor itself alive after its own death. Gate: client-only must first call a verified `ensureSupervisor` path or fall back to current non-warm spawn.
+- **Old sweeper may kill newly intentional residents.** The orphan sweeper classifies mk launchers/daemons by command name (`orphan-mcp-sweeper.sh:181-190`) and kills candidates outside live session trees (`orphan-mcp-sweeper.sh:275-343`, `391-424`). Released/supervisor-owned daemons are intentionally outside session trees. Mitigation: update sweeper preservation rules before release/adopt default-on.
+
+### Regressions against shipped phases (017/021/028/029) — does it undo them?
+- **017 disposal-flap guard:** C2 does not directly undo the fire-time relaunch guard, because it starts a fresh detached launcher rather than relaunching under a disposing owner. But SessionStart/UserPromptSubmit self-heal can still reanimate services while a runtime is shutting down unless stop/compact paths are excluded. Mitigation: do not kick from Stop hooks, and include shutdown-context tests.
+- **021 orphan sweep:** Layer 1 removes kill-on-shutdown and intentionally leaves resident daemons. With `SPECKIT_STOP_HOOK_ORPHAN_SWEEP` default-off, that leaks. With it live-enabled, the sweeper can kill the new resident processes unless taught supervisor/release leases. This conflicts with the 021 decision to keep process killing opt-in and dry-run-first (`021.../implementation-summary.md:53-56`, `session-cleanup.sh:19-24`).
+- **028 double-writer fix:** True adoption is the exact deferred risk. Phase 028 fixed a live double-writer by reaping before respawn, not by adopting (`028.../implementation-summary.md:56-63`, `117-119`). Layer B’s “uniform release/adopt” reopens that class unless it proves single-writer invariants under real multi-launcher tests for all three daemons.
+- **029 cross-session kill scoping:** A supervisor `shutdownService` is a new global kill path. Phase 029 removed unsafe PPID fallback and required ancestry proof before kills (`029.../implementation-summary.md:48-58`, `session-cleanup.sh:4-10`). Supervisor shutdown/restart must be authenticated and operator-scoped, or it becomes a more convenient cross-session kill.
+
+### Always-warm vs OOM self-defeat tension
+- The proposal treats liveness as the failure, but the phase ledger lists RC-1 as native/sidecar RSS pressure (`iteration-001.md:10-12`) and iteration 006 says RSS caps are present but default-off and uncalibrated (`iteration-006.md:33-34`).
+- Current idle behavior defaults main daemons to 30 minutes (`launcher-idle-timeout.ts:34-46`) and HF model-server idle is disabled unless configured (`model-server-supervision.cjs:198-207`). “Long/no idle” turns burst memory into baseline memory.
+- The sidecar is likely the biggest risk. Spec-memory currently kills HF on release (`mk-spec-memory-launcher.cjs:1453-1464`), and advisor also shuts down model server on launcher exit (`mk-skill-advisor-launcher.cjs:1156-1159`, `1191-1199`). Refcounting helps correctness, but if refs keep it resident, OOM probability rises.
+- Mitigation: Layer 3 must precede always-warm defaults, not follow them. Measure `RSS(spec-memory + code-index + advisor + supervisor + HF)` across 7 sessions and model load. Kill-criterion: no always-warm default if it increases swap pressure or causes HF/model-server self-exit loops.
+
+### Supervisor SPOF/security + OS-unit portability
+- A single supervisor reduces session coupling but increases blast radius. One supervisor bug, event-loop stall, stale protocol, or admin-socket compromise affects all three daemons plus HF.
+- Existing daemon sockets have strong local filesystem checks: owned, not group/world-writable, symlink refusal, chmod 0600 (`socket-server.ts:268-300`, `393-400`). The supervisor admin socket needs the same plus a capability token for destructive methods.
+- macOS LaunchAgent friction is real. The only current plist is a dry-run orphan sweeper, not KeepAlive, not RunAtLoad, and has absolute user-specific paths (`com.michelkerkmeester.orphan-sweep.plist:5-23`, `28-47`).
+- Multi-repo/worktree behavior is underspecified. Defaults like `/tmp/mk-spec-memory`, `/tmp/mk-code-index`, and `/tmp/mk-skill-advisor` are global per user, not per repo. A supervisor from repo A can own sockets used by repo B unless the socket namespace includes repo identity.
+- Windows native has no launchd/systemd. If “pure-Node cross-platform” depends on launchd/systemd for durability, that claim is overstated.
+- Mitigation: ship supervisor only behind explicit install/enable, with install/uninstall/upgrade commands, state-file protocol versioning, repo-root fingerprinting, and stale-code self-exit.
+
+### Operator-preference conflicts
+- Phase 021 explicitly kept orphan process killing default-off and operator dry-run-first (`021.../implementation-summary.md:53-56`, `76-84`).
+- The current prompt-time contract intentionally refuses cold spawn under `--warm-only`; docs say prompt-time paths should return 75 instead of blocking or cold-spawning (`orchestrator-verifications.md:14-17`, `system-code-graph/README.md:158`).
+- C2 changes that contract from “read-only probe” to “probe with side-effect, still returns 75.” That may be acceptable, but it is not neutral. It should be opt-out at minimum and probably opt-in until operators accept prompt-time process creation.
+- An always-on OS supervisor with auto-restart is a stronger operator-preference conflict than C2. It should require explicit install and a visible rollback: unload/remove the unit and kill the supervisor-owned daemons.
+
+### Cheapest defensible scope (is the full fix over-engineered?)
+- The cheapest defensible fix is **C2 only**, plus telemetry and storm controls. The research itself says C2 first is the 80/20 (`iteration-006.md:6`, `36-40`), and orchestrator verification says non-warm CLI already resurrects daemons today (`orchestrator-verifications.md:14-20`).
+- Even smaller: kick once on SessionStart with a short background non-warm launch, not on every prompt hook. This fixes the “first session starts cold and stays cold” failure without converting every warm-only probe into a spawn trigger.
+- Do not include uniform release/adopt in the first ship. It touches single-writer leases, daemon ownership, HF sidecar lifetime, idle policy, and sweeper semantics. That is the highest regression surface.
+- Do not include the supervisor in the first ship. It creates new install, auth, upgrade, and multi-repo problems before the data proves C2 is insufficient.
+- Keep proactive stale-socket sweep out of the first ship unless a test proves bind-time reclaim is insufficient. Current bind path already reclaims same-UID stale sockets on EADDRINUSE (`socket-server.ts:371-385`, `hf-model-server.cjs:303-329`).
+
+### Verdict: ship-as-is / ship-with-changes / descope — with the changes
+**Verdict: descope.**
+
+Ship only:
+- C2 cold-start self-heal for warm-only dead-daemon probes, behind `SPECKIT_PROMPT_SELF_HEAL`, with SessionStart kick preferred over every-prompt kick.
+- Atomic per-service/per-repo throttle lock with stale-lock recovery and a 7-runtime concurrent stress test.
+- Metrics/logging for kick attempted, lock skipped, daemon healed, first-success latency, and spawn failures.
+- No always-warm default until RSS calibration and free-RAM preflight are measured and enforced.
+
+Do not ship yet:
+- Uniform release/adopt for advisor/code-index.
+- Supervisor/client-only mode.
+- OS-unit install.
+- HF refcounting as part of the same rollout unless isolated behind tests proving it does not keep HF resident indefinitely.
+
+### Confidence + unknowns
+- **Confidence: high** that the current failure is warm-only/no-supervisor/session-coupled liveness, based on `live-diagnosis.md:5-14`, `iteration-003.md:13-30`, and CLI warm-only branches.
+- **Confidence: high** that advisor/code-index kill-on-shutdown remains real, based on launcher code citations above.
+- **Confidence: medium** on OOM severity because no current RSS baseline was read or measured in this review.
+- **Unknown:** exact live kill event remains unrecoverable; the research says no persistent log exists (`live-diagnosis.md:9-10`).
+- **Unknown:** proposed supervisor admin socket protocol does not exist yet, so security assessment is a design kill-criterion, not a code finding.
+- **Unknown:** whether the operator will accept prompt-time side-effect spawning. That decision should gate C2 default-on.
+
+Review status: REQUESTED_CHANGES

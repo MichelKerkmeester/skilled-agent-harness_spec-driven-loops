@@ -121,7 +121,7 @@ function createSectionStructuralTrust(
 export async function handleSessionHealth(): Promise<MCPResponse> {
   const now = Date.now();
   const { serverStartedAt } = getSessionTimestamps();
-  // F047: Use context-metrics as single source of truth for lastToolCallAt
+  // Use context-metrics as single source of truth for lastToolCallAt
   // to eliminate dual-state drift with memory-surface's separate timestamp.
   const metricsLastToolCall = getLastToolCallAt();
   const lastToolCallAt = metricsLastToolCall ?? serverStartedAt;

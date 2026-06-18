@@ -1,0 +1,22 @@
+{
+  "mode": "review",
+  "reviewTarget": "019-maintenance-grace-daemon-survives-reelection",
+  "reviewTargetType": "spec-folder",
+  "specFolder": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/019-maintenance-grace-daemon-survives-reelection",
+  "dimensions": ["correctness", "security", "traceability", "maintainability"],
+  "maxIterations": 1,
+  "convergenceThreshold": 0.10,
+  "releaseReadinessState": "in-progress",
+  "resource_map_present": false,
+  "lineage": {
+    "sessionId": "fanout-p019-mimo-2-1781719527072-mk6no9",
+    "parentSessionId": "fanout-p019-mimo-2-1781719527072-mk6no9",
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null,
+    "releaseReadinessState": "in-progress"
+  },
+  "status": "complete",
+  "createdAt": "2026-06-17T16:30:00Z",
+  "completedAt": "2026-06-17T16:40:00Z"
+}

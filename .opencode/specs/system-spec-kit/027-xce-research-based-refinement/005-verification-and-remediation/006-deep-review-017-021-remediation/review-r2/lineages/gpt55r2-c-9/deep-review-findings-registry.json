@@ -1,0 +1,71 @@
+{
+  "schemaVersion": "deep-review-findings/v1",
+  "lineageId": "gpt55r2-c-9",
+  "generatedAt": "2026-06-18T06:33:29Z",
+  "verdict": "CONDITIONAL",
+  "summary": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 0,
+    "active": 3,
+    "closed": 0
+  },
+  "findings": [
+    {
+      "id": "DR-C9-P1-001",
+      "status": "active",
+      "severity": "P1",
+      "category": "path-boundary",
+      "finding_class": "class-of-bug",
+      "affectedSurfaceHints": ["memory_save", "path-security"],
+      "riskScore": 7,
+      "content_hash": "17c06de67523b5fcad66fc2e0150192a1cf2b0a1208d963b1897f9ee95553a77",
+      "title": "memory_save probes raw caller paths before allowed-root validation",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:3108-3125",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:3187-3188",
+        ".opencode/skills/system-spec-kit/shared/utils/path-security.ts:18-102"
+      ],
+      "impact": "A caller can distinguish an existing outside-root path from a missing outside-root path because the raw path is checked with fs.existsSync before the allowed-root validator runs.",
+      "recommendedFix": "Canonicalize and validate containment before any existence probe. For outside-root paths, return the same access-denied response regardless of whether the target exists."
+    },
+    {
+      "id": "DR-C9-P1-002",
+      "status": "active",
+      "severity": "P1",
+      "category": "scope-isolation",
+      "finding_class": "class-of-bug",
+      "affectedSurfaceHints": ["memory_index_scan", "incremental-index"],
+      "riskScore": 8,
+      "content_hash": "4cb606a14c3bc17d2d6301a2137f07ecc1492b3066307215ed0920a6a10346f1",
+      "title": "Scoped memory_index_scan stale deletion is globally scoped",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:410-415",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:537-543",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts:301-354",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:650-655"
+      ],
+      "impact": "A scan invoked with specFolder discovers scoped files, but stale deletion scans all memory_index rows and can delete stale records outside the requested spec folder.",
+      "recommendedFix": "Thread the requested specFolder into stale path discovery and delete lookup, or disable global stale deletion when the scan is scoped."
+    },
+    {
+      "id": "DR-C9-P1-003",
+      "status": "active",
+      "severity": "P1",
+      "category": "ipc-trust-boundary",
+      "finding_class": "class-of-bug",
+      "affectedSurfaceHints": ["hf-model-server", "SPECKIT_IPC_SOCKET_DIR"],
+      "riskScore": 7,
+      "content_hash": "d15cb3355b413b9ae58728604f6a0aff873bdda55d6a2ca1fd89dc09e5dd208f",
+      "title": "hf model-server demand listener accepts writable socket directories",
+      "evidence": [
+        ".opencode/bin/lib/model-server-supervision.cjs:471-501",
+        ".opencode/bin/lib/model-server-supervision.cjs:1219-1222",
+        ".opencode/bin/lib/model-server-supervision.cjs:1367-1380",
+        ".opencode/bin/spec-memory.cjs:103-109"
+      ],
+      "impact": "A pre-existing SPECKIT_IPC_SOCKET_DIR that is owned by the current user but group/world writable is accepted before binding a local UDS, leaving the socket path vulnerable to sibling-user unlink or replacement races on shared hosts.",
+      "recommendedFix": "Reject or chmod pre-existing non-TCP socket directories unless they are private, preferably mode 0700, before binding or unlinking model-server sockets."
+    }
+  ]
+}

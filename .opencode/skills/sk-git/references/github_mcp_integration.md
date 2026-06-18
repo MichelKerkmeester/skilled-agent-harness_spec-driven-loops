@@ -1,6 +1,14 @@
 ---
 title: GitHub MCP Integration - Remote Operations Reference
 description: Programmatic access to GitHub's remote operations via Code Mode including PRs, issues, and repository management.
+trigger_phrases:
+  - "github mcp tools"
+  - "remote github operations"
+  - "create pull request programmatically"
+  - "github issue management tools"
+  - "pr status checks via mcp"
+importance_tier: normal
+contextType: implementation
 ---
 
 # GitHub MCP Integration - Remote Operations Reference

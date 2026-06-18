@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/135-skill-readme-standardization/017-sk-doc-readme",
+  "description": "Feature Specification: sk-doc README",
+  "keywords": [
+    "feature",
+    "specification",
+    "sk-doc",
+    "readme"
+  ],
+  "lastUpdated": "2026-06-10T04:53:30.805Z",
+  "specId": "017",
+  "folderSlug": "sk-doc-readme",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "135-skill-readme-standardization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,69 @@
+{
+  "openFindings": [
+    {
+      "id": "F001",
+      "severity": "P1",
+      "category": "traceability",
+      "finding_class": "spec-code-drift",
+      "title": "spec.md / plan.md / tasks.md remain raw placeholder templates while implementation-summary.md and code claim 100% completion",
+      "evidence": [
+        ".../004-confidence-calibration-labeled-set/spec.md:84-128",
+        ".../004-confidence-calibration-labeled-set/plan.md:46-129",
+        ".../004-confidence-calibration-labeled-set/tasks.md:50-87",
+        ".../004-confidence-calibration-labeled-set/graph-metadata.json (Status: planned)",
+        ".../004-confidence-calibration-labeled-set/implementation-summary.md:28 (completion_pct: 100)"
+      ],
+      "content_hash": "f001-traceability-spec-placeholder-vs-shipped"
+    },
+    {
+      "id": "F002",
+      "severity": "P2",
+      "category": "maintainability",
+      "finding_class": "model-bloat",
+      "title": "Isotonic fit does not merge adjacent equal-mean blocks; starter model serializes 100 points for an effective 2-level step",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-calibration.ts:163-183",
+        ".../004-confidence-calibration-labeled-set/assets/confidence-calibration-model.starter.json:3-404"
+      ],
+      "content_hash": "f002-maint-isotonic-no-equalmean-merge"
+    },
+    {
+      "id": "F003",
+      "severity": "P2",
+      "category": "maintainability",
+      "finding_class": "logic-duplication",
+      "title": "PAV fit logic duplicated between confidence-calibration.ts and assets/fit-calibration.mjs with no drift guard",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-calibration.ts:145-183",
+        ".../004-confidence-calibration-labeled-set/assets/fit-calibration.mjs:97-124"
+      ],
+      "content_hash": "f003-maint-pav-duplication"
+    },
+    {
+      "id": "F004",
+      "severity": "P2",
+      "category": "completeness",
+      "finding_class": "documented-limitation",
+      "title": "Path-keyed model cache is not invalidated on file content change (documented limitation #4)",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts:164-179",
+        ".../004-confidence-calibration-labeled-set/implementation-summary.md:151"
+      ],
+      "content_hash": "f004-complete-cache-no-content-invalidation"
+    }
+  ],
+  "resolvedFindings": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": 1,
+    "security": 1,
+    "traceability": 1,
+    "maintainability": 1
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 3
+  },
+  "convergenceScore": 1.0
+}

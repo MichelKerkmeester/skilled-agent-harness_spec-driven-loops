@@ -1,0 +1,315 @@
+{
+  "packaging_root": "/Users/michelkerkmeester/MEGA/Development/AI_Systems/Barter/Copywriter",
+  "system_name": "Barter Copywriter",
+  "system_name_short": "Barter Copywriter",
+  "dimensions": {
+    "M": {
+      "floor": 3,
+      "max": 4
+    },
+    "E": {
+      "floor": 6,
+      "max": 8
+    },
+    "Q": {
+      "floor": 5,
+      "max": 6
+    },
+    "T": {
+      "floor": 3,
+      "max": 4
+    },
+    "D": {
+      "floor": 2,
+      "max": 3
+    }
+  },
+  "score_total": 25,
+  "ship_threshold": 19,
+  "self_score_regex": "MEQT[^\\d]{0,15}(\\d{1,2})\\s*/\\s*25",
+  "frozen_surface": [
+    {
+      "frozen_name": "human_voice_rules.frozen.md",
+      "live_relpath": "skill/references/human_voice_rules.md",
+      "section_anchor": null,
+      "in_rubric": false
+    },
+    {
+      "frozen_name": "meqt_scoring_s2.frozen.md",
+      "live_relpath": "skill/references/meqt_scoring.md",
+      "section_anchor": "## 2. MEQT SCORING SYSTEM",
+      "in_rubric": true
+    },
+    {
+      "frozen_name": "meqt_depth_s4.frozen.md",
+      "live_relpath": "skill/references/depth_framework.md",
+      "section_anchor": "## 4. MEQT SCORING & INTEGRATION",
+      "in_rubric": true
+    }
+  ],
+  "anchors": [
+    "M≥3",
+    "E≥6",
+    "Q≥5",
+    "T≥3",
+    "D≥2",
+    "influencer"
+  ],
+  "manifest_note": "Immutable Copywriter scoring surface. Loop is read-only here.",
+  "derive_source_root": "skill/references",
+  "technique_doc_map": {
+    "E": "skill/references/standards.md",
+    "T": "skill/references/brand_extensions.md",
+    "M": "skill/references/frameworks.md",
+    "Q": "skill/references/standards.md",
+    "D": "skill/references/brand_extensions.md"
+  },
+  "derived_copies": [
+    {
+      "src_relpath": "meqt_scoring.md",
+      "targets": [
+        {
+          "relpath": "claude project/knowledge/Copywriter - System - MEQT Scoring - v0.100.md"
+        }
+      ]
+    },
+    {
+      "src_relpath": "depth_framework.md",
+      "targets": [
+        {
+          "relpath": "claude project/knowledge/Copywriter - Thinking - DEPTH Framework - v0.210.md"
+        }
+      ]
+    },
+    {
+      "src_relpath": "interactive_mode.md",
+      "targets": [
+        {
+          "relpath": "claude project/knowledge/Copywriter - System - Interactive Mode - v0.510.md"
+        }
+      ]
+    },
+    {
+      "src_relpath": "frameworks.md",
+      "targets": [
+        {
+          "relpath": "claude project/knowledge/Copywriter - Context - Frameworks - v0.113.md"
+        }
+      ]
+    },
+    {
+      "src_relpath": "standards.md",
+      "targets": [
+        {
+          "relpath": "claude project/knowledge/Copywriter - Context - Standards - v0.121.md"
+        }
+      ]
+    },
+    {
+      "src_relpath": "brand_extensions.md",
+      "targets": [
+        {
+          "relpath": "claude project/knowledge/Copywriter - Context - Brand Extensions - v0.104.md"
+        }
+      ]
+    },
+    {
+      "src_relpath": "human_voice_rules.md",
+      "targets": [
+        {
+          "relpath": "claude project/knowledge/global/Copywriter - Rules - Human Voice - EN - v0.210.md"
+        }
+      ]
+    },
+    {
+      "src_relpath": "brand.md",
+      "targets": [
+        {
+          "relpath": "claude project/knowledge/global/Copywriter - Context - Brand - v0.130.md"
+        }
+      ]
+    },
+    {
+      "src_relpath": "market.md",
+      "targets": [
+        {
+          "relpath": "claude project/knowledge/global/Copywriter - Context - Market - v0.130.md"
+        }
+      ]
+    },
+    {
+      "src_relpath": "industry.md",
+      "targets": [
+        {
+          "relpath": "claude project/knowledge/global/Copywriter - Context - Industry - v0.130.md"
+        }
+      ]
+    },
+    {
+      "src_relpath": "platform_knowledge.md",
+      "targets": [
+        {
+          "relpath": "claude project/knowledge/global/Copywriter - Context - Platform Knowledge - v0.120.md"
+        }
+      ]
+    },
+    {
+      "src_relpath": "canonical_stats_registry.md",
+      "targets": [
+        {
+          "relpath": "claude project/knowledge/global/Copywriter - Context - Canonical Stats Registry - v0.130.md"
+        }
+      ]
+    },
+    {
+      "src_relpath": "artifact_template.md",
+      "src_root": "skill/assets",
+      "targets": [
+        {
+          "relpath": "claude project/knowledge/Copywriter - Assets - Artifact Template - v0.121.md"
+        }
+      ]
+    },
+    {
+      "src_relpath": "brand_examples.md",
+      "src_root": "skill/assets",
+      "targets": [
+        {
+          "relpath": "claude project/knowledge/Copywriter - Assets - Brand Examples - v0.100.md"
+        }
+      ]
+    },
+    {
+      "src_relpath": "SKILL.md",
+      "src_root": "skill",
+      "targets": [
+        {
+          "relpath": "claude project/knowledge/Copywriter - System - Skill - v1.1.0.md"
+        }
+      ]
+    }
+  ],
+  "synthesized_surfaces": [
+    "claude project/Custom Instructions.md",
+    "claude project/Custom Instructions - compact.md",
+    "skill/references/brand_kernel.md"
+  ],
+  "fixtures": {
+    "visible": [
+      "T1-write",
+      "T4-improve-adversarial"
+    ],
+    "held_out": [
+      "T5-quick",
+      "T7-stat"
+    ],
+    "variants": [
+      "cli",
+      "project",
+      "project-full",
+      "skill"
+    ]
+  },
+  "models": {
+    "proposer": "deepseek/deepseek-v4-pro",
+    "grader": "xiaomi/mimo-v2-pro",
+    "proposer_family": "deepseek"
+  },
+  "harness": {
+    "benchmark_mode_instructions": {
+      "cli": "You are the Barter Copywriter AI (CLI runtime). Before responding, READ and ADOPT these files as your complete operating system — the skill IS your identity once loaded:\n- {{CW}}/AGENTS.md  (bootstrap + override)\n- {{CW}}/skill/SKILL.md  (routing, gates, delivery — adopt fully)\n- {{CW}}/skill/references/human_voice_rules.md\n- {{CW}}/skill/references/depth_framework.md\n- {{CW}}/skill/references/brand_kernel.md\nLoad other {{CW}}/skill/references/ docs ONLY when the skill's routing calls for them. BENCHMARK MODE — do NOT call the Write or Edit tools or save/export ANY file. Print the COMPLETE deliverable (all variations) plus the MEQT score and HVR status directly in your chat reply.",
+      "project": "Follow these Custom Instructions exactly as your operating system. This is the Barter Copywriter, claude.ai Project runtime (compact kernel):\n----- CUSTOM INSTRUCTIONS -----\n$CI\n----- END CUSTOM INSTRUCTIONS -----\nReference docs (consult ON DEMAND, like retrieval — do not assume all are loaded) are at: {{CW}}/claude project/knowledge/ and {{CW}}/claude project/knowledge/global/. BENCHMARK MODE — do NOT call the Write or Edit tools or save/export ANY file. Print the COMPLETE Deliverable Block (deliverable body + attestation footer) plus the MEQT score and HVR status directly in your reply.",
+      "project-full": "Follow these Custom Instructions exactly as your operating system. This is the Barter Copywriter, claude.ai Project runtime (full instructions):\n----- CUSTOM INSTRUCTIONS -----\n$CI\n----- END CUSTOM INSTRUCTIONS -----\nReference docs (consult ON DEMAND if needed) are at: {{CW}}/claude project/knowledge/ and {{CW}}/claude project/knowledge/global/. BENCHMARK MODE — do NOT call the Write or Edit tools or save/export ANY file. Print the COMPLETE Deliverable Block (deliverable body + attestation footer) plus the MEQT score and HVR status directly in your reply.",
+      "skill": "You are operating as the Barter Copywriter via its skill packaging. First READ the skill instructions at {{CW}}/skill/SKILL.md and follow them exactly: apply the skill's smart routing to consult the relevant docs in {{CW}}/skill/references/ on demand, run DEPTH, score MEQT with per-dimension floors, enforce the Human Voice Rules. BENCHMARK MODE — do NOT call the Write or Edit tools or save/export ANY file. Print the COMPLETE deliverable plus the MEQT score and HVR status directly in your reply."
+    },
+    "benchmark_variant_preludes": {
+      "project": "CI=\"$(cat \"$CW/claude project/Custom Instructions - compact.md\")\"",
+      "project-full": "CI=\"$(cat \"$CW/claude project/Custom Instructions.md\")\""
+    }
+  },
+  "lexicon": {
+    "hard_blocker_words": [
+      "delve",
+      "embark",
+      "realm",
+      "tapestry",
+      "illuminate",
+      "unveil",
+      "elucidate",
+      "revolutionise",
+      "revolutionize",
+      "groundbreaking",
+      "cutting-edge",
+      "ever-evolving",
+      "leverage",
+      "foster",
+      "nurture",
+      "resonate",
+      "empower",
+      "disrupt",
+      "curate",
+      "harness",
+      "elevate",
+      "robust",
+      "seamless",
+      "holistic",
+      "synergy",
+      "unpack",
+      "paradigm",
+      "enlightening",
+      "esteemed",
+      "skyrocket",
+      "skyrocketing",
+      "utilize",
+      "utilizing"
+    ],
+    "hard_blocker_patterns": [
+      {
+        "label": "em_dash",
+        "regex": "—",
+        "severity": "hard",
+        "ignorecase": false
+      },
+      {
+        "label": "influencers",
+        "regex": "\\binfluencers?\\b",
+        "severity": "hard"
+      },
+      {
+        "label": "non_eur_currency",
+        "regex": "\\$\\d|£\\d|\\b(?:USD|GBP|JPY|CHF|CAD|AUD)\\b",
+        "severity": "hard",
+        "note": "non-euro only; € and EUR both allowed",
+        "ignorecase": false
+      },
+      {
+        "label": "semicolon",
+        "regex": ";",
+        "severity": "hard",
+        "ignorecase": false
+      },
+      {
+        "label": "not_just_x_but",
+        "regex": "not just .{1,40}? but",
+        "severity": "hard"
+      }
+    ],
+    "soft_phrase_patterns": [
+      "it's important to",
+      "it's worth noting",
+      "moving forward",
+      "in today's world",
+      "dive into",
+      "the reality is",
+      "here's the thing",
+      "in a world where",
+      "you're not alone",
+      "the truth is",
+      "the real question is"
+    ]
+  },
+  "worktree_prefix": "copywriter-loop-",
+  "worktree_subdir": "Copywriter",
+  "packaging_root_env": "CW_ROOT",
+  "kit_version": "1.3.0"
+}

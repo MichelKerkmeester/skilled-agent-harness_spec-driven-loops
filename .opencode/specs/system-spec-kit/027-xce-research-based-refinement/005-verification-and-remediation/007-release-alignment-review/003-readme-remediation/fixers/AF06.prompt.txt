@@ -1,0 +1,28 @@
+Act as a markdown documentation-fixer (seat AF06). Spec folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation (PRE-APPROVED at Gate 3 — make the edits below directly with the Edit/Write tools; do NOT re-ask Gate 3 and do NOT ask the user anything).
+
+You fix STALE content in README files so they match current repo reality. SURGICAL edits only — fix the cited claims, keep everything else intact. Find the correct current value by reading the cited file PLUS its SKILL.md / source / config before editing.
+
+ALLOWED WRITE PATHS (edit ONLY these files):
+- .opencode/skills/deep-loop-workflows/deep-review/README.md
+- .opencode/skills/deep-loop-workflows/deep-review/scripts/README.md
+- .opencode/skills/mcp-chrome-devtools/README.md
+- .opencode/skills/mcp-click-up/README.md
+- .opencode/skills/mcp-click-up/mcp-servers/clickup-mcp/README.md
+BANNED: no delete, no rename, no new files, no edits outside the listed files, no --no-verify.
+
+DO-NOT-FIX (binding — confirmed false positives; leave untouched):
+- The CLI front-door "37 tools" figure: `spec-memory.cjs` CLI is genuinely 37; only the MCP-server/daemon surface is 39. Fix a "37" ONLY when the sentence is about the MCP server/daemon, NOT the CLI front door.
+- Any `// Feature catalog:` comments and TSDoc `@example` values.
+- Any cited claim that does NOT actually reproduce against the live file — mark it refuted; never invent a fix.
+
+FINDINGS TO FIX (confirm-then-fix each; P0/P1/P2 all in scope, including cosmetic/style):
+- [P1] .opencode/skills/deep-loop-workflows/deep-review/README.md:40 — Deep-loop roster omits improvement mode | stale: All four sibling loops share `deep-loop-runtime`, and the sibling list names only research/context/ai-council. -> correct: The current deep-loop workflow roster has five top-level personas: context, research, review, ai-council, and improvement; improvement includes four command lanes.
+- [P1] .opencode/skills/deep-loop-workflows/deep-review/scripts/README.md:109 — deep-review scripts cross-skill links are dead | stale: The README links sk-code and sk-doc via ../../sk-code and ../../sk-doc. -> correct: From deep-review/scripts those links resolve under deep-loop-workflows/, not to the actual .opencode/skills/sk-code and .opencode/skills/sk-doc roots.
+- [P1] .opencode/skills/mcp-chrome-devtools/README.md:69 — Chrome DevTools MCP version is wrong | stale: Register chrome-devtools-mcp@latest with --isolated=true in .utcp_config.json. -> correct: Current .utcp_config.json pins both chrome_devtools manuals to chrome-devtools-mcp@0.26.0 with --isolated=true.
+- [P0] .opencode/skills/mcp-click-up/README.md:78 — ClickUp MCP quick start uses obsolete Code Mode invocation | stale: Register @clickup/mcp-server in platform MCP config with server key "clickup", then call Code Mode as call_tool_chain([{ tool: "clickup.clickup_create_document", input: ... }]). -> correct: Current Code Mode is wired through opencode.json to .utcp_config.json, the current ClickUp manual is named clickup_official, and call_tool_chain accepts an object with a code string, not an array of tool/input steps.
+- [P1] .opencode/skills/mcp-click-up/mcp-servers/clickup-mcp/README.md:40 — OpenCode config example uses old mcpServers shape | stale: The OpenCode / Claude Code / Claude Desktop platform config example is a top-level mcpServers block. -> correct: Current OpenCode config uses a top-level mcp object with local server entries; Code Mode UTCP config uses manual_call_templates, not a top-level mcpServers block.
+
+After editing, re-read each edited line to verify. Your final message MUST be exactly one fenced json block:
+```json
+{"seat":"AF06","fixed":[{"file":"path","claim":"what was stale","after":"what it now says"}],"refuted":[{"file":"path","why":"why skipped"}]}
+```

@@ -1,6 +1,13 @@
 ---
 title: Universal Code Style Guide
 description: Language-agnostic naming, file structure, commenting, and formatting principles for WEBFLOW and OPENCODE code surfaces.
+trigger_phrases:
+  - "universal code style guide"
+  - "language agnostic naming"
+  - "universal formatting principles"
+  - "commenting universal rules"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Universal Code Style Guide
@@ -152,6 +159,19 @@ const decay = fsrsDecay(age);
 ```
 
 When a comment mixes a forbidden id with a stable standard, keep the standard: `// CHK-160 / SEC: sanitize input (CWE-79)` becomes `// SEC: sanitize input to prevent stored XSS (CWE-79)`.
+
+### Mark intentional simplifications
+
+When a simplification is deliberate — a known shortcut chosen on purpose, not an oversight — name it so it reads as intent, not ignorance. Use a neutral `ceiling:` prefix that names the shortcut, its known ceiling, and the upgrade path or trigger:
+
+```python
+# ceiling: global lock; switch to per-account locks if throughput matters
+```
+
+This is durable WHY (the constraint plus the decision), so it is allowed by the rule above — it names no tracking artifact. Two constraints:
+
+- Use a neutral prefix (`ceiling:` or `intentional-limit:`), never a tool or brand name — a brand prefix reads as a perishable, cargo-cult label.
+- Do NOT add `ceiling:` to the comment-hygiene checker's allowed-pattern list. It already passes (it contains no forbidden id), and allow-listing it would let a forbidden id on the same line slip through, because allowed patterns short-circuit violation detection.
 
 ### Surface-specific commenting notes
 

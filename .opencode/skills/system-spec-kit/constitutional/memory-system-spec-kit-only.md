@@ -2,6 +2,8 @@
 title: "MEMORY — Spec-Kit System Only"
 importanceTier: constitutional
 contextType: decision
+last_confirmed: "2026-05-31"
+last_confirmed_source: "git-log-last-touch"
 triggerPhrases:
   - save memory
   - save context

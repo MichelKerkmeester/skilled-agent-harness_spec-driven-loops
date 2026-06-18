@@ -1,0 +1,91 @@
+I’ll read the requested research artifacts only, then synthesize the decision in the requested skeleton without modifying files.
+The requested `orchestrator-verifications.md` is present under `research/iterations/`, not the research root. I’ll use that file along with the six iterations and `live-diagnosis.md`.
+## IT7 — synthesis, decision matrix, recommendation
+Recommendation: ship **C2 immediately**, then ship **B hardening**, and make the durable target **C1: one OS-supervised supervisor owning all daemons + HF**. Do **not** make per-daemon A the default architecture. Use A’s essential property, OS restart after death, but apply it to **one supervisor unit**, not 3-4 independent daemon units.
+
+The layer that actually closes the **SIGKILL/OOM-last-owner** gap is the **OS KeepAlive/Restart layer**. In the recommended architecture, that is the **single launchd/systemd unit for the supervisor**. B and C2 improve recovery and reduce flapping, but they do not create a process after the last resident owner is gone.
+
+### Decision matrix (criteria + weights + scores A/B/C1/C2/prevention)
+Scoring: `1 = poor`, `3 = acceptable/partial`, `5 = strong`.
+
+| Criterion | Weight | A: per-daemon launchd/systemd | B: pure-Node launcher hardening | C1: supervisor + one OS unit | C2: cold-start self-heal | Prevention: RSS caps + RAM preflight |
+|---|---:|---:|---:|---:|---:|---:|
+| Survives SIGKILL/OOM of last resident owner | 30 | 5 | 2 | 5 | 1 | 2 |
+| Cross-platform macOS/Linux/WSL | 10 | 3 | 5 | 4 | 5 | 5 |
+| Blast radius vs 30 shipped phases | 13 | 2 | 3 | 2 | 5 | 4 |
+| Implementation complexity/time | 10 | 2 | 3 | 2 | 5 | 3 |
+| Operational friction | 8 | 2 | 4 | 3 | 5 | 4 |
+| Cures vs prevents | 12 | 5 | 3 | 5 | 3 | 2 |
+| Alignment with launcher/lease/proxy machinery | 9 | 3 | 5 | 4 | 5 | 4 |
+| Multi-concurrent-session safety | 8 | 5 | 4 | 5 | 2 | 3 |
+| **Weighted total / 500** | **100** | **369** | **324** | **396** | **332** | **308** |
+
+C1’s `5` on SIGKILL/OOM assumes the supervisor is bootstrapped by **one OS unit**. A pure-Node supervisor without that OS unit scores `2`, because it cannot survive its own SIGKILL/OOM; this is explicitly called out in `iteration-006:14` and `iteration-006:25-31`.
+
+### Recommended layered architecture (now / next / durable) + why it beats any single fix
+**Now: ship C2 cold-start self-heal.**
+
+Add warm-only self-heal in all three CLIs and prompt/session-start paths: when a warm probe finds the daemon down, fire a detached cold-start under a short throttle lock, then still return `75`. This directly attacks the live symptom: warm-only prompt-time probes currently refuse to cold-spawn, so a dead daemon remains down for the whole session unless some non-warm command runs (`iteration-003:13-16`, `orchestrator-verifications:14-17`). C2 is the lowest-risk change because it uses the already-existing detached `spawnLauncher()` paths and keeps prompt-time non-blocking (`iteration-006:16-23`).
+
+**Next: ship B hardening across all three daemons.**
+
+Normalize advisor and code-index to spec-memory’s release/adopt model, add active-client fail-open, proactive same-UID stale-socket sweep, HF refcounting, and long/no idle for main daemons. This fixes the current asymmetry where re-election is spec-memory-only and advisor/code-index still kill the daemon on launcher shutdown (`iteration-001:38-43`, `iteration-002:28-36`, `orchestrator-verifications:10-13`). It also addresses the shared HF sidecar cross-kill risk (`iteration-002:36`, `iteration-005:21-23`).
+
+**Durable: ship C1 supervisor mode, bootstrapped by one OS unit.**
+
+Introduce a single supervisor process owning mk-spec-memory, mk-code-index, mk-skill-advisor, and the HF sidecar. Sessions become pure clients: probe supervisor, ensure service, then bridge/proxy to daemon sockets. Bootstrap that supervisor with one LaunchAgent on macOS and one `systemd --user` unit on Linux/WSL. This gets A’s real benefit, restart on any death, with less install friction and better multi-daemon coordination than per-daemon units (`iteration-006:10-15`, `iteration-004:24-34`).
+
+**Prevention layer: enable calibrated RSS caps and free-RAM preflight after measurement.**
+
+This does not replace supervision. It reduces OOM probability and should be paired with C1/A-style restart, not treated as the liveness fix (`iteration-006:33-34`).
+
+This layering beats any single fix because C2 fixes the immediate warm-only failure mode, B removes session-exit cross-kills and stale-socket hazards, C1 closes autonomous liveness, and prevention reduces the chance of the most expensive restart path.
+
+### Where the SIGKILL/OOM-last-owner gap is actually closed
+Closed only by **external OS supervision**.
+
+In A, it is closed by per-daemon `launchd KeepAlive` / `systemd --user Restart=always`.
+
+In the recommended architecture, it is closed by the **single OS unit supervising the C1 supervisor**, which then restarts daemon children. C2 does not close it; it heals only on the next prompt/CLI. B does not close it; pure Node cannot resurrect itself after all resident owners are dead (`iteration-005:38-39`, `iteration-006:25-31`).
+
+### Relationship to shipped phases (extend / supersede / leave alone / would-undo)
+| Phase | Relationship | Decision |
+|---|---|---|
+| 017 disposal-flap guard | Extend | Keep it as a safety guard for launcher-owned paths; durable supervisor mode should make normal session disposal non-destructive. |
+| 019 dead-socket reap hardening | Extend | Keep deep-probe/reap semantics; B adds proactive same-UID stale-socket sweep before bind/start. |
+| 020 code-index reconnecting proxy | Extend | Reuse it as the client transport model; C1 keeps tool traffic direct through existing bridge/proxy machinery. |
+| 021 orphan-sweep Stop-hook | Leave mostly alone | Useful cleanup tool, not a liveness mechanism. Do not promote it as the daemon supervisor. |
+| 022 ownership re-election | Extend then subsume | B generalizes it to advisor/code-index. C1 later subsumes lifecycle ownership under the supervisor. |
+| 027 re-election default-on | Extend | Keep default-on semantics for non-supervisor mode; supervisor mode should make client launchers non-owning. |
+| 028 live-session re-election validation | Extend | Its deferred true-adoption concerns become B/C1 test requirements. |
+| 029 cross-session kill scoping | Extend | C1/B should complete the intent by making client session exits non-destructive when other clients exist. |
+| 030 client-side reconnect survival | Leave alone | Harness-owned stdio reconnect remains out of repo scope; reduce drops and rely on session proxy where available. |
+
+Would undo: per-daemon A as the default could undo the “single owner” direction unless launchers are first made pure clients. Running existing launchers unchanged under KeepAlive would create owner fights, because current launchers can spawn, kill, clear leases, and reap stale state (`iteration-004:24-29`).
+
+### Minimal viable fix vs full durable fix
+**Minimal viable fix:** C2 across all three CLIs and prompt/session-start integrations.
+
+Smallest material fix: when warm-only sees `down`, kick a detached cold-start with a throttle lock and return `75`. This addresses advisor/spec-memory staying dead under prompt-time warm-only probes. It does not solve all liveness, but it converts “dead all session” into “first call may fail, next call likely succeeds” (`iteration-006:16-23`).
+
+**Full durable fix:** C2 + B + C1 + prevention.
+
+Full target: client-only session launchers, uniform release/adopt semantics, active-client fail-open, HF refcounting, proactive stale-socket sweep, one OS-supervised supervisor, calibrated RSS self-exit, and free-RAM preflight. That is the first architecture that both reduces recurrence and survives the last-owner death class.
+
+### Open decisions for the operator
+| Decision | Recommendation |
+|---|---|
+| Accept an always-on OS unit? | Yes, for durable reliability. Without it, last-owner SIGKILL/OOM remains open. |
+| Per-daemon units or one supervisor unit? | One supervisor unit. Lower ops friction, better HF coordination, fewer owner fights. |
+| macOS-first or macOS/Linux together? | Ship C2/B cross-platform first. Build C1 with macOS LaunchAgent and Linux `systemd --user` together if durable rollout is the goal. |
+| Always-warm daemons vs idle timeout? | Keep main daemons warm/long-idle under B/C1. Apply tighter refcount-aware idle to HF, the high-RSS component. |
+| First prompt should wait or stay non-blocking? | Keep prompt non-blocking for C2. If first-turn readiness becomes mandatory, add a small SessionStart wait budget later. |
+| Enable RSS caps by default? | Measure first, then enable calibrated caps and free-RAM preflight. Avoid uncalibrated self-exit loops. |
+| Keep per-daemon A as fallback? | Yes as an emergency/operator mode, not the default architecture. |
+
+### Confidence + unknowns
+Confidence: **high** on the architecture decision.
+
+Evidence basis: live failure state is confirmed in `live-diagnosis:5-11`; warm-only trap is confirmed in `iteration-003:13-16` and sharpened in `orchestrator-verifications:14-17`; spec-memory-only re-election is confirmed in `orchestrator-verifications:10-13`; C2/C1 mechanics are from `iteration-006:10-23`; SIGKILL/OOM boundaries are from `iteration-006:25-31`.
+
+Unknowns: exact live kill event is unrecoverable due to missing persistent logs; advisor/code-index backend-only feasibility still needs implementation validation; real HF RSS ceiling needs measurement before setting defaults.

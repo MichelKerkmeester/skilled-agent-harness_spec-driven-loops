@@ -1,0 +1,11 @@
+{
+  "run_id": "1781761339355-o7qylx",
+  "loop_type": "review",
+  "spec_folder": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/B-rest-of-002",
+  "base_artifact_dir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2",
+  "total_cli_lineages": 10,
+  "total": 10,
+  "succeeded": 10,
+  "failed": 0,
+  "all_failed": false
+}

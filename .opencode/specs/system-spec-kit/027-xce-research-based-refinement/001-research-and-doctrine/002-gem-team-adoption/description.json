@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "is_phase_parent": true,
+  "children": [
+    "001-typed-agent-io-adapter",
+    "002-scoped-preexec-and-handoff-gates",
+    "003-planner-review-focus-and-drift-hint"
+  ],
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption",
+  "description": "Feature Specification: Gem Team Adoption (Phase Parent)",
+  "keywords": [
+    "feature",
+    "specification",
+    "gem",
+    "team",
+    "adoption",
+    "phase",
+    "parent"
+  ],
+  "lastUpdated": "2026-06-11T16:04:31.626Z",
+  "specId": "002",
+  "folderSlug": "gem-team-adoption",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "001-research-and-doctrine"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

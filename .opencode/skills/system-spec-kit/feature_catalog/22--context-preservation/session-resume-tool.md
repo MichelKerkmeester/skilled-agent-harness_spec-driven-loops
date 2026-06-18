@@ -23,7 +23,7 @@ The `session_resume` handler performs three recovery steps: (1) a filesystem-fir
 
 ## 2. HOW IT WORKS
 
-`session_resume` is the detailed merged recovery surface behind the higher-level `/spec_kit:resume` workflow. The handler still merges the resume ladder, code-graph status, Code Graph availability, and structural bootstrap hints into one response, but The implementation added a transport-bound auth check around any explicit `args.sessionId`.
+`session_resume` is the detailed merged recovery surface behind the higher-level `/speckit:resume` workflow. The handler still merges the resume ladder, code-graph status, Code Graph availability, and structural bootstrap hints into one response, but The implementation added a transport-bound auth check around any explicit `args.sessionId`.
 
 Commit `debb5d7a8` introduced `mcp_server/lib/context/caller-context.ts` and wrapped the MCP transport with AsyncLocalStorage caller binding. Commit `87636d923` then changed `mcp_server/handlers/session-resume.ts` so a supplied `args.sessionId` is compared against the caller-bound session identity by default. In the normal strict mode, a mismatch is rejected instead of being treated as an informational hint. `MCP_SESSION_RESUME_AUTH_MODE=permissive` is the canary rollout flag that logs the mismatch and allows the request to continue.
 

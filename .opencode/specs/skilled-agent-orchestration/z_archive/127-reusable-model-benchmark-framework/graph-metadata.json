@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/127-reusable-model-benchmark-framework",
+  "spec_folder": "skilled-agent-orchestration/z_archive/127-reusable-model-benchmark-framework",
+  "parent_id": null,
+  "children_ids": [
+    "skilled-agent-orchestration/z_archive/127-reusable-model-benchmark-framework/001-design-research",
+    "skilled-agent-orchestration/z_archive/127-reusable-model-benchmark-framework/002-p0-mvp-implementation",
+    "skilled-agent-orchestration/z_archive/127-reusable-model-benchmark-framework/003-p1-reliability-and-dispatch",
+    "skilled-agent-orchestration/z_archive/127-reusable-model-benchmark-framework/004-capability-discrimination",
+    "skilled-agent-orchestration/z_archive/127-reusable-model-benchmark-framework/005-sharper-discrimination",
+    "skilled-agent-orchestration/z_archive/127-reusable-model-benchmark-framework/006-strict-validation-fixtures"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "127-reusable-model-benchmark-framework",
+      "phase parent",
+      "reusable benchmark framework",
+      "sweep-benchmark"
+    ],
+    "key_topics": [
+      "127-reusable-model-benchmark-framework",
+      "phase",
+      "parent",
+      "reusable",
+      "benchmark",
+      "framework",
+      "sweep-benchmark",
+      "repo",
+      "prompt-framework",
+      "benchmarks",
+      "one-off",
+      "model-specific"
+    ],
+    "importance_tier": "important",
+    "status": "complete_(6_phases)_—_framework_shipped;_m3_vs_mimo_verdict_certified_(m3_more_reliable,_reproduced_across_004+006)",
+    "key_files": [
+      "001-design-research/research/research.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The repo's prompt-framework benchmarks are **one-off, model-specific rigs** (`120/003` MiniMax 7-fixture, `126/004` MiMo lean 2-fixture) that each re-implement fixtures + a dispatch wrapper + scoring. Packet `121` generalized *model-benchmark mode* into deep-improvement Lane B, but the prompt-framework bake-off, the fixture taxonomy, the multi-dimensional scoring, and the statistical rigor are **not yet a reusable framework** — every new model/technique/situation still needs new rig code. `126/004` also exposed **correctness-saturation** producing misleading \"winners.\"",
+    "created_at": "2026-06-02T05:45:33.740Z",
+    "last_save_at": "2026-06-17T19:57:23.722Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": "006-strict-validation-fixtures",
+    "last_active_at": "2026-06-02T12:57:48.136Z"
+  }
+}

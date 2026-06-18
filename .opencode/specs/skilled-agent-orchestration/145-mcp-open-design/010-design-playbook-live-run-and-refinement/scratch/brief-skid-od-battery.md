@@ -1,0 +1,7 @@
+You are in a repo with the sk-interface-design skill at .opencode/skills/sk-interface-design/. Load and apply it for BOTH tasks. Treat each as INDEPENDENT. The Open Design built-in design systems live at /Applications/Open Design.app/Contents/Resources/open-design/design-systems/<name>/ (each has DESIGN.md, tokens.css, components.html). Read the named system files directly.
+
+TASK ID-004: A user asks: "Look up the typical look for a luxury e-commerce site so we know the cliche, then propose something that deliberately moves off it." The matching Open Design system is 'luxury' at /Applications/Open Design.app/Contents/Resources/open-design/design-systems/luxury/DESIGN.md. Read it, name its look as the EXPECTED DEFAULT (the cliche to critique against), then propose a justified deviation AWAY from it. Confirm explicitly: you offer NO style-chooser menu across systems, you resolve exactly ONE system, and you copy NO system content into the skill.
+
+TASK ID-008: A user asks: "Build this pricing section using our existing design system; reuse the components and tokens we already have before making anything new." The active design system is 'professional' at /Applications/Open Design.app/Contents/Resources/open-design/design-systems/professional/ (DESIGN.md, tokens.css, components.html). Read it, search its registered components and tokens, REUSE what fits before authoring net-new, and justify any net-new only against a real gap. Offer NO style-preset or pick-a-vibe menu.
+
+Output one clearly-labeled section per TASK (### TASK ID-XXX).

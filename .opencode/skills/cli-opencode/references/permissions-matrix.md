@@ -1,6 +1,14 @@
 ---
 title: "cli-opencode permissions matrix"
 description: "Structured permissions-matrix schema, examples, RM-8 replay reasoning, and migration checklist for cli-opencode deep-loop dispatches."
+trigger_phrases:
+  - "opencode permissions matrix"
+  - "permissions matrix schema"
+  - "deep-loop permissions gate"
+  - "deny by default rules"
+  - "rm-8 replay walkthrough"
+importance_tier: normal
+contextType: implementation
 ---
 
 # cli-opencode permissions matrix
@@ -121,7 +129,7 @@ Core intent:
 | `write`/`edit` on the approved packet docs | allow | Packet docs are the approved continuity scope. |
 | `write`/`edit` on the packet schema, examples, reference doc, gate, and test | allow | These are the explicit implementation files. |
 | `edit` on `cli-opencode/SKILL.md` | allow | The packet updates only the relevant ALWAYS entry. |
-| `edit` on `sk-prompt-small-model/references/pattern-index.md` | allow | The packet marks the downstream pattern shipped. |
+| `edit` on `sk-prompt-small-model/references/pattern_index.md` | allow | The packet marks the downstream pattern shipped. |
 | `execute` on read-only shell commands | allow | Search and inspection stay usable. |
 | `execute` on destructive commands | deny | RM-8 prevention. |
 | `write`, `edit`, `delete` on `**` | deny | Anything outside the explicit approved packet paths blocks. |
@@ -205,7 +213,7 @@ The incident doc records:
 
 - Date: 2026-05-04.
 - Executor: `opencode-go/deepseek-v4-pro`.
-- Mode: `/deep:start-review-loop:auto`.
+- Mode: `/deep:review:auto`.
 - Flag: `--dangerously-skip-permissions`.
 - Damage: 44 files deleted across two phase children.
 - File classes: spec docs and `review/` packet subtrees.

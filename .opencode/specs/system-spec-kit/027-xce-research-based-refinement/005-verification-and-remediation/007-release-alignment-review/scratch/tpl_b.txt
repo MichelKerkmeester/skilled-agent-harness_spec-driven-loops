@@ -1,0 +1,19 @@
+Act as a READ-ONLY code-standards reviewer (seat %SEAT%). Do NOT modify, create, or delete ANY file. Spec folder: %SPECDIR% (pre-approved -- skip Gate 3).
+
+FIRST: read .opencode/skills/sk-code/SKILL.md, follow its smart router to the OpenCode surface, and load the OpenCode-surface standards + verification it points to. Also read .opencode/skills/system-spec-kit/constitutional/comment-hygiene.md for the comment rules.
+
+SCOPE (read-only): code under these paths/globs:
+%GLOB%
+
+GOAL: check whether this code ALIGNS with the sk-code OpenCode-surface standards: module/file structure, naming, error handling, async/promise patterns, comment hygiene (NO spec paths or ADR-/REQ-/CHK-/task-ids in comments -- durable WHY only), verification/test patterns, and the TypeScript/CJS conventions sk-code prescribes for the OpenCode surface.
+
+METHOD:
+1. Discover the code files under the scope paths.
+2. Read at MOST 10 representative/key files (entrypoints, handlers, the largest/most-central modules); note which you read.
+3. Report ONLY evidenced misalignments -- cite file:line and the specific sk-code standard violated. Do NOT invent standards; if unsure whether something is a real standard, mark it P2 and say so.
+
+OUTPUT: your final message MUST be EXACTLY ONE fenced json block:
+```json
+{"seat":"%SEAT%","track":"code-vs-sk-code","area":"%AREA%","surface_tag":"the sk-code surface tag you received","findings":[{"severity":"P0|P1|P2","file":"path","line":0,"title":"short","standard_violated":"the sk-code rule","evidence":"file:line","fix_hint":"short"}],"files_read":["..."],"clean":["..."]}
+```
+Severity: P0 = correctness/security defect or a hard sk-code rule broken (e.g. comment-hygiene HARD BLOCK violation); P1 = clear standard violation; P2 = style/minor. If clean, "findings":[].

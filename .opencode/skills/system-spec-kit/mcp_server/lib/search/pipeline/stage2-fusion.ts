@@ -41,7 +41,7 @@
 //
 // SCORE AUDIT CONTRACT: Stage 2 writes the fused `score` field (steps 1-7).
 // Stage 3 (rerank) MAY overwrite `score` with the reranked value and MUST
-// preserve the original in `stage2Score` for auditability (see F2.02 fix).
+// preserve the original in `stage2Score` for auditability.
 // Stage 4 (filter) MUST NOT mutate any score fields — it is read-only.
 
 import type Database from 'better-sqlite3';
@@ -83,7 +83,7 @@ import { requireDb } from '../../../utils/db-helpers.js';
 import { computeRecencyScore } from '../../scoring/folder-scoring.js';
 import { enrichResultsWithAnchorMetadata } from '../anchor-metadata.js';
 import { enrichResultsWithValidationMetadata } from '../validation-metadata.js';
-// B4: Stage 2b enrichment extracted for decomposition clarity
+// Stage 2b enrichment extracted for decomposition clarity
 import { executeStage2bEnrichment } from './stage2b-enrichment.js';
 import { applyCommunityBoost } from '../../graph/community-detection.js';
 import { applyGraphSignals } from '../../graph/graph-signals.js';
@@ -298,7 +298,7 @@ function applyValidationSignalScoring(results: PipelineRow[]): PipelineRow[] {
 const resolveBaseScore = resolveEffectiveScore;
 
 function withSyncedScoreAliases(row: PipelineRow, score: number): PipelineRow {
-  // F2.03 fix: Clamp to [0,1] so downstream consumers never see raw boosted values > 1.
+  // Clamp to [0,1] so downstream consumers never see raw boosted values > 1.
   const clamped = Math.max(0, Math.min(1, score));
   return {
     ...row,
@@ -313,7 +313,7 @@ function withSyncedScoreAliases(row: PipelineRow, score: number): PipelineRow {
 function syncScoreAliasesInPlace(rows: PipelineRow[]): void {
   for (const row of rows) {
     if (typeof row.score !== 'number' || !Number.isFinite(row.score)) continue;
-    // F2.03 fix: Clamp to [0,1] during in-place sync.
+    // Clamp to [0,1] during in-place sync.
     const clamped = Math.max(0, Math.min(1, row.score));
     row.score = clamped;
     row.rrfScore = clamped;
@@ -1370,6 +1370,14 @@ export async function executeStage2(input: Stage2Input): Promise<Stage2Output> {
         db: rescueDb,
         artifactClass: config.artifactRouting?.strategy?.artifactClass as string | undefined
           ?? config.artifactRouting?.detectedClass,
+        // Re-apply the request scope/folder to rows the rescue layer injects
+        // from its own index queries; Stage-1 only scoped the inbound set.
+        scopeFilter: {
+          tenantId: config.tenantId,
+          userId: config.userId,
+          agentId: config.agentId,
+        },
+        specFolder: config.specFolder,
       });
       logger.debug('retrieval rescue layer completed', {
         event: 'stage2_retrieval_rescue_success',
@@ -1395,7 +1403,7 @@ export async function executeStage2(input: Stage2Input): Promise<Stage2Output> {
     results = results.slice(0, config.artifactRouting.strategy.maxResults);
   }
 
-  // -- Steps 8-9: Enrichment (B4 decomposition → stage2b-enrichment.ts) --
+  // -- Steps 8-9: Enrichment (extracted to stage2b-enrichment.ts) --
   // Pure annotation: anchor metadata + validation metadata.
   // Validation signal SCORING (applyValidationSignalScoring) stays here
   // because it's a scoring step, not a pure enrichment.

@@ -6,8 +6,8 @@
 | 🧠 **Cognitive Memory** | Local-first project memory for decisions, context, and continuity |
 | ⚛️ **Hybrid RAG + Smart Graph** | Retrieval that blends semantic search with graph-aware project context |
 | 🔍 **Code Graph** | Callers, imports, impact paths, and Code Graph + Grep code discovery |
-| 🤖 **11 Specialized Agents** | Focused roles for implementation, review, research, docs, git, and more |
-| 🎯 **22 On-Demand Skills** | Skill Advisor routing for the right workflow at the right time |
+| 🤖 **12 Specialized Agents** | Focused roles for implementation, review, research, docs, git, and more |
+| 🎯 **20 On-Demand Skills** | Skill Advisor routing for the right workflow at the right time |
 
 **Reasons to try it**
 
@@ -60,7 +60,7 @@ The framework adds four layers on top of the base platform:
 1. **Structured documentation** (Spec Kit) - every file change gets a spec folder recording what changed, why and how. Like a lab notebook for software.
 2. **Cognitive memory** (MCP server) - a local-first memory engine storing decisions, context and project history in a searchable database. Like a personal librarian who remembers every conversation.
 3. **Code intelligence** (Code Graph) - structural graph indexing handles callers, imports and impact analysis.
-4. **Coordinated agents and skills** - 11 specialized agents routed by a gate system that loads the right skills at the right time.
+4. **Coordinated agents and skills** - 12 specialized agents routed by a gate system that loads the right skills at the right time.
 
 
 ### How It All Connects
@@ -84,7 +84,7 @@ The framework adds four layers on top of the base platform:
                  ▼                             ▼
          ┌───────────────┐          ┌──────────────────┐
          │ AGENT NETWORK │          │  SKILLS LIBRARY  │
-         │ 11 specialized│          │ 21 domain skills │
+         │ 12 specialized│          │ 20 domain skills │
          │ agents with   │◄────────►│ auto-loaded by   │
          │ routing logic │          │ task keywords    │
          └───────┬───────┘          └────────┬─────────┘
@@ -141,11 +141,9 @@ node .opencode/bin/mk-skill-advisor-launcher.cjs --help
 node .opencode/bin/mk-code-index-launcher.cjs --help
 ```
 
-The native MCP servers (`mk-spec-memory`, `mk_skill_advisor`, `mk_code_index`) ship as committed launcher binaries under `.opencode/bin/`. They self-vendor their dependencies on first invocation and the checked-in runtime configs already point at them. There is no separate build step. Launcher reliability covers the owner-disposal relaunch gate, a persistent log, lease-probe reap hardening, mk-code-index reconnect, an opt-in orphan-process sweep and daemon re-election. Re-election is on by default in the committed runtime configs, so a disposing session releases the shared daemon for another live session to adopt instead of killing it, and an unadopted daemon is bounded by the idle timeout. All of it is operator-tunable and documented in [`.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md`](.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md).
+The native MCP servers (`mk-spec-memory`, `mk_skill_advisor`, `mk_code_index`) ship as committed launcher binaries under `.opencode/bin/`. They self-vendor their dependencies on first run and the checked-in runtime configs already point at them, so there is no separate build step. Launcher reliability (owner-disposal relaunch, lease-probe reap, mk-code-index reconnect, default-on daemon re-election and a single-writer database lock with `SPECKIT_DB_LOCK_DISABLE=1` as the kill switch) is operator-tunable and documented in [`ENV_REFERENCE.md`](.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md).
 
-Runtime lifecycle guardrails are part of the native MCP stack. The servers share `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN` for idle self-exit, and the repo ships a dry-run-first orphan process sweeper plus a LaunchAgent template under `.opencode/scripts/`. The LaunchAgent is not installed or loaded by default; activation is a separate operator-approved rollout. See [Repo Scripts Runbook](.opencode/scripts/README.md) and the [022 orphan MCP leak prevention packet](.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md).
-
-Operator tooling shipped in 026: `session-cleanup.sh` (renamed from `claude-session-cleanup.sh`; a back-compat shim keeps the old name working) now resolves PIDs across `claude`, `opencode` and `codex` runtimes. Worktree-per-session isolation scripts live under `.opencode/bin/` (`worktree-session.sh`, `worktree-reaper.sh`, `worktree-guard.sh`) and set per-session `SPEC_KIT_DB_DIR`, `SPECKIT_CODE_GRAPH_DB_DIR` and `SPECKIT_IPC_SOCKET_DIR` so parallel sessions never share a database.
+The three daemons also expose full-parity CLI front doors (`spec-memory.cjs` 37 tools, `code-index.cjs` 8, `skill-advisor.cjs` 9, mutations gated behind `--trusted`): use MCP as the primary in-session transport and the CLIs for hooks, cron, CI and shell diagnostics, per [`daemon_cli_reference.md`](.opencode/skills/system-spec-kit/references/cli/daemon_cli_reference.md). Idle self-exit, a dry-run-first orphan-process sweeper and worktree-per-session isolation scripts (each session gets its own `SPEC_KIT_DB_DIR`, `SPECKIT_CODE_GRAPH_DB_DIR` and `SPECKIT_IPC_SOCKET_DIR`) live under `.opencode/bin/` and `.opencode/scripts/`; see the [Repo Scripts Runbook](.opencode/scripts/README.md).
 
 ### Set Up Embedding Provider
 
@@ -191,7 +189,7 @@ This creates a spec folder, runs research, builds a plan and begins implementati
 
 ### Adapting to Your Stack
 
-This repo ships as a public template. Of the shipped skills, `sk-code` carries the stack-specific patterns (frontend framework, animation library, CMS, backend language). Start there when forking. The other shipped skills (`system-spec-kit`, `sk-doc`, `sk-git`, `sk-code-review`, the deep-context/deep-research/deep-review loops, `deep-loop-runtime`, the `cli-*` orchestrators) are codebase-agnostic out of the box and work for any project without modification. Most teams will also add their own skills on top. Drop them into `.opencode/skills/<your-skill>/` and they'll be picked up automatically.
+This repo ships as a public template. Of the shipped skills, `sk-code` carries the stack-specific patterns (frontend framework, animation library, CMS, backend language). Start there when forking. The other shipped skills (`system-spec-kit`, `sk-doc`, `sk-git`, `sk-code-review`, the `deep-loop-workflows` loops, `deep-loop-runtime`, the `cli-*` orchestrators) are codebase-agnostic out of the box and work for any project without modification. Most teams will also add their own skills on top. Drop them into `.opencode/skills/<your-skill>/` and they'll be picked up automatically.
 
 See [§4 Customizing for Your Stack](#customizing-for-your-stack) for the full customization map and step-by-step adaptation guide.
 
@@ -397,7 +395,7 @@ The `mk-spec-memory` tools are organized into a layered architecture. Code graph
 | **—**  | Moved Surfaces  | 0      | -            | Code graph → `mk_code_index`; advisor + skill graph → `mk_skill_advisor`; coverage + council graph → `deep-loop-runtime` CLI scripts (not MCP tools) |
 |        | **Total**       | **37** | **~8,300**   |                                                                              |
 
-Lower layers load only when needed. L1 is always available. L2 loads for any search. L3-L7 load based on the specific command being used.
+Lower layers load only when needed. L1 is always available. L2 loads for any search. L3-L7 load based on the specific command being used. The same 37 tools are also exposed 1:1 by the `spec-memory.cjs` daemon-backed CLI front door for hooks, cron, CI and shell diagnostics.
 
 &nbsp;
 #### Hybrid Search
@@ -456,6 +454,7 @@ Six relationship types: `caused`, `enabled`, `supersedes`, `contradicts`, `deriv
 - **Temporal contiguity** - Same-session grouping
 - **Graph momentum** - Trending knowledge surfaces higher
 - **LLM backfill** - Background discovery of missed causal links
+- **Index-friendly traversal** - Graph walks run through a shared app-level BFS helper instead of recursive SQL CTEs, returning the same results with far fewer full scans
 
 &nbsp;
 #### Trust Badges on Search Results
@@ -487,6 +486,9 @@ Additional save-time processing:
 - **Semantic sufficiency gating** - Rejects content too thin to be useful
 - **Verify-fix-verify** - Auto-fixes quality issues before storing
 - **Content normalization** - Strips formatting clutter for cleaner embeddings
+- **Secret scrubbing** - Pre-index redaction with typed `[REDACTED:<kind>]` markers across 13 credential pattern kinds (API keys, tokens, JWTs, private keys, credential assignments). Fail-closed: a scrubber error aborts the save rather than persisting raw text. The scrubber is shared between the MCP save path and the standalone CLI save lane, and `memory_health` surfaces redaction counters
+- **Write provenance** - Automated reducer and feedback writers tag their writes with source-kind provenance, so the write-ingress guard enforces the constitutional rule that automated writers never overwrite manual or constitutional memory
+- **Idempotency receipts** (flag-gated, `SPECKIT_MEMORY_IDEMPOTENCY`) - Replayed saves return the original response verbatim from immutable first-write receipts; concurrent first-write losers replay the winner with a visible conflict envelope, and expired receipts are swept on a TTL
 - **Auto-entity extraction** - Spots tool/project/concept names for cross-linking
 - **SHA-256 deduplication** - Skips unchanged files instantly
 - **Correction tracking** - Records how knowledge evolves across versions
@@ -525,6 +527,9 @@ Preview all checks without saving using `dryRun: true`. Learned relevance feedba
 - **Real-time watching** - Filesystem monitoring via chokidar
 - **Incremental indexing** - Content hashes skip unchanged files
 - **Embedding retry** - Background worker retries failed embeddings
+- **Single-writer database lock** - Exactly one daemon writer per database, enforced by a kernel-level lock that self-releases even on `kill -9`. A losing cold-spawn exits with a dedicated code and the launcher bridges it to the live holder, structurally eliminating the dual-writer corruption class
+- **Vector shard self-heal, durably** - A malformed vector shard is detected, quarantined and rebuilt, and the repair intent survives a process restart: boot compares vector rowcount against the index success count to resume a real repair instead of silently attaching an empty shard
+- **Memory-safe lexical fallback** - The packed in-memory BM25 engine uses typed-array postings with BM25F per-field weighting (title and trigger matches rank above body noise) inside a 150MB RSS budget, and resolves spec-folder and tier filters before truncating so scoped searches return their real results
 - **Lexical fallback** - Text-searchable when embedding services are down
 - **Atomic writes** - Crash-safe with pending-file recovery on startup
 - **`memory_index_scan` self-maintaining** - Overlapping scans return a `coalesced:true` success envelope instead of a raw error. Rows become BM25/FTS-searchable immediately as `pending` while vectors drain (`complete_with_pending_vectors` status with `pendingVectors` count). Move reconciliation heals renamed spec folders by packet identity without re-embedding. A bounded global orphan sweep runs per scan. `memory_health` gains an `index` block with a summary enum (`healthy_fresh`, `healthy_lagging_vectors`, `stale_needs_scan`, `degraded_needs_repair`, `unavailable`) plus `indexed`, `pending` and `failed` counts.
@@ -637,6 +642,11 @@ Safety is non-negotiable: the tool checks the graph is fresh before parsing the 
 
 Under the hood the scan runner is split into four declared phases (`find-candidates` → `parse-candidates` → `finalize` → `emit-metrics`) for clearer instrumentation, with no SQLite schema changes.
 
+&nbsp;
+#### Apply-Pipeline Safety
+
+Mutating graph maintenance (`code_graph_apply`) runs behind layered guards. Destructive operations require an unconditional confirm gate **before** any snapshot or mutation; pre-dispatch refusals name the `requiredAction` instead of churning a rollback; operator rollbacks select a run-scoped target (never the snapshot the failing run just took), and dry-run previews the exact rollback target through the same selection logic. Snapshot retention prunes only after a committed apply and never touches protected known-good directories. The CLI front door refuses a bare `apply` without explicit mutation intent (an operation, `--dry-run`, or an explicit env opt-in), so a default rescan can never fire by accident. The same 8 tools are exposed 1:1 by the `code-index.cjs` daemon-backed CLI.
+
 The code graph runtime has its own feature catalog and operator playbook under [system-code-graph/feature_catalog](.opencode/skills/system-code-graph/feature_catalog/) and [system-code-graph/manual_testing_playbook](.opencode/skills/system-code-graph/manual_testing_playbook/). They document runtime features and manual scenarios for freshness, scan/verify/status, `detect_changes`, context retrieval, and doctor-code-graph behavior.
 
 &nbsp;
@@ -746,6 +756,8 @@ The Skill Advisor matches what you type to the right skill before any tool runs.
 - **Codex cold starts**: the Codex prompt hook emits a prompt-safe stale advisory plus `{"stale":true,"reason":"timeout-fallback"}` when startup context times out. The smoke helper lives at [freshness-smoke-check.ts](.opencode/skills/system-spec-kit/mcp_server/hooks/codex/lib/freshness-smoke-check.ts).
 - **Disable everywhere**: set `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` to turn off all prompt-time advisor surfaces.
 - **Threshold contract at the prompt**: confidence ≥ 0.8 and uncertainty ≤ 0.35 by default.
+- **CLI front door**: `skill-advisor.cjs` exposes the same 9 tools over the warm daemon for hooks, cron and shell diagnostics; mutation commands (`advisor_rebuild`, `skill_graph_scan`) are gated behind `--trusted`.
+- **Launcher resilience**: the advisor launcher carries the same owner lease and reconnecting session proxy as the spec-memory and code-index launchers, and acts on dead-socket respawn decisions under a bootstrap lock — a hung daemon is reaped and replaced instead of stranding the session or spawning a second writer.
 
 &nbsp;
 #### Validation and Testing
@@ -767,12 +779,12 @@ For details, see the [Skill Advisor README](.opencode/skills/system-skill-adviso
 
 ### 🔄 Deep Loop
 
-The Deep Loop system runs autonomous, iterative agent workflows. Each loop dispatches a fresh-context worker against externalized state, then keeps going until a convergence check, not the agent's own claim, decides a stop is safe. Five loops (context, research, review, AI council, agent improvement) run on one shared runtime, `deep-loop-runtime`, so they share a state format, a stop contract and a coverage model.
+The Deep Loop system runs autonomous, iterative agent workflows. Each loop dispatches a fresh-context worker against externalized state, then keeps going until a convergence check, not the agent's own claim, decides a stop is safe. Five loop families (context, research, review, AI council, improvement) live as nested mode packets inside one parent skill, `deep-loop-workflows`, and all run on one shared runtime, `deep-loop-runtime`, so they share a state format, a stop contract and a coverage model. The improvement family alone carries four co-equal lanes (agent improvement, model benchmark, skill benchmark, non-dev AI system refine), giving eight `/deep:*` loop commands in total.
 
 #### How It Works
 
 ```
-  /deep:start-*-loop  ─►  INIT / RESUME / RESTART
+  /deep:<mode>  ─►  INIT / RESUME / RESTART
                               │  anchor to a real spec.md, load JSONL state + lineage
                               ▼
         ┌───────────────────────────────────────────┐
@@ -805,11 +817,12 @@ One engine under every loop, so they all work the same way and you learn the wor
 - **Pause and resume anytime:** progress is saved outside the chat, so a loop survives crashes, new sessions and long runs
 - **Trustworthy stops:** a loop ends only when the work has actually converged and passed its quality checks, never because an agent says it is done
 - **Hands-off or step-by-step:** run fully autonomous with `:auto` or pause at each step with `:confirm`, and start fresh, resume or restart at will
+- **Self-contained and MCP-free:** the runtime declares its own dependency manifest and resolves `zod`, `better-sqlite3` and the `tsx` loader from its own `node_modules`, with no reach-ins into a sibling skill. It carries executor config, atomic state, scoring, fallback routing and the coverage / council graph scripts
 
 &nbsp;
 #### Deep Research
 
-Investigates a question for you, one focused pass at a time, until the answers hold up. `/deep:start-research-loop` runs `@deep-research`.
+Investigates a question for you, one focused pass at a time, until the answers hold up. `/deep:research` runs `@deep-research`.
 - **Knows when it's done:** stops once findings stabilize, not after a fixed number of tries
 - **Won't quit early:** keeps going until the question is covered from enough angles and sources
 - **Remembers dead ends:** ruled-out directions are saved, so you never re-investigate them
@@ -818,7 +831,7 @@ Investigates a question for you, one focused pass at a time, until the answers h
 &nbsp;
 #### Deep Review
 
-Audits your code in passes and never edits it. `/deep:start-review-loop` runs `@deep-review`.
+Audits your code in passes and never edits it. `/deep:review` runs `@deep-review`.
 - **Fix what matters first:** every issue is ranked P0/P1/P2 across correctness, security, traceability and maintainability
 - **Fewer false alarms:** each critical finding gets re-challenged before it sticks
 - **Won't sign off on hidden problems:** an open P0 forces another pass, and the audit must clear its quality checks before it can stop
@@ -827,7 +840,7 @@ Audits your code in passes and never edits it. `/deep:start-review-loop` runs `@
 &nbsp;
 #### Deep Context
 
-Maps the existing codebase before you plan, so you extend what's already there instead of rewriting it. `/deep:start-context-loop` runs `@deep-context`, and `:with-context` adds it to `/speckit:plan` and `/speckit:complete`.
+Maps the existing codebase before you plan, so you extend what's already there instead of rewriting it. `/deep:context` runs `@deep-context`, and `:with-context` adds it to `/speckit:plan` and `/speckit:complete`.
 - **Reuse first:** the top of every Context Report is a catalog of existing `file:symbol` pointers to extend, compose or wrap
 - **Many models, one scope:** a heterogeneous pool (native agents plus cli models) sweeps the same code in parallel, and agreement across models drives confidence
 - **Pointers, not dumps:** it ships verified references instead of pasted source, so planning context stays sharp rather than bloated
@@ -836,29 +849,29 @@ Maps the existing codebase before you plan, so you extend what's already there i
 &nbsp;
 #### Multi AI Council
 
-Brings several AI viewpoints together to plan hard decisions. `@ai-council` runs the seats, and `/deep:ask-ai-council` handles multi-topic sessions.
+Brings several AI viewpoints together to plan hard decisions. `@ai-council` runs the seats, and `/deep:ai-council` handles multi-topic sessions.
 - **More than one opinion:** different AI seats reason from different angles, then critique each other
 - **A plan you can trust:** the seats converge on a recommendation with the evidence behind it
 - **Safe to run:** planning only, so it never touches your implementation files
 - **Saved for later:** the plan and its reasoning persist as `ai-council/**` files in the packet
 
 &nbsp;
-#### Agent Improvement & Model Benchmarking
+#### Agent Improvement & Benchmarking
 
-Two co-equal lanes on one skill. Lane A reviews and upgrades any of your agents: `/deep:start-agent-improvement-loop` runs `@deep-agent-improvement`. Lane B benchmarks a model or prompt framework against fixtures: `/deep:start-model-benchmark-loop`.
+Four co-equal lanes in the `deep-loop-workflows` improvement mode. Lane A reviews and upgrades any of your agents: `/deep:agent-improvement` runs `@deep-improvement`. Lane B benchmarks a model or prompt framework: `/deep:model-benchmark`. Lane C diagnoses a skill's real-world routing, discovery, efficiency and usefulness: `/deep:skill-benchmark`. Lane D benchmarks an AI-system packaging and auto-refines its technique docs behind hard guardrails: `/deep:ai-system-improvement`.
 - **Objective scoring:** rates an agent across five dimensions with fixed, repeatable checks, not another AI's opinion
 - **Sees the whole footprint:** finds every place the agent lives (definition, mirrors, commands, workflows, skills) before changing anything
 - **Never breaks the original:** changes go to a sandbox copy and only get promoted after they pass scoring, benchmarks and your approval, with rollback if they don't
 - **Knows when to stop:** ends once the scores stop improving
-- **Benchmarks models too (Lane B):** runs a model or prompt framework against fixtures with pattern or 5-dimension scoring, deterministic or graded, via `/deep:start-model-benchmark-loop`
+- **Benchmarks too (Lanes B/C/D):** models and prompt frameworks against fixtures with pattern or 5-dimension scoring (deterministic or graded), skills against real routing and discovery behavior, and non-dev AI-system packagings against a correctness-gated gauntlet
 
-For details, see the [Deep Loop Runtime README](.opencode/skills/deep-loop-runtime/README.md), or each loop's own README under `.opencode/skills/`.
+For details, see the [Deep Loop Runtime README](.opencode/skills/deep-loop-runtime/README.md), or the [deep-loop-workflows README](.opencode/skills/deep-loop-workflows/README.md), which documents each mode.
 
 ---
 
 ### 🎯 Skills Library
 
-22 skills in `.opencode/skills/`, loaded on demand when Gate 2 matches a task (confidence >= 0.8 means the skill must be loaded).
+20 skills in `.opencode/skills/`, loaded on demand when Gate 2 matches a task (confidence >= 0.8 means the skill must be loaded).
 
 #### SYSTEM
 
@@ -900,25 +913,13 @@ For details, see the [Deep Loop Runtime README](.opencode/skills/deep-loop-runti
 &nbsp;
 #### DEEP LOOP
 
-The shared runtime plus the five loop skills behind the autonomous loops. See the [Deep Loop](#deep-loop) section above for how they run.
+The shared runtime plus the `deep-loop-workflows` parent skill behind the autonomous loops. See the [Deep Loop](#deep-loop) section above for how they run.
 
 **deep-loop-runtime**
-- Shared runtime under all five deep loops: executor config, state safety, scoring, fallback routing, coverage-graph scripts, `storage/deep-loop-graph.sqlite`. See [Deep Loop](#deep-loop).
+- Self-contained, MCP-free runtime under every deep loop: executor config, state safety, scoring, fallback routing, coverage-graph scripts and `database/deep-loop-graph.sqlite`. Declares its own dependency manifest and resolves `zod`, `better-sqlite3` and `tsx` from its own `node_modules`. See [Deep Loop](#deep-loop).
 
-**deep-research**
-- Autonomous research loop: iterative LEAF cycles, fresh context per pass, externalized JSONL state, 3-signal convergence. Dispatched by `/deep:start-research-loop`. See [Deep Loop](#deep-loop).
-
-**deep-review**
-- Autonomous code-review loop: P0/P1/P2 findings across 4 dimensions, a PASS/CONDITIONAL/FAIL verdict, adversarial P0 self-check. Dispatched by `/deep:start-review-loop`. See [Deep Loop](#deep-loop).
-
-**deep-context**
-- Autonomous codebase-context loop: scans your existing code with multiple AI models in parallel, finds agreement on what's already there, and produces a Context Report of verified `file:symbol` pointers to reuse. Dispatched by `/deep:start-context-loop`; optional `:with-context` pre-step on `/speckit:plan` and `/speckit:complete`. See [Deep Loop](#deep-loop).
-
-**deep-ai-council**
-- Multi-seat planning council: diverse AI seats, cross-seat critique, convergence to evidence-backed recommendations, packet-local `ai-council/**` artifacts. Planning-only. See [Deep Loop](#deep-loop).
-
-**deep-agent-improvement**
-- Two co-equal lanes. Lane A (agent-improvement): evaluator-first agent improvement with 5-dimension deterministic scoring, integration scanner, and proposal-first candidates under guarded promotion, dispatched by `/deep:start-agent-improvement-loop`. Lane B (model-benchmark): benchmark a model or prompt framework against fixtures with pattern or 5-dimension scoring, deterministic or graded runs, dispatched by `/deep:start-model-benchmark-loop`. See [Deep Loop](#deep-loop).
+**deep-loop-workflows**
+- A formalized parent skill with nested mode packets: one routing-only `SKILL.md` and a single hub `graph-metadata.json` give it one advisor identity, while `mode-registry.json` is the declarative source of truth the modes project from, and a non-discoverable `shared/` holds cross-mode helpers. The nested packets are `deep-context`, `deep-research`, `deep-review`, `ai-council` and `deep-improvement` (folder names carry the `deep-` prefix except `ai-council`), routing one request to one of five modes over the shared runtime: **context** (codebase-context by-model sweep, `/deep:context`), **research** (autonomous research loop with 3-signal convergence, `/deep:research`), **review** (P0/P1/P2 code-review loop across 4 dimensions, `/deep:review`), **ai-council** (multi-seat planning to packet-local `ai-council/**` artifacts, `/deep:ai-council`), and **improvement** (four co-equal lanes: agent-improvement, model-benchmark, skill-benchmark and non-dev-ai-system). The five native agent names (`@deep-context`, `@deep-research`, `@deep-review`, `@ai-council`, `@deep-improvement`) and all eight `/deep:*` commands are unchanged. This parent-nested-skill pattern is the reusable, documented standard, scaffolded with `/create:sk-skill-parent` and described in `sk-doc`. See [Deep Loop](#deep-loop).
 
 &nbsp;
 #### CROSS-AI CLI
@@ -937,7 +938,7 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 
 **cli-opencode**
 - OpenCode CLI orchestrator. Use it when the dispatched task needs **the project's full plugin / skill / MCP / Spec Kit Memory runtime**, a one-shot `opencode run` boots every plugin in `opencode.json`, every skill under `.opencode/skills/`, every MCP server and the memory database. Also handles **parallel detached sessions** (`--share --port N` for ablation suites, worker farms) and **cross-repo dispatch** (`--dir <path>`).
-- Three providers: `github-copilot` (default, with `gpt-5.4` default + `claude-sonnet-4.6` alternative), `opencode-go` (DeepSeek + GLM/Kimi/Qwen via gateway), `deepseek` (direct DeepSeek API).
+- Default model: `opencode-go/deepseek-v4-pro` at high reasoning. Configured providers span `opencode-go` (default gateway: DeepSeek + open models), `deepseek` (direct API), `minimax-coding-plan` / `minimax` (MiniMax-M3), `xiaomi` (MiMo-V2.5-Pro), `kimi-for-coding` (Kimi k2.7 Code) and `openai` (`gpt-5.5` family) — see the skill's provider pre-flight for the live list.
 
 &nbsp;
 #### MCP INTEGRATION
@@ -954,8 +955,21 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 - **Manage ClickUp tasks from the assistant.** Routes between `cupt` CLI (daily task ops) and the official ClickUp MCP (documents, goals, bulk ops, webhooks) with operation-based routing
 - **Agent-safe by design:** enforces per-list status resolution, dry-run before batch completion, `--json` output, and empty-queue handling. Embedded install via `mcp-servers/` directory. 96-feature catalog + 76-scenario playbook included
 
+**mcp-open-design**
+- **Drive the installed Open Design desktop app from the terminal.** Reads and reuses local design systems (tokens, components) and commissions gated, multi-turn generation runs through the `od` CLI and a stdio MCP server, instead of the in-app chat
+- **Local-first and gated:** a socket-discovered daemon on a rotating port, read-only inspection that surfaces freely, and STOP-and-confirm mutating verbs (`start_run`, then the discovery-form answer that fires the build). Pairs with `sk-interface-design` for the design judgment
+
+**mcp-figma**
+- **Drive Figma Desktop from the terminal.** Reads, authors, modifies, and exports designs, tokens, and components through the silships `figma-ds-cli`, with an optional Figma MCP via Code Mode for pulling design context
+- **CLI-primary and gated:** a local daemon brokers every command, read-only inspection and exports are free, and authoring or destructive verbs are gated. Needs Figma Desktop open and uses no API key. Pairs with `sk-interface-design` for the design judgment
+
 &nbsp;
 #### OTHER
+
+**sk-interface-design**
+- **Design UI that does not look templated.** Aesthetic direction (palette, typography, layout, motion) grounded in the brief, with a critique pass that kills the default AI looks before any code is written
+- **Grounds against real references:** reads a real design system live (via `mcp-open-design`, as reuse-ground or critique-against) and real-world shipped UI (Mobbin and Refero via Code Mode, critique-against) to ground the work or name the category's real-world default and deviate from it. Never a style chooser or a copy source
+- **Pairs with `sk-code`:** this skill owns the look, sk-code builds and verifies it. Vendored from Anthropic's `frontend-design` skill (Apache-2.0)
 
 **sk-doc**
 - **Keep docs clean and on-template.** Markdown specialist with DQI quality scoring (Structure 40%, Content 35%, Style 25%) plus HVR compliance checking
@@ -967,15 +981,15 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 
 **sk-prompt-small-model**
 - **Find the right small-model pattern fast.** A discovery anchor that points to executor-owned pattern files rather than hosting the logic itself
-- **Covers the active matrix:** DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6 and GLM-5.1 via `cli-opencode`
-- **`references/pattern-index.md`** maps each pattern (context budget, output verification, permissions, quota fallback, model profiles, tool scoring) to its canonical location
+- **Covers the active matrix:** DeepSeek-v4-pro, Kimi-k2.7-code, MiniMax-M3 and MiMo-V2.5-Pro via `cli-opencode`
+- **`references/pattern_index.md`** maps each pattern (context budget, output verification, permissions, quota fallback, model profiles, tool scoring) to its canonical location
 - **Pool-aware quota fallback** routes to a different pool only, never same-pool retries. Frontier models (Opus, Sonnet, gpt-5.5) stay out of scope
 
 ---
 
 ### 🤖 Agent Network
 
-11 custom specialist agents. Defined in `.opencode/agents/` (source of truth), mirrored for Claude Code (`.claude/agents/`) and Codex CLI (`.codex/agents/`) runtime surfaces. OpenCode and Copilot CLI use runtime-specific MCP and startup integration rather than a dedicated agent mirror.
+12 custom specialist agents. Defined in `.opencode/agents/` (source of truth), mirrored for Claude Code (`.claude/agents/`) and Codex CLI (`.codex/agents/`) runtime surfaces. OpenCode and Copilot CLI use runtime-specific MCP and startup integration rather than a dedicated agent mirror.
 
 #### AGENT ORCHESTRATION
 
@@ -1019,28 +1033,32 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 - Planning-only, scored on a 5-dimension rubric. See [Deep Loop](#deep-loop)
 
 **Deep Research**
-- **One research iteration at a time, state on disk.** Executes a single LEAF pass. The `/deep:start-research-loop` command owns the loop
+- **One research iteration at a time, state on disk.** Executes a single LEAF pass. The `/deep:research` command owns the loop
 - Writes `research.md` and `scratch/`, keeps negative knowledge, and stops only when the 3-signal convergence and graph guards agree. See [Deep Loop](#deep-loop)
 
 **Deep Review**
-- **Audits one review pass, read-only on code.** Produces P0/P1/P2 findings with `file:line` evidence across 4 dimensions. The `/deep:start-review-loop` command owns the loop
+- **Audits one review pass, read-only on code.** Produces P0/P1/P2 findings with `file:line` evidence across 4 dimensions. The `/deep:review` command owns the loop
 - Any open P0 forces another pass and faces a Hunter/Skeptic/Referee check before it stands. See [Deep Loop](#deep-loop)
 
-**Agent Improver**
+**Deep Context**
+- **Maps one slice of the codebase, read-only.** A LEAF seat in the heterogeneous by-model parallel sweep, returning a reuse-first set of verified `file:symbol` findings. The `/deep:context` command owns the loop
+- Agreement across models drives confidence; the loop converges on relevance-gated coverage saturation. See [Deep Loop](#deep-loop)
+
+**Deep Improvement**
 - **Proposes one agent improvement, safely.** Reads the target's charter, manifest and integration surface, then writes a single candidate to packet-local runtime
-- Never scores, promotes or edits the canonical target. The `/deep:start-agent-improvement-loop` command handles scoring and promotion. See [Deep Loop](#deep-loop)
+- Never scores, promotes or edits the canonical target. The `/deep:agent-improvement` command handles scoring and promotion. See [Deep Loop](#deep-loop)
 
 ---
 
 ### ⌨️ Commands
 
-24 command entry points across 5 command groups plus root utilities. Each command is a Markdown entry point under `.opencode/commands/**/*.md` backed by a behavioral execution spec.
+28 command entry points across 5 command groups plus root utilities. Each command is a Markdown entry point under `.opencode/commands/**/*.md` backed by a behavioral execution spec; command families keep their workflow routing (YAML execution specs) separate from their Markdown presentation contracts, so the rendered dashboards stay stable while the underlying workflow evolves.
 
 &nbsp;
 #### SPEC KIT
 
-**Plan --intake-only**
-- Standalone intake workflow that publishes `spec.md`, `description.json` and `graph-metadata.json`
+**Plan (intake-only mode)**
+- A mode of `/speckit:plan` (`--intake-only`), not a separate command. Standalone intake workflow that publishes `spec.md`, `description.json` and `graph-metadata.json`
 - Used directly for new packet setup and paired with `/speckit:plan` or `/speckit:complete` when `folder_state` is `no-spec`, `partial-folder`, `repair-mode` or `placeholder-upgrade`
 - Modes: `:auto`, `:confirm`
 
@@ -1071,12 +1089,12 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 ```text
 /speckit:plan --intake-only
   ├─► /speckit:plan -> /speckit:implement
-  ├─► /deep:start-research-loop -> /speckit:plan
+  ├─► /deep:research -> /speckit:plan
   └─► /speckit:complete
        └─► reuses the shared intake contract from /speckit:plan --intake-only when folder_state still needs intake
 ```
 
-`/deep:start-research-loop` only enters that chain after a real `spec.md` exists. It follows `spec_check_protocol.md` for advisory-lock handling, `folder_state` classification and bounded generated-fence sync.
+`/deep:research` only enters that chain after a real `spec.md` exists. It follows `spec_check_protocol.md` for advisory-lock handling, `folder_state` classification and bounded generated-fence sync.
 
 &nbsp;
 #### MEMORY
@@ -1109,6 +1127,11 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 - Creates SKILL.md with 8-section structure, README.md, references and assets directories
 - Registers in skill catalog. Modes: `:auto`, `:confirm`
 
+**Parent Skill**
+- Scaffolds a parent skill with nested mode packets — one hub identity plus a `mode-registry.json` source of truth the modes project from
+- Generates the routing-only `SKILL.md`, single hub `graph-metadata.json`, N mode packets and a non-discoverable `shared/`
+- The reusable pattern behind `deep-loop-workflows`. Modes: `:auto`, `:confirm`
+
 **Agent**
 - Scaffolds a new agent definition with proper frontmatter, behavioral rules and tool permissions
 - Creates source-of-truth file in `.opencode/agents/` and mirrors for Claude and Codex runtimes
@@ -1139,25 +1162,31 @@ The MCP server also ships explicit stress and matrix execution surfaces. Run `np
 &nbsp;
 #### DEEP
 
-The five autonomous loops. See the [Deep Loop](#deep-loop) section for how they run.
+The five autonomous loop families (the improvement family carries four lanes). See the [Deep Loop](#deep-loop) section for how they run.
 
-**Deep Context** (`/deep:start-context-loop`)
+**Deep Context** (`/deep:context`)
 - Maps the existing codebase before you plan: a heterogeneous by-model parallel sweep over a shared scope, cross-executor-agreement convergence, and a reuse-first Context Report of verified `file:symbol` pointers. Optional `:with-context` pre-step on `/speckit:plan` and `/speckit:complete`. Modes: `:auto`, `:confirm`
 
-**AI Council** (`/deep:ask-ai-council`)
+**AI Council** (`/deep:ai-council`)
 - Multi-seat planning for complex decisions. Produces packet-local `ai-council/**` artifacts and convergence evidence, planning-only. Modes: `:auto`, `:confirm`
 
-**Deep Research** (`/deep:start-research-loop`)
+**Deep Research** (`/deep:research`)
 - Iterative research until convergence, anchored to a real `spec.md`. Externalized JSONL state pauses and resumes across sessions, with `new`/`resume`/`restart` lifecycle. Modes: `:auto`, `:confirm`
 
-**Deep Review** (`/deep:start-review-loop`)
+**Deep Review** (`/deep:review`)
 - Iterative code audit until convergence. Severity-weighted P0/P1/P2 findings across 4 dimensions, a PASS/CONDITIONAL/FAIL verdict and an adversarial P0 self-check. Modes: `:auto`, `:confirm`
 
-**Agent Improvement** (`/deep:start-agent-improvement-loop`)
+**Agent Improvement** (`/deep:agent-improvement`)
 - Evaluates and improves any agent across 5 deterministic dimensions. Proposal-first with guarded promotion (scoring, benchmark, repeatability, operator approval) and rollback. Modes: `:auto`, `:confirm`
 
-**Model Benchmark** (`/deep:start-model-benchmark-loop`)
+**Model Benchmark** (`/deep:model-benchmark`)
 - Benchmarks a model or prompt framework against fixtures. Pattern or 5-dimension scoring, deterministic or graded runs, with mode-aware records and optional promotion. Modes: `:auto`, `:confirm`
+
+**Skill Benchmark** (`/deep:skill-benchmark`)
+- Diagnoses a skill's real-world behavior: routing accuracy, discovery, efficiency and usefulness, scored against repeatable scenarios. Modes: `:auto`, `:confirm`
+
+**Non-Dev AI System** (`/deep:ai-system-improvement`)
+- Benchmarks an AI-system packaging and auto-refines its technique docs behind hard guardrails, with correctness as a gate so saturation can never crown a winner. Modes: `:auto`, `:confirm`
 
 &nbsp;
 #### DOCTOR
@@ -1165,11 +1194,11 @@ The five autonomous loops. See the [Deep Loop](#deep-loop) section for how they 
 Three commands cover every spec-kit diagnostic surface. Run `/doctor` with no target to see the interactive menu. Upgrade users see "Update everything to match latest release" as option 1.
 
 **`/doctor <target>` (router)**
-- Single entry point for 6 subsystems: `memory`, `causal-graph`, `code-graph`, `deep-loop`, `skill-advisor`, `skill-budget`
+- Single entry point for 9 subsystems: `memory`, `embeddings`, `causal-graph`, `code-graph`, `deep-loop`, `skill-advisor`, `skill-budget`, `parent-skill`, `fable-mode`
 - Argv-positional dispatch via `.opencode/commands/doctor/_routes.yaml` manifest (canonical per-target metadata: setup vars, allowed flags, mutation class, MCP tools, advisor trigger phrases)
 - Each target loads its own self-contained YAML workflow under `assets/doctor_<target>.yaml`
 - Interactive menu when no target supplied. Tier 2 per-target prompt when a required flag is missing
-- Examples: `/doctor memory --dry-run`, `/doctor causal-graph --confidence-threshold=0.8`, `/doctor code-graph --scope=stale`
+- Examples: `/doctor memory --dry-run`, `/doctor causal-graph --confidence-threshold=0.8`, `/doctor code-graph --scope=stale`, `/doctor fable-mode --dir <deep-loop-artifact-dir>` (read-only behavioral-metrics diagnostic)
 - `--target=<name>` is preserved as a compatibility alias for flag-only invocation
 
 **`/doctor:mcp install|debug`**
@@ -1184,7 +1213,7 @@ Three commands cover every spec-kit diagnostic surface. Run `/doctor` with no ta
 - Additional gates: Q-PROBE (active MCP clients warning, NOT suppressed by `--force`), Q-LEGACY (per-file cleanup with `--cleanup-legacy`), Q-FAIL (step-failure recovery)
 - Use after upgrading spec-kit, after large packet moves or when multiple subsystem doctors would otherwise need to run by hand. Pass `--migrate` to handle schema migration (e.g. v3.3.0.0 → v3.4.1.0). Wall-clock 8-25 min
 
-The 10 underlying YAML workflows in `.opencode/commands/doctor/assets/` are self-sufficient. Each declares its own `role/purpose/action/operating_mode/invariants/upstream_assets/user_inputs/field_handling` block plus phased execution. The `route-validate.{sh,py}` CI script enforces internal consistency on the route manifest.
+The 12 underlying YAML workflows in `.opencode/commands/doctor/assets/` are self-sufficient. Each declares its own `role/purpose/action/operating_mode/invariants/upstream_assets/user_inputs/field_handling` block plus phased execution. The `route-validate.{sh,py}` CI script enforces internal consistency on the route manifest.
 
 &nbsp;
 #### UTILITY
@@ -1216,7 +1245,9 @@ Canonical native server set:
 | `mk_code_index`        | 8     | Structural code graph, `detect_changes` and impact analysis            |
 | `code_mode`            | 7     | External tool orchestration via TypeScript execution                   |
 | `sequential_thinking`  | 1     | Structured multi-step reasoning for complex problems                   |
-| **Total**              | **61** |                                                                        |
+| **Total**              | **62** |                                                                        |
+
+The three daemon servers (`mk-spec-memory`, `mk_skill_advisor`, `mk_code_index`) also expose full-parity CLI front doors (`spec-memory.cjs`, `skill-advisor.cjs`, `code-index.cjs` under `.opencode/bin/`) over the same warm daemons — additive IPC clients, not separate servers. See the [Daemon CLI Reference](.opencode/skills/system-spec-kit/references/cli/daemon_cli_reference.md).
 
 Lifecycle guardrails: `mk-spec-memory`, `mk_skill_advisor`, and `mk_code_index` use the shared idle-timeout knob `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN`. Orphan cleanup is documented in [.opencode/scripts/README.md](.opencode/scripts/README.md); the checked-in LaunchAgent is only a template until an operator copies and loads it.
 
@@ -1238,7 +1269,7 @@ Lifecycle guardrails: `mk-spec-memory`, `mk_skill_advisor`, and `mk_code_index` 
 - **`chrome_devtools_2`** (MCP/stdio) - Browser automation (instance 2). No env var needed.
 - **`clickup`** (MCP/stdio) - ClickUp community server (`@taazkareem/clickup-mcp-server`). Requires `CLICKUP_API_KEY`.
 - **`clickup_official`** (MCP/stdio) - Official ClickUp MCP (`@clickup/mcp-server`). Requires `CLICKUP_API_KEY` + `CLICKUP_TEAM_ID`. Used by `mcp-click-up` skill.
-- **`figma`** (MCP/stdio) - Design files, components, exports. Requires `FIGMA_API_KEY`.
+- **`figma`** (MCP/stdio) - Design files, components, exports. Requires `FIGMA_API_KEY`. This is the optional Code Mode MCP. The primary Figma surface is the `mcp-figma` skill via `figma-ds-cli`.
 - **`github`** (MCP/stdio) - Issues, pull requests, commits. Requires `GITHUB_PERSONAL_ACCESS_TOKEN`.
 - **`webflow`** (MCP/remote) - Sites, CMS collections. Requires Webflow auth.
 
@@ -1276,13 +1307,16 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 | `sk-doc`                                            | ✅ Codebase-agnostic                        | Markdown quality + component creation. Works for any project.                                                                                                                                            |
 | `sk-git`                                            | ✅ Codebase-agnostic                        | Worktree + commit + PR workflow. Works for any project.                                                                                                                                                  |
 | `sk-code-review`                                    | ✅ Codebase-agnostic baseline               | Pulls surface evidence FROM `sk-code`. Customize `sk-code` and the review baseline auto-adapts.                                                                                                          |
+| `sk-interface-design`                               | ✅ Codebase-agnostic                        | Visual-design direction (palette, typography, layout, motion) that avoids templated AI defaults; grounds against real design systems (`mcp-open-design`) and shipped-UI references (Mobbin/Refero via Code Mode). Pairs with `sk-code` for the build. Works for any project. |
 | `system-spec-kit`                                   | ✅ Codebase-agnostic                        | Spec folder workflow + validator + memory. Works for any project.                                                                                                                                        |
 | `mcp-code-mode`                                     | ✅ Codebase-agnostic                        | Multi-tool MCP orchestration. Works for any project.                                                                                                                                                     |
-| `deep-loop-runtime` / `deep-context` / `deep-research` / `deep-review` / `deep-ai-council` | ✅ Codebase-agnostic                        | Shared runtime plus iterative loop protocols. Work for any topic / target.                                                                                                                               |
-| `sk-prompt` / `deep-agent-improvement`              | ✅ Codebase-agnostic                        | Prompt, agent improvement, and model benchmarking frameworks. Work for any project.                                                                                                                                             |
-| `cli-*` (codex/copilot/claude-code/opencode) | ✅ Codebase-agnostic                        | External CLI orchestrators. Stack-independent.                                                                                                                                                           |
+| `deep-loop-runtime` / `deep-loop-workflows` | ✅ Codebase-agnostic                        | Shared runtime plus the unified deep-loop skill (context, research, review, ai-council and improvement modes, including agent improvement and model/skill benchmarking). Work for any topic / target.     |
+| `sk-prompt`                                         | ✅ Codebase-agnostic                        | Prompt-engineering framework. Works for any project.                                                                                                                                                     |
+| `cli-*` (codex/claude-code/opencode) | ✅ Codebase-agnostic                        | External CLI orchestrators. Stack-independent.                                                                                                                                                           |
 | `mcp-chrome-devtools`                               | ✅ Codebase-agnostic                        | Browser tooling. Stack-independent.                                                                                                                                                                      |
 | `mcp-click-up`                                      | ✅ Codebase-agnostic                        | ClickUp task management via cupt CLI + official MCP. Requires `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID`. Stack-independent.                                                                                |
+| `mcp-open-design`                                   | ✅ Codebase-agnostic                        | Drives the installed Open Design desktop app from the terminal (read and reuse design systems, gated generation runs) via the `od` CLI + MCP. Requires the Open Design desktop app installed. Stack-independent. |
+| `mcp-figma`                                         | ✅ Codebase-agnostic                        | Drives Figma Desktop from the terminal (read, author, export designs, tokens, components) via the silships `figma-ds-cli`, with an optional Figma MCP. Requires Figma Desktop open. Stack-independent.   |
 
 **Adding your own skills:** the shipped set is intentionally minimal, most teams will add their own skills (project-specific workflows, ops runbooks, domain-specific reviewers, etc.). That's expected and supported. Just drop them into `.opencode/skills/<your-skill>/` and they'll be picked up by the advisor. The shipped skills above are kept agnostic so upstream updates apply cleanly to your fork.
 
@@ -1341,7 +1375,7 @@ For the complete flag reference with per-flag defaults, see [ENV_REFERENCE.md](.
 &nbsp;
 ### Database Schema
 
-The runtime centers on a SQLite `memory_index` table with 56 columns plus companion FTS5/vector, lineage, checkpoint, working-memory and eval tables.
+The runtime centers on a SQLite `memory_index` table (schema v37 baseline) plus companion FTS5/vector, lineage, checkpoint, working-memory and eval tables.
 
 - **Primary store** - `memory_index` holds the searchable memory rows plus governance, quality, chunking and retrieval metadata.
 - **Search companions** - FTS5 and vector tables support lexical and embedding retrieval alongside BM25 rebuild/index data.
@@ -1423,7 +1457,7 @@ After that, `cat opencode.json` shows `"true"`. `git show HEAD:opencode.json` sh
 
 ## 5. FAQ
 
-**Q: Do I need all 21 skills installed to use the framework?**
+**Q: Do I need all 20 skills installed to use the framework?**
 
 A: No. Skills are loaded on demand by Gate 2. You only need the ones relevant to your work. The two core documentation skills - `system-spec-kit` and `sk-doc` - cover most documentation workflows. The MCP and cross-AI CLI skills require additional local tooling or API keys depending on the surface.
 &nbsp;
@@ -1445,7 +1479,7 @@ A: Yes. The Spec Kit documentation workflow (Gate 3, spec folders, templates) wo
 &nbsp;
 **Q: How do I add a new skill to the framework?**
 
-A: Use `/create:skill` to scaffold the skill structure. The command creates the `SKILL.md`, references and assets directories following the `sk-doc` template. Then register the skill in `.opencode/skills/README.md`.
+A: Use `/create:sk-skill` to scaffold the skill structure. The command creates the `SKILL.md`, references and assets directories following the `sk-doc` template. Then register the skill in `.opencode/skills/README.md`.
 &nbsp;
 **Q: What does "local-first" mean for the memory system?**
 
@@ -1491,7 +1525,8 @@ A: The feature catalog is the current technical reference documenting the memory
 - **[→ Manual Testing Playbook](.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md)** - Operator validation scenarios, including runtime lifecycle checks
 - **[→ Code Graph Runtime Catalog](.opencode/skills/system-code-graph/feature_catalog/feature_catalog.md)** - Package-local code graph runtime inventory
 - **[→ Code Graph Manual Playbook](.opencode/skills/system-code-graph/manual_testing_playbook/manual_testing_playbook.md)** - Operator scenarios for code graph validation
-- **[→ Latest System Spec-Kit Release Notes](.opencode/skills/system-spec-kit/changelog/v3.4.1.0.md)** - Most recent shipped release notes
+- **[→ Latest System Spec-Kit Release Notes](.opencode/skills/system-spec-kit/changelog/v3.6.0.0.md)** - Most recent shipped release notes
+- **[→ Daemon CLI Reference](.opencode/skills/system-spec-kit/references/cli/daemon_cli_reference.md)** - Full-parity CLI front doors over the three warm daemons
 
 **External Resources:**
 
@@ -1502,4 +1537,4 @@ A: The feature catalog is the current technical reference documenting the memory
 <!-- /ANCHOR:related-documents -->
 
 
-*Documentation version: 4.15 | Last updated: 2026-06-03 | Framework: 11 agents, 22 skills, 24 commands, 62 MCP tools (37 mk-spec-memory + 9 mk_skill_advisor + 8 mk_code_index + 7 code mode + 1 sequential thinking. Deferred / internal-only handlers do NOT count).*
+*Documentation version: 4.16 | Last updated: 2026-06-14 | Framework: 12 agents, 20 skills, 28 commands, 62 MCP tools (37 mk-spec-memory + 9 mk_skill_advisor + 8 mk_code_index + 7 code mode + 1 sequential thinking. Deferred / internal-only handlers do NOT count).*

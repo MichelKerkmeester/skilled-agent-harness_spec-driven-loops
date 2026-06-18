@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/003-create-commands/003-router-rewire",
+  "description": "Feature Specification: Create Commands - Router Rewire",
+  "keywords": [
+    "feature",
+    "specification",
+    "create",
+    "commands",
+    "router",
+    "rewire"
+  ],
+  "lastUpdated": "2026-06-10T21:52:41.768Z",
+  "specId": "003",
+  "folderSlug": "router-rewire",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "004-shared-infrastructure",
+    "002-command-presentation-workflow-separation",
+    "003-create-commands"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

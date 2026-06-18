@@ -1,0 +1,34 @@
+{
+  "title": "Feature Specification: Shared Infrastructure (Phase Parent)",
+  "type": "coordination-parent",
+  "childTopology": [
+    "001-mcp-to-cli-tool-transition",
+    "002-command-presentation-workflow-separation",
+    "003-storage-adapter-ports",
+    "004-cli-tooling-ux",
+    "005-autonomous-dependency-patching",
+    "006-code-mode-orphan-lifecycle",
+    "007-ipc-client-cap-hardening",
+    "008-mcp-config-alignment-reelection-default",
+    "009-code-graph-code-only-indexing"
+  ],
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure",
+  "description": "Feature Specification: Shared Infrastructure (Phase Parent)",
+  "keywords": [
+    "feature",
+    "specification",
+    "shared",
+    "infrastructure",
+    "phase",
+    "parent"
+  ],
+  "lastUpdated": "2026-06-14T08:43:57.580Z",
+  "specId": "004",
+  "folderSlug": "shared-infrastructure",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

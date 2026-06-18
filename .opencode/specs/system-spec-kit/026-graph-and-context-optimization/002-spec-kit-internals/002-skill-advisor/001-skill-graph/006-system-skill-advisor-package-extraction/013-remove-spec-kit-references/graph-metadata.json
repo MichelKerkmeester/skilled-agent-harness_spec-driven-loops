@@ -46,8 +46,6 @@
       ".opencode/skills/system-spec-kit/README.md",
       ".opencode/skills/system-spec-kit/constitutional/gate-enforcement.md",
       ".opencode/skills/system-spec-kit/references/config/hook_system.md",
-      ".opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md",
-      ".opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook-validation.md",
       ".opencode/skills/system-spec-kit/scripts/observability/README.md",
       ".opencode/install_guides/SET-UP - Skill Advisor.md",
       ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
@@ -81,18 +79,6 @@
         "name": "hook_system.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/references/config/hook_system.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill-advisor-hook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill-advisor-hook-validation.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook-validation.md",
         "source": "derived"
       },
       {
@@ -202,11 +188,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Grep",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The advisor extraction moved skill-advisor ownership out of `system-spec-kit` into the sibling `system-skill-advisor` skill and standalone `system_skill_advisor` MCP server. Operator-facing spec-kit docs must not keep live instructions that point users back to old `system-spec-kit/mcp_server/skill_advisor/` paths, old server ownership, or advisor feature catalog entries that now belong with the advisor skill.",
     "created_at": "2026-05-19T15:11:02.192Z",
-    "last_save_at": "2026-05-30T10:12:01.896Z",
+    "last_save_at": "2026-06-12T04:40:47.232Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

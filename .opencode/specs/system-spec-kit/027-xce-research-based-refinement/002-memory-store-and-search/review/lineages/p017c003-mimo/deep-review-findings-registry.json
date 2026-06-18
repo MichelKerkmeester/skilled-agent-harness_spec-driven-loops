@@ -1,0 +1,49 @@
+{
+  "findings": [
+    {
+      "id": "P2-001",
+      "severity": "P2",
+      "category": "maintainability",
+      "file": "recovery-payload.ts",
+      "line": "275-301",
+      "description": "SQL parameter count fragility in buildGraphExpandedFallback",
+      "finding_class": "maintainability",
+      "content_hash": "sha256:f7e8d9c0b1a2",
+      "iteration": 1,
+      "status": "active"
+    },
+    {
+      "id": "P2-002",
+      "severity": "P2",
+      "category": "defensiveness",
+      "file": "recovery-payload.ts",
+      "line": "87",
+      "description": "classifyStatus fallback path ambiguity",
+      "finding_class": "defensiveness",
+      "content_hash": "sha256:c3d4e5f6a7b8",
+      "iteration": 1,
+      "status": "active"
+    },
+    {
+      "id": "P2-003",
+      "severity": "P2",
+      "category": "correctness-boundary",
+      "file": "query-classifier.ts",
+      "line": "257",
+      "description": "stopWordRatio rounding could mask boundary cases",
+      "finding_class": "correctness-boundary",
+      "content_hash": "sha256:d4e5f6a7b8c9",
+      "iteration": 1,
+      "status": "active"
+    }
+  ],
+  "summary": {
+    "total": 3,
+    "p0": 0,
+    "p1": 0,
+    "p2": 3,
+    "verdict": "PASS",
+    "iterations": 1,
+    "dimensions_covered": ["correctness"]
+  }
+}

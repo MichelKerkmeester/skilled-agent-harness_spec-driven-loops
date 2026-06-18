@@ -14,7 +14,7 @@
       "expected_count": 3,
       "expected_top_K_symbols": ["handleCodeGraphQuery", "QueryArgs", "SUPPORTED_RELATIONSHIP_OPERATIONS"],
       "category": "mcp-tool",
-      "source_file:line": ".opencode/skills/system-code-graph/mcp_server/handlers/query.ts:1198"
+      "source_file:line": ".opencode/skills/system-code-graph/mcp_server/handlers/query.ts:1281"
     },
     {
       "id": "GQ-MCP-002",
@@ -22,7 +22,7 @@
       "expected_count": 3,
       "expected_top_K_symbols": ["handleCodeGraphScan", "ScanArgs", "ScanResult"],
       "category": "mcp-tool",
-      "source_file:line": ".opencode/skills/system-code-graph/mcp_server/handlers/scan.ts:312"
+      "source_file:line": ".opencode/skills/system-code-graph/mcp_server/handlers/scan.ts:325"
     },
     {
       "id": "GQ-MCP-003",
@@ -30,7 +30,7 @@
       "expected_count": 3,
       "expected_top_K_symbols": ["handleCodeGraphStatus", "getGoldVerificationTrust", "buildEdgeDriftSummary"],
       "category": "mcp-tool",
-      "source_file:line": ".opencode/skills/system-code-graph/mcp_server/handlers/status.ts:197"
+      "source_file:line": ".opencode/skills/system-code-graph/mcp_server/handlers/status.ts:213"
     },
     {
       "id": "GQ-MCP-004",
@@ -46,7 +46,7 @@
       "expected_count": 4,
       "expected_top_K_symbols": ["handleDetectChanges", "readinessRequiresBlock", "blockedResponse"],
       "category": "mcp-tool",
-      "source_file:line": ".opencode/skills/system-code-graph/mcp_server/handlers/detect-changes.ts:212"
+      "source_file:line": ".opencode/skills/system-code-graph/mcp_server/handlers/detect-changes.ts:231"
     },
     {
       "id": "GQ-MCP-006",
@@ -54,7 +54,7 @@
       "expected_count": 4,
       "expected_top_K_symbols": ["handleAdvisorRecommend", "computeRecommendationOutput", "publicRecommendation"],
       "category": "mcp-tool",
-      "source_file:line": ".opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-recommend.ts:320"
+      "source_file:line": ".opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-recommend.ts:404"
     },
     {
       "id": "GQ-MCP-007",
@@ -134,7 +134,7 @@
       "expected_count": 3,
       "expected_top_K_symbols": ["QueryArgs", "SUPPORTED_EDGE_TYPES", "SUPPORTED_RELATIONSHIP_OPERATIONS"],
       "category": "exported-type",
-      "source_file:line": ".opencode/skills/system-code-graph/mcp_server/handlers/query.ts:27"
+      "source_file:line": ".opencode/skills/system-code-graph/mcp_server/handlers/query.ts:37"
     },
     {
       "id": "GQ-TYPE-003",
@@ -150,7 +150,7 @@
       "expected_count": 3,
       "expected_top_K_symbols": ["SkillNode", "SkillEdge", "SkillGraphStats"],
       "category": "exported-type",
-      "source_file:line": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts:43"
+      "source_file:line": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts:48"
     },
     {
       "id": "GQ-TYPE-005",
@@ -158,7 +158,7 @@
       "expected_count": 4,
       "expected_top_K_symbols": ["AdvisorHookResult", "SkillAdvisorBriefOptions", "ResolvedAdvisorThresholdConfig"],
       "category": "exported-type",
-      "source_file:line": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-advisor-brief.ts:65"
+      "source_file:line": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-advisor-brief.ts:94"
     },
     {
       "id": "GQ-TYPE-006",
@@ -190,7 +190,7 @@
       "expected_count": 4,
       "expected_top_K_symbols": ["CODE_GRAPH_TOOL_SCHEMAS", "TOOL_DEFINITIONS", "validateToolArgs"],
       "category": "regression-detection",
-      "source_file:line": ".opencode/skills/system-code-graph/mcp_server/tool-schemas.ts:186"
+      "source_file:line": ".opencode/skills/system-code-graph/mcp_server/tool-schemas.ts:187"
     },
     {
       "id": "GQ-REG-004",
@@ -198,7 +198,7 @@
       "expected_count": 5,
       "expected_top_K_symbols": ["QueryArgs", "handleCodeGraphQuery", "SUPPORTED_RELATIONSHIP_OPERATIONS"],
       "category": "regression-detection",
-      "source_file:line": ".opencode/skills/system-code-graph/mcp_server/handlers/query.ts:1198"
+      "source_file:line": ".opencode/skills/system-code-graph/mcp_server/handlers/query.ts:67"
     },
     {
       "id": "GQ-REG-005",
@@ -214,7 +214,7 @@
       "expected_count": 6,
       "expected_top_K_symbols": ["getPreparedStatements", "dependsOn", "transitivePath"],
       "category": "regression-detection",
-      "source_file:line": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-queries.ts:83"
+      "source_file:line": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-queries.ts:88"
     },
     {
       "id": "GQ-REG-007",
@@ -222,7 +222,7 @@
       "expected_count": 4,
       "expected_top_K_symbols": ["handleDetectChanges", "readinessRequiresBlock", "blockedResponse"],
       "category": "regression-detection",
-      "source_file:line": ".opencode/skills/system-code-graph/mcp_server/handlers/detect-changes.ts:69"
+      "source_file:line": ".opencode/skills/system-code-graph/mcp_server/handlers/detect-changes.ts:123"
     },
     {
       "id": "GQ-REG-008",

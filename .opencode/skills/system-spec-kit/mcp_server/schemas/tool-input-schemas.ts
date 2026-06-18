@@ -66,6 +66,36 @@ const optionalPathString = (minLength = 0) => pathString(minLength).optional();
 /** Shared max paths constant — used by both schema and handler. */
 export const MAX_INGEST_PATHS = 50;
 export const MEMORY_BULK_DELETE_MIN_OLDER_THAN_DAYS = 1;
+export const RESERVED_FEEDBACK_TYPE_ERROR_CODE = 'E_RESERVED_FEEDBACK_TYPE';
+
+const publicMemoryWriteTools = new Set(['memory_save', 'memory_update']);
+const reservedFeedbackEventTypes = new Set([
+  'search_shown',
+  'result_cited',
+  'query_reformulated',
+  'same_topic_requery',
+  'follow_on_tool_use',
+]);
+const reservedFeedbackArtifactTypes = new Set([
+  'feedback',
+  'feedback_event',
+  'feedback_events',
+  'feedback-ledger',
+  'feedback_ledger',
+  'batch_learning_log',
+  'learned_feedback',
+]);
+
+const reservedFeedbackFields = new Set([
+  'artifact_type',
+  'artifactType',
+  'feedback_event_type',
+  'feedbackEventType',
+  'feedbackType',
+  'source_kind',
+  'sourceKind',
+  'type',
+]);
 
 const intentEnum = z.enum([
   'add_feature',
@@ -113,6 +143,8 @@ const mergeModeHintEnum = z.enum([
   'update-in-place',
   'append-section',
 ]);
+
+const plannerModeEnum = z.enum(['plan-only', 'hybrid', 'full-auto']);
 
 const skillGraphQueryTypeEnum = z.enum([
   'depends_on',
@@ -217,6 +249,8 @@ const memorySaveSchema = getSchema({
   asyncEmbedding: z.boolean().optional(),
   routeAs: routeCategoryEnum.optional(),
   mergeModeHint: mergeModeHintEnum.optional(),
+  plannerMode: plannerModeEnum.optional(),
+  targetAnchorId: z.string().optional(),
   // Governance args — accepted by tool-schemas.ts tool definition and
   // validated at runtime by scope-governance.ts.
   tenantId: z.string().optional(),
@@ -464,7 +498,16 @@ const memoryIndexScanSchema = getSchema({
   includeConstitutional: z.boolean().optional(),
   includeSpecDocs: z.boolean().optional(),
   incremental: z.boolean().optional(),
+  background: z.boolean().optional(),
   ...governanceSchemaFields,
+});
+
+const memoryIndexScanStatusSchema = getSchema({
+  jobId: z.string().min(1),
+});
+
+const memoryIndexScanCancelSchema = getSchema({
+  jobId: z.string().min(1),
 });
 
 const memoryGetLearningHistorySchema = getSchema({
@@ -550,6 +593,8 @@ export const TOOL_SCHEMAS: Record<string, ToolInputSchema> = {
   eval_run_ablation: evalRunAblationSchema as unknown as ToolInputSchema,
   eval_reporting_dashboard: evalReportingDashboardSchema as unknown as ToolInputSchema,
   memory_index_scan: memoryIndexScanSchema as unknown as ToolInputSchema,
+  memory_index_scan_status: memoryIndexScanStatusSchema as unknown as ToolInputSchema,
+  memory_index_scan_cancel: memoryIndexScanCancelSchema as unknown as ToolInputSchema,
   memory_get_learning_history: memoryGetLearningHistorySchema as unknown as ToolInputSchema,
   memory_ingest_start: memoryIngestStartSchema as unknown as ToolInputSchema,
   memory_ingest_status: memoryIngestStatusSchema as unknown as ToolInputSchema,
@@ -577,7 +622,7 @@ const ALLOWED_PARAMETERS: Record<string, string[]> = {
   memory_search: ['cursor', 'query', 'concepts', 'specFolder', 'tenantId', 'userId', 'agentId', 'limit', 'sessionId', 'enableDedup', 'tier', 'contextType', 'useDecay', 'includeContiguity', 'includeConstitutional', 'enableSessionBoost', 'enableCausalBoost', 'includeContent', 'anchors', 'min_quality_score', 'minQualityScore', 'bypassCache', 'rerank', 'applyLengthPenalty', 'applyStateLimits', 'minState', 'intent', 'autoDetectIntent', 'trackAccess', 'includeArchived', 'mode', 'includeTrace', 'profile'],
   memory_quick_search: ['query', 'limit', 'specFolder', 'tenantId', 'userId', 'agentId'],
   memory_match_triggers: ['prompt', 'specFolder', 'tenantId', 'userId', 'agentId', 'limit', 'session_id', 'turnNumber', 'include_cognitive'],
-  memory_save: ['filePath', 'force', 'dryRun', 'skipPreflight', 'asyncEmbedding', 'routeAs', 'mergeModeHint', 'tenantId', 'userId', 'agentId', 'sessionId', 'provenanceSource', 'provenanceActor', 'governedAt', 'retentionPolicy', 'deleteAfter'],
+  memory_save: ['filePath', 'force', 'dryRun', 'skipPreflight', 'asyncEmbedding', 'routeAs', 'mergeModeHint', 'plannerMode', 'targetAnchorId', 'tenantId', 'userId', 'agentId', 'sessionId', 'provenanceSource', 'provenanceActor', 'governedAt', 'retentionPolicy', 'deleteAfter'],
   memory_list: ['limit', 'offset', 'specFolder', 'sortBy', 'includeChunks'],
   memory_stats: ['folderRanking', 'excludePatterns', 'includeScores', 'includeArchived', 'limit'],
   memory_health: ['reportMode', 'includeFullReport', 'limit', 'specFolder', 'autoRepair', 'confirmed', 'cleanFiles'],
@@ -599,7 +644,9 @@ const ALLOWED_PARAMETERS: Record<string, string[]> = {
   memory_causal_unlink: ['edgeId'],
   eval_run_ablation: ['mode', 'channels', 'queries', 'groundTruthQueryIds', 'recallK', 'storeResults', 'includeFormattedReport'],
   eval_reporting_dashboard: ['sprintFilter', 'channelFilter', 'metricFilter', 'limit', 'format'],
-  memory_index_scan: ['specFolder', 'force', 'includeConstitutional', 'includeSpecDocs', 'incremental', 'tenantId', 'userId', 'agentId', 'sessionId', 'provenanceSource', 'provenanceActor', 'governedAt', 'retentionPolicy', 'deleteAfter'],
+  memory_index_scan: ['specFolder', 'force', 'includeConstitutional', 'includeSpecDocs', 'incremental', 'background', 'tenantId', 'userId', 'agentId', 'sessionId', 'provenanceSource', 'provenanceActor', 'governedAt', 'retentionPolicy', 'deleteAfter'],
+  memory_index_scan_status: ['jobId'],
+  memory_index_scan_cancel: ['jobId'],
   memory_get_learning_history: ['specFolder', 'sessionId', 'limit', 'onlyComplete', 'includeSummary'],
   memory_ingest_start: ['paths', 'specFolder', 'tenantId', 'userId', 'agentId', 'sessionId', 'provenanceSource', 'provenanceActor', 'governedAt', 'retentionPolicy', 'deleteAfter'],
   memory_ingest_status: ['jobId'],
@@ -622,15 +669,74 @@ const ALLOWED_PARAMETERS: Record<string, string[]> = {
 
 export class ToolSchemaValidationError extends Error {
   public readonly toolName: string;
-  public readonly code = 'E030';
+  public readonly code: string;
   public readonly details: Record<string, unknown>;
 
-  constructor(toolName: string, message: string, details: Record<string, unknown>) {
+  constructor(toolName: string, message: string, details: Record<string, unknown>, code = 'E030') {
     super(message);
     this.name = 'ToolSchemaValidationError';
     this.toolName = toolName;
+    this.code = code;
     this.details = details;
   }
+}
+
+export class ReservedFeedbackTypeValidationError extends ToolSchemaValidationError {
+  constructor(toolName: string, field: string, value: unknown) {
+    super(
+      toolName,
+      `Invalid arguments for "${toolName}". Parameter "${field}" supplies a reserved feedback event/artifact type; feedback signals are system-generated only.`,
+      {
+        tool: toolName,
+        issues: [`${field}: reserved feedback event/artifact type is system-generated`],
+        issueType: 'reserved_feedback_type',
+        reservedField: field,
+        reservedValue: value,
+        expectedParameters: ALLOWED_PARAMETERS[toolName] ?? [],
+      },
+      RESERVED_FEEDBACK_TYPE_ERROR_CODE,
+    );
+    this.name = 'ReservedFeedbackTypeValidationError';
+  }
+}
+
+function normalizeReservedFeedbackValue(value: unknown): string | null {
+  if (typeof value !== 'string') return null;
+  const normalized = value.trim().toLowerCase();
+  return normalized.length > 0 ? normalized : null;
+}
+
+function isReservedFeedbackValue(field: string, value: unknown): boolean {
+  const normalized = normalizeReservedFeedbackValue(value);
+  if (!normalized) return false;
+  if (field === 'source_kind' || field === 'sourceKind') return normalized === 'feedback';
+  if (field === 'artifact_type' || field === 'artifactType') return reservedFeedbackArtifactTypes.has(normalized);
+  return reservedFeedbackEventTypes.has(normalized) || reservedFeedbackArtifactTypes.has(normalized);
+}
+
+function findReservedFeedbackWrite(rawInput: Record<string, unknown>): { field: string; value: unknown } | null {
+  for (const [field, value] of Object.entries(rawInput)) {
+    if (reservedFeedbackFields.has(field) && isReservedFeedbackValue(field, value)) {
+      return { field, value };
+    }
+
+    if (field === '__provenanceContext' && value && typeof value === 'object' && !Array.isArray(value)) {
+      const provenance = value as Record<string, unknown>;
+      for (const provenanceField of ['source_kind', 'sourceKind', 'provenanceSource', 'provenance_source']) {
+        if (isReservedFeedbackValue(provenanceField, provenance[provenanceField])) {
+          return { field: `__provenanceContext.${provenanceField}`, value: provenance[provenanceField] };
+        }
+      }
+    }
+  }
+  return null;
+}
+
+function rejectReservedFeedbackWrites(toolName: string, rawInput: Record<string, unknown>): void {
+  if (!publicMemoryWriteTools.has(toolName)) return;
+  const reserved = findReservedFeedbackWrite(rawInput);
+  if (!reserved) return;
+  throw new ReservedFeedbackTypeValidationError(toolName, reserved.field, reserved.value);
 }
 
 export function formatZodError(toolName: string, error: ZodError): ToolSchemaValidationError {
@@ -694,8 +800,13 @@ export function validateToolArgs(toolName: string, rawInput: Record<string, unkn
   }
 
   try {
+    rejectReservedFeedbackWrites(toolName, rawInput);
     return schema.parse(rawInput);
   } catch (error: unknown) {
+    if (error instanceof ReservedFeedbackTypeValidationError) {
+      console.error(`[schema-validation] ${toolName}: ${error.message}`);
+      throw error;
+    }
     if (error instanceof ZodError) {
       const formatted = formatZodError(toolName, error);
       // Log rejected params for audit trail (MCP uses stderr)

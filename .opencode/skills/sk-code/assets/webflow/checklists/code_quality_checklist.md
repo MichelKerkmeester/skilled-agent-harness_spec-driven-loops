@@ -1,6 +1,13 @@
 ---
 title: Code Quality Checklist
 description: Validation checklist for JavaScript and CSS code quality and style compliance.
+trigger_phrases:
+  - "webflow code quality checklist"
+  - "javascript css style compliance"
+  - "file header checks webflow"
+  - "review baseline handoff"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Code Quality Checklist

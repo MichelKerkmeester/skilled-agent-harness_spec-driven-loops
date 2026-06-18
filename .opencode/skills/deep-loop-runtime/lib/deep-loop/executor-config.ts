@@ -1,8 +1,12 @@
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Deep-Loop Executor Config
+// ───────────────────────────────────────────────────────────────────
 
-import { z } from '../../../system-spec-kit/mcp_server/node_modules/zod/index.js';
+import { z } from 'zod';
 
-// ───── TYPE DEFINITIONS ─────
+// ───────────────────────────────────────────────────────────────────
+// 1. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 export const EXECUTOR_KINDS = ['native', 'cli-codex', 'cli-claude-code', 'cli-opencode'] as const;
 export type ExecutorKind = typeof EXECUTOR_KINDS[number];
@@ -17,15 +21,22 @@ const SANDBOX_MODES = ['read-only', 'workspace-write', 'danger-full-access'] as 
 export type SandboxMode = typeof SANDBOX_MODES[number];
 export type ClaudePermissionMode = 'plan' | 'acceptEdits' | 'bypassPermissions';
 
-// ───── CONSTANTS ─────
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 export const executorConfigSchema = z.object({
   kind: z.enum(EXECUTOR_KINDS).default('native'),
   model: z.string().min(1).nullable().default(null),
+  configDir: z.string().trim().min(1).nullable().default(null),
   reasoningEffort: z.enum(REASONING_EFFORTS).nullable().default(null),
   serviceTier: z.enum(SERVICE_TIERS).nullable().default(null),
   sandboxMode: z.enum(SANDBOX_MODES).nullable().default(null),
   timeoutSeconds: z.number().int().positive().default(900),
+  // Optional fable-5 governor capsule for this executor's prompts. Universal and
+  // kind-agnostic on purpose: intentionally absent from EXECUTOR_KIND_FLAG_SUPPORT
+  // and the unsupported-field scan, so any executor kind may carry it. null = none.
+  governor: z.string().min(1).nullable().default(null),
 });
 
 export type ExecutorConfig = z.infer<typeof executorConfigSchema>;
@@ -33,17 +44,20 @@ export type ExecutorConfig = z.infer<typeof executorConfigSchema>;
 export const EXECUTOR_KIND_FLAG_SUPPORT: Record<ExecutorKind, readonly (keyof ExecutorConfig)[]> = {
   native: [],
   'cli-codex': ['model', 'reasoningEffort', 'serviceTier', 'sandboxMode', 'timeoutSeconds'],
-  'cli-claude-code': ['model', 'reasoningEffort', 'sandboxMode', 'timeoutSeconds'],
+  'cli-claude-code': ['model', 'configDir', 'reasoningEffort', 'sandboxMode', 'timeoutSeconds'],
   'cli-opencode': ['model', 'reasoningEffort', 'timeoutSeconds'],
 };
 
-// ───── DOMAIN ERRORS ─────
+// ───────────────────────────────────────────────────────────────────
+// 3. DOMAIN ERRORS
+// ───────────────────────────────────────────────────────────────────
 
 type ExecutorConfigIssue = {
   path: PropertyKey[];
   message: string;
 };
 
+/** Error thrown when a reserved executor kind is selected before wiring exists. */
 export class ExecutorNotWiredError extends Error {
   kind: Extract<ExecutorKind, 'cli-claude-code'>;
 
@@ -54,6 +68,7 @@ export class ExecutorNotWiredError extends Error {
   }
 }
 
+/** Error thrown when executor configuration validation fails. */
 export class ExecutorConfigError extends Error {
   issues: ExecutorConfigIssue[];
 
@@ -64,7 +79,9 @@ export class ExecutorConfigError extends Error {
   }
 }
 
-// ───── HELPERS ─────
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return value !== null && !Array.isArray(value) && typeof value === 'object';
@@ -108,7 +125,9 @@ function normalizeIssues(error: z.ZodError<ExecutorConfig>): ExecutorConfigIssue
   }));
 }
 
-// ───── EXPORTS ─────
+// ───────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Map a generic sandbox mode to the Codex CLI sandbox mode.
@@ -165,6 +184,7 @@ export function parseExecutorConfig(raw: unknown): ExecutorConfig {
   const unsupportedFields: string[] = [];
   const allOptionalFields: (keyof ExecutorConfig)[] = [
     'model',
+    'configDir',
     'reasoningEffort',
     'serviceTier',
     'sandboxMode',
@@ -208,7 +228,9 @@ export function resolveExecutorConfig(sources: {
   return parseExecutorConfig(merged);
 }
 
-// ───── FAN-OUT (MULTI-EXECUTOR) CONFIG ─────
+// ───────────────────────────────────────────────────────────────────
+// 6. FAN-OUT CONFIG
+// ───────────────────────────────────────────────────────────────────
 //
 // Opt-in layer ABOVE the single-executor path. When a fan-out config is present,
 // the loop runs N executor "lineages" concurrently (capped), each running the
@@ -272,7 +294,7 @@ export function parseFanoutConfig(raw: unknown): FanoutConfig {
     const { label: _label, count: _count, iterations: _iterations, promptFramework: _promptFramework, ...executorSubset } = entry;
     try {
       parseExecutorConfig(executorSubset);
-    } catch (err) {
+    } catch (err: unknown) {
       if (err instanceof ExecutorConfigError) {
         throw new ExecutorConfigError({
           issues: err.issues.map((issue) => ({ path: ['executors', index, ...issue.path], message: issue.message })),

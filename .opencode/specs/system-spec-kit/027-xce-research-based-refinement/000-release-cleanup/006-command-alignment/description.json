@@ -1,0 +1,34 @@
+{
+  "title": "Command Alignment",
+  "trigger_phrases": [
+    "command",
+    "alignment",
+    "align",
+    "command-doc",
+    "content"
+  ],
+  "level": 1,
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/006-command-alignment",
+  "status": "planned",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup",
+  "importance_tier": "important",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/006-command-alignment",
+  "description": "Feature Specification: Command Alignment",
+  "keywords": [
+    "feature",
+    "specification",
+    "command",
+    "alignment"
+  ],
+  "lastUpdated": "2026-06-10T16:42:09.643Z",
+  "specId": "006",
+  "folderSlug": "command-alignment",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "000-release-cleanup"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

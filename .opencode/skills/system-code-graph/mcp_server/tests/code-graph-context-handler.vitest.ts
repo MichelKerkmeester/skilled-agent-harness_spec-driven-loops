@@ -311,6 +311,96 @@ describe('code-graph-context handler', () => {
     });
     expect(result.textBrief).toContain('reason=heuristic-name-match');
     expect(result.textBrief).toContain('step=resolve');
+    expect(result.graphContext[0]).not.toHaveProperty('why_included');
+  });
+
+  it('emits context why_included edge chains only when includeTrace is true', async () => {
+    const { buildContext: actualBuildContext } = await vi.importActual<typeof import('../lib/code-graph-context.js')>(
+      '../lib/code-graph-context.js',
+    );
+
+    mocks.resolveSeeds.mockReturnValue([
+      {
+        filePath: 'src/alpha.ts',
+        startLine: 10,
+        endLine: 20,
+        symbolId: 'symbol-alpha',
+        fqName: 'Alpha.run',
+        kind: 'function',
+        confidence: 0.95,
+        resolution: 'exact',
+      },
+    ]);
+    mocks.queryEdgesFrom.mockImplementation((symbolId, edgeType, ..._rest: unknown[]) => (
+      symbolId === 'symbol-alpha' && edgeType === 'CALLS'
+        ? [
+          {
+            edge: {
+              sourceId: 'symbol-alpha',
+              targetId: 'callee-1',
+              edgeType: 'CALLS',
+              weight: 0.8,
+              metadata: {
+                confidence: 0.8,
+                detectorProvenance: 'heuristic',
+                evidenceClass: 'INFERRED',
+                reason: 'heuristic-name-match',
+                step: 'resolve',
+              },
+            },
+            targetNode: { fqName: 'callee.one', kind: 'function', filePath: 'src/dependency.ts', startLine: 5 },
+          },
+        ]
+        : []
+    ));
+    mocks.queryEdgesTo.mockReturnValue([]);
+
+    const compact = actualBuildContext({
+      queryMode: 'neighborhood',
+      seeds: [{ filePath: 'src/placeholder.ts', startLine: 1, endLine: 1 }],
+      deadlineMs: 400,
+    });
+    expect(compact.graphContext[0]).not.toHaveProperty('why_included');
+
+    const traced = actualBuildContext({
+      queryMode: 'neighborhood',
+      seeds: [{ filePath: 'src/placeholder.ts', startLine: 1, endLine: 1 }],
+      deadlineMs: 400,
+      includeTrace: true,
+    });
+
+    expect(traced.graphContext[0].why_included).toEqual([
+      {
+        filePath: 'src/alpha.ts',
+        depth: 0,
+        edgeChain: [],
+        confidence: 0.95,
+        ambiguous: false,
+        truncationReason: null,
+      },
+      {
+        filePath: 'src/dependency.ts',
+        depth: 1,
+        edgeChain: [
+          {
+            from: 'Alpha.run',
+            to: 'callee.one',
+            fromFile: 'src/alpha.ts',
+            toFile: 'src/dependency.ts',
+            edgeType: 'CALLS',
+            confidence: 0.8,
+            detectorProvenance: 'heuristic',
+            evidenceClass: 'INFERRED',
+            reason: 'heuristic-name-match',
+            step: 'resolve',
+          },
+        ],
+        confidence: 0.8,
+        // INFERRED edge => uncertain inclusion, flagged ambiguous for neighbors.
+        ambiguous: true,
+        truncationReason: null,
+      },
+    ]);
   });
 
   it('surfaces omittedAnchors for multi-anchor deadline timeouts through the handler payload', async () => {
@@ -399,5 +489,177 @@ describe('code-graph-context handler', () => {
     } finally {
       hrtimeSpy.mockRestore();
     }
+  });
+});
+
+describe('context why_included breadcrumb accuracy', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+    mocks.resolveSeeds.mockReturnValue([
+      {
+        filePath: 'src/alpha.ts',
+        startLine: 10,
+        endLine: 20,
+        symbolId: 'symbol-alpha',
+        fqName: 'Alpha.run',
+        kind: 'function',
+        confidence: 0.95,
+        resolution: 'exact',
+      },
+    ]);
+    mocks.queryEdgesTo.mockReturnValue([]);
+  });
+
+  async function importBuildContext() {
+    const { buildContext } = await vi.importActual<typeof import('../lib/code-graph-context.js')>(
+      '../lib/code-graph-context.js',
+    );
+    return buildContext;
+  }
+
+  it('marks a neighbor reached via an INFERRED edge as ambiguous and a STRUCTURED one as not', async () => {
+    const buildContext = await importBuildContext();
+    mocks.queryEdgesFrom.mockImplementation((symbolId, edgeType, ..._rest: unknown[]) => (
+      symbolId === 'symbol-alpha' && edgeType === 'CALLS'
+        ? [
+          {
+            edge: {
+              sourceId: 'symbol-alpha', targetId: 'inferred-callee', edgeType: 'CALLS', weight: 0.8,
+              metadata: { confidence: 0.8, detectorProvenance: 'heuristic', evidenceClass: 'INFERRED' },
+            },
+            targetNode: { fqName: 'inferred.callee', kind: 'function', filePath: 'src/inferred.ts', startLine: 5 },
+          },
+          {
+            edge: {
+              sourceId: 'symbol-alpha', targetId: 'structured-callee', edgeType: 'CALLS', weight: 0.99,
+              metadata: { confidence: 0.99, detectorProvenance: 'structured', evidenceClass: 'STRUCTURED' },
+            },
+            targetNode: { fqName: 'structured.callee', kind: 'function', filePath: 'src/structured.ts', startLine: 9 },
+          },
+        ]
+        : []
+    ));
+
+    const result = buildContext({
+      queryMode: 'neighborhood',
+      seeds: [{ filePath: 'src/placeholder.ts', startLine: 1, endLine: 1 }],
+      deadlineMs: 400,
+      includeTrace: true,
+    });
+    const why = result.graphContext[0].why_included ?? [];
+    const inferred = why.find((entry) => entry.filePath === 'src/inferred.ts');
+    const structured = why.find((entry) => entry.filePath === 'src/structured.ts');
+    expect(inferred?.ambiguous).toBe(true);
+    expect(structured?.ambiguous).toBe(false);
+  });
+
+  it('keeps every same-depth edge in edgeChain when a file is reachable via multiple edges', async () => {
+    const buildContext = await importBuildContext();
+    // Two distinct depth-1 edges to the SAME file (CALLS to two symbols both
+    // living in src/dependency.ts) — the breadcrumb must retain both reasons.
+    mocks.queryEdgesFrom.mockImplementation((symbolId, edgeType, ..._rest: unknown[]) => (
+      symbolId === 'symbol-alpha' && edgeType === 'CALLS'
+        ? [
+          {
+            edge: {
+              sourceId: 'symbol-alpha', targetId: 'callee-1', edgeType: 'CALLS', weight: 0.9,
+              metadata: { confidence: 0.9, evidenceClass: 'STRUCTURED' },
+            },
+            targetNode: { fqName: 'dep.one', kind: 'function', filePath: 'src/dependency.ts', startLine: 5 },
+          },
+          {
+            edge: {
+              sourceId: 'symbol-alpha', targetId: 'callee-2', edgeType: 'CALLS', weight: 0.7,
+              metadata: { confidence: 0.7, evidenceClass: 'STRUCTURED' },
+            },
+            targetNode: { fqName: 'dep.two', kind: 'function', filePath: 'src/dependency.ts', startLine: 25 },
+          },
+        ]
+        : []
+    ));
+
+    const result = buildContext({
+      queryMode: 'neighborhood',
+      seeds: [{ filePath: 'src/placeholder.ts', startLine: 1, endLine: 1 }],
+      deadlineMs: 400,
+      includeTrace: true,
+    });
+    const dep = (result.graphContext[0].why_included ?? []).find((entry) => entry.filePath === 'src/dependency.ts');
+    expect(dep).toBeDefined();
+    expect(dep?.edgeChain).toHaveLength(2);
+    expect(dep?.edgeChain.map((step) => step.to)).toEqual(['dep.one', 'dep.two']);
+    // Overall confidence collapses to the minimum across the retained edges.
+    expect(dep?.confidence).toBe(0.7);
+  });
+
+  it('does not stamp the complete depth-0 anchor breadcrumb with a section-level truncation reason', async () => {
+    const buildContext = await importBuildContext();
+    // A neighbor edge whose target lacks a filePath cannot be recorded as a
+    // why_included entry; force the trace-limit branch is not needed here —
+    // instead assert the anchor entry is never falsely flagged even when the
+    // section is otherwise partial. Drive a deadline mid-expansion.
+    mocks.queryEdgesFrom.mockImplementation((symbolId, edgeType, ..._rest: unknown[]) => (
+      symbolId === 'symbol-alpha' && edgeType === 'CALLS'
+        ? [
+          {
+            edge: { sourceId: 'symbol-alpha', targetId: 'callee-1', edgeType: 'CALLS', weight: 0.9, metadata: { confidence: 0.9 } },
+            targetNode: { fqName: 'dep.one', kind: 'function', filePath: 'src/dependency.ts', startLine: 5 },
+          },
+        ]
+        : []
+    ));
+
+    const hrtimeSpy = vi.spyOn(process.hrtime, 'bigint');
+    // start, then exceed budget so the expansion section is marked partial.
+    hrtimeSpy.mockReturnValueOnce(0n).mockReturnValue(401_000_000n);
+    try {
+      const result = buildContext({
+        queryMode: 'neighborhood',
+        seeds: [{ filePath: 'src/placeholder.ts', startLine: 1, endLine: 1 }],
+        deadlineMs: 400,
+        includeTrace: true,
+      });
+      const why = result.graphContext[0].why_included ?? [];
+      const anchorEntry = why.find((entry) => entry.depth === 0);
+      // The depth-0 anchor is recorded in full before any deadline check, so
+      // its breadcrumb must stay truncationReason: null even when the section
+      // hit its deadline (the regression: it was stamped 'deadline').
+      expect(anchorEntry).toBeDefined();
+      expect(anchorEntry?.truncationReason).toBeNull();
+    } finally {
+      hrtimeSpy.mockRestore();
+    }
+  });
+
+  it('does not propagate textBrief budget truncation onto structured why_included entries', async () => {
+    const buildContext = await importBuildContext();
+    // Many neighbors with long names so the human-readable textBrief overflows
+    // the token budget while the structured why_included is returned in full.
+    mocks.queryEdgesFrom.mockImplementation((symbolId, edgeType, ..._rest: unknown[]) => (
+      symbolId === 'symbol-alpha' && edgeType === 'CALLS'
+        ? Array.from({ length: 8 }, (_unused, index) => ({
+          edge: { sourceId: 'symbol-alpha', targetId: `callee-${index}`, edgeType: 'CALLS' as const, weight: 0.9, metadata: { confidence: 0.9 } },
+          targetNode: {
+            fqName: `dependency.module.path.segment.reallyLongCalleeSymbolName${index}`,
+            kind: 'function',
+            filePath: `src/dependency-${index}.ts`,
+            startLine: index + 1,
+          },
+        }))
+        : []
+    ));
+
+    const result = buildContext({
+      queryMode: 'neighborhood',
+      seeds: [{ filePath: 'src/placeholder.ts', startLine: 1, endLine: 1 }],
+      deadlineMs: 400,
+      includeTrace: true,
+      budgetTokens: 20,
+    });
+    // Budget partiality is surfaced at the result level...
+    expect(result.metadata.partialOutput.reasons).toContain('budget');
+    // ...but never stamped onto the structured breadcrumbs.
+    const stamped = (result.graphContext[0].why_included ?? []).filter((entry) => entry.truncationReason === 'budget');
+    expect(stamped).toEqual([]);
   });
 });

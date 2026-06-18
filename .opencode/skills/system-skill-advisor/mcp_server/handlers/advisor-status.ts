@@ -4,10 +4,15 @@
 
 import { existsSync, readdirSync, statSync } from 'node:fs';
 import { join, resolve } from 'node:path';
+import Database from 'better-sqlite3';
 
 import { computeAdvisorSourceSignature } from '../lib/freshness.js';
 import { readSkillGraphGeneration } from '../lib/freshness/generation.js';
+import { checkSqliteIntegrity } from '../lib/freshness/sqlite-integrity.js';
+import { isGenuineCorruptionReason, resolveSkillGraphDbDir, DB_FILENAME } from '../lib/skill-graph/skill-graph-db.js';
 import { createTrustState } from '../lib/freshness/trust-state.js';
+import { getAdapter } from '../lib/embedders/registry.js';
+import { getSemanticShadowRuntimeHealth } from '../lib/scorer/lanes/semantic-shadow.js';
 import { DEFAULT_SCORER_WEIGHTS } from '../lib/scorer/weights-config.js';
 import { errorMessage } from '../lib/utils/error-format.js';
 import { redactDiagnosticText } from './skill-graph/response-envelope.js';
@@ -24,12 +29,9 @@ import type {
 
 type HandlerResponse = { content: Array<{ type: string; text: string }> };
 
-const advisorDbDirOverride = process.env.MK_SKILL_ADVISOR_DB_DIR ?? process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
-const SKILL_GRAPH_DB = advisorDbDirOverride
-  ? join(advisorDbDirOverride, 'skill-graph.sqlite')
-  : join('.opencode', 'skills', 'system-skill-advisor', 'mcp_server', 'database', 'skill-graph.sqlite');
 const SKILL_ROOT = join('.opencode', 'skills');
 const DEFAULT_MAX_METADATA_FILES = 5_000;
+type SemanticLaneHealth = NonNullable<AdvisorStatusOutput['semanticLaneHealth']>;
 
 function isFreshness(value: string): value is AdvisorFreshness {
   return value === 'live' || value === 'stale' || value === 'absent' || value === 'unavailable';
@@ -58,6 +60,133 @@ function fileMtimeMs(path: string): number {
   if (!existsSync(path)) return 0;
   const stat = statSync(path);
   return stat.mtimeMs;
+}
+
+function resolveSkillGraphDbPath(workspaceRoot: string): string {
+  // Resolve through the writer's own resolver so the integrity probe always
+  // targets the exact file the daemon writes. An env override wins for both;
+  // otherwise the workspace root stands in for the writer's cwd, which match
+  // in the normal single-root deployment.
+  return join(resolveSkillGraphDbDir(workspaceRoot), DB_FILENAME);
+}
+
+// Per-(dbPath, generation, mtime) integrity verdict cache. A full quick_check
+// scans the artifact, which is too costly to run on the recommend hot path;
+// caching it lets recommend opt into corruption detection while paying the
+// scan at most once per generation. The only events that can change on-disk
+// integrity — a generation bump or an mtime change — invalidate the entry.
+const integrityVerdictCache = new Map<string, { ok: true } | { ok: false; reason: string }>();
+
+function checkSqliteIntegrityCached(
+  dbPath: string,
+  generation: number,
+  mtimeMs: number,
+): { ok: true } | { ok: false; reason: string } {
+  const key = `${dbPath}::${generation}::${mtimeMs}`;
+  const cached = integrityVerdictCache.get(key);
+  if (cached) {
+    return cached;
+  }
+  const result = checkSqliteIntegrity(dbPath);
+  // Only the newest (path, generation, mtime) verdict is ever consulted, so a
+  // single-entry cache is sufficient and self-bounding.
+  integrityVerdictCache.clear();
+  integrityVerdictCache.set(key, result);
+  return result;
+}
+
+function tableExists(database: Database.Database, tableName: string): boolean {
+  const row = database.prepare(`
+    SELECT 1 AS present
+    FROM sqlite_master
+    WHERE type = 'table' AND name = ?
+    LIMIT 1
+  `).get(tableName) as { present: number } | undefined;
+  return Boolean(row);
+}
+
+function metadataValue(database: Database.Database, key: string): string | null {
+  if (!tableExists(database, 'vec_metadata')) return null;
+  const row = database.prepare('SELECT value FROM vec_metadata WHERE key = ?').get(key) as { value: string } | undefined;
+  return row?.value ?? null;
+}
+
+function countRows(database: Database.Database, sql: string): number {
+  const row = database.prepare(sql).get() as { c: number } | undefined;
+  return row?.c ?? 0;
+}
+
+function maxUpdatedAt(database: Database.Database, tableName: string): string | null {
+  const row = database.prepare(`SELECT MAX(updated_at) AS updatedAt FROM ${tableName}`).get() as { updatedAt: string | null } | undefined;
+  return row?.updatedAt ?? null;
+}
+
+function baseSemanticLaneHealth(disabledReason: string | null): SemanticLaneHealth {
+  return {
+    activeEmbedder: null,
+    vectorCoverage: { embedded: 0, total: 0, ratio: 0 },
+    dimMismatch: false,
+    lastRefresh: null,
+    disabledReason,
+    laneEnabled: false,
+    checkedAt: new Date().toISOString(),
+  };
+}
+
+function readSemanticLaneHealth(dbPath: string): SemanticLaneHealth {
+  const runtime = getSemanticShadowRuntimeHealth();
+  if (!existsSync(dbPath)) {
+    return baseSemanticLaneHealth(runtime.disabledReason ?? 'database_absent');
+  }
+
+  let database: Database.Database | null = null;
+  try {
+    database = new Database(dbPath, { readonly: true, fileMustExist: true });
+    const total = tableExists(database, 'skill_nodes')
+      ? countRows(database, 'SELECT COUNT(*) AS c FROM skill_nodes')
+      : 0;
+    const activeName = metadataValue(database, 'active_embedder_name');
+    const activeDimRaw = metadataValue(database, 'active_embedder_dim');
+    const activeDim = activeDimRaw ? Number.parseInt(activeDimRaw, 10) : 0;
+    const hasActive = Boolean(activeName) && Number.isInteger(activeDim) && activeDim > 0;
+    const adapter = activeName ? getAdapter(activeName) : undefined;
+    const activeEmbedder = activeName
+      ? { name: activeName, dim: Number.isInteger(activeDim) && activeDim > 0 ? activeDim : 0, adapterDim: adapter?.dim ?? null }
+      : null;
+    const tableName = hasActive ? `vec_${activeDim}` : null;
+    const hasVecTable = tableName ? tableExists(database, tableName) : false;
+    const embedded = hasVecTable
+      ? countRows(database, `SELECT COUNT(*) AS c FROM ${tableName} WHERE embedding IS NOT NULL`)
+      : (tableExists(database, 'skill_nodes') ? countRows(database, 'SELECT COUNT(*) AS c FROM skill_nodes WHERE embedding IS NOT NULL') : 0);
+    const lastRefresh = hasVecTable && tableName ? maxUpdatedAt(database, tableName) : null;
+    const dimMismatch = Boolean(activeEmbedder && activeEmbedder.adapterDim !== null && activeEmbedder.dim !== activeEmbedder.adapterDim);
+    const disabledReason = dimMismatch
+      ? 'dim_mismatch'
+      : (!hasActive
+          ? 'active_embedder_unset'
+          : (!adapter
+              ? 'adapter_unavailable'
+              : (!hasVecTable
+                  ? 'vector_table_missing'
+                  : (total > 0 && embedded === 0 ? 'no_skill_vectors' : runtime.disabledReason))));
+    return {
+      activeEmbedder,
+      vectorCoverage: {
+        embedded,
+        total,
+        ratio: total > 0 ? Math.round((embedded / total) * 1_000_000) / 1_000_000 : 0,
+      },
+      dimMismatch,
+      lastRefresh,
+      disabledReason,
+      laneEnabled: Boolean(hasActive && adapter && !dimMismatch && hasVecTable && embedded > 0 && !disabledReason),
+      checkedAt: new Date().toISOString(),
+    };
+  } catch {
+    return baseSemanticLaneHealth(runtime.disabledReason ?? 'health_unavailable');
+  } finally {
+    database?.close();
+  }
 }
 
 function scanSkillMetadataFiles(
@@ -97,7 +226,7 @@ function scanSkillMetadataFiles(
 export function readAdvisorStatus(input: AdvisorStatusInput): AdvisorStatusOutput {
   const args = AdvisorStatusInputSchema.parse(input);
   const workspaceRoot = resolve(args.workspaceRoot);
-  const dbPath = join(workspaceRoot, SKILL_GRAPH_DB);
+  const dbPath = resolveSkillGraphDbPath(workspaceRoot);
   const skillRoot = join(workspaceRoot, SKILL_ROOT);
   const errors: string[] = [];
 
@@ -105,6 +234,22 @@ export function readAdvisorStatus(input: AdvisorStatusInput): AdvisorStatusOutpu
     const generation = readSkillGraphGeneration(workspaceRoot);
     const hasSources = existsSync(skillRoot);
     const hasArtifact = existsSync(dbPath);
+    // Existence alone lets a corrupt-on-disk artifact report 'live' from the
+    // generation counters, which makes advisor_rebuild skip the repair it
+    // exists to perform. A read-only quick_check turns genuine corruption
+    // into a stale signal so rebuild runs. Transient lock/IO failures are
+    // excluded so contention never forces a spurious rebuild.
+    const integrity = (hasArtifact && args.checkArtifactIntegrity === true)
+      ? checkSqliteIntegrityCached(dbPath, generation.generation, fileMtimeMs(dbPath))
+      : null;
+    const artifactCorrupt = Boolean(
+      integrity && !integrity.ok
+        && integrity.reason !== 'SQLITE_ABSENT'
+        && isGenuineCorruptionReason(integrity.reason),
+    );
+    if (artifactCorrupt && integrity && !integrity.ok) {
+      errors.push(`advisor_status skill graph integrity check failed (${integrity.reason}); run advisor_rebuild`);
+    }
     const sourceScan = scanSkillMetadataFiles(skillRoot, args.maxMetadataFiles ?? DEFAULT_MAX_METADATA_FILES);
     if (sourceScan.truncated) {
       errors.push(`advisor_status metadata scan capped at ${sourceScan.count} files`);
@@ -145,7 +290,8 @@ export function readAdvisorStatus(input: AdvisorStatusInput): AdvisorStatusOutpu
     // `freshness` see artifact health independent of daemon availability.
     // When physical evidence shows sources are newer than the DB, downgrade
     // a 'live' generation to 'stale' regardless of signature noise.
-    const freshnessOutput: AdvisorFreshness = state === 'live' && (sourceChanged || (!generation.sourceSignature && sourcesNewerThanArtifact))
+    const freshnessOutput: AdvisorFreshness = state === 'live'
+      && (sourceChanged || artifactCorrupt || (!generation.sourceSignature && sourcesNewerThanArtifact))
       ? 'stale'
       : state;
     const output: AdvisorStatusOutput = {
@@ -156,6 +302,7 @@ export function readAdvisorStatus(input: AdvisorStatusInput): AdvisorStatusOutpu
       lastScanAt: generation.updatedAt === new Date(0).toISOString() ? null : generation.updatedAt,
       skillCount: sourceScan.count,
       laneWeights: DEFAULT_SCORER_WEIGHTS,
+      ...((args.includeSemanticHealth || args.debug) ? { semanticLaneHealth: readSemanticLaneHealth(dbPath) } : {}),
       ...(daemonPid ? { daemonPid } : {}),
       ...(errors.length > 0 ? { errors } : {}),
     };
@@ -179,6 +326,7 @@ export function readAdvisorStatus(input: AdvisorStatusInput): AdvisorStatusOutpu
       lastScanAt: null,
       skillCount: sourceScan.count,
       laneWeights: DEFAULT_SCORER_WEIGHTS,
+      ...((args.includeSemanticHealth || args.debug) ? { semanticLaneHealth: readSemanticLaneHealth(dbPath) } : {}),
       errors: [message],
     };
     return AdvisorStatusOutputSchema.parse(output);
@@ -187,7 +335,10 @@ export function readAdvisorStatus(input: AdvisorStatusInput): AdvisorStatusOutpu
 
 /** Handle the advisor_status MCP tool request. */
 export async function handleAdvisorStatus(args: unknown): Promise<HandlerResponse> {
-  const data = readAdvisorStatus(AdvisorStatusInputSchema.parse(args));
+  // The diagnostic surface opts into the artifact integrity probe by default
+  // so operators see on-disk corruption; explicit input can still override it.
+  const parsed = AdvisorStatusInputSchema.parse(args);
+  const data = readAdvisorStatus({ ...parsed, checkArtifactIntegrity: parsed.checkArtifactIntegrity ?? true });
   return {
     content: [{
       type: 'text',

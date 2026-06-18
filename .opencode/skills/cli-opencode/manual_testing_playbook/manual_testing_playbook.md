@@ -433,7 +433,7 @@ Verify `--agent deep-research` executes a single research iteration against exte
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor (or `/deep:start-research-loop` simulator) running a single research iteration, dispatch `opencode run --agent deep-research --variant high --format json --dir <repo-root>` with state externalized at `/tmp/co-032-state.jsonl` and a prompt asking for at least 2 findings or open hypotheses. Verify the dispatch exits 0, the JSON event stream contains a session.completed event referencing findings or hypotheses, and that no Task or sub-agent tool.call events appear. Return a verdict naming the iteration findings count and confirming LEAF compliance.
+Prompt summary: As an external-AI conductor (or `/deep:research` simulator) running a single research iteration, dispatch `opencode run --agent deep-research --variant high --format json --dir <repo-root>` with state externalized at `/tmp/co-032-state.jsonl` and a prompt asking for at least 2 findings or open hypotheses. Verify the dispatch exits 0, the JSON event stream contains a session.completed event referencing findings or hypotheses, and that no Task or sub-agent tool.call events appear. Return a verdict naming the iteration findings count and confirming LEAF compliance.
 
 Expected signals: Exit 0. JSON parseable. >= 2 findings or hypotheses. Zero Task tool.call events. Zero nested `opencode run` invocations. Dispatch line includes `--agent deep-research`.
 
@@ -449,7 +449,7 @@ Verify `--agent deep-review` executes a single review iteration that surfaces at
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor (or `/deep:start-review-loop` simulator) running a single audit iteration, dispatch `opencode run --agent deep-review --variant high --format json --dir <repo-root>` against `@./.opencode/skills/cli-opencode/SKILL.md` with state externalized at `/tmp/co-033-state.jsonl`. Verify the dispatch exits 0, the JSON event stream contains a session.completed event with severity-tagged findings, and that no Task or sub-agent tool.call events appear. Return a verdict naming the highest-severity finding and confirming LEAF compliance.
+Prompt summary: As an external-AI conductor (or `/deep:review` simulator) running a single audit iteration, dispatch `opencode run --agent deep-review --variant high --format json --dir <repo-root>` against `@./.opencode/skills/cli-opencode/SKILL.md` with state externalized at `/tmp/co-033-state.jsonl`. Verify the dispatch exits 0, the JSON event stream contains a session.completed event with severity-tagged findings, and that no Task or sub-agent tool.call events appear. Return a verdict naming the highest-severity finding and confirming LEAF compliance.
 
 Expected signals: Exit 0. JSON parseable. >= 1 severity tag (P0, P1, or P2). >= 1 file or line citation. Zero Task tool.call events. Zero nested `opencode run` invocations. Dispatch line includes `--agent deep-review`.
 
@@ -647,7 +647,7 @@ Verify the dispatch matrix for Kimi-k2.6 via the opencode-go path, that the oper
 
 Prompt: `Consult sk-prompt-small-model for the Kimi-k2.6 dispatch matrix and pick the cli-opencode opencode-go path. Compose through sk-prompt with a large-context framework (RCAF with extended Context section) and dispatch with --model opencode-go/kimi-k2.6 --variant high.`
 
-Expected signals: Advisor returns `sk-prompt-small-model` + `cli-opencode` above threshold. model-profiles.json kimi-k2.6 entry shows the opencode-go path. `opencode run --model opencode-go/kimi-k2.6 --variant high` exits 0. Output references at least 5 distinct input files (large-context advantage).
+Expected signals: Advisor returns `sk-prompt-small-model` + `cli-opencode` above threshold. model_profiles.json kimi-k2.6 entry shows the opencode-go path. `opencode run --model opencode-go/kimi-k2.6 --variant high` exits 0. Output references at least 5 distinct input files (large-context advantage).
 
 Desired user-visible outcome: A consolidated multi-file analysis demonstrating Kimi-k2.6's large-context advantage, dispatched via the opencode-go pool with the matrix-consultation evidence trail.
 

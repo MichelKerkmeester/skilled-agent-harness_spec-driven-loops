@@ -82,6 +82,33 @@ describe('mk-skill-advisor launcher bootstrap', () => {
       MK_SKILL_ADVISOR_DB_DIR: '/tmp/db',
     });
   });
+
+  it('passes the committed daemon trust default through to the advisor child env', () => {
+    const opencodeConfig = JSON.parse(sourceText('../../../../../opencode.json')) as {
+      mcp?: { mk_skill_advisor?: { environment?: Record<string, string> } };
+    };
+    const committedTrustDefault = opencodeConfig.mcp?.mk_skill_advisor?.environment?.MK_SKILL_ADVISOR_TRUST_DEFAULT;
+
+    expect(committedTrustDefault).toBe('trusted');
+    expect(sourceText('../advisor-server.ts')).toContain('process.env.MK_SKILL_ADVISOR_TRUST_DEFAULT');
+    expect(launcher.createChildEnv({
+      MK_SKILL_ADVISOR_TRUST_DEFAULT: committedTrustDefault,
+      AWS_SECRET_ACCESS_KEY: 'should-not-leak',
+    })).toEqual({
+      MK_SKILL_ADVISOR_TRUST_DEFAULT: 'trusted',
+    });
+  });
+
+  it('passes advisor shadow feature flags through to the child env', () => {
+    expect(launcher.createChildEnv({
+      SPECKIT_ADVISOR_BM25_LEXICAL_SHADOW: 'true',
+      SPECKIT_ADVISOR_FEEDBACK_CALIBRATION_SHADOW: 'true',
+      AWS_SECRET_ACCESS_KEY: 'should-not-leak',
+    })).toEqual({
+      SPECKIT_ADVISOR_BM25_LEXICAL_SHADOW: 'true',
+      SPECKIT_ADVISOR_FEEDBACK_CALIBRATION_SHADOW: 'true',
+    });
+  });
 });
 
 function sourceText(relativePath: string): string {

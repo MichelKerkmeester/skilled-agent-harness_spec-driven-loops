@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/135-skill-readme-standardization/021-system-code-graph-readme",
+  "description": "Feature Specification: system-code-graph README",
+  "keywords": [
+    "feature",
+    "specification",
+    "system-code-graph",
+    "readme"
+  ],
+  "lastUpdated": "2026-06-10T04:53:30.823Z",
+  "specId": "021",
+  "folderSlug": "system-code-graph-readme",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "135-skill-readme-standardization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,154 @@
+{
+  "findings": [
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts",
+      "symbol": "new Database",
+      "kind": "integration_point",
+      "signature": "const db = new Database(dbPath)",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:298",
+      "relevance": 0.95,
+      "notes": "better-sqlite3 sync constructor; libSQL createClient() is async — requires init path rewrite"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts",
+      "symbol": "db.pragma",
+      "kind": "dependency",
+      "signature": "db.pragma('journal_mode = WAL'); db.pragma('busy_timeout = 5000'); db.pragma('foreign_keys = ON')",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:299",
+      "relevance": 1,
+      "notes": "Three .pragma() calls; libSQL lacks .pragma() method — must use db.exec('PRAGMA ...') or connection string params"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-db.ts",
+      "symbol": "new Database",
+      "kind": "integration_point",
+      "signature": "const db = new Database(dbPath)",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-db.ts:144",
+      "relevance": 0.95,
+      "notes": "Sync Database constructor; same async gap as session-analytics-db"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-db.ts",
+      "symbol": "db.pragma",
+      "kind": "dependency",
+      "signature": "db.pragma('journal_mode = WAL'); db.pragma('busy_timeout = 5000'); db.pragma('foreign_keys = ON')",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-db.ts:147",
+      "relevance": 1,
+      "notes": "Three .pragma() calls; libSQL has no .pragma() API — requires exec-based pragma or connection config"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts",
+      "symbol": "db.pragma",
+      "kind": "dependency",
+      "signature": "db.pragma('shrink_memory')",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:366",
+      "relevance": 0.85,
+      "notes": "Non-standard PRAGMA shrink_memory; libSQL may not support this — low-risk since try/catch already wraps it"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts",
+      "symbol": "PRAGMA database_list",
+      "kind": "dependency",
+      "signature": "db.prepare('PRAGMA database_list').all()",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:134",
+      "relevance": 0.8,
+      "notes": "Used to detect ATTACH'd vector shard; libSQL ATTACH behavior differs — shared-cache model may eliminate need"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts",
+      "symbol": "PRAGMA table_info",
+      "kind": "dependency",
+      "signature": "PRAGMA ${ACTIVE_VECTOR_SCHEMA}.table_info(${tableName})",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts:124",
+      "relevance": 0.7,
+      "notes": "Schema-qualified PRAGMA for ATTACH'd shard introspection; libSQL schema-qualified pragma support uncertain"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts",
+      "symbol": "db.exec",
+      "kind": "integration_point",
+      "signature": "db.exec('BEGIN IMMEDIATE'); db.exec('COMMIT'); db.exec('ROLLBACK')",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:631",
+      "relevance": 0.9,
+      "notes": "Raw BEGIN IMMEDIATE/COMMIT/ROLLBACK for manual transaction control; libSQL transaction API differs from string exec"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts",
+      "symbol": "db.transaction",
+      "kind": "dependency",
+      "signature": "db.transaction(() => { stmt.run(...); enforceEntryLimit(sessionId); })()",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:680",
+      "relevance": 0.75,
+      "notes": "better-sqlite3 .transaction() returns callable wrapper; libSQL batch()/transaction() API is different"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts",
+      "symbol": "db.exec",
+      "kind": "integration_point",
+      "signature": "db.exec(SCHEMA_SQL)",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:490",
+      "relevance": 0.65,
+      "notes": "Multi-statement DDL via exec(); libSQL exec() may handle DDL differently for compound statements"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts",
+      "symbol": "PRAGMA table_info",
+      "kind": "dependency",
+      "signature": "db.prepare(`PRAGMA table_info(${tableName})`).all()",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:1018",
+      "relevance": 0.55,
+      "notes": "PRAGMA table_info for migration introspection; libSQL supports this but prepare+pragma combo may differ"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts",
+      "symbol": "db.transaction",
+      "kind": "dependency",
+      "signature": "db.transaction((rows: TranscriptTurn[]) => { ... })(turns)",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:498",
+      "relevance": 0.75,
+      "notes": "Parameterized transaction wrapper; libSQL transaction() has different parameter passing semantics"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/extraction/entity-extractor.ts",
+      "symbol": "db.transaction",
+      "kind": "dependency",
+      "signature": "db.transaction(() => { deleteStmt.run(...); for(...) insertStmt.run(...); })()",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/extraction/entity-extractor.ts:182",
+      "relevance": 0.7,
+      "notes": "Transaction wrapping entity CRUD; better-sqlite3 sync pattern needs async adaptation for libSQL"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts",
+      "symbol": "db.transaction",
+      "kind": "dependency",
+      "signature": "const updateTx = db.transaction(() => { db.prepare('UPDATE ...').run(...); db.prepare('INSERT INTO vec_memories ...').run(...); })",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:745",
+      "relevance": 0.75,
+      "notes": "Transaction mixing memory_index UPDATE with vec_memories INSERT; cross-table atomicity semantics differ in libSQL"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts",
+      "symbol": "inTransaction",
+      "kind": "dependency",
+      "signature": "(db as unknown as { inTransaction?: boolean }).inTransaction === true",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:627",
+      "relevance": 0.8,
+      "notes": "better-sqlite3 .inTransaction property for nested tx detection; libSQL has no equivalent — needs manual tracking"
+    }
+  ]
+}

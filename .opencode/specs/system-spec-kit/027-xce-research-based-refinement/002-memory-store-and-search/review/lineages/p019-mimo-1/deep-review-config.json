@@ -1,0 +1,27 @@
+{
+  "mode": "review",
+  "status": "complete",
+  "sessionId": "fanout-p019-mimo-1-1781719527072-mk6no9",
+  "parentSessionId": "fanout-p019-mimo-1-1781719527072-mk6no9",
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "releaseReadinessState": "in-progress",
+  "reviewTarget": "019-maintenance-grace-daemon-survives-reelection",
+  "reviewTargetType": "spec-folder",
+  "specFolder": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/019-maintenance-grace-daemon-survives-reelection",
+  "artifactDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/review/lineages/p019-mimo-1",
+  "maxIterations": 1,
+  "convergenceThreshold": 0.10,
+  "dimensions": ["correctness", "security", "traceability", "maintainability"],
+  "protocols": {
+    "core": ["spec_code", "checklist_evidence"],
+    "overlay": [],
+    "applicable": ["spec_code"]
+  },
+  "resource_map_present": false,
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "xiaomi/mimo-v2.5-pro"
+  }
+}

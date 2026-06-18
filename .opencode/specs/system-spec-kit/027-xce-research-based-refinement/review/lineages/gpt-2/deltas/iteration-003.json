@@ -1,0 +1,13 @@
+{
+  "iteration": 3,
+  "focus": "traceability",
+  "newFindingsRatio": 0.48,
+  "findingsNew": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 0
+  },
+  "findingRefs": [
+    "F002"
+  ]
+}

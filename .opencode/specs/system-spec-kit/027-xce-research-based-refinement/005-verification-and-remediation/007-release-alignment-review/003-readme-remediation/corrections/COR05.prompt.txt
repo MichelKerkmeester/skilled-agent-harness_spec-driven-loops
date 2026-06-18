@@ -1,0 +1,19 @@
+Act as a markdown documentation-fixer (correction seat COR05). Spec folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation (PRE-APPROVED at Gate 3 — make the edits directly; do NOT re-ask Gate 3 or ask anything).
+
+An accuracy audit found that a PRIOR automated fix wrote WRONG or imprecise values in the file(s) below. Apply each audit-verified correction SURGICALLY: replace the wrong text with the actual truth. The audit already verified the truth against the cited evidence — confirm at the evidence path, then correct.
+
+ALLOWED WRITE PATHS (edit ONLY these):
+- .opencode/skills/mcp-code-mode/README.md
+BANNED: no delete, no rename, no new files, no edits outside the listed files, no --no-verify.
+
+CORRECTIONS (for each: find the wrong text, replace with the actual truth; verify at evidence first):
+1. WRONG (now in file): tool_info({ tool_name: "clickup_official.clickup_official_create_task" })
+   ACTUAL TRUTH: tool_info expects the registered dotted tool name returned by list_tools, e.g. clickup_official.clickup_official.create_task when ClickUp is registered; the underscore form is the call_tool_chain access form, not the tool_info lookup key.
+   EVIDENCE: .opencode/skills/mcp-code-mode/mcp_server/index.ts:220-229 and .opencode/skills/mcp-code-mode/mcp_server/index.ts:262-267
+
+Important nuance to honor: spec-memory CLI front door = 37 tools; MCP server = 39. Validation registry = 38 rules (36 default non-strict + strict-only). Do not re-introduce the wrong value.
+
+After editing, re-read each corrected line. Final message MUST be one fenced ```json block:
+```json
+{"seat":"COR05","corrected":[{"file":"","to":""}],"skipped":[{"file":"","why":""}]}
+```

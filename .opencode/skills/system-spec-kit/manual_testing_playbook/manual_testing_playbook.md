@@ -1,7 +1,7 @@
 ---
 title: "Spec Kit Memory: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the Spec Kit Memory MCP server."
-last_updated: "2026-05-20"
+last_updated: "2026-06-11"
 ---
 
 # Spec Kit Memory: Manual Testing Playbook
@@ -118,13 +118,18 @@ For each executed scenario, check:
 
 Scenario verdict:
 - `PASS`: all acceptance checks true
-- `PARTIAL`: core behavior works but non-critical evidence or metadata is incomplete
 - `FAIL`: expected behavior missing, contradictory output, or critical check failed
+- `SKIP`: a specific sandbox or runtime blocker prevented execution (document the blocker)
+- `UNAUTOMATABLE`: the scenario cannot be truthfully executed through the direct-handler runner (document why)
+
+`PARTIAL` is a packet-level summary classification only (core behavior observed, supporting evidence incomplete); it is not a valid per-scenario verdict.
 
 ### Feature Verdict Rules
 
-- `PASS`: all mapped scenarios for feature are `PASS`
-- `PARTIAL`: at least one mapped scenario is `PARTIAL`, none are `FAIL`
+`PARTIAL` is an aggregate evidence state, never inherited from a per-scenario `PARTIAL` (which is not a valid scenario verdict — see above):
+
+- `PASS`: all mapped scenarios for the feature are `PASS`
+- `PARTIAL`: no mapped scenario is `FAIL`, but core behavior is only partially evidenced — i.e. some mapped scenarios are `SKIP`/`UNAUTOMATABLE`, or supporting evidence for one or more `PASS` scenarios is incomplete
 - `FAIL`: any mapped scenario is `FAIL`
 
 Hard rule:
@@ -137,40 +142,55 @@ Release is `READY` only when:
 1. No feature verdict is `FAIL`.
 2. All critical scenarios are `PASS`.
 3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-scenario files (`COVERED_SCENARIOS == TOTAL_SCENARIOS`).
-4. Feature-catalog cross-reference coverage has been reviewed separately; scenario coverage does not imply a 1:1 feature-file count because the playbook currently contains 387 scenario files while the feature catalog contains 324 feature files.
+4. Feature-catalog cross-reference coverage has been reviewed separately; scenario coverage does not imply a 1:1 feature-file count because the playbook currently contains 407 executable scenario files (category README/package-map files are excluded) while the feature catalog contains 341 feature files.
 5. No unresolved blocking triage item remains.
-6. Orphan scenario count is zero (every scenario file is linked in Section 12).
+6. Orphan scenario count does not exceed the recorded reconciliation baseline (82 as of 2026-06-16 — legacy index debt, recomputed after excluding 3 category README files; the baseline may only ratchet DOWN), and zero index links are broken.
 
 Otherwise release is `NOT READY`.
 
 Deterministic coverage check (run from repository root):
 
 ```bash
-TOTAL_FEATURES=$(python3 - <<'PY'
+python3 - <<'PY'
+import re
+import sys
 from pathlib import Path
 
 root = Path('.opencode/skills/system-spec-kit/manual_testing_playbook')
-count = sum(
-    1
-    for path in root.glob('[0-9][0-9]--*/*.md')
-    if path.is_file()
-)
-count += sum(
-    1
-    for path in root.glob('[0-9][0-9]--*/_deprecated/*.md')
-    if path.is_file()
-)
-print(count)
+index = root / 'manual_testing_playbook.md'
+
+scenario_files = {
+    path.relative_to(root).as_posix()
+    for pattern in ('[0-9][0-9]--*/*.md', '[0-9][0-9]--*/_deprecated/*.md')
+    for path in root.glob(pattern)
+    if path.is_file() and path.name != 'README.md'  # category README/package-map files are not executable scenarios
+}
+
+linked = {
+    re.sub(r'^\./', '', target)
+    for target in re.findall(r'\]\(((?:\./)?[0-9][0-9]--[^)#]+\.md)', index.read_text())
+}
+
+failures = []
+if len(scenario_files) != 407:
+    failures.append(f'expected 407 scenario files, found {len(scenario_files)}')
+broken = sorted(linked - scenario_files)
+if broken:
+    failures.append(f'{len(broken)} index link(s) resolve to no file: {broken[:5]}')
+ORPHAN_RATCHET_BASELINE = 82
+orphans = sorted(f for f in scenario_files - linked if '/_deprecated/' not in f)
+if len(orphans) > ORPHAN_RATCHET_BASELINE:
+    failures.append(f'{len(orphans)} orphan scenario file(s) exceed the recorded baseline of {ORPHAN_RATCHET_BASELINE}: {orphans[:5]}')
+
+if failures:
+    print('\n'.join(failures), file=sys.stderr)
+    sys.exit(1)
+print(f'OK: {len(scenario_files)} files, {len(linked)} index links, 0 broken, {len(orphans)} orphans (baseline {ORPHAN_RATCHET_BASELINE})')
 PY
-)
-if [ "$TOTAL_FEATURES" -ne 387 ]; then
-  echo "Expected 387 scenario files, found $TOTAL_FEATURES" >&2
-  exit 1
-fi
 ```
 
 Final verdict report must include `COVERED_SCENARIOS/TOTAL_SCENARIOS` and should call out any remaining feature-catalog entries that are automated-only, indirect, or intentionally operator-only.
-As of 2026-06-08, the deterministic file count is 387. Scenario 419 is the runtime lifecycle guardrail entry for orphan MCP cleanup. Scenarios 421-426 are the daemon-reliability hardening entries. Broader legacy index reconciliation remains governed by the release-readiness rule above.
+As of 2026-06-16, the deterministic executable-scenario file count is 407 (category README/package-map files excluded). Scenario 419 is the runtime lifecycle guardrail entry for orphan MCP cleanup. Scenarios 421-426 are the daemon-reliability hardening entries. Scenarios 427-438 and 449 are the MCP-to-CLI program entries: daemon-backed CLI surfaces (427-431), the tri-daemon program gate (432), runtime warm-only hook fallbacks (433), CLI stress set (434-438), and compact/completion automation (449). Scenarios 439-448 are the release-hardening entries for default-off flags, retrieval observability, and governance guards. Broader legacy index reconciliation remains governed by the release-readiness rule above.
 
 ### Destructive Scenario Rules
 
@@ -238,7 +258,7 @@ Use the per-feature files for feature-specific:
 Intent-aware context pull.
 
 #### Scenario Contract
-Prompt: `Validate memory_context recovery via /spec_kit:resume specs/<target-spec> and confirm bounded context is relevant and non-empty.`
+Prompt: `Validate memory_context recovery via /speckit:resume specs/<target-spec> and confirm bounded context is relevant and non-empty.`
 
 Relevant bounded context returned; auto-resume context stays within budget
 
@@ -694,7 +714,7 @@ Provider selection audit.
 #### Scenario Contract
 Prompt: `Validate 5. Embedding and API against memory_search({ query:"EMBEDDINGS_PROVIDER auto provider selection rules ollama hf-local nomic-embed-text-v1.5 local defaults", limit:20 }).`
 
-Provider rules show explicit provider override, cloud key precedence, local `ollama` default, and `hf-local` fallback with current `nomic-embed-text-v1.5` local default/fallback model IDs.
+Provider rules show explicit provider override, local-first auto mode (`ollama` before `hf-local`), cloud providers selected only by explicit `EMBEDDINGS_PROVIDER` or later fallback, and current `nomic-embed-text-v1.5` local default/fallback model IDs.
 
 #### Test Execution
 > **Feature File:** [EX-032](19--feature-flag-reference/5-embedding-and-api.md)
@@ -2166,7 +2186,7 @@ Prompt: `Validate Ollama runtime optionalDependencies and graceful dynamic-impor
 Ollama runtime listed in optionalDependencies (not dependencies); npm install completes without error on clean env; dynamic import with graceful fallback when module absent
 
 #### Test Execution
-> **Feature File:** [102](11--scoring-and-calibration/102-Ollama runtime-optionaldependencies.md)
+> **Feature File:** *(102 consolidated — no standalone file; coverage lives in the scoring-and-calibration category)*
 > **Catalog:** *(Ollama runtime optionalDependencies — covered by `11--scoring-and-calibration/14`)*
 
 ### 103 | UX hook module coverage (`mutation-feedback`, `response-hints`)
@@ -3307,10 +3327,10 @@ Prompt: `Validate Phase link validation against bash .opencode/skills/system-spe
 ### PHASE-005 | Phase command workflow
 
 #### Description
-Execute `/spec_kit:plan :with-phases` command in auto mode and verify phase decomposition pre-workflow.
+Execute `/speckit:plan :with-phases` command in auto mode and verify phase decomposition pre-workflow.
 
 #### Scenario Contract
-Prompt: `Validate Phase command workflow against /spec_kit:plan :with-phases and report cited pass/fail evidence.`
+Prompt: `Validate Phase command workflow against /speckit:plan :with-phases and report cited pass/fail evidence.`
 
 All 7 steps execute in sequence; scoring output visible; folders created with correct structure; link validation passes; recursive validation passes; success summary with paths
 
@@ -3336,7 +3356,7 @@ Prompt: `Validate create.sh literal-naming fallback by running create.sh "litera
 Route an ambiguous spec task through multiple external CLI agents and confirm each agent proposes phase names with specific subject tokens per the `Generate LITERAL phase names` YAML activity added in Packet 012.
 
 #### Scenario Contract
-Prompt: `An operator gives a deliberately ambiguous task to an external CLI agent that should trigger /spec_kit:plan phase decomposition. Verify the AI proposes phase names with specific subject tokens, NOT generic placeholders.`
+Prompt: `An operator gives a deliberately ambiguous task to an external CLI agent that should trigger /speckit:plan phase decomposition. Verify the AI proposes phase names with specific subject tokens, NOT generic placeholders.`
 
 All 3 proposed slugs contain a specific subject token naming the concrete component or behavior; no slug matches the generic stoplist (phase-1, phase-2, phase-3, cleanup, remediation, fix, refactor, setup); aggregate PASS requires 2 or more CLIs to report PASS
 
@@ -3399,12 +3419,12 @@ These 30 catalog entries are explicitly documented here even when validation is 
 ### M-001 | Context Recovery and Continuation
 
 #### Description
-Canonical resume workflow through `/spec_kit:resume` and the packet recovery ladder.
+Canonical resume workflow through `/speckit:resume` and the packet recovery ladder.
 
 #### Scenario Contract
-Prompt: `Validate context recovery with /spec_kit:resume specs/<target-spec> and confirm the resume ladder returns actionable next steps.`
+Prompt: `Validate context recovery with /speckit:resume specs/<target-spec> and confirm the resume ladder returns actionable next steps.`
 
-Expected signals: Resume-ready state summary and next steps via `/spec_kit:resume` and the canonical packet ladder.
+Expected signals: Resume-ready state summary and next steps via `/speckit:resume` and the canonical packet ladder.
 
 #### Test Execution
 > **Feature File:** [M-001](01--retrieval/context-recovery-and-continuation.md)
@@ -3652,7 +3672,7 @@ This split playbook keeps automated coverage references in three places:
 | 097 | Features | Async ingestion job lifecycle (P0-3) | [097](05--lifecycle/async-ingestion-job-lifecycle-p0-3.md) | [05--lifecycle/async-ingestion-job-lifecycle.md](../feature_catalog/05--lifecycle/async-ingestion-job-lifecycle.md) |
 | 099 | Features | Real-time filesystem watching  | [099](16--tooling-and-scripts/real-time-filesystem-watching-p1-7.md) | [16--tooling-and-scripts/real-time-filesystem-watching-with-chokidar.md](../feature_catalog/16--tooling-and-scripts/real-time-filesystem-watching-with-chokidar.md) |
 | 101 | Features | memory_delete confirm schema tightening | [101](02--mutation/memory-delete-confirm-schema-tightening.md) | *(memory_delete confirm schema — covered by `02--mutation/03`)* |
-| 102 | Features | Ollama runtime optionalDependencies | [102](11--scoring-and-calibration/102-Ollama runtime-optionaldependencies.md) | *(Ollama runtime optionalDependencies — covered by `11--scoring-and-calibration/14`)* |
+| 102 | Features | Ollama runtime optionalDependencies | *(consolidated — no standalone file)* | *(Ollama runtime optionalDependencies — covered within `11--scoring-and-calibration`)* |
 | 103 | Features | UX hook module coverage (`mutation-feedback`, `response-hints`) | [103](18--ux-hooks/ux-hook-module-coverage-mutation-feedback-response-hints.md) | [18--ux-hooks/dedicated-ux-hook-modules.md](../feature_catalog/18--ux-hooks/dedicated-ux-hook-modules.md) |
 | 104 | Features | Mutation save-path UX parity and no-op hardening | [104](18--ux-hooks/mutation-save-path-ux-parity-and-no-op-hardening.md) | [18--ux-hooks/duplicate-save-no-op-feedback-hardening.md](../feature_catalog/18--ux-hooks/duplicate-save-no-op-feedback-hardening.md) |
 | 105 | Features | Context-server success-envelope finalization | [105](18--ux-hooks/context-server-success-envelope-finalization.md) | [18--ux-hooks/context-server-success-hint-append.md](../feature_catalog/18--ux-hooks/context-server-success-hint-append.md) |
@@ -3743,7 +3763,7 @@ This split playbook keeps automated coverage references in three places:
 | M-006 | Dedicated Memory/Spec-Kit Scenarios | Session Enrichment and Alignment Guardrails | [M-006](13--memory-quality-and-indexing/session-enrichment-and-alignment-guardrails.md) | [13--memory-quality-and-indexing/session-enrichment-and-alignment-guards.md](../feature_catalog/13--memory-quality-and-indexing/session-enrichment-and-alignment-guards.md) |
 | M-007 | Dedicated Memory/Spec-Kit Scenarios | Session Capturing Pipeline Quality | [M-007](16--tooling-and-scripts/session-capturing-pipeline-quality.md) | [16--tooling-and-scripts/session-capturing-pipeline-quality.md](../feature_catalog/16--tooling-and-scripts/session-capturing-pipeline-quality.md) |
 | M-008 | Dedicated Memory/Spec-Kit Scenarios | Feature 09 Direct Manual Scenario (Per-memory History Log) | [M-008](02--mutation/feature-09-direct-manual-scenario-per-memory-history-log.md) | [02--mutation/per-memory-history-log.md](../feature_catalog/02--mutation/per-memory-history-log.md) |
-| 190 | Features | Session recovery via /spec_kit:resume | [190](01--retrieval/session-recovery-spec-kit-resume.md) | [01--retrieval/session-recovery-spec-kit-resume.md](../feature_catalog/01--retrieval/session-recovery-spec-kit-resume.md) |
+| 190 | Features | Session recovery via /speckit:resume | [190](01--retrieval/session-recovery-spec-kit-resume.md) | [01--retrieval/session-recovery-spec-kit-resume.md](../feature_catalog/01--retrieval/session-recovery-spec-kit-resume.md) |
 | 125-map | Features | Audit phase mapping note (020) | — | [19--feature-flag-reference/audit-phase-020-mapping-note.md](../feature_catalog/19--feature-flag-reference/audit-phase-020-mapping-note.md) |
 | 020-stub | Features | Remediation and revalidation (stub) | — | [20--remediation-revalidation/category-stub.md](../feature_catalog/20--remediation-revalidation/category-stub.md) |
 | 021-stub | Features | Implement and remove deprecated (stub) | — | [21--implement-and-remove-deprecated-features/category-stub.md](../feature_catalog/21--implement-and-remove-deprecated-features/category-stub.md) |
@@ -3793,8 +3813,8 @@ This split playbook keeps automated coverage references in three places:
 | 272 | Features | Strict validation add-ons: continuity freshness and evidence markers | [272](16--tooling-and-scripts/strict-validation-addons-continuity-freshness-and-evidence-markers.md) | [16--tooling-and-scripts/strict-validation-addons-continuity-freshness-and-evidence-markers.md](../feature_catalog/16--tooling-and-scripts/strict-validation-addons-continuity-freshness-and-evidence-markers.md) |
 | 273 | Features | Session-resume caller binding and Unicode sanitization | [273](17--governance/session-resume-caller-binding-and-unicode-sanitization.md) | [17--governance/session-resume-caller-binding-and-unicode-sanitization.md](../feature_catalog/17--governance/session-resume-caller-binding-and-unicode-sanitization.md) |
 | 276 | Features | Reconsolidation conflict transaction helper | [276](02--mutation/reconsolidation-conflict-transaction-helper.md) | [02--mutation/reconsolidation-conflict-transaction-helper.md](../feature_catalog/02--mutation/reconsolidation-conflict-transaction-helper.md) |
-| 278 | Features | Memory retention sweep basic flow | [278](04--maintenance/memory-retention-sweep-basic-flow.md) | [04--maintenance/memory-retention-sweep-basic-flow.md](04--maintenance/memory-retention-sweep-basic-flow.md) |
-| 280 | Features | CLI matrix adapter runner smoke | [280](16--tooling-and-scripts/cli-matrix-adapter-runner-smoke.md) | [16--tooling-and-scripts/cli-matrix-adapter-runner-smoke.md](16--tooling-and-scripts/cli-matrix-adapter-runner-smoke.md) |
+| 278 | Features | Memory retention sweep basic flow | [278](04--maintenance/memory-retention-sweep-basic-flow.md) | [04--maintenance/memory-retention-sweep.md](../feature_catalog/04--maintenance/memory-retention-sweep.md) |
+| 280 | Features | CLI matrix adapter runner smoke | [280](16--tooling-and-scripts/cli-matrix-adapter-runner-smoke.md) | [16--tooling-and-scripts/cli-matrix-adapter-runners.md](../feature_catalog/16--tooling-and-scripts/cli-matrix-adapter-runners.md) |
 
 ---
 | 323 | Doctor Commands | /doctor memory fresh-install bootstrap | [323](23--doctor-commands/doctor-memory-fresh-install.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
@@ -3828,3 +3848,26 @@ This split playbook keeps automated coverage references in three places:
 | 424 | Pipeline Architecture | MCP code-index reconnecting proxy | [424](14--pipeline-architecture/mcp-code-index-reconnecting-proxy.md) | [14--pipeline-architecture/mcp-code-index-reconnecting-proxy.md](../feature_catalog/14--pipeline-architecture/mcp-code-index-reconnecting-proxy.md) |
 | 425 | Tooling And Scripts | Orphan-sweep Stop-hook activation | [425](16--tooling-and-scripts/orphan-sweep-stop-hook-activation.md) | [16--tooling-and-scripts/orphan-sweep-stop-hook-activation.md](../feature_catalog/16--tooling-and-scripts/orphan-sweep-stop-hook-activation.md) |
 | 426 | Pipeline Architecture | Daemon ownership re-election (default-on, reap-before-respawn, live two-session validation) | [426](14--pipeline-architecture/daemon-ownership-reelection.md) | [14--pipeline-architecture/daemon-ownership-reelection.md](../feature_catalog/14--pipeline-architecture/daemon-ownership-reelection.md) |
+| 427 | Tooling And Scripts | CLI list-tools parity per system (spec-memory 37 / code-index 8 / skill-advisor 9) | [427](16--tooling-and-scripts/cli-list-tools-parity.md) | [16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md](../feature_catalog/16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md) |
+| 428 | Tooling And Scripts | CLI warm-only no-spawn behavior (exit 75) | [428](16--tooling-and-scripts/cli-warm-only-no-spawn.md) | [16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md](../feature_catalog/16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md) |
+| 429 | Tooling And Scripts | CLI dist-freshness guard trip (exit 69, dev overrides) | [429](16--tooling-and-scripts/cli-dist-freshness-guard.md) | [16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md](../feature_catalog/16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md) |
+| 430 | Tooling And Scripts | code-index CLI blocked-read rendering (exit 0, requiredAction surfaced) | [430](16--tooling-and-scripts/cli-blocked-read-rendering.md) | [06--mcp-tool-surface/code-index-cli.md](../../system-code-graph/feature_catalog/06--mcp-tool-surface/code-index-cli.md) |
+| 431 | Tooling And Scripts | skill-advisor CLI trusted-gate refusal (exit 64, fail-closed) | [431](16--tooling-and-scripts/cli-trusted-gate-refusal.md) | [06--mcp-surface/skill-advisor-cli.md](../../system-skill-advisor/feature_catalog/06--mcp-surface/skill-advisor-cli.md) |
+| 432 | Pipeline Architecture | Tri-daemon spawn drill invocation (028 program gate, SPECKIT_RUN_TRI_DAEMON_DRILL=1) | [432](14--pipeline-architecture/tri-daemon-spawn-drill.md) | [16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md](../feature_catalog/16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md) |
+| 433 | UX Hooks | CLI hook transport-down fail-open (warm-only, no prompt-time spawn) | [433](18--ux-hooks/cli-hook-transport-down-fail-open.md) | [16--tooling-and-scripts/cli-runtime-warm-only-fallbacks.md](../feature_catalog/16--tooling-and-scripts/cli-runtime-warm-only-fallbacks.md) |
+| 434 | Tooling And Scripts | 028 CLI stress: concurrent dual-CLI+MCP load | [434](16--tooling-and-scripts/cli-stress-concurrent-dual-client-load.md) | [16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md](../feature_catalog/16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md) |
+| 435 | Tooling And Scripts | 028 CLI stress: repeated warm-only probes under daemon churn | [435](16--tooling-and-scripts/cli-stress-warm-only-probe-churn.md) | [16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md](../feature_catalog/16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md) |
+| 436 | Tooling And Scripts | 028 CLI stress: large-payload (>64KB) pipe integrity | [436](16--tooling-and-scripts/cli-stress-large-payload-pipe-integrity.md) | [16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md](../feature_catalog/16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md) |
+| 437 | Tooling And Scripts | 028 CLI stress: numeric-coercion edge args | [437](16--tooling-and-scripts/cli-stress-numeric-coercion-edge-args.md) | [06--mcp-tool-surface/code-index-cli.md](../../system-code-graph/feature_catalog/06--mcp-tool-surface/code-index-cli.md) |
+| 438 | Tooling And Scripts | 028 CLI stress: trust-gate fuzz (untrusted mutations all exit 64) | [438](16--tooling-and-scripts/cli-stress-trust-gate-fuzz.md) | [06--mcp-surface/skill-advisor-cli.md](../../system-skill-advisor/feature_catalog/06--mcp-surface/skill-advisor-cli.md) |
+| 439 | Feature Flag Reference | Semantic trigger shadow and union modes | [439](19--feature-flag-reference/semantic-trigger-shadow-and-union.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
+| 440 | Feature Flag Reference | Memory idempotency replay and conflict | [440](19--feature-flag-reference/memory-idempotency-replay-and-conflict.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
+| 441 | Feature Flag Reference | Soft-delete tombstones | [441](19--feature-flag-reference/soft-delete-tombstones.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
+| 442 | Feature Flag Reference | Session-trace causal inference | [442](19--feature-flag-reference/session-trace-causal-inference.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
+| 443 | Feature Flag Reference | Feedback retention learning modes | [443](19--feature-flag-reference/feedback-retention-learning-modes.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
+| 444 | Feature Flag Reference | Authored continuity snapshot | [444](19--feature-flag-reference/authored-continuity-snapshot.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
+| 445 | Feature Flag Reference | Completion freshness validator | [445](19--feature-flag-reference/completion-freshness-validator.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
+| 446 | Retrieval Enhancements | Retrieval observability trace and health | [446](15--retrieval-enhancements/retrieval-observability-trace-and-health.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
+| 447 | Governance | Source kind provenance guard | [447](17--governance/source-kind-provenance-guard.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
+| 448 | Governance | Stale-exclusion audit and tool-ownership lint | [448](17--governance/stale-exclusion-audit-and-tool-ownership-lint.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
+| 449 | Tooling And Scripts | CLI compact list-tools and completion generation | [449](16--tooling-and-scripts/cli-compact-and-completion.md) | [16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md](../feature_catalog/16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md) |

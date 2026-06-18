@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/138-cli-devin-deprecation/003-registry-graph-and-skill-advisor-removal",
+  "description": "Feature Specification: Phase 3: registry-graph-and-skill-advisor-removal",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "registry-graph-and-skill-advisor-removal"
+  ],
+  "lastUpdated": "2026-06-15T18:16:13.852Z",
+  "specId": "003",
+  "folderSlug": "registry-graph-and-skill-advisor-removal",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "138-cli-devin-deprecation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

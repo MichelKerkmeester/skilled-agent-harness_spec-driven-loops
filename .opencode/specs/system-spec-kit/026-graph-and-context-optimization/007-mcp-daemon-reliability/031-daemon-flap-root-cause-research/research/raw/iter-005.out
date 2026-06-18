@@ -1,0 +1,105 @@
+Read-only mode confirmed. I’ll inspect the specified research artifacts and launcher/IPC code, then return the design as the final deliverable without editing files.
+I’ll use the provided iterations as accepted evidence, then compare the hardened spec-memory launcher against advisor/code-index and shared lifecycle helpers to design the smallest uniform hardening path.
+One requested research file is not at the exact path given. I’ll locate it by filename, then continue with the launcher and shared helper reads.
+The current code already shows the key divergence: spec-memory has release/adopt logic while advisor and code-index still clear leases and kill on signal/child exit. I’ll read the remaining lifecycle tails, idle/socket code, and CLI warm-only branches for exact line citations.
+The orchestrator verification confirms the exact scope: non-warm CLIs already cold-spawn; prompt-time warm-only paths do not. I’ll now inspect the socket server and CLI `spawnLauncher` branches so the design can specify where the resurrector hooks in.
+The socket server file in system-spec-kit is only a re-export; the actual stale-socket bind contract lives in the shared package it imports. I’ll read the generated CLI entrypoints directly and the shared socket-server implementation.
+The CLI files are `.opencode/bin/spec-memory.cjs`, `.opencode/bin/code-index.cjs`, and `.opencode/bin/skill-advisor.cjs`; I’ll read their warm-only `ensureDaemon` sections and the shared socket server source.
+The `.opencode/bin/*` files are shims; the warm-only decision is in the built CLI dist files behind them. I’ll read those exact sections next.
+The dist warm-only branches are identical: probe, throw 75 if `warmOnly`, otherwise `spawnLauncher()` and wait. I’ll grab the `spawnLauncher` definitions too, because the chosen resurrector will reuse that path asynchronously.
+For implementation, the source TypeScript should be changed and dist regenerated, so I’ll cite both the source ownership and the dist evidence where useful.
+The shared socket server already tracks secondary clients in-process via `activeSockets.size`; the shutdown policy needs a way for launchers/daemon status paths to query that before deciding release vs kill. I’ll locate current uses of those stats.
+Daemon-side idle already uses secondary-client count; launchers currently cannot see that directly unless they query/probe a live daemon endpoint, so the design should add a small shared liveness/stats query rather than guessing from lease files.
+## IT5 — Fix B: uniform launcher-hardening (no OS dependency)
+### Design (concrete change sites)
+Use `mk-spec-memory` as the reference and make advisor/code-index match it.
+
+| Area | Concrete recommendation | Change sites |
+|---|---|---|
+| Shared release/adopt helpers | Move spec-memory’s re-election predicates, detached spawn policy, owner-lease manager, stale-lease adopt/reap decision, and supervised child-exit wiring into `.opencode/bin/lib/model-server-supervision.cjs`. Keep service paths, build steps, env allowlists, status logging, DB migration, replay classifiers, and spec-memory clean-close marker per launcher. | Reference exists in `.opencode/bin/mk-spec-memory-launcher.cjs:196-215`, `.opencode/bin/mk-spec-memory-launcher.cjs:1337-1376`, `.opencode/bin/mk-spec-memory-launcher.cjs:1440-1471`, `.opencode/bin/mk-spec-memory-launcher.cjs:1570-1615`; shared primitives already exist in `.opencode/bin/lib/model-server-supervision.cjs:251-272`, `.opencode/bin/lib/model-server-supervision.cjs:313-321`, `.opencode/bin/lib/model-server-supervision.cjs:705-724`. |
+| Advisor release/adopt | Replace child-exit and signal kill paths with the shared release/adopt path. Spawn advisor backend detached when re-election is enabled, start a launcher-side session proxy for the owning stdio, keep pid lease with `pid=launcherPid` and `childPid=daemonPid`, and release on shutdown instead of killing. | Current kill/exit behavior is `.opencode/bin/mk-skill-advisor-launcher.cjs:1144-1183` and `.opencode/bin/mk-skill-advisor-launcher.cjs:1185-1200`; current server always binds stdio at `.opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts:304-320`. |
+| Code-index release/adopt | Same as advisor, plus stop rewriting owner lease to the child PID and add `childPid` to the pid lease so stale-reclaim can adopt/reap the released daemon like spec-memory. | Current lease lacks `childPid` at `.opencode/bin/mk-code-index-launcher.cjs:705-709`; current owner lease is rewritten to child PID at `.opencode/bin/mk-code-index-launcher.cjs:881-890`; current kill/exit behavior is `.opencode/bin/mk-code-index-launcher.cjs:893-902` and `.opencode/bin/mk-code-index-launcher.cjs:911-928`; server currently always binds stdio at `.opencode/skills/system-code-graph/mcp_server/index.ts:136-154`. |
+| Backend-only mode | Add advisor/code-index equivalents of spec-memory’s `SPECKIT_BACKEND_ONLY` path: daemon serves IPC only, launcher owns stdio through `launcher-session-proxy`. | Spec-memory already does this at `.opencode/bin/mk-spec-memory-launcher.cjs:1315-1328` and `.opencode/bin/mk-spec-memory-launcher.cjs:1651-1657`; daemon-side backend-only behavior is `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:2267-2296`. |
+| Active secondary clients | Treat active-client checks as advisory and fail-open to release. Add `onClientCountChange` to the shared socket server and write a small per-service IPC stats file containing `daemonPid`, `secondary_clients_count`, `socketPath`, `updatedAt`. Launchers read it before destructive shutdown: if count is `>0` or unknown/stale, release; only kill when re-election is disabled or explicit `kill-when-idle` mode is selected. | Active count already exists in `.opencode/skills/system-spec-kit/shared/ipc/socket-server.ts:184-190` and changes at `.opencode/skills/system-spec-kit/shared/ipc/socket-server.ts:310-340`; idle monitors already consume it in `.opencode/skills/system-spec-kit/mcp_server/lib/ipc/launcher-idle-timeout.ts:98-123`, `.opencode/skills/system-code-graph/mcp_server/index.ts:140-154`, `.opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts:306-320`. |
+| Proactive stale-socket sweep | Add `unlinkDeadSameUidSocket(socketPath, { log, connectTimeoutMs })` beside `canUnlinkExistingSocket`. Run it after socket-dir/symlink validation and before `listenOnce`, not only after `EADDRINUSE`. Also call it at launcher start after resolving the service socket and before bridge/lease decisions. It must unlink only same-UID real sockets whose raw connect probe returns dead/refused. | Current safe unlink fence is `.opencode/skills/system-spec-kit/shared/ipc/socket-server.ts:146-182`; current bind waits until `EADDRINUSE` at `.opencode/skills/system-spec-kit/shared/ipc/socket-server.ts:346-386`; re-export path is `.opencode/skills/system-spec-kit/mcp_server/lib/ipc/socket-server.ts:10-16`. |
+
+### Resurrector-without-fresh-session (the hard part — chosen approach + why)
+Choose option **(a): warm-only probe kicks a detached cold start, then still returns 75**.
+
+The current CLI behavior is identical across all three CLIs: probe, if `warmOnly` throw retryable 75, otherwise `spawnLauncher()` and wait. Evidence: spec-memory `.opencode/skills/system-spec-kit/mcp_server/spec-memory-cli.ts:914-921`, code-index `.opencode/skills/system-code-graph/mcp_server/code-index-cli.ts:1085-1092`, advisor `.opencode/skills/system-skill-advisor/mcp_server/skill-advisor-cli.ts:1188-1195`. The existing `spawnLauncher()` is already detached/fire-and-forget in all three: spec-memory `.opencode/skills/system-spec-kit/mcp_server/spec-memory-cli.ts:770-778`, code-index `.opencode/skills/system-code-graph/mcp_server/code-index-cli.ts:941-949`, advisor `.opencode/skills/system-skill-advisor/mcp_server/skill-advisor-cli.ts:1034-1042`.
+
+Recommended change: in `ensureDaemonReady()`, when `warmOnly && initialProbe.status !== 'alive'`, call `kickColdStartFromWarmProbe(paths, socketPath, initialProbe.reason)` before throwing `CliRetryableError`. Guard it with a short-lived per-service warm-kick file/lock so prompt hooks do not fork a launcher storm.
+
+Why this over the alternatives:
+
+| Option | Decision |
+|---|---|
+| Fire-and-forget cold spawn from warm-only | Best fit. Cross-platform, pure Node, uses existing launcher path, preserves prompt-time fast-fail semantics, and fixes the “dead all session” trap after the first failed warm probe. |
+| Resident watchdog | Not primary. It becomes a fourth daemon with the same chicken-and-egg problem: who restarts the watchdog after SIGKILL/OOM/reboot/all-sessions-gone? |
+| Escalate after N warm failures | Worse version of warm-kick. It delays recovery, needs persistent counters, and still risks prompt-time latency once it escalates. |
+
+Honest boundary: this does not resurrect anything when there is no session, no prompt-time hook, and no CLI invocation. Pure Node cannot create a process from nothing.
+
+### HF sidecar refcount + idle-timeout policy
+Make the HF model server owner-agnostic and refcounted.
+
+Current problem: spec-memory release kills the sidecar during release at `.opencode/bin/mk-spec-memory-launcher.cjs:1453-1464`, advisor kills it on launcher exit at `.opencode/bin/mk-skill-advisor-launcher.cjs:962-969`, and both write the same shared pid file with different `ownerLauncher` values at `.opencode/bin/mk-spec-memory-launcher.cjs:916-939` and `.opencode/bin/mk-skill-advisor-launcher.cjs:844-865`.
+
+Concrete fix:
+
+| Area | Recommendation |
+|---|---|
+| Refcount file | Add `hf-embed.refs.json` beside `hf-embed.pid`, managed by `model-server-supervision.cjs`. Entries should include `serviceName`, `launcherPid`, `daemonPid`, `startedAt`, `lastSeenAt`. |
+| Shared API | Add `acquireModelServerRef()`, `releaseModelServerRef()`, `pruneDeadModelServerRefs()`, and `shutdownModelServerIfUnused()` to `createModelServerControl()`. |
+| Shutdown | Replace direct sidecar kill paths with `releaseModelServerRef()` and only reap the sidecar when no live refs remain. |
+| Spawn mode | Spawn the HF sidecar detached/stdio ignored under the shared control path so it is not parent-owned by spec-memory or advisor. |
+| RSS recycle | Keep recycle serialized by the existing respawn lock and treat it as a shared recycle event, not a per-launcher cleanup. Existing lock/give-up machinery is in `.opencode/bin/lib/model-server-supervision.cjs:625-690` and `.opencode/bin/lib/model-server-supervision.cjs:745-909`. |
+
+Idle policy: main daemons should **stay warm by default** under Fix B, with opt-in or long-window idle, because there is no external supervisor. Keep HF sidecar idle shorter because it is the high-RSS component. Current main idle default is 30 minutes at `.opencode/skills/system-spec-kit/mcp_server/lib/ipc/launcher-idle-timeout.ts:3-45`; active clients already suppress idle at `.opencode/skills/system-spec-kit/mcp_server/lib/ipc/launcher-idle-timeout.ts:98-123`.
+
+Recommended defaults:
+
+| Component | Policy |
+|---|---|
+| Main daemons | Set released/backend-only default to no idle timeout or a long workday window like 8h. Keep `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN` as override. |
+| HF sidecar | Keep idle eviction enabled and refcount-aware. Existing sidecar idle support is `.opencode/bin/lib/model-server-supervision.cjs:198-208` and `.opencode/bin/lib/model-server-supervision.cjs:1049-1109`. |
+
+### Failure-mode map (fully/partial/not fixed, per mode — honest)
+| Failure mode | Fix B result | Why |
+|---|---|---|
+| 1. Re-election is spec-memory-only; release/adopt is reactive, not autonomous; released daemon idle-dies | **Partial** | Uniform release/adopt fixes the advisor/code-index gap and long/no idle reduces idle death. Warm-kick resurrects on the next warm probe. It still cannot resurrect when no process ever runs. |
+| 2. Advisor/code-index kill child on shutdown and kill what bridged sessions need | **Fully fixed** | Backend-only detached daemon + launcher-side proxy + release-on-shutdown removes the destructive signal path. Active-client check fails open to release. |
+| 3. Warm-probe trap | **Mostly fixed** | First warm failure still returns 75, but it kicks a background cold start. Subsequent warm probes in the same active session can succeed. No prompt/CLI means no kick. |
+| 4. Stale sockets reaped only reactively on fresh non-warm bind | **Fully fixed for same-UID real sockets** | Proactive sweep before bind/start reclaims dead same-user sockets. It must still refuse symlink, non-socket, foreign-owned, or out-of-root nodes by design. |
+| 5. Ungraceful death, SIGKILL/OOM/crash-loop give-up means no resurrector | **Partial** | While a launcher is alive, shared `superviseChildExit()` relaunches. If the daemon and last resident launcher are gone, warm-kick recovers only on the next invocation. Crash-loop give-up remains intentionally bounded. |
+| 6. Lease is process-based, not runtime-aware | **Partially mitigated, not fixed** | Runtime labels are not necessary for safe release/adopt if pid/socket leases are hardened. But observability and policy still cannot distinguish Claude/OpenCode/Codex ownership unless runtime metadata is added. |
+
+### Pros/cons vs Fix A (OS supervision)
+| Dimension | Fix B launcher-hardening | Fix A OS supervision |
+|---|---|---|
+| Cross-platform | Strong. Pure Node, no launchd/systemd install. | Weaker. Needs launchd on macOS, systemd user units on Linux, separate Windows/WSL story. |
+| Operational friction | Low. Uses existing launcher/CLI paths. | Higher. Needs install/uninstall, absolute paths, logs, service lifecycle docs. |
+| Alignment with existing work | High. Extends the 30-phase launcher, lease, bridge, stale-reap, and proxy work. | Medium. Requires a service-owner mode so session launchers become clients. |
+| True resurrection | Partial. Needs a warm probe/CLI/session unless daemon remains warm. | Strong. `KeepAlive`/`Restart=always` can restart after any process death. |
+| Complexity | Medium-high inside repo code. More shared helper extraction and races to test. | Medium-high operationally. Less in-process lifecycle logic, more platform-specific setup. |
+| SIGKILL/OOM robustness | Partial. Next invocation can restart; no invocation means no restart. | Strongest class of fix. External supervisor is the correct primitive for unhandleable death. |
+
+### Residual gaps (what Fix B canNOT fix)
+- It cannot restart after reboot, logout, or SIGKILL/OOM of the last resident process unless another session/prompt/CLI runs.
+- It cannot make a pure Node watchdog truly always-on without recreating the same supervision problem.
+- The first warm-only call after death can still fail with 75; the improvement is that it kicks recovery for the next call.
+- It must not reclaim foreign-owned, symlinked, non-socket, or out-of-root socket paths.
+- It does not make leases runtime-aware; it only makes process/socket ownership safer.
+- Crash-loop give-up remains a deliberate availability brake unless paired with external supervision.
+
+### Confidence + unknowns
+Confidence: **medium-high**.
+
+Evidence read: the requested iterations and live diagnosis, including the confirmed warm-only trap and non-warm cold spawn behavior at `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/iterations/orchestrator-verifications.md:14-21`, plus the launcher/server code cited above.
+
+Unknowns:
+
+- Whether advisor/code-index can share a single `SPECKIT_BACKEND_ONLY` flag safely or need service-specific names.
+- Exact test fallout from converting advisor/code-index primary launchers from stdio-inherited child mode to launcher-side session proxy mode.
+- Whether main-daemon idle should be disabled by default or set to a long default like 8h; the reliability recommendation is “stay warm,” but resource policy is a product choice.
+- Whether runtime-aware lease metadata is worth adding now for diagnostics, even though it is not required for Fix B’s safety.

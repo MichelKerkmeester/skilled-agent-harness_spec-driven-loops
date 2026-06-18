@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wavelength — Podcast Hosting Pricing</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy: #0C4A6E;
+  --deep-navy: #0A2A40;
+  --cyan: #06B6D4;
+  --cyan-dark: #0891B2;
+  --orange: #F97316;
+  --orange-dark: #EA580C;
+  --white: #FFFFFF;
+  --slate-300: #CBD5E1;
+  --slate-400: #94A3B8;
+  --slate-50: #F8FAFC;
+  --slate-100: #F1F5F9;
+}
+
+html { font-size: 16px; }
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: var(--navy);
+  color: var(--white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* Navigation */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.nav-brand {
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.nav-brand-icon {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background: var(--cyan);
+  border-radius: 50%;
+  position: relative;
+}
+.nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+.nav-links a {
+  text-decoration: none;
+  color: var(--slate-300);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.nav-links a:hover, .nav-links a:focus { color: var(--white); }
+.nav-links a:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+.nav-cta {
+  background: transparent;
+  border: 1.5px solid var(--cyan);
+  color: var(--slate-100);
+  padding: 0.5rem 1.25rem;
+  border-radius: 4px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.nav-cta:hover { background: var(--cyan); color: var(--deep-navy); }
+.nav-cta:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+/* Page header */
+.page-header {
+  text-align: center;
+  padding: 4rem 2rem 2rem;
+  max-width: 640px;
+  margin: 0 auto;
+}
+.page-header h1 {
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+.page-header p {
+  font-size: 1.0625rem;
+  color: var(--slate-300);
+  line-height: 1.7;
+}
+
+/* Pricing grid */
+.pricing-container {
+  max-width: 1050px;
+  margin: 0 auto 5rem;
+  padding: 0 1.5rem;
+}
+.pricing-table {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr 1fr;
+  gap: 0;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--deep-navy);
+}
+
+.tier-column {
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.tier-column + .tier-column {
+  border-left: 1px solid rgba(255,255,255,0.1);
+}
+
+.tier-recommended {
+  background: linear-gradient(180deg, rgba(249,115,22,0.08) 0%, transparent 40%);
+}
+.tier-badge {
+  display: inline-block;
+  background: var(--orange);
+  color: var(--deep-navy);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.75rem;
+  border-radius: 3px;
+  margin-bottom: 1.5rem;
+  align-self: flex-start;
+}
+
+.tier-name {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+.tier-audience {
+  font-size: 0.8125rem;
+  color: var(--slate-400);
+  margin-bottom: 1.75rem;
+}
+
+.tier-price {
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+.tier-price sup { font-size: 1.25rem; font-weight: 600; }
+.tier-period {
+  font-size: 0.875rem;
+  color: var(--slate-400);
+  margin-bottom: 2rem;
+}
+
+/* Waveform */
+.tier-waveform {
+  height: 32px;
+  margin-bottom: 1.75rem;
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  opacity: 0.7;
+}
+.tier-waveform .bar {
+  background: var(--cyan);
+  border-radius: 1px;
+  width: 100%;
+  transition: height 0.15s;
+}
+.tier-recommended .tier-waveform .bar { background: var(--orange); }
+
+.tier-features {
+  list-style: none;
+  margin-bottom: 2rem;
+  flex-grow: 1;
+}
+.tier-features li {
+  font-size: 0.875rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.tier-features li::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: var(--cyan);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.tier-recommended .tier-features li::before {
+  background: var(--orange);
+}
+
+.btn {
+  display: inline-block;
+  width: 100%;
+  padding: 0.875rem 1.5rem;
+  border: 2px solid var(--cyan);
+  background: transparent;
+  color: var(--cyan);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.btn:hover { background: var(--cyan); color: var(--deep-navy); }
+.btn:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+}
+.btn-primary {
+  background: var(--orange);
+  border-color: var(--orange);
+  color: var(--deep-navy);
+}
+.btn-primary:hover { background: var(--orange-dark); border-color: var(--orange-dark); color: var(--white); }
+
+/* Footer note */
+.pricing-footer {
+  text-align: center;
+  padding: 0 2rem 3rem;
+  color: var(--slate-300);
+  font-size: 0.8125rem;
+}
+.pricing-footer a { color: var(--slate-300); }
+
+/* Waveform animation */
+@media (prefers-reduced-motion: no-preference) {
+  .tier-waveform .bar {
+    animation: waveform 2s ease-in-out infinite alternate;
+  }
+  .tier-waveform .bar:nth-child(1) { animation-delay: 0s; }
+  .tier-waveform .bar:nth-child(2) { animation-delay: 0.1s; }
+  .tier-waveform .bar:nth-child(3) { animation-delay: 0.2s; }
+  .tier-waveform .bar:nth-child(4) { animation-delay: 0.3s; }
+  .tier-waveform .bar:nth-child(5) { animation-delay: 0.4s; }
+  .tier-waveform .bar:nth-child(6) { animation-delay: 0.5s; }
+  .tier-waveform .bar:nth-child(7) { animation-delay: 0.6s; }
+  .tier-waveform .bar:nth-child(8) { animation-delay: 0.7s; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .pricing-table {
+    grid-template-columns: 1fr;
+  }
+  .tier-column + .tier-column {
+    border-left: none;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .nav { flex-direction: column; gap: 1rem; align-items: flex-start; }
+  .nav-links { gap: 1.25rem; flex-wrap: wrap; }
+  .tier-price { font-size: 2.5rem; }
+}
+@media (max-width: 480px) {
+  .page-header { padding: 2.5rem 1.25rem 1.5rem; }
+  .page-header h1 { font-size: 1.75rem; }
+  .tier-column { padding: 1.75rem 1.25rem; }
+}
+</style>
+</head>
+<body>
+<nav class="nav" aria-label="Main navigation">
+  <div class="nav-brand">
+    <span class="nav-brand-icon" aria-hidden="true"></span>
+    Wavelength
+  </div>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><button class="nav-cta">Sign In</button></li>
+  </ul>
+</nav>
+
+<header class="page-header">
+  <h1>Host your show with a platform built by podcasters.</h1>
+  <p>Wavelength gives you the hosting, analytics, and distribution tools you need, with none of the bloat that gets between you and your audience. Three plans, one goal: make your show sound great everywhere.</p>
+</header>
+
+<section class="pricing-container" id="pricing" aria-label="Pricing plans">
+  <div class="pricing-table" role="list">
+
+    <!-- Starter -->
+    <div class="tier-column" role="listitem">
+      <h3 class="tier-name">Starter</h3>
+      <p class="tier-audience">For the first-time podcaster figuring out their voice.</p>
+      <div class="tier-waveform" aria-hidden="true">
+        <div class="bar" style="height:8px"></div>
+        <div class="bar" style="height:14px"></div>
+        <div class="bar" style="height:20px"></div>
+        <div class="bar" style="height:14px"></div>
+        <div class="bar" style="height:8px"></div>
+      </div>
+      <p class="tier-price"><sup>$</sup>12<span style="font-size:1rem">/mo</span></p>
+      <p class="tier-period">Billed annually or $15 month-to-month</p>
+      <ul class="tier-features">
+        <li>Unlimited episodes and storage</li>
+        <li>Distribution to Apple, Spotify, and 8 more</li>
+        <li>Basic analytics: downloads by episode</li>
+        <li>Embeddable web player</li>
+        <li>Custom episode artwork</li>
+      </ul>
+      <button class="btn">Start Free Trial</button>
+    </div>
+
+    <!-- Professional (recommended) -->
+    <div class="tier-column tier-recommended" role="listitem">
+      <span class="tier-badge">Recommended</span>
+      <h3 class="tier-name">Professional</h3>
+      <p class="tier-audience">For the growing show that's building a real audience.</p>
+      <div class="tier-waveform" aria-hidden="true">
+        <div class="bar" style="height:6px"></div>
+        <div class="bar" style="height:16px"></div>
+        <div class="bar" style="height:24px"></div>
+        <div class="bar" style="height:32px"></div>
+        <div class="bar" style="height:24px"></div>
+        <div class="bar" style="height:16px"></div>
+        <div class="bar" style="height:6px"></div>
+      </div>
+      <p class="tier-price"><sup>$</sup>29<span style="font-size:1rem">/mo</span></p>
+      <p class="tier-period">Billed annually or $35 month-to-month</p>
+      <ul class="tier-features">
+        <li>Everything in Starter</li>
+        <li>Listener geography and app breakdown</li>
+        <li>Private RSS feeds for patrons and members</li>
+        <li>Dynamic ad insertion with Campaign Manager</li>
+        <li>Chapter markers and transcripts</li>
+        <li>Collaborator seats (up to 3)</li>
+      </ul>
+      <button class="btn btn-primary">Start Free Trial</button>
+    </div>
+
+    <!-- Enterprise -->
+    <div class="tier-column" role="listitem">
+      <h3 class="tier-name">Enterprise</h3>
+      <p class="tier-audience">For networks, studios, and shows with a production team.</p>
+      <div class="tier-waveform" aria-hidden="true">
+        <div class="bar" style="height:10px"></div>
+        <div class="bar" style="height:18px"></div>
+        <div class="bar" style="height:26px"></div>
+        <div class="bar" style="height:32px"></div>
+        <div class="bar" style="height:28px"></div>
+        <div class="bar" style="height:20px"></div>
+        <div class="bar" style="height:12px"></div>
+        <div class="bar" style="height:8px"></div>
+      </div>
+      <p class="tier-price"><sup>$</sup>79<span style="font-size:1rem">/mo</span></p>
+      <p class="tier-period">Billed annually or $95 month-to-month</p>
+      <ul class="tier-features">
+        <li>Everything in Professional</li>
+        <li>Network dashboard for multiple shows</li>
+        <li>Custom branded hosting page (your domain)</li>
+        <li>Priority support with a named account lead</li>
+        <li>SSO and team permissions</li>
+        <li>API access for custom integrations</li>
+        <li>Quarterly strategy review call</li>
+      </ul>
+      <button class="btn">Start Free Trial</button>
+    </div>
+
+  </div>
+</section>
+
+<p class="pricing-footer">
+  All plans include a 14-day free trial. No credit card required.
+  <a href="#faq">See the full feature comparison</a>.
+</p>
+
+<script>
+(function() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var keyframes = [];
+  document.querySelectorAll('.tier-waveform').forEach(function(wf) {
+    var bars = wf.querySelectorAll('.bar');
+    bars.forEach(function(bar, i) {
+      var base = parseInt(bar.style.height) || 16;
+      var id = 'wave-' + Math.random().toString(36).slice(2, 8);
+      var sheet = document.createElement('style');
+      sheet.textContent = '@keyframes ' + id + ' { 0% { height: ' + base + 'px; } 50% { height: ' + (base * 1.6) + 'px; } 100% { height: ' + base + 'px; } }';
+      document.head.appendChild(sheet);
+      bar.style.animationName = id;
+      bar.style.animationDuration = (2 + Math.random() * 1.5) + 's';
+      bar.style.animationDelay = (i * 0.12) + 's';
+      bar.style.animationIterationCount = 'infinite';
+    });
+  });
+})();
+</script>
+</body>
+</html>

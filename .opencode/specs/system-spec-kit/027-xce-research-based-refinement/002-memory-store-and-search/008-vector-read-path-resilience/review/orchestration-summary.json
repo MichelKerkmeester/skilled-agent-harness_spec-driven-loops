@@ -1,0 +1,11 @@
+{
+  "run_id": "1781151207242-p6s19u",
+  "loop_type": "review",
+  "spec_folder": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/013-vector-read-path-resilience",
+  "base_artifact_dir": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/013-vector-read-path-resilience/review",
+  "total_cli_lineages": 3,
+  "total": 3,
+  "succeeded": 3,
+  "failed": 0,
+  "all_failed": false
+}

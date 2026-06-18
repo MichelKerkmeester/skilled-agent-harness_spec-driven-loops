@@ -1,0 +1,8 @@
+{"type":"iteration","iteration":3,"newInfoRatio":0.55,"status":"complete","focus":"Figma Make + Subframe"}
+{"type":"finding","id":"f-iter003-001","label":"Figma Make: variables/libraries-aware generation, tokens-as-input (OVERLAP w/ 005 inheritance)","iteration":3}
+{"type":"finding","id":"f-iter003-002","label":"Figma Make: point-and-edit + code panel (corroborates direct-edit pattern F1/F8)","iteration":3}
+{"type":"finding","id":"f-iter003-003","label":"KEYSTONE: Subframe constrains generation to YOUR registered component library/tokens -> no design drift (NET-NEW vs 005 soft inherit)","iteration":3}
+{"type":"finding","id":"f-iter003-004","label":"Subframe design-is-code visual editor -> production React/Tailwind (OVERLAP w/ 005 handoff)","iteration":3}
+{"type":"edge","id":"e-iter003-001","relation":"SHARPENS","source":"f-iter003-003","target":"f-iter001-005","iteration":3}
+{"type":"edge","id":"e-iter003-002","relation":"CORROBORATES","source":"f-iter003-002","target":"f-iter001-001","iteration":3}
+{"type":"ruled_out","direction":"Adopt Figma-plugin-native coupling; keep only the generalized tokens-as-input idea","reason":"skills are not Figma plugins","iteration":3}

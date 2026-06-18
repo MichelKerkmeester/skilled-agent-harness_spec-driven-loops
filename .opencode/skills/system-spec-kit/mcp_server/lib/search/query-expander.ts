@@ -53,6 +53,11 @@ export const DOMAIN_VOCABULARY_MAP: Record<string, string[]> = {
   session: ['conversation', 'context-window'],
   trigger: ['activation', 'match-phrase'],
   fusion: ['merge', 'combine'],
+  semantic: ['embedding', 'vector'],
+  retrieval: ['search', 'recall'],
+  agent: ['subagent', 'assistant'],
+  skill: ['capability', 'workflow'],
+  council: ['deliberation', 'panel'],
 };
 
 // ───────────────────────────────────────────────────────────────

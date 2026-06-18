@@ -4,7 +4,7 @@
 
 import * as graphDb from './code-graph-db.js';
 
-export type ApplyResultStatus = 'committed' | 'rolled-back' | 'aborted' | 'dry-run' | 'noop';
+export type ApplyResultStatus = 'committed' | 'rolled-back' | 'rollback-failed' | 'aborted' | 'dry-run' | 'noop';
 
 export const APPLY_METADATA_KEY = 'last_apply';
 

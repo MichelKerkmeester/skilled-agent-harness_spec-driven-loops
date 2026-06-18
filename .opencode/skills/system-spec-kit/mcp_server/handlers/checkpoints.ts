@@ -19,6 +19,7 @@ import { recordAdaptiveSignal } from '../lib/cognitive/adaptive-ranking.js';
 import { checkDatabaseUpdated } from '../core/index.js';
 import { ensureMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-guard.js';
 import { requireDb, toErrorMessage } from '../utils/index.js';
+import * as sessionManager from '../lib/session/session-manager.js';
 
 // Standardized response structure
 import { createMCPErrorResponse, createMCPSuccessResponse } from '../lib/response/envelope.js';
@@ -127,6 +128,14 @@ function resolveValidationQueryText(
     LIMIT 1
   `).get();
   if (!consumptionLogTable) {
+    return null;
+  }
+
+  // The clean consumption_log schema stores only a query fingerprint; raw
+  // query text exists solely on unmigrated legacy tables. Without the column
+  // there is nothing to resolve, and selecting it would throw.
+  const columns = database.prepare(`PRAGMA table_info(consumption_log)`).all() as Array<{ name: string }>;
+  if (!columns.some((column) => column.name === 'query_text')) {
     return null;
   }
 
@@ -552,16 +561,18 @@ async function handleCheckpointRestore(args: CheckpointRestoreArgs): Promise<MCP
   const hasPartialFailure = result.partialFailure === true;
   const hasPartialSuccess = !hasPartialFailure && (result.skipped > 0 || hasRestoreErrors);
 
-  // Rebuild search indexes after checkpoint restore
-  // Without this, restored memories are invisible to search until server restart.
-  // Matches the startup rebuild sequence in context-server.ts (lines 776-791).
+  // Rebuild search indexes after checkpoint restore — without this, restored
+  // memories are invisible to search until server restart. The BM25 rebuild
+  // uses the same engine-routing gate as boot warmup: when FTS5 serves lexical
+  // search (or BM25 is disabled), restore must not warm an in-memory index the
+  // runtime would never query.
   if (result.restored > 0 || result.workingMemoryRestored > 0) {
     try {
       vectorIndex.clearConstitutionalCache(null);
       vectorIndex.clearSearchCache(null);
 
       const database = vectorIndex.getDb();
-      if (database && bm25Index.isBm25Enabled()) {
+      if (database && bm25Index.shouldWarmInMemoryBm25(database)) {
         bm25Index.getIndex().rebuildFromDatabase(database);
       }
 
@@ -756,6 +767,12 @@ async function handleMemoryValidate(args: MemoryValidateArgs): Promise<MCPRespon
     ? queryId.trim()
     : null;
   const queryText = resolveValidationQueryText(database, normalizedQueryId ?? undefined);
+  // Validate the caller-supplied sessionId before using it for feedback
+  // attribution (adaptive-signal actor + ground-truth selection). A forged or
+  // untracked id must not attribute signals to another session; degrade to
+  // no-attribution rather than reject, since validation feedback is best-effort.
+  const trustedValidation = sessionManager.resolveTrustedSession(sessionId ?? null);
+  const trustedSessionId = trustedValidation.trusted ? trustedValidation.effectiveSessionId : undefined;
   const result: ValidationResult = confidenceTracker.recordValidation(database, memoryId, wasUseful);
   try {
     recordAdaptiveSignal(database, {
@@ -763,7 +780,7 @@ async function handleMemoryValidate(args: MemoryValidateArgs): Promise<MCPRespon
       signalType: wasUseful ? 'outcome' : 'correction',
       signalValue: 1,
       query: queryText,
-      actor: sessionId ?? 'memory_validate',
+      actor: trustedSessionId ?? 'memory_validate',
       metadata: {
         queryId: normalizedQueryId,
         queryText,
@@ -816,7 +833,7 @@ async function handleMemoryValidate(args: MemoryValidateArgs): Promise<MCPRespon
       intent,
       selectedRank: resultRank,
       totalResultsShown,
-      sessionId,
+      sessionId: trustedSessionId,
       notes,
     });
 

@@ -604,6 +604,11 @@ describe('handleCodeGraphScan', () => {
           label: string;
         };
         scopeMismatch: boolean;
+        resolvedScope: {
+          fingerprint: string;
+          label: string;
+          source: string;
+        };
       };
     };
 
@@ -625,7 +630,13 @@ describe('handleCodeGraphScan', () => {
       includePlugins: payload.data.activeScope.includePlugins,
       source: payload.data.activeScope.source,
     });
-    expect(payload.data.scopeMismatch).toBe(false);
+    // The index was scanned with includeSkills:false (scan-argument) while the
+    // ambient env requests skills, so the stored scope no longer matches the
+    // currently-resolved policy: the mismatch flag must now fire and the
+    // resolved scope it compared against is surfaced for the operator.
+    expect(payload.data.scopeMismatch).toBe(true);
+    expect(payload.data.resolvedScope.fingerprint).not.toBe(payload.data.activeScope.fingerprint);
+    expect(typeof payload.data.resolvedScope.label).toBe('string');
   });
 
   it('passes the canonical rootDir into the indexer config', async () => {
@@ -1053,7 +1064,9 @@ describe('handleCodeGraphScan', () => {
     expect(payload.data.filesIndexed).toBe(0);
     expect(payload.data.filesSkipped).toBe(1);
     expect(payload.data.fullReindexTriggered).toBe(false);
-    expect(mocks.removeFileMock).toHaveBeenCalledWith('/workspace/deleted.ts');
+    expect(mocks.removeFileMock).toHaveBeenCalledWith('/workspace/deleted.ts', {
+      reason: 'incremental_missing_tracked_file',
+    });
     expect(mocks.upsertFileMock).not.toHaveBeenCalled();
   });
 
@@ -1342,7 +1355,9 @@ describe('handleCodeGraphScan', () => {
     const payload = JSON.parse(response.content[0].text) as { status: string };
 
     expect(payload.status).toBe('ok');
-    expect(mocks.removeFileMock).toHaveBeenCalledWith('/workspace/removed.ts');
+    expect(mocks.removeFileMock).toHaveBeenCalledWith('/workspace/removed.ts', {
+      reason: 'full_scan_unindexed_tracked_file',
+    });
     expect(mocks.setLastGitHeadMock).toHaveBeenCalledWith('same-head');
     expect(mocks.setCodeGraphScopeMock).toHaveBeenCalled();
   });

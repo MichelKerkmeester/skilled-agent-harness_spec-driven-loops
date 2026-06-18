@@ -1,0 +1,184 @@
+{
+  "findings": [
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts",
+      "symbol": "WITH RECURSIVE causal_walk",
+      "kind": "gap",
+      "signature": "WITH RECURSIVE causal_walk(origin_id, node_id, hop_distance, walk_score) AS (...)",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts:431",
+      "relevance": 1,
+      "notes": "Recursive CTE for graph traversal (2-hop). Turso lacks WITH RECURSIVE — must be replaced with iterative application-side traversal or bounded UNION ALL."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts",
+      "symbol": "Database.Statement",
+      "kind": "dependency",
+      "signature": "db.prepare(query) as Database.Statement",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts:472",
+      "relevance": 0.6,
+      "notes": "better-sqlite3 Statement type cast used for .all()/.get() — Turso driver has different statement API (async, no .raw()/.pluck()/.iterate())."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts",
+      "symbol": "db.prepare().all",
+      "kind": "dependency",
+      "signature": "(db.prepare(...) as Database.Statement).all(...params)",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts:472",
+      "relevance": 0.5,
+      "notes": "Synchronous .all() with spread params. Turso/libSQL uses async execute() with different param binding."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/memo.ts",
+      "symbol": "WITH RECURSIVE dependents",
+      "kind": "gap",
+      "signature": "WITH RECURSIVE dependents(child_path) AS (...)",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/memo.ts:192",
+      "relevance": 1,
+      "notes": "Recursive CTE for transitive dependency closure (cycle detection + invalidation). Turso lacks WITH RECURSIVE — must rewrite as iterative BFS."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/memo.ts",
+      "symbol": "database.exec",
+      "kind": "integration_point",
+      "signature": "database.exec(`CREATE TABLE IF NOT EXISTS ...; CREATE INDEX IF NOT EXISTS ...`)",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/memo.ts:37",
+      "relevance": 0.4,
+      "notes": "Multi-statement exec() for DDL. Turso supports exec() but semicolon-separated batching may behave differently."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/memo.ts",
+      "symbol": "INSERT OR IGNORE",
+      "kind": "integration_point",
+      "signature": "INSERT OR IGNORE INTO dependency_edges ...",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/memo.ts:179",
+      "relevance": 0.3,
+      "notes": "INSERT OR IGNORE syntax. Supported in Turso but verify conflict resolution semantics match."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/memo.ts",
+      "symbol": "datetime('now')",
+      "kind": "convention",
+      "signature": "datetime('now') DEFAULT",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/memo.ts:43",
+      "relevance": 0.2,
+      "notes": "SQLite datetime() function in DDL default. Turso supports but verify expression default compatibility."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
+      "symbol": "PRAGMA table_info",
+      "kind": "gap",
+      "signature": "database.prepare('PRAGMA table_info(causal_edges)').all()",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:382",
+      "relevance": 0.9,
+      "notes": "PRAGMA table_info for dynamic column introspection. Turso/libSQL lacks .pragma() API and PRAGMA results may differ — used at 3 sites in this file."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
+      "symbol": "database.transaction",
+      "kind": "dependency",
+      "signature": "database.transaction(() => { ... })()",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:344",
+      "relevance": 0.5,
+      "notes": "better-sqlite3 synchronous transaction API. Turso uses async batch() or imperative BEGIN/COMMIT."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
+      "symbol": "PRAGMA table_info",
+      "kind": "gap",
+      "signature": "database.prepare('PRAGMA table_info(causal_edges)').all()",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:562",
+      "relevance": 0.9,
+      "notes": "Second PRAGMA table_info site for bulk insert column discovery. Same Turso gap as line 382."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
+      "symbol": "datetime('now')",
+      "kind": "convention",
+      "signature": "datetime('now')",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:1142",
+      "relevance": 0.2,
+      "notes": "datetime('now') in UPDATE SET. Supported in Turso but verify expression evaluation."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
+      "symbol": "PRAGMA table_info",
+      "kind": "gap",
+      "signature": "database.prepare('PRAGMA table_info(causal_edges)').all()",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:161",
+      "relevance": 0.9,
+      "notes": "Third PRAGMA table_info site in readEdges (sweep module call path). Dynamic column discovery pattern repeated across causal layer."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/sweep.ts",
+      "symbol": "sqlite_master",
+      "kind": "gap",
+      "signature": "SELECT 1 AS present FROM sqlite_master WHERE type='table' AND name = ?",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/sweep.ts:49",
+      "relevance": 0.8,
+      "notes": "Direct sqlite_master query for table existence. Turso may require information_schema or different introspection path."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/sweep.ts",
+      "symbol": "sqlite_master",
+      "kind": "gap",
+      "signature": "SELECT 1 AS present FROM sqlite_master WHERE type='index' AND name = ?",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/sweep.ts:60",
+      "relevance": 0.8,
+      "notes": "Direct sqlite_master query for index existence verification. Same Turso introspection gap."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/sweep.ts",
+      "symbol": "AUTOINCREMENT",
+      "kind": "gap",
+      "signature": "id INTEGER PRIMARY KEY AUTOINCREMENT",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/sweep.ts:70",
+      "relevance": 0.4,
+      "notes": "AUTOINCREMENT keyword in tombstone DDL. Turso supports but AUTOINCREMENT semantics (monotonicity guarantee) may differ in distributed context."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/sweep.ts",
+      "symbol": "lastInsertRowid",
+      "kind": "integration_point",
+      "signature": "insertResult.lastInsertRowid",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/sweep.ts:259",
+      "relevance": 0.4,
+      "notes": "better-sqlite3 lastInsertRowid (bigint). Turso returns inserted row ID differently via execute() result."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/frontmatter-promoter.ts",
+      "symbol": "PRAGMA table_info",
+      "kind": "gap",
+      "signature": "database.prepare(`PRAGMA table_info(${tableName})`).all()",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/frontmatter-promoter.ts:287",
+      "relevance": 0.9,
+      "notes": "Fourth PRAGMA table_info site in frontmatter promoter. Same Turso introspection gap — pattern is pervasive across causal layer."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/frontmatter-promoter.ts",
+      "symbol": "resolvePacketMemoryIds",
+      "kind": "integration_point",
+      "signature": "SELECT ... FROM memory_index WHERE spec_folder IN (...) AND COALESCE(parent_id, 0) = 0",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/frontmatter-promoter.ts:215",
+      "relevance": 0.3,
+      "notes": "Complex SELECT with COALESCE in WHERE. Supported in Turso but verify expression evaluation parity."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
+      "symbol": "runInTransaction",
+      "kind": "dependency",
+      "signature": "runInTransaction(db, () => { ... })",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:942",
+      "relevance": 0.5,
+      "notes": "Custom transaction wrapper used alongside better-sqlite3 native .transaction(). Turso migration must unify transaction API."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts",
+      "symbol": "init",
+      "kind": "dependency",
+      "signature": "function init(database: Database.Database): void",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts:165",
+      "relevance": 0.6,
+      "notes": "Module-level db reference via better-sqlite3 Database type. Turso migration requires replacing Database.Database with libSQL client type across all causal modules."
+    }
+  ]
+}

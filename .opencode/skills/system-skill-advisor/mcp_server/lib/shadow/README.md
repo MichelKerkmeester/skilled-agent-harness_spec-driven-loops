@@ -20,6 +20,7 @@ Current state:
 
 - Provides a single shadow sink module.
 - Keeps shadow behavior isolated from production recommendation output.
+- Records durable JSONL only when `SPECKIT_ADVISOR_SHADOW_DELTA_PATH` is set or `SPECKIT_ADVISOR_SHADOW_DELTA_ENABLED=1` / `true` enables the default path.
 - Supports tests that verify shadow sink behavior independently.
 
 ---
@@ -38,7 +39,7 @@ shadow/
 
 | File | Responsibility |
 |---|---|
-| `shadow-sink.ts` | Receives or records shadow-mode advisor data. |
+| `shadow-sink.ts` | Resolves the opt-in shadow-delta sink and records shadow-mode advisor data when enabled. |
 
 ---
 
@@ -55,7 +56,7 @@ Main flow:
 ```text
 advisor shadow payload
   -> shadow sink
-  -> stored or compared shadow data
+  -> store only when env enables durable shadow deltas
   -> test or diagnostic consumes result
 ```
 
@@ -65,7 +66,7 @@ advisor shadow payload
 
 | Entrypoint | Type | Purpose |
 |---|---|---|
-| `shadow-sink.ts` | TypeScript module | Shadow-mode sink helper. |
+| `shadow-sink.ts` | TypeScript module | Shadow-mode sink helper with default-off durable writes. |
 
 ---
 

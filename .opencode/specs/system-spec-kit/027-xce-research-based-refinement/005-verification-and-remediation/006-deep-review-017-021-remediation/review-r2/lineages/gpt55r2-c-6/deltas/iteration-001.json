@@ -1,0 +1,28 @@
+{
+  "type": "iteration",
+  "mode": "review",
+  "run": 1,
+  "status": "complete",
+  "focus": "C-rest-of-server daemon IPC, reconnect/replay, path/socket handling, and fail-closed behavior",
+  "sessionId": "gpt55r2-c-6",
+  "parentSessionId": "review-r2",
+  "lineageMode": "new",
+  "generation": 1,
+  "findingsSummary": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 0
+  },
+  "findingsNew": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 0
+  },
+  "findingRefs": [
+    "P1-001",
+    "P1-002"
+  ],
+  "newFindingsRatio": 0.42,
+  "iterationFile": "iterations/iteration-001.md",
+  "timestamp": "2026-06-18T06:25:00Z"
+}

@@ -1,0 +1,34 @@
+{
+  "sessionId": "fanout-gpt-gap-1780758127854-uvnt9h",
+  "label": "gpt-gap",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.5",
+    "actualExecution": "in-process Codex runtime"
+  },
+  "status": "succeeded",
+  "stopReason": "maxIterationsReached",
+  "iterationsCompleted": 5,
+  "maxIterations": 5,
+  "artifactDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research/research/gap-audit/lineages/gpt-gap",
+  "severityTotals": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 2
+  },
+  "finalVerdict": "NUMBERED_GAP_REGISTER",
+  "outputs": [
+    "deep-research-config.json",
+    "deep-research-state.jsonl",
+    "deep-research-strategy.md",
+    "deep-research-findings-registry.json",
+    "deep-research-dashboard.md",
+    "iterations/iteration-001.md",
+    "iterations/iteration-002.md",
+    "iterations/iteration-003.md",
+    "iterations/iteration-004.md",
+    "iterations/iteration-005.md",
+    "research.md",
+    "convergence-report.md"
+  ]
+}

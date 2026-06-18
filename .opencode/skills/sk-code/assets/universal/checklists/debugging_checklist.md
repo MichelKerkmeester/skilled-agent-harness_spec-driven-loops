@@ -1,6 +1,13 @@
 ---
 title: Universal Debugging Checklist
 description: Stack-agnostic 4-phase debugging workflow checklist for any non-trivial debugging session.
+trigger_phrases:
+  - "universal debugging checklist"
+  - "four phase debugging workflow"
+  - "hypothesis testing debugging"
+  - "stack agnostic debugging"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Universal Debugging Checklist - Surface-Agnostic 4-Phase Workflow

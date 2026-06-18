@@ -1,0 +1,170 @@
+{
+  "sessionId": "2026-06-16-028-002-code-graph",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "openQuestions": [
+    {
+      "id": "question-1-q1-can-incremental-selective-reindex-supersede-stale-edges-with-closed-validity-",
+      "text": "Q1: Can incremental selective-reindex supersede stale edges with closed validity windows (edge-presence currentness) instead of deleting, enabling as-of-last-green-scan impact queries? Map to aionforge bi-temporal-model.md. Where is the scan/edge-write path?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-q2-do-content-addressed-edge-ids-transient-fatal-parse-classification-quarantine",
+      "text": "Q2: Do content-addressed edge IDs + transient/fatal parse classification (quarantine-not-wedge) remove the single-poison-file scan wedge? Map to aionforge consolidation.md. Where is parser quarantine + edge-ID assignment?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-q3-does-personalized-pagerank-seeding-improve-impact-neighborhood-ranking-over-f",
+      "text": "Q3: Does Personalized-PageRank seeding improve impact/neighborhood ranking over flat edge walks at acceptable cost? Map to aionforge retrieval.md PPR. Where is impact/neighborhood retrieval?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-q4-can-edge-weight-learning-fold-a-rank-time-reliability-multiplier-without-corr",
+      "text": "Q4: Can edge-weight learning fold a rank-time reliability multiplier without corrupting the deterministic structural edges? Map to aionforge trust re-rank. Where are edge weights applied?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-q5-is-a-zero-token-local-doc-lane-symbol-pass-worth-adding-markdown-json-yaml-sy",
+      "text": "Q5: Is a zero-token local doc-lane symbol pass worth adding (markdown/json/yaml symbols as graph nodes)? Map to galadriel zero-token retrieval. Where is the doc lane today?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-6-q6-should-readiness-become-a-hard-generation-watermark-stale-error-rather-than-a",
+      "text": "Q6: Should readiness become a hard generation watermark (stale=error) rather than a hint? Map to aionforge generation-checked maintained sets. Where are readiness gates?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-7-q7-which-001-cross-cutting-primitives-port-here-determinism-content-derived-rend",
+      "text": "Q7: Which 001 cross-cutting primitives port here — determinism (content-derived render order + apply-once G2 invariant), query-class routing (same retrieval shapes), graceful degradation (graph_available:false vs throw)? (001 flagged code-graph as touched by ALL FOUR spines.)",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-8-q8-does-the-shared-fuseresultsmulti-bonusoverchannels-option-apply-once-invarian",
+      "text": "Q8: Does the shared `fuseResultsMulti {bonusOverChannels}` option + apply-once invariant from 001 belong in code-graph ranking?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "uncoveredQuestions": [
+    "Q1: Can incremental selective-reindex supersede stale edges with closed validity windows (edge-presence currentness) instead of deleting, enabling as-of-last-green-scan impact queries? Map to aionforge bi-temporal-model.md. Where is the scan/edge-write path?",
+    "Q2: Do content-addressed edge IDs + transient/fatal parse classification (quarantine-not-wedge) remove the single-poison-file scan wedge? Map to aionforge consolidation.md. Where is parser quarantine + edge-ID assignment?",
+    "Q3: Does Personalized-PageRank seeding improve impact/neighborhood ranking over flat edge walks at acceptable cost? Map to aionforge retrieval.md PPR. Where is impact/neighborhood retrieval?",
+    "Q4: Can edge-weight learning fold a rank-time reliability multiplier without corrupting the deterministic structural edges? Map to aionforge trust re-rank. Where are edge weights applied?",
+    "Q5: Is a zero-token local doc-lane symbol pass worth adding (markdown/json/yaml symbols as graph nodes)? Map to galadriel zero-token retrieval. Where is the doc lane today?",
+    "Q6: Should readiness become a hard generation watermark (stale=error) rather than a hint? Map to aionforge generation-checked maintained sets. Where are readiness gates?",
+    "Q7: Which 001 cross-cutting primitives port here — determinism (content-derived render order + apply-once G2 invariant), query-class routing (same retrieval shapes), graceful degradation (graph_available:false vs throw)? (001 flagged code-graph as touched by ALL FOUR spines.)",
+    "Q8: Does the shared `fuseResultsMulti {bonusOverChannels}` option + apply-once invariant from 001 belong in code-graph ranking?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-4-5-c1-local-doc-symbol-extractor-replace-the-language-doc-empty-return-structural-i",
+      "text": "**C1 — Local doc-symbol extractor.** Replace the `language === 'doc'` empty-return (`structural-indexer.ts:1236`) with a deterministic, dependency-free extractor: markdown headings (regex ATX `^#{1,6} ` / Setext) → `heading` nodes with parent-`CONTAINS`-child nesting by heading level; structured config (json/yaml/toml) → top-level + nested `key` nodes via the already-available parsers (JSON.parse / a yaml lib) or a shallow key walk. All deterministic (content-derived), no LLM, no network. **Leverage: M** (makes config/docs queryable as graph nodes — e.g. \"what defines key X\", \"which doc covers Y\"). **Effort: M** (new extractor + `SymbolKind` union extension + render tolerance). **Conflict: L** (additive branch behind the existing `=== 'doc'` guard; code lanes untouched). **BUILD-new** (no off-state to promote — the lane is empty today).",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-1-confirmed-doc-is-explicitly-excluded-from-the-tree-sitter-parser-tree-sitter-par",
+      "text": "**CONFIRMED — `'doc'` is explicitly excluded from the tree-sitter parser.** `tree-sitter-parser.ts:50` declares `type ParserLanguage = Exclude<SupportedLanguage, 'doc'>`. The doc language can never reach a grammar.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-2-confirmed-doc-files-return-zero-nodes-edges-content-hash-only-structural-indexer",
+      "text": "**CONFIRMED — doc files return zero nodes/edges, content-hash only.** `structural-indexer.ts:1236-1248`: when `language === 'doc'`, the indexer short-circuits and returns `{ nodes: [], edges: [], contentHash, parseHealth: 'clean', parseErrors: [], parseDurationMs: 0 }`. So a `doc` row exists purely as a change-detection content-hash; it contributes nothing to the symbol/edge graph.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-3-confirmed-markdown-prose-is-not-indexed-at-all-by-default-only-structured-config",
+      "text": "**CONFIRMED — markdown/prose is NOT indexed at all by default; only structured config is.** `indexer-types.ts:124-125` maps `md|json|jsonc|yaml|yml|toml → 'doc'`, but the default include globs (`:156-177`) deliberately OMIT `**/*.md` (\"Markdown/prose docs are deliberately NOT indexed … the code graph models code structure and structured config, not documentation\"). Only `json/jsonc/yaml/yml/toml` are in the default scan; markdown only enters via a caller-supplied `includeGlobs` and even then is hash-only.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-6-confirmed-iter-1-graceful-degradation-already-present-the-graph-available-false-",
+      "text": "**CONFIRMED (iter-1) — graceful degradation already present.** The `graph_available:false`-vs-throw degrade pattern from 001 already has a consumer wired at `memory-context.ts:1513` (strategy §12; iter-1 baseline). Code-graph already returns a graceful \"unavailable\" envelope rather than throwing — this primitive is PRESENT, only needs the generation watermark (Q6) layered on the same envelope.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-9-confirmed-synthesis-apply-once-idempotency-is-the-shared-invariant-across-q1-q2-",
+      "text": "**CONFIRMED (synthesis) — apply-once / idempotency is the shared invariant across Q1, Q2, Q6.** The content-addressed edge ID (Q2-C1), the temporal supersede-not-delete (Q1-C1), and the generation counter (Q6-C1) all encode the same 001 apply-once G2 property: a rescan of unchanged content must be a no-op (same edge ids, same validity windows, generation unchanged). This is the unifying design constraint, not a separate candidate.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-12-cross-cut-graceful-degrade-deterministic-impact-order-score-18-promote-degrade-a",
+      "text": "**Cross-cut graceful-degrade + deterministic impact order (score 18, PROMOTE)** — degrade already present; a content-derived stable tiebreak makes impact output reproducible. Near-zero new surface.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-8-inferred-fuseresultsmulti-bonusoverchannels-belongs-in-impact-ranking-001-s-shar",
+      "text": "**INFERRED — `fuseResultsMulti {bonusOverChannels}` belongs in impact ranking.** 001's shared multi-channel fuse with the `bonusOverChannels` option is the natural home for combining the rank-time reliability multiplier (Q4-C1) with a future PPR score (Q3-C1): CALLS-channel and IMPORTS-channel impact results (currently concatenated flat at `:626-671`) would fuse with a cross-channel bonus for nodes reached via BOTH edge types. **PROMOTE** (reuse the 001 primitive) rather than build a code-graph-specific fuser. Would confirm: the `fuseResultsMulti` signature is generic enough to accept code-graph result shapes.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-4-inferred-a-local-doc-symbol-pass-is-a-clean-additive-lane-because-the-doc-branch",
+      "text": "**INFERRED — a local doc-symbol pass is a clean additive lane.** Because the doc branch is a single early-return (`:1236`), a zero-token extractor (markdown ATX/Setext headings → `heading` nodes with `CONTAINS` nesting edges; json/yaml/toml top-level + nested keys → `key` nodes) can be slotted in WITHOUT touching the tree-sitter path or the parser-language exclusion. Would confirm: that `SymbolKind` accepts new kinds (`heading`/`key`) or needs a union extension in `indexer-types.ts`, and that downstream `code-graph-context` rendering tolerates non-code node kinds.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-7-inferred-content-derived-deterministic-ordering-ports-cleanly-001-s-content-deri",
+      "text": "**INFERRED — content-derived deterministic ordering ports cleanly.** 001's content-derived render-order + apply-once G2 invariant maps onto two code-graph seams: (a) the impact walk currently orders by DB-iteration order (`code-graph-context.ts:626-671`, iter-3) — a content-derived tiebreak (stable sort on node id/hash) makes impact output deterministic; (b) the doc-symbol pass (Q5) must use content-derived node ids to stay idempotent across rescans. Would confirm: whether impact results are already stable across runs or rely on SQLite row order.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-13-q1-c2-rename-supersedes-score-12-build-new-edge-type-no-schema-migration-lighter",
+      "text": "**Q1-C2 rename→SUPERSEDES (score 12, BUILD)** — new edge type, no schema migration; lighter than the full bi-temporal window (Q1-C1) while capturing the rename-not-delete signal.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-14-q2-c1-transient-fatal-parser-retry-score-12-build-removes-the-single-poison-file",
+      "text": "**Q2-C1 transient/fatal parser retry (score 12, BUILD)** — removes the single-poison-file scan wedge; classification sits on the existing parse-error catch (`structural-indexer.ts:1254-1262`).",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-10-q4-c1-rank-time-trust-multiplier-score-18-promote-confidence-evidenceclass-alrea",
+      "text": "**Q4-C1 rank-time trust multiplier (score 18, PROMOTE)** — confidence/evidenceClass already plumbed end-to-end to formatting; just needs a scoring read-site. Lowest-risk, highest-leverage-per-effort.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-11-q6-c2-soft-watermark-score-18-promote-additive-generation-field-on-the-existing-",
+      "text": "**Q6-C2 soft watermark (score 18, PROMOTE)** — additive `generation` field on the existing freshness envelope; the safe staged predecessor to the Q6-C1 hard gate.",
+      "addedAtIteration": 4,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "metrics": {
+    "iterationsCompleted": 24,
+    "openQuestions": 8,
+    "resolvedQuestions": 0,
+    "keyFindings": 14,
+    "convergenceScore": 0.4,
+    "coverageBySources": {}
+  },
+  "corruptionWarnings": [],
+  "status": "IN_PROGRESS"
+}

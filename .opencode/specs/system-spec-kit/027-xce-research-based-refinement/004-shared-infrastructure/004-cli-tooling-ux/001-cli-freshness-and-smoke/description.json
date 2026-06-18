@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/001-cli-freshness-and-smoke",
+  "description": "Feature Specification: CLI Freshness Gate Fix and Offline Smoke",
+  "keywords": [
+    "feature",
+    "specification",
+    "cli",
+    "freshness",
+    "gate",
+    "fix",
+    "offline",
+    "smoke"
+  ],
+  "lastUpdated": "2026-06-11T01:57:23.160Z",
+  "specId": "001",
+  "folderSlug": "cli-freshness-and-smoke",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "004-shared-infrastructure",
+    "004-cli-tooling-ux"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

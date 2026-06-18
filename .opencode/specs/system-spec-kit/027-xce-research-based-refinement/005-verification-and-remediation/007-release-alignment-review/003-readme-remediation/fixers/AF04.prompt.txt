@@ -1,0 +1,31 @@
+Act as a markdown documentation-fixer (seat AF04). Spec folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation (PRE-APPROVED at Gate 3 — make the edits below directly with the Edit/Write tools; do NOT re-ask Gate 3 and do NOT ask the user anything).
+
+You fix STALE content in README files so they match current repo reality. SURGICAL edits only — fix the cited claims, keep everything else intact. Find the correct current value by reading the cited file PLUS its SKILL.md / source / config before editing.
+
+ALLOWED WRITE PATHS (edit ONLY these files):
+- .opencode/skills/deep-loop-workflows/ai-council/scripts/lib/README.md
+- .opencode/skills/deep-loop-workflows/deep-context/README.md
+- .opencode/skills/deep-loop-workflows/deep-context/scripts/README.md
+- .opencode/skills/deep-loop-workflows/deep-improvement/scripts/README.md
+- .opencode/skills/deep-loop-workflows/deep-improvement/scripts/agent-improvement/README.md
+BANNED: no delete, no rename, no new files, no edits outside the listed files, no --no-verify.
+
+DO-NOT-FIX (binding — confirmed false positives; leave untouched):
+- The CLI front-door "37 tools" figure: `spec-memory.cjs` CLI is genuinely 37; only the MCP-server/daemon surface is 39. Fix a "37" ONLY when the sentence is about the MCP server/daemon, NOT the CLI front door.
+- Any `// Feature catalog:` comments and TSDoc `@example` values.
+- Any cited claim that does NOT actually reproduce against the live file — mark it refuted; never invent a fix.
+
+FINDINGS TO FIX (confirm-then-fix each; P0/P1/P2 all in scope, including cosmetic/style):
+- [P1] .opencode/skills/deep-loop-workflows/ai-council/scripts/lib/README.md:29 — ai-council lib README omits findings registry | stale: The README says scripts/lib has 3 code files and lists only audit-trail.cjs, persist-artifacts.cjs, and rollback.cjs. -> correct: scripts/lib also contains findings-registry.cjs, so the direct library set is 4 code files.
+- [P1] .opencode/skills/deep-loop-workflows/ai-council/scripts/lib/README.md:110 — nested lib cross-skill links resolve to dead paths | stale: The README links sk-code and sk-doc via ../../../sk-code and ../../../sk-doc from scripts/lib. -> correct: Those paths still resolve under deep-loop-workflows/, while the actual skill roots are siblings of deep-loop-workflows under .opencode/skills/.
+- [P1] .opencode/skills/deep-loop-workflows/deep-context/README.md:112 — Deep-loop roster omits improvement mode | stale: `deep-context` shares `deep-loop-runtime` with three sibling skills. -> correct: The current deep-loop workflow roster has five top-level personas: context, research, review, ai-council, and improvement; improvement includes four command lanes.
+- [P1] .opencode/skills/deep-loop-workflows/deep-context/scripts/README.md:29 — deep-context scripts README omits loop-lock | stale: The README says there is 1 code file, reduce-state.cjs. -> correct: deep-context/scripts also contains loop-lock.cjs, a host-facing wrapper for runtime loop locking.
+- [P1] .opencode/skills/deep-loop-workflows/deep-context/scripts/README.md:144 — deep-context scripts cross-skill links are dead | stale: The README links sk-code and sk-doc via ../../sk-code and ../../sk-doc. -> correct: From deep-context/scripts those links resolve under deep-loop-workflows/, not to the actual .opencode/skills/sk-code and .opencode/skills/sk-doc roots.
+- [P1] .opencode/skills/deep-loop-workflows/deep-improvement/scripts/README.md:3 — deep-improvement scripts still describe two lanes | stale: The README describes scripts for the two deep-improvement lanes, Lane A agent-improvement and Lane B model-benchmark. -> correct: The current loop host supports agent-improvement, model-benchmark, skill-benchmark, and non-dev-ai-system-refine.
+- [P1] .opencode/skills/deep-loop-workflows/deep-improvement/scripts/README.md:165 — deep-improvement scripts sk-code link is dead | stale: The README links sk-code/SKILL.md via ../../sk-code/SKILL.md. -> correct: From deep-improvement/scripts that resolves under deep-loop-workflows/, while the actual sk-code skill is .opencode/skills/sk-code/SKILL.md.
+- [P1] .opencode/skills/deep-loop-workflows/deep-improvement/scripts/agent-improvement/README.md:81 — agent integration README claims four mirrors | stale: The README says scan-integration.cjs scans the four runtime mirrors. -> correct: scan-integration.cjs currently defines three mirror templates: .opencode, .claude, and .codex.
+
+After editing, re-read each edited line to verify. Your final message MUST be exactly one fenced json block:
+```json
+{"seat":"AF04","fixed":[{"file":"path","claim":"what was stale","after":"what it now says"}],"refuted":[{"file":"path","why":"why skipped"}]}
+```

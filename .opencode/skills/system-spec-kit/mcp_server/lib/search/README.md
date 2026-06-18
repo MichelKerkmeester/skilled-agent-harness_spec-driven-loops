@@ -80,7 +80,7 @@ lib/search/
 +-- query-*.ts                # Query classification, routing, expansion, decomposition, and surrogates
 +-- *feedback*.ts             # Learned feedback and denylist support
 +-- *metadata*.ts             # Anchor and validation metadata helpers
-+-- *rerank*.ts               # Cross-encoder, local, and score reranking gates
++-- pipeline/stage3-rerank.ts # Algorithmic MMR diversity and MPAB chunk-collapse; model rerankers removed
 +-- session-*.ts              # Per-session search context and transitions
 `-- README.md
 ```

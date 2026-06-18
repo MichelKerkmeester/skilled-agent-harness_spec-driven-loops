@@ -109,6 +109,12 @@ export interface AssistiveRecommendation {
   advisory_stale?: boolean;
 }
 
+export interface NearDuplicateHint {
+  id: number;
+  similarity: number;
+  threshold: number;
+}
+
 /**
  * Structured warning surfaced when the scope
  * filter or overfetch window dropped otherwise-relevant vector-search
@@ -198,6 +204,7 @@ export interface IndexResult extends Record<string, unknown> {
   rejectionCode?: string;
   sufficiency?: MemorySufficiencyResult;
   assistiveRecommendation?: AssistiveRecommendation;
+  nearDuplicateOf?: NearDuplicateHint;
   routeCategory?: RouteCategory;
   mergeMode?: MergeModeHint;
   targetDocPath?: string;

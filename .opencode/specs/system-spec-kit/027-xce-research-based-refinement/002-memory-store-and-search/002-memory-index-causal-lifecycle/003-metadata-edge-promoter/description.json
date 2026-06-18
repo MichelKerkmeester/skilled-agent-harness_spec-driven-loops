@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle/003-metadata-edge-promoter",
+  "description": "Feature Specification: 005 — Metadata Edge Promoter",
+  "keywords": [
+    "feature",
+    "specification",
+    "005",
+    "metadata",
+    "edge",
+    "promoter"
+  ],
+  "lastUpdated": "2026-06-14T08:30:50.953Z",
+  "specId": "003",
+  "folderSlug": "metadata-edge-promoter",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "002-memory-store-and-search",
+    "002-memory-index-causal-lifecycle"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

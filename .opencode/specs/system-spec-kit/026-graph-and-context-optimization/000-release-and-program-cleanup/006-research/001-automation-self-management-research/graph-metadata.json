@@ -53,7 +53,6 @@
       "research/iterations/iteration-007.md",
       "research/deltas/iteration-001.jsonl",
       "spec.md",
-      ".opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md",
       ".opencode/skills/system-spec-kit/references/config/hook_system.md",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
@@ -123,12 +122,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill-advisor-hook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md",
         "source": "derived"
       },
       {
@@ -208,11 +201,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The system-spec-kit + skill advisor + code-graph + memory subsystems are documented as \"auto-managing\" in many places (hook injection, auto-reindexing, auto-routing, auto-prioritizing, etc.). But how much of that is **actually automatic at runtime** vs **operator-triggered** vs **manual fallback**? Specifically:",
     "created_at": "2026-04-29T13:15:00.000Z",
-    "last_save_at": "2026-06-05T12:47:33.151Z",
+    "last_save_at": "2026-06-12T04:40:47.132Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

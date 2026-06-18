@@ -1,0 +1,26 @@
+{
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/009-code-graph-code-only-indexing",
+  "description": "Feature Specification: Code Graph Code-Only Indexing and Selectable Maintainer Mode",
+  "keywords": [
+    "feature",
+    "specification",
+    "code",
+    "graph",
+    "code-only",
+    "indexing",
+    "selectable",
+    "maintainer",
+    "mode"
+  ],
+  "lastUpdated": "2026-06-14T08:55:44.709Z",
+  "specId": "009",
+  "folderSlug": "code-graph-code-only-indexing",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "004-shared-infrastructure"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -103,9 +103,10 @@ Path placement is intentional and not interchangeable:
 | `z_future/` | scope-excluded | Speculative content with no decay multiplier defined; indexing at 1.0 would surface unproven ideas as authoritative |
 | `external/` | scope-excluded | Vendor / third-party content outside this repo's authority; indexing pollutes the spec-doc surface |
 | `z_archive/` | decay-only (0.1) | Shipped-but-archived spec content. Retrievable for pattern lookup, historical context, and continuity recovery — but deprioritized 10× so it doesn't drown current packets |
-| `scratch/`, `temp/`, `research/iterations/`, `review/iterations/`, `prototype/`, `*-test*/` | decay-only (0.2) | Working artifacts, iter outputs, prototypes. Indexed for discovery but penalized 5× |
+| `scratch/`, `temp/`, `research/iterations/`, `review/iterations/` | spec-doc scope-excluded | Working artifacts and iteration outputs are not classified as canonical spec documents, so they are absent from spec-doc retrieval rather than merely downweighted. |
+| `prototype/`, `*-test*/` | decay-only (0.2) | Prototype and test-path content that is otherwise admissible remains indexed for discovery but penalized 5×. |
 
-Packet 113 (commit `b062b12b4`) removed a redundant `z_archive` entry from `EXCLUDED_FOR_MEMORY` that was overriding the decay design. The SSOT rule going forward: if a path category has a multiplier in `ARCHIVE_MULTIPLIERS`, it stays out of `EXCLUDED_FOR_MEMORY`. Adding both makes the decay unreachable and removes archived content from retrieval entirely.
+The SSOT rule going forward: binary scope exclusion wins over scoring decay. If a path category is excluded before spec-document classification, any scoring multiplier for that path is unreachable for spec-doc retrieval. Keep archived content decay-only, and keep working iteration artifacts out of the canonical spec-doc surface.
 
 ### Path Security (`path-security.ts`)
 

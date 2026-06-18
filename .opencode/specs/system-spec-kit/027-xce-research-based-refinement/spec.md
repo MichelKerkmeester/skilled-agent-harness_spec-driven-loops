@@ -21,27 +21,25 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement"
-    last_updated_at: "2026-06-08T15:25:00Z"
+    last_updated_at: "2026-06-14T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Added OpenLTM phases 008/009 + amended 002/003/005 from research 010"
-    next_safe_action: "Plan 008/009 or implement 002 secret-redaction amendment"
+    recent_action: "Reconciled reorg metadata after cross-model deep review"
+    next_safe_action: "Harmonize per-phase status vocabulary if desired"
     blockers: []
     key_files:
       - "spec.md"
-      - "001-peck-teachings-adoption/spec.md"
-      - "002-memory-write-safety/spec.md"
-      - "003-memory-index-causal-lifecycle/spec.md"
-      - "004-semantic-trigger-fallback/spec.md"
-      - "005-learning-feedback-reducers/spec.md"
-      - "006-gem-team-adoption/spec.md"
-      - "007-memclaw-derived-memory-hardening/spec.md"
-      - "008-openltm-retrieval-observability/spec.md"
-      - "009-openltm-continuity-resilience/spec.md"
+      - "000-release-cleanup/spec.md"
+      - "001-research-and-doctrine/spec.md"
+      - "002-memory-store-and-search/spec.md"
+      - "003-advisor-and-codegraph/spec.md"
+      - "004-shared-infrastructure/spec.md"
+      - "005-verification-and-remediation/spec.md"
+      - "context-index.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-04-027-peck-phase-adoption"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 60
     open_questions: []
     answered_questions:
       - "027 is the parent packet for the peck-derived planned work; the peck work lives under child phase 001."
@@ -53,6 +51,7 @@ _memory:
     - merge/migration/consolidation narratives (consolidate*, merged from, renamed from, collapsed, X→Y, reorganization history)
     - migrated from, ported from, originally in
     - heavy docs: plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md — these belong in child phase folders only
+  CARVE-OUT (accepted at this parent only): the epic-rollup bridge docs `timeline.md` and `before-vs-after.md` are sanctioned reorg/rollup artifacts cross-referenced from context-index.md/handover.md; their before/after-style narrative is intentional here and is NOT the forbidden per-phase change history above.
   REQUIRED content (MUST author at phase-parent level):
     - Root purpose: what problem does this entire phased decomposition solve?
     - Sub-phase list: which child phase folders exist and what each one does
@@ -70,7 +69,7 @@ _memory:
 | **Priority** | P1 |
 | **Status** | Phase Parent |
 | **Created** | 2026-05-08 |
-| **Updated** | 2026-06-04 |
+| **Updated** | 2026-06-14 |
 | **Branch** | `main` |
 | **Executor** | local spec authoring |
 <!-- /ANCHOR:metadata -->
@@ -86,7 +85,7 @@ Spec Kit has coordinated refinement work across memory correctness, indexing, ca
 ### Purpose
 Coordinate the remaining child phases so each one can be resumed, implemented, and validated independently while the parent keeps the current phase map, high-level scope, and handoff order visible. This refinement builds on the now-completed 026 graph-and-context-optimization program (Status: Complete as of 2026-06-05; track 005 deferred in place).
 
-> **Phase-parent note:** This spec.md is the only REQUIRED authored document at the parent level; optional cross-cutting docs (the `context-index.md` migration bridge and `resource-map.md`) may also live here. All detailed planning, task breakdowns, checklists, decisions, and continuity live inside the child phase folders listed in the Phase Documentation Map below.
+> **Phase-parent note:** This spec.md is the only REQUIRED authored document at the parent level. The sanctioned optional cross-cutting docs that also live here are: `context-index.md` (migration bridge), `resource-map.md`, `handover.md`, and the accepted epic-rollup bridges `timeline.md` and `before-vs-after.md` (cross-referenced from `context-index.md`/`handover.md`; see the content-discipline carve-out at the top of this file). All detailed planning, task breakdowns, checklists, decisions, and continuity live inside the child phase folders listed in the Phase Documentation Map below.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -97,6 +96,7 @@ Coordinate the remaining child phases so each one can be resumed, implemented, a
 ### In Scope
 - Spec Kit Memory safety, indexing, causal-edge lifecycle, metadata edge promotion, statediff reconciliation, semantic trigger matching, and learning feedback reducers.
 - Low-risk peck-derived documentation/process improvements: self-check template guidance, current-state discipline, and constitutional rule review.
+- Dual-stack CLI surfaces over the mk-* MCP daemons as a completed workstream.
 - Root-level child phase routing, dependency visibility, and resume wayfinding.
 
 ### Out of Scope
@@ -107,13 +107,13 @@ Coordinate the remaining child phases so each one can be resumed, implemented, a
 ### Files to Change
 Summary of aggregate file scope. Per-phase detail lives in child plans.
 
-| File Path | Change Type | Phase | Description |
+| File Path | Change Type | Track | Description |
 |-----------|-------------|-------|-------------|
-| `templates/manifest/**`, validation docs, constitutional review surfaces | Modify/Create | 001 | Peck-derived documentation/process improvements |
-| `mcp_server/handlers/save/**` and memory docs | Modify | 002 | Memory write-safety and feedback correctness |
-| `mcp_server/lib/{indexing,causal}/**`, edge promotion + save/index reconciliation paths | Modify | 003 | Memory index & causal write lifecycle (phase parent; children 001-004) |
-| Trigger matching and search fallback paths | Modify | 004 | Semantic trigger fallback (phase parent; children 001-004) |
-| Feedback reducer pipeline paths | Modify | 005 | Learning feedback reducers |
+| `001-research-and-doctrine/**` | Modify | 001 | Peck and gem-team doctrine adoption |
+| `002-memory-store-and-search/**` | Modify | 002 | Memory store, write-safety, index/causal lifecycle, triggers, reducers, search resilience |
+| `003-advisor-and-codegraph/**` | Modify | 003 | Skill-advisor and code-graph subsystem hardening |
+| `004-shared-infrastructure/**` | Modify | 004 | CLI front-doors, command presentation, adapter ports, dependency and lifecycle infrastructure |
+| `005-verification-and-remediation/**` | Modify | 005 | Verify-first remediation and research program |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -121,58 +121,28 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 <!-- ANCHOR:phase-map -->
 ## PHASE DOCUMENTATION MAP
 
-> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details live inside the phase children.
+> This spec uses phased decomposition. The work is grouped under six themed tracks. Each track is a phase parent whose children own the implementation detail. The old-number to new-path bridge lives in `context-index.md`, and the historical changelogs are indexed in `changelog/README.md`.
 
-| Phase | Folder | Focus | Status |
+| Track | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 000 | `000-release-cleanup/` | Placeholder release cleanup shell | Placeholder |
-| 001 | `001-peck-teachings-adoption/` | Peck adoption phase-parent — README teachings T1-T4 (self-check/current-state/constitutional) + source-pass T5-T10 (reviewer-benchmark, verification-discipline, acceptance-coverage gate), as 7 nested phases (`001-007`) | Phase-parent |
-| 002 | `002-memory-write-safety/` | P0 feedback correctness fixes | Spec-scaffolded |
-| 003 | `003-memory-index-causal-lifecycle/` | Memory index & causal write lifecycle phase-parent — incremental index foundation, causal-edge tombstones, metadata-edge promoter, write-path reconciliation, as 4 nested phases (`001-004`) | Phase-parent |
-| 004 | `004-semantic-trigger-fallback/` | Hybrid lexical+semantic trigger matching phase-parent — schema+backfill, semantic matcher, hybrid handler, tests/goldens/shadow eval, as 4 nested phases (`001-004`) | Phase-parent |
-| 005 | `005-learning-feedback-reducers/` | Learning feedback reducers phase parent | Phase-parent |
-| 006 | `006-gem-team-adoption/` | Gem-team adoption phase-parent — typed agent I/O contract + scoped gates + advisory fields, as 3 nested phases (`001-003`) | Phase-parent |
-| 007 | `007-memclaw-derived-memory-hardening/` | MemClaw-derived memory write/surface hardening (idempotency receipts, tool-ownership map, stale-recall audit) + amendments to 002-005 | Phase-parent |
-| 008 | `008-openltm-retrieval-observability/` | OpenLTM-derived retrieval & memory observability — doc-anchor `why_ranked`, inline contradiction/supersession warnings, degraded-vector signal, maintenance counters (`research/010`) | Spec-scaffolded |
-| 009 | `009-openltm-continuity-resilience/` | OpenLTM-derived continuity/session resilience — bounded restore panel, authored-continuity PreCompact snapshot, goal/decision/progress/gotcha facets (`research/010`) | Spec-scaffolded |
-
-> `001-peck-teachings-adoption` holds all peck adoptions as 7 nested phases — README teachings (phases 002-004) plus the `research/006-peck-source-deep-mining` source-pass (phases 005-007; the once-deferred T1 is now adopted at phase 007). `006` holds the gem-team `research/007` proposals as nested phases `001-003` (integration analysed in `research/009`); `007` holds the `research/008-caura-memclaw-...` memory-hardening proposals. All three programs are scaffolded and planned, not implemented.
-
-### Continuation Research Planning Amendments
-
-- Iterations 040-042 are planning hygiene inputs: root `research/` is canonical, path/command naming must be explicit by surface, and XCE ideas remain evidence signals rather than direct requirements.
-- Iteration 043 is owned by `001-peck-teachings-adoption/`: keep T3, then T4, then T2; keep T1 deferred.
-- Iteration 044 is owned by `002-memory-write-safety/`: treat `auto-*` provenance, manual-edge overwrite protection, and tier/pin-aware retention as P0 safety gates.
-- Iteration 045 is owned by `003-memory-index-causal-lifecycle/001-incremental-index-foundation/`: add memo records, dependency edges, chunk fingerprints, chunk kinds, and chunk line spans before handler scan changes.
-- Iteration 046 is owned by `003-memory-index-causal-lifecycle/002-causal-edge-tombstones/`: all active causal-edge delete paths must tombstone before hard-delete.
-- Iteration 047 is owned by `003-memory-index-causal-lifecycle/003-metadata-edge-promoter/`: promote validated parent/child/parent-chain metadata and avoid duplicating already-wired manual metadata links.
-- Iteration 048 is owned by `003-memory-index-causal-lifecycle/004-write-path-reconciliation/`: statediff is an explicit action/subscriber aid, not an implicit source of truth.
-- Iterations 049 and 058 are planned together under `004-semantic-trigger-fallback/`: lexical-first remains primary; semantic expansion stays default-off with resumable backfill and shadow-to-union promotion evidence.
-- Iterations 050 and 059 are planned together under `005-learning-feedback-reducers/`: reducers stay default-off and shadow-first until ledger quality, replay, and consumer-specific gates pass.
-- Iterations 051-057 are cross-cutting planning rules for the child phases: prefer local packet context first, keep context bundles explicit, automate resource maps only with validation, keep reducer repairs idempotent, standardize `/speckit`, refuse stale impact analysis, and keep `memory_context` curation scoped to local memory-backend concerns.
-- Phases 008-009 are owned by the OpenLTM study (`research/010-openltm-memory-architecture-teachings`): `008` adopts retrieval/memory observability and `009` adopts continuity/session resilience — both filtered through the spec-documentation-based vs row-based architecture (research §8). Secret redaction, content-fingerprint indexing, and reshaped opt-in capture from the same study are folded as amendments into `002`, `003`, and `005` respectively. Row-coupled mechanics (`learn/reinforce`, per-row provenance/audit, row dedup) are rejected as negative knowledge.
+| 000 | `000-release-cleanup/` | Outward and governance surface alignment for release: public README, skill docs, feature catalog, manual playbook, MCP/CLI stress, commands, agents, AGENTS.md; hosts the spec-tree regroup task | Complete |
+| 001 | `001-research-and-doctrine/` | Research-derived doctrine adoption: peck verification discipline and gem-team agent I/O contract (2 phases) | Complete |
+| 002 | `002-memory-store-and-search/` | Memory store and retrieval hardening: write-safety, index and causal lifecycle, semantic triggers, feedback reducers, memclaw hardening, observability, continuity, vector and BM25 search resilience (14 phases) | In Progress |
+| 003 | `003-advisor-and-codegraph/` | Skill-advisor and code-graph subsystems: causal-traversal BFS, XCE feature adoption, advisor reconnect resilience (3 phases) | Complete |
+| 004 | `004-shared-infrastructure/` | Cross-cutting layers: CLI front-doors, command presentation, storage adapter ports, CLI UX, dependency patching, code-mode lifecycle, IPC client cap, MCP config alignment + daemon re-election (8 phases) | Complete |
+| 005 | `005-verification-and-remediation/` | Verify-first program: finding remediation, tri-system deep research, deep-research remediation, residual design units (4 phases) | In Progress |
 
 ### Phase Transition Rules
 
-- Each phase MUST pass `validate.sh` independently before the next phase begins.
-- Parent spec tracks aggregate progress via this map.
-- Use `/spec_kit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase.
-- Run `validate.sh --recursive` on parent to validate all phases as an integrated unit.
+- Each track and each child phase MUST pass `validate.sh` independently.
+- The parent spec tracks aggregate progress via this map.
+- Use `/speckit:resume [track]/[NNN-phase]/` to resume a specific phase.
+- Run `validate.sh --recursive` on the parent to validate all tracks as an integrated unit.
 
-### Phase Handoff Criteria
+### Old-to-New Bridge
 
-| From | To | Criteria | Verification |
-|------|----|----------|--------------|
-| 002-memory-write-safety | 005-learning-feedback-reducers | P0 feedback safety fixes landed before reducers learn from feedback. | 002 validation evidence and tests. |
-| 002-memory-write-safety | 003-memory-index-causal-lifecycle/002-causal-edge-tombstones | Auto-provenance broadening (P0) lands before the tombstone child's session-trace insertions. | 002 validation evidence. |
-| 003-memory-index-causal-lifecycle | (internal 001→002→003→004) | The index/causal write lifecycle chain is internal to this parent; see its execution order. | Per-child validation evidence. |
-| 001-peck-teachings-adoption/001-peck-teachings-for-spec-kit | 001-peck-teachings-adoption/002-self-check-templates | Peck teachings analysis complete; T3/T4/T2 order and T1 deferral are documented. | 001/001 implementation summary and analysis report. |
-| 001-peck-teachings-adoption/002-self-check-templates | 001-peck-teachings-adoption/003-current-state-discipline | Template self-check guidance ships without breaking scaffold validation. | Fresh scaffold plus strict validation evidence. |
-| 001-peck-teachings-adoption/003-current-state-discipline | 001-peck-teachings-adoption/004-constitutional-rule-review | Advisory current-state rule is registered without adding strict-mode errors. | Sample validation evidence. |
-| 004-semantic-trigger-fallback shadow mode | 004-semantic-trigger-fallback union mode | Resumable backfill complete or explicitly failed; shadow false-positive, recall, latency, cost, and rollback evidence pass. | 004 promotion checklist evidence. |
-| 005-learning-feedback-reducers shadow consumers | 005-learning-feedback-reducers active mutation/ranking | Ledger quality, shadow replay, and consumer-specific promotion criteria pass for each consumer. | 005/005 integration gate evidence. |
-| 007-memclaw-derived-memory-hardening | 008-openltm-retrieval-observability | OpenLTM research phase 010 complete; observability surfaces are additive and read-only to ranking. | `research/010` deliverables (research.md §8) + per-phase strict validation. |
-| 008-openltm-retrieval-observability | 009-openltm-continuity-resilience | Observability surfaces planned; continuity surfaces complement (never replace) the ladder. | Per-phase strict validation evidence. |
+The thirty prior top-level phases are grouped under the six themed tracks above. The full old-number to new-path mapping is recorded in `context-index.md`. Per-phase changelogs keep their original paths and are indexed in `changelog/README.md`.
+
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -180,9 +150,8 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- Should `000-release-cleanup` remain a placeholder indefinitely, or should a future cleanup packet remove it?
-- Should child phase specs be refreshed to remove stale historical numbering after each implementation phase closes?
-- Should the deferred peck-derived T1 coverage gate become a separate future packet after the lower-risk 001 peck phases ship?
+- None open at the parent level. The themed-track map is current and per-phase questions live in the child folders.
+
 <!-- /ANCHOR:questions -->
 
 ---

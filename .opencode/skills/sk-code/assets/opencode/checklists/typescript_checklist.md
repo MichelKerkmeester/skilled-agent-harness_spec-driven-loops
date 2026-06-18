@@ -1,6 +1,13 @@
 ---
 title: TypeScript Code Quality Checklist
 description: Quality validation checklist for TypeScript code in the OpenCode development environment.
+trigger_phrases:
+  - "opencode typescript checklist"
+  - "typescript quality validation checklist"
+  - "no any public api"
+  - "pascalcase types check"
+importance_tier: normal
+contextType: implementation
 ---
 
 # TypeScript Code Quality Checklist

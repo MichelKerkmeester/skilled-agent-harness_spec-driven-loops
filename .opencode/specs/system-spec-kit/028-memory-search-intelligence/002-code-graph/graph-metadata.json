@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/002-code-graph",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/002-code-graph",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "028 code graph mining",
+      "code graph edge lifecycle",
+      "non destructive reindex",
+      "ppr impact ranking",
+      "code graph readiness watermark"
+    ],
+    "key_topics": [
+      "028",
+      "code",
+      "graph",
+      "mining",
+      "edge",
+      "lifecycle",
+      "non",
+      "destructive",
+      "reindex",
+      "ppr",
+      "impact",
+      "ranking"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "research/research.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "External Mining",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Report",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executive Summary The",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Internal Baseline The",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Broadening Addendum",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The code graph (tree-sitter→SQLite typed edges) mutates edges destructively on incremental reindex, lacks idempotent edge IDs and a hard readiness watermark, ranks impact with flat edge walks, and skips doc-lane symbols. Aionforge encodes non-destructive bi-temporal lifecycle, content-addressed IDs, quarantine-not-wedge recovery, and generation-checked readiness.",
+    "created_at": "2026-06-16T14:27:21.651Z",
+    "last_save_at": "2026-06-17T19:57:25.214Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research/research.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -13,7 +13,6 @@ import { scoreAdvisorPrompt } from '../lib/scorer/fusion.js';
 import { runPromotionLatencyBench } from '../bench/latency-bench.js';
 import { createFixtureProjection } from '../lib/scorer/projection.js';
 import { skillInAliasSet, skillMatchesAlias } from '../lib/scorer/aliases.js';
-import type { SkillProjection } from '../lib/scorer/types.js';
 import { findAdvisorWorkspaceRoot } from '../lib/utils/workspace-root.js';
 import {
   DEFAULT_ADVISOR_CONFIDENCE_THRESHOLD,
@@ -27,11 +26,16 @@ import {
   readAdvisorHookHealthSection,
   summarizeAdvisorHookOutcomeRecords,
 } from '../lib/metrics.js';
+import { recordAdvisorFeedbackCalibrationIfEnabled } from '../lib/scorer/feedback-calibration.js';
 import {
   AdvisorValidateInputSchema,
   AdvisorValidateOutputSchema,
-  type AdvisorValidateInput,
-  type AdvisorValidateOutput,
+} from '../schemas/advisor-tool-schemas.js';
+import type { SkillProjection } from '../lib/scorer/types.js';
+import type { AdvisorHookOutcomeRecord } from '../lib/metrics.js';
+import type {
+  AdvisorValidateInput,
+  AdvisorValidateOutput,
 } from '../schemas/advisor-tool-schemas.js';
 
 type HandlerResponse = { content: Array<{ type: string; text: string }> };
@@ -170,7 +174,7 @@ function loadCorpus(workspaceRoot: string): CorpusRow[] {
     let parsed: unknown;
     try {
       parsed = JSON.parse(line);
-    } catch (error) {
+    } catch (error: unknown) {
       const message = error instanceof Error ? error.message : String(error);
       throw new Error(`Corpus row ${index + 1}: invalid JSON (${message})`);
     }
@@ -197,7 +201,7 @@ function loadRegressionCases(workspaceRoot: string): RegressionCase[] {
     let parsed: unknown;
     try {
       parsed = JSON.parse(line);
-    } catch (error) {
+    } catch (error: unknown) {
       const message = error instanceof Error ? error.message : String(error);
       throw new Error(`Regression case row ${index + 1}: invalid JSON (${message})`);
     }
@@ -323,7 +327,7 @@ print(json.dumps(out))
   let parsed: unknown;
   try {
     parsed = JSON.parse(result.stdout);
-  } catch (error) {
+  } catch (error: unknown) {
     const message = error instanceof Error ? error.message : String(error);
     throw new Error(`Python parity scorer returned invalid JSON: ${message}`);
   }
@@ -417,6 +421,13 @@ function countSlice(correct: number, total: number, threshold: number): {
   };
 }
 
+// Single synthetic two-skill STABILITY check: a known dead-tie must still
+// surface as ambiguous. This is NOT an empirical ambiguity false-positive /
+// false-negative rate — the labeled routing corpus carries no expected-ambiguous
+// advisor labels (only top-1 / unknown / false-fire), so an FP/FN slice cannot
+// be computed without a hand-labeled ambiguity set the corpus does not yet have.
+// The surfaced `ambiguity_slice_stable` metric reflects this fixture's stability
+// only; do not read it as ambiguity-rate coverage.
 function ambiguityStable(): boolean {
   const projection = createFixtureProjection([
     skill({ id: 'alpha', intentSignals: ['same route'] }),
@@ -489,14 +500,17 @@ export function validateAdvisor(input: AdvisorValidateInput = { confirmHeavyRun:
     ? canonicalizeWorkspaceRoot(args.workspaceRoot)
     : findWorkspaceRoot();
   const selectedSkillSlug = args.skillSlug ?? null;
+  const recordedOutcomeRecords: AdvisorHookOutcomeRecord[] = [];
   for (const outcomeEvent of args.outcomeEvents ?? []) {
-    persistAdvisorHookOutcomeRecord(workspaceRoot, createAdvisorHookOutcomeRecord({
+    const record = createAdvisorHookOutcomeRecord({
       runtime: outcomeEvent.runtime,
       outcome: outcomeEvent.outcome,
       skillLabel: outcomeEvent.skillId,
       correctedSkillLabel: outcomeEvent.correctedSkillId,
       timestamp: outcomeEvent.timestamp,
-    }));
+    });
+    recordedOutcomeRecords.push(record);
+    persistAdvisorHookOutcomeRecord(workspaceRoot, record);
   }
   const corpus = loadCorpus(workspaceRoot)
     .filter((row) => selectedSkillSlug ? row.skill_top_1 === selectedSkillSlug : true);
@@ -514,6 +528,21 @@ export function validateAdvisor(input: AdvisorValidateInput = { confirmHeavyRun:
   const regressionSuite = evaluateRegressionCases(loadRegressionCases(workspaceRoot), workspaceRoot);
   const outcomeSummary = summarizeAdvisorHookOutcomeRecords(workspaceRoot);
   const scopedOutcomeTotals = summarizeScopedOutcomeTotals(outcomeSummary.records, selectedSkillSlug);
+  const calibrationRecords = [
+    ...outcomeSummary.records,
+    ...recordedOutcomeRecords,
+  ].filter((record) => matchesOutcomeScope(record, selectedSkillSlug));
+  recordAdvisorFeedbackCalibrationIfEnabled({
+    workspaceRoot,
+    records: calibrationRecords,
+    options: {
+      skillSlug: selectedSkillSlug,
+      currentThresholds: {
+        confidenceThreshold: VALIDATION_THRESHOLD_SEMANTICS.runtimeRouting.confidenceThreshold,
+        uncertaintyThreshold: VALIDATION_THRESHOLD_SEMANTICS.runtimeRouting.uncertaintyThreshold,
+      },
+    },
+  });
   const perSkill = [...full.aggregates.entries()]
     .sort(([left], [right]) => left.localeCompare(right))
     .map(([skillId, aggregate]) => ({

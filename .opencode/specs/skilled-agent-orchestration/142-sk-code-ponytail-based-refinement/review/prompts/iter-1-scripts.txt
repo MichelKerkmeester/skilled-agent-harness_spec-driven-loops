@@ -1,0 +1,26 @@
+## CONTEXT
+READ-ONLY code review. Do NOT edit/write any file. Spec folder ...142-sk-code-ponytail-based-refinement pre-approved (Gate 3); read-only regardless. Load sk-code-review (findings-first P0/P1/P2 baseline) and sk-code (OPENCODE surface). These files were just implemented as part of a "ponytail-based refinement"; review them as new code.
+
+## OBJECTIVE (review dimension 1 of 5): new guard scripts — correctness, edge cases, security
+Find real defects (not style nits) in these 4 NEW files:
+- .opencode/skills/sk-code-review/scripts/check-rule-copies.js  (ESM canary: asserts the "Review status:" triplet + Iron Law wording exist across docs)
+- .opencode/skills/sk-code-review/scripts/check-rule-copies.test.sh  (its test)
+- .opencode/skills/deep-improvement/scripts/check-agent-mirror-sync.cjs  (CJS gate: wraps verifyMirrorSync over changed/all agents)
+- .opencode/skills/sk-code/assets/scripts/verify_stack_folders.py  (parses STACK_FOLDERS from sk-code SKILL.md; checks on-disk references/<surface>/ + assets/<surface>/)
+
+## STEPS
+Read all 4 files fully (they total < 500 lines). Also read what they depend on where relevant (e.g. the verifyMirrorSync signature in deep-improvement/scripts/lib/mirror-sync-verify.cjs; the STACK_FOLDERS block in sk-code/SKILL.md). Run the scripts if useful (`node ... `, `python3 ...`) — they are read-only.
+
+## REVIEW FOR (be specific, cite file:line)
+- Correctness bugs: wrong exit codes, off-by-one, a check that passes when it should fail or vice-versa, a regex that doesn't match what it claims.
+- Edge cases: missing file, empty input, bad/duplicate args, `--root` handling, an agent with no .opencode canonical, a STACK_FOLDERS surface that maps to a non-folder, CRLF, symlinks.
+- Security: ReDoS in any regex, path traversal via `--root` or filenames, command/`ast.literal_eval` injection, reading outside the repo.
+- Robustness: does the canary's hard-coded file/string list stay correct? does verify_stack_folders parse the STACK_FOLDERS literal safely if SKILL.md formatting changes?
+- Test adequacy: does check-rule-copies.test.sh actually prove both pass AND fail paths? any gap?
+
+## FORMAT
+Terse, evidence-led. End with a fenced ```json block EXACTLY:
+```json
+{"seat":"rv-1","dimension":"new-guard-scripts","findings":[{"id":"F1","severity":"P0|P1|P2","title":"","file":"path","line":"NN or range","evidence":"why it's a defect, tied to code","recommendation":"concrete fix"}],"severityCounts":{"P0":0,"P1":0,"P2":0},"newInfoRatio":0.0}
+```
+If nothing of a severity is found, omit it. Default to P2 for non-blocking; reserve P0 for exploitable/data-loss/blocking-correctness and P1 for must-fix correctness.

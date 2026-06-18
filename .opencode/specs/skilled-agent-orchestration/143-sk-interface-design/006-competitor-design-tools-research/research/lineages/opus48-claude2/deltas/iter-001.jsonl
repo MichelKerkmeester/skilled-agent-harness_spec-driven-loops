@@ -1,0 +1,10 @@
+{"type":"iteration","iteration":1,"newInfoRatio":1.0,"status":"complete","focus":"v0 by Vercel"}
+{"type":"finding","id":"f-iter001-001","label":"v0 Design Mode: direct-manipulation token-level edits sync to code, no AI turn (NET-NEW vs 005)","iteration":1}
+{"type":"finding","id":"f-iter001-002","label":"v0 project Sources: image/URL/Figma context attachments (OVERLAP w/ 005 snapshot)","iteration":1}
+{"type":"finding","id":"f-iter001-003","label":"v0 Figma import (out-of-scope: skills are not Figma plugins)","iteration":1}
+{"type":"finding","id":"f-iter001-004","label":"v0 build-error self-healing loop: run->error->auto-fix (NET-NEW vs 005, distinct from fidelity loop)","iteration":1}
+{"type":"finding","id":"f-iter001-005","label":"v0 shadcn theming/design-system integration (OVERLAP w/ 005 inheritance)","iteration":1}
+{"type":"finding","id":"f-iter001-006","label":"v0 multi-variation/forking (DANGEROUS for anti-default; OVERLAP w/ 005 levers note)","iteration":1}
+{"type":"finding","id":"f-iter001-007","label":"v0 deploy/GitHub/Platform-API (out-of-scope platform features)","iteration":1}
+{"type":"ruled_out","direction":"Adopt v0 deploy/host/Platform-API or Figma-plugin import into the CLI skills","reason":"platform/integration scope outside two lean CLI skills","iteration":1}
+{"type":"observation","id":"obs-iter001-001","classification":"web-gated","label":"WebSearch+WebFetch permission-gated in sandbox; using model knowledge, host verifies","iteration":1}

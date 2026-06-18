@@ -49,6 +49,7 @@ export interface ScanResult {
   filesScanned: number;
   filesIndexed: number;
   filesSkipped: number;
+  unsupportedLanguageSkipped: number;
   parserSkipListBypassCount: number;
   totalNodes: number;
   totalEdges: number;
@@ -61,6 +62,7 @@ export interface ScanResult {
   previousGitHead?: string | null;
   detectorProvenanceSummary?: graphDb.DetectorProvenanceSummary;
   graphEdgeEnrichmentSummary?: graphDb.GraphEdgeEnrichmentSummary | null;
+  tombstones: graphDb.CodeGraphTombstoneSummary;
   parseDiagnostics: graphDb.ParseDiagnosticsSummary;
   parserSkipList: {
     added: number;
@@ -227,8 +229,19 @@ function cleanupMissingTrackedFiles(filePaths: string[]): void {
       continue;
     }
 
-    graphDb.removeFile(filePath);
+    graphDb.removeFile(filePath, { reason: 'incremental_missing_tracked_file' });
   }
+}
+
+function emptyTombstoneSummary(): graphDb.CodeGraphTombstoneSummary {
+  return {
+    enabled: false,
+    retentionLimit: 0,
+    retainedRows: 0,
+    byKind: {},
+    byReason: {},
+    recent: [],
+  };
 }
 
 function summarizeEdgeDistribution(results: Array<{ edges: CodeEdge[] }>) {
@@ -384,6 +397,7 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
   const detectorProvenanceSummary = summarizeDetectorProvenance(results);
   let graphEdgeEnrichmentSummary = summarizeGraphEdgeEnrichment(results);
   const preParseSkippedCount = effectiveIncremental ? (results.preParseSkippedCount ?? 0) : 0;
+  const unsupportedLanguageSkipped = results.unsupportedLanguageSkipped ?? 0;
   const priorStats = graphDb.getStats();
   const priorNodeCount = priorStats.totalNodes;
   const candidatePersistableNodeCount = countPersistableNodes(results);
@@ -444,7 +458,8 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
           data: {
             filesScanned: results.length,
             filesIndexed: 0,
-            filesSkipped: preParseSkippedCount,
+            filesSkipped: preParseSkippedCount + unsupportedLanguageSkipped,
+            unsupportedLanguageSkipped,
             parserSkipListBypassCount,
             totalNodes: priorStats.totalNodes,
             totalEdges: priorStats.totalEdges,
@@ -520,7 +535,8 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
           data: {
             filesScanned: results.length,
             filesIndexed: 0,
-            filesSkipped: preParseSkippedCount,
+            filesSkipped: preParseSkippedCount + unsupportedLanguageSkipped,
+            unsupportedLanguageSkipped,
             parserSkipListBypassCount,
             totalNodes: priorStats.totalNodes,
             totalEdges: priorStats.totalEdges,
@@ -560,7 +576,7 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
   }
 
   let filesIndexed = 0;
-  let filesSkipped = preParseSkippedCount;
+  let filesSkipped = preParseSkippedCount + unsupportedLanguageSkipped;
   let totalNodes = 0;
   let totalEdges = 0;
   const errors: string[] = [];
@@ -573,7 +589,7 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
     const indexedPaths = new Set(results.map((result) => result.filePath));
     for (const filePath of graphDb.getTrackedFiles()) {
       if (!indexedPaths.has(filePath)) {
-        graphDb.removeFile(filePath);
+        graphDb.removeFile(filePath, { reason: 'full_scan_unindexed_tracked_file' });
       }
     }
   }
@@ -592,7 +608,7 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
     }
 
     try {
-      // BUG-03: defer the dangling-target edge prune per-file. A full scan
+      // Defer the dangling-target edge prune per-file. A full scan
       // persists files one at a time, so a cross-file IMPORTS edge whose target
       // lives in a not-yet-persisted file would be pruned here and never
       // restored. We sweep once with pruneDanglingEdges() after the loop and
@@ -706,7 +722,7 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
     graphDb.clearLastGraphEdgeEnrichmentSummary();
   }
 
-  // BUG-03: now that every file's nodes are persisted and cross-file CALL
+  // Now that every file's nodes are persisted and cross-file CALL
   // edges are resolved, sweep genuinely-dangling edges ONCE. Per-file
   // replaceEdges deferred this prune so forward-referenced cross-file IMPORTS
   // edges (importer persisted before the imported file) survived; here their
@@ -715,7 +731,7 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
     graphDb.pruneDanglingEdges();
   }
 
-  // FIX-011-FOLLOWUP-1: report POST-PERSIST DB counts so the scan response
+  // Report POST-PERSIST DB counts so the scan response
   // matches what the next code_graph_status will see. The pre-persist sums
   // (totalNodes/totalEdges accumulated above) double-count edges that get
   // deduped during persistence and miss edges added by enrichment that runs
@@ -725,6 +741,7 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
   const persistedStats = graphDb.getStats();
   const responseTotalNodes = persistedStats.totalNodes;
   const responseTotalEdges = persistedStats.totalEdges;
+  const tombstones = persistedStats.tombstones ?? emptyTombstoneSummary();
   const parseDiagnostics = relativizeParseDiagnostics(graphDb.getParseDiagnosticsSummary(), canonicalWorkspace);
   const skipListSummary = getSkipListSummary();
 
@@ -732,6 +749,7 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
     filesScanned: results.length,
     filesIndexed,
     filesSkipped,
+    unsupportedLanguageSkipped,
     parserSkipListBypassCount,
     totalNodes: responseTotalNodes,
     totalEdges: responseTotalEdges,
@@ -744,6 +762,7 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
     previousGitHead,
     detectorProvenanceSummary,
     graphEdgeEnrichmentSummary,
+    tombstones,
     parseDiagnostics,
     parserSkipList: {
       added: Math.max(0, skipListSummary.count - initialSkipListCount),

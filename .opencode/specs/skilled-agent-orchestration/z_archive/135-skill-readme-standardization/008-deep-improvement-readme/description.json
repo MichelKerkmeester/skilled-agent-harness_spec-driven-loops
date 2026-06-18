@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/135-skill-readme-standardization/008-deep-improvement-readme",
+  "description": "Feature Specification: deep-improvement README",
+  "keywords": [
+    "feature",
+    "specification",
+    "deep-improvement",
+    "readme"
+  ],
+  "lastUpdated": "2026-06-10T04:53:30.768Z",
+  "specId": "008",
+  "folderSlug": "deep-improvement-readme",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "135-skill-readme-standardization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

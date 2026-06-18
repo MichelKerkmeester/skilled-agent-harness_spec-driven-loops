@@ -1,0 +1,36 @@
+{
+  "level": "1",
+  "specFolder": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation",
+  "description": "Feature Specification: Fresh+Regression Deep-Review Remediation (Phase Parent)",
+  "keywords": [
+    "feature",
+    "specification",
+    "fresh",
+    "regression",
+    "deep-review",
+    "remediation",
+    "phase",
+    "parent"
+  ],
+  "lastUpdated": "2026-06-16T12:25:19.078Z",
+  "specId": "005",
+  "folderSlug": "fresh-regression-remediation",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "005-verification-and-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "childTopology": [
+    "001-memory-storage-and-search",
+    "002-daemon-launcher-lifecycle",
+    "003-code-graph-robustness",
+    "004-cli-frontdoor-safety",
+    "005-spec-folder-metadata-reconciliation",
+    "006-doc-truth-completion-and-mirrors",
+    "007-consolidation-hardening"
+  ]
+}

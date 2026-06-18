@@ -4,21 +4,24 @@
 // SQLite storage for structural code graph (nodes + edges).
 // Uses separate code-graph.sqlite alongside the memory index DB.
 
-import Database from 'better-sqlite3';
-import { join, isAbsolute, resolve as resolvePath } from 'node:path';
 import { readFileSync, statSync } from 'node:fs';
+import { isAbsolute, join, resolve as resolvePath } from 'node:path';
+
+import Database from 'better-sqlite3';
+
+import { DATABASE_DIR } from '../core/config.js';
 import { assertDbHandleClosed } from './close-db-assertion.js';
-import { generateContentHash, type CodeNode, type CodeEdge, type DetectorProvenance } from './indexer-types.js';
+import { generateContentHash } from './indexer-types.js';
 import {
   CODE_GRAPH_SCOPE_FINGERPRINT_KEY,
   CODE_GRAPH_SCOPE_LABEL_KEY,
   CODE_GRAPH_SCOPE_SOURCE_KEY,
   CODE_GRAPH_SKILL_EXCLUDE_GLOBS,
   parseIndexScopePolicyFromFingerprint,
-  type IndexScopePolicy,
-  type IndexScopePolicySource,
 } from './index-scope-policy.js';
-import { DATABASE_DIR } from '../core/config.js';
+
+import type { CodeEdge, CodeNode, DetectorProvenance } from './indexer-types.js';
+import type { IndexScopePolicy, IndexScopePolicySource } from './index-scope-policy.js';
 
 let db: Database.Database | null = null;
 let dbPath: string | null = null;
@@ -98,6 +101,44 @@ export interface FailedScanRecord {
   readonly scopeFingerprint?: string | null;
   readonly scopeLabel?: string | null;
   readonly errors?: string[];
+}
+
+export type CodeGraphTombstoneKind = 'file' | 'node' | 'edge';
+
+export interface CodeGraphTombstoneRecord {
+  readonly id: number;
+  readonly entityKind: CodeGraphTombstoneKind;
+  readonly entityId: string | null;
+  readonly sourceId: string | null;
+  readonly targetId: string | null;
+  readonly edgeType: string | null;
+  readonly filePath: string | null;
+  readonly reason: string;
+  readonly deletedAt: string;
+}
+
+export interface CodeGraphTombstoneSummary {
+  readonly enabled: boolean;
+  readonly retentionLimit: number;
+  readonly retainedRows: number;
+  readonly byKind: Record<string, number>;
+  readonly byReason: Record<string, number>;
+  readonly recent: CodeGraphTombstoneRecord[];
+}
+
+export interface SymbolIndexRow {
+  readonly symbolId: string;
+  readonly fqName: string | null;
+  readonly name: string | null;
+  readonly kind: string | null;
+  readonly filePath: string | null;
+  readonly startLine: number | null;
+  readonly signature: string | null;
+  readonly docstring: string | null;
+}
+
+export interface DeleteAuditOptions {
+  readonly reason?: string;
 }
 
 /** Schema version for migration tracking */
@@ -185,6 +226,205 @@ const SCHEMA_SQL = `
   CREATE INDEX IF NOT EXISTS idx_parse_diagnostics_last_seen ON parse_diagnostics(last_seen_at);
   CREATE INDEX IF NOT EXISTS idx_parser_skip_list_class ON parser_skip_list(error_class);
 `;
+
+const CODE_GRAPH_TOMBSTONES_ENV = 'SPECKIT_CODE_GRAPH_TOMBSTONES';
+const CODE_GRAPH_TOMBSTONE_LIMIT_ENV = 'SPECKIT_CODE_GRAPH_TOMBSTONE_LIMIT';
+const DEFAULT_TOMBSTONE_LIMIT = 100;
+const MAX_TOMBSTONE_LIMIT = 10_000;
+
+function codeGraphTombstonesEnabled(): boolean {
+  return process.env[CODE_GRAPH_TOMBSTONES_ENV] === 'true';
+}
+
+function getCodeGraphTombstoneLimit(): number {
+  const raw = process.env[CODE_GRAPH_TOMBSTONE_LIMIT_ENV];
+  const parsed = raw ? Number.parseInt(raw, 10) : DEFAULT_TOMBSTONE_LIMIT;
+  if (!Number.isFinite(parsed) || parsed <= 0) {
+    return DEFAULT_TOMBSTONE_LIMIT;
+  }
+  return Math.min(Math.trunc(parsed), MAX_TOMBSTONE_LIMIT);
+}
+
+function ensureTombstoneSchema(database: Database.Database): void {
+  database.exec(`
+    CREATE TABLE IF NOT EXISTS code_graph_tombstones (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      entity_kind TEXT NOT NULL CHECK (entity_kind IN ('file', 'node', 'edge')),
+      entity_id TEXT,
+      source_id TEXT,
+      target_id TEXT,
+      edge_type TEXT,
+      file_path TEXT,
+      reason TEXT NOT NULL,
+      deleted_at TEXT NOT NULL
+    );
+    CREATE INDEX IF NOT EXISTS idx_code_graph_tombstones_deleted_at ON code_graph_tombstones(deleted_at);
+    CREATE INDEX IF NOT EXISTS idx_code_graph_tombstones_kind_reason ON code_graph_tombstones(entity_kind, reason);
+  `);
+}
+
+function tombstoneTableExists(database: Database.Database): boolean {
+  const row = database.prepare(`
+    SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'code_graph_tombstones'
+  `).get() as { name: string } | undefined;
+  return row !== undefined;
+}
+
+function pruneTombstones(database: Database.Database): void {
+  const limit = getCodeGraphTombstoneLimit();
+  database.prepare(`
+    DELETE FROM code_graph_tombstones
+    WHERE id NOT IN (
+      SELECT id FROM code_graph_tombstones
+      ORDER BY deleted_at DESC, id DESC
+      LIMIT ?
+    )
+  `).run(limit);
+}
+
+function recordNodeTombstones(
+  database: Database.Database,
+  fileId: number,
+  reason: string,
+  deletedAt: string,
+): void {
+  if (!codeGraphTombstonesEnabled()) {
+    return;
+  }
+  ensureTombstoneSchema(database);
+  database.prepare(`
+    INSERT INTO code_graph_tombstones (entity_kind, entity_id, file_path, reason, deleted_at)
+    SELECT 'node', symbol_id, file_path, ?, ?
+    FROM code_nodes
+    WHERE file_id = ?
+  `).run(reason, deletedAt, fileId);
+  pruneTombstones(database);
+}
+
+function recordEdgeTombstonesForSymbols(
+  database: Database.Database,
+  symbolIds: string[],
+  reason: string,
+  deletedAt: string,
+): void {
+  if (!codeGraphTombstonesEnabled() || symbolIds.length === 0) {
+    return;
+  }
+  ensureTombstoneSchema(database);
+  const placeholders = symbolIds.map(() => '?').join(',');
+  database.prepare(`
+    INSERT INTO code_graph_tombstones (
+      entity_kind, entity_id, source_id, target_id, edge_type, file_path, reason, deleted_at
+    )
+    SELECT
+      'edge',
+      source_id || '->' || target_id || ':' || edge_type,
+      source_id,
+      target_id,
+      edge_type,
+      COALESCE(source_node.file_path, target_node.file_path),
+      ?,
+      ?
+    FROM code_edges edge
+    LEFT JOIN code_nodes source_node ON source_node.symbol_id = edge.source_id
+    LEFT JOIN code_nodes target_node ON target_node.symbol_id = edge.target_id
+    WHERE edge.source_id IN (${placeholders}) OR edge.target_id IN (${placeholders})
+  `).run(reason, deletedAt, ...symbolIds, ...symbolIds);
+  pruneTombstones(database);
+}
+
+function recordEdgeTombstonesForSources(
+  database: Database.Database,
+  sourceIds: string[],
+  reason: string,
+  deletedAt: string,
+): void {
+  if (!codeGraphTombstonesEnabled() || sourceIds.length === 0) {
+    return;
+  }
+  ensureTombstoneSchema(database);
+  const placeholders = sourceIds.map(() => '?').join(',');
+  database.prepare(`
+    INSERT INTO code_graph_tombstones (
+      entity_kind, entity_id, source_id, target_id, edge_type, file_path, reason, deleted_at
+    )
+    SELECT
+      'edge',
+      source_id || '->' || target_id || ':' || edge_type,
+      source_id,
+      target_id,
+      edge_type,
+      source_node.file_path,
+      ?,
+      ?
+    FROM code_edges edge
+    LEFT JOIN code_nodes source_node ON source_node.symbol_id = edge.source_id
+    WHERE edge.source_id IN (${placeholders})
+  `).run(reason, deletedAt, ...sourceIds);
+  pruneTombstones(database);
+}
+
+function recordDanglingEdgeTombstones(
+  database: Database.Database,
+  reason: string,
+  deletedAt: string,
+): void {
+  if (!codeGraphTombstonesEnabled()) {
+    return;
+  }
+  ensureTombstoneSchema(database);
+  database.prepare(`
+    INSERT INTO code_graph_tombstones (
+      entity_kind, entity_id, source_id, target_id, edge_type, file_path, reason, deleted_at
+    )
+    SELECT
+      'edge',
+      source_id || '->' || target_id || ':' || edge_type,
+      source_id,
+      target_id,
+      edge_type,
+      COALESCE(source_node.file_path, target_node.file_path),
+      ?,
+      ?
+    FROM code_edges edge
+    LEFT JOIN code_nodes source_node ON source_node.symbol_id = edge.source_id
+    LEFT JOIN code_nodes target_node ON target_node.symbol_id = edge.target_id
+    WHERE edge.source_id NOT IN (SELECT symbol_id FROM code_nodes)
+      OR edge.target_id NOT IN (SELECT symbol_id FROM code_nodes)
+  `).run(reason, deletedAt);
+  pruneTombstones(database);
+}
+
+function recordFileTombstone(
+  database: Database.Database,
+  filePath: string,
+  reason: string,
+  deletedAt: string,
+): void {
+  if (!codeGraphTombstonesEnabled()) {
+    return;
+  }
+  ensureTombstoneSchema(database);
+  database.prepare(`
+    INSERT INTO code_graph_tombstones (entity_kind, entity_id, file_path, reason, deleted_at)
+    VALUES ('file', ?, ?, ?, ?)
+  `).run(filePath, filePath, reason, deletedAt);
+  pruneTombstones(database);
+}
+
+function mapTombstoneRow(row: Record<string, unknown>): CodeGraphTombstoneRecord {
+  return {
+    id: row.id as number,
+    entityKind: row.entity_kind as CodeGraphTombstoneKind,
+    entityId: row.entity_id as string | null,
+    sourceId: row.source_id as string | null,
+    targetId: row.target_id as string | null,
+    edgeType: row.edge_type as string | null,
+    filePath: row.file_path as string | null,
+    reason: row.reason as string,
+    deletedAt: row.deleted_at as string,
+  };
+}
 
 function getCurrentFileMtimeMs(filePath: string): number | null {
   try {
@@ -690,9 +930,12 @@ export function replaceNodes(fileId: number, nodes: CodeNode[]): void {
   `);
 
   const tx = d.transaction(() => {
+    const deletedAt = new Date().toISOString();
     const oldSymbolRows = d.prepare('SELECT symbol_id FROM code_nodes WHERE file_id = ?').all(fileId) as { symbol_id: string }[];
     const oldSymbolIds = oldSymbolRows.map(row => row.symbol_id);
 
+    recordNodeTombstones(d, fileId, 'replace_nodes_reindex', deletedAt);
+    recordEdgeTombstonesForSymbols(d, oldSymbolIds, 'replace_nodes_reindex', deletedAt);
     d.prepare('DELETE FROM code_nodes WHERE file_id = ?').run(fileId);
 
     if (oldSymbolIds.length > 0) {
@@ -716,7 +959,7 @@ export function replaceNodes(fileId: number, nodes: CodeNode[]): void {
 
 export interface ReplaceEdgesOptions {
   /**
-   * BUG-03: when true, skip the inline dangling-target prune. During a full
+   * When true, skip the inline dangling-target prune. During a full
    * scan, files are persisted one at a time; a cross-file IMPORTS edge whose
    * target lives in a not-yet-persisted file would otherwise be deleted here
    * (its `target_id` is not yet in `code_nodes`) and is never restored, because
@@ -738,8 +981,10 @@ export function replaceEdges(sourceIds: string[], edges: CodeEdge[], opts: Repla
   `);
 
   const tx = d.transaction(() => {
+    const deletedAt = new Date().toISOString();
     if (sourceIds.length > 0) {
       const placeholders = sourceIds.map(() => '?').join(',');
+      recordEdgeTombstonesForSources(d, sourceIds, 'replace_edges_reindex', deletedAt);
       d.prepare(`DELETE FROM code_edges WHERE source_id IN (${placeholders})`).run(...sourceIds);
     }
 
@@ -765,6 +1010,7 @@ export function replaceEdges(sourceIds: string[], edges: CodeEdge[], opts: Repla
     }
 
     if (!opts.deferDanglingTargetPrune) {
+      recordDanglingEdgeTombstones(d, 'replace_edges_dangling_prune', deletedAt);
       d.prepare(`
         DELETE FROM code_edges WHERE
           source_id NOT IN (SELECT symbol_id FROM code_nodes) OR
@@ -776,13 +1022,14 @@ export function replaceEdges(sourceIds: string[], edges: CodeEdge[], opts: Repla
 }
 
 /**
- * BUG-03: remove edges whose source or target symbol no longer exists in
+ * Remove edges whose source or target symbol no longer exists in
  * `code_nodes`. Run ONCE after a multi-file scan (all nodes persisted +
  * cross-file resolution complete) when per-file `replaceEdges` deferred its
  * inline prune. Returns the number of edges removed.
  */
 export function pruneDanglingEdges(): number {
   const d = getDb();
+  recordDanglingEdgeTombstones(d, 'dangling_edge_prune', new Date().toISOString());
   const result = d.prepare(`
     DELETE FROM code_edges WHERE
       source_id NOT IN (SELECT symbol_id FROM code_nodes) OR
@@ -887,19 +1134,24 @@ export function countTrackedSkillFiles(): number {
 }
 
 /** Remove a file and its nodes/edges from the graph */
-export function removeFile(filePath: string): void {
+export function removeFile(filePath: string, options: DeleteAuditOptions = {}): void {
   const d = getDb();
   const file = d.prepare('SELECT id FROM code_files WHERE file_path = ?').get(filePath) as { id: number } | undefined;
   if (!file) return;
-  // CG-003: wrap the edge-delete + file-delete (CASCADE drops nodes) in a single
+  // Wrap the edge-delete + file-delete (CASCADE drops nodes) in a single
   // transaction so a crash mid-call cannot leave orphaned edges / partial graph state.
   const tx = d.transaction(() => {
+    const deletedAt = new Date().toISOString();
+    const reason = options.reason ?? 'tracked_file_removed';
     const nodeIds = d.prepare('SELECT symbol_id FROM code_nodes WHERE file_id = ?').all(file.id) as { symbol_id: string }[];
     if (nodeIds.length > 0) {
       const placeholders = nodeIds.map(() => '?').join(',');
       const ids = nodeIds.map(n => n.symbol_id);
+      recordNodeTombstones(d, file.id, reason, deletedAt);
+      recordEdgeTombstonesForSymbols(d, ids, reason, deletedAt);
       d.prepare(`DELETE FROM code_edges WHERE source_id IN (${placeholders}) OR target_id IN (${placeholders})`).run(...ids, ...ids);
     }
+    recordFileTombstone(d, filePath, reason, deletedAt);
     d.prepare('DELETE FROM code_files WHERE id = ?').run(file.id);
   });
   tx();
@@ -981,6 +1233,35 @@ export function queryStartupHighlights(limit: number = 5): StartupHighlight[] {
     kind: row.kind,
     filePath: row.file_path,
     callCount: row.call_count,
+  }));
+}
+
+export function querySymbolIndexRows(): SymbolIndexRow[] {
+  const d = getDb();
+  const rows = d.prepare(`
+    SELECT symbol_id, fq_name, name, kind, file_path, start_line, signature, docstring
+    FROM code_nodes
+    ORDER BY file_path, start_line, symbol_id
+  `).all() as Array<{
+    symbol_id: string;
+    fq_name: string | null;
+    name: string | null;
+    kind: string | null;
+    file_path: string | null;
+    start_line: number | null;
+    signature: string | null;
+    docstring: string | null;
+  }>;
+
+  return rows.map((row) => ({
+    symbolId: row.symbol_id,
+    fqName: row.fq_name,
+    name: row.name,
+    kind: row.kind,
+    filePath: row.file_path,
+    startLine: row.start_line,
+    signature: row.signature,
+    docstring: row.docstring,
   }));
 }
 
@@ -1132,6 +1413,7 @@ export function getStats(): {
   totalFiles: number; totalNodes: number; totalEdges: number;
   nodesByKind: Record<string, number>; edgesByType: Record<string, number>;
   parseHealthSummary: Record<string, number>;
+  tombstones: CodeGraphTombstoneSummary;
   lastScanTimestamp: string | null;
   lastGitHead: string | null;
   dbFileSize: number | null;
@@ -1163,6 +1445,7 @@ export function getStats(): {
   const lastScanTimestamp = lastScan?.last ?? null;
   const lastGitHead = getLastGitHead();
   const graphQualitySummary = getGraphQualitySummary();
+  const tombstones = getTombstoneSummary();
 
   // DB file size
   let dbFileSize: number | null = null;
@@ -1172,26 +1455,105 @@ export function getStats(): {
 
   return {
     totalFiles, totalNodes, totalEdges, nodesByKind, edgesByType, parseHealthSummary,
-    lastScanTimestamp, lastGitHead, dbFileSize, schemaVersion: SCHEMA_VERSION, graphQualitySummary,
+    tombstones, lastScanTimestamp, lastGitHead, dbFileSize, schemaVersion: SCHEMA_VERSION, graphQualitySummary,
+  };
+}
+
+export function getTombstoneSummary(): CodeGraphTombstoneSummary {
+  const enabled = codeGraphTombstonesEnabled();
+  const retentionLimit = enabled ? getCodeGraphTombstoneLimit() : 0;
+  const empty: CodeGraphTombstoneSummary = {
+    enabled,
+    retentionLimit,
+    retainedRows: 0,
+    byKind: {},
+    byReason: {},
+    recent: [],
+  };
+
+  const d = getDb();
+  if (!enabled || !tombstoneTableExists(d)) {
+    return empty;
+  }
+
+  const retained = d.prepare('SELECT COUNT(*) AS count FROM code_graph_tombstones').get() as { count: number };
+  const kindRows = d.prepare(`
+    SELECT entity_kind, COUNT(*) AS count
+    FROM code_graph_tombstones
+    GROUP BY entity_kind
+  `).all() as Array<{ entity_kind: string; count: number }>;
+  const reasonRows = d.prepare(`
+    SELECT reason, COUNT(*) AS count
+    FROM code_graph_tombstones
+    GROUP BY reason
+  `).all() as Array<{ reason: string; count: number }>;
+  const recentRows = d.prepare(`
+    SELECT id, entity_kind, entity_id, source_id, target_id, edge_type, file_path, reason, deleted_at
+    FROM code_graph_tombstones
+    ORDER BY deleted_at DESC, id DESC
+    LIMIT 10
+  `).all() as Array<Record<string, unknown>>;
+
+  return {
+    enabled,
+    retentionLimit,
+    retainedRows: retained.count,
+    byKind: Object.fromEntries(kindRows.map((row) => [row.entity_kind, row.count])),
+    byReason: Object.fromEntries(reasonRows.map((row) => [row.reason, row.count])),
+    recent: recentRows.map(mapTombstoneRow),
   };
 }
 
 /** Remove orphaned nodes whose files no longer exist in code_files */
 export function cleanupOrphans(): number {
   const d = getDb();
-  // Find node file_ids not in code_files
-  const orphanedNodes = d.prepare(`
-    DELETE FROM code_nodes WHERE file_id NOT IN (SELECT id FROM code_files)
-  `).run();
+  // Wrap record + delete in one transaction so a crash mid-call cannot leave
+  // orphan nodes gone while their now-dangling edges remain, and so a retry
+  // cannot re-record the same tombstones — matching removeFile/replaceNodes.
+  const tx = d.transaction(() => {
+    const deletedAt = new Date().toISOString();
+    // Edges already dangling before this sweep (source/target node missing).
+    recordDanglingEdgeTombstones(d, 'cleanup_orphans', deletedAt);
+    if (codeGraphTombstonesEnabled()) {
+      ensureTombstoneSchema(d);
+      // Edges that will become dangling as a side effect of deleting the
+      // orphan nodes below. Recorded BEFORE the node DELETE so the
+      // source/target endpoints still exist for the file_path join, matching
+      // removeFile's ordering — recordDanglingEdgeTombstones alone misses
+      // these because the orphan nodes are still present when it runs.
+      const orphanSymbolRows = d.prepare(`
+        SELECT symbol_id FROM code_nodes WHERE file_id NOT IN (SELECT id FROM code_files)
+      `).all() as { symbol_id: string }[];
+      recordEdgeTombstonesForSymbols(
+        d,
+        orphanSymbolRows.map((row) => row.symbol_id),
+        'cleanup_orphans',
+        deletedAt,
+      );
+      // Orphan node tombstones.
+      d.prepare(`
+        INSERT INTO code_graph_tombstones (entity_kind, entity_id, file_path, reason, deleted_at)
+        SELECT 'node', symbol_id, file_path, 'cleanup_orphans', ?
+        FROM code_nodes
+        WHERE file_id NOT IN (SELECT id FROM code_files)
+      `).run(deletedAt);
+      pruneTombstones(d);
+    }
+    const orphanedNodes = d.prepare(`
+      DELETE FROM code_nodes WHERE file_id NOT IN (SELECT id FROM code_files)
+    `).run();
 
-  // Find edges referencing non-existent nodes
-  const orphanedEdges = d.prepare(`
-    DELETE FROM code_edges WHERE
-      source_id NOT IN (SELECT symbol_id FROM code_nodes) OR
-      target_id NOT IN (SELECT symbol_id FROM code_nodes)
-  `).run();
+    // Sweep edges referencing non-existent nodes (now includes edges orphaned
+    // by the node delete above, whose tombstones were recorded beforehand).
+    const orphanedEdges = d.prepare(`
+      DELETE FROM code_edges WHERE
+        source_id NOT IN (SELECT symbol_id FROM code_nodes) OR
+        target_id NOT IN (SELECT symbol_id FROM code_nodes)
+    `).run();
 
-  return orphanedNodes.changes + orphanedEdges.changes;
+    return orphanedNodes.changes + orphanedEdges.changes;
+  });
+  return tx();
 }
 
 /** Convert DB row to CodeNode */

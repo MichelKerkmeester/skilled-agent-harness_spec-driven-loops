@@ -6,7 +6,6 @@
    1. IMPORTS
 ──────────────────────────────────────────────────────────────── */
 
-import { randomBytes } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -24,7 +23,8 @@ import {
   type IngestJob,
 } from '../lib/ops/job-queue.js';
 import * as retrievalTelemetry from '../lib/telemetry/retrieval-telemetry.js';
-import { validateGovernedIngest } from '../lib/governance/scope-governance.js';
+import { requiresGovernedIngest, validateGovernedIngest } from '../lib/governance/scope-governance.js';
+import { createJobId } from '../lib/ops/job-store.js';
 
 import type { MCPResponse } from './types.js';
 
@@ -73,17 +73,6 @@ function hasTraversalSegment(inputPath: string): boolean {
 
 function toPublicPathLabel(filePath: string): string {
   return filePath === '__job__' ? filePath : path.basename(filePath || '');
-}
-
-// Use a nanoid-style 12-char URL-safe identifier without UUID dependency.
-const NANOID_ALPHABET = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-function createJobId(): string {
-  const bytes = randomBytes(12);
-  let id = '';
-  for (let i = 0; i < 12; i++) {
-    id += NANOID_ALPHABET[bytes[i] % NANOID_ALPHABET.length];
-  }
-  return `job_${id}`;
 }
 
 function mapJobForResponse(job: IngestJob): Record<string, unknown> {
@@ -143,6 +132,7 @@ function mapJobForResponse(job: IngestJob): Record<string, unknown> {
 async function handleMemoryIngestStart(args: MemoryIngestStartArgs): Promise<MCPResponse> {
   await ensureMemoryRuntimeInitialized('handler:memory_ingest_start');
   await checkDatabaseUpdated();
+  const governedIngest = requiresGovernedIngest(args);
   const governanceDecision = validateGovernedIngest(args);
   if (!governanceDecision.allowed) {
     throw new Error(`Governed ingest rejected: ${governanceDecision.issues.join('; ')}`);
@@ -264,9 +254,7 @@ async function handleMemoryIngestStart(args: MemoryIngestStartArgs): Promise<MCP
     id: jobId,
     paths,
     specFolder: args.specFolder,
-    // Persist the validated governance decision so the async worker re-indexes
-    // each path under the same provenance/retention/scope as the sync path.
-    governance: governanceDecision,
+    governance: governedIngest ? governanceDecision : null,
   });
 
   enqueueIngestJob(job.id);

@@ -15,7 +15,7 @@
 #
 # Silence with SPECKIT_WORKTREE_GUARD=off.
 
-set -u
+set -euo pipefail
 
 [ "${SPECKIT_WORKTREE_GUARD:-on}" = "off" ] && exit 0
 

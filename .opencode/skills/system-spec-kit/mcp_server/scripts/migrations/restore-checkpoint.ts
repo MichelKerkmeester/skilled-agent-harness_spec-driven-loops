@@ -10,6 +10,7 @@ import { pathToFileURL } from 'url';
 import Database from 'better-sqlite3';
 import { resolveActiveProfileDbPath } from '@spec-kit/shared/embeddings/profile';
 import { DATABASE_DIR } from '../../core/config.js';
+import { acquire_db_instance_lock, release_db_instance_lock } from '../../lib/search/db-instance-lock.js';
 
 interface CliArgs {
   checkpointPath: string;
@@ -161,31 +162,39 @@ function runRestoreCheckpoint(args: CliArgs): RestoreCheckpointResult {
     throw new Error('Target DB already exists. Re-run with --force to allow replacement.');
   }
 
-  fs.mkdirSync(path.dirname(args.dbPath), { recursive: true });
-  fs.mkdirSync(args.backupDir, { recursive: true });
+  // Swapping the database file out from under a live writer is the worst
+  // dual-writer hazard of all; hold the single-writer lock for the whole
+  // backup-copy → restore-copy → verify window.
+  acquire_db_instance_lock(args.dbPath);
+  try {
+    fs.mkdirSync(path.dirname(args.dbPath), { recursive: true });
+    fs.mkdirSync(args.backupDir, { recursive: true });
 
-  const now = new Date();
-  const backupPath = path.join(
-    args.backupDir,
-    `${toTimestampId(now)}__pre-restore-${path.basename(args.dbPath)}`,
-  );
+    const now = new Date();
+    const backupPath = path.join(
+      args.backupDir,
+      `${toTimestampId(now)}__pre-restore-${path.basename(args.dbPath)}`,
+    );
 
-  if (targetExists) {
-    fs.copyFileSync(args.dbPath, backupPath);
+    if (targetExists) {
+      fs.copyFileSync(args.dbPath, backupPath);
+    }
+
+    fs.copyFileSync(args.checkpointPath, args.dbPath);
+    verifySqliteFile(args.dbPath);
+
+    const result: RestoreCheckpointResult = {
+      ok: true,
+      restoredAt: now.toISOString(),
+      checkpointPath: args.checkpointPath,
+      targetDbPath: args.dbPath,
+      backupPath: targetExists ? backupPath : null,
+    };
+
+    return result;
+  } finally {
+    release_db_instance_lock(args.dbPath);
   }
-
-  fs.copyFileSync(args.checkpointPath, args.dbPath);
-  verifySqliteFile(args.dbPath);
-
-  const result: RestoreCheckpointResult = {
-    ok: true,
-    restoredAt: now.toISOString(),
-    checkpointPath: args.checkpointPath,
-    targetDbPath: args.dbPath,
-    backupPath: targetExists ? backupPath : null,
-  };
-
-  return result;
 }
 
 /**

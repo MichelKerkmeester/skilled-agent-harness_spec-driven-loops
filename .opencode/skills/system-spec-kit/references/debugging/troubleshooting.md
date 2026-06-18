@@ -1,6 +1,14 @@
 ---
 title: Troubleshooting Reference
 description: Systematic diagnosis and resolution for semantic memory issues, context retrieval failures, and MCP tool problems.
+trigger_phrases:
+  - "memory troubleshooting guide"
+  - "vector index issues"
+  - "mcp connection problems"
+  - "context retrieval failures"
+  - "hybrid search fallback"
+importance_tier: normal
+contextType: general
 ---
 
 # Troubleshooting Reference - Issue Resolution Guide
@@ -109,7 +117,8 @@ memory_search({ query: "test" })
 1. Check server status: `ps aux | grep context-server`
 2. Verify config: `cat opencode.json | jq '.mcp["mk-spec-memory"]'`
 3. Test basic call: `memory_stats()`
-4. If still failing: restart server and wait 10s
+4. Probe the warm daemon via the dual-stack CLI: `node .opencode/bin/spec-memory.cjs memory_stats --warm-only --format json --timeout-ms 3000` — success means the daemon is healthy and only the runtime's MCP wiring needs repair (reconnect MCP); exit `75` means the daemon itself is down (retryable after restart or prewarm)
+5. If still failing: restart server and wait 10s
 
 ### Context Retrieval Issues
 

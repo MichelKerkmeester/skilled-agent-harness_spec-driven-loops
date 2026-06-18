@@ -25,7 +25,7 @@ Current state:
 - `launcher-idle-timeout.ts` owns the shared MCP idle self-exit timer.
 - Socket paths default to the code-graph database directory and can be overridden with `SPECKIT_IPC_SOCKET_DIR`.
 - Overrides must stay inside the workspace root unless the caller uses a TCP URL.
-- Secondary clients are capped by `SPECKIT_MAX_SECONDARY_CLIENTS`, defaulting to `8`.
+- Secondary clients are capped by `SPECKIT_MAX_SECONDARY_CLIENTS`, defaulting to `64`.
 - `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN` defaults to `30`, accepts fractional values for tests, and `0` disables the idle monitor.
 
 ---

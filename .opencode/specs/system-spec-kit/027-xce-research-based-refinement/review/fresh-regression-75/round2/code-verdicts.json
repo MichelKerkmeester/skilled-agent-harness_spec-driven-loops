@@ -1,0 +1,146 @@
+[
+  {
+    "id": "gpt-cli-frontdoors-i2-f1",
+    "file": ".opencode/skills/system-skill-advisor/mcp_server/skill-advisor-cli.ts:353",
+    "title": "Prompt-time marker does not block trusted mutations",
+    "verifier": "opus",
+    "verdict": "REFUTED",
+    "adjusted": "none",
+    "reasoning": "Front-door DOES gate mutations via assertTrustedForMutation(trusted) — matching spec's 'require explicit --trusted'. trusted defaults false; default prompt-time invocation is blocked. Mutating at prompt-time requires explicitly asserting trusted authority, which the documented hook convention forbids. Orthogonal warm-only vs trusted is intentional; spec not contradicted."
+  },
+  {
+    "id": "gpt-cli-frontdoors-i1-f1",
+    "file": ".opencode/skills/system-spec-kit/mcp_server/spec-memory-cli.ts:753",
+    "title": "IPC client trusts pre-existing /tmp socket without owner or symlink verification",
+    "verifier": "opus",
+    "verdict": "DOWNGRADED",
+    "adjusted": "P2",
+    "reasoning": "Code confirmed: statSync(not lstat), no uid check, predictable /tmp default, probe trusts any initialize reply. But local single-user dev tool; group/world-writable reject + 0700 + /tmp sticky bit mitigate common case; shared-host pre-creation precondition makes P1 too high."
+  },
+  {
+    "id": "opus-memory-daemon-i1-f1",
+    "file": ".opencode/skills/system-spec-kit/mcp_server/handlers/save/spec-folder-mutex.ts:37",
+    "title": "Spec-folder save mutex reaps live owners (no pid-liveness gate, no heartbeat) — defeats single-writer guarantee",
+    "verifier": "kimi",
+    "verdict": "CONFIRMED",
+    "adjusted": "P1",
+    "reasoning": "isStaleLock uses only mtime age; owner.json pid is never read back; lock dir mtime is set once at mkdir and never refreshed; acquire reaps solely on age, so a still-live owner holding the lock past 5 min during embedding/chunked indexing can be reaped by another writer."
+  },
+  {
+    "id": "gpt-cli-frontdoors-i4-f1",
+    "file": ".opencode/skills/system-spec-kit/mcp_server/spec-memory-cli.ts:982",
+    "title": "spec-memory CLI exits 0 on daemon payload status:error",
+    "verifier": "opus",
+    "verdict": "DOWNGRADED",
+    "adjusted": "P2",
+    "reasoning": "Code asymmetry real, but spec-memory envelope has no top-level status field; errors use data.error+meta.isError(=true)->envelope isError->exit1. Proposed isErrorPayload(status==='error') guard wouldn't fire here. Cited mechanism/remedy mismatched to actual contract; only an unproven data.error-without-meta.isError gap remains."
+  },
+  {
+    "id": "gpt-cli-frontdoors-i3-f2",
+    "file": ".opencode/skills/system-code-graph/mcp_server/code-index-cli.ts:924",
+    "title": "Warm-only clients trust socket dirs without owner validation",
+    "verifier": "opus",
+    "verdict": "DOWNGRADED",
+    "adjusted": "P2",
+    "reasoning": "Real asymmetry: client ensureSocketEnvironment checks only mode&0o022, never stat.uid; server socket-server.ts:277 enforces st.uid==uid for the same /tmp/mk-code-index path. Warm-only path connects+trusts JSON-RPC. But precondition is shared multi-user host (this is single-user dev env) and impact is injected status text, not RCE. Defense-in-depth gap, P2 not P1."
+  },
+  {
+    "id": "gpt-cli-frontdoors-i3-f1",
+    "file": ".opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs:18",
+    "title": "CamelCase aliases bypass prompt-time maintenance block",
+    "verifier": "opus",
+    "verdict": "DOWNGRADED",
+    "adjusted": "P2",
+    "reasoning": "Real gap: blocklist covers snake+kebab not camel; commandMap resolves codeGraphScan->code_graph_scan; PROMPT_TIME env only sets warm-only, no maintenance backstop. But no current caller passes camelCase, so impact is latent, not P1."
+  },
+  {
+    "id": "gpt-wip-doctrine-i4-f3",
+    "file": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/run-benchmark.cjs:461",
+    "title": "run-benchmark.cjs rejects --scorer reviewer",
+    "verifier": "opus",
+    "verdict": "REFUTED",
+    "adjusted": "none",
+    "reasoning": "Fallback emits a stderr warning (not silent, contradicting the claim). reviewer is intentionally absent from this fixture runner's scorers per SKILL §304 and profile-validator KNOWN_SCORERS={pattern,5dim}; reviewer scoring is fixture-kind-driven in lib/reviewer-scorer via the sweep runner, not a --scorer flag. Consistent design, not a defect."
+  },
+  {
+    "id": "opus-concurrency-race-i4-f1",
+    "file": ".opencode/bin/mk-spec-memory-launcher.cjs:478",
+    "title": "Owner-lease stale-reclaim is non-exclusive; re-read does not prevent double-acquire, and loser deletes winner's lease",
+    "verifier": "kimi",
+    "verdict": "DOWNGRADED",
+    "adjusted": "P2",
+    "reasoning": "Stale-reclaim write :479 + reread :480 is not a CAS; both launchers can return acquired:true. Loser :1621 unlinks if it wrote last; winner's :1329 refresh fails on missing file and heartbeat :520-527 self-terminates. Real race, but mitigated by detached daemon survival, adopt/respawn self-healing, and SQLite kernel lock preventing data loss."
+  },
+  {
+    "id": "opus-memory-daemon-i4-f1",
+    "file": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/history.ts:103",
+    "title": "Legacy history table rebuild runs outside a transaction → permanent audit-log loss on mid-migration crash",
+    "verifier": "kimi",
+    "verdict": "CONFIRMED",
+    "adjusted": "P1",
+    "reasoning": "Guard history.ts:101 only matches legacy constraints; rebuilt table lacks them. initHistory at vector-index-schema.ts:2024 runs after migration tx commits. Separate auto-commit exec calls for RENAME/CREATE and INSERT/DROP: crash leaves empty memory_history + _old, guard false. Data loss."
+  },
+  {
+    "id": "opus-regression-code-i3-f1",
+    "file": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:101",
+    "title": "Memory-delete sweep path clears degree/signals caches but never bumps causal-edges generation",
+    "verifier": "kimi",
+    "verdict": "CONFIRMED",
+    "adjusted": "P1",
+    "reasoning": "invalidateGraphCaches() at line 101 clears degree/signals caches but never calls bumpCausalEdgesGeneration. deleteAncillaryMemoryRows (lines 183-192) calls sweepCausalEdges with invalidateCaches:false, then invokes this local invalidator on deleted>0. Sibling sweep/edge invalidators (causal/sweep.ts:216, storage/causal-edges.ts:215, learning/corrections.ts:193) all bump generation first. The memory_search handler (handlers/memory-search.ts:1065-1104) folds causalEdgesGeneration into the tool-cache key when enableCausalBoost=true, so this path leaves stale causal-boosted entries. Public handlers also run tool-cache invalidation hooks, but the generation invariant is still breached on a common internal deletion path."
+  },
+  {
+    "id": "opus-launcher-lifecycle-i2-f1",
+    "file": ".opencode/bin/mk-code-index-launcher.cjs:979",
+    "title": "code-index alive-but-stale reclaim spawns a second daemon without reaping the live orphan",
+    "verifier": "kimi",
+    "verdict": "DOWNGRADED",
+    "adjusted": "P2",
+    "reasoning": "Confirmed: 979-981 logs then falls through to launchServer (1061), never reaping orphan daemon known from ownerLease ownerPid (446-486). Unlike spec-memory (1570-1652) and skill-advisor (731-760), no adopt/reap guard. Downgraded to P2: SQLite DB lock bounds impact to orphan leak + writer contention."
+  },
+  {
+    "id": "opus-concurrency-race-i3-f2",
+    "file": ".opencode/bin/mk-code-index-launcher.cjs:839",
+    "title": "code-index bootstrap-lock reclaim has the same mtime-TTL(300s) > deadline(120s) mistuning, blocking dead-socket respawn",
+    "verifier": "kimi",
+    "verdict": "CONFIRMED",
+    "adjusted": "P1",
+    "reasoning": "Code at 821-822 sets deadline=120s and stale threshold=300s. Reclaim at 839 only fires after 300s, so any dead lock <300s old hits the 120s timeout at 855-857. Skill-advisor launcher was explicitly hardened against this exact mismatch with PID+liveness checks; code-index lacks that fix."
+  },
+  {
+    "id": "opus-concurrency-race-i3-f1",
+    "file": ".opencode/bin/mk-spec-memory-launcher.cjs:1270",
+    "title": "spec-memory bootstrap-lock reclaim can never fire within its own deadline (mtime TTL 300s > wait deadline 120s); comment claims the opposite",
+    "verifier": "kimi",
+    "verdict": "DOWNGRADED",
+    "adjusted": "P2",
+    "reasoning": "TTL 300s exceeds 120s deadline and there is no holder PID/liveness check at :1270, so a crashed holder with lock age <180s blocks requireLock respawn until timeout; the comment is false for those cases. Sibling skill-advisor launcher uses PID+liveness, proving gap fixable. The 'never' claim overstates because reclaim can fire for locks >180s old."
+  },
+  {
+    "id": "gpt-wip-doctrine-i1-f1",
+    "file": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh:1062",
+    "title": "CONTINUITY_FRESHNESS documented warn-vs-enforce graduated rollout does not exist for normal packets",
+    "verifier": "kimi",
+    "verdict": "PARSE_FAIL",
+    "adjusted": null,
+    "reasoning": null
+  },
+  {
+    "id": "opus-followons-i1-f1",
+    "file": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:324",
+    "title": "Reconsolidation merge strips manual source_kind protection on a default-ON path",
+    "verifier": "kimi",
+    "verdict": "REFUTED",
+    "adjusted": "none",
+    "reasoning": "Save-time reconsolidation is gated by isSaveReconsolidationEnabled() (search-flags.ts:143, opt-in default OFF) and plannerMode defaulting to plan-only (reconsolidation-bridge.ts:501). The hardcoded source_kind at reconsolidation.ts:324 only runs when explicitly enabled, so the default-ON path premise is false."
+  },
+  {
+    "id": "opus-followons-i1-f2",
+    "file": ".opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:351",
+    "title": "Append-version save/supersede paths discard the reindex-retire manual-source_kind carry",
+    "verifier": "kimi",
+    "verdict": "CONFIRMED",
+    "adjusted": "P1",
+    "reasoning": "pe-gating.ts:351 discards retirePredecessorForActiveReindex's manual carry; applyWriteProvenance re-derives source_kind from incoming context only, so a human predecessor PE-UPDATE'd by an automated writer loses source_kind='human'. create-record.ts:327 is dead in production (predecessorMemoryId null)."
+  }
+]

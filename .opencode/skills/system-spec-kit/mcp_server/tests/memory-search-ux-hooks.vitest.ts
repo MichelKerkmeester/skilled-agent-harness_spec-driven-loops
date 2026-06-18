@@ -107,6 +107,11 @@ vi.mock('../lib/session/session-manager', () => ({
     dedupStats: { enabled: false, filtered: 0, total: Array.isArray(results) ? results.length : 0 },
   })),
   markResultsSent: vi.fn(() => undefined),
+  resolveTrustedSession: vi.fn((requestedSessionId: string | null = null) => ({
+    requestedSessionId,
+    effectiveSessionId: requestedSessionId ?? 'test-session',
+    trusted: true,
+  })),
 }));
 
 vi.mock('../lib/eval/eval-logger', () => ({

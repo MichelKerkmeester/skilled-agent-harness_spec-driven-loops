@@ -3,8 +3,10 @@
 // ───────────────────────────────────────────────────────────────
 
 import { canonicalFold } from './shared/unicode-normalization.js';
-import { SKILL_ADVISOR_COMPAT_CONTRACT, resolvedConfidenceThreshold, resolvedUncertaintyThreshold } from './compat/contract.js';
+import { resolvedConfidenceThreshold, resolvedUncertaintyThreshold } from './compat/contract.js';
+import { isAmbiguousTopTwo } from './scorer/ambiguity.js';
 import type { AdvisorRecommendation } from './subprocess.js';
+import type { AdvisorScoredRecommendation } from './scorer/types.js';
 
 // ───────────────────────────────────────────────────────────────
 // 1. TYPES
@@ -23,6 +25,7 @@ export interface AdvisorBriefRenderableResult {
   readonly status: 'ok' | 'stale' | 'skipped' | 'degraded' | 'fail_open';
   readonly freshness: 'live' | 'stale' | 'absent' | 'unavailable';
   readonly recommendations: readonly AdvisorRecommendation[];
+  readonly ambiguous?: boolean;
   readonly metrics?: {
     readonly tokenCap?: number;
   } | null;
@@ -41,7 +44,6 @@ const DEFAULT_TOKEN_CAP = 80;
 const AMBIGUOUS_TOKEN_CAP = 120;
 const MAX_TOKEN_CAP = 120;
 const TOKEN_TO_CHAR_ESTIMATE = 4;
-const AMBIGUITY_EPSILON = 1e-9;
 const INSTRUCTION_LABEL_PATTERN =
   /^\s*(SYSTEM|INSTRUCTION|IGNORE|EXECUTE)\s*[:=]|^\s*(<!--|```)|\b(ignore\s+(previous|all)\s+instructions|system\s*:|instruction\s*:|execute\s*:|developer\s*:|assistant\s*:)/i;
 const CONTROL_CHAR_PATTERN = /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g;
@@ -49,6 +51,12 @@ const CONTROL_CHAR_PATTERN = /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g;
 // Injected into every advisor brief so all hook-capable runtimes receive
 // the comment hygiene rule even when AGENTS.md is absent from session context.
 const HYGIENE_DIRECTIVE = '\nComment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.';
+
+// The compact fable-5 governor capsule, appended after the capped advisor
+// portion so it is always delivered in full every turn — the thermostat that
+// re-states the disposition as context grows. Steers efficiency (result-first,
+// less narration), not capability.
+const GOVERNOR_DIRECTIVE = '\nFable-5 governor: reason about the problem and the person, not yourself; lead with the result and act rather than narrate (batch tool calls, report at checkpoints); treat reversible decisions as cheap — decide, mark // DECISION:, move on; qualify only when it changes what the reader should do.';
 
 // ───────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -92,9 +100,38 @@ function formatScore(value: number): string {
   return Number.isFinite(value) ? value.toFixed(2) : '0.00';
 }
 
-function isAmbiguous(recommendations: readonly AdvisorRecommendation[]): boolean {
-  const [first, second] = recommendations;
-  return !!first && !!second && Math.abs(first.confidence - second.confidence) <= 0.05 + AMBIGUITY_EPSILON;
+type RenderableRecommendation = AdvisorRecommendation & {
+  readonly score?: number;
+  readonly ambiguousWith?: readonly string[];
+};
+
+function toScoredRecommendation(recommendation: RenderableRecommendation): AdvisorScoredRecommendation {
+  return {
+    skill: recommendation.skill,
+    kind: recommendation.kind === 'command' ? 'command' : 'skill',
+    confidence: recommendation.confidence,
+    uncertainty: recommendation.uncertainty,
+    passes_threshold: recommendation.passes_threshold ?? true,
+    reason: '',
+    score: typeof recommendation.score === 'number' && Number.isFinite(recommendation.score)
+      ? recommendation.score
+      : recommendation.confidence,
+    laneContributions: [],
+    dominantLane: null,
+    lifecycleStatus: 'active',
+    ...(Array.isArray(recommendation.ambiguousWith) ? { ambiguousWith: recommendation.ambiguousWith } : {}),
+  };
+}
+
+/** Detect whether the renderable recommendation set carries ambiguity evidence. */
+export function hasAdvisorAmbiguitySignal(
+  recommendations: readonly AdvisorRecommendation[],
+  precomputedAmbiguous = false,
+): boolean {
+  if (precomputedAmbiguous) {
+    return true;
+  }
+  return isAmbiguousTopTwo((recommendations as readonly RenderableRecommendation[]).map(toScoredRecommendation));
 }
 
 function metadataSkillLabel(result: AdvisorBriefRenderableResult): string | null {
@@ -146,7 +183,7 @@ export function renderAdvisorBrief(
     return null;
   }
 
-  if (tokenCap > DEFAULT_TOKEN_CAP && second && isAmbiguous(recommendations)) {
+  if (tokenCap > DEFAULT_TOKEN_CAP && second && hasAdvisorAmbiguitySignal(recommendations, result.ambiguous === true)) {
     const secondLabel = sanitizeSkillLabel(second.skill);
     if (!secondLabel) {
       return null;
@@ -154,13 +191,13 @@ export function renderAdvisorBrief(
     return capText(
       `Advisor: ${result.freshness}; ambiguous: ${topLabel} ${formatScore(top.confidence)}/${formatScore(top.uncertainty)} vs ${secondLabel} ${formatScore(second.confidence)}/${formatScore(second.uncertainty)} pass.${HYGIENE_DIRECTIVE}`,
       Math.min(tokenCap, AMBIGUOUS_TOKEN_CAP),
-    );
+    ) + GOVERNOR_DIRECTIVE;
   }
 
   return capText(
     `Advisor: ${result.freshness}; use ${topLabel} ${formatScore(top.confidence)}/${formatScore(top.uncertainty)} pass.${HYGIENE_DIRECTIVE}`,
     Math.min(tokenCap, DEFAULT_TOKEN_CAP),
-  );
+  ) + GOVERNOR_DIRECTIVE;
 }
 
 // Shared timeout-fallback renderer. Previously the Codex hook

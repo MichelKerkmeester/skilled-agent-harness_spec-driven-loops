@@ -1,0 +1,33 @@
+Act as a markdown documentation-fixer (seat AF15). Spec folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation (PRE-APPROVED at Gate 3 — make the edits below directly with the Edit/Write tools; do NOT re-ask Gate 3 and do NOT ask the user anything).
+
+You fix STALE content in README files so they match current repo reality. SURGICAL edits only — fix the cited claims, keep everything else intact. Find the correct current value by reading the cited file PLUS its SKILL.md / source / config before editing.
+
+ALLOWED WRITE PATHS (edit ONLY these files):
+- .opencode/skills/system-skill-advisor/mcp_server/tools/README.md
+- .opencode/skills/system-spec-kit/README.md
+- .opencode/skills/system-spec-kit/SKILL.md
+- .opencode/skills/system-spec-kit/constitutional/README.md
+- .opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md
+BANNED: no delete, no rename, no new files, no edits outside the listed files, no --no-verify.
+
+DO-NOT-FIX (binding — confirmed false positives; leave untouched):
+- The CLI front-door "37 tools" figure: `spec-memory.cjs` CLI is genuinely 37; only the MCP-server/daemon surface is 39. Fix a "37" ONLY when the sentence is about the MCP server/daemon, NOT the CLI front door.
+- Any `// Feature catalog:` comments and TSDoc `@example` values.
+- Any cited claim that does NOT actually reproduce against the live file — mark it refuted; never invent a fix.
+
+FINDINGS TO FIX (confirm-then-fix each; P0/P1/P2 all in scope, including cosmetic/style):
+- [P1] .opencode/skills/system-skill-advisor/mcp_server/tools/README.md:26 — Tools README overstates propagate trust gate | stale: `skill_graph_propagate_enhances` proposes missing inbound edges under a trusted-caller gate. -> correct: The handler only requires trusted caller authority for `mode === 'apply' && dryRun !== true`; report, propose, and dry-run apply remain open read-safe paths.
+- [P1] .opencode/skills/system-spec-kit/README.md:112 — Validation rule count is stale | stale: Run all 20 validation rules / validation reports across 20 rules. -> correct: The authoritative validator registry currently contains 37 rules.
+- [P2] .opencode/skills/system-spec-kit/README.md:1091 — Speckit command count is stale | stale: .opencode/commands/speckit/ contains Spec Kit command definitions (8 commands). -> correct: The current speckit command index lists seven command rows, and the speckit folder itself contains four speckit command markdown files plus README/assets.
+- [P0] .opencode/skills/system-spec-kit/SKILL.md:40 — Gate 3 trigger list falsely includes read-only analyze/phase | stale: Any keyword including analyze and phase triggers activation/spec-folder Gate 3. -> correct: The authoritative Gate 3 classifier intentionally omits analyze/decompose/phase from positive triggers; analyze is a read-only disqualifier.
+- [P1] .opencode/skills/system-spec-kit/SKILL.md:423 — Rerank stage is not fully removed | stale: Memory search returns fused results with no rerank stage. -> correct: Only model-based cross-encoder/local-GGUF reranking was removed; Stage 3 still performs MMR diversity reranking and MPAB chunk collapse, and the memory_search rerank option defaults true.
+- [P1] .opencode/skills/system-spec-kit/SKILL.md:432 — Dead Copilot hook README path | stale: Hook details live in mcp_server/hooks/copilot/README.md. -> correct: There is no hooks/copilot README in the source hook tree; the hooks README lists only claude and codex hook folders, with OpenCode handled by plugin bridge.
+- [P1] .opencode/skills/system-spec-kit/constitutional/README.md:22 — Constitutional rule count and topology are stale | stale: README says the folder contains 13 active rule files and lists an older rule set. -> correct: The current folder has 18 non-README constitutional rule files, including newer rules not listed such as fable-governor, automated-writers-never-overwrite-manual, regression-baseline-and-delta, finding-is-a-hypothesis, recursion-control, and entity-cooccurrence-is-not-causal.
+- [P1] .opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:708 — memory_index_scan lease behavior is stale | stale: The catalog says lease_active/cooldown guards return an E429 response with a wait time. -> correct: Current memory_index_scan coalesces active/cooldown scans into a success envelope with coalesced:true/status:'coalesced'; the public schema also exposes background:true plus memory_index_scan_status and memory_index_scan_cancel.
+- [P1] .opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:5126 — Embedding provider table is cloud-first/BGE stale | stale: The catalog says local fallback is BGE and auto provider precedence is VOYAGE_API_KEY -> OPENAI_API_KEY -> local ollama -> hf-local. -> correct: Provider resolution is local-first: explicit EMBEDDINGS_PROVIDER is the only direct cloud selector, then persisted/reachable Ollama, then hf-local; the local default is nomic-embed-text-v1.5 and hf-local defaults to nomic-ai/nomic-embed-text-v1.5.
+- [P2] .opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:3617 — Daemon re-election default source is misstated | stale: The catalog says daemon re-election is default-on in committed runtime configs. -> correct: Re-election is still default-on, but the launcher code is now the source of that default and runtime configs no longer set SPECKIT_DAEMON_REELECTION.
+
+After editing, re-read each edited line to verify. Your final message MUST be exactly one fenced json block:
+```json
+{"seat":"AF15","fixed":[{"file":"path","claim":"what was stale","after":"what it now says"}],"refuted":[{"file":"path","why":"why skipped"}]}
+```

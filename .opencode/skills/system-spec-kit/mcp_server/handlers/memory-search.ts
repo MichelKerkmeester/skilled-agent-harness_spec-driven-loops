@@ -16,12 +16,13 @@ import { searchCommunities } from '../lib/search/community-search.js';
 import { executePipeline } from '../lib/search/pipeline/index.js';
 import type { PipelineConfig, PipelineResult } from '../lib/search/pipeline/index.js';
 import type { IntentWeightsConfig } from '../lib/search/pipeline/types.js';
+import type { QueryPlan } from '../lib/query/query-plan.js';
 import { initConsumptionLog, logConsumptionEvent } from '../lib/telemetry/consumption-logger.js';
 import * as retrievalTelemetry from '../lib/telemetry/retrieval-telemetry.js';
 // Artifact-class routing (spec/plan/tasks/checklist/memory)
 import { getStrategyForQuery } from '../lib/search/artifact-routing.js';
 import { routeQuery } from '../lib/search/query-router.js';
-import { createEmptyQueryPlan, type QueryPlan } from '../lib/query/query-plan.js';
+import { createEmptyQueryPlan } from '../lib/query/query-plan.js';
 import { getGraphReadinessSnapshotFromMarker } from '../lib/code-graph-boundary.js';
 import { mapGraphReadinessToTelemetry } from '../lib/search/graph-readiness-mapper.js';
 import {
@@ -99,7 +100,9 @@ import {
   getLastLexicalCapabilitySnapshot,
   resetLastLexicalCapabilitySnapshot,
 } from '../lib/search/sqlite-fts.js';
+import * as vectorIndex from '../lib/search/vector-index.js';
 import type { LexicalCapabilitySnapshot } from '../lib/search/sqlite-fts.js';
+import { buildVectorDegradationSignal } from '../lib/observability/retrieval-observability.js';
 import { evaluatePublicationGate } from '../lib/context/publication-gate.js';
 import {
   deduplicateResults as deduplicateWithSessionState,
@@ -159,6 +162,11 @@ interface MemorySearchRow extends Record<string, unknown> {
 interface DedupResult {
   results: MemorySearchRow[];
   dedupStats: Record<string, unknown>;
+}
+
+interface FolderBoost {
+  folder: string;
+  factor: number;
 }
 
 interface SearchCachePayload {
@@ -315,7 +323,7 @@ interface SearchArgs {
   query?: string;
   concepts?: string[];
   specFolder?: string;
-  folderBoost?: { folder: string; factor: number };
+  folderBoost?: FolderBoost;
   tenantId?: string;
   userId?: string;
   agentId?: string;
@@ -533,6 +541,32 @@ function hasPublicationContractFields(result: Record<string, unknown>): boolean 
   ].some((field) => Object.prototype.hasOwnProperty.call(result, field));
 }
 
+function normalizePublicationProvenanceEntry(value: unknown): string | null {
+  if (typeof value !== 'string') {
+    return null;
+  }
+  const normalized = value.trim();
+  return normalized.length > 0 ? normalized : null;
+}
+
+function resolvePublicationProvenance(result: Record<string, unknown>): string[] {
+  const explicit = Array.isArray(result.provenance)
+    ? result.provenance
+        .map(normalizePublicationProvenanceEntry)
+        .filter((entry): entry is string => entry !== null)
+    : [];
+  if (explicit.length > 0) {
+    return [...new Set(explicit)];
+  }
+
+  return [...new Set([
+    result.provenance_source,
+    result.provenanceSource,
+    result.source_kind,
+    result.sourceKind,
+  ].map(normalizePublicationProvenanceEntry).filter((entry): entry is string => entry !== null))];
+}
+
 function applyPublicationGateToResponse(response: MCPResponse): MCPResponse {
   const parsed = parseResponseEnvelope(response);
   if (!parsed) {
@@ -555,21 +589,25 @@ function applyPublicationGateToResponse(response: MCPResponse): MCPResponse {
       return result;
     }
 
+    const provenance = resolvePublicationProvenance(result);
+    const resultWithProvenance = provenance.length > 0
+      ? { ...result, provenance }
+      : result;
     const gateResult = evaluatePublicationGate({
       certainty: result.certainty,
       methodologyStatus: result.methodologyStatus as 'provisional' | 'published' | null | undefined,
       schemaVersion: result.schemaVersion as string | null | undefined,
-      provenance: Array.isArray(result.provenance) ? result.provenance as string[] : null,
+      provenance,
       multiplierAuthorityFields: result.multiplierAuthorityFields as Record<string, unknown> | null | undefined,
     });
 
     return gateResult.publishable
       ? {
-        ...result,
+        ...resultWithProvenance,
         publishable: true,
       }
       : {
-        ...result,
+        ...resultWithProvenance,
         publishable: false,
         exclusionReason: gateResult.exclusionReason,
       };
@@ -599,6 +637,117 @@ function applyPublicationGateToResponse(response: MCPResponse): MCPResponse {
 /* ───────────────────────────────────────────────────────────────
    6. SESSION DEDUPLICATION UTILITIES
 ──────────────────────────────────────────────────────────────── */
+
+function stampFinalRankScores(results: Array<Record<string, unknown>>): void {
+  const total = results.length;
+  results.forEach((result, index) => {
+    result.finalRankScore = calculateFinalRankScore(total, index);
+  });
+}
+
+function calculateFinalRankScore(total: number, index: number): number | null {
+  return total > 0 ? (total - index) / total : null;
+}
+
+function applyFolderBoostRanking(results: SessionAwareResult[], folderBoost: FolderBoost | undefined): boolean {
+  if (!folderBoost || !folderBoost.folder || folderBoost.factor <= 1) {
+    return false;
+  }
+
+  let boostedCount = 0;
+  for (const r of results) {
+    const raw = r as Record<string, unknown>;
+    const filePath = raw.file_path as string | undefined;
+    if (filePath && filePath.includes(folderBoost.folder)) {
+      if (typeof raw.similarity === 'number') {
+        // similarity is on a 0–100 scale (cosine rounded to *100 by the vector
+        // index), so the ceiling must be 100; a 1.0 ceiling would collapse every
+        // boosted hit to the cap and erase the boost's ordering effect.
+        raw.similarity = Math.min(raw.similarity * folderBoost.factor, 100);
+        boostedCount++;
+      }
+    }
+  }
+
+  if (boostedCount === 0) {
+    return false;
+  }
+
+  results.sort((a, b) => {
+    const sa = ((a as Record<string, unknown>).similarity as number | undefined) ?? 0;
+    const sb = ((b as Record<string, unknown>).similarity as number | undefined) ?? 0;
+    return sb - sa;
+  });
+  return true;
+}
+
+function isPlainRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
+function documentKey(document: unknown): string | null {
+  if (!isPlainRecord(document) || typeof document.path !== 'string') {
+    return null;
+  }
+  const anchor = typeof document.anchor === 'string' ? document.anchor : '';
+  return `${document.path}\u0000${anchor}`;
+}
+
+function resultDocumentKey(result: Record<string, unknown>): string | null {
+  const whyRanked = isPlainRecord(result.why_ranked) ? result.why_ranked : null;
+  const fromWhyRanked = whyRanked ? documentKey(whyRanked.document) : null;
+  if (fromWhyRanked !== null) {
+    return fromWhyRanked;
+  }
+
+  const filePath = result.filePath ?? result.file_path;
+  return typeof filePath === 'string' ? `${filePath}\u0000` : null;
+}
+
+function warningStillApplies(warning: unknown, returnedDocumentKeys: Set<string>): boolean {
+  if (!isPlainRecord(warning) || !Array.isArray(warning.documents)) {
+    return true;
+  }
+  const keys = warning.documents.map(documentKey);
+  if (keys.length !== 2 || keys.some((key) => key === null)) {
+    return true;
+  }
+  return keys.every((key) => returnedDocumentKeys.has(key as string));
+}
+
+function reconcilePostFormatResultSet(data: Record<string, unknown>, results: Array<Record<string, unknown>>): void {
+  const total = results.length;
+  results.forEach((result, index) => {
+    if (isPlainRecord(result.why_ranked)) {
+      result.why_ranked.rank = index + 1;
+      if (result.why_ranked.scoreSource === 'finalRank') {
+        result.why_ranked.effectiveScore = calculateFinalRankScore(total, index);
+      }
+    }
+  });
+
+  data.results = results;
+  data.count = results.length;
+
+  const returnedDocumentKeys = new Set(
+    results
+      .map(resultDocumentKey)
+      .filter((key): key is string => key !== null),
+  );
+
+  for (const key of ['inlineWarnings', 'retrievalWarnings']) {
+    const warnings = data[key];
+    if (!Array.isArray(warnings)) {
+      continue;
+    }
+    const retained = warnings.filter((warning) => warningStillApplies(warning, returnedDocumentKeys));
+    if (retained.length > 0) {
+      data[key] = retained;
+    } else {
+      delete data[key];
+    }
+  }
+}
 
 function applySessionDedup(results: MemorySearchRow[], sessionId: string, enableDedup: boolean): DedupResult {
   if (!enableDedup || !sessionId || !sessionManager.isEnabled()) {
@@ -640,7 +789,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
   await ensureMemoryRuntimeInitialized('handler:memory_search');
   const _searchStartTime = Date.now();
   resetLastLexicalCapabilitySnapshot();
-  // BUG-001: Check for external database updates before processing
+  // Check for external database updates before processing
   await checkDatabaseUpdated();
 
   const {
@@ -761,7 +910,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     ? Math.min(Math.floor(rawLimit), 100)
     : 10;
 
-  // BUG-007: Validate query first with proper error handling
+  // Validate query first with proper error handling
   let normalizedQuery: string | null = null;
   if (query !== undefined) {
     try {
@@ -860,8 +1009,8 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     }
   }
 
-  if (!detectedIntent && autoDetectIntent && hasValidQuery) {
-    const classification: IntentClassification = intentClassifier.classifyIntent(normalizedQuery!);
+  if (!detectedIntent && autoDetectIntent && normalizedQuery !== null) {
+    const classification: IntentClassification = intentClassifier.classifyIntent(normalizedQuery);
     detectedIntent = classification.intent;
     intentConfidence = classification.confidence;
     intentWeights = intentClassifier.getIntentWeights(classification.intent as IntentType);
@@ -873,7 +1022,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     }
   }
 
-  // FIX RC3-B: Intent confidence floor — override low-confidence auto-detections to "understand"
+  // Override low-confidence auto-detections to "understand" for safer fallback semantics.
   const INTENT_CONFIDENCE_FLOOR = parseFloat(process.env.SPECKIT_INTENT_CONFIDENCE_FLOOR || '0.25');
   if (detectedIntent && intentConfidence < INTENT_CONFIDENCE_FLOOR && !explicitIntent) {
     console.error(`[memory-search] Intent confidence ${intentConfidence.toFixed(3)} below floor ${INTENT_CONFIDENCE_FLOOR}, overriding '${detectedIntent}' → 'understand'`);
@@ -953,6 +1102,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     includeTrace,
     cacheVersion: CANONICAL_READER_CACHE_VERSION,
     causalEdgesGeneration: causalEdgesGenerationForCache,
+    folderBoost,
   });
 
   let _evalChannelPayloads: EvalChannelPayload[] = [];
@@ -1032,7 +1182,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
             const rawMemberRows = db.prepare(`
               SELECT id, title, similarity, content, file_path, anchor_id, document_type,
                      importance_tier, context_type, quality_score, created_at,
-                     tenant_id, user_id, agent_id
+                     tenant_id, user_id, agent_id, spec_folder
               FROM memory_index
               WHERE id IN (${placeholders})
             `).all(...memberIds) as Array<Record<string, unknown> & { id: number }>;
@@ -1044,13 +1194,27 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
             const hasGovernanceScope = Boolean(
               normalizedScope.tenantId || normalizedScope.userId || normalizedScope.agentId,
             );
-            const memberRows = hasGovernanceScope
+            const scopedMemberRows = hasGovernanceScope
               ? filterRowsByScope(rawMemberRows, {
                   tenantId: normalizedScope.tenantId,
                   userId: normalizedScope.userId,
                   agentId: normalizedScope.agentId,
                 })
               : rawMemberRows;
+
+            // Honor the caller's specFolder on the community fallback. The member
+            // fetch above selects purely by id, and filterRowsByScope does not
+            // consider specFolder — without this the fallback would leak rows from
+            // sibling folders. Prefix-aware (matching the pipeline's
+            // spec_folder = ? OR spec_folder LIKE ?/% narrowing) so child folders
+            // stay in scope while siblings are excluded.
+            const memberRows = specFolder
+              ? scopedMemberRows.filter((row) => {
+                  const folder = row.spec_folder as string | undefined;
+                  return typeof folder === 'string'
+                    && (folder === specFolder || folder.startsWith(specFolder + '/'));
+                })
+              : scopedMemberRows;
 
             if (memberRows.length > 0) {
               // Calibrate score from community match quality, bounded below pipeline threshold
@@ -1082,28 +1246,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
       }
     }
 
-    // Apply folder boost — multiply similarity for results matching discovered folder
-    if (folderBoost && folderBoost.folder && folderBoost.factor > 1) {
-      let boostedCount = 0;
-      for (const r of resultsForFormatting) {
-        const filePath = (r as Record<string, unknown>).file_path as string | undefined;
-        if (filePath && filePath.includes(folderBoost.folder)) {
-          const raw = (r as Record<string, unknown>);
-          if (typeof raw.similarity === 'number') {
-            raw.similarity = Math.min(raw.similarity * folderBoost.factor, 1.0);
-            boostedCount++;
-          }
-        }
-      }
-      // Re-sort by similarity after boosting
-      if (boostedCount > 0) {
-        resultsForFormatting.sort((a, b) => {
-          const sa = (a as Record<string, unknown>).similarity as number ?? 0;
-          const sb = (b as Record<string, unknown>).similarity as number ?? 0;
-          return sb - sa;
-        });
-      }
-    }
+    const folderBoostRankingApplied = applyFolderBoostRanking(resultsForFormatting, folderBoost);
 
     // Eval channel attribution should reflect the retrieval pipeline output
     // before canonical source filtering drops rows for response formatting.
@@ -1140,6 +1283,10 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
         applied: goalRefinement.metadata.refined,
         boostedCount: goalRefinement.metadata.boostedCount,
       };
+    }
+
+    if (folderBoostRankingApplied) {
+      stampFinalRankScores(resultsForFormatting);
     }
 
     // Build extra data from pipeline metadata for response formatting
@@ -1216,6 +1363,8 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
 
     if (includeTrace && pipelineResult.trace) {
       extraData.retrievalTrace = pipelineResult.trace;
+      extraData.vectorDegradation = buildVectorDegradationSignal(vectorIndex.isVectorSearchAvailable());
+      extraData.vector_degradation = extraData.vectorDegradation;
     }
     const degradedReadiness = mapGraphReadinessToTelemetry(
       getGraphReadinessSnapshotFromMarker(),
@@ -1331,8 +1480,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
 
     if (parsedResponse && data && existingResults && existingResults.length > 0) {
       const deduped = deduplicateWithSessionState(existingResults, sessionId);
-      data.results = deduped.results as SessionAwareResult[];
-      data.count = deduped.results.length;
+      reconcilePostFormatResultSet(data, deduped.results as Array<Record<string, unknown>>);
       data.sessionDedup = deduped.metadata;
       parsedResponse.envelope.data = data;
       responseToReturn = replaceResponseEnvelope(responseToReturn, parsedResponse.firstEntry, parsedResponse.envelope);
@@ -1384,8 +1532,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
         ? Math.round((filteredCount / originalCount) * 100)
         : 0;
 
-      data.results = dedupedResults;
-      data.count = dedupedCount;
+      reconcilePostFormatResultSet(data, dedupedResults as Array<Record<string, unknown>>);
 
       const dedupStats = {
         enabled: true,
@@ -1647,6 +1794,9 @@ export const __testables = {
   collectEvalChannelsFromRow,
   buildEvalChannelPayloads,
   filterCanonicalSourceRows,
+  stampFinalRankScores,
+  applyFolderBoostRanking,
+  reconcilePostFormatResultSet,
 };
 
 // Backward-compatible aliases (snake_case)

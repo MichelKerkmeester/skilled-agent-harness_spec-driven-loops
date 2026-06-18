@@ -1,6 +1,7 @@
 // TEST: CAUSAL FIXES
 import { describe, it, expect, beforeAll, beforeEach, afterEach, vi } from 'vitest';
 import * as causalEdges from '../lib/storage/causal-edges';
+import * as corrections from '../lib/learning/corrections';
 import * as causalGraphHandler from '../handlers/causal-graph';
 import * as vectorIndex from '../lib/search/vector-index';
 import * as coreIndex from '../core/index';
@@ -290,6 +291,54 @@ describe('T202 + T203: FlatEdge id & Relations Filter [deferred - requires DB te
       const afterChain = causalEdges.getCausalChain('1', 3, 'forward');
       const causedAfter = afterChain.children.filter((child) => child.relation === 'caused');
       expect(causedAfter.length).toBe(0);
+    });
+  });
+
+  describe('corrections causal edge generation', () => {
+    it('record_correction bumps the causal edge generation when it creates an edge', () => {
+      const localDb = new BetterSqlite3(':memory:');
+      try {
+        localDb.exec(`
+          CREATE TABLE memory_index (
+            id INTEGER PRIMARY KEY,
+            stability REAL DEFAULT 1.0,
+            updated_at TEXT DEFAULT CURRENT_TIMESTAMP
+          );
+
+          CREATE TABLE causal_edges (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            source_id TEXT NOT NULL,
+            target_id TEXT NOT NULL,
+            relation TEXT NOT NULL,
+            strength REAL DEFAULT 1.0,
+            evidence TEXT,
+            extracted_at TEXT DEFAULT CURRENT_TIMESTAMP,
+            created_by TEXT DEFAULT 'manual',
+            UNIQUE(source_id, target_id, relation)
+          );
+
+          INSERT INTO memory_index (id, stability) VALUES (1, 1.0), (2, 1.0);
+        `);
+
+        corrections.init(localDb);
+        const before = causalEdges.getCausalEdgesGeneration();
+
+        const result = corrections.record_correction({
+          original_memory_id: 1,
+          correction_memory_id: 2,
+          correction_type: corrections.CORRECTION_TYPES.SUPERSEDED,
+          reason: 'replacement memory',
+        });
+
+        const after = causalEdges.getCausalEdgesGeneration();
+        const edgeCount = localDb.prepare('SELECT COUNT(*) AS count FROM causal_edges').get() as { count: number };
+
+        expect(result.success).toBe(true);
+        expect(edgeCount.count).toBe(1);
+        expect(after).toBeGreaterThan(before);
+      } finally {
+        localDb.close();
+      }
     });
   });
 });

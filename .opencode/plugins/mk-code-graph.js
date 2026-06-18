@@ -165,6 +165,14 @@ function cacheKeyForSession(sessionID, specFolder) {
   return `${specFolder ?? '__workspace__'}::${normalizeSessionID(sessionID)}`;
 }
 
+/**
+ * Parse a bridge response into an OpenCode transport plan.
+ *
+ * @param {unknown} responseText - Raw JSON response text from the bridge process.
+ * @returns {TransportPlan|null|Record<string, never>} Parsed transport plan, null
+ *   when no valid transport payload exists, or an empty hook object for legacy
+ *   plugin-loader calls with non-string input.
+ */
 export function parseTransportPlan(responseText) {
   if (typeof responseText !== 'string') {
     // OpenCode 1.3.17's legacy loader invokes named function exports as plugins.
@@ -198,6 +206,11 @@ function diagnoseTransportPlanFailure(responseText) {
 
   try {
     const parsed = JSON.parse(responseText);
+    if (parsed?.status === 'skipped' || parsed?.status === 'fail_open') {
+      const exitCode = parsed?.metadata?.exitCode ?? null;
+      const reason = parsed?.error || parsed?.metadata?.reason || parsed?.metadata?.route || 'no transport payload';
+      return `Bridge ${parsed.status}: ${reason}${exitCode === null || exitCode === undefined ? '' : ` (exit=${exitCode})`}; plugin injection will no-op`;
+    }
     const data = parsed?.data ?? parsed;
     const plan = data?.opencodeTransport;
     if (!plan || typeof plan !== 'object') {
@@ -216,7 +229,14 @@ function diagnoseTransportPlanFailure(responseText) {
   }
 }
 
+// Raw stderr writes while the opencode TUI is active render into the user's
+// input field, so a bridge-skip diagnostic must stay silent by default. The
+// failure is non-fatal (injection no-ops) and remains inspectable as
+// last_runtime_error via the plugin's status tool.
 function emitRuntimeDiagnostic(message) {
+  if (!process.env.MK_CODE_GRAPH_DEBUG) {
+    return;
+  }
   process.stderr.write(`[${PLUGIN_ID}] ${message}\n`);
 }
 
@@ -246,7 +266,7 @@ function execFilePromise(file, args, options) {
 }
 
 async function runTransportBridge({ projectDir, specFolder, nodeBinary, bridgeTimeoutMs }) {
-  const args = [BRIDGE_PATH, '--minimal'];
+  const args = [BRIDGE_PATH, '--minimal', '--timeout-ms', String(bridgeTimeoutMs)];
   if (specFolder) {
     args.push('--spec-folder', specFolder);
   }

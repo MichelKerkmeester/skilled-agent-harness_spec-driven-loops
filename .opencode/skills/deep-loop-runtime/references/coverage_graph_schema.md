@@ -7,7 +7,7 @@ trigger_phrases:
   - "coverage_nodes table"
   - "coverage_edges table"
 importance_tier: normal
-contextType: reference
+contextType: implementation
 ---
 
 # Deep Loop Runtime Coverage Graph Schema

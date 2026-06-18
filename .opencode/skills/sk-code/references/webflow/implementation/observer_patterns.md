@@ -1,6 +1,13 @@
 ---
 title: Observer Patterns Reference
 description: Browser observer APIs for reactive DOM watching, visibility detection, and scroll-triggered behaviors.
+trigger_phrases:
+  - "webflow observer patterns"
+  - "mutationobserver cms content"
+  - "intersectionobserver visibility"
+  - "resizeobserver cleanup"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Observer Patterns Reference

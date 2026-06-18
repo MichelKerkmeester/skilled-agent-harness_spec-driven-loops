@@ -40,11 +40,16 @@ function nativeDependencies(bridge: BridgeModule, options: {
   readonly skillId?: string;
   readonly confidence?: number;
   readonly uncertainty?: number;
+  readonly score?: number;
+  readonly recommendations?: readonly Record<string, unknown>[];
+  readonly ambiguous?: boolean;
   readonly freshness?: string;
 } = {}) {
   const skillId = options.skillId ?? 'system-spec-kit';
   const confidence = options.confidence ?? 0.91;
   const uncertainty = options.uncertainty ?? 0.12;
+  const score = options.score ?? confidence;
+  const recommendations = options.recommendations ?? [{ skillId, confidence, uncertainty, score }];
   const freshness = options.freshness ?? 'live';
   return {
     env: {},
@@ -62,7 +67,8 @@ function nativeDependencies(bridge: BridgeModule, options: {
             data: {
               freshness,
               cache: { hit: true },
-              recommendations: [{ skillId, confidence, uncertainty }],
+              recommendations,
+              ambiguous: options.ambiguous === true,
             },
           }),
         }],
@@ -134,6 +140,39 @@ describe('mk-skill-advisor plugin bridge compat path', () => {
     expect(source).toContain('renderAdvisorBrief');
     expect(source).not.toContain('${formatScore(top.confidence)}/0.00 pass.');
     expect(parsed.brief).toContain('0.86/0.23 pass.');
+  });
+
+  it('renders the ambiguous branch when native scorer output is ambiguous', async () => {
+    const bridge = await loadBridge();
+    const parsed = await bridge.buildBrief(
+      bridgeInput({ prompt: 'route a near-tied request' }),
+      nativeDependencies(bridge, {
+        ambiguous: true,
+        recommendations: [
+          { skillId: 'sk-code', confidence: 0.95, uncertainty: 0.10, score: 0.50 },
+          { skillId: 'sk-doc', confidence: 0.80, uncertainty: 0.12, score: 0.47 },
+        ],
+      }),
+    );
+
+    expect(parsed.status).toBe('ok');
+    expect(parsed.brief).toContain('Advisor: live; ambiguous: sk-code 0.95/0.10 vs sk-doc 0.80/0.12 pass.');
+    expect(parsed.metadata.tokenCap).toBe(120);
+  });
+
+  it('keeps bridge renderer single-brief output for separated recommendations', async () => {
+    const bridge = await loadBridge();
+    const rendered = bridge.renderAdvisorBrief({
+      status: 'ok',
+      freshness: 'live',
+      recommendations: [
+        { skill: 'sk-code', confidence: 0.95, uncertainty: 0.10, score: 0.70, passes_threshold: true },
+        { skill: 'sk-doc', confidence: 0.80, uncertainty: 0.12, score: 0.60, passes_threshold: true },
+      ],
+      metrics: { tokenCap: 120 },
+    });
+
+    expect(rendered).toContain('Advisor: live; use sk-code 0.95/0.10 pass.');
   });
 
   // drift: verified against shipped behavior during Unit H

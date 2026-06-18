@@ -1,6 +1,13 @@
 ---
 title: Install Guide Creation - Templates and Standards
 description: Templates for creating consistent, AI-friendly installation guides for MCP servers, plugins, CLI tools, and development dependencies.
+trigger_phrases:
+  - "install guide template"
+  - "phased install scaffold"
+  - "installation guide structure"
+  - "mcp install guide template"
+importance_tier: normal
+contextType: general
 ---
 
 # Install Guide Creation - Templates and Standards

@@ -15,15 +15,15 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-This feature is default-on in the committed runtime configs. It lets the shared mk-spec-memory daemon outlive the owner that spawned it, rather than dying when that owner's session ends, so concurrent sessions keep their MCP transport.
+This feature is default-on in the launcher code. It lets the shared mk-spec-memory daemon outlive the owner that spawned it, rather than dying when that owner's session ends, so concurrent sessions keep their MCP transport.
 
-When `SPECKIT_DAEMON_REELECTION` is enabled, the owner spawns the daemon detached, and on shutdown it releases the daemon instead of killing it: it keeps the daemon lease and socket, drops only the owner lease, and detaches the exit handler so shutdown does not wipe the lease. A connected live secondary keeps its transport across the owner's exit. A fresh session started after the owner is gone reaps the released daemon before it spawns a replacement, so the database is never left with two writers. The launcher's code default stays off, so the runtime configs are the single on-switch and `0` reverts.
+When `SPECKIT_DAEMON_REELECTION` is enabled, the owner spawns the daemon detached, and on shutdown it releases the daemon instead of killing it: it keeps the daemon lease and socket, drops only the owner lease, and detaches the exit handler so shutdown does not wipe the lease. A connected live secondary keeps its transport across the owner's exit. A fresh session started after the owner is gone reaps the released daemon before it spawns a replacement, so the database is never left with two writers. On by default in the launcher code; set `0` or `off` to revert to kill-on-disposal.
 
 ## 2. HOW IT WORKS
 
 ### Flag gate, default on
 
-`daemonReelectionEnabled` reads `SPECKIT_DAEMON_REELECTION`, which is set to `1` in the committed runtime configs and also accepts `on`. The launcher's own code default stays off, so the configs are the on-switch and a one-character edit reverts to the kill-on-disposal behavior.
+`daemonReelectionEnabled` reads `SPECKIT_DAEMON_REELECTION`, which defaults to on and is disabled only by an explicit `0` or `off`. The launcher code is the source of the default, and a one-character edit reverts to the kill-on-disposal behavior.
 
 ### Detached spawn under the flag
 

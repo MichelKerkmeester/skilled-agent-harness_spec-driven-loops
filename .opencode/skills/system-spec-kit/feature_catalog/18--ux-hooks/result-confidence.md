@@ -1,6 +1,6 @@
 ---
 title: "Result confidence scoring"
-description: "Result confidence scoring combines margin, multi-channel agreement, reranker support, and anchor density into a single calibrated confidence score per search result, using heuristic scoring with no LLM calls in the hot path, gated by the SPECKIT_RESULT_CONFIDENCE_V1 flag."
+description: "Result confidence scoring combines margin, multi-channel agreement, and anchor density into a single calibrated confidence score per search result, using heuristic scoring with no LLM calls in the hot path, gated by the SPECKIT_RESULT_CONFIDENCE_V1 flag."
 trigger_phrases:
   - "result confidence scoring"
   - "SPECKIT_RESULT_CONFIDENCE_V1"
@@ -15,9 +15,9 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-Result confidence scoring combines margin, multi-channel agreement, reranker support, and anchor density into a single calibrated confidence score per search result, using heuristic scoring with no LLM calls in the hot path, gated by the `SPECKIT_RESULT_CONFIDENCE_V1` flag.
+Result confidence scoring combines margin, multi-channel agreement, and anchor density into a single calibrated confidence score per search result, using heuristic scoring with no LLM calls in the hot path, gated by the `SPECKIT_RESULT_CONFIDENCE_V1` flag.
 
-When search results come back, you want to know how confident the system is in each result. This feature computes a per-result confidence score from four factors: how far ahead the result is from the next one (margin), how many retrieval channels agree on it (multi-channel agreement), whether the reranker supports it, and how rich its anchor metadata is. Each result gets a label (high, medium, low) and a numeric score, plus a list of the factors that drove the confidence assessment.
+When search results come back, you want to know how confident the system is in each result. This feature computes a per-result confidence score from three factors: how far ahead the result is from the next one (margin), how many retrieval channels agree on it (multi-channel agreement), and how rich its anchor metadata is. Each result gets a label (high, medium, low) and a numeric score, plus a list of the factors that drove the confidence assessment.
 
 ---
 
@@ -27,13 +27,12 @@ When search results come back, you want to know how confident the system is in e
 
 Enabled by default (graduated). Set `SPECKIT_RESULT_CONFIDENCE_V1=false` to disable.
 
-The confidence scoring module (`confidence-scoring.ts`) computes a weighted composite score from four factors:
+The confidence scoring module (`confidence-scoring.ts`) computes a weighted composite score from three factors:
 
 | Factor | Weight | Threshold |
 |--------|--------|-----------|
 | Margin (gap to next result) | 0.35 | Large: > 0.15, Small: > 0.05 |
 | Channel agreement | 0.30 | Strong: >= 2 channels |
-| Reranker support | 0.20 | Binary presence |
 | Anchor density | 0.15 | Continuous |
 
 ### Scoring & Ranking

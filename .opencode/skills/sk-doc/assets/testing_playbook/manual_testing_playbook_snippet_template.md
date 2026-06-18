@@ -1,6 +1,13 @@
 ---
 title: Manual Testing Playbook Snippet Template
 description: Template for per-feature scenario files stored directly under manual_testing_playbook category directories.
+trigger_phrases:
+  - "playbook snippet template"
+  - "per feature scenario file"
+  - "nine column test row"
+  - "scenario execution detail"
+importance_tier: normal
+contextType: general
 ---
 
 # Manual Testing Playbook Snippet Template

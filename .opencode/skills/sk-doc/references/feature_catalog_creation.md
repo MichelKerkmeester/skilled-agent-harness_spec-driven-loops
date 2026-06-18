@@ -1,6 +1,14 @@
 ---
 title: Feature Catalog Creation - Standards and Workflow
 description: Standards and workflow guidance for creating feature catalogs with a rooted inventory, numbered category folders, stable per-feature files, and current-reality source references.
+trigger_phrases:
+  - "feature catalog creation"
+  - "feature catalog standards"
+  - "per feature reference files"
+  - "root catalog inventory"
+  - "feature catalog folder structure"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Feature Catalog Creation - Standards and Workflow
@@ -182,7 +190,7 @@ Feature catalogs and manual testing playbooks serve different purposes:
 | Writing execution-heavy scenario detail in the catalog | Blurs the boundary with playbooks | Keep execution matrices in playbooks, not the catalog |
 | Playbook cross-references drifting from catalog names | Inventory and validation no longer match | Update catalog and playbook links together when a feature name changes |
 | Wall of prose in HOW IT WORKS | Long unbroken sections lose scannability and navigation anchors | Add H3 sub-headings whenever the section exceeds 3 paragraphs |
-| Missing `trigger_phrases` in frontmatter | Feature is invisible to skill-advisor routing and memory search | Add at least 3 trigger phrases matching the H3 heading in the root catalog |
+| Missing `trigger_phrases` in frontmatter | Feature is invisible to the skill advisor's doc-trigger routing (memory deliberately does not index skill docs) | Add at least 3 trigger phrases matching the H3 heading in the root catalog |
 
 ## 9. RELATED RESOURCES
 

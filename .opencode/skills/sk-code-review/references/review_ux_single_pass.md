@@ -1,6 +1,13 @@
 ---
 title: Review UX - Single Pass
 description: Interactive single-pass review behavior for human-facing review sessions.
+trigger_phrases:
+  - "single pass review ux"
+  - "review first implement second"
+  - "next step options after findings"
+  - "pre commit review guidance"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Review UX - Single Pass
@@ -85,7 +92,7 @@ For pre-commit or staged review:
 
 - [review_core.md](./review_core.md) - Shared doctrine used by both interactive and deep review modes.
 - [quick_reference.md](./quick_reference.md) - Lightweight index for the review reference set.
-- [test_quality_checklist.md](./test_quality_checklist.md) - Test quality and coverage checks for changed tests.
+- [test_quality_checklist.md](../assets/test_quality_checklist.md) - Test quality and coverage checks for changed tests.
 
 ---
 

@@ -1,0 +1,1678 @@
+{
+ "p2": [
+  {
+   "title": "Manual playbook catalog cross-reference rows point at scenario files instead of catalog entries",
+   "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+   "seats": [
+    "gpt-correctness"
+   ],
+   "evidence": "Rows 278 and 280 put `04--maintenance/memory-retention-sweep-basic-flow.md` and `16--tooling-and-scripts/cli-matrix-adapter-runner-smoke.md` in the Catalog Entry column; those are playbook scenario paths, while the catalog entries are `04--maintenance/memory-retention-sweep.md` and `16--tooling-and-",
+   "suggested_fix": "Replace the Catalog Entry links with the actual `../feature_catalog/...` targets for retention sweep and CLI matrix adapter runners.",
+   "phase": "000-release-cleanup",
+   "lane": "008-doc-truth-and-test-fidelity",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Real cross-reference mismatch; replaced catalog links with feature_catalog targets."
+  },
+  {
+   "title": "Manual-playbook child summary has a stale scenario-count verification row",
+   "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/004-skill-manual-playbook/implementation-summary.md",
+   "seats": [
+    "gpt-docs-vs-code"
+   ],
+   "evidence": "The summary claims `documented count 409 equals actual scenario file count 409`. The current root playbook says it contains 410 scenario files at lines 140, 166-168, and 173, and the index includes scenario 449 at line 3853.",
+   "suggested_fix": "Rewrite the child summary as historical delivery evidence or update the verification note to acknowledge the current 410-count playbook after later sibling additions.",
+   "phase": "000-release-cleanup",
+   "lane": "008-doc-truth-and-test-fidelity",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Real but file is a spec-folder document, and user explicitly prohibited spec-folder doc edits."
+  },
+  {
+   "title": "feature_catalog.md last_updated predates release cleanup",
+   "file": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
+   "seats": [
+    "mimo"
+   ],
+   "evidence": "last_updated: \"2026-05-31\" but changelog for this phase is dated 2026-06-11 and claims 003-skill-feature-catalog added missing 027 entries",
+   "suggested_fix": "Bump last_updated to the date phase 003 actually wrote to this file, or confirm the field is decorative and document that.",
+   "phase": "000-release-cleanup",
+   "lane": "008-doc-truth-and-test-fidelity",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Real stale frontmatter date; bumped catalog last_updated to the release-cleanup edit date."
+  },
+  {
+   "title": "manual_testing_playbook last_updated predates release cleanup",
+   "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+   "seats": [
+    "mimo"
+   ],
+   "evidence": "last_updated: \"2026-05-20\" but changelog for this phase is dated 2026-06-11 and claims 004-skill-manual-playbook added scenarios for each 027 feature",
+   "suggested_fix": "Bump last_updated to the date phase 004 actually wrote to this file.",
+   "phase": "000-release-cleanup",
+   "lane": "008-doc-truth-and-test-fidelity",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Real stale frontmatter date; bumped playbook last_updated to the release-cleanup edit date."
+  },
+  {
+   "title": "Playbook claims 326 feature catalog files but actual count is 341",
+   "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+   "seats": [
+    "mimo",
+    "fable"
+   ],
+   "evidence": "Line 140: 'the feature catalog contains 326 feature files'. Running the playbook's own Python glob pattern ([0-9][0-9]--*/*.md) against the feature_catalog directory yields 341 files.",
+   "suggested_fix": "Update the 326 count to 341 (or the correct count at the time of the next update).",
+   "phase": "000-release-cleanup",
+   "lane": "008-doc-truth-and-test-fidelity",
+   "corroboration": 2,
+   "p2_decision": "FIX",
+   "p2_reason": "Real count drift; verified feature catalog count is 341 and updated the playbook text."
+  },
+  {
+   "title": "Stale last_updated frontmatter in both shipped docs; playbook frontmatter contradicts its own body",
+   "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "Playbook frontmatter says `last_updated: \"2026-05-20\"` while its body says 'As of 2026-06-11, the deterministic file count is 410' (line 173) and its last commit is 139f50dc13 (2026-06-11). The catalog frontmatter says `last_updated: \"2026-05-31\"` (feature_catalog.md:11) but was modified by Wave B c",
+   "suggested_fix": "Bump `last_updated` to the actual edit date in both files as part of any alignment-phase edit checklist.",
+   "phase": "000-release-cleanup",
+   "lane": "008-doc-truth-and-test-fidelity",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Duplicate of date alignment findings; updated both shipped doc frontmatter dates."
+  },
+  {
+   "title": "Phase-parent spec.md names a nonexistent flag: SPECKIT_FEEDBACK_RETENTION_LEARNING_MODE",
+   "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/spec.md",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "Spec In-Scope list includes 'SPECKIT_FEEDBACK_RETENTION_LEARNING_MODE'. The shipped flag is `SPECKIT_FEEDBACK_RETENTION_MODE` per ENV_REFERENCE.md:91/:360 and `lib/feedback/feedback-retention-reducer.ts`; no source or doc defines the LEARNING_MODE variant. README.md:190 and AGENTS.md:124 both use th",
+   "suggested_fix": "Correct the flag name in spec.md's In Scope list to `SPECKIT_FEEDBACK_RETENTION_MODE`.",
+   "phase": "000-release-cleanup",
+   "lane": "008-doc-truth-and-test-fidelity",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Real but file is a spec-folder document, and user explicitly prohibited spec-folder doc edits."
+  },
+  {
+   "title": "Constitutional rule count in the shipped summary is stale",
+   "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/004-constitutional-rule-review/implementation-summary.md",
+   "seats": [
+    "gpt-docs-vs-code"
+   ],
+   "evidence": "The summary says metadata was added to 13 active rule files and the diagnostic listed 13 rules (lines 64,106). The current read-only diagnostic reports Rules: 15, and the diagnostic code counts current active rows at runtime from the constitutional directory.",
+   "suggested_fix": "Update the count/evidence or avoid hard-coded active-rule totals in long-lived summaries.",
+   "phase": "001-peck-teachings-adoption",
+   "lane": "008-doc-truth-and-test-fidelity",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Real but file is a spec-folder document, and user explicitly prohibited spec-folder doc edits."
+  },
+  {
+   "title": "Duplicate section numbering in validation_rules.md: two sections labeled '## 6.'",
+   "file": ".opencode/skills/system-spec-kit/references/validation/validation_rules.md",
+   "seats": [
+    "mimo"
+   ],
+   "evidence": "Line 266: `## 6. PLACEHOLDER_FILLED` and Line 323: `## 6. SECTIONS_PRESENT` \u2014 both use section number 6. All subsequent sections (7-19) are off by one.",
+   "suggested_fix": "Renumber SECTIONS_PRESENT to \u00a77 and shift all subsequent sections (LEVEL_DECLARED\u2192\u00a78 through RELATED_RESOURCES\u2192\u00a720).",
+   "phase": "001-peck-teachings-adoption",
+   "lane": "008-doc-truth-and-test-fidelity",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Real duplicate numbering; renumbered validation rule sections 7 through 20."
+  },
+  {
+   "title": "Phase parent spec.md declares phase 002 status as 'Planned' but changelog records completed work",
+   "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/spec.md",
+   "seats": [
+    "mimo"
+   ],
+   "evidence": "Line 117: `| 2 | 002-self-check-templates/ | ... | Planned |` but changelog-001-002 records: `## 2026-06-10` with `### Verification | validate.sh --strict on smoke scaffold | PASS`. The templates were modified and verified.",
+   "suggested_fix": "Update the phase map row for phase 002 to status 'Complete' and add a handoff entry to phase 003.",
+   "phase": "001-peck-teachings-adoption",
+   "lane": "008-doc-truth-and-test-fidelity",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Real but file is a spec-folder document, and user explicitly prohibited spec-folder doc edits."
+  },
+  {
+   "title": "reviewer-scorer extractVerdict standalone regex is overly broad",
+   "file": ".opencode/skills/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs",
+   "seats": [
+    "mimo"
+   ],
+   "evidence": "Line 121-122: `const standalone = raw.match(/\\b(pass|fail|block)\\b/i);` matches the first occurrence of these words anywhere in reviewer output, including prose like 'This test will pass' or 'Block the merge'.",
+   "suggested_fix": "Tighten the standalone regex to require a line-start anchor or explicit label: `/^(?:VERDICT|RESULT)?\\s*[:=-]?\\s*(pass|fail|block)\\b/im` or remove the standalone fallback entirely and rely on the grad",
+   "phase": "001-peck-teachings-adoption",
+   "lane": "008-doc-truth-and-test-fidelity",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Real parser ambiguity; constrained verdict extraction to line-anchored verdict lines and final match preference."
+  },
+  {
+   "title": "Constitutional staleness diagnostic silently omits rules whose tier key diverges from the exact camelCase 'importanceTier' the script requires, while the memory indexer would still surface them as constitutional",
+   "file": ".opencode/skills/system-spec-kit/scripts/constitutional-rule-staleness.cjs",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "Line 86: `if (meta.importanceTier !== 'constitutional') return null;` \u2014 the hand-rolled frontmatter parser only honors the literal camelCase key. The indexer is broader on both axes: memory-parser.ts:448-450 classifies ANY .md under /constitutional/ as a constitutional document by path, and memory-p",
+   "suggested_fix": "Match the indexer's semantics: treat every non-README .md in constitutional/ as a rule row (or accept both importance_tier and importanceTier case-insensitively), and render a missing/mismatched tier ",
+   "phase": "001-peck-teachings-adoption",
+   "lane": "008-doc-truth-and-test-fidelity",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Current active rule files use the expected key and are counted; broadening future malformed-frontmatter handling is speculative P2 hardening."
+  },
+  {
+   "title": "extractVerdict's bare-word fallback takes the first standalone pass/fail/block anywhere in prose, which can invert live grading and makes the documented llm-grader fallback nearly unreachable",
+   "file": ".opencode/skills/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "Lines 117-124: after the explicit `verdict|result|status: <v>` pattern, the fallback `raw.match(/\\b(pass|fail|block)\\b/i)` accepts the FIRST bare occurrence in the whole output. A reviewer that omits the VERDICT line but writes e.g. \"the 'partial pass' wording is invalid; this must fail\" is extracte",
+   "suggested_fix": "Constrain the fallback to a line-anchored match (e.g. a line consisting only of the verdict token, or the final line), and when no such line exists return null so the llm-grader path documented in rev",
+   "phase": "001-peck-teachings-adoption",
+   "lane": "008-doc-truth-and-test-fidelity",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Duplicate verdict fallback issue; bare prose words no longer classify verdicts."
+  },
+  {
+   "title": "Verification test counts are stale in shipped docs",
+   "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/001-memory-write-safety/implementation-summary.md",
+   "seats": [
+    "gpt-docs-vs-code"
+   ],
+   "evidence": "The docs claim 15 causal tests, 18 retention tests, 27 scrubber tests, and 60 focused tests total. The current scoped test files contain 16, 20, and 27 `it(` cases respectively, for 63 total.",
+   "suggested_fix": "Update implementation-summary.md and the changelog verification rows to the current counts, or rerun the exact focused commands and record the actual current results.",
+   "phase": "002-memory-write-safety",
+   "lane": "001-write-safety-and-guards",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Spec-folder documentation edits were explicitly forbidden for this task."
+  },
+  {
+   "title": "Handler ignores feedbackRetention args \u2014 MCP callers cannot configure sweep parameters",
+   "file": "mcp_server/handlers/memory-retention-sweep.ts",
+   "seats": [
+    "mimo"
+   ],
+   "evidence": "Line 38: `runMemoryRetentionSweep(database, { dryRun: args?.dryRun === true })` \u2014 only `dryRun` is forwarded. The handler's args type `MemoryRetentionSweepArgs` includes `feedbackRetention?: FeedbackRetentionSweepArgs` (with `windowMs`, `extendDays`, `shadowEvaluationPassed`, `signals`), but the han",
+   "suggested_fix": "Forward the full args object: `runMemoryRetentionSweep(database, { dryRun: args?.dryRun === true, feedbackRetention: args?.feedbackRetention })` or pass `args` directly after extracting only what the ",
+   "phase": "002-memory-write-safety",
+   "lane": "001-write-safety-and-guards",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Forwarding feedbackRetention args is small, local, and preserves default behavior."
+  },
+  {
+   "title": "Feedback-retention audit records a 'delete' decision as applied:true before the tier basement denies the delete, producing contradictory audit rows for protected rows",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "In the sweep transaction, a feedback decision that is neither 'protect' nor 'extend' is audited with `applied: true` (memory-retention-sweep.ts:507-513) before `isProtectedFromRetentionDelete` runs (516). For a constitutional/critical/pinned candidate whose feedback decision is 'delete', the feedbac",
+   "suggested_fix": "Evaluate isProtectedFromRetentionDelete before recording the fall-through feedback audit, and record that audit with applied:false (or a 'denied' qualifier) when tier protection blocks the delete.",
+   "phase": "002-memory-write-safety",
+   "lane": "001-write-safety-and-guards",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Feedback delete audits now record applied:false when the tier basement denies deletion."
+  },
+  {
+   "title": "Tombstone lifecycle does not record which edge columns changed between generations",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/sweep.ts",
+   "seats": [
+    "mimo"
+   ],
+   "evidence": "Lines 192-199: buildRestoreMetadata serializes the entire edge snapshot as restore_metadata JSON. However, the monotonic lifecycle_generation (line 182-190) increments per source/target/relation triple. If the same edge is tombstoned, recreated, and tombstoned again, each tombstone stores a full sna",
+   "suggested_fix": "Not required for correctness. A future enhancement could add a 'prior_generation_metadata' column or a diff summary. The current design is functional and the restore path works correctly.",
+   "phase": "003-memory-index-causal-lifecycle",
+   "lane": "002-causal-and-memo",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Suggested change is explicitly a future enhancement, not a correctness issue."
+  },
+  {
+   "title": "Changelog 003-002 misattributes a 325-test regression total to the new 7-test tombstone suite",
+   "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/changelog/003-memory-index-causal-lifecycle/changelog-003-002-causal-tombstone-sweep.md",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "Added bullet: 'mcp_server/tests/causal-edge-tombstones.vitest.ts: 325-test suite covering single delete, bulk delete, manual unlink, and health orphan repair tombstone paths (16 files)'. The file contains 7 tests (verified by vitest run: 7 pass; landing commit d9808c864b reports 'tombstone 4/4'). Th",
+   "suggested_fix": "Reword the Added bullet to '7-test suite' (or the at-commit 4 plus the remediation additions) and keep the 16-file/325-test figure only in the Verification row, labeled as the regression set, with the",
+   "phase": "003-memory-index-causal-lifecycle",
+   "lane": "002-causal-and-memo",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Spec-folder changelog edits were explicitly forbidden for this task."
+  },
+  {
+   "title": "Backfill can embed stale records before stale cleanup in empty scans",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+   "seats": [
+    "gpt-correctness"
+   ],
+   "evidence": "When files.length === 0, runTriggerEmbeddingBackfill(requireDb()) runs at line 684 before categorizeFilesForIndexing([]) and deleteStaleIndexedRecords(...) execute at lines 686-689.",
+   "suggested_fix": "Move trigger embedding backfill after stale delete/orphan cleanup in the empty-files branch, matching the non-empty branch ordering.",
+   "phase": "004-semantic-trigger-fallback",
+   "lane": "003-search-and-triggers",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Real and small: empty scans now run trigger backfill after stale cleanup like non-empty scans."
+  },
+  {
+   "title": "Semantic trigger cache is not invalidated after backfill writes",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+   "seats": [
+    "gpt-correctness"
+   ],
+   "evidence": "runTriggerEmbeddingBackfill(requireDb()) is called, but its writes are not added to scanAppliedActions and the later runScanInvalidationHooks condition only considers indexed/updated/staleDeleted/orphanSwept/postInsertEnrichmentRepaired, not triggerEmbeddingBackfill changes.",
+   "suggested_fix": "After a backfill result with readyRows/failedRows/pendingRows changes, either clearSemanticTriggerCache directly or append a statediff action so the existing mutation hook invalidates it.",
+   "phase": "004-semantic-trigger-fallback",
+   "lane": "003-search-and-triggers",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Real and small: backfill row changes now emit a statediff action so existing invalidation clears semantic trigger cache."
+  },
+  {
+   "title": "Backfill opt-in flag is omitted from the env reference",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+   "seats": [
+    "gpt-correctness",
+    "gpt-regression",
+    "fable"
+   ],
+   "evidence": "The reference documents SPECKIT_SEMANTIC_TRIGGERS and related matcher flags at lines 111-116, but the backfill implementation gates population on SPECKIT_TRIGGER_EMBEDDING_BACKFILL in trigger-embedding-backfill.ts lines 48-53, and that variable is absent from ENV_REFERENCE.md.",
+   "suggested_fix": "Add SPECKIT_TRIGGER_EMBEDDING_BACKFILL to the feature flag table and the relevant subsystem section with its default-off semantics and source file.",
+   "phase": "004-semantic-trigger-fallback",
+   "lane": "003-search-and-triggers",
+   "corroboration": 3,
+   "p2_decision": "FIX",
+   "p2_reason": "Real doc gap outside spec docs: added the default-off trigger backfill env flag to ENV_REFERENCE."
+  },
+  {
+   "title": "Backfill enable flag is missing from the all-env reference",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/lib/search/trigger-embedding-backfill.ts",
+   "seats": [
+    "gpt-docs-vs-code"
+   ],
+   "evidence": "The backfill gate is SPECKIT_TRIGGER_EMBEDDING_BACKFILL, but ENV_REFERENCE.md claims to list all SPECKIT_* variables and only documents the semantic trigger flags, not this population switch.",
+   "suggested_fix": "Document SPECKIT_TRIGGER_EMBEDDING_BACKFILL with default OFF and source pointer, or consolidate it into the documented semantic trigger flag family.",
+   "phase": "004-semantic-trigger-fallback",
+   "lane": "003-search-and-triggers",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Same env-reference gap as idx 2; documented SPECKIT_TRIGGER_EMBEDDING_BACKFILL with source pointer."
+  },
+  {
+   "title": "Backfill call-site claim is stricter than actual wiring",
+   "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/changelog/004-semantic-trigger-fallback/changelog-004-001-schema-backfill.md",
+   "seats": [
+    "gpt-docs-vs-code"
+   ],
+   "evidence": "The changelog says scan completion only calls the helper when the flag is set, but memory-index.ts calls runTriggerEmbeddingBackfill unconditionally and the helper itself returns skipped_default_off when disabled.",
+   "suggested_fix": "Update the docs to say the helper is called unconditionally but no-ops when disabled, or move the env gate to the memory-index call site.",
+   "phase": "004-semantic-trigger-fallback",
+   "lane": "003-search-and-triggers",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Spec-folder changelog edit is explicitly out of scope for this seat."
+  },
+  {
+   "title": "Schema-version verification rows are stale",
+   "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/changelog/004-semantic-trigger-fallback/changelog-004-004-tests-goldens-shadow-eval.md",
+   "seats": [
+    "gpt-docs-vs-code"
+   ],
+   "evidence": "The phase record says SCHEMA_VERSION remains 34, but current vector-index-schema.ts exports SCHEMA_VERSION = 37 with v35-v37 migrations now present.",
+   "suggested_fix": "Mark the v34 check as historical leaf evidence, or update the rollup to say the v34 migration exists while the current terminal schema is v37.",
+   "phase": "004-semantic-trigger-fallback",
+   "lane": "003-search-and-triggers",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Spec-folder changelog edit is explicitly out of scope for this seat."
+  },
+  {
+   "title": "Computed shadow/union telemetry is silently dropped when lexical results are empty \u2014 the primary case shadow mode exists to measure",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "computeSemanticTriggerShadow runs at lines 561-583 (and the union block at 473-560) before the empty check, but the no-match early return (lines 585-608, createMCPEmptyResponse) attaches neither semanticTriggerShadow nor semanticTriggerUnion to the response; only the success-path extraMeta (lines 78",
+   "suggested_fix": "Spread the same `...(semanticTriggerShadow ? { semanticTriggerShadow } : {})` / union meta into the createMCPEmptyResponse meta (or move the semantic blocks' metadata attachment ahead of the empty-res",
+   "phase": "004-semantic-trigger-fallback",
+   "lane": "003-search-and-triggers",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Real and small: empty trigger responses now preserve computed semantic shadow/union telemetry in response data."
+  },
+  {
+   "title": "Profile-key fallback format diverges between trigger subsystem (provider:model:dim) and query-embedding writer (model:dim), silently disabling the feature on DBs without active-embedder metadata",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/lib/triggers/semantic-trigger-matcher.ts",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "resolveTriggerProfile (semantic-trigger-matcher.ts:254-257) and runTriggerEmbeddingBackfill (trigger-embedding-backfill.ts:149-151) fall back to `${provider}:${model}:${dim}` when getActiveEmbeddingProfileKey(database) returns '' (no vec metadata). The query-embedding writer (vector-index-queries.ts",
+   "suggested_fix": "Use one shared profile-key resolution helper for both subsystems (e.g. have resolveTriggerProfile and the backfill delegate to getActiveEmbeddingProfileKey(database, modelId, dimensions) so all fallba",
+   "phase": "004-semantic-trigger-fallback",
+   "lane": "003-search-and-triggers",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Real and small: semantic matcher and backfill now share the canonical active-profile fallback format."
+  },
+  {
+   "title": "Custom maxBoostDelta is applied to logs but not returned candidates",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts",
+   "seats": [
+    "gpt-correctness"
+   ],
+   "evidence": "runBatchLearning computes cappedBoost from opts.maxBoostDelta at line 536 and writes cappedSignal at lines 537-538, but returns the original eligible array at line 549. Those signals were capped earlier with the module default MAX_BOOST_DELTA at lines 307-310.",
+   "suggested_fix": "Build and return a capped candidates array using the caller-provided maxBoostDelta, and use that same array for shadowApply.",
+   "phase": "005-learning-feedback-reducers",
+   "lane": "008-doc-truth-and-test-fidelity",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Real cap propagation gap; returned and shadow-applied caller-capped candidates with regression coverage."
+  },
+  {
+   "title": "Parent spec still points the aggregator child at a non-shipped module",
+   "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/spec.md",
+   "seats": [
+    "gpt-docs-vs-code"
+   ],
+   "evidence": "The phase map says child 001 is a shared `feedback-aggregation.ts` foundation, but the shipped implementation extends `aggregateEvents` in `mcp_server/lib/feedback/batch-learning.ts` and the child changelog says no separate aggregator module was created.",
+   "suggested_fix": "Update the parent phase map to name `batch-learning.ts` / `aggregateEvents` as the shipped aggregator foundation.",
+   "phase": "005-learning-feedback-reducers",
+   "lane": "008-doc-truth-and-test-fidelity",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Real but file is a spec-folder document, and user explicitly prohibited spec-folder doc edits."
+  },
+  {
+   "title": "Parent spec retains a stale STATE_LIMITS precondition after the code imports it",
+   "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/spec.md",
+   "seats": [
+    "gpt-docs-vs-code"
+   ],
+   "evidence": "The parent spec says `STATE_LIMITS` is non-exported and must be exported before importing, but `edge-tier-basement.ts` imports `STATE_LIMITS` directly from `stage4-filter.js` at line 6.",
+   "suggested_fix": "Remove or revise the stale precondition note in the parent spec.",
+   "phase": "005-learning-feedback-reducers",
+   "lane": "008-doc-truth-and-test-fidelity",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Real but file is a spec-folder document, and user explicitly prohibited spec-folder doc edits."
+  },
+  {
+   "title": "Env closeout over-claims detailed documentation for all reducer flags",
+   "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/005-env-tests-integration/implementation-summary.md",
+   "seats": [
+    "gpt-docs-vs-code"
+   ],
+   "evidence": "The implementation summary says the detail rows already document all three shipped reducer flags, but `ENV_REFERENCE.md` section 9 only has detail rows for `SPECKIT_FEEDBACK_RETENTION_LEARNING` and `SPECKIT_FEEDBACK_RETENTION_MODE`; `SPECKIT_SESSION_TRACE_CAUSAL_INFERENCE` appears only in the summar",
+   "suggested_fix": "Add a Section 9 detail row for `SPECKIT_SESSION_TRACE_CAUSAL_INFERENCE`, or narrow the closeout claim to the summary table.",
+   "phase": "005-learning-feedback-reducers",
+   "lane": "008-doc-truth-and-test-fidelity",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Fixed the underlying ENV_REFERENCE detail-row gap instead of editing prohibited spec-folder closeout text."
+  },
+  {
+   "title": "Causal shadow replay does not simulate live write guards",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/session-trace-causal-reducer.ts",
+   "seats": [
+    "gpt-regression"
+   ],
+   "evidence": "The dryRun branch records a dry_run skip and continues before readExistingEdge and insertEdge guard logic, so dry-run output never reports already_created, manual_protected, or insert_rejected outcomes.",
+   "suggested_fix": "In dry-run, perform non-mutating eligibility checks for existing/manual/cap conditions and report the would-be live outcome; add dry-run tests for manual edges and cap exhaustion.",
+   "phase": "005-learning-feedback-reducers",
+   "lane": "008-doc-truth-and-test-fidelity",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Dry-run/live guard simulation is a broader reducer behavior change with edge-cap semantics; too risky for P2 polish."
+  },
+  {
+   "title": "weightedHitCount formula conflates strong-confidence events with positive signals",
+   "file": "mcp_server/lib/feedback/batch-learning.ts",
+   "seats": [
+    "mimo"
+   ],
+   "evidence": "batch-learning.ts:312-317: `data.strong` counts ALL events with confidence='strong' (any type), while the JSDoc at line 112 claims 'Positive-signal hit count'. The handler at memory-search.ts:1585 hardcodes search_shown confidence to 'weak', so the formula works in practice \u2014 but the formula is frag",
+   "suggested_fix": "Either (a) change the formula to sum strong result_cited + strong follow_on_tool_use instead of data.strong, or (b) add a comment asserting the invariant that search_shown is always logged with weak c",
+   "phase": "005-learning-feedback-reducers",
+   "lane": "008-doc-truth-and-test-fidelity",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Formula semantics are ambiguous and changing signal math could alter ranking telemetry; P2 risk outweighs benefit."
+  },
+  {
+   "title": "Dry-run retention preview evaluates with empty signals, reporting 'delete' for rows a live run would 'extend'",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "buildFeedbackRetentionReport: `const signals = args.signals ?? (dryRun ? [] : aggregateEvents(...))`. The only production caller, handlers/memory-retention-sweep.ts:38, passes `{ dryRun }` with no feedbackRetention args, so any MCP dry-run with SPECKIT_FEEDBACK_RETENTION_LEARNING=true evaluates ever",
+   "suggested_fix": "In dry-run, either compute signals read-only when feedback_events already exists (guard with a sqlite_master check instead of initBatchLearning), or set an explicit `signalsUnavailable: true` field on",
+   "phase": "005-learning-feedback-reducers",
+   "lane": "008-doc-truth-and-test-fidelity",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Retention dry-run signal loading changes sweep preview semantics and database read paths; not a small behavior-safe P2 fix."
+  },
+  {
+   "title": "SPECKIT_SESSION_TRACE_CAUSAL_INFERENCE has no subsystem detail row in ENV_REFERENCE (summary row only)",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "The flag appears only in the summary feature-flags table (line 92). Section '9. FEEDBACK AND LEARNING' (lines 351-367) carries the per-variable detail rows with Default/Type/Description/Source \u2014 the phase's two retention flags got rows there (lines 359-360), but the session-trace flag did not. The d",
+   "suggested_fix": "Add a detail row in section 9: `SPECKIT_SESSION_TRACE_CAUSAL_INFERENCE | false | boolean | Deferred session-trace causal edge inference; dry-run shadow replay available | lib/feedback/session-trace-ca",
+   "phase": "005-learning-feedback-reducers",
+   "lane": "008-doc-truth-and-test-fidelity",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Real missing env detail row; added the session-trace causal inference row to Section 9."
+  },
+  {
+   "title": "Empty stdin is misclassified as an unexpected error",
+   "file": ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
+   "seats": [
+    "gpt-correctness"
+   ],
+   "evidence": "parseStructuredJson throws \"--stdin requires a non-empty JSON object\", but the expected-error regex at line 810 matches \"required a non-empty JSON object\" instead of \"requires\".",
+   "suggested_fix": "Add \"requires a non-empty JSON object\" to the expected-error classifier or replace the regex with typed validation errors.",
+   "phase": "006-gem-team-adoption",
+   "lane": "007-continuity-and-save-concurrency",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Expected-error classifier missed the thrown \"requires a non-empty JSON object\" wording."
+  },
+  {
+   "title": "Phase parent status map still says implemented children are only scaffolded",
+   "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption/spec.md",
+   "seats": [
+    "gpt-docs-vs-code"
+   ],
+   "evidence": "The parent phase map lists 001, 002, and 003 as Spec-scaffolded at lines 109-111, while the child implementation summaries record completion_pct 100 and implemented/completed statuses.",
+   "suggested_fix": "Refresh the parent phase map and continuity metadata to reflect the actual child states, or intentionally label it as a historical scaffold snapshot.",
+   "phase": "006-gem-team-adoption",
+   "lane": "007-continuity-and-save-concurrency",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Spec-folder documentation edits were explicitly out of scope."
+  },
+  {
+   "title": "Allowed Tools table malformed: memory_match_triggers row has columns shifted, misplaced as code_graph_query companion",
+   "file": ".opencode/agents/context.md",
+   "seats": [
+    "mimo"
+   ],
+   "evidence": "Line 75: `| `code_graph_query` plus `Grep` | `memory_match_triggers` | Memory (L2) | Trigger phrase matching | Surface saved rules and likely relevant prior work quickly |` \u2014 this is a single table row with 5 pipe-delimited cells where `memory_match_triggers` occupies the Type column (should be its ",
+   "suggested_fix": "Split into two rows: (1) `code_graph_query` | Structure | Graph traversal | Calls, imports, dependencies, impact, and ownership questions; (2) `memory_match_triggers` | Memory (L2) | Trigger phrase ma",
+   "phase": "006-gem-team-adoption",
+   "lane": "007-continuity-and-save-concurrency",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Allowed Tools table row was malformed and safe to split locally."
+  },
+  {
+   "title": "Same table corruption in Claude mirror of context.md",
+   "file": ".claude/agents/context.md",
+   "seats": [
+    "mimo"
+   ],
+   "evidence": "Line 57: identical malformed row as .opencode/agents/context.md:75 \u2014 `| `code_graph_query` plus `Grep` | `memory_match_triggers` | Memory (L2) | Trigger phrase matching | Surface saved rules and likely relevant prior work quickly |`",
+   "suggested_fix": "Apply the same two-row split as the .opencode mirror fix.",
+   "phase": "006-gem-team-adoption",
+   "lane": "007-continuity-and-save-concurrency",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Claude mirror had the same malformed Allowed Tools row."
+  },
+  {
+   "title": "Orchestrator emits advisory/handoff/pre-exec fields inside AGENT_IO_DISPATCH that the contract's dispatch group does not define, and no agent ever emits the AGENT_IO_ADVISORY block shape",
+   "file": ".opencode/agents/orchestrate.md",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "orchestrate.md's dispatch header (lines 228-243) carries context_package, handoff, pre_execution, reviewer_focus, self_assessed_quality \u2014 none of which appear in the contract's Dispatch Group (agent-io-contract.md:33-44). The contract instead defines reviewer_focus/self_assessed_quality/spec_drift i",
+   "suggested_fix": "Amend agent-io-contract.md \u00a72 to enumerate the optional extended dispatch fields (or state that advisory-group fields may ride in the dispatch header), and reconcile the spec_drift emission shape (con",
+   "phase": "006-gem-team-adoption",
+   "lane": "007-continuity-and-save-concurrency",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Contract now documents the optional extended dispatch header fields emitted by orchestrate."
+  },
+  {
+   "title": "@code's advisory envelope permits status 'partial' while the agent body forbids partial-success returns",
+   "file": ".opencode/agents/code.md",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "The Wave-1 envelope in code.md line 334 reads 'status: pass | fail | blocked | partial' (verbatim contract copy, mirrored at .claude/agents/code.md:318 and .codex/agents/code.toml:322), but code.md line 380 mandates 'RETURN is DONE (PASS) or BLOCKED (FAIL) only' and \u00a711 names 'Partial-success return",
+   "suggested_fix": "Narrow @code's envelope status line to 'pass | fail | blocked' in all three mirrors (mirroring how failure_type was already narrowed), leaving 'partial' to agents whose native contracts actually permi",
+   "phase": "006-gem-team-adoption",
+   "lane": "007-continuity-and-save-concurrency",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "@code status envelope was narrowed to the agent's DONE/BLOCKED contract across mirrors."
+  },
+  {
+   "title": "Near-duplicate check is on the save response path despite off-hot-path NFR",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
+   "seats": [
+    "gpt-docs-vs-code"
+   ],
+   "evidence": "memory_save calls recordNearDuplicateCheck before building the save response; that helper runs vectorSearch at near-duplicate.ts:104 and updates memory_index at near-duplicate.ts:144-149. This contradicts 002 spec.md:172, which says the advisory check runs off the write hot path and never delays the",
+   "suggested_fix": "Move the near-duplicate write to post-insert/index-scan repair or amend the NFR/docs to state that flag-on saves compute the advisory synchronously.",
+   "phase": "007-memclaw-derived-memory-hardening",
+   "lane": "001-write-safety-and-guards",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Moving advisory duplicate work off the save path is behavior-affecting and too risky for P2."
+  },
+  {
+   "title": "Near-duplicate repair can repeatedly recheck same-day rows due to mixed timestamp formats",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+   "seats": [
+    "gpt-regression"
+   ],
+   "evidence": "The repair query uses a string predicate, updated_at > last_dedup_checked_at (line 634), while recordNearDuplicateCheck writes last_dedup_checked_at with SQLite datetime('now') in near-duplicate.ts:147. Memory writes use ISO timestamps elsewhere, so same-date values compare lexicographically with 'T",
+   "suggested_fix": "Store last_dedup_checked_at in the same ISO format as updated_at, or compare normalized timestamps with julianday/strftime. Add a regression test with ISO updated_at and SQLite datetime last_dedup_che",
+   "phase": "007-memclaw-derived-memory-hardening",
+   "lane": "001-write-safety-and-guards",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Stored dedupe timestamps now use ISO format, matching updated_at lexical comparisons."
+  },
+  {
+   "title": "delete_after column claimed in migration 36 but added inside ensureIdempotencyReceiptSchema called from migration 35",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+   "seats": [
+    "mimo"
+   ],
+   "evidence": "ensureIdempotencyReceiptSchema (line 656-705) adds delete_after, near_duplicate_of, and last_dedup_checked_at columns. This function is called from migration 35 (line 1506 in the migrations[35] entry). The changelog-007-002 states 'near_duplicate_of and last_dedup_checked_at columns added to memory_",
+   "suggested_fix": "Amend the changelog to note that the near-duplicate columns were added inside the v35 migration path via ensureIdempotencyReceiptSchema.",
+   "phase": "007-memclaw-derived-memory-hardening",
+   "lane": "001-write-safety-and-guards",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Spec-folder changelog edits were explicitly forbidden for this task."
+  },
+  {
+   "title": "Automated mutation audit deduplicates by actor+source_kind+reason, silently dropping distinct mutations on different memories",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts",
+   "seats": [
+    "mimo"
+   ],
+   "evidence": "buildAutomatedMutationEventKey (line 187-193) hashes only {actor, source_kind, reason}. appendAutomatedMutationAudit (line 206-234) skips append when an entry with the same eventKey exists (line 213-214). If an automated actor performs the same mutation type on two different memories with the same r",
+   "suggested_fix": "Include linked_memory_ids or a memory-specific value in the event key hash to prevent cross-memory deduplication.",
+   "phase": "007-memclaw-derived-memory-hardening",
+   "lane": "001-write-safety-and-guards",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Automated audit dedupe key now includes normalized linked memory ids."
+  },
+  {
+   "title": "filePath word-heuristic in deriveSourceKindFromContext classifies human saves of paths containing 'index'/'scan' as source_kind='import', silently dropping manual-overwrite protection",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/write-provenance.ts",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "With no explicit provenance, createMemoryRecord always passes filePath into applyWriteProvenance (create-record.ts:368-373), and write-provenance.ts:89-92 applies /\\b(import|ingest|scan|index)\\b/i to the whole path before the 'human' default. A human /memory:save of e.g. 'context-index.md' (a docume",
+   "suggested_fix": "Restrict the heuristic to the basename or to known pipeline directories, or drop the filePath fallback entirely and keep 'human' as the default for unattributed MCP-surface saves.",
+   "phase": "007-memclaw-derived-memory-hardening",
+   "lane": "001-write-safety-and-guards",
+   "corroboration": 1,
+   "p2_decision": "ALREADY_FIXED",
+   "p2_reason": "Current write-provenance code already removed the filePath heuristic and defaults path-only saves to human."
+  },
+  {
+   "title": "Near-duplicate index-scan repair regenerates embeddings via the provider for rows whose vectors are already stored",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "runNearDuplicateRepairBackfill selects rows with embedding_status='success' (memory-index.ts:631-634) \u2014 i.e. rows whose document vector already exists in the vector store \u2014 then calls embeddings.generateDocumentEmbedding for each (line 652) before recordNearDuplicateCheck. That is up to BATCH_SIZE l",
+   "suggested_fix": "Load the stored embedding for the row (as the rest of the read path does) and only fall back to regeneration when no stored vector can be retrieved.",
+   "phase": "007-memclaw-derived-memory-hardening",
+   "lane": "001-write-safety-and-guards",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Loading stored vectors instead of regenerating crosses adapter/read-path behavior and is not safe P2 polish."
+  },
+  {
+   "title": "Automated-mutation audit dedup does an unindexed json_extract full-ledger scan on every automated mutation",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/mutation-ledger.ts",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "getAutomatedMutationAuditEntry filters on json_extract(decision_meta, '$.eventKey') (mutation-ledger.ts:196-204) and is called from appendAutomatedMutationAudit on every non-human mutation (211-214) via the post-mutation hook (mutation-hooks.ts:225). mutation_ledger is append-only and accumulates ev",
+   "suggested_fix": "Add an expression index (CREATE INDEX ... ON mutation_ledger(json_extract(decision_meta,'$.eventKey'))) or persist eventKey in its own indexed column (new_hash already stores it for these rows \u2014 an in",
+   "phase": "007-memclaw-derived-memory-hardening",
+   "lane": "001-write-safety-and-guards",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Automated audit lookup now uses indexed new_hash instead of json_extract scanning."
+  },
+  {
+   "title": "Focused suite claim overstates shipped handler coverage",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/tests/openltm-retrieval-observability.vitest.ts",
+   "seats": [
+    "gpt-docs-vs-code"
+   ],
+   "evidence": "The test file imports formatSearchResults, handleMemoryHealth, and helper functions at lines 3-10. It does not import or call handleMemorySearch, handleMemoryContext, handleEmbedderStatus, handleMemoryIndexScan, handleMemoryEmbeddingReconcile, or handleMemoryRetentionSweep; maintenance tests inject ",
+   "suggested_fix": "Update the changelog/summary to describe the narrower coverage, or add focused tests that call the shipped handlers directly.",
+   "phase": "008-openltm-retrieval-observability",
+   "lane": "003-search-and-triggers",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Adding broad shipped-handler coverage is beyond a small P2 fix, and changelog edits are out of scope."
+  },
+  {
+   "title": "vectorDegradation emitted under two keys in memory-search extraData",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+   "seats": [
+    "mimo"
+   ],
+   "evidence": "extraData.vectorDegradation = buildVectorDegradationSignal(...);\nextraData.vector_degradation = extraData.vectorDegradation;",
+   "suggested_fix": "Remove one of the two lines; keep whichever matches downstream consumer expectations.",
+   "phase": "008-openltm-retrieval-observability",
+   "lane": "003-search-and-triggers",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Dual camel/snake keys may be compatibility surface; removing one is riskier than P2 polish."
+  },
+  {
+   "title": "Test does not exercise vector channelScore normalization path",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/tests/openltm-retrieval-observability.vitest.ts",
+   "seats": [
+    "mimo"
+   ],
+   "evidence": "Test row has sourceScores: { vector: 0.8, ... } which bypasses the channelScore 'vector' branch (line 144-147 of retrieval-observability.ts) that divides similarity by 100. The assertion at line 79 (expect(channelsA).toMatchObject(rows[0].sourceScores)) would pass whether or not the /100 normalizati",
+   "suggested_fix": "Add a test case with a raw row lacking sourceScores but having similarity: 80, and assert channels.vector === 0.8.",
+   "phase": "008-openltm-retrieval-observability",
+   "lane": "003-search-and-triggers",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Real small test gap: added raw similarity coverage for vector channel normalization."
+  },
+  {
+   "title": "why_ranked hand-rolls its own score-resolution chain that diverges from the canonical ranking contract",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/lib/observability/retrieval-observability.ts",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "resolveEffectiveScore() in retrieval-observability.ts resolves intentAdjustedScore \u2192 rrfScore \u2192 stage2Score \u2192 score \u2192 similarity (unclamped), while the canonical resolveEffectiveScore in lib/search/pipeline/types.ts:67-77 (used by compareDeterministicRows in ranking-contract.ts) resolves intentAdjus",
+   "suggested_fix": "Delete the local chain and delegate to resolveEffectiveScore from ../search/pipeline/types.js (keeping the scoreSource label mapping), or at minimum drop the stage2Score branch so the two chains canno",
+   "phase": "008-openltm-retrieval-observability",
+   "lane": "003-search-and-triggers",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Real and local: why_ranked now delegates score value to canonical resolver and drops divergent stage2 fallback."
+  },
+  {
+   "title": "Maintenance counters never record failed runs, so memory_health silently shows stale last-success data after an error",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-retention-sweep.ts",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "recordMaintenanceRun is called only on success paths (memory-retention-sweep.ts:53, memory-embedding-reconcile.ts:79, memory-index.ts:715/1252) plus the coalesced branch (memory-index.ts:394). All catch/error-return paths (retention-sweep.ts:85-99, embedding-reconcile.ts:97-122) return without recor",
+   "suggested_fix": "In each handler's error path, call recordMaintenanceRun(tool, { status: 'error', counts: {}, staleCandidates: 0 }) before returning the MCP error response.",
+   "phase": "008-openltm-retrieval-observability",
+   "lane": "003-search-and-triggers",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Cross-handler maintenance error accounting changes are non-local and higher risk for P2."
+  },
+  {
+   "title": "Test asserts structured counts but never validates markdown content against budget",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/tests/openltm-continuity-resilience.vitest.ts",
+   "seats": [
+    "mimo"
+   ],
+   "evidence": "vitest.ts:128-135 checks `restoredCount <= maxItems` and `omittedCount > 0` on the structured data, plus substring presence in markdown ('Restored:', 'Not restored:', '### Goal', etc.). No assertion verifies that the markdown does NOT contain items that were in the omitted set, so the P1 rendering b",
+   "suggested_fix": "Add an assertion that the `markdown` field does not contain text from items that appear in `result.restorePanel.omitted`. Or assert that the rendered item count in the markdown matches `restoredCount`",
+   "phase": "009-openltm-continuity-resilience",
+   "lane": "007-continuity-and-save-concurrency",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Restore-panel test now verifies rendered markdown item count is bounded to restoredCount."
+  },
+  {
+   "title": "Snapshot refresh silently zeroes completion_pct on every update",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/lib/continuity/authored-continuity-snapshot.ts",
+   "seats": [
+    "mimo"
+   ],
+   "evidence": "authored-continuity-snapshot.ts:124 hardcodes `completion_pct: 0` in `buildContinuityRecord`. The result is passed to `upsertThinContinuityInMarkdown` (line 205) which merges it into the existing frontmatter via `mergeFrontmatterWithContinuity` (thin-continuity-record.ts:913-929), overwriting whatev",
+   "suggested_fix": "Read the existing `completion_pct` from the current implementation-summary frontmatter before building the snapshot record, and preserve it (or default to 0 only when absent).",
+   "phase": "009-openltm-continuity-resilience",
+   "lane": "007-continuity-and-save-concurrency",
+   "corroboration": 1,
+   "p2_decision": "ALREADY_FIXED",
+   "p2_reason": "Current code already preserves currentRecord.completion_pct and defaults only when absent."
+  },
+  {
+   "title": "Snapshot call in PreCompact main() is unguarded and swallows implementation-summary write failures silently",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "refreshAuthoredContinuitySnapshot is called outside any try/catch; a thrown fs error (e.g. EACCES from writeFileSync at authored-continuity-snapshot.ts:198/212) aborts main() before the always-on compact-cache work at line 414, so the session loses its compaction cache. Separately, inside the helper",
+   "suggested_fix": "Wrap the snapshot call in try/catch with a hookLog('warn') and continue; have the helper collect per-doc errors into the result (e.g. docsSkipped with reasons) and log them.",
+   "phase": "009-openltm-continuity-resilience",
+   "lane": "007-continuity-and-save-concurrency",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Snapshot refresh is now isolated in try/catch so compact-cache work continues on snapshot write failure."
+  },
+  {
+   "title": "Snapshot folder targeting inherits detectSpecFolder's file-stem contamination, so the opt-in snapshot frequently no-ops",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "detectSpecFolder's regex /\\.opencode\\/specs\\/[\\w/-]+/ (line 116) stops at dots, so '.opencode/specs/a/b/spec.md' yields the key '.opencode/specs/a/b/spec'; the trailing-file strip /\\/[^/]+\\.\\w+$/ (line 123) requires a dot and never fires on that captured text. The most-frequent key is therefore ofte",
+   "suggested_fix": "Strip the last path segment when the raw match in the source line is followed by '.<ext>' (or normalize candidates by checking directory existence among frequency-ranked keys before giving up).",
+   "phase": "009-openltm-continuity-resilience",
+   "lane": "007-continuity-and-save-concurrency",
+   "corroboration": 1,
+   "p2_decision": "ALREADY_FIXED",
+   "p2_reason": "detectSpecFolder already matches dotted filenames and strips trailing file segments."
+  },
+  {
+   "title": "'Mutation counters' are compile-time constants \u2014 the tests asserting them prove nothing, unlike what the shipped docs claim",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/lib/continuity/authored-continuity-snapshot.ts",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "AuthoredContinuitySnapshotResult types createdMemoryRecords/indexMutations as literal 0 (lines 32-33) and every return hardcodes them. implementation-summary.md:91 claims 'Tests can prove no memory rows or indexes are touched without adding DB fixtures' and the changelog repeats 'so tests can assert",
+   "suggested_fix": "Either drop the counters and document the no-DB-import boundary as the invariant (enforceable with an import-boundary lint/test), or derive the counters from actual observed effects.",
+   "phase": "009-openltm-continuity-resilience",
+   "lane": "007-continuity-and-save-concurrency",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Type-level no-mutation counters are cosmetic; changing invariant strategy is broader than safe P2 scope."
+  },
+  {
+   "title": "Changelog gating claim ('skipped entirely when not set') is wider than the code: stdin fields can enable the snapshot without the env flag",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "authoredSnapshotEnabled returns true for input.authored_continuity_snapshot === true or input.continuity_snapshot === 'authored' in addition to SPECKIT_AUTHORED_CONTINUITY_SNAPSHOT === '1'. changelog-009 line 36 states the path 'is gated on SPECKIT_AUTHORED_CONTINUITY_SNAPSHOT and skipped entirely w",
+   "suggested_fix": "Either remove the stdin-field enables until a consumer exists, or document them in the changelog/spec as deliberate harness-side overrides.",
+   "phase": "009-openltm-continuity-resilience",
+   "lane": "007-continuity-and-save-concurrency",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Changelog/spec wording is spec-folder documentation and stdin overrides appear deliberate for harness use."
+  },
+  {
+   "title": "Closed cleanup phase still carries stale in-progress and old-path metadata",
+   "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/004-release-and-program-cleanup/implementation-summary.md",
+   "seats": [
+    "gpt-docs-vs-code"
+   ],
+   "evidence": "Frontmatter description says IN PROGRESS, while the same file records completion_pct 100 and Completed 2026-06-10. The metadata table also names Spec Folder as 028-mcp-to-cli-tool-transition/004-release-and-program-cleanup while the committed path is under 027/.../010-mcp-to-cli-tool-transition.",
+   "suggested_fix": "Update the frontmatter description and Spec Folder row to the current closed state and canonical committed path.",
+   "phase": "010-mcp-to-cli-tool-transition",
+   "lane": "006-launchers-and-cli",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Spec-folder documentation edits were explicitly out of scope."
+  },
+  {
+   "title": "OpenCode code-graph plugin can block prompt-time transforms for 15 seconds",
+   "file": ".opencode/plugins/mk-code-graph.js",
+   "seats": [
+    "gpt-regression"
+   ],
+   "evidence": "DEFAULT_BRIDGE_TIMEOUT_MS is 15000, and runTransportBridge passes that value as both the bridge process timeout and --timeout-ms at lines 260-270. The transform hooks call loadTransportPlan during chat/system/message/compaction paths.",
+   "suggested_fix": "Use a prompt-time budget comparable to the other warm fallbacks, or split a short probe timeout from a capped status-call timeout and make the plugin default fail open within a few seconds.",
+   "phase": "010-mcp-to-cli-tool-transition",
+   "lane": "006-launchers-and-cli",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Prompt-time timeout reduction is a perf policy change without measurement."
+  },
+  {
+   "title": "code-index.cjs allowStale returns silently on missing dist; spec-memory.cjs still hard-fails \u2014 behavioral asymmetry",
+   "file": ".opencode/bin/code-index.cjs",
+   "seats": [
+    "mimo"
+   ],
+   "evidence": "code-index.cjs line 86-90: if (!fs.existsSync(cliDist)) { if (allowStale) { process.stderr.write(...); return; } fail(...); }. spec-memory.cjs line 87-89: if (!fs.existsSync(cliDist)) { fail(...); } \u2014 allowStale only skips the hash check, not the missing-dist check.",
+   "suggested_fix": "Align both shims: either both hard-fail on missing dist regardless of allowStale (safer), or both skip the check consistently.",
+   "phase": "010-mcp-to-cli-tool-transition",
+   "lane": "006-launchers-and-cli",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "code-index shim now hard-fails missing dist even with allowStale, matching sibling shims."
+  },
+  {
+   "title": "spec-memory-cli.ts version reads from package.json; code-index-cli.ts reads from package-lock.json \u2014 version drift risk",
+   "file": ".opencode/skills/system-code-graph/mcp_server/code-index-cli.ts",
+   "seats": [
+    "mimo"
+   ],
+   "evidence": "spec-memory-cli.ts readCliVersion (line 189): reads from packageJsonPath (package.json). code-index-cli.ts readCliVersion (line 191): reads from packageLockPath (package-lock.json) with fallback to packages[''].version. skill-advisor-cli.ts readCliVersion (line 217): reads package.json first, falls ",
+   "suggested_fix": "Standardize on a single source of truth for CLI version across all three CLIs (prefer package.json as the authorative source, with package-lock.json as fallback only).",
+   "phase": "010-mcp-to-cli-tool-transition",
+   "lane": "006-launchers-and-cli",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "code-index CLI version now prefers package.json with package-lock fallback."
+  },
+  {
+   "title": "mk-spec-memory-bridge.mjs timeout path ignores the grandchild-holds-pipes hazard its sibling fallback explicitly documents and mitigates",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/plugin_bridges/mk-spec-memory-bridge.mjs",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "The bridge spawns the spec-memory.cjs shim WITHOUT detached:true (lines 263-281), and the shim runs the dist CLI as a grandchild via spawnSync with stdio:'inherit', so the grandchild inherits the bridge's stdout/stderr pipes. On timeout the bridge calls child.kill('SIGTERM'/'SIGKILL') on the shim on",
+   "suggested_fix": "Mirror runWarmSpecMemoryCliTool in the bridge: spawn the shim with detached:true, kill the process group (process.kill(-pid)) on timeout, and settle on 'exit' with a short grace timer in addition to '",
+   "phase": "010-mcp-to-cli-tool-transition",
+   "lane": "006-launchers-and-cli",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Spec-memory bridge now spawns detached and terminates the process group on timeout."
+  },
+  {
+   "title": "Deep review presentation documents the old child-phase artifact path",
+   "file": ".opencode/commands/deep/assets/deep_start-review-loop_presentation.md",
+   "seats": [
+    "gpt-docs-vs-code"
+   ],
+   "evidence": "The presentation says child phases use `{spec_folder}/review/{packet}-pt-{NN}/`. The actual resolver implements flat-first behavior: review-research-paths.cjs:267-274 returns `{spec_folder}/review/` for a child phase first run when no flat artifact or pt folders exist.",
+   "suggested_fix": "Change the presentation wording to describe `artifact_dir`/flat-first behavior, with pt-NN only for prior non-matching content.",
+   "phase": "011-command-presentation-workflow-separation",
+   "lane": "008-doc-truth-and-test-fidelity",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Real presentation drift; documented artifact_dir flat-first behavior for deep review."
+  },
+  {
+   "title": "spec.md scope section and _memory metadata claim 4 families; phase map has 5",
+   "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/spec.md",
+   "seats": [
+    "mimo"
+   ],
+   "evidence": "Section 3 header says 'Four command-family phase parents' and table lists only memory/speckit/create/doctor (line 86-106). Phase Documentation Map has 5 phases including 005-deep-commands marked Complete (line 116-122). _memory.recent_action says 'All 4 command families shipped' (line 16).",
+   "suggested_fix": "Change 'Four' to 'Five' in section 3, add deep family row to the scope table, and update _memory.recent_action to '5'.",
+   "phase": "011-command-presentation-workflow-separation",
+   "lane": "008-doc-truth-and-test-fidelity",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Real but file is a spec-folder document, and user explicitly prohibited spec-folder doc edits."
+  },
+  {
+   "title": "speckit plan consolidated prompt reply format omits 4 of 9 questions",
+   "file": ".opencode/commands/speckit/assets/speckit_plan_presentation.md",
+   "seats": [
+    "mimo"
+   ],
+   "evidence": "Consolidated prompt defines Q0-Q8 (9 questions, lines 72-80). Reply format is 'B, A, A, C, A' (5 answers, line 84). Compare to deep/start-review-loop_presentation.md which shows explicit full-length reply examples covering all fields (line 183-187).",
+   "suggested_fix": "Expand reply format to cover all conditional questions, e.g. 'Add auth, B, A, B-single, C, add_feature, A, -, -' or add a note that omitted trailing answers use defaults.",
+   "phase": "011-command-presentation-workflow-separation",
+   "lane": "008-doc-truth-and-test-fidelity",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Real prompt contract mismatch; expanded reply format to cover Q0-Q8 with omitted-answer placeholders."
+  },
+  {
+   "title": "New presentation asset canonizes two dead file references carried from the old router",
+   "file": ".opencode/commands/deep/assets/deep_start-review-loop_presentation.md",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "Line 395 references `.opencode/skills/system-spec-kit/scripts/optimizer/optimizer-control file.json` (space in filename); that directory contains only optimizer-manifest.json, README.md, audit/, and *.cjs scripts \u2014 no such file exists. Line 232 references `.opencode/specs/skilled-agent-orchestration",
+   "suggested_fix": "Point line 395 at the real optimizer artifact (optimizer-manifest.json or the optimizer README) and line 232 at the z_archive path; fix the 130-vs-116 label. Same strings also persist in deep_start-re",
+   "phase": "011-command-presentation-workflow-separation",
+   "lane": "008-doc-truth-and-test-fidelity",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Real dead references; corrected optimizer and archived research references in deep presentation assets."
+  },
+  {
+   "title": "Plan display contract says 8 steps; the workflow YAML it fronts self-describes as 7 steps ending at step 7",
+   "file": ".opencode/commands/speckit/assets/speckit_plan_presentation.md",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "Presentation success template: 'SpecKit Planning Complete - All 8 steps executed.' (line 135) and dashboard 'Step: [current] / 8' (line 107); plan.md:2 says '(8 steps)'. But speckit_plan_auto.yaml defines step_1..step_7 (plus 0.5/0.6 intake branches), says 'execute the normal 7-step planning workflo",
+   "suggested_fix": "Reconcile the count: either renumber the YAML self-description or change the presentation/router to '7 steps' (counting intake as step 0 explicitly if 8 is intended).",
+   "phase": "011-command-presentation-workflow-separation",
+   "lane": "008-doc-truth-and-test-fidelity",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Real display/YAML count mismatch; changed planning presentation from 8 to 7 steps."
+  },
+  {
+   "title": "Phase-parent spec prose still describes a four-family scope after the fifth (deep) family shipped",
+   "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/spec.md",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "\u00a73 In Scope: 'Four command-family phase parents: memory, speckit, create, and doctor' (line 86); frontmatter description (line 3) and continuity recent_action 'All 4 command families shipped' (line 16) say the same; Files to Change (lines 100-106) and RELATED DOCUMENTS (line 152) omit deep/005. Yet ",
+   "suggested_fix": "Update frontmatter description, In Scope, Files to Change, recent_action, and RELATED DOCUMENTS to include the deep family (005), matching the phase map and changelog.",
+   "phase": "011-command-presentation-workflow-separation",
+   "lane": "008-doc-truth-and-test-fidelity",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Real but file is a spec-folder document, and user explicitly prohibited spec-folder doc edits."
+  },
+  {
+   "title": "Mode-resolution and gate logic duplicated between deep routers and their presentation contracts, contradicting the canonical template shipped in the same phase",
+   "file": ".opencode/skills/sk-doc/assets/command_presentation_template.md",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "Template rule: 'Leave routing logic, mode resolution, and gates in the router. This file describes what to show, not how to route.' But deep_start-review-loop_presentation.md embeds mode-suffix resolution (lines 90-93 ':auto -> execution_mode = AUTONOMOUS'), flag-to-config parsing tables (lines 100-",
+   "suggested_fix": "Either move the setup-resolution/gate blocks out of the deep presentation files into the routers (or a shared setup contract), or amend the template to document the deep-family exception where present",
+   "phase": "011-command-presentation-workflow-separation",
+   "lane": "008-doc-truth-and-test-fidelity",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Presentation/router separation is a broader workflow-contract decision, not a local P2-safe fix."
+  },
+  {
+   "title": "Optional latency gate checks mean while the success criterion is p95",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/tests/causal-traversal-bfs-equivalence.vitest.ts",
+   "seats": [
+    "gpt-correctness",
+    "fable"
+   ],
+   "evidence": "The test records both `cte_p95_ms` and `bfs_p95_ms`, but when `SPECKIT_BENCH_GATE=1` it asserts `bfs.mean <= cte.mean` instead of comparing p95. The phase spec's SC-002 is explicitly p95-at-or-below-current-CTE.",
+   "suggested_fix": "Gate on `bfs.p95 <= cte.p95` for SC-002, and keep the mean comparison as additional advisory output if desired.",
+   "phase": "012-causal-traversal-bfs",
+   "lane": "002-causal-and-memo",
+   "corroboration": 2,
+   "p2_decision": "FIX",
+   "p2_reason": "Optional benchmark gate now checks p95 against p95."
+  },
+  {
+   "title": "Memo fast-path acceptance claims measured per-insert overhead without measurement evidence",
+   "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/001-causal-traversal-bfs/spec.md",
+   "seats": [
+    "gpt-docs-vs-code"
+   ],
+   "evidence": "spec.md:109 says the zero-row fast path acceptance includes `per-insert overhead measured`. The bounded test verifies no SELECT after construction for the first insert at causal-traversal-bfs-equivalence.vitest.ts:205-217, but the only timing helper is `measureLatency` at lines 147-160 and it is onl",
+   "suggested_fix": "Record an actual per-insert overhead measurement for the memo path, or amend the acceptance criterion to say it is verified by query-spy coverage rather than timing measurement.",
+   "phase": "012-causal-traversal-bfs",
+   "lane": "002-causal-and-memo",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Spec-folder acceptance wording edits were explicitly forbidden for this task."
+  },
+  {
+   "title": "Shipped comments in causal-boost.ts still describe the removed CTE as the active mechanism",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "Module header says scores are amplified 'via weighted CTE' (line 7), and the RELATION_WEIGHT_MULTIPLIERS doc-comment says weights are 'applied during CTE accumulation' and 'during the causal-boost CTE walk (getNeighborBoosts)' (lines 85-90), while this phase removed the recursive CTE and getNeighbor",
+   "suggested_fix": "Reword the module header and RELATION_WEIGHT_MULTIPLIERS comment to say 'BFS weighted walk' instead of 'CTE accumulation / CTE walk'.",
+   "phase": "012-causal-traversal-bfs",
+   "lane": "002-causal-and-memo",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Stale CTE comments were reworded to describe the active BFS walk."
+  },
+  {
+   "title": "Verification test counts are stale against the current committed tests",
+   "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/008-vector-read-path-resilience/implementation-summary.md",
+   "seats": [
+    "gpt-docs-vs-code"
+   ],
+   "evidence": "The summary claims \"New targeted vitest files | PASS: 3 files, 5 tests\" and \"Combined targeted + observability run | PASS: 4 files, 11 tests\" at lines 105-107. Current committed tests contain 8 cases in vector-shard-read-path-resilience.vitest.ts, 3 in vector-dimension-source.vitest.ts, 1 in vector-",
+   "suggested_fix": "Update the verification table to the current test counts or replace exact counts with the preserved command output from the run being documented.",
+   "phase": "013-vector-read-path-resilience",
+   "lane": "004-vector-and-checkpoint-durability",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Spec-folder implementation-summary edit is explicitly out of scope for this seat."
+  },
+  {
+   "title": "Changelog level metadata disagrees with the phase documents",
+   "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/changelog/013-vector-read-path-resilience/changelog-013-vector-read-path-resilience.md",
+   "seats": [
+    "gpt-docs-vs-code"
+   ],
+   "evidence": "The changelog labels the spec folder as \"Level 2\", while the phase spec declares SPECKIT_LEVEL: 1 at spec.md:32 and the implementation summary declares SPECKIT_LEVEL: 1 at implementation-summary.md:33.",
+   "suggested_fix": "Change the changelog metadata to Level 1, or update the phase docs consistently if the folder was intentionally promoted.",
+   "phase": "013-vector-read-path-resilience",
+   "lane": "004-vector-and-checkpoint-durability",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Spec-folder changelog edit is explicitly out of scope for this seat."
+  },
+  {
+   "title": "Restart repair dedupe is process-local and can double-schedule persisted repairs",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
+   "seats": [
+    "gpt-regression"
+   ],
+   "evidence": "startVectorShardRepairReindex dedupes only entries in the in-memory vectorShardRepairJobs map (lines 809-821), while embedder_jobs has no persisted shardPath/repair context columns (lines 95-107). On boot, the server initializes and attaches the vector shard first (context-server.ts:1727-1734), whic",
+   "suggested_fix": "Persist repair context with embedder_jobs or rehydrate vectorShardRepairJobs before sentinel scheduling. At minimum, check queued/running jobs for the same target embedder/shard before creating a repa",
+   "phase": "013-vector-read-path-resilience",
+   "lane": "004-vector-and-checkpoint-durability",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Persisted repair-context dedupe needs schema/job semantics changes and is too risky for P2."
+  },
+  {
+   "title": "startup_profile dimension fallback turns mismatch validation into a tautology and makes the regex 'last resort' unreachable in production",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "get_existing_embedding_dimension returns getStartupEmbeddingProfile().dim labeled as the STORED dimension (lines 273-280) before ever reaching the vec_memories schema regex (283-299). resolveStartupEmbeddingDimension (shared/embeddings/factory.ts:680-688) always returns a positive number, and the pr",
+   "suggested_fix": "In validate_embedding_dimension_for_connection, call get_existing_embedding_dimension with allowProfileFallback:false (or treat source 'startup_profile' as 'no stored evidence' rather than a stored di",
+   "phase": "013-vector-read-path-resilience",
+   "lane": "004-vector-and-checkpoint-durability",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Startup dimension validation behavior change is production-sensitive and not a trivial polish fix."
+  },
+  {
+   "title": "Changelog misattributes the vector-index-queries change and mislabels the durability follow-up as 'the deferred REQ-003 work'",
+   "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/changelog/013-vector-read-path-resilience/changelog-013-vector-read-path-resilience.md",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "Line 33 claims 'lib/search/vector-index-queries.ts \u2014 read queries respect the degraded/quarantined shard state', but no query function in that file consults degraded/quarantined state (the only state check anywhere is sqlite-vec availability at vector-index-queries.ts:361); the file's actual 013 cha",
+   "suggested_fix": "Reword line 33 to 'added KNN query-shape benchmark helpers (scalar JOIN vs vec0 MATCH) with a 20% adoption gate' and line 60 to attribute the durability follow-up to phase 020 without the REQ-003 labe",
+   "phase": "013-vector-read-path-resilience",
+   "lane": "004-vector-and-checkpoint-durability",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Spec-folder changelog edit is explicitly out of scope for this seat."
+  },
+  {
+   "title": "Scoped checkpoint guard treats missing scope metadata as a match",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts",
+   "seats": [
+    "gpt-correctness"
+   ],
+   "evidence": "checkpointMatchesScope returns true when the expected scope is set but metadata[field] is undefined at line 255. The restore/delete recovery text says callers should omit optional scope parameters if they intend to access an unscoped checkpoint at lines 541 and 693, which conflicts with this fail-op",
+   "suggested_fix": "Require actual === expected when a scope field is supplied, or explicitly split legacy unscoped access into a documented opt-in path.",
+   "phase": "014-packed-bm25-field-weights",
+   "lane": "004-vector-and-checkpoint-durability",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Checkpoint scope matching has persisted legacy compatibility risk; not safe as a minor P2 change."
+  },
+  {
+   "title": "Verification row reports a stale test count",
+   "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/009-packed-bm25-field-weights/implementation-summary.md",
+   "seats": [
+    "gpt-docs-vs-code"
+   ],
+   "evidence": "The summary says the packed BM25 Vitest run passed `1 test file, 4 tests`. The current committed test file contains nine `it(...)` cases, including corpus-token and width-promotion coverage not reflected in the row.",
+   "suggested_fix": "Refresh the verification row with the current test count and current pass/fail status.",
+   "phase": "014-packed-bm25-field-weights",
+   "lane": "004-vector-and-checkpoint-durability",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Spec-folder implementation-summary edit is explicitly out of scope for this seat."
+  },
+  {
+   "title": "Spec misstates where packed term frequencies are stored",
+   "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/009-packed-bm25-field-weights/spec.md",
+   "seats": [
+    "gpt-docs-vs-code"
+   ],
+   "evidence": "The spec says documents store term frequencies and lengths. In code, `PackedDocumentRecord` stores numeric id, string id, length, and term IDs; per-field frequencies live in per-term posting chunks and are read during weighted scoring.",
+   "suggested_fix": "Revise the spec to say packed documents store length plus term IDs, while term frequencies live in per-term postings.",
+   "phase": "014-packed-bm25-field-weights",
+   "lane": "004-vector-and-checkpoint-durability",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Spec-folder spec.md edit is explicitly out of scope for this seat."
+  },
+  {
+   "title": "Comparison helper ignores the configured NDCG cutoff",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts",
+   "seats": [
+    "gpt-regression"
+   ],
+   "evidence": "BM25BaselineConfig documents `k` as the top-K cutoff for NDCG and Recall at line 43, and runBM25EngineComparison accepts `config.k` at lines 219-224, but runComparisonMetrics always calls `computeNDCG(evalResults, groundTruth, 10)`.",
+   "suggested_fix": "Either pass `k` into `computeNDCG` for the comparison helper or split the API so NDCG remains explicitly fixed at 10 while only Recall uses the configurable cutoff.",
+   "phase": "014-packed-bm25-field-weights",
+   "lane": "004-vector-and-checkpoint-durability",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Real and small: comparison NDCG now uses the configured k cutoff."
+  },
+  {
+   "title": "BM25F test fixture has one-to-one query-document mappings \u2014 does not validate field-weight ranking effect",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/lib/eval/fixtures/bm25-packed-fixture.ts",
+   "seats": [
+    "mimo"
+   ],
+   "evidence": "Each of the 5 golden queries (lines 114-140) maps to exactly one document with a single relevance entry. No query has multiple relevant documents where one has the match in the title and the other has it only in the body. The golden documents (lines 69-112) share no query terms across different fiel",
+   "suggested_fix": "Add at least one multi-document query where the correct answer has the term in the title and a distractor has it only in the body, so BM25F weighting demonstrably changes the ranking vs unweighted BM2",
+   "phase": "014-packed-bm25-field-weights",
+   "lane": "004-vector-and-checkpoint-durability",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Changing fixture relevance/ranking semantics could affect baseline gates; too risky for P2."
+  },
+  {
+   "title": "spec.md still carries a 'RAM gate test failing by design' blocker and an open user-decision question that phase 017 resolved \u2014 stale against the committed state",
+   "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/009-packed-bm25-field-weights/spec.md",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "Frontmatter blocker: 'RAM gate test failing by design: realistic-fixture RSS spike 686.8MB > 150MB budget; awaiting contingency decision' plus \u00a77 (line 139): 'the RAM gate test is left failing and the contingency decision fires' with an open_questions entry demanding a user decision. Verified agains",
+   "suggested_fix": "Mark the blocker and the \u00a77 contingency question as resolved-by-017 (keep the history, add the closure), clearing the blockers list to match the passing gate.",
+   "phase": "014-packed-bm25-field-weights",
+   "lane": "004-vector-and-checkpoint-durability",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Spec-folder spec.md edit is explicitly out of scope for this seat."
+  },
+  {
+   "title": "Changelog frontmatter falsely says coupling grep is enforced",
+   "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/changelog/015-storage-adapter-ports/changelog-015-storage-adapter-ports.md",
+   "seats": [
+    "gpt-docs-vs-code"
+   ],
+   "evidence": "The description says the change is \"enforced by a coupling-grep gate\", but the same changelog later says the coupling grep is \"a manual inventory rather than an enforced gate\" and \"not an enforced gate\" at lines 23 and 46.",
+   "suggested_fix": "Change the frontmatter description to say the coupling grep is tracked as a manual inventory with documented exceptions, not an enforced gate.",
+   "phase": "015-storage-adapter-ports",
+   "lane": "008-doc-truth-and-test-fidelity",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Real but file is a spec-folder changelog document, and user explicitly prohibited spec-folder doc edits."
+  },
+  {
+   "title": "Changelog labels the phase Level 3 while phase docs declare Level 1",
+   "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/changelog/015-storage-adapter-ports/changelog-015-storage-adapter-ports.md",
+   "seats": [
+    "gpt-docs-vs-code",
+    "mimo",
+    "fable"
+   ],
+   "evidence": "The changelog says \"Spec folder: ... (Level 3)\", while the phase spec declares `<!-- SPECKIT_LEVEL: 1 -->` at spec.md line 31 and the implementation summary declares Level 1 at implementation-summary.md lines 28 and 40.",
+   "suggested_fix": "Update the changelog level marker to Level 1 or update the phase docs consistently if Level 3 is intended.",
+   "phase": "015-storage-adapter-ports",
+   "lane": "008-doc-truth-and-test-fidelity",
+   "corroboration": 3,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Real but file is a spec-folder changelog document, and user explicitly prohibited spec-folder doc edits."
+  },
+  {
+   "title": "Changelog overstates lexical call-site routing",
+   "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/changelog/015-storage-adapter-ports/changelog-015-storage-adapter-ports.md",
+   "seats": [
+    "gpt-regression"
+   ],
+   "evidence": "The changelog says lexical call sites were routed through ports, but the implementation summary says hybrid lexical combining was deliberately left untouched, and the lexical port implementation states no production caller adopts it yet.",
+   "suggested_fix": "Change the changelog to say the LexicalSearch port and contract coverage were added, while production hybrid lexical call sites remain documented exceptions.",
+   "phase": "015-storage-adapter-ports",
+   "lane": "008-doc-truth-and-test-fidelity",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Real but file is a spec-folder changelog document, and user explicitly prohibited spec-folder doc edits."
+  },
+  {
+   "title": "FakeContentionPolicy ignores sync mode, so it cannot substitute at the very call sites this phase routed through the port",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/tests/fakes/storage-ports.ts",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "FakeContentionPolicy.withRetry is `async` and always returns a Promise; it never reads `options.sync`. The real BetterSqliteContentionPolicy.withRetry (lib/storage/ports/contention-policy.ts:84-87) returns T synchronously when `sync: true`. Phase-routed production seams depend on that: lib/ops/job-q",
+   "suggested_fix": "Implement a sync branch in FakeContentionPolicy mirroring withRetrySync (return T, not Promise<T>, when options.sync is set), and add a contract assertion that the sync-mode result is NOT a thenable (",
+   "phase": "015-storage-adapter-ports",
+   "lane": "008-doc-truth-and-test-fidelity",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Real fake/port contract gap; added sync-mode fake branch and non-thenable contract assertion."
+  },
+  {
+   "title": "GraphTraversal contract fixture's weight\u00d7strength products are all exactly 1.0, so the only walk-score assertion cannot detect an implementation that ignores weighting entirely",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/tests/storage-ports-contract.vitest.ts",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "Fixture edges: supports strength 0.5 with relationWeight 2 (2\u00d70.5=1.0), enabled strength 0.25 with relationWeight 4 (4\u00d70.25=1.0) \u2014 lines 88-89, 104-105, 176. Expected results assert maxWalkScore: 1 for both nodes (lines 179-180), which is identical to the neutral score produced by collectWeightedWal",
+   "suggested_fix": "Choose fixture values whose per-hop products differ from 1.0 (e.g. strength 0.5/0.5 with weights 2/4 \u2192 expected scores 1.0 and 2.0), so a weight-ignoring implementation produces distinguishable scores",
+   "phase": "015-storage-adapter-ports",
+   "lane": "008-doc-truth-and-test-fidelity",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Real weak fixture; adjusted weighted-walk products so ignoring weights is detectable."
+  },
+  {
+   "title": "code-index missing-dist dev override falls through to a runtime MODULE_NOT_FOUND exit",
+   "file": ".opencode/bin/code-index.cjs",
+   "seats": [
+    "gpt-correctness"
+   ],
+   "evidence": "When cliDist is absent and SPECKIT_CODE_INDEX_CLI_DEV_ALLOW_STALE=1, lines 87-90 log a warning and return from ensureFreshDist(), but line 122 still spawns node with the missing cliDist path. That produces Node's MODULE_NOT_FOUND runtime failure instead of the documented exit-69 stale/missing-dist r",
+   "suggested_fix": "Do not let allowStale bypass a missing cliDist. Keep the missing-entrypoint branch as fail(... exit 69), and apply allowStale only after fs.existsSync(cliDist) succeeds.",
+   "phase": "016-cli-tooling-ux",
+   "lane": "006-launchers-and-cli",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Missing code-index dist can no longer fall through to MODULE_NOT_FOUND under allowStale."
+  },
+  {
+   "title": "Doc operation order does not match code",
+   "file": ".opencode/skills/system-spec-kit/references/cli/daemon_cli_reference.md",
+   "seats": [
+    "mimo"
+   ],
+   "evidence": "Doc says 'Each shim first checks its built CLI entrypoint, sets a default socket directory when needed, then runs the compiled CLI'. Code order in all three shims (e.g. spec-memory.cjs:116-117) is ensureSocketDir() \u2192 ensureFreshDist() \u2192 spawnSync() \u2014 socket dir is set before entrypoint freshness is ",
+   "suggested_fix": "Change line 28 to 'Each shim first sets a default socket directory when needed, checks its built CLI entrypoint for freshness, then runs the compiled CLI with inherited stdio.'",
+   "phase": "016-cli-tooling-ux",
+   "lane": "006-launchers-and-cli",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Daemon CLI reference now matches actual shim order."
+  },
+  {
+   "title": "allowStale bypasses missing-dist check only in code-index shim",
+   "file": ".opencode/bin/code-index.cjs",
+   "seats": [
+    "mimo"
+   ],
+   "evidence": "code-index.cjs:86-91: if (!fs.existsSync(cliDist)) { if (allowStale) { stderr.write('missing but dev override is set'); return; } fail(...); }. spec-memory.cjs:87-90 and skill-advisor.cjs:81-83: if (!fs.existsSync(cliDist)) { fail(...); } if (allowStale) return; \u2014 missing-dist check runs before the ",
+   "suggested_fix": "Align behavior across all three shims: either make all three skip missing-dist with allowStale (like code-index), or make all three fail on missing-dist even with allowStale (like spec-memory/skill-ad",
+   "phase": "016-cli-tooling-ux",
+   "lane": "006-launchers-and-cli",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Duplicate of missing-dist allowStale asymmetry fixed in code-index shim."
+  },
+  {
+   "title": "code-index is the only shim without a durable exit-69 recovery: no build-side hash writer, and the documented recovery is a content-hash no-op rebuild",
+   "file": ".opencode/bin/code-index.cjs",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "The hash sidecar that forgives mtime-only bumps is written only by the shim itself after a passing mtime check (code-index.cjs:76-104). Unlike spec-memory \u2014 whose build runs scripts/finalize-dist.mjs:94-106 to write the sidecar unconditionally ('tsc --build && node scripts/finalize-dist.mjs', system",
+   "suggested_fix": "Mirror the spec-memory pattern: have the code-graph build write dist/.code-index-cli-source-hash.json (a small finalize step after 'tsc --build'), or at minimum add 'tsc --build --force' to the exit-6",
+   "phase": "016-cli-tooling-ux",
+   "lane": "006-launchers-and-cli",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Adding build finalizers is broader build-system work, not a small P2 fix."
+  },
+  {
+   "title": "packedDocIds accumulates stale entries on removeDocument, leaking memory",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts",
+   "seats": [
+    "mimo"
+   ],
+   "evidence": "`removePackedDocument` (line 935-958) deletes from `packedDocuments` but never clears the corresponding slot in `packedDocIds` (line 456). `packedDocIds` is only reset to `[]` in `clear()` (line 667). `getPackedNumericId` (line 841) always appends, never reuses slots.",
+   "suggested_fix": "Set `packedDocIds[doc.numericId] = undefined as unknown as string` in `removePackedDocument`, or use a sparse structure instead of a dense array.",
+   "phase": "017-bm25-warmup-churn-reduction",
+   "lane": "005-bm25-indexing-fidelity",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Real and local: packed remove now clears reverse lookup slot and id map entry."
+  },
+  {
+   "title": "Read-only embedding load still invokes schema-creation helpers",
+   "file": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts",
+   "seats": [
+    "gpt-regression"
+   ],
+   "evidence": "Lines 1235-1239 state the recommend path must not lazily create or migrate the database and uses `getDbReadOnly()`, but the active-embedder branch calls `hasActiveEmbedderPointer(database)` and `ensureVecTableForDim(database, active.dim)`, whose schema helpers execute `CREATE TABLE IF NOT EXISTS` st",
+   "suggested_fix": "Replace recommend-path schema helpers with read-only `sqlite_master` checks and return an empty embedding set plus a precise disabled reason when metadata or vector tables are missing.",
+   "phase": "018-xce-feature-adoption-advisor-codegraph",
+   "lane": "006-launchers-and-cli",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Embedding read path now uses read-only sqlite_master and metadata SELECT checks before reading vec tables."
+  },
+  {
+   "title": "Doc-frontmatter inline YAML list parser splits quoted entries on commas",
+   "file": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/doc-frontmatter.ts",
+   "seats": [
+    "mimo"
+   ],
+   "evidence": "const inner = value.replace(/^\\[|\\]$/g, ''); for (const entry of inner.split(',')) {",
+   "suggested_fix": "Replace the naive comma-split with a simple state-machine splitter that tracks quote boundaries, or use a lightweight YAML list parser for the inline case.",
+   "phase": "018-xce-feature-adoption-advisor-codegraph",
+   "lane": "006-launchers-and-cli",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Inline YAML list parsing now respects quoted commas."
+  },
+  {
+   "title": "Transient doc read failure silently deletes harvested skill_docs rows",
+   "file": ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "In harvestSkillDocs, a readFileSync failure pushes DOC-READ-FAILED and `continue`s without adding the doc to keptPaths (lines 760-764). At the end of the skill's pass, `DELETE FROM skill_docs WHERE skill_id = ? AND doc_path NOT IN (keptPaths)` (lines 794-803) \u2014 or `DELETE ... WHERE skill_id = ?` whe",
+   "suggested_fix": "Treat read-failed docs as kept: when readFileSync throws, push relative(skillDir, absolutePath) onto keptPaths (preserving the existing row) before continuing, so only parse-null and truly absent docs",
+   "phase": "018-xce-feature-adoption-advisor-codegraph",
+   "lane": "006-launchers-and-cli",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Read-failed harvested docs are kept so transient read errors do not delete existing rows."
+  },
+  {
+   "title": "018 changelog misattributes the advisor doc-trigger harvest to this packet's lineage",
+   "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/changelog/018-xce-feature-adoption-advisor-codegraph/changelog-018-xce-feature-adoption-advisor-codegraph-root.md",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "Line 24 claims 018 'is the relocated former packet 145 (advisor doc-trigger harvest and code-graph adoptions)', and line 64 carries the harvest's operator-gated follow-up as 018's own. But the harvest is a separate, still-live packet `skilled-agent-orchestration/145-advisor-doc-trigger-harvest` (ful",
+   "suggested_fix": "Reword line 24 to attribute only the relocated `145-xce-feature-adoption-advisor-codegraph` lineage to 018, and move the doc-harvest follow-up (line 64) to the still-open `145-advisor-doc-trigger-harv",
+   "phase": "018-xce-feature-adoption-advisor-codegraph",
+   "lane": "006-launchers-and-cli",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Spec-folder changelog edits were explicitly out of scope."
+  },
+  {
+   "title": "Doc-trigger read path inherits write/read DB-path divergence under MK_SKILL_ADVISOR_DB_DIR",
+   "file": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/projection.ts",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "The harvest WRITES via resolveSkillGraphDbDir(), which does `resolve(overrideDbDir)` (skill-graph-db.ts:248-261, absolute-safe). The doc-trigger READ added to the sqlite projection resolves via `join(workspaceRoot, SKILL_GRAPH_DB)` (projection.ts:272) where SKILL_GRAPH_DB already embeds the override",
+   "suggested_fix": "In projection.ts (and the matching idiom in advisor-status.ts), resolve the override the same way the DB layer does \u2014 e.g. `const dbPath = advisorDbDirOverride ? join(resolve(advisorDbDirOverride), DB",
+   "phase": "018-xce-feature-adoption-advisor-codegraph",
+   "lane": "006-launchers-and-cli",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Advisor DB override paths now preserve absolute overrides in projection and status reads."
+  },
+  {
+   "title": "Failed internal re-handshake leaks the freshly opened backend socket",
+   "file": ".opencode/bin/lib/launcher-session-proxy.cjs",
+   "seats": [
+    "gpt-correctness"
+   ],
+   "evidence": "attachFreshSocket opens freshSocket at line 667 and immediately awaits internalHandshake at line 668. If internalHandshake rejects, its cleanup only removes listeners at lines 297-302, and the reattach catch at lines 729-735 has no reference to destroy the unassigned freshSocket.",
+   "suggested_fix": "Wrap the internalHandshake call in attachFreshSocket with try/catch and destroy freshSocket on failure before rethrowing, or make internalHandshake destroy the socket on timeout/error paths it owns.",
+   "phase": "019-skill-advisor-cross-session-reconnect",
+   "lane": "006-launchers-and-cli",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Fresh backend socket is destroyed when internal re-handshake fails."
+  },
+  {
+   "title": "Changelog metadata says Level 2 while the phase packet is Level 1",
+   "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/changelog/019-skill-advisor-cross-session-reconnect/changelog-019-skill-advisor-cross-session-reconnect.md",
+   "seats": [
+    "gpt-docs-vs-code"
+   ],
+   "evidence": "The changelog states `Level 2`, but `spec.md` declares `SPECKIT_LEVEL: 1` and metadata `Level | 1`, and `implementation-summary.md` also declares `SPECKIT_LEVEL: 1` and `Level | 1`.",
+   "suggested_fix": "Change the changelog line to `Level 1` or update the packet docs if Level 2 was intended.",
+   "phase": "019-skill-advisor-cross-session-reconnect",
+   "lane": "006-launchers-and-cli",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Spec-folder changelog edits were explicitly out of scope."
+  },
+  {
+   "title": "Respawn's 1s wait for the dying owner launcher is outrun by the same phase's model-server teardown grace, degrading P0-1 recovery when the opt-in model server is enabled",
+   "file": ".opencode/bin/mk-skill-advisor-launcher.cjs",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "respawnAfterDeadSocket waits only `waitForPidExit(previousOwner.ownerPid, 1000)` (line 637) before requiring `writeOwnerLeaseFileExclusive` to succeed (line 648). But the dying owner launcher's child-exit handler (lines 1114-1131) awaits shutdownModelServerForLauncherExit BEFORE clearAllLeaseFiles, ",
+   "suggested_fix": "Raise the previous-owner exit wait in respawnAfterDeadSocket to at least RESPAWN_REAP_GRACE_MS + SIGKILL grace (~8s), or retry the exclusive owner-lease write with backoff until the bootstrap-lock tim",
+   "phase": "019-skill-advisor-cross-session-reconnect",
+   "lane": "006-launchers-and-cli",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Dead-socket respawn now waits for previous owner exit using the reap grace budget."
+  },
+  {
+   "title": "Two residual silent-exit paths: losing bootstrap reclaimer and EPERM-classified stale child both end the client session with no stdout report",
+   "file": ".opencode/bin/mk-skill-advisor-launcher.cjs",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "When the in-lock reprobe finds the owner lease lost (lines 1225-1228), the launcher logs to stderr and returns \u2014 no LEASE_HELD_BY line, no bridge attempt to the winner \u2014 so the losing session's MCP client gets bare EOF on stdout. Same shape at lines 1203-1206: if reapOwnerBeforeRespawn classifies th",
+   "suggested_fix": "On the lost-reprobe path, fall back to bridgeOrReportLeaseHeld against the winning owner lease (bridge if its socket is up, else write the LEASE_HELD_BY diagnostic); on the EPERM path, emit writeLease",
+   "phase": "019-skill-advisor-cross-session-reconnect",
+   "lane": "006-launchers-and-cli",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Silent-exit fallback reshaping is broader launcher behavior work than a safe P2 patch."
+  },
+  {
+   "title": "respawnAfterDeadSocket passes { requireLock: true } to an acquireBootstrapLock that does not implement the option",
+   "file": ".opencode/bin/mk-skill-advisor-launcher.cjs",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "Line 617 calls `acquireBootstrapLock({ requireLock: true })`, but the advisor's acquireBootstrapLock (lines 1078-1100) only reads timeoutMs/staleMs/retrySleepMs. The option is meaningful in the parity sources this phase mirrors: mk-code-index-launcher.cjs:757-771 and mk-spec-memory-launcher.cjs:1237",
+   "suggested_fix": "Either drop the inert option from the call site or implement `requireLock` in the advisor's acquireBootstrapLock to match the code-index signature it mirrors.",
+   "phase": "019-skill-advisor-cross-session-reconnect",
+   "lane": "006-launchers-and-cli",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Removed the inert requireLock option from advisor acquireBootstrapLock call."
+  },
+  {
+   "title": "Orphan-quarantine restart path loses the sentinelPersisted=false health signal",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+   "seats": [
+    "gpt-correctness"
+   ],
+   "evidence": "the orphanQuarantine branch schedules repair without recording an observability event (lines 687-690). The health snapshot defaults sentinelPersisted to true after process start (retrieval-observability.ts lines 73-87), and recordVectorShardRebuildStarted does not change it (retrieval-observability.",
+   "suggested_fix": "In the orphanQuarantine branch, record a quarantine/recovery observability event with sentinelPersisted:false before scheduling the rebuild, or add a dedicated orphan-repair event that updates the sam",
+   "phase": "020-vector-resilience-durability",
+   "lane": "004-vector-and-checkpoint-durability",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Vector repair observability state changes are broader than minor polish."
+  },
+  {
+   "title": "Changelog claims the phase is Level 2 while the phase docs declare Level 1",
+   "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/changelog/020-vector-resilience-durability/changelog-020-vector-resilience-durability.md",
+   "seats": [
+    "gpt-docs-vs-code"
+   ],
+   "evidence": "The changelog says `(Level 2)`, but the phase spec declares `<!-- SPECKIT_LEVEL: 1 -->` and metadata Level 1 at spec.md:40 and spec.md:49; implementation-summary.md also declares Level 1 at lines 36 and 47.",
+   "suggested_fix": "Change the changelog level marker to Level 1, or raise the actual phase docs to Level 2 if that was intended.",
+   "phase": "020-vector-resilience-durability",
+   "lane": "004-vector-and-checkpoint-durability",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Spec-folder changelog edit is explicitly out of scope for this seat."
+  },
+  {
+   "title": "Implementation summary over-claims repair de-duplication coverage for reconcile paths",
+   "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/011-vector-resilience-durability/implementation-summary.md",
+   "seats": [
+    "gpt-docs-vs-code"
+   ],
+   "evidence": "The summary claims repeated attach, reconcile, and post-reindex paths return the existing repair job id. In code, `startVectorShardRepairReindex` de-dupes queued/running same-shard jobs at reindex.ts:802-821, but the only call path is `schedule_vector_shard_rebuild` in vector-index-store.ts:694-704,",
+   "suggested_fix": "Remove `reconcile` from the summary claim, or wire the actual reconcile path through `startVectorShardRepairReindex` if reconcile-triggered repair de-duplication is required.",
+   "phase": "020-vector-resilience-durability",
+   "lane": "004-vector-and-checkpoint-durability",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Spec-folder implementation-summary edit is explicitly out of scope for this seat."
+  },
+  {
+   "title": "Quarantine counter double-incremented on sentinel-based restart resume",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+   "seats": [
+    "mimo"
+   ],
+   "evidence": "resume_vector_shard_repair_from_sentinel calls recordVectorShardQuarantined({ sentinelPersisted: true }) at line 1238, which increments degradedVectorHealth.quarantines. The original quarantine was already counted by quarantine_vector_shard (line 667). On restart, handle_vector_shard_repair_assessme",
+   "suggested_fix": "Either use a separate observability event type for sentinel-based resume (e.g. recordVectorShardRepairResumed) that does not increment quarantines, or skip the recordVectorShardQuarantined call in res",
+   "phase": "020-vector-resilience-durability",
+   "lane": "004-vector-and-checkpoint-durability",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Quarantine counter semantics need careful observability design, not a low-risk P2 patch."
+  },
+  {
+   "title": "Race window in deduplication guard allows duplicate repair between status check and new job creation",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
+   "seats": [
+    "mimo"
+   ],
+   "evidence": "startVectorShardRepairReindex checks readJobStatus(db, jobId) at line 813-814 for queued/running, then falls through to startReindexInternal at line 824 which unconditionally creates a new job row. If the old job completes between the status check and the new INSERT, two jobs exist for the same shar",
+   "suggested_fix": "Add a database-level UNIQUE constraint or advisory lock on (shardPath, status IN ('queued','running')) in embedder_jobs, or re-check active status inside the startReindexInternal transaction before IN",
+   "phase": "020-vector-resilience-durability",
+   "lane": "004-vector-and-checkpoint-durability",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Database-level locking/unique constraint is too invasive for P2 triage."
+  },
+  {
+   "title": "In-flight repair guard is in-memory only: crash mid-repair plus boot resumeReindexJobs double-schedules the same shard rebuild",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "startVectorShardRepairReindex dedups only against the in-memory vectorShardRepairJobs Map (reindex.ts:123-124, 809-822). After a crash mid-repair the map is empty, so the boot sentinel-resume (vector-index-store.ts:683) creates a fresh repair job while context-server.ts:2002 resumeReindexJobs() inde",
+   "suggested_fix": "In startVectorShardRepairReindex, also query embedder_jobs for any 'queued'/'running' job targeting the same embedder/shard (not just map entries), or have resumeReindexJobs skip rows whose shard has ",
+   "phase": "020-vector-resilience-durability",
+   "lane": "004-vector-and-checkpoint-durability",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Persisted in-flight repair dedupe requires job schema/context changes and is too risky for P2."
+  },
+  {
+   "title": "Completeness oracle is count-based, not id-based: orphan shard rows can mask missing vectors and clear a real sentinel",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "shardComplete = probe.ok && (expected === 0 || vecRows >= expected), where expected is COUNT(memory_index WHERE embedding_status='success') (lines 553-564) and vecRows is the raw rowcount of vec_<dim> (lines 566-612). No id intersection is computed.",
+   "suggested_fix": "Make the oracle id-based: SELECT COUNT(*) FROM memory_index WHERE embedding_status='success' AND id NOT IN (SELECT id FROM active_vec.vec_<dim>) = 0, which is exact at comparable cost on indexed prima",
+   "phase": "020-vector-resilience-durability",
+   "lane": "004-vector-and-checkpoint-durability",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "ID-based vector completeness oracle changes repair behavior and needs broader validation."
+  },
+  {
+   "title": "Re-attach with a live sentinel inflates the quarantines counter and regresses state to 'quarantined' while a rebuild is running",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "resume_vector_shard_repair_from_sentinel unconditionally calls recordVectorShardQuarantined (lines 1238-1243, quarantines += 1, state -> 'quarantined') before schedule_vector_shard_rebuild's deferred startVectorShardRepairReindex dedups against the in-flight job. The double-schedule test (vector-sha",
+   "suggested_fix": "In handle_vector_shard_repair_assessment, skip recordVectorShardQuarantined when degraded state already tracks this shard in 'quarantined'/'rebuilding', or move the observability record behind the in-",
+   "phase": "020-vector-resilience-durability",
+   "lane": "004-vector-and-checkpoint-durability",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Repair/quarantine state-machine adjustment is not a small behavior-safe P2 fix."
+  },
+  {
+   "title": "Spec changelog note contradicts the shipped phase changelog",
+   "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/012-hybrid-search-scope-then-limit/spec.md",
+   "seats": [
+    "gpt-correctness",
+    "gpt-docs-vs-code",
+    "gpt-regression"
+   ],
+   "evidence": "The spec says, \"No packet-local changelog file was changed in this scoped phase,\" but the shipped changelog file for this phase exists and records the 2026-06-11 fix, changed files, and verification evidence.",
+   "suggested_fix": "Update the spec changelog note to reference `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/changelog/021-hybrid-search-scope-then-limit/changelog-021-hybrid-search-scope-then-limit",
+   "phase": "021-hybrid-search-scope-then-limit",
+   "lane": "008-doc-truth-and-test-fidelity",
+   "corroboration": 3,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Real but file is a spec-folder document, and user explicitly prohibited spec-folder doc edits."
+  },
+  {
+   "title": "Metadata resolution always walks the full corpus-sized candidate set; rank-ordered batching permits an early exit that would keep the common case at one query",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "The batch loop at lines 467-479 resolves metadata for ALL candidate ids before the filter at 496-505 runs and slice(0, limit) truncates. Since candidateLimit is documentCount whenever a db is present (line 436-438), every db-backed BM25 search \u2014 including unscoped ones that previously issued one `li",
+   "suggested_fix": "Restructure the loop to resolve metadata batch-by-batch in rank order, applying the spec-folder/deprecated filter incrementally and breaking once `limit` survivors are collected (keep the fail-closed ",
+   "phase": "021-hybrid-search-scope-then-limit",
+   "lane": "008-doc-truth-and-test-fidelity",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Rank-ordered metadata batching is a performance/algorithm restructure without measurement; too risky for P2."
+  },
+  {
+   "title": "Changelog level metadata is stale",
+   "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/changelog/022-provenance-injection/changelog-022-provenance-injection.md",
+   "seats": [
+    "gpt-docs-vs-code"
+   ],
+   "evidence": "The changelog says the spec folder is Level 3, but spec.md line 44 and implementation-summary.md line 44 both mark the phase as Level 2.",
+   "suggested_fix": "Change the changelog level from Level 3 to Level 2.",
+   "phase": "022-provenance-injection",
+   "lane": "001-write-safety-and-guards",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Spec-folder changelog edits were explicitly forbidden for this task."
+  },
+  {
+   "title": "Changelog 'Default safety' verification row claims PASS for a property no shipped test asserts",
+   "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/changelog/022-provenance-injection/changelog-022-provenance-injection.md",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "The changelog verification table records 'Default safety | PASS: an untagged write derives human, never automated', but write-provenance.vitest.ts contains a single test asserting the import-tagging happy path (lines 31-68), and pe-gating/pe-orchestration tests assert agent/system classification onl",
+   "suggested_fix": "Add a write-provenance test asserting empty-context and path-only-context derivation results, and make the changelog row cite it.",
+   "phase": "022-provenance-injection",
+   "lane": "001-write-safety-and-guards",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Added regression coverage that untagged and path-only provenance remains human."
+  },
+  {
+   "title": "Implementation summary test counts are stale",
+   "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/014-idempotency-flag-on-correctness/implementation-summary.md",
+   "seats": [
+    "gpt-docs-vs-code"
+   ],
+   "evidence": "The implementation summary reports 10 tests passed for the idempotency/near-duplicate suite at lines 104 and 106, while the current committed test file contains 12 test cases and the changelog reports PASS: 12/12 at changelog-023-idempotency-flag-on-correctness.md:46.",
+   "suggested_fix": "Update the implementation-summary verification rows to the current 12-test count or replace the counts with the exact command output that was actually used.",
+   "phase": "023-idempotency-flag-on-correctness",
+   "lane": "007-continuity-and-save-concurrency",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Spec-folder implementation-summary edits were explicitly out of scope."
+  },
+  {
+   "title": "Claimed flag-off suite run is vacuous: beforeEach forces the flag on for every test",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/tests/memory-idempotency-and-near-duplicate.vitest.ts",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "beforeEach sets process.env.SPECKIT_MEMORY_IDEMPOTENCY = 'true' unconditionally, so the verification rows claiming a distinct 'Flag-off idempotency/near-duplicate suite | PASS' run (implementation-summary.md:106; spec REQ-007/SC-002 'passes with the flag unset') execute byte-identical code to the fl",
+   "suggested_fix": "Either drop the flag-off suite row from the verification table in favor of citing the targeted default-off unit test, or restructure the suite so the env override is per-test and at least one test exe",
+   "phase": "023-idempotency-flag-on-correctness",
+   "lane": "007-continuity-and-save-concurrency",
+   "corroboration": 1,
+   "p2_decision": "WAIVE",
+   "p2_reason": "Restructuring the idempotency suite is not a small behavior-safe P2 change."
+  },
+  {
+   "title": "Loser-replay comment cites an outcome ('unchanged') that can never reach that branch",
+   "file": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
+   "seats": [
+    "fable"
+   ],
+   "evidence": "The comment says the loser-replay avoids returning 'its own divergent (e.g. unchanged) outcome', but the branch is only reachable when shouldStoreMemorySaveReceipt(result, response) passed (line 3607), which excludes 'unchanged' (idempotency-receipts.ts:41 allowlists only indexed/updated/deferred). ",
+   "suggested_fix": "Reword the comment to state the branch only covers store-race losers with their own mutating result, and that a concurrent saver landing on 'unchanged' intentionally returns its own response without r",
+   "phase": "023-idempotency-flag-on-correctness",
+   "lane": "007-continuity-and-save-concurrency",
+   "corroboration": 1,
+   "p2_decision": "FIX",
+   "p2_reason": "Loser-replay comment now describes only mutating loser responses."
+  }
+ ]
+}

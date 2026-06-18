@@ -1,7 +1,6 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Bm25-Only Baseline Runner
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: BM25-only baseline
 //
 // Runs the ground truth query set through the BM25/FTS5-only
 // Search path (disabling vector, graph, and trigger channels)
@@ -111,6 +110,29 @@ export interface QueryGroundTruth {
   relevance: number;
 }
 
+/** Query and graded relevance data for fixture-backed engine comparisons. */
+export interface BM25ComparisonQuery {
+  id: number;
+  query: string;
+  relevances: QueryGroundTruth[];
+}
+
+/** Search functions used to compare lexical engines on the same query set. */
+export interface BM25EngineComparisonSearches {
+  legacy: BM25SearchFn;
+  packed: BM25SearchFn;
+  fts5?: BM25SearchFn;
+}
+
+/** Metrics and pass/fail signals for a packed-vs-legacy BM25 comparison. */
+export interface BM25EngineComparisonResult {
+  legacy: BM25BaselineMetrics;
+  packed: BM25BaselineMetrics;
+  fts5?: BM25BaselineMetrics;
+  packedAtLeastLegacy: boolean;
+  titleSignalRestored: boolean;
+}
+
 /**
  * Injected BM25-only search function signature.
  *
@@ -186,6 +208,73 @@ export function evaluateContingency(bm25MRR: number): ContingencyDecision {
       'BM25 alone is weak — strong justification for multi-channel retrieval. ' +
       'The low keyword-only baseline confirms that semantic and graph augmentation ' +
       'adds meaningful value. Proceed with hybrid search implementation.',
+  };
+}
+
+/**
+ * Compare lexical engines against a caller-provided fixture query set.
+ * The helper reuses the baseline metrics so relevance gates stay aligned
+ * with the production BM25-only evaluation report.
+ */
+export async function runBM25EngineComparison(
+  searches: BM25EngineComparisonSearches,
+  queries: BM25ComparisonQuery[],
+  config: Pick<BM25BaselineConfig, 'k'> = {},
+): Promise<BM25EngineComparisonResult> {
+  const k = config.k ?? 20;
+  const legacy = await runComparisonMetrics(searches.legacy, queries, k);
+  const packed = await runComparisonMetrics(searches.packed, queries, k);
+  const fts5 = searches.fts5 ? await runComparisonMetrics(searches.fts5, queries, k) : undefined;
+
+  return {
+    legacy,
+    packed,
+    fts5,
+    packedAtLeastLegacy:
+      packed.mrr5 >= legacy.mrr5 &&
+      packed.ndcg10 >= legacy.ndcg10 &&
+      packed.recall20 >= legacy.recall20,
+    titleSignalRestored: packed.hitRate1 >= legacy.hitRate1,
+  };
+}
+
+async function runComparisonMetrics(
+  searchFn: BM25SearchFn,
+  queries: BM25ComparisonQuery[],
+  k: number,
+): Promise<BM25BaselineMetrics> {
+  const fetchLimit = Math.max(20, k, 10);
+  let totalMRR = 0;
+  let totalNDCG = 0;
+  let totalRecall = 0;
+  let totalHitRate = 0;
+
+  for (const q of queries) {
+    const rawResults = await Promise.resolve(searchFn(q.query, fetchLimit));
+    const evalResults: EvalResult[] = rawResults.map((r, idx) => ({
+      memoryId: r.id,
+      score: r.score,
+      rank: idx + 1,
+    }));
+
+    const groundTruth: GroundTruthEntry[] = q.relevances.map((r) => ({
+      queryId: r.queryId,
+      memoryId: r.memoryId,
+      relevance: r.relevance,
+    }));
+
+    totalMRR += computeMRR(evalResults, groundTruth, 5);
+    totalNDCG += computeNDCG(evalResults, groundTruth, k);
+    totalRecall += computeRecall(evalResults, groundTruth, k);
+    totalHitRate += computeHitRate(evalResults, groundTruth, 1);
+  }
+
+  const safeCount = queries.length > 0 ? queries.length : 1;
+  return {
+    mrr5: totalMRR / safeCount,
+    ndcg10: totalNDCG / safeCount,
+    recall20: totalRecall / safeCount,
+    hitRate1: totalHitRate / safeCount,
   };
 }
 

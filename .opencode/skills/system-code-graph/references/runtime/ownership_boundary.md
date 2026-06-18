@@ -6,6 +6,8 @@ trigger_phrases:
   - "deep loop vs code graph"
   - "coverage graph ownership"
   - "spec-kit code-graph split"
+importance_tier: "important"
+contextType: "general"
 ---
 
 # Ownership Boundary: system-spec-kit vs system-code-graph

@@ -1,0 +1,194 @@
+{
+  "findings": [
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts",
+      "symbol": "causal_walk",
+      "kind": "gap",
+      "signature": "WITH RECURSIVE causal_walk(origin_id, node_id, hop_distance, walk_score) AS (...UNION...)",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts:431",
+      "relevance": 1,
+      "notes": "Recursive CTE with bidirectional UNION seed + UNION ALL recursive step traversing causal_edges up to MAX_HOPS(2). Turso lacks WITH RECURSIVE; must be rewritten as iterative app-side loop or stored procedure equivalent."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts",
+      "symbol": "causal_walk",
+      "kind": "gap",
+      "signature": "WITH RECURSIVE causal_walk(...) (second instance in getNeighborBoosts, used by injectGraphContext path)",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts:431",
+      "relevance": 1,
+      "notes": "Same recursive CTE structure reused for graph context injection 1-hop traversal. Both call sites share the CTE template; migration must unify replacement."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/memo.ts",
+      "symbol": "dependents",
+      "kind": "gap",
+      "signature": "WITH RECURSIVE dependents(child_path) AS (SELECT...UNION SELECT edge.child_path FROM dependency_edges edge JOIN dependents dep ON edge.parent_path = dep.child_path)",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/memo.ts:192",
+      "relevance": 1,
+      "notes": "Recursive CTE for transitive dependency closure. Turso lacks WITH RECURSIVE; collectDependents() and wouldCreateCycle() both depend on this. Must rewrite as iterative app-side BFS."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/memo.ts",
+      "symbol": "memoization_records",
+      "kind": "convention",
+      "signature": "CREATE TABLE IF NOT EXISTS memoization_records (component_path TEXT, input_fingerprint TEXT, code_hash TEXT, output_blob TEXT, computed_at TEXT DEFAULT (datetime('now')), PRIMARY KEY(...))",
+      "reuse": "extend",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/memo.ts:38",
+      "relevance": 0.2,
+      "notes": "Standard DDL with datetime('now') default. Turso-compatible; no migration concern."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/memo.ts",
+      "symbol": "dependency_edges",
+      "kind": "convention",
+      "signature": "CREATE TABLE IF NOT EXISTS dependency_edges (parent_path TEXT, child_path TEXT, kind TEXT, created_at TEXT DEFAULT (datetime('now')), PRIMARY KEY(...), CHECK(parent_path != child_path))",
+      "reuse": "extend",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/memo.ts:47",
+      "relevance": 0.2,
+      "notes": "Standard DDL with CHECK constraint. Turso-compatible."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
+      "symbol": "causal_edges",
+      "kind": "integration_point",
+      "signature": "causal_edges table: id, source_id TEXT, target_id TEXT, source_anchor, target_anchor, relation, strength, evidence, extracted_at, created_by, last_accessed (+ optional confidence, extraction_method)",
+      "reuse": "extend",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:84",
+      "relevance": 0.7,
+      "notes": "Core graph table with dynamic optional columns detected via PRAGMA table_info. Migration must preserve the evolving column set; Turso supports PRAGMA table_info but column detection pattern should be verified."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
+      "symbol": "PRAGMA table_info(causal_edges)",
+      "kind": "gap",
+      "signature": "database.prepare('PRAGMA table_info(causal_edges)').all()",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:382",
+      "relevance": 0.6,
+      "notes": "PRAGMA table_info used 3x (lines 382, 562) for dynamic column detection during upsert/bulk insert. Turso supports PRAGMA but behavior may differ; verify column name casing and result shape."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
+      "symbol": "weight_history",
+      "kind": "integration_point",
+      "signature": "INSERT INTO weight_history (edge_id, old_strength, new_strength, changed_by, reason)",
+      "reuse": "extend",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:1034",
+      "relevance": 0.3,
+      "notes": "Audit log table for edge strength changes. Standard INSERT; Turso-compatible. Table DDL not in this file (defined elsewhere in migration)."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
+      "symbol": "findOrphanedEdges",
+      "kind": "dependency",
+      "signature": "SELECT ce.* FROM causal_edges ce WHERE NOT EXISTS (SELECT 1 FROM memory_index m WHERE CAST(m.id AS TEXT) = ce.source_id)",
+      "reuse": "compose",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:925",
+      "relevance": 0.4,
+      "notes": "Correlated subquery with CAST for cross-table FK validation. Turso supports correlated subqueries; CAST behavior should be verified."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
+      "symbol": "idx_causal_source",
+      "kind": "convention",
+      "signature": "CREATE INDEX IF NOT EXISTS idx_causal_source ON causal_edges(source_id)",
+      "reuse": "extend",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:280",
+      "relevance": 0.2,
+      "notes": "Traversal indexes for source_id/target_id. Standard DDL; Turso-compatible."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
+      "symbol": "touchEdgeAccess",
+      "kind": "convention",
+      "signature": "UPDATE causal_edges SET last_accessed = datetime('now') WHERE id = ?",
+      "reuse": "extend",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:1142",
+      "relevance": 0.2,
+      "notes": "datetime('now') function call in UPDATE. Turso-compatible."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
+      "symbol": "getStaleEdges",
+      "kind": "dependency",
+      "signature": "WHERE (last_accessed IS NULL AND extracted_at < datetime('now', '-' || ? || ' days'))",
+      "reuse": "compose",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:1149",
+      "relevance": 0.5,
+      "notes": "SQLite datetime modifier with string concatenation ('-' || N || ' days'). Turso's datetime() function may handle modifier string construction differently; verify modifier syntax."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/sweep.ts",
+      "symbol": "causal_edge_tombstones",
+      "kind": "integration_point",
+      "signature": "CREATE TABLE IF NOT EXISTS causal_edge_tombstones (id INTEGER PRIMARY KEY AUTOINCREMENT, source_id TEXT, target_id TEXT, relation TEXT, tombstoned_at TEXT DEFAULT (datetime('now')), reason TEXT, lifecycle_generation INTEGER, restore_metadata TEXT)",
+      "reuse": "extend",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/sweep.ts:68",
+      "relevance": 0.3,
+      "notes": "Tombstone table for soft-delete lifecycle (027). Standard DDL with AUTOINCREMENT; Turso-compatible."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/sweep.ts",
+      "symbol": "idx_causal_edge_tombstones_identity",
+      "kind": "convention",
+      "signature": "CREATE INDEX IF NOT EXISTS idx_causal_edge_tombstones_identity ON causal_edge_tombstones(source_id, target_id, relation, lifecycle_generation DESC)",
+      "reuse": "extend",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/sweep.ts:84",
+      "relevance": 0.2,
+      "notes": "Composite index with DESC column. Turso supports this syntax."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/sweep.ts",
+      "symbol": "sqlite_master",
+      "kind": "gap",
+      "signature": "SELECT 1 AS present FROM sqlite_master WHERE type='table' AND name = ?",
+      "reuse": "compose",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/sweep.ts:49",
+      "relevance": 0.4,
+      "notes": "Direct sqlite_master query for table/index existence checks. Turso may expose schema differently; verify sqlite_master availability or substitute with PRAGMA-based detection."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/sweep.ts",
+      "symbol": "nextLifecycleGeneration",
+      "kind": "convention",
+      "signature": "SELECT COALESCE(MAX(lifecycle_generation), 0) + 1 AS generation FROM causal_edge_tombstones WHERE source_id = ? AND target_id = ? AND relation = ?",
+      "reuse": "extend",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/sweep.ts:183",
+      "relevance": 0.2,
+      "notes": "Aggregate with COALESCE for generation counter. Standard SQL; Turso-compatible."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/frontmatter-promoter.ts",
+      "symbol": "resolvePacketMemoryIds",
+      "kind": "dependency",
+      "signature": "SELECT id, spec_folder, document_type FROM memory_index WHERE spec_folder IN (...) AND COALESCE(parent_id, 0) = 0 AND COALESCE(importance_tier, 'normal') != 'deprecated' ORDER BY CASE document_type WHEN 'graph_metadata' THEN 0 ... END ASC, id DESC",
+      "reuse": "compose",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/frontmatter-promoter.ts:215",
+      "relevance": 0.3,
+      "notes": "Complex SELECT with CASE expression in ORDER BY. Turso supports CASE in ORDER BY; no migration concern."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/frontmatter-promoter.ts",
+      "symbol": "hasManualConflict",
+      "kind": "convention",
+      "signature": "SELECT id, created_by FROM causal_edges WHERE source_id = ? AND target_id = ? AND relation = ? AND COALESCE(created_by, 'manual') NOT LIKE 'auto%' LIMIT 1",
+      "reuse": "extend",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/frontmatter-promoter.ts:276",
+      "relevance": 0.2,
+      "notes": "LIKE pattern matching with NOT LIKE. Standard SQL; Turso-compatible."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/frontmatter-promoter.ts",
+      "symbol": "PRAGMA table_info(causal_edges)",
+      "kind": "gap",
+      "signature": "database.prepare('PRAGMA table_info(${tableName})').all()",
+      "reuse": "wrap",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/frontmatter-promoter.ts:287",
+      "relevance": 0.5,
+      "notes": "PRAGMA table_info used for dynamic column detection in cleanupStaleGeneratedEdges. Same Turso PRAGMA compatibility concern as causal-edges.ts."
+    }
+  ]
+}

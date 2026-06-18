@@ -11,6 +11,7 @@ import type Database from 'better-sqlite3';
 import { formatAgeString as format_age_string } from '../utils/format-helpers.js';
 import { createLogger } from '../utils/logger.js';
 import { recordHistory } from '../storage/history.js';
+import { isArchivedVectorInclusionEnabled } from './search-flags.js';
 import * as embeddingsProvider from '../providers/embeddings.js';
 import { getStartupEmbeddingProfile } from '@spec-kit/shared/embeddings';
 import { DEFAULT_ACTIVE_EMBEDDER, getActiveEmbedder } from '../embedders/schema.js';
@@ -25,6 +26,7 @@ import {
 import {
   get_error_message,
   parse_trigger_phrases,
+  specFolderLikePattern,
   to_embedding_buffer,
   VectorIndexError,
   VectorIndexErrorCode,
@@ -66,6 +68,19 @@ type VectorSource = {
   embeddingColumn: string;
 };
 
+export interface KnnQueryShapeBenchmarkResult {
+  readonly corpusSize: number;
+  readonly iterations: number;
+  readonly scalarJoinAverageMs: number;
+  readonly matchAverageMs: number | null;
+  readonly matchSupported: boolean;
+  readonly matchImprovementPct: number | null;
+  readonly decision: 'adopt_match' | 'keep_scalar_join';
+  readonly reason: string;
+}
+
+const KNN_MATCH_ADOPTION_THRESHOLD_PCT = 20;
+
 function appendSpecFolderScope(
   clauses: string[],
   params: unknown[],
@@ -73,8 +88,8 @@ function appendSpecFolderScope(
   column = 'm.spec_folder',
 ): void {
   if (!specFolder) return;
-  clauses.push(`(${column} = ? OR ${column} LIKE ?)`);
-  params.push(specFolder, `${specFolder}/%`);
+  clauses.push(`(${column} = ? OR ${column} LIKE ? ESCAPE '\\')`);
+  params.push(specFolder, specFolderLikePattern(specFolder));
 }
 
 function tableExists(database: Database.Database, tableName: string): boolean {
@@ -104,6 +119,123 @@ function getActiveVectorSourceForQuery(database: Database.Database): VectorSourc
     tableName: activeVectorSchema('vec_memories'),
     idColumn: 'rowid',
     embeddingColumn: 'embedding',
+  };
+}
+
+function elapsedMs(start: bigint): number {
+  return Number(process.hrtime.bigint() - start) / 1_000_000;
+}
+
+function average(values: number[]): number {
+  if (values.length === 0) return 0;
+  return values.reduce((sum, value) => sum + value, 0) / values.length;
+}
+
+export function shouldAdoptMatchQueryShape(result: Pick<KnnQueryShapeBenchmarkResult, 'matchSupported' | 'matchImprovementPct'>): boolean {
+  return result.matchSupported === true
+    && typeof result.matchImprovementPct === 'number'
+    && result.matchImprovementPct > KNN_MATCH_ADOPTION_THRESHOLD_PCT;
+}
+
+export function benchmarkKnnQueryShapes(
+  query_embedding: EmbeddingInput,
+  options: { iterations?: number; limit?: number } = {},
+  database: Database.Database = initialize_db(),
+): KnnQueryShapeBenchmarkResult {
+  const vectorSource = getActiveVectorSourceForQuery(database);
+  if (!query_embedding || query_embedding.length !== vectorSource.dim) {
+    throw new VectorIndexError(
+      `Invalid embedding dimension: expected ${vectorSource.dim}, got ${query_embedding?.length}`,
+      VectorIndexErrorCode.EMBEDDING_VALIDATION,
+    );
+  }
+
+  const iterations = Math.max(1, Math.floor(options.iterations ?? 5));
+  const limit = Math.max(1, Math.floor(options.limit ?? 20));
+  const queryBuffer = to_embedding_buffer(query_embedding);
+  const corpusSize = (database.prepare(`
+    SELECT COUNT(*) AS count
+    FROM memory_index m
+    JOIN active_memory_projection p ON p.active_memory_id = m.id
+    WHERE m.embedding_status = 'success'
+  `).get() as { count: number }).count;
+
+  const scalarSql = `
+    SELECT m.id, vec_distance_cosine(v.${vectorSource.embeddingColumn}, ?) AS distance
+    FROM memory_index m
+    JOIN active_memory_projection p ON p.active_memory_id = m.id
+    JOIN ${vectorSource.tableName} v ON m.id = v.${vectorSource.idColumn}
+    WHERE m.embedding_status = 'success'
+    ORDER BY distance ASC
+    LIMIT ?
+  `;
+  const scalarStmt = database.prepare(scalarSql);
+  scalarStmt.all(queryBuffer, limit);
+  const scalarRuns: number[] = [];
+  for (let i = 0; i < iterations; i += 1) {
+    const start = process.hrtime.bigint();
+    scalarStmt.all(queryBuffer, limit);
+    scalarRuns.push(elapsedMs(start));
+  }
+
+  const matchTable = activeVectorSchema('vec_memories');
+  const matchAvailable = tableExists(database, 'vec_memories');
+  let matchAverageMs: number | null = null;
+  let matchError: string | null = null;
+
+  if (matchAvailable) {
+    try {
+      const matchSql = `
+        WITH knn AS (
+          SELECT rowid, distance
+          FROM ${matchTable}
+          WHERE embedding MATCH ? AND k = ?
+        )
+        SELECT m.id, knn.distance
+        FROM knn
+        JOIN memory_index m ON m.id = knn.rowid
+        JOIN active_memory_projection p ON p.active_memory_id = m.id
+        WHERE m.embedding_status = 'success'
+        ORDER BY knn.distance ASC
+        LIMIT ?
+      `;
+      const matchStmt = database.prepare(matchSql);
+      matchStmt.all(queryBuffer, limit, limit);
+      const matchRuns: number[] = [];
+      for (let i = 0; i < iterations; i += 1) {
+        const start = process.hrtime.bigint();
+        matchStmt.all(queryBuffer, limit, limit);
+        matchRuns.push(elapsedMs(start));
+      }
+      matchAverageMs = average(matchRuns);
+    } catch (error: unknown) {
+      matchError = get_error_message(error);
+    }
+  }
+
+  const scalarJoinAverageMs = average(scalarRuns);
+  const matchImprovementPct = matchAverageMs !== null && scalarJoinAverageMs > 0
+    ? ((scalarJoinAverageMs - matchAverageMs) / scalarJoinAverageMs) * 100
+    : null;
+  const preliminary: Pick<KnnQueryShapeBenchmarkResult, 'matchSupported' | 'matchImprovementPct'> = {
+    matchSupported: matchAverageMs !== null,
+    matchImprovementPct,
+  };
+  const decision = shouldAdoptMatchQueryShape(preliminary) ? 'adopt_match' : 'keep_scalar_join';
+
+  return {
+    corpusSize,
+    iterations,
+    scalarJoinAverageMs,
+    matchAverageMs,
+    matchSupported: matchAverageMs !== null,
+    matchImprovementPct,
+    decision,
+    reason: decision === 'adopt_match'
+      ? `MATCH exceeded ${KNN_MATCH_ADOPTION_THRESHOLD_PCT}% threshold`
+      : matchError
+        ? `MATCH unavailable: ${matchError}`
+        : `MATCH did not exceed ${KNN_MATCH_ADOPTION_THRESHOLD_PCT}% threshold`,
   };
 }
 
@@ -146,9 +278,9 @@ export function get_memories_by_folder(
     SELECT m.*
     FROM memory_index m
     JOIN active_memory_projection p ON p.active_memory_id = m.id
-    WHERE (m.spec_folder = ? OR m.spec_folder LIKE ?)
+    WHERE (m.spec_folder = ? OR m.spec_folder LIKE ? ESCAPE '\\')
     ORDER BY m.created_at DESC
-  `).all(spec_folder, `${spec_folder}/%`) as MemoryRow[];
+  `).all(spec_folder, specFolderLikePattern(spec_folder)) as MemoryRow[];
 
   return rows.map((row: MemoryRow) => {
     row.trigger_phrases = parse_trigger_phrases(row.trigger_phrases);
@@ -289,6 +421,10 @@ export function vector_search(
   } else if (tier) {
     where_clauses.push('m.importance_tier = ?');
     params.push(tier);
+  } else if (isArchivedVectorInclusionEnabled()) {
+    // Cold/archived rows admitted to the projection (option A) must not be re-excluded
+    // here; still keep constitutional on its own injected path.
+    where_clauses.push('(m.importance_tier IS NULL OR m.importance_tier != \'constitutional\')');
   } else {
     where_clauses.push('(m.importance_tier IS NULL OR m.importance_tier NOT IN (\'deprecated\', \'constitutional\'))');
   }
@@ -407,7 +543,7 @@ export function multi_concept_search(
     `vec_distance_cosine(v.${vectorSource.embeddingColumn}, ?) <= ?`
   ).join(' AND ');
 
-  const folder_filter = specFolder ? 'AND (m.spec_folder = ? OR m.spec_folder LIKE ?)' : '';
+  const folder_filter = specFolder ? "AND (m.spec_folder = ? OR m.spec_folder LIKE ? ESCAPE '\\')" : '';
   const similarity_select = concept_buffers.map((_, i) =>
     `ROUND((1 - sub.dist_${i} / 2) * 100, 2) as similarity_${i}`
   ).join(', ');
@@ -437,7 +573,7 @@ export function multi_concept_search(
 
   const params = [
     ...concept_buffers,
-    ...(specFolder ? [specFolder, `${specFolder}/%`] : []),
+    ...(specFolder ? [specFolder, specFolderLikePattern(specFolder)] : []),
     ...concept_buffers.flatMap(b => [b, max_distance]),
     limit
   ];
@@ -728,8 +864,8 @@ export function keyword_search(
   const params: unknown[] = [];
 
   if (specFolder) {
-    where_clause += ' AND (spec_folder = ? OR spec_folder LIKE ?)';
-    params.push(specFolder, `${specFolder}/%`);
+    where_clause += " AND (spec_folder = ? OR spec_folder LIKE ? ESCAPE '\\')";
+    params.push(specFolder, specFolderLikePattern(specFolder));
   }
 
   const sql = `
@@ -821,7 +957,7 @@ export async function vector_search_enriched(
     raw_results = keyword_search(query, { limit, specFolder }, database);
   }
 
-  // HIGH-004 FIX: Read all files concurrently
+  // Read files concurrently so enrichment latency is bounded by the slowest read.
   const file_contents = await Promise.all(
     raw_results.map((row: MemoryRow) => safe_read_file_async(row.file_path))
   );
@@ -1052,7 +1188,7 @@ export function parse_quoted_terms(query: string): string[] {
    SMART RANKING AND DIVERSITY
 ----------------------------------------------------------------*/
 
-// BUG-012 FIX: Weights read from config instead of hardcoded
+// Weights read from config instead of hardcoded
 /**
  * Applies smart ranking weights to enriched results.
  * @param results - The results to rank.
@@ -1375,7 +1511,7 @@ export function get_memory_preview(memory_id: number, max_lines = 50): { id: num
    DATABASE INTEGRITY
 ----------------------------------------------------------------*/
 
-// BUG-013 FIX: Added autoClean option for automatic orphan cleanup
+// Added autoClean option for automatic orphan cleanup
 /**
  * Verifies vector-index consistency and optional cleanup results.
  * @param options - Integrity verification options.
@@ -1384,20 +1520,29 @@ export function get_memory_preview(memory_id: number, max_lines = 50): { id: num
 export function verify_integrity(
   options: { autoClean?: boolean; cleanFiles?: boolean } = {},
   database: Database.Database = initialize_db(),
-): { totalMemories: number; totalVectors: number; orphanedVectors: number; missingVectors: number; orphanedFiles: Array<{ id: number; file_path: string; reason: string }>; orphanedChunks: number; isConsistent: boolean; cleaned?: { vectors: number; chunks: number; files: number } } {
+): { totalMemories: number; totalVectors: number; orphanedVectors: number; missingVectors: number; orphanedFiles: Array<{ id: number; file_path: string; reason: string }>; orphanedChunks: number; isConsistent: boolean; vectorSurfaceDivergence?: { activeSurface: string; activeCount: number; vecMemoriesCount: number; divergence: number }; cleaned?: { vectors: number; chunks: number; files: number } } {
   const { autoClean = false, cleanFiles = false } = options;
   const sqlite_vec = get_sqlite_vec_available();
 
+  // Measure the surface that live queries actually read. When a non-default
+  // embedder is active, that surface is the dimension-tagged BLOB table, not
+  // vec_memories; checking vec_memories there reports a clean graph while the
+  // active surface silently drops rows. The vec0 virtual table requires
+  // sqlite-vec; a plain dimension-tagged table does not.
+  const source = getActiveVectorSourceForQuery(database);
+  const sourceNeedsSqliteVec = source.tableName === activeVectorSchema('vec_memories');
+  const sourceQueryable = sqlite_vec || !sourceNeedsSqliteVec;
+
   const find_orphaned_vector_ids = () => {
-    if (!sqlite_vec) {
+    if (!sourceQueryable) {
       console.warn('[vector-index] find_orphaned_vector_ids: sqlite-vec not available');
       return [];
     }
     try {
       return (database.prepare(`
-	        SELECT v.rowid FROM ${activeVectorSchema('vec_memories')} v
-        WHERE NOT EXISTS (SELECT 1 FROM memory_index m WHERE m.id = v.rowid)
-      `).all() as Array<{ rowid: number }>).map((r) => r.rowid);
+	        SELECT v.${source.idColumn} AS vid FROM ${source.tableName} v
+        WHERE NOT EXISTS (SELECT 1 FROM memory_index m WHERE m.id = v.${source.idColumn})
+      `).all() as Array<{ vid: number }>).map((r) => r.vid);
     } catch (e: unknown) {
       console.warn('[vector-index] Could not query orphaned vectors:', get_error_message(e));
       return [];
@@ -1408,9 +1553,9 @@ export function verify_integrity(
   const orphaned_vectors = orphaned_vector_ids.length;
 
   let cleaned_vectors = 0;
-  if (autoClean && orphaned_vectors > 0 && sqlite_vec) {
+  if (autoClean && orphaned_vectors > 0 && sourceQueryable) {
     logger.info(`Auto-cleaning ${orphaned_vectors} orphaned vectors...`);
-    const delete_stmt = database.prepare(`DELETE FROM ${activeVectorSchema('vec_memories')} WHERE rowid = ?`);
+    const delete_stmt = database.prepare(`DELETE FROM ${source.tableName} WHERE ${source.idColumn} = ?`);
     for (const rowid of orphaned_vector_ids) {
       try {
         delete_stmt.run(BigInt(rowid));
@@ -1422,20 +1567,40 @@ export function verify_integrity(
     logger.info(`Cleaned ${cleaned_vectors} orphaned vectors`);
   }
 
-  // Guard vec_memories queries with sqlite_vec availability check.
-  // When sqlite-vec is not loaded, the vec_memories table does not exist.
-  const missing_vectors = sqlite_vec
+  // Guard the active vector surface queries by availability: the vec_memories
+  // vec0 virtual table requires sqlite-vec; a dimension-tagged BLOB table does not.
+  const missing_vectors = sourceQueryable
     ? (database.prepare(`
         SELECT COUNT(*) as count FROM memory_index m
         WHERE m.embedding_status = 'success'
-	        AND NOT EXISTS (SELECT 1 FROM ${activeVectorSchema('vec_memories')} v WHERE v.rowid = m.id)
+	        AND NOT EXISTS (SELECT 1 FROM ${source.tableName} v WHERE v.${source.idColumn} = m.id)
       `).get() as { count: number }).count
     : 0;
 
   const total_memories = (database.prepare('SELECT COUNT(*) as count FROM memory_index').get() as { count: number }).count;
-  const total_vectors = sqlite_vec
-    ? (database.prepare(`SELECT COUNT(*) as count FROM ${activeVectorSchema('vec_memories')}`).get() as { count: number }).count
+  const total_vectors = sourceQueryable
+    ? (database.prepare(`SELECT COUNT(*) as count FROM ${source.tableName}`).get() as { count: number }).count
     : 0;
+
+  // Cross-surface divergence health: when a dimension-tagged table is the active
+  // query surface, vec_memories (the vec0 index) is a parallel surface that
+  // should track it row-for-row. A persistent divergence signals dual-write or
+  // coverage drift between the two surfaces; it is reported for deliberate
+  // operator reconcile rather than auto-resolved here.
+  let vector_surface_divergence: { activeSurface: string; activeCount: number; vecMemoriesCount: number; divergence: number } | undefined;
+  if (sqlite_vec && source.tableName !== activeVectorSchema('vec_memories') && tableExists(database, 'vec_memories')) {
+    try {
+      const vec_memories_count = (database.prepare(`SELECT COUNT(*) as count FROM ${activeVectorSchema('vec_memories')}`).get() as { count: number }).count;
+      vector_surface_divergence = {
+        activeSurface: source.tableName,
+        activeCount: total_vectors,
+        vecMemoriesCount: vec_memories_count,
+        divergence: total_vectors - vec_memories_count,
+      };
+    } catch (e: unknown) {
+      console.warn('[vector-index] Could not compute vector surface divergence:', get_error_message(e));
+    }
+  }
 
   const check_orphaned_files = () => {
     const memories = database.prepare('SELECT id, file_path FROM memory_index').all() as Array<{ id: number; file_path?: string | null }>;
@@ -1542,6 +1707,7 @@ export function verify_integrity(
     orphanedFiles: orphaned_files,
     orphanedChunks: effective_orphaned_chunks,
     isConsistent: (orphaned_vectors - cleaned_vectors) === 0 && missing_vectors === 0 && orphaned_files.length === 0 && effective_orphaned_chunks === 0,
+    ...(vector_surface_divergence ? { vectorSurfaceDivergence: vector_surface_divergence } : {}),
     cleaned: (autoClean && (cleaned_vectors > 0 || cleaned_chunks > 0 || cleaned_files > 0))
       ? { vectors: cleaned_vectors, chunks: cleaned_chunks, files: cleaned_files }
       : undefined

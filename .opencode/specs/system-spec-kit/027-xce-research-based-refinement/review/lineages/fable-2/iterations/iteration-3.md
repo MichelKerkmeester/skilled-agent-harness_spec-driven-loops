@@ -1,0 +1,12 @@
+All artifacts validate cleanly (7 JSON objects parse, 9 JSONL state records, exact verdict lines on all 5 iterations). The fable-2 lineage run is complete.
+
+**Run summary** — verdict **CONDITIONAL** (0 P0 / 3 P1 / 5 P2, advisories present), 5/5 iterations with full dimension coverage and a clean stabilization replay:
+
+- **P1 findings**: parent `description.json` child inventory stops at 010 while 16 children exist on disk (F001); phase-map status cells and the "not implemented" narrative contradict children that are Complete/Implemented (F002); parent resource-map frozen at 2026-06-04, omitting all phase 002–015 implementation surfaces (F005).
+- **P2 advisories**: stale child metadata (F003), home paths in dispatch artifacts escaping the `*.log` ignore rule in a public repo (F004), stale context-index bridge (F006), stale continuity frontmatter (F007), internally inconsistent changelog index — 000 shipped but listed "planned" with no changelog folder (F008).
+- **Clean**: checklist evidence verified in two children, zero live secrets packet-wide, phase-parent content discipline respected.
+- **Notable**: a concurrent session created phases 012–015 and updated spec.md + graph-metadata mid-review (description.json left behind — which narrowed F001 rather than closing it); all findings were re-verified against live state at stabilization.
+
+All outputs written under `review/lineages/fable-2/` only: state JSONL, 5 iteration narratives + 5 deltas, findings registry, dashboard, strategy, lineage resource-map, and the 9-section `review-report.md` with the Resource Map Coverage Gate section.
+
+FANOUT_LINEAGE_COMPLETE:fable-2

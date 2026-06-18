@@ -1,6 +1,6 @@
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 // MODULE: Cleanup Orphaned Vectors
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 
 // ───────────────────────────────────────────────────────────────
 // 1. CLEANUP ORPHANED VECTORS
@@ -13,6 +13,7 @@ import { load as loadSqliteVec } from 'sqlite-vec';
 
 // Shared config
 import { DB_PATH } from '@spec-kit/shared/paths';
+import { acquireDbInstanceLock, releaseDbInstanceLocks } from '@spec-kit/mcp-server/api/db-lock';
 import { isMainModule } from '../lib/esm-entry.js';
 
 /* ───────────────────────────────────────────────────────────────
@@ -64,6 +65,9 @@ async function main(): Promise<void> {
       console.log('=== DRY-RUN MODE — no changes will be made ===\n');
     }
     console.log('Opening database:', dbPath);
+    // Single-writer guard: refuse to mutate a database a live daemon (or
+    // another maintenance run) currently owns — stop the daemon first.
+    acquireDbInstanceLock(dbPath);
     database = new Database(dbPath);
     loadSqliteVec(database);
 
@@ -109,8 +113,8 @@ async function main(): Promise<void> {
     console.log(`Found ${orphanedVectorCount} orphaned vectors`);
 
     // STEP 2: Delete all orphans in a single atomic transaction
-    // ISS-B04-002 fix — wrapping history + vector cleanup in one
-    // Transaction prevents partial commits on mid-run failure.
+    // Wrapping history and vector cleanup in one transaction prevents partial
+    // commits on mid-run failure.
     if (dryRun) {
       if (orphanedHistoryCount > 0) {
         console.log(`[DRY-RUN] Would delete ${orphanedHistoryCount} orphaned history entries`);
@@ -172,6 +176,7 @@ async function main(): Promise<void> {
     console.log(`\nTotal cleaned: ${totalCleaned}${dryRun ? ' (dry-run, nothing actually deleted)' : ''}`);
 
     database.close();
+    releaseDbInstanceLocks();
     console.log(`\nCleanup ${dryRun ? 'preview' : 'completed'} successfully`);
     process.exit(0);
   } catch (error: unknown) {
@@ -186,6 +191,7 @@ async function main(): Promise<void> {
         }
       }
     }
+    releaseDbInstanceLocks();
     process.exit(1);
   }
 }

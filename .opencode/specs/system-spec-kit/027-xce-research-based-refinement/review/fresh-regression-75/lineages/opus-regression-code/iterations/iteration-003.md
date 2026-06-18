@@ -1,0 +1,38 @@
+# Seat opus-regression-code — iteration 3 (global #3)
+
+- Model: `claude-opus-4-8` · Executor: claude · Angle: opus-regression-code
+- Verdict: **CONDITIONAL** · Findings: P0=0 P1=1 P2=1
+
+## Analysis
+
+## Review Analysis — Seat: opus-regression-code
+
+**Angle:** Verify the causal-edges generation bump fires on **every** tombstone sweep path (the invariant this epic added so `memory_search` causal-boost caches go stale on edge mutation).
+
+### What I traced
+
+The generation counter lives in `causal-generation.ts` (`bumpCausalEdgesGeneration` / `getCausalEdgesGeneration`). The **consumer** is `memory-search.ts:1065-1067,1100,1104-1114`: when `enableCausalBoost=true`, the counter is folded into `cacheArgs.causalEdgesGeneration` → `toolCache.generateCacheKey(...)`. A cached payload with a matching key is returned verbatim (line 1113-1114). There is **no other** invalidation of that reader cache for causal mutations — `CANONICAL_READER_CACHE_VERSION` is a static string (1:192). So the generation bump is the sole staleness guard.
+
+`sweepCausalEdges` (`sweep.ts:229-284`) only bumps internally when `result.deleted > 0 && options.invalidateCaches !== false`. I enumerated **all 8 sweep call sites**:
+
+| Caller | `invalidateCaches` | Bumps generation? |
+|---|---|---|
+| `checkpoints.ts:1645,1655` | default (true) | ✅ via sweep's `invalidateGraphCaches` (216) |
+| `causal-edges.ts` deleteEdge/deleteEdgesForMemory/cleanupOrphanedEdges | false | ✅ caller's `invalidateDegreeCache` bumps (215) |
+| `corrections.ts:623,648` | false | ✅ caller's local `invalidateGraphCaches` bumps (193) |
+| **`vector-index-mutations.ts:183`** | false | ❌ caller's local `invalidateGraphCaches` (101-113) does **not** bump |
+| **`frontmatter-promoter.ts:334`** | false | ❌ no bump anywhere in flow |
+
+### Finding A (P1) — `vector-index-mutations.ts` deletion path skips the bump
+
+`deleteAncillaryMemoryRows` sweeps causal edges with `invalidateCaches:false` (line 188), then on `deleted > 0` calls its **local** `invalidateGraphCaches` (101-113), which clears the degree cache and graph-signals cache but **never calls `bumpCausalEdgesGeneration()`**. The module imports no generation symbol at all. This is the only one of the four `invalidateGraphCaches`/`invalidateDegreeCache` siblings (sweep.ts:212, causal-edges.ts:211, corrections.ts:192) that omits the bump — a clear divergence. Consequence: when a memory row is hard-deleted, its causal edges are tombstoned/deleted but a prior `memory_search(enableCausalBoost=true)` response keyed on the now-stale generation is returned unchanged. Scoped to causal-boost opt-in callers, but it's a real break of the exact invariant this epic introduced, on a common path.
+
+### Finding B (P2) — `frontmatter-promoter.ts` promotion mutates edges with bumps fully suppressed
+
+`cleanupStaleGeneratedEdges` sweeps with `invalidateCaches:false` (line 339) and the follow-up `insertEdge(...)` (386-402) passes `shouldInvalidateCache=false` (6th arg, line 392), so neither delete nor insert bumps. `promoteMetadataEdges` returns at 408 with no trailing invalidation, and its caller (`memory-index.ts:1139`) only aggregates counters. Unlike `insertEdgesBatch` (which suppresses per-edge then bumps once at the end), this flow never does the trailing bump. Causal-boost cache stays stale after a metadata-edge promotion during an index scan. P2 because it runs inside a heavy scan flow (lower causal-boost-query frequency, and a scan-wide cache flush, if present elsewhere, could mask it — I found no such flush tied to the generation).
+
+Both are within slice (sweep paths + the causal-boost cache consumer) and reproduce by inspection. No P0. Verdict CONDITIONAL.
+
+```json
+{"seat":"opus-regression-code","model":"claude-opus-4-8","angle":"REGRESSION: tombstone sweeps now bump the causal-edges generation to invalidate stale causal-boost caches (extracted module to break an import cycle). Verify generation bump fires on every sweep path.","verdict":"CONDITIONAL","summary":"Generation bump misses 2 of 8 sweep paths: vector-index-mutations memory-delete (P1) and frontmatter-promoter promotion (P2) sweep edges without bumping, leaving causal-boost search cache stale.","files_reviewed":[".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-generation.ts",".opencode/skills/system-spec-kit/mcp_server/lib/causal/sweep.ts",".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",".opencode/skills/system-spec-kit/mcp_server/lib/learning/corrections.ts",".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts",".opencode/skills/system-spec-kit/mcp_server/lib/causal/frontmatter-promoter.ts",".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts"],"findings":[{"severity":"P1","dimension":"correctness","title":"Memory-delete sweep path clears degree/signals caches but never bumps causal-edges generation","file":".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:101","evidence":"deleteAncillaryMemoryRows (line 183-192) calls sweepCausalEdges with invalidateCaches:false, then on deleted>0 calls the local invalidateGraphCaches (101-113) which only calls clearDegreeCacheForDb + clearGraphSignalsCache. It does NOT call bumpCausalEdgesGeneration, and the module imports no generation symbol (grep: NONE). The three sibling invalidators all bump first: sweep.ts:216, causal-edges.ts:215, corrections.ts:193.","why":"The causal-edges generation is the sole invalidation key for the memory_search causal-boost reader cache (memory-search.ts:1065-1067,1100,1104-1114; CANONICAL_READER_CACHE_VERSION is static). After a memory row is deleted and its causal edges are tombstoned/deleted, an identical memory_search(enableCausalBoost=true) query produces the same cacheKey and returns the pre-delete cached payload — stale causal-boosted results. Breaks the epic's 'every sweep path bumps generation' invariant on a common deletion path.","recommendation":"In vector-index-mutations.ts invalidateGraphCaches, import bumpCausalEdgesGeneration from ../storage/causal-generation.js and call it first (mirroring sweep.ts:216 and corrections.ts:193), so memory-delete sweeps invalidate the causal-boost cache."},{"severity":"P2","dimension":"correctness","title":"Metadata-edge promotion deletes and inserts causal edges with all generation bumps suppressed","file":".opencode/skills/system-spec-kit/mcp_server/lib/causal/frontmatter-promoter.ts:334","evidence":"cleanupStaleGeneratedEdges calls sweepCausalEdges with invalidateCaches:false (line 339) and no follow-up bump. promoteMetadataEdges then calls causalEdges.insertEdge(...) with shouldInvalidateCache=false (6th positional arg, line 392), so insertEdge skips invalidateDegreeCache. promoteMetadataEdges returns at 408 with no trailing invalidation; its only caller memory-index.ts:1139 just aggregates counters. grep for bumpCausalEdgesGeneration/invalidateDegreeCache in the file: NONE.","why":"During memory_index_scan, stale generated edges are deleted and new edges inserted without ever bumping the generation, so a cached memory_search(enableCausalBoost=true) response remains served after the scan. Unlike insertEdgesBatch (which suppresses per-edge then bumps once at the end), this flow omits the trailing bump entirely.","recommendation":"After cleanup+insert in promoteMetadataEdges (before return at line 408), call bumpCausalEdgesGeneration() once when staleDeleted>0 || inserted>0, matching the batch-then-invalidate-once pattern in causal-edges.ts insertEdgesBatch (533-535)."}]}
+```

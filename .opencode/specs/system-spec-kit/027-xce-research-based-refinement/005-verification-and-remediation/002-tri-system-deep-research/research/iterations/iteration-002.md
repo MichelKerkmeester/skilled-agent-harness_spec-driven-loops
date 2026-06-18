@@ -1,0 +1,25 @@
+# Iteration 002 — Angle 2
+
+**Angle:** Source-kind ingress guard coverage: same-path reindex-retire and feedback auto-promotion remain unguarded ingress paths — exact exposure and minimal guard design.
+
+**Summary:** Code confirms both named ingress paths remain exposed: same-path retire now preserves constitutional rows only, and feedback auto-promotion still mutates human rows without a source_kind guard. Minimal repair is to reuse one shared protected-row predicate at each ingress and fail closed for automated writes that target protected manual or constitutional fields.
+
+**Findings kept:** 3
+
+## [P0][BUG] Same-path reindex retire still bypasses protected-row source_kind guard
+
+- Evidence: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:2606-2615 calls retirePredecessorForActiveReindex for changed same-path content; .opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1365-1381 reads only importance_tier, exempts only constitutional, then sets importance_tier='deprecated'; .opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:156-183 excludes deprecated rows from recall channels.
+- Detail: The current exposure is narrower than the old follow-on note but still real: constitutional predecessors are preserved, while human/null source_kind rows, critical rows, pinned rows, and constitutional-path rows are not checked because the retire function does not load those fields. An automated same-path reindex can therefore declassify protected manual content to deprecated, which removes it from default recall paths.
+- Fix sketch: Extract the memory_update protected-row predicate into shared storage code, load source_kind/importance_tier/is_pinned/path in retirePredecessorForActiveReindex, and block or return a guarded conflict for automated retire attempts against protected predecessors.
+
+## [P0][BUG] Feedback auto-promotion overwrites manual tier decisions without source_kind check
+
+- Evidence: .opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:140-146 checks only importance_tier/validation_count/confidence; .opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:259-262 updates importance_tier and only persists provenance metadata; .opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:798-799 invokes executeAutoPromotion on every positive memory_validate; .opencode/skills/system-spec-kit/mcp_server/tests/promotion-positive-validation-semantics.vitest.ts:112-127 asserts a default source_kind='human' row is promoted to important while source_kind remains human.
+- Detail: Auto-promotion can mutate normal->important or important->critical on a human-protected row without consulting source_kind, pinned state, or constitutional path. Because it writes provenance_source/provenance_actor but not source_kind, the row remains marked human after the automated tier mutation, masking that an automated ingress path already changed a protected field.
+- Fix sketch: Make executeAutoPromotion load source_kind/is_pinned/path with tier data and skip protected human/null/critical/pinned/constitutional-path rows unless the call is explicitly human-authorized or a documented promotion policy allows it.
+
+## [P1][DOC-DRIFT] Catalog claims broad write-ingress protection while two ingress paths remain excluded
+
+- Evidence: .opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:396-400 says the write path blocks automated protected overwrites; .opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/013-provenance-injection/spec.md:239-242 and implementation-summary.md:140-145 explicitly document same-path retire and auto-promotion as remaining P0-class follow-ons.
+- Detail: Recent 027 phase docs accurately describe the two gaps, but the public feature catalog summarizes the guard as if write-ingress coverage is complete. That misleads operators into treating the constitutional source_kind guard as universal when two mutation ingress paths still bypass it.
+- Fix sketch: Amend the feature catalog and governance scenario to state that memory_update/create paths are guarded while same-path retire and auto-promotion require follow-on guard enforcement.

@@ -3,7 +3,7 @@
 // ────────────────────────────────────────────────────────────────
 
 /* ───────────────────────────────────────────────────────────────
-   0. DEPENDENCIES
+   1. DEPENDENCIES
 ──────────────────────────────────────────────────────────────── */
 
 // Lib modules
@@ -38,7 +38,7 @@ import { runPostMutationHooks } from './mutation-hooks.js';
 
 
 /* ───────────────────────────────────────────────────────────────
-   1. TYPES
+   2. TYPES
 ──────────────────────────────────────────────────────────────── */
 
 /** Flat edge representation for API responses */
@@ -269,7 +269,7 @@ function createSanitizedCausalError(
 }
 
 /* ───────────────────────────────────────────────────────────────
-   2. TREE-TO-FLAT CONVERTER
+   3. TREE-TO-FLAT CONVERTER
 ──────────────────────────────────────────────────────────────── */
 
 /**
@@ -482,7 +482,7 @@ function formatRelationSummary(chain: FlattenedChain, label: 'incoming' | 'outgo
 }
 
 /* ───────────────────────────────────────────────────────────────
-   3. MEMORY DRIFT WHY HANDLER
+   4. MEMORY DRIFT WHY HANDLER
 ──────────────────────────────────────────────────────────────── */
 
 /** Handle memory_drift_why tool - traces causal relationships for a given memory */
@@ -769,7 +769,7 @@ async function handleMemoryDriftWhy(args: DriftWhyArgs): Promise<MCPResponse> {
 }
 
 /* ───────────────────────────────────────────────────────────────
-   3. CAUSAL LINK HANDLER
+   5. CAUSAL LINK HANDLER
 ──────────────────────────────────────────────────────────────── */
 
 /** Handle memory_causal_link tool - creates a causal edge between two memories */
@@ -937,7 +937,7 @@ async function handleMemoryCausalLink(args: CausalLinkArgs): Promise<MCPResponse
 }
 
 /* ───────────────────────────────────────────────────────────────
-   4. CAUSAL GRAPH STATS HANDLER
+   6. CAUSAL GRAPH STATS HANDLER
 ──────────────────────────────────────────────────────────────── */
 
 /** Handle memory_causal_stats tool - returns graph coverage and health metrics */
@@ -972,7 +972,7 @@ async function handleMemoryCausalStats(args: CausalStatsArgs = {}): Promise<MCPR
           dryRun: backfillRequest.dryRun !== false,
           limit: backfillRequest.limit,
           actor: backfillRequest.actor ?? 'memory_causal_stats:backfill',
-          similarity: backfillRequest.similarity,
+          similarity: false,
           contradicts: backfillRequest.contradicts,
           similarityThreshold: backfillRequest.similarityThreshold,
         });
@@ -1036,6 +1036,9 @@ async function handleMemoryCausalStats(args: CausalStatsArgs = {}): Promise<MCPR
     if (orphanedEdges.length > 0) {
       hints.push(`${orphanedEdges.length} orphaned edges detected - consider cleanup`);
     }
+    if (backfillRequest?.similarity === true) {
+      hints.push('Entity and co-occurrence signals remain recall evidence only; similarity causal promotion was skipped.');
+    }
     if (stats.totalEdges === 0) {
       hints.push('No causal links exist yet - use memory_causal_link to create relationships');
     }
@@ -1053,6 +1056,9 @@ async function handleMemoryCausalStats(args: CausalStatsArgs = {}): Promise<MCPR
         hints.push(
           `Relation-inference backfill: wrote ${backfillResult.written} new auto edges from ${backfillResult.scanned} scanned rows${skippedNote}.`,
         );
+        if (backfillResult.skipped > backfillResult.skippedConflicting) {
+          hints.push('skipped manual edge: auto promotion preserved existing manual or unknown-provenance edges.');
+        }
       }
     }
 
@@ -1093,7 +1099,7 @@ async function handleMemoryCausalStats(args: CausalStatsArgs = {}): Promise<MCPR
 }
 
 /* ───────────────────────────────────────────────────────────────
-   5. CAUSAL UNLINK HANDLER
+   7. CAUSAL UNLINK HANDLER
 ──────────────────────────────────────────────────────────────── */
 
 /** Handle memory_causal_unlink tool - deletes a causal edge by ID */
@@ -1137,7 +1143,13 @@ async function handleMemoryCausalUnlink(args: CausalUnlinkArgs): Promise<MCPResp
     }
     causalEdges.init(db);
 
-    const result: { deleted: boolean } = { deleted: causalEdges.deleteEdge(edgeId) };
+    const result: { deleted: boolean } = {
+      deleted: causalEdges.deleteEdge(edgeId, {
+        reason: 'manual causal unlink',
+        command: 'memory_causal_unlink',
+        restoreContext: { edgeId },
+      }),
+    };
 
     // Removing an edge changes graph signals/degree/co-activation; invalidate the
     // graph-structure caches now so retrieval reflects the unlink without waiting
@@ -1180,7 +1192,7 @@ async function handleMemoryCausalUnlink(args: CausalUnlinkArgs): Promise<MCPResp
 }
 
 /* ───────────────────────────────────────────────────────────────
-   6. EXPORTS
+   8. EXPORTS
 ──────────────────────────────────────────────────────────────── */
 
 export {

@@ -10,6 +10,7 @@ import {
 
 const mocks = vi.hoisted(() => ({
   getDb: vi.fn(),
+  querySymbolIndexRows: vi.fn(),
   queryEdgesFrom: vi.fn(),
   queryEdgesTo: vi.fn(),
   queryOutline: vi.fn(),
@@ -28,6 +29,7 @@ const mocks = vi.hoisted(() => ({
 
 vi.mock('../lib/code-graph-db.js', () => ({
   getDb: mocks.getDb,
+  querySymbolIndexRows: mocks.querySymbolIndexRows,
   queryEdgesFrom: mocks.queryEdgesFrom,
   queryEdgesTo: mocks.queryEdgesTo,
   queryOutline: mocks.queryOutline,
@@ -43,6 +45,8 @@ vi.mock('../lib/ensure-ready.js', () => ({
 }));
 
 import { handleCodeGraphQuery } from '../handlers/query.js';
+
+const BM25_SYMBOL_RESOLVER_ENV = 'SPECKIT_CODE_GRAPH_BM25_SYMBOL_RESOLVER';
 
 interface CandidateRow {
   symbolId: string;
@@ -117,12 +121,129 @@ describe('code-graph-query handler', () => {
     mocks.getDb.mockReturnValue(createDb());
     mocks.queryEdgesFrom.mockReturnValue([]);
     mocks.queryEdgesTo.mockReturnValue([]);
+    mocks.querySymbolIndexRows.mockReturnValue([]);
     mocks.queryOutline.mockReturnValue([]);
     mocks.resolveSubjectFilePath.mockImplementation((subject: string) => subject);
     mocks.queryFileImportDependents.mockReturnValue([]);
     mocks.queryFileDegrees.mockReturnValue([]);
     mocks.getLastDetectorProvenance.mockReturnValue('structured');
     mocks.sanitizeEdgeMetadataString.mockImplementation((value: unknown) => typeof value === 'string' ? value : null);
+  });
+
+  it('keeps exact subject matching byte-identical when the BM25 resolver is enabled', async () => {
+    const originalFlag = process.env[BM25_SYMBOL_RESOLVER_ENV];
+    try {
+      mocks.getDb.mockReturnValue(createDb({
+        byFq: [{
+          symbolId: 'exact-symbol',
+          fqName: 'handlers.query.resolveSubject',
+          name: 'resolveSubject',
+          kind: 'function',
+          filePath: 'handlers/query.ts',
+          startLine: 370,
+        }],
+        byName: [],
+      }));
+      delete process.env[BM25_SYMBOL_RESOLVER_ENV];
+
+      const flagOff = await handleCodeGraphQuery({
+        operation: 'calls_from',
+        subject: 'handlers.query.resolveSubject',
+      });
+
+      process.env[BM25_SYMBOL_RESOLVER_ENV] = '1';
+      const flagOn = await handleCodeGraphQuery({
+        operation: 'calls_from',
+        subject: 'handlers.query.resolveSubject',
+      });
+
+      expect(flagOn.content[0].text).toBe(flagOff.content[0].text);
+      expect(mocks.querySymbolIndexRows).not.toHaveBeenCalled();
+    } finally {
+      if (originalFlag === undefined) {
+        delete process.env[BM25_SYMBOL_RESOLVER_ENV];
+      } else {
+        process.env[BM25_SYMBOL_RESOLVER_ENV] = originalFlag;
+      }
+    }
+  });
+
+  it('keeps unresolved subjects unchanged by default and avoids the resolver accessor', async () => {
+    const originalFlag = process.env[BM25_SYMBOL_RESOLVER_ENV];
+    try {
+      delete process.env[BM25_SYMBOL_RESOLVER_ENV];
+      mocks.getDb.mockReturnValue(createDb({ byFq: [], byName: [] }));
+
+      const result = await handleCodeGraphQuery({
+        operation: 'calls_from',
+        subject: 'handleMemryContext',
+      });
+      const parsed = JSON.parse(result.content[0].text);
+
+      expect(parsed).toEqual({
+        status: 'error',
+        error: 'Could not resolve subject: handleMemryContext',
+      });
+      expect(mocks.querySymbolIndexRows).not.toHaveBeenCalled();
+    } finally {
+      if (originalFlag === undefined) {
+        delete process.env[BM25_SYMBOL_RESOLVER_ENV];
+      } else {
+        process.env[BM25_SYMBOL_RESOLVER_ENV] = originalFlag;
+      }
+    }
+  });
+
+  it('returns BM25 symbol suggestions only after exact subject matching misses and the flag is enabled', async () => {
+    const originalFlag = process.env[BM25_SYMBOL_RESOLVER_ENV];
+    try {
+      process.env[BM25_SYMBOL_RESOLVER_ENV] = '1';
+      mocks.getDb.mockReturnValue(createDb({ byFq: [], byName: [] }));
+      mocks.querySymbolIndexRows.mockReturnValue([
+        {
+          symbolId: 'target-symbol',
+          fqName: 'handlers.memoryContext.handleMemoryContext',
+          name: 'handleMemoryContext',
+          kind: 'function',
+          filePath: 'handlers/memory-context.ts',
+          startLine: 1196,
+          signature: 'export function handleMemoryContext() {}',
+          docstring: null,
+        },
+      ]);
+
+      const result = await handleCodeGraphQuery({
+        operation: 'calls_from',
+        subject: 'handleMemryContext',
+      });
+      const parsed = JSON.parse(result.content[0].text);
+
+      expect(parsed).toMatchObject({
+        status: 'error',
+        error: 'Could not resolve subject: handleMemryContext',
+        data: {
+          symbolResolution: {
+            resolver: 'bm25',
+            disambiguationOnly: true,
+            candidates: [
+              expect.objectContaining({
+                symbolId: 'target-symbol',
+                name: 'handleMemoryContext',
+                disambiguationOnly: true,
+              }),
+            ],
+          },
+        },
+      });
+      expect(mocks.querySymbolIndexRows).toHaveBeenCalledTimes(1);
+      expect(mocks.queryEdgesFrom).not.toHaveBeenCalled();
+    } finally {
+      if (originalFlag === undefined) {
+        delete process.env[BM25_SYMBOL_RESOLVER_ENV];
+      } else {
+        process.env[BM25_SYMBOL_RESOLVER_ENV] = originalFlag;
+      }
+    }
   });
 
   it('honors explicit edgeType for one-hop queries', async () => {
@@ -1360,6 +1481,104 @@ describe('code-graph-query handler', () => {
       { filePath: 'src/transitive.ts', depth: 2 },
     ]);
     expect(parsed.data.affectedFiles).not.toContainEqual({ filePath: 'src/low.ts', depth: 1 });
+  });
+
+  it('emits blast-radius why_included chains only when includeTrace is true', async () => {
+    mocks.resolveSubjectFilePath.mockReturnValue('src/a.ts');
+    mocks.getDb.mockReturnValue({
+      transaction: vi.fn((fn: (...args: unknown[]) => unknown) => fn),
+      prepare: vi.fn((sql: string) => ({
+        all: vi.fn(() => {
+          if (sql.includes('FROM code_edges edge')) {
+            return [
+              {
+                imported_file_path: 'src/a.ts',
+                importer_file_path: 'src/b.ts',
+                weight: 1,
+                metadata: JSON.stringify({ confidence: 0.9 }),
+              },
+              {
+                imported_file_path: 'src/b.ts',
+                importer_file_path: 'src/c.ts',
+                weight: 1,
+                metadata: JSON.stringify({ confidence: 0.8 }),
+              },
+              {
+                imported_file_path: 'src/c.ts',
+                importer_file_path: 'src/d.ts',
+                weight: 1,
+                metadata: JSON.stringify({ confidence: 0.7 }),
+              },
+            ];
+          }
+          return [];
+        }),
+        get: vi.fn(() => undefined),
+      })),
+    });
+
+    const compactResult = await handleCodeGraphQuery({
+      operation: 'blast_radius',
+      subject: 'src/a.ts',
+      includeTransitive: true,
+      maxDepth: 2,
+      minConfidence: 0.5,
+    });
+    const compactParsed = JSON.parse(compactResult.content[0].text);
+    expect(compactParsed.data.nodes[0]).not.toHaveProperty('why_included');
+    expect(compactParsed.data.affectedFiles[0]).not.toHaveProperty('why_included');
+
+    const tracedResult = await handleCodeGraphQuery({
+      operation: 'blast_radius',
+      subject: 'src/a.ts',
+      includeTransitive: true,
+      includeTrace: true,
+      maxDepth: 2,
+      minConfidence: 0.5,
+    });
+    const tracedParsed = JSON.parse(tracedResult.content[0].text);
+
+    expect(tracedParsed.data.nodes[0]).toMatchObject({
+      filePath: 'src/a.ts',
+      depth: 0,
+      isSeed: true,
+      why_included: {
+        depth: 0,
+        edgeChain: [],
+        confidence: 1,
+        ambiguous: false,
+        truncationReason: null,
+      },
+    });
+    expect(tracedParsed.data.affectedFiles).toEqual([
+      {
+        filePath: 'src/b.ts',
+        depth: 1,
+        why_included: {
+          depth: 1,
+          edgeChain: [
+            { fromFile: 'src/a.ts', toFile: 'src/b.ts', edgeType: 'IMPORTS', confidence: 0.9 },
+          ],
+          confidence: 0.9,
+          ambiguous: false,
+          truncationReason: null,
+        },
+      },
+      {
+        filePath: 'src/c.ts',
+        depth: 2,
+        why_included: {
+          depth: 2,
+          edgeChain: [
+            { fromFile: 'src/a.ts', toFile: 'src/b.ts', edgeType: 'IMPORTS', confidence: 0.9 },
+            { fromFile: 'src/b.ts', toFile: 'src/c.ts', edgeType: 'IMPORTS', confidence: 0.8 },
+          ],
+          confidence: 0.8,
+          ambiguous: false,
+          truncationReason: 'max_depth',
+        },
+      },
+    ]);
   });
 
   it('surfaces blast-radius ambiguity candidates without choosing a default node', async () => {

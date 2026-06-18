@@ -19,7 +19,7 @@ trigger_phrases:
 
 Current state:
 
-- The folder contains 13 active rule files spanning gate enforcement, tool routing, CLI dispatch, deep-skill workflow adoption, comment hygiene, memory-system and DB-topology rules, completion verification, deep-review, and naming conventions (see §2 Package Topology). It originated with just `gate-enforcement.md` and `gate-tool-routing.md`.
+- The folder contains 18 active rule files spanning gate enforcement, tool routing, CLI dispatch, deep-skill workflow adoption, comment hygiene, memory-system and DB-topology rules, completion verification, deep-review, naming conventions, fable governor constraints, automated-writer safety, regression-baseline discipline, finding verification, recursion control, and causal-graph semantics (see §2 Package Topology). It originated with just `gate-enforcement.md` and `gate-tool-routing.md`.
 - Rule files use frontmatter with `importanceTier: constitutional` and trigger phrases.
 - Constitutional rules are fixed-visibility records: `searchBoost: 3.0`, `alwaysSurface: true`, `decay: false`, `autoExpireDays: null`, and `maxTokens: 2000`.
 - Constitutional rules are permanent until edited or removed from this folder. They are not temporary memories and must not age out through decay.
@@ -32,16 +32,21 @@ Current state:
 ```text
 constitutional/
 +-- bash-output-truncation-verdict-visibility.md  # Make command verdicts visible despite Bash output truncation
++-- automated-writers-never-overwrite-manual.md   # Automated writers must preserve manual evidence and edits
 +-- cli-dispatch-skill-preload.md                 # Read cli-X/SKILL.md before composing any CLI dispatch prompt
 +-- code-graph-scope-intent.md                    # The repo-wide code-graph scope here is an intentional owner override
 +-- comment-hygiene.md                            # No ephemeral artifact pointers (ADR/REQ/spec paths) in code comments
 +-- deep-skill-workflow-required.md               # Use the deep skill command or workflow, never hand-roll a manual substitute
++-- entity-cooccurrence-is-not-causal.md          # Co-occurrence is not causal-graph evidence by itself
++-- fable-governor.md                             # Fable integration boundaries and governor constraints
++-- finding-is-a-hypothesis.md                    # Confirm findings against real code before acting
 +-- gate-enforcement.md                           # Gate edge cases: compaction recovery + continuation validation
 +-- gate-tool-routing.md                          # Search and retrieval routing decision tree
 +-- main-branch-direct-push.md                    # Owner's AIs push directly to main; the bypass is authorized
-+-- memory-db-file-topology.md                    # Index DB and vector stores are separate files; treat as one unit
 +-- memory-system-spec-kit-only.md                # Use Spec Kit Memory only; never write Claude native memory unprompted
 +-- post-implementation-deep-review.md            # Mandatory deep-review after substantive ships
++-- recursion-control.md                          # Bound recursive self-improvement and loop dispatch
++-- regression-baseline-and-delta.md              # Capture baseline and report deltas before no-regression claims
 +-- spec-folder-naming.md                         # Spec-folder naming and rename conventions
 +-- verify-before-completion-claims.md            # Gate completion claims on a positive check you actually read
 `-- README.md                                     # Folder topology and editing guidance
@@ -89,16 +94,21 @@ README.md -> replacement for the rule files themselves
 ```text
 constitutional/
 +-- bash-output-truncation-verdict-visibility.md  # Make command verdicts visible despite Bash output truncation
++-- automated-writers-never-overwrite-manual.md   # Automated writers must preserve manual evidence and edits
 +-- cli-dispatch-skill-preload.md                 # Read cli-X/SKILL.md before composing any CLI dispatch prompt
 +-- code-graph-scope-intent.md                    # The repo-wide code-graph scope here is an intentional owner override
 +-- comment-hygiene.md                            # No ephemeral artifact pointers (ADR/REQ/spec paths) in code comments
 +-- deep-skill-workflow-required.md               # Use the deep skill command or workflow, never hand-roll a manual substitute
++-- entity-cooccurrence-is-not-causal.md          # Co-occurrence is not causal-graph evidence by itself
++-- fable-governor.md                             # Fable integration boundaries and governor constraints
++-- finding-is-a-hypothesis.md                    # Confirm findings against real code before acting
 +-- gate-enforcement.md                           # Gate edge cases: compaction recovery + continuation validation
 +-- gate-tool-routing.md                          # Search and retrieval routing decision tree
 +-- main-branch-direct-push.md                    # Owner's AIs push directly to main; the bypass is authorized
-+-- memory-db-file-topology.md                    # Index DB and vector stores are separate files; treat as one unit
 +-- memory-system-spec-kit-only.md                # Use Spec Kit Memory only; never write Claude native memory unprompted
 +-- post-implementation-deep-review.md            # Mandatory deep-review after substantive ships
++-- recursion-control.md                          # Bound recursive self-improvement and loop dispatch
++-- regression-baseline-and-delta.md              # Capture baseline and report deltas before no-regression claims
 +-- spec-folder-naming.md                         # Spec-folder naming and rename conventions
 +-- verify-before-completion-claims.md            # Gate completion claims on a positive check you actually read
 `-- README.md                                     # This folder guide
@@ -113,16 +123,21 @@ Do not document `.DS_Store` or other local machine artifacts as part of the pack
 | File | Responsibility |
 |---|---|
 | `bash-output-truncation-verdict-visibility.md` | Never infer a command result from blank/truncated Bash output; make verdicts land in the first ~2KB. |
+| `automated-writers-never-overwrite-manual.md` | Automated writers must not overwrite manual evidence, decisions, or user-authored content. |
 | `cli-dispatch-skill-preload.md` | MUST `Read` `cli-X/SKILL.md` before composing any CLI dispatch prompt (model-specific prompt contracts). |
 | `code-graph-scope-intent.md` | The repo-wide code-graph index scope is a deliberate owner env override, not a misconfiguration. |
 | `comment-hygiene.md` | Never embed spec paths or packet/ADR/REQ/task/finding ids in code comments; keep the durable WHY. |
 | `deep-skill-workflow-required.md` | Use the deep skill's command, agent or workflow; never hand-roll a manual cli-* substitute for a deep loop. |
+| `entity-cooccurrence-is-not-causal.md` | Treat entity co-occurrence as retrieval evidence only, not causal-graph evidence. |
+| `fable-governor.md` | Keep fable governor behavior bounded to its documented runtime contract. |
+| `finding-is-a-hypothesis.md` | Treat every finding as a hypothesis until it is verified against the real code or symptom. |
 | `gate-enforcement.md` | Gate edge cases: compaction recovery and continuation validation (full gate definitions in AGENTS.md §2). |
 | `gate-tool-routing.md` | Search and retrieval routing across memory, code graph, and the FTS fallback chain. |
 | `main-branch-direct-push.md` | Owner's AIs push directly to `main`; the protected-branch bypass is expected and authorized. |
-| `memory-db-file-topology.md` | The index DB and embedding vectors live in separate files; wipe/restore/integrity-check them as one unit. |
 | `memory-system-spec-kit-only.md` | Use Spec Kit Memory for all saves; never write Claude native memory unless explicitly asked. |
 | `post-implementation-deep-review.md` | Run a deep-review after every substantive implementation phase or when uncertain about shipped code. |
+| `recursion-control.md` | Bound recursive workflows, self-improvement loops, and repeated delegated passes. |
+| `regression-baseline-and-delta.md` | Capture a baseline before no-regression claims and report the delta after verification. |
 | `spec-folder-naming.md` | `NNN-short-name` convention and the rename/move procedure (`git mv`, never delete + recreate). |
 | `verify-before-completion-claims.md` | Gate every completion claim on a positive check whose result you actually read. |
 | `README.md` | Explains folder ownership, file topology and validation steps. |
@@ -174,7 +189,7 @@ Main flow:
 
 | Entrypoint | Type | Purpose |
 |---|---|---|
-| `*.md` rule files (13) | Rule document | Always-surfaced constitutional guidance; see §4 Key Files for the full list. |
+| `*.md` rule files (18) | Rule document | Always-surfaced constitutional guidance; see §4 Key Files for the full list. |
 | `memory_search({ includeConstitutional: true })` | MCP tool behavior | Returns constitutional records before query-relevant records by default. |
 | `memory_match_triggers({ prompt })` | MCP tool behavior | Surfaces matching rules from trigger phrases. |
 | `memory_save({ filePath })` | MCP tool behavior | Indexes a single constitutional rule file. |

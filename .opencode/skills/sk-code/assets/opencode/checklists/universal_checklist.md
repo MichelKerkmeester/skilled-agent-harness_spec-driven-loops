@@ -1,6 +1,13 @@
 ---
 title: Universal Code Quality Checklist
 description: Language-agnostic quality checks that apply to all code files in the OpenCode development environment.
+trigger_phrases:
+  - "universal code quality checklist"
+  - "language agnostic checks"
+  - "file header checklist"
+  - "numbered all caps sections"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Universal Code Quality Checklist

@@ -19,7 +19,7 @@ trigger_phrases:
 
 scaffold-debug-delegation.sh generates a structured debug-delegation.md from a failure trail, versions filenames on collision, and never auto-dispatches @debug so the operator keeps explicit control of escalation.
 
-The script is the structured-handoff half of the failure-threshold offer flow. After three or more task failures during `/spec_kit:implement` or `/spec_kit:complete`, the workflow YAML surfaces a y/n/skip prompt asking the operator whether they want a pre-filled debug handoff document. On opt-in, the operator runs the scaffold script, which writes a `debug-delegation.md` into the spec folder with a known schema. The operator then dispatches the Task tool to @debug themselves, using the scaffold as the structured handoff payload. The workflow never invokes @debug autonomously.
+The script is the structured-handoff half of the failure-threshold offer flow. After three or more task failures during `/speckit:implement` or `/speckit:complete`, the workflow YAML surfaces a y/n/skip prompt asking the operator whether they want a pre-filled debug handoff document. On opt-in, the operator runs the scaffold script, which writes a `debug-delegation.md` into the spec folder with a known schema. The operator then dispatches the Task tool to @debug themselves, using the scaffold as the structured handoff payload. The workflow never invokes @debug autonomously.
 
 ---
 
@@ -37,7 +37,7 @@ Filename versioning is collision-driven, not timestamp-driven. The first invocat
 
 ### Async & Safety
 
-The two workflow YAMLs that drive the offer flow are `spec_kit_implement_auto.yaml` and `spec_kit_complete_auto.yaml`. Each contains a `debug_delegation` or `debug_escalation` block whose action is to prompt the operator with `y / continue manually / skip` and never to call the Task tool with `subagent_type: "debug"`. Together with the bash-only scaffold script, this preserves the user-invoked-only contract for @debug while still giving repeat-failure flows a clean handoff path.
+The two workflow YAMLs that drive the offer flow are `speckit_implement_auto.yaml` and `speckit_complete_auto.yaml`. Each contains a `debug_delegation` or `debug_escalation` block whose action is to prompt the operator with `y / continue manually / skip` and never to call the Task tool with `subagent_type: "debug"`. Together with the bash-only scaffold script, this preserves the user-invoked-only contract for @debug while still giving repeat-failure flows a clean handoff path.
 
 ---
 
@@ -48,8 +48,8 @@ The two workflow YAMLs that drive the offer flow are `spec_kit_implement_auto.ya
 | File | Layer | Role |
 |------|-------|------|
 | `.opencode/skills/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh` | Script | Generates the five-section debug-delegation markdown from failure-trail flags and JSON attempt rows, with collision-driven file versioning |
-| `.opencode/commands/spec_kit/assets/spec_kit_implement_auto.yaml` | Workflow asset | Carries the debug_delegation block that prompts the operator with y / continue manually / skip after the failure threshold |
-| `.opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml` | Workflow asset | Carries the debug_escalation block that prompts the operator without autonomous @debug dispatch |
+| `.opencode/commands/speckit/assets/speckit_implement_auto.yaml` | Workflow asset | Carries the debug_delegation block that prompts the operator with y / continue manually / skip after the failure threshold |
+| `.opencode/commands/speckit/assets/speckit_complete_auto.yaml` | Workflow asset | Carries the debug_escalation block that prompts the operator without autonomous @debug dispatch |
 | `.opencode/agents/debug.md` | Agent | Defines the Debug Context Handoff schema that the scaffold script writes against |
 
 ### Validation And Tests

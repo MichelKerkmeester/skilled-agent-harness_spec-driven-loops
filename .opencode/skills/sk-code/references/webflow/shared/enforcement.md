@@ -2,11 +2,13 @@
 title: "Webflow Code Style Enforcement: Cross-Language Workflow"
 description: "Enforcement workflow, validation prompts, and remediation guidance for cross-language style rules (file headers, section organization, comment quality). Per-language enforcement (JS naming, JS init patterns, CSS BEM, CSS attribute selectors, CSS animation properties) lives in the matching language quality_standards.md."
 trigger_phrases:
-  - "webflow enforcement"
-  - "code style enforcement"
-  - "webflow gate"
-  - "pre-completion gate"
-  - "P0 P1 P2 violations"
+  - "webflow style enforcement"
+  - "code style enforcement gate"
+  - "pre completion gate"
+  - "p0 p1 p2 violations"
+  - "validation prompts remediation"
+importance_tier: important
+contextType: implementation
 ---
 
 # Webflow Code Style Enforcement: Cross-Language Workflow

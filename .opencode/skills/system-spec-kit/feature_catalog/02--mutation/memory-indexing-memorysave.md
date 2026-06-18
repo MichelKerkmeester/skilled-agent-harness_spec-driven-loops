@@ -24,7 +24,7 @@ This is how you add new knowledge to the system. You point it at a file and it r
 
 ### Entry Point & Content Routing
 
-`memory_save` is the save entry point for the canonical packet continuity path. You point it at a packet document or other supported markdown input, and it routes the content through `contentRouter`, applies the selected merge behavior via `anchorMergeOperation`, and writes the result through `atomicIndexMemory` inside the existing spec-folder lock. `_memory.continuity` now lives as supporting frontmatter state inside the spec doc, and `/spec_kit:resume` remains the canonical recovery surface.
+`memory_save` is the save entry point for the canonical packet continuity path. You point it at a packet document or other supported markdown input, and it routes the content through `contentRouter`, applies the selected merge behavior via `anchorMergeOperation`, and writes the result through `atomicIndexMemory` inside the existing spec-folder lock. `_memory.continuity` now lives as supporting frontmatter state inside the spec doc, and `/speckit:resume` remains the canonical recovery surface.
 
 The canonical router classifies save chunks across 8 categories: `narrative_progress`, `narrative_delivery`, `decision`, `handover_state`, `research_finding`, `task_update`, `metadata_only`, and `drop`. Tier 1 handles structured and heuristic routes, Tier 2 compares against the routing prototype library, and Tier 3 is wired into the live save handler by default when the configured LLM endpoint is available. Delivery cues favor sequencing, gating, rollout, and verification language over generic implementation verbs; the handover/drop boundary keeps hard transcript or telemetry wrappers on the refuse-to-route side and lets softer operational phrases survive when the chunk is clearly a stop-state note.
 
@@ -34,7 +34,7 @@ The canonical router classifies save chunks across 8 categories: `narrative_prog
 
 Before the indexed write, the handler normalizes content, generates embeddings, runs prediction-error arbitration, applies the three-layer quality gate, and performs reconsolidation where enabled. The save path records mutation history, invalidates caches, and preserves async-embedding behavior — all feeding spec-doc anchored continuity rather than the legacy memory-file path.
 
-Every successful canonical save now refreshes packet metadata and backfills any missing `description.json` and `graph-metadata.json` under research iteration folders. That means one `memory_save` call updates the merged spec doc, the packet metadata, and any newly absent research metadata surfaces in a single pass.
+The direct MCP `memory_save` lane indexes document content and does not refresh packet metadata files. On mutating packet-doc saves, success responses include `metadataRefresh: { refreshed:false, refreshedBy:'generate-context save lane' }` and a hint to run the generate-context save lane when `description.json` or `graph-metadata.json` must be current. The `/memory:save` command's generate-context lane remains the path that refreshes packet metadata and backfills metadata surfaces.
 
 ### Prediction Error (PE) Arbitration
 
@@ -96,6 +96,7 @@ Safety mechanisms include path and file-type allowlists, pre-flight anchor/dupli
 | `mcp_server/handlers/save/embedding-pipeline.ts` | Handler | Embedding cache lookup, provider generation, and async/deferred pending behavior |
 | `mcp_server/handlers/save/pe-orchestration.ts` | Handler | Save-path PE decision evaluation and early-return handling |
 | `mcp_server/handlers/save/create-record.ts` | Handler | Record creation, BM25 insert, lineage transition, and save-time history writes |
+| `mcp_server/handlers/save/response-builder.ts` | Handler | Success envelope builder, including metadata-refresh advisories for content-only saves |
 | `mcp_server/handlers/save/spec-folder-mutex.ts` | Handler | Per-spec-folder serialization around save execution |
 | `mcp_server/handlers/chunking-orchestrator.ts` | Handler | Chunked indexing path for large packet documents |
 | `mcp_server/handlers/quality-loop.ts` | Handler | Verify-fix-verify quality loop before storage |

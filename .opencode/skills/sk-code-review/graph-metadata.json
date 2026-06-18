@@ -22,7 +22,7 @@
     "conflicts_with": [],
     "prerequisite_for": [
       {
-        "target": "deep-review",
+        "target": "deep-loop-workflows",
         "weight": 0.8,
         "context": "deep-review depends on review baseline"
       }
@@ -33,7 +33,7 @@
       "sk-code"
     ],
     "related_to": [
-      "deep-review",
+      "deep-loop-workflows",
       "system-spec-kit",
       "sk-doc"
     ]
@@ -93,9 +93,9 @@
       ".opencode/skills/sk-code-review/SKILL.md",
       ".opencode/skills/sk-code-review/README.md",
       ".opencode/skills/sk-code-review/references/review_core.md",
-      ".opencode/skills/sk-code-review/references/security_checklist.md",
-      ".opencode/skills/sk-code-review/references/code_quality_checklist.md",
-      ".opencode/skills/sk-code-review/references/test_quality_checklist.md",
+      ".opencode/skills/sk-code-review/assets/security_checklist.md",
+      ".opencode/skills/sk-code-review/assets/code_quality_checklist.md",
+      ".opencode/skills/sk-code-review/assets/test_quality_checklist.md",
       ".opencode/agents/review.md",
       ".claude/agents/review.md"
     ],
@@ -121,19 +121,19 @@
       {
         "name": "security_checklist",
         "kind": "reference",
-        "path": ".opencode/skills/sk-code-review/references/security_checklist.md",
+        "path": ".opencode/skills/sk-code-review/assets/security_checklist.md",
         "source": "derived"
       },
       {
         "name": "code_quality_checklist",
         "kind": "reference",
-        "path": ".opencode/skills/sk-code-review/references/code_quality_checklist.md",
+        "path": ".opencode/skills/sk-code-review/assets/code_quality_checklist.md",
         "source": "derived"
       },
       {
         "name": "test_quality_checklist",
         "kind": "reference",
-        "path": ".opencode/skills/sk-code-review/references/test_quality_checklist.md",
+        "path": ".opencode/skills/sk-code-review/assets/test_quality_checklist.md",
         "source": "derived"
       },
       {
@@ -154,7 +154,7 @@
       "SKILL.md",
       "README.md",
       "references/review_core.md",
-      "references/security_checklist.md",
+      "assets/security_checklist.md",
       "references/quick_reference.md"
     ],
     "created_at": "2026-04-13T00:00:00Z",

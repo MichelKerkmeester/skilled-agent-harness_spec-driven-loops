@@ -23,6 +23,14 @@ import { classifyEncodingIntent } from '../../lib/search/encoding-intent.js';
 import { isEncodingIntentEnabled } from '../../lib/search/search-flags.js';
 import { applyPostInsertMetadata } from './db-helpers.js';
 import { inferDocumentTypeFromPath } from '../../lib/config/memory-types.js';
+import {
+  applyWriteProvenance,
+  deriveSourceKindFromContext,
+  normalizeSourceKind,
+  persistSourceKind,
+  type SourceKind,
+  type WriteProvenanceContext,
+} from '../../lib/storage/write-provenance.js';
 
 // Feature catalog: Memory indexing (memory_save)
 // Feature catalog: Per-memory history log
@@ -63,6 +71,12 @@ type ScopePostInsertMetadata = Partial<{
   agent_id: string;
   session_id: string;
 }>;
+
+export {
+  deriveSourceKindFromContext,
+  normalizeSourceKind,
+  type SourceKind,
+};
 
 function normalizeOptionalString(value: unknown): string | null {
   if (typeof value !== 'string') {
@@ -271,6 +285,7 @@ export function createMemoryRecord(
   peDecision: PeDecision,
   scope: MemoryScopeMatch = {},
   identityHints: CreateRecordIdentityHints = {},
+  provenance: WriteProvenanceContext = {},
 ): number {
   const recordIdentity = resolveCreateRecordIdentity(parsed, filePath, identityHints);
   const routedDocumentType = inferDocumentTypeFromPath(recordIdentity.targetDocPath);
@@ -309,9 +324,10 @@ export function createMemoryRecord(
 
     // Retire the same-key predecessor before inserting the new active version so the
     // active-row uniqueness guard holds at insert time; lineage and history persist.
-    if (predecessorMemoryId != null) {
-      retirePredecessorForActiveReindex(database, predecessorMemoryId);
-    }
+    // The carry surfaces a human's tier/source-kind to re-stamp on the successor.
+    const reindexCarry = predecessorMemoryId != null
+      ? retirePredecessorForActiveReindex(database, predecessorMemoryId)
+      : null;
 
     const memory_id: number = embedding
       ? vectorIndex.indexMemory({
@@ -351,6 +367,12 @@ export function createMemoryRecord(
 
     const fileMetadata = incrementalIndex.getFileMetadata(recordIdentity.targetDocPath);
     const fileMtimeMs = fileMetadata ? fileMetadata.mtime : null;
+    applyWriteProvenance(database, memory_id, {
+      tool: 'memory_save',
+      filePath: recordIdentity.targetDocPath,
+      scope,
+      ...provenance,
+    });
 
     applyPostInsertMetadata(database, memory_id, {
       content_hash: parsed.contentHash,
@@ -368,6 +390,16 @@ export function createMemoryRecord(
       quality_flags: JSON.stringify(parsed.qualityFlags ?? []),
       ...buildScopePostInsertMetadata(scope),
     });
+
+    // Re-stamp after the metadata write so a manual predecessor's tier and human
+    // source-kind carry to the successor instead of being reset to the incoming
+    // default — keeping the automated-writers-never-overwrite-manual guarantee.
+    if (reindexCarry != null) {
+      database
+        .prepare('UPDATE memory_index SET importance_tier = ? WHERE id = ?')
+        .run(reindexCarry.importanceTier, memory_id);
+      persistSourceKind(database, memory_id, reindexCarry.sourceKind as SourceKind);
+    }
 
     if (embedding && peDecision.action === predictionErrorGate.ACTION.CREATE_LINKED && peDecision.existingMemoryId != null) {
       try {

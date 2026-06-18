@@ -13,6 +13,7 @@ import {
   recordTierDowngradeAudit,
   shouldIndexForMemory,
 } from '@spec-kit/mcp-server/api';
+import { acquireDbInstanceLock, releaseDbInstanceLocks } from '@spec-kit/mcp-server/api/db-lock';
 import { resolveActiveProfileDbPath } from '@spec-kit/shared/embeddings/profile';
 import { isMainModule } from '../lib/esm-entry.js';
 
@@ -443,6 +444,9 @@ async function main(): Promise<void> {
 
   try {
     const dbPath = resolveCleanupDbPath(process.argv.slice(2));
+    // Single-writer guard: refuse to mutate a database a live daemon (or
+    // another maintenance run) currently owns — stop the daemon first.
+    acquireDbInstanceLock(dbPath);
     const db = new Database(dbPath);
     database = db;
     loadSqliteVec(db);
@@ -486,6 +490,7 @@ async function main(): Promise<void> {
     process.exit(1);
   } finally {
     database?.close();
+    releaseDbInstanceLocks();
   }
 }
 

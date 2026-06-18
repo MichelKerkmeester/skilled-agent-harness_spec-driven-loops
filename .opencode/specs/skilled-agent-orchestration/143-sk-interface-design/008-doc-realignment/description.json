@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/143-sk-interface-design/008-doc-realignment",
+  "description": "Feature Specification: doc realignment to the parity keystone",
+  "keywords": [
+    "feature",
+    "specification",
+    "doc",
+    "realignment",
+    "parity",
+    "keystone"
+  ],
+  "lastUpdated": "2026-06-14T08:30:50.887Z",
+  "specId": "008",
+  "folderSlug": "doc-realignment",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "143-sk-interface-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

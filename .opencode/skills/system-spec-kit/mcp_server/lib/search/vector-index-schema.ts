@@ -18,6 +18,7 @@ import {
 } from './vector-index-types.js';
 import { init as initHistory } from '../storage/history.js';
 import { getSpecsBasePaths } from './folder-discovery.js';
+import { ensureCausalEdgeTombstoneSchema } from '../causal/sweep.js';
 
 // Feature catalog: Database and schema safety
 // Feature catalog: Lineage state active projection and asOf resolution
@@ -48,7 +49,13 @@ const MEMORY_LINEAGE_TABLE = 'memory_lineage';
 const ACTIVE_MEMORY_PROJECTION_TABLE = 'active_memory_projection';
 const LEGACY_MEMORY_LINEAGE_TABLE = 'hydra_memory_lineage';
 const LEGACY_ACTIVE_MEMORY_PROJECTION_TABLE = 'hydra_active_memory_projection';
-const REQUIRED_TABLES: readonly string[] = ['memory_index', 'schema_version'];
+const REQUIRED_TABLES: readonly string[] = [
+  'memory_index',
+  'schema_version',
+  'causal_edge_tombstones',
+  'memory_trigger_embeddings',
+  'memory_idempotency_receipts',
+];
 const REQUIRED_INDEXES_BY_TABLE: Readonly<Record<string, readonly string[]>> = {
   memory_index: [
     'idx_stability',
@@ -60,6 +67,10 @@ const REQUIRED_INDEXES_BY_TABLE: Readonly<Record<string, readonly string[]>> = {
     'idx_post_insert_enrichment_incomplete',
     'idx_save_parent_content_hash_scope',
     'idx_save_parent_canonical_path',
+    'idx_memory_chunk_identity',
+    'idx_memory_chunk_fingerprint',
+    'idx_memory_active_recall',
+    'idx_memory_purgeable_retention',
     // Active-row uniqueness guard: every v30+ DB builds this unique index. Listing it
     // here lets the compatibility check detect a DB whose guard was dropped or never
     // built, instead of silently passing a database with a broken active-row invariant.
@@ -68,6 +79,17 @@ const REQUIRED_INDEXES_BY_TABLE: Readonly<Record<string, readonly string[]>> = {
   memory_conflicts: [
     'idx_conflicts_memory',
     'idx_conflicts_timestamp',
+  ],
+  causal_edge_tombstones: [
+    'idx_causal_edge_tombstones_identity',
+    'idx_causal_edge_tombstones_tombstoned_at',
+    'idx_causal_edge_tombstones_reason',
+  ],
+  memory_trigger_embeddings: [
+    'idx_memory_trigger_embeddings_status',
+  ],
+  memory_idempotency_receipts: [
+    'idx_memory_idempotency_receipts_operation',
   ],
 };
 const REQUIRED_MEMORY_INDEX_COLUMNS: readonly string[] = [
@@ -83,6 +105,16 @@ const REQUIRED_MEMORY_INDEX_COLUMNS: readonly string[] = [
   'post_insert_enrichment_state',
   'post_insert_enrichment_completed_at',
   'post_insert_enrichment_version',
+  'near_duplicate_of',
+  'last_dedup_checked_at',
+  'source_kind',
+  'delete_after',
+  'deleted_at',
+  'chunk_id',
+  'chunk_fingerprint',
+  'chunk_kind',
+  'chunk_start_line',
+  'chunk_end_line',
 ];
 const REQUIRED_MEMORY_CONFLICT_COLUMNS: readonly string[] = [
   'id',
@@ -99,6 +131,43 @@ const REQUIRED_MEMORY_CONFLICT_COLUMNS: readonly string[] = [
   'contradiction_type',
   'spec_folder',
   'created_at',
+];
+const REQUIRED_CAUSAL_EDGE_TOMBSTONE_COLUMNS: readonly string[] = [
+  'id',
+  'source_id',
+  'target_id',
+  'relation',
+  'tombstoned_at',
+  'reason',
+  'lifecycle_generation',
+  'restore_metadata',
+];
+const REQUIRED_TRIGGER_EMBEDDING_COLUMNS: readonly string[] = [
+  'memory_id',
+  'phrase_hash',
+  'profile_key',
+  'input_kind',
+  'model_id',
+  'dimensions',
+  'embedding_status',
+  'failure_reason',
+  'created_at',
+  'updated_at',
+];
+const REQUIRED_IDEMPOTENCY_RECEIPT_COLUMNS: readonly string[] = [
+  'receipt_key',
+  'operation',
+  'content_hash',
+  'request_fingerprint',
+  'payload_hash',
+  'response_payload',
+  'memory_id',
+  'created_at',
+  'updated_at',
+];
+const CAUSAL_EDGE_PROVENANCE_COLUMNS: ReadonlyArray<{ name: string; sql: string }> = [
+  { name: 'confidence', sql: 'ALTER TABLE causal_edges ADD COLUMN confidence REAL DEFAULT 1.0' },
+  { name: 'extraction_method', sql: "ALTER TABLE causal_edges ADD COLUMN extraction_method TEXT DEFAULT 'manual'" },
 ];
 const REQUIRED_LINEAGE_TABLES: readonly string[] = [
   MEMORY_LINEAGE_TABLE,
@@ -149,6 +218,30 @@ const POST_INSERT_ENRICHMENT_INCOMPLETE_INDEX_SQL = `
   CREATE INDEX IF NOT EXISTS idx_post_insert_enrichment_incomplete
   ON memory_index(post_insert_enrichment_status, id)
   WHERE post_insert_enrichment_status != 'complete'
+`;
+const MEMORY_CHUNK_IDENTITY_INDEX_SQL = `
+  CREATE INDEX IF NOT EXISTS idx_memory_chunk_identity
+  ON memory_index(file_path, chunk_id)
+  WHERE chunk_id IS NOT NULL
+`;
+const MEMORY_CHUNK_FINGERPRINT_INDEX_SQL = `
+  CREATE INDEX IF NOT EXISTS idx_memory_chunk_fingerprint
+  ON memory_index(chunk_fingerprint)
+  WHERE chunk_fingerprint IS NOT NULL
+`;
+const MEMORY_ACTIVE_RECALL_INDEX_SQL = `
+  CREATE INDEX IF NOT EXISTS idx_memory_active_recall
+  ON memory_index(spec_folder, document_type, updated_at DESC, id DESC)
+  WHERE deleted_at IS NULL
+`;
+const MEMORY_PURGEABLE_RETENTION_INDEX_SQL = `
+  CREATE INDEX IF NOT EXISTS idx_memory_purgeable_retention
+  ON memory_index(delete_after, deleted_at, id)
+  WHERE deleted_at IS NOT NULL
+`;
+const MEMORY_TRIGGER_EMBEDDINGS_STATUS_INDEX_SQL = `
+  CREATE INDEX IF NOT EXISTS idx_memory_trigger_embeddings_status
+  ON memory_trigger_embeddings(embedding_status, updated_at)
 `;
 
 function hasTable(database: Database.Database, tableName: string): boolean {
@@ -401,6 +494,90 @@ function logDuplicateColumnMigrationSkip(columnName: string, error: unknown): vo
   });
 }
 
+function ensureIncrementalIndexFoundationSchema(database: Database.Database, context: string): void {
+  database.exec(`
+    CREATE TABLE IF NOT EXISTS memoization_records (
+      component_path TEXT NOT NULL,
+      input_fingerprint TEXT NOT NULL,
+      code_hash TEXT NOT NULL,
+      output_blob TEXT NOT NULL,
+      computed_at TEXT NOT NULL DEFAULT (datetime('now')),
+      PRIMARY KEY (component_path, input_fingerprint, code_hash)
+    )
+  `);
+
+  database.exec(`
+    CREATE TABLE IF NOT EXISTS dependency_edges (
+      parent_path TEXT NOT NULL,
+      child_path TEXT NOT NULL,
+      kind TEXT NOT NULL,
+      created_at TEXT NOT NULL DEFAULT (datetime('now')),
+      PRIMARY KEY (parent_path, child_path, kind),
+      CHECK(parent_path != child_path)
+    )
+  `);
+
+  createRequiredIndex(
+    database,
+    'idx_memoization_records_component',
+    'CREATE INDEX IF NOT EXISTS idx_memoization_records_component ON memoization_records(component_path)',
+    context,
+  );
+  createRequiredIndex(
+    database,
+    'idx_dependency_edges_parent',
+    'CREATE INDEX IF NOT EXISTS idx_dependency_edges_parent ON dependency_edges(parent_path)',
+    context,
+  );
+  createRequiredIndex(
+    database,
+    'idx_dependency_edges_child',
+    'CREATE INDEX IF NOT EXISTS idx_dependency_edges_child ON dependency_edges(child_path)',
+    context,
+  );
+  createRequiredIndex(
+    database,
+    'idx_dependency_edges_kind',
+    'CREATE INDEX IF NOT EXISTS idx_dependency_edges_kind ON dependency_edges(kind)',
+    context,
+  );
+}
+
+function ensureMemoryChunkMetadataColumns(database: Database.Database, context: string): void {
+  if (!hasTable(database, 'memory_index')) {
+    logger.warn(`${context}: memory_index missing; skipping chunk metadata columns`);
+    return;
+  }
+
+  const columns = new Set(getTableColumns(database, 'memory_index'));
+  const chunkColumns: Array<{ name: string; sql: string }> = [
+    { name: 'chunk_id', sql: 'ALTER TABLE memory_index ADD COLUMN chunk_id TEXT' },
+    { name: 'chunk_fingerprint', sql: 'ALTER TABLE memory_index ADD COLUMN chunk_fingerprint TEXT' },
+    { name: 'chunk_kind', sql: 'ALTER TABLE memory_index ADD COLUMN chunk_kind TEXT' },
+    { name: 'chunk_start_line', sql: 'ALTER TABLE memory_index ADD COLUMN chunk_start_line INTEGER' },
+    { name: 'chunk_end_line', sql: 'ALTER TABLE memory_index ADD COLUMN chunk_end_line INTEGER' },
+  ];
+
+  for (const column of chunkColumns) {
+    if (columns.has(column.name)) {
+      continue;
+    }
+    try {
+      database.exec(column.sql);
+      columns.add(column.name);
+      logger.info(`${context}: Added memory_index.${column.name}`);
+    } catch (error: unknown) {
+      if (!get_error_message(error).includes('duplicate column')) {
+        throw error;
+      }
+      logDuplicateColumnMigrationSkip(column.name, error);
+    }
+  }
+
+  createRequiredIndex(database, 'idx_memory_chunk_identity', MEMORY_CHUNK_IDENTITY_INDEX_SQL, context);
+  createRequiredIndex(database, 'idx_memory_chunk_fingerprint', MEMORY_CHUNK_FINGERPRINT_INDEX_SQL, context);
+}
+
 function getMigrationAllowedBasePaths(): string[] {
   const workspaceRoot = process.cwd();
   const envPaths = process.env.MEMORY_ALLOWED_PATHS
@@ -438,8 +615,225 @@ function getMigrationAllowedBasePaths(): string[] {
 // V23: One-time spec_folder re-canonicalization + session_state migration
 // V24: Add trigger-cache source and temporal contiguity indexes
 // V30: Add post-insert enrichment completion markers
+// V31: Add incremental-index memo tables and chunk metadata
+// V32: Add causal edge tombstone audit table
+// V33: Add generated causal-edge provenance columns
+// V34: Add derived trigger embedding status table
+// V35: Add server-derived write provenance kind
+// V36: Add idempotency receipts and near-duplicate markers
+// V37: Add tombstone column and active/purgeable memory partitions
 /** Current schema version for vector-index migrations. */
-export const SCHEMA_VERSION = 30;
+export const SCHEMA_VERSION = 37;
+
+const SOURCE_KIND_COLUMN_SQL = "ALTER TABLE memory_index ADD COLUMN source_kind TEXT NOT NULL DEFAULT 'system' CHECK(source_kind IN ('human', 'agent', 'system', 'import', 'feedback'))";
+const MEMORY_IDEMPOTENCY_RECEIPTS_OPERATION_INDEX_SQL = `
+  CREATE INDEX IF NOT EXISTS idx_memory_idempotency_receipts_operation
+  ON memory_idempotency_receipts(operation, created_at DESC)
+`;
+
+function addColumnIfMissing(
+  database: Database.Database,
+  tableName: string,
+  columns: Set<string>,
+  column: { name: string; sql: string },
+  context: string,
+): void {
+  if (columns.has(column.name)) {
+    return;
+  }
+  try {
+    database.exec(column.sql);
+    columns.add(column.name);
+    logger.info(`${context}: Added ${tableName}.${column.name}`);
+  } catch (error: unknown) {
+    if (!get_error_message(error).includes('duplicate column')) {
+      throw error;
+    }
+    logDuplicateColumnMigrationSkip(column.name, error);
+  }
+}
+
+export function ensureIdempotencyReceiptSchema(database: Database.Database, context: string): void {
+  database.exec(`
+    CREATE TABLE IF NOT EXISTS memory_idempotency_receipts (
+      receipt_key TEXT PRIMARY KEY,
+      operation TEXT NOT NULL,
+      content_hash TEXT,
+      request_fingerprint TEXT NOT NULL,
+      payload_hash TEXT NOT NULL,
+      response_payload TEXT NOT NULL,
+      memory_id INTEGER,
+      created_at TEXT NOT NULL DEFAULT (datetime('now')),
+      updated_at TEXT NOT NULL DEFAULT (datetime('now')),
+      FOREIGN KEY (memory_id) REFERENCES memory_index(id) ON DELETE SET NULL
+    )
+  `);
+  createRequiredIndex(
+    database,
+    'idx_memory_idempotency_receipts_operation',
+    MEMORY_IDEMPOTENCY_RECEIPTS_OPERATION_INDEX_SQL,
+    context,
+  );
+
+  if (!hasTable(database, 'memory_index')) {
+    logger.warn(`${context}: memory_index missing; skipping near-duplicate columns`);
+    return;
+  }
+
+  const columns = new Set(getTableColumns(database, 'memory_index'));
+  addColumnIfMissing(
+    database,
+    'memory_index',
+    columns,
+    { name: 'delete_after', sql: 'ALTER TABLE memory_index ADD COLUMN delete_after TEXT' },
+    context,
+  );
+  addColumnIfMissing(
+    database,
+    'memory_index',
+    columns,
+    { name: 'near_duplicate_of', sql: 'ALTER TABLE memory_index ADD COLUMN near_duplicate_of TEXT' },
+    context,
+  );
+  addColumnIfMissing(
+    database,
+    'memory_index',
+    columns,
+    { name: 'last_dedup_checked_at', sql: 'ALTER TABLE memory_index ADD COLUMN last_dedup_checked_at TEXT' },
+    context,
+  );
+}
+
+export function ensureMemoryIndexTombstonePartitions(database: Database.Database, context: string): void {
+  if (!hasTable(database, 'memory_index')) {
+    logger.warn(`${context}: memory_index missing; skipping tombstone partitions`);
+    return;
+  }
+
+  const columns = new Set(getTableColumns(database, 'memory_index'));
+  addColumnIfMissing(
+    database,
+    'memory_index',
+    columns,
+    { name: 'deleted_at', sql: 'ALTER TABLE memory_index ADD COLUMN deleted_at TEXT' },
+    context,
+  );
+  createRequiredIndex(database, 'idx_memory_active_recall', MEMORY_ACTIVE_RECALL_INDEX_SQL, context);
+  createRequiredIndex(database, 'idx_memory_purgeable_retention', MEMORY_PURGEABLE_RETENTION_INDEX_SQL, context);
+}
+
+function sourceKindFromProvenanceSource(value: unknown): 'human' | 'agent' | 'system' | 'import' | 'feedback' {
+  if (typeof value !== 'string' || value.trim().length === 0) {
+    return 'system';
+  }
+
+  const normalized = value.trim().toLowerCase();
+  if (/\b(human|manual|user|operator|author)\b/.test(normalized)) {
+    return 'human';
+  }
+  if (normalized.includes('feedback') || normalized.includes('validate') || normalized.includes('validation')) {
+    return 'feedback';
+  }
+  if (normalized.includes('import') || normalized.includes('ingest') || normalized.includes('scan') || normalized.includes('index')) {
+    return 'import';
+  }
+  if (/\b(agent|assistant|claude|codex|opencode|automation|bot)\b/.test(normalized)) {
+    return 'agent';
+  }
+  return 'system';
+}
+
+function ensureMemoryIndexSourceKindColumn(database: Database.Database, context: string): void {
+  if (!hasTable(database, 'memory_index')) {
+    logger.warn(`${context}: memory_index missing; skipping source_kind column`);
+    return;
+  }
+
+  const columns = new Set(getTableColumns(database, 'memory_index'));
+  if (!columns.has('source_kind')) {
+    try {
+      database.exec(SOURCE_KIND_COLUMN_SQL);
+      columns.add('source_kind');
+      logger.info(`${context}: Added memory_index.source_kind`);
+    } catch (error: unknown) {
+      if (!get_error_message(error).includes('duplicate column')) {
+        throw error;
+      }
+      logDuplicateColumnMigrationSkip('source_kind', error);
+    }
+  }
+
+  if (columns.has('provenance_source')) {
+    const rows = database.prepare(`
+      SELECT id, provenance_source
+      FROM memory_index
+      WHERE source_kind IS NULL OR TRIM(source_kind) = ''
+        OR source_kind NOT IN ('human', 'agent', 'system', 'import', 'feedback')
+        OR (source_kind = 'system' AND provenance_source IS NOT NULL AND TRIM(provenance_source) != '')
+    `).all() as Array<{ id: number; provenance_source: string | null }>;
+    const update = database.prepare('UPDATE memory_index SET source_kind = ? WHERE id = ?');
+    for (const row of rows) {
+      update.run(sourceKindFromProvenanceSource(row.provenance_source), row.id);
+    }
+  } else {
+    database.prepare(`
+      UPDATE memory_index
+      SET source_kind = 'system'
+      WHERE source_kind IS NULL OR TRIM(source_kind) = ''
+        OR source_kind NOT IN ('human', 'agent', 'system', 'import', 'feedback')
+    `).run();
+  }
+}
+
+function ensureCausalEdgeProvenanceColumns(database: Database.Database, context: string): void {
+  if (!hasTable(database, 'causal_edges')) {
+    logger.warn(`${context}: causal_edges missing; skipping generated-edge provenance columns`);
+    return;
+  }
+
+  const columns = new Set(getTableColumns(database, 'causal_edges'));
+  for (const column of CAUSAL_EDGE_PROVENANCE_COLUMNS) {
+    if (columns.has(column.name)) {
+      continue;
+    }
+    try {
+      database.exec(column.sql);
+      columns.add(column.name);
+      logger.info(`${context}: Added causal_edges.${column.name}`);
+    } catch (error: unknown) {
+      if (!get_error_message(error).includes('duplicate column')) {
+        throw error;
+      }
+      logDuplicateColumnMigrationSkip(column.name, error);
+    }
+  }
+}
+
+export function ensureMemoryTriggerEmbeddingsSchema(database: Database.Database, context: string): void {
+  database.exec(`
+    CREATE TABLE IF NOT EXISTS memory_trigger_embeddings (
+      memory_id INTEGER NOT NULL,
+      phrase_hash TEXT NOT NULL,
+      profile_key TEXT NOT NULL,
+      input_kind TEXT NOT NULL DEFAULT 'document' CHECK(input_kind IN ('document', 'query')),
+      model_id TEXT NOT NULL,
+      dimensions INTEGER NOT NULL,
+      embedding_status TEXT NOT NULL DEFAULT 'pending' CHECK(embedding_status IN ('pending', 'ready', 'failed')),
+      failure_reason TEXT,
+      created_at TEXT NOT NULL DEFAULT (datetime('now')),
+      updated_at TEXT NOT NULL DEFAULT (datetime('now')),
+      PRIMARY KEY (memory_id, phrase_hash, profile_key, input_kind),
+      FOREIGN KEY (memory_id) REFERENCES memory_index(id) ON DELETE CASCADE
+    )
+  `);
+
+  createRequiredIndex(
+    database,
+    'idx_memory_trigger_embeddings_status',
+    MEMORY_TRIGGER_EMBEDDINGS_STATUS_INDEX_SQL,
+    context,
+  );
+}
 
 /**
  * Deprecate-before-create pre-pass for the active-row logical-key unique index.
@@ -533,7 +927,7 @@ function deprecateDuplicateActiveLogicalKeysBeforeUniqueIndex(database: Database
 
 // Run schema migrations from one version to another
 // Each migration is idempotent - safe to run multiple times
-// BUG-019 FIX: Wrap migrations in transaction for atomicity
+// Wrap migrations in transaction for atomicity
 /**
  * Runs schema migrations between two schema versions.
  * @param database - The database connection to migrate.
@@ -1530,7 +1924,43 @@ export function run_migrations(database: Database.Database, from_version: number
     logger.info('Migration v30: Created post-insert enrichment repair index');
   };
 
-  // BUG-019 FIX: Wrap all migrations in a transaction for atomicity
+  migrations[31] = () => {
+    ensureIncrementalIndexFoundationSchema(database, 'Migration v31');
+    ensureMemoryChunkMetadataColumns(database, 'Migration v31');
+    logger.info('Migration v31: Created incremental-index foundation schema');
+  };
+
+  migrations[32] = () => {
+    ensureCausalEdgeTombstoneSchema(database, 'Migration v32');
+    logger.info('Migration v32: Created causal edge tombstone schema');
+  };
+
+  migrations[33] = () => {
+    ensureCausalEdgeProvenanceColumns(database, 'Migration v33');
+    logger.info('Migration v33: Added generated causal-edge provenance columns');
+  };
+
+  migrations[34] = () => {
+    ensureMemoryTriggerEmbeddingsSchema(database, 'Migration v34');
+    logger.info('Migration v34: Created trigger embedding schema');
+  };
+
+  migrations[35] = () => {
+    ensureMemoryIndexSourceKindColumn(database, 'Migration v35');
+    logger.info('Migration v35: Added memory_index.source_kind provenance backfill');
+  };
+
+  migrations[36] = () => {
+    ensureIdempotencyReceiptSchema(database, 'Migration v36');
+    logger.info('Migration v36: Added idempotency receipts and near-duplicate markers');
+  };
+
+  migrations[37] = () => {
+    ensureMemoryIndexTombstonePartitions(database, 'Migration v37');
+    logger.info('Migration v37: Added tombstone active and purgeable partitions');
+  };
+
+  // Wrap all migrations in a transaction for atomicity
   const run_all_migrations = database.transaction(() => {
     for (let v = from_version + 1; v <= to_version; v++) {
       if (migrations[v]) {
@@ -1724,6 +2154,7 @@ function ensureMemoryIndexGovernanceColumns(database: Database.Database): void {
     { name: 'agent_id', sql: 'ALTER TABLE memory_index ADD COLUMN agent_id TEXT' },
     { name: 'provenance_source', sql: 'ALTER TABLE memory_index ADD COLUMN provenance_source TEXT' },
     { name: 'provenance_actor', sql: 'ALTER TABLE memory_index ADD COLUMN provenance_actor TEXT' },
+    { name: 'source_kind', sql: SOURCE_KIND_COLUMN_SQL },
     { name: 'governed_at', sql: 'ALTER TABLE memory_index ADD COLUMN governed_at TEXT' },
     { name: 'retention_policy', sql: "ALTER TABLE memory_index ADD COLUMN retention_policy TEXT DEFAULT 'keep'" },
     { name: 'delete_after', sql: 'ALTER TABLE memory_index ADD COLUMN delete_after TEXT' },
@@ -1738,6 +2169,8 @@ function ensureMemoryIndexGovernanceColumns(database: Database.Database): void {
       logDuplicateColumnMigrationSkip(column.name, error);
     }
   }
+
+  ensureMemoryIndexSourceKindColumn(database, 'governance bootstrap');
 }
 
 // Idempotent: runs on every startup. If the column is gone we return without
@@ -1826,6 +2259,36 @@ export function validate_backward_compatibility(database: Database.Database): Sc
       }
     }
 
+    if (hasTable(database, 'causal_edge_tombstones')) {
+      const existingColumns = new Set(getTableColumns(database, 'causal_edge_tombstones'));
+      const absentColumns = REQUIRED_CAUSAL_EDGE_TOMBSTONE_COLUMNS.filter((columnName) => !existingColumns.has(columnName));
+      if (absentColumns.length > 0) {
+        missingColumns.causal_edge_tombstones = absentColumns;
+      }
+    } else {
+      missingColumns.causal_edge_tombstones = [...REQUIRED_CAUSAL_EDGE_TOMBSTONE_COLUMNS];
+    }
+
+    if (hasTable(database, 'memory_trigger_embeddings')) {
+      const existingColumns = new Set(getTableColumns(database, 'memory_trigger_embeddings'));
+      const absentColumns = REQUIRED_TRIGGER_EMBEDDING_COLUMNS.filter((columnName) => !existingColumns.has(columnName));
+      if (absentColumns.length > 0) {
+        missingColumns.memory_trigger_embeddings = absentColumns;
+      }
+    } else {
+      missingColumns.memory_trigger_embeddings = [...REQUIRED_TRIGGER_EMBEDDING_COLUMNS];
+    }
+
+    if (hasTable(database, 'memory_idempotency_receipts')) {
+      const existingColumns = new Set(getTableColumns(database, 'memory_idempotency_receipts'));
+      const absentColumns = REQUIRED_IDEMPOTENCY_RECEIPT_COLUMNS.filter((columnName) => !existingColumns.has(columnName));
+      if (absentColumns.length > 0) {
+        missingColumns.memory_idempotency_receipts = absentColumns;
+      }
+    } else {
+      missingColumns.memory_idempotency_receipts = [...REQUIRED_IDEMPOTENCY_RECEIPT_COLUMNS];
+    }
+
     for (const [tableName, requiredIndexes] of Object.entries(REQUIRED_INDEXES_BY_TABLE)) {
       if (!hasTable(database, tableName)) {
         continue;
@@ -1867,7 +2330,10 @@ export function validate_backward_compatibility(database: Database.Database): Sc
       compatible: false,
       schemaVersion: null,
       missingTables: [...REQUIRED_TABLES],
-      missingColumns: { memory_index: [...REQUIRED_MEMORY_INDEX_COLUMNS] },
+      missingColumns: {
+        memory_index: [...REQUIRED_MEMORY_INDEX_COLUMNS],
+        memory_trigger_embeddings: [...REQUIRED_TRIGGER_EMBEDDING_COLUMNS],
+      },
       missingIndexes: [],
       constraintMismatches: ['compatibility inspection failed before constraint verification'],
       warnings: [
@@ -2381,7 +2847,17 @@ export function create_common_indexes(database: Database.Database): void {
     }
   }
 
-  // H5 FIX: Add idx_history_timestamp index for memory_history table
+  try {
+    ensureMemoryIndexTombstonePartitions(database, 'create_common_indexes');
+  } catch (err: unknown) {
+    console.warn('[vector-index] Failed to create tombstone partition indexes', {
+      operation: 'create_common_indexes',
+      indexes: ['idx_memory_active_recall', 'idx_memory_purgeable_retention'],
+      error: get_error_message(err),
+    });
+  }
+
+  // Add idx_history_timestamp index for memory_history table
   try {
     database.exec(`CREATE INDEX IF NOT EXISTS idx_history_timestamp ON memory_history(timestamp DESC)`);
     logger.info('Created idx_history_timestamp index');
@@ -2569,6 +3045,8 @@ export function create_schema(
     ensureCompanionTables(database);
     ensureLineageTables(database);
     ensureGovernanceTables(database);
+    ensureCausalEdgeTombstoneSchema(database, 'create_schema');
+    ensureMemoryTriggerEmbeddingsSchema(database, 'create_schema');
     const compatibility = validate_backward_compatibility(database);
     if (!compatibility.compatible) {
       logger.warn(
@@ -2616,9 +3094,11 @@ export function create_schema(
       content_hash TEXT,
       provenance_source TEXT,
       provenance_actor TEXT,
+      source_kind TEXT NOT NULL DEFAULT 'system' CHECK(source_kind IN ('human', 'agent', 'system', 'import', 'feedback')),
       governed_at TEXT,
       retention_policy TEXT DEFAULT 'keep',
       delete_after TEXT,
+      deleted_at TEXT,
       governance_metadata TEXT,
       expires_at DATETIME,
       confidence REAL DEFAULT 0.5,
@@ -2641,13 +3121,20 @@ export function create_schema(
       parent_id INTEGER REFERENCES memory_index(id) ON DELETE CASCADE,
       chunk_index INTEGER,
       chunk_label TEXT,
+      chunk_id TEXT,
+      chunk_fingerprint TEXT,
+      chunk_kind TEXT,
+      chunk_start_line INTEGER,
+      chunk_end_line INTEGER,
       encoding_intent TEXT DEFAULT 'document',
       learned_triggers TEXT DEFAULT '[]',
       interference_score REAL DEFAULT 0,
       post_insert_enrichment_status TEXT NOT NULL DEFAULT 'complete',
       post_insert_enrichment_state TEXT,
       post_insert_enrichment_completed_at TEXT,
-      post_insert_enrichment_version INTEGER
+      post_insert_enrichment_version INTEGER,
+      near_duplicate_of TEXT,
+      last_dedup_checked_at TEXT
     )
   `);
 
@@ -2708,6 +3195,10 @@ export function create_schema(
   ensureCompanionTables(database);
   ensureLineageTables(database);
   ensureGovernanceTables(database);
+  ensureIncrementalIndexFoundationSchema(database, 'create_schema');
+  ensureCausalEdgeTombstoneSchema(database, 'create_schema');
+  ensureMemoryTriggerEmbeddingsSchema(database, 'create_schema');
+  ensureIdempotencyReceiptSchema(database, 'create_schema');
 
   // the rollout — create embedding_cache table
   ensureEmbeddingCacheSchema(database);
@@ -2762,6 +3253,18 @@ export function create_schema(
     CREATE INDEX IF NOT EXISTS idx_post_insert_enrichment_incomplete
       ON memory_index(post_insert_enrichment_status, id)
       WHERE post_insert_enrichment_status != 'complete';
+    CREATE INDEX IF NOT EXISTS idx_memory_chunk_identity
+      ON memory_index(file_path, chunk_id)
+      WHERE chunk_id IS NOT NULL;
+    CREATE INDEX IF NOT EXISTS idx_memory_chunk_fingerprint
+      ON memory_index(chunk_fingerprint)
+      WHERE chunk_fingerprint IS NOT NULL;
+    CREATE INDEX IF NOT EXISTS idx_memory_active_recall
+      ON memory_index(spec_folder, document_type, updated_at DESC, id DESC)
+      WHERE deleted_at IS NULL;
+    CREATE INDEX IF NOT EXISTS idx_memory_purgeable_retention
+      ON memory_index(delete_after, deleted_at, id)
+      WHERE deleted_at IS NOT NULL;
   `);
 
   database.exec(`
@@ -2782,3 +3285,5 @@ export { migrate_confidence_columns as migrateConfidenceColumns };
 export { ensure_canonical_file_path_support as ensureCanonicalFilePathSupport };
 export { migrate_constitutional_tier as migrateConstitutionalTier };
 export { validate_backward_compatibility as validateBackwardCompatibility };
+export { ensureMemoryTriggerEmbeddingsSchema as ensureMemoryTriggerEmbeddingsSchemaForTests };
+export { ensureIdempotencyReceiptSchema as ensureIdempotencyReceiptSchemaForTests };

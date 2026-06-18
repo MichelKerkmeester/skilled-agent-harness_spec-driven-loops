@@ -3,6 +3,7 @@
 // ───────────────────────────────────────────────────────────────
 // Shared transport adapter for code_graph_query responses.
 
+/** MCP-style response envelope returned by code-graph query handlers. */
 export interface CodeGraphQueryResponse {
   content: Array<{
     type?: string;
@@ -10,6 +11,7 @@ export interface CodeGraphQueryResponse {
   } & Record<string, unknown>>;
 }
 
+/** Normalized symbol node returned from an outline query. */
 export interface OutlineQueryNode {
   name?: string;
   kind?: string;
@@ -19,6 +21,7 @@ export interface OutlineQueryNode {
   symbolId?: string;
 }
 
+/** Normalized graph edge returned from a relationship query. */
 export interface RelationshipQueryEdge {
   source?: string;
   target?: string;
@@ -33,25 +36,32 @@ export interface RelationshipQueryEdge {
   edgeEvidenceClass?: string;
 }
 
+/** Parsed payload data for a successful outline query. */
 export interface OutlineQueryData extends Record<string, unknown> {
   nodes: OutlineQueryNode[];
 }
 
+/** Parsed payload data for a successful relationship query. */
 export interface RelationshipQueryData extends Record<string, unknown> {
   edges: RelationshipQueryEdge[];
 }
 
+/** Parsed blocked or error response from a query handler. */
 export interface ParsedQueryFailure {
   status: 'blocked' | 'error';
   reason: string;
 }
 
+/** Parsed successful response from a query handler. */
 export interface ParsedQuerySuccess<TData extends Record<string, unknown>> {
   status: 'ok';
   data: TData;
 }
 
+/** Parsed outline query result, including blocked/error responses. */
 export type ParsedOutlineQueryResult = ParsedQuerySuccess<OutlineQueryData> | ParsedQueryFailure;
+
+/** Parsed relationship query result, including blocked/error responses. */
 export type ParsedRelationshipQueryResult = ParsedQuerySuccess<RelationshipQueryData> | ParsedQueryFailure;
 
 /**
@@ -104,7 +114,7 @@ function extractParsedPayload(
   let parsed: unknown;
   try {
     parsed = JSON.parse(textContent.text);
-  } catch (error) {
+  } catch (error: unknown) {
     throw new Error(
       `Failed to parse ${context} JSON: ${error instanceof Error ? error.message : String(error)}`,
     );
@@ -206,6 +216,7 @@ function parseSuccessData<TData extends Record<string, unknown>>(
   };
 }
 
+/** Parse and normalize a code_graph_query outline response. */
 export function parseOutlineQueryResult(response: unknown): ParsedOutlineQueryResult {
   const context = 'outline query';
   const parsed = extractParsedPayload(response, context);
@@ -226,6 +237,7 @@ export function parseOutlineQueryResult(response: unknown): ParsedOutlineQueryRe
   });
 }
 
+/** Parse and normalize a code_graph_query relationship response. */
 export function parseRelationshipQueryResult(response: unknown): ParsedRelationshipQueryResult {
   const context = 'relationship query';
   const parsed = extractParsedPayload(response, context);

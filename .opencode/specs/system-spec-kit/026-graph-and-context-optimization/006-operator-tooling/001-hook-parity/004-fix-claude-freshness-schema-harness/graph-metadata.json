@@ -44,7 +44,6 @@
     "status": "in_progress",
     "key_files": [
       ".claude/settings.local.json",
-      ".opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook-validation.md",
       ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
       "plan.md",
       ".opencode/skills/.advisor-state/skill-graph-generation.json",
@@ -59,12 +58,6 @@
         "name": "settings.local.json",
         "kind": "config",
         "path": ".claude/settings.local.json",
-        "source": "derived"
-      },
-      {
-        "name": "skill-advisor-hook-validation.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook-validation.md",
         "source": "derived"
       },
       {
@@ -198,11 +191,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Patch",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "End-to-end hook testing on 2026-04-23 (two real `claude -p` sessions + five direct hook-script smokes) surfaced three concrete findings. This packet remediates all three in a single focused pass.",
     "created_at": "2026-04-23T10:15:00.000Z",
-    "last_save_at": "2026-06-05T12:47:34.233Z",
+    "last_save_at": "2026-06-12T04:40:47.736Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -37,7 +37,7 @@
         "context": "provides co-resident MCP registration and extraction parent"
       },
       {
-        "target": "deep-ai-council",
+        "target": "deep-loop-workflows",
         "weight": 0.7,
         "context": "provides spec-folder packet context and memory-save workflows for council artifact handoff"
       },
@@ -54,8 +54,8 @@
       "sk-doc",
       "sk-code",
       "sk-git",
-      "deep-research",
-      "deep-review"
+      "deep-loop-workflows",
+      "deep-loop-workflows"
     ]
   },
   "domains": [

@@ -423,7 +423,7 @@ export function resetAdaptiveState(
   database: Database.Database,
 ): { clearedSignals: number; clearedRuns: number } {
   ensureAdaptiveTables(database);
-  // B17: Wrap both DELETEs in a transaction for atomicity.
+  // Wrap both DELETEs in a transaction for atomicity.
   const resetTx = database.transaction(() => {
     const clearedSignals = database.prepare('DELETE FROM adaptive_signal_events').run().changes;
     const clearedRuns = database.prepare('DELETE FROM adaptive_shadow_runs').run().changes;
@@ -447,7 +447,7 @@ export function setAdaptiveThresholdOverrides(
   overrides: AdaptiveThresholdOverrides = {},
   database?: Database.Database,
 ): AdaptiveThresholdSnapshot {
-  // H4 FIX: Warn when called without a database, as overrides won't persist
+  // Warn when called without a database, as overrides won't persist
   if (!database) {
     console.warn('[adaptive-ranking] setAdaptiveThresholdOverrides called without database — overrides will not persist');
   }
@@ -620,7 +620,7 @@ export function tuneAdaptiveThresholdsAfterEvaluation(
   const nextSignalWeights = { ...previous.signalWeights };
   const relaxationMultiplier = gateResult?.recommendation === 'promote' ? 1.5 : 1;
 
-  // B16: Per-evaluation signal weight adjustment is clamped to ±0.05 from defaults.
+  // Per-evaluation signal weight adjustment is clamped to ±0.05 from defaults.
   const WEIGHT_CLAMP_RANGE = 0.05;
   const clampWeight = (key: AdaptiveSignalType, value: number): number =>
     roundAdaptiveNumber(Math.max(
@@ -789,8 +789,8 @@ export function buildAdaptiveShadowProposal(
     demotedIds,
   };
 
-  // B18: Wrap signal reads + proposal write in a transaction for consistency.
-  // B19: Retain only the last 50 shadow runs.
+  // Wrap signal reads + proposal write in a transaction for consistency.
+  // Retain only the last 50 shadow runs.
   ensureAdaptiveTables(database);
   const persistProposalTx = database.transaction(() => {
     database.prepare(`
@@ -798,7 +798,7 @@ export function buildAdaptiveShadowProposal(
       VALUES (?, ?, ?, ?, ?)
     `).run(query, mode, 1, thresholds.maxAdaptiveDelta, JSON.stringify(proposal));
 
-    // B19: Retention — keep only the last 50 shadow run rows.
+    // Retention — keep only the last 50 shadow run rows.
     database.prepare(`
       DELETE FROM adaptive_shadow_runs
       WHERE id NOT IN (

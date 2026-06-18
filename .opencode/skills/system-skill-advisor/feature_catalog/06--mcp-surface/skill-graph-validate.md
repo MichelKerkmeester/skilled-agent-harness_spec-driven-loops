@@ -1,6 +1,6 @@
 ---
 title: "Skill graph validate"
-description: "Validates skill graph schema versions, broken edges, relation weights, symmetry and dependency cycles."
+description: "Validates skill graph schema versions, broken edges, relation weights, symmetry, dependency cycles and derived-freshness warnings."
 trigger_phrases:
   - "skill graph validate"
   - "skill_graph_validate"
@@ -19,7 +19,9 @@ trigger_phrases:
 
 `skill_graph_validate` checks the live skill graph for schema drift, broken
 edges, recommended weight-band violations, reciprocal-symmetry drift and
-lightweight dependency-cycle errors.
+lightweight dependency-cycle errors. For schema-v2 nodes it also emits
+`DERIVED-FRESHNESS` warnings when the `derived` payload is invalid or missing,
+has no parseable sync timestamp, or carries a stale `sanitizer_version`.
 
 ## 2. HOW IT WORKS
 

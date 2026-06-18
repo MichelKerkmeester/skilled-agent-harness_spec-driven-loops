@@ -10,7 +10,6 @@ import * as path from 'path';
 import * as zlib from 'zlib';
 
 // External packages
-import type Database from 'better-sqlite3';
 import { z } from 'zod';
 
 // Internal utils
@@ -24,9 +23,6 @@ import {
   normalizeScopeContext,
   recordGovernanceAudit,
   recordTierDowngradeAudit,
-  type ScopeContext,
-  type GovernanceAuditEntry,
-  type TierDowngradeAuditParams,
 } from '../governance/scope-governance.js';
 import { detectCommunities, storeCommunityAssignments } from '../graph/community-detection.js';
 import { generateCommunitySummaries } from '../graph/community-summaries.js';
@@ -36,6 +32,14 @@ import { runLineageBackfill } from './lineage-state.js';
 import { isIndexableConstitutionalMemoryPath, shouldIndexForMemory } from '../utils/index-scope.js';
 import { reopenActiveDatabase } from '../search/vector-index-store.js';
 import { SCHEMA_VERSION } from '../search/vector-index-schema.js';
+import { sweepCausalEdges } from '../causal/sweep.js';
+import { BetterSqliteContentionPolicy } from './ports/contention-policy.js';
+import type Database from 'better-sqlite3';
+import type {
+  GovernanceAuditEntry,
+  ScopeContext,
+  TierDowngradeAuditParams,
+} from '../governance/scope-governance.js';
 
 function batchedInQuery<T>(db: Database.Database, sql: string, ids: (number | string)[], batchSize = 500): T[] {
   const results: T[] = [];
@@ -116,6 +120,7 @@ const CHECKPOINT_CREATE_RETRY_MIN_DELAY_MS = 50;
 const CHECKPOINT_CREATE_RETRY_MAX_DELAY_MS = 200;
 const RESTORE_JOURNAL_NAME = '.restore-journal.json';
 const NEEDS_REBUILD_SENTINEL_NAME = '.needs-rebuild';
+const checkpointContention = new BetterSqliteContentionPolicy({ retryable: isCheckpointBusyError });
 
 const CHECKPOINT_MANIFEST = Object.freeze({
   snapshot: [
@@ -548,10 +553,6 @@ function classifyCheckpointCreateError(
 function checkpointRetryDelayMs(): number {
   return CHECKPOINT_CREATE_RETRY_MIN_DELAY_MS
     + Math.floor(Math.random() * (CHECKPOINT_CREATE_RETRY_MAX_DELAY_MS - CHECKPOINT_CREATE_RETRY_MIN_DELAY_MS + 1));
-}
-
-function sleepSync(ms: number): void {
-  Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
 }
 
 function isRestoreInProgress(): boolean {
@@ -995,6 +996,34 @@ function mergeCheckpointCatalogRows(database: Database.Database, rows: Array<Rec
       INSERT OR IGNORE INTO checkpoints (${columns.join(', ')})
       VALUES (${placeholders})
     `).run(...columns.map((column) => row[column]));
+  }
+}
+
+function pruneCheckpointCatalogRowsMissingSnapshots(database: Database.Database): void {
+  // The restored snapshot-main DB carries the full checkpoints table as of the
+  // snapshot, including v2 rows whose snapshot dir was deleted after the snapshot
+  // was taken. Those rows would resurface in listCheckpoints with no restorable
+  // dir, so drop any v2 row whose snapshot_path no longer exists on disk.
+  // Best-effort: never throw out of the restore path.
+  try {
+    if (!tableExists(database, 'checkpoints')) {
+      return;
+    }
+    const checkpointColumns = new Set(getTableColumns(database, 'checkpoints'));
+    if (!checkpointColumns.has('snapshot_path') || !checkpointColumns.has('snapshot_format')) {
+      return;
+    }
+    const rows = database.prepare(
+      "SELECT id, snapshot_path FROM checkpoints WHERE snapshot_format = 'v2' AND snapshot_path IS NOT NULL AND snapshot_path <> ''",
+    ).all() as Array<{ id: number; snapshot_path: string }>;
+    for (const row of rows) {
+      if (!fs.existsSync(row.snapshot_path)) {
+        database.prepare('DELETE FROM checkpoints WHERE id = ?').run(row.id);
+        console.warn(`[checkpoints] Dropped restored catalog row with missing snapshot dir: ${row.snapshot_path}`);
+      }
+    }
+  } catch (error: unknown) {
+    console.warn(`[checkpoints] Post-restore catalog reconciliation skipped (non-fatal): ${toErrorMessage(error)}`);
   }
 }
 
@@ -1641,6 +1670,28 @@ function clearTableForRestoreScope(
     return;
   }
 
+  if (tableName === 'causal_edges') {
+    if (!checkpointSpecFolder && !hasScope && allowFullTableFallback) {
+      sweepCausalEdges(database, {
+        whereSql: '1 = 1',
+        reason: 'checkpoint restore causal edge reset',
+        command: 'checkpoints.clearTableForRestoreScope',
+        restoreContext: { checkpointSpecFolder, scope: normalizedScope },
+      });
+      return;
+    }
+
+    if (memoryIds.length > 0) {
+      sweepCausalEdges(database, {
+        memoryIds,
+        reason: 'checkpoint restore scoped causal cleanup',
+        command: 'checkpoints.clearTableForRestoreScope',
+        restoreContext: { checkpointSpecFolder, scope: normalizedScope },
+      });
+    }
+    return;
+  }
+
   if (!checkpointSpecFolder && !hasScope && allowFullTableFallback) {
     clearTable(database, tableName);
     return;
@@ -1662,19 +1713,6 @@ function clearTableForRestoreScope(
 
   if (tableName === 'vec_memories') {
     deleteRowsByIds(database, 'vec_memories', 'rowid', memoryIds);
-    return;
-  }
-
-  if (tableName === 'causal_edges') {
-    // Use the passed `database` handle directly. Delegating through
-    // module-level `db` helpers in causal-edges.ts caused scoped restores to
-    // delete from the wrong database handle.
-    if (memoryIds.length > 0 && tableExists(database, 'causal_edges')) {
-      const idSet = Array.from(new Set(memoryIds.map(String)));
-      for (const memoryId of idSet) {
-        database.prepare('DELETE FROM causal_edges WHERE source_id = ? OR target_id = ?').run(memoryId, memoryId);
-      }
-    }
     return;
   }
 
@@ -2253,11 +2291,7 @@ function createCheckpointV2(
       );
     }
 
-    try {
-      database.pragma('busy_timeout = 5000');
-    } catch (_pragmaError: unknown) {
-      // Non-fatal: older/mocked better-sqlite3 handles may not expose pragma.
-    }
+    checkpointContention.setBusyTimeout(database, 5000, { ignoreErrors: true });
 
     fs.mkdirSync(checkpointsDir, { recursive: true, mode: 0o700 });
     sweepStaleCheckpointTmpDirs(checkpointsDir);
@@ -2266,28 +2300,25 @@ function createCheckpointV2(
     fs.mkdirSync(tmpDir, { recursive: true, mode: 0o700 });
 
     let lastVacuumError: unknown;
-    for (let attempt = 1; attempt <= CHECKPOINT_CREATE_MAX_ATTEMPTS; attempt += 1) {
-      try {
+    checkpointContention.withRetry(() => {
         database.exec(`VACUUM main INTO ${quoteSqlString(mainSnapshotPath)}`);
         const activeVecPath = getActiveVectorShardPath(database);
         if (options.includeEmbeddings && activeVecPath) {
           database.exec(`VACUUM active_vec INTO ${quoteSqlString(vecSnapshotPath)}`);
         }
-        break;
-      } catch (error: unknown) {
+    }, {
+      attempts: CHECKPOINT_CREATE_MAX_ATTEMPTS,
+      delayMs: checkpointRetryDelayMs,
+      sync: true,
+      onRetry: (error, { attempt, delayMs }) => {
         lastVacuumError = error;
-        if (!isCheckpointBusyError(error) || attempt >= CHECKPOINT_CREATE_MAX_ATTEMPTS) {
-          throw error;
-        }
         fs.rmSync(mainSnapshotPath, { force: true });
         fs.rmSync(vecSnapshotPath, { force: true });
-        const delayMs = checkpointRetryDelayMs();
         console.warn(
           `[checkpoints] createCheckpoint v2 VACUUM busy for "${sanitizedName}" on attempt ${attempt}; retrying in ${delayMs}ms`,
         );
-        sleepSync(delayMs);
-      }
-    }
+      },
+    });
 
     if (lastVacuumError && !fs.existsSync(mainSnapshotPath)) {
       throw lastVacuumError;
@@ -2409,7 +2440,7 @@ function createCheckpoint(options: CreateCheckpointOptions = {}): CheckpointInfo
 
   try {
     try {
-      database.pragma('busy_timeout = 1000');
+      checkpointContention.setBusyTimeout(database, 1000, { ignoreErrors: true });
     } catch (_pragmaError: unknown) {
       // Non-fatal: older/mocked better-sqlite3 handles may not expose pragma.
     }
@@ -2508,34 +2539,34 @@ function createCheckpoint(options: CreateCheckpointOptions = {}): CheckpointInfo
       return checkpointInfo;
     };
 
-    let lastError: unknown;
-    for (let attempt = 1; attempt <= CHECKPOINT_CREATE_MAX_ATTEMPTS; attempt += 1) {
-      try {
+    let attempt = 0;
+    try {
+      const checkpointInfo = checkpointContention.withRetry(() => {
+        attempt += 1;
         const checkpointInfo = writeCheckpoint();
         if (attempt > 1) {
           console.warn(`[checkpoints] createCheckpoint succeeded after ${attempt} attempts for "${name}"`);
         }
-        console.error(`[checkpoints] Created checkpoint "${name}" (${checkpointInfo.snapshotSize} bytes compressed)`);
         return checkpointInfo;
-      } catch (error: unknown) {
-        lastError = error;
-        if (!isCheckpointBusyError(error) || attempt >= CHECKPOINT_CREATE_MAX_ATTEMPTS) {
-          break;
-        }
-
-        const delayMs = checkpointRetryDelayMs();
+      }, {
+        attempts: CHECKPOINT_CREATE_MAX_ATTEMPTS,
+        delayMs: checkpointRetryDelayMs,
+        sync: true,
+        onRetry: (_error, { attempt: retryAttempt, delayMs }) => {
         console.warn(
-          `[checkpoints] createCheckpoint write busy for "${name}" on attempt ${attempt}; retrying in ${delayMs}ms`,
+          `[checkpoints] createCheckpoint write busy for "${name}" on attempt ${retryAttempt}; retrying in ${delayMs}ms`,
         );
-        sleepSync(delayMs);
-      }
+        },
+      }) as CheckpointInfo;
+      console.error(`[checkpoints] Created checkpoint "${name}" (${checkpointInfo.snapshotSize} bytes compressed)`);
+      return checkpointInfo;
+    } catch (lastError: unknown) {
+      throw classifyCheckpointCreateError(lastError, {
+        name,
+        specFolder,
+        attempts: CHECKPOINT_CREATE_MAX_ATTEMPTS,
+      });
     }
-
-    throw classifyCheckpointCreateError(lastError, {
-      name,
-      specFolder,
-      attempts: CHECKPOINT_CREATE_MAX_ATTEMPTS,
-    });
   } catch (error: unknown) {
     const typedError = classifyCheckpointCreateError(error, {
       name,
@@ -2624,6 +2655,16 @@ function restoreCheckpointV2(
     }
     shouldRestoreVec = manifest.vecTables.length > 0;
     if (shouldRestoreVec) {
+      // A null snapshot embedder slug means the equality guard above could not
+      // verify embedder/dimension compatibility. Restoring an unverified vec
+      // shard over the live one risks a dimension mismatch that corrupts
+      // similarity search, so refuse rather than trust an unknown embedder.
+      if (manifest.embedderSlug === null) {
+        throw new CheckpointRestoreError(
+          'CHECKPOINT_RESTORE_EMBEDDER_MISMATCH',
+          'Checkpoint v2 restore refused because the snapshot embedder slug is unknown and the vector shard cannot be verified as compatible.',
+        );
+      }
       if (!liveShardPath) {
         throw new CheckpointRestoreError(
           'CHECKPOINT_RESTORE_PATH_UNRESOLVED',
@@ -2739,6 +2780,7 @@ function restoreCheckpointV2(
     try {
       init(newDb);
       mergeCheckpointCatalogRows(newDb, liveCheckpointCatalogRows);
+      pruneCheckpointCatalogRowsMissingSnapshots(newDb);
       const rebuildSummary = runPostRestoreRebuilds(newDb, null);
       if (!isDerivedRebuildComplete(rebuildSummary)) {
         try {
@@ -2751,7 +2793,13 @@ function restoreCheckpointV2(
           console.warn(`[checkpoints] Failed to write needs-rebuild sentinel after restore (non-fatal): ${toErrorMessage(sentinelError)}`);
         }
       }
-      result.restored = manifest.memoryCount;
+      // Report the rows actually swapped in, not the manifest's create-time
+      // count, so a count drift or truncated-but-openable snapshot cannot make
+      // restore claim a memory total that is not present post-swap.
+      result.restored = countTableRows(newDb, 'memory_index');
+      if (result.restored !== manifest.memoryCount) {
+        console.warn(`[checkpoints] Restored memory_index row count ${result.restored} diverges from manifest memoryCount ${manifest.memoryCount}`);
+      }
       result.workingMemoryRestored = countTableRows(newDb, 'working_memory');
       if (restoreJournalPath) {
         clearRestoreJournal(restoreJournalPath);

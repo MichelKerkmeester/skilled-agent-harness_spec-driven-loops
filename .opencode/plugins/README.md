@@ -81,7 +81,7 @@ Both plugins support a **4-tier configuration precedence** (highest to lowest):
 | `thresholdConfidence` | `MK_SKILL_ADVISOR_THRESHOLD_CONFIDENCE` | `0.8` | Minimum advisor confidence |
 | `maxTokens` | `MK_SKILL_ADVISOR_MAX_TOKENS` | `80` | Maximum brief tokens |
 | `nodeBinaryOverride` | `MK_SKILL_ADVISOR_NODE_BINARY` | `node` (falls back to `SPEC_KIT_PLUGIN_NODE_BINARY`) | Node binary for bridge subprocess |
-| `bridgeTimeoutMs` | `MK_SKILL_ADVISOR_BRIDGE_TIMEOUT_MS` | `1000` | Bridge subprocess timeout in ms |
+| `bridgeTimeoutMs` | `MK_SKILL_ADVISOR_BRIDGE_TIMEOUT_MS` | `10000` | Bridge subprocess timeout in ms |
 | `maxPromptBytes` | `MK_SKILL_ADVISOR_MAX_PROMPT_BYTES` | `65536` (64 KiB) | Maximum bridge prompt payload bytes |
 | `maxBriefChars` | `MK_SKILL_ADVISOR_MAX_BRIEF_CHARS` | `2048` (2 KiB) | Maximum injected brief character count |
 | `maxCacheEntries` | `MK_SKILL_ADVISOR_MAX_CACHE_ENTRIES` | `1000` | Maximum advisor cache entries |

@@ -45,8 +45,8 @@ The supporting command indexes and operator-facing docs now consistently describ
 | `.opencode/commands/memory/learn.md` | Command | Primary constitutional memory manager contract and subcommand routing |
 | `.opencode/commands/memory/README.txt` | Command docs | Memory command group index and usage examples |
 | `.opencode/commands/README.txt` | Command docs | Global command registry entry for `/memory:learn` |
-| `.opencode/commands/spec_kit/debug.md` | Command docs | Debug workflow guidance for when `/memory:learn` is appropriate |
-| `.opencode/commands/spec_kit/complete.md` | Command docs | Completion workflow guidance for constitutional-rule capture |
+| `.opencode/commands/speckit/debug.md` | Command docs | Debug workflow guidance for when `/memory:learn` is appropriate |
+| `.opencode/commands/speckit/complete.md` | Command docs | Completion workflow guidance for constitutional-rule capture |
 | `.opencode/README.md` | Workspace docs | High-level environment command summary |
 | `README.md` | Workspace docs | Root command inventory |
 | `.opencode/agents/speckit.md` | Agent docs | Speckit agent command summary |

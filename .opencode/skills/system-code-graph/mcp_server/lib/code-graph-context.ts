@@ -66,12 +66,37 @@ interface GraphContextSection {
     reason: string | null;
     step: string | null;
   }[];
+  why_included?: ContextWhyIncluded[];
   partial?: {
     reason: 'deadline';
     omittedNodes: number;
     omittedEdges: number;
   };
 }
+
+interface ContextWhyIncludedEdgeChainStep {
+  from: string;
+  to: string;
+  fromFile: string | null;
+  toFile: string | null;
+  edgeType: string;
+  confidence: number | null;
+  detectorProvenance: string | null;
+  evidenceClass: string | null;
+  reason: string | null;
+  step: string | null;
+}
+
+interface ContextWhyIncluded {
+  filePath: string;
+  depth: number;
+  edgeChain: ContextWhyIncludedEdgeChainStep[];
+  confidence: number | null;
+  ambiguous: boolean;
+  truncationReason: 'deadline' | 'budget' | 'trace_limit' | null;
+}
+
+const CONTEXT_WHY_INCLUDED_LIMIT = 25;
 
 interface ExpansionResult {
   section: GraphContextSection;
@@ -153,6 +178,18 @@ export function buildContext(args: ContextArgs): ContextResult {
         anchor: `${anchor.filePath}:${anchor.startLine}`,
         nodes: outlineNodes.map(n => ({ name: n.fqName, kind: n.kind, file: n.filePath, line: n.startLine })),
         edges: [],
+        ...(args.includeTrace === true
+          ? {
+            why_included: [{
+              filePath: anchor.filePath,
+              depth: 0,
+              edgeChain: [],
+              confidence: anchor.confidence,
+              ambiguous: anchor.resolution !== 'exact',
+              truncationReason: null,
+            }],
+          }
+          : {}),
       });
       totalNodes += outlineNodes.length;
       continue;
@@ -162,6 +199,7 @@ export function buildContext(args: ContextArgs): ContextResult {
       anchor,
       queryMode,
       Math.max(0, deadlineMs - (performance.now() - contextStart)),
+      args.includeTrace === true,
     );
     sections.push(expansion.section);
     totalNodes += expansion.section.nodes.length;
@@ -176,6 +214,10 @@ export function buildContext(args: ContextArgs): ContextResult {
 
   const formattedTextBrief = formatTextBrief(sections, budgetTokens, resolvedAnchors);
   if (formattedTextBrief.omittedSections > 0 || formattedTextBrief.truncated) {
+    // Budget truncation only slices the human-readable textBrief; the
+    // structured why_included breadcrumbs are returned in full via
+    // graphContext, so they must not be stamped 'budget'. The budget
+    // partiality is surfaced via partialOutput.reasons / truncatedText.
     partialReasons.add('budget');
   }
   const combinedSummary = buildCombinedSummary(resolvedAnchors, sections);
@@ -318,7 +360,7 @@ function formatContextEdge(edge: graphDb.CodeEdgeTargetResult['edge'] | graphDb.
 }
 
 /** Expand a single anchor into a context section */
-function expandAnchor(anchor: ArtifactRef, mode: QueryMode, remainingMs?: number): ExpansionResult {
+function expandAnchor(anchor: ArtifactRef, mode: QueryMode, remainingMs?: number, includeTrace = false): ExpansionResult {
   const startTime = performance.now();
   const budgetMs = remainingMs ?? 400; // 400ms default latency budget
   const nodes: { name: string; kind: string; file: string; line: number }[] = [];
@@ -335,37 +377,134 @@ function expandAnchor(anchor: ArtifactRef, mode: QueryMode, remainingMs?: number
   let deadlineExceeded = false;
   let omittedNodes = 0;
   let omittedEdges = 0;
+  let omittedWhyIncluded = 0;
+  const whyIncludedByFile = new Map<string, ContextWhyIncluded>();
+
+  const anchorLabel = anchor.fqName ?? anchor.symbolId ?? anchor.filePath;
+  if (includeTrace) {
+    whyIncludedByFile.set(anchor.filePath, {
+      filePath: anchor.filePath,
+      depth: 0,
+      edgeChain: [],
+      confidence: anchor.confidence,
+      ambiguous: anchor.resolution !== 'exact',
+      truncationReason: null,
+    });
+  }
 
   const startHr = process.hrtime.bigint();
   const budgetExpired = (): boolean => Number(process.hrtime.bigint() - startHr) / 1e6 > budgetMs;
 
-  const finalize = (): ExpansionResult => ({
-    section: {
-      anchor: `${anchor.filePath}:${anchor.startLine} (${anchor.fqName ?? 'unknown'})`,
-      nodes,
-      edges,
-      ...(deadlineExceeded
-        ? {
-          partial: {
-            reason: 'deadline',
-            omittedNodes,
-            omittedEdges,
-          },
-        }
-        : {}),
-    },
-    deadlineExceeded,
-    omittedNodes,
-    omittedEdges,
-  });
-
-  if (!anchor.symbolId) {
+  const finalize = (): ExpansionResult => {
+    const traceTruncationReason = deadlineExceeded
+      ? 'deadline'
+      : omittedWhyIncluded > 0
+        ? 'trace_limit'
+        : null;
+    const whyIncluded = [...whyIncludedByFile.values()].map((entry) => ({
+      ...entry,
+      // The depth-0 anchor entry is recorded in full before any edge
+      // processing, deadline check, or trace-limit cap, so its breadcrumb is
+      // always complete — never stamp it with a section-level truncation
+      // reason (that would falsely signal incomplete provenance). Neighbor
+      // entries (depth >= 1) reflect a section whose expansion was cut short.
+      truncationReason: entry.depth === 0
+        ? entry.truncationReason
+        : entry.truncationReason ?? traceTruncationReason,
+    }));
     return {
-      section: { anchor: anchor.filePath, nodes, edges },
-      deadlineExceeded: false,
-      omittedNodes: 0,
-      omittedEdges: 0,
+      section: {
+        anchor: `${anchor.filePath}:${anchor.startLine} (${anchor.fqName ?? 'unknown'})`,
+        nodes,
+        edges,
+        ...(includeTrace ? { why_included: whyIncluded } : {}),
+        ...(deadlineExceeded
+          ? {
+            partial: {
+              reason: 'deadline',
+              omittedNodes,
+              omittedEdges,
+            },
+          }
+          : {}),
+      },
+      deadlineExceeded,
+      omittedNodes,
+      omittedEdges,
     };
+  };
+
+  const recordWhyIncluded = (input: {
+    filePath: string | null | undefined;
+    depth: number;
+    edge: graphDb.CodeEdgeTargetResult['edge'] | graphDb.CodeEdgeSourceResult['edge'];
+    from: string;
+    to: string;
+    fromFile: string | null;
+    toFile: string | null;
+  }): void => {
+    if (!includeTrace || !input.filePath) {
+      return;
+    }
+    const formattedEdge = formatContextEdge(input.edge);
+    const confidence = formattedEdge.confidence;
+    const previous = whyIncludedByFile.get(input.filePath);
+    // A strictly-shallower existing entry wins (shortest provenance path);
+    // ignore deeper re-discoveries of the same file.
+    if (previous && previous.depth < input.depth) {
+      return;
+    }
+    const edge = {
+      from: input.from,
+      to: input.to,
+      fromFile: input.fromFile,
+      toFile: input.toFile,
+      edgeType: input.edge.edgeType,
+      confidence,
+      detectorProvenance: formattedEdge.detectorProvenance,
+      evidenceClass: formattedEdge.evidenceClass,
+      reason: formattedEdge.reason,
+      step: formattedEdge.step,
+    };
+    // A neighbor pulled in via a heuristic/inferred edge is an uncertain
+    // inclusion; flag it so consumers can distinguish it from a resolved edge.
+    // (Anchor entries instead derive ambiguous from anchor-resolution identity.)
+    const edgeAmbiguous = formattedEdge.evidenceClass === 'INFERRED';
+    // Same-depth re-discovery: a file reachable via multiple edges at the same
+    // depth was included for more than one reason — append the edge instead of
+    // dropping it so edgeChain reflects every distinct inclusion path. Track
+    // the minimum confidence as the entry's overall confidence and OR the
+    // ambiguity so any inferred path keeps the entry flagged.
+    if (previous && previous.depth === input.depth) {
+      previous.edgeChain = [...previous.edgeChain, edge];
+      previous.confidence = previous.edgeChain.reduce<number | null>((minimum, step) => {
+        if (step.confidence === null) return minimum;
+        if (minimum === null) return step.confidence;
+        return Math.min(minimum, step.confidence);
+      }, null);
+      previous.ambiguous = previous.ambiguous || edgeAmbiguous;
+      return;
+    }
+    if (!previous && whyIncludedByFile.size >= CONTEXT_WHY_INCLUDED_LIMIT) {
+      omittedWhyIncluded += 1;
+      return;
+    }
+    whyIncludedByFile.set(input.filePath, {
+      filePath: input.filePath,
+      depth: input.depth,
+      edgeChain: [edge],
+      confidence,
+      ambiguous: edgeAmbiguous,
+      truncationReason: null,
+    });
+  };
+
+  // Invariant: buildContext handles file anchors (no symbolId) inline and
+  // continues before ever reaching expandAnchor (the sole call site), so
+  // anchor.symbolId is always present here. Assert rather than carry a second,
+  // divergent why_included construction path for a state that cannot occur.
+  if (!anchor.symbolId) {
+    throw new Error('expandAnchor requires a symbol anchor; file anchors are handled by buildContext');
   }
 
   switch (mode) {
@@ -387,10 +526,19 @@ function expandAnchor(anchor: ArtifactRef, mode: QueryMode, remainingMs?: number
             break;
           }
           edges.push({
-            from: anchor.fqName ?? anchor.symbolId,
+            from: anchorLabel,
             to: targetNode?.fqName ?? edge.targetId,
             type: edge.edgeType,
             ...formatContextEdge(edge),
+          });
+          recordWhyIncluded({
+            filePath: targetNode?.filePath,
+            depth: 1,
+            edge,
+            from: anchorLabel,
+            to: targetNode?.fqName ?? edge.targetId,
+            fromFile: anchor.filePath,
+            toFile: targetNode?.filePath ?? null,
           });
           if (targetNode && !seenNodes.has(targetNode.fqName)) {
             seenNodes.add(targetNode.fqName);
@@ -411,9 +559,18 @@ function expandAnchor(anchor: ArtifactRef, mode: QueryMode, remainingMs?: number
           }
           edges.push({
             from: sourceNode?.fqName ?? edge.sourceId,
-            to: anchor.fqName ?? anchor.symbolId,
+            to: anchorLabel,
             type: edge.edgeType,
             ...formatContextEdge(edge),
+          });
+          recordWhyIncluded({
+            filePath: sourceNode?.filePath,
+            depth: 1,
+            edge,
+            from: sourceNode?.fqName ?? edge.sourceId,
+            to: anchorLabel,
+            fromFile: sourceNode?.filePath ?? null,
+            toFile: anchor.filePath,
           });
           if (sourceNode && !seenNodes.has(sourceNode.fqName)) {
             seenNodes.add(sourceNode.fqName);
@@ -448,10 +605,19 @@ function expandAnchor(anchor: ArtifactRef, mode: QueryMode, remainingMs?: number
             break;
           }
           edges.push({
-            from: anchor.fqName ?? anchor.symbolId,
+            from: anchorLabel,
             to: targetNode?.fqName ?? edge.targetId,
             type: 'EXPORTS',
             ...formatContextEdge(edge),
+          });
+          recordWhyIncluded({
+            filePath: targetNode?.filePath,
+            depth: 1,
+            edge,
+            from: anchorLabel,
+            to: targetNode?.fqName ?? edge.targetId,
+            fromFile: anchor.filePath,
+            toFile: targetNode?.filePath ?? null,
           });
           processedExports += 1;
         }
@@ -479,9 +645,18 @@ function expandAnchor(anchor: ArtifactRef, mode: QueryMode, remainingMs?: number
           }
           edges.push({
             from: sourceNode?.fqName ?? edge.sourceId,
-            to: anchor.fqName ?? anchor.symbolId,
+            to: anchorLabel,
             type: edge.edgeType,
             ...formatContextEdge(edge),
+          });
+          recordWhyIncluded({
+            filePath: sourceNode?.filePath,
+            depth: 1,
+            edge,
+            from: sourceNode?.fqName ?? edge.sourceId,
+            to: anchorLabel,
+            fromFile: sourceNode?.filePath ?? null,
+            toFile: anchor.filePath,
           });
           if (sourceNode) {
             nodes.push({ name: sourceNode.fqName, kind: sourceNode.kind, file: sourceNode.filePath, line: sourceNode.startLine });

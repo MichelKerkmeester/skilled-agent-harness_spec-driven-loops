@@ -2,6 +2,8 @@
 title: "Code-Graph Scope — Everything Here Is Intentional"
 importanceTier: constitutional
 contextType: decision
+last_confirmed: "2026-05-31"
+last_confirmed_source: "git-log-last-touch"
 triggerPhrases:
   - code graph scope
   - code_graph_scan scope

@@ -27,14 +27,19 @@ import {
 import { getStartupEmbeddingProfile } from '@spec-kit/shared/embeddings/factory';
 
 import { resolveDatabasePaths, SERVER_DIR } from '../../core/config.js';
-import { IVectorStore } from '../interfaces/vector-store.js';
 import { computeInterferenceScoresBatch } from '../scoring/interference-scoring.js';
 import { DEFAULT_ACTIVE_EMBEDDER, getActiveEmbedder } from '../embedders/schema.js';
+import {
+  recordVectorShardProbeFailure,
+  recordVectorShardQuarantined,
+  recordVectorShardRebuildFailed,
+} from '../observability/retrieval-observability.js';
 import { validateFilePath } from '../utils/path-security.js';
 import {
   get_error_code,
   get_error_message,
   parse_trigger_phrases,
+  specFolderLikePattern,
   VectorIndexError,
   VectorIndexErrorCode,
 } from './vector-index-types.js';
@@ -42,14 +47,12 @@ import {
   create_schema,
   ensure_schema_version,
 } from './vector-index-schema.js';
+import {
+  acquire_db_instance_lock,
+  release_db_instance_locks,
+} from './db-instance-lock.js';
 import { migrateLegacySingleDbToShardSync } from './db-shard-migration.js';
-import type {
-  EmbeddingInput,
-  EnrichedSearchResult,
-  IndexMemoryParams,
-  MemoryRow,
-  VectorSearchOptions,
-} from './vector-index-types.js';
+import type { MemoryRow } from './vector-index-types.js';
 
 type SearchWeightsConfig = {
   maxTriggersPerMemory?: number;
@@ -77,12 +80,39 @@ type RestoreJournalFile = {
   liveShardPreexisted: boolean;
 };
 
+type VectorShardRepairPendingSentinelFile = {
+  formatVersion: 1;
+  createdAt: string;
+  source: 'vector_shard_quarantine';
+  reason: string;
+  shardPath: string;
+  quarantinePath: string;
+  profile: {
+    provider: string;
+    model: string;
+    dim: number;
+    dtype: string | null;
+  };
+};
+
+type VectorShardRepairPendingSentinel = {
+  reason: string;
+  quarantinePath: string | null;
+};
+
+type VectorShardRepairStateAssessment = {
+  sentinel: VectorShardRepairPendingSentinel | null;
+  shardComplete: boolean;
+  orphanQuarantine: boolean;
+};
+
 type InitializeDbOptions = {
   skipRestoreRecovery?: boolean;
 };
 
 const RESTORE_JOURNAL_NAME = '.restore-journal.json';
 const NEEDS_REBUILD_SENTINEL_NAME = '.needs-rebuild';
+const VECTOR_SHARD_REPAIR_PENDING_SENTINEL_SUFFIX = '.repair-pending';
 
 function loadSearchWeights(): SearchWeightsConfig {
   // SERVER_DIR points to dist/ at runtime; configs/ lives at the package root (dist/..)
@@ -118,30 +148,6 @@ export const search_weights: SearchWeightsConfig = {
     return getSearchWeights().smartRanking;
   },
 };
-
-type EnhancedSearchOptions = {
-  specFolder?: string | null;
-  minSimilarity?: number;
-  diversityFactor?: number;
-  noDiversity?: boolean;
-};
-type JsonObject = Record<string, unknown>;
-
-let _cached_queries: Awaited<typeof import('./vector-index-queries.js')> | null = null;
-let _cached_mutations: Awaited<typeof import('./vector-index-mutations.js')> | null = null;
-let _cached_aliases: Awaited<typeof import('./vector-index-aliases.js')> | null = null;
-
-async function getQueriesModule() {
-  return _cached_queries ??= await import('./vector-index-queries.js');
-}
-
-async function getMutationsModule() {
-  return _cached_mutations ??= await import('./vector-index-mutations.js');
-}
-
-async function getAliasesModule() {
-  return _cached_aliases ??= await import('./vector-index-aliases.js');
-}
 
 /* ───────────────────────────────────────────────────────────────
    1. CONFIGURATION — Embedding Dimension
@@ -188,13 +194,15 @@ type EmbeddingDimensionValidation = {
 type StoredEmbeddingDimension = {
   existing_db: boolean;
   stored_dim: number | null;
-  source: 'vec_metadata' | 'vec_memories' | null;
+  source: 'vec_metadata' | 'active_embedder_profile' | 'startup_profile' | 'vec_memories' | null;
   reason?: string;
 };
 
 function get_existing_embedding_dimension(
   database: Database.Database,
+  options: { allowProfileFallback?: boolean } = {},
 ): StoredEmbeddingDimension {
+  const allowProfileFallback = options.allowProfileFallback !== false;
   const schema_row = database.prepare(`
     SELECT name FROM sqlite_master WHERE type='table' AND name='memory_index'
   `).get();
@@ -240,8 +248,10 @@ function get_existing_embedding_dimension(
 
   if (metadata_table) {
     const stored_row = database.prepare(`
-      SELECT value FROM vec_metadata WHERE key = 'embedding_dim'
-    `).get() as { value: string } | undefined;
+      SELECT key, value FROM vec_metadata WHERE key IN ('embedding_dim', 'dim', 'active_embedder_dim')
+      ORDER BY CASE key WHEN 'embedding_dim' THEN 0 WHEN 'dim' THEN 1 ELSE 2 END
+      LIMIT 1
+    `).get() as { key: string; value: string } | undefined;
 
     if (stored_row) {
       const stored_dim = parseInt(stored_row.value, 10);
@@ -249,9 +259,29 @@ function get_existing_embedding_dimension(
         return {
           existing_db: true,
           stored_dim,
-          source: 'vec_metadata',
+          source: stored_row.key === 'active_embedder_dim' ? 'active_embedder_profile' : 'vec_metadata',
         };
       }
+    }
+  }
+
+  if (allowProfileFallback) {
+    const active = getActiveEmbedder(database);
+    if (active.name !== DEFAULT_ACTIVE_EMBEDDER.name && active.dim > 0) {
+      return {
+        existing_db: true,
+        stored_dim: active.dim,
+        source: 'active_embedder_profile',
+      };
+    }
+
+    const startupProfile = getStartupEmbeddingProfile();
+    if (Number.isInteger(startupProfile.dim) && startupProfile.dim > 0) {
+      return {
+        existing_db: true,
+        stored_dim: startupProfile.dim,
+        source: 'startup_profile',
+      };
     }
   }
 
@@ -264,6 +294,7 @@ function get_existing_embedding_dimension(
   if (match) {
     const stored_dim = parseInt(match[1], 10);
     if (Number.isFinite(stored_dim) && stored_dim > 0) {
+      console.warn('[vector-index] Falling back to vec_memories schema text for embedding dimension; configure an active embedder profile to make dimension discovery authoritative.');
       return {
         existing_db: true,
         stored_dim,
@@ -304,7 +335,13 @@ function validate_embedding_dimension_for_connection(
     }
 
     if (existing.stored_dim !== current_dim) {
-      const source_label = existing.source === 'vec_metadata' ? 'vec_metadata' : 'vec_memories schema';
+      const SOURCE_LABELS = {
+        vec_metadata: 'vec_metadata',
+        active_embedder_profile: 'active embedder profile',
+        startup_profile: 'startup embedding profile',
+        vec_memories: 'vec_memories schema',
+      };
+      const source_label = existing.source ? SOURCE_LABELS[existing.source] : 'vec_memories schema';
       const warning = `EMBEDDING DIMENSION MISMATCH: Existing database stores ${existing.stored_dim}-dim vectors (${source_label}), ` +
         `but the active embedding configuration resolves to ${current_dim}. Refusing to bootstrap because vector search would fail. ` +
         `Solutions: 1) Delete database and re-index, 2) Set EMBEDDINGS_PROVIDER to match original, ` +
@@ -434,6 +471,268 @@ function table_exists_in_schema(database: Database.Database, schema: string, tab
     LIMIT 1
   `).get(tableName) as { found?: number } | undefined;
   return row?.found === 1;
+}
+
+type VectorShardIntegrityProbeResult =
+  | { ok: true }
+  | { ok: false; reason: string };
+
+function quick_check_verdict(database: Database.Database, schema?: string): string {
+  const rows = schema
+    ? database.pragma(`${schema}.quick_check(1)`) as Array<Record<string, unknown>>
+    : database.pragma('quick_check(1)') as Array<Record<string, unknown>>;
+  const first = rows?.[0] ? Object.values(rows[0])[0] : undefined;
+  return typeof first === 'string' ? first : 'quick_check returned no verdict';
+}
+
+function required_vector_shard_tables(profile: EmbeddingProfile, vecAvailable: boolean): string[] {
+  return [
+    'vec_metadata',
+    'embedding_cache',
+    vector_table_name_for_profile(profile),
+    ...(vecAvailable ? ['vec_memories'] : []),
+  ];
+}
+
+function run_attached_vector_shard_integrity_probe(
+  database: Database.Database,
+  profile: EmbeddingProfile,
+  vecAvailable: boolean,
+): VectorShardIntegrityProbeResult {
+  try {
+    const verdict = quick_check_verdict(database, ACTIVE_VECTOR_SCHEMA);
+    if (verdict !== 'ok') {
+      return { ok: false, reason: `quick_check failed: ${verdict}` };
+    }
+    for (const tableName of required_vector_shard_tables(profile, vecAvailable)) {
+      if (!table_exists_in_schema(database, ACTIVE_VECTOR_SCHEMA, tableName)) {
+        return { ok: false, reason: `required table missing: ${tableName}` };
+      }
+    }
+    return { ok: true };
+  } catch (error: unknown) {
+    return { ok: false, reason: get_error_message(error) };
+  }
+}
+
+function run_vector_shard_integrity_probe_at_path(
+  shardPath: string,
+  profile: EmbeddingProfile,
+  vecAvailable: boolean,
+): VectorShardIntegrityProbeResult {
+  if (!fs.existsSync(shardPath)) {
+    return { ok: true };
+  }
+
+  let shard: Database.Database | null = null;
+  try {
+    shard = new Database(shardPath, { readonly: true, fileMustExist: true });
+    if (vecAvailable) {
+      sqliteVec.load(shard);
+    }
+    const verdict = quick_check_verdict(shard);
+    if (verdict !== 'ok') {
+      return { ok: false, reason: `quick_check failed: ${verdict}` };
+    }
+    for (const tableName of required_vector_shard_tables(profile, vecAvailable)) {
+      const row = shard.prepare(`
+        SELECT 1 AS found
+        FROM sqlite_master
+        WHERE type IN ('table', 'view') AND name = ?
+        LIMIT 1
+      `).get(tableName) as { found?: number } | undefined;
+      if (row?.found !== 1) {
+        return { ok: false, reason: `required table missing: ${tableName}` };
+      }
+    }
+    return { ok: true };
+  } catch (error: unknown) {
+    return { ok: false, reason: get_error_message(error) };
+  } finally {
+    if (shard) {
+      try { shard.close(); } catch (_error: unknown) { /* best-effort */ }
+    }
+  }
+}
+
+function count_successful_embedding_rows(database: Database.Database): number {
+  try {
+    const row = database.prepare(`
+      SELECT COUNT(*) AS count
+      FROM memory_index
+      WHERE embedding_status = 'success'
+    `).get() as { count?: number } | undefined;
+    return Math.max(0, Number(row?.count ?? 0));
+  } catch (_error: unknown) {
+    return 0;
+  }
+}
+
+function count_attached_vector_rows(database: Database.Database, profile: EmbeddingProfile): number {
+  const tableName = vector_table_name_for_profile(profile);
+  if (!table_exists_in_schema(database, ACTIVE_VECTOR_SCHEMA, tableName)) {
+    return 0;
+  }
+  try {
+    const row = database.prepare(`
+      SELECT COUNT(*) AS count
+      FROM ${ACTIVE_VECTOR_SCHEMA}.${quote_identifier(tableName)}
+    `).get() as { count?: number } | undefined;
+    return Math.max(0, Number(row?.count ?? 0));
+  } catch (_error: unknown) {
+    return 0;
+  }
+}
+
+function count_vector_rows_at_path(shardPath: string, profile: EmbeddingProfile): number {
+  if (!fs.existsSync(shardPath)) {
+    return 0;
+  }
+
+  const tableName = vector_table_name_for_profile(profile);
+  let shard: Database.Database | null = null;
+  try {
+    shard = new Database(shardPath, { readonly: true, fileMustExist: true });
+    const table = shard.prepare(`
+      SELECT 1 AS found
+      FROM sqlite_master
+      WHERE type IN ('table', 'view') AND name = ?
+      LIMIT 1
+    `).get(tableName) as { found?: number } | undefined;
+    if (table?.found !== 1) {
+      return 0;
+    }
+    const row = shard.prepare(`
+      SELECT COUNT(*) AS count
+      FROM ${quote_identifier(tableName)}
+    `).get() as { count?: number } | undefined;
+    return Math.max(0, Number(row?.count ?? 0));
+  } catch (_error: unknown) {
+    return 0;
+  } finally {
+    if (shard) {
+      try { shard.close(); } catch (_error: unknown) { /* best-effort */ }
+    }
+  }
+}
+
+function has_orphan_vector_shard_quarantine(shardPath: string): boolean {
+  try {
+    const shardDir = path.dirname(shardPath);
+    const quarantinePrefix = `${path.basename(shardPath)}.quarantined-`;
+    return fs.readdirSync(shardDir).some((name) => name.startsWith(quarantinePrefix));
+  } catch (_error: unknown) {
+    return false;
+  }
+}
+
+function assess_vector_shard_repair_state(
+  database: Database.Database,
+  profile: EmbeddingProfile,
+  shardPath: string,
+): VectorShardRepairStateAssessment {
+  const sentinel = read_vector_shard_repair_pending_sentinel(shardPath);
+  const attachedPath = get_attached_vector_path(database);
+  const attached = attachedPath === path.resolve(shardPath);
+  const probe = attached
+    ? run_attached_vector_shard_integrity_probe(database, profile, sqlite_vec_available_flag)
+    : run_vector_shard_integrity_probe_at_path(shardPath, profile, sqlite_vec_available_flag);
+  const expected = count_successful_embedding_rows(database);
+  const vecRows = probe.ok
+    ? attached
+      ? count_attached_vector_rows(database, profile)
+      : count_vector_rows_at_path(shardPath, profile)
+    : 0;
+  const shardComplete = probe.ok && (expected === 0 || vecRows >= expected);
+  const orphanQuarantine = !shardComplete && !sentinel && has_orphan_vector_shard_quarantine(shardPath);
+
+  return { sentinel, shardComplete, orphanQuarantine };
+}
+
+function build_vector_shard_quarantine_path(shardPath: string): string {
+  const stamp = new Date().toISOString().replace(/[^0-9A-Za-z]/g, '');
+  return `${shardPath}.quarantined-${stamp}-${process.pid}`;
+}
+
+function quarantine_vector_shard(
+  shardPath: string,
+  reason: string,
+  quarantinePath = build_vector_shard_quarantine_path(shardPath),
+  sentinelPersisted = true,
+): string {
+  for (const suffix of ['', '-wal', '-shm']) {
+    const source = `${shardPath}${suffix}`;
+    if (!fs.existsSync(source)) {
+      continue;
+    }
+    fs.renameSync(source, `${quarantinePath}${suffix}`);
+  }
+  fsync_file_if_possible(quarantinePath);
+  fsync_directory_if_possible(path.dirname(shardPath));
+  recordVectorShardQuarantined({ shardPath, quarantinePath, reason, sentinelPersisted });
+  return quarantinePath;
+}
+
+function handle_vector_shard_repair_assessment(
+  database: Database.Database,
+  profile: EmbeddingProfile,
+  shardPath: string,
+  assessment: VectorShardRepairStateAssessment,
+): void {
+  if (assessment.sentinel) {
+    if (assessment.shardComplete) {
+      clear_vector_shard_repair_pending_sentinel(shardPath);
+      console.warn('[vector-index] Cleared stale vector shard repair sentinel after shard completeness check');
+      return;
+    }
+    resume_vector_shard_repair_from_sentinel(database, profile, shardPath, assessment.sentinel);
+    return;
+  }
+
+  if (assessment.orphanQuarantine) {
+    const reason = 'orphan quarantine artifacts without sentinel';
+    console.warn(`[vector-index] Scheduling vector shard repair: ${reason}`);
+    schedule_vector_shard_rebuild(database, profile, shardPath, reason);
+  }
+}
+
+function schedule_vector_shard_rebuild(
+  database: Database.Database,
+  profile: EmbeddingProfile,
+  shardPath: string,
+  reason: string,
+): void {
+  setImmediate(() => {
+    void import('../embedders/reindex.js')
+      .then(({ startVectorShardRepairReindex }) => {
+        startVectorShardRepairReindex(profile, { db: database, reason, shardPath });
+      })
+      .catch((error: unknown) => {
+        recordVectorShardRebuildFailed({
+          jobId: 'not-started',
+          shardPath,
+          reason: get_error_message(error),
+        });
+      });
+  });
+}
+
+function quarantine_and_rebuild_vector_shard(
+  database: Database.Database,
+  profile: EmbeddingProfile,
+  shardPath: string,
+  reason: string,
+): void {
+  let effectiveReason = reason;
+  recordVectorShardProbeFailure({ shardPath, reason: effectiveReason });
+  const quarantinePath = build_vector_shard_quarantine_path(shardPath);
+  const sentinelPersisted = write_vector_shard_repair_pending_sentinel(shardPath, profile, reason, quarantinePath);
+  if (!sentinelPersisted) {
+    effectiveReason = `${reason}; repair sentinel write FAILED - restart durability at risk`;
+    console.error(`[vector-index] Vector shard repair sentinel write failed for ${path.basename(shardPath)}; restart durability at risk`);
+  }
+  quarantine_vector_shard(shardPath, effectiveReason, quarantinePath, sentinelPersisted);
+  schedule_vector_shard_rebuild(database, profile, shardPath, `${effectiveReason}; quarantined as ${path.basename(quarantinePath)}`);
 }
 
 function write_shard_metadata(database: Database.Database, profile: EmbeddingProfile): void {
@@ -633,7 +932,7 @@ export function validate_file_path_local(file_path: unknown): string | null {
   return validateFilePath(file_path, ALLOWED_BASE_PATHS);
 }
 
-// HIGH-004 FIX: Async version for non-blocking concurrent file reads
+// Async version for non-blocking concurrent file reads
 /**
  * Reads a file asynchronously after validating the path.
  * @param file_path - The file path to read.
@@ -705,6 +1004,7 @@ let active_vector_source: ActiveVectorSourceTelemetry | null = null;
 // C1 FIX: Key connections by resolved DB path to prevent cross-store data corruption
 const db_connections = new Map<string, Database.Database>();
 const UNCLEAN_SHUTDOWN_MARKER = '.unclean-shutdown';
+const CRASH_PROBE_RECEIPT_FILE = '.crash-probe-receipt';
 type DatabaseConnectionListener = (
   database: Database.Database,
   change: {
@@ -799,6 +1099,61 @@ function remove_unclean_shutdown_marker(target_path: string): void {
   }
 }
 
+function get_crash_probe_receipt_path(target_path: string): string | null {
+  if (target_path === ':memory:') {
+    return null;
+  }
+  return path.join(path.dirname(target_path), CRASH_PROBE_RECEIPT_FILE);
+}
+
+// Fingerprint of the on-disk DB state (main + WAL file size/mtime). Any write,
+// checkpoint, or WAL change alters it, so a stale receipt can never mask a
+// post-write corruption: on-disk corruption requires a change that invalidates
+// this fingerprint, which forces a fresh probe.
+function compute_db_state_fingerprint(target_path: string): string | null {
+  try {
+    const main = fs.statSync(target_path);
+    let walPart = 'nowal';
+    try {
+      const wal = fs.statSync(`${target_path}-wal`);
+      walPart = `${wal.size}:${Math.floor(wal.mtimeMs)}`;
+    } catch (_walError: unknown) { /* WAL absent — fingerprint reflects that */ }
+    return `${main.size}:${Math.floor(main.mtimeMs)}|${walPart}`;
+  } catch (_error: unknown) {
+    return null;
+  }
+}
+
+function read_crash_probe_receipt(target_path: string): { fingerprint: string; verdict: string } | null {
+  const receipt_path = get_crash_probe_receipt_path(target_path);
+  if (!receipt_path) {
+    return null;
+  }
+  try {
+    const raw = JSON.parse(fs.readFileSync(receipt_path, 'utf8')) as { fingerprint?: unknown; verdict?: unknown };
+    if (typeof raw.fingerprint === 'string' && typeof raw.verdict === 'string') {
+      return { fingerprint: raw.fingerprint, verdict: raw.verdict };
+    }
+  } catch (_error: unknown) { /* missing/corrupt receipt — treat as absent (probe runs) */ }
+  return null;
+}
+
+function write_crash_probe_receipt(target_path: string, fingerprint: string): void {
+  const receipt_path = get_crash_probe_receipt_path(target_path);
+  if (!receipt_path) {
+    return;
+  }
+  try {
+    fs.writeFileSync(
+      receipt_path,
+      `${JSON.stringify({ fingerprint, verdict: 'ok', probedAt: new Date().toISOString() })}\n`,
+      { mode: 0o600 },
+    );
+  } catch (_error: unknown) {
+    // Best-effort: receipt failure must not block DB startup (probe just reruns).
+  }
+}
+
 function remove_sqlite_sidecars(database_path: string): void {
   for (const sidecar_path of [`${database_path}-wal`, `${database_path}-shm`]) {
     fs.rmSync(sidecar_path, { force: true });
@@ -845,6 +1200,109 @@ function get_needs_rebuild_sentinel_path(target_path: string): string | null {
     return null;
   }
   return path.join(path.dirname(target_path), 'checkpoints', NEEDS_REBUILD_SENTINEL_NAME);
+}
+
+function get_vector_shard_repair_pending_sentinel_path(shardPath: string): string | null {
+  if (shardPath === ':memory:') {
+    return null;
+  }
+  const shardDir = path.dirname(shardPath);
+  const baseDir = path.basename(shardDir) === 'vectors' ? path.dirname(shardDir) : shardDir;
+  return path.join(
+    baseDir,
+    'checkpoints',
+    `.${path.basename(shardPath)}${VECTOR_SHARD_REPAIR_PENDING_SENTINEL_SUFFIX}`,
+  );
+}
+
+function write_vector_shard_repair_pending_sentinel(
+  shardPath: string,
+  profile: EmbeddingProfile,
+  reason: string,
+  quarantinePath: string,
+): boolean {
+  const sentinelPath = get_vector_shard_repair_pending_sentinel_path(shardPath);
+  if (!sentinelPath) {
+    return true;
+  }
+  try {
+    const sentinelDir = path.dirname(sentinelPath);
+    fs.mkdirSync(sentinelDir, { recursive: true, mode: 0o700 });
+    const tempSentinelPath = `${sentinelPath}.tmp.${process.pid}`;
+    fs.writeFileSync(tempSentinelPath, `${JSON.stringify({
+      formatVersion: 1,
+      createdAt: new Date().toISOString(),
+      source: 'vector_shard_quarantine',
+      reason,
+      shardPath,
+      quarantinePath,
+      profile: {
+        provider: profile.provider,
+        model: profile.model,
+        dim: profile.dim,
+        dtype: profile.dtype,
+      },
+    } satisfies VectorShardRepairPendingSentinelFile, null, 2)}\n`, { mode: 0o600 });
+    fsync_file_if_possible(tempSentinelPath);
+    fs.renameSync(tempSentinelPath, sentinelPath);
+    fsync_directory_if_possible(sentinelDir);
+    return true;
+  } catch (error: unknown) {
+    console.warn(`[vector-index] Failed to write vector shard repair sentinel: ${get_error_message(error)}`);
+    return false;
+  }
+}
+
+function read_vector_shard_repair_pending_sentinel(
+  shardPath: string,
+): VectorShardRepairPendingSentinel | null {
+  const sentinelPath = get_vector_shard_repair_pending_sentinel_path(shardPath);
+  if (!sentinelPath || !fs.existsSync(sentinelPath)) {
+    return null;
+  }
+  try {
+    const parsed = JSON.parse(fs.readFileSync(sentinelPath, 'utf-8')) as Partial<VectorShardRepairPendingSentinelFile>;
+    return {
+      reason: typeof parsed.reason === 'string' && parsed.reason.length > 0
+        ? parsed.reason
+        : 'pending vector shard repair sentinel',
+      quarantinePath: typeof parsed.quarantinePath === 'string' && parsed.quarantinePath.length > 0
+        ? parsed.quarantinePath
+        : null,
+    };
+  } catch (error: unknown) {
+    console.warn(`[vector-index] Ignoring unreadable vector shard repair sentinel: ${get_error_message(error)}`);
+    return { reason: 'unreadable vector shard repair sentinel', quarantinePath: null };
+  }
+}
+
+export function clear_vector_shard_repair_pending_sentinel(shardPath: string): void {
+  const sentinelPath = get_vector_shard_repair_pending_sentinel_path(shardPath);
+  if (!sentinelPath || !fs.existsSync(sentinelPath)) {
+    return;
+  }
+  try {
+    fs.unlinkSync(sentinelPath);
+    fsync_directory_if_possible(path.dirname(sentinelPath));
+  } catch (error: unknown) {
+    console.warn(`[vector-index] Failed to clear vector shard repair sentinel: ${get_error_message(error)}`);
+  }
+}
+
+function resume_vector_shard_repair_from_sentinel(
+  database: Database.Database,
+  profile: EmbeddingProfile,
+  shardPath: string,
+  sentinel: { reason: string; quarantinePath: string | null },
+): void {
+  const reason = `${sentinel.reason}; pending vector shard repair sentinel`;
+  recordVectorShardQuarantined({
+    shardPath,
+    quarantinePath: sentinel.quarantinePath ?? shardPath,
+    reason,
+    sentinelPersisted: true,
+  });
+  schedule_vector_shard_rebuild(database, profile, shardPath, reason);
 }
 
 function write_needs_rebuild_sentinel_for_recovered_restore(target_path: string, checkpoint_name: string): void {
@@ -1102,6 +1560,34 @@ export function attachActiveVectorShard(database: Database.Database, profile: Em
     drop_legacy_temp_aliases(database);
     database.exec(`DETACH DATABASE ${ACTIVE_VECTOR_SCHEMA}`);
   } else if (attachedPath === path.resolve(shardPath)) {
+    const probe = run_attached_vector_shard_integrity_probe(database, profile, sqlite_vec_available_flag);
+    if (!probe.ok) {
+      drop_legacy_temp_aliases(database);
+      database.exec(`DETACH DATABASE ${ACTIVE_VECTOR_SCHEMA}`);
+      quarantine_and_rebuild_vector_shard(database, profile, shardPath, probe.reason);
+      database.exec(`ATTACH DATABASE ${quote_sql_string(shardPath)} AS ${ACTIVE_VECTOR_SCHEMA}`);
+      ensure_vector_shard_schema(database, profile);
+      drop_canonical_vector_payload_tables(database);
+      create_legacy_temp_aliases(database, profile);
+      active_vector_source = {
+        canonical_path: canonicalPath,
+        shard_path: shardPath,
+        attached: true,
+        profile: {
+          provider: profile.provider,
+          model: profile.model,
+          dim: profile.dim,
+          dtype: profile.dtype,
+        },
+      };
+      return;
+    }
+    handle_vector_shard_repair_assessment(
+      database,
+      profile,
+      shardPath,
+      assess_vector_shard_repair_state(database, profile, shardPath),
+    );
     ensure_vector_shard_schema(database, profile);
     drop_canonical_vector_payload_tables(database);
     create_legacy_temp_aliases(database, profile);
@@ -1119,7 +1605,42 @@ export function attachActiveVectorShard(database: Database.Database, profile: Em
     return;
   }
 
-  database.exec(`ATTACH DATABASE ${quote_sql_string(shardPath)} AS ${ACTIVE_VECTOR_SCHEMA}`);
+  const shardExistedBeforeAttach = fs.existsSync(shardPath);
+  const preAttachProbe = run_vector_shard_integrity_probe_at_path(shardPath, profile, sqlite_vec_available_flag);
+  let needsPostAttachProbe = shardExistedBeforeAttach && preAttachProbe.ok;
+  if (!preAttachProbe.ok) {
+    quarantine_and_rebuild_vector_shard(database, profile, shardPath, preAttachProbe.reason);
+    needsPostAttachProbe = false;
+  } else {
+    handle_vector_shard_repair_assessment(
+      database,
+      profile,
+      shardPath,
+      assess_vector_shard_repair_state(database, profile, shardPath),
+    );
+  }
+
+  try {
+    database.exec(`ATTACH DATABASE ${quote_sql_string(shardPath)} AS ${ACTIVE_VECTOR_SCHEMA}`);
+  } catch (attachError: unknown) {
+    const reason = get_error_message(attachError);
+    if (!fs.existsSync(shardPath)) {
+      throw attachError;
+    }
+    quarantine_and_rebuild_vector_shard(database, profile, shardPath, reason);
+    needsPostAttachProbe = false;
+    database.exec(`ATTACH DATABASE ${quote_sql_string(shardPath)} AS ${ACTIVE_VECTOR_SCHEMA}`);
+  }
+
+  if (needsPostAttachProbe) {
+    const attachedProbe = run_attached_vector_shard_integrity_probe(database, profile, sqlite_vec_available_flag);
+    if (!attachedProbe.ok) {
+      drop_legacy_temp_aliases(database);
+      database.exec(`DETACH DATABASE ${ACTIVE_VECTOR_SCHEMA}`);
+      quarantine_and_rebuild_vector_shard(database, profile, shardPath, attachedProbe.reason);
+      database.exec(`ATTACH DATABASE ${quote_sql_string(shardPath)} AS ${ACTIVE_VECTOR_SCHEMA}`);
+    }
+  }
   ensure_vector_shard_schema(database, profile);
   drop_canonical_vector_payload_tables(database);
   create_legacy_temp_aliases(database, profile);
@@ -1150,6 +1671,16 @@ export function detachActiveVectorShard(database: Database.Database): void {
   if (active_vector_source) {
     active_vector_source = { ...active_vector_source, attached: false };
   }
+}
+
+/**
+ * True when the active vector shard schema is still bound on this connection.
+ * Lets callers verify a detach actually released the attachment (e.g. a
+ * busy/locked DETACH can throw with the shard still live) before performing an
+ * inode-replacing operation such as rename(2) on the shard file.
+ */
+export function isActiveVectorShardAttached(database: Database.Database): boolean {
+  return get_attached_vector_path(database) !== null;
 }
 
 export function getActiveVectorSource(): ActiveVectorSourceTelemetry {
@@ -1201,7 +1732,7 @@ const constitutional_cache = new Map<string, { data: MemoryRow[]; timestamp: num
 const CONSTITUTIONAL_CACHE_TTL = 300000;
 const CONSTITUTIONAL_CACHE_MAX_KEYS = 50;
 
-// BUG-012 FIX: Track which cache keys are currently being loaded
+// Track which cache keys are currently being loaded
 const constitutional_cache_loading = new Map<string, boolean>();
 
 let last_db_mod_time = 0;
@@ -1274,6 +1805,8 @@ type PreparedStatements = {
     string,
     string,
     string,
+    string,
+    string,
     string | null,
     string | null,
     string | null,
@@ -1316,12 +1849,21 @@ export function init_prepared_statements(database: Database.Database): PreparedS
       JOIN active_memory_projection p ON p.active_memory_id = m.id
       WHERE m.file_path = ?
     `),
+    // No projection join here: the logical-key unique index spans every
+    // non-constitutional/deprecated row, so any row in its domain must be
+    // visible to this dedup lookup. A row that fell out of the active
+    // projection (e.g. after a file move) would otherwise be invisible yet
+    // still block the insert with a unique-constraint error. The third path
+    // term mirrors the index's key expression for the same reason.
     get_by_folder_and_path: database.prepare(`
       SELECT m.id
       FROM memory_index m
-      JOIN active_memory_projection p ON p.active_memory_id = m.id
       WHERE m.spec_folder = ?
-        AND (m.canonical_file_path = ? OR m.file_path = ?)
+        AND (
+          m.canonical_file_path = ?
+          OR m.file_path = ?
+          OR COALESCE(NULLIF(m.canonical_file_path, ''), m.file_path) = COALESCE(NULLIF(?, ''), ?)
+        )
         AND COALESCE(NULLIF(TRIM(m.anchor_id), ''), '_') = COALESCE(NULLIF(TRIM(?), ''), '_')
         AND COALESCE(m.tenant_id,'') = COALESCE(?, '')
         AND COALESCE(m.user_id,'') = COALESCE(?, '')
@@ -1369,8 +1911,8 @@ export function clear_prepared_statements(database?: Database.Database): void {
    5. CONSTITUTIONAL MEMORIES CACHE
 ----------------------------------------------------------------*/
 
-// BUG-004 FIX: Checks external DB modifications before using cache
-// BUG-012 FIX: Prevent thundering herd when cache expires
+// Checks external DB modifications before using cache
+// Prevent thundering herd when cache expires
 /**
  * Gets cached constitutional memories from the index.
  * @param database - The database connection to query.
@@ -1406,11 +1948,11 @@ export function get_constitutional_memories(
       JOIN active_memory_projection p ON p.active_memory_id = m.id
       WHERE m.importance_tier = 'constitutional'
         AND m.embedding_status = 'success'
-        ${spec_folder ? 'AND (m.spec_folder = ? OR m.spec_folder LIKE ?)' : ''}
+        ${spec_folder ? "AND (m.spec_folder = ? OR m.spec_folder LIKE ? ESCAPE '\\')" : ''}
       ORDER BY m.importance_weight DESC, m.created_at DESC
     `;
 
-    const params = spec_folder ? [spec_folder, `${spec_folder}/%`] : [];
+    const params = spec_folder ? [spec_folder, specFolderLikePattern(spec_folder)] : [];
     let results = database.prepare(constitutional_sql).all(...params) as MemoryRow[];
 
     const MAX_CONSTITUTIONAL_TOKENS = 2000;
@@ -1521,6 +2063,10 @@ export function initialize_db(custom_path: string | null = null, options: Initia
   const target_path = custom_path || resolve_database_path();
   const startupProfile = getStartupEmbeddingProfile();
   if (target_path !== ':memory:') {
+    // The single-writer guard MUST precede restore-recovery: that path
+    // performs on-disk file swaps a concurrent writer would tear. Reentrant
+    // per process, so a cached-connection re-entry below is a no-op.
+    acquire_db_instance_lock(target_path);
     if (!options.skipRestoreRecovery) {
       recover_interrupted_checkpoint_restore(target_path);
     }
@@ -1593,21 +2139,40 @@ export function initialize_db(custom_path: string | null = null, options: Initia
   if (target_path !== ':memory:') {
     const prior_marker_path = get_unclean_shutdown_marker_path(target_path);
     if (prior_marker_path && fs.existsSync(prior_marker_path)) {
-      let probe_verdict = 'ok';
-      try {
-        const rows = new_db.pragma('quick_check(1)') as Array<Record<string, unknown>>;
-        const first = rows?.[0] ? Object.values(rows[0])[0] : undefined;
-        probe_verdict = typeof first === 'string' ? first : 'quick_check returned no verdict';
-      } catch (probe_error: unknown) {
-        probe_verdict = get_error_message(probe_error);
-      }
-      if (probe_verdict !== 'ok') {
-        const msg = `post-crash integrity probe failed: ${probe_verdict}`;
-        console.error(`[vector-index] FATAL: ${msg}`);
-        console.error('[vector-index] Wrote checkpoint needs-rebuild sentinel; the next boot rebuilds cleanly instead of serving corrupted data.');
-        write_needs_rebuild_sentinel_for_corruption(target_path, probe_verdict);
-        try { new_db.close(); } catch (_: unknown) { /* best-effort */ }
-        throw new VectorIndexError(msg, VectorIndexErrorCode.INTEGRITY_ERROR);
+      const db_fingerprint = compute_db_state_fingerprint(target_path);
+      const prior_receipt = read_crash_probe_receipt(target_path);
+      const probe_already_passed = db_fingerprint !== null
+        && prior_receipt !== null
+        && prior_receipt.verdict === 'ok'
+        && prior_receipt.fingerprint === db_fingerprint;
+      if (probe_already_passed) {
+        // A prior boot already passed quick_check for this exact on-disk state
+        // (identical main + WAL size/mtime), so a crash loop that never wrote a
+        // byte skips the expensive whole-DB probe instead of repeating it every
+        // boot. Any write or checkpoint changes the fingerprint and re-arms it.
+        console.warn('[vector-index] post-crash integrity probe skipped: DB unchanged since last passing probe');
+      } else {
+        let probe_verdict = 'ok';
+        try {
+          const rows = new_db.pragma('quick_check(1)') as Array<Record<string, unknown>>;
+          const first = rows?.[0] ? Object.values(rows[0])[0] : undefined;
+          probe_verdict = typeof first === 'string' ? first : 'quick_check returned no verdict';
+        } catch (probe_error: unknown) {
+          probe_verdict = get_error_message(probe_error);
+        }
+        if (probe_verdict !== 'ok') {
+          const msg = `post-crash integrity probe failed: ${probe_verdict}`;
+          console.error(`[vector-index] FATAL: ${msg}`);
+          console.error('[vector-index] Wrote checkpoint needs-rebuild sentinel; the next boot rebuilds cleanly instead of serving corrupted data.');
+          write_needs_rebuild_sentinel_for_corruption(target_path, probe_verdict);
+          try { new_db.close(); } catch (_: unknown) { /* best-effort */ }
+          throw new VectorIndexError(msg, VectorIndexErrorCode.INTEGRITY_ERROR);
+        }
+        // Record the passing probe for this on-disk state so a subsequent
+        // crash-loop boot can skip the repeat probe while the DB is unchanged.
+        if (db_fingerprint !== null) {
+          write_crash_probe_receipt(target_path, db_fingerprint);
+        }
       }
     }
   }
@@ -1663,11 +2228,20 @@ export function initialize_db(custom_path: string | null = null, options: Initia
    7. DATABASE UTILITIES
 ----------------------------------------------------------------*/
 
+type CloseDbOptions = {
+  /**
+   * Keeps the single-writer locks held across the close. Used by
+   * reopenActiveDatabase so the on-disk swap window stays protected and the
+   * same-process reopen cannot deadlock against its own lock.
+   */
+  retainLocks?: boolean;
+};
+
 /**
  * Closes the shared vector-index database connection.
  * @returns Nothing.
  */
-export function close_db(): void {
+export function close_db(options: CloseDbOptions = {}): void {
   clear_prepared_statements();
   // C1 FIX: Close all tracked connections
   for (const [, conn] of db_connections) {
@@ -1715,6 +2289,11 @@ export function close_db(): void {
     }
     db = null;
   }
+  // Release AFTER the database is fully closed so no window exists where a
+  // second writer can open the file while frames are still being flushed.
+  if (!options.retainLocks) {
+    release_db_instance_locks();
+  }
 }
 
 /**
@@ -1733,7 +2312,7 @@ export function reopenActiveDatabase(targetMainPath: string, swapFn: () => void)
     detachActiveVectorShard(currentDb);
   }
 
-  close_db();
+  close_db({ retainLocks: true });
   swapFn();
   return initialize_db(targetMainPath, { skipRestoreRecovery: true });
 }
@@ -1777,244 +2356,12 @@ export function is_vector_search_available(): boolean {
   return sqlite_vec_available_flag;
 }
 
-/* ───────────────────────────────────────────────────────────────
-   8. IVECTORSTORE IMPLEMENTATION
-----------------------------------------------------------------*/
+export const __testables = {
+  get_existing_embedding_dimension,
+  run_vector_shard_integrity_probe_at_path,
+};
 
-/** Implements the vector-store interface on top of SQLite. */
-export class SQLiteVectorStore extends IVectorStore {
-  dbPath: string | null;
-  _initialized: boolean;
-
-  constructor(options: { dbPath?: string } = {}) {
-    super();
-    this.dbPath = options.dbPath || null;
-    this._initialized = false;
-  }
-
-  _ensureInitialized(): void {
-    if (!this._initialized) {
-      this._getDatabase();
-      this._initialized = true;
-    }
-  }
-
-  _getDatabase(): Database.Database {
-    return initialize_db(this.dbPath);
-  }
-
-  /**
-   * Searches indexed memories by embedding similarity.
-   * @param embedding - The query embedding to search with.
-   * @param topK - The maximum number of matches to return.
-   * @param options - Optional ranking and filtering controls.
-   * @returns Matching memory rows ordered by similarity.
-   * @throws {VectorIndexError} When the embedding dimension is invalid or the store cannot initialize.
-   * @example
-   * ```ts
-   * const rows = await store.search(queryEmbedding, 10, { specFolder: 'specs/001-demo' });
-   * ```
-   */
-  async search(embedding: EmbeddingInput, topK: number, options: VectorSearchOptions = {}): Promise<MemoryRow[]> {
-    this._ensureInitialized();
-    const database = this._getDatabase();
-
-    const expected_dim = get_embedding_dim();
-    if (!embedding || embedding.length !== expected_dim) {
-      throw new VectorIndexError(
-        `Invalid embedding dimension: expected ${expected_dim}, got ${embedding?.length}`,
-        VectorIndexErrorCode.EMBEDDING_VALIDATION,
-      );
-    }
-
-    const search_options = {
-      limit: topK,
-      specFolder: options.specFolder,
-      minSimilarity: options.minSimilarity || 0,
-      useDecay: options.useDecay !== false,
-      tier: options.tier,
-      contextType: options.contextType,
-      includeConstitutional: options.includeConstitutional !== false,
-      includeArchived: options.includeArchived === true
-    };
-
-    const { vector_search } = await getQueriesModule();
-    return vector_search(embedding, search_options, database);
-  }
-
-  /**
-   * Inserts or updates a memory row and its embedding metadata.
-   * @param _id - Legacy identifier input retained for interface compatibility.
-   * @param embedding - The embedding to persist.
-   * @param metadata - Store metadata containing the spec folder and file path.
-   * @returns The stored memory identifier.
-   * @throws {VectorIndexError} When embedding validation fails or required metadata is missing.
-   * @example
-   * ```ts
-   * const id = await store.upsert('ignored', embedding, { spec_folder: 'specs/001-demo', file_path: 'spec.md' });
-   * ```
-   */
-  async upsert(_id: string, embedding: EmbeddingInput, metadata: JsonObject): Promise<number> {
-    this._ensureInitialized();
-    const database = this._getDatabase();
-
-    const expected_dim = get_embedding_dim();
-    if (!embedding || embedding.length !== expected_dim) {
-      throw new VectorIndexError(
-        `Embedding dimension mismatch: expected ${expected_dim}, got ${embedding?.length}`,
-        VectorIndexErrorCode.EMBEDDING_VALIDATION,
-      );
-    }
-
-    const metadata_alias = metadata as JsonObject & {
-      spec_folder?: string;
-      specFolder?: string;
-      file_path?: string;
-      filePath?: string;
-      anchor_id?: string;
-      anchorId?: string;
-      title?: string;
-      trigger_phrases?: string[];
-      triggerPhrases?: string[];
-      importance_weight?: number;
-      importanceWeight?: number;
-    };
-
-    const params: IndexMemoryParams = {
-      specFolder: metadata_alias.spec_folder || metadata_alias.specFolder || '',
-      filePath: metadata_alias.file_path || metadata_alias.filePath || '',
-      anchorId: metadata_alias.anchor_id || metadata_alias.anchorId || null,
-      title: metadata_alias.title || null,
-      triggerPhrases: metadata_alias.trigger_phrases || metadata_alias.triggerPhrases || [],
-      importanceWeight: metadata_alias.importance_weight ?? metadata_alias.importanceWeight ?? 0.5,
-      embedding: embedding
-    };
-
-    if (!params.specFolder || !params.filePath) {
-      throw new VectorIndexError(
-        'metadata must include spec_folder and file_path',
-        VectorIndexErrorCode.STORE_ERROR,
-      );
-    }
-
-    const { index_memory } = await getMutationsModule();
-    return index_memory(params, database);
-  }
-
-  /**
-   * Deletes a memory by identifier.
-   * @param id - The memory identifier.
-   * @returns True when a memory was deleted.
-   * @throws {VectorIndexError} Propagates underlying delete failures from the mutation layer.
-   * @example
-   * ```ts
-   * const deleted = await store.delete(42);
-   * ```
-   */
-  async delete(id: number): Promise<boolean> {
-    this._ensureInitialized();
-    const database = this._getDatabase();
-    const { delete_memory } = await getMutationsModule();
-    return delete_memory(id, database);
-  }
-
-  /**
-   * Retrieves a memory by identifier.
-   * @param id - The memory identifier.
-   * @returns The stored memory row, if found.
-   * @throws {VectorIndexError} Propagates underlying store initialization failures.
-   * @example
-   * ```ts
-   * const memory = await store.get(42);
-   * ```
-   */
-  async get(id: number): Promise<MemoryRow | null> {
-    this._ensureInitialized();
-    const database = this._getDatabase();
-    const { get_memory } = await getQueriesModule();
-    return get_memory(id, database);
-  }
-
-  async getStats(): Promise<{ total: number; pending: number; success: number; failed: number; retry: number }> {
-    this._ensureInitialized();
-    const database = this._getDatabase();
-    const { get_stats } = await getQueriesModule();
-    return get_stats(database);
-  }
-
-  isAvailable(): boolean {
-    return sqlite_vec_available_flag;
-  }
-
-  getEmbeddingDimension(): number {
-    return get_embedding_dim();
-  }
-
-  async close(): Promise<void> {
-    if (this._initialized) {
-      close_db();
-      this._initialized = false;
-    }
-  }
-
-  async deleteByPath(specFolder: string, filePath: string, anchorId: string | null = null): Promise<boolean> {
-    this._ensureInitialized();
-    const database = this._getDatabase();
-    const { delete_memory_by_path } = await getMutationsModule();
-    return delete_memory_by_path(specFolder, filePath, anchorId, database);
-  }
-
-  async getByFolder(specFolder: string): Promise<MemoryRow[]> {
-    this._ensureInitialized();
-    const database = this._getDatabase();
-    const { get_memories_by_folder } = await getQueriesModule();
-    return get_memories_by_folder(specFolder, database);
-  }
-
-  async searchEnriched(
-    embedding: string,
-    options: { specFolder?: string | null; minSimilarity?: number } = {},
-  ): Promise<EnrichedSearchResult[]> {
-    this._ensureInitialized();
-    const database = this._getDatabase();
-    const { vector_search_enriched } = await getQueriesModule();
-    return vector_search_enriched(embedding, undefined, options, database);
-  }
-
-  async enhancedSearch(embedding: string, options: EnhancedSearchOptions = {}): Promise<EnrichedSearchResult[]> {
-    this._ensureInitialized();
-    const database = this._getDatabase();
-    const { enhanced_search } = await getAliasesModule();
-    return enhanced_search(embedding, undefined, options, database);
-  }
-
-  async getConstitutionalMemories(
-    options: { specFolder?: string | null; maxTokens?: number; includeArchived?: boolean } = {},
-  ): Promise<MemoryRow[]> {
-    this._ensureInitialized();
-    const database = this._getDatabase();
-    const { get_constitutional_memories_public } = await getQueriesModule();
-    return get_constitutional_memories_public(options, database);
-  }
-
-  async verifyIntegrity(
-    options: { autoClean?: boolean; cleanFiles?: boolean } = {},
-  ): Promise<{
-    totalMemories: number;
-    totalVectors: number;
-    orphanedVectors: number;
-    missingVectors: number;
-    orphanedFiles: Array<{ id: number; file_path: string; reason: string }>;
-    orphanedChunks: number;
-    isConsistent: boolean;
-    cleaned?: { vectors: number; chunks: number; files: number };
-  }> {
-    this._ensureInitialized();
-    const database = this._getDatabase();
-    const { verify_integrity } = await getQueriesModule();
-    return verify_integrity(options, database);
-  }
-}
+export { BetterSqliteVectorStore as SQLiteVectorStore } from '../storage/ports/vector-store.js';
 
 /* ───────────────────────────────────────────────────────────────
    9. CAMELCASE ALIASES

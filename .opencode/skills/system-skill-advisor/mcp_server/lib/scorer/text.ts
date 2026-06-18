@@ -72,7 +72,15 @@ export function phraseSpecificity(phrase: string): number {
   return Math.min(0.7 + 0.18 * (count - 1), 1);
 }
 
-export function scoreTokenOverlap(promptTokens: readonly string[], candidateText: readonly string[]): number {
+// denominatorBasis lets callers that expand the prompt (e.g. synonym injection)
+// normalize by the ORIGINAL prompt-token count, so adding synonyms can only help
+// recall and never dilutes a true match's score. Defaults to promptTokens.length
+// for callers that pass un-expanded tokens.
+export function scoreTokenOverlap(
+  promptTokens: readonly string[],
+  candidateText: readonly string[],
+  denominatorBasis: number = promptTokens.length,
+): number {
   const candidateTokens = new Set(candidateText.flatMap((entry) => tokenize(entry)));
   if (candidateTokens.size === 0 || promptTokens.length === 0) return 0;
   let hits = 0;
@@ -88,7 +96,7 @@ export function scoreTokenOverlap(promptTokens: readonly string[], candidateText
       }
     }
   }
-  return Math.min(hits / Math.max(3, promptTokens.length), 1);
+  return Math.min(hits / Math.max(3, denominatorBasis), 1);
 }
 
 export function isReadOnlyExplainer(promptLower: string): boolean {

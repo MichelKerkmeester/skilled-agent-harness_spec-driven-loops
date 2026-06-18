@@ -4,6 +4,8 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/003-changelog-accuracy-reaudit",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -112,8 +114,8 @@
       }
     ],
     "causal_summary": "After seven new leaf changelogs were authored in the 003-memory-and-causal-runtime track (packets 020 through 026), there was no independent check that each changelog accurately reflects its referenced spec folder (file lists, verification numbers, commit hashes, Level, and the spec-folder path).",
-    "created_at": "2026-06-05T12:47:33.192Z",
-    "last_save_at": "2026-06-05T12:47:33.192Z",
+    "created_at": "2026-06-18T12:37:49.104Z",
+    "last_save_at": "2026-06-18T12:37:49.104Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

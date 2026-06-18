@@ -139,7 +139,7 @@ function writeCachedCorpusStats(cachePath: string, sourceKey: string, stats: Cor
   try {
     writeFileSync(tmpPath, `${JSON.stringify({ schemaVersion: 1, sourceKey, stats }, null, 2)}\n`, 'utf8');
     renameSync(tmpPath, cachePath);
-  } catch (error) {
+  } catch (error: unknown) {
     rmSync(tmpPath, { force: true });
     throw error;
   }

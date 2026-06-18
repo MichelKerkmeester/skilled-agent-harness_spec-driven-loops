@@ -2,7 +2,7 @@
 name: sk-code-review
 description: "Stack-agnostic code-review baseline: findings-first severity, mandatory security/correctness minimums, sk-code evidence."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 1.2.0.0
+version: 1.5.0.0
 ---
 
 <!-- Keywords: sk-code-review, code-review, pull-request, findings-first, security-review, quality-gate, stack-agnostic, baseline-surface, sk-code -->
@@ -72,21 +72,22 @@ Knowledge is organized by domain mapping:
 ```text
 references/review_core.md
 references/review_ux_single_pass.md
-references/*_checklist.md
-assets/review/...
+references/pr_state_dedup.md
+assets/*_checklist.md
+assets/removal_plan.md
 ```
 
 - `references/review_core.md` for shared doctrine consumed by both `@review` and `@deep-review`.
 - `references/review_ux_single_pass.md` for interactive single-pass review behavior.
-- `references/` for baseline review flow, severity contracts, and risk checklists.
-- `assets/` for optional reusable templates/checklists (if present in this skill).
+- `references/` for shared review doctrine, single-pass UX behavior, and the PR-state dedup spec.
+- `assets/` for the review checklists and the removal-plan template (security, code-quality, fix-completeness, SOLID, test-quality, removal).
 
 ### Resource Loading Levels
 
 | Level | When to Load | Resources |
 | --- | --- | --- |
-| ALWAYS | Every invocation, including security/correctness reviews | `references/review_core.md`, `references/review_ux_single_pass.md`, `references/security_checklist.md`, `references/code_quality_checklist.md`, `references/fix-completeness-checklist.md` |
-| CONDITIONAL | Intent score indicates need | `references/solid_checklist.md`, `references/code_quality_checklist.md`, `references/removal_plan.md`, `references/test_quality_checklist.md` |
+| ALWAYS | Every invocation, including security/correctness reviews | `references/review_core.md`, `references/review_ux_single_pass.md`, `assets/security_checklist.md`, `assets/code_quality_checklist.md`, `assets/fix-completeness-checklist.md` |
+| CONDITIONAL | Intent score indicates need | `assets/solid_checklist.md`, `assets/code_quality_checklist.md`, `assets/removal_plan.md`, `assets/test_quality_checklist.md` |
 | ON_DEMAND | Explicit deep-dive request | Full mapped reference set |
 
 ### Precedence Matrix
@@ -111,6 +112,7 @@ If intent/stack detection is unclear, request:
 ### Smart Router Pseudocode
 
 ```python
+import re
 from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
@@ -119,9 +121,9 @@ RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
 DEFAULT_RESOURCES = [
     "references/review_core.md",
     "references/review_ux_single_pass.md",
-    "references/security_checklist.md",
-    "references/code_quality_checklist.md",
-    "references/fix-completeness-checklist.md",
+    "assets/security_checklist.md",
+    "assets/code_quality_checklist.md",
+    "assets/fix-completeness-checklist.md",
 ]
 
 INTENT_SIGNALS = {
@@ -135,13 +137,13 @@ INTENT_SIGNALS = {
 }
 
 RESOURCE_MAP = {
-    "SECURITY": ["references/security_checklist.md"],
-    "QUALITY": ["references/code_quality_checklist.md"],
-    "KISS": ["references/code_quality_checklist.md"],
-    "DRY": ["references/code_quality_checklist.md"],
-    "SOLID": ["references/solid_checklist.md"],
-    "REMOVAL": ["references/removal_plan.md"],
-    "TESTING": ["references/test_quality_checklist.md"],
+    "SECURITY": ["assets/security_checklist.md"],
+    "QUALITY": ["assets/code_quality_checklist.md"],
+    "KISS": ["assets/code_quality_checklist.md"],
+    "DRY": ["assets/code_quality_checklist.md"],
+    "SOLID": ["assets/solid_checklist.md"],
+    "REMOVAL": ["assets/removal_plan.md"],
+    "TESTING": ["assets/test_quality_checklist.md"],
 }
 
 ON_DEMAND_KEYWORDS = ["deep review", "full review", "all checks", "comprehensive", "flag false positives", "blocking regressions", "list findings", "read-only only", "underrepresented", "scope correctly"]
@@ -175,12 +177,16 @@ def discover_markdown_resources() -> set[str]:
             docs.extend(path for path in base.rglob("*.md") if path.is_file())
     return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
 
+def keyword_present(keyword: str, text: str) -> bool:
+    """Boundary-aware match: bare substrings misroute ('pr' in 'improve prompt')."""
+    return re.search(rf"(?<![a-z0-9]){re.escape(keyword)}(?![a-z0-9])", text) is not None
+
 def score_intents(task) -> dict[str, float]:
     text = _task_text(task)
     scores = {intent: 0.0 for intent in INTENT_SIGNALS}
     for intent, cfg in INTENT_SIGNALS.items():
         for keyword in cfg["keywords"]:
-            if keyword in text:
+            if keyword_present(keyword, text):
                 scores[intent] += cfg["weight"]
     return scores
 
@@ -197,9 +203,9 @@ def detect_surface_evidence(task, workspace_files=None, changed_files=None) -> s
     text = _task_text(task)
     files = " ".join((workspace_files or []) + (changed_files or [])).lower()
 
-    if ".opencode/" in files or "jsonc" in text or "mcp" in text:
+    if ".opencode/" in files or keyword_present("jsonc", text) or keyword_present("mcp", text):
         return "sk-code:<surface>"
-    if any(term in text for term in ["frontend", "web", "css", "dom", "browser"]) or any(
+    if any(keyword_present(term, text) for term in ["frontend", "web", "css", "dom", "browser"]) or any(
         marker in files for marker in ["next.config", "vite.config", "package.json", "src/"]
     ):
         return "sk-code:<surface>"
@@ -237,7 +243,7 @@ def route_review_resources(task, workspace_files=None, changed_files=None):
         for relative_path in RESOURCE_MAP.get(intent, []):
             load_if_available(relative_path)
 
-    if any(keyword in text for keyword in ON_DEMAND_KEYWORDS):
+    if any(keyword_present(keyword, text) for keyword in ON_DEMAND_KEYWORDS):
         for paths in RESOURCE_MAP.values():
             for relative_path in paths:
                 load_if_available(relative_path)
@@ -266,8 +272,10 @@ def route_review_resources(task, workspace_files=None, changed_files=None):
 ### Phase 1: Scope and Baseline
 
 1. Inspect the review target (`git diff`, staged diff, file list, or commit range).
-2. Load baseline standards from this skill (`sk-code-review`).
-3. Load `sk-code` surface standards evidence when a surface is detected.
+2. For local diffs, optionally run `detect_changes` with the unified diff to identify affected symbols/files and readiness before narrowing evidence.
+3. If `detect_changes` returns blocked or unavailable, surface "structural-impact analysis unavailable" as a caveat and continue the plain git-diff review; never block the review on structural-impact availability.
+4. Load baseline standards from this skill (`sk-code-review`).
+5. Load `sk-code` surface standards evidence when a surface is detected.
 
 ### Phase 2: Surface Alignment
 
@@ -285,6 +293,10 @@ def route_review_resources(task, workspace_files=None, changed_files=None):
 4. Analyze removal opportunities with safe-now vs deferred classification.
 5. Produce findings ordered by severity (`P0`, `P1`, `P2`).
 6. For every actionable finding, classify fix scope as `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`. If unknown, default to class/cross-consumer until a producer/consumer inventory proves instance-only.
+
+#### Numeric Severity Calibration
+
+Use numeric calibration only as reviewer context, never as the gate. A finding may include an optional advisory `riskScore` to communicate relative risk, and reviewers may adjust that score by `+/-2` for local context such as exploitability, blast radius, user impact, confidence, or proven containment. The blocking decision still comes only from the `P0`/`P1`/`P2` severity contract. Do not introduce `score>=4` or any other numeric threshold as a blocker.
 
 #### Instance-Only Opt-Out
 
@@ -318,6 +330,7 @@ Required output contract:
    - Finding class: [instance-only | class-of-bug | cross-consumer | algorithmic | matrix/evidence | test-isolation]
    - Scope proof: [grep/test evidence proving class coverage or instance-only status]
    - affectedSurfaceHints: [optional string array of short producer/consumer surface names; recommended for actionable findings, required for cross-consumer findings]
+   - riskScore: [optional advisory number only; never gating]
    - Recommended fix
 
 ### P1 - High
@@ -357,7 +370,7 @@ Review status: COMMENTED
 Review status: REQUESTED_CHANGES
 ```
 
-Downstream automation parses this final line via exact string match — do not vary the format, add trailing punctuation, or wrap in Markdown formatting.
+Downstream automation parses this final line via exact string match — do not vary the format, add trailing punctuation, or wrap in Markdown formatting. The sole exception is the documented M-1 / M-2 skip output (§9): those lines begin with the exact `Review status: COMMENTED` and append a parenthetical reason, so a leading-verdict (grep / `startsWith`) parse still yields `COMMENTED`. A normal review must still end with one of the three exact lines above.
 
 ---
 
@@ -395,11 +408,11 @@ Downstream automation parses this final line via exact string match — do not v
 - [review_core.md](./references/review_core.md) - Shared review doctrine: severity model, evidence rules, precedence, and finding schema.
 - [review_ux_single_pass.md](./references/review_ux_single_pass.md) - Interactive single-pass review flow, presentation modes, and PR/pre-commit behavior.
 - [quick_reference.md](./references/quick_reference.md) - Lightweight index for routing between shared doctrine and single-pass UX guidance.
-- [security_checklist.md](./references/security_checklist.md) - Mandatory security and reliability checks.
-- [code_quality_checklist.md](./references/code_quality_checklist.md) - Correctness, performance, KISS, and DRY checks.
-- [solid_checklist.md](./references/solid_checklist.md) - SOLID (SRP/OCP/LSP/ISP/DIP) and architecture assessment prompts.
-- [removal_plan.md](./references/removal_plan.md) - Safe-now vs deferred removal planning template.
-- [test_quality_checklist.md](./references/test_quality_checklist.md) - Test quality, coverage, and anti-pattern detection.
+- [security_checklist.md](./assets/security_checklist.md) - Mandatory security and reliability checks.
+- [code_quality_checklist.md](./assets/code_quality_checklist.md) - Correctness, performance, KISS, and DRY checks.
+- [solid_checklist.md](./assets/solid_checklist.md) - SOLID (SRP/OCP/LSP/ISP/DIP) and architecture assessment prompts.
+- [removal_plan.md](./assets/removal_plan.md) - Safe-now vs deferred removal planning template.
+- [test_quality_checklist.md](./assets/test_quality_checklist.md) - Test quality, coverage, and anti-pattern detection.
 
 ### Reference Loading Notes
 
@@ -427,7 +440,7 @@ Downstream automation parses this final line via exact string match — do not v
 
 ## 8. REFERENCES AND RELATED RESOURCES
 
-The router discovers reference, asset, and script docs dynamically. Start with `references/quick_reference.md`, `references/review_core.md`, `references/code_quality_checklist.md`, `references/fix-completeness-checklist.md`, `references/removal_plan.md`, `references/review_ux_single_pass.md`, `references/security_checklist.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
+The router discovers reference, asset, and script docs dynamically. Start with `references/quick_reference.md`, `references/review_core.md`, `assets/code_quality_checklist.md`, `assets/fix-completeness-checklist.md`, `assets/removal_plan.md`, `references/review_ux_single_pass.md`, `assets/security_checklist.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
 
 ### Manual Testing Playbook
 
@@ -496,6 +509,16 @@ Review status: COMMENTED (skipped: diff below evidence threshold of N lines, no 
 If sensitive paths ARE touched, the full review runs regardless of line count.
 
 **Gate is ALWAYS opt-in.** Without `SK_CODE_REVIEW_MIN_CHANGED_LINES` set, M-2 has zero effect — all diffs receive full reviews.
+
+### 9.3 SK_CODE_REVIEW_DEPTH (opt-in depth alias)
+
+`SK_CODE_REVIEW_DEPTH=lite|full|ultra` is an optional environment variable the **reviewing agent honors** (resolved env > config > default) — exactly like the §9.2 `SK_CODE_REVIEW_MIN_CHANGED_LINES` gate. Both are skill guidance the reviewer reads and applies in-loop, not a separate compiled dispatcher; this alias only NAMES and PERSISTS an already-existing routing behavior, adds no new tier, and relaxes no floor:
+
+- `full` (default / unset): the normal ALWAYS + CONDITIONAL + ON_DEMAND routing.
+- `ultra`: bias intent selection toward the existing `ON_DEMAND` reference set (the deep-dive tier) for the session, so a reviewer does not have to repeat "comprehensive / full review" each time.
+- `lite`: maps to the existing M-2 conservative skip (§9.2) — it NEVER lowers the ALWAYS tier, the baseline security/correctness minimums, or the P0/P1/P2 contract. It cannot skip a review on a sensitive path (auth/config/persistence/deps/sandbox/public-response), exactly as M-2 already enforces.
+
+The depth alias is advisory routing only; it must never be read as permission to relax a floor.
 
 ---
 

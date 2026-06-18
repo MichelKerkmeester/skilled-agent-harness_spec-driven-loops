@@ -1,0 +1,364 @@
+{
+  "findings": [
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
+      "symbol": "writeVectorsToKnn",
+      "kind": "integration_point",
+      "signature": "function writeVectorsToKnn(db, rows, embeddings): void",
+      "reuse": "",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:365",
+      "relevance": 0.9,
+      "notes": "CONFIRMED: Transaction-wrapped vec0 writes (delete+insert per row into vec_memories) at lines 370-381. Called from writeVectorsToShard which also creates vec0 virtual table. Blocks Turso migration."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts",
+      "symbol": "isMemoryFtsAvailable",
+      "kind": "integration_point",
+      "signature": "function isMemoryFtsAvailable(database): boolean",
+      "reuse": "",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts:472",
+      "relevance": 0.8,
+      "notes": "CONFIRMED: Probes sqlite_master for memory_fts table existence. Used by shouldWarmInMemoryBm25 and shouldUseSqliteLexicalEngine to gate FTS5 vs in-memory BM25. Turso migration must replace this check."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/db-shard-migration.ts",
+      "symbol": "canonical.exec",
+      "kind": "integration_point",
+      "signature": "canonical.exec(`ATTACH DATABASE ... AS legacy`); canonical.exec(`ATTACH DATABASE ... AS shard`);",
+      "reuse": "",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/db-shard-migration.ts:243",
+      "relevance": 0.9,
+      "notes": "CONFIRMED: ATTACH/DETACH used for 3-database migration (legacy→canonical→shard) at lines 243-244, 272-273. Turso has no ATTACH — requires architectural redesign."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/db-shard-migration.ts",
+      "symbol": "copyShardPayloadTable",
+      "kind": "integration_point",
+      "signature": "function copyShardPayloadTable(db, tableName, profile): void",
+      "reuse": "",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/db-shard-migration.ts:61",
+      "relevance": 0.9,
+      "notes": "CONFIRMED: Creates vec0 virtual table in attached shard (line 72-75) and copies rows. Uses ATTACH, vec0, and loadExtension. Turso has none of these."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts",
+      "symbol": "memory_fts delete-all",
+      "kind": "integration_point",
+      "signature": "database.exec(`INSERT INTO memory_fts(memory_fts) VALUES('delete-all')`)",
+      "reuse": "",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1606",
+      "relevance": 0.7,
+      "notes": "CONFIRMED: FTS5 'delete-all' command used in clearTable(). Turso/libSQL lacks FTS5; must be reimplemented."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts",
+      "symbol": "memory_fts rebuild",
+      "kind": "integration_point",
+      "signature": "database.exec(`INSERT INTO memory_fts(memory_fts) VALUES('rebuild')`)",
+      "reuse": "",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1930",
+      "relevance": 0.7,
+      "notes": "CONFIRMED: FTS5 'rebuild' command used in post-restore derived artifact rebuilds (fts-rebuild step). FTS5 not available in Turso."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts",
+      "symbol": "restoreCheckpointV2",
+      "kind": "integration_point",
+      "signature": "function restoreCheckpointV2(database, checkpoint, _scope, opts): RestoreResult",
+      "reuse": "",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:2559",
+      "relevance": 0.95,
+      "notes": "CONFIRMED: v2 restore is entirely file-copy based (fs.renameSync live→backup, fs.copyFileSync snapshot→live) at lines 2689-2707. Turso remote DB cannot fs.copyFileSync."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts",
+      "symbol": "VACUUM active_vec INTO",
+      "kind": "integration_point",
+      "signature": "database.exec(`VACUUM active_vec INTO ${quoteSqlString(vecSnapshotPath)}`)",
+      "reuse": "",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:2284",
+      "relevance": 0.9,
+      "notes": "CONFIRMED: VACUUM INTO on attached database (active_vec). Turso lacks ATTACH and VACUUM INTO; vector shard snapshot needs complete reimplementation."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts",
+      "symbol": "VACUUM main INTO",
+      "kind": "integration_point",
+      "signature": "database.exec(`VACUUM main INTO ${quoteSqlString(mainSnapshotPath)}`)",
+      "reuse": "",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:2281",
+      "relevance": 0.9,
+      "notes": "CONFIRMED: VACUUM INTO is SQLite-specific; used as core v2 checkpoint snapshot mechanism. Turso/libSQL does not support it."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts",
+      "symbol": "memory_fts",
+      "kind": "integration_point",
+      "signature": "verifyFts5Isolation(db): boolean — probes sqlite_master for memory_fts",
+      "reuse": "",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts:111",
+      "relevance": 0.6,
+      "notes": "CONFIRMED: FTS5 virtual table existence probe in verifyFts5Isolation. Checks if memory_fts exists and verifies learned_triggers not in FTS5. Turso lacks FTS5."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      "symbol": "Database",
+      "kind": "dependency",
+      "signature": "import Database from 'better-sqlite3'",
+      "reuse": "",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts:7",
+      "relevance": 0.95,
+      "notes": "CONFIRMED: Direct better-sqlite3 driver import. Every call site (initDb, getDb, etc.) couples to synchronous better-sqlite3 API. Turso uses @libsql/client."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts",
+      "symbol": "db.pragma",
+      "kind": "dependency",
+      "signature": "db.pragma('journal_mode = WAL'); db.pragma('busy_timeout = 5000'); db.pragma('foreign_keys = ON')",
+      "reuse": "",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts:299",
+      "relevance": 0.7,
+      "notes": "CONFIRMED: Three .pragma() calls at lines 299-301. libSQL lacks .pragma() method — must use db.exec('PRAGMA ...') or connection string params."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
+      "symbol": "sqliteVec.load",
+      "kind": "dependency",
+      "signature": "sqliteVec.load(shard)",
+      "reuse": "",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:430",
+      "relevance": 0.9,
+      "notes": "CONFIRMED: loadExtension in reindex shard writer (writeVectorsToShard). Turso blocks extension loading — reindex cannot populate vec0 KNN table."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-db.ts",
+      "symbol": "db.pragma",
+      "kind": "dependency",
+      "signature": "db.pragma('journal_mode = WAL'); db.pragma('busy_timeout = 5000'); db.pragma('foreign_keys = ON')",
+      "reuse": "",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-db.ts:147",
+      "relevance": 0.7,
+      "notes": "CONFIRMED: Three .pragma() calls at lines 147-149. libSQL has no .pragma() API — requires exec-based pragma or connection config."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts",
+      "symbol": "memory_fts",
+      "kind": "dependency",
+      "signature": "database.prepare(\"INSERT INTO memory_fts(memory_fts) VALUES('optimize')\").run()",
+      "reuse": "",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts:343",
+      "relevance": 0.6,
+      "notes": "CONFIRMED: FTS5 optimize command after bulk deletes in runPostDeleteMaintenance. Turso has no FTS5 — must remove or replace."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/db-shard-migration.ts",
+      "symbol": "sqliteVec.load",
+      "kind": "dependency",
+      "signature": "sqliteVec.load(canonical)",
+      "reuse": "",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/db-shard-migration.ts:242",
+      "relevance": 0.9,
+      "notes": "CONFIRMED: loadExtension during shard migration at line 242. Turso blocks extension loading — migration logic cannot create vec0 tables."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts",
+      "symbol": "vec_distance_cosine",
+      "kind": "dependency",
+      "signature": "vec_distance_cosine(v.${vectorSource.embeddingColumn}, ?) as distance",
+      "reuse": "",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:314",
+      "relevance": 0.95,
+      "notes": "CONFIRMED: sqlite-vec scalar function used in vector_search (line 314), multi_concept_search (lines 403, 407). Turso has no vec_distance_cosine — must compute externally."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+      "symbol": "bm25",
+      "kind": "dependency",
+      "signature": "FTS5 bm25() ranking function with per-column weights",
+      "reuse": "",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1",
+      "relevance": 0.5,
+      "notes": "REFUTED: No bm25() function call found in vector-index-schema.ts. The file contains schema DDL/migration logic, not BM25 query functions. The bm25() function is referenced in bm25-index.ts in-memory implementation. FTS5 bm25() ranking is not directly called in this file."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+      "symbol": "CREATE VIRTUAL TABLE memory_fts USING fts5",
+      "kind": "dependency",
+      "signature": "CREATE VIRTUAL TABLE memory_fts USING fts5(title, trigger_phrases, file_path, content_text, content='memory_index', content_rowid='id')",
+      "reuse": "",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1256",
+      "relevance": 0.8,
+      "notes": "CONFIRMED: FTS5 virtual table creation with 3 sync triggers in migration v14 (lines 1256-1281). Turso lacks FTS5 — full-text search must use external engine."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+      "symbol": "memory_fts",
+      "kind": "dependency",
+      "signature": "memory_fts FTS5 virtual table referenced in schema migrations",
+      "reuse": "",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1256",
+      "relevance": 0.8,
+      "notes": "CONFIRMED: FTS5 virtual table for BM25 full-text search. Created in migration v14 and rebuilt in migration v33. Turso lacks FTS5."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+      "symbol": "vec_distance_cosine",
+      "kind": "dependency",
+      "signature": "vec_distance_cosine used via sqlite-vec extension loaded by sqliteVec.load(database)",
+      "reuse": "",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:21",
+      "relevance": 0.9,
+      "notes": "CONFIRMED: sqlite-vec loaded at line 21 and used throughout for KNN queries. vec_distance_cosine is the core distance function. Must be reimplemented for Turso."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts",
+      "symbol": "memory_fts",
+      "kind": "dependency",
+      "signature": "INSERT INTO memory_fts(memory_fts) VALUES('delete-all'/'rebuild')",
+      "reuse": "",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1606",
+      "relevance": 0.7,
+      "notes": "CONFIRMED: FTS5 delete-all and rebuild commands used in checkpoint operations. Turso/libSQL has no FTS5."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts",
+      "symbol": "VACUUM active_vec INTO",
+      "kind": "dependency",
+      "signature": "database.exec(`VACUUM active_vec INTO ${quoteSqlString(vecSnapshotPath)}`)",
+      "reuse": "",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:2284",
+      "relevance": 0.9,
+      "notes": "CONFIRMED: VACUUM INTO on attached shard. Turso cannot attach databases or VACUUM INTO; snapshot strategy must change entirely."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts",
+      "symbol": "VACUUM main INTO",
+      "kind": "dependency",
+      "signature": "database.exec(`VACUUM main INTO ${quoteSqlString(mainSnapshotPath)}`)",
+      "reuse": "",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:2281",
+      "relevance": 0.9,
+      "notes": "CONFIRMED: VACUUM INTO is the core v2 checkpoint snapshot mechanism. Turso/libSQL lacks this — must replace with serialize()/file-copy or Turso snapshot API."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts",
+      "symbol": "createFtsArtifacts",
+      "kind": "dependency",
+      "signature": "function createFtsArtifacts(database): void",
+      "reuse": "",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/schema-downgrade.ts:203",
+      "relevance": 0.7,
+      "notes": "CONFIRMED: Full FTS5 virtual table creation with content-sync triggers and rebuild (lines 203-235). Turso has no FTS5 or loadExtension — blocks schema downgrade path."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      "symbol": "db.pragma",
+      "kind": "gap",
+      "signature": "db.pragma('busy_timeout = 5000'); db.pragma('journal_mode = WAL'); db.pragma('foreign_keys = ON')",
+      "reuse": "",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts:270",
+      "relevance": 0.7,
+      "notes": "CONFIRMED: Turso/libSQL has no .pragma() method; busy_timeout must be set via connection config or PRAGMA SQL statement if supported."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/recovery-procedures.ts",
+      "symbol": "DB_TRIPLET",
+      "kind": "gap",
+      "signature": "const DB_TRIPLET = ['code-graph.sqlite', 'code-graph.sqlite-wal', 'code-graph.sqlite-shm']",
+      "reuse": "",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/recovery-procedures.ts:41",
+      "relevance": 0.8,
+      "notes": "CONFIRMED: WAL triplet file model. All copy/move/restore logic (copyTriplet, moveTriplet, restoreTriplet) assumes local files. Turso uses remote replicas — all triplet logic becomes obsolete."
+    },
+    {
+      "path": ".opencode/skills/system-code-graph/mcp_server/lib/recovery-procedures.ts",
+      "symbol": "db.pragma",
+      "kind": "gap",
+      "signature": "db.pragma('integrity_check')",
+      "reuse": "",
+      "evidence": ".opencode/skills/system-code-graph/mcp_server/lib/recovery-procedures.ts:128",
+      "relevance": 0.7,
+      "notes": "CONFIRMED: integrity_check pragma in runIntegrityCheck is local SQLite. Turso has no embedded integrity check — recovery procedure CG-RP-001 must be redesigned."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts",
+      "symbol": "retryEmbedding",
+      "kind": "gap",
+      "signature": "async function retryEmbedding(id, content, claimedPreviousStatus): Promise<RetryResult>",
+      "reuse": "",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:663",
+      "relevance": 0.8,
+      "notes": "CONFIRMED: retryEmbedding writes to vec_memories (vec0 virtual table) at lines 756-762. Turso/libSQL has NO vector index support — this is a migration blocker."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts",
+      "symbol": "causal_walk",
+      "kind": "gap",
+      "signature": "WITH RECURSIVE causal_walk(origin_id, node_id, hop_distance, walk_score) AS (...)",
+      "reuse": "",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts:431",
+      "relevance": 0.8,
+      "notes": "CONFIRMED: Recursive CTE with bidirectional UNION seed + UNION ALL recursive step traversing causal_edges up to MAX_HOPS(2). Turso lacks WITH RECURSIVE."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts",
+      "symbol": "getNeighborBoosts",
+      "kind": "gap",
+      "signature": "function getNeighborBoosts(memoryIds, maxHops): Map<number, NeighborBoost>",
+      "reuse": "",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts:417",
+      "relevance": 0.8,
+      "notes": "CONFIRMED: Core recursive CTE for graph traversal with bidirectional edges and relation-weighted scoring. Turso lacks WITH RECURSIVE — must rewrite as iterative application-side traversal."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts",
+      "symbol": "WITH RECURSIVE causal_walk",
+      "kind": "gap",
+      "signature": "WITH RECURSIVE causal_walk(origin_id, node_id, hop_distance, walk_score) AS (SELECT ... UNION SELECT ... UNION ALL SELECT ...)",
+      "reuse": "",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts:431",
+      "relevance": 0.8,
+      "notes": "CONFIRMED: Recursive CTE for 2-hop graph traversal. Turso lacks WITH RECURSIVE — must be replaced with iterative application-side traversal or bounded expansion."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+      "symbol": "memory_fts",
+      "kind": "gap",
+      "signature": "CREATE VIRTUAL TABLE memory_fts USING fts5(...)",
+      "reuse": "",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1256",
+      "relevance": 0.8,
+      "notes": "CONFIRMED: FTS5 virtual table for BM25 full-text search — Turso/libSQL lacks FTS5; entire FTS search path blocks migration."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts",
+      "symbol": "VACUUM main INTO",
+      "kind": "gap",
+      "signature": "database.exec(`VACUUM main INTO ${quoteSqlString(mainSnapshotPath)}`)",
+      "reuse": "",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:2281",
+      "relevance": 0.9,
+      "notes": "CONFIRMED: VACUUM INTO is the core v2 checkpoint snapshot mechanism; Turso/libSQL lacks this — blocks checkpoint creation as-is."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/memo.ts",
+      "symbol": "dependents",
+      "kind": "gap",
+      "signature": "WITH RECURSIVE dependents(child_path) AS (SELECT ... UNION SELECT ...)",
+      "reuse": "",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/memo.ts:192",
+      "relevance": 0.7,
+      "notes": "CONFIRMED: Recursive CTE for transitive dependency closure in collectDependents(). Turso lacks WITH RECURSIVE; collectDependents() and wouldCreateCycle() both depend on this."
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/memo.ts",
+      "symbol": "WITH RECURSIVE dependents",
+      "kind": "gap",
+      "signature": "WITH RECURSIVE dependents(child_path) AS (SELECT child_path FROM dependency_edges WHERE parent_path IN (...) UNION SELECT edge.child_path FROM dependency_edges edge JOIN dependents dep ON edge.parent_path = dep.child_path)",
+      "reuse": "",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/memo.ts:192",
+      "relevance": 0.7,
+      "notes": "CONFIRMED: Recursive CTE for transitive dependency closure (cycle detection + invalidation). Turso lacks WITH RECURSIVE — must rewrite as iterative BFS."
+    }
+  ]
+}

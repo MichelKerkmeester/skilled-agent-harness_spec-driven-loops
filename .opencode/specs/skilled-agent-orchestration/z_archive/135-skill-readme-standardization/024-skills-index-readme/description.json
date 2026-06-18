@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/135-skill-readme-standardization/024-skills-index-readme",
+  "description": "Feature Specification: skills index README",
+  "keywords": [
+    "feature",
+    "specification",
+    "skills",
+    "index",
+    "readme"
+  ],
+  "lastUpdated": "2026-06-10T04:53:30.834Z",
+  "specId": "024",
+  "folderSlug": "skills-index-readme",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "135-skill-readme-standardization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

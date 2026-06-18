@@ -12,6 +12,7 @@ import { normalizeContentForEmbedding } from '../parsing/content-normalizer.js';
 import { generateDocumentEmbedding, getEmbeddingDimension, getModelName } from './embeddings.js';
 import { clearRegisteredTimer, registerInterval } from '../runtime/timer-registry.js';
 import { registerShutdownHook } from '../runtime/shutdown-hooks.js';
+import { beginMaintenance, type MaintenanceMarkerHandle } from '../storage/maintenance-marker.js';
 
 // Type imports
 import type { MemoryDbRow } from '@spec-kit/shared/types';
@@ -686,7 +687,7 @@ async function retryEmbedding(
       return { success: false, error: 'Maximum retries exceeded', permanent: true };
     }
 
-    // BUG-1 fix: Normalize content before embedding to match sync save path (memory-save.ts:1119).
+    // Normalize content before embedding to match sync save path (memory-save.ts:1119).
     // Without this, async-saved memories get embeddings from raw markdown (YAML frontmatter, HTML
     // Comments, code fences) while sync-saved memories get clean normalized embeddings.
     const normalizedContent = normalizeContentForEmbedding(content);
@@ -1018,6 +1019,9 @@ async function runBackgroundJob(batchSize: number = BACKGROUND_JOB_CONFIG.batchS
     retryAbortController = new AbortController();
   }
 
+  // Held only while a tick has real work; the empty-queue path below never creates
+  // a handle, so an idle tick leaves the daemon reapable.
+  let maintenanceHandle: MaintenanceMarkerHandle | null = null;
   try {
     enforceRetryRetentionLimits();
     if (shutdownRequested || retryAbortController.signal.aborted) {
@@ -1029,6 +1033,9 @@ async function runBackgroundJob(batchSize: number = BACKGROUND_JOB_CONFIG.batchS
       return { processed: 0, queue_empty: true };
     }
 
+    // The deferred-embedding burst keeps the daemon busy; mark it busy-by-design so
+    // a competing launcher adopts it rather than reaping it mid-drain.
+    maintenanceHandle = beginMaintenance('embedding-queue');
     console.error(`[retry-manager] Background job: Processing up to ${batchSize} of ${stats.queue_size} pending embeddings`);
 
     const result = await processRetryQueue(batchSize);
@@ -1043,6 +1050,9 @@ async function runBackgroundJob(batchSize: number = BACKGROUND_JOB_CONFIG.batchS
     console.error('[retry-manager] Background job error:', message);
     return { error: message };
   } finally {
+    // Release the busy mark on every exit (success, error). The empty-queue path
+    // never set it, so this is a safe no-op there; end() is idempotent regardless.
+    maintenanceHandle?.end();
     lastBackgroundRunAt = new Date().toISOString();
     retryHealthSnapshot.lastRun = lastBackgroundRunAt;
     retryHealthSnapshot.retryAttempts = totalRetryAttempts;

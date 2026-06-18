@@ -4,7 +4,7 @@
 // Feature catalog: Causal neighbor boost and injection
 // Graph-traversal score boosting via causal edge relationships.
 // Walks the causal_edges graph up to MAX_HOPS, amplifying scores
-// For results related to top seed results via weighted CTE.
+// For results related to top seed results via a weighted BFS walk.
 //
 // Sparse-First + Intent-Aware Traversal:
 // - Sparse-first policy — density < 0.5 disables community
@@ -15,6 +15,7 @@
 // Both requirements are gated behind SPECKIT_TYPED_TRAVERSAL (default ON, graduated).
 import { isCausalBoostEnabled, isTypedTraversalEnabled as _isTypedTraversalEnabled, isGraphContextInjectionEnabled } from './search-flags.js';
 import { routeQueryConcepts } from './entity-linker.js';
+import { BetterSqliteGraphTraversal, type GraphTraversal } from '../storage/ports/index.js';
 
 import type Database from 'better-sqlite3';
 
@@ -77,13 +78,13 @@ const FRESHNESS_DECAY_WINDOW_MS = 30 * 24 * 60 * 60 * 1000;
 
 /**
  * Relation-type weight multipliers for causal edge traversal.
- * Applied during CTE accumulation so stronger relation types (supersedes)
+ * Applied during BFS walk accumulation so stronger relation types (supersedes)
  * amplify the boost while weaker ones (contradicts) attenuate it.
  *
  * These multipliers serve a DIFFERENT purpose from RELATION_WEIGHTS in
  * causal-edges.ts. causal-edges weights are applied during chain traversal
  * scoring (getCausalChain), while these are applied during the causal-boost
- * CTE walk (getNeighborBoosts) for search result amplification. The value
+ * BFS walk (getNeighborBoosts) for search result amplification. The value
  * ranges overlap but are tuned independently for their respective contexts:
  *   - causal-edges: traversal strength propagation (range 0.8–1.5)
  *   - causal-boost: search result boost amplitude (range 0.8–1.5)
@@ -139,6 +140,7 @@ interface NeighborBoost {
 }
 
 let db: Database.Database | null = null;
+let graphTraversal: GraphTraversal | null = null;
 
 /**
  * Check whether the causal boost feature flag is enabled.
@@ -164,6 +166,7 @@ function isTypedTraversalEnabled(): boolean {
 /** Store the database reference used by causal edge traversal queries. */
 function init(database: Database.Database): void {
   db = database;
+  graphTraversal = new BetterSqliteGraphTraversal(database);
 }
 
 // ───────────────────────────────────────────────────────────────
@@ -416,73 +419,18 @@ function computeBoostByHop(hopDistance: number): number {
  */
 function getNeighborBoosts(memoryIds: number[], maxHops: number = MAX_HOPS): Map<number, NeighborBoost> {
   const neighborBoosts = new Map<number, NeighborBoost>();
-  if (!db) return neighborBoosts;
+  if (!db || !graphTraversal) return neighborBoosts;
 
   const ids = normalizeIds(memoryIds);
   if (ids.length === 0) return neighborBoosts;
 
-  const originIds = ids.map((value) => String(value));
-  const placeholders = originIds.map(() => '?').join(', ');
-
-  // Relation-weighted CTE — accumulates score with multiplier
-  // Based on edge relation type and edge strength column.
-  // 'supersedes' edges get 1.5x, 'contradicts' 0.8x, others 1.0x.
-  const query = `
-    WITH RECURSIVE causal_walk(origin_id, node_id, hop_distance, walk_score) AS (
-      SELECT ce.source_id, ce.target_id, 1,
-             (CASE WHEN ce.relation = 'supersedes' THEN 1.5
-                   WHEN ce.relation = 'contradicts' THEN 0.8
-                   ELSE 1.0 END * COALESCE(ce.strength, 1.0))
-      FROM causal_edges ce
-      WHERE ce.source_id IN (${placeholders})
-
-      UNION
-
-      SELECT ce.target_id, ce.source_id, 1,
-             (CASE WHEN ce.relation = 'supersedes' THEN 1.5
-                   WHEN ce.relation = 'contradicts' THEN 0.8
-                   ELSE 1.0 END * COALESCE(ce.strength, 1.0))
-      FROM causal_edges ce
-      WHERE ce.target_id IN (${placeholders})
-
-      UNION
-
-      SELECT cw.origin_id,
-             CASE
-               WHEN ce.source_id = cw.node_id THEN ce.target_id
-               ELSE ce.source_id
-             END,
-             cw.hop_distance + 1,
-             (cw.walk_score * CASE WHEN ce.relation = 'supersedes' THEN 1.5
-                                   WHEN ce.relation = 'contradicts' THEN 0.8
-                                   ELSE 1.0 END * COALESCE(ce.strength, 1.0))
-      FROM causal_walk cw
-      JOIN causal_edges ce
-        ON ce.source_id = cw.node_id OR ce.target_id = cw.node_id
-      WHERE cw.hop_distance < ?
-        AND (CASE WHEN ce.source_id = cw.node_id THEN ce.target_id ELSE ce.source_id END) != cw.origin_id
-    )
-    SELECT node_id, MIN(hop_distance) AS min_hop, MAX(walk_score) AS max_walk_score
-    FROM causal_walk
-    WHERE node_id NOT IN (${placeholders})
-    GROUP BY node_id
-  `;
-
   try {
-    const rows = (db.prepare(query) as Database.Statement).all(
-      ...originIds,
-      ...originIds,
-      maxHops,
-      ...originIds
-    ) as Array<{ node_id: string; min_hop: number; max_walk_score: number }>;
+    const rows = graphTraversal.collectCausalWeightedNeighbors(ids, maxHops, RELATION_WEIGHT_MULTIPLIERS);
 
-    for (const row of rows) {
-      const neighborId = Number.parseInt(row.node_id, 10);
-      if (!Number.isFinite(neighborId)) continue;
-      // Combine hop-distance decay with relation-weighted walk score
-      const hopBoost = computeBoostByHop(row.min_hop);
-      const walkMultiplier = typeof row.max_walk_score === 'number' && Number.isFinite(row.max_walk_score)
-        ? Math.max(0.1, Math.min(2.0, row.max_walk_score))
+    for (const [neighborId, row] of rows) {
+      const hopBoost = computeBoostByHop(row.minHop);
+      const walkMultiplier = typeof row.maxWalkScore === 'number' && Number.isFinite(row.maxWalkScore)
+        ? Math.max(0.1, Math.min(2.0, row.maxWalkScore))
         : 1.0;
       const boost = hopBoost * walkMultiplier;
       if (boost <= 0) continue;
@@ -490,7 +438,7 @@ function getNeighborBoosts(memoryIds: number[], maxHops: number = MAX_HOPS): Map
       if (!current || boost > current.boost) {
         neighborBoosts.set(neighborId, {
           boost,
-          hopCount: Math.max(1, Math.min(maxHops, row.min_hop)),
+          hopCount: Math.max(1, Math.min(maxHops, row.minHop)),
         });
       }
     }
@@ -582,12 +530,19 @@ function applyCausalBoost(
       let dominantRelation = 'caused';
       if (db) {
         try {
+          const seedPlaceholders = seedIds.map(() => '?').join(',');
+          const seedIdParams = seedIds.map(String);
           const edgeRow = (db.prepare(`
             SELECT relation FROM causal_edges
-            WHERE source_id IN (${seedIds.map(() => '?').join(',')})
-              AND target_id = ?
+            WHERE (source_id IN (${seedPlaceholders}) AND target_id = ?)
+               OR (target_id IN (${seedPlaceholders}) AND source_id = ?)
             LIMIT 1
-          `) as Database.Statement).get(...seedIds.map(String), String(neighborId)) as
+          `) as Database.Statement).get(
+            ...seedIdParams,
+            String(neighborId),
+            ...seedIdParams,
+            String(neighborId),
+          ) as
             { relation: string } | undefined;
           if (edgeRow?.relation) dominantRelation = edgeRow.relation;
         } catch (_err: unknown) {

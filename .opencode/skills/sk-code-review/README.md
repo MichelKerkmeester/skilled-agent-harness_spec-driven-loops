@@ -119,7 +119,7 @@ All findings publish in one message with a next-action prompt. Findings never dr
 
 ### PR-State Efficiency
 
-Two optional gates reduce redundant work. The content-hash dedup gate skips a re-review when the diff has not changed since the last one, writing a signature into `.opencode/.sk-code-review-cache/`. The minimum-evidence gate skips full review for trivially small diffs when enabled through `SK_CODE_REVIEW_MIN_CHANGED_LINES`, but it never skips diffs that touch auth, config, persistence, dependencies, sandboxing or public-facing response paths. Both gates are opt-in and never change the baseline findings.
+Two optional gates reduce redundant work. The content-hash dedup gate skips a re-review when the diff has not changed since the last one, writing a signature into `.opencode/.sk-code-review-cache/`. The minimum-evidence gate skips full review for trivially small diffs when enabled through `SK_CODE_REVIEW_MIN_CHANGED_LINES`, but it never skips diffs that touch auth, config, persistence, dependencies, sandboxing or public-facing response paths. Both gates are opt-in and never change the baseline findings. The optional `SK_CODE_REVIEW_DEPTH=lite|full|ultra` alias names and persists this routing for a session: `ultra` biases toward the deep-dive reference set, `lite` maps to the conservative skip, and neither relaxes the security and correctness floor.
 
 ---
 
@@ -185,6 +185,7 @@ The skill ships a manual testing playbook with per-feature scenarios for finding
 |---|---|
 | README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-code-review/README.md --type readme` reports zero issues |
 | Playbook structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-code-review/manual_testing_playbook/manual_testing_playbook.md` |
+| Rule invariants | `node .opencode/skills/sk-code-review/scripts/check-rule-copies.js` exits 0 (canary locking the `Review status:` verdict triplet and the cross-doc Iron Law wording) |
 | Behavior | Run the playbook scenarios under `manual_testing_playbook/<NN>--<topic>/` in a live session |
 
 ---
@@ -196,11 +197,11 @@ The skill ships a manual testing playbook with per-feature scenarios for finding
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, smart router and the full rule set |
 | [`references/review_core.md`](./references/review_core.md) | Shared doctrine: severity taxonomy, evidence rules and baseline-plus-surface precedence |
 | [`references/review_ux_single_pass.md`](./references/review_ux_single_pass.md) | Single-pass report flow and the next-action prompt |
-| [`references/security_checklist.md`](./references/security_checklist.md) | Mandatory security checks: auth, injection, secrets, concurrency and supply chain |
-| [`references/code_quality_checklist.md`](./references/code_quality_checklist.md) | Correctness, performance, boundary handling, KISS and DRY |
-| [`references/solid_checklist.md`](./references/solid_checklist.md) | SOLID principles and architecture smell detection |
-| [`references/test_quality_checklist.md`](./references/test_quality_checklist.md) | Test coverage quality, structure and reliability |
-| [`references/fix-completeness-checklist.md`](./references/fix-completeness-checklist.md) | Finding classes and producer/consumer inventory for proportional fixes |
-| [`references/removal_plan.md`](./references/removal_plan.md) | Safe-now versus deferred deletion and rollback planning |
+| [`assets/security_checklist.md`](./assets/security_checklist.md) | Mandatory security checks: auth, injection, secrets, concurrency and supply chain |
+| [`assets/code_quality_checklist.md`](./assets/code_quality_checklist.md) | Correctness, performance, boundary handling, KISS and DRY |
+| [`assets/solid_checklist.md`](./assets/solid_checklist.md) | SOLID principles and architecture smell detection |
+| [`assets/test_quality_checklist.md`](./assets/test_quality_checklist.md) | Test coverage quality, structure and reliability |
+| [`assets/fix-completeness-checklist.md`](./assets/fix-completeness-checklist.md) | Finding classes and producer/consumer inventory for proportional fixes |
+| [`assets/removal_plan.md`](./assets/removal_plan.md) | Safe-now versus deferred deletion and rollback planning |
 | [`references/pr_state_dedup.md`](./references/pr_state_dedup.md) | Content-hash dedup gate: signature scheme, cache format and retention |
 | [`references/quick_reference.md`](./references/quick_reference.md) | Lightweight routing index across all references |

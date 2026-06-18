@@ -1,0 +1,29 @@
+The lineage packet is complete and self-consistent. All outputs were written exclusively under the `search-intel-opus` lineage directory.
+
+**Loop summary (converged, 5/5 iterations):**
+
+| Artifact | State |
+|---|---|
+| `deep-research-config.json` | ✓ |
+| `deep-research-state.jsonl` | ✓ 7 lines (config + 5 iterations + synthesis_complete) |
+| `deep-research-strategy.md` | ✓ converged |
+| `findings-registry.json` | ✓ 6/6 resolved |
+| `deep-research-dashboard.md` | ✓ |
+| `iterations/iteration-00{1..5}.md` | ✓ |
+| `research.md` | ✓ 14-section synthesis + Eliminated Alternatives + convergence report |
+
+**Key result:** all six open problems share **one root cause** — the pipeline reads *relative* ranking signals (RRF magnitude, heuristic set-agreement) where it needs *absolute relevance*, then compounds with conservative AND-gates and hard truncations. Packet-015 fixed only the calibration-prior instance.
+
+Headline, evidence-grounded findings:
+- **P1 (recall):** HyDE is gated to "deep + low-confidence" (`hyde.ts:6`) and ≤3-term queries classify `simple` → channels "Skipped by simple complexity route" (`query-plan.ts:239`) — recall machinery is suppressed exactly where it's most needed.
+- **P3 (5→1 truncation):** `truncateToBudget` runs unconditionally at budget 4000 and **hard-`break`s** on first overflow (`hybrid-search.ts:2768`) — a single large top memory starves the tail. Fix: skip-don't-break + min-floor 3 + summary-first.
+- **P2:** AND-gate lets a weak tail veto a strong top hit → top-dominant + margin-aware disjunction.
+- **P4:** the removed cross-encoder was already inert — recommend a *free* cosine-primary reorder before any model reranker.
+- **P5 (FSRS):** leave as-is; cold crowding is empirically near-inert (lowest priority).
+- **P6:** confidence band is non-monotonic in relevance (0.89 cosine isolated hit → only 0.446 "medium") → rebalance + labeled-set recalibration.
+
+The six fixes are coupled and must ship as a dependency-sequenced bundle (P3→P2→P1→P6→P4→P5-no-op).
+
+**Honesty note:** the live `count:1` mechanism is HIGH-confidence at the code level (greedy-break confirmed) but I did not capture the `budgetTruncated` trace to prove greedy-break vs few-survivors on that specific query — flagged as the top to-verify item. The initial `memory_health` hit a cold daemon (DB not connected); search calls warmed it, so that snapshot is cold-start not steady-state.
+
+FANOUT_LINEAGE_COMPLETE:search-intel-opus

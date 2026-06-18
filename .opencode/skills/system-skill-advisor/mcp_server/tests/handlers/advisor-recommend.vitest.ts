@@ -2,11 +2,12 @@
 // MODULE: Advisor Recommend Tests
 // ───────────────────────────────────────────────────────────────
 
-import { mkdtempSync, rmSync } from 'node:fs';
+import { existsSync, mkdtempSync, readFileSync, rmSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { findAdvisorWorkspaceRoot } from '../../lib/utils/workspace-root.js';
+import { resolveShadowDeltaPath } from '../../lib/shadow/shadow-sink.js';
 
 const { mockScoreAdvisorPrompt, mockReadAdvisorStatus } = vi.hoisted(() => ({
   mockScoreAdvisorPrompt: vi.fn(),
@@ -106,6 +107,7 @@ beforeEach(() => {
 afterEach(() => {
   advisorPromptCache.clear();
   vi.restoreAllMocks();
+  delete process.env.MK_SKILL_ADVISOR_HOOK_DISABLED;
   delete process.env.SPECKIT_SKILL_ADVISOR_HOOK_DISABLED;
   delete process.env.SPECKIT_ADVISOR_SHADOW_DELTA_PATH;
   mockReadAdvisorStatus.mockReset();
@@ -141,9 +143,81 @@ describe('advisor_recommend handler', () => {
         confidence: 0.92,
         dominantLane: 'explicit_author',
         laneBreakdown: expect.any(Array),
+        why_recommended: expect.objectContaining({
+          dominantLane: 'explicit_author',
+          matchedSkillFeatures: expect.arrayContaining([
+            { lane: 'explicit_author', feature: 'phrase_match' },
+          ]),
+        }),
       }),
     ]);
     expect(JSON.stringify(response.data.recommendations)).not.toContain('phrase:spec folder');
+  });
+
+  it('only emits prompt-safe why_recommended when attribution is requested', async () => {
+    const secretPromptToken = 'customer-secret-token-817263';
+    mockReadAdvisorStatus.mockReturnValue(status('live'));
+    mockScoreAdvisorPrompt.mockReturnValue(scoreResult([
+      recommendation({
+        laneContributions: [{
+          lane: 'explicit_author',
+          rawScore: 1,
+          weightedScore: 0.42,
+          weight: 0.42,
+          evidence: [`phrase:${secretPromptToken}`, `token:${secretPromptToken}`],
+          shadowOnly: false,
+        }],
+      }),
+    ]));
+
+    const plain = parseResponse(await handleAdvisorRecommend({ prompt: `route ${secretPromptToken}` }));
+    const attributed = parseResponse(await handleAdvisorRecommend({
+      prompt: `route ${secretPromptToken}`,
+      options: { includeAttribution: true },
+    }));
+
+    expect(plain.data.recommendations).toEqual([
+      expect.not.objectContaining({
+        laneBreakdown: expect.anything(),
+        why_recommended: expect.anything(),
+      }),
+    ]);
+    expect(attributed.data.recommendations).toEqual([
+      expect.objectContaining({
+        laneBreakdown: expect.any(Array),
+        why_recommended: expect.objectContaining({
+          matchedSkillFeatures: expect.arrayContaining([
+            { lane: 'explicit_author', feature: 'phrase_match' },
+            { lane: 'explicit_author', feature: 'token_match' },
+          ]),
+        }),
+      }),
+    ]);
+    expect(JSON.stringify(attributed.data.recommendations)).not.toContain(secretPromptToken);
+  });
+
+  it('does not change recommendation order or scores when attribution is enabled', async () => {
+    const recommendations = [
+      recommendation({ skill: 'alpha', score: 0.72, confidence: 0.92, uncertainty: 0.12 }),
+      recommendation({ skill: 'beta', score: 0.61, confidence: 0.88, uncertainty: 0.18 }),
+    ];
+    mockReadAdvisorStatus.mockReturnValue(status('live'));
+    mockScoreAdvisorPrompt.mockReturnValue(scoreResult(recommendations));
+
+    const plain = parseResponse(await handleAdvisorRecommend({ prompt: 'Implement ranking drift check' }));
+    const attributed = parseResponse(await handleAdvisorRecommend({
+      prompt: 'Implement ranking drift check',
+      options: { includeAttribution: true },
+    }));
+    const comparable = (data: Record<string, unknown>) => (data.recommendations as Array<Record<string, unknown>>)
+      .map((entry) => ({
+        skillId: entry.skillId,
+        score: entry.score,
+        confidence: entry.confidence,
+        uncertainty: entry.uncertainty,
+      }));
+
+    expect(comparable(attributed.data)).toEqual(comparable(plain.data));
   });
 
   it('marks ambiguous top-two cases without leaking prompts', async () => {
@@ -203,6 +277,36 @@ describe('advisor_recommend handler', () => {
     ]);
   });
 
+  it('records shadow deltas without raw prompt text', async () => {
+    mockReadAdvisorStatus.mockReturnValue(status('live'));
+    mockScoreAdvisorPrompt.mockReturnValue(scoreResult());
+    const prompt = 'private customer prompt acct-12345';
+
+    await handleAdvisorRecommend({ prompt, options: { topK: 1 } });
+
+    const logPath = process.env.SPECKIT_ADVISOR_SHADOW_DELTA_PATH;
+    expect(logPath && existsSync(logPath)).toBe(true);
+    const record = JSON.parse(readFileSync(logPath!, 'utf8').trim()) as { prompt?: string };
+    expect(record.prompt).toMatch(/^hmac:[a-f0-9]{64}$/u);
+    expect(JSON.stringify(record)).not.toContain(prompt);
+  });
+
+  it('writes no shadow deltas when the sink is not opted into', async () => {
+    mockReadAdvisorStatus.mockReturnValue(status('live'));
+    mockScoreAdvisorPrompt.mockReturnValue(scoreResult());
+    delete process.env.SPECKIT_ADVISOR_SHADOW_DELTA_PATH;
+    delete process.env.SPECKIT_ADVISOR_SHADOW_DELTA_ENABLED;
+    const defaultSinkPath = resolveShadowDeltaPath({});
+    expect(defaultSinkPath.ok).toBe(true);
+    const sinkPath = (defaultSinkPath as { ok: true; path: string }).path;
+    const sizeBefore = existsSync(sinkPath) ? statSync(sinkPath).size : null;
+
+    await handleAdvisorRecommend({ prompt: 'route this prompt', options: { topK: 1 } });
+
+    const sizeAfter = existsSync(sinkPath) ? statSync(sinkPath).size : null;
+    expect(sizeAfter).toBe(sizeBefore);
+  });
+
   it('drops instruction-shaped labels and redirect metadata from public output', async () => {
     mockReadAdvisorStatus.mockReturnValue(status('live'));
     mockScoreAdvisorPrompt.mockReturnValue(scoreResult([
@@ -252,6 +356,17 @@ describe('advisor_recommend handler', () => {
 
   it('honors the disabled flag as a fail-open empty recommendation', async () => {
     process.env.SPECKIT_SKILL_ADVISOR_HOOK_DISABLED = '1';
+
+    const response = parseResponse(await handleAdvisorRecommend({ prompt: 'Implement routing' }));
+
+    expect(response.data.freshness).toBe('unavailable');
+    expect(response.data.recommendations).toEqual([]);
+    expect(response.data.warnings).toEqual(['ADVISOR_DISABLED']);
+    expect(mockScoreAdvisorPrompt).not.toHaveBeenCalled();
+  });
+
+  it('honors the canonical MK_ disable flag on the daemon path', async () => {
+    process.env.MK_SKILL_ADVISOR_HOOK_DISABLED = '1';
 
     const response = parseResponse(await handleAdvisorRecommend({ prompt: 'Implement routing' }));
 

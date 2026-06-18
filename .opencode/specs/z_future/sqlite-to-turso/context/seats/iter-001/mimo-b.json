@@ -1,0 +1,184 @@
+{
+  "findings": [
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+      "symbol": "sqliteVec.load",
+      "kind": "dependency",
+      "signature": "sqliteVec.load(database)",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:1091",
+      "relevance": 1,
+      "notes": "loadExtension() call — Turso/libSQL has no loadExtension support; sqlite-vec cannot be loaded at runtime"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+      "symbol": "database.pragma",
+      "kind": "dependency",
+      "signature": "database.pragma('journal_mode = WAL')",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:1095",
+      "relevance": 0.85,
+      "notes": "WAL pragma on main database; Turso uses its own replication/WAL and may reject arbitrary pragma calls"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+      "symbol": "ensure_vector_shard_schema",
+      "kind": "integration_point",
+      "signature": "database.pragma(shema.journal_mode/cache_size/mmap_size/temp_store/wal_autocheckpoint)",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:499",
+      "relevance": 0.9,
+      "notes": "Five pragma calls on attached vector shard; Turso lacks .pragma() and ATTACH — entire shard initialization must be redesigned"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+      "symbol": "vec0",
+      "kind": "dependency",
+      "signature": "CREATE VIRTUAL TABLE vec_memories USING vec0(embedding FLOAT[dim])",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:518",
+      "relevance": 1,
+      "notes": "sqlite-vec vec0 virtual table — Turso has no vector index support; KNN search path blocks migration entirely"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+      "symbol": "create_legacy_temp_aliases",
+      "kind": "integration_point",
+      "signature": "CREATE TEMP VIEW/TRIGGER INSTEAD OF INSERT/DELETE on vec_memories",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:558",
+      "relevance": 0.8,
+      "notes": "TEMP VIEW + INSTEAD OF triggers as compatibility shim; Turso lacks temp views and INSTEAD OF triggers"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+      "symbol": "database.exec",
+      "kind": "integration_point",
+      "signature": "ATTACH DATABASE / DETACH DATABASE active_vec",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:1122",
+      "relevance": 0.95,
+      "notes": "ATTACH/DETACH for vector shard separation; Turso has no ATTACH DATABASE — shard architecture requires rework"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+      "symbol": "reopenActiveDatabase",
+      "kind": "reuse_candidate",
+      "signature": "close_db() → swapFn() → initialize_db(targetMainPath)",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:1727",
+      "relevance": 0.75,
+      "notes": "Atomic DB swap relies on close/reopen cycle with WAL TRUNCATE checkpoint; Turso checkpoint semantics differ"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+      "symbol": "initialize_db",
+      "kind": "convention",
+      "signature": "pragma journal_mode=WAL, busy_timeout=10000, foreign_keys=ON, cache_size, mmap_size, synchronous=NORMAL, wal_autocheckpoint, temp_store=MEMORY",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:1579",
+      "relevance": 0.9,
+      "notes": "Eight pragma calls at startup; most are unsupported in Turso — need abstraction layer or removal"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+      "symbol": "merge_checkpoint_catalog_from_backup",
+      "kind": "reuse_candidate",
+      "signature": "live_db.transaction((rows) => { INSERT OR IGNORE INTO checkpoints })",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:972",
+      "relevance": 0.6,
+      "notes": "Transaction-wrapped merge of checkpoint catalog from backup; INSERT OR IGNORE — Turso supports basic transactions but no ATTACH for the backup source"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/db-shard-migration.ts",
+      "symbol": "migrateLegacySingleDbToShardSync",
+      "kind": "integration_point",
+      "signature": "ATTACH legacy + shard → copy vec tables → INSERT INTO vec0 → DETACH → VACUUM",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/db-shard-migration.ts:209",
+      "relevance": 1,
+      "notes": "Full migration pipeline uses ATTACH, vec0 virtual table creation, INSERT INTO vec0, DETACH, VACUUM — every construct blocks Turso"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/db-shard-migration.ts",
+      "symbol": "copyShardPayloadTable",
+      "kind": "integration_point",
+      "signature": "CREATE VIRTUAL TABLE shard.vec_memories USING vec0(embedding FLOAT[dim]) + INSERT rowid/embedding",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/db-shard-migration.ts:71",
+      "relevance": 1,
+      "notes": "Creates vec0 virtual table in attached shard and copies rows — Turso has no vec0, no ATTACH, no loadExtension"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+      "symbol": "run_migrations",
+      "kind": "reuse_candidate",
+      "signature": "database.transaction(() => { for v: migrations[v]() })",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1964",
+      "relevance": 0.7,
+      "notes": "All 37 schema migrations wrapped in one atomic transaction; Turso supports transactions but migration DDL may hit unsupported features"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+      "symbol": "memory_fts",
+      "kind": "gap",
+      "signature": "CREATE VIRTUAL TABLE memory_fts USING fts5(title, trigger_phrases, file_path, content_text)",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1256",
+      "relevance": 1,
+      "notes": "FTS5 virtual table for BM25 full-text search — Turso/libSQL lacks FTS5; entire FTS search path blocks migration"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+      "symbol": "memory_fts_insert",
+      "kind": "gap",
+      "signature": "CREATE TRIGGER memory_fts_insert AFTER INSERT ON memory_index → INSERT INTO memory_fts",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1263",
+      "relevance": 0.95,
+      "notes": "FTS5 sync triggers (insert/update/delete) — dependent on FTS5 which Turso lacks; needs alternative sync mechanism"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+      "symbol": "deprecateDuplicateActiveLogicalKeysBeforeUniqueIndex",
+      "kind": "integration_point",
+      "signature": "UPDATE memory_index SET importance_tier='deprecated' WHERE id IN (SELECT id FROM (...) ROW_NUMBER() OVER (PARTITION BY ...))",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:901",
+      "relevance": 0.6,
+      "notes": "Uses window functions (ROW_NUMBER OVER PARTITION BY) in migration — Turso supports window functions, but the deprecation logic couples to tier semantics"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+      "symbol": "migrations[25]",
+      "kind": "integration_point",
+      "signature": "ALTER TABLE memory_index RENAME → CREATE TABLE → INSERT INTO → DROP TABLE (table rebuild for CHECK constraint)",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:1690",
+      "relevance": 0.7,
+      "notes": "Full table rebuild to enforce CHECK constraint; Turso may handle this differently — verify ALTER TABLE RENAME and rebuild compatibility"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts",
+      "symbol": "verify_integrity",
+      "kind": "integration_point",
+      "signature": "DELETE FROM active_vec.vec_memories WHERE rowid = ? (orphaned vector cleanup)",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:1413",
+      "relevance": 0.85,
+      "notes": "Deletes from vec0 virtual table in attached schema; blocked by Turso's lack of vec0 and ATTACH"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
+      "symbol": "writeVectorsToKnn",
+      "kind": "integration_point",
+      "signature": "db.transaction(() => { DELETE FROM vec_memories; INSERT INTO vec_memories(rowid, embedding) })",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:370",
+      "relevance": 1,
+      "notes": "Transaction-wrapped vec0 virtual table writes (delete+insert per row) — blocks Turso migration entirely"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
+      "symbol": "writeVectorsToShard",
+      "kind": "integration_point",
+      "signature": "new Database(shardPath) → pragma WAL → sqliteVec.load → CREATE VIRTUAL TABLE vec0 → writeVectors + writeVectorsToKnn → wal_checkpoint(TRUNCATE)",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:406",
+      "relevance": 1,
+      "notes": "Full shard write path: opens separate DB, loads sqlite-vec, creates vec0, writes vectors, checkpoints WAL — every step blocks Turso"
+    },
+    {
+      "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
+      "symbol": "complete",
+      "kind": "integration_point",
+      "signature": "jobDb.transaction(() => { setActiveEmbedder() + UPDATE memory_index SET embedding_status='success' })",
+      "evidence": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:592",
+      "relevance": 0.7,
+      "notes": "Transaction commits active-embedder pointer flip and embedding status reconciliation atomically; basic transaction — Turso compatible if table operations are"
+    }
+  ]
+}

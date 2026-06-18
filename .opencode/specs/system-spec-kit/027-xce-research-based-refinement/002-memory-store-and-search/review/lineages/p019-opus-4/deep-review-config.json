@@ -1,0 +1,27 @@
+{
+  "mode": "review",
+  "status": "complete",
+  "sessionId": "fanout-p019-opus-4-1781719527072-mk6no9",
+  "parentSessionId": "fanout-p019-opus-4-1781719527072-mk6no9",
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "releaseReadinessState": "converged",
+  "reviewTarget": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/019-maintenance-grace-daemon-survives-reelection",
+  "reviewTargetType": "spec-folder",
+  "executor": { "kind": "cli-claude-code", "model": "claude-opus-4-8" },
+  "maxIterations": 1,
+  "convergenceThreshold": 0.10,
+  "rollingStopThreshold": 0.08,
+  "noProgressThreshold": 0.05,
+  "stuckThreshold": 2,
+  "minStabilizationPasses": 1,
+  "dimensions": ["correctness", "security", "traceability", "maintainability"],
+  "protocolPlan": {
+    "core": ["spec_code", "checklist_evidence"],
+    "overlay": []
+  },
+  "resource_map_present": false,
+  "fanoutLineage": "p019-opus-4",
+  "artifactDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/review/lineages/p019-opus-4"
+}

@@ -1,0 +1,1 @@
+{"type":"iteration","iteration":5,"round":1,"phase":"review","seat":"rv-5","model":"openai/gpt-5.5-fast","dimension":"cross-cutting-and-docs-accuracy","status":"complete","durationSec":236,"exitCode":0,"severityCounts":{"P0":0,"P1":1,"P2":3},"timestamp":"2026-06-13T15:11:42Z"}

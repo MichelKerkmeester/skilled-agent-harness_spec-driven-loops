@@ -1,0 +1,132 @@
+{
+  "sessionId": "fanout-gpt55r2-a-7-1781761314338-6u1ztm",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "Community fallback appends members without requested search constraints",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+      "line": 1177,
+      "finding_class": "cross-consumer",
+      "riskScore": 8,
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1166-1183",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1185-1198",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1215-1218",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1238-1240",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:271-302",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/community-search.ts:101-172"
+      ],
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "content_hash": "sha256:f001-community-fallback-scope-limit",
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P1", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Summary embedding channel can reintroduce deprecated rows into default search",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts",
+      "line": 132,
+      "finding_class": "class-of-bug",
+      "riskScore": 7,
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:132-137",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/memory-summaries.ts:170-175",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1320-1323",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1341-1353",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:157-198",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:183-188"
+      ],
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "content_hash": "sha256:f002-summary-deprecated-reintroduction",
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P1", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "LLM reformulation grounds prompts with unscoped corpus seed excerpts",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/lib/search/llm-reformulation.ts",
+      "line": 103,
+      "finding_class": "cross-consumer",
+      "riskScore": 7,
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/llm-reformulation.ts:103-121",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1170-1174",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/llm-reformulation.ts:149-176",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/llm-reformulation.ts:201-219",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:448-454"
+      ],
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "content_hash": "sha256:f003-llm-reformulation-unscoped-seeds",
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P1", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "spec-vs-code-drift",
+      "title": "Summary embedding folder filter drops descendant folders for parent-scoped searches",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts",
+      "line": 139,
+      "finding_class": "instance-only",
+      "riskScore": 3,
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:139-147",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1341-1343",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:84-93"
+      ],
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "content_hash": "sha256:f004-summary-descendant-scope",
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "performance": true,
+    "concurrency-cancellation": true,
+    "maintainability": true,
+    "spec-vs-code-drift": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 1
+  },
+  "openFindingsCount": 4,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.15,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

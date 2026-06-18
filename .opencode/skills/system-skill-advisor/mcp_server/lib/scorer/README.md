@@ -35,6 +35,7 @@ scorer/
 +-- aliases.ts               # Narrow command/skill alias canonicalization
 +-- ambiguity.ts             # Ambiguity detection and handling
 +-- attribution.ts           # Lane attribution assembly
++-- feedback-calibration.ts  # Advisor feedback calibration reducer
 +-- fusion.ts                # Score fusion logic
 +-- lane-registry.ts         # Lane registration
 +-- lanes/                   # Lane-specific scoring modules
@@ -57,6 +58,7 @@ scorer/
 | `aliases.ts` | Canonicalizes explicit command/skill alias groups for route comparisons. |
 | `attribution.ts` | Builds prompt-safe lane attribution details. |
 | `ambiguity.ts` | Detects close or unclear recommendation states. |
+| `feedback-calibration.ts` | Reduces advisor feedback into shadow calibration reports. |
 | `projection.ts` | Projects scorer internals into caller-facing output. |
 | `weights-config.ts` | Stores configurable lane and scorer weights. |
 | `types.ts` | Defines scorer input, output and lane types. |

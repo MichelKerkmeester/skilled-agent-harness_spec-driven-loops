@@ -39,7 +39,6 @@
       ".opencode/skills/sk-prompt/SKILL.md",
       ".opencode/commands/create/changelog.md",
       ".opencode/commands/create/sk-skill.md",
-      ".opencode/commands/deep/start-agent-improvement-loop.md",
       ".opencode/commands/prompt.md",
       ".opencode/commands/memory/manage.md",
       ".opencode/commands/memory/search.md",
@@ -65,12 +64,6 @@
         "name": "sk-skill.md",
         "kind": "doc",
         "path": ".opencode/commands/create/sk-skill.md",
-        "source": "derived"
-      },
-      {
-        "name": "start-agent-improvement-loop.md",
-        "kind": "doc",
-        "path": ".opencode/commands/deep/start-agent-improvement-loop.md",
         "source": "derived"
       },
       {
@@ -192,11 +185,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After packets 083 (skills+commands first pass), 086 (audit tooling shipped), and 090 (agent trims), 8 items remain `OVER-SOFT` in the audit: `sk-prompt` (132/130) and 7 commands clustered at 112-122 chars (target 110). Each is mild over-soft (≤22 chars over) — not failure-class. Project total is currently 5,546 chars with +54 headroom under the 5,600 ceiling. Acceptable, but tight; one more reasonable additions and we cross over again.",
     "created_at": "2026-05-06T17:04:32.499Z",
-    "last_save_at": "2026-06-05T12:47:32.876Z",
+    "last_save_at": "2026-06-15T09:09:33.535Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

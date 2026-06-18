@@ -1,14 +1,19 @@
 ---
-title: "DeepSeek-v4-Pro Prompt-Craft Profile"
+title: DeepSeek-v4-Pro Prompt-Craft Profile
 model_id: "deepseek-v4-pro"
-profile_of: "../../../sk-prompt-small-model/assets/model-profiles.json"
-status: "default-unverified"
-last_benchmarked: "none"
+description: How to prompt DeepSeek-v4-pro via cli-opencode, RCAF framework with medium pre-planning, dispatch scaffold, and gotchas mirroring its model_profiles.json entry.
+trigger_phrases:
+  - "deepseek v4 pro prompt framework"
+  - "deepseek dispatch scaffold"
+  - "deepseek rcaf prompt"
+  - "deepseek dispatch gotchas"
+importance_tier: normal
+contextType: implementation
 ---
 
 # DeepSeek-v4-Pro Prompt-Craft Profile
 
-Single source of truth for how to prompt DeepSeek-v4-pro in the small-model rotation. Framework choices mirror `recommended_frameworks` in [`model-profiles.json`](../../../sk-prompt-small-model/assets/model-profiles.json) (the DATA source of truth). Executor MECHANICS (binary flags, invocation wrappers, non-TTY rules) live in [`cli-opencode`](../../../cli-opencode/SKILL.md) — not here.
+Single source of truth for how to prompt DeepSeek-v4-pro in the small-model rotation. Framework choices mirror `recommended_frameworks` in [`model_profiles.json`](../../../sk-prompt-small-model/assets/model_profiles.json) (the DATA source of truth). Executor MECHANICS (binary flags, invocation wrappers, non-TTY rules) live in [`cli-opencode`](../../../cli-opencode/SKILL.md) — not here.
 
 ---
 
@@ -16,7 +21,7 @@ Single source of truth for how to prompt DeepSeek-v4-pro in the small-model rota
 
 ### Purpose
 
-This profile is the single source for how to prompt DeepSeek-v4-pro, dispatched through `cli-opencode` (deepseek-api, opencode-go) as the small-model rotation's reasoning-depth escalation target. It mirrors the `deepseek-v4-pro` entry in `model-profiles.json`, covering its framework, scaffold, and dispatch gotchas.
+This profile is the single source for how to prompt DeepSeek-v4-pro, dispatched through `cli-opencode` (deepseek-api, opencode-go) as the small-model rotation's reasoning-depth escalation target. It mirrors the `deepseek-v4-pro` entry in `model_profiles.json`, covering its framework, scaffold, and dispatch gotchas.
 
 ### When to Use
 
@@ -50,11 +55,11 @@ RCAF + medium pre-planning, leaning into depth: name concrete files, exact symbo
 **Fallback:** none (registry `fallback: null` — no empirical alternative validated)
 **Avoid:** none specified in the registry (`avoid: []`); no model-specific benchmark has measured DeepSeek-v4-pro against alternative frameworks
 
-**Pre-planning density:** MEDIUM — include a structured step-by-step plan before the action section. DeepSeek-v4-pro handles longer reasoning chains well, but the 64k window is tighter than kimi-k2.6 (200k) or mimo-v2.5-pro (1M), so the plan should be concise and file-anchored rather than exhaustive.
+**Pre-planning density:** MEDIUM — include a structured step-by-step plan before the action section. DeepSeek-v4-pro handles longer reasoning chains well, but its 64k window is tighter than larger-context siblings such as mimo-v2.5-pro (1M), so the plan should be concise and file-anchored rather than exhaustive.
 
 **Counter-intuitive note:** Unlike MiniMax (which rewards heavy guardrail framing) or MiMo (which rewards lean brevity-focused framing), DeepSeek-v4-pro is the escalation model for DEPTH — the prompt should lean into specificity: concrete file paths, exact function/class names, and explicit acceptance criteria. Vague high-level prompts waste the model's reasoning capability on scope disambiguation. RCAF earns its keep here not through guardrails but through a tight Role that frames the model as a senior reviewer or architect, and a precise Action that names the problem without hedging.
 
-This mirrors `model-profiles.json` → `recommended_frameworks` for `deepseek-v4-pro`:
+This mirrors `model_profiles.json` → `recommended_frameworks` for `deepseek-v4-pro`:
 - `primary`: `"rcaf"`
 - `fallback`: `null`
 - `avoid`: `[]`
@@ -66,7 +71,7 @@ This mirrors `model-profiles.json` → `recommended_frameworks` for `deepseek-v4
 
 **Status:** default-unverified — no model-specific benchmark has been run for deepseek-v4-pro.
 
-The `recommended_frameworks` entry in `model-profiles.json` records:
+The `recommended_frameworks` entry in `model_profiles.json` records:
 ```
 benchmark:       null
 primary_score:   null
@@ -78,7 +83,7 @@ confidence:      "low"
 **Reasoned default:** RCAF + medium pre-planning is the convention default for the entire small-model rotation. For deepseek-v4-pro specifically, this choice is additionally motivated by:
 
 1. **Model positioning.** The registry lists `complex reasoning`, `root-cause debugging`, `multi-step implementation`, and `architecture trade-off analysis` as its strengths. RCAF is the registry default for those tasks; there is no model-specific benchmark comparing RCAF, RACE, or TIDD-EC on DeepSeek-v4-pro.
-2. **Context budget.** 64k is the smallest context window in the rotation after qwen3.6 (32k). Medium pre-planning keeps the plan concise enough to leave budget for the actual payload (files, diffs, traces).
+2. **Context budget.** At 64k, this is the tightest context window in the active rotation. Medium pre-planning keeps the plan concise enough to leave budget for the actual payload (files, diffs, traces).
 3. **Escalation contract.** DeepSeek-v4-pro is an escalation target when a lighter model saturates. The caller already has a pre-plan; this model receives it and deepens it — medium density matches the hand-off pattern.
 
 The discriminator for a future benchmark run should be **correctness on multi-step RCA fixtures**, not format adherence — format is straightforward for this model class.
@@ -140,7 +145,7 @@ Constraints:
 
 ## 6. DISPATCH GOTCHAS
 
-Source of truth for model-specific capability fields and flags: [`model-profiles.json`](../../../sk-prompt-small-model/assets/model-profiles.json) → entry `"id": "deepseek-v4-pro"`. Full invocation wrappers stay in [`cli-opencode`](../../../cli-opencode/SKILL.md); this section only records facts needed to choose the wrapper.
+Source of truth for model-specific capability fields and flags: [`model_profiles.json`](../../../sk-prompt-small-model/assets/model_profiles.json) → entry `"id": "deepseek-v4-pro"`. Full invocation wrappers stay in [`cli-opencode`](../../../cli-opencode/SKILL.md); this section only records facts needed to choose the wrapper.
 
 | Field | Value | Notes |
 | --- | --- | --- |
@@ -160,11 +165,10 @@ Source of truth for model-specific capability fields and flags: [`model-profiles
 
 ## 7. SEE ALSO
 
-- [`../../../sk-prompt-small-model/assets/model-profiles.json#deepseek-v4-pro`](../../../sk-prompt-small-model/assets/model-profiles.json) — Registry entry; authoritative for all capability fields and `recommended_frameworks` data
+- [`../../../sk-prompt-small-model/assets/model_profiles.json#deepseek-v4-pro`](../../../sk-prompt-small-model/assets/model_profiles.json) — Registry entry; authoritative for all capability fields and `recommended_frameworks` data
 - [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md) — Generic RCAF definition, CLEAR scoring, full framework matrix
 - [`../../SKILL.md`](../../SKILL.md) — sk-prompt-small-model hub workflow and dispatch matrix
-- [`../pattern-index.md`](../pattern-index.md) — MECHANICS patterns (context budget, output verification, quota fallback)
+- [`../pattern_index.md`](../pattern_index.md) — MECHANICS patterns (context budget, output verification, quota fallback)
 - [`../../../cli-opencode/SKILL.md`](../../../cli-opencode/SKILL.md) — Executor card for deepseek-api + opencode-go paths; `--pure` flag, provider wiring, `DEEPSEEK_API_KEY` setup
-- **Sibling profiles (same RCAF/medium convention):** [`kimi-k2.6.md`](./kimi-k2.6.md), [`qwen3.6.md`](./qwen3.6.md), [`glm-5.1.md`](./glm-5.1.md)
-- **Empirical contrast:** [`mimo-v2.5-pro.md`](./mimo-v2.5-pro.md) (COSTAR + lean — opposite of RCAF/medium) and [`minimax-m3.md`](./minimax-m3.md) (TIDD-EC + dense — benchmark 003)
+- **Other active profiles:** [`kimi-k2.7-code.md`](./kimi-k2.7-code.md) (COSTAR + lean — benchmark 007), [`mimo-v2.5-pro.md`](./mimo-v2.5-pro.md) (COSTAR + lean — opposite of RCAF/medium), [`minimax-m3.md`](./minimax-m3.md) (TIDD-EC + dense — benchmark 003)
 - **Executor quality card:** [`../../../cli-opencode/assets/prompt_quality_card.md`](../../../cli-opencode/assets/prompt_quality_card.md) — the model-selection table links to this profile; this closes the navigability round-trip.

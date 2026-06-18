@@ -321,6 +321,9 @@ export async function executeMerge(
         document_type: getOptionalString(currentRow, 'document_type'),
         spec_level: getOptionalNumber(currentRow, 'spec_level'),
         bm25_repair_needed: 0,
+        source_kind: 'system',
+        provenance_source: 'reconsolidation',
+        provenance_actor: 'memory-save',
         created_at: now,
         updated_at: now,
       }, memoryIndexColumns);
@@ -350,6 +353,8 @@ export async function executeMerge(
         embedding_status: mergedEmbeddingStatus,
         document_type: getOptionalString(currentRow, 'document_type'),
         spec_level: getOptionalNumber(currentRow, 'spec_level'),
+        provenance_source: 'reconsolidation',
+        provenance_actor: 'memory-save',
       }, memoryIndexColumns);
 
       if (Object.keys(postInsertMetadata).length > 0) {
@@ -384,13 +389,16 @@ export async function executeMerge(
       clear_search_cache();
 
       try {
-        recordHistory(newId, 'ADD', null, mergedTitle || existingMemory.file_path, 'mcp:reconsolidation');
+        recordHistory(newId, 'ADD', null, mergedTitle || existingMemory.file_path, 'mcp:reconsolidation', existingMemory.spec_folder);
         recordHistory(
           existingMemory.id,
           'UPDATE',
           existingMemory.title ?? existingMemory.file_path,
           mergedTitle || existingMemory.file_path,
           'mcp:reconsolidation',
+          // Pass the folder explicitly so the history spec_folder cache is
+          // refreshed rather than attributing the row to a stale cached folder.
+          existingMemory.spec_folder,
         );
       } catch (_historyErr: unknown) {
         // Best-effort history tracking during reconsolidation merge
@@ -724,15 +732,16 @@ export async function reconsolidate(
         } catch (conflictErr: unknown) {
           // If storeMemory succeeded but executeConflict failed, clean up the orphan
           // Memory so we don't leave dangling rows with no supersedes edge.
-          if (conflictMemory.id !== undefined && conflictMemory.id !== newMemory.id) {
+          const conflictMemoryId = conflictMemory.id;
+          if (conflictMemoryId !== undefined && conflictMemoryId !== newMemory.id) {
             // Graph cleanup: Use delete_memory_from_database (includes deleteAncillaryMemoryRows)
             // instead of raw DELETE to clean lineage, projections, and graph residue.
             try {
-              const deleted = delete_memory_from_database(db, conflictMemory.id);
+              const deleted = delete_memory_from_database(db, conflictMemoryId);
               if (deleted) {
                 try {
                   recordHistory(
-                    conflictMemory.id!,
+                    conflictMemoryId,
                     'DELETE',
                     null,
                     null,
@@ -744,7 +753,7 @@ export async function reconsolidate(
             } catch (_error: unknown) {
               // Best-effort cleanup
             }
-            console.warn('[reconsolidation] cleaned up orphan memory', conflictMemory.id, 'after executeConflict failure');
+            console.warn('[reconsolidation] cleaned up orphan memory', conflictMemoryId, 'after executeConflict failure');
           }
           throw conflictErr;
         }

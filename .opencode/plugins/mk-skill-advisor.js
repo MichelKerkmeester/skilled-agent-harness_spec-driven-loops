@@ -418,7 +418,7 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
   // Per-instance state so two plugin instances loaded in the same process maintain independent caches/metrics.
   const state = {
     advisorCache: new Map(),
-    // in-flight promise dedup — concurrent identical-key requests share one bridge spawn
+    // In-flight promise dedup — concurrent identical-key requests share one bridge spawn.
     inFlight: new Map(),
     runtimeReady: false,
     lastBridgeStatus: 'uninitialized',

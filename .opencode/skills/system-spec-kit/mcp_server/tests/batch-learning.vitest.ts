@@ -1,4 +1,4 @@
-// TEST: Batch Feedback Learning (REQ-D4-004)
+// TEST: Batch Feedback Learning
 import { describe, it, expect, beforeEach, afterEach, beforeAll, afterAll, vi } from 'vitest';
 import Database from 'better-sqlite3';
 import {
@@ -247,6 +247,25 @@ describe('Batch Learning — aggregateEvents', () => {
     expect(s.weakCount).toBe(1);
   });
 
+  it('gates duplicate events before scoring and counts them diagnostically', () => {
+    const db = createTestDb();
+    seedEvents(db, [
+      makeEvent({ memoryId: 'mem-dup', queryId: 'q-dup', sessionId: 'sess-dup', timestamp: BASE_TS }),
+      makeEvent({ memoryId: 'mem-dup', queryId: 'q-dup', sessionId: 'sess-dup', timestamp: BASE_TS }),
+      makeEvent({ memoryId: 'mem-dup', queryId: 'q-next', sessionId: 'sess-next', timestamp: BASE_TS + 1 }),
+    ]);
+
+    const signals = aggregateEvents(db, BASE_TS - 1, BASE_TS + 2);
+    const signal = signals[0]!;
+
+    expect(signals).toHaveLength(1);
+    expect(signal.strongCount).toBe(2);
+    expect(signal.sessionCount).toBe(2);
+    expect(signal.queryCount).toBe(2);
+    expect(signal.duplicateCount).toBe(1);
+    expect(signal.weightedScore).toBeCloseTo(2);
+  });
+
   it('computes weighted score correctly', () => {
     const db = createTestDb();
     // 2 strong (1.0 each) + 1 medium (0.5) = 2.5
@@ -326,6 +345,119 @@ describe('Batch Learning — aggregateEvents', () => {
     const signals = aggregateEvents(db, BASE_TS - 1, BASE_TS + 1);
     expect(signals[0]!.memoryId).toBe('mem-high');
     expect(signals[1]!.memoryId).toBe('mem-low');
+  });
+
+  it('tracks queryCount and first/last timestamps', () => {
+    const db = createTestDb();
+    seedEvents(db, [
+      makeEvent({ queryId: 'q-1', timestamp: BASE_TS + 30, sessionId: 'sess-1' }),
+      makeEvent({ queryId: 'q-1', timestamp: BASE_TS + 10, sessionId: 'sess-2' }),
+      makeEvent({ queryId: 'q-2', timestamp: BASE_TS + 20, sessionId: 'sess-3' }),
+    ]);
+
+    const signals = aggregateEvents(db, BASE_TS, BASE_TS + 40);
+    expect(signals).toHaveLength(1);
+    expect(signals[0]!.queryCount).toBe(2);
+    expect(signals[0]!.firstSeen).toBe(BASE_TS + 10);
+    expect(signals[0]!.lastSeen).toBe(BASE_TS + 30);
+  });
+
+  it('computes weightedHitCount for positive-only strong signals', () => {
+    const db = createTestDb();
+    seedEvents(db, [
+      makeEvent({ type: 'result_cited', confidence: 'strong', sessionId: 'sess-1' }),
+      makeEvent({ type: 'follow_on_tool_use', confidence: 'strong', sessionId: 'sess-2' }),
+    ]);
+
+    const signals = aggregateEvents(db, BASE_TS - 1, BASE_TS + 1);
+    expect(signals[0]!.strongCount).toBe(2);
+    expect(signals[0]!.weightedHitCount).toBeCloseTo(2);
+  });
+
+  it('floors weightedHitCount at zero for negative-only reformulations', () => {
+    const db = createTestDb();
+    seedEvents(db, [
+      makeEvent({ type: 'query_reformulated', confidence: 'medium', sessionId: 'sess-1' }),
+      makeEvent({ type: 'query_reformulated', confidence: 'medium', sessionId: 'sess-2' }),
+    ]);
+
+    const signals = aggregateEvents(db, BASE_TS - 1, BASE_TS + 1);
+    expect(signals[0]!.mediumCount).toBe(2);
+    expect(signals[0]!.weightedHitCount).toBe(0);
+  });
+
+  it('computes weightedHitCount for mixed event types', () => {
+    const db = createTestDb();
+    seedEvents(db, [
+      makeEvent({ type: 'result_cited', confidence: 'strong', sessionId: 'sess-1' }),
+      makeEvent({ type: 'follow_on_tool_use', confidence: 'strong', sessionId: 'sess-2' }),
+      makeEvent({ type: 'same_topic_requery', confidence: 'weak', sessionId: 'sess-3' }),
+      makeEvent({ type: 'query_reformulated', confidence: 'medium', sessionId: 'sess-4' }),
+      makeEvent({ type: 'query_reformulated', confidence: 'medium', sessionId: 'sess-5' }),
+    ]);
+
+    const signals = aggregateEvents(db, BASE_TS - 1, BASE_TS + 1);
+    expect(signals[0]!.weightedHitCount).toBeCloseTo(1.25);
+  });
+
+  it('keeps weightedHitCount non-negative under heavy reformulation', () => {
+    const db = createTestDb();
+    seedEvents(db, [
+      makeEvent({ type: 'result_cited', confidence: 'strong', sessionId: 'sess-1' }),
+      ...Array.from({ length: 4 }, (_, i) =>
+        makeEvent({ type: 'query_reformulated', confidence: 'medium', sessionId: `sess-r-${i}` })
+      ),
+    ]);
+
+    const signals = aggregateEvents(db, BASE_TS - 1, BASE_TS + 1);
+    expect(signals[0]!.weightedHitCount).toBe(0);
+  });
+
+  it('adds same-topic requery lift without changing existing weightedScore semantics', () => {
+    const db = createTestDb();
+    seedEvents(db, [
+      makeEvent({ type: 'same_topic_requery', confidence: 'weak', sessionId: 'sess-1' }),
+    ]);
+
+    const signals = aggregateEvents(db, BASE_TS - 1, BASE_TS + 1);
+    expect(signals[0]!.weakCount).toBe(1);
+    expect(signals[0]!.weightedScore).toBeCloseTo(CONFIDENCE_WEIGHTS.weak);
+    expect(signals[0]!.weightedHitCount).toBeCloseTo(0.25);
+  });
+
+  it('returns equal output when aggregation is run twice', () => {
+    const db = createTestDb();
+    seedEvents(db, [
+      makeEvent({ memoryId: 'mem-b', confidence: 'strong', sessionId: 'sess-1' }),
+      makeEvent({ memoryId: 'mem-a', confidence: 'strong', sessionId: 'sess-2' }),
+    ]);
+
+    const firstRun = aggregateEvents(db, BASE_TS - 1, BASE_TS + 1);
+    const secondRun = aggregateEvents(db, BASE_TS - 1, BASE_TS + 1);
+    expect(secondRun).toEqual(firstRun);
+    expect(firstRun.map(s => s.memoryId)).toEqual(['mem-a', 'mem-b']);
+  });
+
+  it('does not write batch learning rows during aggregation', () => {
+    const db = createTestDb();
+    seedEvents(db, [makeEvent({ sessionId: 'sess-1' })]);
+    const before = getBatchLearningCount(db);
+
+    aggregateEvents(db, BASE_TS - 1, BASE_TS + 1);
+
+    expect(getBatchLearningCount(db)).toBe(before);
+  });
+
+  it('keeps empty memory ids grouped using existing ledger string semantics', () => {
+    const db = createTestDb();
+    seedEvents(db, [
+      makeEvent({ memoryId: '', queryId: 'q-empty', sessionId: 'sess-empty' }),
+    ]);
+
+    const signals = aggregateEvents(db, BASE_TS - 1, BASE_TS + 1);
+    expect(signals).toHaveLength(1);
+    expect(signals[0]!.memoryId).toBe('');
+    expect(signals[0]!.queryCount).toBe(1);
   });
 });
 
@@ -653,6 +785,25 @@ describe('Batch Learning — runBatchLearning (integration)', () => {
     expect(result.candidates[0]).toHaveProperty('memoryId');
     expect(result.candidates[0]).toHaveProperty('weightedScore');
     expect(result.candidates[0]).toHaveProperty('computedBoost');
+  });
+
+  it('returns candidates capped by caller maxBoostDelta', () => {
+    process.env.SPECKIT_BATCH_LEARNED_FEEDBACK = 'true';
+    const db = createTestDb();
+
+    seedEvents(db, [
+      makeEvent({ sessionId: 's1', timestamp: BASE_TS }),
+      makeEvent({ sessionId: 's2', timestamp: BASE_TS }),
+      makeEvent({ sessionId: 's3', timestamp: BASE_TS }),
+    ]);
+
+    const result = runBatchLearning(db, {
+      runAt: BASE_TS + 1,
+      maxBoostDelta: 0.02,
+    });
+
+    expect(result.candidates[0]?.computedBoost).toBeCloseTo(0.02);
+    expect(getBatchLearningHistory(db, 'mem-1')[0]?.computed_boost).toBeCloseTo(0.02);
   });
 
   it('multiple batch runs produce separate log entries per run', () => {

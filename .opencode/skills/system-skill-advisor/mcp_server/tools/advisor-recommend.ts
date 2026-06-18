@@ -18,6 +18,8 @@ const properties: Record<(typeof ADVISOR_RECOMMEND_PARAMETER_KEYS)[number], Reco
       topK: { type: 'number', minimum: 1, maximum: 10, description: 'Maximum number of recommendations to return.' },
       includeAttribution: { type: 'boolean', description: 'Include per-lane score breakdown and evidence snippets.' },
       includeAbstainReasons: { type: 'boolean', description: 'Include prompt-safe abstain reasons when no recommendation passes thresholds.' },
+      confidenceThreshold: { type: 'number', minimum: 0, maximum: 1, description: 'Minimum confidence a recommendation must reach to be surfaced (0-1); overrides the configured default.' },
+      uncertaintyThreshold: { type: 'number', minimum: 0, maximum: 1, description: 'Maximum uncertainty a recommendation may carry to be surfaced (0-1); overrides the configured default.' },
     },
   },
 };

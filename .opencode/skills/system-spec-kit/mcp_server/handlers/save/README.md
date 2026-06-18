@@ -22,7 +22,7 @@ Current responsibilities:
 
 - Keep save-stage code below the top-level MCP tool handler and above storage/search adapters.
 - Preserve same-folder save ordering through `withSpecFolderLock()`.
-- Build rejection, dry-run, planner and success responses without leaking storage internals into callers.
+- Build rejection, dry-run, planner and success responses without leaking storage internals into callers, including the `metadataRefresh` advisory for content-only `memory_save` lanes.
 - Route persistence through `createMemoryRecord()` and storage/search helpers rather than direct SQL scattered across the handler.
 
 ---
@@ -134,7 +134,7 @@ handlers/save/
 | `create-record.ts` | Inserts memory rows, records lineage/history, writes vector/BM25 data and applies post-insert metadata. |
 | `db-helpers.ts` | Applies guarded metadata updates and checks reconsolidation checkpoint prerequisites. |
 | `post-insert.ts` | Runs feature-flagged enrichment for causal links, entities, summaries and cross-document entity links. Default-on; runs async/deferred via a background scheduler unless `SPECKIT_POST_INSERT_ENRICHMENT_SYNC=true`. |
-| `response-builder.ts` | Converts save results and planner payloads into MCP success or error envelopes. |
+| `response-builder.ts` | Converts save results and planner payloads into MCP success or error envelopes, including `metadataRefresh: { refreshed:false, refreshedBy:'generate-context save lane' }` on mutating packet-doc saves where the MCP content-indexing lane did not refresh packet metadata. |
 | `atomic-index-memory.ts` | Coordinates pending-file writes, file promotion, rollback, retry and save-result mapping for atomic save paths. |
 | `markdown-evidence-builder.ts` | Extracts headings, lists, tables and summary evidence from markdown for memory sufficiency checks. |
 | `spec-folder-mutex.ts` | Serializes saves per spec folder across local async chains and temporary interprocess lock directories. |

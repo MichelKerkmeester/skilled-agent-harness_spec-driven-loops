@@ -14,6 +14,7 @@ import type { IndexResult } from './types.js';
 
 const UNCHANGED_EMBEDDING_STATUSES = new Set(['success', 'pending', 'partial']);
 const DEDUP_ELIGIBLE_EMBEDDING_STATUSES = ['success', 'partial'] as const;
+export const NEAR_DUPLICATE_SIMILARITY_THRESHOLD = 0.88;
 const QUALITY_SCORE_EPSILON = 1e-9;
 const SCOPE_COLUMNS = [
   ['tenant_id', 'tenantId'],

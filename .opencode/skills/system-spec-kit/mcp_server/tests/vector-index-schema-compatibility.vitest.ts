@@ -8,8 +8,17 @@ describe('Vector index schema compatibility validator', () => {
     try {
       const report = validateBackwardCompatibility(db);
       expect(report.compatible).toBe(false);
-      expect(report.missingTables).toEqual(['memory_index', 'schema_version']);
+      expect(report.missingTables).toEqual([
+        'memory_index',
+        'schema_version',
+        'causal_edge_tombstones',
+        'memory_trigger_embeddings',
+        'memory_idempotency_receipts',
+      ]);
       expect(report.missingColumns.memory_index).toContain('spec_folder');
+      expect(report.missingColumns.causal_edge_tombstones).toContain('restore_metadata');
+      expect(report.missingColumns.memory_trigger_embeddings).toContain('phrase_hash');
+      expect(report.missingColumns.memory_idempotency_receipts).toContain('receipt_key');
     } finally {
       db.close();
     }
@@ -33,6 +42,7 @@ describe('Vector index schema compatibility validator', () => {
           importance_tier TEXT CHECK(importance_tier IN ('constitutional', 'critical', 'important', 'normal', 'temporary', 'deprecated')),
           context_type TEXT,
           session_id TEXT,
+          source_kind TEXT,
           content_hash TEXT,
           embedding_status TEXT,
           tenant_id TEXT,
@@ -47,11 +57,20 @@ describe('Vector index schema compatibility validator', () => {
           post_insert_enrichment_state TEXT,
           post_insert_enrichment_completed_at TEXT,
           post_insert_enrichment_version INTEGER,
+          near_duplicate_of TEXT,
+          last_dedup_checked_at TEXT,
+          delete_after TEXT,
+          deleted_at TEXT,
           stability REAL,
           difficulty REAL,
           last_review TEXT,
           document_type TEXT,
-          quality_score REAL
+          quality_score REAL,
+          chunk_id TEXT,
+          chunk_fingerprint TEXT,
+          chunk_kind TEXT,
+          chunk_start_line INTEGER,
+          chunk_end_line INTEGER
         );
         CREATE INDEX idx_stability ON memory_index(stability DESC);
         CREATE INDEX idx_last_review ON memory_index(last_review);
@@ -88,6 +107,18 @@ describe('Vector index schema compatibility validator', () => {
             COALESCE(session_id, '')
           )
           WHERE COALESCE(importance_tier, 'normal') NOT IN ('constitutional', 'deprecated');
+        CREATE INDEX idx_memory_chunk_identity
+          ON memory_index(file_path, chunk_id)
+          WHERE chunk_id IS NOT NULL;
+        CREATE INDEX idx_memory_chunk_fingerprint
+          ON memory_index(chunk_fingerprint)
+          WHERE chunk_fingerprint IS NOT NULL;
+        CREATE INDEX idx_memory_active_recall
+          ON memory_index(spec_folder, document_type, updated_at DESC, id DESC)
+          WHERE deleted_at IS NULL;
+        CREATE INDEX idx_memory_purgeable_retention
+          ON memory_index(delete_after, deleted_at, id)
+          WHERE deleted_at IS NOT NULL;
 
         CREATE TABLE memory_history (
           id INTEGER PRIMARY KEY,
@@ -119,6 +150,70 @@ describe('Vector index schema compatibility validator', () => {
         );
         CREATE INDEX idx_conflicts_memory ON memory_conflicts(existing_memory_id);
         CREATE INDEX idx_conflicts_timestamp ON memory_conflicts(timestamp DESC);
+
+        CREATE TABLE causal_edges (
+          id INTEGER PRIMARY KEY,
+          source_id TEXT NOT NULL,
+          target_id TEXT NOT NULL,
+          source_anchor TEXT,
+          target_anchor TEXT,
+          relation TEXT NOT NULL,
+          strength REAL DEFAULT 1.0,
+          evidence TEXT,
+          extracted_at TEXT DEFAULT (datetime('now')),
+          created_by TEXT DEFAULT 'manual',
+          confidence REAL DEFAULT 1.0,
+          extraction_method TEXT DEFAULT 'manual',
+          last_accessed TEXT,
+          UNIQUE(source_id, target_id, relation, source_anchor, target_anchor)
+        );
+
+        CREATE TABLE causal_edge_tombstones (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          source_id TEXT NOT NULL,
+          target_id TEXT NOT NULL,
+          relation TEXT NOT NULL,
+          tombstoned_at TEXT NOT NULL,
+          reason TEXT NOT NULL,
+          lifecycle_generation INTEGER NOT NULL,
+          restore_metadata TEXT NOT NULL
+        );
+        CREATE INDEX idx_causal_edge_tombstones_identity
+          ON causal_edge_tombstones(source_id, target_id, relation, lifecycle_generation DESC);
+        CREATE INDEX idx_causal_edge_tombstones_tombstoned_at
+          ON causal_edge_tombstones(tombstoned_at DESC);
+        CREATE INDEX idx_causal_edge_tombstones_reason
+          ON causal_edge_tombstones(reason);
+
+        CREATE TABLE memory_trigger_embeddings (
+          memory_id INTEGER NOT NULL,
+          phrase_hash TEXT NOT NULL,
+          profile_key TEXT NOT NULL,
+          input_kind TEXT NOT NULL DEFAULT 'document' CHECK(input_kind IN ('document', 'query')),
+          model_id TEXT NOT NULL,
+          dimensions INTEGER NOT NULL,
+          embedding_status TEXT NOT NULL DEFAULT 'pending' CHECK(embedding_status IN ('pending', 'ready', 'failed')),
+          failure_reason TEXT,
+          created_at TEXT NOT NULL DEFAULT (datetime('now')),
+          updated_at TEXT NOT NULL DEFAULT (datetime('now')),
+          PRIMARY KEY (memory_id, phrase_hash, profile_key, input_kind)
+        );
+        CREATE INDEX idx_memory_trigger_embeddings_status
+          ON memory_trigger_embeddings(embedding_status, updated_at);
+
+        CREATE TABLE memory_idempotency_receipts (
+          receipt_key TEXT PRIMARY KEY,
+          operation TEXT NOT NULL,
+          content_hash TEXT,
+          request_fingerprint TEXT NOT NULL,
+          payload_hash TEXT NOT NULL,
+          response_payload TEXT NOT NULL,
+          memory_id INTEGER,
+          created_at TEXT NOT NULL DEFAULT (datetime('now')),
+          updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+        );
+        CREATE INDEX idx_memory_idempotency_receipts_operation
+          ON memory_idempotency_receipts(operation, created_at DESC);
       `);
 
       const report = validateBackwardCompatibility(db);

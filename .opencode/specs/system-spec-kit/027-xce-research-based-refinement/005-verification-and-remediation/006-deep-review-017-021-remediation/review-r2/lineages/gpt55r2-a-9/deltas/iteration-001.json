@@ -1,0 +1,43 @@
+{
+  "type": "iteration_delta",
+  "mode": "review",
+  "run": 1,
+  "iteration": 1,
+  "status": "complete",
+  "focusDimension": "correctness",
+  "findingsSummary": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 0
+  },
+  "findingDetails": [
+    {
+      "id": "F-A9-001",
+      "severity": "P1",
+      "category": "retrieval-ranking",
+      "finding_class": "duplicate-channel-scoring",
+      "content_hash": "a9-001-lexical-duplicate-rrf",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:436",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1497",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1578",
+        ".opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts:308"
+      ]
+    },
+    {
+      "id": "F-A9-002",
+      "severity": "P1",
+      "category": "recovery-policy",
+      "finding_class": "evidence-gap-policy-bypass",
+      "content_hash": "a9-002-evidence-gap-field-mismatch",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage4-filter.ts:272",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1294",
+        ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:1069",
+        ".opencode/skills/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts:249"
+      ]
+    }
+  ],
+  "newFindingsRatio": 1,
+  "verdict": "CONDITIONAL"
+}

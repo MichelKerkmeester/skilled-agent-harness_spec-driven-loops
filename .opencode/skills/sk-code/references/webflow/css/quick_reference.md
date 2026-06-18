@@ -3,12 +3,13 @@ title: "Webflow CSS Quick Reference"
 description: "CSS patterns reference for Webflow: read-only Webflow Designer token names, form validation classes (.validation-invalid/.validation-valid), prefers-reduced-motion (MANDATORY), keyboard vs mouse focus detection (.using-keyboard), CSS decision matrix."
 trigger_phrases:
   - "webflow css quick reference"
-  - "webflow tokens"
-  - "validation-invalid"
-  - "validation-valid"
-  - "prefers-reduced-motion"
-  - "using-keyboard"
+  - "webflow designer tokens"
+  - "form validation classes"
+  - "prefers reduced motion"
+  - "keyboard focus detection"
   - "css decision matrix"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Webflow CSS Quick Reference

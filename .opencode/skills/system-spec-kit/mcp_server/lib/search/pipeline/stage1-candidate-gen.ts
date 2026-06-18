@@ -147,6 +147,23 @@ function applyFolderFilter(
   });
 }
 
+/**
+ * Prefix-aware spec-folder filter for the summary lane: a parent-scope query
+ * keeps descendant folders, matching the primary BM25/vector lanes rather than
+ * the exact-match {@link applyFolderFilter}. Summary-lane use only.
+ */
+function applyFolderFilterPrefix(
+  results: PipelineRow[],
+  specFolder?: string
+): PipelineRow[] {
+  if (!specFolder) return results;
+  return results.filter((row) => {
+    const folder = row.spec_folder ?? row.specFolder;
+    if (typeof folder !== 'string' || folder.length === 0) return false;
+    return folder === specFolder || folder.startsWith(specFolder + '/');
+  });
+}
+
 function applyTierFilter(
   results: PipelineRow[],
   tier?: string
@@ -746,7 +763,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
           if (facets.length > 0) {
             // Run hybrid for the original query plus each facet, in parallel
             const allQueries = [query, ...facets];
-            // FIX #7: Use Promise.allSettled so one failing facet branch
+            // Use Promise.allSettled so one failing facet branch
             // does not discard results from all other branches.
             const facetSettledResults = await withTimeout(
               Promise.allSettled(
@@ -807,9 +824,9 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
 
       if (queryVariants.length > 1) {
         try {
-          // F1: Wrap parallel variant searches with latency budget.
+          // Wrap parallel variant searches with latency budget.
           // If variants exceed DEEP_EXPANSION_TIMEOUT_MS, fall back to base query.
-          // FIX #7: Use Promise.allSettled so one failing variant does not
+          // Use Promise.allSettled so one failing variant does not
           // discard results from all other variant branches.
           const variantSettledResults = await withTimeout(
             Promise.allSettled(
@@ -1066,7 +1083,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
     );
   }
 
-  // P0 fix: sessionId is for dedup/state tracking, NOT a governance boundary.
+  // Session ID is for dedup/state tracking, NOT a governance boundary.
   // Including it here caused all candidates to be filtered out when memory_context
   // passed an ephemeral sessionId, because memories don't have session-scoped access.
   const hasGovernanceScope = Boolean(
@@ -1178,7 +1195,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
           cachedEmbedding ?? queryEmbedding ?? (await vectorIndex.generateQueryEmbedding(query));
 
         if (reformEmbedding) {
-          // FIX #7: Use Promise.allSettled so one failing reformulation
+          // Use Promise.allSettled so one failing reformulation
           // branch does not discard results from all other branches.
           const reformSettledResults = await Promise.allSettled(
             allQueries.map(async (q, idx): Promise<PipelineRow[]> => {
@@ -1263,7 +1280,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
         : rawHydeCandidates;
       if (hydeCandidates.length > 0) {
         let newHydeCandidates = hydeCandidates;
-        // H11 FIX: Apply the same tier/context/quality filters as main candidates
+        // Apply the same tier/context/quality filters as main candidates
         if (contextType) {
           newHydeCandidates = newHydeCandidates.filter((r) => resolveRowContextType(r) === contextType);
         }
@@ -1306,7 +1323,12 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
           queryEmbedding ?? (await vectorIndex.generateQueryEmbedding(query));
 
         if (summaryEmbedding) {
-          const summaryResults = querySummaryEmbeddings(db, summaryEmbedding, limit);
+          const summaryResults = querySummaryEmbeddings(db, summaryEmbedding, limit, {
+            specFolder,
+            tenantId,
+            userId,
+            agentId,
+          });
           if (summaryResults.length > 0) {
             const existingIds = new Set(candidates.map((r) => String(r.id)));
             const newSummaryHits: PipelineRow[] = [];
@@ -1318,8 +1340,17 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
 
             if (newSummaryIds.length > 0) {
               const placeholders = newSummaryIds.map(() => '?').join(', ');
+              // Enrich through the same active/expiry gate the primary vector lane
+              // applies, so summary candidates can't surface inactive (superseded)
+              // or expired rows that the ranking SELECT in querySummaryEmbeddings
+              // may not have re-filtered after the join.
               const memRows = db.prepare(
-                `SELECT id, title, spec_folder, file_path, importance_tier, importance_weight, quality_score, created_at, context_type, tenant_id, user_id, agent_id, session_id FROM memory_index WHERE id IN (${placeholders})`
+                `SELECT m.id, m.title, m.spec_folder, m.file_path, m.importance_tier, m.importance_weight, m.quality_score, m.created_at, m.context_type, m.tenant_id, m.user_id, m.agent_id, m.session_id
+                 FROM memory_index m
+                 JOIN active_memory_projection p ON p.active_memory_id = m.id
+                 WHERE m.id IN (${placeholders})
+                   AND m.embedding_status = 'success'
+                   AND (m.expires_at IS NULL OR m.expires_at > datetime('now'))`
               ).all(...newSummaryIds) as PipelineRow[];
 
               const memRowMap = new Map(memRows.map((r) => [r.id, r]));
@@ -1339,7 +1370,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
             }
 
             const archiveFilteredSummaryHits = applyArchiveFilter(newSummaryHits, includeArchived);
-            const folderFilteredSummaryHits = applyFolderFilter(archiveFilteredSummaryHits, specFolder);
+            const folderFilteredSummaryHits = applyFolderFilterPrefix(archiveFilteredSummaryHits, specFolder);
             const tierFilteredSummaryHits = applyTierFilter(folderFilteredSummaryHits, tier);
             const contextFilteredSummaryHits = contextType
               ? tierFilteredSummaryHits.filter((r) => resolveRowContextType(r) === contextType)
@@ -1413,7 +1444,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
 
             if (matchResult.score > 0) {
               boostedCount++;
-              // FIX #2: Use resolveEffectiveScore() as the base instead of
+              // Use resolveEffectiveScore() as the base instead of
               // raw row.score. For vector-only rows with only `similarity`,
               // row.score may be undefined/0 while similarity is 0.82+.
               // Using the canonical fallback chain prevents overwriting

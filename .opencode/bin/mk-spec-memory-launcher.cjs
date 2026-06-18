@@ -1,10 +1,9 @@
 #!/usr/bin/env node
-// [mk-spec-memory-launcher] MCP child-process launcher for the mk-spec-memory server.
-// Loads project-local env overrides, ensures dist artifacts are built and current,
-// serializes concurrent starts via a filesystem bootstrap lock, then spawns the
-// context-server.js child. All stderr lines are tagged with the bracketed module
-// prefix for ops grepping.
-
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: mk-spec-memory Launcher                                      ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Prepares memory state and launches the MCP server child.        ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
 const fs = require('fs');
@@ -33,6 +32,8 @@ const {
   normalizeWatchdogGraceMs,
   parseProcessRows,
   processLiveness,
+  readMaintenanceMarker,
+  shouldAdoptDespiteProbe,
   releaseRespawnLockFile,
   sampleProcessTreeRssMb,
   shouldAbortRelaunchOnFire,
@@ -114,6 +115,14 @@ let ownerLeaseRequired = true;
 let lastKnownDescendantPids = [];
 const DURABLE_WRITE_UNAVAILABLE_CODES = new Set(['ENOSPC', 'EDQUOT', 'EROFS']);
 const durableWriteWarnings = new Set();
+// Daemon exit code meaning "another live process holds the database
+// single-writer lock". Never counts toward the crash loop: the right move is
+// bridging to the live owner (or a bounded retry while a maintenance script
+// finishes), not relaunching a doomed second writer. Mirrored in
+// mcp_server context-server (EXIT_DB_LOCK_HELD).
+const EXIT_DB_LOCK_HELD = 86;
+const DB_LOCK_HELD_MAX_RETRIES = 3;
+let dbLockHeldRetries = 0;
 
 function log(message) {
   process.stderr.write(`[mk-spec-memory-launcher] ${message}\n`);
@@ -185,16 +194,17 @@ function persistLauncherLogLine(line) {
   }
 }
 
-// Daemon re-election (default-on via the committed runtime configs; the code default below stays off
-// so the configs are the single on-switch). When enabled the owner spawns the daemon detached and, on
-// its own shutdown, RELEASES the daemon (leaves it running for a live secondary to bridge to) instead
-// of killing it, so a session ending does not tear the shared backend out from under other sessions.
-// A fresh session that finds the released daemon under a stale lease reaps it before respawn, so the
-// database keeps a single writer. Flag off collapses every path below to the prior behavior (daemon
-// tied to the owner, killed on shutdown). A released daemon reparents to pid 1, bounded by its idle
-// self-exit, so the orphan sweeper bounds any leak.
+// Daemon re-election (on by default; set SPECKIT_DAEMON_REELECTION=0 or off to restore kill-on-disposal).
+// When enabled the owner spawns the daemon detached and, on its own shutdown, RELEASES the daemon
+// (leaves it running for a live secondary to bridge to) instead of killing it, so a session ending does
+// not tear the shared backend out from under other sessions. A fresh session that finds the released
+// daemon under a stale lease ADOPTS it through the bridge when the recorded child is alive and bridgeable;
+// it reaps and respawns only when that daemon is dead or unbridgeable, so the database keeps a single
+// writer either way. Disabling collapses every path below to the prior behavior (daemon tied to the owner,
+// killed on shutdown). A released daemon reparents to pid 1, bounded by its idle self-exit, so the orphan
+// sweeper bounds any leak.
 function daemonReelectionEnabled(env = process.env) {
-  return env.SPECKIT_DAEMON_REELECTION === '1' || env.SPECKIT_DAEMON_REELECTION === 'on';
+  return env.SPECKIT_DAEMON_REELECTION !== '0' && env.SPECKIT_DAEMON_REELECTION !== 'off';
 }
 function contextServerSpawnIo(reelectionEnabled) {
   return reelectionEnabled
@@ -309,6 +319,16 @@ function writeState(payload) {
 
 function resolvedDbDir() {
   return canonicalizePath(dbDir);
+}
+
+// Resolve the dir the daemon writes its maintenance marker into. Must mirror the
+// daemon's DATABASE_DIR precedence (SPEC_KIT_DB_DIR / SPECKIT_DB_DIR override,
+// resolved against cwd, else the default DB dir) so both sides agree on the path
+// even under a test fake-root that sets SPEC_KIT_DB_DIR.
+function maintenanceMarkerDir() {
+  const override = process.env.SPEC_KIT_DB_DIR?.trim() || process.env.SPECKIT_DB_DIR?.trim();
+  if (override) return canonicalizePath(path.resolve(process.cwd(), override));
+  return resolvedDbDir();
 }
 
 function leasePath() {
@@ -453,27 +473,23 @@ function acquireOwnerLeaseFile() {
   }
 
   const lease = buildOwnerLease(process.pid);
-  if (!existing) {
-    if (!writeOwnerLeaseFileExclusive(lease)) {
-      const holder = readOwnerLeaseFile(currentOwnerLeasePath);
-      return {
-        acquired: false,
-        holder: holder || lease,
-        classification: holder ? classifyOwnerLease(holder) : 'live-owner',
-      };
+  // Reclaim a stale lease by removing it first, then claim exclusively (O_EXCL).
+  // This collapses the fresh-acquire and stale-reclaim paths into a single CAS so
+  // only one racer can win: the loser's exclusive create hits EEXIST and returns
+  // acquired:false instead of last-writer-wins overwriting the winner's lease.
+  if (existing) {
+    try {
+      fs.unlinkSync(currentOwnerLeasePath);
+    } catch (error) {
+      if (error.code !== 'ENOENT') throw error;
     }
-    ownerLeasePid = process.pid;
-    return { acquired: true, lease, reclaimed: existing };
   }
-
-  // Re-read after reclaim so two launchers racing a stale lease cannot both act as owner.
-  writeOwnerLeaseFile(lease);
-  const reread = readOwnerLeaseFile(currentOwnerLeasePath);
-  if (!reread || reread.ownerPid !== process.pid) {
+  if (!writeOwnerLeaseFileExclusive(lease)) {
+    const holder = readOwnerLeaseFile(currentOwnerLeasePath);
     return {
       acquired: false,
-      holder: reread || lease,
-      classification: reread ? classifyOwnerLease(reread) : 'live-owner',
+      holder: holder || lease,
+      classification: holder ? classifyOwnerLease(holder) : 'live-owner',
     };
   }
   ownerLeasePid = process.pid;
@@ -668,8 +684,17 @@ const UNCLEAN_SHUTDOWN_MARKER = '.unclean-shutdown';
 // DB dir, or — when MEMORY_DB_PATH relocates the DB — that path's dirname. Best-effort: a wrong
 // guess only forfeits the clean-close confirmation; the replacement daemon's boot still self-heals.
 function uncleanShutdownMarkerPath() {
-  const override = process.env.MEMORY_DB_PATH;
-  const dir = override ? path.dirname(override) : resolvedDbDir();
+  // Mirror the daemon's full path precedence, not just MEMORY_DB_PATH:
+  // the daemon resolves its database dir from SPEC_KIT_DB_DIR /
+  // SPECKIT_DB_DIR before falling back to the packaged default, and the
+  // marker lives beside whatever database it actually opened. Checking the
+  // static dir under a dir override silently forfeits clean-close detection.
+  const fileOverride = process.env.MEMORY_DB_PATH?.trim();
+  if (fileOverride) {
+    return path.join(path.dirname(fileOverride), UNCLEAN_SHUTDOWN_MARKER);
+  }
+  const dirOverride = process.env.SPEC_KIT_DB_DIR?.trim() || process.env.SPECKIT_DB_DIR?.trim();
+  const dir = dirOverride ? path.resolve(root, dirOverride) : resolvedDbDir();
   return path.join(dir, UNCLEAN_SHUTDOWN_MARKER);
 }
 
@@ -742,6 +767,17 @@ async function reapOwnerBeforeRespawn(ownerPid) {
     return { allowed: true, reason: 'owner-already-dead' };
   }
 
+  // A socket probe cannot distinguish a genuinely-dead daemon from one that merely
+  // refused the connection at its client cap (both look "closed before reply"). Before
+  // killing a process that is still ALIVE, require the owner lease to be heartbeat-stale
+  // too: a daemon that has refreshed its lease within its TTL is serving clients, not
+  // dead, and must never be reaped on a socket-probe-only verdict regardless of cap.
+  const currentOwner = readOwnerLeaseFile();
+  if (currentOwner?.ownerPid === ownerPid && classifyOwnerLease(currentOwner) === 'live-owner') {
+    log(`spec-memory owner pid ${ownerPid} is heartbeat-fresh (live-owner); refusing socket-probe reap (likely cap-refusal, not death)`);
+    return { allowed: false, reason: 'owner-heartbeat-fresh' };
+  }
+
   log(`confirmed-dead socket; reaping recorded spec-memory owner pid ${ownerPid} before respawn`);
   signalProcess(ownerPid, 'SIGTERM');
   const exitedAfterTerm = await waitForPidExit(ownerPid, RESPAWN_REAP_GRACE_MS);
@@ -772,6 +808,19 @@ async function respawnAfterDeadSocket(leaseResult, decision) {
     log('confirmed-dead socket but lease has no childPid; child-pid gate keeps respawn inert');
     writeLeaseHeldDiagnostic(leaseResult, ' (dead-socket-no-child-pid)');
     return { action: 'report', reason: 'missing-child-pid', socketPath: decision.socketPath };
+  }
+
+  // A daemon mid-maintenance (e.g. a background index scan) legitimately fails the
+  // deep liveness probe because its event loop is busy, not dead. If it holds a
+  // fresh marker naming this exact live child, refuse the respawn and leave it
+  // running. The marker lapses if the daemon is genuinely wedged (it can no longer
+  // refresh it), so a real death still respawns once the marker expires. Checked
+  // before the respawn lock and any reap so a bail unwinds nothing.
+  const deadSocketMarker = readMaintenanceMarker(maintenanceMarkerDir());
+  if (shouldAdoptDespiteProbe({ marker: deadSocketMarker, childPid, childLiveness: processLiveness(childPid) })) {
+    log(`confirmed-dead socket but child pid ${childPid} holds a fresh maintenance marker (activeUntil ${new Date(deadSocketMarker.activeUntilMs).toISOString()}); refusing respawn (busy, not dead)`);
+    writeLeaseHeldDiagnostic(leaseResult, ' (dead-socket-maintenance-active)');
+    return { action: 'report', reason: 'maintenance-active', socketPath: decision.socketPath };
   }
 
   let bootstrapLockHeld = false;
@@ -1233,39 +1282,79 @@ function stopModelServerDemandListener() {
   return hfControl.stopDemandListener();
 }
 
+const BOOTSTRAP_LOCK_OWNER_FILE = 'owner.pid';
+
+// Returns the pid recorded inside the lock dir, or null when no readable pid
+// stamp exists (legacy lock dirs, or a holder that died before stamping).
+function readBootstrapLockOwnerPid() {
+  try {
+    const raw = fs.readFileSync(path.join(lockDir, BOOTSTRAP_LOCK_OWNER_FILE), 'utf8').trim();
+    const pid = Number.parseInt(raw, 10);
+    return Number.isInteger(pid) && pid > 0 ? pid : null;
+  } catch {
+    return null;
+  }
+}
+
+// Reclaim a stale bootstrap lockdir. A lock is reclaimable as soon as its
+// recorded holder is provably dead; the mtime TTL is only a fallback for lock
+// dirs with no readable pid stamp (legacy dirs) or a holder whose liveness
+// cannot be determined. Without the dead-holder check, a holder killed less than
+// BOOTSTRAP_LOCK_STALE_MS ago wedges every requireLock respawn for the full wait
+// deadline (the TTL exceeds the deadline by design for a slow-but-live build).
+function removeStaleBootstrapLock(staleMs = BOOTSTRAP_LOCK_STALE_MS) {
+  let ageMs;
+  try {
+    ageMs = Date.now() - fs.statSync(lockDir).mtimeMs;
+  } catch (error) {
+    if (error.code === 'ENOENT' || error.code === 'ENOTEMPTY') return false;
+    throw error;
+  }
+  const ownerPid = readBootstrapLockOwnerPid();
+  const ownerDead = ownerPid !== null && processLiveness(ownerPid) === 'dead';
+  if (!ownerDead && ageMs <= staleMs) {
+    return false;
+  }
+  // Atomically CLAIM the stale lockdir via rename before deleting it. Only one
+  // racer wins the rename; a successor that mkdir'd a fresh lockDir after our stat
+  // creates a new inode that our rename/rmSync cannot touch, so we never delete a
+  // live successor lock. A losing racer's rename throws ENOENT and falls through to
+  // the outer retry.
+  const staleClaim = `${lockDir}.stale.${process.pid}.${Date.now()}`;
+  try {
+    fs.renameSync(lockDir, staleClaim);
+    fs.rmSync(staleClaim, { recursive: true, force: true });
+    const reason = ownerDead ? `dead holder pid=${ownerPid}` : `mtime ${Math.round(ageMs / 1000)}s old`;
+    log(`reclaiming stale bootstrap lock ${rel(lockDir)} (${reason})`);
+    return true;
+  } catch (error) {
+    if (error.code === 'ENOENT' || error.code === 'ENOTEMPTY') return false;
+    throw error;
+  }
+}
+
 async function acquireBootstrapLock(options = {}) {
   const requireLock = options.requireLock === true;
   fs.mkdirSync(dbDir, { recursive: true });
-  const deadline = Date.now() + 120000;
+  const deadline = Date.now() + (options.timeoutMs ?? 120000);
+  const staleMs = options.staleMs ?? BOOTSTRAP_LOCK_STALE_MS;
+  const retrySleepMs = options.retrySleepMs ?? 1000;
   while (true) {
     try {
       fs.mkdirSync(lockDir);
+      // Stamp the holder pid so a later launcher can reclaim this lock the
+      // instant we die, instead of waiting out the mtime TTL. Best-effort: a
+      // failed stamp degrades to the TTL path, never blocks acquisition.
+      try {
+        fs.writeFileSync(path.join(lockDir, BOOTSTRAP_LOCK_OWNER_FILE), String(process.pid), { mode: 0o600 });
+      } catch { /* TTL fallback covers an unstamped lock */ }
       return true;
     } catch (error) {
       if (error.code !== 'EEXIST') {
         throw error;
       }
-      // Reclaim a stale lockdir left by a SIGKILL'd launcher (mtime-based; the lockdir records no pid),
-      // so a crashed holder cannot block a requireLock respawn for the full 120s deadline.
-      try {
-        const ageMs = Date.now() - fs.statSync(lockDir).mtimeMs;
-        if (ageMs > BOOTSTRAP_LOCK_STALE_MS) {
-          log(`reclaiming stale bootstrap lock ${rel(lockDir)} (age ${Math.round(ageMs / 1000)}s)`);
-          // Atomically CLAIM the stale lockdir via rename before deleting it. Only one
-          // racer wins the rename; a successor that mkdir'd a fresh lockDir after our stat
-          // creates a new inode that our rename/rmSync cannot touch, so we never delete a
-          // live successor lock. A losing racer's rename throws ENOENT and falls through to
-          // the outer retry.
-          const staleClaim = `${lockDir}.stale.${process.pid}.${Date.now()}`;
-          fs.renameSync(lockDir, staleClaim);
-          fs.rmSync(staleClaim, { recursive: true, force: true });
-          continue;
-        }
-      } catch (statErr) {
-        // stat/rename race — lock disappeared or was reclaimed by another launcher; retry mkdirSync
-        if (statErr.code === 'ENOENT') continue;
-        if (statErr.code === 'ENOTEMPTY') continue;
-        throw statErr;
+      if (removeStaleBootstrapLock(staleMs)) {
+        continue;
       }
       if (artifactsReady() && !requireLock) {
         return false;
@@ -1273,7 +1362,7 @@ async function acquireBootstrapLock(options = {}) {
       if (Date.now() > deadline) {
         throw new Error(`bootstrap lock timed out at ${rel(lockDir)}`);
       }
-      await sleep(1000);
+      await sleep(retrySleepMs);
     }
   }
 }
@@ -1320,6 +1409,10 @@ function launchServer() {
     if (launcherShutdownInProgress) {
       return;
     }
+    if (code === EXIT_DB_LOCK_HELD) {
+      void handleDbLockHeldChildExit();
+      return;
+    }
     const result = superviseChildExit(
       { code, signal, childPid, intentional: false },
       {
@@ -1363,6 +1456,61 @@ function launchServer() {
   return true;
 }
 
+// Pure decision for the exit-86 flow (exported for tests). A lease whose
+// owner is THIS launcher is NOT a bridge target: in supervised mode the
+// pid-lease records the launcher's own pid, so after its child exits 86 the
+// lease still reads "held by a live owner" — us. Bridging would deep-probe
+// our own dead socket and route into a self-reap. Only a DIFFERENT live
+// owner is bridgeable; a self-held lease means a non-daemon process (e.g. a
+// standalone save mid-run) owns the database lock, so retry in place.
+function decideDbLockHeldAction({ leaseHeld, leaseOwnerPid, selfPid, attempt, maxRetries }) {
+  if (attempt > maxRetries + 2) return { action: 'report', reason: 'db-lock-held-persistent' };
+  if (leaseHeld && leaseOwnerPid !== selfPid) return { action: 'bridge' };
+  if (attempt <= maxRetries) return { action: 'retry', backoffMs: 2000 * 2 ** (attempt - 1) };
+  return { action: 'report', reason: 'db-lock-held' };
+}
+
+// The daemon refused to become a second writer on a database another live
+// process holds. Prefer bridging to that owner; when the holder is not a
+// bridgeable daemon (e.g. a maintenance script mid-run), retry the launch a
+// few times so a short-lived holder can finish, then report and exit clean.
+async function handleDbLockHeldChildExit() {
+  dbLockHeldRetries += 1;
+  const leaseResult = isLeaseHeld();
+  const decision = decideDbLockHeldAction({
+    leaseHeld: leaseResult.held,
+    leaseOwnerPid: leaseResult.ownerPid,
+    selfPid: process.pid,
+    attempt: dbLockHeldRetries,
+    maxRetries: DB_LOCK_HELD_MAX_RETRIES,
+  });
+  if (decision.action === 'bridge') {
+    log(`context-server exited: database single-writer lock held; bridging to live owner pid=${leaseResult.ownerPid}`);
+    await bridgeOrReportLeaseHeldAndExit(leaseResult);
+    return;
+  }
+  if (decision.action === 'retry') {
+    log(`database single-writer lock held by a non-bridgeable holder; retrying launch in ${decision.backoffMs}ms (attempt ${dbLockHeldRetries}/${DB_LOCK_HELD_MAX_RETRIES})`);
+    if (supervisorRelaunchTimer) clearTimeout(supervisorRelaunchTimer);
+    supervisorRelaunchTimer = setTimeout(() => {
+      // Abort if the owning runtime vanished (shutdown in progress, or the launcher
+      // was reparented to init without a SIGTERM) — same guard as the primary
+      // backoff-relaunch path, so neither relaunches a daemon under a disposed session.
+      if (shouldAbortRelaunchOnFire({ shuttingDown: launcherShutdownInProgress, currentPpid: process.ppid, initialPpid: LAUNCHER_INITIAL_PPID })) return;
+      launchServer();
+    }, decision.backoffMs);
+    if (supervisorRelaunchTimer.unref) supervisorRelaunchTimer.unref();
+    return;
+  }
+  log('database single-writer lock still held after launch retries; reporting and exiting');
+  writeLeaseHeldJsonRpcError(
+    { ownerPid: leaseResult.ownerPid ?? 'unknown', startedAt: leaseResult.startedAt ?? new Date().toISOString() },
+    decision.reason,
+  );
+  clearAllLeaseFiles();
+  process.exit(0);
+}
+
 async function shutdownLauncherForSignal(signal) {
   if (launcherShutdownInProgress) return;
   launcherShutdownInProgress = true;
@@ -1372,7 +1520,7 @@ async function shutdownLauncherForSignal(signal) {
   hfControl.clearTimers();
   await hfControl.stopDemandListener();
 
-  // Re-election release path (default off): release the detached context-server for a live secondary to adopt
+  // Re-election release path (on by default): release the detached context-server for a live secondary to adopt
   // instead of killing it. Reap only the non-adoptable model-server, KEEP the daemon lease (its socket
   // stays findable for adoption), drop only OWNERSHIP, and exit without killing the daemon. When the
   // flag is off this branch is skipped and the original kill path below runs unchanged.
@@ -1505,14 +1653,48 @@ async function main() {
         const orphanChildPid = staleLease?.childPid;
         if (Number.isInteger(orphanChildPid) && orphanChildPid > 0 && processLiveness(orphanChildPid) !== 'dead') {
           const adoptResult = { ...leaseResult, socketPath: staleLease.socketPath || leaseResult.socketPath };
-          if (bridgeReadiness(adoptResult).ready) {
-            log(`stale-reclaim adopting live daemon pid ${orphanChildPid} via bridge instead of reaping`);
-            clearOwnerLeaseFile();
-            await bridgeOrReportLeaseHeldAndExit(adoptResult);
-            return;
+          const readiness = bridgeReadiness(adoptResult);
+          if (readiness.ready) {
+            // A live pid that still owns its socket can be WEDGED: its event loop is starved, so the
+            // kernel accepts the connection into the listen backlog but the daemon never services a
+            // request. bridgeReadiness only proves the socket file exists — adopting on that alone
+            // bridges every client into a dead end, and the launcher can never recover because the pid
+            // stays alive forever and is never reaped. Require a real JSON-RPC reply (the same deep
+            // probe the dead-socket decision uses, with its tuned timeout + retry that tolerates a
+            // busy-but-responsive daemon) before adopting. A non-responsive daemon falls through to the
+            // reap+respawn block below, which tears it down and spawns a fresh one under the lock.
+            const { probeLeaseHolderWithRetries } = loadBridgeModule();
+            let probe;
+            try {
+              probe = await probeLeaseHolderWithRetries(readiness.socketPath, {
+                onRetry: (attempt, total, result) => log(`stale-reclaim adopt probe ${attempt}/${total} not alive (${result.reason}); retrying`),
+              });
+            } catch (error) {
+              // The probe resolves to a status even on socket failure; a thrown error means the probe
+              // infrastructure itself failed. Treat that as not-alive so control falls through to
+              // reap+respawn, rather than letting the exception abort startup and strand the daemon.
+              probe = { status: 'dead', reason: `probe-threw: ${error instanceof Error ? error.message : String(error)}` };
+            }
+            if (probe.status === 'alive') {
+              log(`stale-reclaim adopting live daemon pid ${orphanChildPid} via bridge instead of reaping`);
+              clearOwnerLeaseFile();
+              await bridgeOrReportLeaseHeldAndExit(adoptResult);
+              return;
+            }
+            // The probe can fail because the daemon is busy-by-design (a background
+            // index scan starves its event loop), not wedged. A fresh maintenance
+            // marker naming this live child means adopt rather than reap+respawn.
+            const adoptMarker = readMaintenanceMarker(maintenanceMarkerDir());
+            if (shouldAdoptDespiteProbe({ marker: adoptMarker, childPid: orphanChildPid, childLiveness: processLiveness(orphanChildPid) })) {
+              log(`stale-reclaim adopting busy daemon pid ${orphanChildPid} via bridge: probe failed (${probe.reason}) but a fresh maintenance marker is active (until ${new Date(adoptMarker.activeUntilMs).toISOString()})`);
+              clearOwnerLeaseFile();
+              await bridgeOrReportLeaseHeldAndExit(adoptResult);
+              return;
+            }
+            log(`stale-reclaim NOT adopting pid ${orphanChildPid}: liveness probe failed (${probe.reason}); reaping and respawning instead`);
           }
         }
-        // Daemon is dead or unbridgeable. Reclaiming an existing STALE owner lease is a
+        // Daemon is dead, unbridgeable, or alive but failing its liveness probe. Reclaiming an existing STALE owner lease is a
         // non-exclusive write (the owner-lease O_EXCL above only covers the no-prior-lease case), so
         // two fresh launchers racing a crashed owner could both reach the reap and spawn. Take the
         // exclusive respawn lock to serialize it, the same lock the dead-socket respawn path uses;
@@ -1525,6 +1707,20 @@ async function main() {
           process.exit(0);
         }
         if (Number.isInteger(orphanChildPid) && orphanChildPid > 0) {
+          // Re-validate under the respawn lock. The liveness probe above can take seconds, during which
+          // a racing launcher may have reaped this same orphan and spawned a fresh daemon (recording a
+          // new childPid) before we acquired the lock. Reaping now would tear down that replacement and
+          // risk a second writer, so if the recorded lease no longer names the orphan we snapshotted,
+          // defer and reconnect. Mirrors the dead-socket respawn path's post-lock lease re-read.
+          const recheckLease = readLeaseFile(leaseResult.legacyPath || leasePath());
+          if (recheckLease && recheckLease.childPid !== orphanChildPid) {
+            log('stale-reclaim deferred: lease childPid changed after acquiring respawn lock (replacement already present); reporting lease held');
+            releaseRespawnLockFile(staleRespawnLock);
+            staleRespawnLock = null;
+            clearOwnerLeaseFile();
+            writeLeaseHeldJsonRpcError(leaseResult, 'respawn-superseded');
+            process.exit(0);
+          }
           const reap = await reapLeaseChildBeforeRespawn(orphanChildPid);
           if (!reap.allowed) {
             // Cannot confirm the released daemon is gone (EPERM, or it outlived SIGKILL); spawning
@@ -1611,11 +1807,33 @@ async function main() {
   }
 }
 
+function configureLauncherPathsForTesting(nextPaths) {
+  if (nextPaths.skillsDir) skillsDir = nextPaths.skillsDir;
+  if (nextPaths.kitDir) kitDir = nextPaths.kitDir;
+  if (nextPaths.dbDir) dbDir = nextPaths.dbDir;
+  if (nextPaths.lockDir) lockDir = nextPaths.lockDir;
+  if (nextPaths.stateFile) stateFile = nextPaths.stateFile;
+}
+
 module.exports = {
+  acquireBootstrapLock,
   acquireModelServerRespawnLockFile,
+  acquireOwnerLeaseFile,
+  artifactsReady,
   bridgeStdioThroughSessionProxy,
   buildLeaseObject,
+  buildOwnerLease,
+  classifyOwnerLease,
+  clearOwnerLeaseFile,
+  configureLauncherPathsForTesting,
+  ownerLeasePath,
+  readBootstrapLockOwnerPid,
+  readOwnerLeaseFile,
+  reapOwnerBeforeRespawn,
+  removeStaleBootstrapLock,
   computeBackoffMs,
+  decideDbLockHeldAction,
+  EXIT_DB_LOCK_HELD,
   contextServerSpawnIo,
   createCrashLoopGuard,
   daemonReelectionEnabled,
@@ -1623,6 +1841,9 @@ module.exports = {
   getModelServerWatchdogConfig,
   getWatchdogConfig,
   isRespawnLockStale,
+  maintenanceMarkerDir,
+  readMaintenanceMarker,
+  shouldAdoptDespiteProbe,
   launchModelServer,
   launcherLogIsEnabled,
   launcherLogMaxBytes,

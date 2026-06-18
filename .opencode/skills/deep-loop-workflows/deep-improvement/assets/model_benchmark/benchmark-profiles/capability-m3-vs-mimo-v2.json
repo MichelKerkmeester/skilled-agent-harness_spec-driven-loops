@@ -1,0 +1,40 @@
+{
+  "profileId": "capability-m3-vs-mimo-v2",
+  "id": "capability-m3-vs-mimo-v2",
+  "version": "1.0",
+  "family": "deep-improvement",
+  "mode": "model-vs-model",
+  "fixtureDir": ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-fixtures",
+  "fixtures": [
+    "harder-semver-compare",
+    "harder-normalize-path",
+    "harder-int-to-words",
+    "hard-roman-to-int"
+  ],
+  "fixtureSelection": {
+    "include": [
+      "harder-semver-compare",
+      "harder-normalize-path",
+      "harder-int-to-words",
+      "hard-roman-to-int"
+    ],
+    "filters": { "tier": ["T4"] }
+  },
+  "frameworks": ["costar"],
+  "models": [
+    { "executor": "cli-opencode", "model": "minimax-coding-plan/MiniMax-M3", "variant": "high" },
+    { "executor": "cli-opencode", "model": "xiaomi-token-plan-ams/mimo-v2.5-pro", "variant": "high" }
+  ],
+  "scoring": {
+    "correctnessGate": { "threshold": 1.0 }
+  },
+  "sampling": { "samplesPerCell": 5, "seed": 1729 },
+  "reporting": { "groupBy": "model", "leaderboard": true, "history": true },
+  "outputsDir": "{spec_folder}/eval",
+  "metrics": ["score", "pass_rate"],
+  "benchmark": {
+    "requiredAggregateScore": 80,
+    "minimumFixtureScore": 70,
+    "repeatabilityTolerance": 0
+  }
+}

@@ -1,6 +1,13 @@
 ---
 title: Claude Code — Prompt Quality Card
 description: Fast-path prompt discipline for Claude Code dispatches; frameworks + CLEAR are canonical in sk-prompt.
+trigger_phrases:
+  - "claude code prompt quality card"
+  - "claude code model overrides"
+  - "claude code dispatch prompt discipline"
+  - "claude code prompt precedence rule"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Claude Code — Prompt Quality Card

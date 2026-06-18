@@ -1,0 +1,20 @@
+{
+  "type": "iteration_delta",
+  "mode": "review",
+  "run": 1,
+  "sessionId": "fanout-gpt55r2-b-3-1781761339355-o7qylx",
+  "generation": 1,
+  "lineageMode": "new",
+  "findingsNew": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 0
+  },
+  "findingRefs": [
+    "F001",
+    "F002"
+  ],
+  "newFindingsRatio": 1,
+  "verdict": "CONDITIONAL",
+  "timestamp": "2026-06-18T05:50:09.000Z"
+}

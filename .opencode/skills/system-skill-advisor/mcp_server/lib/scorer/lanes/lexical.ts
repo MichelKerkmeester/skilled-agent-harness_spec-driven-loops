@@ -4,6 +4,7 @@
 
 import type { AdvisorProjection, LaneMatch } from '../types.js';
 import { matchesPhraseBoundary, scoreTokenOverlap, tokenize } from '../text.js';
+import { scoreBm25LexicalShadowLane, type AdvisorBm25Match } from './bm25.js';
 
 const SYNONYMS: Readonly<Record<string, readonly string[]>> = {
   branch: ['git', 'worktree', 'merge'],
@@ -27,14 +28,24 @@ const CATEGORY_HINTS: Readonly<Record<string, readonly string[]>> = {
   'system-spec-kit': ['spec folder', 'packet', 'plan', 'tasks', 'checklist', 'memory save', 'handover', 'implementation summary', 'corpus'],
   'sk-code-review': ['review', 'audit', 'findings', 'regression', 'drift', 'readiness', 'false positives'],
   'system-code-graph': ['code graph', 'structural search', 'grep not enough', 'find code', 'where logic'],
-  'deep-research': ['deep research', 'research loop', 'overnight research', 'delta record', 'state log', 'lineage'],
-  'deep-review': ['deep review', 'review loop', 'release readiness', 'canonical jsonl', 'convergence tracked', 'iterative review', 'iterative review loop', 'spec folder audit', 'iterative audit', 'multi-pass review', 'review iteration', 'convergence detection', 'review packet', 'spec folder review'],
-  'deep-ai-council': ['deep ai council', 'ai council', 'planning council', 'council deliberation', 'multi-seat planning', 'ai-council artifacts', 'persist council artifacts', 'multi-ai-council'],
+  // Merged deep-loop hub hints. The legacy per-mode skills (deep-research,
+  // deep-review, deep-ai-council) are folded into deep-loop-workflows; their
+  // hint phrases are unioned here so any deep-loop phrase lifts the merged node.
+  // Per-mode discrimination (research|review|ai-council) is handled by the
+  // Python Candidate-3 layer, not this skill-level lexical lane.
+  'deep-loop-workflows': ['deep research', 'research loop', 'overnight research', 'delta record', 'state log', 'lineage', 'deep review', 'review loop', 'release readiness', 'canonical jsonl', 'convergence tracked', 'iterative review', 'iterative review loop', 'spec folder audit', 'iterative audit', 'multi-pass review', 'review iteration', 'convergence detection', 'review packet', 'spec folder review', 'deep ai council', 'ai council', 'planning council', 'council deliberation', 'multi-seat planning', 'ai-council artifacts', 'persist council artifacts', 'multi-ai-council'],
   'mcp-chrome-devtools': ['chrome devtools', 'har', 'console errors', 'staging'],
   'sk-prompt': ['better prompt', 'cleaner prompt', 'prompt package', 'system prompt', 'prompt variant'],
   'sk-git': ['git worktree', 'experiment branch', 'clean branch'],
   'sk-code': ['css', 'html', 'javascript', 'browser', 'frontend', 'layout', 'viewport', 'responsive', 'mobile', 'cdn', 'opencode', 'classifier', 'helper', 'fixture', 'vitest', 'commonjs', 'typescript', 'python', 'script', 'mcp json', 'gate3 baseline'],
 };
+
+const BM25_SHADOW_ENABLED_VALUES = new Set(['1', 'true', 'yes', 'on', 'shadow', 'experimental']);
+
+export function isBm25LexicalShadowEnabled(): boolean {
+  const value = process.env.SPECKIT_ADVISOR_BM25_LEXICAL_SHADOW?.trim().toLowerCase();
+  return value ? BM25_SHADOW_ENABLED_VALUES.has(value) : false;
+}
 
 function expandedTokens(prompt: string): string[] {
   const tokens = tokenize(prompt);
@@ -50,6 +61,9 @@ function expandedTokens(prompt: string): string[] {
 export function scoreLexicalLane(prompt: string, projection: AdvisorProjection): LaneMatch[] {
   const lower = prompt.toLowerCase();
   const tokens = expandedTokens(prompt);
+  // Normalize against the un-expanded prompt length so injected synonyms only add
+  // recall and never enlarge the denominator against a literally-matching skill.
+  const originalTokenCount = tokenize(prompt).length;
   const matches: LaneMatch[] = [];
 
   for (const skill of projection.skills) {
@@ -61,7 +75,7 @@ export function scoreLexicalLane(prompt: string, projection: AdvisorProjection):
       ...skill.domains,
       ...skill.intentSignals,
       ...skill.keywords,
-    ]);
+    ], originalTokenCount);
 
     for (const hint of CATEGORY_HINTS[skill.id] ?? []) {
       if (matchesPhraseBoundary(lower, hint)) {
@@ -86,4 +100,15 @@ export function scoreLexicalLane(prompt: string, projection: AdvisorProjection):
   }
 
   return matches;
+}
+
+export function scoreLexicalShadowLanes(
+  prompt: string,
+  projection: AdvisorProjection,
+): { lexical: LaneMatch[]; bm25: AdvisorBm25Match[] } {
+  const lexical = scoreLexicalLane(prompt, projection);
+  return {
+    lexical,
+    bm25: isBm25LexicalShadowEnabled() ? scoreBm25LexicalShadowLane(prompt, projection) : [],
+  };
 }

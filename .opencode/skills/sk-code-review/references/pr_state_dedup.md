@@ -1,3 +1,16 @@
+---
+title: PR-State Content-Hash Dedup
+description: Signature computation, JSONL cache format, retention, and skip behavior for the M-1 PR-state review deduplication gate.
+trigger_phrases:
+  - "pr state dedup gate"
+  - "review diff signature hash"
+  - "duplicate review skip behavior"
+  - "review dedup cache retention"
+  - "commented no changes status"
+importance_tier: important
+contextType: implementation
+---
+
 # PR-State Content-Hash Dedup (M-1)
 
 Detailed reference for the M-1 PR-state deduplication gate documented in `../SKILL.md` §9.1.

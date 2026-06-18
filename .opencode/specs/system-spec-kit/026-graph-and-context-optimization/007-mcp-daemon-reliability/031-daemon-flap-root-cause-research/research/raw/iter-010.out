@@ -1,0 +1,108 @@
+SKILL ROUTING: hook surfaced `system-spec-kit` at 0.95; this is read-only completeness review of a spec research packet, so I’ll load that workflow context and then inspect the requested research files only.
+I’ll inspect the research packet paths and verify whether an `iteration-009.md` exists, because the prompt says “9-iteration” but explicitly lists `001..008` plus two supporting artifacts.
+There is no `iteration-009.md`; the packet contains `iteration-001..008.md`, `iterations/orchestrator-verifications.md`, and `live-diagnosis.md`, which I’ll use as the complete input set.
+The packet converges strongly on a warm-only/self-heal gap, but several conclusions depend on code paths the iterations mark as inferred. I’m going to read a small set of referenced launcher/CLI/hook files to separate “corpus says” from what live code actually supports, without modifying anything.
+The live code search matches the packet’s core claims: `daemonReelectionEnabled` only appears in `mk-spec-memory-launcher.cjs`, and no current `SPECKIT_PROMPT_SELF_HEAL`/kick implementation exists. I’ll read the exact warm-only and shutdown snippets now.
+The Claude/Copilot SessionStart dist path cited by the research has moved or differs in this checkout, so I’ll locate the actual hook file before judging the SessionStart-kick coverage.
+The hook files confirm SessionStart currently only appends warm-only CLI fallback sections; it does not perform a cold-start kick. I’ll check the idle-timeout default because the corpus treats idle death as a possible live path.
+## IT10 — completeness critic + final convergence
+Input note: no `iteration-009.md` exists in the requested folder; I reviewed `iteration-001..008.md`, `iterations/orchestrator-verifications.md`, and `live-diagnosis.md`.
+
+### Final convergence answer
+The corpus does answer the root-cause question at the class level: the system is still session-coupled, not truly supervised. `mk-spec-memory` has spec-memory-only release/adopt behavior, while `mk-skill-advisor` and `mk-code-index` still kill/clear on launcher shutdown; prompt-time hooks and CLI fallbacks intentionally use warm-only probes, so dead daemons with stale sockets stay dead until a non-warm launcher path runs. `mk-code-index` survived this incident because live launcher/proxy processes remained, not because it is inherently durable. The actionable Phase-1 fix is C2-minimal: a throttled background cold-start kick from warm-only dead-daemon probes, preferably at SessionStart and advisor prompt hook, with telemetry. Honest convergence: C2 likely fixes the “cold at session start stays cold forever” symptom, but it is not the definitive root-cause fix. Durable correctness still requires a session-independent owner, likely a supervisor plus one OS unit, or equivalent OS supervision, plus migration fences, sidecar lifecycle, and RSS controls.
+
+### Unverified load-bearing claims (ranked by impact-if-wrong)
+- P0: C2 can heal the exact live stale-socket state. The corpus says non-warm CLI cold-spawns today, but it did not prove a non-warm advisor/spec-memory invocation succeeds against the actual stale socket files from `live-diagnosis.md`.
+
+- P0: A SessionStart or prompt-time kick will be early enough to restore useful context before the operator needs it. Iteration 006 already admits non-blocking kick cannot guarantee first-turn readiness without a wait budget.
+
+- P0: The already-disconnected native MCP transports will recover once the backend daemon is resurrected. This is not verified and is probably the biggest hidden gap; C2 may restore CLI fallback behavior while `mk_skill_advisor` / `mk_spec_memory` native MCP tools remain disconnected until a new runtime session.
+
+- P0: The proposed throttle lock holds under 7 concurrent runtimes. Iteration 008 correctly requires a 7-runtime stress test; without it, C2 can become a launcher storm and worsen the OOM/resource-pressure class.
+
+- P0: The exact live death path is known enough. The corpus narrows it to owner exit, idle timeout, OOM/SIGKILL, or bridged owner death, but no persistent log recovered the actual kill event.
+
+- P1: Advisor/code-index can safely become backend-only/client-only later. This is necessary for B/C1, but only spec-memory has existing backend-only plumbing; advisor/code-index feasibility remains implementation-verified only.
+
+- P1: Shared HF model-server lifecycle is understood. The corpus identifies cross-kill risk, but did not measure RSS, validate refcounting, or define acceptance for sidecar ownership as a fourth resident process.
+
+- P1: Current stale-socket reclaim is sufficient for C2. Bind-time same-UID socket reclaim exists, but the exact live stale socket ownership/type/perms were not exercised through a cold-start path.
+
+- P1: Crash-loop guard and repeated kicks interact safely. If daemon startup fails repeatedly, C2 must not keep spawning detached launchers or hide a persistent protocol/dist error as “healing.”
+
+- P1: Prompt-time process creation is acceptable. C2 changes the hook contract from warm/read-only probe to side-effecting spawn trigger; security and operator policy are flagged, not resolved.
+
+- P2: Code-index’s three live launchers are definitely proxies, not competing owners. The corpus marks this as not process-tree-verified; if wrong, the code-index survival explanation changes.
+
+- P2: Dist/source parity is clean. Several claims cite source or generated dist selectively; the final builder still needs to verify the built files and shims actually run the patched code.
+
+Most plan-changing if wrong: if a non-warm cold start cannot reliably heal the actual stale socket under concurrent runtime load, C2-minimal is not a valid Phase-1 fix and the plan must jump to a blocking startup wait, manual non-warm remediation, or supervised owner design.
+
+### Contradictions / tensions (resolved or flagged)
+- Resolved: “needs fresh session” vs “non-warm CLI resurrects.” Fresh session is not required; any non-warm CLI/script path can cold-spawn. The live problem persists because prompt-time paths are warm-only.
+
+- Resolved: “C2 fixes it” vs “root cause fix.” C2 fixes the warm-only trap symptom; it does not make daemon liveness session-independent.
+
+- Resolved: IT7 layered plan vs IT8 descope. Ship C2-minimal first, but keep B/C1/OS supervision explicitly deferred behind data and migration gates.
+
+- Resolved: always-warm vs OOM. Do not default always-warm until RSS baseline, free-RAM floor, and sidecar policy are measured.
+
+- Resolved: adopt/re-election vs Phase 028 double-writer risk. Do not generalize adopt/release to advisor/code-index without lease mode/version fencing and two-launcher single-writer tests.
+
+- Flagged open: prompt-time side effects. C2 should be behind `SPECKIT_PROMPT_SELF_HEAL`, and the default-on/default-off decision still needs operator approval.
+
+- Flagged open: native MCP reconnect. Phase 030 says client-side stdio reconnect is harness-owned; C2 does not prove current-session MCP tools come back.
+
+- Flagged open: orphan sweeper vs future resident daemons. A sweeper that kills “orphans” conflicts with released/supervised daemons unless taught lease modes.
+
+### Coverage gaps (what no iteration covered)
+- No live proof that Phase-1 alone resolves this operator’s multi-session state with 7 runtimes, stale advisor/spec-memory sockets, and code-index launcher pile-up.
+
+- No acceptance story for native MCP transport reconnection after daemon resurrection.
+
+- No Windows-native non-WSL story.
+
+- No detailed lifecycle design for the shared HF model-server as a fourth process: ownership, refcount, idle, restart, RSS, and cross-daemon contention remain incomplete.
+
+- No coverage of `code_graph_scan`, `advisor_rebuild`, `skill_graph_scan`, or other trusted mutations during daemon resurrection or restart.
+
+- No security design for prompt-time spawning beyond “flag it and throttle it.”
+
+- No health dashboard or operator-visible liveness view; telemetry is proposed but not shaped into status, alerting, or runbook.
+
+- No rollout/migration plan for old launchers already running while new C2/B/C1 code is deployed.
+
+- No measured first-success latency from SessionStart kick to usable advisor/spec-memory responses.
+
+- No controlled crash-loop/OOM test proving kicks stop safely under persistent backend failure.
+
+### Does Phase-1 actually fix the live symptom? (honest)
+Partially, if implemented carefully. With 7 concurrent runtimes and advisor/spec-memory dead, a flagged C2 SessionStart/UserPromptSubmit warm-kick should turn “dead for the whole session” into “first warm probe may fail, background launch starts, a later prompt/CLI likely succeeds.” It does not reliably guarantee first-prompt readiness, it does not prevent the next session-exit/idle/OOM death, and it may not restore already-disconnected native MCP transports in the same runtime. Without a proven atomic throttle, it can also create a launcher storm. So Phase-1 is a good minimal remediation for this live symptom, but calling it the root-cause fix would be overstated.
+
+### Live-verification acceptance checklist
+- [ ] Record baseline: processes, sockets, warm-only exits, non-warm exits, RSS, and native MCP tool availability for all three daemons.
+
+- [ ] Reproduce advisor/spec-memory dead-with-stale-socket state in a controlled temp socket/db environment.
+
+- [ ] Prove current non-warm CLI cold-start heals that stale state for advisor and spec-memory.
+
+- [ ] Implement C2 behind a flag and verify warm-only dead probe kicks exactly one background launcher per service.
+
+- [ ] Run 7-runtime concurrent warm-only stress and prove the throttle prevents launcher storms.
+
+- [ ] Verify SessionStart kick and advisor UserPromptSubmit kick separately for Claude, Codex, and OpenCode paths.
+
+- [ ] Measure first-success latency and decide whether first-turn readiness needs a small wait budget.
+
+- [ ] Verify resurrected daemons restore native MCP tool availability, or document that a new session is required.
+
+- [ ] Exercise trusted mutations after resurrection: `code_graph_scan`, `advisor_rebuild`, and skill graph scan in disposable fixtures.
+
+- [ ] Measure RSS with all daemons plus HF sidecar under multi-session load before any always-warm/default-on decision.
+
+- [ ] Verify security boundaries: same-UID socket dir, 0700 permissions, no Stop/compact/shutdown kicks, flag disable works, stale throttle lock recovers.
+
+- [ ] Verify observability: logs/metrics show kick attempted, lock skipped, spawn failed, healed, and time-to-first-success.
+
+### Confidence + the single thing most likely to be wrong
+Confidence: high on the root-cause class, medium on Phase-1 sufficiency. The single thing most likely to be wrong is the implicit claim that C2 “fixes the live symptom” for the current session; it may only resurrect backend daemons and CLI fallbacks, while already-disconnected native MCP transports remain dead until a fresh runtime session.

@@ -6,16 +6,18 @@ import { appendFileSync, mkdirSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { DATABASE_DIR } from '../core/config.js';
 import * as graphDb from './code-graph-db.js';
-import { buildReadinessBlock } from './readiness-contract.js';
+import { buildReadinessBlock, type CodeGraphReadinessBlock } from './readiness-contract.js';
 import {
   classifyExcludeRules,
-  loadExcludeRuleConfidence,
+  resolveExcludeRuleConfidence,
   type ClassifiedExcludeRule,
 } from './exclude-rule-classifier.js';
 import {
   rollbackBadApply,
   snapshotKnownGoodTriplet,
   recoverSqliteCorruption,
+  previewRollbackTarget,
+  pruneApplyArtifacts,
   type RecoveryProcedureResult,
 } from './recovery-procedures.js';
 import {
@@ -94,8 +96,18 @@ export interface ApplyRunResult {
     eligible: string[];
     skippedReason?: string;
   };
+  /** Concrete next step when the run refused to proceed. */
+  requiredAction?: string;
+  /** Restore target a rollback would use (reported by rollback dry-runs). */
+  rollbackTarget?: string | null;
   message: string;
 }
+
+/** Operations that move or replace the live database triplet on disk. */
+const DESTRUCTIVE_OPERATIONS: ReadonlySet<ApplyOperation> = new Set([
+  'recover-sqlite-corruption',
+  'rollback-bad-apply',
+]);
 
 const DEFAULT_QUARANTINE_AGE_DAYS = CODE_GRAPH_DEFAULTS.quarantineAgeDays;
 
@@ -245,15 +257,70 @@ function summarizeBattery(result: GoldBatteryRunResult): Record<string, unknown>
   };
 }
 
+// Read-only classification of a prune-excludes request. Sharing this between
+// the pre-snapshot gate and the dispatch path keeps the confirm/opt-in
+// decision identical on both sides, so the gate can refuse a tier before any
+// snapshot is taken rather than letting dispatch throw into the rollback path.
+type PruneClassification = {
+  artifact: ReturnType<typeof resolveExcludeRuleConfidence>;
+  classified: ClassifiedExcludeRule[];
+  mediumBlocked: boolean;
+  lowBlocked: boolean;
+};
+
+function classifyPruneRequest(args: CodeGraphApplyArgs, options: ApplyOrchestratorOptions): PruneClassification {
+  const patterns = args.excludePatterns ?? [];
+  const artifact = resolveExcludeRuleConfidence(options.excludeRuleConfidencePath);
+  if (!artifact) {
+    return {
+      artifact: null,
+      classified: patterns.map((pattern) => ({ pattern, tier: 'unknown' as const })),
+      mediumBlocked: false,
+      lowBlocked: false,
+    };
+  }
+  const classified = classifyExcludeRules(artifact, patterns);
+  return {
+    artifact,
+    classified,
+    mediumBlocked: classified.some((entry) => entry.tier === 'medium') && args.confirm !== true,
+    lowBlocked: classified.some((entry) => entry.tier === 'low') && args.lowTierOptIn !== true,
+  };
+}
+
+// Returns the quarantined parser_skip_list files old enough to be triage
+// candidates. repair-nodes only REPORTS these; the skip-list is intentionally
+// not self-healing, so nothing here re-parses, clears, or otherwise repairs
+// them. The SELECT runs against the already-open apply-pipeline database (the
+// pre-flight battery and classification open it well before dispatch).
+function computeRepairEligible(args: CodeGraphApplyArgs): string[] {
+  const thresholdMs = (args.quarantineOlderThanDays ?? DEFAULT_QUARANTINE_AGE_DAYS) * 24 * 60 * 60 * 1000;
+  const cutoff = Date.now() - thresholdMs;
+  const rows = graphDb.getDb().prepare(`
+    SELECT file_path, last_seen_at
+    FROM parser_skip_list
+    ORDER BY last_seen_at ASC, file_path ASC
+    LIMIT 50
+  `).all() as Array<{ file_path: string; last_seen_at: string }>;
+  return rows
+    .filter((row) => {
+      const seenAt = Date.parse(row.last_seen_at);
+      return Number.isFinite(seenAt) && seenAt <= cutoff;
+    })
+    .map((row) => row.file_path);
+}
+
 async function dispatchOperation(
   operation: ApplyOperation,
   args: CodeGraphApplyArgs,
   classification: ApplyClassification,
   options: ApplyOrchestratorOptions,
+  currentRunKnownGoodDir?: string,
 ): Promise<{
   recovery?: RecoveryProcedureResult;
   excludeRules?: ClassifiedExcludeRule[];
   repairNodes?: ApplyRunResult['repairNodes'];
+  requiredAction?: string;
 }> {
   const scan = options.scan ?? runDefaultScan;
   const dbDir = options.dbDir ?? DATABASE_DIR;
@@ -281,17 +348,33 @@ async function dispatchOperation(
           auditDir: options.auditDir,
           now: options.now,
           scan: (scanArgs) => scan({ rootDir: args.rootDir, incremental: scanArgs.incremental }),
+          excludeKnownGoodDirs: currentRunKnownGoodDir ? [currentRunKnownGoodDir] : [],
         }),
       };
     case 'prune-excludes': {
-      const artifactPath = options.excludeRuleConfidencePath;
       const patterns = args.excludePatterns ?? [];
-      if (!artifactPath) {
-        return { excludeRules: patterns.map((pattern) => ({ pattern, tier: 'unknown' })) };
+      // Fall back to the shipped default confidence artifact when the caller
+      // supplies no explicit path, so real MCP requests are actually
+      // classified instead of every pattern collapsing to 'unknown' (which
+      // would silently apply nothing and never gate). A missing/unreadable
+      // default degrades to the conservative unknown-everything no-op.
+      const { artifact, classified, mediumBlocked, lowBlocked } = classifyPruneRequest(args, options);
+      if (!artifact) {
+        // With no artifact every pattern is 'unknown' and nothing is applied.
+        // Surface that as a requiredAction when the caller actually passed
+        // patterns, so a missing/stripped default artifact is not reported as
+        // a silent success with the exclusions quietly skipped.
+        return {
+          excludeRules: classified,
+          ...(patterns.length > 0
+            ? { requiredAction: 'No exclude-rule confidence artifact resolved, so all patterns are unclassified and no exclusions were applied. Restore the shipped default artifact or pass an explicit excludeRuleConfidencePath.' }
+            : {}),
+        };
       }
-      const classified = classifyExcludeRules(loadExcludeRuleConfidence(artifactPath), patterns);
-      const mediumBlocked = classified.some((entry) => entry.tier === 'medium') && args.confirm !== true;
-      const lowBlocked = classified.some((entry) => entry.tier === 'low') && args.lowTierOptIn !== true;
+      // Defensive backstop: the pre-snapshot gate already refuses these tiers
+      // without confirmation, so reaching here blocked means the gate was
+      // bypassed (or state shifted mid-run). Throwing rolls back, which is
+      // acceptable only for that genuine race, not the common confirm-omission.
       if (mediumBlocked) {
         throw new Error('medium-tier exclude patterns require confirm=true');
       }
@@ -319,26 +402,12 @@ async function dispatchOperation(
           },
         };
       }
-      const thresholdMs = (args.quarantineOlderThanDays ?? DEFAULT_QUARANTINE_AGE_DAYS) * 24 * 60 * 60 * 1000;
-      const cutoff = Date.now() - thresholdMs;
-      const rows = graphDb.getDb().prepare(`
-        SELECT file_path, last_seen_at
-        FROM parser_skip_list
-        ORDER BY last_seen_at ASC, file_path ASC
-        LIMIT 50
-      `).all() as Array<{ file_path: string; last_seen_at: string }>;
-      const eligible = rows
-        .filter((row) => {
-          const seenAt = Date.parse(row.last_seen_at);
-          return Number.isFinite(seenAt) && seenAt <= cutoff;
-        })
-        .map((row) => row.file_path);
-      if (eligible.length > 0) {
-        if (args.confirm !== true) {
-          throw new Error('repair-nodes requires confirm=true');
-        }
-        await scan({ rootDir: args.rootDir, incremental: true });
-      }
+      // Triage only: report the stale parser_skip_list candidates so an
+      // operator can manually re-include them after fixing the root cause. We
+      // deliberately do NOT re-parse here — the skip-list is intentionally not
+      // self-healing (an incremental scan re-skips quarantined files), so a
+      // scan would be a misleading no-op for these entries.
+      const eligible = computeRepairEligible(args);
       return { repairNodes: { eligible } };
     }
     default:
@@ -432,6 +501,11 @@ export async function applyCodeGraph(
     const postflight = await runBattery();
     appendAudit(logPath, 'postflight_battery', summarizeBattery(postflight), now);
     recordApplyMetadata({ status: 'dry-run', battery: postflight, now });
+    // A rollback preview must use the SAME target selection as the live
+    // path, or the preview names a different directory than the run restores.
+    const rollbackTarget = operation === 'rollback-bad-apply'
+      ? previewRollbackTarget({ dbDir: options.dbDir, auditDir: options.auditDir })
+      : undefined;
     return {
       status: 'dry-run',
       operation,
@@ -439,8 +513,74 @@ export async function applyCodeGraph(
       auditLogPath: logPath,
       preflight,
       postflight,
-      message: 'Dry run completed; operation dispatch was skipped.',
+      ...(rollbackTarget !== undefined ? { rollbackTarget } : {}),
+      message: operation === 'rollback-bad-apply'
+        ? (rollbackTarget
+          ? `Dry run completed; rollback would restore ${rollbackTarget}.`
+          : 'Dry run completed; NO known-good snapshot exists to restore — a live rollback would quarantine the current database without restoring anything.')
+        : 'Dry run completed; operation dispatch was skipped.',
     };
+  }
+
+  // Destructive operations move or replace the live database triplet; they
+  // require explicit confirmation REGARDLESS of staleness classification.
+  // This gate must sit before the known-good snapshot so a refused run
+  // leaves no artifact in the snapshot chain.
+  if (DESTRUCTIVE_OPERATIONS.has(operation) && args.confirm !== true) {
+    recordApplyMetadata({ status: 'aborted', battery: preflight, now });
+    appendAudit(logPath, 'abort', { reason: `${operation} requires confirm=true` }, now);
+    return {
+      status: 'aborted',
+      operation,
+      classification,
+      auditLogPath: logPath,
+      preflight,
+      requiredAction: `re-run with confirm=true to execute ${operation}`,
+      message: `${operation} moves or replaces the live database and requires confirm=true before mutation.`,
+    };
+  }
+
+  // Refuse repair-nodes up front instead of dispatching into a skip that
+  // postflight would then report as a committed apply — a misleading no-op.
+  if (operation === 'repair-nodes' && args.crashRootCauseAddressed !== true) {
+    recordApplyMetadata({ status: 'aborted', battery: preflight, now });
+    appendAudit(logPath, 'abort', { reason: 'repair-nodes requires crashRootCauseAddressed=true' }, now);
+    return {
+      status: 'aborted',
+      operation,
+      classification,
+      auditLogPath: logPath,
+      preflight,
+      requiredAction: 'fix the parser crash root cause, then re-run with crashRootCauseAddressed=true',
+      message: 'repair-nodes refused: crashRootCauseAddressed is not true.',
+    };
+  }
+
+  // Refuse a confirm/opt-in-gated prune BEFORE the snapshot. The tier checks
+  // are read-only, so evaluating them here lets an unconfirmed medium/low-tier
+  // request abort cleanly. Previously the same refusal threw from inside
+  // dispatch — after the snapshot — landing in the rollback catch, which
+  // quarantined the live triplet and reindexed (more destructive than the
+  // confirmed run) and reported 'rolled-back' for a mere missing flag.
+  if (operation === 'prune-excludes') {
+    const prunePlan = classifyPruneRequest(args, options);
+    if (prunePlan.mediumBlocked || prunePlan.lowBlocked) {
+      const requiredAction = prunePlan.mediumBlocked
+        ? 're-run with confirm=true to apply medium-tier exclude patterns'
+        : 're-run with lowTierOptIn=true to apply low-tier exclude patterns';
+      recordApplyMetadata({ status: 'aborted', battery: preflight, now });
+      appendAudit(logPath, 'abort', { reason: requiredAction }, now);
+      return {
+        status: 'aborted',
+        operation,
+        classification,
+        auditLogPath: logPath,
+        preflight,
+        excludeRules: prunePlan.classified,
+        requiredAction,
+        message: 'Exclude-pattern tier requires explicit opt-in before mutation.',
+      };
+    }
   }
 
   const knownGoodDir = snapshotKnownGoodTriplet({
@@ -452,9 +592,14 @@ export async function applyCodeGraph(
 
   let dispatchResult: Awaited<ReturnType<typeof dispatchOperation>>;
   try {
-    dispatchResult = await dispatchOperation(operation, args, classification, options);
+    dispatchResult = await dispatchOperation(operation, args, classification, options, knownGoodDir);
     appendAudit(logPath, 'operation_dispatched', { operation, dispatchResult }, now);
   } catch (error) {
+    // Failure-path rollback deliberately does NOT exclude the snapshot taken
+    // at the start of this run: that snapshot holds the pre-dispatch state,
+    // which is exactly what a failed mutation must restore. Only the
+    // operator-invoked rollback operation excludes its own snapshot (which
+    // would otherwise capture the suspect state being rolled back).
     const recovery = await rollbackBadApply({
       dbDir: options.dbDir,
       auditDir: options.auditDir,
@@ -465,6 +610,24 @@ export async function applyCodeGraph(
       reason: error instanceof Error ? error.message : String(error),
       recovery,
     }, now);
+    // The recovery can itself fail (no known-good snapshot to restore, or the
+    // restore left no usable triplet). Reporting 'rolled-back' regardless would
+    // claim the live database was recovered when it is actually quarantined and
+    // unrestored. Inspect the recovery result and tell the operator the truth.
+    const rollbackSucceeded = recovery.status === 'ok' && recovery.restored !== false;
+    if (!rollbackSucceeded) {
+      recordApplyMetadata({ status: 'rollback-failed', battery: preflight, now });
+      return {
+        status: 'rollback-failed',
+        operation,
+        classification,
+        auditLogPath: logPath,
+        preflight,
+        recovery,
+        requiredAction: 'rollback did not restore a clean database triplet; restore from a known-good snapshot manually and investigate the quarantined triplet before re-running',
+        message: 'Apply operation failed and rollback did NOT restore a clean triplet; the live database is quarantined.',
+      };
+    }
     recordApplyMetadata({ status: 'rolled-back', battery: preflight, now });
     return {
       status: 'rolled-back',
@@ -491,6 +654,22 @@ export async function applyCodeGraph(
       reason: 'postflight battery failed',
       recovery,
     }, now);
+    const rollbackSucceeded = recovery.status === 'ok' && recovery.restored !== false;
+    if (!rollbackSucceeded) {
+      recordApplyMetadata({ status: 'rollback-failed', battery: postflight, now });
+      return {
+        status: 'rollback-failed',
+        operation,
+        classification,
+        auditLogPath: logPath,
+        preflight,
+        postflight,
+        recovery,
+        ...dispatchResult,
+        requiredAction: 'rollback did not restore a clean database triplet; restore from a known-good snapshot manually and investigate the quarantined triplet before re-running',
+        message: 'Post-flight gold battery failed and rollback did NOT restore a clean triplet; the live database is quarantined.',
+      };
+    }
     recordApplyMetadata({ status: 'rolled-back', battery: postflight, now });
     return {
       status: 'rolled-back',
@@ -507,6 +686,30 @@ export async function applyCodeGraph(
 
   recordApplyMetadata({ status: 'committed', battery: postflight, now });
   appendAudit(logPath, 'commit', { operation }, now);
+
+  // Retention runs only after a verified commit — never on refusal or
+  // rollback paths, where a pruned directory could be the restore target.
+  // The current run's snapshot is explicitly protected.
+  try {
+    const retention = pruneApplyArtifacts({
+      dbDir: options.dbDir,
+      auditDir: options.auditDir,
+      now,
+      protectDirs: [knownGoodDir],
+    });
+    if (retention.prunedDirs.length > 0 || retention.errors.length > 0) {
+      appendAudit(logPath, 'artifact_retention', {
+        pruned: retention.prunedDirs.length,
+        kept: retention.keptKnownGoodDirs.length,
+        errors: retention.errors,
+      }, now);
+    }
+  } catch (retentionError) {
+    appendAudit(logPath, 'artifact_retention', {
+      errors: [retentionError instanceof Error ? retentionError.message : String(retentionError)],
+    }, now);
+  }
+
   return {
     status: 'committed',
     operation,
@@ -519,7 +722,7 @@ export async function applyCodeGraph(
   };
 }
 
-export function buildReadinessForApplyState(input: ApplyStateInput) {
+export function buildReadinessForApplyState(input: ApplyStateInput): CodeGraphReadinessBlock {
   return buildReadinessBlock({
     freshness: input.freshness === 'fresh' || input.freshness === 'stale' || input.freshness === 'empty' || input.freshness === 'error'
       ? input.freshness

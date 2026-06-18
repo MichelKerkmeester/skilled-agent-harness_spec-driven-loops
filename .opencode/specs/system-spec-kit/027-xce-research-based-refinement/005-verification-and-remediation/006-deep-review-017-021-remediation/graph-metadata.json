@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation",
+  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "017-021 remediation",
+      "deep review 017 021 remediation",
+      "search output intelligence remediation",
+      "017-021 remediation plan",
+      "deep review remediation plan",
+      "017-021 remediation tasks",
+      "deep review remediation tasks",
+      "search reindex maintenance remediation tasks",
+      "017-021 remediation checklist",
+      "deep review remediation checklist",
+      "017-021 remediation decisions",
+      "deep review remediation adr"
+    ],
+    "key_topics": [
+      "017-021",
+      "remediation",
+      "deep",
+      "review",
+      "017",
+      "021",
+      "search",
+      "output",
+      "intelligence",
+      "plan",
+      "tasks",
+      "reindex"
+    ],
+    "importance_tier": "important",
+    "status": "not_started_—_findings_carried_as_tasks;_no_fixes_applied",
+    "key_files": [
+      ".opencode/commands/memory/search.md",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-calibration.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/ops/job-store.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/trigger-embedding-backfill.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/maintenance-marker.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/batch-processor.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/job-store.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "handlers/memory-index.ts",
+      "checklist.md",
+      "decision-record.md",
+      "lib/search/confidence-scoring.ts",
+      "lib/ops/job-store.ts"
+    ],
+    "entities": [
+      {
+        "name": "search.md",
+        "kind": "doc",
+        "path": ".opencode/commands/memory/search.md",
+        "source": "derived"
+      },
+      {
+        "name": "confidence-scoring.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts",
+        "source": "derived"
+      },
+      {
+        "name": "confidence-calibration.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-calibration.ts",
+        "source": "derived"
+      },
+      {
+        "name": "recovery-payload.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hybrid-search.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "job-store.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/ops/job-store.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-embedding-backfill.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/trigger-embedding-backfill.ts",
+        "source": "derived"
+      },
+      {
+        "name": "maintenance-marker.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/maintenance-marker.ts",
+        "source": "derived"
+      },
+      {
+        "name": "batch-processor.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/batch-processor.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "job-store.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/job-store.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A 50-pass multi-model deep review (deepseek-v4-pro, mimo-v2.5-pro, kimi-k2.7, opus-4.8) of 027/002 phases **017-021** produced five verdicted syntheses: **four PASS (018, 019, 020, 021) + one CONDITIONAL (017)**, with **0 confirmed P0**, **1 confirmed P1**, and the remainder P2 (maintainability, test-debt, doc-drift). This packet captures every confirmed, code-verified finding as a remediation task so the work can be closed in a later, separate implementation step.",
+    "created_at": "2026-06-17T20:05:00.777Z",
+    "last_save_at": "2026-06-18T12:37:50.438Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "handover.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -110,7 +110,7 @@ export function isSearchFallbackEnabled(): boolean {
 }
 
 /**
- * PI-B3: Automatic spec folder discovery via description cache.
+ * Automatic spec folder discovery via description cache.
  * Default: TRUE (graduated). Set SPECKIT_FOLDER_DISCOVERY=false to disable.
  */
 export function isFolderDiscoveryEnabled(): boolean {
@@ -596,6 +596,81 @@ export function isEmptyResultRecoveryEnabled(): boolean {
  */
 export function isResultConfidenceEnabled(): boolean {
   return isFeatureEnabled('SPECKIT_RESULT_CONFIDENCE_V1');
+}
+
+/**
+ * Calibrate confidence/request-quality and result-set digests on an absolute
+ * relevance signal (cosine similarity) instead of the RRF fusion score. RRF
+ * magnitudes (~0.01–0.05) understate relevance and make "good" unreachable, so
+ * every hybrid query degrades to "weak"/"gap". Ordering is unaffected — this
+ * only changes the calibration/display scale.
+ * Default: TRUE (graduated). Set SPECKIT_ABSOLUTE_RELEVANCE_CALIBRATION=false to disable.
+ */
+export function isAbsoluteRelevanceCalibrationEnabled(): boolean {
+  return isFeatureEnabled('SPECKIT_ABSOLUTE_RELEVANCE_CALIBRATION');
+}
+
+/**
+ * Map per-result confidence values through a fitted isotonic calibration model
+ * so confidence.value approximates P(relevant). Opt-in (default OFF): the only
+ * labeled set available today is a corpus-derived PROXY, not human-judged live
+ * `memory_search` traffic, so the model is unvalidated and must not silently
+ * reshape production confidence. A model is applied only when this flag is ON
+ * AND SPECKIT_CONFIDENCE_CALIBRATION_MODEL points at a readable model file.
+ * Set SPECKIT_CONFIDENCE_CALIBRATION=true to enable once a validated set exists.
+ */
+export function isConfidenceCalibrationEnabled(): boolean {
+  return isOptInEnabled('SPECKIT_CONFIDENCE_CALIBRATION');
+}
+
+/**
+ * Cosine-primary reorder of the result head before truncation.
+ *
+ * Reorders only the top-N of the final ranked list by absolute cosine relevance
+ * (a stable sort, so ties keep their fused RRF order). RRF fusion stays the
+ * ordering baseline; only the head is rebalanced toward the strongest absolute
+ * semantic signal, which matters now that downstream consumers treat position 1
+ * as decisive. Near-zero latency and no model/LLM involved — a pure reorder.
+ * Default: TRUE (graduated, low-risk lift). Set SPECKIT_COSINE_TOPN_REORDER=false to disable.
+ */
+export function isCosineTopnReorderEnabled(): boolean {
+  return isFeatureEnabled('SPECKIT_COSINE_TOPN_REORDER');
+}
+
+/** Filesystem path to a fitted CalibrationModel JSON, or undefined when unset. */
+export function getConfidenceCalibrationModelPath(): string | undefined {
+  const raw = process.env.SPECKIT_CONFIDENCE_CALIBRATION_MODEL?.trim();
+  return raw && raw.length > 0 ? raw : undefined;
+}
+
+/**
+ * Include archived/cold (deprecated-tier) memories in retrieval for everyone,
+ * instead of hard-excluding them. The FSRS temperature system already ranks
+ * memories by retrievability (deprecated decays at 0.25x → coldest), so a hard
+ * exclusion is redundant and hides legitimately-cold-but-relevant history (e.g.
+ * z_archive specs). Cold rows are included and naturally rank below hot ones.
+ * Applies to the query-time channels (lexical FTS/BM25, trigger); the vector lane
+ * filters via the active_memory_projection and is included separately when that
+ * projection is rebuilt. Constitutional rows stay on their own injected path.
+ * Default: TRUE (graduated). Set SPECKIT_INCLUDE_ARCHIVED_DEFAULT=false to restore
+ * the hard exclusion.
+ */
+export function isArchivedRetrievalIncludedByDefault(): boolean {
+  return isFeatureEnabled('SPECKIT_INCLUDE_ARCHIVED_DEFAULT');
+}
+
+/**
+ * Extend cold/archived (deprecated-tier) inclusion to the VECTOR (semantic) lane.
+ * The vector lane joins `active_memory_projection`, which holds one active row per
+ * logical key, so cold rows are admitted to the projection (option A: only rows
+ * whose logical key has no active winner) by a boot-time backfill, and the
+ * query-time deprecated filter is relaxed. Graduated to default ON alongside the
+ * other cold-tier channels; the backfill is idempotent and preserves the
+ * one-active-per-key UNIQUE invariant. Set SPECKIT_INCLUDE_ARCHIVED_VECTOR=false
+ * to restore the vector-lane exclusion.
+ */
+export function isArchivedVectorInclusionEnabled(): boolean {
+  return isFeatureEnabled('SPECKIT_INCLUDE_ARCHIVED_VECTOR');
 }
 
 /**

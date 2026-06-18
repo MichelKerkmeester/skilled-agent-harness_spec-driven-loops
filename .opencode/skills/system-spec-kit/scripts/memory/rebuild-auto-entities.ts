@@ -6,6 +6,7 @@ import Database from 'better-sqlite3';
 
 import { DB_PATH } from '@spec-kit/shared/paths';
 import { rebuildAutoEntities } from '@spec-kit/mcp-server/api';
+import { acquireDbInstanceLock, releaseDbInstanceLocks } from '@spec-kit/mcp-server/api/db-lock';
 import { isMainModule } from '../lib/esm-entry.js';
 
 interface ParsedArgs {
@@ -63,6 +64,9 @@ function parseArgs(argv: string[]): ParsedArgs {
 
 async function main(): Promise<void> {
   const args = parseArgs(process.argv.slice(2));
+  // Single-writer guard: refuse to mutate a database a live daemon (or
+  // another maintenance run) currently owns — stop the daemon first.
+  acquireDbInstanceLock(DB_PATH);
   const database = new Database(DB_PATH);
 
   try {
@@ -81,6 +85,7 @@ async function main(): Promise<void> {
     }
   } finally {
     database.close();
+    releaseDbInstanceLocks();
   }
 }
 

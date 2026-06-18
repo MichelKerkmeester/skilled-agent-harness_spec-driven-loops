@@ -16,7 +16,7 @@ This scenario routes the same ambiguous spec task through multiple external CLI 
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm external CLI agents produce phase slugs with specific subject tokens when the `Generate LITERAL phase names` YAML activity is active.
-- Real user request: `An operator gives a deliberately ambiguous task to an external CLI agent that should trigger /spec_kit:plan phase decomposition. Verify the AI proposes phase names with specific subject tokens, NOT generic placeholders.`
+- Real user request: `An operator gives a deliberately ambiguous task to an external CLI agent that should trigger /speckit:plan phase decomposition. Verify the AI proposes phase names with specific subject tokens, NOT generic placeholders.`
 - Prompt: See the canonical test prompt in §3.
 - Expected execution process: Rotate the canonical test prompt through at least 3 of the 4 supported CLIs; collect JSON responses; verify each proposed slug contains a specific subject token and is absent from the stoplist.
 - Expected signals: Each returned slug names a concrete component or behavior (`singleton-leak`, `thread-local-cache`, `session-teardown`, `launcher-uptime-fix`, etc.); no slug matches the generic stoplist (`phase-1`, `phase-2`, `phase-3`, `cleanup`, `remediation`, `fix`, `refactor`, `setup`); the rationale field explicitly identifies the subject token.
@@ -33,10 +33,10 @@ Confirm the `Generate LITERAL phase names` string is present in all four YAML wo
 
 ```bash
 grep -Fl "LITERAL phase names" \
-  .opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml \
-  .opencode/commands/spec_kit/assets/spec_kit_plan_confirm.yaml \
-  .opencode/commands/spec_kit/assets/spec_kit_complete_auto.yaml \
-  .opencode/commands/spec_kit/assets/spec_kit_complete_confirm.yaml
+  .opencode/commands/speckit/assets/spec_kit_plan_auto.yaml \
+  .opencode/commands/speckit/assets/spec_kit_plan_confirm.yaml \
+  .opencode/commands/speckit/assets/spec_kit_complete_auto.yaml \
+  .opencode/commands/speckit/assets/spec_kit_complete_confirm.yaml
 ```
 
 Expected: all four files printed. If fewer than 4, the Packet 012 implementation is incomplete; stop and fix before continuing.
@@ -48,7 +48,7 @@ Rotate the canonical prompt through at least 3 of the 4 CLIs below. Record each 
 #### Canonical test prompt
 
 ```
-You are an AI coding agent connected to the system-spec-kit MCP. The operator has asked you to plan work for the following task using /spec_kit:plan :with-phases (3 phases):
+You are an AI coding agent connected to the system-spec-kit MCP. The operator has asked you to plan work for the following task using /speckit:plan :with-phases (3 phases):
 
   TASK: "There's a singleton leak in the launcher that crashes the daemon after ~6 hours of uptime under load. The thread-local cache isn't being released on session teardown. Fix it, harden the teardown path, and add a smoke test."
 
@@ -74,7 +74,7 @@ codex exec \
   -c service_tier="fast" \
   --sandbox workspace-write \
   - <<'PROMPT'
-You are an AI coding agent connected to the system-spec-kit MCP. The operator has asked you to plan work for the following task using /spec_kit:plan :with-phases (3 phases):
+You are an AI coding agent connected to the system-spec-kit MCP. The operator has asked you to plan work for the following task using /speckit:plan :with-phases (3 phases):
 
   TASK: "There's a singleton leak in the launcher that crashes the daemon after ~6 hours of uptime under load. The thread-local cache isn't being released on session teardown. Fix it, harden the teardown path, and add a smoke test."
 
@@ -103,7 +103,7 @@ codex exec \
   -c service_tier="fast" \
   --sandbox workspace-write \
   - <<'PROMPT'
-You are an AI coding agent connected to the system-spec-kit MCP. The operator has asked you to plan work for the following task using /spec_kit:plan :with-phases (3 phases):
+You are an AI coding agent connected to the system-spec-kit MCP. The operator has asked you to plan work for the following task using /speckit:plan :with-phases (3 phases):
 
   TASK: "There's a singleton leak in the launcher that crashes the daemon after ~6 hours of uptime under load. The thread-local cache isn't being released on session teardown. Fix it, harden the teardown path, and add a smoke test."
 
@@ -126,7 +126,7 @@ PROMPT
 opencode run \
   --model "opencode-go/glm-5.1" \
   --pure \
-  --prompt "You are an AI coding agent connected to the system-spec-kit MCP. The operator has asked you to plan work for the following task using /spec_kit:plan :with-phases (3 phases):
+  --prompt "You are an AI coding agent connected to the system-spec-kit MCP. The operator has asked you to plan work for the following task using /speckit:plan :with-phases (3 phases):
 
   TASK: \"There's a singleton leak in the launcher that crashes the daemon after ~6 hours of uptime under load. The thread-local cache isn't being released on session teardown. Fix it, harden the teardown path, and add a smoke test.\"
 
@@ -139,7 +139,7 @@ Return ONLY a JSON object: { \"cli_name\": \"cli-opencode\", \"proposed_phase_na
 #### cli-claude-code
 
 ```bash
-claude -p "You are an AI coding agent connected to the system-spec-kit MCP. The operator has asked you to plan work for the following task using /spec_kit:plan :with-phases (3 phases):
+claude -p "You are an AI coding agent connected to the system-spec-kit MCP. The operator has asked you to plan work for the following task using /speckit:plan :with-phases (3 phases):
 
   TASK: 'There is a singleton leak in the launcher that crashes the daemon after 6 hours of uptime under load. The thread-local cache is not being released on session teardown. Fix it, harden the teardown path, and add a smoke test.'
 
@@ -206,8 +206,8 @@ Aggregate verdict:
 
 ### Failure Triage
 
-- If a CLI returns generic stoplist slugs: confirm that CLI's MCP wiring surfaces the `spec_kit_plan_auto.yaml` activity. Run `grep -F "LITERAL phase names" .opencode/commands/spec_kit/assets/spec_kit_plan_auto.yaml` and confirm at least 1 match.
-- If the YAML is present but the CLI ignores it: re-run with explicit reference to `/spec_kit:plan :with-phases` in the user prompt. The YAML activity fires only when the command route is active.
+- If a CLI returns generic stoplist slugs: confirm that CLI's MCP wiring surfaces the `spec_kit_plan_auto.yaml` activity. Run `grep -F "LITERAL phase names" .opencode/commands/speckit/assets/spec_kit_plan_auto.yaml` and confirm at least 1 match.
+- If the YAML is present but the CLI ignores it: re-run with explicit reference to `/speckit:plan :with-phases` in the user prompt. The YAML activity fires only when the command route is active.
 - If `cli-claude-code` blocks with a self-invocation error: this is expected behavior. Record the error as expected and substitute another CLI from the rotation.
 - If `cli-opencode` returns `401 Insufficient balance` for `opencode-go` models: check workspace credits with `opencode providers list`. Substitute `opencode-go/qwen3.6-plus` if GLM-5.1 is unavailable.
 

@@ -1,6 +1,6 @@
 ---
 title: "Skill Advisor Data: Static Runtime Inputs"
-description: "Data folder for tracked advisor JSON inputs plus ignored runtime shadow delta logs."
+description: "Data folder for tracked advisor JSON inputs plus ignored opt-in shadow delta logs."
 trigger_phrases:
   - "advisor data"
   - "shadow deltas"
@@ -14,13 +14,13 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`skill_advisor/data/` stores tracked JSON inputs copied into advisor dist during build. Shadow delta JSONL logs may appear here at runtime, but they are ignored runtime state.
+`skill_advisor/data/` stores tracked JSON inputs copied into advisor dist during build. Shadow delta JSONL logs may appear here only when shadow-delta recording is explicitly enabled, and they are ignored runtime state.
 
 Current state:
 
 - Tracks `prompt-policy.default.json` as the default prompt policy input.
 - Copies tracked `*.json` files into `dist/mcp_server/data` during `npm run build`.
-- Ignores `shadow-deltas.jsonl` because it is observed runtime telemetry.
+- Ignores `shadow-deltas.jsonl` because it is opt-in observed runtime telemetry.
 
 ---
 
@@ -29,7 +29,7 @@ Current state:
 ```text
 data/
 +-- prompt-policy.default.json  # Tracked prompt policy input copied into dist
-+-- shadow-deltas.jsonl         # Ignored runtime telemetry when shadow mode writes
++-- shadow-deltas.jsonl         # Ignored runtime telemetry when shadow-delta recording is enabled
 `-- README.md
 ```
 
@@ -40,7 +40,7 @@ data/
 | File | Responsibility |
 |---|---|
 | `prompt-policy.default.json` | Default prompt policy input copied into build output. |
-| `shadow-deltas.jsonl` | Ignored runtime shadow-mode delta records for comparison or diagnostics. |
+| `shadow-deltas.jsonl` | Ignored opt-in shadow-delta records for comparison or diagnostics. |
 
 ---
 
@@ -58,7 +58,7 @@ Main flow:
 build or runtime path
   -> read tracked JSON input
   -> copy to dist/mcp_server/data during build
-  -> append ignored shadow telemetry only when enabled
+  -> append ignored shadow telemetry only when enabled by env
 ```
 
 ---
@@ -68,7 +68,7 @@ build or runtime path
 | Entrypoint | Type | Purpose |
 |---|---|---|
 | `prompt-policy.default.json` | Data file | Default prompt policy input. |
-| `shadow-deltas.jsonl` | Runtime file | Ignored shadow delta record store. |
+| `shadow-deltas.jsonl` | Runtime file | Ignored opt-in shadow delta record store. |
 
 ---
 

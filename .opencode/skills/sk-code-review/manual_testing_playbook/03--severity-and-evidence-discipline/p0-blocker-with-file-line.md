@@ -67,7 +67,7 @@ If the primary run passes, repeat the scenario against a second tiny fixture or 
 | File | Role |
 |---|---|
 | `../../references/review_core.md` | File:line evidence, ordering, finding schema, affectedSurfaceHints |
-| `../../references/fix-completeness-checklist.md` | Finding class, scopeProof, producer and consumer inventories |
+| `../../assets/fix-completeness-checklist.md` | Finding class, scopeProof, producer and consumer inventories |
 | `../../SKILL.md` | Instance-only opt-out and fix completeness expectations |
 
 ---

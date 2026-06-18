@@ -1,6 +1,13 @@
 ---
 title: Phase Checklists
 description: Priority-based checklists for each phase of the SpecKit workflow.
+trigger_phrases:
+  - "phase checklists"
+  - "p0 hard blockers"
+  - "priority-based checklist items"
+  - "validation items by phase"
+importance_tier: normal
+contextType: general
 ---
 
 # Phase Checklists - Validation Items by Development Phase

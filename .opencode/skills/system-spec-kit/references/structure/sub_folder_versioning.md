@@ -1,6 +1,13 @@
 ---
 title: Sub-Folder Versioning
 description: Workflow-assisted pattern for organizing iterative work within existing spec folders using versioned sub-folders and isolated continuity support artifacts.
+trigger_phrases:
+  - "sub-folder versioning"
+  - "versioned sub-folders"
+  - "iterative work organization"
+  - "isolated continuity artifacts"
+importance_tier: normal
+contextType: general
 ---
 
 # Sub-Folder Versioning - Iterative Work Organization Pattern

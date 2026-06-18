@@ -26,28 +26,30 @@
   "is_phase_parent": true,
   "children": [
     "000-release-cleanup",
-    "001-peck-teachings-adoption",
-    "002-memory-write-safety",
-    "003-memory-index-causal-lifecycle",
-    "004-semantic-trigger-fallback",
-    "005-learning-feedback-reducers",
-    "006-gem-team-adoption",
-    "007-memclaw-derived-memory-hardening",
-    "008-openltm-retrieval-observability",
-    "009-openltm-continuity-resilience"
+    "001-research-and-doctrine",
+    "002-memory-store-and-search",
+    "003-advisor-and-codegraph",
+    "004-shared-infrastructure",
+    "005-verification-and-remediation"
   ],
-  "specFolder": "027-xce-research-based-refinement",
-  "description": "OpenLTM continuity and session resilience",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement",
+  "description": "Feature Specification: XCE-Derived Spec Kit Refinement (Phase Parent)",
   "keywords": [
-    "openltm",
-    "continuity",
-    "session",
-    "resilience"
+    "feature",
+    "specification",
+    "xce-derived",
+    "spec",
+    "kit",
+    "refinement",
+    "phase",
+    "parent"
   ],
-  "lastUpdated": "2026-06-08T15:25:36.955Z",
+  "lastUpdated": "2026-06-16T15:23:34.724Z",
   "specId": "027",
   "folderSlug": "xce-research-based-refinement",
-  "parentChain": [],
+  "parentChain": [
+    "system-spec-kit"
+  ],
   "memorySequence": 5,
   "memoryNameHistory": [
     "08-05-26_16-41__2nd-pass-cross-validation-deep-research-run-via.md",

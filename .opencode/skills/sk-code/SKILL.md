@@ -2,7 +2,7 @@
 name: sk-code
 description: "Multi-stack coding standards and verification. Smart router auto-detects the active surface and loads matching code patterns."
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
-version: 3.3.1.0
+version: 3.5.0.0
 ---
 
 <!-- Keywords: sk-code, code workflows, smart-router, code-surface-detection, webflow, frontend, html, css, javascript, Motion.dev, motion-dev, motion_dev, cross-stack-animation, gsap, lenis, swiper, hls, filepond, opencode, system-code, mcp, typescript, python, shell, jsonc, code-quality, debugging-workflow, verification -->
@@ -16,8 +16,6 @@ version: 3.3.1.0
 ---
 
 ## 1. WHEN TO USE
-
-> **🎯 Template customization surface.** This is the **only** skill end users should edit when adopting this template repo for their own project. Replace the shipped `references/{webflow,opencode,motion_dev}/` and `assets/{webflow,opencode,motion_dev}/` trees with your stack's references and assets. Update `STACK_FOLDERS` (§2) + `RESOURCE_MAP` to match. Every other skill (`sk-doc`, `sk-git`, `sk-code-review`, `system-spec-kit`, `system-code-graph`, etc.) is codebase-agnostic and must stay that way to keep upstream pulls clean. See root [README §4 Customizing for Your Stack](../../../README.md#customizing-for-your-stack).
 
 Use this skill when doing code work in either supported surface:
 
@@ -37,12 +35,14 @@ Documentation-only edits to skill markdown route to `sk-doc`, even when the file
 | Phase | Purpose | Requirement |
 | --- | --- | --- |
 | Phase 0: Research | Understand unfamiliar code or risky changes | Optional, but required for complex work |
-| Phase 1: Implementation | Write or modify code using surface patterns | Read actual files first |
+| Phase 1: Implementation | Write or modify code using surface patterns | Read actual files first; apply the Design Restraint Ladder before writing new code. |
 | Phase 1.5: Code Quality Gate | Apply P0/P1/P2 checks and surface standards | Required before claiming implementation done |
 | Phase 2: Debugging | Trace symptom to root cause and fix one cause at a time | Required when tests/runtime fail |
 | Phase 3: Verification | Run surface verification commands and record evidence | Required before any done/works claim |
 
 **Iron Law**: no completion claim without fresh verification evidence from the detected surface.
+
+**Baseline & blast-radius**: before Phase 1, capture the starting gate state (pass/fail counts + the names of failing tests, base commit) so Phase 3 reports the *delta*, not just a green — a green suite says nothing about a path it never ran. Open non-trivial work with a one-phrase blast-radius read ("low-blast, reversible" / "high-blast: touches auth + data") so effort matches stakes.
 
 ### Review Baseline Contract
 
@@ -119,6 +119,17 @@ fi
 
 For details: `references/stack_detection.md`.
 
+### UNKNOWN_FALLBACK Checklist
+
+Returned when no supported surface matches, when intent confidence is low (`max(intent_scores) < 0.5`), or when the user explicitly asks for stack-agnostic guidance. Ask for the missing routing inputs instead of guessing:
+
+- Confirm the active runtime surface — Webflow/frontend or `.opencode/` system code.
+- Confirm the task intent (implementation / debugging / verification / etc.).
+- Provide one concrete input, error, or expected output.
+- Confirm the verification command set before any completion claim.
+
+Do not load Go / Next.js / React Native / Swift resources — canonical `sk-code` owns only WEBFLOW + OPENCODE + MOTION_DEV. Full fallback logic: `references/smart_routing.md §8`.
+
 ### Phase Detection
 
 ```text
@@ -165,6 +176,16 @@ Ambiguous multi-language tasks load the top matching language references plus th
 - `assets/webflow/scripts/`: Webflow build, minification, and runtime verification utilities.
 - `assets/scripts/`: Cross-surface helper scripts, including the OpenCode alignment verifier.
 
+### Resource Loading Levels
+
+Loading follows the canonical three levels; the finer `ALWAYS / SURFACE / INTENT / LANGUAGE / ON_DEMAND` tiers live in `references/smart_routing.md §3`.
+
+| Level | When to Load | Resources |
+| --- | --- | --- |
+| ALWAYS | Every sk-code invocation | `references/stack_detection.md`, `references/smart_routing.md`, `references/phase_detection.md`, and the `references/universal/` quality + error-recovery baseline |
+| CONDITIONAL | After surface + intent (and OPENCODE language) detection | the detected `references/<surface>/` + `assets/<surface>/` trees, the matching language standards, intent-mapped resources, the authoring checklists below, and `references/motion_dev/` for `MOTION_DEV` intent |
+| ON_DEMAND | Only on an explicit deep-dive request | extended checklists and niche references, plus the full `INTENT_MODEL` / `RESOURCE_MAP` in `references/smart_routing.md` |
+
 ### OpenCode Authoring Resources
 
 | Resource | Path | When to load |
@@ -191,6 +212,14 @@ Top intent always loads. A close second intent also loads when scores are within
 | WEBFLOW | `node .opencode/skills/sk-code/assets/webflow/scripts/minify-webflow.mjs`, `node .opencode/skills/sk-code/assets/webflow/scripts/verify-minification.mjs`, `node .opencode/skills/sk-code/assets/webflow/scripts/test-minified-runtime.mjs`, plus desktop/mobile browser console clean evidence when runtime behavior changes |
 | OPENCODE | `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root <changed-scope>`, plus targeted language/project tests such as vitest, pytest, shellcheck, JSON validation, or spec validation for changed spec folders |
 | UNKNOWN | User-selected verification command set before completion claim |
+
+### Verification Rituals
+
+Apply these alongside the commands above, scaled to blast radius:
+
+- **Mutation check / claim-falsifier (after green).** A passing test proves nothing until you have seen it fail for the right reason. After green, break the production code the test guards, confirm that specific test fails, then restore. Distinguish **true-RED** (the assertion fails against correct intent) from **compile-RED** (the suite never compiled or ran — not a satisfying RED). A test that stays green when you break the thing it guards is a vacuous test — a defect, not coverage.
+- **Verification ladder — name each rung's blind spot.** Climb cheapest→most authoritative and state in advance what each rung CANNOT see: **unit** (integration/wiring unseen) → **in-memory** (real I/O and serialization unseen) → **on-server** (deployment/config/env-specific behavior unseen) → **live** (only proves the exact path actually exercised). In-memory-green is not production-green. Rung mapping: WEBFLOW climbs unit → headless/browser-console evidence; OPENCODE climbs unit (vitest/pytest) → real-file / spec validation → live CLI/daemon run.
+- **Decision economy + fail-closed by construction.** Leave a **named seam with a closing condition**, never a bare TODO and never a dead control (a flag or branch that does nothing). Prefer a **structural invariant** — the wrong state cannot be represented, or compiles to an error — over a disciplinary reminder asking future readers to be careful.
 
 ### Smart Router Pseudocode
 
@@ -235,6 +264,7 @@ Ask for the runtime surface and required verification commands. Do not route gen
 6. Run surface verification commands and record evidence.
 7. For WEBFLOW, test relevant desktop and mobile browser behavior when runtime output changes.
 8. For OPENCODE, run `verify_alignment_drift.py` on the changed scope.
+9. Build the simplest correct implementation of the stated requirement and do not stall. If part of the requirement looks unnecessary (YAGNI), implement it as specified AND raise a scope-amendment recommendation in the same response — never silently cut scope (SCOPE-LOCK), and never block solely to ask when a safe minimal version already satisfies the requirement.
 
 ### ❌ NEVER
 
@@ -250,6 +280,13 @@ Ask for the runtime surface and required verification commands. Do not route gen
 2. Verification commands cannot be run locally.
 3. Security-sensitive validation or filesystem behavior is unclear.
 4. Three fixes fail for the same symptom.
+
+### Escalation Discipline
+
+- Before applying another fix for the same symptom, state a one-sentence root cause tied to observed evidence. If you cannot, escalate instead of guessing.
+- If implementation evidence conflicts with the approved spec, stop and escalate for an AMENDMENT decision. Do not ship a workaround that silently changes the spec's meaning.
+- After three failed fix attempts for the same symptom, stop automatic retries and escalate with the attempted fixes, current evidence, and one recommended next action.
+- If independent reviewers or validators contradict each other on a blocking outcome, do not silently pick one. Emit one consolidated escalation with the conflicting facts and the decision needed.
 
 ---
 

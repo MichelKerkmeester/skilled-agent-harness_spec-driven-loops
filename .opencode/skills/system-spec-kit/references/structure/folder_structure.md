@@ -1,6 +1,13 @@
 ---
 title: Folder Structure Reference
 description: Spec folder naming conventions, level requirements, and organization patterns
+trigger_phrases:
+  - "folder structure reference"
+  - "spec folder naming conventions"
+  - "level folder requirements"
+  - "scratch folder usage"
+importance_tier: normal
+contextType: general
 ---
 
 # Folder Structure Reference
@@ -91,7 +98,7 @@ specs/NNN-name/
 
 **Optional:**
 - `scratch/` - Temporary files
-- `memory/` - Context for future sessions
+- `memory/` - Retired compatibility folder for older packets only; current continuity lives in packet docs plus `description.json` and `graph-metadata.json`
 
 ### Level 2 (100-499 LOC)
 
@@ -107,7 +114,7 @@ specs/NNN-name/
 
 **Optional:**
 - `scratch/`
-- `memory/`
+- `memory/` - Retired compatibility folder for older packets only; current save workflows skip new `[spec]/memory/*.md` writes
 
 ### Level 3 (≥ 500 LOC)
 
@@ -124,7 +131,7 @@ specs/NNN-name/
 
 **Optional:**
 - `scratch/`
-- `memory/`
+- `memory/` - Retired compatibility folder for older packets only; current save workflows skip new `[spec]/memory/*.md` writes
 - `research/` / `review/` local-owner folders — see §4 `research/` and `review/` (local owner folders). Root specs keep them at the root packet; child phases and sub-phases keep them under the owning phase folder.
 
 ---
@@ -148,15 +155,15 @@ Temporary, disposable files. Cleaned up after task completion.
 
 ### memory/
 
-Context preservation for future sessions.
+Retired compatibility folder for older packets. Current save workflows skip legacy `[spec]/memory/*.md` writes; canonical continuity lives in packet docs (`handover.md`, `_memory.continuity`, and related spec documents) plus `description.json` and `graph-metadata.json` metadata.
 
 **Use for:**
-- Session summaries
-- Decision rationale
-- Blockers encountered
-- Continuation context
+- Reading or migrating historical packets that already contain legacy memory artifacts
+- Compatibility with old links that still point at `[spec]/memory/*.md`
 
-**File Naming:** `DD-MM-YY_HH-MM__topic-name.md`
+**Current save path:** do not create new `memory/` session files; use `/memory:save` so continuity routes into canonical packet docs and metadata.
+
+**Legacy File Naming:** `DD-MM-YY_HH-MM__topic-name.md`
 
 Example: `07-12-25_14-30__feature-name.md`
 
@@ -216,7 +223,7 @@ Deep-research and deep-review artifacts (iterations, deltas, prompts, state logs
 
 **Forbidden:** creating or continuing child-phase research/review packets under an ancestor/root spec's `research/` or `review/` folder.
 
-**See also:** `deep-research/references/loop_protocol.md`, `deep-review/references/loop_protocol.md`, and the `step_resolve_artifact_root` block in `command/deep/assets/deep_start-research-loop_auto.yaml`.
+**See also:** `deep-loop-workflows/deep-research/references/protocol/loop_protocol.md`, `deep-loop-workflows/deep-review/references/protocol/loop_protocol.md`, and the `step_resolve_artifact_root` block in `.opencode/commands/deep/assets/deep_research_auto.yaml`.
 
 ---
 

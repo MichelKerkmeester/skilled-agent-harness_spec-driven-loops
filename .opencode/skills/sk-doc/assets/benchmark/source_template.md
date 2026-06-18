@@ -6,7 +6,7 @@ trigger_phrases:
   - "[BENCHMARK_TOPIC] spec packet pointer"
   - "[BENCHMARK_TOPIC] bake-off source"
 importance_tier: "important"
-contextType: "reference"
+contextType: "general"
 ---
 
 <!--

@@ -43,8 +43,6 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-ai-council/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skills/deep-ai-council/SKILL.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -52,18 +50,6 @@
       "manual_testing_playbook/manual_testing_playbook.md"
     ],
     "entities": [
-      {
-        "name": "manual_testing_playbook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-ai-council/manual_testing_playbook/manual_testing_playbook.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-ai-council/SKILL.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -86,6 +72,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": "manual_testing_playbook/manual_testing_playbook.md",
         "source": "derived"
       },
       {
@@ -195,11 +187,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The agent body now contains five substantial council subsystems with no focused skill references: scoring and synthesis, depth-aware dispatch, failure handling, anti-pattern detection, and expanded seat-diversity guidance. The manual testing playbook also has six coverage gaps around writer-library sequence, depth detection, scoring, adversarial critique, scoped-write rejection, and interrupted-state resume.",
     "created_at": "2026-05-10T10:34:50Z",
-    "last_save_at": "2026-06-07T09:00:45.687Z",
+    "last_save_at": "2026-06-15T09:09:33.576Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

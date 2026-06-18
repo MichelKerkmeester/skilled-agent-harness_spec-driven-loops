@@ -6,6 +6,7 @@ import {
   ensureSchemaVersion,
   migrateConstitutionalTier,
   runMigrations,
+  SCHEMA_VERSION,
   validateBackwardCompatibility,
 } from '../lib/search/vector-index-schema';
 
@@ -387,9 +388,9 @@ describe('vector-index schema migration refinements', () => {
     // Must NOT throw — the deprecate-before-create pre-pass clears the duplicate actives.
     expect(() => ensureSchemaVersion(database)).not.toThrow();
 
-    // Schema advanced fully to v30.
+    // Schema advanced fully to the current terminal version.
     const versionRow = database.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number };
-    expect(versionRow.version).toBe(30);
+    expect(versionRow.version).toBe(SCHEMA_VERSION);
 
     // The unique index now exists.
     const indexNames = (database.prepare('PRAGMA index_list(memory_index)').all() as Array<{ name: string }>)
@@ -435,5 +436,301 @@ describe('vector-index schema migration refinements', () => {
     const degraded = validateBackwardCompatibility(database);
     expect(degraded.compatible).toBe(false);
     expect(degraded.missingIndexes).toContain('idx_memory_logical_key_active_unique');
+  });
+
+  it('creates causal edge tombstone schema during the v32 upgrade without touching active edges', () => {
+    const database = createTestDatabase();
+    openDatabases.add(database);
+
+    database.exec('DROP TABLE IF EXISTS causal_edge_tombstones');
+    database.prepare('UPDATE schema_version SET version = 31 WHERE id = 1').run();
+    database.prepare(`
+      INSERT INTO causal_edges (source_id, target_id, relation, evidence, created_by)
+      VALUES (?, ?, ?, ?, ?)
+    `).run('101', '102', 'supports', 'active edge survives migration', 'vitest');
+
+    ensureSchemaVersion(database);
+
+    const versionRow = database.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number };
+    expect(versionRow.version).toBe(SCHEMA_VERSION);
+
+    const columns = (database.prepare('PRAGMA table_info(causal_edge_tombstones)').all() as Array<{ name: string }>)
+      .map((column) => column.name);
+    expect(columns).toEqual(expect.arrayContaining([
+      'id',
+      'source_id',
+      'target_id',
+      'relation',
+      'tombstoned_at',
+      'reason',
+      'lifecycle_generation',
+      'restore_metadata',
+    ]));
+
+    const indexes = (database.prepare(`
+      SELECT name FROM sqlite_master
+      WHERE type = 'index' AND tbl_name = 'causal_edge_tombstones'
+    `).all() as Array<{ name: string }>).map((row) => row.name);
+    expect(indexes).toEqual(expect.arrayContaining([
+      'idx_causal_edge_tombstones_identity',
+      'idx_causal_edge_tombstones_tombstoned_at',
+      'idx_causal_edge_tombstones_reason',
+    ]));
+
+    const activeCount = database.prepare('SELECT COUNT(*) AS count FROM causal_edges').get() as { count: number };
+    const tombstoneCount = database.prepare('SELECT COUNT(*) AS count FROM causal_edge_tombstones').get() as { count: number };
+    expect(activeCount.count).toBe(1);
+    expect(tombstoneCount.count).toBe(0);
+  });
+
+  it('adds generated causal-edge provenance columns during the v33 upgrade without touching active edges', () => {
+    const database = createTestDatabase();
+    openDatabases.add(database);
+
+    database.exec('ALTER TABLE causal_edges RENAME TO causal_edges_with_provenance');
+    database.exec(`
+      CREATE TABLE causal_edges (
+        id INTEGER PRIMARY KEY,
+        source_id TEXT NOT NULL,
+        target_id TEXT NOT NULL,
+        source_anchor TEXT,
+        target_anchor TEXT,
+        relation TEXT NOT NULL,
+        strength REAL DEFAULT 1.0,
+        evidence TEXT,
+        extracted_at TEXT DEFAULT (datetime('now')),
+        created_by TEXT DEFAULT 'manual',
+        last_accessed TEXT,
+        UNIQUE(source_id, target_id, relation, source_anchor, target_anchor)
+      )
+    `);
+    database.exec(`
+      INSERT INTO causal_edges (
+        id, source_id, target_id, source_anchor, target_anchor, relation,
+        strength, evidence, extracted_at, created_by, last_accessed
+      )
+      SELECT id, source_id, target_id, source_anchor, target_anchor, relation,
+        strength, evidence, extracted_at, created_by, last_accessed
+      FROM causal_edges_with_provenance;
+      DROP TABLE causal_edges_with_provenance;
+    `);
+    database.prepare('UPDATE schema_version SET version = 32 WHERE id = 1').run();
+    database.prepare(`
+      INSERT INTO causal_edges (source_id, target_id, relation, evidence, created_by)
+      VALUES (?, ?, ?, ?, ?)
+    `).run('301', '302', 'derived_from', 'active edge survives provenance migration', 'manual');
+
+    ensureSchemaVersion(database);
+
+    const versionRow = database.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number };
+    expect(versionRow.version).toBe(SCHEMA_VERSION);
+
+    const columns = (database.prepare('PRAGMA table_info(causal_edges)').all() as Array<{ name: string }>)
+      .map((column) => column.name);
+    expect(columns).toEqual(expect.arrayContaining(['confidence', 'extraction_method']));
+
+    const row = database.prepare(`
+      SELECT confidence, extraction_method, evidence, created_by
+      FROM causal_edges
+      WHERE source_id = '301' AND target_id = '302'
+    `).get() as { confidence: number; extraction_method: string; evidence: string; created_by: string };
+    expect(row).toEqual({
+      confidence: 1,
+      extraction_method: 'manual',
+      evidence: 'active edge survives provenance migration',
+      created_by: 'manual',
+    });
+  });
+
+  it('creates trigger embedding schema during the v34 upgrade without touching source memories', () => {
+    const database = createTestDatabase();
+    openDatabases.add(database);
+
+    database.exec('DROP INDEX IF EXISTS idx_memory_trigger_embeddings_status');
+    database.exec('DROP TABLE IF EXISTS memory_trigger_embeddings');
+    database.prepare('UPDATE schema_version SET version = 33 WHERE id = 1').run();
+    database.prepare(`
+      INSERT INTO memory_index (
+        id, spec_folder, file_path, title, trigger_phrases,
+        created_at, updated_at, importance_tier, context_type, embedding_status
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `).run(
+      401,
+      'schema/backfill',
+      '/workspace/schema/backfill/spec.md',
+      'Trigger Source',
+      JSON.stringify(['save context']),
+      '2026-06-10T00:00:00.000Z',
+      '2026-06-10T00:00:00.000Z',
+      'normal',
+      'implementation',
+      'pending',
+    );
+
+    ensureSchemaVersion(database);
+
+    const versionRow = database.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number };
+    expect(versionRow.version).toBe(SCHEMA_VERSION);
+
+    const columns = (database.prepare('PRAGMA table_info(memory_trigger_embeddings)').all() as Array<{ name: string }>)
+      .map((column) => column.name);
+    expect(columns).toEqual(expect.arrayContaining([
+      'memory_id',
+      'phrase_hash',
+      'profile_key',
+      'input_kind',
+      'model_id',
+      'dimensions',
+      'embedding_status',
+      'failure_reason',
+      'created_at',
+      'updated_at',
+    ]));
+
+    const indexes = (database.prepare(`
+      SELECT name FROM sqlite_master
+      WHERE type = 'index' AND tbl_name = 'memory_trigger_embeddings'
+    `).all() as Array<{ name: string }>).map((row) => row.name);
+    expect(indexes).toContain('idx_memory_trigger_embeddings_status');
+
+    const sourceCount = database.prepare('SELECT COUNT(*) AS count FROM memory_index WHERE id = 401').get() as { count: number };
+    const derivedCount = database.prepare('SELECT COUNT(*) AS count FROM memory_trigger_embeddings').get() as { count: number };
+    expect(sourceCount.count).toBe(1);
+    expect(derivedCount.count).toBe(0);
+  });
+
+  it('adds source_kind during the v35 upgrade and backfills legacy rows conservatively', () => {
+    const database = new Database(':memory:');
+    openDatabases.add(database);
+
+    database.exec(`
+      CREATE TABLE memory_index (
+        id INTEGER PRIMARY KEY,
+        provenance_source TEXT
+      );
+      INSERT INTO memory_index (id, provenance_source) VALUES
+        (1, 'manual'),
+        (2, 'memory_index_scan'),
+        (3, 'feedback-validator'),
+        (4, NULL);
+    `);
+
+    runMigrations(database, 34, 35);
+    runMigrations(database, 34, 35);
+
+    const sourceKindColumns = (database.prepare('PRAGMA table_info(memory_index)').all() as Array<{ name: string }>)
+      .filter((column) => column.name === 'source_kind');
+    expect(sourceKindColumns).toHaveLength(1);
+
+    const rows = database.prepare(`
+      SELECT id, source_kind
+      FROM memory_index
+      ORDER BY id ASC
+    `).all() as Array<{ id: number; source_kind: string }>;
+    expect(rows).toEqual([
+      { id: 1, source_kind: 'human' },
+      { id: 2, source_kind: 'import' },
+      { id: 3, source_kind: 'feedback' },
+      { id: 4, source_kind: 'system' },
+    ]);
+  });
+
+  it('adds idempotency receipt schema and near-duplicate columns during the v36 upgrade idempotently', () => {
+    const database = new Database(':memory:');
+    openDatabases.add(database);
+
+    database.exec(`
+      CREATE TABLE memory_index (
+        id INTEGER PRIMARY KEY,
+        updated_at TEXT
+      );
+    `);
+
+    runMigrations(database, 35, 36);
+    runMigrations(database, 35, 36);
+
+    const columns = (database.prepare('PRAGMA table_info(memory_index)').all() as Array<{ name: string }>)
+      .map((column) => column.name);
+    expect(columns).toEqual(expect.arrayContaining([
+      'near_duplicate_of',
+      'last_dedup_checked_at',
+    ]));
+
+    const receiptColumns = (database.prepare('PRAGMA table_info(memory_idempotency_receipts)').all() as Array<{ name: string }>)
+      .map((column) => column.name);
+    expect(receiptColumns).toEqual(expect.arrayContaining([
+      'receipt_key',
+      'operation',
+      'content_hash',
+      'request_fingerprint',
+      'payload_hash',
+      'response_payload',
+      'memory_id',
+      'created_at',
+      'updated_at',
+    ]));
+
+    const indexes = (database.prepare(`
+      SELECT name FROM sqlite_master
+      WHERE type = 'index' AND tbl_name = 'memory_idempotency_receipts'
+    `).all() as Array<{ name: string }>).map((row) => row.name);
+    expect(indexes).toContain('idx_memory_idempotency_receipts_operation');
+
+    const nearDuplicateColumns = (database.prepare('PRAGMA table_info(memory_index)').all() as Array<{ name: string }>)
+      .filter((column) => column.name === 'near_duplicate_of');
+    expect(nearDuplicateColumns).toHaveLength(1);
+  });
+
+  it('adds tombstone partitions during the v37 upgrade idempotently', () => {
+    const database = new Database(':memory:');
+    openDatabases.add(database);
+
+    database.exec(`
+      CREATE TABLE memory_index (
+        id INTEGER PRIMARY KEY,
+        spec_folder TEXT,
+        document_type TEXT,
+        updated_at TEXT,
+        delete_after TEXT
+      );
+      INSERT INTO memory_index (id, spec_folder, document_type, updated_at, delete_after)
+      VALUES
+        (1, 'specs/a', 'spec', '2026-06-10T00:00:00.000Z', NULL),
+        (2, 'specs/a', 'plan', '2026-06-10T01:00:00.000Z', '2026-06-09T00:00:00.000Z');
+    `);
+
+    runMigrations(database, 36, 37);
+    runMigrations(database, 36, 37);
+    database.prepare("UPDATE memory_index SET deleted_at = ? WHERE id = 2").run('2026-06-08T00:00:00.000Z');
+
+    const columns = (database.prepare('PRAGMA table_info(memory_index)').all() as Array<{ name: string }>)
+      .map((column) => column.name);
+    expect(columns).toContain('deleted_at');
+
+    const indexes = (database.prepare(`
+      SELECT name, sql
+      FROM sqlite_master
+      WHERE type = 'index' AND tbl_name = 'memory_index'
+        AND name IN ('idx_memory_active_recall', 'idx_memory_purgeable_retention')
+      ORDER BY name
+    `).all() as Array<{ name: string; sql: string }>);
+    expect(indexes).toHaveLength(2);
+    expect(indexes[0].sql).toContain('WHERE deleted_at IS NULL');
+    expect(indexes[1].sql).toContain('WHERE deleted_at IS NOT NULL');
+
+    const activePlan = database.prepare(`
+      EXPLAIN QUERY PLAN
+      SELECT id FROM memory_index
+      WHERE deleted_at IS NULL AND spec_folder = ?
+      ORDER BY updated_at DESC, id DESC
+    `).all('specs/a') as Array<{ detail: string }>;
+    const purgeablePlan = database.prepare(`
+      EXPLAIN QUERY PLAN
+      SELECT id FROM memory_index INDEXED BY idx_memory_purgeable_retention
+      WHERE deleted_at IS NOT NULL AND delete_after IS NOT NULL
+    `).all() as Array<{ detail: string }>;
+
+    expect(activePlan.some((row) => row.detail.includes('idx_memory_active_recall'))).toBe(true);
+    expect(purgeablePlan.some((row) => row.detail.includes('idx_memory_purgeable_retention'))).toBe(true);
   });
 });

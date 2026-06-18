@@ -2,14 +2,19 @@
 // MODULE: Mutation Hooks
 // ───────────────────────────────────────────────────────────────
 import * as triggerMatcher from '../lib/parsing/trigger-matcher.js';
+import { clearSemanticTriggerCache } from '../lib/triggers/semantic-trigger-matcher.js';
 import * as toolCache from '../lib/cache/tool-cache.js';
 import { clearConstitutionalCache } from '../hooks/memory-surface.js';
 import { clearGraphSignalsCache } from '../lib/graph/graph-signals.js';
 import { clearRelatedCache } from '../lib/cognitive/co-activation.js';
 import { clearDegreeCache } from '../lib/search/graph-search-fn.js';
 import { invalidateEntityDensityCache } from '../lib/search/entity-density.js';
+import { createStatediffAction } from '../lib/storage/statediff.js';
+import { appendAutomatedMutationAudit } from '../lib/storage/mutation-ledger.js';
 
+import type Database from 'better-sqlite3';
 import type { MutationHookResult } from './memory-crud-types.js';
+import type { StatediffAction, StatediffTargetType } from '../lib/storage/statediff.js';
 
 // Feature catalog: Transaction wrappers on mutation handlers
 // Feature catalog: Shared post-mutation hook wiring
@@ -18,110 +23,220 @@ import type { MutationHookResult } from './memory-crud-types.js';
 
 export type { MutationHookResult };
 
+type HookSubscriberName =
+  | 'trigger-cache'
+  | 'semantic-trigger-cache'
+  | 'tool-cache'
+  | 'constitutional-cache'
+  | 'graph-cache'
+  | 'coactivation-cache'
+  | 'entity-density-cache';
+
+interface HookSubscriberReport {
+  name: HookSubscriberName;
+  actionCount: number;
+  ok: boolean;
+  error?: string;
+}
+
+interface HookSubscriber {
+  name: HookSubscriberName;
+  shouldRun(actions: readonly StatediffAction[]): boolean;
+  run(operation: string, context: Record<string, unknown>, actions: readonly StatediffAction[]): number | void;
+}
+
+function isStatediffAction(value: unknown): value is StatediffAction {
+  if (!value || typeof value !== 'object') {
+    return false;
+  }
+  const candidate = value as Partial<StatediffAction>;
+  return typeof candidate.action === 'string'
+    && typeof candidate.target === 'string'
+    && typeof candidate.key === 'string'
+    && typeof candidate.sourceOperation === 'string';
+}
+
+function actionsFromContext(operation: string, context: Record<string, unknown>): StatediffAction[] {
+  const explicitActions = context.statediffActions;
+  if (Array.isArray(explicitActions)) {
+    return explicitActions.filter(isStatediffAction);
+  }
+
+  const memoryId = typeof context.memoryId === 'number' || typeof context.memoryId === 'string'
+    ? String(context.memoryId)
+    : operation;
+  const target: StatediffTargetType = operation.startsWith('causal-') ? 'causal_edge' : 'memory_index';
+  const action = operation.includes('delete') || operation.includes('unlink') ? 'delete' : 'upsert';
+  return [createStatediffAction(action, {
+    target,
+    key: memoryId,
+    sourceOperation: operation,
+  })];
+}
+
+function hasTarget(actions: readonly StatediffAction[], targets: readonly StatediffTargetType[]): boolean {
+  return actions.some((action) => targets.includes(action.target));
+}
+
+function maybeAppendAutomatedMutationAudit(
+  operation: string,
+  context: Record<string, unknown>,
+  actions: readonly StatediffAction[],
+): string | null {
+  const sourceKind = typeof context.sourceKind === 'string' ? context.sourceKind : null;
+  if (!sourceKind || sourceKind === 'human') {
+    return null;
+  }
+  if (!['agent', 'system', 'import', 'feedback'].includes(sourceKind)) {
+    return `automated audit skipped: unknown sourceKind=${sourceKind}`;
+  }
+
+  const database = context.database as Database.Database | undefined;
+  if (!database || typeof database.prepare !== 'function') {
+    return 'automated audit skipped: database unavailable';
+  }
+
+  const actor = typeof context.actor === 'string' && context.actor.trim().length > 0
+    ? context.actor.trim()
+    : `mcp:${operation}`;
+  const reason = typeof context.auditReason === 'string' && context.auditReason.trim().length > 0
+    ? context.auditReason.trim()
+    : operation;
+  const linkedMemoryIds = actions
+    .filter((action) => action.target === 'memory_index' && /^\d+$/.test(action.key))
+    .map((action) => Number(action.key));
+
+  try {
+    appendAutomatedMutationAudit(database, {
+      mutation_type: operation.includes('delete') ? 'delete' : 'update',
+      actor,
+      source_kind: sourceKind as 'agent' | 'system' | 'import' | 'feedback',
+      reason,
+      linked_memory_ids: linkedMemoryIds,
+      session_id: typeof context.sessionId === 'string' ? context.sessionId : null,
+      decision_meta: { operation },
+    });
+    return null;
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.warn(`[mutation-hooks] automated audit append failed for operation="${operation}":`, message);
+    return `automated-audit: ${message}`;
+  }
+}
+
+const hookSubscribers: HookSubscriber[] = [
+  {
+    name: 'trigger-cache',
+    shouldRun: (actions) => actions.length > 0,
+    run: () => {
+      triggerMatcher.clearCache();
+    },
+  },
+  {
+    name: 'semantic-trigger-cache',
+    shouldRun: (actions) => actions.length > 0,
+    run: () => {
+      clearSemanticTriggerCache();
+    },
+  },
+  {
+    name: 'tool-cache',
+    shouldRun: (actions) => actions.length > 0,
+    run: (operation, context) => toolCache.invalidateOnWrite(operation, context),
+  },
+  {
+    name: 'constitutional-cache',
+    shouldRun: (actions) => actions.length > 0,
+    run: () => {
+      clearConstitutionalCache();
+    },
+  },
+  // Graph and co-activation clears stay unconditional (fail-safe): action
+  // batches are an advisory subscriber aid and may under-report graph effects
+  // (e.g. memory deletes cascade causal-edge deletes that arrive as
+  // memory_index actions only). Cache clears are cheap O(1) resets, so
+  // over-invalidating is always safe; skipping on incomplete batches is not.
+  {
+    name: 'graph-cache',
+    shouldRun: (actions) => actions.length > 0,
+    run: () => {
+      clearGraphSignalsCache();
+      clearDegreeCache();
+    },
+  },
+  {
+    name: 'coactivation-cache',
+    shouldRun: (actions) => actions.length > 0,
+    run: () => {
+      clearRelatedCache();
+    },
+  },
+  {
+    name: 'entity-density-cache',
+    shouldRun: (actions) => hasTarget(actions, ['memory_index', 'graph_edge', 'causal_edge']),
+    run: () => {
+      invalidateEntityDensityCache();
+    },
+  },
+];
+
+function subscriberFailed(report: HookSubscriberReport[], name: HookSubscriberName): boolean {
+  return report.some((item) => item.name === name && !item.ok);
+}
+
+function subscriberSucceeded(report: HookSubscriberReport[], name: HookSubscriberName): boolean {
+  return report.some((item) => item.name === name && item.ok);
+}
+
 function runPostMutationHooks(
   operation: string,
   context: Record<string, unknown> = {}
 ): MutationHookResult {
   const startTime = Date.now();
   const errors: string[] = [];
-
-  let triggerCacheCleared = false;
-  try {
-    triggerMatcher.clearCache();
-    triggerCacheCleared = true;
-  } catch (error: unknown) {
-    const message = error instanceof Error ? error.message : String(error);
-    console.warn(
-      `[mutation-hooks] triggerMatcher.clearCache failed for operation="${operation}":`,
-      message
-    );
-    errors.push(`triggerMatcher.clearCache: ${message}`);
-    triggerCacheCleared = false;
-  }
-
+  const actions = actionsFromContext(operation, context);
+  const subscriberReports: HookSubscriberReport[] = [];
   let toolCacheInvalidated = 0;
-  try {
-    toolCacheInvalidated = toolCache.invalidateOnWrite(operation, context);
-  } catch (error: unknown) {
-    const message = error instanceof Error ? error.message : String(error);
-    console.warn(
-      `[mutation-hooks] toolCache.invalidateOnWrite failed for operation="${operation}":`,
-      message
-    );
-    errors.push(`toolCache.invalidateOnWrite: ${message}`);
-    toolCacheInvalidated = 0;
+
+  for (const subscriber of hookSubscribers) {
+    if (!subscriber.shouldRun(actions)) {
+      continue;
+    }
+    try {
+      const result = subscriber.run(operation, context, actions);
+      if (subscriber.name === 'tool-cache' && typeof result === 'number') {
+        toolCacheInvalidated = result;
+      }
+      subscriberReports.push({ name: subscriber.name, actionCount: actions.length, ok: true });
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : String(error);
+      console.warn(
+        `[mutation-hooks] subscriber "${subscriber.name}" failed for operation="${operation}":`,
+        message
+      );
+      errors.push(`${subscriber.name}: ${message}`);
+      subscriberReports.push({ name: subscriber.name, actionCount: actions.length, ok: false, error: message });
+      if (subscriber.name === 'tool-cache') {
+        toolCacheInvalidated = 0;
+      }
+    }
   }
 
-  let constitutionalCacheCleared = false;
-  try {
-    clearConstitutionalCache();
-    constitutionalCacheCleared = true;
-  } catch (error: unknown) {
-    const message = error instanceof Error ? error.message : String(error);
-    console.warn(
-      `[mutation-hooks] clearConstitutionalCache failed for operation="${operation}":`,
-      message
-    );
-    errors.push(`clearConstitutionalCache: ${message}`);
-    constitutionalCacheCleared = false;
-  }
-
-  let graphSignalsCacheCleared = false;
-  try {
-    clearGraphSignalsCache();
-    clearDegreeCache();
-    graphSignalsCacheCleared = true;
-  } catch (error: unknown) {
-    const message = error instanceof Error ? error.message : String(error);
-    console.warn(
-      `[mutation-hooks] graph cache invalidation failed for operation="${operation}":`,
-      message
-    );
-    errors.push(`graphCacheInvalidation: ${message}`);
-    graphSignalsCacheCleared = false;
-  }
-
-  let coactivationCacheCleared = false;
-  try {
-    clearRelatedCache();
-    coactivationCacheCleared = true;
-  } catch (error: unknown) {
-    const message = error instanceof Error ? error.message : String(error);
-    console.warn(
-      `[mutation-hooks] clearRelatedCache failed for operation="${operation}":`,
-      message
-    );
-    errors.push(`clearRelatedCache: ${message}`);
-    coactivationCacheCleared = false;
-  }
-
-  // Entity-density routing keys off title + trigger_phrases. Clearing it here,
-  // in the shared hook every mutation handler calls, guarantees a rename or
-  // trigger-phrase rewrite is reflected immediately instead of lingering until
-  // the 60s TTL. Lower-layer invalidations on save/delete stay in place and are
-  // idempotent (a second clear just leaves the cache empty/stale).
-  let entityDensityCacheCleared = false;
-  try {
-    invalidateEntityDensityCache();
-    entityDensityCacheCleared = true;
-  } catch (error: unknown) {
-    const message = error instanceof Error ? error.message : String(error);
-    console.warn(
-      `[mutation-hooks] invalidateEntityDensityCache failed for operation="${operation}":`,
-      message
-    );
-    errors.push(`invalidateEntityDensityCache: ${message}`);
-    entityDensityCacheCleared = false;
+  const auditWarning = maybeAppendAutomatedMutationAudit(operation, context, actions);
+  if (auditWarning) {
+    errors.push(auditWarning);
   }
 
   return {
     latencyMs: Date.now() - startTime,
-    triggerCacheCleared,
-    constitutionalCacheCleared,
+    actionCount: actions.length,
+    triggerCacheCleared: subscriberSucceeded(subscriberReports, 'trigger-cache') && !subscriberFailed(subscriberReports, 'trigger-cache'),
+    constitutionalCacheCleared: subscriberSucceeded(subscriberReports, 'constitutional-cache') && !subscriberFailed(subscriberReports, 'constitutional-cache'),
     toolCacheInvalidated,
-    graphSignalsCacheCleared,
-    coactivationCacheCleared,
-    entityDensityCacheCleared,
+    graphSignalsCacheCleared: subscriberSucceeded(subscriberReports, 'graph-cache') && !subscriberFailed(subscriberReports, 'graph-cache'),
+    coactivationCacheCleared: subscriberSucceeded(subscriberReports, 'coactivation-cache') && !subscriberFailed(subscriberReports, 'coactivation-cache'),
+    entityDensityCacheCleared: subscriberSucceeded(subscriberReports, 'entity-density-cache') && !subscriberFailed(subscriberReports, 'entity-density-cache'),
+    subscribers: subscriberReports,
     errors,
   };
 }

@@ -1,6 +1,13 @@
 ---
 title: Async Patterns
 description: Browser scheduling APIs and patterns for non-blocking code execution.
+trigger_phrases:
+  - "webflow async patterns"
+  - "requestanimationframe pattern"
+  - "requestidlecallback scheduling"
+  - "non blocking browser scheduling"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Async Patterns

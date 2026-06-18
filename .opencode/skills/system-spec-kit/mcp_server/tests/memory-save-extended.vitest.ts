@@ -70,6 +70,8 @@ describe('MEMORY SAVE EXTENDED', () => {
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         spec_folder TEXT,
         file_path TEXT,
+        canonical_file_path TEXT,
+        source_kind TEXT,
         title TEXT,
         trigger_phrases TEXT,
         content TEXT,
@@ -262,7 +264,6 @@ describe('MEMORY SAVE EXTENDED', () => {
 
     it.skipIf(!resolveFn)('prefers exact path equality before fuzzy path fallback', () => {
       const db = createTestDb();
-      db.exec('ALTER TABLE memory_index ADD COLUMN canonical_file_path TEXT');
       seedTestMemories(db);
       db.prepare('UPDATE memory_index SET canonical_file_path = file_path').run();
 

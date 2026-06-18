@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/145-mcp-open-design/003-sk-interface-design-evolution",
+  "spec_folder": "skilled-agent-orchestration/145-mcp-open-design/003-sk-interface-design-evolution",
+  "parent_id": "skilled-agent-orchestration/145-mcp-open-design",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-interface-design de-vendor",
+      "ui-ux-pro-max apache only",
+      "open design integration parity loop",
+      "sk-interface-design de-vendor plan",
+      "ui-ux-pro-max removal plan",
+      "sk-interface-design de-vendor tasks",
+      "ui-ux-pro-max removal tasks",
+      "sk-interface-design de-vendor checklist",
+      "ui-ux-pro-max removal verification",
+      "sk-interface-design de-vendor summary",
+      "ui-ux-pro-max removal outcome"
+    ],
+    "key_topics": [
+      "sk-interface-design",
+      "de-vendor",
+      "ui-ux-pro-max",
+      "apache",
+      "only",
+      "open",
+      "design",
+      "integration",
+      "parity",
+      "loop",
+      "plan",
+      "removal"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      ".opencode/skills/sk-interface-design/SKILL.md",
+      ".opencode/skills/sk-interface-design/changelog/v1.1.0.0.md",
+      ".opencode/skills/sk-interface-design/graph-metadata.json",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-interface-design/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.1.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-interface-design/changelog/v1.1.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-interface-design/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Design",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose De",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview De",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Open Design",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Ordered",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Apache",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `sk-interface-design` skill still vendored data and scripts derived from the MIT `ui-ux-pro-max` repo: nine CSV inventories (colors, typography, products, ui-reasoning, ux-guidelines, and the rest), the `design_search` scripts that queried them, and the MIT license notices that came with them. That vendored data carried license obligations and encoded the templated AI-default patterns the skill exists to resist. With phase 002 shipping `mcp-open-design`, the skill could instead read live design systems from the user's own installed Open Design app, making the vendored inventory both a liability and redundant.",
+    "created_at": "2026-06-14T16:30:00Z",
+    "last_save_at": "2026-06-16T14:27:20.546Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

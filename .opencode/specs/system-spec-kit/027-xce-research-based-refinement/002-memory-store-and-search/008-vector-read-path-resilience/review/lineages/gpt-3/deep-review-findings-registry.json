@@ -1,0 +1,68 @@
+{
+  "sessionId": "fanout-gpt-3-1781151207242-p6s19u",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Repair swap leaves the live connection attached to the stale shard",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
+      "line": 608,
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:1233-1242",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:593-608",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts:650-652",
+        ".opencode/skills/system-spec-kit/mcp_server/tests/vector-shard-read-path-resilience.vitest.ts:149-160"
+      ],
+      "finding_class": "stale-attached-resource",
+      "content_hash": "sha256:f001-stale-attached-vector-shard",
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    "F001"
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    "F001"
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "traceabilityCoverage": {
+    "spec_code": "partial",
+    "checklist_evidence": "pass",
+    "feature_catalog_code": "partial",
+    "playbook_capability": "partial"
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 0
+  },
+  "openFindingsCount": 1,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.75,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

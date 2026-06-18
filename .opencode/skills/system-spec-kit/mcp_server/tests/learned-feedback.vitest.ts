@@ -98,6 +98,7 @@ function createTestDb(): { db: TestDatabase; path: string } {
       confidence REAL DEFAULT 0.5,
       validation_count INTEGER DEFAULT 0,
       importance_tier TEXT DEFAULT 'normal',
+      source_kind TEXT DEFAULT 'feedback',
       importance_weight REAL DEFAULT 0.5,
       spec_folder TEXT DEFAULT '',
       created_at TEXT DEFAULT CURRENT_TIMESTAMP,
@@ -129,6 +130,7 @@ function insertMemory(testDb: TestDatabase, id: number, opts: {
   tier?: string;
   validationCount?: number;
   confidence?: number;
+  sourceKind?: string;
 } = {}): void {
   const {
     title = `Memory ${id}`,
@@ -137,12 +139,13 @@ function insertMemory(testDb: TestDatabase, id: number, opts: {
     tier = 'normal',
     validationCount = 0,
     confidence = 0.5,
+    sourceKind = 'feedback',
   } = opts;
 
   testDb.prepare(`
-    INSERT INTO memory_index (id, title, trigger_phrases, created_at, importance_tier, validation_count, confidence)
-    VALUES (?, ?, ?, ?, ?, ?, ?)
-  `).run(id, title, JSON.stringify(triggerPhrases), createdAt, tier, validationCount, confidence);
+    INSERT INTO memory_index (id, title, trigger_phrases, created_at, importance_tier, validation_count, confidence, source_kind)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+  `).run(id, title, JSON.stringify(triggerPhrases), createdAt, tier, validationCount, confidence, sourceKind);
 }
 
 // ───────────────────────────────────────────────────────────────

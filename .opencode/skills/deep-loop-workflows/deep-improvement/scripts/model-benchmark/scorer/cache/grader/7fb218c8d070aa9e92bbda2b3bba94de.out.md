@@ -1,0 +1,2 @@
+<!-- cache-meta {"kind":"grader","key":"7fb218c8d070aa9e92bbda2b3bba94de","created_at":"2026-06-15T14:24:23.887Z","dim_id":"D4-R","fixture_id":"LS-002#taskoutcome#off","variant_hash":"live-d4r","rubric_version":"v1.0.0","grader_model":"claude-sonnet-4-5","parse_status":"ok"} -->
+{"score":0.85,"confidence":0.85,"rationale":"mock default","evidence":[],"dim_id":"D4-R","parse_status":"ok","raw_grader_output":"[redacted: set DEEP_AGENT_GRADER_CACHE_RAW=1 to store raw output]","version":"1.0.0"}

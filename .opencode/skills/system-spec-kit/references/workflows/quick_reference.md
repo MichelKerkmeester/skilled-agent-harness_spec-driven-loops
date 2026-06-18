@@ -1,6 +1,13 @@
 ---
 title: Quick Reference
 description: Fast lookup for commands, checklists, and troubleshooting using the progressive enhancement model.
+trigger_phrases:
+  - "speckit quick reference"
+  - "template copy commands"
+  - "level decision shortcuts"
+  - "quick troubleshooting lookup"
+importance_tier: normal
+contextType: general
 ---
 
 # Quick Reference - Commands, Checklists & Troubleshooting
@@ -93,12 +100,17 @@ bash .opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh 
 If the runtime does not surface command menus clearly, use this compact command map first.
 
 **SpecKit workflow commands**
-- `/spec_kit:resume` - continue or recover existing spec-folder work
-- `/spec_kit:plan` - define or refine a scoped spec and plan
-- `/spec_kit:implement` - execute an existing spec and plan packet
-- `/spec_kit:complete` - run the full spec-to-implementation lifecycle
-- `/deep:start-research-loop` - run iterative research before planning
-- `/deep:start-review-loop` - run iterative review and finding synthesis
+- `/speckit:resume` - continue or recover existing spec-folder work
+- `/speckit:plan` - define or refine a scoped spec and plan
+- `/speckit:implement` - execute an existing spec and plan packet
+- `/speckit:complete` - run the full spec-to-implementation lifecycle
+
+**Deep-loop workflow commands**
+- `/deep:context` - run iterative codebase-context gathering before planning or implementation
+- `/deep:research` - run iterative research before planning
+- `/deep:review` - run iterative review and finding synthesis
+- `/deep:ai-council` - run multi-seat planning deliberation
+- `/deep:agent-improvement` - run bounded evaluator-first agent improvement
 
 **Memory commands**
 - `/memory:save` - preserve the current session context into spec memory and refresh packet continuity
@@ -156,7 +168,7 @@ Say: "save context" or "save conversation"
 node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data-<session-id>.json specs/007-feature/
 ```
 
-❌ DO NOT use Write/Edit tools to author continuity surfaces directly.
+Use `generate-context.js` for routine metadata and index saves. Quick direct edits are allowed only for `_memory.continuity` YAML frontmatter blocks in `implementation-summary.md`; for immediate MCP visibility after a save, finish with `memory_index_scan({ specFolder })` or `memory_save()`.
 
 ---
 
@@ -456,7 +468,7 @@ Before presenting documentation to user:
 node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data-<session-id>.json specs/###-folder/
 ```
 
-❌ DO NOT use Write/Edit tools to author continuity surfaces directly.
+Use `generate-context.js` for routine metadata and index saves. Quick direct edits are allowed only for `_memory.continuity` YAML frontmatter blocks in `implementation-summary.md`.
 
 > **Recovery Integration:** Packet recovery is canonical-first. Start from `handover.md`, then `_memory.continuity` in `implementation-summary.md`, then the rest of the packet docs before widening into supporting indexed retrieval.
 
@@ -465,7 +477,7 @@ whether you need the coordination root or an active child.
 Load/save memory in the child packet by default.
 Only load root memory when updating coordination snapshots.
 
-**Phase-Parent Resume Ladder**: When the resume target is a phase parent (folder has `[0-9]{3}-name/` children with `spec.md` or `description.json`), `/spec_kit:resume` honors the pointer first:
+**Phase-Parent Resume Ladder**: When the resume target is a phase parent (folder has `[0-9]{3}-name/` children with `spec.md` or `description.json`), `/speckit:resume` honors the pointer first:
 
 1. Read `derived.last_active_child_id` from the parent's `graph-metadata.json`. If non-null AND `derived.last_active_at` parses as ISO-8601 within the last 24 hours, recurse directly into that child and apply the child's normal handover → `_memory.continuity` → spec docs ladder.
 2. If the pointer is null, missing, malformed, or older than 24 hours, fall back to listing children with statuses (sourced from each child's `graph-metadata.json` `derived.status`) and let the user pick.
@@ -482,7 +494,7 @@ The pointer is maintained automatically by the generator: parent-level saves wri
 
 **Command:** `/memory:save`
 
-**Purpose:** Refresh packet continuity before a pause or handoff while keeping `handover.md`, `_memory.continuity`, and the packet docs aligned for the next `/spec_kit:resume` pass.
+**Purpose:** Refresh packet continuity before a pause or handoff while keeping `handover.md`, `_memory.continuity`, and the packet docs aligned for the next `/speckit:resume` pass.
 
 **Use when:**
 - Ending a long session
@@ -498,7 +510,7 @@ The pointer is maintained automatically by the generator: parent-level saves wri
 
 | Command | Description |
 |---------|-------------|
-| `/spec_kit:plan :with-phases` | Trigger phase decomposition as pre-workflow in plan or complete |
+| `/speckit:plan :with-phases` | Trigger phase decomposition as pre-workflow in plan or complete |
 | `create.sh --phase --phases N --phase-names a,b,c <description>` | Create a phase parent and named child phase folders |
 | `create.sh --phase --parent <parent> --phases N --phase-names a,b <description>` | Add named child phases to an existing parent spec |
 | `validate.sh <parent> --recursive` | Validate parent and all child phase folders |

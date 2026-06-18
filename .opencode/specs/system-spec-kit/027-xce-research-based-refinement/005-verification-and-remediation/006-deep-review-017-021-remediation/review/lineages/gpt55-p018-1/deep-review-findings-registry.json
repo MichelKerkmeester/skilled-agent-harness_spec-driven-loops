@@ -1,0 +1,61 @@
+{
+  "sessionId": "fanout-gpt55-p018-1-1781756069362-kvnd8x",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "id": "DR018-P1-001",
+      "severity": "P1",
+      "category": "correctness",
+      "finding_class": "spec_alignment",
+      "title": "Cancellation can still pay one inter-batch pacing delay",
+      "description": "processBatches checks shouldAbort at the top of each batch, but after a batch completes it always awaits delayMs when more items remain. If cancellation becomes true during that batch, the loop still sleeps for the pacing delay before the next shouldAbort check, which contradicts the implementation-summary claim that the abort skips the remaining batches and their inter-batch delays.",
+      "evidence": [
+        {
+          "path": ".opencode/skills/system-spec-kit/mcp_server/utils/batch-processor.ts",
+          "line": 149,
+          "detail": "shouldAbort is checked only at batch-loop entry."
+        },
+        {
+          "path": ".opencode/skills/system-spec-kit/mcp_server/utils/batch-processor.ts",
+          "line": 172,
+          "detail": "The inter-batch delay runs unconditionally when more items remain."
+        },
+        {
+          "path": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/018-reindex-scan-responsiveness-and-cancellation/implementation-summary.md",
+          "line": 57,
+          "detail": "The delivered behavior claims shouldAbort skips remaining batches and their delays."
+        }
+      ],
+      "content_hash": "sha256:307db53c765b740085d3b259b49b476a12c268cca0c359d922c9babba17d26b0",
+      "state": "open",
+      "firstSeenIteration": 1,
+      "lastSeenIteration": 1
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": false,
+    "traceability": true,
+    "maintainability": false
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 0
+  },
+  "openFindingsCount": 1,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.25,
+  "graphConvergenceScore": 0,
+  "graphDecision": "GRAPH_STALE_FALLBACK",
+  "graphBlockers": [
+    "code_graph_status reported stale readiness; review used Grep/Read fallback evidence."
+  ],
+  "corruptionWarnings": []
+}

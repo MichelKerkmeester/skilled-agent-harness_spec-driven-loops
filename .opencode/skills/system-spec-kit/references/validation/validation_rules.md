@@ -1,6 +1,14 @@
 ---
 title: Validation Rules Reference
 description: Complete reference for all validation rules used by the SpecKit validation system.
+trigger_phrases:
+  - "validation rule registry"
+  - "rule severity levels"
+  - "acceptance coverage rollout"
+  - "completion freshness rule"
+  - "continuity freshness fix"
+importance_tier: important
+contextType: implementation
 ---
 
 # Validation Rules Reference - Complete Rule Reference
@@ -46,6 +54,8 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 | `LEVEL_DECLARED`     | INFO     | spec.md       | Level explicitly stated in metadata            |
 | `PRIORITY_TAGS`      | WARNING  | checklist.md  | P0/P1/P2 priority tags properly formatted      |
 | `EVIDENCE_CITED`     | WARNING  | checklist.md  | Non-P2 items cite supporting evidence          |
+| `AC_COVERAGE`        | INFO     | checklist.md  | Opt-in advisory acceptance-criteria traceability scan |
+| `CONTINUITY_FRESHNESS` | WARNING | completion claims | Opt-in strict-only completion freshness check |
 | `ANCHORS_VALID`      | ERROR    | spec docs + memory/*.md | ANCHOR pairs properly opened and closed  |
 | `FOLDER_NAMING`      | ERROR    | Folder path   | Folder follows ###-short-name convention       |
 | `FRONTMATTER_VALID`  | ERROR    | spec docs     | YAML frontmatter properly structured           |
@@ -55,8 +65,52 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 | `SECTION_COUNTS`     | WARNING  | All levels    | Section counts within expected ranges          |
 | `PHASE_LINKS`        | WARNING  | Phased specs  | Parent-child phase references valid            |
 | `PHASE_PARENT_CONTENT` | WARNING | Phase parents | Phase-parent `spec.md` avoids consolidation/migration narratives |
+| `CURRENT_STATE_DISCIPLINE` | INFO | implementation summaries | Long-lived summaries avoid migration-history narratives |
 
-> **Partial reference:** The table above covers the most commonly-encountered rules. The authoritative, complete rule set (36 rules including FRONTMATTER_MEMORY_BLOCK, TOC_POLICY, SPEC_DOC_INTEGRITY, TEMPLATE_HEADERS, SECTION_COUNTS, and strict-only validators) and their canonical severities live in [`scripts/lib/validator-registry.json`](../../scripts/lib/validator-registry.json).
+> **Partial reference:** The table above covers the most commonly-encountered rules. The authoritative, complete rule set (37 rules including FRONTMATTER_MEMORY_BLOCK, TOC_POLICY, SPEC_DOC_INTEGRITY, TEMPLATE_HEADERS, SECTION_COUNTS, and strict-only validators) and their canonical severities live in [`scripts/lib/validator-registry.json`](../../scripts/lib/validator-registry.json).
+
+### Non-Breaking Acceptance Coverage Rollout
+
+`AC_COVERAGE` is intentionally registered at INFO severity and stays disabled unless `SPECKIT_AC_COVERAGE=true`. This preserves existing strict-validation outcomes while making the coverage signal available to operators who opt in. The current rule is advisory: it reports the coverage denominator, covered count, configured floor, manual-infeasible escape hatch status, and malformed evidence citations without adding strict warnings or errors. The `SPECKIT_AC_COVERAGE_ENFORCE` flag is documented as a future promotion switch; changing validation outcome requires a later severity change backed by adoption evidence.
+
+**Rule ID:** `AC_COVERAGE`  
+**Severity:** INFO  
+**Default:** Disabled. Set `SPECKIT_AC_COVERAGE=true` to run the advisory scan.  
+**Lifecycle predicate:** Level 2+ only, with `checklist.md` present and `implementation-summary.md` status in-progress or later. Level 1 folders and fresh scaffolds are exempt.  
+**Coverage calculation:** covered acceptance criteria divided by total acceptance criteria must meet `ceil(total * SPECKIT_AC_COVERAGE_FLOOR)`. The default floor is `0.9`; values outside `[0,1]` are clamped.  
+**Escape hatch:** a traceability row classified as Manual-infeasible counts as covered only when it carries a rationale.  
+**Evidence citations:** Tested or Partially covered rows count only with `file:line` evidence. Malformed evidence is named in the advisory details.
+
+| Flag | Default | Effect |
+| --- | --- | --- |
+| `SPECKIT_AC_TRACEABILITY_TEMPLATE` | `false` | Reserved opt-in for future scaffold template rendering of traceability rows. |
+| `SPECKIT_AC_COVERAGE` | `false` | Enables the advisory validation scan. |
+| `SPECKIT_AC_COVERAGE_ENFORCE` | `false` | Reserved promotion switch; current rule remains INFO/advisory. |
+| `SPECKIT_AC_COVERAGE_FLOOR` | `0.9` | Sets the advisory coverage floor, clamped to `[0,1]`. |
+
+### Non-Breaking Completion Freshness Rollout
+
+`CONTINUITY_FRESHNESS` is strict-only and inert by default. It runs only when `SPECKIT_COMPLETION_FRESHNESS=true`, so unset validation output stays unchanged. When enabled, it binds a completion claim to the stored `session_dedup.fingerprint`: the validator recomputes the content fingerprint, compares it to the stored value, and checks that packet-scoped working-tree paths are clean. The zero fingerprint placeholder is treated as never recorded and does not produce stale warnings.
+
+**Rule ID:** `CONTINUITY_FRESHNESS`  
+**Severity (inner label):** `warn` by default; `error` when `SPECKIT_COMPLETION_FRESHNESS_ENFORCE=true`  
+**Default:** Disabled. Set `SPECKIT_COMPLETION_FRESHNESS=true` to run the strict-only scan.  
+**Lifecycle predicate:** strict validation only, with a completion claim present (`checklist.md` checked evidence, `completion_pct: 100`, or complete/shipped status).  
+**Clean-tree scope:** packet-scoped paths only, not the whole repository.  
+**Clock drift:** a continuity timestamp newer than graph metadata remains a benign pass path.
+
+> **Completion-blocking note (verified 2026-06-16):** because the rule runs only under `--strict` and `--strict` promotes **any** warning to exit 2 for non-grandfathered packets (`validate.sh:1062`), a stale-freshness `warn` already FAILS the documented completion gate even with `SPECKIT_COMPLETION_FRESHNESS_ENFORCE` unset. The ENFORCE flag is therefore not a warn-vs-block switch under `--strict`: it only reclassifies the inner result label `warn`→`error` (`continuity-freshness.ts:340-342`). The `warn`/`error` distinction is observable in non-strict callers and in the JSON result, not in the `--strict` exit code. Only `LEGACY_GRANDFATHERED` packets (`validate.sh:175-182`) escape the exit-2 promotion.
+
+| Flag | Default | Effect |
+| --- | --- | --- |
+| `SPECKIT_COMPLETION_FRESHNESS` | `false` | Enables strict-only completion freshness validation. When on, a stale result blocks `--strict` completion regardless of ENFORCE (see note above). |
+| `SPECKIT_COMPLETION_FRESHNESS_ENFORCE` | `false` | Reclassifies the stale-freshness result label from `warn` to `error`. Does not change the `--strict` exit code (both already exit 2); affects only the inner status label and non-strict consumers. |
+
+### How to Fix `CONTINUITY_FRESHNESS`
+
+1. Re-run the verification that supports the completion claim.
+2. Refresh the packet continuity fingerprint after the verified content is current.
+3. Ensure the packet's own paths are clean, then run `validate.sh --strict` again.
 
 ---
 
@@ -182,7 +236,36 @@ Move any flagged narrative to `context-index.md` (create the file if it does not
 
 ---
 
-## 5. PLACEHOLDER_FILLED
+## 5. CURRENT_STATE_DISCIPLINE
+
+**Severity:** INFO  
+**Description:** Advises when `implementation-summary.md` includes migration-history narrative. Canonical summaries should describe what exists now and the verification that proves it, while historical movement belongs in deliberately historical surfaces.
+
+**Detection:** Scans only `implementation-summary.md`. It does not scan `decision-record.md`, changelogs, or context indexes because those documents are allowed to preserve decision and migration history. It also does not scan ordinary `spec.md` files in this rollout.
+
+**Flagged tokens** (case-insensitive scan, code-fence + HTML-comment aware):
+
+```
+merged from
+renamed from
+collapsed
+reorganization
+renumbered from
+migrated from
+[0-9]+→[0-9]+       # arrow-style migration narrative
+```
+
+The broader `consolidat[a-z]*` token remains limited to the phase-parent rule because phrases such as "consolidated findings" can be legitimate current-state prose in summaries.
+
+**Implementation:** `.opencode/skills/system-spec-kit/scripts/rules/check-current-state-discipline.sh`. Registered as `CURRENT_STATE_DISCIPLINE` in `scripts/lib/validator-registry.json` (severity: info, category: authored_template).
+
+### How to Fix
+
+Rewrite the summary so it states the current delivered behavior, the files changed, and the validation evidence. Move migration history to a decision record, changelog, context index, or source control history.
+
+---
+
+## 6. PLACEHOLDER_FILLED
 
 **Severity:** ERROR  
 **Description:** Detects unfilled template placeholders that should be replaced with actual content.
@@ -239,7 +322,7 @@ Replace placeholder text with actual content:
 
 ---
 
-## 6. SECTIONS_PRESENT
+## 7. SECTIONS_PRESENT
 
 **Severity:** WARNING  
 **Description:** Validates that required markdown sections exist in each file type.
@@ -295,7 +378,7 @@ Add the missing section headers. You can use numbered prefixes:
 
 ---
 
-## 7. LEVEL_DECLARED
+## 8. LEVEL_DECLARED
 
 **Severity:** INFO  
 **Description:** Checks if the documentation level is explicitly declared in spec.md metadata.
@@ -339,7 +422,7 @@ Add the Level field to your spec.md metadata table:
 
 ---
 
-## 8. PRIORITY_TAGS
+## 9. PRIORITY_TAGS
 
 **Severity:** WARNING  
 **Description:** Validates that checklist items use proper P0/P1/P2 priority tagging format.
@@ -421,7 +504,7 @@ Add priority headers or inline tags to all checklist items:
 
 ---
 
-## 9. EVIDENCE_CITED
+## 10. EVIDENCE_CITED
 
 **Severity:** WARNING  
 **Description:** Validates that non-P2 checklist items include evidence citations to support claims.
@@ -498,7 +581,7 @@ Add evidence to non-P2 items:
 
 ---
 
-## 10. ANCHORS_VALID
+## 11. ANCHORS_VALID
 
 **Severity:** ERROR  
 **Description:** Validates that generated continuity artifacts and other indexed support docs use proper ANCHOR format with matching open/close pairs.
@@ -583,7 +666,7 @@ Content here...
 
 ---
 
-## 11. FOLDER_NAMING
+## 12. FOLDER_NAMING
 
 **Severity:** ERROR
 **Description:** Validates that the spec folder follows the `###-short-name` naming convention.
@@ -627,7 +710,7 @@ mv specs/Feature specs/001-feature
 
 ---
 
-## 12. FRONTMATTER_VALID
+## 13. FRONTMATTER_VALID
 
 **Severity:** ERROR
 **Description:** Validates YAML frontmatter structure and required semantic values across the major spec documents.
@@ -683,7 +766,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 1 --path sp
 
 ---
 
-## 13. COMPLEXITY_MATCH
+## 14. COMPLEXITY_MATCH
 
 **Severity:** WARNING
 **Description:** Validates that declared complexity level matches actual content metrics (user stories, phases, tasks).
@@ -730,7 +813,7 @@ Either adjust the declared level or modify content to match:
 
 ---
 
-## 14. AI_PROTOCOLS
+## 15. AI_PROTOCOLS
 
 **Severity:** ERROR
 **Description:** Validates that Level 3 and 3+ specs include AI execution protocol sections for agent guidance. For Level 3+, missing protocol components are reported as errors.
@@ -794,7 +877,7 @@ cat .opencode/skills/system-spec-kit/templates/manifest/plan.md.tmpl
 
 ---
 
-## 15. LEVEL_MATCH
+## 16. LEVEL_MATCH
 
 **Severity:** ERROR
 **Description:** Validates that the declared level is consistent across all spec folder files and required files exist.
@@ -849,7 +932,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 2 --path sp
 
 ---
 
-## 16. SECTION_COUNTS
+## 17. SECTION_COUNTS
 
 **Severity:** WARNING
 **Description:** Validates that section counts are within expected ranges for the declared documentation level.
@@ -892,7 +975,7 @@ Either expand content or reduce declared level:
 
 ---
 
-## 17. PHASE_LINKS
+## 18. PHASE_LINKS
 
 **Severity:** WARNING
 **Description:** Validates the integrity of parent-child phase relationships in phase-decomposed spec folders.
@@ -975,7 +1058,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/042-payment
 
 ---
 
-## 18. CONFIGURATION
+## 19. CONFIGURATION
 
 ### Environment Variables
 
@@ -1008,7 +1091,7 @@ SPECKIT_JSON=true bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh
 
 ---
 
-## 19. RELATED RESOURCES
+## 20. RELATED RESOURCES
 
 ### Reference Files
 

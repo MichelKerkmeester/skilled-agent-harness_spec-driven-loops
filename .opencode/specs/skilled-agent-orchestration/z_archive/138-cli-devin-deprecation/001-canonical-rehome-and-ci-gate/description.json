@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/138-cli-devin-deprecation/001-canonical-rehome-and-ci-gate",
+  "description": "Feature Specification: Phase 1: canonical-rehome-and-ci-gate",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "canonical-rehome-and-ci-gate"
+  ],
+  "lastUpdated": "2026-06-15T18:16:13.841Z",
+  "specId": "001",
+  "folderSlug": "canonical-rehome-and-ci-gate",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "138-cli-devin-deprecation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

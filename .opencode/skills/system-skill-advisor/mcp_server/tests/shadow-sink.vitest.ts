@@ -33,11 +33,13 @@ describe('advisor shadow sink', () => {
 
     const line = readFileSync(logPath, 'utf8').trim();
     expect(result.written).toBe(true);
-    expect(JSON.parse(line)).toMatchObject({
+    const parsed = JSON.parse(line) as Record<string, unknown>;
+    expect(parsed).toMatchObject({
       recommendation: 'sk-code',
       dominantLane: 'semantic_shadow',
       delta: 0.2,
     });
+    expect(parsed.prompt).toBe('implement telemetry');
   });
 
   it('rotates when the log exceeds the size cap', () => {

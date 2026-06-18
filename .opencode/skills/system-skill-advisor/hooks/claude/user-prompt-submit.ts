@@ -20,6 +20,10 @@ import {
   persistAdvisorHookDiagnosticRecord,
   serializeAdvisorHookDiagnosticRecord,
 } from '../../mcp_server/lib/metrics.js';
+import {
+  buildSkillAdvisorBriefFromCli,
+  shouldTrySkillAdvisorCliFallback,
+} from '../lib/skill-advisor-cli-fallback.js';
 
 const IS_CLI_ENTRY = process.argv[1]
   ? resolve(process.argv[1]) === fileURLToPath(import.meta.url)
@@ -45,6 +49,7 @@ export type ClaudeUserPromptSubmitOutput = ClaudeHookSpecificOutput | Record<str
 
 export interface UserPromptSubmitDependencies {
   readonly buildBrief?: typeof buildSkillAdvisorBrief;
+  readonly buildCliBrief?: typeof buildSkillAdvisorBriefFromCli;
   readonly renderBrief?: typeof renderAdvisorBrief;
   readonly now?: () => number;
   readonly writeDiagnostic?: (line: string) => void;
@@ -61,6 +66,8 @@ interface HookDiagnosticInput {
   readonly skillLabel?: string | null;
   readonly generation?: number;
 }
+
+export const DEFAULT_CLAUDE_HOOK_TIMEOUT_MS = 3000;
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
@@ -85,6 +92,18 @@ function skillLabelFor(result: AdvisorHookResult): string | null {
     return metadataLabel;
   }
   return result.recommendations[0]?.skill ?? null;
+}
+
+function positiveIntFromEnv(value: string | undefined, fallback: number): number {
+  if (typeof value !== 'string' || value.trim().length === 0) {
+    return fallback;
+  }
+  const parsed = Number.parseInt(value, 10);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
+}
+
+function claudeHookTimeoutMs(): number {
+  return positiveIntFromEnv(process.env.SPECKIT_CLAUDE_HOOK_TIMEOUT_MS, DEFAULT_CLAUDE_HOOK_TIMEOUT_MS);
 }
 
 function emitDiagnostic(
@@ -163,10 +182,30 @@ export async function handleClaudeUserPromptSubmit(
 
     const buildBrief = dependencies.buildBrief ?? buildSkillAdvisorBrief;
     const renderBrief = dependencies.renderBrief ?? renderAdvisorBrief;
-    const result = await buildBrief(prompt, {
+    let result = await buildBrief(prompt, {
       runtime: 'claude',
       workspaceRoot,
+      subprocessTimeoutMs: claudeHookTimeoutMs(),
     });
+
+    const buildCliBrief = dependencies.buildCliBrief ?? (dependencies.buildBrief ? null : buildSkillAdvisorBriefFromCli);
+    if (buildCliBrief && shouldTrySkillAdvisorCliFallback(result)) {
+      result = await buildCliBrief(prompt, {
+        runtime: 'claude',
+        workspaceRoot,
+        timeoutMs: Math.max(1, claudeHookTimeoutMs() - elapsed()),
+      }, {
+        now: dependencies.now,
+      });
+    }
+
+    result = {
+      ...result,
+      metrics: {
+        ...result.metrics,
+        durationMs: elapsed(),
+      },
+    };
     const brief = renderBrief(result);
     emitDiagnostic({
       workspaceRoot,

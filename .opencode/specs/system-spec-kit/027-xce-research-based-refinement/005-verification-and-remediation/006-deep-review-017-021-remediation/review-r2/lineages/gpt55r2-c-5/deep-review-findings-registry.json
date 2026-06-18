@@ -1,0 +1,58 @@
+{
+  "sessionId": "fanout-gpt55r2-c-5-1781761364358-6qni37",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Documented tcp:// IPC override is split between incompatible endpoint resolvers",
+      "file": ".opencode/skills/system-spec-kit/shared/ipc/socket-server.ts",
+      "line": 202,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "content_hash": "sha256:4769d784be56cae54f4827d91badb8eec4b970d2ea0159f015866b6dc05ad207",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/shared/ipc/socket-server.ts:201-211",
+        ".opencode/bin/lib/launcher-ipc-bridge.cjs:80-87",
+        ".opencode/bin/lib/model-server-supervision.cjs:441-450",
+        ".opencode/skills/system-spec-kit/mcp_server/spec-memory-cli.ts:963-972",
+        ".opencode/bin/mk-spec-memory-launcher.cjs:1782-1784"
+      ],
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": false,
+    "maintainability": false
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 0
+  },
+  "openFindingsCount": 1,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.25,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

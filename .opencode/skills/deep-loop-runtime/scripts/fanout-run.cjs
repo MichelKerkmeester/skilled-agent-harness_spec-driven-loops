@@ -33,21 +33,16 @@ const {
   writeOrchestrationSummary,
 } = require('./fanout-pool.cjs');
 
+const {
+  runSalvageSweep,
+  extractTextFromOpencodeJson,
+} = require('./fanout-salvage.cjs');
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. TSX BOOTSTRAP
 // ─────────────────────────────────────────────────────────────────────────────
 
-const TSX_LOADER = path.resolve(
-  __dirname,
-  '..',
-  '..',
-  'system-spec-kit',
-  'scripts',
-  'node_modules',
-  'tsx',
-  'dist',
-  'loader.mjs',
-);
+const TSX_LOADER = require.resolve('tsx');
 
 if (process.env.DEEP_LOOP_TSX_LOADED !== '1') {
   const child = spawnSync(
@@ -112,18 +107,28 @@ const SPECKIT_STATE_ENV_BY_KIND = {
   'cli-opencode': 'SPECKIT_OPENCODE_STATE_DIR',
 };
 
+function expandHomeDir(inputPath) {
+  if (inputPath === '~') {
+    return os.homedir();
+  }
+  if (typeof inputPath === 'string' && inputPath.startsWith('~/')) {
+    return path.join(os.homedir(), inputPath.slice(2));
+  }
+  return inputPath;
+}
+
 /**
  * Build the "run the full loop" prompt text for a CLI lineage subprocess.
  * The subprocess reads this, loads the skill, and runs the loop to convergence
  * with config.fanout_lineage_artifact_dir overriding step_resolve_artifact_root.
  */
-function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage) {
+function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, researchTopic) {
   const skillFile =
     loopType === 'review'
-      ? '.opencode/skills/deep-review/SKILL.md'
+      ? '.opencode/skills/deep-loop-workflows/deep-review/SKILL.md'
       : loopType === 'context'
-        ? '.opencode/skills/deep-context/SKILL.md'
-        : '.opencode/skills/deep-research/SKILL.md';
+        ? '.opencode/skills/deep-loop-workflows/deep-context/SKILL.md'
+        : '.opencode/skills/deep-loop-workflows/deep-research/SKILL.md';
   const agentName = loopType === 'review' ? 'deep-review' : loopType === 'context' ? 'deep-context' : 'deep-research';
   const hasIterationCap = typeof lineage.iterations === 'number' && lineage.iterations > 0;
   const stopClause = hasIterationCap
@@ -136,6 +141,12 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage) {
     `  executor: ${lineage.kind} model=${lineage.model || 'default'}`,
     `  loop_type: ${loopType}`,
   ];
+  if (researchTopic) {
+    // A research lineage's phase_init binds research_topic from this line. Without it a
+    // fan-out research loop has no question to investigate and degrades to an empty topic.
+    // Review and context loops scope by spec_folder and intentionally pass no topic.
+    params.push(`  research_topic: ${researchTopic}`);
+  }
   if (hasIterationCap) {
     params.push(`  config.maxIterations: ${lineage.iterations}`);
   }
@@ -319,11 +330,6 @@ function buildLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermissio
   throw inputError(`Unknown CLI executor kind: ${kind}`);
 }
 
-const {
-  runSalvageSweep,
-  extractTextFromOpencodeJson,
-} = require('./fanout-salvage.cjs');
-
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
@@ -335,6 +341,11 @@ async function main() {
   if (loopType !== 'research' && loopType !== 'review' && loopType !== 'context') {
     throw inputError('loopType must be "research", "review", or "context"');
   }
+  // Optional shared research question, threaded into each lineage prompt so a research
+  // fan-out can bind research_topic. Absent for review/context, which scope by folder.
+  const researchTopic = typeof args.researchTopic === 'string' && args.researchTopic.trim()
+    ? args.researchTopic.trim()
+    : null;
   const fanoutConfigJson = ensureString(args, 'fanoutConfigJson');
   const baseArtifactDir = ensureString(args, 'baseArtifactDir');
   // Defense-in-depth: baseArtifactDir is host-provided, but reject path-traversal
@@ -390,7 +401,7 @@ async function main() {
       fs.mkdirSync(stateDir, { recursive: true });
 
       const sessionId = `fanout-${lineage.label}-${runId}`;
-      const prompt = buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage);
+      const prompt = buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, researchTopic);
 
       // Sandbox resolution stays write-capable by default even for review lineages:
       // the review subprocess writes its own iteration artifacts (iterations/iteration-NNN.md,
@@ -412,11 +423,20 @@ async function main() {
         effectivePermission,
       );
 
-      // Isolate per-kind state dirs so same-kind replicas do not collide on lockfiles.
+      // Advertise a per-replica state dir hint to the child via SPECKIT_<KIND>_STATE_DIR.
+      // This is DETECTION-ONLY: the native CLIs read their own home env (CODEX_HOME /
+      // OPENCODE_HOME / CLAUDE_CODE_HOME), not this var, so it does NOT relocate the
+      // native lockfile. Real same-kind-replica isolation comes from each lineage's
+      // unique artifact dir (lineage.label); remapping the CLI home to isolate the lock
+      // is deliberately avoided here because relocating the home breaks credential/auth
+      // lookup (the "Not logged in" failure the dispatch-env allowlist guards against).
       const stateEnvKey = SPECKIT_STATE_ENV_BY_KIND[lineage.kind];
       const extraEnv = {
         SPECKIT_FANOUT_LINEAGE_ID: lineage.label,
         ...(stateEnvKey ? { [stateEnvKey]: stateDir } : {}),
+        ...(lineage.kind === 'cli-claude-code' && lineage.configDir
+          ? { CLAUDE_CONFIG_DIR: expandHomeDir(lineage.configDir) }
+          : {}),
       };
 
       // Recursion guard (fail closed): refuse to spawn when this executor kind is

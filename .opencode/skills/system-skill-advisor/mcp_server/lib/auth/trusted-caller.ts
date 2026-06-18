@@ -19,6 +19,7 @@ export type TrustedCallerResult = TrustedCallerAcceptance | TrustedCallerRejecti
 
 export function requireTrustedCaller(
   callerContext: MCPCallerContext | null = getCallerContext(),
+  toolName = 'skill_graph_scan',
 ): TrustedCallerResult {
   if (callerContext?.trusted === true) {
     return {
@@ -27,9 +28,11 @@ export function requireTrustedCaller(
     };
   }
 
+  // The rejection must name the tool that was actually refused — a shared
+  // guard naming a fixed tool sends operators debugging the wrong surface.
   return {
     ok: false,
     code: 'UNTRUSTED_CALLER',
-    error: 'skill_graph_scan requires trusted caller context',
+    error: `${toolName} requires trusted caller context`,
   };
 }

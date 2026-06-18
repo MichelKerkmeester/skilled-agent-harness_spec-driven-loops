@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wattbird — Home Energy Dashboard</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #F5F5F0;
+  --card: #FFFFFF;
+  --text: #1E293B;
+  --secondary: #64748B;
+  --border: #E2E8F0;
+  --green: #16A34A;
+  --green-bg: #F0FDF4;
+  --amber: #D97706;
+  --amber-bg: #FFFBEB;
+  --red: #DC2626;
+  --red-bg: #FEF2F2;
+  --gauge-ring: #0F172A;
+  --gauge-track: #E2E8F0;
+  --bar-fill: #16A34A;
+}
+
+html { font-size: 16px; }
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* Top bar */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+}
+.topbar-brand {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.topbar-brand-icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: var(--green);
+  border-radius: 4px;
+}
+.topbar-meta {
+  font-size: 0.8125rem;
+  color: var(--secondary);
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+.topbar-status {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+.topbar-status-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--green);
+  border-radius: 50%;
+}
+
+/* Main layout */
+.dashboard {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.75rem 1.5rem 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+/* Gauge card */
+.gauge-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.gauge-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--secondary);
+  margin-bottom: 1rem;
+  align-self: flex-start;
+}
+.gauge-container {
+  position: relative;
+  width: 220px;
+  height: 130px;
+  margin-bottom: 1.5rem;
+}
+.gauge-svg {
+  width: 220px;
+  height: 130px;
+  display: block;
+}
+.gauge-readout {
+  text-align: center;
+  margin-top: -0.75rem;
+  margin-bottom: 1rem;
+}
+.gauge-kw {
+  font-size: 4.5rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--text);
+}
+.gauge-kw-unit {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--secondary);
+  display: block;
+  margin-top: 0.25rem;
+}
+.gauge-threshold {
+  font-size: 0.8125rem;
+  color: var(--secondary);
+}
+.gauge-threshold strong { color: var(--text); }
+
+/* Cost summary mini-cards */
+.cost-summary {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+}
+.cost-item {
+  flex: 1;
+  background: var(--bg);
+  border-radius: 6px;
+  padding: 1rem;
+  text-align: center;
+}
+.cost-label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--secondary);
+  margin-bottom: 0.375rem;
+}
+.cost-value {
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.cost-item.alert .cost-value { color: var(--amber); }
+
+/* Circuit breakdown */
+.breakdown-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 2rem;
+}
+.breakdown-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+.breakdown-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--secondary);
+}
+
+.circuit-list { list-style: none; }
+.circuit-item {
+  padding: 0.875rem 0;
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 1rem;
+}
+.circuit-item:last-child { border-bottom: none; }
+
+.circuit-info { min-width: 0; }
+.circuit-name {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.25rem;
+}
+.circuit-bar-track {
+  height: 6px;
+  background: var(--gauge-track);
+  border-radius: 3px;
+  overflow: hidden;
+  width: 100%;
+}
+.circuit-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.8s ease;
+}
+.circuit-bar-fill.low { background: var(--green); }
+.circuit-bar-fill.mid { background: var(--amber); }
+.circuit-bar-fill.high { background: var(--red); }
+
+.circuit-kw {
+  font-family: ui-monospace, "SF Mono", "Cascadia Code", "Source Code Pro", Menlo, Consolas, monospace;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text);
+  text-align: right;
+  white-space: nowrap;
+}
+.circuit-cost {
+  font-family: ui-monospace, "SF Mono", "Cascadia Code", "Source Code Pro", Menlo, Consolas, monospace;
+  font-size: 0.8125rem;
+  color: var(--secondary);
+  text-align: right;
+  white-space: nowrap;
+  min-width: 55px;
+}
+
+/* Timeline card */
+.timeline-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 2rem;
+  grid-column: 1 / -1;
+}
+.timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+.timeline-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--secondary);
+}
+.timeline-legend {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.75rem;
+  color: var(--secondary);
+  align-items: center;
+}
+.timeline-legend-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  margin-right: 0.25rem;
+}
+.timeline-legend-dot.usage { background: var(--bar-fill); }
+.timeline-legend-dot.cost { background: var(--amber); }
+
+.timeline-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 160px;
+  padding-top: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+.timeline-bar-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+.timeline-bar-wrapper {
+  display: flex;
+  gap: 2px;
+  align-items: flex-end;
+  height: 140px;
+  width: 100%;
+  justify-content: center;
+}
+.timeline-bar {
+  width: 10px;
+  border-radius: 2px 2px 0 0;
+  transition: height 0.8s ease;
+}
+.timeline-bar.usage { background: var(--bar-fill); }
+.timeline-bar.cost { background: var(--amber); opacity: 0.6; width: 7px; }
+.timeline-bar-label {
+  font-size: 0.625rem;
+  color: var(--secondary);
+  margin-top: 0.375rem;
+  font-weight: 500;
+}
+
+/* Focus */
+button:focus-visible, a:focus-visible, [tabindex]:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Gauge animation */
+@media (prefers-reduced-motion: no-preference) {
+  .gauge-arc {
+    transition: stroke-dashoffset 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+  .gauge-kw { font-size: 3.5rem; }
+  .timeline-chart {
+    height: 120px;
+  }
+  .timeline-bar-wrapper { height: 100px; }
+  .circuit-item {
+    grid-template-columns: 1fr auto;
+    gap: 0.5rem 0.75rem;
+  }
+  .circuit-cost { grid-column: 2; }
+  .circuit-kw { grid-column: 2; }
+}
+@media (max-width: 480px) {
+  .topbar { padding: 0.875rem 1rem; }
+  .dashboard { padding: 1rem; gap: 1rem; }
+  .gauge-card, .breakdown-card, .timeline-card { padding: 1.25rem; }
+  .gauge-container { width: 180px; height: 110px; }
+  .gauge-svg { width: 180px; height: 110px; }
+  .gauge-kw { font-size: 2.75rem; }
+  .cost-summary { flex-direction: column; }
+  .topbar-meta { display: none; }
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-brand">
+    <span class="topbar-brand-icon" aria-hidden="true"></span>
+    Wattbird
+  </div>
+  <div class="topbar-meta">
+    <span class="topbar-status">
+      <span class="topbar-status-dot" aria-hidden="true"></span>
+      Monitoring since 8:00 AM
+    </span>
+    <span>Jun 15, 2026 &middot; 3:42 PM</span>
+  </div>
+</header>
+
+<main class="dashboard">
+  <!-- Usage Gauge -->
+  <section class="gauge-card" aria-label="Current energy usage">
+    <p class="gauge-label">Now Using</p>
+    <div class="gauge-container">
+      <svg class="gauge-svg" viewBox="0 0 220 130" role="img" aria-label="Energy usage gauge: 2.4 kilowatts of 5 kilowatt daily budget">
+        <path d="M 30 110 A 80 80 0 0 1 190 110"
+              fill="none" stroke="var(--gauge-track)" stroke-width="16" stroke-linecap="round"/>
+        <path d="M 30 110 A 80 80 0 0 1 190 110"
+              fill="none" stroke="var(--gauge-ring)" stroke-width="16" stroke-linecap="round"
+              stroke-dasharray="251.3" stroke-dashoffset="130.7" class="gauge-arc"/>
+        <text x="110" y="108" text-anchor="middle" font-family="system-ui, sans-serif"
+              font-size="14" font-weight="700" fill="var(--secondary)">2.4 kW</text>
+      </svg>
+    </div>
+    <div class="gauge-readout">
+      <span class="gauge-kw">2.4</span>
+      <span class="gauge-kw-unit">kilowatts</span>
+    </div>
+    <p class="gauge-threshold">Daily budget <strong>5.0 kW</strong> average</p>
+    <div class="cost-summary">
+      <div class="cost-item">
+        <p class="cost-label">Today's Cost</p>
+        <p class="cost-value">$3.42</p>
+      </div>
+      <div class="cost-item alert">
+        <p class="cost-label">Est. This Month</p>
+        <p class="cost-value">$102.60</p>
+      </div>
+      <div class="cost-item">
+        <p class="cost-label">vs. Last Month</p>
+        <p class="cost-value" style="color:var(--green)">&#9660; 8%</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Circuit Breakdown -->
+  <section class="breakdown-card" aria-label="Per-circuit breakdown">
+    <div class="breakdown-header">
+      <p class="breakdown-label">By Circuit</p>
+      <span style="font-size:0.75rem;color:var(--secondary)">kW &middot; Cost</span>
+    </div>
+    <ul class="circuit-list">
+      <li class="circuit-item">
+        <div class="circuit-info">
+          <p class="circuit-name">HVAC</p>
+          <div class="circuit-bar-track"><div class="circuit-bar-fill mid" style="width:85%"></div></div>
+        </div>
+        <span class="circuit-kw">0.85 kW</span>
+        <span class="circuit-cost">$1.21</span>
+      </li>
+      <li class="circuit-item">
+        <div class="circuit-info">
+          <p class="circuit-name">Kitchen</p>
+          <div class="circuit-bar-track"><div class="circuit-bar-fill mid" style="width:62%"></div></div>
+        </div>
+        <span class="circuit-kw">0.62 kW</span>
+        <span class="circuit-cost">$0.88</span>
+      </li>
+      <li class="circuit-item">
+        <div class="circuit-info">
+          <p class="circuit-name">Laundry</p>
+          <div class="circuit-bar-track"><div class="circuit-bar-fill low" style="width:48%"></div></div>
+        </div>
+        <span class="circuit-kw">0.48 kW</span>
+        <span class="circuit-cost">$0.68</span>
+      </li>
+      <li class="circuit-item">
+        <div class="circuit-info">
+          <p class="circuit-name">Lighting</p>
+          <div class="circuit-bar-track"><div class="circuit-bar-fill low" style="width:28%"></div></div>
+        </div>
+        <span class="circuit-kw">0.28 kW</span>
+        <span class="circuit-cost">$0.40</span>
+      </li>
+      <li class="circuit-item">
+        <div class="circuit-info">
+          <p class="circuit-name">Electronics</p>
+          <div class="circuit-bar-track"><div class="circuit-bar-fill low" style="width:17%"></div></div>
+        </div>
+        <span class="circuit-kw">0.17 kW</span>
+        <span class="circuit-cost">$0.25</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- 24-Hour Timeline -->
+  <section class="timeline-card" aria-label="24-hour usage timeline">
+    <div class="timeline-header">
+      <p class="timeline-label">Today's Usage</p>
+      <div class="timeline-legend">
+        <span><span class="timeline-legend-dot usage" aria-hidden="true"></span>kW</span>
+        <span><span class="timeline-legend-dot cost" aria-hidden="true"></span>$</span>
+      </div>
+    </div>
+    <div class="timeline-chart" role="img" aria-label="Bar chart showing hourly energy usage from midnight to 3 PM">
+      <!-- Hours: 12am to 3pm (16 bars visible) -->
+      <div class="timeline-bar-group"><div class="timeline-bar-wrapper"><div class="timeline-bar usage" style="height:8px"></div><div class="timeline-bar cost" style="height:3px"></div></div><span class="timeline-bar-label">12a</span></div>
+      <div class="timeline-bar-group"><div class="timeline-bar-wrapper"><div class="timeline-bar usage" style="height:6px"></div><div class="timeline-bar cost" style="height:2px"></div></div><span class="timeline-bar-label">1</span></div>
+      <div class="timeline-bar-group"><div class="timeline-bar-wrapper"><div class="timeline-bar usage" style="height:5px"></div><div class="timeline-bar cost" style="height:2px"></div></div><span class="timeline-bar-label">2</span></div>
+      <div class="timeline-bar-group"><div class="timeline-bar-wrapper"><div class="timeline-bar usage" style="height:5px"></div><div class="timeline-bar cost" style="height:2px"></div></div><span class="timeline-bar-label">3</span></div>
+      <div class="timeline-bar-group"><div class="timeline-bar-wrapper"><div class="timeline-bar usage" style="height:6px"></div><div class="timeline-bar cost" style="height:3px"></div></div><span class="timeline-bar-label">4</span></div>
+      <div class="timeline-bar-group"><div class="timeline-bar-wrapper"><div class="timeline-bar usage" style="height:8px"></div><div class="timeline-bar cost" style="height:4px"></div></div><span class="timeline-bar-label">5</span></div>
+      <div class="timeline-bar-group"><div class="timeline-bar-wrapper"><div class="timeline-bar usage" style="height:22px"></div><div class="timeline-bar cost" style="height:10px"></div></div><span class="timeline-bar-label">6</span></div>
+      <div class="timeline-bar-group"><div class="timeline-bar-wrapper"><div class="timeline-bar usage" style="height:48px"></div><div class="timeline-bar cost" style="height:22px"></div></div><span class="timeline-bar-label">7</span></div>
+      <div class="timeline-bar-group"><div class="timeline-bar-wrapper"><div class="timeline-bar usage" style="height:60px"></div><div class="timeline-bar cost" style="height:28px"></div></div><span class="timeline-bar-label">8</span></div>
+      <div class="timeline-bar-group"><div class="timeline-bar-wrapper"><div class="timeline-bar usage" style="height:52px"></div><div class="timeline-bar cost" style="height:24px"></div></div><span class="timeline-bar-label">9</span></div>
+      <div class="timeline-bar-group"><div class="timeline-bar-wrapper"><div class="timeline-bar usage" style="height:44px"></div><div class="timeline-bar cost" style="height:20px"></div></div><span class="timeline-bar-label">10</span></div>
+      <div class="timeline-bar-group"><div class="timeline-bar-wrapper"><div class="timeline-bar usage" style="height:40px"></div><div class="timeline-bar cost" style="height:18px"></div></div><span class="timeline-bar-label">11</span></div>
+      <div class="timeline-bar-group"><div class="timeline-bar-wrapper"><div class="timeline-bar usage" style="height:36px"></div><div class="timeline-bar cost" style="height:16px"></div></div><span class="timeline-bar-label">12p</span></div>
+      <div class="timeline-bar-group"><div class="timeline-bar-wrapper"><div class="timeline-bar usage" style="height:56px"></div><div class="timeline-bar cost" style="height:26px"></div></div><span class="timeline-bar-label">1</span></div>
+      <div class="timeline-bar-group"><div class="timeline-bar-wrapper"><div class="timeline-bar usage" style="height:70px"></div><div class="timeline-bar cost" style="height:32px"></div></div><span class="timeline-bar-label">2</span></div>
+      <div class="timeline-bar-group"><div class="timeline-bar-wrapper"><div class="timeline-bar usage" style="height:68px"></div><div class="timeline-bar cost" style="height:30px"></div></div><span class="timeline-bar-label">3</span></div>
+    </div>
+    <!-- Accessible fallback data table for screen readers -->
+    <details style="margin-top:1rem;">
+      <summary style="font-size:0.75rem;color:var(--secondary);cursor:pointer;">View as table</summary>
+      <table style="width:100%;font-size:0.75rem;margin-top:0.5rem;border-collapse:collapse;" aria-label="Hourly energy usage data">
+        <thead><tr style="text-align:left;color:var(--secondary);"><th>Hour</th><th>kW</th><th>Cost</th></tr></thead>
+        <tbody style="color:var(--text);">
+          <tr><td>12 AM</td><td>0.12</td><td>$0.02</td></tr><tr><td>1 AM</td><td>0.09</td><td>$0.01</td></tr>
+          <tr><td>2 AM</td><td>0.08</td><td>$0.01</td></tr><tr><td>3 AM</td><td>0.08</td><td>$0.01</td></tr>
+          <tr><td>4 AM</td><td>0.09</td><td>$0.01</td></tr><tr><td>5 AM</td><td>0.13</td><td>$0.02</td></tr>
+          <tr><td>6 AM</td><td>0.35</td><td>$0.05</td></tr><tr><td>7 AM</td><td>0.76</td><td>$0.11</td></tr>
+          <tr><td>8 AM</td><td>0.95</td><td>$0.14</td></tr><tr><td>9 AM</td><td>0.82</td><td>$0.12</td></tr>
+          <tr><td>10 AM</td><td>0.70</td><td>$0.10</td></tr><tr><td>11 AM</td><td>0.64</td><td>$0.09</td></tr>
+          <tr><td>12 PM</td><td>0.57</td><td>$0.08</td></tr><tr><td>1 PM</td><td>0.88</td><td>$0.13</td></tr>
+          <tr><td>2 PM</td><td>1.10</td><td>$0.16</td></tr><tr><td>3 PM</td><td>1.05</td><td>$0.15</td></tr>
+        </tbody>
+      </table>
+    </details>
+  </section>
+</main>
+</body>
+</html>

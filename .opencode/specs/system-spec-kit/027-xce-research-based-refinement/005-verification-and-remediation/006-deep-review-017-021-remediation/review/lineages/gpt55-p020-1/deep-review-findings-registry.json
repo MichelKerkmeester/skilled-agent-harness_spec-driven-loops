@@ -1,0 +1,57 @@
+{
+  "sessionId": "fanout-gpt55-p020-1-1781756632158-pqwfer",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "correctness",
+      "finding_class": "test-coverage-gap",
+      "title": "Add direct retry-manager marker regression coverage",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts",
+      "line": 662,
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:1036-1055",
+        ".opencode/skills/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:662-674",
+        ".opencode/skills/system-spec-kit/mcp_server/tests/maintenance-marker.vitest.ts:82-109"
+      ],
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "content_hash": "sha256:f001-retry-manager-marker-regression-coverage",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": false,
+    "traceability": false,
+    "maintainability": false
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 1
+  },
+  "openFindingsCount": 1,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.25,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

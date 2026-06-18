@@ -18,19 +18,22 @@
   "is_phase_parent": false,
   "children": [],
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/021-orphan-sweep-stop-hook-activation",
-  "description": "Add a flag-gated, default-off fallback in session-cleanup.sh so that when no CLAUDE_SESSION_PID is available (the harness never sets it, and guessing from PPID is refused as a cross-session-kill risk) the Stop hook can delegate to the existing orphan-only orphan-mcp-sweeper.sh, which reaps only ownerless (reparented) MCP daemons and so can never touch a live session. SPECKIT_STOP_HOOK_ORPHAN_SWEEP: off (default no-op), dry-run (log only), 1/on/live (reap); sweeper failures are swallowed so they cannot break the hook. Fourth of the deferred daemon-reliability hardening items from phase 017; enabling live reaping is an operator decision after a dry-run review.",
+  "description": "Feature Specification: Orphan-sweep Stop-hook activation",
   "keywords": [
-    "orphan-sweeper",
+    "feature",
+    "specification",
+    "orphan-sweep",
     "stop-hook",
-    "session-cleanup",
-    "daemon-reliability",
-    "process-cleanup",
-    "mcp"
+    "activation"
   ],
-  "lastUpdated": "2026-06-07T17:20:00.000Z",
+  "lastUpdated": "2026-06-10T04:53:31.164Z",
   "specId": "021",
   "folderSlug": "orphan-sweep-stop-hook-activation",
-  "parentChain": [],
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "007-mcp-daemon-reliability"
+  ],
   "memorySequence": 0,
   "memoryNameHistory": []
 }

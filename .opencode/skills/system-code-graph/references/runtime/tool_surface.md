@@ -6,6 +6,8 @@ trigger_phrases:
   - "code-graph tool surface"
   - "mk-code-index tools"
   - "code-graph tool contracts"
+importance_tier: "normal"
+contextType: "implementation"
 ---
 
 # System Code Graph Tool Surface
@@ -39,6 +41,14 @@ The authoritative tool list lives in `mcp_server/tool-schemas.ts` as `CODE_GRAPH
 - **Read-path (3):** `code_graph_query`, `code_graph_context`, `detect_changes` — all gated by readiness.
 - **Maintenance (5):** `code_graph_scan`, `code_graph_status`, `code_graph_verify`, `code_graph_apply`, `code_graph_classify_query_intent`.
 
+### Durations and timeouts
+
+The daemon-backed CLI default timeout is 30s. `code_graph_apply` runs a preflight gold-query battery, the requested operation, and a postflight battery; `dryRun:true` also runs both batteries, so apply invocations routinely exceed 30s. For CLI apply calls, pass an explicit `--timeout-ms` such as `120000` or higher.
+
+### Compaction and maintenance
+
+The code-graph database currently has no automatic `VACUUM` or checkpoint policy beyond a rollback-path WAL truncate. Deletions and tombstones accumulate; manual maintenance, such as offline `VACUUM` with the daemon stopped, is the only compaction path today.
+
 ---
 
 ## 2. TOOL TABLE
@@ -51,7 +61,7 @@ The authoritative tool list lives in `mcp_server/tool-schemas.ts` as `CODE_GRAPH
 | 4 | `code_graph_context` | Read | Build LLM-oriented compact graph neighborhoods. Accepts manual seeds or graph seeds. Modes: `neighborhood`, `outline`, `impact`. | `readiness === "fresh"`. Returns `blocked` with `requiredAction: "code_graph_scan"` otherwise. | 1200 |
 | 5 | `code_graph_status` | Maintenance | Report graph health: totals, freshness, trust state, last scan, schema version, parse health, quality summary. Read-only. | None — always answerable. | 500 |
 | 6 | `code_graph_verify` | Maintenance | Run the persisted gold-query battery against the current graph. Supports category filter, fail-fast, baseline persistence. | `readiness === "fresh"`. Returns `blocked` otherwise. | 1000 |
-| 7 | `code_graph_apply` | Maintenance | Verification-gated recovery: `rescan`, `prune-excludes`, `repair-nodes`, `recover-sqlite-corruption`, `rollback-bad-apply`. Pre/post battery + JSONL audit log. | Hard-stale recovery requires `confirm: true`. `repair-nodes` requires `crashRootCauseAddressed: true`. | 1000 |
+| 7 | `code_graph_apply` | Maintenance | Verification-gated recovery: `rescan`, `prune-excludes`, `repair-nodes`, `recover-sqlite-corruption`, `rollback-bad-apply`. Pre/post battery + JSONL audit log. | Hard-stale recovery and ALL destructive operations (`recover-sqlite-corruption`, `rollback-bad-apply`) require `confirm: true` regardless of staleness. `repair-nodes` requires `crashRootCauseAddressed: true`. | 1000 |
 | 8 | `detect_changes` | Read | Map a unified-diff to affected symbols via line-range overlap. Refuses on non-fresh state (returns `blocked`, not empty `affectedSymbols[]`). | `readiness === "fresh"`. `diff` is required (unified-diff text). | 1200 |
 
 ---
@@ -84,6 +94,8 @@ mcp__mk_code_index__code_graph_scan
 mcp__mk_code_index__code_graph_query
 
 ```
+
+The same 8-tool surface is also reachable through the daemon-backed CLI shim `.opencode/bin/code-index.cjs` (for example `code-index code_graph_status --format json`). The CLI is an additive dual-stack fallback over the same warm daemon, not a replacement for the MCP registration: `--warm-only` probes the daemon socket without cold-spawning, and exit `75` signals retryable daemon/IPC unavailability.
 
 Direct library consumers in `system-spec-kit` handlers and hooks bypass MCP and import from `system-code-graph/mcp_server/lib/*` via the boundary at `system-spec-kit/mcp_server/lib/code-graph-boundary.ts`. They do not call the MCP-namespaced tool IDs.
 

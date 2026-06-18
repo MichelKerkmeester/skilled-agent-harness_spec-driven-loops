@@ -1,0 +1,90 @@
+{
+  "mergedFrom": [
+    "gpt-1",
+    "gpt-2",
+    "gpt-3"
+  ],
+  "mergedVerdict": "CONDITIONAL",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Completion overstates REQ-003 while live-corpus benchmark remains blocked",
+      "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/013-vector-read-path-resilience/implementation-summary.md",
+      "line": 108,
+      "finding_class": "spec_alignment",
+      "content_hash": "sha256:0fb74c88d67d46ed9e7b2692f3de4d0fd8b0d7c42a4a5a16e610e7f67b13c101",
+      "firstSeen": 3,
+      "lastSeen": 6,
+      "evidenceRefs": [
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/013-vector-read-path-resilience/spec.md:110-111",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/013-vector-read-path-resilience/plan.md:65-68",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/013-vector-read-path-resilience/implementation-summary.md:107-108"
+      ],
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "claimAdjudication": {
+        "claim": "REQ-003 requires a live-corpus KNN benchmark, but the completed packet records live-corpus sizing as blocked and only an isolated corpus-32 benchmark as evidence.",
+        "counterevidenceSought": "Read spec.md requirements, plan DoD, tasks completion criteria, and implementation-summary verification table; ran targeted vector tests to confirm code-level tests pass but they do not supply live-corpus sizing evidence.",
+        "alternativeExplanation": "The blocked live benchmark may be an intentional deferral, but no user-approved deferral or status downgrade is recorded in the packet.",
+        "finalSeverity": "P1",
+        "confidence": 0.86,
+        "downgradeTrigger": "Downgrade when the packet either records a live-corpus benchmark result or explicitly changes REQ-003/status to a documented approved deferral."
+      },
+      "_lineages": [
+        "gpt-1",
+        "gpt-2",
+        "gpt-3"
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Dimension mismatch warning mislabels profile-derived dimensions as schema-derived",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+      "line": 306,
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:162-166",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:236-253",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:305-307"
+      ],
+      "firstSeen": 4,
+      "lastSeen": 6,
+      "content_hash": "sha256:f002-dimension-source-warning-label",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "gpt-2"
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 1
+  },
+  "openFindingsCount": 2,
+  "resolvedFindingsCount": 0,
+  "activeP0": 0,
+  "activeP1": 1,
+  "activeP2": 1
+}

@@ -1,0 +1,57 @@
+# ─────────────────────────────────────────────────────────────────
+# DOCTOR: FABLE-MODE BEHAVIORAL METRICS (READ-ONLY DIAGNOSTIC)
+# ─────────────────────────────────────────────────────────────────
+role: Diagnostic Operator reporting fable-5 behavioral metrics for a deep-loop artifact dir
+purpose: Render the current tool:text / words-per-message / opener / caveat / evidence metrics and compare them to the captured baseline
+action: Run fable-mode-check.cjs against the target dir -> render current-vs-baseline metrics -> final status
+skill_owner: ".opencode/skills/system-spec-kit/scripts/metrics/"
+
+# ─────────────────────────────────────────────────────────────────
+# OPERATING MODE
+# ─────────────────────────────────────────────────────────────────
+operating_mode:
+  workflow: single-step
+  compliance: MANDATORY
+  execution: read_only
+  approvals: none
+  tracking: single_run
+  validation: read_only_assertion
+
+read_only_invariant: |
+  This diagnostic is read-only. It reads deep-loop state JSONL plus iteration markdown and the
+  baseline snapshot, renders metrics, and exits. It MUST NOT write files, mutate any database or
+  graph metadata, or edit the inspected artifacts. The metric computation is deterministic for a
+  fixed corpus.
+
+# ─────────────────────────────────────────────────────────────────
+# UPSTREAM ASSETS
+# ─────────────────────────────────────────────────────────────────
+upstream_assets:
+  audit_script: ".opencode/commands/doctor/scripts/fable-mode-check.cjs"
+  metric_library: ".opencode/skills/system-spec-kit/scripts/metrics/fable-metrics.cjs"
+  baseline_snapshot: ".opencode/skills/system-spec-kit/scripts/metrics/fable-baseline.json"
+
+# ─────────────────────────────────────────────────────────────────
+# INPUTS
+# ─────────────────────────────────────────────────────────────────
+inputs:
+  target_dir: "Deep-loop artifact dir (a lineage dir or a dir containing lineages/). Defaults to the 002 research corpus when omitted; pass as the first positional argument or via --dir."
+  baseline: "Optional baseline snapshot path (--baseline). Defaults to the committed fable-baseline.json."
+
+# ─────────────────────────────────────────────────────────────────
+# EXECUTION
+# ─────────────────────────────────────────────────────────────────
+execution:
+  steps:
+    - "Execute upstream_assets.audit_script via Bash with target_dir as --dir (or the first positional argument)."
+    - "Render the five behavioral metrics and the per-metric delta against the baseline."
+    - "Report STATUS from the script exit code; never write."
+
+# ─────────────────────────────────────────────────────────────────
+# OUTPUT
+# ─────────────────────────────────────────────────────────────────
+output: |
+  STATUS=OK when the diagnostic renders (script exits 0).
+  STATUS=ERROR ERROR="fable-mode target directory not found" when the script exits 2.
+  The metrics are drift detectors, not quality scores: higher tool:text and evidence ratios and
+  lower words/opener/caveat values indicate closer alignment to the fable-5 signature.

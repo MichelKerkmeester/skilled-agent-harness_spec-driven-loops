@@ -10,13 +10,13 @@ importance_tier: "important"
 ---
 # Code Graph: Manual Testing Playbook
 
-This playbook validates the code graph runtime at `.opencode/skills/system-code-graph/mcp_server/`. Live MCP examples use the `mk-code-index` namespace as `mcp__mk_code_index__*`, while the stable tool IDs remain `code_graph_*` and `detect_changes`.
+This playbook validates the code graph runtime at `.opencode/skills/system-code-graph/mcp_server/`. Live MCP examples use the `mk-code-index` namespace as `mcp__mk_code_index__*`, while the stable tool IDs remain `code_graph_*` and `detect_changes`. Since the 028 MCP-to-CLI program, the same tools are also reachable through the daemon-backed `node .opencode/bin/code-index.cjs` CLI (the transport-down fallback), covered by scenario 025.
 
 ---
 
 ## 1. OVERVIEW
 
-The playbook contains 21 scenarios across 8 groups. It targets the current reality map: read-path checks are bounded and half-auto, full scan/verify/status are operator actions, `detect_changes` is read-only and blocks on stale state, and coverage graph automation is limited to deep-loop command YAML. Group 09 adds post-rename infrastructure probes.
+The playbook contains 22 scenarios across 8 groups. It targets the current reality map: read-path checks are bounded and half-auto, full scan/verify/status are operator actions, `detect_changes` is read-only and blocks on stale state, and coverage graph automation is limited to deep-loop command YAML. Group 09 adds post-rename infrastructure probes.
 
 | Group | Scenario Files |
 | --- | --- |
@@ -47,6 +47,7 @@ The playbook contains 21 scenarios across 8 groups. It targets the current reali
 
 - Bash commands are shown as `bash: <command>`.
 - MCP tool calls are shown as `mcp__mk_code_index__<tool>(<args>)` for the standalone code graph server.
+- CLI fallback calls are shown as `node .opencode/bin/code-index.cjs <tool> [--flags]`; sandbox them with a fresh `SPECKIT_IPC_SOCKET_DIR` so host daemons stay untouched.
 - Slash-command scenarios cite the command and the YAML path. Run them in a disposable workspace.
 - `->` separates sequential steps.
 
@@ -113,6 +114,7 @@ Operators may dispatch sub-agents in parallel waves for independent scenarios, e
 | 011 | tool call shape validation (authoritative tool list: `mcp_server/tool-schemas.ts` `CODE_GRAPH_TOOL_SCHEMAS` + `TOOL_DEFINITIONS` alias) | [tool-call-shape-validation.md](./06--mcp-tool-surface/tool-call-shape-validation.md) |
 | 022 | code_graph_query blast_radius multi-subject + transitive (F018 coverage) | [code-graph-query-blast-radius.md](./06--mcp-tool-surface/code-graph-query-blast-radius.md) |
 | 016 | MCP tool manifest post-rename | [mcp-tool-manifest-post-rename.md](./06--mcp-tool-surface/mcp-tool-manifest-post-rename.md) |
+| 025 | code-index CLI fallback surface (028: list-tools parity, warm-only 75, usage 64, blocked-read) | [code-index-cli-fallback-surface.md](./06--mcp-tool-surface/code-index-cli-fallback-surface.md) |
 
 ---
 

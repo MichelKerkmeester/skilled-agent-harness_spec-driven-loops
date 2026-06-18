@@ -2,11 +2,10 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
 // ║ COMPONENT: Skill Advisor Plugin Bridge (mk-skill-advisor, MJS source)   ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Subprocess bridge between `.opencode/plugins/mk-skill-         ║
-// ║          advisor.js` and the standalone mk_skill_advisor MCP       ║
-// ║          server. The plugin                                           ║
-// ║          spawns this script with stdin JSON; this script writes a      ║
-// ║          single stdout JSON response and exits.                         ║
+// ║ PURPOSE: Subprocess bridge between `.opencode/plugins/mk-skill-          ║
+// ║          advisor.js` and the standalone mk_skill_advisor MCP server.     ║
+// ║          The plugin spawns this script with stdin JSON; this script      ║
+// ║          writes a single stdout JSON response and exits.                 ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 //
 // This file is the SOURCE-OF-TRUTH bridge. It lives outside the
@@ -29,7 +28,9 @@
 // This file intentionally lives outside
 // `.opencode/plugins/` so OpenCode discovers only real plugin entrypoints.
 
-import { readFileSync } from 'node:fs';
+import { spawn } from 'node:child_process';
+import { existsSync, readFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -43,7 +44,17 @@ const FORCE_LOCAL_ENV = COMPAT_CONTRACT.forceLocalEnv;
 const DEFAULT_CONFIDENCE_THRESHOLD = COMPAT_CONTRACT.defaults.confidenceThreshold;
 const DEFAULT_UNCERTAINTY_THRESHOLD = COMPAT_CONTRACT.defaults.uncertaintyThreshold;
 const ADVISOR_LAUNCHER_PATH = fileURLToPath(new URL('../../../../bin/mk-skill-advisor-launcher.cjs', import.meta.url));
+const ADVISOR_CLI_PATH = fileURLToPath(new URL('../../../../bin/skill-advisor.cjs', import.meta.url));
+const ADVISOR_BRIDGE_HELPER_PATH = fileURLToPath(new URL('../../../../bin/lib/launcher-ipc-bridge.cjs', import.meta.url));
+const DEFAULT_SOCKET_DIR = '/tmp/mk-skill-advisor';
 const ADVISOR_MCP_TIMEOUT_MS = 8000;
+const ADVISOR_CLI_TIMEOUT_MS = 250;
+const ADVISOR_CLI_PROBE_TIMEOUT_MS = 50;
+const ADVISOR_CLI_RETRYABLE_EXIT = 75;
+const ADVISOR_CLI_STALE_EXIT = 69;
+const MAX_CLI_STDERR_BYTES = 1024 * 1024;
+const SOCKET_FILE_NAME = 'daemon-ipc.sock';
+const require = createRequire(import.meta.url);
 const CHILD_ENV_ALLOWLIST = new Set([
   'PATH',
   'HOME',
@@ -61,6 +72,7 @@ const CHILD_ENV_ALLOWLIST = new Set([
   'SYSTEM_SKILL_ADVISOR_DB_DIR',
   'SPECKIT_RUNTIME',
   'SPECKIT_ADVISOR_FRESHNESS',
+  'MK_SKILL_ADVISOR_HOOK_DISABLED',
   'SPECKIT_SKILL_ADVISOR_HOOK_DISABLED',
   'SPECKIT_SKILL_ADVISOR_FORCE_LOCAL',
   'SPECKIT_CODEX_HOOK_TIMEOUT_MS',
@@ -69,8 +81,17 @@ const CHILD_ENV_ALLOWLIST = new Set([
   'SPECKIT_ADVISOR_SHADOW_DELTA_PATH',
   'SPECKIT_METRICS_ENABLED',
   'SPECKIT_ADVISOR_HOOK_CACHE_HIT_P95_WARN_MS',
+  'SPECKIT_IPC_SOCKET_DIR',
+  'SPECKIT_SKILL_ADVISOR_CLI_FALLBACK_TIMEOUT_MS',
+  'SPECKIT_SKILL_ADVISOR_CLI_PROBE_TIMEOUT_MS',
 ]);
 
+/**
+ * Build the normalized bridge response envelope consumed by the plugin host.
+ *
+ * @param {object} args - Response fields from the selected advisor route.
+ * @returns {object} JSON-serializable bridge response.
+ */
 function response(args) {
   return {
     brief: typeof args.brief === 'string' ? args.brief : null,
@@ -134,6 +155,12 @@ async function withStdoutSilenced(fn) {
   }
 }
 
+/**
+ * Parse and validate the stdin payload sent by the plugin host.
+ *
+ * @param {string} text - Raw JSON stdin text.
+ * @returns {object} Validated bridge input payload.
+ */
 function parseInput(text) {
   if (!text.trim()) {
     throw Object.assign(new Error('Missing bridge input'), { code: 'MISSING_INPUT' });
@@ -174,10 +201,88 @@ function sanitizeLabel(value) {
   return cleaned;
 }
 
+/**
+ * Create a minimal environment for advisor subprocesses.
+ *
+ * @param {NodeJS.ProcessEnv} [sourceEnv=process.env] - Environment to filter.
+ * @returns {Record<string, string>} Allowlisted child-process environment.
+ */
 function createChildEnv(sourceEnv = process.env) {
   return Object.fromEntries(
     Object.entries(sourceEnv).filter((entry) => CHILD_ENV_ALLOWLIST.has(entry[0]) && typeof entry[1] === 'string'),
   );
+}
+
+function resolveCliSocketDir(env = process.env) {
+  // Default to the same short /tmp directory as the launcher and CLI shim.
+  // Defaulting to the database directory produced a socket path longer than
+  // Darwin's 103-byte sun_path limit, so the warm probe always failed and the
+  // CLI fallback could never engage. An explicit env override still wins.
+  return env.SPECKIT_IPC_SOCKET_DIR ?? DEFAULT_SOCKET_DIR;
+}
+
+function createCliChildEnv(sourceEnv = process.env) {
+  return {
+    ...createChildEnv(sourceEnv),
+    SPECKIT_IPC_SOCKET_DIR: resolveCliSocketDir(sourceEnv),
+    MK_SKILL_ADVISOR_CLI_PROMPT_TIME: '1',
+  };
+}
+
+function resolveCliSocketPath(env = process.env) {
+  const socketDir = resolveCliSocketDir(env);
+  if (socketDir.startsWith('tcp://')) {
+    return socketDir;
+  }
+  return resolve(socketDir, SOCKET_FILE_NAME);
+}
+
+function socketPathTooLong(socketPath) {
+  if (socketPath.startsWith('tcp://')) return false;
+  return process.platform === 'darwin' && Buffer.byteLength(socketPath) > 103;
+}
+
+function positiveIntFromEnv(value, fallback) {
+  if (typeof value !== 'string' || value.trim().length === 0) {
+    return fallback;
+  }
+  const parsed = Number.parseInt(value, 10);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
+}
+
+function resolveCliTimeoutMs(env = process.env) {
+  return positiveIntFromEnv(env.SPECKIT_SKILL_ADVISOR_CLI_FALLBACK_TIMEOUT_MS, ADVISOR_CLI_TIMEOUT_MS);
+}
+
+function loadBridgeHelper() {
+  try {
+    const bridge = require(ADVISOR_BRIDGE_HELPER_PATH);
+    return typeof bridge.probeDaemon === 'function' ? bridge : null;
+  } catch {
+    return null;
+  }
+}
+
+async function probeCliWarmDaemon(env = process.env, timeoutMs = resolveCliTimeoutMs(env)) {
+  const socketPath = resolveCliSocketPath(env);
+  if (socketPathTooLong(socketPath)) {
+    return { available: false, reason: 'CLI_SOCKET_PATH_TOO_LONG', socketPath };
+  }
+  if (!socketPath.startsWith('tcp://') && !existsSync(socketPath)) {
+    return { available: false, reason: 'CLI_WARM_SOCKET_MISSING', socketPath };
+  }
+  const bridge = loadBridgeHelper();
+  if (!bridge) {
+    return { available: false, reason: 'CLI_BRIDGE_HELPER_UNAVAILABLE', socketPath };
+  }
+  const probeTimeoutMs = Math.max(1, Math.min(
+    timeoutMs,
+    positiveIntFromEnv(env.SPECKIT_SKILL_ADVISOR_CLI_PROBE_TIMEOUT_MS, ADVISOR_CLI_PROBE_TIMEOUT_MS),
+  ));
+  const probe = await bridge.probeDaemon(socketPath, { timeoutMs: probeTimeoutMs, deepProbe: true });
+  return probe.status === 'alive'
+    ? { available: true, socketPath }
+    : { available: false, reason: probe.reason ?? probe.status, socketPath };
 }
 
 function withTimeout(operation, timeoutMs, label) {
@@ -202,6 +307,20 @@ function withTimeout(operation, timeoutMs, label) {
 
 const HYGIENE_DIRECTIVE = '\nComment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.';
 
+function hasPrecomputedAmbiguity(result, recommendations) {
+  if (result?.ambiguous === true) return true;
+  return recommendations.some((recommendation) => (
+    Array.isArray(recommendation?.ambiguousWith) && recommendation.ambiguousWith.length > 0
+  ));
+}
+
+/**
+ * Render a prompt-safe advisor brief from recommendation data.
+ *
+ * @param {object} result - Advisor result payload.
+ * @param {object} [options={}] - Rendering options and threshold config.
+ * @returns {string|null} Compact advisor brief, or null when unavailable.
+ */
 function renderAdvisorBrief(result, options = {}) {
   if (result.status !== 'ok') return null;
   if (result.freshness !== 'live' && result.freshness !== 'stale') return null;
@@ -221,10 +340,19 @@ function renderAdvisorBrief(result, options = {}) {
     ))
     : [];
   const top = recommendations[0];
+  const second = recommendations[1];
   if (!top) return null;
 
   const topLabel = sanitizeLabel(result.sharedPayload?.metadata?.skillLabel ?? top.skill);
   if (!topLabel) return null;
+  if (tokenCap > 80 && second && hasPrecomputedAmbiguity(result, recommendations)) {
+    const secondLabel = sanitizeLabel(second.skill);
+    if (!secondLabel) return null;
+    const text = `Advisor: ${result.freshness}; ambiguous: ${topLabel} ${formatScore(top.confidence)}/${formatScore(top.uncertainty)} vs ${secondLabel} ${formatScore(second.confidence)}/${formatScore(second.uncertainty)} pass.`;
+    const charCap = Math.min(tokenCap, 120) * 4;
+    const brief = text.length <= charCap ? text : `${text.slice(0, Math.max(1, charCap - 3)).trimEnd()}...`;
+    return brief + HYGIENE_DIRECTIVE;
+  }
   const text = `Advisor: ${result.freshness}; use ${topLabel} ${formatScore(top.confidence)}/${formatScore(top.uncertainty)} pass.`;
   const charCap = Math.min(tokenCap, 80) * 4;
   const brief = text.length <= charCap ? text : `${text.slice(0, Math.max(1, charCap - 3)).trimEnd()}...`;
@@ -363,6 +491,13 @@ async function probeNativeAdvisor(input, dependencies = {}) {
   return probe;
 }
 
+/**
+ * Build an advisor brief through the native in-process advisor path.
+ *
+ * @param {object} input - Validated bridge input payload.
+ * @param {object} [dependencies={}] - Injectable dependencies for tests.
+ * @returns {Promise<object>} Normalized bridge response.
+ */
 async function buildNativeBrief(input, dependencies = {}) {
   const modules = await (dependencies.loadNativeAdvisorModules ?? loadNativeAdvisorModules)();
   const effectiveThresholds = {
@@ -396,16 +531,20 @@ async function buildNativeBrief(input, dependencies = {}) {
       kind: 'skill',
       confidence: recommendation.confidence,
       uncertainty: recommendation.uncertainty,
+      score: Number.isFinite(recommendation.score) ? recommendation.score : recommendation.confidence,
       passes_threshold: recommendation.confidence >= effectiveThresholds.confidenceThreshold
         && recommendation.uncertainty <= effectiveThresholds.uncertaintyThreshold,
       reason: null,
+      ...(Array.isArray(recommendation.ambiguousWith) ? { ambiguousWith: recommendation.ambiguousWith.map(sanitizeLabel).filter(Boolean) } : {}),
     }))
     : [];
+  const renderedTokenCap = data?.ambiguous === true ? 120 : maxTokens;
   const rendered = modules.renderAdvisorBrief({
     status: recommendations.length > 0 ? 'ok' : 'skipped',
     freshness: data?.freshness ?? 'unavailable',
     brief: null,
     recommendations,
+    ambiguous: data?.ambiguous === true,
     diagnostics: null,
     metrics: {
       durationMs: 0,
@@ -413,7 +552,7 @@ async function buildNativeBrief(input, dependencies = {}) {
       subprocessInvoked: false,
       retriesAttempted: 0,
       recommendationCount: recommendations.length,
-      tokenCap: maxTokens,
+      tokenCap: renderedTokenCap,
     },
     generatedAt: new Date().toISOString(),
     sharedPayload: {
@@ -422,7 +561,7 @@ async function buildNativeBrief(input, dependencies = {}) {
       },
     },
   }, {
-    tokenCap: maxTokens,
+    tokenCap: renderedTokenCap,
     thresholdConfig: effectiveThresholds,
   });
 
@@ -437,7 +576,7 @@ async function buildNativeBrief(input, dependencies = {}) {
       generation: input.probe?.generation ?? 0,
       cacheHit: Boolean(data?.cache?.hit),
       recommendationCount: Array.isArray(data?.recommendations) ? data.recommendations.length : 0,
-      tokenCap: maxTokens,
+      tokenCap: renderedTokenCap,
       skillLabel,
       status: safeStatus,
       redirectTo,
@@ -446,6 +585,253 @@ async function buildNativeBrief(input, dependencies = {}) {
   });
 }
 
+function cliRecommendations(data, thresholds) {
+  return Array.isArray(data?.recommendations)
+    ? data.recommendations
+      .map((recommendation) => {
+        const skill = sanitizeLabel(recommendation?.skillId);
+        if (!skill) return null;
+        const confidence = Number.isFinite(recommendation?.confidence) ? recommendation.confidence : 0;
+        const uncertainty = Number.isFinite(recommendation?.uncertainty) ? recommendation.uncertainty : 1;
+        return {
+          skill,
+          kind: 'skill',
+          confidence,
+          uncertainty,
+          score: Number.isFinite(recommendation?.score) ? recommendation.score : confidence,
+          passes_threshold: confidence >= thresholds.confidenceThreshold
+            && uncertainty <= thresholds.uncertaintyThreshold,
+          reason: null,
+          ...(Array.isArray(recommendation?.ambiguousWith) ? { ambiguousWith: recommendation.ambiguousWith.map(sanitizeLabel).filter(Boolean) } : {}),
+        };
+      })
+      .filter((recommendation) => recommendation?.passes_threshold === true)
+    : [];
+}
+
+function cliFallbackResponse(input, reason, subprocessInvoked = false, metadata = {}) {
+  const maxTokens = positiveInt(input.maxTokens, 80);
+  const effectiveThresholds = {
+    confidenceThreshold: threshold(input.thresholdConfidence),
+    uncertaintyThreshold: DEFAULT_UNCERTAINTY_THRESHOLD,
+    confidenceOnly: false,
+  };
+  return response({
+    brief: null,
+    status: 'fail_open',
+    error: reason,
+    metadata: {
+      route: 'cli',
+      workspaceRoot: input.workspaceRoot,
+      effectiveThresholds,
+      freshness: metadata.freshness ?? 'unavailable',
+      recommendationCount: 0,
+      tokenCap: maxTokens,
+      retryable: metadata.retryable ?? true,
+      exitCode: metadata.exitCode ?? ADVISOR_CLI_RETRYABLE_EXIT,
+      subprocessInvoked,
+      ...metadata,
+    },
+  });
+}
+
+/**
+ * Detect CLI failures caused by stale or missing generated advisor output.
+ *
+ * @param {number|null} exitCode - CLI process exit code.
+ * @param {string} stderr - Captured CLI stderr.
+ * @returns {object|null} Stale-dist metadata, or null for other failures.
+ */
+function classifyCliStaleDist(exitCode, stderr) {
+  if (exitCode !== ADVISOR_CLI_STALE_EXIT || !/dist entrypoint is (stale|missing)/i.test(stderr)) {
+    return null;
+  }
+  return {
+    freshness: 'dist_stale',
+    retryable: false,
+    exitCode: ADVISOR_CLI_STALE_EXIT,
+    state: 'dist_stale_rebuild_required',
+    staleDist: true,
+    rebuildRequired: true,
+    action: 'run the skill-advisor TypeScript build',
+    stderr: stderr ? '[stderr-present]' : null,
+  };
+}
+
+function runCliRecommend(input, env, timeoutMs) {
+  // Thread the caller's thresholds into the subprocess payload so the CLI
+  // scorer applies the same floor/ceiling as the in-process path. Omitting
+  // them made the scorer fall back to its built-in defaults while the response
+  // metadata still reported the caller-supplied thresholds.
+  const payload = {
+    prompt: input.prompt,
+    options: {
+      topK: 3,
+      includeAttribution: false,
+      includeAbstainReasons: true,
+      confidenceThreshold: threshold(input.thresholdConfidence),
+      uncertaintyThreshold: DEFAULT_UNCERTAINTY_THRESHOLD,
+    },
+  };
+  return new Promise((resolvePromise) => {
+    let stdout = '';
+    let stderr = '';
+    let settled = false;
+    let timedOut = false;
+    const child = spawn(process.execPath, [
+      ADVISOR_CLI_PATH,
+      'advisor_recommend',
+      '--json',
+      JSON.stringify(payload),
+      '--format',
+      'json',
+      '--timeout-ms',
+      String(timeoutMs),
+      '--warm-only',
+    ], {
+      cwd: input.workspaceRoot,
+      env: createCliChildEnv(env),
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
+    const timer = setTimeout(() => {
+      timedOut = true;
+      child.kill('SIGKILL');
+    }, timeoutMs);
+    timer.unref?.();
+    const finish = (result) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      resolvePromise(result);
+    };
+    child.stdout?.setEncoding('utf8');
+    child.stdout?.on('data', (chunk) => {
+      stdout += chunk;
+    });
+    child.stderr?.setEncoding('utf8');
+    child.stderr?.on('data', (chunk) => {
+      if (stderr.length < MAX_CLI_STDERR_BYTES) {
+        stderr = (stderr + String(chunk)).slice(0, MAX_CLI_STDERR_BYTES);
+      }
+    });
+    child.once('error', (error) => {
+      finish({ stdout, stderr, exitCode: null, signal: null, timedOut, error: error.code ?? error.message });
+    });
+    child.once('close', (exitCode, signal) => {
+      finish({ stdout, stderr, exitCode, signal, timedOut, error: null });
+    });
+  });
+}
+
+/**
+ * Build an advisor brief through the warm CLI fallback path.
+ *
+ * @param {object} input - Validated bridge input payload.
+ * @param {object} [dependencies={}] - Injectable dependencies for tests.
+ * @returns {Promise<object>} Normalized bridge response.
+ */
+async function buildCliBrief(input, dependencies = {}) {
+  const env = dependencies.env ?? process.env;
+  const timeoutMs = resolveCliTimeoutMs(env);
+  const probe = await probeCliWarmDaemon(env, timeoutMs);
+  if (!probe.available) {
+    return cliFallbackResponse(input, `CLI_RETRYABLE_UNAVAILABLE:${probe.reason ?? 'warm-daemon-unavailable'}`, false);
+  }
+
+  const cli = await runCliRecommend(input, env, timeoutMs);
+  if (cli.timedOut) {
+    return cliFallbackResponse(input, 'CLI_RETRYABLE_UNAVAILABLE:timeout', true);
+  }
+  if (cli.error) {
+    return cliFallbackResponse(input, `CLI_RETRYABLE_UNAVAILABLE:${cli.error}`, true);
+  }
+  if (cli.exitCode !== 0 || cli.signal !== null) {
+    const staleDist = classifyCliStaleDist(cli.exitCode, cli.stderr ?? '');
+    if (staleDist) {
+      return cliFallbackResponse(input, 'DIST_STALE_REBUILD_REQUIRED', true, staleDist);
+    }
+    return cliFallbackResponse(
+      input,
+      cli.exitCode === ADVISOR_CLI_RETRYABLE_EXIT ? 'CLI_RETRYABLE_EXIT_75' : `CLI_EXIT_${cli.exitCode ?? 'SIGNAL'}`,
+      true,
+    );
+  }
+
+  let parsed;
+  try {
+    parsed = JSON.parse(cli.stdout || '{}');
+  } catch {
+    return cliFallbackResponse(input, 'CLI_RETRYABLE_UNAVAILABLE:bad-json', true);
+  }
+  const data = parsed?.data && typeof parsed.data === 'object' ? parsed.data : null;
+  if (!data) {
+    return cliFallbackResponse(input, 'CLI_RETRYABLE_UNAVAILABLE:bad-response', true);
+  }
+
+  const maxTokens = positiveInt(input.maxTokens, 80);
+  const effectiveThresholds = {
+    confidenceThreshold: threshold(input.thresholdConfidence),
+    uncertaintyThreshold: DEFAULT_UNCERTAINTY_THRESHOLD,
+    confidenceOnly: false,
+  };
+  const recommendations = cliRecommendations(data, effectiveThresholds);
+  const top = recommendations[0] ?? null;
+  const renderedTokenCap = data.ambiguous === true ? 120 : maxTokens;
+  const freshness = data.freshness === 'live' || data.freshness === 'stale'
+    ? data.freshness
+    : 'unavailable';
+  if (freshness === 'unavailable') {
+    return cliFallbackResponse(input, 'CLI_RETRYABLE_UNAVAILABLE:freshness', true);
+  }
+  const rendered = renderAdvisorBrief({
+    status: recommendations.length > 0 ? 'ok' : 'skipped',
+    freshness,
+    recommendations,
+    ambiguous: data.ambiguous === true,
+    metrics: { tokenCap: renderedTokenCap },
+    sharedPayload: {
+      metadata: {
+        skillLabel: top?.skill ?? null,
+      },
+    },
+  }, {
+    tokenCap: renderedTokenCap,
+    thresholdConfig: effectiveThresholds,
+  });
+
+  const safeStatus = sanitizeLabel(top?.status);
+  const redirectTo = sanitizeLabel(top?.redirectTo);
+  const redirectFrom = Array.isArray(top?.redirectFrom)
+    ? top.redirectFrom.map(sanitizeLabel).filter(Boolean)
+    : [];
+  return response({
+    brief: rendered,
+    status: rendered ? 'ok' : 'skipped',
+    metadata: {
+      route: 'cli',
+      workspaceRoot: input.workspaceRoot,
+      effectiveThresholds,
+      freshness,
+      cacheHit: Boolean(data.cache?.hit),
+      recommendationCount: recommendations.length,
+      tokenCap: renderedTokenCap,
+      skillLabel: top?.skill ?? null,
+      status: safeStatus,
+      redirectTo,
+      redirectFrom,
+      retryable: false,
+      exitCode: 0,
+      subprocessInvoked: true,
+    },
+  });
+}
+
+/**
+ * Build the fail-open response for the retired local advisor route.
+ *
+ * @param {object} input - Validated bridge input payload.
+ * @returns {Promise<object>} Normalized fail-open response.
+ */
 async function buildLegacyBrief(input) {
   const maxTokens = positiveInt(input.maxTokens, 80);
   const effectiveThresholds = {
@@ -469,6 +855,13 @@ async function buildLegacyBrief(input) {
   });
 }
 
+/**
+ * Build an advisor brief using native, CLI, then legacy fallback routing.
+ *
+ * @param {object} input - Validated bridge input payload.
+ * @param {object} [dependencies={}] - Injectable dependencies for tests.
+ * @returns {Promise<object>} Normalized bridge response.
+ */
 async function buildBrief(input, dependencies = {}) {
   const env = dependencies.env ?? process.env;
   if (env[DISABLED_ENV] === '1') {
@@ -503,6 +896,10 @@ async function buildBrief(input, dependencies = {}) {
     }
   }
 
+  if (env[FORCE_LOCAL_ENV] !== '1' && input.forceLocal !== true) {
+    return buildCliBrief(input, dependencies);
+  }
+
   return buildLegacyBrief(input);
 }
 
@@ -527,8 +924,10 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
 
 export {
   buildBrief,
+  buildCliBrief,
   buildLegacyBrief,
   buildNativeBrief,
+  classifyCliStaleDist,
   createChildEnv,
   parseInput,
   renderAdvisorBrief,

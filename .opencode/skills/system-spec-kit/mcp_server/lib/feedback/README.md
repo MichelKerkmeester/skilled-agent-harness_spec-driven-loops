@@ -16,7 +16,7 @@ Current state:
 
 - Feedback writes are shadow-only and must not interrupt search or save operations.
 - Ranking metrics are computed from logged activity and replayed result sets.
-- Scheduled shadow evaluation samples production queries from telemetry and compares live and proposed ranks.
+- Scheduled shadow evaluation builds a privacy-preserving synthetic corpus from non-reversible telemetry signals (intent, coarse result-count bucket, counted query hash) and compares live and proposed ranks. No raw query text is stored or reconstructable.
 
 ## 2. ARCHITECTURE
 
@@ -37,6 +37,9 @@ shadow-scoring.ts
     │
     ▼
 shadow-evaluation-runtime.ts
+    │
+    +--> shadow-replay-corpus.ts   # synthetic corpus from non-reversible signals
+    +--> replay-seed-vocab.ts      # static intent seed vocabulary
 ```
 
 ## 3. DIRECTORY TREE
@@ -47,7 +50,9 @@ feedback/
 +-- feedback-ledger.ts             # SQLite event table and write helpers
 +-- query-flow-tracker.ts          # Query reformulation and flow tracking
 +-- rank-metrics.ts                # Ranking metric calculations
++-- replay-seed-vocab.ts           # Stable re-export of the static intent seed vocabulary
 +-- shadow-evaluation-runtime.ts   # Scheduled shadow replay runtime
++-- shadow-replay-corpus.ts        # Privacy-preserving synthetic replay corpus builder
 +-- shadow-scoring.ts              # Shadow scoring and cycle reports
 `-- README.md                      # Folder orientation
 ```
@@ -61,7 +66,9 @@ feedback/
 | `rank-metrics.ts` | Computes ranking measures over live and shadow result sets. |
 | `batch-learning.ts` | Groups signal processing work for batch runs. |
 | `shadow-scoring.ts` | Selects holdout queries and builds shadow evaluation reports. |
-| `shadow-evaluation-runtime.ts` | Schedules weekly replay, builds side-effect-free search configs and tunes adaptive thresholds after evaluation. |
+| `shadow-evaluation-runtime.ts` | Schedules weekly replay, builds a synthetic corpus via `shadow-replay-corpus.ts`, runs side-effect-free search configs and tunes adaptive thresholds after evaluation. |
+| `shadow-replay-corpus.ts` | Builds a privacy-preserving synthetic replay corpus from non-reversible telemetry signals so the shadow-evaluation cycle no longer skips for lack of a replay pool. Includes a fail-closed privacy guard; no raw query text is stored or reconstructable. |
+| `replay-seed-vocab.ts` | Stable re-export of the static intent seed vocabulary used by corpus generation. |
 
 ## 5. BOUNDARIES AND FLOW
 

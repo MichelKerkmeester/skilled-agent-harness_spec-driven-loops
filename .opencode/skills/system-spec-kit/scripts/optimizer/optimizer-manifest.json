@@ -12,8 +12,8 @@
       "range": { "min": 0.01, "max": 0.20 },
       "products": ["deep-research", "deep-review"],
       "configPaths": [
-        ".opencode/skills/deep-research/assets/deep_research_config.json",
-        ".opencode/skills/deep-review/assets/deep_review_config.json"
+        ".opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_config.json",
+        ".opencode/skills/deep-loop-workflows/deep-review/assets/deep_review_config.json"
       ]
     },
     {
@@ -23,8 +23,8 @@
       "range": { "min": 1, "max": 5 },
       "products": ["deep-research", "deep-review"],
       "configPaths": [
-        ".opencode/skills/deep-research/assets/deep_research_config.json",
-        ".opencode/skills/deep-review/assets/deep_review_config.json"
+        ".opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_config.json",
+        ".opencode/skills/deep-loop-workflows/deep-review/assets/deep_review_config.json"
       ]
     },
     {
@@ -34,8 +34,8 @@
       "range": { "min": 3, "max": 20 },
       "products": ["deep-research", "deep-review"],
       "configPaths": [
-        ".opencode/skills/deep-research/assets/deep_research_config.json",
-        ".opencode/skills/deep-review/assets/deep_review_config.json"
+        ".opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_config.json",
+        ".opencode/skills/deep-loop-workflows/deep-review/assets/deep_review_config.json"
       ]
     },
     {

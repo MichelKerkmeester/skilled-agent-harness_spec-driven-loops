@@ -1,6 +1,13 @@
 ---
 title: Performance Optimization Patterns - Phase 1 Integration
 description: Performance optimization checklist covering animations, assets, requests, and Core Web Vitals budgets.
+trigger_phrases:
+  - "webflow performance patterns"
+  - "core web vitals budgets"
+  - "lazy loading code splitting"
+  - "asset optimization checklist"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Performance Optimization Patterns - Phase 1 Integration

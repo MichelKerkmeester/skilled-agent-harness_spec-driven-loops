@@ -52,7 +52,7 @@ python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_r
 
 | Symptom | Detection | Action |
 | --- | --- | --- |
-| Fewer than 52 cases | Dataset loaded partial | Verify JSONL integrity. |
+| Fewer than 50 cases | Dataset loaded partial | Verify JSONL integrity. |
 | Regressions reported | One or more cases FAIL | Triage per case. Block release until resolved. |
 | Non-zero exit but zero failures | Suite exits abnormally | Inspect runner and post-run hooks. |
 

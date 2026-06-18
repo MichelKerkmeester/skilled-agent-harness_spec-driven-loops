@@ -19,8 +19,8 @@ This scenario adds an edge fixture for causal statistics: empty scopes should be
 - RCAF Prompt: `Run memory_causal_stats with a scope that should match no links and verify zero-state output.`
 - Expected execution process: Run the documented commands, capture output, compare against the expected signals, and return a cited verdict.
 - Expected signals: - Response returns zero counts without crashing. - Relation/count fields are present and numeric. - Guidance for creating links is explicit when the graph is empty.
-- Desired user-visible outcome: A concise PASS/PARTIAL/FAIL verdict with cited evidence.
-- Pass/fail: PASS if all expected signals are present; PARTIAL if the happy path works but an edge signal is missing; FAIL if the tool errors unexpectedly or omits required evidence.
+- Desired user-visible outcome: A concise PASS/FAIL/SKIP/UNAUTOMATABLE verdict with cited evidence (PARTIAL is an aggregate feature/packet state, not a per-scenario verdict).
+- Pass/fail: PASS if all expected signals are present; FAIL if the tool errors unexpectedly, omits required evidence, or an edge signal is missing.
 
 ---
 

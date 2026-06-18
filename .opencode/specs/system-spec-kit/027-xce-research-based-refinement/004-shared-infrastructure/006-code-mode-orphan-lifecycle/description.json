@@ -1,0 +1,25 @@
+{
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/006-code-mode-orphan-lifecycle",
+  "description": "Feature Specification: Code Mode MCP Orphan Lifecycle Fix",
+  "keywords": [
+    "feature",
+    "specification",
+    "code",
+    "mode",
+    "mcp",
+    "orphan",
+    "lifecycle",
+    "fix"
+  ],
+  "lastUpdated": "2026-06-11T14:26:24.135Z",
+  "specId": "006",
+  "folderSlug": "code-mode-orphan-lifecycle",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "004-shared-infrastructure"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

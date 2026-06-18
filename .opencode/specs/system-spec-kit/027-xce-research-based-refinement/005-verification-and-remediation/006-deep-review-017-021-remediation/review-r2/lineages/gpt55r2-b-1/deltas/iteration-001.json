@@ -1,0 +1,19 @@
+{
+  "type": "iteration_delta",
+  "mode": "review",
+  "iteration": 1,
+  "sessionId": "fanout-gpt55r2-b-1-1781761339355-o7qylx",
+  "dimensions": ["correctness", "security", "traceability", "maintainability"],
+  "findingsNew": { "P0": 0, "P1": 1, "P2": 0 },
+  "findingDetails": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "correctness",
+      "finding_class": "transaction-boundary",
+      "content_hash": "247995e1ae096eaeb736009b09c98e63daeca4318866e050dd75e3370614adfb"
+    }
+  ],
+  "newFindingsRatio": 1,
+  "verdict": "CONDITIONAL"
+}

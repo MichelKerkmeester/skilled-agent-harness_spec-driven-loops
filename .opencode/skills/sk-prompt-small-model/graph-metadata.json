@@ -9,7 +9,7 @@
       {
         "target": "cli-opencode",
         "weight": 0.8,
-        "context": "cli-opencode executor: DeepSeek-v4-pro via DeepSeek API direct + DeepSeek/Kimi/Qwen/GLM via opencode-go pool + MiniMax-M3 via the Token Plan + MiMo-V2.5-Pro via the Xiaomi Token Plan"
+        "context": "cli-opencode executor: DeepSeek-v4-pro via DeepSeek API direct + DeepSeek via opencode-go pool + Kimi-k2.7-code via the Kimi For Coding plan + MiniMax-M3 via the Token Plan + MiMo-V2.5-Pro via the Xiaomi Token Plan"
       }
     ],
     "siblings": [],
@@ -33,9 +33,8 @@
     "small model",
     "small-model dispatch",
     "deepseek-v4",
-    "kimi-k2.6",
-    "qwen3.6",
-    "glm-5.1",
+    "kimi-k2.7-code",
+    "kimi-for-coding",
     "minimax-m3",
     "mimo-v2.5-pro",
     "opencode-go",
@@ -49,14 +48,13 @@
       "small model",
       "small-model dispatch",
       "kimi",
-      "kimi-k2.6",
+      "kimi-k2.7-code",
+      "kimi-k2.7",
+      "kimi-for-coding",
+      "kimi for coding",
       "deepseek",
       "deepseek-v4",
       "deepseek-api",
-      "qwen",
-      "qwen3.6",
-      "glm",
-      "glm-5.1",
       "opencode-go",
       "haiku",
       "claude haiku",
@@ -103,7 +101,7 @@
     ],
     "key_files": [
       ".opencode/skills/sk-prompt-small-model/SKILL.md",
-      ".opencode/skills/sk-prompt-small-model/references/pattern-index.md"
+      ".opencode/skills/sk-prompt-small-model/references/pattern_index.md"
     ],
     "entities": [
       {
@@ -113,10 +111,10 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Per-model prompt-craft hub for small-model dispatch. It OWNS the per-model prompt-craft profiles in references/models/ (framework + scaffold + gotchas, mirroring assets/model-profiles.json) plus the model registry; executor MECHANICS stay in cli-opencode. The advisor co-surfaces it alongside that executor so every small-model dispatch has one discoverable knowledge anchor.",
+    "causal_summary": "Per-model prompt-craft hub for small-model dispatch. It OWNS the per-model prompt-craft profiles in references/models/ (framework + scaffold + gotchas, mirroring assets/model_profiles.json) plus the model registry; executor MECHANICS stay in cli-opencode. The advisor co-surfaces it alongside that executor so every small-model dispatch has one discoverable knowledge anchor.",
     "source_docs": [
       "SKILL.md",
-      "references/pattern-index.md"
+      "references/pattern_index.md"
     ],
     "created_at": "2026-05-18T00:00:00Z",
     "last_updated_at": "2026-06-03T00:00:00Z"

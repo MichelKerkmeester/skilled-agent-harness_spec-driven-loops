@@ -1,0 +1,65 @@
+{
+  "sessionId": "fanout-gpt55r2-a-9-1781761314338-6u1ztm",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "id": "F-A9-001",
+      "severity": "P1",
+      "category": "retrieval-ranking",
+      "finding_class": "duplicate-channel-scoring",
+      "status": "active",
+      "title": "SQLite lexical routing double-counts the same FTS5 hits as both FTS and BM25 before keyword fusion",
+      "content_hash": "a9-001-lexical-duplicate-rrf",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:436",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1497",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1578",
+        ".opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts:308"
+      ]
+    },
+    {
+      "id": "F-A9-002",
+      "severity": "P1",
+      "category": "recovery-policy",
+      "finding_class": "evidence-gap-policy-bypass",
+      "status": "active",
+      "title": "Stage 4 evidence-gap detection is not forwarded under the field name the formatter uses for recovery policy",
+      "content_hash": "a9-002-evidence-gap-field-mismatch",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage4-filter.ts:272",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1294",
+        ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:1069",
+        ".opencode/skills/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts:249"
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": false,
+    "performance": false,
+    "concurrency-cancellation": false,
+    "maintainability": false,
+    "spec-vs-code-drift": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 0
+  },
+  "openFindingsCount": 2,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.33,
+  "graphConvergenceScore": 0,
+  "graphDecision": "STOP_MAX_ITERATIONS",
+  "graphBlockers": [
+    "dimensionCoverageGate",
+    "claimAdjudicationGate"
+  ],
+  "corruptionWarnings": []
+}

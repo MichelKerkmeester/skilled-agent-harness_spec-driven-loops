@@ -1,0 +1,57 @@
+{
+  "scope": "SQLite usage surfaces across system-spec-kit mcp_server, system-code-graph, and system-skill-advisor (better-sqlite3 + sqlite-vec + FTS5, recursive CTEs, pragmas, WAL, daemon/lease single-writer models) plus packet 027-xce-research-based-refinement storage changes (incremental-index schema v31-v34, causal tombstones, statediff reconciliation, OpenLTM retrieval observability), oriented at Turso/libSQL migration touchpoints",
+  "specFolder": ".opencode/specs/z_future/sqlite-to-turso",
+  "loopType": "context",
+  "executionMode": "auto",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "stuckThreshold": 2,
+  "maxToolCallsPerIteration": 12,
+  "relevanceGate": 0.55,
+  "agreementMin": 2,
+  "fanout": {
+    "mode": "by-model-shared-scope",
+    "concurrency": 3,
+    "executors": [
+      {
+        "kind": "cli-opencode",
+        "label": "mimo-a",
+        "model": "xiaomi/mimo-v2.5-pro",
+        "reasoningEffort": "high",
+        "promptFramework": "costar"
+      },
+      {
+        "kind": "cli-opencode",
+        "label": "mimo-b",
+        "model": "xiaomi/mimo-v2.5-pro",
+        "reasoningEffort": "high",
+        "promptFramework": "costar"
+      },
+      {
+        "kind": "cli-opencode",
+        "label": "mimo-c",
+        "model": "xiaomi/mimo-v2.5-pro",
+        "reasoningEffort": "high",
+        "promptFramework": "costar"
+      }
+    ]
+  },
+  "report": {
+    "path": "context/context-report.md",
+    "jsonPath": "context/context-report.json"
+  },
+  "reducer": {
+    "enabled": true,
+    "registryFile": "context/findings-registry.json",
+    "dashboardFile": "context/deep-context-dashboard.md"
+  },
+  "lineage": {
+    "sessionId": "ctx-20260610-155419-sqlt",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "createdAt": "2026-06-10T15:54:19Z",
+  "status": "complete"
+}

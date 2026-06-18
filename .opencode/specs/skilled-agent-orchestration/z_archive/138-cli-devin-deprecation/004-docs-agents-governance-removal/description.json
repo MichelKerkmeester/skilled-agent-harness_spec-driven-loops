@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/138-cli-devin-deprecation/004-docs-agents-governance-removal",
+  "description": "Feature Specification: Phase 4: docs-agents-governance-removal",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "docs-agents-governance-removal"
+  ],
+  "lastUpdated": "2026-06-15T18:16:13.856Z",
+  "specId": "004",
+  "folderSlug": "docs-agents-governance-removal",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "138-cli-devin-deprecation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "deep-review/1.10",
+  "sessionId": "fanout-p018-opus-4-1781718236450-bbehhf",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 0,
+  "continuedFromRun": null,
+  "releaseReadinessState": "converged",
+  "loopType": "review",
+  "target": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/018-reindex-scan-responsiveness-and-cancellation",
+  "artifactDir": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/review/lineages/p018-opus-4",
+  "executor": "cli-claude-code",
+  "model": "claude-opus-4-8",
+  "maxIterations": 1,
+  "convergenceThreshold": 0.10,
+  "minStabilizationPasses": 1,
+  "dimensions": ["correctness", "security", "spec-alignment", "completeness"],
+  "traceabilityProtocols": ["spec_code", "checklist_evidence"],
+  "resource_map_present": false,
+  "resource_map": { "emit": false },
+  "fanoutLineage": "p018-opus-4",
+  "createdAt": "2026-06-17T20:00:00Z"
+}

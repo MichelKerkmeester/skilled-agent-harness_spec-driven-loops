@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/135-skill-readme-standardization/003-cli-codex-readme",
+  "description": "Feature Specification: cli-codex README",
+  "keywords": [
+    "feature",
+    "specification",
+    "cli-codex",
+    "readme"
+  ],
+  "lastUpdated": "2026-06-10T04:53:30.748Z",
+  "specId": "003",
+  "folderSlug": "cli-codex-readme",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "135-skill-readme-standardization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

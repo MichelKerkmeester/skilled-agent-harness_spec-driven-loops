@@ -1,0 +1,39 @@
+Act as a senior skill-architecture designer. READ-ONLY MODE: do NOT write or edit files. Your final message IS the deliverable — return it in the exact markdown skeleton at the end.
+
+# Goal
+Design the architecture/blueprint for a NEW OpenCode/Claude-Code skill called `mcp-figma`. PRIMARY tool = the `figma-cli` (silships). OPTIONAL secondary = the official Figma Dev Mode MCP server, invoked through this project's Code Mode. Model the skill on the two existing sibling skills (`mcp-open-design` and `mcp-chrome-devtools`), reusing their 8-section shape, smart-router pattern, and gating discipline. Output a concrete, buildable blueprint.
+
+# Verified facts from prior research (BUILD ON THESE — do not re-derive)
+- figma-cli: npm package `figma-ds-cli` v1.2.0; bins `figma-ds-cli` AND `figma-cli` (but npm `latest`=1.0.0 exposes ONLY `figma-ds-cli` — skill must verify the binary on PATH). Node>=18, macOS baseline, NO Figma API key (uses Figma Desktop session).
+- Connect: yolo `figma-cli connect` (patches Figma app.asar, CDP port 9222) vs safe `figma-cli connect --safe` (FigCli plugin, no patch). Revert via `figma-cli unpatch`. Daemon = HTTP 127.0.0.1:3456 + X-Daemon-Token (~/.figma-ds-cli/.daemon-token); verbs: daemon status/diagnose/start/stop/restart/reconnect.
+- Command surface tagged READ-ONLY / MUTATING / DESTRUCTIVE. Destructive set: var delete-all, var delete-batch, delete/remove, node delete, undo, unwrap, fj delete, plugins uninstall, dev unlink, component prop delete, grid clear, annotate clear. `eval`/`raw`/`run` = treat as MUTATING (arbitrary). Design I/O: `extract`→DESIGN.md (11 sections); `import` from tailwind/css/tokens.json/storybook; `var:name` binding.
+- figma-cli ships NO MCP of its own (verified). "The figma mcp" = the SEPARATE official Figma Dev Mode MCP: remote https://mcp.figma.com/mcp (HTTP, OAuth, catalog-gated, broadest, recommended) and desktop http://127.0.0.1:3845/mcp (HTTP, Dev Mode + open file). Tool surface: get_design_context, get_variable_defs, get_screenshot, get_metadata, get_code_connect_map, search_design_system, use_figma (write, Full seat), etc.
+- Code Mode: call_tool_chain, naming `{manual}.{manual}_{tool}`. A community Framelink `figma-developer-mcp` (stdio, FIGMA_API_KEY) is ALREADY registered as manual `figma` in .utcp_config.json. http transport is framework-supported (@utcp/http loaded) but UNPROVEN here (all existing manuals are stdio); `mcp-remote` stdio bridge is the conservative path for the official server.
+
+# LOCAL files to READ (use Read; --dir is repo root) — copy their real structure/voice
+- .opencode/skills/mcp-open-design/SKILL.md   (CLI + optional-MCP hybrid; daemon model; gated mutating verbs; sk-interface-design handoff; 8-section shape)
+- .opencode/skills/mcp-chrome-devtools/SKILL.md  (CLI-primary + MCP-via-Code-Mode; isolated instances; routing table)
+- .opencode/skills/sk-doc/assets/skill/skill_md_template.md  (the canonical SKILL.md template/section order)
+- .opencode/skills/sk-doc/assets/skill/skill_smart_router.md  (the smart-router resilience pattern)
+
+# Questions to answer (produce concrete, buildable output)
+1. SKILL IDENTITY: propose frontmatter — `name`, one-line `description` (house voice), `allowed-tools` (Bash for the CLI; mcp__code_mode__call_tool_chain for the optional MCP; Read/Grep/Glob/Edit/Write as needed), `version`, keywords line.
+2. SMART ROUTER: propose `INTENT_SIGNALS` for figma (e.g. CREATE/RENDER, DESIGN-SYSTEM/TOKENS, INSPECT/EXPORT, CONNECT/SETUP/DAEMON, MCP-CONTEXT, TROUBLESHOOT) with keywords + weights, a `RESOURCE_MAP`, and the primary detection signal (CLI vs MCP direction). Keep it consistent with the sibling skills' router shape.
+3. 8-SECTION SKILL.md BLUEPRINT: for each of the 8 sections (1 WHEN TO USE, 2 SMART ROUTING, 3 HOW IT WORKS, 4 RULES, 5 REFERENCES, 6 SUCCESS CRITERIA, 7 INTEGRATION POINTS, 8 REFERENCES & RELATED), state exactly what content goes there for mcp-figma (bullet outline, not full prose).
+4. CLI-PRIMARY vs MCP-OPTIONAL split: a crisp routing rule the skill states (CLI = author/modify/export in Figma; MCP = pull design context/code/vars INTO the agent).
+5. RULES: draft the ALWAYS / NEVER / ESCALATE lists — must include: verify the binary on PATH; require Figma Desktop running; gate every DESTRUCTIVE verb (confirm + explicit target + rollback); never auto-apply the yolo app.asar patch without consent; treat eval/raw as arbitrary mutation; apply sk-interface-design when a read/export feeds a design decision; optional-MCP is opt-in.
+6. REFERENCE-FILE PLAN: which `references/*.md` files to create and what each holds (propose names, e.g. figma_cli_reference.md, mcp_wiring.md, code_mode_integration.md / tool_surface.md, troubleshooting.md). Map to the sibling skills' reference split.
+7. CROSS-SKILL EDGES: graph-metadata edges (depends_on / enhances / siblings) — propose targets + weights + context (e.g. sk-interface-design depends_on, sk-code enhances, mcp-code-mode + mcp-chrome-devtools + mcp-open-design + mcp-magicpath siblings).
+
+# Output skeleton (return EXACTLY this)
+## IT3 — mcp-figma skill architecture
+### Skill identity (frontmatter proposal)
+### Smart router (INTENT_SIGNALS + RESOURCE_MAP + detection)
+### 8-section SKILL.md blueprint
+### CLI-primary vs MCP-optional split
+### RULES (ALWAYS / NEVER / ESCALATE)
+### Reference-file plan
+### Cross-skill edges (graph-metadata)
+### Confidence + unknowns
+
+Cite the local file path for each structural choice you borrow. If a read fails, say so.

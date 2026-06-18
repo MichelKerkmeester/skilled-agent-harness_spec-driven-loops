@@ -6,6 +6,7 @@ trigger_phrases:
   - "advisor lease semantics"
   - "single writer lease"
 importance_tier: "important"
+contextType: "implementation"
 ---
 
 # Daemon Lease Contract
@@ -42,9 +43,10 @@ Only one advisor daemon may hold the workspace lease for a resolved database dir
 
 ### Launcher-Boundary Enforcement
 
-The `mk-skill-advisor-launcher.cjs` script enforces single-writer semantics at process startup before opening the SQLite skill-graph database. It calls `isLeaseHeld()` from `lib/daemon/lease.ts` to probe the lease state:
+The `mk-skill-advisor-launcher.cjs` script enforces single-writer semantics at process startup before opening the SQLite skill-graph database. It combines the owner-lease sidecar with the launcher PID lease and bridges secondary clients through `maybeBridgeLeaseHolder` when a live owner already exists:
 
-- If `held === true && staleReclaimable === false`: the launcher prints `LEASE_HELD_BY:<ownerPid>` to stdout and exits with code 0 without opening the database.
+- If a live owner holds the lease: the launcher tries to bridge this client's stdio to the live owner's IPC socket through the session proxy. `LEASE_HELD_BY:<ownerPid>` is now only the fallback diagnostic when bridging is disabled or the socket cannot be used.
+- If the socket is dead or refused while the owner can be reclaimed: the launcher enters the guarded respawn path instead of treating `LEASE_HELD_BY` as the normal outcome.
 - If `staleReclaimable === true`: the launcher logs `staleReclaimed: true` and continues normal bootstrap (the existing `acquireSkillGraphLease` call reclaims the lease).
 - If `held === false`: the launcher continues normal bootstrap.
 
@@ -114,7 +116,7 @@ During the Phase 006 compatibility window, launcher startup also probes the old 
 | Failure | Symptom | Recovery |
 |---|---|---|
 | Lease holder PID killed without releasing | New daemon waits until the row is stale | Stale-lease recovery fires after heartbeat timeout. If recovery itself fails, inspect `skill-graph-daemon-lease.sqlite` beside the DB directory |
-| Legacy rolling-start owner still alive | New launcher prints `LEASE_HELD_BY:<pid> ... (legacy path)` | Stop the old owner or wait for it to exit, then restart with the canonical lease path |
+| Legacy rolling-start owner still alive | New launcher reports `LEASE_HELD_BY:<pid> ... (legacy path)` for the legacy path that cannot be bridged through the current session proxy | Stop the old owner or wait for it to exit, then restart with the canonical lease path |
 | Filesystem locks the lease database | Stale-lease cleanup fails with EBUSY or EPERM | Check filesystem permissions on the resolved database directory. Verify no antivirus or backup process is holding the file open |
 | Two daemons acquire concurrently due to filesystem race | SQLite database shows corruption (rare on macOS APFS, possible on NFS) | Stop both daemons. Delete `skill-graph.sqlite{,-wal,-shm}`. Run `advisor_rebuild --force` |
 | Heartbeat thread dies but main daemon continues | Lease ages out, waiter triggers stale-lease recovery, kills the lease | Restart the daemon (MCP server restart). Investigate why heartbeat thread crashed |
@@ -128,7 +130,7 @@ During the Phase 006 compatibility window, launcher startup also probes the old 
 
 This keeps "same SQLite file" and "same lease owner" aligned:
 
-- Two launchers in different workspaces pointing at the same shared DB directory contend on the same lease and the second launcher exits with `LEASE_HELD_BY:<pid>`.
+- Two launchers in different workspaces pointing at the same shared DB directory contend on the same lease; the second launcher bridges to the live owner when the IPC socket is usable and otherwise falls back to `LEASE_HELD_BY:<pid>` or the guarded respawn path.
 - Two launchers in one workspace pointing at different DB directories use different lease files and can run independently because they write different databases.
 
 Recommended operator practice: keep strict single-writer mode enabled unless the intent is an isolated test run against separate DB directories.

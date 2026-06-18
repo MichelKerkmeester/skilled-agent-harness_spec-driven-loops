@@ -569,6 +569,55 @@ describe('launcher session proxy frame engine', () => {
     proxy.stop();
   });
 
+  it('keeps a queued request alive when stdin closes during reattach', async () => {
+    const input = new FakeInput();
+    const output = new FakeOutput();
+    const sockets: FakeSocket[] = [];
+    const connectFreshSocket: Array<() => void> = [];
+    const request = toolCall('stdin-ended', 'memory_search');
+    const response = frame({ jsonrpc: '2.0', id: 'stdin-ended', result: { ok: true } });
+    const proxy = createSessionProxy({
+      socketPath: 'tcp://127.0.0.1:65535',
+      stdin: input,
+      stdout: output,
+      probe: aliveProbe,
+      connect: () => {
+        const socket = new FakeSocket();
+        sockets.push(socket);
+        socket.onWrite = (chunk) => {
+          if (!chunk.includes('stdin-ended')) return;
+          queueMicrotask(() => {
+            socket.emit('data', `${response}\n`);
+            socket.emit('close');
+          });
+        };
+        if (sockets.length === 1) {
+          queueMicrotask(() => socket.emit('connect'));
+        } else {
+          connectFreshSocket.push(() => socket.emit('connect'));
+        }
+        return socket;
+      },
+      log: () => undefined,
+      maxReattachAttempts: 3,
+      maxColdStartAttempts: 1,
+    });
+
+    await proxy.start();
+    sockets[0]?.emit('close');
+    await flushMicrotasks();
+    input.send(request);
+    input.emit('end');
+    input.emit('close');
+    connectFreshSocket.shift()?.();
+    await flushMicrotasks(20);
+
+    expect(sockets[1]?.writes.some((chunk) => chunk.includes('stdin-ended'))).toBe(true);
+    expect(outputFrames(output)).toContainEqual(JSON.parse(response) as Record<string, unknown>);
+    expect(output.ended).toBe(true);
+    proxy.stop();
+  });
+
   it('does not double-send initialize when the backend dies before answering it', async () => {
     const input = new FakeInput();
     const output = new FakeOutput();

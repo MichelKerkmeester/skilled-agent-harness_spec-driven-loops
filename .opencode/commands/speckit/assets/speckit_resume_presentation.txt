@@ -1,0 +1,144 @@
+# SpecKit Resume Presentation Contract
+
+Presentation source of truth for `/speckit:resume`. The command router owns only mode selection and asset loading. Workflow YAML owns execution. This file owns visible prompts, dashboard layout, and final result displays.
+
+## 1. Startup Presentation
+
+For `:confirm` or no suffix, default to interactive recovery and confirm ambiguous session choices. For `:auto`, resolve setup without prompting when a valid spec folder or high-confidence candidate exists.
+
+### Auto Pre-Bound Setup Answers
+
+```yaml
+PRE-BOUND SETUP ANSWERS:
+  spec_folder: <spec-folder>
+  phase_folder: ""
+  no_redirect: false
+  detection_method: provided
+  execution_mode: AUTONOMOUS
+  continuation_choice: indexed-continuity
+  artifact_recovery_choice: continue_anyway
+  memory_choice: fast
+  artifacts_valid: true
+  continuity_sources_available: yes
+```
+
+Unknown fields warn. Malformed lines are parse errors. Marker values override flags; omitted fields fall back to defaults.
+
+### Auto Resolution Table
+
+| Field | Required | Default | Tier 2 |
+|-------|----------|---------|--------|
+| `spec_folder` | Yes | none | Yes, when multiple viable folders are detected |
+| `phase_folder` | No | none | No |
+| `no_redirect` | No | `false` | No |
+| `detection_method` | Yes | auto-detect | No |
+| `execution_mode` | Yes | `AUTONOMOUS` under `:auto` | No |
+| `continuation_choice` | No | none | Yes, only when handoff and indexed continuity disagree |
+| `artifact_recovery_choice` | No | `continue_anyway` under resume auto mode | No |
+| `memory_choice` | No | `fast` | No |
+| `artifacts_valid` | Yes | auto-detect | No |
+| `continuity_sources_available` | No | auto-detect | No |
+
+### Consolidated Prompt Template
+
+```text
+SpecKit Resume setup
+
+Q0. Spec Folder, if not detected or provided: A) List and select  B) Start new with /speckit:complete  C) Cancel  E) Phase folder
+Q1. Confirm Detected Session, if auto-detected: A) Yes, resume  B) Select different folder  C) Cancel
+Q2. Continuation Validation, if handoff and indexed continuity disagree: A) Use handoff  B) Use indexed continuity  C) Investigate first
+Q3. Missing Artifacts, if required artifacts are incomplete: A) Run /speckit:plan  B) Select different folder  C) Continue anyway
+Q4. Recovery Depth, when the canonical packet is thin: A) Fast resume  B) Fill missing next step or blockers  C) Deeper context  D) Canonical artifacts only
+
+Reply format: "A, A" or "A, A, B".
+```
+
+Never split these questions into separate visible prompts. Prefer the canonical file ladder before supplemental memory enrichment.
+
+### Auto Fail-Fast Display
+
+```text
+SpecKit Resume auto setup failed
+Missing required inputs: [field-list]
+Provide a spec folder or rerun with :confirm.
+STATUS=FAIL ERROR="missing required setup inputs"
+```
+
+## 2. Dashboard Layout
+
+```text
+SPECKIT RESUME DASHBOARD
+Spec: [spec_path]
+Mode: [AUTONOMOUS|INTERACTIVE]
+Detection: [provided|phase-folder|ranked|none]
+Artifacts: spec.md [status] | plan.md [status] | tasks.md [status]
+Continuity source: [handover|continuity|spec_docs|memory_context|memory_search|combined]
+Progress: [done]/[total] tasks | checklist [done]/[total]
+Confidence: [high|medium|low]
+Next: [next safe action]
+```
+
+### Session Selection Panel
+
+```text
+Found session candidate
+Spec: [spec_path]
+Last activity: [timestamp]
+Artifacts valid: [yes|partial|no]
+Resume this session? [Confirm / Select Different / Cancel]
+```
+
+### Recovery Depth Panel
+
+```text
+Recovery depth
+A) Fast resume - current brief is enough
+B) Fill missing next step / blockers - target only missing essentials
+C) Deep context - enrich the canonical packet if essentials remain thin
+D) Artifacts only - use handover, continuity, and spec docs without extra memory
+```
+
+### Stale Session Warning
+
+```text
+Stale session warning
+Last activity: [date]
+Context may be outdated.
+A) Resume anyway  B) Fresh start  C) Review first  D) Cancel
+```
+
+## 3. Results Display
+
+### Resume Brief
+
+```text
+RESUME BRIEF
+Spec: [path]
+Confidence: [high|medium|low] | Source: [handover|continuity|spec_docs|mcp_enrichment|combined]
+Now: [phase/current task]
+Last confirmed: [action]
+Next safe action: [action]
+Blockers: [none|details]
+Progress: [X]% ([done]/[total] tasks)
+Why this is next: [short reason based on tasks/checklist/memory]
+```
+
+### No Session
+
+```text
+No active SpecKit session found.
+Provide a spec folder path or start a new packet with /speckit:complete.
+STATUS=FAIL ERROR="no active session"
+```
+
+### Next-Step Suggestions
+
+| Condition | Suggested Command | Reason |
+|-----------|-------------------|--------|
+| Planning incomplete | `/speckit:plan [feature-description]` | Complete planning phase |
+| Ready to implement | `/speckit:implement [spec-folder-path]` | Continue implementation |
+| Implementation in progress | Continue from last task | Resume where work stopped |
+| Need broader history | `/memory:search history [spec-folder]` | Inspect prior context |
+| Ending again | `/memory:save [spec-folder-path]` | Refresh continuity before pausing |
+
+End interactive presentations with: `What would you like to do next?`

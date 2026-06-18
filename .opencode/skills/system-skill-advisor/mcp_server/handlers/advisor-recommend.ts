@@ -13,7 +13,7 @@ import { scoreAdvisorPrompt } from '../lib/scorer/fusion.js';
 import { withSemanticShadowPromptEmbedding } from '../lib/scorer/lanes/semantic-shadow.js';
 import { DEFAULT_SHADOW_SCORER_LANE_WEIGHTS } from '../lib/scorer/lane-registry.js';
 import { sanitizeSkillLabel } from '../lib/render.js';
-import { recordShadowDelta } from '../lib/shadow/shadow-sink.js';
+import { recordShadowDelta, shadowDeltaSinkEnabled } from '../lib/shadow/shadow-sink.js';
 import { findAdvisorWorkspaceRoot } from '../lib/utils/workspace-root.js';
 import {
   AdvisorRecommendInputSchema,
@@ -112,7 +112,7 @@ function disabledOutput(
     freshness: 'unavailable',
     trustState: unavailableTrustState('ADVISOR_DISABLED'),
     warnings: ['ADVISOR_DISABLED'],
-    abstainReasons: ['Skill advisor disabled by SPECKIT_SKILL_ADVISOR_HOOK_DISABLED.'],
+    abstainReasons: ['Skill advisor disabled by MK_SKILL_ADVISOR_HOOK_DISABLED.'],
   });
 }
 
@@ -156,9 +156,85 @@ function safeMany(values: readonly string[] | undefined): string[] {
     .filter((value): value is string => Boolean(value));
 }
 
+function evidenceFeature(value: string): string {
+  const prefix = value.split(':', 1)[0];
+  switch (prefix) {
+    case 'phrase':
+      return 'phrase_match';
+    case 'token':
+      return 'token_match';
+    case 'hint':
+      return 'category_hint';
+    case 'derived':
+      return 'derived_skill_signal';
+    case 'doc':
+      return 'doc_reference_signal';
+    case 'cosine':
+      return 'semantic_similarity';
+    default:
+      if (value.includes('disambiguation')) return 'disambiguation_rule';
+      if (value.includes('surface')) return 'surface_signal';
+      if (value.includes('intent')) return 'intent_signal';
+      if (value.includes('loop')) return 'workflow_signal';
+      return 'scorer_signal';
+  }
+}
+
+function publicWhyRecommended(recommendation: ScoredRecommendation) {
+  const positiveLanes = recommendation.laneContributions
+    .filter((lane) => lane.rawScore > 0 || lane.weightedScore > 0)
+    .sort((left, right) => right.weightedScore - left.weightedScore)
+    .slice(0, 4);
+  const matchedSkillFeatures = positiveLanes.flatMap((lane) => (
+    Array.from(new Set(lane.evidence.map((entry) => evidenceFeature(entry)))).map((feature) => ({
+      lane: lane.lane,
+      feature,
+    }))
+  ));
+  const dominant = recommendation.dominantLane;
+  return {
+    reason: dominant
+      ? `Recommended from ranker signals: ${dominant} contributed the strongest live score.`
+      : 'Recommended from ranker signals without a single dominant live lane.',
+    dominantLane: dominant,
+    topLanes: positiveLanes.map((lane) => ({
+      lane: lane.lane,
+      rawScore: lane.rawScore,
+      weightedScore: lane.weightedScore,
+      weight: lane.weight,
+      shadowOnly: lane.shadowOnly,
+      evidenceTypes: Array.from(new Set(lane.evidence.map((entry) => evidenceFeature(entry)))),
+      evidenceCount: lane.evidence.length,
+    })),
+    matchedSkillFeatures,
+  };
+}
+
+// Doc evidence entries are skill-relative markdown paths emitted by the
+// derived lane as `doc:<path>`. The allowlist rejects anything that
+// could smuggle prompt content or path traversal into the response.
+const SAFE_DOC_PATH = /^(references|assets)\/[A-Za-z0-9_./-]+\.md$/;
+
+export function matchedDocsFromContributions(
+  recommendation: { readonly laneContributions: ReadonlyArray<{ readonly evidence: readonly string[] }> },
+): string[] {
+  const docs: string[] = [];
+  for (const lane of recommendation.laneContributions) {
+    for (const entry of lane.evidence) {
+      if (!entry.startsWith('doc:')) continue;
+      const path = entry.slice(4);
+      if (!SAFE_DOC_PATH.test(path) || path.includes('..')) continue;
+      if (!docs.includes(path)) docs.push(path);
+      if (docs.length >= 3) return docs;
+    }
+  }
+  return docs;
+}
+
 function publicRecommendation(recommendation: ScoredRecommendation, includeAttribution: boolean) {
   const skillId = sanitizeSkillLabel(recommendation.skill);
   if (!skillId) return null;
+  const matchedDocs = matchedDocsFromContributions(recommendation);
   const redirectFrom = safeMany(recommendation.redirectFrom);
   const redirectTo = sanitizeSkillLabel(recommendation.redirectTo ?? '');
   const sanitizedStatus = sanitizeSkillLabel(recommendation.lifecycleStatus);
@@ -182,7 +258,9 @@ function publicRecommendation(recommendation: ScoredRecommendation, includeAttri
         weight: lane.weight,
         shadowOnly: lane.shadowOnly,
       })),
+      why_recommended: publicWhyRecommended(recommendation),
     } : {}),
+    ...(matchedDocs.length > 0 ? { matchedDocs } : {}),
     ...(redirectFrom.length > 0 ? { redirectFrom } : {}),
     ...(redirectTo ? { redirectTo } : {}),
     ...(status ? { status } : {}),
@@ -228,7 +306,11 @@ async function computeRecommendationOutput(input: AdvisorRecommendInput): Promis
     confidenceThreshold: input.options?.confidenceThreshold,
     uncertaintyThreshold: input.options?.uncertaintyThreshold,
   });
-  const status = readAdvisorStatus({ workspaceRoot });
+  // Detect on-disk corruption here too: without it a malformed artifact reads
+  // 'live' from the generation counters and the recommend path would serve
+  // results as fresh. The verdict is cached per generation, so the quick_check
+  // runs at most once per rebuild rather than on every recommendation.
+  const status = readAdvisorStatus({ workspaceRoot, checkArtifactIntegrity: true });
   if (status.freshness === 'unavailable') {
     return unavailableOutput(status, workspaceRoot, effectiveThresholds);
   }
@@ -297,16 +379,18 @@ async function computeRecommendationOutput(input: AdvisorRecommendInput): Promis
       : {}),
   };
   const parsed = AdvisorRecommendOutputSchema.parse(output);
-  for (const shadow of parsed._shadow?.recommendations ?? []) {
-    recordShadowDelta({
-      prompt: input.prompt,
-      recommendation: shadow.skillId,
-      liveScore: shadow.liveScore,
-      shadowScore: shadow.shadowScore,
-      delta: shadow.delta,
-      dominantLane: shadow.dominantShadowLane,
-      timestamp: parsed.generatedAt,
-    });
+  if (shadowDeltaSinkEnabled()) {
+    for (const shadow of parsed._shadow?.recommendations ?? []) {
+      recordShadowDelta({
+        prompt: `hmac:${key}`,
+        recommendation: shadow.skillId,
+        liveScore: shadow.liveScore,
+        shadowScore: shadow.shadowScore,
+        delta: shadow.delta,
+        dominantLane: shadow.dominantShadowLane,
+        timestamp: parsed.generatedAt,
+      });
+    }
   }
   advisorPromptCache.set({
     key,
@@ -327,7 +411,8 @@ export async function handleAdvisorRecommend(args: unknown): Promise<HandlerResp
     confidenceThreshold: input.options?.confidenceThreshold,
     uncertaintyThreshold: input.options?.uncertaintyThreshold,
   });
-  const data = process.env.SPECKIT_SKILL_ADVISOR_HOOK_DISABLED === '1'
+  const data = process.env.MK_SKILL_ADVISOR_HOOK_DISABLED === '1'
+    || process.env.SPECKIT_SKILL_ADVISOR_HOOK_DISABLED === '1'
     ? disabledOutput(workspaceRoot, effectiveThresholds)
     : await computeRecommendationOutput(input);
   return {

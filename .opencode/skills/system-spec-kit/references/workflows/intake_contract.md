@@ -1,6 +1,15 @@
 ---
 title: Intake Contract Reference
 description: Canonical spec-folder intake contract shared by /spec_kit:plan and /spec_kit:complete. Defines folder classification, repair-mode routing, staged trio publication, relationship capture, resume semantics, and the intake lock.
+trigger_phrases:
+  - "intake contract"
+  - "folder state classification"
+  - "repair-mode routing"
+  - "staged trio publication"
+  - "consolidated interview"
+  - "intake lock"
+importance_tier: important
+contextType: planning
 ---
 
 # Intake Contract Reference
@@ -278,7 +287,7 @@ Reads `handover.md` and `_memory.continuity` for `reentry_reason` and `resume_qu
 | Description generator | `.opencode/skills/system-spec-kit/scripts/dist/spec-folder/generate-description.js` |
 | Memory save script | `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` |
 | Validator | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <folder> --strict` |
-| Deep-research spec check | `.opencode/skills/deep-research/references/protocol/spec_check_protocol.md` |
+| Deep-research spec check | `.opencode/skills/deep-loop-workflows/deep-research/references/protocol/spec_check_protocol.md` |
 
 ---
 

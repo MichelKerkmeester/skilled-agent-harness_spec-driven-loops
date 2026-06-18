@@ -1,6 +1,14 @@
 ---
 title: Smart Router - Routing Logic and Resource Maps
 description: Authoritative routing logic for sk-code's surface-based routing — intent classification, surface-to-resource maps for WEBFLOW + OPENCODE + MOTION_DEV, load tiers, verification commands, and UNKNOWN fallback.
+trigger_phrases:
+  - "sk-code smart routing"
+  - "surface resource maps"
+  - "intent classification routing"
+  - "load tier resource loading"
+  - "unknown surface fallback"
+importance_tier: important
+contextType: general
 ---
 
 # Smart Router - Routing Logic and Resource Maps
@@ -289,7 +297,7 @@ Returned when intent confidence is low (`max(intent_scores) < 0.5`) OR when the 
 
 This is the single machine-readable projection of the prose Intent Model (§2) and the per-surface maps (§4 Webflow, §5 Motion.dev, §6 OpenCode). The prose sections above are the human-facing contract; this block is the byte-for-byte source a deterministic router-replay parses. Keep the two in sync: when a map row changes above, update the matching `RESOURCE_MAP` entry here.
 
-A drift guard (`.opencode/skills/deep-improvement/scripts/skill-benchmark/tests/sk-code-router-sync.vitest.ts`) keeps this block honest: it fails if any path here is missing on disk, if any routable `references/`/`assets/` doc stops being covered, or if an explicit full path named in the prose maps is absent here. Run it standalone with `npx vitest run skill-benchmark/tests/sk-code-router-sync.vitest.ts` from `.opencode/skills/deep-improvement/scripts`.
+A drift guard (`.opencode/skills/deep-loop-workflows/deep-improvement/scripts/skill-benchmark/tests/sk-code-router-sync.vitest.ts`) keeps this block honest: it fails if any path here is missing on disk, if any routable `references/`/`assets/` doc stops being covered, or if an explicit full path named in the prose maps is absent here. Run it standalone with `npx vitest run skill-benchmark/tests/sk-code-router-sync.vitest.ts` from `.opencode/skills/deep-loop-workflows/deep-improvement/scripts`.
 
 This projection is intentionally lossy in two documented ways the flat dictionary cannot express, both enforced by the prose contract and the surface-detection pseudocode in `SKILL.md` §2:
 

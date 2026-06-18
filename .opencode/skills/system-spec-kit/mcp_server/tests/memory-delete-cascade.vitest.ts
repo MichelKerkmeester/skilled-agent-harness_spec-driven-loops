@@ -4,6 +4,8 @@ import path from 'node:path';
 
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 
+import { getCausalEdgesGeneration } from '../lib/storage/causal-generation';
+
 type VectorIndexModule = typeof import('../lib/search/vector-index');
 
 describe('Phase 5 cascade delete cleanup', () => {
@@ -57,6 +59,30 @@ describe('Phase 5 cascade delete cleanup', () => {
     expect(db.prepare('SELECT COUNT(*) AS count FROM community_assignments WHERE memory_id = ?').get(rootId)).toEqual({ count: 0 });
     expect(db.prepare('SELECT COUNT(*) AS count FROM memory_summaries WHERE memory_id = ?').get(rootId)).toEqual({ count: 0 });
     expect(db.prepare('SELECT COUNT(*) AS count FROM memory_entities WHERE memory_id = ?').get(rootId)).toEqual({ count: 0 });
+    expect(db.prepare('SELECT COUNT(*) AS count FROM causal_edges WHERE source_id = ? OR target_id = ?').get(String(rootId), String(rootId))).toEqual({ count: 0 });
+  });
+
+  it('delete sweep that removes causal edges bumps the causal-edges generation so causal-boost search caches go stale', () => {
+    const rootId = mod.indexMemoryDeferred({
+      specFolder: 'specs/test-cascade-generation',
+      filePath: path.join(tmpDir, 'memory-cascade-gen-root.md'),
+      title: 'Cascade Generation Root',
+    });
+    const neighborId = mod.indexMemoryDeferred({
+      specFolder: 'specs/test-cascade-generation',
+      filePath: path.join(tmpDir, 'memory-cascade-gen-neighbor.md'),
+      title: 'Cascade Generation Neighbor',
+    });
+    const db = mod.getDb();
+
+    db.prepare(`INSERT INTO causal_edges (source_id, target_id, relation) VALUES (?, ?, ?)`)
+      .run(String(rootId), String(neighborId), 'supports');
+
+    const generationBefore = getCausalEdgesGeneration();
+    expect(mod.deleteMemory(rootId)).toBe(true);
+    // Old behavior: the delete sweep cleared per-db caches but never bumped the
+    // generation, so an identical causal-boost search returned a stale payload.
+    expect(getCausalEdgesGeneration()).toBeGreaterThan(generationBefore);
     expect(db.prepare('SELECT COUNT(*) AS count FROM causal_edges WHERE source_id = ? OR target_id = ?').get(String(rootId), String(rootId))).toEqual({ count: 0 });
   });
 

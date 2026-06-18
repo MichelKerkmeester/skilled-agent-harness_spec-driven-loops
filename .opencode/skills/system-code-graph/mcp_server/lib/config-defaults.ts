@@ -1,10 +1,10 @@
 // ───────────────────────────────────────────────────────────────────
 // MODULE: Code Graph Config Defaults
 // ───────────────────────────────────────────────────────────────────
-// Single source of truth for P1 hardcoded config values.
+// Single source of truth for hardcoded config values.
 // All scalar defaults derive from env-var overrides; object defaults
-// accept JSON overrides via env var.  Per ADR-A pattern from
-// skill-advisor: env overrides merge partial overrides.
+// accept JSON overrides via env var, merging partial overrides the way
+// the skill-advisor env-override path does.
 
 function parsePositiveInt(value: string | undefined, fallback: number): number {
   if (value === undefined) return fallback;

@@ -1,6 +1,13 @@
 ---
 title: Swiper.js Integration Patterns
 description: Production-tested Swiper.js configurations for carousels and marquees with IntersectionObserver autoplay control, accessibility, and Webflow integration.
+trigger_phrases:
+  - "webflow swiper patterns"
+  - "swiper carousel configuration"
+  - "marquee autoplay control"
+  - "intersectionobserver autoplay"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Swiper.js Integration Patterns

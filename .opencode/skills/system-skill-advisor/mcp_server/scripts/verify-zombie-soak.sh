@@ -2,9 +2,8 @@
 # ───────────────────────────────────────────────────────────────
 # SCRIPT: verify-zombie-soak.sh
 # ───────────────────────────────────────────────────────────────
-# Verifies SC-002 (zero-zombie soak) for the three MCP launchers
-# shipped in packets 006-skill-advisor/006-009. Run after the new
-# launcher binaries have been live for ≥ 24 hours under normal
+# Verifies that each MCP launcher maintains a single live process after
+# the launcher binaries have been live for ≥ 24 hours under normal
 # multi-runtime use.
 #
 # Exit 0 = clean (≤ 1 launcher per server, no excess).

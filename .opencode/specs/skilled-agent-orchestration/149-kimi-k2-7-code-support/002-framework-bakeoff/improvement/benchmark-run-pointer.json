@@ -1,0 +1,12 @@
+{
+  "run_label": "006-kimi-k2.7-prompt-framework",
+  "outputs_dir": ".opencode/skills/sk-prompt-small-model/benchmarks/006-kimi-k2.7-prompt-framework",
+  "deterministic_verdict": "TIE",
+  "correctness_saturated": true,
+  "llm_judge_top": [
+    "cidi",
+    "costar"
+  ],
+  "llm_judge_bottom": "rcaf",
+  "generated_at": "2026-06-15T10:15:55.871Z"
+}

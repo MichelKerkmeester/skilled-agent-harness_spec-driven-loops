@@ -1,30 +1,45 @@
 ---
 title: Command Authoring Checklist
 description: Checklist for authoring slash commands with execution-path YAML, runtime mirrors, and verification gates.
+trigger_phrases:
+  - "command authoring checklist"
+  - "slash command authoring"
+  - "execution path yaml"
+  - "command runtime mirrors"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Command Authoring Checklist
 
-## 1. PURPOSE
+Checklist for authoring or modifying `/<command>` slash commands with consistent command markdown, execution-path YAML, runtime mirrors, and verification gates.
+
+## 1. OVERVIEW
+
+### Purpose
 
 This checklist keeps `/<command>` workflows consistent across command markdown, execution-path YAML, and runtime mirrors. It is for commands that users invoke directly, especially commands that dispatch agents, write spec folders, or route through create/spec-kit workflows.
 
-## 2. WHEN TO USE
+### Usage
 
 - Use this when authoring a new slash command under `.opencode/commands/`.
 - Use this when modifying command frontmatter, execution paths, or command-owned assets.
 - Use this when adding `:auto` or `:confirm` behavior through YAML execution files.
 - Use this when mirroring commands into Claude or Codex runtime formats.
 
-## 3. PRE-CHECKS
+---
 
-- [ ] Read canonical command examples at `.opencode/commands/speckit/complete.md` and `.opencode/commands/create/skill.md`.
+## 2. PRE-CHECKS
+
+- [ ] Read canonical command examples at `.opencode/commands/speckit/complete.md` and `.opencode/commands/create/sk-skill.md`.
 - [ ] Verify whether the command needs execution-path files such as `assets/<command>_auto.yaml` and `assets/<command>_confirm.yaml`.
 - [ ] Confirm command scope, required user inputs, dispatch targets, and file-write authority.
 - [ ] Check mirror destinations: `.claude/commands/` and `.codex/prompts/`.
 - [ ] Confirm the command does not bypass skill-owned workflows for deep research, deep review, memory save, or spec folder writes.
 
-## 4. STEPS
+---
+
+## 3. STEPS
 
 1. Define the command trigger, supported suffixes, and expected arguments.
 2. Author the OpenCode command markdown under `.opencode/commands/<group>/<name>.md`.
@@ -33,14 +48,18 @@ This checklist keeps `/<command>` workflows consistent across command markdown, 
 5. Mirror the command into `.claude/commands/` and `.codex/prompts/` when cross-runtime availability is required.
 6. Validate links, command examples, and execution-path references.
 
-## 5. POST-CHECKS
+---
+
+## 4. POST-CHECKS
 
 - [ ] Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <path> --strict` when the command change is part of a spec folder.
 - [ ] grep verification: `rg -n "assets/.+_(auto|confirm)\\.yaml|dispatch|allowed|validate" .opencode/commands/<group>/<name>.md .opencode/commands/<group>/assets`.
 - [ ] Cross-runtime mirror parity check: compare `.opencode/commands/`, `.claude/commands/`, and `.codex/prompts/` entries for the same command.
 
-## 6. RELATED RESOURCES
+---
 
-- sk-doc assets/command_template.md (source-of-truth for command document shape)
-- Prior examples: `.opencode/commands/speckit/complete.md`, `.opencode/commands/create/skill.md`
+## 5. RELATED RESOURCES
+
+- sk-doc assets/command/command_template.md (source-of-truth for command document shape)
+- Prior examples: `.opencode/commands/speckit/complete.md`, `.opencode/commands/create/sk-skill.md`
 - Verification recipes: `.opencode/skills/sk-code/assets/opencode/checklists/universal_checklist.md`

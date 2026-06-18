@@ -1,6 +1,14 @@
 ---
 title: YAML Frontmatter Templates
 description: Templates and validation rules for YAML frontmatter across all document types in the OpenCode ecosystem.
+trigger_phrases:
+  - "yaml frontmatter templates"
+  - "frontmatter validation rules"
+  - "frontmatter by document type"
+  - "skill reference asset frontmatter"
+  - "five field frontmatter block"
+importance_tier: important
+contextType: general
 ---
 
 # YAML Frontmatter Templates - Document Type Reference
@@ -41,7 +49,8 @@ allowed-tools: Read, Write, Bash
 |---------------|----------------------|--------|
 | **SKILL.md** | ✅ **Required** | AI needs metadata to discover and invoke skills |
 | **Command** | ✅ **Required** | Arguments and tools must be declared |
-| **Knowledge** | ❌ **Forbidden** | Pure content, no programmatic interface |
+| **Skill Reference/Asset** | ✅ **Required** | Skill Advisor harvests the 5-field block as routing signal |
+| **Knowledge (outside skills)** | ❌ **Forbidden** | Pure content, no programmatic interface |
 | **Spec** | ❌ **Not recommended** | Use inline metadata for flexibility |
 | **README** | ⚪ **Optional** | Usually none, unless documenting a skill |
 
@@ -109,14 +118,15 @@ Level 3: Field Format
 |---------------|------------------|-----------------|-----------------|
 | **SKILL.md** | ✅ Always | `name`, `description`, `allowed-tools` | `tags`, `category`, `version` |
 | **Command** | ✅ Always | `description`, `argument-hint`, `allowed-tools` | `name`, `model`, `version` |
-| **Knowledge** | ❌ Never | — | — |
+| **Skill Reference/Asset** | ✅ Always | `title`, `description`, `trigger_phrases`, `importance_tier`, `contextType` | — |
+| **Knowledge (outside skills)** | ❌ Never | — | — |
 | **Spec** | ❌ Avoid | — | Use inline metadata instead |
 | **README** | ⚪ Rarely | Only if in `.opencode/skills/*/` | — |
 
 ### Remove Frontmatter When
 
 **Content-Only Documents**:
-- Knowledge files (reference documentation)
+- Knowledge files outside skill folders (general reference documentation)
 - Spec files (planning documents)
 - General markdown files
 
@@ -124,6 +134,8 @@ Level 3: Field Format
 - Frontmatter implies programmatic interface
 - These documents are pure content
 - Adds confusion about document purpose
+
+**Exception — skill references and assets**: docs under `.opencode/skills/*/references/` and `.opencode/skills/*/assets/` are NOT frontmatter-free knowledge files. They carry the full 5-field block (see the Skill Reference/Asset entry above and the template in Section 4); skill and folder `README.md` files are exempt.
 
 ### Decision Framework
 
@@ -139,7 +151,11 @@ Is this document invoked programmatically?
 │
 └─► NO
     │
-    ├─► Is it a Knowledge file?
+    ├─► Is it a skill reference/asset (.opencode/skills/*/references/ or assets/)?
+    │   └─► Add the 5-field block: title, description, trigger_phrases,
+    │       importance_tier, contextType (READMEs exempt)
+    │
+    ├─► Is it a Knowledge file outside skill folders?
     │   └─► Remove frontmatter if present
     │
     ├─► Is it a Spec file?
@@ -330,6 +346,31 @@ argument-hint: [--confirm]
 model: opus
 ```
 
+### Skill Reference/Asset Fields
+
+**Purpose**: Routing metadata on every skill reference/asset doc. The Skill Advisor harvests these fields (flag-gated via `SPECKIT_ADVISOR_DOC_TRIGGERS`) and surfaces matching docs as `matchedDocs` pointers when ranking skills. Spec Kit Memory deliberately does not index skill docs.
+
+| Field | Format | Rules |
+|-------|--------|-------|
+| `title` | Plain string | Non-empty; usually mirrors the H1 |
+| `description` | Single line | Non-empty; no folded (`>`) or multiline scalars |
+| `trigger_phrases` | YAML block list | 3-8 items; distinctive lowercase multi-word phrases drawn from the doc's content |
+| `importance_tier` | Enum | `constitutional` \| `critical` \| `important` \| `normal` \| `temporary` \| `deprecated` — default `normal`; `important` only for formal contract/invariant docs |
+| `contextType` | Enum | `planning` \| `research` \| `implementation` \| `general` |
+
+**Trigger phrase quality**:
+```yaml
+# GOOD - distinctive, multi-word, content-derived
+trigger_phrases:
+  - "dqi scoring bands"
+  - "install guide scaffold"
+
+# BAD - generic single words or boilerplate
+trigger_phrases:
+  - "documentation"
+  - "reference"
+```
+
 ---
 
 ## 4. DOCUMENT TYPE TEMPLATES
@@ -376,9 +417,44 @@ allowed-tools: Read, Write, Bash
 ---
 ```
 
-### Knowledge File (No Frontmatter)
+### Skill Reference/Asset Frontmatter Template
 
-**Rule**: Knowledge files should **NOT** have YAML frontmatter.
+**Required Fields**: `title`, `description`, `trigger_phrases`, `importance_tier`, `contextType`
+
+Every doc under `.opencode/skills/*/references/` and `.opencode/skills/*/assets/` carries this full 5-field block (`README.md` files are exempt). The Skill Advisor harvests it as a flag-gated routing signal (`SPECKIT_ADVISOR_DOC_TRIGGERS`) with doc-level `matchedDocs` pointers. Spec Kit Memory never indexes skill docs — these fields exist for advisor routing, not memory search.
+
+```yaml
+---
+title: Doc Title - What This File Covers
+description: One-line description of what this doc provides (single line, no folded scalars)
+trigger_phrases:
+  - "distinctive phrase one"
+  - "distinctive phrase two"
+  - "distinctive phrase three"
+importance_tier: normal
+contextType: general
+---
+```
+
+**Complete Example**:
+```yaml
+---
+title: Human Voice Rules (HVR) - Writing Standards Reference
+description: Linguistic standards that eliminate detectable AI patterns and enforce natural human writing across all documentation.
+trigger_phrases:
+  - "hvr voice rules"
+  - "ai writing tells"
+  - "banned vocabulary list"
+importance_tier: important
+contextType: general
+---
+```
+
+Verify with `check-skill-doc-frontmatter.sh` (system-skill-advisor `mcp_server/scripts/`), which enforces this contract in coverage mode.
+
+### Knowledge File Outside Skill Folders (No Frontmatter)
+
+**Rule**: Knowledge files outside `.opencode/skills/*/` should **NOT** have YAML frontmatter. (Skill references/assets are covered by the 5-field block above instead.)
 
 ```markdown
 # ❌ BEFORE (incorrect)
@@ -458,7 +534,29 @@ validation_rules:
       argument-hint:
         pattern: "contains < or ["
 
+  SkillReferenceAsset:
+    # .opencode/skills/*/references/ and assets/ docs; README.md exempt
+    frontmatter_required: true
+    required_fields:
+      - title
+      - description
+      - trigger_phrases
+      - importance_tier
+      - contextType
+    field_formats:
+      description:
+        type: "single-line"
+      trigger_phrases:
+        type: "block-list"
+        min_items: 3
+        max_items: 8
+      importance_tier:
+        enum: [constitutional, critical, important, normal, temporary, deprecated]
+      contextType:
+        enum: [planning, research, implementation, general]
+
   Knowledge:
+    # knowledge files OUTSIDE skill folders only
     frontmatter_required: false
     action_if_present: "remove"
 
@@ -586,10 +684,10 @@ allowed-tools: Read
 ---
 ```
 
-### Remove from Knowledge File
+### Remove from Knowledge File (Outside Skill Folders)
 
 ```yaml
-# BEFORE (knowledge file with frontmatter)
+# BEFORE (non-skill knowledge file with frontmatter)
 ---
 name: style-guide
 description: Documentation standards
@@ -678,7 +776,11 @@ Document type detected?
 │   ├─ Has frontmatter? → Validate fields
 │   └─ Missing frontmatter? → Auto-generate from content
 │
-├─► Knowledge
+├─► Skill Reference/Asset
+│   ├─ Has 5-field block? → Validate fields (trigger_phrases 3-8, enums)
+│   └─ Missing fields? → Author from doc content (title from H1, phrases from headings)
+│
+├─► Knowledge (outside skills)
 │   ├─ Has frontmatter? → Remove it
 │   └─ No frontmatter? → Valid (no action)
 │
@@ -764,7 +866,8 @@ Press Enter to keep default, or type new value.
 |--------------|---------|
 | Multiline descriptions | Won't parse correctly |
 | Uppercase in `name` | Violates format requirement |
-| Frontmatter on knowledge files | Implies programmatic interface |
+| Frontmatter on knowledge files outside skills | Implies programmatic interface |
+| Bare title+description on skill references/assets | Advisor doc harvest needs the full 5-field block |
 | Empty required fields | Validation failure |
 | Made-up tool names | Tools won't be available |
 
@@ -776,11 +879,13 @@ Press Enter to keep default, or type new value.
 
 ```
 Document type?
-├─► SKILL.md       → MUST have: name, description, allowed-tools
-├─► Command        → MUST have: description, argument-hint, allowed-tools
-├─► Knowledge      → MUST NOT have frontmatter (remove if present)
-├─► Spec           → SHOULD NOT have frontmatter (use inline metadata)
-└─► README         → No requirement (usually none)
+├─► SKILL.md             → MUST have: name, description, allowed-tools
+├─► Command              → MUST have: description, argument-hint, allowed-tools
+├─► Skill Reference/Asset → MUST have: title, description, trigger_phrases,
+│                           importance_tier, contextType (README.md exempt)
+├─► Knowledge (outside skills) → MUST NOT have frontmatter (remove if present)
+├─► Spec                 → SHOULD NOT have frontmatter (use inline metadata)
+└─► README               → No requirement (usually none)
 ```
 
 ### Field Requirements Matrix
@@ -789,14 +894,18 @@ Document type?
 |---------------|------|-------------|---------------|---------------|
 | **SKILL.md** | ✅ Required | ✅ Required | ❌ N/A | ✅ Required |
 | **Command** | ⚪ Optional | ✅ Required | ✅ Required | ✅ Required |
-| **Knowledge** | ❌ Forbidden | ❌ Forbidden | ❌ Forbidden | ❌ Forbidden |
+| **Skill Reference/Asset** | ❌ Not used (uses `title`) | ✅ Required | ❌ N/A | ❌ N/A |
+| **Knowledge (outside skills)** | ❌ Forbidden | ❌ Forbidden | ❌ Forbidden | ❌ Forbidden |
 | **Spec** | ❌ Not used | ❌ Not used | ❌ Not used | ❌ Not used |
+
+Skill references/assets additionally require `trigger_phrases` (3-8), `importance_tier`, and `contextType` — see Section 3.
 
 ### Common Mistakes
 
 | Mistake | Fix |
 |---------|-----|
-| Knowledge file with frontmatter | Remove frontmatter |
+| Non-skill knowledge file with frontmatter | Remove frontmatter |
+| Skill reference/asset missing the 5-field block | Author trigger_phrases (3-8), importance_tier, contextType |
 | SKILL.md missing `name` | Add with directory name |
 | Command missing `argument-hint` | Infer from content or ask |
 | Spec with YAML frontmatter | Convert to inline metadata |
@@ -809,7 +918,7 @@ Document type?
 
 ### Templates
 - [skill_md_template.md](./skill/skill_md_template.md) - SKILL.md file templates
-- [command_template.md](./command_template.md) - Command file templates
+- [command_template.md](./command/command_template.md) - Command file templates
 
 ### Standards
 - [core_standards.md](../references/global/core_standards.md) - Document type rules

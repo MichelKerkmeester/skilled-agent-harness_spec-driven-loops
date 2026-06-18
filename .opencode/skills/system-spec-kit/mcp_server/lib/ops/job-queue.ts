@@ -12,6 +12,7 @@
 import path from 'node:path';
 import { requireDb, toErrorMessage } from '../../utils/index.js';
 import type { GovernanceDecision } from '../governance/scope-governance.js';
+import { withBusyRetry, withBusyRetrySync } from './sqlite-busy-retry.js';
 
 // Feature catalog: Async ingestion job lifecycle
 
@@ -101,11 +102,8 @@ const ALLOWED_TRANSITIONS: Record<IngestJobState, Set<IngestJobState>> = {
   cancelled: new Set<IngestJobState>([]),
 };
 
-// SQLITE_BUSY retry delays that match the file-watcher pattern.
-const RETRY_DELAYS_MS = [50, 200, 500];
-
 /* ───────────────────────────────────────────────────────────────
-   5. STATE MANAGEMENT
+   4. STATE MANAGEMENT
 ──────────────────────────────────────────────────────────────── */
 
 // True sequential queue — only one job processes at a time.
@@ -121,7 +119,7 @@ const MAX_STORED_ERRORS = 50;
 const MAX_PENDING_INGEST_JOBS = parsePositiveIntEnv('SPECKIT_INGEST_QUEUE_MAX_PENDING', 1_000);
 
 /* ───────────────────────────────────────────────────────────────
-   4. HELPERS
+   5. HELPERS
 ──────────────────────────────────────────────────────────────── */
 
 function toPublicPathLabel(filePath: string): string {
@@ -138,49 +136,6 @@ function parsePositiveIntEnv(name: string, fallback: number): number {
 
   const parsed = Number.parseInt(raw, 10);
   return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
-}
-
-function isSqliteBusyError(error: unknown): boolean {
-  const message = error instanceof Error ? error.message : String(error);
-  const code = (error as { code?: unknown })?.code;
-  return code === 'SQLITE_BUSY' || /SQLITE_BUSY/i.test(message);
-}
-
-// Async SQLITE_BUSY retry — yields to the event loop between retries
-// Instead of blocking with a synchronous busy-wait loop.
-async function withBusyRetry<T>(operation: () => T): Promise<T> {
-  for (let attempt = 0; attempt <= RETRY_DELAYS_MS.length; attempt += 1) {
-    try {
-      return operation();
-    } catch (error: unknown) {
-      const canRetry = isSqliteBusyError(error) && attempt < RETRY_DELAYS_MS.length;
-      if (!canRetry) {
-        throw error;
-      }
-      await sleep(RETRY_DELAYS_MS[attempt]);
-    }
-  }
-  throw new Error('withBusyRetry: unreachable');
-}
-
-// Synchronous retry kept only for startup-path operations where the event
-// Loop is not yet serving requests (table creation, crash recovery reset).
-function withBusyRetrySync<T>(operation: () => T): T {
-  for (let attempt = 0; attempt <= RETRY_DELAYS_MS.length; attempt += 1) {
-    try {
-      return operation();
-    } catch (error: unknown) {
-      const canRetry = isSqliteBusyError(error) && attempt < RETRY_DELAYS_MS.length;
-      if (!canRetry) {
-        throw error;
-      }
-      // Short synchronous yield — acceptable at startup only.
-      const delay = RETRY_DELAYS_MS[attempt];
-      const end = Date.now() + delay;
-      while (Date.now() < end) { /* busy-wait */ }
-    }
-  }
-  throw new Error('withBusyRetrySync: unreachable');
 }
 
 function parseJsonArray<T>(value: string | null | undefined, fallback: T[]): T[] {

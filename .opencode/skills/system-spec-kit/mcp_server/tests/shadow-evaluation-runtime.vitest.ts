@@ -69,6 +69,107 @@ function hasShadowEvaluationFixtureSchema(): boolean {
 
 const dbFixtureDescribe = hasShadowEvaluationFixtureSchema() ? describe : describe.skip;
 
+describe('shadow-evaluation-runtime clean consumption_log schema', () => {
+  let db: Database.Database;
+  let shadowFlag: string | undefined;
+
+  beforeEach(() => {
+    shadowFlag = process.env.SPECKIT_SHADOW_FEEDBACK;
+    process.env.SPECKIT_SHADOW_FEEDBACK = 'true';
+
+    db = new Database(':memory:');
+    initConsumptionLog(db);
+
+    vi.mocked(executePipeline).mockReset();
+    vi.mocked(buildAdaptiveShadowProposal).mockReset();
+    vi.mocked(getAdaptiveMode).mockReset();
+    vi.mocked(getAdaptiveMode).mockReturnValue('disabled');
+    vi.mocked(tuneAdaptiveThresholdsAfterEvaluation).mockReset();
+    stopShadowEvaluationScheduler();
+  });
+
+  afterEach(() => {
+    stopShadowEvaluationScheduler();
+    db.close();
+
+    if (shadowFlag === undefined) {
+      delete process.env.SPECKIT_SHADOW_FEEDBACK;
+    } else {
+      process.env.SPECKIT_SHADOW_FEEDBACK = shadowFlag;
+    }
+  });
+
+  it('skips the cycle with the no-telemetry message when no consumption rows exist', async () => {
+    const consoleWarnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+    try {
+      const report = await runScheduledShadowEvaluationCycle(db, {
+        holdoutPercent: 1,
+        queryLookbackMs: 14 * 24 * 60 * 60 * 1000,
+        maxQueryPoolSize: 10,
+        searchLimit: 5,
+        seed: 42,
+      });
+
+      expect(report).toBeNull();
+      expect(consoleWarnSpy).toHaveBeenCalledWith(
+        '[shadow-evaluation-runtime] skipped cycle: no consumption telemetry to derive query classes',
+      );
+      expect(vi.mocked(executePipeline)).not.toHaveBeenCalled();
+      expect(getCycleResults(db)).toHaveLength(0);
+    } finally {
+      consoleWarnSpy.mockRestore();
+    }
+  });
+
+  it('builds the synthetic corpus and runs a cycle when telemetry is present', async () => {
+    // Clean-schema telemetry: intent + result_count + fingerprint only, no raw text.
+    // Two rows in the same (intent, result_count bucket) collapse to one class.
+    const nowIso = new Date().toISOString();
+    const insertSearch = db.prepare(`
+      INSERT INTO consumption_log (event_type, query_hash, intent, result_count, timestamp)
+      VALUES ('search', ?, ?, ?, ?)
+    `);
+    insertSearch.run('a1b2c3d4e5f60718', 'fix_bug', 1, nowIso);
+    insertSearch.run('00112233aabbccdd', 'fix_bug', 2, nowIso);
+
+    // Memory-id-level feedback — the unfiltered branch the synthetic path uses.
+    initAdaptiveSignalEvents(db);
+    insertAdaptiveSignalEvent(db, 11, 'outcome', 2);
+    insertAdaptiveSignalEvent(db, 12, 'outcome', 1);
+
+    vi.mocked(executePipeline).mockResolvedValue({
+      results: [{ id: 11, score: 0.7 }, { id: 12, score: 0.5 }],
+    } as unknown as Awaited<ReturnType<typeof executePipeline>>);
+
+    vi.mocked(buildAdaptiveShadowProposal).mockReturnValue({
+      mode: 'shadow',
+      bounded: true,
+      maxDeltaApplied: 0.08,
+      query: 'synthetic class query',
+      promotedIds: [12],
+      demotedIds: [11],
+      rows: [
+        { memoryId: 12, productionRank: 2, shadowRank: 1, productionScore: 0.5, shadowScore: 0.9, scoreDelta: 0.4 },
+        { memoryId: 11, productionRank: 1, shadowRank: 2, productionScore: 0.7, shadowScore: 0.6, scoreDelta: -0.1 },
+      ],
+    });
+
+    const report = await runScheduledShadowEvaluationCycle(db, {
+      holdoutPercent: 1,
+      queryLookbackMs: 14 * 24 * 60 * 60 * 1000,
+      maxQueryPoolSize: 10,
+      searchLimit: 5,
+      seed: 42,
+    });
+
+    expect(report).not.toBeNull();
+    expect(report?.cycleResult.queryCount).toBe(1);
+    expect(vi.mocked(executePipeline)).toHaveBeenCalled();
+    expect(getCycleResults(db)).toHaveLength(1);
+  });
+});
+
 function initAdaptiveSignalEvents(db: Database.Database): void {
   db.exec(`
     CREATE TABLE IF NOT EXISTS adaptive_signal_events (

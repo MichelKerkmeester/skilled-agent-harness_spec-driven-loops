@@ -23,7 +23,14 @@
 //
 // IMPORTANT: This module only models ranking confidence for retrieval ordering.
 // It is not freshness authority and it is not a substitute for StructuralTrust.
-import { resolveEffectiveScore, type PipelineRow } from './pipeline/types.js';
+import { statSync } from 'node:fs';
+import { resolveEffectiveScore, resolveAbsoluteRelevance, type PipelineRow } from './pipeline/types.js';
+import {
+  isAbsoluteRelevanceCalibrationEnabled,
+  isConfidenceCalibrationEnabled,
+  getConfidenceCalibrationModelPath,
+} from './search-flags.js';
+import { applyCalibration, loadCalibrationModel, type CalibrationModel } from './confidence-calibration.js';
 
 declare const rankingConfidenceBrand: unique symbol;
 
@@ -40,12 +47,40 @@ const WEIGHT_MARGIN = 0.35;
 const WEIGHT_CHANNEL_AGREEMENT = 0.30;
 const WEIGHT_ANCHOR_DENSITY = 0.15;
 
+// Blend of the heuristic signal (margin/channel/anchor) and the absolute
+// relevance prior into the final per-result value. Relevance is intentionally
+// weighted higher than the heuristics so the band is monotonic in relevance: a
+// strong-but-isolated cosine hit (single channel, no anchors, tail margin) must
+// not be capped at "medium" purely because the heuristic signals are weak.
+// These two must sum to 1.0.
+const WEIGHT_HEURISTIC = 0.45;
+const WEIGHT_SCORE_PRIOR = 0.55;
+
+// Guard the sum-to-1.0 invariant at module load: if either weight is retuned
+// without adjusting the other, the rebalanced value would no longer be a convex
+// blend and could exceed 1 before clamping (silently distorting the band). Fail
+// loudly instead. Tolerance absorbs float representation error (0.45 + 0.55).
+if (Math.abs(WEIGHT_HEURISTIC + WEIGHT_SCORE_PRIOR - 1.0) > 1e-9) {
+  throw new Error(
+    `confidence-scoring: WEIGHT_HEURISTIC (${WEIGHT_HEURISTIC}) + WEIGHT_SCORE_PRIOR (${WEIGHT_SCORE_PRIOR}) must sum to 1.0`,
+  );
+}
+
 // Margin thresholds (gap between top score and next score, 0–1 scale)
 const LARGE_MARGIN_THRESHOLD = 0.15;
 const SMALL_MARGIN_THRESHOLD = 0.05;
 
 // Channel count thresholds
 const STRONG_CHANNEL_AGREEMENT_MIN = 2;
+
+// Request-quality aggregation: a top hit at or above this absolute relevance
+// stands on its own, so a weak tail cannot drag the verdict below "good".
+const TOP_DOMINANT_THRESHOLD = 0.8;
+
+// Cap the quality-ratio denominator at the head of the ranking. Pulling deeper
+// for recall appends weaker tail results; counting them would mechanically
+// depress the ratio and penalize a query for retrieving more candidates.
+const QUALITY_RATIO_HEAD = 5;
 
 // -- Types --
 
@@ -123,6 +158,67 @@ export interface ScoredResult extends Record<string, unknown> {
 
 function resolveScore(result: ScoredResult): number {
   return resolveEffectiveScore(result as PipelineRow);
+}
+
+/**
+ * Absolute relevance used for confidence calibration and request-quality — keeps
+ * ordering on the RRF/effective score while reading an absolute 0–1 signal for
+ * "how good is this", so the 0.7/0.4 thresholds mean what they say. Reverts to the
+ * effective score when SPECKIT_ABSOLUTE_RELEVANCE_CALIBRATION is disabled.
+ */
+function resolveCalibrationScore(result: ScoredResult): number {
+  return isAbsoluteRelevanceCalibrationEnabled()
+    ? resolveAbsoluteRelevance(result as PipelineRow)
+    : resolveEffectiveScore(result as PipelineRow);
+}
+
+// Lazily-loaded calibration model, memoized so the search hot path reads the
+// file at most once per (path, mtime) pair. The mtime is part of the cache key
+// so editing the model in place re-reads it; without it a path-stable file
+// rewritten on disk would serve the stale fitted curve indefinitely.
+// `undefined` = not yet looked up; `null` = looked up and absent/invalid
+// (degrade to identity).
+let cachedCalibrationModel: CalibrationModel | null | undefined;
+let cachedCalibrationModelPath: string | undefined;
+let cachedCalibrationModelMtimeMs: number | undefined;
+
+/** Best-effort mtime; `undefined` when the path is unreadable (treated as a miss). */
+function calibrationModelMtimeMs(path: string): number | undefined {
+  try {
+    return statSync(path).mtimeMs;
+  } catch {
+    return undefined;
+  }
+}
+
+function resolveCalibrationModel(): CalibrationModel | null {
+  const path = getConfidenceCalibrationModelPath();
+  if (!path) return null;
+  const mtimeMs = calibrationModelMtimeMs(path);
+  if (
+    cachedCalibrationModel !== undefined &&
+    cachedCalibrationModelPath === path &&
+    cachedCalibrationModelMtimeMs === mtimeMs
+  ) {
+    return cachedCalibrationModel;
+  }
+  cachedCalibrationModelPath = path;
+  cachedCalibrationModelMtimeMs = mtimeMs;
+  cachedCalibrationModel = loadCalibrationModel(path);
+  return cachedCalibrationModel;
+}
+
+/**
+ * Map a rebalanced confidence value through the empirical calibration model
+ * when enabled. Default OFF and a no-op when no model is configured, so the
+ * returned value is identical to the rebalance-only path until a validated
+ * model is wired in.
+ */
+function maybeCalibrate(value: number): number {
+  if (!isConfidenceCalibrationEnabled()) return value;
+  const model = resolveCalibrationModel();
+  if (!model) return value;
+  return applyCalibration(model, value);
 }
 
 /**
@@ -243,10 +339,18 @@ export function computeResultConfidence(results: ScoredResult[]): ResultConfiden
       WEIGHT_ANCHOR_DENSITY * anchorFactor;
 
     // Base score is a strong prior: if the score itself is very high, confidence
-    // should reflect that even when heuristic signals are weak.
-    const scorePrior = score * 0.4;
-    const heuristicValue = rawValue * 0.6;
-    const value = Math.max(0, Math.min(1, heuristicValue + scorePrior));
+    // should reflect that even when heuristic signals are weak. Use the absolute
+    // relevance (cosine) here, not the RRF ordering score — an RRF magnitude of
+    // ~0.03 would make this prior contribute ~0.01 and defeat its purpose.
+    // Relevance carries the larger weight so the band stays monotonic in it.
+    const scorePrior = resolveCalibrationScore(result) * WEIGHT_SCORE_PRIOR;
+    const heuristicValue = rawValue * WEIGHT_HEURISTIC;
+    const rebalancedValue = Math.max(0, Math.min(1, heuristicValue + scorePrior));
+
+    // Optional empirical calibration to P(relevant). Default OFF: only applied
+    // when the flag is on AND a fitted model is available, so production
+    // confidence is the rebalance-only value until a validated model exists.
+    const value = maybeCalibrate(rebalancedValue);
 
     const drivers: ConfidenceDriver[] = [];
     if (margin >= LARGE_MARGIN_THRESHOLD) drivers.push('large_margin');
@@ -266,9 +370,14 @@ export function computeResultConfidence(results: ScoredResult[]): ResultConfiden
 /**
  * Compute request-level quality assessment based on the overall result set.
  *
- * - "good":  most results have high/medium confidence and a healthy top score
+ * - "good":  a dominant top hit, or a healthy top score with confident head / clear margin
  * - "weak":  results exist but signals are mixed or low
  * - "gap":   no results, or all results have low confidence
+ *
+ * The "good" rule is top-dominant and margin-aware: a single strong, well-separated
+ * top hit is citable even when the tail is weak. Without this, a strong top result
+ * is dragged to "weak" by a weaker tail, and expanding recall (more tail candidates)
+ * mechanically lowers the quality ratio — penalizing the very recall that found the hit.
  *
  * @param results   - The scored results for the query.
  * @param confidences - Parallel confidence array from `computeResultConfidence`.
@@ -281,18 +390,47 @@ export function assessRequestQuality(
     return { requestQuality: { label: 'gap' } };
   }
 
-  const highOrMediumCount = confidences.filter(
-    (c) => c.confidence.label === 'high' || c.confidence.label === 'medium',
-  ).length;
+  // `results` and `confidences` are a parallel pair (confidences come from
+  // computeResultConfidence(results)). A length mismatch means the head slice
+  // below would pair results[i] with an unrelated confidence, so degrade to the
+  // conservative do-not-cite verdict rather than emit a quality label off
+  // misaligned data. Holds at every call site today — defensive only.
+  if (!Array.isArray(confidences) || confidences.length !== results.length) {
+    return { requestQuality: { label: 'gap' } };
+  }
 
-  const topScore = resolveScore(results[0]);
+  // Absolute relevance, not the RRF ordering score: HIGH_THRESHOLD/LOW_THRESHOLD
+  // are calibrated for a 0–1 cosine scale, so an RRF-magnitude topScore (~0.03)
+  // would put "good" out of reach and collapse every query to weak/gap.
+  const topScore = resolveCalibrationScore(results[0]);
 
-  const qualityRatio = highOrMediumCount / results.length;
+  // Quality ratio over the head of the ranking only, so recall expansion does
+  // not depress it (see QUALITY_RATIO_HEAD).
+  const head = Math.min(confidences.length, QUALITY_RATIO_HEAD);
+  const highOrMediumCount = confidences
+    .slice(0, head)
+    .filter((c) => c.confidence.label === 'high' || c.confidence.label === 'medium')
+    .length;
+  const qualityRatio = head > 0 ? highOrMediumCount / head : 0;
 
-  if (topScore >= HIGH_THRESHOLD && qualityRatio >= 0.6) {
+  // Margin between #1 and #2 on the same absolute scale as topScore. A clear gap
+  // to the runner-up marks a dominant top hit even when the tail is weak.
+  const topMargin = results.length > 1
+    ? computeMargin(topScore, resolveCalibrationScore(results[1]))
+    : 0;
+
+  // A sufficiently strong top hit is citable on its own, regardless of the tail.
+  if (topScore >= TOP_DOMINANT_THRESHOLD) {
     return { requestQuality: { label: 'good' } };
   }
-  if (results.length > 0 && (topScore >= LOW_THRESHOLD || qualityRatio >= 0.3)) {
+  // Otherwise a healthy top hit reads "good" when the head is mostly confident
+  // OR the top hit clearly dominates the runner-up.
+  if (topScore >= HIGH_THRESHOLD && (qualityRatio >= 0.6 || topMargin >= LARGE_MARGIN_THRESHOLD)) {
+    return { requestQuality: { label: 'good' } };
+  }
+  // weak/gap thresholds unchanged — preserves the do-not-cite safety net for
+  // genuinely low-signal queries.
+  if (topScore >= LOW_THRESHOLD || qualityRatio >= 0.3) {
     return { requestQuality: { label: 'weak' } };
   }
   return { requestQuality: { label: 'gap' } };

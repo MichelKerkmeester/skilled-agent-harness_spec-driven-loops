@@ -12,7 +12,13 @@ import * as sqliteVec from 'sqlite-vec';
 import { EmbeddingProfile } from '@spec-kit/shared/embeddings/profile';
 import { invalidateProviderSingleton } from '@spec-kit/shared/embeddings';
 
-import { attachActiveVectorShard, initializeDb } from '../search/vector-index-store.js';
+import {
+  attachActiveVectorShard,
+  detachActiveVectorShard,
+  isActiveVectorShardAttached,
+  clear_vector_shard_repair_pending_sentinel,
+  initializeDb,
+} from '../search/vector-index-store.js';
 import { to_embedding_buffer } from '../search/vector-index-types.js';
 import {
   ensureVecTableForDim,
@@ -25,6 +31,13 @@ import { getManifest } from './registry.js';
 import { parseBoundedEnv } from '../util/env.js';
 import { createLogger } from '../utils/logger.js';
 import { getRestoreBarrierStatus } from '../storage/checkpoints.js';
+import { BetterSqliteMaintenance } from '../storage/ports/maintenance.js';
+import {
+  getDegradedVectorObservabilitySnapshot,
+  recordVectorShardRebuildCompleted,
+  recordVectorShardRebuildFailed,
+  recordVectorShardRebuildStarted,
+} from '../observability/retrieval-observability.js';
 
 // ───────────────────────────────────────────────────────────────
 // 1. TYPE DEFINITIONS
@@ -55,6 +68,10 @@ export interface ReindexRuntimeOptions {
 
 interface ReindexInternalRuntimeOptions extends ReindexRuntimeOptions {
   readonly autoStart?: boolean;
+  readonly vectorShardRepair?: {
+    readonly reason: string;
+    readonly shardPath: string;
+  };
 }
 
 type JobRow = Omit<ReindexJob, 'error'> & {
@@ -106,6 +123,7 @@ const JOB_SELECT_COLUMNS = `
 `;
 
 const runningJobs = new Set<string>();
+const vectorShardRepairJobs = new Map<string, { readonly reason: string; readonly shardPath: string }>();
 
 // ───────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -124,6 +142,16 @@ function resolveDb(db?: Database.Database): Database.Database {
 
 function nowIso(): string {
   return new Date().toISOString();
+}
+
+function completeVectorShardRecovery(jobId: string, shardPath: string): void {
+  recordVectorShardRebuildCompleted({ jobId, shardPath });
+  clear_vector_shard_repair_pending_sentinel(shardPath);
+}
+
+function degradedVectorMatchesShard(shardPath: string): boolean {
+  const degradedVector = getDegradedVectorObservabilitySnapshot();
+  return degradedVector.degraded && degradedVector.lastShard === path.basename(shardPath);
 }
 
 function readJobStatus(db: Database.Database, jobId: string): ReindexJobStatus | null {
@@ -145,6 +173,18 @@ function jobFromRow(row: JobRow): ReindexJob {
 
 function ensureJobTable(db: Database.Database): void {
   db.exec(JOB_TABLE_SQL);
+  // Repair intent must survive a process restart: the in-memory repair map is
+  // rebuilt from these columns on resume, and the de-dup guard consults them,
+  // so a restart cannot schedule a second repair for the same shard.
+  const columns = new Set(
+    (db.prepare('PRAGMA table_info(embedder_jobs)').all() as Array<{ name: string }>).map((c) => c.name),
+  );
+  if (!columns.has('repair_reason')) {
+    db.exec('ALTER TABLE embedder_jobs ADD COLUMN repair_reason TEXT');
+  }
+  if (!columns.has('repair_shard_path')) {
+    db.exec('ALTER TABLE embedder_jobs ADD COLUMN repair_shard_path TEXT');
+  }
 }
 
 function selectJob(db: Database.Database, jobId: string): ReindexJob | null {
@@ -387,6 +427,17 @@ function ensureShardSchema(shard: Database.Database, profile: EmbeddingProfile, 
       value TEXT NOT NULL,
       created_at TEXT DEFAULT (datetime('now'))
     );
+    CREATE TABLE IF NOT EXISTS embedding_cache (
+      content_hash TEXT NOT NULL,
+      profile_key TEXT NOT NULL DEFAULT '',
+      input_kind TEXT NOT NULL DEFAULT 'document' CHECK (input_kind IN ('document', 'query')),
+      model_id TEXT NOT NULL,
+      embedding BLOB NOT NULL,
+      dimensions INTEGER NOT NULL,
+      created_at TEXT NOT NULL DEFAULT (datetime('now')),
+      last_used_at TEXT NOT NULL DEFAULT (datetime('now')),
+      PRIMARY KEY (content_hash, profile_key, input_kind, model_id, dimensions)
+    );
     CREATE TABLE IF NOT EXISTS ${tableName} (
       id INTEGER PRIMARY KEY,
       vec BLOB NOT NULL
@@ -401,6 +452,19 @@ function ensureShardSchema(shard: Database.Database, profile: EmbeddingProfile, 
     stmt.run('embedding_dim', String(profile.dim));
   });
   writeMetadata();
+}
+
+function countStagedShardRows(shardPath: string, tableName: string): number {
+  if (!fs.existsSync(shardPath)) {
+    return 0;
+  }
+  const shard = new Database(shardPath, { readonly: true, fileMustExist: true });
+  try {
+    const row = shard.prepare(`SELECT COUNT(*) AS count FROM ${tableName}`).get() as { count?: number } | undefined;
+    return Math.max(0, Number(row?.count ?? 0));
+  } finally {
+    shard.close();
+  }
 }
 
 function writeVectorsToShard(
@@ -451,7 +515,7 @@ function writeVectorsToShard(
     // consistent at rest with an empty WAL — mirrors close_db's corruption-prevention.
     // better-sqlite3 .close() only does a passive checkpoint; an abrupt later kill could otherwise
     // corrupt un-checkpointed shard frames (vec0 / FTS segment writes). Best-effort; never block close.
-    try { shard.pragma('wal_checkpoint(TRUNCATE)'); } catch (_err: unknown) { /* best-effort */ }
+    new BetterSqliteMaintenance(shard).checkpoint({ mode: 'truncate' });
     shard.close();
   }
 }
@@ -529,8 +593,20 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
 
   try {
     setJobStatus(jobDb, jobId, 'running');
+    const repairContext = vectorShardRepairJobs.get(jobId);
+    if (repairContext) {
+      recordVectorShardRebuildStarted({
+        jobId,
+        shardPath: repairContext.shardPath,
+        reason: repairContext.reason,
+      });
+    }
     // Start each run from a clean staging slate (a prior crashed run may have left one).
     cleanupStaging();
+    if (processed !== 0) {
+      processed = 0;
+      setJobStatus(jobDb, jobId, 'running', processed);
+    }
 
     while (processed < initialJob.total) {
       jobDb = resolveJobDb();
@@ -577,6 +653,32 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
     // active shard either is the old file (failure) or the fully-staged new file (success),
     // never a half-written mix. If no batch produced a staging file (e.g. zero rows), skip.
     if (fs.existsSync(stagingShardPath)) {
+      const stagedRows = countStagedShardRows(stagingShardPath, tableName);
+      if (stagedRows < initialJob.total) {
+        throw new Error(`Incomplete staged vector shard: expected ${initialJob.total} rows, got ${stagedRows}`);
+      }
+      // Detach BEFORE the rename: rename(2) preserves the attachment's inode,
+      // so a connection that stays attached keeps writing the orphaned
+      // pre-rename file while the path-string attach check still matches.
+      // The post-swap attach below then binds the new file.
+      try {
+        detachActiveVectorShard(jobDb);
+      } catch (_detachErr: unknown) {
+        // Swallow only the not-attached case; a busy/locked DETACH can throw with
+        // the shard still bound, which the post-detach assertion below catches.
+      }
+      // A failed detach (e.g. busy/locked) must not fall through to the rename:
+      // it would leave this connection bound to the orphaned old inode while the
+      // post-swap path-string attach check still matches the new file, silently
+      // serving stale pre-reindex vectors. Verify the attachment is released; if
+      // it survived the first attempt, retry once and throw if it persists so the
+      // run fails cleanly instead of completing on a stale binding.
+      if (isActiveVectorShardAttached(jobDb)) {
+        detachActiveVectorShard(jobDb);
+        if (isActiveVectorShardAttached(jobDb)) {
+          throw new Error('Active vector shard remained attached after detach; aborting swap to avoid binding to an orphaned inode');
+        }
+      }
       // Drop any stale sidecars next to the active shard so the renamed WAL/SHM (already
       // TRUNCATE-checkpointed at staging close) is the authoritative pair.
       for (const suffix of ['-wal', '-shm']) {
@@ -587,7 +689,22 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
         }
       }
       fs.renameSync(stagingShardPath, activeShardPath);
+    } else if (initialJob.total > 0) {
+      throw new Error(`Incomplete staged vector shard: expected ${initialJob.total} rows, got 0`);
     }
+
+    // The completion transaction below reconciles embedding_status by reading the
+    // canonical vec_<dim> table via its unqualified name. The swap above detaches the
+    // active shard and drops the temp alias view, so that name now resolves to the
+    // canonical main-database table. That canonical table is best-effort "slimmed" away
+    // on every shard attach, so a concurrent attach during this run (e.g. a second
+    // attach that re-asserts a still-pending repair) can drop it out from under us,
+    // turning the reconciliation read into a fatal "no such table" and stranding the
+    // repair short of completion. Re-assert the (empty) canonical table immediately
+    // before reading it. This never touches shard data — the rebuilt vectors live in
+    // the freshly renamed active shard file — so it preserves repair completeness and
+    // the single-writer staging discipline.
+    ensureVecTableForDim(jobDb, initialJob.toDim);
 
     const complete = jobDb.transaction(() => {
       // Persist the active-embedder provider pointer too; omitting it leaves the pointer empty,
@@ -618,6 +735,12 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
       setJobStatus(jobDb, jobId, 'completed', initialJob.total);
     });
     complete();
+    if (repairContext) {
+      completeVectorShardRecovery(jobId, repairContext.shardPath);
+      vectorShardRepairJobs.delete(jobId);
+    } else if (degradedVectorMatchesShard(activeShardPath)) {
+      completeVectorShardRecovery(jobId, activeShardPath);
+    }
     // The active-embedder pointer just flipped; drop the cached provider singleton so the
     // next embedding re-resolves against the new pointer instead of the stale model/dim.
     invalidateProviderSingleton();
@@ -644,6 +767,11 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
     cleanupStaging();
     const message = error instanceof Error ? error.message : String(error);
     setJobStatus(jobDb, jobId, 'failed', processed, message);
+    const repairContext = vectorShardRepairJobs.get(jobId);
+    if (repairContext) {
+      recordVectorShardRebuildFailed({ jobId, shardPath: repairContext.shardPath, reason: message });
+      vectorShardRepairJobs.delete(jobId);
+    }
     logger.error('embedder reindex job failed', {
       event: 'embedder_reindex_failed',
       jobId,
@@ -694,6 +822,12 @@ function startReindexInternal(
     ) VALUES (?, ?, ?, ?, ?, 0, 'queued', ?, ?, NULL)
   `).run(id, active.name, manifest.name, manifest.dim, total, timestamp, timestamp);
 
+  if (runtimeOptions.vectorShardRepair) {
+    vectorShardRepairJobs.set(id, runtimeOptions.vectorShardRepair);
+    db.prepare('UPDATE embedder_jobs SET repair_reason = ?, repair_shard_path = ? WHERE id = ?')
+      .run(runtimeOptions.vectorShardRepair.reason, runtimeOptions.vectorShardRepair.shardPath, id);
+  }
+
   if (runtimeOptions.autoStart !== false) {
     enqueueJob(db, id);
   }
@@ -737,6 +871,14 @@ export function resumeReindexJobs(db?: Database.Database): ReindexJob[] {
   `).all() as JobRow[];
 
   const jobs = rows.map(jobFromRow);
+  const repairRows = resolvedDb.prepare(
+    "SELECT id, repair_reason AS reason, repair_shard_path AS shardPath FROM embedder_jobs WHERE status IN ('queued', 'running') AND repair_shard_path IS NOT NULL",
+  ).all() as Array<{ id: string; reason: string | null; shardPath: string }>;
+  for (const row of repairRows) {
+    if (!vectorShardRepairJobs.has(row.id)) {
+      vectorShardRepairJobs.set(row.id, { reason: row.reason ?? 'resumed repair', shardPath: row.shardPath });
+    }
+  }
   for (const job of jobs) {
     enqueueJob(resolvedDb, job.id);
   }
@@ -748,6 +890,55 @@ export function startReindexForTest(
   runtimeOptions: ReindexInternalRuntimeOptions = {},
 ): string {
   return startReindexInternal(options, runtimeOptions);
+}
+
+export function startVectorShardRepairReindex(
+  profile: EmbeddingProfile,
+  runtimeOptions: ReindexRuntimeOptions & { readonly reason: string; readonly shardPath: string; readonly autoStart?: boolean },
+): string {
+  const db = resolveDb(runtimeOptions.db);
+  requireDatabaseDir(db, 'startup');
+  const targetShardPath = path.resolve(runtimeOptions.shardPath);
+  ensureJobTable(db);
+  const persisted = db.prepare(
+    "SELECT id, repair_shard_path AS shardPath FROM embedder_jobs WHERE status IN ('queued', 'running') AND repair_shard_path IS NOT NULL",
+  ).all() as Array<{ id: string; shardPath: string }>;
+  for (const row of persisted) {
+    if (path.resolve(row.shardPath) === targetShardPath) {
+      logger.info('vector shard repair already in flight', {
+        event: 'vector_shard_repair_already_in_flight',
+        jobId: row.id,
+        shardPath: runtimeOptions.shardPath,
+      });
+      return row.id;
+    }
+  }
+  for (const [jobId, repairContext] of vectorShardRepairJobs.entries()) {
+    if (path.resolve(repairContext.shardPath) !== targetShardPath) {
+      continue;
+    }
+    const status = readJobStatus(db, jobId);
+    if (status === 'queued' || status === 'running') {
+      logger.info('vector shard repair already in flight', {
+        event: 'vector_shard_repair_already_in_flight',
+        jobId,
+        shardPath: runtimeOptions.shardPath,
+      });
+      return jobId;
+    }
+  }
+
+  return startReindexInternal(
+    { toName: profile.model },
+    {
+      db,
+      autoStart: runtimeOptions.autoStart,
+      vectorShardRepair: {
+        reason: runtimeOptions.reason,
+        shardPath: runtimeOptions.shardPath,
+      },
+    },
+  );
 }
 
 export function estimateEta(job: ReindexJob | null): number | null {

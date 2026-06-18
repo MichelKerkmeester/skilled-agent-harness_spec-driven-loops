@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation",
+  "description": "Feature Specification: README Currency Remediation (Track A)",
+  "keywords": [
+    "feature",
+    "specification",
+    "readme",
+    "currency",
+    "remediation",
+    "track"
+  ],
+  "lastUpdated": "2026-06-18T18:03:07.695Z",
+  "specId": "003",
+  "folderSlug": "readme-remediation",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "005-verification-and-remediation",
+    "007-release-alignment-review"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

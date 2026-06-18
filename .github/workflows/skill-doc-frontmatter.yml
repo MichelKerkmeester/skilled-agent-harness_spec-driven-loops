@@ -1,0 +1,28 @@
+name: Skill Doc Frontmatter
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.opencode/skills/*/references/**'
+      - '.opencode/skills/*/assets/**'
+
+jobs:
+  frontmatter-coverage:
+    name: Skill reference/asset frontmatter contract
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run skill-doc frontmatter guard (coverage mode)
+        run: |
+          set -euo pipefail
+          GUARD=".opencode/skills/system-skill-advisor/mcp_server/scripts/check-skill-doc-frontmatter.sh"
+          if [ ! -f "$GUARD" ]; then
+            echo "::warning::frontmatter guard not found at $GUARD — skipping"
+            exit 0
+          fi
+          # Coverage mode: every reference/asset doc (READMEs exempt) must
+          # carry the full contract-valid frontmatter block. The corpus
+          # reached 355/355 conformant on 2026-06-11; new docs must be
+          # born conformant.
+          bash "$GUARD" . --coverage
+          echo "All clear — skill doc frontmatter matches the contract."

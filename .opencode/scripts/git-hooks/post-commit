@@ -17,13 +17,13 @@
 # Install: bash .opencode/scripts/install-git-hooks.sh
 # Uninstall: bash .opencode/scripts/install-git-hooks.sh --uninstall
 
-set -u
+set -euo pipefail
 
 if [ "${SPECKIT_SKIP_CODE_GRAPH_POST_COMMIT:-0}" = "1" ]; then
   exit 0
 fi
 
-REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null)"
+REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || true)"
 if [ -z "$REPO_ROOT" ]; then
   exit 0
 fi
@@ -32,7 +32,7 @@ THRESHOLD="${SPECKIT_CODE_GRAPH_POST_COMMIT_REBUILD_THRESHOLD:-100}"
 DRY_RUN="${SPECKIT_CODE_GRAPH_POST_COMMIT_DRY_RUN:-0}"
 
 # Count files changed in the just-completed commit (HEAD).
-CHANGED="$(git diff-tree --no-commit-id --name-only -r HEAD 2>/dev/null | wc -l | tr -d ' ')"
+CHANGED="$(git diff-tree --no-commit-id --name-only -r HEAD 2>/dev/null | wc -l | tr -d ' ' || true)"
 if [ -z "$CHANGED" ] || [ "$CHANGED" -lt 1 ]; then
   exit 0
 fi
@@ -62,9 +62,14 @@ fi
 
 # Invalidate the DB + lease files. Next launcher boot will detect empty DB
 # and run an inline full scan during MCP startup.
-rm -f "$SQLITE" "$SHM" "$WAL" "$READINESS" \
+if ! rm -f "$SQLITE" "$SHM" "$WAL" "$READINESS" \
       "$DB_DIR/.mk-code-index-launcher.json" \
-      "$DB_DIR/.code-graph-owner.json"
+      "$DB_DIR/.code-graph-owner.json"; then
+  echo "" >&2
+  echo "⚠️  code-graph: failed to invalidate advisory state; continuing." >&2
+  echo "" >&2
+  exit 0
+fi
 
 echo "" >&2
 echo "⚠️  code-graph: $CHANGED files changed in HEAD (>= $THRESHOLD)" >&2

@@ -14,7 +14,11 @@ import path from 'node:path';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 
 const SOCKET_FILE_NAME = 'daemon-ipc.sock';
-const DEFAULT_MAX_SECONDARY_CLIENTS = 8;
+// Every live session's launcher holds one persistent slot, and multi-seat
+// fan-outs run well past 8 concurrent sessions. A refused connection is
+// accepted then closed, which probes cannot distinguish from a dead daemon,
+// so the cap must exceed any realistic session fleet.
+const DEFAULT_MAX_SECONDARY_CLIENTS = 64;
 const TCP_EADDRINUSE_RETRY_DELAYS_MS = [100, 250, 500, 1000, 1500] as const;
 
 interface IpcBridgeStats {
@@ -57,6 +61,74 @@ function countJsonRpcFrames(chunk: unknown): number {
   const text = Buffer.isBuffer(chunk) ? chunk.toString('utf8') : String(chunk ?? '');
   const newlineCount = text.split('\n').length - 1;
   return Math.max(1, newlineCount);
+}
+
+// Window for a connection refused at the client cap to identify itself as a
+// liveness probe by sending its first JSON-RPC frame. Kept short so a non-probe
+// (real bridge client) is refused promptly, and bounded so probe traffic cannot
+// accumulate durable resources above the cap.
+const PROBE_AT_CAP_WINDOW_MS = 1000;
+
+// When at the durable client cap, peek the first frame. A liveness probe sends a
+// JSON-RPC `initialize` with clientInfo.name === 'liveness-probe' and treats ANY
+// reply carrying its id (result OR error) as proof the daemon is alive. Answer it
+// with a matching-id JSON-RPC error and close, without ever adding it to
+// activeSockets — so transient probe bursts can never exhaust the cap that exists
+// for durable bridge sessions. A non-probe first frame is refused like before.
+function answerProbeOrRefuseAtCap(
+  socket: net.Socket,
+  maxClients: number,
+  log: (message: string) => void,
+): void {
+  let settled = false;
+  let buffer = '';
+  const finish = (refusedReason: string) => {
+    if (settled) return;
+    settled = true;
+    clearTimeout(timer);
+    log(`[ipc-bridge] refusing secondary connection: max clients ${maxClients} reached${refusedReason}`);
+    socket.end();
+    socket.destroy();
+  };
+  const timer = setTimeout(() => finish(' (no probe frame)'), PROBE_AT_CAP_WINDOW_MS);
+  timer.unref?.();
+  socket.on('error', () => finish(' (socket error)'));
+  socket.on('data', (chunk: Buffer | string) => {
+    if (settled) return;
+    buffer += Buffer.isBuffer(chunk) ? chunk.toString('utf8') : String(chunk ?? '');
+    let newlineIndex = buffer.indexOf('\n');
+    while (newlineIndex !== -1) {
+      const line = buffer.slice(0, newlineIndex).trim();
+      buffer = buffer.slice(newlineIndex + 1);
+      newlineIndex = buffer.indexOf('\n');
+      if (!line) continue;
+      let parsed: unknown;
+      try {
+        parsed = JSON.parse(line);
+      } catch {
+        finish(' (non-json frame at cap)');
+        return;
+      }
+      const frame = parsed as { id?: unknown; method?: unknown; params?: { clientInfo?: { name?: unknown } } };
+      const isProbe = frame
+        && frame.method === 'initialize'
+        && frame.params?.clientInfo?.name === 'liveness-probe';
+      if (isProbe) {
+        settled = true;
+        clearTimeout(timer);
+        const reply = `${JSON.stringify({
+          jsonrpc: '2.0',
+          id: frame.id ?? null,
+          error: { code: -32000, message: 'daemon at client capacity; liveness probe acknowledged' },
+        })}\n`;
+        socket.end(reply);
+        log('[ipc-bridge] answered liveness probe at client cap without occupying a durable slot');
+        return;
+      }
+      finish(' (non-probe frame at cap)');
+      return;
+    }
+  });
 }
 
 function parseMaxClients(rawValue = process.env.SPECKIT_MAX_SECONDARY_CLIENTS): number {
@@ -297,9 +369,12 @@ async function startIpcSocketServer(options: IpcSocketServerOptions): Promise<Ip
 
   const server = net.createServer((socket) => {
     if (activeSockets.size >= maxClients) {
-      log(`[ipc-bridge] refusing secondary connection: max clients ${maxClients} reached`);
-      socket.end();
-      socket.destroy();
+      // A bare close here is indistinguishable from a dead daemon to a liveness
+      // probe, which makes a sibling launcher reap a healthy-but-cap-saturated
+      // daemon. Give the connection a brief window to send its first frame: if it
+      // is a liveness probe, answer it (proving the daemon alive) and close WITHOUT
+      // occupying a durable slot; only refuse genuine bridge clients at the cap.
+      answerProbeOrRefuseAtCap(socket, maxClients, log);
       return;
     }
 

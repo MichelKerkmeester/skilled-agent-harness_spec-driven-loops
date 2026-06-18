@@ -1,6 +1,13 @@
 ---
 title: Codex CLI — Prompt Quality Card
 description: Fast-path prompt-quality discipline for Codex CLI dispatches. Frameworks and CLEAR are canonical in sk-prompt.
+trigger_phrases:
+  - "codex prompt quality card"
+  - "codex dispatch prompt discipline"
+  - "codex prompt framework selection"
+  - "codex clear check"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Codex CLI — Prompt Quality Card

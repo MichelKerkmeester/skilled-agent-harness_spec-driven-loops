@@ -1,0 +1,77 @@
+I’ll keep this read-only and verify the prior iteration docs, phase 026 follow-up packet, LaunchAgent artifacts, daemon launcher code, and environment notes before producing the architecture assessment.
+The phase 026 packet explicitly points to `.opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist` as the added LaunchAgent template; I’m reading that plus daemon launcher and env docs now to distinguish orphan sweeping from true daemon supervision.
+The LaunchAgent found is an orphan sweeper, not a daemon supervisor: it has `StartInterval` but no `KeepAlive`, and it explicitly says template-only/not installed. I’m checking launcher lifecycle code now for the coexistence risks.
+## IT4 — OS-level supervision (launchd/systemd) as the root-cause fix
+### The LaunchAgent template (location, what it supervises, key keys, install state)
+**CONFIRMED:** The only `.plist` template found is `.opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist`. It supervises/schedules the orphan sweeper script, not `mk-spec-memory`, `mk-code-index`, or `mk-skill-advisor` daemons. Its `ProgramArguments` run `/bin/bash .../.opencode/scripts/orphan-mcp-sweeper.sh --dry-run --verbose --log-path ...` (`.opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist:28-36`).
+
+**Key keys:**
+- `Label`: `com.michelkerkmeester.orphan-sweep` (`.opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist:25-26`)
+- `ProgramArguments`: bash + `orphan-mcp-sweeper.sh` + `--dry-run` + `--verbose` + log path (`.opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist:28-36`)
+- `WorkingDirectory`: repo root (`.opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist:38-39`)
+- `StartInterval`: `600` seconds (`.opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist:41-43`)
+- `RunAtLoad`: `false` (`.opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist:45-47`)
+- `StandardOutPath` / `StandardErrorPath`: user-local logs (`.opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist:49-53`)
+- `KeepAlive`: absent in the full template read (`.opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist:1-65`)
+- `ThrottleInterval`: absent in the full template read (`.opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist:1-65`)
+
+**Install state:** CONFIRMED not installed by default. The template comment says it is “TEMPLATE ONLY,” “NOT installed or loaded by default,” and requires manual `cp ... ~/Library/LaunchAgents/...` plus `launchctl load ...` (`.opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist:5-15`). The runtime README also says the LaunchAgent is “a versioned template only” and “not installed or loaded by default” (`.opencode/skills/system-spec-kit/mcp_server/README.md:252-262`). Live active state is **UNKNOWN** because I did not run commands or inspect `~/Library/LaunchAgents`.
+
+### Why it was added but not made default (cited deferrals/concerns)
+**CONFIRMED:** Phase 026 added the plist to close a missing-template validation gap, not to make daemon supervision default. The problem statement says scenario 419 linted a LaunchAgent template that “was never committed,” so the follow-up was to ship the missing template (`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/026-daemon-reliability-followups/spec.md:54-58`).
+
+**CONFIRMED:** The rollout posture was deliberately operator-approved and dry-run-first. The implementation summary says the template runs dry-run, “does not fire on load,” and “an operator activates it deliberately” (`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/026-daemon-reliability-followups/implementation-summary.md:52-55`). The scripts runbook says not to run real mode or schedule via launchd until dry-run output has been reviewed for the current machine (`.opencode/scripts/README.md:79-82`).
+
+**CONFIRMED:** The plist is machine-specific. The known limitation says launchd requires absolute paths, so another machine must edit the repo root and home paths before installing (`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/026-daemon-reliability-followups/implementation-summary.md:118-122`).
+
+**CONFIRMED:** Existing lifecycle remains per-session launcher based. `bin/README.md` says OpenCode spawns `mk-*-launcher.cjs`, which loads env, builds dist, takes locks, spawns the MCP child, and bridges stdio to the daemon (`.opencode/bin/README.md:19-25`, `.opencode/bin/README.md:105-135`). The same README says `mk-code-index` and `mk-skill-advisor` still stop with their child and rely on fresh-session reload plus bridge/respawn paths (`.opencode/bin/README.md:93-94`).
+
+**CONFIRMED:** Later phases kept important pieces out of default automation. Phase 027 kept orphan sweep opt-in even while enabling spec-memory re-election (`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/027-reelection-default-on-rollout/implementation-summary.md:86-91`). Phase 028 explicitly deferred true warm-daemon adoption in favor of reap-and-respawn (`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/028-live-session-reelection-validation/implementation-summary.md:85-92`, `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/028-live-session-reelection-validation/implementation-summary.md:114-119`).
+
+### Does it fix the root cause? (mapped against each failure mode)
+**Current template:** No. It is a periodic dry-run orphan sweeper, not an always-on daemon supervisor. It has `StartInterval` and `RunAtLoad=false`, but no `KeepAlive` and no daemon `ProgramArguments`.
+
+**Hypothetical real OS supervisor:** Yes, if implemented as a user-level service that owns the actual daemon process for each service and restarts it on death.
+
+Failure-mode mapping:
+- **Advisor kill-on-shutdown:** Current template does not fix. A launchd/systemd-owned advisor daemon would fix only if session launchers stop killing the daemon. Today advisor’s signal handler kills the child and clears leases (`.opencode/bin/mk-skill-advisor-launcher.cjs:1185-1200`).
+- **Adopt-not-resurrect:** OS supervision directly fixes the gap. Prior findings say spec-memory re-election adopts/reactively respawns only when a new non-warm launcher starts; if no live owner and no new non-warm invocation happens, a fully dead daemon is not resurrected (`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/iterations/iteration-002.md:18-21`).
+- **Stale-socket-not-swept:** OS supervision fixes this if relaunch reaches daemon bind. The shared socket server unlinks a reclaimable same-user stale Unix socket on `EADDRINUSE` and then binds again (`.opencode/skills/system-spec-kit/shared/ipc/socket-server.ts:346-386`). The per-service re-export says this race-safe stale-socket fence is shared across daemon launchers (`.opencode/skills/system-spec-kit/mcp_server/lib/ipc/socket-server.ts:1-16`).
+- **Ungraceful death / SIGKILL / OOM / crash:** OS supervision is the correct class of fix. Prior findings note SIGKILL is unhandleable and that a detached daemon later dying has “no live launcher to respawn it” (`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/iterations/iteration-001.md:30-43`).
+- **Cross-session kill:** OS supervision helps only after launchers become clients. Current code-index and advisor shutdown paths can still kill their owned child (`.opencode/bin/mk-code-index-launcher.cjs:911-928`, `.opencode/bin/mk-skill-advisor-launcher.cjs:1185-1200`).
+- **Warm-probe trap:** OS supervision reduces the trap by making daemons normally warm. Today `--warm-only` intentionally exits `75` instead of cold-spawning at prompt time (`.opencode/bin/README.md:157-164`; `.opencode/skills/system-code-graph/README.md:154-159`; `.opencode/skills/system-skill-advisor/README.md:73-75`).
+
+### Conflicts with the existing lease/re-election/launcher model (what must change)
+**CONFIRMED conflict:** The current launchers are owners/spawners, not pure clients. `mk-spec-memory` spawns a detached backend under re-election (`.opencode/bin/mk-spec-memory-launcher.cjs:1313-1328`), `mk-code-index` spawns its server child (`.opencode/bin/mk-code-index-launcher.cjs:863-879`), and `mk-skill-advisor` spawns its server child (`.opencode/bin/mk-skill-advisor-launcher.cjs:1149-1154`).
+
+**CONFIRMED conflict:** Spec-memory has special owner-release/adoption/reap behavior. On shutdown it may release the context server for adoption rather than kill it (`.opencode/bin/mk-spec-memory-launcher.cjs:1449-1470`), and stale reclaim may adopt a live daemon or reap/respawn when dead or unbridgeable (`.opencode/bin/mk-spec-memory-launcher.cjs:1570-1615`). That logic overlaps with what launchd/systemd would own.
+
+**Required changes, INFERRED from code:**
+- Add an OS-supervised mode where launchd/systemd is the only daemon owner.
+- Change session launchers into pure bridge/proxy clients in that mode: resolve socket, warm-probe, bridge stdio, and never spawn/kill/clear daemon leases.
+- Split or reinterpret leases so the service-managed daemon owns the daemon lease; session launchers should not appear as the lifecycle owner.
+- Disable spec-memory re-election/reap-on-stale paths under OS-supervised mode, or make them service-aware so a client cannot reap the OS-owned daemon.
+- Keep `launcher-session-proxy` as the client-side bridge because it already reconnects/replays safe read frames across backend recycle (`.opencode/bin/lib/README.md:18-21`, `.opencode/bin/lib/README.md:72-75`).
+- Make shutdown paths non-destructive for advisor and code-index; current signal paths kill the child and clear leases (`.opencode/bin/mk-skill-advisor-launcher.cjs:1185-1200`, `.opencode/bin/mk-code-index-launcher.cjs:911-928`).
+
+### Cross-platform + scope (macOS/Linux/Windows; all 3 daemons + HF sidecar?)
+**CONFIRMED:** The checked-in template is macOS launchd-specific: phase 026’s plan calls it a “macOS LaunchAgent plist” (`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/026-daemon-reliability-followups/plan.md:40-43`). The install guide lists supported platforms as macOS, Linux, and Windows WSL (`.opencode/install_guides/README.md:56-62`) and says Linux is full support while Windows WSL follows Linux instructions (`.opencode/install_guides/README.md:172-175`).
+
+**INFERRED recommendation:** OS-level supervision is viable as the primary root-cause fix only if it becomes a platform abstraction:
+- macOS: LaunchAgent per daemon with `RunAtLoad=true`, `KeepAlive`, `ThrottleInterval`, absolute paths, stdout/stderr logs.
+- Linux: `systemd --user` units with `Restart=always` or equivalent and `RestartSec`.
+- Windows native: no repo evidence of an equivalent service template; WSL can likely follow the Linux/systemd path if user services are available.
+
+**Scope:** It should cover all three daemons, not just spec-memory. The repo has three launchers and three daemon-backed CLIs for spec memory, code index, and skill advisor (`.opencode/bin/README.md:17-25`, `.opencode/bin/README.md:60-71`). Prior findings specifically identify advisor/spec-memory dead with stale sockets and code-index surviving via proxies, not a single-service issue (`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/iterations/iteration-002.md:28-39`).
+
+**HF sidecar:** It also needs an ownership decision. The HF model server is shared by spec-memory and advisor (`.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:472-478`), and prior findings note spec-memory release can kill the HF sidecar even though advisor shares it (`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/iterations/iteration-002.md:33-37`). Either supervise HF separately or make its lifecycle refcount/service-owned so one daemon/session cannot recycle another daemon’s embedding sidecar.
+
+### Confidence + unknowns
+**Confidence:** High that the current LaunchAgent template is not the root-cause fix. It is a dry-run periodic orphan sweeper, not a `KeepAlive` daemon supervisor.
+
+**Confidence:** High that OS-level supervision is the right root-cause class if paired with launcher refactoring. The core gap is explicitly “no autonomous supervisor” and session-coupled liveness (`.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/iterations/iteration-002.md:12-21`, `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/iterations/iteration-002.md:38-39`).
+
+**Unknowns:**
+- Whether `~/Library/LaunchAgents/com.michelkerkmeester.orphan-sweep.plist` exists or is loaded on this machine.
+- Whether any unsearched external/global config already installs launchd/systemd units.
+- Exact daemon entrypoint shape for a clean OS-owned mode: current per-session launchers are close, but not safe to run unchanged as the long-lived owner.

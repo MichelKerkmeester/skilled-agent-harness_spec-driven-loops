@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "source": "114-small-ai-model-optimization/004-budget-and-output-verification (re-homed from cli-devin on cli-devin deprecation)",
+  "defaults": {
+    "max_budget_pct": 70,
+    "working_memory_tokens": 500,
+    "summary_threshold_lines": 200,
+    "truncation_marker_template": "[... truncated %d tokens]"
+  },
+  "models": [
+    {
+      "id": "deepseek-v4-pro",
+      "provider": "DeepSeek",
+      "context_length": 64000,
+      "max_budget_pct": 70,
+      "working_memory_tokens": 500,
+      "summary_threshold_lines": 200,
+      "truncation_marker_template": "[... truncated %d tokens]",
+      "notes": "Required slim-scope complex-task model. 70% budget yields 44800 tokens."
+    },
+    {
+      "id": "claude-haiku",
+      "provider": "Anthropic",
+      "context_length": null,
+      "max_budget_pct": 70,
+      "working_memory_tokens": 500,
+      "summary_threshold_lines": 200,
+      "truncation_marker_template": "[... truncated %d tokens]",
+      "notes": "unverified optional stub; do not route until adopted."
+    }
+  ]
+}

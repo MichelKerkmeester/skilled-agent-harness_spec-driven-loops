@@ -1,0 +1,29 @@
+Act as a markdown documentation-fixer (seat AF02). Spec folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation (PRE-APPROVED at Gate 3 — make the edits below directly with the Edit/Write tools; do NOT re-ask Gate 3 and do NOT ask the user anything).
+
+You fix STALE content in README files so they match current repo reality. SURGICAL edits only — fix the cited claims, keep everything else intact. Find the correct current value by reading the cited file PLUS its SKILL.md / source / config before editing.
+
+ALLOWED WRITE PATHS (edit ONLY these files):
+- .opencode/skills/deep-loop-runtime/lib/README.md
+- .opencode/skills/deep-loop-runtime/lib/coverage-graph/README.md
+- .opencode/skills/deep-loop-runtime/lib/deep-loop/README.md
+- .opencode/skills/deep-loop-runtime/scripts/README.md
+- .opencode/skills/deep-loop-runtime/tests/README.md
+BANNED: no delete, no rename, no new files, no edits outside the listed files, no --no-verify.
+
+DO-NOT-FIX (binding — confirmed false positives; leave untouched):
+- The CLI front-door "37 tools" figure: `spec-memory.cjs` CLI is genuinely 37; only the MCP-server/daemon surface is 39. Fix a "37" ONLY when the sentence is about the MCP server/daemon, NOT the CLI front door.
+- Any `// Feature catalog:` comments and TSDoc `@example` values.
+- Any cited claim that does NOT actually reproduce against the live file — mark it refuted; never invent a fix.
+
+FINDINGS TO FIX (confirm-then-fix each; P0/P1/P2 all in scope, including cosmetic/style):
+- [P1] .opencode/skills/deep-loop-runtime/lib/README.md:12 — Library consumer roster is pre-hub | stale: The library README says shared domain logic is for three deep-* sibling skills: deep-review, deep-research and deep-ai-council, and says deep-loop applies to all three deep-* skills. -> correct: Current routing is through deep-loop-workflows with context, research, review, ai-council and four improvement lanes; runtimeLoopType is research|review|council|context for graph-backed modes and null for improvement lanes.
+- [P1] .opencode/skills/deep-loop-runtime/lib/coverage-graph/README.md:12 — Coverage graph omits context mode | stale: The coverage-graph README describes convergence primitives only for deep-review and deep-research and lists only review/research consumers. -> correct: coverage-graph-db defines LoopType as research|review|context and includes context node kinds/relations; coverage-graph-signals computes context signals: sliceCoverage, reuseCatalogCoverage, agreementRate, relevanceFloor and dependencyCompleteness.
+- [P2] .opencode/skills/deep-loop-runtime/lib/deep-loop/README.md:17 — Helper surface table misses evidence contract | stale: The helper surface table lists loop-lock, jsonl-repair, atomic-state, executor config/audit, validation, prompt-pack, permissions, scorer, fallback router, runtime-capabilities, artifact-root and lifecycle-taxonomy. -> correct: lib/deep-loop also contains evidence-contract.ts, a machine-checkable dispatch-boundary evidence metadata validator.
+- [P1] .opencode/skills/deep-loop-runtime/scripts/README.md:12 — Command surface still says speckit deep | stale: The scripts README says runtime scripts are consumed by /speckit:deep-* workflows. -> correct: The current command surface is /deep:* under .opencode/commands/deep, and deep-loop-workflows documents /deep:context, /deep:research, /deep:review, /deep:ai-council and four /deep:* improvement commands.
+- [P1] .opencode/skills/deep-loop-runtime/scripts/README.md:16 — Script inventory is incomplete | stale: The scripts table lists only convergence.cjs, query.cjs, status.cjs and upsert.cjs, and convergence is described as review/research only. -> correct: The runtime scripts directory also has fanout-run, fanout-pool, fanout-salvage, fanout-merge and loop-lock entry points, and graph scripts accept research, review, council and context loop types.
+- [P1] .opencode/skills/deep-loop-runtime/tests/README.md:20 — Top-level test map omits council graph integration | stale: The top-level tests README describes integration tests as direct script invocation and review-depth coverage-graph fixtures. -> correct: The integration suite also includes council graph script coverage and council graph value scenarios.
+
+After editing, re-read each edited line to verify. Your final message MUST be exactly one fenced json block:
+```json
+{"seat":"AF02","fixed":[{"file":"path","claim":"what was stale","after":"what it now says"}],"refuted":[{"file":"path","why":"why skipped"}]}
+```

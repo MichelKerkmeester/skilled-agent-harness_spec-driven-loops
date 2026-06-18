@@ -3,7 +3,7 @@
 // ────────────────────────────────────────────────────────────────
 
 /* ───────────────────────────────────────────────────────────────
-   IMPORTS
+   1. IMPORTS
 ──────────────────────────────────────────────────────────────── */
 
 import { randomUUID } from 'node:crypto';
@@ -18,6 +18,7 @@ import * as vectorIndex from '../lib/search/vector-index.js';
 import { isMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-guard.js';
 import * as embeddings from '../lib/providers/embeddings.js';
 import * as triggerMatcher from '../lib/parsing/trigger-matcher.js';
+import { getRedactionStats } from '../lib/parsing/secret-scrubber.js';
 import * as incrementalIndex from '../lib/storage/incremental-index.js';
 import { createMCPSuccessResponse, createMCPErrorResponse } from '../lib/response/envelope.js';
 import { toErrorMessage } from '../utils/index.js';
@@ -25,6 +26,7 @@ import { toErrorMessage } from '../utils/index.js';
 import { summarizeAliasConflicts } from './memory-index.js';
 import * as causalEdges from '../lib/storage/causal-edges.js';
 import { getCircuitFlapState, getEmbeddingRetryStats, getRetryStats } from '../lib/providers/retry-manager.js';
+import { getBackgroundEnrichmentStats } from './memory-save.js';
 import {
   getSnapshot as getRoutingTelemetrySnapshot,
   WINDOW_SIZE as ROUTING_TELEMETRY_WINDOW_SIZE,
@@ -42,6 +44,16 @@ import {
 } from '../lib/telemetry/heap-profiler.js';
 import { getBm25EngineStatus } from '../lib/search/bm25-index.js';
 import { getIpcBridgeStats, type IpcBridgeStats } from '../lib/ipc/socket-server.js';
+import {
+  getHardExclusionPredicates,
+  getGraphMetrics,
+  type HardExclusionPredicate,
+  type HardExclusionSource,
+} from '../lib/search/hybrid-search.js';
+import {
+  buildVectorDegradationSignal,
+  getMaintenanceObservabilitySnapshot,
+} from '../lib/observability/retrieval-observability.js';
 
 import type { MCPResponse, EmbeddingProfile } from './types.js';
 import type { HealthArgs, PartialProviderMetadata } from './memory-crud-types.js';
@@ -50,6 +62,10 @@ import type { HealthArgs, PartialProviderMetadata } from './memory-crud-types.js
 // Feature catalog: Validation feedback (memory_validate)
 // Feature catalog: Memory health autoRepair metadata
 
+
+/* ───────────────────────────────────────────────────────────────
+   2. SAFE OUTPUT HELPERS
+──────────────────────────────────────────────────────────────── */
 
 /** Strip absolute paths, stack traces, and truncate for safe user-facing hints. */
 function sanitizeErrorForHint(msg: string): string {
@@ -77,7 +93,7 @@ function redactPath(absolutePath: string): string {
 }
 
 /* ───────────────────────────────────────────────────────────────
-   CONSTANTS
+   3. CONSTANTS
 ──────────────────────────────────────────────────────────────── */
 
 // Read version from package.json at module load time using ESM-relative paths.
@@ -109,7 +125,9 @@ const DEFAULT_DIVERGENT_ALIAS_LIMIT = 20;
 const MAX_DIVERGENT_ALIAS_LIMIT = 200;
 const DOT_OPENCODE_SPECS_SEGMENT = '/.opencode/specs/';
 const SPECS_SEGMENT = '/specs/';
+const DAY_MS = 24 * 60 * 60 * 1000;
 const INDEX_HEALTH_STALENESS_MS = 24 * 60 * 60 * 1000;
+const CHECKPOINT_FRESHNESS_STALENESS_MS = 7 * DAY_MS;
 const INDEX_HEALTH_ORPHAN_SAMPLE_LIMIT = 200;
 const INDEX_SCAN_LEASE_EXPIRY_MS = INDEX_SCAN_COOLDOWN * 2;
 
@@ -137,6 +155,11 @@ interface AliasConflictDbRow {
   file_path: string;
   content_hash: string | null;
   spec_folder?: string | null;
+}
+
+interface CheckpointFreshnessRow {
+  count?: number;
+  newestCreatedAt?: string | null;
 }
 
 interface DivergentAliasVariant {
@@ -187,6 +210,45 @@ interface FullMemoryReport {
   };
   recommended_action: string;
 }
+
+type ExclusionAuditStatus = 'ok' | 'risk' | 'unclassified' | 'unavailable';
+type ExclusionAuditClassification = 'intended' | 'silent-risk' | 'unclassified';
+
+interface IntendedExclusionPolicy {
+  version: string;
+  intendedSources: HardExclusionSource[];
+  silentRiskSources: HardExclusionSource[];
+}
+
+interface ExclusionAuditEntry {
+  predicateId: string;
+  source: HardExclusionSource;
+  channel: string;
+  classification: ExclusionAuditClassification;
+  candidateRows: number | null;
+}
+
+interface ExclusionAuditDiagnostic {
+  code: 'hard-exclusion-risk' | 'exclusion-unclassified' | 'exclusion-audit-unavailable';
+  severity: 'info' | 'medium' | 'high';
+  message: string;
+  predicateId?: string;
+  source?: HardExclusionSource;
+  candidateRows?: number | null;
+}
+
+interface ExclusionAuditReport {
+  status: ExclusionAuditStatus;
+  policyVersion: string | null;
+  entries: ExclusionAuditEntry[];
+  diagnostics: ExclusionAuditDiagnostic[];
+}
+
+const DEFAULT_INTENDED_EXCLUSION_POLICY: IntendedExclusionPolicy = Object.freeze({
+  version: 'hard-exclusion-v1',
+  intendedSources: ['archived-tier'] as HardExclusionSource[],
+  silentRiskSources: ['deprecated-tier'] as HardExclusionSource[],
+});
 
 function toNormalizedPath(filePath: string): string {
   return filePath.replace(/\\/g, '/');
@@ -277,7 +339,7 @@ function getDivergentAliasGroups(rows: AliasConflictDbRow[], limit: number): Div
 
     groups.push({
       normalizedPath: redactPath(normalizedPath),
-      // Fix F21 — redact specFolders to prevent path disclosure.
+      // Redact specFolders to prevent path disclosure.
       specFolders: Array.from(bucket.specFolders).sort().map(sf => redactPath(sf)),
       distinctHashCount: bucket.hashes.size,
       variants,
@@ -359,6 +421,161 @@ function getFullMemoryReport(
   };
 }
 
+function isValidExclusionPolicy(value: unknown): value is IntendedExclusionPolicy {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) {
+    return false;
+  }
+  const candidate = value as Record<string, unknown>;
+  return (
+    typeof candidate.version === 'string' &&
+    Array.isArray(candidate.intendedSources) &&
+    Array.isArray(candidate.silentRiskSources) &&
+    candidate.intendedSources.every((item) => item === 'archived-tier' || item === 'deprecated-tier') &&
+    candidate.silentRiskSources.every((item) => item === 'archived-tier' || item === 'deprecated-tier')
+  );
+}
+
+function countExclusionCandidates(
+  database: Database.Database | null,
+  source: HardExclusionSource,
+): number | null {
+  if (!database) {
+    return null;
+  }
+
+  const tier = source === 'deprecated-tier' ? 'deprecated' : 'archived';
+  try {
+    const row = database.prepare(`
+      SELECT COUNT(*) AS count
+      FROM memory_index
+      WHERE parent_id IS NULL
+        AND importance_tier = ?
+        AND (expires_at IS NULL OR expires_at > datetime('now'))
+        AND (
+          title IS NOT NULL OR
+          trigger_phrases IS NOT NULL OR
+          file_path IS NOT NULL OR
+          content IS NOT NULL
+        )
+    `).get(tier) as { count?: number } | undefined;
+    return row?.count ?? 0;
+  } catch (_error: unknown) {
+    return null;
+  }
+}
+
+function classifyExclusionPredicate(
+  predicate: HardExclusionPredicate,
+  policy: IntendedExclusionPolicy,
+): ExclusionAuditClassification {
+  if (policy.intendedSources.includes(predicate.source)) {
+    return 'intended';
+  }
+  if (policy.silentRiskSources.includes(predicate.source)) {
+    return 'silent-risk';
+  }
+  return 'unclassified';
+}
+
+function auditHardExclusions(
+  database: Database.Database | null,
+  policy: unknown = DEFAULT_INTENDED_EXCLUSION_POLICY,
+  predicates: HardExclusionPredicate[] = getHardExclusionPredicates(),
+): ExclusionAuditReport {
+  if (!Array.isArray(predicates) || predicates.length === 0) {
+    return {
+      status: 'unclassified',
+      policyVersion: isValidExclusionPolicy(policy) ? policy.version : null,
+      entries: [],
+      diagnostics: [{
+        code: 'exclusion-unclassified',
+        severity: 'high',
+        message: 'exclusion unclassified: no hard-exclusion predicates were exposed for audit',
+      }],
+    };
+  }
+
+  if (!isValidExclusionPolicy(policy)) {
+    return {
+      status: 'unclassified',
+      policyVersion: null,
+      entries: predicates.map((predicate) => ({
+        predicateId: predicate.id,
+        source: predicate.source,
+        channel: predicate.channel,
+        classification: 'unclassified',
+        candidateRows: countExclusionCandidates(database, predicate.source),
+      })),
+      diagnostics: predicates.map((predicate) => ({
+        code: 'exclusion-unclassified',
+        severity: 'high',
+        predicateId: predicate.id,
+        source: predicate.source,
+        candidateRows: countExclusionCandidates(database, predicate.source),
+        message: `exclusion unclassified: intended-exclusion policy unavailable for ${predicate.id}`,
+      })),
+    };
+  }
+
+  const entries: ExclusionAuditEntry[] = [];
+  const diagnostics: ExclusionAuditDiagnostic[] = [];
+  for (const predicate of predicates) {
+    const classification = classifyExclusionPredicate(predicate, policy);
+    const candidateRows = countExclusionCandidates(database, predicate.source);
+    entries.push({
+      predicateId: predicate.id,
+      source: predicate.source,
+      channel: predicate.channel,
+      classification,
+      candidateRows,
+    });
+
+    if (classification === 'silent-risk' && (candidateRows ?? 0) > 0) {
+      diagnostics.push({
+        code: 'hard-exclusion-risk',
+        severity: 'medium',
+        predicateId: predicate.id,
+        source: predicate.source,
+        candidateRows,
+        message: `${candidateRows} row(s) match ${predicate.source} and can be silently hard-excluded by ${predicate.id}`,
+      });
+    }
+    if (classification === 'unclassified') {
+      diagnostics.push({
+        code: 'exclusion-unclassified',
+        severity: 'high',
+        predicateId: predicate.id,
+        source: predicate.source,
+        candidateRows,
+        message: `exclusion unclassified: no intended-exclusion policy entry for ${predicate.id}`,
+      });
+    }
+  }
+
+  const status: ExclusionAuditStatus = diagnostics.some((diagnostic) => diagnostic.code === 'exclusion-unclassified')
+    ? 'unclassified'
+    : diagnostics.some((diagnostic) => diagnostic.code === 'hard-exclusion-risk')
+      ? 'risk'
+      : database
+        ? 'ok'
+        : 'unavailable';
+
+  if (!database) {
+    diagnostics.push({
+      code: 'exclusion-audit-unavailable',
+      severity: 'info',
+      message: 'Hard-exclusion audit could not count candidate rows because the database is unavailable.',
+    });
+  }
+
+  return {
+    status,
+    policyVersion: policy.version,
+    entries,
+    diagnostics,
+  };
+}
+
 function parseConfigTimestamp(value: unknown): number {
   const parsed = typeof value === 'string' ? Number.parseInt(value, 10) : 0;
   return Number.isFinite(parsed) ? parsed : 0;
@@ -398,6 +615,36 @@ function hasActiveEmbedderJob(database: Database.Database): boolean {
     return (row?.count ?? 0) > 0;
   } catch (_error: unknown) {
     return false;
+  }
+}
+
+function addCheckpointFreshnessHint(database: Database.Database, hints: string[], now: number): void {
+  try {
+    const row = database.prepare(`
+      SELECT COUNT(*) AS count, MAX(created_at) AS newestCreatedAt
+      FROM checkpoints
+    `).get() as CheckpointFreshnessRow | undefined;
+    const checkpointCount = row?.count ?? 0;
+    const newestCreatedAt = row?.newestCreatedAt ?? null;
+
+    if (checkpointCount === 0 || !newestCreatedAt) {
+      hints.push('No checkpoints found; create a checkpoint to keep a recent restore point available.');
+      return;
+    }
+
+    const newestCheckpointMs = Date.parse(newestCreatedAt);
+    if (!Number.isFinite(newestCheckpointMs)) {
+      hints.push('Checkpoint freshness unknown: newest checkpoint timestamp could not be parsed.');
+      return;
+    }
+
+    const checkpointAgeMs = Math.max(0, now - newestCheckpointMs);
+    if (checkpointAgeMs > CHECKPOINT_FRESHNESS_STALENESS_MS) {
+      const checkpointAgeDays = Math.floor(checkpointAgeMs / DAY_MS);
+      hints.push(`Newest checkpoint is ${checkpointAgeDays} day(s) old; create a fresh checkpoint to keep a recent restore point available.`);
+    }
+  } catch (error: unknown) {
+    hints.push(`Checkpoint freshness check failed: ${sanitizeErrorForHint(toErrorMessage(error))}`);
   }
 }
 
@@ -492,13 +739,13 @@ async function getIndexHealthBlock(
 }
 
 /* ───────────────────────────────────────────────────────────────
-   CORE LOGIC
+   4. CORE LOGIC
 ──────────────────────────────────────────────────────────────── */
 
 /** Handle memory_health tool -- returns system health status and diagnostics. */
 async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
   const startTime = Date.now();
-  // A7-P2-1: Generate requestId for incident correlation in error responses
+  // Generate requestId for incident correlation in error responses.
   const requestId = randomUUID();
   if (isMemoryRuntimeInitialized()) {
     try {
@@ -649,12 +896,37 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
     console.warn(`[memory-health] Failed to get memory count [requestId=${requestId}]:`, message);
   }
 
+  // Background-enrichment observability: scheduler counters (module-local) + the at-rest enrichment
+  // backlog by status. Without this a stuck or backed-up enrichment scheduler is a silent outage.
+  const enrichmentStats = getBackgroundEnrichmentStats();
+  let enrichmentPendingByStatus: Record<string, number> = {};
+  if (database) {
+    try {
+      const rows = database.prepare(
+        "SELECT post_insert_enrichment_status AS status, COUNT(*) AS n FROM memory_index WHERE post_insert_enrichment_status != 'complete' GROUP BY post_insert_enrichment_status",
+      ).all() as Array<{ status: string; n: number }>;
+      enrichmentPendingByStatus = Object.fromEntries(rows.map((r) => [r.status, r.n]));
+    } catch {
+      // Schema/edge — leave the distribution empty; the scheduler counters still surface.
+    }
+  }
+  const backgroundEnrichment = { ...enrichmentStats, pendingByStatus: enrichmentPendingByStatus };
+
   const indexHealth = await getIndexHealthBlock(
     database,
     memoryCount,
     vectorIndex.isVectorSearchAvailable(),
     Date.now(),
   );
+  const vectorDegradation = buildVectorDegradationSignal(vectorIndex.isVectorSearchAvailable());
+  const maintenance = getMaintenanceObservabilitySnapshot();
+  const exclusionAudit = auditHardExclusions(database);
+  // Per-predicate entries are a near-static enumeration; the actionable signal
+  // lives in diagnostics (also surfaced as hints). Keep entries in the opt-in
+  // full report only, so the default health payload stays within its budget.
+  const exclusionAuditOut = includeFullReport
+    ? exclusionAudit
+    : { status: exclusionAudit.status, policyVersion: exclusionAudit.policyVersion, diagnostics: exclusionAudit.diagnostics };
 
   if (reportMode === DIVERGENT_ALIAS_REPORT_MODE) {
     const hints: string[] = [];
@@ -670,6 +942,9 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
     if (aliasConflicts.divergentHashGroups > divergentAliasGroups.length) {
       hints.push(`More divergent alias groups available: increase limit above ${safeLimit}`);
     }
+    for (const diagnostic of exclusionAudit.diagnostics) {
+      hints.push(diagnostic.message);
+    }
 
     return createMCPSuccessResponse({
       tool: 'memory_health',
@@ -681,6 +956,9 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
         databaseConnected: !!database,
         process: processHealth,
         index: indexHealth,
+        recallDegradation: vectorDegradation,
+        maintenance,
+        exclusionAudit: exclusionAuditOut,
         embeddingRetry,
         specFolder: specFolder ?? null,
         limit: safeLimit,
@@ -698,12 +976,28 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
   let providerMetadata = embeddings.getProviderMetadata() as PartialProviderMetadata;
   let profile = embeddings.getEmbeddingProfile() as EmbeddingProfile | null;
   const hints: string[] = [];
+  for (const diagnostic of exclusionAudit.diagnostics) {
+    hints.push(diagnostic.message);
+  }
   const consistency = {
     status: database ? 'healthy' : 'unknown',
     rowsTotal: memoryCount,
     ftsRowsTotal: null as number | null,
     vecRowsTotal: null as number | null,
     mismatchedIds: [] as Array<string | number>,
+  };
+  const causalEdgeHealth = {
+    orphanedEdges: 0,
+    sample: [] as Array<{
+      edgeId: number;
+      sourceId: string;
+      targetId: string;
+      relation: string;
+      sourceExists: boolean;
+      targetExists: boolean;
+    }>,
+    repaired: 0,
+    tombstoned: 0,
   };
   const repair = {
     requested: autoRepair,
@@ -780,6 +1074,32 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
     }
   }
 
+  if (database) {
+    try {
+      causalEdges.init(database);
+      const orphanedEdges = causalEdges.findOrphanedEdges();
+      causalEdgeHealth.orphanedEdges = orphanedEdges.length;
+      if (orphanedEdges.length > 0) {
+        const memoryExistsStmt = database.prepare('SELECT 1 AS present FROM memory_index WHERE CAST(id AS TEXT) = ? LIMIT 1');
+        for (const edge of orphanedEdges.slice(0, safeLimit)) {
+          causalEdgeHealth.sample.push({
+            edgeId: edge.id,
+            sourceId: edge.source_id,
+            targetId: edge.target_id,
+            relation: edge.relation,
+            sourceExists: !!(memoryExistsStmt.get(edge.source_id) as { present?: number } | undefined),
+            targetExists: !!(memoryExistsStmt.get(edge.target_id) as { present?: number } | undefined),
+          });
+        }
+        consistency.status = 'degraded';
+        consistency.mismatchedIds.push(`orphan_causal_edges:${orphanedEdges.length}`);
+        hints.push(`${orphanedEdges.length} orphaned causal edge(s) detected; inspect data.causalEdges.sample.`);
+      }
+    } catch (error: unknown) {
+      hints.push(`Causal edge orphan check failed: ${sanitizeErrorForHint(toErrorMessage(error))}`);
+    }
+  }
+
   const status = database && consistency.status === 'healthy' ? 'healthy' : 'degraded';
   const summary = `Memory system ${status}: ${memoryCount} memories indexed`;
   if (consistency.status === 'degraded') {
@@ -797,9 +1117,14 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
         autoRepairRequested: true,
         needsConfirmation: true,
         actions: repairActions,
+        causalEdges: causalEdgeHealth,
         process: processHealth,
         index: indexHealth,
+        recallDegradation: vectorDegradation,
+        maintenance,
+        exclusionAudit: exclusionAuditOut,
         embeddingRetry,
+        backgroundEnrichment,
         ...(fullMemoryReport ?? {}),
       },
       hints: [
@@ -812,8 +1137,22 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
   if (!database) {
     hints.push('Database runtime has not initialized yet; the first memory-owning tool call will initialize it.');
   }
+  if (database) {
+    addCheckpointFreshnessHint(database, hints, startTime);
+  }
   if (!vectorIndex.isVectorSearchAvailable()) {
     hints.push('Vector search unavailable - fallback to BM25');
+  }
+  {
+    const backlog = (enrichmentPendingByStatus.pending ?? 0) + (enrichmentPendingByStatus.failed ?? 0) + (enrichmentPendingByStatus.partial ?? 0);
+    const stuck = enrichmentStats.active >= enrichmentStats.max && enrichmentStats.queued > 0;
+    if (enrichmentStats.failureTotal > 0 || enrichmentStats.droppedTotal > 0 || backlog > 500 || stuck) {
+      hints.push(
+        `Background enrichment: ${enrichmentStats.active}/${enrichmentStats.max} active, ${enrichmentStats.queued} queued, ` +
+        `${enrichmentStats.failureTotal} failed, ${enrichmentStats.droppedTotal} dropped, ${backlog} rows still pending enrichment. ` +
+        'If slots look stuck, restart the daemon, then run memory_index_scan({ force: true }) to backfill enrichment.',
+      );
+    }
   }
   // FTS5 consistency check
   if (database) {
@@ -871,9 +1210,12 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
       causalEdges.init(database);
       const orphanResult = causalEdges.cleanupOrphanedEdges();
       if (orphanResult.deleted > 0) {
+        causalEdgeHealth.repaired = orphanResult.deleted;
+        causalEdgeHealth.tombstoned = orphanResult.tombstoned;
         trackRepairOutcome(true);
         repair.actions.push(`orphan_edges_cleaned:${orphanResult.deleted}`);
-        hints.push(`Auto-repair: removed ${orphanResult.deleted} orphaned causal edge(s)`);
+        repair.actions.push(`orphan_edges_tombstoned:${orphanResult.tombstoned}`);
+        hints.push(`Auto-repair: tombstoned and removed ${orphanResult.deleted} orphaned causal edge(s)`);
       }
     } catch (orphanError: unknown) {
       trackRepairOutcome(false);
@@ -939,13 +1281,15 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
 
   let routingTelemetry: Pick<
     ReturnType<typeof getRoutingTelemetrySnapshot>,
-    'graphChannelInvocationRate' | 'channelInvocationRates' | 'totalRecorded' | 'windowSize'
+    'graphChannelInvocationRate' | 'channelInvocationCounts' | 'channelInvocationRates' | 'totalRecorded' | 'windowSize'
   >;
+  let graphChannelMetrics: ReturnType<typeof getGraphMetrics>;
   try {
     routingTelemetry = getRoutingTelemetrySnapshot();
   } catch (err: unknown) {
     routingTelemetry = {
       graphChannelInvocationRate: 0,
+      channelInvocationCounts: { vector: 0, fts: 0, bm25: 0, graph: 0, degree: 0 },
       channelInvocationRates: { vector: 0, fts: 0, bm25: 0, graph: 0, degree: 0 },
       totalRecorded: 0,
       windowSize: ROUTING_TELEMETRY_WINDOW_SIZE,
@@ -953,6 +1297,27 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
     const errClass = err instanceof Error ? err.constructor.name : typeof err;
     const errMsg = err instanceof Error ? err.message : String(err);
     const hint = `Routing telemetry unavailable (${errClass}: ${errMsg})`.slice(0, 160);
+    hints.push(hint);
+  }
+  try {
+    graphChannelMetrics = getGraphMetrics();
+  } catch (err: unknown) {
+    graphChannelMetrics = {
+      totalQueries: 0,
+      graphHits: 0,
+      graphResultCount: 0,
+      graphOnlyResults: 0,
+      graphMultiSourceResults: 0,
+      multiSourceResults: 0,
+      degreeQueries: 0,
+      degreeHits: 0,
+      degreeResultCount: 0,
+      graphHitRate: 0,
+      degreeHitRate: 0,
+    };
+    const errClass = err instanceof Error ? err.constructor.name : typeof err;
+    const errMsg = err instanceof Error ? err.message : String(err);
+    const hint = `Graph channel metrics unavailable (${errClass}: ${errMsg})`.slice(0, 160);
     hints.push(hint);
   }
   return createMCPSuccessResponse({
@@ -963,14 +1328,18 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
       runtime_initialized: runtimeInitialized,
       databaseConnected: !!database,
       vectorSearchAvailable: vectorIndex.isVectorSearchAvailable(),
+      recallDegradation: vectorDegradation,
       memoryCount,
       uptime: process.uptime(),
       process: processHealth,
       index: indexHealth,
+      maintenance,
+      exclusionAudit: exclusionAuditOut,
       version: SERVER_VERSION,
       reportMode: 'full',
       aliasConflicts,
       consistency,
+      causalEdges: causalEdgeHealth,
       repair,
       embeddingProvider: {
         provider: providerName,
@@ -981,12 +1350,30 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
         databasePath: redactPath(vectorIndex.getDbPath() ?? ''),
       },
       embeddingRetry,
+      backgroundEnrichment,
       routing: {
         graphChannelInvocationRate: routingTelemetry.graphChannelInvocationRate,
+        channelInvocationCounts: routingTelemetry.channelInvocationCounts,
         channelInvocationRates: routingTelemetry.channelInvocationRates,
+        graphContributionCounters: {
+          totalQueries: graphChannelMetrics.totalQueries,
+          graphHits: graphChannelMetrics.graphHits,
+          graphResultCount: graphChannelMetrics.graphResultCount,
+          graphOnlyResults: graphChannelMetrics.graphOnlyResults,
+          graphMultiSourceResults: graphChannelMetrics.graphMultiSourceResults,
+          multiSourceResults: graphChannelMetrics.multiSourceResults,
+          graphHitRate: graphChannelMetrics.graphHitRate,
+        },
+        degreeContributionCounters: {
+          degreeQueries: graphChannelMetrics.degreeQueries,
+          degreeHits: graphChannelMetrics.degreeHits,
+          degreeResultCount: graphChannelMetrics.degreeResultCount,
+          degreeHitRate: graphChannelMetrics.degreeHitRate,
+        },
         totalRecorded: routingTelemetry.totalRecorded,
         windowSize: routingTelemetry.windowSize,
       },
+      redaction: getRedactionStats(),
       ...(fullMemoryReport ?? {}),
     },
     hints,
@@ -995,7 +1382,14 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
 }
 
 /* ───────────────────────────────────────────────────────────────
-   EXPORTS
+   5. EXPORTS
 ──────────────────────────────────────────────────────────────── */
+
+export const __testables = {
+  DEFAULT_INTENDED_EXCLUSION_POLICY,
+  auditHardExclusions,
+  classifyExclusionPredicate,
+  countExclusionCandidates,
+};
 
 export { handleMemoryHealth };

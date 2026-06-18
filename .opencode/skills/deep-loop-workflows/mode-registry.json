@@ -1,0 +1,147 @@
+{
+  "skill": "deep-loop-workflows",
+  "version": "1.1.0",
+  "description": "Declarative mode registry: the single source of truth for the three-tier discriminator (workflowMode/runtimeLoopType/backendKind) PLUS the advisorRouting projection. The advisor keeps its hardcoded projection maps (Python DEEP_ROUTING_MODE_BY_KEY, TypeScript DEEP_MODE_BY_CANONICAL) in sync with this registry via a CI drift-guard test (maps == registry projection); the advisor does NOT read this file at runtime, which avoids cross-skill import coupling on the advisor hot path.",
+  "discriminator": {
+    "workflowMode": "Public command/advisor/mode key. Stable identity used in commands, advisor aliases, and this registry. Carried by every mode.",
+    "runtimeLoopType": "The graph-backed convergence loop key consumed by deep-loop-runtime/scripts/convergence.cjs. Validated against exactly research|review|council|context. Explicit null for improvement-host and external-adapter modes; NEVER inferred from workflowMode.",
+    "backendKind": "Which backend actually runs the mode: runtime-loop-type (deep-loop-runtime convergence), improvement-host (deep-improvement/scripts/shared/loop-host.cjs --mode), or external-adapter (loop owned by external packaging)."
+  },
+  "advisorRoutingContract": {
+    "routingClass": "How the advisor finds the mode. 'lexical' = weighted-regex scoring in skill_advisor.py AND present in both projection maps. 'alias-fold' = TS DEEP_MODE_BY_CANONICAL only (alias projection, not lexically scored). 'metadata' = resolved by skill membership; no advisor map entry. 'command-bridge' = routed by its /deep:* command, not an advisor map entry.",
+    "legacyAdvisorId": "The legacy deep-* skill id the projection maps key on (present for lexical + alias-fold modes only).",
+    "advisorDefaultMode": "Marks the default mode a multi-mode legacy id folds to (deep-improvement -> agent-improvement). Never inferred from array order.",
+    "legacyAliases": "The TypeScript scorer alias set (aliases.ts SKILL_ALIAS_GROUPS[legacyAdvisorId]) the merged-identity layer keys on; the drift-guard asserts these match it order-insensitive. The Python deep-router uses its own alias set + regex patterns by design (same keys, different values), so the guard only cross-checks that each legacyAdvisorId key also exists in the Python SKILL_ALIAS_GROUPS.",
+    "packetSkillName": "The packet's SKILL.md name. Standard for new parent skills: folder == packetSkillName == deep-<mode>. ai-council is a grandfathered exception (folder 'ai-council', packetSkillName 'deep-ai-council').",
+    "driftGuard": ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-registry-drift-guard.vitest.ts asserts the hardcoded Python + TS maps equal this registry's projection."
+  },
+  "modes": [
+    {
+      "workflowMode": "context",
+      "runtimeLoopType": "context",
+      "backendKind": "runtime-loop-type",
+      "packet": "deep-context",
+      "command": "/deep:context",
+      "agent": "deep-context",
+      "artifactRoot": "context/",
+      "aliases": ["deep-context", "context loop", "gather context", "gather codebase context", "context sweep", "reuse catalog", "pre-plan context", "context-gathering-loop"],
+      "advisorRouting": {
+        "routingClass": "metadata",
+        "packetSkillName": "deep-context"
+      }
+    },
+    {
+      "workflowMode": "research",
+      "runtimeLoopType": "research",
+      "backendKind": "runtime-loop-type",
+      "packet": "deep-research",
+      "command": "/deep:research",
+      "agent": "deep-research",
+      "artifactRoot": "research/",
+      "aliases": ["deep-research", "research loop", "iterative investigation workflow", "research convergence detection", "autoresearch", "iterative-research"],
+      "advisorRouting": {
+        "routingClass": "lexical",
+        "legacyAdvisorId": "deep-research",
+        "legacyAliases": ["command-spec-kit-deep-research", "/deep:start-research-loop", "spec_kit:deep-research", "deep-research", "sk-deep-research"],
+        "packetSkillName": "deep-research"
+      }
+    },
+    {
+      "workflowMode": "review",
+      "runtimeLoopType": "review",
+      "backendKind": "runtime-loop-type",
+      "packet": "deep-review",
+      "command": "/deep:review",
+      "agent": "deep-review",
+      "artifactRoot": "review/",
+      "aliases": ["deep-review", "review loop", "iterative code audit", "severity weighted findings", "code-audit", "release-readiness"],
+      "advisorRouting": {
+        "routingClass": "lexical",
+        "legacyAdvisorId": "deep-review",
+        "legacyAliases": ["command-spec-kit-deep-review", "/deep:start-review-loop", "spec_kit:deep-review", "deep-review", "sk-deep-review"],
+        "packetSkillName": "deep-review"
+      }
+    },
+    {
+      "workflowMode": "ai-council",
+      "runtimeLoopType": "council",
+      "backendKind": "runtime-loop-type",
+      "packet": "ai-council",
+      "command": "/deep:ai-council",
+      "agent": "ai-council",
+      "artifactRoot": "ai-council/",
+      "aliases": ["deep-ai-council", "ai council deliberation", "multi-seat planning council", "council convergence", "planning council"],
+      "advisorRouting": {
+        "routingClass": "lexical",
+        "legacyAdvisorId": "deep-ai-council",
+        "legacyAliases": ["@deep-ai-council", "deep-ai-council", "deep ai council", "ai council", "planning council", "council deliberation", "multi-ai-council"],
+        "packetSkillName": "deep-ai-council"
+      }
+    },
+    {
+      "workflowMode": "agent-improvement",
+      "runtimeLoopType": null,
+      "backendKind": "improvement-host",
+      "packet": "deep-improvement",
+      "loopHostMode": "agent-improvement",
+      "command": "/deep:agent-improvement",
+      "agent": "deep-improvement",
+      "artifactRoot": "improvement/",
+      "mutating": true,
+      "aliases": ["improve agent", "evaluate agent", "agent scoring", "score agent candidate", "promote or rollback agent change", "agent-improvement"],
+      "advisorRouting": {
+        "routingClass": "alias-fold",
+        "legacyAdvisorId": "deep-improvement",
+        "advisorDefaultMode": true,
+        "legacyAliases": ["command-spec-kit-deep-agent-improvement", "/deep:start-agent-improvement-loop", "deep-agent-improvement", "sk-deep-agent-improvement"],
+        "packetSkillName": "deep-improvement"
+      }
+    },
+    {
+      "workflowMode": "model-benchmark",
+      "runtimeLoopType": null,
+      "backendKind": "improvement-host",
+      "packet": "deep-improvement",
+      "loopHostMode": "model-benchmark",
+      "command": "/deep:model-benchmark",
+      "agent": "deep-improvement",
+      "artifactRoot": "improvement/",
+      "aliases": ["model benchmark", "benchmark a model", "prompt framework benchmark", "benchmark-harness"],
+      "advisorRouting": {
+        "routingClass": "command-bridge",
+        "packetSkillName": "deep-improvement"
+      }
+    },
+    {
+      "workflowMode": "skill-benchmark",
+      "runtimeLoopType": null,
+      "backendKind": "improvement-host",
+      "packet": "deep-improvement",
+      "loopHostMode": "skill-benchmark",
+      "command": "/deep:skill-benchmark",
+      "agent": "deep-improvement",
+      "artifactRoot": "improvement/",
+      "aliases": ["skill benchmark", "benchmark a skill", "skill routing benchmark"],
+      "advisorRouting": {
+        "routingClass": "command-bridge",
+        "packetSkillName": "deep-improvement"
+      }
+    },
+    {
+      "workflowMode": "ai-system-improvement",
+      "runtimeLoopType": null,
+      "backendKind": "external-adapter",
+      "packet": "deep-improvement",
+      "loopHostMode": "non-dev-ai-system-refine",
+      "command": "/deep:ai-system-improvement",
+      "agent": "deep-improvement",
+      "artifactRoot": "improvement/",
+      "externalLoopOwner": "external packaging (e.g. Barter Copywriter) owns the Python loop, gates, scoring, and kill-switches",
+      "aliases": ["non-dev ai system", "non-dev-ai-system", "package ai system benchmark"],
+      "advisorRouting": {
+        "routingClass": "command-bridge",
+        "packetSkillName": "deep-improvement"
+      }
+    }
+  ]
+}

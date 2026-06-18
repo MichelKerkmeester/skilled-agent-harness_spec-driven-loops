@@ -1,0 +1,69 @@
+{
+  "sessionId": "fanout-gpt55r2-b-7-1781761339355-o7qylx",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "finding_class": "governed-ingest-write-integrity",
+      "title": "Governed scan/ingest rows can survive metadata failure without scope and retention fields",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
+      "line": 2896,
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:1047-1052",
+        ".opencode/skills/system-spec-kit/mcp_server/context-server.ts:2199-2209",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:2893-2899",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:3730-3756"
+      ],
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "content_hash": "f1b23c7f3f4e1d61201bc75e46ccf190b2a6d3ed8b0f3bf5477dc6c3aa3b5c01",
+      "transitions": [{ "iteration": 1, "from": null, "to": "P1", "reason": "Initial discovery" }]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "category": "data-integrity",
+      "status": "active",
+      "dimension": "correctness",
+      "finding_class": "soft-delete-active-projection-leak",
+      "title": "Soft-delete mode tombstones memory rows but leaves them active in projection-backed readers",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts",
+      "line": 82,
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:82-99",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts:54-70",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:1834-1850",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:1875-1889",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:163-199"
+      ],
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "content_hash": "f2d4ce1f1d1e04d79fca04b5cfe85605418f01d2bdfbdc2d60e07a9df8c5236a",
+      "transitions": [{ "iteration": 1, "from": null, "to": "P1", "reason": "Initial discovery" }]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": { "P0": 0, "P1": 2, "P2": 0 },
+  "openFindingsCount": 2,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.45,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

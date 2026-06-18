@@ -1,0 +1,35 @@
+{
+  "title": "Skill Docs Alignment",
+  "trigger_phrases": [
+    "skill",
+    "docs",
+    "alignment",
+    "align",
+    "every"
+  ],
+  "level": 1,
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/002-skill-docs-alignment",
+  "status": "planned",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup",
+  "importance_tier": "important",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/002-skill-docs-alignment",
+  "description": "Feature Specification: Skill Docs Alignment",
+  "keywords": [
+    "feature",
+    "specification",
+    "skill",
+    "docs",
+    "alignment"
+  ],
+  "lastUpdated": "2026-06-10T16:42:09.629Z",
+  "specId": "002",
+  "folderSlug": "skill-docs-alignment",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "000-release-cleanup"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

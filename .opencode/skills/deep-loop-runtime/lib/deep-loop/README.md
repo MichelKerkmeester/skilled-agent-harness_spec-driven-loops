@@ -10,9 +10,11 @@ trigger_phrases:
 
 # Deep Loop Runtime Library
 
+## 1. OVERVIEW
+
 `lib/deep-loop/` is the migrated runtime home for deep-review and deep-research loop helpers. Legacy references to `system-spec-kit/mcp_server/lib/deep-loop/` should point here unless they specifically describe old provenance.
 
-## Helper Surfaces
+## 2. HELPER SURFACES
 
 | File | Responsibility |
 |---|---|
@@ -22,10 +24,16 @@ trigger_phrases:
 | `executor-config.ts` | Executor schema parsing, canonical `kind` handling and sandbox mapping. |
 | `executor-audit.ts` | Executor provenance and dispatch failure JSONL records. |
 | `post-dispatch-validate.ts` | Iteration markdown, JSONL and delta validation after external dispatch. |
+| `evidence-contract.ts` | Machine-checkable dispatch-boundary evidence metadata validation. |
 | `prompt-pack.ts` | Prompt template rendering with required variable checks. |
 | `permissions-gate.ts` | Permission-scope checks for deep-loop dispatch. |
 | `bayesian-scorer.ts` | Convergence scoring. |
 | `fallback-router.ts` | Executor fallback routing. |
+| `runtime-capabilities.cjs` | Parameterized capability-matrix resolver shared by the graph-backed modes. The deep-research and deep-review scripts bind a label plus default matrix path and re-export it as byte-compatible shims. |
+| `artifact-root.cjs` | Canonical seam for the artifact-topology resolver (`resolveArtifactRoot`). The single implementation stays in `system-spec-kit/shared/review-research-paths.cjs`; the research, review and context reducers import it from here so the dependency points at the backend. |
+| `lifecycle-taxonomy.cjs` | Terminal lifecycle enum: seven `stopReason` values and four `sessionOutcome` values. The improvement journal imports it so accepted values and the derived validation strings stay identical across modes. |
+
+The `scripts/loop-lock.cjs` CLI adapter is a thin front door over `loop-lock.ts` for non-TypeScript callers (command YAML, shells, other runtimes). It adds only argv parsing and JSON framing. These shared-backend contracts register no MCP tools and carry no public workflow routing; the runtime stays MCP-free.
 
 Related lifecycle helpers live outside this folder:
 

@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/002-code-graph",
+  "description": "Feature Specification: Code Graph — External Mining",
+  "keywords": [
+    "feature",
+    "specification",
+    "code",
+    "graph",
+    "external",
+    "mining"
+  ],
+  "lastUpdated": "2026-06-16T15:23:34.802Z",
+  "specId": "002",
+  "folderSlug": "code-graph",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

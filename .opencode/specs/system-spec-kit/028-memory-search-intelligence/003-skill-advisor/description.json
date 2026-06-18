@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/003-skill-advisor",
+  "description": "Feature Specification: Skill Advisor — External Mining",
+  "keywords": [
+    "feature",
+    "specification",
+    "skill",
+    "advisor",
+    "external",
+    "mining"
+  ],
+  "lastUpdated": "2026-06-16T15:23:34.806Z",
+  "specId": "003",
+  "folderSlug": "skill-advisor",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

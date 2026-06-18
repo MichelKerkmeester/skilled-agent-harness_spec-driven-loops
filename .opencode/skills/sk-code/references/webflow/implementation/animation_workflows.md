@@ -1,6 +1,13 @@
 ---
 title: Animation Workflows - Phase 1 Implementation
 description: CSS-first animation guide with Motion.dev integration for complex sequences and scroll-triggered effects.
+trigger_phrases:
+  - "webflow animation workflows"
+  - "css first animation"
+  - "motion dev webflow sequences"
+  - "scroll triggered effects"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Animation Workflows - Phase 1 Implementation

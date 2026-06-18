@@ -62,11 +62,14 @@ scripts/spec/
 +-- validate.sh                  # Run structural validation rules
 +-- progressive-validate.sh      # Staged validation helper
 +-- check-completion.sh          # Verify completion checklist state
++-- scaffold-debug-delegation.sh # Generate debug-delegation handoff scaffolds
 +-- calculate-completeness.sh    # Report checklist completion metrics
 +-- recommend-level.sh           # Recommend documentation level from task signals
 +-- archive.sh                   # Move completed or stale spec folders
 +-- check-template-staleness.sh  # Compare generated docs with templates
++-- check-smart-router.sh        # Validate SKILL.md smart-router references
 +-- quality-audit.sh             # Batch quality audit helper
++-- test-validation.sh           # Legacy wrapper for scripts/tests/test-validation.sh
 `-- README.md
 ```
 
@@ -92,7 +95,10 @@ Disallowed direction:
 | `upgrade-level.sh` | Adds missing files and sections for higher documentation levels. |
 | `validate.sh` | Runs the modular validation gate used before completion claims. |
 | `check-completion.sh` | Confirms checklist evidence before a task is called complete. |
+| `scaffold-debug-delegation.sh` | Generates `debug-delegation.md` handoff scaffolds from failure-trail input. |
 | `progressive-validate.sh` | Runs a staged validation pass for detect, fix, suggest and report flows. |
+| `check-smart-router.sh` | Validates `SKILL.md` smart-router resource paths and reports load bloat warnings. |
+| `test-validation.sh` | Legacy wrapper forwarding to `scripts/tests/test-validation.sh`. |
 | `archive.sh` | Moves completed or stale spec folders into the archive area. |
 
 ---

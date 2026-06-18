@@ -1,0 +1,51 @@
+# Iteration 4: OPTIMIZE — ranked, tiered surface×delta recommendation set (deduped vs round 1)
+
+## Focus
+Q4 (OPTIMIZE): Consolidate the 24 net-new findings (F1–F15, G1–G9) into a ranked recommendation set. Map each to its **highest-read-reliability viable surface** (iter-3 matrix), score by **behavioral-leverage / (cost + blast-radius)**, tier **A (doctrine text) / B (mechanism) / C (measurement)**, and dedup against round-1's shipped set. Research-only — these are recommendations, not edits.
+
+## Findings
+
+**Scoring key.** Leverage / Cost / Blast each rated 1–5. `Score ≈ Leverage / (Cost + Blast)` (higher = better leverage per unit of cost+risk); used only to order, not as a false-precision metric. All items are NET-NEW vs round 1 unless the Dedup column says otherwise. The guardrail from `fable-mode.md:11` ("scale rigor to blast radius; not a license to spawn fleets on a one-liner") and the prompt-vs-weights honesty (G4) are inherited by every Tier-B/C item: these steer *style and persistence*, not capability.
+
+### The ranked surface×delta set
+
+| # | Rec | Surface (highest read-reliability) | Tier | Maps | Leverage | Cost | Blast | Score | Dedup vs round 1 |
+|---|-----|-----------------------------------|------|------|----------|------|-------|-------|------------------|
+| **1** | **Ride the live per-turn hook with a compact fable-5 governor line** | Claude `user-prompt-submit.js` reminder string (the firing thermostat); mirror to OpenCode/Codex per-turn hooks | B | G1, G2, G5, F10 | 5 | 1 | 2 | **1.67** | NET-NEW (round 1 = no hook change) |
+| **2** | **Mutation-check / claim-falsifier discipline** ("after green, break the code to confirm the test bites; a test that stays green when you break what it guards is a false claim; hunt vacuous green tests") | `sk-code` SKILL.md verification phase (+ optional constitutional rule) | B | F1, F3, F13 | 5 | 2 | 1 | **1.67** | NET-NEW (round-1 sk-code line was baseline/blast-radius only) |
+| **3** | **Recursion-control rule: "reason about the problem and the person, not yourself" + audit-depth-limit-1 + the caption test** | New constitutional rule (durable auto-surface) + xhigh/extended-thinking executor briefs | B | G1, G6, G8 | 5 | 2 | 1 | **1.67** | NET-NEW (round-1's 2 rules were verify / finding-is-a-hypothesis, not disposition) |
+| **4** | **Engineer staleness out of artifacts** ("counts→greps, enumerations→table-walking tests, today-X→an assertion that fails loud"); first application: convert the dead `skill-advisor-hook.md` pointer (found iter 3) into a checked reference | New constitutional rule (or fold into comment-hygiene/anti-staleness) | B | F6, F4, F13 | 4 | 2 | 2 | **1.00** | Partial (comment-hygiene shares the philosophy; the rot→test *mechanism* is new) |
+| **5** | **Inject the governor into agent prompt templates / `renderPromptPack`** (reach the subagents the hook is blind to) | `.opencode/.claude/.codex` agent prompts (esp. deep-*, orchestrate, code) + deep-loop `renderPromptPack` | B | G2, G1, G6 | 5 | 3 | 3 | **0.83** | NET-NEW; needs a sync mechanism (3 mirrors drift, per round-1 orchestrate.md note) |
+| **6** | **Compact "doctrine spine" line in AGENTS.md/CLAUDE.md §1** — root conviction + two-register/result-first voice + brief-sovereign letter-vs-intent; cross-reference constitutional rules, do not restate | AGENTS.md/CLAUDE.md §1 (≈76-line headroom; byte-synced twin) | A | root conviction, F8, F9, F10 | 3 | 1 | 2 | **1.00** | NET-NEW *only if* it adds register/voice + root-conviction, NOT a restate of round-1's Operating Discipline subsection; **pair with #1** so it doesn't decay |
+| **7** | **A leak_test-style behavioral metric** (tool:text ratio, median words/msg, caveat %, self-opener %, bucketed by runtime/model id from the runtime's own transcript logs) | New `/doctor <target>` route OR a `deep:model-benchmark` / `deep:skill-benchmark` dimension | C | G3, G5, F13 | 4 | 4 | 1 | **0.80** | NET-NEW; the only way to know if #1/#3/#5 actually moved behavior |
+| **8** | **Scar-tissue + cold-successor handoff discipline** ("Traps already hit" ledger: blast site + next-bite-site + load-bearing-vs-defensive + activation condition; carry only non-derivable; numbered Read order; ship the next step's brief) | `handover.md` template + `_memory.continuity` | A/B | F4, F5 | 3 | 2 | 1 | **1.00** | NET-NEW (round 1 didn't touch continuity/handover) |
+| **9** | **Verification ladder with named pre-stated blind spots** ("in-memory-green is not production-green") | `sk-code` SKILL.md verification + `deep-review` dimensions | B | F2 | 3 | 1 | 1 | **1.50** | Partial (sk-code has verification gates; the named-blind-spot framing is new) |
+| **10** | **Adversarial-review schema + the machine-checkable evidence contract** (typed status enum DONE/DONE_WITH_CONCERNS/NEEDS_CONTEXT/BLOCKED; two-stage spec-then-quality review; completeness critic; refute-own-reviewers; claim/verdict/evidence triple) | `@orchestrate`/`@deep-review` agent prompts + deep-loop `post-dispatch-validate` | B | F3, F11, F15, F5 | 5 | 5 | 4 | **0.56** | = round-1's CARRIED follow-up (assess + advance, not a brand-new idea); highest leverage but highest cost |
+| **11** | **Decision-economy + fail-closed-by-construction doctrine** (named seam not bare TODO; scaffold the contract not the implementation; never a dead control; structural-not-disciplinary invariants; reject-not-strip) | `sk-code` doctrine (+ optional constitutional rule) | A | F7, F8 | 3 | 1 | 1 | **1.50** | NET-NEW |
+
+### Ranking rationale (worst-first on risk, best-first on value)
+- **Top cluster (#1–#3, score 1.67) = the efficiency core.** All three are high-leverage, low-cost, low-blast, and directly serve "fable-5 *efficiency*": #1 cuts the token burn every turn at near-zero cost on a hook that already fires; #2 imports Fable's single highest-value habit into the surface that already owns verification; #3 targets the Opus anxiety the opus-fable-mode source was built to govern, on our xhigh executors. **These are the recommendations the owner should land first.**
+- **#4, #6, #8, #9, #11 (score 1.0–1.5) = durable doctrine + cheap mechanism.** Low cost/blast; each lands one finding on its natural surface. #6 is deliberately *small* and *paired with #1* to defeat setpoint decay (the round-1 doc-only weakness).
+- **#5 and #7 (score ≈0.8) = high value, real cost.** #5 is the only way to govern subagents (the hook can't reach them) but carries 3-mirror drift cost → needs a sync mechanism first. #7 closes the measurement loop but needs a runtime-aware log parser.
+- **#10 (score 0.56) = the carried round-1 follow-up.** Highest leverage of all, but highest cost+blast (touches orchestration + validation). Belongs in a dedicated packet, not a surgical drop. Re-affirmed as a high-value future packet, not a quick win.
+
+### Efficiency framing (answering the spec's "fable-5 *efficiency*")
+The two cheapest, highest-read-reliability levers that move *any* AI toward fable-5 efficiency are: (a) **#1 — the per-turn governor** (cuts narration/caveat/self-opener overhead every turn, persisting through context growth) and (b) **#3 — recursion-control** (kills the self-audit loop that burns the extended-thinking budget). Both are style/persistence levers; per G4 the *capability* lever remains task-structure + multi-LLM orchestration, which the framework already has (deep-loop, @orchestrate, multi-model fanout) — so the marginal gain available here is specifically **efficiency** (less token burn, less decay, more result-first), exactly the spec's target, not capability.
+
+## Sources Consulted
+- iteration-001.md (F1–F15), iteration-002.md (G1–G9), iteration-003.md (read-reliability matrix) — this lineage's own evidence base
+- 002 `spec.md` (tier definitions A/B/C; scoring intent leverage/(cost+blast); dedup baseline; the named Tier-B/C targets)
+- 149/001 implementation-summary.md + changelog.md (round-1 dedup baseline; carried follow-ups)
+
+## Assessment
+- **newInfoRatio: 0.25** — Synthesis/ranking iteration: it consolidates already-extracted findings into the ranked surface×delta deliverable. The genuinely-new content is the surface-fit decisions, the leverage/(cost+blast) scoring, the tier assignments, the dedup verdicts, and the efficiency framing — analytical output, not new source evidence. Ratio reflects "low new evidence, real new structure," continuing the descending trend.
+- **Novelty justification:** First time the Fable mechanisms are mapped to specific Public-repo surfaces with a defensible rank and dedup verdict — the spec's REQ-002 deliverable shape.
+- **Confidence:** HIGH on tier/dedup (grounded in iter 1-3 evidence + the 002 spec); MEDIUM on the numeric scores (deliberately coarse 1–5 estimates, ordering not precision); the cost/blast of #5 and #10 in particular are estimates the implementation packet must firm up.
+
+## Reflection
+- **What worked:** Carrying the read-reliability matrix from iter 3 made surface-fit nearly mechanical — each finding routes to its highest-read-reliability viable surface. Scoring leverage/(cost+blast) cleanly separated the "land now" cluster (#1–#3) from the "dedicated packet" item (#10).
+- **What failed:** The numeric score collides several items at 1.0/1.5/1.67 — the model is too coarse to finely order within a band; mitigated by the worst-first/best-first rationale prose.
+- **Ruled out (for adoption):** F14 (ration live actions / harnesses-over-production / cleanup-as-privacy) — low relevance, no shared production box, partially covered by name-the-rollback. F12 (suspect-yourself-first / reproduce-before-fix) — already covered by round-1's finding-is-a-hypothesis + Fable5.md reproduce-before-cause; folded as reinforcement, not a standalone rec. G7/G8 folded into #3's governor as guardrails rather than standalone items.
+
+## Recommended Next Focus
+Q5 (FOLLOW-UPS + GAPS): Re-assess the two carried round-1 follow-ups — the machine-checkable evidence contract (now surfaced as #10) and the codex SIGKILL / silent-gpt-5-fallback hardening — against the current repo; document this lineage's gaps (OpenCode/Codex hook read-reliability unverified; numeric-score coarseness; leak_test multi-runtime port unscoped) and open questions for the cross-lineage merge.

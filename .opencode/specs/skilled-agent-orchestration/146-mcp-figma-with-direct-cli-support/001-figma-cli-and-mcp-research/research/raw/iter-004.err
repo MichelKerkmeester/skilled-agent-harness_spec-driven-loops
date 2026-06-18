@@ -1,0 +1,14 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m⚙ [0mmk_skill_advisor_advisor_recommend {"prompt":"Act as a senior install/safety engineer for developer tooling. READ-ONLY MODE: do NOT write or edit files. Design the INSTALL + SAFETY + LIFECYCLE playbook for a new skill mcp-figma, modeled on existing mcp-chrome-devtools and mcp-open-design install/wiring docs, including Code Mode MCP wiring.","options":{"topK":5,"includeAttribution":true,"includeAbstainReasons":true,"confidenceThreshold":0.8,"uncertaintyThreshold":0.35}}
+[0m→ [0mSkill "mcp-code-mode"
+[0m→ [0mSkill "sk-doc"
+[0m→ [0mRead .opencode/skills/mcp-chrome-devtools/INSTALL_GUIDE.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/skills/mcp-chrome-devtools/scripts/install.sh[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .utcp_config.json[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/skills/mcp-open-design/references/mcp_wiring.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/skills/mcp-code-mode/references/configuration.md[90m [offset=1, limit=2000][0m
+[0m✱ [0mGrep "(?i)(vendor|vendoring|upstream|license|mit|reference upstream|never vendor)"[90m in .opencode/skills/mcp-open-design · 29 matches[0m
+[0m→ [0mRead .opencode/skills/mcp-open-design/SKILL.md[90m [offset=232, limit=100][0m
+[0m→ [0mRead .opencode/skills/mcp-open-design/references/tool_surface.md[90m [offset=20, limit=85][0m

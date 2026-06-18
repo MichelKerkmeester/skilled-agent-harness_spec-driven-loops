@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/006-doc-truth-completion-and-mirrors",
+  "description": "Feature Specification: Doc-Truth, Completion-Claim & Runtime-Mirror Reconciliation",
+  "keywords": [
+    "feature",
+    "specification",
+    "doc-truth",
+    "completion-claim",
+    "runtime-mirror",
+    "reconciliation"
+  ],
+  "lastUpdated": "2026-06-16T15:23:34.789Z",
+  "specId": "006",
+  "folderSlug": "doc-truth-completion-and-mirrors",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "005-verification-and-remediation",
+    "005-fresh-regression-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

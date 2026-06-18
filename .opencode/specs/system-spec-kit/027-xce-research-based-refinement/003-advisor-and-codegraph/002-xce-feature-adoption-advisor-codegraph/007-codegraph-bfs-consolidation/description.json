@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/007-codegraph-bfs-consolidation",
+  "description": "Completed code-graph BFS consolidation: transitive traversal and blast radius share one local helper with preserved behavior.",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "codegraph-bfs-consolidation",
+    "bfs-traversal",
+    "blast-radius",
+    "transitive-traversal"
+  ],
+  "lastUpdated": "2026-06-10T21:12:38Z",
+  "specId": "007",
+  "folderSlug": "codegraph-bfs-consolidation",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "003-advisor-and-codegraph",
+    "002-xce-feature-adoption-advisor-codegraph"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

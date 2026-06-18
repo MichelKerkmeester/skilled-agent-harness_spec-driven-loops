@@ -1,6 +1,13 @@
 ---
 title: Worked Examples Reference
 description: Practical scenarios demonstrating SpecKit workflows for different documentation levels.
+trigger_phrases:
+  - "worked examples reference"
+  - "speckit workflow scenarios"
+  - "simple bug fix example"
+  - "feature implementation example"
+importance_tier: normal
+contextType: general
 ---
 
 # Worked Examples Reference

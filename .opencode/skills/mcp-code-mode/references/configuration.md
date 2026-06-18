@@ -1,6 +1,14 @@
 ---
 title: Configuration Guide - .utcp_config.json and Environment Setup
 description: Configure MCP servers, environment variables, and credentials for Code Mode UTCP.
+trigger_phrases:
+  - "utcp config json setup"
+  - "manual call templates"
+  - "code mode mcp server configuration"
+  - "dotenv variable loading"
+  - "tool search strategy config"
+importance_tier: normal
+contextType: implementation
 ---
 
 # Configuration Guide - .utcp_config.json and Environment Setup

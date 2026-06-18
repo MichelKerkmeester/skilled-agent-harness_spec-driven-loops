@@ -7,6 +7,7 @@
 import type Database from 'better-sqlite3';
 import { generateSummary } from './tfidf-summarizer.js';
 import { isMemorySummariesEnabled } from './search-flags.js';
+import { specFolderLikePattern } from './vector-index-types.js';
 
 // ───────────────────────────────────────────────────────────────
 // 1. INTERFACES
@@ -16,6 +17,18 @@ interface SummarySearchResult {
   id: number;
   memoryId: number;
   similarity: number;
+}
+
+/**
+ * Caller scope for summary-embedding retrieval. Mirrors the primary vector
+ * lane: a spec-folder boundary (prefix-aware) plus the governance triple.
+ * All fields are optional so unscoped callers keep the legacy behaviour.
+ */
+interface SummaryScope {
+  specFolder?: string | null;
+  tenantId?: string | null;
+  userId?: string | null;
+  agentId?: string | null;
 }
 
 // ───────────────────────────────────────────────────────────────
@@ -73,6 +86,38 @@ function bufferToFloat32(buf: Buffer): Float32Array {
     view[i] = buf[i];
   }
   return new Float32Array(copy);
+}
+
+/**
+ * True when a table is present in the main schema. The summary lane runs
+ * against the full production schema, but unit fixtures wire a minimal
+ * memory_index; probing keeps the scoped query graceful on partial schemas.
+ */
+function tableExists(db: Database.Database, tableName: string): boolean {
+  try {
+    const row = db.prepare(`
+      SELECT 1 AS found
+      FROM sqlite_master
+      WHERE type = 'table' AND name = ?
+      LIMIT 1
+    `).get(tableName) as { found?: number } | undefined;
+    return row?.found === 1;
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * True when a column is present on the given table. Used to gate the
+ * expiry/governance predicates that only exist on the full memory_index.
+ */
+function columnExists(db: Database.Database, tableName: string, columnName: string): boolean {
+  try {
+    const rows = db.prepare(`PRAGMA table_info(${tableName})`).all() as Array<{ name: string }>;
+    return rows.some((r) => r.name === columnName);
+  } catch {
+    return false;
+  }
 }
 
 // ───────────────────────────────────────────────────────────────
@@ -147,32 +192,85 @@ export async function generateAndStoreSummary(
 /**
  * Vector search on summary embeddings — parallel channel for stage1.
  *
- * 1. SELECT id, memory_id, summary_embedding FROM memory_summaries
- *    WHERE summary_embedding IS NOT NULL
+ * 1. SELECT summary embeddings joined to memory_index, applying the caller's
+ *    scope (spec-folder prefix + governance triple) and the active/expiry/
+ *    embedding_status gate inside SQL — so the row cap lands AFTER scope.
  * 2. Compute cosine similarity between query embedding and each summary embedding
  * 3. Return top `limit` results sorted by similarity descending
  * 4. Convert BLOB back to Float32Array for comparison
  *
+ * Scoping the fetch matters at scale: the row cap previously selected an
+ * arbitrary rowid prefix before ranking, starving scoped callers whose hits
+ * lived past the cap. Pushing scope into the WHERE keeps the cap on the
+ * relevant slice and mirrors the primary vector lane's active-row gate.
+ *
  * @param db - SQLite database instance
  * @param queryEmbedding - Query vector to compare against stored summaries
  * @param limit - Maximum number of results to return
+ * @param scope - Optional caller scope; omitted fields impose no restriction
  * @returns Array of summary search results sorted by similarity descending
  */
 export function querySummaryEmbeddings(
   db: Database.Database,
   queryEmbedding: Float32Array | number[],
-  limit: number
+  limit: number,
+  scope: SummaryScope = {}
 ): SummarySearchResult[] {
   try {
     // Cap rows fetched to avoid full-table scans on large databases.
     // Over-fetch by a factor so that after cosine ranking we can still return `limit` results.
     const fetchCap = Math.max(limit * 10, 1000);
+
+    // Join memory_index so scope and the active-row gate apply BEFORE the cap.
+    // Predicates that depend on columns/tables absent from minimal fixtures are
+    // gated on schema presence so partial schemas degrade rather than throw.
+    const whereClauses = ['s.summary_embedding IS NOT NULL'];
+    const params: unknown[] = [];
+
+    if (columnExists(db, 'memory_index', 'embedding_status')) {
+      whereClauses.push("m.embedding_status = 'success'");
+    }
+    if (columnExists(db, 'memory_index', 'expires_at')) {
+      whereClauses.push("(m.expires_at IS NULL OR m.expires_at > datetime('now'))");
+    }
+
+    // Spec-folder scope: prefix-aware so a parent-scope query keeps descendants.
+    if (scope.specFolder) {
+      whereClauses.push("(m.spec_folder = ? OR m.spec_folder LIKE ? ESCAPE '\\')");
+      params.push(scope.specFolder, specFolderLikePattern(scope.specFolder));
+    }
+
+    // Governance triple: exact-match per axis, mirroring the post-filter applied
+    // downstream. Pushing it here keeps the row cap on the in-scope slice instead
+    // of letting out-of-scope rows consume the budget before ranking.
+    if (scope.tenantId && columnExists(db, 'memory_index', 'tenant_id')) {
+      whereClauses.push('m.tenant_id = ?');
+      params.push(scope.tenantId);
+    }
+    if (scope.userId && columnExists(db, 'memory_index', 'user_id')) {
+      whereClauses.push('m.user_id = ?');
+      params.push(scope.userId);
+    }
+    if (scope.agentId && columnExists(db, 'memory_index', 'agent_id')) {
+      whereClauses.push('m.agent_id = ?');
+      params.push(scope.agentId);
+    }
+
+    // active_memory_projection restricts to the live revision of each logical
+    // memory; only joinable when the projection table is present (production).
+    const projectionJoin = tableExists(db, 'active_memory_projection')
+      ? 'JOIN active_memory_projection p ON p.active_memory_id = s.memory_id'
+      : '';
+
+    params.push(fetchCap);
     const rows = db.prepare(`
-      SELECT id, memory_id, summary_embedding
-      FROM memory_summaries
-      WHERE summary_embedding IS NOT NULL
+      SELECT s.id, s.memory_id, s.summary_embedding
+      FROM memory_summaries s
+      JOIN memory_index m ON m.id = s.memory_id
+      ${projectionJoin}
+      WHERE ${whereClauses.join(' AND ')}
       LIMIT ?
-    `).all(fetchCap) as Array<{ id: number; memory_id: number; summary_embedding: Buffer }>;
+    `).all(...params) as Array<{ id: number; memory_id: number; summary_embedding: Buffer }>;
 
     const results: SummarySearchResult[] = [];
 

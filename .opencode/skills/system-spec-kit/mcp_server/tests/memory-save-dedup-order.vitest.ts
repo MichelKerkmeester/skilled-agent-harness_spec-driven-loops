@@ -61,7 +61,10 @@ describe('Memory-save dedup ordering regressions', () => {
     // branch preserves the pending-then-record ordering this test guards.
     const runPostInsertIndex = source.indexOf('postInsertEnrichmentResult = await runPostInsertEnrichmentIfEnabled(');
     const recordResultIndex = source.indexOf('recordEnrichmentResult(database, id, postInsertEnrichmentResult);', runPostInsertIndex);
-    const invalidateIndex = source.indexOf('invalidateEntityDensityCacheAfterSave();', recordResultIndex);
+    const subscriberDispatchIndex = source.indexOf(
+      "emitPostInsertEnrichmentSubscribers(id, 'post-insert-enrichment');",
+      recordResultIndex,
+    );
 
     expect(transactionIndex).toBeGreaterThan(-1);
     expect(markPendingIndex).toBeGreaterThan(transactionIndex);
@@ -69,6 +72,21 @@ describe('Memory-save dedup ordering regressions', () => {
 
     expect(runPostInsertIndex).toBeGreaterThan(-1);
     expect(recordResultIndex).toBeGreaterThan(runPostInsertIndex);
-    expect(recordResultIndex).toBeLessThan(invalidateIndex);
+    expect(recordResultIndex).toBeLessThan(subscriberDispatchIndex);
+  });
+
+  it('checks receipt replay before indexing and response-side post-mutation hooks', () => {
+    const sourcePath = path.resolve(__dirname, '..', 'handlers', 'memory-save.ts');
+    const source = fs.readFileSync(sourcePath, 'utf8');
+
+    const lookupIndex = source.indexOf('const lookup = lookupIdempotencyReceipt(database, {');
+    const replayReturnIndex = source.indexOf('return lookup.response;', lookupIndex);
+    const indexCallIndex = source.indexOf('result = await indexMemoryFile(validatedPath, {');
+    const buildResponseIndex = source.indexOf('const response = buildSaveResponse({ result, filePath: file_path, asyncEmbedding, requestId });');
+
+    expect(lookupIndex).toBeGreaterThan(-1);
+    expect(replayReturnIndex).toBeGreaterThan(lookupIndex);
+    expect(replayReturnIndex).toBeLessThan(indexCallIndex);
+    expect(replayReturnIndex).toBeLessThan(buildResponseIndex);
   });
 });

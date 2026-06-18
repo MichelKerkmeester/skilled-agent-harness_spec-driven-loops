@@ -2,8 +2,9 @@
 // MODULE: Advisor Validate Tests
 // ───────────────────────────────────────────────────────────────
 
-import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { dirname, join, resolve } from 'node:path';
+import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 
 import { describe, expect, it } from 'vitest';
@@ -76,6 +77,49 @@ describe('advisor_validate handler', () => {
       } else {
         rmSync(outcomesPath, { force: true });
       }
+    }
+  });
+
+  it('records shadow calibration reports from validate outcomes when explicitly enabled', async () => {
+    const tempDir = mkdtempSync(join(tmpdir(), 'advisor-validate-calibration-'));
+    const calibrationPath = join(tempDir, 'calibration.jsonl');
+    const previousFlag = process.env.SPECKIT_ADVISOR_FEEDBACK_CALIBRATION_SHADOW;
+    const previousPath = process.env.SPECKIT_ADVISOR_FEEDBACK_CALIBRATION_PATH;
+    process.env.SPECKIT_ADVISOR_FEEDBACK_CALIBRATION_SHADOW = 'true';
+    process.env.SPECKIT_ADVISOR_FEEDBACK_CALIBRATION_PATH = calibrationPath;
+
+    try {
+      await handleAdvisorValidate({
+        confirmHeavyRun: true,
+        workspaceRoot: REPO_ROOT,
+        skillSlug: 'system-spec-kit',
+        outcomeEvents: Array.from({ length: 8 }, (_, index) => ({
+          runtime: 'codex',
+          outcome: index < 6 ? 'accepted' : 'ignored',
+          skillId: 'system-spec-kit',
+          timestamp: `2026-06-10T00:00:0${index}.000Z`,
+        })),
+      });
+
+      const lines = readFileSync(calibrationPath, 'utf8').trim().split('\n');
+      expect(lines).toHaveLength(1);
+      expect(JSON.parse(lines[0])).toMatchObject({
+        model: 'advisor-feedback-calibration-shadow-v1',
+        scope: { kind: 'skill', skillSlug: 'system-spec-kit' },
+        guardrails: {
+          defaultOff: true,
+          shadowOnly: true,
+          liveWeightsFrozen: true,
+          autoPromotion: false,
+          heldOutValidationRequired: true,
+        },
+      });
+    } finally {
+      if (previousFlag === undefined) delete process.env.SPECKIT_ADVISOR_FEEDBACK_CALIBRATION_SHADOW;
+      else process.env.SPECKIT_ADVISOR_FEEDBACK_CALIBRATION_SHADOW = previousFlag;
+      if (previousPath === undefined) delete process.env.SPECKIT_ADVISOR_FEEDBACK_CALIBRATION_PATH;
+      else process.env.SPECKIT_ADVISOR_FEEDBACK_CALIBRATION_PATH = previousPath;
+      rmSync(tempDir, { recursive: true, force: true });
     }
   });
 

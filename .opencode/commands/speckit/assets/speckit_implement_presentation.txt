@@ -1,0 +1,129 @@
+# SpecKit Implement Presentation Contract
+
+Presentation source of truth for `/speckit:implement`. The command router owns only mode selection and asset loading. Workflow YAML owns execution. This file owns visible prompts, dashboard layout, and final result displays.
+
+## 1. Startup Presentation
+
+For `:confirm` or no suffix, the consolidated setup prompt is the first visible response after lightweight read-only prerequisite discovery. Ask all applicable questions once, then wait.
+
+For `:auto`, do not show the consolidated prompt by default. Resolve setup through the auto-mode table below. Ask targeted questions only for fields marked Tier 2.
+
+### Auto Pre-Bound Setup Answers
+
+```yaml
+PRE-BOUND SETUP ANSWERS:
+  spec_folder: <spec-folder>
+  phase_folder: ""
+  confirm_choice: yes
+  execution_mode: AUTONOMOUS
+  dispatch_mode: single_agent
+  memory_choice: skip
+  resume_choice: resume
+  prerequisites_valid: true
+```
+
+Unknown fields warn. Malformed lines are parse errors. Marker values override flags; omitted fields fall back to defaults.
+
+### Auto Resolution Table
+
+| Field                 | Required | Default                                | Tier 2                                                  |
+| -----------------------| ----------| ----------------------------------------| ---------------------------------------------------------|
+| `spec_folder`         | Yes      | none                                   | Yes, when multiple viable folders are detected          |
+| `phase_folder`        | No       | none                                   | No                                                      |
+| `confirm_choice`      | Yes      | `yes` when prerequisites are valid     | No                                                      |
+| `execution_mode`      | Yes      | `AUTONOMOUS` under `:auto`             | No                                                      |
+| `dispatch_mode`       | Yes      | `single_agent`                         | No                                                      |
+| `memory_choice`       | No       | `skip` when no prior continuity exists | No                                                      |
+| `resume_choice`       | No       | none                                   | Yes, only when an incomplete-session warning is present |
+| `prerequisites_valid` | Yes      | auto-detect from artifacts             | No                                                      |
+
+### Consolidated Prompt Template
+
+```text
+SpecKit Implement setup
+
+Q0. Spec Folder, if not provided: choose an existing folder with plan.md or provide a phase folder.
+Q1. Confirm Spec Folder, if path provided: A) Yes, implement  B) Different folder  C) Cancel and plan first
+Q2. Execution Mode, if no suffix: A) Autonomous  B) Interactive
+Q3. Dispatch Mode: A) Single Agent  B) Multi-Agent (1+2)  C) Multi-Agent (1+3)
+Q4. Prior Work Context, only when prior records exist: A) Latest  B) Recent 3  C) Skip
+Q5. Incomplete Session, only when detected: A) Resume  B) Restart  C) Cancel
+
+Reply format: "specs/example/, A, A, B" or "A, A, A, C".
+```
+
+Never split these questions into separate visible prompts. Missing `spec.md` or `plan.md` redirects to planning before implementation begins.
+
+### Auto Fail-Fast Display
+
+```text
+SpecKit Implement auto setup failed
+Missing required inputs: [field-list]
+Provide the missing inputs or rerun with :confirm.
+STATUS=FAIL ERROR="missing required setup inputs"
+```
+
+## 2. Dashboard Layout
+
+```text
+SPECKIT IMPLEMENT DASHBOARD
+Spec: [spec_path]
+Mode: [AUTONOMOUS|INTERACTIVE]
+Step: [current] / 9 - [step name]
+Prerequisites: spec.md [status] | plan.md [status] | tasks.md [status] | checklist.md [status]
+Task progress: [done]/[total] complete
+Quality gate: [not-run|pass|blocked]
+Current blocker: [none|details]
+Next: [next action]
+```
+
+### Debug Offer
+
+```text
+Repeated failures detected on this task.
+Dispatch fresh-perspective debug? (y / continue manually / skip)
+Current error: [summary]
+Affected files: [paths]
+Attempts so far: [count]
+```
+
+### Completion Gate Panel
+
+```text
+IMPLEMENTATION COMPLETION GATE
+Tasks complete: [done]/[total]
+Checklist P0: [all complete|blocked|n/a]
+Checklist P1: [complete|deferred with approval|blocked|n/a]
+Validation: [not-run|pass|fail]
+Summary: implementation-summary.md [exists|missing]
+Context refresh: [complete|pending]
+```
+
+## 3. Results Display
+
+### Success
+
+```text
+SpecKit Implementation Complete - All 9 steps executed.
+Artifacts: tasks.md, implementation-summary.md, nested changelog when applicable, continuity refreshed in canonical spec docs
+STATUS=OK PATH=[spec-folder-path]
+```
+
+### Failure
+
+```text
+SpecKit Implementation Failed
+Error: [description] | Step: [number]
+STATUS=FAIL ERROR="[message]"
+```
+
+### Next-Step Suggestions
+
+| Condition | Suggested Command | Reason |
+|-----------|-------------------|--------|
+| Need runtime verification | Use the project-specific verification command | Confirm behavior |
+| Need continuity refresh | `/memory:save [spec-folder-path]` | Refresh indexed canonical continuity |
+| Repeated failures | User-dispatched debug pass | Fresh root-cause analysis |
+| Need crash recovery | `/speckit:resume` | Recover session state |
+
+End interactive presentations with: `What would you like to do next?`

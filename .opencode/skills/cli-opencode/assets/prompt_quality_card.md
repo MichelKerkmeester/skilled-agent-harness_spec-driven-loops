@@ -1,6 +1,14 @@
 ---
 title: OpenCode CLI — Prompt Quality Card
 description: Fast-path prompt discipline for OpenCode CLI dispatches; frameworks and CLEAR are canonical in sk-prompt.
+trigger_phrases:
+  - "opencode prompt quality card"
+  - "opencode model overrides"
+  - "minimax tidd-ec dense pre-plan"
+  - "mimo costar lean prompt"
+  - "opencode dispatch framework precedence"
+importance_tier: normal
+contextType: planning
 ---
 
 # OpenCode CLI — Prompt Quality Card
@@ -37,9 +45,10 @@ OpenCode dispatches the MiniMax, MiMo, and opencode-go (DeepSeek-v4-pro / Kimi-k
 | MiniMax M3 (Direct API) | TIDD-EC + dense | `../../sk-prompt-small-model/references/models/minimax-m3.md` |
 | MiMo V2.5 Pro (Token Plan) | COSTAR + lean, `--variant high` | `../../sk-prompt-small-model/references/models/mimo-v2.5-pro.md` |
 | MiMo V2.5 Pro (Direct API) | COSTAR + lean, `--variant high` | `../../sk-prompt-small-model/references/models/mimo-v2.5-pro.md` |
+| MiMo V2.5 Pro UltraSpeed (Direct API, low-latency) | COSTAR + lean, `--variant high` | `../../sk-prompt-small-model/references/models/mimo-v2.5-pro.md` |
 | deepseek-v4-pro / kimi-k2.6 / qwen3.6 / glm-5.1 | default RCAF (no model-specific benchmark; shared default-unverified note) | [`deepseek-v4-pro.md`](../../sk-prompt-small-model/references/models/deepseek-v4-pro.md) · [`kimi-k2.6.md`](../../sk-prompt-small-model/references/models/kimi-k2.6.md) · [`qwen3.6.md`](../../sk-prompt-small-model/references/models/qwen3.6.md) · [`glm-5.1.md`](../../sk-prompt-small-model/references/models/glm-5.1.md) |
 
-**Executor notes:** Omit `--agent` for all small-model dispatches listed above. OpenCode maps `--variant low/medium/high` to MiMo's reasoning effort; `high` is the standing default for MiMo. MiniMax Token Plan (`minimax-coding-plan/MiniMax-M3`) and Direct API (`minimax/MiniMax-M3`) both serve M3. Xiaomi Token Plan (`xiaomi-token-plan-ams/mimo-v2.5-pro`) and Direct API (`xiaomi/mimo-v2.5-pro`) both serve MiMo-V2.5-Pro. Ambiguous use-case (1 vs 2 vs 3) prevents the router from picking a path — resolve before dispatch. Always include a self-invocation guard signal when the dispatched session could loop back.
+**Executor notes:** Omit `--agent` for all small-model dispatches listed above. OpenCode maps `--variant low/medium/high` to MiMo's reasoning effort; `high` is the standing default for MiMo. MiniMax Token Plan (`minimax-coding-plan/MiniMax-M3`) and Direct API (`minimax/MiniMax-M3`) both serve M3. Xiaomi Token Plan (`xiaomi-token-plan-ams/mimo-v2.5-pro`) and Direct API (`xiaomi/mimo-v2.5-pro`) both serve MiMo-V2.5-Pro; the Direct API additionally serves `xiaomi/mimo-v2.5-pro-ultraspeed`, a low-latency tier with the same prompt contract. Ambiguous use-case (1 vs 2 vs 3) prevents the router from picking a path — resolve before dispatch. Always include a self-invocation guard signal when the dispatched session could loop back.
 
 ---
 

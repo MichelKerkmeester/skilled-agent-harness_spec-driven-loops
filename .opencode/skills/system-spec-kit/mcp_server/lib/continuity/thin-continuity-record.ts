@@ -41,6 +41,25 @@ export interface ThinContinuityRecord {
   answered_questions: string[];
 }
 
+export type ContinuityFacetName = 'goal' | 'decision' | 'progress' | 'gotcha';
+
+export interface ContinuityFacets {
+  goal: string[];
+  decision: string[];
+  progress: string[];
+  gotcha: string[];
+}
+
+export interface ContinuityFacetInput {
+  summary?: string | null;
+  recentAction?: string | null;
+  nextSafeAction?: string | null;
+  blockers?: string[] | null;
+  keyFiles?: string[] | null;
+  openQuestions?: string[] | null;
+  answeredQuestions?: string[] | null;
+}
+
 export interface ThinContinuityValidationError {
   code: ThinContinuityErrorCode;
   field: string;
@@ -155,6 +174,62 @@ function normalizeWhitespace(value: string): string {
 
 function tokenize(value: string): string[] {
   return normalizeWhitespace(value).split(' ').filter(Boolean);
+}
+
+function uniqueFacetItems(values: Array<string | null | undefined>, limit: number): string[] {
+  const seen = new Set<string>();
+  const result: string[] = [];
+  for (const value of values) {
+    if (typeof value !== 'string') {
+      continue;
+    }
+    const normalized = normalizeWhitespace(value);
+    if (normalized.length === 0 || seen.has(normalized)) {
+      continue;
+    }
+    seen.add(normalized);
+    result.push(normalized);
+    if (result.length >= limit) {
+      break;
+    }
+  }
+  return result;
+}
+
+export function buildContinuityFacets(input: ThinContinuityRecord | ContinuityFacetInput): ContinuityFacets {
+  const record = input as Partial<ThinContinuityRecord> & ContinuityFacetInput;
+  const recentAction = record.recent_action ?? record.recentAction ?? null;
+  const nextSafeAction = record.next_safe_action ?? record.nextSafeAction ?? null;
+  const blockers = record.blockers ?? [];
+  const keyFiles = record.key_files ?? record.keyFiles ?? [];
+  const openQuestions = record.open_questions ?? record.openQuestions ?? [];
+  const answeredQuestions = record.answered_questions ?? record.answeredQuestions ?? [];
+
+  return {
+    goal: uniqueFacetItems([nextSafeAction], 2),
+    decision: uniqueFacetItems(answeredQuestions.map((questionId) => `Answered ${questionId}`), 3),
+    progress: uniqueFacetItems([recentAction, record.summary ?? null, ...keyFiles.map((filePath) => `Touched ${filePath}`)], 4),
+    gotcha: uniqueFacetItems([...blockers, ...openQuestions.map((questionId) => `Open ${questionId}`)], 4),
+  };
+}
+
+export function renderContinuityFacets(facets: ContinuityFacets): string {
+  const labels: Array<[ContinuityFacetName, string]> = [
+    ['goal', 'Goal'],
+    ['decision', 'Decision'],
+    ['progress', 'Progress'],
+    ['gotcha', 'Gotcha'],
+  ];
+
+  return labels
+    .map(([key, label]) => {
+      const items = facets[key];
+      if (items.length === 0) {
+        return `### ${label}\n- None restored`;
+      }
+      return `### ${label}\n${items.map((item) => `- ${item}`).join('\n')}`;
+    })
+    .join('\n\n');
 }
 
 function looksCompactNarrativeViolation(value: string): boolean {

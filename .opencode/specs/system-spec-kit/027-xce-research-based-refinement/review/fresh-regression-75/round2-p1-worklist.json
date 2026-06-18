@@ -1,0 +1,886 @@
+[
+  {
+    "id": "opus-concurrency-race-i4-f1",
+    "severity": "P1",
+    "dimension": "correctness",
+    "file": ".opencode/bin/mk-spec-memory-launcher.cjs:478",
+    "title": "Owner-lease stale-reclaim is non-exclusive; re-read does not prevent double-acquire, and loser deletes winner's lease",
+    "detail": {
+      "evidence": "Reclaim path (:479) writes via renameSync (last-writer-wins) then re-reads; comment (:478) claims 'two launchers racing a stale lease cannot both act as owner' but the re-read is not a CAS — interleave A:write/A:read(A,acquired) then B:write/B:read(B,acquired) and both return acquired:true. The code itself concedes non-exclusivity at :1613-1617 and only serializes the daemon SPAWN via a separate respawn lock (:1618). clearOwnerLeaseFile (:541-543) unlinks when file.ownerPid==my ownerLeasePid ('I wrote last'), not 'I won the election'. Loser path :1619-1624 calls clearOwnerLeaseFile() on respawn-lock loss; if the loser wrote the owner-lease last it unlinks the file. The respawn-lock winner then hits refreshOwnerLeaseFile (:1329→:493) returning false (file gone, not recreated, :1331) and its heartbeat (:520-527) self-terminates the launcher 'to preserve single ownership'.",
+      "why": "Defeats the single-ownership invariant the code explicitly claims: the legitimately-elected owner kills itself within one heartbeat, leaving an orphaned/torn-down daemon and an ownerless window. Reachable whenever two sessions start near-simultaneously after an owner crash (the exact ownership-check class 156 self-tests missed). Self-heals via adopt/respawn and DB kernel lock prevents corruption, so no data loss — but real churn, a no-owner window, and misleading shutdown logs.",
+      "recommendation": "Make reclaim atomic: on stale classification, unlink the existing owner lease then writeOwnerLeaseFileExclusive (O_EXCL); on EEXIST, re-read and return acquired:false. This collapses both paths to one CAS so only one process gets acquired:true and makes the clearOwnerLeaseFile 'last-writer' guard correct. Apply identically to mk-skill-advisor-launcher.cjs:502-512 and mk-code-index-launcher.cjs:475, and fix the false :478-class comment."
+    },
+    "corroboration": 2,
+    "models": [
+      "claude-opus-4-8"
+    ],
+    "seats": [
+      "opus-concurrency-race",
+      "opus-launcher-lifecycle"
+    ],
+    "allIds": [
+      "opus-concurrency-race-i4-f1",
+      "opus-launcher-lifecycle-i1-f2"
+    ]
+  },
+  {
+    "id": "gpt-cli-frontdoors-i1-f1",
+    "severity": "P1",
+    "dimension": "security",
+    "file": ".opencode/skills/system-spec-kit/mcp_server/spec-memory-cli.ts:753",
+    "title": "IPC client trusts pre-existing /tmp socket without owner or symlink verification",
+    "detail": {
+      "evidence": "ensureSocketEnvironment() sets/uses SPECKIT_IPC_SOCKET_DIR, mkdirSyncs it, then only checks statSync(socketDir).mode for group/world-writable at lines 753-762; it does not lstat the directory or require uid ownership. The bridge resolves the env path directly in .opencode/bin/lib/launcher-ipc-bridge.cjs:80-87, and probeDaemon accepts any JSON-RPC initialize result/error as alive at lines 145-216. callTool then uses that socket for initialize/tools/call at spec-memory-cli.ts:924-946.",
+      "why": "The default socket directory is /tmp/mk-spec-memory in .opencode/bin/spec-memory.cjs:103-110. On a shared host, a local attacker can pre-create that path as a symlink to an attacker-controlled non-writable directory containing daemon-ipc.sock. Because the client does not reject symlinked/foreign-owned socket dirs before the deep probe, a fake daemon can answer initialize, suppress cold spawn even in normal mode, receive tool arguments, and spoof CLI results.",
+      "recommendation": "Before probing or connecting, centralize a client-side IPC perimeter check: lstat the final socket directory and reject symlinks, require current uid ownership when process.getuid exists, reject group/world-writable dirs, lstat the socket node if present and require a real socket owned by the current uid. Mirror the HF model-server assertSocketDirOwnership/per-node checks or the shared socket-server ownership fence, and apply it in the shim/CLI bridge path before probeDaemon/connect."
+    },
+    "corroboration": 2,
+    "models": [
+      "openai/gpt-5.5-fast"
+    ],
+    "seats": [
+      "gpt-cli-frontdoors"
+    ],
+    "allIds": [
+      "gpt-cli-frontdoors-i1-f1",
+      "gpt-cli-frontdoors-i5-f1"
+    ]
+  },
+  {
+    "id": "gpt-continuity-metadata-i2-f2",
+    "severity": "P1",
+    "dimension": "traceability",
+    "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/graph-metadata.json:113",
+    "title": "001-peck-teachings-adoption pointer frozen at initial child",
+    "detail": {
+      "evidence": "derived.last_active_child_id = \"002-self-check-templates\" and derived.last_active_at = \"2026-06-02T10:04:51Z\" (same as created_at). Target 002-self-check-templates graph-metadata.json:202 has last_save_at \"2026-06-10T19:22:14.924Z\" and status complete, while sibling 007-acceptance-coverage-gate graph-metadata.json:201 has last_save_at \"2026-06-15T09:09:34.752Z\" and status source_pass_complete.",
+      "why": "The pointer never advanced from the first child, so it points to a completed phase while later active/complete siblings exist. Resume consumers following this pointer will start on stale work.",
+      "recommendation": "Trigger a canonical save/update against the latest active child (007) so updatePhaseParentPointer refreshes the parent, or manually correct last_active_child_id/last_active_at."
+    },
+    "corroboration": 2,
+    "models": [
+      "kimi-for-coding/k2p7"
+    ],
+    "seats": [
+      "gpt-continuity-metadata"
+    ],
+    "allIds": [
+      "gpt-continuity-metadata-i2-f2",
+      "gpt-continuity-metadata-i2-f3"
+    ]
+  },
+  {
+    "id": "opus-regression-code-i3-f1",
+    "severity": "P1",
+    "dimension": "correctness",
+    "file": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:101",
+    "title": "Memory-delete sweep path clears degree/signals caches but never bumps causal-edges generation",
+    "detail": {
+      "evidence": "deleteAncillaryMemoryRows (line 183-192) calls sweepCausalEdges with invalidateCaches:false, then on deleted>0 calls the local invalidateGraphCaches (101-113) which only calls clearDegreeCacheForDb + clearGraphSignalsCache. It does NOT call bumpCausalEdgesGeneration, and the module imports no generation symbol (grep: NONE). The three sibling invalidators all bump first: sweep.ts:216, causal-edges.ts:215, corrections.ts:193.",
+      "why": "The causal-edges generation is the sole invalidation key for the memory_search causal-boost reader cache (memory-search.ts:1065-1067,1100,1104-1114; CANONICAL_READER_CACHE_VERSION is static). After a memory row is deleted and its causal edges are tombstoned/deleted, an identical memory_search(enableCausalBoost=true) query produces the same cacheKey and returns the pre-delete cached payload — stale causal-boosted results. Breaks the epic's 'every sweep path bumps generation' invariant on a common deletion path.",
+      "recommendation": "In vector-index-mutations.ts invalidateGraphCaches, import bumpCausalEdgesGeneration from ../storage/causal-generation.js and call it first (mirroring sweep.ts:216 and corrections.ts:193), so memory-delete sweeps invalidate the causal-boost cache."
+    },
+    "corroboration": 1,
+    "models": [
+      "claude-opus-4-8"
+    ],
+    "seats": [
+      "opus-regression-code"
+    ],
+    "allIds": [
+      "opus-regression-code-i3-f1"
+    ]
+  },
+  {
+    "id": "opus-memory-daemon-i1-f1",
+    "severity": "P1",
+    "dimension": "correctness",
+    "file": ".opencode/skills/system-spec-kit/mcp_server/handlers/save/spec-folder-mutex.ts:37",
+    "title": "Spec-folder save mutex reaps live owners (no pid-liveness gate, no heartbeat) — defeats single-writer guarantee",
+    "detail": {
+      "evidence": "isStaleLock (lines 37-44) reaps purely on mtime age > LOCK_STALE_MS (5min, line 18); owner.json writes pid (lines 63-67) but it is never read back for liveness (repo-wide grep finds no process.kill/owner.json reader); lock dir mtime is set once at mkdir and never refreshed (no heartbeat); acquire reaps on isStaleLock alone (lines 74-77). The sibling lock generate-context.ts (commit 7c17b07e01 'save-lock liveness') already fixed this exact pattern with process.kill(ownerPid,0) liveness (lines 424-436), a utimesSync heartbeat (lines 448-461), and reap only on dead/unknown+stale (line 485); that commit did not touch spec-folder-mutex.ts (last changed 2026-05-14, a rename).",
+      "why": "A save legitimately held past 5min (large/chunked embedding or a slow/retrying provider, all run inside fn() per atomic-index-memory.ts:320-411) has its lock reaped from a still-alive owner by a second process, which then proceeds — two concurrent indexers on the same spec folder, the precise TOCTOU the module exists to prevent. This epic added the multi-process triggers (daemon re-election; CLI front-door as a separate writer). The team's own remediation of the identical bug in the twin lock establishes it is a real, fix-worthy defect, not a false positive.",
+      "recommendation": "Port the generate-context.ts pattern: parse owner.json pid, gate reap on process.kill(pid,0) (reap immediately on ESRCH/dead, fall back to the time threshold only when owner state is unreadable/unknown, never reap an alive pid), and run a utimesSync heartbeat on the lock dir for the lifetime of withSpecFolderLock's fn()."
+    },
+    "corroboration": 1,
+    "models": [
+      "claude-opus-4-8"
+    ],
+    "seats": [
+      "opus-memory-daemon"
+    ],
+    "allIds": [
+      "opus-memory-daemon-i1-f1"
+    ]
+  },
+  {
+    "id": "opus-memory-daemon-i4-f1",
+    "severity": "P1",
+    "dimension": "correctness",
+    "file": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/history.ts:103",
+    "title": "Legacy history table rebuild runs outside a transaction → permanent audit-log loss on mid-migration crash",
+    "detail": {
+      "evidence": "history.init runs ALTER TABLE RENAME -> CREATE -> INSERT...SELECT -> DROP as four separate auto-committing database.exec calls (L103-133). Its caller initHistory(database) is at vector-index-schema.ts:2024, AFTER run_all_migrations() (transaction L1964) has already committed and returned at L1974-1978 — so the rebuild has no enclosing transaction. The re-run guard at history.ts:101 only fires when the table SQL still contains 'CHECK(actor IN' or 'FOREIGN KEY'; the rebuilt table has neither.",
+      "why": "A crash/SIGKILL between RENAME and INSERT (plausible under this epic's daemon re-election/restart) leaves an empty new memory_history plus orphaned memory_history_old. On next init the guard is false, so the INSERT never re-runs and the entire history log is stranded permanently — silent data loss of the change-audit trail.",
+      "recommendation": "Wrap the rebuild block (history.ts:103-133) in database.transaction(() => { ... })() so the RENAME/CREATE/INSERT/DROP either all commit or all roll back; SQLite DDL is transaction-safe for these statements."
+    },
+    "corroboration": 1,
+    "models": [
+      "claude-opus-4-8"
+    ],
+    "seats": [
+      "opus-memory-daemon"
+    ],
+    "allIds": [
+      "opus-memory-daemon-i4-f1"
+    ]
+  },
+  {
+    "id": "opus-launcher-lifecycle-i2-f1",
+    "severity": "P1",
+    "dimension": "correctness",
+    "file": ".opencode/bin/mk-code-index-launcher.cjs:979",
+    "title": "code-index alive-but-stale reclaim spawns a second daemon without reaping the live orphan",
+    "detail": {
+      "evidence": "The staleReclaimable branch (979-981) is only `log('staleReclaimed: true')`, then control falls through to acquireBootstrapLock (986) → writeLeaseFile (1054) → launchServer() (1061), which spawns a fresh daemon. The daemon lease writes only `pid: process.pid` with no childPid (writeLeaseFile, 705-710), so the orphan daemon pid is never recorded or checked. acquireOwnerLeaseFile reclaims a `ppid-1-orphan` owner lease by overwriting it (450-486) with no process reap. By contrast mk-spec-memory-launcher.cjs:1570-1652 deep-probes and adopts-or-reaps the recorded childPid under a respawn lock, and mk-skill-advisor-launcher.cjs:731-760 bridges or scheduleBootstrapReap's the orphan inside the bootstrap-lock section.",
+      "why": "When a code-index launcher is SIGKILLed, its non-detached child (launchServer, 875, no detached/unref) is reparented to init and keeps running while holding code-graph.sqlite. The next launcher classifies the orphan owner lease as ppid-1-orphan (reclaimable) and the daemon lease as staleReclaimable, then spawns a SECOND daemon against the same SQLite DB without reaping the first — the exact double-spawn the other two launchers guard against. Impact is bounded only by the code-index daemon's own DB lock (outside this slice); at minimum it leaks an orphan and risks contended/double writers.",
+      "recommendation": "Mirror the sibling launchers: record the daemon childPid in code-index's lease, and in the staleReclaimable branch (and the ppid-1-orphan owner-lease reclaim) adopt the orphan via a deep probe when bridgeable, else reap it (confirming exit) under a serialization lock before launchServer(). If the no-reap behavior is intentional (daemon DB-lock backstop), add a comment citing that guarantee, since its absence reads as an oversight relative to the two siblings."
+    },
+    "corroboration": 1,
+    "models": [
+      "claude-opus-4-8"
+    ],
+    "seats": [
+      "opus-launcher-lifecycle"
+    ],
+    "allIds": [
+      "opus-launcher-lifecycle-i2-f1"
+    ]
+  },
+  {
+    "id": "opus-concurrency-race-i3-f1",
+    "severity": "P1",
+    "dimension": "correctness",
+    "file": ".opencode/bin/mk-spec-memory-launcher.cjs:1270",
+    "title": "spec-memory bootstrap-lock reclaim can never fire within its own deadline (mtime TTL 300s > wait deadline 120s); comment claims the opposite",
+    "detail": {
+      "evidence": "BOOTSTRAP_LOCK_STALE_MS=300000 (:95) but wait deadline=Date.now()+120000 (:1257); reclaim gated on ageMs>BOOTSTRAP_LOCK_STALE_MS (:1270) and the deadline throws at :1291. No holder PID is stamped (:1266 says 'the lockdir records no pid'). For any holder that died <5min ago, the 120s deadline always throws before the 5min staleness is reached, so the requireLock:true respawn path (:798) blocks the full 120s then errors 'bootstrap lock timed out'. The comment at :1266-1267 ('a crashed holder cannot block a requireLock respawn for the full 120s deadline') is therefore false.",
+      "why": "After a SIGKILL/OOM/crash of the spec-memory daemon launcher, the shared-daemon respawn stalls ~2min and throws instead of reclaiming, leaving the memory MCP with no live daemon. The sibling launcher already proves this is a fixable defect, not an accepted tradeoff.",
+      "recommendation": "Port skill-advisor's pattern: stamp the holder PID inside lockDir on mkdir (mk-skill-advisor-launcher.cjs:1126) and reclaim as soon as processLiveness(ownerPid)==='dead' (mk-skill-advisor-launcher.cjs:1096-1100), keeping the mtime TTL only as the no-PID fallback. Alternatively set BOOTSTRAP_LOCK_STALE_MS below the 120s deadline, but PID-based reclaim is the correct fix and matches the comment's intent."
+    },
+    "corroboration": 1,
+    "models": [
+      "claude-opus-4-8"
+    ],
+    "seats": [
+      "opus-concurrency-race"
+    ],
+    "allIds": [
+      "opus-concurrency-race-i3-f1"
+    ]
+  },
+  {
+    "id": "opus-concurrency-race-i3-f2",
+    "severity": "P1",
+    "dimension": "correctness",
+    "file": ".opencode/bin/mk-code-index-launcher.cjs:839",
+    "title": "code-index bootstrap-lock reclaim has the same mtime-TTL(300s) > deadline(120s) mistuning, blocking dead-socket respawn",
+    "detail": {
+      "evidence": "STALE_LOCK_MS=5*60*1000 (:822) with deadline=Date.now()+120000 (:821); reclaim gated on Date.now()-mtimeMs>STALE_LOCK_MS (:839), deadline throw at :855-857. acquireBootstrapLock is called with requireLock:true from the dead-socket respawn path (:654). No PID stamp on lockDir (acquireBootstrapLock at :818-861 only mkdir's the dir). A holder killed <5min ago cannot be reclaimed before the 120s deadline expires.",
+      "why": "Identical regression: after a hard kill of the code-index daemon, respawnAfterDeadSocket blocks 2min and throws rather than promptly reclaiming the bootstrap lock and re-spawning, degrading code-graph MCP availability across sessions.",
+      "recommendation": "Apply the same PID-stamp + provable-death reclaim used in mk-skill-advisor-launcher.cjs:1080-1112 (stamp pid at mkdir, reclaim when processLiveness(ownerPid)==='dead'), retaining the 5min mtime path as the unstamped-lock fallback."
+    },
+    "corroboration": 1,
+    "models": [
+      "claude-opus-4-8"
+    ],
+    "seats": [
+      "opus-concurrency-race"
+    ],
+    "allIds": [
+      "opus-concurrency-race-i3-f2"
+    ]
+  },
+  {
+    "id": "opus-followons-i1-f1",
+    "severity": "P1",
+    "dimension": "correctness",
+    "file": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/reconsolidation.ts:324",
+    "title": "Reconsolidation merge strips manual source_kind protection on a default-ON path",
+    "detail": {
+      "evidence": "executeMerge builds the merged successor with a hardcoded `source_kind: 'system'` (line 324) and calls `retirePredecessorForActiveReindex(db, existingMemory.id)` at line 332 while DISCARDING its return value. retirePredecessorForActiveReindex (lineage-state.ts:1392) computes a RetiredPredecessorCarry {importanceTier, sourceKind:'human'} for manual predecessors precisely so the successor can keep protection (asserted by source-kind-safety.vitest.ts:61-62). Reconsolidation is default ON (search-flags.ts:218-221, SPECKIT_RECONSOLIDATION default TRUE). The merge fires for the top folder-scoped similar memory at similarity>=0.88 regardless of its source_kind, so a human-authored predecessor is a reachable merge target. The merged tier IS carried (line 297) but source_kind is not.",
+      "why": "The merged active row keeps a human-set importance_tier but is relabeled source_kind='system', so it becomes auto-promotable (auto-promotion.ts:178/354) and automated-overwriteable when the original human row was not. This silently violates the 'automated-writers-never-overwrite-manual' invariant the carry mechanism and its test were built to uphold; the protection is path-dependent (honored in memory-save.ts:2655 but not here).",
+      "recommendation": "Capture the carry: `const carry = retirePredecessorForActiveReindex(db, existingMemory.id);` and when non-null set the merged insert's `source_kind` to `carry.sourceKind` (and tier to `carry.importanceTier`) instead of the unconditional 'system', mirroring memory-save.ts:2655-2660. Add an integration test that merges a human predecessor and asserts the successor remains source_kind='human'."
+    },
+    "corroboration": 1,
+    "models": [
+      "claude-opus-4-8"
+    ],
+    "seats": [
+      "opus-followons"
+    ],
+    "allIds": [
+      "opus-followons-i1-f1"
+    ]
+  },
+  {
+    "id": "opus-followons-i1-f2",
+    "severity": "P1",
+    "dimension": "correctness",
+    "file": ".opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts:351",
+    "title": "Append-version save/supersede paths discard the reindex-retire manual-source_kind carry",
+    "detail": {
+      "evidence": "updateExistingMemory (pe-gating.ts:351) and createMemoryRecord (create-record.ts:327) both call retirePredecessorForActiveReindex and ignore the returned carry, then call applyWriteProvenance (pe-gating.ts:381, create-record.ts:368) which derives source_kind via deriveSourceKindFromContext (write-provenance.ts:82-106) from ONLY the incoming write's source/actor/tool/scope — it never inspects the retired predecessor. So an automated memory_save whose PE-gate decision UPDATEs/supersedes a human same-path or semantically-matched predecessor re-stamps the new active row source_kind='agent'/'system'. These append-version paths also bypass the in-place field guard buildGuardedUpdateParams (memory-crud-update.ts:100-145), and no other manual-overwrite gate exists in the save flow (grep of memory-save.ts shows the carry at line 2655 is the only source_kind protection).",
+      "why": "A human-authored record superseded by an automated writer through these paths silently loses its source_kind='human' overwrite protection — the exact regression the carry return was added to prevent. Only the memory-save.ts inline same-path reindex consumes the carry; the PE-gate update and create-record lineage paths do not, leaving the protection inconsistent across reindex-retire callers.",
+      "recommendation": "Thread the carry through both call sites: capture the RetiredPredecessorCarry and, when non-null, persistSourceKind(database, nextMemoryId, carry.sourceKind) (and re-apply carry.importanceTier) after applyWriteProvenance, exactly as memory-save.ts:2655-2660 does. Consider making retirePredecessorForActiveReindex's contract harder to misuse (e.g., a helper that retires-and-restamps the successor in one call)."
+    },
+    "corroboration": 1,
+    "models": [
+      "claude-opus-4-8"
+    ],
+    "seats": [
+      "opus-followons"
+    ],
+    "allIds": [
+      "opus-followons-i1-f2"
+    ]
+  },
+  {
+    "id": "gpt-regression-doctruth-i1-f1",
+    "severity": "P1",
+    "dimension": "traceability",
+    "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/spec.md:120",
+    "title": "000 release-cleanup phase map omits on-disk child 000-spec-tree-consolidation",
+    "detail": {
+      "evidence": "The phase map at lines 120-130 lists only phases 1 through 9. But graph metadata lists `000-release-cleanup/000-spec-tree-consolidation` as a direct child at graph-metadata.json:7, context-index.md:7 says 000-release-cleanup hosts that regrouping task, and the child spec reports `| **Status** | Complete |` at 000-spec-tree-consolidation/spec.md:56.",
+      "why": "The parent phase map is supposed to be the traceable child/status inventory. Omitting an on-disk completed child makes the map incomplete and can mislead resume/review operators into thinking there are nine children when the graph has ten.",
+      "recommendation": "Add `000-spec-tree-consolidation/` to the 000-release-cleanup phase documentation map with its `Complete` status, and refresh description/metadata so generated child listings agree with graph-metadata."
+    },
+    "corroboration": 1,
+    "models": [
+      "openai/gpt-5.5-fast"
+    ],
+    "seats": [
+      "gpt-regression-doctruth"
+    ],
+    "allIds": [
+      "gpt-regression-doctruth-i1-f1"
+    ]
+  },
+  {
+    "id": "gpt-regression-doctruth-i1-f2",
+    "severity": "P1",
+    "dimension": "traceability",
+    "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:128",
+    "title": "Research/doctrine aggregate status remains stale despite complete child phase maps",
+    "detail": {
+      "evidence": "Root map line 128 marks track 001 as `In Progress`. The nested map marks peck as `In Progress` and old-006 gem as `Phase Parent` at 001-research-and-doctrine/spec.md:106-107. But peck parent has `completion_pct: 100` at 001-peck-teachings-adoption/spec.md:30 and its child map lines 116-122 are all `Complete`; gem parent has `completion_pct: 100` at 002-gem-team-adoption/spec.md:29 and its child map lines 109-111 are all `Complete`. context-index.md:12 maps old `006-gem-team-adoption` to this gem child.",
+      "why": "The regression target was status truth for phase parents with shipped children. These maps still expose unfinished/type labels instead of completed aggregate progress, so users resuming the epic see stale work state for 001 and the remapped old 006 phase.",
+      "recommendation": "Promote the 001 research/doctrine row to `Complete`, update 001-research-and-doctrine child rows for peck and gem to completed aggregate statuses, and refresh graph/description metadata so status fields no longer conflict with the completed child maps."
+    },
+    "corroboration": 1,
+    "models": [
+      "openai/gpt-5.5-fast"
+    ],
+    "seats": [
+      "gpt-regression-doctruth"
+    ],
+    "allIds": [
+      "gpt-regression-doctruth-i1-f2"
+    ]
+  },
+  {
+    "id": "gpt-regression-doctruth-i2-f1",
+    "severity": "P1",
+    "dimension": "traceability",
+    "file": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:48",
+    "title": "Spec-memory tool count still documents 37 while live registry exposes 39",
+    "detail": {
+      "evidence": "Line 48 says the Spec Kit Memory MCP server exposes 37 tools from TOOL_DEFINITIONS.length; tool-schemas.ts:906-955 exports the live TOOL_DEFINITIONS array with 39 entries, and spec-memory-cli.ts:540 renders list-tools count from TOOL_DEFINITIONS.length.",
+      "why": "The catalog and CLI parity docs no longer match the registered MCP/CLI surface. Operators using the advertised list-tools parity check or ownership docs will see 39 live commands while the catalog says 37.",
+      "recommendation": "Update the root catalog and spec-memory CLI catalog entries to 39, refresh the memory README coverage matrix, and adjust any 37-tool ownership lint/test wording to the current TOOL_DEFINITIONS length."
+    },
+    "corroboration": 1,
+    "models": [
+      "openai/gpt-5.5-fast"
+    ],
+    "seats": [
+      "gpt-regression-doctruth"
+    ],
+    "allIds": [
+      "gpt-regression-doctruth-i2-f1"
+    ]
+  },
+  {
+    "id": "gpt-regression-doctruth-i2-f2",
+    "severity": "P1",
+    "dimension": "traceability",
+    "file": ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/session-recovery-spec-kit-resume.md:64",
+    "title": "Feature catalog still links dead spec_kit_* workflow asset names",
+    "detail": {
+      "evidence": "Line 64 links .opencode/commands/speckit/assets/spec_kit_resume_auto.yaml, but .opencode/commands/speckit/README.txt:92-99 lists the live assets as speckit_resume_auto.yaml and other speckit_* files. The same stale spec_kit_ prefix appears in spec-folder-literal-naming-ai-derived-slugs.md:42-45 and debug-delegation-scaffold-generator.md:40-52.",
+      "why": "The catalog source-file traceability points readers to nonexistent workflow assets, preserving the dead spec_kit naming pattern the regression pass was supposed to eliminate.",
+      "recommendation": "Replace all feature-catalog spec_kit_*.yaml asset references with the live speckit_*.yaml paths and run a catalog source-file existence check over feature_catalog/**/*.md."
+    },
+    "corroboration": 1,
+    "models": [
+      "openai/gpt-5.5-fast"
+    ],
+    "seats": [
+      "gpt-regression-doctruth"
+    ],
+    "allIds": [
+      "gpt-regression-doctruth-i2-f2"
+    ]
+  },
+  {
+    "id": "gpt-regression-doctruth-i3-f1",
+    "severity": "P1",
+    "dimension": "traceability",
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md:160",
+    "title": "Scenario file count includes category README files",
+    "detail": {
+      "evidence": "Lines 160-164 define scenario_files as every direct category *.md file, and line 173 hard-codes expected 410. Running that inventory read-only produced playbook_glob_count=410, category_readme_count=3, non_readme_count=407. The included README files are category/package docs, e.g. 14--stress-testing/README.md:21 says the README is the package map and execution procedure stays in run-stress-cycle.md.",
+      "why": "The release-readiness text claims 410 scenario files, but the self-check count includes non-scenario README/package-map files. That inflates TOTAL_SCENARIOS and orphan accounting by 3, so coverage and readiness evidence can be traced to documentation files rather than executable scenario contracts.",
+      "recommendation": "Exclude category README/package-map files from scenario_files, or rename the check to count all playbook markdown files. If excluding them, update the hard-coded count from 410 to 407 and recompute the orphan baseline against only executable scenario files."
+    },
+    "corroboration": 1,
+    "models": [
+      "openai/gpt-5.5-fast"
+    ],
+    "seats": [
+      "gpt-regression-doctruth"
+    ],
+    "allIds": [
+      "gpt-regression-doctruth-i3-f1"
+    ]
+  },
+  {
+    "id": "gpt-regression-doctruth-i3-f2",
+    "severity": "P1",
+    "dimension": "traceability",
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md:130",
+    "title": "PARTIAL remains both disallowed and required by verdict rules",
+    "detail": {
+      "evidence": "Line 9 lists valid scenario classifications as PASS, FAIL, SKIP, or UNAUTOMATABLE, and line 125 says PARTIAL is not a valid per-scenario verdict. But line 130 defines a feature PARTIAL as at least one mapped scenario being PARTIAL. Representative scenario docs also still request PASS/PARTIAL/FAIL, e.g. 06--analysis/causal-stats-empty-graph-edge.md:22-23.",
+      "why": "Operators cannot derive the documented feature-level PARTIAL without violating the root scenario taxonomy, and per-scenario files still instruct a verdict shape the root playbook forbids. That keeps release-readiness and triage semantics ambiguous.",
+      "recommendation": "Choose one taxonomy and apply it consistently: either allow per-scenario PARTIAL everywhere, or keep scenario PARTIAL forbidden and redefine feature/packet PARTIAL as an aggregate evidence state derived from PASS/SKIP/UNAUTOMATABLE plus incomplete supporting evidence."
+    },
+    "corroboration": 1,
+    "models": [
+      "openai/gpt-5.5-fast"
+    ],
+    "seats": [
+      "gpt-regression-doctruth"
+    ],
+    "allIds": [
+      "gpt-regression-doctruth-i3-f2"
+    ]
+  },
+  {
+    "id": "gpt-regression-doctruth-i4-f1",
+    "severity": "P1",
+    "dimension": "traceability",
+    "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/009-packed-bm25-field-weights/tasks.md:50",
+    "title": "009 plan/tasks still preserve repudiated RSS pass",
+    "detail": {
+      "evidence": "tasks.md:50 records the superseded 111,017,984-byte RSS spike, tasks.md:70-71 still says the current corpus stayed below 150MB and contingency was not triggered, and plan.md:117 repeats 'current corpus passed'. But spec.md:139 and scratch/rss-probe-evidence.md:11 record the realistic fixture breach at 686.8MB > 150MB, while implementation-summary.md:103 says the 111MB measurement was superseded and phase 017 closed the budget at 136.5MB.",
+      "why": "Canonical phase docs still contradict the corrected benchmark trail. A reader can conclude 009 met REQ-001 at phase close, even though the corrected evidence says 009 failed the RSS budget and 010/phase-017 later closed it.",
+      "recommendation": "Update 009 plan.md and tasks.md to mark the 111MB/current-corpus-pass evidence as superseded, state the realistic 1x breach at phase close, and point to 010/phase-017 as the closure."
+    },
+    "corroboration": 1,
+    "models": [
+      "openai/gpt-5.5-fast"
+    ],
+    "seats": [
+      "gpt-regression-doctruth"
+    ],
+    "allIds": [
+      "gpt-regression-doctruth-i4-f1"
+    ]
+  },
+  {
+    "id": "gpt-regression-doctruth-i5-f1",
+    "severity": "P1",
+    "dimension": "traceability",
+    "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/013-provenance-injection/tasks.md:88",
+    "title": "Phase 013 still marks final verification gates pending despite pass evidence",
+    "detail": {
+      "evidence": "`tasks.md:88-91` leaves T023-T026 unchecked for TypeScript, requested vitest, strict validation, and comment hygiene, and `tasks.md:102` leaves the final completion criterion unchecked. `checklist.md:76-81` similarly leaves CHK-021/022/023 pending. But `implementation-summary.md:118-121` records PASS for `npx tsc --noEmit`, requested provenance/guard vitest, strict validation, and comment hygiene, and `review/review-report.md:29` independently records `tsc --noEmit: 0`, guard/provenance suite pass, `validate.sh --strict` 0/0, and comment hygiene clean.",
+      "why": "The phase has conflicting completion sources: the summary/review say the final gates were run and passed, while plan/tasks/checklist still tell operators the final run is pending. This breaks traceability for the 022 regression being verified.",
+      "recommendation": "Reconcile phase 013 docs: mark T023-T026 and the final completion criterion complete with the exact evidence already recorded, fill CHK-021/022/023/042, update the verification summary counts and stale `next_safe_action` fields, and ensure `plan.md:130` no longer says the final run is pending."
+    },
+    "corroboration": 1,
+    "models": [
+      "openai/gpt-5.5-fast"
+    ],
+    "seats": [
+      "gpt-regression-doctruth"
+    ],
+    "allIds": [
+      "gpt-regression-doctruth-i5-f1"
+    ]
+  },
+  {
+    "id": "gpt-regression-doctruth-i5-f2",
+    "severity": "P1",
+    "dimension": "traceability",
+    "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/014-idempotency-flag-on-correctness/checklist.md:77",
+    "title": "Phase 014 checklist still records pre-remediation 10-test evidence",
+    "detail": {
+      "evidence": "`checklist.md:77` says the flag-on idempotency suite passed with `1 file, 10 tests`, and `checklist.md:81` repeats `1 file, 10 tests` for flag-off. However `implementation-summary.md:104` records the remediated flag-on run as `1 file passed, 12 tests passed`, and `review/review-report.md:37` states `12/12 (was 10; +won/lost-replay +flag-off)`.",
+      "why": "The checklist still preserves the pre-remediation count for the flag-on suite, contradicting the explicit remediation evidence that corrected the count to 12/12. Operators checking checklist evidence will see the old count and cannot trace the regression fix cleanly.",
+      "recommendation": "Update CHK-021 to the remediated 12/12 flag-on evidence, and either confirm CHK-023 is intentionally a separate historical 10-test flag-off run or update it to the current recorded evidence style; keep checklist and implementation-summary counts synchronized."
+    },
+    "corroboration": 1,
+    "models": [
+      "openai/gpt-5.5-fast"
+    ],
+    "seats": [
+      "gpt-regression-doctruth"
+    ],
+    "allIds": [
+      "gpt-regression-doctruth-i5-f2"
+    ]
+  },
+  {
+    "id": "gpt-cli-frontdoors-i2-f1",
+    "severity": "P1",
+    "dimension": "security",
+    "file": ".opencode/skills/system-skill-advisor/mcp_server/skill-advisor-cli.ts:353",
+    "title": "Prompt-time marker does not block trusted mutations",
+    "detail": {
+      "evidence": "Prompt-time env vars are only folded into defaultWarmOnly() at lines 353-361. The mutation guard at lines 659-664 allows advisor_rebuild, skill_graph_scan, and apply-mode skill_graph_propagate_enhances whenever trusted is true, and runSkillAdvisorCli invokes the validated tool at lines 1289-1296. The spec safety claim at .opencode/specs/system-spec-kit/027-xce-research-based-refinement/before-vs-after.md:375 says these mutations are blocked from prompt-time paths entirely.",
+      "why": "A prompt-time hook process with a warm daemon and --trusted or MK_SKILL_ADVISOR_CLI_TRUSTED=1 can still execute shared-state mutations. That makes the prompt-time safety invariant rely on every wrapper hardcoding only read tools instead of being enforced by the front-door.",
+      "recommendation": "Carry a separate promptTime boolean out of parseCliArgs/default env detection and reject mutation tools before callTool when promptTime is true, regardless of --trusted or trusted env. Add regression tests for OPENCODE_PROMPT_TIME=1 with advisor_rebuild, skill_graph_scan, and apply-mode skill_graph_propagate_enhances."
+    },
+    "corroboration": 1,
+    "models": [
+      "openai/gpt-5.5-fast"
+    ],
+    "seats": [
+      "gpt-cli-frontdoors"
+    ],
+    "allIds": [
+      "gpt-cli-frontdoors-i2-f1"
+    ]
+  },
+  {
+    "id": "gpt-cli-frontdoors-i3-f1",
+    "severity": "P1",
+    "dimension": "security",
+    "file": ".opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs:18",
+    "title": "CamelCase aliases bypass prompt-time maintenance block",
+    "detail": {
+      "evidence": "MAINTENANCE_TOOLS blocks only snake/kebab names at lines 18-25, while parseArgs accepts arbitrary --tool at lines 257-260 and runCli checks the raw toolName at lines 301-308. The downstream CLI accepts camelCase aliases through commandAliases() in .opencode/skills/system-code-graph/mcp_server/code-index-cli.ts:220-221 and dispatches the canonical tool at lines 1146-1150.",
+      "why": "A prompt-time bridge invocation with --tool codeGraphScan, codeGraphApply, or codeGraphVerify misses the bridge blocklist, then the CLI resolves the alias and can run maintenance/mutating code against a warm daemon. This violates the prompt-time no-maintenance/no-scan invariant the bridge is meant to enforce.",
+      "recommendation": "Normalize the bridge tool name before policy checks using the same snake/kebab/camel alias map as code-index-cli, or block by canonical CLI tool definition after alias resolution. Add tests for codeGraphScan/codeGraphApply/codeGraphVerify."
+    },
+    "corroboration": 1,
+    "models": [
+      "openai/gpt-5.5-fast"
+    ],
+    "seats": [
+      "gpt-cli-frontdoors"
+    ],
+    "allIds": [
+      "gpt-cli-frontdoors-i3-f1"
+    ]
+  },
+  {
+    "id": "gpt-cli-frontdoors-i3-f2",
+    "severity": "P1",
+    "dimension": "security",
+    "file": ".opencode/skills/system-code-graph/mcp_server/code-index-cli.ts:924",
+    "title": "Warm-only clients trust socket dirs without owner validation",
+    "detail": {
+      "evidence": "ensureSocketEnvironment() sets or creates SPECKIT_IPC_SOCKET_DIR, then only rejects group/world-writable dirs at lines 924-934; it never verifies stat.uid is the current user. The client then deep-probes and connects to that socket at lines 1085-1106. The server bind path does enforce current-user ownership in .opencode/skills/system-code-graph/mcp_server/lib/ipc/socket-server.ts:274-282, but the warm-only client path does not.",
+      "why": "On a shared host, a different local user can pre-create a non-world-writable /tmp/mk-code-index directory and a fake daemon socket before first use. The warm-only CLI/plugin bridge can accept the fake JSON-RPC endpoint and inject attacker-controlled status text into prompt-time OpenCode context instead of skipping or spawning safely.",
+      "recommendation": "Before probing or connecting, validate the socket directory and socket path with lstat/stat: current uid ownership, not group/world-writable, no symlinked socket path, and allowed root containment. Reuse one hardened helper in code-index-cli and mk-code-graph-bridge."
+    },
+    "corroboration": 1,
+    "models": [
+      "openai/gpt-5.5-fast"
+    ],
+    "seats": [
+      "gpt-cli-frontdoors"
+    ],
+    "allIds": [
+      "gpt-cli-frontdoors-i3-f2"
+    ]
+  },
+  {
+    "id": "gpt-cli-frontdoors-i4-f1",
+    "severity": "P1",
+    "dimension": "security",
+    "file": ".opencode/skills/system-spec-kit/mcp_server/spec-memory-cli.ts:982",
+    "title": "spec-memory CLI exits 0 on daemon payload status:error",
+    "detail": {
+      "evidence": "Line 980 extracts `{ payload, isError }` from `extractToolPayload`, and line 982 returns `isError ? EXIT_RUNTIME : EXIT_SUCCESS`. `extractToolPayload` (lines 635-663) sets `isError` only from `toolResult?.isError === true`; it never inspects the parsed payload's `status`. By contrast, skill-advisor-cli.ts:865 sets `isError: toolResult?.isError === true || isErrorPayload(payload)` inside `extractToolPayload`, and code-index-cli.ts:1157 explicitly returns `isError || isErrorPayload(renderedPayload) ? EXIT_RUNTIME : EXIT_SUCCESS`.",
+      "why": "The spec-memory daemon can return a successful MCP envelope (`isError:false`) containing an embedded JSON payload with `status:'error'`. In that case spec-memory exits 0 while code-index and skill-advisor exit 1. This violates the 'no success-on-failure' contract and lets automated callers (hooks, scripts, CI) treat a failed memory operation as successful.",
+      "recommendation": "Make spec-memory mirror the other two CLIs: either add `|| isErrorPayload(payload)` to `extractToolPayload` (skill-advisor style) or change line 982 to `return isError || isErrorPayload(payload) ? EXIT_RUNTIME : EXIT_SUCCESS;` (code-index style) and add a unit test that feeds a fake daemon response with `content:[{text: JSON.stringify({status:'error',...})}]` and asserts exit code 1."
+    },
+    "corroboration": 1,
+    "models": [
+      "kimi-for-coding/k2p7"
+    ],
+    "seats": [
+      "gpt-cli-frontdoors"
+    ],
+    "allIds": [
+      "gpt-cli-frontdoors-i4-f1"
+    ]
+  },
+  {
+    "id": "gpt-continuity-metadata-i1-f1",
+    "severity": "P1",
+    "dimension": "traceability",
+    "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/description.json:17-27",
+    "title": "000-release-cleanup description.json omits live child 000-spec-tree-consolidation",
+    "detail": {
+      "evidence": "children array lists 001-public-root-readme through 009-skill-frontmatter-alignment only. On disk, 000-spec-tree-consolidation exists with full spec docs (spec.md, plan.md, tasks.md, checklist.md, implementation-summary.md, description.json, graph-metadata.json) and graph-metadata.json:6-17 includes it.",
+      "why": "A live Level-2 phase child is invisible in its parent's description.json child inventory, creating the exact R1/R2 metadata drift this review targets. Memory search or tooling that relies on description.json will miss this child.",
+      "recommendation": "Add \"000-spec-tree-consolidation\" to the children array in 000-release-cleanup/description.json, ideally before 001-public-root-readme to preserve numeric order."
+    },
+    "corroboration": 1,
+    "models": [
+      "kimi-for-coding/k2p7"
+    ],
+    "seats": [
+      "gpt-continuity-metadata"
+    ],
+    "allIds": [
+      "gpt-continuity-metadata-i1-f1"
+    ]
+  },
+  {
+    "id": "gpt-continuity-metadata-i1-f2",
+    "severity": "P1",
+    "dimension": "traceability",
+    "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/description.json:4-8",
+    "title": "003-advisor-and-codegraph description.json omits live child 004-skill-advisor-suite-repair",
+    "detail": {
+      "evidence": "childTopology lists only 001-causal-traversal-bfs, 002-xce-feature-adoption-advisor-codegraph, and 003-skill-advisor-cross-session-reconnect. On disk, 004-skill-advisor-suite-repair exists (spec.md, plan.md, tasks.md, etc.) and graph-metadata.json:6-11 includes it.",
+      "why": "The newest live phase child is missing from the parent description inventory even though graph-metadata was updated, indicating description.json was not regenerated/reconciled when the child was added.",
+      "recommendation": "Add \"004-skill-advisor-suite-repair\" to childTopology in 003-advisor-and-codegraph/description.json and regenerate per-folder descriptions for the parent."
+    },
+    "corroboration": 1,
+    "models": [
+      "kimi-for-coding/k2p7"
+    ],
+    "seats": [
+      "gpt-continuity-metadata"
+    ],
+    "allIds": [
+      "gpt-continuity-metadata-i1-f2"
+    ]
+  },
+  {
+    "id": "gpt-continuity-metadata-i1-f3",
+    "severity": "P1",
+    "dimension": "traceability",
+    "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/description.json:4-13",
+    "title": "004-shared-infrastructure description.json omits live child 009-code-graph-code-only-indexing",
+    "detail": {
+      "evidence": "childTopology lists 001-mcp-to-cli-tool-transition through 008-mcp-config-alignment-reelection-default only. On disk, 009-code-graph-code-only-indexing exists (spec.md, plan.md, tasks.md, etc.) and graph-metadata.json:6-16 includes it.",
+      "why": "Another late-added live phase child is absent from the parent description.json inventory while correctly tracked in graph-metadata.json.",
+      "recommendation": "Add \"009-code-graph-code-only-indexing\" to childTopology in 004-shared-infrastructure/description.json and regenerate per-folder descriptions for the parent."
+    },
+    "corroboration": 1,
+    "models": [
+      "kimi-for-coding/k2p7"
+    ],
+    "seats": [
+      "gpt-continuity-metadata"
+    ],
+    "allIds": [
+      "gpt-continuity-metadata-i1-f3"
+    ]
+  },
+  {
+    "id": "gpt-continuity-metadata-i2-f1",
+    "severity": "P1",
+    "dimension": "traceability",
+    "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/graph-metadata.json:231",
+    "title": "Root phase-parent pointer is stale",
+    "detail": {
+      "evidence": "derived.last_active_child_id = \"system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation\" and derived.last_active_at = \"2026-06-14T00:00:00Z\". Sibling 003-advisor-and-codegraph graph-metadata.json:89 has last_save_at = \"2026-06-15T16:24:38.199Z\", later than both the root pointer timestamp and the target child 005's last_save_at (\"2026-06-15T09:09:34.841Z\"). generate-context.ts:561-580 only updates the direct parent, not all ancestor phase parents.",
+      "why": "The pointer names the wrong most-recently-active top-level phase. Because /speckit:resume auto-redirect trusts a fresh pointer (speckit_resume_auto.yaml:59-62), this can land a session in 005 instead of 003.",
+      "recommendation": "Make updatePhaseParentPointersAfterSave walk the ancestor chain and refresh every phase parent, or run a tree-wide graph-metadata refresh after batch saves."
+    },
+    "corroboration": 1,
+    "models": [
+      "kimi-for-coding/k2p7"
+    ],
+    "seats": [
+      "gpt-continuity-metadata"
+    ],
+    "allIds": [
+      "gpt-continuity-metadata-i2-f1"
+    ]
+  },
+  {
+    "id": "gpt-wip-doctrine-i1-f1",
+    "severity": "P1",
+    "dimension": "traceability",
+    "file": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh:1062",
+    "title": "CONTINUITY_FRESHNESS documented warn-vs-enforce graduated rollout does not exist for normal packets",
+    "detail": {
+      "evidence": "Rule runs only inside run_strict_validators (validate.sh:830 early-returns unless $STRICT_MODE). Under --strict, ANY warning forces exit 2 (validate.sh:1062). Default non-enforce stale emits status=warn -> log_warn -> WARNINGS++ (continuity-freshness.ts:340-342, validate.sh:762). The phase's own vitest asserts exit code === 2 for BOTH default-warn (continuity-freshness.vitest.ts:191) and enforce (line 208); only the inner status label differs ('warn' line 193 vs 'error' line 209). LEGACY_GRANDFATHERED (validate.sh:175-182) is the only carve-out and is false for new packets.",
+      "why": "validation_rules.md:96 and :105, 006/implementation-summary.md:82, and CLAUDE.md document a graduated 'WARNING by default; ERROR when ENFORCE=true' / 'warn-only unless enforce' rollout. In the only execution path (validate.sh --strict, the documented completion command), default mode hard-fails completion (exit 2) identically to enforce; the ENFORCE flag is functionally inert (cosmetic label only) for normal packets. Operators enabling the flag without enforce, expecting non-blocking warnings, get hard FAILED completion/CI gates — the shipped behavior contradicts the documented feature.",
+      "recommendation": "Either correct the docs (validation_rules.md:93-105, 006 implementation-summary.md:82, CLAUDE.md/AGENTS.md) to state that enabling SPECKIT_COMPLETION_FRESHNESS blocks --strict completion regardless of enforce for non-grandfathered packets and that enforce only reclassifies warn->error; or make the warn tier genuinely non-blocking — emit 'info' (not 'warn') in non-enforce mode, or exempt CONTINUITY_FRESHNESS warnings from the --strict warnings->exit-2 promotion unless enforce is set."
+    },
+    "corroboration": 1,
+    "models": [
+      "claude-opus-4-8"
+    ],
+    "seats": [
+      "gpt-wip-doctrine"
+    ],
+    "allIds": [
+      "gpt-wip-doctrine-i1-f1"
+    ]
+  },
+  {
+    "id": "gpt-wip-doctrine-i3-f1",
+    "severity": "P1",
+    "dimension": "traceability",
+    "file": ".opencode/skills/sk-code/SKILL.md:1",
+    "title": "Gate B (P0 REQ-005) absent from sk-code/SKILL.md; orchestrator-only, yet P0 marked complete",
+    "detail": {
+      "evidence": "grep for boundary|contract-first|change_class|api/schema|pre-execution in sk-code/SKILL.md returns no gate; the only Gate B logic is orchestrate.md:262 and agent-io-contract.md:130, and agent-io-contract.md:115 forbids leaf agents from carrying the predicate. code.md has no change_class gate either. REQ-005 (spec.md:153) is P0 and names sk-code/SKILL.md as the surface; SC-002 (spec.md:172) and the edge-case table (spec.md:227) assert sk-code-path behavior. Packet reports 15/15 P0, completion_pct:100, Status 'Implemented' (checklist.md:130, impl-summary.md:45); the gap is mapped to CHK-024 marked [P1] (checklist.md:77).",
+      "why": "A P0 requirement's named acceptance artifact does not exist. Because the contract deliberately keeps Gate B out of leaf agents, the gate never fires on direct sk-code/@code code work (the dominant code path per root CLAUDE.md) and only fires on the narrower @orchestrate dispatch path — so the api/schema/integration coverage the spec promises is materially narrower than implemented. Marking this P0 complete (rather than amended/deferred) overstates closure; the spec's own protocol allows 'user-approved deferral' for P1 only, not P0.",
+      "recommendation": "Either (a) amend REQ-005/SC-002 to state the predicate is orchestrator/contract-owned and explicitly accept that direct sk-code invocations are not gated, reclassifying the sk-code edit as a tracked deferral; or (b) add the boundary contract-first reminder to sk-code/SKILL.md Phase 0 so the gate covers direct code work. Do not leave a P0 whose named artifact is absent marked 15/15 complete."
+    },
+    "corroboration": 1,
+    "models": [
+      "claude-opus-4-8"
+    ],
+    "seats": [
+      "gpt-wip-doctrine"
+    ],
+    "allIds": [
+      "gpt-wip-doctrine-i3-f1"
+    ]
+  },
+  {
+    "id": "gpt-wip-doctrine-i4-f1",
+    "severity": "P1",
+    "dimension": "traceability",
+    "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/005-reviewer-prompt-benchmark-substrate/spec.md:133",
+    "title": "Spec documents non-existent command/skill paths",
+    "detail": {
+      "evidence": "Spec lists files under `.opencode/skills/deep-improvement/...` and command `.opencode/commands/deep/start-model-benchmark-loop.md`. `ls` shows neither path exists; actual files are under `.opencode/skills/deep-loop-workflows/deep-improvement/` and the command is `model-benchmark.md`.",
+      "why": "Documentation/spec is not traceable to the real code an operator must run.",
+      "recommendation": "Update the spec's file tables and command references to the actual paths, or create symlinks/aliases where the spec claims they live."
+    },
+    "corroboration": 1,
+    "models": [
+      "kimi-for-coding/k2p7"
+    ],
+    "seats": [
+      "gpt-wip-doctrine"
+    ],
+    "allIds": [
+      "gpt-wip-doctrine-i4-f1"
+    ]
+  },
+  {
+    "id": "gpt-wip-doctrine-i4-f2",
+    "severity": "P1",
+    "dimension": "traceability",
+    "file": ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/default.json:8",
+    "title": "Reviewer seed fixtures are not in any shipped profile",
+    "detail": {
+      "evidence": "Default profile's `fixtures` array is `[\"fixture-baseline\", \"fixture-improved\", \"fixture-edge\"]`. No profile in `benchmark-profiles/` references any `reviewer-*.json` fixture. Running `reviewer-scorer.cjs` against the default profile yields `fixtures: 0`.",
+      "why": "The benchmark cannot run the documented seed fixtures out-of-the-box; they are present on disk but unreachable through the normal profile-driven path.",
+      "recommendation": "Add a shipped reviewer profile (e.g., `reviewer-regression.json`) listing the four `reviewer-*.json` fixtures, and reference it in the command examples."
+    },
+    "corroboration": 1,
+    "models": [
+      "kimi-for-coding/k2p7"
+    ],
+    "seats": [
+      "gpt-wip-doctrine"
+    ],
+    "allIds": [
+      "gpt-wip-doctrine-i4-f2"
+    ]
+  },
+  {
+    "id": "gpt-wip-doctrine-i4-f3",
+    "severity": "P1",
+    "dimension": "correctness",
+    "file": ".opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/run-benchmark.cjs:461",
+    "title": "run-benchmark.cjs rejects --scorer reviewer",
+    "detail": {
+      "evidence": "`const VALID_SCORERS = new Set(['pattern', '5dim']);` and lines 463-466 fall back any other `--scorer` value to `pattern` with a stderr warning.",
+      "why": "A user invoking the default Lane B runner with `--scorer reviewer` gets pattern scoring instead of reviewer scoring, silently.",
+      "recommendation": "Add `reviewer` to `VALID_SCORERS` and route reviewer-shaped fixtures to `reviewer-scorer.cjs`, or clearly document that reviewer scoring must use the command/YAML path."
+    },
+    "corroboration": 1,
+    "models": [
+      "kimi-for-coding/k2p7"
+    ],
+    "seats": [
+      "gpt-wip-doctrine"
+    ],
+    "allIds": [
+      "gpt-wip-doctrine-i4-f3"
+    ]
+  },
+  {
+    "id": "gpt-wip-doctrine-i4-f4",
+    "severity": "P1",
+    "dimension": "traceability",
+    "file": ".opencode/skills/deep-loop-workflows/deep-improvement/manual_testing_playbook/manual_testing_playbook.md:750",
+    "title": "MB-R01 manual-testing scenario file is missing",
+    "detail": {
+      "evidence": "Root playbook references `MB-R01 | Reviewer Prompt Regression Fixtures` and says to add a per-feature file under `09--model-benchmark-mode/`. The directory contains only MB-038..MB-042 files; no MB-R01 file exists.",
+      "why": "The claimed manual-testing coverage for reviewer fixtures is not present, so the playbook cannot be executed as documented.",
+      "recommendation": "Create `09--model-benchmark-mode/reviewer-prompt-regression-fixtures.md` (or equivalent) with the MB-R01 execution contract, commands, and expected signals."
+    },
+    "corroboration": 1,
+    "models": [
+      "kimi-for-coding/k2p7"
+    ],
+    "seats": [
+      "gpt-wip-doctrine"
+    ],
+    "allIds": [
+      "gpt-wip-doctrine-i4-f4"
+    ]
+  },
+  {
+    "id": "gpt-wip-verification-i2-f1",
+    "severity": "P1",
+    "dimension": "traceability",
+    "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/002-tri-system-deep-research/research/research.md:8",
+    "title": "Research P0 mis-cites lineage-state source-kind guard",
+    "detail": {
+      "evidence": "research.md claims .opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts:1365-1381 retires rows reading only importance_tier and exempting only constitutional. The actual retirePredecessorForActiveReindex at 1369-1403 selects source_kind at 1374 and carries manual tiers forward at 1393-1395 before deprecating the predecessor.",
+      "why": "A top-level confirmed P0 is supported by a range that omits the existing source-kind/manual-tier guard, so the synthesis points remediation at a non-bug.",
+      "recommendation": "Re-verify the finding against the full function body and either remove/refute the P0 or cite the exact unguarded lines that prove manual rows are lost."
+    },
+    "corroboration": 1,
+    "models": [
+      "kimi-for-coding/k2p7"
+    ],
+    "seats": [
+      "gpt-wip-verification"
+    ],
+    "allIds": [
+      "gpt-wip-verification-i2-f1"
+    ]
+  },
+  {
+    "id": "gpt-wip-verification-i2-f2",
+    "severity": "P1",
+    "dimension": "traceability",
+    "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/002-tri-system-deep-research/research/research.md:9",
+    "title": "Research P0 mis-cites auto-promotion source-kind exclusion",
+    "detail": {
+      "evidence": "research.md claims .opencode/skills/system-spec-kit/mcp_server/lib/search/auto-promotion.ts:140-146,259-262 updates importance_tier with no source-kind check. Lines 140-146 only SELECT (including source_kind), 259-262 count recent promotions, checkAutoPromotion rejects manual source kinds at 178-186, and the UPDATE at 273-278 explicitly excludes manual source kinds.",
+      "why": "The registry's P0 claim of unguarded automated tier overwrite is contradicted by the cited file, risking false remediation.",
+      "recommendation": "Correct the citation to the actual guard-free lines or downgrade/refute the finding and update the synthesis."
+    },
+    "corroboration": 1,
+    "models": [
+      "kimi-for-coding/k2p7"
+    ],
+    "seats": [
+      "gpt-wip-verification"
+    ],
+    "allIds": [
+      "gpt-wip-verification-i2-f2"
+    ]
+  },
+  {
+    "id": "gpt-wip-verification-i2-f3",
+    "severity": "P1",
+    "dimension": "traceability",
+    "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/002-tri-system-deep-research/research/research.md:10",
+    "title": "Research P0 mis-locates generate-context secret scrubber",
+    "detail": {
+      "evidence": "research.md claims .opencode/skills/system-spec-kit/scripts/core/workflow.ts:1424+ persists durable artifacts without the scrub step. Lines 1424-1435 perform tree thinning; scrubWorkflowSavePayloadTextFields runs at 1492-1505 and scrubs contentSlug, memoryTitle, sessionData, collectedData, and rawCtxFilename before persistence.",
+      "why": "The cited range describes thinning, not durable persistence, and a scrubber is present in the save path, so the P0 lacks accurate coordinates.",
+      "recommendation": "Identify any genuinely unscrubbed durable field and cite the exact write line, or refute the finding."
+    },
+    "corroboration": 1,
+    "models": [
+      "kimi-for-coding/k2p7"
+    ],
+    "seats": [
+      "gpt-wip-verification"
+    ],
+    "allIds": [
+      "gpt-wip-verification-i2-f3"
+    ]
+  },
+  {
+    "id": "gpt-wip-verification-i2-f4",
+    "severity": "P1",
+    "dimension": "traceability",
+    "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/002-tri-system-deep-research/implementation-summary.md:30",
+    "title": "Implementation summary names non-existent spec folder",
+    "detail": {
+      "evidence": "implementation-summary.md lists Spec Folder as 028-tri-system-deep-research; the actual folder is 002-tri-system-deep-research (description.json:2, graph-metadata.json:4).",
+      "why": "Resume and cross-reference tooling will resolve to a folder that does not exist, breaking traceability from the summary to the packet.",
+      "recommendation": "Correct the Spec Folder value to 002-tri-system-deep-research and align it with description.json/graph-metadata.json."
+    },
+    "corroboration": 1,
+    "models": [
+      "kimi-for-coding/k2p7"
+    ],
+    "seats": [
+      "gpt-wip-verification"
+    ],
+    "allIds": [
+      "gpt-wip-verification-i2-f4"
+    ]
+  },
+  {
+    "id": "gpt-wip-verification-i2-f5",
+    "severity": "P1",
+    "dimension": "traceability",
+    "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/002-tri-system-deep-research/spec.md:32",
+    "title": "Canonical docs still advertise in-progress state after completion",
+    "detail": {
+      "evidence": "spec.md status is In Progress and its _memory block (lines 15-16) says recent_action 'Authored 50 research angles and program scaffolding' / next_safe_action 'Dispatch research iterations...'. tasks.md lines 64-66 mark T008-T010 complete and implementation-summary.md:80 reports 50/50 verification pass.",
+      "why": "A completed packet advertises an in-progress state and stale resume actions, misleading session recovery and bootstrap routing.",
+      "recommendation": "Update spec.md status to Complete, refresh the _memory continuity block to match implementation-summary.md, and regenerate graph-metadata.json so derived.status is not in_progress."
+    },
+    "corroboration": 1,
+    "models": [
+      "kimi-for-coding/k2p7"
+    ],
+    "seats": [
+      "gpt-wip-verification"
+    ],
+    "allIds": [
+      "gpt-wip-verification-i2-f5"
+    ]
+  },
+  {
+    "id": "gpt-wip-verification-i3-f1",
+    "severity": "P1",
+    "dimension": "traceability",
+    "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/spec.md:111",
+    "title": "Parent phase-map shows shipped child as 'Planned'; T012 falsely marked complete",
+    "detail": {
+      "evidence": "Parent phase-map row reads '| 004 | 004-residual-design-units/ | … | Planned |', but the child spec.md:53 declares Status 'Resolved' (completion_pct 90, code committed). tasks.md:82 marks T012 [x] claiming 'parent phase-map row 30 status reflected' — that claim is false against the actual parent file.",
+      "why": "The parent map is the canonical aggregate-progress surface (spec.md:116) that /speckit:resume reads to list child statuses; reporting a shipped unit as not-started misleads resume/operator. A checked verification task whose claim contradicts the file is a traceability defect.",
+      "recommendation": "Update parent 005 spec.md row 004 status from 'Planned' to 'Complete' (or 'In Progress' if Unit C follow-on is tracked open), then either keep T012 [x] truthfully or note the residual follow-on."
+    },
+    "corroboration": 1,
+    "models": [
+      "claude-opus-4-8"
+    ],
+    "seats": [
+      "gpt-wip-verification"
+    ],
+    "allIds": [
+      "gpt-wip-verification-i3-f1"
+    ]
+  }
+]

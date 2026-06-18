@@ -1,3 +1,14 @@
+---
+title: Simple Workflow Example - Linear Sequential Process
+description: A basic linear workflow demonstrating sequential steps without branching.
+trigger_phrases:
+  - "simple workflow flowchart"
+  - "linear sequential process"
+  - "basic flow diagram example"
+importance_tier: normal
+contextType: general
+---
+
 # Simple Workflow Example - Linear Sequential Process
 
 A basic linear workflow demonstrating sequential steps without branching.

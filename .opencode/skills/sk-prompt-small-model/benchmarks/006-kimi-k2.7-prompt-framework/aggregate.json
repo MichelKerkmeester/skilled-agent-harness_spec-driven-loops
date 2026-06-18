@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "groupBy": "framework",
+  "gate_threshold": 1,
+  "ranking_key": "efficiency",
+  "correctness_saturated": true,
+  "groups": [
+    {
+      "group": "cidi",
+      "n": 6,
+      "correctness_mean": 1,
+      "format_adherent_rate": 1,
+      "output_words_median": 122.5,
+      "eligible": true,
+      "rank": 1
+    },
+    {
+      "group": "costar",
+      "n": 6,
+      "correctness_mean": 1,
+      "format_adherent_rate": 1,
+      "output_words_median": 123,
+      "eligible": true,
+      "rank": 2
+    },
+    {
+      "group": "race",
+      "n": 6,
+      "correctness_mean": 1,
+      "format_adherent_rate": 1,
+      "output_words_median": 123.5,
+      "eligible": true,
+      "rank": 3
+    },
+    {
+      "group": "rcaf",
+      "n": 6,
+      "correctness_mean": 1,
+      "format_adherent_rate": 1,
+      "output_words_median": 125,
+      "eligible": true,
+      "rank": 4
+    },
+    {
+      "group": "tidd-ec",
+      "n": 6,
+      "correctness_mean": 1,
+      "format_adherent_rate": 1,
+      "output_words_median": 137,
+      "eligible": true,
+      "rank": 5
+    }
+  ],
+  "saturation": {
+    "status": "saturated",
+    "action": "promote-or-demote-to-smoke",
+    "detail": "every eligible framework is pinned at the correctness gate; correctness cannot rank — ranked on efficiency instead.",
+    "fixtures": [
+      {
+        "fixture": "t3-lower-bound",
+        "cells": 15,
+        "correctness_mean": 1,
+        "saturated": true,
+        "action": "promote-or-demote-to-smoke"
+      },
+      {
+        "fixture": "t3-compare-versions",
+        "cells": 15,
+        "correctness_mean": 1,
+        "saturated": true,
+        "action": "promote-or-demote-to-smoke"
+      }
+    ]
+  },
+  "verdict": {
+    "verdict": "TIE",
+    "reason": "inside_noise_floor",
+    "ranking_key": "efficiency",
+    "n_samples": 3,
+    "margin": 0.5,
+    "noise_floor": 12,
+    "ci": {
+      "point": 0.3333333333333333,
+      "lo": -4.666666666666667,
+      "hi": 5.166666666666667,
+      "confidence": 0.9
+    },
+    "top_pair": [
+      "cidi",
+      "costar"
+    ]
+  },
+  "profile": {
+    "id": "kimi-k2.7-frameworks",
+    "mode": "framework-bakeoff",
+    "version": "1.0"
+  }
+}

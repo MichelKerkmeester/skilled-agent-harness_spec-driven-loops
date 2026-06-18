@@ -1,0 +1,106 @@
+{
+  "sessionId": "2026-06-16-028-005-revisit-027",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "openQuestions": [
+    {
+      "id": "question-1-q1-retention-ttl-bi-temporal-close-forget-allowlist-should-027-s-tier-aware-dele",
+      "text": "Q1: Retention/TTL × bi-temporal close + forget-allowlist — should 027's tier-aware delete-sweep become a temporal-close (028 C3-A/C3-D), and does aionforge-forget's 6-label allowlist refine 027's constitutional/critical/pinned tier gate?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-q2-provenance-write-safety-content-addressed-idempotency-ingest-bypass-does-027-",
+      "text": "Q2: Provenance/write-safety × content-addressed idempotency + ingest-bypass — does 027's source_kind + write-ingress + write-provenance.ts guard cover 028's recall-trust ingest-bypass (envelope.ts:284-295 wrapper bypassed by extraction-adapter.ts:247), and does content-addressed identity (C4-A/C4-B) strengthen 027's dedup?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-q3-causal-edge-lifecycle-tombstones-promoter-full-bi-temporal-model-do-028-s-fou",
+      "text": "Q3: Causal-edge lifecycle/tombstones/promoter × full bi-temporal model — do 028's four-timestamp validity windows + SUPERSEDES/CONTRADICTS + conflict auto-invalidation (C3-A/B/C) extend or fork 027's causal-edge tombstones + frontmatter→edge promoter?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-q4-feedback-reducers-bounded-beta-posterior-should-027-s-learning-feedback-reduc",
+      "text": "Q4: Feedback reducers × bounded Beta posterior — should 027's learning feedback reducers adopt 028's anti-flood bounded Beta posterior (D2/C4), given 028 found the estimator is raw-frequency (feedback-calibration.ts:173-177,230-237) with no Beta math? (Sharpest direct overlap.)",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-q5-incremental-index-statediff-determinism-generation-watermark-is-027-s-increme",
+      "text": "Q5: Incremental index/statediff × determinism + generation watermark — is 027's incremental memory index output deterministic (content-derived ordering, idempotent no-op rescan), and should statediff reconciliation carry a generation watermark (028 Q6-C1, stale=error)?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-6-q6-semantic-triggers-query-class-routing-could-027-s-semantic-trigger-matcher-us",
+      "text": "Q6: Semantic triggers × query-class routing — could 027's semantic trigger matcher use 028's 5-class retrieval-class router (single/multi-hop/temporal/entity/quote) as an additive axis?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-7-q7-daemon-re-election-reconnect-ipc-graceful-degrade-reliability-trust-does-028-",
+      "text": "Q7: Daemon re-election/reconnect/IPC × graceful-degrade + reliability trust — does 028's degrade-discipline (exit-75, degrade-to-remaining, report honestly) strengthen 027's advisor reconnect + mk-code-index proxy, and could daemon re-election use a reliability signal for which owner/launcher to trust?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-8-q8-search-resilience-score-scale-reranking-response-policy-gate-deterministic-rr",
+      "text": "Q8: Search resilience/score-scale/reranking/response-policy gate × deterministic RRF + active-channel denominator — how do 027's score-scale + reranking + response-policy + archived/deprecated-inclusion fixes interact with 028's deterministic RRF + content-derived tie-breaks + active-channel-denominator (C-X1) + query-class-gated response?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-9-q9-observability-continuity-consolidation-gauges-newinforatio-ingest-does-028-s-",
+      "text": "Q9: Observability/continuity × consolidation gauges + newInfoRatio-ingest — does 028's per-tick gauge taxonomy (lag/pending/failed) extend 027's memory observability, and how does 027's continuity meet bi-temporal as-of-known-at reads?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-10-q10-memclaw-derived-memory-write-safety-content-addressed-derived-ids-idempotent",
+      "text": "Q10: Memclaw derived-memory write safety × content-addressed derived IDs + idempotent async consolidation — does 028's content-addressed derived identity (derived_id=sha256(triple+source+rule_version), C4-B) + idempotent async consolidation (C4-A/C4-C/C-G1) strengthen 027's derived-memory write safety under crash-replay?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-11-q11-capstone-where-does-028-contradict-or-already-cover-027-and-does-028-s-promo",
+      "text": "Q11 (capstone): Where does 028 contradict or already-cover 027 — and does 028's \"promote-off-state is 0-of-4 clean flips\" finding temper 027's confidence that its own default-off feature flags are cheap to flip on? Produce the reconciliation ledger.",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "uncoveredQuestions": [
+    "Q1: Retention/TTL × bi-temporal close + forget-allowlist — should 027's tier-aware delete-sweep become a temporal-close (028 C3-A/C3-D), and does aionforge-forget's 6-label allowlist refine 027's constitutional/critical/pinned tier gate?",
+    "Q2: Provenance/write-safety × content-addressed idempotency + ingest-bypass — does 027's source_kind + write-ingress + write-provenance.ts guard cover 028's recall-trust ingest-bypass (envelope.ts:284-295 wrapper bypassed by extraction-adapter.ts:247), and does content-addressed identity (C4-A/C4-B) strengthen 027's dedup?",
+    "Q3: Causal-edge lifecycle/tombstones/promoter × full bi-temporal model — do 028's four-timestamp validity windows + SUPERSEDES/CONTRADICTS + conflict auto-invalidation (C3-A/B/C) extend or fork 027's causal-edge tombstones + frontmatter→edge promoter?",
+    "Q4: Feedback reducers × bounded Beta posterior — should 027's learning feedback reducers adopt 028's anti-flood bounded Beta posterior (D2/C4), given 028 found the estimator is raw-frequency (feedback-calibration.ts:173-177,230-237) with no Beta math? (Sharpest direct overlap.)",
+    "Q5: Incremental index/statediff × determinism + generation watermark — is 027's incremental memory index output deterministic (content-derived ordering, idempotent no-op rescan), and should statediff reconciliation carry a generation watermark (028 Q6-C1, stale=error)?",
+    "Q6: Semantic triggers × query-class routing — could 027's semantic trigger matcher use 028's 5-class retrieval-class router (single/multi-hop/temporal/entity/quote) as an additive axis?",
+    "Q7: Daemon re-election/reconnect/IPC × graceful-degrade + reliability trust — does 028's degrade-discipline (exit-75, degrade-to-remaining, report honestly) strengthen 027's advisor reconnect + mk-code-index proxy, and could daemon re-election use a reliability signal for which owner/launcher to trust?",
+    "Q8: Search resilience/score-scale/reranking/response-policy gate × deterministic RRF + active-channel denominator — how do 027's score-scale + reranking + response-policy + archived/deprecated-inclusion fixes interact with 028's deterministic RRF + content-derived tie-breaks + active-channel-denominator (C-X1) + query-class-gated response?",
+    "Q9: Observability/continuity × consolidation gauges + newInfoRatio-ingest — does 028's per-tick gauge taxonomy (lag/pending/failed) extend 027's memory observability, and how does 027's continuity meet bi-temporal as-of-known-at reads?",
+    "Q10: Memclaw derived-memory write safety × content-addressed derived IDs + idempotent async consolidation — does 028's content-addressed derived identity (derived_id=sha256(triple+source+rule_version), C4-B) + idempotent async consolidation (C4-A/C4-C/C-G1) strengthen 027's derived-memory write safety under crash-replay?",
+    "Q11 (capstone): Where does 028 contradict or already-cover 027 — and does 028's \"promote-off-state is 0-of-4 clean flips\" finding temper 027's confidence that its own default-off feature flags are cheap to flip on? Produce the reconciliation ledger."
+  ],
+  "keyFindings": [],
+  "ruledOutDirections": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "metrics": {
+    "iterationsCompleted": 50,
+    "openQuestions": 11,
+    "resolvedQuestions": 0,
+    "keyFindings": 0,
+    "convergenceScore": 0.15,
+    "coverageBySources": {}
+  },
+  "corruptionWarnings": [],
+  "status": "IN_PROGRESS"
+}

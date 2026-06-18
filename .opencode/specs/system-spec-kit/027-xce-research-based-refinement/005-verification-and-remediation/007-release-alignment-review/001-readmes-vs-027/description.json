@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/001-readmes-vs-027",
+  "description": "Read-only review: README currency vs 027 reality",
+  "keywords": [
+    "read-only",
+    "review",
+    "readme",
+    "currency",
+    "027",
+    "reality"
+  ],
+  "lastUpdated": "2026-06-18T12:37:51.568Z",
+  "specId": "001",
+  "folderSlug": "readmes-vs-027",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "005-verification-and-remediation",
+    "007-release-alignment-review"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

@@ -2,7 +2,7 @@
 title: "252 -- Runtime-aware recovery across Claude, Codex, and Copilot"
 description: "This scenario validates Cross-runtime fallback for 252. It focuses on runtime detection plus native-hook, hookless, and config-driven recovery behavior."
 audited_post_018: true
-phase_018_change: "Reframed recovery so hook-limited runtimes fall back through /spec_kit:resume and the canonical packet continuity ladder."
+phase_018_change: "Reframed recovery so hook-limited runtimes fall back through /speckit:resume and the canonical packet continuity ladder."
 ---
 
 # 252 -- Runtime-aware recovery across supported runtimes
@@ -22,7 +22,7 @@ This scenario validates Cross-runtime fallback.
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: All vitest tests in `runtime-detection.vitest.ts` pass; Claude Code: `{ runtime: 'claude-code', hookPolicy: 'enabled' }`; Codex CLI: `{ runtime: 'codex-cli', hookPolicy: 'live' }` when Codex is installed and repo `.codex/settings.json` is valid; `partial` when Codex is installed but settings are missing or invalid; `unavailable` only when the probe fails.; Copilot CLI: `{ runtime: 'copilot-cli', hookPolicy: 'enabled' }` in this repo when `.claude/settings.local.json` exposes Copilot-safe top-level `type` / `bash` / `timeoutSec` wrapper fields and the `UserPromptSubmit` / `SessionStart` writer commands; `userPromptSubmitted` should print `{}` and refresh `SPEC-KIT-COPILOT-CONTEXT` in custom instructions; otherwise `disabled_by_scope`
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
-- Pass/fail: PASS: Each runtime is correctly detected from env vars, hookPolicy matches the current runtime/config reality, Copilot custom-instructions refresh is recognized as the enabled prompt-time transport, and fallback only appears when hooks are unavailable or disabled_by_scope and routes through /spec_kit:resume; FAIL: Any runtime misidentified, hookPolicy incorrect, or hooks reported as available for a runtime/config state that should fall back
+- Pass/fail: PASS: Each runtime is correctly detected from env vars, hookPolicy matches the current runtime/config reality, Copilot custom-instructions refresh is recognized as the enabled prompt-time transport, and fallback only appears when hooks are unavailable or disabled_by_scope and routes through /speckit:resume; FAIL: Any runtime misidentified, hookPolicy incorrect, or hooks reported as available for a runtime/config state that should fall back
 
 ---
 

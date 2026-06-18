@@ -13,15 +13,15 @@ importance_tier: "important"
 
 <!-- Filename: lowercase per project convention; sk-doc template suggests feature_catalog.md but lowercase is intentional. -->
 
-This catalog is the current feature inventory for `.opencode/skills/system-code-graph/mcp_server/`. Live MCP callers use the standalone `mk-code-index` namespace, exposed as `mcp__mk_code_index__*`. The stable tool IDs remain `code_graph_*` and `detect_changes`.
+This catalog is the current feature inventory for `.opencode/skills/system-code-graph/mcp_server/`. Live MCP callers use the standalone `mk-code-index` namespace, exposed as `mcp__mk_code_index__*`. The stable tool IDs remain `code_graph_*` and `detect_changes`. Since the 028 MCP-to-CLI program, the same 8 tools are also available through the daemon-backed `node .opencode/bin/code-index.cjs` CLI, the dual-stack fallback when the MCP transport is down.
 
 ---
 
 ## 1. OVERVIEW
 
-The catalog covers 14 runtime features across 7 groups. Per-feature files carry the implementation surface, trigger path, current automation class, fallback and cross-references.
+The catalog covers 15 runtime features across 7 groups. Per-feature files carry the implementation surface, trigger path, current automation class, fallback and cross-references.
 
-**Feature-to-tool granularity (F013/F014).** The 14 features map to **8 MCP tools** in the `mk-code-index` server because individual features often compose multiple operations on the same tool. For example, `code_graph_query` provides multiple query operations (`outline`, `calls_from`, `calls_to`, `imports_from`, `imports_to`, `blast_radius`), each catalogued as its own feature. Previously, the **coverage-graph deep-loop tools** (`deep_loop_graph_*`) were registered with the `mk-spec-memory` MCP server; they were removed in arc 118 (FULL_ISOLATE_NO_MCP) and now live as direct `.cjs` script entry points under `.opencode/skills/deep-loop-runtime/scripts/`. The catalog entries below are retained as historical reference and point at the current script paths.
+**Feature-to-tool granularity (F013/F014).** The 14 runtime features (excluding the CLI fallback surface, which mirrors the whole tool set) map to **8 MCP tools** in the `mk-code-index` server because individual features often compose multiple operations on the same tool. For example, `code_graph_query` provides multiple query operations (`outline`, `calls_from`, `calls_to`, `imports_from`, `imports_to`, `blast_radius`), each catalogued as its own feature. Previously, the **coverage-graph deep-loop tools** (`deep_loop_graph_*`) were registered with the `mk-spec-memory` MCP server; they were removed in arc 118 (FULL_ISOLATE_NO_MCP) and now live as direct `.cjs` script entry points under `.opencode/skills/deep-loop-runtime/scripts/`. The catalog entries below are retained as historical reference and point at the current script paths.
 
 | Group | Count | Scope |
 | --- | ---: | --- |
@@ -30,7 +30,7 @@ The catalog covers 14 runtime features across 7 groups. Per-feature files carry 
 | [03--detect-changes](./03--detect-changes/) | 1 | Detect-changes preflight |
 | [04--context-retrieval](./04--context-retrieval/) | 2 | Context retrieval |
 | [05--coverage-graph](./05--coverage-graph/) | 4 | Coverage graph |
-| [06--mcp-tool-surface](./06--mcp-tool-surface/) | 1 | MCP tool surface |
+| [06--mcp-tool-surface](./06--mcp-tool-surface/) | 2 | Tool surface (MCP registration + daemon-backed CLI) |
 | [08--doctor-code-graph](./08--doctor-code-graph/) | 1 | Doctor code graph |
 
 Reality classification source: read-path freshness is half-auto because requested reads can run bounded repair, full scan/verify/status are manual, deep-loop convergence runs automatically inside command YAML, deep-loop upsert is conditional and deep-loop query/status are manual.
@@ -256,6 +256,22 @@ Manual (class: manual). Tool registration is availability, not automation. Schem
 #### Source Files
 
 See [`06--mcp-tool-surface/tool-registrations.md`](06--mcp-tool-surface/tool-registrations.md) for full implementation and source paths.
+
+---
+
+### code-index CLI fallback surface
+
+#### Description
+
+Daemon-backed CLI over the unchanged mk-code-index daemon, shipped by the 028 MCP-to-CLI program. `node .opencode/bin/code-index.cjs` exposes the same 8 tools through a manifest generated from `CODE_GRAPH_TOOL_SCHEMAS` and is the transport-down fallback when the MCP registration is unavailable; the repaired `mk-code-graph` OpenCode bridge routes over it instead of in-process dist/DB imports.
+
+#### How It Works
+
+Manual (class: manual). The shim guards stale dist with exit 69 (`SPECKIT_CODE_INDEX_CLI_DEV_ALLOW_STALE=1` overrides in development) and defaults the socket dir to `/tmp/mk-code-index`. The entrypoint validates argv with `validateToolArgs()` parity plus schema-driven numeric/boolean coercion (unparseable values exit 64; range clamping stays handler-owned), preserves `status:"blocked"` readiness refusals as actionable exit-0 answers with `requiredAction` in JSON and text renderings, auto-spawns over IPC unless `--warm-only` (exit 75 when the backend is unavailable), and maps exits to the shared 0/1/64/69/75 taxonomy.
+
+#### Source Files
+
+See [`06--mcp-tool-surface/code-index-cli.md`](06--mcp-tool-surface/code-index-cli.md) for full implementation and source paths.
 
 ---
 

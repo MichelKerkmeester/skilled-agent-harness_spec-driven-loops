@@ -12,7 +12,7 @@ const require = createRequire(import.meta.url);
 // Import deep-review runtime-capabilities resolver for executable coverage
 const reviewCapabilityModulePath = path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/deep-review/scripts/runtime-capabilities.cjs',
+  '.opencode/skills/deep-loop-workflows/deep-review/scripts/runtime-capabilities.cjs',
 );
 const reviewCapabilityModule = fs.existsSync(reviewCapabilityModulePath) ? require(reviewCapabilityModulePath) as {
   listRuntimeCapabilityIds: () => string[];
@@ -26,12 +26,12 @@ function readWorkspaceFile(relativePath: string): string {
 
 (reviewCapabilityModule ? describe : describe.skip)('deep-review contract parity', () => {
   const primaryDocs = [
-    '.opencode/skills/deep-review/SKILL.md',
-    '.opencode/skills/deep-review/README.md',
-    '.opencode/skills/deep-review/references/state/state_format.md',
-    '.opencode/skills/deep-review/references/protocol/loop_protocol.md',
-    '.opencode/skills/deep-review/references/protocol/quick_reference.md',
-    '.opencode/skills/deep-review/assets/review_mode_contract.yaml',
+    '.opencode/skills/deep-loop-workflows/deep-review/SKILL.md',
+    '.opencode/skills/deep-loop-workflows/deep-review/README.md',
+    '.opencode/skills/deep-loop-workflows/deep-review/references/state/state_format.md',
+    '.opencode/skills/deep-loop-workflows/deep-review/references/protocol/loop_protocol.md',
+    '.opencode/skills/deep-loop-workflows/deep-review/references/protocol/quick_reference.md',
+    '.opencode/skills/deep-loop-workflows/deep-review/assets/review_mode_contract.yaml',
   ];
 
   const runtimeMirrors = [
@@ -41,8 +41,8 @@ function readWorkspaceFile(relativePath: string): string {
   ];
 
   const commandAssets = [
-    '.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml',
-    '.opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml',
+    '.opencode/commands/deep/assets/deep_review_auto.yaml',
+    '.opencode/commands/deep/assets/deep_review_confirm.yaml',
   ];
 
   it('keeps primary deep-review docs aligned on canonical artifacts and lifecycle terms', () => {
@@ -144,7 +144,7 @@ function readWorkspaceFile(relativePath: string): string {
   });
 
   it('keeps the generated review contract aligned on artifact_dir semantics', () => {
-    const content = readWorkspaceFile('.opencode/skills/deep-review/assets/review_mode_contract.yaml');
+    const content = readWorkspaceFile('.opencode/skills/deep-loop-workflows/deep-review/assets/review_mode_contract.yaml');
 
     expect(content).toContain('{artifact_dir}/deep-review-config.json');
     expect(content).toContain('{artifact_dir}/deep-review-state.jsonl');

@@ -1,0 +1,74 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m→ [0mSkill "system-spec-kit"
+[0m✱ [0mGlob "**/031-daemon-flap-root-cause-research/research/**"[90m in . · 40 matches[0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/iterations/iteration-001.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/iterations/iteration-002.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/iterations/iteration-003.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/iterations/iteration-004.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/iterations/iteration-005.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/iterations/iteration-006.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/iterations/iteration-007.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/iterations/iteration-008.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/live-diagnosis.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/031-daemon-flap-root-cause-research/research/iterations/orchestrator-verifications.md[90m [offset=1, limit=2000][0m
+[0m✱ [0mGlob ".opencode/bin/*spec-memory*.cjs"[90m in . · 2 matches[0m
+[0m✱ [0mGlob ".opencode/bin/*code-index*.cjs"[90m in . · 2 matches[0m
+[0m✱ [0mGlob ".opencode/bin/*skill-advisor*.cjs"[90m in . · 2 matches[0m
+[0m✱ [0mGlob "**/session-prime.ts"[90m in . · 1 match[0m
+[0m✱ [0mGlob "**/session-start.ts"[90m in . · 1 match[0m
+[0m✱ [0mGlob "**/mk-*-bridge.mjs"[90m in . · 3 matches[0m
+[0m✗ [0mRead .opencode/bin/spec-memory.cjs failed[90m [offset=740, limit=220][0m
+[91m[1mError: [0mOffset 740 is out of range for this file (130 lines)
+[0m✗ [0mRead .opencode/bin/code-index.cjs failed[90m [offset=920, limit=220][0m
+[91m[1mError: [0mOffset 920 is out of range for this file (129 lines)
+[0m✗ [0mRead .opencode/bin/skill-advisor.cjs failed[90m [offset=1010, limit=220][0m
+[91m[1mError: [0mOffset 1010 is out of range for this file (125 lines)
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts[90m [offset=250, limit=180][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/hooks/codex/session-start.ts[90m [offset=180, limit=80][0m
+[0m→ [0mRead .opencode/bin/spec-memory.cjs[90m [offset=1, limit=160][0m
+[0m→ [0mRead .opencode/bin/code-index.cjs[90m [offset=1, limit=160][0m
+[0m→ [0mRead .opencode/bin/skill-advisor.cjs[90m [offset=1, limit=160][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/spec-memory-cli.ts[90m [offset=740, limit=230][0m
+[0m→ [0mRead .opencode/skills/system-code-graph/mcp_server/code-index-cli.ts[90m [offset=920, limit=220][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/skill-advisor-cli.ts[90m [offset=1010, limit=220][0m
+[0m✱ [0mGrep "buildWarm|warm-only|warmOnly|SPECKIT_PROMPT_SELF_HEAL|warm fallback|warm-only"[90m in .opencode/skills/system-spec-kit/mcp_server · 45 matches[0m
+[0m✱ [0mGrep "warmOnly|warm-only|warm fallback|advisor_status|advisor_recommend"[90m in .opencode/skills/system-skill-advisor/mcp_server · 100 matches[0m
+[0m✱ [0mGrep "warmOnly|warm-only|warm fallback|code-graph-status"[90m in .opencode/skills/system-code-graph/mcp_server · 28 matches[0m
+[0m✱ [0mGrep "warm|warm-only|warmOnly|status|recommend|memory_context|code-graph-status"[90m in .opencode/skills · 100 matches[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/hooks/spec-memory-cli-fallback.ts[90m [offset=180, limit=80][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/hooks/code-index-cli-fallback.ts[90m [offset=180, limit=90][0m
+[0m→ [0mRead .opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs[90m [offset=300, limit=80][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/plugin_bridges/mk-spec-memory-bridge.mjs[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs[90m [offset=630, limit=80][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/plugin_bridges/mk-spec-memory-bridge.mjs[90m [offset=261, limit=80][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/hooks/codex/session-start.ts[90m [offset=120, limit=65][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs[90m [offset=240, limit=65][0m
+[0m→ [0mRead .opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs[90m [offset=120, limit=65][0m
+[0m→ [0mRead .opencode/scripts/orphan-mcp-sweeper.sh[90m [offset=160, limit=210][0m
+[0m→ [0mRead .opencode/bin/lib/model-server-supervision.cjs[90m [offset=150, limit=280][0m
+[0m→ [0mRead .opencode/bin/mk-spec-memory-launcher.cjs[90m [offset=1130, limit=110][0m
+[0m✗ [0mRead .opencode/bin/lib/socket-server.js failed[90m [offset=140, limit=230][0m
+[91m[1mError: [0mFile not found: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/bin/lib/socket-server.js
+[0m→ [0mRead .opencode/bin/mk-skill-advisor-launcher.cjs[90m [offset=1140, limit=80][0m
+[0m→ [0mRead .opencode/bin/mk-code-index-launcher.cjs[90m [offset=880, limit=70][0m
+[0m✱ [0mGlob "**/socket-server.*"[90m in .opencode · 4 matches[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/shared/ipc/socket-server.ts[90m [offset=130, limit=240][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/shared/ipc/socket-server.ts[90m [offset=370, limit=80][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/hooks/claude/compact-inject.ts[90m [offset=190, limit=45][0m
+[0m✱ [0mGlob ".opencode/skills/system-spec-kit/mcp_server/hooks/**/*stop*"[90m in . · 1 match[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts[90m [offset=1, limit=180][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/stress_test/durability/release-cleanup-new-surfaces-stress.vitest.ts[90m [offset=340, limit=60][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/tests/tri-daemon-drill.vitest.ts[90m [offset=340, limit=70][0m
+[0m→ [0mRead .opencode/skills/system-code-graph/mcp_server/tests/code-index-cli-owner-respawn.vitest.ts[90m [offset=1, limit=80][0m
+[0m→ [0mRead .opencode/skills/system-code-graph/mcp_server/tests/code-index-cli-dual-client.vitest.ts[90m [offset=1, limit=80][0m
+[0m→ [0mRead .opencode/scripts/orphan-mcp-sweeper.sh[90m [offset=1, limit=80][0m
+[0m✱ [0mGrep "createModelServerControl|launchModelServer|hf-model|HF_MODEL|model server"[90m in .opencode/bin · 99 matches[0m
+[0m→ [0mRead .opencode/bin/lib/model-server-supervision.cjs[90m [offset=740, limit=140][0m
+[0m→ [0mRead .opencode/bin/lib/model-server-supervision.cjs[90m [offset=690, limit=60][0m
+[0m→ [0mRead .opencode/bin/mk-skill-advisor-launcher.cjs[90m [offset=860, limit=115][0m
+[0m→ [0mRead .opencode/bin/lib/launcher-ipc-bridge.cjs[90m [offset=350, limit=100][0m
+[0m→ [0mRead .opencode/bin/lib/launcher-session-proxy.cjs[90m [offset=720, limit=125][0m
+[0m→ [0mRead .opencode/bin/mk-spec-memory-launcher.cjs[90m [offset=1300, limit=40][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/context-server.ts[90m [offset=2250, limit=40][0m

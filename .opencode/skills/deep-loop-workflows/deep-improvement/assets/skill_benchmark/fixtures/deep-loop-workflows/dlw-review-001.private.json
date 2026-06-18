@@ -1,0 +1,26 @@
+{
+  "scenarioId": "dlw-review-001",
+  "expected": {
+    "skillId": "deep-loop-workflows",
+    "mode": "review",
+    "advisorLane": "deep-review",
+    "intentKeys": [],
+    "resources": [],
+    "negativeActivation": false
+  },
+  "rubric": {
+    "usefulnessChecks": [
+      "routing lands on deep-loop-workflows + review mode"
+    ],
+    "harmChecks": [
+      "does not route to a sibling mode"
+    ]
+  },
+  "packetContext": {
+    "artifacts": [
+      "review/review-report.md",
+      "review/deep-review-findings-registry.json"
+    ]
+  },
+  "notes": "Parent-skill routing dogfood: skill-level gold is deep-loop-workflows; mode-level precision is additionally enforced by the advisor routing-parity fixtures + the registry drift-guard."
+}

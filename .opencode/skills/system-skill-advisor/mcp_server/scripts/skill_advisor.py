@@ -13,7 +13,7 @@ Output: JSON array of skill recommendations with confidence scores
 Options:
     --stdin      Read the single prompt from stdin instead of argv
     --stdin-preferred  Prefer stdin for the single-prompt mode, falling back to argv when stdin is empty
-    --deep-skill-routing-json  Score deep-review/deep-research/deep-ai-council routing from JSON stdin
+    --deep-skill-routing-json  Score deep-loop-workflows mode routing (research|review|ai-council) from JSON stdin
     --health      Run health check diagnostics
     --validate-only  Run strict skill-graph validation
     --threshold   Confidence threshold used by default dual-threshold filtering (default: 0.8)
@@ -594,6 +594,75 @@ def _source_metadata_health() -> Dict[str, Any]:
     }
 
 
+def _doc_trigger_harvest_enabled() -> bool:
+    """Opt-in gate mirroring the TS daemon's doc-frontmatter harvest flag."""
+    return (os.environ.get("SPECKIT_ADVISOR_DOC_TRIGGERS") or "").strip().lower() == "true"
+
+
+_DOC_HARVEST_SUBDIRS = ("references", "assets")
+_DOC_MAX_PHRASES_PER_DOC = 12
+_DOC_MAX_DOCS_PER_SKILL = 200
+
+
+def _parse_doc_trigger_phrases(raw: str) -> List[str]:
+    """Extract trigger_phrases entries from a doc's YAML-ish frontmatter block."""
+    if not raw.startswith("---\n") and not raw.startswith("---\r\n"):
+        return []
+    end = raw.find("\n---", 3)
+    if end <= 3:
+        return []
+    block = raw[raw.find("\n") + 1:end]
+
+    phrases: List[str] = []
+    in_phrase_list = False
+    for line in block.splitlines():
+        list_match = re.match(r"^\s+-\s+(.*)$", line)
+        if list_match:
+            if in_phrase_list and len(phrases) < _DOC_MAX_PHRASES_PER_DOC:
+                phrase = list_match.group(1).strip().strip("\"'").strip()
+                if phrase:
+                    phrases.append(phrase)
+            continue
+        key_match = re.match(r"^([A-Za-z0-9_-]+):\s*(.*)$", line)
+        if not key_match:
+            continue
+        in_phrase_list = key_match.group(1) == "trigger_phrases"
+        if in_phrase_list and key_match.group(2).startswith("["):
+            for entry in key_match.group(2).strip("[]").split(","):
+                if len(phrases) >= _DOC_MAX_PHRASES_PER_DOC:
+                    break
+                phrase = entry.strip().strip("\"'").strip()
+                if phrase:
+                    phrases.append(phrase)
+            in_phrase_list = False
+    return phrases
+
+
+def _load_doc_trigger_phrases(skill_dir: str) -> List[str]:
+    """Harvest doc-frontmatter trigger phrases (references/assets, READMEs excluded)."""
+    phrases: List[str] = []
+    doc_count = 0
+    for subdir in _DOC_HARVEST_SUBDIRS:
+        root = os.path.join(skill_dir, subdir)
+        if not os.path.isdir(root):
+            continue
+        for dirpath, _dirnames, filenames in os.walk(root):
+            for filename in sorted(filenames):
+                if doc_count >= _DOC_MAX_DOCS_PER_SKILL:
+                    return phrases
+                lower = filename.lower()
+                if not lower.endswith(".md") or lower == "readme.md":
+                    continue
+                doc_count += 1
+                try:
+                    with open(os.path.join(dirpath, filename), "r", encoding="utf-8") as handle:
+                        raw = handle.read()
+                except OSError:
+                    continue
+                phrases.extend(_parse_doc_trigger_phrases(raw))
+    return phrases
+
+
 def _load_source_graph_signal_map() -> Dict[str, List[str]]:
     """Load intent signals and derived trigger phrases from source metadata files."""
     _SOURCE_METADATA_DIAGNOSTICS["signal_map"] = []
@@ -632,6 +701,9 @@ def _load_source_graph_signal_map() -> Dict[str, List[str]]:
             _extend_signal_map(signal_map, skill_id, derived.get("trigger_phrases"))
         elif derived is not None:
             _record_source_metadata_issue("signal_map", graph_metadata_path, "invalid_derived")
+
+        if _doc_trigger_harvest_enabled():
+            _extend_signal_map(signal_map, skill_id, _load_doc_trigger_phrases(entry.path))
 
     return signal_map
 
@@ -769,6 +841,13 @@ def _load_skill_graph_sqlite() -> Optional[Dict[str, Any]]:
 
         for family_name in families:
             families[family_name] = sorted(families[family_name])
+
+        # Source metadata supplements the stored columns on every load path:
+        # the JSON loader already merges it, and doc-frontmatter trigger
+        # phrases exist only on disk, never in skill_nodes rows.
+        source_signal_map = _load_source_graph_signal_map()
+        for skill_id, raw_signals in source_signal_map.items():
+            _extend_signal_map(signals, skill_id, raw_signals)
 
         generated_at = (
             str(generated_at_row["value"])
@@ -1502,7 +1581,7 @@ MULTI_SKILL_BOOSTERS = {
 # NOTE: INTENT_BOOSTERS only matches single-word tokens after
 # `all_tokens = re.findall(r'\b\w+\b', prompt_lower)` tokenizes the raw prompt.
 # PHRASE_INTENT_BOOSTERS matches multi-word phrases against the raw prompt text
-# before tokenization via `if phrase in prompt_lower`.
+# before tokenization while rejecting embedded alphanumeric substrings.
 # NEVER add keys containing spaces or hyphens to INTENT_BOOSTERS - the tokenizer
 # splits them, making those keys unreachable at runtime.
 # When in doubt, if the key has any whitespace OR hyphen, use
@@ -1787,8 +1866,8 @@ COMMAND_BRIDGES = {
         "slash_markers": ["/create:changelog", "create:changelog"],
     },
     "command-create-sk-skill": {
-        "description": "Create or update an OpenCode skill using /create:skill.",
-        "slash_markers": ["/create:skill", "create:sk-skill"],
+        "description": "Create or update an OpenCode skill using /create:sk-skill.",
+        "slash_markers": ["/create:sk-skill", "create:sk-skill"],
     },
     "command-create-feature-catalog": {
         "description": "Create or update a feature catalog using /create:feature-catalog.",
@@ -1924,10 +2003,16 @@ def _build_variants(skill_name: str) -> Set[str]:
 
 
 def _matches_phrase_boundary(text: str, phrase: str) -> bool:
-    """Return True when a keyword phrase appears on token boundaries."""
+    """Return True when a phrase is not embedded inside a larger identifier.
+
+    The flank class includes '-' and '_' (not just alphanumerics) so a skill
+    name like 'sk-code' does not match inside the longer identifier
+    'sk-code-reviewer' (and 'sk_code' inside 'sk_code_review') — those are
+    distinct skills, not an explicit mention of the shorter one.
+    """
     if not phrase:
         return False
-    pattern = re.compile(rf"(?<!\w){re.escape(phrase)}(?!\w)")
+    pattern = re.compile(rf"(?<![a-z0-9_-]){re.escape(phrase)}(?![a-z0-9_-])")
     return pattern.search(text) is not None
 
 
@@ -2136,7 +2221,10 @@ def apply_intent_normalization(
     token_set = set(tokens)
 
     for intent_name, config in INTENT_NORMALIZATION_RULES.items():
-        matched = any(phrase in prompt_lower for phrase in config["phrases"]) or bool(token_set.intersection(config["tokens"]))
+        matched = any(
+            _matches_phrase_boundary(prompt_lower, phrase)
+            for phrase in config["phrases"]
+        ) or bool(token_set.intersection(config["tokens"]))
         if not matched:
             continue
 
@@ -2210,14 +2298,29 @@ def _apply_memory_save_file_operation_cap(
             recommendation["confidence"] = min(float(recommendation.get("confidence", 0.0)), 0.49)
 
 
-# Candidate-3 deep-skill routing, per 130 research.md §5-§6:
+# Deep-skill routing balances lexical, structural, and prior-art signals:
 #   total_score = (lexical_score * 1.0) + (structural_score * 2.0) + (prior_art_score * 3.0)
 # Fallback to Candidate 2 happens naturally when packet_context is empty: prior_art_score=0.
-# LOW confidence (<0.65) returns a clarifying_question payload. This closes 130
-# where "iterate findings until convergence" was DANGEROUS because all deep-* loops
-# have different convergence and findings semantics.
+# LOW confidence (<0.65) returns a clarifying_question payload because ambiguous
+# iteration prompts can map to loops with different convergence and findings semantics.
 DEEP_ROUTING_SKILLS = ("deep-review", "deep-research", "deep-ai-council")
 DEEP_ROUTING_CONFIDENCE_THRESHOLD = 0.65
+
+# The five legacy deep-loop skills are folded into one public skill,
+# deep-loop-workflows, discriminated by workflowMode. The Candidate-3 internal
+# discriminator keys below stay spelled as the legacy skill ids because the
+# regex pattern groups and prior-art matchers key off them and match live
+# artifact/agent names still present across the live agent and artifact surfaces;
+# DEEP_ROUTING_MODE_BY_KEY projects each onto the merged skill's workflowMode so
+# the routing contract emits {skill: deep-loop-workflows, mode}. deep-context is
+# intentionally NOT a Candidate-3 discriminator: it stays metadata-routed
+# (resolved from its graph-metadata.json), so DEEP_ROUTING_SKILLS stays 3.
+MERGED_DEEP_SKILL_ID = "deep-loop-workflows"
+DEEP_ROUTING_MODE_BY_KEY = {
+    "deep-review": "review",
+    "deep-research": "research",
+    "deep-ai-council": "ai-council",
+}
 
 DEEP_ROUTING_LEXICAL_PATTERNS = {
     "deep-review": (
@@ -2361,8 +2464,7 @@ def _deep_routing_confidence(total_score: float) -> float:
 def score_deep_skill_routing(prompt: str, packet_context: dict) -> Dict[str, float]:
     """Return Candidate-3 scores for deep-review/deep-research/deep-ai-council.
 
-    Research source: 130 research.md §5 recommends Strategy D with Candidate 3
-    routing; §6 defines the parity invariants guarded by the Vitest suite.
+    Weighted routing is paired with parity invariants guarded by the Vitest suite.
     """
     prompt_lower = prompt.lower()
     context = packet_context if isinstance(packet_context, dict) else {}
@@ -2394,29 +2496,46 @@ def _deep_routing_confidence_band(max_score: float) -> str:
 
 
 def _deep_routing_clarifying_question(prompt_lower: str, winner: str, runner_up: str) -> str:
-    """Return the targeted clarification for low-confidence deep-* routing."""
+    """Return the targeted clarification for low-confidence deep-loop mode routing.
+
+    `winner`/`runner_up` are deep-loop-workflows workflowMode names
+    (research|review|ai-council), not legacy skill ids.
+    """
     if "architecture" in prompt_lower or "decision" in prompt_lower or "strategy" in prompt_lower:
-        return "Are you comparing existing strategies (deep-ai-council) or discovering new ones (deep-research)?"
+        return "Are you comparing existing strategies (ai-council mode) or discovering new ones (research mode)?"
     if "findings" in prompt_lower or "convergence" in prompt_lower or "stabilize" in prompt_lower:
-        return "Are these findings defects to audit until stable (deep-review), research discoveries to exhaust (deep-research), or council opinions to deliberate (deep-ai-council)?"
-    return f"Should this route to {winner} or {runner_up}, and what output do you expect: review-report.md, research.md, or council-report.md?"
+        return "Are these findings defects to audit until stable (review mode), research discoveries to exhaust (research mode), or council opinions to deliberate (ai-council mode)?"
+    return f"Should this route to {winner} or {runner_up} mode, and what output do you expect: review-report.md, research.md, or council-report.md?"
 
 
 def deep_skill_routing_payload(prompt: str, packet_context: dict) -> Dict[str, Any]:
-    """Return full Candidate-3 routing payload with LOW-confidence clarification."""
+    """Return the merged deep-loop routing payload with LOW-confidence clarification.
+
+    The five legacy deep-loop skills are collapsed into deep-loop-workflows, so
+    the contract is {skill: deep-loop-workflows, mode: <workflowMode>} plus
+    mode-keyed scores. Internal scoring still discriminates per mode; this layer
+    projects the legacy discriminator keys onto registry workflowMode names so a
+    prompt that used to win "deep-research" now resolves to
+    (deep-loop-workflows, research) WITHOUT flattening the mode distinction.
+    """
     scores = score_deep_skill_routing(prompt, packet_context)
     ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
-    winner, max_score = ranked[0]
-    runner_up = ranked[1][0] if len(ranked) > 1 else ""
+    winner_key, max_score = ranked[0]
+    runner_up_key = ranked[1][0] if len(ranked) > 1 else ""
+    winner_mode = DEEP_ROUTING_MODE_BY_KEY[winner_key]
+    runner_up_mode = DEEP_ROUTING_MODE_BY_KEY.get(runner_up_key, runner_up_key)
+    mode_scores = {DEEP_ROUTING_MODE_BY_KEY[key]: value for key, value in scores.items()}
     payload: Dict[str, Any] = {
-        "scores": scores,
-        "winner": winner,
+        "skill": MERGED_DEEP_SKILL_ID,
+        "mode": winner_mode,
+        "scores": mode_scores,
+        "winner": winner_mode,
         "confidence": max_score,
         "confidence_band": _deep_routing_confidence_band(max_score),
         "candidate": "Candidate-3" if _packet_context_has_prior_art(packet_context if isinstance(packet_context, dict) else {}) else "Candidate-2",
     }
     if max_score < DEEP_ROUTING_CONFIDENCE_THRESHOLD:
-        payload["clarifying_question"] = _deep_routing_clarifying_question(prompt.lower(), winner, runner_up)
+        payload["clarifying_question"] = _deep_routing_clarifying_question(prompt.lower(), winner_mode, runner_up_mode)
     return payload
 
 
@@ -2438,22 +2557,27 @@ def _apply_deep_skill_routing_layer(
         return
 
     payload = deep_skill_routing_payload(prompt, packet_context or {})
-    score_map = payload["scores"]
-    mapped_scores = {
-        "deep-review": score_map["deep-review"],
-        "deep-research": score_map["deep-research"],
-        "deep-ai-council": score_map["deep-ai-council"],
-    }
+    mode_scores = payload["scores"]  # keyed by workflowMode
+    winner_mode = payload["mode"]
 
     for recommendation in recommendations:
         skill = recommendation.get("skill")
-        if skill not in mapped_scores:
+        # Resolve which mode's confidence to blend in. The merged node
+        # (deep-loop-workflows) carries the winning mode; legacy mode-level ids
+        # still present mid-migration carry their own mode. Anything else is
+        # left untouched.
+        if skill == MERGED_DEEP_SKILL_ID:
+            mode = winner_mode
+        elif skill in DEEP_ROUTING_MODE_BY_KEY:
+            mode = DEEP_ROUTING_MODE_BY_KEY[skill]
+        else:
             continue
-        routed_confidence = mapped_scores[skill]
+        routed_confidence = mode_scores.get(mode, 0.0)
         recommendation["confidence"] = round(max(float(recommendation.get("confidence", 0.0)), routed_confidence), 2)
         recommendation["uncertainty"] = min(float(recommendation.get("uncertainty", 0.0)), 0.30)
+        recommendation["mode"] = mode
         reason = str(recommendation.get("reason", ""))
-        note = f" [Candidate-3 deep routing: {payload['winner']} {payload['confidence_band']}]"
+        note = f" [Candidate-3 deep routing: {payload['skill']} {mode} {payload['confidence_band']}]"
         if note not in reason:
             recommendation["reason"] = f"{reason}{note}"
         if "clarifying_question" in payload:
@@ -2668,6 +2792,9 @@ def filter_recommendations(
             uncert_threshold=uncertainty_threshold,
         )
         recommendation["passes_threshold"] = passes
+        # Mirror the native path's source tag so callers can tell which
+        # scorer produced a recommendation (native daemon vs local fallback).
+        recommendation.setdefault("source", "local")
 
         if confidence_only:
             if recommendation["confidence"] >= confidence_threshold:
@@ -2746,6 +2873,8 @@ TASK_INTENT_RE = re.compile(
 # Uncertainty floor applied to every member of a low-information ambiguity
 # cluster: above the default strict threshold so strict callers abstain, but
 # below 1 so confidence-only callers still surface the best guess.
+AMBIGUITY_MARGIN = 0.05
+AMBIGUITY_CONFIDENCE_MARGIN = 0.05
 LOW_INFO_AMBIGUITY_UNCERTAINTY_FLOOR = 0.42
 
 # Minimum share of the winner's matches that must be ambiguous multi-skill
@@ -2762,6 +2891,74 @@ LOW_INFO_AMBIGUITY_MULTI_RATIO = 0.5
 CODE_EDIT_VERB_RE = re.compile(r"\b(update|edit|modify|fix|refactor|implement|write|patch|rewrite)\b")
 CODE_SURFACE_NOUN_RE = re.compile(r"\b(script|file|module|function|class|handler|component|code|\.py|\.ts|\.js|\.tsx|\.mjs|\.cjs)\b")
 CLI_OPENCODE_EXPLICIT_RE = re.compile(r"\b(cli-opencode|opencode cli|delegate to opencode|use opencode)\b")
+
+# Git vocabulary is intentionally broad, but ownership boundaries still matter:
+# memory/context preservation belongs to system-spec-kit, and review phrases that
+# mention PRs or merge readiness belong to sk-code-review.
+MEMORY_PRESERVATION_INTENT_RE = re.compile(
+    r"\b(save|preserve|remember|store|capture|checkpoint)\b.{0,80}"
+    r"\b(memory|context|conversation|session|handover)\b"
+    r"|\b(memory|context|conversation|session|handover)\b.{0,80}"
+    r"\b(save|preserve|remember|store|capture|checkpoint)\b"
+    r"|/memory:save|\bmemory:save\b"
+)
+EXPLICIT_GIT_WORKFLOW_RE = re.compile(
+    r"\b(git|commit|branch|checkout|clone|conflict|diff|fetch|github|gh|pull request|push|rebase|stash|worktree)\b"
+)
+CODE_REVIEW_INTENT_RE = re.compile(
+    r"\b(code review|pr review|review this pr|request changes|merge readiness|ready to merge|quality gate|security review|code audit)\b"
+)
+GIT_REVIEW_OVERLAP_RE = re.compile(r"\b(pr|pull request|merge|changes)\b")
+
+
+def _find_recommendation(
+    recommendations: List[Dict[str, Any]],
+    skill_name: str,
+) -> Optional[Dict[str, Any]]:
+    return next((rec for rec in recommendations if rec.get("skill") == skill_name), None)
+
+
+def _append_reason_note(recommendation: Dict[str, Any], note: str) -> None:
+    reason = str(recommendation.get("reason", ""))
+    if note not in reason:
+        recommendation["reason"] = f"{reason} {note}".strip()
+
+
+def _apply_git_boundary_disambiguation(
+    recommendations: List[Dict[str, Any]],
+    prompt_lower: str,
+) -> None:
+    """Apply negative evidence when git overlap terms appear in another owner domain."""
+    if not prompt_lower or not recommendations:
+        return
+
+    sk_git = _find_recommendation(recommendations, "sk-git")
+    if sk_git is None:
+        return
+
+    if MEMORY_PRESERVATION_INTENT_RE.search(prompt_lower) and not EXPLICIT_GIT_WORKFLOW_RE.search(prompt_lower):
+        sk_git["confidence"] = min(float(sk_git.get("confidence", 0.0)), 0.74)
+        sk_git["uncertainty"] = max(float(sk_git.get("uncertainty", 0.0)), 0.42)
+        _append_reason_note(sk_git, "[boundary: memory/context preservation is not git work]")
+
+        system_spec = _find_recommendation(recommendations, "system-spec-kit")
+        if system_spec is not None:
+            system_spec["confidence"] = max(float(system_spec.get("confidence", 0.0)), 0.95)
+            system_spec["uncertainty"] = min(float(system_spec.get("uncertainty", 1.0)), 0.20)
+            _append_reason_note(system_spec, "[boundary: owns memory/context preservation]")
+
+    if CODE_REVIEW_INTENT_RE.search(prompt_lower) and GIT_REVIEW_OVERLAP_RE.search(prompt_lower):
+        sk_code_review = _find_recommendation(recommendations, "sk-code-review")
+        if sk_code_review is None:
+            return
+
+        review_confidence = float(sk_code_review.get("confidence", 0.0))
+        git_confidence = float(sk_git.get("confidence", 0.0))
+        capped = round(max(0.0, review_confidence - 0.03), 2)
+        if git_confidence >= review_confidence:
+            sk_git["confidence"] = min(git_confidence, capped)
+            _append_reason_note(sk_git, "[boundary: review phrasing is not git workflow ownership]")
+        sk_code_review["uncertainty"] = min(float(sk_code_review.get("uncertainty", 1.0)), 0.25)
 
 
 def _apply_code_edit_cli_disambiguation(
@@ -2820,7 +3017,7 @@ def _apply_low_info_ambiguity_abstention(
     """Floor the uncertainty of a low-information ambiguity cluster (TS parity).
 
     A short, intent-less prompt that lands in a multi-candidate cluster (two or
-    more confidence-passing candidates within the ambiguity margin) is
+    more confidence-passing candidates within either ambiguity margin) is
     under-specified. Flooring uncertainty above the strict threshold makes
     strict callers abstain while confidence-only callers still surface the
     top-ranked best guess.
@@ -2830,14 +3027,31 @@ def _apply_low_info_ambiguity_abstention(
     meaningful = [token for token in re.findall(r"\b\w+\b", prompt_lower) if len(token) > 1]
     if len(meaningful) > 3 or TASK_INTENT_RE.search(prompt_lower) or "/" in prompt_lower:
         return
+    # Confidence-only membership on purpose: a candidate whose uncertainty
+    # already fails the strict threshold still belongs in the cluster — it is
+    # exactly the near-tie evidence that makes the prompt under-specified.
     passing_conf = [
         rec for rec in recommendations
         if float(rec.get("confidence", 0.0)) >= DEFAULT_CONFIDENCE_THRESHOLD
     ]
     if len(passing_conf) < 2:
         return
-    top_conf = max(float(rec["confidence"]) for rec in passing_conf)
-    cluster = [rec for rec in passing_conf if top_conf - float(rec["confidence"]) <= 0.05 + 1e-9]
+    # Confidence keys the top selection: the final ranking surfaces the
+    # highest-confidence passing candidate, so the abstention decision must
+    # judge that same candidate's match quality.
+    top = max(passing_conf, key=lambda rec: float(rec.get("confidence", 0.0)))
+    top_score = float(top.get("_score", 0.0))
+    top_confidence = float(top.get("confidence", 0.0))
+    # Union of the score-margin and confidence-margin clusters, mirroring the
+    # native scorer: a candidate is ambiguous when EITHER gap sits inside its
+    # margin; only "outside both margins" counts as unambiguously ranked.
+    cluster = [
+        rec for rec in passing_conf
+        if abs(top_score - float(rec.get("_score", 0.0)))
+        <= AMBIGUITY_MARGIN + sys.float_info.epsilon
+        or abs(top_confidence - float(rec.get("confidence", 0.0)))
+        <= AMBIGUITY_CONFIDENCE_MARGIN + sys.float_info.epsilon
+    ]
     if len(cluster) < 2:
         return
     # Only abstain when the winner's lead is built from ambiguous multi-skill
@@ -2944,14 +3158,20 @@ def _apply_deep_research_disambiguation(
         if note not in existing_reason:
             loser["reason"] = f"{existing_reason}{note}"
 
+    # The five legacy deep-loop skills are folded into MERGED_DEEP_SKILL_ID, so
+    # the deep candidate surfaces under the merged id. Prefer it and keep the
+    # legacy mode-level ids as a mid-migration fallback.
+    def _deep_winner(legacy_id: str) -> Optional[Dict[str, Any]]:
+        return _find(MERGED_DEEP_SKILL_ID) or _find(legacy_id)
+
     if any(phrase in prompt_lower for phrase in DEEP_RESEARCH_DISAMBIGUATION_PHRASES):
-        winner = _find("deep-research")
+        winner = _deep_winner("deep-research")
         loser = _find("sk-code-review")
         if winner and loser:
             _enforce_margin(winner, loser, "deep-research")
 
     if any(phrase in prompt_lower for phrase in DEEP_REVIEW_DISAMBIGUATION_PHRASES):
-        winner = _find("deep-review")
+        winner = _deep_winner("deep-review")
         loser = _find("sk-code-review")
         if winner and loser:
             _enforce_margin(winner, loser, "deep-review")
@@ -3044,7 +3264,7 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
                 boost_reasons[skill].append(f"!{token}(multi)")
 
     for phrase, boosts in PHRASE_INTENT_BOOSTERS.items():
-        if phrase in prompt_lower:
+        if _matches_phrase_boundary(prompt_lower, phrase):
             for skill, boost in boosts:
                 skill_boosts[skill] = skill_boosts.get(skill, 0) + boost
                 if skill not in boost_reasons:
@@ -3096,7 +3316,7 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
     # This protects routing in mixed prompts that also contain broad terms like "opencode".
     for skill_name, config in skills.items():
         variants = set(config.get("variants", set())) or _build_variants(skill_name)
-        matched_variants = sorted({v for v in variants if v in prompt_lower})
+        matched_variants = sorted({v for v in variants if _matches_phrase_boundary(prompt_lower, v)})
         if not matched_variants:
             continue
 
@@ -3203,6 +3423,7 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
     apply_confidence_calibration(recommendations)
     apply_graph_evidence_calibration(recommendations)
     _apply_memory_save_file_operation_cap(recommendations, prompt_lower)
+    _apply_git_boundary_disambiguation(recommendations, prompt_lower)
 
     # Disambiguate deep-research vs code-review and
     # deep-review vs code-review before the iteration-loop tiebreaker so the
@@ -3218,6 +3439,14 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
     # a replacement for it. Prevents custom bash dispatchers bypassing skill-owned state.
     # See CLAUDE.md / AGENTS.md Gate 4: SKILL-OWNED WORKFLOW ENFORCEMENT.
     _apply_iteration_loop_tiebreaker(recommendations, prompt_lower)
+
+    # A verbatim skill-name mention is the strongest routing signal the user
+    # can give. Without this relief, a busy prompt can leave the NAMED skill
+    # above the uncertainty gate while a sibling that merely lists that name
+    # as a keyword passes — strict callers then surface only the sibling.
+    for rec in recommendations:
+        if rec.get("_explicit_skill_match"):
+            rec["uncertainty"] = min(float(rec.get("uncertainty", 1.0)), 0.30)
 
     refresh_passes_threshold(recommendations)
     _apply_graph_conflict_penalty(recommendations)
@@ -3501,6 +3730,8 @@ Examples:
                         help='Prefer stdin for single-prompt input and fall back to argv when stdin is empty.')
     parser.add_argument('--deep-skill-routing-json', action='store_true',
                         help='Read {"prompt": str, "packet_context": object} from stdin and emit Candidate-3 deep routing.')
+    parser.add_argument('--dump-routing-maps', action='store_true',
+                        help='Dump the hardcoded deep-loop-workflows routing projection maps as JSON (consumed by the registry drift-guard test).')
     parser.add_argument('--health', action='store_true',
                         help='Run health check diagnostics')
     parser.add_argument('--validate-only', action='store_true',
@@ -3548,6 +3779,14 @@ Examples:
             print(json.dumps({"error": "packet_context must be an object"}, indent=2))
             return 2
         print(json.dumps(deep_skill_routing_payload(prompt, packet_context), indent=2))
+        return 0
+
+    if args.dump_routing_maps:
+        print(json.dumps({
+            "DEEP_ROUTING_SKILLS": list(DEEP_ROUTING_SKILLS),
+            "DEEP_ROUTING_MODE_BY_KEY": dict(DEEP_ROUTING_MODE_BY_KEY),
+            "PY_ALIAS_GROUP_KEYS": sorted(SKILL_ALIAS_GROUPS.keys()),
+        }, indent=2))
         return 0
 
     if args.health:

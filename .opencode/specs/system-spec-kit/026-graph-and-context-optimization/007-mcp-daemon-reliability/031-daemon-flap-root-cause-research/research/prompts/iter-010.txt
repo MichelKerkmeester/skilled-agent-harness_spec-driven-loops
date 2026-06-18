@@ -1,0 +1,24 @@
+Act as a completeness critic / red-team-of-the-whole-effort. READ-ONLY MODE: do NOT write/edit files. Final message IS the deliverable — use the skeleton. Your job: find what this 9-iteration research effort MISSED, left unverified, or got contradictory — and state the final convergence honestly.
+
+# Inputs (READ all under .../031-daemon-flap-root-cause-research/research/)
+iterations/iteration-001..008.md, orchestrator-verifications.md, live-diagnosis.md.
+
+# Questions
+1. DOES IT ANSWER THE QUESTION? The operator asked "investigate the root cause FIX for this situation" (mk-skill-advisor + mk-spec-memory dead with stale sockets while code-index survives). Does the corpus deliver a clear, correct root cause AND an actionable fix? State the one-paragraph convergence answer.
+2. UNVERIFIED LOAD-BEARING CLAIMS: list every claim the fix DEPENDS on that was NOT verified against live code/behavior (e.g. exact live kill event; whether advisor/code-index can run backend-only; real HF RSS baseline; whether the 7-runtime throttle actually holds; whether SessionStart kick heals before the first prompt). Which would most change the plan if wrong?
+3. CONTRADICTIONS / TENSIONS across iterations (e.g. "always-warm" vs OOM; IT7 layered vs IT8 descope; adopt vs reap-respawn re: phase 028). Resolve each or flag it as an open decision.
+4. COVERAGE GAPS — what would a builder still need that NO iteration covered? Candidates to check: the shared HF model-server's own lifecycle as a 4th process; Windows-native (non-WSL) story; how `code_graph_scan`/`advisor_rebuild` mutations interact with a resurrected daemon; observability (is there any health dashboard?); whether the DESCOPED Phase-1 alone actually resolves the LIVE symptom for THIS operator (multi-session machine) or just papers over it; security of prompt-time spawning.
+5. DOES PHASE-1 (C2-minimal) ACTUALLY FIX THE LIVE SYMPTOM? Be concrete: with 7 concurrent runtimes and advisor/spec-memory dead, does a flagged SessionStart non-warm kick reliably bring them back at the next session/prompt, or are there residual conditions where it still won't?
+6. WHAT MUST BE VERIFIED LIVE before claiming the fix works (a concrete acceptance checklist).
+
+# Output skeleton
+## IT10 — completeness critic + final convergence
+### Final convergence answer (one paragraph: root cause + the fix)
+### Unverified load-bearing claims (ranked by impact-if-wrong)
+### Contradictions / tensions (resolved or flagged)
+### Coverage gaps (what no iteration covered)
+### Does Phase-1 actually fix the live symptom? (honest)
+### Live-verification acceptance checklist
+### Confidence + the single thing most likely to be wrong
+
+Be rigorous and skeptical; reward finding real gaps over praising the work.
