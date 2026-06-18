@@ -20,6 +20,7 @@ function createTestDatabase(): Database.Database {
       created_at TEXT NOT NULL,
       updated_at TEXT NOT NULL,
       importance_tier TEXT DEFAULT 'normal',
+      content_hash TEXT,
       content_text TEXT,
       embedding_status TEXT DEFAULT 'success',
       parent_id INTEGER,
@@ -50,8 +51,8 @@ function seedMemory(filePath: string, sourceKind: string | null = 'human', tier 
   database.prepare(`
       INSERT INTO memory_index (
         id, spec_folder, file_path, canonical_file_path, anchor_id, title,
-        trigger_phrases, importance_weight, created_at, updated_at, importance_tier, source_kind, is_pinned
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        trigger_phrases, importance_weight, created_at, updated_at, importance_tier, content_hash, source_kind, is_pinned
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `).run(
     101,
     'system-spec-kit/026-graph-and-context-optimization/011-index-scope-and-constitutional-tier-invariants',
@@ -64,6 +65,7 @@ function seedMemory(filePath: string, sourceKind: string | null = 'human', tier 
     now,
     now,
     tier,
+    `content-hash-${101}`,
     sourceKind,
     isPinned ? 1 : 0,
   );
@@ -198,13 +200,13 @@ describe('memory_update constitutional tier guard', () => {
     expect(auditCount.count).toBe(0);
   });
 
-  it('records governance_audit when a non-constitutional row moves from constitutional to critical', async () => {
+  it('rejects downgrades after a non-constitutional row is already constitutional-tier', async () => {
     const filePath = '/workspace/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-index-scope-and-constitutional-tier-invariants/plan.md';
     const memoryId = seedMemory(filePath);
     database.prepare('UPDATE memory_index SET importance_tier = ? WHERE id = ?').run('constitutional', memoryId);
     const { handleMemoryUpdate } = await loadHandler();
 
-    await handleMemoryUpdate({
+    const response = await handleMemoryUpdate({
       id: memoryId,
       importanceTier: 'critical',
     });
@@ -214,17 +216,16 @@ describe('memory_update constitutional tier guard', () => {
       FROM memory_index
       WHERE id = ?
     `).get(memoryId) as { importance_tier: string };
-    expect(row.importance_tier).toBe('critical');
+    expect(row.importance_tier).toBe('constitutional');
+    expect(response.isError).toBe(true);
+    expect(JSON.stringify(response)).toContain('E_CONSTITUTIONAL_SELF_EDIT');
 
     const audits = database.prepare(`
       SELECT action
       FROM governance_audit
       ORDER BY id ASC
     `).all() as Array<{ action: string }>;
-    expect(audits).toEqual([
-      { action: 'tier_downgrade_non_constitutional_path' },
-      { action: 'tier_downgrade_non_constitutional_path' },
-    ]);
+    expect(audits).toEqual([]);
   });
 
   it('skips automated overwrites of protected manual fields while persisting safe fields and a hint', async () => {
@@ -316,7 +317,7 @@ describe('memory_update constitutional tier guard', () => {
     expect(row.source_kind).toBe('human');
   });
 
-  it('skips protected fields on constitutional rows while persisting safe fields', async () => {
+  it('rejects protection-removing updates on constitutional rows', async () => {
     const filePath = '/workspace/.opencode/skills/system-spec-kit/constitutional/gate-enforcement.md';
     const memoryId = seedMemory(filePath, 'system', 'constitutional');
     const { handleMemoryUpdate } = await loadHandler();
@@ -331,9 +332,51 @@ describe('memory_update constitutional tier guard', () => {
     const row = database.prepare('SELECT importance_tier, importance_weight, source_kind FROM memory_index WHERE id = ?')
       .get(memoryId) as { importance_tier: string; importance_weight: number; source_kind: string };
     expect(row.importance_tier).toBe('constitutional');
+    expect(row.importance_weight).toBe(0.5);
+    expect(row.source_kind).toBe('system');
+    expect(response.isError).toBe(true);
+    expect(JSON.stringify(response)).toContain('E_CONSTITUTIONAL_SELF_EDIT');
+  });
+
+  it('applies safe constitutional updates when expectedHash matches', async () => {
+    const filePath = '/workspace/.opencode/skills/system-spec-kit/constitutional/gate-enforcement.md';
+    const memoryId = seedMemory(filePath, 'system', 'constitutional');
+    const { handleMemoryUpdate } = await loadHandler();
+
+    const response = await handleMemoryUpdate({
+      id: memoryId,
+      importanceWeight: 0.9,
+      expectedHash: 'content-hash-101',
+      __provenanceContext: { provenanceSource: 'agent-enrichment', provenanceActor: 'agent' },
+    } as never);
+
+    const row = database.prepare('SELECT importance_tier, importance_weight, source_kind FROM memory_index WHERE id = ?')
+      .get(memoryId) as { importance_tier: string; importance_weight: number; source_kind: string };
+    expect(response.isError).toBe(false);
+    expect(row.importance_tier).toBe('constitutional');
     expect(row.importance_weight).toBe(0.9);
     expect(row.source_kind).toBe('system');
-    expect(JSON.stringify(response)).toContain('skipped to protect manual data');
+  });
+
+  it('rejects stale expectedHash on constitutional rows before mutating', async () => {
+    const filePath = '/workspace/.opencode/skills/system-spec-kit/constitutional/gate-enforcement.md';
+    const memoryId = seedMemory(filePath, 'system', 'constitutional');
+    const { handleMemoryUpdate } = await loadHandler();
+
+    const response = await handleMemoryUpdate({
+      id: memoryId,
+      importanceWeight: 0.9,
+      expectedHash: 'stale-content-hash',
+      __provenanceContext: { provenanceSource: 'agent-enrichment', provenanceActor: 'agent' },
+    } as never);
+
+    const row = database.prepare('SELECT importance_tier, importance_weight, source_kind FROM memory_index WHERE id = ?')
+      .get(memoryId) as { importance_tier: string; importance_weight: number; source_kind: string };
+    expect(response.isError).toBe(true);
+    expect(JSON.stringify(response)).toContain('E_STALE_CONSTITUTIONAL_UPDATE');
+    expect(row.importance_tier).toBe('constitutional');
+    expect(row.importance_weight).toBe(0.5);
+    expect(row.source_kind).toBe('system');
   });
 
   it('skips automated protected-field overwrites on critical rows', async () => {

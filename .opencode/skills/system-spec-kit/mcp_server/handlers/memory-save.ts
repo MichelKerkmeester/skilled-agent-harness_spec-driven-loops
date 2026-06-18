@@ -2950,10 +2950,12 @@ let enrichmentLastError: string | null = null;
 let enrichmentLastErrorAt: string | null = null;
 let enrichmentSuppressedWarnings = 0;
 
-/** Scheduler observability snapshot for memory_health — module-local counters only, no DB access. */
-export function getBackgroundEnrichmentStats(): {
+/** Scheduler observability snapshot for memory_health — counters plus caller-supplied gauges, no DB access. */
+export function getBackgroundEnrichmentStats(pendingByStatus: Record<string, number> = {}): {
   active: number;
   queued: number;
+  pending: number;
+  failed: number;
   max: number;
   maxQueued: number;
   droppedTotal: number;
@@ -2964,6 +2966,8 @@ export function getBackgroundEnrichmentStats(): {
   return {
     active: activeBackgroundEnrichments,
     queued: backgroundEnrichmentQueue.length,
+    pending: pendingByStatus.pending ?? 0,
+    failed: pendingByStatus.failed ?? 0,
     max: MAX_BACKGROUND_ENRICHMENTS,
     maxQueued: MAX_QUEUED_ENRICHMENTS,
     droppedTotal: enrichmentDroppedTotal,

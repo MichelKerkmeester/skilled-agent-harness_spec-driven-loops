@@ -97,6 +97,57 @@ function isProtectedExistingRow(existing: Record<string, unknown>): boolean {
     || (rowPath !== null && isConstitutionalPath(rowPath));
 }
 
+function isConstitutionalExistingRow(existing: Record<string, unknown>): boolean {
+  const importanceTier = typeof existing.importance_tier === 'string' ? existing.importance_tier : null;
+  const pathCandidate = [existing.canonical_file_path, existing.file_path]
+    .find((value) => typeof value === 'string' && value.length > 0);
+  const rowPath = typeof pathCandidate === 'string' ? pathCandidate : null;
+  return importanceTier === 'constitutional'
+    || (rowPath !== null && isConstitutionalPath(rowPath));
+}
+
+function validateConstitutionalEditPreconditions(
+  args: UpdateArgs,
+  existing: Record<string, unknown>,
+  requestId: string,
+): MCPResponse | null {
+  if (!isConstitutionalExistingRow(existing)) {
+    return null;
+  }
+
+  const expectedHash = (args as { expectedHash?: unknown }).expectedHash;
+  if (expectedHash !== undefined) {
+    const existingHash = typeof existing.content_hash === 'string' ? existing.content_hash : null;
+    if (typeof expectedHash !== 'string' || expectedHash.length === 0 || expectedHash !== existingHash) {
+      return createMCPErrorResponse({
+        tool: 'memory_update',
+        error: 'Constitutional memory update rejected: expectedHash does not match the current content hash',
+        code: 'E_STALE_CONSTITUTIONAL_UPDATE',
+        details: { requestId, id: args.id },
+        recovery: {
+          hint: 'Read the current memory row, then retry with its current content_hash.',
+          severity: 'error',
+        },
+      });
+    }
+  }
+
+  if (args.importanceTier !== undefined && args.importanceTier !== 'constitutional') {
+    return createMCPErrorResponse({
+      tool: 'memory_update',
+      error: 'Constitutional memory update rejected: the update would remove constitutional protection from the same row',
+      code: 'E_CONSTITUTIONAL_SELF_EDIT',
+      details: { requestId, id: args.id, requestedTier: args.importanceTier },
+      recovery: {
+        hint: 'Use a new reviewed source row or an explicit database repair workflow; memory_update cannot downgrade its own constitutional row.',
+        severity: 'error',
+      },
+    });
+  }
+
+  return null;
+}
+
 function buildGuardedUpdateParams(
   args: UpdateArgs,
   existing: Record<string, unknown>,
@@ -213,6 +264,15 @@ async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
   const existing = vectorIndex.getMemory(id);
   if (!existing) {
     throw new MemoryError(ErrorCodes.FILE_NOT_FOUND, `Memory not found: ${id}`, { id });
+  }
+
+  const constitutionalPreconditionError = validateConstitutionalEditPreconditions(
+    { ...args, title, triggerPhrases },
+    existing as Record<string, unknown>,
+    requestId,
+  );
+  if (constitutionalPreconditionError) {
+    return constitutionalPreconditionError;
   }
 
   const database = vectorIndex.getDb();

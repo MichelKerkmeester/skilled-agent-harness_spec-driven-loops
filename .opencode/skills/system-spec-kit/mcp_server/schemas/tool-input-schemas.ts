@@ -308,6 +308,7 @@ const memoryUpdateSchema = getSchema({
   importanceWeight: boundedNumber(0, 1).optional(),
   importanceTier: importanceTierEnum.optional(),
   allowPartialUpdate: z.boolean().optional(),
+  expectedHash: z.string().min(1).optional(),
 });
 
 const memoryValidateSchema = getSchema({
@@ -627,7 +628,7 @@ const ALLOWED_PARAMETERS: Record<string, string[]> = {
   memory_stats: ['folderRanking', 'excludePatterns', 'includeScores', 'includeArchived', 'limit'],
   memory_health: ['reportMode', 'includeFullReport', 'limit', 'specFolder', 'autoRepair', 'confirmed', 'cleanFiles'],
   memory_delete: ['id', 'specFolder', 'confirm'],
-  memory_update: ['id', 'title', 'triggerPhrases', 'importanceWeight', 'importanceTier', 'allowPartialUpdate'],
+  memory_update: ['id', 'title', 'triggerPhrases', 'importanceWeight', 'importanceTier', 'allowPartialUpdate', 'expectedHash'],
   memory_validate: ['id', 'wasUseful', 'queryId', 'queryTerms', 'resultRank', 'totalResultsShown', 'searchMode', 'intent', 'sessionId', 'notes'],
   memory_bulk_delete: ['tier', 'specFolder', 'confirm', 'olderThanDays', 'skipCheckpoint'],
   memory_retention_sweep: ['dryRun'],

@@ -113,6 +113,45 @@ describe('handleMemoryHealth Edge Cases (T007b)', () => {
     expect(parsed.data.aliasConflicts).toBeDefined();
   });
 
+  it('T007b-H8a: background enrichment exposes pending and failed gauges', async () => {
+    const database = vectorIndex.getDb();
+    if (!database) {
+      throw new Error('Database not initialized');
+    }
+    const runId = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+    const specFolder = `specs/health-enrichment-${runId}`;
+    const now = new Date().toISOString();
+    const insert = database.prepare(`
+      INSERT INTO memory_index (
+        spec_folder,
+        file_path,
+        title,
+        created_at,
+        updated_at,
+        embedding_status,
+        post_insert_enrichment_status
+      ) VALUES (?, ?, ?, ?, ?, ?, ?)
+    `);
+    insert.run(specFolder, `/tmp/${runId}-pending-1.md`, 'Pending enrichment 1', now, now, 'pending', 'pending');
+    insert.run(specFolder, `/tmp/${runId}-pending-2.md`, 'Pending enrichment 2', now, now, 'pending', 'pending');
+    insert.run(specFolder, `/tmp/${runId}-failed.md`, 'Failed enrichment', now, now, 'pending', 'failed');
+
+    try {
+      const result = await handler.handleMemoryHealth({});
+      const parsed = parseResponse(result);
+      expect(parsed.data.backgroundEnrichment).toMatchObject({
+        pending: 2,
+        failed: 1,
+        pendingByStatus: {
+          pending: 2,
+          failed: 1,
+        },
+      });
+    } finally {
+      database.prepare('DELETE FROM memory_index WHERE spec_folder = ?').run(specFolder);
+    }
+  });
+
   it('T007b-H8b: autoRepair without confirmed returns confirmation-only payload', async () => {
     const result = await handler.handleMemoryHealth({ autoRepair: true });
     const parsed = parseResponse(result);

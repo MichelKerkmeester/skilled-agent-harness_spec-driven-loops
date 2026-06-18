@@ -301,13 +301,14 @@ function cleanupStaleGeneratedEdges(database: Database.Database, sourceMemoryId:
   }
 
   const placeholders = sourceAnchors.map(() => '?').join(', ');
+  const openEdgeClause = columns.has('invalid_at') ? ' AND invalid_at IS NULL' : '';
   const rows = database.prepare(`
     SELECT id, source_id, target_id, relation, source_anchor, target_anchor
     FROM causal_edges
     WHERE source_id = ?
       AND created_by = ?
       AND extraction_method = ?
-      AND source_anchor IN (${placeholders})
+      AND source_anchor IN (${placeholders})${openEdgeClause}
   `).all(String(sourceMemoryId), CREATED_BY, EXTRACTION_METHOD, ...sourceAnchors) as Array<{
     id: number;
     source_id: string;

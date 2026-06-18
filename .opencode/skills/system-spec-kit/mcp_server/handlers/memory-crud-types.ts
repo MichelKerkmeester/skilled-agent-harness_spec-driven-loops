@@ -27,6 +27,7 @@ interface UpdateArgs {
   importanceWeight?: number;
   importanceTier?: string;
   allowPartialUpdate?: boolean;
+  expectedHash?: string;
 }
 
 /** Arguments for the memory_list handler. */

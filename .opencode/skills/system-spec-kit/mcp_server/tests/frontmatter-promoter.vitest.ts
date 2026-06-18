@@ -219,6 +219,30 @@ describe('frontmatter metadata edge promoter', () => {
     });
   });
 
+  it('skips stale generated edges that are already temporally closed', () => {
+    seedMemoryRow(db, { id: 60, specFolder: 'closed-parent', documentType: 'graph_metadata' });
+    seedMemoryRow(db, { id: 61, specFolder: 'closed-child', documentType: 'graph_metadata' });
+
+    promoteMetadataEdges(db, {
+      memoryId: 61,
+      filePath: '/workspace/specs/closed-child/graph-metadata.json',
+      content: graphMetadataContent({ packetId: 'closed-child', parentId: 'closed-parent' }),
+    });
+    db.prepare('UPDATE causal_edges SET invalid_at = ? WHERE source_id = ? AND target_id = ?')
+      .run('2026-06-10T00:00:00.000Z', '61', '60');
+
+    const cleanup = promoteMetadataEdges(db, {
+      memoryId: 61,
+      filePath: '/workspace/specs/closed-child/graph-metadata.json',
+      content: graphMetadataContent({ packetId: 'closed-child' }),
+    });
+
+    expect(cleanup).toMatchObject({ staleTombstoned: 0, staleDeleted: 0 });
+    expect(edges(db)).toHaveLength(1);
+    const tombstoneCount = db.prepare('SELECT COUNT(*) AS count FROM causal_edge_tombstones').get() as { count: number };
+    expect(tombstoneCount.count).toBe(0);
+  });
+
   it('tombstones stale description parentChain edges scoped to canonical graph row', () => {
     seedMemoryRow(db, { id: 50, specFolder: 'mixed-root', documentType: 'graph_metadata' });
     seedMemoryRow(db, { id: 51, specFolder: 'mixed-leaf', documentType: 'graph_metadata' });

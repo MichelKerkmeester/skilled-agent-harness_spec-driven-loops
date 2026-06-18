@@ -99,6 +99,7 @@ export interface UpdateArgs {
   importanceWeight?: number;
   importanceTier?: string;
   allowPartialUpdate?: boolean;
+  expectedHash?: string;
 }
 
 /** Arguments for memory listing requests. */

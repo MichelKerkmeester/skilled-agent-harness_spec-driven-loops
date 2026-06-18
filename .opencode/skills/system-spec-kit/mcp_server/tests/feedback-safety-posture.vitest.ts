@@ -137,7 +137,8 @@ describe('feedback safety posture', () => {
       id: 1,
       title: 'normal update',
       importanceTier: 'normal',
-    })).toMatchObject({ id: 1, title: 'normal update', importanceTier: 'normal' });
+      expectedHash: 'hash-current',
+    })).toMatchObject({ id: 1, title: 'normal update', importanceTier: 'normal', expectedHash: 'hash-current' });
   });
 
   it('keeps system-stamped feedback ledger writes outside public tool input validation', () => {

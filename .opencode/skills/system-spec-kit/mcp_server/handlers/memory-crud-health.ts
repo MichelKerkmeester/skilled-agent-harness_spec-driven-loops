@@ -898,7 +898,6 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
 
   // Background-enrichment observability: scheduler counters (module-local) + the at-rest enrichment
   // backlog by status. Without this a stuck or backed-up enrichment scheduler is a silent outage.
-  const enrichmentStats = getBackgroundEnrichmentStats();
   let enrichmentPendingByStatus: Record<string, number> = {};
   if (database) {
     try {
@@ -910,6 +909,7 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
       // Schema/edge — leave the distribution empty; the scheduler counters still surface.
     }
   }
+  const enrichmentStats = getBackgroundEnrichmentStats(enrichmentPendingByStatus);
   const backgroundEnrichment = { ...enrichmentStats, pendingByStatus: enrichmentPendingByStatus };
 
   const indexHealth = await getIndexHealthBlock(
