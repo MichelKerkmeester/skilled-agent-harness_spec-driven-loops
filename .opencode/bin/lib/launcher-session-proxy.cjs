@@ -1,4 +1,8 @@
-// [launcher-session-proxy] Launcher-owned MCP stdin/stdout bridge over daemon IPC.
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: Launcher Session Proxy                                      ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Bridges MCP stdio sessions to daemon IPC with safe reconnects. ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
 const net = require('net');

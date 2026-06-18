@@ -203,7 +203,7 @@ export {
 } from './trigger-extractor.js';
 
 // ---------------------------------------------------------------
-// 6b. GATE 3 CLASSIFIER MODULE
+// 7. GATE 3 CLASSIFIER MODULE
 // ---------------------------------------------------------------
 export {
   FILE_WRITE_TRIGGERS,
@@ -225,13 +225,13 @@ export {
 } from './gate-3-classifier.js';
 
 // ---------------------------------------------------------------
-// 7. DATABASE CONFIG
+// 8. DATABASE CONFIG
 // ---------------------------------------------------------------
 export { DB_PATH } from './paths.js';
 export { getDbDir, DB_UPDATED_FILE } from './config.js';
 
 // ---------------------------------------------------------------
-// 8. SHARED ALGORITHMS / CONTRACTS
+// 9. SHARED ALGORITHMS / CONTRACTS
 // ---------------------------------------------------------------
 export * from './algorithms/index.js';
 export {
@@ -250,7 +250,7 @@ export {
 } from './contracts/retrieval-trace.js';
 
 // ---------------------------------------------------------------
-// 9. UTILITIES
+// 10. UTILITIES
 // ---------------------------------------------------------------
 
 // Path security utilities
@@ -278,7 +278,7 @@ export {
 } from './utils/retry.js';
 
 // ---------------------------------------------------------------
-// 10. SCORING MODULE
+// 11. SCORING MODULE
 // ---------------------------------------------------------------
 export {
   computeFolderScores,
@@ -288,7 +288,7 @@ export {
 } from './scoring/folder-scoring.js';
 
 // ---------------------------------------------------------------
-// 11. LEARNED RANKING MODULE
+// 12. LEARNED RANKING MODULE
 // ---------------------------------------------------------------
 export {
   shadowScore,
@@ -298,7 +298,7 @@ export {
 } from './ranking/learned-combiner.js';
 
 // ---------------------------------------------------------------
-// 12. YAML PREDICATE GRAMMAR
+// 13. YAML PREDICATE GRAMMAR
 // ---------------------------------------------------------------
 export {
   parseBooleanExprString,

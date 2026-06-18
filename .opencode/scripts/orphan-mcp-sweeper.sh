@@ -12,6 +12,10 @@
 
 set -euo pipefail
 
+# ───────────────────────────────────────────────────────────────
+# 1. RUNTIME CONFIGURATION
+# ───────────────────────────────────────────────────────────────
+
 DRY_RUN=false
 VERBOSE=false
 AGE_MIN_SEC="${ORPHAN_AGE_MIN_SEC:-300}"
@@ -21,26 +25,30 @@ LOG_EXPLICIT=false
 LOG_MAX_BYTES="${ORPHAN_SWEEPER_LOG_MAX_BYTES:-10485760}"
 EXIT_CODE=0
 
-candidate_pids=()
-candidate_ppids=()
-candidate_classes=()
-candidate_ages=()
-candidate_etimes=()
-candidate_rsses=()
-candidate_commands=()
+CANDIDATE_PIDS=()
+CANDIDATE_PPIDS=()
+CANDIDATE_CLASSES=()
+CANDIDATE_AGES=()
+CANDIDATE_ETIMES=()
+CANDIDATE_RSSES=()
+CANDIDATE_COMMANDS=()
 
-kill_pids=()
-kill_classes=()
-kill_ages=()
-kill_etimes=()
-kill_rsses=()
-kill_commands=()
+KILL_PIDS=()
+KILL_CLASSES=()
+KILL_AGES=()
+KILL_ETIMES=()
+KILL_RSSES=()
+KILL_COMMANDS=()
 
-min_classes=()
-min_ages=()
-min_pids=()
+MIN_CLASSES=()
+MIN_AGES=()
+MIN_PIDS=()
 
-session_tree_pids=()
+SESSION_TREE_PIDS=()
+
+# ───────────────────────────────────────────────────────────────
+# 2. CLI PARSING
+# ───────────────────────────────────────────────────────────────
 
 usage() {
   cat <<'EOF'
@@ -54,7 +62,7 @@ Options:
 EOF
 }
 
-while [ "$#" -gt 0 ]; do
+while [[ "$#" -gt 0 ]]; do
   case "$1" in
     --dry-run)
       DRY_RUN=true
@@ -63,7 +71,7 @@ while [ "$#" -gt 0 ]; do
       VERBOSE=true
       ;;
     --log-path)
-      if [ "$#" -lt 2 ]; then
+      if [[ "$#" -lt 2 ]]; then
         echo "ERROR: --log-path requires a path" >&2
         exit 1
       fi
@@ -84,10 +92,14 @@ while [ "$#" -gt 0 ]; do
   shift
 done
 
+# ───────────────────────────────────────────────────────────────
+# 3. VALIDATION HELPERS
+# ───────────────────────────────────────────────────────────────
+
 is_positive_int() {
   case "$1" in
     ''|*[!0-9]*) return 1 ;;
-    *) [ "$1" -gt 0 ] ;;
+    *) [[ "$1" -gt 0 ]] ;;
   esac
 }
 
@@ -102,18 +114,22 @@ if ! is_positive_int "$LOG_MAX_BYTES"; then
 fi
 
 should_append_log_file() {
-  [ "$LOG_EXPLICIT" = true ] || [ -t 1 ]
+  [[ "$LOG_EXPLICIT" = true ]] || [[ -t 1 ]]
 }
+
+# ───────────────────────────────────────────────────────────────
+# 4. LOGGING
+# ───────────────────────────────────────────────────────────────
 
 rotate_log_if_needed() {
   should_append_log_file || return 0
-  [ -n "$LOG_PATH" ] || return 0
-  [ -f "$LOG_PATH" ] || return 0
+  [[ -n "$LOG_PATH" ]] || return 0
+  [[ -f "$LOG_PATH" ]] || return 0
 
   local size
   size="$(wc -c < "$LOG_PATH" 2>/dev/null || echo 0)"
   is_positive_int "$size" || size=0
-  [ "$size" -le "$LOG_MAX_BYTES" ] && return 0
+  [[ "$size" -le "$LOG_MAX_BYTES" ]] && return 0
 
   mv -f "$LOG_PATH.2" "$LOG_PATH.3" 2>/dev/null || true
   mv -f "$LOG_PATH.1" "$LOG_PATH.2" 2>/dev/null || true
@@ -124,14 +140,14 @@ emit() {
   local line
   line="$(date '+%Y-%m-%dT%H:%M:%S%z') $*"
   printf '%s\n' "$line"
-  if should_append_log_file && [ -n "$LOG_PATH" ]; then
+  if should_append_log_file && [[ -n "$LOG_PATH" ]]; then
     mkdir -p "$(dirname "$LOG_PATH")" 2>/dev/null || true
     printf '%s\n' "$line" >> "$LOG_PATH" 2>/dev/null || true
   fi
 }
 
 log_action() {
-  if [ "$DRY_RUN" = true ]; then
+  if [[ "$DRY_RUN" = true ]]; then
     emit "[DRY-RUN] $*"
   else
     emit "$*"
@@ -139,9 +155,13 @@ log_action() {
 }
 
 log_verbose() {
-  [ "$VERBOSE" = true ] || return 0
+  [[ "$VERBOSE" = true ]] || return 0
   emit "$*"
 }
+
+# ───────────────────────────────────────────────────────────────
+# 5. PROCESS CLASSIFICATION
+# ───────────────────────────────────────────────────────────────
 
 etime_to_seconds() {
   local raw="$1"
@@ -162,11 +182,11 @@ etime_to_seconds() {
   IFS=: read -r a b c <<EOF
 $rest
 EOF
-  if [ -n "${c:-}" ]; then
+  if [[ -n "${c:-}" ]]; then
     h="$a"
     m="$b"
     s="$c"
-  elif [ -n "${b:-}" ]; then
+  elif [[ -n "${b:-}" ]]; then
     m="$a"
     s="$b"
   else
@@ -205,8 +225,8 @@ classify_command() {
 class_index() {
   local class="$1"
   local i
-  for i in "${!min_classes[@]}"; do
-    if [ "${min_classes[$i]}" = "$class" ]; then
+  for i in "${!MIN_CLASSES[@]}"; do
+    if [[ "${MIN_CLASSES[$i]}" = "$class" ]]; then
       printf '%s\n' "$i"
       return 0
     fi
@@ -220,15 +240,15 @@ remember_min_for_class() {
   local pid="$3"
   local idx
   idx="$(class_index "$class" 2>/dev/null || true)"
-  if [ -z "$idx" ]; then
-    min_classes+=("$class")
-    min_ages+=("$age")
-    min_pids+=("$pid")
+  if [[ -z "$idx" ]]; then
+    MIN_CLASSES+=("$class")
+    MIN_AGES+=("$age")
+    MIN_PIDS+=("$pid")
     return
   fi
-  if [ "$age" -lt "${min_ages[$idx]}" ]; then
-    min_ages[$idx]="$age"
-    min_pids[$idx]="$pid"
+  if (( age < MIN_AGES[idx] )); then
+    MIN_AGES[idx]="$age"
+    MIN_PIDS[idx]="$pid"
   fi
 }
 
@@ -236,16 +256,16 @@ freshest_pid_for_class() {
   local class="$1"
   local idx
   idx="$(class_index "$class" 2>/dev/null || true)"
-  [ -n "$idx" ] || return 1
-  printf '%s\n' "${min_pids[$idx]}"
+  [[ -n "$idx" ]] || return 1
+  printf '%s\n' "${MIN_PIDS[$idx]}"
 }
 
 freshest_age_for_class() {
   local class="$1"
   local idx
   idx="$(class_index "$class" 2>/dev/null || true)"
-  [ -n "$idx" ] || return 1
-  printf '%s\n' "${min_ages[$idx]}"
+  [[ -n "$idx" ]] || return 1
+  printf '%s\n' "${MIN_AGES[$idx]}"
 }
 
 pid_in_list() {
@@ -253,18 +273,22 @@ pid_in_list() {
   shift
   local item
   for item in "$@"; do
-    [ "$item" = "$needle" ] && return 0
+    [[ "$item" = "$needle" ]] && return 0
   done
   return 1
 }
+
+# ───────────────────────────────────────────────────────────────
+# 6. SESSION TREE DISCOVERY
+# ───────────────────────────────────────────────────────────────
 
 append_descendants() {
   local parent="$1"
   local child
   while read -r child; do
-    [ -n "$child" ] || continue
-    if [ "${#session_tree_pids[@]}" -eq 0 ] || ! pid_in_list "$child" "${session_tree_pids[@]}"; then
-      session_tree_pids+=("$child")
+    [[ -n "$child" ]] || continue
+    if [[ "${#SESSION_TREE_PIDS[@]}" -eq 0 ]] || ! pid_in_list "$child" "${SESSION_TREE_PIDS[@]}"; then
+      SESSION_TREE_PIDS+=("$child")
       append_descendants "$child"
     fi
   done <<EOF
@@ -280,9 +304,9 @@ EOF
 build_session_trees() {
   local pid
   while read -r pid; do
-    [ -n "$pid" ] || continue
-    if [ "${#session_tree_pids[@]}" -eq 0 ] || ! pid_in_list "$pid" "${session_tree_pids[@]}"; then
-      session_tree_pids+=("$pid")
+    [[ -n "$pid" ]] || continue
+    if [[ "${#SESSION_TREE_PIDS[@]}" -eq 0 ]] || ! pid_in_list "$pid" "${SESSION_TREE_PIDS[@]}"; then
+      SESSION_TREE_PIDS+=("$pid")
       append_descendants "$pid"
     fi
   done <<EOF
@@ -316,9 +340,13 @@ has_live_ipc_socket_connection() {
   local pid="$1"
   local count
   count="$(lsof -nP -a -p "$pid" -U 2>/dev/null | grep -c 'daemon-ipc\.sock' || true)"
-  [ -n "$count" ] || count=0
-  [ "$count" -gt 1 ] 2>/dev/null
+  [[ -n "$count" ]] || count=0
+  [[ "$count" -gt 1 ]] 2>/dev/null
 }
+
+# ───────────────────────────────────────────────────────────────
+# 7. PRESERVATION POLICY
+# ───────────────────────────────────────────────────────────────
 
 preserve_reason() {
   local pid="$1"
@@ -338,14 +366,14 @@ preserve_reason() {
     *"ollama runner"*|*"ollama serve"*) printf '%s\n' "ollama-preserve"; return 0 ;;
   esac
 
-  if [ "${#session_tree_pids[@]}" -gt 0 ] && pid_in_list "$pid" "${session_tree_pids[@]}"; then
+  if [[ "${#SESSION_TREE_PIDS[@]}" -gt 0 ]] && pid_in_list "$pid" "${SESSION_TREE_PIDS[@]}"; then
     printf '%s\n' "live-session-tree"
     return 0
   fi
 
   freshest_pid="$(freshest_pid_for_class "$class" 2>/dev/null || true)"
   freshest_age="$(freshest_age_for_class "$class" 2>/dev/null || echo 999999)"
-  if [ "$pid" = "$freshest_pid" ] && [ "$freshest_age" -lt "$AGE_MIN_SEC" ]; then
+  if [[ "$pid" = "$freshest_pid" ]] && [[ "$freshest_age" -lt "$AGE_MIN_SEC" ]]; then
     printf '%s\n' "freshest-young-instance"
     return 0
   fi
@@ -363,20 +391,24 @@ preserve_reason() {
   return 1
 }
 
+# ───────────────────────────────────────────────────────────────
+# 8. PROCESS SCANNING
+# ───────────────────────────────────────────────────────────────
+
 scan_processes() {
-  local pid ppid etime rss stat command class age
-  while read -r pid ppid etime rss stat command; do
-    [ -n "${pid:-}" ] || continue
+  local pid _ppid etime rss _stat command class age
+  while read -r pid _ppid etime rss _stat command; do
+    [[ -n "${pid:-}" ]] || continue
     class="$(classify_command "${command:-}" 2>/dev/null || true)"
-    [ -n "$class" ] || continue
+    [[ -n "$class" ]] || continue
     age="$(etime_to_seconds "$etime")"
-    candidate_pids+=("$pid")
-    candidate_ppids+=("$ppid")
-    candidate_classes+=("$class")
-    candidate_ages+=("$age")
-    candidate_etimes+=("$etime")
-    candidate_rsses+=("$rss")
-    candidate_commands+=("${command:-}")
+    CANDIDATE_PIDS+=("$pid")
+    CANDIDATE_PPIDS+=("$_ppid")
+    CANDIDATE_CLASSES+=("$class")
+    CANDIDATE_AGES+=("$age")
+    CANDIDATE_ETIMES+=("$etime")
+    CANDIDATE_RSSES+=("$rss")
+    CANDIDATE_COMMANDS+=("${command:-}")
     remember_min_for_class "$class" "$age" "$pid"
   done <<EOF
 $(ps -axo pid=,ppid=,etime=,rss=,stat=,command=)
@@ -385,41 +417,46 @@ EOF
 
 select_kill_candidates() {
   local i pid class age etime rss cmd reason
-  for i in "${!candidate_pids[@]}"; do
-    pid="${candidate_pids[$i]}"
-    class="${candidate_classes[$i]}"
-    age="${candidate_ages[$i]}"
-    etime="${candidate_etimes[$i]}"
-    rss="${candidate_rsses[$i]}"
-    cmd="${candidate_commands[$i]}"
+  for i in "${!CANDIDATE_PIDS[@]}"; do
+    pid="${CANDIDATE_PIDS[$i]}"
+    : "${CANDIDATE_PPIDS[$i]}"
+    class="${CANDIDATE_CLASSES[$i]}"
+    age="${CANDIDATE_AGES[$i]}"
+    etime="${CANDIDATE_ETIMES[$i]}"
+    rss="${CANDIDATE_RSSES[$i]}"
+    cmd="${CANDIDATE_COMMANDS[$i]}"
 
     reason="$(preserve_reason "$pid" "$class" "$age" "$cmd" 2>/dev/null || true)"
-    if [ -n "$reason" ]; then
+    if [[ -n "$reason" ]]; then
       log_verbose "action=preserve reason=$reason pid=$pid class=$class rss_kb=$rss age_sec=$age etime=$etime command=$cmd"
       continue
     fi
 
-    kill_pids+=("$pid")
-    kill_classes+=("$class")
-    kill_ages+=("$age")
-    kill_etimes+=("$etime")
-    kill_rsses+=("$rss")
-    kill_commands+=("$cmd")
+    KILL_PIDS+=("$pid")
+    KILL_CLASSES+=("$class")
+    KILL_AGES+=("$age")
+    KILL_ETIMES+=("$etime")
+    KILL_RSSES+=("$rss")
+    KILL_COMMANDS+=("$cmd")
   done
 }
 
+# ───────────────────────────────────────────────────────────────
+# 9. TERMINATION
+# ───────────────────────────────────────────────────────────────
+
 terminate_candidates() {
   local i pid class age etime rss cmd
-  for i in "${!kill_pids[@]}"; do
-    pid="${kill_pids[$i]}"
-    class="${kill_classes[$i]}"
-    age="${kill_ages[$i]}"
-    etime="${kill_etimes[$i]}"
-    rss="${kill_rsses[$i]}"
-    cmd="${kill_commands[$i]}"
+  for i in "${!KILL_PIDS[@]}"; do
+    pid="${KILL_PIDS[$i]}"
+    class="${KILL_CLASSES[$i]}"
+    age="${KILL_AGES[$i]}"
+    etime="${KILL_ETIMES[$i]}"
+    rss="${KILL_RSSES[$i]}"
+    cmd="${KILL_COMMANDS[$i]}"
 
     log_action "action=kill signal=TERM pid=$pid class=$class rss_kb=$rss age_sec=$age etime=$etime command=$cmd"
-    if [ "$DRY_RUN" = false ]; then
+    if [[ "$DRY_RUN" = false ]]; then
       if ! kill -15 "$pid" 2>/dev/null; then
         emit "action=kill-failed signal=TERM pid=$pid class=$class"
         EXIT_CODE=1
@@ -427,13 +464,13 @@ terminate_candidates() {
     fi
   done
 
-  [ "$DRY_RUN" = true ] && return 0
-  [ "${#kill_pids[@]}" -eq 0 ] && return 0
+  [[ "$DRY_RUN" = true ]] && return 0
+  [[ "${#KILL_PIDS[@]}" -eq 0 ]] && return 0
 
   sleep 5
-  for i in "${!kill_pids[@]}"; do
-    pid="${kill_pids[$i]}"
-    class="${kill_classes[$i]}"
+  for i in "${!KILL_PIDS[@]}"; do
+    pid="${KILL_PIDS[$i]}"
+    class="${KILL_CLASSES[$i]}"
     if kill -0 "$pid" 2>/dev/null; then
       emit "action=kill signal=KILL pid=$pid class=$class"
       if ! kill -9 "$pid" 2>/dev/null; then
@@ -443,6 +480,10 @@ terminate_candidates() {
     fi
   done
 }
+
+# ───────────────────────────────────────────────────────────────
+# 10. TEMPORARY ARTIFACT SWEEPING
+# ───────────────────────────────────────────────────────────────
 
 path_mtime_epoch() {
   local path="$1"
@@ -457,7 +498,7 @@ path_is_old_enough() {
   is_positive_int "$mtime" || return 1
   age=$((now_epoch - mtime))
   min_age=$((TMP_AGE_HOURS * 3600))
-  [ "$age" -ge "$min_age" ]
+  [[ "$age" -ge "$min_age" ]]
 }
 
 preserve_tmp_path() {
@@ -471,12 +512,12 @@ preserve_tmp_path() {
 
 remove_tmp_path() {
   local path="$1"
-  [ -e "$path" ] || return 0
+  [[ -e "$path" ]] || return 0
   preserve_tmp_path "$path" && { log_verbose "action=preserve-tmp path=$path"; return 0; }
   path_is_old_enough "$path" || { log_verbose "action=preserve-tmp reason=too-new path=$path"; return 0; }
 
   log_action "action=remove-tmp path=$path"
-  if [ "$DRY_RUN" = false ]; then
+  if [[ "$DRY_RUN" = false ]]; then
     if ! rm -rf "$path" 2>/dev/null; then
       emit "action=remove-tmp-failed path=$path"
       EXIT_CODE=1
@@ -488,11 +529,11 @@ sweep_tmp() {
   local path
   shopt -s nullglob
   for path in /tmp/codex-* /tmp/cli-* /tmp/opencode-* /tmp/deep-review-*; do
-    [ -d "$path" ] || continue
+    [[ -d "$path" ]] || continue
     remove_tmp_path "$path"
   done
   for path in /tmp/save-context-data-* /tmp/*-prompt.md /tmp/*-cli-err.log /tmp/*-cli-out.log; do
-    [ -f "$path" ] || continue
+    [[ -f "$path" ]] || continue
     remove_tmp_path "$path"
   done
   shopt -u nullglob
@@ -503,6 +544,10 @@ sweep_tmp() {
 # so skip the process-scanning/kill main flow.
 (return 0 2>/dev/null) && return 0
 
+# ───────────────────────────────────────────────────────────────
+# 11. MAIN ENTRYPOINT
+# ───────────────────────────────────────────────────────────────
+
 rotate_log_if_needed
 emit "action=start dry_run=$DRY_RUN verbose=$VERBOSE age_min_sec=$AGE_MIN_SEC tmp_age_hours=$TMP_AGE_HOURS"
 build_session_trees
@@ -510,5 +555,5 @@ scan_processes
 select_kill_candidates
 terminate_candidates
 sweep_tmp
-emit "action=summary candidates=${#candidate_pids[@]} kills=${#kill_pids[@]} exit_code=$EXIT_CODE"
+emit "action=summary candidates=${#CANDIDATE_PIDS[@]} kills=${#KILL_PIDS[@]} exit_code=$EXIT_CODE"
 exit "$EXIT_CODE"

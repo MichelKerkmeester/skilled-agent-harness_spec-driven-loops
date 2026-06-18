@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: Lane D Packaging Scaffolder
+# ───────────────────────────────────────────────────────────────
 """Lane D packaging scaffolder for the deep-improvement skill.
 
 Reads ONE packaging config JSON, validates it against the Lane D schema, renders all
@@ -22,6 +25,7 @@ import py_compile
 import re
 import sys
 import tempfile
+from typing import Any, Optional
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SKILL_ROOT = os.path.dirname(os.path.dirname(HERE))
@@ -41,12 +45,12 @@ TEMPLATE_FILES = {
 }
 
 
-def load_json(path):
+def load_json(path: str) -> Any:
     with open(path, encoding="utf-8") as f:
         return json.load(f)
 
 
-def validate_config(cfg):
+def validate_config(cfg: dict[str, Any]) -> list[str]:
     """Plain-Python schema validation. Returns a list of error strings (empty => valid)."""
     errs = []
 
@@ -154,13 +158,13 @@ def validate_config(cfg):
     return errs
 
 
-def dimension_keys_ordered(dims):
+def dimension_keys_ordered(dims: dict[str, Any]) -> list[str]:
     """Return dimension keys in the order they appear in the dict."""
     return list(dims.keys())
 
 
 
-def py_lit(value):
+def py_lit(value: Any) -> str:
     """Render a config value as a Python literal for .py templates.
 
     json.dumps emits JSON booleans/null (true/false/null), which are NameErrors when the
@@ -168,7 +172,7 @@ def py_lit(value):
     """
     return repr(value)
 
-def build_placeholders(cfg, dest):
+def build_placeholders(cfg: dict[str, Any], dest: Optional[str]) -> dict[str, str]:
     """Build the full placeholder map from the config."""
     dims = cfg["dimensions"]
     dim_keys = dimension_keys_ordered(dims)
@@ -206,8 +210,8 @@ def build_placeholders(cfg, dest):
     variants_usage = "|".join(fixtures["variants"])
 
     # Benchmark variant cases (bash case statements)
-    def _sh_dq(text):
-        """R2-P2-001: escape for a double-quoted sh context (the SYS=\"...\" assignment).
+    def _sh_dq(text: str) -> str:
+        """Escape for a double-quoted sh context (the SYS=\"...\" assignment).
         Backslash, double quote and backtick are escaped; $ is preserved ONLY for the
         deliberate $CW substitution below, so escape $ first and restore the token after."""
         out = text.replace("\\", "\\\\").replace('"', '\\"').replace("`", "\\`").replace("$", "\\$")
@@ -216,7 +220,7 @@ def build_placeholders(cfg, dest):
     variant_cases_lines = []
     bmi = harness["benchmark_mode_instructions"]
     preludes = harness.get("benchmark_variant_preludes", {})
-    # R5-P2-004: every prelude key must name a declared variant
+    # Every prelude key must name a declared variant.
     unknown_preludes = sorted(set(preludes) - set(fixtures["variants"]))
     if unknown_preludes:
         sys.exit(f"init_packaging: benchmark_variant_preludes keys not in fixtures.variants: {unknown_preludes}")
@@ -253,8 +257,8 @@ def build_placeholders(cfg, dest):
         "DIMENSIONS_FLOORS": py_lit(floors),
         "DIMENSIONS_MAXES": py_lit(maxes),
         "FROZEN_SURFACE": py_lit(cfg["frozen_surface"]),
-        # R5-P2-003: the grader rubric is the anchored (scoring-section) subset of the frozen
-        # surface, never the full surface (which includes the large hard-rules doc).
+        # The grader rubric is the anchored scoring subset of the frozen surface,
+        # never the full surface that includes the large hard-rules doc.
         "RUBRIC_FROZEN_FILES": py_lit([e["frozen_name"] for e in cfg["frozen_surface"] if e.get("in_rubric", bool(e.get("section_anchor")))]),
         "ANCHORS": py_lit(cfg["anchors"]),
         "TECHNIQUE_DOC_MAP": py_lit(cfg["technique_doc_map"]),
@@ -282,7 +286,7 @@ def build_placeholders(cfg, dest):
     return p
 
 
-def resolve_template(template_content, placeholders):
+def resolve_template(template_content: str, placeholders: dict[str, str]) -> str:
     """Replace all {{KEY}} placeholders with their values."""
     result = template_content
 
@@ -300,12 +304,12 @@ def resolve_template(template_content, placeholders):
     return result
 
 
-def render_all(dest, placeholders, report_only=False):
+def render_all(dest: str, placeholders: dict[str, str], report_only: bool = False) -> dict[str, str]:
     """Render all templates into the destination directory.
 
-    Two-phase for atomicity (deep-review R5-P2-006): phase 1 renders EVERY template
-    in memory, so any template or placeholder error aborts before a single file is
-    written; phase 2 writes the complete set. A re-run remains idempotent.
+    Two-phase for atomicity: phase 1 renders EVERY template in memory, so any
+    template or placeholder error aborts before a single file is written; phase
+    2 writes the complete set. A re-run remains idempotent.
     """
     rendered = {}
     for out_rel, tpl_name in TEMPLATE_FILES.items():
@@ -328,7 +332,7 @@ def render_all(dest, placeholders, report_only=False):
     return rendered
 
 
-def write_gitignore(dest, report_only=False):
+def write_gitignore(dest: str, report_only: bool = False) -> None:
     """Write the .gitignore for loop state and benchmark results."""
     gi_path = os.path.join(dest, ".gitignore")
     lines = [
@@ -348,7 +352,7 @@ def write_gitignore(dest, report_only=False):
                 f.write("\n".join(lines) + "\n")
 
 
-def print_checklist_commands(cfg, dest):
+def print_checklist_commands(cfg: dict[str, Any], dest: str) -> None:
     """Print conformance checklist commands."""
     print("\n===== CONFORMANCE CHECKLIST COMMANDS =====")
     print(f"cd {dest}")
@@ -368,7 +372,7 @@ def print_checklist_commands(cfg, dest):
     print("  - [ ] benchmark/_loop/state/ is gitignored")
 
 
-def verify_render(dest):
+def verify_render(dest: str) -> list[str]:
     """Run py_compile on all rendered .py files. Returns list of errors."""
     errors = []
     for out_rel in sorted(TEMPLATE_FILES):
@@ -385,7 +389,7 @@ def verify_render(dest):
     return errors
 
 
-def main():
+def main() -> None:
     ap = argparse.ArgumentParser(description="Lane D packaging scaffolder")
     ap.add_argument("--config", required=True, help="Path to packaging_config.json")
     ap.add_argument("--dest", default=None, help="Target packaging root (overrides config)")

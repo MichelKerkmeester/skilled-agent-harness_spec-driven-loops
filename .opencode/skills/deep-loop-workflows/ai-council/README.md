@@ -67,14 +67,14 @@ For an iterative multi-topic session, use the deep mode commands.
 
 Deep mode iterates over multiple topics, each with its own rounds, and converges per topic before moving on. Default guards cap at 3 rounds per topic and 5 topics per session.
 
-**Step 2: Persist the report.** The caller writes the artifacts from the council report.
+**Step 2: Persist the report.** The `@ai-council` agent is scoped-write and persists the canonical packet-local `ai-council/**` artifact set directly. The CLI helper remains available as a fallback for non-council callers that already have a captured report.
 
 ```bash
 node .opencode/skills/deep-loop-workflows/ai-council/scripts/persist-artifacts.cjs specs/042-pipeline \
   --input-file /tmp/council-report.md
 ```
 
-Expected result: a packet-local `ai-council/` tree with `ai-council-state.jsonl`, per-seat outputs under `seats/round-NNN/`, deliberation and critique notes and `council-report.md`.
+Expected result: a packet-local `ai-council/` tree with `ai-council-state.jsonl`, per-seat outputs under `seats/round-NNN/`, deliberation and critique notes and `council-report.md`. A dispatching parent does not need to invoke the helper for normal `@ai-council` persistence.
 
 **Step 3: Verify completion before you hand off.**
 
@@ -94,7 +94,7 @@ A council run moves through three steps. First, resolve the target packet folder
 
 Second, deliberate. Each seat proposes independently. Then the adversarial critique pass tries to break the leading proposal before agreement is allowed. If the council hits its round cap without convergence, the run completes as non-converged rather than fabricating consensus. Non-converged is an honest answer: it means the evidence did not settle toward one plan.
 
-Third, persist and hand off. The council produces a report with sections mandated by the output schema. The caller writes that report to packet-local `ai-council/` artifacts. Failed rounds move under `failed/` so the forensic trail survives. Implementation passes to an implementation agent or the caller.
+Third, persist and hand off. The council produces a report with sections mandated by the output schema and writes the canonical packet-local `ai-council/` artifacts when running as the scoped-write agent. The CLI helper is a fallback for non-council callers with a captured report. Failed rounds move under `failed/` so the forensic trail survives. Implementation passes to an implementation agent or the caller.
 
 ### Six Strategy Lenses
 
@@ -124,20 +124,21 @@ The council is planning only. It recommends a plan and persists the reasoning. I
 
 ### Sibling Deep Loops
 
-The council shares the `deep-loop-runtime` with three sibling skills. Each owns a different phase of the planning-to-implementation pipeline and none crosses into another's territory.
+The council shares the `deep-loop-runtime` with the other top-level deep-loop personas. The current roster is context, research, review, ai-council and improvement; each owns a different phase of the planning-to-implementation pipeline and none crosses into another's territory.
 
 | Skill | Relationship |
 |---|---|
 | `deep-research` | Investigates evidence and answers research questions. The council uses research seats to gather evidence but does not run deep-research loops itself. |
 | `deep-review` | Audits code for bugs, security gaps and quality issues. The council recommends a plan, and a review checks the result after implementation. |
 | `deep-context` | Maps existing code, conventions and integration points before planning begins. Run it before the council so seats start from shared facts. |
+| `deep-improvement` | Runs evaluator-first improvement across the `agent-improvement`, `model-benchmark`, `skill-benchmark` and `ai-system-improvement` command lanes. |
 
 ### Related Skills
 
 | Skill | Relationship |
 |---|---|
 | `system-spec-kit` | Owns the packet folder where `ai-council/` artifacts live. Validation, resume and continuity all run through it. |
-| `deep-loop-runtime` | Shared runtime for all four deep loops. Council graph support is a derived projection rebuilt from artifacts through the runtime's CLI scripts. |
+| `deep-loop-runtime` | Shared runtime for the five top-level deep-loop personas. Council graph support is a derived projection rebuilt from artifacts through the runtime's CLI scripts. |
 
 ---
 

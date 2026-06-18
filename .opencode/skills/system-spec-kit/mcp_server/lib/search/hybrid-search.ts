@@ -5,79 +5,76 @@
 
 // 1. IMPORTS
 
-// Local
+import { adaptiveFuse, getAdaptiveWeights, isAdaptiveFusionEnabled } from '@spec-kit/shared/algorithms/adaptive-fusion';
+import { applyMMR } from '@spec-kit/shared/algorithms/mmr-reranker';
+import { fuseResultsMulti } from '@spec-kit/shared/algorithms/rrf-fusion';
+
+import { CO_ACTIVATION_CONFIG, spreadActivation } from '../cognitive/co-activation.js';
+import { collapseAndReassembleChunkResults } from '../scoring/mpab-aggregation.js';
 import {
   getIndex,
   isBm25Enabled,
   shouldUseSqliteLexicalEngine,
 } from './bm25-index.js';
-import { fuseResultsMulti } from '@spec-kit/shared/algorithms/rrf-fusion';
-import { adaptiveFuse, getAdaptiveWeights, isAdaptiveFusionEnabled } from '@spec-kit/shared/algorithms/adaptive-fusion';
-import { CO_ACTIVATION_CONFIG, spreadActivation } from '../cognitive/co-activation.js';
-import { applyMMR } from '@spec-kit/shared/algorithms/mmr-reranker';
-import { INTENT_LAMBDA_MAP, classifyIntent } from './intent-classifier.js';
-import { fts5Bm25Search } from './sqlite-fts.js';
-import { DEGREE_CHANNEL_WEIGHT } from './graph-search-fn.js';
+import { enforceChannelRepresentation } from './channel-enforcement.js';
 import {
+  DEFAULT_MIN_RESULTS,
+  GAP_THRESHOLD_MULTIPLIER,
+  isConfidenceTruncationEnabled,
+  truncateByConfidence,
+} from './confidence-truncation.js';
+import {
+  DEFAULT_TOKEN_BUDGET_CONFIG,
+  getDynamicTokenBudget,
+  isDynamicTokenBudgetEnabled,
+} from './dynamic-token-budget.js';
+import { ensureDescriptionCache, getSpecsBasePaths } from './folder-discovery.js';
+import {
+  computeFolderRelevanceScores,
+  enrichResultsWithFolderScores,
+  isFolderScoringEnabled,
+  lookupFolders,
+  twoPhaseRetrieval,
+} from './folder-relevance.js';
+import { computeDegreeScores, DEGREE_CHANNEL_WEIGHT } from './graph-search-fn.js';
+import { INTENT_LAMBDA_MAP, classifyIntent } from './intent-classifier.js';
+import { resolveAbsoluteRelevance } from './pipeline/types.js';
+import {
+  DEFAULT_PAGE_SIZE,
+  buildProgressiveResponse,
+} from './progressive-disclosure.js';
+import { isComplexityRouterEnabled } from './query-classifier.js';
+import { routeQuery } from './query-router.js';
+import {
+  isArchivedRetrievalIncludedByDefault,
+  isContextHeadersEnabled,
+  isCosineTopnReorderEnabled,
+  isDegreeBoostEnabled,
+  isDocscoreAggregationEnabled,
   isMMREnabled,
   isSearchFallbackEnabled,
-  isDocscoreAggregationEnabled,
-  isDegreeBoostEnabled,
-  isContextHeadersEnabled,
-  isArchivedRetrievalIncludedByDefault,
-  isCosineTopnReorderEnabled,
 } from './search-flags.js';
-import { resolveAbsoluteRelevance, type PipelineRow } from './pipeline/types.js';
-import { computeDegreeScores } from './graph-search-fn.js';
-import type { GraphSearchFn } from './search-types.js';
+import { resolveFusionIntentContract } from './search-utils.js';
+import { fts5Bm25Search } from './sqlite-fts.js';
+import { parse_trigger_phrases, specFolderLikePattern } from './vector-index-types.js';
 
-// Feature catalog: Hybrid search pipeline
+import type Database from 'better-sqlite3';
+import type { MMRCandidate } from '@spec-kit/shared/algorithms/mmr-reranker';
+import type { FusionResult } from '@spec-kit/shared/algorithms/rrf-fusion';
+import type { SpreadResult } from '../cognitive/co-activation.js';
+import type { EnforcementResult } from './channel-enforcement.js';
+import type { TruncationResult } from './confidence-truncation.js';
+import type { PipelineRow } from './pipeline/types.js';
+import type {
+  DisclosureResult,
+  ProgressiveResponse,
+} from './progressive-disclosure.js';
+import type { ChannelName } from './query-router.js';
+import type { GraphSearchFn } from './search-types.js';
 
 export type { GraphSearchFn } from './search-types.js';
 
-import { routeQuery } from './query-router.js';
-import { isComplexityRouterEnabled } from './query-classifier.js';
-import { enforceChannelRepresentation } from './channel-enforcement.js';
-import {
-  truncateByConfidence,
-  isConfidenceTruncationEnabled,
-  DEFAULT_MIN_RESULTS,
-  GAP_THRESHOLD_MULTIPLIER,
-} from './confidence-truncation.js';
-import {
-  getDynamicTokenBudget,
-  isDynamicTokenBudgetEnabled,
-  DEFAULT_TOKEN_BUDGET_CONFIG,
-} from './dynamic-token-budget.js';
-import {
-  buildProgressiveResponse,
-  DEFAULT_PAGE_SIZE,
-} from './progressive-disclosure.js';
-import type {
-  ProgressiveResponse,
-  DisclosureResult,
-} from './progressive-disclosure.js';
-import { resolveFusionIntentContract } from './search-utils.js';
-import { ensureDescriptionCache, getSpecsBasePaths } from './folder-discovery.js';
-import {
-  isFolderScoringEnabled,
-  lookupFolders,
-  computeFolderRelevanceScores,
-  enrichResultsWithFolderScores,
-  twoPhaseRetrieval,
-} from './folder-relevance.js';
-import { parse_trigger_phrases, specFolderLikePattern } from './vector-index-types.js';
-
-import { collapseAndReassembleChunkResults } from '../scoring/mpab-aggregation.js';
-
-// Type-only
-import type Database from 'better-sqlite3';
-import type { SpreadResult } from '../cognitive/co-activation.js';
-import type { MMRCandidate } from '@spec-kit/shared/algorithms/mmr-reranker';
-import type { FusionResult } from '@spec-kit/shared/algorithms/rrf-fusion';
-import type { ChannelName } from './query-router.js';
-import type { EnforcementResult } from './channel-enforcement.js';
-import type { TruncationResult } from './confidence-truncation.js';
+// Feature catalog: Hybrid search pipeline
 
 // 2. INTERFACES
 
@@ -1823,7 +1820,7 @@ async function enrichFusedResults(
           const mmrLambda = INTENT_LAMBDA_MAP[intent] ?? MMR_DEFAULT_LAMBDA;
           const diversified = applyMMR(mmrCandidates, { lambda: mmrLambda, limit });
 
-          // FIX #6: Same fix as stage3-rerank FIX #5 — MMR can only diversify
+          // MMR can only diversify
           // rows that have embeddings. Non-embedded rows (lexical-only hits,
           // graph injections) must be preserved and merged back in their
           // original relative order instead of being silently dropped.

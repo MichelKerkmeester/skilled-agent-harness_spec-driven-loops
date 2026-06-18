@@ -37,7 +37,7 @@ Think of it as a "project folder" for AI-assisted development - it keeps context
 - "Add/implement/create [feature]"
 - "Fix/update/refactor [code]"
 - "Modify/change [configuration]"
-- Any keyword: add, implement, fix, update, create, modify, rename, delete, configure, analyze, phase
+- Positive keywords include add, implement, fix, update, create, modify, rename, delete and configure. The authoritative Gate 3 classifier intentionally omits `analyze`, `decompose` and `phase` from positive triggers; `analyze` is a read-only disqualifier unless a real write, memory-save or resume trigger is also present.
 
 **Example triggers:**
 - "Add email validation to the signup form" → Level 1-2
@@ -418,9 +418,9 @@ The surface is dual-stack: alongside the `mk-spec-memory` MCP registration, all 
 
 The current memory baseline is schema v37. The 027 hardening features ship behind conservative defaults: semantic-trigger shadow matching, session-trace causal inference, feedback-retention reducers, soft-delete tombstones, memory idempotency receipts, authored continuity snapshots, and completion freshness all stay opt-in. `source_kind` provenance, retrieval observability, stale-audit signals, and tool-ownership linting are documented in the memory and ENV references rather than duplicated here.
 
-### Reranking (removed)
+### Reranking
 
-Cross-encoder reranking was removed in the 014 deprecation: the spec-memory local rerank path was removed in phase 003 and the local rerank sidecar skill was deleted in phase 004 (cloud rerankers were removed earlier in 022/013). Memory search returns fused vector/BM25/FTS/graph/degree results with no rerank stage; the `SPECKIT_CROSS_ENCODER`/`RERANKER_LOCAL` flags are no longer wired.
+Model-based cross-encoder/local-GGUF reranking was removed in the 014 deprecation: the spec-memory local model path was removed in phase 003 and the local rerank sidecar skill was deleted in phase 004 (cloud rerankers were removed earlier in 022/013). Memory search still has a Stage 3 rerank step: MMR diversity reranking plus MPAB chunk collapse, with the `memory_search` `rerank` option defaulting to true. The `SPECKIT_CROSS_ENCODER`/`RERANKER_LOCAL` flags are no longer wired.
 
 ## Security
 
@@ -429,7 +429,7 @@ Cross-encoder reranking was removed in the 014 deprecation: the spec-memory loca
 
 ### Validation and Recovery
 
-Run `.opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` before completion claims. Validation errors block completion; warnings must be addressed or documented. Startup, resume, hook, code graph, and Code Graph readiness details live in `references/config/hook_system.md`, `references/hooks/skill_advisor_hook.md`, `mcp_server/hooks/copilot/README.md`, and the code graph references.
+Run `.opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` before completion claims. Validation errors block completion; warnings must be addressed or documented. Startup, resume, hook, code graph, and Code Graph readiness details live in `references/config/hook_system.md`, `references/hooks/skill_advisor_hook.md`, `mcp_server/hooks/README.md` (Claude and Codex hook folders; OpenCode uses the plugin bridge), and the code graph references.
 
 ### Code Graph and Search Routing
 

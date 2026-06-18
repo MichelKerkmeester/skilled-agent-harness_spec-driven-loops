@@ -120,7 +120,7 @@ export async function applyEnhanceEdge(
 
     await writeFile(candidate.sourcePath, JSON.stringify(parsed, null, 2) + '\n', 'utf-8');
     return { applied: true, reason: `edge added with ${sourceKind} provenance` };
-  } catch (error) {
+  } catch (error: unknown) {
     const message = error instanceof Error ? error.message : String(error);
     return { applied: false, reason: `failed to apply edge: ${message}` };
   }

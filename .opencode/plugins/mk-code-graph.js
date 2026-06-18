@@ -165,6 +165,14 @@ function cacheKeyForSession(sessionID, specFolder) {
   return `${specFolder ?? '__workspace__'}::${normalizeSessionID(sessionID)}`;
 }
 
+/**
+ * Parse a bridge response into an OpenCode transport plan.
+ *
+ * @param {unknown} responseText - Raw JSON response text from the bridge process.
+ * @returns {TransportPlan|null|Record<string, never>} Parsed transport plan, null
+ *   when no valid transport payload exists, or an empty hook object for legacy
+ *   plugin-loader calls with non-string input.
+ */
 export function parseTransportPlan(responseText) {
   if (typeof responseText !== 'string') {
     // OpenCode 1.3.17's legacy loader invokes named function exports as plugins.

@@ -4,6 +4,10 @@
 // SQLite storage for skill graph metadata (nodes + edges).
 // Uses the advisor package-local skill-graph.sqlite runtime database.
 
+import { createHash } from 'node:crypto';
+import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, rmSync, statSync } from 'node:fs';
+import { basename, dirname, join, relative, resolve } from 'node:path';
+
 import Database from 'better-sqlite3';
 // NOTE: lib/shared/embeddings is a symlink to system-spec-kit/shared/embeddings.
 // The symlink in the file tree makes the cross-skill dependency on
@@ -12,9 +16,7 @@ import Database from 'better-sqlite3';
 // deleted, both the symlink and the alias dangle and embeddings-backed features break — the
 // dangling symlink in the file tree is the documenting failure signal.
 import { createEmbeddingsProvider } from '@spec-kit/shared/embeddings/factory.js';
-import { createHash } from 'node:crypto';
-import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, rmSync, statSync } from 'node:fs';
-import { basename, dirname, join, relative, resolve } from 'node:path';
+
 import {
   ensureVecMetadataTable,
   ensureVecTableForDim,
@@ -23,7 +25,6 @@ import {
   vecTableNameForDim,
 } from '../embedders/schema.js';
 import { getAdapter } from '../embedders/registry.js';
-import type { EmbedderAdapter } from '../embedders/adapter.js';
 import { checkSqliteIntegrity } from '../freshness/sqlite-integrity.js';
 import { parseSkillFrontmatter } from '../utils/skill-markdown.js';
 import {
@@ -31,6 +32,8 @@ import {
   listSkillDocFiles,
   parseDocFrontmatter,
 } from './doc-frontmatter.js';
+
+import type { EmbedderAdapter } from '../embedders/adapter.js';
 
 // ───────────────────────────────────────────────────────────────
 // 1. TYPES
@@ -390,7 +393,7 @@ export function initDb(dbDir: string): Database.Database {
     }
 
     return db;
-  } catch (error) {
+  } catch (error: unknown) {
     if (db) {
       try { db.close(); } catch { /* best effort cleanup for failed init */ }
     }
@@ -403,6 +406,7 @@ export function initDb(dbDir: string): Database.Database {
 /** Get the current database instance (lazy-initializes if needed). */
 export function getDb(): Database.Database {
   if (!db) initDb(resolveSkillGraphDbDir());
+  // Database initialization either assigns the module-level handle or throws.
   return db!;
 }
 
@@ -607,6 +611,7 @@ function discoverGraphMetadataFiles(skillDir: string): string[] {
   const stack: string[] = [skillDir];
 
   while (stack.length > 0) {
+    // The loop guard guarantees a directory is available to pop.
     const currentDir = stack.pop()!;
     const entries = readdirSync(currentDir, { withFileTypes: true });
     for (const entry of entries) {
@@ -1081,9 +1086,8 @@ async function refreshSkillEmbeddingsViaAdapter(
     if (!resolved) {
       const warning = `ADAPTER-UNAVAILABLE: ${active.name} (manifest not found in registry)`;
       console.warn(`[skill-graph] ${warning}`);
-      // F review P2-1: failed = total skill_nodes count so refresh-watchers
-      // see an outage signal instead of "0 failed / 0 skipped" which looks
-      // like an empty corpus.
+      // Report every skill node as failed so refresh-watchers see an outage
+      // signal instead of an empty-corpus-looking zero count.
       const rowCount = (database.prepare('SELECT COUNT(*) AS c FROM skill_nodes').get() as { c: number }).c;
       return { embedded: 0, skipped: 0, failed: rowCount, warnings: [warning] };
     }
@@ -1096,8 +1100,8 @@ async function refreshSkillEmbeddingsViaAdapter(
     return { embedded: 0, skipped: 0, failed: rowCount, warnings: [warning] };
   }
 
-  // F review P1-1: fail fast on adapter-vs-pointer dim mismatch instead of
-  // per-row EMBEDDING-FAILED noise + accidental vec_<dim> table emptying.
+  // Fail fast on adapter-vs-pointer dim mismatch instead of per-row embedding
+  // noise and accidental table emptying.
   if (adapter.dim !== active.dim) {
     const warning = `ADAPTER-DIM-MISMATCH: ${active.name} reports dim=${adapter.dim} but vec_metadata pointer dim=${active.dim}; fix configuration before refresh`;
     console.warn(`[skill-graph] ${warning}`);

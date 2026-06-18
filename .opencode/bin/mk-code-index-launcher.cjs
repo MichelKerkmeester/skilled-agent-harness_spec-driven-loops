@@ -1,15 +1,9 @@
 #!/usr/bin/env node
-// [mk-code-index-launcher] MCP child-process launcher for the mk-code-index server
-// (system-code-graph). Loads project-local env overrides, applies the maintainer-mode
-// INDEX_* override when SPECKIT_CODE_GRAPH_MAINTAINER_MODE=true, auto-migrates the
-// code-graph database from the former shared location (.opencode/.spec-kit/code-graph/database/)
-// back to the skill-local location (mcp_server/database/), ensures dist
-// artifacts are built and current, serializes concurrent starts via a filesystem bootstrap
-// lock, sets SPECKIT_CODE_GRAPH_DB_DIR for the child process (operator override wins),
-// then spawns the code-graph MCP server child. All stderr lines are tagged with the
-// bracketed module prefix for ops grepping. See .opencode/skills/system-code-graph/ for
-// the standalone skill that owns the server source.
-
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: mk-code-index Launcher                                      ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Prepares code-graph state and launches the MCP server child.   ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
 const fs = require('fs');

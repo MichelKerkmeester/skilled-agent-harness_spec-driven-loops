@@ -55,7 +55,7 @@ node .opencode/skills/deep-loop-runtime/scripts/convergence.cjs \
   --session-id "abc123"
 ```
 
-Expected output: a JSON object with `decision` ("CONTINUE", "STOP_ALLOWED" or "STOP_BLOCKED"), `signals`, `blockers` and `stopBlocked`. Exit code `0` means the decision was computed. Exit code `2` means the database was unreachable.
+Expected output: a JSON wrapper with `status`, `data`, and workflow-facing fields including `graph_decision`, `graph_signals_json`, `graph_blockers_json`, `graph_stop_blocked`, `graph_trace_json` and `graph_convergence_score`. Exit code `0` means the decision was computed. Exit code `2` means the database was unreachable.
 
 **Step 2: Import a runtime module from your TypeScript loop code.**
 
@@ -88,9 +88,9 @@ Expected output: the vitest runner discovers the unit, integration and lifecycle
 
 ### The Three Component Families
 
-`lib/deep-loop/` holds the loop infrastructure. `executor-config` parses per-iteration executor settings from a shared schema so every consumer calls the same executor shape. `executor-audit` appends a provenance block to each iteration JSONL so you can tell which model and CLI produced each iteration. `prompt-pack` renders the iteration prompt template. `post-dispatch-validate` checks that an iteration produced valid markdown, JSONL and delta outputs before the state log accepts them. `atomic-state` writes state logs through a tmpfile-plus-rename pattern so a crash never leaves a partial line. `jsonl-repair` recovers a corrupt trailing line before append. `loop-lock` enforces single-writer access around state mutations. `permissions-gate` checks permission scope before touching sensitive paths. `bayesian-scorer` interprets per-iteration novelty signals into typed convergence decisions with Laplace smoothing. `fallback-router` picks a replacement executor when the primary one times out.
+`lib/deep-loop/` holds the loop infrastructure. `executor-config` parses per-iteration executor settings from a shared schema so every consumer calls the same executor shape. `executor-audit` appends a provenance block to each iteration JSONL so you can tell which model and CLI produced each iteration. `prompt-pack` renders the iteration prompt template. `post-dispatch-validate` checks that an iteration produced valid markdown, JSONL and delta outputs before the state log accepts them. `atomic-state` writes state logs through a tmpfile-plus-rename pattern so a crash never leaves a partial line. `jsonl-repair` recovers a corrupt trailing line before append. `loop-lock` enforces single-writer access around state mutations. `permissions-gate` checks permission scope before touching sensitive paths. `bayesian-scorer` exports the small Bayesian helpers `computeScore` and `shouldDemote`; `convergence.cjs` builds the typed loop decisions. `fallback-router` picks a replacement executor when the primary one times out.
 
-`lib/coverage-graph/` owns the session-scoped evidence graph. `coverage-graph-db` is the sole owner of the SQLite connection at `database/deep-loop-graph.sqlite`, and no other module opens that database. `coverage-graph-query` builds queries for uncovered questions, unverified claims, contradictions and evidence chains. `coverage-graph-signals` extracts the convergence signals (novelty rate, claim-support ratio, contradiction count) the Bayesian scorer consumes.
+`lib/coverage-graph/` owns the session-scoped evidence graph. `coverage-graph-db` is the sole owner of the SQLite connection at `database/deep-loop-graph.sqlite`, and no other module opens that database. `coverage-graph-query` builds queries for uncovered questions, unverified claims, contradictions and evidence chains. `coverage-graph-signals` extracts typed research, review and context metrics, including `questionCoverage`, `claimVerificationRate`, `contradictionDensity`, `sliceCoverage`, `reuseCatalogCoverage` and `agreementRate`, for `convergence.cjs` to evaluate.
 
 `lib/council/` provides council durability primitives. `multi-seat-dispatch` runs seat executors in parallel for one council round and returns fulfilled or rejected per-seat outcomes. `round-state-jsonl` appends per-round JSONL with the same lock-file single-writer guard the deep-loop family uses. `adjudicator-verdict-scoring` scores round-to-round verdict deltas across five weighted axes. `cost-guards` enforces session and topic budgets. `session-state-hierarchy` creates the stable session-to-topic-to-round state shape. A separate `council-graph-db` and `council-graph-query` pair owns the council-specific graph schema, and a council-layer convergence script drives council stop decisions. The council modules mirror the deep-loop durability contract in a council-scoped surface so the `ai-council` mode can consume them without touching review or research behavior.
 
@@ -131,8 +131,8 @@ Skip this runtime when you are writing a loop's own UX, convergence policy or do
 | What you see | Why | Fix |
 |---|---|---|
 | Script exits with code 2 (DB error) | The SQLite database is missing, corrupt or locked by another writer | Confirm `database/deep-loop-graph.sqlite` exists and is writable. If a stale `database/.deep-loop-graph-writer.lock` survived a crash, remove it after confirming no live writer (`ps aux | grep convergence.cjs`). |
-| Script exits with code 3 (input validation) | Argv parsing rejected the input | Check `--spec-folder` is present, `--loop-type` is `review` or `research` and `--session-id` has no path-traversal characters. The full contract is in `references/script_interface_contract.md`. |
-| Bayesian scorer returns CONTINUE past a high iteration count | The novelty signal is not dropping | Check the iteration outputs for corrupt data that injects fake novelty. If outputs are valid, the loop is genuinely surfacing new evidence and the hard cap is the correct stop. |
+| Script exits with code 3 (input validation) | Argv parsing rejected the input | Check `--spec-folder` is present, `--loop-type` is exactly `research`, `review`, `council` or `context`, and `--session-id` has no path-traversal characters. `improvement` is host-driven, not a runtime `loopType`. The full contract is in `references/script_interface_contract.md`. |
+| Convergence returns CONTINUE past a high iteration count | The typed convergence signals are not passing the stop thresholds | Check the iteration outputs for corrupt data that injects fake coverage or contradiction signals. If outputs are valid, the loop is genuinely surfacing new evidence and the hard cap is the correct stop. |
 | Loop-lock acquisition times out | A long-running upsert holds the lock, or a stale lock survived a crash | Raise `DEEP_LOOP_WRITER_LOCK_MAX_WAIT_MS` for contended workloads. For a stale lock, remove the writer lockfile after confirming no live writer. |
 | A state log is corrupt mid-line | The crash happened during a write, not at a line boundary | `jsonl-repair` recovers only trailing corruption. For mid-line corruption, inspect the file and delete the broken line. The loop resumes from the last intact record. |
 | Two writers raced the state log | The loop-lock was not acquired before the mutation | Every consumer that mutates state must call `acquireLoopLock` first, in a try-finally with `releaseLoopLock`. |
@@ -151,11 +151,11 @@ A: One: `deep-loop-workflows`, across its five modes (`context`, `research`, `re
 
 **Q: What does the coverage graph provide?**
 
-A: A session-scoped SQLite graph that tracks research nodes (questions, findings, claims, sources) and review nodes (dimensions, files, findings, evidence, bugs, invariants). Query builders surface uncovered questions, unverified claims and contradictions. Signal extractors feed the Bayesian scorer with novelty rate, claim-support ratio and contradiction counts.
+A: A session-scoped SQLite graph that tracks research nodes (questions, findings, claims, sources) and review nodes (dimensions, files, findings, evidence, bugs, invariants). Query builders surface uncovered questions, unverified claims and contradictions. Signal extractors feed `convergence.cjs` with typed research, review and context metrics such as `questionCoverage`, `claimVerificationRate`, `contradictionDensity`, `sliceCoverage`, `reuseCatalogCoverage` and `agreementRate`.
 
 **Q: What does the Bayesian scorer do?**
 
-A: It reads per-iteration novelty signals from the coverage graph and returns a typed decision: CONTINUE, STOP_ALLOWED or STOP_BLOCKED. It uses Laplace smoothing and a configurable weight matrix, and each consumer sets its own convergence thresholds on top of the shared scorer.
+A: It exposes `computeScore(success, total)` with Laplace smoothing and `shouldDemote(score, totalCalls)` for fallback decisions. The typed loop decisions (`CONTINUE`, `STOP_ALLOWED` and `STOP_BLOCKED`) are assembled by `scripts/convergence.cjs` from coverage-graph signals and per-loop thresholds.
 
 **Q: Why are council primitives here rather than in the `ai-council` mode?**
 

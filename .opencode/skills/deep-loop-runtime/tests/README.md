@@ -17,7 +17,7 @@ vitest harnesses validating runtime primitives. Run via the system-spec-kit vite
 |-----------|---------|--------|
 | `council/` | Council primitives: multi-seat dispatch, verdict scoring, cost guards, round state, and session hierarchy | [`council/README.md`](council/README.md) |
 | `helpers/` | Shared fixtures and child-process helpers used by multiple suites | [`helpers/README.md`](helpers/README.md) |
-| `integration/` | Direct script invocation and review-depth coverage-graph fixtures | [`integration/README.md`](integration/README.md) |
+| `integration/` | Direct script invocation, review-depth coverage-graph fixtures, council graph script coverage, and council graph value scenarios | [`integration/README.md`](integration/README.md) |
 | `lifecycle/` | SQLite open, close, and writer-lock lifecycle checks | [`lifecycle/README.md`](lifecycle/README.md) |
 | `unit/` | Per-module unit tests for deep-loop runtime primitives | [`unit/README.md`](unit/README.md) |
 

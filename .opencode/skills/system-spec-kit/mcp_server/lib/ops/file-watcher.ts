@@ -196,9 +196,9 @@ function isDotfilePath(filePath: string): boolean {
       continue;
     }
 
-    // .opencode is a first-class workspace root for Spec Kit assets.
-    // Treating it as a dotfile path would suppress watcher events for
-    // .opencode/specs/** and break auto re-indexing in default layouts.
+    // The hidden workspace control root stores first-class Spec Kit assets.
+    // Treating it as a dotfile path would suppress watcher events and break
+    // auto re-indexing in default layouts.
     if (part === '.opencode') {
       continue;
     }

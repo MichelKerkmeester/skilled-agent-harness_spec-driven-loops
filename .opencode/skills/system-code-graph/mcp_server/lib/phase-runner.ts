@@ -225,6 +225,7 @@ export function topologicalSort(phases: readonly Phase[]): string[] {
 
   const order: string[] = [];
   while (ready.length > 0) {
+    // Loop condition guarantees a queued phase is available for this shift.
     const next = ready.shift()!;
     order.push(next);
     for (const dependent of dependents.get(next) ?? []) {

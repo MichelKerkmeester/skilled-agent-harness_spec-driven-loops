@@ -103,7 +103,7 @@ const ALLOWED_TRANSITIONS: Record<IngestJobState, Set<IngestJobState>> = {
 };
 
 /* ───────────────────────────────────────────────────────────────
-   5. STATE MANAGEMENT
+   4. STATE MANAGEMENT
 ──────────────────────────────────────────────────────────────── */
 
 // True sequential queue — only one job processes at a time.
@@ -119,7 +119,7 @@ const MAX_STORED_ERRORS = 50;
 const MAX_PENDING_INGEST_JOBS = parsePositiveIntEnv('SPECKIT_INGEST_QUEUE_MAX_PENDING', 1_000);
 
 /* ───────────────────────────────────────────────────────────────
-   4. HELPERS
+   5. HELPERS
 ──────────────────────────────────────────────────────────────── */
 
 function toPublicPathLabel(filePath: string): string {

@@ -763,7 +763,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
           if (facets.length > 0) {
             // Run hybrid for the original query plus each facet, in parallel
             const allQueries = [query, ...facets];
-            // FIX #7: Use Promise.allSettled so one failing facet branch
+            // Use Promise.allSettled so one failing facet branch
             // does not discard results from all other branches.
             const facetSettledResults = await withTimeout(
               Promise.allSettled(
@@ -824,9 +824,9 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
 
       if (queryVariants.length > 1) {
         try {
-          // F1: Wrap parallel variant searches with latency budget.
+          // Wrap parallel variant searches with latency budget.
           // If variants exceed DEEP_EXPANSION_TIMEOUT_MS, fall back to base query.
-          // FIX #7: Use Promise.allSettled so one failing variant does not
+          // Use Promise.allSettled so one failing variant does not
           // discard results from all other variant branches.
           const variantSettledResults = await withTimeout(
             Promise.allSettled(
@@ -1083,7 +1083,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
     );
   }
 
-  // P0 fix: sessionId is for dedup/state tracking, NOT a governance boundary.
+  // Session ID is for dedup/state tracking, NOT a governance boundary.
   // Including it here caused all candidates to be filtered out when memory_context
   // passed an ephemeral sessionId, because memories don't have session-scoped access.
   const hasGovernanceScope = Boolean(
@@ -1195,7 +1195,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
           cachedEmbedding ?? queryEmbedding ?? (await vectorIndex.generateQueryEmbedding(query));
 
         if (reformEmbedding) {
-          // FIX #7: Use Promise.allSettled so one failing reformulation
+          // Use Promise.allSettled so one failing reformulation
           // branch does not discard results from all other branches.
           const reformSettledResults = await Promise.allSettled(
             allQueries.map(async (q, idx): Promise<PipelineRow[]> => {
@@ -1444,7 +1444,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
 
             if (matchResult.score > 0) {
               boostedCount++;
-              // FIX #2: Use resolveEffectiveScore() as the base instead of
+              // Use resolveEffectiveScore() as the base instead of
               // raw row.score. For vector-only rows with only `similarity`,
               // row.score may be undefined/0 while similarity is 0.82+.
               // Using the canonical fallback chain prevents overwriting

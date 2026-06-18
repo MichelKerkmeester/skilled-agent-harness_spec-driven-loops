@@ -31,10 +31,10 @@ upstream_assets:
   cli_health_command: "node .opencode/bin/spec-memory.cjs memory_health --format json --timeout-ms 500 --warm-only"
   cli_health_policy: "Warm-only: probe the existing mk-spec-memory IPC socket first. The --warm-only flag guarantees the CLI never starts a daemon; if the socket is absent or dead it exits 75 (backend unavailable) — report CLI availability as retryable-unavailable."
   files:
-    spec: "spec.md"  # REQ-005..REQ-007 cover flock, snapshots, dashboard
-    decision_record: "decision-record.md"  # ADR-001 documents memory_index_scan tx model
+    spec: "spec.md"  # flock, snapshots, and dashboard contract
+    decision_record: "decision-record.md"  # memory_index_scan transaction model rationale
     tx_model: "decision-record.md#adr-001"  # per-file transactions + ~5 sec SIGINT settle
-    checklist: "checklist.md#doctor-memory"  # CHK-104 gold-battery acceptance bar
+    checklist: "checklist.md#doctor-memory"  # gold-battery acceptance bar
   pass_policy:
     minimum_result_count_per_query: 1  # existing memory gold-battery floor
     post_result_count_floor_ratio: 0.80  # preserve current workflow threshold

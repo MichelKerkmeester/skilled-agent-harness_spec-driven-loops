@@ -109,13 +109,14 @@ Skip it for a single-pass lookup, where the `@context` agent is faster. Skip it 
 
 ### Sibling Deep Loops
 
-`deep-context` shares the `deep-loop-runtime` with three sibling skills. Each owns a different phase of the planning-to-implementation pipeline and none crosses into another's territory.
+`deep-context` shares the `deep-loop-runtime` through the `deep-loop-workflows` roster: context, research, review, ai-council, and improvement. Each owns a different phase of the planning-to-implementation pipeline and none crosses into another's territory. The improvement persona exposes four command lanes: `agent-improvement`, `model-benchmark`, `skill-benchmark`, and `non-dev-ai-system-refine`.
 
 | Skill | Relationship |
 |---|---|
 | `deep-research` | Investigates outward web knowledge and answers research questions. `deep-context` maps inward code. |
 | `deep-review` | Audits code for bugs, security gaps and quality issues. Run it after implementation, not before. |
 | `deep-ai-council` | Compares competing plans with structured disagreement. Run `deep-context` first so seats start from shared facts. |
+| `deep-improvement` | Runs evaluator-first improvement lanes for agents, models, skills and non-dev AI-system packaging. |
 
 `/speckit:plan` and `/speckit:implement` consume the Context Report. `system-spec-kit` owns the spec folder, validation and memory continuity. `deep-loop-runtime` provides the shared coverage graph, convergence script and atomic-state layer.
 

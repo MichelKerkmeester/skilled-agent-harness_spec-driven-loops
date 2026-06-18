@@ -9,7 +9,7 @@ description: "Schema, queries, and Bayesian signals for deep-loop convergence de
 
 ## 1. OVERVIEW
 
-Convergence-detection primitives for deep-review and deep-research. Computes dimension coverage, finding stability, P0 resolution rate, evidence density, and hotspot saturation.
+Convergence-detection primitives for research, review, and context coverage graphs. Computes research/review signals plus context signals: slice coverage, reuse catalog coverage, agreement rate, relevance floor, and dependency completeness.
 
 ## 2. CONTENTS
 
@@ -21,8 +21,9 @@ Convergence-detection primitives for deep-review and deep-research. Computes dim
 
 ## 3. CONSUMERS
 
-- deep-review: convergence detection via `coverage-graph-signals`
-- deep-research: novelty-rate scoring and dead-end tracking
+- review: convergence detection via `coverage-graph-signals`
+- research: novelty-rate scoring and dead-end tracking
+- context: graph node kinds, relations, and convergence signals for slice, reuse, agreement, relevance, and dependency coverage
 
 ## 4. RELATED RESOURCES
 

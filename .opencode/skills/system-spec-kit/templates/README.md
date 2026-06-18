@@ -134,11 +134,10 @@ templates/
 │   ├── EXTENSION_GUIDE.md
 │   └── MIGRATION.md
 ├── examples/
-│   ├── level-1/
-│   ├── level-2/
-│   ├── level-3/
-│   ├── level-3-plus/
-│   └── phase-parent/
+│   ├── level_1/
+│   ├── level_2/
+│   ├── level_3/
+│   └── level_3+/
 ├── changelog/
 ├── stress_test/
 └── scratch/
@@ -163,7 +162,7 @@ templates/
 | `manifest/handover.md.tmpl`               | Renders handover documents for memory-save workflows.                            |
 | `manifest/resource-map.md.tmpl`           | Renders optional path ledgers for larger packets.                                |
 | `manifest/EXTENSION_GUIDE.md`             | Explains how maintainers add a new document type.                                |
-| `examples/`                               | Shows rendered output for each public Level.                                     |
+| `examples/`                               | Shows rendered output for Levels 1, 2, 3 and 3+. Phase-parent scaffolding is defined by the manifest template contract. |
 
 <!-- /ANCHOR:key-files -->
 

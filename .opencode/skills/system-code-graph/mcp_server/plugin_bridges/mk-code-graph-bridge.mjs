@@ -1,5 +1,7 @@
 #!/usr/bin/env node
-'use strict';
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ Code Graph Plugin Bridge                                               ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 
 import { spawn } from 'node:child_process';
 import { existsSync } from 'node:fs';

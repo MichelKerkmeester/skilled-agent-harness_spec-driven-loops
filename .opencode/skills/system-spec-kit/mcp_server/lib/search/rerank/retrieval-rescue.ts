@@ -83,6 +83,10 @@ function envFlagExplicitFalse(name: string): boolean {
   return raw === 'false';
 }
 
+/**
+ * Reports whether the retrieval-rescue layer should run for the current process.
+ * @returns True unless the rescue layer is explicitly disabled by environment.
+ */
 export function isRetrievalRescueEnabled(): boolean {
   return !envFlagExplicitFalse('SPECKIT_RERANK_LAYER');
 }
@@ -399,6 +403,10 @@ function mergeSiblingCandidates(query: string, rows: PipelineRow[], options: Res
   return Array.from(byId.values());
 }
 
+/**
+ * Applies lexical trigger and sibling-document rescue scoring to candidate rows.
+ * @returns Rows sorted by effective score after rescue metadata is attached.
+ */
 export function applyRetrievalRescueLayer(
   query: string,
   rows: PipelineRow[],

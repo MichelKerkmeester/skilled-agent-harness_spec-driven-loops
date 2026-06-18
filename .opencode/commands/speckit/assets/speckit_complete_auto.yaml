@@ -11,7 +11,7 @@
 # - `after:` carries prose timing / narrative notes that previously bled
 #   into `when:`. `after:` is never evaluated as a predicate.
 # - Operators permitted: ==, !=, in, not_in. Boolean literals must match
-#   the uppercase TRUE/FALSE contract (regression: T-TEST-NEW-19).
+#   the uppercase TRUE/FALSE contract used by predicate normalization.
 # ─────────────────────────────────────────────────────────────────
 role: Expert Developer using Smart SpecKit autonomously
 purpose: Spec-driven development with mandatory compliance and autonomous execution

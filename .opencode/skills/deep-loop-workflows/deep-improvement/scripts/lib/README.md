@@ -1,6 +1,6 @@
 ---
 title: "deep-improvement Scripts Library"
-description: "CommonJS library helpers shared by deep-improvement CLI scripts: typed-error wrappers, promotion gate constants, 4-runtime mirror sync verifier."
+description: "CommonJS library helpers shared by deep-improvement CLI scripts: typed-error wrappers, promotion gate constants, 3-runtime mirror sync verifier."
 trigger_phrases:
   - "shared lib"
   - "typed errors promotion gates mirror sync"

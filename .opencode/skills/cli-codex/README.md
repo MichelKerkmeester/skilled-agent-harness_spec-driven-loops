@@ -115,17 +115,23 @@ If the agent reading this skill is itself running inside Codex, the skill refuse
 
 When any layer matches, the skill returns a refusal and loads nothing. The cli-X family exists for cross-AI delegation. A running CLI skill never dispatches itself.
 
-### Profile Routing And Reasoning Effort
+### Agent Routing And Reasoning Effort
 
-Route to a specialized profile with `-p <profile>`. Profiles live in `.codex/config.toml` under `[profiles.<name>]` and shape how Codex processes the task. SKILL.md documents six.
+Route to a specialized Codex agent through the repo-local agent surface. `.codex/config.toml` declares `[agents.<name>]` entries whose `config_file` values point at `.codex/agents/<name>.toml`; the `.codex/agents/` directory holds the Codex-side agent files. The roster is larger than the old six-profile set.
 
-| Profile | Task | Pair with |
+| Agent | Task | Pair with |
 |---|---|---|
-| `review` | Code review and security audit | `--sandbox read-only` |
-| `context` | Architecture exploration and codebase mapping | `--sandbox read-only` |
-| `research` | Technical research | `--search` |
-| `write` | Documentation generation | `--sandbox workspace-write` |
+| `code` | Application-code implementation | `--sandbox workspace-write` |
+| `context` | Production context retrieval and codebase mapping | `--sandbox read-only` |
 | `debug` | Fresh-perspective debugging | `--sandbox workspace-write` |
+| `deep-context` | Deep context analysis | `--sandbox read-only` |
+| `deep-improvement` | Proposal-only improvement candidates | `--sandbox read-only` |
+| `deep-research` | Iterative technical research | `--search` |
+| `deep-review` | Iterative code review | `--sandbox read-only` |
+| `markdown` | Documentation execution | `--sandbox workspace-write` |
+| `orchestrate` | Multi-agent coordination | `--sandbox read-only` |
+| `prompt-improver` | Dispatch-ready prompt packages | `--sandbox read-only` |
+| `review` | Code review and security audit | `--sandbox read-only` |
 | `ai-council` | Multi-strategy planning | `--sandbox read-only` |
 
 The model stays `gpt-5.5` for every task. Only reasoning effort changes, set with `-c model_reasoning_effort="<level>"` across `none`, `minimal`, `low`, `medium` (default), `high` and `xhigh`. There is no `--reasoning-effort` flag.

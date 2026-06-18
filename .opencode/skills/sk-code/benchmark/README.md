@@ -26,9 +26,9 @@ Two trace modes score the same playbook corpus:
 
 | Metric | Value |
 |---|---|
-| Corpus | sk-code `manual_testing_playbook` (24 scenarios: 15 routing, 2 advisor, 7 browser) |
+| Corpus | sk-code `manual_testing_playbook` (28 deterministic scenarios across 8 categories, including `DR-001`..`DR-004`) |
 | Trace modes | router (deterministic CI gate), live (real dispatch) |
-| Latest router verdict | FAIL, aggregate 40 |
+| Latest router verdict | FAIL, aggregate 44/100 |
 | Latest live verdict | CONDITIONAL, aggregate 71 |
 | D4 usefulness (approximate) | about 49 |
 
@@ -129,4 +129,4 @@ Start with the `.md` file for the verdict and the ranked bottlenecks. Open the `
 | Document | Purpose |
 |---|---|
 | [`smart_routing.md`](../references/smart_routing.md) | The machine-readable router the benchmark replays |
-| [`start-skill-benchmark-loop`](../../../commands/deep/start-skill-benchmark-loop.md) | The command that drives a benchmark run |
+| [`/deep:skill-benchmark`](../../../commands/deep/skill-benchmark.md) | The command that drives a benchmark run |

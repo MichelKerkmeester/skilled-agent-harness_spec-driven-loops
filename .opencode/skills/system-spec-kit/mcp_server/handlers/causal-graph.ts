@@ -3,7 +3,7 @@
 // ────────────────────────────────────────────────────────────────
 
 /* ───────────────────────────────────────────────────────────────
-   0. DEPENDENCIES
+   1. DEPENDENCIES
 ──────────────────────────────────────────────────────────────── */
 
 // Lib modules
@@ -38,7 +38,7 @@ import { runPostMutationHooks } from './mutation-hooks.js';
 
 
 /* ───────────────────────────────────────────────────────────────
-   1. TYPES
+   2. TYPES
 ──────────────────────────────────────────────────────────────── */
 
 /** Flat edge representation for API responses */
@@ -269,7 +269,7 @@ function createSanitizedCausalError(
 }
 
 /* ───────────────────────────────────────────────────────────────
-   2. TREE-TO-FLAT CONVERTER
+   3. TREE-TO-FLAT CONVERTER
 ──────────────────────────────────────────────────────────────── */
 
 /**
@@ -482,7 +482,7 @@ function formatRelationSummary(chain: FlattenedChain, label: 'incoming' | 'outgo
 }
 
 /* ───────────────────────────────────────────────────────────────
-   3. MEMORY DRIFT WHY HANDLER
+   4. MEMORY DRIFT WHY HANDLER
 ──────────────────────────────────────────────────────────────── */
 
 /** Handle memory_drift_why tool - traces causal relationships for a given memory */
@@ -769,7 +769,7 @@ async function handleMemoryDriftWhy(args: DriftWhyArgs): Promise<MCPResponse> {
 }
 
 /* ───────────────────────────────────────────────────────────────
-   3. CAUSAL LINK HANDLER
+   5. CAUSAL LINK HANDLER
 ──────────────────────────────────────────────────────────────── */
 
 /** Handle memory_causal_link tool - creates a causal edge between two memories */
@@ -937,7 +937,7 @@ async function handleMemoryCausalLink(args: CausalLinkArgs): Promise<MCPResponse
 }
 
 /* ───────────────────────────────────────────────────────────────
-   4. CAUSAL GRAPH STATS HANDLER
+   6. CAUSAL GRAPH STATS HANDLER
 ──────────────────────────────────────────────────────────────── */
 
 /** Handle memory_causal_stats tool - returns graph coverage and health metrics */
@@ -1099,7 +1099,7 @@ async function handleMemoryCausalStats(args: CausalStatsArgs = {}): Promise<MCPR
 }
 
 /* ───────────────────────────────────────────────────────────────
-   5. CAUSAL UNLINK HANDLER
+   7. CAUSAL UNLINK HANDLER
 ──────────────────────────────────────────────────────────────── */
 
 /** Handle memory_causal_unlink tool - deletes a causal edge by ID */
@@ -1192,7 +1192,7 @@ async function handleMemoryCausalUnlink(args: CausalUnlinkArgs): Promise<MCPResp
 }
 
 /* ───────────────────────────────────────────────────────────────
-   6. EXPORTS
+   8. EXPORTS
 ──────────────────────────────────────────────────────────────── */
 
 export {

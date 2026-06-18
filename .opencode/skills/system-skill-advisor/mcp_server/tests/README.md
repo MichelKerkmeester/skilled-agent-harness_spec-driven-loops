@@ -15,7 +15,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`skill_advisor/tests/` is the regression surface for the skill-advisor package. It groups focused Vitest suites, compatibility checks, handler and hook tests, schema checks, Python parity tests and shared fixtures used by the advisor scorer and daemon paths.
+`mcp_server/tests/` is the regression surface for the skill-advisor package. It groups focused Vitest suites, compatibility checks, handler and hook tests, schema checks, Python parity tests and shared fixtures used by the advisor scorer and daemon paths.
 
 Current state:
 
@@ -97,15 +97,42 @@ fixtures -> generated runtime state without an explicit test setup
 ```text
 tests/
 +-- affordance-normalizer.test.ts
++-- advisor-rebuild.vitest.ts
++-- cross-skill-edges.vitest.ts
++-- daemon-freshness-foundation.vitest.ts
++-- daemon-watcher-resource-leaks-049-005.vitest.ts
 +-- lane-attribution.test.ts
++-- launcher-bootstrap.vitest.ts
++-- launcher-idle-timeout.vitest.ts
++-- launcher-lease.vitest.ts
++-- launcher-reap-pid-reuse.vitest.ts
++-- lifecycle-derived-metadata.vitest.ts
 +-- manual-testing-playbook.vitest.ts
++-- migration-lineage-identity.vitest.ts
++-- mk-skill-advisor-plugin.vitest.ts
++-- rename-invariants.vitest.ts
 +-- routing-fixtures.affordance.test.ts
++-- routing-parity-deep-council.vitest.ts
++-- routing-parity-deep-skills.vitest.ts
++-- routing-registry-drift-guard.vitest.ts
 +-- shadow-sink.vitest.ts
++-- skill-advisor-cli-dual-client.vitest.ts
++-- skill-advisor-cli-help-aliases-errors.vitest.ts
++-- skill-advisor-cli-job-semantics.vitest.ts
++-- skill-advisor-cli-manifest-parity.vitest.ts
++-- skill-advisor-cli-parity.vitest.ts
++-- skill-advisor-cli-trusted-prompt-time.vitest.ts
++-- skill-advisor-launcher-orphan-reaping.vitest.ts
++-- skill-doc-harvest.vitest.ts
++-- skill-graph-bfs-traversal.vitest.ts
 +-- skill-graph-db.vitest.ts
++-- skill-graph-diagnostic-redaction.vitest.ts
++-- skill-graph-handlers.vitest.ts
++-- skill-graph-queries-parity.vitest.ts
++-- sqlite-integrity.vitest.ts
++-- tri-daemon-drill.vitest.ts          # Env-gated tri-daemon drill
 +-- embedders/
 +-- skill-graph/
-+-- daemon-freshness-foundation.vitest.ts
-+-- lifecycle-derived-metadata.vitest.ts
 +-- scorer/
 `-- README.md
 ```

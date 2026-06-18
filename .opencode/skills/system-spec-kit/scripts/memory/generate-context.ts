@@ -1,6 +1,6 @@
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Generate Context
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 // ───────────────────────────────────────────────────────────────
 // 1. GENERATE CONTEXT
@@ -14,7 +14,6 @@ import * as fsSync from 'fs';
 // Internal modules
 import { validateFilePath } from '@spec-kit/shared/utils/path-security';
 import { graphMetadataSchema } from '@spec-kit/mcp-server/api';
-import type { GraphMetadata } from '@spec-kit/mcp-server/api';
 import {
   CONFIG,
   getSessionScopedSaveContextExample,
@@ -30,6 +29,7 @@ import { loadCollectedData } from '../loaders/index.js';
 import { collectSessionData } from '../extractors/collect-session-data.js';
 import { isMainModule } from '../lib/esm-entry.js';
 import { isPhaseParent } from '../spec/is-phase-parent.js';
+import type { GraphMetadata } from '@spec-kit/mcp-server/api';
 
 type StructuredCollectedData = Record<string, unknown> & { _source: 'file' };
 

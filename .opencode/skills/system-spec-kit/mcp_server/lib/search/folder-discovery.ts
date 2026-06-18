@@ -1066,8 +1066,8 @@ export function saveDescriptionCache(cache: DescriptionCache, cachePath: string)
 
 /**
  * Resolve the standard specs base paths for a workspace.
- * Returns all existing directories from: `specs/` and `.opencode/specs/`
- * relative to the given workspace (or cwd if omitted).
+ * Returns all existing configured spec root directories relative to the
+ * given workspace (or cwd if omitted).
  *
  * @param workspacePath - Optional workspace root. Defaults to process.cwd().
  * @returns Array of absolute directory paths that exist.

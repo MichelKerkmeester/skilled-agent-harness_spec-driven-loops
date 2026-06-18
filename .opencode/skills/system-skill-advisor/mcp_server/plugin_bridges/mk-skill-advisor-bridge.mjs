@@ -2,11 +2,10 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
 // ║ COMPONENT: Skill Advisor Plugin Bridge (mk-skill-advisor, MJS source)   ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Subprocess bridge between `.opencode/plugins/mk-skill-         ║
-// ║          advisor.js` and the standalone mk_skill_advisor MCP       ║
-// ║          server. The plugin                                           ║
-// ║          spawns this script with stdin JSON; this script writes a      ║
-// ║          single stdout JSON response and exits.                         ║
+// ║ PURPOSE: Subprocess bridge between `.opencode/plugins/mk-skill-          ║
+// ║          advisor.js` and the standalone mk_skill_advisor MCP server.     ║
+// ║          The plugin spawns this script with stdin JSON; this script      ║
+// ║          writes a single stdout JSON response and exits.                 ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 //
 // This file is the SOURCE-OF-TRUTH bridge. It lives outside the
@@ -87,6 +86,12 @@ const CHILD_ENV_ALLOWLIST = new Set([
   'SPECKIT_SKILL_ADVISOR_CLI_PROBE_TIMEOUT_MS',
 ]);
 
+/**
+ * Build the normalized bridge response envelope consumed by the plugin host.
+ *
+ * @param {object} args - Response fields from the selected advisor route.
+ * @returns {object} JSON-serializable bridge response.
+ */
 function response(args) {
   return {
     brief: typeof args.brief === 'string' ? args.brief : null,
@@ -150,6 +155,12 @@ async function withStdoutSilenced(fn) {
   }
 }
 
+/**
+ * Parse and validate the stdin payload sent by the plugin host.
+ *
+ * @param {string} text - Raw JSON stdin text.
+ * @returns {object} Validated bridge input payload.
+ */
 function parseInput(text) {
   if (!text.trim()) {
     throw Object.assign(new Error('Missing bridge input'), { code: 'MISSING_INPUT' });
@@ -190,6 +201,12 @@ function sanitizeLabel(value) {
   return cleaned;
 }
 
+/**
+ * Create a minimal environment for advisor subprocesses.
+ *
+ * @param {NodeJS.ProcessEnv} [sourceEnv=process.env] - Environment to filter.
+ * @returns {Record<string, string>} Allowlisted child-process environment.
+ */
 function createChildEnv(sourceEnv = process.env) {
   return Object.fromEntries(
     Object.entries(sourceEnv).filter((entry) => CHILD_ENV_ALLOWLIST.has(entry[0]) && typeof entry[1] === 'string'),
@@ -297,6 +314,13 @@ function hasPrecomputedAmbiguity(result, recommendations) {
   ));
 }
 
+/**
+ * Render a prompt-safe advisor brief from recommendation data.
+ *
+ * @param {object} result - Advisor result payload.
+ * @param {object} [options={}] - Rendering options and threshold config.
+ * @returns {string|null} Compact advisor brief, or null when unavailable.
+ */
 function renderAdvisorBrief(result, options = {}) {
   if (result.status !== 'ok') return null;
   if (result.freshness !== 'live' && result.freshness !== 'stale') return null;
@@ -467,6 +491,13 @@ async function probeNativeAdvisor(input, dependencies = {}) {
   return probe;
 }
 
+/**
+ * Build an advisor brief through the native in-process advisor path.
+ *
+ * @param {object} input - Validated bridge input payload.
+ * @param {object} [dependencies={}] - Injectable dependencies for tests.
+ * @returns {Promise<object>} Normalized bridge response.
+ */
 async function buildNativeBrief(input, dependencies = {}) {
   const modules = await (dependencies.loadNativeAdvisorModules ?? loadNativeAdvisorModules)();
   const effectiveThresholds = {
@@ -604,6 +635,13 @@ function cliFallbackResponse(input, reason, subprocessInvoked = false, metadata 
   });
 }
 
+/**
+ * Detect CLI failures caused by stale or missing generated advisor output.
+ *
+ * @param {number|null} exitCode - CLI process exit code.
+ * @param {string} stderr - Captured CLI stderr.
+ * @returns {object|null} Stale-dist metadata, or null for other failures.
+ */
 function classifyCliStaleDist(exitCode, stderr) {
   if (exitCode !== ADVISOR_CLI_STALE_EXIT || !/dist entrypoint is (stale|missing)/i.test(stderr)) {
     return null;
@@ -685,6 +723,13 @@ function runCliRecommend(input, env, timeoutMs) {
   });
 }
 
+/**
+ * Build an advisor brief through the warm CLI fallback path.
+ *
+ * @param {object} input - Validated bridge input payload.
+ * @param {object} [dependencies={}] - Injectable dependencies for tests.
+ * @returns {Promise<object>} Normalized bridge response.
+ */
 async function buildCliBrief(input, dependencies = {}) {
   const env = dependencies.env ?? process.env;
   const timeoutMs = resolveCliTimeoutMs(env);
@@ -781,6 +826,12 @@ async function buildCliBrief(input, dependencies = {}) {
   });
 }
 
+/**
+ * Build the fail-open response for the retired local advisor route.
+ *
+ * @param {object} input - Validated bridge input payload.
+ * @returns {Promise<object>} Normalized fail-open response.
+ */
 async function buildLegacyBrief(input) {
   const maxTokens = positiveInt(input.maxTokens, 80);
   const effectiveThresholds = {
@@ -804,6 +855,13 @@ async function buildLegacyBrief(input) {
   });
 }
 
+/**
+ * Build an advisor brief using native, CLI, then legacy fallback routing.
+ *
+ * @param {object} input - Validated bridge input payload.
+ * @param {object} [dependencies={}] - Injectable dependencies for tests.
+ * @returns {Promise<object>} Normalized bridge response.
+ */
 async function buildBrief(input, dependencies = {}) {
   const env = dependencies.env ?? process.env;
   if (env[DISABLED_ENV] === '1') {

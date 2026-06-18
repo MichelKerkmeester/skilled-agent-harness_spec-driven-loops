@@ -14,9 +14,9 @@ import {
   // Reserved import slots for future hld/lld, trace, and impact-analysis handlers.
 } from '../handlers/index.js';
 
-import type { MCPResponse } from '../lib/shared/mcp-types.js';
 import { parseArgs } from '../lib/shared/mcp-types.js';
 import { CODE_GRAPH_TOOL_SCHEMAS, validateToolArgs } from '../tool-schemas.js';
+import type { MCPResponse } from '../lib/shared/mcp-types.js';
 
 /**
  * Tool names handled by this module, derived from the schema registry so the
@@ -62,7 +62,7 @@ export async function handleTool(name: string, args: Record<string, unknown>): P
   if (TOOL_NAMES.has(name)) {
     try {
       validateToolArgs(name, args);
-    } catch (err) {
+    } catch (err: unknown) {
       return {
         content: [{
           type: 'text',

@@ -116,7 +116,7 @@ One rule worth knowing up front: on a protected branch, when you hold bypass rig
 | What you see | Why | Fix |
 |---|---|---|
 | Merge conflicts the AI will not resolve | Overlapping edits need a human call on which version wins | Escalate. The skill does not auto-resolve semantic conflicts. |
-| GitHub MCP returns 401 or 403 | PAT expired or missing scopes | Regenerate the PAT and update `.utcp_config.json` with `repo`, `issues`, `pull_requests` and `workflow` |
+| GitHub MCP returns 401 or 403 | PAT expired or missing scopes | Regenerate the PAT with the needed GitHub permissions, then expose it as `GITHUB_PERSONAL_ACCESS_TOKEN` in `.utcp_config.json`. |
 | Worktree shows "already exists" or is locked | A previous worktree was not removed cleanly | Run `git worktree prune`, then retry |
 | Branch divergence over 50 commits from base | A long-running branch fell behind main | Merge or rebase the base in incrementally before opening a PR |
 | A bare worktree's strict-validate looks green on zero files | The worktree lacks gitignored deps so the run is a silent no-op | Re-run the toolchain on `main` after merge (see `large_reorg_playbook.md`) |

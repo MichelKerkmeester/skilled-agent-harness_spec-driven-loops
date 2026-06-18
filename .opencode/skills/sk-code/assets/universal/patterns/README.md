@@ -87,7 +87,7 @@ Load this folder through the owning skill workflow or MCP server entrypoint.
 ```text
 User request: Check .opencode/skills/sk-code/assets/universal/patterns for sk-code and README coverage.
 Skill routing: sk-code plus sk-doc.
-Expected output: Findings recorded in the 026 audit report.
+Expected output: Findings recorded in the current refinement and release-alignment review, with 026 retained as the completed predecessor.
 ```
 
 ---
@@ -96,7 +96,7 @@ Expected output: Findings recorded in the 026 audit report.
 
 | What You See | Cause | Fix |
 |---|---|---|
-| README appears stale | Source files changed after this audit | Refresh the structure table and rerun the 026 audit check. |
+| README appears stale | Source files changed after this audit | Refresh the structure table and rerun the current release-alignment README remediation check; use 026 only as predecessor context. |
 | Verification command is unclear | Folder is a helper boundary | Use the nearest package or skill-level verification command. |
 
 ---

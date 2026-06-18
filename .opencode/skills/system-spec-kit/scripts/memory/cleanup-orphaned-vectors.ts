@@ -1,6 +1,6 @@
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 // MODULE: Cleanup Orphaned Vectors
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────
 
 // ───────────────────────────────────────────────────────────────
 // 1. CLEANUP ORPHANED VECTORS
@@ -113,8 +113,8 @@ async function main(): Promise<void> {
     console.log(`Found ${orphanedVectorCount} orphaned vectors`);
 
     // STEP 2: Delete all orphans in a single atomic transaction
-    // ISS-B04-002 fix — wrapping history + vector cleanup in one
-    // Transaction prevents partial commits on mid-run failure.
+    // Wrapping history and vector cleanup in one transaction prevents partial
+    // commits on mid-run failure.
     if (dryRun) {
       if (orphanedHistoryCount > 0) {
         console.log(`[DRY-RUN] Would delete ${orphanedHistoryCount} orphaned history entries`);

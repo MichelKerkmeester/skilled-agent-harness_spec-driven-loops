@@ -45,7 +45,7 @@ const RELATION_WEIGHTS: Record<string, number> = {
 const DEFAULT_MAX_DEPTH = 3;
 const MAX_EDGES_LIMIT = 100;
 
-// Edge bounds for the lightweight runtime path (NFR-R01, SC-005)
+// Edge bounds for the lightweight runtime path.
 const MAX_EDGES_PER_NODE = 20;
 const MAX_AUTO_STRENGTH = 0.5;
 const MAX_STRENGTH_INCREASE_PER_CYCLE = 0.05;
@@ -298,7 +298,7 @@ function insertEdge(
   }
   const database = db;
 
-  // NFR-R01: Auto edges capped at MAX_AUTO_STRENGTH
+  // Auto edges capped at MAX_AUTO_STRENGTH.
   const effectiveStrength = isAutoEdgeCreator(createdBy)
     ? Math.min(strength, MAX_AUTO_STRENGTH)
     : strength;
@@ -312,7 +312,7 @@ function insertEdge(
   // FK check deferred — test environments use synthetic IDs not in memory_index.
   // Implementing FK validation would require seeding memory_index in 20+ causal edge tests.
 
-  // NFR-R01: Edge bounds — reject if node already has MAX_EDGES_PER_NODE auto edges
+  // Edge bounds reject inserts when a node already has the maximum auto-edge count.
   if (isAutoEdgeCreator(createdBy)) {
     const edgeCount = countEdgesForNode(sourceId);
     if (edgeCount >= MAX_EDGES_PER_NODE) {
@@ -927,13 +927,14 @@ function findOrphanedEdges(): CausalEdge[] {
 // Automated orphan edge cleanup
 function cleanupOrphanedEdges(): { deleted: number; tombstoned: number; edgeIds: number[] } {
   if (!db) return { deleted: 0, tombstoned: 0, edgeIds: [] };
+  const database = db;
   try {
     const orphaned = findOrphanedEdges();
-    const result = runInTransaction(db, () => {
+    const result = runInTransaction(database, () => {
       if (orphaned.length === 0) {
         return { deleted: 0, tombstoned: 0, edgeIds: [] };
       }
-      return sweepCausalEdges(db!, {
+      return sweepCausalEdges(database, {
         edgeIds: orphaned.map((edge) => edge.id),
         reason: 'orphan causal edge cleanup',
         command: 'causal_edges.cleanupOrphanedEdges',
@@ -1108,7 +1109,7 @@ function rollbackWeights(edgeId: number, toTimestamp: string): boolean {
 }
 
 /* ───────────────────────────────────────────────────────────────
-   11. EDGE BOUNDS & COUNTING (N3-lite NFR-R01)
+   11. EDGE BOUNDS & COUNTING
 ----------------------------------------------------------------*/
 
 function countEdgesForNode(nodeId: string): number {

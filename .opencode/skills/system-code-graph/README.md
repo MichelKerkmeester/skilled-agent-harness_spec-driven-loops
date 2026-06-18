@@ -67,7 +67,7 @@ mcp__mk_code_index__code_graph_query({
 })
 ```
 
-Returns the reverse import impact set: every file that imports the subject, transitively, with `affectedSymbols`, `affectedFiles` and `readiness` metadata confirming the answer is grounded.
+Returns the reverse import impact set: every file that imports the subject, transitively, with `sourceFiles`, `nodes`, `affectedFiles`, `depthGroups`, `riskLevel`, `minConfidence` and ambiguity fields. `affectedSymbols` belongs to `detect_changes`, not `blast_radius`.
 
 **Step 4: Verify the runtime.**
 
@@ -95,7 +95,7 @@ Use MCP as the primary in-session transport today. Use the CLI when MCP transpor
 
 A tree-sitter parser walks your workspace and converts each source file into a graph node. Symbols, calls, imports and definitions become typed edges in a SQLite database. The indexer skips unchanged files by content hash, so incremental scans stay fast. Parser crash cohorts classified as B1/B2 land in a quarantine skip-list, surfaced through `code_graph_status` output under `parserHealth` and `parserSkipList`. Syntax-error partial parses surface parse diagnostics without adding a skip-list row. They do not poison the graph but they do reduce coverage.
 
-The default scan globs include markdown, JSON, YAML and TOML as the `doc` lane, but that lane is file-row coverage only today: doc files are recorded with content hashes and clean parse health, while symbol nodes and relationship edges stay empty (`node_count: 0`, `edge_count: 0`). Treat file counts for those extensions as inventory coverage, not structural extraction.
+The default scan globs include JSON, JSONC, YAML, YML and TOML as the `doc` lane, but deliberately omit Markdown/prose docs. The doc lane is file-row coverage only today: config-format files are recorded with content hashes and clean parse health, while symbol nodes and relationship edges stay empty (`node_count: 0`, `edge_count: 0`). Re-add Markdown only with explicit `includeGlobs`, and treat doc-lane file counts as inventory coverage, not structural extraction.
 
 This structural model is what lets the tools answer "what calls this" with precision. The relationship is a first-class graph edge, not a text-match guess. A function call from file A to file B is an edge you can query, traverse transitively and surface in an impact report.
 
@@ -156,7 +156,7 @@ The boundary with text search is simple. Use Grep when you know the exact token 
 | `code_graph_query` returns fewer results than expected | Some files are not indexed due to parse failures or scope exclusions | Check `parserHealth` and `nodesByKind` in `code_graph_status` output |
 | `code-index.cjs` exits 69 | The CLI dist entrypoint is missing or stale relative to its sources | Run `tsc -p .opencode/skills/system-code-graph/tsconfig.json` (dev loops can set `SPECKIT_CODE_INDEX_CLI_DEV_ALLOW_STALE=1`) |
 | `code-index.cjs` exits 75 under `--warm-only` | The daemon is cold and warm-only forbids a cold spawn | Expected at prompt time; retry without `--warm-only` to auto-spawn via the launcher |
-| Plugin bridge fails on startup with missing `dist/handlers/session-resume.js` | The bridge imports modules that moved to `system-spec-kit` after extraction | See `mcp_server/plugin_bridges/README.md` section 1 for the broken-import table |
+| Plugin bridge reports skipped or fail-open status | The bridge runs prompt-time warm-only and does not cold-spawn missing daemons or sockets | It routes through `.opencode/bin/code-index.cjs` and the launcher IPC bridge; see `mcp_server/plugin_bridges/README.md` |
 | An old doc references `system_code_graph` (underscore form) | A pre-rename reference survived the standalone server rename | Use `mk-code-index`, `mk_code_index` and `mcp__mk_code_index__*` for current runtime docs |
 
 ---

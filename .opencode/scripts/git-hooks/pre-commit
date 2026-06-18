@@ -8,19 +8,19 @@
 # Install: bash .opencode/scripts/install-git-hooks.sh
 # Uninstall: rm .git/hooks/pre-commit
 
-set -u
+set -euo pipefail
 
-if [ "${SPECKIT_SKIP_DOC_MODEL_VALIDATE:-0}" = "1" ]; then
+if [[ "${SPECKIT_SKIP_DOC_MODEL_VALIDATE:-0}" = "1" ]]; then
   exit 0
 fi
 
-REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null)"
-if [ -z "$REPO_ROOT" ]; then
+REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || true)"
+if [[ -z "$REPO_ROOT" ]]; then
   exit 0
 fi
 
 VALIDATOR="$REPO_ROOT/.opencode/skills/sk-doc/scripts/validate-doc-model-refs.js"
-if [ ! -f "$VALIDATOR" ]; then
+if [[ ! -f "$VALIDATOR" ]]; then
   exit 0
 fi
 
@@ -30,13 +30,13 @@ fi
 
 # Run validator; capture exit code. Non-zero exit means drift detected.
 # Advisory: warn on stderr but always exit 0 so the commit proceeds.
-OUT="$(node "$VALIDATOR" 2>&1)"
-RC=$?
+RC=0
+OUT="$(node "$VALIDATOR" 2>&1)" || RC=$?
 
-if [ "$RC" -ne 0 ]; then
+if [[ "$RC" -ne 0 ]]; then
   echo "" >&2
   echo "⚠️  doc-model-refs drift detected (advisory; commit not blocked):" >&2
-  echo "$OUT" | head -30 >&2
+  echo "$OUT" | head -30 >&2 || true
   echo "" >&2
   echo "Bypass next time: SPECKIT_SKIP_DOC_MODEL_VALIDATE=1 git commit ..." >&2
   echo "Fix: update docs to cite canonical model names from registry.ts" >&2
@@ -47,9 +47,9 @@ fi
 # Blocks commits that add ephemeral-artifact pointers in code comment lines.
 # Bypass: SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit ...
 # See: .opencode/skills/sk-code/references/universal/code_style_guide.md §4
-if [ "${SPECKIT_SKIP_COMMENT_HYGIENE:-0}" != "1" ]; then
+if [[ "${SPECKIT_SKIP_COMMENT_HYGIENE:-0}" != "1" ]]; then
   HYGIENE_HOOK="${REPO_ROOT}/.opencode/hooks/pre-commit"
-  if [ -x "$HYGIENE_HOOK" ]; then
+  if [[ -x "$HYGIENE_HOOK" ]]; then
     bash "$HYGIENE_HOOK" || exit $?
   fi
 fi
@@ -60,9 +60,9 @@ fi
 # (zero-hub-weight entries), or models unreachable by name cannot silently
 # regress across sk-prompt / sk-prompt-small-model / cli-*.
 # Bypass: SPECKIT_SKIP_CARD_SYNC=1 git commit ...
-if [ "${SPECKIT_SKIP_CARD_SYNC:-0}" != "1" ]; then
+if [[ "${SPECKIT_SKIP_CARD_SYNC:-0}" != "1" ]]; then
   CARD_GUARD="${REPO_ROOT}/.opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh"
-  if [ -f "$CARD_GUARD" ] && git diff --cached --name-only --diff-filter=ACM \
+  if [[ -f "$CARD_GUARD" ]] && git diff --cached --name-only --diff-filter=ACM \
        | grep -Eq '^\.opencode/skills/(cli-[a-z-]+/(SKILL\.md|assets/prompt_quality_card\.md|graph-metadata\.json)|sk-prompt/assets/cli_prompt_quality_card\.md|sk-prompt-small-model/)'; then
     if ! bash "$CARD_GUARD" "$REPO_ROOT"; then
       echo "" >&2
@@ -82,9 +82,9 @@ fi
 # fails the commit. Guards against the doctor-that-connected-to-all-servers and
 # the installer-that-wiped-a-global-cache regressions.
 # Bypass: SPECKIT_SKIP_MCP_MUTATION_CLASS=1 git commit ...
-if [ "${SPECKIT_SKIP_MCP_MUTATION_CLASS:-0}" != "1" ]; then
+if [[ "${SPECKIT_SKIP_MCP_MUTATION_CLASS:-0}" != "1" ]]; then
   MUTCLASS_GUARD="${REPO_ROOT}/.opencode/commands/doctor/scripts/check-mcp-mutation-class.sh"
-  if [ -f "$MUTCLASS_GUARD" ] && git diff --cached --name-only --diff-filter=ACM \
+  if [[ -f "$MUTCLASS_GUARD" ]] && git diff --cached --name-only --diff-filter=ACM \
        | grep -Eq '^\.opencode/(skills/mcp-[a-z-]+/(scripts/(doctor|install)[a-z.-]*\.sh|mcp-servers/[^/]+/setup\.sh)|commands/doctor/assets/doctor_mcp_install\.yaml)$'; then
     if ! bash "$MUTCLASS_GUARD" "$REPO_ROOT"; then
       echo "" >&2
@@ -100,9 +100,9 @@ fi
 # --- Tool ownership map gate (blocking) ---
 # Blocks commits when the committed generated map no longer matches TOOL_DEFINITIONS.
 # Bypass: SPECKIT_SKIP_TOOL_OWNERSHIP_LINT=1 git commit ...
-if [ "${SPECKIT_SKIP_TOOL_OWNERSHIP_LINT:-0}" != "1" ]; then
+if [[ "${SPECKIT_SKIP_TOOL_OWNERSHIP_LINT:-0}" != "1" ]]; then
   OWNERSHIP_LINT="${REPO_ROOT}/.opencode/skills/system-spec-kit/mcp_server/tests/tool-ownership-lint-runner.mjs"
-  if [ ! -f "$OWNERSHIP_LINT" ]; then
+  if [[ ! -f "$OWNERSHIP_LINT" ]]; then
     echo "BLOCKED: tool-ownership lint runner missing." >&2
     exit 1
   fi

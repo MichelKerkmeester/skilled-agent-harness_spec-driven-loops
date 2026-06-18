@@ -22,7 +22,7 @@ The `shared/` directory is the **canonical source** for shared modules used by b
 - **MCP server** (`mcp_server/`) - `context-server.ts` and memory tools
 
 This consolidation eliminates code duplication and ensures consistent behavior across all entry points.
-These modules support packet-doc-first continuity: `/spec_kit:resume` rebuilds active context from `handover.md -> _memory.continuity -> spec docs`, while generated continuity support artifacts remain supporting search material.
+These modules support packet-doc-first continuity: `/speckit:resume`, implemented by `.opencode/commands/speckit/resume.md`, rebuilds active context from `handover.md -> _memory.continuity -> spec docs`, while generated continuity support artifacts remain supporting search material.
 
 ### Architecture
 
@@ -64,8 +64,8 @@ These modules support packet-doc-first continuity: `/spec_kit:resume` rebuilds a
 
 | Category                 | Count         | Details                                          |
 | ------------------------ | ------------- | ------------------------------------------------ |
-| Top-Level TS Modules     | 8             | index, embeddings, chunking, trigger extractor, types, normalization, config, paths |
-| Top-Level Subdirectories | 10            | algorithms, contracts, dist, embeddings, lib, mcp_server, parsing, ranking, scoring, utils |
+| Top-Level TS Modules     | 14            | index, embeddings, chunking, trigger extractor, types, normalization, config, paths, budget allocator, compact merger, context types, code graph contracts, gate 3 classifier, unicode normalization |
+| Top-Level Subdirectories | 12            | algorithms, contracts, dist, embeddings, ipc, lib, mcp_server, parsing, predicates, ranking, scoring, utils |
 | Provider Implementations | 5             | Voyage, OpenAI, ollama, HF Local, auto |
 | Embedding Dimensions     | 768/1024/1536 | 768 default (ollama and HF Local); 1024 (Voyage); 1536 (OpenAI) |
 
@@ -73,7 +73,7 @@ These modules support packet-doc-first continuity: `/spec_kit:resume` rebuilds a
 
 | Feature                         | Description                                                    |
 | ------------------------------- | -------------------------------------------------------------- |
-| **Multi-Provider Embeddings**   | Supports Voyage, OpenAI, ollama, and HuggingFace local with auto-cascade selection |
+| **Multi-Provider Embeddings**   | Supports ollama, HuggingFace local, OpenAI, and Voyage with local-first auto-cascade selection |
 | **Dynamic Dimension Detection** | 768 (ollama and HF Local), 1024 (Voyage), 1536/3072 (OpenAI) |
 | **Task-Specific Functions**     | Document, query and clustering embeddings                      |
 | **TF-IDF + Semantic Triggers**  | Advanced trigger phrase extraction (v11)                       |
@@ -84,7 +84,7 @@ These modules support packet-doc-first continuity: `/spec_kit:resume` rebuilds a
 
 | Requirement          | Minimum | Recommended |
 | -------------------- | ------- | ----------- |
-| Node.js              | 18+     | 20+         |
+| Node.js              | >=20.11.0 | >=20.11.0  |
 | @huggingface/transformers | 2.0+    | Latest      |
 
 ---
@@ -123,7 +123,10 @@ ls .opencode/skills/system-spec-kit/shared/
 # Expected source files:
 # index.ts, types.ts, normalization.ts, config.ts, paths.ts
 # embeddings.ts, chunking.ts, trigger-extractor.ts
-# algorithms/, contracts/, embeddings/, lib/, parsing/, scoring/, utils/
+# budget-allocator.ts, compact-merger.ts, code-graph-contracts.ts
+# context-types.ts, gate-3-classifier.ts, unicode-normalization.ts
+# algorithms/, contracts/, embeddings/, ipc/, lib/, parsing/, predicates/
+# ranking/, scoring/, utils/
 # Compiled output is written to shared/dist/
 ```
 
@@ -149,12 +152,18 @@ console.log(`Embedding dimensions: ${embedding.length}`)
 ```
 shared/
 ├── index.ts                    # Barrel exports for all shared modules
+├── budget-allocator.ts         # Prompt/token budget allocation helpers
 ├── types.ts                    # Shared type definitions
+├── context-types.ts            # Shared context envelope type helpers
 ├── normalization.ts            # DB row <-> app object normalization
+├── unicode-normalization.ts    # Unicode normalization helpers
 ├── config.ts                   # Shared DB directory resolution and update markers
 ├── paths.ts                    # Shared DB path resolution
 ├── embeddings.ts               # Multi-provider embedding generation
 ├── chunking.ts                 # Semantic chunking utilities
+├── compact-merger.ts           # Compacted context merge helpers
+├── code-graph-contracts.ts     # Code graph readiness and contract types
+├── gate-3-classifier.ts        # File-modification Gate 3 classifier
 ├── trigger-extractor.ts        # Trigger phrase extraction
 ├── package.json                # @spec-kit/shared package manifest
 ├── tsconfig.json               # TypeScript project configuration
@@ -170,13 +179,15 @@ shared/
 │   ├── profile.ts              # Embedding profiles and DB path generation
 │   ├── README.md               # Embeddings factory documentation
 │   └── providers/
-│       ├── ollama.ts        # ollama GGUF (default local provider)
+│       ├── ollama.ts           # ollama local provider
 │       ├── hf-local.ts         # HuggingFace ONNX (fallback local provider)
 │       ├── openai.ts           # OpenAI embeddings API
 │       ├── voyage.ts           # Voyage AI (cloud opt-in)
 │       └── README.md           # Provider comparison and interface docs
 ├── lib/
 │   └── structure-aware-chunker.ts # Markdown-aware chunking helpers
+├── ipc/
+│   └── socket-server.ts        # Shared IPC socket server helper
 ├── mcp_server/
 	│   └── database/
 	│       ├── .db-updated         # Update marker for the shared database directory
@@ -189,6 +200,9 @@ shared/
 │   ├── quality-extractors.test.ts     # Parsing coverage for quality extraction
 │   ├── spec-doc-health.ts             # Spec document health checks
 │   └── spec-doc-health.test.ts        # Tests for spec document health checks
+├── predicates/
+│   ├── boolean-expr.ts         # Boolean expression predicate helpers
+│   └── boolean-expr.test.ts    # Predicate parser tests
 ├── ranking/
 │   ├── learned-combiner.ts     # ML-based score combiner for retrieval ranking
 │   └── matrix-math.ts          # Matrix operations for ranking computations
@@ -214,6 +228,9 @@ shared/
 | `normalization.ts` | Canonical DB row <-> app object conversion |
 | `config.ts` | Shared DB directory resolution and update marker paths |
 | `paths.ts` | Provider-keyed database path resolution (encodes provider, model, dim and dtype in the filename) |
+| `budget-allocator.ts` | Prompt/token budget allocation helpers |
+| `compact-merger.ts` | Compacted context merge helpers |
+| `code-graph-contracts.ts` | Code graph readiness and contract types |
 | `algorithms/` | Shared adaptive fusion, RRF fusion, and MMR reranking helpers |
 | `contracts/retrieval-trace.ts` | Typed retrieval trace and context envelope contracts |
 | `scoring/folder-scoring.ts` | Composite folder scoring and ranking |
@@ -230,9 +247,9 @@ shared/
 
 | Aspect             | Details                                 |
 | ------------------ | --------------------------------------- |
-| **Providers**      | ollama (auto when GGUF runtime is installed), HuggingFace local (final fallback), Voyage AI, OpenAI |
-| **Auto-Detection** | Selects provider via cloud keys, then ollama availability, then HF local |
-| **Fallback**       | Graceful degradation through the provider cascade |
+| **Providers**      | ollama (local-first), HuggingFace local, OpenAI, Voyage AI |
+| **Auto-Detection** | Tries explicit `EMBEDDINGS_PROVIDER` first, then the local-first cascade |
+| **Fallback**       | Graceful degradation through ollama, HF local, OpenAI, then Voyage |
 | **Task Types**     | Document, query and clustering embeddings  |
 
 **Key Functions**:
@@ -296,7 +313,7 @@ The canonical source is the `shared/` package. `shared/embeddings.ts` is the pub
 | Dimensions | 768       | 768      | 1024       | 1536/3072 |
 | Privacy    | Local     | Local    | Cloud      | Cloud     |
 | Offline    | Yes       | Yes      | No         | No        |
-| Default    | Auto when GGUF runtime is installed | Final fallback | Opt-in | Opt-in |
+| Default    | First local cascade choice when persisted or reachable | Second local cascade choice | Explicit or last-resort fallback | Explicit or last-resort fallback |
 
 ---
 
@@ -307,22 +324,20 @@ The canonical source is the `shared/` package. `shared/embeddings.ts` is the pub
 | Variable                  | Required | Default                                       | Description                          |
 | ------------------------- | -------- | --------------------------------------------- | ------------------------------------ |
 | `EMBEDDINGS_PROVIDER`     | No       | `auto`                                        | One of: `auto`, `ollama`, `hf-local`, `voyage`, `openai` |
-| `OLLAMA_EMBEDDINGS_MODEL` | No    | `unsloth/bge-base-en-v1.5-GGUF`            | Override ollama model             |
-| `OLLAMA_EMBEDDINGS_GGUF_FILE` | No | `bge-base-en-v1.5-300M-Q8_0.gguf`               | GGUF filename                        |
-| `HF_EMBEDDINGS_MODEL`     | No       | `onnx-community/bge-base-en-v1.5-ONNX`     | hf-local fallback model              |
+| `OLLAMA_EMBEDDINGS_MODEL` | No       | `nomic-embed-text-v1.5`                    | Override ollama model; Ollama tag form is `nomic-embed-text:v1.5` |
+| `HF_EMBEDDINGS_MODEL`     | No       | `nomic-ai/nomic-embed-text-v1.5`           | hf-local fallback model              |
 | `HF_EMBEDDINGS_DTYPE`     | No       | `q8`                                          | hf-local dtype: `q8`, `fp32`, `fp16`, `q4`, `int8`, `uint8`, `bnb4` |
-| `MEMORY_AUTO_MIGRATE_HF_TO_LLAMA` | No | unset (enabled)                              | Set to `false` to disable 018 auto-migration |
 | `VOYAGE_API_KEY`          | No       | -                                             | Voyage AI cloud embeddings (opt-in)  |
 | `OPENAI_API_KEY`          | No       | -                                             | OpenAI cloud embeddings (opt-in)     |
 | `OPENAI_EMBEDDINGS_MODEL` | No       | `text-embedding-3-small`                      | OpenAI model                         |
 
 ### Provider Selection Precedence
 
-1. Explicit `EMBEDDINGS_PROVIDER` (if not `auto`)
-2. Auto-cascade: Voyage if `VOYAGE_API_KEY` is set (cascade priority 1)
-3. Auto-cascade: OpenAI if `OPENAI_API_KEY` is set (cascade priority 2)
-4. Default local: ollama if `Ollama runtime` loads and the GGUF model is reachable
-5. Fallback local: HF local when the ollama probe fails (always available, no API key)
+1. Explicit `EMBEDDINGS_PROVIDER` (if not `auto`) is tried first.
+2. Auto-cascade: ollama when a persisted or reachable local embedder is available.
+3. Auto-cascade: HF local when the local model server is reachable.
+4. Auto-cascade: OpenAI when local providers fail and `OPENAI_API_KEY` is usable.
+5. Auto-cascade: Voyage when earlier providers fail and `VOYAGE_API_KEY` is usable.
 
 ### Per-Profile Databases
 
@@ -386,12 +401,12 @@ import { getProviderMetadata, getEmbeddingProfile } from '@spec-kit/shared/embed
 // Check current provider
 const meta = getProviderMetadata()
 console.log(meta)
-// { provider: 'ollama', model: 'unsloth/bge-base-en-v1.5-GGUF', dim: 768, healthy: true }
+// { provider: 'ollama', model: 'nomic-embed-text-v1.5', dim: 768, healthy: true }
 
 // Get database path for current profile
 const profile = getEmbeddingProfile()
 const dbPath: string = profile.getDatabasePath('/base/path')
-// '/base/path/context-index__ollama__unsloth-bge-base-en-v1.5-gguf__768__q8.sqlite'
+// '/base/path/context-index__ollama__nomic-embed-text-v1-5__768__q8.sqlite'
 ```
 
 ---
@@ -468,7 +483,7 @@ rm .opencode/skills/system-spec-kit/mcp_server/database/context-index__*.sqlite*
 
 **Symptom**: First embedding takes 30+ seconds
 
-**Cause**: ollama or HF Local downloads ~310MB BGE local fallback model on first run
+**Cause**: ollama or HF Local may download or warm the Nomic local fallback model on first run
 
 **Solution**:
 ```typescript
@@ -529,6 +544,6 @@ console.log(extractTriggerPhrases('memory search trigger extraction'))"
 | ------------------------------------------------------------------------- | ---------------------------------- |
 | [@huggingface/transformers](https://github.com/huggingface/transformers.js) | JavaScript ML library for HF local |
 | [nomic-embed-text v1.5](https://ollama.com/library/nomic-embed-text) | Default ollama embedding model |
-| [BGE local fallback ONNX](https://huggingface.co/onnx-community/bge-base-en-v1.5-ONNX) | Fallback HF Local embedding model |
+| [Nomic Embed Text v1.5](https://huggingface.co/nomic-ai/nomic-embed-text-v1.5) | Fallback HF Local embedding model |
 | [Voyage AI](https://www.voyageai.com/)                                    | Cloud embedding provider (opt-in)  |
 | [OpenAI Embeddings](https://platform.openai.com/docs/guides/embeddings)   | OpenAI embedding API docs          |

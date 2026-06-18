@@ -79,7 +79,7 @@ import type { StatediffAction } from '../lib/storage/statediff.js';
 
 
 /* ───────────────────────────────────────────────────────────────
-   4. TYPES
+   3. TYPES
 ──────────────────────────────────────────────────────────────── */
 
 interface IndexResult {
@@ -314,7 +314,7 @@ interface ScanArgs {
 }
 
 /* ───────────────────────────────────────────────────────────────
-   5. SHARED INDEXING LOGIC
+   4. SHARED INDEXING LOGIC
 ──────────────────────────────────────────────────────────────── */
 
 import { indexMemoryFile } from './memory-save.js';
@@ -344,7 +344,7 @@ async function indexSingleFile(
 }
 
 /* ───────────────────────────────────────────────────────────────
-   6. MEMORY INDEX SCAN HANDLER
+   5. MEMORY INDEX SCAN HANDLER
 ──────────────────────────────────────────────────────────────── */
 
 // Hooks let a background runner observe cancellation and report phase/progress.
@@ -1575,7 +1575,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
 }
 
 /* ───────────────────────────────────────────────────────────────
-   9. EXPORTS
+   6. EXPORTS
 ──────────────────────────────────────────────────────────────── */
 
 export {

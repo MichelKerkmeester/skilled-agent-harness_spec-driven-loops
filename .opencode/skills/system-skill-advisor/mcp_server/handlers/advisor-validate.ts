@@ -13,7 +13,6 @@ import { scoreAdvisorPrompt } from '../lib/scorer/fusion.js';
 import { runPromotionLatencyBench } from '../bench/latency-bench.js';
 import { createFixtureProjection } from '../lib/scorer/projection.js';
 import { skillInAliasSet, skillMatchesAlias } from '../lib/scorer/aliases.js';
-import type { SkillProjection } from '../lib/scorer/types.js';
 import { findAdvisorWorkspaceRoot } from '../lib/utils/workspace-root.js';
 import {
   DEFAULT_ADVISOR_CONFIDENCE_THRESHOLD,
@@ -23,7 +22,6 @@ import {
   advisorHookDiagnosticsPath,
   advisorHookOutcomesPath,
   createAdvisorHookOutcomeRecord,
-  type AdvisorHookOutcomeRecord,
   persistAdvisorHookOutcomeRecord,
   readAdvisorHookHealthSection,
   summarizeAdvisorHookOutcomeRecords,
@@ -32,8 +30,12 @@ import { recordAdvisorFeedbackCalibrationIfEnabled } from '../lib/scorer/feedbac
 import {
   AdvisorValidateInputSchema,
   AdvisorValidateOutputSchema,
-  type AdvisorValidateInput,
-  type AdvisorValidateOutput,
+} from '../schemas/advisor-tool-schemas.js';
+import type { SkillProjection } from '../lib/scorer/types.js';
+import type { AdvisorHookOutcomeRecord } from '../lib/metrics.js';
+import type {
+  AdvisorValidateInput,
+  AdvisorValidateOutput,
 } from '../schemas/advisor-tool-schemas.js';
 
 type HandlerResponse = { content: Array<{ type: string; text: string }> };
@@ -172,7 +174,7 @@ function loadCorpus(workspaceRoot: string): CorpusRow[] {
     let parsed: unknown;
     try {
       parsed = JSON.parse(line);
-    } catch (error) {
+    } catch (error: unknown) {
       const message = error instanceof Error ? error.message : String(error);
       throw new Error(`Corpus row ${index + 1}: invalid JSON (${message})`);
     }
@@ -199,7 +201,7 @@ function loadRegressionCases(workspaceRoot: string): RegressionCase[] {
     let parsed: unknown;
     try {
       parsed = JSON.parse(line);
-    } catch (error) {
+    } catch (error: unknown) {
       const message = error instanceof Error ? error.message : String(error);
       throw new Error(`Regression case row ${index + 1}: invalid JSON (${message})`);
     }
@@ -325,7 +327,7 @@ print(json.dumps(out))
   let parsed: unknown;
   try {
     parsed = JSON.parse(result.stdout);
-  } catch (error) {
+  } catch (error: unknown) {
     const message = error instanceof Error ? error.message : String(error);
     throw new Error(`Python parity scorer returned invalid JSON: ${message}`);
   }

@@ -1207,7 +1207,8 @@ function resolveEffectiveMode(
   }
 
   if (requestedMode === 'auto') {
-    effectiveMode = INTENT_TO_MODE[detectedIntent!] || 'focused';
+    const modeIntent = detectedIntent ?? 'understand';
+    effectiveMode = INTENT_TO_MODE[modeIntent] || 'focused';
 
     if (normalizedInput.length < 50 || /^(what|how|where|when|why)\s/i.test(normalizedInput)) {
       effectiveMode = 'focused';

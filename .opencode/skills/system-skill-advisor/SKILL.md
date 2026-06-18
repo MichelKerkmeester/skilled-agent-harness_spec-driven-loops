@@ -281,9 +281,9 @@ return {
 
 ADR-001 locks the target shape as **Standalone Advisor MCP With Legacy Tool Bridge**.
 
-The package owns a dedicated MCP server named `mk_skill_advisor`. It registers **8 public tools plus 1 internal trusted-caller tool** (9 total). The tool ids stay stable:
+The package owns a dedicated MCP server named `mk_skill_advisor`. It lists all **9 tools** on the MCP surface. The tool ids stay stable:
 
-Public (8):
+Tools (9):
 
 - `advisor_recommend`
 - `advisor_rebuild`
@@ -293,10 +293,9 @@ Public (8):
 - `skill_graph_query`
 - `skill_graph_status`
 - `skill_graph_validate`
+- `skill_graph_propagate_enhances`
 
-Internal trusted-caller (1):
-
-- `skill_graph_propagate_enhances`, gated behind trusted-caller auth (see `references/runtime/tool_ids_reference.md` §4)
+`skill_graph_propagate_enhances` is trust-gated only for real apply writes (`mode=apply` with `dryRun` not `true`); report, propose and dry-run apply calls remain read-safe.
 
 The stable tool ids matter because live consumers already call them from hooks, Python compatibility shims, plugin bridges, doctor workflows, install guides and MCP clients. Server-level namespacing supplies the boundary, so callers use the standalone server without learning a new advisor vocabulary.
 

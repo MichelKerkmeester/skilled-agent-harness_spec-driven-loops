@@ -22,7 +22,7 @@ Current state:
 
 - `config.ts` is the only file. It exports `DATABASE_DIR` after resolving the path and calling `mkdirSync` with `recursive: true`.
 - The environment variable `SPECKIT_CODE_GRAPH_DB_DIR` takes precedence over the default path.
-- Callers that need the code-graph database location import this module. Current consumers are `lib/code-graph-db.ts`, `lib/apply-orchestrator.ts`, and `lib/recovery-procedures.ts`.
+- Callers that need the code-graph database location import this module. Current consumers are `mcp_server/index.ts`, `lib/code-graph-db.ts`, `lib/apply-orchestrator.ts`, and `lib/recovery-procedures.ts`.
 - The module imports only `node:fs`, `node:path` and `node:url`. It has no dependencies on other MCP server code.
 
 `DATABASE_DIR` is always a valid, existing directory after the module loads. No runtime checks or guards are needed after import. Module load can throw if the resolved path cannot be created (for example, when `SPECKIT_CODE_GRAPH_DB_DIR` points to an unwritable location).
@@ -41,7 +41,7 @@ Current state:
 
 | Entrypoint | Type | Purpose |
 |---|---|---|
-| `DATABASE_DIR` | const | Absolute path to the code-graph database directory. Imported by `lib/code-graph-db.ts`, `lib/apply-orchestrator.ts`, and `lib/recovery-procedures.ts`. |
+| `DATABASE_DIR` | const | Absolute path to the code-graph database directory. Imported by `mcp_server/index.ts`, `lib/code-graph-db.ts`, `lib/apply-orchestrator.ts`, and `lib/recovery-procedures.ts`. |
 
 ---
 

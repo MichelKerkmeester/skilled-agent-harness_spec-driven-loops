@@ -91,7 +91,7 @@ Run individual scripts from the repository root with the documented arguments.
 ```text
 User request: Check .opencode/skills/sk-doc/scripts for sk-code and README coverage.
 Skill routing: sk-code plus sk-doc.
-Expected output: Findings recorded in the 026 audit report.
+Expected output: Findings list current README template alignment and freshness drift.
 ```
 
 ---
@@ -100,7 +100,7 @@ Expected output: Findings recorded in the 026 audit report.
 
 | What You See | Cause | Fix |
 |---|---|---|
-| README appears stale | Source files changed after this audit | Refresh the structure table and rerun the 026 audit check. |
+| README appears stale | Source files changed after this audit | Refresh the structure table and rerun `python3 .opencode/skills/sk-doc/scripts/audit_readmes.py --repo-root .`. |
 | Verification command is unclear | Folder is a helper boundary | Use the nearest package or skill-level verification command. |
 
 ---

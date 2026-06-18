@@ -23,7 +23,7 @@ Current state:
 - `skill-advisor-cli.ts` (with `skill-advisor-cli-manifest.ts`) is the daemon-backed CLI over the same 9 tools, fronted by the `.opencode/bin/skill-advisor.cjs` shim — the dual-stack surface beside the unchanged MCP registration. Calls are sent untrusted by default; `--trusted` / `MK_SKILL_ADVISOR_CLI_TRUSTED=1` marks maintainer mutations (`advisor_rebuild`, `skill_graph_scan`, apply-mode `skill_graph_propagate_enhances`), and the gate fails closed with a usage error (exit `64`) otherwise. Shared exit taxonomy `0`/`1`/`64`/`69`/`75`; `--warm-only` probes and exits `75` instead of cold-spawning the daemon.
 - `tools/` defines tool descriptors and dispatches calls. `tools/index.ts` registers `TOOL_DEFINITIONS` with 4 advisor tools plus the spread of skill-graph tools.
 - `handlers/` owns orchestration for advisor tools (recommend, rebuild, status, validate) and skill-graph subhandlers (scan, query, status, validate, propagate_enhances).
-- `lib/` carries the runtime helpers across 11 subdirectories: `scorer/`, `daemon/`, `freshness/`, `lifecycle/`, `derived/`, `compat/`, `auth/`, `corpus/`, `cross-skill-edges/`, `context/` and `shadow/`, plus several flat modules.
+- `lib/` carries runtime helpers across active subdirectories including `scorer/`, `daemon/`, `freshness/`, `lifecycle/`, `derived/`, `compat/`, `auth/`, `corpus/`, `cross-skill-edges/`, `context/`, `shadow/`, `skill-graph/`, `embedders/`, `ipc/`, `shared/` and `utils/`, plus several flat modules.
 - `database/skill-graph.sqlite` stores skill metadata, relationships and derived signals. Schema initialization and prepared queries live in `lib/skill-graph/skill-graph-db.ts` and `lib/skill-graph/skill-graph-queries.ts`.
 - Packet 013/009/011 moved the skill graph DB/query library and startup lifecycle under this package. Extraction is complete.
 
@@ -50,10 +50,10 @@ This package is local-first. It reads repository-local skill metadata, writes pa
                       └────────┬─────────┘      └────────┬────────┘
                                │                         │
                                ▼                         ▼
-                      ┌──────────────────┐      ┌─────────────────┐
-                      │ lib/skill-graph/ │ ───▶ │ database/       │
-                      │ SQLite queries   │      │ skill-graph.db  │
-                      └──────────────────┘      └─────────────────┘
+                      ┌──────────────────┐      ┌────────────────────┐
+                      │ lib/skill-graph/ │ ───▶ │ database/          │
+                      │ SQLite queries   │      │ skill-graph.sqlite │
+                      └──────────────────┘      └────────────────────┘
 
 Dependency direction:
 advisor-server.ts ───▶ tools/ ───▶ handlers/ ───▶ lib/* ───▶ database/

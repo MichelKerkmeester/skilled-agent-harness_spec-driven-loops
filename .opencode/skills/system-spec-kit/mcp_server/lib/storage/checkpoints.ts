@@ -10,7 +10,6 @@ import * as path from 'path';
 import * as zlib from 'zlib';
 
 // External packages
-import type Database from 'better-sqlite3';
 import { z } from 'zod';
 
 // Internal utils
@@ -24,9 +23,6 @@ import {
   normalizeScopeContext,
   recordGovernanceAudit,
   recordTierDowngradeAudit,
-  type ScopeContext,
-  type GovernanceAuditEntry,
-  type TierDowngradeAuditParams,
 } from '../governance/scope-governance.js';
 import { detectCommunities, storeCommunityAssignments } from '../graph/community-detection.js';
 import { generateCommunitySummaries } from '../graph/community-summaries.js';
@@ -38,6 +34,12 @@ import { reopenActiveDatabase } from '../search/vector-index-store.js';
 import { SCHEMA_VERSION } from '../search/vector-index-schema.js';
 import { sweepCausalEdges } from '../causal/sweep.js';
 import { BetterSqliteContentionPolicy } from './ports/contention-policy.js';
+import type Database from 'better-sqlite3';
+import type {
+  GovernanceAuditEntry,
+  ScopeContext,
+  TierDowngradeAuditParams,
+} from '../governance/scope-governance.js';
 
 function batchedInQuery<T>(db: Database.Database, sql: string, ids: (number | string)[], batchSize = 500): T[] {
   const results: T[] = [];

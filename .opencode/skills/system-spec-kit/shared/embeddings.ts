@@ -31,6 +31,7 @@ import type {
   EmbeddingProfileData,
 } from './types.js';
 
+/** Prioritized document sections used to build embedding input text. */
 export interface WeightedDocumentSections {
   title?: string | null;
   decisions?: string[];
@@ -39,7 +40,7 @@ export interface WeightedDocumentSections {
 }
 
 // ---------------------------------------------------------------
-// EMBEDDING CIRCUIT BREAKER
+// 1. EMBEDDING CIRCUIT BREAKER
 // ---------------------------------------------------------------
 // Mirrors the embedder-sidecar circuit breaker pattern.
 // After EMBEDDING_CB_THRESHOLD consecutive failures the circuit opens
@@ -102,14 +103,14 @@ function recordEmbeddingFailure(): void {
 }
 
 // ---------------------------------------------------------------
-// 1. EMBEDDING CACHE
+// 2. EMBEDDING CACHE
 // ---------------------------------------------------------------
 
 const EMBEDDING_CACHE_MAX_SIZE: number = 1000;
 const embeddingCache: Map<string, Float32Array> = new Map();
 
 // ---------------------------------------------------------------
-// RATE LIMITING CONFIGURATION
+// 3. RATE LIMITING CONFIGURATION
 // ---------------------------------------------------------------
 
 /**
@@ -278,6 +279,7 @@ function truncateWeightedBlocksToBudget(
   return nextBlocks;
 }
 
+/** Build weighted document text from prioritized sections within the embedding budget. */
 function buildWeightedDocumentText(
   sections: WeightedDocumentSections,
   maxLength: number = MAX_TEXT_LENGTH,
@@ -345,7 +347,7 @@ function getEmbeddingCacheStats(): EmbeddingCacheStats {
 }
 
 // ---------------------------------------------------------------
-// 2. LAZY SINGLETON PROVIDER INSTANCE
+// 4. LAZY SINGLETON PROVIDER INSTANCE
 // ---------------------------------------------------------------
 
 /**
@@ -474,7 +476,7 @@ function getLazyLoadingStats(): LazyLoadingStats {
 }
 
 // ---------------------------------------------------------------
-// 3. CORE EMBEDDING GENERATION
+// 5. CORE EMBEDDING GENERATION
 // ---------------------------------------------------------------
 
 /**
@@ -655,7 +657,7 @@ async function generateBatchEmbeddings(
 }
 
 // ---------------------------------------------------------------
-// 4. TASK-SPECIFIC FUNCTIONS
+// 6. TASK-SPECIFIC FUNCTIONS
 // ---------------------------------------------------------------
 
 /** Generate embedding for a document (for indexing/storage).
@@ -766,7 +768,7 @@ async function generateClusteringEmbedding(text: string): Promise<Float32Array |
 }
 
 // ---------------------------------------------------------------
-// 5. UTILITY FUNCTIONS
+// 7. UTILITY FUNCTIONS
 // ---------------------------------------------------------------
 
 /**
@@ -901,7 +903,7 @@ function getProviderMetadata(): ProviderMetadata | ProviderInfo {
 }
 
 // ---------------------------------------------------------------
-// 6. CONSTANTS
+// 8. CONSTANTS
 // ---------------------------------------------------------------
 
 const EMBEDDING_DIM: number = 768;
@@ -923,7 +925,7 @@ const TASK_PREFIX: TaskPrefixMap = {
 };
 
 // ---------------------------------------------------------------
-// 7. MODULE EXPORTS
+// 9. MODULE EXPORTS
 // ---------------------------------------------------------------
 
 export {

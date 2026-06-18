@@ -77,7 +77,7 @@ mcp_server/
 +-- core/                     # Configuration constants (DATABASE_DIR)
 +-- dist/                     # Compiled runtime output
 +-- handlers/                 # MCP tool handler modules
-+-- lib/                      # Search, vector index, session and utility code
++-- lib/                      # Code-graph indexer, DB, lease, seed/context, parser, readiness and startup helpers
 +-- plugin_bridges/           # OpenCode plugin bridge (routes through the CLI shim)
 +-- stress_test/              # Stress test support
 +-- tests/                    # Package tests
@@ -91,7 +91,7 @@ Allowed dependency direction:
 index.ts → tool-schemas.ts → tools/ → handlers/
 tools/ → handlers/ → lib/ → core/
 lib/ → core/
-plugin_bridges/ → dist/ (compiled runtime)
+plugin_bridges/ → .opencode/bin/code-index.cjs → launcher IPC bridge
 ```
 
 Disallowed dependency direction:
@@ -112,7 +112,7 @@ mcp_server/
 +-- core/                 # Database directory configuration
 +-- dist/                 # Compiled JavaScript output
 +-- handlers/             # Tool handler modules for scan, query, context and status
-+-- lib/                  # Search, vector index, session manager and utilities
++-- lib/                  # Code-graph indexer, DB, lease, seed/context, parser, readiness and startup helpers
 +-- plugin_bridges/       # OpenCode plugin bridge (CLI route)
 +-- stress_test/          # Load and stress test fixtures
 +-- tests/                # Vitest test coverage

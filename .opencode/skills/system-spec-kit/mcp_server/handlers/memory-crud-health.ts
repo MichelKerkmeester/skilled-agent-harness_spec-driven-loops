@@ -3,7 +3,7 @@
 // ────────────────────────────────────────────────────────────────
 
 /* ───────────────────────────────────────────────────────────────
-   IMPORTS
+   1. IMPORTS
 ──────────────────────────────────────────────────────────────── */
 
 import { randomUUID } from 'node:crypto';
@@ -63,6 +63,10 @@ import type { HealthArgs, PartialProviderMetadata } from './memory-crud-types.js
 // Feature catalog: Memory health autoRepair metadata
 
 
+/* ───────────────────────────────────────────────────────────────
+   2. SAFE OUTPUT HELPERS
+──────────────────────────────────────────────────────────────── */
+
 /** Strip absolute paths, stack traces, and truncate for safe user-facing hints. */
 function sanitizeErrorForHint(msg: string): string {
   return msg
@@ -89,7 +93,7 @@ function redactPath(absolutePath: string): string {
 }
 
 /* ───────────────────────────────────────────────────────────────
-   CONSTANTS
+   3. CONSTANTS
 ──────────────────────────────────────────────────────────────── */
 
 // Read version from package.json at module load time using ESM-relative paths.
@@ -735,13 +739,13 @@ async function getIndexHealthBlock(
 }
 
 /* ───────────────────────────────────────────────────────────────
-   CORE LOGIC
+   4. CORE LOGIC
 ──────────────────────────────────────────────────────────────── */
 
 /** Handle memory_health tool -- returns system health status and diagnostics. */
 async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
   const startTime = Date.now();
-  // A7-P2-1: Generate requestId for incident correlation in error responses
+  // Generate requestId for incident correlation in error responses.
   const requestId = randomUUID();
   if (isMemoryRuntimeInitialized()) {
     try {
@@ -1378,7 +1382,7 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
 }
 
 /* ───────────────────────────────────────────────────────────────
-   EXPORTS
+   5. EXPORTS
 ──────────────────────────────────────────────────────────────── */
 
 export const __testables = {

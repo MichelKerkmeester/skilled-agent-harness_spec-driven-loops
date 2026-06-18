@@ -37,7 +37,7 @@ Long-form investigation inside a conversation degrades as findings pile up in th
 
 `deep-research` runs an autonomous multi-iteration research loop through `/deep:research:auto`. Each iteration dispatches a fresh `@deep-research` LEAF agent that reads the accumulated state from disk, investigates one focus area, writes findings to an iteration file and appends a JSONL record with a new-information ratio. A reducer updates the strategy, registry and dashboard after each pass. The loop stops when the new-information ratio falls below the convergence threshold for long enough, or when all research questions are answered.
 
-It does not map code (`deep-context` does that), audit code (`deep-review`) or compare competing plans (`deep-ai-council`). All four sibling loops share the `deep-loop-runtime` for executors, state handling and coverage graphs.
+It does not map code (`deep-context` does that), audit code (`deep-review`) or compare competing plans (`deep-ai-council`). The current deep-loop workflow roster has five top-level personas: `deep-context`, `deep-research`, `deep-review`, `deep-ai-council`, and `deep-improvement`; the improvement persona includes four command lanes. The runtime-backed personas share `deep-loop-runtime` for executors, state handling and coverage graphs, while improvement remains host-driven.
 
 ---
 

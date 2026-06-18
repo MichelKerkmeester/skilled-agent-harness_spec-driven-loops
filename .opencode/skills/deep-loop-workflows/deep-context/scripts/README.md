@@ -1,6 +1,6 @@
 ---
 title: "deep-context scripts: Code README"
-description: "Code-facing README for .opencode/skills/deep-loop-workflows/deep-context/scripts — documents reduce-state.cjs, the agreement-weighted context reducer."
+description: "Code-facing README for .opencode/skills/deep-loop-workflows/deep-context/scripts — documents reduce-state.cjs and loop-lock.cjs."
 trigger_phrases:
   - "deep-context scripts"
   - "reduce-state deep-context"
@@ -26,7 +26,7 @@ Use this file to identify the folder boundary, the verification path, and the lo
 
 | Metric | Value |
 |---|---:|
-| Code files | 1 (`reduce-state.cjs`) |
+| Code files | 2 (`reduce-state.cjs`, `loop-lock.cjs`) |
 | sk-code surface | OPENCODE |
 | README scope | Direct files in this folder |
 
@@ -44,7 +44,7 @@ Start with `.opencode/skills/deep-loop-workflows/deep-context/SKILL.md` for runt
 rg --files .opencode/skills/deep-loop-workflows/deep-context/scripts
 ```
 
-Expected result: lists `reduce-state.cjs` and `README.md`.
+Expected result: lists `reduce-state.cjs`, `loop-lock.cjs`, and `README.md`.
 
 **Step 3: Run the reducer.**
 
@@ -57,7 +57,7 @@ Expected result: JSON summary written to stdout with `registryPath`, `dashboardP
 **Step 4: Verify syntax.**
 
 ```bash
-node --check .opencode/skills/deep-loop-workflows/deep-context/scripts/reduce-state.cjs && echo "SYNTAX OK"
+node --check .opencode/skills/deep-loop-workflows/deep-context/scripts/reduce-state.cjs && node --check .opencode/skills/deep-loop-workflows/deep-context/scripts/loop-lock.cjs && echo "SYNTAX OK"
 ```
 
 ---
@@ -80,6 +80,7 @@ node --check .opencode/skills/deep-loop-workflows/deep-context/scripts/reduce-st
 | Path | Purpose |
 |---|---|
 | `reduce-state.cjs` | Agreement-weighted context reducer. Reads host-written state log + per-seat findings; writes registry and dashboard. |
+| `loop-lock.cjs` | Host-facing wrapper for runtime loop locking. |
 | `README.md` | This file. |
 
 ---
@@ -141,5 +142,5 @@ console.log(JSON.stringify(r.registry.metrics, null, 2));
 | [`deep-context/SKILL.md`](../SKILL.md) | Runtime instructions for the owning skill |
 | [`deep-context/README.md`](../README.md) | Human-facing skill overview |
 | [`deep-context/references/protocol/loop_protocol.md`](../references/protocol/loop_protocol.md) | Iteration lifecycle and host-writes-state invariant |
-| [`sk-code/SKILL.md`](../../sk-code/SKILL.md) | OpenCode coding standards and verification routing |
-| [`sk-doc/assets/skill/skill_readme_template.md`](../../sk-doc/assets/skill/skill_readme_template.md) | README structure used for this code README |
+| [`sk-code/SKILL.md`](../../../sk-code/SKILL.md) | OpenCode coding standards and verification routing |
+| [`sk-doc/assets/skill/skill_readme_template.md`](../../../sk-doc/assets/skill/skill_readme_template.md) | README structure used for this code README |

@@ -127,7 +127,7 @@ The mode is detected from the command prefix. An absent prefix defaults to the i
 | Mode | Prefix | DEPTH rounds | When to use it |
 |---|---|---|---|
 | Interactive | (none) | 10 | The skill asks one question before processing |
-| Text | `$text` | 10 | A direct prompt with no pre-processing question |
+| Text | `$text` | 10 | Standard prompt enhancement after the one comprehensive pre-processing question |
 | Short | `$short` | 3 | You need a quick refinement, not full depth |
 | Improve | `$improve` | 10 | Standard enhancement, equivalent to the default |
 | Refine | `$refine` | 10 | Maximum optimization for a prompt that is close but not clearing |

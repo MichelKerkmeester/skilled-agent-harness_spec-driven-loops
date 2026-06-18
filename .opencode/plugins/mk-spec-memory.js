@@ -1,4 +1,14 @@
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: Spec Memory OpenCode Plugin (mk-spec-memory)                 ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Inject Spec Kit continuity into OpenCode model context and     ║
+// ║          expose warm bridge status without leaking local paths.          ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 import { createHash } from 'node:crypto';
 import { spawn } from 'node:child_process';
@@ -9,6 +19,10 @@ import { join, resolve as resolvePath } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { tool } from '@opencode-ai/plugin/tool';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const PLUGIN_ID = 'mk-spec-memory';
 const DEFAULT_CACHE_TTL_MS = 5000;
@@ -36,6 +50,10 @@ async function loadConfig() {
 }
 
 const configPromise = loadConfig();
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. PURE UTILITIES
+// ─────────────────────────────────────────────────────────────────────────────
 
 function normalizePositiveInt(value, fallback) {
   return Number.isFinite(value) && value > 0 ? Math.trunc(value) : fallback;
@@ -130,6 +148,10 @@ function eventTypeFrom(event) {
   return typeof payload?.type === 'string' ? payload.type : null;
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. EVENT HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
 function extractEventSessionID(event) {
   const payload = eventPayloadFrom(event);
   return sessionIdFrom(payload);
@@ -207,6 +229,27 @@ function bridgePayload({ request, projectDir, sessionID, options }) {
   return JSON.stringify(payload);
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. PLUGIN FACTORY
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Create the Spec Kit memory OpenCode plugin hooks.
+ *
+ * @param {import('@opencode-ai/plugin').PluginInput} ctx - OpenCode plugin context
+ * @param {Object} [rawOptions] - Plugin options
+ * @param {boolean} [rawOptions.enabled] - Whether continuity injection is enabled
+ * @param {number} [rawOptions.cacheTtlMs] - Continuity cache TTL in milliseconds
+ * @param {number} [rawOptions.cacheTTLMs] - Continuity cache TTL alias in milliseconds
+ * @param {number} [rawOptions.bridgeTimeoutMs] - Bridge subprocess timeout in milliseconds
+ * @param {number} [rawOptions.cliTimeoutMs] - Warm CLI timeout passed to the bridge
+ * @param {string} [rawOptions.nodeBinaryOverride] - Node binary used for the bridge subprocess
+ * @param {string} [rawOptions.specFolder] - Optional spec folder scope for continuity recovery
+ * @param {number} [rawOptions.maxBriefChars] - Maximum injected continuity brief characters
+ * @param {number} [rawOptions.maxCacheEntries] - Maximum continuity cache entries
+ * @param {string} [rawOptions.sourceSignatureOverride] - Test override for source signature
+ * @returns {Promise<Object>} Hooks with `event`, `experimental.chat.system.transform`, and `tool`
+ */
 export default async function MkSpecMemoryPlugin(ctx, rawOptions) {
   const fileConfig = await configPromise;
   const merged = { ...fileConfig, ...rawOptions };

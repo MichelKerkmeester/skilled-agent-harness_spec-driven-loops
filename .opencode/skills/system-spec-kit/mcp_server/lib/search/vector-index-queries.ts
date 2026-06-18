@@ -957,7 +957,7 @@ export async function vector_search_enriched(
     raw_results = keyword_search(query, { limit, specFolder }, database);
   }
 
-  // HIGH-004 FIX: Read all files concurrently
+  // Read files concurrently so enrichment latency is bounded by the slowest read.
   const file_contents = await Promise.all(
     raw_results.map((row: MemoryRow) => safe_read_file_async(row.file_path))
   );

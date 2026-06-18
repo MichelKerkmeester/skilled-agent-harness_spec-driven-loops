@@ -34,7 +34,7 @@ Orchestrators may place this compact header near the top of a delegated task pro
 AGENT_IO_DISPATCH v1
 schema_version: agent-io/v1
 dispatch_id: <stable id or none>
-agent: @context | @code | @review | @debug | @markdown | @ai-council | @deep-research
+agent: @orchestrate | @context | @code | @review | @debug | @markdown | @prompt-improver | @ai-council | @deep-context | @deep-research | @deep-review | @deep-improvement
 task_type: explore | implement | review | debug | document | plan | research
 task_definition: <one-line task summary>
 context_snapshot: none | included | one-shot

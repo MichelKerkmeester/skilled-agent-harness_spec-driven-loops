@@ -4,21 +4,24 @@
 // SQLite storage for structural code graph (nodes + edges).
 // Uses separate code-graph.sqlite alongside the memory index DB.
 
-import Database from 'better-sqlite3';
-import { join, isAbsolute, resolve as resolvePath } from 'node:path';
 import { readFileSync, statSync } from 'node:fs';
+import { isAbsolute, join, resolve as resolvePath } from 'node:path';
+
+import Database from 'better-sqlite3';
+
+import { DATABASE_DIR } from '../core/config.js';
 import { assertDbHandleClosed } from './close-db-assertion.js';
-import { generateContentHash, type CodeNode, type CodeEdge, type DetectorProvenance } from './indexer-types.js';
+import { generateContentHash } from './indexer-types.js';
 import {
   CODE_GRAPH_SCOPE_FINGERPRINT_KEY,
   CODE_GRAPH_SCOPE_LABEL_KEY,
   CODE_GRAPH_SCOPE_SOURCE_KEY,
   CODE_GRAPH_SKILL_EXCLUDE_GLOBS,
   parseIndexScopePolicyFromFingerprint,
-  type IndexScopePolicy,
-  type IndexScopePolicySource,
 } from './index-scope-policy.js';
-import { DATABASE_DIR } from '../core/config.js';
+
+import type { CodeEdge, CodeNode, DetectorProvenance } from './indexer-types.js';
+import type { IndexScopePolicy, IndexScopePolicySource } from './index-scope-policy.js';
 
 let db: Database.Database | null = null;
 let dbPath: string | null = null;
@@ -1135,7 +1138,7 @@ export function removeFile(filePath: string, options: DeleteAuditOptions = {}): 
   const d = getDb();
   const file = d.prepare('SELECT id FROM code_files WHERE file_path = ?').get(filePath) as { id: number } | undefined;
   if (!file) return;
-  // CG-003: wrap the edge-delete + file-delete (CASCADE drops nodes) in a single
+  // Wrap the edge-delete + file-delete (CASCADE drops nodes) in a single
   // transaction so a crash mid-call cannot leave orphaned edges / partial graph state.
   const tx = d.transaction(() => {
     const deletedAt = new Date().toISOString();

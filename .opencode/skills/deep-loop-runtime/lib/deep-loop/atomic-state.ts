@@ -1,9 +1,13 @@
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Deep-Loop Atomic State
+// ───────────────────────────────────────────────────────────────────
 
 import { closeSync, existsSync, fsyncSync, openSync, renameSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname } from 'node:path';
 
-// ───── HELPERS ─────
+// ───────────────────────────────────────────────────────────────────
+// 1. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function fsyncPath(path: string): void {
   let fd: number | undefined;
@@ -21,7 +25,9 @@ function makeTempPath(targetPath: string): string {
   return `${targetPath}.tmp.${process.pid}.${Date.now()}.${Math.random().toString(36).slice(2)}`;
 }
 
-// ───── EXPORTS ─────
+// ───────────────────────────────────────────────────────────────────
+// 2. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Atomically write JSON-serializable state to a file.

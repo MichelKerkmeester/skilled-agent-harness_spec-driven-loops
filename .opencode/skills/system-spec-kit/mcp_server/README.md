@@ -22,7 +22,7 @@ importance_tier: "important"
 
 Spec Kit's memory is not a feature flag. It is a running MCP server that you can stop, restart, swap out, or roll back without touching the rest of the framework. That server lives here.
 
-Every `/memory:save` you trigger flows through `context-server.ts`, gets schema-validated, lands in a handler, fans out across 5 retrieval channels (vector, FTS5, BM25, causal graph, degree), and writes into a local SQLite store next to the rest of your repo. Every `/speckit:resume` reads from the same store and rebuilds your last session's context. Every prompt-submit hook in Claude, Codex, OpenCode, and Copilot calls into this package for its startup brief.
+Every `/memory:save` you trigger flows through `context-server.ts`, gets schema-validated, lands in a handler, fans out across 5 retrieval channels (vector, FTS5, BM25, causal graph, degree), and writes into a local SQLite store next to the rest of your repo. Every `/speckit:resume` reads from the same store and rebuilds your last session's context. Claude and Codex prompt-submit shims delegate advisor delivery to `system-skill-advisor`, startup context is handled by session-start/session-prime paths, and OpenCode uses plugin bridges rather than an `mcp_server` prompt-submit hook.
 
 The package is local-first by design. No cloud round-trip. No vendor lock-in. The database, the indexes, the migration state, and the hook payloads all live inside the repository so they travel with the code.
 
@@ -106,7 +106,7 @@ mcp_server/
 `-- README.md
 ```
 
-**Default scope is end-user repo only.** `.opencode/skills/**`, `.opencode/agents/**`, `.opencode/commands/**`, `<active-spec-folder>/**`, and `.opencode/plugins/**` are excluded by default.
+**Default scan scope includes Spec Kit docs.** `memory_index_scan` defaults `includeConstitutional=true` for `.opencode/skills/*/constitutional/` and `includeSpecDocs=true` for `.opencode/specs/` documents, with `background:true` jobs polled by `memory_index_scan_status` and stopped by `memory_index_scan_cancel`.
 
 Allowed dependency direction:
 

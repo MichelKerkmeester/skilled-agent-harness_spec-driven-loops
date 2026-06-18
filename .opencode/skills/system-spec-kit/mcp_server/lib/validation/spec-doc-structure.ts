@@ -281,8 +281,8 @@ function extractFrontmatter(content: string): ParsedFrontmatter {
     memoryBlock = blockLines.join('\n');
     try {
       validateMemoryYamlBlock(memoryBlock);
-    } catch (error) {
-      memoryError = (error as Error).message;
+    } catch (error: unknown) {
+      memoryError = error instanceof Error ? error.message : String(error);
     }
 
     let continuityStart = -1;
@@ -1131,11 +1131,12 @@ function validatePostSaveFingerprint(folder: string, postSavePlan: PostSavePlan 
     if (typeof postSavePlan.snapshotContent === 'string') {
       try {
         fs.writeFileSync(targetPath, postSavePlan.snapshotContent, 'utf8');
-      } catch (error) {
+      } catch (error: unknown) {
+        const message = error instanceof Error ? error.message : String(error);
         diagnostics.push({
           code: 'SPECDOC_FINGERPRINT_003',
           severity: 'error',
-          detail: `rollback failed after fingerprint mismatch: ${(error as Error).message}`,
+          detail: `rollback failed after fingerprint mismatch: ${message}`,
         });
       }
     }
@@ -1270,7 +1271,7 @@ function main(argv: string[]): number {
 if (import.meta.url === `file://${process.argv[1]}`) {
   try {
     process.exitCode = main(process.argv.slice(2));
-  } catch (error) {
+  } catch (error: unknown) {
     const message = error instanceof Error ? error.message : String(error);
     console.error(message);
     process.exitCode = 2;

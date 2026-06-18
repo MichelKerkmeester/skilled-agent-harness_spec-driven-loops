@@ -66,7 +66,7 @@ ls -la /tmp/example.png
 
 **Step 3: MCP path with Code Mode.**
 
-Register `chrome-devtools-mcp@latest` with `--isolated=true` in `.utcp_config.json`, then run browser operations inside `call_tool_chain()`:
+Use the `chrome_devtools_1` or `chrome_devtools_2` manual in `.utcp_config.json`, where both entries pin `chrome-devtools-mcp@0.26.0` with `--isolated=true`, then run browser operations inside `call_tool_chain()`:
 
 ```typescript
 call_tool_chain(`
@@ -106,7 +106,7 @@ bdg cdp --describe Page | head -3
 
 ### The MCP Path
 
-The MCP path registers `chrome-devtools-mcp@latest` entries in `.utcp_config.json` with `--isolated=true`. Each entry runs its own browser process, so parallel sessions and multi-tool chaining do not interfere. Tool naming follows the Code Mode convention: `{manual_name}.{manual_name}_{tool_name}`. Tools return data as objects inside a `call_tool_chain()` block instead of writing files to disk. Always close pages in a `finally` block so cleanup runs even on errors.
+The MCP path registers `chrome-devtools-mcp@0.26.0` entries in `.utcp_config.json` with `--isolated=true`. Each entry runs its own browser process, so parallel sessions and multi-tool chaining do not interfere. Tool naming follows the Code Mode convention: `{manual_name}.{manual_name}_{tool_name}`. Tools return data as objects inside a `call_tool_chain()` block instead of writing files to disk. Always close pages in a `finally` block so cleanup runs even on errors.
 
 The MCP path exposes a curated subset of browser capabilities. For navigation it gives you `navigate_page`. For screenshots it gives you `take_screenshot`. For viewport control it gives you `resize_page`. For interaction it gives you `click`, `fill`, `hover` and `press_key`. For session control it gives you `new_page`, `select_page` and `close_page`. The CLI path covers the same actions and reaches the full CDP surface beyond the curated set.
 

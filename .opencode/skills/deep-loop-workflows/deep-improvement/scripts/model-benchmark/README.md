@@ -61,6 +61,8 @@ Dependency direction: loop-host ───▶ dispatch-model / run-benchmark ─�
 model-benchmark/
 +-- dispatch-model.cjs    # Executor router: prompt-file in, model output JSON out
 +-- run-benchmark.cjs     # Fixture/integration scorer, pattern (default) or 5dim
++-- sweep-benchmark.cjs   # Config-driven matrix sweep runner for models/frameworks/variants
++-- lib/                  # Sweep/profile helpers and reporting/scoring utilities
 `-- scorer/               # Ported 5-dimension scorer engine (lazy-required by 5dim)
 ```
 

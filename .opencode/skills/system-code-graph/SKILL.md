@@ -20,7 +20,7 @@ This skill ships the structural half: a tree-sitter parser, a SQLite graph, a re
 ## Glossary
 
 - **Structural indexing.** AST-derived graph of files, symbols, calls, imports, and definitions. Distinct from text matching and from embedding-based semantic search.
-- **Doc lane coverage.** Markdown, JSON, YAML and TOML files are included as file inventory rows only. The current parser returns clean doc rows with zero symbol nodes and zero relationship edges, so doc file counts are not structural extraction coverage.
+- **Doc lane coverage.** Default scans include config formats (`JSON`, `JSONC`, `YAML`, `YML`, `TOML`) as file inventory rows only and deliberately omit Markdown/prose docs. Markdown can be re-added with explicit scan `includeGlobs`. The current parser returns clean doc rows with zero symbol nodes and zero relationship edges, so doc file counts are not structural extraction coverage.
 - **Semantic search.** Vector-embedding lookup over code. Surfaces conceptually related code without requiring known names.
 - **Blast radius.** Reverse impact set of a symbol or file. Answers "what depends on this if I change it."
 - **Readiness.** Whether the graph reflects current workspace state. Freshness states are `fresh`, `stale`, `empty`, `error` (`absent` is not a freshness state — it is the companion trust-state projection of an `empty` graph). Read paths refuse to answer on non-fresh states.

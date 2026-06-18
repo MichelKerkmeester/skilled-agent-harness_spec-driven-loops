@@ -45,7 +45,7 @@ skill-graph/
 Run from the repository root:
 
 ```bash
-npm test -- --runInBand
+npm test -- --no-file-parallelism --maxWorkers=1
 ```
 
 ## 7. RELATED

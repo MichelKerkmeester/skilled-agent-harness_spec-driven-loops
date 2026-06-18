@@ -27,6 +27,7 @@ function discoverGraphMetadataFiles(skillDir: string): string[] {
   const stack: string[] = [skillDir];
 
   while (stack.length > 0) {
+    // The loop guard guarantees a directory is available to pop.
     const currentDir = stack.pop()!;
     const entries = readdirSync(currentDir, { withFileTypes: true });
     for (const entry of entries) {
@@ -166,7 +167,7 @@ function parseSkillMetadata(sourcePath: string): SkillMetadataRecord | null {
       edges,
       enhance_when,
     };
-  } catch (error) {
+  } catch (error: unknown) {
     // Log error but don't fail entire load
     console.warn(`[cross-skill-edges] Failed to parse ${sourcePath}:`, error instanceof Error ? error.message : String(error));
     return null;
@@ -235,7 +236,7 @@ function parseSkillMetadataWithError(sourcePath: string): { record: SkillMetadat
 
     const record = parseSkillMetadata(sourcePath);
     return { record, error: record ? null : 'parse failed (see console.warn for details)' };
-  } catch (error) {
+  } catch (error: unknown) {
     const message = error instanceof Error ? error.message : String(error);
     return { record: null, error: message };
   }

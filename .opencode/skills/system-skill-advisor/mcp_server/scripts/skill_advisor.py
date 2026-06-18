@@ -2298,12 +2298,11 @@ def _apply_memory_save_file_operation_cap(
             recommendation["confidence"] = min(float(recommendation.get("confidence", 0.0)), 0.49)
 
 
-# Candidate-3 deep-skill routing, per 130 research.md §5-§6:
+# Deep-skill routing balances lexical, structural, and prior-art signals:
 #   total_score = (lexical_score * 1.0) + (structural_score * 2.0) + (prior_art_score * 3.0)
 # Fallback to Candidate 2 happens naturally when packet_context is empty: prior_art_score=0.
-# LOW confidence (<0.65) returns a clarifying_question payload. This closes 130
-# where "iterate findings until convergence" was DANGEROUS because all deep-* loops
-# have different convergence and findings semantics.
+# LOW confidence (<0.65) returns a clarifying_question payload because ambiguous
+# iteration prompts can map to loops with different convergence and findings semantics.
 DEEP_ROUTING_SKILLS = ("deep-review", "deep-research", "deep-ai-council")
 DEEP_ROUTING_CONFIDENCE_THRESHOLD = 0.65
 
@@ -2465,8 +2464,7 @@ def _deep_routing_confidence(total_score: float) -> float:
 def score_deep_skill_routing(prompt: str, packet_context: dict) -> Dict[str, float]:
     """Return Candidate-3 scores for deep-review/deep-research/deep-ai-council.
 
-    Research source: 130 research.md §5 recommends Strategy D with Candidate 3
-    routing; §6 defines the parity invariants guarded by the Vitest suite.
+    Weighted routing is paired with parity invariants guarded by the Vitest suite.
     """
     prompt_lower = prompt.lower()
     context = packet_context if isinstance(packet_context, dict) else {}

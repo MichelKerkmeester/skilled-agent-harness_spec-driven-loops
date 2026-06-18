@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Code Graph Recovery Procedures
 // ───────────────────────────────────────────────────────────────
-// Typed implementations of CG-RP-001, CG-RP-002, and CG-RP-003.
+// Typed implementations of SQLite recovery, partial-scan recovery, and bad-apply rollback.
 
 import Database from 'better-sqlite3';
 import {

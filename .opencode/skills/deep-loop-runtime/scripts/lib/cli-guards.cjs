@@ -249,8 +249,8 @@ function isWriterLockStale(lockPath, maxHoldMs) {
  * Read and parse the lock file body, returning the stored nonce (or null).
  * Defensive on every failure path: a missing, empty, half-written, or non-JSON
  * file — and a body without a string `nonce` — all yield null, which callers
- * treat as "not mine". This is the ownership check both the P0 acquire re-read
- * and the P1 release use, so a lost race never deletes a peer's valid lock.
+ * treat as "not mine". This is the ownership check used by both acquire re-read
+ * and release, so a lost race never deletes a peer's valid lock.
  *
  * @param {string} lockPath - Path to the lock file.
  * @returns {string|null} The stored nonce when present and well-formed, else null.
@@ -339,7 +339,7 @@ function acquireWriterLock(lockPath) {
         try {
           fs.closeSync(fd);
         } catch {
-          // best-effort
+          // Best-effort cleanup after a failed stamp.
         }
         fd = undefined;
         try {
@@ -348,7 +348,7 @@ function acquireWriterLock(lockPath) {
           // peer beat us between open and here.
           if (readLockNonce(lockPath) === null) fs.rmSync(lockPath, { force: true });
         } catch {
-          // best-effort
+          // Best-effort removal after a failed stamp.
         }
         const remainingMs = deadline - Date.now();
         if (maxWaitMs <= 0 || remainingMs <= 0) {
@@ -359,16 +359,16 @@ function acquireWriterLock(lockPath) {
         sleepSync(Math.min(retryIntervalMs, remainingMs));
         continue;
       }
-      // P0 close: re-read the file we just stamped. If a peer reclaimed (rmSync)
-      // our lock and recreated its own in the window between our openSync and
-      // this read, the on-disk nonce will not be ours — we are NOT the holder.
+      // Re-read the file we just stamped. If a peer reclaimed (rmSync) our lock
+      // and recreated its own in the window between our openSync and this read,
+      // the on-disk nonce will not be ours — we are NOT the holder.
       // Close our (now unlinked or foreign) fd and loop to re-evaluate, rather
       // than entering the critical section on a lock someone else owns.
       if (readLockNonce(lockPath) !== nonce) {
         try {
           fs.closeSync(fd);
         } catch {
-          // best-effort
+          // Best-effort cleanup before re-evaluating ownership.
         }
         fd = undefined;
         const remainingMs = deadline - Date.now();
@@ -419,10 +419,9 @@ function acquireWriterLock(lockPath) {
       }
       fd = undefined;
     }
-    // P1 close: only remove the lock if its on-disk body still carries OUR
-    // nonce. If we were reclaimed while holding the critical section (our write
-    // aged past maxHoldMs, or the P0 race), the file now belongs to a new
-    // holder — deleting it would break their mutual exclusion. A missing,
+    // Only remove the lock if its on-disk body still carries OUR nonce. If we
+    // were reclaimed while holding the critical section, the file now belongs to
+    // a new holder — deleting it would break their mutual exclusion. A missing,
     // half-written, or foreign-nonce file all read as "not mine" → skip rmSync.
     try {
       if (readLockNonce(lockPath) === nonce) {

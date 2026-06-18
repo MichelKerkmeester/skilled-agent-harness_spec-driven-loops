@@ -1066,7 +1066,7 @@ function buildDepthGroups(
 /**
  * Classify a blast-radius response by depth-one fanout.
  *
- * Thresholds (008/D9 — documented):
+ * Thresholds:
  *   - **high**: any of (a) ambiguityCandidates non-empty, (b) depth-one fanout > 10
  *   - **medium**: depth-one fanout in [4, 10]
  *   - **low**: depth-one fanout in [0, 3]

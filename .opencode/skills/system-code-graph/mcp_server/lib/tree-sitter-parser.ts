@@ -9,19 +9,20 @@
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
-import type {
-  ParseResult, SupportedLanguage, SymbolKind, EdgeType,
-} from './indexer-types.js';
 import { generateContentHash } from './indexer-types.js';
 import { detectorProvenanceFromParserBackend } from './structural-indexer.js';
 import {
   extractEdges,
   capturesToNodes,
   rememberParseResultCaptures,
-  type RawCapture,
 } from './structural-indexer.js';
 import { isSpeckitMetricsEnabled, speckitMetrics } from './shared/metrics-stub.js';
-import { addToSkipList, lookupSkipList, type SkipListEntry } from './parser-skip-list.js';
+import { addToSkipList, lookupSkipList } from './parser-skip-list.js';
+import type {
+  ParseResult, SupportedLanguage, SymbolKind, EdgeType,
+} from './indexer-types.js';
+import type { RawCapture } from './structural-indexer.js';
+import type { SkipListEntry } from './parser-skip-list.js';
 
 // ── Types ──────────────────────────────────────────────────────
 // RawCapture is imported from structural-indexer.ts (single source of truth)
@@ -36,18 +37,35 @@ interface ParserAdapter {
   ): ParseResult;
 }
 
+type TreeSitterLanguage = object;
+
+interface TreeSitterTree {
+  rootNode: TSNode;
+  delete?: () => void;
+}
+
+interface TreeSitterParserInstance {
+  setLanguage(language: TreeSitterLanguage): void;
+  parse(content: string): TreeSitterTree;
+}
+
+interface TreeSitterParserConstructor {
+  new(): TreeSitterParserInstance;
+  init(): Promise<void>;
+  Language: {
+    load(grammarPath: string): Promise<TreeSitterLanguage>;
+  };
+}
+
 // ── Lazy initialization state ──────────────────────────────────
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let ParserClass: any = null;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let parserInstance: any = null;
+let ParserClass: TreeSitterParserConstructor | null = null;
+let parserInstance: TreeSitterParserInstance | null = null;
 let initPromise: Promise<void> | null = null;
 let parserHealth: 'ok' | 'quarantined' = 'ok';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const grammarCache = new Map<SupportedLanguage, any>();
 type ParserLanguage = Exclude<SupportedLanguage, 'doc'>;
+const grammarCache = new Map<ParserLanguage, TreeSitterLanguage>();
 const SUPPORTED_LANGUAGES: ParserLanguage[] = ['javascript', 'typescript', 'python', 'bash'];
 const SKIP_LIST_ENABLED = process.env.SPECKIT_PARSER_SKIP_LIST_ENABLED !== 'false';
 
@@ -154,10 +172,11 @@ async function ensureInit(): Promise<void> {
   initPromise = (async () => {
     try {
       const mod = await import('web-tree-sitter');
-      ParserClass = mod.default ?? mod;
-      await ParserClass.init();
-      parserInstance = new ParserClass();
-    } catch (err) {
+      const parserCtor = ((mod as { default?: unknown }).default ?? mod) as TreeSitterParserConstructor;
+      ParserClass = parserCtor;
+      await parserCtor.init();
+      parserInstance = new parserCtor();
+    } catch (err: unknown) {
       // Reset so the next call retries instead of being stuck with a rejected promise
       initPromise = null;
       parserInstance = null;
@@ -175,7 +194,7 @@ async function getLanguageGrammar(language: ParserLanguage): Promise<unknown> {
   await ensureInit();
 
   const grammarPath = getGrammarPath(language);
-  const lang = await ParserClass.Language.load(grammarPath);
+  const lang = await ParserClass!.Language.load(grammarPath);
   grammarCache.set(language, lang);
   return lang;
 }

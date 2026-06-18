@@ -1,7 +1,10 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: Fix Memory H1 Headings                                      ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 // One-shot repair script: Fix H1 headings in all memory files.
 //
-// For each .md file under .opencode/specs/**/memory/ -
+// For each Markdown file under the specs memory tree:
 //   1. Extract the slug from the filename (everything after __, before .md)
 //   2. Convert slug to title case
 //   3. Replace existing H1 (or insert one if missing) with the title-cased slug

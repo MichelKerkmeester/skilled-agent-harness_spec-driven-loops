@@ -61,6 +61,8 @@ scripts/
 +-- rules/                 # Validation rule scripts
 +-- memory/                # Memory save, ranking and indexing CLIs
 +-- graph/                 # Graph metadata backfill CLI
++-- config/                # Config barrel boundary for script modules
++-- validation/            # Validation, evidence and comment-hygiene checks
 +-- spec-folder/           # Spec folder metadata and detection modules
 +-- core/                  # Workflow modules
 +-- extractors/            # Semantic extraction modules
@@ -105,6 +107,8 @@ Disallowed direction:
 | `rules/` | Holds validation checks used by `spec/validate.sh`. |
 | `memory/generate-context.ts` | Builds structured memory save output and metadata updates. |
 | `graph/backfill-graph-metadata.ts` | Refreshes graph metadata across spec folders. |
+| `config/` | Exposes the script-side config barrel boundary for non-core modules. |
+| `validation/` | Contains active validators used by validation flow, pre-commit checks and write-time comment hygiene. |
 | `lib/` | Shares TypeScript helpers and sourced shell utilities. |
 | `check-markdown-links.cjs` | Repo-wide markdown-link integrity guard over skills/commands/agents; CI-wired via `.github/workflows/markdown-link-integrity.yml`. Strips fenced + inline code before extraction. Complements the wikilink checker. `--self-test` asserts the inline-code handling. |
 | `check-links.sh` | Wikilink (`[[...]]`) validator; delegates to `rules/check-links.sh` (opt-in via `SPECKIT_VALIDATE_LINKS`). |

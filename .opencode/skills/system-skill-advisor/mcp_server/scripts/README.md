@@ -15,7 +15,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`skill_advisor/scripts/` holds command-line utilities and generated assets used by the skill-advisor package. The scripts support prompt routing checks, benchmark runs, regression validation, runtime invocation and skill-graph compilation.
+`mcp_server/scripts/` holds command-line utilities and generated assets used by the skill-advisor package. The scripts support prompt routing checks, benchmark runs, regression validation, runtime invocation and skill-graph compilation.
 
 Current state:
 
@@ -29,6 +29,8 @@ Current state:
 
 ```text
 scripts/
++-- check-skill-doc-frontmatter.mjs      # Skill document frontmatter check
++-- check-skill-doc-frontmatter.sh       # Shell wrapper for skill document frontmatter checks
 +-- check-prompt-quality-card-sync.sh   # Quality-card sync check
 +-- init-skill-graph.sh                 # Skill graph initialization helper
 +-- skill_advisor.py                    # Main Python CLI wrapper
@@ -37,6 +39,7 @@ scripts/
 +-- skill_advisor_runtime.py            # Runtime support module
 +-- skill_graph_compiler.py             # Skill graph compiler and JSON diagnostic exporter
 +-- skill-graph.json                    # Diagnostic graph export, ignored by the runtime
++-- verify-zombie-soak.sh               # Zombie process soak verification
 +-- fixtures/                           # Script fixtures
 +-- routing-accuracy/                   # Routing accuracy inputs or outputs
 +-- out/                                # Generated script output
@@ -54,7 +57,10 @@ scripts/
 | `skill_advisor_regression.py` | Runs regression scenarios for advisor recommendations. |
 | `skill_advisor_bench.py` | Runs benchmark scenarios and reports timing or quality metrics. |
 | `skill_graph_compiler.py` | Validates graph metadata and exports diagnostic JSON. Runtime routing reads SQLite, not this export. |
+| `check-skill-doc-frontmatter.mjs` | Checks skill document frontmatter coverage. |
+| `check-skill-doc-frontmatter.sh` | Shell wrapper for skill document frontmatter checks. |
 | `check-prompt-quality-card-sync.sh` | Checks prompt quality-card sync state. |
+| `verify-zombie-soak.sh` | Runs zombie process soak verification. |
 | `skill-graph.json` | Diagnostic JSON export for inspection; runtime routing consumes SQLite instead. |
 
 ---

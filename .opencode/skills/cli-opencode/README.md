@@ -64,6 +64,7 @@ Expected when configured: a table of providers with status and default indicator
 ```bash
 opencode run \
   --model opencode-go/deepseek-v4-pro \
+  --agent context \
   --variant high \
   --format json \
   --dir "$REPO_ROOT" \
@@ -71,7 +72,7 @@ opencode run \
   </dev/null
 ```
 
-You get structured JSON events streamed to stdout as the session runs, ending with a final tool-result message. The `</dev/null` is mandatory on non-interactive runs, and you omit `--agent` from every dispatch.
+You get structured JSON events streamed to stdout as the session runs, ending with a final tool-result message. The `</dev/null` is mandatory on non-interactive runs. Use `--agent <agent-slug>` for concrete routes such as `context`, `orchestrate`, `review`, `debug` or `ai-council`; omit `--agent` only for the default/general path and never pass `--agent general`.
 
 **Step 4: Spawn a parallel detached session (inside OpenCode only).**
 
@@ -100,7 +101,7 @@ This is what sets cli-opencode apart from every sibling in the cli-* family. A s
 
 Two `opencode run` defaults punish operators who learn them the hard way.
 
-**Rule 1: never pass a top-level `--agent`.** Current OpenCode treats named agents like `general` as subagents and rejects them at the top level, so `--agent general` fails the dispatch outright. When no `--agent` is given, the default agent runs, which is what you want for nearly every dispatch. State any agent-profile request in the prompt body, for example "Act as a code-review agent: ...".
+**Rule 1: use `--agent` deliberately.** `opencode run` supports `--agent <slug>` and the cli-opencode reference uses per-use-case agents such as `context`, `orchestrate`, `review`, `debug` and `ai-council`. Do not pass `--agent general`: the default/general path is selected by omitting `--agent`, and some small-model paths documented in `SKILL.md` also carry narrower omit-agent caveats.
 
 **Rule 2: append `</dev/null` to every non-interactive run.** Without closed stdin, `opencode run` hangs at zero percent CPU after the snapshot-cleanup line. A foreground `| tail` happens to bypass this because the upstream pipe stage provides closed stdin, but `> stdout.log 2> stderr.log` does not. Position `</dev/null` after the prompt argument, before the redirects.
 
@@ -116,11 +117,11 @@ The one exception is an explicit parallel detached request. When the prompt cont
 
 ### Provider Auth Pre-Flight
 
-Before the first dispatch in a session the skill runs `opencode providers list`. Seven providers are documented: `opencode-go` (default gateway), `deepseek` (direct API), `minimax-coding-plan` (MiniMax Token Plan, the default MiniMax path), `minimax` (MiniMax Direct API), `xiaomi-token-plan-ams` (Xiaomi Token Plan Europe), `xiaomi` (Xiaomi Direct API) and `openai` (paid premium). If the default `opencode-go` is missing the skill asks before falling back, and it never substitutes a model you did not approve.
+Before the first dispatch in a session the skill runs `opencode providers list`. Eight providers are documented: `opencode-go` (default gateway), `deepseek` (direct API), `minimax-coding-plan` (MiniMax Token Plan, the default MiniMax path), `minimax` (MiniMax Direct API), `xiaomi-token-plan-ams` (Xiaomi Token Plan Europe), `xiaomi` (Xiaomi Direct API), `kimi-for-coding` (Kimi For Coding plan; model `kimi-for-coding/k2p7`) and `openai` (paid premium). If the default `opencode-go` is missing the skill asks before falling back, and it never substitutes a model you did not approve.
 
 ### Agent Delegation
 
-OpenCode distinguishes primary agents (directly invokable, like `plan`, `orchestrate` and `ai-council`) from subagents (`context`, `review`, `write`, `debug`, plus the command-owned loop executors). Never pass a top-level `--agent general`. Route generic subagents through `--agent orchestrate`, and let the loop executors stay owned by their parent commands. The full roster lives in `references/agent_delegation.md`.
+OpenCode routes specialist dispatches with `--agent <slug>` and resolves project-local agent files from `.opencode/agents/<slug>.md`. Use concrete slugs such as `context`, `orchestrate`, `review`, `debug` and `ai-council`; omit `--agent` for the default/general path and never pass `--agent general`. Some small-model paths documented in `SKILL.md` still carry narrower omit-agent caveats. The full roster lives in `references/agent_delegation.md`.
 
 ---
 
@@ -159,7 +160,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
 |---|---|---|
 | `command not found: opencode` | CLI not installed or PATH not updated | `brew install opencode` or `curl -fsSL https://opencode.ai/install \| bash`, then restart your terminal |
 | Dispatch hangs at 0% CPU after the snapshot line | Missing `</dev/null` on a non-interactive run | Append `</dev/null` before any `> stdout.log 2> stderr.log` redirect |
-| `--agent general` fails or warns | Current OpenCode rejects named agents at the top level | Omit `--agent`. State the agent profile in the prompt body. |
+| `--agent general` fails or warns | The default/general path is selected by omitting `--agent` | Omit `--agent general`; use concrete slugs like `context`, `orchestrate`, `review`, `debug` or `ai-council` when routing to a specialist. |
 | `provider/model not found` or `401 Unauthorized` | The default `opencode-go` is not configured on this machine | Run `opencode providers list`, then `opencode providers login <provider>` for the missing one |
 | Empty event stream | Output format defaulted to formatted instead of JSON | Force `--format json` |
 | `Self-invocation refused` | The caller is already inside OpenCode (`OPENCODE_*` env, `opencode` ancestry or a state lock) | Use a different runtime, exit the current session or restate with explicit parallel-detached keywords |

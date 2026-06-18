@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: DOCTOR ROUTE VALIDATOR
+# ───────────────────────────────────────────────────────────────
 """
 route-validate.py — Canonical-manifest CI assertion for /doctor router.
 

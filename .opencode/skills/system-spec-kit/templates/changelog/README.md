@@ -33,7 +33,7 @@ Current state:
 
 - `root.md` renders changelogs for root spec folders.
 - `phase.md` renders changelogs for phase child folders.
-- Recovery still flows through `/spec_kit:resume` and canonical continuity docs.
+- Recovery flows through `/speckit:resume`, implemented by `.opencode/commands/speckit/resume.md`, and canonical continuity docs.
 
 <!-- /ANCHOR:overview -->
 

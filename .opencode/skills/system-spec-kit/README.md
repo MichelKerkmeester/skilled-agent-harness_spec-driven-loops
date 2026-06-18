@@ -109,7 +109,7 @@ The system reads your question, figures out you are looking for a past decision 
 ### Validate a Spec Folder
 
 ```bash
-# Run all 20 validation rules
+# Run all 37 validation rules
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
   .opencode/specs/[project]/042-my-feature/
 
@@ -504,7 +504,7 @@ The `scripts/spec/` directory holds the scripts that manage the full lifecycle o
 | Script                        | Purpose                                                                                        |
 | ----------------------------- | ---------------------------------------------------------------------------------------------- |
 | `create.sh`                   | Create spec folders with level-appropriate templates. Use `--phase` for parent + child folders |
-| `validate.sh`                 | Run 20 validation rules. Use `--recursive` for phase folders, `--verbose` for details          |
+| `validate.sh`                 | Run 37 validation rules. Use `--recursive` for phase folders, `--verbose` for details          |
 | `upgrade-level.sh`            | Render additional Level contract sections for a higher documentation level                     |
 | `recommend-level.sh`          | Analyze scope and risk to recommend the right documentation level                              |
 | `calculate-completeness.sh`   | Calculate spec folder completeness as a percentage                                             |
@@ -803,7 +803,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
   .opencode/specs/[project]/022-big-feature/ --recursive
 ```
 
-**Result**: A pass/warn/error report across 20 rules with actionable fix instructions.
+**Result**: A pass/warn/error report across 37 rules with actionable fix instructions.
 
 ### Common Patterns
 
@@ -1063,7 +1063,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh \
 | [`references/memory/embedder_pluggability.md`](./references/memory/embedder_pluggability.md)     | Cross-MCP embedder defaults, swap flows, device selection and support matrix                        |
 | [`references/workflows/intake_contract.md`](./references/workflows/intake_contract.md)           | Shared spec-folder intake contract for `/speckit:plan`, `/speckit:complete` and resume re-entry     |
 | [`references/workflows/rename_pattern.md`](./references/workflows/rename_pattern.md)             | Mechanical rename workflow and live-vs-historical surface discipline                                 |
-| [`references/validation/validation_rules.md`](./references/validation/validation_rules.md)       | All 20 validation rules with fixes                                                                   |
+| [`references/validation/validation_rules.md`](./references/validation/validation_rules.md)       | All 37 validation rules with fixes                                                                   |
 | Level specifications reference                                                                    | Level definitions and template size guidance                                                         |
 | [`references/templates/template_guide.md`](./references/templates/template_guide.md)             | Template usage and composition rules                                                                 |
 | [`references/config/environment_variables.md`](./references/config/environment_variables.md)     | Full environment variable reference                                                                  |
@@ -1088,7 +1088,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh \
 | ----------------------------- | ---------------------------------------------------------------------------- |
 | `AGENTS.md` (project root)    | Gate definitions, AI behavior framework, mandatory workflow rules            |
 | `.opencode/specs/`            | All spec folders created by Spec Kit                                         |
-| `.opencode/commands/speckit/` | Spec Kit command definitions (8 commands)                                    |
+| `.opencode/commands/speckit/` | Spec Kit command folder: 4 speckit command Markdown files plus README/assets; the command index lists 7 rows including deep workflow and intake-only entries |
 | `.opencode/commands/memory/`   | Memory command definitions (4 top-level commands plus subcommand namespaces) |
 
 ### External Resources

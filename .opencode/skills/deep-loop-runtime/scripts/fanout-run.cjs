@@ -33,6 +33,11 @@ const {
   writeOrchestrationSummary,
 } = require('./fanout-pool.cjs');
 
+const {
+  runSalvageSweep,
+  extractTextFromOpencodeJson,
+} = require('./fanout-salvage.cjs');
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. TSX BOOTSTRAP
 // ─────────────────────────────────────────────────────────────────────────────
@@ -324,11 +329,6 @@ function buildLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermissio
 
   throw inputError(`Unknown CLI executor kind: ${kind}`);
 }
-
-const {
-  runSalvageSweep,
-  extractTextFromOpencodeJson,
-} = require('./fanout-salvage.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. CORE LOGIC

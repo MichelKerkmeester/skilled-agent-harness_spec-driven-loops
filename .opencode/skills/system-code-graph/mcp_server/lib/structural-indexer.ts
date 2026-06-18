@@ -9,10 +9,6 @@
 import { readFileSync, readdirSync, realpathSync, statSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { dirname, extname, join, relative, resolve } from 'node:path';
-import type {
-  CodeNode, CodeEdge, ParseResult, SupportedLanguage,
-  IndexerConfig, SymbolKind, DetectorProvenance, EdgeType,
-} from './indexer-types.js';
 import {
   DEFAULT_EDGE_WEIGHTS,
   generateSymbolId,
@@ -23,8 +19,13 @@ import { isFileStale } from './code-graph-db.js';
 import { shouldIndexForCodeGraph } from './shared/index-scope.js';
 import { resolveCanonicalPath } from './shared/canonical-path.js';
 import { isSpeckitMetricsEnabled, speckitMetrics } from './shared/metrics-stub.js';
-import { runPhases, type Phase } from './phase-runner.js';
+import { runPhases } from './phase-runner.js';
 import { CODE_GRAPH_DEFAULTS } from './config-defaults.js';
+import type {
+  CodeNode, CodeEdge, ParseResult, SupportedLanguage,
+  IndexerConfig, SymbolKind, DetectorProvenance, EdgeType,
+} from './indexer-types.js';
+import type { Phase } from './phase-runner.js';
 
 interface IgnoreInstance {
   add(patterns: string | string[]): IgnoreInstance;

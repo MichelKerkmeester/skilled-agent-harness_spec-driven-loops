@@ -18,16 +18,20 @@ import { withBusyRetry, withBusyRetrySync } from './sqlite-busy-retry.js';
    2. TYPES
 ──────────────────────────────────────────────────────────────── */
 
+/** Supported persisted maintenance job categories. */
 export type MaintenanceJobKind = 'ingest' | 'index_scan';
 
+/** Durable lifecycle states for maintenance jobs. */
 export type JobLifecycleState = 'queued' | 'running' | 'complete' | 'failed' | 'cancelled';
 
+/** Captured maintenance job error entry. */
 export interface JobError {
   source: string;
   message: string;
   timestamp: string;
 }
 
+/** Persisted maintenance job record returned by the job store API. */
 export interface MaintenanceJob {
   id: string;
   kind: MaintenanceJobKind;
@@ -136,6 +140,7 @@ const SELECT_COLUMNS =
    5. SCHEMA
 ──────────────────────────────────────────────────────────────── */
 
+/** Ensure the maintenance job table and lookup index exist. */
 export function ensureMaintenanceJobsTable(): void {
   const db = requireDb();
   db.exec(`
@@ -161,6 +166,7 @@ export function ensureMaintenanceJobsTable(): void {
    6. IDENTIFIERS
 ──────────────────────────────────────────────────────────────── */
 
+/** Create a compact URL-safe maintenance job identifier. */
 export function createJobId(): string {
   const bytes = randomBytes(12);
   let id = '';
@@ -174,6 +180,7 @@ export function createJobId(): string {
    7. LIFECYCLE
 ──────────────────────────────────────────────────────────────── */
 
+/** Create and persist a queued maintenance job. */
 export async function createMaintenanceJob(args: {
   id: string;
   kind: MaintenanceJobKind;
@@ -221,6 +228,7 @@ export async function createMaintenanceJob(args: {
   };
 }
 
+/** Load a maintenance job by id, or null when it is absent. */
 export function getMaintenanceJob(jobId: string): MaintenanceJob | null {
   const db = requireDb();
   const row = db.prepare(`
@@ -231,6 +239,7 @@ export function getMaintenanceJob(jobId: string): MaintenanceJob | null {
   return mapRowToJob(row);
 }
 
+/** Transition a maintenance job to a valid next lifecycle state. */
 export async function setJobState(jobId: string, nextState: JobLifecycleState): Promise<MaintenanceJob> {
   const db = requireDb();
   const current = getMaintenanceJob(jobId);
@@ -270,6 +279,7 @@ export async function setJobState(jobId: string, nextState: JobLifecycleState): 
   return { ...current, state: nextState, updatedAt };
 }
 
+/** Update the current human-readable job phase. */
 export async function setJobPhase(jobId: string, phase: string): Promise<void> {
   const db = requireDb();
   await withBusyRetry(() =>
@@ -278,6 +288,7 @@ export async function setJobPhase(jobId: string, phase: string): Promise<void> {
   );
 }
 
+/** Persist processed and total progress counters for a job. */
 export async function setJobProgress(jobId: string, progress: { processed: number; total: number }): Promise<void> {
   const db = requireDb();
   const processed = Math.max(0, Math.trunc(progress.processed));
@@ -288,6 +299,7 @@ export async function setJobProgress(jobId: string, progress: { processed: numbe
   );
 }
 
+/** Append a bounded error entry to a maintenance job. */
 export async function appendJobError(jobId: string, source: string, error: unknown): Promise<MaintenanceJob> {
   const db = requireDb();
   const current = getMaintenanceJob(jobId);
@@ -321,6 +333,7 @@ export async function appendJobError(jobId: string, source: string, error: unkno
   return { ...current, errors, updatedAt };
 }
 
+/** Request cancellation for a maintenance job. */
 export async function requestCancel(jobId: string): Promise<void> {
   // Set the in-process flag first so a running loop observes the cancel even if the
   // durable write contends on the shared connection.
@@ -332,7 +345,7 @@ export async function requestCancel(jobId: string): Promise<void> {
   );
 }
 
-// Synchronous so the runner can poll it inline at batch/phase boundaries.
+/** Check the durable cancellation flag for a maintenance job. */
 export function isCancelRequested(jobId: string): boolean {
   const db = requireDb();
   const row = db.prepare(`SELECT cancel_requested FROM maintenance_jobs WHERE id = ?`)
@@ -340,14 +353,15 @@ export function isCancelRequested(jobId: string): boolean {
   return !!row && row.cancel_requested === 1;
 }
 
-// Allocation- and IO-free cancel check for hot loops. Reads only the in-process
-// mirror, so it is safe to call thousands of times during a scan without touching
-// the shared SQLite connection. Use isCancelRequested when durability across the
-// in-memory boundary matters (status responses, post-restart).
+/**
+ * Check the in-process cancellation mirror without touching SQLite.
+ * Use isCancelRequested when durability across the in-memory boundary matters.
+ */
 export function isCancelRequestedFast(jobId: string): boolean {
   return cancelledJobIds.has(jobId);
 }
 
+/** Complete a maintenance job with a terminal state and optional result payload. */
 export async function completeJob(
   jobId: string,
   options: { state: JobLifecycleState; result?: unknown },
@@ -378,8 +392,7 @@ export async function completeJob(
   return { ...current, state: options.state, result: options.result ?? null, updatedAt };
 }
 
-// Crash recovery: mark interrupted jobs of a kind terminal on boot. Index scans
-// re-run fresh, so they are reset to 'failed' rather than re-enqueued.
+/** Mark interrupted jobs of a kind terminal during crash recovery. */
 export function resetRunningJobsForKind(
   kind: MaintenanceJobKind,
   // Crash recovery only moves interrupted jobs to a terminal state. Restricting the
@@ -408,6 +421,7 @@ export function resetRunningJobsForKind(
   return rows.map((r) => r.id);
 }
 
+/** Return whether a lifecycle state is terminal. */
 export function isTerminalJobState(state: JobLifecycleState): boolean {
   return TERMINAL_STATES.has(state);
 }

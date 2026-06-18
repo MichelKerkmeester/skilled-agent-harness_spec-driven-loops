@@ -545,6 +545,7 @@ function reconcileMoves(
   if (!db || toDelete.length === 0 || toIndex.length === 0) {
     return { reconciled: [], filteredToDelete: toDelete, filteredToIndex: toIndex };
   }
+  const database = db;
 
   // Build a map: packet_id → [{newPath, docType, newGrandparent}] from the toIndex files.
   // Reads graph-metadata.json from the NEW location only — the old one may be gone after a move.
@@ -560,8 +561,12 @@ function reconcileMoves(
       if (typeof packetId !== 'string' || packetId.length === 0) continue;
       const docType = path.basename(newPath, path.extname(newPath));
       const newGrandparent = path.dirname(newSpecFolder);
-      if (!newByPacketId.has(packetId)) newByPacketId.set(packetId, []);
-      newByPacketId.get(packetId)!.push({ newPath, docType, newGrandparent });
+      let packetCandidates = newByPacketId.get(packetId);
+      if (!packetCandidates) {
+        packetCandidates = [];
+        newByPacketId.set(packetId, packetCandidates);
+      }
+      packetCandidates.push({ newPath, docType, newGrandparent });
     } catch {
       // skip unreadable or non-JSON graph-metadata
     }
@@ -607,7 +612,7 @@ function reconcileMoves(
       const canonicalOld = getCanonicalPathKey(oldPath);
 
       // Verify in DB: exactly one live row for this old path (uniqueness guard).
-      const rows = db!.prepare(selectSql).all(oldPath, canonicalOld) as Array<{ id: number; document_type?: string | null }>;
+      const rows = database.prepare(selectSql).all(oldPath, canonicalOld) as Array<{ id: number; document_type?: string | null }>;
       if (rows.length !== 1) continue;
 
       // Cross-verify document kind: the stored document_type must agree with the doc type
@@ -629,7 +634,7 @@ function reconcileMoves(
       // Update the row's path in place (preserves embedding, id, history). A reconciled
       // move is a folder rename, so spec_folder is repointed with the same canonicalization
       // indexMemoryFile/migration 23 use — otherwise WHERE spec_folder=? grouping goes stale.
-      const updated = db!.prepare(`
+      const updated = database.prepare(`
         UPDATE memory_index
         SET file_path = ?,
             canonical_file_path = ?,

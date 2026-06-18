@@ -26,7 +26,7 @@ Use this file to identify the folder boundary, the likely verification path and 
 
 | Metric | Value |
 |---|---:|
-| Code files | 5 |
+| Code files | 6 |
 | README scope | Direct files in this folder |
 | Audit context | Internal validation notes |
 
@@ -66,6 +66,7 @@ Load this folder through the owning skill workflow or MCP server entrypoint.
 
 | Path | Purpose |
 |---|---|
+| `bm25.ts` | BM25F lexical shadow lane used by `lexical.ts` and registered as a shadow lane. |
 | `derived.ts` | TS source file in this folder. |
 | `explicit.ts` | TS source file in this folder. |
 | `graph-causal.ts` | TS source file in this folder. |

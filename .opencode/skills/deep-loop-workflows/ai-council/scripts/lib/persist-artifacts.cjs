@@ -442,9 +442,40 @@ ${parsed.planConfidence === null ? '[No numeric confidence captured]' : `${parse
   return { config, strategy, stateLog, seats, deliberation, deliberationPath: `deliberations/${roundDir}.md`, councilReport };
 }
 
-function assertInside(baseDir, targetPath) {
+function isContainedPath(baseDir, targetPath) {
   const relative = path.relative(baseDir, targetPath);
-  if (relative.startsWith('..') || path.isAbsolute(relative)) {
+  return relative === '' || (!relative.startsWith('..') && !path.isAbsolute(relative));
+}
+
+function canonicalizeExistingPrefix(inputPath) {
+  const resolvedPath = path.resolve(inputPath);
+  const missingSegments = [];
+  let currentPath = resolvedPath;
+  while (!fs.existsSync(currentPath)) {
+    const parentPath = path.dirname(currentPath);
+    if (parentPath === currentPath) break;
+    missingSegments.unshift(path.basename(currentPath));
+    currentPath = parentPath;
+  }
+  return path.resolve(fs.realpathSync(currentPath), ...missingSegments);
+}
+
+function nearestExistingParent(inputPath) {
+  let currentPath = path.dirname(path.resolve(inputPath));
+  while (!fs.existsSync(currentPath)) {
+    const parentPath = path.dirname(currentPath);
+    if (parentPath === currentPath) break;
+    currentPath = parentPath;
+  }
+  return fs.realpathSync(currentPath);
+}
+
+function assertInside(baseDir, targetPath) {
+  const canonicalBase = canonicalizeExistingPrefix(baseDir);
+  const targetParent = canonicalizeExistingPrefix(path.dirname(targetPath));
+  const existingTargetParent = nearestExistingParent(targetPath);
+  const canonicalTarget = path.resolve(targetParent, path.basename(targetPath));
+  if (!isContainedPath(canonicalBase, existingTargetParent) || !isContainedPath(canonicalBase, canonicalTarget)) {
     const error = new Error(`OUT_OF_SCOPE_WRITE: Refusing to write outside ${baseDir}: ${targetPath}`);
     error.code = 'OUT_OF_SCOPE_WRITE';
     throw error;
@@ -459,6 +490,7 @@ function writeFileScoped(aiCouncilRoot, relativePath, content, options = {}) {
   const targetPath = path.resolve(aiCouncilRoot, relativePath);
   assertInside(aiCouncilRoot, targetPath);
   fs.mkdirSync(path.dirname(targetPath), { recursive: true });
+  assertInside(aiCouncilRoot, targetPath);
   fs.writeFileSync(targetPath, content, 'utf8');
   if (options.audit !== false) {
     const writtenContent = fs.readFileSync(targetPath);
@@ -646,6 +678,7 @@ function appendStateLine(packetSpecFolder, event) {
   const statePath = path.resolve(aiCouncilRoot, 'ai-council-state.jsonl');
   assertInside(aiCouncilRoot, statePath);
   fs.mkdirSync(aiCouncilRoot, { recursive: true });
+  assertInside(aiCouncilRoot, statePath);
   fs.appendFileSync(statePath, `${JSON.stringify(metadataEvent(event))}\n`, 'utf8');
   return statePath;
 }

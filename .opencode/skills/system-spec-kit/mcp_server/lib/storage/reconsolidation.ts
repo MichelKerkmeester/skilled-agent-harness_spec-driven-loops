@@ -732,15 +732,16 @@ export async function reconsolidate(
         } catch (conflictErr: unknown) {
           // If storeMemory succeeded but executeConflict failed, clean up the orphan
           // Memory so we don't leave dangling rows with no supersedes edge.
-          if (conflictMemory.id !== undefined && conflictMemory.id !== newMemory.id) {
+          const conflictMemoryId = conflictMemory.id;
+          if (conflictMemoryId !== undefined && conflictMemoryId !== newMemory.id) {
             // Graph cleanup: Use delete_memory_from_database (includes deleteAncillaryMemoryRows)
             // instead of raw DELETE to clean lineage, projections, and graph residue.
             try {
-              const deleted = delete_memory_from_database(db, conflictMemory.id);
+              const deleted = delete_memory_from_database(db, conflictMemoryId);
               if (deleted) {
                 try {
                   recordHistory(
-                    conflictMemory.id!,
+                    conflictMemoryId,
                     'DELETE',
                     null,
                     null,
@@ -752,7 +753,7 @@ export async function reconsolidate(
             } catch (_error: unknown) {
               // Best-effort cleanup
             }
-            console.warn('[reconsolidation] cleaned up orphan memory', conflictMemory.id, 'after executeConflict failure');
+            console.warn('[reconsolidation] cleaned up orphan memory', conflictMemoryId, 'after executeConflict failure');
           }
           throw conflictErr;
         }

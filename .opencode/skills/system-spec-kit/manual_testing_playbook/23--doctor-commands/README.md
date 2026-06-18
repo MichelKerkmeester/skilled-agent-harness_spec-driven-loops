@@ -4,7 +4,7 @@ Manual testing scenarios for the spec-kit `/doctor` command surface.
 
 ## Scope
 
-25 scenarios (DOC-323 through DOC-347, with gaps at 337 and 343) covering:
+25 scenarios (DOC-323 through DOC-347, with gaps at 337 and 343) covering the original scenario set:
 
 - `/doctor memory` — 5 scenarios (323-327): fresh install bootstrap, drift detection, long-pole rebuild, SIGINT cancellation, disk-pressure refusal
 - `/doctor causal-graph` — 3 scenarios (328-330): low-coverage drift, confidence threshold enforcement, add-only mutation boundary
@@ -13,6 +13,8 @@ Manual testing scenarios for the spec-kit `/doctor` command surface.
 - `/doctor:update` — 7 scenarios (338-344): G5 failure injection, G6 concurrent dispatch flock, G7 SIGINT mid-rebuild, G8 migration manifest gap, G9 cross-subsystem dashboard, default tier-aware flow
 - Version migration — 2 scenarios (345-346): end-to-end 3.3.0.0 → 3.4.1.0, cleanup-legacy with per-file prompts
 - `/doctor:mcp` infra — 1 scenario (347): MCP server install + verify
+
+The live `/doctor <target>` route manifest also includes `/doctor embeddings`, `/doctor skill-advisor`, `/doctor skill-budget`, `/doctor parent-skill`, and `/doctor fable-mode`.
 
 After commit `1b8d4d691` (013 Phase 5 hard cutover), `/doctor:<name>` invocations were consolidated into `/doctor <target>` argv-positional dispatch. `/doctor:update` and `/doctor:mcp <install|debug>` remain as standalone companion commands.
 

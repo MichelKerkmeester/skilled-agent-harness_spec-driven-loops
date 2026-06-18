@@ -75,21 +75,21 @@ cupt done TASK_ID --dry-run
 
 **Step 3: MCP path with Code Mode.**
 
-Register the official `@clickup/mcp-server` in your platform MCP config (`opencode.json`, `.mcp.json` or `claude_desktop_config.json`) with server key `"clickup"`, then run document and goal operations inside `call_tool_chain()`:
+Use the Code Mode MCP configured in `opencode.json`, which points at `.utcp_config.json`. The current ClickUp manual is `clickup_official`, so run document and goal operations inside `call_tool_chain({ code })`:
 
 ```typescript
-// Tool naming: clickup.clickup_{tool_name}
-const result = await call_tool_chain([
-  {
-    tool: "clickup.clickup_create_document",
-    input: {
+call_tool_chain({
+  code: `
+    // Tool naming: clickup_official.clickup_official_{tool_name}
+    const result = await clickup_official.clickup_official_create_document({
       name: "Sprint Notes",
       parent: { type: 4, id: "LIST_ID" },
       content: "# Sprint Notes\n\nKey decisions and action items.",
       content_format: "markdown"
-    }
-  }
-]);
+    });
+    return result;
+  `
+});
 // Expected: returns the created document object with a ClickUp URL
 ```
 
@@ -116,7 +116,7 @@ cupt covers every daily task operation: list with server-side `--tag` filtering 
 
 ### The Official MCP Path
 
-The official `@clickup/mcp-server` registers in your platform MCP config under `mcpServers` with server key `"clickup"`, env `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID`. It exposes tools across task CRUD, documents, goals, time tracking, webhooks and enterprise features. You reach it through Code Mode with the array-form `call_tool_chain([{ tool: "clickup.clickup_{tool_name}", input: { ... } }])` pattern. Tool naming is all lowercase with underscores: `clickup.clickup_search_tasks`, `clickup.clickup_get_task`, `clickup.clickup_create_document`, `clickup.clickup_create_bulk_tasks` and so on.
+The official `@clickup/mcp-server` registers through Code Mode: `opencode.json` loads Code Mode, and `.utcp_config.json` defines the `clickup_official` manual with env `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID`. It exposes tools across task CRUD, documents, goals, time tracking, webhooks and enterprise features. You reach it through Code Mode with `call_tool_chain({ code: "..." })`. Tool naming is all lowercase with underscores and uses the manual prefix: `clickup_official.clickup_official_search_tasks`, `clickup_official.clickup_official_get_task`, `clickup_official.clickup_official_create_document`, `clickup_official.clickup_official_create_bulk_tasks` and so on.
 
 The MCP path is the only surface for documents, goals and OKRs, bulk creates of five or more tasks, webhooks, chat and audit logs. Many daily operations also have an MCP fallback tool, but the routing rule keeps daily writes on cupt because the MCP has no dry-run equivalent. Use the MCP when you need its exclusive surface or when you are already in a Code Mode flow with other tools.
 

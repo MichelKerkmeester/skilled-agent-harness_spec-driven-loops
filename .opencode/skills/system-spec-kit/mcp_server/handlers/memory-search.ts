@@ -16,12 +16,13 @@ import { searchCommunities } from '../lib/search/community-search.js';
 import { executePipeline } from '../lib/search/pipeline/index.js';
 import type { PipelineConfig, PipelineResult } from '../lib/search/pipeline/index.js';
 import type { IntentWeightsConfig } from '../lib/search/pipeline/types.js';
+import type { QueryPlan } from '../lib/query/query-plan.js';
 import { initConsumptionLog, logConsumptionEvent } from '../lib/telemetry/consumption-logger.js';
 import * as retrievalTelemetry from '../lib/telemetry/retrieval-telemetry.js';
 // Artifact-class routing (spec/plan/tasks/checklist/memory)
 import { getStrategyForQuery } from '../lib/search/artifact-routing.js';
 import { routeQuery } from '../lib/search/query-router.js';
-import { createEmptyQueryPlan, type QueryPlan } from '../lib/query/query-plan.js';
+import { createEmptyQueryPlan } from '../lib/query/query-plan.js';
 import { getGraphReadinessSnapshotFromMarker } from '../lib/code-graph-boundary.js';
 import { mapGraphReadinessToTelemetry } from '../lib/search/graph-readiness-mapper.js';
 import {
@@ -1008,8 +1009,8 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     }
   }
 
-  if (!detectedIntent && autoDetectIntent && hasValidQuery) {
-    const classification: IntentClassification = intentClassifier.classifyIntent(normalizedQuery!);
+  if (!detectedIntent && autoDetectIntent && normalizedQuery !== null) {
+    const classification: IntentClassification = intentClassifier.classifyIntent(normalizedQuery);
     detectedIntent = classification.intent;
     intentConfidence = classification.confidence;
     intentWeights = intentClassifier.getIntentWeights(classification.intent as IntentType);
@@ -1021,7 +1022,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     }
   }
 
-  // FIX RC3-B: Intent confidence floor — override low-confidence auto-detections to "understand"
+  // Override low-confidence auto-detections to "understand" for safer fallback semantics.
   const INTENT_CONFIDENCE_FLOOR = parseFloat(process.env.SPECKIT_INTENT_CONFIDENCE_FLOOR || '0.25');
   if (detectedIntent && intentConfidence < INTENT_CONFIDENCE_FLOOR && !explicitIntent) {
     console.error(`[memory-search] Intent confidence ${intentConfidence.toFixed(3)} below floor ${INTENT_CONFIDENCE_FLOOR}, overriding '${detectedIntent}' → 'understand'`);

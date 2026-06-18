@@ -1,4 +1,9 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ parent-skill-check Doctor Script                                         ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+'use strict';
+
 /**
  * parent-skill-check.cjs — read-only structural audit for the
  * "parent skill with nested mode packets" pattern.
@@ -23,7 +28,6 @@
  *   1  — at least one invariant failed
  *   2  — target directory missing or unreadable
  */
-'use strict';
 
 const fs = require('fs');
 const path = require('path');

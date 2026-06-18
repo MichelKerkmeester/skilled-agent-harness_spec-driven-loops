@@ -4,18 +4,11 @@
 
 ---
 
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. USAGE](#2--usage)
-
----
-
 ## 1. OVERVIEW
 
 This is a valid README with proper formatting:
-- Has TABLE OF CONTENTS section
-- Uses double-dash anchors
+- Uses plain numbered H2 sections
+- Omits Table of Contents and ANCHOR comments
 - H2 headers use ALL CAPS
 
 ---

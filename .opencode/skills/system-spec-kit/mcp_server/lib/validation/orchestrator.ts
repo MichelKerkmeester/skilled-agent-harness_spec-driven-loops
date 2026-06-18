@@ -478,7 +478,7 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
     const report = validateFolder(folder, opts);
     printReport(report, opts);
     process.exitCode = report.passed ? 0 : 2;
-  } catch (error) {
+  } catch (error: unknown) {
     const message = error instanceof Error ? error.message : String(error);
     console.error(`ERROR: ${message}`);
     process.exitCode = /Folder not found|ENOENT|EACCES|manifest|Internal template contract/u.test(message) ? 3 : 1;

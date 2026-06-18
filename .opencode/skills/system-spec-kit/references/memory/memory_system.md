@@ -19,7 +19,7 @@ Spec Kit Memory MCP tools, behavior notes, and configuration options.
 
 ## 1. OVERVIEW
 
-Current baseline: schema v37 (`document_type`, `spec_level`, trigger embeddings, provenance `source_kind`, idempotency receipts, near-duplicate hints and tombstone partitions), 2 active indexed content sources plus retired compatibility artifacts, 7 intent types, and `includeSpecDocs: true` by default.
+Current baseline: schema v37 (`document_type`, `spec_level`, trigger embeddings, provenance `source_kind`, idempotency receipts, near-duplicate hints and tombstone partitions), 3 active indexed content sources, 7 intent types, and `includeSpecDocs: true` by default.
 
 The Spec Kit Memory system provides context preservation across sessions through vector-based semantic search and packet-first continuity. Phase 018 makes `handover.md -> _memory.continuity -> spec docs` the canonical recovery chain; retired `[spec]/memory/*.md` artifacts are no longer produced at save time and only matter when older packets still contain them. This reference covers MCP tool behavior, importance tiers, decay scoring, and configuration.
 
@@ -45,25 +45,27 @@ When a save mutates indexed state, the runtime also updates the `DB_UPDATED_FILE
 
 ### Indexable Content Sources
 
-The indexed-continuity store indexes content from two active sources, plus a retired-compatibility row preserved for read-side retrieval against historical packets:
+The indexed-continuity store indexes content from three active source families, plus a retired-compatibility row preserved for read-side retrieval against historical packets:
 
 | Source | Location Pattern | Memory Type | Default Tier | Discovery |
 |--------|-----------------|-------------|--------------|-----------|
 | **Spec Documents** | `specs/**/*.md` and `<active-spec-folder>/**/*.md` | Per-type (spec, plan, tasks, etc.) | `normal` | `findSpecDocuments()` |
 | **Constitutional Rules** | `.opencode/skills/*/constitutional/*.md` | `meta-cognitive` | `constitutional` | `findConstitutionalFiles()` |
+| **Graph Metadata** | `graph-metadata.json` adjacent to spec docs | `graph_metadata` | `normal` | `findGraphMetadataFiles()` |
 | **Retired Compatibility Artifacts** | Older `specs/*/memory/*.{md,txt}` files already present in historical packets | Varies (episodic, procedural, etc.) | `normal` | Historical compatibility only |
 
 **Content Source Behavior:**
 
 - **Spec Documents** — Canonical packet continuity source. Recovery should read `handover.md`, then `_memory.continuity`, then the rest of the packet docs before widening into search.
 - **Constitutional Rules** — Always-surface critical rules. Injected at top of every search result. No decay.
+- **Graph Metadata** — Packet metadata source discovered alongside spec documents and indexed with the `graph_metadata` document type.
 - **Retired Compatibility Artifacts** — Older session notes may still exist in historical packets, but save workflows no longer produce them and operators should not treat them as an active surface.
 
 **Spec Document Indexing Pipeline:**
 1. `findSpecDocuments()` walks both supported specs roots and discovers supported doc filenames
 2. `isMemoryFile()` validates each document as an indexable file
 3. `extractDocumentType()` infers `document_type` (spec/plan/tasks/etc.) for scoring
-4. Documents are indexed alongside memory and constitutional files
+4. Spec documents, constitutional files, and `graph-metadata.json` files are merged and indexed together
 5. `createSpecDocumentChain()` links lifecycle docs for causal traversal
 
 ---
@@ -102,9 +104,9 @@ Six-tier system for prioritizing memory relevance:
 
 > **Note:** MCP tool names use plain names such as `memory_search`, `memory_save`, and `checkpoint_create`.
 
-### Tool Reference (37 `mk-spec-memory` tools)
+### Tool Reference (39 `mk-spec-memory` MCP tools)
 
-The public surface is 37 local descriptors in `TOOL_DEFINITIONS` from `mcp_server/tool-schemas.ts`.
+The public MCP surface is 39 local descriptors in `TOOL_DEFINITIONS` from `mcp_server/tool-schemas.ts`.
 Code Graph and Skill Advisor descriptors are exposed by their own MCP servers, not this registry.
 
 | Layer | Tool | Purpose | Example Use |
@@ -139,6 +141,8 @@ Code Graph and Skill Advisor descriptors are exposed by their own MCP servers, n
 | L6: Analysis | `eval_run_ablation()` | Run ablation study on memory scoring components | Compare scoring strategies |
 | L6: Analysis | `eval_reporting_dashboard()` | Generate evaluation and reporting dashboard data | Review system metrics |
 | L7: Maintenance | `memory_index_scan()` | Bulk scan and index packet docs, constitutional files, and graph metadata | After continuity or spec-doc updates |
+| L7: Maintenance | `memory_index_scan_status()` | Get progress for a background index scan | Poll a `background:true` scan job |
+| L7: Maintenance | `memory_index_scan_cancel()` | Cancel a running background index scan | Stop a runaway scan job |
 | L7: Maintenance | `memory_get_learning_history()` | Return preflight/postflight learning history | Analyze learning patterns |
 | L7: Maintenance | `memory_ingest_start()` | Start async bulk memory ingestion | Import large memory sets |
 | L7: Maintenance | `memory_ingest_status()` | Check status of running ingestion job | Monitor import progress |
@@ -161,6 +165,10 @@ Code-graph implementation and package docs are owned by `.opencode/skills/system
 | `includeConstitutional` | boolean | true | Scan `.opencode/skills/*/constitutional/` directories |
 | `includeSpecDocs` | boolean | true | Scan for spec folder documents in `.opencode/specs/`. When true, discovers and indexes specs, plans, tasks, decision records, etc. with document-type scoring multipliers (11 types). Also controllable via `SPECKIT_INDEX_SPEC_DOCS` env var. |
 | `incremental` | boolean | true | Skip files whose mtime and content hash are unchanged since last index |
+| `background` | boolean | false | Queue a background scan job; poll with `memory_index_scan_status` and stop with `memory_index_scan_cancel` |
+| `tenantId`, `userId`, `agentId`, `sessionId` | string | - | Governance boundaries for scoped ingest |
+| `provenanceSource`, `provenanceActor`, `governedAt` | string | - | Provenance metadata for governed ingest validation |
+| `retentionPolicy`, `deleteAfter` | string | - | Retention metadata for governed spec-doc records |
 
 ---
 

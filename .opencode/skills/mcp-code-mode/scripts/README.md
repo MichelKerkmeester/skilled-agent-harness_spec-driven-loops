@@ -26,9 +26,9 @@ Use this file to identify the folder boundary, the likely verification path, and
 
 | Metric | Value |
 |---|---:|
-| Code files | 1 |
+| Code files | 4 |
 | README scope | Direct files in this folder |
-| Audit context | Internal validation notes |
+| Review context | Current source alignment notes |
 
 ---
 
@@ -58,7 +58,7 @@ Run individual scripts from the repository root with the documented arguments.
 |---|---|
 | Folder boundary | Documents direct code files under `scripts`. |
 | sk-code alignment | Points reviewers at OpenCode naming, header, error-handling, and type-discipline checks. |
-| Verification handoff | Records the expected owner and audit packet for follow-up work. |
+| Verification handoff | Records the expected owner and verification path for follow-up work. |
 
 ---
 
@@ -66,6 +66,9 @@ Run individual scripts from the repository root with the documented arguments.
 
 | Path | Purpose |
 |---|---|
+| `doctor.sh` | Shell health-check script for the live Code Mode setup. |
+| `install.sh` | Shell installer for Code Mode prerequisites and local wiring. |
+| `update.sh` | Shell updater for refreshing the local Code Mode installation. |
 | `validate_config.py` | PY source file in this folder. |
 
 ---
@@ -86,7 +89,7 @@ Run individual scripts from the repository root with the documented arguments.
 ```text
 User request: Check .opencode/skills/mcp-code-mode/scripts for sk-code and README coverage.
 Skill routing: sk-code plus sk-doc.
-Expected output: Findings recorded in the 026 audit report.
+Expected output: Findings recorded against the current source alignment review.
 ```
 
 ---
@@ -95,7 +98,7 @@ Expected output: Findings recorded in the 026 audit report.
 
 | What You See | Cause | Fix |
 |---|---|---|
-| README appears stale | Source files changed after this audit | Refresh the structure table and rerun the 026 audit check. |
+| README appears stale | Source files changed after this review | Refresh the structure table and rerun the current source alignment check. |
 | Verification command is unclear | Folder is a helper boundary | Use the nearest package or skill-level verification command. |
 
 ---

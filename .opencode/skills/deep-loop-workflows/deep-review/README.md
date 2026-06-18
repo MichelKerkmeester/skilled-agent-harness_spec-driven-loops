@@ -37,7 +37,7 @@ A single-pass review reads the diff once and calls it done. Whichever dimension 
 
 `deep-review` runs an autonomous multi-iteration review loop through `/deep:review:auto`. Each iteration dispatches a fresh `@deep-review` LEAF agent that reads accumulated state from disk, audits one review dimension, writes findings to an iteration file and appends a JSONL delta record. A reducer updates the strategy, findings registry and dashboard after each pass. The loop stops when a composite convergence signal clears and nine legal-stop gates pass, producing a release-readiness verdict. PASS routes to changelog creation. FAIL and CONDITIONAL route to remediation planning.
 
-It does not investigate outward knowledge (`deep-research`), map inward code before planning (`deep-context`) or compare competing plans (`deep-ai-council`). A single-pass review is `sk-code-review`. All four sibling loops share the `deep-loop-runtime` for executors, state handling and coverage graphs.
+It does not investigate outward knowledge (`deep-research`), map inward code before planning (`deep-context`), compare competing plans (`deep-ai-council`) or run evaluator-first improvement lanes (`deep-improvement`). A single-pass review is `sk-code-review`. The five top-level deep-loop personas share the `deep-loop-runtime` for executors, state handling and coverage graphs.
 
 ---
 
@@ -112,13 +112,14 @@ Skip it for a single-pass review, where `sk-code-review` is faster. Skip it for 
 
 ### Sibling Deep Loops
 
-`deep-review` shares the `deep-loop-runtime` with three sibling skills. Each owns a different phase and none crosses into another's territory.
+`deep-review` shares the `deep-loop-runtime` with four sibling personas. Each owns a different phase and none crosses into another's territory.
 
 | Skill | Relationship |
 |---|---|
 | `deep-research` | Investigates outward knowledge with web access. `deep-review` audits inward code with no web access. |
 | `deep-context` | Maps existing code, patterns and integration points before planning. Run it before `deep-review` when the codebase is unfamiliar. |
 | `deep-ai-council` | Compares competing plans with structured disagreement. Run it before implementation, then `deep-review` after. |
+| `deep-improvement` | Runs evaluator-first improvement across four lanes: agent improvement, model benchmark, skill benchmark and AI-system improvement. |
 
 `sk-code-review` handles a single-pass review with no convergence gating. `deep-review` is the multi-iteration loop. `system-spec-kit` owns the spec folder, validation and memory continuity.
 

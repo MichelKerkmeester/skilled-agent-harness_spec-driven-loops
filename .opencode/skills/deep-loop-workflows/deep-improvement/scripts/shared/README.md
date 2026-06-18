@@ -1,6 +1,6 @@
 ---
 title: "shared: Cross-Lane Scripts"
-description: "Mode router, promotion, fixtures, state reducer, journal, and coverage scripts serving both deep-improvement lanes."
+description: "Mode router, promotion, fixtures, state reducer, journal, coverage, and shared helper scripts serving deep-improvement modes."
 trigger_phrases:
   - "shared deep-improvement scripts"
   - "loop-host router"
@@ -13,14 +13,14 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`shared/` holds the scripts used by BOTH lanes of the deep-improvement skill: Lane A (agent-improvement) and Lane B (model-benchmark). `loop-host.cjs` is the mode router that dispatches into either lane, and the remaining scripts are lane-agnostic helpers for promotion, fixtures, state reduction, journaling, and coverage tracking.
+`shared/` holds the scripts used by the deep-improvement skill's shared host surface. `loop-host.cjs` routes four modes: `agent-improvement`, `model-benchmark`, `skill-benchmark`, and `non-dev-ai-system-refine`. The remaining scripts are shared helpers for promotion, fixtures, state reduction, journaling, coverage tracking, argument parsing, deliverable extraction, model-family checks, fixture linting, and rubric guards.
 
 Current state:
 
-- `loop-host.cjs` is the single entry point. It reads `--mode` (`agent-improvement` default or `model-benchmark`) and spawns the lane scripts.
+- `loop-host.cjs` is the single entry point. It reads `--mode` (`agent-improvement` default, `model-benchmark`, `skill-benchmark`, or `non-dev-ai-system-refine`) and spawns the resolved mode scripts.
 - `planInvocation()` returns BARE script names so its plan output stays byte-identical across modes. `resolveScriptPath()` maps each bare name to its real lane directory at spawn time.
 - `promote-candidate.cjs` and `reduce-state.cjs` are mode-aware: they read a `mode` field on records and attribute missing or unknown modes to `agent-improvement`.
-- `improvement-journal.cjs` and `mutation-coverage.cjs` provide journal and coverage primitives shared by both lanes.
+- `improvement-journal.cjs` and `mutation-coverage.cjs` provide journal and coverage primitives shared across the host surface.
 
 ---
 
@@ -62,6 +62,11 @@ shared/
 +-- reduce-state.cjs                    # Registry + dashboard reducer with lane mode-mix
 +-- improvement-journal.cjs             # Append-only audit journal primitives
 +-- mutation-coverage.cjs               # Mutation signature + trajectory coverage graph
++-- fixture-lint.cjs                    # Fixture schema and content lint helper
++-- extract-deliverable.cjs             # Extracts deliverable payloads from model output
++-- parse-args.cjs                      # Shared key/value CLI argument parser
++-- model-family.cjs                    # Model-family classification helpers
++-- rubric-guard.cjs                    # Rubric integrity and guardrail checks
 `-- README.md
 ```
 
@@ -86,7 +91,7 @@ shared/
 |---|---|
 | Imports | `promote-candidate.cjs` imports `../lib/promotion-gates.cjs` and `../lib/mirror-sync-verify.cjs`. `loop-host.cjs` resolves lane scripts by path and spawns them with `spawnSync`. |
 | Exports | `loop-host.cjs`, `improvement-journal.cjs`, and `mutation-coverage.cjs` expose named module exports. `loop-host.cjs`, `promote-candidate.cjs`, `materialize-benchmark-fixtures.cjs`, `reduce-state.cjs`, and `improvement-journal.cjs` run as CLI entrypoints. |
-| Ownership | These scripts serve both lanes. Lane A scripts live in `../agent-improvement/`, Lane B scripts in `../model-benchmark/`. The spawn map keeps bare names in the plan and resolves the lane directory at spawn time. |
+| Ownership | These scripts serve the shared deep-improvement host surface. Lane A scripts live in `../agent-improvement/`, Lane B scripts in `../model-benchmark/`, Lane C scripts in `../skill-benchmark/`, and Lane D adapter scripts in `../non-dev-ai-system/`. The spawn map keeps bare names in the plan and resolves the lane directory at spawn time. |
 
 Main flow:
 

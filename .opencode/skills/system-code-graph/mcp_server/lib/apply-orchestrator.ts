@@ -6,7 +6,7 @@ import { appendFileSync, mkdirSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { DATABASE_DIR } from '../core/config.js';
 import * as graphDb from './code-graph-db.js';
-import { buildReadinessBlock } from './readiness-contract.js';
+import { buildReadinessBlock, type CodeGraphReadinessBlock } from './readiness-contract.js';
 import {
   classifyExcludeRules,
   resolveExcludeRuleConfidence,
@@ -722,7 +722,7 @@ export async function applyCodeGraph(
   };
 }
 
-export function buildReadinessForApplyState(input: ApplyStateInput) {
+export function buildReadinessForApplyState(input: ApplyStateInput): CodeGraphReadinessBlock {
   return buildReadinessBlock({
     freshness: input.freshness === 'fresh' || input.freshness === 'stale' || input.freshness === 'empty' || input.freshness === 'error'
       ? input.freshness

@@ -22,7 +22,7 @@ trigger_phrases:
 Current state:
 
 - The indexer parses TypeScript, JavaScript, Python and shell files through tree-sitter with fallback handling.
-- JSON, JSONC, YAML, YML and TOML config files can be registered as `language='doc'` rows when `.opencode/` folders are explicitly opted in. Markdown and other prose docs are not indexed — the code graph models code and structured config, not documentation.
+- JSON, JSONC, YAML, YML and TOML config files are included by the default scan globs and register as `language='doc'` rows. Markdown is excluded from default scans, but `detectLanguage()` still maps `.md` to `doc` when a caller explicitly includes Markdown paths.
 - The database layer stores files, nodes, edges, metadata, diagnostics, parser skip-list rows and verification records.
 - Context builders merge structural graph, Spec Kit memory and Code Graph inputs under token budgets.
 - Apply-mode recovery runs pre and post verification before committing graph repair operations.
@@ -66,6 +66,8 @@ lib/
 +-- code-graph-context.ts       # Compact context assembly
 +-- seed-resolver.ts            # File and line seeds to graph nodes
 +-- compact-merger.ts           # Memory, graph and Code Graph merge
++-- config-defaults.ts          # Shared config default constants and env overrides
++-- cross-file-edge-resolver.ts # Cross-file call edge reconciliation
 +-- ensure-ready.ts             # Readiness guard and scan trigger logic
 +-- readiness-contract.ts       # Readiness and trust vocabulary
 +-- owner-lease.ts              # Single-owner lifecycle lease
@@ -85,6 +87,7 @@ lib/
 +-- ops-hardening.ts            # Query timeout and retry guards
 +-- query-intent-classifier.ts  # Query intent routing
 +-- startup-brief.ts            # Startup graph summary payloads
++-- symbol-bm25-resolver.ts     # BM25 fallback symbol candidate scoring
 +-- phase-runner.ts             # Ordered phase execution helper
 +-- shared/                     # Local contracts and runtime helper modules
 +-- ipc/                        # Launcher socket bridge
@@ -124,6 +127,8 @@ lib/
 +-- code-graph-context.ts
 +-- code-graph-db.ts
 +-- compact-merger.ts
++-- config-defaults.ts
++-- cross-file-edge-resolver.ts
 +-- diff-parser.ts
 +-- edge-drift.ts
 +-- ensure-ready.ts
@@ -144,6 +149,7 @@ lib/
 +-- runtime-detection.ts
 +-- seed-resolver.ts
 +-- startup-brief.ts
++-- symbol-bm25-resolver.ts
 +-- structural-indexer.ts
 +-- tree-sitter-parser.ts
 +-- working-set-tracker.ts
@@ -163,10 +169,13 @@ lib/
 | `tree-sitter-parser.ts` | Extracts AST-backed nodes and edges, skips doc-language rows and reports parser health. |
 | `parser-skip-list.ts` | Stores per-file parser skip-list rows for repeated tree-sitter failures. |
 | `code-graph-db.ts` | Owns SQLite schema, graph CRUD, statistics and startup highlights. |
+| `config-defaults.ts` | Centralizes shared code-graph defaults and env-var overrides. |
+| `cross-file-edge-resolver.ts` | Reconciles cross-file call edges after scan persistence when a safe concrete target exists. |
 | `canonical-db-dir.ts` | Resolves canonical DB directories and enforces workspace-contained overrides. |
 | `close-db-assertion.ts` | Asserts stale DB handles are closed after lifecycle shutdown. |
 | `code-graph-context.ts` | Builds token-bounded neighborhoods for `code_graph_context`. |
 | `seed-resolver.ts` | Resolves manual, graph and Code Graph seeds to indexed graph nodes. |
+| `symbol-bm25-resolver.ts` | Provides fallback BM25 symbol candidate scoring over indexed symbol fields. |
 | `compact-merger.ts` | Merges Spec Kit memory, code graph and Code Graph context payloads. |
 | `ensure-ready.ts` | Determines whether graph reads can proceed or must return a blocked payload. |
 | `readiness-contract.ts` | Defines readiness, canonical readiness and trust-state terms. |

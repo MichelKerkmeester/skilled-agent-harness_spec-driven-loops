@@ -41,7 +41,7 @@
 //
 // SCORE AUDIT CONTRACT: Stage 2 writes the fused `score` field (steps 1-7).
 // Stage 3 (rerank) MAY overwrite `score` with the reranked value and MUST
-// preserve the original in `stage2Score` for auditability (see F2.02 fix).
+// preserve the original in `stage2Score` for auditability.
 // Stage 4 (filter) MUST NOT mutate any score fields — it is read-only.
 
 import type Database from 'better-sqlite3';
@@ -298,7 +298,7 @@ function applyValidationSignalScoring(results: PipelineRow[]): PipelineRow[] {
 const resolveBaseScore = resolveEffectiveScore;
 
 function withSyncedScoreAliases(row: PipelineRow, score: number): PipelineRow {
-  // F2.03 fix: Clamp to [0,1] so downstream consumers never see raw boosted values > 1.
+  // Clamp to [0,1] so downstream consumers never see raw boosted values > 1.
   const clamped = Math.max(0, Math.min(1, score));
   return {
     ...row,
@@ -313,7 +313,7 @@ function withSyncedScoreAliases(row: PipelineRow, score: number): PipelineRow {
 function syncScoreAliasesInPlace(rows: PipelineRow[]): void {
   for (const row of rows) {
     if (typeof row.score !== 'number' || !Number.isFinite(row.score)) continue;
-    // F2.03 fix: Clamp to [0,1] during in-place sync.
+    // Clamp to [0,1] during in-place sync.
     const clamped = Math.max(0, Math.min(1, row.score));
     row.score = clamped;
     row.rrfScore = clamped;

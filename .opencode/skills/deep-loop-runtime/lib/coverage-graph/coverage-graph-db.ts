@@ -1,11 +1,16 @@
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Coverage Graph Database
+// ───────────────────────────────────────────────────────────────────
 
-import Database from 'better-sqlite3';
 import { mkdirSync, statSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-// ───── TYPE DEFINITIONS ─────
+import Database from 'better-sqlite3';
+
+// ───────────────────────────────────────────────────────────────────
+// 1. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 export type LoopType = 'research' | 'review' | 'context';
 
@@ -69,6 +74,7 @@ export type ContextRelation =
 
 export type Relation = ResearchRelation | ReviewRelation | ContextRelation;
 
+/** Node stored in the deep-loop coverage graph. */
 export interface CoverageNode {
   id: string;
   specFolder: string;
@@ -83,6 +89,7 @@ export interface CoverageNode {
   updatedAt?: string;
 }
 
+/** Directed relationship between two coverage graph nodes. */
 export interface CoverageEdge {
   id: string;
   specFolder: string;
@@ -96,6 +103,7 @@ export interface CoverageEdge {
   createdAt?: string;
 }
 
+/** Point-in-time metrics snapshot for a coverage graph namespace. */
 export interface CoverageSnapshot {
   id?: number;
   specFolder: string;
@@ -108,13 +116,16 @@ export interface CoverageSnapshot {
   createdAt?: string;
 }
 
+/** Namespace that scopes graph reads and writes. */
 export interface Namespace {
   specFolder: string;
   loopType: LoopType;
   sessionId?: string;
 }
 
-// ───── CONSTANTS ─────
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 export const SCHEMA_VERSION = 3;
 
@@ -198,7 +209,9 @@ export const VALID_RELATIONS: Record<LoopType, readonly string[]> = {
   context: ['CONTAINS', 'REFERENCES', 'IMPORTS', 'DEPENDS_ON', 'IMPLEMENTS', 'EXPOSES', 'REUSES', 'CONSTRAINS', 'COVERED_BY', 'CONFIRMS', 'CONTRADICTS'] as const,
 };
 
-// ───── SCHEMA ─────
+// ───────────────────────────────────────────────────────────────────
+// 3. SCHEMA
+// ───────────────────────────────────────────────────────────────────
 
 const SCHEMA_SQL = `
   CREATE TABLE IF NOT EXISTS coverage_nodes (
@@ -264,7 +277,9 @@ const SCHEMA_SQL = `
   CREATE INDEX IF NOT EXISTS idx_coverage_snapshot_session ON coverage_snapshots(session_id);
 `;
 
-// ───── DATABASE LIFECYCLE ─────
+// ───────────────────────────────────────────────────────────────────
+// 4. DATABASE LIFECYCLE
+// ───────────────────────────────────────────────────────────────────
 
 let db: Database.Database | null = null;
 let dbPath: string | null = null;
@@ -357,7 +372,9 @@ export function closeDb(): void {
   }
 }
 
-// ───── HELPERS ─────
+// ───────────────────────────────────────────────────────────────────
+// 5. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function prepareStatement(sql: string): Database.Statement {
   const currentDb = getDb();
@@ -429,7 +446,9 @@ function rowToSnapshot(r: Record<string, unknown>): CoverageSnapshot {
   };
 }
 
-// ───── EXPORTS ─────
+// ───────────────────────────────────────────────────────────────────
+// 6. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Clamp weight to valid range [0.0, 2.0].

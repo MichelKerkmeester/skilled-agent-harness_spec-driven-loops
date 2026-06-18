@@ -68,6 +68,7 @@ function validateResolvedPath(label: 'package root' | 'database dir', resolvedPa
   return fallbackResolvedPath(label);
 }
 
+/** Resolve the system-spec-kit package root from workspace markers or package metadata. */
 export function resolvePackageRoot(): string {
   const fromWorkspaceDirs = findUp(import.meta.dirname, hasWorkspaceDirectories);
   if (fromWorkspaceDirs) {
@@ -88,6 +89,7 @@ export function resolvePackageRoot(): string {
   return validateResolvedPath('package root', fromCwd || resolveImportMetaRelativePackageRoot());
 }
 
+/** Resolve the active memory database directory, honoring configured overrides. */
 export function resolveDatabaseDir(): string {
   const configuredDir = getDbDir();
   if (configuredDir) {

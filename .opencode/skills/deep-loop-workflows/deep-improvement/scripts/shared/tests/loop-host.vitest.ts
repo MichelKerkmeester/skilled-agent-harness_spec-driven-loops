@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Loop Host Tests
+// ───────────────────────────────────────────────────────────────────
+
 import path from 'node:path';
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
@@ -60,7 +64,7 @@ describe('loop-host', () => {
     });
 
     it('does not alter =-form parsing (TST-1 identity surface)', () => {
-      // =-form must stay byte-identical so the TST-1 identity gate holds.
+      // =-form must stay byte-identical so the identity gate holds.
       const args = loopHost.parseArgs(['--candidate=/tmp/cand.md', '--baseline=/tmp/base.md']);
       expect(args).toEqual({ candidate: '/tmp/cand.md', baseline: '/tmp/base.md' });
     });
@@ -76,8 +80,8 @@ describe('loop-host', () => {
       const explicitArgs = loopHost.parseArgs(['--mode=agent-improvement', ...argv]);
       const explicitPlan = loopHost.planInvocation(loopHost.resolveMode(explicitArgs.mode as string | undefined), explicitArgs);
 
-      // The whole point of TST-1: the default route and the explicit
-      // agent-improvement route must produce the identical underlying command.
+      // The default route and the explicit agent-improvement route must produce
+      // the identical underlying command.
       expect(defaultPlan).toEqual(explicitPlan);
       expect(defaultPlan.ok).toBe(true);
       if (defaultPlan.ok) {
@@ -142,8 +146,8 @@ describe('loop-host', () => {
     });
 
     it('forwards space-form scorer/grader from parseArgs through to run-benchmark (F-P0-1 end to end)', () => {
-      // The full Lane B command shape: space-form flags must parse AND then
-      // forward to run-benchmark, not collapse to booleans.
+      // The full model-benchmark command shape: space-form flags must parse AND
+      // then forward to run-benchmark, not collapse to booleans.
       const args = loopHost.parseArgs([
         '--profile', 'p.json',
         '--outputs-dir', '/tmp/o',
@@ -179,7 +183,7 @@ describe('loop-host', () => {
       }
     });
 
-    it('forwards --integration-report to run-benchmark (P2 option-schema consolidation)', () => {
+    it('forwards --integration-report to run-benchmark (option-schema consolidation)', () => {
       // run-benchmark supports --integration-report; loop-host must forward it
       // rather than silently dropping the runner option.
       const plan = loopHost.planInvocation(
@@ -197,7 +201,7 @@ describe('loop-host', () => {
     });
   });
 
-  describe('resolveScriptPath spawn-path mapping (P2 013-lane-sep traceability-3-6)', () => {
+  describe('resolveScriptPath spawn-path mapping', () => {
     it('maps a Lane A script name to the agent-improvement lane dir', () => {
       const resolved = loopHost.resolveScriptPath('score-candidate.cjs');
       expect(resolved.endsWith(path.join('agent-improvement', 'score-candidate.cjs'))).toBe(true);

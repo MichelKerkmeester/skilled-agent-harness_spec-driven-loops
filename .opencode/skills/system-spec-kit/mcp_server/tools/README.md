@@ -61,7 +61,7 @@ mcp_server/tools/
 +-- memory-tools.ts       # memory search, save, CRUD and stats dispatch
 +-- causal-tools.ts       # causal graph dispatch
 +-- checkpoint-tools.ts   # checkpoint and learning history dispatch
-+-- lifecycle-tools.ts    # async ingest lifecycle dispatch
++-- lifecycle-tools.ts    # index scan, task learning, async ingest, eval and session dispatch
 +-- types.ts              # Shared response aliases and argument shapes
 `-- README.md
 ```
@@ -89,7 +89,7 @@ Disallowed direction:
 | `memory-tools.ts` | Routes memory search, trigger, save, update, delete and stats tools. |
 | `causal-tools.ts` | Routes causal link, unlink, stats and lineage calls. |
 | `checkpoint-tools.ts` | Routes checkpoint lifecycle and learning history calls. |
-| `lifecycle-tools.ts` | Routes async ingest start, status and cancel calls. |
+| `lifecycle-tools.ts` | Routes memory index scan/status/cancel, task learning, async ingest, eval and session calls. |
 | `types.ts` | Defines shared response and typed argument contracts. |
 
 ---

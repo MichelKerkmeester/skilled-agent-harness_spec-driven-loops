@@ -6,7 +6,6 @@
 // Shutdown, and main orchestration only.
 import fs from 'fs';
 import path from 'path';
-import type Database from 'better-sqlite3';
 
 /* ───────────────────────────────────────────────────────────────
    1. MODULE IMPORTS
@@ -63,7 +62,7 @@ import {
   recordToolCall,
 } from './hooks/index.js';
 import { primeSessionIfNeeded } from './hooks/memory-surface.js';
-import { runWithCallerContext, type MCPCallerContext } from './lib/context/caller-context.js';
+import { runWithCallerContext } from './lib/context/caller-context.js';
 
 // Architecture
 import { getTokenBudget } from './lib/architecture/layer-definitions.js';
@@ -89,7 +88,7 @@ import * as hybridSearch from './lib/search/hybrid-search.js';
 import { createUnifiedGraphSearchFn } from './lib/search/graph-search-fn.js';
 import { isGraphUnifiedEnabled } from './lib/search/graph-flags.js';
 import { callCodeGraphTool } from './lib/code-graph-boundary.js';
-import { detectRuntime, type RuntimeInfo } from './lib/runtime-detection.js';
+import { detectRuntime } from './lib/runtime-detection.js';
 import {
   ensureMemoryRuntimeInitialized,
   isMemoryRuntimeInitialized,
@@ -119,11 +118,9 @@ import {
   getIpcBridgeStats,
   resolveIpcSocketPath,
   startIpcSocketServer,
-  type IpcSocketServerHandle,
 } from './lib/ipc/socket-server.js';
 import {
   createLauncherIdleMonitor,
-  type LauncherIdleMonitor,
 } from './lib/ipc/launcher-idle-timeout.js';
 import * as workingMemory from './lib/cognitive/working-memory.js';
 import * as attentionDecay from './lib/cognitive/attention-decay.js';
@@ -139,23 +136,31 @@ import * as shadowEvaluationRuntime from './lib/feedback/shadow-evaluation-runti
 // Context metrics — lightweight session quality tracking
 import { recordMetricEvent } from './lib/session/context-metrics.js';
 
-// P4-12/P4-19: Incremental index (passed to db-state for stale handle refresh)
+// Incremental index is passed to db-state for stale handle refresh.
 import * as incrementalIndex from './lib/storage/incremental-index.js';
 // Transaction manager for pending file recovery on startup
 import * as transactionManager from './lib/storage/transaction-manager.js';
-// KL-4: Tool cache cleanup on shutdown
+// Tool cache cleanup on shutdown prevents stale cross-session entries.
 import * as toolCache from './lib/cache/tool-cache.js';
 import { initExtractionAdapter, rebindExtractionAdapter } from './lib/extraction/extraction-adapter.js';
 import { migrateLearnedTriggers, verifyFts5Isolation } from './lib/storage/learned-triggers-schema.js';
 import { isLearnedFeedbackEnabled } from './lib/search/learned-feedback.js';
 import { initIngestJobQueue, stopWorker as stopIngestWorker } from './lib/ops/job-queue.js';
 import { ensureMaintenanceJobsTable, resetRunningJobsForKind } from './lib/ops/job-store.js';
-import { startFileWatcher, type FSWatcher } from './lib/ops/file-watcher.js';
+import { startFileWatcher } from './lib/ops/file-watcher.js';
 import { getCanonicalPathKey } from './lib/utils/canonical-path.js';
 import { runBatchLearning } from './lib/feedback/batch-learning.js';
 import { getSessionSnapshot } from './lib/session/session-snapshot.js';
 import { resumeReindexJobs } from './lib/embedders/reindex.js';
 import { ensureActiveEmbedder } from './lib/embedders/schema.js';
+
+// Type-only imports
+import type Database from 'better-sqlite3';
+import type { MCPCallerContext } from './lib/context/caller-context.js';
+import type { RuntimeInfo } from './lib/runtime-detection.js';
+import type { IpcSocketServerHandle } from './lib/ipc/socket-server.js';
+import type { LauncherIdleMonitor } from './lib/ipc/launcher-idle-timeout.js';
+import type { FSWatcher } from './lib/ops/file-watcher.js';
 
 /* ───────────────────────────────────────────────────────────────
    2. TYPES
@@ -1034,7 +1039,7 @@ const serverWithInstructions = server as unknown as { setInstructions?: (instruc
 const KNOWN_TOOL_NAMES = new Set(TOOL_DEFINITIONS.map((tool) => tool.name));
 
 /* ───────────────────────────────────────────────────────────────
-   TOOL DEFINITIONS
+   4. TOOL DEFINITIONS
 ──────────────────────────────────────────────────────────────── */
 
 function registerContextServerHandlers(targetServer: Server): void {
@@ -1043,10 +1048,12 @@ function registerContextServerHandlers(targetServer: Server): void {
   }));
 
 /* ───────────────────────────────────────────────────────────────
-   TOOL DISPATCH
+   5. TOOL DISPATCH
 ──────────────────────────────────────────────────────────────── */
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // MCP SDK call-tool response typing is generated from schema internals that
+  // are not exported as a stable public type by the installed SDK version.
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   targetServer.setRequestHandler(CallToolRequestSchema, async (request, _extra: unknown): Promise<any> => {
   const requestParams = request.params as { name: string; arguments?: Record<string, unknown> };
   const { name } = requestParams;
@@ -1057,7 +1064,7 @@ function registerContextServerHandlers(targetServer: Server): void {
   if (sessionTrackingId) lastKnownSessionId = sessionTrackingId;
 
   try {
-    // SEC-003: Validate input lengths before processing (CWE-400 mitigation)
+    // Validate input lengths before processing (CWE-400 mitigation).
     validateInputLengths(args);
     // Validate at the server boundary before metrics, session priming, and
     // auto-surface logic can observe malformed raw tool arguments.
@@ -1934,8 +1941,8 @@ async function main(): Promise<void> {
   }
 
   // Initialize db-state module with dependencies
-  // P4-12/P4-19 FIX: Pass sessionManager and incrementalIndex so db-state can
-  // Refresh their DB handles during reinitializeDatabase(), preventing stale refs.
+  // Pass sessionManager and incrementalIndex so db-state can refresh their DB
+  // handles during reinitializeDatabase(), preventing stale refs.
   initDbState({
     vectorIndex,
     checkpoints: checkpointsLib,

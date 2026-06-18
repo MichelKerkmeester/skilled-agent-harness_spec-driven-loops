@@ -23,7 +23,7 @@ trigger_phrases:
 |---|---|
 | **Use it for** | Wiring Open Design's MCP server into a terminal agent, reading local projects and design-systems read-only, grounding a design in one resolved system, and commissioning headless generation runs |
 | **Invoke with** | "open design", "open-design", "od mcp", "od cli", "drive open design from the terminal", or auto-routing on Open Design keywords |
-| **Works on** | The installed Open Design desktop app (v0.9.0+) while it is running, since the app hosts the local daemon every tool call depends on. Needs Node.js and the target agent CLI (opencode or claude) for MCP install |
+| **Works on** | The installed Open Design desktop app (v0.9.0+) while it is running, since the app hosts the local daemon every tool call depends on. Needs Node.js and the target agent CLI for MCP install; supported agent slugs include `claude`, `codex`, `cursor`, `copilot`, `openclaw`, `antigravity`, `gemini`, `pi`, `vibe`, `hermes`, `cline`, `kimi`, `trae`, and `opencode` |
 | **Produces** | A wired `open-design` MCP entry in your agent config, read-only design content (DESIGN.md, tokens.css, components.html, artifacts), and gated generation runs that land artifacts in your projects |
 
 ---
@@ -36,7 +36,7 @@ Open Design is the official open-source, local-first Claude Design alternative, 
 
 ### What It Does
 
-The skill drives the installed Open Design app in three directions. The **wire direction** registers Open Design's stdio MCP server into opencode or Claude Code so its tools appear to the agent, always after a dry-run that prints the exact config first. The **read direction** is the safe default: list projects, read the active context, read a design system's `DESIGN.md` and `tokens.css`, search files, and fetch artifacts, all read-only. The **run direction** commissions Open Design to spawn its own inner agent through a multi-turn flow, the headless equivalent of the chat box, behind explicit confirmation: turn 1 returns a discovery question-form, and the design is built only after that form is answered. Open Design's terminology is first-class throughout: a workspace is a **project**, a brand or style is a **design system**, a build is a **run**, and an output file is an **artifact**.
+The skill drives the installed Open Design app in three directions. The **wire direction** registers Open Design's stdio MCP server into a supported terminal agent so its tools appear to the agent, always after a dry-run that prints the exact config first. The **read direction** is the safe default: list projects, read the active context, read a design system's `DESIGN.md` and `tokens.css`, search files, and fetch artifacts, all read-only. The **run direction** commissions Open Design to spawn its own inner agent through a multi-turn flow, the headless equivalent of the chat box, behind explicit confirmation: turn 1 returns a discovery question-form, and the design is built only after that form is answered. Open Design's terminology is first-class throughout: a workspace is a **project**, a brand or style is a **design system**, a build is a **run**, and an output file is an **artifact**.
 
 This is a real MCP surface, not a CLI-only one. The `od` CLI is `app/prebundled/daemon/daemon-cli.mjs` run under Node or the bundled Electron, and `od mcp install` wires its stdio server into your agent. The CLI and the MCP tools are two faces of the same daemon, so the skill uses whichever fits the step.
 
@@ -60,7 +60,7 @@ node "$OD_BIN" --help
 node "$OD_BIN" mcp install opencode --print --json   # PREVIEW only, writes nothing
 # Read the command array and environment it would write, then apply:
 node "$OD_BIN" mcp install opencode                   # deep-merges opencode.json (mcp.open-design)
-# For Claude Code, swap `opencode` for `claude` (delegates to claude mcp add).
+# For other supported agents, swap `opencode` for the target agent slug.
 ```
 
 **Step 3: Verify the live tool set.**
@@ -90,7 +90,7 @@ Every session starts by locating the CLI as `node "$OD_BIN" --help` (or the `ELE
 
 ### The Wire Direction
 
-`od mcp install <agent>` registers Open Design's stdio MCP server into a terminal agent. For opencode it deep-merges `~/.config/opencode/opencode.json` under `mcp.open-design`. For Claude Code it delegates to `claude mcp add --scope user open-design`. The dry-run form `--print --json` writes nothing and prints the exact entry, so the operator reviews the command array and environment before anything lands. The written entry re-discovers the live daemon URL from the socket on each spawn, so it survives daemon restarts. The skill never pipes a remote install script to a shell.
+`od mcp install <agent>` registers Open Design's stdio MCP server into a supported terminal agent. Supported agent slugs include `claude`, `codex`, `cursor`, `copilot`, `openclaw`, `antigravity`, `gemini`, `pi`, `vibe`, `hermes`, `cline`, `kimi`, `trae`, and `opencode`. For opencode it deep-merges `~/.config/opencode/opencode.json` under `mcp.open-design`; for Claude Code it delegates to `claude mcp add --scope user open-design`. The dry-run form `--print --json` writes nothing and prints the exact entry, so the operator reviews the command array and environment before anything lands. The written entry re-discovers the live daemon URL from the socket on each spawn, so it survives daemon restarts. The skill never pipes a remote install script to a shell.
 
 ### The Read Direction
 
@@ -142,7 +142,7 @@ Reach for this skill whenever a user mentions Open Design, wants to wire it into
 
 **Q: Do I need to install anything first?**
 
-A: You need the Open Design desktop app (v0.9.0+) installed and running, plus Node.js. There is no separate install for the `od` CLI, since it ships inside the app bundle and runs under Node or the bundled Electron. For wiring, the target agent CLI (opencode or claude) must be on PATH.
+A: You need the Open Design desktop app (v0.9.0+) installed and running, plus Node.js. There is no separate install for the `od` CLI, since it ships inside the app bundle and runs under Node or the bundled Electron. For wiring, the target agent CLI must be on PATH; supported agent slugs include `claude`, `codex`, `cursor`, `copilot`, `openclaw`, `antigravity`, `gemini`, `pi`, `vibe`, `hermes`, `cline`, `kimi`, `trae`, and `opencode`.
 
 **Q: Why is there no `od` command on my PATH?**
 
@@ -186,7 +186,7 @@ A: This skill is the transport that reads and writes Open Design content. `sk-in
 | [`feature_catalog/feature_catalog.md`](./feature_catalog/feature_catalog.md) | Capability inventory: wiring, reads, grounding, gated runs, and the daemon transport |
 | [`manual_testing_playbook/manual_testing_playbook.md`](./manual_testing_playbook/manual_testing_playbook.md) | Operator validation matrix with the wire, read, gated-run, and failure-path scenarios |
 | [`references/od_cli_reference.md`](./references/od_cli_reference.md) | Locating the CLI, the daemon socket model, and the full verb surface with read-only vs mutating classification |
-| [`references/mcp_wiring.md`](./references/mcp_wiring.md) | Wiring the MCP server into opencode and Claude Code, the written config shape, and the manual fallback |
+| [`references/mcp_wiring.md`](./references/mcp_wiring.md) | Wiring the MCP server into supported terminal agents, the written config shape, and the manual fallback |
 | [`references/tool_surface.md`](./references/tool_surface.md) | The roughly 18 MCP tools, the surface, gate, and omit policy, and the live-verification requirement |
 | [`references/design_parity_transport.md`](./references/design_parity_transport.md) | The Open Design transport mechanics for the real-UI loop (the loop itself lives in `sk-interface-design`) |
 | [Skills Library](../README.md) | The skill catalog and routing front door |

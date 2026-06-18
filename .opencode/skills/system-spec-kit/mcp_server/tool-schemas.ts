@@ -33,8 +33,10 @@ export interface ToolDefinition {
   outputSchema?: Record<string, unknown>;
 }
 
+/** Lifecycle stability advertised for generated MCP tool ownership entries. */
 export type ToolOwnershipStability = 'stable' | 'deprecated';
 
+/** Ownership metadata derived from a tool's description contract. */
 export interface ToolOwnershipEntry {
   name: string;
   owner: string;
@@ -43,12 +45,14 @@ export interface ToolOwnershipEntry {
   category: string;
 }
 
+/** Generated ownership map used to detect committed schema drift. */
 export interface ToolOwnershipMap {
   schemaVersion: 1;
   generatedFrom: 'TOOL_DEFINITIONS';
   tools: ToolOwnershipEntry[];
 }
 
+/** Comparison result between generated and committed ownership metadata. */
 export interface ToolOwnershipDriftReport {
   ok: boolean;
   missingFromCommitted: string[];

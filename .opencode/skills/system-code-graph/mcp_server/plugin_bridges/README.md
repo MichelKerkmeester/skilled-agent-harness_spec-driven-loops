@@ -1,16 +1,16 @@
 ---
 title: "Plugin Bridges: Spec-Kit Code Graph Integration"
-description: "CLI bridge that connects spec-kit session resume to the code-graph MCP server runtime, enabling plugin injection during context compaction."
+description: "CLI bridge that connects plugin injection to warm code-index daemon status reads during context compaction."
 trigger_phrases:
   - "code graph plugin bridge"
   - "spec-kit compact bridge"
-  - "code graph session resume"
+  - "code graph daemon bridge"
   - "context compaction plugin"
 ---
 
 # Plugin Bridges: Code Graph Integration
 
-> CLI bridge that initializes the code-graph runtime, calls session resume and outputs a transport payload for spec-kit plugin injection.
+> CLI bridge that warm-probes the code-index daemon, runs `code-graph-status` through `code-index.cjs --warm-only` by default and outputs a transport payload for plugin injection.
 
 ---
 
@@ -108,4 +108,4 @@ Expected result: a single JSON document on stdout. A warm daemon returns `status
 - [Skill README](../../README.md)
 - [Handlers: handlers/](../handlers/README.md)
 
-**Naming note:** The bridge file `mk-code-graph-bridge.mjs` matches the plugin name `mk-code-graph` and the skill folder `system-code-graph`. The underlying MCP server name is `mk-code-index` (tool prefix `mcp__mk_code_index__*`), intentionally kept stable. See ADR-002 in the 036 packet.
+**Naming note:** The bridge file `mk-code-graph-bridge.mjs` matches the plugin name `mk-code-graph` and the skill folder `system-code-graph`. The underlying MCP server name is `mk-code-index` (tool prefix `mcp__mk_code_index__*`), intentionally kept stable. Current layer-by-layer naming for the plugin bridge, CLI shim and `mk-code-index` identifiers is documented in [`references/runtime/naming_conventions.md`](../../references/runtime/naming_conventions.md).

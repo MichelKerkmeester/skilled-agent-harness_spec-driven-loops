@@ -67,9 +67,9 @@ function appendJsonl(filePath, data) {
   fs.appendFileSync(filePath, `${JSON.stringify(data)}\n`, 'utf8');
 }
 
-// Dual-shape contract (deep-review R1-P1-002, reconciled): current producers always emit the
-// primitive number shape; the object shape ({value}) is legacy-tolerated. New score producers
-// MUST emit a number.
+// Dual-shape contract: current producers always emit the primitive number shape;
+// the object shape ({value}) is legacy-tolerated. New score producers MUST emit
+// a number.
 function readScoreDelta(score) {
   if (score && typeof score.delta === 'object' && score.delta !== null) {
     return score.delta.total;

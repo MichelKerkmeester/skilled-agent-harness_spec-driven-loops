@@ -22,13 +22,14 @@ export interface WriteProvenanceContext {
 }
 
 type WriteProvenanceStatement = {
-  all: (...params: any[]) => unknown[];
-  run: (...params: any[]) => unknown;
+  all(...params: unknown[]): unknown[];
+  run(...params: unknown[]): unknown;
 };
 
-export type WriteProvenanceDatabase = {
-  prepare: (sql: string) => WriteProvenanceStatement;
-};
+/** Minimal database surface needed for post-write provenance updates. */
+export interface WriteProvenanceDatabase {
+  prepare(sql: string): WriteProvenanceStatement;
+}
 
 const SOURCE_KINDS = new Set<SourceKind>(['human', 'agent', 'system', 'import', 'feedback']);
 

@@ -9,12 +9,12 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
-// F017-P2-09 (017 review): the profiles-dir default and fixturePathFor are shared
-// with materialize-benchmark-fixtures.cjs via ../lib/profile-resolve.cjs so the
-// F-P1-4b "resolves identically in both steps" invariant is one source of truth.
+// The profiles-dir default and fixturePathFor are shared with
+// materialize-benchmark-fixtures.cjs via ../lib/profile-resolve.cjs so path
+// resolution stays one source of truth across materialization and scoring.
 const { DEFAULT_PROFILES_DIR, fixturePathFor } = require('../lib/profile-resolve.cjs');
-// Spec 143 anti-Goodhart guards (pilot teachings T1/T3/T4/T5): different-family
-// grader enforcement, N-sample aggregation, deliverable-contract extraction.
+// Anti-Goodhart guards: different-family grader enforcement, N-sample
+// aggregation, and deliverable-contract extraction.
 const { assertGraderIndependence } = require('../shared/model-family.cjs');
 const { extractDeliverable } = require('../shared/extract-deliverable.cjs');
 
@@ -85,8 +85,8 @@ function loadProfile(profileArg, profilesDir) {
   };
 }
 
-// F-P1-13: the immutable history snapshot lives at a basename derived from the
-// (author-controlled) label. Reduce the label to a safe filename fragment so it
+// The immutable history snapshot lives at a basename derived from the
+// author-controlled label. Reduce the label to a safe filename fragment so it
 // cannot escape report-history/, then timestamp it for per-iteration uniqueness.
 function sanitizeLabel(label) {
   const cleaned = String(label).replace(/[^A-Za-z0-9._-]+/g, '-').replace(/^-+|-+$/g, '');
@@ -122,10 +122,10 @@ function inferStateLogPath(outputsDir) {
   return null;
 }
 
-// F-P1-9 (014 review): fixture.id is later used as a path segment via
-// path.join(outputsDir, `${fixture.id}.md`). An unsanitized id like '../evil'
-// or 'a/b' would escape outputsDir. Restrict ids to a basename charset and
-// reject path separators / parent-dir traversal before any path.join.
+// Fixture ids are later used as path segments via path.join(outputsDir,
+// `${fixture.id}.md`). An unsanitized id like '../evil' or 'a/b' would escape
+// outputsDir. Restrict ids to a basename charset and reject path separators /
+// parent-dir traversal before any path.join.
 const SAFE_FIXTURE_ID = /^[A-Za-z0-9._-]+$/;
 
 function assertSafeFixtureId(id) {
@@ -140,12 +140,12 @@ function fixtureOutputPath(outputsDir, id) {
   return path.join(outputsDir, `${id}.md`);
 }
 
-// P2 (014 review, regex DoS): fixture/profile-authored requiredPatterns and
-// forbiddenPatterns are compiled with `new RegExp(value, 'i')` and tested
-// against full model output. A crafted pattern with nested quantifiers can
-// trigger catastrophic backtracking. Bound the authored pattern length so a
-// single pattern cannot encode an exponential-backtracking construct over a
-// long input, and anchor matching cost by capping the tested input length.
+// Fixture/profile-authored requiredPatterns and forbiddenPatterns are compiled
+// with `new RegExp(value, 'i')` and tested against full model output. A crafted
+// pattern with nested quantifiers can trigger catastrophic backtracking. Bound
+// the authored pattern length so a single pattern cannot encode an
+// exponential-backtracking construct over a long input, and anchor matching cost
+// by capping the tested input length.
 const MAX_PATTERN_LENGTH = 512;
 const MAX_MATCH_INPUT_LENGTH = 200000;
 
@@ -189,9 +189,9 @@ function scoreFixture(fixture, outputPath, options) {
 
   let content = fs.readFileSync(outputPath, 'utf8');
   let extraction;
-  // T5 output contract: when the profile declares deliverable_contract, score
-  // ONLY the delimited deliverable region (reasoning text contaminates pattern
-  // and forbidden-pattern matching). Default path stays byte-identical.
+  // When the profile declares deliverable_contract, score ONLY the delimited
+  // deliverable region because reasoning text contaminates pattern and
+  // forbidden-pattern matching. Default path stays byte-identical.
   if (options && options.contract) {
     const extracted = extractDeliverable(content);
     extraction = extracted.confidence;
@@ -263,7 +263,7 @@ function scoreFixture(fixture, outputPath, options) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 3a. N-SAMPLE AGGREGATION (opt-in, --samples N) — teaching T4
+// 3a. N-SAMPLE AGGREGATION (opt-in, --samples N)
 // ─────────────────────────────────────────────────────────────────────────────
 // Single benchmark runs are stochastic (the pilot saw one fixture swing 16->22
 // independent across runs). With --samples N the runner scores run-tagged
@@ -298,7 +298,7 @@ async function scoreFixtureWithSamples(fixture, outputsDir, samples, scoreOne) {
     sample_count: perSample.length,
     sample_std: Math.round(std * 100) / 100,
   };
-  // iter-5 review: sample-0's per-sample diagnostics (missing patterns etc.) do not
+  // The first sample's per-sample diagnostics (missing patterns etc.) do not
   // represent the aggregate; per-sample detail lives under `samples`.
   for (const k of ['missingHeadings', 'missingPatterns', 'forbiddenMatches', 'extraction']) delete aggregate[k];
   return aggregate;
@@ -379,10 +379,10 @@ async function scoreFixture5dim(fixture, outputPath, cwdAbs, graderKind, scorerM
 // 4. INTEGRATION SCORING
 // ─────────────────────────────────────────────────────────────────────────────
 
-// P2 (014 review): every sub-score below is on a normalized 0..100 scale and
-// combined with the weights defined here. Earlier comments described a "10 pt"
-// scale that did not match the code; these named constants are now the single
-// source of truth for the integration score composition.
+// Every sub-score below is on a normalized 0..100 scale and combined with the
+// weights defined here. Earlier comments described a "10 pt" scale that did not
+// match the code; these named constants are now the single source of truth for
+// the integration score composition.
 const INTEGRATION_FULL_SCORE = 100;
 const MIRROR_MISSING_PENALTY = 30;
 const MIRROR_DIVERGED_PENALTY = 20;
@@ -477,10 +477,10 @@ async function main() {
   const stateLogPath = args['state-log'] || inferStateLogPath(outputsDir);
   const label = args.label || `${path.basename(profileArg, '.json')}-benchmark`;
 
-  // F-P1-7 + 014-review traceability-4-2: provenance that must survive on BOTH
-  // success and failure paths. profilePath/profileVersion/fixtureDir start null
-  // and are filled once the profile loads, so a failure before/after load still
-  // records whatever provenance was resolved.
+  // Provenance must survive on BOTH success and failure paths.
+  // profilePath/profileVersion/fixtureDir start null and are filled once the
+  // profile loads, so a failure before/after load still records whatever
+  // provenance was resolved.
   let profilePath = null;
   let profileVersion = null;
   let fixtureDir = null;
@@ -497,9 +497,8 @@ async function main() {
     fixtureDir = loaded.fixtureDir;
     fixtureFiles = loaded.fixtureFiles;
 
-    // T1/T3 different-family grader gate: an LLM grader sharing a model family
-    // with any generator model inherits its blind spots (the pilot's score
-    // inflation mechanism). Refuse unless explicitly overridden.
+    // An LLM grader sharing a model family with any generator model inherits its
+    // blind spots. Refuse unless explicitly overridden.
     const graderModel = process.env.GRADER_MODEL || 'claude-sonnet-4-5';
     let graderIndependence = null;
     if (graderKind === 'llm' && Array.isArray(profile.models) && profile.models.length > 0) {
@@ -507,14 +506,14 @@ async function main() {
       if (!verdict.ok) {
         process.stderr.write(
           `run-benchmark: GRADER FAMILY COLLISION — grader '${graderModel}' shares a model family with generator(s) ${JSON.stringify(verdict.collisions)}. `
-          + 'Same-family grading is the score-inflation mechanism (spec 143 T1/T3). Use a different-family grader or pass --allow-same-family to override explicitly.\n',
+          + 'Same-family grading is the score-inflation mechanism. Use a different-family grader or pass --allow-same-family to override explicitly.\n',
         );
         process.exit(2);
       }
       graderIndependence = verdict.overridden ? 'overridden-same-family' : 'independent';
     }
 
-    // T5 deliverable contract: profile-declared; scorers grade only the
+    // Profile-declared deliverable contracts make scorers grade only the
     // delimited region. `{required: true}` fails fixtures with no contract region.
     const contract = profile.deliverable_contract
       ? { required: Boolean(profile.deliverable_contract.required) }
@@ -541,9 +540,9 @@ async function main() {
       );
     }
 
-    // Phantom-gap standing metric (T1): when the profile declares how the
-    // system under test SELF-reports a score, record self-vs-independent per
-    // fixture and warn when the mean ratio gap exceeds the profile threshold.
+    // When the profile declares how the system under test SELF-reports a score,
+    // record self-vs-independent per fixture and warn when the mean ratio gap
+    // exceeds the profile threshold.
     let phantomGap = null;
     if (profile.self_score_pattern) {
       const selfMax = Number(profile.self_score_max || 100);
@@ -556,15 +555,15 @@ async function main() {
       catch { process.stderr.write('run-benchmark: self_score_pattern is not a valid regex; skipping phantom-gap metric\n'); }
       const perFixture = [];
       for (const entry of selfRe ? results : []) {
-        // sampled runs may have only run-tagged outputs; fall back to sample 1
+        // Sampled runs may have only run-tagged outputs; fall back to sample 1.
         const candidatePaths = [entry.outputPath];
         if (entry.sample_count) candidatePaths.push(fixtureSampleOutputPath(outputsDir, entry.id, 1));
         const primaryPath = candidatePaths.find((p2) => fs.existsSync(p2));
         const primary = primaryPath ? fs.readFileSync(primaryPath, 'utf8') : '';
         const m = selfRe.exec(primary.slice(0, MAX_MATCH_INPUT_LENGTH));
         const selfVal = m && m[1] !== undefined ? Number(m[1]) : NaN;
-        // iter-5 review: a non-numeric capture or self_score_max <= 0 must be skipped,
-        // never NaN-poison the mean (NaN > warn is false, silently muting the alarm).
+        // A non-numeric capture or self_score_max <= 0 must be skipped, never
+        // NaN-poisoning the mean because NaN comparisons silently mute the alarm.
         if (Number.isFinite(selfVal) && Number.isFinite(selfMax) && selfMax > 0) {
           const gapRatio = selfVal / selfMax - entry.score / entry.maxScore;
           perFixture.push({ id: entry.id, self_score: selfVal, independent_score: entry.score, gap_ratio: Math.round(gapRatio * 1000) / 1000 });
@@ -580,7 +579,7 @@ async function main() {
           warning: meanGap > warnAt,
         };
         if (phantomGap.warning) {
-          process.stderr.write(`run-benchmark: PHANTOM-GAP WARNING — mean self-vs-independent gap ${phantomGap.mean_gap_ratio} exceeds ${warnAt}; self-reported scores are inflating (spec 143 T1).\n`);
+          process.stderr.write(`run-benchmark: PHANTOM-GAP WARNING — mean self-vs-independent gap ${phantomGap.mean_gap_ratio} exceeds ${warnAt}; self-reported scores are inflating.\n`);
         }
       }
     }
@@ -591,17 +590,17 @@ async function main() {
     const aggregateThreshold = profile.benchmark?.requiredAggregateScore ?? 80;
     const passCount = results.filter((entry) => entry.passed).length;
     const passRate = results.length === 0 ? 0 : passCount / results.length;
-    // F-P2-10 (122 review): both operands are in 0..1 space. `aggregateScore` is a
-    // 0..100 percentage, so `/100` normalizes it to a 0..1 ratio; `profile.thresholdDelta`
-    // is authored as a 0..1 ratio. `delta` is therefore the headroom above the profile's
-    // ratio threshold, in 0..1 units.
+    // Both operands are in 0..1 space. `aggregateScore` is a 0..100 percentage,
+    // so `/100` normalizes it to a 0..1 ratio; `profile.thresholdDelta` is
+    // authored as a 0..1 ratio. `delta` is therefore the headroom above the
+    // profile's ratio threshold, in 0..1 units.
     const delta = aggregateScore / 100 - Number(profile.thresholdDelta || 0);
     const recommendation =
       aggregateScore >= aggregateThreshold && results.every((entry) => entry.score >= minimumFixtureScore)
         ? 'benchmark-pass'
         : 'benchmark-fail';
-    // 014-review traceability-7-5: persist profile + fixture provenance so a
-    // report can be traced back to the exact profile file, version, and fixtures.
+    // Persist profile + fixture provenance so a report can be traced back to the
+    // exact profile file, version, and fixtures.
     const provenance = {
       profilePath,
       profileVersion,
@@ -611,10 +610,10 @@ async function main() {
     const report = {
       status: 'benchmark-complete',
       scoringMethod: scorer,
-      // 014-review traceability-4-2: grader is part of the run identity for the
-      // 5dim path; persist it on every report so 5dim+mock/llm runs are attributable.
+      // Grader is part of the run identity for the 5dim path; persist it on
+      // every report so 5dim+mock/llm runs are attributable.
       grader: graderKind,
-      // Spec 143 run-identity + anti-Goodhart fields (omitted when defaults).
+      // Run-identity and anti-Goodhart fields are omitted when defaults apply.
       ...(graderIndependence && { graderModel, graderIndependence }),
       ...(samples > 1 && { samples }),
       ...(contract && { deliverableContract: contract }),
@@ -653,11 +652,11 @@ async function main() {
 
     writeJson(outputPath, report);
 
-    // F-P1-13 / 014-review traceability-7-2: outputPath is a mutable canonical
-    // location overwritten every iteration, so historical state-log rows would all
-    // point at the latest report. Also write an immutable, label-stamped snapshot
-    // and persist that snapshot path in the ledger so each iteration's report is
-    // recoverable. The canonical report.json stays the stable "latest" pointer.
+    // outputPath is a mutable canonical location overwritten every iteration, so
+    // historical state-log rows would all point at the latest report. Also write
+    // an immutable, label-stamped snapshot and persist that snapshot path in the
+    // ledger so each iteration's report is recoverable. The canonical report.json
+    // stays the stable "latest" pointer.
     const historyDir = path.join(path.dirname(outputPath), 'report-history');
     const snapshotName = `report-${sanitizeLabel(label)}-${timestampStamp()}.json`;
     const snapshotPath = path.join(historyDir, snapshotName);
@@ -687,8 +686,8 @@ async function main() {
   } catch (error) {
     const failure = {
       status: 'infra_failure',
-      // F-P1-7 (014 review): a failed 5dim/mock/llm run must be distinguishable
-      // from a pattern/noop failure, so carry scorer + grader provenance here too.
+      // A failed 5dim/mock/llm run must be distinguishable from a pattern/noop
+      // failure, so carry scorer + grader provenance here too.
       scoringMethod: scorer,
       grader: graderKind,
       profileId,

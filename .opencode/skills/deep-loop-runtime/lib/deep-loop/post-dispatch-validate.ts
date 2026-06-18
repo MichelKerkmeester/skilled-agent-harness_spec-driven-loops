@@ -1,10 +1,12 @@
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Deep-Loop Post-Dispatch Validator
+// ───────────────────────────────────────────────────────────────────
 
 import { existsSync, readFileSync, statSync } from 'node:fs';
 
 import { validateEvidenceContract } from './evidence-contract.js';
-import type { ExecutorKind } from './executor-config.js';
 import { appendJsonlRecord, repairJsonlTail } from './jsonl-repair.js';
+import type { ExecutorKind } from './executor-config.js';
 
 // ───── TYPE DEFINITIONS ─────
 
@@ -785,7 +787,7 @@ export function validateIterationOutputs(input: PostDispatchValidateInput): Post
   try {
     warnings.push(...computeBehavioralAdvisories(readFileSync(input.iterationFile, 'utf8')));
   } catch {
-    // behavioral advisory is best-effort and verdict-neutral; never fail on it
+    // Behavioral advisory is best-effort and verdict-neutral; never fail on it.
   }
 
   return warnings.length > 0 ? { ok: true, warnings } : { ok: true };

@@ -58,7 +58,7 @@ Load this folder through the owning skill workflow or MCP server entrypoint.
 |---|---|
 | Folder boundary | Documents direct code files under `assets/motion_dev/snippets`. |
 | sk-code alignment | Points reviewers at OpenCode naming, header, error-handling, and type-discipline checks. |
-| Verification handoff | Records the expected owner and audit packet for follow-up work. |
+| Verification handoff | Records the expected owner and release-alignment review path for follow-up work. |
 
 ---
 
@@ -95,7 +95,7 @@ Load this folder through the owning skill workflow or MCP server entrypoint.
 ```text
 User request: Check .opencode/skills/sk-code/assets/motion_dev/snippets for sk-code and README coverage.
 Skill routing: sk-code plus sk-doc.
-Expected output: Findings recorded in the 026 audit report.
+Expected output: Findings recorded in the current release-alignment review evidence.
 ```
 
 ---
@@ -104,7 +104,7 @@ Expected output: Findings recorded in the 026 audit report.
 
 | What You See | Cause | Fix |
 |---|---|---|
-| README appears stale | Source files changed after this audit | Refresh the structure table and rerun the 026 audit check. |
+| README appears stale | Source files changed after this review | Refresh the structure table and rerun the current release-alignment check. |
 | Verification command is unclear | Folder is a helper boundary | Use the nearest package or skill-level verification command. |
 
 ---

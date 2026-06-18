@@ -52,7 +52,7 @@ RULE_ORDER=()
 # Timing helper - get current time in milliseconds
 get_time_ms() {
     # Try nanoseconds first (Linux), then Python, then seconds only (macOS fallback)
-    # P1-01 FIX: macOS date +%s%N outputs literal "N" (e.g. "1234567890N") instead of erroring.
+    # macOS date +%s%N outputs literal "N" (e.g. "1234567890N") instead of erroring.
     # Must verify the output contains only digits AND is long enough to be nanoseconds.
     local ns
     ns=$(date +%s%N 2>/dev/null)

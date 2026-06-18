@@ -26,7 +26,7 @@ Use this file to identify the folder boundary, the likely verification path, and
 
 | Metric | Value |
 |---|---:|
-| Code files | 3 |
+| Code files | 4 |
 | README scope | Direct files in this folder |
 | Audit context | Internal validation notes |
 
@@ -67,6 +67,7 @@ Run individual scripts from the repository root with the documented arguments.
 | Path | Purpose |
 |---|---|
 | `audit-trail.cjs` | CJS source file in this folder. |
+| `findings-registry.cjs` | CJS source file in this folder. |
 | `persist-artifacts.cjs` | CJS source file in this folder. |
 | `rollback.cjs` | CJS source file in this folder. |
 
@@ -107,5 +108,5 @@ Expected output: Findings recorded in the 026 audit report.
 | Document | Purpose |
 |---|---|
 | [`deep-ai-council/SKILL.md`](../../SKILL.md) | Runtime instructions for the owning skill. |
-| [`sk-code/SKILL.md`](../../../sk-code/SKILL.md) | OpenCode coding standards and verification routing. |
-| [`sk-doc skill_readme_template.md`](../../../sk-doc/assets/skill/skill_readme_template.md) | README structure used for this code README. |
+| [`sk-code/SKILL.md`](../../../../sk-code/SKILL.md) | OpenCode coding standards and verification routing. |
+| [`sk-doc skill_readme_template.md`](../../../../sk-doc/assets/skill/skill_readme_template.md) | README structure used for this code README. |

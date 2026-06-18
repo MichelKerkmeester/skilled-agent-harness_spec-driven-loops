@@ -1,10 +1,9 @@
 #!/usr/bin/env node
-// [mk-spec-memory-launcher] MCP child-process launcher for the mk-spec-memory server.
-// Loads project-local env overrides, ensures dist artifacts are built and current,
-// serializes concurrent starts via a filesystem bootstrap lock, then spawns the
-// context-server.js child. All stderr lines are tagged with the bracketed module
-// prefix for ops grepping.
-
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: mk-spec-memory Launcher                                      ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Prepares memory state and launches the MCP server child.        ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
 const fs = require('fs');

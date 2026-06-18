@@ -37,17 +37,38 @@ npm install
 node node_modules/@clickup/mcp-server/dist/index.js
 ```
 
-## Platform config (OpenCode / Claude Code / Claude Desktop)
+## Platform config (OpenCode / Code Mode)
 
 ```json
 {
-  "mcpServers": {
-    "clickup_official": {
-      "command": "npx",
-      "args": ["-y", "@clickup/mcp-server"],
-      "env": {
-        "CLICKUP_API_KEY": "pk_YOUR_TOKEN",
-        "CLICKUP_TEAM_ID": "YOUR_WORKSPACE_ID"
+  "mcp": {
+    "code_mode": {
+      "type": "local",
+      "command": ["node", ".opencode/skills/mcp-code-mode/mcp_server/dist/index.js"],
+      "environment": {
+        "UTCP_CONFIG_FILE": ".utcp_config.json"
+      }
+    }
+  }
+}
+```
+
+In `.utcp_config.json`, register ClickUp under `manual_call_templates`:
+
+```json
+{
+  "name": "clickup_official",
+  "call_template_type": "mcp",
+  "config": {
+    "mcpServers": {
+      "clickup_official": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@clickup/mcp-server"],
+        "env": {
+          "CLICKUP_API_KEY": "${CLICKUP_API_KEY}",
+          "CLICKUP_TEAM_ID": "${CLICKUP_TEAM_ID}"
+        }
       }
     }
   }

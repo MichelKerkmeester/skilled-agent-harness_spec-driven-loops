@@ -714,7 +714,7 @@ Provider selection audit.
 #### Scenario Contract
 Prompt: `Validate 5. Embedding and API against memory_search({ query:"EMBEDDINGS_PROVIDER auto provider selection rules ollama hf-local nomic-embed-text-v1.5 local defaults", limit:20 }).`
 
-Provider rules show explicit provider override, cloud key precedence, local `ollama` default, and `hf-local` fallback with current `nomic-embed-text-v1.5` local default/fallback model IDs.
+Provider rules show explicit provider override, local-first auto mode (`ollama` before `hf-local`), cloud providers selected only by explicit `EMBEDDINGS_PROVIDER` or later fallback, and current `nomic-embed-text-v1.5` local default/fallback model IDs.
 
 #### Test Execution
 > **Feature File:** [EX-032](19--feature-flag-reference/5-embedding-and-api.md)

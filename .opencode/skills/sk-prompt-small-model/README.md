@@ -30,7 +30,7 @@ trigger_phrases:
 
 ### Why This Skill Exists
 
-Small models do not all want the same prompt shape. MiMo performs best with COSTAR and a lean plan. MiniMax wants TIDD-EC and a dense plan. The rest default to RCAF. Guess wrong and the model underperforms or ignores half the instructions. Without one source of truth, each dispatch reinvents the framework choice. The fix is a single hub that records each model's framework, scaffold and known traps.
+Small models do not all want the same prompt shape. MiMo performs best with COSTAR and a lean plan. Kimi-k2.7-code uses COSTAR with TIDD-EC fallback and explicitly avoids RCAF. MiniMax wants TIDD-EC and a dense plan. DeepSeek remains the default-unverified RCAF case. Guess wrong and the model underperforms or ignores half the instructions. Without one source of truth, each dispatch reinvents the framework choice. The fix is a single hub that records each model's framework, scaffold and known traps.
 
 Mixing that prompt-craft with executor mechanics (binary flags, invocation wrappers, budgets, permissions) makes both drift. This hub holds the craft. `cli-opencode` holds the mechanics. Each stays clean and each can change without dragging the other along.
 
@@ -91,7 +91,7 @@ The framework assignments follow a pattern rather than a pinned count. The set d
 | minimax-m3 | TIDD-EC (fallback RCAF) | dense | Empirical (benchmark 003, run on M2.7; carried to M3) |
 | mimo-v2.5-pro | COSTAR (fallback RACE, avoid TIDD-EC and CIDI) | lean | Empirical (benchmark 004) |
 
-RCAF is the default. TIDD-EC is the MiniMax choice, backed by a benchmark run. COSTAR is the MiMo choice, also backed by a benchmark. The profiles cite their evidence and the benchmarks live in `benchmarks/`. The generic framework definitions (the closed seven-framework set: RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, CRAFT) are defined once in `sk-prompt`. This hub only records the per-model choice.
+RCAF is the default only for DeepSeek's default-unverified profile. TIDD-EC is the MiniMax choice, backed by a benchmark run. COSTAR is the MiMo and Kimi choice; Kimi uses TIDD-EC as fallback and avoids RCAF based on benchmark 007. The profiles cite their evidence. The generic framework definitions (the closed seven-framework set: RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, CRAFT) are defined once in `sk-prompt`. This hub only records the per-model choice.
 
 ### The Registry
 
@@ -171,14 +171,14 @@ A: Yes. The default is RCAF because it works for most models without special tun
 
 ## 8. VERIFICATION
 
-The skill ships benchmark data that backs the framework assignments for MiniMax and MiMo. The RCAF default set is unverified empirical.
+The model index and registry record benchmark-backed framework assignments for MiniMax, MiMo and Kimi. DeepSeek's RCAF assignment remains default-unverified.
 
 | Check | How to run it |
 |---|---|
 | README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-prompt-small-model/README.md --type readme` reports zero issues |
 | SKILL.md structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-prompt-small-model/SKILL.md --type skill` reports zero issues |
 | Profile mirror check | Diff each profile's framework block against its `model_profiles.json` row |
-| Benchmarks | Review the synthesis under `benchmarks/003-minimax-prompt-framework/` and `benchmarks/004-mimo-prompt-framework/` |
+| Benchmarks | Review the MiniMax benchmark 003, MiMo benchmark 004 and Kimi benchmark 007 evidence cited by `references/models/_index.md` and `assets/model_profiles.json` |
 
 ---
 
