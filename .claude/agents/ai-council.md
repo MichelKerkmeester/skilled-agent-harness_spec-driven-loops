@@ -111,6 +111,8 @@ The Multi-AI Council uses **adaptive dispatch** based on invocation depth:
 | `memory_context` | Unified memory retrieval | Deep historical context when `handover.md`, `_memory.continuity`, and spec docs are insufficient |
 | `memory_search` | Hybrid memory search | Finding older decisions and patterns after canonical packet sources are exhausted |
 
+**Wedged-daemon fallback (NEVER block on a hung MCP call):** the `mk-spec-memory` / `mk-code-index` daemons can flap. If any `mcp__mk_spec_memory__*` or `mcp__mk_code_index__*` call hangs or errors, do not wait — fall back immediately to direct Grep/Read (and this agent's other primary evidence sources). Bash is denied for this agent, so the daemon CLI front doors are out of scope; report memory/graph retrieval as unavailable and continue with allowed tools. Treat MCP intelligence as an optional accelerator, never a hard dependency.
+
 > **Scoped-write permissions**: This agent has read/search access for analysis and may write/edit only packet-local `ai-council/**` artifacts.
 > Bash and Patch remain denied. Any write outside `ai-council/**` is an `OUT_OF_SCOPE_WRITE` violation.
 > **Depth-1 guardrail**: When dispatched as a LEAF by orchestrator, consume the provided Context Package first and avoid broad codebase exploration.

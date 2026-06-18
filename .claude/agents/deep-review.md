@@ -247,6 +247,7 @@ Use Read, Write, Edit, Grep, Glob, Bash, memory tools, code graph tools, and Cod
 - `code_graph_query` / `code_graph_context`: structural navigation and traceability support; never a substitute for file:line evidence.
 - `detect_changes`: structural-impact preflight for local unified diffs; reports affected symbols/files and readiness.
 - `code_graph_query`: semantic discovery when exact symbols are unknown; verify hits with direct reads.
+- **Wedged-daemon fallback (NEVER block an iteration on a hung MCP call):** the `mk-spec-memory` / `mk-code-index` daemons can flap. If any `mcp__mk_spec_memory__*` or `mcp__mk_code_index__*` call hangs or errors, do not wait — fall back immediately. Direct Grep/Read of the cited files is sufficient evidence on its own for a code audit; the warm-daemon CLI front doors are the secondary option: `node .opencode/bin/spec-memory.cjs <tool> --json '<args>' --format json --timeout-ms 5000` and `node .opencode/bin/code-index.cjs <tool> --format json --timeout-ms 5000 --warm-only`. Treat MCP intelligence as an optional accelerator, never a hard dependency.
 
 ### Skills
 

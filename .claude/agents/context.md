@@ -65,6 +65,8 @@ This agent is LEAF-only and read-only. Nested sub-agent dispatch and file mutati
 | `code_graph_query` | Structure | Graph traversal | Calls, imports, dependencies, impact, and ownership questions |
 | `code_graph_context` | Structure | Compact graph context | Neighborhood/outline context around structural seeds |
 
+**Wedged-daemon fallback (NEVER block on a hung MCP call):** the `mk-spec-memory` / `mk-code-index` daemons can flap. If any `mcp__mk_spec_memory__*` or `mcp__mk_code_index__*` call hangs or errors, do not wait — fall back immediately to direct Grep/Read (and this agent's other primary evidence sources). Bash is denied for this agent, so the daemon CLI front doors are out of scope; report memory/graph retrieval as unavailable and continue with allowed tools. Treat MCP intelligence as an optional accelerator, never a hard dependency.
+
 ### Denied Capability Guard
 
 The frontmatter denies `write`, `edit`, `patch`, `bash`, `task`, `webfetch`, and browser/devtools access. Therefore:

@@ -181,6 +181,8 @@ Do not fabricate findings to satisfy a count. Record a clean, partial, or empty 
 
 WebFetch, Chrome DevTools, Write, Edit, Patch, Bash, and the Task tool are denied. This is a read-only retrieval surface.
 
+**Wedged-daemon fallback (NEVER block on a hung MCP call):** the `mk-spec-memory` / `mk-code-index` daemons can flap. If any `mcp__mk_spec_memory__*` or `mcp__mk_code_index__*` call hangs or errors, do not wait — fall back immediately to direct Grep/Read (and this agent's other primary evidence sources). Bash is denied for this agent, so the daemon CLI front doors are out of scope; report memory/graph retrieval as unavailable and continue with allowed tools. Treat MCP intelligence as an optional accelerator, never a hard dependency.
+
 ### Caller + Command Integrations
 
 | Integration | Canonical Surface | Agent Contract |
