@@ -55,6 +55,14 @@ function labelFor(item, index) {
   return `item-${index}`;
 }
 
+function buildPoolGauges({ total, settled, pending, failed }) {
+  return {
+    lag: Math.max(0, total - settled),
+    pending: Math.max(0, pending),
+    failed: Math.max(0, failed),
+  };
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
@@ -151,6 +159,8 @@ function runCappedPool(options) {
   const now = typeof options.now === 'function' ? options.now : () => new Date();
   const onEvent = typeof options.onEvent === 'function' ? options.onEvent : undefined;
   const results = new Array(items.length);
+  let settledCount = 0;
+  let failedCount = 0;
 
   return new Promise((resolve) => {
     if (items.length === 0) {
@@ -161,6 +171,25 @@ function runCappedPool(options) {
     let nextIndex = 0;
     let active = 0;
     let resolved = false;
+    const emitEvent = onEvent
+      ? (event) => {
+          if (event.event === 'completed' || event.event === 'failed') {
+            settledCount += 1;
+            if (event.event === 'failed') {
+              failedCount += 1;
+            }
+          }
+          onEvent({
+            ...event,
+            gauges: buildPoolGauges({
+              total: items.length,
+              settled: settledCount,
+              pending: items.length - nextIndex,
+              failed: failedCount,
+            }),
+          });
+        }
+      : undefined;
 
     const pump = () => {
       if (resolved) {
@@ -175,7 +204,7 @@ function runCappedPool(options) {
         const index = nextIndex;
         nextIndex += 1;
         active += 1;
-        settleItem({ item: items[index], index, worker, now, onEvent })
+        settleItem({ item: items[index], index, worker, now, onEvent: emitEvent })
           .then((result) => {
             results[index] = result;
           })
@@ -208,6 +237,7 @@ function buildPoolSummary(results) {
   const total = results.length;
   const succeeded = results.filter((result) => result && result.status === 'fulfilled').length;
   const failed = total - succeeded;
+  const gauges = buildPoolGauges({ total, settled: total, pending: 0, failed });
   return {
     results,
     summary: {
@@ -215,6 +245,7 @@ function buildPoolSummary(results) {
       succeeded,
       failed,
       all_failed: total > 0 && failed === total,
+      gauges,
     },
   };
 }
@@ -257,6 +288,7 @@ module.exports = {
   runCappedPool,
   settleItem,
   buildPoolSummary,
+  buildPoolGauges,
   appendStatusLedger,
   writeOrchestrationSummary,
 };

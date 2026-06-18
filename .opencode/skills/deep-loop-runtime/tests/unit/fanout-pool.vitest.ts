@@ -18,7 +18,13 @@ const {
     onEvent?: (event: Record<string, unknown>) => void;
   }) => Promise<{
     results: Array<{ label: string; status: string; output?: unknown; error?: { message: string } }>;
-    summary: { total: number; succeeded: number; failed: number; all_failed: boolean };
+    summary: {
+      total: number;
+      succeeded: number;
+      failed: number;
+      all_failed: boolean;
+      gauges: { lag: number; pending: number; failed: number };
+    };
   }>;
   appendStatusLedger: (ledgerPath: string, entry: Record<string, unknown>) => void;
   writeOrchestrationSummary: (summaryPath: string, summary: Record<string, unknown>) => void;
@@ -146,7 +152,13 @@ describe('runCappedPool', () => {
   it('resolves an empty pool with a zero summary (all_failed false)', async () => {
     const result = await runCappedPool({ items: [], concurrency: 2, worker: async () => ({}) });
     expect(result.results).toEqual([]);
-    expect(result.summary).toEqual({ total: 0, succeeded: 0, failed: 0, all_failed: false });
+    expect(result.summary).toEqual({
+      total: 0,
+      succeeded: 0,
+      failed: 0,
+      all_failed: false,
+      gauges: { lag: 0, pending: 0, failed: 0 },
+    });
   });
 
   it('clamps a concurrency below 1 up to 1 and still completes', async () => {
@@ -172,6 +184,27 @@ describe('runCappedPool', () => {
     const byLabel = (label: string) => events.filter((e) => e.label === label).map((e) => e.event);
     expect(byLabel('ok')).toEqual(['started', 'completed']);
     expect(byLabel('boom')).toEqual(['started', 'failed']);
+  });
+
+  it('attaches lag, pending, and failed gauges to events and final summary', async () => {
+    const events: Array<Record<string, unknown>> = [];
+    const result = await runCappedPool({
+      items: [{ label: 'ok' }, { label: 'boom' }],
+      concurrency: 1,
+      worker: async (item: { label: string }) => {
+        if (item.label === 'boom') throw new Error('x');
+        return {};
+      },
+      onEvent: (event) => events.push(event),
+    });
+
+    expect(events.map((event) => ({ event: event.event, gauges: event.gauges }))).toEqual([
+      { event: 'started', gauges: { lag: 2, pending: 1, failed: 0 } },
+      { event: 'completed', gauges: { lag: 1, pending: 1, failed: 0 } },
+      { event: 'started', gauges: { lag: 1, pending: 0, failed: 0 } },
+      { event: 'failed', gauges: { lag: 0, pending: 0, failed: 1 } },
+    ]);
+    expect(result.summary.gauges).toEqual({ lag: 0, pending: 0, failed: 1 });
   });
 
   it('throws on invalid items or worker', () => {

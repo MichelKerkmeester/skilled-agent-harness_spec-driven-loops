@@ -1,6 +1,7 @@
 import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
+import { spawn } from 'node:child_process';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
@@ -43,6 +44,38 @@ function writeSleepingStubBinary(binDir: string, name: string, seconds: number):
   const stubPath = join(binDir, name);
   writeFileSync(stubPath, `#!/bin/sh\nsleep ${seconds}\necho "slept"\nexit 0\n`, { mode: 0o755 });
   return stubPath;
+}
+
+function shellQuote(value: string): string {
+  return `'${value.replace(/'/g, "'\\''")}'`;
+}
+
+function writeMarkerSleepingStubBinary(binDir: string, name: string, seconds: number, markerPath: string): string {
+  const stubPath = join(binDir, name);
+  writeFileSync(
+    stubPath,
+    `#!/bin/sh\n: > ${shellQuote(markerPath)}\nsleep ${seconds}\necho "slept"\nexit 0\n`,
+    { mode: 0o755 },
+  );
+  return stubPath;
+}
+
+function waitForFile(filePath: string, timeoutMs = 5_000): Promise<void> {
+  const startedAt = Date.now();
+  return new Promise((resolvePromise, reject) => {
+    const poll = () => {
+      if (existsSync(filePath)) {
+        resolvePromise();
+        return;
+      }
+      if (Date.now() - startedAt > timeoutMs) {
+        reject(new Error(`timed out waiting for ${filePath}`));
+        return;
+      }
+      setTimeout(poll, 25);
+    };
+    poll();
+  });
 }
 
 /**
@@ -91,6 +124,13 @@ describe('fanout-run.cjs — module basics', () => {
     const json = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as Record<string, unknown>;
     expect(json.status).toBe('ok');
     expect(json.results).toEqual([]);
+
+    const summary = JSON.parse(readFileSync(join(baseDir, 'orchestration-summary.json'), 'utf8')) as {
+      convergence?: { status?: string; reason?: string; no_new_findings?: boolean };
+      gauges?: { lag?: number; pending?: number; failed?: number };
+    };
+    expect(summary.convergence).toEqual({ status: 'converged', reason: 'empty_tick', no_new_findings: true });
+    expect(summary.gauges).toEqual({ lag: 0, pending: 0, failed: 0 });
   });
 
   it('exits 3 (INPUT_VALIDATION) when fanout-config-json is not valid JSON', async () => {
@@ -412,6 +452,72 @@ describe('fanout-run.cjs — lineages run concurrently (not serialized by spawnS
     // Serial execution would take ~2s; parallel ~1s. Allow generous headroom for
     // process startup while still proving the two ~1s sleeps overlapped (< 1.9s).
     expect(elapsedMs).toBeLessThan(1900);
+  });
+});
+
+describe('fanout-run.cjs — graceful self-stop', () => {
+  it('writes a stopped partial orchestration summary when SIGTERM interrupts an in-flight run', async () => {
+    const binDir = makeTempDir('fanout-run-stop-bin-');
+    const baseDir = makeTempDir('fanout-run-stop-base-');
+    const markerPath = join(baseDir, 'lineage-started.marker');
+    writeMarkerSleepingStubBinary(binDir, 'codex', 10, markerPath);
+
+    const fanoutConfig = JSON.stringify({
+      executors: [{ label: 'slow', kind: 'cli-codex', model: 'o4-mini', count: 1 }],
+      concurrency: 1,
+    });
+
+    const child = spawn(
+      process.execPath,
+      [
+        fanoutRunScript,
+        '--spec-folder',
+        'specs/test-fanout-run-stop',
+        '--loop-type',
+        'research',
+        '--fanout-config-json',
+        fanoutConfig,
+        '--base-artifact-dir',
+        baseDir,
+      ],
+      {
+        cwd: runtimeRoot,
+        env: {
+          ...process.env,
+          PATH: `${binDir}:${process.env['PATH'] ?? ''}`,
+        },
+        stdio: ['ignore', 'pipe', 'pipe'],
+      },
+    );
+
+    let stdout = '';
+    let stderr = '';
+    child.stdout?.setEncoding('utf8');
+    child.stderr?.setEncoding('utf8');
+    child.stdout?.on('data', (chunk) => { stdout += chunk; });
+    child.stderr?.on('data', (chunk) => { stderr += chunk; });
+    const closed = new Promise<{ exitCode: number | null; signal: NodeJS.Signals | null }>((resolvePromise) => {
+      child.on('close', (exitCode, signal) => resolvePromise({ exitCode, signal }));
+    });
+
+    await waitForFile(markerPath);
+    child.kill('SIGTERM');
+
+    const result = await closed;
+
+    expect({ exitCode: result.exitCode, signal: result.signal, stdout, stderr }).toMatchObject({ exitCode: 143, signal: null });
+    const summary = JSON.parse(readFileSync(join(baseDir, 'orchestration-summary.json'), 'utf8')) as {
+      stopped?: boolean;
+      stopped_signal?: string;
+      status?: string;
+      results?: Array<{ label: string; status: string }>;
+      gauges?: { lag?: number; pending?: number; failed?: number };
+    };
+    expect(summary.stopped).toBe(true);
+    expect(summary.stopped_signal).toBe('SIGTERM');
+    expect(summary.status).toBe('partial');
+    expect(summary.results).toEqual([expect.objectContaining({ label: 'slow', status: 'running' })]);
+    expect(summary.gauges).toMatchObject({ failed: 0 });
   });
 });
 

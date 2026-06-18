@@ -98,6 +98,23 @@ describe('mergeResearchRegistries', () => {
     expect((result.keyFindings as unknown[]).length).toBe(1);
   });
 
+  it('orders merged findings deterministically by content rather than input order', () => {
+    const alpha = { id: 'F3', title: 'Alpha finding' };
+    const middle = { id: 'F1', title: 'Middle finding' };
+    const zebra = { id: 'F2', title: 'Zebra finding' };
+    const firstRun = mergeResearchRegistries([
+      { label: 'b', registry: { keyFindings: [zebra, alpha], openQuestions: [], ruledOutDirections: [] } },
+      { label: 'a', registry: { keyFindings: [middle], openQuestions: [], ruledOutDirections: [] } },
+    ]);
+    const secondRun = mergeResearchRegistries([
+      { label: 'a', registry: { keyFindings: [middle], openQuestions: [], ruledOutDirections: [] } },
+      { label: 'b', registry: { keyFindings: [zebra, alpha], openQuestions: [], ruledOutDirections: [] } },
+    ]);
+
+    expect((firstRun.keyFindings as Array<{ id: string }>).map((finding) => finding.id)).toEqual(['F3', 'F1', 'F2']);
+    expect((secondRun.keyFindings as Array<{ id: string }>).map((finding) => finding.id)).toEqual(['F3', 'F1', 'F2']);
+  });
+
   it('merges resolvedQuestions across lineages and dedupes shared ids', () => {
     const data = [
       {
@@ -258,6 +275,25 @@ describe('mergeReviewRegistries — strongest-restriction', () => {
     const result = mergeReviewRegistries(data);
     expect(result.resolvedFindings as unknown[]).toHaveLength(0);
     expect(result.resolvedFindingsCount).toBe(0);
+  });
+
+  it('orders merged open findings deterministically while preserving severity rollup', () => {
+    const alpha = { findingId: 'R3', severity: 'P2', status: 'active', title: 'Alpha review finding' };
+    const middle = { findingId: 'R1', severity: 'P1', status: 'active', title: 'Middle review finding' };
+    const zebra = { findingId: 'R2', severity: 'P0', status: 'active', title: 'Zebra review finding' };
+
+    const firstRun = mergeReviewRegistries([
+      { label: 'b', registry: { openFindings: [zebra, alpha] } },
+      { label: 'a', registry: { openFindings: [middle] } },
+    ]);
+    const secondRun = mergeReviewRegistries([
+      { label: 'a', registry: { openFindings: [middle] } },
+      { label: 'b', registry: { openFindings: [zebra, alpha] } },
+    ]);
+
+    expect((firstRun.openFindings as Array<{ findingId: string }>).map((finding) => finding.findingId)).toEqual(['R3', 'R1', 'R2']);
+    expect((secondRun.openFindings as Array<{ findingId: string }>).map((finding) => finding.findingId)).toEqual(['R3', 'R1', 'R2']);
+    expect(firstRun.mergedVerdict).toBe('FAIL');
   });
 });
 

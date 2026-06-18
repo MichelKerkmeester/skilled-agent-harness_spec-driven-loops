@@ -18,11 +18,10 @@
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
-const { spawn, spawnSync } = require('node:child_process');
+const { spawn } = require('node:child_process');
 
 const {
   classifyExitCode,
-  installSignalHandlers,
   maybeThrowTestFault,
   validateNamespaceValue,
 } = require('./lib/cli-guards.cjs');
@@ -43,21 +42,43 @@ const {
 // ─────────────────────────────────────────────────────────────────────────────
 
 const TSX_LOADER = require.resolve('tsx');
+const isTsxLoaded = process.env.DEEP_LOOP_TSX_LOADED === '1';
 
-if (process.env.DEEP_LOOP_TSX_LOADED !== '1') {
-  const child = spawnSync(
+function runTsxBootstrap() {
+  const child = spawn(
     process.execPath,
     ['--import', TSX_LOADER, __filename, ...process.argv.slice(2)],
     {
       cwd: process.cwd(),
       env: { ...process.env, DEEP_LOOP_TSX_LOADED: '1' },
-      input: process.stdin.isTTY ? undefined : fs.readFileSync(0),
-      encoding: 'utf8',
+      stdio: [process.stdin.isTTY ? 'ignore' : 'pipe', 'pipe', 'pipe'],
     },
   );
-  if (child.stdout) process.stdout.write(child.stdout);
-  if (child.stderr) process.stderr.write(child.stderr);
-  process.exit(child.status === null ? 1 : child.status);
+
+  if (!process.stdin.isTTY && child.stdin) {
+    child.stdin.on('error', () => {});
+    process.stdin.pipe(child.stdin);
+  }
+
+  child.stdout?.pipe(process.stdout);
+  child.stderr?.pipe(process.stderr);
+
+  for (const signal of ['SIGINT', 'SIGTERM']) {
+    process.once(signal, () => {
+      child.kill(signal);
+    });
+  }
+
+  child.on('close', (status, signal) => {
+    if (status !== null) {
+      process.exit(status);
+    }
+    process.exit(signal === 'SIGINT' ? 130 : signal === 'SIGTERM' ? 143 : 1);
+  });
+}
+
+if (!isTsxLoaded) {
+  runTsxBootstrap();
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -100,12 +121,88 @@ function jsonOut(payload) {
   process.stdout.write(`${JSON.stringify(payload)}\n`);
 }
 
+function signalExitCode(signal) {
+  return signal === 'SIGINT' ? 130 : 143;
+}
+
+let fanoutSignalHandlersInstalled = false;
+
+function installFanoutSignalHandlers(onStop) {
+  if (fanoutSignalHandlersInstalled) return;
+  fanoutSignalHandlersInstalled = true;
+
+  for (const signal of ['SIGINT', 'SIGTERM']) {
+    process.once(signal, () => {
+      try {
+        onStop(signal);
+      } finally {
+        process.exit(signalExitCode(signal));
+      }
+    });
+  }
+}
+
+function updateLineageSnapshot(snapshots, event) {
+  if (!event || typeof event.label !== 'string') return;
+  const existing = snapshots.get(event.label) || { label: event.label };
+
+  if (event.event === 'started') {
+    snapshots.set(event.label, { ...existing, status: 'running', started_at_iso: event.at });
+    return;
+  }
+  if (event.event === 'completed') {
+    snapshots.set(event.label, {
+      ...existing,
+      status: 'fulfilled',
+      completed_at_iso: event.at,
+      duration_ms: event.duration_ms,
+    });
+    return;
+  }
+  if (event.event === 'failed') {
+    snapshots.set(event.label, {
+      ...existing,
+      status: 'rejected',
+      completed_at_iso: event.at,
+      duration_ms: event.duration_ms,
+      error: event.error,
+    });
+  }
+}
+
+function buildLineageSnapshots(lineages, snapshots) {
+  return lineages.map((lineage) => snapshots.get(lineage.label) || { label: lineage.label, status: 'pending' });
+}
+
+function summarizeSnapshots(lineages, snapshots) {
+  const results = buildLineageSnapshots(lineages, snapshots);
+  const succeeded = results.filter((result) => result.status === 'fulfilled').length;
+  const failed = results.filter((result) => result.status === 'rejected').length;
+  return {
+    results,
+    summary: {
+      total: lineages.length,
+      succeeded,
+      failed,
+      all_failed: lineages.length > 0 && failed === lineages.length,
+    },
+  };
+}
+
 // Per-kind first state-dir env var (used for lockfile isolation across same-kind replicas).
 const SPECKIT_STATE_ENV_BY_KIND = {
   'cli-codex': 'SPECKIT_CODEX_STATE_DIR',
   'cli-claude-code': 'SPECKIT_CLAUDE_CODE_STATE_DIR',
   'cli-opencode': 'SPECKIT_OPENCODE_STATE_DIR',
 };
+
+const activeLineageProcesses = new Set();
+
+function stopActiveLineageProcesses(signal) {
+  for (const child of activeLineageProcesses) {
+    child.kill(signal);
+  }
+}
 
 function expandHomeDir(inputPath) {
   if (inputPath === '~') {
@@ -210,6 +307,7 @@ function runLineageProcess(command, cmdArgs, opts) {
       resolvePromise({ status: null, signal: null, stdout: '', error });
       return;
     }
+    activeLineageProcesses.add(child);
 
     let stdout = '';
     let stdoutBytes = 0;
@@ -244,6 +342,7 @@ function runLineageProcess(command, cmdArgs, opts) {
     child.on('close', (code, signal) => {
       if (settled) return;
       settled = true;
+      activeLineageProcesses.delete(child);
       clearTimeout(timer);
       const effectiveSignal = timedOut ? 'SIGTERM' : signal;
       resolvePromise({
@@ -362,7 +461,6 @@ async function main() {
   } = await import('../lib/deep-loop/executor-config.ts');
   const { buildExecutorDispatchEnv, detectSameKindFromStack, CLI_DISPATCH_STACK_ENV } = await import('../lib/deep-loop/executor-audit.ts');
 
-  installSignalHandlers(() => {});
   maybeThrowTestFault();
 
   let rawConfig;
@@ -377,23 +475,81 @@ async function main() {
 
   // Fan-out pool handles CLI lineages only; native lineages are dispatched by the YAML step.
   const cliLineages = allLineages.filter((l) => l.kind !== 'native');
-
-  if (cliLineages.length === 0) {
-    jsonOut({ status: 'ok', message: 'no CLI lineages to spawn', results: [], summary: { total: 0, succeeded: 0, failed: 0, all_failed: false } });
-    return;
-  }
-
   const lineagesDir = path.join(baseArtifactDir, 'lineages');
   const ledgerPath = path.join(baseArtifactDir, 'orchestration-status.log');
   const summaryPath = path.join(baseArtifactDir, 'orchestration-summary.json');
   const runId = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
 
+  if (cliLineages.length === 0) {
+    const summary = {
+      total: 0,
+      succeeded: 0,
+      failed: 0,
+      all_failed: false,
+      gauges: { lag: 0, pending: 0, failed: 0 },
+      convergence: { status: 'converged', reason: 'empty_tick', no_new_findings: true },
+    };
+    writeOrchestrationSummary(summaryPath, {
+      run_id: runId,
+      loop_type: loopType,
+      spec_folder: specFolder,
+      base_artifact_dir: baseArtifactDir,
+      total_cli_lineages: 0,
+      ...summary,
+    });
+    jsonOut({ status: 'ok', message: 'no CLI lineages to spawn', run_id: runId, results: [], summary });
+    return;
+  }
+
   fs.mkdirSync(lineagesDir, { recursive: true });
+
+  const lineageSnapshots = new Map();
+  let latestGauges = { lag: cliLineages.length, pending: cliLineages.length, failed: 0 };
+  let stoppedSummaryWritten = false;
+
+  const writeStoppedSummary = (signal) => {
+    if (stoppedSummaryWritten) return;
+    stoppedSummaryWritten = true;
+    stopActiveLineageProcesses(signal);
+    const stoppedAtIso = new Date().toISOString();
+    const partial = summarizeSnapshots(cliLineages, lineageSnapshots);
+    const gauges = {
+      lag: latestGauges.lag,
+      pending: latestGauges.pending,
+      failed: Math.max(latestGauges.failed, partial.summary.failed),
+    };
+    appendStatusLedger(ledgerPath, {
+      event: 'stopped',
+      signal,
+      at: stoppedAtIso,
+      gauges,
+    });
+    writeOrchestrationSummary(summaryPath, {
+      run_id: runId,
+      loop_type: loopType,
+      spec_folder: specFolder,
+      base_artifact_dir: baseArtifactDir,
+      total_cli_lineages: cliLineages.length,
+      stopped: true,
+      stopped_signal: signal,
+      stopped_at_iso: stoppedAtIso,
+      status: 'partial',
+      ...partial.summary,
+      gauges,
+      results: partial.results,
+    });
+  };
+
+  installFanoutSignalHandlers(writeStoppedSummary);
 
   const { results, summary } = await runCappedPool({
     items: cliLineages,
     concurrency: fanoutConfig.concurrency,
-    onEvent: (event) => appendStatusLedger(ledgerPath, event),
+    onEvent: (event) => {
+      updateLineageSnapshot(lineageSnapshots, event);
+      if (event.gauges) latestGauges = event.gauges;
+      appendStatusLedger(ledgerPath, event);
+    },
     worker: async (lineage) => {
       const lineageDir = path.join(lineagesDir, lineage.label);
       const stateDir = path.join(lineageDir, '.executor-state');
@@ -517,17 +673,19 @@ async function main() {
   process.exit(exitCode);
 }
 
-main().catch((err) => {
-  const code = classifyExitCode(err);
-  jsonOut({
-    status: 'error',
-    error: err instanceof Error ? err.message : String(err),
-    code: err && err.code ? err.code : 'SCRIPT_ERROR',
+if (isTsxLoaded) {
+  main().catch((err) => {
+    const code = classifyExitCode(err);
+    jsonOut({
+      status: 'error',
+      error: err instanceof Error ? err.message : String(err),
+      code: err && err.code ? err.code : 'SCRIPT_ERROR',
+    });
+    if (code === 1) {
+      process.stderr.write(
+        JSON.stringify({ error: err instanceof Error ? err.message : String(err), stack: err && err.stack }) + '\n',
+      );
+    }
+    process.exit(code);
   });
-  if (code === 1) {
-    process.stderr.write(
-      JSON.stringify({ error: err instanceof Error ? err.message : String(err), stack: err && err.stack }) + '\n',
-    );
-  }
-  process.exit(code);
-});
+}

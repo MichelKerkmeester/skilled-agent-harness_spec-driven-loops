@@ -105,6 +105,70 @@ function readStateLog(stateLogPath) {
   });
 }
 
+function stableValue(value) {
+  if (Array.isArray(value)) {
+    return value.map(stableValue);
+  }
+  if (value && typeof value === 'object') {
+    const sorted = {};
+    for (const key of Object.keys(value).sort()) {
+      sorted[key] = stableValue(value[key]);
+    }
+    return sorted;
+  }
+  return value;
+}
+
+function stableStringify(value) {
+  return JSON.stringify(stableValue(value));
+}
+
+function normalizeSortText(value) {
+  return typeof value === 'string' ? value.trim().toLowerCase().replace(/\s+/g, ' ') : '';
+}
+
+function contentSortKey(record) {
+  const durableText = [
+    record.title,
+    record.summary,
+    record.description,
+    record.finding,
+    record.question,
+    record.direction,
+    record.severity,
+    record.status,
+  ].map(normalizeSortText).filter(Boolean).join('\u0001');
+  return durableText || stableStringify({ ...record, _lineages: undefined });
+}
+
+function compareByContentThenId(left, right, idKeys) {
+  const leftContent = contentSortKey(left);
+  const rightContent = contentSortKey(right);
+  if (leftContent < rightContent) return -1;
+  if (leftContent > rightContent) return 1;
+
+  const leftId = normalizeSortText(idKeys.map((key) => left[key]).find(Boolean));
+  const rightId = normalizeSortText(idKeys.map((key) => right[key]).find(Boolean));
+  if (leftId < rightId) return -1;
+  if (leftId > rightId) return 1;
+
+  const leftFull = stableStringify(left);
+  const rightFull = stableStringify(right);
+  if (leftFull < rightFull) return -1;
+  if (leftFull > rightFull) return 1;
+  return 0;
+}
+
+function sortByContentThenId(records, idKeys) {
+  return [...records].sort((left, right) => compareByContentThenId(left, right, idKeys));
+}
+
+function addLineage(existing, label) {
+  if (!existing._lineages) existing._lineages = [];
+  if (!existing._lineages.includes(label)) existing._lineages.push(label);
+  existing._lineages.sort();
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. RESEARCH MERGE
 // ─────────────────────────────────────────────────────────────────────────────
@@ -124,16 +188,14 @@ function mergeResearchRegistries(lineageData) {
       if (!id) continue;
       if (findingById.has(id)) {
         const existing = findingById.get(id);
-        // Add this lineage as a contributing source
-        if (!existing._lineages) existing._lineages = [];
-        if (!existing._lineages.includes(label)) existing._lineages.push(label);
+        addLineage(existing, label);
       } else {
         findingById.set(id, { ...finding, _lineages: [label] });
       }
     }
   }
 
-  const mergedFindings = [...findingById.values()];
+  const mergedFindings = sortByContentThenId([...findingById.values()], ['id', 'title']);
   const openQuestionsById = new Map();
   const resolvedQuestionsById = new Map();
   const ruledOutById = new Map();
@@ -146,7 +208,7 @@ function mergeResearchRegistries(lineageData) {
       if (!openQuestionsById.has(id)) openQuestionsById.set(id, { ...q, _lineages: [label] });
       else {
         const existing = openQuestionsById.get(id);
-        if (!existing._lineages.includes(label)) existing._lineages.push(label);
+        addLineage(existing, label);
       }
     }
     // Resolved questions are produced per-lineage by the research reducer but
@@ -158,7 +220,7 @@ function mergeResearchRegistries(lineageData) {
       if (!resolvedQuestionsById.has(id)) resolvedQuestionsById.set(id, { ...q, _lineages: [label] });
       else {
         const existing = resolvedQuestionsById.get(id);
-        if (!existing._lineages.includes(label)) existing._lineages.push(label);
+        addLineage(existing, label);
       }
     }
     for (const d of registry.ruledOutDirections ?? []) {
@@ -219,9 +281,10 @@ function mergeReviewRegistries(lineageData) {
         const existing = findingById.get(id);
         // Strongest-restriction: escalate to highest severity seen across lineages
         if ((SEVERITY_RANK[finding.severity] ?? 0) > (SEVERITY_RANK[existing.severity] ?? 0)) {
-          findingById.set(id, { ...finding, _lineages: [...(existing._lineages || []), label] });
+          const lineages = [...(existing._lineages || []), label].filter((value, index, array) => array.indexOf(value) === index).sort();
+          findingById.set(id, { ...finding, _lineages: lineages });
         } else {
-          if (!existing._lineages.includes(label)) existing._lineages.push(label);
+          addLineage(existing, label);
         }
       } else {
         findingById.set(id, { ...finding, _lineages: [label] });
@@ -240,15 +303,15 @@ function mergeReviewRegistries(lineageData) {
       if (!id) continue;
       if (resolvedFindingById.has(id)) {
         const existing = resolvedFindingById.get(id);
-        if (!existing._lineages.includes(label)) existing._lineages.push(label);
+        addLineage(existing, label);
       } else {
         resolvedFindingById.set(id, { ...finding, _lineages: [label] });
       }
     }
   }
-  const mergedResolvedFindings = [...resolvedFindingById.values()];
+  const mergedResolvedFindings = sortByContentThenId([...resolvedFindingById.values()], ['findingId', 'title']);
 
-  const mergedFindings = [...findingById.values()];
+  const mergedFindings = sortByContentThenId([...findingById.values()], ['findingId', 'title']);
   const activeP0 = mergedFindings.filter((f) => f.severity === 'P0' && f.status === 'active').length;
   const activeP1 = mergedFindings.filter((f) => f.severity === 'P1' && f.status === 'active').length;
   const activeP2 = mergedFindings.filter((f) => f.severity === 'P2' && f.status === 'active').length;
