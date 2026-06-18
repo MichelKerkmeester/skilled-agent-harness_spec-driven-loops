@@ -1,10 +1,10 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Idempotency Receipts
 // ───────────────────────────────────────────────────────────────
-import { createHash } from 'node:crypto';
 import type BetterSqlite3 from 'better-sqlite3';
 
 import type { MCPResponse } from '../../handlers/types.js';
+import { hashCanonicalJson } from '../content-id.js';
 
 export type IdempotencyOperation = 'memory_save' | 'memory_update';
 
@@ -79,9 +79,7 @@ function normalizeForHash(value: unknown): unknown {
 }
 
 function hashJson(value: unknown): string {
-  return createHash('sha256')
-    .update(JSON.stringify(normalizeForHash(value)))
-    .digest('hex');
+  return hashCanonicalJson(value, normalizeForHash);
 }
 
 export function deriveIdempotencyReceiptKey(input: IdempotencyReceiptInput): IdempotencyReceiptKey {

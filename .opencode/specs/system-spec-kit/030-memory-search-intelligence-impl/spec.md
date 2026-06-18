@@ -216,8 +216,8 @@ None for candidates 8-11. The overall Wave-0 packet still has remaining candidat
 | 3 | ANN tie-stable ORDER BY | Done | bec0eed27f | `, m.id ASC` appended to 4 ranked `ORDER BY distance` queries |
 | 4 | C5-B content-derived tiebreak | Done | bec0eed27f | `content_hash`-asc tiebreak in deterministic comparator + all 5 RRF output sorts; primary order unchanged (verified); 3 broad-batch failures confirmed pre-existing on baseline |
 | 5 | C-X1 'active' + C6-A | Done | (this commit) | `bonusOverChannels` param (default 'active' byte-identical) + rank-time decay clock (`nowMs`); opus SHIP, default byte-identical traced arithmetically; restored no-timestamp skip guard so C6-A is a pure refactor |
-| 6 | C4-A idempotency default-on | Pending | - | receipt-default-on only; the deferred-save replay/conflict leg was REFUTED — do NOT build it |
-| 7 | two-primitive content-id module | Pending | - | centralize computeContentHash + hashJson formula; parameterize identity |
+| 6 | C4-A idempotency default-on | **DEFERRED → Wave-1+** | - | DROPPED: regression — flipping `SPECKIT_MEMORY_IDEMPOTENCY` on activates the idempotency/near-dup path on `memory_update` and breaks 11 `handleMemoryUpdate` tests (pass 55/0 on baseline with it off). Roadmap flagged C4-A as needing deferred-wiring care, not a clean flip; the replay leg was refuted. Needs proper save/update-path scoping |
+| 7 | two-primitive content-id module | Done | (this commit) | centralized SHA-256 into `lib/content-id.ts` (`hashContentBody` body hash + `hashCanonicalJson` canonical-field hash); byte-identical hash outputs proven by parity test; no behavior change |
 | 8 | gauge pending/failed | Done | e1c6a3c793 | Read-side gauges for `pending` and `failed` background enrichment states |
 | 9 | skip-closed-in-sweep | Done | e1c6a3c793 | Cleanup skips already-invalidated generated causal edges |
 | 10 | Constitutional self-edit / CAS guard | Done | e1c6a3c793 | Reject protection-removing edits + stale `expectedHash` writes; opus review SHIP (P2 polish: opt-in CAS, now-dead downgrade-audit branch) |

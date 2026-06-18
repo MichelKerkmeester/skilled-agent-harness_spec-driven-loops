@@ -5,11 +5,11 @@
 // Node stdlib
 import fs from 'fs';
 import path from 'path';
-import crypto from 'crypto';
 
 // Internal modules
 import { escapeRegex } from '../utils/path-security.js';
 import { getCanonicalPathKey, canonicalizeForSpecFolderExtraction } from '../utils/canonical-path.js';
+import { hashContentBody } from '../content-id.js';
 import { getDefaultTierForDocumentType, isValidTier, normalizeTier } from '../scoring/importance-tiers.js';
 // Import type inference for memory_type classification
 import { inferMemoryType } from '../config/type-inference.js';
@@ -912,7 +912,7 @@ export function extractImportanceTier(content: string, options: ExtractImportanc
 
 /** Compute SHA-256 hash of content for change detection */
 export function computeContentHash(content: string): string {
-  return crypto.createHash('sha256').update(content, 'utf-8').digest('hex');
+  return hashContentBody(content);
 }
 
 function lineNumberAtOffset(lineStarts: number[], offset: number): number {

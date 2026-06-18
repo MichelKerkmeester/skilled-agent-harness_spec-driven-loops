@@ -1,6 +1,9 @@
+import { createHash } from 'node:crypto';
+
 import Database from 'better-sqlite3';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
+import { computeContentHash } from '../lib/parsing/memory-parser';
 import { ensureIdempotencyReceiptSchemaForTests } from '../lib/search/vector-index-schema';
 import {
   deleteIdempotencyReceiptByKey,
@@ -60,6 +63,51 @@ function insertMemoryRow(database: Database.Database, id: number, contentHash = 
     INSERT INTO memory_index (id, spec_folder, content_hash, embedding_status, updated_at)
     VALUES (?, 'specs/demo', ?, 'success', '2026-06-10T00:00:00.000Z')
   `).run(id, contentHash);
+}
+
+const CLIENT_TOKEN_KEYS_FOR_LEGACY_HASH = new Set([
+  'idempotencykey',
+  'idempotency_key',
+  'idempotencytoken',
+  'idempotency_token',
+  'clientidempotencykey',
+  'client_idempotency_key',
+  'clientidempotencytoken',
+  'client_idempotency_token',
+]);
+
+function legacyContentHash(content: string): string {
+  return createHash('sha256').update(content, 'utf-8').digest('hex');
+}
+
+function legacyNormalizeForHash(value: unknown): unknown {
+  if (Array.isArray(value)) {
+    return value.map(legacyNormalizeForHash);
+  }
+  if (!value || typeof value !== 'object') {
+    return value;
+  }
+
+  const record = value as Record<string, unknown>;
+  const normalized: Record<string, unknown> = {};
+  for (const key of Object.keys(record).sort()) {
+    if (CLIENT_TOKEN_KEYS_FOR_LEGACY_HASH.has(key.toLowerCase())) {
+      continue;
+    }
+    const normalizedValue = legacyNormalizeForHash(record[key]);
+    if (normalizedValue !== undefined) {
+      normalized[key] = normalizedValue;
+    }
+  }
+  return normalized;
+}
+
+function legacyHashJson(value: unknown): string {
+  const serialized = JSON.stringify(legacyNormalizeForHash(value));
+  if (serialized === undefined) {
+    throw new TypeError('Cannot hash a value without a JSON representation');
+  }
+  return createHash('sha256').update(serialized).digest('hex');
 }
 
 describe('memory idempotency receipts and near-duplicate markers', () => {
@@ -159,6 +207,34 @@ describe('memory idempotency receipts and near-duplicate markers', () => {
     }
   });
 
+  it('keeps receipt keys stable for identical content-addressed inputs', () => {
+    const input = {
+      operation: 'memory_save' as const,
+      contentHash: 'hash-stable',
+      requestFingerprint: {
+        filePath: '/tmp/stable.md',
+        contentHash: 'hash-stable',
+        scope: { tenantId: null, userId: 'u-1' },
+      },
+      payload: { filePath: '/tmp/stable.md', force: false, idempotencyToken: 'client-a' },
+    };
+
+    const first = deriveIdempotencyReceiptKey(input);
+    const second = deriveIdempotencyReceiptKey({
+      ...input,
+      requestFingerprint: {
+        scope: { userId: 'u-1', tenantId: null },
+        contentHash: 'hash-stable',
+        filePath: '/tmp/stable.md',
+      },
+      payload: { idempotencyToken: 'client-b', force: false, filePath: '/tmp/stable.md' },
+    });
+
+    expect(second.receiptKey).toBe(first.receiptKey);
+    expect(second.payloadHash).toBe(first.payloadHash);
+    expect(second.requestFingerprintHash).toBe(first.requestFingerprintHash);
+  });
+
   it('fails closed when the same key has a changed payload hash', () => {
     const base = {
       operation: 'memory_update' as const,
@@ -228,6 +304,56 @@ describe('memory idempotency receipts and near-duplicate markers', () => {
 
     expect(reordered.status).toBe('replay');
     expect(changed.status).toBe('conflict');
+  });
+
+  it('preserves legacy content and receipt hash outputs through the shared hash helper', () => {
+    const contentCases = [
+      'plain markdown body',
+      'unicode snowman \u2603 and accents e\u0301',
+      'line one\nline two\n',
+    ];
+    for (const content of contentCases) {
+      expect(computeContentHash(content)).toBe(legacyContentHash(content));
+    }
+
+    const input = {
+      operation: 'memory_update' as const,
+      contentHash: 'hash-legacy',
+      requestFingerprint: {
+        id: 42,
+        contentHash: 'hash-legacy',
+        logicalMutation: {
+          title: 'After',
+          triggerPhrases: ['beta', undefined, 'alpha'],
+          idempotencyToken: 'ignored',
+        },
+      },
+      payload: {
+        id: 42,
+        contentHash: 'hash-legacy',
+        logicalMutation: {
+          client_idempotency_key: 'ignored-too',
+          triggerPhrases: ['beta', undefined, 'alpha'],
+          title: 'After',
+        },
+      },
+    };
+
+    const expectedRequestFingerprintHash = legacyHashJson(input.requestFingerprint);
+    const expectedPayloadHash = legacyHashJson(input.payload);
+    const expectedReceiptKey = legacyHashJson({
+      operation: input.operation,
+      contentHash: input.contentHash,
+      requestFingerprintHash: expectedRequestFingerprintHash,
+    });
+
+    expect(deriveIdempotencyReceiptKey(input)).toEqual({
+      operation: input.operation,
+      receiptKey: expectedReceiptKey,
+      contentHash: input.contentHash,
+      requestFingerprintHash: expectedRequestFingerprintHash,
+      payloadHash: expectedPayloadHash,
+    });
   });
 
   it('writes receipts only for successful mutating memory-save results', () => {
