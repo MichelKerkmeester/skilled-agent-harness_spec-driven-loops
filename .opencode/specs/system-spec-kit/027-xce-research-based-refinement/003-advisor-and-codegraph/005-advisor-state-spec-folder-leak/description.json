@@ -1,0 +1,25 @@
+{
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/005-advisor-state-spec-folder-leak",
+  "description": "Feature Specification: Stop skill-advisor state from leaking into spec folders",
+  "keywords": [
+    "feature",
+    "specification",
+    "stop",
+    "skill-advisor",
+    "state",
+    "leaking",
+    "spec",
+    "folders"
+  ],
+  "lastUpdated": "2026-06-18T18:41:11.233Z",
+  "specId": "005",
+  "folderSlug": "advisor-state-spec-folder-leak",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "003-advisor-and-codegraph"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

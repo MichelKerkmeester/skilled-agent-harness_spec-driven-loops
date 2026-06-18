@@ -1,14 +1,16 @@
 {
+  "level": "2",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation",
-  "description": "Remediation: fix confirmed README drift",
+  "description": "Feature Specification: README Currency Remediation (Track A)",
   "keywords": [
-    "remediation",
-    "fix",
-    "confirmed",
+    "feature",
+    "specification",
     "readme",
-    "drift"
+    "currency",
+    "remediation",
+    "track"
   ],
-  "lastUpdated": "2026-06-18T12:37:51.961Z",
+  "lastUpdated": "2026-06-18T18:03:07.695Z",
   "specId": "003",
   "folderSlug": "readme-remediation",
   "parentChain": [
@@ -18,6 +20,5 @@
     "007-release-alignment-review"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

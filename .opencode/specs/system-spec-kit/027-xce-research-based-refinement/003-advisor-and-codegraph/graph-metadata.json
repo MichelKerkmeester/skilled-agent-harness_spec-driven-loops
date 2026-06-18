@@ -7,7 +7,8 @@
     "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/001-causal-traversal-bfs",
     "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph",
     "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/003-skill-advisor-cross-session-reconnect",
-    "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/004-skill-advisor-suite-repair"
+    "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/004-skill-advisor-suite-repair",
+    "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/005-advisor-state-spec-folder-leak"
   ],
   "manual": {
     "depends_on": [],

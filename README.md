@@ -7,7 +7,7 @@
 | ⚛️ **Hybrid RAG + Smart Graph** | Retrieval that blends semantic search with graph-aware project context |
 | 🔍 **Code Graph** | Callers, imports, impact paths, and Code Graph + Grep code discovery |
 | 🤖 **12 Specialized Agents** | Focused roles for implementation, review, research, docs, git, and more |
-| 🎯 **17 On-Demand Skills** | Skill Advisor routing for the right workflow at the right time |
+| 🎯 **20 On-Demand Skills** | Skill Advisor routing for the right workflow at the right time |
 
 **Reasons to try it**
 
@@ -84,7 +84,7 @@ The framework adds four layers on top of the base platform:
                  ▼                             ▼
          ┌───────────────┐          ┌──────────────────┐
          │ AGENT NETWORK │          │  SKILLS LIBRARY  │
-         │ 12 specialized│          │ 17 domain skills │
+         │ 12 specialized│          │ 20 domain skills │
          │ agents with   │◄────────►│ auto-loaded by   │
          │ routing logic │          │ task keywords    │
          └───────┬───────┘          └────────┬─────────┘
@@ -143,7 +143,7 @@ node .opencode/bin/mk-code-index-launcher.cjs --help
 
 The native MCP servers (`mk-spec-memory`, `mk_skill_advisor`, `mk_code_index`) ship as committed launcher binaries under `.opencode/bin/`. They self-vendor their dependencies on first run and the checked-in runtime configs already point at them, so there is no separate build step. Launcher reliability (owner-disposal relaunch, lease-probe reap, mk-code-index reconnect, default-on daemon re-election and a single-writer database lock with `SPECKIT_DB_LOCK_DISABLE=1` as the kill switch) is operator-tunable and documented in [`ENV_REFERENCE.md`](.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md).
 
-The three daemons also expose full-parity CLI front doors (`spec-memory.cjs` 39 tools, `code-index.cjs` 8, `skill-advisor.cjs` 9, mutations gated behind `--trusted`): use MCP as the primary in-session transport and the CLIs for hooks, cron, CI and shell diagnostics, per [`daemon_cli_reference.md`](.opencode/skills/system-spec-kit/references/cli/daemon_cli_reference.md). Idle self-exit, a dry-run-first orphan-process sweeper and worktree-per-session isolation scripts (each session gets its own `SPEC_KIT_DB_DIR`, `SPECKIT_CODE_GRAPH_DB_DIR` and `SPECKIT_IPC_SOCKET_DIR`) live under `.opencode/bin/` and `.opencode/scripts/`; see the [Repo Scripts Runbook](.opencode/scripts/README.md).
+The three daemons also expose full-parity CLI front doors (`spec-memory.cjs` 37 tools, `code-index.cjs` 8, `skill-advisor.cjs` 9, mutations gated behind `--trusted`): use MCP as the primary in-session transport and the CLIs for hooks, cron, CI and shell diagnostics, per [`daemon_cli_reference.md`](.opencode/skills/system-spec-kit/references/cli/daemon_cli_reference.md). Idle self-exit, a dry-run-first orphan-process sweeper and worktree-per-session isolation scripts (each session gets its own `SPEC_KIT_DB_DIR`, `SPECKIT_CODE_GRAPH_DB_DIR` and `SPECKIT_IPC_SOCKET_DIR`) live under `.opencode/bin/` and `.opencode/scripts/`; see the [Repo Scripts Runbook](.opencode/scripts/README.md).
 
 ### Set Up Embedding Provider
 
@@ -395,7 +395,7 @@ The `mk-spec-memory` tools are organized into a layered architecture. Code graph
 | **—**  | Moved Surfaces  | 0      | -            | Code graph → `mk_code_index`; advisor + skill graph → `mk_skill_advisor`; coverage + council graph → `deep-loop-runtime` CLI scripts (not MCP tools) |
 |        | **Total**       | **37** | **~8,300**   |                                                                              |
 
-Lower layers load only when needed. L1 is always available. L2 loads for any search. L3-L7 load based on the specific command being used. The same 39 tools are also exposed 1:1 by the `spec-memory.cjs` daemon-backed CLI front door for hooks, cron, CI and shell diagnostics.
+Lower layers load only when needed. L1 is always available. L2 loads for any search. L3-L7 load based on the specific command being used. The same 37 tools are also exposed 1:1 by the `spec-memory.cjs` daemon-backed CLI front door for hooks, cron, CI and shell diagnostics.
 
 &nbsp;
 #### Hybrid Search
@@ -938,7 +938,7 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 
 **cli-opencode**
 - OpenCode CLI orchestrator. Use it when the dispatched task needs **the project's full plugin / skill / MCP / Spec Kit Memory runtime**, a one-shot `opencode run` boots every plugin in `opencode.json`, every skill under `.opencode/skills/`, every MCP server and the memory database. Also handles **parallel detached sessions** (`--share --port N` for ablation suites, worker farms) and **cross-repo dispatch** (`--dir <path>`).
-- Default model: `opencode-go/deepseek-v4-pro` at high reasoning. Configured providers span `opencode-go` (default gateway: DeepSeek + open models), `deepseek` (direct API), `minimax-coding-plan` / `minimax` (MiniMax-M3), `xiaomi` (MiMo-V2.5-Pro) and `openai` (`gpt-5.5` family) — see the skill's provider pre-flight for the live list.
+- Default model: `opencode-go/deepseek-v4-pro` at high reasoning. Configured providers span `opencode-go` (default gateway: DeepSeek + open models), `deepseek` (direct API), `minimax-coding-plan` / `minimax` (MiniMax-M3), `xiaomi` (MiMo-V2.5-Pro), `kimi-for-coding` (Kimi k2.7 Code) and `openai` (`gpt-5.5` family) — see the skill's provider pre-flight for the live list.
 
 &nbsp;
 #### MCP INTEGRATION
@@ -981,7 +981,7 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 
 **sk-prompt-small-model**
 - **Find the right small-model pattern fast.** A discovery anchor that points to executor-owned pattern files rather than hosting the logic itself
-- **Covers the active matrix:** DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6 and GLM-5.1 via `cli-opencode`
+- **Covers the active matrix:** DeepSeek-v4-pro, Kimi-k2.7-code, MiniMax-M3 and MiMo-V2.5-Pro via `cli-opencode`
 - **`references/pattern_index.md`** maps each pattern (context budget, output verification, permissions, quota fallback, model profiles, tool scoring) to its canonical location
 - **Pool-aware quota fallback** routes to a different pool only, never same-pool retries. Frontier models (Opus, Sonnet, gpt-5.5) stay out of scope
 
@@ -1044,7 +1044,7 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 - **Maps one slice of the codebase, read-only.** A LEAF seat in the heterogeneous by-model parallel sweep, returning a reuse-first set of verified `file:symbol` findings. The `/deep:context` command owns the loop
 - Agreement across models drives confidence; the loop converges on relevance-gated coverage saturation. See [Deep Loop](#deep-loop)
 
-**Agent Improver**
+**Deep Improvement**
 - **Proposes one agent improvement, safely.** Reads the target's charter, manifest and integration surface, then writes a single candidate to packet-local runtime
 - Never scores, promotes or edits the canonical target. The `/deep:agent-improvement` command handles scoring and promotion. See [Deep Loop](#deep-loop)
 
@@ -1057,8 +1057,8 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 &nbsp;
 #### SPEC KIT
 
-**Plan --intake-only**
-- Standalone intake workflow that publishes `spec.md`, `description.json` and `graph-metadata.json`
+**Plan (intake-only mode)**
+- A mode of `/speckit:plan` (`--intake-only`), not a separate command. Standalone intake workflow that publishes `spec.md`, `description.json` and `graph-metadata.json`
 - Used directly for new packet setup and paired with `/speckit:plan` or `/speckit:complete` when `folder_state` is `no-spec`, `partial-folder`, `repair-mode` or `placeholder-upgrade`
 - Modes: `:auto`, `:confirm`
 
@@ -1269,7 +1269,7 @@ Lifecycle guardrails: `mk-spec-memory`, `mk_skill_advisor`, and `mk_code_index` 
 - **`chrome_devtools_2`** (MCP/stdio) - Browser automation (instance 2). No env var needed.
 - **`clickup`** (MCP/stdio) - ClickUp community server (`@taazkareem/clickup-mcp-server`). Requires `CLICKUP_API_KEY`.
 - **`clickup_official`** (MCP/stdio) - Official ClickUp MCP (`@clickup/mcp-server`). Requires `CLICKUP_API_KEY` + `CLICKUP_TEAM_ID`. Used by `mcp-click-up` skill.
-- **`figma`** (MCP/stdio) - Design files, components, exports. Requires `FIGMA_API_KEY`.
+- **`figma`** (MCP/stdio) - Design files, components, exports. Requires `FIGMA_API_KEY`. This is the optional Code Mode MCP. The primary Figma surface is the `mcp-figma` skill via `figma-ds-cli`.
 - **`github`** (MCP/stdio) - Issues, pull requests, commits. Requires `GITHUB_PERSONAL_ACCESS_TOKEN`.
 - **`webflow`** (MCP/remote) - Sites, CMS collections. Requires Webflow auth.
 
@@ -1457,7 +1457,7 @@ After that, `cat opencode.json` shows `"true"`. `git show HEAD:opencode.json` sh
 
 ## 5. FAQ
 
-**Q: Do I need all 24 skills installed to use the framework?**
+**Q: Do I need all 20 skills installed to use the framework?**
 
 A: No. Skills are loaded on demand by Gate 2. You only need the ones relevant to your work. The two core documentation skills - `system-spec-kit` and `sk-doc` - cover most documentation workflows. The MCP and cross-AI CLI skills require additional local tooling or API keys depending on the surface.
 &nbsp;
@@ -1537,4 +1537,4 @@ A: The feature catalog is the current technical reference documenting the memory
 <!-- /ANCHOR:related-documents -->
 
 
-*Documentation version: 4.16 | Last updated: 2026-06-14 | Framework: 12 agents, 24 skills, 28 commands, 62 MCP tools (37 mk-spec-memory + 9 mk_skill_advisor + 8 mk_code_index + 7 code mode + 1 sequential thinking. Deferred / internal-only handlers do NOT count).*
+*Documentation version: 4.16 | Last updated: 2026-06-14 | Framework: 12 agents, 20 skills, 28 commands, 62 MCP tools (37 mk-spec-memory + 9 mk_skill_advisor + 8 mk_code_index + 7 code mode + 1 sequential thinking. Deferred / internal-only handlers do NOT count).*

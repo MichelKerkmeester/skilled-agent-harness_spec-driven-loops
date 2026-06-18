@@ -42,7 +42,7 @@ Commands are organized into five groups plus root-level utilities:
 | Group | Path | Commands | Purpose |
 |-------|------|----------|---------|
 | **create** | `commands/create/` | 7 | Scaffold OpenCode components, documentation packages, and changelogs |
-| **deep** | `commands/deep/` | 5 | Deep research, review, AI council, agent-improvement, and model-benchmark loops |
+| **deep** | `commands/deep/` | 8 | Deep research, review, context, AI council, improvement and benchmark loops |
 | **doctor** | `commands/doctor/` | 3 | MCP, Spec Kit, update, and subsystem diagnostics |
 | **memory** | `commands/memory/` | 4 | Memory system operations (search, save, learn, manage with shared lifecycle) |
 | **speckit** | `commands/speckit/` | 4 | Spec folder workflows (plan, implement, resume, complete) |
@@ -78,15 +78,18 @@ command/
 │   ├── feature-catalog.md    # Create or update feature catalog package
 │   ├── folder_readme.md      # Create folder README
 │   ├── sk-skill.md           # Create or update skill package/files
-│   ├── skill.md              # Create or update skill package/files
+│   ├── sk-skill-parent.md    # Scaffold a parent skill with nested mode packets
 │   ├── testing-playbook.md   # Create or update manual testing playbook package
 │   └── assets/               # YAML workflow definitions (12 files)
 ├── deep/                     # Deep-loop commands
-│   ├── ask-ai-council.md     # Multi-seat AI council planning
-│   ├── start-agent-improvement-loop.md # Evaluator-first agent improvement loop
-│   ├── start-model-benchmark-loop.md # Model/prompt-framework benchmark loop
-│   ├── start-research-loop.md # Iterative deep research workflow
-│   ├── start-review-loop.md  # Iterative code review workflow
+│   ├── agent-improvement.md  # Evaluator-first agent improvement loop
+│   ├── ai-council.md         # Multi-seat AI council planning
+│   ├── ai-system-improvement.md # AI-system packaging improvement loop
+│   ├── context.md            # Codebase-context parallel sweep loop
+│   ├── model-benchmark.md    # Model/prompt-framework benchmark loop
+│   ├── research.md           # Iterative deep research workflow
+│   ├── review.md             # Iterative code review workflow
+│   ├── skill-benchmark.md    # Skill routing and usefulness benchmark loop
 │   └── assets/               # YAML workflow definitions (10 files)
 ├── doctor/                   # MCP server diagnostic and install commands
 │   ├── mcp.md                # Diagnose/install MCP infrastructure
@@ -136,7 +139,7 @@ Diagnose, install, and repair MCP server connections. Backed by `mcp-doctor.sh` 
 | Command | Invocation | Purpose |
 |---------|------------|---------|
 | MCP Debug | `/doctor:mcp debug [--fix] [--server <name>]` | Diagnose and fix MCP connection issues across all runtimes |
-| MCP Install | `/doctor:mcp install [--server <name>] [--runtime <name>]` | Fresh install or reinstall all 4 MCP servers from install guides |
+| MCP Install | `/doctor:mcp install [--server <name>] [--runtime <name>]` | Fresh install or reinstall all supported MCP servers from install guides |
 
 ### Deep Commands
 
@@ -149,6 +152,9 @@ Run long-form, stateful deep-loop workflows. Each command supports `:auto` and `
 | Model Benchmark | `/deep:model-benchmark [profile] [:auto\|:confirm]` | Benchmark and optimize a model or prompt framework against fixtures |
 | Research Loop | `/deep:research <topic> [:auto\|:confirm]` | Iterative technical investigation with convergence |
 | Review Loop | `/deep:review <target> [:auto\|:confirm]` | Iterative code review with severity-weighted findings |
+| Context | `/deep:context [scope] [:auto\|:confirm]` | Heterogeneous by-model parallel codebase-context sweep |
+| AI System Improvement | `/deep:ai-system-improvement <target> [:auto\|:confirm]` | Benchmark and refine an AI-system packaging behind guardrails |
+| Skill Benchmark | `/deep:skill-benchmark <skill> [:auto\|:confirm]` | Benchmark a skill routing, discovery, efficiency and usefulness |
 
 ### Root Commands
 
@@ -177,9 +183,8 @@ Structured workflows for the spec folder development lifecycle.
 | Command | Invocation | Purpose |
 |---------|------------|---------|
 | Complete | `/speckit:complete <description>` | Full end-to-end workflow (14+ steps) |
-| Plan (intake-only) | `/speckit:plan --intake-only [description] [:auto\|:confirm]` | Standalone intake that publishes `spec.md`, `description.json`, and `graph-metadata.json` |
 | Implement | `/speckit:implement <spec-folder>` | Execute pre-planned work (requires plan.md) |
-| Plan | `/speckit:plan <description> [:with-phases]` | Planning workflow (spec through plan only; `:with-phases` adds phase decomposition) |
+| Plan | `/speckit:plan <description> [--intake-only] [:with-phases]` | Planning workflow (spec through plan only). `--intake-only` publishes just `spec.md`, `description.json` and `graph-metadata.json`. `:with-phases` adds phase decomposition |
 | Resume | `/speckit:resume [spec-folder]` | Resume work on existing spec folder |
 
 <!-- /ANCHOR:command-groups -->
@@ -309,7 +314,7 @@ A: Run `/speckit:resume`. This is the canonical recovery surface for packet work
 |----------|---------|
 | [AGENTS.md](../../AGENTS.md) | Framework defining gates, protocols, agent routing |
 | [Create Commands](create/README.txt) | Detailed index for all `/create:*` commands |
-| [Deep Agent Improvement Command](deep/start-agent-improvement-loop.md) | Agent improvement loop command |
+| [Deep Agent Improvement Command](deep/agent-improvement.md) | Agent improvement loop command |
 | [Prompt Command](prompt.md) | Canonical prompt improvement command |
 | [sk-doc SKILL.md](../skills/sk-doc/SKILL.md) | Documentation standards and component creation |
 | [system-spec-kit SKILL.md](../skills/system-spec-kit/SKILL.md) | Spec folder workflow and memory system |

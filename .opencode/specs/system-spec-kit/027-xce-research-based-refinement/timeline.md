@@ -281,6 +281,7 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 2026-06-14 08:03  born:2026-06-10  impl  000-release-cleanup/003-skill-feature-catalog
 2026-06-14 08:03  born:2026-06-10  impl  000-release-cleanup/002-skill-docs-alignment
 2026-06-14 08:03  born:2026-06-10  impl  000-release-cleanup/001-public-root-readme
+??????????        born:??????????  impl  003-advisor-and-codegraph/005-advisor-state-spec-folder-leak
 ```
 
 ---
@@ -495,4 +496,5 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `000-release-cleanup/003-skill-feature-catalog` | impl | [changelog-000-003-skill-feature-catalog.md](./changelog/000-release-cleanup/changelog-000-003-skill-feature-catalog.md) |
 | `000-release-cleanup/002-skill-docs-alignment` | impl | [changelog-000-002-skill-docs-alignment.md](./changelog/000-release-cleanup/changelog-000-002-skill-docs-alignment.md) |
 | `000-release-cleanup/001-public-root-readme` | impl | [changelog-000-001-public-root-readme.md](./changelog/000-release-cleanup/changelog-000-001-public-root-readme.md) |
+| `003-advisor-and-codegraph/005-advisor-state-spec-folder-leak` (uncommitted) | impl | [changelog-003-005-advisor-state-spec-folder-leak.md](./changelog/003-advisor-and-codegraph/changelog-003-005-advisor-state-spec-folder-leak.md) |
 

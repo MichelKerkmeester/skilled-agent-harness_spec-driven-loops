@@ -1,6 +1,6 @@
 ---
 title: "Skills Library"
-description: "Catalog and front door to 19 on-demand skills across five families, with routing guidance and creation workflow."
+description: "Catalog and front door to 20 on-demand skills across five families, with routing guidance and creation workflow."
 trigger_phrases:
   - "skills library"
   - "available skills"
@@ -21,7 +21,7 @@ trigger_phrases:
 |---|---|
 | **Use it for** | Finding the skill that matches your task and understanding how routing picks it |
 | **Invoke with** | Gate 2 auto-routing, a direct read of the skill's `SKILL.md`, or keyword triggers like "commit changes" |
-| **Families** | Five: `cli-*` (3), `deep-*` (2), `mcp-*` (4), `sk-*` (7), `system-*` (3) |
+| **Families** | Five: `cli-*` (3), `deep-*` (2), `mcp-*` (5), `sk-*` (7), `system-*` (3) |
 | **Catalog** | A family-by-family table below that links every skill's own README |
 
 ---
@@ -30,7 +30,7 @@ trigger_phrases:
 
 ### Why This Library Exists
 
-Nineteen skills live under `.opencode/skills/`. A reader lands here and faces the same question every time: which one handles this task? The right skill loads focused guidance, a one-page reference and scripts that are proven to work. The wrong skill wastes context on irrelevant instructions. Worse, a reader might not know that a skill for the task exists at all. The library solves that. It catalogs every skill by family, links each one's README and explains how routing picks the match before you open a single file.
+Twenty skills live under `.opencode/skills/`. A reader lands here and faces the same question every time: which one handles this task? The right skill loads focused guidance, a one-page reference and scripts that are proven to work. The wrong skill wastes context on irrelevant instructions. Worse, a reader might not know that a skill for the task exists at all. The library solves that. It catalogs every skill by family, links each one's README and explains how routing picks the match before you open a single file.
 
 ### What It Is
 

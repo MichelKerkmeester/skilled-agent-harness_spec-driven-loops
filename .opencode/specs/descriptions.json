@@ -1,20 +1,7 @@
 {
   "version": 1,
-  "generated": "2026-06-18T08:17:29.133Z",
+  "generated": "2026-06-18T18:03:07.399Z",
   "folders": [
-    {
-      "specFolder": "001-opencode-specs-system",
-      "description": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/018-reindex-scan-responsiveness-and-cancellation",
-      "keywords": [
-        "opencode",
-        "specs",
-        "system-spec-kit",
-        "027-xce-research-based-refinement",
-        "002-memory-store-and-search",
-        "018-reindex-scan-responsiveness-and-cancellation"
-      ],
-      "lastUpdated": "2026-06-17T11:43:43.524Z"
-    },
     {
       "specFolder": "ai-systems/001-ai-system-architecture",
       "description": "AI System Architecture — Barter Agent Ecosystem",
@@ -398,7 +385,7 @@
         "fleet",
         "pass"
       ],
-      "lastUpdated": "2026-06-18T08:17:29.133Z"
+      "lastUpdated": "2026-06-18T18:03:07.399Z"
     },
     {
       "specFolder": "ai-systems/005-sales-hubspot-automation-merge",
@@ -544,7 +531,7 @@
         "small",
         "inventory"
       ],
-      "lastUpdated": "2026-06-18T08:17:29.133Z"
+      "lastUpdated": "2026-06-18T18:03:07.399Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/142-sk-code-ponytail-based-refinement",
@@ -2346,7 +2333,7 @@
         "folder",
         "convention"
       ],
-      "lastUpdated": "2026-06-18T08:17:29.133Z"
+      "lastUpdated": "2026-06-18T18:03:07.399Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/043-cli-skill-improved-prompting",
@@ -6741,7 +6728,7 @@
         "doc",
         "rebuild"
       ],
-      "lastUpdated": "2026-06-18T08:17:29.133Z"
+      "lastUpdated": "2026-06-18T18:03:07.399Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/122-deep-improvement-skill-benchmark-mode/008-playbook-manual-test-run",
@@ -8986,7 +8973,7 @@
         "standards",
         "contract"
       ],
-      "lastUpdated": "2026-06-18T08:17:29.133Z"
+      "lastUpdated": "2026-06-18T18:03:07.399Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/023-fix-baseline-test-failures",
@@ -9012,7 +8999,7 @@
         "concurrency",
         "fixes"
       ],
-      "lastUpdated": "2026-06-18T08:17:29.133Z"
+      "lastUpdated": "2026-06-18T18:03:07.399Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/025-readme-architecture-diagrams-topology",
@@ -10074,7 +10061,7 @@
         "accuracy",
         "re-audit"
       ],
-      "lastUpdated": "2026-06-18T08:17:29.133Z"
+      "lastUpdated": "2026-06-18T18:03:07.399Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/009-readme-and-references-accuracy",
@@ -10204,7 +10191,7 @@
         "review",
         "slice"
       ],
-      "lastUpdated": "2026-06-18T08:17:29.133Z"
+      "lastUpdated": "2026-06-18T18:03:07.399Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/002-mcp-retrieval-causal",
@@ -10218,7 +10205,7 @@
         "review",
         "slice"
       ],
-      "lastUpdated": "2026-06-18T08:17:29.133Z"
+      "lastUpdated": "2026-06-18T18:03:07.399Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/003-mcp-session-index-schema",
@@ -10234,7 +10221,7 @@
         "review",
         "slice"
       ],
-      "lastUpdated": "2026-06-18T08:17:29.133Z"
+      "lastUpdated": "2026-06-18T18:03:07.399Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/004-026-integrity",
@@ -10248,7 +10235,7 @@
         "review",
         "slice"
       ],
-      "lastUpdated": "2026-06-18T08:17:29.133Z"
+      "lastUpdated": "2026-06-18T18:03:07.399Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/005-feature-catalog-playbook",
@@ -10262,7 +10249,7 @@
         "verification",
         "slice"
       ],
-      "lastUpdated": "2026-06-18T08:17:29.133Z"
+      "lastUpdated": "2026-06-18T18:03:07.399Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/006-governance-skdoc-skcode",
@@ -10277,7 +10264,7 @@
         "review",
         "slice"
       ],
-      "lastUpdated": "2026-06-18T08:17:29.133Z"
+      "lastUpdated": "2026-06-18T18:03:07.399Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/007-interconnected-mcps",
@@ -10290,7 +10277,7 @@
         "review",
         "slice"
       ],
-      "lastUpdated": "2026-06-18T08:17:29.133Z"
+      "lastUpdated": "2026-06-18T18:03:07.399Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/008-027-launch-state",
@@ -10303,7 +10290,7 @@
         "review",
         "slice"
       ],
-      "lastUpdated": "2026-06-18T08:17:29.133Z"
+      "lastUpdated": "2026-06-18T18:03:07.399Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis",
@@ -10318,7 +10305,7 @@
         "deep-review",
         "audit"
       ],
-      "lastUpdated": "2026-06-18T08:17:29.133Z"
+      "lastUpdated": "2026-06-18T18:03:07.399Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation",
@@ -11123,7 +11110,7 @@
         "coverage",
         "audit"
       ],
-      "lastUpdated": "2026-06-18T08:17:29.133Z"
+      "lastUpdated": "2026-06-18T18:03:07.399Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/027-typescript-header-normalization",
@@ -11645,7 +11632,7 @@
         "template",
         "alignment"
       ],
-      "lastUpdated": "2026-06-18T08:17:29.133Z"
+      "lastUpdated": "2026-06-18T18:03:07.399Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation",
@@ -13290,7 +13277,7 @@
         "audit",
         "deep-research"
       ],
-      "lastUpdated": "2026-06-18T08:17:29.133Z"
+      "lastUpdated": "2026-06-18T18:03:07.399Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc",
@@ -16486,7 +16473,7 @@
         "isolation",
         "finalize"
       ],
-      "lastUpdated": "2026-06-18T08:17:29.133Z"
+      "lastUpdated": "2026-06-18T18:03:07.399Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes",
@@ -18431,7 +18418,7 @@
         "deep-review",
         "remediation"
       ],
-      "lastUpdated": "2026-06-18T08:17:29.133Z"
+      "lastUpdated": "2026-06-18T18:03:07.399Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-039-system-code-graph-deferred-followon",
@@ -18471,7 +18458,7 @@
         "reorg",
         "renumber"
       ],
-      "lastUpdated": "2026-06-18T08:17:29.133Z"
+      "lastUpdated": "2026-06-18T18:03:07.399Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement",
@@ -20721,7 +20708,7 @@
         "safety",
         "guards"
       ],
-      "lastUpdated": "2026-06-18T08:17:29.133Z"
+      "lastUpdated": "2026-06-18T18:03:07.399Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/002-causal-and-memo",
@@ -20735,7 +20722,7 @@
         "causal",
         "memo"
       ],
-      "lastUpdated": "2026-06-18T08:17:29.133Z"
+      "lastUpdated": "2026-06-18T18:03:07.399Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/003-search-and-triggers",
@@ -20749,7 +20736,7 @@
         "search",
         "triggers"
       ],
-      "lastUpdated": "2026-06-18T08:17:29.133Z"
+      "lastUpdated": "2026-06-18T18:03:07.399Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/004-vector-and-checkpoint-durability",
@@ -20764,7 +20751,7 @@
         "checkpoint",
         "durability"
       ],
-      "lastUpdated": "2026-06-18T08:17:29.133Z"
+      "lastUpdated": "2026-06-18T18:03:07.399Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/005-bm25-indexing-fidelity",
@@ -20779,7 +20766,7 @@
         "indexing",
         "fidelity"
       ],
-      "lastUpdated": "2026-06-18T08:17:29.133Z"
+      "lastUpdated": "2026-06-18T18:03:07.399Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/006-launchers-and-cli",
@@ -20793,7 +20780,7 @@
         "launchers",
         "cli"
       ],
-      "lastUpdated": "2026-06-18T08:17:29.133Z"
+      "lastUpdated": "2026-06-18T18:03:07.399Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/007-continuity-and-save-concurrency",
@@ -20808,7 +20795,7 @@
         "save",
         "concurrency"
       ],
-      "lastUpdated": "2026-06-18T08:17:29.133Z"
+      "lastUpdated": "2026-06-18T18:03:07.399Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/008-doc-truth-and-test-fidelity",
@@ -20824,7 +20811,7 @@
         "test",
         "fidelity"
       ],
-      "lastUpdated": "2026-06-18T08:17:29.133Z"
+      "lastUpdated": "2026-06-18T18:03:07.399Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/sandbox-test",
@@ -20835,7 +20822,7 @@
         "test",
         "doc"
       ],
-      "lastUpdated": "2026-06-18T08:17:29.133Z"
+      "lastUpdated": "2026-06-18T18:03:07.399Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/002-tri-system-deep-research",
@@ -20859,7 +20846,7 @@
         "phase",
         "parent"
       ],
-      "lastUpdated": "2026-06-18T08:17:29.133Z"
+      "lastUpdated": "2026-06-18T18:03:07.399Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/004-residual-design-units",
@@ -21002,7 +20989,7 @@
         "retrieval",
         "subsystem"
       ],
-      "lastUpdated": "2026-06-18T08:17:29.133Z"
+      "lastUpdated": "2026-06-18T18:03:07.399Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/B-rest-of-002",
@@ -21017,7 +21004,7 @@
         "002",
         "non-search"
       ],
-      "lastUpdated": "2026-06-18T08:17:29.133Z"
+      "lastUpdated": "2026-06-18T18:03:07.399Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/C-rest-of-server",
@@ -21032,7 +21019,45 @@
         "providers",
         "daemon"
       ],
-      "lastUpdated": "2026-06-18T08:17:29.133Z"
+      "lastUpdated": "2026-06-18T18:03:07.399Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review",
+      "description": "Release-alignment review and remediation (phase parent)",
+      "keywords": [
+        "release-alignment",
+        "review",
+        "remediation",
+        "phase",
+        "parent"
+      ],
+      "lastUpdated": "2026-06-18T12:37:51.397Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation",
+      "description": "Feature Specification: README Currency Remediation (Track A)",
+      "keywords": [
+        "feature",
+        "specification",
+        "readme",
+        "currency",
+        "remediation",
+        "track"
+      ],
+      "lastUpdated": "2026-06-18T18:03:07.399Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/004-code-remediation",
+      "description": "Feature Specification: Code vs sk-code Remediation (Track B)",
+      "keywords": [
+        "feature",
+        "specification",
+        "code",
+        "sk-code",
+        "remediation",
+        "track"
+      ],
+      "lastUpdated": "2026-06-18T18:03:07.399Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence",
@@ -25550,7 +25575,7 @@
         "knowledge",
         "base"
       ],
-      "lastUpdated": "2026-06-18T08:17:29.133Z"
+      "lastUpdated": "2026-06-18T18:03:07.399Z"
     },
     {
       "specFolder": "z_future/sqlite-to-turso",

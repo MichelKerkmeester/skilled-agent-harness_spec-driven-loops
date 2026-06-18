@@ -351,6 +351,24 @@ A running launcher process keeps its prior `.cjs` resident, so the fix activates
 
 **Cross-subsystem feature adoption (`003-advisor-and-codegraph/002`).** The hardening that 027 landed first in spec-memory was carried into the skill-advisor and code-graph subsystems. The advisor gained prompt-safe attribution and semantic health diagnostics, an automated-edge provenance guard that protects manual and trusted edges, a packed BM25F lexical helper that stays shadow-only until a future promotion decision, one local BFS helper for `transitive_path` and `subgraph`, and default-off feedback calibration reports that are written for inspection rather than consumed by live scoring.
 
+### 3. ADVISOR STATE NO LONGER LEAKS INTO SPEC FOLDERS
+
+**Before**
+
+The advisor decides where to write its runtime state by walking up from the current directory looking for the canonical `system-spec-kit/SKILL.md` sentinel. When that walk-up failed to find the sentinel, it fell back to the directory it started from. A process dispatched with its working directory inside a `specs/` packet — a deep-loop fan-out seat, a deep-research iteration directory, a prompt or asset working dir — therefore wrote a `.opencode/skills/.advisor-state/skill-graph-generation.json` file into that packet on every run. Twenty-three of these stray directories had accumulated across the spec tree. They were gitignored and harmless, but they cluttered spec folders and appeared with no commit trail.
+
+**After**
+
+The fallback can no longer return a path inside a `specs/` tree (`003-advisor-and-codegraph/005`). A pure path-math guard detects a `.opencode/specs/` boundary — or the bare `specs/` symlink alias at the repo root — and hoists the result up to the workspace root that contains it. The schema layer's parallel root-detector got the same guard so the two stay in lockstep. A regression test pins all five cases (sentinel found, both hoist spellings, a no-`specs`-segment property, and the preserved non-specs fallback). The twenty-three existing strays were removed; the real vendored `.opencode` clones under `external/` were left untouched.
+
+**Impact**
+
+Advisor runtime state lands at the workspace root where it belongs, never inside a spec packet, regardless of where a dispatched process happens to start. The spec tree stops sprouting stray `.opencode/skills/.advisor-state/` directories.
+
+**Why activation is deferred**
+
+The fix is compiled into `dist`, but a running advisor daemon keeps its prior build resident; it activates on a fresh session or `/mcp` reconnect. Live adoption is operator-gated.
+
 ---
 
 ## 3. SYSTEM-CODE-GRAPH

@@ -4,7 +4,7 @@
 
 import { z } from 'zod';
 import { existsSync, realpathSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { resolve, sep } from 'node:path';
 import { tmpdir } from 'node:os';
 import { SCORER_LANE_IDS } from '../lib/scorer/lane-registry.js';
 
@@ -34,7 +34,29 @@ function detectRepoRoot(): string {
     if (parent === current) break;
     current = parent;
   }
-  return resolve(process.cwd());
+  // Lockstep with findAdvisorWorkspaceRoot: when the sentinel is unreachable,
+  // never anchor the allowlist on a directory inside a specs/ packet tree —
+  // hoist to the workspace root above it so caller-supplied workspaceRoots are
+  // bounded to the real root, not a spec subdir.
+  return hoistAboveSpecsTree(process.cwd()) ?? resolve(process.cwd());
+}
+
+// Inlined twin of lib/utils/workspace-root.ts:hoistAboveSpecsTree. Kept local
+// to avoid a circular import between schemas/ and lib/ — the two must stay in
+// lockstep so the schema allowlist and the handler agree on the workspace root.
+function hoistAboveSpecsTree(dir: string): string | null {
+  const parts = resolve(dir).split(sep);
+  for (let index = parts.length - 2; index >= 1; index -= 1) {
+    if (parts[index] === '.opencode' && parts[index + 1] === 'specs') {
+      return parts.slice(0, index).join(sep) || sep;
+    }
+  }
+  for (let index = parts.length - 1; index >= 1; index -= 1) {
+    if (parts[index] === 'specs') {
+      return parts.slice(0, index).join(sep) || sep;
+    }
+  }
+  return null;
 }
 
 function canonicalize(input: string): string {
