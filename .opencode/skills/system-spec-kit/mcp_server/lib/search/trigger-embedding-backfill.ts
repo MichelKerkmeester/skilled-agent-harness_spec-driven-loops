@@ -170,6 +170,10 @@ export async function runTriggerEmbeddingBackfill(
     const profileKey = getActiveEmbeddingProfileKey(database, modelId, dimensions);
     const phraseByHash = new Map<string, string>();
 
+    // Single upfront read of the trigger-phrase source rows. This is a bounded
+    // projection (only id + trigger_phrases of non-empty rows) and the backfill
+    // is opt-in (default-off), so the one-shot load is acceptable; the heavy
+    // write work below is chunked and cooperatively yields between chunks.
     const sourceRows = database.prepare(`
       SELECT id, trigger_phrases
       FROM memory_index

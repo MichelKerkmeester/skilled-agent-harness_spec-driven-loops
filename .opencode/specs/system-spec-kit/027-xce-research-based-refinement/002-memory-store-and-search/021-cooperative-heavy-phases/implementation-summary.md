@@ -93,7 +93,7 @@ Investigation-first. Parallel reads established that the main batch loop already
 | Scan-job suite | PASS: `tests/handler-memory-index-scan-jobs.vitest.ts` |
 | Daemon-reelection adoption harness | PASS: `stress_test/durability/daemon-reelection-adoption-live.vitest.ts` 6/6 |
 | Pre-existing failures (not introduced) | NOTED: `retry-manager.vitest.ts` T49 (cross-file flake), `handler-memory-index-cooldown`, `handler-memory-index-needs-rebuild`, `trigger-threshold-tuning` — all reproduce on the clean baseline with these changes stashed |
-| Live reindex lag read (isolated DB clone) | PASS: force reindex on a snapshot clone (bare daemon, private socket; live DB byte-unchanged) logged `max-event-loop-lag ms=634` with no `event-loop blocked` spikes; slowest phase `enrichment-repair ms=2216` is slow-but-cooperative (lag ≤ 634ms); daemon pid unchanged; `fts == memory_index` (20001==20001), `vec` 19957 (44-row deferred-embedding residue, poll stopped at the lag line by design) |
+| Live reindex lag read (isolated DB clone) | PASS: force reindex on a snapshot clone (bare daemon, private socket; live DB byte-unchanged) logged `max-event-loop-lag ms=634` with no `event-loop blocked` spikes; slowest phase `enrichment-repair ms=2216` is slow-but-cooperative (lag ≤ 634ms); daemon pid unchanged; `fts == memory_index` (20001==20001), `vec` 19957 (poll stopped at the lag line by design — the `vec<fts` delta does **not** indicate an unmet `vec==fts` criterion: subsequent DB verification confirmed 100% vector coverage with `vec_768` = `memory_index` and all rows `embedding_status='success'`; the low `vec` health reading is a known counting quirk of the vec0 `vec_memories` virtual table vs its `_rowids`) |
 <!-- /ANCHOR:verification -->
 
 ---

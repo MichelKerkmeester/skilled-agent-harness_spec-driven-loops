@@ -168,8 +168,10 @@ export async function processBatches<T, R>(
       processedSinceYield %= COOPERATIVE_YIELD_EVERY;
     }
 
-    // Small delay between batches to prevent resource exhaustion
-    if (i + effectiveBatchSize < items.length && delayMs > 0) {
+    // Small delay between batches to prevent resource exhaustion.
+    // Skip the pacing delay once cancellation is requested, so a cancelled run
+    // does not wait one extra inter-batch delay before the top-of-loop break.
+    if (i + effectiveBatchSize < items.length && delayMs > 0 && !retryOptions.shouldAbort?.()) {
       await new Promise<void>(resolve => setTimeout(resolve, delayMs));
     }
   }
