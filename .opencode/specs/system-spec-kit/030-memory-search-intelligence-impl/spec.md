@@ -223,7 +223,7 @@ None for candidates 8-11. The overall Wave-0 packet still has remaining candidat
 | 10 | Constitutional self-edit / CAS guard | Done | e1c6a3c793 | Reject protection-removing edits + stale `expectedHash` writes; opus review SHIP (P2 polish: opt-in CAS, now-dead downgrade-audit branch) |
 | 11 | M-system-kind-exclusion | **DEFERRED → Wave-1** | - | DROPPED: opus review against the live 734MB DB proved `source_kind='system'` = 9,592 canonical spec-docs incl. 29 constitutional rules, NOT substrate noise. The cheap predicate hides ~49% of recall. Needs a real substrate signal + constitutional/spec-doc short-circuit + live-DB validation |
 | 12 | Deep-Loop trio + graceful-self-stop | Done | (this commit) | deterministic merge total-order (on top of id‖title dedup) + lag/pending/failed pool gauges + SIGINT/SIGTERM partial-summary flush (`stopped:true`) + empty-tick=convergence; node --check + 58 fanout tests + mutation-checked; did NOT duplicate upstream failure-class |
-| 13 | Code-Graph Q4-C1 | Pending | - | RRF-additive trust blend; needs before/after order check vs rowid baseline |
+| 13 | Code-Graph Q4-C1 | Done | (this commit) | `rankScore = 1/(60+index+1) + clamp(confidence)*evidenceClassFactor` (additive, NOT multiplicative); structural weight unmutated; neutral order byte-identical to baseline (gate met, byte-verified); boost magnitudes unbenchmarked (tuning is a follow-up); 8 full-package failures = unrelated IPC sandbox EPERM |
 <!-- /ANCHOR:status -->
 
 ---

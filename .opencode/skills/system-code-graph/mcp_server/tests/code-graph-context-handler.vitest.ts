@@ -663,3 +663,123 @@ describe('context why_included breadcrumb accuracy', () => {
     expect(stamped).toEqual([]);
   });
 });
+
+describe('code graph context rank-time trust', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+    mocks.resolveSeeds.mockReturnValue([
+      {
+        filePath: 'src/alpha.ts',
+        startLine: 10,
+        endLine: 20,
+        symbolId: 'symbol-alpha',
+        fqName: 'Alpha.run',
+        kind: 'function',
+        confidence: 0.95,
+        resolution: 'exact',
+      },
+    ]);
+    mocks.queryEdgesFrom.mockReturnValue([]);
+    mocks.queryEdgesTo.mockReturnValue([]);
+  });
+
+  async function importBuildContext() {
+    const { buildContext } = await vi.importActual<typeof import('../lib/code-graph-context.js')>(
+      '../lib/code-graph-context.js',
+    );
+    return buildContext;
+  }
+
+  it('keeps neutral and absent trust results byte-identical to baseline order', async () => {
+    const buildContext = await importBuildContext();
+    const baselineTargets = [
+      { id: 'neutral-a', name: 'neutral.alpha', file: 'src/neutral-a.ts', line: 11 },
+      { id: 'neutral-b', name: 'neutral.beta', file: 'src/neutral-b.ts', line: 22 },
+      { id: 'neutral-c', name: 'neutral.gamma', file: 'src/neutral-c.ts', line: 33 },
+    ];
+    mocks.queryEdgesFrom.mockImplementation((symbolId, edgeType, ..._rest: unknown[]) => (
+      symbolId === 'symbol-alpha' && edgeType === 'CALLS'
+        ? [
+          {
+            edge: { sourceId: 'symbol-alpha', targetId: baselineTargets[0].id, edgeType: 'CALLS', weight: 0.2 },
+            targetNode: { fqName: baselineTargets[0].name, kind: 'function', filePath: baselineTargets[0].file, startLine: baselineTargets[0].line },
+          },
+          {
+            edge: {
+              sourceId: 'symbol-alpha',
+              targetId: baselineTargets[1].id,
+              edgeType: 'CALLS',
+              weight: 0.9,
+              metadata: { confidence: 1 },
+            },
+            targetNode: { fqName: baselineTargets[1].name, kind: 'function', filePath: baselineTargets[1].file, startLine: baselineTargets[1].line },
+          },
+          {
+            edge: {
+              sourceId: 'symbol-alpha',
+              targetId: baselineTargets[2].id,
+              edgeType: 'CALLS',
+              weight: 0.6,
+              metadata: { confidence: 1, evidenceClass: 'UNKNOWN' },
+            },
+            targetNode: { fqName: baselineTargets[2].name, kind: 'function', filePath: baselineTargets[2].file, startLine: baselineTargets[2].line },
+          },
+        ]
+        : []
+    ));
+
+    const result = buildContext({
+      queryMode: 'neighborhood',
+      seeds: [{ filePath: 'src/placeholder.ts', startLine: 1, endLine: 1 }],
+      deadlineMs: 400,
+    });
+    const actualBytes = JSON.stringify({
+      edges: result.graphContext[0].edges.map((edge) => edge.to),
+      nodes: result.graphContext[0].nodes.map((node) => node.name),
+    });
+    const baselineBytes = JSON.stringify({
+      edges: baselineTargets.map((target) => target.name),
+      nodes: baselineTargets.map((target) => target.name),
+    });
+
+    expect(actualBytes).toBe(baselineBytes);
+  });
+
+  it('boosts trusted impact callers while preserving neutral peer order', async () => {
+    const buildContext = await importBuildContext();
+    mocks.queryEdgesTo.mockImplementation((symbolId, edgeType, ..._rest: unknown[]) => (
+      symbolId === 'symbol-alpha' && edgeType === 'CALLS'
+        ? [
+          {
+            edge: { sourceId: 'neutral-first', targetId: 'symbol-alpha', edgeType: 'CALLS', weight: 0.99 },
+            sourceNode: { fqName: 'Neutral.first', kind: 'function', filePath: 'src/neutral-first.ts', startLine: 12 },
+          },
+          {
+            edge: {
+              sourceId: 'trusted-caller',
+              targetId: 'symbol-alpha',
+              edgeType: 'CALLS',
+              weight: 0.1,
+              metadata: { confidence: 0.95, evidenceClass: 'EXTRACTED' },
+            },
+            sourceNode: { fqName: 'Trusted.caller', kind: 'function', filePath: 'src/trusted.ts', startLine: 8 },
+          },
+          {
+            edge: { sourceId: 'neutral-second', targetId: 'symbol-alpha', edgeType: 'CALLS', weight: 0.8 },
+            sourceNode: { fqName: 'Neutral.second', kind: 'function', filePath: 'src/neutral-second.ts', startLine: 34 },
+          },
+        ]
+        : []
+    ));
+
+    const result = buildContext({
+      queryMode: 'impact',
+      seeds: [{ filePath: 'src/placeholder.ts', startLine: 1, endLine: 1 }],
+      deadlineMs: 400,
+    });
+    const callers = result.graphContext[0].edges.map((edge) => edge.from);
+
+    expect(callers).toEqual(['Trusted.caller', 'Neutral.first', 'Neutral.second']);
+    expect(callers.filter((caller) => caller.startsWith('Neutral.'))).toEqual(['Neutral.first', 'Neutral.second']);
+  });
+});

@@ -97,6 +97,13 @@ interface ContextWhyIncluded {
 }
 
 const CONTEXT_WHY_INCLUDED_LIMIT = 25;
+const CONTEXT_EDGE_RRF_K = 60;
+const CONTEXT_EDGE_EVIDENCE_RANK_FACTORS: Readonly<Record<string, number>> = {
+  EXTRACTED: 0.01,
+  STRUCTURED: 0.01,
+  INFERRED: 0.004,
+  AMBIGUOUS: 0.002,
+};
 
 interface ExpansionResult {
   section: GraphContextSection;
@@ -340,6 +347,37 @@ function sanitizeContextEdgeString(value: unknown): string | null {
   return value;
 }
 
+function clampConfidence(value: unknown): number {
+  if (typeof value !== 'number' || !Number.isFinite(value)) return 0;
+  return Math.max(0, Math.min(1, value));
+}
+
+function contextEdgeReliability(edge: graphDb.CodeEdgeTargetResult['edge'] | graphDb.CodeEdgeSourceResult['edge']): number {
+  const evidenceClass = typeof edge.metadata?.evidenceClass === 'string'
+    ? edge.metadata.evidenceClass
+    : null;
+  const evidenceClassFactor = evidenceClass === null
+    ? 0
+    : CONTEXT_EDGE_EVIDENCE_RANK_FACTORS[evidenceClass] ?? 0;
+  return clampConfidence(edge.metadata?.confidence) * evidenceClassFactor;
+}
+
+function rankContextEdges<T extends { readonly edge: graphDb.CodeEdgeTargetResult['edge'] | graphDb.CodeEdgeSourceResult['edge'] }>(
+  results: readonly T[],
+): T[] {
+  return results
+    .map((result, index) => {
+      const baselineRankScore = 1 / (CONTEXT_EDGE_RRF_K + index + 1);
+      return {
+        result,
+        index,
+        rankScore: baselineRankScore + contextEdgeReliability(result.edge),
+      };
+    })
+    .sort((left, right) => (right.rankScore - left.rankScore) || (left.index - right.index))
+    .map((ranked) => ranked.result);
+}
+
 function formatContextEdge(edge: graphDb.CodeEdgeTargetResult['edge'] | graphDb.CodeEdgeSourceResult['edge']): {
   confidence: number | null;
   detectorProvenance: string | null;
@@ -517,7 +555,7 @@ function expandAnchor(anchor: ArtifactRef, mode: QueryMode, remainingMs?: number
           omittedEdges += 1;
           break;
         }
-        const outgoing = graphDb.queryEdgesFrom(anchor.symbolId, edgeType);
+        const outgoing = rankContextEdges(graphDb.queryEdgesFrom(anchor.symbolId, edgeType));
         let processedOutgoing = 0;
         for (const { edge, targetNode } of outgoing) {
           if (budgetExpired()) {
@@ -549,7 +587,7 @@ function expandAnchor(anchor: ArtifactRef, mode: QueryMode, remainingMs?: number
         if (deadlineExceeded) {
           break;
         }
-        const incoming = graphDb.queryEdgesTo(anchor.symbolId, edgeType);
+        const incoming = rankContextEdges(graphDb.queryEdgesTo(anchor.symbolId, edgeType));
         let processedIncoming = 0;
         for (const { edge, sourceNode } of incoming) {
           if (budgetExpired()) {
@@ -635,7 +673,7 @@ function expandAnchor(anchor: ArtifactRef, mode: QueryMode, remainingMs?: number
           omittedEdges += 1;
           break;
         }
-        const incoming = graphDb.queryEdgesTo(anchor.symbolId, edgeType);
+        const incoming = rankContextEdges(graphDb.queryEdgesTo(anchor.symbolId, edgeType));
         let processedIncoming = 0;
         for (const { edge, sourceNode } of incoming) {
           if (budgetExpired()) {
