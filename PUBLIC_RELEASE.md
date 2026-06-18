@@ -38,7 +38,7 @@ When `.opencode/` is a symlink, Node.js `__dirname` in CommonJS resolves to the 
 | Location                    | Path/URL                                                                            |
 | --------------------------- | ----------------------------------------------------------------------------------- |
 | **Public Release (local)**  | `~/your-project/`                                                                   |
-| **Public Release (GitHub)** | https://github.com/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration |
+| **Public Release (GitHub)** | https://github.com/MichelKerkmeester/opencode--skilled-agent-loops-with-spec-kit-memory |
 
 ---
 
@@ -200,17 +200,17 @@ EOF
 
 | Field              | Value                                                                                                     |
 | ------------------ | --------------------------------------------------------------------------------------------------------- |
-| **Version**        | v3.1.2.0                                                                                                  |
-| **Release Date**   | 2026-03-30                                                                                                |
-| **GitHub**         | https://github.com/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration                       |
-| **Latest Release** | https://github.com/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration/releases/latest       |
-| **Release Notes**  | https://github.com/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration/releases/tag/v3.1.2.0 |
+| **Version**        | v3.6.0.0                                                                                                  |
+| **Release Date**   | 2026-06-18                                                                                                |
+| **GitHub**         | https://github.com/MichelKerkmeester/opencode--skilled-agent-loops-with-spec-kit-memory                       |
+| **Latest Release** | https://github.com/MichelKerkmeester/opencode--skilled-agent-loops-with-spec-kit-memory/releases/latest       |
+| **Release Notes**  | https://github.com/MichelKerkmeester/opencode--skilled-agent-loops-with-spec-kit-memory/releases/tag/v3.6.0.0 |
 
 ### Release Notes
 
 Release notes for each version are stored as individual files in `.opencode/changelog/00--opencode-environment/vX.X.X.X.md`, formatted per the template in Section 7. Changelog files start directly with the summary paragraph - no version header or boilerplate to strip for GitHub publishing.
 
-**Latest**: See `.opencode/changelog/01--system-spec-kit/v3.1.2.0.md`
+**Latest**: See `.opencode/changelog/system-spec-kit/v3.6.0.0.md`
 
 ---
 
