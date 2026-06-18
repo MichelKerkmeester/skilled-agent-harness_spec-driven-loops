@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review",
+  "description": "Release-alignment review and remediation (phase parent)",
+  "keywords": [
+    "release-alignment",
+    "review",
+    "remediation",
+    "phase",
+    "parent"
+  ],
+  "lastUpdated": "2026-06-18T12:37:51.397Z",
+  "specId": "007",
+  "folderSlug": "release-alignment-review",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "005-verification-and-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/004-code-remediation",
+  "description": "Remediation: fix confirmed code findings vs sk-code",
+  "keywords": [
+    "remediation",
+    "fix",
+    "confirmed",
+    "code",
+    "findings",
+    "sk-code"
+  ],
+  "lastUpdated": "2026-06-18T12:37:52.156Z",
+  "specId": "004",
+  "folderSlug": "code-remediation",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "005-verification-and-remediation",
+    "007-release-alignment-review"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review",
+  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation",
+  "children_ids": [
+    "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/001-readmes-vs-027",
+    "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode",
+    "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation",
+    "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/004-code-remediation"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "027 release alignment review",
+      "readme vs 027 alignment",
+      "code vs sk-code alignment",
+      "release alignment remediation",
+      "027 doc currency review"
+    ],
+    "key_topics": [
+      "027",
+      "release",
+      "alignment",
+      "review",
+      "readme",
+      "code",
+      "sk-code",
+      "remediation",
+      "doc",
+      "currency",
+      "establish",
+      "time"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alignment Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Root Purpose Establish",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Needs Done The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "current",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Establish, at release time for the 027 epic, whether the repository's documentation and code still tell the truth about the system the epic produced — and remediate where they do not. Two independent questions are answered by read-only fan-out review, then the confirmed gaps are fixed by a scope-locked writer fleet:",
+    "created_at": "2026-06-18T12:37:50.443Z",
+    "last_save_at": "2026-06-18T12:37:50.443Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

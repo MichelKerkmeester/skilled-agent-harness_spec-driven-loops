@@ -1,0 +1,23 @@
+{
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation",
+  "description": "Remediation: fix confirmed README drift",
+  "keywords": [
+    "remediation",
+    "fix",
+    "confirmed",
+    "readme",
+    "drift"
+  ],
+  "lastUpdated": "2026-06-18T12:37:51.961Z",
+  "specId": "003",
+  "folderSlug": "readme-remediation",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "005-verification-and-remediation",
+    "007-release-alignment-review"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
