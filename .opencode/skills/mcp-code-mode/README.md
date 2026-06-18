@@ -51,10 +51,10 @@ search_tools({ task_description: "ClickUp task management", limit: 10 })
 // Returns matching tool names and descriptions
 ```
 
-**Step 2: Confirm the callable signature with tool_info.** Use the exact name to get the TypeScript interface before writing parameterised code.
+**Step 2: Confirm the callable signature with tool_info.** Use the registered dotted name returned by `list_tools()` to get the TypeScript interface before writing parameterised code.
 
 ```typescript
-tool_info({ tool_name: "clickup_official.clickup_official_create_task" })
+tool_info({ tool_name: "clickup_official.clickup_official.create_task" })
 // Returns the full TypeScript function signature with parameter types
 ```
 
@@ -110,7 +110,7 @@ The reason context stays flat is that tool schemas are never loaded upfront. The
 
 Every tool call follows `{manual_name}.{manual_name}_{tool_name}`. The manual name comes from the `name` field in `.utcp_config.json`. The tool name comes from the MCP server and uses snake_case, joined to the manual name with an underscore.
 
-The most common error is the naming translation mismatch. `list_tools()` returns names in dotted `a.b.c` form, for example `clickup_official.clickup_official.create_task`. A call uses the dot-then-underscore form `clickup_official.clickup_official_create_task()`. The `tool_info` function always shows the correct callable syntax. When in doubt, run `tool_info` on the tool name before writing the call.
+The most common error is the naming translation mismatch. `list_tools()` returns names in dotted `a.b.c` form, for example `clickup_official.clickup_official.create_task`. `tool_info` expects that registered dotted name. A call uses the dot-then-underscore form `clickup_official.clickup_official_create_task()`. When in doubt, run `tool_info` on the registered dotted name before writing the call.
 
 ### State Persistence and Error Handling
 

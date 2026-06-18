@@ -403,10 +403,11 @@ const meta = getProviderMetadata()
 console.log(meta)
 // { provider: 'ollama', model: 'nomic-embed-text-v1.5', dim: 768, healthy: true }
 
-// Get database path for current profile
+// Get canonical metadata database path
 const profile = getEmbeddingProfile()
 const dbPath: string = profile.getDatabasePath('/base/path')
-// '/base/path/context-index__ollama__nomic-embed-text-v1-5__768__q8.sqlite'
+// '/base/path/context-index.sqlite'
+// Use profile.getVectorShardPath('/base/path') for profile-specific vector shards.
 ```
 
 ---

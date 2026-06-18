@@ -109,7 +109,7 @@ The system reads your question, figures out you are looking for a past decision 
 ### Validate a Spec Folder
 
 ```bash
-# Run all 37 validation rules
+# Run the default validation set (36 non-strict rules; registry has 38 total)
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
   .opencode/specs/[project]/042-my-feature/
 
@@ -504,7 +504,7 @@ The `scripts/spec/` directory holds the scripts that manage the full lifecycle o
 | Script                        | Purpose                                                                                        |
 | ----------------------------- | ---------------------------------------------------------------------------------------------- |
 | `create.sh`                   | Create spec folders with level-appropriate templates. Use `--phase` for parent + child folders |
-| `validate.sh`                 | Run 37 validation rules. Use `--recursive` for phase folders, `--verbose` for details          |
+| `validate.sh`                 | Run the 36-rule default validation set from the 38-rule registry; strict-only rules are gated by `--strict` and env. Use `--recursive` for phase folders, `--verbose` for details |
 | `upgrade-level.sh`            | Render additional Level contract sections for a higher documentation level                     |
 | `recommend-level.sh`          | Analyze scope and risk to recommend the right documentation level                              |
 | `calculate-completeness.sh`   | Calculate spec folder completeness as a percentage                                             |
@@ -803,7 +803,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
   .opencode/specs/[project]/022-big-feature/ --recursive
 ```
 
-**Result**: A pass/warn/error report across 37 rules with actionable fix instructions.
+**Result**: A pass/warn/error report for the selected validation set from the 38-rule registry, with actionable fix instructions.
 
 ### Common Patterns
 
@@ -1063,7 +1063,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh \
 | [`references/memory/embedder_pluggability.md`](./references/memory/embedder_pluggability.md)     | Cross-MCP embedder defaults, swap flows, device selection and support matrix                        |
 | [`references/workflows/intake_contract.md`](./references/workflows/intake_contract.md)           | Shared spec-folder intake contract for `/speckit:plan`, `/speckit:complete` and resume re-entry     |
 | [`references/workflows/rename_pattern.md`](./references/workflows/rename_pattern.md)             | Mechanical rename workflow and live-vs-historical surface discipline                                 |
-| [`references/validation/validation_rules.md`](./references/validation/validation_rules.md)       | All 37 validation rules with fixes                                                                   |
+| [`references/validation/validation_rules.md`](./references/validation/validation_rules.md)       | Partial validation-rule reference; the 38-rule registry is authoritative                             |
 | Level specifications reference                                                                    | Level definitions and template size guidance                                                         |
 | [`references/templates/template_guide.md`](./references/templates/template_guide.md)             | Template usage and composition rules                                                                 |
 | [`references/config/environment_variables.md`](./references/config/environment_variables.md)     | Full environment variable reference                                                                  |

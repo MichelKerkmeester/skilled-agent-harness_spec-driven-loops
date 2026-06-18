@@ -33,7 +33,7 @@ Use this skill (through its `/deep:*` commands and native agents) for any deep-l
 
 ## 2. SMART ROUTING
 
-Routing is **registry-projected**. `mode-registry.json` is the declarative source of truth for the mode projection; the hub and commands resolve from it, while the advisor keeps hardcoded Python/TypeScript projection maps in sync through the routing-registry drift guard and does not read the registry at runtime.
+Routing is **registry-projected**. `mode-registry.json` is declarative and advisor projections are drift-guarded, but command files are static routers with hardcoded assets/mode routing; they do not resolve from `mode-registry.json`.
 
 ### The three-tier discriminator
 - **`workflowMode`** — the public mode key (all modes): `context`, `research`, `review`, `ai-council`, and the four improvement lanes `agent-improvement`, `model-benchmark`, `skill-benchmark`, `ai-system-improvement` (its loop-host mode stays `non-dev-ai-system-refine`).
@@ -75,7 +75,7 @@ All modes consume `deep-loop-runtime` (frozen, MCP-free): executor config, promp
 ## 4. RULES
 
 ### ALWAYS
-- **ALWAYS** resolve hub and command modes through `mode-registry.json`; advisor projection maps may be hardcoded only when the drift guard proves they match the registry projection.
+- **ALWAYS** keep advisor projection maps hardcoded and drift-guarded against the registry; command mode routing is still hardcoded in the command files and does not resolve through `mode-registry.json`.
 - **ALWAYS** keep each mode's convergence/state/artifact contract in its packet — the hub stays logic-free.
 - **ALWAYS** keep exactly one `graph-metadata.json` (this hub's) so the advisor sees one skill.
 

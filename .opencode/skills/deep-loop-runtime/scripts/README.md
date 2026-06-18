@@ -22,7 +22,7 @@ CLI invocation surface for deep-loop runtime operations. Consumed by `/deep:*` w
 | `fanout-run.cjs` | Runs parallel research, review, or context lineages through headless CLI subprocesses |
 | `fanout-pool.cjs` | Provides the concurrency-capped worker pool and status ledger for fan-out lineages |
 | `fanout-salvage.cjs` | Recovers missing iteration artifacts from captured subprocess stdout |
-| `fanout-merge.cjs` | Merges research, review, or context fan-out lineage outputs into consolidated artifacts |
+| `fanout-merge.cjs` | Merges research or review fan-out lineage outputs into consolidated artifacts; `--loop-type context` is accepted but currently uses research registry/state filenames, so it is not a correct context-output merger |
 | `loop-lock.cjs` | CLI adapter for shared loop-lock acquire, heartbeat, stale reclaim, and release operations |
 
 ## 3. INTERNAL LIBRARY
