@@ -163,6 +163,7 @@ export interface PipelineConfig {
   minState: string;
   applyStateLimits: boolean;
   useDecay: boolean;
+  nowMs?: number;
   rerank: boolean;
   applyLengthPenalty: boolean;
 

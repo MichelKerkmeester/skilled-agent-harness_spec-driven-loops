@@ -1,6 +1,6 @@
 // TEST: Stage 2 Fusion
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import type { Stage2Input } from '../lib/search/pipeline/types';
+import type { PipelineRow, Stage2Input } from '../lib/search/pipeline/types';
 
 const mockRequireDb = vi.fn();
 const mockQueryLearnedTriggers = vi.fn();
@@ -380,6 +380,87 @@ describe('Stage 2 fusion regression coverage', () => {
     expect(insertRun).toHaveBeenCalledTimes(2);
     expect(insertRun).toHaveBeenNthCalledWith(1, 1, 'access', 1.0, 'graph rollout regression', '', '{}');
     expect(insertRun).toHaveBeenNthCalledWith(2, 2, 'access', 1.0, 'graph rollout regression', '', '{}');
+  });
+
+  it('computes FSRS rank-time decay from a fixed clock with ambient-clock parity', async () => {
+    const { __testables } = await import('../lib/search/pipeline/stage2-fusion');
+    const fsrsScheduler = await import('../lib/cognitive/fsrs-scheduler');
+    const nowMs = Date.parse('2026-06-11T00:00:00.000Z');
+    const row = {
+      id: 11,
+      stability: 2,
+      last_review: '2026-06-01T00:00:00.000Z',
+      score: 0.8,
+    } as PipelineRow;
+
+    const fixedClockDecay = __testables.calculateRankTimeRetrievability(row, { nowMs });
+
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date(nowMs));
+    const ambientClockDecay = fsrsScheduler.calculateRetrievability(
+      row.stability as number,
+      fsrsScheduler.calculateElapsedDays(row.last_review as string),
+    );
+    vi.useRealTimers();
+
+    const first = __testables.computeRankTimeDecaySignals([row], { nowMs });
+    const second = __testables.computeRankTimeDecaySignals([row], { nowMs });
+
+    expect(fixedClockDecay).toBeCloseTo(ambientClockDecay, 12);
+    expect(first.get(row.id)).toBeCloseTo(fixedClockDecay, 12);
+    expect(second.get(row.id)).toBeCloseTo(fixedClockDecay, 12);
+  });
+
+  it('keeps rank-time decay pure and reinforcement as the separate write event', async () => {
+    const { __testables } = await import('../lib/search/pipeline/stage2-fusion');
+    const nowMs = Date.parse('2026-06-11T00:00:00.000Z');
+    const row = {
+      id: 12,
+      stability: 1,
+      last_review: '2026-06-01T00:00:00.000Z',
+      score: 0.7,
+    } as PipelineRow;
+    const selectGet = vi.fn(() => ({ stability: 1, difficulty: 5, review_count: 0 }));
+    const updateRun = vi.fn();
+    const prepare = vi.fn((sql: string) => {
+      if (sql.includes('SELECT stability')) {
+        return { get: selectGet };
+      }
+      return { run: updateRun };
+    });
+    const db = { prepare } as unknown as Parameters<typeof __testables.applyTestingEffect>[0];
+
+    const rankTimeRetrievabilityById = __testables.computeRankTimeDecaySignals([row], { nowMs });
+    expect(prepare).not.toHaveBeenCalled();
+
+    __testables.applyTestingEffect(db, [row], {
+      nowMs,
+      rankTimeRetrievabilityById,
+    });
+
+    expect(selectGet).toHaveBeenCalledWith(row.id);
+    expect(updateRun).toHaveBeenCalledTimes(1);
+    const [newStability, lastAccessed, memoryId] = updateRun.mock.calls[0];
+    expect(newStability as number).toBeGreaterThan(1);
+    expect(lastAccessed).toBe(nowMs);
+    expect(memoryId).toBe(row.id);
+  });
+
+  it('keeps scored Stage 2 output unchanged when the fixed FSRS clock is supplied without reinforcement', async () => {
+    process.env.SPECKIT_GRAPH_SIGNALS = 'false';
+    process.env.SPECKIT_LEARNED_STAGE2_COMBINER = 'false';
+    const { executeStage2 } = await import('../lib/search/pipeline/stage2-fusion');
+    const candidates = [
+      { id: 1, score: 0.7, similarity: 70, stability: 1, last_review: '2026-06-01T00:00:00.000Z' },
+      { id: 2, score: 0.6, similarity: 60, stability: 1, last_review: '2026-06-01T00:00:00.000Z' },
+    ];
+
+    const baseline = await executeStage2(createStage2Input(candidates));
+    const fixedClockInput = createStage2Input(candidates);
+    fixedClockInput.config.nowMs = Date.parse('2026-06-11T00:00:00.000Z');
+    const fixedClock = await executeStage2(fixedClockInput);
+
+    expect(fixedClock.scored).toEqual(baseline.scored);
   });
 
   it('reports sessionBoostApplied as "enabled" when boost runs but finds no data', async () => {

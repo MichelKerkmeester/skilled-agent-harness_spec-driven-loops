@@ -119,6 +119,14 @@ interface ValidationMetadataLike {
   hasChecklist?: boolean;
 }
 
+interface RankTimeDecayOptions {
+  nowMs?: number;
+}
+
+interface TestingEffectOptions extends RankTimeDecayOptions {
+  rankTimeRetrievabilityById?: Map<number, number>;
+}
+
 // -- Constants --
 
 /** Number of top results used as seeds for co-activation spreading. */
@@ -384,6 +392,44 @@ function resolveRowDocumentType(row: PipelineRow): string | undefined {
   return typeof candidate === 'string' && candidate.length > 0 ? candidate : undefined;
 }
 
+function resolveRankTimeNowMs(options: RankTimeDecayOptions = {}): number | undefined {
+  const nowMs = options.nowMs;
+  return typeof nowMs === 'number' && Number.isFinite(nowMs) ? nowMs : undefined;
+}
+
+function calculateRankTimeRetrievability(
+  row: PipelineRow,
+  options: RankTimeDecayOptions = {},
+): number {
+  const lastReview = (row.last_review as string | undefined | null) || (row.created_at as string | undefined);
+  if (!lastReview) return 1;
+
+  const stability = typeof row.stability === 'number' && Number.isFinite(row.stability)
+    ? row.stability
+    : fsrsScheduler.DEFAULT_INITIAL_STABILITY;
+  const nowMs = resolveRankTimeNowMs(options);
+  const elapsedDays = nowMs === undefined
+    ? fsrsScheduler.calculateElapsedDays(lastReview)
+    : fsrsScheduler.calculateElapsedDays(lastReview, nowMs);
+
+  return fsrsScheduler.calculateRetrievability(stability, Math.max(0, elapsedDays));
+}
+
+function computeRankTimeDecaySignals(
+  results: PipelineRow[],
+  options: RankTimeDecayOptions = {},
+): Map<number, number> {
+  const retrievabilityById = new Map<number, number>();
+  if (!Array.isArray(results) || results.length === 0) return retrievabilityById;
+
+  for (const row of results) {
+    if (typeof row.id !== 'number' || !Number.isFinite(row.id)) continue;
+    retrievabilityById.set(row.id, calculateRankTimeRetrievability(row, options));
+  }
+
+  return retrievabilityById;
+}
+
 function applyGraphCalibrationProfileToResults(results: PipelineRow[]): PipelineRow[] {
   return results.map((row) => {
     const graphContribution = row.graphContribution as Record<string, unknown> | undefined;
@@ -574,7 +620,8 @@ function populateGraphEvidence(results: PipelineRow[]): PipelineRow[] {
 function strengthenOnAccess(
   db: Database.Database,
   memoryId: number,
-  retrievability: number
+  retrievability: number,
+  options: RankTimeDecayOptions = {},
 ): StrengthenResult | null {
   if (typeof memoryId !== 'number' || !Number.isFinite(memoryId)) return null;
 
@@ -591,6 +638,7 @@ function strengthenOnAccess(
 
     const grade = fsrsScheduler.GRADE_GOOD;
     const difficultyBonus = Math.max(0, (0.9 - clampedR) * 0.5);
+    const lastAccessed = resolveRankTimeNowMs(options) ?? Date.now();
 
     const newStability = fsrsScheduler.updateStability(
       (memory.stability as number) || fsrsScheduler.DEFAULT_INITIAL_STABILITY,
@@ -607,7 +655,7 @@ function strengthenOnAccess(
           access_count = access_count + 1,
           last_accessed = ?
       WHERE id = ?
-    `).run(newStability, Date.now(), memoryId);
+    `).run(newStability, lastAccessed, memoryId);
 
     return { stability: newStability, difficulty: (memory.difficulty as number) || fsrsScheduler.DEFAULT_INITIAL_DIFFICULTY };
   } catch (err: unknown) {
@@ -888,26 +936,25 @@ function applyUsageRankingBoost(
  */
 function applyTestingEffect(
   db: Database.Database,
-  results: PipelineRow[]
+  results: PipelineRow[],
+  options: TestingEffectOptions = {},
 ): void {
   if (!db || !Array.isArray(results) || results.length === 0) return;
 
+  const rankTimeRetrievabilityById = options.rankTimeRetrievabilityById
+    ?? computeRankTimeDecaySignals(results, options);
+
   for (const row of results) {
     try {
+      // A row with no review/creation timestamp has no decay basis; reinforcing
+      // it would persist a meaningless retrievability of 1, so skip the write.
       const lastReview = (row.last_review as string | undefined | null) || (row.created_at as string | undefined);
       if (!lastReview) continue;
 
-      const stability = typeof row.stability === 'number' && Number.isFinite(row.stability)
-        ? row.stability
-        : fsrsScheduler.DEFAULT_INITIAL_STABILITY;
+      const currentR = rankTimeRetrievabilityById.get(row.id)
+        ?? calculateRankTimeRetrievability(row, options);
 
-      const elapsedDays = fsrsScheduler.calculateElapsedDays(lastReview);
-      const currentR = fsrsScheduler.calculateRetrievability(
-        stability,
-        Math.max(0, elapsedDays)
-      );
-
-      strengthenOnAccess(db, row.id, currentR);
+      strengthenOnAccess(db, row.id, currentR, options);
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : String(err);
       console.warn(`[stage2-fusion] applyTestingEffect failed for id ${row.id}: ${message}`);
@@ -1237,10 +1284,17 @@ export async function executeStage2(input: Stage2Input): Promise<Stage2Output> {
   // Only when explicitly opted in via trackAccess.
   // Write-back is fire-and-forget; errors per-row are swallowed inside
   // ApplyTestingEffect so they never abort the pipeline.
+  const rankTimeNowMs = resolveRankTimeNowMs({ nowMs: config.nowMs });
+  const rankTimeRetrievabilityById = rankTimeNowMs === undefined
+    ? undefined
+    : computeRankTimeDecaySignals(results, { nowMs: rankTimeNowMs });
   if (config.trackAccess) {
     try {
       const db = requireDb();
-      applyTestingEffect(db, results);
+      applyTestingEffect(db, results, {
+        nowMs: rankTimeNowMs,
+        rankTimeRetrievabilityById,
+      });
       recordAdaptiveAccessSignals(db, results, config.query);
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : String(err);
@@ -1480,6 +1534,8 @@ export async function executeStage2(input: Stage2Input): Promise<Stage2Output> {
 export const __testables = {
   resolveBaseScore,
   strengthenOnAccess,
+  calculateRankTimeRetrievability,
+  computeRankTimeDecaySignals,
   applyIntentWeightsToResults,
   applyArtifactRouting,
   applyFeedbackSignals,

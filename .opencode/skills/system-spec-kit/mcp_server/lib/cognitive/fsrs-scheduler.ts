@@ -158,15 +158,15 @@ function updateDifficulty(currentDifficulty: number, grade: number): number {
 /**
  * Calculate elapsed days since last review.
  */
-function calculateElapsedDays(lastReview: string | null): number {
+function calculateElapsedDays(lastReview: string | null, nowMs: number = Date.now()): number {
   if (!lastReview) {
     return 0;
   }
 
   const lastDate = new Date(lastReview);
   if (isNaN(lastDate.getTime())) return 0;
-  const now = new Date();
-  const diffMs = now.getTime() - lastDate.getTime();
+  const safeNowMs = Number.isFinite(nowMs) ? nowMs : Date.now();
+  const diffMs = safeNowMs - lastDate.getTime();
 
   return Math.max(0, diffMs / (1000 * 60 * 60 * 24));
 }

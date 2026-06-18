@@ -86,11 +86,20 @@ interface RankedList {
   weight?: number;
 }
 
+type BonusOverChannels = 'active' | 'configured';
+
 /** Configuration options for multi-list RRF fusion. */
 interface FuseMultiOptions {
   k?: number;
   convergenceBonus?: number;
   graphWeightBoost?: number;
+  /**
+   * Controls the denominator used by the calibrated cross-channel overlap bonus.
+   * `active` preserves the historic behavior: count only contributing channels.
+   * `configured` counts every list supplied by the caller, including zero-weight
+   * or empty channels that represent configured retrieval paths.
+   */
+  bonusOverChannels?: BonusOverChannels;
   /**
    * Beta scaling factor for calibrated overlap bonus (REQ-D1-001).
    * Only used when SPECKIT_CALIBRATED_OVERLAP_BONUS is enabled.
@@ -324,6 +333,9 @@ function fuseResultsMulti(
   const beta = typeof rawBeta === 'number' && Number.isFinite(rawBeta) && rawBeta >= 0
     ? rawBeta
     : CALIBRATED_OVERLAP_BETA;
+  const bonusOverChannels: BonusOverChannels = options.bonusOverChannels === 'configured'
+    ? 'configured'
+    : 'active';
 
   // Track per-candidate raw (pre-convergence) RRF scores per source for meanTopNormScore
   // Maps canonical id -> Map<source, rawRrfScore>
@@ -378,7 +390,9 @@ function fuseResultsMulti(
     if (result.rrfScore > globalMaxRawScore) globalMaxRawScore = result.rrfScore;
   }
 
-  const totalChannels = activeChannelCount;
+  const totalChannels = bonusOverChannels === 'configured'
+    ? lists.length
+    : activeChannelCount;
   const calibratedMode = isCalibratedOverlapBonusEnabled();
 
   // Apply convergence bonus for multi-source matches
@@ -686,6 +700,7 @@ export type {
   RrfItem,
   FusionResult,
   RankedList,
+  BonusOverChannels,
   FuseMultiOptions,
   FuseAdvancedOptions,
   SearchFunction,

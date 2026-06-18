@@ -169,6 +169,66 @@ describe('REQ-D1-001 Flag ON: calibrated overlap bonus', () => {
     expect(item!.convergenceBonus).toBeLessThanOrEqual(CALIBRATED_OVERLAP_MAX);
   });
 
+  it('defaults the calibrated bonus denominator to the active channel count', () => {
+    const lists = [
+      { source: SOURCE_TYPES.VECTOR, results: [{ id: 'shared', title: 'S' }] },
+      { source: SOURCE_TYPES.BM25, results: [{ id: 'shared', title: 'S' }] },
+      { source: SOURCE_TYPES.GRAPH, results: [{ id: 'zeroed', title: 'Z' }], weight: 0 },
+    ];
+
+    const byDefault = fuseResultsMulti(lists);
+    const byActive = fuseResultsMulti(lists, { bonusOverChannels: 'active' });
+    const defaultShared = byDefault.find(r => r.id === 'shared');
+    const activeShared = byActive.find(r => r.id === 'shared');
+
+    expect(byDefault).toEqual(byActive);
+    expect(defaultShared).toBeDefined();
+    expect(activeShared).toBeDefined();
+    expect(defaultShared!.convergenceBonus).toBe(activeShared!.convergenceBonus);
+    expect(defaultShared!.rrfScore).toBe(activeShared!.rrfScore);
+  });
+
+  it('uses the configured channel count when requested', () => {
+    const lists = [
+      { source: SOURCE_TYPES.VECTOR, results: [{ id: 'shared', title: 'S' }] },
+      { source: SOURCE_TYPES.BM25, results: [{ id: 'shared', title: 'S' }] },
+      { source: SOURCE_TYPES.GRAPH, results: [{ id: 'zeroed', title: 'Z' }], weight: 0 },
+    ];
+
+    const byActive = fuseResultsMulti(lists, { bonusOverChannels: 'active' });
+    const byConfigured = fuseResultsMulti(lists, { bonusOverChannels: 'configured' });
+    const activeShared = byActive.find(r => r.id === 'shared');
+    const configuredShared = byConfigured.find(r => r.id === 'shared');
+
+    expect(activeShared).toBeDefined();
+    expect(configuredShared).toBeDefined();
+    expect(configuredShared!.convergenceBonus).toBeLessThan(activeShared!.convergenceBonus);
+    expect(configuredShared!.convergenceBonus).toBeCloseTo(0.0375, 6);
+  });
+
+  it('does not let a zero-weight channel distort survivors under the active denominator', () => {
+    const baseLists = [
+      { source: SOURCE_TYPES.VECTOR, results: [{ id: 'shared', title: 'S' }] },
+      { source: SOURCE_TYPES.BM25, results: [{ id: 'shared', title: 'S' }] },
+    ];
+    const withZeroed = [
+      ...baseLists,
+      { source: SOURCE_TYPES.GRAPH, results: [{ id: 'zeroed', title: 'Z' }], weight: 0 },
+    ];
+
+    const baseShared = fuseResultsMulti(baseLists, { bonusOverChannels: 'active' })
+      .find(r => r.id === 'shared');
+    const zeroed = fuseResultsMulti(withZeroed, { bonusOverChannels: 'active' });
+    const zeroedShared = zeroed
+      .find(r => r.id === 'shared');
+
+    expect(zeroed).toEqual(fuseResultsMulti(baseLists, { bonusOverChannels: 'active' }));
+    expect(baseShared).toBeDefined();
+    expect(zeroedShared).toBeDefined();
+    expect(zeroedShared!.convergenceBonus).toBe(baseShared!.convergenceBonus);
+    expect(zeroedShared!.rrfScore).toBe(baseShared!.rrfScore);
+  });
+
   it('D1-ON-4: bonus is clamped to CALIBRATED_OVERLAP_MAX (0.06)', () => {
     // Use very high beta to force clamping
     const fused = fuseResultsMulti([

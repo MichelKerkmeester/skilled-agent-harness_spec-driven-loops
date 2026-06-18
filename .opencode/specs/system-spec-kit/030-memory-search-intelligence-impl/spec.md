@@ -215,7 +215,7 @@ None for candidates 8-11. The overall Wave-0 packet still has remaining candidat
 | 2 | C9 embedder-degrade | Done | 484b77b589 | recall degrades to lexical + `embedder_available:false`; 440 tests pass; opus review SHIP. Scope addition (documented, benign/zero-live-blast, reviewed): input-validation throws now propagate as typed Stage1InputError + handler concept guard |
 | 3 | ANN tie-stable ORDER BY | Done | bec0eed27f | `, m.id ASC` appended to 4 ranked `ORDER BY distance` queries |
 | 4 | C5-B content-derived tiebreak | Done | bec0eed27f | `content_hash`-asc tiebreak in deterministic comparator + all 5 RRF output sorts; primary order unchanged (verified); 3 broad-batch failures confirmed pre-existing on baseline |
-| 5 | C-X1 'active' + C6-A | Pending | - | active-channel bonus denominator as named param + always-on rank-time decay |
+| 5 | C-X1 'active' + C6-A | Done | (this commit) | `bonusOverChannels` param (default 'active' byte-identical) + rank-time decay clock (`nowMs`); opus SHIP, default byte-identical traced arithmetically; restored no-timestamp skip guard so C6-A is a pure refactor |
 | 6 | C4-A idempotency default-on | Pending | - | receipt-default-on only; the deferred-save replay/conflict leg was REFUTED — do NOT build it |
 | 7 | two-primitive content-id module | Pending | - | centralize computeContentHash + hashJson formula; parameterize identity |
 | 8 | gauge pending/failed | Done | e1c6a3c793 | Read-side gauges for `pending` and `failed` background enrichment states |
