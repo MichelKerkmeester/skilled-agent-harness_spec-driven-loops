@@ -36,10 +36,12 @@ Serves as the "persistent brain" for a deep research session. Records what to in
 
 ---
 
+<!-- ANCHOR:key-questions -->
 ## 3. KEY QUESTIONS (remaining)
 - [ ] [Question 1 -- identified during initialization or iteration 1]
 - [ ] [Question 2]
 - [ ] [Question 3]
+<!-- /ANCHOR:key-questions -->
 
 ---
 
@@ -53,24 +55,31 @@ Serves as the "persistent brain" for a deep research session. Records what to in
 
 ---
 
+<!-- ANCHOR:answered-questions -->
 ## 6. ANSWERED QUESTIONS
 [None yet -- populated as iterations answer questions]
+<!-- /ANCHOR:answered-questions -->
 
 ---
 
 <!-- MACHINE-OWNED: START -->
+<!-- ANCHOR:what-worked -->
 ## 7. WHAT WORKED
 [First iteration -- populated after iteration 1 completes]
 - [Approach]: [Why it worked] (iteration N)
+<!-- /ANCHOR:what-worked -->
 
 ---
 
+<!-- ANCHOR:what-failed -->
 ## 8. WHAT FAILED
 [First iteration -- populated after iteration 1 completes]
 - [Approach]: [Why it failed] (iteration N)
+<!-- /ANCHOR:what-failed -->
 
 ---
 
+<!-- ANCHOR:exhausted-approaches -->
 ## 9. EXHAUSTED APPROACHES (do not retry)
 [Populated when an approach has been tried from multiple angles without success]
 
@@ -82,17 +91,22 @@ Serves as the "persistent brain" for a deep research session. Records what to in
 ### [Category Name] -- PRODUCTIVE (iteration N)
 - What worked: [successful approaches in this category]
 - Prefer for: [related questions where this category may help]
+<!-- /ANCHOR:exhausted-approaches -->
 
 ---
 
+<!-- ANCHOR:ruled-out-directions -->
 ## 10. RULED OUT DIRECTIONS
 [Approaches that were investigated and definitively eliminated -- consolidated from iteration dead-end data]
 - [Approach]: [Why ruled out] (iteration N, evidence: [source])
+<!-- /ANCHOR:ruled-out-directions -->
 
 ---
 
+<!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
 [Recommended focus area for the next iteration -- updated at end of each iteration]
+<!-- /ANCHOR:next-focus -->
 
 ---
 
