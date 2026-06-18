@@ -1370,6 +1370,14 @@ export async function executeStage2(input: Stage2Input): Promise<Stage2Output> {
         db: rescueDb,
         artifactClass: config.artifactRouting?.strategy?.artifactClass as string | undefined
           ?? config.artifactRouting?.detectedClass,
+        // Re-apply the request scope/folder to rows the rescue layer injects
+        // from its own index queries; Stage-1 only scoped the inbound set.
+        scopeFilter: {
+          tenantId: config.tenantId,
+          userId: config.userId,
+          agentId: config.agentId,
+        },
+        specFolder: config.specFolder,
       });
       logger.debug('retrieval rescue layer completed', {
         event: 'stage2_retrieval_rescue_success',

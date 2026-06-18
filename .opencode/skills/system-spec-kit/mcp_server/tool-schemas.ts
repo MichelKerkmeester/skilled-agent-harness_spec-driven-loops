@@ -336,7 +336,7 @@ const memorySearch: ToolDefinition = {
       includeArchived: {
         type: 'boolean',
         default: false,
-        description: 'Include archived spec-doc records in search results. Default: false (archived excluded).'
+        description: 'Not supported: archived spec-doc records are always excluded by canonical-source policy. This flag is accepted for back-compat but has no effect.'
       },
       mode: {
         type: 'string',
@@ -348,6 +348,12 @@ const memorySearch: ToolDefinition = {
         type: 'boolean',
         default: false,
         description: 'When true (or when SPECKIT_RESPONSE_TRACE=true), include provenance-rich scores/source/trace envelope fields in each result.'
+      },
+      retrievalLevel: {
+        type: 'string',
+        enum: ['local', 'global', 'auto'],
+        default: 'auto',
+        description: 'Graph retrieval scope for entity- vs community-level search: "local" returns entity-level matches only; "global" and "auto" (default) also permit a community-level fallback (graph community detection) when direct matches are sparse.'
       }
     }
   },

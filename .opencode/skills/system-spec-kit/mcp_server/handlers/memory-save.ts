@@ -3102,28 +3102,6 @@ async function handleMemorySave(args: SaveArgs): Promise<MCPResponse> {
 async function handleMemorySaveInner(args: SaveArgs, requestId: string): Promise<MCPResponse> {
   await ensureMemoryRuntimeInitialized('handler:memory_save');
 
-  // Fail fast with a clear message when the target file does not exist, before any
-  // path/db processing flattens it into the generic "unexpected error" (E081). The
-  // caller-supplied path is safe to echo back.
-  if (typeof args.filePath === 'string' && args.filePath.length > 0) {
-    const probePath = path.isAbsolute(args.filePath)
-      ? args.filePath
-      : path.resolve(process.cwd(), args.filePath);
-    if (!fs.existsSync(probePath)) {
-      return createMCPErrorResponse({
-        tool: 'memory_save',
-        error: `File not found: ${probePath}`,
-        code: 'E089',
-        details: { requestId, filePath: probePath },
-        recovery: {
-          hint: 'Create the file before indexing it; for a new spec folder, generate description.json and graph-metadata.json first.',
-          actions: ['Verify the path exists', 'Scaffold the spec folder metadata before saving its docs'],
-          severity: 'warning',
-        },
-      });
-    }
-  }
-
   const restoreBarrier = checkpoints.getRestoreBarrierStatus();
 
   if (restoreBarrier) {
@@ -3185,6 +3163,25 @@ async function handleMemorySaveInner(args: SaveArgs, requestId: string): Promise
   await checkDatabaseUpdated();
 
   const validatedPath: string = validateFilePathLocal(file_path);
+
+  // Fail fast with a clear message when the target file does not exist, before any
+  // db processing flattens it into the generic "unexpected error" (E081). Probing
+  // the validated path (not the raw caller path) avoids a path-existence oracle on
+  // unvalidated input.
+  if (!fs.existsSync(validatedPath)) {
+    return createMCPErrorResponse({
+      tool: 'memory_save',
+      error: `File not found: ${validatedPath}`,
+      code: 'E089',
+      details: { requestId, filePath: validatedPath },
+      recovery: {
+        hint: 'Create the file before indexing it; for a new spec folder, generate description.json and graph-metadata.json first.',
+        actions: ['Verify the path exists', 'Scaffold the spec folder metadata before saving its docs'],
+        severity: 'warning',
+      },
+    });
+  }
+
   const canonicalValidatedPath = resolveCanonicalPath(validatedPath);
   const database = requireDb();
 

@@ -64,6 +64,14 @@ interface CacheArgsInput {
    * that do not depend on the causal graph.
    */
   causalEdgesGeneration?: number;
+  /**
+   * Folder-boost descriptor. folderBoost re-ranks results, so two otherwise
+   * identical queries with different boosts produce different orderings; folding
+   * it into the cache key prevents one caller's boosted/unboosted ordering from
+   * being served to the other. Optional and ignored when undefined to keep cache
+   * keys stable for callers that do not request a folder boost.
+   */
+  folderBoost?: { folder: string; factor: number };
 }
 
 function resolveFusionIntentContract(
@@ -169,6 +177,7 @@ function buildCacheArgs({
   includeTrace = false,
   cacheVersion,
   causalEdgesGeneration,
+  folderBoost,
 }: CacheArgsInput): Record<string, unknown> {
   const resolvedFusionIntent = resolveFusionIntentContract({
     detectedIntent,
@@ -211,6 +220,9 @@ function buildCacheArgs({
     includeTrace,
     cacheVersion,
     causalEdgesGeneration: includeCausalGeneration ? causalEdgesGeneration : undefined,
+    folderBoost: folderBoost && folderBoost.folder
+      ? `${folderBoost.folder}:${folderBoost.factor}`
+      : undefined,
   };
 }
 

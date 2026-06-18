@@ -298,6 +298,10 @@ async function listenHttpServer(server, target, options = {}) {
   const fsImpl = options.fs ?? fs;
   if (!target.startsWith('tcp://')) {
     fsImpl.mkdirSync(path.dirname(target), { recursive: true, mode: 0o700 });
+    // mkdirSync's mode only applies when it creates the dir — a pre-existing
+    // group/world-writable socket dir keeps its loose perms. Enforce the uid/perm
+    // invariant on first bind too, not only on the EADDRINUSE reclaim path below.
+    assertSocketDirOwnership(target, options);
   }
 
   try {

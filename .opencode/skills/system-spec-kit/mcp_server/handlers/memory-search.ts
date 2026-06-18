@@ -659,7 +659,10 @@ function applyFolderBoostRanking(results: SessionAwareResult[], folderBoost: Fol
     const filePath = raw.file_path as string | undefined;
     if (filePath && filePath.includes(folderBoost.folder)) {
       if (typeof raw.similarity === 'number') {
-        raw.similarity = Math.min(raw.similarity * folderBoost.factor, 1.0);
+        // similarity is on a 0–100 scale (cosine rounded to *100 by the vector
+        // index), so the ceiling must be 100; a 1.0 ceiling would collapse every
+        // boosted hit to the cap and erase the boost's ordering effect.
+        raw.similarity = Math.min(raw.similarity * folderBoost.factor, 100);
         boostedCount++;
       }
     }
@@ -1098,6 +1101,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     includeTrace,
     cacheVersion: CANONICAL_READER_CACHE_VERSION,
     causalEdgesGeneration: causalEdgesGenerationForCache,
+    folderBoost,
   });
 
   let _evalChannelPayloads: EvalChannelPayload[] = [];
@@ -1177,7 +1181,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
             const rawMemberRows = db.prepare(`
               SELECT id, title, similarity, content, file_path, anchor_id, document_type,
                      importance_tier, context_type, quality_score, created_at,
-                     tenant_id, user_id, agent_id
+                     tenant_id, user_id, agent_id, spec_folder
               FROM memory_index
               WHERE id IN (${placeholders})
             `).all(...memberIds) as Array<Record<string, unknown> & { id: number }>;
@@ -1189,13 +1193,27 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
             const hasGovernanceScope = Boolean(
               normalizedScope.tenantId || normalizedScope.userId || normalizedScope.agentId,
             );
-            const memberRows = hasGovernanceScope
+            const scopedMemberRows = hasGovernanceScope
               ? filterRowsByScope(rawMemberRows, {
                   tenantId: normalizedScope.tenantId,
                   userId: normalizedScope.userId,
                   agentId: normalizedScope.agentId,
                 })
               : rawMemberRows;
+
+            // Honor the caller's specFolder on the community fallback. The member
+            // fetch above selects purely by id, and filterRowsByScope does not
+            // consider specFolder — without this the fallback would leak rows from
+            // sibling folders. Prefix-aware (matching the pipeline's
+            // spec_folder = ? OR spec_folder LIKE ?/% narrowing) so child folders
+            // stay in scope while siblings are excluded.
+            const memberRows = specFolder
+              ? scopedMemberRows.filter((row) => {
+                  const folder = row.spec_folder as string | undefined;
+                  return typeof folder === 'string'
+                    && (folder === specFolder || folder.startsWith(specFolder + '/'));
+                })
+              : scopedMemberRows;
 
             if (memberRows.length > 0) {
               // Calibrate score from community match quality, bounded below pipeline threshold

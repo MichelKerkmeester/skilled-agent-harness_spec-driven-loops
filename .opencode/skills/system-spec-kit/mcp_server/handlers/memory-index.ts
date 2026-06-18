@@ -597,20 +597,30 @@ async function runIndexScan(args: ScanArgs, ctx: ScanRunContext = {}): Promise<M
           'SELECT spec_folder, file_path FROM memory_index WHERE id = ?'
         ).get(staleRecordId) as { spec_folder?: string | null; file_path?: string | null } | undefined;
 
-        if (database) {
-          causalEdges.init(database);
-          causalEdges.deleteEdgesForMemory(String(staleRecordId), {
-            reason: 'memory_index stale record cleanup',
-            command: 'memory-index.deleteIndexedRecordIds',
-            restoreContext: {
-              memoryId: staleRecordId,
-              specFolder: staleSnapshot?.spec_folder ?? null,
-              filePath: staleSnapshot?.file_path ?? null,
-            },
-          });
-        }
+        // Mirror the CRUD/bulk-delete ordering: drop the memory row first, then its
+        // causal edges, atomically in one transaction. The previous edges-then-row
+        // sequence in two separate statements left a crash window where edges were
+        // gone but the row survived, and deleted edges for a row that may not exist.
+        const rowDeleted = database
+          ? database.transaction(() => {
+              if (!vectorIndex.deleteMemory(staleRecordId)) {
+                return false;
+              }
+              causalEdges.init(database);
+              causalEdges.deleteEdgesForMemory(String(staleRecordId), {
+                reason: 'memory_index stale record cleanup',
+                command: 'memory-index.deleteIndexedRecordIds',
+                restoreContext: {
+                  memoryId: staleRecordId,
+                  specFolder: staleSnapshot?.spec_folder ?? null,
+                  filePath: staleSnapshot?.file_path ?? null,
+                },
+              });
+              return true;
+            })()
+          : vectorIndex.deleteMemory(staleRecordId);
 
-        if (vectorIndex.deleteMemory(staleRecordId)) {
+        if (rowDeleted) {
           deleted++;
           actions.push(createStatediffAction('delete', {
             target: 'memory_index',

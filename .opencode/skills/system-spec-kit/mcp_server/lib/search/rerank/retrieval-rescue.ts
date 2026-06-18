@@ -7,12 +7,19 @@ import type Database from 'better-sqlite3';
 
 import { resolveEffectiveScore } from '../pipeline/types.js';
 import type { PipelineRow } from '../pipeline/types.js';
+import { createScopeFilterPredicate } from '../../governance/scope-governance.js';
+import type { ScopeContext } from '../../governance/scope-governance.js';
 import { createLogger } from '../../utils/logger.js';
 
 type RescueOptions = {
   db?: Database.Database | null;
   artifactClass?: string | null;
   maxSiblingsPerFolder?: number;
+  // Scope/folder boundary for newly-injected rescue rows. Stage-1 already
+  // scoped the inbound rows, but the lexical-backfill and sibling fetches below
+  // re-query the index and would otherwise smuggle cross-scope rows back in.
+  scopeFilter?: ScopeContext;
+  specFolder?: string;
 };
 
 type ScoredRow = PipelineRow & {
@@ -335,6 +342,29 @@ function hydrateCandidateRows(db: Database.Database, rows: PipelineRow[]): Pipel
   });
 }
 
+// Build a boundary gate for NEWLY-injected rescue rows, mirroring the
+// scope/folder re-application that constitutional injection and the
+// community fallback perform after their own re-queries. Returns null when
+// no scope or folder constraint is in force (nothing to enforce).
+function buildInjectionBoundary(options: RescueOptions): ((row: PipelineRow) => boolean) | null {
+  const scopeFilter = options.scopeFilter;
+  const hasScope = Boolean(scopeFilter && (scopeFilter.tenantId || scopeFilter.userId || scopeFilter.agentId));
+  const scopePredicate = hasScope ? createScopeFilterPredicate<PipelineRow>(scopeFilter as ScopeContext) : null;
+  const specFolder = options.specFolder;
+  if (!scopePredicate && !specFolder) return null;
+
+  return (row: PipelineRow): boolean => {
+    if (scopePredicate && !scopePredicate(row)) return false;
+    if (specFolder) {
+      const folder = typeof row.spec_folder === 'string' ? row.spec_folder : '';
+      // Same prefix rule the BM25 lane uses (hybrid-search.ts): exact folder
+      // or a descendant path under it.
+      if (folder !== specFolder && !folder.startsWith(specFolder + '/')) return false;
+    }
+    return true;
+  };
+}
+
 function mergeSiblingCandidates(query: string, rows: PipelineRow[], options: RescueOptions): PipelineRow[] {
   if (!options.db) return rows;
   const hydratedRows = hydrateCandidateRows(options.db, rows);
@@ -346,12 +376,18 @@ function mergeSiblingCandidates(query: string, rows: PipelineRow[], options: Res
   const byId = new Map<number, PipelineRow>();
   for (const row of hydratedRows) byId.set(row.id, row);
 
+  // Newly-injected backfill/sibling rows bypass the Stage-1 scope gate, so
+  // re-apply scope/folder boundaries to them only. Existing-id merges already
+  // passed Stage-1 scoping and are left untouched.
+  const passesBoundary = buildInjectionBoundary(options);
+
   for (const candidate of [...backfill, ...siblings]) {
     const existing = byId.get(candidate.id);
     if (existing) {
       byId.set(candidate.id, mergeRicherRow(existing, candidate));
       continue;
     }
+    if (passesBoundary && !passesBoundary(candidate)) continue;
     const rescue = lexicalScore(query, candidate, options.artifactClass);
     if (rescue.score < 0.24) continue;
     byId.set(candidate.id, {
@@ -423,4 +459,5 @@ export const __testables = {
   },
   parseTriggerPhrases,
   mergeSiblingCandidates,
+  buildInjectionBoundary,
 };

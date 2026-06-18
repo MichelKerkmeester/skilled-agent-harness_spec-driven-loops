@@ -147,6 +147,23 @@ function applyFolderFilter(
   });
 }
 
+/**
+ * Prefix-aware spec-folder filter for the summary lane: a parent-scope query
+ * keeps descendant folders, matching the primary BM25/vector lanes rather than
+ * the exact-match {@link applyFolderFilter}. Summary-lane use only.
+ */
+function applyFolderFilterPrefix(
+  results: PipelineRow[],
+  specFolder?: string
+): PipelineRow[] {
+  if (!specFolder) return results;
+  return results.filter((row) => {
+    const folder = row.spec_folder ?? row.specFolder;
+    if (typeof folder !== 'string' || folder.length === 0) return false;
+    return folder === specFolder || folder.startsWith(specFolder + '/');
+  });
+}
+
 function applyTierFilter(
   results: PipelineRow[],
   tier?: string
@@ -1306,7 +1323,12 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
           queryEmbedding ?? (await vectorIndex.generateQueryEmbedding(query));
 
         if (summaryEmbedding) {
-          const summaryResults = querySummaryEmbeddings(db, summaryEmbedding, limit);
+          const summaryResults = querySummaryEmbeddings(db, summaryEmbedding, limit, {
+            specFolder,
+            tenantId,
+            userId,
+            agentId,
+          });
           if (summaryResults.length > 0) {
             const existingIds = new Set(candidates.map((r) => String(r.id)));
             const newSummaryHits: PipelineRow[] = [];
@@ -1318,8 +1340,17 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
 
             if (newSummaryIds.length > 0) {
               const placeholders = newSummaryIds.map(() => '?').join(', ');
+              // Enrich through the same active/expiry gate the primary vector lane
+              // applies, so summary candidates can't surface inactive (superseded)
+              // or expired rows that the ranking SELECT in querySummaryEmbeddings
+              // may not have re-filtered after the join.
               const memRows = db.prepare(
-                `SELECT id, title, spec_folder, file_path, importance_tier, importance_weight, quality_score, created_at, context_type, tenant_id, user_id, agent_id, session_id FROM memory_index WHERE id IN (${placeholders})`
+                `SELECT m.id, m.title, m.spec_folder, m.file_path, m.importance_tier, m.importance_weight, m.quality_score, m.created_at, m.context_type, m.tenant_id, m.user_id, m.agent_id, m.session_id
+                 FROM memory_index m
+                 JOIN active_memory_projection p ON p.active_memory_id = m.id
+                 WHERE m.id IN (${placeholders})
+                   AND m.embedding_status = 'success'
+                   AND (m.expires_at IS NULL OR m.expires_at > datetime('now'))`
               ).all(...newSummaryIds) as PipelineRow[];
 
               const memRowMap = new Map(memRows.map((r) => [r.id, r]));
@@ -1339,7 +1370,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
             }
 
             const archiveFilteredSummaryHits = applyArchiveFilter(newSummaryHits, includeArchived);
-            const folderFilteredSummaryHits = applyFolderFilter(archiveFilteredSummaryHits, specFolder);
+            const folderFilteredSummaryHits = applyFolderFilterPrefix(archiveFilteredSummaryHits, specFolder);
             const tierFilteredSummaryHits = applyTierFilter(folderFilteredSummaryHits, tier);
             const contextFilteredSummaryHits = contextType
               ? tierFilteredSummaryHits.filter((r) => resolveRowContextType(r) === contextType)
