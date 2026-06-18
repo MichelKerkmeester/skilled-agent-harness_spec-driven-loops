@@ -12,7 +12,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement"
-    last_updated_at: "2026-06-17T20:58:16Z"
+    last_updated_at: "2026-06-18T03:47:08Z"
     recent_action: "Regenerated chronological timeline from git history"
     next_safe_action: "Use this file to find the most recent / oldest spec folder"
     completion_pct: 100
@@ -21,7 +21,7 @@ _memory:
 
 <!-- GENERATED FILE — do not hand-edit. Regenerate: `python3 scratch/gen-timeline.py > timeline.md` (run from the 027 root). -->
 
-> **Generated:** 2026-06-17T20:58:16Z — regenerate before relying on intra-day ordering; same-day commits made
+> **Generated:** 2026-06-18T03:47:08Z — regenerate before relying on intra-day ordering; same-day commits made
 > after this stamp are not reflected until the next run.
 > **Sort key:** git last-commit timestamp touching each folder subtree, **newest → oldest** (the
 > recency view), taken from one atomic `git log` snapshot. The last-active column shows
@@ -107,12 +107,6 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 2026-06-17 22:53  born:2026-06-14        002-memory-store-and-search
 2026-06-17 18:37  born:2026-06-17  impl  002-memory-store-and-search/021-cooperative-heavy-phases
 2026-06-17 14:06  born:2026-06-17  impl  002-memory-store-and-search/018-reindex-scan-responsiveness-and-cancellation
-2026-06-17 08:22  born:2026-06-17  impl  005-verification-and-remediation/005-fresh-regression-remediation/006-doc-truth-completion-and-mirrors
-2026-06-17 08:22  born:2026-06-17  impl  005-verification-and-remediation/005-fresh-regression-remediation/005-spec-folder-metadata-reconciliation
-2026-06-17 08:22  born:2026-06-17  impl  005-verification-and-remediation/005-fresh-regression-remediation/004-cli-frontdoor-safety
-2026-06-17 08:22  born:2026-06-17  impl  005-verification-and-remediation/005-fresh-regression-remediation/003-code-graph-robustness
-2026-06-17 08:22  born:2026-06-17  impl  005-verification-and-remediation/005-fresh-regression-remediation/002-daemon-launcher-lifecycle
-2026-06-17 08:22  born:2026-06-17  impl  005-verification-and-remediation/005-fresh-regression-remediation/001-memory-storage-and-search
 2026-06-17 08:22  born:2026-06-17  impl  002-memory-store-and-search/016-search-and-output-intelligence-research/002-ai-output-command-vs-conversation
 2026-06-17 08:22  born:2026-06-17  impl  002-memory-store-and-search/016-search-and-output-intelligence-research/001-search-intelligence
 2026-06-17 08:22  born:2026-06-17  impl  002-memory-store-and-search/016-search-and-output-intelligence-research
@@ -136,6 +130,12 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 2026-06-17 08:22  born:2026-06-06  impl  001-research-and-doctrine/002-gem-team-adoption/002-scoped-preexec-and-handoff-gates
 2026-06-17 08:22  born:2026-06-06        001-research-and-doctrine/002-gem-team-adoption
 2026-06-17 08:22  born:2026-06-02        001-research-and-doctrine/001-peck-teachings-adoption
+2026-06-17 08:22  born:??????????  impl  005-verification-and-remediation/005-fresh-regression-remediation/006-doc-truth-completion-and-mirrors
+2026-06-17 08:22  born:??????????  impl  005-verification-and-remediation/005-fresh-regression-remediation/005-spec-folder-metadata-reconciliation
+2026-06-17 08:22  born:??????????  impl  005-verification-and-remediation/005-fresh-regression-remediation/004-cli-frontdoor-safety
+2026-06-17 08:22  born:??????????  impl  005-verification-and-remediation/005-fresh-regression-remediation/003-code-graph-robustness
+2026-06-17 08:22  born:??????????  impl  005-verification-and-remediation/005-fresh-regression-remediation/002-daemon-launcher-lifecycle
+2026-06-17 08:22  born:??????????  impl  005-verification-and-remediation/005-fresh-regression-remediation/001-memory-storage-and-search
 2026-06-17 08:02  born:2026-06-17  impl  002-memory-store-and-search/015-retrieval-gating-and-recall-recovery
 2026-06-16 16:59  born:2026-05-12  impl  002-memory-store-and-search/004-learning-feedback-reducers/004-retention-reducer
 2026-06-16 16:59  born:2026-05-09        002-memory-store-and-search/004-learning-feedback-reducers
@@ -303,7 +303,7 @@ changelogs the rollup covers). Links resolve relative to this file.
 
 | Spec folder | impl | Changelog |
 |-------------|------|-----------|
-| `005-verification-and-remediation/006-deep-review-017-021-remediation` | impl | (none) |
+| `005-verification-and-remediation/006-deep-review-017-021-remediation` | impl | [changelog-005-006-deep-review-017-021-remediation.md](./changelog/005-verification-and-remediation/changelog-005-006-deep-review-017-021-remediation.md) |
 | `002-memory-store-and-search/017-search-and-output-intelligence-implementation/007-output-surface-parity` | impl | [changelog-002-017-007-output-surface-parity.md](./changelog/002-memory-store-and-search/changelog-002-017-007-output-surface-parity.md) |
 | `002-memory-store-and-search/017-search-and-output-intelligence-implementation/006-command-contract-structural` | impl | [changelog-002-017-006-command-contract-structural.md](./changelog/002-memory-store-and-search/changelog-002-017-006-command-contract-structural.md) |
 | `002-memory-store-and-search/017-search-and-output-intelligence-implementation/005-cosine-topn-reorder` | impl | [changelog-002-017-005-cosine-topn-reorder.md](./changelog/002-memory-store-and-search/changelog-002-017-005-cosine-topn-reorder.md) |
@@ -318,12 +318,6 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `002-memory-store-and-search` |  | [changelog-002-memory-store-and-search-root.md](./changelog/002-memory-store-and-search/changelog-002-memory-store-and-search-root.md) |
 | `002-memory-store-and-search/021-cooperative-heavy-phases` | impl | [changelog-002-021-cooperative-heavy-phases.md](./changelog/002-memory-store-and-search/changelog-002-021-cooperative-heavy-phases.md) |
 | `002-memory-store-and-search/018-reindex-scan-responsiveness-and-cancellation` | impl | [changelog-002-018-reindex-scan-responsiveness-and-cancellation.md](./changelog/002-memory-store-and-search/changelog-002-018-reindex-scan-responsiveness-and-cancellation.md) |
-| `005-verification-and-remediation/005-fresh-regression-remediation/006-doc-truth-completion-and-mirrors` | impl | [changelog-005-005-006-doc-truth-completion-and-mirrors.md](./changelog/005-verification-and-remediation/changelog-005-005-006-doc-truth-completion-and-mirrors.md) |
-| `005-verification-and-remediation/005-fresh-regression-remediation/005-spec-folder-metadata-reconciliation` | impl | [changelog-005-005-005-spec-folder-metadata-reconciliation.md](./changelog/005-verification-and-remediation/changelog-005-005-005-spec-folder-metadata-reconciliation.md) |
-| `005-verification-and-remediation/005-fresh-regression-remediation/004-cli-frontdoor-safety` | impl | [changelog-005-005-004-cli-frontdoor-safety.md](./changelog/005-verification-and-remediation/changelog-005-005-004-cli-frontdoor-safety.md) |
-| `005-verification-and-remediation/005-fresh-regression-remediation/003-code-graph-robustness` | impl | [changelog-005-005-003-code-graph-robustness.md](./changelog/005-verification-and-remediation/changelog-005-005-003-code-graph-robustness.md) |
-| `005-verification-and-remediation/005-fresh-regression-remediation/002-daemon-launcher-lifecycle` | impl | [changelog-005-005-002-daemon-launcher-lifecycle.md](./changelog/005-verification-and-remediation/changelog-005-005-002-daemon-launcher-lifecycle.md) |
-| `005-verification-and-remediation/005-fresh-regression-remediation/001-memory-storage-and-search` | impl | [changelog-005-005-001-memory-storage-and-search.md](./changelog/005-verification-and-remediation/changelog-005-005-001-memory-storage-and-search.md) |
 | `002-memory-store-and-search/016-search-and-output-intelligence-research/002-ai-output-command-vs-conversation` | impl | (none) |
 | `002-memory-store-and-search/016-search-and-output-intelligence-research/001-search-intelligence` | impl | (none) |
 | `002-memory-store-and-search/016-search-and-output-intelligence-research` | impl | [changelog-002-016-search-and-output-intelligence-research.md](./changelog/002-memory-store-and-search/changelog-002-016-search-and-output-intelligence-research.md) |
@@ -347,6 +341,12 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `001-research-and-doctrine/002-gem-team-adoption/002-scoped-preexec-and-handoff-gates` | impl | [changelog-001-002-002-scoped-preexec-and-handoff-gates.md](./changelog/001-research-and-doctrine/changelog-001-002-002-scoped-preexec-and-handoff-gates.md) |
 | `001-research-and-doctrine/002-gem-team-adoption` |  | [changelog-001-002-gem-team-adoption-root.md](./changelog/001-research-and-doctrine/changelog-001-002-gem-team-adoption-root.md) |
 | `001-research-and-doctrine/001-peck-teachings-adoption` |  | [changelog-001-001-peck-teachings-adoption-root.md](./changelog/001-research-and-doctrine/changelog-001-001-peck-teachings-adoption-root.md) |
+| `005-verification-and-remediation/005-fresh-regression-remediation/006-doc-truth-completion-and-mirrors` | impl | [changelog-005-005-006-doc-truth-completion-and-mirrors.md](./changelog/005-verification-and-remediation/changelog-005-005-006-doc-truth-completion-and-mirrors.md) |
+| `005-verification-and-remediation/005-fresh-regression-remediation/005-spec-folder-metadata-reconciliation` | impl | [changelog-005-005-005-spec-folder-metadata-reconciliation.md](./changelog/005-verification-and-remediation/changelog-005-005-005-spec-folder-metadata-reconciliation.md) |
+| `005-verification-and-remediation/005-fresh-regression-remediation/004-cli-frontdoor-safety` | impl | [changelog-005-005-004-cli-frontdoor-safety.md](./changelog/005-verification-and-remediation/changelog-005-005-004-cli-frontdoor-safety.md) |
+| `005-verification-and-remediation/005-fresh-regression-remediation/003-code-graph-robustness` | impl | [changelog-005-005-003-code-graph-robustness.md](./changelog/005-verification-and-remediation/changelog-005-005-003-code-graph-robustness.md) |
+| `005-verification-and-remediation/005-fresh-regression-remediation/002-daemon-launcher-lifecycle` | impl | [changelog-005-005-002-daemon-launcher-lifecycle.md](./changelog/005-verification-and-remediation/changelog-005-005-002-daemon-launcher-lifecycle.md) |
+| `005-verification-and-remediation/005-fresh-regression-remediation/001-memory-storage-and-search` | impl | [changelog-005-005-001-memory-storage-and-search.md](./changelog/005-verification-and-remediation/changelog-005-005-001-memory-storage-and-search.md) |
 | `002-memory-store-and-search/015-retrieval-gating-and-recall-recovery` | impl | [changelog-002-015-retrieval-gating-and-recall-recovery.md](./changelog/002-memory-store-and-search/changelog-002-015-retrieval-gating-and-recall-recovery.md) |
 | `002-memory-store-and-search/004-learning-feedback-reducers/004-retention-reducer` | impl | [changelog-002-004-004-feedback-retention-reducer.md](./changelog/002-memory-store-and-search/changelog-002-004-004-feedback-retention-reducer.md) |
 | `002-memory-store-and-search/004-learning-feedback-reducers` |  | [changelog-002-004-learning-feedback-reducers-root.md](./changelog/002-memory-store-and-search/changelog-002-004-learning-feedback-reducers-root.md) |
