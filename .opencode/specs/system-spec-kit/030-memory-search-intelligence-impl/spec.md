@@ -116,8 +116,9 @@ Per-candidate; each candidate's seam is in the Wave-0 table above. Production co
 
 | # | Candidate | Status | Commit | Notes |
 |---|-----------|--------|--------|-------|
-| 1 | Q6-anchor FIX | In progress | — | template needs 7 anchor pairs |
-| 2-13 | (Wave-0 remainder) | Pending | — | — |
+| 1 | Q6-anchor FIX | Done | 738e118751 | 7 anchor pairs added; reducer regex verified (all 7 match) |
+| 2 | C9 embedder-degrade | Done | (this commit) | recall degrades to lexical + `embedder_available:false`; 440 tests pass; opus review SHIP. Scope addition (documented, benign/zero-live-blast, reviewed): input-validation throws now propagate as typed Stage1InputError + handler concept guard |
+| 3-13 | (Wave-0 remainder) | Pending | — | — |
 <!-- /ANCHOR:status -->
 
 ---

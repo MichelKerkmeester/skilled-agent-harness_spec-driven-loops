@@ -871,6 +871,30 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
   const hasCursor = typeof cursor === 'string' && cursor.trim().length > 0;
   const hasQuery = typeof query === 'string' && query.trim().length > 0;
   const hasConcepts = Array.isArray(concepts) && concepts.length >= 2;
+  if (Array.isArray(concepts)) {
+    if (concepts.length > 5) {
+      return createMCPErrorResponse({
+        tool: 'memory_search',
+        error: 'concepts must contain 2-5 items',
+        code: 'E_VALIDATION',
+        details: { parameter: 'concepts' },
+        recovery: {
+          hint: 'Provide at most five non-empty concept strings',
+        },
+      });
+    }
+    if (concepts.some((concept) => typeof concept !== 'string' || concept.trim().length === 0)) {
+      return createMCPErrorResponse({
+        tool: 'memory_search',
+        error: 'Each concept must be a non-empty string',
+        code: 'E_VALIDATION',
+        details: { parameter: 'concepts' },
+        recovery: {
+          hint: 'Remove empty or non-string concept entries',
+        },
+      });
+    }
+  }
   if (!hasCursor && !hasQuery && !hasConcepts) {
     return { content: [{ type: 'text', text: JSON.stringify({ error: 'Either "query" (string), "concepts" (array with 2-5 items), or "cursor" (string) is required.' }) }] };
   }
@@ -1308,6 +1332,12 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     if (lexicalCapability) {
       extraData.lexicalPath = lexicalCapability.lexicalPath;
       extraData.fallbackState = lexicalCapability.fallbackState;
+    }
+    if (pipelineResult.metadata.stage1.embedderAvailable === false) {
+      extraData.embedderAvailable = false;
+      extraData.embedder_available = false;
+      extraData.vectorSearchSkipped = pipelineResult.metadata.stage1.vectorSearchSkipped === true;
+      extraData.vector_search_skipped = extraData.vectorSearchSkipped;
     }
 
     if (pipelineResult.annotations.evidenceGapWarning) {

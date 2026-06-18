@@ -193,4 +193,65 @@ describe('Gate D regression embedding semantic search', () => {
       constitutional: 0,
     });
   });
+
+  it('surfaces embedder_available=false when the pipeline degraded to lexical recall', async () => {
+    vi.mocked(pipeline.executePipeline).mockResolvedValueOnce({
+      results: [
+        {
+          id: 2201,
+          score: 0.87,
+          title: 'Lexical degraded recall row',
+          content: 'Lexical fallback returned this canonical row after vector recall was skipped.',
+          file_path: '/.opencode/specs/system-spec-kit/030-memory-search-intelligence-impl/spec.md',
+          document_type: 'spec_doc',
+        },
+      ],
+      metadata: {
+        stage1: {
+          searchType: 'hybrid',
+          channelCount: 1,
+          activeChannels: 1,
+          embedderAvailable: false,
+          vectorSearchSkipped: true,
+          degradationReason: 'embedder_unavailable',
+          candidateCount: 1,
+          constitutionalInjected: 0,
+          durationMs: 1,
+        },
+        stage2: {
+          sessionBoostApplied: 'off',
+          causalBoostApplied: 'off',
+          intentWeightsApplied: 'off',
+          artifactRoutingApplied: 'off',
+          feedbackSignalsApplied: 'off',
+          qualityFiltered: 0,
+          durationMs: 1,
+        },
+        stage3: {
+          rerankApplied: false,
+          chunkReassemblyStats: { collapsedChunkHits: 0, chunkParents: 0, reassembled: 0, fallback: 0 },
+          durationMs: 1,
+        },
+        stage4: { stateFiltered: 0, constitutionalInjected: 0, evidenceGapDetected: false, durationMs: 1 },
+      },
+      annotations: { stateStats: {}, featureFlags: {} },
+      trace: undefined,
+    });
+
+    const response = await handleMemorySearch({
+      query: 'lexical degraded recall',
+      includeContent: true,
+      limit: 3,
+    });
+
+    const envelope = parseEnvelope(response);
+    const data = envelope.data as Record<string, unknown>;
+    const results = data.results as Array<Record<string, unknown>>;
+
+    expect(results.map((row) => row.id)).toEqual([2201]);
+    expect(data.embedder_available).toBe(false);
+    expect(data.embedderAvailable).toBe(false);
+    expect(data.vector_search_skipped).toBe(true);
+    expect(data.vectorSearchSkipped).toBe(true);
+  });
 });

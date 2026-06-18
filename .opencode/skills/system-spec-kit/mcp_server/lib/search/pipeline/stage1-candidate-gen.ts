@@ -87,6 +87,35 @@ const MAX_QUERY_DECOMPOSITION_FACETS = MAX_FACETS;
 
 // -- Helper Functions --
 
+type HybridCandidateOptions = NonNullable<Parameters<typeof hybridSearch.collectRawCandidates>[2]>;
+
+class Stage1InputError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'Stage1InputError';
+  }
+}
+
+function isStage1InputError(error: unknown): error is Stage1InputError {
+  return error instanceof Stage1InputError;
+}
+
+function hasEmbedding(embedding: Float32Array | number[] | null | undefined): embedding is Float32Array | number[] {
+  return embedding != null && embedding.length > 0;
+}
+
+async function collectLexicalOnlyCandidates(
+  query: string,
+  options: HybridCandidateOptions
+): Promise<PipelineRow[]> {
+  return hybridSearch.collectRawCandidates(query, null, {
+    ...options,
+    useVector: false,
+    useGraph: false,
+    forceAllChannels: true,
+  }) as Promise<PipelineRow[]>;
+}
+
 /**
  * Filter results by a minimum quality score threshold.
  *
@@ -557,6 +586,9 @@ export async function executeStage1(input: Stage1Input): Promise<Stage1Output> {
   try {
     return await executeStage1Core(input, startTime);
   } catch (error: unknown) {
+    if (isStage1InputError(error)) {
+      throw error;
+    }
     const message = error instanceof Error ? error.message : String(error);
     console.warn(`[stage1-candidate-gen] Stage 1 failed, returning empty candidates: ${message}`);
     return {
@@ -598,8 +630,14 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
     trace,
   } = config;
 
+  if (typeof query !== 'string' || query.trim().length === 0) {
+    throw new Stage1InputError('[stage1-candidate-gen] Query must be a non-empty string');
+  }
+
   let candidates: PipelineRow[] = [];
   let channelCount = 0;
+  let embedderAvailable = true;
+  let vectorSearchSkipped = false;
   const hybridSearchOptions = {
     limit,
     specFolder,
@@ -680,12 +718,12 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
   if (searchType === 'multi-concept' && Array.isArray(concepts) && concepts.length >= 2) {
     // Validate concept list: 2-5 non-empty strings
     if (concepts.length > 5) {
-      throw new Error('[stage1-candidate-gen] Maximum 5 concepts allowed for multi-concept search');
+      throw new Stage1InputError('[stage1-candidate-gen] Maximum 5 concepts allowed for multi-concept search');
     }
 
     for (const concept of concepts) {
       if (typeof concept !== 'string' || concept.trim().length === 0) {
-        throw new Error('[stage1-candidate-gen] Each concept must be a non-empty string');
+        throw new Stage1InputError('[stage1-candidate-gen] Each concept must be a non-empty string');
       }
     }
 
@@ -693,20 +731,27 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
     const conceptEmbeddings: Float32Array[] = [];
     for (const concept of concepts) {
       const emb = await vectorIndex.generateQueryEmbedding(concept);
-      if (!emb) {
-        throw new Error(
-          `[stage1-candidate-gen] Failed to generate embedding for concept: "${concept}"`
+      if (!hasEmbedding(emb)) {
+        embedderAvailable = false;
+        vectorSearchSkipped = true;
+        console.warn(
+          `[stage1-candidate-gen] Embedding unavailable for concept "${concept}", falling back to lexical candidate generation`
         );
+        channelCount = 1;
+        candidates = await collectLexicalOnlyCandidates(effectiveQuery, hybridSearchOptions);
+        break;
       }
       conceptEmbeddings.push(emb);
     }
 
-    channelCount = 1;
-    candidates = vectorIndex.multiConceptSearch(conceptEmbeddings, {
-      minSimilarity: MULTI_CONCEPT_MIN_SIMILARITY,
-      limit,
-      specFolder,
-    }) as PipelineRow[];
+    if (embedderAvailable) {
+      channelCount = 1;
+      candidates = vectorIndex.multiConceptSearch(conceptEmbeddings, {
+        minSimilarity: MULTI_CONCEPT_MIN_SIMILARITY,
+        limit,
+        specFolder,
+      }) as PipelineRow[];
+    }
   }
 
   // -- Channel: Hybrid (with optional deep-mode query expansion) ---------------
@@ -719,9 +764,13 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
       queryEmbedding ?? (await vectorIndex.generateQueryEmbedding(query));
     cachedEmbedding = effectiveEmbedding;
 
-    if (!effectiveEmbedding) {
-      throw new Error('[stage1-candidate-gen] Failed to generate embedding for hybrid search query');
-    }
+    if (!hasEmbedding(effectiveEmbedding)) {
+      embedderAvailable = false;
+      vectorSearchSkipped = true;
+      console.warn('[stage1-candidate-gen] Embedding unavailable for hybrid search query, falling back to lexical candidate generation');
+      channelCount = 1;
+      candidates = await collectLexicalOnlyCandidates(effectiveQuery, hybridSearchOptions);
+    } else {
 
     // Deep mode: expand query into variants and run hybrid for each, then dedup
     if (mode === 'deep' && isMultiQueryEnabled()) {
@@ -1024,6 +1073,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
         }
       }
     }
+    }
   }
 
   // -- Channel: Vector ---------------------------------------------------------
@@ -1032,34 +1082,38 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
     const effectiveEmbedding: Float32Array | number[] | null =
       queryEmbedding ?? (await vectorIndex.generateQueryEmbedding(query));
 
-    if (!effectiveEmbedding) {
-      throw new Error('[stage1-candidate-gen] Failed to generate embedding for vector search query');
+    if (!hasEmbedding(effectiveEmbedding)) {
+      embedderAvailable = false;
+      vectorSearchSkipped = true;
+      console.warn('[stage1-candidate-gen] Embedding unavailable for vector search query, falling back to lexical candidate generation');
+      channelCount = 1;
+      candidates = await collectLexicalOnlyCandidates(effectiveQuery, hybridSearchOptions);
+    } else {
+      channelCount = 1;
+      let vectorResults = vectorIndex.vectorSearch(effectiveEmbedding, {
+        limit,
+        specFolder,
+        tier,
+        contextType,
+        includeConstitutional: false, // Constitutional managed separately below
+        includeArchived,
+      }) as PipelineRow[];
+      if (isTemporalContiguityEnabled()) {
+        vectorResults = (
+          vectorSearchWithContiguity(
+            vectorResults as Array<PipelineRow & { similarity: number; created_at: string }>,
+            3600,
+          ) as PipelineRow[] | null
+        ) ?? vectorResults;
+      }
+      candidates = vectorResults;
     }
-
-    channelCount = 1;
-    let vectorResults = vectorIndex.vectorSearch(effectiveEmbedding, {
-      limit,
-      specFolder,
-      tier,
-      contextType,
-      includeConstitutional: false, // Constitutional managed separately below
-      includeArchived,
-    }) as PipelineRow[];
-    if (isTemporalContiguityEnabled()) {
-      vectorResults = (
-        vectorSearchWithContiguity(
-          vectorResults as Array<PipelineRow & { similarity: number; created_at: string }>,
-          3600,
-        ) as PipelineRow[] | null
-      ) ?? vectorResults;
-    }
-    candidates = vectorResults;
   }
 
   // -- Unknown search type -----------------------------------------------------
 
   else {
-    throw new Error(
+    throw new Stage1InputError(
       `[stage1-candidate-gen] Unknown searchType: "${searchType}". Expected 'multi-concept', 'hybrid', or 'vector'.`
     );
   }
@@ -1120,7 +1174,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
   //   - A tier filter is active (caller explicitly requested a specific tier)
   //   - Constitutional results already exist in the candidate set
 
-  if (includeConstitutional && !tier) {
+  if (includeConstitutional && !tier && !vectorSearchSkipped) {
     const existingConstitutional = candidates.filter(
       (r) => r.importance_tier === 'constitutional'
     );
@@ -1184,7 +1238,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
   // Budget: 1 LLM call per cache miss (0 on cache hit).
   // Fail-open: any error leaves candidates unchanged.
 
-  if (mode === 'deep' && isLlmReformulationEnabled() && searchType === 'hybrid') {
+  if (!vectorSearchSkipped && mode === 'deep' && isLlmReformulationEnabled() && searchType === 'hybrid') {
     try {
       const seeds = cheapSeedRetrieve(query, { limit: 3 });
       const reform = await llm.rewrite({ q: query, seeds, mode: 'step_back+corpus' });
@@ -1272,7 +1326,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
   // Budget: 1 LLM call per cache miss (shared cache with reformulation → ≤2 total).
   // Fail-open: any error leaves candidates unchanged.
 
-  if (mode === 'deep' && isHyDEEnabled() && searchType === 'hybrid') {
+  if (!vectorSearchSkipped && mode === 'deep' && isHyDEEnabled() && searchType === 'hybrid') {
     try {
       const rawHydeCandidates = await runHyDE(query, candidates, limit, specFolder);
       const hydeCandidates = shouldApplyScopeFiltering
@@ -1315,7 +1369,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
   // Met (>5000 indexed), run a parallel search on summary embeddings and merge
   // Results. Pattern follows embedding expansion: run in parallel, merge
   // + deduplicate by ID.
-  if (isMemorySummariesEnabled()) {
+  if (!vectorSearchSkipped && isMemorySummariesEnabled()) {
     try {
       const db = requireDb();
       if (checkScaleGate(db)) {
@@ -1497,14 +1551,17 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
         channelCount,
         deepExpansion: mode === 'deep' && isMultiQueryEnabled(),
         r12EmbeddingExpansion: isEmbeddingExpansionEnabled(),
+        ...(embedderAvailable === false ? {
+          embedderAvailable: false,
+          vectorSearchSkipped: true,
+        } : {}),
       }
     );
   }
 
-  // activeChannels counts actual retrieval channels (vector, keyword/BM25),
-  // while channelCount counts parallel query variants. In hybrid mode both vector
-  // and keyword channels are always active regardless of query variant count.
-  const activeChannels = searchType === 'hybrid' ? 2 : 1;
+  // activeChannels counts retrieval lane families; degraded lexical fallback has
+  // no semantic lane even when the requested search type was hybrid.
+  const activeChannels = vectorSearchSkipped ? 1 : (searchType === 'hybrid' ? 2 : 1);
 
   return {
     candidates,
@@ -1512,6 +1569,11 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
       searchType,
       channelCount,
       activeChannels,
+      ...(embedderAvailable === false ? {
+        embedderAvailable: false as const,
+        vectorSearchSkipped: true as const,
+        degradationReason: 'embedder_unavailable',
+      } : {}),
       candidateCount: candidates.length,
       constitutionalInjected: constitutionalInjectedCount,
       durationMs,

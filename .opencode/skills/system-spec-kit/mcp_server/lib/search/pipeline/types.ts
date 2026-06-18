@@ -228,6 +228,12 @@ export interface Stage1Output {
     channelCount: number;
     /** Actual retrieval channels active (vector=1, hybrid=2). Unlike channelCount which tracks query variants. */
     activeChannels?: number;
+    /** False when query embedding generation was unavailable and vector recall was skipped. */
+    embedderAvailable?: false;
+    /** True when semantic recall was deliberately bypassed after embedder unavailability. */
+    vectorSearchSkipped?: true;
+    /** Machine-readable reason for a degraded Stage 1 candidate-generation path. */
+    degradationReason?: string;
     candidateCount: number;
     constitutionalInjected: number;
     durationMs: number;
