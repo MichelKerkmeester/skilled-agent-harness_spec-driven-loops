@@ -130,6 +130,42 @@ function canonicalRrfId(id: number | string): string {
   return raw;
 }
 
+function compareCanonicalRrfIds(a: RrfItem, b: RrfItem): number {
+  const aId = canonicalRrfId(a.id);
+  const bId = canonicalRrfId(b.id);
+  const aNumber = /^\d+$/.test(aId) ? Number(aId) : null;
+  const bNumber = /^\d+$/.test(bId) ? Number(bId) : null;
+
+  if (aNumber !== null && bNumber !== null && aNumber !== bNumber) {
+    return aNumber - bNumber;
+  }
+
+  return aId.localeCompare(bId);
+}
+
+function resolveContentHashTieValue(item: RrfItem): string | null {
+  const value = item.content_hash;
+  if (typeof value !== 'string') return null;
+
+  const trimmed = value.trim();
+  return trimmed.length > 0 ? trimmed : null;
+}
+
+function compareFusionResults(a: FusionResult, b: FusionResult): number {
+  if (b.rrfScore !== a.rrfScore) return b.rrfScore - a.rrfScore;
+
+  const aHash = resolveContentHashTieValue(a);
+  const bHash = resolveContentHashTieValue(b);
+  if (aHash !== null || bHash !== null) {
+    const aKey = aHash ?? canonicalRrfId(a.id);
+    const bKey = bHash ?? canonicalRrfId(b.id);
+    const hashCompare = aKey.localeCompare(bKey);
+    if (hashCompare !== 0) return hashCompare;
+  }
+
+  return compareCanonicalRrfIds(a, b);
+}
+
 /**
  * Resolve the effective RRF `k` with explicit-zero support and shared validation semantics.
  *
@@ -252,7 +288,7 @@ function fuseResults(
   }
 
   const results = Array.from(scoreMap.values())
-    .sort((a, b) => b.rrfScore - a.rrfScore);
+    .sort(compareFusionResults);
 
   // Normalize RRF scores to [0,1] when enabled, matching fuseResultsMulti and
   // fuseResultsCrossVariant so every fusion entry point yields the same score range.
@@ -388,7 +424,7 @@ function fuseResultsMulti(
   }
 
   const results = Array.from(scoreMap.values())
-    .sort((a, b) => b.rrfScore - a.rrfScore);
+    .sort(compareFusionResults);
 
   // Normalize RRF scores to [0,1] when enabled
   if (isScoreNormalizationEnabled()) {
@@ -421,7 +457,7 @@ function fuseScoresAdvanced(
       rrfScore: r.rrfScore + bonus,
       termMatches,
     };
-  }).sort((a, b) => b.rrfScore - a.rrfScore);
+  }).sort(compareFusionResults);
 }
 
 /**
@@ -548,7 +584,7 @@ function fuseResultsCrossVariant(
   }
 
   const results = Array.from(mergedMap.values())
-    .sort((a, b) => b.rrfScore - a.rrfScore);
+    .sort(compareFusionResults);
 
   // Normalize RRF scores to [0,1] when enabled
   if (isScoreNormalizationEnabled()) {

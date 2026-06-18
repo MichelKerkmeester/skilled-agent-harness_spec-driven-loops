@@ -41,6 +41,7 @@ export interface PipelineRow extends Record<string, unknown> {
   quality_score?: number;
   quality_flags?: string | string[] | null;
   qualityFlags?: string | string[] | null;
+  content_hash?: string | null;
   importance_weight?: number;
   rrfScore?: number;
   intentAdjustedScore?: number;

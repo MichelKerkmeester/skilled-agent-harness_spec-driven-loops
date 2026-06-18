@@ -117,8 +117,10 @@ Per-candidate; each candidate's seam is in the Wave-0 table above. Production co
 | # | Candidate | Status | Commit | Notes |
 |---|-----------|--------|--------|-------|
 | 1 | Q6-anchor FIX | Done | 738e118751 | 7 anchor pairs added; reducer regex verified (all 7 match) |
-| 2 | C9 embedder-degrade | Done | (this commit) | recall degrades to lexical + `embedder_available:false`; 440 tests pass; opus review SHIP. Scope addition (documented, benign/zero-live-blast, reviewed): input-validation throws now propagate as typed Stage1InputError + handler concept guard |
-| 3-13 | (Wave-0 remainder) | Pending | — | — |
+| 2 | C9 embedder-degrade | Done | 484b77b589 | recall degrades to lexical + `embedder_available:false`; 440 tests pass; opus review SHIP. Scope addition (documented, benign/zero-live-blast, reviewed): input-validation throws now propagate as typed Stage1InputError + handler concept guard |
+| 3 | ANN tie-stable ORDER BY | Done | (this commit) | `, m.id ASC` appended to 4 ranked `ORDER BY distance` queries |
+| 4 | C5-B content-derived tiebreak | Done | (this commit) | `content_hash`-asc tiebreak in deterministic comparator + all 5 RRF output sorts; primary order unchanged (verified); 3 broad-batch failures confirmed pre-existing on baseline |
+| 5-13 | (Wave-0 remainder) | Pending | — | — |
 <!-- /ANCHOR:status -->
 
 ---

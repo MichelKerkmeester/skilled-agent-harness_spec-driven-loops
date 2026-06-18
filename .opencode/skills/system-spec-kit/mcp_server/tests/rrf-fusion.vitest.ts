@@ -205,6 +205,49 @@ describe('RRF Fusion Core Tests (T021-T030)', () => {
     // Calibrated overlap bonus is graduated (default ON); bonus is positive but may differ from flat 0.10
     expect(sharedDoc.convergenceBonus).toBeGreaterThan(0);
   });
+
+  it('orders equal RRF scores by content hash across repeated runs', () => {
+    const lists = [
+      {
+        source: SOURCE_TYPES.VECTOR,
+        results: [
+          { id: 1, content_hash: 'hash-z', content: 'first vector' },
+          { id: 2, content_hash: 'hash-a', content: 'second vector' },
+        ],
+      },
+      {
+        source: SOURCE_TYPES.BM25,
+        results: [
+          { id: 2, content_hash: 'hash-a', content: 'first lexical' },
+          { id: 1, content_hash: 'hash-z', content: 'second lexical' },
+        ],
+      },
+    ];
+
+    const orders = Array.from({ length: 3 }, () =>
+      fuseResultsMulti(lists, { convergenceBonus: 0 }).map((row: MultiFusedResult) => row.id)
+    );
+
+    expect(orders).toEqual([
+      [2, 1],
+      [2, 1],
+      [2, 1],
+    ]);
+  });
+
+  it('keeps higher RRF scores ahead of content hash ordering', () => {
+    const fused = fuseResultsMulti([
+      {
+        source: SOURCE_TYPES.VECTOR,
+        results: [
+          { id: 1, content_hash: 'hash-z', content: 'higher primary score' },
+          { id: 2, content_hash: 'hash-a', content: 'lower primary score' },
+        ],
+      },
+    ]);
+
+    expect(fused.map((row: MultiFusedResult) => row.id)).toEqual([1, 2]);
+  });
 });
 
 describe('Module Exports Verification', () => {

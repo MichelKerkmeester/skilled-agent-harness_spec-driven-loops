@@ -166,7 +166,8 @@ export function benchmarkKnnQueryShapes(
     JOIN active_memory_projection p ON p.active_memory_id = m.id
     JOIN ${vectorSource.tableName} v ON m.id = v.${vectorSource.idColumn}
     WHERE m.embedding_status = 'success'
-    ORDER BY distance ASC
+    ORDER BY distance ASC,
+             m.id ASC
     LIMIT ?
   `;
   const scalarStmt = database.prepare(scalarSql);
@@ -196,7 +197,8 @@ export function benchmarkKnnQueryShapes(
         JOIN memory_index m ON m.id = knn.rowid
         JOIN active_memory_projection p ON p.active_memory_id = m.id
         WHERE m.embedding_status = 'success'
-        ORDER BY knn.distance ASC
+        ORDER BY knn.distance ASC,
+                 m.id ASC
         LIMIT ?
       `;
       const matchStmt = database.prepare(matchSql);
@@ -455,7 +457,8 @@ export function vector_search(
       WHERE ${where_clauses.join(' AND ')}
     ) sub
     WHERE sub.distance <= ?
-    ORDER BY (sub.distance - (sub.effective_importance * 0.1)) ASC
+    ORDER BY (sub.distance - (sub.effective_importance * 0.1)) ASC,
+             sub.id ASC
     LIMIT ?
   `;
 
@@ -567,7 +570,8 @@ export function multi_concept_search(
         ${folder_filter}
         AND ${distance_filters}
     ) sub
-    ORDER BY avg_distance ASC
+    ORDER BY avg_distance ASC,
+             sub.id ASC
     LIMIT ?
   `;
 

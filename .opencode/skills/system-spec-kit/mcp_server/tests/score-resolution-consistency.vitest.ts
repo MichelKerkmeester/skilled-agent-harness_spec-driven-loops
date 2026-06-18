@@ -7,7 +7,7 @@ import { describe, it, expect } from 'vitest';
 
 import { resolveEffectiveScore } from '../lib/search/pipeline/types';
 import type { PipelineRow, Stage4ReadonlyRow } from '../lib/search/pipeline/types';
-import { compareDeterministicRows } from '../lib/search/pipeline/ranking-contract';
+import { compareDeterministicRows, sortDeterministicRows } from '../lib/search/pipeline/ranking-contract';
 import { extractScoringValue } from '../lib/search/pipeline/stage4-filter';
 
 /* ───────────────────────────────────────────────────────────────
@@ -72,6 +72,32 @@ describe('score resolution consistency', () => {
 
       expect(resolveEffectiveScore(row)).toBe(0.65);
       expect(extractScoringValue(stage4Row)).toBe(0.65);
+    });
+
+    it('uses content hash before row id when score and similarity tie', () => {
+      const rows = [
+        makeRow({ id: 1, score: 0.75, similarity: 70, content_hash: 'hash-z' }),
+        makeRow({ id: 2, score: 0.75, similarity: 70, content_hash: 'hash-a' }),
+      ];
+
+      const orders = Array.from({ length: 3 }, () =>
+        sortDeterministicRows(rows).map(row => row.id)
+      );
+
+      expect(orders).toEqual([
+        [2, 1],
+        [2, 1],
+        [2, 1],
+      ]);
+    });
+
+    it('keeps primary score ordering ahead of content hash ordering', () => {
+      const sorted = sortDeterministicRows([
+        makeRow({ id: 1, score: 0.6, content_hash: 'hash-a' }),
+        makeRow({ id: 2, score: 0.9, content_hash: 'hash-z' }),
+      ]);
+
+      expect(sorted.map(row => row.id)).toEqual([2, 1]);
     });
   });
 

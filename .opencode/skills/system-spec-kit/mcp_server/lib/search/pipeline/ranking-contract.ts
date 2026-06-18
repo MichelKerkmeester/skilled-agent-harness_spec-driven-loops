@@ -25,6 +25,31 @@ export function clampStage2GraphBonus(value: number): number {
   return Math.max(0, Math.min(STAGE2_GRAPH_BONUS_CAP, value));
 }
 
+function resolveContentHashTieValue(row: Record<string, unknown> & { id: number }): string | null {
+  const value = row.content_hash;
+  if (typeof value !== 'string') return null;
+
+  const trimmed = value.trim();
+  return trimmed.length > 0 ? trimmed : null;
+}
+
+function compareContentHashTieValue(
+  a: Record<string, unknown> & { id: number },
+  b: Record<string, unknown> & { id: number },
+): number {
+  const aHash = resolveContentHashTieValue(a);
+  const bHash = resolveContentHashTieValue(b);
+
+  if (aHash !== null || bHash !== null) {
+    const aKey = aHash ?? String(a.id);
+    const bKey = bHash ?? String(b.id);
+    const hashCompare = aKey.localeCompare(bKey);
+    if (hashCompare !== 0) return hashCompare;
+  }
+
+  return a.id - b.id;
+}
+
 /**
  * Compare rows deterministically so ties resolve the same way across runs.
  *
@@ -50,7 +75,7 @@ export function compareDeterministicRows(
   const bSimilarity = typeof b.similarity === 'number' && Number.isFinite(b.similarity) ? b.similarity : 0;
   if (bSimilarity !== aSimilarity) return bSimilarity - aSimilarity;
 
-  return a.id - b.id;
+  return compareContentHashTieValue(a, b);
 }
 
 /**
