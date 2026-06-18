@@ -1,0 +1,28 @@
+{
+  "topic": "027 release-alignment deep review - Track A: are all README and code-README files across the public repo aligned with the current post-027 reality (stale MCP tool counts, removed/fictional search signals, dead paths, schema-version drift, agent-roster drift, daemon re-election / CLI front-door facts)? Read-only; P0/P1/P2 with file:line evidence; round-2 adversarial verify of every P0/P1.",
+  "maxIterations": 18,
+  "convergenceThreshold": 0.08,
+  "mode": "review",
+  "specFolder": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/001-readmes-vs-027",
+  "status": "running",
+  "executionMode": "auto",
+  "scope": {
+    "track": "readmes-vs-027",
+    "seats": 18,
+    "coverage": "breadth across every repo area; depth = per-seat read-cap of <=12 highest-traffic READMEs (355 READMEs total cannot be exhaustively audited in one seat-pass)",
+    "seatAreas": ["spec-kit root+SKILL", "spec-kit mcp_server", "spec-kit references", "spec-kit scripts", "spec-kit constitutional+templates+shared", "spec-kit feature_catalog+playbook", "skill-advisor root", "skill-advisor references+mcp_server", "code-graph", "deep-loop-runtime", "deep-loop-workflows root+modes", "deep-loop-workflows refs+scripts", "sk-code+sk-code-review", "sk-doc+sk-prompt+small-model", "sk-git+sk-interface-design", "cli-* skills", "mcp-* skills", "repo root + .opencode infra"]
+  },
+  "executor": {
+    "primary": { "kind": "cli-opencode", "model": "openai/gpt-5.5-fast", "variant": "xhigh", "sandboxMode": "orchestrator-driven-read-only", "timeoutSeconds": 1200 },
+    "dispatch": "orchestrator-driven read-only seats; pool=10 concurrent, spawns staggered 3s apart to dodge the simultaneous-launch race; orchestrator writes iteration/delta/state (Gate-3 safe); salvage-relaunch any empty seat once."
+  },
+  "rounds": { "round1": "discovery (18 area seats)", "round2": "adversarial verify every P0/P1 (fresh seat prompted to REFUTE)" },
+  "lineage": { "sessionId": "2026-06-18-027-readme-alignment", "generation": 1, "lineageMode": "new" },
+  "fileProtection": {
+    "deep-review-config.json": "immutable-after-launch",
+    "deep-review-state.jsonl": "append-only",
+    "deltas/iter-*.jsonl": "write-once",
+    "iterations/iteration-*.md": "write-once",
+    "review-report.md": "mutable"
+  }
+}

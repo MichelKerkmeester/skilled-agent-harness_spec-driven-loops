@@ -1,0 +1,28 @@
+{
+  "topic": "027 release-alignment deep review - Track B: does the OpenCode-surface code across the public repo align with sk-code's OpenCode-surface standards (structure, naming, error handling, async patterns, comment hygiene, verification/test patterns, TS/CJS conventions)? Read-only; P0/P1/P2 with file:line evidence; round-2 adversarial verify of every P0/P1.",
+  "maxIterations": 18,
+  "convergenceThreshold": 0.08,
+  "mode": "review",
+  "specFolder": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode",
+  "status": "running",
+  "executionMode": "auto",
+  "scope": {
+    "track": "code-vs-sk-code",
+    "seats": 18,
+    "coverage": "breadth across every OpenCode-surface code area; depth = per-seat read-cap of <=10 representative/key files (3659 .ts/.cjs/.mjs files total cannot be exhaustively audited in one seat-pass)",
+    "seatAreas": ["spec-kit handlers", "spec-kit search pipeline+rerank", "spec-kit search+embeddings", "spec-kit storage+ops", "spec-kit governance+lib", "spec-kit mcp_server top+shared", "spec-kit scripts memory+dist", "spec-kit scripts spec+other", "advisor mcp_server core", "advisor scripts+lib", "code-graph mcp_server core", "code-graph lib+scripts", "deep-loop-workflows scripts", "deep-loop-runtime lib", "bin launchers+front-doors", "plugins", "hooks + .opencode scripts", "commands + build configs"]
+  },
+  "executor": {
+    "primary": { "kind": "cli-opencode", "model": "openai/gpt-5.5-fast", "variant": "xhigh", "sandboxMode": "orchestrator-driven-read-only", "timeoutSeconds": 1200 },
+    "dispatch": "orchestrator-driven read-only seats; pool=10 concurrent, spawns staggered 3s apart to dodge the simultaneous-launch race; orchestrator writes iteration/delta/state (Gate-3 safe); each seat loads sk-code and emits the OpenCode surface tag; salvage-relaunch any empty seat once."
+  },
+  "rounds": { "round1": "discovery (18 area seats)", "round2": "adversarial verify every P0/P1 (fresh seat prompted to REFUTE)" },
+  "lineage": { "sessionId": "2026-06-18-027-code-sk-code-alignment", "generation": 1, "lineageMode": "new" },
+  "fileProtection": {
+    "deep-review-config.json": "immutable-after-launch",
+    "deep-review-state.jsonl": "append-only",
+    "deltas/iter-*.jsonl": "write-once",
+    "iterations/iteration-*.md": "write-once",
+    "review-report.md": "mutable"
+  }
+}
