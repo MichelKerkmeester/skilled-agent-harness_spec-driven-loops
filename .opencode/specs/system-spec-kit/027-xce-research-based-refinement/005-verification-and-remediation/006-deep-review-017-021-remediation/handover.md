@@ -1,11 +1,13 @@
-# Handover — 027/005/006 deep-review remediation (broaden round complete)
+# Handover — 027/005/006 deep-review remediation (broaden round DEPLOYED; #1/#3/#4 done — only soft-delete remains)
 
 ## Continuation prompt (paste into the new chat)
-> Continue 027 deep-review remediation on branch `system-speckit/027-xce-research-based-refinement`. The gpt-5.5 broaden round is DONE and committed/pushed (9 fixes + P0 regression test at `55b977951d`, synthesis at `0ac83c99ce`). Read `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/handover.md` then pick up the open follow-ups below. Daemon/MCP may be flapping — use the CLI front doors (`node .opencode/bin/spec-memory.cjs …`) not MCP if it hangs.
+> 027/005/006 follow-ups #1 (deploy live), #3 (agent CLI-fallback) and #4 (doc-currency) are DONE, committed and pushed on `system-speckit/027-xce-research-based-refinement` (`61b5aab102` agent-fallback, `73518a2983` doc-currency; broaden fixes `55b977951d`, synthesis `0ac83c99ce`). The ONLY remaining open item is **#2 soft-delete tombstone completion**, which is a dedicated packet (NOT a batch fix) — `SPECKIT_SOFT_DELETE_TOMBSTONES` stays default-off until `deleted_at IS NULL` filters land across ~8 recall/list/dedup paths + tombstone child cascade + tests. Daemon/MCP may flap on resume — use the CLI front doors (`node .opencode/bin/spec-memory.cjs …`) not MCP if it hangs; a `/mcp reconnect` re-binds native tools by adopting the warm daemon.
 
 ## State
 - **Branch:** `system-speckit/027-xce-research-based-refinement` — in sync with origin (everything pushed).
 - **Recent commits (newest first):**
+  - `73518a2983` — doc-currency refresh (timeline regen, changelog 2026-06-18 section, before-after §5 + CURRENT STATE)
+  - `61b5aab102` — wedged-daemon CLI-fallback baked into 8 daemon-using agents × 3 runtime mirrors (24 files)
   - `0ac83c99ce` — broaden-round synthesis + scope briefs
   - `55b977951d` — 9 broaden-round fixes + P0 regression test (search scope leaks, folderBoost, schema, infra hygiene)
   - `2b64f293b2` — round-2 (017-021) gpt-5.5 verify fixes (cancel-delay guard, bounded-read note, vec-quirk doc)
@@ -18,14 +20,15 @@
 3. **Daemon recycle** — the live daemon was recycled onto the 017-021 dist (the `degraded`/`vec<fts` flag is a vec0 `vec_memories` COUNT quirk; DB-verified 100% vector coverage, 20050/20050 — NOT a real gap).
 4. **gpt-5.5 broaden round** — 30 passes (search/retrieval, store/index, server infra), 52 findings → 8 refute-first verifiers → **9 fixed + verified + tested** (tsc clean, 448 affected tests pass, new P0 scope-isolation test, 0 new failures vs baseline). Full disposition in `review-r2/broaden-synthesis.md`.
 
-## Open follow-ups (priority order)
-1. **Deploy the broaden fixes live** — `dist/` is gitignored and STALE (dist `retrieval-rescue.js` is from Jun 11; today's source fixes are NOT compiled). Run `cd .opencode/skills/system-spec-kit/mcp_server && npm run build`, then recycle the daemon (SIGTERM the context-server child of the launcher — transparent recycle for mk-spec-memory ONLY; see memory `mcp-front-proxy-deploy-recycle`). Until then the fixes are shipped (committed) but not live on real searches.
-2. **Soft-delete completion packet** — REAL but `SPECKIT_SOFT_DELETE_TOMBSTONES` is default-OFF and `ENV_REFERENCE.md` says keep OFF until recall filters `deleted_at IS NULL`. Completing it = `deleted_at IS NULL` filters across ~8 recall/list/dedup paths + tombstone child cascade + tests. Dedicated packet, not a batch fix.
-3. **Durable `@deep-review` CLI-fallback** — bake the "use the warm-daemon CLI front doors / Grep-Read instead of blocking on a wedged MCP call" rule into the `@deep-review` agent definition (+ `.claude`/`.codex` mirrors), not just the per-scope briefs.
-4. **Doc-currency refresh for the broaden round** — timeline / changelog / before-after / feature-catalog for `55b977951d` if you want the 027 docs fully current.
+## Follow-ups (status — 2026-06-18 session)
+- ✅ **#1 Deploy the broaden fixes live** — `mcp_server` dist rebuilt (`npm run build`; scope-fix confirmed present in compiled `retrieval-rescue.js`) and the live spec-memory daemon recycled onto it (now PID-supervised on fresh dist). The recycle was NOT transparent — see Gotchas; recovered via a CLI front-door cold-start.
+- ⏳ **#2 Soft-delete tombstone completion** — **THE ONLY REMAINING ITEM.** Dedicated packet, not a batch fix. `SPECKIT_SOFT_DELETE_TOMBSTONES` stays default-OFF until `deleted_at IS NULL` filters land across ~8 recall/list/dedup paths + tombstone child cascade + tests.
+- ✅ **#3 Durable wedged-daemon CLI-fallback** (`61b5aab102`) — baked into 8 daemon-using agents × 3 runtime mirrors. Bash-enabled (deep-review, deep-research, review, debug, deep-improvement) → CLI-front-door variant; Bash-denied (context, deep-context, ai-council) → Grep/Read-only variant. No shared inheritance point exists (convention is inline-per-agent, like the efficiency governor), so it's inline. The `agent-mirror-sync` pre-commit gate confirmed all mirrors in sync.
+- ✅ **#4 Doc-currency refresh** (`73518a2983`) — timeline regenerated, `changelog-005-006` gained a 2026-06-18 section, `before-vs-after.md` §5 + CURRENT STATE updated. Feature-catalog deliberately untouched: the 005-verification track is not cataloged by convention (no sibling remediation phase has an entry).
 
 ## Gotchas (load-bearing)
 - **dist is gitignored** — source fixes don't reach the live daemon until `npm run build` + recycle.
+- **Daemon recycle is NOT always transparent (2026-06-18 lesson)** — the documented `mcp-front-proxy-deploy-recycle` transparent recycle assumes a LIVE lease-holder launcher. When the daemon child is orphaned at PPID 1 (no healthy lease-holder), SIGTERM-ing it takes the shared daemon AND every launcher down with no auto-respawn (briefly affects all concurrent sessions). Recover with a deliberate CLI front-door cold-start (`node .opencode/bin/spec-memory.cjs memory_stats`), which spawns a fresh launcher + daemon from current dist — a healthier, properly-supervised state. Check the daemon's PPID with `ps` before SIGTERM.
 - **zsh does NOT word-split unquoted vars** — use a `files=( … )` array for `git add -- $files` / `git commit … -- $files`, or quote each path. A plain `$VAR` of space-joined paths becomes ONE pathspec and fails.
 - **Shared git index** — multiple sessions share it; always scope commits with explicit pathspec and verify `git show --stat HEAD` before push.
 - **Daemon flaps on session resume** — MCP (`mk-spec-memory`/`mk-code-index`) can drop; sockets usually still present. Use CLI front doors. The review scope briefs already carry an explicit MCP-fallback section.
