@@ -1,0 +1,103 @@
+{
+  "topic": "Review: MCP Server Infrastructure (handlers / providers / daemon)",
+  "mode": "review",
+  "reviewTarget": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/C-rest-of-server",
+  "reviewTargetType": "spec-folder",
+  "specFolder": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/C-rest-of-server",
+  "artifactDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/lineages/gpt55r2-c-7",
+  "sessionId": "fanout-gpt55r2-c-7-1781761364358-6qni37",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 1,
+  "convergenceThreshold": 0.1,
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "createdAt": "2026-06-18T06:13:50Z",
+  "status": "complete",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "openai/gpt-5.5-fast",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "severityThreshold": "P2",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "reviewScopeFiles": [
+    ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/C-rest-of-server/spec.md",
+    ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/ipc/socket-server.ts",
+    ".opencode/skills/system-spec-kit/shared/ipc/socket-server.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/spec-memory-cli.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/providers/embeddings.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts",
+    ".opencode/bin/spec-memory.cjs",
+    ".opencode/bin/mk-spec-memory-launcher.cjs",
+    ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+    ".opencode/bin/lib/launcher-session-proxy.cjs",
+    ".opencode/bin/lib/model-server-supervision.cjs"
+  ],
+  "qualityGateThreshold": true,
+  "fileProtection": {
+    "deep-review-config.json": "immutable-after-init",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  },
+  "notes": [
+    "artifact_dir bound directly from config.fanout_lineage_artifact_dir; resolveArtifactRoot node command was not run.",
+    "Code graph status was stale; this lineage used direct Glob/Grep/Read evidence only."
+  ]
+}

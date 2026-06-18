@@ -1,0 +1,28 @@
+Act as a markdown documentation-fixer (correction seat COR01). Spec folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation (PRE-APPROVED at Gate 3 — make the edits directly; do NOT re-ask Gate 3 or ask anything).
+
+An accuracy audit found that a PRIOR automated fix wrote WRONG or imprecise values in the file(s) below. Apply each audit-verified correction SURGICALLY: replace the wrong text with the actual truth. The audit already verified the truth against the cited evidence — confirm at the evidence path, then correct.
+
+ALLOWED WRITE PATHS (edit ONLY these):
+- .opencode/skills/cli-opencode/README.md
+BANNED: no delete, no rename, no new files, no edits outside the listed files, no --no-verify.
+
+CORRECTIONS (for each: find the wrong text, replace with the actual truth; verify at evidence first):
+1. WRONG (now in file): Use `--agent <agent-slug>` for concrete routes such as `context`, `orchestrate`, `review`, `debug` or `ai-council`; omit `--agent` only for the default/general path and never pass `--agent general`.
+   ACTUAL TRUTH: Top-level `opencode run --agent` is not broadly valid for `context`, `review`, or `debug`; SKILL.md says not to pass top-level `--agent` by default, and subagents such as `context`, `review`, and `debug` route through a primary/orchestrate path, while direct top-level use is only conditionally allowed for primary agents like `plan|orchestrate|ai-council` after help verification.
+   EVIDENCE: .opencode/skills/cli-opencode/SKILL.md:259; .opencode/skills/cli-opencode/SKILL.md:283-292
+2. WRONG (now in file): `opencode run` supports `--agent <slug>` and the cli-opencode reference uses per-use-case agents such as `context`, `orchestrate`, `review`, `debug` and `ai-council`.
+   ACTUAL TRUTH: The live SKILL.md does not support direct top-level routing to `context`, `review`, or `debug`; those are documented as subagents, not directly invokable top-level `opencode run --agent` routes.
+   EVIDENCE: .opencode/skills/cli-opencode/SKILL.md:279-292
+3. WRONG (now in file): OpenCode routes specialist dispatches with `--agent <slug>` and resolves project-local agent files from `.opencode/agents/<slug>.md`. Use concrete slugs such as `context`, `orchestrate`, `review`, `debug` and `ai-council`; omit `--agent` for the default/general path and never pass `--agent general`.
+   ACTUAL TRUTH: Project-local agent files exist, but the live dispatch contract is narrower: `context`, `review`, and `debug` are subagents and should not be presented as direct specialist `opencode run --agent` slugs.
+   EVIDENCE: .opencode/skills/cli-opencode/SKILL.md:283-292
+4. WRONG (now in file): Omit `--agent general`; use concrete slugs like `context`, `orchestrate`, `review`, `debug` or `ai-council` when routing to a specialist.
+   ACTUAL TRUTH: Only `orchestrate` and `ai-council` are documented as possible primary direct routes here; `context`, `review`, and `debug` are subagents and should route through the documented primary/Task path, not as direct top-level `--agent` examples.
+   EVIDENCE: .opencode/skills/cli-opencode/SKILL.md:283-292
+
+Important nuance to honor: spec-memory CLI front door = 37 tools; MCP server = 39. Validation registry = 38 rules (36 default non-strict + strict-only). Do not re-introduce the wrong value.
+
+After editing, re-read each corrected line. Final message MUST be one fenced ```json block:
+```json
+{"seat":"COR01","corrected":[{"file":"","to":""}],"skipped":[{"file":"","why":""}]}
+```

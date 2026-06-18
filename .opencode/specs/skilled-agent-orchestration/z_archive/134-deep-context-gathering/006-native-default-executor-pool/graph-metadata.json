@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/134-deep-context-gathering/006-native-default-executor-pool",
-  "spec_folder": "skilled-agent-orchestration/134-deep-context-gathering/006-native-default-executor-pool",
-  "parent_id": "skilled-agent-orchestration/134-deep-context-gathering",
+  "packet_id": "skilled-agent-orchestration/z_archive/134-deep-context-gathering/006-native-default-executor-pool",
+  "spec_folder": "skilled-agent-orchestration/z_archive/134-deep-context-gathering/006-native-default-executor-pool",
+  "parent_id": "skilled-agent-orchestration/z_archive/134-deep-context-gathering",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The default pool is native-only (2 `@deep-context` seats); the pool question offers exactly **A) Native only (default)** and **B) Custom** (native / CLI / combined via flags), with no model names in the options.",
     "created_at": "2026-06-07T09:45:27Z",
-    "last_save_at": "2026-06-15T09:09:33.114Z",
+    "last_save_at": "2026-06-17T19:57:23.818Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

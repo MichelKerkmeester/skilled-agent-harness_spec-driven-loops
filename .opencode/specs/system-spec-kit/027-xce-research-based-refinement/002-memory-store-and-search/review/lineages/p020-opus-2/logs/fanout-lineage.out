@@ -1,0 +1,15 @@
+All deep-review phases are complete for lineage **p020-opus-2**, written entirely within the lineage dir (artifact_dir bound directly to the override; `resolveArtifactRoot` not run; no continuity save outside the lineage dir, per the path constraint — that is the fan-out merge step's job).
+
+**Verdict: PASS** (hasAdvisories: true) — 0 P0, 0 P1, 3 P2 advisories.
+
+What the review found on `020-maintenance-grace-background-embedding`:
+- **Correctness ✓** — the reference-counted `maintenance-marker.ts` is sound (idempotent `end()`, count-floored, file removed only at 0, lazy unref'd refresh timer). The idle-tick guard (REQ-004) is correctly placed after the empty-queue return, and the embedding handle is released in `finally`. The one correctness candidate (per-tick marker gap during the embedding burst) was adversarially refuted against the launcher's `shouldAdoptDespiteProbe` guard — the daemon is probe-responsive between ticks, so the gap is not a survival hole.
+- **Security ✓** — marker payload is internal, no secrets/injection surface.
+- **Traceability ✓** — REQ-001…004 all resolve to shipped code; writer↔launcher contract verified end-to-end (launcher reads only `childPid`/`activeUntilMs`, both written; dir-resolution precedence matches on both sides).
+- **3 × P2**: F001 the "schema unchanged" claim is overstated (writer dropped `jobId`, added `labels` — consumer-compatible but inaccurate wording); F002 embedding queue relies on event-loop yields for refresh (no explicit `refresh()`, unlike the scan); F003 on-disk `labels` go stale until next write (cosmetic, launcher ignores them).
+
+Honest caveats: SC-001's "tests pass" is verified by static review of the test contract + the impl-summary's recorded PASS — live `vitest` re-execution was approval-gated in this autonomous lineage and not re-run. SC-002 (live reindex survival) is deploy-time, out of code scope.
+
+Artifacts written: `deep-review-config.json`, `deep-review-state.jsonl` (config + iteration + synthesis_complete), `deep-review-findings-registry.json`, `deep-review-strategy.md`, `deep-review-dashboard.md`, `iterations/iteration-001.md`, `review-report.md` (9 core sections; Resource Map Coverage Gate omitted — no resource-map.md at init).
+
+FANOUT_LINEAGE_COMPLETE:p020-opus-2

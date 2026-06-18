@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/120-cli-opencode-minimax-optimization/004-minimax-token-plan-provider",
-  "spec_folder": "skilled-agent-orchestration/120-cli-opencode-minimax-optimization/004-minimax-token-plan-provider",
-  "parent_id": "skilled-agent-orchestration/120-cli-opencode-minimax-optimization",
+  "packet_id": "skilled-agent-orchestration/z_archive/120-cli-opencode-minimax-optimization/004-minimax-token-plan-provider",
+  "spec_folder": "skilled-agent-orchestration/z_archive/120-cli-opencode-minimax-optimization/004-minimax-token-plan-provider",
+  "parent_id": "skilled-agent-orchestration/z_archive/120-cli-opencode-minimax-optimization",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -48,7 +48,6 @@
       ".opencode/skills/cli-opencode/graph-metadata.json",
       ".opencode/skills/sk-prompt-small-model/SKILL.md",
       ".opencode/skills/sk-prompt-small-model/description.json",
-      ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
       ".opencode/skills/sk-prompt-small-model/graph-metadata.json",
       ".opencode/skills/deep-loop-runtime/tests/unit/executor-config.vitest.ts",
       ".opencode/skills/sk-prompt-small-model/README.md",
@@ -93,12 +92,6 @@
         "name": "description.json",
         "kind": "config",
         "path": ".opencode/skills/sk-prompt-small-model/description.json",
-        "source": "derived"
-      },
-      {
-        "name": "pattern-index.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
         "source": "derived"
       },
       {
@@ -202,11 +195,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The account holder switched from MiniMax pay-per-token (Direct API) to the **MiniMax Token Plan** (subscription, minimax.io). Phase 001 wired MiniMax in as a *direct-API* provider (`minimax` → `MINIMAX_API_KEY`, model `minimax/MiniMax-M2.7`). This phase re-points the default MiniMax path at the Token Plan while keeping the Direct API selectable.",
     "created_at": "2026-06-01T06:32:01.035Z",
-    "last_save_at": "2026-06-15T09:09:32.965Z",
+    "last_save_at": "2026-06-17T19:57:23.638Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

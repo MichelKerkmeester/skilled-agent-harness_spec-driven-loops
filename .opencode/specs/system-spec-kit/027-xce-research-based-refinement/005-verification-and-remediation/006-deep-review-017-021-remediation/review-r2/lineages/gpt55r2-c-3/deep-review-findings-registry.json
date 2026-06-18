@@ -1,0 +1,54 @@
+{
+  "sessionId": "fanout-gpt55r2-c-3-1781761364358-6qni37",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "tcp:// IPC configuration is accepted by clients but ignored by the daemon resolver",
+      "file": ".opencode/skills/system-spec-kit/shared/ipc/socket-server.ts",
+      "line": 201,
+      "lineRange": "201-211",
+      "finding_class": "contract_safety",
+      "content_hash": "f5e16a022a74f0ec042cb8448e986b8056703eaac4aa86377fede76310390327",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "evidence": [
+        ".opencode/bin/spec-memory.cjs:103-114",
+        ".opencode/bin/lib/launcher-ipc-bridge.cjs:80-88",
+        ".opencode/skills/system-spec-kit/mcp_server/context-server.ts:2319-2321",
+        ".opencode/skills/system-spec-kit/shared/ipc/socket-server.ts:201-211"
+      ],
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P1", "reason": "Initial discovery and adjudication" }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": false,
+    "maintainability": false
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 0
+  },
+  "openFindingsCount": 1,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

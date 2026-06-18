@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "deep-review-lineage/v1",
+  "workflow": "deep-review",
+  "lineageId": "gpt55r2-c-9",
+  "sessionId": "gpt55r2-c-9",
+  "parentSessionId": "review-r2",
+  "lineageMode": "fanout-child",
+  "generation": 2,
+  "continuedFromRun": "review-r2",
+  "releaseReadinessState": "conditional",
+  "createdAt": "2026-06-18T06:33:29Z",
+  "executor": {
+    "requested": "cli-opencode model=openai/gpt-5.5-fast",
+    "actual": "in-process opencode gpt-5.5",
+    "note": "Nested opencode self-invocation was not used from an active OpenCode session."
+  },
+  "scope": {
+    "id": "C-rest-of-server",
+    "specPath": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/C-rest-of-server/spec.md",
+    "target": "MCP server infrastructure outside search pipeline scope A and store/index/lifecycle scope B",
+    "artifactDir": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/lineages/gpt55r2-c-9"
+  },
+  "constraints": {
+    "maxIterations": 1,
+    "artifactRootResolved": false,
+    "resolveArtifactRootUsed": false,
+    "writesOutsideArtifactDir": false,
+    "targetFilesReadOnly": true
+  },
+  "resourceMapPresent": false,
+  "dimensions": [
+    "security",
+    "path-boundaries",
+    "scope-isolation",
+    "lifecycle"
+  ],
+  "stopCondition": {
+    "reason": "maxIterations",
+    "iterationsCompleted": 1,
+    "converged": false
+  },
+  "verdict": "CONDITIONAL"
+}

@@ -1,0 +1,20 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/018-reindex-scan-responsiveness-and-cancellation",
+  "maxIterations": 1,
+  "convergenceThreshold": 0.7,
+  "dimensions": ["correctness", "security", "spec-alignment", "completeness"],
+  "sessionId": "fanout-p018-mimo-1-1781718236450-bbehhf",
+  "lineage": {
+    "sessionId": "fanout-p018-mimo-1-1781718236450-bbehhf",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null,
+    "releaseReadinessState": "in-progress"
+  },
+  "resource_map_present": false,
+  "createdAt": "2026-06-17T14:30:00Z",
+  "executor": "cli-opencode model=xiaomi/mimo-v2.5-pro",
+  "loop_type": "review",
+  "fanout_lineage": "p018-mimo-1"
+}

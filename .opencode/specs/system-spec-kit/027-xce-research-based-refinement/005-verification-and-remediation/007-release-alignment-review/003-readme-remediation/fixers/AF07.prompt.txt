@@ -1,0 +1,29 @@
+Act as a markdown documentation-fixer (seat AF07). Spec folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation (PRE-APPROVED at Gate 3 — make the edits below directly with the Edit/Write tools; do NOT re-ask Gate 3 and do NOT ask the user anything).
+
+You fix STALE content in README files so they match current repo reality. SURGICAL edits only — fix the cited claims, keep everything else intact. Find the correct current value by reading the cited file PLUS its SKILL.md / source / config before editing.
+
+ALLOWED WRITE PATHS (edit ONLY these files):
+- .opencode/skills/mcp-code-mode/README.md
+- .opencode/skills/mcp-code-mode/scripts/README.md
+- .opencode/skills/mcp-figma/mcp-servers/figma-mcp/README.md
+- .opencode/skills/mcp-open-design/README.md
+- .opencode/skills/sk-code/assets/motion_dev/snippets/README.md
+BANNED: no delete, no rename, no new files, no edits outside the listed files, no --no-verify.
+
+DO-NOT-FIX (binding — confirmed false positives; leave untouched):
+- The CLI front-door "37 tools" figure: `spec-memory.cjs` CLI is genuinely 37; only the MCP-server/daemon surface is 39. Fix a "37" ONLY when the sentence is about the MCP server/daemon, NOT the CLI front door.
+- Any `// Feature catalog:` comments and TSDoc `@example` values.
+- Any cited claim that does NOT actually reproduce against the live file — mark it refuted; never invent a fix.
+
+FINDINGS TO FIX (confirm-then-fix each; P0/P1/P2 all in scope, including cosmetic/style):
+- [P1] .opencode/skills/mcp-code-mode/README.md:57 — Code Mode ClickUp examples use non-current manual name | stale: Examples discover and call clickup.clickup_create_task / clickup.clickup_* tools. -> correct: The current repo config names the ClickUp manual clickup_official, so clickup.clickup_* is not the current configured manual namespace.
+- [P2] .opencode/skills/mcp-code-mode/README.md:41 — Native MCP roster omits Skill Advisor | stale: Native/direct MCP examples list Spec Kit Memory, Sequential Thinking and Code Graph, but omit Skill Advisor. -> correct: Current opencode.json also registers mk_skill_advisor as a native local MCP server.
+- [P1] .opencode/skills/mcp-code-mode/scripts/README.md:29 — scripts README inventory is stale | stale: Key Statistics says Code files = 1 and Structure lists only validate_config.py; the README also routes follow-up to a 026 audit report/check. -> correct: The folder currently has install.sh, doctor.sh, update.sh and validate_config.py, and evergreen READMEs should not cite mutable packet/audit numbers.
+- [P1] .opencode/skills/mcp-figma/mcp-servers/figma-mcp/README.md:11 — Figma MCP is not safely described as read-only | stale: The MCP is opt-in and read-only: pull design context into the agent for codegen. -> correct: Current docs confirm the live Figma manual includes download_figma_images for downloading referenced images/SVGs, and the install guide explicitly says not to assume a tool exists or is read-only.
+- [P2] .opencode/skills/mcp-open-design/README.md:26 — Open Design agent roster is narrower than current support | stale: MCP install needs the target agent CLI (opencode or claude). -> correct: Current wiring docs list supported agent slugs including claude, codex, cursor, copilot, openclaw, antigravity, gemini, pi, vibe, hermes, cline, kimi, trae and opencode.
+- [P2] .opencode/skills/sk-code/assets/motion_dev/snippets/README.md:98 — Obsolete 026 audit handoff | stale: Expected output is findings recorded in the 026 audit report, and troubleshooting says to rerun the 026 audit check. -> correct: 027 is the current refinement/release-alignment context; 026 is described as the completed predecessor.
+
+After editing, re-read each edited line to verify. Your final message MUST be exactly one fenced json block:
+```json
+{"seat":"AF07","fixed":[{"file":"path","claim":"what was stale","after":"what it now says"}],"refuted":[{"file":"path","why":"why skipped"}]}
+```

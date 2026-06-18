@@ -1,0 +1,67 @@
+{
+  "topic": "Review: MCP Server Infrastructure (handlers / providers / daemon)",
+  "mode": "review",
+  "reviewTarget": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/C-rest-of-server",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": ["correctness", "security", "traceability", "maintainability"],
+  "resource_map_present": false,
+  "resource_map": { "emit": true },
+  "sessionId": "fanout-gpt55r2-c-4-1781761364358-6qni37",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 1,
+  "convergenceThreshold": 0.1,
+  "stuckThreshold": 2,
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": ["spec_code", "checklist_evidence"],
+    "overlay": ["feature_catalog_code", "playbook_capability"]
+  },
+  "qualityGateThreshold": true,
+  "releaseReadinessState": "in-progress",
+  "specFolder": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/C-rest-of-server",
+  "artifactDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/lineages/gpt55r2-c-4",
+  "createdAt": "2026-06-18T05:59:52Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "openai/gpt-5.5-fast"
+  },
+  "reviewScopeFiles": [
+    ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/C-rest-of-server/spec.md",
+    ".opencode/bin/lib/launcher-session-proxy.cjs",
+    ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+    ".opencode/bin/mk-spec-memory-launcher.cjs",
+    ".opencode/bin/spec-memory.cjs",
+    ".opencode/bin/lib/model-server-supervision.cjs",
+    ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/index.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/storage/idempotency-receipts.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/ipc/socket-server.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/providers/embeddings.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts"
+  ],
+  "fileProtection": {
+    "deep-review-config.json": "immutable-after-init",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    "review-report.md": "mutable",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": ["latestJSONLDelta", "newIterationFile", "priorReducedState"],
+    "outputs": ["findingsRegistry", "dashboardMetrics", "strategyUpdates"],
+    "metrics": ["dimensionsCovered", "findingsBySeverity", "openFindings", "resolvedFindings", "convergenceScore"]
+  },
+  "stopReason": "maxIterationsReached"
+}

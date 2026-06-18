@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/130-prompt-knowledge-layering/009-refine-hub-cli-connections",
-  "spec_folder": "skilled-agent-orchestration/130-prompt-knowledge-layering/009-refine-hub-cli-connections",
-  "parent_id": "skilled-agent-orchestration/130-prompt-knowledge-layering",
+  "packet_id": "skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering/009-refine-hub-cli-connections",
+  "spec_folder": "skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering/009-refine-hub-cli-connections",
+  "parent_id": "skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "This is **Phase 9** of spec 130. Phases 001–008 delivered the 3-layer prompt-knowledge",
     "created_at": "2026-06-03T06:13:44Z",
-    "last_save_at": "2026-06-03T07:05:22.966Z",
+    "last_save_at": "2026-06-17T19:57:23.752Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

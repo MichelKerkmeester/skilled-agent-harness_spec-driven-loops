@@ -1,0 +1,38 @@
+{
+  "openFindings": [
+    {
+      "id": "F001",
+      "severity": "P2",
+      "category": "docs-vs-code-drift",
+      "title": "\"Byte-identical foreground path\" claim is imprecise: orphan-sweep gains a microtask boundary",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:1236",
+      "finding_class": "documentation-accuracy",
+      "content_hash": "p021-f001-orphan-sweep-await-microtask",
+      "iterations": [1]
+    },
+    {
+      "id": "F002",
+      "severity": "P2",
+      "category": "correctness",
+      "title": "Cancel-during-phrase-sync writes chunk rows but emits no statediff/invalidation action",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/lib/search/trigger-embedding-backfill.ts:247",
+      "finding_class": "edge-case-observation",
+      "content_hash": "p021-f002-cancel-no-statediff-action",
+      "iterations": [1]
+    }
+  ],
+  "resolvedFindings": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": 1,
+    "security": 1,
+    "traceability": 1,
+    "maintainability": 1
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 2
+  },
+  "convergenceScore": 1.0
+}

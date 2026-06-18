@@ -1,0 +1,19 @@
+Act as a markdown documentation-fixer (correction seat COR04). Spec folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation (PRE-APPROVED at Gate 3 — make the edits directly; do NOT re-ask Gate 3 or ask anything).
+
+An accuracy audit found that a PRIOR automated fix wrote WRONG or imprecise values in the file(s) below. Apply each audit-verified correction SURGICALLY: replace the wrong text with the actual truth. The audit already verified the truth against the cited evidence — confirm at the evidence path, then correct.
+
+ALLOWED WRITE PATHS (edit ONLY these):
+- .opencode/skills/deep-loop-workflows/deep-context/README.md
+BANNED: no delete, no rename, no new files, no edits outside the listed files, no --no-verify.
+
+CORRECTIONS (for each: find the wrong text, replace with the actual truth; verify at evidence first):
+1. WRONG (now in file): The improvement persona exposes four command lanes: `agent-improvement`, `model-benchmark`, `skill-benchmark`, and `non-dev-ai-system-refine`.
+   ACTUAL TRUTH: The public command/workflow lanes are `agent-improvement`, `model-benchmark`, `skill-benchmark`, and `ai-system-improvement`; `non-dev-ai-system-refine` is the loop-host mode for the Lane D adapter, not the public command lane.
+   EVIDENCE: .opencode/skills/deep-loop-workflows/mode-registry.json:131-136; .opencode/skills/deep-loop-workflows/deep-improvement/SKILL.md:34-41
+
+Important nuance to honor: spec-memory CLI front door = 37 tools; MCP server = 39. Validation registry = 38 rules (36 default non-strict + strict-only). Do not re-introduce the wrong value.
+
+After editing, re-read each corrected line. Final message MUST be one fenced ```json block:
+```json
+{"seat":"COR04","corrected":[{"file":"","to":""}],"skipped":[{"file":"","why":""}]}
+```

@@ -1,0 +1,48 @@
+{
+  "openFindings": [
+    {
+      "id": "F001",
+      "severity": "P2",
+      "category": "docs-vs-code-drift",
+      "finding_class": "doc-accuracy",
+      "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/020-maintenance-grace-background-embedding/spec.md:108",
+      "content_hash": "p020-f001-schema-unchanged-claim",
+      "iterations": [1],
+      "summary": "spec/impl claim marker 'schema unchanged' but writer payload changed jobId->labels; consumer-read fields preserved"
+    },
+    {
+      "id": "F002",
+      "severity": "P2",
+      "category": "correctness",
+      "finding_class": "design-assumption",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:1038",
+      "content_hash": "p020-f002-embedding-no-explicit-refresh",
+      "iterations": [1],
+      "summary": "embedding queue has no explicit refresh(); relies on TTL + interval timer that needs event-loop yields"
+    },
+    {
+      "id": "F003",
+      "severity": "P2",
+      "category": "maintainability",
+      "finding_class": "observability",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/maintenance-marker.ts:72",
+      "content_hash": "p020-f003-stale-labels-ondisk",
+      "iterations": [1],
+      "summary": "on-disk labels not re-serialized on end() until next write (cosmetic; launcher ignores labels)"
+    }
+  ],
+  "resolvedFindings": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": 1,
+    "security": 1,
+    "traceability": 1,
+    "maintainability": 1
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 3
+  },
+  "convergenceScore": 1.0
+}

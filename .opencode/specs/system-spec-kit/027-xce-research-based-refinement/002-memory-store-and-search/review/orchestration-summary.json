@@ -1,0 +1,11 @@
+{
+  "run_id": "1781725097793-3tpfai",
+  "loop_type": "review",
+  "spec_folder": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/017-search-and-output-intelligence-implementation/002-request-quality-aggregation",
+  "base_artifact_dir": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/review",
+  "total_cli_lineages": 1,
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false
+}

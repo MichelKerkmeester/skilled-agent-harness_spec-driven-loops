@@ -1,0 +1,2 @@
+{"event":"executor_bound","executor":"cli-opencode","model":"openai/gpt-5.5-fast","sessionId":"fanout-gpt55r2-a-5-1781761314338-6u1ztm","artifactDir":"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/lineages/gpt55r2-a-5","timestamp":"2026-06-18T06:04:38.539Z"}
+{"event":"iteration_complete","iteration":1,"verdict":"CONDITIONAL","findings":{"P0":0,"P1":3,"P2":0},"timestamp":"2026-06-18T06:04:38.539Z"}

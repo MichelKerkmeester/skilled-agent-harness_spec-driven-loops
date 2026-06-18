@@ -42,9 +42,7 @@
     "status": "complete",
     "key_files": [
       ".opencode/skills/sk-prompt-small-model/references/models/_index.md",
-      ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
       ".opencode/skills/sk-prompt-small-model/assets/cli_prompt_quality_card.md",
-      ".opencode/skills/sk-prompt-small-model/assets/confidence-scoring-rubric.md",
       "spec.md",
       "plan.md",
       "implementation-summary.md",
@@ -58,21 +56,9 @@
         "source": "derived"
       },
       {
-        "name": "pattern-index.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
-        "source": "derived"
-      },
-      {
         "name": "cli_prompt_quality_card.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-prompt-small-model/assets/cli_prompt_quality_card.md",
-        "source": "derived"
-      },
-      {
-        "name": "confidence-scoring-rubric.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-prompt-small-model/assets/confidence-scoring-rubric.md",
         "source": "derived"
       },
       {
@@ -194,11 +180,23 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This is **Phase 19** of the Skill reference and asset frontmatter alignment across all public-repo skills specification.",
     "created_at": "2026-06-11T05:47:37Z",
-    "last_save_at": "2026-06-16T14:27:21.515Z",
+    "last_save_at": "2026-06-17T19:57:25.027Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

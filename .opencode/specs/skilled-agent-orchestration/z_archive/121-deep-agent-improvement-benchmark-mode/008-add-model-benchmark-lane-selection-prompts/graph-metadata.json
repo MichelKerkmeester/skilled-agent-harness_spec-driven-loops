@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/008-add-model-benchmark-lane-selection-prompts",
-  "spec_folder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/008-add-model-benchmark-lane-selection-prompts",
-  "parent_id": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode",
+  "packet_id": "skilled-agent-orchestration/z_archive/121-deep-agent-improvement-benchmark-mode/008-add-model-benchmark-lane-selection-prompts",
+  "spec_folder": "skilled-agent-orchestration/z_archive/121-deep-agent-improvement-benchmark-mode/008-add-model-benchmark-lane-selection-prompts",
+  "parent_id": "skilled-agent-orchestration/z_archive/121-deep-agent-improvement-benchmark-mode",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "This is **Phase 8** of the two-lane program. The deep-agent-improvement skill already has two runtime lanes: Lane A (agent-improvement, improve an agent `.md` file) and Lane B (model-benchmark, benchmark or optimize a model or prompt framework). Lane B works as a skill mode but has no command entry. This phase makes Lane B first-class at the command layer.",
     "created_at": "2026-05-29T06:52:14Z",
-    "last_save_at": "2026-06-15T09:09:32.977Z",
+    "last_save_at": "2026-06-17T19:57:23.651Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

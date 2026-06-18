@@ -1,0 +1,45 @@
+{
+  "sessionId": "fanout-p018-opus-1-1781718236450-bbehhf",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "cancelledJobIds Set leaks on failed-via-setJobState terminal path; invariant comment inaccurate",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/lib/ops/job-store.ts",
+      "line": 75,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 1
+  },
+  "openFindingsCount": 1,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1.0,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

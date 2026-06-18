@@ -4,6 +4,8 @@
   "spec_folder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation/001-memory-storage-and-search",
   "parent_id": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -150,8 +152,8 @@
       }
     ],
     "causal_summary": "Sub-phase of `005-fresh-regression-remediation` (phase parent). It owns the subsystem cluster from the fresh+regression deep-review's findings registry. Per operator directive every finding is carried (refuted ones as hardening, asserted ones fix-as-stated). Source: `../../review/fresh-regression-75/deep-review-findings-registry.json`.",
-    "created_at": "2026-06-16T00:00:00Z",
-    "last_save_at": "2026-06-16T14:27:21.643Z",
+    "created_at": "2026-06-18T12:37:50.415Z",
+    "last_save_at": "2026-06-18T12:37:50.415Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

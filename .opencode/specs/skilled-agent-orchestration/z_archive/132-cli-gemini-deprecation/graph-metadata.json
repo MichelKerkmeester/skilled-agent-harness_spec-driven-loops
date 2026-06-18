@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/132-cli-gemini-deprecation",
-  "spec_folder": "skilled-agent-orchestration/132-cli-gemini-deprecation",
+  "packet_id": "skilled-agent-orchestration/z_archive/132-cli-gemini-deprecation",
+  "spec_folder": "skilled-agent-orchestration/z_archive/132-cli-gemini-deprecation",
   "parent_id": null,
   "children_ids": [
-    "skilled-agent-orchestration/132-cli-gemini-deprecation/001-runtime-surface-and-skill-deletion",
-    "skilled-agent-orchestration/132-cli-gemini-deprecation/002-command-yaml-gemini-cleanup",
-    "skilled-agent-orchestration/132-cli-gemini-deprecation/003-cli-gemini-full-purge",
-    "skilled-agent-orchestration/132-cli-gemini-deprecation/004-gemini-runtime-and-model-eradication"
+    "skilled-agent-orchestration/z_archive/132-cli-gemini-deprecation/001-runtime-surface-and-skill-deletion",
+    "skilled-agent-orchestration/z_archive/132-cli-gemini-deprecation/002-command-yaml-gemini-cleanup",
+    "skilled-agent-orchestration/z_archive/132-cli-gemini-deprecation/003-cli-gemini-full-purge",
+    "skilled-agent-orchestration/z_archive/132-cli-gemini-deprecation/004-gemini-runtime-and-model-eradication"
   ],
   "manual": {
     "depends_on": [],
@@ -85,7 +85,7 @@
     ],
     "causal_summary": "The project no longer supports a Gemini surface, yet active tooling still depends on one in two places: the checked-in project runtime directory and skill, and the command-layer YAMLs that still carry Gemini executor branches and references. As long as either remains, docs, tests, and command workflows keep pointing at a surface the project has dropped.",
     "created_at": "2026-06-08T16:11:50.603Z",
-    "last_save_at": "2026-06-08T17:32:20.106Z",
+    "last_save_at": "2026-06-17T19:57:23.765Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

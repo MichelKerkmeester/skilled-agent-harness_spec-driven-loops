@@ -1,0 +1,60 @@
+{
+  "sessionId": "fanout-p021-mimo-1-1781716627766-f4z8n0",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Deploy-time lag read deferred",
+      "file": "implementation-summary.md",
+      "line": 104,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P1", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "No chunk transaction failure test",
+      "file": "tasks.md",
+      "line": 58,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": false,
+    "traceability": false,
+    "maintainability": false
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 1
+  },
+  "openFindingsCount": 2,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

@@ -1,0 +1,29 @@
+Act as a markdown documentation-fixer (seat AF05). Spec folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation (PRE-APPROVED at Gate 3 — make the edits below directly with the Edit/Write tools; do NOT re-ask Gate 3 and do NOT ask the user anything).
+
+You fix STALE content in README files so they match current repo reality. SURGICAL edits only — fix the cited claims, keep everything else intact. Find the correct current value by reading the cited file PLUS its SKILL.md / source / config before editing.
+
+ALLOWED WRITE PATHS (edit ONLY these files):
+- .opencode/skills/deep-loop-workflows/deep-improvement/scripts/lib/README.md
+- .opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/README.md
+- .opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/README.md
+- .opencode/skills/deep-loop-workflows/deep-research/README.md
+- .opencode/skills/deep-loop-workflows/deep-research/scripts/README.md
+BANNED: no delete, no rename, no new files, no edits outside the listed files, no --no-verify.
+
+DO-NOT-FIX (binding — confirmed false positives; leave untouched):
+- The CLI front-door "37 tools" figure: `spec-memory.cjs` CLI is genuinely 37; only the MCP-server/daemon surface is 39. Fix a "37" ONLY when the sentence is about the MCP server/daemon, NOT the CLI front door.
+- Any `// Feature catalog:` comments and TSDoc `@example` values.
+- Any cited claim that does NOT actually reproduce against the live file — mark it refuted; never invent a fix.
+
+FINDINGS TO FIX (confirm-then-fix each; P0/P1/P2 all in scope, including cosmetic/style):
+- [P1] .opencode/skills/deep-loop-workflows/deep-improvement/scripts/lib/README.md:3 — mirror sync runtime count contradicts code | stale: The frontmatter describes mirror-sync-verify.cjs as a 4-runtime mirror sync verifier. -> correct: mirror-sync-verify.cjs defines three runtime mirrors: opencode, claude, and codex.
+- [P1] .opencode/skills/deep-loop-workflows/deep-improvement/scripts/model-benchmark/README.md:60 — model-benchmark tree omits sweep support | stale: The README tree lists only dispatch-model.cjs, run-benchmark.cjs, and scorer/. -> correct: model-benchmark also contains sweep-benchmark.cjs and a lib/ subtree for sweep/profile helpers.
+- [P1] .opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/README.md:16 — shared README says it serves both lanes only | stale: The README says shared/ is used by BOTH lanes: Lane A agent-improvement and Lane B model-benchmark. -> correct: shared/loop-host.cjs now routes four modes, including skill-benchmark and non-dev-ai-system-refine.
+- [P1] .opencode/skills/deep-loop-workflows/deep-improvement/scripts/shared/README.md:57 — shared directory tree omits active shared scripts | stale: The README tree lists only loop-host, promote-candidate, materialize-benchmark-fixtures, reduce-state, improvement-journal, mutation-coverage, and README.md. -> correct: shared/ also contains active helpers such as fixture-lint.cjs, extract-deliverable.cjs, parse-args.cjs, model-family.cjs, and rubric-guard.cjs.
+- [P1] .opencode/skills/deep-loop-workflows/deep-research/README.md:40 — Deep-loop roster omits improvement mode | stale: All four sibling loops share `deep-loop-runtime`, and the sibling list names only context/review/ai-council. -> correct: The current deep-loop workflow roster has five top-level personas: context, research, review, ai-council, and improvement; improvement includes four command lanes.
+- [P1] .opencode/skills/deep-loop-workflows/deep-research/scripts/README.md:109 — deep-research scripts cross-skill links are dead | stale: The README links sk-code and sk-doc via ../../sk-code and ../../sk-doc. -> correct: From deep-research/scripts those links resolve under deep-loop-workflows/, not to the actual .opencode/skills/sk-code and .opencode/skills/sk-doc roots.
+
+After editing, re-read each edited line to verify. Your final message MUST be exactly one fenced json block:
+```json
+{"seat":"AF05","fixed":[{"file":"path","claim":"what was stale","after":"what it now says"}],"refuted":[{"file":"path","why":"why skipped"}]}
+```

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/127-reusable-model-benchmark-framework/002-p0-mvp-implementation",
-  "spec_folder": "skilled-agent-orchestration/127-reusable-model-benchmark-framework/002-p0-mvp-implementation",
-  "parent_id": "skilled-agent-orchestration/127-reusable-model-benchmark-framework",
+  "packet_id": "skilled-agent-orchestration/z_archive/127-reusable-model-benchmark-framework/002-p0-mvp-implementation",
+  "spec_folder": "skilled-agent-orchestration/z_archive/127-reusable-model-benchmark-framework/002-p0-mvp-implementation",
+  "parent_id": "skilled-agent-orchestration/z_archive/127-reusable-model-benchmark-framework",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The 127 research designed a reusable, config-driven benchmark framework but it is unbuilt. The one-off rigs (`120/003`, `126/004`) still require new code per model/situation, and `126/004` exposed correctness-saturation producing misleading \"winners.\"",
     "created_at": "2026-06-02T04:33:50.234Z",
-    "last_save_at": "2026-06-02T05:45:33.747Z",
+    "last_save_at": "2026-06-17T19:57:23.725Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,0 +1,29 @@
+Act as a markdown documentation-fixer (seat AF10). Spec folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation (PRE-APPROVED at Gate 3 — make the edits below directly with the Edit/Write tools; do NOT re-ask Gate 3 and do NOT ask the user anything).
+
+You fix STALE content in README files so they match current repo reality. SURGICAL edits only — fix the cited claims, keep everything else intact. Find the correct current value by reading the cited file PLUS its SKILL.md / source / config before editing.
+
+ALLOWED WRITE PATHS (edit ONLY these files):
+- .opencode/skills/sk-doc/scripts/README.md
+- .opencode/skills/sk-doc/scripts/tests/README.md
+- .opencode/skills/sk-doc/scripts/tests/valid_readme.md
+- .opencode/skills/sk-git/README.md
+- .opencode/skills/sk-prompt-small-model/README.md
+BANNED: no delete, no rename, no new files, no edits outside the listed files, no --no-verify.
+
+DO-NOT-FIX (binding — confirmed false positives; leave untouched):
+- The CLI front-door "37 tools" figure: `spec-memory.cjs` CLI is genuinely 37; only the MCP-server/daemon surface is 39. Fix a "37" ONLY when the sentence is about the MCP server/daemon, NOT the CLI front door.
+- Any `// Feature catalog:` comments and TSDoc `@example` values.
+- Any cited claim that does NOT actually reproduce against the live file — mark it refuted; never invent a fix.
+
+FINDINGS TO FIX (confirm-then-fix each; P0/P1/P2 all in scope, including cosmetic/style):
+- [P2] .opencode/skills/sk-doc/scripts/README.md:94 — Code README still points at packet 026 audit output | stale: The usage example says expected output is recorded in the 026 audit report, and troubleshooting says to rerun the 026 audit check. -> correct: Current README rules say not to cite spec packet numbers, phase IDs or migration notes; use current behavior, stable paths and commands instead.
+- [P2] .opencode/skills/sk-doc/scripts/tests/README.md:109 — Tests README still points at packet 026 audit output | stale: The usage example says findings are recorded in the 026 audit report, and troubleshooting says to rerun the 026 audit check. -> correct: Current README rules say not to cite spec packet numbers, phase IDs or migration notes; use current behavior, stable paths and commands instead.
+- [P2] .opencode/skills/sk-doc/scripts/tests/valid_readme.md:16 — Valid README fixture endorses obsolete TOC anchors | stale: The fixture says a valid README has a Table of Contents and double-dash anchors. -> correct: Current README templates say not to add a Table of Contents or ANCHOR comments.
+- [P1] .opencode/skills/sk-git/README.md:119 — GitHub auth troubleshooting points to non-existent config scopes | stale: For GitHub MCP 401/403 errors, regenerate the PAT and update `.utcp_config.json` with `repo`, `issues`, `pull_requests` and `workflow`. -> correct: The current Code Mode GitHub manual only wires `GITHUB_PERSONAL_ACCESS_TOKEN` through `.utcp_config.json`; those are PAT permissions/scopes to grant on the token, not fields to add to `.utcp_config.json`.
+- [P1] .opencode/skills/sk-prompt-small-model/README.md:33 — Small-model default framework claim misses Kimi | stale: The overview says MiniMax uses TIDD-EC, MiMo uses COSTAR and the rest default to RCAF. -> correct: Kimi-k2.7-code is active and uses COSTAR with TIDD-EC fallback while explicitly avoiding RCAF; only DeepSeek remains default-unverified RCAF.
+- [P2] .opencode/skills/sk-prompt-small-model/README.md:181 — Verification section omits Kimi benchmark | stale: The verification section points readers only to benchmarks 003 and 004 for framework assignments. -> correct: The current model index and registry include an empirical Kimi-k2.7-code assignment backed by benchmark 007.
+
+After editing, re-read each edited line to verify. Your final message MUST be exactly one fenced json block:
+```json
+{"seat":"AF10","fixed":[{"file":"path","claim":"what was stale","after":"what it now says"}],"refuted":[{"file":"path","why":"why skipped"}]}
+```

@@ -1,0 +1,57 @@
+{
+  "sessionId": "fanout-gpt55-p017c004-2-1781757625173-xsur7n",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Starter labeled set cannot be loaded by the shipped loader",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-calibration.ts",
+      "line": 73,
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-calibration.ts:73-76",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/017-search-and-output-intelligence-implementation/004-confidence-calibration-labeled-set/assets/fit-calibration.mjs:168-181",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/017-search-and-output-intelligence-implementation/004-confidence-calibration-labeled-set/assets/confidence-labeled-set.starter.json:1-5"
+      ],
+      "finding_class": "loader_data_shape_mismatch",
+      "content_hash": "sha256:7d44d2996c4d534b2e62d7df97f1b98a05df4f8df7c9a67668a9dfb74b4ad4a2",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": false,
+    "traceability": false,
+    "maintainability": false
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 0
+  },
+  "openFindingsCount": 1,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

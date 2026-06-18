@@ -1,0 +1,22 @@
+Act as a markdown documentation-fixer. Spec folder: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation (PRE-APPROVED at Gate 3 — make the edits below directly with the Edit/Write tools; do NOT re-ask Gate 3 and do NOT ask the user any question).
+
+You are fixing STALE content in specific README files so they match current repo reality. Make SURGICAL edits — fix only the cited claims, keep all other content intact.
+
+ALLOWED WRITE PATHS (edit ONLY these three files):
+- .opencode/skills/cli-claude-code/README.md
+- .opencode/skills/cli-codex/README.md
+- .opencode/skills/cli-opencode/README.md
+BANNED: no delete, no rename, no new files, no edits outside the three files above, no --no-verify. Surgical edits only.
+
+CONFIRMED FINDINGS TO FIX. For each: re-read the cited line in the live file, find the correct current value by reading the cited file PLUS its SKILL.md / model_profiles.json / agent definitions, then fix. If a stale claim is NOT actually present, skip it and mark it refuted — never invent a fix.
+1. cli-claude-code/README.md:108 — Claude agent roster points at a dead surface. Correct it against the real current .claude/agents/ roster.
+2. cli-codex/README.md:120 — Codex profile model is stale. Correct against the current codex model id (cli-codex SKILL.md / sk-prompt-small-model model_profiles.json).
+3. cli-opencode/README.md:74 — Agent-flag guidance contradicts current routing. Align with cli-opencode SKILL.md (no top-level `--agent general`; describe role in prompt body).
+4. cli-opencode/README.md:119 — Provider matrix omits Kimi K2.7. Add the Kimi For Coding path (provider kimi-for-coding, model kimi-for-coding/k2p7) per cli-opencode SKILL.md.
+
+DO-NOT-FIX (leave untouched): any `// Feature catalog:` comments, TSDoc example values, and anything not in the four findings above.
+
+After editing, re-read each edited line to verify. Your final message MUST be exactly one fenced json block:
+```json
+{"seat":"A16-fix","fixed":[{"file":"path","claim":"what was stale","after":"what it now says"}],"refuted":[{"file":"path","why":"why skipped"}]}
+```

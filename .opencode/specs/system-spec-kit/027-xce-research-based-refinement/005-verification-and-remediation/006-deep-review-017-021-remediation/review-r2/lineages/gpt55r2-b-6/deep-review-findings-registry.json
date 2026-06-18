@@ -1,0 +1,75 @@
+{
+  "sessionId": "fanout-gpt55r2-b-6-1781761339355-o7qylx",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Cancelled index scans can persist writes while skipping mutation invalidation",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+      "line": 1202,
+      "finding_class": "cancellation_cache_staleness",
+      "content_hash": "5c3220776ea2801ab1e53b72becd22b098d6ee150267b2f3e14c4d85fd3d008a",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [{ "iteration": 1, "from": null, "to": "P1", "reason": "Initial discovery" }]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "category": "data-integrity",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Stale cleanup deletes causal edges before the memory delete is confirmed",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+      "line": 602,
+      "finding_class": "non_atomic_causal_cleanup",
+      "content_hash": "1d56deb84e4c451126957965efe5fe9e42431129f4b771e46f423f31acf1f84e",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [{ "iteration": 1, "from": null, "to": "P1", "reason": "Initial discovery" }]
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "category": "performance",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Atomic memory_save stores mtime before the pending file is promoted",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/handlers/save/atomic-index-memory.ts",
+      "line": 362,
+      "finding_class": "incremental_mtime_drift",
+      "content_hash": "b267e901530a1fa22350ed4c24dd89752398d8b04f4ba1c8a86e19b77b3c962b",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [{ "iteration": 1, "from": null, "to": "P2", "reason": "Initial discovery" }]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": false,
+    "traceability": false,
+    "maintainability": false
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 1
+  },
+  "openFindingsCount": 3,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

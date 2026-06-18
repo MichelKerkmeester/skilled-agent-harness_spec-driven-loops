@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/006-deep-loop-empty-archive-dir",
-  "spec_folder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/006-deep-loop-empty-archive-dir",
-  "parent_id": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode",
+  "packet_id": "skilled-agent-orchestration/z_archive/121-deep-agent-improvement-benchmark-mode/006-deep-loop-empty-archive-dir",
+  "spec_folder": "skilled-agent-orchestration/z_archive/121-deep-agent-improvement-benchmark-mode/006-deep-loop-empty-archive-dir",
+  "parent_id": "skilled-agent-orchestration/z_archive/121-deep-agent-improvement-benchmark-mode",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "This is a **maintenance phase** under packet 121, fixing a cross-cutting deep-loop defect surfaced while working in this program: empty `research_archive/` and `review_archive/` directories accumulating in spec packets (e.g. `…/122-session-120-121-deep-review/review_archive`).",
     "created_at": "2026-05-29T05:57:34.890Z",
-    "last_save_at": "2026-06-15T09:09:32.974Z",
+    "last_save_at": "2026-06-17T19:57:23.649Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

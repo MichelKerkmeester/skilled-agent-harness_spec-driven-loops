@@ -1,0 +1,30 @@
+{
+  "mode": "review",
+  "status": "complete",
+  "reviewTarget": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/020-maintenance-grace-background-embedding",
+  "reviewTargetType": "spec-folder",
+  "sessionId": "fanout-p020-opus-2-1781721166412-nlwse6",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "releaseReadinessState": "converged",
+  "executor": {
+    "kind": "cli-claude-code",
+    "model": "claude-opus-4-8"
+  },
+  "maxIterations": 1,
+  "convergenceThreshold": 0.10,
+  "compositeStopScore": 0.60,
+  "dimensions": ["correctness", "security", "traceability", "maintainability"],
+  "dimensionOrder": ["correctness", "security", "traceability", "maintainability"],
+  "protocolPlan": {
+    "core": ["spec_code", "checklist_evidence"],
+    "overlay": ["feature_catalog_code", "playbook_capability"],
+    "scheduled": ["spec_code", "checklist_evidence"],
+    "notApplicable": ["skill_agent", "agent_cross_runtime"]
+  },
+  "resource_map_present": false,
+  "fanout_lineage": "p020-opus-2",
+  "artifactDir": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/review/lineages/p020-opus-2"
+}

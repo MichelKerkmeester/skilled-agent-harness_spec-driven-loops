@@ -17,7 +17,14 @@
     "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/011-vector-resilience-durability",
     "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/012-hybrid-search-scope-then-limit",
     "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/013-provenance-injection",
-    "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/014-idempotency-flag-on-correctness"
+    "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/014-idempotency-flag-on-correctness",
+    "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/015-retrieval-gating-and-recall-recovery",
+    "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence-research",
+    "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/017-search-and-output-intelligence-implementation",
+    "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/018-reindex-scan-responsiveness-and-cancellation",
+    "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/019-maintenance-grace-daemon-survives-reelection",
+    "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/020-maintenance-grace-background-embedding",
+    "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/021-cooperative-heavy-phases"
   ],
   "manual": {
     "depends_on": [],
@@ -98,13 +105,13 @@
     ],
     "causal_summary": "The bulk of 027 hardens the Spec Kit memory store and its retrieval path: write-path safety, incremental index and causal lifecycle, semantic trigger matching, learning feedback reducers, derived-memory hardening, retrieval observability, session continuity, and vector/BM25 search resilience. These share the memory subsystem and a single deployment doctrine (results-affecting features default-off, protections always-on), so they belong under one themed parent.",
     "created_at": "2026-06-14T00:00:00Z",
-    "last_save_at": "2026-06-15T09:09:34.758Z",
+    "last_save_at": "2026-06-17T19:57:25.051Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "last_active_child_id": null,
-    "last_active_at": null
+    "last_active_child_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/020-maintenance-grace-background-embedding",
+    "last_active_at": "2026-06-17T13:56:36.902Z"
   }
 }

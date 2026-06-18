@@ -47,10 +47,10 @@
       "mcp_server/lib/search/query-expander.ts",
       "mcp_server/lib/search/recovery-payload.ts",
       "mcp_server/tests/generic-query-deep-routing.vitest.ts",
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "implementation-summary.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -78,6 +78,12 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
@@ -96,19 +102,7 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -138,6 +132,12 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement Generic",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -150,7 +150,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Escalate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Library",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -162,13 +168,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow The",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 3 (S3): generic-query deep routing - escalate low-signal short queries to full channels + expansion with no new LLM calls, append synonym-expansion recovery suggestions, and enrich the domain synonym map. Shipped.",
+    "causal_summary": "This is **Phase 3** of the search-and-output-intelligence implementation: generic-query deep routing (S3).",
     "created_at": "2026-06-17T19:57:25.103Z",
-    "last_save_at": "2026-06-17T19:57:25.103Z",
+    "last_save_at": "2026-06-18T12:37:50.232Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -45,10 +45,10 @@
     "key_files": [
       ".opencode/commands/memory/search.md",
       ".opencode/commands/memory/assets/search_presentation.txt",
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "implementation-summary.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -61,6 +61,12 @@
         "name": "search_presentation.txt",
         "kind": "file",
         "path": ".opencode/commands/memory/assets/search_presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -82,19 +88,7 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -124,6 +118,12 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -136,7 +136,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Strengthen",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Command",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -149,12 +155,6 @@
       },
       {
         "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 7 (O2): /memory:search output surface-parity - mandate similarity (0-1, two decimals) as the sole rendered metric, ban confidence/percentage, name five core slots, and add a surface-parity clause so every surface renders comparable rows. Shipped.",
+    "causal_summary": "This is **Phase 7** of the search-and-output-intelligence implementation: `/memory:search` output surface-parity (recommendations #4/#5 / O2).",
     "created_at": "2026-06-17T19:57:25.108Z",
-    "last_save_at": "2026-06-17T19:57:25.108Z",
+    "last_save_at": "2026-06-18T12:37:50.254Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

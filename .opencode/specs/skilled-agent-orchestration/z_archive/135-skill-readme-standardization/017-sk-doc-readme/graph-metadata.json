@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/135-skill-readme-standardization/017-sk-doc-readme",
-  "spec_folder": "skilled-agent-orchestration/135-skill-readme-standardization/017-sk-doc-readme",
-  "parent_id": "skilled-agent-orchestration/135-skill-readme-standardization",
+  "packet_id": "skilled-agent-orchestration/z_archive/135-skill-readme-standardization/017-sk-doc-readme",
+  "spec_folder": "skilled-agent-orchestration/z_archive/135-skill-readme-standardization/017-sk-doc-readme",
+  "parent_id": "skilled-agent-orchestration/z_archive/135-skill-readme-standardization",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "This is **Phase 17**, the third skill in Batch D (sk-*), and the doc-standards skill itself.",
     "created_at": "2026-06-07T14:25:14Z",
-    "last_save_at": "2026-06-08T08:50:25.389Z",
+    "last_save_at": "2026-06-17T19:57:23.842Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

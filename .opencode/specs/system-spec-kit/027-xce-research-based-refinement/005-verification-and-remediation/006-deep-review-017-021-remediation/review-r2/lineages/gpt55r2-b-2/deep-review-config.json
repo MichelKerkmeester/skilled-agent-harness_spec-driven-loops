@@ -1,0 +1,101 @@
+{
+  "topic": "Review: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/B-rest-of-002",
+  "sessionId": "fanout-gpt55r2-b-2-1781761339355-o7qylx",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 1,
+  "convergenceThreshold": 0.1,
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/B-rest-of-002",
+  "artifactDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/lineages/gpt55r2-b-2",
+  "createdAt": "2026-06-18T05:50:43Z",
+  "status": "complete",
+  "stopReason": "maxIterationsReached",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "openai/gpt-5.5-fast",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/B-rest-of-002",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "reviewScopeFiles": [
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-retention-sweep.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-list.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/ops/job-store.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/storage/transaction-manager.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts"
+  ],
+  "fileProtection": {
+    "deep-review-config.json": "immutable-after-init",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  }
+}

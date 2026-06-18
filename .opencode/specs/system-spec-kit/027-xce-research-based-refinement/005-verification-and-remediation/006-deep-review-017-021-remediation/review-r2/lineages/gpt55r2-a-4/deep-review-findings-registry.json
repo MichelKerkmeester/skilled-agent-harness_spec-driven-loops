@@ -1,0 +1,111 @@
+{
+  "sessionId": "fanout-gpt55r2-a-4-1781761314338-6u1ztm",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "Community fallback ignores specFolder scope",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+      "line": 1171,
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/community-search.ts:124-170",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1160-1218",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:271-302",
+        ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:846-850"
+      ],
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "content_hash": "F001-community-specfolder-scope-v1",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Summary embedding channel ranks a global capped prefix before scoped filtering",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/lib/search/memory-summaries.ts",
+      "line": 167,
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/memory-summaries.ts:167-192",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:139-147",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1309-1348",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:84-92",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:452-455",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:183-205"
+      ],
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "content_hash": "F002-summary-global-topk-scope-v1",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": false
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 0
+  },
+  "openFindingsCount": 2,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.45,
+  "graphConvergenceScore": 0,
+  "graphDecision": "CONTINUE",
+  "graphBlockers": [],
+  "corruptionWarnings": [],
+  "searchCoverage": {
+    "graphCoverageMode": "graphless_fallback",
+    "requiredBugClasses": [
+      "scope_filtering",
+      "scope_then_limit",
+      "read_path_resilience"
+    ],
+    "covered": [
+      "scope_filtering",
+      "scope_then_limit"
+    ]
+  },
+  "candidateCoverage": {
+    "covered": [
+      "scope_filtering",
+      "scope_then_limit"
+    ],
+    "missing": [
+      "read_path_resilience"
+    ]
+  },
+  "searchDebt": [
+    "Single-iteration cap left maintainability and additional read-path resilience paths unswept."
+  ],
+  "cleanSearchProof": []
+}

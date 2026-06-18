@@ -1,0 +1,30 @@
+Act as a markdown documentation-fixer (seat AF03). Spec folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation (PRE-APPROVED at Gate 3 — make the edits below directly with the Edit/Write tools; do NOT re-ask Gate 3 and do NOT ask the user anything).
+
+You fix STALE content in README files so they match current repo reality. SURGICAL edits only — fix the cited claims, keep everything else intact. Find the correct current value by reading the cited file PLUS its SKILL.md / source / config before editing.
+
+ALLOWED WRITE PATHS (edit ONLY these files):
+- .opencode/skills/deep-loop-runtime/tests/integration/README.md
+- .opencode/skills/deep-loop-runtime/tests/unit/README.md
+- .opencode/skills/deep-loop-workflows/SKILL.md
+- .opencode/skills/deep-loop-workflows/ai-council/README.md
+- .opencode/skills/deep-loop-workflows/ai-council/scripts/README.md
+BANNED: no delete, no rename, no new files, no edits outside the listed files, no --no-verify.
+
+DO-NOT-FIX (binding — confirmed false positives; leave untouched):
+- The CLI front-door "37 tools" figure: `spec-memory.cjs` CLI is genuinely 37; only the MCP-server/daemon surface is 39. Fix a "37" ONLY when the sentence is about the MCP server/daemon, NOT the CLI front door.
+- Any `// Feature catalog:` comments and TSDoc `@example` values.
+- Any cited claim that does NOT actually reproduce against the live file — mark it refuted; never invent a fix.
+
+FINDINGS TO FIX (confirm-then-fix each; P0/P1/P2 all in scope, including cosmetic/style):
+- [P1] .opencode/skills/deep-loop-runtime/tests/integration/README.md:14 — Integration test table misses council graph tests | stale: The integration README contents table lists only convergence/upsert/query/status scripts plus review-depth graph, convergence and validator fixtures. -> correct: The current integration suite includes council-graph-script.vitest.ts and council-graph-value-scenarios.vitest.ts for council graph CLI behavior and value scenarios.
+- [P1] .opencode/skills/deep-loop-runtime/tests/unit/README.md:12 — Unit test README is materially incomplete | stale: The unit README says unit tests cover lib/deep-loop and lib/coverage-graph only, and its table stops at the older core module list. -> correct: The current unit suite also covers lifecycle taxonomy, host-driven improvement, CLI writer locks, fanout, evidence-contract, council-graph-query and related runtime contracts.
+- [P1] .opencode/skills/deep-loop-workflows/SKILL.md:36 — Advisor runtime does not read mode registry | stale: `mode-registry.json` is the single source of truth; the hub, commands, and advisor all read it and none re-derive the mapping. -> correct: The registry is the source projection, but the advisor keeps hardcoded Python/TypeScript projection maps in sync via a CI drift guard and explicitly does not read `mode-registry.json` at runtime.
+- [P1] .opencode/skills/deep-loop-workflows/ai-council/README.md:70 — Council persistence ownership is stale | stale: The caller writes artifacts from the council report by running `persist-artifacts.cjs`. -> correct: The `@ai-council` agent is scoped-write and persists the canonical `ai-council/**` artifact set directly; the CLI helper is fallback for non-council callers, and a dispatching parent does not need to invoke it for normal persistence.
+- [P1] .opencode/skills/deep-loop-workflows/ai-council/README.md:127 — Deep-loop roster omits improvement mode | stale: The council shares `deep-loop-runtime` with three sibling skills / all four deep loops. -> correct: The current deep-loop workflow roster has five top-level personas: context, research, review, ai-council, and improvement; improvement includes four command lanes.
+- [P1] .opencode/skills/deep-loop-workflows/ai-council/scripts/README.md:29 — ai-council scripts README omits active orchestrators | stale: The README says this folder has 3 code files and lists only advise-council-completion.cjs, persist-artifacts.cjs, and replay-graph-from-artifacts.cjs. -> correct: The folder also contains orchestrate-session.cjs and orchestrate-topic.cjs, so the direct script set is 5 code files.
+- [P1] .opencode/skills/deep-loop-workflows/ai-council/scripts/README.md:110 — cross-skill related links resolve to dead paths | stale: The README links sk-code and sk-doc via ../../sk-code and ../../sk-doc from inside deep-loop-workflows/ai-council/scripts. -> correct: The actual skill roots are .opencode/skills/sk-code and .opencode/skills/sk-doc; the README's relative paths resolve under deep-loop-workflows/sk-code and deep-loop-workflows/sk-doc, which do not exist.
+
+After editing, re-read each edited line to verify. Your final message MUST be exactly one fenced json block:
+```json
+{"seat":"AF03","fixed":[{"file":"path","claim":"what was stale","after":"what it now says"}],"refuted":[{"file":"path","why":"why skipped"}]}
+```

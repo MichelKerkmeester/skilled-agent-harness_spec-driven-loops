@@ -49,10 +49,10 @@
       "mcp_server/lib/search/search-flags.ts",
       "mcp_server/tests/confidence-calibration.vitest.ts",
       "tests/confidence-calibration.vitest.ts",
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "implementation-summary.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -86,6 +86,12 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
@@ -104,19 +110,7 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -146,6 +140,12 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement Per",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -158,7 +158,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Library",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -170,13 +176,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow Per",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 4 (S4): confidence calibration - (A) a default-ON 0.45/0.55 weight rebalance so relevance dominates per-result confidence, plus (B) flag-gated default-OFF isotonic calibration infra with a corpus-derived proxy seed (unvalidated until real judged traffic). Shipped.",
+    "causal_summary": "This is **Phase 4** of the search-and-output-intelligence implementation: confidence calibration (Problem 6 / S4).",
     "created_at": "2026-06-17T19:57:25.104Z",
-    "last_save_at": "2026-06-17T19:57:25.104Z",
+    "last_save_at": "2026-06-18T12:37:50.236Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,0 +1,19 @@
+{
+  "sessionId": "fanout-gpt55r2-a-smoke-1781760854126-azn2v5",
+  "lineage": "gpt55r2-a-smoke",
+  "artifactDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/lineages/gpt55r2-a-smoke",
+  "phases": {
+    "phase_init": "complete",
+    "phase_main_loop": "complete",
+    "phase_synthesis": "complete"
+  },
+  "resolveArtifactRootRun": false,
+  "stopReason": "maxIterationsReached",
+  "verdict": "CONDITIONAL",
+  "findings": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 0
+  },
+  "timestamp": "2026-06-18T05:37:33Z"
+}

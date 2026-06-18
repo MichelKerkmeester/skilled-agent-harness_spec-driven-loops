@@ -1,0 +1,5 @@
+All phases complete. The review loop ran phase_init → phase_main_loop (1 iteration, stopped at `maxIterations=1`) → phase_synthesis, with all canonical artifacts written and confined to the lineage artifact dir. The Save phase (`generate-context.js`) was intentionally skipped because it writes to the target spec folder outside the allowed path; fan-out continuity is handled at merge time.
+
+**Verdict: CONDITIONAL** (P0:0 P1:1 P2:3) — the maintenance-grace mechanism is correct and fails safe (all REQ-001..004 verified in shipped code, no correctness/security defect), but the 019 packet docs drifted from the shipped implementation (extracted reference-counted `maintenance-marker.ts` module, `jobId`→`labels`, `.opencode/bin/` vs `mcp_server/bin/` paths, 60s→180s TTL, stale embedding-queue limitation), so the `spec_code` hard gate is `partial`. Independently confirmed and corroborates sibling `p019-deepseek-1`, with additional drift identified.
+
+FANOUT_LINEAGE_COMPLETE:p019-opus-2

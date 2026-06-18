@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/127-reusable-model-benchmark-framework/001-design-research",
-  "spec_folder": "skilled-agent-orchestration/127-reusable-model-benchmark-framework/001-design-research",
-  "parent_id": "skilled-agent-orchestration/127-reusable-model-benchmark-framework",
+  "packet_id": "skilled-agent-orchestration/z_archive/127-reusable-model-benchmark-framework/001-design-research",
+  "spec_folder": "skilled-agent-orchestration/z_archive/127-reusable-model-benchmark-framework/001-design-research",
+  "parent_id": "skilled-agent-orchestration/z_archive/127-reusable-model-benchmark-framework",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The repo's prompt-framework benchmarks are **one-off, model-specific rigs**: `120/003` (MiniMax, 7 fixtures) and `126/004` (MiMo, lean 2-fixture port) each re-implement fixtures + a dispatch wrapper + scoring. Packet `121` generalized *model-benchmark mode* into deep-improvement Lane B (`run-benchmark.cjs` + `dispatch-model.cjs` + a 5-dim scorer), but the **prompt-framework bake-off, the fixture taxonomy, the multi-dimensional scoring, and the statistical rigor are not yet a reusable framework** — each new model or question still needs new rig code. The `126/004` run also exposed a **correctness-saturation** problem: tractable pure-function fixtures don't separate frontier models, so the benchmark only measured format/brevity.",
     "created_at": "2026-06-02T05:45:33.745Z",
-    "last_save_at": "2026-06-15T09:09:33.032Z",
+    "last_save_at": "2026-06-17T19:57:23.723Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -45,10 +45,10 @@
     "key_files": [
       "mcp_server/lib/search/confidence-scoring.ts",
       "mcp_server/tests/request-quality-aggregation.vitest.ts",
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "implementation-summary.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -61,6 +61,12 @@
         "name": "request-quality-aggregation.vitest.ts",
         "kind": "test",
         "path": "mcp_server/tests/request-quality-aggregation.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -82,19 +88,7 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -124,6 +118,12 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -136,7 +136,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Rewrite",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Library",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -148,13 +154,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow After",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -196,9 +196,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 2 (S2): request-quality aggregation - a top-dominant + margin-aware 'good' verdict with the quality ratio capped at the ranking head, so a strong top hit reads citable and recall expansion no longer depresses the verdict. Shipped.",
+    "causal_summary": "This is **Phase 2** of the search-and-output-intelligence implementation: request-quality aggregation (S2).",
     "created_at": "2026-06-17T19:57:25.102Z",
-    "last_save_at": "2026-06-17T19:57:25.102Z",
+    "last_save_at": "2026-06-18T12:37:50.227Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

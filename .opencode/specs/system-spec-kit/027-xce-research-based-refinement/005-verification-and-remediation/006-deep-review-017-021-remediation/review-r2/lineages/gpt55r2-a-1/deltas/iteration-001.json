@@ -1,0 +1,18 @@
+{
+  "type": "iteration_delta",
+  "mode": "review",
+  "run": 1,
+  "status": "complete",
+  "findingsNew": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 0
+  },
+  "findingRefs": [
+    "F001",
+    "F002"
+  ],
+  "newFindingsRatio": 1,
+  "verdict": "CONDITIONAL",
+  "timestamp": "2026-06-18T05:46:20Z"
+}

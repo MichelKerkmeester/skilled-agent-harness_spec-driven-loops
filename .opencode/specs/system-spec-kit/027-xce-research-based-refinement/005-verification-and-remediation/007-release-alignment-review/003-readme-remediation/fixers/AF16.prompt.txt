@@ -1,0 +1,34 @@
+Act as a markdown documentation-fixer (seat AF16). Spec folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation (PRE-APPROVED at Gate 3 — make the edits below directly with the Edit/Write tools; do NOT re-ask Gate 3 and do NOT ask the user anything).
+
+You fix STALE content in README files so they match current repo reality. SURGICAL edits only — fix the cited claims, keep everything else intact. Find the correct current value by reading the cited file PLUS its SKILL.md / source / config before editing.
+
+ALLOWED WRITE PATHS (edit ONLY these files):
+- .opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/README.md
+- .opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/README.md
+- .opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md
+- .opencode/skills/system-spec-kit/mcp_server/README.md
+- .opencode/skills/system-spec-kit/mcp_server/handlers/README.md
+BANNED: no delete, no rename, no new files, no edits outside the listed files, no --no-verify.
+
+DO-NOT-FIX (binding — confirmed false positives; leave untouched):
+- The CLI front-door "37 tools" figure: `spec-memory.cjs` CLI is genuinely 37; only the MCP-server/daemon surface is 39. Fix a "37" ONLY when the sentence is about the MCP server/daemon, NOT the CLI front door.
+- Any `// Feature catalog:` comments and TSDoc `@example` values.
+- Any cited claim that does NOT actually reproduce against the live file — mark it refuted; never invent a fix.
+
+FINDINGS TO FIX (confirm-then-fix each; P0/P1/P2 all in scope, including cosmetic/style):
+- [P1] .opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/README.md:7 — Doctor README omits current route targets | stale: The README frames the /doctor command surface as the listed memory, causal-graph, deep-loop, code-graph, update, migration, and mcp scenarios. -> correct: The current route manifest also includes embeddings, skill-advisor, skill-budget, parent-skill, and fable-mode targets.
+- [P1] .opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/README.md:13 — Local-LLM README hard-codes retired BGE defaults | stale: The README describes BGE local fallback via Ollama and a BGE GGUF cache path as the embedding backbone. -> correct: The current local default is Ollama nomic-embed-text-v1.5; hf-local defaults to nomic-ai/nomic-embed-text-v1.5 and downloads through the Hugging Face hub cache.
+- [P1] .opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/README.md:21 — MCP usage model ignores daemon-backed CLI front door | stale: The README says Memory MCP is never used by humans typing directly and is always used by AI assistants invoking each other. -> correct: The memory surface is dual-stack: spec-memory.cjs is a full-parity CLI front door for hooks, cron, CI, operator shell diagnostics, and transport-down recovery in addition to MCP sessions.
+- [P1] .opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/README.md:100 — README allows invalid per-scenario PARTIAL verdict | stale: The category README lists PARTIAL as a scenario grading outcome. -> correct: The root playbook allows PASS, FAIL, SKIP, and UNAUTOMATABLE for scenarios; PARTIAL is only a packet-level or aggregate feature state.
+- [P1] .opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md:715 — Embedding/API scenario expects obsolete cloud-key precedence | stale: The playbook scenario asks operators to validate provider rules including cloud key precedence. -> correct: Cloud providers are not selected just because API keys exist; local-first auto mode prefers Ollama/hf-local unless EMBEDDINGS_PROVIDER explicitly selects a cloud provider or a later fallback path is reached.
+- [P1] .opencode/skills/system-spec-kit/mcp_server/README.md:25 — Copilot prompt hook claim overstates current wiring | stale: Every prompt-submit hook in Claude, Codex, OpenCode, and Copilot calls into this package for its startup brief. -> correct: Current source hook folders are Claude/Codex; OpenCode uses the plugin bridge. The checked-in Copilot .github hook config points at a user-local Superset hook and is documented as test infrastructure only, with no executable code or subdirectories in that folder.
+- [P1] .opencode/skills/system-spec-kit/mcp_server/README.md:25 — Prompt-submit hook surface is overstated | stale: Every prompt-submit hook in Claude, Codex, OpenCode, and Copilot calls into this package for its startup brief. -> correct: Claude and Codex prompt-submit shims now delegate advisor delivery to system-skill-advisor; startup context is handled separately by session-start/session-prime paths, and OpenCode uses the plugin bridge rather than a mcp_server prompt-submit hook.
+- [P1] .opencode/skills/system-spec-kit/mcp_server/README.md:109 — Default scan scope claim is wrong | stale: Default scope is end-user repo only and excludes .opencode/skills/** and active spec folders by default. -> correct: memory_index_scan defaults includeConstitutional=true for .opencode/skills/*/constitutional/ and includeSpecDocs=true for .opencode/specs/ documents; background scan status/cancel is also part of the current schema.
+- [P1] .opencode/skills/system-spec-kit/mcp_server/handlers/README.md:79 — Background index scan handlers missing from handler map | stale: The handler tree maps memory_index_scan to memory-index.ts but omits status/cancel job handlers. -> correct: Background memory_index_scan is implemented with separate memory_index_scan_status and memory_index_scan_cancel handlers in memory-index-scan-jobs.ts.
+- [P1] .opencode/skills/system-spec-kit/mcp_server/handlers/README.md:79 — Background scan job handlers missing | stale: The handler tree documents memory-index.ts as the scan handler but does not include the background memory_index_scan status/cancel handler module. -> correct: The background memory_index_scan status/cancel surface lives in handlers/memory-index-scan-jobs.ts and backs memory_index_scan_status plus memory_index_scan_cancel.
+- [P1] .opencode/skills/system-spec-kit/mcp_server/handlers/README.md:115 — memory_health count-field claim is stale | stale: memory_health data.routing does not currently expose per-channel count fields. -> correct: memory_health data.routing now includes channelInvocationCounts and channelInvocationRates, plus graph and degree contribution counters.
+
+After editing, re-read each edited line to verify. Your final message MUST be exactly one fenced json block:
+```json
+{"seat":"AF16","fixed":[{"file":"path","claim":"what was stale","after":"what it now says"}],"refuted":[{"file":"path","why":"why skipped"}]}
+```

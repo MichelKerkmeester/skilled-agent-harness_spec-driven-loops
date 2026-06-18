@@ -1,0 +1,76 @@
+{
+  "sessionId": "fanout-gpt55r2-a-8-1781761314338-6u1ztm",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P0",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "Retrieval rescue bypasses governed scope after Stage 1 filtering",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/lib/search/rerank/retrieval-rescue.ts",
+      "line": 302,
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1072-1091",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts:1369-1373",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/rerank/retrieval-rescue.ts:292-319",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/rerank/retrieval-rescue.ts:338-363"
+      ],
+      "finding_class": "contract_safety",
+      "content_hash": "5393c6fbc30dc2bfe280e108c4b9b50e2d7a1de6840ea419669040d0787d852f",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P0", "reason": "Initial discovery; governed retrieval rows can be appended after the scoped Stage 1 candidate set." }
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Community fallback appends rows outside caller retrieval filters",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+      "line": 1177,
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1177-1183",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1192-1198",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1214-1219",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/community-search.ts:124-128"
+      ],
+      "finding_class": "contract_safety",
+      "content_hash": "1cdd203d6e8a196df5f8da0c0f4824d657ae1a9e63048e34e59c95afb63d1852",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P1", "reason": "Initial discovery; fallback rows are appended without replaying specFolder/tier/context filters." }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": false
+  },
+  "findingsBySeverity": {
+    "P0": 1,
+    "P1": 1,
+    "P2": 0
+  },
+  "openFindingsCount": 2,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.75,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

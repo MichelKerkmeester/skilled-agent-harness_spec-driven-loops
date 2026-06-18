@@ -175,7 +175,7 @@
         "source": "derived"
       },
       {
-        "name": "Candidate Catalog Master",
+        "name": "Broadening Addendum",
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
@@ -183,7 +183,7 @@
     ],
     "causal_summary": "The Spec-Kit Memory MCP fuses five channels (vector, FTS5, BM25, causal-graph, degree) via RRF with FSRS power-law decay, but has no query-class routing, uses flag-based fact currentness, blocks on synchronous consolidation, and does not guarantee deterministic recall serialization. The external systems encode mature alternatives to each.",
     "created_at": "2026-06-16T14:27:21.651Z",
-    "last_save_at": "2026-06-16T17:00:43.967Z",
+    "last_save_at": "2026-06-17T19:57:25.213Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

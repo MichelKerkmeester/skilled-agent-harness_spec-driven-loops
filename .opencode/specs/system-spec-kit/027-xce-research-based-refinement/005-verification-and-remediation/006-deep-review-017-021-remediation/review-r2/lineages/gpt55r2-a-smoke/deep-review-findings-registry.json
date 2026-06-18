@@ -1,0 +1,88 @@
+{
+  "sessionId": "fanout-gpt55r2-a-smoke-1781760854126-azn2v5",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Summary embedding search ranks only an arbitrary capped prefix",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/lib/search/memory-summaries.ts",
+      "line": 167,
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/memory-summaries.ts:167-175",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/memory-summaries.ts:190-192",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:309-314"
+      ],
+      "finding_class": "bounded-prefix-recall-loss",
+      "content_hash": "c7a8c1521e9cfbec",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery with direct code evidence"
+        }
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Summary lane uses weaker active/scope filtering than the primary retrieval lanes",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts",
+      "line": 1322,
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:1322-1343",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts:139-147",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:84-92",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:432-455",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:183-205"
+      ],
+      "finding_class": "retrieval-scope-drift",
+      "content_hash": "e5df67a72825bc7d",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery with direct code evidence"
+        }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": false,
+    "performance": true,
+    "concurrency-cancellation": false,
+    "maintainability": false,
+    "traceability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 0
+  },
+  "openFindingsCount": 2,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.18,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

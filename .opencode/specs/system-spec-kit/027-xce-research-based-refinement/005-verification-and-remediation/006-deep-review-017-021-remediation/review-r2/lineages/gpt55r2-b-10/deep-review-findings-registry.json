@@ -1,0 +1,105 @@
+{
+  "schemaVersion": "deep-review-findings-registry/v1",
+  "lineageLabel": "gpt55r2-b-10",
+  "sessionId": "fanout-gpt55r2-b-10-1781761339355-o7qylx",
+  "generatedAt": "2026-06-18T06:36:56Z",
+  "verdict": "fail",
+  "counts": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 0
+  },
+  "findings": [
+    {
+      "id": "DR-B-002-GPT55R2-B10-001",
+      "severity": "P1",
+      "status": "active",
+      "title": "Soft-delete tombstones remain visible through active retrieval and listing surfaces",
+      "dimension": "retention-safety",
+      "confidence": 0.94,
+      "summary": "When SPECKIT_SOFT_DELETE_TOMBSTONES is enabled and the schema has deleted_at, memory_delete and memory_bulk_delete update only memory_index.deleted_at. They do not remove active_memory_projection rows, vector payloads, memory_fts rows, BM25 documents, or caches. Multiple active read paths then omit m.deleted_at IS NULL and can keep returning tombstoned memories.",
+      "evidence": [
+        {
+          "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts",
+          "lines": "78-99",
+          "detail": "The feature-gated tombstone path runs UPDATE memory_index SET deleted_at and returns without calling vectorIndex.deleteMemory."
+        },
+        {
+          "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts",
+          "lines": "50-70,245-248",
+          "detail": "Bulk delete uses the same tombstone helper inside the transaction."
+        },
+        {
+          "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts",
+          "lines": "727-779",
+          "detail": "The hard-delete path removes vector payloads, ancillary rows, embedding cache entries, memory_index row, search caches, and BM25 documents; tombstoning bypasses this cleanup."
+        },
+        {
+          "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts",
+          "lines": "410-455,553-568,273-283,1332-1337",
+          "detail": "Vector search, multi-concept search, folder listing, and usage stats join or read active rows without a deleted_at predicate."
+        },
+        {
+          "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts",
+          "lines": "197-204",
+          "detail": "FTS5 search joins memory_fts to memory_index without filtering m.deleted_at IS NULL."
+        },
+        {
+          "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
+          "lines": "720-743,2207-2223",
+          "detail": "Trigger and structural retrieval build active result sets without filtering deleted tombstones."
+        },
+        {
+          "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts",
+          "lines": "169-187,270-282",
+          "detail": "Graph/causal FTS and LIKE seed paths also lack deleted_at filters."
+        }
+      ],
+      "impact": "A caller can delete a memory, receive successful deletion semantics, and still have the record appear in search, trigger, graph, folder, or stats surfaces. This is a retention/privacy correctness failure for the soft-delete mode and can also poison downstream ranking through stale projections and vectors.",
+      "recommendedFix": "Make tombstoneMemory share deletion side effects: remove active_memory_projection rows, vector rows, FTS/BM25 documents, ancillary graph/entity rows, and invalidate caches, or uniformly add deleted_at IS NULL predicates to every active read path and ensure active projections exclude tombstones. Add regression tests for memory_delete and memory_bulk_delete with SPECKIT_SOFT_DELETE_TOMBSTONES=true across vector_search, fts5Bm25Search, trigger search, get_memories_by_folder, and memory_ingest/status-relevant stats."
+    },
+    {
+      "id": "DR-B-002-GPT55R2-B10-002",
+      "severity": "P1",
+      "status": "active",
+      "title": "Async ingest reports rejected/error indexing results as successful files",
+      "dimension": "operator-observability",
+      "confidence": 0.92,
+      "summary": "The async ingest queue callback awaits indexSingleFile but discards the returned IndexResult. The job queue treats only thrown exceptions as per-file failures, increments filesProcessed afterward, and marks the job complete when failCount remains zero. Several indexing failure modes are returned as status='rejected' or status='error' rather than thrown, so operators can see a complete job with no errors while files were not indexed.",
+      "evidence": [
+        {
+          "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+          "lines": "2199-2210",
+          "detail": "initIngestJobQueue configures processFile to await indexSingleFile(...) and ignore its returned result."
+        },
+        {
+          "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+          "lines": "325-343",
+          "detail": "indexSingleFile returns the IndexResult from indexMemoryFile."
+        },
+        {
+          "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
+          "lines": "2200-2217,2362-2378,2438-2453,2496-2501,2880-2901",
+          "detail": "indexMemoryFile/processPreparedMemory returns rejected/error IndexResult objects for quality, sufficiency, reconsolidation, and chunked supersession failures instead of throwing."
+        },
+        {
+          "path": ".opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts",
+          "lines": "632-649,657-663",
+          "detail": "The worker catches exceptions, appends errors only in catch, increments processed, and marks the job complete when failCount is zero. Returned failed statuses never affect failCount."
+        },
+        {
+          "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts",
+          "lines": "105-121,310-313",
+          "detail": "memory_ingest_status surfaces only job.state, filesProcessed, and job.errors, so ignored IndexResult failures are invisible to callers."
+        },
+        {
+          "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+          "lines": "1073-1085,1141-1166",
+          "detail": "The synchronous scan path already treats non-success statuses as failures and exposes rejection details, demonstrating the missing async ingest mapping."
+        }
+      ],
+      "impact": "Batch ingest can silently drop files rejected by quality/sufficiency/reconsolidation gates while presenting a complete, error-free job. Operators then have no retry signal and downstream memory coverage is incomplete. All-files-rejected jobs can still complete when none of the rejections throw.",
+      "recommendedFix": "Have the ingest processFile callback inspect IndexResult and throw or return a typed per-file outcome for any status outside the successful set used by memory_index_scan. Append rejectionCode/rejectionReason/error to job.errors, do not count rejected files as successful, and add tests where indexSingleFile returns rejected/error without throwing."
+    }
+  ]
+}

@@ -105,7 +105,7 @@
         "source": "derived"
       },
       {
-        "name": "Candidate Catalog Full",
+        "name": "Broadening Addendum",
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
@@ -113,7 +113,7 @@
     ],
     "causal_summary": "The code graph (tree-sitter→SQLite typed edges) mutates edges destructively on incremental reindex, lacks idempotent edge IDs and a hard readiness watermark, ranks impact with flat edge walks, and skips doc-lane symbols. Aionforge encodes non-destructive bi-temporal lifecycle, content-addressed IDs, quarantine-not-wedge recovery, and generation-checked readiness.",
     "created_at": "2026-06-16T14:27:21.651Z",
-    "last_save_at": "2026-06-16T17:00:43.969Z",
+    "last_save_at": "2026-06-17T19:57:25.214Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

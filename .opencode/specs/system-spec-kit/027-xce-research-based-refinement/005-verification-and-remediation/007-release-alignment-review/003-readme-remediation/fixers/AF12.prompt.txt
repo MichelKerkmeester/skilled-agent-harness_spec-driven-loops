@@ -1,0 +1,33 @@
+Act as a markdown documentation-fixer (seat AF12). Spec folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation (PRE-APPROVED at Gate 3 — make the edits below directly with the Edit/Write tools; do NOT re-ask Gate 3 and do NOT ask the user anything).
+
+You fix STALE content in README files so they match current repo reality. SURGICAL edits only — fix the cited claims, keep everything else intact. Find the correct current value by reading the cited file PLUS its SKILL.md / source / config before editing.
+
+ALLOWED WRITE PATHS (edit ONLY these files):
+- .opencode/skills/system-code-graph/mcp_server/lib/README.md
+- .opencode/skills/system-code-graph/mcp_server/lib/ipc/README.md
+- .opencode/skills/system-code-graph/mcp_server/plugin_bridges/README.md
+- .opencode/skills/system-code-graph/mcp_server/tests/handlers/README.md
+- .opencode/skills/system-skill-advisor/README.md
+BANNED: no delete, no rename, no new files, no edits outside the listed files, no --no-verify.
+
+DO-NOT-FIX (binding — confirmed false positives; leave untouched):
+- The CLI front-door "37 tools" figure: `spec-memory.cjs` CLI is genuinely 37; only the MCP-server/daemon surface is 39. Fix a "37" ONLY when the sentence is about the MCP server/daemon, NOT the CLI front door.
+- Any `// Feature catalog:` comments and TSDoc `@example` values.
+- Any cited claim that does NOT actually reproduce against the live file — mark it refuted; never invent a fix.
+
+FINDINGS TO FIX (confirm-then-fix each; P0/P1/P2 all in scope, including cosmetic/style):
+- [P1] .opencode/skills/system-code-graph/mcp_server/lib/README.md:25 — Config doc rows are not .opencode-only | stale: README says JSON/JSONC/YAML/YML/TOML config files can be registered as doc rows when `.opencode/` folders are explicitly opted in, and Markdown docs are not indexed. -> correct: Default include globs include JSON/JSONC/YAML/YML/TOML generally; Markdown is excluded from defaults but `detectLanguage()` still maps `.md` to `doc` if a caller explicitly includes it.
+- [P2] .opencode/skills/system-code-graph/mcp_server/lib/README.md:114 — Library tree omits active modules | stale: Directory tree presents current `lib/` topology but omits active modules such as `symbol-bm25-resolver.ts`, `cross-file-edge-resolver.ts` and `config-defaults.ts`. -> correct: Those modules exist and own BM25 symbol fallback, cross-file call edge resolution and config defaults.
+- [P1] .opencode/skills/system-code-graph/mcp_server/lib/ipc/README.md:28 — Secondary-client default is 64, not 8 | stale: README says secondary clients are capped by `SPECKIT_MAX_SECONDARY_CLIENTS`, defaulting to `8`. -> correct: `DEFAULT_MAX_SECONDARY_CLIENTS` is `64`.
+- [P1] .opencode/skills/system-code-graph/mcp_server/plugin_bridges/README.md:13 — Plugin bridge no longer calls session resume | stale: README says the bridge initializes code-graph runtime, calls session resume and outputs a transport payload. -> correct: The bridge defaults to `code-graph-status`, blocks maintenance tools, warm-probes the daemon and spawns `code-index.cjs --warm-only`; session-resume remains outside this bridge.
+- [P2] .opencode/skills/system-code-graph/mcp_server/plugin_bridges/README.md:111 — Naming note points to old packet ADR | stale: Naming note says to see ADR-002 in the 036 packet. -> correct: Current name mapping is documented in `references/runtime/naming_conventions.md`, including plugin bridge, CLI shim and `mk-code-index` identifiers.
+- [P2] .opencode/skills/system-code-graph/mcp_server/tests/handlers/README.md:89 — Generated code README points to 026 audit output | stale: Audit example says expected output is findings recorded in the 026 audit report; troubleshooting says rerun the 026 audit check. -> correct: The folder now contains current `code_graph_classify_query_intent` dispatch tests for the 8-tool surface; validation should use package tests, not a historical 026 audit.
+- [P1] .opencode/skills/system-skill-advisor/README.md:100 — advisor_recommend option list is incomplete | stale: `advisor_recommend` accepts three options: `topK`, `includeAttribution`, and `includeAbstainReasons`. -> correct: `advisor_recommend.options` currently also accepts `confidenceThreshold` and `uncertaintyThreshold`, so the live schema has five option fields.
+- [P1] .opencode/skills/system-skill-advisor/README.md:110 — Trusted mutation list omits propagate apply | stale: Explicit trusted mutation paths remain `advisor_rebuild` and `skill_graph_scan`. -> correct: The CLI also requires trusted authority for real `skill_graph_propagate_enhances` apply writes (`mode: apply` with `dryRun !== true`).
+- [P1] .opencode/skills/system-skill-advisor/README.md:135 — Propagate tool is not wholly internal or trust-gated | stale: The server exposes nine tools, eight public plus one trusted-caller-gated internal tool. -> correct: All 9 tool definitions are returned by ListTools; `skill_graph_propagate_enhances` is only trust-gated for the mutating apply path, while report/propose and dry-run apply are read-safe.
+- [P1] .opencode/skills/system-skill-advisor/README.md:177 — advisor_validate thresholds are stale | stale: Troubleshooting says corpus top-1 below 80.5% is the regression line, and verification says holdout top-1 is 77.5%. -> correct: The current validation thresholds are `FULL_CORPUS_THRESHOLD = 0.75` and `HOLDOUT_THRESHOLD = 0.725`.
+
+After editing, re-read each edited line to verify. Your final message MUST be exactly one fenced json block:
+```json
+{"seat":"AF12","fixed":[{"file":"path","claim":"what was stale","after":"what it now says"}],"refuted":[{"file":"path","why":"why skipped"}]}
+```

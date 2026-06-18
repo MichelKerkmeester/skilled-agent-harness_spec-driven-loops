@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/134-deep-context-gathering/003-runtime-feature-utilization",
-  "spec_folder": "skilled-agent-orchestration/134-deep-context-gathering/003-runtime-feature-utilization",
-  "parent_id": "skilled-agent-orchestration/134-deep-context-gathering",
+  "packet_id": "skilled-agent-orchestration/z_archive/134-deep-context-gathering/003-runtime-feature-utilization",
+  "spec_folder": "skilled-agent-orchestration/z_archive/134-deep-context-gathering/003-runtime-feature-utilization",
+  "parent_id": "skilled-agent-orchestration/z_archive/134-deep-context-gathering",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "A cross-skill audit of the deep skill family (`deep-research`, `deep-review`, `deep-context`, `deep-ai-council`, `deep-improvement`) against the `deep-loop-runtime` feature catalogue revealed three exploitable gaps: `deep-improvement` used hand-rolled, non-atomic JSONL writes with a silent-drop pattern; `deep-review` had no loop-lock, enabling a concurrent-run race; and `deep-context`'s executor-audit env was prose-only. Three targeted fixes closed these gaps. Five deliberate non-fixes (judged over-engineering after a cli-opencode architect consult and two independent confidence-gate audits) are recorded in `decision-record.md` as accepted ADRs.",
     "created_at": "2026-06-06T23:59:00.000Z",
-    "last_save_at": "2026-06-15T09:09:33.107Z",
+    "last_save_at": "2026-06-17T19:57:23.811Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

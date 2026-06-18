@@ -1,0 +1,56 @@
+{
+  "sessionId": "fanout-gpt55-p021b-2-1781755522521-77gcjs",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Live reindex completion claim does not satisfy vec == fts success criterion",
+      "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/021-cooperative-heavy-phases/implementation-summary.md",
+      "line": 96,
+      "evidence": [
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/021-cooperative-heavy-phases/spec.md:149",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/021-cooperative-heavy-phases/implementation-summary.md:96"
+      ],
+      "finding_class": "spec-evidence-contradiction",
+      "content_hash": "15fecd3db677d7dc57a09ae0215a7a3bed537d3f760e63100dd848ef5bdddd80",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": false,
+    "security": false,
+    "traceability": true,
+    "maintainability": false
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 0
+  },
+  "openFindingsCount": 1,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.25,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

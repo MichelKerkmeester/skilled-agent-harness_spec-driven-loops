@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/130-prompt-knowledge-layering/006-thin-and-standardize-cli-cards",
-  "spec_folder": "skilled-agent-orchestration/130-prompt-knowledge-layering/006-thin-and-standardize-cli-cards",
-  "parent_id": "skilled-agent-orchestration/130-prompt-knowledge-layering",
+  "packet_id": "skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering/006-thin-and-standardize-cli-cards",
+  "spec_folder": "skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering/006-thin-and-standardize-cli-cards",
+  "parent_id": "skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "This is **Phase 6** of the Prompt-knowledge layering across CLI skills, sk-prompt frameworks, and the sk-prompt-small-model model-craft hub specification.",
     "created_at": "2026-06-05T12:47:32.514Z",
-    "last_save_at": "2026-06-08T17:32:20.095Z",
+    "last_save_at": "2026-06-17T19:57:23.747Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

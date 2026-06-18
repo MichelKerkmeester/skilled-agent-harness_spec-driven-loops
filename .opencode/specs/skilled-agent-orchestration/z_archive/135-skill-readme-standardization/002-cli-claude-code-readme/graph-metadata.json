@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/135-skill-readme-standardization/002-cli-claude-code-readme",
-  "spec_folder": "skilled-agent-orchestration/135-skill-readme-standardization/002-cli-claude-code-readme",
-  "parent_id": "skilled-agent-orchestration/135-skill-readme-standardization",
+  "packet_id": "skilled-agent-orchestration/z_archive/135-skill-readme-standardization/002-cli-claude-code-readme",
+  "spec_folder": "skilled-agent-orchestration/z_archive/135-skill-readme-standardization/002-cli-claude-code-readme",
+  "parent_id": "skilled-agent-orchestration/z_archive/135-skill-readme-standardization",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "This is **Phase 2** of the skill README standardization, the first skill rewritten under the locked template.",
     "created_at": "2026-06-07T09:30:52Z",
-    "last_save_at": "2026-06-08T08:50:25.367Z",
+    "last_save_at": "2026-06-17T19:57:23.825Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

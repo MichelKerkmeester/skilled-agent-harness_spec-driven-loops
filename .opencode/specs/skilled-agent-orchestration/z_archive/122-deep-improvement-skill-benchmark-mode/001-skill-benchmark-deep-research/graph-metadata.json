@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/001-skill-benchmark-deep-research",
-  "spec_folder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/001-skill-benchmark-deep-research",
-  "parent_id": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode",
+  "packet_id": "skilled-agent-orchestration/z_archive/122-deep-improvement-skill-benchmark-mode/001-skill-benchmark-deep-research",
+  "spec_folder": "skilled-agent-orchestration/z_archive/122-deep-improvement-skill-benchmark-mode/001-skill-benchmark-deep-research",
+  "parent_id": "skilled-agent-orchestration/z_archive/122-deep-improvement-skill-benchmark-mode",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Run a multi-model deep-research loop to answer the open questions that gate the design of **Lane C (skill-benchmark)** and to produce an exhaustive **rename impact map** for `deep-agent-improvement → deep-improvement`. Findings feed Phase 002 (rename) and Phase 003 (Lane C design + build).",
     "created_at": "2026-05-30T07:27:05.679Z",
-    "last_save_at": "2026-05-30T19:40:10.382Z",
+    "last_save_at": "2026-06-17T19:57:23.671Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

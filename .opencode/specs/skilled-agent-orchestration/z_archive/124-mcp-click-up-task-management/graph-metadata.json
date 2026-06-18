@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/124-mcp-click-up-task-management",
-  "spec_folder": "skilled-agent-orchestration/124-mcp-click-up-task-management",
+  "packet_id": "skilled-agent-orchestration/z_archive/124-mcp-click-up-task-management",
+  "spec_folder": "skilled-agent-orchestration/z_archive/124-mcp-click-up-task-management",
   "parent_id": null,
   "children_ids": [],
   "migrated": true,
@@ -218,7 +218,7 @@
     ],
     "causal_summary": "This specification covers the creation of the `mcp-click-up` skill under `.opencode/skills/mcp-click-up/`. The skill gives AI agents a structured, orchestrated interface to ClickUp using two complementary tools: the `cupt` Python CLI for daily task operations, and the official ClickUp MCP server for advanced features. The skill follows the `mcp-chrome-devtools` structural template and embeds its own installation logic.",
     "created_at": "2026-05-31T00:00:00Z",
-    "last_save_at": "2026-06-08T08:50:25.264Z",
+    "last_save_at": "2026-06-17T19:57:23.703Z",
     "save_lineage": "same_pass",
     "last_accessed_at": "2026-05-31T10:00:00Z",
     "source_docs": [

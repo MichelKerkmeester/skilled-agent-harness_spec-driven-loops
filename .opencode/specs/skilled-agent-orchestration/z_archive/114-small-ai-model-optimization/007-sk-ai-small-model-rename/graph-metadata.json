@@ -53,7 +53,6 @@
       ".opencode/skills/sk-prompt-small-model/README.md",
       ".opencode/skills/sk-prompt-small-model/description.json",
       ".opencode/skills/sk-prompt-small-model/graph-metadata.json",
-      ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
       ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite",
       "implementation-summary.md",
       "spec.md",
@@ -128,12 +127,6 @@
         "source": "derived"
       },
       {
-        "name": "pattern-index.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
-        "source": "derived"
-      },
-      {
         "name": "skill-graph.sqlite",
         "kind": "file",
         "path": ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite",
@@ -204,11 +197,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This is **Phase 7** of the 114-small-ai-model-optimization arc. Phases 001-006 shipped on 2026-05-18 and **created** the sentinel skill `sk-small-model` along with every cross-skill `enhances` edge, dispatch-matrix doc, and runtime helper. This phase performs a pure rename of that skill and propagates the new identity across every live reference surface.",
     "created_at": "2026-05-21T06:22:25Z",
-    "last_save_at": "2026-06-08T17:32:20.460Z",
+    "last_save_at": "2026-06-17T19:57:23.474Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

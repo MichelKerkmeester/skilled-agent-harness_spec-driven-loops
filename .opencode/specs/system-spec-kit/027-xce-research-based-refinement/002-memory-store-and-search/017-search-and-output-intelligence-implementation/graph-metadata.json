@@ -51,19 +51,13 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/commands/memory/search.md",
       "spec.md",
-      "plan.md",
+      ".opencode/commands/memory/search.md",
+      "implementation-summary.md",
       "tasks.md",
-      "implementation-summary.md"
+      "plan.md"
     ],
     "entities": [
-      {
-        "name": "search.md",
-        "kind": "doc",
-        "path": ".opencode/commands/memory/search.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -71,9 +65,15 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
+        "name": "search.md",
         "kind": "doc",
-        "path": "plan.md",
+        "path": ".opencode/commands/memory/search.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -83,9 +83,9 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -137,7 +137,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Implement",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Per",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -149,13 +155,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow Detailed",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "This is **Phase 17** of the search-and-output-intelligence work: implementing the prioritized findings from the 016 deep-research (KQ1–KQ5 + recommendations #1–#7) via fresh claude2 Opus agents, one phase child per finding.",
     "created_at": "2026-06-17T19:57:25.100Z",
-    "last_save_at": "2026-06-17T19:57:25.100Z",
+    "last_save_at": "2026-06-18T12:37:50.220Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

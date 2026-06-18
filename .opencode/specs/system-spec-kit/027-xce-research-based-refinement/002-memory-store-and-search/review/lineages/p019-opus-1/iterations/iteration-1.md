@@ -1,0 +1,16 @@
+Review loop complete. All artifacts written to the lineage dir only.
+
+**Verdict: PASS** (`hasAdvisories: true`) — 0 P0 · 0 P1 · 5 P2, release readiness `converged`.
+
+The maintenance-grace fix (027/002/019) is correct and well-built: the daemon advertises a live scan via a reference-counted 180s-TTL `.maintenance-active.json` marker (20s interval + per-phase-boundary refresh), and both launcher reap paths adopt a busy-but-healthy daemon through a pure, fail-safe predicate. All four REQs resolve to shipped behavior; the predicate fails safe toward reaping on every expired/mismatched/non-`alive` case; tests assert the adopt case and a stale-marker negative control.
+
+All five findings are doc/traceability drift where the code is correct (and twice more complete) than the packet docs:
+- **F001** spec/plan/tasks cite `mcp_server/bin/*` paths; files are at `.opencode/bin/*`.
+- **F002** marker writer extracted into undocumented `lib/storage/maintenance-marker.ts`.
+- **F003** marker schema drift (`jobId` documented → `labels[]` shipped; test fixtures still use `jobId`).
+- **F004** REQ-001 says 60s TTL; shipped 180s (raised after live run; summary documents it, spec not updated).
+- **F005** (most consequential) summary calls the embedding queue an *open* follow-on, but `retry-manager.ts:1038` already protects it via `beginMaintenance('embedding-queue')`.
+
+Verification caveat surfaced in the report: build/`node --check`/test were **not** re-run here (node execution gated); PASS claims rest on the summary plus static inspection.
+
+FANOUT_LINEAGE_COMPLETE:p019-opus-1

@@ -1,0 +1,31 @@
+{
+  "mode": "review",
+  "status": "complete",
+  "reviewTarget": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/021-cooperative-heavy-phases",
+  "reviewTargetType": "spec-folder",
+  "sessionId": "fanout-p021-opus-3-1781716627766-f4z8n0",
+  "parentSessionId": "fanout-p021-opus-3-1781716627766-f4z8n0",
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "releaseReadinessState": "converged",
+  "executor": {
+    "kind": "cli-claude-code",
+    "model": "claude-opus-4-8"
+  },
+  "maxIterations": 1,
+  "dimensions": ["correctness", "security", "traceability", "maintainability"],
+  "dimensionOrder": ["correctness", "security", "traceability", "maintainability"],
+  "protocolPlan": {
+    "core": ["spec_code", "checklist_evidence"],
+    "overlay": ["feature_catalog_code", "playbook_capability"]
+  },
+  "resource_map_present": false,
+  "convergence": {
+    "rollingStopThreshold": 0.08,
+    "noProgressThreshold": 0.05,
+    "minStabilizationPasses": 1
+  },
+  "fanoutLineage": "p021-opus-3",
+  "artifactDir": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/review/lineages/p021-opus-3"
+}

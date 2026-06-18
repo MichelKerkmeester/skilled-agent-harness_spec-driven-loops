@@ -1,0 +1,93 @@
+{
+  "sessionId": "fanout-gpt55r2-c-1-1781761364358-6qni37",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "Scoped checkpoint callers can match unscoped checkpoints",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts",
+      "line": 1278,
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1270-1281",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:2884-2885",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:2910-2922",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:2951-2958",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:3287-3304",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/checkpoints.ts:256-265"
+      ],
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "content_hash": "sha256:f001-checkpoint-scope-unscoped-wildcard",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Server IPC resolver breaks documented tcp:// socket override",
+      "file": ".opencode/skills/system-spec-kit/shared/ipc/socket-server.ts",
+      "line": 202,
+      "evidence": [
+        ".opencode/skills/system-spec-kit/shared/ipc/socket-server.ts:201-211",
+        ".opencode/bin/lib/launcher-ipc-bridge.cjs:80-88",
+        ".opencode/skills/system-spec-kit/mcp_server/spec-memory-cli.ts:795-803",
+        ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:180",
+        "node -e path.resolve('tcp://127.0.0.1:65535') => /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/tcp:/127.0.0.1:65535"
+      ],
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "content_hash": "sha256:f002-tcp-ipc-resolver-drift",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": false
+  },
+  "traceabilityCoverage": {
+    "spec_code": "partial",
+    "checklist_evidence": "partial",
+    "feature_catalog_code": "not-run",
+    "playbook_capability": "not-run"
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 0
+  },
+  "openFindingsCount": 2,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.45,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

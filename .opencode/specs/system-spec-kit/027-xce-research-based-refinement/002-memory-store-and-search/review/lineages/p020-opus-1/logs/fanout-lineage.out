@@ -1,0 +1,21 @@
+All artifacts are written and valid. The review loop completed across all three phases.
+
+**Summary — lineage p020-opus-1**
+
+Reviewed `020-maintenance-grace-background-embedding`: a shared, reference-counted maintenance-marker module extracted from 019, with the scan IIFE refactored onto it and the post-scan background-embedding queue wired in after its empty-queue guard.
+
+**Verdict: PASS** (hasAdvisories: true) — 0 P0, 0 P1, 3 P2.
+
+Coverage (single full-coverage pass, maxIterations=1):
+- **Correctness** — ref-count lifecycle, idempotent `end()`, TTL/refresh, and the idle-tick guard all trace cleanly; overlap semantics (REQ-003) confirmed by hand-walked scenarios + the unit test. No defect.
+- **Security** — marker payload carries no secrets; `label` never reaches a path; hardcoded call-site labels; atomic write. Clean.
+- **Traceability** — REQ-001..004, scope, SC-001/SC-002 all resolve to shipped behavior. Independently verified the unit test's load-bearing assumption: `DATABASE_DIR` is `export let` reassigned by `resolveDatabasePaths()` (config.ts:97,103), so the test's write-redirect is valid.
+- **Maintainability** — durable-WHY comments, bounded leak via 180s TTL.
+
+The 3 P2 advisories are each intentional/documented (stale on-disk labels) or scope-acknowledged (inter-tick marker gap; async-yield TTL dependency that folds into the already-noted cooperative-phase follow-on). None block PASS.
+
+One honest caveat recorded in the report: this read-only fan-out lineage did not re-run vitest; SC-001's "suites pass" rests on the test file's structural correctness + the verified live-binding + the impl-summary's recorded PASS.
+
+Artifacts written to `…/review/lineages/p020-opus-1/`: config, strategy, state.jsonl, findings-registry, dashboard, iterations/iteration-001.md, review-report.md (9 core sections; resource-map gate omitted, not present). All JSON/JSONL validated.
+
+FANOUT_LINEAGE_COMPLETE:p020-opus-1

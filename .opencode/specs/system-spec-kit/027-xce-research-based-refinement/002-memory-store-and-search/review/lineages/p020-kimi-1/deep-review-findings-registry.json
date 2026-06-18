@@ -1,0 +1,46 @@
+{
+  "sessionId": "fanout-p020-kimi-1-1781721166412-nlwse6",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Test-only reset helper leaves on-disk marker behind",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/maintenance-marker.ts",
+      "line": 87,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "contentHash": "e5c932e06eb71d13f4c2cde23d71209476ad701991ddf318d471d9662f32bd4c",
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": false,
+    "traceability": false,
+    "maintainability": false
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 1
+  },
+  "openFindingsCount": 1,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

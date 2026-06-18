@@ -6,11 +6,9 @@
     "feature",
     "specification",
     "phase",
-    "catalog-playbook-realignment",
-    "mcp-open-design",
-    "mandatory-coupling"
+    "catalog-playbook-realignment"
   ],
-  "lastUpdated": "2026-06-17T00:00:00.000Z",
+  "lastUpdated": "2026-06-17T11:16:05.142Z",
   "specId": "012",
   "folderSlug": "catalog-playbook-realignment",
   "parentChain": [

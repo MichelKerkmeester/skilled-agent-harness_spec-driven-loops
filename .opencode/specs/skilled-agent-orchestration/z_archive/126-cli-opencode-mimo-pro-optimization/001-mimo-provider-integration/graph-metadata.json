@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/001-mimo-provider-integration",
-  "spec_folder": "skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/001-mimo-provider-integration",
-  "parent_id": "skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization",
+  "packet_id": "skilled-agent-orchestration/z_archive/126-cli-opencode-mimo-pro-optimization/001-mimo-provider-integration",
+  "spec_folder": "skilled-agent-orchestration/z_archive/126-cli-opencode-mimo-pro-optimization/001-mimo-provider-integration",
+  "parent_id": "skilled-agent-orchestration/z_archive/126-cli-opencode-mimo-pro-optimization",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -49,7 +49,6 @@
       ".opencode/skills/cli-opencode/changelog/v1.3.5.0.md",
       ".opencode/skills/sk-prompt-small-model/SKILL.md",
       ".opencode/skills/sk-prompt-small-model/description.json",
-      ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
       ".opencode/skills/sk-prompt-small-model/README.md",
       ".opencode/skills/sk-prompt-small-model/graph-metadata.json",
       "spec.md",
@@ -99,12 +98,6 @@
         "name": "description.json",
         "kind": "config",
         "path": ".opencode/skills/sk-prompt-small-model/description.json",
-        "source": "derived"
-      },
-      {
-        "name": "pattern-index.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
         "source": "derived"
       },
       {
@@ -202,11 +195,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Xiaomi Token Plan (Europe) is configured on the install as provider `xiaomi-token-plan-ams` and exposes a MiMo model family. This phase wires the text/coding model `mimo-v2.5-pro` in as a first-class cli-opencode model — exactly mirroring how MiniMax's Token Plan (`minimax-coding-plan`) was wired in packet 120. Documentation, metadata, and the shared registry only; no runtime code.",
     "created_at": "2026-06-01T20:21:29.317Z",
-    "last_save_at": "2026-06-05T12:47:32.478Z",
+    "last_save_at": "2026-06-17T19:57:23.715Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

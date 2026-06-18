@@ -1,0 +1,53 @@
+{
+  "sessionId": "fanout-gpt55r2-b-1-1781761339355-o7qylx",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "finding_class": "transaction-boundary",
+      "title": "Atomic save can commit index rows before final file promotion",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/handlers/save/atomic-index-memory.ts",
+      "line": 362,
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/save/atomic-index-memory.ts:362",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/save/atomic-index-memory.ts:378",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/save/atomic-index-memory.ts:387-390",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:2565-2685"
+      ],
+      "content_hash": "247995e1ae096eaeb736009b09c98e63daeca4318866e050dd75e3370614adfb",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P1", "reason": "Initial discovery" }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 0
+  },
+  "openFindingsCount": 1,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.45,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

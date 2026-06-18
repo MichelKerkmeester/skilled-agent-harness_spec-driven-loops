@@ -1,0 +1,78 @@
+{
+  "sessionId": "fanout-p021-kimi-1-1781716627766-f4z8n0",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Cancelled trigger-backfill phrase sync does not report pending rows for partial work",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/lib/search/trigger-embedding-backfill.ts",
+      "line": 248,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "content_hash": "58708db6f97a9888f1c2ca31c676e1b83998bcdfaac27edc488b747bfa174651",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Near-duplicate repair count is not captured in ScanResults or scan response",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+      "line": 1261,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "content_hash": "6e7a96c8e9464015f463661b0ac37554e9a9f166f018a66c4ab033f6ebd72b88",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    "F001",
+    "F002"
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    "F001",
+    "F002"
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": false,
+    "traceability": true,
+    "maintainability": false
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 2
+  },
+  "openFindingsCount": 2,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.12,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

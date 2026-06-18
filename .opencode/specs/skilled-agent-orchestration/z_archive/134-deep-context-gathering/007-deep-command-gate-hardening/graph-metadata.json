@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/134-deep-context-gathering/007-deep-command-gate-hardening",
-  "spec_folder": "skilled-agent-orchestration/134-deep-context-gathering/007-deep-command-gate-hardening",
-  "parent_id": "skilled-agent-orchestration/134-deep-context-gathering",
+  "packet_id": "skilled-agent-orchestration/z_archive/134-deep-context-gathering/007-deep-command-gate-hardening",
+  "spec_folder": "skilled-agent-orchestration/z_archive/134-deep-context-gathering/007-deep-command-gate-hardening",
+  "parent_id": "skilled-agent-orchestration/z_archive/134-deep-context-gathering",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The deep commands could begin work without two safeguards. Only 2 of 7 (`start-model-benchmark-loop`, `start-agent-improvement-loop`) carried a Phase 0 \"@general agent\" self-verification, and the strength of the setup-phase blocker varied across commands. An AI could skip the orchestrator-agent check or jump past the consolidated setup prompt and start executing a loop with unresolved inputs.",
     "created_at": "2026-06-07T09:59:30Z",
-    "last_save_at": "2026-06-15T09:09:33.115Z",
+    "last_save_at": "2026-06-17T19:57:23.820Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -56,11 +56,11 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
+      "handlers/memory-index.ts",
       "checklist.md",
       "decision-record.md",
       "lib/search/confidence-scoring.ts",
-      "lib/ops/job-store.ts",
-      "handlers/memory-index.ts"
+      "lib/ops/job-store.ts"
     ],
     "entities": [
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "A 50-pass multi-model deep review (deepseek-v4-pro, mimo-v2.5-pro, kimi-k2.7, opus-4.8) of 027/002 phases **017-021** produced five verdicted syntheses: **four PASS (018, 019, 020, 021) + one CONDITIONAL (017)**, with **0 confirmed P0**, **1 confirmed P1**, and the remainder P2 (maintainability, test-debt, doc-drift). This packet captures every confirmed, code-verified finding as a remediation task so the work can be closed in a later, separate implementation step.",
     "created_at": "2026-06-17T20:05:00.777Z",
-    "last_save_at": "2026-06-17T20:05:00.777Z",
+    "last_save_at": "2026-06-18T12:37:50.438Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,7 +219,8 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "handover.md"
     ],
     "last_active_child_id": null,
     "last_active_at": null

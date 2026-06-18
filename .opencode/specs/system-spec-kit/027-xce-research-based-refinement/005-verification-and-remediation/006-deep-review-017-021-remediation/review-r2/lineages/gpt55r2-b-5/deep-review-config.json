@@ -1,0 +1,66 @@
+{
+  "topic": "Audit Scope - Memory Store / Index / Lifecycle (002 non-search)",
+  "mode": "review",
+  "reviewTarget": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/B-rest-of-002/spec.md",
+  "reviewTargetType": "files",
+  "artifactDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/lineages/gpt55r2-b-5",
+  "artifactRootResolution": "direct-user-bound",
+  "resolveArtifactRootUsed": false,
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "data-integrity",
+    "concurrency-cancellation",
+    "performance",
+    "maintainability",
+    "spec-vs-code-drift"
+  ],
+  "resource_map_present": false,
+  "sessionId": "gpt55r2-b-5",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 1,
+  "convergenceThreshold": 0.1,
+  "stuckThreshold": 2,
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": ["scope_spec", "source_evidence", "artifact_contract"],
+    "overlay": ["code_graph_status", "direct_read_fallback"]
+  },
+  "qualityGateThreshold": true,
+  "releaseReadinessState": "converged",
+  "specFolder": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation",
+  "scopeId": "B-rest-of-002",
+  "createdAt": "2026-06-18T06:08:22Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "excludedSurfaces": [
+    "search/retrieval pipeline",
+    "017-021 remediation fixes outside the declared non-search memory store/index/lifecycle scope"
+  ],
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": ["latestJSONLDelta", "newIterationFile", "priorReducedState"],
+    "outputs": ["findingsRegistry", "dashboardMetrics", "strategyUpdates"],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  }
+}

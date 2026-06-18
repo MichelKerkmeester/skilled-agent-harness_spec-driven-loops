@@ -1,0 +1,14 @@
+All phases complete. The fan-out lineage review packet is written and validated entirely within the bound artifact directory.
+
+**Summary — lineage `p017c007-opus`, verdict: PASS (hasAdvisories: true)**
+
+- **Target:** Level 1 contract-only phase `007-output-surface-parity` — markdown edits to `.opencode/commands/memory/search.md` and `search_presentation.txt` (committed `254289251a`).
+- **Coverage:** 1 iteration, all 4 dimensions (correctness, security, traceability, maintainability). maxIterations=1 reached; evidence/scope/coverage gates green.
+- **Verification:** Re-read every `implementation-summary.md` claim at its cited source — one-score/scale/name mandate, five core slots, surface-parity clause, named optional fields, COSTAR register, and "O1 untouched" all **confirmed** consistent across both contract files; render math (`79.44/100 → 0.79`) correct; empty-result exemption logically sound.
+- **Findings (2× P2, no P0/P1):**
+  - **F001** (traceability): `spec.md`/`plan.md`/`tasks.md` remain unfilled template scaffolds; impl-summary is the only real doc, so the contract mandates have no `spec.md` REQ/SC to anchor to.
+  - **F002** (maintainability): completion-metadata mismatch — `graph-metadata.json` Status=`planned` while impl-summary is 100% and work is committed.
+  - Both are doc/metadata hygiene on the control files, non-blocking for the shipped deliverable.
+- **Artifacts written:** `deep-review-config.json` (status=complete), `deep-review-state.jsonl` (config→iteration→synthesis_complete, all parse), `deep-review-findings-registry.json`, `deep-review-strategy.md`, `deep-review-dashboard.md`, `iterations/iteration-001.md` (ends `Review verdict: PASS`), `review-report.md` (9 core sections; Resource Map Coverage Gate correctly omitted — map absent).
+
+FANOUT_LINEAGE_COMPLETE:p017c007-opus

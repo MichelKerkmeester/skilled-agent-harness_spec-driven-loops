@@ -1,0 +1,32 @@
+{
+  "type": "iteration_delta",
+  "mode": "review",
+  "iteration": 1,
+  "status": "insight",
+  "dimensions": [
+    "correctness"
+  ],
+  "findingsSummary": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 1
+  },
+  "findingsNew": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 1
+  },
+  "newFindingsRatio": 0.6,
+  "findingDetails": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "content_hash": "finding:F001:memory-search-community-fallback-specfolder-scope"
+    },
+    {
+      "findingId": "F002",
+      "severity": "P2",
+      "content_hash": "finding:F002:stage1-summary-channel-parent-scope-exact-match"
+    }
+  ]
+}

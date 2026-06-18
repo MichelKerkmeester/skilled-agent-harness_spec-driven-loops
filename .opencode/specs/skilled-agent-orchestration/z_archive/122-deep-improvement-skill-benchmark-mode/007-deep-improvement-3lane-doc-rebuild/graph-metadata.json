@@ -1,11 +1,135 @@
-Packet: skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/007-deep-improvement-3lane-doc-rebuild
-Spec Folder: skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/007-deep-improvement-3lane-doc-rebuild
-Status: in_progress
-Importance Tier: important
-Summary: Re-architect both `.opencode/skills/deep-improvement/feature_catalog/` and
-Parent: skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode
-Migrated: true
-Migration Source: legacy
-Key Topics: re-architect, opencode, skills, deep-improvement, lanes, handover, 3-lane, doc, rebuild, packet, 122, child
-Key Files: handover.md, spec.md, .opencode/skills/sk-doc/references/feature_catalog_creation.md
-Source Docs: spec.md, handover.md
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/z_archive/122-deep-improvement-skill-benchmark-mode/007-deep-improvement-3lane-doc-rebuild",
+  "spec_folder": "skilled-agent-orchestration/z_archive/122-deep-improvement-skill-benchmark-mode/007-deep-improvement-3lane-doc-rebuild",
+  "parent_id": "skilled-agent-orchestration/z_archive/122-deep-improvement-skill-benchmark-mode",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "re-architect",
+      "opencode",
+      "skills",
+      "deep-improvement",
+      "lanes",
+      "handover",
+      "3-lane",
+      "doc",
+      "rebuild",
+      "packet",
+      "122",
+      "child"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "handover.md",
+      "spec.md",
+      ".opencode/skills/sk-doc/references/feature_catalog_creation.md"
+    ],
+    "entities": [
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature_catalog_creation.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/references/feature_catalog_creation.md",
+        "source": "derived"
+      },
+      {
+        "name": "Lane Doc Rebuild",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Every Lane",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-opencode",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. SCOPE (operator-locked decisions)",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. OUT OF SCOPE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Validation And Tests",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Recommended Orchestration Process",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Name",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Exact Prompt",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Exact Command Sequence",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Re-architect both `.opencode/skills/deep-improvement/feature_catalog/` and",
+    "created_at": "2026-06-18T12:37:48.645Z",
+    "last_save_at": "2026-06-18T12:37:48.645Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "handover.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

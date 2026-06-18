@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/125-feature-catalog-template-improvements/001-template-improvements",
-  "spec_folder": "skilled-agent-orchestration/125-feature-catalog-template-improvements/001-template-improvements",
-  "parent_id": "skilled-agent-orchestration/125-feature-catalog-template-improvements",
+  "packet_id": "skilled-agent-orchestration/z_archive/125-feature-catalog-template-improvements/001-template-improvements",
+  "spec_folder": "skilled-agent-orchestration/z_archive/125-feature-catalog-template-improvements/001-template-improvements",
+  "parent_id": "skilled-agent-orchestration/z_archive/125-feature-catalog-template-improvements",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Cross-analysis of all 370 feature catalog files across three skills (system-spec-kit: 314 files, 25 categories; system-skill-advisor: 41 files, 7 categories; system-code-graph: 15 files, 7 categories) reveals pervasive drift from the desired standard:",
     "created_at": "2026-06-04T13:19:25.651Z",
-    "last_save_at": "2026-06-04T13:19:25.652Z",
+    "last_save_at": "2026-06-17T19:57:23.706Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

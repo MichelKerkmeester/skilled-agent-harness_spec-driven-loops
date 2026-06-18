@@ -1,0 +1,110 @@
+{
+  "type": "iteration",
+  "mode": "review",
+  "run": 1,
+  "iteration": 1,
+  "status": "complete",
+  "focus": "correctness",
+  "dimensions": [
+    "correctness"
+  ],
+  "filesReviewed": [
+    ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/020-maintenance-grace-background-embedding/spec.md",
+    ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/020-maintenance-grace-background-embedding/plan.md",
+    ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/020-maintenance-grace-background-embedding/tasks.md",
+    ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/020-maintenance-grace-background-embedding/implementation-summary.md",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/storage/maintenance-marker.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/tests/maintenance-marker.vitest.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-index-scan-jobs.vitest.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-maintenance-guard.vitest.ts"
+  ],
+  "findingsCount": 1,
+  "findingsSummary": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 1
+  },
+  "findingsNew": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 1
+  },
+  "findingDetails": [
+    {
+      "findingId": "F001",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "correctness",
+      "finding_class": "test-coverage-gap",
+      "title": "Add direct retry-manager marker regression coverage",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts",
+      "line": 662,
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:1036-1055",
+        ".opencode/skills/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts:662-674",
+        ".opencode/skills/system-spec-kit/mcp_server/tests/maintenance-marker.vitest.ts:82-109"
+      ],
+      "content_hash": "sha256:f001-retry-manager-marker-regression-coverage"
+    }
+  ],
+  "newFindingsRatio": 0.1,
+  "sessionId": "fanout-gpt55-p020-1-1781756632158-pqwfer",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "timestamp": "2026-06-18T04:26:57Z",
+  "durationMs": 0,
+  "traceabilityChecks": {
+    "summary": "Core spec_code partially covered in one correctness-focused iteration; checklist_evidence treated as not applicable because Level 1 target has no checklist.md.",
+    "results": [
+      {
+        "protocolId": "spec_code",
+        "status": "partial",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": { "pass": 3, "partial": 1, "fail": 0, "skipped": 0 },
+        "evidence": [
+          ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/020-maintenance-grace-background-embedding/spec.md:102-139",
+          ".opencode/skills/system-spec-kit/mcp_server/lib/storage/maintenance-marker.ts:58-87",
+          ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:1507-1552",
+          ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts:1012-1055"
+        ],
+        "findingRefs": [],
+        "summary": "Shared marker, scan holder, and embedding queue holder are present; full traceability remains incomplete under maxIterations=1."
+      },
+      {
+        "protocolId": "checklist_evidence",
+        "status": "pass",
+        "gateClass": "hard",
+        "applicable": false,
+        "counts": { "pass": 0, "partial": 0, "fail": 0, "skipped": 1 },
+        "evidence": [
+          ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/020-maintenance-grace-background-embedding/tasks.md:61-65"
+        ],
+        "findingRefs": [],
+        "summary": "No checklist.md exists for this Level 1 packet."
+      }
+    ]
+  },
+  "coverage": {
+    "dimensionsCovered": 1,
+    "dimensionsConfigured": 4,
+    "legalStop": false,
+    "stopReason": "maxIterations"
+  },
+  "noveltyJustification": "One P2 integration-test gap; no P0/P1 behavior defect found in the correctness pass.",
+  "ruledOut": [
+    "Reference-count clobbering as an active defect",
+    "Scan holder leak as an active defect",
+    "Embedding queue holder leak as an active defect"
+  ],
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "openai/gpt-5.5-fast"
+  }
+}

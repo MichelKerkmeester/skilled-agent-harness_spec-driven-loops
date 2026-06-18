@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/002-implementation-deep-research",
-  "spec_folder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/002-implementation-deep-research",
-  "parent_id": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode",
+  "packet_id": "skilled-agent-orchestration/z_archive/122-deep-improvement-skill-benchmark-mode/002-implementation-deep-research",
+  "spec_folder": "skilled-agent-orchestration/z_archive/122-deep-improvement-skill-benchmark-mode/002-implementation-deep-research",
+  "parent_id": "skilled-agent-orchestration/z_archive/122-deep-improvement-skill-benchmark-mode",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Run a GPT-5.5-primary deep-research loop (with Opus 4.8 agent verification) to determine the best WAY TO IMPLEMENT the `deep-agent-improvement` → `deep-improvement` rename and Lane C (\"skill-benchmark\"). Phase 001 converged the DESIGN (what to measure, scoring, harness, fixtures, report, rename impact map); this phase produces the build-ready IMPLEMENTATION PLAYBOOK consumed by Phase 003 (rename) and Phase 004 (Lane C build).",
     "created_at": "2026-05-30T00:00:00Z",
-    "last_save_at": "2026-06-04T10:32:49.985Z",
+    "last_save_at": "2026-06-17T19:57:23.673Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

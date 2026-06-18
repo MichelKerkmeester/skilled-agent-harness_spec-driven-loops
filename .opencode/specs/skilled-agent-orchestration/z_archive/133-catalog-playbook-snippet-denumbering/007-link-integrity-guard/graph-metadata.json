@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/133-catalog-playbook-snippet-denumbering/007-link-integrity-guard",
-  "spec_folder": "skilled-agent-orchestration/133-catalog-playbook-snippet-denumbering/007-link-integrity-guard",
-  "parent_id": "skilled-agent-orchestration/133-catalog-playbook-snippet-denumbering",
+  "packet_id": "skilled-agent-orchestration/z_archive/133-catalog-playbook-snippet-denumbering/007-link-integrity-guard",
+  "spec_folder": "skilled-agent-orchestration/z_archive/133-catalog-playbook-snippet-denumbering/007-link-integrity-guard",
+  "parent_id": "skilled-agent-orchestration/z_archive/133-catalog-playbook-snippet-denumbering",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The deep review found 295 broken markdown links across skills/commands/agents because feature removal/migration/deprecation edits deleted snippet files or moved targets without updating the hand-maintained `feature_catalog.md` / `manual_testing_playbook.md` roots and other cross-references — and nothing failed, so the debt accumulated silently. Existing checks do not cover this: `scripts/check-links.sh` validates only wikilinks (`[[...]]`), is opt-in, and is not CI-wired; `rules/check-phase-links.sh` only checks phase folders.",
     "created_at": "2026-06-06T06:46:12.388Z",
-    "last_save_at": "2026-06-06T15:50:21.545Z",
+    "last_save_at": "2026-06-17T19:57:23.804Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

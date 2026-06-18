@@ -1,0 +1,12 @@
+All artifacts are in place and the iteration ends with the exact canonical `Review verdict: CONDITIONAL` line. The review loop completed: init → 1 breadth-first iteration (all 4 dimensions) → claim adjudication → synthesis.
+
+**Verdict: CONDITIONAL** (P0:0 · P1:1 · P2:3)
+
+- **Code is sound** — rebalance bounded/monotonic; calibration verified default-OFF (opt-in flag + explicit model path, no-op fallback); PAV fit and apply monotonic and bounded; loaders fail safe. No P0, no security findings.
+- **P1 (F001):** spec.md/plan.md/tasks.md remain raw scaffold templates and `graph-metadata.json` says `Status: planned`, while implementation-summary.md and the code claim 100% completion — core `spec_code` traceability fails and the status metadata contradicts shipped state.
+- **P2:** isotonic-fit model bloat (no equal-mean merge → 100-point starter model), PAV duplication in `fit-calibration.mjs` with no drift guard, path-keyed cache not content-invalidated (documented).
+- **Honesty note:** vitest/typecheck re-execution was sandbox-blocked; the 67/67 PASS is carried from implementation-summary.md as documented-but-not-independently-re-run.
+
+All outputs confined to `…/review/lineages/p017c004-opus`.
+
+FANOUT_LINEAGE_COMPLETE:p017c004-opus

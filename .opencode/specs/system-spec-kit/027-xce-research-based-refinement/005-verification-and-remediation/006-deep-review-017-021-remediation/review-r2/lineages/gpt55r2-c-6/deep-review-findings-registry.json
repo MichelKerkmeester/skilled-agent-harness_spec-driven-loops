@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "sessionId": "gpt55r2-c-6",
+  "updatedAt": "2026-06-18T06:30:00Z",
+  "summary": {
+    "activeP0": 0,
+    "activeP1": 2,
+    "activeP2": 0,
+    "resolved": 0,
+    "verdict": "CONDITIONAL"
+  },
+  "activeFindings": [
+    {
+      "id": "P1-001",
+      "severity": "P1",
+      "category": "ipc-contract-drift",
+      "dimension": "correctness",
+      "title": "Spec-memory TCP IPC endpoint is documented and launcher-supported but the server resolver rewrites it into a filesystem path",
+      "status": "active",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:180",
+        ".opencode/bin/spec-memory.cjs:108",
+        ".opencode/bin/lib/launcher-ipc-bridge.cjs:81",
+        ".opencode/bin/lib/model-server-supervision.cjs:444",
+        ".opencode/skills/system-spec-kit/mcp_server/context-server.ts:2319",
+        ".opencode/skills/system-spec-kit/shared/ipc/socket-server.ts:201",
+        ".opencode/skills/system-spec-kit/shared/ipc/socket-server.ts:273"
+      ],
+      "finding_class": "ipc-contract-drift",
+      "content_hash": "sha256:a639be3c4593bc14dde1fa381992e86a02d6ddc08ad1cb9c671fd132d37cb5b9",
+      "recommendation": "Preserve tcp:// in resolveIpcSocketPath or remove TCP support from the spec-memory contract; add an integration test for SPECKIT_IPC_SOCKET_DIR=tcp://127.0.0.1:<port>."
+    },
+    {
+      "id": "P1-002",
+      "severity": "P1",
+      "category": "replay-idempotency-gap",
+      "dimension": "correctness",
+      "title": "memory_save is replayed across backend recycle while the secondary-index write path is explicitly non-idempotent",
+      "status": "active",
+      "evidence": [
+        ".opencode/bin/lib/launcher-session-proxy.cjs:33",
+        ".opencode/bin/lib/launcher-session-proxy.cjs:146",
+        ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-session-proxy.vitest.ts:258",
+        ".opencode/skills/system-spec-kit/mcp_server/stress_test/durability/daemon-recycle-transparency-stress.vitest.ts:184",
+        ".opencode/skills/system-spec-kit/mcp_server/README.md:266"
+      ],
+      "finding_class": "replay-idempotency-gap",
+      "content_hash": "sha256:cffc39a35b3b77c4a08642ddcdf5179a008fbb1f7942bbc337f3165e5a392c3b",
+      "recommendation": "Make memory_save replay-safe with an idempotency token covering secondary-index writes, or classify it unsafe until the save path is idempotent end-to-end."
+    }
+  ],
+  "resolvedFindings": [],
+  "repeatedFindings": [],
+  "blockedFindings": []
+}

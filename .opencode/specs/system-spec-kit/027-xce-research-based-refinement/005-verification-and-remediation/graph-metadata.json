@@ -8,7 +8,9 @@
     "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/002-tri-system-deep-research",
     "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/003-deep-research-remediation",
     "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/004-residual-design-units",
-    "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation"
+    "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/005-fresh-regression-remediation",
+    "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation",
+    "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review"
   ],
   "manual": {
     "depends_on": [],
@@ -88,7 +90,7 @@
     ],
     "causal_summary": "The 027 program produced review and research evidence that had to become terminal, verified work queues rather than assumed-true claims. The epic finding remediation, the tri-system deep-research sweep, the deep-research remediation, and the residual high-blast-radius design units share a single verify-first doctrine, so they belong under one themed parent.",
     "created_at": "2026-06-14T00:00:00Z",
-    "last_save_at": "2026-06-15T09:09:34.841Z",
+    "last_save_at": "2026-06-18T12:37:50.387Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

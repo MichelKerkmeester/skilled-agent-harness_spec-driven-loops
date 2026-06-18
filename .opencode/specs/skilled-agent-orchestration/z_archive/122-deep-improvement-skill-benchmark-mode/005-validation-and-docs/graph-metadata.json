@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/005-validation-and-docs",
-  "spec_folder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/005-validation-and-docs",
-  "parent_id": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode",
+  "packet_id": "skilled-agent-orchestration/z_archive/122-deep-improvement-skill-benchmark-mode/005-validation-and-docs",
+  "spec_folder": "skilled-agent-orchestration/z_archive/122-deep-improvement-skill-benchmark-mode/005-validation-and-docs",
+  "parent_id": "skilled-agent-orchestration/z_archive/122-deep-improvement-skill-benchmark-mode",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -119,7 +119,7 @@
     ],
     "causal_summary": "Bring all documentation and metadata up to the three-lane (A: agent-improvement, B: model-benchmark, C: skill-benchmark) reality of the renamed `deep-improvement` skill, and run the hardening/deep-review gate.",
     "created_at": "2026-05-30T07:27:05.681Z",
-    "last_save_at": "2026-05-31T05:02:00.929Z",
+    "last_save_at": "2026-06-17T19:57:23.676Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

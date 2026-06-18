@@ -1,0 +1,35 @@
+{
+  "sessionId": "fanout-p017c001-ds-1781722608717-uedph1",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {"findingId":"F001","severity":"P2","category":"correctness","dimension":"correctness","status":"active","title":"Skip-and-continue loop correctly prevents top-result starvation","file":"mcp_server/lib/search/hybrid-search.ts","line":2845,"firstSeen":1,"lastSeen":1,"transitions":[{"iteration":1,"from":null,"to":"P2","reason":"Identified during D1 correctness review — skip-and-continue mechanism verified correct."}]},
+    {"findingId":"F002","severity":"P2","category":"correctness","dimension":"correctness","status":"active","title":"Detailed-count floor enforces min(limit, 3) via summary promotion","file":"mcp_server/lib/search/hybrid-search.ts","line":2862,"firstSeen":1,"lastSeen":1,"transitions":[{"iteration":1,"from":null,"to":"P2","reason":"Identified during D1 correctness review — floor mechanism verified correct."}]},
+    {"findingId":"F003","severity":"P2","category":"correctness","dimension":"correctness","status":"active","title":"Summary-first overflow routing preserves remainder via progressive disclosure","file":"mcp_server/lib/search/hybrid-search.ts","line":2875,"firstSeen":1,"lastSeen":1,"transitions":[{"iteration":1,"from":null,"to":"P2","reason":"Identified during D1 correctness review — overflow routing verified correct."}]},
+    {"findingId":"F004","severity":"P2","category":"correctness","dimension":"correctness","status":"active","title":"Low-signal budget preserves full budget for weak queries","file":"mcp_server/lib/search/dynamic-token-budget.ts","line":90,"firstSeen":1,"lastSeen":1,"transitions":[{"iteration":1,"from":null,"to":"P2","reason":"Identified during D1 correctness review — low-signal gating verified correct."}]},
+    {"findingId":"F005","severity":"P2","category":"correctness","dimension":"correctness","status":"active","title":"s3meta.tokenBudget.adjustedBudget initialized with placeholder before header overhead patching","file":"mcp_server/lib/search/hybrid-search.ts","line":1354,"firstSeen":1,"lastSeen":1,"transitions":[{"iteration":1,"from":null,"to":"P2","reason":"Identified during D1 correctness review — mutation-after-construction pattern noted."}]}
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": false,
+    "traceability": false,
+    "maintainability": false
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 5
+  },
+  "openFindingsCount": 5,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.0,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

@@ -1,0 +1,74 @@
+{
+  "sessionId": "fanout-gpt55-p020-2-1781756632158-pqwfer",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Retry-manager marker boundary lacks a direct regression assertion",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/tests/retry-manager.vitest.ts",
+      "line": 662,
+      "lineRange": "662-683",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "findingClass": "matrix/evidence",
+      "content_hash": "69ca14c86e140bf84dde949a37acd564f41af5dba51c57c71a1acbbfd31db0d9",
+      "recommendation": "Add a focused retry-manager test for empty-tick no-marker behavior and optionally busy-tick marker behavior.",
+      "affectedSurfaceHints": [
+        "background embedding queue",
+        "maintenance marker guard",
+        "retry-manager tests"
+      ],
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": false,
+    "traceability": false,
+    "maintainability": false
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 1
+  },
+  "openFindingsCount": 1,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.25,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": [],
+  "searchCoverage": {
+    "graphCoverageMode": "graph_stale_fallback",
+    "requiredBugClasses": [],
+    "searchLedger": []
+  },
+  "candidateCoverage": {
+    "covered": []
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [
+    "maintenance-marker.ts reference counting and idempotent end verified by direct read and tests.",
+    "memory-index.ts background scan holder begins before runIndexScan and ends in finally.",
+    "retry-manager.ts empty queue guard returns before beginMaintenance; busy queue holder ends in finally."
+  ]
+}

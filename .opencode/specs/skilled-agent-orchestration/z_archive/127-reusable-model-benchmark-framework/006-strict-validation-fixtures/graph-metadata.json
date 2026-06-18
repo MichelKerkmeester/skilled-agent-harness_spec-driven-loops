@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/127-reusable-model-benchmark-framework/006-strict-validation-fixtures",
-  "spec_folder": "skilled-agent-orchestration/127-reusable-model-benchmark-framework/006-strict-validation-fixtures",
-  "parent_id": "skilled-agent-orchestration/127-reusable-model-benchmark-framework",
+  "packet_id": "skilled-agent-orchestration/z_archive/127-reusable-model-benchmark-framework/006-strict-validation-fixtures",
+  "spec_folder": "skilled-agent-orchestration/z_archive/127-reusable-model-benchmark-framework/006-strict-validation-fixtures",
+  "parent_id": "skilled-agent-orchestration/z_archive/127-reusable-model-benchmark-framework",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The existing hard/harder packs lean on transform and comparison tasks where partial credit spreads across structurally-varied outputs. They under-test one specific axis that separates near-equal frontier models: **strictness on input validation**. A lax-but-plausible solution that skips a single rule (a leading-zero check, a leap-year check, an empty-identifier check) still looks correct on happy-path inputs and only fails on subtle malformed inputs.",
     "created_at": "2026-06-02T12:00:00.000Z",
-    "last_save_at": "2026-06-05T12:47:32.498Z",
+    "last_save_at": "2026-06-17T19:57:23.733Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

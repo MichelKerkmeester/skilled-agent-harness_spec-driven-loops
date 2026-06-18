@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/133-catalog-playbook-snippet-denumbering/005-migrate-remaining-skills",
-  "spec_folder": "skilled-agent-orchestration/133-catalog-playbook-snippet-denumbering/005-migrate-remaining-skills",
-  "parent_id": "skilled-agent-orchestration/133-catalog-playbook-snippet-denumbering",
+  "packet_id": "skilled-agent-orchestration/z_archive/133-catalog-playbook-snippet-denumbering/005-migrate-remaining-skills",
+  "spec_folder": "skilled-agent-orchestration/z_archive/133-catalog-playbook-snippet-denumbering/005-migrate-remaining-skills",
+  "parent_id": "skilled-agent-orchestration/z_archive/133-catalog-playbook-snippet-denumbering",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The remaining ~310 numbered snippet files live in twelve smaller skills (system-code-graph + 4 cli-* + 5 sk-* + 3 mcp-*), most of which are playbook-only. They are low-risk independent units that complete the migration surface.",
     "created_at": "2026-06-06T06:46:12.388Z",
-    "last_save_at": "2026-06-06T09:52:35.041Z",
+    "last_save_at": "2026-06-17T19:57:23.801Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

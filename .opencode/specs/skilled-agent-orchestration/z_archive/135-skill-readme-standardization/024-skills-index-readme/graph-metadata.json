@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/135-skill-readme-standardization/024-skills-index-readme",
-  "spec_folder": "skilled-agent-orchestration/135-skill-readme-standardization/024-skills-index-readme",
-  "parent_id": "skilled-agent-orchestration/135-skill-readme-standardization",
+  "packet_id": "skilled-agent-orchestration/z_archive/135-skill-readme-standardization/024-skills-index-readme",
+  "spec_folder": "skilled-agent-orchestration/z_archive/135-skill-readme-standardization/024-skills-index-readme",
+  "parent_id": "skilled-agent-orchestration/z_archive/135-skill-readme-standardization",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "This is **Phase 24**, the final phase of the packet. It runs last so the index reflects the 22 child READMEs rewritten in phases 002 to 023.",
     "created_at": "2026-06-07T19:05:00Z",
-    "last_save_at": "2026-06-08T08:50:25.399Z",
+    "last_save_at": "2026-06-17T19:57:23.850Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

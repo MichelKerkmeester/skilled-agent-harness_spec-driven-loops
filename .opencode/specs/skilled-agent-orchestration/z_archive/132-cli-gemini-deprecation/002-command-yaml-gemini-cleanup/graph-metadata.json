@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/132-cli-gemini-deprecation/002-command-yaml-gemini-cleanup",
-  "spec_folder": "skilled-agent-orchestration/132-cli-gemini-deprecation/002-command-yaml-gemini-cleanup",
-  "parent_id": "skilled-agent-orchestration/132-cli-gemini-deprecation",
+  "packet_id": "skilled-agent-orchestration/z_archive/132-cli-gemini-deprecation/002-command-yaml-gemini-cleanup",
+  "spec_folder": "skilled-agent-orchestration/z_archive/132-cli-gemini-deprecation/002-command-yaml-gemini-cleanup",
+  "parent_id": "skilled-agent-orchestration/z_archive/132-cli-gemini-deprecation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Phase `001-runtime-surface-and-skill-deletion` deleted the `cli-gemini` skill and the project `.gemini/` runtime surface, but it left orphaned `cli-gemini` executor branches and stray \"Gemini\" surface references across the whole command layer: both the command-layer YAML assets and the command `.md` docs that drive them. The deep research/review loop assets still carried an `if_cli_gemini:` executor branch that imports `resolveGeminiSandboxMode` and dispatches the `gemini` binary as a `cli-gemini` executor, the cli-opencode/cli-devin self-invocation guard surface lists still named `Gemini`, and `doctor_mcp_install.yaml` still advertised `gemini` in its runtime `valid_values`. In parallel, four deep command docs still listed `cli-gemini` in their executor option lists, carried gemini example commands, and one had a stale ASCII box and Q-Exec option lettering that assumed `cli-gemini` was still present.",
     "created_at": "2026-06-08T16:11:50.615Z",
-    "last_save_at": "2026-06-15T09:09:33.060Z",
+    "last_save_at": "2026-06-17T19:57:23.770Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

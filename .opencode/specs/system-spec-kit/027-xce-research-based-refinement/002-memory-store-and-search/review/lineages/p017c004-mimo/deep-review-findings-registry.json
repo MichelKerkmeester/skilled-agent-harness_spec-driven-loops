@@ -1,0 +1,55 @@
+{
+  "findings": [
+    {
+      "id": "P1-001",
+      "severity": "P1",
+      "category": "traceability",
+      "file": "004-confidence-calibration-labeled-set/spec.md",
+      "line": "48-128",
+      "finding_class": "spec-alignment",
+      "description": "Spec documents are scaffold placeholders — zero traceability baseline",
+      "status": "active",
+      "content_hash": "p1-001-scaffold-docs",
+      "iteration": 1
+    },
+    {
+      "id": "P2-001",
+      "severity": "P2",
+      "category": "correctness",
+      "file": "confidence-calibration.vitest.ts",
+      "line": "122-127",
+      "finding_class": "test-gap",
+      "description": "No test for boolean relevant values in loadLabeledSet()",
+      "status": "active",
+      "content_hash": "p2-001-boolean-test",
+      "iteration": 1
+    },
+    {
+      "id": "P2-002",
+      "severity": "P2",
+      "category": "maintainability",
+      "file": "confidence-scoring.ts",
+      "line": "54-56",
+      "finding_class": "defensive-coding",
+      "description": "Weight constants WEIGHT_HEURISTIC + WEIGHT_SCORE_PRIOR have no invariant assertion",
+      "status": "active",
+      "content_hash": "p2-002-weight-invariant",
+      "iteration": 1
+    },
+    {
+      "id": "P2-003",
+      "severity": "P2",
+      "category": "maintainability",
+      "file": "confidence-scoring.ts",
+      "line": "170-179",
+      "finding_class": "known-limitation",
+      "description": "Model cache is never invalidated on file content change",
+      "status": "active",
+      "content_hash": "p2-003-cache-invalidation",
+      "iteration": 1
+    }
+  ],
+  "totalCount": 4,
+  "bySeverity": { "P0": 0, "P1": 1, "P2": 3 },
+  "lastUpdated": "2026-06-17T10:05:00Z"
+}

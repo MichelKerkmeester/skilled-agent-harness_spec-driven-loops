@@ -1,0 +1,82 @@
+{
+  "sessionId": "fanout-gpt55r2-c-8-1781761364358-6qni37",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "TCP IPC endpoint is resolved as a filesystem path on the server",
+      "file": ".opencode/skills/system-spec-kit/shared/ipc/socket-server.ts",
+      "line": 201,
+      "evidence": [
+        ".opencode/skills/system-spec-kit/shared/ipc/socket-server.ts:201-211",
+        ".opencode/bin/lib/launcher-ipc-bridge.cjs:80-83",
+        ".opencode/bin/spec-memory.cjs:107-113"
+      ],
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "content_hash": "manual:f001-tcp-ipc-path-mismatch",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Session proxy replays memory_save despite a documented non-idempotent secondary-index gap",
+      "file": ".opencode/bin/lib/launcher-session-proxy.cjs",
+      "line": 33,
+      "evidence": [
+        ".opencode/bin/lib/launcher-session-proxy.cjs:33-47",
+        ".opencode/bin/lib/launcher-session-proxy.cjs:146-153",
+        ".opencode/bin/mk-spec-memory-launcher.cjs:291-299"
+      ],
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "content_hash": "manual:f002-memory-save-replay-idempotency-gap",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": false
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 0
+  },
+  "openFindingsCount": 2,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

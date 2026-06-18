@@ -42,7 +42,6 @@
     "status": "complete_(bakeoff_006_ran;_verdict_tie,_correctness_saturated)",
     "key_files": [
       ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/kimi-k2.7-frameworks.json",
-      ".opencode/skills/sk-prompt-small-model/assets/model-profiles.json",
       ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/framework-bakeoff.json",
       "spec.md",
       "plan.md",
@@ -54,12 +53,6 @@
         "name": "kimi-k2.7-frameworks.json",
         "kind": "config",
         "path": ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/kimi-k2.7-frameworks.json",
-        "source": "derived"
-      },
-      {
-        "name": "model-profiles.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-prompt-small-model/assets/model-profiles.json",
         "source": "derived"
       },
       {
@@ -193,11 +186,17 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This is **Phase 2** of the kimi-k2-7-code-support specification.",
     "created_at": "2026-06-15T09:21:01Z",
-    "last_save_at": "2026-06-16T14:27:20.578Z",
+    "last_save_at": "2026-06-17T19:57:23.056Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,0 +1,86 @@
+{
+  "sessionId": "fanout-gpt55r2-c-7-1781761364358-6qni37",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Documented tcp IPC override is split-brain between server and launcher",
+      "file": ".opencode/skills/system-spec-kit/shared/ipc/socket-server.ts",
+      "line": 201,
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:180",
+        ".opencode/bin/spec-memory.cjs:107-108",
+        ".opencode/bin/lib/launcher-ipc-bridge.cjs:80-87",
+        ".opencode/skills/system-spec-kit/mcp_server/context-server.ts:2319-2320",
+        ".opencode/skills/system-spec-kit/shared/ipc/socket-server.ts:201-212"
+      ],
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "content_hash": "F001-tcp-ipc-split-brain-v1"
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Session proxy replays memory_save despite acknowledged non-idempotent secondary-index gap",
+      "file": ".opencode/bin/lib/launcher-session-proxy.cjs",
+      "line": 146,
+      "evidenceRefs": [
+        ".opencode/bin/lib/launcher-session-proxy.cjs:33-47",
+        ".opencode/bin/lib/launcher-session-proxy.cjs:146-153",
+        ".opencode/bin/lib/launcher-session-proxy.cjs:649-663"
+      ],
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "content_hash": "F002-memory-save-replay-secondary-index-v1"
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": false
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 0
+  },
+  "openFindingsCount": 2,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.25,
+  "graphConvergenceScore": 0,
+  "graphDecision": "not_run_graph_stale",
+  "graphBlockers": [
+    "code_graph_status_stale"
+  ],
+  "corruptionWarnings": []
+}

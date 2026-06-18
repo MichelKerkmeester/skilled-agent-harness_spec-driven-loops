@@ -1,0 +1,80 @@
+{
+  "sessionId": "fanout-gpt55r2-b-2-1781761339355-o7qylx",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "id": "F001",
+      "severity": "P1",
+      "category": "data-integrity",
+      "title": "Soft-deleted memory rows remain active to list/retrieval/dedup surfaces",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts",
+      "line": "91-98",
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:91-98",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:1834-1845",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-list.ts:127-135",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:102-107",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts:269-279"
+      ],
+      "description": "Soft-delete stamps deleted_at but active reads and dedup checks do not consistently exclude deleted_at IS NOT NULL rows.",
+      "impact": "Deleted memories can remain visible/addressable and block replacement saves.",
+      "recommendation": "Remove tombstoned rows from active_memory_projection and add deleted_at IS NULL to active read/dedup paths.",
+      "finding_class": "data_integrity",
+      "content_hash": "3bdd421740838f04a1153ea33c33bac56f71a2f64f4d59a00ead391eae567b27",
+      "firstSeenIteration": 1,
+      "latestSeenIteration": 1,
+      "status": "active",
+      "dimensions": [
+        "correctness",
+        "security"
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": false,
+    "maintainability": false
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 0
+  },
+  "openFindingsCount": 1,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.25,
+  "searchCoverage": {
+    "graphCoverageMode": "graphless_fallback",
+    "requiredBugClasses": [
+      "data_integrity",
+      "cancellation_lifecycle",
+      "transaction_boundary"
+    ],
+    "covered": [
+      "data_integrity",
+      "cancellation_lifecycle",
+      "transaction_boundary"
+    ]
+  },
+  "candidateCoverage": {
+    "covered": [
+      "soft_delete_visibility",
+      "save_dedup",
+      "job_cancel",
+      "pending_file_recovery"
+    ]
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    "retention sweep causal orphaning via vectorIndex.deleteMemory ancillary cleanup"
+  ],
+  "cleanSearchProof": [
+    ".opencode/skills/system-spec-kit/mcp_server/lib/ops/job-store.ts:261-268",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts:612-663",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/storage/transaction-manager.ts:401-406"
+  ]
+}

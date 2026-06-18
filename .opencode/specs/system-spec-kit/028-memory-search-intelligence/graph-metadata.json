@@ -49,7 +49,7 @@
     "key_files": [
       "research/roadmap.md",
       "research/research.md",
-      "research/synthesis/00-index.md",
+      "007-memory-systems/research/research.md",
       "005-revisit-027/research/research.md",
       "spec.md",
       ".opencode/specs/system-spec-kit/028-memory-search-intelligence/research/roadmap.md",
@@ -67,12 +67,6 @@
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "00-index.md",
-        "kind": "doc",
-        "path": "research/synthesis/00-index.md",
         "source": "derived"
       },
       {
@@ -166,12 +160,6 @@
         "source": "derived"
       },
       {
-        "name": "Broadening Rounds",
-        "kind": "proper_noun",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
         "name": "Session Handover Document Handover",
         "kind": "proper_noun",
         "path": "handover.md",
@@ -188,11 +176,17 @@
         "kind": "proper_noun",
         "path": "handover.md",
         "source": "derived"
+      },
+      {
+        "name": "To Session",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Two mature open-source memory engines are vendored under `external/` — galadriel (Python memory-palace) and aionforge-memory (Rust retrieval substrate). They encode retrieval, consolidation, and currentness techniques that the project's own four retrieval subsystems do not yet use. Without a structured mining effort, that prior art stays unread and the internal systems keep their known gaps (no query-class routing, flag-based currentness, write-blocking consolidation, non-deterministic fusion).",
     "created_at": "2026-06-16T14:27:21.650Z",
-    "last_save_at": "2026-06-16T21:38:16.651Z",
+    "last_save_at": "2026-06-17T19:57:25.211Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

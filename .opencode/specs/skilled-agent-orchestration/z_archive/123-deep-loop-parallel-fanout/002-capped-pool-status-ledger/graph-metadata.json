@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger",
-  "spec_folder": "skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger",
-  "parent_id": "skilled-agent-orchestration/123-deep-loop-parallel-fanout",
+  "packet_id": "skilled-agent-orchestration/z_archive/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger",
+  "spec_folder": "skilled-agent-orchestration/z_archive/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger",
+  "parent_id": "skilled-agent-orchestration/z_archive/123-deep-loop-parallel-fanout",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -182,7 +182,7 @@
     ],
     "causal_summary": "Provide the concurrency-capped fan-out orchestrator primitive (the one thing the council dispatcher lacks).",
     "created_at": "2026-05-30T10:12:01.127Z",
-    "last_save_at": "2026-05-30T16:25:16.899Z",
+    "last_save_at": "2026-06-17T19:57:23.694Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

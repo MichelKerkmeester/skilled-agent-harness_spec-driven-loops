@@ -4,15 +4,12 @@
   "spec_folder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/021-cooperative-heavy-phases",
   "parent_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/020-maintenance-grace-background-embedding"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/018-reindex-scan-responsiveness-and-cancellation",
-      "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/019-maintenance-grace-daemon-survives-reelection"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -26,7 +23,7 @@
       "cooperative heavy phases tasks",
       "027 002/021 tasks",
       "cooperative heavy phases shipped",
-      "daemon responsiveness reindex instrumentation",
+      "event loop lag sampler trigger backfill chunk shipped",
       "027 002/021 shipped"
     ],
     "key_topics": [
@@ -34,31 +31,34 @@
       "heavy",
       "phases",
       "daemon",
-      "responsive",
-      "event-loop",
+      "responsiveness",
+      "event",
+      "loop",
       "lag",
       "instrumentation",
-      "trigger",
-      "embedding",
-      "backfill",
-      "chunk",
-      "yield",
-      "maintenance",
-      "marker"
+      "reindex",
+      "scan",
+      "trigger"
     ],
     "importance_tier": "normal",
-    "status": "complete_(code)",
+    "status": "complete_(code);_deploy_time_lag_read_pending",
     "key_files": [
       "handlers/memory-index.ts",
       "lib/search/trigger-embedding-backfill.ts",
       "tests/trigger-embedding-backfill.vitest.ts",
+      "tests/handler-memory-index-scan-jobs.vitest.ts",
+      "stress_test/durability/daemon-reelection-adoption-live.vitest.ts",
+      "lib/storage/maintenance-marker.ts",
       "mcp_server/handlers/memory-index.ts",
       "mcp_server/lib/search/trigger-embedding-backfill.ts",
       "mcp_server/tests/trigger-embedding-backfill.vitest.ts",
+      ".opencode/bin/mk-spec-memory-launcher.cjs",
+      "utils/batch-processor.ts",
+      "core/config.ts",
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "tasks.md"
     ],
     "entities": [
       {
@@ -80,6 +80,42 @@
         "source": "derived"
       },
       {
+        "name": "handler-memory-index-scan-jobs.vitest.ts",
+        "kind": "test",
+        "path": "tests/handler-memory-index-scan-jobs.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "daemon-reelection-adoption-live.vitest.ts",
+        "kind": "test",
+        "path": "stress_test/durability/daemon-reelection-adoption-live.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "maintenance-marker.ts",
+        "kind": "code",
+        "path": "lib/storage/maintenance-marker.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mk-spec-memory-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "batch-processor.ts",
+        "kind": "code",
+        "path": "utils/batch-processor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "config.ts",
+        "kind": "code",
+        "path": "core/config.ts",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
@@ -92,15 +128,15 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -110,7 +146,31 @@
         "source": "derived"
       },
       {
-        "name": "Phase Context",
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -120,12 +180,36 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Uses Node",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "This phase is the direct follow-on to 020. 018 made the reindex scan cancellable with cooperative yields in its two big tail loops; 019 wrote a maintenance marker so a launcher adopts a busy daemon instead of reaping it; 020 extended that marker to the post-scan embedding queue. 020's own limitation opens this phase: the marker keeps the daemon un-reaped but not responsive. A blocked event loop can neither answer a competing launcher's bridge/probe nor fire the marker's 20s self-refresh, so a synchronous phase that blocks longer than the 180s TTL lets the marker go stale and a second daemon spawns. The exact ~79s blocking phase was never pinned, and static analysis shows that with the trigger-embedding-backfill flag off no enumerated synchronous phase should block that long (the main loop and LIMIT-5 tail phases already yield because embeddings are out-of-process; the orphan sweep is bounded to 200 rows). So this phase instruments the scan with an event-loop lag sampler plus per-phase wall-clock to pin a true block apart from slow-but-cooperative work, chunks the one unbounded synchronous transaction (trigger-backfill's whole-corpus phrase sync) so it yields between chunk transactions and is cancellable, and refreshes the marker on entry to each un-yielded tail phase. The launcher adopt/reap path was read end-to-end and confirmed correct (a fresh marker already causes adoption), so it is unchanged. The live single-launcher lag read is the deploy-time confirmation.",
+    "causal_summary": "This phase is the direct follow-on to 020. 018 made the reindex scan cancellable and added cooperative `setImmediate` yields to its two big tail loops. 019 wrote a `.maintenance-active.json` marker so a competing launcher adopts a busy daemon instead of reaping it. 020 extended that marker to the post-scan background-embedding queue. 020's own limitation closes the loop being opened here: *\"The marker makes the daemon un-reaped while busy, it does not make it responsive.\"* A daemon whose event loop is blocked can neither answer a competing launcher's probe/bridge nor fire the marker's 20s self-refresh timer; if a single synchronous phase blocks longer than the 180s TTL, the marker goes stale and a second daemon spawns anyway. 020 noted the longest blocking tail phase observed (~79s) but never pinned which phase it was.",
     "created_at": "2026-06-17T17:15:00.000Z",
-    "last_save_at": "2026-06-17T17:15:00.000Z",
-    "save_lineage": "same_pass",
+    "last_save_at": "2026-06-17T19:57:25.114Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",

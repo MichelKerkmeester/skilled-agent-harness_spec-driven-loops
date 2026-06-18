@@ -4,6 +4,8 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/005-fix-bootstrap-symlink-restart-loop",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -182,8 +184,8 @@
       }
     ],
     "causal_summary": "Branch 3 fired whenever the symlink was absent. The compatibility symlink is unnecessary:",
-    "created_at": "2026-06-08T08:50:27.196Z",
-    "last_save_at": "2026-06-08T11:05:50.275Z",
+    "created_at": "2026-06-18T12:37:49.941Z",
+    "last_save_at": "2026-06-18T12:37:49.941Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

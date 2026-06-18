@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/018-fix-opus-findings-for-two-lane-code",
-  "spec_folder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/018-fix-opus-findings-for-two-lane-code",
-  "parent_id": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode",
+  "packet_id": "skilled-agent-orchestration/z_archive/121-deep-agent-improvement-benchmark-mode/018-fix-opus-findings-for-two-lane-code",
+  "spec_folder": "skilled-agent-orchestration/z_archive/121-deep-agent-improvement-benchmark-mode/018-fix-opus-findings-for-two-lane-code",
+  "parent_id": "skilled-agent-orchestration/z_archive/121-deep-agent-improvement-benchmark-mode",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The 017 Opus deep review returned a CONDITIONAL verdict against the post-015 two-lane program. This packet remediates every active finding: 4 P1 (the materializer is a first-writer fixture-id traversal hole that the 015 run-benchmark sanitize never reached, the bundle-gate Layer-3 execSync path is a fail-open against a documented criteria-exec gate, three dead Mode-4 doc anchors misroute the orchestrating agent, and the Lane B promotion path is non-executable while its docs over-claim mode-aware promotion) and 13 P2 advisories spanning containment hardening, grader prompt-injection defense, cache read-integrity, source-attribution tags, and shared-helper extraction. Each finding gets exactly one disposition: FIXED with a test or adversarial check where applicable, or DOCUMENT-ACCEPT with rationale. The work keeps the in-scope vitest suite green and preserves the materializer-versus-run-benchmark byte-identity invariant.",
     "created_at": "2026-05-29T15:10:42Z",
-    "last_save_at": "2026-06-15T09:09:32.989Z",
+    "last_save_at": "2026-06-17T19:57:23.666Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
