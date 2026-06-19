@@ -63,12 +63,12 @@ This sub-phase carries that genuine follow-on plus two supporting candidates: `S
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P2 |
-| **Status** | Draft |
+| **Status** | Implemented (shadow-only, default-off) — live promotion remains NO-GO |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Packet** | system-spec-kit/028-memory-search-intelligence/003-skill-advisor |
 | **Candidates** | SA-outcome-weighted-ranking, SA-scheduler-ambient-tick, ADV-bm25-calibration |
-| **Status (all)** | PENDING — none shipped in 030 Wave-0 (`git log 1ecc531431..ab5459fb6d` has no advisor outcome-ranking / ambient-tick / bm25-calibration commit; 030 §14 table has no advisor lane-scorer reliability row). Each is gated: outcome-ranking = needs net-new emitter + store + shared-Beta dep; ambient-tick = shared-infra (out-of-process cadence) dep; bm25-calibration = needs-benchmark (prove-first, shadow-only) |
+| **Status (all)** | Shadow-only build SHIPPED (not promoted to live; verified typecheck 0 + scorer suite green, live fused sort byte-identical). **ADV-bm25-calibration** = IMPLEMENTED (query-length-bucketed midpoint behind a default-off flag, byte-identical default, lane stays shadow-only/zeroed-weight — telemetry-only; benchmark/promotion out of scope). **SA-scheduler-ambient-tick** = IMPLEMENTED (idempotent out-of-process fold-tick core + `.mjs` runner; double-tick no-op; never prompt-time). **SA-outcome-weighted-ranking** = IMPLEMENTED shadow-only (execution-success record + durable store + replay-safe fold + query-scored failure-mode recall + shadow re-rank `similarity x reliability x penalty`, fresh = 0.5); two gates remain PENDING — the emitter runtime seam (Q-001 undecided) and the shared Beta-posterior reliability math (owned by sibling 004, not landed; adapter seam built + neutral until then). Live re-rank / BM25 promotion remain NO-GO (needs real execution-success data + a benchmark). |
 <!-- /ANCHOR:metadata -->
 
 ---

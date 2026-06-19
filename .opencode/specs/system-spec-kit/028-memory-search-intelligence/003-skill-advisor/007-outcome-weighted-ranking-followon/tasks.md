@@ -55,10 +55,10 @@ _memory:
 ## Phase 1: Setup
 <!-- (Phase 0 in plan.md — Baseline + the missing signal; REQ-001, REQ-002, REQ-008) -->
 
-- [ ] T001 Capture the advisor-ranking + BM25-telemetry baseline (before any change) into `scratch/` — record live ranking output + `bm25.ts` logistic behavior; NEVER quote an unmeasured leverage number (none exists in the campaign; synthesis 03 line 9, roadmap §6) (`scratch/`)
-- [ ] T002 [B] Resolve the emitter seam Q-001 — advisor `advisor-validate` outcome path (`handlers/advisor-validate.ts:120-136`), the skill-blind Completion-Verification gate (`scripts/spec/validate.sh`), or a new post-task signal — blocked until the seam is chosen
-- [ ] T003 Build the net-new execution-success EMITTER (the signal absent today) — record per-skill task success/failure, DISTINCT from recommendation-acceptance; leave `AdvisorHookOutcomeRecord` untouched (`metrics.ts:81-86,394-409`) (new emitter wiring + `metrics.ts`)
-- [ ] T004 Build the durable skill-outcome STORE — append-only `(skillId, success, failure, context)`, idempotent fold, query-scored recall, per-skill failure-mode storage (new `lib/scorer/skill-outcome-store.ts`)
+- [x] T001 Capture the advisor-ranking + BM25-telemetry baseline (before any change) into `scratch/` — record live ranking output + `bm25.ts` logistic behavior; NEVER quote an unmeasured leverage number (none exists in the campaign; synthesis 03 line 9, roadmap §6) (`scratch/baseline.md`, `scratch/after.md`)
+- [ ] T002 [B] Resolve the emitter seam Q-001 — advisor `advisor-validate` outcome path (`handlers/advisor-validate.ts:120-136`), the skill-blind Completion-Verification gate (`scripts/spec/validate.sh`), or a new post-task signal — STILL PENDING: the record contract + append/record write-path are built, but which runtime signal *fires* the emitter is an undecided design seam
+- [x] T003 Build the net-new execution-success EMITTER (the signal absent today) — record per-skill task success/failure, DISTINCT from recommendation-acceptance; leave `AdvisorHookOutcomeRecord` untouched (`metrics.ts` `SkillExecutionOutcomeRecord` + `createSkillExecutionOutcomeRecord`; `skill-outcome-store.ts` `appendSkillExecutionOutcome`/`recordSkillExecutionOutcome`)
+- [x] T004 Build the durable skill-outcome STORE — append-only `(skillId, success, failure, context)`, idempotent fold, query-scored recall, per-skill failure-mode storage (new `lib/scorer/skill-outcome-store.ts`)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -67,23 +67,23 @@ _memory:
 ## Phase 2: Implementation
 
 ### Ambient-tick cadence driver (REQ-005)
-- [ ] T005 Build the idempotent out-of-process cadence driver that folds the skill-outcome store on a clock — double-tick = no-op (new ambient-tick script)
-- [ ] T006 Run the ambient-tick cron/maintenance only — never a prompt-time hook (NFR-P01) (new ambient-tick script)
-- [ ] T007 [P] Confirm the ambient-tick is the SHARED substrate the sibling 004 C4-seam promoter rides on — one driver, two consumers (coordinate with `../004-c4-shadow-seam-beta-posterior/`)
+- [x] T005 Build the idempotent out-of-process cadence driver that folds the skill-outcome store on a clock — double-tick = no-op (`skill-outcome-store.ts` `tickSkillOutcomeFold` core + `scripts/skill-outcome-fold-tick.mjs` runner)
+- [x] T006 Run the ambient-tick cron/maintenance only — never a prompt-time hook (NFR-P01) (`scripts/skill-outcome-fold-tick.mjs`; nothing on the recommend path imports it)
+- [ ] T007 [P] Confirm the ambient-tick is the SHARED substrate the sibling 004 C4-seam promoter rides on — one driver, two consumers — PENDING: the tick is built as the substrate, but sibling 004's promoter is not yet built to ride it (coordinate with `../004-c4-shadow-seam-beta-posterior/`)
 
 ### Outcome-weighted shadow re-rank (REQ-003, REQ-004, REQ-006)
-- [ ] T008 Build the shadow re-rank `score = similarity x reliability x penalty` (fresh skill = neutral 0.5) — SHADOW channel only (new `lib/scorer/outcome-weighted-rerank.ts`)
-- [ ] T009 Consume the SHARED Beta primitive via a thin advisor adapter (posterior reliability in `[0,1]`, cold-start 0.5) — do NOT fork; do NOT reuse `bayesian-scorer.ts:13-21` (throws `RangeError` on fractional inputs, `:14`) (new adapter)
-- [ ] T010 [P] Coordinate the shared Beta module location/signature + `(a0,b0)` prior with sibling 004 + Deep-Loop D2 (synthesis 04 RC6) (Q-002)
-- [ ] T011 Build per-skill failure-mode recall — query-scored ("how this skill tends to fail on inputs like yours"); surface as ADVISORY context, never a hard live demotion (`aionforge-procedural/memory.rs:304`) (new store + re-rank)
-- [ ] T012 Assert (test) the LIVE fused sort (`fusion.ts:425-433`) is byte-identical to baseline — the shadow re-rank changes no live ordering
+- [x] T008 Build the shadow re-rank `score = similarity x reliability x penalty` (fresh skill = neutral 0.5) — SHADOW channel only (new `lib/scorer/outcome-weighted-rerank.ts`)
+- [ ] T009 Consume the SHARED Beta primitive via a thin advisor adapter (posterior reliability in `[0,1]`, cold-start 0.5) — PENDING: the `ReliabilityResolver` adapter seam is built and stays neutral 0.5 until sibling 004's primitive lands; not forked, does not reuse the integer scorer
+- [ ] T010 [P] Coordinate the shared Beta module location/signature + `(a0,b0)` prior with sibling 004 + Deep-Loop D2 (synthesis 04 RC6) (Q-002) — PENDING: sibling 004 not landed
+- [x] T011 Build per-skill failure-mode recall — query-scored ("how this skill tends to fail on inputs like yours"); surface as ADVISORY context, never a hard live demotion (`skill-outcome-store.ts` `recallSkillFailureModes`)
+- [x] T012 Assert (test) the LIVE fused sort is byte-identical to baseline — the shadow re-rank changes no live ordering (guardrail test in `tests/scorer/outcome-weighted-ranking.vitest.ts`)
 
 ### ADV-bm25-calibration (REQ-007, prove-first)
-- [ ] T013 Replace the fixed logistic midpoint `4` (`bm25.ts:277` `rawScore / (rawScore + 4)`) with a query-length-bucketed midpoint — keep `shadowOnly:true` and the zeroed fusion weight (`bm25.ts:279`); telemetry-only (`lib/scorer/lanes/bm25.ts`)
-- [ ] T014 Capture a before/after BM25 telemetry baseline — PROVE-FIRST: no promotion claim without a measured telemetry delta (`scratch/`)
+- [x] T013 Replace the fixed logistic midpoint `4` with a query-length-bucketed midpoint — DEFAULT-OFF flag (byte-identical default); keep `shadowOnly:true` and the zeroed fusion weight; telemetry-only (`lib/scorer/lanes/bm25.ts` `resolveBm25LogisticMidpoint`)
+- [x] T014 Capture a before/after BM25 telemetry baseline — PROVE-FIRST: no promotion claim without a measured telemetry delta (`scratch/baseline.md`, `scratch/after.md`; default-off so no live delta is claimed)
 
 ### Guardrail enforcement (REQ-003, NFR-S01)
-- [ ] T015 Keep the shadow re-rank channel default-off and off the live recommend path; the skill-outcome store is read-only input — the emitter cannot write live scorer weights (new re-rank + store)
+- [x] T015 Keep the shadow re-rank channel default-off and off the live recommend path; the skill-outcome store is read-only input — the emitter cannot write live scorer weights (`isAdvisorOutcomeWeightedRerankEnabled` default-off; re-rank never imported by `fusion.ts`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -91,13 +91,13 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T016 Unit-test the Beta blend: cold-start 0.5, anti-flood (low-vs-high count NOT identical), fresh-skill neutrality (blend == pure similarity on empty store) (new test dir)
-- [ ] T017 Unit-test the store fold + ambient-tick: replay/double-delivery folds identically; double-tick is a no-op (idempotent) (new test dir)
-- [ ] T018 Unit-test the guardrail: the shadow re-rank can NEVER change the live fused order; live sort byte-identical to baseline (new test dir)
-- [ ] T019 Unit-test ADV-bm25-calibration: query-length bucket selection; single-token vs long query; degenerate zero-length falls back to default bucket; lane stays shadow-only (new test dir)
-- [ ] T020 Run `tsc`/build + the existing advisor scorer suite green; capture the after-baseline and diff vs T001
-- [ ] T021 Record the promotion-to-live NO-GO gate (real execution-success data + benchmark required to out-rank pure similarity) in `decision-record.md` (REQ-009)
-- [ ] T022 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-folder> --strict` and fix until clean
+- [x] T016 Unit-test the Beta blend: cold-start 0.5, anti-flood (low-vs-high count NOT identical), fresh-skill neutrality (blend == pure similarity on empty store) (`tests/scorer/outcome-weighted-ranking.vitest.ts`)
+- [x] T017 Unit-test the store fold + ambient-tick: replay/double-delivery folds identically; double-tick is a no-op (idempotent) (`tests/scorer/outcome-weighted-ranking.vitest.ts`)
+- [x] T018 Unit-test the guardrail: the shadow re-rank can NEVER change the live fused order; live sort byte-identical to baseline (`tests/scorer/outcome-weighted-ranking.vitest.ts`)
+- [x] T019 Unit-test ADV-bm25-calibration: query-length bucket selection; single-token vs long query; degenerate zero-length falls back to default bucket; lane stays shadow-only (`tests/scorer/outcome-weighted-ranking.vitest.ts`)
+- [x] T020 Run `tsc`/build + the existing advisor scorer suite green; capture the after-baseline and diff vs T001 — typecheck 0 errors; `tests/scorer` 15 files/109 tests pass; broad `tests/scorer tests/legacy` has 0 NEW failures (2 pre-existing fail identically at HEAD)
+- [x] T021 Record the promotion-to-live NO-GO gate (real execution-success data + benchmark required to out-rank pure similarity) in `decision-record.md` (REQ-009) — recorded in ADR-002
+- [x] T022 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-folder> --strict` and fix until clean — PASSED (0 errors / 0 warnings)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -105,11 +105,11 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining (T002 unblocked by the Q-001 seam decision)
-- [ ] Beta-blend + store-fold + ambient-tick + guardrail unit tests passing
-- [ ] Shadow-only guardrail proven intact; live fused sort byte-identical; BM25 lane still shadow-only
-- [ ] Promotion-to-live NO-GO gate recorded; baseline captured (no unmeasured number quoted)
+- [ ] All tasks marked `[x]` — shadow-only build done; 4 tasks (T002, T007, T009, T010) remain PENDING on external gates: the emitter runtime seam (Q-001 undecided) and sibling 004's shared Beta primitive (not landed)
+- [ ] No `[B]` blocked tasks remaining — T002 stays `[B]` until the Q-001 seam is chosen
+- [x] Beta-blend + store-fold + ambient-tick + guardrail unit tests passing
+- [x] Shadow-only guardrail proven intact; live fused sort byte-identical; BM25 lane still shadow-only
+- [x] Promotion-to-live NO-GO gate recorded; baseline captured (no unmeasured number quoted)
 <!-- /ANCHOR:completion -->
 
 ---

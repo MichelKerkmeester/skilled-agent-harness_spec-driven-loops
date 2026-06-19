@@ -95,6 +95,31 @@ export interface AdvisorHookOutcomeSummary {
   };
 }
 
+// Execution-success outcome — a different signal from AdvisorHookOutcomeRecord
+// above. That record captures whether a *recommendation* was accepted
+// (accepted/corrected/ignored); this one captures whether the recommended
+// skill's TASK actually succeeded or failed. Accepting a recommendation says
+// nothing about whether the skill then completed the task, so a
+// reliability-over-execution ranking needs this distinct signal. Kept
+// prompt-free for the same prompt-safety reason the acceptance record is: only
+// a sanitized skill id, a boolean outcome, an idempotency key, and optional
+// bounded context tags the caller has already deemed safe to persist.
+export interface SkillExecutionOutcomeRecord {
+  readonly timestamp: string;
+  readonly runtime: AdvisorRuntime;
+  readonly skillId: string;
+  readonly success: boolean;
+  // Idempotency key: a replayed or double-delivered event carrying the same id
+  // folds to the same counts (no double-count).
+  readonly eventId: string;
+  // Optional failure-mode tag for query-scored recall ("how this skill tends
+  // to fail on inputs like yours"). Advisory only — never a hard demotion.
+  readonly failureMode?: string;
+  // Optional bounded, caller-sanitized context tags scored against a query for
+  // failure-mode recall. The store never captures the raw prompt.
+  readonly contextTags?: readonly string[];
+}
+
 // ───────────────────────────────────────────────────────────────
 // 2. CONSTANTS
 // ───────────────────────────────────────────────────────────────
@@ -194,6 +219,29 @@ function sanitizeSkillLabel(value: unknown): string | undefined {
   }
   const compact = value.replace(/[\n\r]/g, ' ').replace(/\s+/g, ' ').trim();
   return compact ? compact.slice(0, 160) : undefined;
+}
+
+const MAX_CONTEXT_TAGS = 16;
+
+// Context tags are the only free-form payload on a skill-execution outcome, so
+// they are bounded and sanitized hard: drop non-strings, normalize whitespace,
+// cap length, dedupe, and cap count. The caller owns prompt-safety — this only
+// guarantees the stored shape stays small and closed.
+function sanitizeContextTags(value: unknown): string[] {
+  if (!Array.isArray(value)) {
+    return [];
+  }
+  const seen = new Set<string>();
+  for (const entry of value) {
+    const tag = sanitizeSkillLabel(entry);
+    if (tag) {
+      seen.add(tag);
+    }
+    if (seen.size >= MAX_CONTEXT_TAGS) {
+      break;
+    }
+  }
+  return [...seen];
 }
 
 function percentile(values: readonly number[], percentileValue: number): number {
@@ -452,6 +500,49 @@ export function summarizeAdvisorHookOutcomeRecords(
 
 export function advisorHookOutcomesPath(workspaceRoot: string): string {
   return durableMetricsPath(workspaceRoot, 'outcomes');
+}
+
+// Mirrors createAdvisorHookOutcomeRecord but for execution success, not
+// recommendation acceptance. Persistence lives in the skill-outcome store, not
+// here, so the acceptance write-path (debug-gated, bounded) is left untouched.
+export function createSkillExecutionOutcomeRecord(input: {
+  readonly runtime: AdvisorRuntime;
+  readonly skillId: string;
+  readonly success: boolean;
+  readonly eventId: string;
+  readonly failureMode?: string | null;
+  readonly contextTags?: readonly string[] | null;
+  readonly timestamp?: string;
+}): SkillExecutionOutcomeRecord {
+  const timestamp = input.timestamp ?? new Date().toISOString();
+  const skillId = sanitizeSkillLabel(input.skillId) ?? 'unknown-skill';
+  const eventId = sanitizeSkillLabel(input.eventId) ?? `${skillId}:${timestamp}`;
+  const failureMode = sanitizeSkillLabel(input.failureMode);
+  const contextTags = sanitizeContextTags(input.contextTags);
+  return {
+    timestamp,
+    runtime: input.runtime,
+    skillId,
+    success: input.success === true,
+    eventId,
+    ...(failureMode ? { failureMode } : {}),
+    ...(contextTags.length > 0 ? { contextTags } : {}),
+  };
+}
+
+export function validateSkillExecutionOutcomeRecord(value: unknown): value is SkillExecutionOutcomeRecord {
+  if (typeof value !== 'object' || value === null || Array.isArray(value)) {
+    return false;
+  }
+  const record = value as Record<string, unknown>;
+  return typeof record.timestamp === 'string'
+    && enumIncludes(ADVISOR_RUNTIME_VALUES, record.runtime)
+    && typeof record.skillId === 'string'
+    && typeof record.success === 'boolean'
+    && typeof record.eventId === 'string'
+    && (record.failureMode === undefined || typeof record.failureMode === 'string')
+    && (record.contextTags === undefined
+      || (Array.isArray(record.contextTags) && record.contextTags.every((tag) => typeof tag === 'string')));
 }
 
 /** Small in-memory collector for advisor hook metrics and health snapshots. */

@@ -11,6 +11,39 @@ const BM25_K1 = 1.2;
 const BM25_B = 0.75;
 const DEFAULT_LIMIT = 20;
 
+// Logistic squashing midpoint for rawScore -> score in [0,1). The fixed value
+// is query-length-blind: a longer query accumulates more rawScore, so a single
+// constant over-saturates long queries. The query-length-bucketed midpoint
+// (opt-in, telemetry-only) raises the midpoint as the query grows so the
+// squashed score stays comparable across query lengths.
+export const ADVISOR_BM25_QUERY_LENGTH_CALIBRATION_FLAG = 'SPECKIT_ADVISOR_BM25_QUERY_LENGTH_CALIBRATION';
+const TRUE_FLAG_VALUES = new Set(['1', 'true', 'yes', 'on', 'enabled']);
+export const BM25_DEFAULT_LOGISTIC_MIDPOINT = 4;
+const BM25_SHORT_QUERY_MIDPOINT = 2;
+const BM25_LONG_QUERY_MIDPOINT = 8;
+const BM25_LONG_QUERY_TERM_FLOOR = 5;
+
+function isQueryLengthCalibrationEnabled(): boolean {
+  const value = process.env[ADVISOR_BM25_QUERY_LENGTH_CALIBRATION_FLAG]?.trim().toLowerCase();
+  return value ? TRUE_FLAG_VALUES.has(value) : false;
+}
+
+/** Resolve the logistic midpoint for a query of `queryTermCount` unique terms.
+ * Disabled (default) or a degenerate zero-length query returns the fixed
+ * midpoint, so the squashed score is byte-identical to the pre-calibration lane. */
+export function resolveBm25LogisticMidpoint(queryTermCount: number, enabled: boolean): number {
+  if (!enabled || queryTermCount <= 0) {
+    return BM25_DEFAULT_LOGISTIC_MIDPOINT;
+  }
+  if (queryTermCount === 1) {
+    return BM25_SHORT_QUERY_MIDPOINT;
+  }
+  if (queryTermCount >= BM25_LONG_QUERY_TERM_FLOOR) {
+    return BM25_LONG_QUERY_MIDPOINT;
+  }
+  return BM25_DEFAULT_LOGISTIC_MIDPOINT;
+}
+
 const BM25F_FIELD_NAMES = [
   'name',
   'keywords',
@@ -35,6 +68,9 @@ export const ADVISOR_BM25_FIELD_WEIGHTS: AdvisorBm25FieldWeights = {
 export interface AdvisorBm25SearchOptions {
   readonly fieldWeights?: Partial<AdvisorBm25FieldWeights>;
   readonly limit?: number;
+  /** Opt-in override for the query-length-bucketed logistic midpoint; defaults
+   * to the env flag. Telemetry-only — the lane stays shadow-only either way. */
+  readonly queryLengthCalibration?: boolean;
 }
 
 export interface AdvisorBm25Match {
@@ -241,6 +277,10 @@ export class AdvisorPackedBm25Index {
     const weights = resolveFieldWeights(options.fieldWeights);
     const scores = new Map<number, { rawScore: number; evidence: string[] }>();
     const averageLength = Math.max(this.totalDocumentLength / this.documents.size, 1);
+    const logisticMidpoint = resolveBm25LogisticMidpoint(
+      queryTerms.length,
+      options.queryLengthCalibration ?? isQueryLengthCalibrationEnabled(),
+    );
 
     for (const term of queryTerms) {
       const postings = this.packedPostings.get(term);
@@ -274,7 +314,7 @@ export class AdvisorPackedBm25Index {
         skillId: this.skillIds[numericId],
         lane: ADVISOR_BM25_LEXICAL_SHADOW_LANE_ID,
         rawScore: Number(result.rawScore.toFixed(6)),
-        score: Number((result.rawScore / (result.rawScore + 4)).toFixed(6)),
+        score: Number((result.rawScore / (result.rawScore + logisticMidpoint)).toFixed(6)),
         evidence: result.evidence,
         shadowOnly: true,
       } satisfies AdvisorBm25Match))
