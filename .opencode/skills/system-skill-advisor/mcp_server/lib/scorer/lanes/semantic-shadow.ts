@@ -154,6 +154,73 @@ export const _semanticShadowTest = {
   fixtureVector,
 };
 
+export function scoreSemanticShadowExactSubset(
+  prompt: string,
+  projection: AdvisorProjection,
+  skillIds: readonly string[],
+): LaneMatch[] {
+  if (projection.embeddingStaleness?.stale) {
+    setRuntimeHealth({ disabledReason: 'projection_embedding_stale' });
+    return [];
+  }
+
+  const orderedSkillIds = [...new Set(skillIds)];
+  if (orderedSkillIds.length === 0) return [];
+
+  const promptVector = activePromptEmbedding?.prompt === prompt
+    ? activePromptEmbedding.vector
+    : (projection.source === 'fixture' || process.env.VITEST === 'true' ? fixtureVector(prompt) : null);
+  if (!promptVector) {
+    return [];
+  }
+
+  const requested = new Set(orderedSkillIds);
+  const fixtureVectors = projection.source === 'fixture' || process.env.VITEST === 'true'
+    ? new Map(projection.skills
+        .filter((skill) => requested.has(skill.id))
+        .map((skill) => [skill.id, fixtureVector([
+          skill.name,
+          skill.description,
+          ...skill.domains,
+          ...skill.intentSignals,
+          ...skill.derivedTriggers,
+        ].join(' '))]))
+    : new Map<string, Float32Array>();
+
+  let cachedVectors = new Map<string, Float32Array>();
+  if (projection.source !== 'fixture' && process.env.VITEST !== 'true') {
+    try {
+      cachedVectors = new Map(
+        loadSkillEmbeddings(orderedSkillIds)
+          .map((row) => [row.skillId, row.embedding]),
+      );
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : String(error);
+      setRuntimeHealth({ disabledReason: 'skill_embedding_load_failed' });
+      console.warn(`[semantic-shadow] Exact skill embedding load failed; rerank disabled (${message})`);
+      return [];
+    }
+  }
+
+  return orderedSkillIds
+    .map((skillId): LaneMatch | null => {
+      const skillVector = cachedVectors.get(skillId) ?? fixtureVectors.get(skillId);
+      if (!skillVector) {
+        return null;
+      }
+      const score = cosineSimilarity(promptVector, skillVector);
+      const roundedScore = Math.round(score * 1_000_000) / 1_000_000;
+      return {
+        skillId,
+        lane: 'semantic_shadow' as const,
+        score: roundedScore,
+        evidence: [`cosine-exact:${score.toFixed(4)}`],
+        shadowOnly: false,
+      };
+    })
+    .filter((match): match is LaneMatch => match !== null);
+}
+
 export function scoreSemanticShadowLane(prompt: string, projection: AdvisorProjection): LaneMatch[] {
   if (projection.embeddingStaleness?.stale) {
     setRuntimeHealth({ disabledReason: 'projection_embedding_stale' });

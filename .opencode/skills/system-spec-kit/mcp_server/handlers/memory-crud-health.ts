@@ -1372,8 +1372,8 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
   } catch (err: unknown) {
     routingTelemetry = {
       graphChannelInvocationRate: 0,
-      channelInvocationCounts: { vector: 0, fts: 0, bm25: 0, graph: 0, degree: 0 },
-      channelInvocationRates: { vector: 0, fts: 0, bm25: 0, graph: 0, degree: 0 },
+      channelInvocationCounts: { vector: 0, fts: 0, bm25: 0, graph: 0, degree: 0, summary: 0, community: 0 },
+      channelInvocationRates: { vector: 0, fts: 0, bm25: 0, graph: 0, degree: 0, summary: 0, community: 0 },
       totalRecorded: 0,
       windowSize: ROUTING_TELEMETRY_WINDOW_SIZE,
     };

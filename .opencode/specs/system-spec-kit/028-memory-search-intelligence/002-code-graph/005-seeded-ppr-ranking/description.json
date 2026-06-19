@@ -12,9 +12,9 @@
     "retrieval",
     "intelligence"
   ],
-  "lastUpdated": "2026-06-19T06:21:35.370Z",
+  "lastUpdated": "2026-06-19T12:40:29.073Z",
   "specId": "005",
-  "folderSlug": "005-seeded-ppr-ranking",
+  "folderSlug": "seeded-ppr-ranking",
   "parentChain": [
     "system-spec-kit",
     "028-memory-search-intelligence",

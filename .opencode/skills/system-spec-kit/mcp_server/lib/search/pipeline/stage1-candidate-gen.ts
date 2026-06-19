@@ -38,7 +38,7 @@ import { resolveEffectiveScore } from './types.js';
 import * as vectorIndex from '../vector-index.js';
 import * as hybridSearch from '../hybrid-search.js';
 import { vectorSearchWithContiguity } from '../../cognitive/temporal-contiguity.js';
-import { isMultiQueryEnabled, isEmbeddingExpansionEnabled, isMemorySummariesEnabled, isQueryDecompositionEnabled, isGraphConceptRoutingEnabled, isLlmReformulationEnabled, isHyDEEnabled, isQuerySurrogatesEnabled, isTemporalContiguityEnabled, isQueryConceptExpansionEnabled } from '../search-flags.js';
+import { isMultiQueryEnabled, isEmbeddingExpansionEnabled, isMemorySummariesEnabled, isQueryDecompositionEnabled, isGraphConceptRoutingEnabled, isLlmReformulationEnabled, isHyDEEnabled, isQuerySurrogatesEnabled, isTemporalContiguityEnabled, isQueryConceptExpansionEnabled, isSummaryFusionLaneEnabled } from '../search-flags.js';
 import { expandQuery } from '../query-expander.js';
 import { expandQueryWithEmbeddings, isExpansionActive } from '../embedding-expansion.js';
 import { querySummaryEmbeddings, checkScaleGate } from '../memory-summaries.js';
@@ -102,6 +102,10 @@ function isStage1InputError(error: unknown): error is Stage1InputError {
 
 function hasEmbedding(embedding: Float32Array | number[] | null | undefined): embedding is Float32Array | number[] {
   return embedding != null && embedding.length > 0;
+}
+
+function shouldRunStage1SummaryEmbeddingChannel(vectorSearchSkipped: boolean): boolean {
+  return !vectorSearchSkipped && isMemorySummariesEnabled() && !isSummaryFusionLaneEnabled();
 }
 
 async function collectLexicalOnlyCandidates(
@@ -641,6 +645,9 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
   const hybridSearchOptions = {
     limit,
     specFolder,
+    tenantId,
+    userId,
+    agentId,
     includeArchived,
     intent: config.adaptiveFusionIntent ?? undefined,
   };
@@ -1365,11 +1372,9 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
   }
 
   // Summary Embedding Channel
-  // When SPECKIT_MEMORY_SUMMARIES is enabled (default-ON) and scale gate is
-  // Met (>5000 indexed), run a parallel search on summary embeddings and merge
-  // Results. Pattern follows embedding expansion: run in parallel, merge
-  // + deduplicate by ID.
-  if (!vectorSearchSkipped && isMemorySummariesEnabled()) {
+  // When the fused lane is active, summary evidence enters through RRF instead
+  // of this raw-candidate merge so the same evidence is not counted twice.
+  if (shouldRunStage1SummaryEmbeddingChannel(vectorSearchSkipped)) {
     try {
       const db = requireDb();
       if (checkScaleGate(db)) {
@@ -1387,7 +1392,6 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
             const existingIds = new Set(candidates.map((r) => String(r.id)));
             const newSummaryHits: PipelineRow[] = [];
 
-            // F02-003: Batch-fetch instead of N+1 per-item queries
             const newSummaryIds = summaryResults
               .filter((sr) => !existingIds.has(String(sr.memoryId)))
               .map((sr) => sr.memoryId);
@@ -1454,7 +1458,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
       }
     } catch (r8Err: unknown) {
       const r8Msg = r8Err instanceof Error ? r8Err.message : String(r8Err);
-      console.warn(`[stage1-candidate-gen] R8 summary channel failed: ${r8Msg}`);
+      console.warn(`[stage1-candidate-gen] Summary channel failed: ${r8Msg}`);
     }
   }
 
@@ -1592,6 +1596,7 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
 export const __testables = {
   filterByMinQualityScore,
   resolveRowContextType,
+  shouldRunStage1SummaryEmbeddingChannel,
   isPacketOrientedQuery,
   boostGraphMetadataCandidates,
   buildDeepQueryVariants,

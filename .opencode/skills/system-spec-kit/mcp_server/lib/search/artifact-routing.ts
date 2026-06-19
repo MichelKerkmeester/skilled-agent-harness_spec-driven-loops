@@ -18,6 +18,8 @@ type ArtifactClass =
   | 'research'
   | 'unknown';
 
+type RetrievalChannelName = 'vector' | 'keyword' | 'graph' | 'degree' | 'summary' | 'community';
+
 interface RetrievalStrategy {
   artifactClass: ArtifactClass;
   /** Weight for semantic (vector) search component, 0-1 */
@@ -30,6 +32,8 @@ interface RetrievalStrategy {
   maxResults: number;
   /** Boost factor applied to final scores, 0-2 */
   boostFactor: number;
+  /** Optional per-channel fusion weights for channels outside the collapsed buckets. */
+  channelWeights?: Partial<Record<RetrievalChannelName, number>>;
 }
 
 interface RoutingResult {
@@ -49,79 +53,97 @@ interface WeightedResult extends Record<string, unknown> {
    2. ROUTING TABLE
 ----------------------------------------------------------------*/
 
+const DEFAULT_CHANNEL_WEIGHTS: Readonly<Partial<Record<RetrievalChannelName, number>>> = Object.freeze({
+  summary: 0.2,
+  community: 0.2,
+});
+
+function withChannelWeights(
+  strategy: Omit<RetrievalStrategy, 'channelWeights'>,
+  channelWeights: Partial<Record<RetrievalChannelName, number>> = {},
+): RetrievalStrategy {
+  return {
+    ...strategy,
+    channelWeights: {
+      ...DEFAULT_CHANNEL_WEIGHTS,
+      ...channelWeights,
+    },
+  };
+}
+
 const ROUTING_TABLE: Record<ArtifactClass, RetrievalStrategy> = {
-  spec: {
+  spec: withChannelWeights({
     artifactClass: 'spec',
     semanticWeight: 0.7,
     keywordWeight: 0.3,
     recencyBias: 0.2,
     maxResults: 5,
     boostFactor: 1.0,
-  },
-  plan: {
+  }),
+  plan: withChannelWeights({
     artifactClass: 'plan',
     semanticWeight: 0.6,
     keywordWeight: 0.4,
     recencyBias: 0.3,
     maxResults: 5,
     boostFactor: 1.0,
-  },
-  tasks: {
+  }),
+  tasks: withChannelWeights({
     artifactClass: 'tasks',
     semanticWeight: 0.4,
     keywordWeight: 0.6,
     recencyBias: 0.5,
     maxResults: 10,
     boostFactor: 0.9,
-  },
-  checklist: {
+  }),
+  checklist: withChannelWeights({
     artifactClass: 'checklist',
     semanticWeight: 0.3,
     keywordWeight: 0.7,
     recencyBias: 0.4,
     maxResults: 10,
     boostFactor: 0.9,
-  },
-  'decision-record': {
+  }),
+  'decision-record': withChannelWeights({
     artifactClass: 'decision-record',
     semanticWeight: 0.6,
     keywordWeight: 0.4,
     recencyBias: 0.2,
     maxResults: 5,
     boostFactor: 1.0,
-  },
-  'implementation-summary': {
+  }),
+  'implementation-summary': withChannelWeights({
     artifactClass: 'implementation-summary',
     semanticWeight: 0.5,
     keywordWeight: 0.5,
     recencyBias: 0.3,
     maxResults: 5,
     boostFactor: 1.0,
-  },
-  memory: {
+  }),
+  memory: withChannelWeights({
     artifactClass: 'memory',
     semanticWeight: 0.8,
     keywordWeight: 0.2,
     recencyBias: 0.6,
     maxResults: 5,
     boostFactor: 1.1,
-  },
-  research: {
+  }),
+  research: withChannelWeights({
     artifactClass: 'research',
     semanticWeight: 0.7,
     keywordWeight: 0.3,
     recencyBias: 0.2,
     maxResults: 5,
     boostFactor: 1.0,
-  },
-  unknown: {
+  }),
+  unknown: withChannelWeights({
     artifactClass: 'unknown',
     semanticWeight: 0.5,
     keywordWeight: 0.5,
     recencyBias: 0.3,
     maxResults: 10,
     boostFactor: 1.0,
-  },
+  }),
 };
 
 /* ───────────────────────────────────────────────────────────────
@@ -367,6 +389,18 @@ function applyRoutingWeights(
   });
 }
 
+function getStrategyChannelWeight(
+  strategy: RetrievalStrategy,
+  channel: RetrievalChannelName,
+  fallback = 1,
+): number {
+  const rawWeight = strategy.channelWeights?.[channel];
+  if (typeof rawWeight !== 'number' || !Number.isFinite(rawWeight)) {
+    return fallback;
+  }
+  return Math.max(0, Math.min(2, rawWeight));
+}
+
 /* ───────────────────────────────────────────────────────────────
    7. EXPORTS
 ----------------------------------------------------------------*/
@@ -382,10 +416,12 @@ export {
   getStrategy,
   getStrategyForQuery,
   applyRoutingWeights,
+  getStrategyChannelWeight,
 };
 
 export type {
   ArtifactClass,
+  RetrievalChannelName,
   RetrievalStrategy,
   RoutingResult,
   WeightedResult,

@@ -17,7 +17,7 @@ import { scoreDerivedLane } from './lanes/derived.js';
 import { scoreExplicitLane } from './lanes/explicit.js';
 import { scoreGraphCausalLaneSplit } from './lanes/graph-causal.js';
 import { scoreLexicalLane } from './lanes/lexical.js';
-import { scoreSemanticShadowLane } from './lanes/semantic-shadow.js';
+import { scoreSemanticShadowExactSubset, scoreSemanticShadowLane } from './lanes/semantic-shadow.js';
 import { loadAdvisorProjection } from './projection.js';
 import { SCORING_CALIBRATION } from './scoring-constants.js';
 import { isReadOnlyExplainer, matchesPhraseBoundary } from './text.js';
@@ -47,7 +47,11 @@ const DEFAULT_CONFIDENCE_THRESHOLD = resolvedConfidenceThreshold();
 const DEFAULT_UNCERTAINTY_THRESHOLD = resolvedUncertaintyThreshold();
 export const ADVISOR_RRF_FUSION_FLAG = 'SPECKIT_ADVISOR_RRF_FUSION';
 export const ADVISOR_SELF_RECOMMENDATION_GUARD_FLAG = 'SPECKIT_ADVISOR_SELF_RECOMMENDATION_GUARD';
+export const ADVISOR_QUERY_CLASS_ROUTING_FLAG = 'SPECKIT_ADVISOR_QUERY_CLASS_ROUTING';
+export const ADVISOR_EXACT_SEMANTIC_RERANK_FLAG = 'SPECKIT_ADVISOR_EXACT_SEMANTIC_RERANK';
 export const ADVISOR_RRF_K = 8;
+export const ADVISOR_EXACT_SEMANTIC_RERANK_TOP_K = 10;
+const ADVISOR_EXACT_SEMANTIC_RERANK_WINDOW = 0.05;
 const TASK_INTENT = /\b(add|append|build|change|configure|create|edit|fix|generate|implement|modify|move|patch|refactor|rename|replace|run|start|sweep|update|write)\b/;
 const DEEP_RESEARCH_CYCLE = /\b(automated research cycle|looped investigation|continue iteration|resume iteration|overnight run|overnight research run|packet-local iteration|delta record|canonical jsonl|same lineage)\b/;
 const FILE_SAVE_OPERATION = /\bsave\b.{0,48}\b(file|files|document|documents|buffer|tab|workspace)\b|\b(file|files|document|documents|buffer|tab|workspace)\b.{0,48}\bsave\b/;
@@ -81,6 +85,13 @@ interface AdvisorRrfFusion {
 
 type AdvisorRuntimeLabel = (typeof ADVISOR_RUNTIME_VALUES)[number];
 type AdvisorFreshnessLabel = (typeof ADVISOR_HOOK_FRESHNESS_VALUES)[number];
+export type AdvisorQueryClass = 'implementation' | 'review' | 'documentation' | 'memory' | 'tooling' | 'unknown';
+
+interface ExactSemanticRerankEntry {
+  readonly rawScore: number;
+}
+
+type ExactSemanticRerankIndex = ReadonlyMap<string, ExactSemanticRerankEntry>;
 
 function emptyLaneScores(): MutableLaneScores {
   return Object.fromEntries(SCORER_LANES.map((lane) => [lane, []])) as unknown as MutableLaneScores;
@@ -96,19 +107,92 @@ export function isAdvisorSelfRecommendationGuardEnabled(): boolean {
   return value ? TRUE_FLAG_VALUES.has(value) : false;
 }
 
-function effectiveScorerWeights(
-  override: AdvisorScoringOptions['laneWeightsOverride'] | undefined,
+export function isAdvisorQueryClassRoutingEnabled(): boolean {
+  const value = process.env[ADVISOR_QUERY_CLASS_ROUTING_FLAG]?.trim().toLowerCase();
+  return value ? TRUE_FLAG_VALUES.has(value) : false;
+}
+
+export function isAdvisorExactSemanticRerankEnabled(): boolean {
+  const value = process.env[ADVISOR_EXACT_SEMANTIC_RERANK_FLAG]?.trim().toLowerCase();
+  return value ? TRUE_FLAG_VALUES.has(value) : false;
+}
+
+export function classifyAdvisorQuery(prompt: string): AdvisorQueryClass {
+  const promptLower = prompt.toLowerCase();
+  if (/\b(save context|save memory|handover|resume|checkpoint|spec folder|implementation summary|packet docs?)\b/.test(promptLower)) {
+    return 'memory';
+  }
+  if (/\b(review|audit|findings|regression|pull request|pr readiness|release readiness)\b/.test(promptLower)) {
+    return 'review';
+  }
+  if (/\b(readme|markdown|documentation|docs|manual testing playbook|feature catalog|taxonomy)\b/.test(promptLower)) {
+    return 'documentation';
+  }
+  if (/\b(call_tool_chain|code mode|tool ?chain|chrome devtools|browser console|figma|github|clickup)\b/.test(promptLower)) {
+    return 'tooling';
+  }
+  if (TASK_INTENT.test(promptLower) || /\b(typescript|javascript|python|vitest|mcp|handler|schema|fixture)\b/.test(promptLower)) {
+    return 'implementation';
+  }
+  return 'unknown';
+}
+
+export function queryClassLaneMultipliers(queryClass: AdvisorQueryClass): Readonly<Partial<Record<ScorerLane, number>>> {
+  switch (queryClass) {
+    case 'implementation':
+      return { explicit_author: 1.04, lexical: 1.00, graph_causal: 0.98, derived_generated: 0.98, semantic_shadow: 1.00 };
+    case 'review':
+      return { explicit_author: 1.03, lexical: 1.02, graph_causal: 0.96, derived_generated: 0.98, semantic_shadow: 1.00 };
+    case 'documentation':
+      return { explicit_author: 1.03, lexical: 0.98, graph_causal: 0.95, derived_generated: 1.04, semantic_shadow: 1.00 };
+    case 'memory':
+      return { explicit_author: 1.04, lexical: 0.98, graph_causal: 1.02, derived_generated: 1.00, semantic_shadow: 0.96 };
+    case 'tooling':
+      return { explicit_author: 1.04, lexical: 1.00, graph_causal: 0.98, derived_generated: 0.96, semantic_shadow: 1.00 };
+    case 'unknown':
+      return {};
+  }
+}
+
+export function applyQueryClassLaneMultipliers(
+  weights: Readonly<Record<ScorerLane, number>>,
+  queryClass: AdvisorQueryClass,
 ): Readonly<Record<ScorerLane, number>> {
-  if (!override) return DEFAULT_SCORER_WEIGHTS;
-  const weights: Record<ScorerLane, number> = { ...DEFAULT_SCORER_WEIGHTS };
-  const runtimeOverride = override as Partial<Record<string, number>>;
+  const multipliers = queryClassLaneMultipliers(queryClass);
+  if (Object.keys(multipliers).length === 0) return weights;
+  const next = { ...weights };
   for (const lane of SCORER_LANES) {
-    const value = runtimeOverride[lane];
-    if (typeof value === 'number' && Number.isFinite(value)) {
-      weights[lane] = value;
+    const multiplier = multipliers[lane];
+    if (typeof multiplier === 'number' && Number.isFinite(multiplier)) {
+      next[lane] = Number((next[lane] * multiplier).toFixed(6));
     }
   }
-  return weights;
+  const strongestOther = Math.max(...SCORER_LANES
+    .filter((lane) => lane !== 'explicit_author')
+    .map((lane) => next[lane]));
+  if (next.explicit_author < strongestOther) {
+    next.explicit_author = Number(strongestOther.toFixed(6));
+  }
+  return next;
+}
+
+function effectiveScorerWeights(
+  override: AdvisorScoringOptions['laneWeightsOverride'] | undefined,
+  queryClass: AdvisorQueryClass = 'unknown',
+): Readonly<Record<ScorerLane, number>> {
+  const base = !override ? DEFAULT_SCORER_WEIGHTS : (() => {
+    const weights: Record<ScorerLane, number> = { ...DEFAULT_SCORER_WEIGHTS };
+    const runtimeOverride = override as Partial<Record<string, number>>;
+    for (const lane of SCORER_LANES) {
+      const value = runtimeOverride[lane];
+      if (typeof value === 'number' && Number.isFinite(value)) {
+        weights[lane] = value;
+      }
+    }
+    return weights;
+  })();
+  if (queryClass === 'unknown') return base;
+  return applyQueryClassLaneMultipliers(base, queryClass);
 }
 
 function normalizeRuntimeLabel(value: string | undefined): AdvisorRuntimeLabel | null {
@@ -251,6 +335,31 @@ function graphConflictAdjustment(
   recommendation: AdvisorScoredRecommendation,
 ): number {
   return conflictIndex.get(recommendation.skill)?.rawScore ?? 0;
+}
+
+function buildExactSemanticRerankIndex(
+  prompt: string,
+  projection: AdvisorProjection,
+  recommendations: readonly AdvisorScoredRecommendation[],
+  fusion: AdvisorRrfFusion | null,
+): ExactSemanticRerankIndex {
+  if (!fusion) return new Map();
+  const topSkillIds = [...recommendations]
+    .filter((recommendation) => fusion.rankBySkill.has(recommendation.skill))
+    .sort((left, right) => rrfRankFor(fusion, left) - rrfRankFor(fusion, right))
+    .slice(0, ADVISOR_EXACT_SEMANTIC_RERANK_TOP_K)
+    .map((recommendation) => recommendation.skill);
+  const matches = scoreSemanticShadowExactSubset(prompt, projection, topSkillIds);
+  return new Map(matches.map((match) => [match.skillId, {
+    rawScore: match.score,
+  }]));
+}
+
+function exactSemanticRerankScore(
+  rerankIndex: ExactSemanticRerankIndex,
+  recommendation: AdvisorScoredRecommendation,
+): number | null {
+  return rerankIndex.get(recommendation.skill)?.rawScore ?? null;
 }
 
 function rrfRankFor(
@@ -528,10 +637,16 @@ function primaryIntentBonus(
 
 export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOptions): AdvisorScoringResult {
   const projection = options.projection ?? loadAdvisorProjection(options.workspaceRoot);
-  const weights = effectiveScorerWeights(options.laneWeightsOverride);
+  const promptLower = prompt.toLowerCase();
+  const queryClass = classifyAdvisorQuery(promptLower);
+  const weights = effectiveScorerWeights(
+    options.laneWeightsOverride,
+    isAdvisorQueryClassRoutingEnabled() ? queryClass : 'unknown',
+  );
   const disabled = new Set(options.disabledLanes ?? []);
   const affordances = normalize(options.affordances ?? []);
   const useRrfFusion = isAdvisorRrfFusionEnabled();
+  const useExactSemanticRerank = useRrfFusion && isAdvisorExactSemanticRerankEnabled();
   const selfRecommendationGuardEnabled = isAdvisorSelfRecommendationGuardEnabled();
   const { laneScores, graphConflictMatches } = buildLaneScores(
     prompt,
@@ -566,7 +681,6 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
       speckitMetrics.setGauge('spec_kit.scorer.fusion_live_weight_share', weights[lane] / liveTotal, { lane });
     }
   }
-  const promptLower = prompt.toLowerCase();
   const readOnlyExplainer = isReadOnlyExplainer(promptLower);
   const hasTaskIntent = TASK_INTENT.test(promptLower);
   const recommendations: AdvisorScoredRecommendation[] = [];
@@ -643,8 +757,14 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
       if (primaryIntentBonus(promptLower, recommendation, selfRecommendationGuardEnabled) !== 0) {
         speckitMetrics.incrementCounter('spec_kit.scorer.primary_intent_bonus_applied_total', { skill_id: recommendation.skill });
       }
+      if (useRrfFusion && graphConflictAdjustment(graphConflictIndex, recommendation) !== 0) {
+        speckitMetrics.incrementCounter('spec_kit.scorer.graph_conflict_demote_applied_total', { skill_id: recommendation.skill });
+      }
     }
   }
+  const exactSemanticRerankIndex = useExactSemanticRerank
+    ? buildExactSemanticRerankIndex(prompt, projection, recommendations, rrfFusion)
+    : new Map<string, ExactSemanticRerankEntry>();
   let ranked = recommendations.sort((left, right) => {
     const leftCommandBonus = left.kind === 'command' && !promptLower.includes('/') ? -0.08 : 0;
     const rightCommandBonus = right.kind === 'command' && !promptLower.includes('/') ? -0.08 : 0;
@@ -655,8 +775,19 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
     const adjustedScoreDiff = (right.score + rightCommandBonus + rightIntent + rightConflict)
       - (left.score + leftCommandBonus + leftIntent + leftConflict);
     if (useRrfFusion) {
+      const leftExactSemantic = exactSemanticRerankScore(exactSemanticRerankIndex, left);
+      const rightExactSemantic = exactSemanticRerankScore(exactSemanticRerankIndex, right);
+      if (leftExactSemantic !== null
+        && rightExactSemantic !== null
+        && Math.abs(adjustedScoreDiff) <= ADVISOR_EXACT_SEMANTIC_RERANK_WINDOW) {
+        const exactSemanticDiff = rightExactSemantic - leftExactSemantic;
+        if (exactSemanticDiff !== 0) {
+          return exactSemanticDiff;
+        }
+      }
       return adjustedScoreDiff
-        || rrfRankFor(rrfFusion, left) - rrfRankFor(rrfFusion, right);
+        || rrfRankFor(rrfFusion, left) - rrfRankFor(rrfFusion, right)
+        || left.skill.localeCompare(right.skill);
     }
     return adjustedScoreDiff
       || right.confidence - left.confidence

@@ -524,6 +524,7 @@ export type SpeckitMetricName =
   | 'spec_kit.scorer.lane_contribution'
   | 'spec_kit.scorer.fusion_live_weight_share'
   | 'spec_kit.scorer.primary_intent_bonus_applied_total'
+  | 'spec_kit.scorer.graph_conflict_demote_applied_total'
   | 'spec_kit.scorer.confidence_brier_score'
   | 'spec_kit.scorer.near_dup_cache_miss_total'
   | 'spec_kit.freshness.state_transitions_total'
@@ -549,6 +550,7 @@ export const SPECKIT_METRIC_DEFINITIONS = [
   { name: 'spec_kit.scorer.lane_contribution', type: 'gauge', labels: ['lane', 'skill_id'] },
   { name: 'spec_kit.scorer.fusion_live_weight_share', type: 'gauge', labels: ['lane'] },
   { name: 'spec_kit.scorer.primary_intent_bonus_applied_total', type: 'counter', labels: ['skill_id'] },
+  { name: 'spec_kit.scorer.graph_conflict_demote_applied_total', type: 'counter', labels: ['skill_id'] },
   { name: 'spec_kit.scorer.confidence_brier_score', type: 'histogram', labels: [] },
   { name: 'spec_kit.scorer.near_dup_cache_miss_total', type: 'counter', labels: ['cache_layer'] },
   // 3 freshness metrics (#12-14)

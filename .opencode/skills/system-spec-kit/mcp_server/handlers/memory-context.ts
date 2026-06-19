@@ -58,7 +58,12 @@ import {
   isFolderDiscoveryEnabled,
   isPressurePolicyEnabled,
   isIntentAutoProfileEnabled,
+  isWorldSummaryPreludeEnabled,
 } from '../lib/search/search-flags.js';
+import {
+  buildWorldSummaryPrelude,
+  type WorldSummaryPrelude,
+} from '../lib/search/memory-summaries.js';
 import { buildResumeLadder, type ResumeLadderResult } from '../lib/resume/resume-ladder.js';
 import { routeQuery } from '../lib/search/query-router.js';
 import { createEmptyQueryPlan } from '../lib/query/query-plan.js';
@@ -304,6 +309,64 @@ function extractResultRowsFromContextResponse(responseText: string): Array<Recor
       : [];
   } catch {
     return [];
+  }
+}
+
+function prependWorldSummaryPreludeToResult(
+  result: ContextResult,
+  prelude: WorldSummaryPrelude,
+): ContextResult {
+  const content = Array.isArray((result as Record<string, unknown>).content)
+    ? [...((result as Record<string, unknown>).content as Array<{ type?: string; text?: string }>)]
+    : [];
+  const first = content[0];
+  if (!first || typeof first.text !== 'string' || first.text.length === 0) {
+    return result;
+  }
+
+  try {
+    const envelope = JSON.parse(first.text) as Record<string, unknown>;
+    const data = envelope.data && typeof envelope.data === 'object' && !Array.isArray(envelope.data)
+      ? { ...(envelope.data as Record<string, unknown>) }
+      : {};
+    const results = Array.isArray(data.results)
+      ? [...(data.results as Array<Record<string, unknown>>)]
+      : [];
+    const preludeRow = {
+      id: 'world-summary-prelude',
+      title: 'World summary grounding',
+      source: 'world_summary',
+      score: 1,
+      similarity: 1,
+      content: prelude.text,
+      summary: prelude.rootSummary,
+      sections: prelude.sections,
+      groundingPrelude: true,
+    };
+
+    const nextResults = [preludeRow, ...results];
+    data.results = nextResults;
+    data.count = typeof data.count === 'number' ? data.count + 1 : nextResults.length;
+    data.worldSummaryPrelude = {
+      rootSummary: prelude.rootSummary,
+      sectionCount: prelude.sections.length,
+    };
+
+    content[0] = {
+      ...first,
+      text: JSON.stringify({
+        ...envelope,
+        data,
+      }),
+    };
+
+    return {
+      ...result,
+      content,
+      worldSummaryPreludeInjected: true,
+    };
+  } catch {
+    return result;
   }
 }
 
@@ -1742,12 +1805,31 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
 
     // Inject auto-resume context BEFORE budget enforcement
     // so the final response respects the advertised token budget.
-    const tracedResult0: ContextResult = effectiveMode === 'quick' && options.includeTrace === true
+    let tracedResult0: ContextResult = effectiveMode === 'quick' && options.includeTrace === true
       ? attachSessionTransitionTrace(
         result as ContextResult & { content?: Array<{ text?: string; type?: string }> },
         sessionTransition,
       ) as ContextResult
       : result;
+
+    if (isWorldSummaryPreludeEnabled() && effectiveMode !== 'quick') {
+      try {
+        const db = vectorIndex.getDb();
+        if (db) {
+          const prelude = buildWorldSummaryPrelude(db, normalizedInput, {
+            specFolder: options.specFolder,
+            tenantId: options.tenantId,
+            userId: options.userId,
+            agentId: options.agentId,
+          });
+          if (prelude) {
+            tracedResult0 = prependWorldSummaryPreludeToResult(tracedResult0, prelude);
+          }
+        }
+      } catch {
+        // Grounding is best-effort; retrieval remains authoritative if summaries are unavailable.
+      }
+    }
 
     if (autoResumeEnabled && effectiveMode === 'resume' && resumedSession) {
       const resumeContextItems = workingMemory.getSessionPromptContext(effectiveSessionId, workingMemory.DECAY_FLOOR, 5);
@@ -1990,6 +2072,7 @@ export {
   CONTEXT_MODES,
   INTENT_TO_MODE,
   enforceTokenBudget,
+  prependWorldSummaryPreludeToResult,
   // Exported for scope-isolation tests of the no-session continuity anchor.
   resolveNoSessionAnchor,
   PROCESS_MEMORY_SESSION_ID,

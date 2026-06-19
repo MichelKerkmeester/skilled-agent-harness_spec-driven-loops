@@ -14,9 +14,9 @@
     "exact-rerank",
     "qcr"
   ],
-  "lastUpdated": "2026-06-19T06:21:36.515Z",
+  "lastUpdated": "2026-06-19T12:40:29.079Z",
   "specId": "005",
-  "folderSlug": "005-conflict-rerank-query-routing",
+  "folderSlug": "conflict-rerank-query-routing",
   "parentChain": [
     "system-spec-kit",
     "028-memory-search-intelligence",

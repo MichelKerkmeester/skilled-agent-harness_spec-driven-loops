@@ -12,6 +12,7 @@
 import type Database from 'better-sqlite3';
 
 import { isCommunitySearchFallbackEnabled, isCommunitySummariesEnabled } from './search-flags.js';
+import { specFolderLikePattern } from './vector-index-types.js';
 
 // -- Types --
 
@@ -27,6 +28,27 @@ export interface CommunitySearchOutput {
   results: CommunitySearchResult[];
   totalMemberIds: number[];
   source: 'community_fallback';
+}
+
+export interface CommunitySearchOptions {
+  respectFallbackFlag?: boolean;
+}
+
+export interface CommunityLaneScope {
+  specFolder?: string | null;
+  tenantId?: string | null;
+  userId?: string | null;
+  agentId?: string | null;
+}
+
+export interface CommunityRankedResult extends Record<string, unknown> {
+  id: number;
+  source: 'community';
+  score: number;
+  similarity: number;
+  communityIds: number[];
+  communityScore: number;
+  summaryLaneSources: string[];
 }
 
 // -- Internal helpers --
@@ -50,6 +72,15 @@ function parseMemberIds(memberIdsJson: string): number[] {
     const message = error instanceof Error ? error.message : String(error);
     console.warn(`[community-search] parseMemberIds failed (fail-open): ${message}`);
     return [];
+  }
+}
+
+function columnExists(db: Database.Database, tableName: string, columnName: string): boolean {
+  try {
+    const rows = db.prepare(`PRAGMA table_info(${tableName})`).all() as Array<{ name: string }>;
+    return rows.some((row) => row.name === columnName);
+  } catch {
+    return false;
   }
 }
 
@@ -102,6 +133,7 @@ export function searchCommunities(
   query: string,
   db: Database.Database,
   limit: number = 5,
+  options: CommunitySearchOptions = {},
 ): CommunitySearchOutput {
   const emptyOutput: CommunitySearchOutput = {
     results: [],
@@ -109,7 +141,8 @@ export function searchCommunities(
     source: 'community_fallback',
   };
 
-  if (!isCommunitySearchFallbackEnabled() || !isCommunitySummariesEnabled()) {
+  const respectFallbackFlag = options.respectFallbackFlag ?? true;
+  if ((respectFallbackFlag && !isCommunitySearchFallbackEnabled()) || !isCommunitySummariesEnabled()) {
     return emptyOutput;
   }
 
@@ -174,5 +207,114 @@ export function searchCommunities(
     const message = error instanceof Error ? error.message : String(error);
     console.warn(`[community-search] searchCommunities failed (fail-open): ${message}`);
     return emptyOutput;
+  }
+}
+
+export function queryCommunityMembersAsRankedList(
+  query: string,
+  db: Database.Database,
+  limit: number = 10,
+  scope: CommunityLaneScope = {},
+): CommunityRankedResult[] {
+  const communities = searchCommunities(query, db, Math.max(limit, 5), {
+    respectFallbackFlag: false,
+  });
+  if (communities.totalMemberIds.length === 0) {
+    return [];
+  }
+
+  const memberScores = new Map<number, {
+    score: number;
+    communityIds: number[];
+  }>();
+
+  for (const [rank, community] of communities.results.entries()) {
+    const rankDamping = Math.max(0.5, 1 - rank * 0.03);
+    const score = community.matchScore * rankDamping;
+    for (const memberId of community.memberIds) {
+      const existing = memberScores.get(memberId);
+      if (!existing || score > existing.score) {
+        memberScores.set(memberId, {
+          score,
+          communityIds: [community.communityId],
+        });
+      } else if (existing.score === score && !existing.communityIds.includes(community.communityId)) {
+        existing.communityIds.push(community.communityId);
+      }
+    }
+  }
+
+  const memberIds = Array.from(memberScores.keys());
+  if (memberIds.length === 0) {
+    return [];
+  }
+
+  try {
+    const placeholders = memberIds.map(() => '?').join(', ');
+    const params: unknown[] = [...memberIds];
+    const whereClauses = [`m.id IN (${placeholders})`];
+
+    if (columnExists(db, 'memory_index', 'embedding_status')) {
+      whereClauses.push("m.embedding_status = 'success'");
+    }
+    if (columnExists(db, 'memory_index', 'expires_at')) {
+      whereClauses.push("(m.expires_at IS NULL OR m.expires_at > datetime('now'))");
+    }
+    if (scope.specFolder && columnExists(db, 'memory_index', 'spec_folder')) {
+      whereClauses.push("(m.spec_folder = ? OR m.spec_folder LIKE ? ESCAPE '\\')");
+      params.push(scope.specFolder, specFolderLikePattern(scope.specFolder));
+    }
+    if (scope.tenantId && columnExists(db, 'memory_index', 'tenant_id')) {
+      whereClauses.push('m.tenant_id = ?');
+      params.push(scope.tenantId);
+    }
+    if (scope.userId && columnExists(db, 'memory_index', 'user_id')) {
+      whereClauses.push('m.user_id = ?');
+      params.push(scope.userId);
+    }
+    if (scope.agentId && columnExists(db, 'memory_index', 'agent_id')) {
+      whereClauses.push('m.agent_id = ?');
+      params.push(scope.agentId);
+    }
+
+    const projectionJoin = tableExists(db, 'active_memory_projection')
+      ? 'JOIN active_memory_projection p ON p.active_memory_id = m.id'
+      : '';
+    const contentSelect = columnExists(db, 'memory_index', 'content') ? ', m.content' : '';
+
+    const rows = db.prepare(`
+      SELECT m.id, m.title, m.spec_folder, m.file_path, m.importance_tier,
+             m.importance_weight, m.quality_score, m.created_at, m.context_type,
+             m.tenant_id, m.user_id, m.agent_id, m.session_id${contentSelect}
+      FROM memory_index m
+      ${projectionJoin}
+      WHERE ${whereClauses.join(' AND ')}
+    `).all(...params) as Array<Record<string, unknown> & { id: number }>;
+
+    return rows
+      .map((row): CommunityRankedResult | null => {
+        const laneScore = memberScores.get(row.id);
+        if (!laneScore) return null;
+        return {
+          ...row,
+          id: row.id,
+          source: 'community',
+          score: laneScore.score,
+          similarity: laneScore.score,
+          communityIds: laneScore.communityIds,
+          communityScore: laneScore.score,
+          summaryLaneSources: ['community'],
+        };
+      })
+      .filter((row): row is CommunityRankedResult => row !== null)
+      .sort((a, b) => {
+        if (b.score !== a.score) return b.score - a.score;
+        return a.id - b.id;
+      })
+      .slice(0, limit);
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.warn(`[community-search] queryCommunityMembersAsRankedList failed (fail-open): ${message}`);
+    return [];
   }
 }

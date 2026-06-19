@@ -72,6 +72,7 @@ interface CacheArgsInput {
    * keys stable for callers that do not request a folder boost.
    */
   folderBoost?: { folder: string; factor: number };
+  summaryFusionLaneEnabled?: boolean;
 }
 
 function resolveFusionIntentContract(
@@ -178,6 +179,7 @@ function buildCacheArgs({
   cacheVersion,
   causalEdgesGeneration,
   folderBoost,
+  summaryFusionLaneEnabled,
 }: CacheArgsInput): Record<string, unknown> {
   const resolvedFusionIntent = resolveFusionIntentContract({
     detectedIntent,
@@ -223,6 +225,7 @@ function buildCacheArgs({
     folderBoost: folderBoost && folderBoost.folder
       ? `${folderBoost.folder}:${folderBoost.factor}`
       : undefined,
+    summaryFusionLaneEnabled: summaryFusionLaneEnabled === true ? true : undefined,
   };
 }
 

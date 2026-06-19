@@ -24,11 +24,35 @@ interface SummarySearchResult {
  * lane: a spec-folder boundary (prefix-aware) plus the governance triple.
  * All fields are optional so unscoped callers keep the legacy behaviour.
  */
-interface SummaryScope {
+export interface SummaryScope {
   specFolder?: string | null;
   tenantId?: string | null;
   userId?: string | null;
   agentId?: string | null;
+}
+
+export interface SummaryRankedResult extends Record<string, unknown> {
+  id: number;
+  source: 'summary';
+  score: number;
+  similarity: number;
+  summaryId: number;
+  summaryScore: number;
+  summaryLaneSources: string[];
+}
+
+export interface WorldSummaryPreludeSection {
+  memoryId: number;
+  title: string;
+  specFolder: string | null;
+  summary: string;
+  score: number;
+}
+
+export interface WorldSummaryPrelude {
+  rootSummary: string;
+  sections: WorldSummaryPreludeSection[];
+  text: string;
 }
 
 // ───────────────────────────────────────────────────────────────
@@ -118,6 +142,34 @@ function columnExists(db: Database.Database, tableName: string, columnName: stri
   } catch {
     return false;
   }
+}
+
+function extractQueryTerms(query: string): string[] {
+  const stopWords = new Set([
+    'a', 'an', 'the', 'in', 'on', 'at', 'to', 'for', 'of', 'with',
+    'by', 'from', 'and', 'or', 'not', 'is', 'are', 'was', 'were',
+    'be', 'been', 'has', 'have', 'had', 'do', 'does', 'did', 'will',
+    'would', 'could', 'should', 'may', 'might', 'can', 'this', 'that',
+    'it', 'its', 'my', 'your', 'our', 'their', 'all', 'any', 'some',
+  ]);
+
+  return query
+    .toLowerCase()
+    .split(/[^a-z0-9_-]+/i)
+    .map((term) => term.trim())
+    .filter((term) => term.length > 1 && !stopWords.has(term));
+}
+
+function scoreTextAgainstQuery(text: string, queryTerms: string[]): number {
+  if (queryTerms.length === 0) return 0;
+  const haystack = text.toLowerCase();
+  let matches = 0;
+  for (const term of queryTerms) {
+    if (haystack.includes(term)) {
+      matches += 1;
+    }
+  }
+  return matches / queryTerms.length;
 }
 
 // ───────────────────────────────────────────────────────────────
@@ -297,6 +349,203 @@ export function querySummaryEmbeddings(
   }
 }
 
+export function querySummaryEmbeddingRows(
+  db: Database.Database,
+  queryEmbedding: Float32Array | number[],
+  limit: number,
+  scope: SummaryScope = {},
+): SummaryRankedResult[] {
+  const summaryHits = querySummaryEmbeddings(db, queryEmbedding, limit, scope);
+  if (summaryHits.length === 0) {
+    return [];
+  }
+
+  try {
+    const memoryIds = summaryHits.map((hit) => hit.memoryId);
+    const placeholders = memoryIds.map(() => '?').join(', ');
+    const params: unknown[] = [...memoryIds];
+    const whereClauses = [`m.id IN (${placeholders})`];
+
+    if (columnExists(db, 'memory_index', 'embedding_status')) {
+      whereClauses.push("m.embedding_status = 'success'");
+    }
+    if (columnExists(db, 'memory_index', 'expires_at')) {
+      whereClauses.push("(m.expires_at IS NULL OR m.expires_at > datetime('now'))");
+    }
+    if (scope.specFolder && columnExists(db, 'memory_index', 'spec_folder')) {
+      whereClauses.push("(m.spec_folder = ? OR m.spec_folder LIKE ? ESCAPE '\\')");
+      params.push(scope.specFolder, specFolderLikePattern(scope.specFolder));
+    }
+    if (scope.tenantId && columnExists(db, 'memory_index', 'tenant_id')) {
+      whereClauses.push('m.tenant_id = ?');
+      params.push(scope.tenantId);
+    }
+    if (scope.userId && columnExists(db, 'memory_index', 'user_id')) {
+      whereClauses.push('m.user_id = ?');
+      params.push(scope.userId);
+    }
+    if (scope.agentId && columnExists(db, 'memory_index', 'agent_id')) {
+      whereClauses.push('m.agent_id = ?');
+      params.push(scope.agentId);
+    }
+
+    const projectionJoin = tableExists(db, 'active_memory_projection')
+      ? 'JOIN active_memory_projection p ON p.active_memory_id = m.id'
+      : '';
+    const contentSelect = columnExists(db, 'memory_index', 'content') ? ', m.content' : '';
+
+    const rows = db.prepare(`
+      SELECT m.id, m.title, m.spec_folder, m.file_path, m.importance_tier,
+             m.importance_weight, m.quality_score, m.created_at, m.context_type,
+             m.tenant_id, m.user_id, m.agent_id, m.session_id${contentSelect}
+      FROM memory_index m
+      ${projectionJoin}
+      WHERE ${whereClauses.join(' AND ')}
+    `).all(...params) as Array<Record<string, unknown> & { id: number }>;
+
+    const rowById = new Map(rows.map((row) => [row.id, row]));
+    return summaryHits
+      .map((hit): SummaryRankedResult | null => {
+        const row = rowById.get(hit.memoryId);
+        if (!row) return null;
+        return {
+          ...row,
+          id: hit.memoryId,
+          source: 'summary',
+          score: hit.similarity,
+          similarity: hit.similarity,
+          summaryId: hit.id,
+          summaryScore: hit.similarity,
+          summaryLaneSources: ['summary'],
+        };
+      })
+      .filter((row): row is SummaryRankedResult => row !== null);
+  } catch (error: unknown) {
+    console.warn(
+      '[memory-summaries] Failed to build summary ranked rows:',
+      error instanceof Error ? error.message : error
+    );
+    return [];
+  }
+}
+
+export function buildWorldSummaryPrelude(
+  db: Database.Database,
+  query: string,
+  scope: SummaryScope = {},
+  options: { limit?: number } = {},
+): WorldSummaryPrelude | null {
+  const sectionLimit = Math.max(1, Math.min(10, options.limit ?? 3));
+  const queryTerms = extractQueryTerms(query);
+
+  try {
+    if (!tableExists(db, 'memory_summaries') || !tableExists(db, 'memory_index')) {
+      return null;
+    }
+
+    const params: unknown[] = [];
+    const whereClauses = ["s.summary_text IS NOT NULL", "trim(s.summary_text) != ''"];
+
+    if (columnExists(db, 'memory_index', 'embedding_status')) {
+      whereClauses.push("m.embedding_status = 'success'");
+    }
+    if (columnExists(db, 'memory_index', 'expires_at')) {
+      whereClauses.push("(m.expires_at IS NULL OR m.expires_at > datetime('now'))");
+    }
+    if (scope.specFolder && columnExists(db, 'memory_index', 'spec_folder')) {
+      whereClauses.push("(m.spec_folder = ? OR m.spec_folder LIKE ? ESCAPE '\\')");
+      params.push(scope.specFolder, specFolderLikePattern(scope.specFolder));
+    }
+    if (scope.tenantId && columnExists(db, 'memory_index', 'tenant_id')) {
+      whereClauses.push('m.tenant_id = ?');
+      params.push(scope.tenantId);
+    }
+    if (scope.userId && columnExists(db, 'memory_index', 'user_id')) {
+      whereClauses.push('m.user_id = ?');
+      params.push(scope.userId);
+    }
+    if (scope.agentId && columnExists(db, 'memory_index', 'agent_id')) {
+      whereClauses.push('m.agent_id = ?');
+      params.push(scope.agentId);
+    }
+
+    const projectionJoin = tableExists(db, 'active_memory_projection')
+      ? 'JOIN active_memory_projection p ON p.active_memory_id = s.memory_id'
+      : '';
+    params.push(Math.max(sectionLimit * 25, 50));
+
+    const rows = db.prepare(`
+      SELECT s.memory_id, s.summary_text, m.title, m.spec_folder, m.created_at
+      FROM memory_summaries s
+      JOIN memory_index m ON m.id = s.memory_id
+      ${projectionJoin}
+      WHERE ${whereClauses.join(' AND ')}
+      LIMIT ?
+    `).all(...params) as Array<{
+      memory_id: number;
+      summary_text: string;
+      title?: string | null;
+      spec_folder?: string | null;
+      created_at?: string | null;
+    }>;
+
+    if (rows.length === 0) {
+      return null;
+    }
+
+    const scored = rows
+      .map((row): WorldSummaryPreludeSection => {
+        const title = typeof row.title === 'string' && row.title.length > 0
+          ? row.title
+          : `Memory ${row.memory_id}`;
+        const summary = row.summary_text.trim();
+        const score = scoreTextAgainstQuery(`${title}\n${summary}`, queryTerms);
+        return {
+          memoryId: row.memory_id,
+          title,
+          specFolder: typeof row.spec_folder === 'string' ? row.spec_folder : null,
+          summary,
+          score,
+        };
+      })
+      .filter((section) => queryTerms.length === 0 || section.score > 0)
+      .sort((a, b) => {
+        if (b.score !== a.score) return b.score - a.score;
+        return a.memoryId - b.memoryId;
+      })
+      .slice(0, sectionLimit);
+
+    if (scored.length === 0) {
+      return null;
+    }
+
+    const rootSummary = scored
+      .map((section) => section.summary)
+      .join(' ')
+      .slice(0, 800)
+      .trim();
+    const text = [
+      'World summary',
+      rootSummary,
+      '',
+      'Relevant subsections',
+      ...scored.map((section) => `- ${section.title}: ${section.summary}`),
+    ].join('\n');
+
+    return {
+      rootSummary,
+      sections: scored,
+      text,
+    };
+  } catch (error: unknown) {
+    console.warn(
+      '[memory-summaries] Failed to build world summary prelude:',
+      error instanceof Error ? error.message : error
+    );
+    return null;
+  }
+}
+
 /**
  * Runtime scale gate check: returns true when >5000 indexed memories.
  * Used to determine if the summary search channel should be activated
@@ -337,4 +586,6 @@ export const __testables = {
   cosineSimilarity,
   float32ToBuffer,
   bufferToFloat32,
+  extractQueryTerms,
+  scoreTextAgainstQuery,
 };

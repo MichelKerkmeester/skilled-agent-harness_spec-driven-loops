@@ -10,7 +10,7 @@ import * as causalEdges from '../lib/storage/causal-edges.js';
 import * as sessionManager from '../lib/session/session-manager.js';
 import * as intentClassifier from '../lib/search/intent-classifier.js';
 // TierClassifier, crossEncoder imports removed — only used by legacy V1 pipeline.
-import { isSessionBoostEnabled, isCausalBoostEnabled, isCommunitySearchFallbackEnabled, isDualRetrievalEnabled, isIntentAutoProfileEnabled } from '../lib/search/search-flags.js';
+import { isSessionBoostEnabled, isCausalBoostEnabled, isCommunitySearchFallbackEnabled, isDualRetrievalEnabled, isIntentAutoProfileEnabled, isSummaryFusionLaneEnabled } from '../lib/search/search-flags.js';
 import { searchCommunities } from '../lib/search/community-search.js';
 // 4-stage pipeline architecture
 import { executePipeline } from '../lib/search/pipeline/index.js';
@@ -75,7 +75,7 @@ import { formatSearchResults } from '../formatters/index.js';
 // Shared handler types
 import type { MCPResponse, IntentClassification } from './types.js';
 
-// Retrieval trace contracts (C136-08)
+// Retrieval trace contracts
 import { createTrace } from '@spec-kit/shared/contracts/retrieval-trace';
 import { buildAdaptiveShadowProposal } from '../lib/cognitive/adaptive-ranking.js';
 import { normalizeScopeContext, filterRowsByScope } from '../lib/governance/scope-governance.js';
@@ -363,8 +363,30 @@ interface SearchArgs {
   retrievalLevel?: 'local' | 'global' | 'auto';
 }
 
+interface CommunityFallbackDecisionInput {
+  dualRetrievalEnabled: boolean;
+  communityFallbackEnabled: boolean;
+  summaryFusionLaneEnabled: boolean;
+  query: string;
+  retrievalLevel: 'local' | 'global' | 'auto';
+}
+
 // resolveRowContextType — now imported from lib/search/search-utils.ts
 // resolveEvalScore, collectEvalChannelsFromRow — now imported from lib/telemetry/eval-channel-tracking.ts
+
+function shouldRunCommunityFallback({
+  dualRetrievalEnabled,
+  communityFallbackEnabled,
+  summaryFusionLaneEnabled,
+  query,
+  retrievalLevel,
+}: CommunityFallbackDecisionInput): boolean {
+  return dualRetrievalEnabled
+    && communityFallbackEnabled
+    && !summaryFusionLaneEnabled
+    && query.length > 0
+    && (retrievalLevel === 'global' || retrievalLevel === 'auto');
+}
 
 function attachTelemetryMeta(
   response: MCPResponse,
@@ -1115,6 +1137,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
   const causalEdgesGenerationForCache = enableCausalBoost
     ? causalEdges.getCausalEdgesGeneration()
     : undefined;
+  const summaryFusionLaneEnabled = isSummaryFusionLaneEnabled();
 
   // Build cache key args
   const cacheArgs = buildCacheArgs({
@@ -1149,6 +1172,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     cacheVersion: CANONICAL_READER_CACHE_VERSION,
     causalEdgesGeneration: causalEdgesGenerationForCache,
     folderBoost,
+    summaryFusionLaneEnabled,
   });
 
   let _evalChannelPayloads: EvalChannelPayload[] = [];
@@ -1208,12 +1232,13 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
 
     // Community search fallback — inject community members on weak results
     let communityFallbackApplied = false;
-    const shouldRunCommunitySearch = (
-      isDualRetrievalEnabled() &&
-      isCommunitySearchFallbackEnabled() &&
-      effectiveQuery.length > 0 &&
-      (retrievalLevel === 'global' || retrievalLevel === 'auto')
-    );
+    const shouldRunCommunitySearch = shouldRunCommunityFallback({
+      dualRetrievalEnabled: isDualRetrievalEnabled(),
+      communityFallbackEnabled: isCommunitySearchFallbackEnabled(),
+      summaryFusionLaneEnabled,
+      query: effectiveQuery,
+      retrievalLevel,
+    });
     if (shouldRunCommunitySearch) {
       const isWeakResult = resultsForFormatting.length === 0 ||
         (resultsForFormatting.length < 3 && (retrievalLevel === 'global' || retrievalLevel === 'auto'));
@@ -1850,6 +1875,7 @@ export const __testables = {
   filterCanonicalSourceRows,
   stampFinalRankScores,
   applyFolderBoostRanking,
+  shouldRunCommunityFallback,
   reconcilePostFormatResultSet,
 };
 

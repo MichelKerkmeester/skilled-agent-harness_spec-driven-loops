@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Code-Graph Seeded-PPR Impact Ranking (Structural Retrieval Intelligence) (028/002 impl)"
-description: "Build the net-new multi-hop ranking machinery the code-graph impact walk lacks: Q3-C1 query-seeded personalized-PageRank, GATED to impact/multi-hop modes (single-hop expansion off for precision), bounded by a power-method cap for the 400ms walk budget, reusing 027's already-shipped causal-edge weighted-walk substrate rather than a second walker. Plus its precision gate (CG-class-gated-expansion, needs a new query-class taxonomy the structural classifier does not have), a directionality fix (CG-undirected-projection), and multi-hop reliability decay (Q4-C2). lexical-vector-seed-union is NO-GO — code-graph deliberately disowned its vector backend. Every candidate is PENDING; PPR is UNBUILT in the live code (grep-confirmed). None shipped in the flat Wave-0 (030)."
+description: "Implemented the net-new code-graph seeded-PPR impact-ranking mechanism behind the default-off SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING flag: Q3-C1 bounded personalized PageRank, class-gated impact/multi-hop routing, undirected projection, and Q4-C2 transition decay. Ranking-quality/tuning remains benchmark-gated; invalid_at current-set semantics remain schema-gated; lexical-vector-seed-union remains CUT."
 trigger_phrases:
   - "code graph seeded ppr impact ranking"
   - "personalized pagerank class gated expansion"
@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/002-code-graph/005-seeded-ppr-ranking"
     last_updated_at: "2026-06-19T08:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored re-plan spec for the code-graph seeded-PPR impact-ranking cluster"
-    next_safe_action: "Confirm 027 collectWeightedWalk reuse, then build bounded PPR"
+    recent_action: "Implemented seeded-PPR mechanism default-off with deterministic tests"
+    next_safe_action: "Build a retrieval benchmark before enabling or tuning seeded-PPR ranking by default"
     blockers: []
     key_files:
       - "spec.md"
@@ -30,7 +30,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-002-005-seeded-ppr-ranking-replan"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 85
     open_questions: []
     answered_questions: []
 ---
@@ -49,9 +49,9 @@ FAILURE MODES:
 
 ## EXECUTIVE SUMMARY
 
-The code-graph impact/blast-radius walk ranks callers by **flat single-hop edge enumeration in DB iteration order** — no centrality, no multi-hop spread, no mass propagation. The 028 research maps aionforge's `Graph` retrieval signal (native **Personalized PageRank** seeded on query entities, spread across the associative graph, best-first by PageRank score) onto this seam, and the whole 200-iteration campaign confirms the same thing twice: the impact walk at `code-graph-context.ts:668-676` is reverse `CALLS`/`IMPORTS` directed enumeration bounded by a 400ms latency budget that truncates in **arbitrary DB order** (`research.md` Internal Baseline, iter-2 finding 12), and **PPR is entirely UNBUILT** — `grep pagerank|personaliz|teleport|damping|ppr|random-walk` over the live `system-code-graph/mcp_server/` returns ZERO hits (`research.md`; re-confirmed against the live tree at plan time). This sub-phase builds the net-new query-seeded multi-hop ranking machinery: **Q3-C1** seeded personalized-PageRank, **GATED** to impact/multi-hop modes only (aionforge's hard lesson: indiscriminate graph expansion measurably hurts single-hop precision while it helps multi-hop recall), **bounded** by a power-method iteration cap for the 400ms budget, with the PPR-reached set intersected against the current edge set; plus its precision gate (**CG-class-gated-expansion**, which needs a new query-class taxonomy the structural classifier does not have), a directionality fix (**CG-undirected-projection**), and multi-hop reliability decay (**Q4-C2**). **lexical-vector-seed-union is NO-GO** — the code-graph module explicitly disowned its semantic/vector backend, so a vector-seed union is a scope violation, not a gap.
+The code-graph impact/blast-radius walk previously ranked callers through flat reverse `CALLS`/`IMPORTS` enumeration. This phase implements the query-seeded multi-hop ranking mechanism behind `SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING` (default OFF): **Q3-C1** bounded personalized PageRank over the reused Memory weighted-walk substrate, **GATED** to impact/multi-hop modes only, with an undirected working projection and Q4-C2 confidence/evidence transition decay. The implementation does not claim a ranking-quality delta; damping/cap/decay tuning remains blocked on a code-graph retrieval benchmark. The current-set intersection degrades to physical edge presence because `invalid_at`/`valid_at` columns require a separate schema migration. **lexical-vector-seed-union remains NO-GO** — the code-graph module deliberately has no vector backend.
 
-**Key Decisions**: REUSE, do not rebuild — Q3-C1 must spread mass over **027's already-shipped causal-edge weighted-walk substrate** (`collectWeightedWalk` / `collectCausalWeightedNeighbors` in the Memory MCP `lib/graph/bfs-traversal.ts`), confirming the traversal API is reusable before standing up a second graph-walk engine (`synthesis/04`). GATE expansion to impact/multi-hop modes only — never the cheap neighborhood/outline default — to avoid hurting single-hop precision. The four BUILD candidates (Q3-C1 + its class-gate + undirected projection + Q4-C2 decay) form one ranking-machinery cluster that must land together or each refines a non-existent feature; the seed-union candidate is explicitly **CUT** (NO-GO). Every candidate is **PENDING** — none was implemented in the flat Wave-0 (packet 030), which was scoped to additive/reversible/no-benchmark items and explicitly listed Q3-C1 as Wave-2 (`030.../spec.md` §3 Out of Scope, §14 absent).
+**Key Decisions**: REUSE, do not rebuild — Q3-C1 spreads mass over the Memory MCP weighted-walk substrate via its built `collectWeightedWalk` artifact and a code-graph edge adapter. GATE expansion to impact/multi-hop modes only — never the cheap neighborhood/outline default — to avoid hurting single-hop precision. Keep the mechanism **default-off** because ranking-quality acceptance needs a benchmark delta. The seed-union candidate is explicitly **CUT** (NO-GO).
 
 **Critical Dependencies**: Q3-C1 depends on (a) **027's reusable weighted-walk traversal substrate** (confirm-then-reuse, not rebuild); (b) a **new query-class taxonomy** — the live `query-intent-classifier.ts` emits only `QueryIntent = 'structural'`, it has NO SingleHop/MultiHop/Entity taxonomy and explicitly disowned its semantic backend, so the class-gate must build that taxonomy first; and (c) a **retrieval benchmark that does not exist** — no candidate campaign-wide has a measured before/after number, and PPR ranking quality cannot be validated without one. CG-undirected-projection and Q4-C2 both **refine the unbuilt Q3-C1** and cannot land before it. The Q1-C1 `invalid_at`-current-set intersection that PPR should respect is itself a separate (DEFER-speculative) sub-phase, so Q3-C1's current-set intersection degrades to "physical edge presence" until that lands.
 
@@ -63,12 +63,12 @@ The code-graph impact/blast-radius walk ranks callers by **flat single-hop edge 
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P2 (net-new BUILD; benchmark-gated; refines an unbuilt feature) |
-| **Status** | Draft (re-plan; not yet implemented) |
+| **Status** | Implemented mechanism default-off; benchmark/schema gates pending |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Packet** | system-spec-kit/028-memory-search-intelligence/002-code-graph |
 | **Source research** | `../research/research.md` (Internal Baseline + iter-2/3/8/14); `../../research/roadmap.md` (§3 Query-Class Routing, BROADENING §2); `../../research/synthesis/{01-go-candidates.md, 03, 04}` |
-| **Shipped-record (done-candidate evidence)** | `../../../030-memory-search-intelligence-impl/spec.md` §14 + commits `1ecc531431..HEAD` (Q3-C1 cluster ABSENT → all PENDING; sibling Q4-C1 trust blend shipped `e21caf5de6`, out of this cluster) |
+| **Shipped-record (done-candidate evidence)** | Q3-C1 cluster was absent from packet 030; implemented here in this phase. Sibling Q4-C1 trust blend remains out of cluster. |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -83,7 +83,7 @@ The code-graph `code_graph_context` impact mode ranks callers/callees by a **fla
 Give the impact/blast-radius walk a **query-seeded multi-hop ranking** so the most-central callers surface first under the 400ms budget instead of being truncated in arbitrary DB order — by seeding personalized-PageRank on the subject symbol(s), spreading mass over **027's already-shipped causal-edge weighted-walk substrate** (not a second walker), ordering results by PPR score, and **gating** the expansion to impact/multi-hop modes only so single-hop precision is never degraded. Build the precision gate (a new query-class taxonomy), the directionality fix (undirected projection so seed mass reaches callers instead of sinking), and the multi-hop reliability decay; explicitly CUT the vector-seed-union as a scope violation.
 
 ### Critical context (from the 028 research + BROADENING + 006 sibling addenda, authoritative — supersede pass-1)
-- **Q3-C1's PPR is UNBUILT — this is the major iter-14 correction.** `grep PPR/PageRank/random-walk` is empty across the live code-graph. So **CG-class-gated-expansion and CG-undirected-projection refine a non-existent feature** — they cannot land before Q3-C1 itself is built [`research.md`; iter-14 "Key correction (major)"; `synthesis/03`].
+- **Baseline correction:** Q3-C1's PPR was unbuilt before this phase (`grep` empty), so this implementation builds the core first and layers CG-class-gated-expansion, CG-undirected-projection, and Q4-C2 on top of that core.
 - **PPR MUST be GATED, never default-on.** Apply aionforge's lesson: run PPR/expansion ONLY for impact/multi-hop modes; the cheap neighborhood/outline default must stay flat, or single-hop precision measurably degrades [`retrieval.md:108-118`; iter-2 finding 14(b); roadmap §3].
 - **REUSE 027's causal-BFS traversal substrate — do NOT stand up a second walker.** The net-new query-seeded multi-hop ranking should reuse 027's already-shipped causal-edge weighted-walk traversal (`collectWeightedWalk`/`collectCausalWeightedNeighbors`, Memory MCP `lib/graph/bfs-traversal.ts`) rather than a second graph-walk engine — **confirm the traversal API is reusable before building PPR** [`synthesis/04` "Seeded-PPR (Q3-C1) × 027's existing causal-BFS traversal"; `synthesis/01` Wave-2 row].
 - **Roadmap-caveat correction (plan-time):** the roadmap/synthesis line "027 has only edge-count/degree; the **old PageRank helper was 'never wired'**" is partly INFERRED and does not fully hold against the live tree — there is NO PageRank helper in either the code-graph or Memory MCP (`grep` empty in both `lib/graph/`). What 027 DOES ship and what Q3-C1 reuses is the **weighted-walk substrate** (`collectWeightedWalk` seeds+maxHops+weighted frontier) plus degree/momentum signals (`graph-signals.ts`) and Louvain community detection — not a dormant PPR helper. Treat "reuse the weighted-walk traversal" as the real reuse target; do not hunt for a non-existent PageRank helper to wire.
@@ -97,18 +97,18 @@ Give the impact/blast-radius walk a **query-seeded multi-hop ranking** so the mo
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
-### In Scope — the seeded-PPR impact-ranking cluster (6 candidates: 4 BUILD-gated + 1 sub-build + 1 CUT, all PENDING)
+### In Scope — the seeded-PPR impact-ranking cluster (6 candidates: 5 mechanism builds + 1 CUT)
 
 | # | Candidate | One-line change | Seam (file:line) | Lev/Eff | Class / Status |
 |---|-----------|-----------------|------------------|---------|----------------|
-| 1 | **Q3-C1** seeded PPR | Seed personalized-PageRank on the subject symbol(s); spread mass over 027's reused weighted-walk substrate; order impact results by PPR score instead of DB-enumeration order; bounded power-method cap for the 400ms budget; intersect with the current edge set | `code-graph-context.ts:668-676` (impact walk), `:401-403` (`expandAnchor` budget); reuses Memory MCP `lib/graph/bfs-traversal.ts` `collectWeightedWalk` | L→M / L (M-H) | **BUILD** — **PENDING** (PPR UNBUILT; gates 2/3/5; shared-infra-dep + needs-benchmark) |
-| 2 | **Q3-C1-seeded-PPR** | The PPR algorithm core itself: seed vector on subject symbol(s), teleport weighted by static edge weights × `metadata.confidence`, bounded power-method iteration cap, best-first ordering — the net-new ranking primitive that candidate 1 wires in | `code-graph-context.ts` (new bounded-PPR primitive); `config-defaults.ts:45-59` (teleport weights) | L / L | **BUILD** — **PENDING** (the core of candidate 1; same shared-infra + benchmark gate) |
-| 3 | **CG-class-gated-expansion** | Run PPR/expansion ONLY for impact/multi-hop modes; OFF for the single-hop neighborhood/outline default (the precision gate) — REQUIRES a new SingleHop/MultiHop/Entity query-class taxonomy the structural classifier does not have today | `query-intent-classifier.ts:6` (`QueryIntent='structural'`, NO taxonomy); `code-graph-context.ts:19` (`QueryMode`) | H / M | **BUILD** — **PENDING** (refines unbuilt Q3-C1; needs new taxonomy; CAUTION per iter-14) |
-| 4 | **CG-undirected-projection** | Project the PPR graph **undirected** so seed mass reaches callers instead of sinking (a directed PPR seeded on a leaf symbol under-reaches its blast radius) | `code-graph-context.ts:512`/`:668-676` (impact is reverse-directed by design) | M / S | **BUILD** — **PENDING** (refines unbuilt Q3-C1; needs-benchmark per iter-14) |
-| 5 | **Q4-C2** multi-hop reliability decay | Reuse the rank-time `reliability` factor (`clamp(confidence) × evidenceClassFactor`) as the per-edge transition weight so an INFERRED 2-hop path ranks below an OBSERVED 1-hop path; folds into the PPR walk | `code-graph-context.ts:350-356` (`reliability` already plumbed); PPR transition weights | M / M | **BUILD** — **PENDING** (deferred-behind-Q3; needs PPR to land first) |
+| 1 | **Q3-C1** seeded PPR | Seed personalized-PageRank on the subject symbol(s); spread mass over 027's reused weighted-walk substrate; order impact results by PPR score instead of DB-enumeration order; bounded power-method cap for the 400ms budget; intersect with the current edge set | `code-graph-context.ts` impact path; reuses Memory MCP built `collectWeightedWalk` artifact | L→M / L (M-H) | **DONE (mechanism)** — default-off behind `SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING`; ranking-quality delta/tuning **PENDING** on benchmark |
+| 2 | **Q3-C1-seeded-PPR** | The PPR algorithm core itself: seed vector on subject symbol(s), teleport weighted by static edge weights × `metadata.confidence`, bounded power-method iteration cap, best-first ordering — the net-new ranking primitive that candidate 1 wires in | `code-graph-context.ts` (`computeBoundedPersonalizedPageRank`) | L / L | **DONE (mechanism)** — bounded primitive implemented and unit-tested; parameter VALUES **PENDING** on benchmark |
+| 3 | **CG-class-gated-expansion** | Run PPR/expansion ONLY for impact/multi-hop modes; OFF for the single-hop neighborhood/outline default (the precision gate) — REQUIRES a new SingleHop/MultiHop/Entity query-class taxonomy the structural classifier does not have today | `query-intent-classifier.ts`; `code-graph-context.ts` gate | H / M | **DONE** — taxonomy + fail-closed gate implemented; PPR still default-off |
+| 4 | **CG-undirected-projection** | Project the PPR graph **undirected** so seed mass reaches callers instead of sinking (a directed PPR seeded on a leaf symbol under-reaches its blast radius) | `code-graph-context.ts` PPR traversal adapter | M / S | **DONE (mechanism)** — only on flagged PPR path; projection quality **PENDING** on benchmark |
+| 5 | **Q4-C2** multi-hop reliability decay | Reuse the rank-time `reliability` factor (`clamp(confidence) × evidenceClassFactor`) as the per-edge transition weight so an INFERRED 2-hop path ranks below an OBSERVED 1-hop path; folds into the PPR walk | `code-graph-context.ts` transition weights | M / M | **DONE (mechanism)** — deterministic decay test added; calibration **PENDING** on benchmark |
 | 6 | **CG-lexical-vector-seed-union** | BM25 seeds UNION vector seeds so lexical keeps expansion alive when the embedder is down | `seed-resolver.ts` (lexical-only, no vector provider) | M / M | **NO-GO** — **CUT** (code-graph deliberately has no vector backend; scope violation, not a gap) |
 
-> **Cluster contract.** Candidates 1+2 are the same Q3-C1 PPR build (the wiring + the algorithm core); 3, 4, 5 each REFINE that build and cannot land before it (iter-14: "class-gated-expansion + undirected-projection refine a non-existent feature"). The cluster must land together or each refines nothing. Candidate 6 is **CUT** — recorded so nothing is silently dropped, but it is a scope violation against the code-graph's deliberate structural-only design, not deferred work.
+> **Cluster contract.** Candidates 1+2 are the same Q3-C1 PPR build (the wiring + the algorithm core); 3, 4, 5 refine that built core and are active only behind the same default-off flag. Candidate 6 is **CUT** — recorded so nothing is silently dropped, but it is a scope violation against the code-graph's deliberate structural-only design, not deferred work.
 
 ### Out of Scope (this sub-phase)
 - **Q4-C1 rank-time trust multiplier** — the RRF-additive trust blend SHIPPED in Wave-0 (packet 030, commit `e21caf5de6`) and its tuning + the determinism/fuser follow-ups live in the sibling `001-determinism-walk-order` sub-phase. Q4-C2 (candidate 5 here) *reuses* Q4-C1's `reliability` factor as a multi-hop transition weight; it does not re-implement the blend.
@@ -122,10 +122,10 @@ Give the impact/blast-radius walk a **query-seeded multi-hop ranking** so the mo
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.../system-code-graph/mcp_server/lib/code-graph-context.ts` | Modify (PENDING Q3-C1) | Replace the flat DB-order impact enumeration at `:668-676` with PPR-score ordering; add the bounded power-method PPR primitive; wire the budget-bounded cap into `expandAnchor` (`:401-403`) |
-| `.../system-code-graph/mcp_server/lib/query-intent-classifier.ts` | Modify (PENDING class-gate) | Add a SingleHop/MultiHop/Entity query-class taxonomy (the structural classifier emits only `'structural'` today) so the gate can route PPR ON for impact/multi-hop, OFF for single-hop |
-| `.../system-code-graph/mcp_server/lib/code-graph-context.ts` | Modify (PENDING undirected-projection) | Project the PPR graph undirected so seed mass reaches callers (impact is reverse-directed by design) |
-| `.../system-code-graph/mcp_server/lib/code-graph-context.ts` | Modify (PENDING Q4-C2 decay) | Reuse the `reliability` factor (`:350-356`) as the per-edge PPR transition weight (INFERRED 2-hop < OBSERVED 1-hop) |
+| `.../system-code-graph/mcp_server/lib/code-graph-context.ts` | Modified (DONE Q3-C1) | Added the default-off seeded-PPR impact path, bounded power-method primitive, Memory weighted-walk reuse, and PPR-score ordering |
+| `.../system-code-graph/mcp_server/lib/query-intent-classifier.ts` | Modified (DONE class-gate) | Added SingleHop/MultiHop/Entity/ambiguous taxonomy and fail-closed seeded-PPR eligibility |
+| `.../system-code-graph/mcp_server/lib/code-graph-context.ts` | Modified (DONE undirected-projection) | Projects the flagged PPR working set undirected so seed mass can reach callers |
+| `.../system-code-graph/mcp_server/lib/code-graph-context.ts` | Modified (DONE Q4-C2 decay) | Folds confidence/evidence reliability into PPR transition weights with neutral missing metadata |
 | `.../system-spec-kit/mcp_server/lib/graph/bfs-traversal.ts` | Consume only (no modify) | Reuse `collectWeightedWalk`/`collectCausalWeightedNeighbors` as the walk substrate after confirming the API is reusable (027-shipped; do NOT rebuild a second walker) |
 | Tests alongside each change | Create | Per-candidate unit + property (PPR convergence/termination under the cap) + adversarial tests |
 <!-- /ANCHOR:scope -->
@@ -162,7 +162,7 @@ Give the impact/blast-radius walk a **query-seeded multi-hop ranking** so the mo
 - **SC-002**: For the single-hop neighborhood/outline default, PPR is OFF and the cheap flat walk output is unchanged — single-hop precision is provably not degraded by the new machinery (the aionforge gating lesson honored).
 - **SC-003**: PPR always terminates inside the 400ms budget (bounded power-method cap; property-tested); a budget cut returns the best PPR-ranked prefix, never arbitrary truncation.
 - **SC-004**: The cluster's refinements (class-gate taxonomy, undirected projection, Q4-C2 decay) each ship on top of a built Q3-C1 — none refines a non-existent feature — and the CUT seed-union is recorded with its NO-GO rationale so nothing is silently dropped.
-- **SC-005**: Typecheck, build, focused per-candidate tests, the existing code-graph suite, and `validate.sh --strict` on this packet all pass.
+- **SC-005**: Typecheck, focused per-candidate tests, broad related code-graph suite, and `validate.sh --strict` on this packet all pass. Ranking-quality delta and parameter tuning remain benchmark-gated.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -280,10 +280,8 @@ Give the impact/blast-radius walk a **query-seeded multi-hop ranking** so the mo
 
 ## 12. OPEN QUESTIONS
 
-- Is 027's `collectWeightedWalk`/`collectCausalWeightedNeighbors` traversal API (Memory MCP `lib/graph/bfs-traversal.ts`) directly reusable from the code-graph context path, or does it couple to Memory-specific node/edge shapes that force an adapter? (REQ-001 reuse-confirmation gate; `synthesis/04` says confirm-before-building.)
-- What damping factor, power-method iteration cap, and seed-mass distribution keep PPR inside the 400ms budget while still surfacing central callers? (Parameter VALUES are benchmark-gated; the mechanism ships with safe defaults.)
-- What is the minimal SingleHop/MultiHop/Entity query-class taxonomy the gate needs, given the structural classifier disowned its semantic backend — heuristic-only, or does it need new signals? (`query-intent-classifier.ts:82-92`.)
-- Does the undirected projection over-expand and re-introduce the single-hop precision loss the mode-gate is meant to prevent? (REQ-004 NEEDS-BENCHMARK per iter-14.)
+- What damping factor, power-method iteration cap, and seed-mass distribution should become tuned defaults? **PENDING** — requires a code-graph retrieval benchmark; this phase ships safe mechanism defaults only.
+- Does the undirected projection over-expand and re-introduce the single-hop precision loss the mode-gate is meant to prevent? **PENDING** — requires the same benchmark; production default remains OFF.
 - The "old PageRank helper never wired" roadmap line does not hold against the live tree (no PageRank helper exists in either MCP) — confirm the real reuse target is the weighted-walk substrate, not a dormant helper to wire. (Plan-time correction; `grep` empty in both `lib/graph/`.)
 <!-- /ANCHOR:questions -->
 
@@ -297,4 +295,4 @@ Give the impact/blast-radius walk a **query-seeded multi-hop ranking** so the mo
 - **Decision Records**: See `decision-record.md`
 - **Source research**: `../research/research.md` (Internal Baseline + iter-2/3/8/14); `../../research/roadmap.md` (§3 Query-Class Routing + BROADENING §2); `../../research/synthesis/{01-go-candidates.md, 03-corrections-caveats-and-residuals.md, 04-sibling-and-cross-cutting.md}`
 - **Sibling (consumed, not modified)**: `../001-determinism-walk-order/spec.md` (Q4-C1 trust blend shipped `e21caf5de6`; Q4-C2 here reuses its `reliability` factor); 027 Memory MCP `lib/graph/bfs-traversal.ts` weighted-walk substrate (confirm-then-reuse)
-- **Shipped-record (done-candidate evidence)**: `../../../030-memory-search-intelligence-impl/spec.md` §14 (Q3-C1 cluster ABSENT → all PENDING; Q3-C1 listed Wave-2 Out of Scope)
+- **Shipped-record (done-candidate evidence)**: `../../../030-memory-search-intelligence-impl/spec.md` §14 remains read-only historical context; Q3-C1 was absent there and is implemented here.

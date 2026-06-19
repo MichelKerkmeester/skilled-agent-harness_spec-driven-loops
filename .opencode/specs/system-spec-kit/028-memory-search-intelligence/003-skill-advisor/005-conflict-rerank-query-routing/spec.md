@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Skill Advisor — Conflict Re-rank, Query-Class Routing & Semantic Exact-Rerank (C1/QCR/C6)"
-description: "Three deferred routing-quality refinements for the Skill Advisor 5-lane fusion scorer, all gated behind the 001 RRF determinism spine. C1 lifts the conflicts_with mass into a post-fusion demotion (latent: every skill declares conflicts_with []). QCR adds an intent class to per-lane weights (benchmark-gated speculation, no demonstrated mis-routing). C6 re-scores the fused top-K with full-precision cosine (needs C3's rank-based survivor set). Promote only when each gate materializes."
+description: "Three Skill Advisor routing-quality refinements implemented as default-off scorer seams. C1 preserves conflicts_with mass as a post-fusion demotion and counter, QCR adds flag-gated query-class lane multipliers, and C6 adds flag-gated top-K exact semantic rerank. Live/default promotion still needs conflict-edge and benchmark evidence."
 trigger_phrases:
   - "advisor conflict rerank query routing"
   - "C1 conflicts_with post-fusion demotion"
@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/005-conflict-rerank-query-routing"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Author C1/QCR/C6 deferred-routing impl sub-phase spec (re-plan; all PENDING)"
-    next_safe_action: "Hold until 001 RRF spine ships and each candidate gate materializes"
+    recent_action: "Implemented default-off scorer seams for C1/QCR/C6 with deterministic unit coverage"
+    next_safe_action: "Run live conflict and benchmark gates"
     blockers: []
     key_files:
       - "spec.md"
@@ -26,7 +26,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-003-005-conflict-rerank-query-routing"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 80
     open_questions: []
     answered_questions: []
 ---
@@ -43,12 +43,12 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Draft |
+| **Status** | Implemented default-off; live promotion gates pending |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/028-memory-search-intelligence` |
 | **Parent Packet** | system-spec-kit/028-memory-search-intelligence/003-skill-advisor |
 | **Candidates** | C1 (split-conflict re-rank), QCR (query-class lane-weight router), C6 (cross-lane semantic exact-rerank) |
-| **Status (all)** | PENDING — none shipped in 030 Wave-0 (`git log 1ecc531431..ab5459fb6d` has no advisor/conflict/query-class/rerank commit; 030 §14 table has no advisor C1/QCR/C6 row). Each is a deferred routing refinement gated on the 001 RRF spine plus its own un-materialized condition |
+| **Status (all)** | Default-off scorer seams implemented in this phase. Packet 030 remains untouched. Live/default promotion remains gated on C1 conflict-edge evidence, QCR held-out routing-quality evidence, and benchmark acceptance for any ranking flip |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -57,7 +57,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The Skill Advisor fuses five lanes — `explicit_author 0.42 / lexical 0.28 / graph_causal 0.13 / derived_generated 0.12 / semantic_shadow 0.05` (`lane-registry.ts:8-19`) — via a raw-score weighted SUM (`weightedScore = rawScore * weights[lane]` at `fusion.ts:366`; `score = Σ weightedScore` at `fusion.ts:372`) [CONFIRMED: research.md Internal Baseline; iter-001 F5/F6]. The research campaign catalogued three routing-quality refinements that ALL ride the 001 RRF determinism spine (sibling sub-phase `001-rrf-determinism-spine`, candidate C3 — "import the shared `fuseResultsMulti` so fusion reads RANK, not raw score") and are each individually un-actionable today for a distinct reason:
+The Skill Advisor fuses five lanes — `explicit_author 0.42 / lexical 0.28 / graph_causal 0.13 / derived_generated 0.12 / semantic_shadow 0.05` (`lane-registry.ts:8-19`) — via a raw-score weighted SUM by default, with an opt-in RRF spine behind `SPECKIT_ADVISOR_RRF_FUSION`. The research campaign catalogued three routing-quality refinements that ride that spine and need live evidence before default promotion:
 
 - **C1 (conflict-suppression re-rank)** is *latent until a skill declares a reciprocal `conflicts_with` edge.* The `graph_causal` lane carries a signed `conflicts_with: -0.35` multiplier (`graph-causal.ts:18`) that emits a negative score but is never enqueued for further BFS (`graph-causal.ts:77` `if (signed > 0)`) [CONFIRMED: iter-001 F6; iter-002 F16]. That negative mass has no rank-fusion meaning, so a naive RRF port would silently drop conflict suppression; C1 lifts it OUT of the lane sum into a deterministic post-fusion demotion in the sort comparator (the same surface `primaryIntentBonus` already uses at `fusion.ts:428-430`) [CONFIRMED: iter-006]. But the path is DORMANT: the live `skill-graph.sqlite` has ZERO `conflicts_with` edges (only `depends_on=9`, `enhances=33`, `prerequisite_for=10/11`, `siblings=22`) and all 20+ real-skill `graph-metadata.json` declare `"conflicts_with": []` — so C1 changes zero observable routing until a reciprocal conflict edge exists [CONFIRMED: iter-010 decisive finding; verified live 2026-06-19].
 
@@ -66,7 +66,7 @@ The Skill Advisor fuses five lanes — `explicit_author 0.42 / lexical 0.28 / gr
 - **C6 (cross-lane semantic exact-rerank)** *needs C3's rank-based survivor set.* The `semantic_shadow` lane (weight 0.05) already computes EXACT full-precision cosine over every projected skill (`cosineSimilarity` iterating raw `Float32Array` at `semantic-shadow.ts:47-69`; brute-force `projection.skills.map(...)` then `score <= COSINE_THRESHOLD (0.2)` at `semantic-shadow.ts:11,213-220`) [CONFIRMED: iter-003 F1/F2]. There is no ANN stage to "graduate" — so the real lever is to re-score only the fused top-K survivors with full-precision cosine as a bounded tiebreak/boost, bypassing the 0.2 cutoff for that subset, letting the 0.05 lane RESOLVE ties instead of diluting the sum [CONFIRMED: iter-003 F3/F4, C6 candidate]. This is meaningful only once C3 produces a stable rank-based survivor set and the deterministic id tiebreak that keeps C6's re-order byte-stable; on today's weighted-sum it would re-order a non-deterministic set.
 
 ### Purpose
-Hold C1, QCR, and C6 as documented, evidence-cited deferred refinements — each PENDING with an explicit gate — so they are not silently lost, and promote each one only when its gating condition materializes (a declared reciprocal conflict edge for C1; a demonstrated mis-routing case plus a held-out benchmark for QCR; the shipped 001 RRF spine for C6).
+Ship the code seams as reversible, default-off scorer changes so they are testable without changing live routing. Promote each one only when its gating condition materializes: a declared reciprocal conflict edge for C1, a demonstrated mis-routing case plus held-out benchmark for QCR, and benchmark/recall acceptance before any C6/default flip.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -75,9 +75,9 @@ Hold C1, QCR, and C6 as documented, evidence-cited deferred refinements — each
 ## 3. SCOPE
 
 ### In Scope
-- **C1** — lift the `conflicts_with: -0.35` mass out of the `graph_causal` lane sum into a deterministic, auditable post-fusion demotion in the sort comparator (mirroring `primaryIntentBonus`), with its own applied-counter; ship ONLY once a reciprocal conflict edge exists in the graph.
-- **QCR** — a query-class classifier mapping each query to a small intent class, feeding per-class lane-weight multipliers through `effectiveScorerWeights` (`fusion.ts:69-82`), additive and keeping `explicit_author` dominant; ship behind shadow weights and gate on a held-out routing-quality benchmark.
-- **C6** — a cross-lane exact-rerank pass over the fused top-K survivors using full-precision cosine (bypassing the 0.2 cutoff for that subset only), as a bounded tiebreak/boost with a deterministic skill-id tiebreak; ship after the 001 RRF spine (C3) lands.
+- **C1** — lift the `conflicts_with: -0.35` mass out of the opt-in `graph_causal` RRF lane sum into a deterministic, auditable post-fusion demotion in the sort comparator (mirroring `primaryIntentBonus`), with its own applied-counter. Live effect still requires reciprocal conflict data.
+- **QCR** — a query-class classifier mapping each query to a small intent class, feeding per-class lane-weight multipliers through `effectiveScorerWeights` (`fusion.ts:69-82`), additive and keeping `explicit_author` dominant. It is disabled unless `SPECKIT_ADVISOR_QUERY_CLASS_ROUTING=true`; live/default promotion still needs held-out routing-quality evidence.
+- **C6** — a cross-lane exact-rerank pass over the fused top-K survivors using full-precision cosine (bypassing the 0.2 cutoff for that subset only), as a bounded tiebreak with a deterministic skill-id fallback. It is disabled unless both RRF and `SPECKIT_ADVISOR_EXACT_SEMANTIC_RERANK=true`.
 - Per-candidate gate tracking and the materialization conditions that unblock each one.
 
 ### Out of Scope
@@ -92,10 +92,11 @@ Hold C1, QCR, and C6 as documented, evidence-cited deferred refinements — each
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts` | Modify (when promoted) | C1: add a post-fusion `conflicts_with` demotion in the ranking comparator (`:425-433`), beside `primaryIntentBonus` (`:428-430`), with its own applied-counter. QCR: compute a class→lane-multiplier and feed it through `effectiveScorerWeights` (`:69-82`) before the per-skill loop. C6: a top-K exact-rerank tiebreak after the fused ranking (`:425+`) |
-| `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/graph-causal.ts` | Modify (when C1 promoted) | C1: stop folding the negative `conflicts_with: -0.35` (`:18`) into the lane sum; surface the conflict mass separately for the post-fusion demotion |
-| `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/semantic-shadow.ts` | Reuse (when C6 promoted) | C6: reuse `cosineSimilarity` + the cached full-precision vectors (`:47-69,194-199`) for the top-K rerank; no change to the lane's pre-fusion 0.2-cutoff path |
-| `.opencode/skills/system-skill-advisor/mcp_server/tests/*.vitest.ts` | Create (when promoted) | Per-candidate fixtures: C1 conflict demotion is deterministic + inert when no conflict edge exists; QCR class routing keeps `explicit_author` dominant + shadow-only by default; C6 top-K re-order is byte-stable via the skill-id tiebreak |
+| `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts` | Modified | C1: post-fusion `conflicts_with` demotion counter. QCR: flag-gated class→lane multipliers through `effectiveScorerWeights`. C6: flag-gated top-K exact semantic rerank within a bounded score window |
+| `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/graph-causal.ts` | Reused | C1 uses the existing split output: positive matches feed RRF, conflict matches feed the comparator demotion |
+| `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/semantic-shadow.ts` | Modified | C6 adds exact subset scoring that reuses full-precision vectors and bypasses the 0.2 cutoff only for requested top-K skill ids |
+| `.opencode/skills/system-skill-advisor/mcp_server/lib/metrics.ts` | Modified | Adds the graph conflict demotion applied-counter definition |
+| `.opencode/skills/system-skill-advisor/mcp_server/tests/scorer/conflict-query-rerank.vitest.ts` | Created | Per-candidate fixtures: conflict counter, QCR default-off/dominance, exact subset cutoff bypass, and C6 deterministic bounded rerank |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -107,7 +108,7 @@ Hold C1, QCR, and C6 as documented, evidence-cited deferred refinements — each
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Each candidate carries an explicit PENDING status and a named gate | C1 gate = `dormant-data` (needs a reciprocal `conflicts_with` edge) + `shared-infra-dep` (001 RRF spine); QCR gate = `needs-benchmark` (held-out routing-quality) + `shared-infra-dep`; C6 gate = `shared-infra-dep` (001 RRF spine / C3 rank-based survivor set). No candidate is implemented while its gate is unmet [CONFIRMED: iter-010; roadmap.md:75,193; iter-003 C6] |
+| REQ-001 | Each candidate carries an explicit live-promotion gate | C1 gate = `dormant-data` (needs a reciprocal `conflicts_with` edge) + `shared-infra-dep` (RRF spine); QCR gate = `needs-benchmark` (held-out routing-quality) + `shared-infra-dep`; C6 gate = `shared-infra-dep` plus benchmark/recall acceptance. Code seams may exist only when default-off and byte-identical with flags disabled |
 | REQ-002 | C1, when promoted, applies conflict suppression as a deterministic post-fusion demotion, NOT a fused rank term | The `conflicts_with: -0.35` mass is lifted out of the `graph_causal` lane sum and applied in the sort comparator (like `primaryIntentBonus`, `fusion.ts:428-430`) with its own applied-counter and a deterministic tiebreak; it is inert (zero observable change) while every skill declares `conflicts_with []` [CONFIRMED: iter-002 C1; iter-006; iter-010] |
 | REQ-003 | QCR, when promoted, is additive and never replaces the `explicit_author` lane | Per-class lane multipliers feed through `effectiveScorerWeights` (`fusion.ts:69-82`); `explicit_author` stays dominant; QCR ships behind shadow weights and is gated on a held-out routing-quality benchmark before any live weight change [CONFIRMED: iter-001 Q1; iter-004 QCR; roadmap.md:75] |
 | REQ-004 | C6, when promoted, depends on the 001 RRF spine and is byte-stable | C6 re-scores only the fused top-K survivors from C3's rank-based set with full-precision cosine (bypassing the 0.2 cutoff for that subset), as a bounded tiebreak; the re-order is deterministic via a skill-id tiebreak, preserving the byte-identical-output property [CONFIRMED: iter-003 C6, F3/F4; iter-004 C6 row] |
@@ -126,9 +127,9 @@ Hold C1, QCR, and C6 as documented, evidence-cited deferred refinements — each
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: C1, QCR, and C6 each remain documented with a cited gate and stay PENDING until their gate materializes — none is implemented prematurely (REQ-001 met). C1's dormancy is re-verified live (REQ-005).
-- **SC-002**: When promoted, each candidate honors its invariant — C1 is a deterministic post-fusion demotion inert under empty conflict edges (REQ-002), QCR is additive and `explicit_author`-dominant behind a benchmark (REQ-003/REQ-006), C6 is a byte-stable top-K tiebreak on C3's survivor set with no recall regression (REQ-004/REQ-007).
-- **SC-003**: The dependency on the 001 RRF spine (sibling `001-rrf-determinism-spine`, candidate C3) is explicit for all three candidates, and C1/QCR additionally name their non-RRF gates (declared conflict edge; held-out benchmark).
+- **SC-001**: C1, QCR, and C6 are implemented only as default-off seams; live/default promotion remains gated and packet 030 remains untouched.
+- **SC-002**: Each implemented seam honors its invariant — C1 is a deterministic post-fusion demotion counter path, QCR is additive and `explicit_author`-dominant, and C6 is a bounded top-K tiebreak on the RRF survivor set with deterministic fallback.
+- **SC-003**: The dependency on the RRF spine is explicit for all three candidates, and C1/QCR additionally name their non-RRF live gates (declared conflict edge; held-out benchmark).
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -143,8 +144,8 @@ Hold C1, QCR, and C6 as documented, evidence-cited deferred refinements — each
 | Risk | C6 re-orders a non-deterministic survivor set if built on today's weighted sum | Med — breaks the byte-identical-output property | Build C6 only after the 001 RRF spine (C3) lands; require a deterministic skill-id tiebreak on the rerank [CONFIRMED: iter-003 C6 risk; iter-004 F9] |
 | Risk | C6 over-narrows and reduces recall vs the exhaustive cosine pass | Med — the lane is already an exact oracle bounded by recall scope | Treat C6 as a tiebreak/boost over the top-K only; do not replace the exhaustive pass; verify no recall regression (REQ-007) [CONFIRMED: iter-003 F1/F2] |
 | Dependency | 001 RRF determinism spine (sibling `001-rrf-determinism-spine`, candidate C3) | HARD — all three candidates ride it (C6 needs the rank-based survivor set; C1's demotion tiebreak and QCR's ordering inherit the deterministic spine) | Sequence this sub-phase after C3 ships; C1/QCR/C6 are downstream consumers, not the spine [CONFIRMED: research.md C3 "determinism spine for C1/C2/C6"; iter-004 F9] |
-| Dependency | A declared reciprocal `conflicts_with` skill edge (unblocks C1) | HARD for C1 — currently absent (0 edges live; all metadata `[]`) | C1 stays PENDING until an edge exists; this sub-phase does NOT fabricate conflict edges [CONFIRMED: iter-010; verified live 2026-06-19] |
-| Dependency | A held-out routing-quality benchmark + class taxonomy (unblocks QCR) | HARD for QCR — neither exists yet | QCR stays PENDING until the benchmark + calibrated taxonomy exist [CONFIRMED: roadmap.md:193; iter-004 residual] |
+| Dependency | A declared reciprocal `conflicts_with` skill edge (unblocks C1 live effect) | HARD for C1 live promotion — currently absent in prior evidence (0 edges live; all metadata `[]`) | C1's default-off seam exists, but live/default promotion stays pending until an edge exists; this sub-phase does NOT fabricate conflict edges |
+| Dependency | A held-out routing-quality benchmark + class taxonomy calibration (unblocks QCR live/default use) | HARD for QCR live promotion — neither exists yet | QCR's default-off seam exists, but live/default promotion stays pending until the benchmark + calibrated taxonomy exist |
 | Dependency | External model — aionforge query-class router (`retrieval.md:107-143`) + dense exact-rerank (`retrieval.md:25-31`) | Reference pattern for QCR + C6 | `external/aionforge-memory-development/docs/retrieval.md` (5-class router; approximate-then-Flat-oracle rerank) [CONFIRMED: iter-001 F9; iter-003 step 5] |
 <!-- /ANCHOR:risks -->
 
@@ -161,8 +162,8 @@ Hold C1, QCR, and C6 as documented, evidence-cited deferred refinements — each
 - **NFR-S01**: None of C1/QCR/C6 introduce a new untrusted-input path; the query text is already the scorer's input, and QCR classifies it for weighting only (no execution, no storage).
 
 ### Reliability
-- **NFR-R01**: Each candidate is reversible (branch-only) and, when its gate is unmet, INERT: C1's demotion is a no-op under empty conflict edges; QCR ships behind shadow weights (no live weight change); C6 is absent until C3 lands.
-- **NFR-R02**: When all three are unbuilt, the scorer's behavior is exactly today's weighted-sum fusion — this sub-phase adds no default-on behavior.
+- **NFR-R01**: Each candidate is reversible and, when its live gate is unmet, default-inert: C1's demotion is a no-op under empty conflict edges; QCR is disabled by default; C6 is disabled by default and requires the RRF path.
+- **NFR-R02**: With all new flags disabled, the scorer's behavior is exactly today's weighted-sum fusion — this sub-phase adds no default-on behavior.
 <!-- /ANCHOR:nfr -->
 
 ---

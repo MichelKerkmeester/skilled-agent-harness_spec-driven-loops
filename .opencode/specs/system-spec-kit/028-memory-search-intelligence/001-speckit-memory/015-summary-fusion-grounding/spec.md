@@ -12,11 +12,13 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/015-summary-fusion-grounding"
-    last_updated_at: "2026-06-19T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored fusion-grounding sub-phase from 028 research"
-    next_safe_action: "Capture the pre-change retrieval baseline before building the fused lane."
-    blockers: []
+    last_updated_at: "2026-06-19T14:45:00+02:00"
+    last_updated_by: "codex-gpt-5"
+    recent_action: "Implemented shadow-gated lane/prelude"
+    next_safe_action: "Run the broad verification suite, then capture benchmark deltas before any promotion."
+    blockers:
+      - "Benchmark delta and RRF retune remain pending because live benchmark/reindex/scan was explicitly out of scope."
+      - "Persistent world-summary hierarchy remains pending because it requires schema migration."
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts"
@@ -28,7 +30,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-001-015-summary-fusion-grounding"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 70
     open_questions:
       - "Final RRF weight for the fused summary lane (ablation-tuned; needs the baseline-and-delta retune)."
       - "Whether the world-summary prelude is computed on a cadence or on demand."
@@ -48,7 +50,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | In Progress |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Spec** | `../spec.md` (028 / 001-speckit-memory research phase) |
@@ -245,12 +247,12 @@ Make the already-built summary/community evidence a first-class weighted RRF lan
 <!-- ANCHOR:candidate-status -->
 ## 9. CANDIDATE STATUS
 
-Per-candidate status. Neither candidate appears in the Wave-0 shipped record (`030-memory-search-intelligence-impl/spec.md` §14), so both are PENDING.
+Per-candidate status. The fused summary lane has shadow-gated code and deterministic unit coverage. Benchmark promotion remains pending. The world-summary candidate has a read-only prelude over existing summaries, but the persistent two-tier hierarchy remains pending because that needs a schema migration.
 
 | Candidate | Status | Gate | Evidence / Notes |
 |-----------|--------|------|------------------|
-| `MEM-fused-summary-channel` | **PENDING** | needs-benchmark + shared-infra-dep | Effort corrected DOWN (finder M/M) then UP to **L** at blast-radius scoping (iter-022): ~5 hardcoded channel-list sites + RRF `lists.push` + 2 inject-path retirements + adaptive-weight slot + ablation retune. Data reuse strong (`searchCommunities`, `querySummaryEmbeddings` exist). Not in 030 §14 → not shipped. Seams: `hybrid-search.ts:1310,1394-1495,951`; `query-router.ts:36,68,74,106-107`; `routing-telemetry.ts:17`; `memory-search.ts:1158-1228`; `stage1-candidate-gen.ts:~1304-1326`; `artifact-routing.ts`. |
-| `CG-global-context-summary-hierarchy` | **PENDING** | needs-benchmark | NET-NEW (finder M/M, iter-019). Two-tier persistent world-summary (root + top-k subsections) prepended as a coarse-to-fine grounding prelude before retrieved context. Our summary stage-1 channel is flat (single collection); no root+sub index, no pre-fetch-and-prepend. Not in 030 §14 → not shipped. Seams: `memory-summaries.ts`, `memory-context.ts`. External template: cognee `global_context.py:1-73`, `graph_completion_retriever.py:78-79`. |
+| `MEM-fused-summary-channel` | **DONE (shadow-gated code)** | benchmark-promotion pending | Implemented behind `SPECKIT_SUMMARY_FUSION_LANE` (default off): channel union/list registration, telemetry slots, fused summary/community ranked-list adapters, RRF lane push, handler fallback stand-down, stage-1 summary stand-down, per-channel weight slot, cache identity split, and deterministic unit coverage. No benchmark delta or RRF retune was run under this turn's constraints. |
+| `CG-global-context-summary-hierarchy` | **PENDING** | schema-migration + benchmark pending | Implemented a default-off read-only grounding prelude over existing `memory_summaries` via `SPECKIT_WORLD_SUMMARY_PRELUDE`. Left the persistent root + subsection hierarchy/index pending because it requires schema migration, which was explicitly out of scope. |
 <!-- /ANCHOR:candidate-status -->
 
 ---

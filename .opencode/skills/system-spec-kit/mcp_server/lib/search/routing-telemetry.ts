@@ -12,9 +12,9 @@
 ----------------------------------------------------------------*/
 
 // SOURCE OF TRUTH: ../search/query-router.ts:35 (kept duplicated to avoid circular import).
-type ChannelName = 'vector' | 'fts' | 'bm25' | 'graph' | 'degree';
+type ChannelName = 'vector' | 'fts' | 'bm25' | 'graph' | 'degree' | 'summary' | 'community';
 
-const ALL_CHANNELS: readonly ChannelName[] = ['vector', 'fts', 'bm25', 'graph', 'degree'] as const;
+const ALL_CHANNELS: readonly ChannelName[] = ['vector', 'fts', 'bm25', 'graph', 'degree', 'summary', 'community'] as const;
 const WINDOW_SIZE = 200;
 
 const recentDecisions: ChannelName[][] = [];
@@ -65,7 +65,7 @@ interface RoutingTelemetrySnapshot {
  */
 function getSnapshot(): RoutingTelemetrySnapshot {
   const counts: Record<ChannelName, number> = {
-    vector: 0, fts: 0, bm25: 0, graph: 0, degree: 0,
+    vector: 0, fts: 0, bm25: 0, graph: 0, degree: 0, summary: 0, community: 0,
   };
   for (const decision of recentDecisions) {
     for (const channel of decision) {
@@ -74,7 +74,7 @@ function getSnapshot(): RoutingTelemetrySnapshot {
   }
   const total = recentDecisions.length;
   const rates: Record<ChannelName, number> = {
-    vector: 0, fts: 0, bm25: 0, graph: 0, degree: 0,
+    vector: 0, fts: 0, bm25: 0, graph: 0, degree: 0, summary: 0, community: 0,
   };
   if (total > 0) {
     for (const channel of ALL_CHANNELS) {

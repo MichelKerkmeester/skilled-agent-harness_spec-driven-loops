@@ -315,6 +315,22 @@ export function isMemorySummariesEnabled(): boolean {
 }
 
 /**
+ * First-class summary/community retrieval fusion lane.
+ * Default: FALSE (shadow). Set SPECKIT_SUMMARY_FUSION_LANE=true to enable.
+ */
+export function isSummaryFusionLaneEnabled(): boolean {
+  return isOptInEnabled('SPECKIT_SUMMARY_FUSION_LANE');
+}
+
+/**
+ * Coarse-to-fine world-summary grounding prelude for memory_context.
+ * Default: FALSE (shadow). Set SPECKIT_WORLD_SUMMARY_PRELUDE=true to enable.
+ */
+export function isWorldSummaryPreludeEnabled(): boolean {
+  return isOptInEnabled('SPECKIT_WORLD_SUMMARY_PRELUDE');
+}
+
+/**
  * Temporal contiguity boost on raw Stage 1 vector results.
  * Default: TRUE (graduated). Set SPECKIT_TEMPORAL_CONTIGUITY=false to disable.
  */

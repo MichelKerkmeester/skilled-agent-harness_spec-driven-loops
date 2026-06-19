@@ -11,16 +11,18 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/015-summary-fusion-grounding"
-    last_updated_at: "2026-06-19T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored plan for fusion lane + grounding prelude"
-    next_safe_action: "Capture the retrieval baseline before wiring the fused lane."
-    blockers: []
+    last_updated_at: "2026-06-19T14:45:00+02:00"
+    last_updated_by: "codex-gpt-5"
+    recent_action: "Implemented shadow-gated lane/prelude"
+    next_safe_action: "Finish broad verification, then capture benchmark deltas before promotion."
+    blockers:
+      - "Benchmark delta and RRF retune remain pending because live benchmark/reindex/scan was explicitly out of scope."
+      - "Persistent world-summary hierarchy remains pending because it requires schema migration."
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts"
-    completion_pct: 0
+    completion_pct: 70
     open_questions:
       - "Final fused-lane RRF weight (ablation-tuned via the baseline-and-delta)."
     answered_questions: []
@@ -54,19 +56,19 @@ Two paired retrieval-intelligence candidates over the already-built summary/comm
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Retrieval baseline corpus and metric script identified (the ~1000-memory corpus).
-- [ ] Built `searchCommunities` and `querySummaryEmbeddings` data confirmed available read-only.
-- [ ] All five hardcoded channel-list sites enumerated and confirmed.
-- [ ] Both legacy inject paths located (community fallback + summary stage-1).
+- [ ] Retrieval baseline corpus and metric script identified (the ~1000-memory corpus). — Pending: live benchmark/reindex/scan out of scope.
+- [x] Built `searchCommunities` and `querySummaryEmbeddings` data confirmed available read-only.
+- [x] All five hardcoded channel-list sites enumerated and confirmed.
+- [x] Both legacy inject paths located (community fallback + summary stage-1).
 
 ### Definition of Done
-- [ ] Pre-change baseline captured; post-change delta reported (no regression on primary order).
-- [ ] Summary/community is a weighted RRF lane with its own tuned weight.
-- [ ] Both legacy inject paths retired; single-count test passes.
-- [ ] Adaptive-weight model carries a per-channel slot for the lane.
-- [ ] World-summary grounding prelude prepends coarse-to-fine before retrieved context.
-- [ ] Both candidates default-off shadow-gated; flags-off is byte-identical to baseline.
-- [ ] Tests, TypeScript, strict spec validation, and comment hygiene ready.
+- [ ] Pre-change baseline captured; post-change delta reported (no regression on primary order). — Pending: live benchmark/reindex/scan out of scope.
+- [x] Summary/community is a weighted RRF lane with its own default-off weight slot.
+- [x] Both legacy inject paths stand down when the fused lane is enabled; single-count test passes.
+- [x] Adaptive-weight model carries a per-channel slot for the lane.
+- [x] World-summary grounding prelude prepends coarse-to-fine before retrieved context using existing summaries.
+- [ ] Both candidates default-off shadow-gated; flags-off is byte-identical to baseline. — Pending: byte-identical proof requires the baseline.
+- [x] Tests, TypeScript, strict spec validation, and comment hygiene ready.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -116,30 +118,30 @@ For recall, candidate channels (vector/fts/bm25/graph/degree) plus the new summa
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Baseline and Setup
-- [ ] Capture the pre-change retrieval baseline (precision/recall/order) on the ~1000-memory corpus.
-- [ ] Read the five hardcoded channel-list sites and the RRF `lists.push` fusion site.
-- [ ] Read both legacy inject paths and the adaptive-weight model.
-- [ ] Read `searchCommunities`, `querySummaryEmbeddings`, and the flat summaries index.
+- [ ] Capture the pre-change retrieval baseline (precision/recall/order) on the ~1000-memory corpus. — Pending: live benchmark/reindex/scan out of scope.
+- [x] Read the five hardcoded channel-list sites and the RRF `lists.push` fusion site.
+- [x] Read both legacy inject paths and the adaptive-weight model.
+- [x] Read `searchCommunities`, `querySummaryEmbeddings`, and the flat summaries index.
 
 ### Phase 2: Fused Summary/Community Lane
-- [ ] Add `summary`/`community` to the `ChannelName` union and all channel-list sites.
-- [ ] Adapt `searchCommunities` + `querySummaryEmbeddings` output into the fused ranked-list shape.
-- [ ] Push the lane into the RRF fusion site behind a default-off shadow flag.
-- [ ] Retire the community weak-result fallback inject path.
-- [ ] Retire/redirect the summary stage-1 candidate inject path.
-- [ ] Add a per-channel weight slot for the lane in the adaptive-weight model.
-- [ ] Re-tune the ablation-derived weights perturbed by the new lane against the baseline.
+- [x] Add `summary`/`community` to the `ChannelName` union and all channel-list sites.
+- [x] Adapt `searchCommunities` + `querySummaryEmbeddings` output into the fused ranked-list shape.
+- [x] Push the lane into the RRF fusion site behind a default-off shadow flag.
+- [x] Retire the community weak-result fallback inject path when the fused lane is enabled.
+- [x] Retire/redirect the summary stage-1 candidate inject path when the fused lane is enabled.
+- [x] Add a per-channel weight slot for the lane in the adaptive-weight model.
+- [ ] Re-tune the ablation-derived weights perturbed by the new lane against the baseline. — Pending: benchmark acceptance out of scope.
 
 ### Phase 3: World-Summary Grounding Prelude
-- [ ] Build the two-tier world-summary hierarchy (root + top-k subsections) in the summaries module.
-- [ ] Add a prelude provider that selects the relevant hierarchy slice.
-- [ ] Prepend the coarse-to-fine prelude before retrieved context in `memory-context.ts`, behind a default-off shadow flag.
+- [ ] Build the two-tier world-summary hierarchy (root + top-k subsections) in the summaries module. — Pending: persistent hierarchy/index requires schema migration.
+- [x] Add a read-only prelude provider that selects the relevant existing-summary slice.
+- [x] Prepend the coarse-to-fine prelude before retrieved context in `memory-context.ts`, behind a default-off shadow flag.
 
 ### Phase 4: Verification
-- [ ] Add and run lane-fusion, double-count-avoidance, weight-wiring, and prelude tests.
-- [ ] Confirm flags-off recall serialization is byte-identical to the baseline.
-- [ ] Report the shadow before/after delta.
-- [ ] Run `npx tsc --noEmit`, the requested suites, strict spec validation, and comment-hygiene checks.
+- [x] Add and run lane-fusion, double-count-avoidance, weight-wiring, and prelude tests.
+- [ ] Confirm flags-off recall serialization is byte-identical to the baseline. — Pending: baseline proof out of scope.
+- [ ] Report the shadow before/after delta. — Pending: live benchmark/reindex/scan out of scope.
+- [x] Run `npx tsc --noEmit`, the requested suites, strict spec validation, and comment-hygiene checks.
 <!-- /ANCHOR:phases -->
 
 ---

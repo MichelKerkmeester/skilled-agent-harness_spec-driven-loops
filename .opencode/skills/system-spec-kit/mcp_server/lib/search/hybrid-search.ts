@@ -37,7 +37,19 @@ import {
   twoPhaseRetrieval,
 } from './folder-relevance.js';
 import { computeDegreeScores, DEGREE_CHANNEL_WEIGHT } from './graph-search-fn.js';
+import {
+  getStrategyChannelWeight,
+  getStrategyForQuery as getArtifactStrategyForQuery,
+} from './artifact-routing.js';
+import {
+  queryCommunityMembersAsRankedList,
+  type CommunityRankedResult,
+} from './community-search.js';
 import { INTENT_LAMBDA_MAP, classifyIntent } from './intent-classifier.js';
+import {
+  querySummaryEmbeddingRows,
+  type SummaryRankedResult,
+} from './memory-summaries.js';
 import { resolveAbsoluteRelevance } from './pipeline/types.js';
 import {
   DEFAULT_PAGE_SIZE,
@@ -58,6 +70,7 @@ import {
   isDocscoreAggregationEnabled,
   isMMREnabled,
   isSearchFallbackEnabled,
+  isSummaryFusionLaneEnabled,
 } from './search-flags.js';
 import { resolveFusionIntentContract } from './search-utils.js';
 import { fts5Bm25Search } from './sqlite-fts.js';
@@ -96,6 +109,9 @@ interface HybridSearchOptions {
   useFts?: boolean;
   useVector?: boolean;
   useGraph?: boolean;
+  tenantId?: string;
+  userId?: string;
+  agentId?: string;
   includeArchived?: boolean;
   includeContent?: boolean;
   /**
@@ -142,6 +158,66 @@ interface HybridSearchResult {
   source: string;
   title?: string;
   [key: string]: unknown;
+}
+
+type SummaryFusionInput = SummaryRankedResult | CommunityRankedResult;
+
+function mergeSummaryFusionLaneRows(
+  rows: SummaryFusionInput[],
+  limit: number,
+): HybridSearchResult[] {
+  const merged = new Map<string, HybridSearchResult & { summaryLaneSources?: string[] }>();
+
+  for (const row of rows) {
+    const key = canonicalResultId(row.id);
+    const score = typeof row.score === 'number' && Number.isFinite(row.score)
+      ? row.score
+      : typeof row.similarity === 'number' && Number.isFinite(row.similarity)
+        ? row.similarity
+        : 0;
+    const incomingSources = Array.isArray(row.summaryLaneSources)
+      ? row.summaryLaneSources.filter((source): source is string => typeof source === 'string')
+      : [row.source];
+    const existing = merged.get(key);
+
+    if (existing) {
+      existing.score = Math.max(existing.score, score);
+      existing.similarity = Math.max(
+        typeof existing.similarity === 'number' ? existing.similarity : 0,
+        score,
+      );
+      existing.summaryLaneSources = Array.from(new Set([
+        ...(existing.summaryLaneSources ?? []),
+        ...incomingSources,
+      ]));
+      continue;
+    }
+
+    merged.set(key, {
+      ...row,
+      id: row.id,
+      source: 'summary',
+      score,
+      similarity: score,
+      summaryLaneSources: Array.from(new Set(incomingSources)),
+    });
+  }
+
+  return Array.from(merged.values())
+    .sort((a, b) => {
+      if (b.score !== a.score) return b.score - a.score;
+      return canonicalResultId(a.id).localeCompare(canonicalResultId(b.id));
+    })
+    .slice(0, limit);
+}
+
+function resolveSummaryFusionLaneWeight(
+  query: string,
+  intent: string | undefined,
+  options: HybridSearchOptions,
+): number {
+  const routing = getArtifactStrategyForQuery(query, options.specFolder, intent);
+  return getStrategyChannelWeight(routing.strategy, 'summary', 0.2);
 }
 
 type HardExclusionSource = 'archived-tier' | 'deprecated-tier';
@@ -955,6 +1031,9 @@ function getAllowedChannels(options: HybridSearchOptions): Set<ChannelName> {
   if (isBm25Enabled()) {
     allowed.add('bm25');
   }
+  if (isSummaryFusionLaneEnabled()) {
+    allowed.add('summary');
+  }
 
   if (options.useVector === false) allowed.delete('vector');
   if (options.useBm25 === false) allowed.delete('bm25');
@@ -1309,7 +1388,9 @@ async function collectAndFuseHybridResults(
     // When enabled, classifies query complexity and restricts channels to a
     // Subset (e.g., simple queries skip graph+degree). When disabled, all channels run.
     const routeResult = routeQuery(query, options.triggerPhrases);
-    const allPossibleChannels: ChannelName[] = ['vector', 'fts', 'bm25', 'graph', 'degree'];
+    const allPossibleChannels: ChannelName[] = isSummaryFusionLaneEnabled()
+      ? ['vector', 'fts', 'bm25', 'graph', 'degree', 'summary']
+      : ['vector', 'fts', 'bm25', 'graph', 'degree'];
     const activeChannels = options.forceAllChannels
       ? new Set<ChannelName>(allPossibleChannels)
       : new Set<ChannelName>(routeResult.channels);
@@ -1423,6 +1504,36 @@ async function collectAndFuseHybridResults(
     triggerChannelResults = exactTriggerSearch(query, options);
     if (triggerChannelResults.length > 0) {
       lists.push({ source: 'trigger', results: triggerChannelResults, weight: 1.4 });
+    }
+
+    if (activeChannels.has('summary') && isSummaryFusionLaneEnabled() && db) {
+      try {
+        const laneLimit = options.limit || DEFAULT_LIMIT;
+        const scope = {
+          specFolder: options.specFolder,
+          tenantId: options.tenantId,
+          userId: options.userId,
+          agentId: options.agentId,
+        };
+        const summaryRows = embedding
+          ? querySummaryEmbeddingRows(db, embedding, laneLimit, scope)
+          : [];
+        const communityRows = queryCommunityMembersAsRankedList(query, db, laneLimit, scope);
+        const summaryLaneResults = mergeSummaryFusionLaneRows(
+          [...summaryRows, ...communityRows],
+          laneLimit,
+        );
+
+        if (summaryLaneResults.length > 0) {
+          lists.push({
+            source: 'summary',
+            results: summaryLaneResults,
+            weight: resolveSummaryFusionLaneWeight(query, options.intent, options),
+          });
+        }
+      } catch (_err: unknown) {
+        console.warn('[hybrid-search] Channel error:', _err instanceof Error ? _err.message : String(_err));
+      }
     }
 
     // Graph channel — gated by query-complexity routing

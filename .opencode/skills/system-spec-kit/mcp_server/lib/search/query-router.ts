@@ -28,6 +28,7 @@ import {
   isSingleHopRetrieval,
   type RetrievalClass,
 } from './retrieval-class-classifier.js';
+import { isSummaryFusionLaneEnabled } from './search-flags.js';
 
 // Feature catalog: Query complexity router
 // Feature catalog: Query complexity router
@@ -37,8 +38,8 @@ import {
    1. TYPES & CONSTANTS
 ----------------------------------------------------------------*/
 
-/** Channel names matching SOURCE_TYPES in rrf-fusion.ts */
-type ChannelName = 'vector' | 'fts' | 'bm25' | 'graph' | 'degree';
+/** Channel names matching the retrieval lanes accepted by the fuser. */
+type ChannelName = 'vector' | 'fts' | 'bm25' | 'graph' | 'degree' | 'summary' | 'community';
 
 /** Maps each complexity tier to the set of channels that should be executed. */
 interface ChannelRoutingConfig {
@@ -70,8 +71,10 @@ interface QualityGapFallbackPlan {
   tiers: Array<'fts5' | 'bm25' | 'grep'>;
 }
 
-/** All available channels in execution order. */
-const ALL_CHANNELS: readonly ChannelName[] = ['vector', 'fts', 'bm25', 'graph', 'degree'] as const;
+/** Stable default channels in execution order. */
+const BASE_CHANNELS: readonly ChannelName[] = ['vector', 'fts', 'bm25', 'graph', 'degree'] as const;
+const ALL_CHANNELS: readonly ChannelName[] = BASE_CHANNELS;
+const SUMMARY_FUSION_CHANNELS: readonly ChannelName[] = ['summary'] as const;
 
 /** Minimum required channels for safe routing. */
 const MIN_CHANNELS = 2;
@@ -113,6 +116,23 @@ const DEFAULT_ROUTING_CONFIG: ChannelRoutingConfig = {
   complex: ['vector', 'fts', 'bm25', 'graph', 'degree'],
 };
 
+function getAllChannels(): ChannelName[] {
+  return isSummaryFusionLaneEnabled()
+    ? [...BASE_CHANNELS, ...SUMMARY_FUSION_CHANNELS]
+    : [...BASE_CHANNELS];
+}
+
+function getDefaultRoutingConfig(): ChannelRoutingConfig {
+  if (!isSummaryFusionLaneEnabled()) {
+    return DEFAULT_ROUTING_CONFIG;
+  }
+
+  return {
+    ...DEFAULT_ROUTING_CONFIG,
+    complex: [...DEFAULT_ROUTING_CONFIG.complex, ...SUMMARY_FUSION_CHANNELS],
+  };
+}
+
 /* ───────────────────────────────────────────────────────────────
    3. CHANNEL SUBSET RESOLUTION
 ----------------------------------------------------------------*/
@@ -147,8 +167,8 @@ function getChannelSubset(
   tier: QueryComplexityTier,
   config?: ChannelRoutingConfig,
 ): ChannelName[] {
-  const effectiveConfig = config ?? DEFAULT_ROUTING_CONFIG;
-  const channels = effectiveConfig[tier] ?? [...ALL_CHANNELS];
+  const effectiveConfig = config ?? getDefaultRoutingConfig();
+  const channels = effectiveConfig[tier] ?? getAllChannels();
   return enforceMinimumChannels([...channels]);
 }
 
@@ -156,7 +176,7 @@ function getChannelSubset(
  * Decides whether BM25 should be preserved independently of complexity tier.
  *
  * Intent triggers (`find_spec`, `find_decision`) preserve BM25 even for simple
- * queries because exact lexical matches matter for spec and ADR retrieval.
+ * queries because exact lexical matches matter for spec and decision retrieval.
  * Artifact-class authority preserves BM25 for documentation packets with
  * durable source-of-truth semantics. `precomputedIntent` lets callers reuse an
  * already-classified intent and skip duplicate classifier work.
@@ -433,7 +453,7 @@ function routeQuery(
     complexity: classification.tier,
     artifactClass,
     selectedChannels: adjustedChannels,
-    allChannels: ALL_CHANNELS,
+    allChannels: getAllChannels(),
     intent,
     authorityNeed: inferAuthorityNeed({ intent, artifactClass, query }),
     routingReasons: clampRoutingReasons([
@@ -481,6 +501,7 @@ export {
 
   // Functions
   getChannelSubset,
+  getAllChannels,
   routeQuery,
   buildQualityGapFallbackPlan,
   shouldPreserveGraph,
