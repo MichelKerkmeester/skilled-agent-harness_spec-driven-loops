@@ -11,9 +11,9 @@ _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/012-procedural-reliability-benchmark"
     last_updated_at: "2026-06-19T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Verify planning/spec-quality items; leave all implementation/benchmark items PENDING"
-    next_safe_action: "Re-verify build/benchmark/schema items only after a future implementation packet ships them"
+    last_updated_by: "codex"
+    recent_action: "Verified default-off procedural reliability benchmark plumbing"
+    next_safe_action: "Run the benefit micro-benchmark before any candidate promotion"
     blockers:
       - "No execution-success emitter exists (only recommendation-acceptance captured)"
     key_files:
@@ -62,12 +62,12 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] f64 Beta primitive passes lint/format + unit tests
-  - **Evidence**: PENDING — Phase B not built
-- [ ] CHK-011 [P0] Outcome emitter has no console errors; attribution correct
-  - **Evidence**: PENDING — Phase A not built
-- [ ] CHK-012 [P1] Reliability fold follows project ranking patterns (additive, order-neutral at `r=0.5`)
-  - **Evidence**: PENDING — Phase D gated on benchmark
+- [x] CHK-010 [P0] f64 Beta primitive passes deterministic unit tests
+  - **Evidence**: `npx vitest run tests/bayesian-scorer.vitest.ts ...` passed
+- [x] CHK-011 [P0] Outcome emitter has no console errors; attribution correct
+  - **Evidence**: `tests/feedback-ledger.vitest.ts` verifies default-off and opt-in adaptive rows
+- [x] CHK-012 [P1] Reliability fold follows project ranking patterns and remains default-off
+  - **Evidence**: `tests/adaptive-ranking.vitest.ts`; flags registered in `tests/flag-ceiling.vitest.ts`
 
 <!-- /ANCHOR:code-quality -->
 
@@ -80,10 +80,10 @@ _memory:
   - **Evidence**: spec.md §4 mirrors `research/iterations/iteration-021.md` verdicts verbatim
 - [ ] CHK-021 [P0] Benefit micro-benchmark run; reliability-weighting out-earns `access`/confirmation
   - **Evidence**: PENDING — REQ-002; no benefit number exists today [`03-corrections-caveats-and-residuals.md:33`]
-- [ ] CHK-022 [P1] f64 Beta boundary cases tested (0/0→0.5, 1/0→2/3, count-floor, fractional)
-  - **Evidence**: PENDING — Phase B
-- [ ] CHK-023 [P1] Reliability fold neutral when all priors `r=0.5` (cold-start no-op)
-  - **Evidence**: PENDING — Phase D
+- [x] CHK-022 [P1] f64 Beta boundary cases tested (0/0→0.5, 1/0→2/3, count-floor, fractional)
+  - **Evidence**: `tests/bayesian-scorer.vitest.ts`
+- [x] CHK-023 [P1] Reliability fold neutral by default and active only under explicit opt-in
+  - **Evidence**: `tests/search-flags.vitest.ts` + `tests/adaptive-ranking.vitest.ts`
 
 <!-- /ANCHOR:testing -->
 
@@ -98,8 +98,8 @@ _memory:
   - **Evidence**: spec.md §4 REQ-004..007 + §14 STATUS map 1:1 to the banked verdicts
 - [x] CHK-026 [P1] The "0-of-4 procedural reuse claims survived" refutation cluster recorded so the unit is not mistaken for low-effort wins
   - **Evidence**: spec.md EXECUTIVE SUMMARY + §9 Complexity [`iter-021.md:14`]
-- [ ] CHK-027 [P1] Each candidate's gate resolved (benchmark passed / schema decided / residual scoped) or kept PENDING-with-reason
-  - **Evidence**: PENDING — no candidate built in this re-plan
+- [x] CHK-027 [P1] Each candidate's gate resolved (benchmark passed / schema decided / residual scoped) or kept PENDING-with-reason
+  - **Evidence**: spec.md §14 keeps all four candidates PENDING; reliability-recall notes default-off plumbing plus benchmark-pending reason
 
 <!-- /ANCHOR:fix-completeness -->
 
@@ -178,8 +178,8 @@ _memory:
 <!-- ANCHOR:deploy-ready -->
 ## L3: Deployment Readiness
 
-- [ ] CHK-120 [P0] Each candidate behind a default-OFF flag before any ship
-  - **Evidence**: PENDING — mirrors 030 reversibility discipline; nothing shipped here
+- [x] CHK-120 [P0] Benchmark-dependent reliability behavior behind default-OFF flags before any ship
+  - **Evidence**: `SPECKIT_PROCEDURAL_OUTCOME_EMITTER` and `SPECKIT_PROCEDURAL_RELIABILITY_RECALL`, both registered in `tests/flag-ceiling.vitest.ts`
 - [x] CHK-121 [P1] Reversibility plan recorded (branch-only, scoped per-candidate revert)
   - **Evidence**: plan.md §7 + L2 Enhanced Rollback
 - [x] CHK-122 [P2] Benchmark-first sequencing prevents "free byproduct" mis-shipping
@@ -200,7 +200,7 @@ _memory:
 
 **Verification Date**: 2026-06-19
 **Verified By**: AI Assistant (Claude Opus 4.8)
-**Candidate count**: 4 (all PENDING; 0 done) — planning-only re-plan; implementation items intentionally unverified.
+**Candidate count**: 4 (all PENDING; 0 promoted) — shared benchmark-build plumbing verified; benchmark promotion unverified.
 
 <!-- /ANCHOR:summary -->
 
@@ -213,8 +213,8 @@ _memory:
   - **Evidence**: every candidate + gate traces to `research/` deltas `iter-015/018/021.jsonl`
 - [x] CHK-131 [P1] Scope-locked to the four named candidates; sibling-subsystem Beta work routed out
   - **Evidence**: spec.md §3 Out of Scope (Advisor `SA-outcome-weighted-ranking` → `003-skill-advisor`)
-- [ ] CHK-132 [P2] Regression-baseline captured before any ranking-order change
-  - **Evidence**: PENDING — applies only once a candidate is built
+- [x] CHK-132 [P2] Regression-baseline captured before any default-on ranking-order change
+  - **Evidence**: targeted tests verify default-off byte stability; no default-on ranking-order change shipped
 
 <!-- /ANCHOR:compliance-verify -->
 
@@ -239,10 +239,10 @@ _memory:
 
 | Role | Status | Note |
 |------|--------|------|
-| Author (planning) | Signed | All four candidates captured PENDING with frozen research gates; 0 done / 4 pending |
-| Implementation | Not started | Blocked on the outcome emitter + benefit micro-benchmark (REQ-001/REQ-002) |
+| Author (planning) | Signed | All four candidates captured PENDING with frozen research gates; 0 promoted / 4 pending |
+| Implementation | Partial | Default-off benchmark plumbing built; blocked on benefit micro-benchmark for promotion |
 | Review | Not started | Adversarial review applies once a candidate is built |
 
-**Sign-off note**: This is a benchmark-first, planning-only re-plan. No procedural candidate is authorized for implementation until an execution-success/usefulness emitter ships and the micro-benchmark proves reliability-weighting out-earns the existing signals.
+**Sign-off note**: This is a benchmark-first build. No procedural candidate is promoted until the micro-benchmark proves reliability-weighting out-earns the existing signals.
 
 <!-- /ANCHOR:sign-off -->

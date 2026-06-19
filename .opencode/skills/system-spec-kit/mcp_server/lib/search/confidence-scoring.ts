@@ -118,6 +118,7 @@ export interface RankingConfidenceContract {
 
 export interface ResultConfidence {
   confidence: RankingConfidenceContract;
+  preCalibrationValue: number;
 }
 
 /** Request-level quality assessment (one per search call). */
@@ -358,6 +359,7 @@ export function computeResultConfidence(results: ScoredResult[]): ResultConfiden
     if (anchorCount >= 2) drivers.push('anchor_density');
 
       return {
+        preCalibrationValue: rebalancedValue,
         confidence: {
           label: toConfidenceLabel(value),
           value: asRankingConfidenceValue(value),

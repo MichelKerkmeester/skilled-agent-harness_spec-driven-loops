@@ -756,6 +756,22 @@ export function isAssistiveReconsolidationEnabled(): boolean {
 }
 
 /**
+ * Off-turn sleep-time memory reorganization.
+ * Default: FALSE. Set SPECKIT_SLEEPTIME_CONSOLIDATION=true to enable shadow runs.
+ */
+export function isSleeptimeConsolidationEnabled(): boolean {
+  return isOptInEnabled('SPECKIT_SLEEPTIME_CONSOLIDATION');
+}
+
+/**
+ * Live archival writes for sleep-time reorganization.
+ * Default: FALSE. Set SPECKIT_SLEEPTIME_LIVE_WRITE=true after shadow evidence earns it.
+ */
+export function isSleeptimeLiveWriteEnabled(): boolean {
+  return isOptInEnabled('SPECKIT_SLEEPTIME_LIVE_WRITE');
+}
+
+/**
  * Two-tier result explainability.
  * Default: TRUE (graduated). Set SPECKIT_RESULT_EXPLAIN_V1=false to disable.
  */
@@ -840,6 +856,22 @@ export function isBitemporalRecallEnabled(): boolean {
  */
 export function isEdgePresenceCurrentnessEnabled(): boolean {
   return isOptInEnabled('SPECKIT_EDGE_PRESENCE_CURRENTNESS');
+}
+
+/**
+ * Mirrors strong feedback-ledger signals into adaptive outcome rows.
+ * Default: FALSE. Set SPECKIT_PROCEDURAL_OUTCOME_EMITTER=true to enable.
+ */
+export function isProceduralOutcomeEmitterEnabled(): boolean {
+  return isOptInEnabled('SPECKIT_PROCEDURAL_OUTCOME_EMITTER');
+}
+
+/**
+ * Applies procedural reliability evidence to adaptive recall scoring.
+ * Default: FALSE. Set SPECKIT_PROCEDURAL_RELIABILITY_RECALL=true to enable.
+ */
+export function isProceduralReliabilityRecallEnabled(): boolean {
+  return isOptInEnabled('SPECKIT_PROCEDURAL_RELIABILITY_RECALL');
 }
 
 /**

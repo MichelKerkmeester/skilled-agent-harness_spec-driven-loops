@@ -11,9 +11,9 @@
     "lt-llm-transcript-chunking",
     "governed"
   ],
-  "lastUpdated": "2026-06-19T06:21:34.203Z",
+  "lastUpdated": "2026-06-19T09:26:36.262Z",
   "specId": "018",
-  "folderSlug": "018-sleeptime-consolidation",
+  "folderSlug": "sleeptime-consolidation",
   "parentChain": [
     "system-spec-kit",
     "028-memory-search-intelligence",

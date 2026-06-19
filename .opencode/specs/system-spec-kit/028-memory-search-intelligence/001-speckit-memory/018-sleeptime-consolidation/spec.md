@@ -13,9 +13,9 @@ _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/018-sleeptime-consolidation"
     last_updated_at: "2026-06-19T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored Level-3 spec for async-sleeptime-consolidation (all PENDING)"
-    next_safe_action: "Build the tool-rule-DAG governor before any off-turn agent wiring"
+    last_updated_by: "codex"
+    recent_action: "Implemented default-off sleeptime governor and shadow agent scaffold"
+    next_safe_action: "Wire cadence/dispatch only after sibling 010 lands the clock/cursor gate"
     blockers:
       - "needs-design-prototype: greenfield off-turn background agent + LLM-in-the-loop governor"
       - "needs-benchmark: no measured benefit number; intelligence-class so promote on live evidence only"
@@ -29,7 +29,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-001-018-sleeptime-consolidation"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 35
     open_questions:
       - "Does the off-turn agent reorganize into the existing causal/archival store, or does it require a new archival-passage substrate (no episode model exists internally)?"
       - "Does LT-turn-cadence-trigger get built here or consumed from sibling 010 (which also lists it)?"
@@ -56,7 +56,7 @@ The Spec-Kit Memory MCP reorganizes memory **synchronously, on-save** — `handl
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P2 |
-| **Status** | Draft |
+| **Status** | Safe core implemented; live off-turn writes and benchmark promotion PENDING |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Packet** | system-spec-kit/028-memory-search-intelligence/001-speckit-memory |
@@ -101,11 +101,11 @@ Add a background, cadence-gated reorganization pass that amortizes consolidation
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `mcp_server/lib/cognitive/sleeptime-governor.ts` | Create | `LT-tool-rule-memory-chain`: the bounded tool-call DAG (`Init→Child→Continue→Terminal`); step/cost ceilings; typed terminal result (ref `voice_sleeptime_agent.py:87-91,132-148`) |
-| `mcp_server/lib/cognitive/sleeptime-agent.ts` | Create | `LT-bg-sleeptime-agent`: the off-turn reorganization agent driven through the governor; shadow/dry-run mode (ref `voice_sleeptime_agent.py:32-46`, `sleeptime_multi_agent_v4.py:139-165`) |
-| `mcp_server/handlers/save/reconsolidation-bridge.ts` | Modify | Wire the off-turn dispatch point distinct from the existing synchronous on-save reconsolidation (the contrasted baseline) |
-| `mcp_server/handlers/chunking-orchestrator.ts` | Modify | `LT-llm-transcript-chunking`: add the LLM-selected-range archival path alongside the existing markdown-structure chunking |
-| `mcp_server/lib/search/search-flags.ts` | Modify | Add a default-off `SPECKIT_SLEEPTIME_CONSOLIDATION` flag + a shadow sub-flag |
+| `mcp_server/lib/cognitive/sleeptime-governor.ts` | Created | `LT-tool-rule-memory-chain`: the bounded tool-call DAG (`Init→Child→Continue→Terminal`); step/cost ceilings; typed terminal result (ref `voice_sleeptime_agent.py:87-91,132-148`) |
+| `mcp_server/lib/cognitive/sleeptime-agent.ts` | Created | `LT-bg-sleeptime-agent` shadow scaffold: recent transcript ranges are selected through the governor and remain dry-run unless the separate live-write flag and writer injection are present |
+| `mcp_server/handlers/save/reconsolidation-bridge.ts` | Pending | Wire the off-turn dispatch point distinct from the existing synchronous on-save reconsolidation after sibling 010 lands the cadence/cursor gate |
+| `mcp_server/handlers/chunking-orchestrator.ts` | Pending | `LT-llm-transcript-chunking`: add the LLM-selected-range archival path alongside the existing markdown-structure chunking after shadow telemetry proves promotion value |
+| `mcp_server/lib/search/search-flags.ts` | Modified | Added default-off `SPECKIT_SLEEPTIME_CONSOLIDATION` and separate `SPECKIT_SLEEPTIME_LIVE_WRITE` opt-in flags |
 | `mcp_server/lib/cognitive/pressure-monitor.ts` | Reference | Consume sibling 010's `LT-turn-cadence-trigger` gate (no re-implementation here) |
 | `mcp_server/__tests__/` | Create | Governor-bound tests, off-turn-isolation test (on-save path byte-identical with flag off), shadow-telemetry test |
 <!-- /ANCHOR:scope -->
@@ -256,6 +256,19 @@ Add a background, cadence-gated reorganization pass that amortizes consolidation
 - What step-cap / cost-ceiling / cadence-frequency defaults keep the off-turn pass cheap enough to default-shadow safely? (UNKNOWN until the shadow harness runs.)
 - Does the live-write opt-in stay a separate flag from the shadow default, or graduate the single flag once telemetry justifies it?
 <!-- /ANCHOR:questions -->
+
+---
+
+## 13. IMPLEMENTATION STATUS
+
+| Candidate / Gate | Status | Evidence |
+|------------------|--------|----------|
+| `LT-tool-rule-memory-chain` governor | DONE | `mcp_server/lib/cognitive/sleeptime-governor.ts` enforces bounded phases, step cap, cost ceiling, ACL allowlist, typed aborts, and deterministic terminal handling; covered by `tests/sleeptime-governor.vitest.ts`. |
+| `LT-bg-sleeptime-agent` shadow scaffold | DONE (shadow scaffold only) | `mcp_server/lib/cognitive/sleeptime-agent.ts` drives range selection through the governor and records shadow results without archival writes by default. |
+| Default-off flags | DONE | `SPECKIT_SLEEPTIME_CONSOLIDATION` and `SPECKIT_SLEEPTIME_LIVE_WRITE` are registered in `lib/search/search-flags.ts` and the flag-ceiling known list. |
+| Off-turn dispatch + cadence/cursor consumption | PENDING | Sibling 010 remains the owner of the clock host, cursor, and cadence gate; this phase must not build a duplicate counter. |
+| LLM-selected archival chunking | PENDING | Live archival mutation needs shadow telemetry and a benchmark-backed promotion decision; the markdown chunker remains unchanged. |
+| Shadow telemetry benchmark/live promotion | PENDING | Deterministic unit tests prove bounds and default-off behavior, but no measured recall/cost delta exists yet. |
 
 ---
 

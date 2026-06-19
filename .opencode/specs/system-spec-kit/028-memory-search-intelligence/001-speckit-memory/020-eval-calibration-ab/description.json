@@ -10,9 +10,9 @@
     "calibration",
     "shipped-lever"
   ],
-  "lastUpdated": "2026-06-19T06:21:34.492Z",
+  "lastUpdated": "2026-06-19T09:26:36.271Z",
   "specId": "020",
-  "folderSlug": "020-eval-calibration-ab",
+  "folderSlug": "eval-calibration-ab",
   "parentChain": [
     "system-spec-kit",
     "028-memory-search-intelligence",

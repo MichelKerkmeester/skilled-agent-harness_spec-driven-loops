@@ -34,7 +34,7 @@ import {
 } from './eval-metrics.js';
 import type {
   CalibrationMetrics,
-  CalibrationSample,
+  CalibrationSample as EvalCalibrationSample,
   ColdStartCorpusMetrics,
   EvalResult,
   GateVerdictLabel,
@@ -53,6 +53,11 @@ import {
   computeResultConfidence,
   type ScoredResult,
 } from '../search/confidence-scoring.js';
+import {
+  fitCalibration,
+  type CalibrationModel,
+  type CalibrationSample as FitCalibrationSample,
+} from '../search/confidence-calibration.js';
 import {
   captureScoreSnapshot,
   resolveAbsoluteRelevance,
@@ -106,6 +111,10 @@ export interface AblationConfig {
   includeDiagnosticSnapshots?: boolean;
   /** Reliability-bin count for calibration metrics. Defaults to 10. */
   calibrationBinCount?: number;
+  /** Fit an observe-only calibration model from captured diagnostic samples. Defaults to false. */
+  includeCalibrationFit?: boolean;
+  /** Minimum training samples required before fitting the observe-only model. Defaults to 50. */
+  minCalibrationSamples?: number;
 }
 
 interface QuerySelection {
@@ -256,6 +265,30 @@ export interface AblationCorpusMetrics {
   coldStart: ColdStartCorpusMetrics;
 }
 
+export interface AblationCalibrationSample extends FitCalibrationSample {
+  queryId: number;
+  query: string;
+  memoryId: number;
+}
+
+export interface AblationCalibrationFitReport {
+  sampleCount: number;
+  fitted: boolean;
+  model: CalibrationModel;
+  metrics: CalibrationMetrics;
+  skippedReason?: string;
+}
+
+export type SearchLeverName = 'cosineTopNReorder' | 'complexityRouter' | 'topDominantVerdict';
+
+export interface SearchLeverVariant {
+  lever: SearchLeverName;
+  variant: 'on' | 'off' | 'production';
+  evaluationMode: boolean;
+  env: Record<string, string>;
+  partition?: string;
+}
+
 /** Failure captured for a single channel ablation run. */
 export interface AblationChannelFailure {
   /** Channel that failed during ablation. */
@@ -286,6 +319,8 @@ export interface AblationReport {
   diagnosticSnapshots?: AblationDiagnosticSnapshot[];
   /** Optional corpus-level verdict, calibration, and cold-start metrics. */
   corpusMetrics?: AblationCorpusMetrics;
+  /** Optional observe-only fit from captured diagnostic samples. */
+  calibrationFit?: AblationCalibrationFitReport;
   /** Total queries selected for the baseline computation. */
   queryCount?: number;
   /** Total queries actually evaluated (queries with ground truth). */
@@ -958,7 +993,7 @@ function buildDiagnosticSnapshot(
       return {
         memoryId: row.id,
         rank: typeof row.rank === 'number' ? row.rank : index + 1,
-        rawValue: resolveAbsoluteRelevance(row as unknown as PipelineRow),
+        rawValue: Number(confidences[index]?.preCalibrationValue ?? resolveAbsoluteRelevance(row as unknown as PipelineRow)),
         confidenceValue: Number(confidence?.value ?? 0),
         confidenceLabel: confidence?.label ?? 'low',
         ...(tier ? { tier } : {}),
@@ -967,6 +1002,91 @@ function buildDiagnosticSnapshot(
       };
     }),
   };
+}
+
+export function buildCalibrationSamplesFromDiagnostics(
+  snapshots: AblationDiagnosticSnapshot[],
+  labelViews: Map<number, GroundTruthLabelView>,
+  relevanceThreshold: number = 2,
+): AblationCalibrationSample[] {
+  const samples: AblationCalibrationSample[] = [];
+  for (const snapshot of snapshots) {
+    const labelView = labelViews.get(snapshot.queryId);
+    if (!labelView) continue;
+    const groundTruthById = new Map(labelView.groundTruth.map((entry) => [entry.memoryId, entry]));
+    for (const result of snapshot.results) {
+      const label = groundTruthById.get(result.memoryId);
+      if (!label) continue;
+      samples.push({
+        queryId: snapshot.queryId,
+        query: snapshot.query,
+        memoryId: result.memoryId,
+        rawValue: result.rawValue,
+        relevant: label.relevance >= relevanceThreshold ? 1 : 0,
+      });
+    }
+  }
+  return samples;
+}
+
+export function fitCalibrationFromDiagnostics(
+  samples: AblationCalibrationSample[],
+  options: { minSamples?: number; binCount?: number } = {},
+): AblationCalibrationFitReport {
+  const minSamples = options.minSamples ?? 50;
+  const model = samples.length >= minSamples
+    ? fitCalibration(samples)
+    : fitCalibration([]);
+  const metricsSamples: EvalCalibrationSample[] = samples.map((sample) => ({
+    rawValue: sample.rawValue,
+    relevant: sample.relevant === 1,
+  }));
+  const fitted = samples.length >= minSamples;
+  return {
+    sampleCount: samples.length,
+    fitted,
+    model,
+    metrics: computeCalibrationMetrics(metricsSamples, options.binCount),
+    ...(fitted ? {} : { skippedReason: `insufficient samples: ${samples.length}/${minSamples}` }),
+  };
+}
+
+export function buildObserveOnlySearchLeverVariants(): SearchLeverVariant[] {
+  return [
+    {
+      lever: 'cosineTopNReorder',
+      variant: 'on',
+      evaluationMode: false,
+      env: { SPECKIT_COSINE_TOPN_REORDER: 'true' },
+    },
+    {
+      lever: 'cosineTopNReorder',
+      variant: 'off',
+      evaluationMode: false,
+      env: { SPECKIT_COSINE_TOPN_REORDER: 'false' },
+    },
+    {
+      lever: 'complexityRouter',
+      variant: 'on',
+      evaluationMode: false,
+      env: { SPECKIT_COMPLEXITY_ROUTER: 'true' },
+      partition: 'escalated',
+    },
+    {
+      lever: 'complexityRouter',
+      variant: 'off',
+      evaluationMode: false,
+      env: { SPECKIT_COMPLEXITY_ROUTER: 'false' },
+      partition: 'non-escalated',
+    },
+    {
+      lever: 'topDominantVerdict',
+      variant: 'production',
+      evaluationMode: false,
+      env: {},
+      partition: 'citability-confusion',
+    },
+  ];
 }
 
 function buildCorpusMetrics(
@@ -981,7 +1101,7 @@ function buildCorpusMetrics(
       : [];
   });
 
-  const calibrationSamples: CalibrationSample[] = [];
+  const calibrationSamples: EvalCalibrationSample[] = [];
   const coldSamples = [];
   for (const snapshot of snapshots) {
     const labelView = labelViews.get(snapshot.queryId);
@@ -1113,6 +1233,15 @@ export async function runAblation(
     const corpusMetrics = config.includeDiagnosticSnapshots && labelViews
       ? buildCorpusMetrics(diagnosticSnapshots, labelViews, config.calibrationBinCount)
       : undefined;
+    const calibrationFit = config.includeDiagnosticSnapshots && config.includeCalibrationFit && labelViews
+      ? fitCalibrationFromDiagnostics(
+        buildCalibrationSamplesFromDiagnostics(diagnosticSnapshots, labelViews),
+        {
+          minSamples: config.minCalibrationSamples,
+          binCount: config.calibrationBinCount,
+        },
+      )
+      : undefined;
 
     // -- Step 2: Ablate each channel --
     const ablationResults: AblationResult[] = [];
@@ -1215,6 +1344,7 @@ export async function runAblation(
       ...(channelFailures.length > 0 ? { channelFailures } : {}),
       overallBaselineRecall,
       ...(config.includeDiagnosticSnapshots ? { diagnosticSnapshots, corpusMetrics } : {}),
+      ...(calibrationFit ? { calibrationFit } : {}),
       queryCount: queries.length,
       evaluatedQueryCount: evaluatedCount,
       ...(querySelection.requestedQueryIds ? { requestedQueryIds: querySelection.requestedQueryIds } : {}),
@@ -1290,6 +1420,7 @@ export function storeAblationResults(report: AblationReport): boolean {
             missingQueryIds: report.missingQueryIds ?? [],
             channelFailures: report.channelFailures ?? [],
             corpusMetrics: report.corpusMetrics ?? null,
+            calibrationFit: report.calibrationFit ?? null,
           }),
           report.timestamp,
       );
@@ -1441,6 +1572,18 @@ export function formatAblationReport(report: AblationReport): string {
     lines.push(`- **Gate verdict:** P=${gate.precision.toFixed(4)}, R=${gate.recall.toFixed(4)}, F1=${gate.f1.toFixed(4)} (TP=${gate.truePositive}, FP=${gate.falsePositive}, TN=${gate.trueNegative}, FN=${gate.falseNegative})`);
     lines.push(`- **Calibration:** ECE=${calibration.ece.toFixed(4)}, Brier=${calibration.brier.toFixed(4)}, samples=${calibration.sampleCount}`);
     lines.push(`- **Cold lane:** appearance=${cold.coldAppearanceRate.toFixed(4)}, precision=${cold.coldPrecision.toFixed(4)}, cold hits=${cold.coldRelevantHits}/${cold.coldAppearances}`);
+    lines.push(``);
+  }
+
+  if (report.calibrationFit) {
+    const fit = report.calibrationFit;
+    const status = fit.fitted ? 'fit' : `skipped (${fit.skippedReason ?? 'not enough evidence'})`;
+    lines.push(`### Calibration Fit`);
+    lines.push(``);
+    lines.push(`- **Status:** ${status}`);
+    lines.push(`- **Samples:** ${fit.sampleCount}`);
+    lines.push(`- **ECE:** ${fit.metrics.ece.toFixed(4)}`);
+    lines.push(`- **Brier:** ${fit.metrics.brier.toFixed(4)}`);
     lines.push(``);
   }
 

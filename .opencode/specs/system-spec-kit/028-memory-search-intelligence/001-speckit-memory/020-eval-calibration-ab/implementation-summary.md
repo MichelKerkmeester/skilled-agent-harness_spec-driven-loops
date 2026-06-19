@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Eval-Gated Confidence Calibration and Shipped-Lever A/B"
-description: "Planning-state summary for graduating the dormant isotonic confidence calibration on held-out ECE evidence and A/Bing the three default-on search levers. Both candidates are PENDING — no implementation has started; both are gated on the 019 eval-harness."
+description: "Safe-core summary for graduating the dormant isotonic confidence calibration on held-out ECE evidence and A/Bing the three default-on search levers. Observe-only utilities are implemented; promotion and golden-set deltas remain gated on the 019 eval-harness."
 trigger_phrases:
   - "calibration ab implementation summary"
   - "isotonic calibration status"
@@ -11,16 +11,16 @@ _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/020-eval-calibration-ab"
     last_updated_at: "2026-06-19T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored planning-state doc; implementation not started"
-    next_safe_action: "Confirm the 019 eval-harness ECE lane, then harvest calibration labels."
+    last_updated_by: "codex"
+    recent_action: "Implemented observe-only calibration and lever A/B utilities"
+    next_safe_action: "Run 019-backed golden benchmark"
     blockers:
       - "Gated on the 019 eval-harness ECE lane + A8 promotion gate."
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-calibration.ts"
-    completion_pct: 0
+    completion_pct: 45
     open_questions:
       - "Held-out ECE split + identity-baseline margin to graduate the flag."
     answered_questions: []
@@ -38,10 +38,10 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | `system-spec-kit/028-memory-search-intelligence/001-speckit-memory/020-eval-calibration-ab` |
-| **Completed** | Pending |
+| **Completed** | Partial safe core |
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned — not started |
+| **Status** | Observe-only utilities implemented; promotion and measured deltas pending |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -49,20 +49,20 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing is implemented yet. This sub-phase is a re-plan output: it scopes the two measurement-gated retrieval-intelligence candidates the `008-retrieval-evaluation` campaign converged on as the eval-harness's first *consumers*. Both are PENDING — neither appears in the Wave-0 shipped record (`030-memory-search-intelligence-impl/spec.md` §14).
+The observe-only calibration and lever A/B utilities are implemented. Both candidates remain PENDING for promotion because neither has 019-backed benchmark evidence: no held-out ECE improvement has justified flipping `SPECKIT_CONFIDENCE_CALIBRATION`, and no golden-set S5/S3/S2 deltas have been run.
 
-### Planned: Graduate the Isotonic Confidence Calibration (`A2-isotonic-calibration`)
+### Isotonic confidence calibration consumer
 
-The isotonic PAV machinery is fully built but un-promotable: `fitCalibration` (`confidence-calibration.ts:145`) has zero non-test callers, the docs' "proxy seed" is a phantom (no on-disk artifact), and no ECE/Brier/reliability metric exists anywhere (`eval-metrics.ts`, grep-clean) — so 027's promote-on-evidence doctrine is literally unexecutable for this flag. The plan harvests label pairs by instrumenting the `eval_run_ablation` loop to emit `(query, memoryId, rawValue=rebalancedValue, relevant)` (giving the fitter its first non-test caller), binarizes the graded 0-3 golden labels (`grade >= 2 -> 1`) past `loadLabeledSet`'s binary requirement (`:73`), adds the missing ECE + Brier + reliability-bin lane over a held-out split (the validation crux), and runs a three-way shadow (identity vs materialized proxy-seed vs traffic-fit) that graduates the flag default-on only when the real fit beats identity. NET-NEW/EXTENDS, finder H/S (the math is built; only the harvest-glue + ECE lane are missing).
+`confidence-calibration.ts` now accepts graded labels via a pure `grade >= 2` binarizer. `ablation-framework.ts` can harvest calibration samples from diagnostic snapshots and fit an observe-only model with `fitCalibration`, giving the fitter a non-test eval caller. `confidence-scoring.ts` exposes `preCalibrationValue` for diagnostics while keeping `maybeCalibrate` the single apply seam. `eval/shadow-scoring.ts` compares identity, proxy seed, and traffic fit on a deterministic held-out split and returns a promote/wait decision without flipping flags.
 
-### Planned: A/B the Levers 017/015 Shipped Default-On but Unmeasured (`A3-AB-shipped-levers`)
+### Shipped-lever A/B utilities
 
-Three levers ship default-on with zero recall evidence: S5 cosine head-reorder (`reorderTopNByCosine`, `hybrid-search.ts:2014-2021`), S3 generic-query/complexity escalation (`query-classifier.ts:157,:245`, `SPECKIT_COMPLEXITY_ROUTER` `:62`), and S2 the top-dominant request-quality verdict (`assessRequestQuality`, `TOP_DOMINANT_THRESHOLD=0.8`, `confidence-scoring.ts:78,:385,:423`). The harness cannot see S5 today — it runs only outside `evaluationMode` (`hybrid-search.ts:1989,:2021`) — so the A/B searchFn must set `evaluationMode:false` first. S5 also carries a confirmed but BOUNDED silent demotion (a fused-non-vector hit resolves to RRF magnitude ~0.03 and sinks below cosine hits; head-only, rank-not-eviction, rare per verify iter-010), folded into the A/B as a small-effect lever, not a dedicated fix. S3 is predicted MOST-LIKELY-NET-NEGATIVE on precise short content-bearing queries. The plan A/Bs each lever on the golden set and reports its measured effect.
+`ablation-framework.ts` emits observe-only S5 and S3 variant descriptors; S5 is explicitly measured with `evaluationMode:false`. `eval-metrics.ts` now computes generic lever deltas, S5 fused-non-vector demotion metrics, and S2 citability confusion including the false-good hard-negative cell.
 
-Both are intelligence-class (calibration changes reported confidence magnitudes on promotion; the levers change ranking/escalation/verdict), so they ship behind default-off shadow flags and promote only on captured evidence (the 027 doctrine + regression-baseline-and-delta rule). No measured benefit number exists for either today; all leverage is structural inference.
+Both remain intelligence-class and benchmark-gated. The implementation is observe-only until evidence exists; production calibration and lever defaults were not changed.
 
 ### Files Changed
-None yet. The planned change set is enumerated in `spec.md` §3 (Files to Change) and `plan.md` (Affected Surfaces).
+Implemented: `lib/eval/ablation-framework.ts`, `lib/eval/eval-metrics.ts`, `lib/eval/shadow-scoring.ts`, `lib/search/confidence-calibration.ts`, `lib/search/confidence-scoring.ts`, `tests/eval-calibration-ab.vitest.ts`, and a focused update in `tests/confidence-calibration.vitest.ts`.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -70,7 +70,7 @@ None yet. The planned change set is enumerated in `spec.md` §3 (Files to Change
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not yet delivered. Planned delivery order (from `plan.md`): confirm the 019 eval-harness ECE lane + gate-zero reindex → binarize the golden set and harvest calibration pairs → wire `fitCalibration` and add the ECE lane → three-way shadow + flag graduation → fix the S5 eval-mode blind spot → A/B S5/S3/S2 → verify (tests, tsc, strict validation, comment hygiene, held-out ECE + per-lever deltas).
+Delivered as pure/observe-only evaluation utilities with deterministic unit tests. The runtime calibration apply seam remains unchanged, and no flag default was flipped. Benchmark-bound work stops at the promote/wait decision and the A/B measurement descriptors.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -90,7 +90,13 @@ Not yet delivered. Planned delivery order (from `plan.md`): confirm the 019 eval
 <!-- ANCHOR:verification -->
 ## Verification
 
-Pending — no verification has run. The required gates are: the 019 eval-harness ECE lane confirmed, a held-out ECE comparison (real fit vs identity), per-lever golden-set A/B deltas reported, `npx tsc --noEmit` exit 0, the eval/calibration and no-op suites, `validate.sh --strict` 0 errors, and comment-hygiene clean. Evidence rows will be filled when the gates run.
+| Check | Result |
+|-------|--------|
+| Eval/calibration targeted tests | PASS (`eval-calibration-ab`, `confidence-calibration`, `eval-metrics`, `ablation-framework`) |
+| `npx tsc --noEmit` | PASS |
+| `validate.sh --strict` | PASS |
+| Held-out ECE promotion benchmark | PENDING |
+| Golden-set S5/S3/S2 deltas | PENDING |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -98,7 +104,7 @@ Pending — no verification has run. The required gates are: the 019 eval-harnes
 <!-- ANCHOR:nfr-verify -->
 ## NFR Verification
 
-Pending. Planned checks: label harvest rides the existing baseline pass with no second search pass (NFR-P01); the ECE/reliability computation runs at the aggregation layer, not per-query inline (NFR-P02); production calibration + lever defaults are a strict no-op until promotion (NFR-R01); `maybeCalibrate` degrades fail-open on a missing/unloadable model (NFR-R02).
+Implemented checks: label harvest rides the diagnostic baseline output; the ECE/reliability computation stays at the aggregation layer; production calibration + lever defaults remain no-op until promotion; `maybeCalibrate` remains fail-open on missing/unloadable models.
 <!-- /ANCHOR:nfr-verify -->
 
 ---
@@ -106,9 +112,9 @@ Pending. Planned checks: label harvest rides the existing baseline pass with no 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-- No measured benefit number exists for either candidate; all leverage estimates are structural inference (roadmap BROADENING §6; `synthesis/08` "Honest caveats"). The held-out ECE and the golden-set A/B deltas are the gates that convert this into a measured result.
-- Both candidates are BLOCKED on the 019 eval-harness (ECE lane + A8 promotion gate), which is not yet a built sibling phase; until it ships, this phase can deliver only the calibration consumer wiring and must HALT at promotion.
-- The S3 escalation A/B may confirm a net-negative on precise short content-bearing queries; fixing the escalation heuristic is out of scope for this phase (measured, not repaired here).
+- No measured benefit number exists for either candidate; the held-out ECE and golden-set A/B deltas remain the promotion gates.
+- Both candidates remain blocked on the 019-backed benchmark path for promotion, even though observe-only utilities are implemented.
+- The S3 escalation A/B may confirm a net-negative on precise short content-bearing queries; fixing the escalation heuristic remains out of scope for this phase.
 - The 008 synthesis seat flagged that the A2/A3 *framings* were inferred from headlines under a read-cap; the iter-004/005 deltas (re-read here) carry the load-bearing file:line evidence.
 <!-- /ANCHOR:limitations -->
 

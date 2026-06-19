@@ -1,6 +1,6 @@
 ---
-title: "Implementation Summary: Procedural Reliability Memory (planning-only, all candidates PENDING)"
-description: "Planning-phase summary for the Memory MCP procedural-reliability cluster. NOTHING is implemented here — this is a benchmark-first re-plan. All four candidates are PENDING (0 done / 4 pending); none appears in 030's shipped Wave-0 record. The summary records the scoped seams, the frozen research gates, and the prerequisite chain a future implementation packet must follow."
+title: "Implementation Summary: Procedural Reliability Memory (safe core implemented; candidates benchmark-gated)"
+description: "Safe-core summary for the Memory MCP procedural-reliability cluster. The outcome emitter mirror, f64 Beta reliability primitive, and default-off procedural reliability recall fold are implemented and tested. Candidate promotion remains PENDING until benchmark evidence exists."
 trigger_phrases:
   - "procedural reliability implementation summary"
   - "procedural cluster planning summary"
@@ -11,9 +11,9 @@ _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/012-procedural-reliability-benchmark"
     last_updated_at: "2026-06-19T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Captured 4 PENDING procedural candidates in planning docs"
-    next_safe_action: "Build the outcome/usefulness emitter (REQ-001) in a future implementation packet"
+    last_updated_by: "codex"
+    recent_action: "Implemented default-off procedural reliability safe core"
+    next_safe_action: "Run procedural reliability benchmark"
     blockers:
       - "No execution-success emitter exists (only recommendation-acceptance captured)"
     key_files:
@@ -26,12 +26,12 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-001-012-procedural-reliability"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 35
     open_questions:
       - "Does reliability-weighting out-earn the existing access/confirmation signals at r=0.5?"
     answered_questions: []
 ---
-# Implementation Summary: Procedural Reliability Memory (planning-only, all candidates PENDING)
+# Implementation Summary: Procedural Reliability Memory
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level3-arch | v2.2 -->
@@ -44,9 +44,9 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 028-memory-search-intelligence/001-speckit-memory/012-procedural-reliability-benchmark |
-| **State** | Planning-only re-plan (no implementation) |
+| **State** | Safe core implemented; candidate promotion benchmark-gated |
 | **Level** | 3 |
-| **Candidates** | 4 (0 done / 4 PENDING) |
+| **Candidates** | 4 (safe-core plumbing done; 4 promotion decisions PENDING) |
 | **In 030 Wave-0** | None (procedural cluster absent from `030-...impl/spec.md` §14) |
 
 <!-- /ANCHOR:metadata -->
@@ -56,7 +56,7 @@ _memory:
 <!-- ANCHOR:exec-summary -->
 ## Executive Summary
 
-This sub-phase is a **benchmark-first planning re-plan** — no code is written. It scopes four procedural candidates mined from aionforge's `procedural-memory.md` (M-procedural-reliability-recall, M-bad-pattern-negative-memory, M-skill-induction-repetition, M-procedural-version-reset) and freezes the 028 deep-research verdicts as acceptance criteria. The unit is **PROXY-ONLY today**: there is no execution-success emitter (only recommendation-acceptance is captured), so a Beta-reliability-over-execution-outcomes fold is a net-new write-path build that stays a cold-start no-op until an emitter ships and a micro-benchmark proves it out-earns the existing `access`/confirmation signals. All four candidates are therefore PENDING.
+This sub-phase now has the safe procedural-reliability core in place: outcome/correction feedback can be mirrored into adaptive signals behind `SPECKIT_PROCEDURAL_OUTCOME_EMITTER`, a fractional Beta reliability primitive exists in `lib/scoring/bayesian-scorer.ts`, and procedural recall weighting is available behind `SPECKIT_PROCEDURAL_RELIABILITY_RECALL`. Default behavior remains byte-identical with both flags off. Candidate promotion remains PENDING until a benchmark proves the reliability fold out-earns the existing access/confirmation signals.
 
 <!-- /ANCHOR:exec-summary -->
 
@@ -65,15 +65,11 @@ This sub-phase is a **benchmark-first planning re-plan** — no code is written.
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-**Nothing was implemented.** This is a planning-only re-plan. The authored artifacts are the spec-folder docs (spec / plan / tasks / checklist / decision-record / this summary) that capture the four candidates, their gates, and the prerequisite chain.
-
-### Seams a FUTURE implementer would touch (NOT changed here)
-
 | File / Seam | Candidate | Action | Status |
 |-------------|-----------|--------|--------|
-| `lib/feedback/feedback-ledger.ts` | reliability-recall, version-reset | net-new `'outcome'` emitter | PENDING (REQ-001) |
-| `lib/scoring/bayesian-scorer.ts` | reliability-recall (+ Advisor C4) | f64 Beta export + adapter | PENDING (REQ-003) |
-| `lib/ranking/adaptive-ranking.ts:346` | reliability-recall | reliability fold | PENDING (benchmark-gated) |
+| `lib/feedback/feedback-ledger.ts` | reliability-recall, version-reset | default-off outcome/correction mirror into adaptive signals | DONE |
+| `lib/scoring/bayesian-scorer.ts` | reliability-recall (+ Advisor follow-on) | f64 Beta reliability primitive + multiplier helper | DONE |
+| `lib/cognitive/adaptive-ranking.ts` | reliability-recall | default-off procedural reliability fold for procedural rows only | DONE (benchmark-gated) |
 | `lib/storage/causal-edges.ts:21-28`; `lib/search/vector-index-schema.ts:1113-1115` | bad-pattern | `HAS_FAILURE` migration / precedent | PENDING (schema) |
 | `lib/reconsolidation.ts:38,202-210,527-533` | skill-induction, bad-pattern | new action + counter | PENDING (heaviest) |
 
@@ -84,7 +80,7 @@ This sub-phase is a **benchmark-first planning re-plan** — no code is written.
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Delivered as a planning-only re-plan: the four candidates were mined from the 028 deep-research record (PRIMARY child `001-speckit-memory`), cross-checked against the Round-D adversarial refutation cluster (`research/iterations/iteration-021.md`), and frozen into spec / plan / tasks / checklist / decision-record. The 030 Wave-0 record (`030-...impl/spec.md` §14) was read read-only to confirm none of the four shipped. No runtime code, schema, or commit was produced; the deliverable is the gated, research-faithful spec folder.
+Delivered as default-off, additive plumbing only. The outcome mirror is gated by `SPECKIT_PROCEDURAL_OUTCOME_EMITTER`; the procedural recall fold is gated by `SPECKIT_PROCEDURAL_RELIABILITY_RECALL`; both flags are registered in the flag-ceiling known list. No schema migration, bad-pattern host, skill-induction action, or version-reset promotion was implemented.
 
 <!-- /ANCHOR:how-delivered -->
 
@@ -124,16 +120,16 @@ See `decision-record.md` for full ADRs.
 
 | Check | Status | Details |
 |-------|--------|---------|
-| `validate.sh --strict` | Pass (planning docs) | Folder structure + anchors + frontmatter green |
+| `validate.sh --strict` | Pass | Folder structure + anchors + frontmatter green |
 | Research faithfulness | Pass | Every candidate + gate traces to `research/` deltas `iter-015/018/021` |
-| Implementation tests | N/A | No code shipped |
-| Benefit benchmark | Not run | The promotion gate; no candidate has a benefit number [`03-...:33`] |
+| Implementation tests | Pass | `bayesian-scorer`, `feedback-ledger`, `adaptive-ranking`, `search-flags`, and `flag-ceiling` targeted suites passed |
+| Benefit benchmark | Not run | The promotion gate; no candidate has a benefit number |
 
 ### Candidate status (frozen from research)
 
 | Candidate | Status | Gate |
 |-----------|--------|------|
-| M-procedural-reliability-recall | PENDING | needs-benchmark + shared-infra-dep |
+| M-procedural-reliability-recall | PENDING | safe core DONE; promotion needs benchmark |
 | M-bad-pattern-negative-memory | PENDING | schema-migration (+ filter-site audit) |
 | M-skill-induction-repetition | PENDING | needs-benchmark (heaviest; write-side risk) |
 | M-procedural-version-reset | PENDING | already-exists-residual |

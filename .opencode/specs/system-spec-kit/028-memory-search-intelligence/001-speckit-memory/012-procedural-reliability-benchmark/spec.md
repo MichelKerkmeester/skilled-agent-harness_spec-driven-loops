@@ -13,9 +13,9 @@ _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/012-procedural-reliability-benchmark"
     last_updated_at: "2026-06-19T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Author benchmark-first procedural-reliability impl sub-phase from 028 research"
-    next_safe_action: "Build the outcome/usefulness emitter prereq, then run the micro-benchmark gate"
+    last_updated_by: "codex"
+    recent_action: "Built default-off procedural reliability benchmark plumbing and deterministic unit tests"
+    next_safe_action: "Run the benefit micro-benchmark before promoting any procedural candidate"
     blockers:
       - "No execution-success emitter exists (only recommendation-acceptance captured)"
     key_files:
@@ -28,7 +28,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-001-012-procedural-reliability"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 35
     open_questions:
       - "Does wiring an 'outcome'/usefulness emission out-earn the existing 'access'/confirmation signals when every prior is r=0.5?"
     answered_questions: []
@@ -56,7 +56,7 @@ This sub-phase scopes the Memory MCP **procedural-reliability** cluster mined fr
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P2 |
-| **Status** | Draft (all candidates PENDING / benchmark-gated) |
+| **Status** | Benchmark-build plumbing implemented; all candidates remain PENDING / benchmark-gated |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Source roadmap** | `../../research/roadmap.md` §5 + §7 follow-ups; `../../research/synthesis/01-go-candidates.md` (Needs-validation + Follow-ups) |
@@ -89,7 +89,7 @@ Capture the procedural-reliability cluster as ONE benchmark-first unit with **ho
 - One benefit micro-benchmark design (reliability-weighting vs `access`/confirmation under accrued/synthetic outcomes) as the promotion gate for M-procedural-reliability-recall.
 
 ### Out of Scope
-- Any code implementation, schema migration, or commit — this is a re-plan, planning only.
+- Schema migrations, measured benchmark promotion, and commits — this build keeps benchmark-dependent behavior default-off.
 - The execution-success emitter's *use* for task-success ranking beyond procedural recall (follow-on per `01-go-candidates.md:109`).
 - Adopting an episode model — the research decision is GRAFT onto the existing chunk-save / reconsolidation-on-save hook, never an immutable-episode capture↔consolidation split [CONFIRMED: `research/iterations/iteration-018.md:16`].
 - The other three subsystems (code-graph, skill-advisor, deep-loop) — sibling phases. The Advisor-side Beta posterior (`SA-outcome-weighted-ranking`) is a follow-on for `003-skill-advisor`, not this unit [`roadmap.md:268`].
@@ -100,9 +100,9 @@ Capture the procedural-reliability cluster as ONE benchmark-first unit with **ho
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `mcp_server/lib/feedback/feedback-ledger.ts` (emitter source) | Create/Modify | Net-new outcome/usefulness emission into the `'outcome'` `adaptive_signal_events` channel (shared prereq) |
-| `mcp_server/lib/ranking/adaptive-ranking.ts:346` | Modify | Fold reliability (Beta-posterior mean) into the rank score once `'outcome'` data accrues (reliability-recall seam) |
-| `mcp_server/lib/scoring/bayesian-scorer.ts` | Modify | Add f64 `(α₀+s)/(α₀+β₀+s+f)` export + procedural adapter (integer scorer throws on fractional inputs) |
+| `mcp_server/lib/feedback/feedback-ledger.ts` (emitter source) | Modified | Default-off outcome/usefulness bridge into the `'outcome'` / `'correction'` `adaptive_signal_events` channel (flag: `SPECKIT_PROCEDURAL_OUTCOME_EMITTER`) |
+| `mcp_server/lib/cognitive/adaptive-ranking.ts` | Modified | Default-off reliability fold for procedural rows using bounded Beta evidence (flag: `SPECKIT_PROCEDURAL_RELIABILITY_RECALL`) |
+| `mcp_server/lib/scoring/bayesian-scorer.ts` | Created | f64 `(α₀+s)/(α₀+β₀+s+f)` export + procedural adapter (integer scorer untouched) |
 | `mcp_server/lib/storage/causal-edges.ts:21-28`; `lib/search/vector-index-schema.ts:1113-1115,1781-1783` | Modify (migration) | `HAS_FAILURE` relation needs a table-rebuild migration (bad-pattern) — net-new schema, NOT reuse |
 | `mcp_server/lib/reconsolidation.ts:38,202-210,527-533` | Modify | New reconsolidation action + repetition counter (skill-induction); negative-tier write + retrieval-filter audit (bad-pattern) |
 
@@ -266,7 +266,7 @@ Capture the procedural-reliability cluster as ONE benchmark-first unit with **ho
 <!-- ANCHOR:approach -->
 ## 13. EXECUTION APPROACH
 
-> This is a planning-only re-plan; nothing is implemented here. The approach below is the discipline a FUTURE implementation packet must follow.
+> This sub-phase now contains default-off benchmark-build plumbing. Promotion still requires the benchmark gate.
 
 - **Benchmark-first, one candidate at a time.** Build the shared prerequisites (outcome emitter → f64 Beta primitive + adapter) BEFORE any reliability fold; run the benefit micro-benchmark BEFORE promoting M-procedural-reliability-recall.
 - **Each candidate behind a default-OFF flag**, self-contained and reversible with its own scoped commit (mirroring the 030 Wave-0 per-candidate discipline).
@@ -285,12 +285,12 @@ Capture the procedural-reliability cluster as ONE benchmark-first unit with **ho
 
 | # | Candidate | Status | Gate | 030 Commit | Research evidence |
 |---|-----------|--------|------|-----------|-------------------|
-| 1 | M-procedural-reliability-recall | **PENDING** | needs-benchmark + shared-infra-dep | — (not in 030 §14) | NEEDS-BENCHMARK; host exists, `'outcome'` under-emitted; fold at `adaptive-ranking.ts:346` [`iter-018.jsonl:4`, `iter-015.jsonl:2`] |
+| 1 | M-procedural-reliability-recall | **PENDING** (default-off plumbing built) | needs-benchmark | — (not in 030 §14) | Flags registered: `SPECKIT_PROCEDURAL_OUTCOME_EMITTER`, `SPECKIT_PROCEDURAL_RELIABILITY_RECALL`; deterministic tests pass. Promotion still needs a measured benchmark delta [`iter-018.jsonl:4`, `iter-015.jsonl:2`] |
 | 2 | M-bad-pattern-negative-memory | **PENDING** | schema-migration (+ filter-site audit) | — (not in 030 §14) | REFUTED-as-reuse; `HAS_FAILURE` rejected at 2 layers → table-rebuild; or `'deprecated'`/`contradicts` precedent + audit [`iter-021.jsonl:2`, `iter-018.jsonl:5`] |
 | 3 | M-skill-induction-repetition | **PENDING** | needs-benchmark (heaviest; write-side risk) | — (not in 030 §14) | REFUTED-as-reuse; closed `ReconsolidationAction` union + no repetition counter → new action + counter + precision gate [`iter-021.jsonl:3`, `iter-018.jsonl:6`] |
 | 4 | M-procedural-version-reset | **PENDING** | already-exists-residual | — (not in 030 §14) | REFUTED-as-net-new; append-only deprecate-never-delete already covers it; only the explicit reliability-reset-to-zero residual rides REQ-001 [`iter-021.jsonl:4`] |
 
-**Done count: 0 — Pending count: 4.** The entire unit is benchmark-first by design (`research/iterations/iteration-021.md:14` "removes the procedural cluster from the low-effort-wins column").
+**Promoted candidate count: 0 — Pending count: 4.** Shared benchmark plumbing is implemented, but the candidate remains benchmark-first by design (`research/iterations/iteration-021.md:14` "removes the procedural cluster from the low-effort-wins column").
 
 <!-- /ANCHOR:status -->
 

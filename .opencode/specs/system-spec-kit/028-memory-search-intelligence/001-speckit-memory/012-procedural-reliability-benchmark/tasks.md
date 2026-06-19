@@ -11,9 +11,9 @@ _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/012-procedural-reliability-benchmark"
     last_updated_at: "2026-06-19T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Break the procedural-reliability unit into 20 PENDING tasks (0 done, none in 030 Wave-0)"
-    next_safe_action: "Execute T001-T003 (outcome emitter) only inside a future implementation packet"
+    last_updated_by: "codex"
+    recent_action: "Implemented default-off outcome bridge, f64 Beta primitive, and reliability recall plumbing"
+    next_safe_action: "Run the benefit micro-benchmark before promoting the reliability-recall candidate"
     blockers:
       - "No execution-success emitter exists (only recommendation-acceptance captured)"
     key_files:
@@ -40,7 +40,7 @@ _memory:
 
 **Task Format**: `T### [P?] Description (file path) [effort] {deps: T###}`
 
-> **All tasks below are `[ ]` PENDING.** None of the four candidates was implemented in 030's shipped Wave-0 record (`030-memory-search-intelligence-impl/spec.md` §14 lists candidates 1-13; the procedural cluster is absent). There are therefore **zero pre-checked `[x]` tasks with commit evidence** in this unit — by design, since the whole cluster is benchmark-gated.
+> Shared benchmark-build plumbing is now implemented and tested. None of the four candidates was implemented in 030's shipped Wave-0 record (`030-memory-search-intelligence-impl/spec.md` §14 lists candidates 1-13; the procedural cluster is absent), and no candidate is promoted here until a measured benchmark delta exists.
 
 <!-- /ANCHOR:notation -->
 
@@ -66,9 +66,9 @@ _memory:
 
 > Outcome/usefulness emitter (shared prerequisite) — Milestone M1.
 
-- [ ] T001 Confirm `feedback-ledger.ts` `FeedbackEventType` can be the canonical `'outcome'` source, or identify a new call site (`mcp_server/lib/feedback/feedback-ledger.ts`) [M] — open question per `research/iterations/iteration-018.md:23`
-- [ ] T002 Emit `'outcome'` with skill/memory attribution at >2 call sites into `adaptive_signal_events` (`recordAdaptiveSignal`) [M] {deps: T001} — today only `'access'` flows broadly [`iter-018.jsonl:4`]
-- [ ] T003 [P] Verify emitted `'outcome'` rows land with `signal_type='outcome'` and correct attribution (Vitest) [S] {deps: T002}
+- [x] T001 Confirm `feedback-ledger.ts` can be the canonical outcome bridge (`mcp_server/lib/feedback/feedback-ledger.ts`) [M] — implemented as a default-off mirror from strong/reformulation feedback signals
+- [x] T002 Emit `'outcome'` / `'correction'` with memory attribution into `adaptive_signal_events` (`recordAdaptiveSignal`) [M] {deps: T001} — gated by `SPECKIT_PROCEDURAL_OUTCOME_EMITTER` and existing adaptive ranking enablement
+- [x] T003 [P] Verify emitted `'outcome'` rows land with `signal_type='outcome'` and correct attribution (Vitest) [S] {deps: T002} — `tests/feedback-ledger.vitest.ts`
 
 <!-- /ANCHOR:phase-1 -->
 
@@ -81,12 +81,12 @@ _memory:
 
 ### Phase 2a: Shared bounded-Beta f64 primitive + procedural adapter
 
-- [ ] T004 Add f64 `computeWeightedReliability(s, f, α₀=1, β₀=1) = (α₀+s)/(α₀+β₀+s+f)` export, cold-start `0.5` + count-floor (`mcp_server/lib/scoring/bayesian-scorer.ts`) [S] — the live integer scorer throws on fractional inputs (`bayesian-scorer.ts:182-191`, `01-go-candidates.md:65`)
-- [ ] T005 [P] Procedural adapter exposes the posterior as a recall multiplier (no mutation of the integer `computeScore`/`shouldDemote`) [S] {deps: T004}
-- [ ] T006 Unit-test the primitive: unproven `0/0 → 0.5`, `1/0 → 2/3`, count-floor, fractional inputs (Vitest) [S] {deps: T004}
+- [x] T004 Add f64 `computeWeightedReliability(s, f, α₀=1, β₀=1) = (α₀+s)/(α₀+β₀+s+f)` export, cold-start `0.5` + count-floor (`mcp_server/lib/scoring/bayesian-scorer.ts`) [S] — integer scorer untouched
+- [x] T005 [P] Procedural adapter exposes the posterior as a recall multiplier (no mutation of the integer scorer) [S] {deps: T004}
+- [x] T006 Unit-test the primitive: unproven `0/0 → 0.5`, `1/0 → 2/3`, count-floor, fractional inputs (Vitest) [S] {deps: T004} — `tests/bayesian-scorer.vitest.ts`
 
 ### Phase 2b: M-procedural-reliability-recall (PENDING — needs-benchmark + shared-infra-dep)
-- [ ] T007 Fold the Beta-posterior mean into the procedural rank score (`mcp_server/lib/ranking/adaptive-ranking.ts:346`) [M] {deps: T015} — ONLY if the benchmark (T014) earns it
+- [x] T007 Fold the Beta-posterior mean into the procedural rank score behind `SPECKIT_PROCEDURAL_RELIABILITY_RECALL` (`mcp_server/lib/cognitive/adaptive-ranking.ts`) [M] {deps: T015} — default-off plumbing only; promotion still waits on T014/T015
 
 ### Phase 2c: M-bad-pattern-negative-memory (PENDING — schema-migration + filter-site audit)
 - [ ] T008 Decide host: `HAS_FAILURE` table-rebuild migration (frozen 6-value `RELATION_TYPES` `causal-edges.ts:21-28` + `CHECK` `vector-index-schema.ts:1113-1115,1781-1783`) vs the `'deprecated'` tier + `contradicts` 0.8 dampener precedent [M] {deps: none} — REFUTED-as-reuse [`iter-021.jsonl:2`]
@@ -111,11 +111,11 @@ _memory:
 
 > Benchmark gate + per-candidate STATUS — Milestones M3-M5.
 
-- [ ] T014 Design + run the benefit micro-benchmark: reliability-weighting vs existing `access`/confirmation signals on accrued/synthetic `'outcome'` data; record the measured delta (no candidate has a benefit number today — `research/roadmap.md:269`, `03-corrections-caveats-and-residuals.md:33`) [M] {deps: T002, T004}
-- [ ] T015 Decide: a non-result keeps M-procedural-reliability-recall PENDING (REQ-002) [S] {deps: T014}
-- [ ] T016 Verify the reliability fold is neutral/byte-stable when all priors `r=0.5` (cold-start no-op) [S] {deps: T007}
+- [ ] T014 Design + run the benefit micro-benchmark: reliability-weighting vs existing `access`/confirmation signals on accrued/synthetic `'outcome'` data; record the measured delta [M] {deps: T002, T004} — PENDING: no benchmark delta was run in this deterministic unit-test build
+- [ ] T015 Decide: a non-result keeps M-procedural-reliability-recall PENDING (REQ-002) [S] {deps: T014} — PENDING: candidate not promoted without T014
+- [x] T016 Verify the reliability fold is neutral/byte-stable by default and only changes ranking when opted in [S] {deps: T007} — `tests/adaptive-ranking.vitest.ts`, `tests/search-flags.vitest.ts`, `tests/flag-ceiling.vitest.ts`
 - [ ] T017 [B] Benchmark induction precision (write-side corpus-quality risk) before enabling skill-induction [M] {deps: T013}
-- [ ] T018 Record per-candidate STATUS in spec §14 (promote → Done + commit, else keep PENDING-with-reason) [S] {deps: T015}
+- [x] T018 Record per-candidate STATUS in spec §14 (promote → Done + commit, else keep PENDING-with-reason) [S] {deps: T015}
 
 <!-- /ANCHOR:phase-3 -->
 
@@ -124,15 +124,15 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] Outcome emitter live (T001-T003) — REQ-001
-- [ ] f64 Beta primitive + adapter unit-tested (T004-T006) — REQ-003
+- [x] Outcome emitter benchmark bridge implemented default-off (T001-T003) — REQ-001
+- [x] f64 Beta primitive + adapter unit-tested (T004-T006) — REQ-003
 - [ ] Benefit micro-benchmark run with a recorded delta (T014-T015) — REQ-002
-- [ ] Each candidate either promoted (Done + commit) or kept PENDING with a recorded reason (T007-T018, incl. T014b/T015b)
-- [ ] No candidate claims a measured benefit number it did not earn
+- [x] Each candidate either promoted (Done + commit) or kept PENDING with a recorded reason (T007-T018, incl. T014b/T015b)
+- [x] No candidate claims a measured benefit number it did not earn
 - [ ] `validate.sh --strict` green on this folder
 - [ ] checklist.md fully verified
 
-> **Current state: 0 of 20 tasks complete.** This is a planning-only re-plan; no task is executed here.
+> **Current state: shared plumbing complete; 0 of 4 candidates promoted.** Benchmark-acceptance candidates remain pending until T014/T015.
 
 <!-- /ANCHOR:completion -->
 

@@ -11,9 +11,9 @@ _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/018-sleeptime-consolidation"
     last_updated_at: "2026-06-19T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored Level-3 verification checklist; all items pending"
-    next_safe_action: "Verify governor-bound items first as the governor module is built"
+    last_updated_by: "codex"
+    recent_action: "Verified default-off governor and shadow scaffold with deterministic tests"
+    next_safe_action: "Keep dispatch/live writes pending"
     blockers:
       - "needs-design-prototype + depends-on-010 + needs-benchmark before completion can be claimed"
     key_files:
@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-001-018-sleeptime-consolidation"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 35
     open_questions:
       - "Shadow-telemetry promotion thresholds pending the prototype run"
     answered_questions: []
@@ -52,9 +52,9 @@ _memory:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md (REQ-001..008)
-- [ ] CHK-002 [P0] Technical approach defined in plan.md (governor-first, default-off, shadow-gated, prove-first)
-- [ ] CHK-003 [P1] Synchronous-only seam confirmed from research (`reconsolidation-bridge.ts` on-save; no background agent; 028/007 iter-20)
+- [x] CHK-001 [P0] Requirements documented in spec.md (REQ-001..008)
+- [x] CHK-002 [P0] Technical approach defined in plan.md (governor-first, default-off, shadow-gated, prove-first)
+- [x] CHK-003 [P1] Synchronous-only seam confirmed from research (`reconsolidation-bridge.ts` on-save; no background agent; 028/007 iter-20)
 - [ ] CHK-004 [P1] Sibling 010 dependency confirmed (C-G1 clock host + C4-C cursor + `LT-turn-cadence-trigger` gate land in 010)
 <!-- /ANCHOR:pre-impl -->
 
@@ -65,7 +65,7 @@ _memory:
 
 - [ ] CHK-010 [P0] node --check + tsc pass; no build errors
 - [ ] CHK-011 [P0] No console errors or warnings introduced
-- [ ] CHK-012 [P1] Governor returns typed results (terminal | forced-terminal | aborted-partial); abort handling implemented
+- [x] CHK-012 [P1] Governor returns typed results (terminal | forced-terminal | aborted-partial); abort handling implemented
 - [ ] CHK-013 [P1] Code follows Memory MCP patterns (flag gating, cognitive-module shape, ACL-gated tool dispatch); LLM-chunking path is additive to the markdown chunker
 <!-- /ANCHOR:code-quality -->
 
@@ -75,8 +75,8 @@ _memory:
 ## Testing
 
 - [ ] CHK-020 [P0] All acceptance criteria met (SC-001 flag-off sync byte-identical + zero off-turn archival mutation; SC-002 governor bounds + cursor idempotency)
-- [ ] CHK-021 [P0] Governor bound tests pass (step-cap, cost-ceiling, forced-terminal, no early bail)
-- [ ] CHK-022 [P1] Edge cases tested (empty cadence tick no-op, tool failure mid-cycle, overlapping cadence ticks skipped, clock replay re-derives)
+- [x] CHK-021 [P0] Governor bound tests pass (step-cap, cost-ceiling, forced-terminal, no early bail)
+- [ ] CHK-022 [P1] Edge cases tested (empty cadence tick no-op, tool failure mid-cycle, overlapping cadence ticks skipped, clock replay re-derives) — PENDING: governor/no-op/tool-failure cases are covered; overlapping cadence and clock replay require sibling 010 dispatch/cursor
 - [ ] CHK-023 [P1] Shadow telemetry executed; off-turn reorganization candidates / would-archive ranges recorded for the promotion decision
 <!-- /ANCHOR:testing -->
 
@@ -85,10 +85,10 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Change classified: new-capability that mutates archival off-turn with a hard isolation requirement (an off-turn leak is `cross-consumer` — degrades recall for every reader)
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory: `rg -n "reconsolidat|consolidat" mcp_server/handlers mcp_server/lib --glob '*.ts'` — the off-turn agent is the only off-turn producer
-- [ ] CHK-FIX-003 [P0] Consumer inventory for the new flag + agent: `rg -n "SPECKIT_SLEEPTIME_CONSOLIDATION|sleeptime|turns_counter" mcp_server --glob '*.ts'`
-- [ ] CHK-FIX-004 [P0] Loop invariant + adversarial cases tested: termination guaranteed (step-cap ∨ cost-ceiling ∨ terminal); unbounded-reasoning, tool-failure, overlapping-cadence, clock-replay cases covered
+- [x] CHK-FIX-001 [P0] Change classified: new-capability that mutates archival off-turn with a hard isolation requirement (an off-turn leak is `cross-consumer` — degrades recall for every reader)
+- [x] CHK-FIX-002 [P0] Same-class producer inventory: `rg -n "reconsolidat|consolidat" mcp_server/handlers mcp_server/lib --glob '*.ts'` — the off-turn agent is the only off-turn producer
+- [x] CHK-FIX-003 [P0] Consumer inventory for the new flag + agent: `rg -n "SPECKIT_SLEEPTIME_CONSOLIDATION|sleeptime|turns_counter" mcp_server --glob '*.ts'`
+- [ ] CHK-FIX-004 [P0] Loop invariant + adversarial cases tested: termination guaranteed (step-cap ∨ cost-ceiling ∨ terminal); unbounded-reasoning and tool-failure cases covered; overlapping-cadence and clock-replay cases remain PENDING until sibling 010 dispatch/cursor exists
 - [ ] CHK-FIX-005 [P1] Isolation/mutation axes listed: flag {on,off} × mode {shadow,live} × sync-on-save path before completion claimed
 - [ ] CHK-FIX-006 [P1] Flag-off + shadow-default variants executed (process-wide flag state) proving zero off-turn archival mutation by default
 - [ ] CHK-FIX-007 [P1] Evidence pinned to a fix SHA / explicit diff range, not a moving branch range
@@ -99,9 +99,9 @@ _memory:
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets; no new external capability exposed
-- [ ] CHK-031 [P0] Off-turn tool dispatch ACL-gated to the existing memory tool surface (NFR-S01)
-- [ ] CHK-032 [P1] Flag gating + shadow default prevent any live archival write unless explicitly opted in
+- [x] CHK-030 [P0] No hardcoded secrets; no new external capability exposed
+- [x] CHK-031 [P0] Off-turn tool dispatch ACL-gated to the existing memory tool surface (NFR-S01)
+- [x] CHK-032 [P1] Flag gating + shadow default prevent any live archival write unless explicitly opted in
 <!-- /ANCHOR:security -->
 
 ---
@@ -109,8 +109,8 @@ _memory:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] spec/plan/tasks/checklist synchronized
-- [ ] CHK-041 [P1] Governor module documents the WHY of each bound (step-cap, cost-ceiling, terminal stop); the shadow default's tail-risk rationale recorded
+- [x] CHK-040 [P1] spec/plan/tasks/checklist synchronized
+- [x] CHK-041 [P1] Governor module documents the WHY of each bound (step-cap, cost-ceiling, terminal stop); the shadow default's tail-risk rationale recorded
 - [ ] CHK-042 [P2] Flags documented in ENV_REFERENCE (default-off + shadow sub-flag)
 <!-- /ANCHOR:docs -->
 
@@ -130,11 +130,11 @@ _memory:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 13 | [ ]/13 |
-| P1 Items | 14 | [ ]/14 |
-| P2 Items | 3 | [ ]/3 |
+| P0 Items | 13 | [8]/13 |
+| P1 Items | 14 | [6]/14 |
+| P2 Items | 3 | [0]/3 |
 
-**Verification Date**: PENDING (candidate not yet implemented)
+**Verification Date**: 2026-06-19 (safe core partial; benchmark/cadence/cursor-dependent items pending)
 <!-- /ANCHOR:summary -->
 
 ---
@@ -142,10 +142,10 @@ _memory:
 <!-- ANCHOR:arch-verify -->
 ## L3+: ARCHITECTURE VERIFICATION
 
-- [ ] CHK-100 [P0] Architecture decision documented (plan.md ADR-001: governor-first, default-off, shadow-gated, prove-first)
-- [ ] CHK-101 [P1] ADR has a status (Accepted)
-- [ ] CHK-102 [P1] Alternatives documented with rejection rationale (slot-in live-write; second clock/counter; up-front episode substrate)
-- [ ] CHK-103 [P2] Governor maps to Letta tool-rule DAG shape (`Init→Child→Continue→Terminal`); reuse for sibling 016 documented
+- [x] CHK-100 [P0] Architecture decision documented (plan.md ADR-001: governor-first, default-off, shadow-gated, prove-first)
+- [x] CHK-101 [P1] ADR has a status (Accepted)
+- [x] CHK-102 [P1] Alternatives documented with rejection rationale (slot-in live-write; second clock/counter; up-front episode substrate)
+- [x] CHK-103 [P2] Governor maps to Letta tool-rule DAG shape (`Init→Child→Continue→Terminal`); reuse for sibling 016 documented
 <!-- /ANCHOR:arch-verify -->
 
 ---
@@ -164,8 +164,8 @@ _memory:
 <!-- ANCHOR:deploy-ready -->
 ## L3+: DEPLOYMENT READINESS
 
-- [ ] CHK-120 [P0] Rollback documented and trivial (flag default-off + shadow default = no archival writes; revert agent/governor/chunking-path)
-- [ ] CHK-121 [P0] Feature flag `SPECKIT_SLEEPTIME_CONSOLIDATION` configured default-off; live archival write is a separate opt-in
+- [x] CHK-120 [P0] Rollback documented and trivial (flag default-off + shadow default = no archival writes; revert agent/governor/chunking-path)
+- [x] CHK-121 [P0] Feature flag `SPECKIT_SLEEPTIME_CONSOLIDATION` configured default-off; live archival write is a separate opt-in
 - [ ] CHK-122 [P1] Synchronous on-save reconsolidation (`reconsolidation-bridge.ts`) confirmed unaltered in the flag-off state
 - [ ] CHK-123 [P2] Promotion runbook (when/how to flip from shadow to live archival write) drafted
 <!-- /ANCHOR:deploy-ready -->

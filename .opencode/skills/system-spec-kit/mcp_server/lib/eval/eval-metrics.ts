@@ -108,6 +108,46 @@ export interface CalibrationMetrics {
   bins: ReliabilityBin[];
 }
 
+export interface ReorderRankMovement {
+  memoryId: number;
+  beforeRank: number;
+  afterRank: number;
+  relevance: number;
+  similarity?: number | null;
+}
+
+export interface ReorderDemotionMetrics {
+  sampleCount: number;
+  relevantWithoutSimilarityCount: number;
+  demotedRelevantWithoutSimilarityCount: number;
+  maxRankLoss: number;
+  meanRankLoss: number;
+  sinkers: Array<{
+    memoryId: number;
+    beforeRank: number;
+    afterRank: number;
+    rankLoss: number;
+    relevance: number;
+  }>;
+}
+
+export interface CitabilityConfusionSample {
+  predicted: GateVerdictLabel;
+  expectedCitable: boolean;
+  isHardNegative?: boolean;
+}
+
+export interface CitabilityConfusionMetrics extends GateVerdictMetrics {
+  hardNegativeCount: number;
+  falseGoodOnHardNegatives: number;
+}
+
+export interface LeverABMetrics {
+  ndcgAt1: { baseline: number; variant: number; delta: number };
+  top1Precision: { baseline: number; variant: number; delta: number };
+  recallAtK: { baseline: number; variant: number; delta: number };
+}
+
 export interface ColdStartCorpusSample {
   results: EvalResult[];
   groundTruth: GroundTruthEntry[];
@@ -740,6 +780,89 @@ export function computeCalibrationMetrics(
     ece,
     brier: safeRatio(brierSum, samples.length),
     bins: reliabilityBins,
+  };
+}
+
+export function computeReorderDemotionMetrics(
+  movements: ReorderRankMovement[],
+  relevanceThreshold: number = 2,
+): ReorderDemotionMetrics {
+  const relevantWithoutSimilarity = movements.filter((movement) => (
+    movement.relevance >= relevanceThreshold
+    && (typeof movement.similarity !== 'number' || !Number.isFinite(movement.similarity))
+  ));
+  const sinkers = relevantWithoutSimilarity
+    .map((movement) => ({
+      memoryId: movement.memoryId,
+      beforeRank: movement.beforeRank,
+      afterRank: movement.afterRank,
+      rankLoss: movement.afterRank - movement.beforeRank,
+      relevance: movement.relevance,
+    }))
+    .filter((movement) => movement.rankLoss > 0)
+    .sort((a, b) => b.rankLoss - a.rankLoss || a.memoryId - b.memoryId);
+  const lossSum = sinkers.reduce((sum, movement) => sum + movement.rankLoss, 0);
+
+  return {
+    sampleCount: movements.length,
+    relevantWithoutSimilarityCount: relevantWithoutSimilarity.length,
+    demotedRelevantWithoutSimilarityCount: sinkers.length,
+    maxRankLoss: sinkers[0]?.rankLoss ?? 0,
+    meanRankLoss: safeRatio(lossSum, sinkers.length),
+    sinkers,
+  };
+}
+
+export function computeCitabilityConfusionMetrics(
+  samples: CitabilityConfusionSample[],
+): CitabilityConfusionMetrics {
+  const base = computeGateVerdictMetrics(samples);
+  let hardNegativeCount = 0;
+  let falseGoodOnHardNegatives = 0;
+  for (const sample of samples) {
+    if (!sample.isHardNegative) continue;
+    hardNegativeCount++;
+    if (sample.predicted === 'good' && !sample.expectedCitable) {
+      falseGoodOnHardNegatives++;
+    }
+  }
+  return {
+    ...base,
+    hardNegativeCount,
+    falseGoodOnHardNegatives,
+  };
+}
+
+export function computeLeverABMetrics(params: {
+  baselineResults: EvalResult[];
+  variantResults: EvalResult[];
+  groundTruth: GroundTruthEntry[];
+  recallK?: number;
+}): LeverABMetrics {
+  const recallK = params.recallK ?? 20;
+  const baselineNdcgAt1 = computeNDCG(params.baselineResults, params.groundTruth, 1);
+  const variantNdcgAt1 = computeNDCG(params.variantResults, params.groundTruth, 1);
+  const baselinePrecision = computePrecision(params.baselineResults, params.groundTruth, 1);
+  const variantPrecision = computePrecision(params.variantResults, params.groundTruth, 1);
+  const baselineRecall = computeRecall(params.baselineResults, params.groundTruth, recallK);
+  const variantRecall = computeRecall(params.variantResults, params.groundTruth, recallK);
+
+  return {
+    ndcgAt1: {
+      baseline: baselineNdcgAt1,
+      variant: variantNdcgAt1,
+      delta: variantNdcgAt1 - baselineNdcgAt1,
+    },
+    top1Precision: {
+      baseline: baselinePrecision,
+      variant: variantPrecision,
+      delta: variantPrecision - baselinePrecision,
+    },
+    recallAtK: {
+      baseline: baselineRecall,
+      variant: variantRecall,
+      delta: variantRecall - baselineRecall,
+    },
   };
 }
 

@@ -14,6 +14,16 @@
 // Every public function is wrapped in try-catch. The legacy compatibility flag
 // SPECKIT_SHADOW_SCORING is retained for tests/docs, but the write path remains disabled.
 import { initEvalDb, getEvalDb } from './eval-db.js';
+import {
+  applyCalibration,
+  fitCalibration,
+  type CalibrationModel,
+  type CalibrationSample,
+} from '../search/confidence-calibration.js';
+import {
+  computeCalibrationMetrics,
+  type CalibrationMetrics,
+} from './eval-metrics.js';
 
 // Feature catalog: Shadow scoring with holdout evaluation
 
@@ -112,6 +122,31 @@ export interface ShadowStats {
   avgOverlapCount: number;
   /** Time range of the data. */
   timeRange: { earliest: string; latest: string };
+}
+
+export interface CalibrationShadowArm {
+  name: 'identity' | 'proxySeed' | 'trafficFit';
+  metrics: CalibrationMetrics;
+  model?: CalibrationModel;
+}
+
+export interface CalibrationShadowComparison {
+  sampleCount: number;
+  trainCount: number;
+  holdoutCount: number;
+  identity: CalibrationShadowArm;
+  proxySeed: CalibrationShadowArm;
+  trafficFit: CalibrationShadowArm;
+  decision: 'promote' | 'wait';
+  reason: string;
+}
+
+export interface CalibrationShadowOptions {
+  holdoutRatio?: number;
+  minSamples?: number;
+  minEceImprovement?: number;
+  binCount?: number;
+  proxySeedModel?: CalibrationModel;
 }
 
 /* --- 3. SCHEMA DDL --- */
@@ -229,7 +264,88 @@ function computeRankCorrelation(
   return (concordant - discordant) / totalPairs;
 }
 
+function cleanCalibrationSamples(samples: CalibrationSample[]): CalibrationSample[] {
+  return samples
+    .filter((sample) => (
+      Number.isFinite(sample.rawValue)
+      && (sample.relevant === 0 || sample.relevant === 1)
+    ))
+    .map((sample) => ({
+      rawValue: Math.max(0, Math.min(1, sample.rawValue)),
+      relevant: sample.relevant,
+    }));
+}
+
+function splitCalibrationSamples(
+  samples: CalibrationSample[],
+  holdoutRatio: number,
+): { train: CalibrationSample[]; holdout: CalibrationSample[] } {
+  if (samples.length <= 1) {
+    return { train: samples, holdout: samples };
+  }
+  const ratio = Number.isFinite(holdoutRatio)
+    ? Math.max(0.05, Math.min(0.95, holdoutRatio))
+    : 0.2;
+  const holdoutCount = Math.max(1, Math.min(samples.length - 1, Math.round(samples.length * ratio)));
+  const splitAt = samples.length - holdoutCount;
+  return {
+    train: samples.slice(0, splitAt),
+    holdout: samples.slice(splitAt),
+  };
+}
+
+function scoreCalibrationArm(
+  name: CalibrationShadowArm['name'],
+  samples: CalibrationSample[],
+  binCount: number,
+  model?: CalibrationModel,
+): CalibrationShadowArm {
+  const metricSamples = samples.map((sample) => ({
+    rawValue: model ? applyCalibration(model, sample.rawValue) : sample.rawValue,
+    relevant: sample.relevant === 1,
+  }));
+  return {
+    name,
+    metrics: computeCalibrationMetrics(metricSamples, binCount),
+    ...(model ? { model } : {}),
+  };
+}
+
 /* --- 5. PUBLIC API --- */
+
+export function compareCalibrationShadows(
+  samples: CalibrationSample[],
+  options: CalibrationShadowOptions = {},
+): CalibrationShadowComparison {
+  const clean = cleanCalibrationSamples(samples);
+  const minSamples = options.minSamples ?? 50;
+  const binCount = options.binCount ?? 10;
+  const { train, holdout } = splitCalibrationSamples(clean, options.holdoutRatio ?? 0.2);
+  const proxySeedModel = options.proxySeedModel ?? { method: 'isotonic', points: [], fittedFrom: 0 };
+  const trafficModel = train.length >= minSamples ? fitCalibration(train) : fitCalibration([]);
+
+  const identity = scoreCalibrationArm('identity', holdout, binCount);
+  const proxySeed = scoreCalibrationArm('proxySeed', holdout, binCount, proxySeedModel);
+  const trafficFit = scoreCalibrationArm('trafficFit', holdout, binCount, trafficModel);
+  const minEceImprovement = options.minEceImprovement ?? 0;
+  const eceImprovement = identity.metrics.ece - trafficFit.metrics.ece;
+  const canPromote = train.length >= minSamples && eceImprovement > minEceImprovement;
+
+  return {
+    sampleCount: clean.length,
+    trainCount: train.length,
+    holdoutCount: holdout.length,
+    identity,
+    proxySeed,
+    trafficFit,
+    decision: canPromote ? 'promote' : 'wait',
+    reason: canPromote
+      ? `traffic fit beat identity by ${eceImprovement.toFixed(6)} ECE`
+      : train.length < minSamples
+        ? `insufficient samples: ${train.length}/${minSamples}`
+        : `traffic fit did not beat identity by ${minEceImprovement.toFixed(6)} ECE`,
+  };
+}
 
 /**
  * Run an alternative scoring algorithm in shadow mode alongside production results.

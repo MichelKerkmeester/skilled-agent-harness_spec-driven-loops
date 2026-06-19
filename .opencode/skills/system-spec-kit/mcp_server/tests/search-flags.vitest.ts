@@ -17,8 +17,12 @@ import {
   isGraphSignalsEnabled,
   isMMREnabled,
   isMultiQueryEnabled,
+  isProceduralOutcomeEmitterEnabled,
+  isProceduralReliabilityRecallEnabled,
   resolveGraphWalkRolloutState,
   isReconsolidationEnabled,
+  isSleeptimeConsolidationEnabled,
+  isSleeptimeLiveWriteEnabled,
   isTRMEnabled,
 } from '../lib/search/search-flags';
 
@@ -29,6 +33,10 @@ const FLAG_NAMES = [
   'SPECKIT_CONTEXT_HEADERS',
   'SPECKIT_RECONSOLIDATION',
   'SPECKIT_BITEMPORAL_RECALL',
+  'SPECKIT_PROCEDURAL_OUTCOME_EMITTER',
+  'SPECKIT_PROCEDURAL_RELIABILITY_RECALL',
+  'SPECKIT_SLEEPTIME_CONSOLIDATION',
+  'SPECKIT_SLEEPTIME_LIVE_WRITE',
   'SPECKIT_FILE_WATCHER',
   'SPECKIT_GRAPH_SIGNALS',
   'SPECKIT_GRAPH_REFRESH_MODE',
@@ -125,6 +133,28 @@ describe('Search Feature Flags', () => {
 
     process.env.SPECKIT_BITEMPORAL_RECALL = 'true';
     expect(isBitemporalRecallEnabled()).toBe(true);
+  });
+
+  it('procedural benchmark-build gates remain opt-in by default', () => {
+    expect(isProceduralOutcomeEmitterEnabled()).toBe(false);
+    expect(isProceduralReliabilityRecallEnabled()).toBe(false);
+
+    process.env.SPECKIT_PROCEDURAL_OUTCOME_EMITTER = 'true';
+    process.env.SPECKIT_PROCEDURAL_RELIABILITY_RECALL = 'true';
+
+    expect(isProceduralOutcomeEmitterEnabled()).toBe(true);
+    expect(isProceduralReliabilityRecallEnabled()).toBe(true);
+  });
+
+  it('sleeptime consolidation gates remain opt-in by default', () => {
+    expect(isSleeptimeConsolidationEnabled()).toBe(false);
+    expect(isSleeptimeLiveWriteEnabled()).toBe(false);
+
+    process.env.SPECKIT_SLEEPTIME_CONSOLIDATION = 'true';
+    process.env.SPECKIT_SLEEPTIME_LIVE_WRITE = 'true';
+
+    expect(isSleeptimeConsolidationEnabled()).toBe(true);
+    expect(isSleeptimeLiveWriteEnabled()).toBe(true);
   });
 
   it('enables file watcher only with explicit opt-in', () => {

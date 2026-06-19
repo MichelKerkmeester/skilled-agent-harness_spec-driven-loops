@@ -294,7 +294,8 @@ describe('confidence-scoring wiring — calibration default OFF', () => {
   });
 
   it('applies the model only when the flag is ON and a model is configured', () => {
-    const baseline = computeResultConfidence(sample)[0].confidence.value;
+    const baselineResult = computeResultConfidence(sample)[0];
+    const baseline = baselineResult.confidence.value;
     expect(baseline).toBeGreaterThan(0.1); // rebalance-only value is healthy
 
     const flatModel: CalibrationModel = {
@@ -307,8 +308,10 @@ describe('confidence-scoring wiring — calibration default OFF', () => {
     process.env[MODEL_PATH_VAR] = p;
     process.env[FLAG] = 'true';
 
-    const calibrated = computeResultConfidence(sample)[0].confidence.value;
+    const calibratedResult = computeResultConfidence(sample)[0];
+    const calibrated = calibratedResult.confidence.value;
     expect(calibrated).toBeLessThan(baseline);
     expect(calibrated).toBeCloseTo(0.01, 3);
+    expect(calibratedResult.preCalibrationValue).toBeCloseTo(baselineResult.preCalibrationValue, 6);
   });
 });

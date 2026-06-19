@@ -5,6 +5,10 @@
 // Shadow-mode adaptive ranking with bounded feedback loops,
 // signal aggregation, threshold tuning, and promotion gates.
 import type Database from 'better-sqlite3';
+import {
+  computeProceduralReliabilityMultiplier,
+} from '../scoring/bayesian-scorer.js';
+import { isProceduralReliabilityRecallEnabled } from '../search/search-flags.js';
 
 /**
  * Adaptive feedback channels that influence shadow ranking proposals.
@@ -113,6 +117,12 @@ interface AdaptiveThresholdRow {
   min_signals_for_promotion: number;
   updated_at?: string;
   last_tune_watermark?: string | null;
+}
+
+interface ProceduralReliabilityRow {
+  memory_id: number;
+  successes: number;
+  failures: number;
 }
 
 function getCachedThresholdForDb(database?: object): AdaptiveThresholdCacheEntry | undefined {
@@ -316,6 +326,18 @@ function compareAdaptiveRows(
 
   // Use relational comparison instead of subtraction so very large integer ids stay deterministic above 2^53.
   return a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
+}
+
+function isProceduralCandidate(row: Record<string, unknown>): boolean {
+  const labels = [
+    row.memory_type,
+    row.memoryType,
+    row.document_type,
+    row.documentType,
+    row.type,
+  ];
+
+  return labels.some((value) => typeof value === 'string' && value.trim().toLowerCase() === 'procedural');
 }
 
 function isAdaptiveEnabled(): boolean {
@@ -708,6 +730,41 @@ function getSignalDeltas(database: Database.Database, memoryIds: readonly number
   return deltaMap;
 }
 
+function getProceduralReliabilityMultipliers(
+  database: Database.Database,
+  results: Array<Record<string, unknown> & { id: number }>,
+): Map<number, number> {
+  if (!isProceduralReliabilityRecallEnabled()) return new Map();
+
+  const proceduralIds = results
+    .filter(isProceduralCandidate)
+    .map((row) => row.id);
+  if (proceduralIds.length === 0) return new Map();
+
+  ensureAdaptiveTables(database);
+  const rows = database.prepare(`
+    SELECT
+      memory_id,
+      COALESCE(SUM(CASE WHEN signal_type = 'outcome' THEN signal_value ELSE 0 END), 0) AS successes,
+      COALESCE(SUM(CASE WHEN signal_type = 'correction' THEN signal_value ELSE 0 END), 0) AS failures
+    FROM adaptive_signal_events
+    WHERE memory_id IN (${proceduralIds.map(() => '?').join(', ')})
+    GROUP BY memory_id
+  `).all(...proceduralIds) as ProceduralReliabilityRow[];
+
+  const evidenceByMemory = new Map(rows.map((row) => [row.memory_id, row]));
+  const multiplierMap = new Map<number, number>();
+  for (const memoryId of proceduralIds) {
+    const evidence = evidenceByMemory.get(memoryId);
+    multiplierMap.set(memoryId, computeProceduralReliabilityMultiplier({
+      successes: evidence?.successes ?? 0,
+      failures: evidence?.failures ?? 0,
+    }));
+  }
+
+  return multiplierMap;
+}
+
 /**
  * Build a bounded shadow-ranking proposal for a production result set.
  *
@@ -725,6 +782,7 @@ export function buildAdaptiveShadowProposal(
   if (mode === 'disabled' || results.length === 0) return null;
   const thresholds = getAdaptiveThresholdConfig(database);
   const signalDeltaMap = getSignalDeltas(database, results.map((row) => row.id));
+  const reliabilityMultiplierMap = getProceduralReliabilityMultipliers(database, results);
 
   const production = results.map((row, index) => ({
     ...row,
@@ -738,7 +796,12 @@ export function buildAdaptiveShadowProposal(
   }));
 
   const shadow = production.map((row) => {
-    const delta = signalDeltaMap.get(row.id) ?? 0;
+    const reliabilityMultiplier = reliabilityMultiplierMap.get(row.id);
+    const reliabilityDelta = reliabilityMultiplier === undefined
+      ? 0
+      : (row.score * reliabilityMultiplier) - row.score;
+    const rawDelta = (signalDeltaMap.get(row.id) ?? 0) + reliabilityDelta;
+    const delta = Math.max(-thresholds.maxAdaptiveDelta, Math.min(thresholds.maxAdaptiveDelta, rawDelta));
     return {
       ...row,
       shadowScore: Math.max(0, Math.min(1, row.score + delta)),

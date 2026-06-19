@@ -13,9 +13,9 @@ _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/020-eval-calibration-ab"
     last_updated_at: "2026-06-19T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored eval-calibration-ab sub-phase from 028 child-008 research"
-    next_safe_action: "Confirm the 019 eval-harness ECE lane is built before harvesting calibration labels."
+    last_updated_by: "codex"
+    recent_action: "Implemented observe-only calibration and lever A/B consumer utilities"
+    next_safe_action: "Run 019-backed golden benchmark"
     blockers:
       - "Gated on the 019 eval-harness (C9-1/C9-2/C9-3 metric lanes + A8 per-class promotion gate); not yet a built sibling phase."
     key_files:
@@ -29,7 +29,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-001-020-eval-calibration-ab"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 45
     open_questions:
       - "Exact ECE held-out split and the identity-baseline margin the real fit must beat to graduate the flag."
       - "Whether the S5 demotion of fused-non-vector hits is large enough on the golden set to warrant a dedicated fix, or stays a bounded small-effect lever."
@@ -49,7 +49,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Draft |
+| **Status** | Observe-only consumer utilities implemented; promotion and measured A/B deltas PENDING |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Spec** | `../spec.md` (028 / 001-speckit-memory research phase) |
@@ -124,13 +124,13 @@ Make the dormant isotonic calibration promotable on real evidence — harvest th
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts` | Modify | Instrument the `eval_run_ablation` baseline loop to emit `(query, memoryId, rawValue, relevant)` calibration pairs and to run the lever A/B searchFn variants with `evaluationMode:false`. |
-| `.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts` | Modify | Add the ECE + Brier + reliability-bin calibration lane (held-out split) alongside the 12 ranking metrics; add the S5 pre/post-reorder demotion instrument and the S2 citability confusion cell. |
-| `.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts` | Modify | Binarize graded relevance (`grade >= 2 -> 1`) into the `CalibrationSample.relevant` shape; supply the label set for the fit. |
-| `.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts` | Modify | Expose/capture `rebalancedValue` (the fit x-axis, `:348`) at the calibration emit point; keep `maybeCalibrate` (`:217`) the single apply seam. |
-| `.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-calibration.ts` | Read/Modify | Wire `fitCalibration` (`:145`) to the harvested labels (its first non-test caller); accept the binarized `loadLabeledSet` input (`:73`). |
-| `.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts` | Modify | Add the three-way (identity / proxy-seed / traffic) calibration shadow comparison scored on held-out ECE (the eval-side ablation shadow). |
-| `.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts` | Read/Modify | The promotion gate (the hardcoded `meanNdcgDelta` weld + flag lifecycle, `:43,:68,:93`) that the 019 phase un-welds into a per-class panel; this phase routes the calibration flag through that gate's promote/wait/rollback lifecycle. Owned by the 019 eval-harness phase — coordinate, do not fork. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts` | Modified | Added opt-in calibration sample harvest/fit reporting from diagnostic snapshots and observe-only lever A/B variant descriptors with S5 `evaluationMode:false`. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts` | Modified | Existing ECE + Brier + reliability-bin lane is consumed; added S5 pre/post-reorder demotion metrics, S2 citability confusion, and generic lever A/B deltas. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts` | Not changed | Binarization was implemented in `confidence-calibration.ts` as a pure loader-adjacent helper; no live eval DB path was needed. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts` | Modified | Exposes `preCalibrationValue` for eval diagnostics while keeping `maybeCalibrate` the single apply seam and default confidence output unchanged. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-calibration.ts` | Modified | Added graded-label binarization and retained `fitCalibration` as the fitted-model caller used by the eval harvest report. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts` | Modified | Added the three-way identity/proxy-seed/traffic calibration shadow comparison scored over a deterministic held-out split. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts` | Not changed | Promotion gate changes remain owned by the 019 eval-harness phase; this phase returns a promote/wait decision but does not flip flags. |
 | `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts` | Read | The S5 reorder seam (`:1989,:2014-2021`) and `resolveAbsoluteRelevance` fallback (`:41`, `pipeline/types.ts`) — read for the A/B and the demotion instrument; the reorder itself is not changed. |
 | `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts` | Read | The S3 escalation seam (`:157,:245`) and `SPECKIT_COMPLEXITY_ROUTER` (`:62`) — read for the A/B partition. |
 | `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts` | Read | `isConfidenceCalibrationEnabled` (`:622`) and the lever flags — read; flag graduation is a default change, not a new flag. |
@@ -258,14 +258,28 @@ Per-candidate status. Neither candidate appears in the Wave-0 shipped record (`0
 
 | Candidate | Status | Gate | Evidence / Notes |
 |-----------|--------|------|------------------|
-| `A2-isotonic-calibration` | **PENDING** | needs-benchmark + shared-infra-dep (019 eval-harness ECE lane + A8 gate) | The isotonic PAV machinery is **fully built** but `fitCalibration` (`confidence-calibration.ts:145`) has **zero non-test callers** (only `tests/confidence-calibration.vitest.ts`), the "proxy seed" is a **phantom** (no on-disk artifact), and **no ECE/Brier/reliability metric exists** (`eval-metrics.ts`, grep-clean) — so promote-on-evidence is unexecutable until the ECE lane ships. Two label-shape blockers: the fit x-axis `rebalancedValue` is computed-not-captured (`confidence-scoring.ts:348`), and `loadLabeledSet` rejects non-binary while golden labels are graded 0-3 (`confidence-calibration.ts:73`). Not in 030 §14 → not shipped. Seams: `confidence-calibration.ts:36-39,73,145`; `confidence-scoring.ts:170-179,217,348,353`; `eval-metrics.ts` (new ECE lane); `ground-truth-feedback.ts:362-373`; `shadow-scoring.ts` (three-way). |
-| `A3-AB-shipped-levers` | **PENDING** | needs-benchmark (019 golden-set A/B) | Three levers ship **default-on with zero recall evidence**: S5 cosine head-reorder (`reorderTopNByCosine`, `hybrid-search.ts:2014-2021`), S3 generic-query/complexity escalation (`query-classifier.ts:157,245`, `SPECKIT_COMPLEXITY_ROUTER` `:62`), S2 top-dominant verdict (`assessRequestQuality`, `TOP_DOMINANT_THRESHOLD=0.8`, `confidence-scoring.ts:78,385,423`). The harness **cannot see S5** — it runs only outside `evaluationMode` (`hybrid-search.ts:1989,2021`), so an eval reports it a no-op; the A/B searchFn must set `evaluationMode:false`. S5 carries a **confirmed but BOUNDED** silent demotion (fused-non-vector hit → RRF magnitude ~0.03 → sinks below cosine hits; head-only, rank-not-eviction, rare per verify iter-010) — folds into the A/B as a small-effect lever, no dedicated fix. S3 is **MOST-LIKELY-NET-NEGATIVE** on precise short content-bearing queries (eats the reduced route). Not in 030 §14 → not shipped. Seams: `hybrid-search.ts:1989,2014-2021,2439-2444`; `pipeline/types.ts:89-96`; `query-classifier.ts:62,157,245`; `confidence-scoring.ts:78,385,423`; `eval-metrics.ts` (S5 demotion + S2 confusion instruments). |
+| `A2-isotonic-calibration` | **PENDING** | needs-benchmark + shared-infra-dep (019 eval-harness ECE lane + A8 gate) | Observe-only consumer wiring is DONE: diagnostic snapshots can now yield binarized calibration samples, `fitCalibration` has a non-test eval-harness caller, and the existing ECE/Brier/reliability lane plus three-way shadow comparison can score identity/proxy/traffic fits. Promotion remains PENDING because no 019-backed held-out ECE benchmark has proven a real fit beats identity, and `SPECKIT_CONFIDENCE_CALIBRATION` default was not changed. |
+| `A3-AB-shipped-levers` | **PENDING** | needs-benchmark (019 golden-set A/B) | Observe-only A/B utilities are DONE: S5 variants force `evaluationMode:false`, S5 demotion metrics flag golden-relevant no-similarity sinkers, S3 variants are partitioned, and S2 citability confusion records false-good hard negatives. Golden-set deltas remain PENDING because no 019-backed benchmark was run. |
 <!-- /ANCHOR:candidate-status -->
 
 ---
 
+## 10. IMPLEMENTATION STATUS
+
+| Candidate / Gate | Status | Evidence |
+|------------------|--------|----------|
+| `A2-isotonic-calibration` consumer wiring | DONE | `ablation-framework.ts` can harvest binarized calibration samples from diagnostic snapshots and fit/report an observe-only model; `confidence-calibration.ts` accepts graded labels via `grade >= 2`. |
+| ECE/Brier/reliability lane consumption | DONE | Existing `eval-metrics.ts` calibration lane is exercised by the ablation report and the targeted eval/calibration tests. |
+| Three-way calibration shadow | DONE | `eval/shadow-scoring.ts` compares identity, proxy seed, and traffic fit on a deterministic held-out split and returns `promote` or `wait` without flipping flags. |
+| S5 eval-mode visibility | DONE (descriptor + test) | `buildObserveOnlySearchLeverVariants()` emits S5 on/off variants with `evaluationMode:false` and no production default change. |
+| S5/S3/S2 measurement utilities | DONE | `eval-metrics.ts` reports lever deltas, S5 fused-non-vector demotions, and S2 false-good hard-negative confusion. |
+| Calibration default-on graduation | PENDING | Requires 019 promotion gate and held-out ECE improvement from a real benchmark; `SPECKIT_CONFIDENCE_CALIBRATION` default was not changed. |
+| Golden-set lever A/B deltas | PENDING | Requires 019-backed golden benchmark and corpus coverage; deterministic unit tests only prove the observe-only utilities. |
+
+---
+
 <!-- ANCHOR:questions -->
-## 10. OPEN QUESTIONS
+## 11. OPEN QUESTIONS
 
 - What is the exact held-out ECE split and the identity-baseline margin the real fit must beat to graduate `SPECKIT_CONFIDENCE_CALIBRATION` default-on? (Resolved by the three-way shadow run, REQ-005.)
 - Is the S5 fused-non-vector demotion large enough on the golden set to warrant a dedicated fix, or does it stay a bounded small-effect lever folded into the A/B? (Resolved by REQ-008.)

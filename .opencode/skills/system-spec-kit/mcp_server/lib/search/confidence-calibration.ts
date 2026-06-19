@@ -31,6 +31,12 @@ export interface LabeledPair {
   relevant: 0 | 1;
 }
 
+export interface GradedLabeledPair {
+  query: string;
+  memoryId: number | string;
+  relevance: number;
+}
+
 /**
  * One fitting sample: the model maps a pre-calibration confidence value
  * (`rawValue`, 0–1) onto the observed binary relevance label. Producing
@@ -92,6 +98,39 @@ export function loadLabeledSet(json: unknown): LabeledPair[] {
       throw new Error(`labeled set entry ${i} relevant must be 0 or 1`);
     }
     return { query, memoryId, relevant };
+  });
+}
+
+export function binarizeGradedLabeledSet(
+  json: unknown,
+  relevanceThreshold: number = 2,
+): LabeledPair[] {
+  if (!Array.isArray(json)) {
+    throw new Error('graded labeled set must be a JSON array of {query, memoryId, relevance}');
+  }
+  const threshold = Number.isFinite(relevanceThreshold) ? relevanceThreshold : 2;
+  return json.map((entry, i) => {
+    if (!entry || typeof entry !== 'object') {
+      throw new Error(`graded labeled set entry ${i} is not an object`);
+    }
+    const e = entry as Record<string, unknown>;
+    const query = e.query;
+    const memoryId = e.memoryId;
+    const relevance = e.relevance;
+    if (typeof query !== 'string' || query.trim().length === 0) {
+      throw new Error(`graded labeled set entry ${i} has an invalid query`);
+    }
+    if (typeof memoryId !== 'string' && typeof memoryId !== 'number') {
+      throw new Error(`graded labeled set entry ${i} has an invalid memoryId`);
+    }
+    if (typeof relevance !== 'number' || !Number.isFinite(relevance)) {
+      throw new Error(`graded labeled set entry ${i} has an invalid relevance`);
+    }
+    return {
+      query,
+      memoryId,
+      relevant: relevance >= threshold ? 1 : 0,
+    };
   });
 }
 
