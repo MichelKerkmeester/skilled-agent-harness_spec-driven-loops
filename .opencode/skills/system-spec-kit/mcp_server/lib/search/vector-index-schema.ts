@@ -14,6 +14,10 @@ import { extractSpecFolder } from '../parsing/memory-parser.js';
 import { createLogger } from '../utils/logger.js';
 import { initEmbeddingCache } from '../cache/embedding-cache.js';
 import {
+  LEGACY_DERIVED_CAUSAL_EDGE_RULE_VERSION,
+  deriveCausalEdgeDerivedId,
+} from '../content-id.js';
+import {
   get_error_message,
 } from './vector-index-types.js';
 import { init as initHistory } from '../storage/history.js';
@@ -84,6 +88,9 @@ const REQUIRED_INDEXES_BY_TABLE: Readonly<Record<string, readonly string[]>> = {
     'idx_causal_edge_tombstones_identity',
     'idx_causal_edge_tombstones_tombstoned_at',
     'idx_causal_edge_tombstones_reason',
+  ],
+  causal_edges: [
+    'idx_causal_edges_derived_id',
   ],
   memory_trigger_embeddings: [
     'idx_memory_trigger_embeddings_status',
@@ -626,8 +633,9 @@ function getMigrationAllowedBasePaths(): string[] {
 // V37: Add tombstone column and active/purgeable memory partitions
 // V38: Add bi-temporal window columns for causal edges and memory lineage
 // V39: Add causal-edge closure-provenance marker (open-edge index ensured at runtime)
+// V40: Add content-addressed generated causal-edge identity
 /** Current schema version for vector-index migrations. */
-export const SCHEMA_VERSION = 39;
+export const SCHEMA_VERSION = 40;
 
 const SOURCE_KIND_COLUMN_SQL = "ALTER TABLE memory_index ADD COLUMN source_kind TEXT NOT NULL DEFAULT 'system' CHECK(source_kind IN ('human', 'agent', 'system', 'import', 'feedback'))";
 const MEMORY_IDEMPOTENCY_RECEIPTS_OPERATION_INDEX_SQL = `
@@ -659,6 +667,16 @@ const CAUSAL_EDGE_CURRENTNESS_COLUMN: { name: string; sql: string } = {
 // where invalid_at is guaranteed present; the migration teardown drops it by
 // name so a rollback leaves no trace of the currentness feature.
 const CAUSAL_EDGE_OPEN_CURRENTNESS_INDEX = 'idx_causal_edges_open_currentness';
+const CAUSAL_EDGE_DERIVED_ID_COLUMN: { name: string; sql: string } = {
+  name: 'derived_id',
+  sql: 'ALTER TABLE causal_edges ADD COLUMN derived_id TEXT',
+};
+const CAUSAL_EDGE_DERIVED_ID_INDEX = 'idx_causal_edges_derived_id';
+const CAUSAL_EDGE_DERIVED_ID_INDEX_SQL = `
+  CREATE UNIQUE INDEX IF NOT EXISTS idx_causal_edges_derived_id
+  ON causal_edges(derived_id)
+  WHERE derived_id IS NOT NULL
+`;
 
 function addColumnIfMissing(
   database: Database.Database,
@@ -928,6 +946,166 @@ export function rollbackEdgePresenceCurrentnessSchema(
 ): void {
   database.exec(`DROP INDEX IF EXISTS ${CAUSAL_EDGE_OPEN_CURRENTNESS_INDEX}`);
   dropColumnIfPresent(database, 'causal_edges', 'invalidation_source', context);
+}
+
+interface DerivedCausalEdgeRow {
+  id: number;
+  source_id: string;
+  target_id: string;
+  source_anchor: string | null;
+  target_anchor: string | null;
+  relation: string;
+  created_by: string | null;
+  extraction_method: string | null;
+}
+
+export interface DerivedIdProvenanceBackfillResult {
+  scanned: number;
+  backfilled: number;
+  duplicatesSkipped: number;
+}
+
+function normalizeDerivedEdgeSource(row: Pick<DerivedCausalEdgeRow, 'created_by' | 'extraction_method'>): string {
+  const extractionMethod = typeof row.extraction_method === 'string' ? row.extraction_method.trim() : '';
+  const createdBy = typeof row.created_by === 'string' ? row.created_by.trim() : '';
+  if (extractionMethod.length > 0 && extractionMethod !== 'manual') {
+    return extractionMethod;
+  }
+  return createdBy.length > 0 ? createdBy : 'auto';
+}
+
+function selectDerivedCausalEdges(database: Database.Database, columns: Set<string>): DerivedCausalEdgeRow[] {
+  const optionalColumn = (columnName: string): string => (
+    columns.has(columnName) ? columnName : `NULL AS ${columnName}`
+  );
+
+  return database.prepare(`
+    SELECT
+      id,
+      source_id,
+      target_id,
+      ${optionalColumn('source_anchor')},
+      ${optionalColumn('target_anchor')},
+      relation,
+      created_by,
+      ${optionalColumn('extraction_method')}
+    FROM causal_edges
+    WHERE derived_id IS NULL
+      AND (created_by = 'auto' OR created_by LIKE 'auto-%')
+    ORDER BY id ASC
+  `).all() as DerivedCausalEdgeRow[];
+}
+
+function clearDuplicateDerivedIdsBeforeUniqueIndex(database: Database.Database, context: string): void {
+  const result = database.prepare(`
+    UPDATE causal_edges
+    SET derived_id = NULL
+    WHERE id IN (
+      SELECT id FROM (
+        SELECT id,
+               ROW_NUMBER() OVER (
+                 PARTITION BY derived_id
+                 ORDER BY id ASC
+               ) AS rn
+        FROM causal_edges
+        WHERE derived_id IS NOT NULL AND TRIM(derived_id) != ''
+      )
+      WHERE rn > 1
+    )
+  `).run() as { changes: number };
+
+  if (result.changes > 0) {
+    logger.warn(`${context}: cleared ${result.changes} duplicate generated causal-edge derived id(s) before building the unique index`);
+  }
+}
+
+/**
+ * Backfill generated causal-edge identities from already-stored canonical fields.
+ */
+export function backfillDerivedCausalEdgeIds(
+  database: Database.Database,
+  context: string = 'derived-id provenance backfill',
+): DerivedIdProvenanceBackfillResult {
+  requireTableForMigration(database, 'causal_edges', context);
+  requireColumnsForMigration(database, 'causal_edges', ['derived_id', 'source_id', 'target_id', 'relation'], context);
+
+  const columns = new Set(getTableColumns(database, 'causal_edges'));
+  if (!columns.has('created_by')) {
+    return { scanned: 0, backfilled: 0, duplicatesSkipped: 0 };
+  }
+
+  const existingDerivedIds = new Set(
+    (database.prepare(`
+      SELECT derived_id
+      FROM causal_edges
+      WHERE derived_id IS NOT NULL AND TRIM(derived_id) != ''
+    `).all() as Array<{ derived_id: string }>)
+      .map((row) => row.derived_id),
+  );
+  const update = database.prepare('UPDATE causal_edges SET derived_id = ? WHERE id = ? AND derived_id IS NULL');
+  let backfilled = 0;
+  let duplicatesSkipped = 0;
+  const rows = selectDerivedCausalEdges(database, columns);
+
+  for (const row of rows) {
+    const derivedId = deriveCausalEdgeDerivedId({
+      sourceId: row.source_id,
+      targetId: row.target_id,
+      relation: row.relation,
+      sourceAnchor: row.source_anchor,
+      targetAnchor: row.target_anchor,
+      source: normalizeDerivedEdgeSource(row),
+      ruleVersion: LEGACY_DERIVED_CAUSAL_EDGE_RULE_VERSION,
+    });
+
+    if (existingDerivedIds.has(derivedId)) {
+      duplicatesSkipped++;
+      continue;
+    }
+
+    const result = update.run(derivedId, row.id) as { changes: number };
+    if (result.changes > 0) {
+      backfilled++;
+      existingDerivedIds.add(derivedId);
+    }
+  }
+
+  if (duplicatesSkipped > 0) {
+    logger.warn(`${context}: left ${duplicatesSkipped} duplicate generated causal-edge row(s) without derived_id`);
+  }
+
+  return { scanned: rows.length, backfilled, duplicatesSkipped };
+}
+
+/**
+ * Add generated causal-edge identity storage and its uniqueness guard.
+ */
+export function ensureDerivedIdProvenanceSchema(database: Database.Database, context: string): DerivedIdProvenanceBackfillResult {
+  requireTableForMigration(database, 'causal_edges', context);
+
+  const causalColumns = new Set(getTableColumns(database, 'causal_edges'));
+  addColumnIfMissing(database, 'causal_edges', causalColumns, CAUSAL_EDGE_DERIVED_ID_COLUMN, context);
+
+  const result = backfillDerivedCausalEdgeIds(database, context);
+  clearDuplicateDerivedIdsBeforeUniqueIndex(database, context);
+  createRequiredIndex(
+    database,
+    CAUSAL_EDGE_DERIVED_ID_INDEX,
+    CAUSAL_EDGE_DERIVED_ID_INDEX_SQL,
+    context,
+  );
+  return result;
+}
+
+/**
+ * Roll back only the generated causal-edge identity column and unique index.
+ */
+export function rollbackDerivedIdProvenanceSchema(
+  database: Database.Database,
+  context: string = 'derived-id provenance rollback',
+): void {
+  database.exec(`DROP INDEX IF EXISTS ${CAUSAL_EDGE_DERIVED_ID_INDEX}`);
+  dropColumnIfPresent(database, 'causal_edges', 'derived_id', context);
 }
 
 function sourceKindFromProvenanceSource(value: unknown): 'human' | 'agent' | 'system' | 'import' | 'feedback' {
@@ -2178,6 +2356,11 @@ export function run_migrations(database: Database.Database, from_version: number
     logger.info('Migration v39: Added causal-edge closure-provenance marker');
   };
 
+  migrations[40] = () => {
+    const result = ensureDerivedIdProvenanceSchema(database, 'Migration v40');
+    logger.info(`Migration v40: Added generated causal-edge derived identity (${result.backfilled}/${result.scanned} backfilled)`);
+  };
+
   // Wrap all migrations in a transaction for atomicity
   const run_all_migrations = database.transaction(() => {
     for (let v = from_version + 1; v <= to_version; v++) {
@@ -3277,6 +3460,9 @@ export function create_schema(
     ensureGovernanceTables(database);
     ensureCausalEdgeTombstoneSchema(database, 'create_schema');
     ensureMemoryTriggerEmbeddingsSchema(database, 'create_schema');
+    if (hasTable(database, 'causal_edges')) {
+      ensureDerivedIdProvenanceSchema(database, 'create_schema');
+    }
     const compatibility = validate_backward_compatibility(database);
     if (!compatibility.compatible) {
       logger.warn(

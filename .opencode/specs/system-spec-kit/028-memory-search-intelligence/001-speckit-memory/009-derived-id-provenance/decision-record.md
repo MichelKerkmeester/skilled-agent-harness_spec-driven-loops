@@ -1,20 +1,20 @@
 ---
 title: "Decision Record: Content-Addressed derived_id for Derived Causal Artifacts (C4-B)"
-description: "Decision record for C4-B: scope/gate discipline, the canonical-field recipe (anchor-inclusive triple + source + rule_version + kind-tag), the legacy rule_version sentinel, the rowid-alias-not-AUTOINCREMENT PK choice, and the reuse-the-shipped-content-id-module-not-a-third-hash decision."
+description: "Decision record for C4-B: scope/gate discipline, the canonical-field recipe (anchor-inclusive triple + source + rule_version + kind-tag), the legacy rule_version sentinel, the SQLite-compatible TEXT identity plus partial UNIQUE index choice, and the reuse-the-shipped-content-id-module-not-a-third-hash decision."
 trigger_phrases:
   - "C4-B decision record"
   - "derived_id recipe decision"
-  - "rowid alias not autoincrement"
+  - "partial unique not autoincrement"
   - "reuse content-id module"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/009-derived-id-provenance"
-    last_updated_at: "2026-06-19T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Recorded C4-B load-bearing decisions"
-    next_safe_action: "Finalize ADR-002/ADR-003 (Proposed) before the migration tasks"
+    last_updated_at: "2026-06-19T15:47:19Z"
+    last_updated_by: "codex"
+    recent_action: "Accepted the derived-id recipe and recorded the delivered v40 schema shape"
+    next_safe_action: "Keep the benchmark-only insert-cost candidate pending until measured"
     blockers: []
     key_files:
       - "spec.md"
@@ -25,9 +25,12 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-c4b-replan"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Canonical field order is kind, source_id, target_id, relation, source_anchor, target_anchor, source, rule_version."
+      - "Legacy backfill rule_version sentinel is legacy-pre-derived-id."
+      - "SQLite delivery uses an additive TEXT column plus partial UNIQUE index rather than rewriting causal_edges to add a text primary-key alias."
 ---
 # Decision Record: Content-Addressed derived_id for Derived Causal Artifacts (C4-B)
 
@@ -56,7 +59,7 @@ The 200-iteration 028 campaign places C4-B in **Wave-2 (schema-migration / SCHEM
 
 ### Constraints
 
-- The add must be clean-additive: restore preserves id; `TEXT UNIQUE` rowid alias, NOT `AUTOINCREMENT` (`04-sibling-and-cross-cutting.md:24`).
+- The add must be clean-additive: restore preserves id; use a content-addressed `TEXT` identity, NOT `AUTOINCREMENT` (`04-sibling-and-cross-cutting.md:24`). The delivered SQLite shape is an additive column plus partial `UNIQUE` index, avoiding a table rewrite for a new text primary-key alias.
 - It must NOT pull in sibling Wave-2 work (bi-temporal C3-B, currentness C3-A/C3-C) — those have their own store reconciliation.
 - No measured benefit number exists; ship for correctness only (roadmap §6).
 <!-- /ANCHOR:adr-001-context -->
@@ -66,7 +69,7 @@ The 200-iteration 028 campaign places C4-B in **Wave-2 (schema-migration / SCHEM
 <!-- ANCHOR:adr-001-decision -->
 ### Decision
 
-**We chose**: implement C4-B as an additive `derived_id TEXT UNIQUE` column on `causal_edges` for derived rows, landed through one additive migration with a single `SCHEMA_VERSION` bump, independent of the other Wave-2 schema candidates.
+**We chose**: implement C4-B as an additive `derived_id TEXT` column on `causal_edges` for derived rows, with a partial `UNIQUE` index, landed through one additive migration with a single `SCHEMA_VERSION` bump, independent of the other Wave-2 schema candidates.
 
 **How it works**: the column + unique index are added additively; existing derived rows are backfilled from their stored canonical fields; the manual-edge path is untouched. C4-B does not unify validity windows or change currentness semantics.
 <!-- /ANCHOR:adr-001-decision -->
@@ -78,7 +81,7 @@ The 200-iteration 028 campaign places C4-B in **Wave-2 (schema-migration / SCHEM
 
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
-| **Additive derived_id column on causal_edges** | Clean-additive; reversible; no manual-path impact | Needs an anchor-safe backfill + SCHEMA_VERSION bump | 10/10 |
+| **Additive derived_id column + partial UNIQUE index on causal_edges** | Clean-additive; reversible; no manual-path impact | Needs an anchor-safe backfill + SCHEMA_VERSION bump | 10/10 |
 | Bundle C4-B with the bi-temporal C3-B cluster in one migration | One migration pass for the whole cluster | Couples an unscoped, unverified additivity claim (C3-B) to a confirmed-clean add; larger wedge blast | 4/10 |
 | Separate derived_artifacts table | Clean separation | New table + dual-write + reader fork; over-engineered for "causal edges first" | 3/10 |
 
@@ -126,7 +129,7 @@ The 200-iteration 028 campaign places C4-B in **Wave-2 (schema-migration / SCHEM
 <!-- ANCHOR:adr-001-impl -->
 ### Implementation
 
-**What changes**: additive `derived_id TEXT UNIQUE` column + index + migration + SCHEMA_VERSION bump on `causal_edges`; derived-edge write path persists it.
+**What changes**: additive `derived_id TEXT` column + partial `UNIQUE` index + migration + SCHEMA_VERSION bump on `causal_edges`; derived-edge write path persists it.
 
 **How to roll back**: forward-only drop of the column + unique index; manual-edge behavior is byte-identical, so no curated-path reversal is needed.
 <!-- /ANCHOR:adr-001-impl -->
@@ -141,9 +144,9 @@ The 200-iteration 028 campaign places C4-B in **Wave-2 (schema-migration / SCHEM
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-06-19 |
-| **Deciders** | Claude (planning author); final field order pending impl-time confirmation |
+| **Deciders** | Claude (planning author), Codex (implementation) |
 
 ---
 
@@ -166,7 +169,7 @@ The single most-cited C4-B caveat is that the `derived_id` input **MUST include 
 
 **We chose**: `derived_id = hashCanonicalJson({ kind, source_id, target_id, relation, source_anchor, target_anchor, source, rule_version })` with a fixed key order and a derived-artifact `kind` tag, anchors normalized to `''` when absent.
 
-**How it works**: the canonical triple is `(source_id, target_id, relation)` plus the two anchors (matching the legacy UNIQUE columns), the `source` and `rule_version` add the aionforge "episode + rule version" dimensions, and the `kind` tag namespaces the derived-artifact class. The exact field order + `source` definition are confirmed at impl time (open questions in `spec.md` §12).
+**How it works**: the canonical triple is `(source_id, target_id, relation)` plus the two anchors (matching the legacy UNIQUE columns), the `source` and `rule_version` add the aionforge "episode + rule version" dimensions, and the `kind` tag namespaces the derived-artifact class. `source` is explicit `derivedSource` when supplied, otherwise non-manual `extraction_method`, otherwise `created_by`.
 <!-- /ANCHOR:adr-002-decision -->
 
 ---
@@ -216,7 +219,7 @@ The single most-cited C4-B caveat is that the `derived_id` input **MUST include 
 | 4 | **Fits Goal?** | PASS | Content-addressed, crash-replay-stable identity |
 | 5 | **Open Horizons?** | PASS | The kind-tag lets other derived classes reuse the recipe |
 
-**Checks Summary**: 5/5 PASS (field order pending freeze)
+**Checks Summary**: 5/5 PASS
 <!-- /ANCHOR:adr-002-five-checks -->
 
 ---
@@ -239,9 +242,9 @@ The single most-cited C4-B caveat is that the `derived_id` input **MUST include 
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-06-19 |
-| **Deciders** | Claude (planning author); sentinel value pending impl-time confirmation |
+| **Deciders** | Claude (planning author), Codex (implementation) |
 
 ---
 
@@ -261,7 +264,7 @@ Existing derived rows predate `rule_version`; the backfill must still produce a 
 <!-- ANCHOR:adr-003-decision -->
 ### Decision
 
-**We chose**: a fixed sentinel `rule_version` (e.g. `"0"` / `"legacy"`) for pre-C4-B derived rows, recorded in the migration and reused on any backfill re-run.
+**We chose**: `legacy-pre-derived-id` as the fixed sentinel `rule_version` for pre-C4-B derived rows, recorded in the migration and reused on any backfill re-run.
 
 **How it works**: the backfill computes `derived_id` for legacy rows using the sentinel; new derived writes use the live rule's actual version, so legacy and new artifacts of the same triple are distinct exactly when their rule versions differ.
 <!-- /ANCHOR:adr-003-decision -->
@@ -311,7 +314,7 @@ Existing derived rows predate `rule_version`; the backfill must still produce a 
 | 4 | **Fits Goal?** | PASS | Deterministic backfill |
 | 5 | **Open Horizons?** | PASS | New rules carry real versions going forward |
 
-**Checks Summary**: 5/5 PASS (value pending freeze)
+**Checks Summary**: 5/5 PASS
 <!-- /ANCHOR:adr-003-five-checks -->
 
 ---
@@ -328,7 +331,7 @@ Existing derived rows predate `rule_version`; the backfill must still produce a 
 ---
 
 <!-- ANCHOR:adr-004 -->
-## ADR-004: derived_id is a TEXT UNIQUE rowid alias, NOT AUTOINCREMENT
+## ADR-004: derived_id is an additive TEXT identity with partial UNIQUE index, NOT AUTOINCREMENT
 
 ### Metadata
 
@@ -343,7 +346,7 @@ Existing derived rows predate `rule_version`; the backfill must still produce a 
 <!-- ANCHOR:adr-004-context -->
 ### Context
 
-The research explicitly specifies the column shape: an additive `TEXT UNIQUE` **rowid-alias** PK, NOT `AUTOINCREMENT`, and confirms it clean-additive with restore preserving the id (`01-go-candidates.md:44`, `04-sibling-and-cross-cutting.md:24`).
+The research specifies a content-addressed `TEXT` identity, NOT `AUTOINCREMENT`, and confirms the change is clean-additive with restore preserving the id (`01-go-candidates.md:44`, `04-sibling-and-cross-cutting.md:24`). SQLite cannot add a new primary-key rowid alias to an existing table with `ALTER TABLE`; the implementation therefore keeps the existing `id` primary key and adds a `derived_id TEXT` column plus a partial `UNIQUE` index for derived rows.
 
 ### Constraints
 
@@ -356,9 +359,9 @@ The research explicitly specifies the column shape: an additive `TEXT UNIQUE` **
 <!-- ANCHOR:adr-004-decision -->
 ### Decision
 
-**We chose**: `derived_id TEXT UNIQUE` as a rowid-alias primary key for derived rows; the existing autoincrement `id` and anchor-inclusive UNIQUE remain for manual edges.
+**We chose**: `derived_id TEXT` plus a partial `UNIQUE` index as the content-addressed identity for derived rows; the existing autoincrement `id` and anchor-inclusive UNIQUE remain for all rows.
 
-**How it works**: a restored or replayed derived edge re-derives the same `derived_id` and maps to the same logical row, instead of receiving a fresh `AUTOINCREMENT` id.
+**How it works**: a restored or replayed derived edge re-derives the same `derived_id` and maps to the same logical artifact, while SQLite keeps the pre-existing sequential row id for storage compatibility.
 <!-- /ANCHOR:adr-004-decision -->
 
 ---
@@ -368,7 +371,8 @@ The research explicitly specifies the column shape: an additive `TEXT UNIQUE` **
 
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
-| **TEXT UNIQUE rowid alias** | Content-addressed identity survives restore | Wider key than an int | 10/10 |
+| **TEXT column + partial UNIQUE index** | Content-addressed identity survives restore; additive on SQLite | Wider key than an int | 10/10 |
+| TEXT primary-key rowid alias rewrite | Single primary logical key | Requires a table rewrite; unnecessary for this additive packet | 5/10 |
 | AUTOINCREMENT integer id | Compact | REFUTED — a counter cannot be content-addressed; restore gets a new id | 1/10 |
 | Composite PK on the canonical columns | No extra column | Does not give a single content-addressed handle; collides with the existing UNIQUE | 3/10 |
 
@@ -414,7 +418,7 @@ The research explicitly specifies the column shape: an additive `TEXT UNIQUE` **
 <!-- ANCHOR:adr-004-impl -->
 ### Implementation
 
-**What changes**: `derived_id TEXT UNIQUE` rowid-alias column + index in the schema.
+**What changes**: `derived_id TEXT` column + partial `UNIQUE` index in the schema.
 
 **How to roll back**: drop the column + index (forward-only).
 <!-- /ANCHOR:adr-004-impl -->

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Content-Addressed derived_id for Derived Causal Artifacts (C4-B)"
-description: "Planning-stage placeholder summary for C4-B. The candidate is PENDING behind the schema-migration gate; nothing is implemented yet. This file records the not-started status, the shipped dependency, and what completion will look like, and is replaced with the real delivery narrative once the build lands."
+description: "C4-B implementation summary: generated causal edges now have default-off content-addressed derived_id provenance through a helper, v40 additive migration, write-path wiring, tombstone preservation, focused tests, and packet validation."
 trigger_phrases:
   - "C4-B implementation summary"
   - "derived_id status"
@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/009-derived-id-provenance"
-    last_updated_at: "2026-06-19T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored planning-stage placeholder; C4-B not yet implemented"
-    next_safe_action: "Begin T002-T003 (read seams, freeze the recipe)"
+    last_updated_at: "2026-06-19T15:50:18Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented default-off derived-id provenance with schema v40 and focused tests"
+    next_safe_action: "Keep benchmark-only insert-cost measurement pending until measured"
     blockers: []
     key_files:
       - "spec.md"
@@ -25,9 +25,12 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-c4b-replan"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Canonical field order is kind, source_id, target_id, relation, source_anchor, target_anchor, source, rule_version."
+      - "The feature flag is SPECKIT_DERIVED_ID_PROVENANCE and is default-off."
+      - "SCHEMA_VERSION moved from 39 to 40 for the derived-id provenance migration."
 ---
 # Implementation Summary: Content-Addressed derived_id for Derived Causal Artifacts (C4-B)
 
@@ -43,9 +46,9 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | `028-memory-search-intelligence/001-speckit-memory/009-derived-id-provenance` |
-| **Completed** | NOT STARTED (planning-stage) |
+| **Completed** | 2026-06-19 |
 | **Level** | 3 |
-| **Candidate status** | PENDING — gate: schema-migration |
+| **Candidate status** | DONE behind default-off `SPECKIT_DERIVED_ID_PROVENANCE` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -53,20 +56,22 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing is built yet. This is the planning re-plan for candidate **C4-B** (content-addressed `derived_id` for derived causal artifacts). The candidate is PENDING behind a schema-migration gate; this file is a placeholder that will be replaced with the real delivery narrative once the build lands. It exists now only because a Level-3 packet requires it.
+C4-B gives generated causal edges a content-addressed `derived_id` without changing manual causal-edge behavior. The helper freezes the canonical recipe as `kind, source_id, target_id, relation, source_anchor, target_anchor, source, rule_version`, normalizes absent anchors to `""`, and delegates hashing to the shipped `hashCanonicalJson` primitive. No third hash primitive was introduced.
 
-When implemented, C4-B will give derived (generated) causal edges a content-addressed `derived_id = sha256(canonical-triple + source + rule_version)` — an additive `TEXT UNIQUE` rowid-alias key, anchors included — so a crash-replay or tombstone-restore reconstructs the identical artifact id, and a `rule_version` change becomes visible to identity instead of silently re-using the prior row.
-
-### Planned scope (not yet delivered)
-- A derived-artifact id helper in `lib/content-id.ts` that reuses the shipped `hashCanonicalJson` primitive.
-- An additive `derived_id TEXT UNIQUE` column + unique index + migration + `SCHEMA_VERSION` bump on `causal_edges`, with an anchor-safe backfill.
-- Derived-edge write-path wiring in `lib/storage/causal-edges.ts`.
+The schema moved from `SCHEMA_VERSION` 39 to 40. The v40 migration adds `causal_edges.derived_id TEXT`, backfills generated rows using the reserved legacy sentinel `legacy-pre-derived-id`, leaves duplicate computed identities `NULL` before creating `idx_causal_edges_derived_id`, and creates a partial unique index on non-null derived ids. The write path persists `derived_id` only for generated rows and only when `SPECKIT_DERIVED_ID_PROVENANCE=true`; manual rows keep `derived_id = NULL`.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| (none yet) | Pending | No production code has been modified; planning docs only |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/content-id.ts` | Modified | Added the causal-edge derived-id helper and constants over `hashCanonicalJson` |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts` | Modified | Added default-off `SPECKIT_DERIVED_ID_PROVENANCE` |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts` | Modified | Registered the new `SPECKIT_*` flag in the known list |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts` | Modified | Added v40 schema migration, column/index creation, duplicate-safe backfill, and rollback helper for tests |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts` | Modified | Wired generated-edge inserts/upserts to compute and persist derived ids behind the flag |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/causal/sweep.ts` | Modified | Preserved `derived_id` in tombstone restore metadata when the column exists |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/derived-id-provenance.vitest.ts` | Added | Covered helper stability, migration/backfill, flag gating, replay, tombstone metadata, and rollback |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts` | Modified | Updated the compatible schema fixture to include v40 derived-id provenance |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -74,7 +79,9 @@ When implemented, C4-B will give derived (generated) causal edges a content-addr
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not yet delivered. The plan is one additive, reversible schema slice: freeze the canonical-field recipe (anchor-inclusive triple + source + rule_version + kind-tag), reuse the shipped content-id module, land the additive column + index + anchor-safe backfill behind one `SCHEMA_VERSION` bump, wire the derived-edge write path, and prove identity stability + a clean migration on a real DB copy before strict validation. The single shipped dependency — the two-primitive content-id module — is already in place (030 commit `18c8582e33`).
+The implementation extends the existing idempotent schema-upgrade pattern used by the 007 and 008 migrations rather than creating a parallel migration mechanism. `create_schema` now repairs existing `causal_edges` tables with the derived-id column/index when needed, and migration v40 performs the same ensure/backfill sequence under the normal migration runner.
+
+SQLite compatibility changed the planning shape slightly: instead of rewriting `causal_edges` to add a text primary-key rowid alias, the delivered schema uses an additive `TEXT` identity column plus a partial `UNIQUE` index. That preserves the content-addressed identity contract without a table rewrite and keeps the existing sequential `id` column intact.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -84,10 +91,11 @@ Not yet delivered. The plan is one additive, reversible schema slice: freeze the
 
 | Decision | Why |
 |----------|-----|
-| Reuse `hashCanonicalJson` from `lib/content-id.ts`, not a new hash | The module exists to centralize the formula; a third hash is the anti-pattern it prevents (ADR-005) |
-| `derived_id` input includes anchors | The legacy anchor-inclusive UNIQUE rejects an anchor-less backfill — the single most-cited C4-B caveat (ADR-002) |
-| `TEXT UNIQUE` rowid alias, not `AUTOINCREMENT` | A monotonic counter cannot be content-addressed; restore must reproduce the same id (ADR-004) |
-| Keep C4-B independent of the bi-temporal C3-B cluster | The add is confirmed clean-additive; C3-B additivity is unverified (ADR-001) |
+| Reuse `hashCanonicalJson` from `lib/content-id.ts`, not a new hash | The content-id module already centralizes canonical-field hashing |
+| Include anchors in the derived-id input | Anchor-less identity was the known backfill wedge against the legacy anchor-inclusive UNIQUE |
+| Use `legacy-pre-derived-id` for backfilled legacy rows | Existing rows predate rule versions but still need deterministic identities |
+| Gate write-time persistence behind `SPECKIT_DERIVED_ID_PROVENANCE` | The feature is new provenance behavior and remains default-off |
+| Use additive `TEXT` + partial `UNIQUE` index | SQLite can apply it safely without a table rewrite |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -97,11 +105,11 @@ Not yet delivered. The plan is one additive, reversible schema slice: freeze the
 
 | Check | Result |
 |-------|--------|
-| Planning docs strict validation | PASS target — `validate.sh --strict` on this packet (planning stage) |
-| Implementation (helper, migration, write-path) | NOT RUN — pending build |
-| Identity stability + rule_version distinctness tests | NOT RUN — pending (T008/T009) |
-| Real-DB-copy migration / backfill-no-reject test | NOT RUN — pending (T010) |
-| Memory MCP typecheck + build + focused suite | NOT RUN — pending (T011) |
+| Baseline before changes | PASS — `npm run typecheck`; focused existing migration/currentness/flag tests, 3 files / 30 tests |
+| Memory MCP typecheck | PASS — `npm run typecheck` exit 0 |
+| Memory MCP build | PASS — `npm run build` exit 0 |
+| Focused Vitest suite | PASS — 5 files / 41 tests (`derived-id-provenance`, schema migration/compatibility, edge presence, flag ceiling) |
+| Strict packet validation | PASS — `validate.sh --strict` exit 0 |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -109,8 +117,7 @@ Not yet delivered. The plan is one additive, reversible schema slice: freeze the
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Not implemented.** C4-B is PENDING behind the schema-migration gate; this summary is a planning placeholder and will be rewritten at completion.
-2. **Recipe not yet frozen.** The canonical-field order, kind-tag, `source` definition, and legacy `rule_version` sentinel are Proposed (ADR-002/ADR-003), not finalized.
-3. **No measured benefit number.** Per the 028 research, all leverage/effort are structural inference; C4-B ships for correctness (crash-replay idempotency + rule-version provenance), not a benchmarked delta.
-4. **Causal edges only.** Other derived artifact stores are explicitly out of scope ("causal edges first").
+1. **Benchmark-only cost measurement remains pending.** C4-B ships for correctness; no derived-edge insert-cost benchmark or performance delta is claimed.
+2. **Causal edges only.** Other derived artifact stores remain out of scope.
+3. **Write-time persistence is default-off.** Existing databases receive the additive schema/backfill, but new generated writes only populate `derived_id` when `SPECKIT_DERIVED_ID_PROVENANCE=true`.
 <!-- /ANCHOR:limitations -->

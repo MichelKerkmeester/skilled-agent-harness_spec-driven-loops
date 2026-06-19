@@ -11,6 +11,7 @@ import { runInTransaction } from '../storage/transaction-manager.js';
 
 type CausalEdgeSnapshot = {
   id: number;
+  derived_id: string | null;
   source_id: string;
   target_id: string;
   source_anchor: string | null;
@@ -147,6 +148,7 @@ function buildEdgeSelect(options: SweepOptions): { whereSql: string; params: unk
 const OPTIONAL_EDGE_COLUMNS: readonly string[] = [
   'source_anchor',
   'target_anchor',
+  'derived_id',
   'strength',
   'evidence',
   'extracted_at',

@@ -164,9 +164,13 @@ describe('Vector index schema compatibility validator', () => {
           created_by TEXT DEFAULT 'manual',
           confidence REAL DEFAULT 1.0,
           extraction_method TEXT DEFAULT 'manual',
+          derived_id TEXT,
           last_accessed TEXT,
           UNIQUE(source_id, target_id, relation, source_anchor, target_anchor)
         );
+        CREATE UNIQUE INDEX idx_causal_edges_derived_id
+          ON causal_edges(derived_id)
+          WHERE derived_id IS NOT NULL;
 
         CREATE TABLE causal_edge_tombstones (
           id INTEGER PRIMARY KEY AUTOINCREMENT,

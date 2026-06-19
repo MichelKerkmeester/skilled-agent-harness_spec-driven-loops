@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Content-Addressed derived_id for Derived Causal Artifacts (C4-B)"
-description: "Plan to add a content-addressed derived_id to derived causal edges: a derived-id helper over the shipped content-id module, an additive TEXT UNIQUE rowid-alias column with an anchor-safe backfill and SCHEMA_VERSION bump, and a derived-edge write-path wiring, sequenced as an independent Wave-2 schema slice."
+description: "Plan to add a content-addressed derived_id to derived causal edges: a derived-id helper over the shipped content-id module, an additive TEXT identity column with a partial UNIQUE index, an anchor-safe backfill, a SCHEMA_VERSION bump, and derived-edge write-path wiring."
 trigger_phrases:
   - "C4-B implementation plan"
   - "derived_id migration plan"
@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/009-derived-id-provenance"
-    last_updated_at: "2026-06-19T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored C4-B implementation plan"
-    next_safe_action: "Confirm canonical-field order + source definition before the migration step"
+    last_updated_at: "2026-06-19T15:50:18Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented the C4-B plan as v40 with focused tests"
+    next_safe_action: "Keep only benchmark-cost measurement pending until a measured run exists"
     blockers: []
     key_files:
       - "spec.md"
@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-c4b-replan"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -49,7 +49,7 @@ _memory:
 | **Testing** | `npm run typecheck`, `npm run build`, Vitest (focused causal/derived-id suite), `validate.sh --strict` |
 
 ### Overview
-C4-B adds a content-addressed `derived_id = sha256(canonical-triple + source + rule_version)` to derived causal edges as an additive `TEXT UNIQUE` rowid-alias primary key. The approach reuses the already-shipped two-primitive content-id module (`lib/content-id.ts`) rather than authoring a third hash, lands the column + unique index through an additive schema migration with one `SCHEMA_VERSION` bump, backfills existing derived rows from their stored canonical fields without violating the legacy anchor-inclusive UNIQUE, and wires the derived-edge write path to compute and persist `derived_id` on insert. The status is PENDING; the gate is **schema-migration**, and the only shared-infra dependency (the content-id module) is already shipped (030 commit `18c8582e33`).
+C4-B adds a content-addressed `derived_id = sha256(canonical-triple + source + rule_version)` to derived causal edges as an additive `TEXT` identity column with a partial `UNIQUE` index. The implementation reuses the already-shipped two-primitive content-id module (`lib/content-id.ts`) rather than authoring a third hash, lands the column + unique index through additive schema migration v40, backfills existing generated rows from their stored canonical fields without violating the legacy anchor-inclusive UNIQUE, and wires the generated-edge write path to compute and persist `derived_id` behind `SPECKIT_DERIVED_ID_PROVENANCE`. The candidate is **DONE** for correctness; benchmark-only cost measurement remains pending with no performance delta claimed.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -58,16 +58,16 @@ C4-B adds a content-addressed `derived_id = sha256(canonical-triple + source + r
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Two-primitive content-id module confirmed present with the `hashCanonicalJson` signature. Evidence: `lib/content-id.ts`.
-- [ ] Legacy causal_edges UNIQUE confirmed anchor-inclusive. Evidence: `vector-index-schema.ts:1121`.
-- [ ] Canonical-field order, kind-tag, and `source` definition decided. Evidence: `decision-record.md` ADR-002.
-- [ ] Default/sentinel `rule_version` for legacy derived rows decided. Evidence: `decision-record.md` ADR-003.
+- [x] Two-primitive content-id module confirmed present with the `hashCanonicalJson` signature. Evidence: `lib/content-id.ts`.
+- [x] Legacy causal_edges UNIQUE confirmed anchor-inclusive. Evidence: `vector-index-schema.ts`.
+- [x] Canonical-field order, kind-tag, and `source` definition decided. Evidence: `decision-record.md` ADR-002.
+- [x] Default/sentinel `rule_version` for legacy derived rows decided. Evidence: `decision-record.md` ADR-003.
 
 ### Definition of Done
-- [ ] `derived_id` is content-addressed, anchor-inclusive, and reproducible cross-process. Evidence: unit tests.
-- [ ] Migration is additive, bumps `SCHEMA_VERSION` once, and backfills with zero legacy-UNIQUE rejections. Evidence: real-DB-copy migration test.
-- [ ] Derived-edge write path persists `derived_id`; manual-edge path unchanged. Evidence: write-path test + byte-identical manual-path assertion.
-- [ ] Typecheck, build, focused suite, and strict packet validation pass. Evidence: command output recorded in `implementation-summary.md` at completion.
+- [x] `derived_id` is content-addressed, anchor-inclusive, and reproducible cross-process. Evidence: `tests/derived-id-provenance.vitest.ts`.
+- [x] Migration is additive, bumps `SCHEMA_VERSION` once, and backfills with zero legacy-UNIQUE rejections. Evidence: v40 migration tests in `tests/derived-id-provenance.vitest.ts`.
+- [x] Derived-edge write path persists `derived_id`; manual-edge path unchanged. Evidence: write-path and manual-null tests.
+- [x] Typecheck, build, focused suite, and strict packet validation pass. Evidence: command output recorded in `implementation-summary.md`.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -80,11 +80,11 @@ A single derived-store identity addition at three existing seams: the content-id
 
 ### Key Components
 - **`lib/content-id.ts`**: a new derived-artifact id helper that composes the anchor-inclusive canonical triple + `source` + `rule_version` + kind-tag into a deterministic value and calls the shipped `hashCanonicalJson`. No new sha256.
-- **`lib/search/vector-index-schema.ts`**: an additive `derived_id TEXT UNIQUE` column (rowid alias, NOT `AUTOINCREMENT`), a `CREATE UNIQUE INDEX`, a migration step inside the existing transaction, a `SCHEMA_VERSION` bump, and an anchor-safe backfill / dedup pre-pass.
+- **`lib/search/vector-index-schema.ts`**: an additive `derived_id TEXT` column (NOT `AUTOINCREMENT`), a partial `CREATE UNIQUE INDEX`, a migration step inside the existing transaction, a `SCHEMA_VERSION` bump to 40, and an anchor-safe backfill / duplicate pre-pass.
 - **`lib/storage/causal-edges.ts`**: `insertEdge`/`insertEdgesBatch` compute and persist `derived_id` for generated (derived) rows so crash-replay and tombstone-restore reproduce the same id.
 
 ### Data Flow
-On a derived-edge write, the canonical input (triple + source + rule_version, anchors included) is composed and hashed via the content-id module, and the resulting `derived_id` is persisted as the row's rowid-alias PK. On migration, existing derived rows are backfilled by computing the same `derived_id` from their already-stored canonical fields; the anchor-inclusive input guarantees the backfill does not collide against the legacy UNIQUE. The manual-edge path is unchanged — it keeps the sequential id and the anchor-inclusive UNIQUE and does not compute a `derived_id`.
+On a generated-edge write with `SPECKIT_DERIVED_ID_PROVENANCE=true`, the canonical input (triple + source + rule_version, anchors included) is composed and hashed via the content-id module, and the resulting `derived_id` is persisted on the row. On migration, existing generated rows are backfilled by computing the same `derived_id` from their already-stored canonical fields; duplicate computed identities are left `NULL` before the partial unique index is created so the migration remains idempotent. The manual-edge path is unchanged — it keeps the sequential id and the anchor-inclusive UNIQUE and does not compute a `derived_id`.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -95,7 +95,7 @@ On a derived-edge write, the canonical input (triple + source + rule_version, an
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
 | `lib/content-id.ts` | Two-primitive hash module (body + canonical-field) | Add derived-artifact id helper (compose + reuse `hashCanonicalJson`) | New unit test: stability + rule_version distinctness + anchor inclusion |
-| `lib/search/vector-index-schema.ts` | Causal_edges schema + migrations | Additive `derived_id TEXT UNIQUE` rowid-alias column + index + migration + `SCHEMA_VERSION` bump + anchor-safe backfill | Real-DB-copy migration test: additive, no legacy-UNIQUE reject |
+| `lib/search/vector-index-schema.ts` | Causal_edges schema + migrations | Additive `derived_id TEXT` column + partial unique index + migration + `SCHEMA_VERSION` bump + anchor-safe backfill | Real-DB-copy migration test: additive, no legacy-UNIQUE reject |
 | `lib/storage/causal-edges.ts` | Derived + manual edge write/upsert | Derived path computes + persists `derived_id`; manual path untouched | Write-path test + manual-path byte-identical assertion |
 
 Consumer inventory is scoped to the derived-edge identity surface: the causal-edge insert/upsert path, the schema migration site, and any reader that selects `causal_edges.*` (must tolerate the additive column).
@@ -107,21 +107,21 @@ Consumer inventory is scoped to the derived-edge identity surface: the causal-ed
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Confirm `lib/content-id.ts` exports `hashCanonicalJson` and is the only hash module to reuse.
-- [ ] Read the legacy UNIQUE and migration transaction shape (`vector-index-schema.ts:1104-1136`, `:838-926`).
-- [ ] Decide canonical-field order + kind-tag + `source` definition + legacy `rule_version` sentinel (ADR-002/003).
+- [x] Confirm `lib/content-id.ts` exports `hashCanonicalJson` and is the only hash module to reuse.
+- [x] Read the legacy UNIQUE and migration transaction shape (`vector-index-schema.ts`).
+- [x] Decide canonical-field order + kind-tag + `source` definition + legacy `rule_version` sentinel (ADR-002/003).
 
 ### Phase 2: Core Implementation
-- [ ] Add the derived-artifact id helper to `lib/content-id.ts` (compose anchor-inclusive input + kind-tag; call `hashCanonicalJson`).
-- [ ] Add the additive `derived_id TEXT UNIQUE` rowid-alias column + `CREATE UNIQUE INDEX` to the schema.
-- [ ] Add the migration step + `SCHEMA_VERSION` bump + anchor-safe backfill / dedup pre-pass.
-- [ ] Wire `insertEdge`/`insertEdgesBatch` to compute + persist `derived_id` for derived rows only.
+- [x] Add the derived-artifact id helper to `lib/content-id.ts` (compose anchor-inclusive input + kind-tag; call `hashCanonicalJson`).
+- [x] Add the additive `derived_id TEXT` column + partial `CREATE UNIQUE INDEX` to the schema.
+- [x] Add the migration step + `SCHEMA_VERSION` bump + anchor-safe backfill / dedup pre-pass.
+- [x] Wire `insertEdge`/`insertEdgesBatch` to compute + persist `derived_id` for derived rows only.
 
 ### Phase 3: Verification
-- [ ] Unit tests: id stability (cross-process), rule_version distinctness, anchor inclusion, backfill-no-reject, restore-preserves-id.
-- [ ] Run Memory MCP typecheck + build.
-- [ ] Run the focused causal/derived-id Vitest suite; classify any broad-suite failures against the baseline.
-- [ ] Run `validate.sh --strict` on this packet and fix structure issues.
+- [x] Unit tests: id stability, rule_version distinctness, anchor inclusion, backfill-no-reject, restore-preserves-id.
+- [x] Run Memory MCP typecheck + build.
+- [x] Run the focused causal/derived-id Vitest suite; classify any broad-suite failures against the baseline.
+- [x] Run `validate.sh --strict` on this packet and fix structure issues.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -148,7 +148,7 @@ Consumer inventory is scoped to the derived-edge identity surface: the causal-ed
 | Two-primitive content-id module (`lib/content-id.ts`) | Internal (shipped 030 `18c8582e33`) | Green | Without it C4-B would have to author a forbidden third hash |
 | `causal_edges` schema + migration transaction | Internal | Green (additive) | Required for the column, index, and backfill |
 | Legacy anchor-inclusive UNIQUE | Internal constraint | Green | Drives the anchor-inclusion requirement on the derived-id input |
-| Canonical-field order / source / rule_version sentinel decisions | Design | Open (ADR-002/003) | Wrong choices break cross-process reproducibility |
+| Canonical-field order / source / rule_version sentinel decisions | Design | Green (ADR-002/003 accepted) | Wrong choices would break cross-process reproducibility |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -209,7 +209,7 @@ Consumer inventory is scoped to the derived-edge identity surface: the causal-ed
 ```text
 Shipped content-id module (lib/content-id.ts)
   -> derived-artifact id helper (anchor-inclusive input + kind-tag)
-  -> additive derived_id TEXT UNIQUE column + index + migration + SCHEMA_VERSION bump
+  -> additive derived_id TEXT column + partial UNIQUE index + migration + SCHEMA_VERSION bump
   -> anchor-safe backfill of existing derived rows
   -> derived-edge write-path wiring (insertEdge / insertEdgesBatch)
   -> identity + migration tests

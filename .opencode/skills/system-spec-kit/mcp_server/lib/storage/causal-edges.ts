@@ -8,10 +8,17 @@ import { clearDegreeCacheForDb } from '../search/graph-search-fn.js';
 import { clearGraphSignalsCache } from '../graph/graph-signals.js';
 import { detectContradictions } from '../graph/contradiction-detection.js';
 import { ensureTemporalColumns } from '../graph/temporal-edges.js';
-import { isTemporalEdgesEnabled } from '../search/search-flags.js';
+import {
+  isDerivedIdProvenanceEnabled,
+  isTemporalEdgesEnabled,
+} from '../search/search-flags.js';
 import { runInTransaction } from './transaction-manager.js';
 import { sweepCausalEdges } from '../causal/sweep.js';
 import { bumpCausalEdgesGeneration, getCausalEdgesGeneration } from './causal-generation.js';
+import {
+  DEFAULT_DERIVED_CAUSAL_EDGE_RULE_VERSION,
+  deriveCausalEdgeDerivedId,
+} from '../content-id.js';
 import type { CausalEdgeSweepResult } from '../causal/sweep.js';
 
 /* ───────────────────────────────────────────────────────────────
@@ -75,6 +82,48 @@ function isFiniteNumber(value: unknown): value is number {
 function isAutoEdgeCreator(createdBy: string | null | undefined): boolean {
   return createdBy === 'auto'
     || (typeof createdBy === 'string' && createdBy.startsWith('auto-'));
+}
+
+function normalizeDerivedIdField(value: string | null | undefined, fallback: string): string {
+  const normalized = typeof value === 'string' ? value.trim() : '';
+  return normalized.length > 0 ? normalized : fallback;
+}
+
+function getDerivedEdgeSource(createdBy: string, metadata: InsertEdgeMetadataOptions): string {
+  const explicitSource = normalizeDerivedIdField(metadata.derivedSource, '');
+  if (explicitSource.length > 0) {
+    return explicitSource;
+  }
+
+  const extractionMethod = normalizeDerivedIdField(metadata.extractionMethod, '');
+  if (extractionMethod.length > 0 && extractionMethod !== 'manual') {
+    return extractionMethod;
+  }
+
+  return normalizeDerivedIdField(createdBy, 'auto');
+}
+
+function deriveGeneratedEdgeId(
+  sourceId: string,
+  targetId: string,
+  relation: RelationType,
+  createdBy: string,
+  anchors: { sourceAnchor?: string | null; targetAnchor?: string | null },
+  metadata: InsertEdgeMetadataOptions,
+): string | null {
+  if (!isDerivedIdProvenanceEnabled() || !isAutoEdgeCreator(createdBy)) {
+    return null;
+  }
+
+  return deriveCausalEdgeDerivedId({
+    sourceId,
+    targetId,
+    relation,
+    sourceAnchor: anchors.sourceAnchor ?? null,
+    targetAnchor: anchors.targetAnchor ?? null,
+    source: getDerivedEdgeSource(createdBy, metadata),
+    ruleVersion: normalizeDerivedIdField(metadata.ruleVersion, DEFAULT_DERIVED_CAUSAL_EDGE_RULE_VERSION),
+  });
 }
 
 function clampStrength(strength: number): number | null {
@@ -162,6 +211,8 @@ interface DeleteEdgeOptions {
 interface InsertEdgeMetadataOptions {
   confidence?: number;
   extractionMethod?: string;
+  derivedSource?: string;
+  ruleVersion?: string;
 }
 
 interface InsertEdgeOutcome {
@@ -371,6 +422,9 @@ function insertEdge(
 
       const columns = new Set((database.prepare('PRAGMA table_info(causal_edges)').all() as Array<{ name: string }>)
         .map((column) => column.name));
+      const derivedId = columns.has('derived_id')
+        ? deriveGeneratedEdgeId(sourceId, targetId, relation, createdBy, anchors, metadata)
+        : null;
 
       if (existing) {
         const assignments = [
@@ -395,6 +449,10 @@ function insertEdge(
         if (columns.has('extraction_method') && metadata.extractionMethod !== undefined) {
           assignments.push('extraction_method = ?');
           params.push(metadata.extractionMethod);
+        }
+        if (derivedId !== null) {
+          assignments.push('derived_id = ?');
+          params.push(derivedId);
         }
         params.push(existing.id);
 
@@ -450,6 +508,10 @@ function insertEdge(
         if (columns.has('extraction_method') && metadata.extractionMethod !== undefined) {
           insertColumns.push('extraction_method');
           insertValues.push(metadata.extractionMethod);
+        }
+        if (derivedId !== null) {
+          insertColumns.push('derived_id');
+          insertValues.push(derivedId);
         }
 
         (database.prepare(`
@@ -513,6 +575,8 @@ function insertEdgesBatch(
     targetAnchor?: string | null;
     confidence?: number;
     extractionMethod?: string;
+    derivedSource?: string;
+    ruleVersion?: string;
   }>
 ): { inserted: number; failed: number; skippedManual: number } {
   if (!db) return { inserted: 0, failed: edges.length, skippedManual: 0 };
@@ -538,6 +602,8 @@ function insertEdgesBatch(
         {
           confidence: edge.confidence,
           extractionMethod: edge.extractionMethod,
+          derivedSource: edge.derivedSource,
+          ruleVersion: edge.ruleVersion,
         },
       );
       if (id !== null) inserted++;

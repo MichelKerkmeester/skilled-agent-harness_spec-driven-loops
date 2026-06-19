@@ -805,6 +805,15 @@ export function isEdgePresenceCurrentnessEnabled(): boolean {
 }
 
 /**
+ * Content-addressed identity for generated causal edges.
+ * Default: FALSE (schema-gated). Set SPECKIT_DERIVED_ID_PROVENANCE=true to enable
+ * write-time derived_id persistence for generated causal edges.
+ */
+export function isDerivedIdProvenanceEnabled(): boolean {
+  return isOptInEnabled('SPECKIT_DERIVED_ID_PROVENANCE');
+}
+
+/**
  * Usage-weighted ranking signal.
  * Default: TRUE (graduated). Set SPECKIT_USAGE_RANKING=false to disable.
  */

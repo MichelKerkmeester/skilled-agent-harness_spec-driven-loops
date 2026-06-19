@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Content-Addressed derived_id for Derived Causal Artifacts (C4-B)"
-description: "Give DERIVED memory artifacts (causal edges first) a content-addressed derived_id = sha256(canonical-triple + source + rule_version), as an additive TEXT UNIQUE rowid-alias PK that survives crash-replay and tombstone-restore. The id MUST include anchors or the legacy anchor-inclusive UNIQUE constraint rejects the backfill. Consumes the shipped two-primitive content-id module."
+description: "Give DERIVED memory artifacts (causal edges first) a content-addressed derived_id = sha256(canonical-triple + source + rule_version), as an additive TEXT identity column with a partial UNIQUE index that survives crash-replay and tombstone-restore. The id MUST include anchors or the legacy anchor-inclusive UNIQUE constraint rejects the backfill. Consumes the shipped two-primitive content-id module."
 trigger_phrases:
   - "C4-B"
   - "derived_id"
@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/009-derived-id-provenance"
-    last_updated_at: "2026-06-19T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored C4-B impl sub-phase from 028 research (spec/plan/tasks/checklist/decision-record)"
-    next_safe_action: "Freeze the derived_id canonical-field recipe (ADR-002)"
+    last_updated_at: "2026-06-19T15:44:13Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented C4-B derived-id provenance with default-off flag and v40 migration"
+    next_safe_action: "Keep benchmark-only performance promotion pending until a measured run exists"
     blockers: []
     key_files:
       - "spec.md"
@@ -29,11 +29,12 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-c4b-replan"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Final canonical-field order + kind-tag for the derived_id recipe (aionforge identifier recipe)"
-      - "source value definition (source_id vs source spec-folder/episode) for the canonical input"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Canonical field order is kind, source_id, target_id, relation, source_anchor, target_anchor, source, rule_version."
+      - "Source value is explicit derivedSource when supplied, otherwise non-manual extraction_method, otherwise created_by."
+      - "Legacy backfill rule_version sentinel is legacy-pre-derived-id."
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
@@ -43,9 +44,9 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-Derived memory artifacts — starting with generated causal edges — currently have no content-addressed identity. Their identity is the sequential `causal_edges.id` autoincrement, with logical uniqueness enforced by the anchor-inclusive `UNIQUE(source_id, target_id, relation, source_anchor, target_anchor)` constraint. A crash-replay or tombstone-restore of the same derived artifact therefore cannot prove it is the same artifact, and a rule-version change is invisible to identity. C4-B adds an additive, content-addressed `derived_id = sha256(canonical-triple + source + rule_version)` as a `TEXT UNIQUE` rowid-alias primary key for derived rows, reusing the shipped two-primitive content-id module so a crash-replay reconstructs the identical id.
+Derived memory artifacts — starting with generated causal edges — currently have no content-addressed identity. Their identity is the sequential `causal_edges.id` autoincrement, with logical uniqueness enforced by the anchor-inclusive `UNIQUE(source_id, target_id, relation, source_anchor, target_anchor)` constraint. A crash-replay or tombstone-restore of the same derived artifact therefore cannot prove it is the same artifact, and a rule-version change is invisible to identity. C4-B adds an additive, content-addressed `derived_id = sha256(canonical-triple + source + rule_version)` as a `TEXT` identity column with a partial `UNIQUE` index for derived rows, reusing the shipped two-primitive content-id module so a crash-replay reconstructs the identical id.
 
-**Key Decisions**: additive `TEXT UNIQUE` rowid-alias (NOT `AUTOINCREMENT`); the `derived_id` input MUST include anchors so the legacy anchor-inclusive UNIQUE backfill does not reject; reuse `lib/content-id.ts`, do not author a third hash.
+**Key Decisions**: additive `TEXT` identity column + partial `UNIQUE` index (NOT `AUTOINCREMENT`); the `derived_id` input MUST include anchors so the legacy anchor-inclusive UNIQUE backfill does not reject; reuse `lib/content-id.ts`, do not author a third hash.
 
 **Critical Dependencies**: the shipped two-primitive content-id module (`lib/content-id.ts`, 030 commit `18c8582e33`); a `causal_edges` schema migration with a `SCHEMA_VERSION` bump.
 
@@ -56,7 +57,7 @@ Derived memory artifacts — starting with generated causal edges — currently 
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Done |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/028-memory-search-intelligence` |
 | **Candidate** | C4-B (content-addressed `derived_id`) |
@@ -74,13 +75,13 @@ Derived memory artifacts — starting with generated causal edges — currently 
 Generated (DERIVED) causal edges have no content-addressed identity. Identity is the sequential `causal_edges.id` autoincrement; logical uniqueness is the anchor-inclusive `UNIQUE(source_id, target_id, relation, source_anchor, target_anchor)` constraint [CONFIRMED: `lib/search/vector-index-schema.ts:1121`]. Because identity is not derived from content, a crash-replay or tombstone-restore of the same derived artifact cannot prove byte-for-byte that it is the same artifact, and a change in the derivation `rule_version` is invisible to identity — the same triple under a new rule re-uses the old row. aionforge's consolidation uses a content-addressed `fact_id` (canonical triple + episode + rule version) so a crash-replay reconstructs identical artifacts; the internal Memory MCP has no equivalent for its derived causal layer.
 
 ### Purpose
-Give derived causal edges a content-addressed `derived_id = sha256(canonical-triple + source + rule_version)` — an additive `TEXT UNIQUE` rowid-alias primary key — so the same derived artifact reconstructs the identical id under crash-replay and tombstone-restore, and a `rule_version` change produces a new, distinct id rather than silently re-using the old row.
+Give derived causal edges a content-addressed `derived_id = sha256(canonical-triple + source + rule_version)` — an additive `TEXT` identity column with a partial `UNIQUE` index — so the same derived artifact reconstructs the identical id under crash-replay and tombstone-restore, and a `rule_version` change produces a new, distinct id rather than silently re-using the old row.
 
 ### Critical context (from the 028 research, authoritative)
 - **C4-B is the only genuinely net-new content-addressed id** in the Memory candidate set. The other content-hash uses are already shipped: `computeContentHash`/`hashContentBody` (content-body) and `hashJson`/`hashCanonicalJson` (canonical-field) [CONFIRMED: roadmap §027-REVISIT edit #1; `lib/content-id.ts`].
 - The roadmap's original `memory-index.ts:281` seam citation for "the sha256 base" was a **mis-citation** — `:281` is `createScanKey` (a 16-char scan-options hash), NOT a content base [CONFIRMED: roadmap §027-REVISIT edit #1; research.md `Internal Baseline` line on `createScanKey`]. The real bases are the two `lib/content-id.ts` primitives.
 - The `derived_id` **MUST include anchors** or the legacy anchor-inclusive UNIQUE backfill rejects [CONFIRMED: synthesis `01-go-candidates.md:44`, `04-sibling-and-cross-cutting.md:24`, roadmap §027-REVISIT edit #4b; legacy UNIQUE at `vector-index-schema.ts:1121`].
-- The add is **confirmed clean-additive**: restore preserves id; rowid-alias PK, NOT `AUTOINCREMENT` [CONFIRMED: `04-sibling-and-cross-cutting.md:24`].
+- The add is **confirmed clean-additive**: restore preserves id; implemented as a SQLite-compatible additive `TEXT` identity column with partial `UNIQUE` index, NOT `AUTOINCREMENT`.
 - **No measured before/after benefit number exists** — all leverage/effort are structural inference. Ship for correctness (crash-replay idempotency + rule-version provenance), not a promised delta [CONFIRMED: roadmap §6 GO-evidence caveats].
 - Provenance/write-safety EXTENDS packet 027: content-addressed `derived_id` strengthens a base 027 only partially covers (receipts flag-OFF + CRUD-only, none in the causal path) — zero supersedes, zero contradicts [CONFIRMED: `02-cross-packet-reconciliation.md:18`].
 <!-- /ANCHOR:problem -->
@@ -92,7 +93,7 @@ Give derived causal edges a content-addressed `derived_id = sha256(canonical-tri
 
 ### In Scope
 - A new content-id helper that composes the derived-artifact identity input — the canonical triple plus `source` plus `rule_version`, **anchor-inclusive** — and hashes it via the shipped `lib/content-id.ts` `hashCanonicalJson` primitive (with an explicit canonical-field order + kind-tag). NO third hash.
-- An additive `derived_id TEXT UNIQUE` column on `causal_edges` for derived/generated rows, defined as a **rowid alias** primary key (NOT `AUTOINCREMENT`), with a `CREATE UNIQUE INDEX`.
+- An additive `derived_id TEXT` column on `causal_edges` for derived/generated rows with a partial `CREATE UNIQUE INDEX` (NOT `AUTOINCREMENT`).
 - A schema migration (with `SCHEMA_VERSION` bump) that adds the column and index additively, and backfills `derived_id` for existing derived rows from their already-stored canonical fields **without** violating the legacy anchor-inclusive UNIQUE.
 - The derived-edge write path (`insertEdge`/`insertEdgesBatch` for generated edges) computing and persisting `derived_id` on insert, so crash-replay and tombstone-restore reconstruct the identical id.
 - Unit tests proving: identical canonical-triple+source+rule_version → identical `derived_id`; a `rule_version` change → a distinct `derived_id`; anchors are part of the input; backfill does not reject against the legacy UNIQUE; restore preserves the id.
@@ -109,9 +110,12 @@ Give derived causal edges a content-addressed `derived_id = sha256(canonical-tri
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/skills/system-spec-kit/mcp_server/lib/content-id.ts` | Modify | Add a derived-artifact id helper that composes the anchor-inclusive canonical input + kind-tag and calls `hashCanonicalJson`; no new hash primitive |
-| `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts` | Modify | Additive `derived_id TEXT UNIQUE` column (rowid-alias PK) + `CREATE UNIQUE INDEX`; migration step + `SCHEMA_VERSION` bump; anchor-safe backfill pre-pass |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts` | Modify | Additive `derived_id TEXT` column + partial `CREATE UNIQUE INDEX`; migration step + `SCHEMA_VERSION` bump to 40; anchor-safe backfill pre-pass |
 | `.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts` | Modify | Derived-edge write path computes and persists `derived_id` on `insertEdge`/`insertEdgesBatch` for generated rows |
-| `.opencode/skills/system-spec-kit/mcp_server/lib/storage/__tests__/causal-edges-derived-id.vitest.ts` | Create | Unit tests: id stability, rule_version distinctness, anchor-inclusion, backfill-no-reject, restore-preserves-id |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts` | Modify | Add default-off `SPECKIT_DERIVED_ID_PROVENANCE` write-path flag |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/causal/sweep.ts` | Modify | Preserve `derived_id` in causal-edge tombstone restore metadata when present |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/derived-id-provenance.vitest.ts` | Create | Unit tests: id stability, rule_version distinctness, anchor-inclusion, backfill-no-reject, replay-preserves-id, tombstone metadata |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts` | Modify | Register `SPECKIT_DERIVED_ID_PROVENANCE` in the known default-off flag list |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -125,7 +129,7 @@ Give derived causal edges a content-addressed `derived_id = sha256(canonical-tri
 |----|-------------|---------------------|
 | REQ-001 | `derived_id` is content-addressed over the canonical triple + source + rule_version | Two derived edges with identical canonical-triple, source, and rule_version produce an identical `derived_id`; a unit test asserts byte equality |
 | REQ-002 | The `derived_id` input includes anchors | Changing `source_anchor` or `target_anchor` changes the `derived_id`; the backfill against existing derived rows does NOT violate the legacy anchor-inclusive `UNIQUE(source_id,target_id,relation,source_anchor,target_anchor)` |
-| REQ-003 | `derived_id` is an additive `TEXT UNIQUE` rowid-alias PK, not `AUTOINCREMENT` | Schema migration adds the column + `CREATE UNIQUE INDEX` additively; existing rows and the manual-edge path are unaffected; `SCHEMA_VERSION` bumped exactly once for the cluster |
+| REQ-003 | `derived_id` is an additive `TEXT` identity column with a partial `UNIQUE` index, not `AUTOINCREMENT` | Schema migration adds the column + `CREATE UNIQUE INDEX` additively; existing rows and the manual-edge path are unaffected; `SCHEMA_VERSION` bumped exactly once for the cluster |
 | REQ-004 | Reuse the shipped two-primitive content-id module | The derived-id helper calls `hashCanonicalJson` from `lib/content-id.ts`; no new sha256 primitive is introduced |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -232,9 +236,10 @@ Give derived causal edges a content-addressed `derived_id = sha256(canonical-tri
 
 ## 12. OPEN QUESTIONS
 
-- Final canonical-field order + derived-artifact kind-tag for the `derived_id` recipe (the aionforge identifier recipe — `04-sibling-and-cross-cutting.md:24`).
-- The exact definition of `source` in the canonical input (the numeric `source_id`, or a source spec-folder/episode pointer) — affects what crash-replay must reproduce.
-- Default/sentinel `rule_version` for pre-C4-B derived rows during backfill.
+- **Answered**: canonical field order is `kind`, `source_id`, `target_id`, `relation`, `source_anchor`, `target_anchor`, `source`, `rule_version`; `kind = causal-edge`.
+- **Answered**: `source` is explicit `derivedSource` when supplied, otherwise a non-manual `extraction_method`, otherwise `created_by`.
+- **Answered**: pre-C4-B derived rows use `legacy-pre-derived-id` as the deterministic `rule_version` sentinel.
+- **Pending benchmark-only**: derived-edge insert cost remains unmeasured; no performance delta is claimed.
 <!-- /ANCHOR:questions -->
 
 ---
