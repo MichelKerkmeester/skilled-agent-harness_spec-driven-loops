@@ -4,7 +4,20 @@ Actionable record of the two open 028 completion items. Everything else (37 phas
 built-or-gated, schema cluster, NO-GO, narrative docs, full changelog polish, 8/9 release-cleanup) is
 committed and pushed.
 
-## Criterion 4 — eval-harness benchmark pass: BLOCKED on a stale golden set (diagnosed)
+## Criterion 4 — eval-harness benchmark pass: RUN (resolved)
+
+RESOLVED. The golden set was regenerated as a live-DB-aligned known-item benchmark (60 queries, 137
+labels, 0 missing; the old curated set is backed up to `ground-truth.curated.bak.json`). The harness ran
+on it via the `lib/eval` ablation framework and produced channel Recall@20 deltas (baseline ~0.46, some
+channels contributing +0.09 to +0.26) plus per-flag deltas. No default-off flag earned a flip: the flags
+exercised by the Recall@20 hybrid path are flat; the rest live in paths this harness does not exercise
+(memory_context, temporal-edge, write-time, maintenance, off-turn, confidence/display) so stay
+conservatively default-off pending path-specific evals. Reusable helpers landed in `scripts/evals/`
+(generate-known-item-ground-truth, run-retrieval-flag-eval, assert-ground-truth-alignment). Remaining
+deployment note: the running daemon caches the golden set at init, so the MCP `eval_run_ablation` entry
+point serves the old set until the daemon is reloaded (the lib path is authoritative and is aligned).
+
+Original diagnosis (now fixed), for the record:
 
 The eval-harness and its gate-zero guard work as designed. `eval_run_ablation` correctly refused to
 score and named the remediation. Root cause, confirmed by direct inspection:
