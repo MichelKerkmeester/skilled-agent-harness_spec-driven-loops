@@ -59,6 +59,7 @@ const REQUIRED_TABLES: readonly string[] = [
   'causal_edge_tombstones',
   'memory_trigger_embeddings',
   'memory_idempotency_receipts',
+  'edge_vector_embeddings',
 ];
 const REQUIRED_INDEXES_BY_TABLE: Readonly<Record<string, readonly string[]>> = {
   memory_index: [
@@ -91,6 +92,11 @@ const REQUIRED_INDEXES_BY_TABLE: Readonly<Record<string, readonly string[]>> = {
   ],
   causal_edges: [
     'idx_causal_edges_derived_id',
+    'idx_causal_edges_retention_incoming',
+  ],
+  edge_vector_embeddings: [
+    'idx_edge_vector_embeddings_status',
+    'idx_edge_vector_embeddings_edge',
   ],
   memory_trigger_embeddings: [
     'idx_memory_trigger_embeddings_status',
@@ -117,6 +123,7 @@ const REQUIRED_MEMORY_INDEX_COLUMNS: readonly string[] = [
   'source_kind',
   'delete_after',
   'deleted_at',
+  'retention_trust_score',
   'chunk_id',
   'chunk_fingerprint',
   'chunk_kind',
@@ -138,6 +145,13 @@ const REQUIRED_MEMORY_CONFLICT_COLUMNS: readonly string[] = [
   'contradiction_type',
   'spec_folder',
   'created_at',
+];
+const REQUIRED_CAUSAL_EDGE_COLUMNS: readonly string[] = [
+  'id',
+  'source_id',
+  'target_id',
+  'relation',
+  'fact_text',
 ];
 const REQUIRED_CAUSAL_EDGE_TOMBSTONE_COLUMNS: readonly string[] = [
   'id',
@@ -169,6 +183,19 @@ const REQUIRED_IDEMPOTENCY_RECEIPT_COLUMNS: readonly string[] = [
   'payload_hash',
   'response_payload',
   'memory_id',
+  'created_at',
+  'updated_at',
+];
+const REQUIRED_EDGE_VECTOR_EMBEDDING_COLUMNS: readonly string[] = [
+  'edge_id',
+  'profile_key',
+  'input_kind',
+  'model_id',
+  'dimensions',
+  'embedding',
+  'embedding_status',
+  'failure_reason',
+  'fact_hash',
   'created_at',
   'updated_at',
 ];
@@ -634,8 +661,9 @@ function getMigrationAllowedBasePaths(): string[] {
 // V38: Add bi-temporal window columns for causal edges and memory lineage
 // V39: Add causal-edge closure-provenance marker (open-edge index ensured at runtime)
 // V40: Add content-addressed generated causal-edge identity
+// V41: Add retention-forgetting and semantic-edge substrate support
 /** Current schema version for vector-index migrations. */
-export const SCHEMA_VERSION = 40;
+export const SCHEMA_VERSION = 41;
 
 const SOURCE_KIND_COLUMN_SQL = "ALTER TABLE memory_index ADD COLUMN source_kind TEXT NOT NULL DEFAULT 'system' CHECK(source_kind IN ('human', 'agent', 'system', 'import', 'feedback'))";
 const MEMORY_IDEMPOTENCY_RECEIPTS_OPERATION_INDEX_SQL = `
@@ -676,6 +704,46 @@ const CAUSAL_EDGE_DERIVED_ID_INDEX_SQL = `
   CREATE UNIQUE INDEX IF NOT EXISTS idx_causal_edges_derived_id
   ON causal_edges(derived_id)
   WHERE derived_id IS NOT NULL
+`;
+const CAUSAL_EDGE_RETENTION_INCOMING_INDEX = 'idx_causal_edges_retention_incoming';
+const CAUSAL_EDGE_RETENTION_INCOMING_INDEX_SQL = `
+  CREATE INDEX IF NOT EXISTS idx_causal_edges_retention_incoming
+  ON causal_edges(target_id, relation, source_id)
+`;
+const RETENTION_TRUST_SCORE_COLUMN: { name: string; sql: string } = {
+  name: 'retention_trust_score',
+  sql: 'ALTER TABLE memory_index ADD COLUMN retention_trust_score REAL',
+};
+const CAUSAL_EDGE_FACT_TEXT_COLUMN: { name: string; sql: string } = {
+  name: 'fact_text',
+  sql: 'ALTER TABLE causal_edges ADD COLUMN fact_text TEXT',
+};
+const EDGE_VECTOR_EMBEDDINGS_TABLE_SQL = `
+  CREATE TABLE IF NOT EXISTS edge_vector_embeddings (
+    edge_id INTEGER NOT NULL,
+    profile_key TEXT NOT NULL DEFAULT 'default',
+    input_kind TEXT NOT NULL DEFAULT 'edge' CHECK(input_kind IN ('edge')),
+    model_id TEXT NOT NULL,
+    dimensions INTEGER NOT NULL,
+    embedding BLOB,
+    embedding_status TEXT NOT NULL DEFAULT 'pending' CHECK(embedding_status IN ('pending', 'ready', 'failed')),
+    failure_reason TEXT,
+    fact_hash TEXT,
+    created_at TEXT NOT NULL DEFAULT (datetime('now')),
+    updated_at TEXT NOT NULL DEFAULT (datetime('now')),
+    PRIMARY KEY (edge_id, profile_key, input_kind, model_id, dimensions),
+    FOREIGN KEY(edge_id) REFERENCES causal_edges(id) ON DELETE CASCADE
+  )
+`;
+const EDGE_VECTOR_EMBEDDINGS_STATUS_INDEX = 'idx_edge_vector_embeddings_status';
+const EDGE_VECTOR_EMBEDDINGS_STATUS_INDEX_SQL = `
+  CREATE INDEX IF NOT EXISTS idx_edge_vector_embeddings_status
+  ON edge_vector_embeddings(embedding_status, updated_at)
+`;
+const EDGE_VECTOR_EMBEDDINGS_EDGE_INDEX = 'idx_edge_vector_embeddings_edge';
+const EDGE_VECTOR_EMBEDDINGS_EDGE_INDEX_SQL = `
+  CREATE INDEX IF NOT EXISTS idx_edge_vector_embeddings_edge
+  ON edge_vector_embeddings(edge_id)
 `;
 
 function addColumnIfMissing(
@@ -1106,6 +1174,111 @@ export function rollbackDerivedIdProvenanceSchema(
 ): void {
   database.exec(`DROP INDEX IF EXISTS ${CAUSAL_EDGE_DERIVED_ID_INDEX}`);
   dropColumnIfPresent(database, 'causal_edges', 'derived_id', context);
+}
+
+export function backfillRetentionTrustScores(
+  database: Database.Database,
+  context: string = 'retention trust backfill',
+): number {
+  requireTableForMigration(database, 'memory_index', context);
+  requireColumnsForMigration(database, 'memory_index', ['retention_trust_score', 'quality_score'], context);
+
+  const result = database.prepare(`
+    UPDATE memory_index
+    SET retention_trust_score = quality_score
+    WHERE retention_trust_score IS NULL
+      AND quality_score IS NOT NULL
+      AND typeof(quality_score) IN ('integer', 'real')
+  `).run();
+  return result.changes;
+}
+
+export function ensureRetentionForgettingSchema(database: Database.Database, context: string): void {
+  if (hasTable(database, 'memory_index')) {
+    const columns = new Set(getTableColumns(database, 'memory_index'));
+    addColumnIfMissing(database, 'memory_index', columns, RETENTION_TRUST_SCORE_COLUMN, context);
+    if (columns.has('quality_score')) {
+      const backfilled = backfillRetentionTrustScores(database, context);
+      if (backfilled > 0) {
+        logger.info(`${context}: Backfilled retention trust score for ${backfilled} memory row(s)`);
+      }
+    }
+  }
+
+  if (hasTable(database, 'causal_edges')) {
+    createRequiredIndex(
+      database,
+      CAUSAL_EDGE_RETENTION_INCOMING_INDEX,
+      CAUSAL_EDGE_RETENTION_INCOMING_INDEX_SQL,
+      context,
+    );
+  }
+}
+
+export function rollbackRetentionForgettingSchema(
+  database: Database.Database,
+  context: string = 'retention forgetting rollback',
+): void {
+  if (hasTable(database, 'causal_edges')) {
+    database.exec(`DROP INDEX IF EXISTS ${CAUSAL_EDGE_RETENTION_INCOMING_INDEX}`);
+  }
+  if (hasTable(database, 'memory_index')) {
+    dropColumnIfPresent(database, 'memory_index', 'retention_trust_score', context);
+  }
+}
+
+export function backfillCausalEdgeFactText(
+  database: Database.Database,
+  context: string = 'semantic edge fact-text backfill',
+): number {
+  requireTableForMigration(database, 'causal_edges', context);
+  requireColumnsForMigration(database, 'causal_edges', ['fact_text', 'source_id', 'target_id', 'relation'], context);
+
+  const hasEvidence = getTableColumns(database, 'causal_edges').includes('evidence');
+  const factExpression = hasEvidence
+    ? "COALESCE(NULLIF(TRIM(CAST(evidence AS text)), ''), source_id || ' ' || relation || ' ' || target_id)"
+    : "source_id || ' ' || relation || ' ' || target_id";
+  const result = database.prepare(`
+    UPDATE causal_edges
+    SET fact_text = ${factExpression}
+    WHERE fact_text IS NULL OR TRIM(CAST(fact_text AS text)) = ''
+  `).run();
+  return result.changes;
+}
+
+export function ensureSemanticEdgeLayerSchema(database: Database.Database, context: string): void {
+  if (hasTable(database, 'causal_edges')) {
+    const columns = new Set(getTableColumns(database, 'causal_edges'));
+    addColumnIfMissing(database, 'causal_edges', columns, CAUSAL_EDGE_FACT_TEXT_COLUMN, context);
+    const backfilled = backfillCausalEdgeFactText(database, context);
+    if (backfilled > 0) {
+      logger.info(`${context}: Backfilled fact text for ${backfilled} causal edge row(s)`);
+    }
+
+    database.exec(EDGE_VECTOR_EMBEDDINGS_TABLE_SQL);
+    createRequiredIndex(
+      database,
+      EDGE_VECTOR_EMBEDDINGS_STATUS_INDEX,
+      EDGE_VECTOR_EMBEDDINGS_STATUS_INDEX_SQL,
+      context,
+    );
+    createRequiredIndex(
+      database,
+      EDGE_VECTOR_EMBEDDINGS_EDGE_INDEX,
+      EDGE_VECTOR_EMBEDDINGS_EDGE_INDEX_SQL,
+      context,
+    );
+  }
+}
+
+export function rollbackSemanticEdgeLayerSchema(
+  database: Database.Database,
+  context: string = 'semantic edge layer rollback',
+): void {
+  database.exec('DROP TABLE IF EXISTS edge_vector_embeddings');
+  if (hasTable(database, 'causal_edges')) {
+    dropColumnIfPresent(database, 'causal_edges', 'fact_text', context);
+  }
 }
 
 function sourceKindFromProvenanceSource(value: unknown): 'human' | 'agent' | 'system' | 'import' | 'feedback' {
@@ -2361,6 +2534,12 @@ export function run_migrations(database: Database.Database, from_version: number
     logger.info(`Migration v40: Added generated causal-edge derived identity (${result.backfilled}/${result.scanned} backfilled)`);
   };
 
+  migrations[41] = () => {
+    ensureRetentionForgettingSchema(database, 'Migration v41');
+    ensureSemanticEdgeLayerSchema(database, 'Migration v41');
+    logger.info('Migration v41: Added retention-forgetting and semantic-edge schema support');
+  };
+
   // Wrap all migrations in a transaction for atomicity
   const run_all_migrations = database.transaction(() => {
     for (let v = from_version + 1; v <= to_version; v++) {
@@ -2672,6 +2851,16 @@ export function validate_backward_compatibility(database: Database.Database): Sc
       }
     }
 
+    if (hasTable(database, 'causal_edges')) {
+      const existingColumns = new Set(getTableColumns(database, 'causal_edges'));
+      const absentColumns = REQUIRED_CAUSAL_EDGE_COLUMNS.filter((columnName) => !existingColumns.has(columnName));
+      if (absentColumns.length > 0) {
+        missingColumns.causal_edges = absentColumns;
+      }
+    } else {
+      missingColumns.causal_edges = [...REQUIRED_CAUSAL_EDGE_COLUMNS];
+    }
+
     if (hasTable(database, 'causal_edge_tombstones')) {
       const existingColumns = new Set(getTableColumns(database, 'causal_edge_tombstones'));
       const absentColumns = REQUIRED_CAUSAL_EDGE_TOMBSTONE_COLUMNS.filter((columnName) => !existingColumns.has(columnName));
@@ -2700,6 +2889,16 @@ export function validate_backward_compatibility(database: Database.Database): Sc
       }
     } else {
       missingColumns.memory_idempotency_receipts = [...REQUIRED_IDEMPOTENCY_RECEIPT_COLUMNS];
+    }
+
+    if (hasTable(database, 'edge_vector_embeddings')) {
+      const existingColumns = new Set(getTableColumns(database, 'edge_vector_embeddings'));
+      const absentColumns = REQUIRED_EDGE_VECTOR_EMBEDDING_COLUMNS.filter((columnName) => !existingColumns.has(columnName));
+      if (absentColumns.length > 0) {
+        missingColumns.edge_vector_embeddings = absentColumns;
+      }
+    } else {
+      missingColumns.edge_vector_embeddings = [...REQUIRED_EDGE_VECTOR_EMBEDDING_COLUMNS];
     }
 
     for (const [tableName, requiredIndexes] of Object.entries(REQUIRED_INDEXES_BY_TABLE)) {
@@ -3463,6 +3662,8 @@ export function create_schema(
     if (hasTable(database, 'causal_edges')) {
       ensureDerivedIdProvenanceSchema(database, 'create_schema');
     }
+    ensureRetentionForgettingSchema(database, 'create_schema');
+    ensureSemanticEdgeLayerSchema(database, 'create_schema');
     const compatibility = validate_backward_compatibility(database);
     if (!compatibility.compatible) {
       logger.warn(
@@ -3515,6 +3716,7 @@ export function create_schema(
       retention_policy TEXT DEFAULT 'keep',
       delete_after TEXT,
       deleted_at TEXT,
+      retention_trust_score REAL,
       governance_metadata TEXT,
       expires_at DATETIME,
       confidence REAL DEFAULT 0.5,
@@ -3615,6 +3817,8 @@ export function create_schema(
   ensureCausalEdgeTombstoneSchema(database, 'create_schema');
   ensureMemoryTriggerEmbeddingsSchema(database, 'create_schema');
   ensureIdempotencyReceiptSchema(database, 'create_schema');
+  ensureRetentionForgettingSchema(database, 'create_schema');
+  ensureSemanticEdgeLayerSchema(database, 'create_schema');
 
   // the rollout — create embedding_cache table
   ensureEmbeddingCacheSchema(database);

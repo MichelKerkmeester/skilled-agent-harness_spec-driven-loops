@@ -14,10 +14,9 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/017-semantic-edge-layer"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored L3 spec for semantic-edge-layer (Wave-2, prove-first, PENDING)"
-    next_safe_action: "Land additive migration + edge-vector store with a back-compat test"
+    recent_action: "Implemented semantic-edge substrate"
+    next_safe_action: "Run strict validation and final typecheck/tests"
     blockers:
-      - "schema-migration: causal_edges has no fact_text/embedding columns and there is no edge vector collection"
       - "shared-infra-dep: gate-zero corpus reindex (028/001-001) precedes any recall benchmark"
     key_files:
       - "spec.md"
@@ -28,7 +27,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-001-017-semantic-edge-layer"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 65
     open_questions:
       - "What recall lift do edge vectors actually buy, measured against the reindexed corpus, before any default-on promotion?"
       - "Can LLM-judged semantic dedup/merge be made safe enough that it never silently collapses two distinct facts (highest tail-risk of the five sub-candidates)?"
@@ -59,13 +58,25 @@ The internal causal graph stores edges in SQLite only: an edge is a `(source_id,
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P2 |
-| **Status** | Draft |
+| **Status** | Partial implementation |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Packet** | system-spec-kit/028-memory-search-intelligence/001-speckit-memory |
 | **Wave** | Wave-2 (prove-first, shadow-gated) |
 | **Candidates** | semantic-edge-layer, GR-fact-embedding-on-edge (root); unlocks CG-edge-vector-index, CG-edge-aware-triplet-search, GR-semantic-fact-dedup-merge, GR-semantic-invalidation-discovery |
 <!-- /ANCHOR:metadata -->
+
+### Current Implementation Status
+
+| Candidate / Capability | STATUS | Evidence |
+|------------------------|--------|----------|
+| `semantic-edge-layer` substrate | **DONE** | `causal_edges.fact_text`, `edge_vector_embeddings`, v41 additive migration/backfill/rollback, compatibility fixture |
+| `GR-fact-embedding-on-edge` | **DONE** | `runConsolidationCycle` flag-gated edge embedding hook + deterministic edge-vector storage |
+| `CG-edge-vector-index` | **DONE (shadow primitive)** | `edge-vector-store.ts` + `edge-semantic-retrieval.ts` nearest-edge lookup behind `SPECKIT_EDGE_VECTOR_INDEX`; not wired into live recall |
+| `CG-edge-aware-triplet-search` | **DONE (shadow primitive)** | `scoreEdgeAwareTriplet` + `rankEdgeTripletCandidates` behind `SPECKIT_EDGE_TRIPLET_SEARCH`; not wired into live fused recall |
+| `GR-semantic-fact-dedup-merge` | **PENDING** | Benchmark/LLM adjudication work remains blocked on false-merge evidence and post-reindex benchmark |
+| `GR-semantic-invalidation-discovery` | **PENDING** | Cross-pair invalidation consumer remains shadow-only design work; same-pair contradiction path unchanged |
+| Post-reindex benchmark/promotion | **PENDING (BLOCKED)** | Blocked on `../001-corpus-reindex-gate-zero`; no promotion without measured recall/dedup lift |
 
 ---
 

@@ -5,6 +5,7 @@
 
 import type Database from 'better-sqlite3';
 import { ensureGovernanceRuntime } from '../governance/scope-governance.js';
+import { isRetentionForgettingEnabled } from '../search/search-flags.js';
 import type { AggregatedSignal } from './batch-learning.js';
 
 export type RetentionDecision = 'delete' | 'extend' | 'protect';
@@ -12,10 +13,14 @@ export type FeedbackRetentionMode = 'shadow' | 'active';
 
 const TRUE_VALUES = new Set(['true', '1', 'yes', 'on', 'enabled']);
 const PROTECTED_TIERS = new Set(['constitutional', 'critical']);
-const EXTENDABLE_TIERS = new Set(['important']);
+const LEGACY_EXTENDABLE_TIERS = new Set(['important']);
+const SPARE_ONLY_EXTENDABLE_TIERS = new Set(['important', 'normal', 'temporary']);
 const DEFAULT_MIN_WEIGHTED_HITS = 2;
 const DEFAULT_MIN_SESSION_COUNT = 2;
 const DEFAULT_MIN_QUERY_COUNT = 1;
+const DEFAULT_MIN_IMPORTANCE_WEIGHT = 0.85;
+const DEFAULT_MIN_TRUST_SCORE = 0.70;
+const DEFAULT_MIN_AGE_DAYS = 0;
 const DEFAULT_EXTEND_DAYS = 30;
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
 
@@ -29,10 +34,14 @@ export interface RetentionCandidateRow {
   sessionId: string | null;
   deleteAfter: string;
   importanceTier: string | null;
+  importanceWeight?: number | null;
+  qualityScore?: number | null;
+  retentionTrustScore?: number | null;
   decayHalfLifeDays: number | null;
   isPinned: number | null;
   accessCount: number | null;
   lastAccessed: string | number | null;
+  createdAt?: string | null;
 }
 
 export interface FeedbackRetentionReducerOptions {
@@ -41,6 +50,9 @@ export interface FeedbackRetentionReducerOptions {
   minWeightedHitCount?: number;
   minSessionCount?: number;
   minQueryCount?: number;
+  minImportanceWeight?: number;
+  minTrustScore?: number;
+  minAgeDays?: number;
 }
 
 export interface FeedbackRetentionDecisionResult {
@@ -93,24 +105,91 @@ function weightedScore(signal: AggregatedSignal | null): number {
   return Math.max(0, signal?.weightedScore ?? 0);
 }
 
+function finiteAxis(value: number | null | undefined): number | null {
+  return typeof value === 'number' && Number.isFinite(value) ? value : null;
+}
+
+function candidateAgeDays(row: RetentionCandidateRow, runAt: number): number | null {
+  if (typeof row.createdAt !== 'string' || row.createdAt.trim().length === 0) {
+    return null;
+  }
+  const createdAt = Date.parse(row.createdAt);
+  if (!Number.isFinite(createdAt)) {
+    return null;
+  }
+  return Math.max(0, (runAt - createdAt) / MS_PER_DAY);
+}
+
 function buildExtendedDeleteAfter(signal: AggregatedSignal | null, runAt: number, extendDays: number): string {
   const base = Math.max(runAt, signal?.lastSeen ?? 0);
   return new Date(base + (extendDays * MS_PER_DAY)).toISOString();
 }
 
+type FeedbackThresholds = Required<Pick<
+  FeedbackRetentionReducerOptions,
+  'minWeightedHitCount' | 'minSessionCount' | 'minQueryCount'
+>>;
+
+type SpareOnlyThresholds = Required<Pick<
+  FeedbackRetentionReducerOptions,
+  'minImportanceWeight' | 'minTrustScore' | 'minAgeDays'
+>>;
+
 function shouldExtend(
   row: RetentionCandidateRow,
   signal: AggregatedSignal | null,
-  options: Required<Pick<FeedbackRetentionReducerOptions, 'minWeightedHitCount' | 'minSessionCount' | 'minQueryCount'>>,
+  options: FeedbackThresholds,
+  tiers = LEGACY_EXTENDABLE_TIERS,
 ): boolean {
   const tier = normalizeTier(row.importanceTier);
-  if (tier === null || !EXTENDABLE_TIERS.has(tier)) {
+  if (tier === null || !tiers.has(tier)) {
     return false;
   }
 
   return weightedHitCount(signal) >= options.minWeightedHitCount
     && sessionCount(signal) >= options.minSessionCount
     && queryCount(signal) >= options.minQueryCount;
+}
+
+function validateSpareOnlyThresholds(options: SpareOnlyThresholds): void {
+  if (options.minImportanceWeight >= 1 && options.minTrustScore >= 1) {
+    throw new Error('Retention forgetting floors cannot both be at the ceiling');
+  }
+}
+
+function evaluateSpareOnlyRetention(
+  row: RetentionCandidateRow,
+  signal: AggregatedSignal | null,
+  feedbackThresholds: FeedbackThresholds,
+  spareThresholds: SpareOnlyThresholds,
+  runAt: number,
+): Pick<FeedbackRetentionDecisionResult, 'decision' | 'reason' | 'nextDeleteAfter'> | null {
+  const importance = finiteAxis(row.importanceWeight);
+  if (row.importanceWeight != null && importance === null) {
+    return { decision: 'protect', reason: 'non_finite_importance_axis', nextDeleteAfter: null };
+  }
+  if (importance !== null && importance >= spareThresholds.minImportanceWeight) {
+    return { decision: 'protect', reason: 'importance_axis_spared', nextDeleteAfter: null };
+  }
+
+  const trust = finiteAxis(row.retentionTrustScore ?? row.qualityScore);
+  if ((row.retentionTrustScore != null || row.qualityScore != null) && trust === null) {
+    return { decision: 'protect', reason: 'non_finite_trust_axis', nextDeleteAfter: null };
+  }
+  if (trust !== null && trust >= spareThresholds.minTrustScore) {
+    return { decision: 'protect', reason: 'trust_axis_spared', nextDeleteAfter: null };
+  }
+
+  const ageDays = candidateAgeDays(row, runAt);
+  if (ageDays !== null && ageDays < spareThresholds.minAgeDays) {
+    return { decision: 'protect', reason: 'age_axis_spared', nextDeleteAfter: null };
+  }
+
+  if (shouldExtend(row, signal, feedbackThresholds, SPARE_ONLY_EXTENDABLE_TIERS)) {
+    return { decision: 'extend', reason: 'positive_feedback_spare', nextDeleteAfter: null };
+  }
+
+  return null;
 }
 
 export function isFeedbackRetentionLearningEnabled(
@@ -140,6 +219,15 @@ export function evaluateFeedbackRetention(
     minSessionCount: options.minSessionCount ?? DEFAULT_MIN_SESSION_COUNT,
     minQueryCount: options.minQueryCount ?? DEFAULT_MIN_QUERY_COUNT,
   };
+  const retentionForgettingEnabled = isRetentionForgettingEnabled();
+  const spareOnlyThresholds = {
+    minImportanceWeight: options.minImportanceWeight ?? DEFAULT_MIN_IMPORTANCE_WEIGHT,
+    minTrustScore: options.minTrustScore ?? DEFAULT_MIN_TRUST_SCORE,
+    minAgeDays: options.minAgeDays ?? DEFAULT_MIN_AGE_DAYS,
+  };
+  if (retentionForgettingEnabled) {
+    validateSpareOnlyThresholds(spareOnlyThresholds);
+  }
   const signalsById = new Map(signals.map((signal) => [signal.memoryId, signal]));
   const byDecision: Record<RetentionDecision, number> = { delete: 0, extend: 0, protect: 0 };
 
@@ -157,6 +245,23 @@ export function evaluateFeedbackRetention(
       decision = 'extend';
       reason = 'important_positive_feedback';
       nextDeleteAfter = buildExtendedDeleteAfter(signal, runAt, extendDays);
+    } else if (retentionForgettingEnabled) {
+      const spareDecision = evaluateSpareOnlyRetention(
+        candidate,
+        signal,
+        thresholds,
+        spareOnlyThresholds,
+        runAt,
+      );
+      if (spareDecision !== null) {
+        decision = spareDecision.decision;
+        reason = spareDecision.reason;
+        nextDeleteAfter = decision === 'extend'
+          ? buildExtendedDeleteAfter(signal, runAt, extendDays)
+          : spareDecision.nextDeleteAfter;
+      } else if (tier === 'important' && weightedScore(signal) > 0) {
+        reason = 'positive_signal_below_retention_threshold';
+      }
     } else if (tier === 'important' && weightedScore(signal) > 0) {
       reason = 'positive_signal_below_retention_threshold';
     }

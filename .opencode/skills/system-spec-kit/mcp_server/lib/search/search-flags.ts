@@ -619,6 +619,44 @@ export function isEmptyResultRecoveryEnabled(): boolean {
 }
 
 /**
+ * Retention forgetting safety layer.
+ * Default: FALSE. Set SPECKIT_RETENTION_FORGETTING_V1=true to enable the
+ * conservative spare-only retention axes and live incoming-edge protection.
+ */
+export function isRetentionForgettingEnabled(): boolean {
+  return isOptInEnabled('SPECKIT_RETENTION_FORGETTING_V1');
+}
+
+/**
+ * Semantic edge substrate.
+ * Default: FALSE. Enables consolidation-time edge fact embeddings while keeping
+ * live recall consumers behind their own shadow flags.
+ */
+export function isSemanticEdgeLayerEnabled(): boolean {
+  return isOptInEnabled('SPECKIT_SEMANTIC_EDGE_LAYER');
+}
+
+/** Default-off semantic nearest-edge lookup side channel. */
+export function isEdgeVectorIndexEnabled(): boolean {
+  return isOptInEnabled('SPECKIT_EDGE_VECTOR_INDEX');
+}
+
+/** Default-off edge-aware triplet scoring primitive. */
+export function isEdgeTripletSearchEnabled(): boolean {
+  return isOptInEnabled('SPECKIT_EDGE_TRIPLET_SEARCH');
+}
+
+/** Default-off semantic edge dedup/merge shadow gate. */
+export function isEdgeSemanticDedupEnabled(): boolean {
+  return isOptInEnabled('SPECKIT_EDGE_SEMANTIC_DEDUP');
+}
+
+/** Default-off cross-pair semantic invalidation shadow gate. */
+export function isEdgeSemanticInvalidationEnabled(): boolean {
+  return isOptInEnabled('SPECKIT_EDGE_SEMANTIC_INVALIDATION');
+}
+
+/**
  * Per-result calibrated confidence scoring.
  * Default: TRUE (graduated). Set SPECKIT_RESULT_CONFIDENCE_V1=false to disable.
  */

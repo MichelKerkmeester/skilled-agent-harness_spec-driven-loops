@@ -2,12 +2,18 @@
 // MODULE: Feedback Retention Reducer Tests
 // ───────────────────────────────────────────────────────────────────
 
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import type { AggregatedSignal } from '../lib/feedback/batch-learning.js';
 import { resolveEdgeTierBasement } from '../lib/feedback/edge-tier-basement.js';
 import { evaluateFeedbackRetention } from '../lib/feedback/feedback-retention-reducer.js';
 import type { RetentionCandidateRow } from '../lib/feedback/feedback-retention-reducer.js';
+
+const RETENTION_FORGETTING_FLAG = 'SPECKIT_RETENTION_FORGETTING_V1';
+
+afterEach(() => {
+  vi.unstubAllEnvs();
+});
 
 function candidate(
   id: number,
@@ -113,6 +119,52 @@ describe('feedback retention reducer', () => {
       weightedHitCount: 0.5,
       weightedScore: 6,
     });
+  });
+
+  it('extends normal rows with supported positive feedback when retention forgetting is enabled', () => {
+    vi.stubEnv(RETENTION_FORGETTING_FLAG, 'true');
+
+    const result = evaluateFeedbackRetention([candidate(1, 'normal')], [signal(1)], {
+      runAt: 1_780_000_000_000,
+      extendDays: 7,
+    });
+
+    expect(result.decisions[0]).toMatchObject({
+      memoryId: 1,
+      decision: 'extend',
+      reason: 'positive_feedback_spare',
+      weightedHitCount: 3,
+      queryCount: 2,
+      sessionCount: 3,
+    });
+    expect(result.decisions[0].nextDeleteAfter).toBe('2026-06-04T20:26:40.000Z');
+  });
+
+  it('spares rows before comparison when importance or trust axes are non-finite', () => {
+    vi.stubEnv(RETENTION_FORGETTING_FLAG, 'true');
+
+    const result = evaluateFeedbackRetention([
+      candidate(1, 'normal', { importanceWeight: Number.NaN }),
+      candidate(2, 'temporary', { retentionTrustScore: Number.NEGATIVE_INFINITY }),
+    ], []);
+
+    expect(result.decisions.map((decision) => ({
+      id: decision.memoryId,
+      decision: decision.decision,
+      reason: decision.reason,
+    }))).toEqual([
+      { id: 1, decision: 'protect', reason: 'non_finite_importance_axis' },
+      { id: 2, decision: 'protect', reason: 'non_finite_trust_axis' },
+    ]);
+  });
+
+  it('refuses retention forgetting thresholds that put both floors at the ceiling', () => {
+    vi.stubEnv(RETENTION_FORGETTING_FLAG, 'true');
+
+    expect(() => evaluateFeedbackRetention([candidate(1, 'normal')], [], {
+      minImportanceWeight: 1,
+      minTrustScore: 1,
+    })).toThrow(/floors cannot both be at the ceiling/i);
   });
 });
 

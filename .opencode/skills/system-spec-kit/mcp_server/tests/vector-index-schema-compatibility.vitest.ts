@@ -14,11 +14,14 @@ describe('Vector index schema compatibility validator', () => {
         'causal_edge_tombstones',
         'memory_trigger_embeddings',
         'memory_idempotency_receipts',
+        'edge_vector_embeddings',
       ]);
       expect(report.missingColumns.memory_index).toContain('spec_folder');
+      expect(report.missingColumns.causal_edges).toContain('fact_text');
       expect(report.missingColumns.causal_edge_tombstones).toContain('restore_metadata');
       expect(report.missingColumns.memory_trigger_embeddings).toContain('phrase_hash');
       expect(report.missingColumns.memory_idempotency_receipts).toContain('receipt_key');
+      expect(report.missingColumns.edge_vector_embeddings).toContain('edge_id');
     } finally {
       db.close();
     }
@@ -66,6 +69,7 @@ describe('Vector index schema compatibility validator', () => {
           last_review TEXT,
           document_type TEXT,
           quality_score REAL,
+          retention_trust_score REAL,
           chunk_id TEXT,
           chunk_fingerprint TEXT,
           chunk_kind TEXT,
@@ -165,12 +169,34 @@ describe('Vector index schema compatibility validator', () => {
           confidence REAL DEFAULT 1.0,
           extraction_method TEXT DEFAULT 'manual',
           derived_id TEXT,
+          fact_text TEXT,
           last_accessed TEXT,
           UNIQUE(source_id, target_id, relation, source_anchor, target_anchor)
         );
         CREATE UNIQUE INDEX idx_causal_edges_derived_id
           ON causal_edges(derived_id)
           WHERE derived_id IS NOT NULL;
+        CREATE INDEX idx_causal_edges_retention_incoming
+          ON causal_edges(target_id, relation, source_id);
+
+        CREATE TABLE edge_vector_embeddings (
+          edge_id INTEGER NOT NULL,
+          profile_key TEXT NOT NULL DEFAULT 'default',
+          input_kind TEXT NOT NULL DEFAULT 'edge' CHECK(input_kind IN ('edge')),
+          model_id TEXT NOT NULL,
+          dimensions INTEGER NOT NULL,
+          embedding BLOB,
+          embedding_status TEXT NOT NULL DEFAULT 'pending' CHECK(embedding_status IN ('pending', 'ready', 'failed')),
+          failure_reason TEXT,
+          fact_hash TEXT,
+          created_at TEXT NOT NULL DEFAULT (datetime('now')),
+          updated_at TEXT NOT NULL DEFAULT (datetime('now')),
+          PRIMARY KEY (edge_id, profile_key, input_kind, model_id, dimensions)
+        );
+        CREATE INDEX idx_edge_vector_embeddings_status
+          ON edge_vector_embeddings(embedding_status, updated_at);
+        CREATE INDEX idx_edge_vector_embeddings_edge
+          ON edge_vector_embeddings(edge_id);
 
         CREATE TABLE causal_edge_tombstones (
           id INTEGER PRIMARY KEY AUTOINCREMENT,

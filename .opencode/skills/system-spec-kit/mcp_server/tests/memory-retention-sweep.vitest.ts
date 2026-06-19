@@ -12,6 +12,7 @@ import { runMemoryRetentionSweep, __retentionSweepTestables } from '../lib/gover
 import { createMemoryIndexTestDatabase } from './fixtures/memory-index-db';
 
 const SOFT_DELETE_FLAG = 'SPECKIT_SOFT_DELETE_TOMBSTONES';
+const RETENTION_FORGETTING_FLAG = 'SPECKIT_RETENTION_FORGETTING_V1';
 
 function withSoftDeleteFlag<T>(value: string | undefined, fn: () => T): T {
   const previous = process.env[SOFT_DELETE_FLAG];
@@ -28,6 +29,25 @@ function withSoftDeleteFlag<T>(value: string | undefined, fn: () => T): T {
       delete process.env[SOFT_DELETE_FLAG];
     } else {
       process.env[SOFT_DELETE_FLAG] = previous;
+    }
+  }
+}
+
+function withRetentionForgettingFlag<T>(value: string | undefined, fn: () => T): T {
+  const previous = process.env[RETENTION_FORGETTING_FLAG];
+  if (value === undefined) {
+    delete process.env[RETENTION_FORGETTING_FLAG];
+  } else {
+    process.env[RETENTION_FORGETTING_FLAG] = value;
+  }
+
+  try {
+    return fn();
+  } finally {
+    if (previous === undefined) {
+      delete process.env[RETENTION_FORGETTING_FLAG];
+    } else {
+      process.env[RETENTION_FORGETTING_FLAG] = previous;
     }
   }
 }
@@ -541,6 +561,61 @@ describe('memory retention sweep', () => {
         lastAccessed: 1234,
         decayHalfLifeDays: 90,
       });
+    });
+
+    it('protects expired rows with live incoming allowlisted edges when retention forgetting is enabled', () => {
+      const db = createMemoryIndexTestDatabase({ includeContentColumns: true, includeWorkingMemory: true });
+      insertMemory(db, 1, isoOffset(-3_600_000), 'referenced');
+      insertMemory(db, 2, isoOffset(-3_600_000), 'ambient');
+      db.prepare(`
+        INSERT INTO causal_edges (source_id, target_id, relation)
+        VALUES ('99', '1', 'SUPPORTS')
+      `).run();
+      db.prepare(`
+        INSERT INTO causal_edges (source_id, target_id, relation)
+        VALUES ('99', '2', 'audit')
+      `).run();
+
+      const result = withRetentionForgettingFlag('true', () => runMemoryRetentionSweep(db));
+
+      expect(result.swept).toBe(1);
+      expect(result.deletedIds).toEqual([2]);
+      expect(result.protectedIds).toEqual([1]);
+      expect(memoryIds(db)).toEqual([1]);
+      expect(withRetentionForgettingFlag('true', () => (
+        __retentionSweepTestables.hasLiveIncomingRetentionEdge(db, 1)
+      ))).toBe(true);
+      expect(withRetentionForgettingFlag('true', () => (
+        __retentionSweepTestables.hasLiveIncomingRetentionEdge(db, 2)
+      ))).toBe(false);
+      expect(protectedAuditRows(db)).toEqual([
+        { memory_id: 1, decision: 'deny', reason: 'retention_live_edge_protected' },
+      ]);
+    });
+
+    it('keeps live-edge protection default-off and ignores invalidated incoming edges', () => {
+      const db = createMemoryIndexTestDatabase({ includeContentColumns: true, includeWorkingMemory: true });
+      db.exec('ALTER TABLE causal_edges ADD COLUMN invalid_at TEXT');
+      insertMemory(db, 1, isoOffset(-3_600_000), 'default off');
+      insertMemory(db, 2, isoOffset(-3_600_000), 'invalidated');
+      db.prepare(`
+        INSERT INTO causal_edges (source_id, target_id, relation, invalid_at)
+        VALUES ('99', '1', 'supports', NULL)
+      `).run();
+      db.prepare(`
+        INSERT INTO causal_edges (source_id, target_id, relation, invalid_at)
+        VALUES ('99', '2', 'supports', '2026-06-10T00:00:00.000Z')
+      `).run();
+
+      const defaultOff = withRetentionForgettingFlag(undefined, () => (
+        __retentionSweepTestables.hasLiveIncomingRetentionEdge(db, 1)
+      ));
+      const invalidated = withRetentionForgettingFlag('true', () => (
+        __retentionSweepTestables.hasLiveIncomingRetentionEdge(db, 2)
+      ));
+
+      expect(defaultOff).toBe(false);
+      expect(invalidated).toBe(false);
     });
   });
 

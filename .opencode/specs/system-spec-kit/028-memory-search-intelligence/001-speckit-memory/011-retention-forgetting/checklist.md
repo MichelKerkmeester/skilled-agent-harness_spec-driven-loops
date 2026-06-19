@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: Memory Retention / Forgetting + Recall-Diversity Result-Shaping (028 Wave-1)"
-description: "Verification Date: 2026-06-19 (planning state — implementation pending)"
+description: "Verification Date: 2026-06-19 (partial implementation — retention spare-only + live-edge allowlist done)"
 trigger_phrases:
   - "verification"
   - "checklist"
@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/011-retention-forgetting"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Author retention/forgetting verification checklist (planning state)"
-    next_safe_action: "Implement T101 spare-only forget eligibility"
+    recent_action: "Implemented retention spare-only eligibility and live-edge allowlist"
+    next_safe_action: "Run strict validation, then continue semantic edge layer"
     blockers: []
     key_files:
       - "spec.md"
@@ -24,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-001-011-retention-forgetting"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 45
     open_questions: []
     answered_questions: []
 ---
@@ -44,7 +44,7 @@ _memory:
 | **[P1]** | Required | Must complete OR get user approval |
 | **[P2]** | Optional | Can defer with documented reason |
 
-> PLANNING STATE: This sub-phase is planning-only. Implementation candidates (T101-T105) are PENDING; this checklist gates the future implementation pass. Items remain `[ ]` until each candidate is built and verified.
+> PARTIAL IMPLEMENTATION STATE: retention spare-only eligibility and live incoming-edge allowlist are implemented and tested. Benchmark-gated recall shaping and shared-infra quarantine remain pending.
 <!-- /ANCHOR:protocol -->
 
 ---
@@ -64,8 +64,8 @@ _memory:
 
 - [ ] CHK-010 [P0] Code passes lint/format checks
 - [ ] CHK-011 [P0] No console errors or warnings
-- [ ] CHK-012 [P1] Error handling implemented (non-finite SPARE guard; both-floors-at-ceiling refusal)
-- [ ] CHK-013 [P1] Code follows project patterns (reducer/pipeline/flag-gated conventions)
+- [x] CHK-012 [P1] Error handling implemented (non-finite SPARE guard; both-floors-at-ceiling refusal)
+- [x] CHK-013 [P1] Code follows project patterns for the implemented reducer/sweep/schema/flag-gated conventions
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -98,9 +98,9 @@ _memory:
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets
-- [ ] CHK-031 [P0] Input validation implemented (non-finite eligibility inputs SPARE, never doom)
-- [ ] CHK-032 [P1] Destructive-adjacent paths default-OFF (quarantine + all erasure deferrals); no persistent deny-list of erased ids introduced
+- [x] CHK-030 [P0] No hardcoded secrets
+- [x] CHK-031 [P0] Input validation implemented (non-finite eligibility inputs SPARE, never doom)
+- [x] CHK-032 [P1] Destructive-adjacent paths default-OFF for implemented retention behavior; no persistent deny-list of erased ids introduced
 <!-- /ANCHOR:security -->
 
 ---
@@ -109,7 +109,7 @@ _memory:
 ## Documentation
 
 - [x] CHK-040 [P1] Spec/plan/tasks synchronized (authored together; per-candidate STATUS in spec §6)
-- [ ] CHK-041 [P1] Code comments adequate (durable WHY only; no artifact-ID labels per comment-hygiene)
+- [x] CHK-041 [P1] Code comments adequate (durable WHY only; no artifact-ID labels per comment-hygiene)
 - [ ] CHK-042 [P2] ENV_REFERENCE.md updated for the new default-OFF reconsolidation flag (if applicable)
 <!-- /ANCHOR:docs -->
 
@@ -129,9 +129,9 @@ _memory:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 11 | 2/11 |
-| P1 Items | 12 | 1/12 |
+| P0 Items | 11 | 4/11 |
+| P1 Items | 12 | 5/12 |
 | P2 Items | 2 | 0/2 |
 
-**Verification Date**: 2026-06-19 (planning state — implementation pending)
+**Verification Date**: 2026-06-19 (partial implementation — retention spare-only + live-edge allowlist done)
 <!-- /ANCHOR:summary -->

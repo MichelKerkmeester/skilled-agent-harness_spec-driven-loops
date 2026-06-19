@@ -10,9 +10,9 @@
     "semantic-edge-layer",
     "gr-fact-embedding-on-edge"
   ],
-  "lastUpdated": "2026-06-19T06:21:34.059Z",
+  "lastUpdated": "2026-06-19T09:26:36.257Z",
   "specId": "017",
-  "folderSlug": "017-semantic-edge-layer",
+  "folderSlug": "semantic-edge-layer",
   "parentChain": [
     "system-spec-kit",
     "028-memory-search-intelligence",

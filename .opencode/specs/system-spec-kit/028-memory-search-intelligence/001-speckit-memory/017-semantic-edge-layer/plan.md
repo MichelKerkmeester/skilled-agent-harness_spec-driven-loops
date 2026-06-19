@@ -13,10 +13,9 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/017-semantic-edge-layer"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored L3 plan: substrate-first, consolidation-time, shadow-gated"
-    next_safe_action: "Land additive migration + edge-vector store with a back-compat test"
+    recent_action: "Implemented substrate-first semantic-edge schema, store, embedder hook, and retrieval primitive"
+    next_safe_action: "Run strict validation and final typecheck/tests"
     blockers:
-      - "schema-migration: causal_edges has no fact_text/embedding columns; no edge vector collection"
       - "shared-infra-dep: gate-zero corpus reindex precedes any recall benchmark"
     key_files:
       - "spec.md"
@@ -27,7 +26,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-001-017-semantic-edge-layer"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 65
     open_questions:
       - "Edge-vector recall lift + dedup false-merge rate pending the post-reindex benchmark"
     answered_questions: []

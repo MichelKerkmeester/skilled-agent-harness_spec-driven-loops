@@ -7,6 +7,8 @@ import {
   ensureSchemaVersion,
   migrateConstitutionalTier,
   rollbackBitemporalWindowSchema,
+  rollbackRetentionForgettingSchema,
+  rollbackSemanticEdgeLayerSchema,
   runMigrations,
   SCHEMA_VERSION,
   validateBackwardCompatibility,
@@ -893,6 +895,113 @@ describe('vector-index schema migration refinements', () => {
       'ingested_at',
       'expired_at',
     ]));
+  });
+
+  it('adds retention forgetting and semantic edge schema during the v41 upgrade idempotently', () => {
+    const database = new Database(':memory:');
+    openDatabases.add(database);
+
+    database.exec(`
+      CREATE TABLE memory_index (
+        id INTEGER PRIMARY KEY,
+        quality_score REAL
+      );
+      INSERT INTO memory_index (id, quality_score)
+      VALUES (1, 0.82), (2, NULL);
+
+      CREATE TABLE causal_edges (
+        id INTEGER PRIMARY KEY,
+        source_id TEXT NOT NULL,
+        target_id TEXT NOT NULL,
+        relation TEXT NOT NULL
+      );
+      INSERT INTO causal_edges (id, source_id, target_id, relation)
+      VALUES
+        (1, '99', '1', 'supports'),
+        (2, '99', '2', 'audit');
+    `);
+
+    runMigrations(database, 40, 41);
+    runMigrations(database, 40, 41);
+
+    expect(getColumnNames(database, 'memory_index').filter((name) => name === 'retention_trust_score')).toHaveLength(1);
+    const rows = database.prepare(`
+      SELECT id, retention_trust_score AS retentionTrustScore
+      FROM memory_index
+      ORDER BY id
+    `).all() as Array<{ id: number; retentionTrustScore: number | null }>;
+    expect(rows).toEqual([
+      { id: 1, retentionTrustScore: 0.82 },
+      { id: 2, retentionTrustScore: null },
+    ]);
+
+    const indexes = (database.prepare(`
+      SELECT name
+      FROM sqlite_master
+      WHERE type = 'index' AND tbl_name = 'causal_edges'
+    `).all() as Array<{ name: string }>).map((row) => row.name);
+    expect(indexes).toContain('idx_causal_edges_retention_incoming');
+
+    const plan = database.prepare(`
+      EXPLAIN QUERY PLAN
+      SELECT id
+      FROM causal_edges INDEXED BY idx_causal_edges_retention_incoming
+      WHERE target_id = ? AND relation = ?
+    `).all('1', 'supports') as Array<{ detail: string }>;
+    expect(plan.some((row) => row.detail.includes('idx_causal_edges_retention_incoming'))).toBe(true);
+
+    expect(getColumnNames(database, 'causal_edges').filter((name) => name === 'fact_text')).toHaveLength(1);
+    const factRows = database.prepare(`
+      SELECT id, fact_text AS factText
+      FROM causal_edges
+      ORDER BY id
+    `).all() as Array<{ id: number; factText: string | null }>;
+    expect(factRows).toEqual([
+      { id: 1, factText: '99 supports 1' },
+      { id: 2, factText: '99 audit 2' },
+    ]);
+
+    const edgeVectorColumns = getColumnNames(database, 'edge_vector_embeddings');
+    expect(edgeVectorColumns).toEqual(expect.arrayContaining([
+      'edge_id',
+      'profile_key',
+      'input_kind',
+      'model_id',
+      'dimensions',
+      'embedding',
+      'embedding_status',
+      'fact_hash',
+    ]));
+    const edgeVectorIndexes = (database.prepare(`
+      SELECT name
+      FROM sqlite_master
+      WHERE type = 'index' AND tbl_name = 'edge_vector_embeddings'
+    `).all() as Array<{ name: string }>).map((row) => row.name);
+    expect(edgeVectorIndexes).toEqual(expect.arrayContaining([
+      'idx_edge_vector_embeddings_status',
+      'idx_edge_vector_embeddings_edge',
+    ]));
+
+    rollbackSemanticEdgeLayerSchema(database, 'test semantic rollback');
+    rollbackSemanticEdgeLayerSchema(database, 'test semantic rollback idempotent');
+    expect(getColumnNames(database, 'causal_edges')).not.toContain('fact_text');
+    const semanticTable = database.prepare(`
+      SELECT name
+      FROM sqlite_master
+      WHERE type = 'table' AND name = 'edge_vector_embeddings'
+    `).get() as { name: string } | undefined;
+    expect(semanticTable).toBeUndefined();
+
+    rollbackRetentionForgettingSchema(database, 'test rollback');
+    rollbackRetentionForgettingSchema(database, 'test rollback idempotent');
+
+    expect(getColumnNames(database, 'memory_index')).not.toContain('retention_trust_score');
+    const indexesAfterRollback = (database.prepare(`
+      SELECT name
+      FROM sqlite_master
+      WHERE type = 'index' AND tbl_name = 'causal_edges'
+    `).all() as Array<{ name: string }>).map((row) => row.name);
+    expect(indexesAfterRollback).not.toContain('idx_causal_edges_retention_incoming');
   });
 
   it('initializes fresh databases with the v38 bi-temporal foundation', () => {

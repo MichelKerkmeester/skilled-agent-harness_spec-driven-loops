@@ -48,7 +48,7 @@ _memory:
 
 **Task Format**: `T### [P?] Description (file path)`
 
-> STATUS NOTE: None of the 8 candidates shipped in 030 Wave-0 (verified against `030/spec.md` §14 + `git log 1ecc531431..HEAD`). All implement tasks below are therefore `[ ]` PENDING. The deferral-recording tasks (T140-T142) are `[x]` — the deferrals are recorded by this spec's §6.
+> STATUS NOTE: None of the 8 candidates shipped in 030 Wave-0 (verified against `030/spec.md` §14 + `git log 1ecc531431..HEAD`). Current task state below reflects this implementation pass: retention spare-only and live-edge allowlist are done; benchmark-gated recall shaping and shared-infra quarantine remain pending.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -57,7 +57,7 @@ _memory:
 ## Phase 1: Setup
 
 - [ ] T001 Confirm forget-learning double-gate (`SPECKIT_FEEDBACK_RETENTION_LEARNING` + `mode=shadow`) and register a default-OFF reconsolidation flag (`.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md`)
-- [ ] T002 [P] Locate the forget-allowlist symbol; decide label-column vs live-edge-join (resolves iter-016 NEEDS-BENCHMARK) (`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-retention-sweep.ts`)
+- [x] T002 [P] Locate the forget-allowlist symbol; decided live-edge join using `causal_edges.relation` plus `idx_causal_edges_retention_incoming` (`.opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts`)
 - [ ] T003 [P] Capture recall baseline for C7-A + never-truncate (regression-baseline rule; result-set changes)
 <!-- /ANCHOR:phase-1 -->
 
@@ -66,9 +66,9 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T101 **P0 M-spare-only-eligibility** — extend `EXTENDABLE_TIERS`, full strict-AND, finite-guards before the floor comparison, trust/age axes, refuse both-floors-at-ceiling; ship shadow/dark (`.opencode/skills/system-spec-kit/mcp_server/lib/feedback-retention-reducer.ts:153`) [research: deltas/iter-016, iter-032 H32-01]
+- [x] T101 **P0 M-spare-only-eligibility** — implemented `SPECKIT_RETENTION_FORGETTING_V1` default-OFF spare-only behavior, finite-guards, trust/age axes, and both-floors-at-ceiling refusal (`.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-retention-reducer.ts`, `.opencode/skills/system-spec-kit/mcp_server/tests/feedback-retention-reducer.vitest.ts`)
 - [ ] T102 **P0 C7-A dominance cap** — in-place partition before the stage-4 final slice; default N=3; spill-if-underfilled; key `spec_folder` primary / `sessionId` secondary; no scoring change (`.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage4-filter.ts:305-309`) [research: deltas/iter-004 c7-a]
-- [ ] T103 [B] **P1 forget-allowlist** — `unreferenced` axis reads live 6-label incoming edges (`DERIVED_FROM`/`SUPPORTS`/`DEPENDS_ON`/`RELATES_TO`/`HAS_FAILURE`/`MENTIONS`); exclude AUDIT/provenance/scope; blocked on T002 label column (`.opencode/skills/system-spec-kit/mcp_server/handlers/memory-retention-sweep.ts:142`) [research: deltas/iter-012, iter-032 H32-02]
+- [x] T103 **P1 forget-allowlist** — implemented live 6-label incoming-edge protection (`DERIVED_FROM`/`SUPPORTS`/`DEPENDS_ON`/`RELATES_TO`/`HAS_FAILURE`/`MENTIONS`); excludes AUDIT/provenance/scope; default-OFF behind `SPECKIT_RETENTION_FORGETTING_V1` (`.opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts`, `.opencode/skills/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts`)
 - [ ] T104 [B] **P1 M-never-truncate-always-surface** — cap the constitutional always-surface prefix so it cannot starve regular results; blocked on T003 benchmark (`.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:435`) [research: synthesis/01 200-iter recovery]
 - [ ] T105 **P1 M-trust-gated-quarantine** — trust gate before `reconsolidate()` merge routing; quarantine low-trust side via CONTRADICTS edge-presence read-exclusion; surfaced reconcile signal (victim/trust/survivor); default-OFF flag (`.opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts:121`) [research: deltas/iter-013, iter-018]
 <!-- /ANCHOR:phase-2 -->
@@ -78,10 +78,10 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T120 Unit tests: spare-on-positive-feedback, non-finite-spare, both-floors-at-ceiling refusal (spare-only)
-- [ ] T121 Unit tests: single-folder-dominance + spill-if-underfilled (C7-A); allowlist-vs-ambient-edge (forget-allowlist); constitutional-starvation (never-truncate); gate-only-when-trust>=0.7 (quarantine)
+- [x] T120 Unit tests: spare-on-positive-feedback, non-finite-spare, both-floors-at-ceiling refusal (spare-only)
+- [ ] T121 Unit tests: allowlist-vs-ambient-edge is done; single-folder-dominance + spill-if-underfilled (C7-A), constitutional-starvation (never-truncate), and gate-only-when-trust>=0.7 (quarantine) remain pending with their candidates
 - [ ] T122 Re-run touched-module vitest; confirm primary order unchanged where order-preserving; re-run recall baseline and report the delta
-- [ ] T123 Reconcile spec §6 STATUS table against 030 §14 (done → commit hash; pending → gate)
+- [x] T123 Reconcile spec §6 STATUS table against 030 §14 (done → implemented in worktree; pending → gate)
 
 ### Deferral recording (erasure surface — own-packet / threat-model-gated)
 

@@ -213,6 +213,7 @@ interface InsertEdgeMetadataOptions {
   extractionMethod?: string;
   derivedSource?: string;
   ruleVersion?: string;
+  factText?: string | null;
 }
 
 interface InsertEdgeOutcome {
@@ -425,6 +426,9 @@ function insertEdge(
       const derivedId = columns.has('derived_id')
         ? deriveGeneratedEdgeId(sourceId, targetId, relation, createdBy, anchors, metadata)
         : null;
+      const factText = metadata.factText?.trim()
+        || evidence?.trim()
+        || `${sourceId} ${relation} ${targetId}`;
 
       if (existing) {
         const assignments = [
@@ -453,6 +457,10 @@ function insertEdge(
         if (derivedId !== null) {
           assignments.push('derived_id = ?');
           params.push(derivedId);
+        }
+        if (columns.has('fact_text') && metadata.factText !== undefined) {
+          assignments.push('fact_text = ?');
+          params.push(factText);
         }
         params.push(existing.id);
 
@@ -512,6 +520,10 @@ function insertEdge(
         if (derivedId !== null) {
           insertColumns.push('derived_id');
           insertValues.push(derivedId);
+        }
+        if (columns.has('fact_text')) {
+          insertColumns.push('fact_text');
+          insertValues.push(factText);
         }
 
         (database.prepare(`
@@ -577,6 +589,7 @@ function insertEdgesBatch(
     extractionMethod?: string;
     derivedSource?: string;
     ruleVersion?: string;
+    factText?: string | null;
   }>
 ): { inserted: number; failed: number; skippedManual: number } {
   if (!db) return { inserted: 0, failed: edges.length, skippedManual: 0 };
@@ -604,6 +617,7 @@ function insertEdgesBatch(
           extractionMethod: edge.extractionMethod,
           derivedSource: edge.derivedSource,
           ruleVersion: edge.ruleVersion,
+          factText: edge.factText ?? null,
         },
       );
       if (id !== null) inserted++;

@@ -15,6 +15,7 @@ import {
   recordFeedbackRetentionAudit,
   resolveFeedbackRetentionMode,
 } from '../feedback/feedback-retention-reducer.js';
+import { isRetentionForgettingEnabled } from '../search/search-flags.js';
 import type {
   FeedbackRetentionDecisionResult,
   FeedbackRetentionMode,
@@ -55,10 +56,14 @@ export interface RetentionExpiredRow {
   sessionId: string | null;
   deleteAfter: string;
   importanceTier: string | null;
+  importanceWeight: number | null;
+  qualityScore: number | null;
+  retentionTrustScore: number | null;
   decayHalfLifeDays: number | null;
   isPinned: number | null;
   accessCount: number | null;
   lastAccessed: string | number | null;
+  createdAt: string | null;
   deletedAt: string | null;
 }
 
@@ -143,10 +148,14 @@ function hasIndex(database: Database.Database, indexName: string): boolean {
  */
 const OPTIONAL_RETENTION_COLUMNS: ReadonlyArray<{ column: string; alias: string }> = [
   { column: 'importance_tier', alias: 'importanceTier' },
+  { column: 'importance_weight', alias: 'importanceWeight' },
+  { column: 'quality_score', alias: 'qualityScore' },
+  { column: 'retention_trust_score', alias: 'retentionTrustScore' },
   { column: 'decay_half_life_days', alias: 'decayHalfLifeDays' },
   { column: 'is_pinned', alias: 'isPinned' },
   { column: 'access_count', alias: 'accessCount' },
   { column: 'last_accessed', alias: 'lastAccessed' },
+  { column: 'created_at', alias: 'createdAt' },
 ];
 
 function isSoftDeleteTombstonesEnabled(): boolean {
@@ -194,6 +203,14 @@ function selectExpiredRows(database: Database.Database, useSoftDeleteTombstones:
 
 /** Importance tiers that must never be deleted on TTL expiry alone. */
 const PROTECTED_RETENTION_TIERS = new Set(['constitutional', 'critical']);
+const RETENTION_LIVE_INCOMING_RELATIONS = [
+  'derived_from',
+  'supports',
+  'depends_on',
+  'relates_to',
+  'has_failure',
+  'mentions',
+] as const;
 
 /**
  * Tier-aware deletion decision evaluated BEFORE the destructive delete path.
@@ -209,6 +226,49 @@ function isProtectedFromRetentionDelete(row: RetentionExpiredRow): boolean {
     return true;
   }
   return row.isPinned != null && Number(row.isPinned) !== 0;
+}
+
+function getTableColumns(database: Database.Database, tableName: string): Set<string> {
+  if (!hasTable(database, tableName)) {
+    return new Set();
+  }
+  return new Set(
+    (database.prepare(`PRAGMA table_info(${tableName})`).all() as Array<{ name: string }>)
+      .map((row) => row.name),
+  );
+}
+
+function hasLiveIncomingRetentionEdge(database: Database.Database, memoryId: number): boolean {
+  if (!isRetentionForgettingEnabled() || !hasTable(database, 'causal_edges')) {
+    return false;
+  }
+  const columns = getTableColumns(database, 'causal_edges');
+  if (!columns.has('target_id') || !columns.has('relation')) {
+    return false;
+  }
+  const placeholders = RETENTION_LIVE_INCOMING_RELATIONS.map(() => '?').join(', ');
+  const invalidAtPredicate = columns.has('invalid_at')
+    ? "AND (invalid_at IS NULL OR trim(cast(invalid_at AS text)) = '')"
+    : '';
+  const row = database.prepare(`
+    SELECT 1 AS present
+    FROM causal_edges
+    WHERE target_id = ?
+      AND lower(relation) IN (${placeholders})
+      ${invalidAtPredicate}
+    LIMIT 1
+  `).get(String(memoryId), ...RETENTION_LIVE_INCOMING_RELATIONS) as { present?: number } | undefined;
+  return row?.present === 1;
+}
+
+function getRetentionProtectionReason(database: Database.Database, row: RetentionExpiredRow): string | null {
+  if (isProtectedFromRetentionDelete(row)) {
+    return 'retention_tier_protected';
+  }
+  if (hasLiveIncomingRetentionEdge(database, row.id)) {
+    return 'retention_live_edge_protected';
+  }
+  return null;
 }
 
 // Re-validate inside the delete transaction: a concurrent writer can raise or
@@ -257,8 +317,8 @@ function isStillExpired(database: Database.Database, id: number, useSoftDeleteTo
   return getCurrentExpiredRow(database, id, useSoftDeleteTombstones) !== null;
 }
 
-/** Test-only surface for the retention TOCTOU guard. */
-export const __retentionSweepTestables = { getCurrentExpiredRow, isStillExpired };
+/** Test-only surface for retention guards. */
+export const __retentionSweepTestables = { getCurrentExpiredRow, isStillExpired, hasLiveIncomingRetentionEdge };
 
 function countRows(database: Database.Database): number {
   const row = database.prepare('SELECT COUNT(*) AS count FROM memory_index').get() as { count: number };
@@ -485,7 +545,7 @@ export function runMemoryRetentionSweep(
   if (dryRun || candidates.length === 0) {
     const totalRows = countRows(database);
     const dryRunProtectedIds = candidates
-      .filter((candidate) => isProtectedFromRetentionDelete(candidate))
+      .filter((candidate) => getRetentionProtectionReason(database, candidate) !== null)
       .map((candidate) => candidate.id);
     return {
       swept: 0,
@@ -582,9 +642,10 @@ export function runMemoryRetentionSweep(
         }
         feedbackDeleteDecision = decision;
       }
-      // Tier basement: protected rows are never deleted on TTL expiry alone.
-      // Audited as decision='deny' (the delete was denied) with a protection reason.
-      if (isProtectedFromRetentionDelete(currentCandidate)) {
+      // Rows protected by tier, pin, or live incoming semantic edges are never
+      // deleted on TTL expiry alone.
+      const protectionReason = getRetentionProtectionReason(database, currentCandidate);
+      if (protectionReason !== null) {
         if (feedbackRetention && feedbackDeleteDecision) {
           recordFeedbackRetentionAudit(database, currentCandidate, feedbackDeleteDecision, {
             mode: feedbackRetention.mode,
@@ -603,11 +664,12 @@ export function runMemoryRetentionSweep(
           userId: currentCandidate.userId ?? undefined,
           agentId: currentCandidate.agentId ?? undefined,
           sessionId: currentCandidate.sessionId ?? undefined,
-          reason: 'retention_tier_protected',
+          reason: protectionReason,
           metadata: {
             originalDeleteAfter: currentCandidate.deleteAfter,
             importanceTier: currentCandidate.importanceTier,
             isPinned: currentCandidate.isPinned,
+            retentionForgetting: isRetentionForgettingEnabled(),
             specFolder: currentCandidate.specFolder,
             filePath: currentCandidate.filePath,
           },

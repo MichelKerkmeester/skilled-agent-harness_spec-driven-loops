@@ -5,7 +5,11 @@
 // Strengthening, staleness detection, edge bounds enforcement.
 // Behind SPECKIT_CONSOLIDATION flag.
 import type Database from 'better-sqlite3';
-import { isConsolidationEnabled } from '../search/search-flags.js';
+import { isConsolidationEnabled, isSemanticEdgeLayerEnabled } from '../search/search-flags.js';
+import {
+  markEdgeVectorFailed,
+  upsertEdgeVector,
+} from './edge-vector-store.js';
 import {
   updateEdge,
   getStaleEdges,
@@ -55,6 +59,26 @@ export interface ConsolidationResult {
   hebbian: { strengthened: number; decayed: number };
   stale: { flagged: number };
   edgeBounds: { rejected: number };
+  semanticEdges?: SemanticEdgeEmbeddingSummary;
+}
+
+export interface EdgeEmbeddingProvider {
+  embedEdgeText(text: string): readonly number[] | Float32Array | null;
+  modelId?: string;
+  profileKey?: string;
+}
+
+export interface ConsolidationCycleOptions {
+  edgeEmbeddingProvider?: EdgeEmbeddingProvider | null;
+  edgeEmbeddingLimit?: number;
+}
+
+export interface SemanticEdgeEmbeddingSummary {
+  attempted: number;
+  embedded: number;
+  skipped: number;
+  failed: number;
+  providerAvailable: boolean;
 }
 
 /* ───────────────────────────────────────────────────────────────
@@ -487,6 +511,84 @@ function scanReadOnly(database: Database.Database): {
   };
 }
 
+function runSemanticEdgeEmbeddingPass(
+  database: Database.Database,
+  options: ConsolidationCycleOptions = {},
+): SemanticEdgeEmbeddingSummary | null {
+  if (!isSemanticEdgeLayerEnabled()) {
+    return null;
+  }
+  const provider = options.edgeEmbeddingProvider ?? null;
+  if (!provider) {
+    return {
+      attempted: 0,
+      embedded: 0,
+      skipped: 0,
+      failed: 0,
+      providerAvailable: false,
+    };
+  }
+
+  let attempted = 0;
+  let embedded = 0;
+  let skipped = 0;
+  let failed = 0;
+  const limit = Math.max(1, Math.floor(options.edgeEmbeddingLimit ?? 100));
+
+  try {
+    const rows = database.prepare(`
+      SELECT id, fact_text
+      FROM causal_edges
+      WHERE fact_text IS NOT NULL
+        AND TRIM(CAST(fact_text AS text)) != ''
+      ORDER BY id ASC
+      LIMIT ?
+    `).all(limit) as Array<{ id: number; fact_text: string | null }>;
+
+    for (const row of rows) {
+      const factText = row.fact_text?.trim();
+      if (!factText) {
+        skipped += 1;
+        continue;
+      }
+      attempted += 1;
+      try {
+        const embedding = provider.embedEdgeText(factText);
+        if (!embedding || embedding.length === 0) {
+          skipped += 1;
+          continue;
+        }
+        upsertEdgeVector(database, {
+          edgeId: row.id,
+          embedding,
+          factText,
+          modelId: provider.modelId,
+          profileKey: provider.profileKey,
+        });
+        embedded += 1;
+      } catch (error: unknown) {
+        const message = error instanceof Error ? error.message : String(error);
+        markEdgeVectorFailed(database, row.id, message, {
+          modelId: provider.modelId,
+          profileKey: provider.profileKey,
+        });
+        failed += 1;
+      }
+    }
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.warn(`[consolidation] semantic edge embedding pass skipped: ${message}`);
+  }
+
+  return {
+    attempted,
+    embedded,
+    skipped,
+    failed,
+    providerAvailable: true,
+  };
+}
+
 /**
  * Run a full N3-lite consolidation cycle:
  * 1. Contradiction scan
@@ -496,18 +598,23 @@ function scanReadOnly(database: Database.Database): {
  *
  * Designed to run as a weekly batch job.
  */
-export function runConsolidationCycle(database: Database.Database): ConsolidationResult {
+export function runConsolidationCycle(
+  database: Database.Database,
+  options: ConsolidationCycleOptions = {},
+): ConsolidationResult {
   // Contradiction scan + cluster surfacing + staleness + bounds (read-only)
   const { contradictions, stale, edgeBounds } = scanReadOnly(database);
 
   // Hebbian strengthening + decay
   const hebbian = runHebbianCycle(database);
+  const semanticEdges = runSemanticEdgeEmbeddingPass(database, options);
 
   return {
     contradictions,
     hebbian,
     stale,
     edgeBounds,
+    ...(semanticEdges ? { semanticEdges } : {}),
   };
 }
 
@@ -558,6 +665,7 @@ function isConsolidationDue(database: Database.Database): boolean {
  */
 export function runConsolidationCycleIfEnabled(
   database: Database.Database,
+  options: ConsolidationCycleOptions = {},
 ): ConsolidationResult | null {
   if (!isConsolidationEnabled()) return null;
 
@@ -590,6 +698,7 @@ export function runConsolidationCycleIfEnabled(
 
     // Write phase under the immediate lock: Hebbian strengthening + decay.
     const hebbian = runHebbianCycle(database);
+    const semanticEdges = runSemanticEdgeEmbeddingPass(database, options);
 
     (database.prepare(`
       INSERT INTO consolidation_state (id, last_run_at)
@@ -602,7 +711,13 @@ export function runConsolidationCycleIfEnabled(
       beganImmediate = false;
     }
 
-    return { contradictions, hebbian, stale, edgeBounds };
+    return {
+      contradictions,
+      hebbian,
+      stale,
+      edgeBounds,
+      ...(semanticEdges ? { semanticEdges } : {}),
+    };
   } catch (err: unknown) {
     if (beganImmediate) {
       try {

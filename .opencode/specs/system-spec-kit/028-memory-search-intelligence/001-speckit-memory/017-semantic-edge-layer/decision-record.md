@@ -12,10 +12,10 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/017-semantic-edge-layer"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored ADR-001: substrate-first, consolidation-time, shadow-gated"
-    next_safe_action: "Decide the edge-vector backend (shared vs own collection) + embed model"
+    recent_action: "Accepted semantic-edge architecture"
+    next_safe_action: "Run strict validation and final typecheck/tests"
     blockers:
-      - "schema-migration: greenfield fact_text column + edge-vector collection"
+      - "shared-infra-dep: gate-zero corpus reindex precedes benchmark/promotion"
     key_files:
       - "spec.md"
       - "plan.md"
@@ -24,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-001-017-semantic-edge-layer"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 65
     open_questions:
       - "Edge-vector collection: share the memory vector-store backend or its own?"
     answered_questions: []
@@ -44,7 +44,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-06-19 |
 | **Deciders** | Operator, 028 research (iters 19/21) |
 
