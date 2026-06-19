@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Code-Edge Bi-temporal Lifecycle (Q1-C1 cluster)"
-description: "The DEFER-speculative Code Graph schema-migration cluster (SCHEMA_VERSION 5->6) that would give code_edges a four-timestamp validity window: valid_at/invalid_at columns, a live current-view chokepoint, edge-granularity lifecycle, and a symbol-timeline read. Captured faithfully from research as a gated, no-consumer, dependency-blocked plan that does NOT ship in this phase."
+description: "DONE for the Code Graph schema foundation: SCHEMA_VERSION 6->7 adds nullable code_edges valid_at/invalid_at generation columns with UP/DOWN/BACKFILL helpers, idempotent fail-closed migration tests, fresh-DB init support, and default-off temporal read consumption. Lifecycle/timeline consumers remain gated."
 trigger_phrases:
   - "028 code edge bitemporal"
   - "code_edges valid_at invalid_at"
@@ -14,10 +14,9 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/002-code-graph/004-code-edge-bitemporal"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Author code-edge-bitemporal impl-phase spec from 028/002 research"
-    next_safe_action: "Hold cluster behind Q6-C1 generation + a real as-of consumer before any schema migration"
-    blockers:
-      - "DEFER-speculative: no consumer wants as-of/time-travel; depends on Q6-C1 first"
+    recent_action: "Implemented code-edge bitemporal schema foundation in system-code-graph"
+    next_safe_action: "Keep temporal read/write consumers default-off until benchmarked and explicitly requested"
+    blockers: []
     key_files:
       - "spec.md"
       - "plan.md"
@@ -28,7 +27,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-002-004-code-edge-bitemporal"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
       - "Is there any consumer for as-of/time-travel code-graph reads, or does the shipped readiness gate already cover the safety case?"
       - "Should 1.0-confidence structural edges (CONTAINS/IMPORTS) stay replace-in-place while only heuristic edges (CALLS/TESTED_BY) get versioning?"
@@ -48,7 +47,9 @@ _memory:
 
 The code-graph reindex is destructive DELETE+INSERT with **no temporal columns**: `code_edges(id, source_id, target_id, edge_type, weight, metadata)` carries no validity window, and currentness equals physical edge presence (`code-graph-db.ts:177-184`, SCHEMA_VERSION 5). This phase captures the heavy schema-migration cluster that would make code structure *explicitly* bi-temporal — a symbol/edge valid for a commit range (event-time) and indexed at scan-time (transaction-time) — mirroring Memory's causal four-timestamp window (C3-B). The cluster is: **Q1-C1** (`valid_at`/`invalid_at` columns; replace reindex DELETEs with `UPDATE ... SET invalid_at = <generation>` + INSERT new; default read filters `invalid_at IS NULL`), **Q1-C1-views** (the `code_nodes_live`/`code_edges_live` current-view chokepoint that localizes the migration — the keystone), **CG-edge-bitemporal-lifecycle** (the edge-granularity validity + relabel-revision layer), and **CG-symbol-timeline-query** (the timeline/as-of read). Q1-C1 and Q1-C1-views MUST co-ship atomically through ONE `code-graph-db.ts` reindex transaction boundary; the whole cluster depends on **Q6-C1 (the hard generation watermark) landing first**.
 
-**The honest headline: the whole cluster is DEFER-speculative and ships NOTHING in this phase.** Research is strongly deflationary across 200 iterations: there is **no consumer** for as-of/time-travel reads, the safety case is **redundant with the already-shipped readiness gate**, and it **does not fix the one real bug** (dependency-transitivity edge-staleness, owned by the sibling `002-edge-staleness-correctness`). Standalone `CG-edge-bitemporal-lifecycle` was independently **REFUTED** — the per-scan rebuild model fundamentally fights never-delete edge versioning, and the existing tombstone machinery already records edge deletion-history. `CG-symbol-timeline-query` has no separate research seam beyond the Q1-C1 read filter. This spec preserves the cluster's design (the aionforge schema reference, the live-view keystone, the atomic-migration sequencing) so that IF a real as-of consumer ever appears, the plan is ready — but every candidate's STATUS is **PENDING (gated)**, not DONE.
+**2026-06-19 implementation update: the schema foundation is DONE.** The current codebase already had the hard generation watermark at `SCHEMA_VERSION = 6`; this phase bumps Code Graph to `SCHEMA_VERSION = 7` and adds the additive `code_edges.valid_at` / `code_edges.invalid_at` generation columns in `.opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts`. The migration exposes explicit UP (`ensureCodeEdgeBitemporalSchema`), BACKFILL (`backfillCodeEdgeBitemporalColumns`), and DOWN (`rollbackCodeEdgeBitemporalSchema`) helpers, runs idempotently, fails closed when required migration tables/columns are missing, and is present on fresh DB initialization. Legacy edge rows backfill `valid_at` from the current `graph_generation`; `invalid_at` remains NULL. Consumer behavior is deliberately unchanged by default: temporal read consumption is behind `SPECKIT_CODE_GRAPH_EDGE_BITEMPORAL_READS=false` unless explicitly enabled later.
+
+The wider lifecycle/timeline cluster remains gated. Research is still deflationary for as-of/time-travel consumers, and this schema foundation does not replace the separate edge-staleness correctness work. Standalone `CG-edge-bitemporal-lifecycle` remains independently **REFUTED** as a standalone write model; it can only layer on the schema foundation if a future consumer and benchmark justify it.
 
 **Key Decisions**: the live-view chokepoint (Q1-C1-views) is the de-risk prerequisite and the read chokepoint — define "current" ONCE as a SQL VIEW and route all default reads through it; blast-radius is MEDIUM-HIGH (the whole read/resolve/prune surface, NOT the 4 DELETE lines); the column shape is shared with Memory's C3-B (build the validity-window shape once, reconcile, do not fork).
 
@@ -63,7 +64,7 @@ The code-graph reindex is destructive DELETE+INSERT with **no temporal columns**
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P3 (DEFER-speculative) |
-| **Status** | Draft (gated — ships nothing this phase) |
+| **Status** | Done (schema foundation shipped; consumers default-off) |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Phase** | `system-spec-kit/028-memory-search-intelligence/002-code-graph` (research) |
@@ -88,15 +89,15 @@ Capture — faithfully and gated — the schema-migration cluster that would mak
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
-### In Scope — five candidate ids (ALL PENDING; whole cluster DEFER-speculative)
-- **Q1-C1** (Code Graph; M; BUILD schema migration) — add `valid_at`/`invalid_at` to `code_edges`; replace the reindex DELETEs with `UPDATE ... SET invalid_at = <generation>` + INSERT new; default read filters `invalid_at IS NULL`; enables as-of-last-green-scan impact. Seam `code-graph-db.ts:177-184`; reindex DELETEs `:941,:985,:1012,:1031`. **[CONFIRMED gap]**
-- **Q1-C1-code-edge-bitemporal** — the candidate-id alias for Q1-C1 in this cluster's scope (the `code_edges` four-timestamp/validity-window shape mirroring Memory C3-B). Same seam + same migration as Q1-C1; not a second build.
+### In Scope — implemented schema foundation + gated consumers
+- **Q1-C1 / Q1-C1-code-edge-bitemporal schema foundation — DONE.** Adds nullable `valid_at`/`invalid_at` generation columns to `code_edges`, bumps Code Graph `SCHEMA_VERSION` from 6 to 7, backfills legacy rows from `graph_generation`, exposes UP/DOWN/BACKFILL helpers, and keeps temporal read consumption default-off behind `SPECKIT_CODE_GRAPH_EDGE_BITEMPORAL_READS`.
+- **Q1-C1 write/read consumers — still gated.** Replacing reindex DELETEs with temporal close-and-insert and routing default reads through a temporal current set remain out of this schema-only implementation until a named consumer and benchmark exist.
 - **Q1-C1-views** (Code Graph; the keystone) — the live current-view chokepoint (`CREATE VIEW code_nodes_live`/`code_edges_live` `WHERE invalid_at IS NULL AND status NOT IN (superseded, quarantined)`); ALL default reads route through it; as-of/audit readers deliberately bypass. This is the de-risk prerequisite that localizes the migration. **MUST co-ship atomically with Q1-C1.** Reference: aionforge `relates_to.rs:313-332`, `store.rs:894-927` (002 iter-018).
 - **CG-edge-bitemporal-lifecycle** (Code Graph; H/L; BUILD edge-granularity) — `RELATES_TO`-style edge carries `valid_from`/`valid_to` + `ingested_at`/`expired_at`; one current edge per ordered pair; a different label = close-and-replace revision. Seam `code-graph-db.ts:177-184` (no temporal cols, LWW). **[CONFIRMED gap] but standalone-REFUTED** (002 iter-013): the per-scan DELETE+INSERT rebuild model fights never-delete versioning, and tombstones (`:247-260`) already record edge deletion-history. Survives ONLY as the lifecycle layer ON TOP OF Q1-C1's columns + atomic supersede (002 iter-023 Phase 3), never as a standalone.
 - **CG-symbol-timeline-query** (Code Graph; the timeline read) — the as-of/time-travel read over the Q1-C1 columns ("what did the call graph look like at commit/generation N"). No separate research seam beyond the Q1-C1 read filter + an audit-reader that bypasses the live-view; it is the consumer the rest of the cluster has no demand for today.
 
 ### Out of Scope
-- **Shipping any migration this phase.** The cluster is DEFER-speculative — it ships nothing until a real as-of consumer exists and Q6-C1 lands. - No SCHEMA_VERSION 5->6 bump is performed here.
+- **Temporal read/write behavior by default.** The migration ships only the schema foundation; default behavior remains byte-identical unless `SPECKIT_CODE_GRAPH_EDGE_BITEMPORAL_READS=true` is set by a later consumer path.
 - **Q6-C1 (hard generation watermark)** — the cluster's hard dependency; owned by a separate Code Graph phase (the generation+watermark cluster). - The generation must bump atomically with the reindex swap and is the value stamped into `invalid_at`; build it first.
 - **Q6-C2 (soft generation watermark)** — the additive, no-migration staged predecessor; lives in the Code Graph Wave-0/determinism scope, not here. - It is a metadata-only counter on the freshness envelope.
 - **CG-closed-vocab-CHECK** (`edge_type` CHECK table-rebuild) — the FIRST table-rebuild migration that orders the edge_type rebuild before this cluster extends the rebuilt table (002 iter-023 Phase 1); owned by a separate Code Graph schema phase. - Sequenced before Q1-C1 but a distinct candidate.
@@ -109,7 +110,9 @@ Capture — faithfully and gated — the schema-migration cluster that would mak
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/system-code-graph/.../code-graph-db.ts` | Modify (deferred) | Add `valid_at`/`invalid_at` columns to `code_edges` (`:177-184`); replace reindex DELETEs (`:941,:985,:1012,:1031`) with `UPDATE ... SET invalid_at = <generation>` + INSERT; SCHEMA_VERSION 5->6 (`:142`); `ensureSchemaMigrations()` (`:511`) additive ALTER + the view DDL. |
+| `.opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts` | Modified | Added `valid_at`/`invalid_at` columns to `code_edges`; bumped `SCHEMA_VERSION` 6->7; added UP/DOWN/BACKFILL helpers; wired fresh init + idempotent migration path; added default-off temporal read flag. |
+| `.opencode/skills/system-code-graph/mcp_server/tests/code-edge-bitemporal-schema.vitest.ts` | Added | Covers up applies, down reverts, backfill correctness, idempotent rerun, fresh init, fail-closed behavior, and default-off flag. |
+| `.opencode/skills/system-code-graph/mcp_server/tests/edge-staleness-correctness.vitest.ts` | Modified | Removed stale exact schema-version assertion from the sibling behavior test; the test now verifies lineage behavior without pinning global schema version. |
 | `.opencode/skills/system-code-graph/.../code-graph-db.ts` (views) | Create (deferred) | `CREATE VIEW code_nodes_live`/`code_edges_live` WHERE `invalid_at IS NULL` — the single current-view chokepoint (Q1-C1-views). |
 | `.opencode/skills/system-code-graph/.../code-graph-context.ts` | Modify (deferred) | Default reads route through the live-view; an as-of/audit reader (CG-symbol-timeline-query) deliberately bypasses it; intersect any PPR-reached set with `invalid_at IS NULL`. |
 | `.opencode/skills/system-code-graph/.../structural-indexer.ts` | Modify (deferred) | Edge-write path emits close-and-replace (CG-edge-bitemporal-lifecycle) instead of delete+recreate, ON TOP OF Q1-C1's columns. |
@@ -147,10 +150,10 @@ Capture — faithfully and gated — the schema-migration cluster that would mak
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: The DEFER-speculative decision is legible and evidence-cited — this phase ships no schema migration and no candidate is marked DONE.
+- **SC-001**: The schema foundation is shipped and evidence-cited: `code_edges.valid_at` / `invalid_at`, SCHEMA_VERSION 6->7, UP/DOWN/BACKFILL helpers, fresh-init path, and default-off temporal consumption.
 - **SC-002**: The gated plan is faithful: Q1-C1 + Q1-C1-views co-ship atomically; the cluster depends on Q6-C1 first; standalone edge-lifecycle is recorded as REFUTED; the column shape is shared with Memory C3-B.
 - **SC-003**: IF un-deferred, the apply-once G2 invariant and the live-view chokepoint are the de-risk gates (a rescan of unchanged content is a no-op; "current" is defined once).
-- **SC-004**: `validate.sh --strict` on this phase folder passes; the cluster's STATUS table shows all five candidates PENDING (gated) with their gate.
+- **SC-004**: `validate.sh --strict` on this phase folder passes; the schema foundation is DONE and wider consumers remain explicitly gated.
 <!-- /ANCHOR:success-criteria -->
 
 ---

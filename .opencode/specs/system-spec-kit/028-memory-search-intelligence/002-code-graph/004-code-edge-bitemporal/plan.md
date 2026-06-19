@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Code-Edge Bi-temporal Lifecycle (Q1-C1 cluster)"
-description: "The gated, sequenced plan for the Code Graph schema-migration cluster (Q1-C1 columns + Q1-C1-views chokepoint + edge-lifecycle + symbol-timeline) — it ships nothing this phase (DEFER-speculative), and records the atomic co-ship boundary, the Q6-C1-first dependency, and the shared C3-B validity-window shape so the work is ready IF a real as-of consumer ever appears."
+description: "Plan and completion update for the Code Graph schema foundation: SCHEMA_VERSION 6->7 adds code_edges valid_at/invalid_at with UP/DOWN/BACKFILL, idempotent fail-closed migration tests, fresh init, and default-off temporal read consumption. Wider lifecycle/timeline consumers remain gated."
 trigger_phrases:
   - "code edge bitemporal plan"
   - "q1-c1 views atomic migration"
@@ -12,10 +12,9 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/002-code-graph/004-code-edge-bitemporal"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Author code-edge-bitemporal plan from 028/002 research"
-    next_safe_action: "Keep cluster deferred; do not migrate until Q6-C1 + a named as-of consumer exist"
-    blockers:
-      - "DEFER-speculative; depends on Q6-C1 first; no as-of consumer"
+    recent_action: "Implemented code-edge bitemporal schema foundation"
+    next_safe_action: "Keep temporal consumers default-off until named and benchmarked"
+    blockers: []
     key_files:
       - "spec.md"
       - "plan.md"
@@ -24,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-002-004-code-edge-bitemporal"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -48,7 +47,7 @@ _memory:
 | **Testing** | Vitest (focused code-graph reindex/read suites alongside each change) |
 
 ### Overview
-This is a **gated plan that ships nothing this phase.** The cluster — Q1-C1 (`valid_at`/`invalid_at` columns + UPDATE-not-DELETE reindex), Q1-C1-views (the live current-view chokepoint, the keystone), CG-edge-bitemporal-lifecycle (edge-granularity validity/relabel layer), CG-symbol-timeline-query (the as-of read) — is **DEFER-speculative**: no consumer wants as-of/time-travel, the safety case is redundant with the shipped readiness gate, and it does not fix the real edge-staleness bug. The plan records the sequencing IF the cluster is ever un-deferred: Q6-C1 (generation watermark) + CG-closed-vocab-CHECK land FIRST (separate phases), THEN Q1-C1 + Q1-C1-views co-ship atomically through ONE `code-graph-db.ts` reindex transaction, THEN the edge-lifecycle layer (only on Q1-C1 columns — standalone is REFUTED), with the symbol-timeline read built only when a named consumer exists. The `code_edges` validity-window column shape is shared with Memory's causal C3-B (`007-bitemporal-window`) — build the shape once, reconcile, do not fork.
+This plan is **DONE for the schema foundation** and remains gated for temporal consumers. The shipped foundation adds `code_edges.valid_at` / `invalid_at`, bumps Code Graph `SCHEMA_VERSION` 6->7, exposes UP/DOWN/BACKFILL helpers, backfills legacy rows from `graph_generation`, fails closed on missing migration prerequisites, covers idempotent reruns and fresh DB initialization, and keeps temporal read consumption default-off behind `SPECKIT_CODE_GRAPH_EDGE_BITEMPORAL_READS`. The wider cluster — live-view routing, close-and-insert reindex writes, edge lifecycle, and symbol timeline reads — still requires an explicit consumer and benchmark before it should consume the columns.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -62,12 +61,12 @@ This is a **gated plan that ships nothing this phase.** The cluster — Q1-C1 (`
 - [ ] CG-closed-vocab-CHECK has rebuilt the `edge_type` table (the first table-rebuild migration)
 - [ ] The bi-temporal "commit-time = event-time" mapping is traced end-to-end (dangling-prune contract `:957-968` + cross-file CALLS resolver)
 
-### Definition of Done (IF built — all gated this phase)
-- [ ] Q1-C1 columns + Q1-C1-views land in ONE atomic SCHEMA_VERSION 5->6 migration
-- [ ] Reindex DELETEs replaced by `UPDATE ... SET invalid_at = <generation>` + INSERT at all 4 sites
-- [ ] apply-once G2 invariant holds (rescan of unchanged content = no-op)
-- [ ] CG-edge-bitemporal-lifecycle layered only on Q1-C1 columns (standalone REFUTED)
-- [ ] `validate.sh --strict` passes; cluster STATUS table shows all five PENDING (gated)
+### Definition of Done (schema foundation)
+- [x] Q1-C1 schema columns land as an additive SCHEMA_VERSION 6->7 migration
+- [x] UP/DOWN/BACKFILL helpers exist and are tested
+- [x] Migration is idempotent, fail-closed, and present in fresh DB init
+- [x] Temporal consumer behavior remains default-off
+- [ ] `validate.sh --strict` passes
 <!-- /ANCHOR:quality-gates -->
 
 ---

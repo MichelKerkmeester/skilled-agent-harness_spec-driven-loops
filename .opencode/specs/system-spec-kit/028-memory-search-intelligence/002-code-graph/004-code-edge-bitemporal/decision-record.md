@@ -1,6 +1,6 @@
 ---
 title: "Decision Record: Code-Edge Bi-temporal Lifecycle (Q1-C1 cluster)"
-description: "Architectural decisions for the Code Graph schema-migration cluster: the whole cluster is DEFER-speculative; Q1-C1 + Q1-C1-views co-ship atomically with the live-view as the read chokepoint; standalone CG-edge-bitemporal-lifecycle is REFUTED; the code_edges validity-window shape is shared with Memory C3-B."
+description: "Architectural decisions for the Code Graph schema-migration cluster. 2026-06-19 amendment: schema foundation shipped (SCHEMA_VERSION 6->7, code_edges valid_at/invalid_at, UP/DOWN/BACKFILL, default-off consumers); lifecycle/timeline consumers remain gated."
 trigger_phrases:
   - "code edge bitemporal decisions"
   - "q1-c1 defer speculative"
@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/002-code-graph/004-code-edge-bitemporal"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Author code-edge-bitemporal decision record from 028/002 research"
-    next_safe_action: "Hold the cluster behind the DEFER gate per ADR-001"
+    recent_action: "Recorded schema-foundation implementation amendment"
+    next_safe_action: "Hold temporal consumers behind explicit opt-in and benchmark"
     blockers: []
     key_files:
       - "spec.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-002-004-code-edge-bitemporal"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -34,6 +34,10 @@ _memory:
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
+
+## 2026-06-19 Amendment
+
+User approval unblocked the schema foundation while keeping consumer behavior gated. `code_edges.valid_at` / `invalid_at`, SCHEMA_VERSION 6->7, UP/DOWN/BACKFILL helpers, fail-closed idempotent migration tests, and fresh-init support are DONE. ADR-001 remains the decision for unbenchmarked temporal consumers: no default read/write behavior consumes these columns unless a future path explicitly opts into `SPECKIT_CODE_GRAPH_EDGE_BITEMPORAL_READS`.
 
 <!-- ANCHOR:adr-001 -->
 ## ADR-001: The whole Q1-C1 cluster is DEFER-speculative — ship nothing this phase

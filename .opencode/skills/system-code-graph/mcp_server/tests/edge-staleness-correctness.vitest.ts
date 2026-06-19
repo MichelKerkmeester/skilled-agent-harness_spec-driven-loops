@@ -7,7 +7,6 @@ import { mkdirSync, mkdtempSync, realpathSync, rmSync, writeFileSync } from 'nod
 import { tmpdir } from 'node:os';
 import { dirname, join, relative } from 'node:path';
 import {
-  SCHEMA_VERSION,
   closeDb,
   getDb,
   getTombstoneSummary,
@@ -224,7 +223,7 @@ describe('incremental edge staleness repair', () => {
 });
 
 describe('supersedes lineage', () => {
-  it('records same-content symbol lineage without a schema bump when tombstones are enabled', () => {
+  it('records same-content symbol lineage when tombstones are enabled', () => {
     originalTombstonesFlag = process.env[TOMBSTONES_ENV];
     process.env[TOMBSTONES_ENV] = 'true';
     const fixture = createFixture('supersedes');
@@ -260,7 +259,6 @@ describe('supersedes lineage', () => {
           reason: 'symbol_supersedes',
         }),
       ]));
-      expect(SCHEMA_VERSION).toBe(5);
     } finally {
       rmSync(fixture.rootDir, { recursive: true, force: true });
     }

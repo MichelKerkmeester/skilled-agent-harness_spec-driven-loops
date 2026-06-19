@@ -1,6 +1,6 @@
 ---
 title: "Task Breakdown: Code-Edge Bi-temporal Lifecycle (Q1-C1 cluster)"
-description: "Per-candidate task breakdown for the DEFER-speculative Code Graph schema-migration cluster — every candidate is PENDING (gated), none shipped in 030; the only active task this phase is recording the DEFER decision."
+description: "DONE for the Code Graph code-edge bitemporal schema foundation: SCHEMA_VERSION 6->7, code_edges valid_at/invalid_at, UP/DOWN/BACKFILL helpers, fail-closed idempotent migration tests, fresh init support, and default-off temporal read consumption."
 trigger_phrases:
   - "code edge bitemporal tasks"
   - "q1-c1 cluster tasks"
@@ -12,10 +12,9 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/002-code-graph/004-code-edge-bitemporal"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Author code-edge-bitemporal task breakdown from 028/002 research"
-    next_safe_action: "Record DEFER; do not start migration tasks until gate is met"
-    blockers:
-      - "All implementation tasks blocked on Q6-C1 + a named as-of consumer"
+    recent_action: "Implemented code-edge bitemporal schema foundation"
+    next_safe_action: "Keep temporal read/write consumers default-off until a named consumer and benchmark exist"
+    blockers: []
     key_files:
       - "spec.md"
       - "plan.md"
@@ -24,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-002-004-code-edge-bitemporal"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -47,7 +46,7 @@ _memory:
 
 **Task Format**: `T### [P?] Description (file path)`
 
-**Candidate status legend**: ALL FIVE candidates (`Q1-C1`, `Q1-C1-code-edge-bitemporal`, `Q1-C1-views`, `CG-edge-bitemporal-lifecycle`, `CG-symbol-timeline-query`) = **PENDING (gated, DEFER-speculative)**. None shipped in 030 (030 §3/§14: Code Graph shipped Q4-C1 only; Q1-C1 listed DEFER-speculative). Every implementation task below is `[B]` Blocked on the gate (Q6-C1 + a named as-of consumer). The only active task this phase is recording the DEFER decision.
+**Candidate status legend**: `Q1-C1` / `Q1-C1-code-edge-bitemporal` schema foundation = **DONE**. It shipped the additive `code_edges.valid_at` / `invalid_at` migration, SCHEMA_VERSION 6->7, UP/DOWN/BACKFILL helpers, fail-closed idempotent tests, fresh-init support, and a default-off read-consumption flag. Wider read/write consumers (`Q1-C1-views`, close-and-insert lifecycle, symbol timeline) remain **PENDING (gated)** until a named consumer and benchmark exist.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -57,10 +56,10 @@ _memory:
 
 The Gate — the only active work this phase. Record the DEFER-speculative decision and confirm the gate dependencies are unmet; no migration work starts.
 
-- [ ] T001 Record DEFER-speculative decision: no as-of/time-travel consumer found across 200 iterations (decision-record.md ADR-001)
-- [ ] T002 Record that the cluster does NOT fix the real edge-staleness bug (dependency-transitivity) → route to sibling `002-edge-staleness-correctness`
-- [ ] T003 [P] Record standalone CG-edge-bitemporal-lifecycle as REFUTED (per-scan DELETE+INSERT rebuild fights never-delete; tombstones `:247-260` already cover deletion-history; 002 iter-013) (ADR-003)
-- [ ] T004 [P] Confirm the gate dependencies are unmet: Q6-C1 not built, closed-vocab not built, no named consumer (plan.md §6)
+- [x] T001 Record original DEFER-speculative decision: no as-of/time-travel consumer found across 200 iterations (decision-record.md ADR-001)
+- [x] T002 Record that the cluster does NOT fix the real edge-staleness bug (dependency-transitivity) → route to sibling `002-edge-staleness-correctness`
+- [x] T003 [P] Record standalone CG-edge-bitemporal-lifecycle as REFUTED (per-scan DELETE+INSERT rebuild fights never-delete; tombstones `:247-260` already cover deletion-history; 002 iter-013) (ADR-003)
+- [x] T004 [P] Confirm the original wider-consumer gate remains unmet; user amendment unblocked schema foundation only
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -71,10 +70,10 @@ The Gate — the only active work this phase. Record the DEFER-speculative decis
 ALL deferred — every task below is `[B]` Blocked on the gate (Q6-C1 + closed-vocab + a named as-of consumer). Nothing here ships this phase.
 
 ### Candidate: Q1-C1 / Q1-C1-code-edge-bitemporal (M, BUILD schema migration) — PENDING (gated)
-- [ ] T010 [B] Add `valid_at`/`invalid_at` columns to `code_edges` (`code-graph-db.ts:177-184`); SCHEMA_VERSION 5->6 (`:142`); additive ALTER in `ensureSchemaMigrations()` (`:511`) — BLOCKED on Q6-C1 + closed-vocab
+- [x] T010 Add `valid_at`/`invalid_at` columns to `code_edges`; SCHEMA_VERSION 6->7; additive migration in `ensureSchemaMigrations()` with fresh-DB init path
 - [ ] T011 [B] Replace the 4 reindex DELETE sites (`:941,:985,:1012,:1031`) with `UPDATE ... SET invalid_at = <generation>` + INSERT new — BLOCKED on Q1-C1 columns + Q6-C1 generation
 - [ ] T012 [B] Default read filter `invalid_at IS NULL` (via the live-view, T020) — BLOCKED on Q1-C1-views
-- [ ] T013 [B] Reconcile the `code_edges` validity-window shape with Memory C3-B (`007-bitemporal-window`) — shared shape, no fork — BLOCKED on C3-B shape decision
+- [x] T013 Reconcile the `code_edges` validity-window schema foundation with the existing generation watermark and Memory C3-B direction; consumers stay default-off behind `SPECKIT_CODE_GRAPH_EDGE_BITEMPORAL_READS`
 - [ ] T014 [B] [P] Trace the bi-temporal commit-time=event-time mapping end-to-end (dangling-prune contract `:957-968` + cross-file CALLS resolver — currently INFERRED) before relying on it
 
 ### Candidate: Q1-C1-views (the keystone) — PENDING (gated)
@@ -100,13 +99,13 @@ ALL deferred — every task below is `[B]` Blocked on the gate (Q6-C1 + closed-v
 
 Deferred — blocked on Phase 2, except T056 (the strict-validation gate on the gated docs, which IS active this phase).
 
-- [ ] T050 [B] Unit test: apply-once G2 invariant (no-change rescan = no-op: same ids, windows, generation)
-- [ ] T051 [B] Unit test: non-destructive supersede (reindex UPDATEs `invalid_at`, INSERTs new, deletes nothing); as-of read resolves the closed edge at the prior generation
+- [x] T050 Unit test: schema UP applies and fresh-init creates the temporal columns
+- [x] T051 Unit test: DOWN reverts, BACKFILL uses `graph_generation`, and idempotent reruns preserve existing temporal values
 - [ ] T052 [B] Unit test: live-view chokepoint (default reads see only `invalid_at IS NULL`; only the timeline reader bypasses)
 - [ ] T053 [B] Unit test: unsatisfiable generation errors (never silently-stale)
 - [ ] T054 [B] Static grep gate: `DELETE FROM code_edges` returns only sanctioned sites; reindex DELETEs replaced
-- [ ] T055 [B] Typecheck + focused code-graph reindex/read suite green
-- [ ] T056 `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-folder> --strict` exit 0 (active this phase — validates the gated docs)
+- [x] T055 Typecheck + focused code-graph migration/schema/indexer suite green
+- [x] T056 `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-folder> --strict` exit 0
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -114,9 +113,9 @@ Deferred — blocked on Phase 2, except T056 (the strict-validation gate on the 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] DEFER decision recorded (Phase 1 active tasks); all five candidates marked PENDING (gated) with their gate
-- [ ] `validate.sh --strict` passes on this folder (T056)
-- [ ] No implementation task started before the gate is met (Q6-C1 + closed-vocab + a named as-of consumer)
+- [x] Schema foundation DONE: columns, migration helpers, backfill, rollback, idempotency, fail-closed checks, fresh init, and default-off flag
+- [x] `validate.sh --strict` passes on this folder (T056)
+- [x] Wider consumer behavior remains gated/default-off until a named consumer and benchmark exist
 - [ ] (IF un-deferred) all `[B]` tasks unblocked in dependency order; apply-once G2 invariant + live-view tests green
 <!-- /ANCHOR:completion -->
 

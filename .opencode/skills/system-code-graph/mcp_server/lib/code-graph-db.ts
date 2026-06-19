@@ -147,7 +147,7 @@ export interface DeleteAuditOptions {
 }
 
 /** Schema version for migration tracking */
-export const SCHEMA_VERSION = 6;
+export const SCHEMA_VERSION = 7;
 
 /** SQL schema for code graph tables */
 const SCHEMA_SQL = `
@@ -188,7 +188,9 @@ const SCHEMA_SQL = `
     target_id TEXT NOT NULL,
     edge_type TEXT NOT NULL,
     weight REAL DEFAULT 1.0,
-    metadata TEXT
+    metadata TEXT,
+    valid_at INTEGER,
+    invalid_at INTEGER
   );
 
   CREATE TABLE IF NOT EXISTS schema_version (
@@ -236,8 +238,18 @@ const SCHEMA_SQL = `
 const CODE_GRAPH_TOMBSTONES_ENV = 'SPECKIT_CODE_GRAPH_TOMBSTONES';
 const CODE_GRAPH_TOMBSTONE_LIMIT_ENV = 'SPECKIT_CODE_GRAPH_TOMBSTONE_LIMIT';
 const CODE_GRAPH_GENERATION_METADATA_KEY = 'graph_generation';
+export const CODE_GRAPH_EDGE_BITEMPORAL_READS_ENV = 'SPECKIT_CODE_GRAPH_EDGE_BITEMPORAL_READS';
 const DEFAULT_TOMBSTONE_LIMIT = 100;
 const MAX_TOMBSTONE_LIMIT = 10_000;
+
+const CODE_EDGE_BITEMPORAL_COLUMNS: ReadonlyArray<{ name: string; sql: string }> = [
+  { name: 'valid_at', sql: 'ALTER TABLE code_edges ADD COLUMN valid_at INTEGER' },
+  { name: 'invalid_at', sql: 'ALTER TABLE code_edges ADD COLUMN invalid_at INTEGER' },
+];
+
+export function codeGraphEdgeBitemporalReadsEnabled(): boolean {
+  return process.env[CODE_GRAPH_EDGE_BITEMPORAL_READS_ENV] === 'true';
+}
 
 function codeGraphTombstonesEnabled(): boolean {
   return process.env[CODE_GRAPH_TOMBSTONES_ENV] === 'true';
@@ -609,6 +621,133 @@ function hasColumn(database: Database.Database, tableName: string, columnName: s
   return rows.some((row) => row.name === columnName);
 }
 
+function tableExists(database: Database.Database, tableName: string): boolean {
+  const row = database.prepare(`
+    SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+  `).get(tableName) as { name: string } | undefined;
+  return row !== undefined;
+}
+
+function getTableColumns(database: Database.Database, tableName: string): string[] {
+  const rows = database.prepare(`PRAGMA table_info(${tableName})`).all() as Array<{ name: string }>;
+  return rows.map((row) => row.name);
+}
+
+function requireTableForMigration(database: Database.Database, tableName: string, context: string): void {
+  if (!tableExists(database, tableName)) {
+    throw new Error(`${context}: required table "${tableName}" is missing`);
+  }
+}
+
+function requireColumnsForMigration(
+  database: Database.Database,
+  tableName: string,
+  requiredColumns: readonly string[],
+  context: string,
+): void {
+  const columns = new Set(getTableColumns(database, tableName));
+  const missing = requiredColumns.filter((columnName) => !columns.has(columnName));
+  if (missing.length > 0) {
+    throw new Error(`${context}: ${tableName} missing required column(s): ${missing.join(', ')}`);
+  }
+}
+
+function addColumnIfMissing(
+  database: Database.Database,
+  tableName: string,
+  columns: Set<string>,
+  column: { name: string; sql: string },
+  context: string,
+): void {
+  if (columns.has(column.name)) {
+    return;
+  }
+  try {
+    database.exec(column.sql);
+    columns.add(column.name);
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    if (!message.includes('duplicate column')) {
+      throw error;
+    }
+    columns.add(column.name);
+  }
+  if (!hasColumn(database, tableName, column.name)) {
+    throw new Error(`${context}: failed to add ${tableName}.${column.name}`);
+  }
+}
+
+function dropColumnIfPresent(
+  database: Database.Database,
+  tableName: string,
+  columnName: string,
+  context: string,
+): void {
+  if (!tableExists(database, tableName)) {
+    return;
+  }
+  if (!hasColumn(database, tableName, columnName)) {
+    return;
+  }
+  database.exec(`ALTER TABLE ${tableName} DROP COLUMN ${columnName}`);
+  if (hasColumn(database, tableName, columnName)) {
+    throw new Error(`${context}: ${tableName}.${columnName} still exists after rollback`);
+  }
+}
+
+function getMigrationGeneration(database: Database.Database): number {
+  const row = database.prepare(`
+    SELECT value FROM code_graph_metadata WHERE key = ?
+  `).get(CODE_GRAPH_GENERATION_METADATA_KEY) as { value: string } | undefined;
+  return parseCodeGraphGeneration(row?.value ?? null);
+}
+
+export function backfillCodeEdgeBitemporalColumns(
+  database: Database.Database,
+  context: string = 'code-edge bitemporal backfill',
+): void {
+  requireTableForMigration(database, 'code_edges', context);
+  requireTableForMigration(database, 'code_graph_metadata', context);
+  requireColumnsForMigration(database, 'code_edges', ['valid_at', 'invalid_at'], context);
+
+  const generation = getMigrationGeneration(database);
+  database.prepare(`
+    UPDATE code_edges
+    SET valid_at = COALESCE(valid_at, ?)
+    WHERE valid_at IS NULL
+  `).run(generation);
+}
+
+export function ensureCodeEdgeBitemporalSchema(
+  database: Database.Database,
+  context: string = 'code-edge bitemporal migration',
+): void {
+  const migrate = database.transaction(() => {
+    requireTableForMigration(database, 'code_edges', context);
+    requireTableForMigration(database, 'code_graph_metadata', context);
+
+    const columns = new Set(getTableColumns(database, 'code_edges'));
+    for (const column of CODE_EDGE_BITEMPORAL_COLUMNS) {
+      addColumnIfMissing(database, 'code_edges', columns, column, context);
+    }
+
+    backfillCodeEdgeBitemporalColumns(database, context);
+  });
+  migrate();
+}
+
+export function rollbackCodeEdgeBitemporalSchema(
+  database: Database.Database,
+  context: string = 'code-edge bitemporal rollback',
+): void {
+  const rollback = database.transaction(() => {
+    for (const column of ['invalid_at', 'valid_at']) {
+      dropColumnIfPresent(database, 'code_edges', column, context);
+    }
+  });
+  rollback();
+}
+
 function ensureSchemaMigrations(database: Database.Database): void {
   if (!hasColumn(database, 'code_files', 'file_mtime_ms')) {
     database.exec('ALTER TABLE code_files ADD COLUMN file_mtime_ms INTEGER NOT NULL DEFAULT 0');
@@ -663,6 +802,8 @@ function ensureSchemaMigrations(database: Database.Database): void {
     FROM parse_diagnostics
     WHERE error_message LIKE '%resolved is not a function%'
   `).run(now, now);
+
+  ensureCodeEdgeBitemporalSchema(database, 'code-edge bitemporal migration');
 }
 
 /** Initialize (or get) the code graph database */
