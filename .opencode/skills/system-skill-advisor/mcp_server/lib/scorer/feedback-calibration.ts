@@ -8,8 +8,9 @@ import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 
 import type { AdvisorHookOutcomeRecord } from '../metrics.js';
+import { asymmetricSinkDelta } from './beta-reliability.js';
 import { isLiveScorerLane } from './lane-registry.js';
-import type { ScorerLane } from './types.js';
+import type { LaneRuntimeHealthStatus, ScorerLane } from './types.js';
 import {
   SCORER_LANES,
   buildReadOnlyScorerCalibrationProposal,
@@ -36,6 +37,12 @@ export interface AdvisorFeedbackCalibrationLaneSignal {
   readonly ignored: number;
   readonly proposedDelta: number;
   readonly reason: string;
+  // Per-lane runtime score-presence at the time the outcomes were collected, when
+  // the caller supplies it. Lets the promoter tell a runtime-degraded-empty lane
+  // (the scorer could not run) from a matched-nothing-empty lane (it ran and
+  // legitimately matched nothing) instead of over-crediting either. Undefined
+  // when no runtime-health context is provided — additive, default-neutral.
+  readonly runtimeHealth?: LaneRuntimeHealthStatus;
 }
 
 export interface AdvisorFeedbackCalibrationReport {
@@ -77,6 +84,15 @@ export interface AdvisorFeedbackCalibrationOptions {
   readonly minSamples?: number;
   readonly maxSkillShare?: number;
   readonly laneAttributionBySkill?: Readonly<Record<string, ScorerLane>>;
+  /** Optional per-lane runtime score-presence, surfaced verbatim on each lane
+   * signal's `runtimeHealth`. Does not affect deltas — informational for the
+   * promoter's degraded-vs-matched-nothing distinction. */
+  readonly laneRuntimeHealth?: Readonly<Partial<Record<ScorerLane, LaneRuntimeHealthStatus>>>;
+  /** Trust applied to the acceptance (raise) side of the confidence-threshold
+   * delta, in [0,1]. Undefined (the default) keeps the symmetric, sink-only
+   * behavior byte-for-byte; a positive gain lets acceptances loosen the
+   * threshold while corrections still sink it at least as hard (down ≥ up). */
+  readonly thresholdRaiseGain?: number;
 }
 
 function round4(value: number): number {
@@ -185,11 +201,24 @@ export function reduceAdvisorFeedbackCalibration(
       ignored: laneTotals.ignored,
       proposedDelta,
       reason,
+      runtimeHealth: options.laneRuntimeHealth?.[lane],
     };
   });
 
   const correctionRate = records.length > 0 ? totals.corrected / records.length : 0;
   const ignoredRate = records.length > 0 ? totals.ignored / records.length : 0;
+  const acceptanceRate = records.length > 0 ? totals.accepted / records.length : 0;
+  // Default (gain undefined): the symmetric, sink-only confidence-threshold delta
+  // is preserved byte-for-byte. With a positive raise gain, the asymmetric helper
+  // lets acceptances loosen the threshold while corrections still sink it harder.
+  const confidenceThresholdDelta = options.thresholdRaiseGain === undefined
+    ? round4(clamp(correctionRate * MAX_THRESHOLD_DELTA, MAX_THRESHOLD_DELTA))
+    : asymmetricSinkDelta({
+      raisePressure: acceptanceRate,
+      sinkPressure: correctionRate,
+      gain: options.thresholdRaiseGain,
+      maxAbs: MAX_THRESHOLD_DELTA,
+    });
   const thresholdSignals = records.length < minSamples || concentrated
     ? {
       confidenceThresholdDelta: 0,
@@ -197,7 +226,7 @@ export function reduceAdvisorFeedbackCalibration(
       reason: records.length < minSamples ? 'low_sample_excluded' : 'sample_concentration_excluded',
     }
     : {
-      confidenceThresholdDelta: round4(clamp(correctionRate * MAX_THRESHOLD_DELTA, MAX_THRESHOLD_DELTA)),
+      confidenceThresholdDelta,
       uncertaintyThresholdDelta: round4(clamp(-ignoredRate * MAX_THRESHOLD_DELTA, MAX_THRESHOLD_DELTA)),
       reason: 'supported_shadow_candidate',
     };

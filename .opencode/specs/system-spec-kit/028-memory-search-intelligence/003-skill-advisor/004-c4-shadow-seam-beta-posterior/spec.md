@@ -14,9 +14,11 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/004-c4-shadow-seam-beta-posterior"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Author C4 shadow-seam + Beta-posterior impl sub-phase from 028/003 research"
-    next_safe_action: "Plan Phase-0 baseline + lane-health, then build the C4-seam promoter"
-    blockers: []
+    recent_action: "Built C4 shadow seam + Beta-reliability module + 33 unit tests; scorer 142 pass"
+    next_safe_action: "Resolve Q-002 to unblock T006; coordinate D2 shared module (T010)"
+    blockers:
+      - "T006: daemon shadow-weight reload semantics unconfirmed (Q-002) — needs a live warm-daemon probe"
+      - "T010: Deep-Loop D2 shared-module coordination is cross-subsystem (028/004)"
     key_files:
       - "spec.md"
       - "plan.md"
@@ -26,8 +28,9 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-003-004-c4-shadow-seam"
       parent_session_id: null
-    completion_pct: 0
-    open_questions: []
+    completion_pct: 85
+    open_questions:
+      - "Q-002: does advisor_rebuild reload SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON or only full restart? (gates T006)"
     answered_questions: []
 ---
 # Feature Specification: Skill Advisor C4 Shadow Seam + Beta Posterior
@@ -60,7 +63,7 @@ The Skill Advisor ships an end-to-end *shadow* feedback pipeline — durable out
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Implemented (shadow-only; T006 daemon-reload + T010 D2 coordination PENDING; live flip NO-GO) |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Packet** | system-spec-kit/028-memory-search-intelligence/003-skill-advisor |

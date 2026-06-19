@@ -30,6 +30,13 @@ export const SHADOW_SCORER_LANE_DEFINITIONS = [
 
 export type ScorerLaneId = (typeof LANE_DEFINITIONS)[number]['id'];
 
+// Env keys for the resolved lane-weight channels. The shadow channel is the ONLY
+// writable target for the out-of-process promoter; the live channel is never
+// written from the shadow learning loop (liveWeightsFrozen). Exporting both lets
+// the promoter and its guardrail test assert "shadow only, never live".
+export const LIVE_LANE_WEIGHTS_ENV_KEY = 'SPECKIT_ADVISOR_LANE_WEIGHTS_JSON';
+export const SHADOW_LANE_WEIGHTS_ENV_KEY = 'SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON';
+
 const DEFAULT_WEIGHTS = Object.fromEntries(
   LANE_DEFINITIONS.map((lane) => [lane.id, lane.defaultWeight]),
 ) as Record<ScorerLaneId, number>;
@@ -65,11 +72,11 @@ function resolveLaneWeightsOverride(
 }
 
 const RESOLVED_WEIGHTS = resolveLaneWeightsOverride(
-  'SPECKIT_ADVISOR_LANE_WEIGHTS_JSON',
+  LIVE_LANE_WEIGHTS_ENV_KEY,
   DEFAULT_WEIGHTS,
 );
 const RESOLVED_SHADOW_WEIGHTS = resolveLaneWeightsOverride(
-  'SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON',
+  SHADOW_LANE_WEIGHTS_ENV_KEY,
   DEFAULT_SHADOW_WEIGHTS,
 );
 
