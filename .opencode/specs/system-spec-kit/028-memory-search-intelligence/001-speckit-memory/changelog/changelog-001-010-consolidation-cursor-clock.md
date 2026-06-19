@@ -1,6 +1,6 @@
 ---
-title: "Changelog: Memory Consolidation Cursor + Clock (C4-A → C4-C → C-G1 chain + crash-safety hardening) [001-speckit-memory/010-consolidation-cursor-clock]"
-description: "Chronological changelog for the Memory Consolidation Cursor + Clock (C4-A → C4-C → C-G1 chain + crash-safety hardening) phase."
+title: "Changelog: Memory Consolidation Cursor and Clock [001-speckit-memory/010-consolidation-cursor-clock]"
+description: "Chronological changelog for the Memory consolidation cursor and clock phase."
 trigger_phrases:
   - "phase changelog"
   - "nested changelog"
@@ -19,35 +19,34 @@ contextType: "implementation"
 
 ### Summary
 
-Nothing has shipped yet. This sub-phase plans the longest Memory consolidation chain from packet 028 — receipts default-on (C4-A), an explicit per-item consolidation cursor (C4-C), a clock-driver around the existing cursor (C-G1), plus the crash-safety hardening (contiguous-prefix-stop, durable-retry, transport-idempotency, dead-letter) and two quality candidates (detail-retention-guard, turn-cadence-trigger). The candidate roster and per-candidate STATUS live in spec.md §4 and tasks.md; the sequencing in plan.md; the three open decisions in decision-record.md.
+This phase is a planning-only packet for the longest Memory consolidation chain. It scopes receipts, a per-item consolidation cursor, a clock driver, crash-safety hardening and two quality candidates. All implementation candidates remain pending, with sequencing and open decisions recorded in the child docs.
 
 ### Added
 
-- No new additions recorded.
+_No shipped additions recorded._
 
 ### Changed
 
-- Nothing has shipped yet. This sub-phase plans the longest Memory consolidation chain from packet 028 — receipts default-on (C4-A), an explicit per-item consolidation cursor (C4-C), a clock-driver around the existing cursor (C-G1), plus the crash-safety hardening (contiguous-prefix-stop, durable-retry, transport-idempotency, dead-letter) and two quality candidates (detail-retention-guard, turn-cadence-trigger). The candidate roster and per-candidate STATUS live in spec.md §4 and tasks.md; the sequencing in plan.md; the three open decisions in decision-record.md.
+- Authored the candidate roster and sequencing plan.
+- Captured the crash-safety, retry, idempotency and dead-letter gates.
+- Recorded the open decisions that must be resolved before implementation.
 
 ### Fixed
 
-- No fixes recorded.
+_No fixes recorded._
 
 ### Verification
 
-- validate.sh --strict on this folder - PASS (planning docs; see close-out report)
-- Implementation tests - NOT RUN (no candidate shipped)
-- handleMemoryUpdate regression gate - NOT RUN (C4-A not yet attempted in this sub-phase)
+- Strict phase validation: PASS.
+- Implementation tests: not run because no candidate shipped.
+- Consolidation regression gate: not run because the head of the chain was not attempted.
 
 ### Files Changed
 
-_No file-level detail recorded._
+_No production file-level detail recorded._
 
 ### Follow-Ups
 
-- CHK-001 Requirements documented in spec.md (REQ-001..010)
-- CHK-002 Technical approach + chain sequencing defined in plan.md
-- CHK-003 Dependencies identified (C4-A chain head; entity confidence scoring Red for the retention guard)
-- CHK-004 Baseline handleMemoryUpdate suite captured green (55/0) BEFORE flipping C4-A
-- CHK-010 Code passes tsc/lint
-- CHK-011 No new console errors/warnings
+- Capture the baseline consolidation update suite before flipping any receipt behavior.
+- Keep crash-safety work ordered ahead of quality scoring.
+- Run typecheck and focused consolidation tests after each implemented candidate.

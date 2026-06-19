@@ -1,6 +1,6 @@
 ---
-title: "Changelog: Eval-Gated Confidence Calibration and Shipped-Lever A/B [001-speckit-memory/020-eval-calibration-ab]"
-description: "Chronological changelog for the Eval-Gated Confidence Calibration and Shipped-Lever A/B phase."
+title: "Changelog: Eval-Gated Confidence Calibration and Shipped-Lever AB [001-speckit-memory/020-eval-calibration-ab]"
+description: "Chronological changelog for the eval-gated confidence calibration and shipped-lever AB phase."
 trigger_phrases:
   - "phase changelog"
   - "nested changelog"
@@ -19,33 +19,32 @@ contextType: "implementation"
 
 ### Summary
 
-Nothing is implemented yet. This sub-phase is a re-plan output: it scopes the two measurement-gated retrieval-intelligence candidates the 008-retrieval-evaluation campaign converged on as the eval-harness's first consumers. Both are PENDING — neither appears in the Wave-0 shipped record (030-memory-search-intelligence-impl/spec.md §14).
+This phase remains planning-only. It scopes two measurement-gated consumers of the eval harness: held-out confidence calibration and an A/B pass over already-shipped search levers. Both stay pending until the eval-harness calibration lane, gate-zero coverage and promotion evidence exist.
 
 ### Added
 
-- No new additions recorded.
+_No shipped additions recorded._
 
 ### Changed
 
-- Nothing is implemented yet. This sub-phase is a re-plan output: it scopes the two measurement-gated retrieval-intelligence candidates the 008-retrieval-evaluation campaign converged on as the eval-harness's first consumers. Both are PENDING — neither appears in the Wave-0 shipped record (030-memory-search-intelligence-impl/spec.md §14).
+- Documented the label-harvest path needed to give the calibration fitter a real caller.
+- Documented the A/B path needed to measure the shipped search levers under the golden set.
+- Kept both candidates default-off until measured evidence exists.
 
 ### Fixed
 
-- No fixes recorded.
+_No fixes recorded._
 
 ### Verification
 
-- No explicit verification recorded.
+- Verification is pending because no implementation ran.
 
 ### Files Changed
 
-_No file-level detail recorded._
+_No production file-level detail recorded._
 
 ### Follow-Ups
 
-- CHK-001 The 019 eval-harness ECE lane + A8 gate confirmed (or scoped as this phase's consumer)
-- CHK-002 Requirements documented in spec.md
-- CHK-003 Technical approach defined in plan.md
-- CHK-004 Scope exclusions documented
-- CHK-010 fitCalibration has a real (non-test) caller harvesting label pairs
-- CHK-011 Graded golden labels binarized into the binary calibration shape
+- Confirm the eval-harness ECE lane before harvesting calibration labels.
+- Measure the shipped levers with evaluation mode configured so the reorder actually runs.
+- Promote calibration only on held-out ECE improvement over identity.

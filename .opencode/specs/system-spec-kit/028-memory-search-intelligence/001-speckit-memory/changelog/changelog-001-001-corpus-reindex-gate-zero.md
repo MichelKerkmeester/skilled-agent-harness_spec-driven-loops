@@ -1,6 +1,6 @@
 ---
-title: "Changelog: Corpus Reindex — Gate-Zero for Recall Benchmarking [001-speckit-memory/001-corpus-reindex-gate-zero]"
-description: "Chronological changelog for the Corpus Reindex — Gate-Zero for Recall Benchmarking phase."
+title: "Changelog: Corpus Reindex - Gate-Zero for Recall Benchmarking [001-speckit-memory/001-corpus-reindex-gate-zero]"
+description: "Chronological changelog for the Corpus Reindex - Gate-Zero for Recall Benchmarking phase."
 trigger_phrases:
   - "phase changelog"
   - "nested changelog"
@@ -19,35 +19,36 @@ contextType: "implementation"
 
 ### Summary
 
-Shipped: - C9-4 assertEmbeddingCoverage guard (DONE): added inspectEmbeddingCoverage + assertEmbeddingCoverage in lib/eval/ablation-framework.ts, wired beside assertGroundTruthAlignment at the runner. Default threshold is 100 percent of unique golden parent IDs, requiring both memory_index.embedding_status = 'success' and a vec_memories row. The failure message references the reindex/reconcile remediation and scripts/evals/map-ground-truth-ids.ts --write. 59 ablation tests pass; typecheck and validate.sh --strict green.
+The benchmark gate now fails closed on embedding coverage before any recall number is trusted. The phase shipped an `assertEmbeddingCoverage` preflight in the ablation runner and verified that the live corpus already had complete vector coverage, so the manual reindex was superseded rather than run for its own sake. The remaining backlog belongs to background enrichment and normal index consistency repair, not missing benchmark embeddings.
 
 ### Added
 
-- No new additions recorded.
+- Added coverage inspection and assertion helpers to the ablation framework.
+- Added a benchmark preflight that requires each golden parent to have both a successful embedding status and a vector row.
+- Added remediation text that points operators to the reindex, reconcile and golden-id mapping paths when coverage fails.
 
 ### Changed
 
-- Invoke it at the existing pre-flight call site :580-586 alongside assertGroundTruthAlignment (lib/eval/ablation-framework.ts) [10m]
-- Unit: assertEmbeddingCoverage throws below threshold, passes above (mcp_server/ vitest) [20m]
+- The ablation runner now checks embedding coverage beside the existing ground-truth alignment gate.
+- The reindex work was narrowed to a documented no-op because coverage evidence already satisfied the benchmark precondition.
 
 ### Fixed
 
-- Add assertEmbeddingCoverage (compute golden-set parent embedding coverage; throw-with-remediation below threshold) (lib/eval/ablation-framework.ts) [45m]
-- Integration: runAblation refuses a deliberately-low-coverage probe and passes on the restored corpus [20m]
+- Recall benchmarks can no longer proceed against a cold or partially embedded golden set.
 
 ### Verification
 
-- Tasks complete - 4 completed task item(s) recorded
+- Ablation suite: PASS, 59 tests.
+- TypeScript gate: PASS.
+- Strict phase validation: PASS.
 
 ### Files Changed
 
-_No file-level detail recorded._
+| File | Action | What changed |
+|---|---|---|
+| `lib/eval/ablation-framework.ts` | Modified | Added the coverage inspection and benchmark preflight guard |
 
 ### Follow-Ups
 
-- CHK-001 Pre-reindex coverage baseline captured
-- CHK-002 Embedding provider healthy + no competing scan job
-- CHK-003 Guard seam confirmed present
-- CHK-010 assertEmbeddingCoverage compiles + lint/typecheck clean
-- CHK-011 Guard reuses the existing pre-flight choke point (no duplicated benchmark path)
-- CHK-012 Reconcile run fail-closed (dry-run before apply; no deletes)
+- Treat the enrichment backlog as a separate operational concern. It is not blocking recall benchmark coverage.
+- Keep golden-id mapping available as the fallback if a later reindex changes parent identifiers.

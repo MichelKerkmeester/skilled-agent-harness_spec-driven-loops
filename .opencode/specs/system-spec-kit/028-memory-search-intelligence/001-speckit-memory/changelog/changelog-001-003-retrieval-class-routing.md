@@ -1,6 +1,6 @@
 ---
-title: "Changelog: Memory MCP — Retrieval-Class Routing & Recall-Shape Intelligence [001-speckit-memory/003-retrieval-class-routing]"
-description: "Chronological changelog for the Memory MCP — Retrieval-Class Routing & Recall-Shape Intelligence phase."
+title: "Changelog: Memory MCP Retrieval-Class Routing and Recall-Shape Intelligence [001-speckit-memory/003-retrieval-class-routing]"
+description: "Chronological changelog for the Memory MCP retrieval-class routing and recall-shape intelligence phase."
 trigger_phrases:
   - "phase changelog"
   - "nested changelog"
@@ -19,54 +19,42 @@ contextType: "implementation"
 
 ### Summary
 
-C2-A, C2-C, and the C2-B mechanism are built in the Memory MCP search path. The implemented slice adds a deterministic retrieval-class axis, consumes it in query routing, and wires default-off retrieval profiles into the pre-fusion ranking seam without changing flags-off behavior.
+The Memory search path now has a deterministic retrieval-class axis. The shipped slice classifies each query once, carries that class beside the existing route metadata and lets SingleHop and MultiHop queries diverge safely at the graph-preservation seam. It also wires default-off per-class retrieval profiles into the pre-fusion ranking path, so profile weights can change channel contribution without changing flags-off behavior. Recall-shape work and graph-context extension remain pending.
 
 ### Added
 
-- Create the C2-A pure classifier module mcp_server/lib/search/retrieval-class-classifier.ts (no I/O, no embedding call)
-- Plumb retrievalClass onto RouteResult as an additive third axis, leaving tier and classification byte-identical (mcp_server/lib/search/query-router.ts)
-- CHK-013 Changes extend existing seams (no new gating mechanism for C2-C; existing RouteResult axes untouched)
-- CHK-020 All P0 acceptance criteria met (REQ-001 axis-additivity, REQ-002 single-hop graph-off, REQ-003 per-class weight honoring weight:0)
-- CHK-031 No new untrusted-content render path introduced (recall-body escaping unchanged; C8 out of scope)
-- CHK-110 C2-A classification adds negligible per-query latency (pure sync classifier; no I/O, embedding, or DB call)
+- Added a pure retrieval-class classifier with the five-class taxonomy and neutral fallback.
+- Added `retrievalClass` as an additive route axis.
+- Added default-off retrieval profiles that feed channel weights into the shared RRF fuser.
 
 ### Changed
 
-- Define the 5-class taxonomy (SingleHop/MultiHop/Temporal/Entity/Quote), the deterministic single-class precedence order, and the neutral default class (retrieval-class-classifier.ts; precedence Quote → Temporal → MultiHop → Entity → SingleHop → Neutral)
-- C2-C: extend the preserved/includeDegree primitive so a SingleHop class forces graph-off even when intent/density would preserve; MultiHop retains existing preserve (mcp_server/lib/search/query-router.ts)
-- C2-C test: SingleHop → preserved=false/includeDegree=false; MultiHop → unchanged; minimum-channels invariant still holds (tests/query-router.vitest.ts)
-- C2-B: define per-class RetrievalProfile and inject it into RankedList.weight at the pre-fusion seam, honoring weight:0 (shared/algorithms/rrf-fusion.ts; mcp_server/lib/search/retrieval-profile.ts; hybrid-search.ts)
-- C2-B: wire fusion to run with the live bonusOverChannels option so zeroed channels don't distort the convergence bonus (hybrid-search.ts; retrieval-profile.vitest.ts)
-- [P] C2-B test: neutral/identity profile → fused output byte-identical to baseline; a zero-weight channel does not skew survivors (unit-rrf-fusion.vitest.ts; retrieval-profile.vitest.ts)
+- SingleHop routing now forces graph preservation off at the existing route seam.
+- MultiHop routing keeps the current graph-preserving behavior.
+- Fusion now receives the live bonus denominator option so zero-weight channels do not distort the convergence bonus.
 
 ### Fixed
 
-- [P] Author per-class adversarial fixtures + a totality property test (every query → exactly one class) + a multi-shape precedence test (tests/query-router.vitest.ts)
-- CHK-022 Per-class adversarial fixtures pass (SingleHop vs MultiHop routing diverges correctly)
-- CHK-FIX-001 Each candidate is classed: C2-A = algorithmic (classifier); C2-C/C2-B = cross-consumer (router + fusion); recall-shape = algorithmic; C-G2 = instance-only (gated).
-- CHK-FIX-002 Same-class producer inventory done: rg -n 'RouteResult|retrievalClass' and rg -n 'RankedList|fuseResultsMulti|bonusOverChannels' across mcp_server/shared.
-- CHK-FIX-004 C2-A classifier has adversarial table tests (empty query, multi-shape, temporal+entity precedence, neutral default).
+- Added adversarial and totality coverage for empty, mixed-shape and precedence-heavy queries.
+- Proved the neutral profile leaves fused output unchanged.
+- Confirmed the changed surfaces use existing routing and fusion seams.
 
 ### Verification
 
-- Baseline Memory MCP typecheck - PASS - npm run typecheck, 0 errors before edits
-- Baseline broad related Vitest - PASS - 7 files / 265 tests before edits
-- Final Memory MCP typecheck - PASS - npm run typecheck, 0 errors
-- Final shared typecheck - PASS - npm run typecheck, 0 errors
-- Final broad related Vitest - PASS - 8 files / 281 tests
-- Spec-folder strict validation (validate.sh --strict) - PASS - 0 errors, 0 warnings
-- Comment hygiene - PASS - no code-comment scope labels added
-- Neutral-profile byte-identity regression - PASS - flags-off/profile-neutral tests preserve fused output
+- Baseline typecheck: PASS.
+- Baseline related Vitest: PASS, 7 files and 265 tests.
+- Final Memory MCP typecheck: PASS.
+- Final shared typecheck: PASS.
+- Final related Vitest: PASS, 8 files and 281 tests.
+- Strict phase validation: PASS.
+- Comment hygiene: PASS.
 
 ### Files Changed
 
-_No file-level detail recorded._
+_No file-level detail recorded in the generated changelog._
 
 ### Follow-Ups
 
-- CHK-004 C-G2 keep-or-cut overlap check vs contextType + C2-A completed before any C-G2 code (REQ-007)
-- CHK-011 No console errors or warnings in the Memory MCP build
-- CHK-023 CG-iterative-context-extension termination property test (always stops by convergence OR cap)
-- CHK-FIX-003 Consumer inventory done for changed surfaces: RouteResult readers, fusion-weight consumers, enforceTokenBudget callers, memory_context strategy router.
-- CHK-FIX-005 Matrix axes listed before completion: retrieval-class (5) × intent (existing) × complexity tier (3).
-- CHK-FIX-006 Flag-state variants exercised (each intelligence-class item tested both default-off and enabled).
+- Finish the recall-shape extension only after a termination property test exists.
+- Exercise the remaining flag-state matrix before promotion.
+- Keep the routing class, intent and complexity axes explicit in future tests.

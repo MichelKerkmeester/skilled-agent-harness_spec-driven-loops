@@ -1,6 +1,6 @@
 ---
 title: "Changelog: Summary Fusion and World-Summary Grounding [001-speckit-memory/015-summary-fusion-grounding]"
-description: "Chronological changelog for the Summary Fusion and World-Summary Grounding phase."
+description: "Chronological changelog for the summary fusion and world-summary grounding phase."
 trigger_phrases:
   - "phase changelog"
   - "nested changelog"
@@ -19,43 +19,41 @@ contextType: "implementation"
 
 ### Summary
 
-Nothing is implemented yet. This sub-phase is a re-plan output: it scopes two paired retrieval-intelligence candidates over the already-built summary/community substrate, both PENDING (neither appears in the Wave-0 shipped record 030-memory-search-intelligence-impl/spec.md §14).
+This phase shipped shadow-gated summary and community fusion code, plus a default-off read-only grounding prelude over existing summaries. The fused lane is registered across routing, telemetry, ranked-list adaptation, RRF fusion and adaptive weights and the legacy inject paths are stood down to avoid double-counting. The benchmark delta, weight retune and persistent two-tier world-summary hierarchy remain pending because live benchmark and schema work were out of scope.
 
 ### Added
 
-- Add summary/community to the ChannelName union (query-router.ts:36) [10m]
-- Update all hardcoded channel-list sites to include the new channel (query-router.ts:68,:74,:106-107; routing-telemetry.ts:17; hybrid-search.ts:1310,:951) [25m]
-- Add a default-off shadow flag for the fused lane (search-flags.ts) [10m]
-- Add a per-channel weight slot for the lane in the adaptive-weight model (artifact-routing.ts) [25m]
-- Add a prelude provider that selects the relevant hierarchy slice (memory-summaries.ts) [25m]
-- Add a default-off shadow flag for the grounding prelude (search-flags.ts) [10m]
+- Added summary and community channels to the routing surface.
+- Added default-off flags for the fused lane and grounding prelude.
+- Added fused ranked-list adapters for community and summary evidence.
+- Added a read-only grounding prelude provider over existing summaries.
 
 ### Changed
 
-- Read the five hardcoded channel-list sites (hybrid-search.ts:1310,:951; query-router.ts:36,:68,:74,:106-107; routing-telemetry.ts:17) [15m]
-- Read the RRF lists.push fusion site (hybrid-search.ts:~1394-1495) and the adaptive-weight model (artifact-routing.ts) [15m]
-- [P] Read both legacy inject paths: community fallback (memory-search.ts:1158-1228) + summary stage-1 inject (stage1-candidate-gen.ts:~1304-1326) [15m]
-- [P] Read searchCommunities (community-search.ts:101), querySummaryEmbeddings (memory-summaries.ts:213), and the flat summaries index [15m]
-- Adapt searchCommunities + querySummaryEmbeddings output into the fused ranked-list shape (community-search.ts, memory-summaries.ts) [30m]
-- Push the fused lane into the RRF fusion site behind the shadow flag (hybrid-search.ts:~1394-1495) [30m]
+- Pushed the fused lane into the RRF fusion site behind the shadow flag.
+- Stood down the weak-result community fallback and summary Stage 1 inject path.
+- Added a per-channel adaptive-weight slot and cache identity split for the new lane.
+- Prepended the grounding prelude before retrieved context when its flag is on.
 
 ### Fixed
 
-- No fixes recorded.
+- Added tests that prove summary and community evidence is counted once.
+- Corrected the stale "nothing implemented" summary to reflect shipped shadow-gated code.
 
 ### Verification
 
-- Tasks complete - 27 completed task item(s) recorded
+- TypeScript gate: PASS.
+- Related Vitest slice: PASS, 15 files, 455 tests and 13 skipped.
+- Strict phase validation: PASS.
+- Comment-hygiene checks: PASS.
+- Live retrieval baseline, post-change delta and byte-identical output proof remain pending.
 
 ### Files Changed
 
-_No file-level detail recorded._
+_Detailed file-level changes live in the phase spec and tasks._
 
 ### Follow-Ups
 
-- CHK-001 Requirements documented in spec.md
-- CHK-002 Technical approach defined in plan.md
-- CHK-003 Scope exclusions documented
-- CHK-010 Summary/community is a first-class weighted RRF lane
-- CHK-011 No double-counting of summary/community evidence
-- CHK-012 Adaptive-weight model carries a per-channel slot for the lane
+- Capture the pre-change retrieval baseline and post-change delta before promotion.
+- Retune the affected RRF weights against measured data.
+- Build the persistent world-summary hierarchy only in a schema-migration packet.

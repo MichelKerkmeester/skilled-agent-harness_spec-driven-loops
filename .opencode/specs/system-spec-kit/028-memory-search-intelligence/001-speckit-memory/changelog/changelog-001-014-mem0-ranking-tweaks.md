@@ -1,6 +1,6 @@
 ---
-title: "Changelog: Mem0 Ranking + Extraction Bundle (028 Memory impl phase 014) [001-speckit-memory/014-mem0-ranking-tweaks]"
-description: "Chronological changelog for the Mem0 Ranking + Extraction Bundle (028 Memory impl phase 014) phase."
+title: "Changelog: Mem0 Ranking and Extraction Bundle [001-speckit-memory/014-mem0-ranking-tweaks]"
+description: "Chronological changelog for the Mem0 ranking and extraction bundle phase."
 trigger_phrases:
   - "phase changelog"
   - "nested changelog"
@@ -19,43 +19,36 @@ contextType: "implementation"
 
 ### Summary
 
-Nothing yet — planning-state. The phase plans the Mem0 ranking + extraction bundle: query-length BM25 sigmoid calibration, entity cardinality penalty, spaCy lemmatization, declarative regex entity config, multi-pass cascade extraction, write-time LLM memory-linking, separate entity-store boost, and the verify-first content-hash reprocessing trigger.
+This phase moved from planning to partial implementation. Declarative regex entity extraction shipped always-on with parity coverage and the entity-cardinality penalty shipped behind a default-off flag on the graph degree channel. The content-hash reprocessing trigger closed as no-transfer because changed content already re-enters the save and indexing path. BM25 calibration, lemmatization, cascade extraction, write-time memory linking and entity vector boost remain pending behind benchmark, dependency or schema gates.
 
 ### Added
 
-- No new additions recorded.
+- Added a JSON entity-extraction rule asset that reproduces the built-in rules.
+- Added a config loader with fail-closed fallback to the built-in extraction rules.
+- Added a default-off cardinality penalty flag and unit coverage.
 
 ### Changed
 
-- Nothing yet — planning-state. The phase plans the Mem0 ranking + extraction bundle: query-length BM25 sigmoid calibration, entity cardinality penalty, spaCy lemmatization, declarative regex entity config, multi-pass cascade extraction, write-time LLM memory-linking, separate entity-store boost, and the verify-first content-hash reprocessing trigger.
+- Applied the quadratic entity-cardinality damp at the degree-channel seam rather than in the shared fuser.
+- Resolved content-hash reprocessing as already covered by the changed-content save path.
 
 ### Fixed
 
-- No fixes recorded.
+- Corrected the stale planning-only framing. The phase now records two shipped items, one no-transfer closure and five pending candidates.
 
 ### Verification
 
-- Unit - Not run
-- Recall benchmark - Not run
-- Parity - Not run
-- Checklist - Not started
-- Strict validation - Pass
+- Entity-config parity test: PASS.
+- Cardinality penalty unit coverage: PASS.
+- Strict phase validation: PASS.
+- Recall benchmark, build and promotion gates remain pending for the ranking candidates.
 
 ### Files Changed
 
-| File | Action | What changed |
-|---|---|---|
-| `spec.md` | Created | Problem, scope, per-candidate STATUS (all PENDING) + research-cited acceptance criteria |
-| `plan.md` | Created | Approach, gate-zero sequencing, shared-infra deps |
-| `tasks.md` | Created | Setup / Implementation / Verification breakdown (all [ ] pending) |
-| `checklist.md` | Created | Verification checklist (all unverified, planning-state) |
-| `implementation-summary.md` | Created | This planning-state summary |
+_Detailed file-level changes live in the phase spec and tasks._
 
 ### Follow-Ups
 
-- CHK-001 Requirements documented in spec.md
-- CHK-002 Technical approach defined in plan.md
-- CHK-003 Gate-zero corpus reindex run + reindexed baseline captured
-- CHK-004 Per-candidate STATUS confirmed (all PENDING; zero 030 commit coverage)
-- CHK-010 Code passes typecheck/build
-- CHK-011 Each ranking tweak default-off path byte-identical to current ranking
+- Capture the reindexed recall baseline before promoting any ranking tweak.
+- Resolve the lemmatizer dependency before touching FTS tokenization.
+- Keep entity-store boost deferred until an entity vector index exists.

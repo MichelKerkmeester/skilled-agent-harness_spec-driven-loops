@@ -1,6 +1,6 @@
 ---
-title: "Changelog: Agentic Tool-Loop Recall Strategy (CG-agentic-tool-loop) [001-speckit-memory/016-iterative-agentic-recall]"
-description: "Chronological changelog for the Agentic Tool-Loop Recall Strategy (CG-agentic-tool-loop) phase."
+title: "Changelog: Agentic Tool-Loop Recall Strategy [001-speckit-memory/016-iterative-agentic-recall]"
+description: "Chronological changelog for the agentic tool-loop recall strategy phase."
 trigger_phrases:
   - "phase changelog"
   - "nested changelog"
@@ -19,42 +19,44 @@ contextType: "implementation"
 
 ### Summary
 
-Nothing is built yet. When this packet runs, you will be able to opt a complex memory_context request into an agentic, reason-act-observe retrieval loop that iteratively calls the existing memory tools and refines its own query, while every existing deterministic caller stays exactly as it is today. The headline constraint shapes the whole build: the loop puts an LLM into a synchronous, deterministic, pure better-sqlite3 retrieval hot path that has no loop or cost governor anywhere, so the first thing built is the governor, not the strategy.
+The gate-zero half of the agentic recall packet is built. A bounded loop governor and default-off agentic recall flag now exist, with deterministic tests proving step caps, cost ceilings, forced final answers, ACL failure, tool failure and flag-off disablement. Router wiring remains pending because it requires a public mode-enum change and a live LLM provider. Benchmark promotion remains pending because no real latency, cost or determinism numbers exist yet.
 
 ### Added
 
-- No new additions recorded.
+- Added the pure agentic loop governor with injected step provider and tool executor.
+- Added the default-off `SPECKIT_AGENTIC_RECALL` flag.
+- Added deterministic governor tests.
 
 ### Changed
 
-- Nothing is built yet. When this packet runs, you will be able to opt a complex memory_context request into an agentic, reason-act-observe retrieval loop that iteratively calls the existing memory tools and refines its own query, while every existing deterministic caller stays exactly as it is today. The headline constraint shapes the whole build: the loop puts an LLM into a synchronous, deterministic, pure better-sqlite3 retrieval hot path that has no loop or cost governor anywhere, so the first thing built is the governor, not the strategy.
+- Left the deterministic `memory_context` router untouched until a public mode contract change is approved.
+- Registered the new flag in the flag ceiling guard.
 
 ### Fixed
 
-- No fixes recorded.
+- Closed the unbounded-loop risk before any agentic router wiring can occur.
+- Corrected the stale planning-only summary to reflect the governor and flag delivery.
 
 ### Verification
 
-- Governor bounds (step-cap, cost-ceiling, forced-final) - PENDING
-- Flag-off byte-identical isolation - PENDING
-- Deterministic core (hybrid-search.ts, stage2-fusion) untouched - PENDING
-- Latency / cost / determinism benchmark - PENDING
-- validate.sh --strict on this packet (docs) - PASS (planning docs)
+- Typecheck: PASS.
+- Governor suite: PASS, 18 tests.
+- Flag fail-closed behavior: PASS.
+- Deterministic search core and memory-context router: unchanged for this phase.
+- Strict phase validation: PASS.
+- Router isolation and live benchmark remain pending.
 
 ### Files Changed
 
 | File | Action | What changed |
 |---|---|---|
-| `mcp_server/lib/search/agentic-loop-governor.ts` | Created (planned) | Bounded controller: step-cap, cost-ceiling, deterministic stop |
-| `mcp_server/handlers/memory-context.ts` | Modified (planned) | One additive case 'agentic' in executeStrategy (:1292-1311) |
-| `mcp_server/lib/search/search-flags.ts` | Modified (planned) | Default-off SPECKIT_AGENTIC_RECALL flag |
-| `mcp_server/__tests__/` | Created (planned) | Governor bound tests + strategy-isolation test + determinism benchmark |
+| `mcp_server/lib/search/agentic-loop-governor.ts` | Created | Bounded controller with typed loop results |
+| `mcp_server/lib/search/search-flags.ts` | Modified | Adds the default-off agentic recall flag |
+| `mcp_server/tests/agentic-loop-governor.vitest.ts` | Created | Covers bounds, failures, ACL and determinism |
+| `mcp_server/tests/flag-ceiling.vitest.ts` | Modified | Registers the new flag with the drift guard |
 
 ### Follow-Ups
 
-- CHK-001 Requirements documented in spec.md (REQ-001..006)
-- CHK-002 Technical approach defined in plan.md (governor-first, default-off, benchmark-before-promote)
-- CHK-003 Static-router seam confirmed unchanged from research (memory-context.ts:1292-1311)
-- CHK-010 node --check + tsc pass; no build errors
-- CHK-011 No console errors or warnings introduced
-- CHK-012 Governor returns typed results (final | forced-final | aborted-partial); error handling implemented
+- Wire the agentic route only with a public mode enum change and a live LLM provider.
+- Run a seeded benchmark before any promotion decision.
+- Keep the flag default-off until latency, cost and determinism data support promotion.

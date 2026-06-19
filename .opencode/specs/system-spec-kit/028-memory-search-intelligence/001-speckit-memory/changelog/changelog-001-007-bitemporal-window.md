@@ -1,6 +1,6 @@
 ---
-title: "Changelog: Bi-temporal Window for Spec-Kit Memory Causal + Lineage [001-speckit-memory/007-bitemporal-window]"
-description: "Chronological changelog for the Bi-temporal Window for Spec-Kit Memory Causal + Lineage phase."
+title: "Changelog: Bi-temporal Window for Spec-Kit Memory Causal and Lineage [001-speckit-memory/007-bitemporal-window]"
+description: "Chronological changelog for the bi-temporal window for Spec-Kit Memory causal and lineage phase."
 trigger_phrases:
   - "phase changelog"
   - "nested changelog"
@@ -19,39 +19,40 @@ contextType: "implementation"
 
 ### Summary
 
-This phase carries the Memory MCP's causal + lineage edges toward a correct bi-temporal window. One candidate is already live; the other four are planned against confirmed seams and await implementation. The headline that matters: superseded facts will close at the time they actually became stale, not the time we happened to notice, so "what did we believe as of date X" stops lying.
+The phase delivered the schema-migration foundation for bi-temporal Memory causal and lineage data. Schema version 38 adds an additive four-timestamp window to causal edges and fills the missing transaction-time columns on memory lineage, with explicit up, backfill and down helpers. Current readers keep using the legacy open-edge predicate and transaction-time recall stays default-off. Event-time invalidation and chronology-driven behavior remain deferred consumers.
 
 ### Added
 
-- Add AND invalid_at IS NULL (openEdgeClause) to the promoter cleanup query so already-closed generated edges are skipped (lib/causal/frontmatter-promoter.ts) — SHIPPED e1c6a3c793 (030 §14 row 9)
+- Added the additive four-timestamp window for causal edges.
+- Added missing transaction-time lineage columns.
+- Added explicit migration, backfill, rollback, idempotency and fresh-init coverage.
 
 ### Changed
 
-- No broader packet changes recorded.
+- Kept current-edge readers on the existing open-edge test.
+- Added a default-off recall flag for later transaction-time consumers.
+- Preserved active projection behavior while the new columns backfill.
 
 ### Fixed
 
-- Schema-aware guard: clause only applied when columns.has('invalid_at') (fixtures without the column stay compatible) — SHIPPED e1c6a3c793
+- Kept closed generated edges out of promoter cleanup when the schema has the close column.
+- Proved fixtures without the close column remain compatible.
 
 ### Verification
 
-- skip-closed-in-sweep shipped + tested - PASS (030 e1c6a3c793; closed-edge fixture)
-- MEM-fact-invalidation-event-time - PENDING (planned; seam confirmed temporal-edges.ts:81,86,94)
-- C3-B four-timestamp window - PENDING (additivity against active_memory_projection UNVERIFIED — confirm at build)
-- GR-temporal-ordering-invalidation - PENDING (scope test for co-valid pairs not yet written)
-- C3-D separation note - RECORDED (decision-record ADR-003)
-- validate.sh --strict on this folder - PASS (spec-doc structure)
-- Tasks complete - 2 completed task item(s) recorded
+- Skip-closed sweep fixture: PASS.
+- Four-timestamp schema foundation: PASS.
+- TypeScript gate: PASS.
+- Focused migration, temporal and search-flag Vitest: PASS, 4 files and 84 tests.
+- Broad memory, schema, search and migration slice: baseline-matched existing failures with 6 new passing tests.
+- Strict phase validation: PASS.
 
 ### Files Changed
 
-_No file-level detail recorded._
+_Detailed file-level changes live in the phase implementation summary._
 
 ### Follow-Ups
 
-- CHK-001 Requirements documented in spec.md (REQ-001..006)
-- CHK-002 Technical approach + sequencing defined in plan.md (spearhead → C3-B → GR-temporal → C3-D)
-- CHK-003 Canonical event-time source decided (lineage) and recorded in decision-record.md
-- CHK-010 Typecheck/build passes (tsc on mcp_server)
-- CHK-011 No new lint warnings in temporal-edges.ts / contradiction-detection.ts / vector-index-schema.ts
-- CHK-012 invalidateEdge() keeps its fail-open contract (warn, no throw)
+- Implement event-time invalidation as the next writer-side consumer.
+- Add chronology-driven invalidation only for conflicting relation pairs.
+- Keep transaction-time recall behind its default-off flag until benchmark evidence exists.

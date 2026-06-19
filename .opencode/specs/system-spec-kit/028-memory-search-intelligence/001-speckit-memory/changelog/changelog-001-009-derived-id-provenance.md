@@ -1,6 +1,6 @@
 ---
-title: "Changelog: Content-Addressed derived_id for Derived Causal Artifacts (C4-B) [001-speckit-memory/009-derived-id-provenance]"
-description: "Chronological changelog for the Content-Addressed derived_id for Derived Causal Artifacts (C4-B) phase."
+title: "Changelog: Content-Addressed Derived ID for Derived Causal Artifacts [001-speckit-memory/009-derived-id-provenance]"
+description: "Chronological changelog for the content-addressed derived ID for derived causal artifacts phase."
 trigger_phrases:
   - "phase changelog"
   - "nested changelog"
@@ -19,43 +19,34 @@ contextType: "implementation"
 
 ### Summary
 
-Nothing is built yet. This is the planning re-plan for candidate C4-B (content-addressed derived_id for derived causal artifacts). The candidate is PENDING behind a schema-migration gate; this file is a placeholder that will be replaced with the real delivery narrative once the build lands. It exists now only because a Level-3 packet requires it.
+This is a planning-stage packet for content-addressed derived causal artifacts. The shared content-id dependency exists, but the derived ID helper, migration and write-path changes remain behind the schema-migration gate. No production code shipped in this phase.
 
 ### Added
 
-- CHK-132 No new external dependency introduced.
+_No shipped additions recorded._
 
 ### Changed
 
-- Two-primitive content-id module exists and exposes hashCanonicalJson (lib/content-id.ts) [Done — shipped in 030 commit 18c8582e33; hashContentBody + hashCanonicalJson confirmed present at lib/content-id.ts:14,19].
-- CHK-001 C4-B scope is documented and faithful to research.
-- CHK-002 The shipped content-id-module dependency is confirmed.
-- CHK-003 The legacy anchor-inclusive UNIQUE is confirmed (drives the anchor-inclusion requirement).
-- CHK-050 plan.md covers helper, migration, write-path, and verification.
-- CHK-051 tasks.md has the shipped dependency pre-checked and impl tasks pending.
+- Confirmed the shared canonical JSON hash helper exists and can be reused.
+- Documented that legacy anchor-inclusive uniqueness drives the derived ID input shape.
+- Planned the helper, migration, write-path and verification sequence.
 
 ### Fixed
 
-- CHK-110 No benchmark is claimed; correctness-only framing is explicit.
+- Removed any benchmark framing from the phase. This is a correctness and reproducibility change.
 
 ### Verification
 
-- Planning docs strict validation - PASS target — validate.sh --strict on this packet (planning stage)
-- Implementation (helper, migration, write-path) - NOT RUN — pending build
-- Identity stability + rule_version distinctness tests - NOT RUN — pending (T008/T009)
-- Real-DB-copy migration / backfill-no-reject test - NOT RUN — pending (T010)
-- Memory MCP typecheck + build + focused suite - NOT RUN — pending (T011)
-- Tasks complete - 1 completed task item(s) recorded
+- Planning docs strict validation: PASS.
+- Implementation tests: not run because the build is pending.
+- Migration and backfill tests: not run because the build is pending.
 
 ### Files Changed
 
-_No file-level detail recorded._
+_No production file-level detail recorded._
 
 ### Follow-Ups
 
-- CHK-004 Canonical-field order, kind-tag, source definition, and legacy rule_version sentinel are decided.
-- CHK-010 Memory MCP typecheck passes after the change.
-- CHK-011 Memory MCP build passes after the change.
-- CHK-012 No new hash primitive introduced; the derived-id helper reuses hashCanonicalJson.
-- CHK-020 derived_id is content-addressed and cross-process reproducible.
-- CHK-021 Anchors are part of the derived_id input.
+- Decide canonical field order, kind tag, source definition and legacy rule-version handling before migration.
+- Reuse the existing canonical JSON helper rather than adding a new hash primitive.
+- Prove backfill on a real database copy before promoting the migration.

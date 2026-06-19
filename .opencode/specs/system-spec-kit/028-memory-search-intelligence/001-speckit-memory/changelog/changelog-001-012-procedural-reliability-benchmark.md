@@ -1,6 +1,6 @@
 ---
-title: "Changelog: Procedural Reliability Memory (benchmark-first, PROXY-ONLY) [001-speckit-memory/012-procedural-reliability-benchmark]"
-description: "Chronological changelog for the Procedural Reliability Memory (benchmark-first, PROXY-ONLY) phase."
+title: "Changelog: Procedural Reliability Memory Benchmark [001-speckit-memory/012-procedural-reliability-benchmark]"
+description: "Chronological changelog for the procedural reliability memory benchmark phase."
 trigger_phrases:
   - "phase changelog"
   - "nested changelog"
@@ -19,42 +19,35 @@ contextType: "implementation"
 
 ### Summary
 
-Nothing was implemented. This is a planning-only re-plan. The authored artifacts are the spec-folder docs (spec / plan / tasks / checklist / decision-record / this summary) that capture the four candidates, their gates, and the prerequisite chain.
+This is a benchmark-first planning packet. It does not implement procedural reliability. The authored docs freeze four candidates, their prerequisites and the benchmark that must prove reliability weighting out-earns existing access and confirmation signals before any ranking fold ships.
 
 ### Added
 
-- No new additions recorded.
+- Added the Level-3 planning set and decision record.
+- Added the prerequisite chain for the outcome emitter and numeric reliability primitive.
 
 ### Changed
 
-- CHK-001 Problem + PROXY-ONLY gate documented in spec.md
-- CHK-002 Each candidate carries a frozen research verdict + file:line citation
-- CHK-003 Shared-infra prerequisites identified (outcome emitter, f64 Beta primitive)
-- CHK-004 The benefit micro-benchmark is named as the promotion gate
-- CHK-020 Acceptance criteria are frozen from the research record (planning gate)
-- CHK-025 All four candidates' refutation/gate verdicts captured verbatim from research/iterations/iteration-021.md + iteration-018.md
+- Reframed the reliability host as present but under-emitted rather than missing.
+- Made the benefit micro-benchmark the promotion gate.
 
 ### Fixed
 
-- CHK-101 Reliability host correctly identified as EXISTS-but-under-emitted
-- CHK-122 Benchmark-first sequencing prevents "free byproduct" mis-shipping
+- Prevented reliability weighting from shipping as a free byproduct without measured evidence.
 
 ### Verification
 
-- validate.sh --strict - Pass (planning docs)
-- Research faithfulness - Pass
-- Implementation tests - N/A
-- Benefit benchmark - Not run
+- Strict phase validation: PASS.
+- Research faithfulness: PASS.
+- Implementation tests: not applicable because no code shipped.
+- Benefit benchmark: not run.
 
 ### Files Changed
 
-_No file-level detail recorded._
+_No production file-level detail recorded._
 
 ### Follow-Ups
 
-- CHK-010 f64 Beta primitive passes lint/format + unit tests
-- CHK-011 Outcome emitter has no console errors; attribution correct
-- CHK-012 Reliability fold follows project ranking patterns (additive, order-neutral at r=0.5)
-- CHK-021 Benefit micro-benchmark run; reliability-weighting out-earns access/confirmation
-- CHK-022 f64 Beta boundary cases tested (0/0→0.5, 1/0→2/3, count-floor, fractional)
-- CHK-023 Reliability fold neutral when all priors r=0.5 (cold-start no-op)
+- Implement the numeric reliability primitive with boundary tests.
+- Emit outcomes with attribution before folding reliability into ranking.
+- Run the benefit benchmark before any promotion decision.

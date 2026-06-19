@@ -19,61 +19,46 @@ contextType: "implementation"
 
 ### Summary
 
-Implemented the MCP-server portion of this sub-phase: one named red-team probe gate under mcp_server/tests/security/, deterministic fixtures, a run-tests.mjs security selector, npm selector forwarding, and no-querytext denial-audit sanitization in governance persistence.
+The MCP-server security lane now has a named red-team probe gate. The gate exercises poisoned recall, query-only injection and wrapper breakout cases from deterministic fixtures, then reports failures at the broken seam. The phase also sanitizes namespace-denial audit persistence so stored denial records do not keep verbatim prompt or query text. The sibling prompt-pack probe remains pending outside the Memory MCP server scope.
 
 ### Added
 
-- [P] Add the poisoned-RAG family: memory_save untrusted content → recall (full + compact) → assert markers neutralized at render (mcp_server/tests/security/redteam-probe-gate.vitest.ts) — REQ-003, REQ-009
-- [P] Add the query-only-injection family aggregating the 'ignore previous instructions' → null assertion (mcp_server/tests/security/redteam-probe-gate.vitest.ts) — REQ-004
-- [P] Add the wrapper-breakout family reusing the unicode-instructional / nested-tag surfaces (mcp_server/tests/security/redteam-probe-gate.vitest.ts) — REQ-005
-- Add the run-tests.mjs security lane selector so the gate runs as one named group (mcp_server/scripts/run-tests.mjs) — REQ-001
-- Add the negative control (no-op payload must not false-pass) — REQ-010 edge case
-- tsc/build green + existing suite green vs the pre-gate baseline (capture baseline first) — SC-004, REQ-010
+- Added the aggregate security probe file and fixture set.
+- Added a named security selector in the test runner and npm forwarding path.
+- Added negative-control coverage so the gate does not pass by doing nothing.
 
 ### Changed
 
-- Confirm the namespace-denial audit GAP and locate the wiring point (rg 'namespace_denied|audit|denial'); record that spec-folder-mutex.ts is a TOCTOU lock, not an Authorizer
-- Decide C8/SB8 sequencing: escaper-first vs gate-lands-red-as-acceptance-test; capture the decision in the checklist
-- Author the named gate aggregator with a zero-success ceiling and a structured per-probe report (mcp_server/tests/security/redteam-probe-gate.vitest.ts) — REQ-001, REQ-002, REQ-008
-- Wire the no-querytext exfil-audit: record a denial event with no verbatim query text + a gate assertion that the stored audit record contains no query (namespace-denial audit path; mcp_server/tests/security/redteam-probe-gate.vitest.ts) — REQ-007
-- Run the gate as one group; confirm zero-success ceiling fails on any probe success and the structured report names the broken seam
-- Confirm both recall shapes (full + compact) and the negative control pass — REQ-009
+- Sanitized query-shaped namespace-denial audit payloads before persistence.
+- Structured the gate output around probe families and broken seams.
+- Kept both full and compact recall shapes under the same gate.
 
 ### Fixed
 
-- Confirm the live per-seam sanitizer surfaces: sanitizeSkillLabel (lib/utils/skill-label-sanitizer.ts), architecture-seam.vitest.ts, bm25-security.vitest.ts, tests/security/adversarial-unicode.vitest.ts, fixtures tests/advisor-fixtures/{promptPoisoningAdversarial,unicodeInstructionalSkillLabel}.json
-- Add per-family fixtures, extending the existing poisoning/unicode fixtures (mcp_server/tests/security/redteam-fixtures/)
-- CHK-FIX-001 Finding class recorded for the exfil-audit edit (cross-consumer / algorithmic) and for each probe family
-- CHK-FIX-002 Same-class producer inventory: rg 'sanitizeSkillLabel|ignore previous instructions|promptPoisoning|unicodeInstructional' — all injection seams enumerated and covered by the gate
-- CHK-FIX-003 Consumer inventory for the render boundary + the audit path (rg 'formatSearchResults|memory-triggers|getTieredContent|namespace_denied|audit')
-- CHK-FIX-004 Adversarial table tests cover delimiter, joined-input, outside-wrapper, no-op, and fallback cases across poisoned-RAG / query-only-injection / wrapper-breakout
+- Consolidated existing sanitizer and fixture evidence into one repeatable MCP-server security lane.
 
 ### Verification
 
-- Baseline npm run typecheck - PASS: 0 errors
-- Baseline broad related Vitest - PASS: 14 files, 479 passed, 2 skipped
-- npm test -- --security - PASS: 1 file, 2 passed, 1 todo
-- Post-change npm run typecheck - PASS: 0 errors
-- Post-change broad related Vitest - PASS: 15 files, 481 passed, 2 skipped, 1 todo
-- validate.sh --strict on this packet - PASS: 0 errors, 0 warnings
-- Accidental package-level full run before selector fix - FAILED/HUNG with unrelated existing full-suite failures; not used as verification evidence
-- Deep-loop prompt-pack render probe - PENDING: sibling runtime outside requested MCP-server scope
+- Baseline typecheck: PASS.
+- Baseline related Vitest: PASS, 14 files and 479 tests.
+- Named security lane: PASS, 1 file, 2 tests and 1 todo.
+- Post-change typecheck: PASS.
+- Post-change related Vitest: PASS, 15 files, 481 tests, 2 skipped and 1 todo.
+- Strict phase validation: PASS.
+- A package-level full run failed or hung on unrelated existing full-suite failures and was not used as evidence.
 
 ### Files Changed
 
 | File | Action | What changed |
 |---|---|---|
-| `.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts` | Modified | Redact prompt/query-shaped deny audit payloads before persistence |
-| `.opencode/skills/system-spec-kit/mcp_server/scripts/run-tests.mjs` | Modified | Add named security selector and keep default test flow inside the runner |
-| `.opencode/skills/system-spec-kit/mcp_server/package.json` | Modified | Forward npm test -- --security args into run-tests.mjs |
-| `.opencode/skills/system-spec-kit/mcp_server/tests/security/redteam-probe-gate.vitest.ts` | Created | Aggregate deterministic red-team gate |
-| `.opencode/skills/system-spec-kit/mcp_server/tests/security/redteam-fixtures/probe-payloads.json` | Created | Attack-family fixtures |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts` | Modified | Redacts prompt and query-shaped denial audit payloads before persistence |
+| `.opencode/skills/system-spec-kit/mcp_server/scripts/run-tests.mjs` | Modified | Adds the named security selector |
+| `.opencode/skills/system-spec-kit/mcp_server/package.json` | Modified | Forwards security selector arguments |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/security/redteam-probe-gate.vitest.ts` | Created | Aggregates deterministic security probes |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/security/redteam-fixtures/probe-payloads.json` | Created | Holds probe family payloads |
 
 ### Follow-Ups
 
-- CHK-020 All acceptance criteria met (REQ-001..REQ-007 P0; REQ-008..REQ-010 P1) — pending REQ-006 sibling-runtime probe
-- CHK-023 Deep-loop prompt-pack render probe passes and reports dormant-caller status (REQ-006) — pending sibling-runtime edit
-- CHK-FIX-007 Evidence pinned to a fix SHA / explicit diff range, not a moving branch-relative range — pending commit hash by user instruction
-- CHK-042 tests/security/README.md updated to list the new named gate
-- CHK-050 Temp/probe scratch in scratch/ only
-- CHK-051 scratch/ cleaned before completion
+- Add the deep-loop prompt-pack render probe in the sibling runtime.
+- Document the new named security lane in the security test README.
+- Keep probe scratch files under the packet scratch area and clean them before closeout.
