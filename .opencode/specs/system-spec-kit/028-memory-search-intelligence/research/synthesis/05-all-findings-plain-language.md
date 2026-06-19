@@ -287,7 +287,7 @@ For these, the **before stays the before** — on purpose. Recording the "why" i
 - **No numbers are real yet.** Every before/after value is structural inference; the highest open risk is that **nothing has been benchmarked.**
 - **The single most-likely-wrong call** is the hidden-instruction (#6) threat model — its importance rests on "can untrusted content actually become a recalled memory?" We found a path where it can (a normal save), but if memories are effectively trusted-author-only, #6 shrinks toward a non-issue.
 - **The history-timestamp "additivity" (#16) is unverified** — no migration spec exists; if "current" reads must move off the existing projection, the cost jumps from medium to large.
-- **The 006 round has no per-iteration file backup** — its findings live in one consolidated ledger + a 50-row state log (which is why `…/006-sibling-revisit/research/iterations/` is empty by design; re-validated during the final review).
+- **The 006 round has no per-iteration file backup** — its findings live in one consolidated ledger + a 50-row state log (which is why `…/../../001-speckit-memory/research/from-006-sibling-revisit/iterations/` is empty by design; re-validated during the final review).
 
 ---
 

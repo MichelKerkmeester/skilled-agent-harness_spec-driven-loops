@@ -20,8 +20,8 @@ _memory:
     key_files:
       - "spec.md"
       - "research/research.md"
-      - "001-001-determinism-walk-order/spec.md"
-      - "008-008-doc-symbol-lane/spec.md"
+      - "001-determinism-walk-order/spec.md"
+      - "008-doc-symbol-lane/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-002-code-graph-parent"
@@ -100,14 +100,14 @@ Research input: `research/research.md` remains the subsystem source packet for c
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 001 | `001-001-determinism-walk-order/` | Deterministic graph traversal order | Planned |
-| 002 | `002-002-edge-staleness-correctness/` | Edge staleness and correctness checks | Planned |
-| 003 | `003-003-generation-watermark/` | Hard generation watermark readiness | Planned |
-| 004 | `004-004-code-edge-bitemporal/` | Bi-temporal edge lifecycle | Planned |
-| 005 | `005-005-seeded-ppr-ranking/` | Seeded PPR impact ranking | Planned |
-| 006 | `006-006-edge-governance-vocab/` | Shared edge governance vocabulary | Planned |
-| 007 | `007-007-parser-resilience/` | Parser failure recovery and quarantine | Planned |
-| 008 | `008-008-doc-symbol-lane/` | Documentation symbol extraction lane | Planned |
+| 001 | `001-determinism-walk-order/` | Deterministic graph traversal order | Planned |
+| 002 | `002-edge-staleness-correctness/` | Edge staleness and correctness checks | Planned |
+| 003 | `003-generation-watermark/` | Hard generation watermark readiness | Planned |
+| 004 | `004-code-edge-bitemporal/` | Bi-temporal edge lifecycle | Planned |
+| 005 | `005-seeded-ppr-ranking/` | Seeded PPR impact ranking | Planned |
+| 006 | `006-edge-governance-vocab/` | Shared edge governance vocabulary | Planned |
+| 007 | `007-parser-resilience/` | Parser failure recovery and quarantine | Planned |
+| 008 | `008-doc-symbol-lane/` | Documentation symbol extraction lane | Planned |
 
 ### Phase Transition Rules
 

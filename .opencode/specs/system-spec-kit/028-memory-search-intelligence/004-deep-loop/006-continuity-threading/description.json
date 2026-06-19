@@ -1,0 +1,26 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/004-deep-loop/006-continuity-threading",
+  "description": "Feature Specification: Deep Loop Continuity Threading (028/004 continuity / iterative-retrieval cluster)",
+  "keywords": [
+    "feature",
+    "specification",
+    "deep",
+    "loop",
+    "continuity",
+    "threading",
+    "028",
+    "004",
+    "iterative-retrieval",
+    "cluster"
+  ],
+  "lastUpdated": "2026-06-19T06:21:37.696Z",
+  "specId": "006",
+  "folderSlug": "006-continuity-threading",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "004-deep-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/019-eval-harness-extension",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/019-eval-harness-extension",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "eval harness extension",
+      "three corpus metric lanes",
+      "gate verdict confusion ECE Brier",
+      "per class promotion gate",
+      "un-weld meanNdcgDelta promotion gate",
+      "eval harness extension plan",
+      "three corpus metric lanes plan",
+      "per class promotion gate plan",
+      "C9 single pass emit plan",
+      "A8 class parameterized gate plan",
+      "tasks eval harness extension",
+      "C9 corpus metrics task breakdown"
+    ],
+    "key_topics": [
+      "eval",
+      "harness",
+      "extension",
+      "three",
+      "corpus",
+      "metric",
+      "lanes",
+      "gate",
+      "verdict",
+      "confusion",
+      "ece",
+      "brier"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "plan.md",
+      "checklist.md",
+      "lib/feedback/shadow-scoring.ts",
+      "spec.md",
+      "implementation-summary.md",
+      "lib/eval/ablation-framework.ts",
+      "lib/eval/eval-metrics.ts",
+      "lib/feedback/shadow-evaluation-runtime.ts",
+      "lib/feedback/rank-metrics.ts",
+      "tasks.md",
+      "decision-record.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "shadow-scoring.ts",
+        "kind": "code",
+        "path": "lib/feedback/shadow-scoring.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "ablation-framework.ts",
+        "kind": "code",
+        "path": "lib/eval/ablation-framework.ts",
+        "source": "derived"
+      },
+      {
+        "name": "eval-metrics.ts",
+        "kind": "code",
+        "path": "lib/eval/eval-metrics.ts",
+        "source": "derived"
+      },
+      {
+        "name": "shadow-evaluation-runtime.ts",
+        "kind": "code",
+        "path": "lib/feedback/shadow-evaluation-runtime.ts",
+        "source": "derived"
+      },
+      {
+        "name": "rank-metrics.ts",
+        "kind": "code",
+        "path": "lib/feedback/rank-metrics.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Harness Extension",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Three Corpus Metric Lanes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Class Promotion Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This implementation phase extends the Spec-Kit Memory MCP's **already ~80%-built retrieval eval harness** with the three accuracy lanes it has never had, and un-welds its single promotion gate from one candidate-class. It covers the keystone build spine the 028 retrieval-evaluation campaign converged on (`synthesis/08`): **C9-1** (capture the verdict/confidence/tier the ablation runner already computes but throws away), **C9-2** (tag the golden labels three ways in one DB-join), **C9-3** (the three new corpus-level metric lanes: gate-verdict P/R/F1, ECE+Brier+reliability bins, cold-appearance-rate/precision), and **A8-1(+A8-2/A8-5/A8-4)** (swap a per-class metric panel for the hardcoded `meanNdcgDelta`, add the CLASS-G panel, route held-out labels through the golden set, encode promote-on-evidence as the flag lifecycle). This is the **single buildable spine** that makes isotonic calibration (A2), the A3 default-on lever A/B, and cold-tier promote-on-evidence measurable; without it those candidates' promote signal is literally unexecutable. None of these shipped in Wave-0 (packet 030 §14 ships an unrelated embedder-degrade candidate it calls \"C9\", not these C9-N metric lanes); all are **PENDING**. The corpus reindex (gate-zero, owned by sibling phase `001-corpus-reindex-gate-zero`) is the hard precondition for every recall/calibration/cold number this harness produces.",
+    "created_at": "2026-06-19T05:52:29.575Z",
+    "last_save_at": "2026-06-19T06:06:27.134Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

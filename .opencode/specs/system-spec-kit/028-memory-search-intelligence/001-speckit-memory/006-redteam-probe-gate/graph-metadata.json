@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/006-redteam-probe-gate",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/006-redteam-probe-gate",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "red-team probe gate",
+      "poisoned rag probe",
+      "query only injection probe",
+      "wrapper breakout probe",
+      "exfil audit no querytext",
+      "memory security ci gate",
+      "red-team probe gate plan",
+      "memory injection ci gate plan",
+      "prompt-pack render probe",
+      "zero success ceiling gate",
+      "red-team probe gate tasks",
+      "memory injection ci gate tasks"
+    ],
+    "key_topics": [
+      "red-team",
+      "probe",
+      "gate",
+      "poisoned",
+      "rag",
+      "query",
+      "only",
+      "injection",
+      "wrapper",
+      "breakout",
+      "exfil",
+      "audit"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "lib/utils/skill-label-sanitizer.ts",
+      "tests/security/adversarial-unicode.vitest.ts",
+      "tests/advisor-fixtures/promptPoisoningAdversarial.json",
+      ".opencode/skills/system-spec-kit/mcp_server/scripts/run-tests.mjs",
+      "scripts/run-tests.mjs",
+      "tests/architecture-seam.vitest.ts",
+      "tests/bm25-security.vitest.ts",
+      "tests/advisor-fixtures/unicodeInstructionalSkillLabel.json",
+      "formatters/search-results.ts",
+      "handlers/memory-triggers.ts",
+      "mcp_server/scripts/run-tests.mjs",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tests/security/README.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "skill-label-sanitizer.ts",
+        "kind": "code",
+        "path": "lib/utils/skill-label-sanitizer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "adversarial-unicode.vitest.ts",
+        "kind": "test",
+        "path": "tests/security/adversarial-unicode.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "promptPoisoningAdversarial.json",
+        "kind": "config",
+        "path": "tests/advisor-fixtures/promptPoisoningAdversarial.json",
+        "source": "derived"
+      },
+      {
+        "name": "run-tests.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/scripts/run-tests.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "architecture-seam.vitest.ts",
+        "kind": "test",
+        "path": "tests/architecture-seam.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "bm25-security.vitest.ts",
+        "kind": "test",
+        "path": "tests/bm25-security.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "unicodeInstructionalSkillLabel.json",
+        "kind": "config",
+        "path": "tests/advisor-fixtures/unicodeInstructionalSkillLabel.json",
+        "source": "derived"
+      },
+      {
+        "name": "search-results.ts",
+        "kind": "code",
+        "path": "formatters/search-results.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-triggers.ts",
+        "kind": "code",
+        "path": "handlers/memory-triggers.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "tests/security/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Team Probe Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Spec-Kit Memory MCP already defends its individual injection seams, but no single gate proves the whole surface holds. The per-seam sanitizers and their tests exist and pass in isolation — `sanitizeSkillLabel` (`lib/utils/skill-label-sanitizer.ts`), `architecture-seam.vitest.ts` (which asserts `'ignore previous instructions' → null`), `bm25-security.vitest.ts`, the adversarial-unicode suite (`tests/security/adversarial-unicode.vitest.ts`), and the poisoning fixtures (`tests/advisor-fixtures/promptPoisoningAdversarial.json`). What is missing, confirmed in research (001 iter-19, 006 SB7), is a single named aggregating CI probe-gate with structured reports and a fixed zero-success ceiling — so the security posture is a scatter of green checkmarks rather than one honest pass/fail. One seam stays entirely uncovered: the deep-loop prompt-pack render path (`deep-loop-runtime/lib/deep-loop/prompt-pack.ts`), where recalled or fanned-out content reaches a prompt template with no injection probe at all.",
+    "created_at": "2026-06-19T05:40:37.443Z",
+    "last_save_at": "2026-06-19T05:47:05.560Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

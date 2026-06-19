@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/004-graceful-degradation",
+  "description": "Feature Specification: Memory MCP C9 — Graceful Embedder-Degrade to Lexical",
+  "keywords": [
+    "feature",
+    "specification",
+    "memory",
+    "mcp",
+    "graceful",
+    "embedder-degrade",
+    "lexical"
+  ],
+  "lastUpdated": "2026-06-19T06:21:32.129Z",
+  "specId": "004",
+  "folderSlug": "004-graceful-degradation",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "001-speckit-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

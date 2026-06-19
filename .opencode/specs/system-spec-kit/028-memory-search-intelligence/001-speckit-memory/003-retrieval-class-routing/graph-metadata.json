@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/003-retrieval-class-routing",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/003-retrieval-class-routing",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "retrieval class routing memory",
+      "query class router single hop",
+      "tiered recall budget compaction ladder",
+      "iterative context extension memory",
+      "per class channel weight injection",
+      "retrieval class routing plan",
+      "c2-a classifier sequencing",
+      "recall shape budget ladder plan",
+      "per class weight injection plan",
+      "memory mcp query router plan",
+      "retrieval class routing tasks",
+      "c2-a c2-b c2-c tasks"
+    ],
+    "key_topics": [
+      "retrieval",
+      "class",
+      "routing",
+      "memory",
+      "query",
+      "router",
+      "single",
+      "hop",
+      "tiered",
+      "recall",
+      "budget",
+      "compaction"
+    ],
+    "importance_tier": "important",
+    "status": "draft_(re_plan;_not_yet_implemented)",
+    "key_files": [
+      "shared/algorithms/rrf-fusion.ts",
+      "mcp_server/lib/search/query-router.ts",
+      "handlers/memory-context.ts",
+      "lib/cognitive/pressure-monitor.ts",
+      "mcp_server/handlers/memory-context.ts",
+      "mcp_server/lib/cognitive/pressure-monitor.ts",
+      "mcp_server/handlers/chunking-orchestrator.ts",
+      "mcp_server/lib/search/artifact-routing.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "rrf-fusion.ts",
+        "kind": "code",
+        "path": "shared/algorithms/rrf-fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "query-router.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/query-router.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-context.ts",
+        "kind": "code",
+        "path": "handlers/memory-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "pressure-monitor.ts",
+        "kind": "code",
+        "path": "lib/cognitive/pressure-monitor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "chunking-orchestrator.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/chunking-orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "artifact-routing.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/artifact-routing.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Class Routing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shape Intelligence",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Spec-Kit Memory MCP routes every query through two orthogonal classifiers (complexity tier + task intent) but has **no retrieval-shape axis**: a single-hop \"find this exact fact\" query is expanded over the causal graph exactly like a multi-hop \"trace impact\" query, and \"indiscriminate graph expansion hurts single-hop precision\" (the aionforge failure mode that 028's research maps directly onto this code). This sub-phase implements the retrieval-shape intelligence cluster from packet 028's PRIMARY Memory MCP research: the **C2-A** retrieval-class classifier (the additive third router axis) plus the two consumers it gates — **C2-C** (graph-off for single-hop precision) and **C2-B** (per-class channel-weight injection) — and the adjacent **recall-shape** family that routes/sizes recall by shape: **CG-iterative-context-extension** (answer-as-next-query), **MEM-tiered-recall-budget** (per-section/per-tier budgets), **LT-compaction-fallback-ladder** (summarize-before-truncate), and the **C-G2** cross-cutting auto-topic facet.",
+    "created_at": "2026-06-19T05:47:05.552Z",
+    "last_save_at": "2026-06-19T05:47:05.552Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -4,12 +4,12 @@
   "spec_folder": "system-spec-kit/028-memory-search-intelligence/004-deep-loop",
   "parent_id": "system-spec-kit/028-memory-search-intelligence",
   "children_ids": [
-    "system-spec-kit/028-memory-search-intelligence/004-deep-loop/001-001-reducer-anchor-fix",
-    "system-spec-kit/028-memory-search-intelligence/004-deep-loop/002-002-fanout-determinism-observability",
-    "system-spec-kit/028-memory-search-intelligence/004-deep-loop/003-003-fanout-failure-recovery",
-    "system-spec-kit/028-memory-search-intelligence/004-deep-loop/004-004-reliability-weighted-convergence",
-    "system-spec-kit/028-memory-search-intelligence/004-deep-loop/005-005-stop-input-corroboration",
-    "system-spec-kit/028-memory-search-intelligence/004-deep-loop/006-006-continuity-threading"
+    "system-spec-kit/028-memory-search-intelligence/004-deep-loop/001-reducer-anchor-fix",
+    "system-spec-kit/028-memory-search-intelligence/004-deep-loop/002-fanout-determinism-observability",
+    "system-spec-kit/028-memory-search-intelligence/004-deep-loop/003-fanout-failure-recovery",
+    "system-spec-kit/028-memory-search-intelligence/004-deep-loop/004-reliability-weighted-convergence",
+    "system-spec-kit/028-memory-search-intelligence/004-deep-loop/005-stop-input-corroboration",
+    "system-spec-kit/028-memory-search-intelligence/004-deep-loop/006-continuity-threading"
   ],
   "manual": {
     "depends_on": [],

@@ -1,0 +1,27 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/004-deep-loop/001-reducer-anchor-fix",
+  "description": "Feature Specification: Deep Research Reducer-Anchor Template Fix (028/004 ship-first correctness)",
+  "keywords": [
+    "feature",
+    "specification",
+    "deep",
+    "research",
+    "reducer-anchor",
+    "template",
+    "fix",
+    "028",
+    "004",
+    "ship-first",
+    "correctness"
+  ],
+  "lastUpdated": "2026-06-19T06:21:36.950Z",
+  "specId": "001",
+  "folderSlug": "001-reducer-anchor-fix",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "004-deep-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

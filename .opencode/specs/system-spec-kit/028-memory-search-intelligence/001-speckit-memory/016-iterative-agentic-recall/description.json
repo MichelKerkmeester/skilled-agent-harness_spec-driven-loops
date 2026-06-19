@@ -1,0 +1,23 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/016-iterative-agentic-recall",
+  "description": "Feature Specification: Agentic Tool-Loop Recall Strategy (CG-agentic-tool-loop)",
+  "keywords": [
+    "feature",
+    "specification",
+    "agentic",
+    "tool-loop",
+    "recall",
+    "strategy",
+    "cg-agentic-tool-loop"
+  ],
+  "lastUpdated": "2026-06-19T06:21:33.915Z",
+  "specId": "016",
+  "folderSlug": "016-iterative-agentic-recall",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "001-speckit-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

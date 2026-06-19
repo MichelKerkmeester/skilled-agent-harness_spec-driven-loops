@@ -20,8 +20,8 @@ _memory:
     key_files:
       - "spec.md"
       - "research/research.md"
-      - "001-001-reducer-anchor-fix/spec.md"
-      - "006-006-continuity-threading/spec.md"
+      - "001-reducer-anchor-fix/spec.md"
+      - "006-continuity-threading/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-004-deep-loop-parent"
@@ -100,12 +100,12 @@ Research input: `research/research.md` remains the subsystem source packet for c
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 001 | `001-001-reducer-anchor-fix/` | Reducer anchor correctness | Planned |
-| 002 | `002-002-fanout-determinism-observability/` | Fanout determinism and observability | Planned |
-| 003 | `003-003-fanout-failure-recovery/` | Fanout failure recovery | Planned |
-| 004 | `004-004-reliability-weighted-convergence/` | Reliability-weighted convergence | Planned |
-| 005 | `005-005-stop-input-corroboration/` | Stop-input corroboration checks | Planned |
-| 006 | `006-006-continuity-threading/` | Continuity threading across iterations | Planned |
+| 001 | `001-reducer-anchor-fix/` | Reducer anchor correctness | Planned |
+| 002 | `002-fanout-determinism-observability/` | Fanout determinism and observability | Planned |
+| 003 | `003-fanout-failure-recovery/` | Fanout failure recovery | Planned |
+| 004 | `004-reliability-weighted-convergence/` | Reliability-weighted convergence | Planned |
+| 005 | `005-stop-input-corroboration/` | Stop-input corroboration checks | Planned |
+| 006 | `006-continuity-threading/` | Continuity threading across iterations | Planned |
 
 ### Phase Transition Rules
 

@@ -20,8 +20,8 @@ _memory:
     key_files:
       - "spec.md"
       - "research/research.md"
-      - "001-001-rrf-determinism-spine/spec.md"
-      - "007-007-outcome-weighted-ranking-followon/spec.md"
+      - "001-rrf-determinism-spine/spec.md"
+      - "007-outcome-weighted-ranking-followon/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-003-skill-advisor-parent"
@@ -100,13 +100,13 @@ Research input: `research/research.md` remains the subsystem source packet for c
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 001 | `001-001-rrf-determinism-spine/` | Shared RRF determinism spine | Planned |
-| 002 | `002-002-runtime-lane-health-degrade/` | Runtime lane health and fallback scoring | Planned |
-| 003 | `003-003-embedding-staleness-signal/` | Embedding freshness signal | Planned |
-| 004 | `004-004-c4-shadow-seam-beta-posterior/` | C4 shadow path and beta posterior | Planned |
-| 005 | `005-005-conflict-rerank-query-routing/` | Conflict rerank and query routing | Planned |
-| 006 | `006-006-provenance-drift-observability/` | Provenance drift observability | Planned |
-| 007 | `007-007-outcome-weighted-ranking-followon/` | Outcome-weighted ranking follow-on | Planned |
+| 001 | `001-rrf-determinism-spine/` | Shared RRF determinism spine | Planned |
+| 002 | `002-runtime-lane-health-degrade/` | Runtime lane health and fallback scoring | Planned |
+| 003 | `003-embedding-staleness-signal/` | Embedding freshness signal | Planned |
+| 004 | `004-c4-shadow-seam-beta-posterior/` | C4 shadow path and beta posterior | Planned |
+| 005 | `005-conflict-rerank-query-routing/` | Conflict rerank and query routing | Planned |
+| 006 | `006-provenance-drift-observability/` | Provenance drift observability | Planned |
+| 007 | `007-outcome-weighted-ranking-followon/` | Outcome-weighted ranking follow-on | Planned |
 
 ### Phase Transition Rules
 

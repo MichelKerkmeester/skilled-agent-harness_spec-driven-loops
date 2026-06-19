@@ -1,6 +1,6 @@
 ---
-title: "Session Handover: 028 Memory Search Intelligence — child 007 memory-systems mining"
-description: "Child 007 memory-systems mining CLOSED at 22/40 (honest saturation point); deliverable = research/synthesis/06-memory-systems-findings.md + roadmap addendum + top-7. Implementation is a separate later packet. Earlier broadening-rounds content retained below as machinery reference."
+title: "Session Handover: 028 Memory Search Intelligence four-phase parent"
+description: "Packet 028 now has four top-level subsystem children. Former research-only phases 005-008 live under subsystem research/from-* archives."
 trigger_phrases:
   - "028 broadening rounds handover"
   - "memory search intelligence broadening"
@@ -11,13 +11,14 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence"
-    last_updated_at: "2026-06-17T13:15:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "007 CLOSED at 22/40 (saturation); synthesis/06 + roadmap addendum written"
-    next_safe_action: "Done — implementation is a separate later packet; nothing to resume"
+    last_updated_at: "2026-06-19T00:00:00Z"
+    last_updated_by: "codex-gpt-5"
+    recent_action: "Merged 005-008 research archives"
+    next_safe_action: "Resume one of the subsystem parents 001-004 or read the merged research index"
     blockers: []
     key_files:
-      - "007-memory-systems/research/research.md"
+      - "001-speckit-memory/research/merged-research-index.md"
+      - "001-speckit-memory/research/from-007-memory-systems/research.md"
       - "research/roadmap.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -35,12 +36,20 @@ Handover for continuing packet 028 with **broadening rounds**: adversarial verif
 
 ---
 
+## LATEST 2026-06-19
+
+Packet 028 now has four top-level children: `001-speckit-memory`, `002-code-graph`, `003-skill-advisor` and `004-deep-loop`.
+
+Former research-only phases `005-revisit-027`, `006-sibling-revisit`, `007-memory-systems` and `008-retrieval-evaluation` are archived under subsystem `research/from-*` folders. Start with `001-speckit-memory/research/merged-research-index.md` for the routing map.
+
+The 2026-06-17 note below is historical.
+
 ## ⏭️ LATEST — 2026-06-17 (supersedes the broadening-rounds content below)
 
 Packet 028 pass-1 + the synthesis review are **complete** (`research/synthesis/00-05` + `roadmap.md` shipped). The **active work** is now child **`007-memory-systems`**: a 40-iteration, 4-model sweep (DeepSeek v4 Pro · MiMo v2.5 Pro · Kimi K2.7 · Opus 4.8) mining four external agent-memory systems (Mem0, Graphiti/Zep, Letta/MemGPT, Cognee) for Memory-MCP (+ Advisor fusion, Deep-Loop continuity) improvements.
 
 - **State:** iters 1–4 banked = **24 novelty-tagged candidates across all 4 systems** (Mem0 5, Cognee 8, Graphiti 6, Letta 5); ~36 iterations remain. `reduce-state.cjs` runs clean; registry + dashboard emitted.
-- **▶ Resume here:** `007-memory-systems/research/research.md` → the **CONTINUATION RECIPE** (proven dispatch contracts + live slugs + per-lineage plan + orchestrator-writes contract + remaining angles + finish steps). `/speckit:resume system-spec-kit/028-memory-search-intelligence/007-memory-systems/`.
+- **Archive:** `001-speckit-memory/research/from-007-memory-systems/research.md` preserves the former 007 continuation recipe and dispatch notes. Do not resume former child 007 as a top-level phase.
 - **🩺 KIMI (diagnosed, NOT broken):** timed out 2× at 600s with 0 stdout, but its 65 KB stderr shows it was **productively reading `external/letta` by explicit path** (gitignore-fix worked) and just **over-explored past the 600s budget** before emitting — opencode only flushes the *final* message to stdout, so a mid-stream kill = 0 bytes. Root cause = under-budgeted + over-scoped at `--variant high` on a 1185-file repo. **Fix for its lineage:** timeout **1200s+** + a hard read-cap in the prompt ("read ≤N files then emit, stop browsing"), optionally drop `--variant high`. A confirming tight+1200s relaunch is in flight. (Letta itself is already mined via DeepSeek.)
 - **⚠ GOTCHA:** opencode search respects `.gitignore`; `external/` is gitignored → seats must read it by explicit path / `cat`, not Glob (MiMo fell back to fetching Graphiti from GitHub — valid, approx line numbers).
 - **Proven dispatch contracts:** `deepseek/deepseek-v4-pro --variant high`, `xiaomi/mimo-v2.5-pro --variant high` (both `opencode run`); Opus via `claude2` `-p --model opus --permission-mode bypassPermissions` + a hard read-only prompt (NOT `--permission-mode plan`, which truncates claude2 stdout).
@@ -66,7 +75,7 @@ You are the incoming AI. The first deep-research pass is **complete and saturate
 - **To Session:** next AI — broadening rounds
 - **Phase Completed:** RESEARCH (pass 1 — saturated)
 - **Handover Time:** 2026-06-16T17:05:00Z
-- **Recent action:** Research complete at **150 iterations** (001=38, 002=24, 003=18, 004=20, **005=50**). The 100→150 work added child **`005-revisit-027`**: a cross-packet reconciliation of this roadmap's findings against packet-027's shipped code. Result: **028 is net-additive to 027 — 0 supersedes, 0 contradicts** (EXTENDS ×6 / ALREADY-COVERED ×1 / NO-TRANSFER ×3), with 027's shipped doctrine reverse-validating 028's deflation. Ledger: `005-revisit-027/research/research.md`; the 5 roadmap edits + GO additions are in `research/roadmap.md` → "027-REVISIT ADDENDUM". **Next direction:** the packet is research-complete — hand the GO list + roadmap edits to a 028 *implementation* packet (a separate, later decision per spec §2).
+- **Recent action:** Research complete at **150 iterations** (001=38, 002=24, 003=18, 004=20, **005=50**). The 100→150 work added child **`005-revisit-027`**: a cross-packet reconciliation of this roadmap's findings against packet-027's shipped code. Result: **028 is net-additive to 027 — 0 supersedes, 0 contradicts** (EXTENDS ×6 / ALREADY-COVERED ×1 / NO-TRANSFER ×3), with 027's shipped doctrine reverse-validating 028's deflation. Ledger: `001-speckit-memory/research/from-005-revisit-027/research.md`; the 5 roadmap edits + GO additions are in `research/roadmap.md` → "027-REVISIT ADDENDUM". **Next direction:** the packet is research-complete — hand the GO list + roadmap edits to a 028 *implementation* packet (a separate, later decision per spec §2).
 
 **The ask:** mine the two external systems under `.opencode/specs/system-spec-kit/028-memory-search-intelligence/external/` (aionforge-memory = Rust, galadriel = Python) for improvements to four internal subsystems — Spec-Kit Memory MCP (PRIMARY), Code Graph, Skill Advisor, Deep Loop runtime. Output is an evidence-backed, code-mapped improvement roadmap. **Pass 1 delivered the roadmap; broadening hardens and extends it.**
 <!-- /ANCHOR:handover-summary -->

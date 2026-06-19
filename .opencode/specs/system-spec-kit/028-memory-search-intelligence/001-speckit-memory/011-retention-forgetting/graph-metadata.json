@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/011-retention-forgetting",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/011-retention-forgetting",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "memory retention forgetting impl",
+      "forget allowlist dominance cap",
+      "spare only forget eligibility",
+      "trust gated quarantine",
+      "erasure cascade namespace authorize writer signing",
+      "memory retention forgetting plan",
+      "c7-a dominance cap plan",
+      "spare only eligibility sequencing",
+      "trust gated quarantine plan",
+      "erasure surface deferral",
+      "memory retention forgetting tasks",
+      "c7-a dominance cap tasks"
+    ],
+    "key_topics": [
+      "memory",
+      "retention",
+      "forgetting",
+      "impl",
+      "forget",
+      "allowlist",
+      "dominance",
+      "cap",
+      "spare",
+      "only",
+      "eligibility",
+      "trust"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-retention-sweep.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage4-filter.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      "tools/memory-tools.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "memory-retention-sweep.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-retention-sweep.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stage4-filter.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage4-filter.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-queries.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts",
+        "source": "derived"
+      },
+      {
+        "name": "reconsolidation-bridge.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory-tools.ts",
+        "kind": "code",
+        "path": "tools/memory-tools.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Memory Retention",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Diversity Result",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implement",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "CONTRADICTS",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Spec-Kit Memory MCP retains and recalls memories with no diversity or eligibility shaping at the result-set boundary. Three concrete gaps were confirmed by the 028/001 deep-research loop: (1) forget eligibility is incomplete — the feedback-retention reducer only spares by tier/pin (`feedback-retention-reducer.ts:153-155`), so a non-`important` row with strong positive feedback is annotated yet still deletes, and there is no live-edge protection against forgetting a still-referenced memory; (2) there is NO session/spec-folder dominance cap anywhere in the search pipeline (`stage4-filter.ts:305-309` truncates with a bare `slice(0, limit)`), so one chatty session or dominant spec-folder can occupy the entire top-k; (3) the constitutional always-surface prefix counts toward the recall limit but is never itself capped (`vector-index-queries.ts:435`), so constitutional rows can silently fill the slice and starve regular results. The erasure surface (hard-purge cascade, per-namespace authorization, signed writes) is partially modelled in aionforge but unbuilt here.",
+    "created_at": "2026-06-19T05:40:37.446Z",
+    "last_save_at": "2026-06-19T05:47:05.570Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

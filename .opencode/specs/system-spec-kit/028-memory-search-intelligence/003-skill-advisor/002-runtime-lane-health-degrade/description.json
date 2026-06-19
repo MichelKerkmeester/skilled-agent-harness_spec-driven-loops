@@ -1,0 +1,26 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/002-runtime-lane-health-degrade",
+  "description": "Feature Specification: Skill Advisor — Runtime Lane-Health & Graceful Lane-Degrade (C5/C5a/AMB)",
+  "keywords": [
+    "feature",
+    "specification",
+    "skill",
+    "advisor",
+    "runtime",
+    "lane-health",
+    "graceful",
+    "lane-degrade",
+    "c5a",
+    "amb"
+  ],
+  "lastUpdated": "2026-06-19T06:21:36.084Z",
+  "specId": "002",
+  "folderSlug": "002-runtime-lane-health-degrade",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "003-skill-advisor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/016-iterative-agentic-recall",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/016-iterative-agentic-recall",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "028 agentic tool loop recall",
+      "react memory_context strategy",
+      "agentic retrieval governor",
+      "CG-agentic-tool-loop",
+      "memory context strategy loop",
+      "028 agentic tool loop plan",
+      "react memory_context strategy plan",
+      "agentic retrieval governor plan",
+      "CG-agentic-tool-loop plan",
+      "028 agentic tool loop tasks",
+      "react memory_context strategy tasks",
+      "CG-agentic-tool-loop tasks"
+    ],
+    "key_topics": [
+      "028",
+      "agentic",
+      "tool",
+      "loop",
+      "recall",
+      "react",
+      "strategy",
+      "retrieval",
+      "governor",
+      "cg-agentic-tool-loop",
+      "memory",
+      "context"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "mcp_server/handlers/memory-context.ts",
+      "mcp_server/lib/search/search-flags.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "handlers/memory-context.ts",
+      "lib/search/search-flags.ts",
+      "lib/search/hybrid-search.ts",
+      "lib/search/pipeline/stage2-fusion.ts",
+      "spec.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "memory-context.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-flags.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/search-flags.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "hybrid-search.ts",
+        "kind": "code",
+        "path": "lib/search/hybrid-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stage2-fusion.ts",
+        "kind": "code",
+        "path": "lib/search/pipeline/stage2-fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Agentic Tool",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Recall Strategy",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "step-cap",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Add a ReAct-style agentic strategy to the Memory MCP's `memory_context` mode router so that complex asks get an LLM-driven reason-act-observe retrieval loop over the existing memory tools, instead of a single straight-line search call. Research (028/007, iterations 11/17/22) confirmed the strategy seam is clean and additive, but blast-radius scoping corrected the original H/L \"best lev/eff\" rating down to **L effort**: the loop injects an LLM into a synchronous, deterministic, pure better-sqlite3 retrieval hot path, and **no loop/cost governor exists anywhere today** — controller, step-cap, cost-ceiling, and stop-condition are all greenfield. This is its own design packet, prove-first, gated default-off.",
+    "created_at": "2026-06-19T05:40:37.449Z",
+    "last_save_at": "2026-06-19T05:47:05.577Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

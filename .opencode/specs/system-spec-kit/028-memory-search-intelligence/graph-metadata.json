@@ -7,11 +7,7 @@
     "system-spec-kit/028-memory-search-intelligence/001-speckit-memory",
     "system-spec-kit/028-memory-search-intelligence/002-code-graph",
     "system-spec-kit/028-memory-search-intelligence/003-skill-advisor",
-    "system-spec-kit/028-memory-search-intelligence/004-deep-loop",
-    "system-spec-kit/028-memory-search-intelligence/005-revisit-027",
-    "system-spec-kit/028-memory-search-intelligence/006-sibling-revisit",
-    "system-spec-kit/028-memory-search-intelligence/007-memory-systems",
-    "system-spec-kit/028-memory-search-intelligence/008-retrieval-evaluation"
+    "system-spec-kit/028-memory-search-intelligence/004-deep-loop"
   ],
   "manual": {
     "depends_on": [],
@@ -54,11 +50,11 @@
       "004-deep-loop/spec.md",
       "research/roadmap.md",
       "research/research.md",
-      "007-memory-systems/research/research.md",
-      "005-revisit-027/research/research.md",
-      ".opencode/specs/system-spec-kit/028-memory-search-intelligence/research/roadmap.md",
-      "handover.md",
-      "lib/response/envelope.ts"
+      "001-speckit-memory/research/merged-research-index.md",
+      "001-speckit-memory/research/from-005-revisit-027/research.md",
+      "001-speckit-memory/research/from-006-sibling-revisit/research.md",
+      "001-speckit-memory/research/from-007-memory-systems/research.md",
+      "001-speckit-memory/research/from-008-retrieval-evaluation/research.md"
     ],
     "entities": [
       {
@@ -194,15 +190,15 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 028 owns the planning record that turns external memory-system research into implementation sub-phases for internal retrieval surfaces. The first four research children now need to act as subsystem phase parents so the research inputs, candidate plans and child validation state are easy to navigate.",
+    "causal_summary": "Packet 028 owns the planning record that turns external memory-system research into implementation sub-phases for internal retrieval surfaces. Its four top-level children are subsystem phase parents with merged research archives under subsystem research folders.",
     "created_at": "2026-06-16T14:27:21.650Z",
-    "last_save_at": "2026-06-19T06:27:43.576Z",
+    "last_save_at": "2026-06-19T00:00:00.000Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md",
-      "handover.md"
+      "001-speckit-memory/research/merged-research-index.md"
     ],
     "last_active_child_id": null,
     "last_active_at": "2026-06-16T21:38:16.651Z"

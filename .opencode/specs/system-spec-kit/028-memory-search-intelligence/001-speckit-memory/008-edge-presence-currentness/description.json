@@ -1,0 +1,26 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/008-edge-presence-currentness",
+  "description": "Feature Specification: Edge-Presence Currentness & Temporal Recall (028/001 impl phase)",
+  "keywords": [
+    "feature",
+    "specification",
+    "edge-presence",
+    "currentness",
+    "temporal",
+    "recall",
+    "028",
+    "001",
+    "impl",
+    "phase"
+  ],
+  "lastUpdated": "2026-06-19T06:21:32.740Z",
+  "specId": "008",
+  "folderSlug": "008-edge-presence-currentness",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "001-speckit-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

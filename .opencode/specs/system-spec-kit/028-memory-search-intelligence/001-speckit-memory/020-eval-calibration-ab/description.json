@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/020-eval-calibration-ab",
+  "description": "Feature Specification: Eval-Gated Confidence Calibration and Shipped-Lever A/B",
+  "keywords": [
+    "feature",
+    "specification",
+    "eval-gated",
+    "confidence",
+    "calibration",
+    "shipped-lever"
+  ],
+  "lastUpdated": "2026-06-19T06:21:34.492Z",
+  "specId": "020",
+  "folderSlug": "020-eval-calibration-ab",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "001-speckit-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

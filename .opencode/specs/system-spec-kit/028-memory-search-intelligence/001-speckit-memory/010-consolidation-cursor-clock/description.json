@@ -1,0 +1,29 @@
+{
+  "level": "3",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/010-consolidation-cursor-clock",
+  "description": "Feature Specification: Memory Consolidation Cursor + Clock (C4-A → C4-C → C-G1 chain + crash-safety hardening)",
+  "keywords": [
+    "feature",
+    "specification",
+    "memory",
+    "consolidation",
+    "cursor",
+    "clock",
+    "c4-a",
+    "c4-c",
+    "c-g1",
+    "chain",
+    "crash-safety",
+    "hardening"
+  ],
+  "lastUpdated": "2026-06-19T06:21:33.042Z",
+  "specId": "010",
+  "folderSlug": "010-consolidation-cursor-clock",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "001-speckit-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

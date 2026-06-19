@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/015-summary-fusion-grounding",
+  "description": "Feature Specification: Summary Fusion and World-Summary Grounding",
+  "keywords": [
+    "feature",
+    "specification",
+    "summary",
+    "fusion",
+    "world-summary",
+    "grounding"
+  ],
+  "lastUpdated": "2026-06-19T06:21:33.771Z",
+  "specId": "015",
+  "folderSlug": "015-summary-fusion-grounding",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "001-speckit-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

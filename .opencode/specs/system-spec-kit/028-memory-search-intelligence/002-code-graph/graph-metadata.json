@@ -4,14 +4,14 @@
   "spec_folder": "system-spec-kit/028-memory-search-intelligence/002-code-graph",
   "parent_id": "system-spec-kit/028-memory-search-intelligence",
   "children_ids": [
-    "system-spec-kit/028-memory-search-intelligence/002-code-graph/001-001-determinism-walk-order",
-    "system-spec-kit/028-memory-search-intelligence/002-code-graph/002-002-edge-staleness-correctness",
-    "system-spec-kit/028-memory-search-intelligence/002-code-graph/003-003-generation-watermark",
-    "system-spec-kit/028-memory-search-intelligence/002-code-graph/004-004-code-edge-bitemporal",
-    "system-spec-kit/028-memory-search-intelligence/002-code-graph/005-005-seeded-ppr-ranking",
-    "system-spec-kit/028-memory-search-intelligence/002-code-graph/006-006-edge-governance-vocab",
-    "system-spec-kit/028-memory-search-intelligence/002-code-graph/007-007-parser-resilience",
-    "system-spec-kit/028-memory-search-intelligence/002-code-graph/008-008-doc-symbol-lane"
+    "system-spec-kit/028-memory-search-intelligence/002-code-graph/001-determinism-walk-order",
+    "system-spec-kit/028-memory-search-intelligence/002-code-graph/002-edge-staleness-correctness",
+    "system-spec-kit/028-memory-search-intelligence/002-code-graph/003-generation-watermark",
+    "system-spec-kit/028-memory-search-intelligence/002-code-graph/004-code-edge-bitemporal",
+    "system-spec-kit/028-memory-search-intelligence/002-code-graph/005-seeded-ppr-ranking",
+    "system-spec-kit/028-memory-search-intelligence/002-code-graph/006-edge-governance-vocab",
+    "system-spec-kit/028-memory-search-intelligence/002-code-graph/007-parser-resilience",
+    "system-spec-kit/028-memory-search-intelligence/002-code-graph/008-doc-symbol-lane"
   ],
   "manual": {
     "depends_on": [],

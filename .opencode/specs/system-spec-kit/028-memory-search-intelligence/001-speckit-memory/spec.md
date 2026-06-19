@@ -20,8 +20,8 @@ _memory:
     key_files:
       - "spec.md"
       - "research/research.md"
-      - "001-001-corpus-reindex-gate-zero/spec.md"
-      - "021-021-015-residual-correctness/spec.md"
+      - "001-corpus-reindex-gate-zero/spec.md"
+      - "021-residual-correctness/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-001-speckit-memory-parent"
@@ -100,27 +100,27 @@ Research input: `research/research.md` remains the subsystem source packet for c
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 001 | `001-001-corpus-reindex-gate-zero/` | Corpus scan and gate-zero recovery | Planned |
-| 002 | `002-002-determinism-content-id-foundation/` | Stable content IDs and deterministic recall spine | Planned |
-| 003 | `003-003-retrieval-class-routing/` | Query class router and lane policy | Planned |
-| 004 | `004-004-graceful-degradation/` | Degraded service paths and fallback envelopes | Planned |
-| 005 | `005-005-recall-render-escaper/` | Source-kind gated render safety | Planned |
-| 006 | `006-006-redteam-probe-gate/` | Adversarial probe harness and CI gate | Planned |
-| 007 | `007-007-bitemporal-window/` | Temporal validity windows for memory facts | Planned |
-| 008 | `008-008-edge-presence-currentness/` | Presence edges and currentness checks | Planned |
-| 009 | `009-009-derived-id-provenance/` | Derived IDs and provenance links | Planned |
+| 001 | `001-corpus-reindex-gate-zero/` | Corpus scan and gate-zero recovery | Planned |
+| 002 | `002-determinism-content-id-foundation/` | Stable content IDs and deterministic recall spine | Planned |
+| 003 | `003-retrieval-class-routing/` | Query class router and lane policy | Planned |
+| 004 | `004-graceful-degradation/` | Degraded service paths and fallback envelopes | Planned |
+| 005 | `005-recall-render-escaper/` | Source-kind gated render safety | Planned |
+| 006 | `006-redteam-probe-gate/` | Adversarial probe harness and CI gate | Planned |
+| 007 | `007-bitemporal-window/` | Temporal validity windows for memory facts | Planned |
+| 008 | `008-edge-presence-currentness/` | Presence edges and currentness checks | Planned |
+| 009 | `009-derived-id-provenance/` | Derived IDs and provenance links | Planned |
 | 010 | `010-010-consoli<!-- pp-scan -->dation-cursor-clock/` | Cursor clock and async write follow-on | Planned |
-| 011 | `011-011-retention-forgetting/` | Retention and forgetting policy | Planned |
-| 012 | `012-012-procedural-reliability-benchmark/` | Procedural reliability benchmark | Planned |
-| 013 | `013-013-enrichment-observability/` | Enrichment metrics and traceability | Planned |
-| 014 | `014-014-mem0-ranking-tweaks/` | Mem0 ranking backport choices | Planned |
-| 015 | `015-015-summary-fusion-grounding/` | Summary fusion and grounding safeguards | Planned |
-| 016 | `016-016-iterative-agentic-recall/` | Agentic recall loop planning | Planned |
-| 017 | `017-017-semantic-edge-layer/` | Semantic edge representation | Planned |
+| 011 | `011-retention-forgetting/` | Retention and forgetting policy | Planned |
+| 012 | `012-procedural-reliability-benchmark/` | Procedural reliability benchmark | Planned |
+| 013 | `013-enrichment-observability/` | Enrichment metrics and traceability | Planned |
+| 014 | `014-mem0-ranking-tweaks/` | Mem0 ranking backport choices | Planned |
+| 015 | `015-summary-fusion-grounding/` | Summary fusion and grounding safeguards | Planned |
+| 016 | `016-iterative-agentic-recall/` | Agentic recall loop planning | Planned |
+| 017 | `017-semantic-edge-layer/` | Semantic edge representation | Planned |
 | 018 | `018-018-sleeptime-consoli<!-- pp-scan -->dation/` | Sleeptime background processing | Planned |
-| 019 | `019-019-eval-harness-extension/` | Evaluation harness extension | Planned |
-| 020 | `020-020-eval-calibration-ab/` | Evaluation calibration A/B plan | Planned |
-| 021 | `021-021-015-residual-correctness/` | Residual correctness from candidate 015 | Planned |
+| 019 | `019-eval-harness-extension/` | Evaluation harness extension | Planned |
+| 020 | `020-eval-calibration-ab/` | Evaluation calibration A/B plan | Planned |
+| 021 | `021-residual-correctness/` | Residual correctness from candidate 015 | Planned |
 
 ### Phase Transition Rules
 

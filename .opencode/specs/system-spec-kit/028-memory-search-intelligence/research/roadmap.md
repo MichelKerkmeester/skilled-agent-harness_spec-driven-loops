@@ -274,7 +274,7 @@ A single ranked list of the highest-leverage, lowest-effort, lowest-conflict can
 
 # 027-REVISIT ADDENDUM (child `005-revisit-027`, 50 iterations) — CROSS-PACKET RECONCILIATION
 
-> A fifth child (`005-revisit-027`, 50 read-only iterations → packet total **150**) reconciled this roadmap's findings against **packet 027's shipped code** (the XCE-Derived Spec Kit Refinement epic: memory write-safety, retention, causal-edge lifecycle, feedback reducers, incremental index, triggers, search resilience, daemon re-election, observability, derived-memory). Full ledger: **`005-revisit-027/research/research.md`** (authoritative). This addendum records the **edits the revisit makes to THIS roadmap** + the cross-packet headline.
+> A fifth child (`005-revisit-027`, 50 read-only iterations → packet total **150**) reconciled this roadmap's findings against **packet 027's shipped code** (the XCE-Derived Spec Kit Refinement epic: memory write-safety, retention, causal-edge lifecycle, feedback reducers, incremental index, triggers, search resilience, daemon re-election, observability, derived-memory). Full ledger: **`../001-speckit-memory/research/from-005-revisit-027/research.md`** (authoritative). This addendum records the **edits the revisit makes to THIS roadmap** + the cross-packet headline.
 
 ## Headline
 
@@ -307,7 +307,7 @@ A single ranked list of the highest-leverage, lowest-effort, lowest-conflict can
 
 # MEMORY-SYSTEMS ADDENDUM (child `007-memory-systems`, 22 iterations) — EXTERNAL AGENT-MEMORY MINING
 
-> 4-model mining (DeepSeek v4 Pro · MiMo v2.5 Pro · Kimi K2.7 · Opus 4.8 native) of **Mem0 · Graphiti/Zep · Letta/MemGPT · Cognee**, novelty-diffed against everything 027/028 already shipped. Stopped at **22 of a planned 40** at the honest saturation point. Plain-language before→after: `synthesis/06-memory-systems-findings.md`. Full evidence: `007-memory-systems/research/{research.md, iterations/, deltas/}`. **Research-only.**
+> 4-model mining (DeepSeek v4 Pro · MiMo v2.5 Pro · Kimi K2.7 · Opus 4.8 native) of **Mem0 · Graphiti/Zep · Letta/MemGPT · Cognee**, novelty-diffed against everything 027/028 already shipped. Stopped at **22 of a planned 40** at the honest saturation point. Plain-language before→after: `synthesis/06-memory-systems-findings.md`. Full evidence: `../001-speckit-memory/research/from-007-memory-systems/{research.md, iterations/, deltas/}`. **Research-only.**
 
 ## Headline
 A **top-7 roadmap** + **2 new initiatives**, net-deflationary: 3 "net-new" claims were refuted as already-implemented (community detection, query decomposition, the determinism layer), and 2 headline candidates were downsized by blast-radius (`CG-agentic-tool-loop` H/L→L; `MEM-fused-summary-channel` M/M→L). The durable spearhead is **event-time fact-invalidation (H/S, reader-transparent)**.

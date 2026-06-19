@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/007-outcome-weighted-ranking-followon",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/007-outcome-weighted-ranking-followon",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/003-skill-advisor",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "advisor outcome weighted ranking",
+      "SA outcome weighted ranking followon",
+      "aionforge procedural skill ranking",
+      "advisor scheduler ambient tick",
+      "ADV bm25 calibration",
+      "skill outcome store execution success emitter",
+      "advisor outcome ranking plan",
+      "advisor ambient tick plan",
+      "advisor bm25 calibration plan",
+      "advisor outcome ranking tasks",
+      "advisor ambient tick tasks",
+      "advisor bm25 calibration tasks"
+    ],
+    "key_topics": [
+      "advisor",
+      "outcome",
+      "weighted",
+      "ranking",
+      "followon",
+      "aionforge",
+      "procedural",
+      "skill",
+      "scheduler",
+      "ambient",
+      "tick",
+      "adv"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "scripts/spec/validate.sh",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/metrics.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/bm25.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": "scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "metrics.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/metrics.ts",
+        "source": "derived"
+      },
+      {
+        "name": "bm25.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/bm25.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor Outcome",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Weighted Ranking Follow",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Plan Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Completion",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Start Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Records",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 100-iteration mining campaign closed with exactly one external crate genuinely skipped: `aionforge-procedural`, the procedural-memory / skill-ranking crate. Iteration 18 mined it and found a net-new candidate for the advisor — rank skills by their OBSERVED execution success/failure history (a Beta-posterior reliability blended `score = similarity x reliability x penalty`, fresh skill = neutral 0.5) plus per-skill failure-mode recall (\"how this skill tends to fail on inputs like yours\"). The 006 sibling-revisit then stress-tested it and downgraded it to PROXY-ONLY: the advisor today captures only whether a *recommendation* was accepted (`AdvisorHookOutcomeRecord.outcome in {accepted, corrected, ignored}`, keyed on `skillLabel` — `metrics.ts:81-86,394-409`), never whether the recommended skill's TASK actually succeeded. The Completion-Verification gate has zero skill attribution. So this is not a free byproduct of a present signal — a net-new execution-success emitter + a skill-outcome store must be BUILT FIRST, and only then can reliability-over-execution be computed.",
+    "created_at": "2026-06-19T06:06:27.156Z",
+    "last_save_at": "2026-06-19T06:20:37.812Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

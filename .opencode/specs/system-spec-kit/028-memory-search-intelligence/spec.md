@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Memory Search Intelligence Phase Parent"
-description: "Phase parent for external memory-system research, subsystem implementation planning and packet 030 shipped-evidence links."
+description: "Phase parent for the four subsystem research and implementation-planning tracks."
 trigger_phrases:
   - "028 memory search intelligence"
   - "external memory systems research"
@@ -14,12 +14,13 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence"
     last_updated_at: "2026-06-19T06:45:00Z"
     last_updated_by: "codex-gpt-5"
-    recent_action: "Wired subsystem research children 001-004 as phase parents with 42 implementation sub-phases"
-    next_safe_action: "Use the subsystem phase maps to implement PENDING candidates in shared-infra order"
+    recent_action: "Collapsed to four subsystem phase parents"
+    next_safe_action: "Resume subsystem parents 001-004"
     blockers: []
     key_files:
       - "spec.md"
       - "research/roadmap.md"
+      - "001-speckit-memory/research/merged-research-index.md"
       - "001-speckit-memory/spec.md"
       - "002-code-graph/spec.md"
       - "003-skill-advisor/spec.md"
@@ -31,7 +32,8 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Research children 001-004 now record their implementation child maps."
+      - "Children 001-004 record their implementation child maps."
+      - "Research-only phases 005-008 were folded into subsystem research archives."
       - "Packet 030 is the Wave-0 SHIPPED done-evidence record and remains intentionally separate."
 ---
 
@@ -60,10 +62,10 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Packet 028 owns the planning record that turns external memory-system research into implementation sub-phases for internal retrieval surfaces. The first four research children now need to act as subsystem phase parents so the research inputs, candidate plans and child validation state are easy to navigate.
+Packet 028 owns the planning record that turns external memory-system research into implementation sub-phases for internal retrieval surfaces. Its four top-level children are subsystem phase parents so the research inputs, candidate plans and child validation state are easy to navigate.
 
 ### Purpose
-Provide the root purpose, child map and cross-packet boundary for packet 028. This parent routes the four subsystem research children to their implementation child maps, keeps later research children visible and records packet 030 as the Wave-0 SHIPPED done-evidence record.
+Provide the root purpose, child map and cross-packet boundary for packet 028. This parent routes the four subsystem children to their implementation child maps and records packet 030 as the Wave-0 SHIPPED done-evidence record.
 
 > **Phase-parent note:** This `spec.md` is the only authored document at this parent level. Detailed planning lives in the child phase folders listed below.
 <!-- /ANCHOR:problem -->
@@ -74,14 +76,14 @@ Provide the root purpose, child map and cross-packet boundary for packet 028. Th
 ## 3. SCOPE
 
 ### In Scope
-- Root-level routing for packet 028 research and implementation-planning children.
+- Root-level routing for packet 028 subsystem phase parents.
 - Phase-documentation map updates for children 001 through 004.
+- Merged research archive pointers for the removed research-only phases.
 - A pointer to packet 030 as the Wave-0 SHIPPED done-evidence record.
 
 ### Out of Scope
 - Editing packet 030.
 - Implementing any PENDING candidate.
-- Rewriting the subsystem research artifacts.
 
 ### Files to Change
 
@@ -90,6 +92,7 @@ Provide the root purpose, child map and cross-packet boundary for packet 028. Th
 | `spec.md` | Modify | parent | Root purpose and child map |
 | `description.json` | Refresh | parent | Search metadata for the parent |
 | `graph-metadata.json` | Refresh | parent | Child identity and parent graph metadata |
+| `001-speckit-memory/research/merged-research-index.md` | Create | 001 | Research archive routing index |
 | `001-speckit-memory/spec.md` | Modify | 001 | Memory MCP subsystem phase-parent map |
 | `002-code-graph/spec.md` | Modify | 002 | Code Graph subsystem phase-parent map |
 | `003-skill-advisor/spec.md` | Modify | 003 | Skill Advisor subsystem phase-parent map |
@@ -107,15 +110,11 @@ Provide the root purpose, child map and cross-packet boundary for packet 028. Th
 | 002 | `002-code-graph/` | Code Graph research plus 8 implementation child plans | Phase parent |
 | 003 | `003-skill-advisor/` | Skill Advisor research plus 7 implementation child plans | Phase parent |
 | 004 | `004-deep-loop/` | Deep Loop Runtime research plus 6 implementation child plans | Phase parent |
-| 005 | `005-revisit-027/` | Cross-packet revisit against packet 027 shipped refinements | Research complete |
-| 006 | `006-sibling-revisit/` | Sibling-subsystem revisit and cross-cutting checks | Research complete |
-| 007 | `007-memory-systems/` | External memory-system sweep for later candidate recovery | Research complete |
-| 008 | `008-retrieval-evaluation/` | Retrieval-evaluation research opened by shipped 015-019 work | Research complete |
 
 ### Phase Transition Rules
 
 - Children 001 through 004 are subsystem phase parents. Their direct child folders own implementation specs, plans, tasks and validation evidence.
-- Children 005 through 008 remain research-focused child folders.
+- Research-only material from former children 005 through 008 lives under subsystem `research/from-*` archives.
 - Run strict validation on a subsystem parent and its direct implementation children before using it as an implementation source.
 
 ### Phase Handoff Criteria
@@ -149,4 +148,5 @@ Packet `030-memory-search-intelligence-impl` is the Wave-0 SHIPPED record for ca
 
 - **Roadmap**: `research/roadmap.md`
 - **Subsystem parents**: `001-speckit-memory/`, `002-code-graph/`, `003-skill-advisor/`, `004-deep-loop/`
+- **Merged research index**: `001-speckit-memory/research/merged-research-index.md`
 - **Graph metadata**: `graph-metadata.json`

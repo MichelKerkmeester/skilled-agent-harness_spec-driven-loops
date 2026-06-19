@@ -1,0 +1,23 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/001-rrf-determinism-spine",
+  "description": "Feature Specification: RRF Determinism Spine (Skill Advisor)",
+  "keywords": [
+    "feature",
+    "specification",
+    "rrf",
+    "determinism",
+    "spine",
+    "skill",
+    "advisor"
+  ],
+  "lastUpdated": "2026-06-19T06:21:35.940Z",
+  "specId": "001",
+  "folderSlug": "001-rrf-determinism-spine",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "003-skill-advisor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
