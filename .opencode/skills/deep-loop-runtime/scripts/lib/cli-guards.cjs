@@ -22,6 +22,15 @@ const DEFAULT_WRITER_LOCK_RETRY_INTERVAL_MS = 25;
 // (orphaned by an OOM/SIGKILL that left the file but whose pid was recycled, or
 // a wedged process). Generous so a legitimately slow write is never reclaimed.
 const DEFAULT_WRITER_LOCK_MAX_HOLD_MS = 60_000;
+const LINEAGE_FAILURE_CLASSES = Object.freeze({
+  TIMEOUT: 'timeout',
+  EXIT: 'exit',
+  SALVAGE_MISS: 'salvage_miss',
+});
+const LINEAGE_RETRY_VERDICTS = Object.freeze({
+  TRANSIENT: 'transient',
+  FATAL: 'fatal',
+});
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -128,6 +137,57 @@ function classifyExitCode(err) {
     return 2;
   }
   return 1;
+}
+
+function readFiniteInteger(value) {
+  const number = Number(value);
+  return Number.isFinite(number) ? Math.trunc(number) : null;
+}
+
+function readNonNegativeInteger(value) {
+  const number = readFiniteInteger(value);
+  return number !== null && number >= 0 ? number : null;
+}
+
+function normalizeSalvageSummary(value) {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) {
+    return null;
+  }
+  return {
+    salvaged: readNonNegativeInteger(value.salvaged) ?? 0,
+    failed: readNonNegativeInteger(value.failed) ?? 0,
+  };
+}
+
+/**
+ * Classify a lineage failure using only bounded process and salvage signals.
+ *
+ * @param {Error|Object} error - Error object from a failed lineage worker.
+ * @returns {{failure_class:string,retry_verdict:string,retryable:boolean,exit_code:number|null,timed_out:boolean,salvage:{salvaged:number,failed:number}|null}}
+ */
+function classifyLineageFailure(error) {
+  const timedOut = Boolean(error && typeof error === 'object' && error.timedOut === true);
+  const exitCode = error && typeof error === 'object' ? readFiniteInteger(error.exitCode) : null;
+  const salvage = error && typeof error === 'object' ? normalizeSalvageSummary(error.salvage) : null;
+
+  let failureClass = LINEAGE_FAILURE_CLASSES.EXIT;
+  if (timedOut) {
+    failureClass = LINEAGE_FAILURE_CLASSES.TIMEOUT;
+  } else if (salvage && salvage.failed > 0 && salvage.salvaged === 0) {
+    failureClass = LINEAGE_FAILURE_CLASSES.SALVAGE_MISS;
+  }
+
+  const retryable =
+    failureClass === LINEAGE_FAILURE_CLASSES.TIMEOUT
+    || failureClass === LINEAGE_FAILURE_CLASSES.SALVAGE_MISS;
+  return {
+    failure_class: failureClass,
+    retry_verdict: retryable ? LINEAGE_RETRY_VERDICTS.TRANSIENT : LINEAGE_RETRY_VERDICTS.FATAL,
+    retryable,
+    exit_code: exitCode,
+    timed_out: timedOut,
+    salvage,
+  };
 }
 
 /**
@@ -440,6 +500,7 @@ function acquireWriterLock(lockPath) {
 module.exports = {
   acquireWriterLock,
   classifyExitCode,
+  classifyLineageFailure,
   installSignalHandlers,
   maybeThrowTestFault,
   sleepSync,

@@ -33,7 +33,7 @@ _memory:
     answered_questions:
       - "The skip is content-hash-gated (isFileStale code-graph-db.ts:1042), NOT mtime — the iter-022 mtime framing was corrected by 006/synthesis-04"
       - "queryFileImportDependents has exactly one non-test caller: handlers/query.ts:1017 (read-path only) — CONFIRMED"
-      - "Both candidates are PENDING (not in 030 §14 done table; CG dependency-transitivity is in 030 spec.md:104 Wave-1)"
+      - "Both candidates were unshipped before this phase; implementation now lives in the 028 phase docs/code with benchmark acceptance still pending"
 ---
 
 # Feature Specification: Code-Graph Edge-Staleness Correctness (dependency-transitivity + rename SUPERSEDES)
@@ -50,7 +50,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Implemented default-off; benchmark gate pending |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Phase** | `system-spec-kit/028-memory-search-intelligence/002-code-graph` (research) |
@@ -75,17 +75,19 @@ Make the incremental scan dependency-transitive: when a dependency changes, forc
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
-### In Scope — four candidate ids, two units (both PENDING)
+### In Scope — four candidate ids, two units
 
-**Unit 1 — `CG-edge-staleness-repair` / `CG-edge-staleness-dependency-transitivity` (the correctness bug; M; needs-benchmark gate):**
+**Unit 1 — `CG-edge-staleness-repair` / `CG-edge-staleness-dependency-transitivity` (IMPLEMENTED default-off; benchmark gate pending):**
 - Before the per-file skip loop, snapshot the stale set and **expand it with reverse-dependents** so a dependency change drags its importers back into the parse batch.
 - Force-include importer files via a `forceParse: Set<string>` that overrides the `skipFreshFiles && !isFileStale(file)` short-circuit (`structural-indexer.ts:2175`), so A re-parses against B's new ids.
 - **HARD ORDERING CONSTRAINT:** capture reverse-deps **BEFORE** any `replaceNodes` on B — post-persist, the JOIN on `code_nodes target` returns nothing because the edge already dangles (`queryFileImportDependents` INNER-JOINs live target nodes, `code-graph-db.ts:1346-1357`).
 - Add a **path-filtered** importers query (`queryImportersOf(stalePaths)`); the existing `queryFileImportDependents()` full-scans the entire `code_edges` table with no path filter, which is the fan-in cost driver (`code-graph-db.ts:1344-1360`).
+- Status note: implemented behind `SPECKIT_CODE_GRAPH_REVERSE_DEP_FORCE_PARSE`; default behavior remains unchanged until the fan-in benchmark clears.
 
-**Unit 2 — `Q1-C2` / `Q1-C2-supersedes-edge` (additive rename lineage; S; no schema migration):**
+**Unit 2 — `Q1-C2` / `Q1-C2-supersedes-edge` (IMPLEMENTED tombstone-gated; no schema migration):**
 - A renamed/moved symbol emits a `SUPERSEDES` edge keyed on matching `contentHash` (`sha256(content).slice(0,12)`, `indexer-types.ts:109`) across the rename, instead of pure delete+create — preserving rename lineage for impact queries.
 - Strictly additive: a new edge type on the existing schema; reuses the off-by-default tombstone machinery (`code-graph-db.ts:230` env gate `SPECKIT_CODE_GRAPH_TOMBSTONES`, `:296`/`:316` inserts) as the substrate. No `SCHEMA_VERSION` bump.
+- Status note: emitted only when the existing tombstone lane is enabled; absent-edge/default-off read paths remain unchanged.
 
 ### Out of Scope
 - **Q1-C1 (`code_edges` bi-temporal `valid_at`/`invalid_at` columns)** — DEFER-speculative; no consumer wants as-of/time-travel, its safety is redundant with the shipped readiness gate, and it does NOT fix this bug (synthesis `04`/`01`; 030 spec.md:48). - Schema-migration cluster, separate phase.
@@ -98,10 +100,10 @@ Make the incremental scan dependency-transitive: when a dependency changes, forc
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/system-code-graph/mcp_server/lib/structural-indexer.ts` | Modify | Add `forceParse: Set<string>` that overrides the `skipFreshFiles && !isFileStale(file)` skip at `:2175`; cross-file edges re-derived for force-included importers. |
-| `.opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts` | Modify | Add a path-filtered `queryImportersOf(stalePaths)` beside `queryFileImportDependents()` (`:1343`); emit a `SUPERSEDES` edge keyed on matching `contentHash` instead of delete+create (Q1-C2), reusing tombstone machinery (`:230-318`). |
-| `.opencode/skills/system-code-graph/mcp_server/lib/scan.ts` (or the scan driver) | Modify | Before the per-file skip loop, snapshot the stale set, expand with reverse-deps, populate `forceParse` — capturing reverse-deps BEFORE any `replaceNodes`. |
-| `.opencode/skills/system-code-graph/mcp_server/tests/*.vitest.ts` | Create | Reverse-dep re-derive test (rename B → A→B survives), body-edit control (no extra A parse), rename→SUPERSEDES lineage test, pre-replaceNodes ordering test. |
+| `.opencode/skills/system-code-graph/mcp_server/lib/structural-indexer.ts` | Modified | Adds default-off `forceParse: Set<string>` that overrides the `skipFreshFiles && !isFileStale(file)` skip; cross-file edges re-derived for force-included importers. |
+| `.opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts` | Modified | Adds path-filtered `queryImportersOf(stalePaths)` beside `queryFileImportDependents()`; preserves inbound edges for surviving symbol ids; emits tombstone-gated `SUPERSEDES` lineage keyed on matching `contentHash`. |
+| `.opencode/skills/system-code-graph/mcp_server/handlers/scan.ts` | Modified | Carries `forceParsedFiles` through the persistence skip gate so force-parsed importers are not discarded as fresh. |
+| `.opencode/skills/system-code-graph/mcp_server/tests/edge-staleness-correctness.vitest.ts` | Created | Reverse-dep re-derive test, body-edit control, post-`replaceNodes` ordering test, tombstone-gated `SUPERSEDES` lineage test, absent-edge default test. |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -124,6 +126,14 @@ Make the incremental scan dependency-transitive: when a dependency changes, forc
 | REQ-004 | Path-filtered importers query replaces the full-table scan for the scan-loop path. | `queryImportersOf(stalePaths)` returns only importers of the changed paths; `queryFileImportDependents()` (the full-scan, `code-graph-db.ts:1344-1360`) remains for the read-path consumer (`handlers/query.ts:1017`). Fan-in re-parse cost benchmarked on a hot high-importer file before flipping default-on. |
 | REQ-005 | `Q1-C2`: a renamed/moved symbol emits a `SUPERSEDES` edge keyed on matching `contentHash`, instead of pure delete+create — additive, no schema migration. | Rename a symbol (path/fqName change, content unchanged); assert a `SUPERSEDES` edge links old→new node keyed on `contentHash` (`indexer-types.ts:109`); `SCHEMA_VERSION` unchanged (stays 5); existing read paths byte-identical when the edge is absent. |
 | REQ-006 | The change is reversible and additive: Q1-C2 is off the staleness path; the staleness repair is gate-able (default behavior unchanged until benchmarked). | Each candidate is a separate scoped commit; reverse-dep force-parse can be disabled to restore current skip behavior; the `SUPERSEDES` edge type does not alter existing query results. |
+
+### Implementation Status
+
+| Candidate | Status | Evidence |
+|-----------|--------|----------|
+| `CG-edge-staleness-repair` / dependency-transitivity | IMPLEMENTED default-off | `SPECKIT_CODE_GRAPH_REVERSE_DEP_FORCE_PARSE`; `edge-staleness-correctness.vitest.ts`; broad Vitest 7 files, 135 passed, 1 skipped |
+| `Q1-C2` / `Q1-C2-supersedes-edge` | IMPLEMENTED tombstone-gated | `SPECKIT_CODE_GRAPH_TOMBSTONES`; `SCHEMA_VERSION` unchanged at 5; tombstone-on/off tests |
+| Fan-in benchmark acceptance | LEFT-PENDING | Live benchmark/reindex/scan disallowed in this task; default-off flag remains the safety gate |
 <!-- /ANCHOR:requirements -->
 
 ---

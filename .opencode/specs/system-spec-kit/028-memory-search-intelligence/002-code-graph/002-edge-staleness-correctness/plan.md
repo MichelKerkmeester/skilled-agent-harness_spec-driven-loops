@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Code-Graph Edge-Staleness Correctness"
-description: "Wire reverse-dependency invalidation into the code-graph scan loop (force-parse importers of a changed dependency, captured BEFORE replaceNodes) so refactored exports no longer silently orphan dependents' edges, plus the additive rename SUPERSEDES edge keyed on contentHash. Both PENDING; the staleness repair is benchmark-gated, Q1-C2 is a no-migration additive."
+description: "Wire reverse-dependency invalidation into the code-graph scan loop (force-parse importers of a changed dependency, captured BEFORE replaceNodes) so refactored exports no longer silently orphan dependents' edges, plus the additive rename SUPERSEDES edge keyed on contentHash. Code is implemented default-off/tombstone-gated; fan-in benchmark acceptance remains pending."
 trigger_phrases:
   - "code graph edge staleness plan"
   - "reverse-dep force-parse plan"
@@ -47,7 +47,7 @@ _memory:
 | **Testing** | Vitest (focused code-graph scan / indexer / db suites alongside each change) |
 
 ### Overview
-Two PENDING candidates against the incremental scan. **Unit 1 (the correctness bug)** wires reverse-dependency invalidation into the scan loop: before the per-file skip, snapshot the stale set, expand it with a path-filtered importers query, and force-parse those importers so their cross-file edges are re-derived against a changed dependency's new symbol ids — the capture MUST happen before any `replaceNodes`. **Unit 2 (`Q1-C2`)** adds an additive `SUPERSEDES` edge keyed on `contentHash` for renamed/moved symbols, preserving lineage without a schema migration. The staleness repair is benchmark-gated (fan-in re-parse cost); Q1-C2 is an additive no-migration edge.
+Two candidates against the incremental scan are now implemented with guarded rollout. **Unit 1 (the correctness bug)** wires reverse-dependency invalidation into the scan loop: before the per-file skip, snapshot the stale set, expand it with a path-filtered importers query, and force-parse those importers so their cross-file edges are re-derived against a changed dependency's new symbol ids — the capture MUST happen before any `replaceNodes`. It remains default-off behind `SPECKIT_CODE_GRAPH_REVERSE_DEP_FORCE_PARSE` until the fan-in benchmark gate clears. **Unit 2 (`Q1-C2`)** adds an additive `SUPERSEDES` edge keyed on `contentHash` for renamed/moved symbols, preserving lineage without a schema migration when the tombstone lane is enabled. Q1-C2 is an additive no-migration edge.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -56,16 +56,16 @@ Two PENDING candidates against the incremental scan. **Unit 1 (the correctness b
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Seams confirmed in live code: skip `structural-indexer.ts:2175`, `isFileStale` (content-hash-gated) `code-graph-db.ts:1042`, prune `code-graph-db.ts:1030`, reverse-dep `queryFileImportDependents` `code-graph-db.ts:1343` (read-path-only, one caller `handlers/query.ts:1017`), symbol id `indexer-types.ts:102`, content hash `indexer-types.ts:109`, tombstones `code-graph-db.ts:230-318`
-- [ ] HARD ORDERING CONSTRAINT understood: reverse-deps captured before `replaceNodes` (post-persist JOIN returns nothing)
-- [ ] Path-filtered importers query shape decided (not the full-table scan)
-- [ ] Fan-in re-parse cost flagged as a build-time benchmark before any default-on flip
+- [x] Seams confirmed in live code: skip `structural-indexer.ts:2175`, `isFileStale` (content-hash-gated) `code-graph-db.ts:1042`, prune `code-graph-db.ts:1030`, reverse-dep `queryFileImportDependents` `code-graph-db.ts:1343` (read-path-only, one caller `handlers/query.ts:1017`), symbol id `indexer-types.ts:102`, content hash `indexer-types.ts:109`, tombstones `code-graph-db.ts:230-318`
+- [x] HARD ORDERING CONSTRAINT understood: reverse-deps captured before `replaceNodes` (post-persist JOIN returns nothing)
+- [x] Path-filtered importers query shape decided (not the full-table scan)
+- [x] Fan-in re-parse cost flagged as a build-time benchmark before any default-on flip
 
 ### Definition of Done
-- [ ] Unit 1: refactored dependency re-derives dependents' edges in the same scan; body-edit control causes no extra parse; ordering gate proven
-- [ ] Unit 1: path-filtered `queryImportersOf` used in the scan loop; full-scan `queryFileImportDependents` retained for the read-path consumer
-- [ ] Unit 2: rename emits a `contentHash`-keyed `SUPERSEDES` edge; `SCHEMA_VERSION` unchanged; absent-edge queries byte-identical
-- [ ] Typecheck + focused suites green; `validate.sh --strict` passes
+- [x] Unit 1: refactored dependency re-derives dependents' edges in the same scan; body-edit control causes no extra parse; ordering gate proven
+- [x] Unit 1: path-filtered `queryImportersOf` used in the scan loop; full-scan `queryFileImportDependents` retained for the read-path consumer
+- [x] Unit 2: rename emits a `contentHash`-keyed `SUPERSEDES` edge; `SCHEMA_VERSION` unchanged; absent-edge queries byte-identical
+- [x] Typecheck + focused suites green; `validate.sh --strict` passes — Typecheck, broad Vitest, and strict validation passed.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -114,22 +114,22 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Confirm seams + the read-path-only usage of `queryFileImportDependents` (one caller `handlers/query.ts:1017`)
-- [ ] Decide the path-filtered `queryImportersOf(stalePaths)` shape (no full-table scan)
-- [ ] Confirm the HARD ORDERING CONSTRAINT (capture reverse-deps before `replaceNodes`)
-- [ ] Flag the fan-in re-parse benchmark as a build-time gate before default-on
+- [x] Confirm seams + the read-path-only usage of `queryFileImportDependents` (one caller `handlers/query.ts:1017`)
+- [x] Decide the path-filtered `queryImportersOf(stalePaths)` shape (no full-table scan)
+- [x] Confirm the HARD ORDERING CONSTRAINT (capture reverse-deps before `replaceNodes`)
+- [x] Flag the fan-in re-parse benchmark as a build-time gate before default-on
 
 ### Phase 2: Core Implementation
-- [ ] Unit 1: add `queryImportersOf(stalePaths)` (path-filtered) to `code-graph-db.ts`
-- [ ] Unit 1: snapshot stale set + expand with reverse-deps + populate `forceParse` in the scan driver, BEFORE any `replaceNodes`
-- [ ] Unit 1: honor `forceParse` at the skip site (`structural-indexer.ts:2175`) so importers re-parse against new ids
-- [ ] Unit 2: emit a `contentHash`-keyed `SUPERSEDES` edge on rename instead of delete+create, reusing tombstone machinery; no `SCHEMA_VERSION` bump
+- [x] Unit 1: add `queryImportersOf(stalePaths)` (path-filtered) to `code-graph-db.ts`
+- [x] Unit 1: snapshot stale set + expand with reverse-deps + populate `forceParse` in the scan driver, BEFORE any `replaceNodes`
+- [x] Unit 1: honor `forceParse` at the skip site (`structural-indexer.ts:2175`) so importers re-parse against new ids
+- [x] Unit 2: emit a `contentHash`-keyed `SUPERSEDES` edge on rename instead of delete+create, reusing tombstone machinery; no `SCHEMA_VERSION` bump
 
 ### Phase 3: Verification
-- [ ] Reverse-dep re-derive test (rename B → A→B survives) + body-edit control (no extra A parse)
-- [ ] Ordering-gate test (post-`replaceNodes` reverse-dep query returns empty)
-- [ ] Rename→SUPERSEDES lineage test; absent-edge byte-identical query test
-- [ ] Fan-in re-parse benchmark captured; typecheck + focused suite green; `validate.sh --strict`
+- [x] Reverse-dep re-derive test (rename B → A→B survives) + body-edit control (no extra A parse)
+- [x] Ordering-gate test (post-`replaceNodes` reverse-dep query returns empty)
+- [x] Rename→SUPERSEDES lineage test; absent-edge byte-identical query test
+- [ ] Fan-in re-parse benchmark captured; typecheck + focused suite green; `validate.sh --strict` — Benchmark left pending by task constraint; typecheck, broad Vitest, and strict validation passed.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -186,7 +186,7 @@ Phase 1 (Setup) ──► Phase 2 (Core) ──► Phase 3 (Verify)
 | Setup | None | Core |
 | Core: Unit 1 (staleness) | Setup, path-filtered query | Benchmark, Verify |
 | Core: Unit 2 (Q1-C2) | Setup, tombstone substrate | Verify |
-| Verify | Core + benchmark | None |
+| Verify | Core + benchmark gate | None |
 <!-- /ANCHOR:phase-deps -->
 
 ---
@@ -213,7 +213,7 @@ Phase 1 (Setup) ──► Phase 2 (Core) ──► Phase 3 (Verify)
 - [ ] Unit 1 and Unit 2 are separate scoped commits
 - [ ] Reverse-dep force-parse is disable-able to restore current skip behavior
 - [ ] `SUPERSEDES` edge confirmed additive (absent-edge queries byte-identical)
-- [ ] Fan-in re-parse benchmark captured before any default-on flip
+- [ ] Fan-in re-parse benchmark captured before any default-on flip — LEFT-PENDING: live benchmark/reindex/scan disallowed in this task.
 
 ### Rollback Procedure
 1. Identify the regressing unit's scoped commit

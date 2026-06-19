@@ -36,6 +36,30 @@ function writeFailingStubBinary(binDir: string, name: string, code: number): str
   return stubPath;
 }
 
+function writeFlakySalvageMissStubBinary(binDir: string, name: string, counterPath: string): string {
+  const stubPath = join(binDir, name);
+  writeFileSync(
+    stubPath,
+    [
+      '#!/bin/sh',
+      `counter=${shellQuote(counterPath)}`,
+      'lineage_dir=$(dirname "$SPECKIT_CODEX_STATE_DIR")',
+      'if [ ! -f "$counter" ]; then',
+      '  echo first > "$counter"',
+      '  mkdir -p "$lineage_dir"',
+      '  printf \'{"type":"iteration","iteration":1,"run":1,"status":"complete"}\\n\' > "$lineage_dir/deep-research-state.jsonl"',
+      '  echo "short"',
+      '  exit 1',
+      'fi',
+      'echo "retry-ok"',
+      'exit 0',
+      '',
+    ].join('\n'),
+    { mode: 0o755 },
+  );
+  return stubPath;
+}
+
 /**
  * Write a stub binary that sleeps `seconds` then exits 0.
  * Used to assert lineages run concurrently (parallel) rather than serially.
@@ -369,6 +393,61 @@ describe('fanout-run.cjs — non-zero CLI exit is a fan-out failure', () => {
     expect(summary.failed).toBe(1);
     expect(summary.succeeded).toBe(0);
     expect(summary.all_failed).toBe(true);
+  });
+
+  it('retries a salvage-miss lineage once and exits ok when the retry succeeds', async () => {
+    const binDir = makeTempDir('fanout-run-retry-bin-');
+    const baseDir = makeTempDir('fanout-run-retry-base-');
+    writeFlakySalvageMissStubBinary(binDir, 'codex', join(baseDir, 'codex.counter'));
+
+    const fanoutConfig = JSON.stringify({
+      executors: [{ label: 'flaky', kind: 'cli-codex', model: 'o4-mini', count: 1 }],
+      concurrency: 1,
+      maxRetries: 1,
+    });
+
+    const result = await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder',
+        'specs/test-fanout-run-retry',
+        '--loop-type',
+        'research',
+        '--fanout-config-json',
+        fanoutConfig,
+        '--base-artifact-dir',
+        baseDir,
+      ],
+      {
+        env: { ...process.env, PATH: `${binDir}:${process.env['PATH'] ?? ''}` },
+        timeoutMs: 15_000,
+      },
+    );
+
+    expect(result.exitCode).toBe(0);
+    const summary = JSON.parse(
+      readFileSync(join(baseDir, 'orchestration-summary.json'), 'utf8'),
+    ) as {
+      failed?: number;
+      succeeded?: number;
+      all_failed?: boolean;
+      results?: Array<{ retry_attempts?: number; status?: string }>;
+    };
+    expect(summary.failed).toBe(0);
+    expect(summary.succeeded).toBe(1);
+    expect(summary.all_failed).toBe(false);
+    const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as {
+      results?: Array<{ retry_attempts?: number; status?: string }>;
+    };
+    expect(payload.results?.[0]).toMatchObject({ status: 'fulfilled', retry_attempts: 1 });
+
+    const ledgerLines = readFileSync(join(baseDir, 'orchestration-status.log'), 'utf8')
+      .trim()
+      .split('\n')
+      .map((line) => JSON.parse(line) as Record<string, unknown>);
+    expect(ledgerLines.filter((event) => event.event === 'retry_scheduled')).toEqual([
+      expect.objectContaining({ label: 'flaky', retry_count: 1, failure_class: 'salvage_miss' }),
+    ]);
   });
 
   it('records exit 2 (some failed) when one of two lineages exits non-zero', async () => {

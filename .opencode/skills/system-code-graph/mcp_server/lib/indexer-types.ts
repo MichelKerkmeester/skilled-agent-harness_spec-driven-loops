@@ -20,7 +20,8 @@ export type SymbolKind =
 export type EdgeType =
   | 'CONTAINS' | 'CALLS' | 'IMPORTS' | 'EXPORTS'
   | 'EXTENDS' | 'IMPLEMENTS' | 'TESTED_BY'
-  | 'DECORATES' | 'OVERRIDES' | 'TYPE_OF';
+  | 'DECORATES' | 'OVERRIDES' | 'TYPE_OF'
+  | 'SUPERSEDES';
 
 export const DEFAULT_EDGE_WEIGHTS: Readonly<Record<EdgeType, number>> = CODE_GRAPH_DEFAULTS.edgeWeights as Readonly<Record<EdgeType, number>>;
 

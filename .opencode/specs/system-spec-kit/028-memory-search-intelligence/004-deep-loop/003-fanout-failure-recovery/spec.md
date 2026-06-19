@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/004-deep-loop/003-fanout-failure-recovery"
-    last_updated_at: "2026-06-19T09:10:00+02:00"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Re-planned resilience cluster spec (5 PENDING candidates)"
-    next_safe_action: "Review plan sequencing; begin candidate DL-failure-class-taxonomy (the gate for the retry)"
+    last_updated_at: "2026-06-19T12:10:00+02:00"
+    last_updated_by: "codex"
+    recent_action: "Implemented fan-out failure recovery C1-C5 with unit coverage"
+    next_safe_action: "Run strict validation"
     blockers: []
     key_files:
       - "spec.md"
@@ -28,7 +28,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-004-003-replan"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -47,7 +47,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Implemented |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent research phase** | `028-memory-search-intelligence/004-deep-loop` (Deep Loop — convergence/fan-out/council intelligence) |
@@ -77,7 +77,7 @@ Land the deep-loop **resilience GO cluster** — the cleanest reliability group 
 
 - **This cluster does NOT depend on the absent D2 reliability signal.** D2 (`metadata.reliability`) is wholly absent on both read and write sides — every input is `r=0.5` today [CONFIRMED iter-13 F13-01]. The reliability-weighted-learning cluster (D2/D3/Q2) is therefore NO-GO until built and benchmarked, and is OUT OF SCOPE here. This cluster is resilience/recovery, keyed only on exit-code/timeout/ledger state.
 - **030 did NOT ship failure-class.** The 030 Wave-0 "Deep-Loop trio" (commit `46812f12a8`) shipped pool gauges (`lag`/`pending`/`failed`), the deterministic merge total-order, and graceful-self-stop, and both its commit body and §14 note explicitly state it "does NOT duplicate the upstream failure classification." So the failure-class taxonomy and everything gated on it remain open. [CONFIRMED: `030/spec.md` §14 candidate 12; commit `46812f12a8` body; current `fanout-pool.cjs:108-126` still returns `error:{name,message}` only, and `buildPoolSummary:236-250` emits no per-class rollup.]
-  - **Disambiguation:** synthesis `01-go-candidates.md:95` phrases the DL-graceful-self-stop GO as if "its sibling failure-class-taxonomy already shipped in the Deep-Loop trio." That phrasing is imprecise against the authoritative code: what shipped (`46812f12a8`) is only the UPSTREAM computation of `timedOut`/`exitCode`/`salvage` in `fanout-run.cjs:639-654`; the pool still DISCARDS that class. The bounded label + rollup (C1 below) is unbuilt. C1 is PENDING. [Logic-Sync resolved against `030/spec.md` §14, the commit body, and current source.]
+  - **Disambiguation:** synthesis `01-go-candidates.md:95` phrases the DL-graceful-self-stop GO as if "its sibling failure-class-taxonomy already shipped in the Deep-Loop trio." That phrasing was imprecise against the authoritative pre-implementation code: what shipped (`46812f12a8`) was only the UPSTREAM computation of `timedOut`/`exitCode`/`salvage` in `fanout-run.cjs:639-654`; the pool still discarded that class. This sub-phase implements the bounded label + rollup. [Logic-Sync resolved against `030/spec.md` §14, the commit body, and current source.]
 - **No candidate has a measured before/after benefit number** — all leverage/effort are structural inference. Ship for correctness/reversibility, not a promised delta.
 - The transient/fatal retry is the iteration-13 **CAUTION** item: the re-dispatch is net-new pool logic that MUST NOT double-count `summary.failed` nor mask a retry-success. [CONFIRMED iter-13 F13-03.]
 - Orphan auto-redispatch is **CAUTION pending a lease/heartbeat**; the GO half is detect + marker. [CONFIRMED synthesis `01` Deep-Loop recovery cluster.]
@@ -92,11 +92,11 @@ Land the deep-loop **resilience GO cluster** — the cleanest reliability group 
 
 | # | Candidate | One-line | Seam (file:line) | Eff | Status |
 |---|-----------|----------|------------------|-----|--------|
-| C1 | **DL-failure-class-taxonomy** | stop discarding the upstream failure class; surface a bounded {timeout, exit, salvage-miss} low-cardinality label in `settleItem`'s error shape + a class rollup in `buildPoolSummary` | `fanout-pool.cjs:108-126` (settle), `:236-251` (summary); class computed at `fanout-run.cjs:639-658` | S | PENDING (gate) |
-| C2 | **Q3-fanout-recovery** | consume the pool's `failed` ledger events as resumable state + a transient/fatal classification keyed on `timedOut`/exit-code (the classification basis for the retry) | `fanout-run.cjs:639-658`, `fanout-pool.cjs:171-212,108-126,236-251` | M | PENDING (needs C1) |
-| C3 | **Q3-fanout-transient-fatal-retry** | re-dispatch the FAILED lineage ALONE with a durable bounded per-branch retry budget (aionforge `max_retries=5`, count-from-audit so a crash does not hand a fresh budget); transient → retry, fatal → no retry | `fanout-run.cjs:639-658`, `fanout-pool.cjs:171-212` | M | PENDING (needs C1+C2) |
-| C4 | **DL-orphan-lineage-reset** | on resume, detect lineages that started without a terminal event and mark/requeue them (GO: detect + marker; CAUTION: auto-redispatch — pending a lease/heartbeat) | `fanout-pool.cjs:82-108` (detect); reset GAP; `loop-lock.cjs:186-188`, `reduce-state.cjs:344,393` | M | PENDING |
-| C5 | **DL-recover-vs-fresh-gate** | a resume that should validate existing JSONL state must REFUSE a missing/empty/corrupt expected state rather than silently fresh-init (status defaults to `initialized` today) | `reduce-state.cjs:434`, `:795` | M | PENDING |
+| C1 | **DL-failure-class-taxonomy** | stop discarding the upstream failure class; surface a bounded {timeout, exit, salvage-miss} low-cardinality label in `settleItem`'s error shape + a class rollup in `buildPoolSummary` | `fanout-pool.cjs:108-126` (settle), `:236-251` (summary); class computed at `fanout-run.cjs:639-658` | S | DONE |
+| C2 | **Q3-fanout-recovery** | consume the pool's `failed` ledger events as resumable state + a transient/fatal classification keyed on `timedOut`/exit-code (the classification basis for the retry) | `fanout-run.cjs:639-658`, `fanout-pool.cjs:171-212,108-126,236-251` | M | DONE |
+| C3 | **Q3-fanout-transient-fatal-retry** | re-dispatch the FAILED lineage ALONE with a durable bounded per-branch retry budget (aionforge `max_retries=5`, count-from-audit so a crash does not hand a fresh budget); transient → retry, fatal → no retry | `fanout-run.cjs:639-658`, `fanout-pool.cjs:171-212` | M | DONE |
+| C4 | **DL-orphan-lineage-reset** | on resume, detect lineages that started without a terminal event and mark/requeue them (GO: detect + marker; CAUTION: auto-redispatch — pending a lease/heartbeat) | `fanout-pool.cjs:82-108` (detect); reset GAP; `loop-lock.cjs:186-188`, `reduce-state.cjs:344,393` | M | DONE (detect + marker; auto-redispatch still lease-gated) |
+| C5 | **DL-recover-vs-fresh-gate** | a resume that should validate existing JSONL state must REFUSE a missing/empty/corrupt expected state rather than silently fresh-init (status defaults to `initialized` today) | `reduce-state.cjs:434`, `:795` | M | DONE |
 
 > Build order (dependency-driven): **C1 → C2 → C3** (the taxonomy gates the classification, which gates the retry), then **C4** and **C5** (independent resume-time gates). See `plan.md`.
 
@@ -218,9 +218,9 @@ Land the deep-loop **resilience GO cluster** — the cleanest reliability group 
 <!-- ANCHOR:questions -->
 ## 9. OPEN QUESTIONS
 
-- Does any workflow persist a per-lineage in-flight marker durably enough for the orphan-reset sweep to run BEFORE re-dispatch, or is the only durable in-flight signal the `fanout-pool` started-without-terminal ledger gap? **PENDING — confirm at C4 implementation time** (iter-7 remaining question). This is why C4's auto-redispatch half is CAUTION-gated.
-- Should the recover-vs-fresh gate be a new explicit mode flag on `reduce-state.cjs`, or inferred from the presence of a non-empty config/state pair? **PENDING — decide at C5 implementation time** (iter-7 marked the gate INFERRED).
-- Is `max_retries=5` (aionforge default) right for the deep-loop CLI cost profile, or should it be smaller given each lineage is a full CLI dispatch? **PENDING — confirm at C3 implementation time; default to 5, make it config-overridable.**
+- Does any workflow persist a per-lineage in-flight marker durably enough for the orphan-reset sweep to run BEFORE re-dispatch, or is the only durable in-flight signal the `fanout-pool` started-without-terminal ledger gap? **Answered:** implementation uses the durable `orchestration-status.log` started-without-terminal gap and appends an `orphan_requeued` marker. Auto-redispatch remains gated behind a future lease/heartbeat.
+- Should the recover-vs-fresh gate be a new explicit mode flag on `reduce-state.cjs`, or inferred from the presence of a non-empty config/state pair? **Answered:** explicit `--require-existing-state` / `requireExistingState` flag, so legitimate fresh starts remain unchanged.
+- Is `max_retries=5` (aionforge default) right for the deep-loop CLI cost profile, or should it be smaller given each lineage is a full CLI dispatch? **Answered:** default remains 5 and is config-overridable through `fanout.maxRetries`; direct pool callers remain no-retry unless they opt in.
 
 <!-- /ANCHOR:questions -->
 ---

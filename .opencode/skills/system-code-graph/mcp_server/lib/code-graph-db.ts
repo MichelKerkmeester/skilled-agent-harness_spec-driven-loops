@@ -38,6 +38,11 @@ export interface FileImportDependent {
   importerFilePath: string;
 }
 
+export interface FileSymbolId {
+  filePath: string;
+  symbolId: string;
+}
+
 export interface FileDegree {
   filePath: string;
   degree: number;
@@ -334,6 +339,55 @@ function recordEdgeTombstonesForSymbols(
   pruneTombstones(database);
 }
 
+function recordReplaceNodeEdgeTombstones(
+  database: Database.Database,
+  sourceSymbolIds: string[],
+  removedTargetSymbolIds: string[],
+  reason: string,
+  deletedAt: string,
+): void {
+  if (!codeGraphTombstonesEnabled()) {
+    return;
+  }
+  const sourceIds = [...new Set(sourceSymbolIds)];
+  const removedTargetIds = [...new Set(removedTargetSymbolIds)];
+  if (sourceIds.length === 0 && removedTargetIds.length === 0) {
+    return;
+  }
+
+  ensureTombstoneSchema(database);
+  const clauses: string[] = [];
+  const params: string[] = [];
+  if (sourceIds.length > 0) {
+    clauses.push(`edge.source_id IN (${sourceIds.map(() => '?').join(',')})`);
+    params.push(...sourceIds);
+  }
+  if (removedTargetIds.length > 0) {
+    clauses.push(`edge.target_id IN (${removedTargetIds.map(() => '?').join(',')})`);
+    params.push(...removedTargetIds);
+  }
+
+  database.prepare(`
+    INSERT INTO code_graph_tombstones (
+      entity_kind, entity_id, source_id, target_id, edge_type, file_path, reason, deleted_at
+    )
+    SELECT
+      'edge',
+      source_id || '->' || target_id || ':' || edge_type,
+      source_id,
+      target_id,
+      edge_type,
+      COALESCE(source_node.file_path, target_node.file_path),
+      ?,
+      ?
+    FROM code_edges edge
+    LEFT JOIN code_nodes source_node ON source_node.symbol_id = edge.source_id
+    LEFT JOIN code_nodes target_node ON target_node.symbol_id = edge.target_id
+    WHERE ${clauses.join(' OR ')}
+  `).run(reason, deletedAt, ...params);
+  pruneTombstones(database);
+}
+
 function recordEdgeTombstonesForSources(
   database: Database.Database,
   sourceIds: string[],
@@ -390,8 +444,14 @@ function recordDanglingEdgeTombstones(
     FROM code_edges edge
     LEFT JOIN code_nodes source_node ON source_node.symbol_id = edge.source_id
     LEFT JOIN code_nodes target_node ON target_node.symbol_id = edge.target_id
-    WHERE edge.source_id NOT IN (SELECT symbol_id FROM code_nodes)
-      OR edge.target_id NOT IN (SELECT symbol_id FROM code_nodes)
+    WHERE (
+      edge.edge_type != 'SUPERSEDES'
+      AND (
+        edge.source_id NOT IN (SELECT symbol_id FROM code_nodes)
+        OR edge.target_id NOT IN (SELECT symbol_id FROM code_nodes)
+      )
+    )
+      OR (edge.edge_type = 'SUPERSEDES' AND edge.target_id NOT IN (SELECT symbol_id FROM code_nodes))
   `).run(reason, deletedAt);
   pruneTombstones(database);
 }
@@ -410,6 +470,106 @@ function recordFileTombstone(
     INSERT INTO code_graph_tombstones (entity_kind, entity_id, file_path, reason, deleted_at)
     VALUES ('file', ?, ?, ?, ?)
   `).run(filePath, filePath, reason, deletedAt);
+  pruneTombstones(database);
+}
+
+interface SupersedesCandidate {
+  oldNode: CodeNode;
+  newNode: CodeNode;
+}
+
+function collectSupersedesCandidates(
+  database: Database.Database,
+  newNodes: CodeNode[],
+): SupersedesCandidate[] {
+  if (!codeGraphTombstonesEnabled() || newNodes.length === 0) {
+    return [];
+  }
+  const contentHashes = [...new Set(newNodes.map((node) => node.contentHash).filter(Boolean))];
+  if (contentHashes.length === 0) {
+    return [];
+  }
+
+  const rows = database.prepare(`
+    SELECT *
+    FROM code_nodes
+    WHERE content_hash IN (${contentHashes.map(() => '?').join(',')})
+  `).all(...contentHashes) as Array<Record<string, unknown>>;
+  const oldNodesByHash = new Map<string, CodeNode[]>();
+  for (const row of rows) {
+    const node = rowToNode(row);
+    const oldNodes = oldNodesByHash.get(node.contentHash) ?? [];
+    oldNodes.push(node);
+    oldNodesByHash.set(node.contentHash, oldNodes);
+  }
+
+  const candidates: SupersedesCandidate[] = [];
+  for (const newNode of newNodes) {
+    for (const oldNode of oldNodesByHash.get(newNode.contentHash) ?? []) {
+      if (oldNode.symbolId === newNode.symbolId) {
+        continue;
+      }
+      if (
+        oldNode.filePath === newNode.filePath
+        && oldNode.fqName === newNode.fqName
+        && oldNode.kind === newNode.kind
+      ) {
+        continue;
+      }
+      candidates.push({ oldNode, newNode });
+    }
+  }
+  return candidates;
+}
+
+function recordSupersedesLineage(
+  database: Database.Database,
+  candidates: SupersedesCandidate[],
+  deletedAt: string,
+): void {
+  if (!codeGraphTombstonesEnabled() || candidates.length === 0) {
+    return;
+  }
+
+  ensureTombstoneSchema(database);
+  const edgeExists = database.prepare(`
+    SELECT 1
+    FROM code_edges
+    WHERE source_id = ? AND target_id = ? AND edge_type = 'SUPERSEDES'
+    LIMIT 1
+  `);
+  const insertEdge = database.prepare(`
+    INSERT INTO code_edges (source_id, target_id, edge_type, weight, metadata)
+    VALUES (?, ?, 'SUPERSEDES', ?, ?)
+  `);
+  const insertAudit = database.prepare(`
+    INSERT INTO code_graph_tombstones (
+      entity_kind, entity_id, source_id, target_id, edge_type, file_path, reason, deleted_at
+    )
+    VALUES ('edge', ?, ?, ?, 'SUPERSEDES', ?, 'symbol_supersedes', ?)
+  `);
+  const metadata = JSON.stringify({
+    confidence: 1,
+    detectorProvenance: 'structured',
+    evidenceClass: 'INFERRED',
+    reason: 'content-hash-lineage',
+    step: 'replace-nodes',
+  });
+
+  for (const { oldNode, newNode } of candidates) {
+    const exists = edgeExists.get(oldNode.symbolId, newNode.symbolId);
+    if (exists) {
+      continue;
+    }
+    insertEdge.run(oldNode.symbolId, newNode.symbolId, 1, metadata);
+    insertAudit.run(
+      `${oldNode.symbolId}->${newNode.symbolId}:SUPERSEDES`,
+      oldNode.symbolId,
+      newNode.symbolId,
+      newNode.filePath,
+      deletedAt,
+    );
+  }
   pruneTombstones(database);
 }
 
@@ -955,17 +1115,29 @@ export function replaceNodes(fileId: number, nodes: CodeNode[]): void {
     const deletedAt = new Date().toISOString();
     const oldSymbolRows = d.prepare('SELECT symbol_id FROM code_nodes WHERE file_id = ?').all(fileId) as { symbol_id: string }[];
     const oldSymbolIds = oldSymbolRows.map(row => row.symbol_id);
+    const newSymbolIds = new Set(nodes.map((node) => node.symbolId));
+    const removedSymbolIds = oldSymbolIds.filter((symbolId) => !newSymbolIds.has(symbolId));
+    const supersedesCandidates = collectSupersedesCandidates(d, nodes);
 
     recordNodeTombstones(d, fileId, 'replace_nodes_reindex', deletedAt);
-    recordEdgeTombstonesForSymbols(d, oldSymbolIds, 'replace_nodes_reindex', deletedAt);
+    recordReplaceNodeEdgeTombstones(d, oldSymbolIds, removedSymbolIds, 'replace_nodes_reindex', deletedAt);
     d.prepare('DELETE FROM code_nodes WHERE file_id = ?').run(fileId);
 
     if (oldSymbolIds.length > 0) {
-      const placeholders = oldSymbolIds.map(() => '?').join(',');
-      d.prepare(`
-        DELETE FROM code_edges
-        WHERE source_id IN (${placeholders}) OR target_id IN (${placeholders})
-      `).run(...oldSymbolIds, ...oldSymbolIds);
+      const sourcePlaceholders = oldSymbolIds.map(() => '?').join(',');
+      if (removedSymbolIds.length > 0) {
+        const removedTargetPlaceholders = removedSymbolIds.map(() => '?').join(',');
+        d.prepare(`
+          DELETE FROM code_edges
+          WHERE source_id IN (${sourcePlaceholders})
+            OR target_id IN (${removedTargetPlaceholders})
+        `).run(...oldSymbolIds, ...removedSymbolIds);
+      } else {
+        d.prepare(`
+          DELETE FROM code_edges
+          WHERE source_id IN (${sourcePlaceholders})
+        `).run(...oldSymbolIds);
+      }
     }
 
     for (const n of nodes) {
@@ -975,6 +1147,7 @@ export function replaceNodes(fileId: number, nodes: CodeNode[]): void {
         n.language, n.signature ?? null, n.docstring ?? null, n.contentHash,
       );
     }
+    recordSupersedesLineage(d, supersedesCandidates, deletedAt);
   });
   tx();
 }
@@ -1035,8 +1208,11 @@ export function replaceEdges(sourceIds: string[], edges: CodeEdge[], opts: Repla
       recordDanglingEdgeTombstones(d, 'replace_edges_dangling_prune', deletedAt);
       d.prepare(`
         DELETE FROM code_edges WHERE
-          source_id NOT IN (SELECT symbol_id FROM code_nodes) OR
-          target_id NOT IN (SELECT symbol_id FROM code_nodes)
+          (edge_type != 'SUPERSEDES' AND (
+            source_id NOT IN (SELECT symbol_id FROM code_nodes) OR
+            target_id NOT IN (SELECT symbol_id FROM code_nodes)
+          ))
+          OR (edge_type = 'SUPERSEDES' AND target_id NOT IN (SELECT symbol_id FROM code_nodes))
       `).run();
     }
   });
@@ -1054,8 +1230,11 @@ export function pruneDanglingEdges(): number {
   recordDanglingEdgeTombstones(d, 'dangling_edge_prune', new Date().toISOString());
   const result = d.prepare(`
     DELETE FROM code_edges WHERE
-      source_id NOT IN (SELECT symbol_id FROM code_nodes) OR
-      target_id NOT IN (SELECT symbol_id FROM code_nodes)
+      (edge_type != 'SUPERSEDES' AND (
+        source_id NOT IN (SELECT symbol_id FROM code_nodes) OR
+        target_id NOT IN (SELECT symbol_id FROM code_nodes)
+      ))
+      OR (edge_type = 'SUPERSEDES' AND target_id NOT IN (SELECT symbol_id FROM code_nodes))
   `).run();
   return result.changes;
 }
@@ -1384,6 +1563,58 @@ export function queryFileImportDependents(): FileImportDependent[] {
   }));
 }
 
+export function queryImportersOf(importedFilePaths: string[]): FileImportDependent[] {
+  const uniquePaths = [...new Set(importedFilePaths.filter((filePath) => typeof filePath === 'string' && filePath.length > 0))];
+  if (uniquePaths.length === 0) {
+    return [];
+  }
+
+  const d = getDb();
+  const placeholders = uniquePaths.map(() => '?').join(',');
+  const rows = d.prepare(`
+    SELECT DISTINCT
+      target.file_path AS imported_file_path,
+      source.file_path AS importer_file_path
+    FROM code_edges edge
+    INNER JOIN code_nodes source ON source.symbol_id = edge.source_id
+    INNER JOIN code_nodes target ON target.symbol_id = edge.target_id
+    WHERE UPPER(edge.edge_type) = 'IMPORTS'
+      AND target.file_path IN (${placeholders})
+      AND source.file_path != target.file_path
+      AND target.kind != 'module'
+    ORDER BY imported_file_path, importer_file_path
+  `).all(...uniquePaths) as Array<{
+    imported_file_path: string;
+    importer_file_path: string;
+  }>;
+
+  return rows.map((row) => ({
+    importedFilePath: row.imported_file_path,
+    importerFilePath: row.importer_file_path,
+  }));
+}
+
+export function querySymbolIdsForFiles(filePaths: string[]): FileSymbolId[] {
+  const uniquePaths = [...new Set(filePaths.filter((filePath) => typeof filePath === 'string' && filePath.length > 0))];
+  if (uniquePaths.length === 0) {
+    return [];
+  }
+
+  const d = getDb();
+  const placeholders = uniquePaths.map(() => '?').join(',');
+  const rows = d.prepare(`
+    SELECT file_path, symbol_id
+    FROM code_nodes
+    WHERE file_path IN (${placeholders})
+    ORDER BY file_path, symbol_id
+  `).all(...uniquePaths) as Array<{ file_path: string; symbol_id: string }>;
+
+  return rows.map((row) => ({
+    filePath: row.file_path,
+    symbolId: row.symbol_id,
+  }));
+}
+
 export function queryFileDegrees(filePaths: string[]): FileDegree[] {
   const uniquePaths = [...new Set(filePaths.filter((filePath) => typeof filePath === 'string' && filePath.length > 0))];
   if (uniquePaths.length === 0) {
@@ -1569,8 +1800,11 @@ export function cleanupOrphans(): number {
     // by the node delete above, whose tombstones were recorded beforehand).
     const orphanedEdges = d.prepare(`
       DELETE FROM code_edges WHERE
-        source_id NOT IN (SELECT symbol_id FROM code_nodes) OR
-        target_id NOT IN (SELECT symbol_id FROM code_nodes)
+        (edge_type != 'SUPERSEDES' AND (
+          source_id NOT IN (SELECT symbol_id FROM code_nodes) OR
+          target_id NOT IN (SELECT symbol_id FROM code_nodes)
+        ))
+        OR (edge_type = 'SUPERSEDES' AND target_id NOT IN (SELECT symbol_id FROM code_nodes))
     `).run();
 
     return orphanedNodes.changes + orphanedEdges.changes;

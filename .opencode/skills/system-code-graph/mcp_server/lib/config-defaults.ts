@@ -55,6 +55,7 @@ export const CODE_GRAPH_DEFAULTS = {
       TYPE_OF: 0.85,
       CALLS: 0.8,
       TESTED_BY: 0.6,
+      SUPERSEDES: 1.0,
     },
   ),
 } as const;

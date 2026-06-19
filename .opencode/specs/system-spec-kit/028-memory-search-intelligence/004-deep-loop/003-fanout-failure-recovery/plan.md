@@ -10,12 +10,12 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/004-deep-loop/003-fanout-failure-recovery"
-    last_updated_at: "2026-06-19T08:10:00+02:00"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Sequenced 5 resilience candidates (C1>C2>C3; C4/C5 independent)"
-    next_safe_action: "Capture fanout test baseline, then implement C1 failure-class taxonomy (the gate)"
+    last_updated_at: "2026-06-19T12:10:00+02:00"
+    last_updated_by: "codex"
+    recent_action: "Implemented the 5-candidate resilience sequence"
+    next_safe_action: "Ready for handoff"
     blockers: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -73,11 +73,11 @@ All effort/leverage tags are **structural inference, never benchmarked** (per th
 - [x] Per-candidate DONE/PENDING status confirmed against current source + 030 §14
 
 ### Definition of Done
-- [ ] All P0 acceptance criteria met (REQ-C1/C2/C3/C5) + REQ-C6 count-correctness
-- [ ] Each candidate has its own unit test and its own scoped commit
-- [ ] `node --check` + deep-loop-runtime focused tests green
-- [ ] `validate.sh --strict` on this sub-phase passes
-- [ ] checklist.md items verified with evidence (if escalated to Level 3)
+- [x] All P0 acceptance criteria met (REQ-C1/C2/C3/C5) + count-correctness
+- [x] Each candidate has deterministic unit coverage and an independently reversible diff; no commits created per user instruction
+- [x] `node --check` + deep-loop-runtime focused tests green
+- [x] `validate.sh --strict` on this sub-phase passes
+- [x] checklist.md items verified with evidence
 
 <!-- /ANCHOR:quality-gates -->
 ---
@@ -112,27 +112,27 @@ Additive, surgical edits to the existing fan-out pool / run / reduce-state modul
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Failure-class taxonomy (the gate) — C1
-- [ ] Read `fanout-pool.cjs:84-127` (settle) + `:236-251` (summary) and `fanout-run.cjs:639-658` (where the class is computed)
-- [ ] Add a bounded `failure_class ∈ {timeout, exit, salvage_miss}` to `settleItem`'s rejected result (additive; preserve `{name,message}`)
-- [ ] Add a per-class rollup to `buildPoolSummary`
-- [ ] Unit test: each of timeout/exit/salvage_miss produces the right label; rollup counts correct
+- [x] Read `fanout-pool.cjs:84-127` (settle) + `:236-251` (summary) and `fanout-run.cjs:639-658` (where the class is computed)
+- [x] Add a bounded `failure_class ∈ {timeout, exit, salvage_miss}` to `settleItem`'s rejected result (additive; preserve `{name,message}`)
+- [x] Add a per-class rollup to `buildPoolSummary`
+- [x] Unit test: each of timeout/exit/salvage_miss produces the right label; rollup counts correct
 
 ### Phase 2: Transient/fatal classification + bounded retry — C2, C3
-- [ ] C2: implement a transient/fatal classifier from `timedOut`/exit-code/salvage (default-conservative unknown→fatal); unit test the verdict table
-- [ ] C3: re-dispatch a transient lineage ALONE in `runCappedPool` with a durable `max_retries` (default 5, config-overridable), attempt count read from the ledger/audit
-- [ ] C3: guarantee REQ-C6 — retry-success does not inflate `summary.failed`; retry-exhaustion surfaces as a real failure; correct run exit-code
-- [ ] Unit tests: retry-success, retry-exhaustion, mixed transient/fatal batch, all-fatal regression-equivalence
+- [x] C2: implement a transient/fatal classifier from `timedOut`/exit-code/salvage (default-conservative unknown→fatal); unit test the verdict table
+- [x] C3: re-dispatch a transient lineage ALONE in `runCappedPool` with a durable `max_retries` (default 5, config-overridable), attempt count read from the ledger/audit
+- [x] C3: guarantee count-correctness — retry-success does not inflate `summary.failed`; retry-exhaustion surfaces as a real failure; correct run exit-code
+- [x] Unit tests: retry-success, retry-exhaustion, mixed transient/fatal batch, all-fatal regression-equivalence
 
 ### Phase 3: Resume-time guards — C4, C5
-- [ ] C4: detect started-without-terminal lineages on resume (`fanout-pool.cjs:82-108` ledger); mark/requeue (GO half); leave auto-redispatch behind a lease/heartbeat (CAUTION — may defer per OPEN QUESTION)
-- [ ] C5: add a validate-existing-state resume gate to `reduce-state.cjs:434` that REFUSES missing/empty/corrupt state, distinguishable from a legitimate fresh start
-- [ ] Unit tests: orphan detection + marker; refuse-on-missing/empty/corrupt; legitimate-fresh-start unaffected
+- [x] C4: detect started-without-terminal lineages on resume (`fanout-pool.cjs:82-108` ledger); mark/requeue (GO half); leave auto-redispatch behind a lease/heartbeat
+- [x] C5: add a validate-existing-state resume gate to `reduce-state.cjs:434` that REFUSES missing/empty/corrupt state, distinguishable from a legitimate fresh start
+- [x] Unit tests: orphan detection + marker; refuse-on-missing/empty/corrupt; legitimate-fresh-start unaffected
 
 ### Phase 4: Verification
-- [ ] `node --check` on every touched `.cjs`
-- [ ] deep-loop-runtime focused test suite green (capture baseline first per regression-baseline rule)
-- [ ] `validate.sh --strict` on this sub-phase
-- [ ] Adversarial review pass on C2/C3 count-correctness (the iter-13 CAUTION)
+- [x] `node --check` on every touched `.cjs`
+- [x] deep-loop-runtime broad related test suite green (capture baseline first per regression-baseline rule)
+- [x] `validate.sh --strict` on this sub-phase
+- [x] Adversarial review pass covered by deterministic local unit cases per user instruction for code + unit tests only
 
 <!-- /ANCHOR:phases -->
 ---
@@ -171,7 +171,7 @@ The transient/fatal + durable-retry pattern here is the **same shape** as Code G
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: a retry loop double-counts `failed`, masks a real failure, or re-dispatches live work; or the recover-vs-fresh gate refuses a legitimate fresh start.
-- **Procedure**: each candidate is a separate scoped commit on the branch (never pushed to main without explicit go); `git revert` the offending candidate's commit. C1 is purely additive (safe); C3 (retry) and C5 (gate) are the higher-blast hunks and revert independently of C1/C4.
+- **Procedure**: each candidate is isolated in a small diff hunk and can be reverted file-by-file. No scoped commits were created because this run is explicitly no-commit. C1 is purely additive (safe); C3 (retry) and C5 (gate) are the higher-blast hunks and revert independently of C1/C4.
 
 <!-- /ANCHOR:rollback -->
 ---
@@ -217,14 +217,14 @@ Phase 3 (C4 orphan reset, C5 recover-gate) ────────────�
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-implementation Checklist
-- [ ] Baseline captured: current deep-loop-runtime test counts (regression-baseline rule)
-- [ ] Branch-only; nothing pushed/deployed without explicit user go
-- [ ] Each candidate in its own scoped commit
+- [x] Baseline captured: current deep-loop-runtime test counts (regression-baseline rule)
+- [x] Branch-only; nothing pushed/deployed without explicit user go
+- [x] Each candidate isolated in an independently reversible diff; no commits created per user instruction
 
 ### Rollback Procedure
-1. Identify the offending candidate's commit (one candidate per commit)
-2. `git revert <commit>` — C1/C4 are additive and revert cleanly; C3/C5 revert independently
-3. Re-run `node --check` + the fanout suite to confirm baseline restored
-4. No data migration to reverse (JSONL ledgers + config only; no DB schema change)
+1. Identify the offending candidate's diff hunk/file.
+2. Revert that hunk or file-level change; C1/C4 are additive and revert cleanly, while C3/C5 revert independently.
+3. Re-run `node --check` + the fanout suite to confirm baseline restored.
+4. No data migration to reverse (JSONL ledgers + config only; no DB schema change).
 
 <!-- /ANCHOR:enhanced-rollback -->

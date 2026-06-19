@@ -21,6 +21,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { classifyLineageFailure } = require('./lib/cli-guards.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS
@@ -63,6 +64,143 @@ function buildPoolGauges({ total, settled, pending, failed }) {
   };
 }
 
+function normalizeMaxRetries(value) {
+  if (value === undefined || value === null) {
+    return 0;
+  }
+  const n = Number(value);
+  if (!Number.isFinite(n) || n < 0) {
+    return 0;
+  }
+  return Math.floor(n);
+}
+
+function normalizeRetryCountMap(value) {
+  const counts = new Map();
+  if (!isRecord(value)) {
+    return counts;
+  }
+  for (const [label, count] of Object.entries(value)) {
+    const n = Number(count);
+    if (typeof label === 'string' && label && Number.isFinite(n) && n > 0) {
+      counts.set(label, Math.floor(n));
+    }
+  }
+  return counts;
+}
+
+function buildFailureClassRollup(results) {
+  const rollup = {
+    timeout: 0,
+    exit: 0,
+    salvage_miss: 0,
+  };
+  for (const result of results) {
+    if (!result || result.status !== 'rejected') {
+      continue;
+    }
+    const failureClass = result.error && typeof result.error.failure_class === 'string'
+      ? result.error.failure_class
+      : 'exit';
+    if (Object.prototype.hasOwnProperty.call(rollup, failureClass)) {
+      rollup[failureClass] += 1;
+    }
+  }
+  return rollup;
+}
+
+function normalizeError(error) {
+  const classification = classifyLineageFailure(error);
+  return {
+    name: error && error.name ? String(error.name) : 'Error',
+    message: error && error.message ? String(error.message) : String(error),
+    ...classification,
+  };
+}
+
+function readLedgerRecords(ledgerPath) {
+  if (!ledgerPath || !fs.existsSync(ledgerPath)) {
+    return [];
+  }
+
+  let content;
+  try {
+    content = fs.readFileSync(ledgerPath, 'utf8');
+  } catch {
+    return [];
+  }
+
+  const records = [];
+  for (const line of content.split('\n')) {
+    const trimmed = line.trim();
+    if (!trimmed) {
+      continue;
+    }
+    try {
+      const parsed = JSON.parse(trimmed);
+      if (isRecord(parsed)) {
+        records.push(parsed);
+      }
+    } catch {
+      // A malformed status row cannot safely create retry credit.
+    }
+  }
+  return records;
+}
+
+function readRetryCountsFromLedger(ledgerPath) {
+  const counts = {};
+  for (const record of readLedgerRecords(ledgerPath)) {
+    if (record.event !== 'retry_scheduled' || typeof record.label !== 'string') {
+      continue;
+    }
+    counts[record.label] = (counts[record.label] || 0) + 1;
+  }
+  return counts;
+}
+
+function detectOrphanedLineages(records) {
+  const open = new Map();
+  for (const record of records) {
+    if (!isRecord(record) || typeof record.label !== 'string' || !record.label) {
+      continue;
+    }
+    if (record.event === 'started') {
+      open.set(record.label, record);
+    } else if (
+      record.event === 'completed'
+      || record.event === 'failed'
+      || record.event === 'orphan_requeued'
+    ) {
+      open.delete(record.label);
+    }
+  }
+  return Array.from(open.values()).map((record) => ({
+    label: record.label,
+    index: Number.isFinite(Number(record.index)) ? Number(record.index) : null,
+    started_at_iso: typeof record.at === 'string' ? record.at : null,
+  }));
+}
+
+function markOrphanedLineages(ledgerPath, options = {}) {
+  const orphans = detectOrphanedLineages(readLedgerRecords(ledgerPath));
+  if (!orphans.length) {
+    return [];
+  }
+  const now = typeof options.now === 'function' ? options.now : () => new Date();
+  for (const orphan of orphans) {
+    appendStatusLedger(ledgerPath, {
+      event: 'orphan_requeued',
+      label: orphan.label,
+      index: orphan.index,
+      started_at_iso: orphan.started_at_iso,
+      at: normalizeTimestamp(now()),
+      status: 'requeued',
+    });
+  }
+  return orphans;
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
@@ -81,25 +219,28 @@ function buildPoolGauges({ total, settled, pending, failed }) {
  * @param {Function} [params.onEvent] - Optional callback for ledger events.
  * @returns {Promise<Object>} Result with label, status, timing, output|error.
  */
-async function settleItem({ item, index, worker, now, onEvent }) {
+async function settleItem({ item, index, worker, now, onEvent, attempt: rawAttempt, emitSettledEvent: shouldEmitSettledEvent }) {
+  const attempt = Number.isFinite(Number(rawAttempt)) ? Number(rawAttempt) : 1;
+  const emitSettledEvent = shouldEmitSettledEvent !== false;
   const label = labelFor(item, index);
   const startedAtIso = normalizeTimestamp(now());
   const startedAtMs = Date.now();
 
   if (typeof onEvent === 'function') {
-    onEvent({ event: 'started', label, index, at: startedAtIso });
+    onEvent({ event: 'started', label, index, attempt, at: startedAtIso });
   }
 
   try {
     const output = await worker(item, { index });
     const completedAtIso = normalizeTimestamp(now());
     const durationMs = Math.max(0, Date.now() - startedAtMs);
-    if (typeof onEvent === 'function') {
-      onEvent({ event: 'completed', label, index, at: completedAtIso, duration_ms: durationMs });
+    if (emitSettledEvent && typeof onEvent === 'function') {
+      onEvent({ event: 'completed', label, index, attempt, at: completedAtIso, duration_ms: durationMs });
     }
     return {
       label,
       status: 'fulfilled',
+      attempt,
       started_at_iso: startedAtIso,
       completed_at_iso: completedAtIso,
       duration_ms: durationMs,
@@ -108,16 +249,14 @@ async function settleItem({ item, index, worker, now, onEvent }) {
   } catch (error) {
     const completedAtIso = normalizeTimestamp(now());
     const durationMs = Math.max(0, Date.now() - startedAtMs);
-    const normalizedError = {
-      name: error && error.name ? String(error.name) : 'Error',
-      message: error && error.message ? String(error.message) : String(error),
-    };
-    if (typeof onEvent === 'function') {
-      onEvent({ event: 'failed', label, index, at: completedAtIso, duration_ms: durationMs, error: normalizedError });
+    const normalizedError = normalizeError(error);
+    if (emitSettledEvent && typeof onEvent === 'function') {
+      onEvent({ event: 'failed', label, index, attempt, at: completedAtIso, duration_ms: durationMs, error: normalizedError });
     }
     return {
       label,
       status: 'rejected',
+      attempt,
       started_at_iso: startedAtIso,
       completed_at_iso: completedAtIso,
       duration_ms: durationMs,
@@ -158,9 +297,21 @@ function runCappedPool(options) {
   const concurrency = normalizeConcurrency(options.concurrency);
   const now = typeof options.now === 'function' ? options.now : () => new Date();
   const onEvent = typeof options.onEvent === 'function' ? options.onEvent : undefined;
+  const maxRetries = normalizeMaxRetries(options.maxRetries);
+  const retryCounts = normalizeRetryCountMap(options.initialRetryCounts);
   const results = new Array(items.length);
-  let settledCount = 0;
-  let failedCount = 0;
+  const queue = items.map((_item, index) => index);
+
+  const buildCurrentGauges = () => {
+    const settled = results.filter(Boolean).length;
+    const failed = results.filter((result) => result && result.status === 'rejected').length;
+    return buildPoolGauges({
+      total: items.length,
+      settled,
+      pending: queue.length,
+      failed,
+    });
+  };
 
   return new Promise((resolve) => {
     if (items.length === 0) {
@@ -168,53 +319,97 @@ function runCappedPool(options) {
       return;
     }
 
-    let nextIndex = 0;
     let active = 0;
     let resolved = false;
     const emitEvent = onEvent
       ? (event) => {
-          if (event.event === 'completed' || event.event === 'failed') {
-            settledCount += 1;
-            if (event.event === 'failed') {
-              failedCount += 1;
-            }
-          }
           onEvent({
             ...event,
-            gauges: buildPoolGauges({
-              total: items.length,
-              settled: settledCount,
-              pending: items.length - nextIndex,
-              failed: failedCount,
-            }),
+            gauges: buildCurrentGauges(),
           });
         }
       : undefined;
+
+    const emitSettledResult = (result, isTerminal) => {
+      if (!emitEvent) return;
+      const baseEvent = {
+        event: result.status === 'fulfilled' ? 'completed' : 'failed',
+        label: result.label,
+        index: result.index,
+        attempt: result.attempt,
+        at: result.completed_at_iso,
+        duration_ms: result.duration_ms,
+        terminal: isTerminal,
+      };
+      if (result.status === 'rejected') {
+        emitEvent({ ...baseEvent, error: result.error });
+      } else {
+        emitEvent(baseEvent);
+      }
+    };
 
     const pump = () => {
       if (resolved) {
         return;
       }
-      if (nextIndex >= items.length && active === 0) {
+      if (queue.length === 0 && active === 0) {
         resolved = true;
         resolve(buildPoolSummary(results));
         return;
       }
-      while (active < concurrency && nextIndex < items.length) {
-        const index = nextIndex;
-        nextIndex += 1;
+      while (active < concurrency && queue.length > 0) {
+        const index = queue.shift();
+        const label = labelFor(items[index], index);
+        const retryCount = retryCounts.get(label) || 0;
+        const attempt = retryCount + 1;
         active += 1;
-        settleItem({ item: items[index], index, worker, now, onEvent: emitEvent })
+        settleItem({ item: items[index], index, worker, now, onEvent: emitEvent, attempt, emitSettledEvent: false })
           .then((result) => {
+            result.index = index;
+            if (result.status === 'fulfilled') {
+              result.retry_attempts = retryCount;
+              results[index] = result;
+              emitSettledResult(result, true);
+              return;
+            }
+
+            const canRetry = result.error.retryable === true && retryCount < maxRetries;
+            if (canRetry) {
+              const nextRetryCount = retryCount + 1;
+              retryCounts.set(label, nextRetryCount);
+              emitSettledResult(result, false);
+              queue.push(index);
+              if (emitEvent) {
+                emitEvent({
+                  event: 'retry_scheduled',
+                  label,
+                  index,
+                  at: normalizeTimestamp(now()),
+                  retry_count: nextRetryCount,
+                  next_attempt: nextRetryCount + 1,
+                  max_retries: maxRetries,
+                  failure_class: result.error.failure_class,
+                  retry_verdict: result.error.retry_verdict,
+                });
+              }
+              return;
+            }
+
+            result.retry_attempts = retryCount;
+            result.retry_exhausted = result.error.retryable === true && retryCount >= maxRetries;
             results[index] = result;
+            emitSettledResult(result, true);
           })
           .catch((error) => {
-            // settleItem never throws, but stay defensive so the pump never wedges.
+            // The item settler is meant to capture worker failures; this keeps
+            // an unexpected bug in the settler from wedging the whole pool.
             results[index] = {
               label: labelFor(items[index], index),
               status: 'rejected',
-              error: { name: 'PoolError', message: String(error) },
+              index,
+              error: normalizeError({ name: 'PoolError', message: String(error) }),
             };
+            emitSettledResult(results[index], true);
           })
           .finally(() => {
             active -= 1;
@@ -238,6 +433,7 @@ function buildPoolSummary(results) {
   const succeeded = results.filter((result) => result && result.status === 'fulfilled').length;
   const failed = total - succeeded;
   const gauges = buildPoolGauges({ total, settled: total, pending: 0, failed });
+  const failureClasses = buildFailureClassRollup(results);
   return {
     results,
     summary: {
@@ -246,6 +442,7 @@ function buildPoolSummary(results) {
       failed,
       all_failed: total > 0 && failed === total,
       gauges,
+      failure_classes: failureClasses,
     },
   };
 }
@@ -289,6 +486,10 @@ module.exports = {
   settleItem,
   buildPoolSummary,
   buildPoolGauges,
+  classifyLineageFailure,
+  detectOrphanedLineages,
+  markOrphanedLineages,
+  readRetryCountsFromLedger,
   appendStatusLedger,
   writeOrchestrationSummary,
 };

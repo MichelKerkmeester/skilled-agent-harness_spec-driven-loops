@@ -29,6 +29,8 @@ const {
 const {
   runCappedPool,
   appendStatusLedger,
+  markOrphanedLineages,
+  readRetryCountsFromLedger,
   writeOrchestrationSummary,
 } = require('./fanout-pool.cjs');
 
@@ -162,11 +164,15 @@ function updateLineageSnapshot(snapshots, event) {
   if (event.event === 'failed') {
     snapshots.set(event.label, {
       ...existing,
-      status: 'rejected',
+      status: event.terminal === false ? 'retrying' : 'rejected',
       completed_at_iso: event.at,
       duration_ms: event.duration_ms,
       error: event.error,
     });
+    return;
+  }
+  if (event.event === 'retry_scheduled' || event.event === 'orphan_requeued') {
+    snapshots.set(event.label, { ...existing, status: 'requeued', updated_at_iso: event.at });
   }
 }
 
@@ -502,6 +508,8 @@ async function main() {
   }
 
   fs.mkdirSync(lineagesDir, { recursive: true });
+  const orphanedLineages = markOrphanedLineages(ledgerPath);
+  const initialRetryCounts = readRetryCountsFromLedger(ledgerPath);
 
   const lineageSnapshots = new Map();
   let latestGauges = { lag: cliLineages.length, pending: cliLineages.length, failed: 0 };
@@ -545,6 +553,8 @@ async function main() {
   const { results, summary } = await runCappedPool({
     items: cliLineages,
     concurrency: fanoutConfig.concurrency,
+    maxRetries: fanoutConfig.maxRetries,
+    initialRetryCounts,
     onEvent: (event) => {
       updateLineageSnapshot(lineageSnapshots, event);
       if (event.gauges) latestGauges = event.gauges;
@@ -665,6 +675,7 @@ async function main() {
     spec_folder: specFolder,
     base_artifact_dir: baseArtifactDir,
     total_cli_lineages: cliLineages.length,
+    orphaned_lineages: orphanedLineages,
     ...summary,
   });
 

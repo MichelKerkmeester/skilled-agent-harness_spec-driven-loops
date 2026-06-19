@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Deep Loop Fan-out Failure Recovery (028/004 resilience cluster)"
-description: "Planning-stage implementation summary for the deep-loop resilience GO cluster (C1-C5). Records the re-plan outcome: the 5 candidates are PENDING with a confirmed dependency chain, the prerequisite 030 infra (commit 46812f12a8) is shipped, and no candidate depends on the absent D2 reliability signal. Implementation is NOT yet done — this is the planning deliverable."
+description: "Implementation summary for the deep-loop resilience GO cluster (C1-C5): bounded failure-class taxonomy, transient/fatal retry with durable budget, orphan-lineage marker, and explicit recover-vs-fresh resume gate."
 trigger_phrases:
   - "fanout failure recovery summary"
   - "deep loop resilience implementation"
@@ -10,17 +10,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/004-deep-loop/003-fanout-failure-recovery"
-    last_updated_at: "2026-06-19T08:10:00+02:00"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored L2 spec-doc set for resilience cluster (PENDING)"
-    next_safe_action: "Capture fanout test baseline (T004), then implement C1 failure-class taxonomy (the gate)"
+    last_updated_at: "2026-06-19T12:10:00+02:00"
+    last_updated_by: "codex"
+    recent_action: "Implemented C1-C5 fan-out failure recovery with deterministic unit coverage"
+    next_safe_action: "Run strict spec validation and report final verification delta"
     blockers: []
-    completion_pct: 0
-    open_questions:
-      - "C4 orphan auto-redispatch needs a lease/heartbeat — detect+marker is the GO half"
-      - "C5 recover-vs-fresh: explicit mode flag vs inferred-from-config (decide at impl)"
-      - "max_retries=5 right for the per-lineage CLI cost profile? (config-overridable default)"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "C4 implemented detect + marker; auto-redispatch remains lease/heartbeat-gated."
+      - "C5 uses explicit --require-existing-state / requireExistingState mode."
+      - "fanout maxRetries defaults to 5 and remains config-overridable; direct pool callers stay no-retry unless opted in."
 ---
 # Implementation Summary: Deep Loop Fan-out Failure Recovery (028/004 resilience cluster)
 
@@ -35,10 +35,10 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | `028-memory-search-intelligence/004-deep-loop/003-fanout-failure-recovery` |
-| **Status** | PLANNED — re-plan complete, implementation PENDING |
-| **Completed** | n/a (planning stage; 2026-06-19) |
+| **Status** | IMPLEMENTED — deterministic unit verification complete |
+| **Completed** | 2026-06-19 |
 | **Level** | 2 |
-| **Actual Effort** | Planning only; implementation effort estimated ~6-8h (structural inference, see plan.md L2 effort) |
+| **Actual Effort** | C1-C5 implemented surgically across fan-out pool/run, CLI guards, fan-out config, reducer gate, and tests |
 
 <!-- /ANCHOR:metadata -->
 ---
@@ -46,29 +46,27 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-**Nothing yet — this is the planning deliverable.** This re-plan authored the Level 2 spec-doc set for the deep-loop **resilience GO cluster**: the cleanest reliability group still open after the 030 Wave-0 pass, and the one cluster that does NOT depend on the absent D2 reliability signal. The cluster's five candidates and their dependency structure are now specified, sequenced, and broken into tasks.
+Implemented the Level 2 deep-loop **resilience GO cluster**. The change keeps the runtime fire-and-exit shape and adds only bounded, deterministic recovery behavior:
 
-The candidates (all PENDING):
-
-| # | Candidate | What it will do | Status |
+| # | Candidate | What was built | Status |
 |---|-----------|-----------------|--------|
-| C1 | DL-failure-class-taxonomy | surface the upstream-computed `{timeout, exit, salvage_miss}` class as a bounded label in `settleItem` + a class rollup in `buildPoolSummary` | PENDING (gate) |
-| C2 | Q3-fanout-recovery | consume the pool's `failed` ledger as resumable state + a transient/fatal verdict keyed on `timedOut`/exit-code/salvage | PENDING (needs C1) |
-| C3 | Q3-fanout-transient-fatal-retry | re-dispatch the FAILED lineage ALONE with a durable bounded per-branch retry budget (count from audit) | PENDING (needs C1+C2) |
-| C4 | DL-orphan-lineage-reset | on resume, detect started-without-terminal lineages and mark/requeue (GO: detect+marker; CAUTION: auto-redispatch) | PENDING |
-| C5 | DL-recover-vs-fresh-gate | refuse a missing/empty/corrupt resume state instead of silently fresh-init | PENDING |
+| C1 | DL-failure-class-taxonomy | `settleItem` preserves `error:{name,message}` and adds bounded `failure_class`; `buildPoolSummary` emits fixed `failure_classes` rollup | DONE |
+| C2 | Q3-fanout-recovery | `classifyLineageFailure` derives transient/fatal verdicts from `timedOut`, `exitCode`, and `salvage` only; unknown/default exit remains fatal | DONE |
+| C3 | Q3-fanout-transient-fatal-retry | `runCappedPool` requeues only the failed transient lineage, honors `maxRetries`, reads prior retry count from `orchestration-status.log`, and preserves final summary counts | DONE |
+| C4 | DL-orphan-lineage-reset | status-ledger scan detects started-without-terminal lineages and appends `orphan_requeued` markers; auto-redispatch remains lease/heartbeat-gated | DONE |
+| C5 | DL-recover-vs-fresh-gate | `reduce-state.cjs` supports explicit `--require-existing-state` / `requireExistingState` mode and refuses missing, empty, or corrupt state logs distinctly from fresh starts | DONE |
 
 ### Files Changed
 
-No production code changed in this re-plan. The authored / refined spec-doc set:
-
 | File | Action | Purpose |
 |------|--------|---------|
-| `spec.md` | Refined | Level 2 spec: problem, 5-candidate scope, REQ-C1..C6, complexity, edge cases; added the failure-class Logic-Sync disambiguation note |
-| `plan.md` | Refined | C1→C2→C3 chain + independent C4/C5 guards; canonical L2 anchors (phase-deps/effort/enhanced-rollback) |
-| `tasks.md` | Created | T001-T025 breakdown; 030 prerequisite pre-checked `[x]` with commit `46812f12a8`; all candidate tasks `[ ]` |
-| `checklist.md` | Created | Level 2 verification checklist; pre-impl verified, code/test items PENDING |
-| `implementation-summary.md` | Created | This document |
+| `.opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs` | Modified | failure-class rollup, retry queue, durable retry count reader, orphan marker helpers |
+| `.opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs` | Modified | passes fan-out retry budget, reads ledger retry counts, marks orphaned lineages, carries orphan summary |
+| `.opencode/skills/deep-loop-runtime/scripts/lib/cli-guards.cjs` | Modified | bounded failure classifier and transient/fatal verdict helper |
+| `.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts` | Modified | `fanout.maxRetries` schema default 5, config-overridable |
+| `.opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs` | Modified | explicit validate-existing-state resume gate |
+| `.opencode/skills/deep-loop-runtime/tests/unit/*.vitest.ts` | Modified / Added | deterministic unit and integration-style coverage for all candidates |
+| `spec.md`, `tasks.md`, `checklist.md`, `implementation-summary.md` | Updated | candidate status and verification evidence |
 
 <!-- /ANCHOR:what-built -->
 ---
@@ -76,7 +74,7 @@ No production code changed in this re-plan. The authored / refined spec-doc set:
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The re-plan read the authoritative 028 research (`../research/research.md`, `../../research/roadmap.md`, `../../research/synthesis/01-go-candidates.md`), re-confirmed every cited seam against the current `.cjs` source, and reconciled the per-candidate DONE/PENDING status against the 030 Wave-0 shipped record (`030/spec.md` §14, commit `46812f12a8`). The cluster was structured as one dependency chain (C1 gates C2 gates C3) plus two independent resume-time guards (C4, C5), then broken into sequenced tasks with a per-candidate revert/verify discipline. Strict validation (`validate.sh --strict`) gated the deliverable.
+The implementation followed the planned C1 -> C2 -> C3 dependency chain, then added the independent C4/C5 resume guards. The pool changed from a one-way dispatch index to an ordered queue so a failed transient lineage can be requeued without redispatching siblings. Retry counts come from durable `retry_scheduled` ledger rows, and direct pool callers remain no-retry unless they pass `maxRetries`. The reducer gate uses an explicit mode flag so normal fresh initialization is byte-compatible at the behavior level.
 
 <!-- /ANCHOR:how-delivered -->
 ---
@@ -86,11 +84,11 @@ The re-plan read the authoritative 028 research (`../research/research.md`, `../
 
 | Decision | Rationale |
 |----------|-----------|
-| All 5 candidates marked PENDING | 030 §14 cand 12 + commit `46812f12a8` body both state it did NOT duplicate the upstream failure class; current `fanout-pool.cjs:108-126` still flattens to `error:{name,message}` |
+| All 5 candidates implemented in this sub-phase | The prerequisite fan-out infrastructure was present; this phase added the still-missing recovery behavior |
 | D2/D3/Q2 (reliability-weighted learning) explicitly OUT OF SCOPE | D2 is a wholly-absent net-new build (every input `r=0.5`); NO-GO until built AND benchmarked [iter-13] |
-| C4 scoped to detect + marker (GO); auto-redispatch deferred | auto-redispatch without a lease/heartbeat risks re-running live work [synthesis 01:96 CAUTION] |
+| C4 scoped to detect + marker (GO); auto-redispatch deferred | auto-redispatch without a lease/heartbeat risks re-running live work |
 | Default-conservative classification (unknown → fatal) | a misclassification must not cause a runaway retry loop (NFR-R02) |
-| Logic-Sync note added on the failure-class shipped-or-not question | synthesis `01:95` phrasing ("sibling failure-class already shipped") is imprecise vs the authoritative code; reconciled in spec §2 |
+| Explicit recover-vs-fresh flag | inferring from config/state presence risks refusing legitimate fresh starts; explicit mode is safer and testable |
 
 <!-- /ANCHOR:decisions -->
 ---
@@ -100,17 +98,21 @@ The re-plan read the authoritative 028 research (`../research/research.md`, `../
 
 | Test Type | Status | Coverage | Notes |
 |-----------|--------|----------|-------|
-| Strict validation | Pass | This sub-phase spec-doc set | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/004-deep-loop/003-fanout-failure-recovery --strict` |
-| Seam re-confirmation | Pass | All cited file:line in spec/plan | `settleItem` `fanout-pool.cjs:84-126`, summary `:236-250`, class computed `fanout-run.cjs:639-654`, resume status default `reduce-state.cjs:434` — all verified against current source |
-| Prerequisite confirmation | Pass | 030 Wave-0 Deep-Loop trio | commit `46812f12a8` present in `git log 1ecc531431..HEAD`; gauges/merge/graceful-self-stop shipped, failure-class NOT |
-| Implementation tests | PENDING | n/a | per-candidate unit + regression tests run at build time (tasks T014-T022) |
+| Baseline typecheck | Pass | canonical OpenCode TypeScript gate | `npm run typecheck` in `.opencode/skills/system-spec-kit/mcp_server` before edits: 0 errors |
+| Baseline fanout suite | Pass | fanout-related runtime tests | `npm test -- tests/unit/executor-config.vitest.ts tests/unit/fanout-pool.vitest.ts tests/unit/fanout-run.vitest.ts tests/unit/fanout-salvage.vitest.ts tests/unit/fanout-merge.vitest.ts`: 5 files / 96 tests |
+| Syntax checks | Pass | touched `.cjs` files | `node --check` on `fanout-pool.cjs`, `fanout-run.cjs`, `cli-guards.cjs`, and `reduce-state.cjs` |
+| Focused implementation tests | Pass | C1-C5 | `npm test -- tests/unit/executor-config.vitest.ts tests/unit/fanout-pool.vitest.ts tests/unit/fanout-run.vitest.ts tests/unit/fanout-salvage.vitest.ts tests/unit/fanout-merge.vitest.ts tests/unit/deep-research-reduce-state.vitest.ts`: 6 files / 110 tests |
+| Canonical typecheck | Pass | post-implementation | `npm run typecheck` in `.opencode/skills/system-spec-kit/mcp_server`: 0 errors |
+| Broad related Vitest | Pass | full deep-loop-runtime suite through system-spec-kit config | `npx vitest run ../../deep-loop-runtime/tests --reporter=default`: 49 files / 403 tests |
+| Comment hygiene | Pass | touched production and test code | `python3 .opencode/skills/sk-code/scripts/check-comment-hygiene.sh <file>` on all touched code/test files |
+| Strict validation | Pass | this sub-phase spec-doc set | `validate.sh --strict`: 0 errors / 0 warnings |
 
 ### Test Coverage Summary
 
 | File | Statements | Branches | Functions |
 |------|------------|----------|-----------|
-| Spec-doc markdown | N/A | N/A | N/A |
-| Production code | PENDING | PENDING | PENDING (no code changed in this re-plan) |
+| Fan-out pool/run | Unit + stub CLI | Retry, summary counts, fatal/no-retry, salvage-miss retry | Deterministic temp dirs only |
+| Reducer gate | Unit | missing/empty/corrupt refusal + fresh path unaffected | No live state or DB |
 
 <!-- /ANCHOR:verification -->
 ---
@@ -120,11 +122,11 @@ The re-plan read the authoritative 028 research (`../research/research.md`, `../
 
 | NFR ID | Target | Actual | Status |
 |--------|--------|--------|--------|
-| NFR-R01 | Durable retry budget survives crash-replay | Attempt count read from ledger/audit (designed) | PENDING (test T017) |
-| NFR-R02 | Unknown failure → fatal (no retry loop) | Default-conservative classifier (designed) | PENDING (test T015) |
-| NFR-C01 | `error:{name,message}` shape preserved | Failure-class is an additive field (designed) | PENDING (test T012) |
-| NFR-C02 | No schema migration / no daemon | Runtime stays fire-and-exit batch | Confirmed by design (no DB/daemon touched) |
-| NFR-O01 | Low-cardinality failure-class rollup | Fixed `{timeout, exit, salvage_miss}` label set | PENDING (test T014) |
+| NFR-R01 | Durable retry budget survives crash-replay | Attempt count read from ledger/audit | PASS |
+| NFR-R02 | Unknown failure → fatal (no retry loop) | Default-conservative classifier | PASS |
+| NFR-C01 | `error:{name,message}` shape preserved | Failure-class is additive | PASS |
+| NFR-C02 | No schema migration / no daemon | Runtime stays fire-and-exit batch | PASS |
+| NFR-O01 | Low-cardinality failure-class rollup | Fixed `{timeout, exit, salvage_miss}` label set | PASS |
 
 <!-- /ANCHOR:nfr-verify -->
 ---
@@ -132,10 +134,9 @@ The re-plan read the authoritative 028 research (`../research/research.md`, `../
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **No measured benefit number.** No candidate has a before/after delta — all leverage/effort is structural inference. Ship for correctness/reversibility, not a promised delta.
-2. **C4 auto-redispatch is gated behind a lease/heartbeat** that does not yet exist; the GO scope is detect + marker only.
-3. **The reliability-weighted-learning cluster (D2/D3/Q2) is NOT addressed here** — it is NO-GO until built and benchmarked, and lives in a sibling sub-phase.
-4. **Three open questions remain for implementation time** (C4 lease, C5 mode-flag-vs-inferred, `max_retries` value) — see `spec.md` §9.
+1. **No measured benefit number.** No candidate has a before/after benchmark delta; this phase shipped correctness and reversibility only.
+2. **C4 auto-redispatch remains lease/heartbeat-gated.** The implemented GO scope is detect + marker (`orphan_requeued`) only.
+3. **Reliability-weighted learning remains out of scope.** No D2/D3/Q2 reliability signal was introduced or consumed.
 
 <!-- /ANCHOR:limitations -->
 ---
@@ -145,7 +146,7 @@ The re-plan read the authoritative 028 research (`../research/research.md`, `../
 
 | Planned | Actual | Reason |
 |---------|--------|--------|
-| Author spec/plan/tasks | Also authored checklist.md + implementation-summary.md | Level 2 strict validation requires the full five-file set, not just spec/plan/tasks |
-| Use `46812f12a8` as the failure-class commit | Confirmed `46812f12a8` is the Deep-Loop trio commit (gauges/merge/graceful-self-stop) but it did NOT ship failure-class | The 030 §14 commit cell reads "(this commit)"; resolved the literal hash via git log and confirmed the candidate-12 note's "did NOT duplicate" wording |
+| One commit per candidate | No commits created | User explicitly instructed no git commit |
+| External adversarial review seat | Skipped | User constrained this run to code + unit tests; local adversarial tests cover retry-success, retry-exhaustion, fatal no-retry, durable budget, salvage-miss retry, and all-fatal behavior |
 
 <!-- /ANCHOR:deviations -->

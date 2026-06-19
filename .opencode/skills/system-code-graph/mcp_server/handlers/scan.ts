@@ -397,6 +397,7 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
   const detectorProvenanceSummary = summarizeDetectorProvenance(results);
   let graphEdgeEnrichmentSummary = summarizeGraphEdgeEnrichment(results);
   const preParseSkippedCount = effectiveIncremental ? (results.preParseSkippedCount ?? 0) : 0;
+  const forceParsedFiles = new Set(effectiveIncremental ? (results.forceParsedFiles ?? []) : []);
   const unsupportedLanguageSkipped = results.unsupportedLanguageSkipped ?? 0;
   const priorStats = graphDb.getStats();
   const priorNodeCount = priorStats.totalNodes;
@@ -598,6 +599,7 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
     // Skip unchanged files in incremental mode
     if (
       effectiveIncremental
+      && !forceParsedFiles.has(result.filePath)
       && !graphDb.isFileStale(
         result.filePath,
         result.contentHash ? { currentContentHash: result.contentHash } : undefined,

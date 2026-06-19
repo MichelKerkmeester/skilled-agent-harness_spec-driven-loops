@@ -15,7 +15,7 @@ import {
   generateContentHash,
   detectLanguage,
 } from './indexer-types.js';
-import { isFileStale } from './code-graph-db.js';
+import { isFileStale, queryImportersOf, querySymbolIdsForFiles } from './code-graph-db.js';
 import { shouldIndexForCodeGraph } from './shared/index-scope.js';
 import { resolveCanonicalPath } from './shared/canonical-path.js';
 import { isSpeckitMetricsEnabled, speckitMetrics } from './shared/metrics-stub.js';
@@ -84,6 +84,7 @@ export interface IndexFilesOptions {
 export interface IndexFilesResult extends Array<ParseResult> {
   preParseSkippedCount: number;
   unsupportedLanguageSkipped: number;
+  forceParsedFiles: string[];
   warnings: string[];
   capExceeded: FileFindResult['capExceeded'];
 }
@@ -2091,14 +2092,75 @@ type ParseCandidatesOutput = FindCandidatesOutput & {
   results: ParseResult[];
   preParseSkippedCount: number;
   unsupportedLanguageSkipped: number;
+  forceParsedFiles: string[];
 };
 type FinalizeOutput = {
   finalizedResults: ParseResult[];
   preParseSkippedCount: number;
   unsupportedLanguageSkipped: number;
+  forceParsedFiles: string[];
   warnings: string[];
   capExceeded: FileFindResult['capExceeded'];
 };
+
+const REVERSE_DEP_FORCE_PARSE_ENV = 'SPECKIT_CODE_GRAPH_REVERSE_DEP_FORCE_PARSE';
+
+function reverseDepForceParseEnabled(): boolean {
+  return process.env[REVERSE_DEP_FORCE_PARSE_ENV] === 'true';
+}
+
+function getSupportedCandidateLanguage(
+  filePath: string,
+  config: IndexerConfig,
+): SupportedLanguage | null {
+  const language = detectLanguage(filePath);
+  if (!language || !config.languages.includes(language)) {
+    return null;
+  }
+  return language;
+}
+
+async function parseCandidateFile(
+  filePath: string,
+  language: SupportedLanguage,
+  config: IndexerConfig,
+): Promise<ParseResult | null> {
+  try {
+    const content = readFileSync(filePath, 'utf-8');
+    return await parseFile(filePath, content, language, config.edgeWeights);
+  } catch {
+    return null;
+  }
+}
+
+function groupStoredSymbolIdsByFile(rows: Array<{ filePath: string; symbolId: string }>): Map<string, Set<string>> {
+  const grouped = new Map<string, Set<string>>();
+  for (const row of rows) {
+    const symbolIds = grouped.get(row.filePath) ?? new Set<string>();
+    symbolIds.add(row.symbolId);
+    grouped.set(row.filePath, symbolIds);
+  }
+  return grouped;
+}
+
+function symbolIdentityChanged(
+  storedSymbolIds: Set<string> | undefined,
+  currentNodes: CodeNode[],
+): boolean {
+  if (!storedSymbolIds || storedSymbolIds.size === 0) {
+    return false;
+  }
+  const currentSymbolIds = new Set(currentNodes.map((node) => node.symbolId));
+  if (storedSymbolIds.size !== currentSymbolIds.size) {
+    return true;
+  }
+  for (const symbolId of storedSymbolIds) {
+    if (!currentSymbolIds.has(symbolId)) {
+      return true;
+    }
+  }
+  return false;
+}
 
 function buildIndexPhases(
   config: IndexerConfig,
@@ -2156,6 +2218,102 @@ function buildIndexPhases(
       const results: ParseResult[] = [];
       let preParseSkippedCount = 0;
       let unsupportedLanguageSkipped = 0;
+      const forceParse = new Set<string>();
+
+      if (skipFreshFiles && reverseDepForceParseEnabled()) {
+        const supportedLanguagesByFile = new Map<string, SupportedLanguage>();
+        const supportedCandidateFiles: string[] = [];
+
+        for (const file of candidateFiles) {
+          const language = getSupportedCandidateLanguage(file, config);
+          if (!language) {
+            unsupportedLanguageSkipped++;
+            continue;
+          }
+          supportedLanguagesByFile.set(file, language);
+          supportedCandidateFiles.push(file);
+        }
+
+        const staleFiles = supportedCandidateFiles.filter((file) => isFileStale(file));
+        const storedSymbolIdsByFile = groupStoredSymbolIdsByFile(querySymbolIdsForFiles(staleFiles));
+        const parsedByFile = new Map<string, ParseResult>();
+        const attemptedFiles = new Set<string>();
+
+        for (const file of staleFiles) {
+          if (options.signal?.aborted) {
+            throw new Error(`parse-candidates aborted (deadline signal) after ${parsedByFile.size} parsed`);
+          }
+          const language = supportedLanguagesByFile.get(file);
+          if (!language) {
+            continue;
+          }
+          attemptedFiles.add(file);
+          const result = await parseCandidateFile(file, language, config);
+          if (result) {
+            parsedByFile.set(file, result);
+          }
+        }
+
+        const refactorChangedFiles = [...parsedByFile.values()]
+          .filter((result) => symbolIdentityChanged(storedSymbolIdsByFile.get(result.filePath), result.nodes))
+          .map((result) => result.filePath);
+        const knownCandidateFiles = new Set(supportedCandidateFiles);
+        for (const dependent of queryImportersOf(refactorChangedFiles)) {
+          if (knownCandidateFiles.has(dependent.importerFilePath)) {
+            forceParse.add(dependent.importerFilePath);
+            continue;
+          }
+          const language = getSupportedCandidateLanguage(dependent.importerFilePath, config);
+          if (language) {
+            supportedLanguagesByFile.set(dependent.importerFilePath, language);
+            supportedCandidateFiles.push(dependent.importerFilePath);
+            knownCandidateFiles.add(dependent.importerFilePath);
+            forceParse.add(dependent.importerFilePath);
+          }
+        }
+
+        for (const file of supportedCandidateFiles) {
+          if (options.signal?.aborted) {
+            throw new Error(`parse-candidates aborted (deadline signal) after ${results.length} parsed`);
+          }
+          const parsed = parsedByFile.get(file);
+          if (parsed) {
+            results.push(parsed);
+            continue;
+          }
+          if (attemptedFiles.has(file)) {
+            continue;
+          }
+
+          const language = supportedLanguagesByFile.get(file);
+          if (!language) {
+            continue;
+          }
+          if (!forceParse.has(file) && !isFileStale(file)) {
+            preParseSkippedCount++;
+            continue;
+          }
+
+          const result = await parseCandidateFile(file, language, config);
+          if (result) {
+            results.push(result);
+          }
+        }
+
+        if (unsupportedLanguageSkipped > 0) {
+          warnings.push(`[structural-indexer] Skipped ${unsupportedLanguageSkipped} candidate file(s) before parsing because their language is unsupported or disabled by config.languages`);
+        }
+
+        return {
+          candidateFiles,
+          results,
+          preParseSkippedCount,
+          unsupportedLanguageSkipped,
+          forceParsedFiles: [...forceParse],
+          warnings,
+          capExceeded,
+        };
+      }
 
       for (const file of candidateFiles) {
         // Cooperative cancellation runs inside the parse phase. runPhases only
@@ -2165,8 +2323,8 @@ function buildIndexPhases(
         if (options.signal?.aborted) {
           throw new Error(`parse-candidates aborted (deadline signal) after ${results.length} parsed`);
         }
-        const language = detectLanguage(file);
-        if (!language || !config.languages.includes(language)) {
+        const language = getSupportedCandidateLanguage(file, config);
+        if (!language) {
           unsupportedLanguageSkipped++;
           continue;
         }
@@ -2179,18 +2337,25 @@ function buildIndexPhases(
           continue;
         }
 
-        try {
-          const content = readFileSync(file, 'utf-8');
-          const result = await parseFile(file, content, language, config.edgeWeights);
+        const result = await parseCandidateFile(file, language, config);
+        if (result) {
           results.push(result);
-        } catch { /* skip unreadable */ }
+        }
       }
 
       if (unsupportedLanguageSkipped > 0) {
         warnings.push(`[structural-indexer] Skipped ${unsupportedLanguageSkipped} candidate file(s) before parsing because their language is unsupported or disabled by config.languages`);
       }
 
-      return { candidateFiles, results, preParseSkippedCount, unsupportedLanguageSkipped, warnings, capExceeded };
+      return {
+        candidateFiles,
+        results,
+        preParseSkippedCount,
+        unsupportedLanguageSkipped,
+        forceParsedFiles: [],
+        warnings,
+        capExceeded,
+      };
     },
   };
 
@@ -2198,9 +2363,9 @@ function buildIndexPhases(
     name: 'finalize',
     inputs: ['parse-candidates'],
     run(deps) {
-      const { results, preParseSkippedCount, unsupportedLanguageSkipped, warnings, capExceeded } = deps['parse-candidates'];
+      const { results, preParseSkippedCount, unsupportedLanguageSkipped, forceParsedFiles, warnings, capExceeded } = deps['parse-candidates'];
       const finalizedResults = finalizeIndexResults(results, moduleResolver, config.edgeWeights);
-      return { finalizedResults, preParseSkippedCount, unsupportedLanguageSkipped, warnings, capExceeded };
+      return { finalizedResults, preParseSkippedCount, unsupportedLanguageSkipped, forceParsedFiles, warnings, capExceeded };
     },
   };
 
@@ -2254,6 +2419,7 @@ export async function indexFiles(config: IndexerConfig, options: IndexFilesOptio
     const finalizedResults = emitOutput.finalizedResults as IndexFilesResult;
     finalizedResults.preParseSkippedCount = emitOutput.preParseSkippedCount;
     finalizedResults.unsupportedLanguageSkipped = emitOutput.unsupportedLanguageSkipped;
+    finalizedResults.forceParsedFiles = emitOutput.forceParsedFiles;
     finalizedResults.warnings = emitOutput.warnings;
     finalizedResults.capExceeded = emitOutput.capExceeded;
     return finalizedResults;

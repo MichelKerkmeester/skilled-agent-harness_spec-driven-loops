@@ -265,6 +265,7 @@ export type LineageExecutor = z.infer<typeof lineageExecutorSchema>;
 export const fanoutConfigSchema = z.object({
   executors: z.array(lineageExecutorSchema).min(1),
   concurrency: z.number().int().positive().default(2),
+  maxRetries: z.number().int().nonnegative().default(5),
 });
 
 export type FanoutConfig = z.infer<typeof fanoutConfigSchema>;

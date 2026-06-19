@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: Deep Loop Fan-out Failure Recovery (028/004 resilience cluster)"
-description: "Level 2 verification checklist for the deep-loop resilience GO cluster (C1-C5). Pre-implementation items are verified (planning + research complete); code-quality, testing, and security items are PENDING until each candidate lands. No completion is claimed — this sub-phase is re-planned and PENDING implementation."
+description: "Level 2 verification checklist for the deep-loop resilience GO cluster (C1-C5). Implementation and unit verification are complete; strict spec validation is the remaining final gate during this update."
 trigger_phrases:
   - "fanout failure recovery checklist"
   - "deep loop resilience checklist"
@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/004-deep-loop/003-fanout-failure-recovery"
-    last_updated_at: "2026-06-19T08:10:00+02:00"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored Level 2 checklist; pre-impl items verified, impl/test items PENDING"
-    next_safe_action: "Capture fanout baseline, implement C1, then verify CHK-010+ as each candidate lands"
+    last_updated_at: "2026-06-19T12:10:00+02:00"
+    last_updated_by: "codex"
+    recent_action: "Verified implementation and deterministic unit coverage for C1-C5"
+    next_safe_action: "Run strict spec validation and report final verification delta"
 ---
 # Verification Checklist: Deep Loop Fan-out Failure Recovery (028/004 resilience cluster)
 
@@ -31,7 +31,7 @@ _memory:
 | **[P1]** | Required | Must complete OR get user approval |
 | **[P2]** | Optional | Can defer with documented reason |
 
-> Status: this sub-phase is **re-planned and PENDING implementation**. Pre-implementation items are verified; all code/test/security items remain `[ ]` until each candidate (C1-C5) is built and tested. No completion is claimed.
+> Status: implementation and deterministic unit verification are complete for the scoped C1-C5 recovery cluster. Strict spec validation is tracked as the final packet gate.
 
 <!-- /ANCHOR:protocol -->
 ---
@@ -46,7 +46,7 @@ _memory:
 - [x] CHK-003 [P1] Dependencies identified and available
   - **Evidence**: `plan.md` §6 confirms the 030 pool gauges + graceful-self-stop prerequisite shipped (`46812f12a8`); no dependency on the absent D2 reliability signal.
 - [x] CHK-004 [P1] Per-candidate DONE/PENDING status confirmed against current source
-  - **Evidence**: All 5 candidates PENDING — 030 §14 candidate 12 and commit `46812f12a8` body both state it did NOT duplicate the upstream failure class; current `fanout-pool.cjs:108-126` still returns `error:{name,message}` only.
+  - **Evidence**: All 5 candidates are DONE in `spec.md`; the pre-implementation check confirmed 030 did not ship failure-class, and this phase implements the missing recovery cluster.
 
 <!-- /ANCHOR:pre-impl -->
 ---
@@ -54,14 +54,14 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Code passes `node --check` on every touched `.cjs`
-  - **Evidence**: PENDING — `fanout-pool.cjs`, `fanout-run.cjs`, `lib/cli-guards.cjs`, `reduce-state.cjs` (task T020).
-- [ ] CHK-011 [P0] No regression vs the captured fanout test baseline
-  - **Evidence**: PENDING — baseline is the 030 note's 58 fanout tests (task T004 captures, T021 re-runs).
-- [ ] CHK-012 [P1] Failure-class label is additive (preserves `error:{name,message}`)
-  - **Evidence**: PENDING — NFR-C01; C1 adds `failure_class` without removing the existing shape.
-- [ ] CHK-013 [P1] Changes follow existing fan-out pool patterns (additive, surgical)
-  - **Evidence**: PENDING — no new module unless the transient/fatal classifier is cleaner beside `classifyExitCode`.
+- [x] CHK-010 [P0] Code passes `node --check` on every touched `.cjs`
+  - **Evidence**: `node --check` passed for `fanout-pool.cjs`, `fanout-run.cjs`, `lib/cli-guards.cjs`, and `reduce-state.cjs`.
+- [x] CHK-011 [P0] No regression vs the captured fanout test baseline
+  - **Evidence**: Baseline before edits: `npm run typecheck` passed and fanout-related runtime suite passed 5 files / 96 tests. Post-implementation broad related runtime suite passed 49 files / 403 tests with original fanout files still green.
+- [x] CHK-012 [P1] Failure-class label is additive (preserves `error:{name,message}`)
+  - **Evidence**: `fanout-pool.vitest.ts` verifies `failure_class` is additive and legacy missing-label errors roll up as `exit`.
+- [x] CHK-013 [P1] Changes follow existing fan-out pool patterns (additive, surgical)
+  - **Evidence**: Existing pool primitive remains injected-worker based; retry uses the same ledger event channel and ordered results array.
 
 <!-- /ANCHOR:code-quality -->
 ---
@@ -69,14 +69,14 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] All P0 acceptance criteria met (REQ-C1/C2/C3/C5 + REQ-C6)
-  - **Evidence**: PENDING — per-candidate unit tests (tasks T014-T019).
-- [ ] CHK-021 [P0] Retry count-correctness proven (the iter-13 CAUTION)
-  - **Evidence**: PENDING — retry-success not counted failed, retry-exhaustion surfaces as real failure, correct exit-code (task T016).
-- [ ] CHK-022 [P1] Edge cases tested
-  - **Evidence**: PENDING — salvage-miss vs exit, timeout-vs-exit precedence, empty/corrupt resume refuse, orphan-no-terminal, all-fatal regression-equivalence (spec.md §8; tasks T014-T019).
-- [ ] CHK-023 [P1] Durable budget survives a simulated crash-replay (NFR-R01)
-  - **Evidence**: PENDING — attempt count read from the ledger/audit (task T017).
+- [x] CHK-020 [P0] All P0 acceptance criteria met (REQ-C1/C2/C3/C5 + REQ-C6)
+  - **Evidence**: `fanout-pool.vitest.ts`, `fanout-run.vitest.ts`, and `deep-research-reduce-state.vitest.ts` cover the implemented acceptance paths.
+- [x] CHK-021 [P0] Retry count-correctness proven
+  - **Evidence**: Retry-success exits ok and is not counted failed; retry exhaustion remains failed; mixed transient/fatal keeps the fatal failure; all-fatal exit behavior is unchanged.
+- [x] CHK-022 [P1] Edge cases tested
+  - **Evidence**: Tests cover salvage-miss vs exit, timeout precedence, empty/corrupt/missing resume refuse, orphan-no-terminal marker, fatal no-retry, and all-fatal regression behavior.
+- [x] CHK-023 [P1] Durable budget survives a simulated crash-replay (NFR-R01)
+  - **Evidence**: `fanout-pool.vitest.ts` seeds `initialRetryCounts` from durable ledger counts and verifies the retry budget is not refreshed.
 
 <!-- /ANCHOR:testing -->
 ---
@@ -84,10 +84,10 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-024 [P0] All 5 candidates landed or explicitly deferred with approval
-  - **Evidence**: PENDING — C1/C2/C3/C5 are P0; C4 auto-redispatch half may be deferred (OPEN QUESTION, lease-gated).
-- [ ] CHK-025 [P1] No new dependency on the absent D2 / reliability signal introduced (SC-003)
-  - **Evidence**: PENDING — cluster keyed only on exit-code/timeout/ledger state.
+- [x] CHK-024 [P0] All 5 candidates landed or explicitly deferred with approval
+  - **Evidence**: C1-C5 are implemented. C4 auto-redispatch remains intentionally lease/heartbeat-gated; the required GO half is detect + marker.
+- [x] CHK-025 [P1] No new dependency on the absent D2 / reliability signal introduced (SC-003)
+  - **Evidence**: Classifier uses only `timedOut`, `exitCode`, and `salvage`; no reliability metadata is read or written.
 
 <!-- /ANCHOR:fix-completeness -->
 ---
@@ -97,8 +97,8 @@ _memory:
 
 - [x] CHK-030 [P0] No hardcoded secrets introduced
   - **Evidence**: Cluster touches orchestration control flow only; no credentials, tokens, or external endpoints.
-- [ ] CHK-031 [P0] Retry cannot loop unboundedly (default-conservative classification)
-  - **Evidence**: PENDING — unknown → fatal (no retry); durable `max_retries=5` from audit (NFR-R02; task T015).
+- [x] CHK-031 [P0] Retry cannot loop unboundedly (default-conservative classification)
+  - **Evidence**: Unknown/exit failures are fatal by default; transient retries are bounded by `maxRetries`, defaulting to 5 in fan-out config and 0 for direct pool callers unless opted in.
 - [x] CHK-032 [P1] Resume gate cannot leak or destroy state
   - **Evidence**: C5 refuses (does not mutate) a missing/corrupt state; C4 retains both facts and never destroys a lineage record (detect + marker only).
 
@@ -108,10 +108,10 @@ _memory:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized after implementation
-  - **Evidence**: PENDING — spec §3 SCOPE status column updated to DONE per candidate with its commit (task T024).
-- [ ] CHK-041 [P1] Code comments carry the durable WHY (no ephemeral artifact labels)
-  - **Evidence**: PENDING — comment-hygiene rule; retry/classification rationale, not packet/REQ ids.
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized after implementation
+  - **Evidence**: `spec.md` marks C1-C5 DONE; `tasks.md` marks implemented and verified tasks complete. Commit hashes are omitted because this run is explicitly no-commit.
+- [x] CHK-041 [P1] Code comments carry the durable WHY (no ephemeral artifact labels)
+  - **Evidence**: Comment hygiene checker passed on touched production and test code files; new comments describe durable runtime behavior, not packet/task identifiers.
 - [x] CHK-042 [P2] Logic-Sync resolved on the failure-class shipped-or-not question
   - **Evidence**: `spec.md` §2 disambiguation note reconciles synthesis `01:95` against the authoritative 030 §14 + commit body + current source.
 
@@ -122,7 +122,7 @@ _memory:
 ## File Organization
 
 - [x] CHK-050 [P1] No temp files outside scratch/
-  - **Evidence**: This sub-phase folder holds only the spec-doc set; no scratch artifacts created during planning.
+  - **Evidence**: This sub-phase folder holds only the spec-doc set; runtime tests used OS temp directories and cleaned them in test teardown.
 - [x] CHK-051 [P1] Spec-doc set complete for Level 2
   - **Evidence**: `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md` present.
 
@@ -134,13 +134,13 @@ _memory:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 7 | 2/7 |
-| P1 Items | 9 | 3/9 |
+| P0 Items | 7 | 7/7 |
+| P1 Items | 9 | 9/9 |
 | P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-06-19 (planning stage — pre-implementation items only)
-**Verified By**: claude-opus-4-8 (re-plan author)
+**Verification Date**: 2026-06-19 (implementation stage)
+**Verified By**: codex
 
-> The unverified items are PENDING by design: this is a re-planned, PENDING-implementation sub-phase. They are verified as each candidate (C1-C5) lands.
+> All checklist items are verified for the scoped implementation. Strict spec validation records the packet-level gate result.
 
 <!-- /ANCHOR:summary -->

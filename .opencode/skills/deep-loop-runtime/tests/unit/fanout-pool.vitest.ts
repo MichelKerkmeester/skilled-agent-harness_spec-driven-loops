@@ -8,7 +8,11 @@ import { afterEach, describe, expect, it } from 'vitest';
 const require = createRequire(import.meta.url);
 const {
   runCappedPool,
+  buildPoolSummary,
+  detectOrphanedLineages,
+  markOrphanedLineages,
   appendStatusLedger,
+  readRetryCountsFromLedger,
   writeOrchestrationSummary,
 } = require('../../scripts/fanout-pool.cjs') as {
   runCappedPool: (options: {
@@ -16,17 +20,38 @@ const {
     concurrency: number;
     worker: (item: unknown, ctx: { index: number }) => Promise<unknown>;
     onEvent?: (event: Record<string, unknown>) => void;
+    maxRetries?: number;
+    initialRetryCounts?: Record<string, number>;
   }) => Promise<{
-    results: Array<{ label: string; status: string; output?: unknown; error?: { message: string } }>;
+    results: Array<{
+      label: string;
+      status: string;
+      output?: unknown;
+      error?: {
+        message: string;
+        failure_class?: 'timeout' | 'exit' | 'salvage_miss';
+        retry_verdict?: 'transient' | 'fatal';
+        retryable?: boolean;
+      };
+      retry_attempts?: number;
+      retry_exhausted?: boolean;
+    }>;
     summary: {
       total: number;
       succeeded: number;
       failed: number;
       all_failed: boolean;
       gauges: { lag: number; pending: number; failed: number };
+      failure_classes: { timeout: number; exit: number; salvage_miss: number };
     };
   }>;
+  buildPoolSummary: (results: Array<Record<string, unknown>>) => {
+    summary: { failure_classes: { timeout: number; exit: number; salvage_miss: number } };
+  };
+  detectOrphanedLineages: (records: Array<Record<string, unknown>>) => Array<{ label: string }>;
+  markOrphanedLineages: (ledgerPath: string, options?: { now?: () => Date | string }) => Array<{ label: string }>;
   appendStatusLedger: (ledgerPath: string, entry: Record<string, unknown>) => void;
+  readRetryCountsFromLedger: (ledgerPath: string) => Record<string, number>;
   writeOrchestrationSummary: (summaryPath: string, summary: Record<string, unknown>) => void;
 };
 
@@ -158,6 +183,7 @@ describe('runCappedPool', () => {
       failed: 0,
       all_failed: false,
       gauges: { lag: 0, pending: 0, failed: 0 },
+      failure_classes: { timeout: 0, exit: 0, salvage_miss: 0 },
     });
   });
 
@@ -207,6 +233,175 @@ describe('runCappedPool', () => {
     expect(result.summary.gauges).toEqual({ lag: 0, pending: 0, failed: 1 });
   });
 
+  it('surfaces bounded failure classes and rolls them up in the summary', async () => {
+    const result = await runCappedPool({
+      items: [{ label: 'timeout' }, { label: 'exit' }, { label: 'salvage' }],
+      concurrency: 3,
+      worker: async (item: { label: string }) => {
+        const error = new Error(`failed ${item.label}`) as Error & {
+          exitCode?: number;
+          timedOut?: boolean;
+          salvage?: { salvaged: number; failed: number };
+        };
+        if (item.label === 'timeout') {
+          error.timedOut = true;
+          error.exitCode = 1;
+        } else if (item.label === 'salvage') {
+          error.exitCode = 1;
+          error.salvage = { salvaged: 0, failed: 1 };
+        } else {
+          error.exitCode = 2;
+          error.salvage = { salvaged: 0, failed: 0 };
+        }
+        throw error;
+      },
+    });
+
+    expect(result.results.map((entry) => entry.error?.failure_class)).toEqual(['timeout', 'exit', 'salvage_miss']);
+    expect(result.summary.failure_classes).toEqual({ timeout: 1, exit: 1, salvage_miss: 1 });
+  });
+
+  it('retries a transient lineage alone and flips it to succeeded when the retry passes', async () => {
+    const events: Array<Record<string, unknown>> = [];
+    let flakyCalls = 0;
+    let fatalCalls = 0;
+    const result = await runCappedPool({
+      items: [{ label: 'flaky' }, { label: 'fatal' }],
+      concurrency: 2,
+      maxRetries: 5,
+      worker: async (item: { label: string }) => {
+        if (item.label === 'fatal') {
+          fatalCalls += 1;
+          const error = new Error('bad config') as Error & { exitCode?: number };
+          error.exitCode = 2;
+          throw error;
+        }
+        flakyCalls += 1;
+        if (flakyCalls === 1) {
+          const error = new Error('temporary timeout') as Error & { timedOut?: boolean; exitCode?: number };
+          error.timedOut = true;
+          error.exitCode = 1;
+          throw error;
+        }
+        return { ok: true };
+      },
+      onEvent: (event) => events.push(event),
+    });
+
+    expect(flakyCalls).toBe(2);
+    expect(fatalCalls).toBe(1);
+    expect(result.results.map((entry) => entry.status)).toEqual(['fulfilled', 'rejected']);
+    expect(result.results[0].retry_attempts).toBe(1);
+    expect(result.summary).toMatchObject({ succeeded: 1, failed: 1, all_failed: false });
+    expect(events.filter((event) => event.event === 'retry_scheduled').map((event) => event.label)).toEqual(['flaky']);
+    expect(events.filter((event) => event.event === 'failed' && event.label === 'flaky').map((event) => event.terminal)).toEqual([false]);
+  });
+
+  it('surfaces retry exhaustion as a terminal failure', async () => {
+    const events: Array<Record<string, unknown>> = [];
+    let calls = 0;
+    const result = await runCappedPool({
+      items: [{ label: 'slow' }],
+      concurrency: 1,
+      maxRetries: 2,
+      worker: async () => {
+        calls += 1;
+        const error = new Error('timeout') as Error & { timedOut?: boolean };
+        error.timedOut = true;
+        throw error;
+      },
+      onEvent: (event) => events.push(event),
+    });
+
+    expect(calls).toBe(3);
+    expect(result.results[0]).toMatchObject({
+      status: 'rejected',
+      retry_attempts: 2,
+      retry_exhausted: true,
+      error: { failure_class: 'timeout', retry_verdict: 'transient', retryable: true },
+    });
+    expect(result.summary).toMatchObject({ succeeded: 0, failed: 1, all_failed: true });
+    expect(events.filter((event) => event.event === 'retry_scheduled')).toHaveLength(2);
+  });
+
+  it('does not retry unknown or fatal exit failures', async () => {
+    let calls = 0;
+    const result = await runCappedPool({
+      items: [{ label: 'fatal' }],
+      concurrency: 1,
+      maxRetries: 5,
+      worker: async () => {
+        calls += 1;
+        const error = new Error('fatal exit') as Error & { exitCode?: number };
+        error.exitCode = 7;
+        throw error;
+      },
+    });
+
+    expect(calls).toBe(1);
+    expect(result.results[0].error).toMatchObject({ failure_class: 'exit', retry_verdict: 'fatal', retryable: false });
+    expect(result.summary).toMatchObject({ failed: 1, all_failed: true });
+  });
+
+  it('honors retry counts loaded from the durable ledger', async () => {
+    const events: Array<Record<string, unknown>> = [];
+    let calls = 0;
+    const result = await runCappedPool({
+      items: [{ label: 'slow' }],
+      concurrency: 1,
+      maxRetries: 5,
+      initialRetryCounts: { slow: 5 },
+      worker: async () => {
+        calls += 1;
+        const error = new Error('timeout') as Error & { timedOut?: boolean };
+        error.timedOut = true;
+        throw error;
+      },
+      onEvent: (event) => events.push(event),
+    });
+
+    expect(calls).toBe(1);
+    expect(result.results[0]).toMatchObject({ status: 'rejected', retry_attempts: 5, retry_exhausted: true });
+    expect(events.filter((event) => event.event === 'retry_scheduled')).toEqual([]);
+  });
+
+  it('counts retry attempts from retry_scheduled ledger rows', () => {
+    const dir = freshTmpDir();
+    const ledger = join(dir, 'orchestration-status.log');
+    appendStatusLedger(ledger, { event: 'retry_scheduled', label: 'a' });
+    appendStatusLedger(ledger, { event: 'retry_scheduled', label: 'a' });
+    appendStatusLedger(ledger, { event: 'retry_scheduled', label: 'b' });
+    appendStatusLedger(ledger, { event: 'failed', label: 'b' });
+
+    expect(readRetryCountsFromLedger(ledger)).toEqual({ a: 2, b: 1 });
+  });
+
+  it('detects and marks started lineages without terminal ledger events', () => {
+    const dir = freshTmpDir();
+    const ledger = join(dir, 'orchestration-status.log');
+    appendStatusLedger(ledger, { event: 'started', label: 'done', index: 0, at: '2026-06-19T00:00:00.000Z' });
+    appendStatusLedger(ledger, { event: 'completed', label: 'done', index: 0, at: '2026-06-19T00:00:01.000Z' });
+    appendStatusLedger(ledger, { event: 'started', label: 'orphan', index: 1, at: '2026-06-19T00:00:02.000Z' });
+
+    expect(detectOrphanedLineages([
+      { event: 'started', label: 'x', at: '2026-06-19T00:00:00.000Z' },
+      { event: 'failed', label: 'x', at: '2026-06-19T00:00:01.000Z' },
+      { event: 'started', label: 'y', at: '2026-06-19T00:00:02.000Z' },
+    ])).toEqual([{ label: 'y', index: null, started_at_iso: '2026-06-19T00:00:02.000Z' }]);
+
+    expect(markOrphanedLineages(ledger, { now: () => '2026-06-19T00:00:03.000Z' })).toEqual([
+      { label: 'orphan', index: 1, started_at_iso: '2026-06-19T00:00:02.000Z' },
+    ]);
+    const lines = readFileSync(ledger, 'utf8').trim().split('\n').map((line) => JSON.parse(line));
+    expect(lines.at(-1)).toMatchObject({
+      event: 'orphan_requeued',
+      label: 'orphan',
+      index: 1,
+      status: 'requeued',
+    });
+    expect(markOrphanedLineages(ledger)).toEqual([]);
+  });
+
   it('throws on invalid items or worker', () => {
     expect(() => runCappedPool({ items: 'nope' as unknown as [], concurrency: 1, worker: async () => ({}) })).toThrow(
       TypeError,
@@ -218,6 +413,14 @@ describe('runCappedPool', () => {
 });
 
 describe('status ledger helpers', () => {
+  it('keeps the failure-class rollup bounded for missing labels', () => {
+    const envelope = buildPoolSummary([
+      { label: 'legacy', status: 'rejected', error: { message: 'old shape' } },
+    ]);
+
+    expect(envelope.summary.failure_classes).toEqual({ timeout: 0, exit: 1, salvage_miss: 0 });
+  });
+
   it('appends JSONL entries to the status ledger', () => {
     const dir = freshTmpDir();
     const ledger = join(dir, 'nested', 'orchestration-status.log');
