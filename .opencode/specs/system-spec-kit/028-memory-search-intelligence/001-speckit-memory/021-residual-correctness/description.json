@@ -1,7 +1,7 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/021-residual-correctness",
-  "description": "Feature Specification: 015-Residual Correctness — RRF-scale + maintenance-grace TTL",
+  "description": "DONE: 015-Residual Correctness — RRF-scale + maintenance-grace TTL",
   "keywords": [
     "feature",
     "specification",
@@ -11,7 +11,7 @@
     "maintenance-grace",
     "ttl"
   ],
-  "lastUpdated": "2026-06-19T06:21:34.647Z",
+  "lastUpdated": "2026-06-19T08:55:00.000Z",
   "specId": "021",
   "folderSlug": "021-residual-correctness",
   "parentChain": [

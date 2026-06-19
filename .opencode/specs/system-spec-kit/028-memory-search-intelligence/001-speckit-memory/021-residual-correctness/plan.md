@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/021-residual-correctness"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Author plan for the two 08 always-on correctness residuals"
-    next_safe_action: "Implement A4: route resolveSearchScore through resolveAbsoluteRelevance"
+    recent_action: "Implemented both residual correctness candidates and reconciled verification evidence"
+    next_safe_action: "None — phase complete"
     blockers: []
     key_files:
       - "spec.md"
@@ -26,7 +26,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-001-021-residual-correctness"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -72,10 +72,10 @@ Neither touches schema, the fusion math, the lease/launcher reclaim policy, or a
 - [x] Both seams read directly — the 015 fix is confined to `confidence-scoring.ts`; the marker TTL is hardcoded; the lease `ttlMs` is 60000
 
 ### Definition of Done
-- [ ] A4 — `resolveSearchScore`/`computeAverageScore` read the absolute-relevance scale; lexical-only rows degrade gracefully; before/after magnitude captured
-- [ ] A7 — `MAINTENANCE_MARKER_TTL_MS = ownerLease.ttlMs × K (K=3)` byte-identical at 180000; the two invariants documented in the module
-- [ ] Focused handler + marker tests pass; `launcher-maintenance-guard.vitest.ts` still green
-- [ ] Typecheck + build green; `validate.sh --strict` on this packet passes
+- [x] A4 — `resolveSearchScore`/`computeAverageScore` read the absolute-relevance scale; lexical-only rows degrade gracefully; before/after magnitude captured
+- [x] A7 — `MAINTENANCE_MARKER_TTL_MS = ownerLease.ttlMs × K (K=3)` byte-identical at 180000; the two invariants documented in the module
+- [x] Focused handler + marker tests pass; `launcher-maintenance-guard.vitest.ts` still green
+- [x] Typecheck + build green; `validate.sh --strict` on this packet passes
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -124,24 +124,24 @@ Required inventories:
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-### Phase 1: A4 — 015-residual RRF-scale (PENDING)
-- [ ] Independently verify the residual: confirm the 015 fix lives only in `confidence-scoring.ts` and `resolveSearchScore` is the unpatched re-route path (REQ-002)
-- [ ] Capture the before baseline: `computeAverageScore` value for a fixed query set
-- [ ] Route `resolveSearchScore` through the absolute-relevance read (reuse `resolveAbsoluteRelevance` where present), gated on `typeof row.similarity === 'number'`; effective-score fallback for lexical-only rows
-- [ ] Resolve the `> 1 ? /100` heuristic per the caller inventory (remove if dead, else keep for the raw-cosine path)
-- [ ] Capture the after baseline; record the magnitude delta
+### Phase 1: A4 — 015-residual RRF-scale (DONE)
+- [x] Independently verify the residual: confirm the 015 fix lives only in `confidence-scoring.ts` and `resolveSearchScore` is the unpatched re-route path (REQ-002)
+- [x] Capture the before baseline: `computeAverageScore` value for a fixed query set
+- [x] Route `resolveSearchScore` through the absolute-relevance read (reuse `resolveAbsoluteRelevance` where present), gated on `typeof row.similarity === 'number'`; effective-score fallback for lexical-only rows
+- [x] Resolve the `> 1 ? /100` heuristic per the caller inventory (remove if dead, else keep for the raw-cosine path)
+- [x] Capture the after baseline; record the magnitude delta
 
-### Phase 2: A7 — maintenance-grace TTL as a relationship (PENDING)
-- [ ] Introduce/locate a shared `LEASE_TTL_MS` (60000) source; derive `MAINTENANCE_MARKER_TTL_MS = LEASE_TTL_MS × K (K=3)` — byte-identical 180000
-- [ ] Document the `marker-TTL > 2×-lease-reclaim` invariant (180s > 120s, 60s margin) in the module comment
-- [ ] Document the phase-yield invariant — "any synchronous phase > TTL/2 must call `maintenance.refresh()`" — in the `refresh()` doc; confirm the existing 200-row / phase-boundary refresh hooks satisfy it
-- [ ] Leave the lease heartbeat, reclaim window, and `shouldAdoptDespiteProbe` guard untouched
+### Phase 2: A7 — maintenance-grace TTL as a relationship (DONE)
+- [x] Introduce/locate a shared `LEASE_TTL_MS` (60000) source; derive `MAINTENANCE_MARKER_TTL_MS = LEASE_TTL_MS × K (K=3)` — byte-identical 180000
+- [x] Document the `marker-TTL > 2×-lease-reclaim` invariant (180s > 120s, 60s margin) in the module comment
+- [x] Document the phase-yield invariant — "any synchronous phase > TTL/2 must call `maintenance.refresh()`" — in the `refresh()` doc; confirm the existing 200-row / phase-boundary refresh hooks satisfy it
+- [x] Leave the lease heartbeat, reclaim window, and `shouldAdoptDespiteProbe` guard untouched
 
 ### Phase 3: Verification
-- [ ] A4 unit test: fixture row (RRF ~0.03 + cosine ~0.8) → average on cosine scale; lexical-only row → effective-score fallback, no throw
-- [ ] A7 unit test: `MAINTENANCE_MARKER_TTL_MS === ttlMs × K`, `K > 2`, derived `> 2× reclaim`; `launcher-maintenance-guard.vitest.ts` still green
-- [ ] Typecheck + build; A4 before/after magnitude recorded
-- [ ] `validate.sh --strict` on this packet
+- [x] A4 unit test: fixture row (RRF ~0.03 + cosine ~0.8) → average on cosine scale; lexical-only row → effective-score fallback, no throw
+- [x] A7 unit test: `MAINTENANCE_MARKER_TTL_MS === ttlMs × K`, `K > 2`, derived `> 2× reclaim`; `launcher-maintenance-guard.vitest.ts` still green
+- [x] Typecheck + build; A4 before/after magnitude recorded
+- [x] `validate.sh --strict` on this packet
 <!-- /ANCHOR:phases -->
 
 ---
@@ -225,9 +225,9 @@ A4 and A7 are independent — neither blocks the other, so the two implementatio
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-completion Checklist
-- [ ] No live database shard modified (A4 is a per-result read; A7 is a constant derivation).
-- [ ] No host daemon touched — A7 leaves the lease heartbeat, reclaim window, and `shouldAdoptDespiteProbe` guard unchanged.
-- [ ] A7 on-disk marker value verified byte-identical at K=3 (180000); A4 score-magnitude before/after captured.
+- [x] No live database shard modified (A4 is a per-result read; A7 is a constant derivation).
+- [x] No host daemon touched — A7 leaves the lease heartbeat, reclaim window, and `shouldAdoptDespiteProbe` guard unchanged.
+- [x] A7 on-disk marker value verified byte-identical at K=3 (180000); A4 score-magnitude before/after captured.
 
 ### Rollback Procedure
 1. A4 — revert the single `memory-search.ts` `resolveSearchScore` hunk; the RRF-magnitude read returns. No state to undo.

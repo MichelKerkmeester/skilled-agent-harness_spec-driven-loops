@@ -12,6 +12,9 @@
 // ANY maintenance source is active and is removed only when the last one ends.
 // A genuinely wedged daemon cannot refresh the marker, so it still lapses and
 // becomes reapable again.
+// The marker window must stay beyond stale lease reclaim. Long synchronous
+// phases can starve unref timers, so callers refresh at phase boundaries before
+// half the marker window elapses.
 
 import { rmSync } from 'node:fs';
 import path from 'node:path';
@@ -20,14 +23,19 @@ import { DATABASE_DIR } from '../../core/config.js';
 import { atomicWriteFile } from './transaction-manager.js';
 
 const MAINTENANCE_MARKER_FILE = '.maintenance-active.json';
-// The TTL must exceed the longest single synchronous phase that cannot fire the
-// refresh timer. 180s is a margin over the longest observed blocking phase (~79s).
-const MAINTENANCE_MARKER_TTL_MS = 180_000;
+export const OWNER_LEASE_TTL_MS = 60_000;
+export const OWNER_LEASE_STALE_RECLAIM_MULTIPLIER = 2;
+export const MAINTENANCE_MARKER_TTL_MULTIPLIER = 3;
+export const OWNER_LEASE_STALE_RECLAIM_MS =
+  OWNER_LEASE_TTL_MS * OWNER_LEASE_STALE_RECLAIM_MULTIPLIER;
+export const MAINTENANCE_MARKER_TTL_MS =
+  OWNER_LEASE_TTL_MS * MAINTENANCE_MARKER_TTL_MULTIPLIER;
+export const MAINTENANCE_MARKER_REFRESH_BEFORE_MS = MAINTENANCE_MARKER_TTL_MS / 2;
 const MAINTENANCE_MARKER_REFRESH_MS = 20_000;
 
 export interface MaintenanceMarkerHandle {
-  // Refresh at a known progress point too: a non-yielding phase cannot fire the
-  // interval timer, so it only gets the refresh its caller makes explicitly.
+  // Refresh at a phase boundary too: a non-yielding phase cannot fire the
+  // interval timer, so it must refresh before half the marker window elapses.
   refresh(): void;
   // Idempotent. Decrements the active count and removes the marker at zero.
   end(): void;

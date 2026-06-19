@@ -6,6 +6,12 @@ import os from 'os';
 import {
   beginMaintenance,
   __resetMaintenanceMarkerForTest,
+  MAINTENANCE_MARKER_REFRESH_BEFORE_MS,
+  MAINTENANCE_MARKER_TTL_MS,
+  MAINTENANCE_MARKER_TTL_MULTIPLIER,
+  OWNER_LEASE_STALE_RECLAIM_MS,
+  OWNER_LEASE_STALE_RECLAIM_MULTIPLIER,
+  OWNER_LEASE_TTL_MS,
 } from '../lib/storage/maintenance-marker';
 import { resolveDatabasePaths } from '../core/config';
 
@@ -21,6 +27,7 @@ interface MarkerShape {
 let tmpDir: string;
 const originalSpecKitDbDir = process.env.SPEC_KIT_DB_DIR;
 const originalSpeckitDbDir = process.env.SPECKIT_DB_DIR;
+const LAUNCHER_PATH = path.resolve(import.meta.dirname, '../../../../bin/mk-spec-memory-launcher.cjs');
 
 function markerPath(): string {
   return path.join(tmpDir, MARKER_FILE);
@@ -32,6 +39,15 @@ function markerExists(): boolean {
 
 function readMarker(): MarkerShape {
   return JSON.parse(fs.readFileSync(markerPath(), 'utf8')) as MarkerShape;
+}
+
+function readLauncherOwnerLeaseTtlMs(): number {
+  const source = fs.readFileSync(LAUNCHER_PATH, 'utf8');
+  const match = source.match(/ttlMs:\s*(\d+)/);
+  if (!match?.[1]) {
+    throw new Error('launcher owner lease ttlMs literal not found');
+  }
+  return Number.parseInt(match[1], 10);
 }
 
 beforeEach(() => {
@@ -66,14 +82,35 @@ afterEach(() => {
 });
 
 describe('maintenance-marker', () => {
+  it('derives marker TTL from the owner lease window with a reclaim-safe margin', () => {
+    const launcherLeaseTtlMs = readLauncherOwnerLeaseTtlMs();
+
+    expect(OWNER_LEASE_TTL_MS).toBe(launcherLeaseTtlMs);
+    expect(MAINTENANCE_MARKER_TTL_MULTIPLIER).toBeGreaterThan(
+      OWNER_LEASE_STALE_RECLAIM_MULTIPLIER,
+    );
+    expect(OWNER_LEASE_STALE_RECLAIM_MS).toBe(
+      OWNER_LEASE_TTL_MS * OWNER_LEASE_STALE_RECLAIM_MULTIPLIER,
+    );
+    expect(MAINTENANCE_MARKER_TTL_MS).toBe(
+      OWNER_LEASE_TTL_MS * MAINTENANCE_MARKER_TTL_MULTIPLIER,
+    );
+    expect(MAINTENANCE_MARKER_TTL_MS).toBe(180_000);
+    expect(MAINTENANCE_MARKER_TTL_MS).toBeGreaterThan(OWNER_LEASE_STALE_RECLAIM_MS);
+    expect(MAINTENANCE_MARKER_REFRESH_BEFORE_MS).toBe(MAINTENANCE_MARKER_TTL_MS / 2);
+  });
+
   it('beginMaintenance writes a marker with this pid, a future TTL, and the label', () => {
     const before = Date.now();
     const handle = beginMaintenance('scan');
+    const after = Date.now();
 
     expect(markerExists()).toBe(true);
     const marker = readMarker();
     expect(marker.childPid).toBe(process.pid);
     expect(marker.activeUntilMs).toBeGreaterThan(before);
+    expect(marker.activeUntilMs).toBeGreaterThanOrEqual(before + MAINTENANCE_MARKER_TTL_MS);
+    expect(marker.activeUntilMs).toBeLessThanOrEqual(after + MAINTENANCE_MARKER_TTL_MS);
     expect(marker.labels).toContain('scan');
 
     handle.end();

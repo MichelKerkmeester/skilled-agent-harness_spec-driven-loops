@@ -15,7 +15,11 @@ import { searchCommunities } from '../lib/search/community-search.js';
 // 4-stage pipeline architecture
 import { executePipeline } from '../lib/search/pipeline/index.js';
 import type { PipelineConfig, PipelineResult } from '../lib/search/pipeline/index.js';
-import type { IntentWeightsConfig } from '../lib/search/pipeline/types.js';
+import {
+  resolveAbsoluteRelevance,
+  type IntentWeightsConfig,
+  type PipelineRow,
+} from '../lib/search/pipeline/types.js';
 import type { QueryPlan } from '../lib/query/query-plan.js';
 import { initConsumptionLog, logConsumptionEvent } from '../lib/telemetry/consumption-logger.js';
 import * as retrievalTelemetry from '../lib/telemetry/retrieval-telemetry.js';
@@ -491,12 +495,30 @@ function buildSearchResponseFromPayload(
   });
 }
 
+const EFFECTIVE_SCORE_FIELDS = ['intentAdjustedScore', 'rrfScore', 'score'] as const;
+
+function finiteNumber(value: unknown): number | null {
+  return typeof value === 'number' && Number.isFinite(value) ? value : null;
+}
+
+function hasEffectiveScoreSignal(result: Record<string, unknown>): boolean {
+  return EFFECTIVE_SCORE_FIELDS.some((field) => finiteNumber(result[field]) !== null);
+}
+
 function resolveSearchScore(result: Record<string, unknown>): number | null {
-  const candidate = result.score ?? result.similarity ?? result.averageSimilarity ?? result.intentAdjustedScore;
-  if (typeof candidate !== 'number' || !Number.isFinite(candidate)) {
-    return null;
+  const semanticScore = finiteNumber(result.similarity) ?? finiteNumber(result.averageSimilarity);
+  if (semanticScore !== null) {
+    return resolveAbsoluteRelevance({
+      ...result,
+      similarity: semanticScore,
+    } as PipelineRow);
   }
-  return candidate > 1 ? candidate / 100 : candidate;
+
+  if (hasEffectiveScoreSignal(result)) {
+    return resolveAbsoluteRelevance(result as PipelineRow);
+  }
+
+  return null;
 }
 
 function computeAverageScore(results: Array<Record<string, unknown>>): number {
@@ -1823,6 +1845,8 @@ export const __testables = {
   attachLexicalCapabilityMetadata,
   collectEvalChannelsFromRow,
   buildEvalChannelPayloads,
+  resolveSearchScore,
+  computeAverageScore,
   filterCanonicalSourceRows,
   stampFinalRankScores,
   applyFolderBoostRanking,

@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/021-residual-correctness"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Author impl sub-phase spec for the two 08 always-on correctness residuals (re-plan)"
-    next_safe_action: "Implement A4-015-residual: route resolveSearchScore through the absolute-relevance signal"
+    recent_action: "Implemented both residual correctness candidates and added focused tests"
+    next_safe_action: "None — phase complete"
     blockers: []
     key_files:
       - "spec.md"
@@ -28,7 +28,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-001-021-residual-correctness"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -47,14 +47,14 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Not Started |
+| **Status** | DONE |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Packet** | system-spec-kit/028-memory-search-intelligence/001-speckit-memory |
 | **Subsystem** | Spec-Kit Memory MCP (PRIMARY) |
 | **Wave** | Wave-0 (correctness, always-on, no harness/benchmark dependency) |
 | **Source research** | `../../research/synthesis/08-retrieval-evaluation-findings.md` (Wave-0 §9-10); `../research/from-008-retrieval-evaluation/research.md`; `../research/from-008-retrieval-evaluation/deltas/iter-002.jsonl` (A4); `../research/from-008-retrieval-evaluation/deltas/iter-007.jsonl` (A7) |
-| **Shipped record** | `../../../030-memory-search-intelligence-impl/spec.md` §14 (neither candidate appears — both PENDING) |
+| **Shipped record** | `../../../030-memory-search-intelligence-impl/spec.md` §14 (unchanged; this phase implements the two residuals without editing packet 030) |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -86,10 +86,10 @@ Ship the two correctness residuals as additive, byte-behavior-preserving fixes:
 
 | Candidate | One-line | Seam | Eff | Status |
 |-----------|----------|------|-----|--------|
-| **A4-015-residual** | Route `resolveSearchScore` through the absolute-relevance signal (the 015-calibrated 0–1 scale) instead of the RRF-magnitude `result.score` + `>1?/100` heuristic, so `computeAverageScore` reads the same scale `confidence-scoring.ts` reads | `handlers/memory-search.ts:494-508` (vs the 015 fix at `lib/search/confidence-scoring.ts:343,402-403`) | S | **PENDING** (gate: always-on correctness — verify-independently-first; no benchmark, no schema-migration, no shared-infra dep) |
-| **A7-maintenance-grace-ttl** | Replace hardcoded `MAINTENANCE_MARKER_TTL_MS = 180_000` with `ownerLease.ttlMs × K (K > 2)` (K=3 keeps the value byte-identical at 180000), making the `marker-TTL > 2×-lease-reclaim` invariant explicit; codify "any synchronous phase > TTL/2 must call `maintenance.refresh()`" | `lib/storage/maintenance-marker.ts:23-26,47` (TTL constant + `activeUntilMs`); `.opencode/bin/mk-spec-memory-launcher.cjs:419,455-456,524-525` (lease `ttlMs`/reclaim/heartbeat) | S | **PENDING** (gate: always-on correctness — no benchmark, no schema-migration; soft cross-module read of the lease `ttlMs`) |
+| **A4-015-residual** | Route `resolveSearchScore` through the absolute-relevance signal (the 015-calibrated 0–1 scale) instead of the RRF-magnitude `result.score` + `>1?/100` heuristic, so `computeAverageScore` reads the same scale `confidence-scoring.ts` reads | `handlers/memory-search.ts:494-526` (vs the 015 fix at `lib/search/confidence-scoring.ts:343,402-403`) | S | **DONE** — implemented via `resolveAbsoluteRelevance`; verified by focused vitest and A4 falsifier |
+| **A7-maintenance-grace-ttl** | Replace hardcoded `MAINTENANCE_MARKER_TTL_MS = 180_000` with `ownerLease.ttlMs × K (K > 2)` (K=3 keeps the value byte-identical at 180000), making the `marker-TTL > 2×-lease-reclaim` invariant explicit; codify "any synchronous phase > TTL/2 must call `maintenance.refresh()`" | `lib/storage/maintenance-marker.ts:23-36,52` (TTL derivation + `activeUntilMs`); `.opencode/bin/mk-spec-memory-launcher.cjs:419,455-456,524-525` (lease `ttlMs`/reclaim/heartbeat, read-only) | S | **DONE** — implemented with exported derivation constants; launcher policy untouched; verified by focused vitest and A7 falsifier |
 
-> Both candidates are Wave-0 always-on correctness — additive, individually reversible, no schema migration, no eval-harness or Wave-1 shared-infra dependency [research: `../../research/synthesis/08-retrieval-evaluation-findings.md:14,69-76`]. The shipped record (030 §14) does not include either; both are PENDING.
+> Both candidates are Wave-0 always-on correctness — additive, individually reversible, no schema migration, no eval-harness or Wave-1 shared-infra dependency [research: `../../research/synthesis/08-retrieval-evaluation-findings.md:14,69-76`]. The shipped record in packet 030 was not edited; this phase now carries the implementation record.
 
 ### Out of Scope
 
@@ -215,7 +215,7 @@ Ship the two correctness residuals as additive, byte-behavior-preserving fixes:
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | 8/25 | 2 candidates; ~2 production files + tests; both S-effort, both PENDING, no schema, no shared-infra dep |
+| Scope | 8/25 | 2 candidates; 2 production files + focused tests; both S-effort, both DONE, no schema, no shared-infra dep |
 | Risk | 11/25 | A4 changes recall-confidence magnitudes (captured, not silent); A7 touches a daemon-liveness marker — derived value byte-identical at K=3, test-guarded `> 2× reclaim` |
 | Research | 10/20 | Research is code-mapped (A4 = 008 iter-002, A7 = 008 iter-007); A4 was `[INFERRED]` and verified by seam read; residual = no benchmarked numbers |
 | **Total** | **29/70** | **Level 2** |

@@ -11,6 +11,8 @@ const {
   resolveRowContextType,
   resolveArtifactRoutingQuery,
   applyArtifactRouting,
+  resolveSearchScore,
+  computeAverageScore,
 } = __testables;
 
 describe('C136: minQualityScore and min_quality_score behavior', () => {
@@ -50,6 +52,34 @@ describe('C136: minQualityScore and min_quality_score behavior', () => {
 
     expect(clampedLow.map((r: Row) => r.id)).toEqual(['a', 'b', 'c']);
     expect(clampedHigh.map((r: Row) => r.id)).toEqual(['c']);
+  });
+});
+
+describe('memory-search score aggregation', () => {
+  it('averages cosine-scale relevance when a fused RRF score is also present', () => {
+    const rows: Array<Record<string, unknown>> = [
+      { id: 1, score: 0.033, rrfScore: 0.033, similarity: 72 },
+      { id: 2, score: 0.031, rrfScore: 0.031, similarity: 71 },
+    ];
+
+    expect(resolveSearchScore(rows[0])).toBeCloseTo(0.72, 5);
+    expect(computeAverageScore(rows)).toBeCloseTo(0.715, 5);
+  });
+
+  it('falls back to effective score for lexical-only rows and skips rows without a score signal', () => {
+    const rows: Array<Record<string, unknown>> = [
+      { id: 1, similarity: null, rrfScore: 0.04 },
+      { id: 2, similarity: null },
+      { id: 3, intentAdjustedScore: 0.6 },
+    ];
+
+    expect(resolveSearchScore(rows[0])).toBeCloseTo(0.04, 5);
+    expect(resolveSearchScore(rows[1])).toBeNull();
+    expect(computeAverageScore(rows)).toBeCloseTo(0.32, 5);
+  });
+
+  it('normalizes averageSimilarity when it is the semantic score available', () => {
+    expect(resolveSearchScore({ id: 1, score: 0.02, averageSimilarity: 82 })).toBeCloseTo(0.82, 5);
   });
 });
 
