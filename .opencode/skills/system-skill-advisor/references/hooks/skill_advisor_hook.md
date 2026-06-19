@@ -171,7 +171,7 @@ H5 operator scenarios:
 - OP-002 quarantined daemon malformed SKILL.md identify, fix, revert
 - OP-003 unavailable daemon corrupted SQLite rebuild-from-source trigger
 
-See `.opencode/skills/system-skill-advisor/mcp_server/manual_testing_playbook/manual_testing_playbook.md`.
+See `.opencode/skills/system-skill-advisor/manual_testing_playbook/manual_testing_playbook.md`.
 
 ---
 
@@ -229,7 +229,7 @@ Current baseline:
 Manual scenarios live in the Skill Advisor playbook:
 
 ```text
-.opencode/skills/system-skill-advisor/mcp_server/manual_testing_playbook/manual_testing_playbook.md
+.opencode/skills/system-skill-advisor/manual_testing_playbook/manual_testing_playbook.md
 ```
 
 ---

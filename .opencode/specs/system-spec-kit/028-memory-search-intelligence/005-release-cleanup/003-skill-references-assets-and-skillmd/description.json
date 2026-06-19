@@ -1,18 +1,16 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/003-skill-references-assets-and-skillmd",
-  "description": "Defines the pending release-cleanup sweep for skill SKILL.md, references and assets.",
+  "description": "Feature Specification: Skill References Assets And SKILL Cleanup",
   "keywords": [
-    "defines",
-    "pending",
-    "release",
-    "cleanup",
-    "sweep",
+    "feature",
+    "specification",
     "skill",
     "references",
-    "assets"
+    "assets",
+    "cleanup"
   ],
-  "lastUpdated": "2026-06-19T00:00:00Z",
+  "lastUpdated": "2026-06-19T11:32:15.966Z",
   "specId": "003",
   "folderSlug": "skill-references-assets-and-skillmd",
   "parentChain": [
@@ -23,4 +21,3 @@
   "memorySequence": 0,
   "memoryNameHistory": []
 }
-

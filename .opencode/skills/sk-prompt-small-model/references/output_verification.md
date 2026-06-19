@@ -26,11 +26,10 @@ The pipeline is derived from SmallCode's verifier and hard-fail policy:
 
 | Source | Evidence |
 | --- | --- |
-| Research RQ2 | `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/001-smallcode-deep-research/research/research.md:219-410` |
-| Deepening iter | `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/001-smallcode-deep-research/research/iterations/iteration-007.md:21-275` |
-| Context card | `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/preflight/context-card.md:103-264` |
-| Verifier source | `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/external/smallcode-master/src/governor/verifier.ms:1-260` |
-| Hard-fail source | `.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/external/smallcode-master/src/governor/hard_fail.ms:1-105` |
+| Research RQ2 | `.opencode/specs/skilled-agent-orchestration/z_archive/114-small-ai-model-optimization/001-smallcode-deep-research/research/research.md:219-410` |
+| Deepening iter | `.opencode/specs/skilled-agent-orchestration/z_archive/114-small-ai-model-optimization/001-smallcode-deep-research/research/iterations/iteration-007.md:21-275` |
+| Verifier source | `.opencode/specs/skilled-agent-orchestration/z_archive/114-small-ai-model-optimization/external/smallcode-master/src/governor/verifier.ms:1-260` |
+| Hard-fail source | `.opencode/specs/skilled-agent-orchestration/z_archive/114-small-ai-model-optimization/external/smallcode-master/src/governor/hard_fail.ms:1-105` |
 
 SmallCode verifies generated code before delivery. It checks structure, compilation, execution, smoke tests, and lint, then computes a confidence score.
 

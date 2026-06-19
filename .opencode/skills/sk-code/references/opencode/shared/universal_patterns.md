@@ -535,4 +535,4 @@ readonly MAX_RETRIES=3
 ### Related Documents
 
 - `code_organization.md` - Module organization, file structure
-- `../../assets/opencode/checklists/universal_checklist.md` - Cross-language validation items
+- `../../../assets/opencode/checklists/universal_checklist.md` - Cross-language validation items

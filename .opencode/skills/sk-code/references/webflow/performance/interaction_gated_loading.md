@@ -75,7 +75,7 @@ schedule_idle_fallback(init_feature_once, { timeout: 2500 });
 - Pair interaction/viewport triggers with an idle fallback when warm-up helps.
 - Log trigger source during rollout so traces show why code loaded.
 
-See `../../assets/patterns/interaction_gate_patterns.js` for reusable helpers.
+See `../../../assets/webflow/patterns/interaction_gate_patterns.js` for reusable helpers.
 
 ---
 

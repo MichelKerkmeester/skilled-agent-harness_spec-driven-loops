@@ -13,7 +13,7 @@ contextType: implementation
 
 # Interface Design Principles
 
-Guidance for distinctive, intentional visual design when building or reshaping UI. Adapted verbatim from Anthropic's `frontend-design` skill (Apache-2.0, see `../LICENSE.txt`).
+Guidance for distinctive, intentional visual design when building or reshaping UI. Adapted verbatim from Anthropic's `frontend-design` skill (Apache-2.0, see `../../LICENSE.txt`).
 
 ---
 
