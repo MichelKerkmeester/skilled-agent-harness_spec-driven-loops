@@ -1,0 +1,27 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/014-014-mem0-ranking-tweaks",
+  "description": "Feature Specification: Mem0 Ranking + Extraction Bundle (028 Memory impl phase 014)",
+  "keywords": [
+    "feature",
+    "specification",
+    "mem0",
+    "ranking",
+    "extraction",
+    "bundle",
+    "028",
+    "memory",
+    "impl",
+    "phase",
+    "014"
+  ],
+  "lastUpdated": "2026-06-19T06:21:33.625Z",
+  "specId": "014",
+  "folderSlug": "014-mem0-ranking-tweaks",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "001-speckit-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

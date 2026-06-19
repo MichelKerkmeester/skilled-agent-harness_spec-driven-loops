@@ -1,0 +1,26 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/002-code-graph/008-008-doc-symbol-lane",
+  "description": "Feature Specification: Code Graph — Doc-Symbol Lane + Lease Telemetry (Q5-C1, Q7-lease)",
+  "keywords": [
+    "feature",
+    "specification",
+    "code",
+    "graph",
+    "doc-symbol",
+    "lane",
+    "lease",
+    "telemetry",
+    "q5-c1",
+    "q7-lease"
+  ],
+  "lastUpdated": "2026-06-19T06:21:35.798Z",
+  "specId": "008",
+  "folderSlug": "008-doc-symbol-lane",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "002-code-graph"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

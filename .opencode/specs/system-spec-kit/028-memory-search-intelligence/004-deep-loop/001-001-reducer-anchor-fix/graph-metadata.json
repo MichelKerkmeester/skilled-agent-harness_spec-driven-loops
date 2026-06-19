@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/004-deep-loop/001-001-reducer-anchor-fix",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/004-deep-loop/001-001-reducer-anchor-fix",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/004-deep-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "reducer anchor fix",
+      "deep research strategy template anchors",
+      "Q6 anchor",
+      "missing anchor section",
+      "reduce-state hard fail",
+      "reducer anchor fix plan",
+      "deep research strategy template plan",
+      "Q6 anchor plan",
+      "reducer anchor fix tasks",
+      "Q6 anchor tasks",
+      "deep research strategy template tasks",
+      "reducer anchor fix summary"
+    ],
+    "key_topics": [
+      "reducer",
+      "anchor",
+      "fix",
+      "deep",
+      "research",
+      "strategy",
+      "template",
+      "anchors",
+      "missing",
+      "section",
+      "reduce-state",
+      "hard"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_strategy.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/specs/system-spec-kit/028-memory-search-intelligence/004-deep-loop/research/deep-research-strategy.md"
+    ],
+    "entities": [
+      {
+        "name": "deep_research_strategy.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/004-deep-loop/research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Research Reducer",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Anchor Template Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Loop",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-research loop folds cross-iteration state by rewriting anchored sections of a per-run strategy file. `updateStrategyContent` (`reduce-state.cjs:734-745`) calls `replaceAnchorSection` for **7** reducer-owned sections — `key-questions`, `answered-questions`, `what-worked`, `what-failed`, `exhausted-approaches`, `ruled-out-directions`, `next-focus`. `replaceAnchorSection` (`:699-714`) builds a regex over the `ANCHOR:<id>` … `/ANCHOR:<id>` HTML-comment marker pair and **throws `Missing anchor section <id> in strategy file` (`:709-711`)** when the pair is absent. The shipped template `deep-loop-workflows/deep-research/assets/deep_research_strategy.md` carried all 13 section headings and a machine-owned start marker but **ZERO `ANCHOR:*` markers** (grep count = 0). A freshly-copied strategy therefore hard-failed `Missing anchor section key-questions in strategy file` on the **first reduce** after iteration 1. [CONFIRMED iter-1 F16-18; research.md §\"Reducer-anchor template gap — CONFIRMED REAL BUG\".]",
+    "created_at": "2026-06-19T06:06:27.158Z",
+    "last_save_at": "2026-06-19T06:06:27.158Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

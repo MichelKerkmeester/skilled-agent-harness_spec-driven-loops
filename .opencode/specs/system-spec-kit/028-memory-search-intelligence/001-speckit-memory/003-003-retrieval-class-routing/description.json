@@ -1,0 +1,25 @@
+{
+  "level": "3",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/003-003-retrieval-class-routing",
+  "description": "Feature Specification: Memory MCP — Retrieval-Class Routing & Recall-Shape Intelligence",
+  "keywords": [
+    "feature",
+    "specification",
+    "memory",
+    "mcp",
+    "retrieval-class",
+    "routing",
+    "recall-shape",
+    "intelligence"
+  ],
+  "lastUpdated": "2026-06-19T06:21:31.981Z",
+  "specId": "003",
+  "folderSlug": "003-retrieval-class-routing",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "001-speckit-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,27 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/005-005-conflict-rerank-query-routing",
+  "description": "Feature Specification: Skill Advisor — Conflict Re-rank, Query-Class Routing & Semantic Exact-Rerank (C1/QCR/C6)",
+  "keywords": [
+    "feature",
+    "specification",
+    "skill",
+    "advisor",
+    "conflict",
+    "re-rank",
+    "query-class",
+    "routing",
+    "semantic",
+    "exact-rerank",
+    "qcr"
+  ],
+  "lastUpdated": "2026-06-19T06:21:36.515Z",
+  "specId": "005",
+  "folderSlug": "005-conflict-rerank-query-routing",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "003-skill-advisor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

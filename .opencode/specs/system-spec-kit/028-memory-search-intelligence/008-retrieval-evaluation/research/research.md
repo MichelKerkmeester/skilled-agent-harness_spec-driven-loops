@@ -94,3 +94,14 @@ Then `node .opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-sta
 ## Honest status
 - Wave-1 in flight; nothing banked yet. All lev/eff will be structural inference (no benchmark) — but A1's whole point is to make later candidates measurable (the reconciliation's key insight: 015 unblocked measurement).
 - claude2 acct#2 may hit a usage cap on a 20-iter Opus run (per prior waves ~15 xhigh iters); on cap, fall back to native Opus same-model, noting the switch.
+
+---
+
+<!-- ANCHOR:research-citations -->
+## Research Citations
+
+- Source: `spec.md`
+- Source: `research/iterations/iteration-001.md` through `research/iterations/iteration-012.md`
+- Source: `research/deltas/iter-001.jsonl` through `research/deltas/iter-012.jsonl`
+- Source: `../research/synthesis/08-retrieval-evaluation-findings.md`
+<!-- /ANCHOR:research-citations -->

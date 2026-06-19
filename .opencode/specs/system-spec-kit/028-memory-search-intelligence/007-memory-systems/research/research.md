@@ -75,3 +75,15 @@ _memory:
 - **Mem0** (iter 1): entity-store boost, adaptive channel-gated additive fusion (alt to RRF), query-length-adaptive BM25 sigmoid (EXTENDS aionforge), entity cardinality penalty, LLM memory-linking at extraction (EXTENDS memclaw).
 - **Cognee** (iter 2): uuid5 entity-merge, composite-edge dedup, incremental edge merge, ontology canonicalization, iterative context-extension retrieval, neighborhood rescore ranking (EXTENDS Mem0), cascade extraction (EXTENDS Mem0), schema-driven edges. Supersedes Mem0's dedup half (zero-LLM).
 - **Graphiti** (iter 3): 5-timestamp edge (EXTENDS C3-B), LLM fact-invalidation (EXTENDS C3-A/B), episode provenance, fact-embedding-on-edge, episode-window context; **NO-TRANSFER** on 3-channel RRF (ours is a superset).
+
+---
+
+<!-- ANCHOR:research-citations -->
+## Research Citations
+
+- Source: `spec.md`
+- Source: `research/iterations/iteration-001.md` through `research/iterations/iteration-022.md`
+- Source: `research/deltas/iter-001.jsonl` through `research/deltas/iter-022.jsonl`
+- Source: `../research/synthesis/06-memory-systems-findings.md`
+- Source: `../research/synthesis/07-reconciliation-with-027-002.md`
+<!-- /ANCHOR:research-citations -->

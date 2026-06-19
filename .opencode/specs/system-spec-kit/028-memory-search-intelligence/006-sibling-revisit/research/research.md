@@ -118,3 +118,14 @@ The round was **net-additive with heavy, self-correcting deflation**. The siblin
 - **Single most-likely-wrong:** still the **C8 / untrusted-content verdict** — its leverage rests on the unverified threat model ("can untrusted content become a recalled memory"). 005 said yes (via `memory_save`); RD1 narrowed the *generalization* to reachability-gated. The source_kind-gated escaper is the robust residual; the broad framework-wide claim is not.
 - **Runner-up wrong:** C3-B bi-temporal additivity (no migration spec to verify) and the procedural write-path (no execution-success emitter exists).
 - **200-readiness:** the research is complete and banked; this research.md is authoritative (per-iteration deltas consolidated here under the sprint deviation; `deep-research-state.jsonl` carries the 50-row count). The net-new candidates + deflations are folded into `../research/synthesis/04-sibling-and-cross-cutting.md`.
+
+---
+
+<!-- ANCHOR:research-citations -->
+## Research Citations
+
+- Source: `spec.md`
+- Source: `research/iterations/iteration-001.md` through `research/iterations/iteration-050.md`
+- Source: `research/deep-research-state.jsonl`
+- Source: `../research/synthesis/04-sibling-and-cross-cutting.md`
+<!-- /ANCHOR:research-citations -->

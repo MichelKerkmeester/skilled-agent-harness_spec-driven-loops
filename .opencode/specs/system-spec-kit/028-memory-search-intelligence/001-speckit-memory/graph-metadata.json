@@ -3,7 +3,29 @@
   "packet_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory",
   "spec_folder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory",
   "parent_id": "system-spec-kit/028-memory-search-intelligence",
-  "children_ids": [],
+  "children_ids": [
+    "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/001-001-corpus-reindex-gate-zero",
+    "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/002-002-determinism-content-id-foundation",
+    "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/003-003-retrieval-class-routing",
+    "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/004-004-graceful-degradation",
+    "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/005-005-recall-render-escaper",
+    "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/006-006-redteam-probe-gate",
+    "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/007-007-bitemporal-window",
+    "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/008-008-edge-presence-currentness",
+    "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/009-009-derived-id-provenance",
+    "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/010-010-consolidation-cursor-clock",
+    "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/011-011-retention-forgetting",
+    "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/012-012-procedural-reliability-benchmark",
+    "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/013-013-enrichment-observability",
+    "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/014-014-mem0-ranking-tweaks",
+    "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/015-015-summary-fusion-grounding",
+    "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/016-016-iterative-agentic-recall",
+    "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/017-017-semantic-edge-layer",
+    "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/018-018-sleeptime-consolidation",
+    "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/019-019-eval-harness-extension",
+    "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/020-020-eval-calibration-ab",
+    "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/021-021-015-residual-correctness"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -11,29 +33,30 @@
   },
   "derived": {
     "trigger_phrases": [
-      "028 speckit memory mining",
-      "memory mcp retrieval improvements",
-      "query class routing memory",
-      "edge based bitemporal currentness",
-      "idempotent async consolidation"
+      "028 speckit memory implementation parent",
+      "memory mcp child phase map",
+      "memory search intelligence speckit memory",
+      "memory mcp implementation planning",
+      "028 memory mcp candidate tail"
     ],
     "key_topics": [
       "028",
       "speckit",
       "memory",
-      "mining",
+      "implementation",
+      "parent",
       "mcp",
-      "retrieval",
-      "improvements",
-      "query",
-      "class",
-      "routing",
-      "edge",
-      "based"
+      "child",
+      "phase",
+      "map",
+      "search",
+      "intelligence",
+      "planning"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "phase_parent",
     "key_files": [
+      "spec.md",
       "research/research.md",
       "shared/algorithms/rrf-fusion.ts",
       "mcp_server/lib/search/pipeline/stage2-fusion.ts",
@@ -44,10 +67,15 @@
       "lib/graph/temporal-edges.ts",
       "lib/graph/contradiction-detection.ts",
       "lib/search/fsrs.ts",
-      "lib/storage/idempotency-receipts.ts",
-      "spec.md"
+      "lib/storage/idempotency-receipts.ts"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "research.md",
         "kind": "doc",
@@ -115,12 +143,6 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -133,9 +155,21 @@
         "source": "derived"
       },
       {
-        "name": "External Mining",
+        "name": "Phase Parent",
         "kind": "proper_noun",
-        "path": "research/research.md",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Wired Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -145,19 +179,13 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement The Spec",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Purpose Produce",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Research Report",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "External Mining",
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
@@ -181,9 +209,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The Spec-Kit Memory MCP fuses five channels (vector, FTS5, BM25, causal-graph, degree) via RRF with FSRS power-law decay, but has no query-class routing, uses flag-based fact currentness, blocks on synchronous consolidation, and does not guarantee deterministic recall serialization. The external systems encode mature alternatives to each.",
+    "causal_summary": "The Spec-Kit Memory MCP research surfaced candidate work across recall retrieval, deterministic IDs, currentness, reliability and eval coverage. This parent needs to route those candidate groups to child folders so the research evidence and implementation planning stay addressable without placing task detail at the parent level.",
     "created_at": "2026-06-16T14:27:21.651Z",
-    "last_save_at": "2026-06-17T19:57:25.213Z",
+    "last_save_at": "2026-06-19T06:27:43.581Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

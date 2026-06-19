@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/004-deep-loop/004-004-reliability-weighted-convergence",
+  "description": "Feature Specification: Reliability-Weighted Convergence (028/004 keystone cluster)",
+  "keywords": [
+    "feature",
+    "specification",
+    "reliability-weighted",
+    "convergence",
+    "028",
+    "004",
+    "keystone",
+    "cluster"
+  ],
+  "lastUpdated": "2026-06-19T06:21:37.391Z",
+  "specId": "004",
+  "folderSlug": "004-reliability-weighted-convergence",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "004-deep-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

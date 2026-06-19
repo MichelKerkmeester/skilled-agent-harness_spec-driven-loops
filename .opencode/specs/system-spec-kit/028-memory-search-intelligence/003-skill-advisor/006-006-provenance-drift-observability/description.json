@@ -1,0 +1,27 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/006-006-provenance-drift-observability",
+  "description": "Feature Specification: Skill Advisor — Provenance Self-Boost Guard, Attested Baseline Drift & Skip-Never-Fabricate",
+  "keywords": [
+    "feature",
+    "specification",
+    "skill",
+    "advisor",
+    "provenance",
+    "self-boost",
+    "guard",
+    "attested",
+    "baseline",
+    "drift",
+    "skip-never-fabricate"
+  ],
+  "lastUpdated": "2026-06-19T06:21:36.661Z",
+  "specId": "006",
+  "folderSlug": "006-provenance-drift-observability",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "003-skill-advisor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

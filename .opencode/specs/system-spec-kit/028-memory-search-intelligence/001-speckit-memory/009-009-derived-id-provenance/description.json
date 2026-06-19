@@ -1,0 +1,23 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/009-009-derived-id-provenance",
+  "description": "Feature Specification: Content-Addressed derived_id for Derived Causal Artifacts (C4-B)",
+  "keywords": [
+    "feature",
+    "specification",
+    "content-addressed",
+    "derived",
+    "causal",
+    "artifacts",
+    "c4-b"
+  ],
+  "lastUpdated": "2026-06-19T06:21:32.891Z",
+  "specId": "009",
+  "folderSlug": "009-derived-id-provenance",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "001-speckit-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

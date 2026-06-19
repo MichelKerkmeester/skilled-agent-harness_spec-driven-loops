@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/007-007-outcome-weighted-ranking-followon",
+  "description": "Feature Specification: Skill Advisor Outcome-Weighted Ranking Follow-On (aionforge-procedural)",
+  "keywords": [
+    "feature",
+    "specification",
+    "skill",
+    "advisor",
+    "outcome-weighted",
+    "ranking",
+    "follow-on",
+    "aionforge-procedural"
+  ],
+  "lastUpdated": "2026-06-19T06:21:36.805Z",
+  "specId": "007",
+  "folderSlug": "007-outcome-weighted-ranking-followon",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "003-skill-advisor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,17 +1,17 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/028-memory-search-intelligence/004-deep-loop",
-  "description": "Feature Specification: Deep Loop Runtime — External Mining",
+  "description": "Feature Specification: Deep Loop Runtime Phase Parent",
   "keywords": [
     "feature",
     "specification",
     "deep",
     "loop",
     "runtime",
-    "external",
-    "mining"
+    "phase",
+    "parent"
   ],
-  "lastUpdated": "2026-06-16T15:23:34.810Z",
+  "lastUpdated": "2026-06-19T06:28:28.078Z",
   "specId": "004",
   "folderSlug": "deep-loop",
   "parentChain": [

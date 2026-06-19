@@ -1,50 +1,55 @@
 ---
-title: "Feature Specification: Deep Loop Runtime — External Mining"
-description: "Mine aionforge bounded Beta posterior, contradiction-edge quarantine, transient/fatal recovery, and observability gauges plus galadriel ambient reflection for the deep-loop runtime."
+title: "Feature Specification: Deep Loop Runtime Phase Parent"
+description: "Phase parent for 6 deep-loop runtime implementation plans derived from packet 028 research."
 trigger_phrases:
-  - "028 deep loop mining"
-  - "convergence calibration"
-  - "contradiction quarantine"
-  - "fan out recovery"
-  - "cost guard enforcement"
+  - "028 deep loop implementation parent"
+  - "deep loop child phase map"
+  - "deep loop implementation planning"
+  - "028 deep loop candidate tail"
+  - "deep loop research to implementation"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/004-deep-loop"
-    last_updated_at: "2026-06-16T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Seed deep-loop child spec for the deep-research loop"
-    next_safe_action: "Run /deep:research:auto on this folder (ceiling 10 @0.03)"
+    last_updated_at: "2026-06-19T06:45:00Z"
+    last_updated_by: "codex-gpt-5"
+    recent_action: "Wired Deep Loop Runtime as a phase parent with 6 implementation sub-phases"
+    next_safe_action: "Use the child map to implement PENDING deep-loop candidates after reducer and fanout gates"
     blockers: []
     key_files:
       - "spec.md"
       - "research/research.md"
+      - "001-001-reducer-anchor-fix/spec.md"
+      - "006-006-continuity-threading/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-06-16-028-004-deep-loop"
+      session_id: "2026-06-19-028-004-deep-loop-parent"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "The deep-loop research child now routes to 6 implementation child folders."
+      - "Packet 030 remains the Wave-0 shipped evidence record for DONE rows."
 ---
 
-# Feature Specification: Deep Loop Runtime — External Mining
-
-<!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
+# Feature Specification: Deep Loop Runtime Phase Parent
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
+| **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Phase Parent |
 | **Created** | 2026-06-16 |
-| **Branch** | `system-speckit/027-xce-research-based-refinement` |
-| **Parent Packet** | system-spec-kit/028-memory-search-intelligence |
+| **Updated** | 2026-06-19 |
+| **Parent Spec** | `../spec.md` |
+| **Parent Packet** | `system-spec-kit/028-memory-search-intelligence` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -53,10 +58,12 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The deep-loop runtime's Bayesian convergence scorer, coverage-graph contradiction handling, council adjudicator weighting, fan-out recovery, and cost guards are hardcoded or advisory. Aionforge encodes a bounded reliability-weighted Beta posterior (flood-resistant), non-destructive contradiction-edge quarantine, transient/fatal recovery with durable retries, and lag/pending/failed observability gauges; galadriel encodes threaded ambient reflection.
+The Deep Loop Runtime research surfaced candidate work across reducer anchoring, fanout determinism, failure recovery, convergence scoring, stop-input checks and continuity threading. This parent needs to route those candidate groups to child folders while keeping implementation detail in the child specs.
 
 ### Purpose
-Produce evidence-backed, code-mapped improvement candidates for the deep-loop runtime by mining the external systems, ranked by leverage and effort.
+Provide the subsystem root purpose and implementation phase map for the Deep Loop Runtime portion of packet 028. The child folders own the detailed specs, plans, tasks and validation evidence.
+
+> **Phase-parent note:** This `spec.md` is the only authored document at this parent level. Detailed planning lives in the child phase folders listed below.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -65,64 +72,67 @@ Produce evidence-backed, code-mapped improvement candidates for the deep-loop ru
 ## 3. SCOPE
 
 ### In Scope
-- Read-only analysis of `external/aionforge-memory-development/docs/**` and `external/galadriel-public-main 2/**`.
-- Mapping techniques to the convergence, coverage-graph, fan-out, and adjudication code.
+- Root-level routing for the 6 Deep Loop Runtime implementation child folders.
+- A phase-documentation map that names each implementation sub-phase and current planning status.
+- A research-input pointer for the evidence packet that fed these child plans.
 
 ### Out of Scope
-- Implementing the candidates.
-- Touching the other three subsystems.
+- Implementing the Deep Loop Runtime candidates.
+- Editing packet 030.
+- Rewriting the subsystem research artifacts.
+
+### Files to Change
+
+| File Path | Change Type | Phase | Description |
+|-----------|-------------|-------|-------------|
+| `spec.md` | Modify | parent | Parent purpose and child map |
+| `description.json` | Refresh | parent | Search metadata for the parent |
+| `graph-metadata.json` | Refresh | parent | Child identity and parent graph metadata |
+| `[0-9][0-9][0-9]-*/**` | Maintain | child phases | Implementation planning owned by child folders |
 <!-- /ANCHOR:scope -->
 
 ---
 
-<!-- ANCHOR:requirements -->
-## 4. REQUIREMENTS
+<!-- ANCHOR:phase-map -->
+## PHASE DOCUMENTATION MAP
 
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-001 | Each candidate cites an external source and an internal module | Source path + internal file named per candidate |
-| REQ-002 | Candidates cover flood-resistant convergence calibration, trust-keyed contradiction quarantine, resumable fan-out recovery, enforceable cost ceiling with backpressure | All themes addressed |
-| REQ-003 | Candidates ranked by leverage × effort | Ranked table in research.md |
-<!-- /ANCHOR:requirements -->
+Research input: `research/research.md` remains the subsystem source packet for candidate evidence and citations.
 
----
+| Phase | Folder | Focus | Status |
+|-------|--------|-------|--------|
+| 001 | `001-001-reducer-anchor-fix/` | Reducer anchor correctness | Planned |
+| 002 | `002-002-fanout-determinism-observability/` | Fanout determinism and observability | Planned |
+| 003 | `003-003-fanout-failure-recovery/` | Fanout failure recovery | Planned |
+| 004 | `004-004-reliability-weighted-convergence/` | Reliability-weighted convergence | Planned |
+| 005 | `005-005-stop-input-corroboration/` | Stop-input corroboration checks | Planned |
+| 006 | `006-006-continuity-threading/` | Continuity threading across iterations | Planned |
 
-<!-- ANCHOR:success-criteria -->
-## 5. SUCCESS CRITERIA
+### Phase Transition Rules
 
-- **SC-001**: research.md contains code-mapped candidates, each citing an external source and an internal deep-loop module (convergence, coverage-graph, fan-out, or adjudication code).
-- **SC-002**: Candidates cover flood-resistant convergence calibration, trust-keyed contradiction quarantine, resumable fan-out recovery, and an enforceable cost ceiling.
-<!-- /ANCHOR:success-criteria -->
+- Each child folder owns its own `spec.md`, `plan.md`, `tasks.md` and level-required validation docs.
+- Parent status changes only after child strict validation passes.
+- Use `/speckit:resume system-spec-kit/028-memory-search-intelligence/004-deep-loop/[NNN-phase]/` to resume a specific child.
 
----
+### Phase Handoff Criteria
 
-<!-- ANCHOR:risks -->
-## 6. RISKS & DEPENDENCIES
-
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Risk | Early convergence | Fewer iterations than budget | Broaden scope / add key questions, then resume a new generation |
-| Dependency | External doc readability | Weak or unsupported mappings | Cite file:line per candidate; mark inferences |
-<!-- /ANCHOR:risks -->
+| From | To | Criteria | Verification |
+|------|-----|----------|--------------|
+| parent | child | Select the next PENDING candidate group | Child `spec.md` names gate, scope and evidence |
+| child | parent | Child reaches strict validation green | `validate.sh <child> --strict` exits 0 |
+<!-- /ANCHOR:phase-map -->
 
 ---
 
 <!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
+## 4. OPEN QUESTIONS
 
-- Can a bounded reliability-weighted Beta posterior make convergence resistant to a flood of weak findings?
-- Should contradictions be modeled as edges that quarantine the lower-trust finding rather than dropping either side?
-- Can fan-out recovery classify branches transient vs fatal and retry from durable state instead of re-running the whole loop?
-- What is the minimal enforceable cost ceiling with observable backpressure (lag/pending/failed gauges)?
-- Does galadriel's threaded ambient reflection suggest cheaper cross-iteration question continuity?
-- Which of these reuse the same primitives as the Memory MCP and code-graph candidates?
+- None for parent wiring. Candidate questions live in the child folders.
 <!-- /ANCHOR:questions -->
 
 ---
 
-<!-- ANCHOR:related-docs -->
 ## RELATED DOCUMENTS
 
-- **Research output**: See `research/research.md`.
-- **Parent Spec**: See `../spec.md`.
-<!-- /ANCHOR:related-docs -->
+- **Research input**: `research/research.md`
+- **Packet parent**: `../spec.md`
+- **Graph metadata**: `graph-metadata.json`

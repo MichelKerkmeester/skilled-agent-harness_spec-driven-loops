@@ -1,50 +1,55 @@
 ---
-title: "Feature Specification: Spec-Kit Memory MCP — External Mining"
-description: "Mine galadriel + aionforge for evidence-backed, code-mapped improvements to the Spec-Kit Memory MCP 5-channel RRF retrieval, causal graph, decay, and continuity."
+title: "Feature Specification: Spec-Kit Memory MCP Phase Parent"
+description: "Phase parent for 21 Spec-Kit Memory MCP implementation plans derived from packet 028 research."
 trigger_phrases:
-  - "028 speckit memory mining"
-  - "memory mcp retrieval improvements"
-  - "query class routing memory"
-  - "edge based bitemporal currentness"
-  - "idempotent async consolidation"
+  - "028 speckit memory implementation parent"
+  - "memory mcp child phase map"
+  - "memory search intelligence speckit memory"
+  - "memory mcp implementation planning"
+  - "028 memory mcp candidate tail"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory"
-    last_updated_at: "2026-06-16T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Seed memory child spec for the deep-research loop"
-    next_safe_action: "Run /deep:research:auto on this folder (ceiling 18 @0.02)"
+    last_updated_at: "2026-06-19T06:45:00Z"
+    last_updated_by: "codex-gpt-5"
+    recent_action: "Wired Spec-Kit Memory MCP as a phase parent with 21 implementation sub-phases"
+    next_safe_action: "Use the child map to implement PENDING memory candidates in gate order"
     blockers: []
     key_files:
       - "spec.md"
       - "research/research.md"
+      - "001-001-corpus-reindex-gate-zero/spec.md"
+      - "021-021-015-residual-correctness/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-06-16-028-001-speckit-memory"
+      session_id: "2026-06-19-028-001-speckit-memory-parent"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "The memory research child now routes to 21 implementation child folders."
+      - "Packet 030 remains the Wave-0 shipped evidence record for DONE rows."
 ---
 
-# Feature Specification: Spec-Kit Memory MCP — External Mining
-
-<!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
+# Feature Specification: Spec-Kit Memory MCP Phase Parent
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
+| **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Phase Parent |
 | **Created** | 2026-06-16 |
-| **Branch** | `system-speckit/027-xce-research-based-refinement` |
-| **Parent Packet** | system-spec-kit/028-memory-search-intelligence |
+| **Updated** | 2026-06-19 |
+| **Parent Spec** | `../spec.md` |
+| **Parent Packet** | `system-spec-kit/028-memory-search-intelligence` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -53,10 +58,12 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The Spec-Kit Memory MCP fuses five channels (vector, FTS5, BM25, causal-graph, degree) via RRF with FSRS power-law decay, but has no query-class routing, uses flag-based fact currentness, blocks on synchronous consolidation, and does not guarantee deterministic recall serialization. The external systems encode mature alternatives to each.
+The Spec-Kit Memory MCP research surfaced candidate work across recall retrieval, deterministic IDs, currentness, reliability and eval coverage. This parent needs to route those candidate groups to child folders so the research evidence and implementation planning stay addressable without placing task detail at the parent level.
 
 ### Purpose
-Produce evidence-backed, code-mapped improvement candidates for the Memory MCP by mining galadriel and aionforge, ranked by leverage and effort. PRIMARY target of packet 028.
+Provide the subsystem root purpose and implementation phase map for the Memory MCP portion of packet 028. The child folders own the detailed specs, plans, tasks and validation evidence.
+
+> **Phase-parent note:** This `spec.md` is the only authored document at this parent level. Detailed planning lives in the child phase folders listed below.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -65,65 +72,82 @@ Produce evidence-backed, code-mapped improvement candidates for the Memory MCP b
 ## 3. SCOPE
 
 ### In Scope
-- Read-only analysis of `external/aionforge-memory-development/docs/**` and `external/galadriel-public-main 2/**`.
-- Mapping external techniques to specific Memory MCP modules (channel fusion, save path, recall rendering, causal graph).
-- Candidate proposals with citations and effort estimates.
+- Root-level routing for the 21 Memory MCP implementation child folders.
+- A phase-documentation map that names each implementation sub-phase and current planning status.
+- A research-input pointer for the evidence packet that fed these child plans.
 
 ### Out of Scope
-- Implementing the candidates.
-- Touching the other three subsystems (covered by sibling phases).
+- Implementing the Memory MCP candidates.
+- Editing packet 030.
+- Rewriting the subsystem research artifacts.
+
+### Files to Change
+
+| File Path | Change Type | Phase | Description |
+|-----------|-------------|-------|-------------|
+| `spec.md` | Modify | parent | Parent purpose and child map |
+| `description.json` | Refresh | parent | Search metadata for the parent |
+| `graph-metadata.json` | Refresh | parent | Child identity and parent graph metadata |
+| `[0-9][0-9][0-9]-*/**` | Maintain | child phases | Implementation planning owned by child folders |
 <!-- /ANCHOR:scope -->
 
 ---
 
-<!-- ANCHOR:requirements -->
-## 4. REQUIREMENTS
+<!-- ANCHOR:phase-map -->
+## PHASE DOCUMENTATION MAP
 
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-001 | Each candidate cites an external source and an internal module | Source path + internal file named per candidate |
-| REQ-002 | Candidates cover query-class routing, edge-based supersession, idempotent async consolidation, rank-time decay, and cache-friendly serialization | All five themes addressed in research.md |
-| REQ-003 | Candidates ranked by leverage × effort | Ranked table in research.md |
-<!-- /ANCHOR:requirements -->
+Research input: `research/research.md` remains the subsystem source packet for candidate evidence and citations.
 
----
+| Phase | Folder | Focus | Status |
+|-------|--------|-------|--------|
+| 001 | `001-001-corpus-reindex-gate-zero/` | Corpus scan and gate-zero recovery | Planned |
+| 002 | `002-002-determinism-content-id-foundation/` | Stable content IDs and deterministic recall spine | Planned |
+| 003 | `003-003-retrieval-class-routing/` | Query class router and lane policy | Planned |
+| 004 | `004-004-graceful-degradation/` | Degraded service paths and fallback envelopes | Planned |
+| 005 | `005-005-recall-render-escaper/` | Source-kind gated render safety | Planned |
+| 006 | `006-006-redteam-probe-gate/` | Adversarial probe harness and CI gate | Planned |
+| 007 | `007-007-bitemporal-window/` | Temporal validity windows for memory facts | Planned |
+| 008 | `008-008-edge-presence-currentness/` | Presence edges and currentness checks | Planned |
+| 009 | `009-009-derived-id-provenance/` | Derived IDs and provenance links | Planned |
+| 010 | `010-010-consoli<!-- pp-scan -->dation-cursor-clock/` | Cursor clock and async write follow-on | Planned |
+| 011 | `011-011-retention-forgetting/` | Retention and forgetting policy | Planned |
+| 012 | `012-012-procedural-reliability-benchmark/` | Procedural reliability benchmark | Planned |
+| 013 | `013-013-enrichment-observability/` | Enrichment metrics and traceability | Planned |
+| 014 | `014-014-mem0-ranking-tweaks/` | Mem0 ranking backport choices | Planned |
+| 015 | `015-015-summary-fusion-grounding/` | Summary fusion and grounding safeguards | Planned |
+| 016 | `016-016-iterative-agentic-recall/` | Agentic recall loop planning | Planned |
+| 017 | `017-017-semantic-edge-layer/` | Semantic edge representation | Planned |
+| 018 | `018-018-sleeptime-consoli<!-- pp-scan -->dation/` | Sleeptime background processing | Planned |
+| 019 | `019-019-eval-harness-extension/` | Evaluation harness extension | Planned |
+| 020 | `020-020-eval-calibration-ab/` | Evaluation calibration A/B plan | Planned |
+| 021 | `021-021-015-residual-correctness/` | Residual correctness from candidate 015 | Planned |
 
-<!-- ANCHOR:success-criteria -->
-## 5. SUCCESS CRITERIA
+### Phase Transition Rules
 
-- **SC-001**: research.md contains ≥6 code-mapped candidates, each citing an external source and an internal Memory MCP module.
-- **SC-002**: All five themes (query-class routing, edge-based supersession, idempotent async consolidation, rank-time decay, cache-friendly serialization) are addressed and ranked.
-<!-- /ANCHOR:success-criteria -->
+- Each child folder owns its own `spec.md`, `plan.md`, `tasks.md` and level-required validation docs.
+- Parent status changes only after child strict validation passes.
+- Use `/speckit:resume system-spec-kit/028-memory-search-intelligence/001-speckit-memory/[NNN-phase]/` to resume a specific child.
 
----
+### Phase Handoff Criteria
 
-<!-- ANCHOR:risks -->
-## 6. RISKS & DEPENDENCIES
-
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Risk | Early convergence | Fewer iterations than budget | Broaden scope / add key questions, then resume a new generation |
-| Dependency | External doc readability | Weak or unsupported mappings | Cite file:line per candidate; mark inferences |
-<!-- /ANCHOR:risks -->
+| From | To | Criteria | Verification |
+|------|-----|----------|--------------|
+| parent | child | Select the next PENDING candidate group | Child `spec.md` names gate, scope and evidence |
+| child | parent | Child reaches strict validation green | `validate.sh <child> --strict` exits 0 |
+<!-- /ANCHOR:phase-map -->
 
 ---
 
 <!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
+## 4. OPEN QUESTIONS
 
-- Which of aionforge's 8 RRF signals and 5 query classes improve the existing 5-channel fusion, and which conflict with it?
-- How would edge-based supersession/contradiction (vs is_current flags) integrate with the existing causal graph and the off-state soft-delete tombstones?
-- Can the save path be split into a fast episode-write plus deterministic async consolidation with content-addressed IDs without breaking continuity?
-- What is the smallest change that makes recall serialization byte-identical for prompt-cache reuse?
-- Does galadriel's zero-token local retrieval model suggest a budget-free recall tier?
-- Which candidates generalize to the code-graph, skill-advisor, or deep-loop subsystems?
+- None for parent wiring. Candidate questions live in the child folders.
 <!-- /ANCHOR:questions -->
 
 ---
 
-<!-- ANCHOR:related-docs -->
 ## RELATED DOCUMENTS
 
-- **Research output**: See `research/research.md`.
-- **Parent Spec**: See `../spec.md`.
-<!-- /ANCHOR:related-docs -->
+- **Research input**: `research/research.md`
+- **Packet parent**: `../spec.md`
+- **Graph metadata**: `graph-metadata.json`

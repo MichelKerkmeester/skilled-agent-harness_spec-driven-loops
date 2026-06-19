@@ -126,3 +126,14 @@ A second, symmetrical finding: **027's already-shipped doctrine flows back into 
 ## Provenance & honesty note
 
 Net-deflationary + self-correcting: Q2 hole refuted + candidate withdrawn; Q4 flip tested and falsified; Q6/Q7 killed; Q5 non-issue; C8 escalated, re-seated, then upgraded; Q3 fork "H/gating" → recoverable hygiene. **No benefit NUMBER was fabricated** — all leverage is categorical; the only numbers are code-grounded facts. LEVERAGE/EFFORT tags are reasoning estimates, never build-measured — treat every H/S as inferred. The structured `findings-registry.json` / `deep-research-dashboard.md` lag this narrative (they don't record withdrawn/downgraded dispositions); **this `research.md` is the authoritative source of truth for the 005 packet.**
+
+---
+
+<!-- ANCHOR:research-citations -->
+## Research Citations
+
+- Source: `spec.md`
+- Source: `research/iterations/iteration-001.md` through `research/iterations/iteration-050.md`
+- Source: `research/findings-registry.json`
+- Source: `../research/synthesis/02-cross-packet-reconciliation.md`
+<!-- /ANCHOR:research-citations -->

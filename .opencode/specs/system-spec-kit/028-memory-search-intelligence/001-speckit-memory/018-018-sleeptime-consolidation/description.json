@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/018-018-sleeptime-consolidation",
+  "description": "Feature Specification: Async Sleep-Time Consolidation (LT-bg-sleeptime-agent + LT-llm-transcript-chunking, governed)",
+  "keywords": [
+    "feature",
+    "specification",
+    "async",
+    "sleep-time",
+    "consolidation",
+    "lt-bg-sleeptime-agent",
+    "lt-llm-transcript-chunking",
+    "governed"
+  ],
+  "lastUpdated": "2026-06-19T06:21:34.203Z",
+  "specId": "018",
+  "folderSlug": "018-sleeptime-consolidation",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "001-speckit-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -24,7 +24,7 @@
       "external memory systems research",
       "galadriel aionforge mining",
       "memory retrieval improvements",
-      "deep research improvement roadmap",
+      "028 implementation phase parent",
       "028 broadening rounds handover",
       "memory search intelligence broadening",
       "deep research continuation 028",
@@ -47,16 +47,26 @@
     "importance_tier": "important",
     "status": "phase_parent",
     "key_files": [
+      "spec.md",
+      "001-speckit-memory/spec.md",
+      "002-code-graph/spec.md",
+      "003-skill-advisor/spec.md",
+      "004-deep-loop/spec.md",
       "research/roadmap.md",
       "research/research.md",
       "007-memory-systems/research/research.md",
       "005-revisit-027/research/research.md",
-      "spec.md",
       ".opencode/specs/system-spec-kit/028-memory-search-intelligence/research/roadmap.md",
       "handover.md",
       "lib/response/envelope.ts"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "roadmap.md",
         "kind": "doc",
@@ -67,12 +77,6 @@
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -94,9 +98,9 @@
         "source": "derived"
       },
       {
-        "name": "Memory Search Intelligence",
+        "name": "Memory Search Intelligence Phase Parent",
         "kind": "proper_noun",
-        "path": "research/research.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -118,13 +122,19 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement Two",
+        "name": "Problem Statement Packet",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "Improvement Roadmap",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Memory Search Intelligence",
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
@@ -184,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Two mature open-source memory engines are vendored under `external/` — galadriel (Python memory-palace) and aionforge-memory (Rust retrieval substrate). They encode retrieval, consolidation, and currentness techniques that the project's own four retrieval subsystems do not yet use. Without a structured mining effort, that prior art stays unread and the internal systems keep their known gaps (no query-class routing, flag-based currentness, write-blocking consolidation, non-deterministic fusion).",
+    "causal_summary": "Packet 028 owns the planning record that turns external memory-system research into implementation sub-phases for internal retrieval surfaces. The first four research children now need to act as subsystem phase parents so the research inputs, candidate plans and child validation state are easy to navigate.",
     "created_at": "2026-06-16T14:27:21.650Z",
-    "last_save_at": "2026-06-17T19:57:25.211Z",
+    "last_save_at": "2026-06-19T06:27:43.576Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

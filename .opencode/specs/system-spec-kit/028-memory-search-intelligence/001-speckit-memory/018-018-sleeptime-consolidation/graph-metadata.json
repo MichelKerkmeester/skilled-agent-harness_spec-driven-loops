@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/018-018-sleeptime-consolidation",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/018-018-sleeptime-consolidation",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "async sleep-time consolidation",
+      "background sleeptime agent memory",
+      "llm transcript chunking archival",
+      "tool-rule memory chain governor",
+      "off-turn memory reorganization",
+      "async sleep-time consolidation plan",
+      "sleeptime agent governor plan",
+      "off-turn reorganization plan",
+      "llm transcript chunking plan",
+      "async sleep-time consolidation tasks",
+      "sleeptime agent tasks",
+      "off-turn reorganization tasks"
+    ],
+    "key_topics": [
+      "async",
+      "sleep-time",
+      "consolidation",
+      "background",
+      "sleeptime",
+      "agent",
+      "memory",
+      "llm",
+      "transcript",
+      "chunking",
+      "archival",
+      "tool-rule"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "mcp_server/handlers/save/reconsolidation-bridge.ts",
+      "mcp_server/handlers/chunking-orchestrator.ts",
+      "mcp_server/lib/search/search-flags.ts",
+      "handlers/save/reconsolidation-bridge.ts",
+      "handlers/chunking-orchestrator.ts",
+      "lib/cognitive/pressure-monitor.ts",
+      "mcp_server/lib/cognitive/pressure-monitor.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "lib/runtime/timer-registry.ts",
+      "lib/session/session-manager.ts",
+      "lib/search/search-flags.ts",
+      "spec.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "reconsolidation-bridge.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/save/reconsolidation-bridge.ts",
+        "source": "derived"
+      },
+      {
+        "name": "chunking-orchestrator.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/chunking-orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-flags.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/search-flags.ts",
+        "source": "derived"
+      },
+      {
+        "name": "pressure-monitor.ts",
+        "kind": "code",
+        "path": "lib/cognitive/pressure-monitor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "timer-registry.ts",
+        "kind": "code",
+        "path": "lib/runtime/timer-registry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-manager.ts",
+        "kind": "code",
+        "path": "lib/session/session-manager.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Async Sleep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Time Consolidation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Spec-Kit Memory MCP reorganizes memory **synchronously, on-save** — `handlers/save/reconsolidation-bridge.ts` runs inline on the hot write path, and there is **no background reorganization agent** anywhere. This sub-phase lands packet 028's Wave-2 \"async sleep-time consolidation\" initiative (research child 007, iteration 20, MiMo lineage): a background **sleep-time agent** that fires AFTER the foreground turn, reorganizes recent transcripts into archival memory through a bounded tool-chain, and lets the LLM choose which transcript ranges are worth preserving — modeled on Letta's `voice_sleeptime_agent` / `sleeptime_multi_agent_v4`. Because the pass **mutates archival memory off-turn**, it is the highest-tail-risk intelligence-class candidate in the Memory subsystem: it is built strictly **shadow-gated, default-off**, governed by a tool-rule DAG, and rides the C-G1 clock host + C4-C cursor that sibling **010** lands first.",
+    "created_at": "2026-06-19T05:47:05.579Z",
+    "last_save_at": "2026-06-19T05:52:29.574Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

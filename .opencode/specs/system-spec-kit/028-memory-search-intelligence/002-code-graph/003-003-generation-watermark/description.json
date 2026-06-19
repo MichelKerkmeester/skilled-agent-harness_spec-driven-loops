@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/002-code-graph/003-003-generation-watermark",
+  "description": "Feature Specification: Code Graph — Generation Watermark (Q6-C2 → Q6-C1)",
+  "keywords": [
+    "feature",
+    "specification",
+    "code",
+    "graph",
+    "generation",
+    "watermark",
+    "q6-c2",
+    "q6-c1"
+  ],
+  "lastUpdated": "2026-06-19T06:21:35.080Z",
+  "specId": "003",
+  "folderSlug": "003-generation-watermark",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "002-code-graph"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

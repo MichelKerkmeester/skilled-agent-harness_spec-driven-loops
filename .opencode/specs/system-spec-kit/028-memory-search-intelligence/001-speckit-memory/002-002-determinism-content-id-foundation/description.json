@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/002-002-determinism-content-id-foundation",
+  "description": "Feature Specification: Determinism + Content-ID Foundation (Spec-Kit Memory MCP)",
+  "keywords": [
+    "feature",
+    "specification",
+    "determinism",
+    "content-id",
+    "foundation",
+    "spec-kit",
+    "memory",
+    "mcp"
+  ],
+  "lastUpdated": "2026-06-19T06:21:31.836Z",
+  "specId": "002",
+  "folderSlug": "002-determinism-content-id-foundation",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "001-speckit-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

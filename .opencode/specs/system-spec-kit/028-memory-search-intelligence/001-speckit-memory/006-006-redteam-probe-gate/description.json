@@ -1,0 +1,21 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/006-006-redteam-probe-gate",
+  "description": "Feature Specification: Red-Team Probe Gate",
+  "keywords": [
+    "feature",
+    "specification",
+    "red-team",
+    "probe",
+    "gate"
+  ],
+  "lastUpdated": "2026-06-19T06:21:32.431Z",
+  "specId": "006",
+  "folderSlug": "006-redteam-probe-gate",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "001-speckit-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

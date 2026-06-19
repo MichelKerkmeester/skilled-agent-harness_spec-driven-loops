@@ -1,0 +1,27 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/004-deep-loop/003-003-fanout-failure-recovery",
+  "description": "Feature Specification: Deep Loop Fan-out Failure Recovery (028/004 resilience cluster)",
+  "keywords": [
+    "feature",
+    "specification",
+    "deep",
+    "loop",
+    "fan-out",
+    "failure",
+    "recovery",
+    "028",
+    "004",
+    "resilience",
+    "cluster"
+  ],
+  "lastUpdated": "2026-06-19T06:21:37.237Z",
+  "specId": "003",
+  "folderSlug": "003-fanout-failure-recovery",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "004-deep-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

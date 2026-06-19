@@ -1,16 +1,16 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/028-memory-search-intelligence/003-skill-advisor",
-  "description": "Feature Specification: Skill Advisor — External Mining",
+  "description": "Feature Specification: Skill Advisor Phase Parent",
   "keywords": [
     "feature",
     "specification",
     "skill",
     "advisor",
-    "external",
-    "mining"
+    "phase",
+    "parent"
   ],
-  "lastUpdated": "2026-06-16T15:23:34.806Z",
+  "lastUpdated": "2026-06-19T06:28:27.941Z",
   "specId": "003",
   "folderSlug": "skill-advisor",
   "parentChain": [

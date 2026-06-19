@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/017-017-semantic-edge-layer",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/017-017-semantic-edge-layer",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "028 semantic edge layer",
+      "per edge embedding causal graph",
+      "GR-fact-embedding-on-edge",
+      "semantic edge retrieval substrate",
+      "edge vector index triplet search",
+      "028 semantic edge layer plan",
+      "per edge embedding substrate plan",
+      "GR-fact-embedding-on-edge plan",
+      "edge vector consolidation plan",
+      "028 semantic edge layer tasks",
+      "per edge embedding substrate tasks",
+      "GR-fact-embedding-on-edge tasks"
+    ],
+    "key_topics": [
+      "028",
+      "semantic",
+      "edge",
+      "layer",
+      "per",
+      "embedding",
+      "causal",
+      "graph",
+      "gr-fact-embedding-on-edge",
+      "retrieval",
+      "substrate",
+      "vector"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "mcp_server/lib/storage/causal-edges.ts",
+      "mcp_server/lib/storage/consolidation.ts",
+      "mcp_server/lib/graph/contradiction-detection.ts",
+      "mcp_server/lib/search/search-flags.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/contradiction-detection.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "lib/storage/causal-edges.ts",
+      "lib/storage/consolidation.ts",
+      "lib/graph/contradiction-detection.ts",
+      "lib/search/hybrid-search.ts",
+      "lib/search/search-flags.ts",
+      "spec.md",
+      "lib/storage/README.md",
+      "lib/graph/README.md",
+      "decision-record.md"
+    ],
+    "entities": [
+      {
+        "name": "causal-edges.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/storage/causal-edges.ts",
+        "source": "derived"
+      },
+      {
+        "name": "consolidation.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/storage/consolidation.ts",
+        "source": "derived"
+      },
+      {
+        "name": "contradiction-detection.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/graph/contradiction-detection.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-flags.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/search-flags.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "hybrid-search.ts",
+        "kind": "code",
+        "path": "lib/search/hybrid-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "lib/storage/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Semantic Edge Layer",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The internal causal graph stores edges in SQLite only: an edge is a `(source_id, target_id, relation, source_anchor, target_anchor)` tuple with no fact text and no relationship vector, so edges never inform ranking and can only be deduped/invalidated on an exact key over the same node pair [CONFIRMED: `lib/storage/causal-edges.ts:350-352` exact-key upsert; `lib/graph/contradiction-detection.ts:85-93` same-pair-only; 0 grep hits for `embedding|vector|fact_text|cosine|similarity` in `causal-edges.ts`]. Research (028/007, iters 19/21) found **five** separately-surfaced edge-intelligence candidates that all need the **same missing substrate** — per-edge embeddings + semantic edge retrieval — and consolidated them into one Wave-2 initiative: build the layer once and `CG-edge-vector-index`, `CG-edge-aware-triplet-search`, `GR-fact-embedding-on-edge`, `GR-semantic-fact-dedup-merge`, and `GR-semantic-invalidation-discovery` unlock together.",
+    "created_at": "2026-06-19T05:47:05.578Z",
+    "last_save_at": "2026-06-19T05:52:29.572Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -3,7 +3,15 @@
   "packet_id": "system-spec-kit/028-memory-search-intelligence/003-skill-advisor",
   "spec_folder": "system-spec-kit/028-memory-search-intelligence/003-skill-advisor",
   "parent_id": "system-spec-kit/028-memory-search-intelligence",
-  "children_ids": [],
+  "children_ids": [
+    "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/001-001-rrf-determinism-spine",
+    "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/002-002-runtime-lane-health-degrade",
+    "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/003-003-embedding-staleness-signal",
+    "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/004-004-c4-shadow-seam-beta-posterior",
+    "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/005-005-conflict-rerank-query-routing",
+    "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/006-006-provenance-drift-observability",
+    "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/007-007-outcome-weighted-ranking-followon"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -11,11 +19,11 @@
   },
   "derived": {
     "trigger_phrases": [
-      "028 skill advisor mining",
-      "advisor query class routing",
-      "deterministic rrf fusion",
-      "lane weight auto tuning",
-      "ambient trigger harvest",
+      "028 skill advisor implementation parent",
+      "skill advisor child phase map",
+      "advisor implementation planning",
+      "028 skill advisor candidate tail",
+      "skill advisor research to implementation",
       "skill advisor external mining research",
       "skill advisor fusion scorer research",
       "skill advisor RRF query-class router"
@@ -24,24 +32,30 @@
       "028",
       "skill",
       "advisor",
-      "mining",
-      "query",
-      "class",
-      "routing",
-      "deterministic",
-      "rrf",
-      "fusion",
-      "lane",
-      "weight"
+      "implementation",
+      "parent",
+      "child",
+      "phase",
+      "map",
+      "planning",
+      "candidate",
+      "tail",
+      "research"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "phase_parent",
     "key_files": [
+      "spec.md",
       "research/research.md",
-      ".opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts",
-      "spec.md"
+      ".opencode/skills/system-spec-kit/shared/algorithms/rrf-fusion.ts"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "research.md",
         "kind": "doc",
@@ -55,13 +69,13 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
+        "name": "Feature Specification",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
+        "name": "Skill Advisor Phase Parent",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -73,31 +87,31 @@
         "source": "derived"
       },
       {
-        "name": "External Mining",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "Parent Packet",
+        "name": "Wired Skill Advisor",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement The Skill Advisor",
+        "name": "Phase Parent",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Produce",
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "Research Report",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "External Mining",
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
@@ -121,9 +135,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The Skill Advisor fuses five fixed-weight lanes (explicit-author 0.42, lexical 0.28, graph-causal 0.13, derived 0.12, semantic-shadow 0.05) with no query-class routing and a non-deterministic weighted sum. Aionforge encodes mandatory query-class routing, deterministic RRF, and bounded reliability-weighted governance; galadriel encodes ambient auto-classified mining.",
+    "causal_summary": "The Skill Advisor research surfaced candidate work across deterministic fusion, lane health, embedding freshness, query routing, drift metrics and outcome-weighted ranking. This parent needs to route those candidate groups to child folders while keeping implementation detail in the child specs.",
     "created_at": "2026-06-16T14:27:21.651Z",
-    "last_save_at": "2026-06-16T17:00:43.969Z",
+    "last_save_at": "2026-06-19T06:27:43.620Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
