@@ -40,7 +40,7 @@ The ladder is documented in the quick reference workflow doc and is the same pat
 | File | Layer | Role |
 |------|-------|------|
 | `mcp_server/handlers/session-resume.ts` | Handler | Walks the continuity ladder, handles phase-parent redirect, returns layered response |
-| `mcp_server/lib/spec/phase-parent.ts` | Library | Phase-parent detection and child-listing helpers |
+| `mcp_server/lib/spec/is-phase-parent.ts` | Library | Phase-parent detection rule (single source of truth) |
 
 ### Validation And Tests
 

@@ -1,6 +1,6 @@
 ---
 title: "DBG-SCAF-001 -- Debug-delegation scaffold generator + failure-threshold prompt rehearsal"
-description: "Validates that scaffold-debug-delegation.sh generates a well-formed debug-delegation.md from a synthetic failure trail, that versioned filenames work when prior scaffolds exist, and that the y/n/skip prompt in spec_kit_implement_auto.yaml/spec_kit_complete_auto.yaml never autonomously dispatches @debug."
+description: "Validates that scaffold-debug-delegation.sh generates a well-formed debug-delegation.md from a synthetic failure trail, that versioned filenames work when prior scaffolds exist, and that the y/n/skip prompt in speckit_implement_auto.yaml/speckit_complete_auto.yaml never autonomously dispatches @debug."
 ---
 
 # DBG-SCAF-001 -- Debug-delegation scaffold generator + failure-threshold prompt rehearsal
@@ -71,7 +71,7 @@ Validate Debug-delegation scaffold generator + failure-threshold prompt rehearsa
    ```
 6. Confirm the YAML configs surface a y/n/skip prompt rather than auto-dispatch:
    ```bash
-   grep -A 5 "debug_delegation:\|debug_escalation:" .opencode/commands/speckit/assets/spec_kit_implement_auto.yaml .opencode/commands/speckit/assets/spec_kit_complete_auto.yaml | grep -E "y / continue manually / skip|no_autonomous_routing|prompt_user_with_y_n_skip"  # expect at least 3 hits
+   grep -A 5 "debug_delegation:\|debug_escalation:" .opencode/commands/speckit/assets/speckit_implement_auto.yaml .opencode/commands/speckit/assets/speckit_complete_auto.yaml | grep -E "y / continue manually / skip|no_autonomous_routing|prompt_user_with_y_n_skip"  # expect at least 3 hits
    ```
 7. Cleanup:
    ```bash
@@ -105,7 +105,7 @@ Validate Debug-delegation scaffold generator + failure-threshold prompt rehearsa
 
 - Helper script: `.opencode/skills/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh`
 - Schema source: `.opencode/agents/debug.md` (Debug Context Handoff format, lines 60-89)
-- Workflow YAML: `.opencode/commands/speckit/assets/spec_kit_implement_auto.yaml` (debug_delegation block) and `.../spec_kit_complete_auto.yaml` (debug_escalation block)
+- Workflow YAML: `.opencode/commands/speckit/assets/speckit_implement_auto.yaml` (debug_delegation block) and `.../speckit_complete_auto.yaml` (debug_escalation block)
 - Spec folder: `<spec-folder>` (REQ-004, REQ-005)
 - User constraint memory: `feedback_debug_agent_user_invoked_only.md`
 

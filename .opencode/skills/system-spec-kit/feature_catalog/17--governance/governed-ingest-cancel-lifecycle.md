@@ -45,7 +45,7 @@ The lifecycle composes with the hierarchical scope governance contract (catalog 
 
 | File | Type | Role |
 |---|---|---|
-| `mcp_server/tests/memory-ingest-lifecycle.vitest.ts` | Automated test | Job lifecycle including cancel acknowledgement and terminal state |
+| `mcp_server/tests/handler-memory-ingest.vitest.ts` | Automated test | Job lifecycle including cancel acknowledgement and terminal state |
 
 ---
 

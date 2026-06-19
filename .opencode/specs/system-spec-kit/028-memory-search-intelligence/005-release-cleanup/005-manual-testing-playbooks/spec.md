@@ -10,9 +10,9 @@ _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/005-manual-testing-playbooks"
     last_updated_at: "2026-06-19T00:00:00Z"
-    last_updated_by: "codex-gpt-5"
-    recent_action: "Created PENDING cleanup phase scaffold"
-    next_safe_action: "Execute discovery before changing any target documentation"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Executed cleanup: fixed 13 stale source anchors in 9 scenario files"
+    next_safe_action: "Phase complete. Successor phase is ../006-commands"
     blockers: []
     key_files:
       - "spec.md"
@@ -23,11 +23,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-005-005-manual-testing-playbooks"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
-      - "This phase defines cleanup scope only."
-      - "All cleanup candidates remain PENDING."
+      - "Cleanup executed against the system-spec-kit manual_testing_playbook package."
+      - "Self-check counts verified accurate (410/0/82/3/344); 13 stale anchors fixed."
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
@@ -42,8 +42,9 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | PENDING |
+| **Status** | COMPLETE |
 | **Created** | 2026-06-19 |
+| **Completed** | 2026-06-19 |
 | **Parent Spec** | ../spec.md |
 | **Parent Packet** | `system-spec-kit/028-memory-search-intelligence/005-release-cleanup` |
 | **Phase** | 005 of 009 |
@@ -86,9 +87,9 @@ Scenarios match current behavior, source-file anchors are valid, file-count self
 
 | Candidate Surface | Status | Note |
 |-------------------|--------|------|
-| skill-local manual testing playbook roots | PENDING | Defined for cleanup execution only |
-| numbered scenario files under playbook folders | PENDING | Defined for cleanup execution only |
-| repo-level manual testing playbooks when present | PENDING | Defined for cleanup execution only |
+| skill-local manual testing playbook roots | DONE | Reviewed `system-spec-kit/manual_testing_playbook` (the packet-028 playbook). Self-check counts verified accurate: 410 scenario files, 0 broken index links, 82 orphans, 3 README exclusions, 344 feature-catalog files |
+| numbered scenario files under playbook folders | DONE | 410 scenario files scanned for source-anchor validity. 13 genuine stale anchors fixed across 9 files. Remaining unresolved hits classified as intentional ledger rows, placeholders or non-actionable shorthand |
+| repo-level manual testing playbooks when present | DONE | No repo-level playbook is part of the packet-028 surface. Other skills own separate playbook packages and stay out of scope |
 
 ### Files to Change
 

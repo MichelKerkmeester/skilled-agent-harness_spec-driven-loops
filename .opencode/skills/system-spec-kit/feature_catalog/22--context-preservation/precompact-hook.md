@@ -42,7 +42,6 @@ The PreCompact hook runs as an external Node.js process triggered by Claude Code
 | File | Type | Role |
 |---|---|---|
 | `mcp_server/tests/hook-precompact.vitest.ts` | Automated test | Context caching, budget enforcement, transcript extraction |
-| `mcp_server/tests/hook-shared.vitest.ts` | Automated test | Shared utility functions |
 
 ---
 

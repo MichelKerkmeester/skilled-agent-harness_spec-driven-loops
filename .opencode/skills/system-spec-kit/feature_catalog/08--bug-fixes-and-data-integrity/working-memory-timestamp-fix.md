@@ -40,7 +40,7 @@ The `cleanupOldSessions()` method in the working memory manager compared `last_f
 | File | Type | Role |
 |---|---|---|
 | `mcp_server/tests/working-memory.vitest.ts` | Automated test | Working-memory module coverage (including `cleanupOldSessions` export and `working_memory` table usage) |
-| `mcp_server/tests/session-manager-stress.vitest.ts` | Automated test | Direct cleanup regression coverage for expired vs active sessions with SQLite `CURRENT_TIMESTAMP` format |
+| `mcp_server/stress_test/session/session-manager-stress.vitest.ts` | Automated test | Direct cleanup regression coverage for expired vs active sessions with SQLite `CURRENT_TIMESTAMP` format |
 
 ---
 

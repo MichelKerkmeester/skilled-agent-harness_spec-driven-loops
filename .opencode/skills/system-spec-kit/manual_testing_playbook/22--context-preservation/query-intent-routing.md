@@ -142,7 +142,7 @@ IntentTelemetry envelopes from all three runtimes side-by-side
 
 ### Failure Triage
 
-Inspect `mcp_server/handlers/memory/context.ts` IntentTelemetry serializer and the query-intent-classifier; confirm packet 007 dist marker present across all runtimes
+Inspect `mcp_server/handlers/memory-context.ts` IntentTelemetry serializer and the query-intent-classifier; confirm packet 007 dist marker present across all runtimes
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)

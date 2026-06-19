@@ -62,7 +62,7 @@ Operators run the exact prompt and command sequence for `119-B` and confirm the 
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page and scenario summary |
-| `../../../../specs/skilled-agent-orchestration/119-comment-ref-hygiene/002-active-enforcement-layer/spec.md` | REQ-004 defines PostToolUse hook acceptance criteria |
+| `../../../../specs/skilled-agent-orchestration/z_archive/119-comment-ref-hygiene/002-active-enforcement-layer/spec.md` | REQ-004 defines PostToolUse hook acceptance criteria |
 
 ### Implementation And Test Anchors
 
@@ -70,7 +70,7 @@ Operators run the exact prompt and command sequence for `119-B` and confirm the 
 |---|---|
 | `.opencode/skills/sk-code/scripts/hooks/claude-posttooluse.sh` | Primary implementation anchor — the PostToolUse hook script |
 | `.claude/settings.json` | Hook wiring config — PostToolUse `Write\|Edit` entry |
-| `.opencode/specs/skilled-agent-orchestration/119-comment-ref-hygiene/002-active-enforcement-layer/checklist.md` | CHK-030/031/032/033 — regression checklist for this scenario |
+| `.opencode/specs/skilled-agent-orchestration/z_archive/119-comment-ref-hygiene/002-active-enforcement-layer/checklist.md` | CHK-030/031/032/033 — regression checklist for this scenario |
 
 ---
 

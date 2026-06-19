@@ -61,4 +61,4 @@ verify sandbox file path and spec scope -> rerun with `force:true` -> inspect me
 - Group: Mutation
 - Playbook ID: M-008
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `02--mutation/008-feature-09-direct-manual-scenario-per-record-history-log.md`
+- Feature file path: `02--mutation/per-memory-history-log.md`

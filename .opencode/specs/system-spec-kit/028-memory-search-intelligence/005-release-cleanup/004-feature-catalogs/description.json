@@ -1,18 +1,14 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/004-feature-catalogs",
-  "description": "Defines the pending release-cleanup sweep for feature catalog documentation.",
+  "description": "Feature Specification: Feature Catalog Cleanup",
   "keywords": [
-    "defines",
-    "pending",
-    "release",
-    "cleanup",
-    "sweep",
     "feature",
+    "specification",
     "catalog",
-    "documentation"
+    "cleanup"
   ],
-  "lastUpdated": "2026-06-19T00:00:00Z",
+  "lastUpdated": "2026-06-19T11:32:15.970Z",
   "specId": "004",
   "folderSlug": "feature-catalogs",
   "parentChain": [
@@ -23,4 +19,3 @@
   "memorySequence": 0,
   "memoryNameHistory": []
 }
-

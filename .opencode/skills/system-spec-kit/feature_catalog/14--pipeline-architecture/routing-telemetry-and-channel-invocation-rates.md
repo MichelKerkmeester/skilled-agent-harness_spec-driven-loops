@@ -42,7 +42,7 @@ The router uses an entity-density cache and an intent classifier to make the pre
 |------|-------|------|
 | `mcp_server/lib/search/routing-telemetry.ts` | Library | Rolling window, channel attribution, rate computation |
 | `mcp_server/lib/search/query-router.ts` | Library | Routing decisions, graph-channel preservation gating |
-| `mcp_server/handlers/memory-health.ts` | Handler | Surfaces `data.routing` envelope on health responses |
+| `mcp_server/handlers/memory-crud-health.ts` | Handler | Surfaces `data.routing` envelope on health responses |
 
 ### Validation And Tests
 

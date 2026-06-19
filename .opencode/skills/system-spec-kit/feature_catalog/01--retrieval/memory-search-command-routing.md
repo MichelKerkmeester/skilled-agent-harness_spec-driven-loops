@@ -40,13 +40,11 @@ The retrieval and analysis tools are owned by `mcp_server` handlers; the command
 |------|-------|------|
 | `.opencode/commands/memory/search.md` | Command | First-token routing logic, intent detection keywords, analysis-subcommand table |
 | `mcp_server/handlers/memory-search.ts` | Handler | Retrieval implementation invoked for query mode |
-| `mcp_server/handlers/memory-causal.ts` | Handler | Causal analysis tools invoked from the analysis subcommands |
+| `mcp_server/handlers/causal-graph.ts` | Handler | Causal analysis tools invoked from the analysis subcommands |
 
 ### Validation And Tests
 
-| File | Type | Role |
-|---|---|---|
-| `mcp_server/tests/memory/memory-search-command-routing.vitest.ts` | Automated test | First-token routing, intent override, and subcommand dispatch coverage |
+First-token routing and the analysis-subcommand table are declared in `.opencode/commands/memory/search.md` frontmatter and exercised through the search handler path. There is no dedicated routing unit test in the current tree.
 
 ---
 

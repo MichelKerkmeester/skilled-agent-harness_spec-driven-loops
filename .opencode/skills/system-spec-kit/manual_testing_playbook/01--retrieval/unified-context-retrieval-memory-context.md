@@ -84,7 +84,7 @@ memory_context responses for all three budgets with envelope fields highlighted
 
 ### Failure Triage
 
-Inspect `mcp_server/handlers/memory/context.ts` token-budget enforcement path and the envelope serializer; confirm packet 003 dist marker present
+Inspect `mcp_server/handlers/memory-context.ts` token-budget enforcement path and the envelope serializer; confirm packet 003 dist marker present
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)

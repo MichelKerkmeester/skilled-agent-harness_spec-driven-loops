@@ -34,7 +34,7 @@ Preconditions:
 
 ### Step 1: Freeze Baseline Corpus
 
-Use a fixed corpus before dispatch. For search/RAG domains, `.opencode/skills/system-spec-kit/mcp_server/tests/search-quality/corpus.ts` is the canonical example: each fixture has an ID, query, expected relevant IDs, expected channels, citation expectations, refusal expectations, and notes.
+Use a fixed corpus before dispatch. For search/RAG domains, `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/corpus.ts` is the canonical example: each fixture has an ID, query, expected relevant IDs, expected channels, citation expectations, refusal expectations, and notes.
 
 For non-search domains, freeze representative scenarios as JSON or markdown fixtures. Each scenario should include a stable ID, the user prompt or stimulus, expected outcome, evidence path, and any domain-specific constraints.
 

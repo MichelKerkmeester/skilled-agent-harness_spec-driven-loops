@@ -78,8 +78,7 @@ When a session is interrupted by a crash, context compaction, timeout, or an ord
 | File | Type | Role |
 |---|---|---|
 | `mcp_server/tests/memory-context.vitest.ts` | Automated test | Resume-mode token budget, anchor selection, and auto-resume routing |
-| `mcp_server/tests/continue-session.vitest.ts` | Automated test | Session recovery generation helpers and crash-recovery data shape |
-| `mcp_server/tests/crash-recovery.vitest.ts` | Automated test | Supplemental recovery prompt generation and recovery write path |
+| `mcp_server/tests/continue-session.vitest.ts` | Automated test | Session recovery generation helpers, crash-recovery data shape, and recovery write path |
 | `mcp_server/tests/recovery-hints.vitest.ts` | Automated test | User-facing recovery hint routing for expired sessions |
 
 ---

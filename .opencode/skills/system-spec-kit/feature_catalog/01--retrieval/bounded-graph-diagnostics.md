@@ -49,7 +49,7 @@ Repeated identical queries return identical ordering because the contribution ma
 | File | Type | Role |
 |---|---|---|
 | `mcp_server/tests/search-results-format.vitest.ts` | Automated test | Trace envelope shape, ordering stability, cap behavior |
-| `mcp_server/tests/memory/hybrid-search.vitest.ts` | Automated test | Bonus math, normalization, and cap thresholds |
+| `mcp_server/tests/hybrid-search.vitest.ts` | Automated test | Bonus math, normalization, and cap thresholds |
 
 ---
 

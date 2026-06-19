@@ -109,7 +109,7 @@ rm -rf "$OUT"
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
 - Runner docs: `.opencode/skills/system-spec-kit/mcp_server/matrix_runners/README.md`
-- Matrix definition: `.opencode/skills/system-spec-kit/mcp_server/matrix_runners/matrix-definition.json`
+- Matrix definition: `.opencode/skills/system-spec-kit/mcp_server/matrix_runners/matrix-manifest.json`
 - Adapter common: `.opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-common.ts`
 
 ---

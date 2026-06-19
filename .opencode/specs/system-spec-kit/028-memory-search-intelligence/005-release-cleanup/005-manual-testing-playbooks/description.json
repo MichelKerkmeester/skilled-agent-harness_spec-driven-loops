@@ -1,19 +1,16 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/005-manual-testing-playbooks",
-  "description": "Defines the pending release-cleanup sweep for manual testing playbook documentation.",
+  "description": "Feature Specification: Manual Testing Playbook Cleanup",
   "keywords": [
-    "defines",
-    "pending",
-    "release",
-    "cleanup",
-    "sweep",
+    "feature",
+    "specification",
     "manual",
     "testing",
     "playbook",
-    "documentation"
+    "cleanup"
   ],
-  "lastUpdated": "2026-06-19T00:00:00Z",
+  "lastUpdated": "2026-06-19T13:38:59.806Z",
   "specId": "005",
   "folderSlug": "manual-testing-playbooks",
   "parentChain": [
@@ -24,4 +21,3 @@
   "memorySequence": 0,
   "memoryNameHistory": []
 }
-

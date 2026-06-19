@@ -47,8 +47,8 @@ Without `includeTrace`, the resolver still computes internal state for routing d
 
 | File | Type | Role |
 |---|---|---|
-| `mcp_server/tests/memory/session-transition.vitest.ts` | Automated test | Trace-only gating, ordering stability, and confidence clamping |
-| `mcp_server/tests/memory/memory-context.vitest.ts` | Automated test | Response shape with and without `includeTrace` |
+| `mcp_server/tests/memory-context-session-state.vitest.ts` | Automated test | Trace-only gating, ordering stability, and confidence clamping |
+| `mcp_server/tests/memory-context.vitest.ts` | Automated test | Response shape with and without `includeTrace` |
 
 ---
 

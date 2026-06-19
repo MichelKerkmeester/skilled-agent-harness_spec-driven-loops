@@ -40,7 +40,7 @@ The pattern emerged from three live system-spec-kit cycles.
 
 The core input is a frozen corpus of representative scenarios. A cycle may use a matrix such as 30 cells from 4 dimensions across roughly 7-8 packets, or a smaller deterministic harness corpus when the domain is telemetry-heavy.
 
-For search/RAG cycles, `.opencode/skills/system-spec-kit/mcp_server/tests/search-quality/corpus.ts` is the canonical fixture example: it declares fixed case IDs, queries, expected relevant IDs, expected channels, citation expectations, refusal expectations, and notes. Lines 41-90 define baseline cases; lines 93-180 define workstream cases.
+For search/RAG cycles, `.opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/corpus.ts` is the canonical fixture example: it declares fixed case IDs, queries, expected relevant IDs, expected channels, citation expectations, refusal expectations and notes. The file defines baseline cases first, followed by workstream cases.
 
 ### Rubric
 
