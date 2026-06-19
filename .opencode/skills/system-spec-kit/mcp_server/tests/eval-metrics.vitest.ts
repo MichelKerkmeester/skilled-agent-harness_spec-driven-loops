@@ -19,6 +19,10 @@ import {
   computePrecision,
   computeF1,
   computeMAP,
+  buildGroundTruthLabelViews,
+  computeGateVerdictMetrics,
+  computeCalibrationMetrics,
+  computeColdStartCorpusMetrics,
 } from '../lib/eval/eval-metrics';
 import type { EvalResult, GroundTruthEntry } from '../lib/eval/eval-metrics';
 
@@ -233,6 +237,105 @@ describe('T006a: Inversion Rate', () => {
     const results = [makeResult(1, 1), makeResult(2, 2), makeResult(3, 3)];
     const gt = [makeGT(1, 2), makeGT(2, 2), makeGT(3, 2)];
     expect(computeInversionRate(results, gt)).toBe(0);
+  });
+});
+
+/* ───────────────────────────────────────────────────────────────
+   CORPUS DIAGNOSTIC LANES
+──────────────────────────────────────────────────────────────── */
+
+describe('corpus diagnostic lanes', () => {
+  it('derives citability, binary relevance, and tier metadata labels', () => {
+    const views = buildGroundTruthLabelViews({
+      queries: [
+        { id: 1, category: 'factual' },
+        { id: 2, category: 'hard_negative' },
+      ],
+      relevances: [
+        { queryId: 1, memoryId: 101, relevance: 2 },
+        { queryId: 1, memoryId: 102, relevance: 1 },
+        { queryId: 2, memoryId: 201, relevance: 3 },
+      ],
+      metadataByMemoryId: new Map([
+        [101, { tier: 'critical', createdAt: '2026-06-19T08:00:00.000Z' }],
+        [201, { tier: 'normal', createdAt: '2026-06-18T08:00:00.000Z' }],
+      ]),
+    });
+
+    expect(views.get(1)?.expectedCitable).toBe(true);
+    expect(views.get(1)?.groundTruth[0]).toMatchObject({
+      memoryId: 101,
+      relevance: 2,
+      tier: 'critical',
+    });
+    expect(views.get(1)?.groundTruth[0].createdAt?.toISOString()).toBe('2026-06-19T08:00:00.000Z');
+    expect(views.get(2)?.expectedCitable).toBe(false);
+    expect(views.get(2)?.isHardNegative).toBe(true);
+  });
+
+  it('computes gate-verdict confusion metrics', () => {
+    const metrics = computeGateVerdictMetrics([
+      { predicted: 'good', expectedCitable: true },
+      { predicted: 'good', expectedCitable: false },
+      { predicted: 'gap', expectedCitable: false },
+      { predicted: 'weak', expectedCitable: true },
+    ]);
+
+    expect(metrics.truePositive).toBe(1);
+    expect(metrics.falsePositive).toBe(1);
+    expect(metrics.trueNegative).toBe(1);
+    expect(metrics.falseNegative).toBe(1);
+    expect(metrics.precision).toBeCloseTo(0.5, 5);
+    expect(metrics.recall).toBeCloseTo(0.5, 5);
+    expect(metrics.f1).toBeCloseTo(0.5, 5);
+  });
+
+  it('computes ECE, Brier score, and reliability bins', () => {
+    const metrics = computeCalibrationMetrics([
+      { rawValue: 0.2, relevant: false },
+      { rawValue: 0.4, relevant: true },
+      { rawValue: 0.8, relevant: true },
+      { rawValue: 0.6, relevant: false },
+    ], 2);
+
+    expect(metrics.sampleCount).toBe(4);
+    expect(metrics.brier).toBeCloseTo(0.2, 5);
+    expect(metrics.ece).toBeCloseTo(0.2, 5);
+    expect(metrics.bins).toHaveLength(2);
+    expect(metrics.bins[0].count).toBe(2);
+    expect(metrics.bins[0].accuracy).toBeCloseTo(0.5, 5);
+    expect(metrics.bins[0].confidence).toBeCloseTo(0.3, 5);
+    expect(metrics.bins[1].count).toBe(2);
+    expect(metrics.bins[1].accuracy).toBeCloseTo(0.5, 5);
+    expect(metrics.bins[1].confidence).toBeCloseTo(0.7, 5);
+  });
+
+  it('computes cold appearance rate and cold precision across queries', () => {
+    const evaluatedAt = Date.parse('2026-06-19T12:00:00.000Z');
+    const recent = new Date('2026-06-19T10:00:00.000Z');
+    const old = new Date('2026-06-01T10:00:00.000Z');
+
+    const metrics = computeColdStartCorpusMetrics([
+      {
+        results: [makeResult(1, 1), makeResult(2, 2), makeResult(9, 3)],
+        groundTruth: [
+          makeGT(1, 2, 'normal', recent),
+          makeGT(2, 0, 'normal', recent),
+          makeGT(9, 2, 'normal', old),
+        ],
+      },
+      {
+        results: [makeResult(4, 1)],
+        groundTruth: [makeGT(3, 3, 'important', recent)],
+      },
+    ], { evaluatedAt, cutoffHours: 48, k: 10 });
+
+    expect(metrics.queriesWithColdRelevant).toBe(2);
+    expect(metrics.queriesWithColdAppearance).toBe(1);
+    expect(metrics.coldAppearanceRate).toBeCloseTo(0.5, 5);
+    expect(metrics.coldAppearances).toBe(2);
+    expect(metrics.coldRelevantHits).toBe(1);
+    expect(metrics.coldPrecision).toBeCloseTo(0.5, 5);
   });
 });
 

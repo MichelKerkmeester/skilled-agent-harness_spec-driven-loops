@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Eval-Harness Extension — Three Corpus Metric Lanes + Per-Class Promotion Gate"
-description: "Plan-only placeholder. The three corpus metric lanes (C9-1/C9-2/C9-3) and the per-class promotion gate (A8-1/A8-2/A8-5/A8-4) are NOT YET EXECUTED; this records the intended delivery and the gate-zero precondition the implementation must clear first."
+description: "Implementation summary for the eval-harness extension. C9-1/C9-2/C9-3 are implemented as optional diagnostic snapshots, label views, and three corpus metric lanes with deterministic tests. A8-1/A8-2/A8-5/A8-4 remain pending because they require generalized ledger/schema work and live promotion-gate validation."
 trigger_phrases:
   - "eval harness extension implementation summary"
   - "three corpus metric lanes status"
@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/019-eval-harness-extension"
     last_updated_at: "2026-06-19T08:00:00+02:00"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Seed plan-only implementation-summary (work not yet executed)"
-    next_safe_action: "Confirm gate-zero, then wire C9-1 single-pass diagnostic emit"
+    recent_action: "Implemented C9 eval-harness metric lanes and deferred A8 gate work"
+    next_safe_action: "Run strict packet validation, then scope A8 schema/live-gate work separately"
     blockers: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -29,7 +29,7 @@ _memory:
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary | v2.2 -->
 
-> **STATUS: NOT STARTED (plan-only).** This sub-phase was authored during a re-plan; none of the seven candidates have been executed. This summary records the intended delivery and the gate-zero precondition the implementation must clear first. Do not read any section below as a completion claim.
+> **STATUS: PARTIAL IMPLEMENTATION.** C9-1/C9-2/C9-3 are implemented and verified with deterministic tests. A8-1/A8-2/A8-5/A8-4 are intentionally left pending because the remaining acceptance criteria require schema/live promotion-gate work that was outside this run's constraints.
 
 ---
 
@@ -40,9 +40,9 @@ _memory:
 |-------|-------|
 | **Spec Folder** | `028-memory-search-intelligence/001-speckit-memory/019-eval-harness-extension` |
 | **Level** | 3 |
-| **Status** | Not Started (plan-only) |
-| **Candidate** | `eval-harness-spine` (C9-1/C9-2/C9-3 + A8-1/A8-2/A8-5/A8-4) — all PENDING |
-| **Completion** | 0% |
+| **Status** | C9 implemented; A8 pending |
+| **Candidate** | `eval-harness-spine` (C9-1/C9-2/C9-3 DONE; A8-1/A8-2/A8-5/A8-4 PENDING) |
+| **Completion** | 3/7 candidates implemented |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -50,14 +50,16 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-**Nothing yet — planned scope (seven PENDING candidates):**
-- **C9-1** single-pass diagnostic emit — capture the gate verdict + per-result resolved confidence + tier/created_at in `runAblation` (`ablation-framework.ts:554`), reusing `captureScoreSnapshot`/`resolveAbsoluteRelevance`/`assessRequestQuality`.
-- **C9-2** three-way label tagging — derive citability / binary / tier label views from graded relevance in one `memory_index` DB-join; citability from the `hard_negative` category.
-- **C9-3** three corpus metric lanes — gate-verdict confusion + P/R/F1; ECE + Brier + reliability bins; cold-appearance-rate + cold-precision; attached at `buildAggregatedMetrics` (`ablation-framework.ts:486`).
-- **A8-1** class-parameterized promotion gate — keep the spine; swap a per-class panel for the hardcoded `meanNdcgDelta`; generalize the ledger (class + metric-JSON).
-- **A8-2** CLASS-G (ECE/Brier/P/R/FP) panel — the missing precondition keeping isotonic calibration frozen at opt-in.
-- **A8-5** golden-set label-source swap — replace `adaptive_signal_events` (empty-map silent cycle-skip) with the 110-query golden set.
-- **A8-4** promote-on-evidence flag lifecycle — `isOptInEnabled`→`isFeatureEnabled`→rollback (027 doctrine).
+**Built:**
+- **C9-1** single-pass diagnostic emit — `runAblation` now accepts array returns or `{ results, diagnosticRows }`, emits optional baseline `diagnosticSnapshots`, and computes request-quality verdicts from `computeResultConfidence` + `assessRequestQuality` while preserving array-compatible direct callers.
+- **C9-2** three-way label tagging — added pure label-view derivation plus a single `memory_index` metadata lookup for `importance_tier` and `created_at`; citability derives non-citable expectation from the `hard_negative` query category.
+- **C9-3** three corpus metric lanes — added gate-verdict confusion P/R/F1, ECE + Brier + reliability bins, and cold-appearance-rate + cold-precision; `runAblation` reports them under optional `corpusMetrics`.
+
+**Left pending:**
+- **A8-1** class-parameterized promotion gate — requires generalized ledger schema (`candidate_id`, `candidate_class`, metric JSON) plus live gate validation.
+- **A8-2** CLASS-G panel inside the promotion gate — C9 exposes the ECE/Brier metrics, but gate integration depends on A8-1.
+- **A8-5** golden-set label-source swap — changes live scheduled promotion-gate behavior and needs an operational validation run.
+- **A8-4** promote-on-evidence flag lifecycle — depends on class-specific A8 evidence records.
 
 **Wave-0 cross-check (done-evidence):** `030-memory-search-intelligence-impl/spec.md` §14 + `git log --oneline 1ecc531431..ab5459fb6d` — zero eval-harness-metric / promotion-gate-generalization commits. 030 §14 row 2 ships an *embedder-degrade* candidate it labels "C9" (recall → lexical + `embedder_available:false`), a different C9 namespace. All seven candidates here are PENDING.
 <!-- /ANCHOR:what-built -->
@@ -67,7 +69,7 @@ _memory:
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered. Intended path (see `plan.md` §4): confirm gate-zero (sibling `001-corpus-reindex-gate-zero` reindex + `assertEmbeddingCoverage`) → re-confirm the live promotion-gate entrypoint symbol → capture the ranking-ablation baseline → C9-1 emit → C9-2 tag → C9-3 metrics → A8-1/A8-2/A8-5/A8-4 gate generalization → strict validation.
+C9 was delivered as additive, default-off diagnostics in the existing eval harness. The direct `runAblation` path still accepts `EvalResult[]`; the live eval handler now passes diagnostic rows so the MCP tool can emit the new lanes when invoked later. No live corpus benchmark, MCP reindex/scan, or DB migration was run.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -75,10 +77,10 @@ Not delivered. Intended path (see `plan.md` §4): confirm gate-zero (sibling `00
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-- **One additive extension on a forced linear order** — the three lanes share one root blind-spot and one spine; reuse the ~80%-built runner, do not greenfield (ADR-001).
-- **Corpus metrics at the aggregation layer; C9-2 is a data backfill** — confusion/reliability are corpus-level; citability is category-derived (no grade-0 rows) (ADR-002).
-- **One promotion gate + per-class panel, not a second gate** — keep the spine, swap the metric; golden-set labels; flag-lifecycle promote-on-evidence (ADR-003).
-- **A8-3 recall-union panel out of scope** — its "structural blindness" headline was refuted; survives only as a low-priority qrels-coverage instrument (ADR-004).
+- **One additive extension on a forced linear order** — the three lanes share one root blind-spot and one spine; reuse the ~80%-built runner, do not greenfield.
+- **Corpus metrics at the aggregation layer; C9-2 is a data backfill** — confusion/reliability are corpus-level; citability is category-derived (no grade-0 rows).
+- **A8 deferred rather than partially faked** — the gate ledger requirement needs schema design/migration and live gate validation, so it remains pending under the user's constraints.
+- **A8-3 recall-union panel out of scope** — its "structural blindness" headline was refuted; survives only as a low-priority qrels-coverage instrument.
 - **Gate-zero is the hard precondition** — no recall/calibration/cold number is trusted until the sibling reindex + coverage guard pass.
 <!-- /ANCHOR:decisions -->
 
@@ -87,7 +89,15 @@ Not delivered. Intended path (see `plan.md` §4): confirm gate-zero (sibling `00
 <!-- ANCHOR:verification -->
 ## Verification
 
-Not yet run. Required at completion (see `checklist.md`): Memory MCP `npm run typecheck` + `npm run build` exit 0; ranking-ablation byte-identical when the new lanes are off; the three corpus metrics fixture-tested (confusion + P/R/F1, ECE/Brier vs a reliability diagram, cold-rate/precision); the gate scoring ≥2 classes off one spine with no silent cycle-skip after the label-source swap; full `mcp_server/` vitest with no regression vs the captured baseline; `validate.sh --strict` green on this phase.
+Baseline before edits:
+- `npm run typecheck` — pass.
+- `npx vitest run tests/eval-metrics.vitest.ts tests/ablation-framework.vitest.ts tests/shadow-scoring-holdout.vitest.ts tests/shadow-evaluation-runtime.vitest.ts tests/search-flags.vitest.ts` — 5 files passed, 246 passed, 13 skipped.
+
+Final code verification:
+- `npm run typecheck` — pass.
+- Same focused Vitest command — 5 files passed, 252 passed, 13 skipped.
+
+Not run by instruction: live `eval_run_ablation`, MCP reindex/scan, live DB benchmark, schema migration, git commit.
 <!-- /ANCHOR:verification -->
 
 ---
@@ -95,8 +105,8 @@ Not yet run. Required at completion (see `checklist.md`): Memory MCP `npm run ty
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-- **No measured benefit number anywhere in packet 028** — every leverage estimate is structural inference; this harness is precisely what makes the first benchmarked delta measurable, but it does not itself produce one.
+- **No measured benefit number reported** — every leverage estimate remains structural inference; this harness enables the first benchmarked delta but this run intentionally did not execute one.
 - **Gate-zero dependency** — every recall/calibration/cold number is untrustworthy until the sibling corpus reindex (`001-corpus-reindex-gate-zero`) runs and `assertEmbeddingCoverage` passes.
-- **Promotion-gate symbol drift** — the research-cited gate entrypoint (`evaluatePromotionGate`/`:547`) did not grep at the cited line; the surrounding constants (`MIN_NDCG_IMPROVEMENT:43`, `meanNdcgDelta:68`, `is_improvement:93`, `selectHoldoutQueries:243`) are confirmed in `lib/feedback/shadow-scoring.ts`. Re-confirm the entrypoint by symbol before editing.
-- **ECE formulation open** — bin count / Brier formulation pending (tentative: 10 equal-width bins; standard Brier).
+- **Promotion-gate work pending** — the entrypoint and surrounding constants were re-confirmed, but the generalized A8 ledger/gate was not edited because it requires schema/live validation.
+- **ECE formulation pinned for code** — 10 equal-width bins by default; standard binary Brier score.
 <!-- /ANCHOR:limitations -->

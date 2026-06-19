@@ -45,6 +45,84 @@ export interface GroundTruthEntry {
   createdAt?: Date;
 }
 
+export type GateVerdictLabel = 'good' | 'weak' | 'gap';
+
+export interface GroundTruthMemoryMetadata {
+  tier?: string;
+  createdAt?: Date | string | null;
+}
+
+export interface GroundTruthQueryInfo {
+  id: number;
+  category?: string;
+}
+
+export interface GroundTruthRelevanceInput {
+  queryId: number;
+  memoryId: number;
+  relevance: number;
+}
+
+export interface GroundTruthLabelView {
+  queryId: number;
+  expectedCitable: boolean;
+  maxRelevance: number;
+  isHardNegative: boolean;
+  groundTruth: GroundTruthEntry[];
+}
+
+export interface GateVerdictSample {
+  predicted: GateVerdictLabel;
+  expectedCitable: boolean;
+}
+
+export interface GateVerdictMetrics {
+  truePositive: number;
+  falsePositive: number;
+  trueNegative: number;
+  falseNegative: number;
+  precision: number;
+  recall: number;
+  f1: number;
+}
+
+export interface CalibrationSample {
+  rawValue: number;
+  relevant: boolean;
+}
+
+export interface ReliabilityBin {
+  binIndex: number;
+  lowerBound: number;
+  upperBound: number;
+  count: number;
+  accuracy: number;
+  confidence: number;
+  gap: number;
+}
+
+export interface CalibrationMetrics {
+  sampleCount: number;
+  ece: number;
+  brier: number;
+  bins: ReliabilityBin[];
+}
+
+export interface ColdStartCorpusSample {
+  results: EvalResult[];
+  groundTruth: GroundTruthEntry[];
+}
+
+export interface ColdStartCorpusMetrics {
+  queryCount: number;
+  queriesWithColdRelevant: number;
+  queriesWithColdAppearance: number;
+  coldAppearanceRate: number;
+  coldPrecision: number;
+  coldAppearances: number;
+  coldRelevantHits: number;
+}
+
 /** All computed metrics returned by computeAllMetrics(). */
 export interface AllMetrics {
   mrr: number;
@@ -96,6 +174,26 @@ function topK(results: EvalResult[], k: number): EvalResult[] {
   return [...results]
     .sort((a, b) => a.rank - b.rank)
     .slice(0, safeK);
+}
+
+function safeRatio(numerator: number, denominator: number): number {
+  return denominator === 0 ? 0 : numerator / denominator;
+}
+
+function clamp01(value: number): number {
+  if (!Number.isFinite(value)) return 0;
+  return Math.max(0, Math.min(1, value));
+}
+
+function normalizeCreatedAt(value: Date | string | null | undefined): Date | undefined {
+  if (value instanceof Date) {
+    return Number.isNaN(value.getTime()) ? undefined : value;
+  }
+  if (typeof value !== 'string' || value.trim().length === 0) {
+    return undefined;
+  }
+  const parsed = new Date(value);
+  return Number.isNaN(parsed.getTime()) ? undefined : parsed;
 }
 
 /* ───────────────────────────────────────────────────────────────
@@ -509,6 +607,204 @@ export function computeColdStartDetectionRate(
   }
 
   return 0;
+}
+
+/**
+ * Derive the query-level label views consumed by verdict, calibration, and cold-lane metrics.
+ */
+export function buildGroundTruthLabelViews(params: {
+  queries: GroundTruthQueryInfo[];
+  relevances: GroundTruthRelevanceInput[];
+  metadataByMemoryId?: Map<number, GroundTruthMemoryMetadata>;
+  relevanceThreshold?: number;
+}): Map<number, GroundTruthLabelView> {
+  const threshold = params.relevanceThreshold ?? 2;
+  const queryById = new Map(params.queries.map((query) => [query.id, query]));
+  const grouped = new Map<number, GroundTruthRelevanceInput[]>();
+
+  for (const relevance of params.relevances) {
+    const entries = grouped.get(relevance.queryId) ?? [];
+    entries.push(relevance);
+    grouped.set(relevance.queryId, entries);
+  }
+
+  const views = new Map<number, GroundTruthLabelView>();
+  for (const [queryId, entries] of grouped) {
+    const query = queryById.get(queryId);
+    const isHardNegative = query?.category === 'hard_negative';
+    const maxRelevance = entries.reduce((max, entry) => Math.max(max, entry.relevance), 0);
+    const groundTruth = entries.map((entry): GroundTruthEntry => {
+      const metadata = params.metadataByMemoryId?.get(entry.memoryId);
+      return {
+        queryId: entry.queryId,
+        memoryId: entry.memoryId,
+        relevance: entry.relevance,
+        ...(metadata?.tier ? { tier: metadata.tier } : {}),
+        ...(metadata?.createdAt ? { createdAt: normalizeCreatedAt(metadata.createdAt) } : {}),
+      };
+    });
+
+    views.set(queryId, {
+      queryId,
+      expectedCitable: !isHardNegative && maxRelevance >= threshold,
+      maxRelevance,
+      isHardNegative,
+      groundTruth,
+    });
+  }
+
+  return views;
+}
+
+/**
+ * Compute corpus-level citation verdict accuracy from request-quality labels.
+ */
+export function computeGateVerdictMetrics(samples: GateVerdictSample[]): GateVerdictMetrics {
+  let truePositive = 0;
+  let falsePositive = 0;
+  let trueNegative = 0;
+  let falseNegative = 0;
+
+  for (const sample of samples) {
+    const predictedCitable = sample.predicted === 'good';
+    if (predictedCitable && sample.expectedCitable) truePositive++;
+    else if (predictedCitable && !sample.expectedCitable) falsePositive++;
+    else if (!predictedCitable && !sample.expectedCitable) trueNegative++;
+    else falseNegative++;
+  }
+
+  const precision = safeRatio(truePositive, truePositive + falsePositive);
+  const recall = safeRatio(truePositive, truePositive + falseNegative);
+  const f1 = precision + recall === 0 ? 0 : 2 * precision * recall / (precision + recall);
+
+  return {
+    truePositive,
+    falsePositive,
+    trueNegative,
+    falseNegative,
+    precision,
+    recall,
+    f1,
+  };
+}
+
+/**
+ * Compute ECE, Brier score, and reliability bins over binary relevance labels.
+ */
+export function computeCalibrationMetrics(
+  samples: CalibrationSample[],
+  binCount: number = 10,
+): CalibrationMetrics {
+  const safeBinCount = Number.isFinite(binCount) && binCount > 0
+    ? Math.floor(binCount)
+    : 10;
+  const bins = Array.from({ length: safeBinCount }, (_, binIndex) => ({
+    binIndex,
+    lowerBound: binIndex / safeBinCount,
+    upperBound: (binIndex + 1) / safeBinCount,
+    samples: [] as CalibrationSample[],
+  }));
+
+  let brierSum = 0;
+  for (const sample of samples) {
+    const rawValue = clamp01(sample.rawValue);
+    const label = sample.relevant ? 1 : 0;
+    brierSum += (rawValue - label) ** 2;
+    const index = Math.min(safeBinCount - 1, Math.floor(rawValue * safeBinCount));
+    bins[index].samples.push({ rawValue, relevant: sample.relevant });
+  }
+
+  let ece = 0;
+  const reliabilityBins: ReliabilityBin[] = bins.map((bin) => {
+    const count = bin.samples.length;
+    const accuracy = safeRatio(bin.samples.filter((sample) => sample.relevant).length, count);
+    const confidence = safeRatio(
+      bin.samples.reduce((sum, sample) => sum + sample.rawValue, 0),
+      count,
+    );
+    const gap = Math.abs(accuracy - confidence);
+    ece += safeRatio(count, samples.length) * gap;
+    return {
+      binIndex: bin.binIndex,
+      lowerBound: bin.lowerBound,
+      upperBound: bin.upperBound,
+      count,
+      accuracy,
+      confidence,
+      gap,
+    };
+  });
+
+  return {
+    sampleCount: samples.length,
+    ece,
+    brier: safeRatio(brierSum, samples.length),
+    bins: reliabilityBins,
+  };
+}
+
+/**
+ * Aggregate cold-start surfacing across a corpus of query snapshots.
+ */
+export function computeColdStartCorpusMetrics(
+  samples: ColdStartCorpusSample[],
+  options: { cutoffHours?: number; k?: number; evaluatedAt?: number } = {},
+): ColdStartCorpusMetrics {
+  const cutoffHours = options.cutoffHours ?? 48;
+  const cutoffMs = cutoffHours * 60 * 60 * 1000;
+  const now = typeof options.evaluatedAt === 'number' && Number.isFinite(options.evaluatedAt)
+    ? options.evaluatedAt
+    : Date.now();
+  const k = options.k ?? 10;
+  let queriesWithColdRelevant = 0;
+  let queriesWithColdAppearance = 0;
+  let coldAppearances = 0;
+  let coldRelevantHits = 0;
+
+  for (const sample of samples) {
+    const coldById = new Map<number, GroundTruthEntry>();
+    for (const entry of sample.groundTruth) {
+      const createdAt = normalizeCreatedAt(entry.createdAt);
+      if (!createdAt) continue;
+      if (now - createdAt.getTime() <= cutoffMs) {
+        coldById.set(entry.memoryId, entry);
+      }
+    }
+
+    const coldRelevantIds = new Set(
+      [...coldById.values()]
+        .filter((entry) => entry.relevance > 0)
+        .map((entry) => entry.memoryId),
+    );
+    if (coldRelevantIds.size === 0) {
+      continue;
+    }
+
+    queriesWithColdRelevant++;
+    let queryHadColdRelevantHit = false;
+    for (const result of topK(sample.results, k)) {
+      const coldEntry = coldById.get(result.memoryId);
+      if (!coldEntry) continue;
+      coldAppearances++;
+      if (coldEntry.relevance > 0) {
+        coldRelevantHits++;
+        queryHadColdRelevantHit = true;
+      }
+    }
+    if (queryHadColdRelevantHit) {
+      queriesWithColdAppearance++;
+    }
+  }
+
+  return {
+    queryCount: samples.length,
+    queriesWithColdRelevant,
+    queriesWithColdAppearance,
+    coldAppearanceRate: safeRatio(queriesWithColdAppearance, queriesWithColdRelevant),
+    coldPrecision: safeRatio(coldRelevantHits, coldAppearances),
+    coldAppearances,
+    coldRelevantHits,
+  };
 }
 
 /**

@@ -291,13 +291,20 @@ async function handleEvalRunAblation(args: RunAblationArgs): Promise<MCPResponse
       };
 
       const results = await hybridSearchEnhanced(query, embedding, searchOptions);
-      return results.map((row, index) => ({
-        memoryId: Number(
-          (row as Record<string, unknown>).parentMemoryId ?? row.id
-        ),
-        score: row.score,
-        rank: index + 1,
-      }));
+      return {
+        results: results.map((row, index) => ({
+          memoryId: Number(
+            (row as Record<string, unknown>).parentMemoryId ?? row.id
+          ),
+          score: row.score,
+          rank: index + 1,
+        })),
+        diagnosticRows: results.map((row, index) => ({
+          ...row,
+          id: Number((row as Record<string, unknown>).parentMemoryId ?? row.id),
+          rank: index + 1,
+        })),
+      };
     };
 
     return runAblation(searchFn, {
@@ -307,6 +314,7 @@ async function handleEvalRunAblation(args: RunAblationArgs): Promise<MCPResponse
       alignmentDb: db,
       alignmentDbPath: dbPath,
       alignmentContext: 'eval_run_ablation',
+      includeDiagnosticSnapshots: true,
     });
   });
 

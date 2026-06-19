@@ -236,17 +236,36 @@ describe('Gate D regression ablation and drift', () => {
       useTrigger: !disabledChannels.has('trigger'),
     }));
     mocks.runAblation.mockImplementation(async (searchFn, config) => {
-      const results = await searchFn(
+      const searchOutput = await searchFn(
         'reader-ready canonical continuity query',
         new Set(['vector'])
       );
 
-      expect(results).toEqual([
+      expect(searchOutput.results).toEqual([
         { memoryId: 7001, score: 0.97, rank: 1 },
         { memoryId: 7002, score: 0.88, rank: 2 },
       ]);
+      expect(searchOutput.diagnosticRows).toEqual([
+        expect.objectContaining({
+          id: 7001,
+          parentMemoryId: 7001,
+          score: 0.97,
+          rank: 1,
+          documentType: 'spec_doc',
+          source: 'spec-doc',
+        }),
+        expect.objectContaining({
+          id: 7002,
+          parentMemoryId: 7002,
+          score: 0.88,
+          rank: 2,
+          documentType: 'continuity',
+          source: 'continuity',
+        }),
+      ]);
       expect(config.channels).toEqual(['vector']);
       expect(config.alignmentContext).toBe('eval_run_ablation');
+      expect(config.includeDiagnosticSnapshots).toBe(true);
 
       return {
         timestamp: '2026-04-11T12:00:00.000Z',

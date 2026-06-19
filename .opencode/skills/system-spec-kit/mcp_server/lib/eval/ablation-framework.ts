@@ -27,13 +27,39 @@ import {
   computePrecision,
   computeMAP,
   computeHitRate,
+  buildGroundTruthLabelViews,
+  computeCalibrationMetrics,
+  computeColdStartCorpusMetrics,
+  computeGateVerdictMetrics,
 } from './eval-metrics.js';
-import type { EvalResult, GroundTruthEntry } from './eval-metrics.js';
+import type {
+  CalibrationMetrics,
+  CalibrationSample,
+  ColdStartCorpusMetrics,
+  EvalResult,
+  GateVerdictLabel,
+  GateVerdictMetrics,
+  GroundTruthEntry,
+  GroundTruthLabelView,
+  GroundTruthMemoryMetadata,
+} from './eval-metrics.js';
 import {
   GROUND_TRUTH_QUERIES,
   GROUND_TRUTH_RELEVANCES,
 } from './ground-truth-data.js';
 import type { GroundTruthQuery } from './ground-truth-data.js';
+import {
+  assessRequestQuality,
+  computeResultConfidence,
+  type ScoredResult,
+} from '../search/confidence-scoring.js';
+import {
+  captureScoreSnapshot,
+  resolveAbsoluteRelevance,
+  type PipelineRow,
+  type ScoreSnapshot,
+  type Stage4ReadonlyRow,
+} from '../search/pipeline/types.js';
 import type Database from 'better-sqlite3';
 
 /* --- 1. FEATURE FLAG --- */
@@ -76,6 +102,10 @@ export interface AblationConfig {
   alignmentContext?: string;
   /** Minimum covered golden-set parent embeddings required before running. */
   minEmbeddingCoverage?: number;
+  /** Capture corpus-level verdict/calibration/cold diagnostics. Defaults to false. */
+  includeDiagnosticSnapshots?: boolean;
+  /** Reliability-bin count for calibration metrics. Defaults to 10. */
+  calibrationBinCount?: number;
 }
 
 interface QuerySelection {
@@ -133,7 +163,48 @@ export interface GroundTruthEmbeddingCoverageSummary {
 export type AblationSearchFn = (
   query: string,
   disabledChannels: Set<AblationChannel>,
-) => EvalResult[] | Promise<EvalResult[]>;
+) => AblationSearchOutput | Promise<AblationSearchOutput>;
+
+export interface AblationDiagnosticInputRow extends Record<string, unknown> {
+  id?: number | string;
+  memoryId?: number | string;
+  parentMemoryId?: number | string;
+  score?: number;
+  rank?: number;
+  similarity?: number;
+  rrfScore?: number;
+  intentAdjustedScore?: number;
+  importance_tier?: string;
+  importanceTier?: string;
+  created_at?: string;
+  createdAt?: string | Date;
+}
+
+export interface AblationSearchResponse {
+  results: EvalResult[];
+  diagnosticRows?: AblationDiagnosticInputRow[];
+  tokenUsage?: number;
+}
+
+export type AblationSearchOutput = EvalResult[] | AblationSearchResponse;
+
+export interface AblationDiagnosticResult {
+  memoryId: number;
+  rank: number;
+  rawValue: number;
+  confidenceValue: number;
+  confidenceLabel: string;
+  tier?: string;
+  createdAt?: string;
+  scoreSnapshot: ScoreSnapshot;
+}
+
+export interface AblationDiagnosticSnapshot {
+  queryId: number;
+  query: string;
+  requestQuality: GateVerdictLabel;
+  results: AblationDiagnosticResult[];
+}
 
 /** Result of ablating a single channel. */
 export interface AblationResult {
@@ -179,6 +250,12 @@ export interface AblationMetrics {
   'token_usage': AblationMetricEntry;
 }
 
+export interface AblationCorpusMetrics {
+  gateVerdict: GateVerdictMetrics;
+  calibration: CalibrationMetrics;
+  coldStart: ColdStartCorpusMetrics;
+}
+
 /** Failure captured for a single channel ablation run. */
 export interface AblationChannelFailure {
   /** Channel that failed during ablation. */
@@ -205,6 +282,10 @@ export interface AblationReport {
   channelFailures?: AblationChannelFailure[];
   /** Baseline Recall@K across all queries (all channels enabled). */
   overallBaselineRecall: number;
+  /** Optional per-query diagnostic snapshots captured from the baseline pass. */
+  diagnosticSnapshots?: AblationDiagnosticSnapshot[];
+  /** Optional corpus-level verdict, calibration, and cold-start metrics. */
+  corpusMetrics?: AblationCorpusMetrics;
   /** Total queries selected for the baseline computation. */
   queryCount?: number;
   /** Total queries actually evaluated (queries with ground truth). */
@@ -246,6 +327,12 @@ interface EmbeddingCoverageLookupRow {
   has_vector: 0 | 1;
 }
 
+interface GroundTruthMetadataLookupRow {
+  id: number;
+  importance_tier: string | null;
+  created_at: string | null;
+}
+
 const DEFAULT_MIN_EMBEDDING_COVERAGE = 1.0;
 
 function formatPreflightContextSuffix(options: { dbPath?: string; context?: string }): string {
@@ -269,6 +356,29 @@ function getUniqueGroundTruthMemoryIds(): number[] {
   return Array.from(
     new Set(GROUND_TRUTH_RELEVANCES.map((row) => row.memoryId)),
   ).sort((left, right) => left - right);
+}
+
+export function loadGroundTruthMemoryMetadata(
+  database: Database.Database,
+): Map<number, GroundTruthMemoryMetadata> {
+  const uniqueMemoryIds = getUniqueGroundTruthMemoryIds();
+  if (uniqueMemoryIds.length === 0) {
+    return new Map();
+  }
+
+  const placeholders = uniqueMemoryIds.map(() => '?').join(', ');
+  const rows = database.prepare(
+    `SELECT id, importance_tier, created_at FROM memory_index WHERE id IN (${placeholders})`,
+  ).all(...uniqueMemoryIds) as GroundTruthMetadataLookupRow[];
+
+  const metadataByMemoryId = new Map<number, GroundTruthMemoryMetadata>();
+  for (const row of rows) {
+    metadataByMemoryId.set(row.id, {
+      ...(row.importance_tier ? { tier: row.importance_tier } : {}),
+      ...(row.created_at ? { createdAt: row.created_at } : {}),
+    });
+  }
+  return metadataByMemoryId;
 }
 
 function normalizeEmbeddingCoverageThreshold(value: number | undefined): number {
@@ -588,7 +698,15 @@ function generateRunId(): string {
  * Build ground truth entries for a specific query from the static dataset.
  * Converts GroundTruthRelevance to GroundTruthEntry format expected by computeRecall.
  */
-function getGroundTruthForQuery(queryId: number): GroundTruthEntry[] {
+function getGroundTruthForQuery(
+  queryId: number,
+  labelViews?: Map<number, GroundTruthLabelView>,
+): GroundTruthEntry[] {
+  const labelView = labelViews?.get(queryId);
+  if (labelView) {
+    return labelView.groundTruth;
+  }
+
   return GROUND_TRUTH_RELEVANCES
     .filter(r => r.queryId === queryId)
     .map(r => ({
@@ -755,6 +873,145 @@ function buildAggregatedMetrics(
   };
 }
 
+function normalizeSearchOutput(output: AblationSearchOutput): AblationSearchResponse {
+  return Array.isArray(output) ? { results: output } : output;
+}
+
+function normalizeMemoryId(value: number | string | undefined): number | null {
+  if (typeof value === 'number' && Number.isSafeInteger(value)) return value;
+  if (typeof value === 'string' && /^\d+$/.test(value)) {
+    const parsed = Number.parseInt(value, 10);
+    return Number.isSafeInteger(parsed) ? parsed : null;
+  }
+  return null;
+}
+
+function normalizeCreatedAt(value: string | Date | undefined): string | undefined {
+  if (value instanceof Date && !Number.isNaN(value.getTime())) {
+    return value.toISOString();
+  }
+  if (typeof value !== 'string' || value.trim().length === 0) {
+    return undefined;
+  }
+  const parsed = new Date(value);
+  return Number.isNaN(parsed.getTime()) ? undefined : parsed.toISOString();
+}
+
+type AblationDiagnosticRow = Stage4ReadonlyRow & {
+  rank?: number;
+  importanceTier?: string;
+  createdAt?: string | Date;
+};
+
+function coerceDiagnosticRows(response: AblationSearchResponse): AblationDiagnosticRow[] {
+  const sourceRows = response.diagnosticRows ?? response.results;
+  return sourceRows
+    .map((row, index): AblationDiagnosticRow | null => {
+      const memoryId = normalizeMemoryId(
+        (row as AblationDiagnosticInputRow).parentMemoryId
+        ?? (row as AblationDiagnosticInputRow).memoryId
+        ?? (row as AblationDiagnosticInputRow).id,
+      );
+      if (memoryId === null) return null;
+      return {
+        ...(row as Record<string, unknown>),
+        id: memoryId,
+        score: typeof row.score === 'number' ? row.score : 0,
+        rank: typeof row.rank === 'number' ? row.rank : index + 1,
+      } as AblationDiagnosticRow;
+    })
+    .filter((row): row is AblationDiagnosticRow => row !== null)
+    .sort((left, right) => {
+      const leftRank = typeof left.rank === 'number' ? left.rank : Number.MAX_SAFE_INTEGER;
+      const rightRank = typeof right.rank === 'number' ? right.rank : Number.MAX_SAFE_INTEGER;
+      return leftRank - rightRank;
+    });
+}
+
+function buildDiagnosticSnapshot(
+  queryId: number,
+  query: string,
+  response: AblationSearchResponse,
+): AblationDiagnosticSnapshot {
+  const rows = coerceDiagnosticRows(response);
+  const scoredRows = rows as ScoredResult[];
+  const confidences = computeResultConfidence(scoredRows);
+  const requestQuality = assessRequestQuality(scoredRows, confidences).requestQuality.label;
+  const scoreSnapshots = captureScoreSnapshot(rows);
+
+  return {
+    queryId,
+    query,
+    requestQuality,
+    results: rows.map((row, index): AblationDiagnosticResult => {
+      const confidence = confidences[index]?.confidence;
+      const tier = typeof row.importance_tier === 'string'
+        ? row.importance_tier
+        : (typeof (row as { importanceTier?: unknown }).importanceTier === 'string'
+          ? (row as { importanceTier: string }).importanceTier
+          : undefined);
+      const createdAt = normalizeCreatedAt(
+        typeof row.created_at === 'string'
+          ? row.created_at
+          : (row as { createdAt?: string | Date }).createdAt,
+      );
+      return {
+        memoryId: row.id,
+        rank: typeof row.rank === 'number' ? row.rank : index + 1,
+        rawValue: resolveAbsoluteRelevance(row as unknown as PipelineRow),
+        confidenceValue: Number(confidence?.value ?? 0),
+        confidenceLabel: confidence?.label ?? 'low',
+        ...(tier ? { tier } : {}),
+        ...(createdAt ? { createdAt } : {}),
+        scoreSnapshot: scoreSnapshots[index],
+      };
+    }),
+  };
+}
+
+function buildCorpusMetrics(
+  snapshots: AblationDiagnosticSnapshot[],
+  labelViews: Map<number, GroundTruthLabelView>,
+  calibrationBinCount: number | undefined,
+): AblationCorpusMetrics {
+  const gateSamples = snapshots.flatMap((snapshot) => {
+    const labelView = labelViews.get(snapshot.queryId);
+    return labelView
+      ? [{ predicted: snapshot.requestQuality, expectedCitable: labelView.expectedCitable }]
+      : [];
+  });
+
+  const calibrationSamples: CalibrationSample[] = [];
+  const coldSamples = [];
+  for (const snapshot of snapshots) {
+    const labelView = labelViews.get(snapshot.queryId);
+    if (!labelView) continue;
+    const groundTruthById = new Map(labelView.groundTruth.map((entry) => [entry.memoryId, entry]));
+    for (const result of snapshot.results) {
+      const label = groundTruthById.get(result.memoryId);
+      if (!label) continue;
+      calibrationSamples.push({
+        rawValue: result.rawValue,
+        relevant: label.relevance >= 2,
+      });
+    }
+    coldSamples.push({
+      results: snapshot.results.map((result) => ({
+        memoryId: result.memoryId,
+        rank: result.rank,
+        score: result.rawValue,
+      })),
+      groundTruth: labelView.groundTruth,
+    });
+  }
+
+  return {
+    gateVerdict: computeGateVerdictMetrics(gateSamples),
+    calibration: computeCalibrationMetrics(calibrationSamples, calibrationBinCount),
+    coldStart: computeColdStartCorpusMetrics(coldSamples),
+  };
+}
+
 /* --- 4. PUBLIC API --- */
 
 /**
@@ -813,27 +1070,49 @@ export async function runAblation(
       });
     }
 
+    const labelViews = config.includeDiagnosticSnapshots
+      ? buildGroundTruthLabelViews({
+        queries: GROUND_TRUTH_QUERIES,
+        relevances: GROUND_TRUTH_RELEVANCES,
+        metadataByMemoryId: config.alignmentDb
+          ? loadGroundTruthMemoryMetadata(config.alignmentDb)
+          : undefined,
+      })
+      : undefined;
+
     // -- Step 1: Compute baseline (all channels enabled) --
     const baselineRecalls: Map<number, number> = new Map();
     const baselineMetricsPerQuery: Map<number, { metrics: ReturnType<typeof computeQueryMetrics>; latencyMs: number; tokenUsage?: number }> = new Map();
+    const diagnosticSnapshots: AblationDiagnosticSnapshot[] = [];
     let evaluatedCount = 0;
     const noDisabled = new Set<AblationChannel>();
 
     for (const q of queries) {
-      const gt = getGroundTruthForQuery(q.id);
+      const gt = getGroundTruthForQuery(q.id, labelViews);
       if (gt.length === 0) continue; // Skip queries with no ground truth
 
       evaluatedCount++;
       const t0 = performance.now();
-      const results = await Promise.resolve(searchFn(q.query, noDisabled));
+      const baselineOutput = normalizeSearchOutput(await Promise.resolve(searchFn(q.query, noDisabled)));
       const latencyMs = performance.now() - t0;
+      const results = baselineOutput.results;
 
       const recall = computeRecall(results, gt, recallK);
       baselineRecalls.set(q.id, recall);
-      baselineMetricsPerQuery.set(q.id, { metrics: computeQueryMetrics(results, gt), latencyMs });
+      baselineMetricsPerQuery.set(q.id, {
+        metrics: computeQueryMetrics(results, gt),
+        latencyMs,
+        tokenUsage: baselineOutput.tokenUsage,
+      });
+      if (config.includeDiagnosticSnapshots) {
+        diagnosticSnapshots.push(buildDiagnosticSnapshot(q.id, q.query, baselineOutput));
+      }
     }
 
     const overallBaselineRecall = meanRecall([...baselineRecalls.values()]);
+    const corpusMetrics = config.includeDiagnosticSnapshots && labelViews
+      ? buildCorpusMetrics(diagnosticSnapshots, labelViews, config.calibrationBinCount)
+      : undefined;
 
     // -- Step 2: Ablate each channel --
     const ablationResults: AblationResult[] = [];
@@ -847,17 +1126,22 @@ export async function runAblation(
 
       try {
         for (const q of queries) {
-          const gt = getGroundTruthForQuery(q.id);
+          const gt = getGroundTruthForQuery(q.id, labelViews);
           if (gt.length === 0) continue;
 
           failedQuery = q;
           const t0 = performance.now();
-          const results = await Promise.resolve(searchFn(q.query, disabledSet));
+          const ablatedOutput = normalizeSearchOutput(await Promise.resolve(searchFn(q.query, disabledSet)));
           const latencyMs = performance.now() - t0;
+          const results = ablatedOutput.results;
 
           const recall = computeRecall(results, gt, recallK);
           ablatedRecalls.set(q.id, recall);
-          ablatedMetricsPerQuery.set(q.id, { metrics: computeQueryMetrics(results, gt), latencyMs });
+          ablatedMetricsPerQuery.set(q.id, {
+            metrics: computeQueryMetrics(results, gt),
+            latencyMs,
+            tokenUsage: ablatedOutput.tokenUsage,
+          });
         }
 
         // -- Step 3: Compute deltas --
@@ -930,6 +1214,7 @@ export async function runAblation(
       results: ablationResults,
       ...(channelFailures.length > 0 ? { channelFailures } : {}),
       overallBaselineRecall,
+      ...(config.includeDiagnosticSnapshots ? { diagnosticSnapshots, corpusMetrics } : {}),
       queryCount: queries.length,
       evaluatedQueryCount: evaluatedCount,
       ...(querySelection.requestedQueryIds ? { requestedQueryIds: querySelection.requestedQueryIds } : {}),
@@ -1004,6 +1289,7 @@ export function storeAblationResults(report: AblationReport): boolean {
             resolvedQueryIds: report.resolvedQueryIds ?? [],
             missingQueryIds: report.missingQueryIds ?? [],
             channelFailures: report.channelFailures ?? [],
+            corpusMetrics: report.corpusMetrics ?? null,
           }),
           report.timestamp,
       );
@@ -1143,6 +1429,18 @@ export function formatAblationReport(report: AblationReport): string {
       const queryInfo = failure.queryId !== undefined ? ` (queryId=${failure.queryId})` : '';
       lines.push(`- \`${failure.channel}\`${queryInfo}: ${failure.error}`);
     }
+    lines.push(``);
+  }
+
+  if (report.corpusMetrics) {
+    lines.push(`### Corpus Diagnostic Lanes`);
+    lines.push(``);
+    const gate = report.corpusMetrics.gateVerdict;
+    const calibration = report.corpusMetrics.calibration;
+    const cold = report.corpusMetrics.coldStart;
+    lines.push(`- **Gate verdict:** P=${gate.precision.toFixed(4)}, R=${gate.recall.toFixed(4)}, F1=${gate.f1.toFixed(4)} (TP=${gate.truePositive}, FP=${gate.falsePositive}, TN=${gate.trueNegative}, FN=${gate.falseNegative})`);
+    lines.push(`- **Calibration:** ECE=${calibration.ece.toFixed(4)}, Brier=${calibration.brier.toFixed(4)}, samples=${calibration.sampleCount}`);
+    lines.push(`- **Cold lane:** appearance=${cold.coldAppearanceRate.toFixed(4)}, precision=${cold.coldPrecision.toFixed(4)}, cold hits=${cold.coldRelevantHits}/${cold.coldAppearances}`);
     lines.push(``);
   }
 

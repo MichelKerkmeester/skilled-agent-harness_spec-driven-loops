@@ -335,7 +335,7 @@ describe('Handler Eval Reporting (007-evaluation)', () => {
       const searchFn = mocks.mockRunAblation.mock.calls[0]?.[0];
       expect(typeof searchFn).toBe('function');
 
-      const results = await searchFn('graph-heavy query', new Set());
+      const searchOutput = await searchFn('graph-heavy query', new Set());
 
       expect(mocks.mockHybridSearchEnhanced).toHaveBeenCalledWith(
         'graph-heavy query',
@@ -345,13 +345,24 @@ describe('Handler Eval Reporting (007-evaluation)', () => {
           evaluationMode: true,
         }),
       );
-      expect(results).toEqual([
+      expect(searchOutput.results).toEqual([
         {
           memoryId: 99,
           score: 0.91,
           rank: 1,
         },
       ]);
+      expect(searchOutput.diagnosticRows).toEqual([
+        expect.objectContaining({
+          id: 99,
+          parentMemoryId: 99,
+          score: 0.91,
+          rank: 1,
+        }),
+      ]);
+      expect(mocks.mockRunAblation.mock.calls[0]?.[1]).toMatchObject({
+        includeDiagnosticSnapshots: true,
+      });
     });
 
     it('T006-A10b: SPECKIT_EVAL_DB_PATH temporarily swaps the ablation DB and restores MEMORY_DB_PATH', async () => {

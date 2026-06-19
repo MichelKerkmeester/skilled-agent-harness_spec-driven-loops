@@ -22,6 +22,7 @@ import {
   assertGroundTruthAlignment,
   inspectEmbeddingCoverage,
   assertEmbeddingCoverage,
+  loadGroundTruthMemoryMetadata,
   runAblation,
   storeAblationResults,
   formatAblationReport,
@@ -1467,6 +1468,103 @@ describe('Ablation Framework — Multi-Metric Wiring (CHK-088–091)', () => {
       } else {
         delete process.env.SPECKIT_ABLATION;
       }
+    }
+  });
+
+  it('runAblation emits diagnostic snapshots and corpus lanes when requested', async () => {
+    const savedEnv = process.env.SPECKIT_ABLATION;
+    process.env.SPECKIT_ABLATION = 'true';
+
+    try {
+      const { GROUND_TRUTH_QUERIES, GROUND_TRUTH_RELEVANCES } = await import(
+        '../lib/eval/ground-truth-data'
+      );
+
+      const queryWithGT = GROUND_TRUTH_QUERIES.find(q =>
+        q.category !== 'hard_negative'
+        && GROUND_TRUTH_RELEVANCES.some(r => r.queryId === q.id && r.relevance >= 2),
+      );
+      expect(queryWithGT).toBeDefined();
+
+      const relevances = GROUND_TRUTH_RELEVANCES.filter(
+        r => r.queryId === queryWithGT!.id && r.relevance > 0,
+      );
+      const relevantIds = relevances.map(r => r.memoryId);
+      const topId = relevantIds[0];
+
+      const mockSearchFn: AblationSearchFn = (_q, disabled) => {
+        const ids = disabled.has('vector') ? relevantIds.slice(1) : relevantIds;
+        return {
+          results: ids.map((id, index) => ({ memoryId: id, score: 0.95 - index * 0.1, rank: index + 1 })),
+          diagnosticRows: ids.map((id, index) => ({
+            id,
+            score: 0.95 - index * 0.1,
+            similarity: id === topId ? 0.95 : 0.7,
+            rank: index + 1,
+            importance_tier: index === 0 ? 'critical' : 'normal',
+            created_at: '2026-06-19T08:00:00.000Z',
+            sources: ['vector', 'bm25'],
+          })),
+        };
+      };
+
+      const report = await runAblation(mockSearchFn, {
+        channels: ['vector'],
+        groundTruthQueryIds: [queryWithGT!.id],
+        includeDiagnosticSnapshots: true,
+        calibrationBinCount: 5,
+      });
+
+      expect(report).not.toBeNull();
+      if (!report) return;
+
+      expect(report.diagnosticSnapshots).toHaveLength(1);
+      expect(report.diagnosticSnapshots![0].requestQuality).toBe('good');
+      expect(report.diagnosticSnapshots![0].results[0]).toMatchObject({
+        memoryId: topId,
+        tier: 'critical',
+      });
+      expect(report.corpusMetrics?.gateVerdict.truePositive).toBe(1);
+      expect(report.corpusMetrics?.calibration.sampleCount).toBeGreaterThan(0);
+      expect(report.corpusMetrics?.calibration.bins).toHaveLength(5);
+
+      const formatted = formatAblationReport(report);
+      expect(formatted).toContain('### Corpus Diagnostic Lanes');
+      expect(formatted).toContain('Gate verdict');
+    } finally {
+      if (savedEnv !== undefined) {
+        process.env.SPECKIT_ABLATION = savedEnv;
+      } else {
+        delete process.env.SPECKIT_ABLATION;
+      }
+    }
+  });
+
+  it('loads ground-truth tier metadata with one memory_index lookup', async () => {
+    const { GROUND_TRUTH_RELEVANCES } = await import('../lib/eval/ground-truth-data');
+    const memoryId = GROUND_TRUTH_RELEVANCES[0].memoryId;
+    const db = new Database(':memory:');
+    try {
+      db.exec(`
+        CREATE TABLE memory_index (
+          id INTEGER PRIMARY KEY,
+          importance_tier TEXT,
+          created_at TEXT
+        )
+      `);
+      db.prepare('INSERT INTO memory_index (id, importance_tier, created_at) VALUES (?, ?, ?)').run(
+        memoryId,
+        'important',
+        '2026-06-19T09:30:00.000Z',
+      );
+
+      const metadata = loadGroundTruthMemoryMetadata(db);
+      expect(metadata.get(memoryId)).toEqual({
+        tier: 'important',
+        createdAt: '2026-06-19T09:30:00.000Z',
+      });
+    } finally {
+      db.close();
     }
   });
 

@@ -435,8 +435,8 @@ describe.sequential('Gate D intent routing regression', () => {
     const searchArgs = mocks.handleMemorySearch.mock.calls[0]?.[0] as Record<string, unknown>;
 
     // The canonical-filtering contract requires:
-    // 1. includeArchived must NOT be passed (undefined), ensuring archived
-    //    memories are excluded by default downstream.
+    // 1. includeArchived must NOT be passed (undefined), preserving the
+    //    global archived-row default downstream.
     // 2. autoDetectIntent must be false to prevent the handler from
     //    overriding the already-classified intent.
     // 3. includeConstitutional must be true for canonical context.
@@ -476,7 +476,7 @@ describe.sequential('Gate D canonical-filtering contract assertions', () => {
   // filtering code path (the real handleMemorySearch with an in-memory DB
   // fixture) to verify that:
   //
-  // 1. Archived memories are excluded when includeArchived is undefined
+  // 1. Archived memories follow the global default when includeArchived is undefined
   // 2. The preferredDocumentTypes filter drops non-spec_doc/non-continuity rows
   // 3. legacyFallbackEnabled: false actually prevents legacy memory fallback
   // 4. droppedNonCanonicalResults correctly counts filtered rows
@@ -517,7 +517,7 @@ describe.sequential('Gate D canonical-filtering contract assertions', () => {
     return ((envelope.data as Record<string, unknown>)?.data ?? envelope.data) as Record<string, unknown>;
   }
 
-  it('excludes archived memories when includeArchived is undefined (requires DB fixture)', async () => {
+  it('includes archived memories when includeArchived is undefined (requires DB fixture)', async () => {
     const { fixture, vectorIndex } = await loadRealMemorySearchFixture();
     const db = fixture.createMemoryDbFixture();
     try {
@@ -545,7 +545,7 @@ describe.sequential('Gate D canonical-filtering contract assertions', () => {
       );
 
       expect(results.map((result) => result.id)).toContain(active.id);
-      expect(results.map((result) => result.id)).not.toContain(archived.id);
+      expect(results.map((result) => result.id)).toContain(archived.id);
     } finally {
       fixture.disposeMemoryDbFixture(db);
     }

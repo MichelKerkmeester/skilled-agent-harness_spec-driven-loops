@@ -18,9 +18,9 @@
     "impl",
     "phase"
   ],
-  "lastUpdated": "2026-06-19T06:21:34.346Z",
+  "lastUpdated": "2026-06-19T09:26:36.266Z",
   "specId": "019",
-  "folderSlug": "019-eval-harness-extension",
+  "folderSlug": "eval-harness-extension",
   "parentChain": [
     "system-spec-kit",
     "028-memory-search-intelligence",

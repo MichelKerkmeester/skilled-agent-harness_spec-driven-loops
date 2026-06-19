@@ -1,5 +1,5 @@
 // TEST: VECTOR INDEX IMPL
-import { describe, it, expect, beforeAll, afterAll, vi } from 'vitest';
+import { describe, it, expect, beforeAll, afterAll, beforeEach, afterEach, vi } from 'vitest';
 import path from 'node:path';
 import fs from 'node:fs';
 import os from 'node:os';
@@ -1652,6 +1652,30 @@ describe('Vector Index Implementation [deferred - requires DB test fixtures]', (
   // 30. GROUP 30: ENRICHED/ENHANCED SEARCH (EMBEDDING PROVIDER DEPENDENT)
   // ───────────────────────────────────────────────────────────────
   describe('Enriched/Enhanced Search (edge cases without API key)', () => {
+    let previousEmbeddingsProvider: string | undefined;
+    let previousOpenAiApiKey: string | undefined;
+
+    beforeEach(() => {
+      previousEmbeddingsProvider = process.env.EMBEDDINGS_PROVIDER;
+      previousOpenAiApiKey = process.env.OPENAI_API_KEY;
+      process.env.EMBEDDINGS_PROVIDER = 'openai';
+      delete process.env.OPENAI_API_KEY;
+    });
+
+    afterEach(() => {
+      if (previousEmbeddingsProvider === undefined) {
+        delete process.env.EMBEDDINGS_PROVIDER;
+      } else {
+        process.env.EMBEDDINGS_PROVIDER = previousEmbeddingsProvider;
+      }
+
+      if (previousOpenAiApiKey === undefined) {
+        delete process.env.OPENAI_API_KEY;
+      } else {
+        process.env.OPENAI_API_KEY = previousOpenAiApiKey;
+      }
+    });
+
     it('vectorSearchEnriched — exported and falls back to keyword search without embedding', async () => {
       expect(typeof mod.vectorSearchEnriched).toBe('function');
       // Without an API key, embedding generation fails gracefully → keyword fallback

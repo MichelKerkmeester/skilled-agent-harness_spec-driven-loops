@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Eval-Harness Extension — Three Corpus Metric Lanes + Per-Class Promotion Gate (028/001 impl phase)"
-description: "Extend the ~80%-built retrieval eval harness with three corpus-level accuracy lanes (gate-verdict P/R/F1; ECE+Brier+reliability bins; cold-appearance-rate/precision) and un-weld the single promotion gate from the hardcoded meanNdcgDelta to a per-class metric panel. This is the single buildable 08 spine that gates isotonic-calibration (A2), the A3 lever A/B, and cold-tier promote-on-evidence. All candidates PENDING; reindex (gate-zero, sibling 001) is the hard precondition."
+description: "Extend the ~80%-built retrieval eval harness with three corpus-level accuracy lanes (gate-verdict P/R/F1; ECE+Brier+reliability bins; cold-appearance-rate/precision) and un-weld the single promotion gate from the hardcoded meanNdcgDelta to a per-class metric panel. C9-1/C9-2/C9-3 are implemented as code + deterministic tests; A8 remains pending because the ledger/gate pieces require schema/live operational validation."
 trigger_phrases:
   - "eval harness extension"
   - "three corpus metric lanes"
@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/019-eval-harness-extension"
     last_updated_at: "2026-06-19T08:00:00+02:00"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored impl-phase spec docs from 028/008 research"
-    next_safe_action: "Confirm gate-zero reindex (sibling 001) green, then wire C9-1 single-pass diagnostic emit"
+    recent_action: "Implemented C9 eval-harness metric lanes as code + deterministic tests"
+    next_safe_action: "Plan the A8 ledger/gate schema and live gate-validation step separately"
     blockers: []
     key_files:
       - "spec.md"
@@ -43,7 +43,7 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-This implementation phase extends the Spec-Kit Memory MCP's **already ~80%-built retrieval eval harness** with the three accuracy lanes it has never had, and un-welds its single promotion gate from one candidate-class. It covers the keystone build spine the 028 retrieval-evaluation campaign converged on (`synthesis/08`): **C9-1** (capture the verdict/confidence/tier the ablation runner already computes but throws away), **C9-2** (tag the golden labels three ways in one DB-join), **C9-3** (the three new corpus-level metric lanes: gate-verdict P/R/F1, ECE+Brier+reliability bins, cold-appearance-rate/precision), and **A8-1(+A8-2/A8-5/A8-4)** (swap a per-class metric panel for the hardcoded `meanNdcgDelta`, add the CLASS-G panel, route held-out labels through the golden set, encode promote-on-evidence as the flag lifecycle). This is the **single buildable spine** that makes isotonic calibration (A2), the A3 default-on lever A/B, and cold-tier promote-on-evidence measurable; without it those candidates' promote signal is literally unexecutable. None of these shipped in Wave-0 (packet 030 §14 ships an unrelated embedder-degrade candidate it calls "C9", not these C9-N metric lanes); all are **PENDING**. The corpus reindex (gate-zero, owned by sibling phase `001-corpus-reindex-gate-zero`) is the hard precondition for every recall/calibration/cold number this harness produces.
+This implementation phase extends the Spec-Kit Memory MCP's **already ~80%-built retrieval eval harness** with the three accuracy lanes it has never had, and scopes the promotion-gate generalization that must follow. It covers the keystone build spine the 028 retrieval-evaluation campaign converged on (`synthesis/08`): **C9-1** (capture the verdict/confidence/tier the ablation runner already computes but throws away), **C9-2** (tag the golden labels three ways in one DB-join), **C9-3** (the three new corpus-level metric lanes: gate-verdict P/R/F1, ECE+Brier+reliability bins, cold-appearance-rate/precision), and **A8-1(+A8-2/A8-5/A8-4)** (swap a per-class metric panel for the hardcoded `meanNdcgDelta`, add the CLASS-G panel, route held-out labels through the golden set, encode promote-on-evidence as the flag lifecycle). C9-1/C9-2/C9-3 are now implemented as code plus deterministic unit tests; A8 remains **PENDING** because the ledger/gate acceptance criteria require a schema change and live operational validation. The corpus reindex (gate-zero, owned by sibling phase `001-corpus-reindex-gate-zero`) remains the hard precondition for every trusted recall/calibration/cold number this harness produces.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -52,7 +52,7 @@ This implementation phase extends the Spec-Kit Memory MCP's **already ~80%-built
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | C9 implemented; A8 pending |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Packet** | system-spec-kit/028-memory-search-intelligence/001-speckit-memory |
@@ -251,19 +251,19 @@ Per-candidate seams above. Production code under `.opencode/skills/system-spec-k
 <!-- ANCHOR:status -->
 ## 14. CANDIDATE STATUS
 
-> Cross-checked against the Wave-0 shipped record `../../../030-memory-search-intelligence-impl/spec.md` §14 and the 030 commit range (`git log --oneline 1ecc531431..ab5459fb6d`): **none of these candidates shipped in Wave-0.** 030 §14 row 2 ships a candidate it labels "C9" — that is the *embedder-degrade* candidate (recall degrades to lexical + `embedder_available:false`), a different C9 namespace from these C9-1/C9-2/C9-3 metric lanes. Zero eval-harness-metric / promotion-gate-generalization commits in range. All seven are **PENDING**.
+> Cross-checked against the Wave-0 shipped record `../../../030-memory-search-intelligence-impl/spec.md` §14 and the 030 commit range (`git log --oneline 1ecc531431..ab5459fb6d`): **none of these candidates shipped in Wave-0.** 030 §14 row 2 ships a candidate it labels "C9" — that is the *embedder-degrade* candidate (recall degrades to lexical + `embedder_available:false`), a different C9 namespace from these C9-1/C9-2/C9-3 metric lanes. This phase now implements C9-1/C9-2/C9-3 as code + deterministic tests. A8 remains pending under the no-schema/no-live-benchmark constraint.
 
 | # | Candidate | Status | Gate | 030 evidence | Notes |
 |---|-----------|--------|------|--------------|-------|
-| 1 | **C9-1** single-pass diagnostic emit | PENDING | needs-benchmark (gate-zero reindex precondition) | Not in 030 §14 | Root unblock; reuses `captureScoreSnapshot`/`resolveAbsoluteRelevance`/`assessRequestQuality`; runner throws away verdict/confidence/tier today [iter-009 C9-1] |
-| 2 | **C9-2** three-way label tagging | PENDING | needs-benchmark + data-backfill | Not in 030 §14 | Data backfill not new plumbing; `GroundTruthEntry.tier?/createdAt?` typed but golden data lacks them; citability from `hard_negative` category (no grade-0 rows) [iter-011 verdicts 2,3] |
-| 3 | **C9-3** three corpus metric lanes | PENDING | needs-benchmark (gate-zero) | Not in 030 §14 | The actual deliverable; ECE/Brier grep-clean (genuinely greenfield); attaches at `buildAggregatedMetrics` aggregation layer [iter-009 C9-3] |
-| 4 | **A8-1** class-parameterized gate | PENDING | shared-infra-dep (depends on C9-3 metrics for the panels) | Not in 030 §14 | Keep spine, swap per-class panel for hardcoded `meanNdcgDelta`; constants confirmed `lib/feedback/shadow-scoring.ts:43,68,93,243`; gate entrypoint symbol drifted (re-confirm) [iter-008 A8-1] |
-| 5 | **A8-2** CLASS-G (ECE/Brier) panel | PENDING | shared-infra-dep (C9-3 ECE) | Not in 030 §14 | The missing precondition keeping isotonic frozen at opt-in; supplies the gate, not a new flag [iter-008 A8-2; iter-009] |
-| 6 | **A8-5** golden-set label-source swap | PENDING | shared-infra-dep (golden set) | Not in 030 §14 | Replaces `adaptive_signal_events` empty-map silent cycle-skip with golden-set labels (`shadow-evaluation-runtime.ts:137,160`) [iter-008 A8-5] |
-| 7 | **A8-4** promote-on-evidence flag lifecycle | PENDING | shared-infra-dep (A8-1 gate) | Not in 030 §14 | Encodes promote-on-evidence as `isOptInEnabled`→`isFeatureEnabled`→rollback; reuses 027 doctrine; found a stranded shadow combiner `search-flags.ts:517` [iter-008 A8-4] |
+| 1 | **C9-1** single-pass diagnostic emit | DONE | code+unit; trusted numbers still need gate-zero live run | Not in 030 §14 | `runAblation` now accepts optional diagnostic rows, emits baseline `diagnosticSnapshots`, and reuses `captureScoreSnapshot`/`resolveAbsoluteRelevance`/`assessRequestQuality`; default direct callers remain array-compatible. Evidence: `npm run typecheck`; focused Vitest `252 passed / 13 skipped`. |
+| 2 | **C9-2** three-way label tagging | DONE | code+unit; live metadata join runs only when diagnostics requested | Not in 030 §14 | Added pure label-view derivation plus a single `memory_index` metadata lookup helper for tier/created_at; citability uses `hard_negative` category for non-citable labels. Evidence: label-view fixture + in-memory metadata lookup test. |
+| 3 | **C9-3** three corpus metric lanes | DONE | code+unit; no live benchmark numbers reported | Not in 030 §14 | Added gate-verdict confusion P/R/F1, ECE+Brier+reliability bins, and cold-appearance-rate/cold-precision; wired into optional ablation `corpusMetrics`. Evidence: deterministic metric fixtures + ablation report wiring test. |
+| 4 | **A8-1** class-parameterized gate | PENDING | schema-migration-required | Not in 030 §14 | Left pending: acceptance requires ledger recording `candidate_id` + `candidate_class` + metric JSON, which needs a shadow-cycle schema migration and live gate validation. |
+| 5 | **A8-2** CLASS-G (ECE/Brier) panel | PENDING | depends-on-A8-ledger | Not in 030 §14 | Left pending: C9 now exposes ECE/Brier metrics, but housing them inside the unified promotion gate depends on A8-1's generalized ledger/panel. |
+| 6 | **A8-5** golden-set label-source swap | PENDING | live-operational-gate-required | Not in 030 §14 | Left pending: replacing `adaptive_signal_events` in the scheduled promotion gate changes live evaluation behavior and needs an operational validation run. |
+| 7 | **A8-4** promote-on-evidence flag lifecycle | PENDING | depends-on-A8-gate | Not in 030 §14 | Left pending: the flag lifecycle can only be completed once the generalized A8 gate records class-specific evidence. |
 
-**Pending count: 7. Done count: 0.**
+**Pending count: 4. Done count: 3.**
 
 > **Refuted/rescoped (not built this phase):** A8-3 recall-delta@k UNION panel — the "gate is structurally blind to recall additions" headline was REFUTED (`ndcgDelta` *is* sensitive to judged-recall additions); survives only as a low-priority coverage instrument [synthesis/08 DROP/RESCOPED; iter-010].
 <!-- /ANCHOR:status -->
