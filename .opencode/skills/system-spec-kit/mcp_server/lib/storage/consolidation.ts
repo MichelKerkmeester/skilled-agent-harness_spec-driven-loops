@@ -10,6 +10,7 @@ import {
   markEdgeVectorFailed,
   upsertEdgeVector,
 } from './edge-vector-store.js';
+import { beginMaintenance } from './maintenance-marker.js';
 import {
   updateEdge,
   getStaleEdges,
@@ -535,6 +536,12 @@ function runSemanticEdgeEmbeddingPass(
   let failed = 0;
   const limit = Math.max(1, Math.floor(options.edgeEmbeddingLimit ?? 100));
 
+  // The loop runs up to `limit` synchronous provider calls, any of which can
+  // block for seconds. A blocked event loop cannot fire the marker's unref'd
+  // refresh timer, so signal busy-by-design maintenance and refresh the lease at
+  // each row boundary; otherwise a slow provider lets a competing launcher treat
+  // this daemon as wedged and reap it mid-pass.
+  const maintenance = beginMaintenance('consolidation-edge-embedding');
   try {
     const rows = database.prepare(`
       SELECT id, fact_text
@@ -546,6 +553,7 @@ function runSemanticEdgeEmbeddingPass(
     `).all(limit) as Array<{ id: number; fact_text: string | null }>;
 
     for (const row of rows) {
+      maintenance.refresh();
       const factText = row.fact_text?.trim();
       if (!factText) {
         skipped += 1;
@@ -578,6 +586,8 @@ function runSemanticEdgeEmbeddingPass(
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : String(error);
     console.warn(`[consolidation] semantic edge embedding pass skipped: ${message}`);
+  } finally {
+    maintenance.end();
   }
 
   return {
@@ -698,7 +708,6 @@ export function runConsolidationCycleIfEnabled(
 
     // Write phase under the immediate lock: Hebbian strengthening + decay.
     const hebbian = runHebbianCycle(database);
-    const semanticEdges = runSemanticEdgeEmbeddingPass(database, options);
 
     (database.prepare(`
       INSERT INTO consolidation_state (id, last_run_at)
@@ -710,6 +719,12 @@ export function runConsolidationCycleIfEnabled(
       database.exec('COMMIT');
       beganImmediate = false;
     }
+
+    // Semantic-edge embedding runs only AFTER the immediate lock is released: its
+    // up-to-100 synchronous provider calls would otherwise hold BEGIN IMMEDIATE
+    // long enough to block writers and starve the maintenance lease. Idempotent
+    // upserts make this commit-then-embed ordering safe to re-run.
+    const semanticEdges = runSemanticEdgeEmbeddingPass(database, options);
 
     return {
       contradictions,

@@ -285,6 +285,40 @@ export function evaluateFeedbackRetention(
   return { runAt, decisions, byDecision };
 }
 
+/**
+ * Re-evaluate the spare axes for a single candidate using values read inside the
+ * delete transaction. The pre-transaction snapshot can go stale: a concurrent
+ * writer can raise importance, trust, quality, or age above the spare floors
+ * between candidate selection and deletion. Returns the protect decision when the
+ * fresh axes now spare the row, or null when it is still a delete candidate.
+ *
+ * Signal is intentionally null: this re-check covers only the row-local axis
+ * columns named in the fix scope, not the feedback-event window (which the
+ * pre-transaction decision already evaluated). Returns null when retention
+ * forgetting is disabled, so the default-off path is unchanged.
+ */
+export function revalidateSpareOnlyRetention(
+  row: RetentionCandidateRow,
+  options: FeedbackRetentionReducerOptions = {},
+): Pick<FeedbackRetentionDecisionResult, 'decision' | 'reason' | 'nextDeleteAfter'> | null {
+  if (!isRetentionForgettingEnabled()) {
+    return null;
+  }
+  const runAt = options.runAt ?? Date.now();
+  const feedbackThresholds = {
+    minWeightedHitCount: options.minWeightedHitCount ?? DEFAULT_MIN_WEIGHTED_HITS,
+    minSessionCount: options.minSessionCount ?? DEFAULT_MIN_SESSION_COUNT,
+    minQueryCount: options.minQueryCount ?? DEFAULT_MIN_QUERY_COUNT,
+  };
+  const spareOnlyThresholds = {
+    minImportanceWeight: options.minImportanceWeight ?? DEFAULT_MIN_IMPORTANCE_WEIGHT,
+    minTrustScore: options.minTrustScore ?? DEFAULT_MIN_TRUST_SCORE,
+    minAgeDays: options.minAgeDays ?? DEFAULT_MIN_AGE_DAYS,
+  };
+  validateSpareOnlyThresholds(spareOnlyThresholds);
+  return evaluateSpareOnlyRetention(row, null, feedbackThresholds, spareOnlyThresholds, runAt);
+}
+
 export function recordFeedbackRetentionAudit(
   database: Database.Database,
   row: RetentionCandidateRow,

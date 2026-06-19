@@ -5,7 +5,7 @@ import Database from 'better-sqlite3';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
 import {
-  LEGACY_DERIVED_CAUSAL_EDGE_RULE_VERSION,
+  DEFAULT_DERIVED_CAUSAL_EDGE_RULE_VERSION,
   deriveCausalEdgeDerivedId,
 } from '../lib/content-id';
 import { sweepCausalEdges } from '../lib/causal/sweep';
@@ -90,7 +90,9 @@ function rows(db: SqliteDatabase): DerivedIdRow[] {
   `).all() as DerivedIdRow[];
 }
 
-function expectedLegacyId(row: Pick<DerivedIdRow, 'source_id' | 'target_id' | 'relation' | 'source_anchor' | 'target_anchor'>): string {
+// The backfill hashes the SAME rule_version the live writer defaults to, so a
+// backfilled edge and its live-written twin share one derived id.
+function expectedBackfillId(row: Pick<DerivedIdRow, 'source_id' | 'target_id' | 'relation' | 'source_anchor' | 'target_anchor'>): string {
   return deriveCausalEdgeDerivedId({
     sourceId: row.source_id,
     targetId: row.target_id,
@@ -98,7 +100,7 @@ function expectedLegacyId(row: Pick<DerivedIdRow, 'source_id' | 'target_id' | 'r
     sourceAnchor: row.source_anchor,
     targetAnchor: row.target_anchor,
     source: 'frontmatter',
-    ruleVersion: LEGACY_DERIVED_CAUSAL_EDGE_RULE_VERSION,
+    ruleVersion: DEFAULT_DERIVED_CAUSAL_EDGE_RULE_VERSION,
   });
 }
 
@@ -156,8 +158,8 @@ describe('derived id provenance', () => {
       expect(result).toEqual({ scanned: 2, backfilled: 2, duplicatesSkipped: 0 });
       expect(columnNames(db)).toContain('derived_id');
       expect(indexNames(db)).toContain('idx_causal_edges_derived_id');
-      expect(migratedRows[0].derived_id).toBe(expectedLegacyId(migratedRows[0]));
-      expect(migratedRows[1].derived_id).toBe(expectedLegacyId(migratedRows[1]));
+      expect(migratedRows[0].derived_id).toBe(expectedBackfillId(migratedRows[0]));
+      expect(migratedRows[1].derived_id).toBe(expectedBackfillId(migratedRows[1]));
       expect(migratedRows[0].derived_id).not.toBe(migratedRows[1].derived_id);
       expect(migratedRows[2].derived_id).toBeNull();
 
@@ -165,6 +167,60 @@ describe('derived id provenance', () => {
       expect(rerun).toEqual({ scanned: 0, backfilled: 0, duplicatesSkipped: 0 });
     } finally {
       db.close();
+    }
+  });
+
+  it('yields one derived id for a backfilled edge and its live-written twin', () => {
+    // A logical edge written before the schema existed (backfill path) must share
+    // its identity with the same edge written live (insert path). Before the fix
+    // the backfill hashed the legacy rule_version while the live writer hashed
+    // causal-edge:v1, so the two paths split into two ids the byte-equal partial
+    // UNIQUE index could never reconcile.
+    const backfillDb = createDbBeforeDerivedId();
+    const liveDb = createDbWithDerivedId();
+    try {
+      backfillDb.exec(`
+        INSERT INTO causal_edges (
+          id, source_id, target_id, source_anchor, target_anchor, relation, created_by, extraction_method
+        ) VALUES
+          (1, '10', '20', 's:a', 't:a', 'derived_from', 'auto', 'frontmatter')
+      `);
+      ensureDerivedIdProvenanceSchema(backfillDb, 'parity backfill');
+      const backfilled = backfillDb
+        .prepare('SELECT derived_id FROM causal_edges WHERE id = 1')
+        .get() as { derived_id: string | null };
+
+      process.env[FLAG_NAME] = 'true';
+      causalEdges.init(liveDb);
+      // No ruleVersion passed: the live writer defaults to causal-edge:v1, exactly
+      // as the real frontmatter callers do.
+      const liveId = causalEdges.insertEdge(
+        '10',
+        '20',
+        'derived_from',
+        0.7,
+        'generated evidence',
+        true,
+        'auto',
+        { sourceAnchor: 's:a', targetAnchor: 't:a' },
+        { extractionMethod: 'frontmatter' },
+      );
+      const live = liveDb
+        .prepare('SELECT derived_id FROM causal_edges WHERE id = ?')
+        .get(liveId) as { derived_id: string | null };
+
+      expect(backfilled.derived_id).toMatch(/^[a-f0-9]{64}$/);
+      expect(live.derived_id).toBe(backfilled.derived_id);
+      expect(backfilled.derived_id).toBe(expectedBackfillId({
+        source_id: '10',
+        target_id: '20',
+        relation: 'derived_from',
+        source_anchor: 's:a',
+        target_anchor: 't:a',
+      }));
+    } finally {
+      backfillDb.close();
+      liveDb.close();
     }
   });
 

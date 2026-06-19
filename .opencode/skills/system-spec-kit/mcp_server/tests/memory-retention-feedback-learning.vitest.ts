@@ -228,4 +228,52 @@ describe('memory retention sweep feedback learning', () => {
     expect(auditRows(db).map((row) => row.decision)).toEqual(['extend', 'protect', 'delete']);
     expect(auditRows(db).every((row) => JSON.parse(row.metadata).applied === true)).toBe(true);
   });
+
+  it('does not apply a stale spare-only delete when a concurrent writer raises importance in-flight', () => {
+    vi.stubEnv('SPECKIT_FEEDBACK_RETENTION_LEARNING', 'true');
+    vi.stubEnv('SPECKIT_FEEDBACK_RETENTION_MODE', 'active');
+    vi.stubEnv('SPECKIT_RETENTION_FORGETTING_V1', 'true');
+    const db = createMemoryIndexTestDatabase({ includeContentColumns: true, includeRetentionColumns: true });
+    // importance_weight defaults to 0.5 (below the 0.85 spare floor), so the
+    // pre-transaction decision is a spare-only delete.
+    insertMemory(db, 1, 'normal');
+
+    // Simulate a concurrent writer that raises importance above the spare floor
+    // AFTER candidate selection but BEFORE the in-transaction re-read. The hook
+    // fires once, exactly when getCurrentExpiredRow re-reads the row by id, using
+    // the original prepare to bypass this proxy.
+    const originalPrepare = db.prepare.bind(db);
+    let raisedInFlight = false;
+    // @ts-expect-error — test-only proxy over the better-sqlite3 prepare().
+    db.prepare = (sql: string) => {
+      if (!raisedInFlight && /FROM memory_index\s+WHERE id = \?/i.test(sql)) {
+        raisedInFlight = true;
+        originalPrepare('UPDATE memory_index SET importance_weight = 0.95 WHERE id = ?').run(1);
+      }
+      return originalPrepare(sql);
+    };
+
+    const result = runMemoryRetentionSweep(db, {
+      feedbackRetention: {
+        signals: [],
+        shadowEvaluationPassed: true,
+        runAt: 1_780_000_000_000,
+      },
+    });
+
+    expect(raisedInFlight).toBe(true);
+    // Before the fix the stale delete decision deletes the row; the in-tx spare
+    // re-validation now protects it.
+    expect(result.swept).toBe(0);
+    expect(result.deletedIds).toEqual([]);
+    expect(result.protectedIds).toEqual([1]);
+    expect(memoryIds(db)).toEqual([1]);
+    expect(deleteAfterById(db)[1]).toBeNull();
+
+    const audits = auditRows(db);
+    expect(audits.map((row) => ({ decision: row.decision, reason: row.reason }))).toEqual([
+      { decision: 'protect', reason: 'importance_axis_spared' },
+    ]);
+    expect(JSON.parse(audits[0].metadata).applied).toBe(true);
+  });
 });

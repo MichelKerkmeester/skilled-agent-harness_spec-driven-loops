@@ -6,7 +6,10 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import type { AggregatedSignal } from '../lib/feedback/batch-learning.js';
 import { resolveEdgeTierBasement } from '../lib/feedback/edge-tier-basement.js';
-import { evaluateFeedbackRetention } from '../lib/feedback/feedback-retention-reducer.js';
+import {
+  evaluateFeedbackRetention,
+  revalidateSpareOnlyRetention,
+} from '../lib/feedback/feedback-retention-reducer.js';
 import type { RetentionCandidateRow } from '../lib/feedback/feedback-retention-reducer.js';
 
 const RETENTION_FORGETTING_FLAG = 'SPECKIT_RETENTION_FORGETTING_V1';
@@ -165,6 +168,45 @@ describe('feedback retention reducer', () => {
       minImportanceWeight: 1,
       minTrustScore: 1,
     })).toThrow(/floors cannot both be at the ceiling/i);
+  });
+});
+
+describe('in-transaction spare-axis re-validation', () => {
+  it('returns null when retention forgetting is disabled (default-off, unchanged)', () => {
+    // No flag stubbed: a stale delete must stay a delete on the default path.
+    expect(revalidateSpareOnlyRetention(candidate(1, 'normal', { importanceWeight: 0.99 }))).toBeNull();
+  });
+
+  it('protects when fresh importance reaches the spare floor', () => {
+    vi.stubEnv(RETENTION_FORGETTING_FLAG, 'true');
+
+    expect(revalidateSpareOnlyRetention(candidate(1, 'normal', { importanceWeight: 0.9 }))).toEqual({
+      decision: 'protect',
+      reason: 'importance_axis_spared',
+      nextDeleteAfter: null,
+    });
+  });
+
+  it('protects when fresh trust reaches the spare floor', () => {
+    vi.stubEnv(RETENTION_FORGETTING_FLAG, 'true');
+
+    expect(revalidateSpareOnlyRetention(candidate(1, 'normal', {
+      importanceWeight: 0.1,
+      retentionTrustScore: 0.8,
+    }))).toEqual({
+      decision: 'protect',
+      reason: 'trust_axis_spared',
+      nextDeleteAfter: null,
+    });
+  });
+
+  it('stays a delete candidate when all fresh axes are below the floors', () => {
+    vi.stubEnv(RETENTION_FORGETTING_FLAG, 'true');
+
+    expect(revalidateSpareOnlyRetention(candidate(1, 'normal', {
+      importanceWeight: 0.1,
+      retentionTrustScore: 0.1,
+    }))).toBeNull();
   });
 });
 

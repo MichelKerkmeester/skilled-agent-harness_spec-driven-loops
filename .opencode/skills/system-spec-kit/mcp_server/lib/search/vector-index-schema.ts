@@ -14,7 +14,7 @@ import { extractSpecFolder } from '../parsing/memory-parser.js';
 import { createLogger } from '../utils/logger.js';
 import { initEmbeddingCache } from '../cache/embedding-cache.js';
 import {
-  LEGACY_DERIVED_CAUSAL_EDGE_RULE_VERSION,
+  DEFAULT_DERIVED_CAUSAL_EDGE_RULE_VERSION,
   deriveCausalEdgeDerivedId,
 } from '../content-id.js';
 import {
@@ -1123,7 +1123,10 @@ export function backfillDerivedCausalEdgeIds(
       sourceAnchor: row.source_anchor,
       targetAnchor: row.target_anchor,
       source: normalizeDerivedEdgeSource(row),
-      ruleVersion: LEGACY_DERIVED_CAUSAL_EDGE_RULE_VERSION,
+      // The backfill must hash the same rule_version the live writer defaults to,
+      // or one logical edge yields two derived ids — backfilled vs live-written —
+      // and the partial UNIQUE index (byte-equal only) can never dedup the split.
+      ruleVersion: DEFAULT_DERIVED_CAUSAL_EDGE_RULE_VERSION,
     });
 
     if (existingDerivedIds.has(derivedId)) {

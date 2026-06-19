@@ -14,6 +14,7 @@ import {
   isFeedbackRetentionLearningEnabled,
   recordFeedbackRetentionAudit,
   resolveFeedbackRetentionMode,
+  revalidateSpareOnlyRetention,
 } from '../feedback/feedback-retention-reducer.js';
 import { isRetentionForgettingEnabled } from '../search/search-flags.js';
 import type {
@@ -633,6 +634,32 @@ export function runMemoryRetentionSweep(
           );
           extendedIds.push(candidate.id);
           recordFeedbackRetentionAudit(database, currentCandidate, decision, {
+            mode: feedbackRetention.mode,
+            applied: true,
+            activeGatePassed: feedbackRetention.activeGatePassed,
+          });
+          feedbackRetention.auditCount += 1;
+          continue;
+        }
+        // Re-validate the spare axes against the row as it stands inside the
+        // transaction, mirroring the delete_after re-validation above. The spare
+        // decision was computed from the pre-transaction snapshot; a concurrent
+        // writer can raise importance, trust, quality, or age above the spare
+        // floors after selection, so a stale delete must not remove a now-spared
+        // row. Re-reads the same axes getCurrentExpiredRow already refreshed.
+        const freshSpareDecision = revalidateSpareOnlyRetention(currentCandidate, {
+          runAt: args.feedbackRetention?.runAt,
+          extendDays: args.feedbackRetention?.extendDays,
+        });
+        if (freshSpareDecision && freshSpareDecision.decision === 'protect') {
+          database.prepare('UPDATE memory_index SET delete_after = NULL WHERE id = ?').run(candidate.id);
+          protectedIds.push(candidate.id);
+          recordFeedbackRetentionAudit(database, currentCandidate, {
+            ...decision,
+            decision: 'protect',
+            reason: freshSpareDecision.reason,
+            nextDeleteAfter: null,
+          }, {
             mode: feedbackRetention.mode,
             applied: true,
             activeGatePassed: feedbackRetention.activeGatePassed,
