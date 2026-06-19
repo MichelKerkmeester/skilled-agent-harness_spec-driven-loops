@@ -10,7 +10,7 @@ Thin router for memory retrieval and analysis.
 
 > **Contract register (COSTAR).** This contract is written objective-first for an automated-pipeline audience: a fixed response shape, no preamble, no conversational framing inside the rendered block. Weak instruction-followers tolerate this register best, so it is the contract's own wording style — not a prompt framework imposed on callers, and not a single global framework applied to every command.
 
-## 0. ARGUMENT RESOLUTION (deterministic — read this first)
+## 0. PURPOSE AND ARGUMENT RESOLUTION (deterministic, read this first)
 
 The shell line below is evaluated before you read any policy. It is the ground truth for this invocation. The renderer substitutes the raw query text where `$ARGUMENTS` appears, so it is single-quoted in the command below: this keeps shell metacharacters in the query (`*`, `$(…)`, backticks, `;`, `|`) literal instead of letting the outer shell expand them before the protective `bash -c` runs. The wrapper then joins the query into one string and reports whether any argument was supplied.
 
@@ -30,9 +30,9 @@ Bind your control flow to the two values above — never re-derive arg-presence 
 
 Before asking startup questions or displaying results, read the presentation asset and use it as the display source of truth.
 
-## 2. EXECUTION ORDER
+## 2. INSTRUCTIONS AND EXECUTION ORDER
 
-1. Read the §0 ARGUMENT RESOLUTION header output: `ARGS_PRESENT` and `QUERY` are already computed for you.
+1. Read the §0 PURPOSE AND ARGUMENT RESOLUTION header output: `ARGS_PRESENT` and `QUERY` are already computed for you.
 2. Read `.opencode/commands/memory/assets/search_presentation.txt` before rendering any response.
 3. **If `ARGS_PRESENT=true`:** route `QUERY` to retrieval mode (§3), or to analysis mode (§4) when the first token of `QUERY` is a known analysis subcommand. Execute now — do NOT ask the startup question.
 4. **ONLY IF `ARGS_PRESENT=false`:** go to startup routing (§5) and ask the one open-ended question.
@@ -110,8 +110,12 @@ Known analysis subcommands:
 | `link <sourceId> <targetId> <relation>` | `memory_causal_link` | Create causal relation. |
 | `unlink <edgeId>` | `memory_causal_unlink` | Remove causal relation. |
 | `causal-stats` | `memory_causal_stats` | Show graph coverage. |
-| `ablation` | `eval_run_ablation` | Run channel ablation when enabled. |
-| `dashboard` | `eval_reporting_dashboard` | Show evaluation trends. |
+| `ablation` | `eval_run_ablation` | Run enabled channel ablation through the eval harness. The active DB lets the harness reject a cold or incomplete golden-set vector index before scoring. |
+| `dashboard` | `eval_reporting_dashboard` | Show stored eval snapshot trends and channel metrics. Stored ablation runs carry the diagnostic gate-verdict, calibration and cold-lane payload in baseline metadata. |
+
+`ablation` invokes `eval_run_ablation` with the active DB and diagnostic snapshots enabled. It may fail before scoring when the coverage guard finds golden-set parent embeddings below the threshold. The recovery is corpus reindex plus embedding reconcile, then the ground-truth remap if alignment still drifts.
+
+`dashboard` invokes `eval_reporting_dashboard` against stored eval snapshots. It reports persisted metric trends and channel breakdowns. C9 gate-verdict and calibration values are produced by stored ablation runs in the baseline metadata. They are not recomputed by the dashboard command.
 
 ## 5. STARTUP ROUTING
 
