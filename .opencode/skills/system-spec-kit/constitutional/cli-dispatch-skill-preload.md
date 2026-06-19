@@ -15,8 +15,8 @@ triggerPhrases:
   - deepseek-v4
   - GLM 5.1
   - glm-5.1
-  - Kimi k2.6
-  - kimi-k2.6
+  - Kimi k2.7
+  - kimi-k2.7
   - gpt-5.5
   - gpt 5.5
   # Dispatch verbs

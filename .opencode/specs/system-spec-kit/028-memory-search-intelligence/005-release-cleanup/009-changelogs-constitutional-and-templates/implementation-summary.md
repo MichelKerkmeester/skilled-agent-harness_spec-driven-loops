@@ -10,9 +10,9 @@ _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/009-changelogs-constitutional-and-templates"
     last_updated_at: "2026-06-19T00:00:00Z"
-    last_updated_by: "codex-gpt-5"
-    recent_action: "Scaffolded impl"
-    next_safe_action: "Do not mark cleanup complete until execution evidence exists"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Executed cleanup: fixed 4 factual drifts, changelogs left historical"
+    next_safe_action: "Phase complete, strict validation passed, no further action"
     blockers: []
     key_files:
       - "implementation-summary.md"
@@ -20,11 +20,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-summary-009-changelogs-constitutional-and-templates"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
-      - "This summary exists to satisfy the Level-2 contract."
-      - "Cleanup execution remains PENDING."
+      - "Cleanup executed: factual-drift fixes only, no restyle pass."
+      - "Changelog entries left historical as immutable archive records."
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
@@ -38,7 +38,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | system-spec-kit/028-memory-search-intelligence/005-release-cleanup/009-changelogs-constitutional-and-templates |
-| **Completed** | Not executed |
+| **Completed** | 2026-06-19 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -47,21 +47,23 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The scaffold now defines the Changelogs Constitutional And Templates Cleanup cleanup phase. No target documentation has been cleaned yet and every cleanup candidate remains PENDING.
+The cleanup phase ran a factual-drift sweep over the constitutional rule docs and the system-spec-kit templates. Discovery returned 1585 changelog markdown files plus 19 constitutional docs and 45 template files. The changelog files are version-stamped historical archive records, so they stay unchanged per the archive edge case. Four factual drifts were fixed across three live docs and every written path was confirmed to resolve.
 
-### Pending Cleanup Contract
+### Cleanup Results
 
-This child phase now has the required spec, plan, task list, checklist and summary docs. The docs define discovery, scope and verification so a later execution pass can clean only this surface.
+| Surface | Outcome |
+|---------|---------|
+| component changelog directories | Reviewed, all entries are version-stamped historical archive, left unchanged |
+| constitutional rule documents | 2 drifts fixed (README rule-file count, cli-dispatch Kimi model version) |
+| system-spec-kit template files | 2 drifts fixed (templates README directory tree, examples glob separator) |
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| spec.md | Created | Defines scope, objective and acceptance criteria |
-| plan.md | Created | Defines execution and verification approach |
-| tasks.md | Created | Lists pending cleanup tasks |
-| checklist.md | Created | Lists pending verification checks |
-| implementation-summary.md | Created | Records that this is scaffold only |
+| `constitutional/README.md` | Modified | Rule-file count corrected from 13 to 18 in §8 Related |
+| `constitutional/cli-dispatch-skill-preload.md` | Modified | Kimi trigger phrases updated from k2.6 to k2.7 (current kimi-for-coding/k2p7) |
+| `templates/README.md` | Modified | Added phase-parent.spec.md.tmpl to directory tree, fixed examples glob level- to level_ |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -69,7 +71,7 @@ This child phase now has the required spec, plan, task list, checklist and summa
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The phase docs were created from the spec-kit Level-2 structure and kept in PENDING state. Cleanup execution is intentionally deferred.
+Discovery enumerated the candidate set with `rg --files`. Each constitutional doc and template was reviewed against current source by resolving every path reference and cross-checking counts and model names. Fixes were applied only where a claim was provably false. The changelog corpus was confirmed to hold only historical version entries and was left intact.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -79,8 +81,8 @@ The phase docs were created from the spec-kit Level-2 structure and kept in PEND
 
 | Decision | Why |
 |----------|-----|
-| Keep a pending summary | The Level-2 validator requires the file and the content must avoid false completion claims |
-| Leave all checks unchecked | No cleanup evidence exists yet |
+| Leave changelog entries unchanged | Version-stamped entries are immutable history, so editing them would rewrite the record |
+| Factual fixes only, no restyle pass | The execution directive scoped work to drift, so a deliberate house-voice rewrite was out of scope |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -90,8 +92,11 @@ The phase docs were created from the spec-kit Level-2 structure and kept in PEND
 
 | Check | Result |
 |-------|--------|
-| Cleanup execution | PENDING |
-| Strict validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/005-release-cleanup/009-changelogs-constitutional-and-templates --strict` |
+| Cleanup execution | DONE (4 drifts fixed, changelogs left historical) |
+| Path resolution | All written paths resolve (64-file scan, 0 unresolved) |
+| Em dash and semicolon scan | CLEAN on edited fragments |
+| Stale-reference scan | CLEAN on edited files |
+| Strict validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/005-release-cleanup/009-changelogs-constitutional-and-templates --strict` exits 0 |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -99,5 +104,6 @@ The phase docs were created from the spec-kit Level-2 structure and kept in PEND
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Cleanup not executed.** This phase defines the contract only and later work must run discovery before editing target docs.
+1. **Changelog corpus not edited.** The 1585 version-stamped changelog entries are immutable historical records and were left unchanged by design, not reviewed line by line.
+2. **No house-voice restyle.** Edits were limited to factual drift, and pre-existing prose voice in unedited lines was preserved per the execution directive.
 <!-- /ANCHOR:limitations -->

@@ -120,6 +120,7 @@ templates/
 ├── manifest/
 │   ├── spec-kit-docs.json
 │   ├── spec.md.tmpl
+│   ├── phase-parent.spec.md.tmpl
 │   ├── plan.md.tmpl
 │   ├── tasks.md.tmpl
 │   ├── implementation-summary.md.tmpl
@@ -216,7 +217,7 @@ Render flow:
 | ------------------------------------------- | ----------------- | -------------------------------------------------------- |
 | `manifest/spec-kit-docs.json`               | Data file         | Primary Level and document contract consumed by scripts. |
 | `manifest/*.md.tmpl`                        | Template files    | Rendered into packet markdown files.                     |
-| `examples/level-*`                          | Reference folders | Show expected rendered output by Level.                  |
+| `examples/level_*`                          | Reference folders | Show expected rendered output by Level.                  |
 | `scripts/spec/create.sh`                    | Script caller     | Reads this folder to scaffold packets.                   |
 | `scripts/spec/validate.sh`                  | Script caller     | Reads the same contract to validate packets.             |
 | `scripts/templates/inline-gate-renderer.sh` | Script caller     | Renders gated template blocks for a selected Level.      |

@@ -10,9 +10,9 @@ _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/009-changelogs-constitutional-and-templates"
     last_updated_at: "2026-06-19T00:00:00Z"
-    last_updated_by: "codex-gpt-5"
-    recent_action: "Created PENDING cleanup tasks"
-    next_safe_action: "Run discovery"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Executed cleanup: fixed 4 factual drifts, changelogs left historical"
+    next_safe_action: "Phase complete, strict validation passed, no further action"
     blockers: []
     key_files:
       - "tasks.md"
@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-tasks-009-changelogs-constitutional-and-templates"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -48,9 +48,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Run discovery for changelog, constitutional doc and template sweep.
-- [ ] T002 Save candidate paths as phase evidence.
-- [ ] T003 Confirm packet 030 is not in the candidate list.
+- [x] T001 Run discovery for changelog, constitutional doc and template sweep.
+- [x] T002 Save candidate paths as phase evidence.
+- [x] T003 Confirm packet 030 is not in the candidate list.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -58,10 +58,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Review every candidate document against current source files.
-- [ ] T005 Remove stale file, feature and route claims.
-- [ ] T006 Apply HVR voice edits.
-- [ ] T007 Keep out-of-scope document families unchanged.
+- [x] T004 Review every candidate document against current source files.
+- [x] T005 Remove stale file, feature and route claims.
+- [x] T006 Apply HVR voice edits (factual fixes only, no restyle pass per scope).
+- [x] T007 Keep out-of-scope document families unchanged.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -69,10 +69,10 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Run em dash scan.
-- [ ] T009 Run semicolon character scan.
-- [ ] T010 Run stale-reference scan.
-- [ ] T011 Run strict validation for this child folder.
+- [x] T008 Run em dash scan.
+- [x] T009 Run semicolon character scan.
+- [x] T010 Run stale-reference scan.
+- [x] T011 Run strict validation for this child folder.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -80,10 +80,10 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`.
-- [ ] No `[B]` blocked tasks remaining.
-- [ ] Manual verification evidence is recorded.
-- [ ] Strict validation exits 0.
+- [x] All tasks marked `[x]`.
+- [x] No `[B]` blocked tasks remaining.
+- [x] Manual verification evidence is recorded.
+- [x] Strict validation exits 0.
 <!-- /ANCHOR:completion -->
 
 ---

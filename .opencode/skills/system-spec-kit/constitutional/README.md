@@ -227,5 +227,5 @@ memory_save({ filePath: ".opencode/skills/system-spec-kit/constitutional/gate-en
 - [`../SKILL.md`](../SKILL.md)
 - [`./gate-enforcement.md`](./gate-enforcement.md)
 - [`./gate-tool-routing.md`](./gate-tool-routing.md)
-- The full set of 13 rule files is listed in §4 Key Files.
+- The full set of 18 rule files is listed in §4 Key Files.
 - [`../mcp_server/lib/scoring/importance-tiers.ts`](../mcp_server/lib/scoring/importance-tiers.ts)

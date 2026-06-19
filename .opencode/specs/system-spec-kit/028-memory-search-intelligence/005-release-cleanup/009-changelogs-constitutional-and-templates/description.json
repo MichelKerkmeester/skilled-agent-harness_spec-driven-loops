@@ -1,20 +1,16 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/009-changelogs-constitutional-and-templates",
-  "description": "Defines the pending release-cleanup sweep for changelogs, constitutional docs and spec-kit templates.",
+  "description": "Feature Specification: Changelogs Constitutional And Templates Cleanup",
   "keywords": [
-    "defines",
-    "pending",
-    "release",
-    "cleanup",
-    "sweep",
+    "feature",
+    "specification",
     "changelogs",
     "constitutional",
-    "docs",
-    "spec",
-    "templates"
+    "templates",
+    "cleanup"
   ],
-  "lastUpdated": "2026-06-19T00:00:00Z",
+  "lastUpdated": "2026-06-19T11:32:15.993Z",
   "specId": "009",
   "folderSlug": "changelogs-constitutional-and-templates",
   "parentChain": [
@@ -25,4 +21,3 @@
   "memorySequence": 0,
   "memoryNameHistory": []
 }
-
