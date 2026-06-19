@@ -172,6 +172,11 @@ import {
   type WriteProvenanceContext,
 } from '../lib/storage/write-provenance.js';
 import {
+  detectInjectionMarkers,
+  INJECTION_MARKER_QUALITY_FLAG,
+  INJECTION_MARKER_RESIDUE_REJECTED_FLAG,
+} from '../lib/extraction/redaction-gate.js';
+import {
   deleteIdempotencyReceiptByKey,
   extractMemoryIdFromResponse,
   isMemoryIdempotencyEnabled,
@@ -713,6 +718,46 @@ function buildSaveTimeReconsolidationFailureResult(args: {
     error: args.message ?? `Save-time reconsolidation failed: ${args.failure.reason}`,
     message: args.message ?? `Save-time reconsolidation failed: ${args.failure.reason}`,
     saveTimeReconsolidation: args.failure,
+  };
+}
+
+function applyInjectionMarkerCapturePolicy(
+  parsed: ReturnType<typeof memoryParser.parseMemoryFile>,
+  validationWarnings: string[],
+): IndexResult | null {
+  const detection = detectInjectionMarkers(parsed.content);
+  if (!detection.markerDetected) {
+    return null;
+  }
+
+  parsed.contentHash = memoryParser.computeContentHash(detection.cleanedText);
+  parsed.qualityFlags = Array.from(new Set([
+    ...(parsed.qualityFlags ?? []),
+    INJECTION_MARKER_QUALITY_FLAG,
+    ...(detection.residueRejected ? [INJECTION_MARKER_RESIDUE_REJECTED_FLAG] : []),
+  ]));
+  const categories = Array.from(new Set(detection.matches.map((match) => match.category))).join(', ');
+  validationWarnings.push(`Prompt-injection marker detected (${categories}); stored body preserved, index hash excludes marker text.`);
+
+  if (!detection.residueRejected) {
+    return null;
+  }
+
+  return {
+    status: 'rejected',
+    id: 0,
+    specFolder: parsed.specFolder,
+    title: parsed.title ?? '',
+    triggerPhrases: parsed.triggerPhrases,
+    contextType: parsed.contextType,
+    importanceTier: parsed.importanceTier,
+    memoryType: parsed.memoryType,
+    memoryTypeSource: parsed.memoryTypeSource,
+    qualityScore: parsed.qualityScore,
+    qualityFlags: parsed.qualityFlags,
+    warnings: validationWarnings,
+    rejectionReason: 'Prompt-injection marker residue exceeds safe capture threshold',
+    message: 'Prompt-injection marker residue exceeds safe capture threshold',
   };
 }
 
@@ -2266,6 +2311,13 @@ async function processPreparedMemory(
     const lockedResult = evaluatePreparedMemory(activePrepared);
     if (lockedResult) {
       return lockedResult;
+    }
+    const injectionMarkerRejection = applyInjectionMarkerCapturePolicy(
+      activePrepared.parsed,
+      activePrepared.validation.warnings,
+    );
+    if (injectionMarkerRejection) {
+      return injectionMarkerRejection;
     }
     const {
       parsed,
@@ -4063,6 +4115,10 @@ export {
   handleMemorySave,
   atomicSaveMemory,
   getAtomicityMetrics,
+};
+
+export const __memorySaveTestables = {
+  applyInjectionMarkerCapturePolicy,
 };
 
 // Backward-compatible aliases (snake_case) — only for symbols defined in this module

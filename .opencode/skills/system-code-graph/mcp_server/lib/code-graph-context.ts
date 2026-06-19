@@ -29,6 +29,12 @@ export interface ContextArgs {
   includeTrace?: boolean;
 }
 
+export interface GraphFreshnessMetadata {
+  lastScanAt: string | null;
+  staleness: 'fresh' | 'recent' | 'stale' | 'unknown';
+  generation: number;
+}
+
 export interface ContextResult {
   queryMode: QueryMode;
   resolvedAnchors: ArtifactRef[];
@@ -49,7 +55,7 @@ export interface ContextResult {
       omittedAnchors: number;
       truncatedText: boolean;
     };
-    freshness: { lastScanAt: string | null; staleness: 'fresh' | 'recent' | 'stale' | 'unknown' };
+    freshness: GraphFreshnessMetadata;
   };
 }
 
@@ -317,18 +323,19 @@ function suggestNextActions(anchors: ArtifactRef[], sections: GraphContextSectio
 }
 
 /** Compute freshness metadata from DB scan timestamps */
-function computeFreshness(): { lastScanAt: string | null; staleness: 'fresh' | 'recent' | 'stale' | 'unknown' } {
+function computeFreshness(): GraphFreshnessMetadata {
   try {
+    const generation = graphDb.getCodeGraphGeneration();
     const d = graphDb.getDb();
     const row = d.prepare('SELECT MAX(indexed_at) as last FROM code_files').get() as { last: string | null } | undefined;
     const lastScanAt = row?.last ?? null;
-    if (!lastScanAt) return { lastScanAt: null, staleness: 'unknown' };
+    if (!lastScanAt) return { lastScanAt: null, staleness: 'unknown', generation };
 
     const ageMs = Date.now() - new Date(lastScanAt).getTime();
     const staleness = ageMs < 300_000 ? 'fresh' : ageMs < 3_600_000 ? 'recent' : 'stale';
-    return { lastScanAt, staleness };
+    return { lastScanAt, staleness, generation };
   } catch {
-    return { lastScanAt: null, staleness: 'unknown' };
+    return { lastScanAt: null, staleness: 'unknown', generation: 0 };
   }
 }
 

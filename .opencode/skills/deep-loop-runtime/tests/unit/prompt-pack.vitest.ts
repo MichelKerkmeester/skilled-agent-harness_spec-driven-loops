@@ -110,6 +110,7 @@ describe('prompt-pack', () => {
       max_iterations: 5,
       next_focus: 'Graph event capture',
       remaining_questions_list: '- Q1\n- Q2',
+      carried_forward_open_questions: '- Runtime helper ownership? (iteration 1)',
       last_3_summaries: 'Iter 1: baseline',
       state_paths_config: '.opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_config.json',
       state_paths_state_log: '.opencode/skills/deep-loop-workflows/deep-research/runtime/state.jsonl',
@@ -138,6 +139,7 @@ describe('prompt-pack', () => {
     });
 
     expect(researchRendered).toContain('Research Topic: Deep loop coverage');
+    expect(researchRendered).toContain('Runtime helper ownership?');
     expect(researchRendered).toContain('State Log: .opencode/skills/deep-loop-workflows/deep-research/runtime/state.jsonl');
     expect(reviewRendered).toContain('Dimension: traceability');
     expect(reviewRendered).toContain('Findings Registry: .opencode/skills/deep-loop-workflows/deep-review/runtime/findings.json');

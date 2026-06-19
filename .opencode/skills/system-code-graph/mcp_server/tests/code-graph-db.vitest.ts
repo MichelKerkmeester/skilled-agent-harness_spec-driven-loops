@@ -3,10 +3,13 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import {
+  bumpCodeGraphGeneration,
   closeDb,
+  getCodeGraphGeneration,
   getDb,
   initDb,
   replaceNodes,
+  setCodeGraphMetadata,
   upsertFile,
 } from '../lib/code-graph-db.js';
 import type { CodeNode } from '../lib/indexer-types.js';
@@ -93,5 +96,22 @@ describe('replaceNodes INSERT OR IGNORE (Layer 2)', () => {
 
     expect(secondFileRows).toEqual([{ symbol_id: 'unique-symbol-id' }]);
     expect(sharedRows).toEqual([{ file_id: firstFileId }]);
+  });
+});
+
+describe('code graph generation metadata', () => {
+  it('defaults to zero when unset or malformed', () => {
+    expect(getCodeGraphGeneration()).toBe(0);
+
+    setCodeGraphMetadata('graph_generation', 'not-a-number');
+
+    expect(getCodeGraphGeneration()).toBe(0);
+  });
+
+  it('increments and persists the generation counter', () => {
+    expect(bumpCodeGraphGeneration()).toBe(1);
+    expect(getCodeGraphGeneration()).toBe(1);
+    expect(bumpCodeGraphGeneration()).toBe(2);
+    expect(getCodeGraphGeneration()).toBe(2);
   });
 });

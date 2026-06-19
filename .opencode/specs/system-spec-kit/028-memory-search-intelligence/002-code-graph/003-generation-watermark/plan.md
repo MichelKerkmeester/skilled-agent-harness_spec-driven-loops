@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/002-code-graph/003-generation-watermark"
-    last_updated_at: "2026-06-19T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored Level-2 plan for the Q6 generation-watermark pair"
-    next_safe_action: "Implement Q6-C2 soft watermark at handlers/scan.ts scanPromotable block"
+    last_updated_at: "2026-06-19T08:16:05Z"
+    last_updated_by: "codex-gpt-5"
+    recent_action: "Implemented Q6-C2 soft watermark and reconciled the hard-gate deferral"
+    next_safe_action: "Keep Q6-C1 gated until Q1-C1 schema work has a named consumer"
     blockers: []
     key_files:
       - "spec.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-002-003-generation-watermark"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 80
     open_questions: []
     answered_questions: []
 ---
@@ -62,10 +62,10 @@ Add a monotonic `generation` counter to the code graph in two staged candidates.
 - [x] Dependencies identified (`code_graph_metadata` present; Q1-C1 cluster gates Q6-C1)
 
 ### Definition of Done
-- [ ] Q6-C2 acceptance criteria met (REQ-001..004): counter persists, bumps at finalize, additive/non-breaking
-- [ ] Tests passing: two-scan increment, unset→0, envelope carries counter, node/edge set unchanged
-- [ ] Q6-C1 design + DEFER-speculative gate documented (REQ-005); no Q6-C1 code
-- [ ] Docs reconciled (spec/plan/tasks)
+- [x] Q6-C2 acceptance criteria met (REQ-001..004): counter persists, bumps at finalize, additive/non-breaking
+- [x] Tests passing: two-scan increment, unset→0, envelope carries counter, node/edge set unchanged
+- [x] Q6-C1 design + DEFER-speculative gate documented (REQ-005); no Q6-C1 code
+- [x] Docs reconciled (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -112,19 +112,19 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Confirm the live `scanPromotable` finalize line range in `handlers/scan.ts` (currently ~`:666-679`) and the freshness envelope type line in `code-graph-context.ts` (~`:52`)
-- [ ] Confirm the `Number.parseInt`-with-fallback precedent (`code-graph-db.ts:241`) and the KV helper export block (~`:556-627`); note `code_graph_metadata` stores strings only
-- [ ] Confirm zero existing `graph_generation`/`*CodeGraphGeneration` tokens (PENDING baseline)
+- [x] Confirm the live `scanPromotable` finalize line range in `handlers/scan.ts` and the freshness envelope type line in `code-graph-context.ts`
+- [x] Confirm the `Number.parseInt`-with-fallback precedent and the KV helper export block; note `code_graph_metadata` stores strings only
+- [x] Confirm zero existing `graph_generation`/`*CodeGraphGeneration` tokens before implementation
 
 ### Phase 2: Core Implementation (Q6-C2)
-- [ ] Add `getCodeGraphGeneration()` (read `graph_generation` → `parseInt || 0`) and `bumpCodeGraphGeneration()` (`setMetadata('graph_generation', String(n+1))`) to `code-graph-db.ts`, exported beside the existing helpers
-- [ ] Call `graphDb.bumpCodeGraphGeneration()` once inside the `if (scanPromotable)` finalize block in `handlers/scan.ts`
-- [ ] Add `generation: number` to the freshness envelope type and stamp it from `getCodeGraphGeneration()` (default 0) in `computeFreshness()`
+- [x] Add `getCodeGraphGeneration()` (read `graph_generation` → `parseInt || 0`) and `bumpCodeGraphGeneration()` (`setMetadata('graph_generation', String(n+1))`) to `code-graph-db.ts`, exported beside the existing helpers
+- [x] Call `graphDb.bumpCodeGraphGeneration()` once inside the `if (scanPromotable)` finalize block in `handlers/scan.ts`
+- [x] Add `generation: number` to the freshness envelope type and stamp it from `getCodeGraphGeneration()` (default 0) in `computeFreshness()`
 
 ### Phase 3: Verification
-- [ ] Unit: unset → 0; one promoted scan → 1; two → 2; non-promoting scan → unchanged
-- [ ] Behavior: a context query result carries `metadata.freshness.generation` equal to the counter, and the returned node/edge set is byte-identical to baseline (no read-filter change)
-- [ ] `node --check` / `tsc` clean; vitest green; docs reconciled; Q6-C1 design + DEFER gate recorded
+- [x] Unit: unset → 0; one promoted scan → 1; two → 2; non-promoting scan → unchanged
+- [x] Behavior: a context query result carries `metadata.freshness.generation` equal to the counter, and the returned node/edge set is byte-identical to baseline (no read-filter change)
+- [x] `tsc` clean; Vitest green; docs reconciled; Q6-C1 design + DEFER gate recorded
 <!-- /ANCHOR:phases -->
 
 ---

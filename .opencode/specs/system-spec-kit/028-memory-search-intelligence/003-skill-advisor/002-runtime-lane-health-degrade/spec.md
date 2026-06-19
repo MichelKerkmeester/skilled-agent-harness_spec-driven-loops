@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Skill Advisor — Runtime Lane-Health & Graceful Lane-Degrade (C5/C5a/AMB)"
-description: "A graceful-degradation unit for the Skill Advisor 5-lane fusion scorer. A P0 runtime per-lane health signal distinguishes a degraded-empty lane (mid-rebuild) from a matched-nothing-empty lane; C5 then elides only runtime-degraded lanes from liveTotal (degrade-to-remaining, not skew-down); C5a surfaces the degraded-lane list for legibility; AMB extends the ambiguity/abstention explanation. A confidence baseline is captured FIRST because the asserted '~13% skew' is unsourced."
+description: "A graceful-degradation unit for the Skill Advisor 5-lane fusion scorer. A P0 runtime per-lane health signal distinguishes a degraded-empty lane (mid-rebuild) from a matched-nothing-empty lane; C5 then elides only runtime-degraded lanes from liveTotal (degrade-to-remaining, not skew-down); C5a surfaces the degraded-lane list for legibility; AMB extends the ambiguity/abstention explanation. The baseline fixture measured confidence 0.6060 -> 0.6189 when graph_causal is degraded-empty."
 trigger_phrases:
   - "advisor runtime lane health degrade"
   - "C5 lane elision livetotal"
@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/002-runtime-lane-health-degrade"
-    last_updated_at: "2026-06-19T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Author C5/C5a/AMB lane-health-degrade impl sub-phase spec (re-plan; PENDING)"
-    next_safe_action: "Capture the confidence baseline (P0), then build the runtime lane-health signal"
+    last_updated_at: "2026-06-19T08:19:43Z"
+    last_updated_by: "codex-gpt-5"
+    recent_action: "Implemented C5/C5a/AMB lane-health-degrade unit and recorded verification evidence"
+    next_safe_action: "Run final strict validation and keep 030 untouched"
     blockers: []
     key_files:
       - "spec.md"
@@ -26,7 +26,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-003-002-runtime-lane-health-degrade"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -43,12 +43,12 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Implemented |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Packet** | system-spec-kit/028-memory-search-intelligence/003-skill-advisor |
 | **Candidates** | C5, C5a, AMB (+ aliases C5-advisor-lane-elision, C5a-advisor-degraded-lane-flag) |
-| **Status (all)** | PENDING — none shipped in 030 Wave-0 (`git log 1ecc531431..ab5459fb6d` has no advisor/lane/C5 commit; 030 §14 has no advisor row; 030 spec line 106 lists C5 as NO-GO until baseline + lane-health signal) |
+| **Status (all)** | DONE in this 028 sub-phase — P0 baseline, runtime lane-health signal, C5, C5a, and AMB implemented; 030 remains untouched |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -59,13 +59,13 @@ _memory:
 ### Problem Statement
 The Skill Advisor fuses five lanes — `explicit_author 0.42 / lexical 0.28 / graph_causal 0.13 / derived_generated 0.12 / semantic_shadow 0.05` (`lane-registry.ts:8-19`) — and normalizes confidence against a `liveTotal` denominator built from **registry-static live weights filtered only by the config `disabled` set, never by runtime emptiness** (`fusion.ts:343-345`; `liveNormalized = score / liveTotal` at `fusion.ts:388`) [CONFIRMED: research.md Internal Baseline; iter-003 F5/F7].
 
-When a lane runs but returns `[]` at runtime — e.g. `graph_causal` during a skill-graph rebuild — its weight stays in `liveTotal` while no skill receives any contribution from it, so every survivor's `liveNormalized` is divided by an **inflated denominator** and confidence skews uniformly downward by the missing lane's weight share [CONFIRMED: iter-003 F7, `fusion.ts:388`]. The mechanism is real, but the often-quoted **"~13% skew" is UNSOURCED** — a grep for `13%`/`~13`/`0.13`/confidence-skew across `.opencode/specs` + `system-skill-advisor` returns **zero** matches, so it fails the regression-baseline rule and MUST NOT be cited until measured [CONFIRMED: BROADENING §2/§6, roadmap.md:90,218,262; synthesis 01-go-candidates.md:59].
+When a lane runs but returns `[]` at runtime — e.g. `graph_causal` during a skill-graph rebuild — its weight stays in `liveTotal` while no skill receives any contribution from it, so every survivor's `liveNormalized` is divided by an **inflated denominator** and confidence skews uniformly downward by the missing lane's weight share [CONFIRMED: iter-003 F7, `fusion.ts:388`]. The mechanism is real; this phase measured it with prompt `alpha routing surface nearby neutral words`: baseline confidence `0.6060`, degraded confidence `0.6189`, delta `+0.0129`, and `liveNormalized` for the scored fixture moved from `0.1600` to `0.1839`.
 
 The naive fix (drop any empty lane from `liveTotal`) is wrong: the scorer has **no runtime per-lane health signal** to tell a **degraded-empty** lane (mid-rebuild) apart from a **matched-nothing-empty** lane (the lane ran fine and legitimately matched nothing). Eliding zero-match lanes would over-credit non-matching skills — a skew *opposite* to the bug C5 fixes [CONFIRMED: roadmap.md:90; synthesis 01-go-candidates.md:103; iter-014 G14-03; iter-016 J16-01]. `disabled` is config-only and is never set from runtime emptiness (`fusion.ts:337,339,343-345`) [CONFIRMED: iter-014]. The existing `metrics.liveLaneCount` is derived from the registry filter (`isLiveScorerLane && !disabled`, `fusion.ts:535-536`) — it does **not** reflect runtime degradation either.
 
 ### Purpose
 Ship a coherent graceful-degradation unit, in P0-first order:
-1. **P0 baseline** — capture the real confidence delta the inflated-denominator skew causes, replacing the unsourced "~13%".
+1. **P0 baseline** — capture the real confidence delta the inflated-denominator skew causes, replacing the prior unmeasured percent-skew claim.
 2. **P0 lane-health signal** — a runtime per-lane score-presence/health flag the scorer currently lacks, distinguishing degraded-empty from matched-nothing-empty.
 3. **C5** — elide ONLY runtime-degraded lanes from `liveTotal` (degrade-to-remaining), mirroring aionforge's "degrade to the remaining live signals".
 4. **C5a** — surface the degraded-lane list / live-lane count in the result explanation, mirroring aionforge's `embedder_available:false` reporting.
@@ -109,7 +109,7 @@ Ship a coherent graceful-degradation unit, in P0-first order:
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Capture a confidence baseline BEFORE quoting any skew number | A recorded before/after confidence delta for a representative prompt with `graph_causal` runtime-empty; the unsourced "~13%" is removed from all docs and replaced with the measured value (or marked UNKNOWN until measured) [CONFIRMED: roadmap.md:218,262; BROADENING §2] |
+| REQ-001 | Capture a confidence baseline BEFORE quoting any skew number | DONE — representative prompt `alpha routing surface nearby neutral words`; baseline confidence `0.6060`; degraded confidence `0.6189`; delta `+0.0129`; `liveNormalized` `0.1600 -> 0.1839`; pinned in `tests/scorer/runtime-lane-health.vitest.ts` |
 | REQ-002 | A runtime per-lane health signal exists in the scorer | Each lane is classed per call as `healthy` / `runtime_degraded` / `matched_nothing`; the signal is derived from runtime score-presence (and rebuild/health state), NOT from the config `disabled` set or the registry-static `isLiveScorerLane` filter [CONFIRMED: iter-014 G14-03; iter-016 J16-01] |
 | REQ-003 | C5 elides ONLY runtime-degraded lanes from `liveTotal` | `liveTotal` excludes lanes flagged `runtime_degraded`; a lane flagged `matched_nothing` STAYS in `liveTotal`; survivors degrade-to-remaining (no over-credit of non-matching skills) [CONFIRMED: roadmap.md:90; synthesis 01-go-candidates.md:103] |
 
@@ -141,7 +141,7 @@ Ship a coherent graceful-degradation unit, in P0-first order:
 |------|------|--------|------------|
 | Risk | C5 changes confidence magnitudes on every rebuild window | High — confidence is a load-bearing output (abstention, ambiguity, ranking ties) | Capture the baseline FIRST (REQ-001) and gate C5 on the measured delta; happy path proven byte-identical (REQ-004) [CONFIRMED: roadmap.md:90 "needs baseline"; research.md C5 conflict-risk Med] |
 | Risk | Naive elision over-credits non-matching skills (skew OPPOSITE the bug) | High — would silently invert the fix | The P0 lane-health signal (REQ-002) is a HARD prerequisite; C5 elides only `runtime_degraded`, never `matched_nothing` [CONFIRMED: synthesis 01-go-candidates.md:103; iter-014 G14-03] |
-| Risk | The "~13%" number is asserted, not measured | Med — citing it would fabricate evidence | Treat as UNKNOWN until REQ-001 measures it; do not cite "~13%" anywhere [CONFIRMED: roadmap.md:262; BROADENING §6] |
+| Risk | The prior percent-skew number was asserted, not measured | Med — citing it would fabricate evidence | Replaced with the measured fixture delta: confidence `0.6060 -> 0.6189` (`+0.0129`) and `liveNormalized 0.1600 -> 0.1839` |
 | Dependency | A runtime score-presence / rebuild-health signal the scorer currently lacks | Internal-gap — the P0 prerequisite this unit builds | `laneScores[lane].length` / `scores.graph_causal` give runtime emptiness; rebuild-state distinguishes degraded from matched-nothing; the registry filter alone is insufficient [CONFIRMED: iter-003 C5 touch points; iter-014 G14-03] |
 | Dependency | External model — aionforge "degrade to the remaining live signals" / `embedder_available:false` | Reference pattern for C5/C5a | `external/aionforge-memory-development/docs/retrieval.md` (degrade-to-remaining; `embedder_available:false` reporting) [CONFIRMED: deltas/iter-003.jsonl C5a evidence `retrieval.md:300`] |
 <!-- /ANCHOR:risks -->
@@ -184,7 +184,7 @@ Ship a coherent graceful-degradation unit, in P0-first order:
 |-----------|-------|-------|
 | Scope | 10/25 | Single skill, ~1-2 scorer files (`fusion.ts`, maybe `lane-registry.ts`) + tests; S-effort per research [CONFIRMED: research.md C5/C5a effort S] |
 | Risk | 16/25 | Changes a confidence-bearing output on every rebuild window; the over-credit inversion is a real correctness trap gated on the P0 health signal + baseline |
-| Research | 8/20 | Mechanism CONFIRMED (iter-003 F5/F7); the "~13%" magnitude is UNKNOWN until baseline-measured |
+| Research | 8/20 | Mechanism CONFIRMED (iter-003 F5/F7); magnitude now baseline-measured in `tests/scorer/runtime-lane-health.vitest.ts` |
 | **Total** | **34/70** | **Level 2** (single correctness/degrade unit + P0 prerequisite; no schema migration) |
 <!-- /ANCHOR:complexity -->
 
@@ -193,9 +193,9 @@ Ship a coherent graceful-degradation unit, in P0-first order:
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- What is the measured confidence delta when `graph_causal` is runtime-empty (REQ-001)? The "~13%" is unsourced and must be measured before any number is quoted [CONFIRMED: roadmap.md:218].
-- Where should the lane-health flag live — keyed on the registry (`lane-registry.ts`) or computed inline per call in `fusion.ts`? iter-016 notes the per-lane health signal "collapses to identical workspace-wide totals when `laneAttributionBySkill` is empty", so the signal must be call-scoped, not aggregate [CONFIRMED: iter-016 J16-01 key note].
-- Should `runtime_degraded` be driven only by `graph_causal` rebuild state, or generalized to any lane that can be transiently empty (e.g. `semantic_shadow` when embeddings are reloading)? Pass-1 evidence is `graph_causal`-specific; generalization is INFERRED.
+- ANSWERED: measured confidence delta when `graph_causal` is runtime-empty is `0.6060 -> 0.6189` (`+0.0129`) for prompt `alpha routing surface nearby neutral words`.
+- ANSWERED: lane-health is computed call-scoped in `fusion.ts` from runtime lane matches plus a handler-owned stale graph health signal; it is not registry-keyed.
+- REMAINS OPEN: `runtime_degraded` is currently driven by handler-provided graph freshness. Generalizing to other transient lanes is possible via the scorer option shape, but only `graph_causal` has implementation evidence in this phase.
 <!-- /ANCHOR:questions -->
 
 ---
@@ -206,9 +206,9 @@ Ship a coherent graceful-degradation unit, in P0-first order:
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`
-- **Research evidence**: `../research/research.md` (Internal Baseline `liveTotal skew`; Broadening Addendum), `../research/iterations/iteration-003.md` (Q6 F5/F7, C5, C5a), `../research/iterations/iteration-014.md` (G14-03 lane-health gap), `../research/iterations/iteration-016.md` (J16-01 build sequence, "~13% asserted")
+- **Research evidence**: `../research/research.md` (Internal Baseline `liveTotal skew`; Broadening Addendum), `../research/iterations/iteration-003.md` (Q6 F5/F7, C5, C5a), `../research/iterations/iteration-014.md` (G14-03 lane-health gap), `../research/iterations/iteration-016.md` (J16-01 build sequence, prior skew assertion)
 - **Deltas**: `../research/deltas/iter-003.jsonl` (F5/F7, C5, C5a), `../research/deltas/iter-004.jsonl` (AMB rank 9), `../research/deltas/iter-016.jsonl` (J16-01)
-- **Roadmap**: `../../research/roadmap.md` (C5 row :90, C5a row :91; degrade-spine §; "~13% unsourced" :218,262)
+- **Roadmap**: `../../research/roadmap.md` (C5 row :90, C5a row :91; degrade-spine §; prior unsourced skew notes :218,262)
 - **Synthesis**: `../../research/synthesis/01-go-candidates.md` (C5 not-a-free-fix caveat :103; Advisor C4/C5 :59)
 - **Parent spec**: `../spec.md`
 - **Wave-0 shipped record (evidence none done)**: `../../../030-memory-search-intelligence-impl/spec.md` §14 (no advisor row) + line 106 (C5 NO-GO until baseline + lane-health signal)

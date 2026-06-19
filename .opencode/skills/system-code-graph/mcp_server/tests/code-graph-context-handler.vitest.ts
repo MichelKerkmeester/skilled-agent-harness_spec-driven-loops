@@ -8,6 +8,7 @@ const mocks = vi.hoisted(() => ({
   buildContext: vi.fn(),
   resolveSeeds: vi.fn((..._args: unknown[]) => [] as Array<Record<string, unknown>>),
   getLastDetectorProvenance: vi.fn(() => 'structured'),
+  getCodeGraphGeneration: vi.fn(() => 0),
   getStats: vi.fn(() => ({
     lastScanTimestamp: '2026-04-17T00:00:00.000Z',
     graphQualitySummary: {
@@ -44,6 +45,7 @@ vi.mock('../lib/ensure-ready.js', () => ({
 }));
 
 vi.mock('../lib/code-graph-db.js', () => ({
+  getCodeGraphGeneration: mocks.getCodeGraphGeneration,
   getLastDetectorProvenance: mocks.getLastDetectorProvenance,
   getStats: mocks.getStats,
   getDb: mocks.getDb,
@@ -58,6 +60,7 @@ describe('code-graph-context handler', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mocks.resolveSeeds.mockReturnValue([]);
+    mocks.getCodeGraphGeneration.mockReturnValue(0);
     mocks.getDb.mockReturnValue({
       prepare: vi.fn(() => ({
         get: vi.fn(() => ({ last: null })),
@@ -86,7 +89,7 @@ describe('code-graph-context handler', () => {
           omittedAnchors: 0,
           truncatedText: false,
         },
-        freshness: { lastScanAt: null, staleness: 'unknown' },
+        freshness: { lastScanAt: null, staleness: 'unknown', generation: 0 },
       },
     });
   });
@@ -692,6 +695,7 @@ describe('code graph context rank-time trust', () => {
 
   it('keeps neutral and absent trust results byte-identical to baseline order', async () => {
     const buildContext = await importBuildContext();
+    mocks.getCodeGraphGeneration.mockReturnValue(7);
     const baselineTargets = [
       { id: 'neutral-a', name: 'neutral.alpha', file: 'src/neutral-a.ts', line: 11 },
       { id: 'neutral-b', name: 'neutral.beta', file: 'src/neutral-b.ts', line: 22 },
@@ -743,6 +747,7 @@ describe('code graph context rank-time trust', () => {
     });
 
     expect(actualBytes).toBe(baselineBytes);
+    expect(result.metadata.freshness.generation).toBe(7);
   });
 
   it('boosts trusted impact callers while preserving neutral peer order', async () => {

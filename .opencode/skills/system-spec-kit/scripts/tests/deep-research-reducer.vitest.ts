@@ -17,6 +17,11 @@ const reducerModule = require(path.join(
   reduceResearchState: (specFolder: string, options?: { write?: boolean }) => {
     registry: {
       uncoveredQuestions: string[];
+      carriedForwardOpenQuestions: Array<{
+        text: string;
+        addedAtIteration: number;
+        source: string;
+      }>;
       ruledOutDirections: Array<{
         text: string;
         contentHash?: string;
@@ -26,6 +31,7 @@ const reducerModule = require(path.join(
         iterationsCompleted: number;
         openQuestions: number;
         resolvedQuestions: number;
+        carriedForwardOpenQuestions: number;
         keyFindings: number;
       };
     };
@@ -209,6 +215,10 @@ Refine the remaining uncertainty.
 - Questions addressed: Question B
 - Questions answered: Question B
 
+## Questions Remaining
+- Question C
+- Which runtime prompt seam carries self-owned open questions?
+
 ## Reflection
 - What worked and why: The second pass confirmed the lineage edge with a direct source.
 - What did not work and why: Repeating weak evidence added no new confidence.
@@ -246,7 +256,15 @@ describe('deep-research reducer', () => {
     expect(firstRun.registry.metrics.resolvedQuestions).toBe(2);
     expect(firstRun.registry.metrics.openQuestions).toBe(1);
     expect(firstRun.registry.uncoveredQuestions).toEqual(['Question C']);
+    expect(firstRun.registry.carriedForwardOpenQuestions).toEqual([
+      {
+        text: 'Which runtime prompt seam carries self-owned open questions?',
+        addedAtIteration: 2,
+        source: 'iteration-markdown',
+      },
+    ]);
     expect(firstRun.registry.metrics.keyFindings).toBe(4);
+    expect(firstRun.registry.metrics.carriedForwardOpenQuestions).toBe(1);
 
     expect(firstRegistry).toBe(secondRegistry);
     expect(firstStrategy).toBe(secondStrategy);
@@ -259,6 +277,10 @@ describe('deep-research reducer', () => {
     expect(firstStrategy).toContain('Broad source comparison revealed the first stable answer.');
     expect(firstStrategy).toContain('## 10. RULED OUT DIRECTIONS');
     expect(firstStrategy).toContain('Browser-only profiling for this server-side problem.');
+    expect(firstStrategy).toContain('## 11A. CARRIED-FORWARD OPEN QUESTIONS');
+    expect(firstStrategy).toContain('- Which runtime prompt seam carries self-owned open questions? (iteration 2)');
+    expect(firstStrategy).not.toContain('- Question C (iteration 2)');
+    expect(firstStrategy).toContain('## 11. NEXT FOCUS\nWhich runtime prompt seam carries self-owned open questions?');
 
     expect(firstDashboard).toContain('Session ID: session-001');
     expect(firstDashboard).toContain('convergenceScore: 0.61');
@@ -300,6 +322,101 @@ describe('deep-research reducer', () => {
     expect(dashboard).toContain('## Uncovered Questions');
     expect(dashboard).toContain('- Count: 0');
     expect(dashboard).toContain('- None');
+    expect(dashboard).toContain('## 7. NEXT FOCUS\n[All tracked questions are resolved]');
+  });
+
+  it('derives next focus from the latest answer when no carried-forward question is present', () => {
+    const specFolder = makeFixtureSpecFolder();
+    writeFile(
+      path.join(specFolder, 'research', 'iterations', 'iteration-002.md'),
+      `# Iteration 2: Second pass
+
+## Focus
+Refine the remaining uncertainty.
+
+## Findings
+1. Finding three from the second pass.
+2. Runtime prompt rendering is already a checked substitution path.
+
+## Ruled Out
+- Re-reading the same migration note without new packet evidence.
+
+## Dead Ends
+- Browser-only profiling for this server-side problem.
+
+## Sources Consulted
+- https://example.com/two
+- memory:previous-run
+
+## Assessment
+- New information ratio: 0.4
+- Questions addressed: Question B
+- Questions answered: Question B
+
+## Reflection
+- What worked and why: The second pass confirmed the lineage edge with a direct source.
+- What did not work and why: Repeating weak evidence added no new confidence.
+- What I would do differently: Move directly to the unresolved question once the registry is stable.
+
+## Recommended Next Focus
+Question C
+`,
+    );
+
+    const result = reducerModule.reduceResearchState(specFolder, { write: true });
+
+    expect(result.strategy).toContain('## 11A. CARRIED-FORWARD OPEN QUESTIONS\n[None yet]');
+    expect(result.strategy).toContain(
+      '## 11. NEXT FOCUS\nFollow up on: Runtime prompt rendering is already a checked substitution path.',
+    );
+  });
+
+  it('falls back to the first strategy question when no answer can seed next focus', () => {
+    const specFolder = makeFixtureSpecFolder();
+    writeFile(
+      path.join(specFolder, 'research', 'iterations', 'iteration-002.md'),
+      `# Iteration 2: Second pass
+
+## Focus
+Refine the remaining uncertainty.
+
+## Findings
+
+## Sources Consulted
+- https://example.com/two
+
+## Assessment
+- New information ratio: 0.4
+- Questions addressed: Question B
+- Questions answered: Question B
+
+## Recommended Next Focus
+Hand-written fallback text
+`,
+    );
+
+    const result = reducerModule.reduceResearchState(specFolder, { write: true });
+
+    expect(result.strategy).toContain('## 11. NEXT FOCUS\nQuestion C');
+  });
+
+  it('keeps blocked-stop recovery ahead of derived next focus', () => {
+    const specFolder = makeFixtureSpecFolder();
+    writeFile(
+      path.join(specFolder, 'research', 'deep-research-state.jsonl'),
+      [
+        '{"type":"config","topic":"Reducer fixture topic","maxIterations":5,"convergenceThreshold":0.05,"createdAt":"2026-04-03T00:00:00Z","specFolder":"fixture"}',
+        '{"type":"iteration","run":1,"status":"complete","focus":"First pass","findingsCount":2,"newInfoRatio":0.8,"answeredQuestions":["Question A"],"keyQuestions":["Question A","Question B"],"sourcesQueried":["https://example.com/one"],"toolsUsed":["Read"],"timestamp":"2026-04-03T00:05:00Z","durationMs":1000}',
+        '{"type":"iteration","run":2,"status":"insight","focus":"Second pass","findingsCount":2,"newInfoRatio":0.4,"answeredQuestions":["Question B"],"keyQuestions":["Question B","Question C"],"sourcesQueried":["https://example.com/two"],"toolsUsed":["Read"],"timestamp":"2026-04-03T00:10:00Z","durationMs":1200}',
+        '{"type":"event","event":"blocked_stop","run":3,"blockedBy":["sourceDiversity"],"gateResults":{"evidenceDensity":{"pass":false,"sources":1}},"recoveryStrategy":"Collect an independent source before continuing.","timestamp":"2026-04-03T00:20:00Z"}',
+        '',
+      ].join('\n'),
+    );
+
+    const result = reducerModule.reduceResearchState(specFolder, { write: true });
+
+    expect(result.strategy).toContain('## 11. NEXT FOCUS\nBLOCKED on: sourceDiversity');
+    expect(result.strategy).toContain('Recovery: Collect an independent source before continuing.');
   });
 
   it('DR-005: deduplicates ruled-out directions by content hash while preserving first seen iteration', () => {

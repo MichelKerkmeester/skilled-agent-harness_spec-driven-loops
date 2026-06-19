@@ -677,6 +677,9 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
   if (scanPromotable) {
     graphDb.setLastDetectorProvenanceSummary(detectorProvenanceSummary);
     graphDb.setCodeGraphScope(scopePolicy);
+    if (filesIndexed > 0 || !effectiveIncremental) {
+      graphDb.bumpCodeGraphGeneration();
+    }
   }
 
   // Refresh candidate manifest after a successful scan so

@@ -71,6 +71,24 @@ export interface MemoryRetentionSweepSummary {
   durationMs: number;
 }
 
+/** Physical residue disclosure for rows removed by a sweep. */
+export interface MemoryResidualRetentionReport {
+  dead_row_slots: {
+    affectedRows: number;
+    mayRetainBytesUntil: 'sqlite_page_reuse_or_vacuum';
+  };
+  wal: {
+    affectedRows: number;
+    mayRetainBytesUntil: 'wal_checkpoint_truncate';
+    checkpointAttempted: boolean;
+  };
+  vector_tombstones: {
+    affectedRows: number;
+    mayRetainBytesUntil: 'vector_index_compaction';
+  };
+  persistent_deny_list: 'not_created';
+}
+
 /** Full sweep result including candidates, deletions, and ledger state. */
 export interface MemoryRetentionSweepResult extends MemoryRetentionSweepSummary {
   candidates: RetentionExpiredRow[];
@@ -78,6 +96,7 @@ export interface MemoryRetentionSweepResult extends MemoryRetentionSweepSummary 
   protectedIds: number[];
   extendedIds?: number[];
   ledgerRecorded: boolean | null;
+  residual_retention: MemoryResidualRetentionReport;
   feedbackRetention?: FeedbackRetentionSweepReport;
   tombstoneState: {
     usesPurgeablePartition: boolean;
@@ -282,6 +301,28 @@ function buildEdgeState(
   return { causalEdgesTablePresent: true, candidateEdgeCount: row.count };
 }
 
+function buildResidualRetentionReport(
+  deletedCount: number,
+  checkpointAttempted: boolean,
+): MemoryResidualRetentionReport {
+  return {
+    dead_row_slots: {
+      affectedRows: deletedCount,
+      mayRetainBytesUntil: 'sqlite_page_reuse_or_vacuum',
+    },
+    wal: {
+      affectedRows: deletedCount,
+      mayRetainBytesUntil: 'wal_checkpoint_truncate',
+      checkpointAttempted,
+    },
+    vector_tombstones: {
+      affectedRows: deletedCount,
+      mayRetainBytesUntil: 'vector_index_compaction',
+    },
+    persistent_deny_list: 'not_created',
+  };
+}
+
 function buildFeedbackRetentionReport(
   database: Database.Database,
   candidates: RetentionExpiredRow[],
@@ -421,6 +462,7 @@ export function runMemoryRetentionSweep(
       deletedIds: [],
       protectedIds: [],
       ledgerRecorded: null,
+      residual_retention: buildResidualRetentionReport(0, false),
       tombstoneState: {
         usesPurgeablePartition: false,
         usingPurgeableIndex: false,
@@ -455,6 +497,7 @@ export function runMemoryRetentionSweep(
       deletedIds: [],
       protectedIds: dryRunProtectedIds,
       ledgerRecorded: null,
+      residual_retention: buildResidualRetentionReport(0, false),
       tombstoneState: buildTombstoneState(database, candidates.length, 0, useSoftDeleteTombstones),
       edgeState: initialEdgeState,
       ...(feedbackRetention ? { feedbackRetention } : {}),
@@ -483,6 +526,7 @@ export function runMemoryRetentionSweep(
       protectedIds: feedbackRetention.protectedIds,
       extendedIds: [],
       ledgerRecorded: null,
+      residual_retention: buildResidualRetentionReport(0, false),
       tombstoneState: buildTombstoneState(database, candidates.length, 0, useSoftDeleteTombstones),
       edgeState: initialEdgeState,
       feedbackRetention,
@@ -642,6 +686,7 @@ export function runMemoryRetentionSweep(
     deletedIds,
     protectedIds,
     ledgerRecorded,
+    residual_retention: buildResidualRetentionReport(deletedIds.length, deletedIds.length > 0),
     tombstoneState: buildTombstoneState(database, candidates.length, deletedIds.length, useSoftDeleteTombstones),
     edgeState: initialEdgeState,
     ...(feedbackRetention ? { extendedIds } : {}),

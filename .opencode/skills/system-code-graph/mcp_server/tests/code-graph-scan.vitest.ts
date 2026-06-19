@@ -23,6 +23,7 @@ const mocks = vi.hoisted(() => ({
   getGraphFreshnessMock: vi.fn(),
   getGraphReadinessSnapshotMock: vi.fn(),
   getLastFailedScanMock: vi.fn(),
+  bumpCodeGraphGenerationMock: vi.fn(),
   getLastGitHeadMock: vi.fn(),
   getLastGoldVerificationMock: vi.fn(),
   getParseDiagnosticsSummaryMock: vi.fn(),
@@ -95,6 +96,7 @@ vi.mock('../lib/cross-file-edge-resolver.js', () => ({
 
 vi.mock('../lib/code-graph-db.js', () => ({
   getLastGitHead: mocks.getLastGitHeadMock,
+  bumpCodeGraphGeneration: mocks.bumpCodeGraphGenerationMock,
   getCodeGraphMetadata: mocks.getCodeGraphMetadataMock,
   getLastFailedScan: mocks.getLastFailedScanMock,
   getLastGoldVerification: mocks.getLastGoldVerificationMock,
@@ -404,6 +406,24 @@ describe('handleCodeGraphScan', () => {
       fingerprint: 'code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none',
       includeSkills: false,
     }));
+    expect(mocks.bumpCodeGraphGenerationMock).toHaveBeenCalledTimes(1);
+  });
+
+  it('bumps generation for promoted full and selective scans', async () => {
+    mocks.execSyncMock.mockReturnValue('same-head\n');
+    mocks.getLastGitHeadMock.mockReturnValue('same-head');
+    mocks.isFileStaleMock.mockReturnValue(true);
+
+    await handleCodeGraphScan({
+      rootDir: process.cwd(),
+      incremental: false,
+    });
+    await handleCodeGraphScan({
+      rootDir: process.cwd(),
+      incremental: true,
+    });
+
+    expect(mocks.bumpCodeGraphGenerationMock).toHaveBeenCalledTimes(2);
   });
 
   it('passes includeSkills through to the indexer config for one-call opt-in scans', async () => {
@@ -1023,6 +1043,7 @@ describe('handleCodeGraphScan', () => {
     expect(mocks.isFileStaleMock).not.toHaveBeenCalled();
     expect(mocks.setLastGraphEdgeEnrichmentSummaryMock).not.toHaveBeenCalled();
     expect(mocks.clearLastGraphEdgeEnrichmentSummaryMock).not.toHaveBeenCalled();
+    expect(mocks.bumpCodeGraphGenerationMock).not.toHaveBeenCalled();
   });
 
   it('passes the parser content hash into stale checks during incremental scans', async () => {
@@ -1421,6 +1442,7 @@ describe('handleCodeGraphScan', () => {
     expect(mocks.setCodeGraphScopeMock).not.toHaveBeenCalled();
     expect(mocks.setLastDetectorProvenanceSummaryMock).not.toHaveBeenCalled();
     expect(mocks.recordCandidateManifestMock).not.toHaveBeenCalled();
+    expect(mocks.bumpCodeGraphGenerationMock).not.toHaveBeenCalled();
   });
 
   it('keeps skip-list-heavy parse bypass scans promotable', async () => {
@@ -1621,6 +1643,7 @@ describe('handleCodeGraphScan', () => {
     expect(payload.data.failedScan.errors.join('\n')).toContain('Tree contains syntax errors');
     expect(mocks.setLastGitHeadMock).not.toHaveBeenCalled();
     expect(mocks.recordCandidateManifestMock).not.toHaveBeenCalled();
+    expect(mocks.bumpCodeGraphGenerationMock).not.toHaveBeenCalled();
   });
 
   it('exposes parse diagnostics in scan and status responses', async () => {

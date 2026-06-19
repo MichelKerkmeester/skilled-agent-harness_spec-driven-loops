@@ -229,6 +229,7 @@ const SCHEMA_SQL = `
 
 const CODE_GRAPH_TOMBSTONES_ENV = 'SPECKIT_CODE_GRAPH_TOMBSTONES';
 const CODE_GRAPH_TOMBSTONE_LIMIT_ENV = 'SPECKIT_CODE_GRAPH_TOMBSTONE_LIMIT';
+const CODE_GRAPH_GENERATION_METADATA_KEY = 'graph_generation';
 const DEFAULT_TOMBSTONE_LIMIT = 100;
 const MAX_TOMBSTONE_LIMIT = 10_000;
 
@@ -580,6 +581,27 @@ export function getCodeGraphMetadata(key: string): string | null {
 
 export function setCodeGraphMetadata(key: string, value: string): void {
   setMetadata(key, value);
+}
+
+function parseCodeGraphGeneration(raw: string | null): number {
+  const parsed = raw ? Number.parseInt(raw, 10) : 0;
+  return parsed || 0;
+}
+
+export function getCodeGraphGeneration(): number {
+  return parseCodeGraphGeneration(getMetadata(CODE_GRAPH_GENERATION_METADATA_KEY));
+}
+
+export function bumpCodeGraphGeneration(): number {
+  const d = getDb();
+  const bumpGeneration = d.transaction(() => {
+    const current = getMetadata(CODE_GRAPH_GENERATION_METADATA_KEY);
+    const next = parseCodeGraphGeneration(current) + 1;
+    setMetadata(CODE_GRAPH_GENERATION_METADATA_KEY, String(next));
+    return next;
+  });
+
+  return bumpGeneration();
 }
 
 export function getStoredCodeGraphScope(): StoredCodeGraphScope {

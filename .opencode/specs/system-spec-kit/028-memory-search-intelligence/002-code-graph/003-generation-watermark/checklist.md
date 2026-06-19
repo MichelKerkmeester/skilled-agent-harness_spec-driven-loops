@@ -1,6 +1,6 @@
 ---
 title: "Checklist: Code Graph — Generation Watermark (Q6-C2 → Q6-C1)"
-description: "Level-2 QA checklist for the staged code-graph generation watermark. Pre-implementation items reflect the completed planning; code-quality/testing items are pending the Q6-C2 implementation."
+description: "Level-2 QA checklist for the staged code-graph generation watermark. Q6-C2 is implemented and verified; Q6-C1 remains gated."
 trigger_phrases:
   - "code graph generation watermark checklist"
 importance_tier: "important"
@@ -8,10 +8,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/002-code-graph/003-generation-watermark"
-    last_updated_at: "2026-06-19T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored Level-2 checklist; pre-impl items reflect completed planning"
-    next_safe_action: "Verify code-quality + testing items after Q6-C2 implementation"
+    last_updated_at: "2026-06-19T08:16:05Z"
+    last_updated_by: "codex-gpt-5"
+    recent_action: "Verified Q6-C2 soft watermark implementation"
+    next_safe_action: "Keep Q6-C1 hard gate pending until Q1-C1 schema work has a named consumer"
     blockers: []
     key_files:
       - "spec.md"
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-002-003-generation-watermark"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -59,10 +59,10 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Code passes lint/format checks (`node --check` / `tsc`)
-- [ ] CHK-011 [P0] No console errors or warnings
-- [ ] CHK-012 [P1] Error handling implemented (`parseInt || 0` for malformed/unset generation)
-- [ ] CHK-013 [P1] Code follows project patterns (KV helper beside existing `setLastGitHead`/`getLastGitHead`)
+- [x] CHK-010 [P0] Code passes checks (`tsc --noEmit`; alignment drift scanned 155 files)
+- [x] CHK-011 [P0] No console errors or warnings in targeted Vitest output
+- [x] CHK-012 [P1] Error handling implemented (`parseInt || 0` for malformed/unset generation; covered by `code-graph-db.vitest.ts`)
+- [x] CHK-013 [P1] Code follows project patterns (KV helper beside existing metadata helpers)
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -70,10 +70,10 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] All acceptance criteria met (REQ-001..004 for Q6-C2; REQ-005 design-only)
-- [ ] CHK-021 [P0] Manual testing complete (two `code_graph_scan` runs advance `generation`)
-- [ ] CHK-022 [P1] Edge cases tested (unset→0, malformed→0, non-promoting scan no-op)
-- [ ] CHK-023 [P1] Error scenarios validated (parse-error/persistence-error scan does not bump)
+- [x] CHK-020 [P0] All acceptance criteria met (REQ-001..004 for Q6-C2; REQ-005 design-only)
+- [x] CHK-021 [P0] Automated two-scan verification complete (`full_scan` + `selective_reindex` advance `generation`)
+- [x] CHK-022 [P1] Edge cases tested (unset→0, malformed→0, non-promoting scan no-op)
+- [x] CHK-023 [P1] Error scenarios validated (parse-error/persistence-error scan does not bump)
 <!-- /ANCHOR:testing -->
 
 ---
@@ -81,13 +81,13 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Finding class recorded: `cross-consumer` (corrects the REFUTED `ensure-ready.ts:497` bump-site claim; the freshness envelope is a public field)
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory: `rg -n 'setLastGitHead\|setCodeGraphScope\|scanPromotable' handlers/scan.ts` — confirm the single finalize block is the only promotion site
-- [ ] CHK-FIX-003 [P0] Consumer inventory for the changed freshness envelope: `rg -n 'freshness' .opencode/skills/system-code-graph/mcp_server --glob '*.ts'` — confirm none branch on `generation`
-- [ ] CHK-FIX-004 [P0] N/A — no security/path/parser/redaction surface (additive internal int); state N/A with reason
-- [ ] CHK-FIX-005 [P1] Matrix axes listed: {full_scan, selective_reindex, non-promoting} × {unset, set} before completion
-- [ ] CHK-FIX-006 [P1] No process-wide state read by the counter; N/A
-- [ ] CHK-FIX-007 [P1] Evidence pinned to the Q6-C2 fix SHA, not a moving range
+- [x] CHK-FIX-001 [P0] Finding class recorded: `cross-consumer` (corrects the refuted bump-site claim; the freshness envelope is a public field)
+- [x] CHK-FIX-002 [P0] Same-class producer inventory confirmed: the finalize block in `handlers/scan.ts` is the bump site
+- [x] CHK-FIX-003 [P0] Consumer inventory for the changed freshness envelope reviewed; no consumer branches on `generation`
+- [x] CHK-FIX-004 [P0] N/A — no security/path/parser/redaction surface; additive internal int only
+- [x] CHK-FIX-005 [P1] Matrix axes covered: {full_scan, selective_reindex, non-promoting} × {unset, set}
+- [x] CHK-FIX-006 [P1] No process-wide state read by the counter; DB KV only
+- [x] CHK-FIX-007 [P1] N/A — no commit SHA because user explicitly requested no git commit; evidence pinned to files and commands
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -95,9 +95,9 @@ _memory:
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets
-- [ ] CHK-031 [P0] Input validation: `generation` is an internal monotonic int, not external input; N/A but stated
-- [ ] CHK-032 [P1] Auth/authz unchanged (no auth surface touched)
+- [x] CHK-030 [P0] No hardcoded secrets
+- [x] CHK-031 [P0] Input validation: `generation` is an internal monotonic int, not external input; N/A but stated
+- [x] CHK-032 [P1] Auth/authz unchanged (no auth surface touched)
 <!-- /ANCHOR:security -->
 
 ---
@@ -105,9 +105,9 @@ _memory:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized (Q6-C1 DEFER-speculative gate recorded in all three)
-- [ ] CHK-041 [P1] Code comments adequate (durable WHY for the bump site, no ephemeral spec/packet ids)
-- [ ] CHK-042 [P2] README updated (system-code-graph readiness docs, if applicable)
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized (Q6-C1 DEFER-speculative gate recorded in all three)
+- [x] CHK-041 [P1] Code comments adequate (comment hygiene checker passed touched files)
+- [x] CHK-042 [P2] README update N/A (no user-facing setup or readiness behavior changed)
 <!-- /ANCHOR:docs -->
 
 ---
@@ -115,8 +115,8 @@ _memory:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-050 [P1] Temp files in scratch/ only (none created)
+- [x] CHK-051 [P1] scratch/ cleaned before completion (none created)
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -126,11 +126,11 @@ _memory:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 11 | 2/11 |
-| P1 Items | 13 | 1/13 |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 11 | 11/11 |
+| P1 Items | 13 | 13/13 |
+| P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-06-19 (planning only — implementation pending)
+**Verification Date**: 2026-06-19 (Q6-C2 implemented; Q6-C1 gated)
 <!-- /ANCHOR:summary -->
 
 ---

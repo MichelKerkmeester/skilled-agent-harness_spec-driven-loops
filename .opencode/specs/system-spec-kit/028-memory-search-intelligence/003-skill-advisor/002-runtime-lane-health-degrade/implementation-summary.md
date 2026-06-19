@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Skill Advisor — Runtime Lane-Health & Graceful Lane-Degrade (C5/C5a/AMB)"
-description: "Re-plan stage record for the advisor graceful-degradation unit. NOT YET IMPLEMENTED — this summary documents the planned-but-unbuilt PENDING state so the spec folder validates at Level 2; it carries no completion claim."
+description: "Implementation record for the advisor graceful-degradation unit. Runtime lane-health, C5, C5a, and AMB shipped in this 028 sub-phase; packet 030 untouched."
 trigger_phrases:
   - "advisor lane health degrade implementation summary"
   - "C5 C5a AMB status"
@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/002-runtime-lane-health-degrade"
-    last_updated_at: "2026-06-19T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Recorded re-plan state (unit planned, not yet built)"
-    next_safe_action: "Capture the confidence baseline (T001), then build the runtime lane-health signal (T002)"
+    last_updated_at: "2026-06-19T08:19:43Z"
+    last_updated_by: "codex-gpt-5"
+    recent_action: "Implemented runtime lane-health degrade unit and recorded verification evidence"
+    next_safe_action: "Run final strict validation and keep packet 030 untouched"
     blockers: []
     key_files:
       - "implementation-summary.md"
@@ -26,7 +26,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-003-002-runtime-lane-health-degrade"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -45,7 +45,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 028-memory-search-intelligence/003-skill-advisor/002-runtime-lane-health-degrade |
-| **Completed** | NOT YET — re-plan stage (planning only) |
+| **Completed** | Yes — implemented in this 028 sub-phase; no commit created |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -54,21 +54,21 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing is built yet. This document records the re-plan state: the advisor graceful-degradation unit has been scoped, sequenced, and grounded in the 028 research, but no code has changed. It is the standing summary you read when you resume this sub-phase, and it will be rewritten once the first candidate ships.
+This phase built the runtime lane-health degrade path in the Skill Advisor MCP scorer. The scorer now distinguishes a degraded-empty lane from a lane that ran and matched nothing, elides only degraded-empty lanes from the confidence denominator, and surfaces the degraded-lane condition through metrics, prompt-safe handler output, warnings, and abstention explanations.
 
-The unit you are about to build fixes a confirmed normalization skew in the Skill Advisor fusion scorer and makes the degrade legible. Today the scorer normalizes confidence against a `liveTotal` denominator built from registry-static live weights, filtered only by the config `disabled` set (`fusion.ts:343-345`); so when a lane runs but returns nothing at runtime — `graph_causal` during a skill-graph rebuild is the witnessed case — its weight stays in the denominator while no skill earns any contribution from it, and every survivor's confidence (`liveNormalized = score / liveTotal`, `fusion.ts:388`) is divided by an inflated denominator and skews uniformly downward. The naive fix is a trap: without a runtime health signal the scorer cannot tell a degraded-empty lane (mid-rebuild) from a matched-nothing-empty lane (it ran fine and matched nothing), and eliding the latter would over-credit non-matching skills — a skew opposite the bug. So the planned work captures a confidence baseline first (the often-quoted "~13%" is unsourced), builds the runtime per-lane health signal the scorer lacks, then C5 elides only runtime-degraded lanes, C5a surfaces the degraded-lane list, and AMB reports degradation on the ambiguity/abstention surface.
+The baseline fixture is now measured, not asserted. For prompt `alpha routing surface nearby neutral words`, with `graph_causal` degraded-empty, confidence moves from `0.6060` to `0.6189` (`+0.0129`) and `liveNormalized` for the scored fixture moves from `0.1600` to `0.1839`. The all-healthy path remains byte-identical to the default path.
 
 ### Status snapshot
 
 | Candidate | Status | Gate | Evidence |
 |-----------|--------|------|----------|
-| Runtime lane-health signal (P0 prereq) | PENDING | shared-infra-dep (internal-gap; scorer lacks it) | iter-014 G14-03; iter-016 J16-01 |
-| Confidence baseline (P0) | PENDING | needs-benchmark (regression-baseline rule) | roadmap.md:218,262; BROADENING §2 |
-| C5 — runtime-degraded lane elision (alias C5-advisor-lane-elision) | PENDING | needs-baseline + lane-health signal | roadmap.md:90; synthesis 01-go-candidates.md:103 |
-| C5a — degraded-lane flag (alias C5a-advisor-degraded-lane-flag) | PENDING | pairs with C5 | iter-003 C5a; roadmap.md:91 |
-| AMB — ambiguity/abstention explanation extension | PENDING | pairs with C5/C5a | deltas/iter-004.jsonl AMB rank 9 |
+| Runtime lane-health signal (P0 prereq) | DONE | Implemented | `lib/scorer/types.ts`, `lib/scorer/fusion.ts`, `handlers/advisor-recommend.ts`; call-scoped health classes `healthy` / `runtime_degraded` / `matched_nothing` |
+| Confidence baseline (P0) | DONE | Implemented | `tests/scorer/runtime-lane-health.vitest.ts`; confidence `0.6060 -> 0.6189`, delta `+0.0129` |
+| C5 — runtime-degraded lane elision (alias C5-advisor-lane-elision) | DONE | Implemented | `lib/scorer/fusion.ts`; `runtime_degraded` empty lanes excluded, `matched_nothing` lanes retained |
+| C5a — degraded-lane flag (alias C5a-advisor-degraded-lane-flag) | DONE | Implemented | `metrics.degradedLanes`, `metrics.laneHealth`, runtime `liveLaneCount`, handler `runtimeLaneHealth` |
+| AMB — ambiguity/abstention explanation extension | DONE | Implemented | scorer `abstainReasons`, handler `abstainReasons` and degraded-lane warning |
 
-None of these shipped in Wave-0 (030): `git log 1ecc531431..ab5459fb6d` has no advisor/lane/C5 commit, 030 §14 has no advisor row, and 030 spec line 106 lists C5 explicitly as NO-GO until a baseline + lane-health signal exist.
+None of these were already shipped in Wave-0 (030), and this phase did not modify packet 030.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -76,7 +76,16 @@ None of these shipped in Wave-0 (030): `git log 1ecc531431..ab5459fb6d` has no a
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered — planning only. The intended delivery path is the P0-first sequence in `plan.md`: Phase 0 (baseline capture + runtime lane-health signal, a HARD GATE), Phase 1 (C5 `liveTotal` filter widened to exclude only `runtime_degraded` lanes), Phase 2 (C5a degraded-lane list + runtime-accurate `liveLaneCount`; AMB abstention-surface reporting), Phase 3 (degrade-vs-matched-nothing fixtures + all-lanes-healthy byte-identical assertion + adversarial review refuting the over-credit inversion). All edits are confined to the advisor scorer (`fusion.ts`, possibly `lane-registry.ts`) plus tests; no schema or DB change.
+Delivered in the P0-first sequence from `plan.md`:
+
+1. Captured the baseline fixture and pinned it in vitest.
+2. Added scorer option types for runtime lane health.
+3. Computed call-scoped lane health in `fusion.ts`, degrading only when a lane is externally marked degraded and emitted zero matches.
+4. Passed stale graph health from `advisor-recommend.ts` into the scorer without exposing that signal as user input.
+5. Surfaced degraded lane metadata through scorer metrics, handler output, and schema validation.
+6. Added scorer, handler, and schema tests covering degraded-empty, matched-nothing, happy-path byte identity, and prompt-safe legibility.
+
+No schema migration, DB change, or commit was created.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -84,10 +93,11 @@ Not delivered — planning only. The intended delivery path is the P0-first sequ
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-- **Baseline before any number.** The "~13% skew" is asserted, not measured (grep 0-match across `.opencode/specs` + `system-skill-advisor`); it is treated as UNKNOWN until REQ-001 measures it [CONFIRMED: roadmap.md:218,262].
-- **Lane-health signal is a P0 prerequisite, not a nice-to-have.** Naive empty-lane elision over-credits non-matching skills (skew opposite the bug), so C5 is gated on the runtime `healthy`/`runtime_degraded`/`matched_nothing` classification [CONFIRMED: synthesis 01-go-candidates.md:103; iter-014 G14-03].
+- **Baseline before any number.** The prior unmeasured skew claim is replaced with the measured fixture delta: confidence `0.6060 -> 0.6189` (`+0.0129`) and `liveNormalized 0.1600 -> 0.1839`.
+- **Lane-health signal gates C5.** Naive empty-lane elision over-credits non-matching skills (skew opposite the bug), so C5 elides only a lane that is both externally marked degraded and runtime-empty.
 - **Default weights unchanged.** C5 is a denominator-filter change only; lane weights and the `liveNormalized` formula are untouched, so the all-healthy path is byte-identical.
-- **C3/C4 are off-path.** The shared-RRF determinism spine (C3) and the Beta-posterior auto-tune chain (C4) are tracked in sibling 028/003 sub-phases; this unit does not depend on them [CONFIRMED: iter-016 J16-01].
+- **Public input stays closed.** Runtime health is passed from handler-owned graph freshness, not accepted from caller input, so public clients cannot spoof degraded lanes.
+- **C3/C4 are off-path.** The shared-RRF determinism spine (C3) and the Beta-posterior auto-tune chain (C4) remain sibling 028/003 sub-phases; this unit does not depend on them.
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -95,7 +105,14 @@ Not delivered — planning only. The intended delivery path is the P0-first sequ
 <!-- ANCHOR:verification -->
 ## Verification
 
-Not verified — no code to verify. The planned gates are in `checklist.md`: P0 = baseline captured + the unsourced "~13%" removed + a `runtime_degraded` lane elided while a `matched_nothing` lane is retained + the all-healthy path byte-identical. Strict spec-folder validation (`validate.sh --strict`) passes for the planning docs; that is the only thing green at this stage.
+Baseline before edits:
+- `npm run typecheck` in `.opencode/skills/system-skill-advisor/mcp_server`: pass.
+- `npx vitest run tests/scorer/native-scorer.vitest.ts tests/handlers/advisor-recommend.vitest.ts tests/schemas/advisor-tool-schemas.vitest.ts tests/handlers/advisor-recommend-descriptor-parity.vitest.ts`: `4 passed (4)`, `60 passed (60)`.
+
+Post-implementation verification:
+- `npm run typecheck`: pass.
+- `npx vitest run tests/scorer/runtime-lane-health.vitest.ts tests/scorer/native-scorer.vitest.ts tests/handlers/advisor-recommend.vitest.ts tests/schemas/advisor-tool-schemas.vitest.ts tests/handlers/advisor-recommend-descriptor-parity.vitest.ts`: `5 passed (5)`, `66 passed (66)`.
+- Mutation falsifier: temporarily removed the `runtimeDegradedLanes` exclusion from `liveTotal`; `tests/scorer/runtime-lane-health.vitest.ts` failed because degraded confidence stayed `0.606` instead of `0.6189`. Restoring the filter returned the file to green (`1 passed (1)`, `4 passed (4)`).
 <!-- /ANCHOR:verification -->
 
 ---
@@ -103,8 +120,8 @@ Not verified — no code to verify. The planned gates are in `checklist.md`: P0 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Skew magnitude UNKNOWN.** The confidence-skew magnitude is unmeasured until the baseline is captured (T001); do not cite "~13%".
-2. **graph_causal-specific evidence.** Pass-1 evidence is `graph_causal`-specific; whether `runtime_degraded` should generalize to any transiently-empty lane (e.g. `semantic_shadow` during embedding reload) is an open question (INFERRED).
-3. **Downstream confidence effects.** The effect of corrected confidence magnitudes on abstention/ambiguity/ranking ties must be re-validated, not assumed.
+1. **graph_causal-specific evidence.** This phase wires handler-owned graph freshness into the scorer. The scorer option shape can represent other degraded lanes, but only `graph_causal` has production evidence here.
+2. **External reference not locally readable.** The packet cites the aionforge degrade-to-remaining pattern, but this workspace has no local `external/` tree. The implementation does not depend on that file.
+3. **Commit evidence N/A.** The user explicitly forbade `git commit`; evidence is pinned to changed files and verification commands instead of SHAs.
 4. **Adjacent candidates out of scope.** C3 RRF, C4 Beta posterior + SA-two-gate chain, QCR query-class router, C1 split-conflict re-rank, and SA-asymmetric-deltas are explicitly out of scope here and tracked under sibling 028/003 sub-phases.
 <!-- /ANCHOR:limitations -->

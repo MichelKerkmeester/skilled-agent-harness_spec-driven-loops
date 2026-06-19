@@ -9,6 +9,7 @@ const LAST_PERSISTED_AT = '2026-04-17T00:00:00.000Z';
 const mocks = vi.hoisted(() => ({
   appendFileSync: vi.fn(),
   buildContext: vi.fn(),
+  bumpCodeGraphGeneration: vi.fn(),
   ensureCodeGraphReady: vi.fn(async () => ({
     freshness: 'fresh',
     action: 'none',
@@ -19,6 +20,7 @@ const mocks = vi.hoisted(() => ({
   execSync: vi.fn(),
   existsSync: vi.fn(),
   getCodeGraphMetadata: vi.fn(),
+  getCodeGraphGeneration: vi.fn(),
   getDb: vi.fn(),
   getGraphFreshness: vi.fn(),
   getGraphReadinessSnapshot: vi.fn(),
@@ -86,7 +88,9 @@ vi.mock('../lib/ensure-ready.js', () => ({
 
 vi.mock('../lib/code-graph-db.js', () => ({
   getDb: mocks.getDb,
+  bumpCodeGraphGeneration: mocks.bumpCodeGraphGeneration,
   getCodeGraphMetadata: mocks.getCodeGraphMetadata,
+  getCodeGraphGeneration: mocks.getCodeGraphGeneration,
   getLastDetectorProvenance: mocks.getLastDetectorProvenance,
   getLastGitHead: mocks.getLastGitHead,
   getLastGoldVerification: mocks.getLastGoldVerification,
@@ -200,6 +204,7 @@ describe('code-graph sibling readiness emission', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mocks.appendFileSync.mockReturnValue(undefined);
+    mocks.bumpCodeGraphGeneration.mockReturnValue(0);
     mocks.buildContext.mockReturnValue({
       queryMode: 'neighborhood',
       resolvedAnchors: [],
@@ -212,13 +217,14 @@ describe('code-graph sibling readiness emission', () => {
         totalEdges: 0,
         budgetUsed: 10,
         budgetLimit: 1200,
-        freshness: { lastScanAt: null, staleness: 'unknown' },
+        freshness: { lastScanAt: null, staleness: 'unknown', generation: 0 },
       },
     });
     mocks.execFileSync.mockReturnValue('reindex ok');
     mocks.execSync.mockReturnValue('head\n');
     mocks.existsSync.mockReturnValue(true);
     mocks.getCodeGraphMetadata.mockReturnValue(null);
+    mocks.getCodeGraphGeneration.mockReturnValue(0);
     mocks.getDb.mockReturnValue(createDb());
     mocks.getGraphFreshness.mockReturnValue('fresh');
     mocks.getGraphReadinessSnapshot.mockReturnValue({

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Code Graph — Generation Watermark (Q6-C2 → Q6-C1)"
-description: "Forward-looking implementation summary for the staged code-graph generation watermark. Planning is complete; no code is implemented yet — Q6-C2 is ready-to-implement and Q6-C1 is DEFER-speculative."
+description: "Implementation summary for the staged code-graph generation watermark. Q6-C2 is implemented and verified; Q6-C1 remains DEFER-speculative."
 trigger_phrases:
   - "code graph generation watermark implementation summary"
 importance_tier: "important"
@@ -8,10 +8,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/002-code-graph/003-generation-watermark"
-    last_updated_at: "2026-06-19T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored Level-2 spec/plan/tasks/checklist; implementation not started"
-    next_safe_action: "Implement Q6-C2 (T006-T010): bump at handlers/scan.ts scanPromotable block"
+    last_updated_at: "2026-06-19T08:16:05Z"
+    last_updated_by: "codex-gpt-5"
+    recent_action: "Implemented and verified Q6-C2 soft watermark"
+    next_safe_action: "Keep Q6-C1 hard gate pending until Q1-C1 schema work has a named consumer"
     blockers: []
     key_files:
       - "spec.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-002-003-generation-watermark"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 80
     open_questions: []
     answered_questions: []
 ---
@@ -42,7 +42,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 028-memory-search-intelligence/002-code-graph/003-generation-watermark |
-| **Completed** | Not started (planning only — 2026-06-19) |
+| **Completed** | Q6-C2 implemented and verified on 2026-06-19; Q6-C1 remains gated |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -51,11 +51,11 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing is built yet — this phase is a re-plan. The planning resolved the two staged generation-watermark candidates and corrected a refuted bump-site claim from the research sketch, so an implementer can land Q6-C2 directly and revisit Q6-C1 only once a consumer exists.
+Q6-C2 is built. The code-graph subsystem now stores a monotonic `generation` counter in the existing `code_graph_metadata` KV table, advances it from the scan promotion finalize path, and surfaces it as an additive field on `metadata.freshness` from `code_graph_context`.
 
-### Q6-C2 — Soft generation watermark (ready-to-implement, PENDING)
+### Q6-C2 — Soft generation watermark (DONE)
 
-Once built, every promoted scan will advance a monotonic `generation` counter stored in the existing `code_graph_metadata` KV table, and that integer will ride the freshness envelope returned by `code_graph_context`. Callers gain an as-of-generation key they can compare across reads, while the read path stays byte-identical — no filter change, no error gate, no schema migration. The bump lives in the `scanPromotable` finalize block in `handlers/scan.ts` so it fires for both full and selective reindexes, unlike the originally-sketched `ensure-ready.ts:497` site.
+Every promoted full scan or selective reindex advances `graph_generation`; unchanged incremental scans and failed promotions leave it unchanged. Callers gain an as-of-generation key they can compare across reads, while the read path stays byte-identical: no filter change, no error gate, no schema migration.
 
 ### Q6-C1 — Hard as-of-generation gate (DEFER-speculative, PENDING)
 
@@ -65,10 +65,13 @@ The hard gate would turn a stale read into an explicit ERROR rather than silentl
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `system-code-graph/mcp_server/lib/code-graph-db.ts` | Modify (planned) | Add `getCodeGraphGeneration()` / `bumpCodeGraphGeneration()` over `code_graph_metadata` |
-| `system-code-graph/mcp_server/handlers/scan.ts` | Modify (planned) | Bump generation in the `scanPromotable` finalize block |
-| `system-code-graph/mcp_server/lib/code-graph-context.ts` | Modify (planned) | Add `generation` to the freshness envelope + stamp it in `computeFreshness()` |
-| `system-code-graph/mcp_server/lib/*.vitest.ts` | Create (planned) | Increment / unset / non-promoting / envelope-carries-counter tests |
+| `system-code-graph/mcp_server/lib/code-graph-db.ts` | Modified | Added `getCodeGraphGeneration()` / `bumpCodeGraphGeneration()` over `code_graph_metadata` |
+| `system-code-graph/mcp_server/handlers/scan.ts` | Modified | Bumps generation in the `scanPromotable` finalize block for actual promotions |
+| `system-code-graph/mcp_server/lib/code-graph-context.ts` | Modified | Adds `generation` to the freshness envelope and stamps it in `computeFreshness()` |
+| `system-code-graph/mcp_server/tests/code-graph-db.vitest.ts` | Modified | Covers unset/malformed generation and 0→1→2 increments |
+| `system-code-graph/mcp_server/tests/code-graph-scan.vitest.ts` | Modified | Covers full/selective promotion bumps and failed/no-op no-bump paths |
+| `system-code-graph/mcp_server/tests/code-graph-context-handler.vitest.ts` | Modified | Verifies the envelope carries generation while node/edge output stays byte-identical |
+| `system-code-graph/mcp_server/tests/code-graph-siblings-readiness.vitest.ts` | Modified | Keeps mocked DB surface in parity with the new helper export |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -76,7 +79,7 @@ The hard gate would turn a stale read into an explicit ERROR rather than silentl
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not yet delivered. Delivery plan: implement Q6-C2 behind no flag (additive and reversible), prove a byte-identical node/edge result set against a captured baseline, and verify the counter advances across two scans and stays put on a non-promoting scan. Q6-C1 ships only with the Q1-C1 cluster decision.
+Q6-C2 shipped as an additive, reversible metadata field with no feature flag and no read-filter change. The counter is persisted in `code_graph_metadata`, bumped only after scan promotion, and read into the freshness envelope. Tests cover generation defaults, malformed metadata fallback, promotion increments, failed/no-op no-bump behavior, and byte-identical node/edge ordering. Q6-C1 ships only with the Q1-C1 cluster decision.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -99,10 +102,16 @@ Not yet delivered. Delivery plan: implement Q6-C2 behind no flag (additive and r
 
 | Check | Result |
 |-------|--------|
-| `validate.sh --strict` on this folder | PENDING (run after authoring) |
-| Q6-C2 unit/integration tests | NOT RUN (not implemented) |
-| Byte-identical node/edge result set | NOT VERIFIED (baseline to capture at implementation) |
-| PENDING-status cross-check vs 030 §14 + `git log 1ecc531431..ab5459fb6d` | PASS — only code-graph Wave-0 commit is `e21caf5de6` (Q4-C1); Q6 pair absent |
+| Baseline `tsc --noEmit -p tsconfig.json` | PASS |
+| Baseline targeted Vitest | PASS: 3 files / 54 tests |
+| Post-change `tsc --noEmit -p tsconfig.json` | PASS |
+| Post-change targeted Vitest | PASS: 4 files / 64 tests |
+| Real-scan smoke Vitest | PASS: 1 file / 5 tests |
+| Mutation falsifier | PASS: removing the bump call made the focused scan test fail (0 calls vs expected 2) |
+| Alignment drift | PASS: scanned 155 files, 0 findings |
+| Comment hygiene | PASS on touched source/test files |
+| `validate.sh --strict` on this folder | PASS: 0 errors, 0 warnings |
+| Q6-C1 status | LEFT PENDING: requires Q1-C1 schema cluster plus a named consumer |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -110,7 +119,7 @@ Not yet delivered. Delivery plan: implement Q6-C2 behind no flag (additive and r
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Q6-C2 not implemented.** This is a planning artifact; the counter, bump, and envelope field do not exist yet (grep for `graph_generation` returns zero hits).
-2. **Q6-C1 deferred indefinitely.** The hard as-of-generation error gate is DEFER-speculative — it ships only on a named-consumer decision plus the Q1-C1 bi-temporal cluster (`SCHEMA_VERSION` 5→6).
-3. **Live line numbers drift.** The cited seams (`handlers/scan.ts` ~`:666-679`, `code-graph-context.ts:52`/~`:320`) must be re-confirmed at implementation time; they were verified against the source on 2026-06-19.
+1. **Q6-C1 deferred.** The hard as-of-generation error gate remains DEFER-speculative; it ships only on a named-consumer decision plus the Q1-C1 bi-temporal cluster (`SCHEMA_VERSION` 5→6).
+2. **Generated `dist/` not refreshed.** Verification used TypeScript source checks and Vitest; no build artifact update was requested.
+3. **No commit SHA.** The user explicitly requested no git commit, so evidence is pinned to file changes and command results rather than a commit hash.
 <!-- /ANCHOR:limitations -->

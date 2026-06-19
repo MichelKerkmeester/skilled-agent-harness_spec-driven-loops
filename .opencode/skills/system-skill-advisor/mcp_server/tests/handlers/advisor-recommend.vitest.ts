@@ -77,7 +77,11 @@ function recommendation(overrides: Record<string, unknown> = {}) {
   };
 }
 
-function scoreResult(recommendations = [recommendation()], ambiguous = false) {
+function scoreResult(
+  recommendations = [recommendation()],
+  ambiguous = false,
+  overrides: Record<string, unknown> = {},
+) {
   return {
     recommendations,
     topSkill: recommendations[0]?.skill ?? null,
@@ -87,6 +91,7 @@ function scoreResult(recommendations = [recommendation()], ambiguous = false) {
       candidateCount: recommendations.length,
       liveLaneCount: 5,
     },
+    ...overrides,
   };
 }
 
@@ -473,6 +478,54 @@ describe('advisor_recommend handler', () => {
 
     expect(response.data.freshness).toBe('stale');
     expect(response.data.warnings).toEqual(['SOURCE_NEWER_THAN_SKILL_GRAPH']);
+  });
+
+  it('surfaces runtime-degraded lane health on stale graph recommendations', async () => {
+    mockReadAdvisorStatus.mockReturnValue(status('stale'));
+    mockScoreAdvisorPrompt.mockReturnValue(scoreResult([recommendation()], false, {
+      metrics: {
+        candidateCount: 1,
+        liveLaneCount: 4,
+        degradedLanes: ['graph_causal'],
+        laneHealth: [{
+          lane: 'graph_causal',
+          status: 'runtime_degraded',
+          matchCount: 0,
+          reason: 'SOURCE_NEWER_THAN_SKILL_GRAPH',
+        }],
+      },
+      abstainReasons: [
+        'Runtime-degraded scorer lanes omitted from confidence normalization: graph_causal.',
+      ],
+    }));
+
+    const response = parseResponse(await handleAdvisorRecommend({
+      prompt: 'Implement stale route',
+      options: { includeAbstainReasons: true },
+    }));
+
+    expect(mockScoreAdvisorPrompt).toHaveBeenCalledWith(
+      'Implement stale route',
+      expect.objectContaining({
+        runtimeLaneHealth: {
+          graph_causal: {
+            status: 'runtime_degraded',
+            reason: 'SOURCE_NEWER_THAN_SKILL_GRAPH',
+          },
+        },
+      }),
+    );
+    expect(response.data.runtimeLaneHealth).toEqual({
+      liveLaneCount: 4,
+      degradedLanes: ['graph_causal'],
+    });
+    expect(response.data.warnings).toEqual([
+      'SOURCE_NEWER_THAN_SKILL_GRAPH',
+      'runtime_degraded_lanes:graph_causal',
+    ]);
+    expect(response.data.abstainReasons).toEqual([
+      'Runtime-degraded scorer lanes omitted from confidence normalization: graph_causal.',
+    ]);
   });
 
   it('rejects invalid strict input clearly', () => {

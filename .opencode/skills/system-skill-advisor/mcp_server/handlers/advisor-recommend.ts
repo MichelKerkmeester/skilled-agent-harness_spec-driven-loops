@@ -22,6 +22,7 @@ import {
   type AdvisorRecommendOutput,
 } from '../schemas/advisor-tool-schemas.js';
 import { readAdvisorStatus } from './advisor-status.js';
+import type { AdvisorScoringOptions } from '../lib/scorer/types.js';
 
 type HandlerResponse = { content: Array<{ type: string; text: string }> };
 type AdvisorStatus = ReturnType<typeof readAdvisorStatus>;
@@ -74,6 +75,18 @@ function publicThresholds(args: {
     confidenceThreshold: resolved.confidenceThreshold,
     uncertaintyThreshold: resolved.uncertaintyThreshold,
     confidenceOnly: resolved.confidenceOnly,
+  };
+}
+
+function runtimeLaneHealthForStatus(status: AdvisorStatus): AdvisorScoringOptions['runtimeLaneHealth'] | undefined {
+  if (status.freshness !== 'stale') {
+    return undefined;
+  }
+  return {
+    graph_causal: {
+      status: 'runtime_degraded',
+      reason: status.trustState.reason ?? 'skill_graph_stale',
+    },
   };
 }
 
@@ -297,6 +310,30 @@ function roundScore(value: number): number {
   return Math.round(value * 1_000_000) / 1_000_000;
 }
 
+function outputWarnings(
+  status: AdvisorStatus,
+  result: ReturnType<typeof scoreAdvisorPrompt>,
+): string[] {
+  const degradedLanes = result.metrics.degradedLanes ?? [];
+  return [
+    ...(status.freshness === 'stale' ? [status.trustState.reason ?? 'STALE_ADVISOR_FRESHNESS'] : []),
+    ...(degradedLanes.length > 0
+      ? [`runtime_degraded_lanes:${degradedLanes.join(',')}`]
+      : []),
+  ];
+}
+
+function outputAbstainReasons(
+  input: AdvisorRecommendInput,
+  result: ReturnType<typeof scoreAdvisorPrompt>,
+): string[] {
+  if (!input.options?.includeAbstainReasons) return [];
+  return [
+    ...(result.unknown ? ['No recommendation passed confidence and uncertainty thresholds.'] : []),
+    ...(result.abstainReasons ?? []),
+  ];
+}
+
 async function computeRecommendationOutput(input: AdvisorRecommendInput): Promise<AdvisorRecommendOutput> {
   // Canonicalize via realpath after the schema allowlist check.
   const workspaceRoot = input.workspaceRoot
@@ -351,11 +388,15 @@ async function computeRecommendationOutput(input: AdvisorRecommendInput): Promis
     workspaceRoot,
     confidenceThreshold: input.options?.confidenceThreshold,
     uncertaintyThreshold: input.options?.uncertaintyThreshold,
+    runtimeLaneHealth: runtimeLaneHealthForStatus(status),
   }));
   const recommendations = result.recommendations
     .map((recommendation) => publicRecommendation(recommendation, Boolean(input.options?.includeAttribution)))
     .filter((recommendation): recommendation is NonNullable<typeof recommendation> => Boolean(recommendation))
     .slice(0, topK);
+  const degradedLanes = result.metrics.degradedLanes ?? [];
+  const warnings = outputWarnings(status, result);
+  const abstainReasons = outputAbstainReasons(input, result);
   const output: AdvisorRecommendOutput = {
     workspaceRoot,
     effectiveThresholds,
@@ -373,10 +414,14 @@ async function computeRecommendationOutput(input: AdvisorRecommendInput): Promis
       liveWeightsFrozen: true,
       recommendations: publicShadowRecommendations(result.recommendations, topK),
     },
-    ...(status.freshness === 'stale' ? { warnings: [status.trustState.reason ?? 'STALE_ADVISOR_FRESHNESS'] } : {}),
-    ...(input.options?.includeAbstainReasons && result.unknown
-      ? { abstainReasons: ['No recommendation passed confidence and uncertainty thresholds.'] }
-      : {}),
+    ...(degradedLanes.length > 0 ? {
+      runtimeLaneHealth: {
+        liveLaneCount: result.metrics.liveLaneCount,
+        degradedLanes: [...degradedLanes],
+      },
+    } : {}),
+    ...(warnings.length > 0 ? { warnings } : {}),
+    ...(abstainReasons.length > 0 ? { abstainReasons } : {}),
   };
   const parsed = AdvisorRecommendOutputSchema.parse(output);
   if (shadowDeltaSinkEnabled()) {

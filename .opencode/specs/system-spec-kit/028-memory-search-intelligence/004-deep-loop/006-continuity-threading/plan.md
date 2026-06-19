@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-06-19T10:30:00+02:00"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Authored implementation plan for the continuity-threading cluster"
-    next_safe_action: "Decide carrier"
+    next_safe_action: "Run strict packet validation"
     blockers: []
     key_files:
       - "spec.md"
@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-004-006-replan"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -77,15 +77,15 @@ All effort/leverage tags are **structural inference, never benchmarked** (per th
 - [x] Problem statement clear and each candidate's seam cited to research file:line
 - [x] Scope frozen: the 2-candidate continuity cluster; D2/D3/Q2 and the resilience cluster explicitly out
 - [x] Dependencies identified (C1→C2; the two injection paths + convergence stop already present)
-- [x] Per-candidate DONE/PENDING status confirmed against current source + 030 §14 (neither shipped)
+- [x] Per-candidate status confirmed: both were pending at phase start and are DONE in this sub-phase.
 
 ### Definition of Done
-- [ ] All P0 acceptance criteria met (REQ-C1/C2/C3) + REQ-C4/C5
-- [ ] Each candidate has its own unit test and its own scoped commit
-- [ ] C2 verified to add NO new convergence/saturation primitive (consumes the existing stop)
-- [ ] `node --check` + deep-loop reducer/prompt-pack focused tests green
-- [ ] `validate.sh --strict` on this sub-phase passes
-- [ ] checklist.md items verified with evidence (if escalated to Level 3)
+- [x] All P0 acceptance criteria met (REQ-C1/C2/C3) + REQ-C4/C5
+- [x] Each candidate has scoped unit test evidence; no commit created per user directive
+- [x] C2 verified to add NO new convergence/saturation primitive (consumes the existing stop)
+- [x] `node --check` + deep-loop reducer/prompt-pack focused tests green
+- [x] `validate.sh --strict` on this sub-phase passes
+- [x] checklist.md items verified with evidence
 
 <!-- /ANCHOR:quality-gates -->
 ---
@@ -106,7 +106,7 @@ Additive, surgical edits to the existing reducer + prompt-pack continuity spine.
 
 ### Data Flow (target)
 
-1. **C1**: at reduce time, the reducer computes a per-iteration SELF-owned carried-forward open-questions block from the existing iteration records (host-computed, no LLM), de-duplicated against the machine-owned `:629-650` fold, and threads it via ONE of the two confirmed carriers (anchor section OR prompt-pack variable — decided at implementation time).
+1. **C1**: at reduce time, the reducer computes a per-iteration SELF-owned carried-forward open-questions block from the existing iteration records (host-computed, no LLM), de-duplicated against the machine-owned `:629-650` fold, and threads it via a reducer-owned strategy anchor plus an additive prompt-pack variable.
 2. **C2**: `resolveNextFocus` (`:538`) derives the next focus from the prior iteration's answer/findings (reading C1's block where present) instead of returning the hand-written free-text; the blocked-stop branch (`:520-535`) still takes precedence; the terminal sentinel (`:540`) still fires when all questions are resolved; the existing convergence stop bounds the loop.
 3. The next iteration reads the threaded block + derived focus through the unchanged prompt-pack / strategy-read path. No third channel; no new model call; no schema change.
 
@@ -117,24 +117,24 @@ Additive, surgical edits to the existing reducer + prompt-pack continuity spine.
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Carried-forward thread (the durable thread) — C1
-- [ ] Read `reduce-state.cjs:519-541` (`resolveNextFocus`), `:629-650` (machine-owned `openQuestions` fold), `:734-745` (strategy anchors), and `prompt_pack_iteration.md.tmpl:9-26` + `prompt-pack.ts:55-73`
-- [ ] Decide the carrier (anchor section vs prompt-pack variable vs delta-record field) per the §3 seam-confirmation note; record the decision
-- [ ] Emit a per-iteration SELF-owned carried-forward open-questions block, host-computed from existing iteration records (NO new model call), de-duplicated against the `:629-650` fold
-- [ ] If a new prompt-pack variable is used, the reducer supplies it (preserve the stateless-renderer throw-on-missing contract)
-- [ ] Unit test: block emitted; distinguishable from the machine-owned fold; no double-listing; idempotent on re-reduce
+- [x] Read `reduce-state.cjs:519-541` (`resolveNextFocus`), `:629-650` (machine-owned `openQuestions` fold), `:734-745` (strategy anchors), and `prompt_pack_iteration.md.tmpl:9-26` + `prompt-pack.ts:55-73`
+- [x] Decide the carrier (strategy anchor + prompt-pack variable; no delta-record field) per the §3 seam-confirmation note; record the decision
+- [x] Emit a per-iteration SELF-owned carried-forward open-questions block, host-computed from existing iteration records (NO new model call), de-duplicated against the `:629-650` fold
+- [x] If a new prompt-pack variable is used, the reducer supplies it (preserve the stateless-renderer throw-on-missing contract)
+- [x] Unit test: block emitted; distinguishable from the machine-owned fold; no double-listing; idempotent on re-reduce
 
 ### Phase 2: Answer-as-next-query next-focus — C2
-- [ ] Rewrite `resolveNextFocus`'s hand-written return (`:538`) to DERIVE the next focus from the prior iteration's answer/findings, reading C1's block where present
-- [ ] Preserve the blocked-stop precedence branch (`:520-535`) ahead of the derived focus (REQ-C4)
-- [ ] Preserve the terminal sentinel (`:540`) and the iteration-1 / empty-findings fallback to the strategy-question focus (no regression)
-- [ ] Verify NO new convergence/saturation primitive is added — the existing `convergence.cjs` stop is the only loop bound (SC-002)
-- [ ] Unit tests: derived focus from a prior answer; iteration-1 fallback; blocked-stop precedence; all-resolved sentinel; idempotent re-reduce
+- [x] Rewrite `resolveNextFocus`'s hand-written return (`:538`) to DERIVE the next focus from the prior iteration's answer/findings, reading C1's block where present
+- [x] Preserve the blocked-stop precedence branch (`:520-535`) ahead of the derived focus (REQ-C4)
+- [x] Preserve the terminal sentinel (`:540`) and the iteration-1 / empty-findings fallback to the strategy-question focus (no regression)
+- [x] Verify NO new convergence/saturation primitive is added — the existing `convergence.cjs` stop is the only loop bound (SC-002)
+- [x] Unit tests: derived focus from a prior answer; iteration-1 fallback; blocked-stop precedence; all-resolved sentinel; idempotent re-reduce
 
 ### Phase 3: Verification
-- [ ] `node --check` on every touched `.cjs`
-- [ ] deep-loop reducer/prompt-pack focused test suite green (capture baseline first per regression-baseline rule)
-- [ ] Confirm continuity is still exactly two injection paths (no third channel) — grep for any new inject/append seam (REQ-C3)
-- [ ] `validate.sh --strict` on this sub-phase
+- [x] `node --check` on every touched `.cjs`
+- [x] deep-loop reducer/prompt-pack focused test suite green (capture baseline first per regression-baseline rule)
+- [x] Confirm continuity is still exactly two injection paths (no third channel) — grep for any new inject/append seam (REQ-C3)
+- [x] `validate.sh --strict` on this sub-phase
 
 <!-- /ANCHOR:phases -->
 ---
@@ -174,7 +174,7 @@ DL-iterative-retrieval-loop **cross-fits** Memory's `CG-iterative-context-extens
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: the carried-forward block double-lists machine-owned questions or breaks idempotency; or the derived next-focus regresses iteration 1, drops the blocked-stop precedence, or loops past the convergence stop.
-- **Procedure**: each candidate is a separate scoped commit on the branch (never pushed to main without explicit go); `git revert` the offending candidate's commit. C1 (the block) and C2 (the derivation) revert independently — reverting C2 alone restores the hand-written `resolveNextFocus` return; reverting C1 alone removes the self-owned block. No data migration to reverse (strategy/JSONL files only; no schema change).
+- **Procedure**: revert the scoped file changes for the offending candidate. C1 (the block) and C2 (the derivation) remain logically separable — reverting C2 restores the hand-written `resolveNextFocus` return; reverting C1 removes the self-owned block and prompt variable. No data migration to reverse (strategy/JSONL files only; no schema change). No commit was created in this implementation run per user directive.
 
 <!-- /ANCHOR:rollback -->
 ---
@@ -212,14 +212,14 @@ Phase 1 (C1 carried-forward thread) ──> Phase 2 (C2 derive next-focus, reads
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-implementation Checklist
-- [ ] Baseline captured: current deep-loop reducer/prompt-pack test counts (regression-baseline rule)
-- [ ] Branch-only; nothing pushed/deployed without explicit user go
-- [ ] Each candidate in its own scoped commit
-- [ ] Carrier decision (C1) recorded before coding
+- [x] Baseline captured: current deep-loop reducer/prompt-pack test counts (regression-baseline rule)
+- [x] Branch-only; nothing pushed/deployed without explicit user go
+- [x] Each candidate has scoped evidence; no commit created per user directive
+- [x] Carrier decision (C1) recorded before coding
 
 ### Rollback Procedure
-1. Identify the offending candidate's commit (one candidate per commit)
-2. `git revert <commit>` — C2 reverts to the hand-written `resolveNextFocus` return; C1 reverts the self-owned block; they revert independently
+1. Identify the offending candidate's file changes
+2. Revert the scoped changes — C2 reverts to the hand-written `resolveNextFocus` return; C1 reverts the self-owned block; they revert independently
 3. Re-run `node --check` + the reducer/prompt-pack suite to confirm baseline restored
 4. No data migration to reverse (strategy/JSONL files + config only; no schema change)
 

@@ -112,6 +112,36 @@ describe('memory retention sweep', () => {
     expect(memoryIds(db)).toEqual([2, 3]);
   });
 
+  it('reports physical residual retention without creating a deny-list registry', () => {
+    const db = createMemoryIndexTestDatabase({ includeContentColumns: true });
+    insertMemory(db, 1, isoOffset(-3_600_000), 'expired');
+
+    const result = runMemoryRetentionSweep(db);
+    const denyListTables = db.prepare(`
+      SELECT name
+      FROM sqlite_master
+      WHERE type = 'table' AND lower(name) LIKE '%deny%'
+    `).all() as Array<{ name: string }>;
+
+    expect(result.residual_retention).toEqual({
+      dead_row_slots: {
+        affectedRows: 1,
+        mayRetainBytesUntil: 'sqlite_page_reuse_or_vacuum',
+      },
+      wal: {
+        affectedRows: 1,
+        mayRetainBytesUntil: 'wal_checkpoint_truncate',
+        checkpointAttempted: true,
+      },
+      vector_tombstones: {
+        affectedRows: 1,
+        mayRetainBytesUntil: 'vector_index_compaction',
+      },
+      persistent_deny_list: 'not_created',
+    });
+    expect(denyListTables).toEqual([]);
+  });
+
   it('reaps expired active rows by default even when deleted_at is present', () => {
     const db = createMemoryIndexTestDatabase({ includeContentColumns: true });
     db.exec(`

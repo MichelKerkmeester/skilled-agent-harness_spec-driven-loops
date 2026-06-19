@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/002-code-graph/003-generation-watermark"
-    last_updated_at: "2026-06-19T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored Level-2 spec/plan/tasks for the Q6 generation-watermark pair from 028 research"
-    next_safe_action: "Implement Q6-C2 soft watermark: bumpCodeGraphGeneration at handlers/scan.ts scanPromotable block"
+    last_updated_at: "2026-06-19T08:16:05Z"
+    last_updated_by: "codex-gpt-5"
+    recent_action: "Implemented Q6-C2 soft generation watermark"
+    next_safe_action: "Keep Q6-C1 hard gate pending until Q1-C1 schema work has a named consumer"
     blockers: []
     key_files:
       - "spec.md"
@@ -29,7 +29,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-002-003-generation-watermark"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 80
     open_questions: []
     answered_questions: []
 ---
@@ -48,12 +48,20 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Draft |
+| **Status** | Q6-C2 DONE; Q6-C1 PENDING - DEFER-speculative |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Packet** | system-spec-kit/028-memory-search-intelligence/002-code-graph |
 | **Candidates** | Q6-C2 (soft watermark), Q6-C1 (hard gate), Q6-C1-generation-watermark (close-out key) |
 <!-- /ANCHOR:metadata -->
+
+### Candidate Status
+
+| Candidate | Status | Evidence |
+|-----------|--------|----------|
+| Q6-C2 (soft watermark) | **DONE** | Implemented in `code-graph-db.ts`, `handlers/scan.ts`, and `code-graph-context.ts`; verified by typecheck and targeted Vitest. |
+| Q6-C1 (hard as-of-generation gate) | **PENDING - DEFER-speculative** | Gate still requires the Q1-C1 bi-temporal schema cluster plus a named consumer; no hard-gate code in this phase. |
+| Q6-C1-generation-watermark (close-out key) | **DONE for key production; consumer pending** | The monotonic `generation` counter now exists and is surfaced; Q1-C1 consumption remains gated with Q6-C1. |
 
 ---
 
@@ -210,5 +218,5 @@ Stage a monotonic code-graph `generation` counter — first as a soft, non-break
 - **Subsystem research**: See `../research/research.md` (iterations 1-4 Q6 anchoring; 21 build sketch; 23/24 bump-site refutation).
 - **Authoritative roadmap**: See `../../research/roadmap.md` (Q6-C2 row L59/L147; BROADENING `:497` REFUTED L220).
 - **Synthesis**: See `../../research/synthesis/01-go-candidates.md` (Q6-C1 DEFER-speculative L24) and `../../research/synthesis/04-sibling-and-cross-cutting.md` (L27 DEFER reasoning).
-- **Shipped record (Wave-0)**: See `../../../030-memory-search-intelligence-impl/spec.md` §14 — only code-graph candidate shipped is Q4-C1 (`e21caf5de6`); Q6 pair is absent → PENDING.
+- **Shipped record (Wave-0)**: See `../../../030-memory-search-intelligence-impl/spec.md` §14 — only code-graph candidate shipped there was Q4-C1 (`e21caf5de6`); this phase ships Q6-C2 and leaves Q6-C1 gated.
 <!-- /ANCHOR:related-docs -->

@@ -83,6 +83,7 @@ async function handleMemoryRetentionSweep(args: MemoryRetentionSweepArgs): Promi
         protectedCount: result.protectedCount,
         protectedIds: result.protectedIds,
         ledgerRecorded: result.ledgerRecorded,
+        residual_retention: result.residual_retention,
         ...(result.feedbackRetention ? {
           feedbackRetention: {
             mode: result.feedbackRetention.mode,

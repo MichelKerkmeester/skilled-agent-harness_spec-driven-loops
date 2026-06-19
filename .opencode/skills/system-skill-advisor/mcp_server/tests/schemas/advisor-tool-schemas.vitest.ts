@@ -11,6 +11,7 @@ import { join, resolve } from 'node:path';
 
 import {
   AdvisorRecommendInputSchema,
+  AdvisorRecommendOutputSchema,
   AdvisorValidateInputSchema,
   AdvisorStatusInputSchema,
   AdvisorRebuildInputSchema,
@@ -50,6 +51,40 @@ describe('AdvisorRecommendInputSchema workspaceRoot bounding (F-005-A5-01)', () 
     expect(() => AdvisorRecommendInputSchema.parse({
       prompt: 'test prompt',
     })).not.toThrow();
+  });
+});
+
+describe('AdvisorRecommendOutputSchema runtime lane health', () => {
+  it('accepts prompt-safe degraded lane metadata', () => {
+    const parsed = AdvisorRecommendOutputSchema.parse({
+      workspaceRoot: process.cwd(),
+      effectiveThresholds: {
+        confidenceThreshold: 0.8,
+        uncertaintyThreshold: 0.35,
+        confidenceOnly: false,
+      },
+      recommendations: [],
+      ambiguous: false,
+      freshness: 'stale',
+      trustState: {
+        state: 'stale',
+        reason: 'SOURCE_NEWER_THAN_SKILL_GRAPH',
+        generation: 7,
+        checkedAt: '2026-04-20T00:00:00.000Z',
+        lastLiveAt: null,
+      },
+      generatedAt: '2026-04-20T00:00:00.000Z',
+      cache: {
+        hit: false,
+        sourceSignaturePresent: true,
+      },
+      runtimeLaneHealth: {
+        liveLaneCount: 4,
+        degradedLanes: ['graph_causal'],
+      },
+    });
+
+    expect(parsed.runtimeLaneHealth?.degradedLanes).toEqual(['graph_causal']);
   });
 });
 

@@ -157,6 +157,11 @@ const whyRecommendedSchema = z.object({
   }).strict()),
 }).strict();
 
+const runtimeLaneHealthSchema = z.object({
+  liveLaneCount: z.number().int().nonnegative(),
+  degradedLanes: z.array(AdvisorLaneSchema),
+}).strict();
+
 const semanticLaneHealthSchema = z.object({
   activeEmbedder: z.object({
     name: z.string().min(1),
@@ -238,6 +243,7 @@ export const AdvisorRecommendOutputSchema = z.object({
   }).strict(),
   warnings: z.array(z.string()).optional(),
   abstainReasons: z.array(z.string()).optional(),
+  runtimeLaneHealth: runtimeLaneHealthSchema.optional(),
   _shadow: z.object({
     model: z.literal('advisor-shadow-learned-weights-v1'),
     liveWeightsFrozen: z.boolean(),

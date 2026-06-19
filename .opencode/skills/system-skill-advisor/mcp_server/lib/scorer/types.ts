@@ -95,6 +95,20 @@ export interface LaneMatch {
 
 export type LaneScores = Readonly<Record<ScorerLane, readonly LaneMatch[]>>;
 
+export type LaneRuntimeHealthStatus = 'healthy' | 'runtime_degraded' | 'matched_nothing';
+
+export interface LaneRuntimeHealthSignal {
+  readonly status: 'healthy' | 'runtime_degraded';
+  readonly reason?: string;
+}
+
+export interface LaneRuntimeHealth {
+  readonly lane: ScorerLane;
+  readonly status: LaneRuntimeHealthStatus;
+  readonly matchCount: number;
+  readonly reason?: string;
+}
+
 export interface LaneDampingConfig {
   readonly threshold: number;
   readonly floor: number;
@@ -133,6 +147,7 @@ export interface AdvisorScoringOptions {
   readonly uncertaintyThreshold?: number;
   readonly includeAllCandidates?: boolean;
   readonly disabledLanes?: readonly ScorerLane[];
+  readonly runtimeLaneHealth?: Partial<Record<ScorerLane, LaneRuntimeHealthSignal>>;
   /**
    * Optional scorer lane weights for one scoring call. Overrides are merged over
    * the default vector without renormalizing; callers own sensible totals. The
@@ -156,5 +171,8 @@ export interface AdvisorScoringResult {
   readonly metrics: {
     readonly candidateCount: number;
     readonly liveLaneCount: number;
+    readonly degradedLanes?: readonly ScorerLane[];
+    readonly laneHealth?: readonly LaneRuntimeHealth[];
   };
+  readonly abstainReasons?: readonly string[];
 }

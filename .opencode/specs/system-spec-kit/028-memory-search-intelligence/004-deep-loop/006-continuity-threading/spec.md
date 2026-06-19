@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/004-deep-loop/006-continuity-threading"
     last_updated_at: "2026-06-19T10:30:00+02:00"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored spec"
-    next_safe_action: "Begin carried-forward block"
+    recent_action: "Implemented continuity threading"
+    next_safe_action: "Run strict validation and close out"
     blockers: []
     key_files:
       - "spec.md"
@@ -28,7 +28,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-004-006-replan"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -47,7 +47,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Implemented |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent research phase** | `028-memory-search-intelligence/004-deep-loop` (Deep Loop — convergence/fan-out/council intelligence) |
@@ -74,7 +74,7 @@ Land the deep-loop **continuity GO cluster** — the continuity / iterative-retr
 ### Critical context (from the 028 research, authoritative)
 
 - **Continuity-injection paths are EXACTLY two — CONFIRMED, so this is a bounded unit.** (1) the reducer writes 7 `strategy.md` anchor sections via `replaceAnchorSection` (`reduce-state.cjs:734-745`); (2) the prompt-pack injects via `renderPromptPack` (`prompt-pack.ts:55`) substituting `{state_summary}` / `{next_focus}` / `{remaining_questions_list}` + `{state_paths_*}` path pointers (`prompt_pack_iteration.md.tmpl:9-26`). The executor's strategy-file read is DRIVEN BY a prompt-pack path variable → subsumed under prompt-pack, not a third channel. No env / appended-context seam exists. [CONFIRMED iter-6 F6-02; the roadmap's "not exhaustively traced" open item is CLOSED.]
-- **NEITHER candidate shipped in 030.** The 030 Wave-0 §14 covers 13 candidates; the Deep-Loop entry (candidate 12, commit `46812f12a8`) shipped merge total-order + pool gauges + graceful-self-stop only, and `Q5-carried-forward` / `DL-iterative-retrieval-loop` appear nowhere in §14 or the 030 spec body. Both are PENDING here. [CONFIRMED: grep of `030/spec.md` §14 + body = zero continuity/iterative-retrieval/next-focus matches.]
+- **NEITHER candidate shipped in 030.** The 030 Wave-0 §14 covers 13 candidates; the Deep-Loop entry (candidate 12, commit `46812f12a8`) shipped merge total-order + pool gauges + graceful-self-stop only, and `Q5-carried-forward` / `DL-iterative-retrieval-loop` appear nowhere in §14 or the 030 spec body. Both candidates were pending at phase start and are implemented in this sub-phase. [CONFIRMED: grep of `030/spec.md` §14 + body = zero continuity/iterative-retrieval/next-focus matches.]
 - **`prompt-pack.ts` is stateless and iteration-blind.** It is a checked `{var}` substituter that throws `PromptPackError` on any missing token (`prompt-pack.ts:55-73`); ZERO iteration/finding/open-question awareness. Threading happens at the reducer + the variables map a caller passes, not in the pack. [CONFIRMED iter-2 `f-promptpack-stateless`.]
 - **The reducer ALREADY threads strategy key-questions (machine-owned).** `reduce-state.cjs:629-650` builds an `openQuestions` list of UNRESOLVED strategy questions; this is the machine-owned fold. Q5's carried-forward block is a SELF-owned, per-iteration block DISTINCT from this fold (it threads the iteration's own raw open-questions, not just the strategy question list). Q5 must not duplicate or collide with the existing fold. [CONFIRMED iter-9: "carried-forward open-questions already threaded via findings-registry openQuestions (`reduce-state.cjs:629-650`)" — the partial state Q5 layers on top of.]
 - **No candidate has a measured before/after benefit number** — all leverage/effort tags are structural inference. Ship for correctness and continuity quality, not a promised delta. [CONFIRMED: roadmap honesty layer; `06-memory-systems-findings.md` "no benefit number is measured anywhere; all lev/eff are structural inference."]
@@ -90,8 +90,8 @@ Land the deep-loop **continuity GO cluster** — the continuity / iterative-retr
 
 | # | Candidate | One-line | Seam (file:line) | Lev/Eff | Status |
 |---|-----------|----------|------------------|---------|--------|
-| C1 | **Q5-carried-forward** | each iteration emits a lightweight SELF-owned "open-questions carried forward" block (distinct from the reducer's machine-owned `openQuestions` fold at `:629-650`) so the next iteration threads its OWN raw thread; reuses the existing JSONL/strategy spine; NO new model call | prompt-pack continuity (`prompt-pack.ts:55-73` stateless) + reducer fold (`reduce-state.cjs:629-650`); injection via the two confirmed paths only | LOW-MED / S | PENDING |
-| C2 | **DL-iterative-retrieval-loop** | make `resolveNextFocus` derive the next focus from the prior iteration's ANSWER (answer-as-next-query) instead of returning the hand-written "Recommended Next Focus" free-text; the convergence stop is ALREADY built so the change is bounded; reads C1's carried-forward block where present | `reduce-state.cjs:519-541` (`resolveNextFocus`, hand-written return at `:538`); stop already at `convergence.cjs:107,285,368` | H / M | PENDING |
+| C1 | **Q5-carried-forward** | each iteration emits a lightweight SELF-owned "open-questions carried forward" block (distinct from the reducer's machine-owned `openQuestions` fold at `:629-650`) so the next iteration threads its OWN raw thread; reuses the existing JSONL/strategy spine; NO new model call | runtime helper `continuity-thread.cjs`; reducer fold (`reduce-state.cjs`); injection via strategy anchor + prompt-pack variable only | LOW-MED / S | DONE |
+| C2 | **DL-iterative-retrieval-loop** | make `resolveNextFocus` derive the next focus from the prior iteration's ANSWER (answer-as-next-query) instead of returning the hand-written "Recommended Next Focus" free-text; the convergence stop is ALREADY built so the change is bounded; reads C1's carried-forward block where present | `resolveNextFocus` calls runtime helper; stop remains `convergence.cjs:107,285,368` | H / M | DONE |
 
 > Build order (dependency-driven): **C1 → C2** — Q5's self-owned carried-forward block is the durable thread DL-iterative reads when deriving next-focus; ship the thread first, then the derivation that consumes it. See `plan.md`.
 
@@ -110,10 +110,12 @@ Land the deep-loop **continuity GO cluster** — the continuity / iterative-retr
 |-----------|-------------|--------------|
 | `.opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs` | Modify (`resolveNextFocus` `:519-541`; carried-forward read/merge alongside the `:629-650` fold) | C1, C2 |
 | `.opencode/skills/deep-loop-workflows/deep-research/assets/prompt_pack_iteration.md.tmpl` | Possibly extend (a carried-forward variable / instruction for the self-owned block) | C1 |
-| `.opencode/skills/deep-loop-runtime/lib/deep-loop/prompt-pack.ts` | Possibly extend (only if C1's block needs a new substituted variable; the renderer stays a checked `{var}` substituter) | C1 |
+| `.opencode/skills/deep-loop-runtime/lib/deep-loop/continuity-thread.cjs` | Add runtime helper for carried-forward block construction and answer-derived focus | C1, C2 |
+| `.opencode/commands/deep/assets/deep_research_{auto,confirm}.yaml` | Extend prompt variable map for carried-forward block | C1 |
+| `.opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_strategy.md` | Add initialized carried-forward strategy anchor | C1 |
 | Tests alongside each change (deep-loop reducer / prompt-pack test suite) | Create/Modify | all |
 
-> **Seam-confirmation note (do at implementation time):** confirm whether C1's carried-forward block is best emitted as a new `strategy.md` anchor section, a new prompt-pack variable, or a per-iteration delta-record field, given the two-path constraint. The research confirms the *spine* (JSONL/strategy) and the *two injection paths*; the exact carrier is an implementation-time decision recorded in the plan's OPEN QUESTIONS.
+> **Carrier decision:** C1 uses a new reducer-owned `strategy.md` anchor (`carried-forward-open-questions`) plus an additive `carried_forward_open_questions` prompt-pack variable. No delta-record field and no third injection path were added.
 
 <!-- /ANCHOR:scope -->
 ---
@@ -216,9 +218,9 @@ Land the deep-loop **continuity GO cluster** — the continuity / iterative-retr
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Which of the two confirmed injection carriers should hold C1's self-owned carried-forward block — a new `strategy.md` anchor section, a new prompt-pack variable, or a per-iteration delta-record field? The research confirms the spine and the two-path constraint but not the exact carrier. **PENDING — decide at C1 implementation time** (seam-confirmation note in §3).
-- Should the derived next-focus (C2) REPLACE the hand-written "Recommended Next Focus" entirely, or fall back to it when the derivation is empty/ambiguous? **PENDING — decide at C2 implementation time; default to derive-then-fall-back so iteration 1 and empty-findings cases are regression-safe.**
-- Is the 001 content-derived ordering helper the right tie-break for any ordering inside the carried-forward block? The 001 call site is an unread inference. **PENDING — confirm by reading the 001 folding helper before implementing any tie-break** (roadmap remaining item).
+- **RESOLVED:** C1's carrier is a reducer-owned strategy anchor plus an additive prompt-pack variable. This stays within the two confirmed injection paths and avoids a delta-record schema change.
+- **RESOLVED:** C2 replaces the hand-written "Recommended Next Focus" return with derive-first behavior: carried-forward question, then latest finding, then strategy-question fallback, then the terminal sentinel.
+- **RESOLVED:** Same-iteration carried-forward question ordering uses a content-derived SHA-256 key after iteration number ordering. No timestamp or insertion-order tie-break is used.
 
 <!-- /ANCHOR:questions -->
 ---

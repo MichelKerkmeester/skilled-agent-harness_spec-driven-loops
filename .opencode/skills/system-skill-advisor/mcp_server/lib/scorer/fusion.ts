@@ -33,6 +33,7 @@ import type {
   AdvisorScoringResult,
   LaneContribution,
   LaneMatch,
+  LaneRuntimeHealth,
   LaneScores,
   ScorerLane,
   SkillProjection,
@@ -96,6 +97,36 @@ function normalizeFreshnessLabel(value: string | undefined): AdvisorFreshnessLab
 }
 
 type LaneMatchIndex = Map<string, { rawScore: number; evidence: string[] }>;
+
+function buildLaneRuntimeHealth(
+  laneScores: LaneScores,
+  disabled: ReadonlySet<ScorerLane>,
+  runtimeLaneHealth: AdvisorScoringOptions['runtimeLaneHealth'] | undefined,
+): readonly LaneRuntimeHealth[] {
+  return SCORER_LANES.map((lane): LaneRuntimeHealth => {
+    const matchCount = laneScores[lane].length;
+    const signal = runtimeLaneHealth?.[lane];
+    if (!disabled.has(lane) && signal?.status === 'runtime_degraded' && matchCount === 0) {
+      return {
+        lane,
+        status: 'runtime_degraded',
+        matchCount,
+        ...(signal.reason ? { reason: signal.reason } : {}),
+      };
+    }
+    return {
+      lane,
+      status: matchCount > 0 ? 'healthy' : 'matched_nothing',
+      matchCount,
+      ...(signal?.reason && signal.status === 'healthy' ? { reason: signal.reason } : {}),
+    };
+  });
+}
+
+function degradedLaneReason(degradedLanes: readonly ScorerLane[]): string | null {
+  if (degradedLanes.length === 0) return null;
+  return `Runtime-degraded scorer lanes omitted from confidence normalization: ${degradedLanes.join(', ')}.`;
+}
 
 function buildLaneMatchIndex(matches: readonly LaneMatch[]): LaneMatchIndex {
   const index: LaneMatchIndex = new Map();
@@ -337,15 +368,23 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
   const disabled = new Set(options.disabledLanes ?? []);
   const affordances = normalize(options.affordances ?? []);
   const laneScores = buildLaneScores(prompt, projection, disabled, affordances);
+  const laneHealth = buildLaneRuntimeHealth(laneScores, disabled, options.runtimeLaneHealth);
+  const degradedLanes = laneHealth
+    .filter((lane) => lane.status === 'runtime_degraded')
+    .map((lane) => lane.lane);
+  const runtimeDegradedLanes = new Set(degradedLanes);
   const laneScoreIndexes = Object.fromEntries(
     SCORER_LANES.map((lane) => [lane, buildLaneMatchIndex(laneScores[lane])]),
   ) as Record<ScorerLane, LaneMatchIndex>;
   const liveTotal = SCORER_LANES
-    .filter((lane) => !disabled.has(lane))
+    .filter((lane) => !disabled.has(lane) && !runtimeDegradedLanes.has(lane))
     .reduce((total, lane) => isLiveScorerLane(lane) ? total + weights[lane] : total, 0) || liveWeightTotal();
+  const runtimeLiveLaneCount = SCORER_LANES
+    .filter((lane) => isLiveScorerLane(lane) && !disabled.has(lane) && !runtimeDegradedLanes.has(lane))
+    .length;
   if (isSpeckitMetricsEnabled() && liveTotal > 0) {
     for (const lane of SCORER_LANES) {
-      if (!isLiveScorerLane(lane) || disabled.has(lane)) continue;
+      if (!isLiveScorerLane(lane) || disabled.has(lane) || runtimeDegradedLanes.has(lane)) continue;
       speckitMetrics.setGauge('spec_kit.scorer.fusion_live_weight_share', weights[lane] / liveTotal, { lane });
     }
   }
@@ -360,11 +399,12 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
       const laneMatch = laneScoreIndexes[lane].get(skill.id);
       const rawScore = laneMatch?.rawScore ?? 0;
       const shadowOnly = !isLiveScorerLane(lane);
+      const runtimeDegraded = runtimeDegradedLanes.has(lane);
       return {
         lane,
         rawScore,
-        weightedScore: shadowOnly || disabled.has(lane) ? 0 : rawScore * weights[lane],
-        weight: disabled.has(lane) ? 0 : weights[lane],
+        weightedScore: shadowOnly || disabled.has(lane) || runtimeDegraded ? 0 : rawScore * weights[lane],
+        weight: disabled.has(lane) || runtimeDegraded ? 0 : weights[lane],
         evidence: laneMatch?.evidence ?? [],
         shadowOnly,
       };
@@ -515,6 +555,8 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
   const passing = ranked.filter((recommendation) => recommendation.passes_threshold);
   const visible = options.includeAllCandidates ? ranked : passing;
   const top = passing[0] ?? null;
+  const laneHealthReason = degradedLaneReason(degradedLanes);
+  const abstainReasons = laneHealthReason ? [laneHealthReason] : [];
   if (isSpeckitMetricsEnabled() && top) {
     const runtimeLabel = normalizeRuntimeLabel(process.env.SPECKIT_RUNTIME);
     const freshnessLabel = normalizeFreshnessLabel(process.env.SPECKIT_ADVISOR_FRESHNESS);
@@ -530,7 +572,9 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
     ambiguous: isAmbiguousTopTwo(ranked),
     metrics: {
       candidateCount: ranked.length,
-      liveLaneCount: SCORER_LANES.filter((lane) => isLiveScorerLane(lane) && !disabled.has(lane)).length,
+      liveLaneCount: runtimeLiveLaneCount,
+      ...(degradedLanes.length > 0 ? { degradedLanes, laneHealth } : {}),
     },
+    ...(abstainReasons.length > 0 ? { abstainReasons } : {}),
   };
 }
