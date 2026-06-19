@@ -1,20 +1,16 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/002-skill-and-repo-readmes",
-  "description": "Defines the pending release-cleanup sweep for skill-level and repo-level README files.",
+  "description": "Feature Specification: Skill And Repo README Cleanup",
   "keywords": [
-    "defines",
-    "pending",
-    "release",
-    "cleanup",
-    "sweep",
+    "feature",
+    "specification",
     "skill",
-    "level",
     "repo",
     "readme",
-    "files"
+    "cleanup"
   ],
-  "lastUpdated": "2026-06-19T00:00:00Z",
+  "lastUpdated": "2026-06-19T11:32:15.962Z",
   "specId": "002",
   "folderSlug": "skill-and-repo-readmes",
   "parentChain": [
@@ -25,4 +21,3 @@
   "memorySequence": 0,
   "memoryNameHistory": []
 }
-

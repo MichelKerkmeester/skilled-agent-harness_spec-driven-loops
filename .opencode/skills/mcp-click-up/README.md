@@ -215,7 +215,7 @@ The skill ships a manual testing playbook and two example scripts that double as
 |---|---|
 | README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/mcp-click-up/README.md --type readme` reports zero issues |
 | cupt health | `cupt --version && cupt status && cupt list --today --json | python3 -c "import sys,json; json.load(sys.stdin); print('JSON valid')"` all pass with no errors |
-| MCP health | Confirm `clickup` tools appear in available MCP tools and a `clickup.clickup_get_workspace` call via `call_tool_chain(...)` returns workspace data |
+| MCP health | Confirm `clickup_official` tools appear in available MCP tools and a `clickup_official.clickup_official_get_workspace` call via `call_tool_chain(...)` returns workspace data |
 | Example scripts | Run `task-queue-workflow.sh --dry-run` with a valid tag and confirm exit code 0, then run `time-tracking-workflow.sh status` and confirm no errors |
 
 ---

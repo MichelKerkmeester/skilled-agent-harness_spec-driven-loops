@@ -599,7 +599,7 @@ Template changes flow through the manifest source, Level contract resolver and i
 | [`mcp_server/README.md`](./mcp_server/README.md)                             | Full MCP architecture: 39-tool API reference, search pipeline, graph intelligence and configuration |
 | [`mcp_server/INSTALL_GUIDE.md`](./mcp_server/INSTALL_GUIDE.md)               | Step-by-step installation with embedding providers and environment                                   |
 | [`scripts/spec/create.sh`](./scripts/spec/create.sh)                         | Create spec folders with level-appropriate template files                                            |
-| [`scripts/spec/validate.sh`](./scripts/spec/validate.sh)                     | Run 20-rule validation on any spec folder                                                            |
+| [`scripts/spec/validate.sh`](./scripts/spec/validate.sh)                     | Run 38-rule validation on any spec folder                                                            |
 | `scripts/dist/memory/generate-context.js`                                    | Primary workflow for updating packet continuity state from structured JSON                            |
 | [`feature_catalog/feature_catalog.md`](./feature_catalog/feature_catalog.md) | Complete catalog of implemented features                                    |
 
