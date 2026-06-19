@@ -60,8 +60,8 @@ _memory:
 - [ ] T002 Re-run recall + saturation checks; capture the reindexed baseline numbers (regression-baseline rule) [baseline]
 
 ### Candidate 4 — declarative regex entity config (always-on, correctness-class)
-- [ ] T003 Author the JSON entity-config asset (type + pattern + metadata) reproducing the 5 hard-coded rules (`lib/extraction/entity-extractor.ts:82-121`) [1h]
-- [ ] T004 Add the config loader + fail-closed-to-builtin-rules fallback (`lib/extraction/entity-extractor.ts`) [1h]
+- [x] T003 Author the JSON entity-config asset (type + pattern + metadata) reproducing the 5 hard-coded rules (`lib/extraction/entity-extractor.ts:82-121`) [1h] — `lib/extraction/entity-extraction-rules.json` + `EntityExtractionRule[]`; parity test green
+- [x] T004 Add the config loader + fail-closed-to-builtin-rules fallback (`lib/extraction/entity-extractor.ts`) [1h] — `loadEntityExtractionRules()` reads `SPECKIT_ENTITY_CONFIG_PATH`, falls back to built-ins on any read/parse/validation failure
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -74,7 +74,7 @@ _memory:
 - [ ] T006 Implement the term-count → sigmoid-params lookup at the BM25 channel (`lib/search/sqlite-fts.ts`, `lib/eval/bm25-baseline.ts`) behind a default-off flag [2h]
 
 ### Candidate 2 — entity cardinality penalty (flag-gated)
-- [ ] T007 [P] Implement the quadratic damp `1/(1+0.001·(n−1)²)` on the rrf-fusion degree/co-activation channel (`shared/algorithms/rrf-fusion.ts:17`, `lib/search/graph-search-fn.ts`) behind a default-off flag [1h]
+- [x] T007 [P] Implement the quadratic damp `1/(1+0.001·(n−1)²)` on the degree/co-activation channel (`lib/search/graph-search-fn.ts` `computeDegreeScores`) behind a default-off flag [1h] — `SPECKIT_CARDINALITY_PENALTY` (default-off, byte-identical off-path); wired at the degree-channel seam (not `rrf-fusion.ts`, owned by a concurrent change). Promotion default-on still owes the reindexed before/after benchmark (T021).
 
 ### Candidate 3 — spaCy / lightweight lemmatization (flag-gated)
 - [ ] T008 [B] Resolve the lemmatizer-dependency open question (heavy spaCy vs lightweight rule-based) [decision]
@@ -88,8 +88,8 @@ _memory:
 - [ ] T012 Emit `linked_memory_ids` per fact at extraction; consume at write time (`handlers/causal-graph.ts`, `causal-links-processor.ts`) additive over post-hoc `memory_causal_link` [3h]
 
 ### Candidate 8 — content-hash reprocessing trigger (verify-first)
-- [ ] T013 Verify whether `memory_index_scan` already re-derives embeddings/entities/edges on `content_hash` change (`handlers/save/dedup.ts` vs the reindex path) [research]
-- [ ] T014 Resolve: build the auto-reset-on-change IF a real gap is confirmed, ELSE close as NO-TRANSFER with cited evidence [decision]
+- [x] T013 Verify whether `memory_index_scan` already re-derives embeddings/entities/edges on `content_hash` change (`handlers/save/dedup.ts` vs the reindex path) [research] — confirmed: dedup short-circuits ONLY on unchanged content; on hash change it returns null and the save re-indexes.
+- [x] T014 Resolve: build the auto-reset-on-change IF a real gap is confirmed, ELSE close as NO-TRANSFER with cited evidence [decision] — **NO-TRANSFER**: `post-insert.ts:332` re-runs `extractEntities` + `refreshAutoEntitiesForMemory` (delete + re-derive) and embeddings re-generate on a changed save. The Cognee behavior already exists; no code.
 
 ### Candidate 7 — entity-store boost (shared-infra, gated)
 - [ ] T015 [B] Build (or adopt) the entity-embedding vector index — none exists today; prerequisite for any entity-vector boost [packet-scale]
@@ -102,9 +102,9 @@ _memory:
 ## Phase 3: Verification
 
 ### Parity + unit
-- [ ] T017 Parity test: config-driven extraction byte-identical to the inline 5 rules (candidate 4) (`tests/`) [30m]
-- [ ] T018 [P] Unit test the cardinality penalty at n=0, n=1 (→1.0, no penalty) and high-n damping (candidate 2) [30m]
-- [ ] T019 Fallback test: cascade refine-pass failure preserves the broad-pass result (candidate 5) [30m]
+- [x] T017 Parity test: config-driven extraction byte-identical to the inline 5 rules (candidate 4) (`tests/mem0-ranking-tweaks.vitest.ts`) [30m]
+- [x] T018 [P] Unit test the cardinality penalty at n=0, n=1 (→1.0, no penalty) and high-n damping (candidate 2) (`tests/mem0-ranking-tweaks.vitest.ts`) [30m]
+- [ ] T019 Fallback test: cascade refine-pass failure preserves the broad-pass result (candidate 5) [30m] — PENDING (candidate 5 not built)
 
 ### Recall benchmarks (reindexed before/after, per flag-gated tweak)
 - [ ] T020 Shadow telemetry + reindexed recall delta for candidate 1; promote default-on only on positive delta [1h]

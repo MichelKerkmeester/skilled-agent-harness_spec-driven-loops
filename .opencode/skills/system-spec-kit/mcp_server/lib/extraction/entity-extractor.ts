@@ -4,6 +4,8 @@
 // Feature catalog: Auto entity extraction
 // Feature-flagged via SPECKIT_AUTO_ENTITIES
 // Pure-TS rule-based extraction, zero npm dependencies.
+import fs from 'node:fs';
+
 import { isEntityDenied } from './entity-denylist.js';
 import { normalizeEntityName, computeEdgeDensity } from '../search/entity-linker.js';
 
@@ -65,9 +67,150 @@ export interface RefreshAutoEntitiesForMemoryResult {
 
 // ───────────────────────────────────────────────────────────────
 /**
+ * A declarative entity-extraction rule: a regex applied over content whose
+ * captured group becomes an entity of `type`. Keeping rules as data (rather
+ * than inlined regex literals) lets new entity types be added by editing a
+ * config file instead of code, while the built-in set below stays the
+ * fail-closed source of truth.
+ */
+export interface EntityExtractionRule {
+  /** Entity classification assigned to every match of this rule. */
+  type: ExtractedEntity['type'];
+  /** RegExp source string. Must be globally matchable (flags include 'g'). */
+  pattern: string;
+  /** RegExp flags. Must contain 'g' so the match loop terminates. */
+  flags: string;
+  /** 1-based capture group whose text is the entity. */
+  captureGroup: number;
+  /** When true, the captured text is trimmed (matches the heading rule). */
+  trim?: boolean;
+}
+
+const ENTITY_TYPES: ReadonlySet<ExtractedEntity['type']> = new Set([
+  'proper_noun',
+  'technology',
+  'key_phrase',
+  'heading',
+  'quoted',
+]);
+
+/**
+ * Built-in rule set — the canonical, always-available source of truth.
+ * Reproduces the five historical inline rules exactly, in order. An external
+ * override (see loadEntityExtractionRules) may replace these, but any failure
+ * to load or validate it falls back here so extraction never crashes.
+ */
+const BUILTIN_ENTITY_RULES: readonly EntityExtractionRule[] = [
+  // Rule 1: Capitalized multi-word sequences (proper nouns).
+  { type: 'proper_noun', pattern: '\\b([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)\\b', flags: 'g', captureGroup: 1 },
+  // Rule 2: Technology names from code fence annotations.
+  { type: 'technology', pattern: '```(\\w+)', flags: 'g', captureGroup: 1 },
+  // Rule 3: Words after key phrases. Keywords are case-insensitive via explicit
+  // alternation (no `i` flag, since continuation words must start uppercase to
+  // avoid capturing common English words). Tokens may include internal dots
+  // (e.g. "Node.js") but a trailing sentence period ends the match.
+  { type: 'key_phrase', pattern: '\\b(?:[Uu]sing|[Ww]ith|[Vv]ia|[Ii]mplements)\\s+([A-Za-z][\\w-]*(?:\\.[A-Za-z0-9_-]+)*(?:\\s+[A-Z][\\w-]*(?:\\.[A-Za-z0-9_-]+)*)*)', flags: 'g', captureGroup: 1 },
+  // Rule 4: Markdown heading content (## through ####).
+  { type: 'heading', pattern: '^#{2,4}\\s+(.+)$', flags: 'gm', captureGroup: 1, trim: true },
+  // Rule 5: Quoted strings (double quotes, 2-50 chars).
+  { type: 'quoted', pattern: '"([^"]{2,50})"', flags: 'g', captureGroup: 1 },
+];
+
+let cachedEntityRules: readonly EntityExtractionRule[] | null = null;
+
+function isValidEntityRule(value: unknown): value is EntityExtractionRule {
+  if (!value || typeof value !== 'object') return false;
+  const rule = value as Record<string, unknown>;
+  if (typeof rule.type !== 'string' || !ENTITY_TYPES.has(rule.type as ExtractedEntity['type'])) return false;
+  if (typeof rule.pattern !== 'string' || rule.pattern.length === 0) return false;
+  // 'g' is mandatory: without it the exec() loop never advances and would hang.
+  if (typeof rule.flags !== 'string' || !rule.flags.includes('g')) return false;
+  if (typeof rule.captureGroup !== 'number' || !Number.isInteger(rule.captureGroup) || rule.captureGroup < 1) return false;
+  if (rule.trim !== undefined && typeof rule.trim !== 'boolean') return false;
+  try {
+    new RegExp(rule.pattern, rule.flags);
+  } catch {
+    return false;
+  }
+  return true;
+}
+
+function parseEntityRules(rawConfig: unknown): EntityExtractionRule[] | null {
+  const list = Array.isArray(rawConfig)
+    ? rawConfig
+    : (rawConfig && typeof rawConfig === 'object' && Array.isArray((rawConfig as Record<string, unknown>).rules)
+        ? (rawConfig as Record<string, unknown>).rules as unknown[]
+        : null);
+  if (!list || list.length === 0) return null;
+  const parsed: EntityExtractionRule[] = [];
+  for (const entry of list) {
+    if (!isValidEntityRule(entry)) return null;
+    parsed.push({
+      type: entry.type,
+      pattern: entry.pattern,
+      flags: entry.flags,
+      captureGroup: entry.captureGroup,
+      ...(entry.trim !== undefined ? { trim: entry.trim } : {}),
+    });
+  }
+  return parsed;
+}
+
+/**
+ * Resolve the active extraction rules. When SPECKIT_ENTITY_CONFIG_PATH points
+ * at a readable, valid JSON rule file the rules come from there (new entity
+ * types without a code change); otherwise the built-in set is used. Any read,
+ * parse, or validation failure logs a warning and falls back to the built-in
+ * rules so a malformed config never breaks extraction.
+ */
+export function loadEntityExtractionRules(): readonly EntityExtractionRule[] {
+  if (cachedEntityRules) return cachedEntityRules;
+
+  const overridePath = process.env.SPECKIT_ENTITY_CONFIG_PATH?.trim();
+  if (overridePath) {
+    try {
+      const parsed = parseEntityRules(JSON.parse(fs.readFileSync(overridePath, 'utf-8')));
+      if (parsed) {
+        cachedEntityRules = parsed;
+        return cachedEntityRules;
+      }
+      console.warn(`[entity-extractor] Entity config at ${overridePath} is malformed or empty; using built-in rules`);
+    } catch (error: unknown) {
+      const msg = error instanceof Error ? error.message : String(error);
+      console.warn(`[entity-extractor] Failed to load entity config at ${overridePath} (${msg}); using built-in rules`);
+    }
+  }
+
+  cachedEntityRules = BUILTIN_ENTITY_RULES;
+  return cachedEntityRules;
+}
+
+/** Apply the declarative rules in order, returning raw (text, type) hits. */
+function applyEntityRules(
+  content: string,
+  rules: readonly EntityExtractionRule[],
+): Array<{ text: string; type: ExtractedEntity['type'] }> {
+  const raw: Array<{ text: string; type: ExtractedEntity['type'] }> = [];
+  for (const rule of rules) {
+    const re = new RegExp(rule.pattern, rule.flags);
+    let match: RegExpExecArray | null;
+    while ((match = re.exec(content)) !== null) {
+      // Guard against a zero-width match (possible only from an override regex)
+      // stalling the loop; the built-in rules never match empty.
+      if (match.index === re.lastIndex) re.lastIndex++;
+      const captured = match[rule.captureGroup];
+      if (captured === undefined) continue;
+      raw.push({ text: rule.trim ? captured.trim() : captured, type: rule.type });
+    }
+  }
+  return raw;
+}
+
+/**
  * Main extraction function — pure-TS rule-based, no npm deps.
  *
- * Rules applied in order:
+ * Rules are applied in order from the active config (built-in by default;
+ * see loadEntityExtractionRules):
  *   1. Capitalized multi-word sequences (2+ words starting with uppercase) → proper_noun
  *   2. Technology names from code fence annotations → technology
  *   3. Words after key phrases ("using", "with", "via", "implements") → key_phrase
@@ -80,43 +223,7 @@ export interface RefreshAutoEntitiesForMemoryResult {
  * @returns Array of extracted entities, deduplicated and frequency-counted.
  */
 export function extractEntities(content: string): ExtractedEntity[] {
-  const raw: Array<{ text: string; type: ExtractedEntity['type'] }> = [];
-
-  // Rule 1: Capitalized multi-word sequences (proper nouns)
-  const properNounRe = /\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+)+)\b/g;
-  let match: RegExpExecArray | null;
-  while ((match = properNounRe.exec(content)) !== null) {
-    raw.push({ text: match[1], type: 'proper_noun' });
-  }
-
-  // Rule 2: Technology names from code fence annotations
-  const codeFenceRe = /```(\w+)/g;
-  while ((match = codeFenceRe.exec(content)) !== null) {
-    raw.push({ text: match[1], type: 'technology' });
-  }
-
-  // Rule 3: Words after key phrases — keywords are case-insensitive via explicit
-  // Alternation (no `i` flag, since continuation words must require uppercase start
-  // To avoid capturing common English words like "and", "the"). Tokens may include
-  // Internal dots (for names like "Node.js"), but a trailing sentence period ends
-  // The match so we do not absorb the next sentence.
-  const keyPhraseRe = /\b(?:[Uu]sing|[Ww]ith|[Vv]ia|[Ii]mplements)\s+([A-Za-z][\w-]*(?:\.[A-Za-z0-9_-]+)*(?:\s+[A-Z][\w-]*(?:\.[A-Za-z0-9_-]+)*)*)/g;
-  while ((match = keyPhraseRe.exec(content)) !== null) {
-    raw.push({ text: match[1], type: 'key_phrase' });
-  }
-
-  // Rule 4: Markdown heading content (## through ####)
-  const headingRe = /^#{2,4}\s+(.+)$/gm;
-  while ((match = headingRe.exec(content)) !== null) {
-    raw.push({ text: match[1].trim(), type: 'heading' });
-  }
-
-  // Rule 5: Quoted strings (double quotes, 2-50 chars)
-  const quotedRe = /"([^"]{2,50})"/g;
-  while ((match = quotedRe.exec(content)) !== null) {
-    raw.push({ text: match[1], type: 'quoted' });
-  }
-
+  const raw = applyEntityRules(content, loadEntityExtractionRules());
   // Deduplicate by normalized text (lowercase, trimmed), summing frequencies
   return deduplicateEntities(raw);
 }
@@ -510,10 +617,19 @@ function deduplicateEntities(
   return Array.from(map.values());
 }
 
+/** Reset the cached extraction rules so the next load re-reads the environment. */
+function resetEntityRulesCache(): void {
+  cachedEntityRules = null;
+}
+
 /**
  * Internal helpers exported for testing via __testables.
  */
 export const __testables = {
   deduplicateEntities,
   normalizeEntityName,
+  BUILTIN_ENTITY_RULES,
+  applyEntityRules,
+  parseEntityRules,
+  resetEntityRulesCache,
 };

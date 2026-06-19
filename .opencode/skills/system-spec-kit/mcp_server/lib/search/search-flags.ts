@@ -360,6 +360,18 @@ export function isDegreeBoostEnabled(): boolean {
   return isFeatureEnabled('SPECKIT_DEGREE_BOOST');
 }
 
+/**
+ * Cardinality penalty on the causal-degree boost channel. Damps high-cardinality
+ * hub nodes via 1/(1 + 0.001·(numLinked−1)²) so a node connected to many others
+ * does not dominate the degree channel on connection count alone. n ≤ 1 is
+ * unpenalized. Default: FALSE (shadow) — it changes recall ordering and must earn
+ * default-on from a reindexed before/after benchmark. Set
+ * SPECKIT_CARDINALITY_PENALTY=true to enable.
+ */
+export function isCardinalityPenaltyEnabled(): boolean {
+  return isOptInEnabled('SPECKIT_CARDINALITY_PENALTY');
+}
+
 /* ───────────────────────────────────────────────────────────────
    FLAGS
 ──────────────────────────────────────────────────────────────── */

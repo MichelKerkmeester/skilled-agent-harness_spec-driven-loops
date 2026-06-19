@@ -47,7 +47,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Partially implemented — candidates 4 + 2 shipped; candidate 8 resolved NO-TRANSFER; candidates 1, 3, 5, 6, 7 PENDING on their gates |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Packet** | `system-spec-kit/028-memory-search-intelligence/001-speckit-memory` (Memory MCP research phase, PRIMARY) |
@@ -100,6 +100,19 @@ The requested ID list carries `M0-`/`M-` prefix duplicates for the same three ra
 | 8 | **content-hash-reprocessing-trigger** (`CG-content-hash-reprocessing-trigger`) | NET-NEW — needs-verify (iter-19) | M/M | `cognee/ingest_data.py:109-112,155-175` → `handlers/save/dedup.ts` (skip-if-unchanged; no auto-reset of derived artifacts) | **VERIFY-FIRST — may collapse to NO-TRANSFER** vs the existing `memory_index_scan` reindex path |
 
 > The campaign's same-pass adversarial verify (iter-6 / iter-9, native Opus, refute-by-default) confirmed candidates 1-6 as additive/reversible GOs against live `mcp_server/` code; candidate 7 HOLDS as net-new but was REFINEd to "entity-embedding index → new boost channel" (a real shared-infra commitment); candidate 8 is the lone unverified item.
+
+### Implementation status (this session)
+
+| # | Candidate | Status | Evidence / reason |
+|---|-----------|--------|-------------------|
+| 4 | declarative-regex-entity-config | **DONE** (always-on) | 5 inline rules moved to a declarative `EntityExtractionRule[]` (`lib/extraction/entity-extractor.ts`) + shipped JSON asset `lib/extraction/entity-extraction-rules.json`, loaded via `SPECKIT_ENTITY_CONFIG_PATH` with fail-closed fallback to built-ins. Parity test proves config-driven extraction byte-identical to the built-ins. |
+| 2 | entity-cardinality-penalty | **DONE** (default-off) | `cardinalityPenalty(n)=1/(1+0.001·(n−1)²)` on the degree channel in `lib/search/graph-search-fn.ts`, gated by `SPECKIT_CARDINALITY_PENALTY` (`isOptInEnabled`, default-off → byte-identical). Wired at the non-excluded degree-channel seam (`computeDegreeScores`), not `rrf-fusion.ts`. Promotion default-on still needs the reindexed before/after benchmark. |
+| 8 | content-hash-reprocessing-trigger | **NO-TRANSFER** (closed) | Verified: `handlers/save/dedup.ts` only returns `unchanged`/`duplicate` when content (hash) is **unchanged**; on a `content_hash` change it returns null and the save proceeds to full re-index, which re-derives entities (`handlers/save/post-insert.ts:332` → `extractEntities` + `refreshAutoEntitiesForMemory`) and embeddings. Cognee's auto-reset-on-change behavior already exists; no code needed. |
+| 1 | bm25-sigmoid-calibration | **PENDING** | Bucket boundaries + sigmoid constants are benchmark-owned (not portable from Mem0; open question #4); whether a monotonic BM25-channel calibration even shifts rank-based fusion is itself the benchmark question. Not resolvable without the gate-zero reindexed corpus + eval harness. |
+| 3 | spacy-lemmatization-bm25 | **PENDING** | Blocked on the unresolved lemmatizer-dependency decision (heavy spaCy vs lightweight; T008 `[B]`, open question #1); not safe to unilaterally introduce a new runtime dependency into FTS tokenization. |
+| 5 | cascade-extraction | **PENDING** | Requires multi-pass LLM extraction; not deterministically unit-testable without a live LLM, and the in-repo extractor is pure-rule-based (no single-pass LLM stage to cascade here). |
+| 6 | llm-memory-linking | **PENDING** | Requires write-time LLM extraction emitting `linked_memory_ids`; LLM-dependent, not deterministically testable here. |
+| 7 | entity-store-boost | **PENDING** | Requires a NEW entity vector index (schema/shared-infra); spec forbids a scoring-only attempt. Schema migration is out of scope for this session. |
 
 ### Out of Scope (documented, NOT built this phase)
 - The Wave-2 **semantic edge layer** (`CG-edge-vector-index`, `CG-edge-aware-triplet-search`, `GR-fact-embedding-on-edge`, `GR-semantic-fact-dedup-merge`, `GR-semantic-invalidation-discovery`) — one coherent prove-first build; the entity-store boost (#7) shares its "no edge/entity vector substrate" gate but is scoped narrower here.

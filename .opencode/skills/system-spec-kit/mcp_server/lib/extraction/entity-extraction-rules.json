@@ -1,0 +1,10 @@
+{
+  "$comment": "Declarative entity-extraction rules for the rule-based extractor. Point SPECKIT_ENTITY_CONFIG_PATH at a copy of this file (or an edited copy) to add or change entity types without a code change. Each rule: type (proper_noun|technology|key_phrase|heading|quoted), pattern (RegExp source), flags (must include 'g'), captureGroup (1-based), optional trim. Rules apply in array order; results dedup by normalized text. A malformed or unreadable file falls back to the built-in rules. This reference reproduces the built-in five exactly.",
+  "rules": [
+    { "type": "proper_noun", "pattern": "\\b([A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+)\\b", "flags": "g", "captureGroup": 1 },
+    { "type": "technology", "pattern": "```(\\w+)", "flags": "g", "captureGroup": 1 },
+    { "type": "key_phrase", "pattern": "\\b(?:[Uu]sing|[Ww]ith|[Vv]ia|[Ii]mplements)\\s+([A-Za-z][\\w-]*(?:\\.[A-Za-z0-9_-]+)*(?:\\s+[A-Z][\\w-]*(?:\\.[A-Za-z0-9_-]+)*)*)", "flags": "g", "captureGroup": 1 },
+    { "type": "heading", "pattern": "^#{2,4}\\s+(.+)$", "flags": "gm", "captureGroup": 1, "trim": true },
+    { "type": "quoted", "pattern": "\"([^\"]{2,50})\"", "flags": "g", "captureGroup": 1 }
+  ]
+}
