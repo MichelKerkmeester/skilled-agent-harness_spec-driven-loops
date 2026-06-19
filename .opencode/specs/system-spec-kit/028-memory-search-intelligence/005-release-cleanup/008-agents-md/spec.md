@@ -10,9 +10,9 @@ _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/008-agents-md"
     last_updated_at: "2026-06-19T00:00:00Z"
-    last_updated_by: "codex-gpt-5"
-    recent_action: "Created PENDING cleanup phase scaffold"
-    next_safe_action: "Execute discovery before changing any target documentation"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Executed cleanup, fixed mk-spec-memory tool count 37 to 39"
+    next_safe_action: "Phase complete, proceed to phase 009"
     blockers: []
     key_files:
       - "spec.md"
@@ -23,11 +23,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-005-008-agents-md"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
-      - "This phase defines cleanup scope only."
-      - "All cleanup candidates remain PENDING."
+      - "Scope is root AGENTS.md plus runtime AGENTS and CLAUDE mirrors."
+      - "One stale claim fixed: mk-spec-memory tool count 37 to 39."
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
@@ -42,7 +42,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | PENDING |
+| **Status** | COMPLETE |
 | **Created** | 2026-06-19 |
 | **Parent Spec** | ../spec.md |
 | **Parent Packet** | `system-spec-kit/028-memory-search-intelligence/005-release-cleanup` |
@@ -86,9 +86,9 @@ Gates, rules and routing tables are current, section structure is clean and refe
 
 | Candidate Surface | Status | Note |
 |-------------------|--------|------|
-| root AGENTS.md | PENDING | Defined for cleanup execution only |
-| runtime AGENTS mirrors when present | PENDING | Defined for cleanup execution only |
-| CLAUDE.md runtime-routing mirrors | PENDING | Defined for cleanup execution only |
+| root AGENTS.md | DONE | Reviewed, fixed stale mk-spec-memory tool count 37 to 39 |
+| runtime AGENTS mirrors when present | DONE | `.codex/AGENTS.md` reviewed, voice doc with no stale paths |
+| CLAUDE.md runtime-routing mirrors | DONE | `.claude/CLAUDE.md` reviewed, routing claims current |
 
 ### Files to Change
 

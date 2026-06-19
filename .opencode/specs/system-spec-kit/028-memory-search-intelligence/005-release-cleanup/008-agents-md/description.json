@@ -1,19 +1,16 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/008-agents-md",
-  "description": "Defines the pending release-cleanup sweep for AGENTS.md and CLAUDE.md routing mirrors.",
+  "description": "Feature Specification: AGENTS And Runtime Routing Cleanup",
   "keywords": [
-    "defines",
-    "pending",
-    "release",
-    "cleanup",
-    "sweep",
+    "feature",
+    "specification",
     "agents",
-    "claude",
+    "runtime",
     "routing",
-    "mirrors"
+    "cleanup"
   ],
-  "lastUpdated": "2026-06-19T00:00:00Z",
+  "lastUpdated": "2026-06-19T11:32:15.988Z",
   "specId": "008",
   "folderSlug": "agents-md",
   "parentChain": [
@@ -24,4 +21,3 @@
   "memorySequence": 0,
   "memoryNameHistory": []
 }
-
