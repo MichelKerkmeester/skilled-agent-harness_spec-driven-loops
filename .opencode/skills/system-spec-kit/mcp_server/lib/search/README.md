@@ -151,7 +151,7 @@ lib/search/
 |---|---|
 | `hybrid-search.ts` | Coordinates multi-channel retrieval and returns ranked search results. |
 | `pipeline/orchestrator.ts` | Runs the stage-based search flow. |
-| `pipeline/stage1-candidate-gen.ts` | Gathers candidates without final scoring changes. |
+| `pipeline/stage1-candidate-gen.ts` | Gathers candidates without final scoring changes. When the embedder is unavailable and query-embedding generation fails, this stage degrades to lexical (BM25/FTS) candidate generation instead of throwing, and reports `embedderAvailable:false`, `vectorSearchSkipped:true`, and a `degradationReason` on the Stage 1 metadata. The embedder-success path is unchanged. |
 | `pipeline/stage2-fusion.ts` | Applies fusion and scoring signals. |
 | `pipeline/stage2b-enrichment.ts` | Adds enrichment metadata after core fusion. |
 | `pipeline/stage3-rerank.ts` | Runs reranking and aggregation when gates allow it. |

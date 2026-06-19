@@ -142,7 +142,7 @@ Release is `READY` only when:
 1. No feature verdict is `FAIL`.
 2. All critical scenarios are `PASS`.
 3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-scenario files (`COVERED_SCENARIOS == TOTAL_SCENARIOS`).
-4. Feature-catalog cross-reference coverage has been reviewed separately; scenario coverage does not imply a 1:1 feature-file count because the playbook currently contains 407 executable scenario files (category README/package-map files are excluded) while the feature catalog contains 341 feature files.
+4. Feature-catalog cross-reference coverage has been reviewed separately; scenario coverage does not imply a 1:1 feature-file count because the playbook currently contains 410 executable scenario files (category README/package-map files are excluded) while the feature catalog contains 344 feature files.
 5. No unresolved blocking triage item remains.
 6. Orphan scenario count does not exceed the recorded reconciliation baseline (82 as of 2026-06-16 — legacy index debt, recomputed after excluding 3 category README files; the baseline may only ratchet DOWN), and zero index links are broken.
 
@@ -172,8 +172,8 @@ linked = {
 }
 
 failures = []
-if len(scenario_files) != 407:
-    failures.append(f'expected 407 scenario files, found {len(scenario_files)}')
+if len(scenario_files) != 410:
+    failures.append(f'expected 410 scenario files, found {len(scenario_files)}')
 broken = sorted(linked - scenario_files)
 if broken:
     failures.append(f'{len(broken)} index link(s) resolve to no file: {broken[:5]}')
@@ -190,7 +190,7 @@ PY
 ```
 
 Final verdict report must include `COVERED_SCENARIOS/TOTAL_SCENARIOS` and should call out any remaining feature-catalog entries that are automated-only, indirect, or intentionally operator-only.
-As of 2026-06-16, the deterministic executable-scenario file count is 407 (category README/package-map files excluded). Scenario 419 is the runtime lifecycle guardrail entry for orphan MCP cleanup. Scenarios 421-426 are the daemon-reliability hardening entries. Scenarios 427-438 and 449 are the MCP-to-CLI program entries: daemon-backed CLI surfaces (427-431), the tri-daemon program gate (432), runtime warm-only hook fallbacks (433), CLI stress set (434-438), and compact/completion automation (449). Scenarios 439-448 are the release-hardening entries for default-off flags, retrieval observability, and governance guards. Broader legacy index reconciliation remains governed by the release-readiness rule above.
+As of 2026-06-19, the deterministic executable-scenario file count is 410 (category README/package-map files excluded). Scenarios 450-452 are the packet-030 Wave-0 entries: graceful embedder-degrade to lexical (450), the constitutional self-edit and compare-and-swap guard (451), and background enrichment pending/failed gauges (452). Scenario 419 is the runtime lifecycle guardrail entry for orphan MCP cleanup. Scenarios 421-426 are the daemon-reliability hardening entries. Scenarios 427-438 and 449 are the MCP-to-CLI program entries: daemon-backed CLI surfaces (427-431), the tri-daemon program gate (432), runtime warm-only hook fallbacks (433), CLI stress set (434-438), and compact/completion automation (449). Scenarios 439-448 are the release-hardening entries for default-off flags, retrieval observability, and governance guards. Broader legacy index reconciliation remains governed by the release-readiness rule above.
 
 ### Destructive Scenario Rules
 
@@ -3871,3 +3871,6 @@ This split playbook keeps automated coverage references in three places:
 | 447 | Governance | Source kind provenance guard | [447](17--governance/source-kind-provenance-guard.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
 | 448 | Governance | Stale-exclusion audit and tool-ownership lint | [448](17--governance/stale-exclusion-audit-and-tool-ownership-lint.md) | *(release-hardening playbook scenario; feature-catalog sibling lane owns catalog entry)* |
 | 449 | Tooling And Scripts | CLI compact list-tools and completion generation | [449](16--tooling-and-scripts/cli-compact-and-completion.md) | [16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md](../feature_catalog/16--tooling-and-scripts/spec-memory-cli-daemon-backed-surface.md) |
+| 450 | Bug Fixes And Data Integrity | Graceful embedder-degrade to lexical | [450](08--bug-fixes-and-data-integrity/graceful-embedder-degrade-to-lexical.md) | [08--bug-fixes-and-data-integrity/graceful-embedder-degrade-to-lexical.md](../feature_catalog/08--bug-fixes-and-data-integrity/graceful-embedder-degrade-to-lexical.md) |
+| 451 | Governance | Constitutional self-edit and compare-and-swap guard | [451](17--governance/constitutional-self-edit-and-cas-guard.md) | [17--governance/constitutional-self-edit-and-cas-guard.md](../feature_catalog/17--governance/constitutional-self-edit-and-cas-guard.md) |
+| 452 | Memory Quality And Indexing | Background enrichment pending and failed gauges | [452](13--memory-quality-and-indexing/background-enrichment-pending-and-failed-gauges.md) | [13--memory-quality-and-indexing/background-enrichment-pending-and-failed-gauges.md](../feature_catalog/13--memory-quality-and-indexing/background-enrichment-pending-and-failed-gauges.md) |

@@ -1100,6 +1100,22 @@ See [`07--evaluation/reporting-dashboard-evalreportingdashboard.md`](07--evaluat
 
 ## 9. BUG FIXES AND DATA INTEGRITY
 
+### Graceful embedder-degrade to lexical
+
+#### Description
+
+When the embedding model is unavailable, search used to fail internally and return nothing. Now it falls back to plain keyword search and tells you the embedder was skipped, so you still get the lexical matches instead of an empty result. Think of it like a librarian whose computer index is down still walking the shelves by hand rather than sending you away.
+
+#### How It Works
+
+When Stage 1 candidate generation gets a null or empty embedding back from the provider, it no longer throws and collapses to empty candidates. It detects the unavailable embedder, runs lexical (BM25/FTS) candidate generation with `useVector=false`, and the search handler reports `embedder_available:false` and `vector_search_skipped:true` on the response so callers can see the degraded mode. The embedder-success path is byte-identical. As a documented benign scope addition in the same seam, pre-existing input errors (more than 5 concepts, an empty query or concept, an unknown search type) now surface as a typed `Stage1InputError` that propagates to the caller, plus a defensive handler-level concept guard, instead of being swallowed to an empty result. This matches the orchestrator's existing contract that a Stage 1 failure is mandatory.
+
+#### Source Files
+
+See [`08--bug-fixes-and-data-integrity/graceful-embedder-degrade-to-lexical.md`](08--bug-fixes-and-data-integrity/graceful-embedder-degrade-to-lexical.md) for full implementation and test file listings.
+
+---
+
 ### Graph channel ID fix
 
 #### Description
@@ -3101,6 +3117,22 @@ See [`13--memory-quality-and-indexing/post-insert-enrichment-marker.md`](13--mem
 
 ---
 
+### Background enrichment pending and failed gauges
+
+#### Description
+
+Health output now shows how many memories are still waiting on background enrichment and how many failed it, not just how many are actively running or queued. Without these two numbers a backed-up or stuck enrichment scheduler was a silent outage, since the rows existed but nothing told you they were under-enriched. It is like a status board that finally lists both the orders still in the kitchen and the ones that burned, instead of only the ones being cooked right now.
+
+#### How It Works
+
+`getBackgroundEnrichmentStats` gained `pending` and `failed` fields alongside its existing `active`, `queued`, and counter fields. They are read-side gauges with no new state: the health handler aggregates `memory_index` rows by `post_insert_enrichment_status` for every status other than `complete`, then passes that distribution in, so `pending` and `failed` reflect the live backlog. The values surface under `memory_health` as `backgroundEnrichment.pending` and `backgroundEnrichment.failed`, with the full per-status distribution also exposed as `pendingByStatus`. When the distribution is absent both gauges return zero.
+
+#### Source Files
+
+See [`13--memory-quality-and-indexing/background-enrichment-pending-and-failed-gauges.md`](13--memory-quality-and-indexing/background-enrichment-pending-and-failed-gauges.md) for full implementation and test file listings.
+
+---
+
 ## 15. PIPELINE ARCHITECTURE
 
 ### 4-stage pipeline refactor
@@ -4470,6 +4502,22 @@ The rule is stored as a constitutional memory and indexed through the existing a
 #### Source Files
 
 See [`17--governance/automated-writers-never-overwrite-manual-constitutional-rule.md`](17--governance/automated-writers-never-overwrite-manual-constitutional-rule.md) for full implementation and test file listings.
+
+---
+
+### Constitutional self-edit and compare-and-swap guard
+
+#### Description
+
+A constitutional memory cannot quietly strip its own protection or be overwritten from a stale read. If an update would downgrade a constitutional row out of constitutional tier, the system refuses it. If a caller passes the hash it expects the row to have and that hash no longer matches, the update is rejected so two callers cannot clobber each other. Non-constitutional updates are unaffected. Think of it like a safety latch on a load-bearing rule: you cannot remove its own protection in the same edit, and you cannot save over a copy that has already changed under you.
+
+#### How It Works
+
+`validateConstitutionalEditPreconditions` runs on the `memory_update` path when the existing row is constitutional (by tier or by constitutional path). An unconditional assertion rejects any edit that sets `importanceTier` to a non-constitutional value on that row and returns `E_CONSTITUTIONAL_SELF_EDIT`. The optional `expectedHash` tool parameter adds a compare-and-swap precondition: when supplied, it must match the row's current `content_hash` or the update is rejected with `E_STALE_CONSTITUTIONAL_UPDATE`. The non-constitutional update path stays byte-identical and `expectedHash` is an additive optional schema field, so existing callers are unchanged. Both refusals carry a recovery hint pointing at a reviewed source row or an explicit repair workflow.
+
+#### Source Files
+
+See [`17--governance/constitutional-self-edit-and-cas-guard.md`](17--governance/constitutional-self-edit-and-cas-guard.md) for full implementation and test file listings.
 
 ---
 

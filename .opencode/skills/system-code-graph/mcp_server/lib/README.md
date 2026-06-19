@@ -173,7 +173,7 @@ lib/
 | `cross-file-edge-resolver.ts` | Reconciles cross-file call edges after scan persistence when a safe concrete target exists. |
 | `canonical-db-dir.ts` | Resolves canonical DB directories and enforces workspace-contained overrides. |
 | `close-db-assertion.ts` | Asserts stale DB handles are closed after lifecycle shutdown. |
-| `code-graph-context.ts` | Builds token-bounded neighborhoods for `code_graph_context`. |
+| `code-graph-context.ts` | Builds token-bounded neighborhoods for `code_graph_context`. Edge expansion applies an additive rank-time trust signal (`confidence` clamped to `[0,1]` times an `evidenceClass` factor) on top of the RRF baseline rank, so higher-trust edges sort earlier while neutral-trust order stays byte-identical to the prior rowid baseline. |
 | `seed-resolver.ts` | Resolves manual, graph and Code Graph seeds to indexed graph nodes. |
 | `symbol-bm25-resolver.ts` | Provides fallback BM25 symbol candidate scoring over indexed symbol fields. |
 | `compact-merger.ts` | Merges Spec Kit memory, code graph and Code Graph context payloads. |
