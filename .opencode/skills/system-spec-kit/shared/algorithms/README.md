@@ -13,11 +13,11 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`algorithms/` owns ranking logic used after retrieval candidates are available. The folder combines ranked lists, applies intent-aware weights and can rerank embedding-backed candidates for diversity.
+`algorithms/` owns ranking logic used after retrieval candidates are available. The folder combines ranked lists, applies intent-aware weights, keeps deterministic output ordering and can rerank embedding-backed candidates for diversity.
 
 Current state:
 
-- `rrf-fusion.ts` provides Reciprocal Rank Fusion helpers for two-list, multi-list and cross-query fusion.
+- `rrf-fusion.ts` provides Reciprocal Rank Fusion helpers for two-list, multi-list and cross-query fusion, with deterministic score/content-hash/id tiebreaks across all RRF output sorts.
 - `adaptive-fusion.ts` selects weighted fusion behavior from intent, document type and feature flags.
 - `mmr-reranker.ts` applies Maximal Marginal Relevance to reduce duplicate candidate content.
 - `index.ts` is the public barrel for algorithm consumers.
@@ -60,7 +60,7 @@ rrf-fusion.ts -> adaptive-fusion.ts
 | File | Responsibility |
 |---|---|
 | `index.ts` | Re-exports public algorithm modules for package consumers. |
-| `rrf-fusion.ts` | Scores ranked retrieval lists with RRF, overlap bonuses and source tracking. |
+| `rrf-fusion.ts` | Scores ranked retrieval lists with RRF, overlap bonuses, source tracking, deterministic content-hash tiebreaks and the `bonusOverChannels` option (`active` by default, `configured` opt-in). |
 | `adaptive-fusion.ts` | Builds weighted fusion from query intent and runtime flags, with standard fallback. |
 | `mmr-reranker.ts` | Computes cosine similarity and selects diverse results from embedding candidates. |
 
@@ -71,7 +71,7 @@ rrf-fusion.ts -> adaptive-fusion.ts
 | Export | File | Contract |
 |---|---|---|
 | `fuseResults(vectorResults, keywordResults, k)` | `rrf-fusion.ts` | Returns fused results with `rrfScore`, `sources`, `sourceScores` and convergence data. |
-| `fuseResultsMulti(rankedLists, options)` | `rrf-fusion.ts` | Fuses any number of ranked lists with optional source weights. |
+| `fuseResultsMulti(rankedLists, options)` | `rrf-fusion.ts` | Fuses any number of ranked lists with optional source weights; `bonusOverChannels: 'active'` preserves byte-identical calibrated-overlap behavior, while `'configured'` counts every supplied channel. |
 | `fuseResultsCrossVariant(variants, options)` | `rrf-fusion.ts` | Combines results from expanded query variants. |
 | `normalizeRrfScores(results)` | `rrf-fusion.ts` | Normalizes RRF scores to the `0` to `1` range. |
 | `hybridAdaptiveFuse(lists, options)` | `adaptive-fusion.ts` | Uses adaptive fusion when enabled, otherwise standard fusion. |
@@ -91,6 +91,7 @@ Use `index.ts` for normal imports. Import a module directly only for tests or wh
 |---|---|
 | Inputs | Accept candidate arrays, ranked lists, scores, embeddings and option objects only. |
 | Outputs | Return scored result arrays and metadata. Do not perform response formatting here. |
+| Determinism | RRF outputs sort by descending score, then `content_hash` when present, then canonical memory id. |
 | Feature flags | Read algorithm flags in the algorithm that owns the behavior. |
 | Storage | Do not open SQLite, file handles or network clients from this folder. |
 | Embeddings | Consume vectors supplied by callers. Do not generate embeddings here. |

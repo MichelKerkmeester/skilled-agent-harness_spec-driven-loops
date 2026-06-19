@@ -89,6 +89,7 @@ lib/
 ├── graph/           # Causal and community graph signals
 ├── session/         # Session deduplication and working state
 ├── utils/           # Shared path, logger and formatting helpers
+├── content-id.ts    # Shared SHA-256 content and canonical JSON hash helpers
 └── errors.ts        # Legacy error surface
 ```
 
@@ -103,6 +104,7 @@ lib/
 | `search/query-router.ts` | Routes query complexity to retrieval strategy. |
 | `cognitive/attention-decay.ts` | Calculates recall decay and memory strength. |
 | `storage/causal-edges.ts` | Persists causal relationships between records. |
+| `content-id.ts` | Centralizes SHA-256 identity helpers: `hashContentBody()` for raw content bodies and `hashCanonicalJson()` for caller-normalized canonical-field hashes. |
 | `session/session-manager.ts` | Tracks session deduplication and scoped state. |
 | `validation/preflight.ts` | Guards inputs before storage or retrieval work. |
 | `response/envelope.ts` | Shapes consistent MCP response payloads. |

@@ -24,6 +24,7 @@ trigger_phrases:
 | `daemon-recycle-transparency-stress.vitest.ts` | A 200-request in-flight flood through the front-proxy pending-request tracker across a simulated backend RSS-recycle: idempotent reads replay transparently, unsafe mutations are refused with the retryable `-32001` recycle signal (still LIVE), the pending set drains with no leak, and `-32002` stays the terminal protocol-mismatch code. |
 | `daemon-reelection-release-integration.vitest.ts` | Drives the real exported release-vs-kill decision functions and OS reparent semantics with a detached sleeper stand-in: flag-on releases the daemon so it survives owner disposal, flag-off kills it. No lease, DB, or socket is touched. |
 | `daemon-reelection-adoption-live.vitest.ts` | Runs two real launchers against an isolated fake-root: a live secondary keeps MCP transport through owner disposal (flag on), the daemon dies with its owner (flag off), and a fresh session started after disposal reaps the released daemon before respawn so a single writer holds the database. |
+| `embedder-degrade-recall-flood-stress.vitest.ts` | C9 graceful degradation under a 96-wide concurrent recall flood: query embeddings return `null`, every hybrid recall degrades to bounded lexical results with `embedder_unavailable` metadata, vector/graph work is skipped, and the flood completes without throws, leaks or wedges. |
 
 ## 3. RUN RECIPE
 

@@ -70,6 +70,7 @@ lib/storage/
 +-- consolidation.ts           # Maintenance for stale and contradictory links
 +-- document-helpers.ts        # Document classification and weighting helpers
 +-- history.ts                 # Append-only history events
++-- idempotency-receipts.ts    # Replay receipts and canonical payload hashes for memory_save/memory_update
 +-- incremental-index.ts       # Content-hash, embedding-health, and move-reconcile reindex checks
 +-- learned-triggers-schema.ts # Learned trigger schema checks
 +-- lineage-state.ts           # Append-first lineage state and projections
@@ -109,6 +110,7 @@ lib/storage/
 +-- consolidation.ts
 +-- document-helpers.ts
 +-- history.ts
++-- idempotency-receipts.ts
 +-- incremental-index.ts
 +-- learned-triggers-schema.ts
 +-- lineage-state.ts
@@ -132,6 +134,7 @@ lib/storage/
 | `consolidation.ts` | Runs maintenance for contradiction, Hebbian and stale-edge consolidation paths. |
 | `document-helpers.ts` | Classifies spec documents and calculates document-aware weighting for save/update flows. |
 | `history.ts` | Records higher-level history events and resolves lineage anchors for reporting. |
+| `idempotency-receipts.ts` | Derives, looks up, stores, evicts and prunes memory idempotency receipts; receipt-key hashing now delegates to shared `hashCanonicalJson()` while preserving byte-identical hash output. |
 | `incremental-index.ts` | Compares stored file metadata, content hashes and embedding status to decide whether reindexing is needed. Reconciles moved spec docs by remapping the existing row to the new path so the embedding is preserved instead of being deleted and rebuilt. |
 | `learned-triggers-schema.ts` | Maintains learned-trigger column and FTS isolation schema checks. |
 | `lineage-state.ts` | Records append-first lineage transitions, active projections, integrity checks and backfill state. |
@@ -195,6 +198,7 @@ Main flow:
 | `applyPostInsertMetadata()` | Function | Writes allowed metadata fields to `memory_index` after a row is inserted. |
 | `recordLineageTransition()` | Function | Appends lineage state transitions and updates active projections. |
 | `recordHistory()` | Function | Writes higher-level memory history events. |
+| `deriveIdempotencyReceiptKey()` | Function | Produces stable receipt, request-fingerprint and payload hashes for replay/conflict checks using shared canonical JSON hashing. |
 | `appendMutationLedger()` | Function | Records mutation provenance in the audit ledger. |
 | `shouldReindexFile()` | Function | Uses stored path metadata and embedding state to decide whether indexing work is needed. |
 | `createCheckpoint()` | Function | Persists a named checkpoint for memory state recovery. |

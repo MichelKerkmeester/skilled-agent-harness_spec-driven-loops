@@ -26,7 +26,7 @@ Use this file to identify the folder boundary, the likely verification path, and
 
 | Metric | Value |
 |---|---:|
-| Code files | 2 |
+| Code files | 4 |
 | README scope | Direct files in this folder |
 | Audit context | Internal validation notes |
 
@@ -66,8 +66,10 @@ Load this folder through the owning skill workflow or MCP server entrypoint.
 
 | Path | Purpose |
 |---|---|
+| `frontmatter-promoter.ts` | Promotes `graph-metadata.json` and `description.json` frontmatter relationships into generated causal edges, preserves manual edges, tombstones stale open generated edges, and skips generated edges that are already temporally closed (`invalid_at IS NOT NULL`) during cleanup. |
 | `relation-coverage.ts` | Pure reporter for `memory_causal_stats` relation-coverage: per-relation share/status and the honest backfill-job hint. |
 | `relation-backfill.ts` | Bounded, dryRun-default relation-inference backfill — infers typed `created_by='auto'` edges from existing deterministic signals (spec-document chains, lineage predecessor→successor) plus opt-in similarity (`supports`, from cached `related_memories`) and supersession (`contradicts`) collectors, both default-off, and invalidates the entity-density cache after commit. |
+| `sweep.ts` | Shared causal-edge sweep helper that tombstones or deletes selected edges with restore metadata for cleanup and recovery paths. |
 
 ---
 

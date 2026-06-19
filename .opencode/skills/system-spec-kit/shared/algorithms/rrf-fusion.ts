@@ -2,12 +2,12 @@
 // MODULE: RRF Fusion
 // ---------------------------------------------------------------
 // Reciprocal Rank Fusion for combining search results
-// P3-11: TypeScript source (previously orphaned .js only)
+// TypeScript source (previously orphaned .js only)
 
 /* --- 1. CONSTANTS --- */
 
-// Feature catalog: Hybrid search pipeline
-// Feature catalog: RRF K-value sensitivity analysis
+// Hybrid search pipeline
+// RRF K-value sensitivity analysis
 
 const SOURCE_TYPES = {
   VECTOR: 'vector',
@@ -42,14 +42,14 @@ const CONVERGENCE_BONUS = 0.10;
 const GRAPH_WEIGHT_BOOST = 1.5;
 
 /**
- * Default beta scaling factor for calibrated overlap bonus (REQ-D1-001).
+ * Default beta scaling factor for calibrated overlap bonus.
  * Controls the magnitude of the query-aware overlap bonus relative to
  * the mean normalized top score. Lower values produce smaller bonuses.
  */
 const CALIBRATED_OVERLAP_BETA = 0.15;
 
 /**
- * Maximum overlap bonus when calibrated overlap is enabled (REQ-D1-001).
+ * Maximum overlap bonus when calibrated overlap is enabled.
  * Clamped to prevent a single overlap bonus from dominating RRF scores.
  */
 const CALIBRATED_OVERLAP_MAX = 0.06;
@@ -101,7 +101,7 @@ interface FuseMultiOptions {
    */
   bonusOverChannels?: BonusOverChannels;
   /**
-   * Beta scaling factor for calibrated overlap bonus (REQ-D1-001).
+   * Beta scaling factor for calibrated overlap bonus.
    * Only used when SPECKIT_CALIBRATED_OVERLAP_BONUS is enabled.
    * Default: 0.15
    */
@@ -211,7 +211,7 @@ function resolveRrfK(rawK: number | undefined): number {
 /* --- 3. FEATURE FLAG HELPERS --- */
 
 /**
- * Check if calibrated overlap bonus is enabled (REQ-D1-001).
+ * Check if calibrated overlap bonus is enabled.
  * Default: ON (graduated). Set SPECKIT_CALIBRATED_OVERLAP_BONUS=false to disable.
  * When OFF, the flat CONVERGENCE_BONUS is used.
  * When ON, a query-aware scaled overlap bonus is computed.
@@ -328,7 +328,7 @@ function fuseResultsMulti(
     ? rawGraphWeightBoost
     : GRAPH_WEIGHT_BOOST;
 
-  // REQ-D1-001: Resolve beta for calibrated overlap bonus
+  // Resolve beta for calibrated overlap bonus
   const rawBeta = options.calibratedOverlapBeta;
   const beta = typeof rawBeta === 'number' && Number.isFinite(rawBeta) && rawBeta >= 0
     ? rawBeta
@@ -403,7 +403,7 @@ function fuseResultsMulti(
     const uniqueSourceCount = uniqueSources.size;
     if (uniqueSourceCount >= 2) {
       if (calibratedMode) {
-        // REQ-D1-001: Calibrated overlap bonus — query-aware, bounded to [0, 0.06]
+        // Calibrated overlap bonus — query-aware, bounded to [0, 0.06]
         // channelsHit = number of unique channels this candidate appeared in
         // overlapRatio = fraction of possible additional channels that hit (0 when 1 channel, 1 when all channels)
         const channelsHit = uniqueSourceCount;

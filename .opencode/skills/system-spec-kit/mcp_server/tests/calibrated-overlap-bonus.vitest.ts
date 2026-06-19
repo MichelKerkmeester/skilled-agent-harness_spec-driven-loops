@@ -1,4 +1,4 @@
-// TEST: Calibrated Overlap Bonus (REQ-D1-001)
+// TEST: Calibrated Overlap Bonus
 // Feature flag: SPECKIT_CALIBRATED_OVERLAP_BONUS
 // Tests: 0-channel, 1-channel, partial scaling, max scaling, clamp, flag OFF = flat +0.10
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
@@ -52,7 +52,7 @@ afterEach(() => {
    CONSTANTS
    ────────────────────────────────────────────────────────────── */
 
-describe('REQ-D1-001 Constants', () => {
+describe('Constants', () => {
   it('CALIBRATED_OVERLAP_BETA default is 0.15', () => {
     expect(CALIBRATED_OVERLAP_BETA).toBe(0.15);
   });
@@ -66,7 +66,7 @@ describe('REQ-D1-001 Constants', () => {
    FEATURE FLAG
    ────────────────────────────────────────────────────────────── */
 
-describe('REQ-D1-001 Feature Flag (SPECKIT_CALIBRATED_OVERLAP_BONUS)', () => {
+describe('Feature Flag (SPECKIT_CALIBRATED_OVERLAP_BONUS)', () => {
   it('D1-FF-1: flag is ON by default (graduated)', () => {
     delete process.env.SPECKIT_CALIBRATED_OVERLAP_BONUS;
     expect(isCalibratedOverlapBonusEnabled()).toBe(true);
@@ -88,7 +88,7 @@ describe('REQ-D1-001 Feature Flag (SPECKIT_CALIBRATED_OVERLAP_BONUS)', () => {
    FLAG OFF: PRESERVE FLAT CONVERGENCE BONUS
    ────────────────────────────────────────────────────────────── */
 
-describe('REQ-D1-001 Flag OFF: flat +0.10 convergence bonus preserved', () => {
+describe('Flag OFF: flat +0.10 convergence bonus preserved', () => {
   beforeEach(() => {
     setEnv({ SPECKIT_CALIBRATED_OVERLAP_BONUS: 'false' });
   });
@@ -132,7 +132,7 @@ describe('REQ-D1-001 Flag OFF: flat +0.10 convergence bonus preserved', () => {
    FLAG ON: CALIBRATED OVERLAP BONUS BEHAVIOR
    ────────────────────────────────────────────────────────────── */
 
-describe('REQ-D1-001 Flag ON: calibrated overlap bonus', () => {
+describe('Flag ON: calibrated overlap bonus', () => {
   beforeEach(() => {
     setEnv({ SPECKIT_CALIBRATED_OVERLAP_BONUS: 'true' });
   });
@@ -325,7 +325,7 @@ describe('REQ-D1-001 Flag ON: calibrated overlap bonus', () => {
    BACKWARDS COMPATIBILITY
    ────────────────────────────────────────────────────────────── */
 
-describe('REQ-D1-001 Backwards compatibility', () => {
+describe('Backwards compatibility', () => {
   it('D1-BC-1: flag unset (undefined) behaves identically to flag ON (graduated)', () => {
     delete process.env.SPECKIT_CALIBRATED_OVERLAP_BONUS;
     setEnv({ SPECKIT_SCORE_NORMALIZATION: 'false' });

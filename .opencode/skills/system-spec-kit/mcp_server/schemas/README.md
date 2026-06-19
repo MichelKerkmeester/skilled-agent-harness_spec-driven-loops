@@ -68,7 +68,7 @@ No subfolders exist in this directory.
 
 | File | Responsibility |
 |---|---|
-| `tool-input-schemas.ts` | Defines tool input schemas, shared validators, `validateToolArgs()`, `getToolSchema()`, `formatZodError()`, `getSchema()` and `ToolSchemaValidationError`. |
+| `tool-input-schemas.ts` | Defines tool input schemas, shared validators, `validateToolArgs()`, `getToolSchema()`, `formatZodError()`, `getSchema()` and `ToolSchemaValidationError`; `memory_update` accepts optional `expectedHash` for constitutional self-edit compare-and-swap guards. |
 
 ---
 
@@ -80,6 +80,7 @@ No subfolders exist in this directory.
 | Exports | Export schema helpers and typed validation errors only. |
 | Ownership | Keep input validation here. Keep tool execution in `mcp_server/tools/`. |
 | Paths | Use `pathString()` or `optionalPathString()` for path-like parameters. |
+| Constitutional updates | `memory_update.expectedHash` is optional schema input used by the handler to reject stale protected-row updates before mutation. |
 
 Main flow:
 
@@ -120,6 +121,7 @@ Main flow:
 | `formatZodError()` | Function | Converts Zod issues into a typed tool error. |
 | `getSchema()` | Function | Applies strict or passthrough object behavior. |
 | `ToolSchemaValidationError` | Class | Carries validation failure details to callers. |
+| `memory_update.expectedHash` | Parameter | Optional compare-and-swap hash accepted by the schema for guarded constitutional updates. |
 
 ---
 
