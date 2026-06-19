@@ -4,9 +4,9 @@ Actionable record of the two open 028 completion items. Everything else (37 phas
 built-or-gated, schema cluster, NO-GO, narrative docs, full changelog polish, 8/9 release-cleanup) is
 committed and pushed.
 
-## Criterion 4 — eval-harness benchmark pass: RUN (resolved)
+## Criterion 4 - eval-harness benchmark pass: RUN (resolved)
 
-### Driver-fidelity correction — supersedes the per-flag measurement below
+### Driver-fidelity correction - supersedes the per-flag measurement below
 
 The per-flag benchmark driver (`mcp_server/scripts/evals/run-retrieval-flag-eval.mjs`) had two
 measurement defects that made its per-flag deltas non-representative of production:
@@ -17,7 +17,7 @@ measurement defects that made its per-flag deltas non-representative of producti
   trigger lane (`exactTriggerSearch`) runs unconditionally and ignores the `triggerPhrases` lever,
   so it could never be ablated through the driver's public options.
 
-Both are fixed driver-side only — production routing code is unchanged and default-off byte-identity
+Both are fixed driver-side only - production routing code is unchanged and default-off byte-identity
 is preserved. The criterion-4 per-flag benchmark was re-run on the corrected driver against the same
 aligned golden set (60 queries, 137 labels, 0 missing/chunk; vector lane healthy, 0 query-embedding
 failures, vector-ablation delta +0.256 confirming the live embedder). **This re-run supersedes the
@@ -30,11 +30,11 @@ Corrected per-flag Recall@20 on the default routing path (K=20):
 
 | Flag | Default | Recall off | Recall on | Delta | Verdict |
 |------|---------|-----------|-----------|-------|---------|
-| summary_fusion_lane | off | 0.4861 | 0.4500 | -0.0361 | keep OFF — enabling hurts recall |
-| cardinality_penalty | off | 0.4861 | 0.4861 |  0.0000 | keep OFF — no Recall@20 movement |
+| summary_fusion_lane | off | 0.4861 | 0.4500 | -0.0361 | keep OFF - enabling hurts recall |
+| cardinality_penalty | off | 0.4861 | 0.4861 |  0.0000 | keep OFF - no Recall@20 movement |
 
 The per-flag off-baseline (0.4861) is now higher than the forced all-channels baseline (0.4583)
-precisely because the default routed path is what production serves — the prior all-channels number
+precisely because the default routed path is what production serves - the prior all-channels number
 was the non-representative artifact. All other flags are `runSearch: false` (not exercised by this
 Recall@20 hybrid path; they live in memory_context / temporal-edge / write-time / maintenance /
 off-turn / confidence-display paths) and stay conservatively default-off pending path-specific evals.
@@ -96,7 +96,7 @@ derived-id / retention / semantic-edge / procedural / sleeptime / calibration fl
 SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING, SPECKIT_CODE_GRAPH_EDGE_BITEMPORAL_READS and
 SPECKIT_CODE_GRAPH_EDGE_GOVERNANCE_VOCAB flags.
 
-## Criterion 6 — release-cleanup: 8/9, two items blocked on a concurrent session
+## Criterion 6 - release-cleanup: 8/9, two items blocked on a concurrent session
 
 Done: 001, 002, 003 (skills subset), 004, 005, 007, 008, 009. Open:
 - 006-commands: a concurrent session has the command docs (and deep-research, rrf-fusion.ts, .gitignore)
