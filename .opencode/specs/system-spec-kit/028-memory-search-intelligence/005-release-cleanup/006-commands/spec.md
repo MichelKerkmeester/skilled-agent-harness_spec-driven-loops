@@ -10,9 +10,9 @@ _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/006-commands"
     last_updated_at: "2026-06-19T00:00:00Z"
-    last_updated_by: "codex-gpt-5"
-    recent_action: "Created PENDING cleanup phase scaffold"
-    next_safe_action: "Execute discovery before changing any target documentation"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Reviewed 19 command docs, fixed fable-mode route drift in doctor/speckit.md"
+    next_safe_action: "Concurrent session owns deep/ and agent_router.md doc edits"
     blockers: []
     key_files:
       - "spec.md"
@@ -23,11 +23,12 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-005-006-commands"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
-      - "This phase defines cleanup scope only."
-      - "All cleanup candidates remain PENDING."
+      - "Only command .md docs reviewed, asset YAML and TXT files stay out of scope."
+      - "Deep and agent_router docs deferred to the concurrent session."
+      - "No .codex command mirror exists, .claude commands is a symlink to .opencode."
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
@@ -42,7 +43,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | PENDING |
+| **Status** | COMPLETE |
 | **Created** | 2026-06-19 |
 | **Parent Spec** | ../spec.md |
 | **Parent Packet** | `system-spec-kit/028-memory-search-intelligence/005-release-cleanup` |
@@ -86,9 +87,10 @@ Command contracts, routes and flags are current and runtime mirrors stay in sync
 
 | Candidate Surface | Status | Note |
 |-------------------|--------|------|
-| .opencode command docs | PENDING | Defined for cleanup execution only |
-| .claude command mirror docs | PENDING | Defined for cleanup execution only |
-| .codex command mirror docs | PENDING | Defined for cleanup execution only |
+| .opencode command docs | DONE | 19 docs reviewed, one route-drift fix in doctor/speckit.md, all paths resolve |
+| .claude command mirror docs | DONE | .claude/commands is a symlink to .opencode/commands, covered by the same edit |
+| .codex command mirror docs | N/A | No .codex/commands directory exists in this checkout |
+| .opencode/commands/deep and agent_router.md | DEFERRED | Owned by a concurrent session, left untouched |
 
 ### Files to Change
 

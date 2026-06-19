@@ -36,6 +36,7 @@ These existing YAML assets are referenced only. The router must not modify them.
 | `skill-advisor` | `.opencode/commands/doctor/assets/doctor_skill-advisor.yaml` |
 | `skill-budget` | `.opencode/commands/doctor/assets/doctor_skill-budget.yaml` |
 | `parent-skill` | `.opencode/commands/doctor/assets/doctor_parent-skill.yaml` |
+| `fable-mode` | `.opencode/commands/doctor/assets/doctor_fable-mode.yaml` |
 
 No workflow-asset gap exists for this command.
 

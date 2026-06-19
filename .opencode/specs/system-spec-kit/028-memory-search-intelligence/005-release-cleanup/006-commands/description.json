@@ -1,19 +1,15 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/006-commands",
-  "description": "Defines the pending release-cleanup sweep for command documentation and runtime mirrors.",
+  "description": "Feature Specification: Command Documentation Cleanup",
   "keywords": [
-    "defines",
-    "pending",
-    "release",
-    "cleanup",
-    "sweep",
+    "feature",
+    "specification",
     "command",
     "documentation",
-    "runtime",
-    "mirrors"
+    "cleanup"
   ],
-  "lastUpdated": "2026-06-19T00:00:00Z",
+  "lastUpdated": "2026-06-19T11:32:15.978Z",
   "specId": "006",
   "folderSlug": "commands",
   "parentChain": [
@@ -24,4 +20,3 @@
   "memorySequence": 0,
   "memoryNameHistory": []
 }
-

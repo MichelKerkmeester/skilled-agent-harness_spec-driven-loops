@@ -10,9 +10,9 @@ _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/006-commands"
     last_updated_at: "2026-06-19T00:00:00Z"
-    last_updated_by: "codex-gpt-5"
-    recent_action: "Created PENDING cleanup tasks"
-    next_safe_action: "Run discovery"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Executed review tasks, all in-scope command docs verified"
+    next_safe_action: "Concurrent session owns deep/ and agent_router.md doc edits"
     blockers: []
     key_files:
       - "tasks.md"
@@ -48,9 +48,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Run discovery for command doc and runtime mirror sweep.
-- [ ] T002 Save candidate paths as phase evidence.
-- [ ] T003 Confirm packet 030 is not in the candidate list.
+- [x] T001 Run discovery for command doc and runtime mirror sweep. (28 .opencode/commands .md files, .claude/commands symlinks to .opencode/commands, no .codex/commands)
+- [x] T002 Save candidate paths as phase evidence. (19 in-scope .md docs after excluding deep/ and agent_router.md)
+- [x] T003 Confirm packet 030 is not in the candidate list. (no packet 030 path in any command doc)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -58,10 +58,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Review every candidate document against current source files.
-- [ ] T005 Remove stale file, feature and route claims.
-- [ ] T006 Apply HVR voice edits.
-- [ ] T007 Keep out-of-scope document families unchanged.
+- [x] T004 Review every candidate document against current source files. (19 docs read, every referenced path grep-verified to resolve)
+- [x] T005 Remove stale file, feature and route claims. (added missing fable-mode route row to doctor/speckit.md, no other drift found)
+- [ ] T006 Apply HVR voice edits. DESCOPED for this run: dispatcher scoped work to factual drift only and explicitly forbade wholesale restyle of deliberate prose. Pre-existing em dashes remain in prompt.md, memory/search.md, sk-skill-parent.md, memory/learn.md.
+- [x] T007 Keep out-of-scope document families unchanged. (deep/ and agent_router.md untouched, no code or packet 030 edits)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -69,10 +69,10 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Run em dash scan.
-- [ ] T009 Run semicolon character scan.
-- [ ] T010 Run stale-reference scan.
-- [ ] T011 Run strict validation for this child folder.
+- [x] T008 Run em dash scan. (pre-existing em dashes found in deliberate prose, none introduced by the edit, voice sweep descoped per T006)
+- [x] T009 Run semicolon character scan. (no semicolon or em dash introduced by the doctor/speckit.md edit)
+- [x] T010 Run stale-reference scan. (only stale-session feature-name hits in resume.md, not actionable)
+- [x] T011 Run strict validation for this child folder. (validate.sh --strict exits 0, RESULT PASSED)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -80,10 +80,10 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`.
-- [ ] No `[B]` blocked tasks remaining.
-- [ ] Manual verification evidence is recorded.
-- [ ] Strict validation exits 0.
+- [x] All in-scope tasks marked `[x]`. (T006 voice sweep DESCOPED per dispatcher, not a blocker for the factual-drift scope)
+- [x] No `[B]` blocked tasks remaining.
+- [x] Manual verification evidence is recorded. (discovery counts, path-resolution scans, fable-mode route diff)
+- [x] Strict validation exits 0.
 <!-- /ANCHOR:completion -->
 
 ---
