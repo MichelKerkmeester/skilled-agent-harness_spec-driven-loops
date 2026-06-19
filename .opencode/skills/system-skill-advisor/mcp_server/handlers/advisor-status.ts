@@ -13,6 +13,7 @@ import { isGenuineCorruptionReason, resolveSkillGraphDbDir, DB_FILENAME } from '
 import { createTrustState } from '../lib/freshness/trust-state.js';
 import { getAdapter } from '../lib/embedders/registry.js';
 import { getSemanticShadowRuntimeHealth } from '../lib/scorer/lanes/semantic-shadow.js';
+import { readAdvisorEmbeddingStaleness } from '../lib/scorer/projection.js';
 import { DEFAULT_SCORER_WEIGHTS } from '../lib/scorer/weights-config.js';
 import { errorMessage } from '../lib/utils/error-format.js';
 import { redactDiagnosticText } from './skill-graph/response-envelope.js';
@@ -160,15 +161,18 @@ function readSemanticLaneHealth(dbPath: string): SemanticLaneHealth {
       : (tableExists(database, 'skill_nodes') ? countRows(database, 'SELECT COUNT(*) AS c FROM skill_nodes WHERE embedding IS NOT NULL') : 0);
     const lastRefresh = hasVecTable && tableName ? maxUpdatedAt(database, tableName) : null;
     const dimMismatch = Boolean(activeEmbedder && activeEmbedder.adapterDim !== null && activeEmbedder.dim !== activeEmbedder.adapterDim);
+    const staleness = readAdvisorEmbeddingStaleness(database);
     const disabledReason = dimMismatch
       ? 'dim_mismatch'
-      : (!hasActive
-          ? 'active_embedder_unset'
-          : (!adapter
-              ? 'adapter_unavailable'
-              : (!hasVecTable
-                  ? 'vector_table_missing'
-                  : (total > 0 && embedded === 0 ? 'no_skill_vectors' : runtime.disabledReason))));
+      : (staleness.stale
+          ? 'projection_embedding_stale'
+          : (!hasActive
+              ? 'active_embedder_unset'
+              : (!adapter
+                  ? 'adapter_unavailable'
+                  : (!hasVecTable
+                      ? 'vector_table_missing'
+                      : (total > 0 && embedded === 0 ? 'no_skill_vectors' : runtime.disabledReason)))));
     return {
       activeEmbedder,
       vectorCoverage: {
@@ -179,7 +183,7 @@ function readSemanticLaneHealth(dbPath: string): SemanticLaneHealth {
       dimMismatch,
       lastRefresh,
       disabledReason,
-      laneEnabled: Boolean(hasActive && adapter && !dimMismatch && hasVecTable && embedded > 0 && !disabledReason),
+      laneEnabled: Boolean(hasActive && adapter && !dimMismatch && !staleness.stale && hasVecTable && embedded > 0 && !disabledReason),
       checkedAt: new Date().toISOString(),
     };
   } catch {

@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: Embedding-Staleness Signal (Skill Advisor SA8)"
-description: "QA checklist for the advisor SA8 embedding-staleness sub-phase: signature capture at projection build, compare-on-load verdict (mirror memory_embedding_reconcile), semantic_shadow lane degrade, the Memory-010 idempotent-async rebuild reuse, and strict packet validation. All implementation items PENDING (nothing shipped in Wave-0/030; SA8 scheduled Wave-1)."
+description: "QA checklist for the advisor SA8 embedding-staleness sub-phase: signature capture at projection build, compare-on-load verdict (mirror memory_embedding_reconcile), semantic_shadow lane degrade, the Memory-010 idempotent-async rebuild reuse gate, and strict packet validation."
 trigger_phrases:
   - "verification checklist advisor embedding staleness"
   - "SA8 projection signature QA"
@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/003-embedding-staleness-signal"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored Level-2 verification checklist for the advisor SA8 embedding-staleness signal"
-    next_safe_action: "Author implementation-summary.md then run validate.sh --strict"
+    recent_action: "Verified the advisor embedding-staleness signal implementation"
+    next_safe_action: "Wire the stale-triggered rebuild once the Memory 010 primitive is available"
     blockers: []
     key_files:
       - "spec.md"
@@ -24,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-003-embedding-staleness-signal"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 80
     open_questions: []
     answered_questions: []
 ---
@@ -67,14 +67,14 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Advisor MCP typecheck passes after the signature capture + compare-on-load change.
-  - **Evidence**: PENDING — `npm run typecheck` in `system-skill-advisor/mcp_server` (run at implementation time).
-- [ ] CHK-011 [P0] Advisor MCP build passes.
-  - **Evidence**: PENDING — `npm run build` in the same package.
-- [ ] CHK-012 [P0] The compare-on-load verdict mirrors `memory_embedding_reconcile`; it does NOT re-derive a parallel staleness shape.
-  - **Evidence**: PENDING — `{stale, reason}` shape mirrors `embedding-reconcile.ts:183-189`; the active pointer is read like `:139-142`.
-- [ ] CHK-013 [P1] The signature reuses `providerModelId` (`skill-graph-db.ts:599-600`); it does NOT invent a new signature format.
-  - **Evidence**: PENDING — captured signature equals `providerModelId(activePointer)` `(provider, name, dim)`.
+- [x] CHK-010 [P0] Advisor MCP typecheck passes after the signature capture + compare-on-load change.
+  - **Evidence**: `npm run typecheck` in `system-skill-advisor/mcp_server` passed with 0 errors after implementation.
+- [x] CHK-011 [P0] Advisor MCP build passes.
+  - **Evidence**: `npm run build` in `system-skill-advisor/mcp_server` passed.
+- [x] CHK-012 [P0] The compare-on-load verdict mirrors `memory_embedding_reconcile`; it does NOT re-derive a parallel staleness shape.
+  - **Evidence**: `readAdvisorEmbeddingStaleness()` emits `{stale, reason}` and compares stored vector model ids against the active pointer; mismatch reasons use the same compare-and-report style.
+- [x] CHK-013 [P1] The signature reuses `providerModelId` (`skill-graph-db.ts:599-600`); it does NOT invent a new signature format.
+  - **Evidence**: `providerModelId` is exported from `skill-graph-db.ts` and reused by `projection.ts` while compact adapter model ids remain supported.
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -82,14 +82,14 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] Detection: a projection built under embedder A, loaded under active embedder B, yields `{stale:true}` + a reason string; matching signature yields `{stale:false}`.
-  - **Evidence**: PENDING — projection compare-on-load Vitest; SC-001/SC-002; REQ-002.
-- [ ] CHK-021 [P0] Fail-closed: a missing/null stored signature on a populated projection yields `{stale:true}`.
-  - **Evidence**: PENDING — fail-closed Vitest matching `embedding-reconcile.ts` default `requireActiveShard`; spec §L2 EDGE CASES.
-- [ ] CHK-022 [P0] Lane degrade: `semantic_shadow` degrades under a stale verdict (no superseded cosine rows ranked as fresh) and is unchanged under a fresh verdict.
-  - **Evidence**: PENDING — `lanes/semantic-shadow.ts` degrade Vitest; degrade shape aligned with sibling 002; REQ-003.
-- [ ] CHK-023 [P0] Back-compat: `generatedAt` is RETAINED as a sibling field; the signature is ADDED, not a replacement.
-  - **Evidence**: PENDING — projection-shape Vitest asserts both fields present; risk R-002.
+- [x] CHK-020 [P0] Detection: a projection built under embedder A, loaded under active embedder B, yields `{stale:true}` + a reason string; matching signature yields `{stale:false}`.
+  - **Evidence**: `projection-embedding-staleness.vitest.ts` covers matching active model and mismatching stored model.
+- [x] CHK-021 [P0] Fail-closed: a missing/null stored signature on a populated projection yields `{stale:true}`.
+  - **Evidence**: `projection-embedding-staleness.vitest.ts` covers a populated vector row with null `model_id`.
+- [x] CHK-022 [P0] Lane degrade: `semantic_shadow` degrades under a stale verdict (no superseded cosine rows ranked as fresh) and is unchanged under a fresh verdict.
+  - **Evidence**: `projection-embedding-staleness.vitest.ts` covers empty semantic lane output and fusion runtime-degraded lane health on a stale verdict.
+- [x] CHK-023 [P0] Back-compat: `generatedAt` is RETAINED as a sibling field; the signature is ADDED, not a replacement.
+  - **Evidence**: `projection-embedding-staleness.vitest.ts` asserts `generatedAt` is still present on loaded SQLite projections.
 - [ ] CHK-024 [P1] Rebuild idempotency (Phase D, gated on Memory 010): a rebuild interrupted mid-cursor resumes without re-applying completed rows; two concurrent stale loads launch a single rebuild.
   - **Evidence**: PENDING/GATED — Memory-010 primitive reuse Vitest; SC-003; REQ-004.
 <!-- /ANCHOR:testing -->
@@ -100,7 +100,7 @@ _memory:
 ## Fix Completeness
 
 - [x] CHK-FIX-001 [P0] Each candidate has a final disposition.
-  - **Evidence**: `spec.md` section 10 — 0 DONE, 2 PENDING (signal independently shippable; rebuild gated on Memory 010); SA8 absent from Wave-0/030, scheduled Wave-1 (`030 spec.md:104`).
+  - **Evidence**: `spec.md` section 10 — signal DONE; rebuild reuse PENDING with Memory 010 gate.
 - [x] CHK-FIX-002 [P0] The staleness signal targets the READ/projection boundary, not the write-path refresh guard (which already detects per-row drift).
   - **Evidence**: `spec.md` risk R-001 — the write path skips when `vec_model_id===modelId` (`skill-graph-db.ts:1233-1234`); SA8 adds the missing check at projection LOAD (`projection.ts:388`), not a duplicate of the refresh path.
 - [x] CHK-FIX-003 [P0] Building the shared idempotent-async primitive is OUT of scope; this sub-phase REUSES it.
@@ -134,7 +134,7 @@ _memory:
 - [x] CHK-051 [P1] `tasks.md` has tasks per candidate plus baseline/verification/docs.
   - **Evidence**: T001 (baseline), T002-T007 (signal), T008-T009 (rebuild reuse, blocked), T010-T015 (verification + docs).
 - [x] CHK-052 [P1] No leakage into packet 030 or sibling-subsystem code.
-  - **Evidence**: Only this sub-phase's docs are authored; the shipped record (030), the Memory-010 primitive, and `embedding-reconcile.ts` are referenced/imported, not modified here.
+  - **Evidence**: Code edits are scoped to `system-skill-advisor/mcp_server`; docs edits are scoped to this sub-phase; packet 030, the Memory-010 primitive, and `embedding-reconcile.ts` were not modified.
 - [x] CHK-053 [P2] Research provenance is cited per candidate.
   - **Evidence**: `spec.md` RELATED DOCUMENTS maps each facet to `../research/from-006-sibling-revisit/research.md:80` and synthesis `04:34`.
 <!-- /ANCHOR:docs -->
@@ -157,13 +157,13 @@ _memory:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 13 | 8/13 (5 PENDING — implementation-time) |
+| P0 Items | 13 | 13/13 |
 | P1 Items | 9 | 8/9 (1 PENDING — CHK-024 gated on Memory 010) |
 | P2 Items | 2 | 2/2 |
 
 **Verification Date**: 2026-06-19
 **Verified By**: Claude (re-plan author)
-**Scope**: Advisor SA8 embedding-staleness sub-phase: the staleness signal (signature capture + compare-on-load + `semantic_shadow` lane degrade) and the Memory-010 idempotent-async rebuild reuse — both PENDING (nothing shipped in Wave-0/030; SA8 scheduled Wave-1). Planning/documentation items verified; implementation/test items (CHK-010..013, CHK-020..024) are PENDING and verified at implementation time; CHK-024 is additionally gated on Memory 010.
+**Scope**: Advisor SA8 embedding-staleness sub-phase: the staleness signal (signature capture + compare-on-load + `semantic_shadow` lane degrade) is implemented and verified; the Memory-010 idempotent-async rebuild reuse remains pending/gated. CHK-024 is gated on Memory 010.
 <!-- /ANCHOR:summary -->
 
 ---

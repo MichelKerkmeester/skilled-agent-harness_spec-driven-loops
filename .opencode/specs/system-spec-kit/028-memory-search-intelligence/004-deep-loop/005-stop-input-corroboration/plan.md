@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Deep Loop STOP-Input Corroboration (028/004 convergence-hardening cluster)"
-description: "Approach and sequencing for the deep-loop STOP-input corroboration cluster: the graph-novelty audit produces the delta the consumption guard ingests; the lag_ceiling tripwire enforces against the already-shipped gauges; keep-both gates the contradiction record; the progress heartbeat is an independent observability emitter; the shutdown-summary half is already shipped. No dependency on the absent D2 reliability signal."
+description: "Approach, sequencing and implementation status for the deep-loop STOP-input corroboration cluster: graph-novelty audit + STOP guard, lag-ceiling tripwire, keep-both conflict marker and default-off heartbeat are implemented in deep-loop-runtime. Live benchmark calibration, workflow reported-novelty forwarding and namespace-aware graph-edge persistence remain gates."
 trigger_phrases:
   - "newInfoRatio corroboration plan"
   - "graph novelty gate sequencing"
@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/004-deep-loop/005-stop-input-corroboration"
-    last_updated_at: "2026-06-19T10:30:00+02:00"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored implementation plan for the STOP-input corroboration cluster"
-    next_safe_action: "Begin C1 graph-novelty delta after capturing the convergence and fanout baseline"
+    last_updated_at: "2026-06-19T13:46:00+02:00"
+    last_updated_by: "codex"
+    recent_action: "Updated plan status after deep-loop-runtime implementation"
+    next_safe_action: "Calibrate benchmark gates and wire workflow reported-novelty forwarding"
     blockers: []
     key_files:
       - "spec.md"
@@ -26,7 +26,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-004-005-replan"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 80
     open_questions: []
     answered_questions: []
 ---
@@ -74,7 +74,7 @@ C6 progress-heartbeat  (periodic in-lineage liveness event; default 0/configurab
 C7 shutdown-summary-heartbeat  ── ALREADY SHIPPED (030 graceful-self-stop, 46812f12a8) — NOT re-built
 ```
 
-All PENDING candidates are **NEEDS-BENCHMARK** (the floor/tolerance, the `lag_ceiling`, the keep-both leverage, the heartbeat cadence all need calibration). All effort/leverage tags are **structural inference, never benchmarked** (per the 028 honesty layer). Ship for correctness and reversibility behind default-conservative / default-off guards.
+C1 through C6 are implemented in deep-loop-runtime with deterministic tests. The live behavior gates remain **NEEDS-BENCHMARK**: novelty floor/tolerance, fanout `lag_ceiling`, keep-both leverage and heartbeat cadence all need calibration before any default-on behavior.
 
 <!-- /ANCHOR:summary -->
 ---
@@ -84,17 +84,17 @@ All PENDING candidates are **NEEDS-BENCHMARK** (the floor/tolerance, the `lag_ce
 
 ### Definition of Ready
 - [x] Problem statement clear and each candidate's seam cited to research file:line
-- [x] Scope frozen: the 7-candidate STOP-corroboration cluster (6 PENDING + 1 DONE); D2/D3/Q2 + the resilience cluster explicitly out
+- [x] Scope frozen: the 7-candidate STOP-corroboration cluster (6 runtime-implemented + 1 already DONE); D2/D3/Q2 + the resilience cluster explicitly out
 - [x] Dependencies identified (C1→C2 chain; C4→C5 pair; C3/C6 independent; C7 shipped)
 - [x] Per-candidate DONE/PENDING status confirmed against current source + 030 §14
 
 ### Definition of Done
-- [ ] All P0 acceptance criteria met (REQ-C1/C2/C3) + the P1 set (REQ-C4/C5/C6) or a user-approved deferral
-- [ ] Each PENDING candidate has its own unit/fixture test and its own scoped commit
-- [ ] C2 backward-safe no-op fixture is byte-identical; the gaming fixture does NOT STOP
-- [ ] `node --check` + deep-loop-runtime focused tests green
-- [ ] `validate.sh --strict` on this sub-phase passes
-- [ ] C7 reconciled as already-shipped (commit `46812f12a8`), not re-implemented
+- [x] All runtime P0 acceptance criteria met (REQ-C1/C2/C3) + the runtime P1 set (REQ-C4/C5/C6); live calibration/persistence gates remain pending
+- [x] Each implemented candidate has deterministic unit/fixture coverage; no scoped commit because user requested no git commit
+- [x] C2 backward-safe no-op fixture is byte-identical; the gaming fixture does NOT STOP
+- [x] `node --check` + deep-loop-runtime focused tests green
+- [x] `validate.sh --strict` on this sub-phase passes
+- [x] C7 reconciled as already-shipped (commit `46812f12a8`), not re-implemented
 
 <!-- /ANCHOR:quality-gates -->
 ---
@@ -113,12 +113,12 @@ Additive, surgical edits to the existing convergence / cost-guards / fan-out mer
 - **`cost-guards.cjs`** — `DEFAULT_COUNCIL_COST_GUARDS` (`:15-20`, no `lag_ceiling` today), `evaluateCouncilCostGuards` (`:114-140`, advisory-only return). The enforced lag path is additive — keep the advisory tuple unchanged, add a `lag_ceiling` field + a meter against the shipped oldest-pending-lag gauge.
 - **`fanout-merge.cjs`** — `findingById` `Map` keyed on `finding.id || finding.title` with first-write-wins (`:66-82`); `sortByContentThenId` / `compareByContentThenId` (`:28-47`) is the existing content-derived total-comparator the keep-both ordering reuses.
 - **`fanout-run.cjs`** — the lineage worker; the per-lineage progress emitter (C6) sits here, cadenced; the shutdown `writeStoppedSummary` (`:510-541`, C7) is already present.
-- **`reduce-state.cjs`** (deep-research) — the rolling-ratio source; C2 may extend it to forward `--reported-novelty` to `convergence.cjs`.
+- **`reduce-state.cjs`** (deep-research) — the rolling-ratio source; forwarding `--reported-novelty` to `convergence.cjs` remains a workflow gate outside the runtime implementation.
 
 ### Data Flow (target)
 
 1. **C1**: `convergence.cjs` computes `graphNoveltyDelta` from the nodes/edges/snapshots it already loads (no new model call, no reliability input).
-2. **C2**: the orchestrator forwards the reducer rolling-ratio as `--reported-novelty`; the decision computes `effectiveNovelty = max(reported, graphNoveltyDelta)`; if `STOP_ALLOWED` would fire but `reported < threshold` AND `graphNoveltyDelta > floor`, it becomes `STOP_BLOCKED` with `novelty_self_report_unverified`. Absent `--reported-novelty` → no-op.
+2. **C2**: the runtime accepts the reducer rolling-ratio as `--reported-novelty`; the decision computes `effectiveNovelty = max(reported, graphNoveltyDelta)`; if `STOP_ALLOWED` would fire but `reported < threshold` AND `graphNoveltyDelta > floor`, it becomes `STOP_BLOCKED` with `novelty_self_report_unverified`. Absent `--reported-novelty` → no-op. Workflow forwarding remains pending.
 3. **C3**: the loop meters the shipped oldest-pending-lag gauge against `lag_ceiling`; on breach it honors the tripwire (warn first), advisory cost-guard return unchanged.
 4. **C4**: a same-id same-content collision collapses to one; a same-id different-content collision retains both in canonical content-derived order.
 5. **C5**: the kept-both pair emits a CONTRADICTS/`_conflicts` marker (after confirming no downstream id/content_hash dedup clobbers it).
@@ -131,33 +131,33 @@ Additive, surgical edits to the existing convergence / cost-guards / fan-out mer
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: newInfoRatio corroboration (the headline gap) — C1, C2
-- [ ] Read `convergence.cjs:280-400` (decision path, args, snapshots) and the `compute*FromData` emitters
-- [ ] C1: implement `computeGraphNoveltyDelta(nodes, edges, snapshots)` scoped to NEW FINDING/SOURCE/EVIDENCE_FOR nodes+edges since the prior snapshot; unit test the delta on synthetic snapshot pairs
-- [ ] C2: thread `--reported-novelty` into the decision; add `effectiveNovelty = max(reported, graphDelta)` + the `novelty_self_report_unverified` blocking guard; confirm the orchestrator/`reduce-state.cjs` forwards the rolling-ratio (extend if needed)
-- [ ] Fixtures: gaming (high delta + `--reported-novelty 0.01` → NOT STOP + blocker); legitimate-low (flat delta + low report → STOP_ALLOWED); no-op (omit → byte-identical); insight-only delta (not spuriously blocked)
+- [x] Read `convergence.cjs:280-400` (decision path, args, snapshots) and the `compute*FromData` emitters
+- [x] C1: implement `computeGraphNoveltyDelta(nodes, edges, snapshots)` scoped to NEW FINDING/SOURCE/EVIDENCE_FOR nodes+edges since the prior snapshot; unit test the delta on synthetic snapshot pairs
+- [x] C2: thread `--reported-novelty` into the decision; add `effectiveNovelty = max(reported, graphDelta)` + the `novelty_self_report_unverified` blocking guard. Workflow forwarding from `reduce-state.cjs` remains pending.
+- [x] Fixtures: gaming (high delta + `--reported-novelty 0.01` → NOT STOP + blocker); legitimate-low (flat delta + low report → STOP_ALLOWED); no-op (omit → byte-identical); insight-only delta (not spuriously blocked)
 
 ### Phase 2: backpressure enforcement — C3
-- [ ] Read `cost-guards.cjs:15-20,114-140` + the shipped gauge emitter (`fanout-pool.cjs:90,108,235-238`)
-- [ ] Add `lag_ceiling` (default 5s, config-overridable) to the guard config; meter the shipped oldest-pending-lag gauge against it; honor the tripwire (warn tier)
-- [ ] Preserve the advisory `evaluateCouncilCostGuards` return unchanged; the enforced path is additive
-- [ ] Unit test: lag below/at/above ceiling resolves deterministically; advisory return is unchanged
+- [x] Read `cost-guards.cjs:15-20,114-140` + the shipped gauge emitter (`fanout-pool.cjs:90,108,235-238`)
+- [x] Add `lag_ceiling` (default 5s, config-overridable) to the guard config; meter the shipped oldest-pending-lag gauge against it; honor the tripwire (warn tier)
+- [x] Preserve the advisory `evaluateCouncilCostGuards` return unchanged; the enforced path is additive
+- [x] Unit test: lag below/at/above ceiling resolves deterministically; advisory return is unchanged
 
 ### Phase 3: cross-lineage contradiction keep-both + record — C4, C5
-- [ ] Read `fanout-merge.cjs:28-47` (comparator) + `:66-82` (first-seen-wins dedup)
-- [ ] C4: retain both on same-id different-content; collapse on same-id identical-content; canonical content-derived order (reuse the existing comparator)
-- [ ] C5: BEFORE relying on keep-both, confirm whether the merge or a downstream `upsert.cjs` dedupes by id/content_hash; then emit a CONTRADICTS/`_conflicts` marker via `coverage-graph-query.ts:221`
-- [ ] Unit tests: keep-both pair retained + ordered; identical-content collapses; record emitted; no clobber by downstream dedup
+- [x] Read `fanout-merge.cjs:28-47` (comparator) + `:66-82` (first-seen-wins dedup)
+- [x] C4: retain both on same-id different-content; collapse on same-id identical-content; canonical content-derived order (reuse the existing comparator)
+- [x] C5: BEFORE relying on keep-both, confirm whether the merge or a downstream `upsert.cjs` dedupes by id/content_hash; then emit a CONTRADICTS/`_conflicts` marker. Namespace-aware graph-edge persistence remains pending.
+- [x] Unit tests: keep-both pair retained + ordered; identical-content collapses; record emitted; no clobber by downstream dedup through content-derived ids
 
 ### Phase 4: progress heartbeat — C6
-- [ ] Add a periodic in-lineage progress event at a configurable cadence (default `0`/disabled until benchmarked) in the `fanout-run.cjs` worker; distinct from the lock-TTL heartbeat and the shutdown `stopped` marker
-- [ ] Unit test: heartbeat fires at cadence on a long lineage; `0` disables (regression-equivalent); a fast lineage emits no spurious heartbeat
+- [x] Add a periodic in-lineage progress event at a configurable cadence (default `0`/disabled until benchmarked) in the `fanout-run.cjs` worker; distinct from the lock-TTL heartbeat and the shutdown `stopped` marker
+- [x] Unit test: heartbeat fires at cadence on a long lineage; `0` disables (regression-equivalent); a fast lineage emits no spurious heartbeat
 
 ### Phase 5: Verification + DONE reconciliation
-- [ ] Reconcile C7 (shutdown-summary) as already shipped (commit `46812f12a8`, `fanout-run.cjs:510-541`) — record evidence, do NOT re-implement
-- [ ] `node --check` on every touched `.cjs`
-- [ ] deep-loop-runtime focused test suite green (capture baseline first per regression-baseline rule)
-- [ ] `validate.sh --strict` on this sub-phase
-- [ ] Adversarial review pass on C2 (gaming/backward-safety) and C5 (dedup-clobber) — the two highest-blast hunks
+- [x] Reconcile C7 (shutdown-summary) as already shipped (commit `46812f12a8`, `fanout-run.cjs:510-541`) — record evidence, do NOT re-implement
+- [x] `node --check` on every touched `.cjs`
+- [x] deep-loop-runtime focused test suite green (capture baseline first per regression-baseline rule)
+- [x] `validate.sh --strict` on this sub-phase
+- [ ] Adversarial review pass on C2 (gaming/backward-safety) and C5 (dedup-clobber) — the two highest-blast hunks. PENDING: not run in this code+unit-test-only pass.
 
 <!-- /ANCHOR:phases -->
 ---
@@ -240,7 +240,7 @@ Phase 5 (Verify + C7 DONE reconciliation)
 | C6 progress-heartbeat | S | thin periodic emitter; default-off until benchmarked |
 | C7 shutdown-summary-heartbeat | S | **already shipped** (`46812f12a8`) — zero new effort |
 
-> Effort tags are structural inference; all PENDING candidates are NEEDS-BENCHMARK (the floor/tolerance, `lag_ceiling`, keep-both leverage, and heartbeat cadence need calibration). The cluster is Level 2 (100-499 LOC band) but each candidate is independently small; the risk on C2 (STOP-gate correctness) and C5 (dedup-clobber) is the reason for the adversarial verify gate, not LOC.
+> Effort tags are structural inference; remaining live gates are NEEDS-BENCHMARK (the floor/tolerance, `lag_ceiling`, keep-both leverage and heartbeat cadence need calibration). The cluster is Level 2 (100-499 LOC band) but each candidate is independently small; the risk on C2 (STOP-gate correctness) and C5 (dedup-clobber) is the reason for the adversarial verify gate, not LOC.
 
 <!-- /ANCHOR:effort -->
 ---

@@ -71,6 +71,23 @@ export interface SkillEdgeProjection {
   readonly context?: string;
 }
 
+export interface AdvisorEmbeddingSignature {
+  readonly provider: string | null;
+  readonly name: string;
+  readonly dim: number;
+  readonly modelId: string;
+  readonly providerModelId?: string | null;
+}
+
+export interface AdvisorEmbeddingStalenessVerdict {
+  readonly stale: boolean;
+  readonly reason?: string;
+  readonly active: AdvisorEmbeddingSignature | null;
+  readonly stored: AdvisorEmbeddingSignature | null;
+  readonly vectorCount: number;
+  readonly modelIds?: readonly string[];
+}
+
 // 'filesystem-fallback' is set when SQLite projection threw
 // (corrupt DB, schema mismatch, etc.) and we degraded to filesystem scan; the
 // optional `fallbackReason` carries the underlying error so operators can
@@ -83,6 +100,8 @@ export interface AdvisorProjection {
   readonly generatedAt: string;
   readonly source: 'sqlite' | 'filesystem' | 'filesystem-fallback' | 'fixture';
   readonly fallbackReason?: string;
+  readonly embeddingSignature?: AdvisorEmbeddingSignature | null;
+  readonly embeddingStaleness?: AdvisorEmbeddingStalenessVerdict;
 }
 
 export interface LaneMatch {

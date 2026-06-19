@@ -6,6 +6,7 @@ import type {
   LoopType,
   CoverageNode,
   CoverageEdge,
+  CoverageSnapshot,
 } from './coverage-graph-db.js';
 import {
   getDb,
@@ -74,10 +75,22 @@ type ResearchSignalNodeLike = {
 };
 
 type ResearchSignalEdgeLike = {
+  id?: string;
   sourceId: string;
   targetId: string;
   relation: string;
+  metadata?: CoverageEdge['metadata'] | string | null;
+  createdAt?: string | null;
 };
+
+type GraphNoveltyNodeLike = ResearchSignalNodeLike & {
+  createdAt?: string | null;
+  iteration?: number | null;
+};
+
+type GraphNoveltyEdgeLike = ResearchSignalEdgeLike;
+
+type GraphNoveltySnapshotLike = Pick<CoverageSnapshot, 'iteration' | 'createdAt'>;
 
 interface SqlFragment {
   clause: string;
@@ -124,6 +137,77 @@ function parseNodeMetadata(metadata: CoverageNode['metadata'] | string | null | 
     }
   }
   return typeof metadata === 'object' ? metadata as Record<string, unknown> : null;
+}
+
+function parseMetadataRecord(metadata: CoverageNode['metadata'] | CoverageEdge['metadata'] | string | null | undefined): Record<string, unknown> | null {
+  if (!metadata) return null;
+  if (typeof metadata === 'string') {
+    try {
+      const parsed = JSON.parse(metadata) as unknown;
+      return parsed && typeof parsed === 'object' ? parsed as Record<string, unknown> : null;
+    } catch {
+      return null;
+    }
+  }
+  return typeof metadata === 'object' ? metadata as Record<string, unknown> : null;
+}
+
+function metadataMarksInsight(metadata: CoverageNode['metadata'] | CoverageEdge['metadata'] | string | null | undefined): boolean {
+  const parsed = parseMetadataRecord(metadata);
+  if (!parsed) return false;
+  const markers = [
+    parsed.status,
+    parsed.type,
+    parsed.kind,
+    parsed.category,
+    parsed.classification,
+  ];
+  return markers.some((marker) => typeof marker === 'string' && marker.toLowerCase() === 'insight');
+}
+
+function parseTimestampMs(value: string | null | undefined): number | null {
+  if (!value) return null;
+  const ms = Date.parse(value);
+  return Number.isFinite(ms) ? ms : null;
+}
+
+function latestPriorSnapshot(snapshots: ReadonlyArray<GraphNoveltySnapshotLike>): GraphNoveltySnapshotLike | null {
+  if (snapshots.length === 0) return null;
+  return [...snapshots].sort((left, right) => {
+    const leftIteration = Number(left.iteration ?? 0);
+    const rightIteration = Number(right.iteration ?? 0);
+    if (leftIteration !== rightIteration) return leftIteration - rightIteration;
+    return (parseTimestampMs(left.createdAt) ?? 0) - (parseTimestampMs(right.createdAt) ?? 0);
+  }).at(-1) ?? null;
+}
+
+function isAfterSnapshot(
+  item: { createdAt?: string | null; iteration?: number | null },
+  snapshot: GraphNoveltySnapshotLike,
+): boolean {
+  const itemIteration = Number(item.iteration);
+  const snapshotIteration = Number(snapshot.iteration);
+  if (Number.isFinite(itemIteration) && Number.isFinite(snapshotIteration)) {
+    return itemIteration > snapshotIteration;
+  }
+
+  const itemTime = parseTimestampMs(item.createdAt);
+  const snapshotTime = parseTimestampMs(snapshot.createdAt);
+  if (itemTime !== null && snapshotTime !== null) {
+    const snapshotBoundary = snapshot.createdAt && /\.\d/.test(snapshot.createdAt)
+      ? snapshotTime
+      : snapshotTime + 999;
+    return itemTime > snapshotBoundary;
+  }
+  return false;
+}
+
+function isNoveltyNode(node: GraphNoveltyNodeLike): boolean {
+  return (node.kind === 'FINDING' || node.kind === 'SOURCE') && !metadataMarksInsight(node.metadata);
+}
+
+function isNoveltyEdge(edge: GraphNoveltyEdgeLike): boolean {
+  return edge.relation === 'EVIDENCE_FOR' && !metadataMarksInsight(edge.metadata);
 }
 
 function buildAnsweringFindingsByQuestion(edges: ReadonlyArray<ResearchSignalEdgeLike>): Map<string, string[]> {
@@ -447,6 +531,35 @@ export function computeResearchEvidenceDepthFromData(
   }
 
   return pathCount > 0 ? totalDepth / pathCount : 0;
+}
+
+/**
+ * Compute graph-observed novelty since the latest persisted snapshot.
+ *
+ * Uses only durable graph rows. A missing prior snapshot fails open to zero so
+ * first-run graphs do not look novel merely because there is no baseline yet.
+ *
+ * @param nodes - Coverage nodes currently in the namespace.
+ * @param edges - Coverage edges currently in the namespace.
+ * @param snapshots - Persisted convergence snapshots for the namespace.
+ * @returns Fraction of eligible graph evidence created after the latest snapshot.
+ */
+export function computeGraphNoveltyDelta(
+  nodes: ReadonlyArray<GraphNoveltyNodeLike>,
+  edges: ReadonlyArray<GraphNoveltyEdgeLike>,
+  snapshots: ReadonlyArray<GraphNoveltySnapshotLike>,
+): number {
+  const priorSnapshot = latestPriorSnapshot(snapshots);
+  if (!priorSnapshot) return 0;
+
+  const eligibleNodes = nodes.filter(isNoveltyNode);
+  const eligibleEdges = edges.filter(isNoveltyEdge);
+  const denominator = eligibleNodes.length + eligibleEdges.length;
+  if (denominator === 0) return 0;
+
+  const newNodes = eligibleNodes.filter((node) => isAfterSnapshot(node, priorSnapshot)).length;
+  const newEdges = eligibleEdges.filter((edge) => isAfterSnapshot(edge, priorSnapshot)).length;
+  return (newNodes + newEdges) / denominator;
 }
 
 /**

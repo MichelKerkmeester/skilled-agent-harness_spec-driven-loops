@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/003-embedding-staleness-signal"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored SA8 impl sub-phase spec from 028 research (2 candidates, both PENDING)"
-    next_safe_action: "Confirm shared idempotent-async primitive lands in Memory 010 before projection-rebuild reuse"
+    recent_action: "Implemented the advisor embedding-staleness signal; rebuild reuse remains gated on Memory 010"
+    next_safe_action: "Wire the stale-triggered rebuild once the shared idempotent-async primitive is available"
     blockers: []
     key_files:
       - "spec.md"
@@ -25,11 +25,12 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-003-embedding-staleness-signal"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 80
     open_questions:
-      - "Does the projection carry a single canonical embedder signature, or a per-row signature so a partial refresh is detectable?"
-      - "Does the load-time staleness verdict degrade the semantic_shadow lane (elide it), or only report stale and keep serving the vectors?"
-    answered_questions: []
+      - "Memory 010 primitive availability for stale-triggered projection rebuild reuse"
+    answered_questions:
+      - "Projection staleness is derived from stored model rows and detects mixed model ids."
+      - "A stale verdict degrades/elides semantic_shadow and removes it from confidence normalization."
 ---
 # Feature Specification: Skill Advisor Embedding-Staleness Signal (SA8)
 
@@ -52,7 +53,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Signal implemented; rebuild reuse gated |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/028-memory-search-intelligence` |
 | **Parent Packet** | system-spec-kit/028-memory-search-intelligence/003-skill-advisor |
@@ -200,7 +201,7 @@ Close the load-time staleness hole by stamping the embedder signature (provider/
 
 | # | Candidate | Status | Gate | Evidence / Citation |
 |---|-----------|--------|------|---------------------|
-| 1 | `SA8-embedding-staleness` (the staleness signal: stamp signature + compare on load + lane degrade) | **PENDING** | shared-infra-dep (none for the signal itself; the rebuild leg gates on Memory 010) | NOT in 030 §14; scheduled Wave-1 (`030 spec.md:104`). Seam `projection.ts:315`; mirror `embedding-reconcile.ts:162-189`; stored columns `skill-graph-db.ts:187,348-352,599-600`. Research `../research/from-006-sibling-revisit/research.md:80`, synthesis `01-go-candidates.md:36`, `04-sibling-and-cross-cutting.md:15`. M-H / S-M, leverage inferred (no benchmark). |
+| 1 | `SA8-embedding-staleness` (the staleness signal: stamp signature + compare on load + lane degrade) | **DONE** | code + unit verification complete; no benchmark gate | Implemented in `projection.ts`, `types.ts`, `semantic-shadow.ts`, `fusion.ts`, `advisor-status.ts`, with `providerModelId` exported from `skill-graph-db.ts`. Tests: `projection-embedding-staleness.vitest.ts`; broad related gate `tests/scorer lib/scorer/lanes/__tests__ tests/handlers/advisor-status.vitest.ts` passed 90/92 with 2 skipped. Typecheck/build passed. |
 | 2 | `Advisor-embedding-staleness-signal` (the idempotent-async projection rebuild reuse) | **PENDING** | shared-infra-dep — Memory `010-consolidation-cursor-clock` idempotent-async primitive | NOT in 030 §14. Reuse mapping: synthesis `04-sibling-and-cross-cutting.md:34` ("the receipt + retry-budget/dead-letter pattern maps onto the Advisor's async embedding projection (SA8) ... build the shared primitive once, reuse on the advisor side"). Gated on Memory 010 landing the primitive. |
 
 > These are two facets of one candidate pair (`["SA8-embedding-staleness","Advisor-embedding-staleness-signal"]`): #1 is the detection signal (independently shippable), #2 is the reuse of the Memory-010 rebuild primitive (gated). Sequencing: ship #1 first, wire #2 when Memory 010's primitive is available.
@@ -208,8 +209,7 @@ Close the load-time staleness hole by stamping the embedder signature (provider/
 <!-- ANCHOR:questions -->
 ## 11. OPEN QUESTIONS
 
-- Does the projection carry a single canonical embedder signature, or a per-row signature so a partial refresh (some rows on embedder A, some on B) is detectable rather than collapsing to one verdict?
-- Does the load-time stale verdict degrade the `semantic_shadow` lane (elide it from fusion, matching sibling 002's degrade-to-remaining), or only report stale while still serving the vectors for one more load until the rebuild completes?
+- Memory `010-consolidation-cursor-clock` must land the shared idempotent-async primitive before the stale-triggered projection rebuild reuse can be wired.
 <!-- /ANCHOR:questions -->
 
 ---

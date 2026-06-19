@@ -23,6 +23,11 @@ import {
 import * as vectorIndex from './vector-index.js';
 import { getEntityDensityScore } from './entity-density.js';
 import { recordInvocation } from './routing-telemetry.js';
+import {
+  classifyRetrievalClass,
+  isSingleHopRetrieval,
+  type RetrievalClass,
+} from './retrieval-class-classifier.js';
 
 // Feature catalog: Query complexity router
 // Feature catalog: Query complexity router
@@ -47,6 +52,7 @@ interface RouteResult {
   tier: QueryComplexityTier;
   channels: ChannelName[];
   classification: ClassificationResult;
+  retrievalClass: RetrievalClass;
   queryPlan: QueryPlan;
   qualityFallback: QualityGapFallbackPlan;
 }
@@ -229,8 +235,13 @@ function shouldPreserveGraph(
   query: string,
   db: Database.Database | null,
   precomputedIntent?: string,
+  retrievalClass: RetrievalClass = 'Neutral',
 ): GraphPreservationDecision {
   if (!isGraphChannelPreservationEnabled()) {
+    return { preserved: false, reasons: [], includeDegree: false };
+  }
+
+  if (isSingleHopRetrieval(retrievalClass)) {
     return { preserved: false, reasons: [], includeDegree: false };
   }
 
@@ -339,6 +350,7 @@ function routeQuery(
   qualitySignal?: QualityGapSignal,
 ): RouteResult {
   const classification = classifyQueryComplexity(query, triggerPhrases);
+  const retrievalClass = classifyRetrievalClass(query).retrievalClass;
   const qualityFallback = buildQualityGapFallbackPlan(qualitySignal);
   const intent = intentClassifier.classifyIntent(query).intent;
 
@@ -372,6 +384,7 @@ function routeQuery(
       tier: classification.tier,
       channels: [...ALL_CHANNELS],
       classification,
+      retrievalClass,
       queryPlan: mergeQueryPlans(classification.queryPlan, routingPlan),
       qualityFallback,
     };
@@ -404,7 +417,7 @@ function routeQuery(
   // so the override is a no-op there. The default-on feature flag
   // keeps a clean revert path.
   if (isGraphChannelPreservationEnabled() && classification.tier !== 'complex') {
-    const decision = shouldPreserveGraph(query, safeGetDb(), intent);
+    const decision = shouldPreserveGraph(query, safeGetDb(), intent, retrievalClass);
     if (decision.preserved) {
       const additions: ChannelName[] = ['graph'];
       if (decision.includeDegree) additions.push('degree');
@@ -441,6 +454,7 @@ function routeQuery(
     tier: classification.tier,
     channels: adjustedChannels,
     classification,
+    retrievalClass,
     queryPlan: mergeQueryPlans(classification.queryPlan, routingPlan),
     qualityFallback,
   };

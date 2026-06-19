@@ -11,9 +11,9 @@
     "retrieval",
     "intelligence"
   ],
-  "lastUpdated": "2026-06-19T06:21:34.792Z",
+  "lastUpdated": "2026-06-19T11:43:31.478Z",
   "specId": "001",
-  "folderSlug": "001-determinism-walk-order",
+  "folderSlug": "determinism-walk-order",
   "parentChain": [
     "system-spec-kit",
     "028-memory-search-intelligence",

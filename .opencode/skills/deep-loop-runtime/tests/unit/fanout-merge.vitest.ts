@@ -52,7 +52,7 @@ describe('mergeResearchRegistries', () => {
       {
         label: 'b',
         registry: {
-          keyFindings: [{ id: 'F1', title: 'Finding one (duplicate)', confidence: 0.7 }, { id: 'F2', title: 'Finding two' }],
+          keyFindings: [{ id: 'F1', title: 'Finding one', confidence: 0.7 }, { id: 'F2', title: 'Finding two' }],
           openQuestions: [],
           ruledOutDirections: [],
           metrics: { iterationsCompleted: 2, convergenceScore: 0.6, openQuestions: 0, resolvedQuestions: 0, keyFindings: 2, coverageBySources: {} },
@@ -74,6 +74,39 @@ describe('mergeResearchRegistries', () => {
     const f1 = findings.find((f) => f.id === 'F1')!;
     expect(f1._lineages).toContain('a');
     expect(f1._lineages).toContain('b');
+  });
+
+  it('keeps both same-id findings when their substantive content differs and records the conflict', () => {
+    const result = mergeResearchRegistries([
+      {
+        label: 'a',
+        registry: {
+          keyFindings: [{ id: 'F1', title: 'Cache invalidation is missing', summary: 'TTL never updates' }],
+          openQuestions: [],
+          ruledOutDirections: [],
+        },
+      },
+      {
+        label: 'b',
+        registry: {
+          keyFindings: [{ id: 'F1', title: 'Cache invalidation is safe', summary: 'TTL is refreshed by the writer' }],
+          openQuestions: [],
+          ruledOutDirections: [],
+        },
+      },
+    ]);
+
+    const findings = result.keyFindings as Array<{
+      id: string;
+      _conflictOf?: string;
+      _conflicts?: Array<{ relation: string; originalId: string; peerId: string }>;
+    }>;
+    const conflictFindings = findings.filter((finding) => finding._conflictOf === 'F1');
+    expect(conflictFindings).toHaveLength(2);
+    expect(new Set(conflictFindings.map((finding) => finding.id)).size).toBe(2);
+    expect(conflictFindings.every((finding) => finding.id.startsWith('F1--'))).toBe(true);
+    expect(conflictFindings.every((finding) => finding._conflicts?.[0]?.relation === 'CONTRADICTS')).toBe(true);
+    expect(conflictFindings.every((finding) => finding._conflicts?.[0]?.originalId === 'F1')).toBe(true);
   });
 
   it('aggregates total iteration count across lineages', () => {
@@ -211,7 +244,7 @@ describe('mergeReviewRegistries — strongest-restriction', () => {
   it('escalates to highest severity for duplicate findingId across lineages', () => {
     const data = [
       { label: 'a', registry: { openFindings: [{ findingId: 'F1', severity: 'P2', status: 'active', title: 'X' }] } },
-      { label: 'b', registry: { openFindings: [{ findingId: 'F1', severity: 'P0', status: 'active', title: 'X upgraded' }] } },
+      { label: 'b', registry: { openFindings: [{ findingId: 'F1', severity: 'P0', status: 'active', title: 'X' }] } },
     ];
 
     const result = mergeReviewRegistries(data);
@@ -219,6 +252,23 @@ describe('mergeReviewRegistries — strongest-restriction', () => {
     expect(result.activeP0).toBe(1);
     // Only one deduplicated finding
     expect((result.openFindings as unknown[]).length).toBe(1);
+  });
+
+  it('keeps both review findings for a same-id content conflict and marks both sides', () => {
+    const result = mergeReviewRegistries([
+      { label: 'a', registry: { openFindings: [{ findingId: 'F1', severity: 'P1', status: 'active', title: 'Auth bypass exists' }] } },
+      { label: 'b', registry: { openFindings: [{ findingId: 'F1', severity: 'P2', status: 'active', title: 'Auth bypass is mitigated' }] } },
+    ]);
+
+    const findings = result.openFindings as Array<{
+      findingId: string;
+      _conflictOf?: string;
+      _conflicts?: Array<{ relation: string; originalId: string }>;
+    }>;
+    const conflictFindings = findings.filter((finding) => finding._conflictOf === 'F1');
+    expect(conflictFindings).toHaveLength(2);
+    expect(conflictFindings.every((finding) => finding._conflicts?.[0]?.relation === 'CONTRADICTS')).toBe(true);
+    expect(result.mergedVerdict).toBe('CONDITIONAL');
   });
 
   it('skips non-active findings (resolved/contested)', () => {

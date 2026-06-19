@@ -229,6 +229,8 @@ describe('parseFanoutConfig', () => {
     expect(config.executors).toHaveLength(2);
     expect(config.concurrency).toBe(2);
     expect(config.maxRetries).toBe(5);
+    expect(config.lagCeilingMs).toBe(0);
+    expect(config.progressHeartbeatSeconds).toBe(0);
     expect(config.executors[0].count).toBe(1);
     expect(config.executors[0].iterations).toBeNull();
   });
@@ -242,20 +244,33 @@ describe('parseFanoutConfig', () => {
     expect(config.executors[0].configDir).toBe('~/.claude-account2');
   });
 
-  it('honors explicit concurrency, max retries, count, and per-lineage iterations', () => {
+  it('honors explicit concurrency, max retries, lag ceiling, heartbeat, count, and per-lineage iterations', () => {
     const config = parseFanoutConfig({
       concurrency: 3,
       maxRetries: 1,
+      lagCeilingMs: 50,
+      progressHeartbeatSeconds: 0.25,
       executors: [{ kind: 'native', label: 'opus', count: 5, iterations: 5 }],
     });
     expect(config.concurrency).toBe(3);
     expect(config.maxRetries).toBe(1);
+    expect(config.lagCeilingMs).toBe(50);
+    expect(config.progressHeartbeatSeconds).toBe(0.25);
     expect(config.executors[0].count).toBe(5);
     expect(config.executors[0].iterations).toBe(5);
   });
 
   it('rejects a negative fan-out retry budget', () => {
     expect(() => parseFanoutConfig({ maxRetries: -1, executors: [{ kind: 'native', label: 'opus' }] })).toThrow(
+      ExecutorConfigError,
+    );
+  });
+
+  it('rejects negative fan-out observability thresholds', () => {
+    expect(() => parseFanoutConfig({ lagCeilingMs: -1, executors: [{ kind: 'native', label: 'opus' }] })).toThrow(
+      ExecutorConfigError,
+    );
+    expect(() => parseFanoutConfig({ progressHeartbeatSeconds: -0.1, executors: [{ kind: 'native', label: 'opus' }] })).toThrow(
       ExecutorConfigError,
     );
   });

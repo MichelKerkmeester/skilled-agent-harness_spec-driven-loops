@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Memory MCP — Retrieval-Class Routing & Recall-Shape Intelligence (028/001 impl)"
-description: "Implement the retrieval-shape intelligence cluster from packet 028's Memory MCP research: a third query-router axis (retrieval-class) that gates graph expansion and per-class channel weights, plus the recall-shape budget/ladder/iterative-extension family that routes and sizes recall by retrieval shape. All candidates are PENDING; none shipped in the flat Wave-0 (030)."
+description: "Implement the retrieval-shape intelligence cluster from packet 028's Memory MCP research: a third query-router axis (retrieval-class) that gates graph expansion and per-class channel weights, plus the recall-shape budget/ladder/iterative-extension family that routes and sizes recall by retrieval shape. C2-A/C2-C/C2-B are implemented here; recall-shape and C-G2 remain pending."
 trigger_phrases:
   - "retrieval class routing memory"
   - "query class router single hop"
@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/003-retrieval-class-routing"
-    last_updated_at: "2026-06-19T07:40:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored re-plan spec for the retrieval-class + recall-shape cluster"
-    next_safe_action: "Build C2-A classifier as the additive third router axis"
+    last_updated_at: "2026-06-19T11:40:16Z"
+    last_updated_by: "codex-gpt-5"
+    recent_action: "Built C2-A/C2-C/C2-B"
+    next_safe_action: "Validate packet; leave recall gates pending"
     blockers: []
     key_files:
       - "spec.md"
@@ -30,7 +30,7 @@ _memory:
       fingerprint: "sha256:3c0e0998148e8397f22100775a58904048dd9b17123871071df532b9ea48da26"
       session_id: "2026-06-19-028-001-003-retrieval-class-routing-replan"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 45
     open_questions: []
     answered_questions: []
 ---
@@ -51,7 +51,7 @@ FAILURE MODES:
 
 The Spec-Kit Memory MCP routes every query through two orthogonal classifiers (complexity tier + task intent) but has **no retrieval-shape axis**: a single-hop "find this exact fact" query is expanded over the causal graph exactly like a multi-hop "trace impact" query, and "indiscriminate graph expansion hurts single-hop precision" (the aionforge failure mode that 028's research maps directly onto this code). This sub-phase implements the retrieval-shape intelligence cluster from packet 028's PRIMARY Memory MCP research: the **C2-A** retrieval-class classifier (the additive third router axis) plus the two consumers it gates — **C2-C** (graph-off for single-hop precision) and **C2-B** (per-class channel-weight injection) — and the adjacent **recall-shape** family that routes/sizes recall by shape: **CG-iterative-context-extension** (answer-as-next-query), **MEM-tiered-recall-budget** (per-section/per-tier budgets), **LT-compaction-fallback-ladder** (summarize-before-truncate), and the **C-G2** cross-cutting auto-topic facet.
 
-**Key Decisions**: Build C2-A first as the gating classifier (a new additive axis on `RouteResult`, never replacing the two existing axes); ship C2-C (the cheapest, highest-leverage consumer) ahead of C2-B; treat the recall-shape family as separate intelligence-class builds behind default-off flags. Every candidate here is **PENDING** — none was implemented in the flat Wave-0 (packet 030), which was structurally scoped to additive/reversible/no-benchmark items and excluded this whole cluster.
+**Key Decisions**: C2-A is built first as the gating classifier (a new additive axis on `RouteResult`, never replacing the two existing axes); C2-C extends the existing graph-preservation primitive; C2-B lands as a default-off profile-weight mechanism because tuned ranking weights still need corpus calibration. The recall-shape family remains a separate intelligence-class build behind future default-off flags. Packet 030 remains untouched.
 
 **Critical Dependencies**: C2-B's research-stated blocker (C-X1, the `{bonusOverChannels}` fusion option, "so zeroing channels doesn't distort survivors' convergence bonus") is **already SATISFIED** — C-X1 shipped in packet 030 (commit `65cfcea513`, the `bonusOverChannels` option now lives in `shared/algorithms/rrf-fusion.ts`). No candidate here has a measured before/after benefit number; all leverage/effort are structural inference (028 §6 GO-evidence caveats), and the per-class weight VALUES need re-calibration on the ~1000-memory corpus.
 
@@ -63,7 +63,7 @@ The Spec-Kit Memory MCP routes every query through two orthogonal classifiers (c
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Draft (re-plan; not yet implemented) |
+| **Status** | Partial implementation: C2-A/C2-C/C2-B done; recall-shape and C-G2 pending |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Packet** | system-spec-kit/028-memory-search-intelligence/001-speckit-memory |
@@ -88,29 +88,29 @@ Give recall a retrieval-shape axis: classify each query's shape (single-hop / mu
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
-### In Scope — the retrieval-class + recall-shape cluster (7 candidates, all PENDING)
+### In Scope — the retrieval-class + recall-shape cluster (3 DONE, 4 PENDING)
 
 **Cluster A — retrieval-class routing (C2-A gates C2-B/C2-C):**
 
-| Candidate | One-line | Seam (file:line) | Lev/Eff | Class |
-|-----------|----------|------------------|---------|-------|
-| **C2-A** | New `retrieval-class-classifier.ts` (SingleHop/MultiHop/Temporal/Entity/Quote) as an additive THIRD axis → `RouteResult.retrievalClass`; gates C2-B + C2-C | `query-router.ts:46-52` | H/M | BUILD-new (gating) |
-| **C2-C** | Graph-expansion gating per retrieval-class via the EXISTING `preserved`/`includeDegree` primitive (SingleHopFactual → graph off) | `query-router.ts:238-254` | H/S | PROMOTE (extend primitive) |
-| **C2-B** | Per-class `RetrievalProfile` → `RankedList.weight` injection at the pre-fusion seam (honors `weight:0`) | `rrf-fusion.ts:83-86, :350` | H/S→M | PROMOTE seam (C-X1 dep satisfied) |
+| Candidate | Status | One-line | Seam (file:line) | Lev/Eff | Class |
+|-----------|--------|----------|------------------|---------|-------|
+| **C2-A** | DONE | New `retrieval-class-classifier.ts` (SingleHop/MultiHop/Temporal/Entity/Quote) as an additive THIRD axis → `RouteResult.retrievalClass`; gates C2-B + C2-C | `query-router.ts:46-52` | H/M | BUILD-new (gating) |
+| **C2-C** | DONE | Graph-expansion gating per retrieval-class via the EXISTING `preserved`/`includeDegree` primitive (SingleHopFactual → graph off) | `query-router.ts:238-254` | H/S | PROMOTE (extend primitive) |
+| **C2-B** | DONE (default-off mechanism; calibration pending) | Per-class `RetrievalProfile` → `RankedList.weight` injection at the pre-fusion seam (honors `weight:0`) | `rrf-fusion.ts:83-86, :350` | H/S→M | PROMOTE seam (C-X1 dep satisfied) |
 
 **Cluster B — recall-shape (route/budget by retrieval shape; shares the theme):**
 
-| Candidate | One-line | Seam (file:line) | Lev/Eff | Class |
-|-----------|----------|------------------|---------|-------|
-| **CG-iterative-context-extension** | New `memory_context` strategy: answer-as-next-query recall with a hard iteration cap + convergence stop, behind a default-off flag | `handlers/memory-context.ts` (new strategy key + switch case) | H/M | BUILD-new (one new convergence primitive) |
-| **MEM-tiered-recall-budget** | Per-section + per-tier token budgets (hot=full / cold=summary / dormant=metadata) replacing one flat pressure ratio | `lib/cognitive/pressure-monitor.ts` + `handlers/memory-context.ts:492` | H/M | BUILD (extends partial) |
-| **LT-compaction-fallback-ladder** | Add a "summarize the lowest-value results" rung on top of the EXISTING graceful truncation ladder (only the LLM-summarize rung is net-new) | `handlers/memory-context.ts:492-532` (`enforceTokenBudget`) | M/S | BUILD (extends ~70%-shipped ladder) |
+| Candidate | Status | One-line | Seam (file:line) | Lev/Eff | Class |
+|-----------|--------|----------|------------------|---------|-------|
+| **CG-iterative-context-extension** | PENDING — needs bounded recall-strategy design + benchmark gate | New `memory_context` strategy: answer-as-next-query recall with a hard iteration cap + convergence stop, behind a default-off flag | `handlers/memory-context.ts` (new strategy key + switch case) | H/M | BUILD-new (one new convergence primitive) |
+| **MEM-tiered-recall-budget** | PENDING — needs budget-shape benchmark acceptance | Per-section + per-tier token budgets (hot=full / cold=summary / dormant=metadata) replacing one flat pressure ratio | `lib/cognitive/pressure-monitor.ts` + `handlers/memory-context.ts:492` | H/M | BUILD (extends partial) |
+| **LT-compaction-fallback-ladder** | PENDING — summarize rung needs deterministic summarizer contract | Add a "summarize the lowest-value results" rung on top of the EXISTING graceful truncation ladder (only the LLM-summarize rung is net-new) | `handlers/memory-context.ts:492-532` (`enforceTokenBudget`) | M/S | BUILD (extends ~70%-shipped ladder) |
 
 **Cluster C — cross-cutting facet:**
 
-| Candidate | One-line | Seam (file:line) | Lev/Eff | Class |
-|-----------|----------|------------------|---------|-------|
-| **C-G2** | Index-time auto-classified cross-cutting topic facet (decisions/problems/milestones), orthogonal to spec_folder/contextType, queryable as an independent recall filter; seed from existing keyword machinery | `handlers/chunking-orchestrator.ts:246-247` + `lib/search/artifact-routing.ts:179` | Low-lev/M | BUILD-new (keep-or-cut decision first) |
+| Candidate | Status | One-line | Seam (file:line) | Lev/Eff | Class |
+|-----------|--------|----------|------------------|---------|-------|
+| **C-G2** | PENDING — keep-or-cut overlap check not run | Index-time auto-classified cross-cutting topic facet (decisions/problems/milestones), orthogonal to spec_folder/contextType, queryable as an independent recall filter; seed from existing keyword machinery | `handlers/chunking-orchestrator.ts:246-247` + `lib/search/artifact-routing.ts:179` | Low-lev/M | BUILD-new (keep-or-cut decision first) |
 
 ### Out of Scope
 - The four sibling subsystems (Code Graph, Skill Advisor, Deep Loop) — covered by sibling 028 phases (`002-code-graph`, `003-skill-advisor`, `004-deep-loop`) — including the Code-Graph analogue of this same spine (Q3-C1 PPR / Q4-C1) which lives in `002-code-graph`.
@@ -124,13 +124,26 @@ Give recall a retrieval-shape axis: classify each query's shape (single-hop / mu
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `mcp_server/lib/search/retrieval-class-classifier.ts` | Create | C2-A: the 5-class retrieval-shape classifier (new module) |
+| `mcp_server/lib/search/retrieval-profile.ts` | Create | C2-B: MCP-side default-off profile application before hybrid fusion |
 | `mcp_server/lib/search/query-router.ts` | Modify | C2-A: add `retrievalClass` to `RouteResult` (additive 3rd axis); C2-C: extend `preserved`/`includeDegree` gating by class |
-| `mcp_server/shared/algorithms/rrf-fusion.ts` | Modify | C2-B: per-class `RankedList.weight` injection at the pre-fusion seam (uses the live `bonusOverChannels` option) |
+| `shared/algorithms/rrf-fusion.ts` | Modify | C2-B: per-class `RankedList.weight` profile helper at the fusion seam (uses the live `bonusOverChannels` option) |
 | `mcp_server/handlers/memory-context.ts` | Modify | CG-iterative-context-extension (new strategy + switch case); MEM-tiered-recall-budget; LT-compaction-fallback-ladder (new summarize rung in `enforceTokenBudget`) |
 | `mcp_server/lib/cognitive/pressure-monitor.ts` | Modify | MEM-tiered-recall-budget: per-section/per-tier budget logic |
 | `mcp_server/handlers/chunking-orchestrator.ts`, `mcp_server/lib/search/artifact-routing.ts` | Modify | C-G2: index-time auto-topic facet (only after the keep-or-cut decision) |
 | Tests alongside each change | Create | Per-candidate unit + adversarial tests |
 <!-- /ANCHOR:scope -->
+
+### Implementation Status (2026-06-19)
+
+| Candidate | Result | Evidence |
+|-----------|--------|----------|
+| C2-A | IMPLEMENTED | `retrieval-class-classifier.ts` pure classifier; `RouteResult.retrievalClass`; adversarial/precedence/neutral tests in `query-router.vitest.ts` |
+| C2-C | IMPLEMENTED | `shouldPreserveGraph` now accepts retrieval class and returns graph-off for SingleHop; route tests cover SingleHop off and MultiHop retained |
+| C2-B | IMPLEMENTED default-off | `SPECKIT_RETRIEVAL_PROFILE_WEIGHTS` gates profile application; shared + MCP profile tests prove flag-off identity and zero-channel active-denominator behavior |
+| CG-iterative-context-extension | LEFT PENDING | Needs bounded iterative strategy design and benchmark acceptance; no `memory_context` strategy changes made here |
+| MEM-tiered-recall-budget | LEFT PENDING | Needs budget-shape benchmark acceptance; no pressure-monitor changes made here |
+| LT-compaction-fallback-ladder | LEFT PENDING | Needs deterministic summarizer contract; no `enforceTokenBudget` changes made here |
+| C-G2 | LEFT PENDING | Keep-or-cut overlap check vs `contextType` + C2-A not run; no index-time facet changes made here |
 
 ---
 

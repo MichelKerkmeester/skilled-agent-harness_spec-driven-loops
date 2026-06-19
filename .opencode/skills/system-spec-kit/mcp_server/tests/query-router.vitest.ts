@@ -24,6 +24,10 @@ import {
   type ChannelName,
   type ChannelRoutingConfig,
 } from '../lib/search/query-router';
+import {
+  classifyRetrievalClass,
+  NEUTRAL_RETRIEVAL_CLASS,
+} from '../lib/search/retrieval-class-classifier';
 import { resetRoutingTelemetry, getSnapshot as getRoutingSnapshot } from '../lib/search/routing-telemetry';
 import { setEnv, restoreEnv, withFeatureFlag } from './__helpers__/test-env';
 
@@ -250,6 +254,7 @@ describe('T026-04: routeQuery Convenience Function', () => {
   it('T20: includes full classification details in result', () => {
     const result = routeQuery('fix bug');
     expect(result.classification).toBeDefined();
+    expect(result.retrievalClass).toBeDefined();
     expect(result.classification.tier).toBe('simple');
     expect(typeof result.classification.features.termCount).toBe('number');
     expect(typeof result.classification.features.charCount).toBe('number');
@@ -272,6 +277,32 @@ describe('T026-04: routeQuery Convenience Function', () => {
     expect(result.channels).toContain('vector');
     expect(result.channels).toContain('fts');
     expect(result.channels).toContain('bm25');
+  });
+});
+
+describe('retrieval class classifier', () => {
+  it.each([
+    ['show the exact quote "graph off" from the note', 'Quote'],
+    ['what changed after 2026-06-01 in the memory router', 'Temporal'],
+    ['why did we choose graph expansion for decisions', 'MultiHop'],
+    ['find retrieval-class-classifier.ts', 'Entity'],
+    ['find the spec for memory search', 'SingleHop'],
+    ['hello', NEUTRAL_RETRIEVAL_CLASS],
+  ] as const)('classifies %j as %s', (query, expected) => {
+    expect(classifyRetrievalClass(query).retrievalClass).toBe(expected);
+  });
+
+  it('uses precedence when one query matches multiple shapes', () => {
+    const result = classifyRetrievalClass('quote the latest decision about AuthRouter');
+    expect(result.retrievalClass).toBe('Quote');
+  });
+
+  it('is total for empty and unmatched queries', () => {
+    for (const query of ['', '   ', 'hello']) {
+      const result = classifyRetrievalClass(query);
+      expect(result.retrievalClass).toBe(NEUTRAL_RETRIEVAL_CLASS);
+      expect(result.confidence).toBe('neutral');
+    }
   });
 });
 
@@ -467,9 +498,18 @@ describe('012-T2: routeQuery graph-preservation', () => {
     expect(result.queryPlan.routingReasons).not.toContain('bm25-preserved-by-artifact-class');
   });
 
-  it('012-T2.2: moderate-tier find_spec query routes graph channel', () => {
+  it('012-T2.2: moderate-tier single-hop find_spec query does not route graph channel', () => {
     const result = routeQuery('find the spec for auth scope');
     expect(result.tier).toBe('moderate');
+    expect(result.retrievalClass).toBe('SingleHop');
+    expect(result.channels).not.toContain('graph');
+    expect(result.queryPlan.routingReasons).not.toContain('graph-preserved-by-intent');
+  });
+
+  it('012-T2.2b: moderate-tier multi-hop query retains graph preservation', () => {
+    const result = routeQuery('why did we choose auth scope');
+    expect(result.tier).toBe('moderate');
+    expect(result.retrievalClass).toBe('MultiHop');
     expect(result.channels).toContain('graph');
     expect(result.queryPlan.routingReasons).toContain('graph-preserved-by-intent');
   });
@@ -590,7 +630,7 @@ describe('012-T3: routing telemetry', () => {
 
   it('012-T3.1: snapshot reports graph rate after mixed routing', () => {
     routeQuery('why chose auth approach');                     // simple find_decision → graph
-    routeQuery('find the spec for tasks');                     // moderate find_spec → graph
+    routeQuery('why did we choose auth scope');                // moderate multi-hop → graph
     routeQuery('refactor');                                    // simple refactor → no graph
     routeQuery('refactor the module quickly');                 // moderate refactor → no graph
     routeQuery('refactor the database connection module now'); // moderate refactor → no graph

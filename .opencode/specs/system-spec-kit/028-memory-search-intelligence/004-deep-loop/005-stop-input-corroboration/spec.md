@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Deep Loop STOP-Input Corroboration (028/004 convergence-hardening cluster)"
-description: "Harden the deep-loop STOP decision without the absent D2 reliability spine: gate the self-graded newInfoRatio (computed and named in the STOP rationale but never consumed by the structured convergence module) behind an independent graph-novelty delta with max() anti-gaming; add the enforceable lag_ceiling backpressure tripwire on top of the already-shipped pool gauges; keep-both cross-lineage contradiction with a CONTRADICTS record; and a periodic in-lineage progress heartbeat. None depend on D2; the shutdown-summary half already shipped via 030 graceful-self-stop. Reliability-weighted learning (D2/D3/Q2) is explicitly out of scope."
+description: "Runtime implementation for the deep-loop STOP-input corroboration cluster: graph-novelty delta + reported-novelty STOP guard, lag-ceiling tripwire, same-id keep-both conflict markers and default-off progress heartbeat are implemented in deep-loop-runtime with deterministic tests. Live benchmark calibration, workflow forwarding of reported novelty and any namespace-aware graph-edge persistence remain explicit gates."
 trigger_phrases:
   - "newInfoRatio audit"
   - "stop input corroboration"
@@ -13,10 +13,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/004-deep-loop/005-stop-input-corroboration"
-    last_updated_at: "2026-06-19T10:30:00+02:00"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored spec"
-    next_safe_action: "Begin novelty audit"
+    last_updated_at: "2026-06-19T13:46:00+02:00"
+    last_updated_by: "codex"
+    recent_action: "Implemented deep-loop-runtime stop-input corroboration seams with default-off/live-safe gates"
+    next_safe_action: "Calibrate live thresholds and wire workflow reported-novelty forwarding"
     blockers: []
     key_files:
       - "spec.md"
@@ -29,7 +29,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-004-005-replan"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 80
     open_questions: []
     answered_questions: []
 ---
@@ -48,7 +48,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Runtime implemented; live benchmark/wiring gates pending |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent research phase** | `028-memory-search-intelligence/004-deep-loop` (Deep Loop — convergence/fan-out/council intelligence) |
@@ -88,16 +88,16 @@ Land the deep-loop **STOP-input corroboration cluster** — the convergence-hard
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
-### In Scope — the STOP-input corroboration cluster (7 candidates: 6 PENDING + 1 DONE)
+### In Scope — the STOP-input corroboration cluster (7 candidates: 6 runtime-implemented + 1 already DONE)
 
 | # | Candidate | One-line | Seam (file:line) | Eff | Status |
 |---|-----------|----------|------------------|-----|--------|
-| C1 | **DL-newInfoRatio-audit** | compute `computeGraphNoveltyDelta(nodes, edges, snapshots)` = fraction of NEW FINDING/SOURCE/EVIDENCE_FOR nodes+edges since the prior persisted snapshot (convergence already loads snapshots); the independent, un-gameable corroboration signal for the self-graded ratio | `convergence.cjs:338,390-399` (snapshots), `:330-331` (nodes/edges), new helper | M | PENDING (needs-benchmark) |
-| C2 | **DL-newInfoRatio-consumption** | wire the C1 delta into the structured STOP: pass the reducer's rolling-ratio as `--reported-novelty`; add a BLOCKING guard `novelty_self_report_unverified` (STOP_ALLOWED would fire AND `reportedNovelty < threshold` BUT `graphNoveltyDelta > floor` → STOP_BLOCKED); `effectiveNovelty = max(reported, graphDelta)` anti-gaming; absent report → no-op (backward-safe) | `convergence.cjs:191-223,285,298-322,378-381` | M | PENDING (needs-benchmark, needs C1) |
-| C3 | **Q4-backpressure-enforcement** | add an enforceable `lag_ceiling` (default-5s warn, aionforge) tripwire on top of the already-shipped `lag`/`pending`/`failed` gauges; the loop HONORS the tripwire (advisory cost-guards stay advisory; this is the net-new enforced gauge path) | `cost-guards.cjs:15-20,114-140`; gauges from `fanout-pool.cjs:90,108,235-238` (shipped `46812f12a8`) | M | PENDING (needs-benchmark) |
-| C4 | **DL-cross-lineage-contradiction** | when two lineages report the same id with substantively different content, keep BOTH instead of first-seen-wins discard; victim by canonical content-derived order (never arrival), reusing 001's total-comparator discipline | `fanout-merge.cjs:66-82` | M | PENDING (needs-benchmark) |
-| C5 | **DL-cross-lineage-contradiction-record** | emit a CONTRADICTS / `_conflicts` marker for the kept-both pair (the write primitive `coverage-graph-query.ts:221` is real); confirm at impl time whether merge or a downstream upsert dedupes by id/content_hash before relying on keep-both | `fanout-merge.cjs:66-82`; `coverage-graph-query.ts:221`; verify `upsert.cjs` dedup | M | PENDING (needs-benchmark, anchor-confirm) |
-| C6 | **DL-progress-heartbeat** | periodic progress heartbeat at a configurable cadence WITHIN a long single lineage (default ~300s, 0=disable); distinct from the shipped shutdown `stopped` marker and from the lock-TTL heartbeat | `fanout-run.cjs` lineage worker; `loop-lock.cjs:24-26` (TTL-only); `fanout-pool.cjs:81-108` (ledger) | S | PENDING (needs-benchmark) |
+| C1 | **DL-newInfoRatio-audit** | compute `computeGraphNoveltyDelta(nodes, edges, snapshots)` = fraction of NEW FINDING/SOURCE/EVIDENCE_FOR nodes+edges since the prior persisted snapshot (convergence already loads snapshots); the independent, un-gameable corroboration signal for the self-graded ratio | `convergence.cjs:338,390-399` (snapshots), `:330-331` (nodes/edges), new helper | M | **DONE** (runtime; benchmark threshold calibration pending) |
+| C2 | **DL-newInfoRatio-consumption** | wire the C1 delta into the structured STOP: pass the reducer's rolling-ratio as `--reported-novelty`; add a BLOCKING guard `novelty_self_report_unverified` (STOP_ALLOWED would fire AND `reportedNovelty < threshold` BUT `graphNoveltyDelta > floor` → STOP_BLOCKED); `effectiveNovelty = max(reported, graphDelta)` anti-gaming; absent report → no-op (backward-safe) | `convergence.cjs:191-223,285,298-322,378-381` | M | **DONE** (runtime arg/guard; workflow forwarding + benchmark calibration pending) |
+| C3 | **Q4-backpressure-enforcement** | add an enforceable `lag_ceiling` (default-5s warn, aionforge) tripwire on top of the already-shipped `lag`/`pending`/`failed` gauges; the loop HONORS the tripwire (advisory cost-guards stay advisory; this is the net-new enforced gauge path) | `cost-guards.cjs:15-20,114-140`; gauges from `fanout-pool.cjs:90,108,235-238` (shipped `46812f12a8`) | M | **DONE** (runtime; fanout default-off until benchmarked) |
+| C4 | **DL-cross-lineage-contradiction** | when two lineages report the same id with substantively different content, keep BOTH instead of first-seen-wins discard; victim by canonical content-derived order (never arrival), reusing 001's total-comparator discipline | `fanout-merge.cjs:66-82` | M | **DONE** |
+| C5 | **DL-cross-lineage-contradiction-record** | emit a CONTRADICTS / `_conflicts` marker for the kept-both pair (the write primitive `coverage-graph-query.ts:221` is real); confirm at impl time whether merge or a downstream upsert dedupes by id/content_hash before relying on keep-both | `fanout-merge.cjs:66-82`; `coverage-graph-query.ts:221`; verify `upsert.cjs` dedup | M | **DONE** (`_conflicts` marker; namespace-aware graph-edge persistence not attempted from merge) |
+| C6 | **DL-progress-heartbeat** | periodic progress heartbeat at a configurable cadence WITHIN a long single lineage (default ~300s, 0=disable); distinct from the shipped shutdown `stopped` marker and from the lock-TTL heartbeat | `fanout-run.cjs` lineage worker; `loop-lock.cjs:24-26` (TTL-only); `fanout-pool.cjs:81-108` (ledger) | S | **DONE** (default-off; cadence benchmark pending) |
 | C7 | **DL-shutdown-summary-heartbeat** | a distinct `stopped`-marked partial summary flushed on SIGINT/SIGTERM (the shutdown half of the iter-7 progress/shutdown pair) | `fanout-run.cjs:510-541` | S | **DONE** (commit `46812f12a8`) |
 
 > Build order (dependency-driven): **C1 → C2** (the novelty audit produces the delta the consumption guard ingests), then **C3** (independent enforcement), then **C4 → C5** (keep-both gates the record), then **C6** (independent observability). **C7 is already shipped** — recorded for completeness, NOT re-implemented. See `plan.md`.
@@ -119,7 +119,7 @@ Land the deep-loop **STOP-input corroboration cluster** — the convergence-hard
 | `.opencode/skills/deep-loop-runtime/lib/council/cost-guards.cjs` | Modify (lag_ceiling + enforce path) | C3 |
 | `.opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs` | Modify (keep-both + CONTRADICTS record) | C4, C5 |
 | `.opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs` | Modify (in-lineage progress emitter) | C6 |
-| `.opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs` | Possibly extend (forward rolling-ratio as `--reported-novelty`) | C2 |
+| `.opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs` | Deferred gate (forward rolling-ratio as `--reported-novelty`) | C2 |
 | Tests alongside each change (deep-loop-runtime test suite) | Create/Modify | all PENDING |
 
 <!-- /ANCHOR:scope -->
@@ -230,11 +230,11 @@ Land the deep-loop **STOP-input corroboration cluster** — the convergence-hard
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- What floor (graph-novelty delta) and disagreement tolerance correctly separate a gaming under-report from a legitimate low-novelty bookkeeping iteration? **PENDING — calibrate at C1/C2 implementation time on real snapshot histories** (iter-18 marked floor+tolerance uncalibrated). This is why C1/C2 are needs-benchmark.
-- Does the orchestrator actually forward the reducer's rolling-ratio to `convergence.cjs`, or must `reduce-state.cjs` be extended to pass `--reported-novelty`? **PENDING — confirm the wiring at C2 implementation time** (iter-18 WHAT-BREAKS: "loops on raw self-report until the orchestrator forwards rolling-ratio").
-- Does the merge OR a downstream `upsert.cjs` dedupe by id/content_hash such that an overwrite would clobber the kept-both pair? **PENDING — confirm at C4/C5 implementation time** (iter-13 F13-04 unlocated keep-both anchor; 0/269 merge|same-id|keep-both matches in upsert.cjs).
-- Is `~300s` the right heartbeat cadence for the deep-loop CLI cost profile, and are long-lineage stalls real enough pain to default it ON? **PENDING — benchmark before defaulting on; default to `0`/configurable until measured** (iter-12 E12-04 NEEDS-BENCHMARK).
-- Is `lag_ceiling=5s` (aionforge default) right for a fan-out where each lineage is a full multi-minute CLI dispatch, or should it be far higher? **PENDING — confirm at C3 implementation time; default conservative, make it config-overridable.**
+- What floor (graph-novelty delta) and disagreement tolerance correctly separate a gaming under-report from a legitimate low-novelty bookkeeping iteration? **PENDING — calibrate on real snapshot histories before changing live defaults.**
+- Does the orchestrator actually forward the reducer's rolling-ratio to `convergence.cjs`, or must `reduce-state.cjs` be extended to pass `--reported-novelty`? **PENDING — runtime supports the arg; workflow forwarding was left untouched because this implementation was scoped to deep-loop-runtime.**
+- Does the merge OR a downstream `upsert.cjs` dedupe by id/content_hash such that an overwrite would clobber the kept-both pair? **ANSWERED for runtime merge — same-id/different-content records are rewritten to content-derived ids before downstream upsert; namespace-aware graph-edge persistence remains a separate gate.**
+- Is `~300s` the right heartbeat cadence for the deep-loop CLI cost profile, and are long-lineage stalls real enough pain to default it ON? **PENDING — benchmark before defaulting on; runtime default remains `0`/disabled.**
+- Is `lag_ceiling=5s` (aionforge default) right for a fan-out where each lineage is a full multi-minute CLI dispatch, or should it be far higher? **PENDING — cost-guard default exists for pure evaluation; fanout tripwire remains default-off until measured.**
 
 <!-- /ANCHOR:questions -->
 ---

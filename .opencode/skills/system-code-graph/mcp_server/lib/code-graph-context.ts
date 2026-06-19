@@ -131,6 +131,14 @@ interface ContextNodeSummary {
   line: number;
 }
 
+type ContextEdgeResult = graphDb.CodeEdgeTargetResult | graphDb.CodeEdgeSourceResult;
+
+interface RankedContextEdge<T extends ContextEdgeResult> {
+  readonly result: T;
+  readonly rankScore: number;
+  readonly tieKey: readonly string[];
+}
+
 function defaultDeadlineMsForProfile(profile: ContextArgs['profile']): number {
   switch (profile) {
     case 'quick':
@@ -376,19 +384,79 @@ function contextEdgeReliability(edge: graphDb.CodeEdgeTargetResult['edge'] | gra
   return clampConfidence(edge.metadata?.confidence) * evidenceClassFactor;
 }
 
-function rankContextEdges<T extends { readonly edge: graphDb.CodeEdgeTargetResult['edge'] | graphDb.CodeEdgeSourceResult['edge'] }>(
+function stableTieValue(value: unknown): string | null {
+  if (typeof value !== 'string') return null;
+  const trimmed = value.trim();
+  return trimmed.length > 0 ? trimmed : null;
+}
+
+function contextEdgeTieKey(result: ContextEdgeResult): readonly string[] {
+  const relatedNode = 'targetNode' in result ? result.targetNode : result.sourceNode;
+  const relatedSymbolId = 'targetNode' in result ? result.edge.targetId : result.edge.sourceId;
+  const primaryKey =
+    stableTieValue(relatedNode?.contentHash)
+    ?? stableTieValue(relatedSymbolId)
+    ?? stableTieValue(result.edge.sourceId)
+    ?? stableTieValue(result.edge.targetId)
+    ?? '';
+
+  return [
+    primaryKey,
+    stableTieValue(relatedSymbolId) ?? '',
+    stableTieValue(relatedNode?.filePath) ?? '',
+    stableTieValue(relatedNode?.fqName) ?? '',
+    stableTieValue(result.edge.edgeType) ?? '',
+    stableTieValue(result.edge.sourceId) ?? '',
+    stableTieValue(result.edge.targetId) ?? '',
+  ];
+}
+
+function compareStrings(left: string, right: string): number {
+  if (left < right) return -1;
+  if (left > right) return 1;
+  return 0;
+}
+
+function compareRankedContextEdges<T extends ContextEdgeResult>(
+  left: RankedContextEdge<T>,
+  right: RankedContextEdge<T>,
+): number {
+  if (left.rankScore > right.rankScore) return -1;
+  if (left.rankScore < right.rankScore) return 1;
+
+  const maxLength = Math.max(left.tieKey.length, right.tieKey.length);
+  for (let index = 0; index < maxLength; index += 1) {
+    const compared = compareStrings(left.tieKey[index] ?? '', right.tieKey[index] ?? '');
+    if (compared !== 0) return compared;
+  }
+  return 0;
+}
+
+function rankContextEdges<T extends ContextEdgeResult>(
   results: readonly T[],
 ): T[] {
   return results
-    .map((result, index) => {
+    .map((result) => ({
+      result,
+      tieKey: contextEdgeTieKey(result),
+    }))
+    .sort((left, right) => {
+      const maxLength = Math.max(left.tieKey.length, right.tieKey.length);
+      for (let index = 0; index < maxLength; index += 1) {
+        const compared = compareStrings(left.tieKey[index] ?? '', right.tieKey[index] ?? '');
+        if (compared !== 0) return compared;
+      }
+      return 0;
+    })
+    .map(({ result, tieKey }, index): RankedContextEdge<T> => {
       const baselineRankScore = 1 / (CONTEXT_EDGE_RRF_K + index + 1);
       return {
         result,
-        index,
         rankScore: baselineRankScore + contextEdgeReliability(result.edge),
+        tieKey,
       };
     })
-    .sort((left, right) => (right.rankScore - left.rankScore) || (left.index - right.index))
+    .sort(compareRankedContextEdges)
     .map((ranked) => ranked.result);
 }
 

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Retrieval-Class Routing & Recall-Shape Intelligence (028/001 impl)"
-description: "Re-plan stage record for the retrieval-shape cluster. NOT YET IMPLEMENTED — this summary documents the planned-but-unbuilt state so the spec folder validates at Level 3; it carries no completion claim."
+description: "Partial implementation record: C2-A, C2-C, and the default-off C2-B mechanism are implemented; recall-shape and benchmark-gated ranking calibration remain pending."
 trigger_phrases:
   - "retrieval class routing implementation summary"
   - "c2-a c2-b c2-c status"
@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/003-retrieval-class-routing"
-    last_updated_at: "2026-06-19T07:40:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Recorded re-plan state (cluster planned, not yet built)"
-    next_safe_action: "Build C2-A classifier as the additive third router axis"
+    last_updated_at: "2026-06-19T11:40:16Z"
+    last_updated_by: "codex-gpt-5"
+    recent_action: "Summarized C2-A/C2-C/C2-B"
+    next_safe_action: "Implement pending recall gates"
     blockers: []
     key_files:
       - "implementation-summary.md"
@@ -26,7 +26,7 @@ _memory:
       fingerprint: "sha256:3c0e0998148e8397f22100775a58904048dd9b17123871071df532b9ea48da26"
       session_id: "2026-06-19-028-001-003-retrieval-class-routing-replan"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 45
     open_questions: []
     answered_questions: []
 ---
@@ -44,7 +44,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 028-memory-search-intelligence/001-speckit-memory/003-retrieval-class-routing |
-| **Completed** | NOT YET — re-plan stage (planning only) |
+| **Completed** | PARTIAL - C2-A/C2-C/C2-B implemented; recall-shape and C-G2 remain pending |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
@@ -53,9 +53,16 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing is built yet. This document exists to record the re-plan state: the retrieval-shape cluster has been scoped, sequenced, and grounded in the 028 research, but no code has changed. It is the standing summary you read when you resume this sub-phase, and it will be rewritten once the first candidate ships.
+C2-A, C2-C, and the C2-B mechanism are built in the Memory MCP search path. The implemented slice adds a deterministic retrieval-class axis, consumes it in query routing, and wires default-off retrieval profiles into the pre-fusion ranking seam without changing flags-off behavior.
 
-The cluster you are about to build gives Memory MCP recall a third routing axis. Today the query router reads two orthogonal classifiers (complexity tier and task intent) and expands the causal graph the same way for a single-hop "find this exact fact" query as for a multi-hop "trace impact" query, which the research names as a precision-killing failure mode. The planned work adds the C2-A retrieval-class classifier, then routes by it: C2-C turns graph expansion off for single-hop, C2-B injects per-class channel weights at the pre-fusion seam, and the recall-shape family (iterative context extension, tiered recall budget, summarize-before-truncate ladder) plus the C-G2 topic facet size and shape recall by that same retrieval shape.
+Built artifacts:
+
+- `mcp_server/lib/search/retrieval-class-classifier.ts`: pure classifier for SingleHop, MultiHop, Temporal, Entity, Quote, and Neutral, with deterministic precedence.
+- `mcp_server/lib/search/query-router.ts`: additive `retrievalClass` on `RouteResult` and single-hop graph preservation suppression through the existing graph-preservation primitive.
+- `shared/algorithms/rrf-fusion.ts`: shared retrieval profile model and flag parser.
+- `mcp_server/lib/search/retrieval-profile.ts`: MCP-side profile resolver used by the live search path without depending on generated shared dist artifacts.
+- `mcp_server/lib/search/hybrid-search.ts`: profile-adjusted channel weights before fusion, guarded by `SPECKIT_RETRIEVAL_PROFILE_WEIGHTS`.
+- Tests in `query-router.vitest.ts`, `unit-rrf-fusion.vitest.ts`, and `retrieval-profile.vitest.ts`.
 
 ### Status snapshot
 
@@ -63,12 +70,12 @@ Every candidate is PENDING. None was implemented in the flat Wave-0 (packet 030)
 
 | Candidate | Status | Gate |
 |-----------|--------|------|
-| C2-A retrieval-class classifier | PENDING | needs-build (gates C2-B + C2-C) |
-| C2-C graph-expansion gating per class | PENDING | gated by C2-A (shared-infra dep) |
-| C2-B per-class weight injection | PENDING | gated by C2-A; C-X1 dep SATISFIED (030 `65cfcea513`) |
-| CG-iterative-context-extension | PENDING | needs-benchmark + net-new convergence primitive; default-off flag |
-| MEM-tiered-recall-budget | PENDING | needs-benchmark; extends partial pressure-monitor |
-| LT-compaction-fallback-ladder | PENDING | extends ~70%-shipped ladder; only summarize rung net-new |
+| C2-A retrieval-class classifier | DONE | default-on pure routing axis |
+| C2-C graph-expansion gating per class | DONE | default-on SingleHop graph-off; MultiHop unchanged |
+| C2-B per-class weight injection | DONE | mechanism default-off behind `SPECKIT_RETRIEVAL_PROFILE_WEIGHTS`; benchmark calibration pending |
+| CG-iterative-context-extension | PENDING | needs bounded recall-strategy design + benchmark gate |
+| MEM-tiered-recall-budget | PENDING | needs budget-shape benchmark gate |
+| LT-compaction-fallback-ladder | PENDING | needs deterministic summarizer contract |
 | C-G2 topic facet | PENDING | keep-or-cut decision first (overlaps contextType + C2-A) |
 <!-- /ANCHOR:what-built -->
 
@@ -77,7 +84,9 @@ Every candidate is PENDING. None was implemented in the flat Wave-0 (packet 030)
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered yet. The intended delivery is one candidate at a time, each a scoped, separately reversible commit with its own test, following the plan.md sequence: C2-A first (the gate), then C2-C and C2-B as consumers, with the recall-shape family in parallel and C-G2 behind its keep-or-cut gate. Intelligence-class items ship behind default-off flags with shadow telemetry; correctness-class plumbing may default-on. The verification gate per candidate is typecheck/build green, the existing Memory MCP suite green, a neutral-profile byte-identity regression, an independent adversarial review, and `validate.sh --strict` on this packet.
+C2-A shipped first as the additive classifier. C2-C then consumed that axis through the existing graph preservation primitive, keeping the minimum-channel behavior in the router intact. C2-B shipped as a default-off mechanism because tuned per-class ranking values require benchmark evidence; flags-off behavior is covered by byte-identity tests.
+
+The recall-shape family and C-G2 were intentionally left pending because their acceptance requires benchmark deltas, deterministic summarization design, or a keep-or-cut overlap gate that cannot be satisfied under the requested code-and-unit-test-only constraint.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -100,10 +109,14 @@ Not delivered yet. The intended delivery is one candidate at a time, each a scop
 
 | Check | Result |
 |-------|--------|
-| Spec-folder strict validation (`validate.sh --strict`) | PASS (re-plan docs; see report) |
-| Code implemented | NOT STARTED — re-plan stage, no code changed |
-| Per-candidate tests | NOT STARTED |
-| Neutral-profile byte-identity regression | NOT STARTED (baseline capture is task T016) |
+| Baseline Memory MCP typecheck | PASS - `npm run typecheck`, 0 errors before edits |
+| Baseline broad related Vitest | PASS - 7 files / 265 tests before edits |
+| Final Memory MCP typecheck | PASS - `npm run typecheck`, 0 errors |
+| Final shared typecheck | PASS - `npm run typecheck`, 0 errors |
+| Final broad related Vitest | PASS - 8 files / 281 tests |
+| Spec-folder strict validation (`validate.sh --strict`) | PASS - 0 errors, 0 warnings |
+| Comment hygiene | PASS - no code-comment scope labels added |
+| Neutral-profile byte-identity regression | PASS - flags-off/profile-neutral tests preserve fused output |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -111,7 +124,8 @@ Not delivered yet. The intended delivery is one candidate at a time, each a scop
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Re-plan only.** No candidate is implemented. This summary is a placeholder-of-record so the Level-3 folder validates; it makes no completion claim.
-2. **No measured benefit numbers.** Every leverage/effort rating in scope is structural inference (028 §6). The per-class weight calibration is a separate benchmark follow-up; reindex is gate-zero per 027/002 §13.
-3. **C-G2 may be cut.** Its build is contingent on the REQ-007 keep-or-cut overlap check passing.
+1. **No live benchmark/reindex/scan was run.** The user explicitly constrained this pass to code and unit tests, so benchmark acceptance remains open where required.
+2. **C2-B values are not calibrated.** The profile mechanism is implemented behind `SPECKIT_RETRIEVAL_PROFILE_WEIGHTS`; benchmark evidence is still required before changing default ranking behavior.
+3. **Recall-shape candidates remain pending.** Iterative recall, tiered budgets, and summarization-before-truncation need design or benchmark gates outside this pass.
+4. **C-G2 may be cut.** Its build is contingent on the keep-or-cut overlap check passing.
 <!-- /ANCHOR:limitations -->

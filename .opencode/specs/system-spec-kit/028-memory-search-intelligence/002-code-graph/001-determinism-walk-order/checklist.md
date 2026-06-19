@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: Code-Graph Determinism + Walk-Order"
-description: "Level-2 verification checklist for the code-graph determinism + walk-order sub-phase: the shipped Q4-C1 RRF-additive trust predecessor (verified, commit e21caf5de6) plus the three gated PENDING follow-ups recorded as documented deferrals with their gates."
+description: "Level-2 verification checklist for the code-graph determinism + walk-order sub-phase: the shipped Q4-C1 RRF-additive trust predecessor, implemented det-context-order-global, and two gated PENDING follow-ups recorded with their gates."
 trigger_phrases:
   - "checklist code graph determinism walk order"
   - "Q4-C1 order-stability verification"
@@ -24,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-002-determinism-walk-order"
       parent_session_id: null
-    completion_pct: 25
+    completion_pct: 50
     open_questions: []
     answered_questions: []
 ---
@@ -55,7 +55,7 @@ _memory:
 - [x] CHK-002 [P0] Technical approach defined in plan.md
   - **Evidence**: `plan.md` includes summary, architecture (one finalize/rank seam), phases, testing, dependencies, rollback, and the L2 addenda.
 - [x] CHK-003 [P1] Dependencies identified and available
-  - **Evidence**: `plan.md` section 6 lists the shipped Q4-C1 blend (green), the 001 total-comparator + `fuseResultsMulti` signature (foundation), and the missing retrieval benchmark (red, gates tuning).
+  - **Evidence**: `plan.md` section 6 lists the shipped Q4-C1 blend, the local det-order implementation, the isolation-compatible shared-fuser gate, and the missing retrieval benchmark.
 
 <!-- /ANCHOR:pre-impl -->
 ---
@@ -68,7 +68,7 @@ _memory:
 - [x] CHK-011 [P0] Neutral edge byte-identical to the rowid baseline
   - **Evidence**: a neutral edge scores `1/(61+index)`, byte-verified against the pre-change output; the order-stability ship criterion (`030` §14 cand 13).
 - [x] CHK-012 [P1] PENDING residue follows the reuse-not-fork pattern
-  - **Evidence**: det-order reuses the 001 total-comparator; the fuser adapter promotes `fuseResultsMulti` (no code-graph-specific fuser) — recorded in `spec.md` section 3 and `plan.md` section 3.
+  - **Evidence**: det-order is implemented locally in the isolated code-graph seam; the fuser adapter remains pending instead of forking a code-graph-specific fuser — recorded in `spec.md` section 3 and `plan.md` section 3.
 - [x] CHK-013 [P1] Code follows project patterns
   - **Evidence**: candidate seams and the consume-the-shared-signature contract mirror the 001 determinism foundation sub-phase.
 
@@ -80,10 +80,10 @@ _memory:
 
 - [x] CHK-020 [P0] Shipped Q4-C1 acceptance criteria met (REQ-001)
   - **Evidence**: 56 code-graph ranking/impact/gold-battery tests pass incl. neutral-byte-identical + trusted-boost; the 8 full-package failures are unrelated IPC sandbox EPERM (`e21caf5de6`).
-- [x] CHK-021 [P1] det-order cross-rebuild reproducibility test planned (REQ-002)
-  - **Evidence**: a property test (same query, same order before/after a destructive reindex that shifts DB row order) is named as the verification gate; not built — gated on the 001 total-comparator (`plan.md` section 5).
+- [x] CHK-021 [P1] det-order cross-rebuild reproducibility test implemented (REQ-002)
+  - **Evidence**: `code-graph-context-handler.vitest.ts` verifies equal-trust impact callers return identical order across shifted DB row orders.
 - [x] CHK-022 [P1] Fuser-adapter dual-channel test planned (REQ-003)
-  - **Evidence**: CALLS+IMPORTS fuse by rank with a cross-channel bonus; single-channel degrades cleanly; not built — gated on the 001 `fuseResultsMulti` signature (`plan.md` section 5).
+  - **Evidence**: CALLS+IMPORTS fuse by rank with a cross-channel bonus; single-channel degrades cleanly; not built — gated on an isolation-compatible shared-fuser consume path (`plan.md` section 5).
 - [x] CHK-023 [P1] Q4-C1 tuning is benchmark-gated (REQ-004)
   - **Evidence**: re-tune `CONTEXT_EDGE_EVIDENCE_RANK_FACTORS` only against a retrieval benchmark; the neutral-fallback gate is non-negotiable; benchmark does not exist campaign-wide (`synthesis/03` §B).
 
@@ -93,8 +93,8 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [x] CHK-024 [P0] Every candidate has a final status (1 DONE-with-commit, 3 PENDING-with-gate)
-  - **Evidence**: `spec.md` section 11 — Q4-C1 DONE (`e21caf5de6`); det-order, fuser adapter, tuning PENDING with gates.
+- [x] CHK-024 [P0] Every candidate has a final status (2 DONE, 2 PENDING-with-gate)
+  - **Evidence**: `spec.md` section 11 — Q4-C1 DONE (`e21caf5de6`); det-order DONE; fuser adapter and tuning PENDING with gates.
 - [x] CHK-025 [P1] Out-of-scope cluster recorded, not silently dropped
   - **Evidence**: Q1-C1 bi-temporal, Q3-C1 PPR, Q6-* watermark, CG-edge-staleness recorded as other sub-phases in `spec.md` section 3 Out of Scope.
 
@@ -118,11 +118,11 @@ _memory:
 ## Documentation
 
 - [x] CHK-040 [P1] Spec/plan/tasks/impl-summary synchronized
-  - **Evidence**: all four describe the same 1-DONE / 3-PENDING candidate set keyed to the `code-graph-context.ts` finalize/rank seam.
+  - **Evidence**: all four describe the same 2-DONE / 2-PENDING candidate set keyed to the `code-graph-context.ts` finalize/rank seam.
 - [x] CHK-041 [P1] Research citations present per candidate
   - **Evidence**: each candidate cites `research.md` / `roadmap.md` / `synthesis/0{1,3,4}` and the `030` §14 commit for the shipped predecessor.
 - [x] CHK-042 [P2] Cross-subsystem contract documented
-  - **Evidence**: the consume-the-shared-signature relationship (001 total-comparator + `fuseResultsMulti`, zero Memory coupling) is recorded in `spec.md` section 3 and `plan.md` section 3.
+  - **Evidence**: det-order's isolation-compatible local implementation and the remaining `fuseResultsMulti` consume-path gate are recorded in `spec.md` section 3 and `plan.md` section 3.
 
 <!-- /ANCHOR:docs -->
 ---
@@ -148,6 +148,6 @@ _memory:
 | P2 Items | 2 | 2/2 |
 
 **Verification Date**: 2026-06-19
-**Verified By**: Planning-phase authoring (Q4-C1 shipped/verified; residue gated, deferral documented)
+**Verified By**: Implementation pass (Q4-C1 shipped/verified; det-order implemented; residue gated, deferral documented)
 
 <!-- /ANCHOR:summary -->

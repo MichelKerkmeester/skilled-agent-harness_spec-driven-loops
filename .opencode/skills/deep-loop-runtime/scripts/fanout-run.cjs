@@ -173,6 +173,15 @@ function updateLineageSnapshot(snapshots, event) {
   }
   if (event.event === 'retry_scheduled' || event.event === 'orphan_requeued') {
     snapshots.set(event.label, { ...existing, status: 'requeued', updated_at_iso: event.at });
+    return;
+  }
+  if (event.event === 'progress') {
+    snapshots.set(event.label, {
+      ...existing,
+      status: 'running',
+      updated_at_iso: event.at,
+      duration_ms: event.duration_ms,
+    });
   }
 }
 
@@ -279,6 +288,30 @@ function computeLineageTimeoutMs(lineage) {
   const iters = lineage.iterations || 12;
   const perIterSecs = lineage.timeoutSeconds || 900;
   return Math.min(iters * perIterSecs * 2 * 1000, 4 * 60 * 60 * 1000);
+}
+
+function normalizeProgressHeartbeatMs(seconds) {
+  const value = Number(seconds);
+  if (!Number.isFinite(value) || value <= 0) return 0;
+  return Math.max(1, Math.floor(value * 1000));
+}
+
+function startLineageProgressHeartbeat({ cadenceMs, label, ledgerPath, getGauges }) {
+  if (!Number.isFinite(cadenceMs) || cadenceMs <= 0) {
+    return () => {};
+  }
+  const startedAtMs = Date.now();
+  const timer = setInterval(() => {
+    appendStatusLedger(ledgerPath, {
+      event: 'progress',
+      label,
+      at: new Date().toISOString(),
+      duration_ms: Math.max(0, Date.now() - startedAtMs),
+      gauges: getGauges(),
+    });
+  }, cadenceMs);
+  timer.unref?.();
+  return () => clearInterval(timer);
 }
 
 /**
@@ -478,6 +511,7 @@ async function main() {
 
   const fanoutConfig = parseFanoutConfig(rawConfig);
   const allLineages = expandLineages(fanoutConfig);
+  const progressHeartbeatMs = normalizeProgressHeartbeatMs(fanoutConfig.progressHeartbeatSeconds);
 
   // Fan-out pool handles CLI lineages only; native lineages are dispatched by the YAML step.
   const cliLineages = allLineages.filter((l) => l.kind !== 'native');
@@ -554,6 +588,7 @@ async function main() {
     items: cliLineages,
     concurrency: fanoutConfig.concurrency,
     maxRetries: fanoutConfig.maxRetries,
+    lagCeilingMs: fanoutConfig.lagCeilingMs,
     initialRetryCounts,
     onEvent: (event) => {
       updateLineageSnapshot(lineageSnapshots, event);
@@ -628,13 +663,24 @@ async function main() {
 
       const timeoutMs = computeLineageTimeoutMs(lineage);
 
-      const result = await runLineageProcess(command, cmdArgs, {
-        cwd: process.cwd(),
-        timeoutMs,
-        env: dispatchEnv,
-        maxBuffer: 20 * 1024 * 1024,
-        ...(typeof input === 'string' ? { input } : {}),
+      const stopProgressHeartbeat = startLineageProgressHeartbeat({
+        cadenceMs: progressHeartbeatMs,
+        label: lineage.label,
+        ledgerPath,
+        getGauges: () => latestGauges,
       });
+      let result;
+      try {
+        result = await runLineageProcess(command, cmdArgs, {
+          cwd: process.cwd(),
+          timeoutMs,
+          env: dispatchEnv,
+          maxBuffer: 20 * 1024 * 1024,
+          ...(typeof input === 'string' ? { input } : {}),
+        });
+      } finally {
+        stopProgressHeartbeat();
+      }
 
       // Save subprocess stdout for salvage sweep (write failures in weak CLI executors).
       const logsDir = path.join(lineageDir, 'logs');
@@ -700,3 +746,11 @@ if (isTsxLoaded) {
     process.exit(code);
   });
 }
+
+module.exports = {
+  buildLineageCommand,
+  buildLoopPrompt,
+  normalizeProgressHeartbeatMs,
+  startLineageProgressHeartbeat,
+  updateLineageSnapshot,
+};

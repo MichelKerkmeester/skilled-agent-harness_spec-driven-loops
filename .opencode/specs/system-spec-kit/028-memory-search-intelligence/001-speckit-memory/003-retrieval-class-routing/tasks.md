@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Retrieval-Class Routing & Recall-Shape Intelligence (028/001 impl)"
-description: "Task Format: T### [P?] Description (file path). All tasks PENDING — none shipped in the flat Wave-0 (030)."
+description: "Task Format: T### [P?] Description (file path). C2-A/C2-C/C2-B are implemented here; recall-shape and C-G2 remain pending."
 trigger_phrases:
   - "retrieval class routing tasks"
   - "c2-a c2-b c2-c tasks"
@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/003-retrieval-class-routing"
-    last_updated_at: "2026-06-19T07:40:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored task breakdown for the retrieval-class cluster"
-    next_safe_action: "Build C2-A classifier as the additive third router axis"
+    last_updated_at: "2026-06-19T11:40:16Z"
+    last_updated_by: "codex-gpt-5"
+    recent_action: "Implemented C2-A/C2-C/C2-B mechanism and tests"
+    next_safe_action: "Run final broad Vitest slice and strict phase validation"
     blockers: []
     key_files:
       - "tasks.md"
@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:3c0e0998148e8397f22100775a58904048dd9b17123871071df532b9ea48da26"
       session_id: "2026-06-19-028-001-003-retrieval-class-routing-replan"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 45
     open_questions: []
     answered_questions: []
 ---
@@ -48,7 +48,7 @@ _memory:
 
 **Task Format**: `T### [P?] Description (file path)`
 
-**Status note**: Every task below is PENDING. None of the seven candidates in this cluster was implemented in the flat Wave-0 (packet 030) — confirmed absent from `030.../spec.md` §14 and from `git log 1ecc531431..HEAD`. The only related shipped item is the *dependency* C-X1 (`bonusOverChannels`, 030 commit `65cfcea513`), which unblocks C2-B and is therefore a prerequisite that is already satisfied, not a task here.
+**Status note**: C2-A, C2-C, and the default-off C2-B mechanism are implemented in this phase. None of the seven candidates in this cluster was implemented in the flat Wave-0 (packet 030) — packet 030 remains out of scope. The only related shipped item from 030 is the *dependency* C-X1 (`bonusOverChannels`, commit `65cfcea513`), which unblocks C2-B and is therefore a prerequisite that is already satisfied, not a task here.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -58,10 +58,10 @@ _memory:
 
 > C2-A retrieval-class classifier (the gate).
 
-- [ ] T001 Define the 5-class taxonomy (SingleHop/MultiHop/Temporal/Entity/Quote), the deterministic single-class precedence order, and the neutral default class (`spec.md` §12 open question)
-- [ ] T002 Create the C2-A pure classifier module `mcp_server/lib/search/retrieval-class-classifier.ts` (no I/O, no embedding call) [research: roadmap §3 C2-A]
-- [ ] T003 Plumb `retrievalClass` onto `RouteResult` as an additive third axis, leaving `tier` and `classification` byte-identical (`mcp_server/lib/search/query-router.ts:46-52`)
-- [ ] T004 [P] Author per-class adversarial fixtures + a totality property test (every query → exactly one class) + a multi-shape precedence test
+- [x] T001 Define the 5-class taxonomy (SingleHop/MultiHop/Temporal/Entity/Quote), the deterministic single-class precedence order, and the neutral default class (`retrieval-class-classifier.ts`; precedence Quote → Temporal → MultiHop → Entity → SingleHop → Neutral)
+- [x] T002 Create the C2-A pure classifier module `mcp_server/lib/search/retrieval-class-classifier.ts` (no I/O, no embedding call)
+- [x] T003 Plumb `retrievalClass` onto `RouteResult` as an additive third axis, leaving `tier` and `classification` byte-identical (`mcp_server/lib/search/query-router.ts`)
+- [x] T004 [P] Author per-class adversarial fixtures + a totality property test (every query → exactly one class) + a multi-shape precedence test (`tests/query-router.vitest.ts`)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -71,11 +71,11 @@ _memory:
 
 > C2-C + C2-B (consumers of C2-A).
 
-- [ ] T005 C2-C: extend the `preserved`/`includeDegree` primitive so a SingleHop class forces graph-off even when intent/density would preserve; MultiHop retains existing preserve (`mcp_server/lib/search/query-router.ts:238-254`) [research: roadmap §3 C2-C, PROMOTE-extend-primitive]
-- [ ] T006 C2-C test: SingleHop → `preserved=false`/`includeDegree=false`; MultiHop → unchanged; minimum-channels invariant still holds (`query-router.ts:119`)
-- [ ] T007 C2-B: define per-class `RetrievalProfile` and inject it into `RankedList.weight` at the pre-fusion seam, honoring `weight:0` (`mcp_server/shared/algorithms/rrf-fusion.ts:83-86, :350`) [research: roadmap §3 C2-B]
-- [ ] T008 C2-B: wire fusion to run with the live `bonusOverChannels` option so zeroed channels don't distort the convergence bonus (C-X1 satisfied, `rrf-fusion.ts:99-102, :336`)
-- [ ] T009 [P] C2-B test: neutral/identity profile → fused output byte-identical to baseline; a zero-weight channel does not skew survivors
+- [x] T005 C2-C: extend the `preserved`/`includeDegree` primitive so a SingleHop class forces graph-off even when intent/density would preserve; MultiHop retains existing preserve (`mcp_server/lib/search/query-router.ts`)
+- [x] T006 C2-C test: SingleHop → `preserved=false`/`includeDegree=false`; MultiHop → unchanged; minimum-channels invariant still holds (`tests/query-router.vitest.ts`)
+- [x] T007 C2-B: define per-class `RetrievalProfile` and inject it into `RankedList.weight` at the pre-fusion seam, honoring `weight:0` (`shared/algorithms/rrf-fusion.ts`; `mcp_server/lib/search/retrieval-profile.ts`; `hybrid-search.ts`)
+- [x] T008 C2-B: wire fusion to run with the live `bonusOverChannels` option so zeroed channels don't distort the convergence bonus (`hybrid-search.ts`; `retrieval-profile.vitest.ts`)
+- [x] T009 [P] C2-B test: neutral/identity profile → fused output byte-identical to baseline; a zero-weight channel does not skew survivors (`unit-rrf-fusion.vitest.ts`; `retrieval-profile.vitest.ts`)
 
 ### Recall-shape family (independent of C2-A; runs in parallel)
 
@@ -92,8 +92,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T016 Capture the recall baseline, then prove the neutral-profile / flags-off output is byte-identical (REQ-001, REQ-003; regression-baseline rule)
-- [ ] T017 Single-hop vs multi-hop integration test: C2-C graph-off for SingleHop, preserve retained for MultiHop (REQ-002)
+- [x] T016 Capture the recall baseline, then prove the neutral-profile / flags-off output is byte-identical (baseline: broad related Vitest 7 files / 265 tests passed before edits; focused profile tests prove flag-off identity)
+- [x] T017 Single-hop vs multi-hop integration test: C2-C graph-off for SingleHop, preserve retained for MultiHop (REQ-002; `query-router.vitest.ts`)
 - [ ] T018 Run `tsc`/build + the existing Memory MCP suite; per-candidate independent adversarial review; then `validate.sh --strict` on this packet
 <!-- /ANCHOR:phase-3 -->
 

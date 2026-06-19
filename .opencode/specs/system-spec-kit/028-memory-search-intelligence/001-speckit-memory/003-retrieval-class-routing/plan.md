@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Retrieval-Class Routing & Recall-Shape Intelligence (028/001 impl)"
-description: "Sequenced approach for the retrieval-shape cluster: build C2-A (the gating classifier) first, then C2-C and C2-B as its consumers, then the independent recall-shape family (iterative-context-extension, tiered-recall-budget, compaction-ladder) and the C-G2 facet behind a keep-or-cut gate."
+description: "Sequenced approach for the retrieval-shape cluster: C2-A/C2-C/C2-B are implemented here; the independent recall-shape family and C-G2 facet remain pending behind benchmark/keep-or-cut gates."
 trigger_phrases:
   - "retrieval class routing plan"
   - "c2-a classifier sequencing"
@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/003-retrieval-class-routing"
-    last_updated_at: "2026-06-19T07:40:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored implementation plan for the retrieval-class cluster"
-    next_safe_action: "Build C2-A classifier as the additive third router axis"
+    last_updated_at: "2026-06-19T11:40:16Z"
+    last_updated_by: "codex-gpt-5"
+    recent_action: "Implemented the C2-A/C2-C/C2-B plan slice and left recall-shape gates pending"
+    next_safe_action: "Run final broad related Vitest slice and strict phase validation"
     blockers: []
     key_files:
       - "plan.md"
@@ -27,7 +27,7 @@ _memory:
       fingerprint: "sha256:3c0e0998148e8397f22100775a58904048dd9b17123871071df532b9ea48da26"
       session_id: "2026-06-19-028-001-003-retrieval-class-routing-replan"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 45
     open_questions: []
     answered_questions: []
 ---
@@ -58,7 +58,7 @@ FAILURE MODES:
 | **Testing** | Vitest (focused per-candidate suites alongside each change) |
 
 ### Overview
-Add a retrieval-shape axis to the Memory MCP and route/size recall by it. The work is built around one gating classifier (C2-A) with two consumers (C2-C graph-gating, C2-B per-class weights), plus an independent recall-shape family (iterative extension, tiered budget, summarize-before-truncate) and an optional cross-cutting topic facet (C-G2). Each candidate is a small, independently reversible change with its own test; intelligence-class items ship behind default-off flags with shadow telemetry.
+Add a retrieval-shape axis to the Memory MCP and route/size recall by it. The C2-A classifier, C2-C graph-gating consumer, and C2-B default-off per-class weight mechanism are implemented in this slice. The independent recall-shape family (iterative extension, tiered budget, summarize-before-truncate) and optional cross-cutting topic facet (C-G2) remain pending because their acceptance requires benchmark calibration or a keep-or-cut decision.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -72,9 +72,9 @@ Add a retrieval-shape axis to the Memory MCP and route/size recall by it. The wo
 - [ ] Dependencies identified — C-X1 confirmed satisfied (030 `65cfcea513`); C2-A is the internal critical-path dep
 
 ### Definition of Done
-- [ ] All P0 acceptance criteria met (REQ-001..003)
+- [x] All P0 acceptance criteria met (REQ-001..003)
 - [ ] Per-candidate tests + existing Memory MCP suite green
-- [ ] Docs updated (spec/plan/tasks/checklist synchronized)
+- [x] Docs updated for implemented candidates and pending gates (spec/plan/tasks/checklist synchronized)
 - [ ] `validate.sh --strict` passes on this packet
 <!-- /ANCHOR:quality-gates -->
 
@@ -89,7 +89,7 @@ Additive-axis routing over an existing two-classifier query router; pre-fusion w
 ### Key Components
 - **`retrieval-class-classifier.ts` (NEW)**: pure function `(query, context) → RetrievalClass` over `SingleHop | MultiHop | Temporal | Entity | Quote` with a neutral default and a deterministic single-class precedence rule. (C2-A)
 - **`query-router.ts` (`RouteResult`)**: gains `retrievalClass` as an additive third axis alongside `tier` (complexity) and `classification` (intent); the `preserved`/`includeDegree` primitive is extended so SingleHop forces graph-off. (C2-A plumb + C2-C)
-- **`rrf-fusion.ts` (`RankedList.weight`, `bonusOverChannels`)**: per-class `RetrievalProfile` injects channel weights at the pre-fusion seam; the live `bonusOverChannels` option keeps zeroed channels from distorting the convergence bonus. (C2-B)
+- **`rrf-fusion.ts` + `retrieval-profile.ts` (`RankedList.weight`, `bonusOverChannels`)**: per-class `RetrievalProfile` injects channel weights at the pre-fusion seam; the live `bonusOverChannels` option keeps zeroed channels from distorting the convergence bonus. (C2-B)
 - **`memory-context.ts` + `pressure-monitor.ts`**: a new opt-in iterative strategy, per-section/per-tier budgets, and a summarize rung inside `enforceTokenBudget`. (Cluster B)
 - **`chunking-orchestrator.ts` + `artifact-routing.ts`**: index-time auto-topic facet seeded from existing keyword machinery. (C-G2, gated)
 
@@ -127,13 +127,13 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: C2-A classifier (the gate)
-- [ ] Define the 5-class taxonomy + precedence + neutral default; build `retrieval-class-classifier.ts` as a pure function
-- [ ] Plumb `retrievalClass` into `RouteResult` (additive; existing axes byte-identical)
-- [ ] Adversarial fixture set per class + a multi-shape precedence test
+- [x] Define the 5-class taxonomy + precedence + neutral default; build `retrieval-class-classifier.ts` as a pure function
+- [x] Plumb `retrievalClass` into `RouteResult` (additive; existing axes byte-identical)
+- [x] Adversarial fixture set per class + a multi-shape precedence test
 
 ### Phase 2: C2-C + C2-B (the consumers)
-- [ ] C2-C: extend `preserved`/`includeDegree` so SingleHop forces graph-off; MultiHop retains preserve
-- [ ] C2-B: per-class `RetrievalProfile` → `RankedList.weight` injection using the live `bonusOverChannels` option; neutral-profile byte-identical fusion test
+- [x] C2-C: extend `preserved`/`includeDegree` so SingleHop forces graph-off; MultiHop retains preserve
+- [x] C2-B: per-class `RetrievalProfile` → `RankedList.weight` injection using the live `bonusOverChannels` option; neutral-profile byte-identical fusion test
 
 ### Phase 3: recall-shape family + C-G2 (independent)
 - [ ] LT-compaction-fallback-ladder: insert summarize rung above hard truncation in `enforceTokenBudget`
@@ -166,7 +166,7 @@ Required inventories:
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | C-X1 `bonusOverChannels` fusion option | Internal (shared) | Green — shipped 030 `65cfcea513`, live in `rrf-fusion.ts` | C2-B per-class zero-weights would distort convergence bonus |
-| C2-A classifier | Internal (this packet) | Red until built | C2-C and C2-B cannot route by class |
+| C2-A classifier | Internal (this packet) | Green — built in this slice | C2-C and C2-B route by class |
 | Per-class weight calibration corpus (~1000 memories) | Internal data | Deferred (benchmark follow-up) | Mechanism ships; tuned VALUES wait |
 | Convergence/saturation primitive (CG-iterative-context-extension) | Internal (net-new) | To build | Iterative strategy cannot stop safely |
 <!-- /ANCHOR:dependencies -->

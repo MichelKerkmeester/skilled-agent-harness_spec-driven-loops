@@ -17,6 +17,7 @@ const DEFAULT_COUNCIL_COST_GUARDS = Object.freeze({
   max_topics_per_session: 5,
   saturation_threshold: 0.2,
   seats_per_round: 3,
+  lag_ceiling: 5000,
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -25,6 +26,10 @@ const DEFAULT_COUNCIL_COST_GUARDS = Object.freeze({
 
 function isPositiveInteger(value) {
   return Number.isInteger(value) && value > 0;
+}
+
+function isNonNegativeFiniteNumber(value) {
+  return typeof value === 'number' && Number.isFinite(value) && value >= 0;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -36,7 +41,8 @@ function isPositiveInteger(value) {
  *
  * Ensures max_rounds_per_topic, max_topics_per_session, and
  * seats_per_round are all positive integers, and saturation_threshold
- * is a number between 0 and 1.
+ * is a number between 0 and 1, and lag_ceiling is a non-negative
+ * millisecond threshold.
  *
  * @param {Object} [input={}] - Partial cost guards overrides.
  * @param {number} [input.max_rounds_per_topic=3] - Maximum deliberation
@@ -47,6 +53,8 @@ function isPositiveInteger(value) {
  *   deliberation round.
  * @param {number} [input.saturation_threshold=0.2] - Verdict delta
  *   threshold for declaring saturation.
+ * @param {number} [input.lag_ceiling=5000] - Oldest pending lineage lag
+ *   threshold in milliseconds; 0 disables the tripwire.
  * @returns {Object} Fully populated cost guards record.
  * @throws {RangeError} If any guard value is outside its allowed range.
  */
@@ -62,6 +70,9 @@ function normalizeCostGuards(input = {}) {
   }
   if (typeof guards.saturation_threshold !== 'number' || guards.saturation_threshold < 0 || guards.saturation_threshold > 1) {
     throw new RangeError('saturation_threshold must be a number between 0 and 1');
+  }
+  if (!isNonNegativeFiniteNumber(guards.lag_ceiling)) {
+    throw new RangeError('lag_ceiling must be a non-negative number');
   }
   return guards;
 }
@@ -139,6 +150,37 @@ function evaluateCouncilCostGuards(input = {}) {
   };
 }
 
+/**
+ * Evaluate the oldest-pending lineage lag against the configured tripwire.
+ *
+ * This is intentionally separate from evaluateCouncilCostGuards so the
+ * existing advisory return shape stays unchanged and fan-out callers can emit
+ * a warning without converting the council guard tuple into a lifecycle hook.
+ *
+ * @param {Object} [input={}] - Lag snapshot and optional guard overrides.
+ * @param {number} [input.oldestPendingLagMs] - Oldest pending age in ms.
+ * @param {number} [input.lagMs] - Alias for oldestPendingLagMs.
+ * @param {Object} [input.guards] - Cost guards overrides.
+ * @returns {Object} Warning-tier tripwire assessment.
+ * @throws {RangeError} If guard values are invalid.
+ */
+function evaluateLagCeilingTripwire(input = {}) {
+  const guards = normalizeCostGuards(input.guards || input);
+  const rawLag = input.oldestPendingLagMs ?? input.lagMs ?? 0;
+  const oldestPendingLagMs = Number(rawLag);
+  if (!Number.isFinite(oldestPendingLagMs) || oldestPendingLagMs < 0) {
+    throw new RangeError('oldestPendingLagMs must be a non-negative number');
+  }
+  const exceeded = guards.lag_ceiling > 0 && oldestPendingLagMs >= guards.lag_ceiling;
+  return {
+    exceeded,
+    severity: exceeded ? 'warning' : null,
+    reason: exceeded ? 'lag_ceiling' : null,
+    oldest_pending_lag_ms: oldestPendingLagMs,
+    lag_ceiling_ms: guards.lag_ceiling,
+  };
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 5. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -147,5 +189,6 @@ module.exports = {
   DEFAULT_COUNCIL_COST_GUARDS,
   computeCouncilCostUpperBound,
   evaluateCouncilCostGuards,
+  evaluateLagCeilingTripwire,
   normalizeCostGuards,
 };

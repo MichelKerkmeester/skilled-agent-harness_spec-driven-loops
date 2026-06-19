@@ -600,6 +600,87 @@ describe('fanout-run.cjs — graceful self-stop', () => {
   });
 });
 
+describe('fanout-run.cjs — progress heartbeat', () => {
+  it('emits progress events for a long lineage when cadence is configured', async () => {
+    const binDir = makeTempDir('fanout-run-progress-bin-');
+    writeSleepingStubBinary(binDir, 'codex', 1);
+    const baseDir = makeTempDir('fanout-run-progress-base-');
+
+    const fanoutConfig = JSON.stringify({
+      executors: [{ label: 'slow', kind: 'cli-codex', model: 'o4-mini', count: 1 }],
+      concurrency: 1,
+      progressHeartbeatSeconds: 0.05,
+    });
+
+    const result = await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder',
+        'specs/test-fanout-run-progress',
+        '--loop-type',
+        'research',
+        '--fanout-config-json',
+        fanoutConfig,
+        '--base-artifact-dir',
+        baseDir,
+      ],
+      {
+        env: { ...process.env, PATH: `${binDir}:${process.env['PATH'] ?? ''}` },
+        timeoutMs: 15_000,
+      },
+    );
+
+    expect(result.exitCode).toBe(0);
+    const ledgerEvents = readFileSync(join(baseDir, 'orchestration-status.log'), 'utf8')
+      .trim()
+      .split('\n')
+      .map((line) => JSON.parse(line) as Record<string, unknown>);
+    const progressEvents = ledgerEvents.filter((event) => event.event === 'progress');
+    expect(progressEvents.length).toBeGreaterThan(0);
+    expect(progressEvents[0]).toEqual(expect.objectContaining({
+      label: 'slow',
+      duration_ms: expect.any(Number),
+      gauges: expect.objectContaining({ lag: 1, pending: 0, failed: 0 }),
+    }));
+  });
+
+  it('does not emit progress events when cadence is left disabled', async () => {
+    const binDir = makeTempDir('fanout-run-progress-disabled-bin-');
+    writeSleepingStubBinary(binDir, 'codex', 1);
+    const baseDir = makeTempDir('fanout-run-progress-disabled-base-');
+
+    const fanoutConfig = JSON.stringify({
+      executors: [{ label: 'slow', kind: 'cli-codex', model: 'o4-mini', count: 1 }],
+      concurrency: 1,
+    });
+
+    const result = await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder',
+        'specs/test-fanout-run-progress-disabled',
+        '--loop-type',
+        'research',
+        '--fanout-config-json',
+        fanoutConfig,
+        '--base-artifact-dir',
+        baseDir,
+      ],
+      {
+        env: { ...process.env, PATH: `${binDir}:${process.env['PATH'] ?? ''}` },
+        timeoutMs: 15_000,
+      },
+    );
+
+    expect(result.exitCode).toBe(0);
+    const ledgerEvents = readFileSync(join(baseDir, 'orchestration-status.log'), 'utf8')
+      .trim()
+      .split('\n')
+      .map((line) => JSON.parse(line) as Record<string, unknown>);
+    expect(ledgerEvents.some((event) => event.event === 'progress')).toBe(false);
+  });
+});
+
 describe('fanout-run.cjs — buildLineageCommand / buildLoopPrompt via echo stub', () => {
   async function runCodexEcho(
     lineage: Record<string, unknown>,

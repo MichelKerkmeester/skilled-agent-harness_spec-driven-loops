@@ -32,6 +32,8 @@ const {
 // ─────────────────────────────────────────────────────────────────────────────
 
 const TSX_LOADER = require.resolve('tsx');
+const DEFAULT_REPORTED_NOVELTY_THRESHOLD = 0.05;
+const DEFAULT_GRAPH_NOVELTY_FLOOR = 0.05;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. TSX BOOTSTRAP
@@ -91,6 +93,20 @@ function ensureString(args, key) {
 
 function asBoolean(value) {
   return value === true || value === 'true' || value === '1';
+}
+
+function parseOptionalRatio(value, key) {
+  if (value === undefined || value === null || value === true || value === '') return null;
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed) || parsed < 0 || parsed > 1) {
+    throw inputError(`${key} must be a number between 0 and 1`);
+  }
+  return parsed;
+}
+
+function parseRatioWithDefault(value, key, fallback) {
+  const parsed = parseOptionalRatio(value, key);
+  return parsed === null ? fallback : parsed;
 }
 
 function jsonOut(payload) {
@@ -289,6 +305,50 @@ function decisionReason(decision, blockingBlockers, trace) {
   return `Convergence signals not yet met: ${trace.filter((entry) => !entry.passed).map((entry) => entry.signal).join(', ')}. Continue iterating.`;
 }
 
+function buildNoveltyCorroboration(signalsLib, nodes, edges, snapshots, args) {
+  const reportedNovelty = parseOptionalRatio(args.reportedNovelty, 'reportedNovelty');
+  if (reportedNovelty === null) return null;
+
+  const reportedThreshold = parseRatioWithDefault(
+    args.reportedNoveltyThreshold,
+    'reportedNoveltyThreshold',
+    DEFAULT_REPORTED_NOVELTY_THRESHOLD,
+  );
+  const graphNoveltyFloor = parseRatioWithDefault(
+    args.graphNoveltyFloor,
+    'graphNoveltyFloor',
+    DEFAULT_GRAPH_NOVELTY_FLOOR,
+  );
+  const graphNoveltyDelta = signalsLib.computeGraphNoveltyDelta(nodes, edges, snapshots);
+  const effectiveNovelty = Math.max(reportedNovelty, graphNoveltyDelta);
+  const shouldBlock = reportedNovelty < reportedThreshold && graphNoveltyDelta > graphNoveltyFloor;
+
+  return {
+    reportedNovelty,
+    reportedThreshold,
+    graphNoveltyFloor,
+    graphNoveltyDelta,
+    effectiveNovelty,
+    shouldBlock,
+    traceEntry: {
+      signal: 'noveltyCorroboration',
+      value: effectiveNovelty,
+      threshold: graphNoveltyFloor,
+      passed: !shouldBlock,
+      role: 'blocking_guard',
+    },
+    blocker: {
+      type: 'novelty_self_report_unverified',
+      description: `Reported novelty (${reportedNovelty.toFixed(3)}) is below ${reportedThreshold.toFixed(3)} while graph novelty (${graphNoveltyDelta.toFixed(3)}) is above ${graphNoveltyFloor.toFixed(3)}. STOP is blocked until the self-report agrees with graph evidence.`,
+      count: 1,
+      severity: 'blocking',
+      reportedNovelty,
+      graphNoveltyDelta,
+      effectiveNovelty,
+    },
+  };
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 5. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
@@ -366,7 +426,18 @@ async function main() {
         ? signalsLib.computeContextSignalsFromData(nodes, edges)
         : buildReviewSignals(nodes, edges);
     const score = computeCompositeScore(signals, loopType);
-    const signalsWithScore = { ...signals, score };
+    const noveltyCorroboration = loopType === 'research'
+      ? buildNoveltyCorroboration(signalsLib, nodes, edges, snapshots, args)
+      : null;
+    const signalsWithScore = noveltyCorroboration
+      ? {
+          ...signals,
+          score,
+          graphNoveltyDelta: noveltyCorroboration.graphNoveltyDelta,
+          reportedNovelty: noveltyCorroboration.reportedNovelty,
+          effectiveNovelty: noveltyCorroboration.effectiveNovelty,
+        }
+      : { ...signals, score };
     const gaps = queryLib.findCoverageGaps(ns);
     const contradictions = queryLib.findContradictions(ns);
     const unverified = loopType === 'research' ? queryLib.findUnverifiedClaims(ns) : [];
@@ -375,10 +446,23 @@ async function main() {
       : loopType === 'context'
         ? evaluateContext(signals, gaps, contradictions)
         : evaluateReview(signals, gaps, contradictions);
-    const blockingBlockers = evaluated.blockers.filter((blocker) => blocker.severity === 'blocking');
-    const decision = blockingBlockers.length > 0
+    let blockers = evaluated.blockers;
+    let trace = evaluated.trace;
+    const initialBlockingBlockers = blockers.filter((blocker) => blocker.severity === 'blocking');
+    let decision = initialBlockingBlockers.length > 0
       ? 'STOP_BLOCKED'
-      : evaluated.trace.every((entry) => entry.passed) ? 'STOP_ALLOWED' : 'CONTINUE';
+      : trace.every((entry) => entry.passed) ? 'STOP_ALLOWED' : 'CONTINUE';
+    if (noveltyCorroboration) {
+      trace = [...trace, {
+        ...noveltyCorroboration.traceEntry,
+        passed: decision !== 'STOP_ALLOWED' || !noveltyCorroboration.shouldBlock,
+      }];
+      if (decision === 'STOP_ALLOWED' && noveltyCorroboration.shouldBlock) {
+        blockers = [...blockers, noveltyCorroboration.blocker];
+        decision = 'STOP_BLOCKED';
+      }
+    }
+    const blockingBlockers = blockers.filter((blocker) => blocker.severity === 'blocking');
     const momentum = snapshots.length < 2
       ? null
       : Object.fromEntries(Object.keys(snapshots[snapshots.length - 1].metrics || {}).flatMap((key) => {
@@ -397,7 +481,7 @@ async function main() {
           loopType,
           sessionId,
           iteration: Number(args.iteration),
-          metrics: { ...signals, nodeCount: stats.totalNodes, edgeCount: stats.totalEdges },
+          metrics: { ...signalsWithScore, nodeCount: stats.totalNodes, edgeCount: stats.totalEdges },
           nodeCount: stats.totalNodes,
           edgeCount: stats.totalEdges,
         });
@@ -408,11 +492,11 @@ async function main() {
 
     const data = {
       decision,
-      reason: decisionReason(decision, blockingBlockers, evaluated.trace),
+      reason: decisionReason(decision, blockingBlockers, trace),
       score,
       signals: signalsWithScore,
-      blockers: evaluated.blockers,
-      trace: evaluated.trace,
+      blockers,
+      trace,
       momentum,
       namespace: ns,
       scopeMode: 'session',
@@ -428,10 +512,10 @@ async function main() {
       graph_decision: decision,
       graph_decision_json: JSON.stringify(decision),
       graph_signals_json: signalsWithScore,
-      graph_blockers_json: evaluated.blockers,
-      graph_blockers_csv: blockersCsv(evaluated.blockers),
+      graph_blockers_json: blockers,
+      graph_blockers_csv: blockersCsv(blockers),
       graph_stop_blocked: decision === 'STOP_BLOCKED',
-      graph_trace_json: evaluated.trace,
+      graph_trace_json: trace,
       graph_convergence_score: score,
     });
   } finally {

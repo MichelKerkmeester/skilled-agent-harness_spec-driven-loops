@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Code-Graph Determinism + Walk-Order"
-description: "Task breakdown for the code-graph determinism + walk-order sub-phase: one task per candidate — the shipped Q4-C1 RRF-additive trust predecessor (pre-checked with commit e21caf5de6) and three gated PENDING follow-ups (det-context-order-global, the fuseResultsMulti dual-channel adapter, Q4-C1 benchmark tuning) — plus verification and Level-2 documentation closeout."
+description: "Task breakdown for the code-graph determinism + walk-order sub-phase: one task per candidate — the shipped Q4-C1 RRF-additive trust predecessor, implemented det-context-order-global, and two gated PENDING follow-ups (the fuseResultsMulti dual-channel adapter and Q4-C1 benchmark tuning) — plus verification and Level-2 documentation closeout."
 trigger_phrases:
   - "tasks code graph determinism walk order"
   - "code-graph-context tiebreak task breakdown"
@@ -63,11 +63,11 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-> Gated residue (PENDING — dispositioned, not built this sub-phase): walk-order determinism (gated on the 001 foundation) + trust tuning (gated on a retrieval benchmark).
+> Current residue: walk-order determinism is implemented; the fuser adapter remains blocked on an isolation-compatible shared-fuser consume path; trust tuning remains gated on a retrieval benchmark.
 
-- [x] T002 [B] det-context-order-global — replace the equal-`rankScore` tiebreak `|| (left.index - right.index)` at `code-graph-context.ts:377` with the 001 hand-written content-derived total comparator (target symbol id / content hash, COALESCE to id); cover `finalize()` at `:436`/`:712` so impact + dependency/callees + outline-export are reproducible across scan rebuilds [Pending — gate: shared-infra-dep (001 total-comparator keystone); ONE finalize seam, NOT impact-only; JS `(a,b)=>b-a` is not a total order — reuse the keystone (`roadmap.md` §1 Determinism cross-cut; `002` iter-7; `synthesis/01` SA7)].
-- [x] T003 [B] Q8-fuser-adapter / fuseResultsMulti-codegraph-promote — adapter over the shared `fuseResultsMulti` (`shared/algorithms/rrf-fusion.ts`) for the dual CALLS+IMPORTS impact channels: synthesize `RrfItem.id`, pre-sort each channel, label the dual GRAPH channels, apply the cross-channel bonus (`code-graph-context.ts:627-671`) [Pending — gate: shared-infra-dep (001 `fuseResultsMulti` signature); promotable-with-adapter, NOT drop-in, zero Memory coupling; two candidate ids for the same adapter work (resolved Q8 open-item + roadmap-spine entry) (`roadmap.md` Provenance, RESOLVED by `002` iter-5; `synthesis/01` Wave-0 row)].
-- [x] T004 [B] Q4-C1-benchmark-tuning — re-tune `CONTEXT_EDGE_EVIDENCE_RANK_FACTORS` (EXTRACTED/STRUCTURED 0.01, INFERRED 0.004, AMBIGUOUS 0.002) against a code-graph retrieval benchmark (`code-graph-context.ts:101-108`) [Pending — gate: needs-benchmark; the order-stability gate (neutral == rowid baseline) is the ship criterion and is met; magnitudes are an unbenchmarked default; no before/after number exists campaign-wide (`030` §14 cand 13 NOTE; `synthesis/03` §B)].
+- [x] T002 det-context-order-global — replace DB-iteration-derived ordering with content-derived baseline rank assignment and equal-score ties in `rankContextEdges`; key order is related content hash, related symbol id, file/fqName, edge type and endpoints; covers the `finalize()` seam so impact + dependency/callees + outline-export are reproducible across scan rebuilds [Done — implemented in `code-graph-context.ts`; deterministic unit test verifies equal-trust impact callers return identical order across shifted DB row orders].
+- [ ] T003 [B] Q8-fuser-adapter / fuseResultsMulti-codegraph-promote — adapter over the shared `fuseResultsMulti` (`shared/algorithms/rrf-fusion.ts`) for the dual CALLS+IMPORTS impact channels: synthesize `RrfItem.id`, pre-sort each channel, label the dual GRAPH channels, apply the cross-channel bonus (`code-graph-context.ts:627-671`) [Pending — gate: isolation-compatible shared-fuser consume path; current code-graph isolation checks block production source imports from system-spec-kit and `@spec-kit/*`; do not fork a code-graph-specific fuser].
+- [ ] T004 [B] Q4-C1-benchmark-tuning — re-tune `CONTEXT_EDGE_EVIDENCE_RANK_FACTORS` (EXTRACTED/STRUCTURED 0.01, INFERRED 0.004, AMBIGUOUS 0.002) against a code-graph retrieval benchmark (`code-graph-context.ts:101-108`) [Pending — gate: needs-benchmark; magnitudes are an unbenchmarked default; no before/after number exists campaign-wide (`030` §14 cand 13 NOTE; `synthesis/03` §B)].
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -87,10 +87,10 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [x] All 4 candidates have a final status in `spec.md` section 11 (1 DONE-with-commit, 3 PENDING-with-gate).
+- [x] All 4 candidates have a final status in `spec.md` section 11 (2 DONE, 2 PENDING-with-gate).
 - [x] The shipped Q4-C1 predecessor traces to Wave-0 commit `e21caf5de6` in `../../../030-memory-search-intelligence-impl/spec.md` section 14 candidate 13.
-- [x] Each gated residue task names its block reason (shared-infra-dep / shared-infra-dep / needs-benchmark) and its consuming dependency; none is disguised as incomplete in-flight work.
-- [ ] det-order + the fuser adapter are built against the 001 foundation signatures, and Q4-C1 magnitudes are re-tuned against a retrieval benchmark (downstream verification, tracked).
+- [x] Each gated residue task names its block reason (isolation-compatible shared-fuser consume path / needs-benchmark) and its consuming dependency; none is disguised as incomplete in-flight work.
+- [ ] The fuser adapter is built against an isolation-compatible shared-fuser consume path, and Q4-C1 magnitudes are re-tuned against a retrieval benchmark (downstream verification, tracked).
 - [x] Strict validation passes for this sub-phase.
 <!-- /ANCHOR:completion -->
 

@@ -145,6 +145,22 @@ function buildLaneRuntimeHealth(
   });
 }
 
+function projectionRuntimeLaneHealth(
+  projection: AdvisorProjection,
+  runtimeLaneHealth: AdvisorScoringOptions['runtimeLaneHealth'] | undefined,
+): AdvisorScoringOptions['runtimeLaneHealth'] | undefined {
+  if (!projection.embeddingStaleness?.stale) {
+    return runtimeLaneHealth;
+  }
+  return {
+    ...runtimeLaneHealth,
+    semantic_shadow: runtimeLaneHealth?.semantic_shadow ?? {
+      status: 'runtime_degraded',
+      reason: projection.embeddingStaleness.reason ?? 'projection_embedding_stale',
+    },
+  };
+}
+
 function degradedLaneReason(degradedLanes: readonly ScorerLane[]): string | null {
   if (degradedLanes.length === 0) return null;
   return `Runtime-degraded scorer lanes omitted from confidence normalization: ${degradedLanes.join(', ')}.`;
@@ -458,7 +474,8 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
   const affordances = normalize(options.affordances ?? []);
   const useRrfFusion = isAdvisorRrfFusionEnabled();
   const { laneScores, graphConflictMatches } = buildLaneScores(prompt, projection, disabled, affordances, useRrfFusion);
-  const laneHealth = buildLaneRuntimeHealth(laneScores, disabled, options.runtimeLaneHealth);
+  const runtimeLaneHealth = projectionRuntimeLaneHealth(projection, options.runtimeLaneHealth);
+  const laneHealth = buildLaneRuntimeHealth(laneScores, disabled, runtimeLaneHealth);
   const degradedLanes = laneHealth
     .filter((lane) => lane.status === 'runtime_degraded')
     .map((lane) => lane.lane);

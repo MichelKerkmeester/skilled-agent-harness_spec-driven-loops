@@ -7,11 +7,22 @@ import { dirname, isAbsolute, join, resolve } from 'node:path';
 
 import Database from 'better-sqlite3';
 
+import { getManifest } from '../embedders/registry.js';
+import type { BackendKind } from '../embedders/types.js';
 import { lifecycleStatusForPath } from '../lifecycle/archive-handling.js';
 import { docTierWeight, isDocTriggerHarvestEnabled } from '../skill-graph/doc-frontmatter.js';
+import { providerModelId } from '../skill-graph/skill-graph-db.js';
 import { parseJsonObject, parseJsonStringArray, readJsonObject } from '../utils/json-guard.js';
 import { parseSkillFrontmatter } from '../utils/skill-markdown.js';
-import type { AdvisorProjection, SkillDocTriggerProjection, SkillEdgeProjection, SkillLifecycleStatus, SkillProjection } from './types.js';
+import type {
+  AdvisorEmbeddingSignature,
+  AdvisorEmbeddingStalenessVerdict,
+  AdvisorProjection,
+  SkillDocTriggerProjection,
+  SkillEdgeProjection,
+  SkillLifecycleStatus,
+  SkillProjection,
+} from './types.js';
 import { phraseVariants, unique } from './text.js';
 
 interface SkillNodeRow {
@@ -247,6 +258,307 @@ interface SkillDocRow {
   readonly importance_tier: string | null;
 }
 
+interface MetadataRow {
+  readonly key: string;
+  readonly value: string;
+}
+
+interface TableNameRow {
+  readonly name: string;
+}
+
+interface EmbeddingModelRow {
+  readonly model_id: string | null;
+}
+
+interface StoredEmbeddingSummary {
+  readonly vectorCount: number;
+  readonly missingModelCount: number;
+  readonly modelIds: readonly string[];
+  readonly dim: number | null;
+}
+
+interface ActiveEmbeddingPointer {
+  readonly name: string;
+  readonly dim: number;
+  readonly provider: string | null;
+}
+
+const ACTIVE_EMBEDDER_NAME_KEY = 'active_embedder_name';
+const ACTIVE_EMBEDDER_DIM_KEY = 'active_embedder_dim';
+const ACTIVE_EMBEDDER_PROVIDER_KEY = 'active_embedder_provider';
+
+function sqliteTableExists(db: Database.Database, tableName: string): boolean {
+  const row = db.prepare(`
+    SELECT 1 AS present
+    FROM sqlite_master
+    WHERE type = 'table' AND name = ?
+    LIMIT 1
+  `).get(tableName) as { present: number } | undefined;
+  return Boolean(row);
+}
+
+function readMetadataMap(db: Database.Database): Map<string, string> {
+  if (!sqliteTableExists(db, 'vec_metadata')) return new Map();
+  const rows = db.prepare(`
+    SELECT key, value
+    FROM vec_metadata
+    WHERE key IN (?, ?, ?)
+  `).all(ACTIVE_EMBEDDER_NAME_KEY, ACTIVE_EMBEDDER_DIM_KEY, ACTIVE_EMBEDDER_PROVIDER_KEY) as MetadataRow[];
+  return new Map(rows.map((row) => [row.key, row.value]));
+}
+
+function providerForBackend(backend: BackendKind | undefined): string | null {
+  switch (backend) {
+    case 'ollama':
+      return 'ollama';
+    case 'api':
+      return 'openai';
+    case 'sentence-transformers':
+      return 'hf-local';
+    default:
+      return null;
+  }
+}
+
+function readActiveEmbeddingPointer(db: Database.Database): ActiveEmbeddingPointer | null {
+  const metadata = readMetadataMap(db);
+  const name = metadata.get(ACTIVE_EMBEDDER_NAME_KEY);
+  const rawDim = metadata.get(ACTIVE_EMBEDDER_DIM_KEY);
+  const dim = rawDim && /^[0-9]+$/.test(rawDim) ? Number.parseInt(rawDim, 10) : null;
+  if (!name || dim === null || dim <= 0) {
+    return null;
+  }
+  const metadataProvider = metadata.get(ACTIVE_EMBEDDER_PROVIDER_KEY);
+  const manifest = getManifest(name);
+  return {
+    name,
+    dim,
+    provider: metadataProvider && metadataProvider.trim().length > 0
+      ? metadataProvider
+      : providerForBackend(manifest?.backend),
+  };
+}
+
+function signatureFromPointer(pointer: ActiveEmbeddingPointer): AdvisorEmbeddingSignature {
+  const profileId = pointer.provider
+    ? providerModelId({ provider: pointer.provider, model: pointer.name, dim: pointer.dim })
+    : null;
+  return {
+    provider: pointer.provider,
+    name: pointer.name,
+    dim: pointer.dim,
+    modelId: pointer.name,
+    providerModelId: profileId,
+  };
+}
+
+function parseProviderModelId(modelId: string): { provider: string; name: string; dim: number } | null {
+  const slugParts = modelId.split('__');
+  if (slugParts.length >= 3 && /^[0-9]+$/.test(slugParts[2])) {
+    return {
+      provider: slugParts[0],
+      name: slugParts[1],
+      dim: Number.parseInt(slugParts[2], 10),
+    };
+  }
+
+  const parts = modelId.split(':');
+  for (let index = parts.length - 1; index >= 2; index--) {
+    if (!/^[0-9]+$/.test(parts[index])) continue;
+    return {
+      provider: parts[0],
+      name: parts.slice(1, index).join(':'),
+      dim: Number.parseInt(parts[index], 10),
+    };
+  }
+  return null;
+}
+
+function signatureFromModelId(modelId: string, fallbackDim: number | null): AdvisorEmbeddingSignature {
+  const parsed = parseProviderModelId(modelId);
+  if (parsed) {
+    return {
+      provider: parsed.provider,
+      name: parsed.name,
+      dim: parsed.dim,
+      modelId,
+      providerModelId: modelId,
+    };
+  }
+  return {
+    provider: null,
+    name: modelId,
+    dim: fallbackDim ?? 0,
+    modelId,
+    providerModelId: null,
+  };
+}
+
+function activeCompatibleModelIds(active: AdvisorEmbeddingSignature): Set<string> {
+  const ids = new Set<string>([active.modelId]);
+  if (active.providerModelId) ids.add(active.providerModelId);
+  const manifest = getManifest(active.name);
+  if (active.provider && manifest?.ollamaName) {
+    ids.add(providerModelId({ provider: active.provider, model: manifest.ollamaName, dim: active.dim }));
+  }
+  return ids;
+}
+
+function vecTables(db: Database.Database): Array<{ name: string; dim: number }> {
+  const rows = db.prepare(`
+    SELECT name
+    FROM sqlite_master
+    WHERE type = 'table' AND name GLOB 'vec_[0-9]*'
+    ORDER BY name ASC
+  `).all() as TableNameRow[];
+  return rows
+    .map((row) => {
+      const match = /^vec_([0-9]+)$/.exec(row.name);
+      return match ? { name: row.name, dim: Number.parseInt(match[1], 10) } : null;
+    })
+    .filter((row): row is { name: string; dim: number } => row !== null);
+}
+
+function summarizeModelRows(rows: readonly EmbeddingModelRow[], dim: number | null): StoredEmbeddingSummary {
+  const normalizedModelIds = rows.map((row) => row.model_id?.trim() ?? '');
+  const modelIds = unique(
+    normalizedModelIds.filter((modelId) => modelId.length > 0),
+  );
+  return {
+    vectorCount: rows.length,
+    missingModelCount: normalizedModelIds.filter((modelId) => modelId.length === 0).length,
+    modelIds,
+    dim,
+  };
+}
+
+function summarizeVecTable(db: Database.Database, tableName: string, dim: number): StoredEmbeddingSummary {
+  const rows = db.prepare(`
+    SELECT model_id
+    FROM ${tableName}
+    WHERE embedding IS NOT NULL
+    ORDER BY skill_id ASC
+  `).all() as EmbeddingModelRow[];
+  return summarizeModelRows(rows, dim);
+}
+
+function summarizeLegacyEmbeddings(db: Database.Database): StoredEmbeddingSummary {
+  if (!sqliteTableExists(db, 'skill_nodes')) {
+    return { vectorCount: 0, missingModelCount: 0, modelIds: [], dim: null };
+  }
+  const rows = db.prepare(`
+    SELECT embedding_model_id AS model_id
+    FROM skill_nodes
+    WHERE embedding IS NOT NULL
+    ORDER BY id ASC
+  `).all() as EmbeddingModelRow[];
+  return summarizeModelRows(rows, null);
+}
+
+function combineSummaries(summaries: readonly StoredEmbeddingSummary[]): StoredEmbeddingSummary {
+  return {
+    vectorCount: summaries.reduce((total, summary) => total + summary.vectorCount, 0),
+    missingModelCount: summaries.reduce((total, summary) => total + summary.missingModelCount, 0),
+    modelIds: unique(summaries.flatMap((summary) => [...summary.modelIds])),
+    dim: summaries.find((summary) => summary.dim !== null)?.dim ?? null,
+  };
+}
+
+function storedEmbeddingSummary(db: Database.Database, active: ActiveEmbeddingPointer | null): StoredEmbeddingSummary {
+  const tables = vecTables(db);
+  if (active) {
+    const activeTable = tables.find((table) => table.dim === active.dim);
+    if (activeTable) {
+      const summary = summarizeVecTable(db, activeTable.name, activeTable.dim);
+      if (summary.vectorCount > 0 || summary.missingModelCount > 0) {
+        return summary;
+      }
+    }
+    const nonActiveSummaries = tables
+      .filter((table) => table.dim !== active.dim)
+      .map((table) => summarizeVecTable(db, table.name, table.dim))
+      .filter((summary) => summary.vectorCount > 0 || summary.missingModelCount > 0);
+    return combineSummaries(nonActiveSummaries);
+  }
+
+  const legacy = summarizeLegacyEmbeddings(db);
+  if (legacy.vectorCount > 0 || legacy.missingModelCount > 0) {
+    return legacy;
+  }
+  return combineSummaries(
+    tables
+      .map((table) => summarizeVecTable(db, table.name, table.dim))
+      .filter((summary) => summary.vectorCount > 0 || summary.missingModelCount > 0),
+  );
+}
+
+function buildEmbeddingStalenessVerdict(
+  active: AdvisorEmbeddingSignature | null,
+  summary: StoredEmbeddingSummary,
+): AdvisorEmbeddingStalenessVerdict {
+  if (summary.vectorCount === 0 && summary.missingModelCount === 0) {
+    return { stale: false, active, stored: null, vectorCount: 0 };
+  }
+
+  const storedModelId = summary.modelIds[0] ?? null;
+  const rawStored = storedModelId
+    ? signatureFromModelId(storedModelId, summary.dim)
+    : null;
+  const stored = rawStored && active && activeCompatibleModelIds(active).has(rawStored.modelId)
+    ? { ...active, modelId: rawStored.modelId }
+    : rawStored;
+  const base = {
+    active,
+    stored,
+    vectorCount: summary.vectorCount,
+    modelIds: summary.modelIds,
+  };
+
+  if (!active) {
+    return { ...base, stale: true, reason: 'main active-embedder pointer incomplete' };
+  }
+  if (summary.missingModelCount > 0) {
+    return { ...base, stale: true, reason: 'projection embedding model missing' };
+  }
+  if (summary.modelIds.length !== 1) {
+    return {
+      ...base,
+      stale: true,
+      reason: `projection model set '${summary.modelIds.join(', ')}' != active '${active.name}'`,
+    };
+  }
+  if (stored && stored.dim > 0 && stored.provider !== null && stored.dim !== active.dim) {
+    return { ...base, stale: true, reason: `projection dim ${stored.dim} != active ${active.dim}` };
+  }
+  if (!activeCompatibleModelIds(active).has(summary.modelIds[0])) {
+    return {
+      ...base,
+      stale: true,
+      reason: `projection model '${summary.modelIds[0]}' != active '${active.name}'`,
+    };
+  }
+  return { ...base, stale: false };
+}
+
+export function readAdvisorEmbeddingStaleness(db: Database.Database): AdvisorEmbeddingStalenessVerdict {
+  try {
+    const activePointer = readActiveEmbeddingPointer(db);
+    const active = activePointer ? signatureFromPointer(activePointer) : null;
+    return buildEmbeddingStalenessVerdict(active, storedEmbeddingSummary(db, activePointer));
+  } catch (error: unknown) {
+    const reason = error instanceof Error ? error.message : String(error);
+    return {
+      stale: true,
+      reason: `projection embedding staleness check failed: ${reason}`,
+      active: null,
+      stored: null,
+      vectorCount: 0,
+      modelIds: [],
+    };
+  }
+}
+
 /**
  * Load doc-level trigger projections grouped by skill id. Tolerates a
  * pre-migration database (missing skill_docs table) by returning an
@@ -296,6 +608,7 @@ function loadSqliteProjection(workspaceRoot: string): AdvisorProjection | null {
       ORDER BY source_id ASC, edge_type ASC, target_id ASC
     `).all() as SkillEdgeRow[];
     const docTriggersBySkill = loadDocTriggersBySkill(db);
+    const embeddingStaleness = readAdvisorEmbeddingStaleness(db);
     return {
       skills: [
         ...rows.map((row) => {
@@ -314,6 +627,8 @@ function loadSqliteProjection(workspaceRoot: string): AdvisorProjection | null {
       })),
       generatedAt: new Date().toISOString(),
       source: 'sqlite',
+      embeddingSignature: embeddingStaleness.stored,
+      embeddingStaleness,
     };
   } finally {
     db.close();

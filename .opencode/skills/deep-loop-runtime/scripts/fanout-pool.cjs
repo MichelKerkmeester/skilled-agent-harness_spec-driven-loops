@@ -56,15 +56,30 @@ function labelFor(item, index) {
   return `item-${index}`;
 }
 
-function buildPoolGauges({ total, settled, pending, failed }) {
-  return {
+function buildPoolGauges({ total, settled, pending, failed, oldestPendingLagMs }) {
+  const gauges = {
     lag: Math.max(0, total - settled),
     pending: Math.max(0, pending),
     failed: Math.max(0, failed),
   };
+  if (Number.isFinite(oldestPendingLagMs)) {
+    gauges.oldest_pending_lag_ms = Math.max(0, Math.floor(oldestPendingLagMs));
+  }
+  return gauges;
 }
 
 function normalizeMaxRetries(value) {
+  if (value === undefined || value === null) {
+    return 0;
+  }
+  const n = Number(value);
+  if (!Number.isFinite(n) || n < 0) {
+    return 0;
+  }
+  return Math.floor(n);
+}
+
+function normalizeNonNegativeDuration(value) {
   if (value === undefined || value === null) {
     return 0;
   }
@@ -301,6 +316,19 @@ function runCappedPool(options) {
   const retryCounts = normalizeRetryCountMap(options.initialRetryCounts);
   const results = new Array(items.length);
   const queue = items.map((_item, index) => index);
+  const queuedAtMs = new Map(queue.map((index) => [index, Date.now()]));
+  const lagCeilingMs = normalizeNonNegativeDuration(options.lagCeilingMs ?? options.lag_ceiling_ms ?? options.lag_ceiling);
+  let lagCeilingTimer = null;
+  let lagCeilingExceeded = false;
+
+  const oldestPendingLagMs = () => {
+    if (lagCeilingMs <= 0 || queue.length === 0) return undefined;
+    let oldestQueuedAt = Infinity;
+    for (const index of queue) {
+      oldestQueuedAt = Math.min(oldestQueuedAt, queuedAtMs.get(index) ?? Date.now());
+    }
+    return Number.isFinite(oldestQueuedAt) ? Date.now() - oldestQueuedAt : undefined;
+  };
 
   const buildCurrentGauges = () => {
     const settled = results.filter(Boolean).length;
@@ -310,6 +338,7 @@ function runCappedPool(options) {
       settled,
       pending: queue.length,
       failed,
+      oldestPendingLagMs: oldestPendingLagMs(),
     });
   };
 
@@ -321,12 +350,47 @@ function runCappedPool(options) {
 
     let active = 0;
     let resolved = false;
+    const clearLagCeilingTimer = () => {
+      if (lagCeilingTimer) {
+        clearTimeout(lagCeilingTimer);
+        lagCeilingTimer = null;
+      }
+    };
+
+    const emitLagCeilingWarning = () => {
+      if (!onEvent || lagCeilingMs <= 0 || lagCeilingExceeded || queue.length === 0) return;
+      const gauges = buildCurrentGauges();
+      if ((gauges.oldest_pending_lag_ms ?? 0) < lagCeilingMs) return;
+      lagCeilingExceeded = true;
+      onEvent({
+        event: 'lag_ceiling_exceeded',
+        at: normalizeTimestamp(now()),
+        severity: 'warning',
+        lag_ceiling_ms: lagCeilingMs,
+        oldest_pending_lag_ms: gauges.oldest_pending_lag_ms,
+        gauges,
+      });
+    };
+
+    const scheduleLagCeilingCheck = () => {
+      clearLagCeilingTimer();
+      if (!onEvent || lagCeilingMs <= 0 || lagCeilingExceeded || queue.length === 0) return;
+      const lag = oldestPendingLagMs() ?? 0;
+      const delayMs = Math.max(0, lagCeilingMs - lag);
+      lagCeilingTimer = setTimeout(() => {
+        lagCeilingTimer = null;
+        emitLagCeilingWarning();
+      }, delayMs);
+      lagCeilingTimer.unref?.();
+    };
+
     const emitEvent = onEvent
       ? (event) => {
           onEvent({
             ...event,
             gauges: buildCurrentGauges(),
           });
+          emitLagCeilingWarning();
         }
       : undefined;
 
@@ -354,11 +418,13 @@ function runCappedPool(options) {
       }
       if (queue.length === 0 && active === 0) {
         resolved = true;
+        clearLagCeilingTimer();
         resolve(buildPoolSummary(results));
         return;
       }
       while (active < concurrency && queue.length > 0) {
         const index = queue.shift();
+        queuedAtMs.delete(index);
         const label = labelFor(items[index], index);
         const retryCount = retryCounts.get(label) || 0;
         const attempt = retryCount + 1;
@@ -378,6 +444,7 @@ function runCappedPool(options) {
               const nextRetryCount = retryCount + 1;
               retryCounts.set(label, nextRetryCount);
               emitSettledResult(result, false);
+              queuedAtMs.set(index, Date.now());
               queue.push(index);
               if (emitEvent) {
                 emitEvent({
@@ -413,9 +480,11 @@ function runCappedPool(options) {
           })
           .finally(() => {
             active -= 1;
+            scheduleLagCeilingCheck();
             pump();
           });
       }
+      scheduleLagCeilingCheck();
     };
 
     pump();

@@ -843,4 +843,49 @@ describe('code graph context rank-time trust', () => {
     expect(callers).toEqual(['Trusted.caller', 'Neutral.first', 'Neutral.second']);
     expect(callers.filter((caller) => caller.startsWith('Neutral.'))).toEqual(['Neutral.first', 'Neutral.second']);
   });
+
+  it('keeps equal-trust impact caller order stable when database row order shifts', async () => {
+    const buildContext = await importBuildContext();
+    const rows = {
+      alpha: {
+        edge: { sourceId: 'caller-alpha', targetId: 'symbol-alpha', edgeType: 'CALLS' as const, weight: 0.8 },
+        sourceNode: { fqName: 'Caller.alpha', kind: 'function', filePath: 'src/alpha.ts', startLine: 11, contentHash: 'hash-a' },
+      },
+      beta: {
+        edge: { sourceId: 'caller-beta', targetId: 'symbol-alpha', edgeType: 'CALLS' as const, weight: 0.8 },
+        sourceNode: { fqName: 'Caller.beta', kind: 'function', filePath: 'src/beta.ts', startLine: 22, contentHash: 'hash-b' },
+      },
+      gamma: {
+        edge: { sourceId: 'caller-gamma', targetId: 'symbol-alpha', edgeType: 'CALLS' as const, weight: 0.8 },
+        sourceNode: { fqName: 'Caller.gamma', kind: 'function', filePath: 'src/gamma.ts', startLine: 33, contentHash: 'hash-c' },
+      },
+    };
+    const shiftedOrders = [
+      [rows.beta, rows.gamma, rows.alpha],
+      [rows.gamma, rows.alpha, rows.beta],
+    ];
+    let callsQueryCount = 0;
+    mocks.queryEdgesTo.mockImplementation((symbolId, edgeType, ..._rest: unknown[]) => {
+      if (symbolId !== 'symbol-alpha' || edgeType !== 'CALLS') return [];
+      const order = shiftedOrders[Math.min(callsQueryCount, shiftedOrders.length - 1)];
+      callsQueryCount += 1;
+      return order;
+    });
+
+    const first = buildContext({
+      queryMode: 'impact',
+      seeds: [{ filePath: 'src/placeholder.ts', startLine: 1, endLine: 1 }],
+      deadlineMs: 400,
+    });
+    const second = buildContext({
+      queryMode: 'impact',
+      seeds: [{ filePath: 'src/placeholder.ts', startLine: 1, endLine: 1 }],
+      deadlineMs: 400,
+    });
+    const firstCallers = first.graphContext[0].edges.map((edge) => edge.from);
+    const secondCallers = second.graphContext[0].edges.map((edge) => edge.from);
+
+    expect(firstCallers).toEqual(['Caller.alpha', 'Caller.beta', 'Caller.gamma']);
+    expect(secondCallers).toEqual(firstCallers);
+  });
 });

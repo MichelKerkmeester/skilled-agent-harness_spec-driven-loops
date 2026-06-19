@@ -1,8 +1,16 @@
 // TEST: RRF Fusion (C138-P3) — Cross-Variant Multi-Query Fusion
 // Converted from: unit-rrf-fusion.test.ts (custom runner)
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
-import type { FusionResult } from '@spec-kit/shared/algorithms/rrf-fusion';
-import { fuseResults, fuseResultsMulti, fuseResultsCrossVariant, SOURCE_TYPES, DEFAULT_K } from '@spec-kit/shared/algorithms/rrf-fusion';
+import type { FusionResult, RankedList } from '@spec-kit/shared/algorithms/rrf-fusion';
+import {
+  applyRetrievalProfileToRankedLists,
+  fuseResults,
+  fuseResultsMulti,
+  fuseResultsCrossVariant,
+  isRetrievalProfileWeightsEnabled,
+  SOURCE_TYPES,
+  DEFAULT_K,
+} from '@spec-kit/shared/algorithms/rrf-fusion';
 
 function requireResult<T>(value: T | undefined): T {
   expect(value).toBeDefined();
@@ -13,14 +21,27 @@ function requireResult<T>(value: T | undefined): T {
 // The calibrated mode (graduated-ON) caps bonuses at CALIBRATED_OVERLAP_MAX (0.06), which
 // would cause these convergence bonus assertions to fail.
 const savedCalibratedOverlap = process.env.SPECKIT_CALIBRATED_OVERLAP_BONUS;
+const savedRetrievalProfileWeights = process.env.SPECKIT_RETRIEVAL_PROFILE_WEIGHTS;
+const savedScoreNormalization = process.env.SPECKIT_SCORE_NORMALIZATION;
 beforeAll(() => {
   process.env.SPECKIT_CALIBRATED_OVERLAP_BONUS = 'false';
+  process.env.SPECKIT_SCORE_NORMALIZATION = 'false';
 });
 afterAll(() => {
   if (savedCalibratedOverlap === undefined) {
     delete process.env.SPECKIT_CALIBRATED_OVERLAP_BONUS;
   } else {
     process.env.SPECKIT_CALIBRATED_OVERLAP_BONUS = savedCalibratedOverlap;
+  }
+  if (savedRetrievalProfileWeights === undefined) {
+    delete process.env.SPECKIT_RETRIEVAL_PROFILE_WEIGHTS;
+  } else {
+    process.env.SPECKIT_RETRIEVAL_PROFILE_WEIGHTS = savedRetrievalProfileWeights;
+  }
+  if (savedScoreNormalization === undefined) {
+    delete process.env.SPECKIT_SCORE_NORMALIZATION;
+  } else {
+    process.env.SPECKIT_SCORE_NORMALIZATION = savedScoreNormalization;
   }
 });
 
@@ -382,5 +403,80 @@ describe('C138-P3: fuseResultsCrossVariant', () => {
     ]);
 
     expect(fused).toEqual([]);
+  });
+});
+
+describe('Retrieval profile channel weights', () => {
+  it('leaves ranked lists unchanged when profile weights are not opted in', () => {
+    delete process.env.SPECKIT_RETRIEVAL_PROFILE_WEIGHTS;
+    expect(isRetrievalProfileWeightsEnabled()).toBe(false);
+
+    const lists: RankedList[] = [
+      { source: SOURCE_TYPES.VECTOR, results: [{ id: 'shared', title: 'Vector' }], weight: 1 },
+      { source: SOURCE_TYPES.GRAPH, results: [{ id: 'graph', title: 'Graph' }], weight: 0.5 },
+    ];
+
+    const profiled = applyRetrievalProfileToRankedLists(lists, 'Quote');
+    expect(profiled).toBe(lists);
+    expect(fuseResultsMulti(profiled)).toEqual(fuseResultsMulti(lists));
+  });
+
+  it('honors a zero-weight profile without distorting surviving channel overlap', () => {
+    process.env.SPECKIT_RETRIEVAL_PROFILE_WEIGHTS = 'true';
+
+    const baseLists: RankedList[] = [
+      { source: SOURCE_TYPES.VECTOR, results: [{ id: 'shared', title: 'Vector' }], weight: 1 },
+      { source: SOURCE_TYPES.BM25, results: [{ id: 'shared', title: 'BM25' }], weight: 1 },
+    ];
+    const listsWithGraph: RankedList[] = [
+      ...baseLists,
+      { source: SOURCE_TYPES.GRAPH, results: [{ id: 'graph-only', title: 'Graph' }], weight: 1 },
+    ];
+
+    const profiled = applyRetrievalProfileToRankedLists(listsWithGraph, 'SingleHop', {
+      enabled: true,
+      profiles: {
+        SingleHop: {
+          channelWeights: {
+            graph: 0,
+          },
+        },
+      },
+    });
+    expect(profiled.find((list) => list.source === SOURCE_TYPES.GRAPH)?.weight).toBe(0);
+
+    const base = fuseResultsMulti(baseLists, { bonusOverChannels: 'active' });
+    const withZeroedGraph = fuseResultsMulti(profiled, { bonusOverChannels: 'active' });
+    expect(withZeroedGraph).toEqual(base);
+  });
+
+  it('parses only explicit opt-in values as enabled', () => {
+    process.env.SPECKIT_RETRIEVAL_PROFILE_WEIGHTS = 'yes';
+    expect(isRetrievalProfileWeightsEnabled()).toBe(true);
+
+    process.env.SPECKIT_RETRIEVAL_PROFILE_WEIGHTS = 'false';
+    expect(isRetrievalProfileWeightsEnabled()).toBe(false);
+  });
+
+  it('fails closed when a profile would zero every active list', () => {
+    process.env.SPECKIT_RETRIEVAL_PROFILE_WEIGHTS = 'true';
+
+    const lists: RankedList[] = [
+      { source: SOURCE_TYPES.VECTOR, results: [{ id: 'v', title: 'Vector' }], weight: 1 },
+      { source: SOURCE_TYPES.BM25, results: [{ id: 'b', title: 'BM25' }], weight: 1 },
+    ];
+
+    const profiled = applyRetrievalProfileToRankedLists(lists, 'SingleHop', {
+      enabled: true,
+      profiles: {
+        SingleHop: {
+          channelWeights: {
+            '*': 0,
+          },
+        },
+      },
+    });
+
+    expect(profiled).toBe(lists);
   });
 });

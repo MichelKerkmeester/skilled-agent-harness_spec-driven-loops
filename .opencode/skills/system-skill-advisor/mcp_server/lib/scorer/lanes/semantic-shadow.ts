@@ -155,6 +155,11 @@ export const _semanticShadowTest = {
 };
 
 export function scoreSemanticShadowLane(prompt: string, projection: AdvisorProjection): LaneMatch[] {
+  if (projection.embeddingStaleness?.stale) {
+    setRuntimeHealth({ disabledReason: 'projection_embedding_stale' });
+    return [];
+  }
+
   if (!activePromptEmbedding && process.env.VITEST === 'true') {
     const tokens = tokenize(prompt);
     return projection.skills

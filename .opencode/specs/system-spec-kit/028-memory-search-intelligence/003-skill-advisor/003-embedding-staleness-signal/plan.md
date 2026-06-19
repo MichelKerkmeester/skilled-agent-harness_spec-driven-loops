@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/003-embedding-staleness-signal"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored plan: signal-first sequencing + Memory-010 reuse dep + per-candidate status"
-    next_safe_action: "Implement REQ-001 signature capture in projection.ts (signal head)"
+    recent_action: "Implemented signal-first phases A-C; Memory-010 rebuild reuse remains gated"
+    next_safe_action: "Wire phase D once the shared idempotent-async primitive is available"
     blockers: []
     key_files:
       - "spec.md"
@@ -24,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-003-embedding-staleness-signal"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 80
     open_questions: []
     answered_questions: []
 ---
@@ -48,7 +48,7 @@ _memory:
 | **Testing** | vitest (focused per-seam: projection signature, lane degrade, rebuild idempotency) |
 
 ### Overview
-Close the advisor's load-time staleness blind spot in two facets, signal-first. The WRITE path is already embedder-aware (`refreshSkillEmbeddingsViaAdapter` skips when `vec_model_id===modelId && vec_content_hash===contentHash`; dim-mismatch fail-fast), but the READ/projection boundary the scorer consumes carries NO embedder signature — `loadSqliteProjection` stamps `generatedAt = new Date().toISOString()` at load (`projection.ts:315`), masking embedder-version drift. **Facet #1 (the staleness signal, `SA8-embedding-staleness`)** captures the embedder signature `(provider, name, dim)` into the stored projection and compares it on load, emitting a structured stale verdict mirroring `memory_embedding_reconcile`'s shard-mismatch report; the `semantic_shadow` lane degrades on a stale verdict instead of trusting superseded vectors. **Facet #2 (the rebuild reuse, `Advisor-embedding-staleness-signal`)** wires the stale-triggered projection rebuild onto the durable-cursor + bounded-retry + idempotency-token primitive built once in Memory `010-consolidation-cursor-clock` — no second engine. Both candidates are PENDING; neither is in the 030 Wave-0 record (030 schedules "advisor embedding-staleness" as Wave-1 at `030 spec.md:104`).
+Close the advisor's load-time staleness blind spot in two facets, signal-first. The WRITE path is already embedder-aware (`refreshSkillEmbeddingsViaAdapter` skips when `vec_model_id===modelId && vec_content_hash===contentHash`; dim-mismatch fail-fast), but the READ/projection boundary the scorer consumes carried NO embedder signature — `loadSqliteProjection` stamped `generatedAt = new Date().toISOString()` at load (`projection.ts:315`), masking embedder-version drift. **Facet #1 (the staleness signal, `SA8-embedding-staleness`)** is implemented: the projection carries an embedder signature/staleness verdict, `semantic_shadow` degrades on stale vectors, and status health reports the stale-vector condition. **Facet #2 (the rebuild reuse, `Advisor-embedding-staleness-signal`)** remains gated until the durable-cursor + bounded-retry + idempotency-token primitive from Memory `010-consolidation-cursor-clock` is available — no second engine is built here.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -63,8 +63,8 @@ Close the advisor's load-time staleness blind spot in two facets, signal-first. 
 ### Definition of Done
 - A projection built under embedder A, loaded while embedder B is active, yields a structured stale verdict (not a masked `generatedAt = now()`); a matching signature yields not-stale; a missing/null signature fails closed to stale.
 - The `semantic_shadow` lane degrades on a stale verdict.
-- The rebuild reuses the Memory-010 primitive (recoverable mid-rebuild, no double-apply).
-- Typecheck + build + focused tests + `validate.sh --strict` on this folder pass.
+- The rebuild reuse is explicitly left pending until the Memory-010 primitive is available.
+- Typecheck + build + focused tests + broad related Vitest + `validate.sh --strict` on this folder pass.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -107,7 +107,7 @@ This is purely additive at the read boundary; it does not touch the embedder reg
 
 **Phase C — Lane degrade (REQ-003).** Wire the `semantic_shadow` lane to the verdict; on stale, degrade. Unit-test the lane output under stale vs fresh.
 
-**Phase D — Idempotent rebuild reuse (REQ-004, gated on Memory 010).** Import the Memory-010 durable-cursor + bounded-retry + idempotency-token primitive; route the stale-triggered rebuild through it; ensure single in-flight + crash recovery + no double-apply. If Memory 010 has not landed, STOP after Phase C and record REQ-004 as gated.
+**Phase D — Idempotent rebuild reuse (REQ-004, gated on Memory 010).** Import the Memory-010 durable-cursor + bounded-retry + idempotency-token primitive; route the stale-triggered rebuild through it; ensure single in-flight + crash recovery + no double-apply. Memory 010 has not landed the reusable primitive in this work window, so REQ-004 remains gated after Phase C.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -119,7 +119,7 @@ This is purely additive at the read boundary; it does not touch the embedder reg
 - **Compare-on-load** — three cases: matching signature ⇒ `stale:false`; provider/name/dim mismatch ⇒ `stale:true` + reason string in the `embedding-reconcile.ts` shape; missing/null stored signature ⇒ `stale:true` (fail-closed).
 - **Lane degrade** — `semantic_shadow` output under a stale verdict degrades (no superseded cosine rows ranked as fresh) vs fresh verdict (unchanged).
 - **Rebuild idempotency/crash** (Phase D) — a rebuild interrupted mid-cursor resumes without re-applying completed rows; two concurrent stale loads launch a single rebuild.
-- **Regression baseline** — capture the current `advisor_validate` / focused scorer suite green count BEFORE changes; re-run the WHOLE focused gate after and report the delta (no benefit number is claimed — correctness only).
+- **Regression baseline** — capture the current code-only typecheck + broad related scorer/status Vitest green count BEFORE changes; re-run the WHOLE related gate after and report the delta (no benefit number is claimed — correctness only). Live `advisor_validate` remains outside this work window.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -176,7 +176,7 @@ Critical path: A → B → C (the shippable signal). D is parallel-after-B but g
 
 | Trigger | Action | Verification |
 |---------|--------|--------------|
-| Stale verdict false-positives on a valid projection | Revert Phase B; investigate signature derivation (provider/name/dim normalization) | `advisor_validate` green; no spurious stale on a freshly-refreshed DB |
+| Stale verdict false-positives on a valid projection | Revert Phase B; investigate signature derivation (provider/name/dim normalization) | Typecheck + broad related scorer/status Vitest green; no spurious stale on a freshly-refreshed DB fixture |
 | Lane degrade over-suppresses `semantic_shadow` | Revert Phase C; keep the verdict (report-only) until the degrade shape is aligned with sibling 002 | Lane contributes again; recommendation parity restored |
 | Rebuild thrashes / loops on load | Revert Phase D to the prior non-durable rebuild; gate eager rebuild behind the idempotency lock | No repeated rebuild on consecutive loads; single in-flight |
 | Memory 010 primitive changes shape after import | Re-pin the import; D is the only consumer affected | Phase D tests green against the updated primitive |

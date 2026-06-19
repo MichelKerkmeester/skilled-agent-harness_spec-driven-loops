@@ -22,6 +22,7 @@ const {
     onEvent?: (event: Record<string, unknown>) => void;
     maxRetries?: number;
     initialRetryCounts?: Record<string, number>;
+    lagCeilingMs?: number;
   }) => Promise<{
     results: Array<{
       label: string;
@@ -59,6 +60,7 @@ const {
 // yielding to a macrotask — deterministic regardless of how many ticks the
 // pool's admission chain (.then -> .finally -> pump) takes.
 const flush = () => new Promise<void>((resolve) => setTimeout(resolve, 0));
+const sleep = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms));
 
 // A controllable worker: each item resolves only when its gate is released.
 // `entered` is append-only (worker invocation order); `inFlight` reflects the
@@ -231,6 +233,34 @@ describe('runCappedPool', () => {
       { event: 'failed', gauges: { lag: 0, pending: 0, failed: 1 } },
     ]);
     expect(result.summary.gauges).toEqual({ lag: 0, pending: 0, failed: 1 });
+  });
+
+  it('emits one warning when the oldest pending lineage reaches the lag ceiling', async () => {
+    const events: Array<Record<string, unknown>> = [];
+    const gated = makeGatedWorker();
+    const run = runCappedPool({
+      items: [{ label: 'active' }, { label: 'queued' }],
+      concurrency: 1,
+      lagCeilingMs: 10,
+      worker: gated.worker,
+      onEvent: (event) => events.push(event),
+    });
+
+    await flush();
+    await sleep(30);
+    expect(events.filter((event) => event.event === 'lag_ceiling_exceeded')).toEqual([
+      expect.objectContaining({
+        severity: 'warning',
+        lag_ceiling_ms: 10,
+        gauges: expect.objectContaining({ pending: 1 }),
+      }),
+    ]);
+
+    gated.releaseAll();
+    await flush();
+    gated.releaseAll();
+    const result = await run;
+    expect(result.summary).toMatchObject({ succeeded: 2, failed: 0 });
   });
 
   it('surfaces bounded failure classes and rolls them up in the summary', async () => {

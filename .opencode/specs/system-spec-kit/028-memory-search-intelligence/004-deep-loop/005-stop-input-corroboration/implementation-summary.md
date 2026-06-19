@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Deep Loop STOP-Input Corroboration"
-description: "Planning-stage summary for the STOP-input corroboration cluster. C7 shutdown-summary is recorded as already shipped in packet 030 commit 46812f12a8. C1 through C6 remain PENDING and needs-benchmark."
+description: "Runtime implementation summary for the STOP-input corroboration cluster. C1 through C6 are implemented in deep-loop-runtime with deterministic tests. Live benchmark calibration, workflow reported-novelty forwarding and namespace-aware graph-edge persistence remain explicit gates. C7 was already shipped in packet 030 commit 46812f12a8."
 trigger_phrases:
   - "stop input corroboration implementation summary"
   - "newInfoRatio audit status"
@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/004-deep-loop/005-stop-input-corroboration"
-    last_updated_at: "2026-06-19T10:30:00+02:00"
+    last_updated_at: "2026-06-19T13:46:00+02:00"
     last_updated_by: "codex"
-    recent_action: "implementation-summary"
-    next_safe_action: "Begin with C1 graph-novelty delta, then C2 STOP consumption"
+    recent_action: "Implemented deep-loop-runtime C1-C6 runtime seams and deterministic tests"
+    next_safe_action: "Run live benchmark calibration and wire workflow reported-novelty forwarding"
     blockers: []
     key_files:
       - "spec.md"
@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-004-005-replan"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 80
     open_questions: []
     answered_questions: []
 ---
@@ -43,9 +43,9 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | `028-memory-search-intelligence/004-deep-loop/005-stop-input-corroboration` |
-| **Completed** | n/a, planning-stage packet |
+| **Completed** | Runtime implementation complete; live gates pending |
 | **Level** | 2 |
-| **Status** | PLANNED, implementation PENDING except C7 already shipped in 030 |
+| **Status** | IMPLEMENTED in deep-loop-runtime; benchmark/wiring/persistence gates pending |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -53,17 +53,32 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-No new production code was built in this sub-phase. The packet plans the STOP-input corroboration cluster and records one already-shipped item: C7 shutdown-summary heartbeat, shipped as part of packet 030 commit `46812f12a8`. The six remaining candidates are PENDING: graph-novelty audit, novelty consumption, lag ceiling enforcement, cross-lineage keep-both, contradiction record and progress heartbeat.
+C1 through C6 were implemented in `.opencode/skills/deep-loop-runtime` with deterministic tests. C7 remains already-shipped via packet 030 commit `46812f12a8` and was not re-implemented.
+
+| Candidate | Outcome |
+|-----------|---------|
+| C1 graph-novelty audit | Implemented `computeGraphNoveltyDelta` from graph rows and snapshots; no model self-report input. Benchmark threshold calibration pending. |
+| C2 reported-novelty STOP guard | Implemented `--reported-novelty`, `effectiveNovelty = max(reported, graphDelta)` and blocking `novelty_self_report_unverified`; absent arg is a no-op. Workflow forwarding remains pending outside runtime. |
+| C3 lag ceiling | Implemented pure cost-guard evaluator and fanout-pool warning event. Fanout default remains off until benchmarked. |
+| C4 keep-both collision handling | Implemented same-id/different-content keep-both with content-derived ids and deterministic ordering. |
+| C5 conflict record | Implemented `_conflicts` markers with `relation: 'CONTRADICTS'`; namespace-aware graph-edge persistence remains a separate gate because fanout merge has no graph namespace inputs. |
+| C6 progress heartbeat | Implemented configurable progress events in the lineage worker; default `0` keeps current behavior until cadence is benchmarked. |
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `spec.md` | Created | Defines the seven-candidate STOP-input cluster and marks C7 DONE |
-| `plan.md` | Created | Sequences C1 to C6 and records C7 as already shipped |
-| `tasks.md` | Created | Breaks the cluster into implementation and validation tasks |
-| `checklist.md` | Created | Records planning verification and pending implementation gates |
-| `implementation-summary.md` | Created | This planning-stage summary |
+| `.opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts` | Modified | Adds graph-observed novelty delta |
+| `.opencode/skills/deep-loop-runtime/scripts/convergence.cjs` | Modified | Adds reported-novelty parsing, effective novelty and STOP blocker |
+| `.opencode/skills/deep-loop-runtime/lib/council/cost-guards.cjs` | Modified | Adds lag-ceiling normalization/evaluator |
+| `.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts` | Modified | Adds default-off fanout lag/heartbeat config |
+| `.opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs` | Modified | Emits lag-ceiling warning events when configured |
+| `.opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs` | Modified | Keeps both divergent same-id findings and marks conflicts |
+| `.opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs` | Modified | Emits optional in-lineage progress events |
+| `.opencode/skills/deep-loop-runtime/package.json` | Modified | Adds canonical `npm run typecheck` |
+| `.opencode/skills/deep-loop-runtime/tsconfig.json` | Added | Source-only runtime TypeScript check |
+| `.opencode/skills/deep-loop-runtime/tests/...` | Modified | Adds deterministic coverage for C1-C6 |
+| `spec.md`, `tasks.md`, `checklist.md`, `implementation-summary.md` | Modified | Reconciles runtime implementation status and remaining gates |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -71,7 +86,7 @@ No new production code was built in this sub-phase. The packet plans the STOP-in
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The re-plan separated STOP-corroboration from the reliability cluster. C1 and C2 handle the self-graded `newInfoRatio` gap, C3 uses the shipped pool gauges as an enforceable lag tripwire, C4 and C5 handle same-id cross-lineage collisions and C6 adds optional progress liveness. C7 is not rebuilt because packet 030 already shipped the stopped partial-summary path.
+The implementation stayed inside deep-loop-runtime. C1 and C2 harden structured STOP only when a runtime caller supplies `--reported-novelty`; this preserves existing callers. C3 and C6 are default-off in live fanout config because their defaults require calibration. C4 and C5 avoid downstream same-id clobber by rewriting divergent records to content-derived ids before any later id-scoped upsert.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -82,8 +97,9 @@ The re-plan separated STOP-corroboration from the reliability cluster. C1 and C2
 | Decision | Why |
 |----------|-----|
 | Keep C1 before C2 | The independent graph delta is the input the STOP gate consumes. |
-| Keep C3 additive | The existing cost-guard return remains advisory, while `lag_ceiling` is a new enforced path. |
-| Keep C4 before C5 | A contradiction record needs both sides to survive the merge. |
+| Leave workflow forwarding pending | The requested code scope was deep-loop-runtime, and the workflow reducer file was outside that subsystem. |
+| Keep C3 additive and default-off in fanout | The existing cost-guard return remains advisory, while live tripwire defaults need benchmark calibration. |
+| Rewrite divergent same-id records to content-derived ids | Downstream id-scoped upsert would clobber same-id bodies; unique ids preserve both sides. |
 | Keep C6 default disabled until measured | The heartbeat cadence can add ledger noise if the default is wrong. |
 | Do not rebuild C7 | Packet 030 commit `46812f12a8` already shipped the shutdown-summary half. |
 <!-- /ANCHOR:decisions -->
@@ -95,10 +111,12 @@ The re-plan separated STOP-corroboration from the reliability cluster. C1 and C2
 
 | Check | Result |
 |-------|--------|
-| Candidate status against packet 030 | PASS: C7 shipped, C1 through C6 did not |
+| Baseline | PASS: broad related Vitest was `6 files / 83 tests`; baseline `npm run typecheck` failed because no script existed |
+| `node --check` | PASS: `convergence.cjs`, `cost-guards.cjs`, `fanout-merge.cjs`, `fanout-pool.cjs`, `fanout-run.cjs` |
+| `npm run typecheck` | PASS: 0 errors |
+| Broad related Vitest | PASS: `7 files / 136 tests` |
 | Dependency discipline | PASS: no candidate depends on D2 reliability |
-| Implementation tests | PENDING for C1 through C6 |
-| Strict packet validation | PASS once all Level 2 docs validate |
+| Strict packet validation | PASS: 0 errors / 0 warnings |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -106,7 +124,8 @@ The re-plan separated STOP-corroboration from the reliability cluster. C1 and C2
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **C1 through C6 are not implemented.** They remain needs-benchmark and PENDING.
-2. **Novelty thresholds are uncalibrated.** C1 and C2 need real snapshot histories.
-3. **Heartbeat default is unsettled.** It stays configurable and safe to disable until measured.
+1. **Benchmark calibration remains pending.** Novelty floor/tolerance, fanout lag ceiling and heartbeat cadence need real histories before any default-on behavior.
+2. **Workflow forwarding remains pending.** `convergence.cjs` accepts `--reported-novelty`, but the deep-research reducer/orchestrator was not modified in this runtime-scoped pass.
+3. **Namespace-aware graph-edge persistence remains pending.** Fanout merge emits `_conflicts` markers; it does not write graph edges because it has no graph namespace input.
+4. **No independent adversarial review seat was run.** Deterministic fixtures cover the anti-gaming and merge behaviors; the T024 review gate remains open.
 <!-- /ANCHOR:limitations -->

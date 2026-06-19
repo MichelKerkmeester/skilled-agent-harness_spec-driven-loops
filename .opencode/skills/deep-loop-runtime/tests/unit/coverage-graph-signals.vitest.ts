@@ -132,6 +132,28 @@ describe('coverage-graph-signals', () => {
     expect(signalsModule.computeResearchClaimVerificationRateFromData(nodes)).toBe(0.5);
   });
 
+  it('computeGraphNoveltyDelta counts new evidence-bearing graph rows since the latest snapshot', () => {
+    const snapshot = { iteration: 2, createdAt: '2026-06-19T10:00:00.000Z' };
+    const nodes = [
+      { id: 'finding-old', kind: 'FINDING', createdAt: '2026-06-19T09:59:00.000Z' },
+      { id: 'source-new', kind: 'SOURCE', createdAt: '2026-06-19T10:01:00.000Z' },
+      { id: 'finding-insight', kind: 'FINDING', createdAt: '2026-06-19T10:02:00.000Z', metadata: { status: 'insight' } },
+      { id: 'question-new', kind: 'QUESTION', createdAt: '2026-06-19T10:03:00.000Z' },
+    ];
+    const edges = [
+      { id: 'edge-new', relation: 'EVIDENCE_FOR', sourceId: 'source-new', targetId: 'finding-old', createdAt: '2026-06-19T10:04:00.000Z' },
+      { id: 'edge-cites', relation: 'CITES', sourceId: 'finding-old', targetId: 'source-new', createdAt: '2026-06-19T10:04:00.000Z' },
+    ];
+
+    expect(signalsModule.computeGraphNoveltyDelta(nodes, edges, [snapshot])).toBeCloseTo(2 / 3, 5);
+  });
+
+  it('computeGraphNoveltyDelta fails open when no prior snapshot exists', () => {
+    const nodes = [{ id: 'finding-new', kind: 'FINDING', createdAt: '2026-06-19T10:01:00.000Z' }];
+
+    expect(signalsModule.computeGraphNoveltyDelta(nodes, [], [])).toBe(0);
+  });
+
   // ───── Context signals (closes the zero-coverage gap on the deep-context path) ─────
 
   it('computeContextSignalsFromData vacuous-passes all five signals on an empty graph', () => {

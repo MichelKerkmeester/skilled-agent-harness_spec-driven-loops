@@ -13,9 +13,9 @@
     "convergence-hardening",
     "cluster"
   ],
-  "lastUpdated": "2026-06-19T06:21:37.539Z",
+  "lastUpdated": "2026-06-19T11:51:33.913Z",
   "specId": "005",
-  "folderSlug": "005-stop-input-corroboration",
+  "folderSlug": "stop-input-corroboration",
   "parentChain": [
     "system-spec-kit",
     "028-memory-search-intelligence",

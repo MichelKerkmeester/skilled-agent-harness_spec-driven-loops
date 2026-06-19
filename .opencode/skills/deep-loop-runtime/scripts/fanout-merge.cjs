@@ -15,9 +15,12 @@
 
 'use strict';
 
+const crypto = require('node:crypto');
 const fs = require('node:fs');
 const path = require('node:path');
 const { spawnSync } = require('node:child_process');
+
+const SEVERITY_RANK = { P0: 3, P1: 2, P2: 1 };
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. TSX BOOTSTRAP
@@ -141,6 +144,30 @@ function contentSortKey(record) {
   return durableText || stableStringify({ ...record, _lineages: undefined });
 }
 
+function contentIdentityKey(record) {
+  const durableText = [
+    record.title,
+    record.summary,
+    record.description,
+    record.finding,
+    record.question,
+    record.direction,
+  ].map(normalizeSortText).filter(Boolean).join('\u0001');
+  return durableText || stableStringify({
+    ...record,
+    _conflictOf: undefined,
+    _conflict_id: undefined,
+    _conflicts: undefined,
+    _lineages: undefined,
+    severity: undefined,
+    status: undefined,
+  });
+}
+
+function contentDigest(record) {
+  return crypto.createHash('sha256').update(contentIdentityKey(record)).digest('hex').slice(0, 12);
+}
+
 function compareByContentThenId(left, right, idKeys) {
   const leftContent = contentSortKey(left);
   const rightContent = contentSortKey(right);
@@ -169,6 +196,82 @@ function addLineage(existing, label) {
   existing._lineages.sort();
 }
 
+function mergeLineageLabels(existing, incoming, label) {
+  const lineages = new Set([...(existing._lineages || []), ...(incoming._lineages || []), label].filter(Boolean));
+  return [...lineages].sort();
+}
+
+function conflictSafeRecord(record, baseId, idKey) {
+  const conflictId = `${baseId}--${contentDigest(record)}`;
+  return {
+    ...record,
+    [idKey]: conflictId,
+    _conflictOf: baseId,
+    _conflict_id: conflictId,
+  };
+}
+
+function attachConflictMarkers(records, baseId, idKey) {
+  if (records.length < 2) return records;
+  return records.map((record) => ({
+    ...record,
+    _conflicts: records
+      .filter((other) => other !== record)
+      .map((other) => ({
+        relation: 'CONTRADICTS',
+        originalId: baseId,
+        peerId: other[idKey],
+        peerLineages: other._lineages || [],
+        basis: 'same-id-different-content',
+      })),
+  }));
+}
+
+function addResearchFinding(bucket, finding, label) {
+  const existing = bucket.find((entry) => contentIdentityKey(entry) === contentIdentityKey(finding));
+  if (existing) {
+    addLineage(existing, label);
+    return;
+  }
+  bucket.push({ ...finding, _lineages: [label] });
+}
+
+function addReviewFinding(bucket, finding, label) {
+  const existing = bucket.find((entry) => contentIdentityKey(entry) === contentIdentityKey(finding));
+  if (!existing) {
+    bucket.push({ ...finding, _lineages: [label] });
+    return;
+  }
+
+  const incomingRank = SEVERITY_RANK[finding.severity] ?? 0;
+  const existingRank = SEVERITY_RANK[existing.severity] ?? 0;
+  if (incomingRank > existingRank) {
+    Object.assign(existing, {
+      ...finding,
+      _lineages: mergeLineageLabels(existing, finding, label),
+    });
+    return;
+  }
+  addLineage(existing, label);
+}
+
+function flattenFindingBuckets(findingById, idKey, sortKeys) {
+  const records = [];
+  for (const [baseId, bucket] of findingById) {
+    const variants = sortByContentThenId(bucket, sortKeys);
+    if (variants.length === 1) {
+      records.push(variants[0]);
+      continue;
+    }
+    records.push(...attachConflictMarkers(
+      variants.map((variant) => conflictSafeRecord(variant, baseId, idKey)),
+      baseId,
+      idKey,
+    ));
+  }
+  return sortByContentThenId(records, sortKeys);
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. RESEARCH MERGE
 // ─────────────────────────────────────────────────────────────────────────────
@@ -186,16 +289,12 @@ function mergeResearchRegistries(lineageData) {
     for (const finding of registry.keyFindings) {
       const id = finding.id || finding.title;
       if (!id) continue;
-      if (findingById.has(id)) {
-        const existing = findingById.get(id);
-        addLineage(existing, label);
-      } else {
-        findingById.set(id, { ...finding, _lineages: [label] });
-      }
+      if (!findingById.has(id)) findingById.set(id, []);
+      addResearchFinding(findingById.get(id), finding, label);
     }
   }
 
-  const mergedFindings = sortByContentThenId([...findingById.values()], ['id', 'title']);
+  const mergedFindings = flattenFindingBuckets(findingById, 'id', ['id', 'title']);
   const openQuestionsById = new Map();
   const resolvedQuestionsById = new Map();
   const ruledOutById = new Map();
@@ -261,8 +360,6 @@ function mergeResearchRegistries(lineageData) {
 // 4. REVIEW MERGE  (strongest-restriction)
 // ─────────────────────────────────────────────────────────────────────────────
 
-const SEVERITY_RANK = { P0: 3, P1: 2, P2: 1 };
-
 /**
  * Merge review findings registries with strongest-restriction severity rollup.
  * Any lineage with an active P0 finding causes the merged result to be FAIL.
@@ -277,18 +374,8 @@ function mergeReviewRegistries(lineageData) {
       if (finding.status !== 'active') continue;
       const id = finding.findingId || finding.title;
       if (!id) continue;
-      if (findingById.has(id)) {
-        const existing = findingById.get(id);
-        // Strongest-restriction: escalate to highest severity seen across lineages
-        if ((SEVERITY_RANK[finding.severity] ?? 0) > (SEVERITY_RANK[existing.severity] ?? 0)) {
-          const lineages = [...(existing._lineages || []), label].filter((value, index, array) => array.indexOf(value) === index).sort();
-          findingById.set(id, { ...finding, _lineages: lineages });
-        } else {
-          addLineage(existing, label);
-        }
-      } else {
-        findingById.set(id, { ...finding, _lineages: [label] });
-      }
+      if (!findingById.has(id)) findingById.set(id, []);
+      addReviewFinding(findingById.get(id), finding, label);
     }
   }
 
@@ -311,7 +398,7 @@ function mergeReviewRegistries(lineageData) {
   }
   const mergedResolvedFindings = sortByContentThenId([...resolvedFindingById.values()], ['findingId', 'title']);
 
-  const mergedFindings = sortByContentThenId([...findingById.values()], ['findingId', 'title']);
+  const mergedFindings = flattenFindingBuckets(findingById, 'findingId', ['findingId', 'title']);
   const activeP0 = mergedFindings.filter((f) => f.severity === 'P0' && f.status === 'active').length;
   const activeP1 = mergedFindings.filter((f) => f.severity === 'P1' && f.status === 'active').length;
   const activeP2 = mergedFindings.filter((f) => f.severity === 'P2' && f.status === 'active').length;

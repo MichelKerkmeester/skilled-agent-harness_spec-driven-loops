@@ -10,9 +10,9 @@
     "signal",
     "sa8"
   ],
-  "lastUpdated": "2026-06-19T06:21:36.229Z",
+  "lastUpdated": "2026-06-19T11:43:31.484Z",
   "specId": "003",
-  "folderSlug": "003-embedding-staleness-signal",
+  "folderSlug": "embedding-staleness-signal",
   "parentChain": [
     "system-spec-kit",
     "028-memory-search-intelligence",

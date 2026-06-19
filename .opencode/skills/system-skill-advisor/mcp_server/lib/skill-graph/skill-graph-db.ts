@@ -596,7 +596,7 @@ function skillDescriptionForEmbedding(sourcePath: string): string {
   return parsed.frontmatter.description || '';
 }
 
-function providerModelId(profile: { provider: string; model: string; dim: number; dtype?: string | null; slug?: string }): string {
+export function providerModelId(profile: { provider: string; model: string; dim: number; dtype?: string | null; slug?: string }): string {
   return profile.slug ?? [profile.provider, profile.model, profile.dim, profile.dtype ?? null]
     .filter((part): part is string | number => part !== null && part !== undefined && part !== '')
     .join(':');

@@ -8,6 +8,7 @@
     "node": ">=20.11.0"
   },
   "scripts": {
+    "typecheck": "../system-spec-kit/node_modules/.bin/tsc --noEmit --composite false -p tsconfig.json",
     "test": "vitest run --no-coverage"
   },
   "dependencies": {

@@ -266,6 +266,8 @@ export const fanoutConfigSchema = z.object({
   executors: z.array(lineageExecutorSchema).min(1),
   concurrency: z.number().int().positive().default(2),
   maxRetries: z.number().int().nonnegative().default(5),
+  lagCeilingMs: z.number().int().nonnegative().default(0),
+  progressHeartbeatSeconds: z.number().nonnegative().default(0),
 });
 
 export type FanoutConfig = z.infer<typeof fanoutConfigSchema>;

@@ -46,6 +46,11 @@ import {
 import { isComplexityRouterEnabled } from './query-classifier.js';
 import { routeQuery } from './query-router.js';
 import {
+  applyRetrievalProfileToRankedLists,
+  getRetrievalProfileChannelWeight,
+  isRetrievalProfileWeightsEnabled,
+} from './retrieval-profile.js';
+import {
   isArchivedRetrievalIncludedByDefault,
   isContextHeadersEnabled,
   isCosineTopnReorderEnabled,
@@ -1549,6 +1554,30 @@ async function collectAndFuseHybridResults(
       ? getAdaptiveWeights(intent, documentType)
       : { semanticWeight: 1.0, keywordWeight: 1.0, recencyWeight: 0 };
     const { semanticWeight, keywordWeight, graphWeight: adaptiveGraphWeight } = fusionWeights;
+    const profileWeightsEnabled = isRetrievalProfileWeightsEnabled();
+    const profileOptions = { enabled: profileWeightsEnabled };
+    const profiledFusionWeights = profileWeightsEnabled
+      ? {
+        ...fusionWeights,
+        semanticWeight: semanticWeight * getRetrievalProfileChannelWeight(
+          routeResult.retrievalClass,
+          'vector',
+          profileOptions,
+        ),
+        keywordWeight: keywordWeight * getRetrievalProfileChannelWeight(
+          routeResult.retrievalClass,
+          'keyword',
+          profileOptions,
+        ),
+        graphWeight: typeof adaptiveGraphWeight === 'number'
+          ? adaptiveGraphWeight * getRetrievalProfileChannelWeight(
+            routeResult.retrievalClass,
+            'graph',
+            profileOptions,
+          )
+          : adaptiveGraphWeight,
+      }
+      : fusionWeights;
     const keywordFusionResults = keywordResults.map((result) => {
       const originalSource = typeof result.source === 'string' ? result.source : null;
       const existingSources = Array.isArray((result as Record<string, unknown>).sources)
@@ -1560,7 +1589,7 @@ async function collectAndFuseHybridResults(
         sources: Array.from(new Set([...existingSources, ...(originalSource ? [originalSource] : []), 'keyword'])),
       };
     });
-    const fusionLists = lists
+    const baseFusionLists = lists
       .filter((list) => list.source !== 'fts' && list.source !== 'bm25')
       .map((list) => {
         if (list.source === 'vector') {
@@ -1573,13 +1602,18 @@ async function collectAndFuseHybridResults(
       });
 
     if (keywordFusionResults.length > 0 && keywordWeight > 0) {
-      fusionLists.push({
+      baseFusionLists.push({
         source: 'keyword',
         results: keywordFusionResults,
         weight: keywordWeight,
       });
     }
 
+    const fusionLists = applyRetrievalProfileToRankedLists(
+      baseFusionLists,
+      routeResult.retrievalClass,
+      profileOptions,
+    );
     const graphList = fusionLists.find((list) => list.source === 'graph');
     const vectorList = fusionLists.find((list) => list.source === 'vector');
     const passthroughLists = fusionLists.filter((list) => list.source !== 'graph' && list.source !== 'vector' && list.source !== 'keyword');
@@ -1595,13 +1629,13 @@ async function collectAndFuseHybridResults(
       ) => FusionResult[])(
         (vectorList?.results ?? []) as Array<Record<string, unknown>>,
         keywordFusionResults,
-        fusionWeights,
+        profiledFusionWeights,
         {
           graphResults: (graphList?.results ?? []) as Array<Record<string, unknown>>,
           additionalLists: passthroughLists,
         },
       )
-      : fuseResultsMulti(fusionLists);
+      : fuseResultsMulti(fusionLists, { bonusOverChannels: 'active' });
 
     const keywordSourceMap = new Map<string, string[]>();
     for (const result of keywordFusionResults) {
