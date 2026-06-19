@@ -39,16 +39,18 @@
       "nodes"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "implemented",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       ".opencode/skills/system-code-graph/mcp_server/lib/indexer-types.ts",
+      ".opencode/skills/system-code-graph/mcp_server/lib/doc-symbol-extractor.ts",
       ".opencode/skills/system-code-graph/mcp_server/lib/structural-indexer.ts",
       ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-context.ts",
       ".opencode/bin/mk-code-index-launcher.cjs",
+      ".opencode/skills/system-code-graph/mcp_server/tests/doc-symbol-extractor.vitest.ts",
       "implementation-summary.md"
     ],
     "entities": [

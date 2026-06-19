@@ -69,6 +69,22 @@ function writeWorkspaceFile(rootDir: string, relativePath: string, content: stri
   return filePath;
 }
 
+function docContentForExtension(extension: string): string {
+  switch (extension) {
+    case 'json':
+      return '{"title":"fixture","nested":{"enabled":true}}\n';
+    case 'jsonc':
+      return '{// fixture\n"title":"fixture","nested":{"enabled":true,},}\n';
+    case 'yaml':
+    case 'yml':
+      return 'title: fixture\nnested:\n  enabled: true\n';
+    case 'toml':
+      return 'title = "fixture"\n[nested]\nenabled = true\n';
+    default:
+      return 'title: fixture\n';
+  }
+}
+
 function buildParseResult(
   filePath: string,
   content: string,
@@ -628,7 +644,8 @@ describe('structural-indexer', () => {
       try {
         initDb(tempDir);
         for (const relativePath of expectedRelativePaths) {
-          writeWorkspaceFile(tempDir, relativePath, `title: ${relativePath}\n`);
+          const extension = relativePath.split('.').pop() ?? '';
+          writeWorkspaceFile(tempDir, relativePath, docContentForExtension(extension));
         }
         // Markdown is excluded from the code graph even in opted-in folders; only
         // structured config indexes as 'doc'. This .md file must NOT appear below.
@@ -665,8 +682,8 @@ describe('structural-indexer', () => {
         for (const row of rows) {
           expect(row).toMatchObject({
             language: 'doc',
-            node_count: 0,
-            edge_count: 0,
+            node_count: 3,
+            edge_count: 1,
             parse_health: 'clean',
           });
         }
@@ -692,7 +709,10 @@ describe('structural-indexer', () => {
 
       try {
         initDb(tempDir);
-        for (const relativePath of [...expectedRelativePaths, ...excludedRelativePaths]) {
+        for (const relativePath of expectedRelativePaths) {
+          writeWorkspaceFile(tempDir, relativePath, docContentForExtension(relativePath.split('.').pop() ?? ''));
+        }
+        for (const relativePath of excludedRelativePaths) {
           writeWorkspaceFile(tempDir, relativePath, `title: ${relativePath}\n`);
         }
 
@@ -723,8 +743,8 @@ describe('structural-indexer', () => {
         for (const row of rows) {
           expect(row).toMatchObject({
             language: 'doc',
-            node_count: 0,
-            edge_count: 0,
+            node_count: 3,
+            edge_count: 1,
           });
         }
       } finally {

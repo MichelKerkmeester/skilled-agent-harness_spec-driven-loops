@@ -13,7 +13,8 @@ import {
 export type SymbolKind =
   | 'function' | 'class' | 'method' | 'interface'
   | 'type_alias' | 'variable' | 'enum' | 'module'
-  | 'import' | 'export' | 'parameter';
+  | 'import' | 'export' | 'parameter'
+  | 'heading' | 'key';
 
 /** Edge types for relationships between symbols */
 export type EdgeType =

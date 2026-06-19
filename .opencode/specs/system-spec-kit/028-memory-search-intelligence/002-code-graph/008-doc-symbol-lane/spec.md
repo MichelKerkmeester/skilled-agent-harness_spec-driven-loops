@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/002-code-graph/008-doc-symbol-lane"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored Level-2 spec/plan/tasks/checklist; implementation not started"
-    next_safe_action: "Implement Q5-C1: extend SymbolKind, build doc-symbol extractor"
+    recent_action: "Implemented Q5-C1 doc-symbol lane and Q7 lease classifier/no-op emit"
+    next_safe_action: "Run strict validation and hand off the implemented phase"
     blockers: []
     key_files:
       - "spec.md"
@@ -28,7 +28,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-002-008-doc-symbol-lane"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -47,11 +47,11 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Draft |
+| **Status** | Implemented |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Packet** | system-spec-kit/028-memory-search-intelligence/002-code-graph |
-| **Candidates** | Q5-C1 (doc-symbol extractor), Q5-C1-doc-symbol-extractor (build key), Q7-lease-classification-telemetry (launcher observability) |
+| **Candidates** | Q5-C1 (DONE: doc-symbol extractor), Q5-C1-doc-symbol-extractor (DONE: build key), Q7-lease-classification-telemetry (DONE: classifier + no-op emit; sink wiring out of scope) |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -72,10 +72,10 @@ Add two independent, additive capabilities: a deterministic zero-token doc-symbo
 ## 3. SCOPE
 
 ### In Scope
-- **Q5-C1 (tier-2 BUILD, doc-symbol extractor):** Replace the empty `language === 'doc'` early-return (`structural-indexer.ts:1237`) with a dependency-free, deterministic extractor — markdown ATX/Setext headings → `heading` nodes with parent-`CONTAINS`-child nesting by heading level; structured config (json/yaml/toml) top-level + nested keys → `key` nodes via a shallow key walk. All node ids content-derived (idempotent across rescans), no LLM, no network.
+- **Q5-C1 (tier-2 BUILD, doc-symbol extractor) — DONE:** Replace the empty `language === 'doc'` early-return (`structural-indexer.ts:1237`) with a dependency-free, deterministic extractor — markdown ATX/Setext headings → `heading` nodes with parent-`CONTAINS`-child nesting by heading level; structured config (json/yaml/toml) top-level + nested keys → `key` nodes via a shallow key walk. All node ids content-derived (idempotent across rescans), no LLM, no network.
 - **SymbolKind union extension (tier-2 BUILD, not a tolerance note):** Extend `SymbolKind` in `indexer-types.ts:13-16` to admit `heading` and `key`, and make the downstream `code-graph-context` rendering tolerate non-code node kinds (the research explicitly reclassifies this from a passive "tolerance note" to an active BUILD).
 - **Markdown include-glob opt-in:** Document that `**/*.md` is deliberately omitted from the default globs (`indexer-types.ts:156-177`, explicit comment ~`:169-171`); the doc-symbol lane is inert for markdown until markdown is in scope, so the lane MUST ship behind/with the glob decision (json/yaml/toml already index as empty doc rows and exercise the new lane immediately).
-- **Q7-lease-classification-telemetry (low-priority observability):** On the mk-code-index launcher, classify lease-lifecycle transitions (lease held by other / bridged secondary / stale-reclaimed / respawned) into named counters and emit them through whatever metrics sink the launcher adopts. Because there is no metrics sink today, this phase delivers the classification + a sink-agnostic emit stub (no-op default), not a wired dashboard.
+- **Q7-lease-classification-telemetry (low-priority observability) — DONE:** On the mk-code-index launcher, classify lease-lifecycle transitions (lease held by other / bridged secondary / stale-reclaimed / respawned) into named counters and emit them through whatever metrics sink the launcher adopts. Because there is no metrics sink today, this phase delivers the classification + a sink-agnostic emit stub (no-op default), not a wired dashboard.
 
 ### Out of Scope
 - Trust multiplier (Q4-C1) — already shipped in 030 `e21caf5de6`; separate phase.
@@ -126,10 +126,10 @@ Add two independent, additive capabilities: a deterministic zero-token doc-symbo
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: Q5-C1 ships — the empty `language === 'doc'` early-return is replaced by a deterministic, dependency-free extractor that emits `heading` nodes (with `CONTAINS` nesting) for markdown and `key` nodes for json/yaml/toml, with content-derived ids that are byte-identical across rescans.
-- **SC-002**: `SymbolKind` admits `'heading' \| 'key'` and `code-graph-context` renders those non-code node kinds without error — the two `q5-f4` confirm items are delivered as a real BUILD, not left as tolerance notes.
-- **SC-003**: The doc lane is additive and conflict-L — code lanes and the destructive-reindex write path are byte-identical to baseline, and the `**/*.md` glob decision is explicitly recorded (lane is json/yaml/toml-first).
-- **SC-004**: Q7-lease ships its classifier + a no-op-default emit stub — lease-lifecycle transitions are named and routed through a sink-agnostic interface, with zero behavior change while no sink is configured.
+- **SC-001**: DONE — Q5-C1 ships; the empty `language === 'doc'` early-return is replaced by a deterministic, dependency-free extractor that emits `heading` nodes (with `CONTAINS` nesting) for markdown and `key` nodes for json/yaml/toml, with content-derived ids that are byte-identical across rescans.
+- **SC-002**: DONE — `SymbolKind` admits `'heading' \| 'key'` and `code-graph-context` renders those non-code node kinds without error.
+- **SC-003**: DONE — the doc lane is additive and conflict-L; code parser lanes and the destructive-reindex write path are untouched, and the `**/*.md` glob decision is explicitly recorded (lane is json/yaml/toml-first).
+- **SC-004**: DONE — Q7-lease ships its classifier + a no-op-default emit stub; lease-lifecycle transitions are named and routed through a sink-agnostic interface, with zero behavior change while no sink is configured.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -225,5 +225,5 @@ Add two independent, additive capabilities: a deterministic zero-token doc-symbo
 - **Subsystem research**: See `../research/research.md` (doc-lane baseline row "Doc-lane is hash-only") and `../research/iterations/iteration-004.md` (Q5 answered; C1 build sketch; ranking Q5-C1=12 BUILD) + `../research/deltas/iter-004.jsonl` (findings `q5-f1..f4`, proposal `cand-q5-c1-doc-symbol-pass`).
 - **Authoritative roadmap**: See `../../research/roadmap.md` (Q5-C1 tier-2 BUILD, "not merely a SymbolKind tolerance note" L192; Q7 lease-classification telemetry L296, "no metrics sink today").
 - **Synthesis**: See `../../research/synthesis/05-all-findings-plain-language.md` (item 26 "Index doc + config symbols (Q5-C1) tier-2" L160) and `../../research/synthesis/01-go-candidates.md`.
-- **Shipped record (Wave-0)**: See `../../../030-memory-search-intelligence-impl/spec.md` §14 — the only code-graph candidate shipped is Q4-C1 (`e21caf5de6`); Q5-C1 and Q7-lease are absent → both PENDING.
+- **Prior shipped record (Wave-0)**: `../../../030-memory-search-intelligence-impl/spec.md` §14 was used only to confirm these candidates were not already shipped before this phase; Q5-C1 and Q7-lease are now implemented locally in this phase.
 <!-- /ANCHOR:related-docs -->

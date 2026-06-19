@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Enrichment Observability — read-side gauges (028/001 impl)"
-description: "Decoupled read-side observability for the background post-insert enrichment backlog: pending/failed gauges (shipped) plus the not-yet-shipped oldest-pending lag gauge, all riding existing enrichment-status columns with no new state and no schema migration."
+description: "Decoupled read-side observability for the background post-insert enrichment backlog: pending/failed gauges plus oldest-pending lag, all riding existing enrichment-status columns with no new state and no schema migration."
 trigger_phrases:
   - "enrichment observability gauges"
   - "gauge pending failed lag"
@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/013-enrichment-observability"
-    last_updated_at: "2026-06-19T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Author impl sub-phase spec for enrichment-observability gauges (re-plan)"
-    next_safe_action: "Implement gauge-lag: oldest-pending age over post_insert_enrichment_status + created_at"
+    last_updated_at: "2026-06-19T08:41:16Z"
+    last_updated_by: "codex-gpt-5"
+    recent_action: "Implemented gauge-lag health observability"
+    next_safe_action: "Run packet validation and hand back verification evidence"
     blockers: []
     key_files:
       - "spec.md"
@@ -28,7 +28,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-001-013-enrichment-observability"
       parent_session_id: null
-    completion_pct: 50
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -46,7 +46,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Packet** | system-spec-kit/028-memory-search-intelligence/001-speckit-memory |
@@ -77,9 +77,9 @@ Expose decoupled read-side observability of the enrichment backlog — pending c
 | Candidate | One-line | Seam | Eff | Status |
 |-----------|----------|------|-----|--------|
 | **gauge-pending-failed** | alias the at-rest pending/failed backlog distribution onto the existing `getBackgroundEnrichmentStats` aggregator (no new state) | `handlers/memory-save.ts:2954-2972`; `handlers/memory-crud-health.ts:902-913` | S | **DONE** (`e1c6a3c793`) |
-| **gauge-lag** | oldest-pending age = `MIN(created_at)` over rows WHERE `post_insert_enrichment_status != 'complete'`, surfaced as a backlog-age gauge — **decoupled from C4-C** (the consolidation cursor); rides the existing status column + `created_at` + the health query | `handlers/memory-crud-health.ts:902-913` (extend the existing backlog query) | S | **PENDING** (gate: needs-benchmark — no schema-migration, no shared-infra dep) |
+| **gauge-lag** | oldest-pending age = `MIN(created_at)` over rows WHERE `post_insert_enrichment_status != 'complete'`, surfaced as a backlog-age gauge — **decoupled from C4-C** (the consolidation cursor); rides the existing status column + `created_at` + the health query | `handlers/memory-crud-health.ts` (extends the existing backlog query) | S | **DONE** |
 
-> Both candidates are read-side only, additive, and individually reversible. `gauge-pending-failed` is the shipped sibling; `gauge-lag` is its not-yet-shipped twin. The research is explicit that lag is **decoupled from C4-C** — it does NOT depend on the consolidation cursor / Wave-1 shared infra [CONFIRMED: `../../research/roadmap.md:295`; `../../research/synthesis/01-go-candidates.md:32`; `../research/from-005-revisit-027/research.md:62`].
+> Both candidates are read-side only, additive, and individually reversible. `gauge-pending-failed` shipped first; `gauge-lag` now extends the same health block. The research is explicit that lag is **decoupled from C4-C** — it does NOT depend on the consolidation cursor / Wave-1 shared infra [CONFIRMED: `../../research/roadmap.md:295`; `../../research/synthesis/01-go-candidates.md:32`; `../research/from-005-revisit-027/research.md:62`].
 
 ### Out of Scope
 - The C4-C consolidation cursor + per-item `raw|in_progress|consolidated|failed` state machine (Wave-1/Wave-2, schema work) — gauge-lag is explicitly decoupled from it.
@@ -144,8 +144,7 @@ Expose decoupled read-side observability of the enrichment backlog — pending c
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Surface shape: should lag be a duration (ms/seconds) or an absolute oldest-`created_at` timestamp in the health block? (Implementation-time calibration; research does not prescribe — owned by this packet.)
-- Should lag also be threaded through `getBackgroundEnrichmentStats` (`memory-save.ts:2954`) for parity with pending/failed, or computed only in the health handler where the DB row scan already lives? (Lean default: compute in the health handler where the backlog query already runs.)
+- None. Implementation surfaces both `oldestPendingAt` and `oldestPendingAgeMs` in the health block, computed in `memory-crud-health.ts` where the backlog query already runs; `getBackgroundEnrichmentStats` remains DB-free.
 <!-- /ANCHOR:questions -->
 
 ---

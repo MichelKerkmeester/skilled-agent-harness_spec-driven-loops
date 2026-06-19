@@ -1,6 +1,6 @@
 {
   "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/013-enrichment-observability",
-  "description": "Feature Specification: Enrichment Observability — read-side gauges",
+  "description": "Feature Specification: Enrichment Observability - read-side gauges",
   "keywords": [
     "feature",
     "specification",
@@ -9,9 +9,9 @@
     "read-side",
     "gauges"
   ],
-  "lastUpdated": "2026-06-19T06:21:33.480Z",
+  "lastUpdated": "2026-06-19T08:44:36.279Z",
   "specId": "013",
-  "folderSlug": "013-enrichment-observability",
+  "folderSlug": "enrichment-observability",
   "parentChain": [
     "system-spec-kit",
     "028-memory-search-intelligence",

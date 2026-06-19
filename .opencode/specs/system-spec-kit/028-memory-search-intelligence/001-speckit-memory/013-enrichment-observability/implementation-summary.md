@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Enrichment Observability — read-side gauges (028/001 impl)"
-description: "The pending/failed enrichment-backlog gauges shipped at e1c6a3c793. The decoupled oldest-pending lag gauge is specified and pending; it extends the same health query with no schema migration."
+description: "The pending/failed enrichment-backlog gauges shipped at e1c6a3c793. The decoupled oldest-pending lag gauge now extends the same health query with no schema migration."
 trigger_phrases:
   - "enrichment observability summary"
   - "gauge lag status"
@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/013-enrichment-observability"
-    last_updated_at: "2026-06-19T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Author impl-summary; gauge-pending-failed shipped (e1c6a3c793), gauge-lag pending"
-    next_safe_action: "Implement gauge-lag: MIN(created_at) over non-complete rows in memory-crud-health.ts"
+    last_updated_at: "2026-06-19T08:41:16Z"
+    last_updated_by: "codex-gpt-5"
+    recent_action: "Implemented gauge-lag health observability"
+    next_safe_action: "Run packet validation and hand back verification evidence"
     blockers: []
     key_files:
       - "spec.md"
@@ -26,7 +26,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-001-013-enrichment-observability"
       parent_session_id: null
-    completion_pct: 50
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -44,7 +44,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 028-memory-search-intelligence/001-speckit-memory/013-enrichment-observability |
-| **Completed** | Partial (gauge-pending-failed shipped; gauge-lag pending) |
+| **Completed** | Yes |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -59,16 +59,17 @@ This sub-phase turns the silent background enrichment backlog into something an 
 
 You can now see how many rows are waiting and how many failed enrichment, straight from the health response. The health handler runs one grouped query over the non-complete backlog and folds the pending and failed counts into the existing `getBackgroundEnrichmentStats` aggregator. A stuck or backed-up scheduler stops being invisible. This landed in Wave-0 at commit `e1c6a3c793`.
 
-### gauge-lag (pending)
+### gauge-lag (shipped)
 
-The not-yet-shipped sibling answers a different question: not how many rows are waiting, but how old the oldest one is. It reads `MIN(created_at)` over the same non-complete rows and derives an oldest-pending age, surfaced alongside pending and failed in the same health block. The research is explicit that this is decoupled from the C4-C consolidation cursor: lag needs only the pre-existing `post_insert_enrichment_status` column plus `created_at`, so it ships independently of any Wave-1 shared infrastructure. Its only gate is needs-benchmark, since every effort estimate in the 028 roadmap is structural inference, never a measured delta.
+The sibling gauge answers a different question: not how many rows are waiting, but how old the oldest one is. It reads `MIN(created_at)` over the same non-complete rows and derives `oldestPendingAgeMs`, while also surfacing `oldestPendingAt` for the raw timestamp anchor. The research is explicit that this is decoupled from the C4-C consolidation cursor: lag needs only the pre-existing `post_insert_enrichment_status` column plus `created_at`, so it ships independently of any Wave-1 shared infrastructure. Its only gate was needs-benchmark, since every effort estimate in the 028 roadmap is structural inference, never a measured delta; focused verification covers correctness and degradation behavior.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts` | Modified (`e1c6a3c793`) | `getBackgroundEnrichmentStats` returns pending/failed; gauge-lag may thread an oldest-pending field here for parity |
-| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts` | Modified (`e1c6a3c793`) + pending | Backlog query + `backgroundEnrichment` block; gauge-lag extends it with `MIN(created_at)` |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts` | Modified (`e1c6a3c793`) | `getBackgroundEnrichmentStats` returns pending/failed and remains DB-free |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts` | Modified | Backlog query + `backgroundEnrichment` block; gauge-lag extends it with `MIN(created_at)` and neutral degradation |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-health-edge.vitest.ts` | Modified | Known-age fixture, neutral all-complete case, and missing-column degradation coverage |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -76,7 +77,7 @@ The not-yet-shipped sibling answers a different question: not how many rows are 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-gauge-pending-failed shipped as one isolated, reversible hunk on the 028 branch at `e1c6a3c793` ("feat(memory): constitutional CAS guard + enrichment gauges + skip-closed sweep hygiene"), alongside two unrelated sibling candidates in the same commit. gauge-lag is planned the same way: a single additive read-side hunk in `memory-crud-health.ts`, a known-age fixture test plus an empty-backlog neutral case, typecheck and build green, then strict packet validation before commit.
+gauge-pending-failed shipped as one isolated, reversible hunk on the 028 branch at `e1c6a3c793` ("feat(memory): constitutional CAS guard + enrichment gauges + skip-closed sweep hygiene"), alongside two unrelated sibling candidates in the same commit. gauge-lag now ships as a single additive read-side hunk in `memory-crud-health.ts`, with a known-age fixture test, an all-complete neutral case, a missing-column neutral case, typecheck, build, focused vitest, and strict packet validation.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -100,9 +101,12 @@ gauge-pending-failed shipped as one isolated, reversible hunk on the 028 branch 
 | Check | Result |
 |-------|--------|
 | gauge-pending-failed shipped | PASS — commit `e1c6a3c793` (verified in `030-memory-search-intelligence-impl/spec.md` §14 + `git log`) |
-| gauge-lag implemented | PENDING — specified, not yet coded |
-| `validate.sh --strict` on this packet | PASS — see report (Level 1, exit 0) |
-| gauge-lag handler test (known-age + empty backlog) | PENDING — to run with the implementation |
+| gauge-lag implemented | PASS — `oldestPendingAt` + `oldestPendingAgeMs` surfaced in `backgroundEnrichment` |
+| `npm run typecheck` | PASS — baseline PASS, after PASS |
+| `npx vitest run mcp_server/tests/handler-memory-health-edge.vitest.ts` | PASS — baseline 11 passed, after 13 passed |
+| mutation check | PASS — forcing lag to `0` failed the known-age assertion, then production code was restored |
+| `npm run build` | PASS |
+| `validate.sh --strict` on this packet | PASS — Level 1, exit 0 |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -110,7 +114,6 @@ gauge-pending-failed shipped as one isolated, reversible hunk on the 028 branch 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **gauge-lag is not yet implemented.** Only its sibling pending/failed gauges are live. This document records the shipped half and the planned half honestly.
-2. **Effort is structural inference, not a benchmark.** The "S" effort tag, like every estimate in the 028 roadmap, is a reasoning estimate and was never build-measured. Ship gauge-lag for correctness and reversibility, not a promised delta.
-3. **Surface shape is open.** Whether lag renders as a duration or as an absolute oldest-`created_at` timestamp is an implementation-time calibration the research does not prescribe.
+1. **Effort is structural inference, not a benchmark.** The "S" effort tag, like every estimate in the 028 roadmap, is a reasoning estimate and was never build-measured. gauge-lag shipped for correctness and reversibility, not a promised performance delta.
+2. **Lag is read-side only.** It observes rows whose post-insert enrichment status is not complete; it does not retry, drain, or steer the background scheduler.
 <!-- /ANCHOR:limitations -->

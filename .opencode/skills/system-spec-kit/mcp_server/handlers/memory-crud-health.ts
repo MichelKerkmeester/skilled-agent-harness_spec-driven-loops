@@ -162,6 +162,19 @@ interface CheckpointFreshnessRow {
   newestCreatedAt?: string | null;
 }
 
+interface EnrichmentBacklogHealthRow {
+  status: string | null;
+  n: number;
+  oldestCreatedAt: string | null;
+  oldestCreatedAtUnix: string | number | null;
+}
+
+interface EnrichmentBacklogHealthSnapshot {
+  pendingByStatus: Record<string, number>;
+  oldestPendingAt: string | null;
+  oldestPendingAgeMs: number;
+}
+
 interface DivergentAliasVariant {
   filePath: string;
   contentHash: string | null;
@@ -618,6 +631,80 @@ function hasActiveEmbedderJob(database: Database.Database): boolean {
   }
 }
 
+function parseSqliteUnixSeconds(value: unknown): number | null {
+  const parsed = typeof value === 'number'
+    ? value
+    : typeof value === 'string' && value.trim().length > 0
+      ? Number(value)
+      : Number.NaN;
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+function getRowOldestEpochMs(row: EnrichmentBacklogHealthRow): number | null {
+  const unixSeconds = parseSqliteUnixSeconds(row.oldestCreatedAtUnix);
+  if (unixSeconds !== null) {
+    return unixSeconds * 1000;
+  }
+
+  // Legacy rows may carry timestamps SQLite cannot coerce; invalid values should not fail health.
+  const parsed = typeof row.oldestCreatedAt === 'string' ? Date.parse(row.oldestCreatedAt) : Number.NaN;
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+function getEnrichmentBacklogHealthSnapshot(
+  database: Database.Database | null,
+  nowMs: number = Date.now(),
+): EnrichmentBacklogHealthSnapshot {
+  const neutral: EnrichmentBacklogHealthSnapshot = {
+    pendingByStatus: {},
+    oldestPendingAt: null,
+    oldestPendingAgeMs: 0,
+  };
+
+  if (!database) {
+    return neutral;
+  }
+
+  try {
+    const rows = database.prepare(`
+      SELECT
+        post_insert_enrichment_status AS status,
+        COUNT(*) AS n,
+        MIN(created_at) AS oldestCreatedAt,
+        MIN(strftime('%s', created_at)) AS oldestCreatedAtUnix
+      FROM memory_index
+      WHERE post_insert_enrichment_status != 'complete'
+      GROUP BY post_insert_enrichment_status
+    `).all() as EnrichmentBacklogHealthRow[];
+    const pendingByStatus = Object.fromEntries(
+      rows
+        .filter((row) => typeof row.status === 'string' && row.status.length > 0)
+        .map((row) => [row.status as string, row.n]),
+    );
+    let oldestPendingAt: string | null = null;
+    let oldestPendingEpochMs: number | null = null;
+
+    for (const row of rows) {
+      const epochMs = getRowOldestEpochMs(row);
+      if (epochMs === null) {
+        continue;
+      }
+      if (oldestPendingEpochMs === null || epochMs < oldestPendingEpochMs) {
+        oldestPendingEpochMs = epochMs;
+        oldestPendingAt = row.oldestCreatedAt ?? null;
+      }
+    }
+
+    return {
+      pendingByStatus,
+      oldestPendingAt,
+      oldestPendingAgeMs: oldestPendingEpochMs === null ? 0 : Math.max(0, nowMs - oldestPendingEpochMs),
+    };
+  } catch {
+    return neutral;
+  }
+}
+
 function addCheckpointFreshnessHint(database: Database.Database, hints: string[], now: number): void {
   try {
     const row = database.prepare(`
@@ -897,20 +984,16 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
   }
 
   // Background-enrichment observability: scheduler counters (module-local) + the at-rest enrichment
-  // backlog by status. Without this a stuck or backed-up enrichment scheduler is a silent outage.
-  let enrichmentPendingByStatus: Record<string, number> = {};
-  if (database) {
-    try {
-      const rows = database.prepare(
-        "SELECT post_insert_enrichment_status AS status, COUNT(*) AS n FROM memory_index WHERE post_insert_enrichment_status != 'complete' GROUP BY post_insert_enrichment_status",
-      ).all() as Array<{ status: string; n: number }>;
-      enrichmentPendingByStatus = Object.fromEntries(rows.map((r) => [r.status, r.n]));
-    } catch {
-      // Schema/edge — leave the distribution empty; the scheduler counters still surface.
-    }
-  }
+  // backlog by status/age. Without this a stuck or backed-up enrichment scheduler is a silent outage.
+  const enrichmentBacklog = getEnrichmentBacklogHealthSnapshot(database);
+  const enrichmentPendingByStatus = enrichmentBacklog.pendingByStatus;
   const enrichmentStats = getBackgroundEnrichmentStats(enrichmentPendingByStatus);
-  const backgroundEnrichment = { ...enrichmentStats, pendingByStatus: enrichmentPendingByStatus };
+  const backgroundEnrichment = {
+    ...enrichmentStats,
+    pendingByStatus: enrichmentPendingByStatus,
+    oldestPendingAt: enrichmentBacklog.oldestPendingAt,
+    oldestPendingAgeMs: enrichmentBacklog.oldestPendingAgeMs,
+  };
 
   const indexHealth = await getIndexHealthBlock(
     database,
@@ -1392,4 +1475,4 @@ export const __testables = {
   countExclusionCandidates,
 };
 
-export { handleMemoryHealth };
+export { getEnrichmentBacklogHealthSnapshot, handleMemoryHealth };

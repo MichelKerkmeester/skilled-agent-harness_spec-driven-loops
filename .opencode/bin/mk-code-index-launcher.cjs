@@ -122,9 +122,43 @@ const RESPAWN_REAP_GRACE_MS = 7000;
 let childProcess = null;
 let ownerLeasePid = null;
 let launchStarted = false;
+let leaseMetricSink = null;
+
+const LEASE_METRIC_TRANSITION_CLASS = Object.freeze({
+  heldByOther: 'held-by-other',
+  bridgedSecondary: 'bridged-secondary',
+  staleReclaimed: 'stale-reclaimed',
+  respawned: 'respawned',
+});
 
 function log(message) {
   process.stderr.write(`[mk-code-index-launcher] ${message}\n`);
+}
+
+function leaseMetricClassForTransition(transition) {
+  if (!Object.hasOwn(LEASE_METRIC_TRANSITION_CLASS, transition)) {
+    throw new Error(`Unknown lease metric transition: ${transition}`);
+  }
+  return LEASE_METRIC_TRANSITION_CLASS[transition];
+}
+
+function leaseMetricCounterName(leaseClass) {
+  return `mk_code_index_lease_${leaseClass.replace(/-/g, '_')}_total`;
+}
+
+function emitLeaseMetric(leaseClass, details = {}) {
+  if (typeof leaseMetricSink !== 'function') return;
+  leaseMetricSink({
+    counter: leaseMetricCounterName(leaseClass),
+    class: leaseClass,
+    count: 1,
+    at: now(),
+    ...details,
+  });
+}
+
+function configureLeaseMetricSinkForTesting(sink) {
+  leaseMetricSink = typeof sink === 'function' ? sink : null;
 }
 
 function loadBridgeModule() {
@@ -470,6 +504,13 @@ function acquireOwnerLeaseFile() {
     };
   }
   ownerLeasePid = process.pid;
+  if (existing) {
+    emitLeaseMetric(leaseMetricClassForTransition('staleReclaimed'), {
+      ownerPid: existing.ownerPid,
+      ownerClassification: classifyOwnerLease(existing),
+      leaseKind: 'owner',
+    });
+  }
   return { acquired: true, lease, reclaimed: existing };
 }
 
@@ -685,8 +726,30 @@ async function bridgeOrReportLeaseHeld(leaseResult, options = {}) {
     bridge: bridgeStdioThroughSessionProxy,
   });
   if (decision && decision.action === 'respawn') {
-    return await respawnAfterDeadSocket(leaseResult, decision, options);
+    const respawnResult = await respawnAfterDeadSocket(leaseResult, decision, options);
+    if (respawnResult.action === 'respawn') {
+      emitLeaseMetric(leaseMetricClassForTransition('respawned'), {
+        ownerPid: leaseResult.ownerPid,
+        reason: respawnResult.reason,
+        socketPath: respawnResult.socketPath,
+      });
+    } else {
+      emitLeaseMetric(leaseMetricClassForTransition('heldByOther'), {
+        ownerPid: leaseResult.ownerPid,
+        reason: respawnResult.reason,
+        socketPath: respawnResult.socketPath,
+      });
+    }
+    return respawnResult;
   }
+  emitLeaseMetric(
+    leaseMetricClassForTransition(decision?.action === 'bridge' ? 'bridgedSecondary' : 'heldByOther'),
+    {
+      ownerPid: leaseResult.ownerPid,
+      reason: decision?.reason ?? null,
+      socketPath: decision?.socketPath ?? leaseResult.socketPath ?? null,
+    },
+  );
   return decision;
 }
 
@@ -1027,6 +1090,10 @@ async function launcherMain() {
       }
       if (leaseResult.staleReclaimable) {
         log(`staleReclaimed: true${leaseResult.legacyPath ? ' (legacy path)' : ''}`);
+        emitLeaseMetric(leaseMetricClassForTransition('staleReclaimed'), {
+          ownerPid: leaseResult.ownerPid,
+          leaseKind: leaseResult.legacyPath ? 'legacy-pid' : 'pid',
+        });
       }
     } else {
       log('MK_CODE_INDEX_STRICT_SINGLE_WRITER is disabled; skipping lease check');
@@ -1149,10 +1216,15 @@ function configureLauncherPathsForTesting(nextPaths) {
 module.exports = {
   CODE_INDEX_REPLAYABLE_TOOL_NAMES,
   CODE_INDEX_UNSAFE_TOOL_NAMES,
+  LEASE_METRIC_TRANSITION_CLASS,
   classifyCodeIndexFrame,
   bridgeStdioThroughSessionProxy,
   MAINTAINER_CATEGORY_ENV,
   resolveMaintainerModeCategories,
+  configureLeaseMetricSinkForTesting,
+  emitLeaseMetric,
+  leaseMetricClassForTransition,
+  leaseMetricCounterName,
   acquireBootstrapLock,
   acquireOwnerLeaseFile,
   artifactsReady,

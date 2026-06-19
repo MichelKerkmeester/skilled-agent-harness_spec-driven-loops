@@ -317,6 +317,62 @@ describe('code-graph-context handler', () => {
     expect(result.graphContext[0]).not.toHaveProperty('why_included');
   });
 
+  it('renders non-code doc node kinds in context text', async () => {
+    const { buildContext: actualBuildContext } = await vi.importActual<typeof import('../lib/code-graph-context.js')>(
+      '../lib/code-graph-context.js',
+    );
+
+    mocks.resolveSeeds.mockReturnValue([
+      {
+        filePath: 'docs/readme.md',
+        startLine: 1,
+        endLine: 1,
+        symbolId: 'heading-root',
+        fqName: 'heading:root/title#1',
+        kind: 'heading',
+        confidence: 0.95,
+        resolution: 'exact',
+      },
+    ]);
+    mocks.queryEdgesFrom.mockImplementation((symbolId, edgeType, ..._rest: unknown[]) => (
+      symbolId === 'heading-root' && edgeType === 'CONTAINS'
+        ? [
+          {
+            edge: {
+              sourceId: 'heading-root',
+              targetId: 'heading-child',
+              edgeType: 'CONTAINS',
+              weight: 1,
+              metadata: { confidence: 1, detectorProvenance: 'regex', evidenceClass: 'EXTRACTED' },
+            },
+            targetNode: { fqName: 'heading:root/title#1/usage#1', kind: 'heading', filePath: 'docs/readme.md', startLine: 4 },
+          },
+          {
+            edge: {
+              sourceId: 'heading-root',
+              targetId: 'key-child',
+              edgeType: 'CONTAINS',
+              weight: 1,
+              metadata: { confidence: 1, detectorProvenance: 'structured', evidenceClass: 'EXTRACTED' },
+            },
+            targetNode: { fqName: 'key:scripts.test', kind: 'key', filePath: 'package.json', startLine: 6 },
+          },
+        ]
+        : []
+    ));
+    mocks.queryEdgesTo.mockReturnValue([]);
+
+    const result = actualBuildContext({
+      queryMode: 'neighborhood',
+      seeds: [{ filePath: 'docs/readme.md', startLine: 1, endLine: 1 }],
+      deadlineMs: 400,
+    });
+
+    expect(result.graphContext[0].nodes.map((node) => node.kind)).toEqual(['heading', 'key']);
+    expect(result.textBrief).toContain('heading heading:root/title#1/usage#1 (docs/readme.md:4)');
+    expect(result.textBrief).toContain('key key:scripts.test (package.json:6)');
+  });
+
   it('emits context why_included edge chains only when includeTrace is true', async () => {
     const { buildContext: actualBuildContext } = await vi.importActual<typeof import('../lib/code-graph-context.js')>(
       '../lib/code-graph-context.js',

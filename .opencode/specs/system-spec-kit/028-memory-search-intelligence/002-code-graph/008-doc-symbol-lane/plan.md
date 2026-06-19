@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/002-code-graph/008-doc-symbol-lane"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored Level-2 plan; sequencing for Q5-C1 + Q7-lease tracks"
-    next_safe_action: "Implement Track A: SymbolKind + doc-symbol extractor"
+    recent_action: "Implemented Q5-C1 doc-symbol lane and Q7 lease classifier/no-op emit"
+    next_safe_action: "Run strict validation and hand off the implemented phase"
     blockers: []
     key_files:
       - "spec.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-002-008-doc-symbol-lane"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -62,10 +62,10 @@ Two independent additive tracks. **Track A — Q5-C1 (tier-2 BUILD, doc-symbol l
 - [x] Dependencies identified (SymbolKind union, render tolerance, default globs, metrics sink)
 
 ### Definition of Done
-- [ ] Q5-C1 acceptance criteria met (REQ-001..006): deterministic heading/key extraction, SymbolKind extended, render-tolerant, additive, glob decision recorded
-- [ ] Q7-lease acceptance criteria met (REQ-007..008): lease transitions classified, no-op-default emit stub, zero behavior change without a sink
-- [ ] Tests passing: heading nesting, config keys, id stability across rescans, empty/edge inputs, non-code render path, lease-class-per-transition
-- [ ] `node --check` / `tsc` clean; vitest green; docs reconciled (spec/plan/tasks)
+- [x] Q5-C1 acceptance criteria met (REQ-001..006): deterministic heading/key extraction, SymbolKind extended, render-tolerant, additive, glob decision recorded
+- [x] Q7-lease acceptance criteria met (REQ-007..008): lease transitions classified, no-op-default emit stub, zero behavior change without a sink
+- [x] Tests passing: heading nesting, config keys, id stability across rescans, empty/edge inputs, non-code render path, lease-class-per-transition
+- [x] `node --check` / `tsc` clean; vitest green; docs reconciled (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -106,7 +106,7 @@ Track A changes the indexer's persistence-feeding lane and the public render pat
 | Launcher metrics sink | Absent ("no metrics sink today") | not a consumer yet — stub a sink interface, default no-op | `rg -n 'metric\|sink\|gauge\|telemetry' mk-code-index-launcher.cjs` → expect zero today |
 
 Required inventories:
-- Doc-symbol token absence (confirms PENDING): `rg -n 'heading.*node\|extractMarkdownHeadings\|extractConfigKeys\|doc-symbol' .opencode/skills/system-code-graph/mcp_server` → expect zero hits before this phase.
+- Doc-symbol token absence (pre-implementation baseline): `rg -n 'heading.*node\|extractMarkdownHeadings\|extractConfigKeys\|doc-symbol' .opencode/skills/system-code-graph/mcp_server` → expected zero hits before this phase.
 - SymbolKind consumers: `rg -n ': SymbolKind\|SymbolKind\b' .opencode/skills/system-code-graph/mcp_server/lib` — every kind-keyed map/switch must tolerate the two new kinds.
 - Lease-metric token absence: `rg -n 'emitLeaseMetric\|lease.*class\|leaseMetric' .opencode/bin/mk-code-index-launcher.cjs` → expect zero before this phase.
 - Invariant (idempotence): a rescan of unchanged doc content MUST yield byte-identical doc nodes/edges (content-derived ids), and `emitLeaseMetric()` MUST be a pure side-effect that changes no lease decision.
@@ -118,22 +118,22 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Confirm the live `=== 'doc'` early-return line range in `structural-indexer.ts` (currently `:1237-1249`) and the `SymbolKind` union line (`indexer-types.ts:13-16`)
-- [ ] Inventory `SymbolKind` consumers and the `code-graph-context` render path for closed-vocab assumptions (the `q5-f4` render-tolerance confirm)
-- [ ] Confirm the default-glob `**/*.md` omission (`indexer-types.ts:156-177`) and decide json/yaml/toml-first vs markdown opt-in (REQ-006)
-- [ ] Confirm zero existing doc-symbol / lease-metric tokens (PENDING baseline)
+- [x] Confirm the live `=== 'doc'` early-return line range in `structural-indexer.ts` (currently `:1237-1249`) and the `SymbolKind` union line (`indexer-types.ts:13-16`)
+- [x] Inventory `SymbolKind` consumers and the `code-graph-context` render path for closed-vocab assumptions
+- [x] Confirm the default-glob `**/*.md` omission (`indexer-types.ts:156-177`) and decide json/yaml/toml-first vs markdown opt-in (REQ-006)
+- [x] Confirm zero existing doc-symbol / lease-metric tokens (baseline)
 
 ### Phase 2: Core Implementation
-- [ ] Track A: extend `SymbolKind` with `'heading' \| 'key'`; add render tolerance in `code-graph-context.ts`
-- [ ] Track A: build `doc-symbol-extractor.ts` — `extractMarkdownHeadings` (ATX + Setext, fenced-code-aware, nested `CONTAINS`) and `extractConfigKeys` (json/yaml/toml shallow nested walk), content-derived ids
-- [ ] Track A: replace the empty `=== 'doc'` early-return with the extractor output (keep content-hash/parseHealth)
-- [ ] Track B: classify lease-lifecycle transitions in `mk-code-index-launcher.cjs` and add the `emitLeaseMetric()` no-op-default sink stub
+- [x] Track A: extend `SymbolKind` with `'heading' \| 'key'`; add render tolerance in `code-graph-context.ts`
+- [x] Track A: build `doc-symbol-extractor.ts` — `extractMarkdownHeadings` (ATX + Setext, fenced-code-aware, nested `CONTAINS`) and `extractConfigKeys` (json/yaml/toml shallow nested walk), content-derived ids
+- [x] Track A: replace the empty `=== 'doc'` early-return with the extractor output (keep content-hash/parseHealth)
+- [x] Track B: classify lease-lifecycle transitions in `mk-code-index-launcher.cjs` and add the `emitLeaseMetric()` no-op-default sink stub
 
 ### Phase 3: Verification
-- [ ] Unit: heading nesting by level; config keys top-level + nested; id stability across two rescans; empty/edge inputs degrade to zero nodes; fenced-code headings skipped
-- [ ] Behavior: a `code_graph_context` query that returns a doc node renders without error (non-code kind tolerated); code-lane node/edge sets byte-identical to baseline
-- [ ] Track B: lease classifier returns the correct class per transition; `emitLeaseMetric()` no-ops with no sink and changes no lease decision
-- [ ] `node --check` / `tsc` clean; vitest green; docs reconciled; glob decision recorded
+- [x] Unit: heading nesting by level; config keys top-level + nested; id stability across two rescans; empty/edge inputs degrade to zero nodes; fenced-code headings skipped
+- [x] Behavior: a `code_graph_context` query that returns a doc node renders without error (non-code kind tolerated); code-lane parser path remains outside the doc branch
+- [x] Track B: lease classifier returns the correct class per transition; `emitLeaseMetric()` no-ops with no sink and changes no lease decision
+- [x] `node --check` / `tsc` clean; vitest green; docs reconciled; glob decision recorded
 <!-- /ANCHOR:phases -->
 
 ---

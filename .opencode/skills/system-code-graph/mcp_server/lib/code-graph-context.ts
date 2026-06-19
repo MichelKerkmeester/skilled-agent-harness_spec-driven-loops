@@ -124,6 +124,13 @@ interface FormattedTextBrief {
   truncated: boolean;
 }
 
+interface ContextNodeSummary {
+  name: string;
+  kind: string;
+  file: string;
+  line: number;
+}
+
 function defaultDeadlineMsForProfile(profile: ContextArgs['profile']): number {
   switch (profile) {
     case 'quick':
@@ -402,6 +409,15 @@ function formatContextEdge(edge: graphDb.CodeEdgeTargetResult['edge'] | graphDb.
     reason: sanitizeContextEdgeString(edge.metadata?.reason),
     step: sanitizeContextEdgeString(edge.metadata?.step),
   };
+}
+
+function formatContextNodeKind(kind: string): string {
+  const trimmed = kind.trim();
+  return trimmed.length > 0 ? trimmed : 'unknown';
+}
+
+function formatContextNode(node: ContextNodeSummary): string {
+  return `  ${formatContextNodeKind(node.kind)} ${node.name} (${node.file}:${node.line})`;
 }
 
 /** Expand a single anchor into a context section */
@@ -819,7 +835,7 @@ function formatTextBrief(sections: GraphContextSection[], budgetTokens: number, 
     if (section.nodes.length > 0) {
       lines.push('Symbols:');
       for (const n of section.nodes.slice(0, nodeLimit)) {
-        lines.push(`  ${n.kind} ${n.name} (${n.file}:${n.line})`);
+        lines.push(formatContextNode(n));
       }
       if (section.nodes.length > nodeLimit) {
         lines.push(`  ... +${section.nodes.length - nodeLimit} more`);

@@ -21,6 +21,7 @@ import { resolveCanonicalPath } from './shared/canonical-path.js';
 import { isSpeckitMetricsEnabled, speckitMetrics } from './shared/metrics-stub.js';
 import { runPhases } from './phase-runner.js';
 import { CODE_GRAPH_DEFAULTS } from './config-defaults.js';
+import { extractDocSymbols } from './doc-symbol-extractor.js';
 import type {
   CodeNode, CodeEdge, ParseResult, SupportedLanguage,
   IndexerConfig, SymbolKind, DetectorProvenance, EdgeType,
@@ -1235,12 +1236,13 @@ export async function parseFile(
   const contentHash = generateContentHash(content);
 
   if (language === 'doc') {
+    const docSymbols = extractDocSymbols(filePath, content, edgeWeights);
     return {
       filePath,
       language,
-      nodes: [],
-      edges: [],
-      detectorProvenance: detectorProvenanceFromParserBackend(getRequestedParserBackend()),
+      nodes: docSymbols.nodes,
+      edges: docSymbols.edges,
+      detectorProvenance: docSymbols.detectorProvenance,
       contentHash,
       parseHealth: 'clean',
       parseErrors: [],

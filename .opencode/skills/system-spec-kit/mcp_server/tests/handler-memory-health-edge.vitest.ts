@@ -1,5 +1,7 @@
 import { afterAll, afterEach, beforeAll, beforeEach, describe, it, expect, vi } from 'vitest';
+import Database from 'better-sqlite3';
 import * as handler from '../handlers/memory-crud';
+import { getEnrichmentBacklogHealthSnapshot } from '../handlers/memory-crud-health';
 import * as core from '../core';
 import * as vectorIndex from '../lib/search/vector-index';
 import type { HealthArgs } from '../handlers/memory-crud-types';
@@ -33,6 +35,7 @@ beforeEach(() => {
 });
 
 afterEach(() => {
+  vi.useRealTimers();
   vi.restoreAllMocks();
 });
 
@@ -118,9 +121,14 @@ describe('handleMemoryHealth Edge Cases (T007b)', () => {
     if (!database) {
       throw new Error('Database not initialized');
     }
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date('2026-06-19T12:00:00.000Z'));
     const runId = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
     const specFolder = `specs/health-enrichment-${runId}`;
-    const now = new Date().toISOString();
+    const now = new Date('2026-06-19T12:00:00.000Z').toISOString();
+    const oldestPending = new Date('2026-06-19T11:55:00.000Z').toISOString();
+    const recentPending = new Date('2026-06-19T11:59:00.000Z').toISOString();
+    const failed = new Date('2026-06-19T11:58:00.000Z').toISOString();
     const insert = database.prepare(`
       INSERT INTO memory_index (
         spec_folder,
@@ -132,9 +140,9 @@ describe('handleMemoryHealth Edge Cases (T007b)', () => {
         post_insert_enrichment_status
       ) VALUES (?, ?, ?, ?, ?, ?, ?)
     `);
-    insert.run(specFolder, `/tmp/${runId}-pending-1.md`, 'Pending enrichment 1', now, now, 'pending', 'pending');
-    insert.run(specFolder, `/tmp/${runId}-pending-2.md`, 'Pending enrichment 2', now, now, 'pending', 'pending');
-    insert.run(specFolder, `/tmp/${runId}-failed.md`, 'Failed enrichment', now, now, 'pending', 'failed');
+    insert.run(specFolder, `/tmp/${runId}-pending-1.md`, 'Pending enrichment 1', oldestPending, now, 'pending', 'pending');
+    insert.run(specFolder, `/tmp/${runId}-pending-2.md`, 'Pending enrichment 2', recentPending, now, 'pending', 'pending');
+    insert.run(specFolder, `/tmp/${runId}-failed.md`, 'Failed enrichment', failed, now, 'pending', 'failed');
 
     try {
       const result = await handler.handleMemoryHealth({});
@@ -146,9 +154,69 @@ describe('handleMemoryHealth Edge Cases (T007b)', () => {
           pending: 2,
           failed: 1,
         },
+        oldestPendingAt: oldestPending,
+        oldestPendingAgeMs: 300_000,
       });
     } finally {
       database.prepare('DELETE FROM memory_index WHERE spec_folder = ?').run(specFolder);
+    }
+  });
+
+  it('T007b-H8a2: background enrichment lag is neutral when there is no incomplete backlog', async () => {
+    const database = vectorIndex.getDb();
+    if (!database) {
+      throw new Error('Database not initialized');
+    }
+    const runId = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+    const specFolder = `specs/health-enrichment-complete-${runId}`;
+    const createdAt = new Date('2026-06-19T11:00:00.000Z').toISOString();
+    database.prepare(`
+      INSERT INTO memory_index (
+        spec_folder,
+        file_path,
+        title,
+        created_at,
+        updated_at,
+        embedding_status,
+        post_insert_enrichment_status
+      ) VALUES (?, ?, ?, ?, ?, ?, ?)
+    `).run(specFolder, `/tmp/${runId}-complete.md`, 'Complete enrichment', createdAt, createdAt, 'pending', 'complete');
+
+    try {
+      const result = await handler.handleMemoryHealth({});
+      const parsed = parseResponse(result);
+      expect(parsed.data.backgroundEnrichment).toMatchObject({
+        pending: 0,
+        failed: 0,
+        pendingByStatus: {},
+        oldestPendingAt: null,
+        oldestPendingAgeMs: 0,
+      });
+    } finally {
+      database.prepare('DELETE FROM memory_index WHERE spec_folder = ?').run(specFolder);
+    }
+  });
+
+  it('T007b-H8a3: background enrichment lag degrades neutrally when marker columns are absent', () => {
+    const database = new Database(':memory:');
+    try {
+      database.exec(`
+        CREATE TABLE memory_index (
+          id INTEGER PRIMARY KEY,
+          created_at TEXT NOT NULL
+        )
+      `);
+      const snapshot = getEnrichmentBacklogHealthSnapshot(
+        database,
+        Date.parse('2026-06-19T12:00:00.000Z'),
+      );
+      expect(snapshot).toEqual({
+        pendingByStatus: {},
+        oldestPendingAt: null,
+        oldestPendingAgeMs: 0,
+      });
+    } finally {
+      database.close();
     }
   });
 

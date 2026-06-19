@@ -1,5 +1,6 @@
 import { spawn, type ChildProcess, type ChildProcessWithoutNullStreams } from 'node:child_process';
 import { copyFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -16,10 +17,21 @@ interface LauncherRun {
 
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '../../../../..');
 const launcherRelativePath = '.opencode/bin/mk-code-index-launcher.cjs';
+const launcherLibRelativePaths = [
+  '.opencode/bin/lib/launcher-ipc-bridge.cjs',
+  '.opencode/bin/lib/launcher-session-proxy.cjs',
+] as const;
 const pidFileRelativePath = '.opencode/skills/system-code-graph/mcp_server/database/.mk-code-index-launcher.json';
 const ownerLeaseRelativePath = '.opencode/skills/system-code-graph/mcp_server/database/.code-graph-owner.json';
 const tempDirs: string[] = [];
 const launcherRuns: LauncherRun[] = [];
+const require = createRequire(import.meta.url);
+const launcherModule = require(join(repoRoot, launcherRelativePath)) as {
+  configureLeaseMetricSinkForTesting: (sink: ((payload: Record<string, unknown>) => void) | null) => void;
+  emitLeaseMetric: (leaseClass: string, details?: Record<string, unknown>) => void;
+  leaseMetricClassForTransition: (transition: string) => string;
+  leaseMetricCounterName: (leaseClass: string) => string;
+};
 
 function createWorkspace(options: { ignoreChildSigterm?: boolean } = {}): { root: string; launcherPath: string; pidFilePath: string } {
   const root = mkdtempSync(join(tmpdir(), 'mk-code-index-lease-'));
@@ -28,6 +40,11 @@ function createWorkspace(options: { ignoreChildSigterm?: boolean } = {}): { root
   const launcherPath = join(root, launcherRelativePath);
   mkdirSync(dirname(launcherPath), { recursive: true });
   copyFileSync(join(repoRoot, launcherRelativePath), launcherPath);
+  for (const relativePath of launcherLibRelativePaths) {
+    const destination = join(root, relativePath);
+    mkdirSync(dirname(destination), { recursive: true });
+    copyFileSync(join(repoRoot, relativePath), destination);
+  }
 
   const directServer = join(root, '.opencode/skills/system-code-graph/mcp_server/dist/index.js');
   mkdirSync(dirname(directServer), { recursive: true });
@@ -177,6 +194,7 @@ async function createLivePid(): Promise<ChildProcess> {
 
 describe('mk-code-index launcher lease', () => {
   afterEach(async () => {
+    launcherModule.configureLeaseMetricSinkForTesting(null);
     while (launcherRuns.length > 0) {
       const run = launcherRuns.pop();
       if (run) await terminate(run);
@@ -188,6 +206,29 @@ describe('mk-code-index launcher lease', () => {
   });
 
   // Duplicate launcher exits before opening SQLite.
+  it('classifies lease metric transitions and emits through a no-op-default sink', () => {
+    expect(launcherModule.leaseMetricClassForTransition('heldByOther')).toBe('held-by-other');
+    expect(launcherModule.leaseMetricClassForTransition('bridgedSecondary')).toBe('bridged-secondary');
+    expect(launcherModule.leaseMetricClassForTransition('staleReclaimed')).toBe('stale-reclaimed');
+    expect(launcherModule.leaseMetricClassForTransition('respawned')).toBe('respawned');
+    expect(launcherModule.leaseMetricCounterName('stale-reclaimed')).toBe('mk_code_index_lease_stale_reclaimed_total');
+
+    launcherModule.emitLeaseMetric('held-by-other', { ownerPid: 123 });
+    const emitted: Array<Record<string, unknown>> = [];
+    launcherModule.configureLeaseMetricSinkForTesting((payload) => emitted.push(payload));
+    launcherModule.emitLeaseMetric('bridged-secondary', { ownerPid: 456, reason: 'bridge' });
+
+    expect(emitted).toHaveLength(1);
+    expect(emitted[0]).toMatchObject({
+      counter: 'mk_code_index_lease_bridged_secondary_total',
+      class: 'bridged-secondary',
+      count: 1,
+      ownerPid: 456,
+      reason: 'bridge',
+    });
+    expect(typeof emitted[0].at).toBe('string');
+  });
+
   it('exits with LEASE_HELD_BY when a live owner exists', async () => {
     const workspace = createWorkspace();
     const first = spawnLauncher(workspace.launcherPath, workspace.root);
