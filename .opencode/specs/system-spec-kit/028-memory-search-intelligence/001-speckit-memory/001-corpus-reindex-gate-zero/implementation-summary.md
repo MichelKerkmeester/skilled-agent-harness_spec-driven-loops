@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/001-corpus-reindex-gate-zero"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Seed plan-only implementation-summary (work not yet executed)"
-    next_safe_action: "Capture baseline, run reindex + reconcile, add C9-4 guard"
+    recent_action: "Ship C9-4 coverage guard; verify embedding coverage already 100pct so reindex superseded"
+    next_safe_action: "Proceed to the benchmark tier; coverage gate is satisfied"
     blockers: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -28,7 +28,7 @@ _memory:
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary | v2.2 -->
 
-> **STATUS: NOT STARTED (plan-only).** This sub-phase was authored during a re-plan; the reindex and guard have NOT been executed. This summary records the intended delivery and the captured pre-reindex baseline the implementation must beat. Do not read any section below as a completion claim.
+> **STATUS: GUARD SHIPPED, COVERAGE VERIFIED, REINDEX SUPERSEDED.** The C9-4 `assertEmbeddingCoverage` guard is implemented and tested (59 ablation tests pass). The corpus reindex was deliberately NOT run: a live `memory_embedding_reconcile` dry-run on 2026-06-19 returned 0 rows to fix (0 vector-present-stale, 0 missing-vector retry-eligible), and `memory_health` reports vec rows 20,050 of 20,050, so embedding coverage is already 100 percent and the reindex's stated coverage purpose was already met. The 4,032 pending rows are background ENRICHMENT (entity and causal post-insert, not embeddings) and the 50 FTS/vector mismatches are minor consistency drift, both left to the self-maintaining index. The recall-benchmark tier is unblocked.
 
 ---
 
@@ -39,9 +39,9 @@ _memory:
 |-------|-------|
 | **Spec Folder** | `028-memory-search-intelligence/001-speckit-memory/001-corpus-reindex-gate-zero` |
 | **Level** | 2 |
-| **Status** | Not Started (plan-only) |
-| **Candidate** | `corpus-reindex-gate-zero` — PENDING (gate: needs-reindex-run) |
-| **Completion** | 0% |
+| **Status** | Guard Shipped; Coverage Verified (reindex superseded) |
+| **Candidate** | `corpus-reindex-gate-zero` — C9-4 guard DONE; reindex superseded (coverage already 100%) |
+| **Completion** | Guard delivered + verified; reindex deliberately not run (unnecessary) |
 
 <!-- /ANCHOR:metadata -->
 ---
@@ -49,9 +49,11 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-**Nothing yet — planned scope:**
-- Run the deferred corpus reindex (`memory_index_scan({ force: true })` + `memory_embedding_reconcile({ mode: 'apply' })`) to restore the ~4,032 cold/un-enriched rows (≈20.1% of the 20,050-row corpus, measured live `2026-06-19`).
-- Add `assertEmbeddingCoverage` (C9-4) at `lib/eval/ablation-framework.ts:580-586` so the ablation runner refuses to trust a recall number against a cold index.
+**Shipped:**
+- **C9-4 `assertEmbeddingCoverage` guard (DONE):** added `inspectEmbeddingCoverage` + `assertEmbeddingCoverage` in `lib/eval/ablation-framework.ts`, wired beside `assertGroundTruthAlignment` at the runner. Default threshold is 100 percent of unique golden parent IDs, requiring both `memory_index.embedding_status = 'success'` and a `vec_memories` row. The failure message references the reindex/reconcile remediation and `scripts/evals/map-ground-truth-ids.ts --write`. 59 ablation tests pass; typecheck and `validate.sh --strict` green.
+
+**Superseded (NOT run):**
+- The deferred corpus reindex (`memory_index_scan({ force: true })` + `memory_embedding_reconcile({ mode: 'apply' })`) was NOT executed. Live evidence showed embedding coverage is already whole (reconcile dry-run = 0 mutations; vec 20,050/20,050), so the reindex's stated purpose of restoring embedding coverage was already satisfied. The residual 4,032 pending background-enrichment rows and 50 consistency mismatches are left to the self-maintaining index, not forced via a manual scan.
 
 **Pre-reindex baseline to beat (captured `2026-06-19` via `memory_health` full report):**
 

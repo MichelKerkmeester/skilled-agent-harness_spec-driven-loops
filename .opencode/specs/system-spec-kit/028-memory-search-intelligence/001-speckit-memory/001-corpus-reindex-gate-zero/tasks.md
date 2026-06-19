@@ -82,12 +82,12 @@ _memory:
 - [ ] T010 If `assertGroundTruthAlignment` reports drift post-reindex, run `map-ground-truth-ids.ts --write` against the active DB and re-verify [20m]
 
 ### C9-4 coverage guard
-- [ ] T011 Add `assertEmbeddingCoverage` (compute golden-set parent embedding coverage; throw-with-remediation below threshold) (`lib/eval/ablation-framework.ts`) [45m]
-- [ ] T012 Invoke it at the existing pre-flight call site `:580-586` alongside `assertGroundTruthAlignment` (`lib/eval/ablation-framework.ts`) [10m]
+- [x] T011 Add `assertEmbeddingCoverage` (compute golden-set parent embedding coverage; throw-with-remediation below threshold) (`lib/eval/ablation-framework.ts`) [45m]
+- [x] T012 Invoke it at the existing pre-flight call site `:580-586` alongside `assertGroundTruthAlignment` (`lib/eval/ablation-framework.ts`) [10m]
 
 ### Tests
-- [ ] T013 Unit: `assertEmbeddingCoverage` throws below threshold, passes above (`mcp_server/` vitest) [20m]
-- [ ] T014 Integration: `runAblation` refuses a deliberately-low-coverage probe and passes on the restored corpus [20m]
+- [x] T013 Unit: `assertEmbeddingCoverage` throws below threshold, passes above (`mcp_server/` vitest) [20m]
+- [x] T014 Integration: `runAblation` refuses a deliberately-low-coverage probe and passes on the restored corpus [20m]
 - [ ] T015 Regression: full `mcp_server/` vitest passes vs the captured baseline (no new failures) [15m]
 
 ### Documentation

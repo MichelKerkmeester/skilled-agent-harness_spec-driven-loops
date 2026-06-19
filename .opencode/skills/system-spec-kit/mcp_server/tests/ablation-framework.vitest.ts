@@ -20,6 +20,8 @@ import {
   isAblationEnabled,
   inspectGroundTruthAlignment,
   assertGroundTruthAlignment,
+  inspectEmbeddingCoverage,
+  assertEmbeddingCoverage,
   runAblation,
   storeAblationResults,
   formatAblationReport,
@@ -246,6 +248,8 @@ describe('Ablation Framework (R13-S3)', () => {
     async function createAlignmentDb(overrides: {
       chunkIds?: number[];
       omitIds?: number[];
+      pendingIds?: number[];
+      omitVectorIds?: number[];
     } = {}): Promise<Database.Database> {
       const { GROUND_TRUTH_RELEVANCES } = await import('../lib/eval/ground-truth-data');
       const uniqueIds = Array.from(
@@ -257,17 +261,29 @@ describe('Ablation Framework (R13-S3)', () => {
       alignmentDb.exec(`
         CREATE TABLE memory_index (
           id INTEGER PRIMARY KEY,
-          parent_id INTEGER
+          parent_id INTEGER,
+          embedding_status TEXT
+        );
+        CREATE TABLE vec_memories (
+          rowid INTEGER PRIMARY KEY,
+          embedding BLOB
         );
       `);
 
       const chunkIdSet = new Set(overrides.chunkIds ?? []);
       const omitIdSet = new Set(overrides.omitIds ?? []);
-      const insert = alignmentDb.prepare('INSERT INTO memory_index (id, parent_id) VALUES (?, ?)');
+      const pendingIdSet = new Set(overrides.pendingIds ?? []);
+      const omitVectorIdSet = new Set(overrides.omitVectorIds ?? []);
+      const insert = alignmentDb.prepare('INSERT INTO memory_index (id, parent_id, embedding_status) VALUES (?, ?, ?)');
+      const insertVector = alignmentDb.prepare('INSERT INTO vec_memories (rowid, embedding) VALUES (?, ?)');
+      const embedding = Buffer.from(new Float32Array([0.1, 0.2]).buffer);
 
       for (const id of uniqueIds) {
         if (omitIdSet.has(id)) continue;
-        insert.run(id, chunkIdSet.has(id) ? 999999 : null);
+        insert.run(id, chunkIdSet.has(id) ? 999999 : null, pendingIdSet.has(id) ? 'pending' : 'success');
+        if (!omitVectorIdSet.has(id)) {
+          insertVector.run(id, embedding);
+        }
       }
 
       return alignmentDb;
@@ -302,6 +318,106 @@ describe('Ablation Framework (R13-S3)', () => {
         dbPath: '/tmp/test-context-index.sqlite',
         context: 'unit-test',
       })).toThrow(/chunk-backed relevances=.*missing relevances=/i);
+    });
+
+    it('throws with remediation when golden parent embedding coverage is below threshold', async () => {
+      const { GROUND_TRUTH_RELEVANCES } = await import('../lib/eval/ground-truth-data');
+      const [coldId] = Array.from(new Set(GROUND_TRUTH_RELEVANCES.map((row) => row.memoryId)));
+      expect(coldId).toBeDefined();
+      const db = await createAlignmentDb({
+        pendingIds: [coldId!],
+        omitVectorIds: [coldId!],
+      });
+
+      const summary = inspectEmbeddingCoverage(db);
+      expect(summary.coverageRatio).toBeLessThan(1);
+      expect(summary.nonSuccessMemoryCount).toBeGreaterThan(0);
+      expect(summary.missingVectorMemoryCount).toBeGreaterThan(0);
+
+      expect(() => assertEmbeddingCoverage(db, {
+        dbPath: '/tmp/test-context-index.sqlite',
+        context: 'unit-test',
+      })).toThrow(/Ground-truth embedding coverage.*corpus reindex.*map-ground-truth-ids\.ts --write/i);
+    });
+
+    it('passes when golden parent embedding coverage is at or above threshold', async () => {
+      const db = await createAlignmentDb();
+      const summary = inspectEmbeddingCoverage(db);
+
+      expect(summary.coverageRatio).toBe(1);
+      expect(assertEmbeddingCoverage(db)).toEqual(summary);
+      expect(assertEmbeddingCoverage(db, { minCoverage: 0.75 }).coverageRatio).toBeGreaterThan(0.75);
+    });
+
+    it('refuses to run ablation when the alignment DB has cold golden parents', async () => {
+      process.env.SPECKIT_ABLATION = 'true';
+      const { GROUND_TRUTH_QUERIES, GROUND_TRUTH_RELEVANCES } = await import(
+        '../lib/eval/ground-truth-data'
+      );
+      const queryWithGT = GROUND_TRUTH_QUERIES.find(q =>
+        GROUND_TRUTH_RELEVANCES.some(r => r.queryId === q.id && r.relevance > 0),
+      );
+      const [coldId] = Array.from(new Set(GROUND_TRUTH_RELEVANCES.map((row) => row.memoryId)));
+      expect(queryWithGT).toBeDefined();
+      expect(coldId).toBeDefined();
+
+      const db = await createAlignmentDb({
+        pendingIds: [coldId!],
+        omitVectorIds: [coldId!],
+      });
+      const searchSpy = vi.fn<AblationSearchFn>(() => []);
+      const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+      const report = await runAblation(searchSpy, {
+        channels: ['vector'],
+        groundTruthQueryIds: [queryWithGT!.id],
+        alignmentDb: db,
+        alignmentDbPath: '/tmp/test-context-index.sqlite',
+        alignmentContext: 'unit-test',
+      });
+
+      expect(report).toBeNull();
+      expect(searchSpy).not.toHaveBeenCalled();
+      expect(warnSpy).toHaveBeenCalledWith(
+        expect.stringContaining('[ablation] runAblation failed'),
+        expect.stringContaining('Ground-truth embedding coverage is below the ablation threshold'),
+      );
+
+      warnSpy.mockRestore();
+    });
+
+    it('runs ablation when the alignment DB has complete golden parent coverage', async () => {
+      process.env.SPECKIT_ABLATION = 'true';
+      const { GROUND_TRUTH_QUERIES, GROUND_TRUTH_RELEVANCES } = await import(
+        '../lib/eval/ground-truth-data'
+      );
+      const queryWithGT = GROUND_TRUTH_QUERIES.find(q =>
+        GROUND_TRUTH_RELEVANCES.some(r => r.queryId === q.id && r.relevance > 0),
+      );
+      expect(queryWithGT).toBeDefined();
+
+      const relevantIds = GROUND_TRUTH_RELEVANCES
+        .filter(r => r.queryId === queryWithGT!.id && r.relevance > 0)
+        .map(r => r.memoryId);
+      expect(relevantIds.length).toBeGreaterThan(0);
+
+      const db = await createAlignmentDb();
+      const searchSpy = vi.fn<AblationSearchFn>(() => relevantIds.map((memoryId, idx) => ({
+        memoryId,
+        score: 1.0 - idx * 0.01,
+        rank: idx + 1,
+      })));
+
+      const report = await runAblation(searchSpy, {
+        channels: ['vector'],
+        groundTruthQueryIds: [queryWithGT!.id],
+        alignmentDb: db,
+        alignmentDbPath: '/tmp/test-context-index.sqlite',
+        alignmentContext: 'unit-test',
+      });
+
+      expect(report).not.toBeNull();
+      expect(searchSpy).toHaveBeenCalled();
     });
   });
 

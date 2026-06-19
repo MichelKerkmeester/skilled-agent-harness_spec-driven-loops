@@ -74,6 +74,8 @@ export interface AblationConfig {
   alignmentDbPath?: string;
   /** Optional context label used in alignment error messaging. */
   alignmentContext?: string;
+  /** Minimum covered golden-set parent embeddings required before running. */
+  minEmbeddingCoverage?: number;
 }
 
 interface QuerySelection {
@@ -96,6 +98,28 @@ export interface GroundTruthAlignmentSummary {
   missingMemoryCount: number;
   chunkExamples: Array<{ memoryId: number; parentMemoryId: number }>;
   missingExamples: number[];
+}
+
+/** Summary of whether the static ground truth has usable parent embeddings. */
+export interface GroundTruthEmbeddingCoverageSummary {
+  totalQueries: number;
+  totalRelevances: number;
+  uniqueMemoryIds: number;
+  coveredMemoryCount: number;
+  uncoveredMemoryCount: number;
+  missingMemoryCount: number;
+  nonParentMemoryCount: number;
+  nonSuccessMemoryCount: number;
+  missingVectorMemoryCount: number;
+  coverageRatio: number;
+  vectorTableAvailable: boolean;
+  uncoveredExamples: Array<{
+    memoryId: number;
+    reason: string;
+    embeddingStatus: string | null;
+    hasVector: boolean;
+    parentMemoryId?: number;
+  }>;
 }
 
 /**
@@ -215,6 +239,46 @@ interface MemoryIndexLookupRow {
   parent_id: number | null;
 }
 
+interface EmbeddingCoverageLookupRow {
+  id: number;
+  parent_id: number | null;
+  embedding_status: string | null;
+  has_vector: 0 | 1;
+}
+
+const DEFAULT_MIN_EMBEDDING_COVERAGE = 1.0;
+
+function formatPreflightContextSuffix(options: { dbPath?: string; context?: string }): string {
+  const contextParts = [
+    options.context,
+    options.dbPath,
+  ].filter((value): value is string => typeof value === 'string' && value.trim().length > 0);
+  return contextParts.length > 0 ? ` for ${contextParts.join(' @ ')}` : '';
+}
+
+function canQueryVecMemories(database: Database.Database): boolean {
+  try {
+    database.prepare('SELECT rowid FROM vec_memories LIMIT 1').get();
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function getUniqueGroundTruthMemoryIds(): number[] {
+  return Array.from(
+    new Set(GROUND_TRUTH_RELEVANCES.map((row) => row.memoryId)),
+  ).sort((left, right) => left - right);
+}
+
+function normalizeEmbeddingCoverageThreshold(value: number | undefined): number {
+  const threshold = value ?? DEFAULT_MIN_EMBEDDING_COVERAGE;
+  if (!Number.isFinite(threshold) || threshold < 0 || threshold > 1) {
+    throw new Error(`Embedding coverage threshold must be between 0 and 1, got ${String(value)}.`);
+  }
+  return threshold;
+}
+
 /**
  * Inspect whether every ground-truth relevance ID resolves to a parent memory
  * in the active DB. Chunk-backed or missing IDs make Recall@K comparisons
@@ -223,9 +287,7 @@ interface MemoryIndexLookupRow {
 export function inspectGroundTruthAlignment(
   database: Database.Database,
 ): GroundTruthAlignmentSummary {
-  const uniqueMemoryIds = Array.from(
-    new Set(GROUND_TRUTH_RELEVANCES.map((row) => row.memoryId)),
-  ).sort((left, right) => left - right);
+  const uniqueMemoryIds = getUniqueGroundTruthMemoryIds();
 
   if (uniqueMemoryIds.length === 0) {
     return {
@@ -308,6 +370,126 @@ export function inspectGroundTruthAlignment(
 }
 
 /**
+ * Inspect whether every curated parent memory has a successful embedding and
+ * an active vector row. Anything less makes vector-channel recall untrustworthy.
+ */
+export function inspectEmbeddingCoverage(
+  database: Database.Database,
+): GroundTruthEmbeddingCoverageSummary {
+  const uniqueMemoryIds = getUniqueGroundTruthMemoryIds();
+  const vectorTableAvailable = canQueryVecMemories(database);
+
+  if (uniqueMemoryIds.length === 0) {
+    return {
+      totalQueries: GROUND_TRUTH_QUERIES.length,
+      totalRelevances: 0,
+      uniqueMemoryIds: 0,
+      coveredMemoryCount: 0,
+      uncoveredMemoryCount: 0,
+      missingMemoryCount: 0,
+      nonParentMemoryCount: 0,
+      nonSuccessMemoryCount: 0,
+      missingVectorMemoryCount: 0,
+      coverageRatio: 1,
+      vectorTableAvailable,
+      uncoveredExamples: [],
+    };
+  }
+
+  const placeholders = uniqueMemoryIds.map(() => '?').join(', ');
+  const rows = vectorTableAvailable
+    ? database.prepare(`
+      SELECT
+        m.id,
+        m.parent_id,
+        m.embedding_status,
+        CASE WHEN v.rowid IS NULL THEN 0 ELSE 1 END AS has_vector
+      FROM memory_index m
+      LEFT JOIN vec_memories v ON v.rowid = m.id
+      WHERE m.id IN (${placeholders})
+    `).all(...uniqueMemoryIds) as EmbeddingCoverageLookupRow[]
+    : database.prepare(`
+      SELECT
+        id,
+        parent_id,
+        embedding_status,
+        0 AS has_vector
+      FROM memory_index
+      WHERE id IN (${placeholders})
+    `).all(...uniqueMemoryIds) as EmbeddingCoverageLookupRow[];
+
+  const rowById = new Map<number, EmbeddingCoverageLookupRow>();
+  for (const row of rows) {
+    rowById.set(row.id, row);
+  }
+
+  let coveredMemoryCount = 0;
+  let missingMemoryCount = 0;
+  let nonParentMemoryCount = 0;
+  let nonSuccessMemoryCount = 0;
+  let missingVectorMemoryCount = 0;
+  const uncoveredExamples: GroundTruthEmbeddingCoverageSummary['uncoveredExamples'] = [];
+
+  for (const memoryId of uniqueMemoryIds) {
+    const row = rowById.get(memoryId);
+    if (!row) {
+      missingMemoryCount++;
+      if (uncoveredExamples.length < 5) {
+        uncoveredExamples.push({
+          memoryId,
+          reason: 'missing-memory',
+          embeddingStatus: null,
+          hasVector: false,
+        });
+      }
+      continue;
+    }
+
+    const isParentMemory = row.parent_id == null;
+    const hasSuccessStatus = row.embedding_status === 'success';
+    const hasVector = row.has_vector === 1;
+
+    if (isParentMemory && hasSuccessStatus && hasVector) {
+      coveredMemoryCount++;
+      continue;
+    }
+
+    if (!isParentMemory) nonParentMemoryCount++;
+    if (!hasSuccessStatus) nonSuccessMemoryCount++;
+    if (!hasVector) missingVectorMemoryCount++;
+
+    if (uncoveredExamples.length < 5) {
+      uncoveredExamples.push({
+        memoryId,
+        reason: !isParentMemory
+          ? 'non-parent-memory'
+          : (!hasSuccessStatus ? 'embedding-status' : 'missing-vector'),
+        embeddingStatus: row.embedding_status,
+        hasVector,
+        ...(row.parent_id == null ? {} : { parentMemoryId: row.parent_id }),
+      });
+    }
+  }
+
+  const uncoveredMemoryCount = uniqueMemoryIds.length - coveredMemoryCount;
+
+  return {
+    totalQueries: GROUND_TRUTH_QUERIES.length,
+    totalRelevances: GROUND_TRUTH_RELEVANCES.length,
+    uniqueMemoryIds: uniqueMemoryIds.length,
+    coveredMemoryCount,
+    uncoveredMemoryCount,
+    missingMemoryCount,
+    nonParentMemoryCount,
+    nonSuccessMemoryCount,
+    missingVectorMemoryCount,
+    coverageRatio: uniqueMemoryIds.length === 0 ? 1 : coveredMemoryCount / uniqueMemoryIds.length,
+    vectorTableAvailable,
+    uncoveredExamples,
+  };
+}
+
+/**
  * Reject the benchmark when the active DB and static ground truth do not share
  * the same parent-memory ID universe.
  */
@@ -320,11 +502,7 @@ export function assertGroundTruthAlignment(
     return summary;
   }
 
-  const contextParts = [
-    options.context,
-    options.dbPath,
-  ].filter((value): value is string => typeof value === 'string' && value.trim().length > 0);
-  const contextSuffix = contextParts.length > 0 ? ` for ${contextParts.join(' @ ')}` : '';
+  const contextSuffix = formatPreflightContextSuffix(options);
 
   const details: string[] = [];
   if (summary.chunkRelevanceCount > 0) {
@@ -348,6 +526,51 @@ export function assertGroundTruthAlignment(
     `Ground truth is not aligned to parent memories${contextSuffix}: ${details.join('; ')}. `
     + 'Refresh lib/eval/data/ground-truth.json with scripts/evals/map-ground-truth-ids.ts --write '
     + 'against the active DB before rerunning ablation.',
+  );
+}
+
+/**
+ * Reject the benchmark when the curated ground-truth parent memories are not
+ * fully embedded in the active vector surface.
+ */
+export function assertEmbeddingCoverage(
+  database: Database.Database,
+  options: { dbPath?: string; context?: string; minCoverage?: number } = {},
+): GroundTruthEmbeddingCoverageSummary {
+  const threshold = normalizeEmbeddingCoverageThreshold(options.minCoverage);
+  const summary = inspectEmbeddingCoverage(database);
+  if (summary.coverageRatio >= threshold) {
+    return summary;
+  }
+
+  const contextSuffix = formatPreflightContextSuffix(options);
+  const coveragePct = (summary.coverageRatio * 100).toFixed(1);
+  const thresholdPct = (threshold * 100).toFixed(1);
+  const details = [
+    `coverage=${summary.coveredMemoryCount}/${summary.uniqueMemoryIds} (${coveragePct}%)`,
+    `required>=${thresholdPct}%`,
+    `uncovered=${summary.uncoveredMemoryCount}`,
+  ];
+  if (!summary.vectorTableAvailable) details.push('vec_memories unavailable');
+  if (summary.missingMemoryCount > 0) details.push(`missing memories=${summary.missingMemoryCount}`);
+  if (summary.nonParentMemoryCount > 0) details.push(`non-parent memories=${summary.nonParentMemoryCount}`);
+  if (summary.nonSuccessMemoryCount > 0) details.push(`non-success statuses=${summary.nonSuccessMemoryCount}`);
+  if (summary.missingVectorMemoryCount > 0) details.push(`missing vectors=${summary.missingVectorMemoryCount}`);
+
+  const sampleText = summary.uncoveredExamples
+    .map((example) => {
+      const status = example.embeddingStatus ?? 'missing';
+      const parentText = example.parentMemoryId == null ? '' : ` parent=${example.parentMemoryId}`;
+      return `${example.memoryId}:${example.reason} status=${status} vector=${example.hasVector}${parentText}`;
+    })
+    .join(', ');
+
+  throw new Error(
+    `Ground-truth embedding coverage is below the ablation threshold${contextSuffix}: ${details.join('; ')}`
+    + (sampleText ? ` (examples: ${sampleText})` : '')
+    + '. Run the corpus reindex and embedding reconcile outside the ablation runner, then refresh '
+    + 'lib/eval/data/ground-truth.json with scripts/evals/map-ground-truth-ids.ts --write '
+    + 'if ground-truth alignment still drifts before rerunning ablation.',
   );
 }
 
@@ -582,6 +805,11 @@ export async function runAblation(
       assertGroundTruthAlignment(config.alignmentDb, {
         dbPath: config.alignmentDbPath,
         context: config.alignmentContext ?? 'runAblation',
+      });
+      assertEmbeddingCoverage(config.alignmentDb, {
+        dbPath: config.alignmentDbPath,
+        context: config.alignmentContext ?? 'runAblation',
+        minCoverage: config.minEmbeddingCoverage,
       });
     }
 
