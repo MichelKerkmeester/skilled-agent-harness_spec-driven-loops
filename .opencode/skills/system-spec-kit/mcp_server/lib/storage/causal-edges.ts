@@ -379,6 +379,15 @@ function insertEdge(
           'created_by = ?',
         ];
         const params: unknown[] = [clampedStrength, evidence, createdBy];
+        const observedAt = new Date().toISOString();
+        if (columns.has('valid_from')) {
+          assignments.push('valid_from = COALESCE(valid_from, ?)');
+          params.push(observedAt);
+        }
+        if (columns.has('ingested_at')) {
+          assignments.push('ingested_at = COALESCE(ingested_at, ?)');
+          params.push(observedAt);
+        }
         if (columns.has('confidence') && metadata.confidence !== undefined) {
           assignments.push('confidence = ?');
           params.push(metadata.confidence);
@@ -401,6 +410,7 @@ function insertEdge(
           return 0;
         }
 
+        const observedAt = new Date().toISOString();
         const insertColumns = [
           'source_id',
           'target_id',
@@ -421,6 +431,18 @@ function insertEdge(
           evidence,
           createdBy,
         ];
+        if (columns.has('valid_at')) {
+          insertColumns.push('valid_at');
+          insertValues.push(observedAt);
+        }
+        if (columns.has('valid_from')) {
+          insertColumns.push('valid_from');
+          insertValues.push(observedAt);
+        }
+        if (columns.has('ingested_at')) {
+          insertColumns.push('ingested_at');
+          insertValues.push(observedAt);
+        }
         if (columns.has('confidence') && metadata.confidence !== undefined) {
           insertColumns.push('confidence');
           insertValues.push(metadata.confidence);

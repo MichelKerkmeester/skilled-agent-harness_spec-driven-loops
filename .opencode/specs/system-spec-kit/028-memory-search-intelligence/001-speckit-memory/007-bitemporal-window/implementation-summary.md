@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Bi-temporal Window for Spec-Kit Memory Causal + Lineage"
-description: "Partial state — skip-closed-in-sweep is SHIPPED (030 e1c6a3c793); the event-time fact-invalidation spearhead, the four-timestamp window (C3-B), chronology-scoped supersession (GR-temporal-ordering-invalidation), and the C3-D separation note are planned and pending implementation."
+description: "Schema-migration foundation complete: Memory MCP schema v38 adds the causal + lineage bi-temporal window with explicit UP/BACKFILL/DOWN helpers, default-off recall consumption, and migration tests. Behavior consumers remain deferred."
 trigger_phrases:
   - "bitemporal window memory implementation summary"
   - "skip closed in sweep shipped"
@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/007-bitemporal-window"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Author bi-temporal-window impl-summary (partial: 1 shipped, 4 pending)"
-    next_safe_action: "Implement MEM-fact-invalidation-event-time spearhead (single-site invalidateEdge change)"
+    recent_action: "Implemented schema-migration foundation for the bi-temporal window"
+    next_safe_action: "Run final broad verification and strict phase validation"
     blockers: []
     key_files:
       - "spec.md"
@@ -26,7 +26,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-001-007-bitemporal-window"
       parent_session_id: null
-    completion_pct: 20
+    completion_pct: 85
     open_questions:
       - "Is the C3-B four-timestamp window additive against active_memory_projection?"
     answered_questions:
@@ -46,7 +46,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | `028-memory-search-intelligence/001-speckit-memory/007-bitemporal-window` |
-| **Completed** | Partial (1 of 5 candidates shipped) |
+| **Completed** | Schema-migration foundation complete; behavior consumers deferred |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
@@ -55,7 +55,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-This phase carries the Memory MCP's causal + lineage edges toward a correct bi-temporal window. One candidate is already live; the other four are planned against confirmed seams and await implementation. The headline that matters: superseded facts will close at the time they actually became stale, not the time we happened to notice, so "what did we believe as of date X" stops lying.
+This implementation lands the schema-migration foundation for the Memory MCP's causal + lineage bi-temporal window. It does not enable live recall/currentness behavior that consumes transaction-time windows; those consumers stay default-off behind `SPECKIT_BITEMPORAL_RECALL` until benchmark evidence exists.
 
 ### skip-closed-in-sweep (SHIPPED)
 
@@ -65,9 +65,19 @@ Closed generated causal edges are now skipped during frontmatter-promoter cleanu
 
 The planned change makes `invalidateEdge()` stamp the close timestamp with the superseding fact's lineage event-time instead of `new Date().toISOString()`. It is reader-transparent: all three current-edge readers use a binary `invalid_at IS NULL` test, so only the writer's stamped value changes. A missing event-time falls back to `now()` to preserve the fail-open contract. High leverage, small effort.
 
-### C3-B four-timestamp window (PENDING)
+### C3-B four-timestamp window (DONE — schema foundation)
 
-An additive schema evolution: event-time `valid_from`/`valid_to` plus transaction-time `ingested_at`/`expired_at`, declared once and reconciled so the causal-edge and lineage stores share the column shape rather than forking a third. Existing single-pair readers stay byte-identical until a consumer opts into transaction-time semantics. Additivity against `active_memory_projection` is unverified in research and must be confirmed at build.
+`SCHEMA_VERSION` now moves from 37 to 38. The v38 migration adds `valid_from`, `valid_to`, `ingested_at`, and `expired_at` to `causal_edges`, and adds the missing transaction-time `ingested_at`/`expired_at` columns to `memory_lineage`. Legacy causal `valid_at`/`invalid_at` columns are preserved for reader transparency; current readers continue to filter on `invalid_at IS NULL`.
+
+The migration exposes three explicit helpers:
+
+| Helper | Role |
+|--------|------|
+| `ensureBitemporalWindowSchema` | UP: add additive columns and invoke backfill inside the existing transaction-wrapped migration harness |
+| `backfillBitemporalWindow` | BACKFILL: derive causal event windows from `valid_at`/`invalid_at` when present and transaction ingestion from `extracted_at`; derive lineage ingestion from `created_at` and legacy close from `valid_to` |
+| `rollbackBitemporalWindowSchema` | DOWN: drop only the v38 columns, preserving legacy `valid_at`/`invalid_at` |
+
+Future schema phases should extend this pattern: single `SCHEMA_VERSION` bump, one named UP helper, one explicit BACKFILL helper, one testable DOWN helper, idempotent column/index creation, fail-closed preconditions for required base tables, and default-off behavior consumers until a benchmark promotes them.
 
 ### GR-temporal-ordering-invalidation (PENDING)
 
@@ -83,7 +93,7 @@ A decision note (ADR-003) recording that tombstone-sweep (forgetting) and tempor
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-skip-closed-in-sweep was delivered as part of the 030 Wave-0 spearhead with a closed-edge fixture test and shipped under commit `e1c6a3c793`. The four pending candidates are sequenced in plan.md: the spearhead lands first (independent of the migration), then the C3-B window as the additive substrate, then chronology-scoped supersession on top of it, with the C3-D note authored alongside. Each candidate is a separate, reversible scoped commit; nothing is pushed or deployed without explicit user approval. The phase verifies with focused causal/temporal Vitest suites, a reader-transparency grep gate, and `validate.sh --strict`.
+The schema foundation was delivered as a coordinated v38 migration in `lib/search/vector-index-schema.ts`, with runtime schema convergence in `lib/graph/temporal-edges.ts`, writer-side timestamp population in causal/lineage writers, and a default-off recall gate in `lib/search/search-flags.ts` / `ENV_REFERENCE.md`. The migration tests cover UP, BACKFILL, DOWN, idempotent rerun, and fresh database initialization.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -108,10 +118,13 @@ skip-closed-in-sweep was delivered as part of the 030 Wave-0 spearhead with a cl
 |-------|--------|
 | skip-closed-in-sweep shipped + tested | PASS (030 `e1c6a3c793`; closed-edge fixture) |
 | MEM-fact-invalidation-event-time | PENDING (planned; seam confirmed `temporal-edges.ts:81,86,94`) |
-| C3-B four-timestamp window | PENDING (additivity against `active_memory_projection` UNVERIFIED — confirm at build) |
+| C3-B four-timestamp window | PASS (v38 UP/BACKFILL/DOWN; fresh-init and idempotency tests) |
+| `npm run typecheck` | PASS (exit 0) |
+| Focused migration/temporal/search flag Vitest | PASS (`4` files, `84` tests) |
+| Broad memory/schema/search/migration Vitest | BASELINE-MATCH (`7 failed | 94 passed`; `13 failed | 1493 passed | 105 skipped`; same 13 failures as baseline, 6 new tests passing) |
 | GR-temporal-ordering-invalidation | PENDING (scope test for co-valid pairs not yet written) |
 | C3-D separation note | RECORDED (decision-record ADR-003) |
-| `validate.sh --strict` on this folder | PASS (spec-doc structure) |
+| `validate.sh --strict` on this folder | PASS (0 errors / 0 warnings) |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -119,8 +132,8 @@ skip-closed-in-sweep was delivered as part of the 030 Wave-0 spearhead with a cl
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Four of five candidates are planned, not built.** Only skip-closed-in-sweep ships today (`e1c6a3c793`); the spearhead, C3-B, GR-temporal-ordering, and the C3-D note are pending. This summary documents a partial state per the phase's research-then-implement structure.
+1. **Behavior consumers are still deferred.** This implementation lands the schema foundation only; event-time invalidation plumbing, chronology invalidation, and transaction-time recall behavior remain gated or pending.
 2. **No benefit number is measured.** Every leverage/effort tag in research is structural inference, never a benchmarked delta (research §6). The spearhead's H rating is inferred from the correctness fix, not a measured recall gain.
-3. **C3-B additivity is unverified.** No migration spec exists to confirm the four-timestamp window is purely additive against `active_memory_projection` (005 most-likely-wrong runner-up). Confirm before landing the schema change.
+3. **Legacy transaction close time is approximate.** Existing closed rows have no stored transaction-close timestamp, so backfill maps legacy close information into `expired_at`; future lineage writes use the write timestamp for transaction close.
 4. **C3-A and C3-C are out of scope.** The live edge-presence retirement path (C3-A) and the transaction-time recall modes (C3-C, L effort) depend on C3-B and live in later phases.
 <!-- /ANCHOR:limitations -->

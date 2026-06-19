@@ -54,6 +54,8 @@ interface MemoryLineageRow {
   superseded_by_memory_id: number | null;
   valid_from: string;
   valid_to: string | null;
+  ingested_at: string | null;
+  expired_at: string | null;
   transition_event: LineageTransitionEvent;
   actor: string;
   metadata: string | null;
@@ -718,6 +720,7 @@ export function seedLineageFromCurrentState(
   const validFrom = options.validFrom
     ?? historyEvents[0]?.timestamp
     ?? normalizeTimestamp(row.created_at ?? row.updated_at);
+  const ingestedAt = new Date().toISOString();
 
   const seedTx = database.transaction(() => {
     database.prepare(`
@@ -730,15 +733,18 @@ export function seedLineageFromCurrentState(
         superseded_by_memory_id,
         valid_from,
         valid_to,
+        ingested_at,
+        expired_at,
         transition_event,
         actor,
         metadata
-      ) VALUES (?, ?, 1, ?, NULL, NULL, ?, NULL, ?, ?, ?)
+      ) VALUES (?, ?, 1, ?, NULL, NULL, ?, NULL, ?, NULL, ?, ?, ?)
     `).run(
       memoryId,
       logicalKey,
       memoryId,
       validFrom,
+      ingestedAt,
       options.transitionEvent ?? 'BACKFILL',
       actor,
       buildMetadata(row, actor, historyEvents),
@@ -788,6 +794,7 @@ export function recordLineageTransition(
       const historyEvents = options.historyEvents ?? getSafeHistoryEvents(database, memoryId);
       const predecessorMemoryId = options.predecessorMemoryId ?? null;
       const validFrom = options.validFrom ?? normalizeTimestamp(row.updated_at ?? row.created_at);
+      const ingestedAt = new Date().toISOString();
 
       let logicalKey = rowLogicalKey;
       let rootMemoryId = memoryId;
@@ -862,9 +869,10 @@ export function recordLineageTransition(
         database.prepare(`
           UPDATE memory_lineage
           SET valid_to = COALESCE(valid_to, ?),
+              expired_at = COALESCE(expired_at, ?),
               superseded_by_memory_id = COALESCE(superseded_by_memory_id, ?)
           WHERE memory_id = ?
-        `).run(validFrom, memoryId, predecessorMemoryId);
+        `).run(validFrom, ingestedAt, memoryId, predecessorMemoryId);
         markHistoricalPredecessor(database, predecessorMemoryId, validFrom);
       }
 
@@ -878,10 +886,12 @@ export function recordLineageTransition(
           superseded_by_memory_id,
           valid_from,
           valid_to,
+          ingested_at,
+          expired_at,
           transition_event,
           actor,
           metadata
-        ) VALUES (?, ?, ?, ?, ?, NULL, ?, NULL, ?, ?, ?)
+        ) VALUES (?, ?, ?, ?, ?, NULL, ?, NULL, ?, NULL, ?, ?, ?)
       `).run(
         memoryId,
         logicalKey,
@@ -889,6 +899,7 @@ export function recordLineageTransition(
         rootMemoryId,
         predecessorMemoryId,
         validFrom,
+        ingestedAt,
         transitionEvent,
         actor,
         buildMetadata(row, actor, historyEvents),
@@ -1269,6 +1280,8 @@ export function backfillLineageState(
         const validTo = successor
           ? normalizeTimestamp(successor.created_at ?? successor.updated_at)
           : null;
+        const ingestedAt = normalizeTimestamp(row.created_at ?? row.updated_at);
+        const expiredAt = validTo;
 
         database.prepare(`
           INSERT INTO memory_lineage (
@@ -1280,10 +1293,12 @@ export function backfillLineageState(
             superseded_by_memory_id,
             valid_from,
             valid_to,
+            ingested_at,
+            expired_at,
             transition_event,
             actor,
             metadata
-          ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'BACKFILL', ?, ?)
+          ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'BACKFILL', ?, ?)
           ON CONFLICT(memory_id) DO UPDATE SET
             logical_key = excluded.logical_key,
             version_number = excluded.version_number,
@@ -1292,6 +1307,8 @@ export function backfillLineageState(
             superseded_by_memory_id = excluded.superseded_by_memory_id,
             valid_from = excluded.valid_from,
             valid_to = excluded.valid_to,
+            ingested_at = excluded.ingested_at,
+            expired_at = excluded.expired_at,
             transition_event = excluded.transition_event,
             actor = excluded.actor,
             metadata = excluded.metadata
@@ -1304,6 +1321,8 @@ export function backfillLineageState(
           successor?.id ?? null,
           validFrom,
           validTo,
+          ingestedAt,
+          expiredAt,
           actor,
           buildMetadata(row, actor, historyEvents),
         );

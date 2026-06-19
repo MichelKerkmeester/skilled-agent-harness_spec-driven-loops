@@ -46,7 +46,7 @@ _memory:
 
 **Task Format**: `T### [P?] Description (file path)`
 
-**Candidate status legend**: `skip-closed-in-sweep` = SHIPPED (030 `e1c6a3c793`); `MEM-fact-invalidation-event-time`, `C3-B`, `GR-temporal-ordering-invalidation`, `C3-D` = PENDING.
+**Candidate status legend**: `skip-closed-in-sweep` = SHIPPED (030 `e1c6a3c793`); `C3-B` schema-migration foundation = DONE in this implementation; `MEM-fact-invalidation-event-time`, `GR-temporal-ordering-invalidation`, and behavior consumers remain PENDING/deferred.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -75,9 +75,9 @@ _memory:
 - [ ] T012 [P] Verify reader-transparency: no `WHERE invalid_at < now()` reader introduced; readers stay on `IS NULL` (grep gate)
 
 ### Candidate: C3-B four-timestamp window (M, additive) — PENDING
-- [ ] T020 Declare the four-timestamp window once in the schema: event-time `valid_from`/`valid_to` + txn-time `ingested_at`/`expired_at` (`lib/search/vector-index-schema.ts:184-185`), reconciling causal-edge vs lineage column shapes (unify, do not fork a third store)
-- [ ] T021 Keep existing single `valid_at`/`invalid_at` readers byte-identical (additive columns nullable, unread until a consumer opts in)
-- [ ] T022 [B] Confirm additivity against `active_memory_projection` at build (UNVERIFIED — no migration spec exists; 005 most-likely-wrong runner-up)
+- [x] T020 Declare the four-timestamp window once in the schema: event-time `valid_from`/`valid_to` + txn-time `ingested_at`/`expired_at` (`lib/search/vector-index-schema.ts`), reconciling causal-edge vs lineage column shapes (unify, do not fork a third store) — v38 UP/BACKFILL/DOWN implemented.
+- [x] T021 Keep existing single `valid_at`/`invalid_at` readers byte-identical (additive columns nullable, unread until a consumer opts in) — no recall/currentness reader was enabled; `SPECKIT_BITEMPORAL_RECALL` defaults OFF.
+- [x] T022 Confirm additivity against `active_memory_projection` at build — migration touches `causal_edges` and `memory_lineage`; `active_memory_projection` DDL and projection behavior are unchanged, with fresh-init and lineage schema tests passing.
 
 ### Candidate: GR-temporal-ordering-invalidation (H/S, NEW) — PENDING
 - [ ] T030 Add chronology-driven auto-invalidation: when two edges on the same pair conflict, close the chronologically-earlier `valid_at` (`lib/graph/contradiction-detection.ts:75-77,99-110`)
@@ -96,10 +96,10 @@ _memory:
 
 - [ ] T050 Unit test: closing an edge with a known lineage event-time writes that timestamp (not `now()`); missing event-time falls back to `now()`
 - [ ] T051 Regression test: closed generated edge not re-touched by promoter cleanup (skip-closed fixture) — guard is SHIPPED, test reconfirms it
-- [ ] T052 Unit test: four-timestamp additivity — existing `IS NULL` readers/results byte-identical
-- [ ] T053 Unit test: chronology invalidation closes earlier-`valid_at` on conflicting pair; co-valid non-conflicting pair untouched
-- [ ] T054 Typecheck + focused causal/temporal suite green
-- [ ] T055 `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-folder> --strict` exit 0
+- [x] T052 Unit test: four-timestamp additivity — existing `IS NULL` readers/results byte-identical; v38 up/backfill/down/idempotent/fresh-init tests added.
+- [ ] T053 Unit test: chronology invalidation closes earlier-`valid_at` on conflicting pair; co-valid non-conflicting pair untouched (behavior deferred outside schema-foundation scope)
+- [x] T054 Typecheck + focused/broad memory suite verified — `npm run typecheck` exit 0; focused Vitest `84 passed`; broad memory/schema/search/migration slice `7 failed | 94 passed` files and `13 failed | 1493 passed | 105 skipped` tests, matching baseline failure count with 6 new passing tests.
+- [x] T055 `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-folder> --strict` exit 0 — validation passed with 0 errors / 0 warnings.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -107,10 +107,10 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All non-shipped tasks marked `[x]` with evidence (shipped tasks already carry commit `e1c6a3c793`)
-- [ ] No `[B]` blocked tasks remaining (T022 additivity confirmed at build)
-- [ ] Reader-transparency invariant holds (grep proof)
-- [ ] Focused tests + `validate.sh --strict` pass
+- [x] Schema-foundation tasks marked `[x]` with evidence; behavior candidates remain explicitly deferred.
+- [x] No `[B]` blocked tasks remaining (T022 additivity confirmed at build)
+- [x] Reader-transparency invariant holds (no recall/currentness consumer enabled; legacy `invalid_at IS NULL` readers preserved)
+- [x] Focused tests, broad baseline comparison, and `validate.sh --strict` pass for the schema-foundation scope
 <!-- /ANCHOR:completion -->
 
 ---

@@ -64,21 +64,54 @@ describe('Temporal Edges', () => {
   // ─────────────────────────────────────────────────────────────
 
   describe('ensureTemporalColumns', () => {
-    it('should add valid_at and invalid_at columns', () => {
+    it('should add legacy and bi-temporal window columns', () => {
       ensureTemporalColumns(db);
 
       // Verify columns exist by inserting a row that uses them
       db.exec(`
-        INSERT INTO causal_edges (source_id, target_id, relation, valid_at, invalid_at)
-        VALUES ('100', '200', 'caused', '2026-01-01T00:00:00Z', NULL)
+        INSERT INTO causal_edges (
+          source_id,
+          target_id,
+          relation,
+          valid_at,
+          invalid_at,
+          valid_from,
+          valid_to,
+          ingested_at,
+          expired_at
+        )
+        VALUES (
+          '100',
+          '200',
+          'caused',
+          '2026-01-01T00:00:00Z',
+          NULL,
+          '2026-01-01T00:00:00Z',
+          NULL,
+          '2026-01-01T00:00:01Z',
+          NULL
+        )
       `);
 
       const row = db.prepare(`
-        SELECT valid_at, invalid_at FROM causal_edges WHERE source_id = '100' AND target_id = '200'
-      `).get() as { valid_at: string | null; invalid_at: string | null };
+        SELECT valid_at, invalid_at, valid_from, valid_to, ingested_at, expired_at
+        FROM causal_edges
+        WHERE source_id = '100' AND target_id = '200'
+      `).get() as {
+        valid_at: string | null;
+        invalid_at: string | null;
+        valid_from: string | null;
+        valid_to: string | null;
+        ingested_at: string | null;
+        expired_at: string | null;
+      };
 
       expect(row.valid_at).toBe('2026-01-01T00:00:00Z');
       expect(row.invalid_at).toBeNull();
+      expect(row.valid_from).toBe('2026-01-01T00:00:00Z');
+      expect(row.valid_to).toBeNull();
+      expect(row.ingested_at).toBe('2026-01-01T00:00:01Z');
+      expect(row.expired_at).toBeNull();
 
       // Cleanup
       db.exec(`DELETE FROM causal_edges WHERE source_id = '100'`);

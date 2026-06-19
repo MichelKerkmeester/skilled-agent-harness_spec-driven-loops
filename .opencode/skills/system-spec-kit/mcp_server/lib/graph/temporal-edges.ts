@@ -2,7 +2,7 @@
 // MODULE: Temporal Edges
 // ───────────────────────────────────────────────────────────────
 // Feature catalog: Temporal contiguity layer
-// Adds valid_at / invalid_at lifecycle columns to causal_edges,
+// Adds legacy and bi-temporal lifecycle columns to causal_edges,
 // enabling edge invalidation and temporally-scoped graph queries.
 // Feature-gated via SPECKIT_TEMPORAL_EDGES (default OFF).
 import type Database from 'better-sqlite3';
@@ -29,7 +29,7 @@ export type TemporalEdge = Edge;
 // ───────────────────────────────────────────────────────────────
 
 /**
- * Add valid_at and invalid_at columns to causal_edges if not present.
+ * Add causal-edge lifecycle columns if not present.
  * Uses ALTER TABLE with try/catch for idempotency — re-running is safe.
  */
 export function ensureTemporalColumns(db: Database.Database): void {
@@ -37,21 +37,23 @@ export function ensureTemporalColumns(db: Database.Database): void {
     return;
   }
 
-  try {
-    db.exec(`ALTER TABLE causal_edges ADD COLUMN valid_at TEXT DEFAULT NULL`);
-  } catch (error: unknown) {
-    const message = error instanceof Error ? error.message : String(error);
-    if (!/duplicate column name/i.test(message)) {
-      console.warn(`[temporal-edges] ensureTemporalColumns(valid_at) failed (fail-open): ${message}`);
-    }
-  }
+  const columns = [
+    'valid_at',
+    'invalid_at',
+    'valid_from',
+    'valid_to',
+    'ingested_at',
+    'expired_at',
+  ] as const;
 
-  try {
-    db.exec(`ALTER TABLE causal_edges ADD COLUMN invalid_at TEXT DEFAULT NULL`);
-  } catch (error: unknown) {
-    const message = error instanceof Error ? error.message : String(error);
-    if (!/duplicate column name/i.test(message)) {
-      console.warn(`[temporal-edges] ensureTemporalColumns(invalid_at) failed (fail-open): ${message}`);
+  for (const column of columns) {
+    try {
+      db.exec(`ALTER TABLE causal_edges ADD COLUMN ${column} TEXT DEFAULT NULL`);
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : String(error);
+      if (!/duplicate column name/i.test(message)) {
+        console.warn(`[temporal-edges] ensureTemporalColumns(${column}) failed (fail-open): ${message}`);
+      }
     }
   }
 }
@@ -79,21 +81,36 @@ export function invalidateEdge(
   try {
     ensureTemporalColumns(db);
     const now = new Date().toISOString();
+    const columns = new Set((db.prepare('PRAGMA table_info(causal_edges)').all() as Array<{ name: string }>)
+      .map((column) => column.name));
+    const assignments = [
+      'invalid_at = ?',
+      "evidence = COALESCE(evidence || ' | ', '') || ?",
+    ];
+    const params: unknown[] = [now, reason];
+    if (columns.has('valid_to')) {
+      assignments.push('valid_to = COALESCE(valid_to, ?)');
+      params.push(now);
+    }
+    if (columns.has('expired_at')) {
+      assignments.push('expired_at = COALESCE(expired_at, ?)');
+      params.push(now);
+    }
 
     if (relation) {
       (db.prepare(`
         UPDATE causal_edges
-        SET invalid_at = ?, evidence = COALESCE(evidence || ' | ', '') || ?
+        SET ${assignments.join(', ')}
         WHERE source_id = ? AND target_id = ? AND relation = ? AND invalid_at IS NULL
-      `) as Database.Statement).run(now, reason, String(sourceId), String(targetId), relation);
+      `) as Database.Statement).run(...params, String(sourceId), String(targetId), relation);
       return;
     }
 
     (db.prepare(`
       UPDATE causal_edges
-      SET invalid_at = ?, evidence = COALESCE(evidence || ' | ', '') || ?
+      SET ${assignments.join(', ')}
       WHERE source_id = ? AND target_id = ? AND invalid_at IS NULL
-    `) as Database.Statement).run(now, reason, String(sourceId), String(targetId));
+    `) as Database.Statement).run(...params, String(sourceId), String(targetId));
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : String(error);
     console.warn(`[temporal-edges] invalidateEdge failed (fail-open): ${message}`);

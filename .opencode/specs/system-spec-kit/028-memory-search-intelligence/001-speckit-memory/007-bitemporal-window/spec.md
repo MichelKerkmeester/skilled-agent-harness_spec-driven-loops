@@ -60,13 +60,21 @@ The Memory MCP already ships an edge-presence currentness substrate (`SPECKIT_TE
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Done — schema-migration foundation |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Phase** | `system-spec-kit/028-memory-search-intelligence/001-speckit-memory` (research) |
 | **Parent Packet** | `system-spec-kit/028-memory-search-intelligence` |
 | **Subsystem** | Spec-Kit Memory MCP (PRIMARY) — retrieval intelligence |
 <!-- /ANCHOR:metadata -->
+
+---
+
+## IMPLEMENTATION UPDATE — 2026-06-19
+
+The schema-migration foundation is implemented in the Memory MCP server. `SCHEMA_VERSION` moved from 37 to 38, causal edges now get the additive `valid_from`/`valid_to`/`ingested_at`/`expired_at` window, and memory lineage now gets the missing transaction-time `ingested_at`/`expired_at` columns. The migration provides explicit UP (`ensureBitemporalWindowSchema`), BACKFILL (`backfillBitemporalWindow`), and DOWN (`rollbackBitemporalWindowSchema`) helpers; UP runs inside the existing transaction-wrapped migration harness and fails closed if required tables/columns are missing.
+
+Recall behavior that would consume transaction-time windows remains default-off behind `SPECKIT_BITEMPORAL_RECALL`; no live recall/ranking behavior was enabled in this phase. The event-time invalidation spearhead and chronology-driven invalidation behavior remain outside this schema-foundation implementation.
 
 ---
 
@@ -87,7 +95,7 @@ Make the causal + lineage temporal model bi-temporally correct: close superseded
 
 ### In Scope — five candidates (one SHIPPED, four PENDING)
 - **`MEM-fact-invalidation-event-time`** (Memory; H/S; **the spearhead**) — derive the close timestamp from lineage event-time, not `now()`, at the single `invalidateEdge()` site. Reader-transparent (all three readers use a binary `IS NULL` test).
-- **C3-B** (Memory; M; BUILD-new additive) — four-timestamp window (event-time `valid_from`/`valid_to` + txn-time `ingested_at`/`expired_at`) replacing the single `valid_at`/`invalid_at` pair, declared once in the schema, on causal + lineage.
+- **C3-B** (Memory; M; BUILD-new additive) — **DONE for schema foundation**: four-timestamp window (event-time `valid_from`/`valid_to` + txn-time `ingested_at`/`expired_at`) added to causal edges and lineage, with UP + BACKFILL + DOWN helpers and default-off recall consumption.
 - **C3-D** (Memory; S; decision note) — document tombstone-sweep ("off-state forgetting") vs temporal-close ("not current") as separate concerns; ship the `AND invalid_at IS NULL` guard as cheap defensive hardening, NOT a data-loss gate.
 - **`GR-temporal-ordering-invalidation`** (Memory; H/S; NEW, Wave-1) — when two edges on the same pair conflict, auto-invalidate the chronologically-earlier `valid_at`; scoped to conflicting/superseding relation pairs only.
 - **`skip-closed-in-sweep`** (Memory causal; S) — **SHIPPED** (030 commit `e1c6a3c793`); `AND invalid_at IS NULL` on the promoter cleanup so already-closed generated edges are not re-touched. Referenced here for completeness.
@@ -127,7 +135,7 @@ Make the causal + lineage temporal model bi-temporally correct: close superseded
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-004 | C3-B four-timestamp window declared additively (event-time `valid_from`/`valid_to` + txn-time `ingested_at`/`expired_at`) on causal + lineage. | Schema declares the four columns once; existing single `valid_at`/`invalid_at` readers continue to pass byte-identically; additivity verified against `active_memory_projection` (additivity is UNVERIFIED per research — must be confirmed at build). |
+| REQ-004 | C3-B four-timestamp window declared additively (event-time `valid_from`/`valid_to` + txn-time `ingested_at`/`expired_at`) on causal + lineage. | DONE for schema foundation: v38 migration adds the columns, backfills legacy rows, exposes rollback, keeps current readers on `invalid_at IS NULL`, and leaves transaction-time recall default-off behind `SPECKIT_BITEMPORAL_RECALL`. |
 | REQ-005 | `GR-temporal-ordering-invalidation` scoped to conflicting/superseding relation pairs only. | Test proves two co-valid non-conflicting same-pair edges are NOT invalidated; two conflicting same-pair edges invalidate the chronologically-earlier `valid_at`. |
 | REQ-006 | C3-D separation-of-concerns documented: tombstone-sweep (forgetting) vs temporal-close (not-current) are distinct; skip-closed ships as defensive hardening, not a data-loss gate. | decision-record.md ADR records the distinction; the guard is cheap hardening (fork is theoretical + tombstone-recoverable, 005 iter-032). |
 <!-- /ANCHOR:requirements -->

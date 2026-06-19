@@ -783,6 +783,14 @@ export function isTemporalEdgesEnabled(): boolean {
 }
 
 /**
+ * Recall modes that consume transaction-time validity windows.
+ * Default: FALSE (benchmark-gated). Set SPECKIT_BITEMPORAL_RECALL=true to enable.
+ */
+export function isBitemporalRecallEnabled(): boolean {
+  return isOptInEnabled('SPECKIT_BITEMPORAL_RECALL');
+}
+
+/**
  * Usage-weighted ranking signal.
  * Default: TRUE (graduated). Set SPECKIT_USAGE_RANKING=false to disable.
  */
@@ -825,4 +833,22 @@ export function isDualRetrievalEnabled(): boolean {
  */
 export function isIntentAutoProfileEnabled(): boolean {
   return isFeatureEnabled('SPECKIT_INTENT_AUTO_PROFILE');
+}
+
+/* ───────────────────────────────────────────────────────────────
+   15. AGENTIC RECALL FLAGS
+──────────────────────────────────────────────────────────────── */
+
+/**
+ * Opt-in ReAct agentic recall strategy for memory_context. Gates a bounded
+ * reason-act-observe loop that injects an LLM into the otherwise synchronous,
+ * deterministic better-sqlite3 retrieval path. Default OFF (shadow): it must
+ * never leak non-determinism into the deterministic strategies every existing
+ * caller depends on, and it can only be promoted on benchmark evidence
+ * (latency/cost/determinism). The bounded loop governor refuses to run while
+ * this is off, so the agentic path is unreachable unless explicitly enabled.
+ * Set SPECKIT_AGENTIC_RECALL=true to enable.
+ */
+export function isAgenticRecallEnabled(): boolean {
+  return isOptInEnabled('SPECKIT_AGENTIC_RECALL');
 }

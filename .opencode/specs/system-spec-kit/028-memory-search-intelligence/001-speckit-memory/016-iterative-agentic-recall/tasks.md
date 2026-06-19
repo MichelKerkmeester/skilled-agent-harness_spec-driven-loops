@@ -35,7 +35,7 @@ _memory:
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 
-> **STATUS: PENDING (Wave-2, prove-first).** CG-agentic-tool-loop is **absent** from the Wave-0 shipped record (`../../../030-memory-search-intelligence-impl/spec.md` §14 status table), so no task is pre-checked. Gate: needs-design-prototype (greenfield controller/step-cap/cost-ceiling) + needs-benchmark before promotion.
+> **STATUS: PHASE 1 DONE (governor + flag, default-off); PHASE 2 (wiring) + PHASE 3 (benchmark) PENDING.** The gate-zero loop governor and the default-off `SPECKIT_AGENTIC_RECALL` flag are built and unit-proven (typecheck 0 errors, 18/18 governor tests). Router wiring (T007/T010) is left PENDING — it needs a public `mode`-enum change (Zod + JSON tool schema) that cannot be byte-identical when the flag is off, plus a live LLM. The benchmark (T012) is left PENDING — it needs a live run producing latency/cost/determinism numbers.
 
 ---
 
@@ -57,9 +57,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm the static-router seam unchanged from research: `executeStrategy` switch is `quick/deep/focused/resume` only, no tool-calling (`mcp_server/handlers/memory-context.ts:1292-1311`)
-- [ ] T002 Reserve and document the default-off `SPECKIT_AGENTIC_RECALL` flag name in the flag registry plan (`mcp_server/lib/search/search-flags.ts`)
-- [ ] T003 [P] Capture the flag-off recall baseline (golden output for the four existing strategies) for the later byte-identical isolation test
+- [x] T001 Confirm the static-router seam unchanged from research: `executeStrategy` switch is `quick/deep/focused/resume` only, no tool-calling (`mcp_server/handlers/memory-context.ts`) — VERIFIED: switch is at `:1362-1375` (research cited `:1292-1311`; the seam is intact, only the line numbers drifted), four cases only, `git diff` shows zero changes to the handler
+- [x] T002 Reserve and document the default-off `SPECKIT_AGENTIC_RECALL` flag name in the flag registry (`mcp_server/lib/search/search-flags.ts`) — DONE: `isAgenticRecallEnabled()` added (opt-in, default OFF)
+- [ ] T003 [P] Capture the flag-off recall baseline (golden output for the four existing strategies) for the later byte-identical isolation test — PENDING: only needed once T007 wires the router; the path is unwired so flag-off output is unchanged by construction
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -67,11 +67,11 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Create the bounded loop governor with step-cap, cost-ceiling, and a deterministic stop-condition modeled on Letta's `Init→Child→Continue→Terminal` tool-rule DAG (`mcp_server/lib/search/agentic-loop-governor.ts`; ref `voice_sleeptime_agent.py:87-91,132-148`)
-- [ ] T005 Implement the reason-act-observe loop body that emits a structured step (`tool_call | final_answer`), executes ACL-gated memory tools, appends observations, and forces a best-effort final answer at the cap (Cognee `_run_tool_loop` shape, `agentic_retriever.py:419-478`)
-- [ ] T006 Add the default-off `SPECKIT_AGENTIC_RECALL` flag (`mcp_server/lib/search/search-flags.ts`)
-- [ ] T007 Add `case 'agentic'` to `executeStrategy` dispatching through the governor; default branch and existing cases unchanged (`mcp_server/handlers/memory-context.ts:1292-1311`)
-- [ ] T008 Add governor abort/error handling: typed partial/forced-final result on tool failure or cost-ceiling-before-first-result (graceful degrade to focused strategy)
+- [x] T004 Create the bounded loop governor with step-cap, cost-ceiling, and a deterministic stop-condition modeled on Letta's `Init→Child→Continue→Terminal` tool-rule DAG (`mcp_server/lib/search/agentic-loop-governor.ts`) — DONE: `runAgenticLoop()` with `maxSteps`/`costCeiling`/`HARD_STEP_LIMIT` clamps and four-phase progression
+- [x] T005 Implement the reason-act-observe loop body that emits a structured step (`tool_call | final_answer`), executes ACL-gated tools, appends observations, and forces a best-effort final answer at the cap (Cognee `_run_tool_loop` shape) — DONE in the governor: `AgenticStep` union, injected ACL-gated `toolExecutor`, observation accumulation, forced-final at the step-cap. NOTE: binding the executor to the *real* memory tools lives in the router wiring (T007, PENDING)
+- [x] T006 Add the default-off `SPECKIT_AGENTIC_RECALL` flag (`mcp_server/lib/search/search-flags.ts`) — DONE (same as T002)
+- [ ] T007 Add `case 'agentic'` to `executeStrategy` dispatching through the governor; default branch and existing cases unchanged (`mcp_server/handlers/memory-context.ts`) — PENDING (gate): reaching the case requires admitting `'agentic'` to the public `mode` enum in `schemas/tool-input-schemas.ts` (Zod) AND `tool-schemas.ts` (JSON) — a static, non-flag-gated public-contract change that cannot be byte-identical when the flag is off — plus a live LLM step provider in the MCP runtime
+- [x] T008 Add governor abort/error handling: typed partial/forced-final result on tool failure or cost-ceiling-before-first-result (graceful degrade) — DONE: typed `aborted` (provider/tool/ACL) preserving best partial; `degraded` when the budget is exhausted before any result
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -79,11 +79,11 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T009 Unit-test the governor bounds: terminates at step-cap, aborts at cost-ceiling, forces a final answer at terminal — never unbounded (`mcp_server/__tests__/`)
-- [ ] T010 Isolation test: with the flag off, all four existing strategies produce byte-identical recall output vs the T003 baseline and no agentic code executes
-- [ ] T011 Confirm the deterministic core is untouched: `git diff` shows zero changes to `lib/search/hybrid-search.ts` and `lib/search/pipeline/stage2-fusion.ts`
-- [ ] T012 Build and run the seeded N-run benchmark: latency p50/p95 delta, cost/call, determinism variance; record numbers and the promote/keep-off/drop decision (`mcp_server/__tests__/`)
-- [ ] T013 node --check + tsc + existing suite green; `validate.sh --strict` passes on this packet
+- [x] T009 Unit-test the governor bounds: terminates at step-cap, aborts at cost-ceiling, forces a final answer at terminal — never unbounded (`mcp_server/tests/agentic-loop-governor.vitest.ts`) — DONE: 18/18 passing, covering step-cap, hard-clamp, cost-ceiling (forced-final + degraded), terminal final-answer, ACL, provider/tool failure, determinism, flag fail-closed. NOTE: repo convention is `tests/*.vitest.ts`, not the `__tests__/` path the spec assumed
+- [ ] T010 Isolation test: with the flag off, all four existing strategies produce byte-identical recall output vs the T003 baseline and no agentic code executes — PENDING: depends on T007 wiring; until then the path is unwired and flag-off output is unchanged by construction (handler `git diff` = 0). Governor-level fail-closed (flag off → `disabled`, 0 steps) IS tested
+- [x] T011 Confirm the deterministic core is untouched: `git diff` shows zero changes to `lib/search/hybrid-search.ts` and `lib/search/pipeline/stage2-fusion.ts` — DONE: `git diff --stat` empty for both (and for `handlers/memory-context.ts`)
+- [ ] T012 Build and run the seeded N-run benchmark: latency p50/p95 delta, cost/call, determinism variance; record numbers and the promote/keep-off/drop decision — PENDING (gate): needs a live LLM + real numbers, not producible in this environment
+- [x] T013 node --check + tsc + related suite green; `validate.sh --strict` passes — DONE for the shipped scope: `npm run typecheck` 0 errors; governor suite 18/18; `validate.sh --strict` Errors 0 / Warnings 0. (Full-suite promotion gates T010/T012 remain PENDING)
 <!-- /ANCHOR:phase-3 -->
 
 ---

@@ -10,9 +10,9 @@
     "strategy",
     "cg-agentic-tool-loop"
   ],
-  "lastUpdated": "2026-06-19T06:21:33.915Z",
+  "lastUpdated": "2026-06-19T14:20:12.878Z",
   "specId": "016",
-  "folderSlug": "016-iterative-agentic-recall",
+  "folderSlug": "iterative-agentic-recall",
   "parentChain": [
     "system-spec-kit",
     "028-memory-search-intelligence",

@@ -2,12 +2,15 @@ import Database from 'better-sqlite3';
 import { afterEach, describe, expect, it } from 'vitest';
 
 import {
+  backfillBitemporalWindow,
   createSchema,
   ensureSchemaVersion,
   migrateConstitutionalTier,
+  rollbackBitemporalWindowSchema,
   runMigrations,
   SCHEMA_VERSION,
   validateBackwardCompatibility,
+  validateLineageSchemaSupport,
 } from '../lib/search/vector-index-schema';
 
 function createTestDatabase(): Database.Database {
@@ -17,6 +20,56 @@ function createTestDatabase(): Database.Database {
     get_embedding_dim: () => 4,
   });
   ensureSchemaVersion(database);
+  return database;
+}
+
+function getColumnNames(database: Database.Database, tableName: string): string[] {
+  return (database.prepare(`PRAGMA table_info(${tableName})`).all() as Array<{ name: string }>)
+    .map((column) => column.name);
+}
+
+function createLegacyBitemporalDatabase(): Database.Database {
+  const database = new Database(':memory:');
+  database.exec(`
+    CREATE TABLE causal_edges (
+      id INTEGER PRIMARY KEY,
+      source_id TEXT NOT NULL,
+      target_id TEXT NOT NULL,
+      relation TEXT NOT NULL,
+      strength REAL DEFAULT 1.0,
+      evidence TEXT,
+      extracted_at TEXT DEFAULT (datetime('now')),
+      created_by TEXT DEFAULT 'manual',
+      last_accessed TEXT,
+      valid_at TEXT,
+      invalid_at TEXT
+    );
+    CREATE TABLE memory_lineage (
+      memory_id INTEGER PRIMARY KEY,
+      logical_key TEXT NOT NULL,
+      version_number INTEGER NOT NULL,
+      root_memory_id INTEGER NOT NULL,
+      predecessor_memory_id INTEGER,
+      superseded_by_memory_id INTEGER,
+      valid_from TEXT NOT NULL,
+      valid_to TEXT,
+      transition_event TEXT NOT NULL,
+      actor TEXT DEFAULT 'system',
+      metadata TEXT,
+      created_at TEXT DEFAULT CURRENT_TIMESTAMP
+    );
+    INSERT INTO causal_edges (
+      id, source_id, target_id, relation, extracted_at, valid_at, invalid_at
+    ) VALUES
+      (1, '10', '20', 'supports', '2026-01-01T00:00:10.000Z', '2026-01-01T00:00:00.000Z', NULL),
+      (2, '20', '30', 'contradicts', '2026-02-01T00:00:10.000Z', '2026-02-01T00:00:00.000Z', '2026-02-03T00:00:00.000Z');
+    INSERT INTO memory_lineage (
+      memory_id, logical_key, version_number, root_memory_id, predecessor_memory_id,
+      superseded_by_memory_id, valid_from, valid_to, transition_event, actor, metadata, created_at
+    ) VALUES
+      (10, 'spec|a', 1, 10, NULL, NULL, '2026-01-01T00:00:00.000Z', NULL, 'CREATE', 'system', NULL, '2026-01-01T00:00:05.000Z'),
+      (20, 'spec|b', 1, 20, NULL, 21, '2026-02-01T00:00:00.000Z', '2026-02-03T00:00:00.000Z', 'CREATE', 'system', NULL, '2026-02-01T00:00:05.000Z');
+  `);
   return database;
 }
 
@@ -732,5 +785,132 @@ describe('vector-index schema migration refinements', () => {
 
     expect(activePlan.some((row) => row.detail.includes('idx_memory_active_recall'))).toBe(true);
     expect(purgeablePlan.some((row) => row.detail.includes('idx_memory_purgeable_retention'))).toBe(true);
+  });
+
+  it('adds bi-temporal window columns during the v38 upgrade', () => {
+    const database = createLegacyBitemporalDatabase();
+    openDatabases.add(database);
+
+    runMigrations(database, 37, 38);
+
+    expect(getColumnNames(database, 'causal_edges')).toEqual(expect.arrayContaining([
+      'valid_from',
+      'valid_to',
+      'ingested_at',
+      'expired_at',
+    ]));
+    expect(getColumnNames(database, 'memory_lineage')).toEqual(expect.arrayContaining([
+      'valid_from',
+      'valid_to',
+      'ingested_at',
+      'expired_at',
+    ]));
+  });
+
+  it('backfills bi-temporal windows from legacy edge and lineage timestamps', () => {
+    const database = createLegacyBitemporalDatabase();
+    openDatabases.add(database);
+
+    runMigrations(database, 37, 38);
+    backfillBitemporalWindow(database, 'test backfill rerun');
+
+    const activeEdge = database.prepare(`
+      SELECT valid_from, valid_to, ingested_at, expired_at
+      FROM causal_edges
+      WHERE id = 1
+    `).get() as {
+      valid_from: string | null;
+      valid_to: string | null;
+      ingested_at: string | null;
+      expired_at: string | null;
+    };
+    expect(activeEdge).toEqual({
+      valid_from: '2026-01-01T00:00:00.000Z',
+      valid_to: null,
+      ingested_at: '2026-01-01T00:00:10.000Z',
+      expired_at: null,
+    });
+
+    const closedEdge = database.prepare(`
+      SELECT valid_from, valid_to, ingested_at, expired_at
+      FROM causal_edges
+      WHERE id = 2
+    `).get() as {
+      valid_from: string | null;
+      valid_to: string | null;
+      ingested_at: string | null;
+      expired_at: string | null;
+    };
+    expect(closedEdge).toEqual({
+      valid_from: '2026-02-01T00:00:00.000Z',
+      valid_to: '2026-02-03T00:00:00.000Z',
+      ingested_at: '2026-02-01T00:00:10.000Z',
+      expired_at: '2026-02-03T00:00:00.000Z',
+    });
+
+    const lineage = database.prepare(`
+      SELECT ingested_at, expired_at
+      FROM memory_lineage
+      WHERE memory_id = 20
+    `).get() as { ingested_at: string | null; expired_at: string | null };
+    expect(lineage).toEqual({
+      ingested_at: '2026-02-01T00:00:05.000Z',
+      expired_at: '2026-02-03T00:00:00.000Z',
+    });
+  });
+
+  it('re-runs the v38 migration idempotently without duplicating columns', () => {
+    const database = createLegacyBitemporalDatabase();
+    openDatabases.add(database);
+
+    runMigrations(database, 37, 38);
+    runMigrations(database, 37, 38);
+
+    for (const column of ['valid_from', 'valid_to', 'ingested_at', 'expired_at']) {
+      expect(getColumnNames(database, 'causal_edges').filter((name) => name === column)).toHaveLength(1);
+    }
+    for (const column of ['ingested_at', 'expired_at']) {
+      expect(getColumnNames(database, 'memory_lineage').filter((name) => name === column)).toHaveLength(1);
+    }
+  });
+
+  it('rolls back the v38 window columns without dropping legacy edge columns', () => {
+    const database = createLegacyBitemporalDatabase();
+    openDatabases.add(database);
+
+    runMigrations(database, 37, 38);
+    rollbackBitemporalWindowSchema(database, 'test rollback');
+    rollbackBitemporalWindowSchema(database, 'test rollback idempotent');
+
+    expect(getColumnNames(database, 'causal_edges')).toEqual(expect.arrayContaining(['valid_at', 'invalid_at']));
+    expect(getColumnNames(database, 'causal_edges')).not.toEqual(expect.arrayContaining([
+      'valid_from',
+      'valid_to',
+      'ingested_at',
+      'expired_at',
+    ]));
+    expect(getColumnNames(database, 'memory_lineage')).not.toEqual(expect.arrayContaining([
+      'ingested_at',
+      'expired_at',
+    ]));
+  });
+
+  it('initializes fresh databases with the v38 bi-temporal foundation', () => {
+    const database = createTestDatabase();
+    openDatabases.add(database);
+
+    const versionRow = database.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number };
+    expect(SCHEMA_VERSION).toBeGreaterThanOrEqual(38);
+    expect(versionRow.version).toBe(SCHEMA_VERSION);
+    expect(getColumnNames(database, 'causal_edges')).toEqual(expect.arrayContaining([
+      'valid_from',
+      'valid_to',
+      'ingested_at',
+      'expired_at',
+    ]));
+
+    const lineageReport = validateLineageSchemaSupport(database);
+    expect(lineageReport.compatible).toBe(true);
+    expect(lineageReport.missingColumns).toEqual({});
   });
 });

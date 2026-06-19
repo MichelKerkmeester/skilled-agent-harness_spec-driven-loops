@@ -14,10 +14,11 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/016-iterative-agentic-recall"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored Level-3 impl sub-phase spec for CG-agentic-tool-loop (Wave-2, prove-first, PENDING)"
-    next_safe_action: "Prototype the loop governor behind a default-off flag, then benchmark"
+    recent_action: "Built default-off agentic loop governor + SPECKIT_AGENTIC_RECALL flag, 18 tests pass"
+    next_safe_action: "Wire case agentic (needs mode-enum change + live LLM), then benchmark — PENDING"
     blockers:
-      - "needs-design-prototype: controller/step-cap/cost-ceiling/stop-condition are all greenfield"
+      - "needs-benchmark: promotion gated on live latency/cost/determinism numbers"
+      - "needs-schema-and-llm: case 'agentic' needs a public mode-enum change (Zod + JSON, not byte-identical-when-off) and a live LLM in the MCP runtime"
     key_files:
       - "spec.md"
       - "plan.md"
@@ -27,11 +28,12 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-001-016-agentic-tool-loop"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 50
     open_questions:
       - "What loop step-cap and cost-ceiling defaults keep p95 latency and per-call cost inside an acceptable budget?"
       - "Can the agentic strategy be made deterministic enough (seeded, temperature 0, fixed tool order) to not regress prompt-cache reuse for non-agentic callers?"
-    answered_questions: []
+    answered_questions:
+      - "Governor bounding shape and termination guarantee: Letta Init→Child→Continue→Terminal DAG with step-cap + cost-ceiling + deterministic stop, built default-off and unit-proven (REQ-001, REQ-006, NFR-R01)"
 ---
 
 # Feature Specification: Agentic Tool-Loop Recall Strategy (CG-agentic-tool-loop)
@@ -58,7 +60,7 @@ Add a ReAct-style agentic strategy to the Memory MCP's `memory_context` mode rou
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P2 |
-| **Status** | Draft |
+| **Status** | Phase 1 implemented (governor + flag, default-off, unit-proven); Phase 2 wiring + Phase 3 benchmark PENDING |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Packet** | system-spec-kit/028-memory-search-intelligence/001-speckit-memory |

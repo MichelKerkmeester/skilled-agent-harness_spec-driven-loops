@@ -11,9 +11,9 @@
     "causal",
     "lineage"
   ],
-  "lastUpdated": "2026-06-19T06:21:32.580Z",
+  "lastUpdated": "2026-06-19T14:10:06.172Z",
   "specId": "007",
-  "folderSlug": "007-bitemporal-window",
+  "folderSlug": "bitemporal-window",
   "parentChain": [
     "system-spec-kit",
     "028-memory-search-intelligence",

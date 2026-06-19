@@ -11,6 +11,7 @@ import {
 } from '../lib/search/graph-flags';
 import {
   isContextHeadersEnabled,
+  isBitemporalRecallEnabled,
   isFileWatcherEnabled,
   isGraphRefreshDisabled,
   isGraphSignalsEnabled,
@@ -27,6 +28,7 @@ const FLAG_NAMES = [
   'SPECKIT_MULTI_QUERY',
   'SPECKIT_CONTEXT_HEADERS',
   'SPECKIT_RECONSOLIDATION',
+  'SPECKIT_BITEMPORAL_RECALL',
   'SPECKIT_FILE_WATCHER',
   'SPECKIT_GRAPH_SIGNALS',
   'SPECKIT_GRAPH_REFRESH_MODE',
@@ -116,6 +118,13 @@ describe('Search Feature Flags', () => {
 
   it('file watcher remains opt-in by default', () => {
     expect(isFileWatcherEnabled()).toBe(false);
+  });
+
+  it('bi-temporal recall remains opt-in by default', () => {
+    expect(isBitemporalRecallEnabled()).toBe(false);
+
+    process.env.SPECKIT_BITEMPORAL_RECALL = 'true';
+    expect(isBitemporalRecallEnabled()).toBe(true);
   });
 
   it('enables file watcher only with explicit opt-in', () => {

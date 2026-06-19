@@ -183,6 +183,8 @@ const REQUIRED_LINEAGE_COLUMNS: Readonly<Record<string, readonly string[]>> = {
     'superseded_by_memory_id',
     'valid_from',
     'valid_to',
+    'ingested_at',
+    'expired_at',
     'transition_event',
     'actor',
     'metadata',
@@ -622,14 +624,26 @@ function getMigrationAllowedBasePaths(): string[] {
 // V35: Add server-derived write provenance kind
 // V36: Add idempotency receipts and near-duplicate markers
 // V37: Add tombstone column and active/purgeable memory partitions
+// V38: Add bi-temporal window columns for causal edges and memory lineage
 /** Current schema version for vector-index migrations. */
-export const SCHEMA_VERSION = 37;
+export const SCHEMA_VERSION = 38;
 
 const SOURCE_KIND_COLUMN_SQL = "ALTER TABLE memory_index ADD COLUMN source_kind TEXT NOT NULL DEFAULT 'system' CHECK(source_kind IN ('human', 'agent', 'system', 'import', 'feedback'))";
 const MEMORY_IDEMPOTENCY_RECEIPTS_OPERATION_INDEX_SQL = `
   CREATE INDEX IF NOT EXISTS idx_memory_idempotency_receipts_operation
   ON memory_idempotency_receipts(operation, created_at DESC)
 `;
+
+const CAUSAL_EDGE_BITEMPORAL_COLUMNS: ReadonlyArray<{ name: string; sql: string }> = [
+  { name: 'valid_from', sql: 'ALTER TABLE causal_edges ADD COLUMN valid_from TEXT' },
+  { name: 'valid_to', sql: 'ALTER TABLE causal_edges ADD COLUMN valid_to TEXT' },
+  { name: 'ingested_at', sql: 'ALTER TABLE causal_edges ADD COLUMN ingested_at TEXT' },
+  { name: 'expired_at', sql: 'ALTER TABLE causal_edges ADD COLUMN expired_at TEXT' },
+];
+const MEMORY_LINEAGE_BITEMPORAL_COLUMNS: ReadonlyArray<{ name: string; sql: string }> = [
+  { name: 'ingested_at', sql: 'ALTER TABLE memory_lineage ADD COLUMN ingested_at TEXT' },
+  { name: 'expired_at', sql: 'ALTER TABLE memory_lineage ADD COLUMN expired_at TEXT' },
+];
 
 function addColumnIfMissing(
   database: Database.Database,
@@ -720,6 +734,129 @@ export function ensureMemoryIndexTombstonePartitions(database: Database.Database
   );
   createRequiredIndex(database, 'idx_memory_active_recall', MEMORY_ACTIVE_RECALL_INDEX_SQL, context);
   createRequiredIndex(database, 'idx_memory_purgeable_retention', MEMORY_PURGEABLE_RETENTION_INDEX_SQL, context);
+}
+
+function requireTableForMigration(database: Database.Database, tableName: string, context: string): void {
+  if (!hasTable(database, tableName)) {
+    throw new Error(`${context}: required table "${tableName}" is missing`);
+  }
+}
+
+function requireColumnsForMigration(
+  database: Database.Database,
+  tableName: string,
+  requiredColumns: readonly string[],
+  context: string,
+): void {
+  const columns = new Set(getTableColumns(database, tableName));
+  const missing = requiredColumns.filter((columnName) => !columns.has(columnName));
+  if (missing.length > 0) {
+    throw new Error(`${context}: ${tableName} missing required column(s): ${missing.join(', ')}`);
+  }
+}
+
+function dropColumnIfPresent(
+  database: Database.Database,
+  tableName: string,
+  columnName: string,
+  context: string,
+): void {
+  if (!hasTable(database, tableName)) {
+    return;
+  }
+  const columns = new Set(getTableColumns(database, tableName));
+  if (!columns.has(columnName)) {
+    return;
+  }
+  database.exec(`ALTER TABLE ${tableName} DROP COLUMN ${columnName}`);
+  if (getTableColumns(database, tableName).includes(columnName)) {
+    throw new Error(`${context}: ${tableName}.${columnName} still exists after rollback`);
+  }
+}
+
+/**
+ * Backfill the event-time and transaction-time windows from legacy timestamps.
+ */
+export function backfillBitemporalWindow(database: Database.Database, context: string = 'bitemporal window backfill'): void {
+  requireTableForMigration(database, 'causal_edges', context);
+  requireTableForMigration(database, MEMORY_LINEAGE_TABLE, context);
+  requireColumnsForMigration(
+    database,
+    'causal_edges',
+    ['valid_from', 'valid_to', 'ingested_at', 'expired_at', 'extracted_at'],
+    context,
+  );
+  requireColumnsForMigration(
+    database,
+    MEMORY_LINEAGE_TABLE,
+    ['valid_from', 'valid_to', 'ingested_at', 'expired_at', 'created_at'],
+    context,
+  );
+
+  const causalColumns = new Set(getTableColumns(database, 'causal_edges'));
+  const causalValidFromExpr = causalColumns.has('valid_at')
+    ? "COALESCE(valid_from, valid_at, extracted_at, datetime('now'))"
+    : "COALESCE(valid_from, extracted_at, datetime('now'))";
+  const causalValidToExpr = causalColumns.has('invalid_at')
+    ? 'COALESCE(valid_to, invalid_at)'
+    : 'valid_to';
+  const causalExpiredAtExpr = causalColumns.has('invalid_at')
+    ? 'COALESCE(expired_at, invalid_at)'
+    : 'expired_at';
+  const causalInvalidatedWhere = causalColumns.has('invalid_at')
+    ? ' OR (valid_to IS NULL AND invalid_at IS NOT NULL) OR (expired_at IS NULL AND invalid_at IS NOT NULL)'
+    : '';
+
+  database.exec(`
+    UPDATE causal_edges
+    SET valid_from = ${causalValidFromExpr},
+        valid_to = ${causalValidToExpr},
+        ingested_at = COALESCE(ingested_at, extracted_at, datetime('now')),
+        expired_at = ${causalExpiredAtExpr}
+    WHERE valid_from IS NULL
+       OR ingested_at IS NULL
+       ${causalInvalidatedWhere}
+  `);
+
+  database.exec(`
+    UPDATE memory_lineage
+    SET ingested_at = COALESCE(ingested_at, created_at, valid_from, datetime('now')),
+        expired_at = COALESCE(expired_at, valid_to)
+    WHERE ingested_at IS NULL
+       OR (expired_at IS NULL AND valid_to IS NOT NULL)
+  `);
+}
+
+/**
+ * Add the shared four-timestamp window and backfill legacy rows.
+ */
+export function ensureBitemporalWindowSchema(database: Database.Database, context: string): void {
+  requireTableForMigration(database, 'causal_edges', context);
+  ensureLineageTables(database);
+
+  const causalColumns = new Set(getTableColumns(database, 'causal_edges'));
+  for (const column of CAUSAL_EDGE_BITEMPORAL_COLUMNS) {
+    addColumnIfMissing(database, 'causal_edges', causalColumns, column, context);
+  }
+
+  const lineageColumns = new Set(getTableColumns(database, MEMORY_LINEAGE_TABLE));
+  for (const column of MEMORY_LINEAGE_BITEMPORAL_COLUMNS) {
+    addColumnIfMissing(database, MEMORY_LINEAGE_TABLE, lineageColumns, column, context);
+  }
+
+  backfillBitemporalWindow(database, context);
+}
+
+/**
+ * Roll back only the four columns introduced by the bi-temporal window migration.
+ */
+export function rollbackBitemporalWindowSchema(database: Database.Database, context: string = 'bitemporal window rollback'): void {
+  for (const column of ['expired_at', 'ingested_at', 'valid_to', 'valid_from']) {
+    dropColumnIfPresent(database, 'causal_edges', column, context);
+  }
+  for (const column of ['expired_at', 'ingested_at']) {
+    dropColumnIfPresent(database, MEMORY_LINEAGE_TABLE, column, context);
+  }
 }
 
 function sourceKindFromProvenanceSource(value: unknown): 'human' | 'agent' | 'system' | 'import' | 'feedback' {
@@ -1960,6 +2097,11 @@ export function run_migrations(database: Database.Database, from_version: number
     logger.info('Migration v37: Added tombstone active and purgeable partitions');
   };
 
+  migrations[38] = () => {
+    ensureBitemporalWindowSchema(database, 'Migration v38');
+    logger.info('Migration v38: Added bi-temporal validity windows');
+  };
+
   // Wrap all migrations in a transaction for atomicity
   const run_all_migrations = database.transaction(() => {
     for (let v = from_version + 1; v <= to_version; v++) {
@@ -2090,6 +2232,18 @@ export function ensureLineageTables(database: Database.Database): void {
       FROM hydra_memory_lineage
     `);
   }
+
+  const lineageColumns = new Set(getTableColumns(database, MEMORY_LINEAGE_TABLE));
+  for (const column of MEMORY_LINEAGE_BITEMPORAL_COLUMNS) {
+    addColumnIfMissing(database, MEMORY_LINEAGE_TABLE, lineageColumns, column, 'ensureLineageTables');
+  }
+  database.exec(`
+    UPDATE memory_lineage
+    SET ingested_at = COALESCE(ingested_at, created_at, valid_from, datetime('now')),
+        expired_at = COALESCE(expired_at, valid_to)
+    WHERE ingested_at IS NULL
+       OR (expired_at IS NULL AND valid_to IS NOT NULL)
+  `);
 
   database.exec(`
     CREATE TABLE IF NOT EXISTS active_memory_projection (
