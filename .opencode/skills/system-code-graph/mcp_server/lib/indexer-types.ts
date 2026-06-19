@@ -17,11 +17,21 @@ export type SymbolKind =
   | 'heading' | 'key';
 
 /** Edge types for relationships between symbols */
-export type EdgeType =
-  | 'CONTAINS' | 'CALLS' | 'IMPORTS' | 'EXPORTS'
-  | 'EXTENDS' | 'IMPLEMENTS' | 'TESTED_BY'
-  | 'DECORATES' | 'OVERRIDES' | 'TYPE_OF'
-  | 'SUPERSEDES';
+export const EDGE_TYPES = [
+  'CONTAINS',
+  'CALLS',
+  'IMPORTS',
+  'EXPORTS',
+  'EXTENDS',
+  'IMPLEMENTS',
+  'TESTED_BY',
+  'DECORATES',
+  'OVERRIDES',
+  'TYPE_OF',
+  'SUPERSEDES',
+] as const;
+
+export type EdgeType = typeof EDGE_TYPES[number];
 
 export const DEFAULT_EDGE_WEIGHTS: Readonly<Record<EdgeType, number>> = CODE_GRAPH_DEFAULTS.edgeWeights as Readonly<Record<EdgeType, number>>;
 

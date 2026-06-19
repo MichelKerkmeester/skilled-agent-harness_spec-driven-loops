@@ -11,7 +11,7 @@ import Database from 'better-sqlite3';
 
 import { DATABASE_DIR } from '../core/config.js';
 import { assertDbHandleClosed } from './close-db-assertion.js';
-import { generateContentHash } from './indexer-types.js';
+import { EDGE_TYPES, generateContentHash } from './indexer-types.js';
 import {
   CODE_GRAPH_SCOPE_FINGERPRINT_KEY,
   CODE_GRAPH_SCOPE_LABEL_KEY,
@@ -20,7 +20,7 @@ import {
   parseIndexScopePolicyFromFingerprint,
 } from './index-scope-policy.js';
 
-import type { CodeEdge, CodeNode, DetectorProvenance } from './indexer-types.js';
+import type { CodeEdge, CodeNode, DetectorProvenance, EdgeType } from './indexer-types.js';
 import type { IndexScopePolicy, IndexScopePolicySource } from './index-scope-policy.js';
 
 let db: Database.Database | null = null;
@@ -147,7 +147,61 @@ export interface DeleteAuditOptions {
 }
 
 /** Schema version for migration tracking */
-export const SCHEMA_VERSION = 7;
+export const SCHEMA_VERSION = 8;
+
+interface CodeEdgesTableShape {
+  readonly hasValidAt: boolean;
+  readonly hasInvalidAt: boolean;
+}
+
+export interface CodeEdgeGovernanceVocabularyOffender {
+  readonly tableName: 'code_edges' | 'code_graph_tombstones';
+  readonly edgeType: string;
+  readonly count: number;
+}
+
+const CODE_EDGES_REBUILD_TABLE_NAME = 'code_edges__edge_vocab_rebuild';
+export const CODE_GRAPH_EDGE_GOVERNANCE_VOCAB_ENV = 'SPECKIT_CODE_GRAPH_EDGE_GOVERNANCE_VOCAB';
+export const CODE_GRAPH_EDGE_TYPE_VOCABULARY: readonly EdgeType[] = EDGE_TYPES;
+
+function sqlString(value: string): string {
+  return `'${value.replaceAll("'", "''")}'`;
+}
+
+const CODE_EDGE_TYPE_CHECK_SQL = `edge_type IN (${CODE_GRAPH_EDGE_TYPE_VOCABULARY.map(sqlString).join(', ')})`;
+
+function createCodeEdgesTableSql(
+  tableName: string,
+  withEdgeTypeCheck: boolean,
+  shape: CodeEdgesTableShape = { hasValidAt: true, hasInvalidAt: true },
+): string {
+  const edgeTypeDefinition = withEdgeTypeCheck
+    ? `edge_type TEXT NOT NULL CHECK (${CODE_EDGE_TYPE_CHECK_SQL})`
+    : 'edge_type TEXT NOT NULL';
+  const temporalColumns = [
+    ...(shape.hasValidAt ? ['valid_at INTEGER'] : []),
+    ...(shape.hasInvalidAt ? ['invalid_at INTEGER'] : []),
+  ];
+  return `
+    CREATE TABLE IF NOT EXISTS ${tableName} (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      source_id TEXT NOT NULL,
+      target_id TEXT NOT NULL,
+      ${edgeTypeDefinition},
+      weight REAL DEFAULT 1.0,
+      metadata TEXT${temporalColumns.length > 0 ? ',' : ''}
+      ${temporalColumns.join(',\n      ')}
+    );
+  `;
+}
+
+function createCodeEdgeIndexesSql(): string {
+  return `
+    CREATE INDEX IF NOT EXISTS idx_edges_source ON code_edges(source_id, edge_type);
+    CREATE INDEX IF NOT EXISTS idx_edges_target ON code_edges(target_id, edge_type);
+    CREATE INDEX IF NOT EXISTS idx_edges_type ON code_edges(edge_type);
+  `;
+}
 
 /** SQL schema for code graph tables */
 const SCHEMA_SQL = `
@@ -182,16 +236,7 @@ const SCHEMA_SQL = `
     content_hash TEXT NOT NULL
   );
 
-  CREATE TABLE IF NOT EXISTS code_edges (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    source_id TEXT NOT NULL,
-    target_id TEXT NOT NULL,
-    edge_type TEXT NOT NULL,
-    weight REAL DEFAULT 1.0,
-    metadata TEXT,
-    valid_at INTEGER,
-    invalid_at INTEGER
-  );
+  ${createCodeEdgesTableSql('code_edges', false)}
 
   CREATE TABLE IF NOT EXISTS schema_version (
     version INTEGER NOT NULL
@@ -226,9 +271,7 @@ const SCHEMA_SQL = `
   CREATE INDEX IF NOT EXISTS idx_nodes_kind ON code_nodes(kind);
   CREATE INDEX IF NOT EXISTS idx_nodes_name ON code_nodes(name);
   CREATE INDEX IF NOT EXISTS idx_file_line ON code_nodes(file_path, start_line);
-  CREATE INDEX IF NOT EXISTS idx_edges_source ON code_edges(source_id, edge_type);
-  CREATE INDEX IF NOT EXISTS idx_edges_target ON code_edges(target_id, edge_type);
-  CREATE INDEX IF NOT EXISTS idx_edges_type ON code_edges(edge_type);
+  ${createCodeEdgeIndexesSql()}
   CREATE INDEX IF NOT EXISTS idx_files_path ON code_files(file_path);
   CREATE INDEX IF NOT EXISTS idx_files_hash ON code_files(content_hash);
   CREATE INDEX IF NOT EXISTS idx_parse_diagnostics_last_seen ON parse_diagnostics(last_seen_at);
@@ -249,6 +292,10 @@ const CODE_EDGE_BITEMPORAL_COLUMNS: ReadonlyArray<{ name: string; sql: string }>
 
 export function codeGraphEdgeBitemporalReadsEnabled(): boolean {
   return process.env[CODE_GRAPH_EDGE_BITEMPORAL_READS_ENV] === 'true';
+}
+
+export function codeGraphEdgeGovernanceVocabEnabled(): boolean {
+  return process.env[CODE_GRAPH_EDGE_GOVERNANCE_VOCAB_ENV] === 'true';
 }
 
 function codeGraphTombstonesEnabled(): boolean {
@@ -633,6 +680,14 @@ function getTableColumns(database: Database.Database, tableName: string): string
   return rows.map((row) => row.name);
 }
 
+function getCodeEdgesTableShape(database: Database.Database): CodeEdgesTableShape {
+  const columns = new Set(getTableColumns(database, 'code_edges'));
+  return {
+    hasValidAt: columns.has('valid_at'),
+    hasInvalidAt: columns.has('invalid_at'),
+  };
+}
+
 function requireTableForMigration(database: Database.Database, tableName: string, context: string): void {
   if (!tableExists(database, tableName)) {
     throw new Error(`${context}: required table "${tableName}" is missing`);
@@ -748,6 +803,148 @@ export function rollbackCodeEdgeBitemporalSchema(
   rollback();
 }
 
+function getCodeEdgesCreateSql(database: Database.Database): string | null {
+  const row = database.prepare(`
+    SELECT sql FROM sqlite_master WHERE type = 'table' AND name = 'code_edges'
+  `).get() as { sql: string } | undefined;
+  return row?.sql ?? null;
+}
+
+export function codeGraphEdgeGovernanceVocabSchemaApplied(database: Database.Database): boolean {
+  const createSql = getCodeEdgesCreateSql(database);
+  return createSql !== null
+    && createSql.includes('CHECK')
+    && CODE_GRAPH_EDGE_TYPE_VOCABULARY.every((edgeType) => createSql.includes(sqlString(edgeType)));
+}
+
+export function scanCodeEdgeGovernanceVocabulary(
+  database: Database.Database,
+  context: string = 'code-edge governance vocabulary scan',
+): CodeEdgeGovernanceVocabularyOffender[] {
+  requireTableForMigration(database, 'code_edges', context);
+  requireColumnsForMigration(database, 'code_edges', ['edge_type'], context);
+
+  const allowed = new Set<string>(CODE_GRAPH_EDGE_TYPE_VOCABULARY);
+  const offenders: CodeEdgeGovernanceVocabularyOffender[] = [];
+  const edgeRows = database.prepare(`
+    SELECT edge_type, COUNT(*) AS count
+    FROM code_edges
+    GROUP BY edge_type
+    ORDER BY edge_type
+  `).all() as Array<{ edge_type: string | null; count: number }>;
+
+  for (const row of edgeRows) {
+    if (row.edge_type !== null && !allowed.has(row.edge_type)) {
+      offenders.push({ tableName: 'code_edges', edgeType: row.edge_type, count: row.count });
+    }
+  }
+
+  if (tombstoneTableExists(database)) {
+    requireColumnsForMigration(database, 'code_graph_tombstones', ['edge_type'], context);
+    const tombstoneRows = database.prepare(`
+      SELECT edge_type, COUNT(*) AS count
+      FROM code_graph_tombstones
+      GROUP BY edge_type
+      ORDER BY edge_type
+    `).all() as Array<{ edge_type: string | null; count: number }>;
+    for (const row of tombstoneRows) {
+      if (row.edge_type !== null && !allowed.has(row.edge_type)) {
+        offenders.push({ tableName: 'code_graph_tombstones', edgeType: row.edge_type, count: row.count });
+      }
+    }
+  }
+
+  return offenders;
+}
+
+export function backfillCodeEdgeGovernanceVocabulary(
+  database: Database.Database,
+  context: string = 'code-edge governance vocabulary backfill',
+): void {
+  const offenders = scanCodeEdgeGovernanceVocabulary(database, context);
+  if (offenders.length === 0) {
+    return;
+  }
+  const rendered = offenders
+    .map((offender) => `${offender.tableName}.${offender.edgeType} (${offender.count})`)
+    .join(', ');
+  throw new Error(`${context}: out-of-vocabulary edge_type value(s): ${rendered}`);
+}
+
+function rebuildCodeEdgesTable(
+  database: Database.Database,
+  withEdgeTypeCheck: boolean,
+  context: string,
+): void {
+  requireTableForMigration(database, 'code_edges', context);
+  requireColumnsForMigration(database, 'code_edges', [
+    'id',
+    'source_id',
+    'target_id',
+    'edge_type',
+    'weight',
+    'metadata',
+  ], context);
+
+  const shape = getCodeEdgesTableShape(database);
+  const copyColumns = [
+    'id',
+    'source_id',
+    'target_id',
+    'edge_type',
+    'weight',
+    'metadata',
+    ...(shape.hasValidAt ? ['valid_at'] : []),
+    ...(shape.hasInvalidAt ? ['invalid_at'] : []),
+  ];
+  const columnSql = copyColumns.join(', ');
+  database.exec(`DROP TABLE IF EXISTS ${CODE_EDGES_REBUILD_TABLE_NAME}`);
+  database.exec(createCodeEdgesTableSql(CODE_EDGES_REBUILD_TABLE_NAME, withEdgeTypeCheck, shape));
+  database.exec(`
+    INSERT INTO ${CODE_EDGES_REBUILD_TABLE_NAME} (${columnSql})
+    SELECT ${columnSql}
+    FROM code_edges;
+    DROP TABLE code_edges;
+    ALTER TABLE ${CODE_EDGES_REBUILD_TABLE_NAME} RENAME TO code_edges;
+    ${createCodeEdgeIndexesSql()}
+  `);
+
+  const applied = codeGraphEdgeGovernanceVocabSchemaApplied(database);
+  if (withEdgeTypeCheck && !applied) {
+    throw new Error(`${context}: failed to apply code_edges.edge_type CHECK`);
+  }
+  if (!withEdgeTypeCheck && applied) {
+    throw new Error(`${context}: failed to remove code_edges.edge_type CHECK`);
+  }
+}
+
+export function ensureCodeEdgeGovernanceVocabSchema(
+  database: Database.Database,
+  context: string = 'code-edge governance vocabulary migration',
+): void {
+  const migrate = database.transaction(() => {
+    backfillCodeEdgeGovernanceVocabulary(database, context);
+    if (codeGraphEdgeGovernanceVocabSchemaApplied(database)) {
+      return;
+    }
+    rebuildCodeEdgesTable(database, true, context);
+  });
+  migrate();
+}
+
+export function rollbackCodeEdgeGovernanceVocabSchema(
+  database: Database.Database,
+  context: string = 'code-edge governance vocabulary rollback',
+): void {
+  const rollback = database.transaction(() => {
+    if (!tableExists(database, 'code_edges') || !codeGraphEdgeGovernanceVocabSchemaApplied(database)) {
+      return;
+    }
+    rebuildCodeEdgesTable(database, false, context);
+  });
+  rollback();
+}
+
 function ensureSchemaMigrations(database: Database.Database): void {
   if (!hasColumn(database, 'code_files', 'file_mtime_ms')) {
     database.exec('ALTER TABLE code_files ADD COLUMN file_mtime_ms INTEGER NOT NULL DEFAULT 0');
@@ -804,6 +1001,9 @@ function ensureSchemaMigrations(database: Database.Database): void {
   `).run(now, now);
 
   ensureCodeEdgeBitemporalSchema(database, 'code-edge bitemporal migration');
+  if (codeGraphEdgeGovernanceVocabEnabled()) {
+    ensureCodeEdgeGovernanceVocabSchema(database, 'code-edge governance vocabulary migration');
+  }
 }
 
 /** Initialize (or get) the code graph database */
@@ -2012,9 +2212,8 @@ export function sanitizeEdgeMetadataString(value: unknown): string | null {
 
 /** Convert DB row to CodeEdge */
 function rowToEdge(r: Record<string, unknown>): CodeEdge {
-  // 008/D7 hardening: malformed JSON in code_edges.metadata must not throw
-  // out of the read path. Treat parse failures as "no metadata" rather than
-  // crashing relationship/blast_radius queries on a single bad row.
+  // Malformed edge metadata must not crash relationship or blast-radius reads.
+  // Treat parse failures as missing metadata for that row.
   let rawMetadata: unknown = undefined;
   if (r.metadata) {
     try {

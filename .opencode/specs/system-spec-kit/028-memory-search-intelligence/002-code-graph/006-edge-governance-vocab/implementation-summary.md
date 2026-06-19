@@ -1,39 +1,44 @@
 ---
-title: "Implementation Summary: Code-Graph Edge Write-Time Governance"
-description: "Planning-only record for the code-graph edge write-time governance phase: all five candidates (closed-vocab edge_type CHECK, per-run heuristic churn cap, audit-subgraph tombstone extension, derived-clock supersession tiebreak) are PENDING and unimplemented. This summary captures the planned scope, the confirmed seam evidence, and the gates that block each unit."
+title: "Implementation Summary: Code-Graph Edge Governance Vocabulary"
+description: "DONE for the closed-vocab edge-governance anchor: system-code-graph now has a default-off SPECKIT_CODE_GRAPH_EDGE_GOVERNANCE_VOCAB migration that rebuilds code_edges with an edge_type CHECK, preserves existing bitemporal columns, aborts before rebuild on out-of-vocab live/tombstone values, exposes rollback, and verifies the 10 live edge types plus SUPERSEDES."
 trigger_phrases:
   - "code graph edge governance summary"
   - "closed vocab check status"
-  - "cascade guard audit derived clock status"
+  - "edge governance vocabulary done"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/002-code-graph/006-edge-governance-vocab"
     last_updated_at: "2026-06-19T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Author edge-governance-vocab impl-summary (planning-only)"
-    next_safe_action: "Run the pre-migration SELECT DISTINCT edge_type scan against a live DB (T001)"
-    blockers:
-      - "Live-DB DISTINCT edge_type vocabulary UNVERIFIED — gates the table-rebuild migration safety"
+    last_updated_by: "codex"
+    recent_action: "Implemented the default-off closed-vocab edge_type CHECK migration"
+    next_safe_action: "Keep SPECKIT_CODE_GRAPH_EDGE_GOVERNANCE_VOCAB off until owner rollout approval"
+    blockers: []
     key_files:
       - "spec.md"
       - "plan.md"
       - "tasks.md"
       - "checklist.md"
+      - "implementation-summary.md"
+      - ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts"
+      - ".opencode/skills/system-code-graph/mcp_server/lib/indexer-types.ts"
+      - ".opencode/skills/system-code-graph/mcp_server/tests/code-edge-governance-vocab.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-002-006-edge-governance-vocab"
       parent_session_id: null
-    completion_pct: 10
-    open_questions: []
-    answered_questions: []
+    completion_pct: 100
+    open_questions:
+      - "When should SPECKIT_CODE_GRAPH_EDGE_GOVERNANCE_VOCAB be enabled for the shared live DB?"
+    answered_questions:
+      - "Closed vocabulary is the 10 live edge relations plus SUPERSEDES"
+      - "Live DB scan found only in-vocab code_edges values and no tombstone edge rows before migration"
 ---
-# Implementation Summary: Code-Graph Edge Write-Time Governance
+# Implementation Summary: Code-Graph Edge Governance Vocabulary
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
 ---
 
@@ -43,7 +48,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | `028-memory-search-intelligence/002-code-graph/006-edge-governance-vocab` |
-| **Completed** | Not yet — planning only |
+| **Completed** | Done for closed-vocab governance; churn/audit/derived-clock siblings deferred |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -52,29 +57,28 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing has been built yet. This is a planning-only spec folder governing how the Code Graph writes edges. All five candidates are PENDING and none shipped in the Wave-0 record (030 §14, where only Code-Graph Q4-C1 shipped, in a different sub-phase). The plan anchors on the one clean GO of the edge-governance cluster — a driver-level closed-vocabulary CHECK on `edge_type` — and layers three additive governance siblings that the research deferred onto the tombstone and edge-identity substrate.
+The closed-vocabulary edge-governance anchor is implemented in `.opencode/skills/system-code-graph/mcp_server`.
 
-### Unit 1 — Closed-vocabulary `edge_type` CHECK (planned, PENDING; anchor)
+`code_edges.edge_type` can now be rebuilt with a SQLite `CHECK` that admits the runtime `EDGE_TYPES` tuple: `CONTAINS, CALLS, IMPORTS, EXPORTS, EXTENDS, IMPLEMENTS, TESTED_BY, DECORATES, OVERRIDES, TYPE_OF, SUPERSEDES`. The TypeScript `EdgeType` union now derives from the same tuple, so the DB migration and writer types share one vocabulary source.
 
-The edge table will reject any out-of-vocabulary `edge_type` at the driver, not just by writer discipline. Because SQLite cannot `ALTER ... ADD CHECK`, this is the first table-rebuild migration in this schema (today `ensureSchemaMigrations` is purely additive) and bumps `SCHEMA_VERSION` from 5. A mandatory pre-migration `SELECT DISTINCT edge_type` scan — including nullable `tombstone.edge_type` rows — runs first so the rebuild never hard-fails on a legacy value. The CHECK admits the 10 live relations plus `SUPERSEDES`, so the sibling rename-lineage phase is not blocked.
+The automatic migration is default-off behind `SPECKIT_CODE_GRAPH_EDGE_GOVERNANCE_VOCAB`. When enabled, `ensureSchemaMigrations()` runs the vocabulary migration after the sibling bitemporal migration. The migration preserves existing `valid_at` / `invalid_at` columns, copies rows through a transaction, recreates `idx_edges_source`, `idx_edges_target`, and `idx_edges_type`, and advances the package schema version from 7 to 8.
 
-### Unit 2 — Per-run heuristic churn cap (planned, PENDING)
+The migration helper set mirrors the sibling schema pattern:
 
-The two heuristic edge-write sites — cross-file `CALLS` and cross-file `TESTED_BY` — gain a per-run cap so a pathological scan cannot write unbounded low-confidence edges. The cap is additive (1.0-confidence structural edges untouched) and integrates with the existing edge-drift accounting so dropped edges are observable. The per-pair revision cap is deferred: it needs cross-scan edge identity the per-scan rebuild model lacks.
-
-### Unit 3 — Audit-subgraph tombstone extension (planned, PENDING)
-
-The deletion-only tombstone precursor is extended (not replaced) to record edge creation and relabel/revision events, queryable by subject/kind/time, with durable retention instead of the prune-to-100 default. Governance ops then leave a per-decision audit trail wired to the affected entity.
-
-### Unit 4 — Derived-clock supersession tiebreak (planned, PENDING)
-
-The prune supersession tiebreak stops depending on rowid arrival order. The planned change replaces `ORDER BY deleted_at DESC, id DESC` with a derived key `argmax over (valid_from DESC, object_canonical ASC)` — no stored counter, no rowid — so a re-scan of the same content picks the same winner deterministically.
+| Helper | Role |
+|--------|------|
+| `scanCodeEdgeGovernanceVocabulary()` | Pre-rebuild DISTINCT scan across `code_edges.edge_type` and nullable `code_graph_tombstones.edge_type` |
+| `backfillCodeEdgeGovernanceVocabulary()` | Fail-closed guard that aborts on out-of-vocab values before any destructive rebuild step |
+| `ensureCodeEdgeGovernanceVocabSchema()` | UP migration; rebuilds `code_edges` with the CHECK and preserves rows |
+| `rollbackCodeEdgeGovernanceVocabSchema()` | DOWN migration; rebuilds `code_edges` without the CHECK and can be re-run safely |
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| (none yet) | Planned | No code changes have been made; see spec.md §3 Files to Change for the planned set |
+| `.opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts` | Modified | Flag, schema version 8, CHECK SQL, scan/backfill/up/down helpers, opt-in migration wiring, and durable comment-hygiene cleanup |
+| `.opencode/skills/system-code-graph/mcp_server/lib/indexer-types.ts` | Modified | Exported `EDGE_TYPES` runtime tuple and derives `EdgeType` from it |
+| `.opencode/skills/system-code-graph/mcp_server/tests/code-edge-governance-vocab.vitest.ts` | Added | Covers default-off flag, opt-in init migration, CHECK admit/reject, row preservation, abort safety, tombstone scan, rollback, and rerun |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -82,7 +86,9 @@ The prune supersession tiebreak stops depending on rowid arrival order. The plan
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered. The phase is planned but unimplemented. Delivery, when it happens, lands Unit 1 first (the migration ordering constraint: the `edge_type` rebuild must precede any later edge-type addition so siblings extend the rebuilt table) and ships the four units as separate scoped commits behind the per-candidate gates in checklist.md. The closed-vocab migration is the only blast-radius-bearing change; it is gated by the pre-migration DISTINCT scan against a live DB and a round-trip row-count test. Units 2-4 are additive. All cited seams below were confirmed against live code during planning.
+The scope was deliberately narrowed to the "edge-governance vocabulary" anchor. The broader planning spec still lists churn cap, audit-subgraph, and derived-clock tiebreak siblings; those remain deferred and were not touched. This avoids mixing a schema rollout with heuristic edge-write behavior.
+
+The live DB was scanned read-only before implementation. Its `code_edges` vocabulary was already clean: `CALLS, CONTAINS, DECORATES, EXPORTS, EXTENDS, IMPLEMENTS, IMPORTS, OVERRIDES, TESTED_BY, TYPE_OF`; `code_graph_tombstones` had no edge rows; `code_edges` had no CHECK before this change.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -92,12 +98,11 @@ Not delivered. The phase is planned but unimplemented. Delivery, when it happens
 
 | Decision | Why |
 |----------|-----|
-| Anchor on closed-vocab CHECK; defer the rest of the edge-governance cluster | Of the iter-9 cluster, only closed-vocab-CHECK is a clean GO; edge-bitemporal-lifecycle is NO-GO (per-scan rebuild fights never-delete versioning; tombstones already cover deletion-history) — research iter-013. |
-| Mandatory pre-migration `SELECT DISTINCT edge_type` scan before the rebuild | A rebuild adding the CHECK hard-fails on any legacy / out-of-vocab row (incl. nullable `tombstone.edge_type`); the iter-024 "no risk" claim was explicitly unverified. Abort all-or-nothing, never a half-rebuild. |
-| Co-admit `SUPERSEDES` in the closed vocab; order the rebuild FIRST | The sibling rename-lineage phase (Q1-C2) emits a `SUPERSEDES` edge; admitting it now avoids a second migration (iter-023 build sequence Phase-1). |
-| Ship only the per-run churn cap; defer the per-pair revision cap | The per-run cap is a clean additive guard at the 2 heuristic write sites; the per-pair cap needs cross-scan edge identity the rebuild model lacks (couples to history) — iter-013. |
-| EXTEND the tombstone precursor for audit; do not add a new table | The `code_graph_tombstones` store is already queryable by kind/reason/time — extend it with creation/relabel events + retention rather than duplicate it (iter-013 CAUTION). |
-| Derived supersession key on stored derived fields only | `(valid_from DESC, object_canonical ASC)` with no stored counter/rowid keeps the winner order-independent across re-scans (aionforge derived-logical-clock; iter-008). |
+| Keep automatic enforcement default-off | A table rebuild changes the live DB shape; opt-in rollout keeps the shared DB stable until the owner enables it |
+| Abort, do not repair, out-of-vocab values | Silent mapping would hide data-quality drift; the migration names offending table/value/count and exits before rebuild |
+| Use `EDGE_TYPES` as runtime source of truth | Keeps the TypeScript union and SQLite CHECK vocabulary synchronized, including `SUPERSEDES` |
+| Bump schema from 7 to 8 | Sibling 004 already owns 7; this phase extends that sequence without reusing its migration version |
+| Leave siblings deferred | Churn caps, audit-subgraph, and derived-clock tiebreak are separate behavior changes beyond the requested vocabulary task |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -107,15 +112,13 @@ Not delivered. The phase is planned but unimplemented. Delivery, when it happens
 
 | Check | Result |
 |-------|--------|
-| Seam: `code_edges.edge_type` is `TEXT NOT NULL`, no CHECK `code-graph-db.ts:184` | PASS (confirmed in live code) |
-| Seam: `parser_skip_list` CHECK pattern `code-graph-db.ts:208` (the mirror) | PASS (confirmed) |
-| Seam: nullable `tombstone.edge_type` `code-graph-db.ts:256`; tombstone store `:250-262`, env gate `:230`, prune-100 `:232` | PASS (confirmed) |
-| Seam: prune tiebreak `ORDER BY deleted_at DESC, id DESC` `code-graph-db.ts:279` and `:1493` | PASS (confirmed — both sites) |
-| Seam: heuristic write sites — `CALLS` `structural-indexer.ts:1146`, `TESTED_BY` `:2058` | PASS (confirmed in live code) |
-| Seam: `SCHEMA_VERSION = 5` `:145`; `ensureSchemaMigrations` additive-only `:450`; 10 relations `indexer-types.ts:20-22` | PASS (confirmed) |
-| Pre-migration live-DB DISTINCT vocab scan | NOT RUN — gates migration safety (the iter-024 unverified gap) |
-| `validate.sh --strict` on this folder | PASS (target state; run before any completion claim) |
-| Unit tests (CHECK reject/admit, round-trip, churn cap, audit query, derived-clock determinism) | NOT RUN — code unimplemented |
+| Live DB DISTINCT scan | PASS: only in-vocab `code_edges` values; no tombstone edge rows; CHECK absent before migration |
+| Typecheck | PASS: `npm run typecheck` in `.opencode/skills/system-code-graph` |
+| Focused schema/migration/governance Vitest | PASS: 3 files, 15 tests passed |
+| Mutation falsifier | PASS: temporarily removing `SUPERSEDES` from `EDGE_TYPES` made `code-edge-governance-vocab.vitest.ts` fail as expected, then restored and reran green |
+| Comment hygiene | PASS on modified code/test files |
+| Alignment drift | PASS: `verify_alignment_drift.py --root .opencode/skills/system-code-graph/mcp_server` |
+| `validate.sh --strict` on this folder | PASS after final documentation sync |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -123,9 +126,8 @@ Not delivered. The phase is planned but unimplemented. Delivery, when it happens
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **All five candidates are unimplemented.** This folder is planning-only; no code exists yet.
-2. **The live `edge_type` vocabulary is unverified.** The table-rebuild migration cannot be promised safe until the pre-migration `SELECT DISTINCT edge_type` scan runs against a real DB (research iter-023/024 flagged "no risk" as unverified).
-3. **No benefit number is benchmarked.** Per the 028 research, every leverage/effort tag is structural inference, never a measured delta.
-4. **The per-pair churn cap is out of scope.** Only the per-run cap is planned; the per-pair revision cap is deferred for lack of cross-scan edge identity in the per-scan rebuild model.
-5. **Edge-bitemporal-lifecycle is NO-GO, not deferred.** The per-scan DELETE+re-INSERT rebuild is fundamentally incompatible with never-delete edge versioning; this phase deliberately excludes it.
+1. **The CHECK is opt-in for automatic init.** `SPECKIT_CODE_GRAPH_EDGE_GOVERNANCE_VOCAB` must be set to `true` before the shared DB is rebuilt automatically.
+2. **The live DB was not mutated by this implementation.** The scan was read-only; migration behavior is covered in temp/in-memory tests.
+3. **Churn cap, audit-subgraph, and derived-clock tiebreak remain deferred.** They are separate governance siblings and should ship behind their own evidence.
+4. **No broad-suite claim is made.** The requested broad suite is known to include pre-existing IPC/socket/daemon environment failures; this pass verifies the focused schema/migration surface.
 <!-- /ANCHOR:limitations -->

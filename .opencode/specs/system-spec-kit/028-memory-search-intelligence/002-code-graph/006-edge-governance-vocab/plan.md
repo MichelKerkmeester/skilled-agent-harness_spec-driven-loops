@@ -1,6 +1,6 @@
 ---
-title: "Implementation Plan: Code-Graph Edge Write-Time Governance (closed-vocab CHECK + churn cap + audit + derived-clock tiebreak)"
-description: "Sequence the four edge-governance units. The closed-vocab edge_type CHECK is the anchor and the only blast-radius change: a first-of-its-kind table-rebuild migration gated by a mandatory pre-migration SELECT DISTINCT vocab scan and bumping SCHEMA_VERSION, admitting the 10 live relations plus SUPERSEDES. The three additive siblings (per-run churn cap, audit-subgraph extension, derived-clock prune tiebreak) couple to the tombstone/edge-identity substrate and ship after."
+title: "Implementation Plan: Code-Graph Edge Write-Time Governance (closed-vocab CHECK done; siblings deferred)"
+description: "Closed-vocab edge_type CHECK shipped as the anchor: default-off opt-in migration behind SPECKIT_CODE_GRAPH_EDGE_GOVERNANCE_VOCAB, pre-rebuild DISTINCT vocab scan, table rebuild, SCHEMA_VERSION 7->8, and focused tests. The three additive siblings (per-run churn cap, audit-subgraph extension, derived-clock prune tiebreak) remain deferred."
 trigger_phrases:
   - "edge governance plan"
   - "edge_type CHECK table rebuild migration"
@@ -13,9 +13,9 @@ _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/002-code-graph/006-edge-governance-vocab"
     last_updated_at: "2026-06-19T00:00:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Author edge-governance-vocab implementation plan from 028/002 research"
-    next_safe_action: "Run the pre-migration SELECT DISTINCT edge_type scan against a live DB"
+    last_updated_by: "codex"
+    recent_action: "Implemented closed-vocab edge_type CHECK migration and tests"
+    next_safe_action: "Keep automatic CHECK rollout disabled until owner approval"
     blockers: []
     key_files:
       - "spec.md"
@@ -26,11 +26,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-002-006-edge-governance-vocab"
       parent_session_id: null
-    completion_pct: 10
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
-# Implementation Plan: Code-Graph Edge Write-Time Governance (closed-vocab CHECK + churn cap + audit + derived-clock tiebreak)
+# Implementation Plan: Code-Graph Edge Write-Time Governance (closed-vocab CHECK done; siblings deferred)
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
@@ -50,7 +50,7 @@ _memory:
 | **Testing** | Vitest (`mcp_server/tests/*.vitest.ts`) |
 
 ### Overview
-Four units governing edge writes at the source, anchored by `CG-closed-vocab-check`. The anchor adds a driver-level `CHECK (edge_type IN (...))` to `code_edges` — which, because SQLite cannot `ALTER ... ADD CHECK`, is the **first table-rebuild migration** in this schema (today `ensureSchemaMigrations` is purely additive, `code-graph-db.ts:450`) and bumps `SCHEMA_VERSION` from 5 (`:145`). It is gated by a **mandatory pre-migration `SELECT DISTINCT edge_type` scan** (incl. nullable `tombstone.edge_type`, `:256`) so the rebuild never hard-fails on a legacy row, and it co-admits the `SUPERSEDES` type the sibling rename-lineage phase needs. The three deferred siblings are additive: a per-run churn cap at the two heuristic edge-write sites (`structural-indexer.ts:1146`, `:2058`), an extension of the `code_graph_tombstones` precursor with creation/relabel audit events + retention, and a derived supersession-winner key replacing the rowid-arrival-order prune tiebreak (`:279`, `:1493`).
+Four units govern edge writes at the source, anchored by `CG-closed-vocab-check`. The anchor is now implemented: a default-off opt-in migration adds a driver-level `CHECK (edge_type IN (...))` to `code_edges` through a table rebuild, after a mandatory pre-rebuild `SELECT DISTINCT edge_type` scan across live edges and nullable tombstone rows. It co-admits `SUPERSEDES`, preserves sibling 004's `valid_at` / `invalid_at` columns, recreates edge indexes, and bumps `SCHEMA_VERSION` from 7 to 8. The three deferred siblings are additive: a per-run churn cap at the two heuristic edge-write sites (`structural-indexer.ts:1146`, `:2058`), an extension of the `code_graph_tombstones` precursor with creation/relabel audit events + retention, and a derived supersession-winner key replacing the rowid-arrival-order prune tiebreak (`:279`, `:1493`).
 <!-- /ANCHOR:summary -->
 
 ---
@@ -64,9 +64,9 @@ Four units governing edge writes at the source, anchored by `CG-closed-vocab-che
 - [x] Dependencies identified (sibling Q1-C2 `SUPERSEDES`; tombstone machinery; `edge-drift.ts`)
 
 ### Definition of Done
-- [ ] All acceptance criteria met (REQ-001..008)
-- [ ] Tests passing (migration round-trip, CHECK enforcement, pre-scan abort, churn cap, audit query, derived-clock determinism)
-- [ ] Docs updated (spec/plan/tasks/checklist)
+- [x] Closed-vocab acceptance criteria met (REQ-001..004); REQ-005..007 deferred as sibling behavior units
+- [x] Tests passing for migration round-trip, CHECK enforcement, pre-scan abort, default-off flag, rollback, and rerun
+- [x] Docs updated (spec/plan/tasks/checklist/implementation-summary)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -78,10 +78,10 @@ Four units governing edge writes at the source, anchored by `CG-closed-vocab-che
 Schema-migration anchor + additive write-time governors over a single serialized SQLite WAL connection.
 
 ### Key Components
-- **Closed-vocab migration (Unit 1)**: a table-rebuild migration in `code-graph-db.ts` adding `CHECK (edge_type IN (10 relations + SUPERSEDES))`, gated by a pre-migration DISTINCT scan, bumping `SCHEMA_VERSION`.
-- **Heuristic churn cap (Unit 2)**: a per-run counter at the cross-file `CALLS` (`structural-indexer.ts:1146`) and `TESTED_BY` (`:2058`) write sites, integrated with `edge-drift.ts`.
-- **Audit-subgraph extension (Unit 3)**: creation/relabel event rows + durable retention on the existing `code_graph_tombstones` store (`:250-262`), queryable by subject/kind/time.
-- **Derived-clock tiebreak (Unit 4)**: replace `ORDER BY deleted_at DESC, id DESC` (`:279`, `:1493`) with `argmax over (valid_from DESC, object_canonical ASC)`.
+- **Closed-vocab migration (Unit 1)**: DONE as a default-off table-rebuild migration in `code-graph-db.ts` adding `CHECK (edge_type IN (10 relations + SUPERSEDES))`, gated by a pre-migration DISTINCT scan, bumping `SCHEMA_VERSION` to 8.
+- **Heuristic churn cap (Unit 2)**: DEFERRED per-run counter at the cross-file `CALLS` (`structural-indexer.ts:1146`) and `TESTED_BY` (`:2058`) write sites, integrated with `edge-drift.ts`.
+- **Audit-subgraph extension (Unit 3)**: DEFERRED creation/relabel event rows + durable retention on the existing `code_graph_tombstones` store (`:250-262`), queryable by subject/kind/time.
+- **Derived-clock tiebreak (Unit 4)**: DEFERRED replacement for `ORDER BY deleted_at DESC, id DESC` (`:279`, `:1493`) with `argmax over (valid_from DESC, object_canonical ASC)`.
 
 ### Data Flow
 Scan → structural-indexer derives edges (heuristic sites now capped) → `code-graph-db` writes edges (now CHECK-constrained on `edge_type`) → governance ops write creation/relabel/deletion audit events to the extended tombstone store → prune selects the supersession winner via the derived key, deterministically.
@@ -94,20 +94,20 @@ Scan → structural-indexer derives edges (heuristic sites now capped) → `code
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `code_edges.edge_type` schema (`code-graph-db.ts:184`) | `TEXT NOT NULL`, no CHECK — vocab held only by writer discipline | update (add CHECK via table-rebuild) | `grep -n "edge_type TEXT" code-graph-db.ts`; CHECK-rejection test |
-| `ensureSchemaMigrations` (`code-graph-db.ts:450`) | purely additive `hasColumn → ALTER`; no rebuild pattern | update (add first table-rebuild + `SCHEMA_VERSION` bump from 5, `:145`) | round-trip row-count test; version-row assertion |
+| `code_edges.edge_type` schema (`code-graph-db.ts:184`) | `TEXT NOT NULL`, no CHECK — vocab held only by writer discipline | DONE: opt-in CHECK via table-rebuild | CHECK-rejection test |
+| `ensureSchemaMigrations` (`code-graph-db.ts:450`) | sibling 004 migration pattern at schema version 7 | DONE: opt-in table rebuild + `SCHEMA_VERSION` 7->8 | round-trip row-count test; version-row assertion |
 | `parser_skip_list` CHECK (`code-graph-db.ts:208`) | the existing CHECK pattern to mirror | unchanged (reference) | `grep -n "CHECK (error_class" code-graph-db.ts` |
-| `indexer-types.ts:20-22` edge relations union | the 10-relation source of truth | unchanged (reference; keep CHECK list ⇆ union in sync) + admit `SUPERSEDES` | `rg -n "CONTAINS|TESTED_BY|TYPE_OF" indexer-types.ts` |
-| heuristic `CALLS` write (`structural-indexer.ts:1146`) | uncapped INFERRED edge write (conf 0.8) | update (per-run cap) | cap-bound test; `edge-drift.ts` accounting |
-| heuristic `TESTED_BY` write (`structural-indexer.ts:2058`) | uncapped AMBIGUOUS edge write (conf 0.6) | update (per-run cap) | cap-bound test |
-| `code_graph_tombstones` store (`code-graph-db.ts:250-262`) | deletion-only, default-OFF, pruned-to-100 | update (extend: creation/relabel events + retention) | audit creation/relabel query test |
-| prune tiebreak (`code-graph-db.ts:279`, `:1493`) | `ORDER BY deleted_at DESC, id DESC` (arrival-order) | update (derived supersession key) | re-ordered-insert determinism test |
+| `indexer-types.ts:20-22` edge relations union | the 10-relation source of truth | DONE: `EDGE_TYPES` runtime tuple + derived `EdgeType` union, admitting `SUPERSEDES` | focused governance test |
+| heuristic `CALLS` write (`structural-indexer.ts:1146`) | uncapped INFERRED edge write (conf 0.8) | DEFERRED (per-run cap) | future cap-bound test |
+| heuristic `TESTED_BY` write (`structural-indexer.ts:2058`) | uncapped AMBIGUOUS edge write (conf 0.6) | DEFERRED (per-run cap) | future cap-bound test |
+| `code_graph_tombstones` store (`code-graph-db.ts:250-262`) | deletion-only, default-OFF, pruned-to-100 | DEFERRED (extend: creation/relabel events + retention) | future audit creation/relabel query test |
+| prune tiebreak (`code-graph-db.ts:279`, `:1493`) | `ORDER BY deleted_at DESC, id DESC` (arrival-order) | DEFERRED (derived supersession key) | future re-ordered-insert determinism test |
 | sibling Q1-C2 `SUPERSEDES` emitter (`002-edge-staleness-correctness`) | will emit a new edge type | not a consumer here — this phase only admits the type | vocab list includes `SUPERSEDES` |
 
 Required inventories:
 - Same-class producers: `rg -n "edge_type" .opencode/skills/system-code-graph/mcp_server/lib` (every writer that sets `edge_type` must use a vocab value the CHECK admits).
 - Consumers of changed symbols: `rg -n "edge_type|edgeType|SUPERSEDES|deleted_at DESC" .opencode/skills/system-code-graph --glob '*.ts'`.
-- Matrix axes: {edge_type ∈ vocab vs out-of-vocab} × {code_edges row vs nullable tombstone row} × {empty table vs populated} for the migration; {below cap vs at cap vs over cap} for churn; {arrival-order A vs arrival-order B} for the derived clock.
+- Matrix axes: DONE for {edge_type in vocab vs out-of-vocab} × {code_edges row vs nullable tombstone row} × {empty/init path vs populated} for the migration; deferred for {below cap vs at cap vs over cap} churn and {arrival-order A vs arrival-order B} derived clock.
 - Algorithm invariant (migration): all-or-nothing — either the old table or the new CHECK'd table, never a half-rebuild; the pre-scan must enumerate ALL live `edge_type` values (incl. nullable tombstone) before any destructive step.
 <!-- /ANCHOR:affected-surfaces -->
 
@@ -117,20 +117,20 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup — vocab scan + migration scaffold (Unit 1 prereq)
-- [ ] Define the closed vocabulary constant (10 relations + `SUPERSEDES`) co-located with / synced to `indexer-types.ts:20-22`.
-- [ ] Implement the pre-migration `SELECT DISTINCT edge_type` scan (incl. nullable `tombstone.edge_type`, `:256`); decide map/repair vs abort policy for any out-of-vocab value.
-- [ ] Run the scan against a live DB (the iter-024 "no risk" gap) — record the actual DISTINCT set.
+- [x] Define the closed vocabulary constant (10 relations + `SUPERSEDES`) co-located with / synced to `indexer-types.ts:20-22`.
+- [x] Implement the pre-migration `SELECT DISTINCT edge_type` scan (incl. nullable `tombstone.edge_type`, `:256`); decide map/repair vs abort policy for any out-of-vocab value.
+- [x] Run the scan against a live DB (the iter-024 "no risk" gap) — actual DISTINCT set recorded in `tasks.md` and `implementation-summary.md`.
 
 ### Phase 2: Core Implementation
-- [ ] **Unit 1**: table-rebuild migration adding `CHECK (edge_type IN (...))` to `code_edges` (mirror `parser_skip_list` CHECK `:208`); recreate indexes (`:221-223`); bump `SCHEMA_VERSION` from 5 (`:145`); all-or-nothing transaction.
-- [ ] **Unit 2**: per-run churn cap at `structural-indexer.ts:1146` (CALLS) and `:2058` (TESTED_BY); integrate with `edge-drift.ts`; defer/flag the per-pair revision cap (no cross-scan edge identity).
-- [ ] **Unit 3**: extend `code_graph_tombstones` (`:250-262`) with creation/relabel audit events + durable retention; queryable by subject/kind/time.
-- [ ] **Unit 4**: replace the prune tiebreak `ORDER BY deleted_at DESC, id DESC` (`:279`, `:1493`) with `argmax over (valid_from DESC, object_canonical ASC)`.
+- [x] **Unit 1**: table-rebuild migration adding `CHECK (edge_type IN (...))` to `code_edges` (mirror `parser_skip_list` CHECK `:208`); recreate indexes (`:221-223`); bump `SCHEMA_VERSION` from 7 to 8; all-or-nothing transaction.
+- [ ] **Unit 2 DEFERRED**: per-run churn cap at `structural-indexer.ts:1146` (CALLS) and `:2058` (TESTED_BY); integrate with `edge-drift.ts`; defer/flag the per-pair revision cap (no cross-scan edge identity).
+- [ ] **Unit 3 DEFERRED**: extend `code_graph_tombstones` (`:250-262`) with creation/relabel audit events + durable retention; queryable by subject/kind/time.
+- [ ] **Unit 4 DEFERRED**: replace the prune tiebreak `ORDER BY deleted_at DESC, id DESC` (`:279`, `:1493`) with `argmax over (valid_from DESC, object_canonical ASC)`.
 
 ### Phase 3: Verification
-- [ ] Migration round-trip (N edges before == after; CHECK rejects out-of-vocab; admits all 10 + `SUPERSEDES`; pre-scan abort on a seeded out-of-vocab row).
-- [ ] Churn-cap bound test; audit creation/relabel query test; derived-clock re-ordered-insert determinism test.
-- [ ] `validate.sh --strict` on this folder; typecheck + focused code-graph schema/migration/indexer suites green.
+- [x] Migration round-trip (N edges before == after; CHECK rejects out-of-vocab; admits all 10 + `SUPERSEDES`; pre-scan abort on a seeded out-of-vocab row).
+- [ ] DEFERRED Churn-cap bound test; audit creation/relabel query test; derived-clock re-ordered-insert determinism test.
+- [x] `validate.sh --strict` on this folder; typecheck + focused code-graph schema/migration suites green.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -155,7 +155,7 @@ Required inventories:
 | Sibling phase `002-edge-staleness-correctness` (Q1-C2 `SUPERSEDES`) | Internal | Yellow (sibling drafted) | Closed vocab must admit `SUPERSEDES`; coordinate the list or a 2nd migration is needed |
 | Tombstone machinery (`code-graph-db.ts:230-262`) | Internal | Green (present, default-OFF) | Substrate for Units 3 + 4 — must extend, not replace |
 | `edge-drift.ts` | Internal | Green (present) | Integration point for the Unit 2 churn cap |
-| Live DB DISTINCT-vocab evidence | Internal | Red (UNVERIFIED — iter-024) | Cannot promise the rebuild safe until the live vocabulary is enumerated |
+| Live DB DISTINCT-vocab evidence | Internal | Green (verified 2026-06-19) | Read-only scan found only in-vocab live edge types and no tombstone edge rows |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -185,10 +185,10 @@ Phase 1 (vocab scan + scaffold) ──► Phase 2 (Unit 1 migration)
 |-------|------------|--------|
 | Phase 1 (vocab scan) | None | Unit 1 migration |
 | Unit 1 (closed-vocab) | Phase 1 scan | sibling `SUPERSEDES` emission; any later edge-type extension |
-| Unit 2 (churn cap) | None (additive) | Verify |
-| Unit 3 (audit extension) | tombstone store | Unit 4 (column shape) |
-| Unit 4 (derived clock) | Unit 3 (valid_from source) | Verify |
-| Verify | Units 1-4 | None |
+| Unit 2 (churn cap) | None (additive) | Deferred sibling verification |
+| Unit 3 (audit extension) | tombstone store | Deferred sibling verification |
+| Unit 4 (derived clock) | Unit 3 (valid_from source) | Deferred sibling verification |
+| Verify | Unit 1 for this implementation | None |
 <!-- /ANCHOR:phase-deps -->
 
 ---
@@ -213,17 +213,17 @@ Phase 1 (vocab scan + scaffold) ──► Phase 2 (Unit 1 migration)
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Pre-migration `SELECT DISTINCT edge_type` scan run against a live DB; DISTINCT set recorded and all values in-vocab (or a documented map/repair)
-- [ ] `code_edges` row count captured before rebuild (round-trip baseline)
-- [ ] Tombstone default-OFF gating preserved unless owner approved default-on for audit
+- [x] Pre-migration `SELECT DISTINCT edge_type` scan run against a live DB; DISTINCT set recorded and all values in-vocab
+- [x] `code_edges` row count captured in migration tests before rebuild (round-trip baseline)
+- [x] Governance CHECK automatic rollout preserved default-OFF unless owner enables `SPECKIT_CODE_GRAPH_EDGE_GOVERNANCE_VOCAB`
 
 ### Rollback Procedure
 1. If pre-scan finds an out-of-vocab value: abort — do not run the rebuild; map/repair or escalate.
 2. If the rebuild transaction fails: it rolls back automatically; original table + `SCHEMA_VERSION` intact.
-3. If a committed migration must be reverted: restore from the pre-rebuild copy + reset the version row; revert Units 2-4 commits individually.
+3. If a committed migration must be reverted: run the DOWN helper or restore from the pre-rebuild copy + reset the version row to 7; revert Units 2-4 independently if they are implemented later.
 4. Smoke test: a code-graph scan + an impact query return non-degraded results post-rollback.
 
 ### Data Reversal
 - **Has data migrations?** Yes (Unit 1 table-rebuild; `SCHEMA_VERSION` bump).
-- **Reversal procedure**: restore the pre-rebuild `code_edges` copy and reset the `schema_version` row to 5; Units 2-4 leave no destructive data change (additive audit rows + a read-path tiebreak).
+- **Reversal procedure**: run `rollbackCodeEdgeGovernanceVocabSchema()` or restore the pre-rebuild `code_edges` copy and reset the `schema_version` row to 7; Units 2-4 are not part of this implementation.
 <!-- /ANCHOR:enhanced-rollback -->
