@@ -11,9 +11,9 @@ _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/004-deep-loop/004-reliability-weighted-convergence"
     last_updated_at: "2026-06-19T10:00:00+02:00"
-    last_updated_by: "codex"
-    recent_action: "implementation-summary"
-    next_safe_action: "Run benchmark gate, then build D-orderhelper and D1 before D2"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Marked reliability cluster NO-GO / WILL-NOT-BUILD; plan kept as design of record"
+    next_safe_action: "None — held NO-GO; revisit after benchmark tier supplies a success signal + REQ-BENCH"
     blockers: []
     key_files:
       - "spec.md"
@@ -44,9 +44,9 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | `028-memory-search-intelligence/004-deep-loop/004-reliability-weighted-convergence` |
-| **Completed** | n/a, planning-stage packet |
+| **Completed** | n/a — NO-GO, no implementation this cycle |
 | **Level** | 3 |
-| **Status** | PLANNED, implementation PENDING |
+| **Status** | NO-GO — WILL NOT BUILD (deferred to benchmark tier); plan preserved as design of record |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -58,16 +58,18 @@ No production reliability code was built in this sub-phase. The deliverable is t
 
 ### Candidate Status
 
-| Candidate | Status | Gate |
+> The whole cluster is **NO-GO / WILL-NOT-BUILD this cycle**, deferred to the benchmark tier. The "Revisit gate" column is the condition under which each candidate would be reconsidered.
+
+| Candidate | Status | Revisit gate |
 |-----------|--------|------|
-| D-orderhelper | PENDING | Extract before Q2 victim tie-break |
-| D1-weighted-Beta | PENDING | Add f64 export before D2 |
-| D2-reliability | PENDING | Read-only keystone after D1 |
-| D3-cap-and-gate | PENDING | Benchmark and threshold recalibration |
-| D4-policy-config | PENDING | Default-off policy and unreachable-config refusal |
-| Q2-quarantine | PENDING | D2 plus deterministic content-derived victim choice |
-| Q2-adjudicator-seat | PENDING | D2 signal and policy-OFF parity |
-| Q7-rank-field | PENDING | D2 signal and absent-data order parity |
+| D-orderhelper | NO-GO — deferred | Extract before Q2 victim tie-break |
+| D1-weighted-Beta | NO-GO — deferred | Add f64 export before D2 |
+| D2-reliability | NO-GO — deferred | Read-only keystone after D1 |
+| D3-cap-and-gate | NO-GO — deferred | Benchmark and threshold recalibration |
+| D4-policy-config | NO-GO — deferred | Default-off policy and unreachable-config refusal |
+| Q2-quarantine | NO-GO — deferred | D2 plus deterministic content-derived victim choice |
+| Q2-adjudicator-seat | NO-GO — deferred | D2 signal and policy-OFF parity |
+| Q7-rank-field | NO-GO — deferred | D2 signal and absent-data order parity |
 
 ### Files Changed
 

@@ -96,6 +96,7 @@ Shipped as a single additive, template-only hunk in commit `738e118751` on the 0
 | Template carries the 7 anchor pairs | PASS — grep of the open-marker comment = 14; all 7 ids present (lines 39/58/66/74/82/98/106) |
 | Reducer regex matches all 7 ids on a fresh copy | PASS — 030 §14: "7 anchor pairs added; reducer regex verified (all 7 match)" |
 | Template-only diff (no runtime-code change) | PASS — commit `738e118751` touches only `deep_research_strategy.md` (+14) plus the 030 scaffold; `reduce-state.cjs` unchanged |
+| Independent live re-verification (first-hand) | PASS — `node --check reduce-state.cjs` OK; the deep-loop reducer suite (`deep-loop-runtime/tests/unit/deep-research-reduce-state.vitest.ts`) is 4/4 green; each of the 7 `replaceAnchorSection`-target ids matches the reducer regex against the current shipped template (open=1/close=1 per id). The reducer's 8th anchor `carried-forward-open-questions` uses the non-throwing `upsertAnchorSectionBefore` path and is not part of the 7-id hard-failure surface. |
 <!-- /ANCHOR:verification -->
 
 ---

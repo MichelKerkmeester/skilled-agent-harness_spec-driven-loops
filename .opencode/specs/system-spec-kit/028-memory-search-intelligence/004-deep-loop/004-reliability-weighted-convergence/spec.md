@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/004-deep-loop/004-reliability-weighted-convergence"
     last_updated_at: "2026-06-19T10:00:00+02:00"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored Level 3 impl sub-phase docs for the reliability cluster (9 PENDING candidates)"
-    next_safe_action: "Run benchmark gate then build D-orderhelper + D1 f64 primitive (the leaf deps)"
+    recent_action: "Marked reliability cluster NO-GO / WILL-NOT-BUILD; deferred to benchmark tier"
+    next_safe_action: "None — held NO-GO; revisit after benchmark tier supplies a success signal + REQ-BENCH"
     blockers: []
     key_files:
       - "spec.md"
@@ -48,6 +48,8 @@ FAILURE MODES:
 
 ## EXECUTIVE SUMMARY
 
+> **DETERMINATION: NO-GO — WILL NOT BUILD this cycle (deferred to the benchmark tier).** Reliability-weighted convergence needs real per-execution success data plus a benefit benchmark that does not exist yet, so weighting is premature. Today no writer populates `metadata.reliability`, so every input collapses to the prior mean (`r=0.5`): the weighting layer would have nothing to weight, there is no measurable signal to out-earn the existing confirmation/relevance terms, and no benchmark to prove it would. Building D1–D4 / Q2 / Q7 now would ship a default-off feature whose benefit is unmeasurable and whose D3 `convergenceThreshold:0.03` recalibration would be meaningless under the all-0.5 regime. The whole cluster (C1–C8) is therefore marked NO-GO and held intact as a preserved plan; revisit after the benchmark tier lands a per-execution success signal and the REQ-BENCH benefit micro-benchmark. The problem analysis and dependency graph below are retained as the design of record for that revisit — they are not an active build.
+
 The deep-loop research convergence verdict is a fixed-weight linear blend (`convergence.cjs:115-121`) whose two volume terms saturate on raw COUNT with no reference to source quality, making STOP vote-count-floodable. This sub-phase lands the reliability-weighted-learning cluster that closes the flood: a derived D2 reliability signal, the f64 Beta primitive (D1) it calls, a reliability-weighted convergence cap+gate (D3), an off-by-default policy (D4), trust-keyed contradiction quarantine (Q2), the content-derived order helper the quarantine tie-break needs (D-orderhelper), a council-side seat-reliability multiplier (Q2-adjudicator-seat), and a reliability rank field (Q7).
 
 **Key Decisions**: (1) D2 is a wholly-absent net-new build — every input is `r=0.5` today, so the cluster is NO-GO until built AND benchmarked; (2) the f64 Beta primitive is a NEW export, not the live integer scorer (which throws on fractional inputs); (3) D3 reliability-weights the EXISTING non-trading STOP conjunction (it is NOT a no-op under all-0.5 and forces a measured recalibration of `convergenceThreshold:0.03`).
@@ -62,7 +64,7 @@ The deep-loop research convergence verdict is a fixed-weight linear blend (`conv
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | NO-GO — WILL NOT BUILD (deferred to benchmark tier) |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent research phase** | `028-memory-search-intelligence/004-deep-loop` (Deep Loop — convergence/fan-out/council intelligence) |
@@ -89,18 +91,20 @@ Land the reliability-weighted-learning cluster as a sequenced, off-by-default, b
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
-### In Scope — the reliability cluster (9 candidates, all PENDING)
+### Cluster candidates (9 with the D3 alias; all NO-GO / WILL-NOT-BUILD this cycle)
+
+> All rows below are **NO-GO — held, not built**. They are kept as the design of record so the cluster can be revisited once the benchmark tier supplies a per-execution success signal and the REQ-BENCH micro-benchmark. The "deferred (…)" note in each Status cell preserves the original dependency reason.
 
 | # | Candidate | One-line | Seam (file:line) | Eff | Status |
 |---|-----------|----------|------------------|-----|--------|
-| C1 | **D-orderhelper** | extract the inline content-derived tie-break (`council-graph-query.ts:280`) into a reusable hand-written total comparator + content-derived id helper; the 001-reuse "PROMOTE" claim was REFUTED — no reusable helper exists, so it is BUILD-new and a prereq for Q2's deterministic victim selection | `council-graph-query.ts:280` (inline tie-break) → new shared helper | S | PENDING (shared-infra-dep) |
-| C2 | **D1-weighted-Beta** | add `computeWeightedScore(evidenceFor=Σrᵢ, evidenceAgainst=Σ(1−rᵢ), α=1, β=1) = (α+for)/(α+β+for+against)` as an ADDITIVE export — the live integer `computeScore`/`shouldDemote` (`bayesian-scorer.ts:13-44`) THROW on fractional inputs, so this is a NEW f64 export, not a reuse | `bayesian-scorer.ts:13-44` (new export beside the integer scorer) | S | PENDING (shared-infra-dep) |
-| C3 | **D2-reliability** | derive `reliabilityPosterior` + `distinctReliableSourceCount`: walk finding/source nodes, read `metadata.reliability` (default 0.5, READ-ONLY), accumulate `Σr`/`Σ(1−r)`, call D1's `computeWeightedScore` — THE KEYSTONE shared dependency | `coverage-graph-signals.ts:295-450`, reads `upsert.cjs:179,224` | M | PENDING (needs-benchmark + needs D1) |
-| C4 | **D3-cap-and-gate** | reliability-weight the EXISTING non-trading STOP conjunction: cap each volume term at `min(reliabilityPosterior, normalizedDiversity/Depth)` and add a two-gate STOP (`reliabilityPosterior ≥ stopThreshold` AND `distinctReliableSourceCount ≥ kMin`) — NOT a no-op under all-0.5; forces a measured `convergenceThreshold:0.03` recalibration | `convergence.cjs:112-121` (+ STOP path) | M | PENDING (needs-benchmark + needs D2) |
-| C5 | **D4-policy-config** | off-by-default `convergence.reliability` policy (`priorAlpha=1, priorBeta=1, stopThreshold∈(0.5,1.0], kMin≥2`) mirroring `promotion.enabled` (`convergence.cjs:109`), with a config-validation rule that REFUSES a policy whose `kMin` can't reach `stopThreshold` under `(α+kMin)/(α+β+kMin)` | `convergence.cjs` (mirror `promotion.enabled:109`) | S | PENDING (shared-infra-dep on D2/D3) |
-| C6 | **Q2-quarantine** | trust-keyed CONTRADICTS quarantine of the lower-trust side: deterministic victim `argmin reliability`, tie-break via D-orderhelper's content-derived id, edge-presence read-path exclusion (retain both nodes), victim stops feeding stability/contradiction/depth | `coverage-graph-query.ts:221-252` + `coverage-graph-signals.ts:511-522` + `convergence.cjs:114,216-218` | M | PENDING (NO-GO until D2 exists) |
-| C7 | **Q2-adjudicator-seat** | council-side analogue: a seat-reliability multiplier via the existing `options.weights` override (`adjudicator-verdict-scoring.cjs:121`); shares D2 | `adjudicator-verdict-scoring.cjs:118-146` (`:121`) | S | PENDING (needs D2; optional) |
-| C8 | **Q7-rank-field** | a reliability field for finding ranking into `findings-registry.json` (consumes the D2 signal) | findings-registry consumer | S | PENDING (needs D2) |
+| C1 | **D-orderhelper** | extract the inline content-derived tie-break (`council-graph-query.ts:280`) into a reusable hand-written total comparator + content-derived id helper; the 001-reuse "PROMOTE" claim was REFUTED — no reusable helper exists, so it is BUILD-new and a prereq for Q2's deterministic victim selection | `council-graph-query.ts:280` (inline tie-break) → new shared helper | S | NO-GO — deferred (shared-infra-dep) |
+| C2 | **D1-weighted-Beta** | add `computeWeightedScore(evidenceFor=Σrᵢ, evidenceAgainst=Σ(1−rᵢ), α=1, β=1) = (α+for)/(α+β+for+against)` as an ADDITIVE export — the live integer `computeScore`/`shouldDemote` (`bayesian-scorer.ts:13-44`) THROW on fractional inputs, so this is a NEW f64 export, not a reuse | `bayesian-scorer.ts:13-44` (new export beside the integer scorer) | S | NO-GO — deferred (shared-infra-dep) |
+| C3 | **D2-reliability** | derive `reliabilityPosterior` + `distinctReliableSourceCount`: walk finding/source nodes, read `metadata.reliability` (default 0.5, READ-ONLY), accumulate `Σr`/`Σ(1−r)`, call D1's `computeWeightedScore` — THE KEYSTONE shared dependency | `coverage-graph-signals.ts:295-450`, reads `upsert.cjs:179,224` | M | NO-GO — deferred (needs-benchmark + needs D1) |
+| C4 | **D3-cap-and-gate** | reliability-weight the EXISTING non-trading STOP conjunction: cap each volume term at `min(reliabilityPosterior, normalizedDiversity/Depth)` and add a two-gate STOP (`reliabilityPosterior ≥ stopThreshold` AND `distinctReliableSourceCount ≥ kMin`) — NOT a no-op under all-0.5; forces a measured `convergenceThreshold:0.03` recalibration | `convergence.cjs:112-121` (+ STOP path) | M | NO-GO — deferred (needs-benchmark + needs D2) |
+| C5 | **D4-policy-config** | off-by-default `convergence.reliability` policy (`priorAlpha=1, priorBeta=1, stopThreshold∈(0.5,1.0], kMin≥2`) mirroring `promotion.enabled` (`convergence.cjs:109`), with a config-validation rule that REFUSES a policy whose `kMin` can't reach `stopThreshold` under `(α+kMin)/(α+β+kMin)` | `convergence.cjs` (mirror `promotion.enabled:109`) | S | NO-GO — deferred (shared-infra-dep on D2/D3) |
+| C6 | **Q2-quarantine** | trust-keyed CONTRADICTS quarantine of the lower-trust side: deterministic victim `argmin reliability`, tie-break via D-orderhelper's content-derived id, edge-presence read-path exclusion (retain both nodes), victim stops feeding stability/contradiction/depth | `coverage-graph-query.ts:221-252` + `coverage-graph-signals.ts:511-522` + `convergence.cjs:114,216-218` | M | NO-GO — deferred (until D2 exists) |
+| C7 | **Q2-adjudicator-seat** | council-side analogue: a seat-reliability multiplier via the existing `options.weights` override (`adjudicator-verdict-scoring.cjs:121`); shares D2 | `adjudicator-verdict-scoring.cjs:118-146` (`:121`) | S | NO-GO — deferred (needs D2; optional) |
+| C8 | **Q7-rank-field** | a reliability field for finding ranking into `findings-registry.json` (consumes the D2 signal) | findings-registry consumer | S | NO-GO — deferred (needs D2) |
 
 > Note: the inbound candidate list named D3 twice (`D3-cap-and-gate`, `D3-cap-gate`) — they are ONE candidate (C4); the second slug is an alias.
 
@@ -280,6 +284,8 @@ Land the reliability-weighted-learning cluster as a sequenced, off-by-default, b
 ## 12. OPEN QUESTIONS
 
 <!-- ANCHOR:questions -->
+> All questions below are **deferred under the NO-GO** — none is resolved this cycle. They are the open items to settle if and when the cluster is revisited after the benchmark tier.
+
 - Does a measured `convergenceThreshold` recalibration confirm D3 is safe to enable, or does the all-0.5 regime make the recalibration meaningless until a reliability writer exists? **PENDING — decide at D3 benchmark time** (iter-3 D3, iter-4 remaining).
 - Is the exact 001 content-derived ordering call site truly absent (research [INFERRED] it was unread)? The synthesis `03` REFUTED reuse and named D-orderhelper as the extract-first prereq — confirm at C1 build time by reading `council-graph-query.ts:280` and grepping for any sibling helper. **PENDING — confirm at D-orderhelper build time.**
 - Does any non-prompt-pack continuity path consume reliability that the read-only D2 walk would miss? **PENDING — trace before wiring Q7's registry field** (iter-2 F12-15 remaining).
