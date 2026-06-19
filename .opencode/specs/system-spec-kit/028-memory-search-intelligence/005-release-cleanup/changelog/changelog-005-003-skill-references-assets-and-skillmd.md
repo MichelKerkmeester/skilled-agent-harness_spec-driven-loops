@@ -1,6 +1,6 @@
 ---
-title: "Changelog: Skill References Assets And SKILL Cleanup [005-release-cleanup/003-skill-references-assets-and-skillmd]"
-description: "Chronological changelog for the Skill References Assets And SKILL Cleanup phase."
+title: "Changelog: Skill References, Assets and SKILL.md Cleanup"
+description: "Chronological changelog for the skill references, assets and SKILL.md cleanup phase."
 trigger_phrases:
   - "phase changelog"
   - "nested changelog"
@@ -19,40 +19,43 @@ contextType: "implementation"
 
 ### Summary
 
-The scaffold now defines the Skill References Assets And SKILL Cleanup cleanup phase. No target documentation has been cleaned yet and every cleanup candidate remains PENDING.
+This child phase is scaffold-only. It defines the future cleanup contract for skill `SKILL.md` files, skill reference Markdown and asset Markdown. No target documentation has been cleaned yet and every candidate remains pending.
 
 ### Added
 
-- No new additions recorded.
+- Added the Level 2 spec packet for skill references, assets and `SKILL.md` cleanup.
+- Added pending tasks for discovery, candidate evidence, HVR edits and verification.
+- Added a summary that records the phase as contract-only until execution begins.
 
 ### Changed
 
-- The scaffold now defines the Skill References Assets And SKILL Cleanup cleanup phase. No target documentation has been cleaned yet and every cleanup candidate remains PENDING.
+- Scoped the future sweep to skill-local docs under `SKILL.md`, `references` and `assets`.
+- Left all target skill docs unchanged.
 
 ### Fixed
 
-- No fixes recorded.
+- Removed the duplicated "cleanup cleanup" wording from the generated narrative.
 
 ### Verification
 
-- Cleanup execution - PENDING
-- Strict validation - bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/005-release-cleanup/003-skill-references-assets-and-skillmd --strict
+| Check | Result |
+|-------|--------|
+| Cleanup execution | PENDING |
+| Task completion | 0 done, 15 open |
+| Strict validation command | Recorded in the phase docs |
 
 ### Files Changed
 
 | File | Action | What changed |
 |---|---|---|
-| `spec.md` | Created | Defines scope, objective and acceptance criteria |
-| `plan.md` | Created | Defines execution and verification approach |
-| `tasks.md` | Created | Lists pending cleanup tasks |
-| `checklist.md` | Created | Lists pending verification checks |
-| `implementation-summary.md` | Created | Records that this is scaffold only |
+| `spec.md` | Created | Scope, objective and acceptance criteria |
+| `plan.md` | Created | Execution and verification approach |
+| `tasks.md` | Created | Pending cleanup tasks |
+| `checklist.md` | Created | Pending verification checks |
+| `implementation-summary.md` | Created | Scaffold-only closeout |
 
 ### Follow-Ups
 
-- CHK-001 Scope is limited to skill.md, references and assets sweep.
-- CHK-002 Discovery command is run before edits.
-- CHK-003 Candidate list is saved as evidence.
-- CHK-010 Edited markdown has no em dash character.
-- CHK-011 Edited markdown has no semicolon character.
-- CHK-012 Edited markdown avoids Oxford comma patterns.
+- Run discovery against skill `SKILL.md`, `references` and `assets`.
+- Save the candidate list before edits.
+- Verify HVR voice, stale references and strict validation after execution.

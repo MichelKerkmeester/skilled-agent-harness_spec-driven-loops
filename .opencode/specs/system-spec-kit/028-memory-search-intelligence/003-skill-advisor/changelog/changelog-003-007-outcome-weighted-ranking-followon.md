@@ -1,6 +1,6 @@
 ---
-title: "Changelog: Skill Advisor Outcome-Weighted Ranking Follow-On (aionforge-procedural) [003-skill-advisor/007-outcome-weighted-ranking-followon]"
-description: "Chronological changelog for the Skill Advisor Outcome-Weighted Ranking Follow-On (aionforge-procedural) phase."
+title: "Changelog: Skill Advisor Outcome-Weighted Ranking Follow-On"
+description: "Chronological changelog for the Skill Advisor outcome-weighted ranking follow-on phase."
 trigger_phrases:
   - "phase changelog"
   - "nested changelog"
@@ -19,42 +19,60 @@ contextType: "implementation"
 
 ### Summary
 
-No production implementation was built in this sub-phase. The deliverable is the Level 3 planning packet for the one genuine Skill Advisor external follow-on left after the 028 campaign: outcome-weighted skill ranking over actual execution success, supported by a skill-outcome store, an out-of-process ambient tick and a prove-first BM25 calibration. The packet records that none of these candidates shipped in packet 030 and that the live advisor sort must stay unchanged until real execution-success data and a benchmark justify a promotion.
+The stale planning-only summary is corrected: this phase delivered a shadow-only implementation. It added a distinct execution-success record, a durable append-only skill-outcome store, an idempotent out-of-process fold tick, a shadow outcome-weighted rerank, query-scored failure-mode recall and a default-off BM25 calibration seam. The live fused sort remains byte-identical by test. The remaining gates are the undecided runtime signal that fires the emitter and the shared Beta primitive from the sibling reliability phase. Live promotion remains a no-go until real execution-success data and benchmark evidence exist.
 
 ### Added
 
-- No new additions recorded.
+- Added a skill execution-outcome record distinct from recommendation acceptance.
+- Added the append-only skill-outcome store, replay-safe fold and query-scored failure-mode recall.
+- Added an out-of-process fold-tick runner for cron or maintenance use.
+- Added a shadow outcome-weighted rerank module with neutral fresh-skill reliability.
+- Added query-length BM25 calibration behind a default-off flag.
+- Added unit coverage for record distinction, fold idempotence, ambient tick behavior, live-sort identity and BM25 bucket selection.
 
 ### Changed
 
-- No production implementation was built in this sub-phase. The deliverable is the Level 3 planning packet for the one genuine Skill Advisor external follow-on left after the 028 campaign: outcome-weighted skill ranking over actual execution success, supported by a skill-outcome store, an out-of-process ambient tick and a prove-first BM25 calibration. The packet records that none of these candidates shipped in packet 030 and that the live advisor sort must stay unchanged until real execution-success data and a benchmark justify a promotion.
+- Kept outcome weighting shadow-only and off the live recommend path.
+- Kept BM25 calibration telemetry-only while the BM25 lane remains shadow-weighted.
+- Updated the phase record from planning-only to shadow-only implemented with external gates pending.
 
 ### Fixed
 
-- No fixes recorded.
+- Separated execution-success evidence from recommendation-acceptance evidence.
+- Made store folding replay-safe and double-tick safe.
+- Proved the shadow rerank cannot change live fused order.
 
 ### Verification
 
-- Candidate status against packet 030 - PASS: no outcome-ranking, ambient-tick or BM25 calibration row shipped in the 030 Wave-0 record
-- Live-ranking claim - PASS: none made. The packet states shadow-only until execution-success data plus benchmark evidence exist
-- Level 3 doc set - PASS after this summary is present and strict validation is green
+| Check | Result |
+|-------|--------|
+| Typecheck | PASS, 0 errors |
+| New unit tests | PASS, 20 of 20 |
+| Broad scorer suite | PASS, 15 files, 109 tests |
+| Broad regression suite | 0 new failures, 181 pass with 2 baseline failures unchanged |
+| Live-sort guardrail | PASS, byte-identical with and without store data |
+| Comment hygiene | PASS |
+| Strict validation | PASS, 0 errors and 0 warnings |
 
 ### Files Changed
 
 | File | Action | What changed |
 |---|---|---|
-| `spec.md` | Existing | Defines the aionforge-procedural follow-on scope and candidate gates |
-| `plan.md` | Existing | Sequences emitter, store, ambient tick, shadow rerank and BM25 calibration |
-| `tasks.md` | Existing | Tracks every implementation task as PENDING |
-| `checklist.md` | Existing | Verifies planning gates and leaves build gates open |
-| `decision-record.md` | Existing | Records shadow-only and live-promotion NO-GO decisions |
-| `implementation-summary.md` | Created | Records this planning-stage closeout |
+| `spec.md` | Updated | Shadow-only implementation and pending gates |
+| `plan.md` | Updated | Emitter, store, tick, rerank and BM25 sequence |
+| `tasks.md` | Updated | Implemented tasks checked, external gates left open |
+| `checklist.md` | Updated | Verification evidence |
+| `decision-record.md` | Updated | Live-promotion no-go |
+| `implementation-summary.md` | Updated | Corrected closeout |
+| `.opencode/skills/system-skill-advisor/mcp_server/lib/metrics.ts` | Modified | Skill execution-outcome record and validator |
+| `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/skill-outcome-store.ts` | Created | Durable store, fold, recall and tick core |
+| `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/outcome-weighted-rerank.ts` | Created | Shadow rerank and Beta adapter seam |
+| `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/bm25.ts` | Modified | Query-length midpoint flag |
+| `.opencode/skills/system-skill-advisor/mcp_server/scripts/skill-outcome-fold-tick.mjs` | Created | Out-of-process fold runner |
+| `.opencode/skills/system-skill-advisor/mcp_server/tests/scorer/outcome-weighted-ranking.vitest.ts` | Created | End-to-end shadow guardrail coverage |
 
 ### Follow-Ups
 
-- CHK-001 Requirements documented in spec.md (REQ-001..009)
-- CHK-002 Technical approach defined in plan.md (Phases 0-4, critical path)
-- CHK-003 Dependencies identified and available (net-new emitter + store; shared Beta primitive w/ 004/D2; shared ambient-tick substrate; the proxy-only data barrier)
-- CHK-010 Code passes lint/format/tsc checks
-- CHK-011 No console errors or warnings; existing advisor scorer suite green
-- CHK-012 Error handling implemented (malformed store rows skipped not crashed; ambient-tick idempotent on overlap)
+- Decide which runtime post-task signal fires the execution-success emitter.
+- Wire the shared Beta posterior primitive when sibling reliability work lands.
+- Benchmark with real execution-success data before any live rerank or default promotion.

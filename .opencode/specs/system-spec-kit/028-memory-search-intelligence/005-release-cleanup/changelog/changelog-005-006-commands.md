@@ -1,6 +1,6 @@
 ---
-title: "Changelog: Command Documentation Cleanup [005-release-cleanup/006-commands]"
-description: "Chronological changelog for the Command Documentation Cleanup phase."
+title: "Changelog: Command Documentation Cleanup"
+description: "Chronological changelog for the command documentation cleanup phase."
 trigger_phrases:
   - "phase changelog"
   - "nested changelog"
@@ -19,40 +19,43 @@ contextType: "implementation"
 
 ### Summary
 
-The scaffold now defines the Command Documentation Cleanup cleanup phase. No target documentation has been cleaned yet and every cleanup candidate remains PENDING.
+This child phase is scaffold-only. It defines the future cleanup contract for command documentation and runtime command mirrors. No command documentation cleanup has run yet and every candidate remains pending.
 
 ### Added
 
-- No new additions recorded.
+- Added the Level 2 spec packet for command documentation cleanup.
+- Added pending discovery, candidate capture, HVR edit and verification tasks.
+- Added the checklist and implementation summary that preserve the pending contract.
 
 ### Changed
 
-- The scaffold now defines the Command Documentation Cleanup cleanup phase. No target documentation has been cleaned yet and every cleanup candidate remains PENDING.
+- Scoped the future sweep to OpenCode command docs and runtime mirror docs.
+- Left all command documentation unchanged until execution begins.
 
 ### Fixed
 
-- No fixes recorded.
+- Reframed the generated changelog so it reflects scaffold state, not completed cleanup.
 
 ### Verification
 
-- Cleanup execution - PENDING
-- Strict validation - bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/005-release-cleanup/006-commands --strict
+| Check | Result |
+|-------|--------|
+| Cleanup execution | PENDING |
+| Task completion | 0 done, 15 open |
+| Strict validation command | Recorded in the phase docs |
 
 ### Files Changed
 
 | File | Action | What changed |
 |---|---|---|
-| `spec.md` | Created | Defines scope, objective and acceptance criteria |
-| `plan.md` | Created | Defines execution and verification approach |
-| `tasks.md` | Created | Lists pending cleanup tasks |
-| `checklist.md` | Created | Lists pending verification checks |
-| `implementation-summary.md` | Created | Records that this is scaffold only |
+| `spec.md` | Created | Scope, objective and acceptance criteria |
+| `plan.md` | Created | Execution and verification approach |
+| `tasks.md` | Created | Pending cleanup tasks |
+| `checklist.md` | Created | Pending verification checks |
+| `implementation-summary.md` | Created | Scaffold-only closeout |
 
 ### Follow-Ups
 
-- CHK-001 Scope is limited to command doc and runtime mirror sweep.
-- CHK-002 Discovery command is run before edits.
-- CHK-003 Candidate list is saved as evidence.
-- CHK-010 Edited markdown has no em dash character.
-- CHK-011 Edited markdown has no semicolon character.
-- CHK-012 Edited markdown avoids Oxford comma patterns.
+- Run command-doc discovery before edits.
+- Confirm packet 030 is outside the candidate list.
+- Verify HVR voice and stale references after execution.

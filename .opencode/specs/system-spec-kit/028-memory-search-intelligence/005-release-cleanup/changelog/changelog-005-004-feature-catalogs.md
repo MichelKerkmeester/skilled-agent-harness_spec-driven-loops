@@ -1,6 +1,6 @@
 ---
-title: "Changelog: Feature Catalog Cleanup [005-release-cleanup/004-feature-catalogs]"
-description: "Chronological changelog for the Feature Catalog Cleanup phase."
+title: "Changelog: Feature Catalog Cleanup"
+description: "Chronological changelog for the feature catalog cleanup phase."
 trigger_phrases:
   - "phase changelog"
   - "nested changelog"
@@ -19,40 +19,43 @@ contextType: "implementation"
 
 ### Summary
 
-The scaffold now defines the Feature Catalog Cleanup cleanup phase. No target documentation has been cleaned yet and every cleanup candidate remains PENDING.
+This child phase is scaffold-only. It defines the future cleanup contract for feature catalog packages and root feature catalog files when present. No target catalog cleanup has run yet and every candidate remains pending.
 
 ### Added
 
-- No new additions recorded.
+- Added the Level 2 spec packet for feature catalog cleanup.
+- Added pending discovery, review, voice and verification tasks.
+- Added the checklist and implementation summary for a later execution pass.
 
 ### Changed
 
-- The scaffold now defines the Feature Catalog Cleanup cleanup phase. No target documentation has been cleaned yet and every cleanup candidate remains PENDING.
+- Scoped the future sweep to feature catalog documentation only.
+- Kept all target catalog files unchanged until candidate discovery is run.
 
 ### Fixed
 
-- No fixes recorded.
+- Clarified that this phase created the cleanup contract but did not execute target edits.
 
 ### Verification
 
-- Cleanup execution - PENDING
-- Strict validation - bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/005-release-cleanup/004-feature-catalogs --strict
+| Check | Result |
+|-------|--------|
+| Cleanup execution | PENDING |
+| Task completion | 0 done, 15 open |
+| Strict validation command | Recorded in the phase docs |
 
 ### Files Changed
 
 | File | Action | What changed |
 |---|---|---|
-| `spec.md` | Created | Defines scope, objective and acceptance criteria |
-| `plan.md` | Created | Defines execution and verification approach |
-| `tasks.md` | Created | Lists pending cleanup tasks |
-| `checklist.md` | Created | Lists pending verification checks |
-| `implementation-summary.md` | Created | Records that this is scaffold only |
+| `spec.md` | Created | Scope, objective and acceptance criteria |
+| `plan.md` | Created | Execution and verification approach |
+| `tasks.md` | Created | Pending cleanup tasks |
+| `checklist.md` | Created | Pending verification checks |
+| `implementation-summary.md` | Created | Scaffold-only closeout |
 
 ### Follow-Ups
 
-- CHK-001 Scope is limited to feature catalog sweep.
-- CHK-002 Discovery command is run before edits.
-- CHK-003 Candidate list is saved as evidence.
-- CHK-010 Edited markdown has no em dash character.
-- CHK-011 Edited markdown has no semicolon character.
-- CHK-012 Edited markdown avoids Oxford comma patterns.
+- Run feature catalog discovery and candidate capture.
+- Review every candidate against the live tree before editing.
+- Run HVR and stale-reference checks after cleanup execution.

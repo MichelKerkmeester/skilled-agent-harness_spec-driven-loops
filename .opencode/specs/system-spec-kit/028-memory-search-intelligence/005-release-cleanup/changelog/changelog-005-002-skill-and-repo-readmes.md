@@ -1,6 +1,6 @@
 ---
-title: "Changelog: Skill And Repo README Cleanup [005-release-cleanup/002-skill-and-repo-readmes]"
-description: "Chronological changelog for the Skill And Repo README Cleanup phase."
+title: "Changelog: Skill and Repo README Cleanup"
+description: "Chronological changelog for the skill and repo README cleanup phase."
 trigger_phrases:
   - "phase changelog"
   - "nested changelog"
@@ -19,40 +19,43 @@ contextType: "implementation"
 
 ### Summary
 
-The scaffold now defines the Skill And Repo README Cleanup cleanup phase. No target documentation has been cleaned yet and every cleanup candidate remains PENDING.
+This child phase is scaffold-only. It defines the future cleanup contract for skill-level README files, top-level README files and runtime README mirrors. No target documentation has been cleaned yet and all candidates remain pending.
 
 ### Added
 
-- No new additions recorded.
+- Added the Level 2 spec packet for skill and repo README cleanup.
+- Added pending discovery, review, edit and verification tasks.
+- Added the checklist and implementation summary that keep the surface ready for a later execution pass.
 
 ### Changed
 
-- The scaffold now defines the Skill And Repo README Cleanup cleanup phase. No target documentation has been cleaned yet and every cleanup candidate remains PENDING.
+- Scoped the phase to README surfaces only.
+- Kept repo, skill and runtime README candidates pending until the discovery command is run.
 
 ### Fixed
 
-- No fixes recorded.
+- Reworded the generated changelog so the scaffold state is clear and not framed as completed cleanup.
 
 ### Verification
 
-- Cleanup execution - PENDING
-- Strict validation - bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/005-release-cleanup/002-skill-and-repo-readmes --strict
+| Check | Result |
+|-------|--------|
+| Cleanup execution | PENDING |
+| Task completion | 0 done, 15 open |
+| Strict validation command | Recorded in the phase docs |
 
 ### Files Changed
 
 | File | Action | What changed |
 |---|---|---|
-| `spec.md` | Created | Defines scope, objective and acceptance criteria |
-| `plan.md` | Created | Defines execution and verification approach |
-| `tasks.md` | Created | Lists pending cleanup tasks |
-| `checklist.md` | Created | Lists pending verification checks |
-| `implementation-summary.md` | Created | Records that this is scaffold only |
+| `spec.md` | Created | Scope, objective and acceptance criteria |
+| `plan.md` | Created | Execution and verification approach |
+| `tasks.md` | Created | Pending cleanup tasks |
+| `checklist.md` | Created | Pending verification checks |
+| `implementation-summary.md` | Created | Scaffold-only closeout |
 
 ### Follow-Ups
 
-- CHK-001 Scope is limited to skill-level and top-level readme sweep.
-- CHK-002 Discovery command is run before edits.
-- CHK-003 Candidate list is saved as evidence.
-- CHK-010 Edited markdown has no em dash character.
-- CHK-011 Edited markdown has no semicolon character.
-- CHK-012 Edited markdown avoids Oxford comma patterns.
+- Run discovery across skill, repo and runtime README surfaces.
+- Record the exact candidate list before edits.
+- Apply HVR voice and stale-claim cleanup only to verified candidates.

@@ -1,6 +1,6 @@
 ---
-title: "Changelog: Agent Definition Cleanup [005-release-cleanup/007-agents]"
-description: "Chronological changelog for the Agent Definition Cleanup phase."
+title: "Changelog: Agent Definition Cleanup"
+description: "Chronological changelog for the agent definition cleanup phase."
 trigger_phrases:
   - "phase changelog"
   - "nested changelog"
@@ -19,40 +19,48 @@ contextType: "implementation"
 
 ### Summary
 
-The scaffold now defines the Agent Definition Cleanup cleanup phase. No target documentation has been cleaned yet and every cleanup candidate remains PENDING.
+The agent definition cleanup ran across the OpenCode, Claude and Codex agent mirrors. Discovery found 39 in-scope files: 12 agent definitions plus one README in each runtime. The three README files were rewritten to match the live 12-agent set and the correct runtime packaging. Two Claude path-convention lines were localized to `.claude/agents/*.md`. Agent bodies were verified accurate and left unchanged.
 
 ### Added
 
-- No new additions recorded.
+- Added current runtime-specific README prose for the three agent mirrors.
+- Added verification evidence for agent counts, path resolution and mirror parity.
 
 ### Changed
 
-- The scaffold now defines the Agent Definition Cleanup cleanup phase. No target documentation has been cleaned yet and every cleanup candidate remains PENDING.
+- Updated README inventories that listed retired agents and missed live agents.
+- Corrected runtime names and the Codex `.toml` packaging description.
+- Localized the Claude path-convention lines that pointed at the OpenCode agent directory.
 
 ### Fixed
 
-- No fixes recorded.
+- Removed stale `create`, `handover` and `speckit` agent listings.
+- Added the live `deep-context`, `markdown` and `deep-improvement` agents to the mirror READMEs.
+- Brought Claude path-convention wording into line with the local mirror.
 
 ### Verification
 
-- Cleanup execution - PENDING
-- Strict validation - bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/005-release-cleanup/007-agents --strict
+| Check | Result |
+|-------|--------|
+| Cleanup execution | PASS, 5 files modified |
+| Agent body review | PASS, 12 bodies verified in each runtime |
+| Edited README em dash scan | PASS, 0 hits |
+| Edited README semicolon scan | PASS, 0 hits |
+| Edited README Oxford comma scan | PASS, 0 hits |
+| Stale-reference scan | PASS, 0 actionable hits |
+| Strict validation | PASS, 0 errors and 0 warnings |
 
 ### Files Changed
 
 | File | Action | What changed |
 |---|---|---|
-| `spec.md` | Created | Defines scope, objective and acceptance criteria |
-| `plan.md` | Created | Defines execution and verification approach |
-| `tasks.md` | Created | Lists pending cleanup tasks |
-| `checklist.md` | Created | Lists pending verification checks |
-| `implementation-summary.md` | Created | Records that this is scaffold only |
+| `.opencode/agents/README.txt` | Modified | Corrected agent list, runtime name and voice |
+| `.claude/agents/README.txt` | Modified | Corrected agent list, runtime name and voice |
+| `.codex/agents/README.txt` | Modified | Corrected agent list, runtime name, extension and voice |
+| `.claude/agents/deep-review.md` | Modified | Localized path convention |
+| `.claude/agents/review.md` | Modified | Localized path convention |
 
 ### Follow-Ups
 
-- CHK-001 Scope is limited to agent definition and runtime mirror sweep.
-- CHK-002 Discovery command is run before edits.
-- CHK-003 Candidate list is saved as evidence.
-- CHK-010 Edited markdown has no em dash character.
-- CHK-011 Edited markdown has no semicolon character.
-- CHK-012 Edited markdown avoids Oxford comma patterns.
+- Leave agent bodies alone unless a future verification pass finds a concrete stale claim.
+- Treat corpus-wide voice restyling as separate work because this phase only rewrote confirmed stale prose.

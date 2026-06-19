@@ -1,6 +1,6 @@
 ---
-title: "Changelog: Skill Advisor C4 Shadow Seam + Beta Posterior [003-skill-advisor/004-c4-shadow-seam-beta-posterior]"
-description: "Chronological changelog for the Skill Advisor C4 Shadow Seam + Beta Posterior phase."
+title: "Changelog: Skill Advisor Shadow Seam and Beta Posterior"
+description: "Chronological changelog for the Skill Advisor shadow seam and Beta posterior planning phase."
 trigger_phrases:
   - "phase changelog"
   - "nested changelog"
@@ -19,33 +19,49 @@ contextType: "implementation"
 
 ### Summary
 
-This is a planning closeout (a re-plan), not a code-delivery summary. The sub-phase specifies the full reliability-weighted-learning build on the campaign's sequenced critical path. The Skill Advisor already ships an end-to-end shadow feedback pipeline — durable outcome capture, a bounded delta estimator, a parallel shadow-weight channel — but the estimator's proposal is written to a JSONL that no out-of-process consumer ever reads back, so the loop never closes. This sub-phase builds the missing seam (a cron/maintenance promoter), the reliability math (a shared Beta posterior that turns raw acceptance frequency into a flood-immune number), and the aionforge attestation-and-promotion gate family that decides — conservatively, shadow-only — whether a lane weight should ever move. It is net-new throughout: 027 shipped no lane attribution and the live estimator carries zero Beta math, so this is a BUILD, not a graduation.
+This phase is a Level 3 planning closeout, not a code delivery. It defines the missing reliability-learning path for the Skill Advisor: an out-of-process promoter for existing shadow proposals, a shared Beta posterior primitive, a conservative attestation gate and a reversible shadow-only promotion path. All candidates remain pending. The live advisor has no per-lane Beta math today, so the plan records a net-new build rather than a graduation.
 
 ### Added
 
-- No new additions recorded.
+- Added the Level 3 planning packet for the shadow promoter and reliability-weighted learning path.
+- Added decision records for shadow-only delivery, shared posterior ownership and live-promotion gates.
+- Added the candidate map that keeps every reliability candidate pending until its substrate and benchmark gates are met.
 
 ### Changed
 
-- This is a planning closeout (a re-plan), not a code-delivery summary. The sub-phase specifies the full reliability-weighted-learning build on the campaign's sequenced critical path. The Skill Advisor already ships an end-to-end shadow feedback pipeline — durable outcome capture, a bounded delta estimator, a parallel shadow-weight channel — but the estimator's proposal is written to a JSONL that no out-of-process consumer ever reads back, so the loop never closes. This sub-phase builds the missing seam (a cron/maintenance promoter), the reliability math (a shared Beta posterior that turns raw acceptance frequency into a flood-immune number), and the aionforge attestation-and-promotion gate family that decides — conservatively, shadow-only — whether a lane weight should ever move. It is net-new throughout: 027 shipped no lane attribution and the live estimator carries zero Beta math, so this is a BUILD, not a graduation.
+- Reframed the phase from a shipped implementation into a gated build plan.
+- Grounded the plan in the existing shadow feedback pipeline and its missing out-of-process consumer.
+- Recorded that the shared posterior must be one primitive with thin adapters, not a fork per subsystem.
 
 ### Fixed
 
-- No fixes recorded.
+- Removed the implication that any advisor reliability candidate had already shipped.
+- Corrected the boundary between existing shadow proposal capture and the missing promoter that would consume it.
+- Marked live lane-weight movement as a hard no-go until benchmark evidence exists.
 
 ### Verification
 
-- No explicit verification recorded.
+| Check | Result |
+|-------|--------|
+| Level 3 doc set | PASS, spec, plan, tasks, checklist, decision record and summary present |
+| Source citations | PASS, local scorer and lane-registry references read directly |
+| Shipped-record check | PASS, no advisor reliability candidate recorded as shipped |
+| Strict validation | PASS for the sub-phase |
+| Implementation tests | PENDING, no code shipped in this planning phase |
 
 ### Files Changed
 
-_No file-level detail recorded._
+| File | Action | What changed |
+|---|---|---|
+| `spec.md` | Created | Candidate scope, gates and risks |
+| `plan.md` | Created | Shadow promoter and Beta-posterior build path |
+| `tasks.md` | Created | Pending implementation and verification work |
+| `checklist.md` | Created | Planning checks and later implementation gates |
+| `decision-record.md` | Created | Shadow-only and shared-primitive decisions |
+| `implementation-summary.md` | Created | Planning closeout |
 
 ### Follow-Ups
 
-- CHK-001 Requirements documented in spec.md (REQ-001..011)
-- CHK-002 Technical approach defined in plan.md (Phases 0-4, critical path)
-- CHK-003 Dependencies identified and available (Phase-0 health signal; shared Beta primitive w/ D2; daemon reload Q-002; per-lane attribution status)
-- CHK-010 Code passes lint/format/tsc checks
-- CHK-011 No console errors or warnings; existing advisor scorer suite green
-- CHK-012 Error handling implemented (unreachable policy refused, not silently never-promoted)
+- Build the out-of-process promoter that consumes shadow proposals.
+- Coordinate the shared Beta posterior module with the sibling subsystem before any adapter lands.
+- Capture a real baseline before quoting any benefit or live-promotion claim.
