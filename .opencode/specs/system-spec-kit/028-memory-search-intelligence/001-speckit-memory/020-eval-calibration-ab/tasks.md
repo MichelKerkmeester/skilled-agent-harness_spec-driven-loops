@@ -128,5 +128,5 @@ _memory:
 - **Parent Spec**: See `../spec.md`.
 - **Source research**: `../../research/synthesis/08-retrieval-evaluation-findings.md` (#6 / #7), `../research/from-008-retrieval-evaluation/research.md`, `.../research/deltas/iter-004.jsonl` (A2) + `iter-005.jsonl` (A3) + `iter-010.jsonl`/`iter-012.jsonl` (verify), `../../research/roadmap.md` (BROADENING §6).
 - **Gate dependency**: `../001-corpus-reindex-gate-zero/spec.md`; the 019 eval-harness spine (sibling phase).
-- **Wave-0 shipped record**: `../../../030-memory-search-intelligence-impl/spec.md` §14 (neither candidate listed → PENDING).
+- **Wave-0 shipped record**: Wave-0 record (neither candidate listed → PENDING).
 <!-- /ANCHOR:cross-refs -->

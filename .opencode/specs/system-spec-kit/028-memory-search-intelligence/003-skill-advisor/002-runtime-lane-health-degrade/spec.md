@@ -211,5 +211,5 @@ Ship a coherent graceful-degradation unit, in P0-first order:
 - **Roadmap**: `../../research/roadmap.md` (C5 row :90, C5a row :91; degrade-spine §; prior unsourced skew notes :218,262)
 - **Synthesis**: `../../research/synthesis/01-go-candidates.md` (C5 not-a-free-fix caveat :103; Advisor C4/C5 :59)
 - **Parent spec**: `../spec.md`
-- **Wave-0 shipped record (evidence none done)**: `../../../030-memory-search-intelligence-impl/spec.md` §14 (no advisor row) + line 106 (C5 NO-GO until baseline + lane-health signal)
+- **Wave-0 shipped record (evidence none done)**: Wave-0 record (no advisor row) + (C5 NO-GO until baseline + lane-health signal)
 <!-- /ANCHOR:related-docs -->

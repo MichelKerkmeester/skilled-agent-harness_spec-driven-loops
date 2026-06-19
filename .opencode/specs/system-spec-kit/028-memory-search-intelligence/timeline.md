@@ -29,7 +29,7 @@ _memory:
 > reversible and default-safe, none with a measured benefit number.
 >
 > **Where the truth lives.** The 030 Wave-0 done-evidence is recorded under
-> `030-memory-search-intelligence-impl`. The per-subsystem phase rosters live in each track's
+> the Wave-0 implementation record. The per-subsystem phase rosters live in each track's
 > `changelog-00N-root.md` rollup. The before-and-after narrative is in
 > [`before-vs-after.md`](./before-vs-after.md). The dependency order is in
 > [`implementation-schedule.md`](./implementation-schedule.md).
@@ -49,7 +49,7 @@ Epoch one  --  the flat 030 Wave-0 spearhead
  18c8582e33  refactor(memory)    centralized content-id module
  46812f12a8  feat(deep-loop)     merge order + pool gauges + graceful self-stop
  e21caf5de6  feat(code-graph)    RRF-additive rank-time trust
- ab5459fb6d  docs(030)           full-scope Wave-0 packet docs + closeout
+ ab5459fb6d  docs(030)           full-scope Wave-0 implementation record docs + closeout
 
 Bridge  --  Wave-0 cleanup on the 028 branch
  9afbf97b75  docs(030)           027-style Wave-0 changelog/before-after/timeline + README alignment
@@ -93,7 +93,7 @@ pulled inside `e1c6a3c793` and recorded by `1c065566fa` after a live-database re
 `source_kind='system'` is 9,592 canonical spec-docs including 29 constitutional rules rather than
 substrate noise. The idempotency default-on flip never committed at all because it broke eleven
 update-path tests. The full Wave-0 chronology and verification live in
-`030-memory-search-intelligence-impl`.
+the Wave-0 implementation record.
 
 A short bridge followed on the 028 branch. `9afbf97b75` authored the 027-style Wave-0 changelog and
 before-after and timeline, `1b87f90411` stressed the embedder-degrade path under a recall flood,

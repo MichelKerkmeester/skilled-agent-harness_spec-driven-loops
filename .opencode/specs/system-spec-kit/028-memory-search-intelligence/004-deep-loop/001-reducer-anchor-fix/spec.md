@@ -52,7 +52,7 @@ _memory:
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent research phase** | `028-memory-search-intelligence/004-deep-loop` (Deep Loop — convergence/fan-out/council intelligence) |
 | **Source research** | `../research/research.md`; `../../research/roadmap.md`; `../../research/synthesis/01-go-candidates.md` + `03` + `04` |
-| **Shipped-record cross-ref** | `030-memory-search-intelligence-impl/spec.md` §14 candidate 1 (commit `738e118751`) |
+| **Shipped-record cross-ref** | Wave-0 record (commit `738e118751`) |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -152,4 +152,4 @@ This is the deep-loop roadmap's **rank-1 candidate and the only unconditional sh
 - **Implementation Summary**: See `implementation-summary.md`
 - **Parent research**: `../research/research.md` (Deep Loop external-mining synthesis; §"Reducer-anchor template gap — CONFIRMED REAL BUG", Q6 in §"Key Questions — Answers").
 - **Cross-cutting roadmap**: `../../research/roadmap.md` (§"a near-zero-effort correctness FIX"; Wave-0 spearhead rank-1); `../../research/synthesis/01-go-candidates.md`; `03-corrections-caveats-and-residuals.md`; `04-sibling-and-cross-cutting.md`.
-- **Shipped record (Wave-0)**: `../../../030-memory-search-intelligence-impl/spec.md` §14 candidate 1 (commit `738e118751` — "7 anchor pairs added; reducer regex verified (all 7 match)").
+- **Shipped record (Wave-0)**: Wave-0 record (commit `738e118751` — "7 anchor pairs added; reducer regex verified (all 7 match)").

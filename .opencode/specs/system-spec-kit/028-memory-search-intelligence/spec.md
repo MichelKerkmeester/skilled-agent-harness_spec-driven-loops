@@ -138,7 +138,7 @@ Provide the root purpose, child map and cross-packet boundary for packet 028. Th
 <!-- ANCHOR:wave-0-pointer -->
 ## 4. WAVE-0 DONE-EVIDENCE POINTER
 
-Packet `030-memory-search-intelligence-impl` is the Wave-0 SHIPPED record for candidates already marked DONE in the 028 implementation child specs. It is intentionally separate from packet 028 and was not modified by this planning pass.
+The Wave-0 implementation record is the Wave-0 SHIPPED record for candidates already marked DONE in the 028 implementation child specs. It is intentionally separate from packet 028 and was not modified by this planning pass.
 <!-- /ANCHOR:wave-0-pointer -->
 
 ---

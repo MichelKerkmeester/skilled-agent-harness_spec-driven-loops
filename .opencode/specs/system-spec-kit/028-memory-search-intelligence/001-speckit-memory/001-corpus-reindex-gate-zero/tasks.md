@@ -42,7 +42,7 @@ _memory:
 
 **Task Format**: `T### [P?] Description (file path) [effort]`
 
-> **Candidate status:** `corpus-reindex-gate-zero` is **PENDING** — gate = needs-reindex-run (it IS the reindex). It is NOT in `030-memory-search-intelligence-impl/spec.md` §14 (that table covers candidates 1-13; none is the reindex). The Wave-0 030 fixes did not require a whole corpus, so gate-zero was deferred there and is owned here. No tasks are pre-checked.
+> **Candidate status:** `corpus-reindex-gate-zero` is **PENDING** — gate = needs-reindex-run (it IS the reindex). It is NOT (that table covers candidates 1-13; none is the reindex). The Wave-0 030 fixes did not require a whole corpus, so gate-zero was deferred there and is owned here. No tasks are pre-checked.
 
 <!-- /ANCHOR:notation -->
 ---

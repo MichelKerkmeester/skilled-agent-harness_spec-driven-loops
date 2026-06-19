@@ -143,5 +143,5 @@ Delivered as two independent tracks that share no code path. Track A extended `S
 - **Research evidence**: `../research/research.md` (baseline row "Doc-lane is hash-only"), `../research/iterations/iteration-004.md` (Q5 answered; ranking `Q5-C1=12` BUILD), `../research/deltas/iter-004.jsonl` (`q5-f1..f4`, `cand-q5-c1-doc-symbol-pass`)
 - **Roadmap**: `../../research/roadmap.md` (Q5-C1 tier-2 BUILD L192; Q7 lease-classification telemetry L296, "no metrics sink today")
 - **Synthesis**: `../../research/synthesis/05-all-findings-plain-language.md` (item 26 "Index doc + config symbols (Q5-C1) tier-2"), `../../research/synthesis/01-go-candidates.md`
-- **Wave-0 shipped record**: `../../../030-memory-search-intelligence-impl/spec.md` §14 was prior-state evidence only; this phase now implements Q5-C1 and Q7-lease locally
+- **Wave-0 shipped record**: Wave-0 record was prior-state evidence only; this phase now implements Q5-C1 and Q7-lease locally
 <!-- /ANCHOR:related-docs -->

@@ -46,7 +46,7 @@ _memory:
 | **[P1]** | Required | Must be verified or documented as residual follow-up |
 | **[P2]** | Optional | Can defer with rationale |
 
-> **Status:** This is a re-plan. All five candidates are PENDING (none shipped in Wave-0 — `../../../030-memory-search-intelligence-impl/spec.md` §14). Implementation/test items are unchecked until each candidate is built behind its gate.
+> **Status:** This is a re-plan. All five candidates are PENDING (none shipped in Wave-0 — Wave-0 record). Implementation/test items are unchecked until each candidate is built behind its gate.
 <!-- /ANCHOR:protocol -->
 
 ---

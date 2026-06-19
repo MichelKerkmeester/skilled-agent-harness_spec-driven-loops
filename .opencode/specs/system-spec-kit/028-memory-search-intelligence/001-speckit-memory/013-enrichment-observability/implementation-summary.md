@@ -100,7 +100,7 @@ gauge-pending-failed shipped as one isolated, reversible hunk on the 028 branch 
 
 | Check | Result |
 |-------|--------|
-| gauge-pending-failed shipped | PASS — commit `e1c6a3c793` (verified in `030-memory-search-intelligence-impl/spec.md` §14 + `git log`) |
+| gauge-pending-failed shipped | PASS — commit `e1c6a3c793` (verified + `git log`) |
 | gauge-lag implemented | PASS — `oldestPendingAt` + `oldestPendingAgeMs` surfaced in `backgroundEnrichment` |
 | `npm run typecheck` | PASS — baseline PASS, after PASS |
 | `npx vitest run mcp_server/tests/handler-memory-health-edge.vitest.ts` | PASS — baseline 11 passed, after 13 passed |

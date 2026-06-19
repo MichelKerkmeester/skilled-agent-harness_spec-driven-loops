@@ -15,9 +15,9 @@
     "impl",
     "phase"
   ],
-  "lastUpdated": "2026-06-19T06:21:32.272Z",
+  "lastUpdated": "2026-06-19T09:26:36.229Z",
   "specId": "005",
-  "folderSlug": "005-recall-render-escaper",
+  "folderSlug": "recall-render-escaper",
   "parentChain": [
     "system-spec-kit",
     "028-memory-search-intelligence",

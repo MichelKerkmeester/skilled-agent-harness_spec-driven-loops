@@ -281,7 +281,7 @@ Capture the procedural-reliability cluster as ONE benchmark-first unit with **ho
 <!-- ANCHOR:status -->
 ## 14. CANDIDATE STATUS
 
-> All four candidates are **PENDING**. None appears in 030's shipped Wave-0 record (`030-memory-search-intelligence-impl/spec.md` §14, candidates 1-13 — the procedural cluster is absent; the closest, C4-A idempotency, is unrelated). Gate keys: `needs-benchmark` (a benefit micro-benchmark must pass first), `schema-migration` (a table-rebuild is required), `shared-infra-dep` (depends on the outcome emitter + f64 Beta primitive), `already-exists-residual` (mechanism ships; only a thin residual is net-new).
+> All four candidates are **PENDING**. None appears in the shipped Wave-0 record (Wave-0 record, candidates 1-13 — the procedural cluster is absent; the closest, C4-A idempotency, is unrelated). Gate keys: `needs-benchmark` (a benefit micro-benchmark must pass first), `schema-migration` (a table-rebuild is required), `shared-infra-dep` (depends on the outcome emitter + f64 Beta primitive), `already-exists-residual` (mechanism ships; only a thin residual is net-new).
 
 | # | Candidate | Status | Gate | 030 Commit | Research evidence |
 |---|-----------|--------|------|-----------|-------------------|
@@ -303,7 +303,6 @@ Capture the procedural-reliability cluster as ONE benchmark-first unit with **ho
 - **Parent roadmap**: `../../research/roadmap.md` §5 (Bounded Reliability-Weighted Learning), §7 (Follow-ups), MEMORY-SYSTEMS addendum.
 - **Synthesis**: `../../research/synthesis/01-go-candidates.md` (Needs-validation cluster + Shared-infrastructure + Follow-ups), `03-corrections-caveats-and-residuals.md` (PROXY-ONLY residual §C).
 - **External source**: `../../external/aionforge-memory-development/docs/procedural-memory.md`.
-- **Shipped Wave-0 record (read-only evidence)**: `../../../030-memory-search-intelligence-impl/spec.md` §14.
 - **Plan**: See `plan.md`. **Tasks**: See `tasks.md`. **Checklist**: See `checklist.md`.
 
 <!-- /ANCHOR:related-docs -->

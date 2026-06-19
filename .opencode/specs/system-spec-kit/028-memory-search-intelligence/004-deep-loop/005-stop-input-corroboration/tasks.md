@@ -147,6 +147,6 @@ _memory:
 - **Parent research**: `../research/research.md`; STOP-corroboration detail in `../research/iterations/iteration-002.md`, `iteration-007.md`, `iteration-008.md`, `iteration-012.md`, `iteration-013.md`, `iteration-018.md`
 - **Cross-cutting roadmap / synthesis**: `../../research/roadmap.md` (§5 item 2 newInfoRatio audit net-new gap); `../../research/synthesis/01-go-candidates.md` (STOP-residuals, lines 99-101); `03-corrections-caveats-and-residuals.md` (line 47 prose-loop-does-consume precision)
 - **Sibling impl sub-phase**: `../003-fanout-failure-recovery/` (the resilience cluster complement)
-- **Shipped record (Wave-0)**: `../../../030-memory-search-intelligence-impl/spec.md` §14 candidate 12 (commit `46812f12a8` — gauges/merge/graceful-self-stop; the graceful-self-stop instance is C7 DONE here)
+- **Shipped record (Wave-0)**: Wave-0 record (commit `46812f12a8` — gauges/merge/graceful-self-stop; the graceful-self-stop instance is C7 DONE here)
 
 <!-- /ANCHOR:cross-refs -->

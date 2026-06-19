@@ -49,7 +49,7 @@ _memory:
 
 **Task Format**: `T### [P?] Description (file path) [effort]`
 
-> **Candidate status (against 030 §14):** BOTH candidates were **PENDING** at phase start. `Q5-carried-forward` and `DL-iterative-retrieval-loop` appeared nowhere in `030-memory-search-intelligence-impl/spec.md` §14 or its body; both are **DONE** in this sub-phase.
+> **Candidate status (against the Wave-0 record):** BOTH candidates were **PENDING** at phase start. `Q5-carried-forward` and `DL-iterative-retrieval-loop` appeared nowhere or its body; both are **DONE** in this sub-phase.
 
 <!-- /ANCHOR:notation -->
 ---
@@ -130,6 +130,6 @@ _memory:
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 - **Parent research**: `../research/research.md` (Q5); `../../research/synthesis/06-memory-systems-findings.md` (#15)
-- **Shipped record**: `../../../030-memory-search-intelligence-impl/spec.md` §14 (neither candidate present)
+- **Shipped record**: Wave-0 record (neither candidate present)
 
 <!-- /ANCHOR:cross-refs -->

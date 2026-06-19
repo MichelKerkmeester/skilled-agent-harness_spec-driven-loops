@@ -245,4 +245,3 @@ Phase 1 (Setup: seams + fixtures + live-DB snapshot) ──> Phase 2 (Implementa
 ## RELATED DOCUMENTS
 - **Spec / tasks / checklist:** `spec.md`, `tasks.md`, `checklist.md` (this folder).
 - **Research:** `../research/research.md`; `../../research/roadmap.md`; `../../research/synthesis/{01,03,04}-*.md`.
-- **Shipped record (do NOT modify):** `../../../030-memory-search-intelligence-impl/spec.md` §14.

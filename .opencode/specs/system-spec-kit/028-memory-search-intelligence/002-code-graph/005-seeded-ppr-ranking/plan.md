@@ -112,7 +112,7 @@ This cluster touches the public impact-ranking order and the query classifier â€
 | `expandAnchor` budget (`code-graph-context.ts:401-403`, `budgetMs=400`) | 400ms latency budget, arbitrary-order truncation | bound PPR inside it; best-prefix fallback on cut | termination property test under the cap |
 | `query-intent-classifier.ts:6` (`QueryIntent='structural'`) | structural-only verdict, no shape taxonomy | add SingleHop/MultiHop/Entity classes for the gate | new-taxonomy unit tests; gate routes PPR by class |
 | `reliability` factor (`code-graph-context.ts:350-356`) | rank-time trust factor (Q4-C1, shipped) | reuse as PPR per-edge transition weight (Q4-C2) | INFERRED 2-hop < OBSERVED 1-hop test |
-| 027 `collectWeightedWalk` (`system-spec-kit/.../lib/graph/bfs-traversal.ts`) | weighted-walk traversal substrate | CONSUME (confirm reusable; do not modify) | reuse-confirmation note precedes any PPR code |
+| 027 `collectWeightedWalk` (`system-spec-kit/.../lib/graph/bfs-traversal.ts`) | weighted-walk traversal substrate | CONSUME (confirm reusable; historical evidence) | reuse-confirmation note precedes any PPR code |
 | `code_edges` current set | physical edge presence (no temporal cols) | intersect PPR-reached set; degrade gracefully | physical-presence today; `invalid_at IS NULL` once Q1-C1 lands |
 
 Required inventories:

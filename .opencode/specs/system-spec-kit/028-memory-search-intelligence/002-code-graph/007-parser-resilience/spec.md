@@ -162,7 +162,7 @@ Give the code-graph skip-list a **transient/fatal axis** with a **bounded retry 
 - **TRANSIENT vs FATAL taxonomy:** resolved in `classifyParserRetryClass`. TRANSIENT covers WASM memory trap, OOM, timeout/timed-out, deadline/deadline-abort; ambiguous/unknown errors default to FATAL.
 - **`max_retries` value:** default **5** mirrors aionforge [CONFIRMED: `consolidation.md:60-68`] and is configurable via `SPECKIT_PARSER_SKIP_LIST_MAX_RETRIES`.
 - **Schema touch:** resolved with an additive `retry_class` column on `parser_skip_list`; legacy rows default to `fatal`.
-- **Status:** Q2-C1 is implemented locally in this phase and intentionally not committed. It remains absent from the older Wave-0 packet 030 shipped record.
+- **Status:** Q2-C1 is implemented locally in this phase and intentionally not committed. It remains absent from the older Wave-0 implementation record 030 shipped record.
 <!-- /ANCHOR:questions -->
 
 ---
@@ -177,5 +177,5 @@ Give the code-graph skip-list a **transient/fatal axis** with a **bounded retry 
 - **Roadmap**: `../../research/roadmap.md` (Spine 6 "Idempotent Async Consolidation + Crash-Safe Recovery" — Q2-C1 row; "owner sign-off" note).
 - **Synthesis**: `../../research/synthesis/01-go-candidates.md` (the Deep-Loop fan-out transient/fatal sibling row), `../../research/synthesis/03-corrections-caveats-and-residuals.md`.
 - **External source**: `../../external/aionforge-memory-development/docs/consolidation.md:60-68, 84-90` (Transient/Fatal, `max_retries=5`, durable failed-audit count, poison-pill isolation).
-- **Wave-0 shipped record**: `../../../030-memory-search-intelligence-impl/spec.md` §14 (historical reference: Q2-C1 was absent there; Code-Graph Q4-C1 = row 13).
+- **Wave-0 shipped record**: Wave-0 record (historical reference: Q2-C1 was absent there; Code-Graph Q4-C1 =).
 <!-- /ANCHOR:related-docs -->

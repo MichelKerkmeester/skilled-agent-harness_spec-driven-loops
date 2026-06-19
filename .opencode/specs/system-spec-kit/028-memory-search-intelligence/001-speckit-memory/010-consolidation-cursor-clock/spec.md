@@ -255,4 +255,4 @@ Make the existing consolidation machinery durable and clock-driven by landing th
 - **Verification Checklist**: See `checklist.md`
 - **Decision Records**: See `decision-record.md`
 - **Parent research phase**: See `../research/research.md`, `../../research/roadmap.md`, `../../research/synthesis/01-go-candidates.md`, `../../research/synthesis/03-corrections-caveats-and-residuals.md`, `../../research/synthesis/04-sibling-and-cross-cutting.md`
-- **Wave-0 shipped record (DONE evidence)**: See `../../../030-memory-search-intelligence-impl/spec.md` §14
+- **Wave-0 shipped record (DONE evidence)**: See Wave-0 record

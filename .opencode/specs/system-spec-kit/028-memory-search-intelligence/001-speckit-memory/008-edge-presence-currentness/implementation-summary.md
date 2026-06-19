@@ -57,7 +57,7 @@ _memory:
 
 This is a **re-plan**: no production code has been shipped in this phase. The deliverable is the Level-3 planning set (spec, plan, tasks, checklist, decision-record) that converts the 028 research roadmap into a sequenced, gate-aware implementation plan for the five edge-presence-currentness candidates.
 
-All five candidates are **PENDING**. This was confirmed by cross-checking the Wave-0 shipped record `../../../030-memory-search-intelligence-impl/spec.md` §14 and the 030 commit range (`git log --oneline 1ecc531431..ab5459fb6d` = 10 commits, **zero** matching temporal / history / unforget / currentness).
+All five candidates are **PENDING**. This was confirmed by cross-checking the Wave-0 shipped record and the Wave-0 commit range (`git log --oneline 1ecc531431..ab5459fb6d` = 10 commits, **zero** matching temporal / history / unforget / currentness).
 
 ### Pending Candidates
 

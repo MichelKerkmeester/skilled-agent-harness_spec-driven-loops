@@ -11,9 +11,9 @@
     "keystone",
     "cluster"
   ],
-  "lastUpdated": "2026-06-19T06:21:37.391Z",
+  "lastUpdated": "2026-06-19T17:42:41.336Z",
   "specId": "004",
-  "folderSlug": "004-reliability-weighted-convergence",
+  "folderSlug": "reliability-weighted-convergence",
   "parentChain": [
     "system-spec-kit",
     "028-memory-search-intelligence",

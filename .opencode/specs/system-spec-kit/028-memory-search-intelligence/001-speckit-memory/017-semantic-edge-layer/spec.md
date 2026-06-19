@@ -267,7 +267,7 @@ Build the per-edge semantic substrate **once**, off the foreground turn, so edge
 - **Source research**: `../../research/roadmap.md` (MEMORY-SYSTEMS ADDENDUM, "Two new initiatives", `:329`), `../../research/synthesis/06-memory-systems-findings.md` (New initiative A, `:105-113,168`), `../research/from-007-memory-systems/research.md` (+ `iterations/iteration-0{19,21}.md`, `deltas/iter-0{19,21}.jsonl`)
 - **Confirmed seams (live code)**: `lib/storage/causal-edges.ts:350-352` (exact-key upsert), `lib/graph/contradiction-detection.ts:85-93` (same-pair-only), `lib/graph/temporal-edges.ts:81-96`, `lib/storage/consolidation.ts:499` (`runConsolidationCycle`)
 - **Shared-infra dependency**: `../001-corpus-reindex-gate-zero` (gate-zero reindex — precondition for any recall benchmark)
-- **Shipped record (Wave-0)**: `../../../030-memory-search-intelligence-impl/spec.md` §14 — none of `semantic-edge-layer` / `GR-fact-embedding-on-edge` / `CG-edge-vector-index` / `CG-edge-aware-triplet-search` / `GR-semantic-fact-dedup-merge` / `GR-semantic-invalidation-discovery` appear in the 13-row status table (never shipped), confirming PENDING
+- **Shipped record (Wave-0)**: Wave-0 record — none of `semantic-edge-layer` / `GR-fact-embedding-on-edge` / `CG-edge-vector-index` / `CG-edge-aware-triplet-search` / `GR-semantic-fact-dedup-merge` / `GR-semantic-invalidation-discovery` appear in the 13-row status table (never shipped), confirming PENDING
 
 ---
 

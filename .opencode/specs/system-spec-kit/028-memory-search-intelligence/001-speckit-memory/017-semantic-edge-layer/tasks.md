@@ -119,5 +119,5 @@ _memory:
 - **Plan**: See `plan.md`
 - **Checklist**: See `checklist.md`
 - **Shared-infra dependency**: `../001-corpus-reindex-gate-zero` (gate-zero reindex — precondition for T018 benchmark)
-- **Shipped record (Wave-0)**: `../../../030-memory-search-intelligence-impl/spec.md` §14 (all five edge candidates absent → PENDING)
+- **Shipped record (Wave-0)**: Wave-0 record (all five edge candidates absent → PENDING)
 <!-- /ANCHOR:cross-refs -->

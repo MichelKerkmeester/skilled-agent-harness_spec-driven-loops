@@ -19,7 +19,6 @@ _memory:
       - "spec.md"
       - "plan.md"
       - "checklist.md"
-      - "../../../030-memory-search-intelligence-impl/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-001-determinism-foundation"
@@ -112,7 +111,7 @@ _memory:
 ## Completion Criteria
 
 - [x] All 9 candidates have a final status in `spec.md` section 13 (5 DONE-with-commit, 4 PENDING-with-gate).
-- [x] All 5 shipped candidates trace to a Wave-0 commit in `../../../030-memory-search-intelligence-impl/spec.md` section 14.
+- [x] All 5 shipped candidates trace to a Wave-0 commit.
 - [x] Each gated residue task names its block reason and consuming sub-phase; none is disguised as incomplete in-flight work.
 - [ ] Byte-identity of the shipped default seams is re-confirmed by the still-open fusion-bonus unit test before any `'configured'` promotion (downstream verification, tracked).
 - [x] Strict validation passes for this sub-phase.
@@ -127,5 +126,4 @@ _memory:
 - **Plan**: `plan.md`.
 - **Checklist**: `checklist.md`.
 - **Source research**: `../research/research.md`, `../../research/synthesis/01-go-candidates.md` + `03`.
-- **Shipped record (do not modify)**: `../../../030-memory-search-intelligence-impl/spec.md` section 14.
 <!-- /ANCHOR:cross-refs -->

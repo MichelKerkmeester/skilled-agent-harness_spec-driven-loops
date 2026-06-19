@@ -104,5 +104,5 @@ _memory:
 - **Implementation Summary**: See `implementation-summary.md`
 - **Research evidence**: `../research/iterations/iteration-002.md` (C1, F16/F18), `../research/iterations/iteration-003.md` (C6, F1-F4), `../research/iterations/iteration-004.md` (C1/QCR/C6 rows), `../research/iterations/iteration-006.md` (C1 reframe + dormancy flag), `../research/iterations/iteration-010.md` (conflicts_with DORMANT)
 - **Sibling sub-phase (hard dep)**: `../001-rrf-determinism-spine/spec.md` (C3 — the RRF spine)
-- **Wave-0 shipped record (none done)**: `../../../030-memory-search-intelligence-impl/spec.md` §14 (no advisor C1/QCR/C6 row)
+- **Wave-0 shipped record (none done)**: Wave-0 record (no advisor C1/QCR/C6 row)
 <!-- /ANCHOR:cross-refs -->

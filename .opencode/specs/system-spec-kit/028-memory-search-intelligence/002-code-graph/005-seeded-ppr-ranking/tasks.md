@@ -139,7 +139,7 @@ _memory:
 - **Checklist**: See `checklist.md`
 - **Decision Records**: See `decision-record.md`
 - **Research**: `../research/research.md` (Internal Baseline + iter-2 findings 12-14, iter-3 Q4-C2, iter-8 undirected-projection, iter-14 PPR-unbuilt + NO-GO); `../../research/roadmap.md` (§3 Query-Class Routing + BROADENING §2); `../../research/synthesis/{01-go-candidates.md, 03-corrections-caveats-and-residuals.md, 04-sibling-and-cross-cutting.md}`
-- **Shipped evidence**: `../../../030-memory-search-intelligence-impl/spec.md` §3 Out of Scope + §14 (Code Graph shipped Q4-C1 trust blend only `e21caf5de6`; Q3-C1 seeded PPR explicitly Wave-2 Out of Scope / NO-GO)
+- **Shipped evidence**: Wave-0 record (Code Graph shipped Q4-C1 trust blend only `e21caf5de6`; Q3-C1 seeded PPR explicitly Wave-2 Out of Scope / NO-GO)
 - **Reused substrate (consumed, not modified)**: 027 Memory MCP `lib/graph/bfs-traversal.ts` `collectWeightedWalk`/`collectCausalWeightedNeighbors`
 - **Sibling (consumed)**: `../001-determinism-walk-order/` (Q4-C1 `reliability` factor that Q4-C2 reuses)
 <!-- /ANCHOR:cross-refs -->

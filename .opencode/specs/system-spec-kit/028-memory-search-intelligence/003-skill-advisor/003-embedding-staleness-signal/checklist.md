@@ -19,7 +19,6 @@ _memory:
       - "spec.md"
       - "plan.md"
       - "tasks.md"
-      - "../../../030-memory-search-intelligence-impl/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-003-embedding-staleness-signal"
@@ -53,7 +52,7 @@ _memory:
 - [x] CHK-001 [P0] Sub-phase scope is documented and bounded to the SA8 pair: the staleness signal (signature capture + compare-on-load + lane degrade) and the Memory-010 idempotent-async rebuild reuse.
   - **Evidence**: `spec.md` sections 2, 3, and 10 define the 2-candidate pair and exclude the other advisor candidates (C3/C5/C1/QCR/C4/C6/AMB — sibling sub-phases) and building the shared primitive.
 - [x] CHK-002 [P0] 028 research is treated as roadmap input; the shipped record is traced to packet 030.
-  - **Evidence**: `spec.md` METADATA + section 10 cite `../research/from-006-sibling-revisit/research.md:80` and `../../../030-memory-search-intelligence-impl/spec.md` section 14 (SA8 absent → PENDING; Wave-1 future-work `030 spec.md:104`).
+ - **Evidence**: `spec.md` METADATA + section 10 cite `../research/from-006-sibling-revisit/research.md:80` and Wave-0 record (SA8 absent → PENDING; Wave-1 future-work `the Wave-1 list`).
 - [x] CHK-003 [P0] The SA8 seam and the `memory_embedding_reconcile` mirror are confirmed by direct read before any change.
   - **Evidence**: `projection.ts:315,328,375,413` (`generatedAt = now()` load stamps), columns `skill-graph-db.ts:187,348-352`, signature builder `:599-600`; mirror `embedding-reconcile.ts:139-142` (active pointer) + `:183-189` (`verified:false, reason:"shard model X != active Y"`) read directly.
 - [x] CHK-004 [P0] The shared-infra dependency (Memory-010 idempotent-async primitive) is named as the gate for facet #2 (the rebuild) before implementation.
@@ -176,4 +175,4 @@ _memory:
 - **Source research**: `../research/research.md`, `../research/from-006-sibling-revisit/research.md:80`, `../../research/synthesis/01-go-candidates.md:36` + `04-sibling-and-cross-cutting.md:15,:34`.
 - **Shared-infra dependency**: `../../001-speckit-memory/010-consolidation-cursor-clock/spec.md`.
 - **Mirror reference**: `embedding-reconcile.ts:162-189`.
-- **Shipped record (do not modify)**: `../../../030-memory-search-intelligence-impl/spec.md` section 14 + Wave-1 list `:104`.
+- **Shipped record (historical evidence)**: Wave-0 record and Wave-1 list.

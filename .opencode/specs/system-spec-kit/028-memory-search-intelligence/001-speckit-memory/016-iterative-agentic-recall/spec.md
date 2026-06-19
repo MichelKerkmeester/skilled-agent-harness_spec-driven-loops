@@ -241,7 +241,7 @@ Give complex asks an agentic, multi-tool `memory_context` retrieval path — add
 - **Verification Checklist**: See `checklist.md`
 - **Source research**: `../../research/roadmap.md` (MEMORY-SYSTEMS ADDENDUM, top-7 #7), `../../research/synthesis/06-memory-systems-findings.md` (#14), `../research/from-007-memory-systems/research.md` (+ `iterations/iteration-0{11,17,20,22}.md`, `deltas/iter-0{11,17,20,22}.jsonl`)
 - **Sibling (distinct)**: `CG-iterative-context-extension` (top-7 #2) lands in `../../003-skill-advisor`/routing context, not here
-- **Shipped record (Wave-0)**: `../../../030-memory-search-intelligence-impl/spec.md` §14 — CG-agentic-tool-loop is **absent** from the status table (never shipped), confirming PENDING
+- **Shipped record (Wave-0)**: Wave-0 record — CG-agentic-tool-loop is **absent** from the status table (never shipped), confirming PENDING
 
 ---
 

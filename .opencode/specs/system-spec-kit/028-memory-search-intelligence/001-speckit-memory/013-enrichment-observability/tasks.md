@@ -101,5 +101,5 @@ gauge-lag (DONE — needs-benchmark note satisfied by focused verification; no s
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
-- **Shipped record (pending/failed)**: `../../../030-memory-search-intelligence-impl/spec.md` §14 (`e1c6a3c793`)
+- **Shipped record (pending/failed)**: Wave-0 record (`e1c6a3c793`)
 <!-- /ANCHOR:cross-refs -->

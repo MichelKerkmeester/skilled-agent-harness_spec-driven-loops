@@ -234,5 +234,5 @@ Ship the self-recommendation guard as a default-off, auditable scorer refinement
 - **Sibling sub-phase (shared substrate dep)**: `../004-c4-shadow-seam-beta-posterior/spec.md` (the durable calibration substrate + C4 shadow-promotion seam these two ride)
 - **Sibling sub-phases (orthogonal families)**: `../001-rrf-determinism-spine/spec.md`, `../005-conflict-rerank-query-routing/spec.md` (fusion-math routing — zero overlap with provenance/drift)
 - **Parent spec**: `../spec.md`
-- **Wave-0 shipped record (historical evidence)**: `../../../030-memory-search-intelligence-impl/spec.md` §14 (no SA-author-self-boost-guard / SA-attested-baseline-drift-sweep / SA-skip-never-fabricate row; the table covers only Memory/Code-Graph/Deep-Loop Wave-0 candidates)
+- **Wave-0 shipped record (historical evidence)**: Wave-0 record (no SA-author-self-boost-guard / SA-attested-baseline-drift-sweep / SA-skip-never-fabricate row; the table covers only Memory/Code-Graph/Deep-Loop Wave-0 candidates)
 <!-- /ANCHOR:related-docs -->

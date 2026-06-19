@@ -54,7 +54,7 @@ _memory:
 | **Subsystem** | Spec-Kit Memory MCP (PRIMARY) |
 | **Wave** | Wave-0 (correctness, always-on, no harness/benchmark dependency) |
 | **Source research** | `../../research/synthesis/08-retrieval-evaluation-findings.md` (Wave-0 §9-10); `../research/from-008-retrieval-evaluation/research.md`; `../research/from-008-retrieval-evaluation/deltas/iter-002.jsonl` (A4); `../research/from-008-retrieval-evaluation/deltas/iter-007.jsonl` (A7) |
-| **Shipped record** | `../../../030-memory-search-intelligence-impl/spec.md` §14 (unchanged; this phase implements the two residuals without editing packet 030) |
+| **Shipped record** | Wave-0 record (unchanged; this phase implements the two residuals without editing the Wave-0 implementation packet) |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -241,4 +241,3 @@ Ship the two correctness residuals as additive, byte-behavior-preserving fixes:
 - **008 retrieval-evaluation research**: `../research/from-008-retrieval-evaluation/research.md` (A4 = iter-002, A7 = iter-007)
 - **Plain-language findings (Wave-0 §9-10)**: `../../research/synthesis/08-retrieval-evaluation-findings.md`
 - **Roadmap (authoritative addenda)**: `../../research/roadmap.md`
-- **Shipped record (Wave-0; neither candidate present)**: `../../../030-memory-search-intelligence-impl/spec.md` §14

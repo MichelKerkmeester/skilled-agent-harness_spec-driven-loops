@@ -135,5 +135,5 @@ The storage change is additive. Existing skip-list rows get `retry_class='fatal'
 - **Research evidence**: `../research/iterations/iteration-002.md` (Q2 findings 8/9/10, `cand-Q2-C1`), `../research/deltas/iter-002.jsonl` (`f2-8`, `cand-Q2-C1`)
 - **External source**: `../../external/aionforge-memory-development/docs/consolidation.md:60-68`
 - **Roadmap**: `../../research/roadmap.md` (Spine 6 — Q2-C1 row; owner sign-off note)
-- **Wave-0 shipped record**: `../../../030-memory-search-intelligence-impl/spec.md` §14 (historical reference: Q2-C1 was absent there)
+- **Wave-0 shipped record**: Wave-0 record (historical reference: Q2-C1 was absent there)
 <!-- /ANCHOR:related-docs -->

@@ -121,5 +121,4 @@ _memory:
 - **Plan**: See `plan.md`
 - **Checklist**: See `checklist.md`
 - **Research**: `../research/iterations/iteration-007.md` (gate family seams), `iteration-010.md` (C4-seam GO), `iteration-014.md` (zero Beta math), `iteration-016.md` (build sequence + D2 sharing).
-- **Shipped record (none of these shipped):** `../../../030-memory-search-intelligence-impl/spec.md` §14.
 <!-- /ANCHOR:cross-refs -->

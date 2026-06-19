@@ -52,7 +52,6 @@ _memory:
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent research phase** | `028-memory-search-intelligence/004-deep-loop` (Deep Loop — convergence/fan-out/council intelligence) |
 | **Source research** | `../research/research.md` (Q5); `../../research/roadmap.md` (MEMORY-SYSTEMS ADDENDUM); `../../research/synthesis/06-memory-systems-findings.md` (#15) |
-| **Shipped-record cross-ref** | `030-memory-search-intelligence-impl/spec.md` §14 (Wave-0 flat record — neither candidate shipped) |
 
 <!-- /ANCHOR:metadata -->
 ---
@@ -232,6 +231,6 @@ Land the deep-loop **continuity GO cluster** — the continuity / iterative-retr
 - **Task Breakdown**: See `tasks.md`
 - **Parent research**: `../research/research.md` (Q5 — cross-iteration continuity); detail in `../research/iterations/iteration-002.md` (Q5 answered), `iteration-006.md` (two-path continuity confirmed), `iteration-009.md` (machine-owned fold overlap) + `../research/deltas/iter-002.jsonl`, `iter-006.jsonl`.
 - **Cross-cutting roadmap**: `../../research/roadmap.md` (MEMORY-SYSTEMS ADDENDUM — `DL-iterative-retrieval-loop` #6 of top-7; galadriel threaded-reflection note); `../../research/synthesis/06-memory-systems-findings.md` (#15 derive next-focus; #3 CG-iterative-context-extension cross-fit).
-- **Shipped record (Wave-0)**: `../../../030-memory-search-intelligence-impl/spec.md` §14 — neither candidate present (Deep-Loop entry is candidate 12, commit `46812f12a8`, merge/gauges/graceful-self-stop only).
+- **Shipped record (Wave-0)**: Wave-0 record — neither candidate present (Deep-Loop entry is, commit `46812f12a8`, merge/gauges/graceful-self-stop only).
 
 <!-- /ANCHOR:related-docs -->

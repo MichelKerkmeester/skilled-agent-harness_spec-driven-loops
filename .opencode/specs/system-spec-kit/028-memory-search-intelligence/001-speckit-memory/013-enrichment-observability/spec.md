@@ -52,7 +52,7 @@ _memory:
 | **Parent Packet** | system-spec-kit/028-memory-search-intelligence/001-speckit-memory |
 | **Subsystem** | Spec-Kit Memory MCP (PRIMARY) |
 | **Source research** | `../research/research.md`; `../../research/roadmap.md`; `../../research/synthesis/01-go-candidates.md` |
-| **Shipped record** | `../../../030-memory-search-intelligence-impl/spec.md` §14 |
+| **Shipped record** | Wave-0 record |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -158,5 +158,4 @@ Expose decoupled read-side observability of the enrichment backlog — pending c
 - **Roadmap (authoritative addenda)**: `../../research/roadmap.md`
 - **GO candidates**: `../../research/synthesis/01-go-candidates.md`
 - **027-revisit detail**: `../research/from-005-revisit-027/research.md`
-- **Shipped record (Wave-0)**: `../../../030-memory-search-intelligence-impl/spec.md` §14
 <!-- /ANCHOR:related-docs -->

@@ -50,7 +50,7 @@ _memory:
 | **Testing** | `tsc`, package build, Vitest (code-graph ranking/impact/gold-battery suite), `validate.sh --strict` |
 
 ### Overview
-This sub-phase makes the code-graph impact/dependency/neighborhood walk reproducible across scan rebuilds and lets it fuse its dual impact channels through the 001 determinism keystone — all on a single seam (`rankContextEdges` → `finalize()` in `code-graph-context.ts`) with no schema migration. The rank-time trust blend that turns the already-plumbed `confidence`/`evidenceClass` edge metadata into ranking signal (Q4-C1) **already shipped** in the flat Wave-0 packet (030, commit `e21caf5de6`) as an RRF-**additive** term. This implementation adds the content-derived total ordering follow-up (`det-context-order-global`) inside the isolated code-graph MCP seam. The remaining gated follow-ups are benchmark-driven magnitude tuning (`Q4-C1-benchmark-tuning`) and the adapter that promotes 001's `fuseResultsMulti` for the dual CALLS+IMPORTS impact channels (`Q8-fuser-adapter` / `fuseResultsMulti-codegraph-promote`).
+This sub-phase makes the code-graph impact/dependency/neighborhood walk reproducible across scan rebuilds and lets it fuse its dual impact channels through the 001 determinism keystone — all on a single seam (`rankContextEdges` → `finalize()` in `code-graph-context.ts`) with no schema migration. The rank-time trust blend that turns the already-plumbed `confidence`/`evidenceClass` edge metadata into ranking signal (Q4-C1) **already shipped** in the flat Wave-0 implementation record (030, commit `e21caf5de6`) as an RRF-**additive** term. This implementation adds the content-derived total ordering follow-up (`det-context-order-global`) inside the isolated code-graph MCP seam. The remaining gated follow-ups are benchmark-driven magnitude tuning (`Q4-C1-benchmark-tuning`) and the adapter that promotes 001's `fuseResultsMulti` for the dual CALLS+IMPORTS impact channels (`Q8-fuser-adapter` / `fuseResultsMulti-codegraph-promote`).
 
 The discipline is the same one packet 030 demonstrated and the 001 sibling foundation encodes: ship only what is additive, ordering-only, and neutral-fallback-stable; reuse the shared keystone rather than forking a code-graph-specific comparator or fuser; defer anything that needs a downstream benchmark (Q4-C1 tuning) or a foundation signature (det-order, fuser adapter) that is not yet consumed here.
 <!-- /ANCHOR:summary -->
@@ -68,7 +68,7 @@ The discipline is the same one packet 030 demonstrated and the 001 sibling found
 
 ### Definition of Done
 - [x] All 4 candidate rows have a final status (DONE, DONE-with-commit, or PENDING-with-gate). Evidence: `spec.md` section 11.
-- [x] The shipped Q4-C1 predecessor traces to Wave-0 commit `e21caf5de6` in `../../../030-memory-search-intelligence-impl/spec.md` section 14 candidate 13.
+- [x] The shipped Q4-C1 predecessor traces to Wave-0 commit `e21caf5de6`.
 - [x] The det-order tiebreak is built against the content-derived ordering pattern in the isolated code-graph MCP seam.
 - [ ] The fuser adapter is built against an isolation-compatible shared-fuser consume path (downstream; tracked, not built this sub-phase).
 - [ ] The Q4-C1 boost magnitudes are re-tuned against a retrieval benchmark with the neutral-fallback order-stability gate still holding (downstream; gated on a benchmark that does not yet exist).

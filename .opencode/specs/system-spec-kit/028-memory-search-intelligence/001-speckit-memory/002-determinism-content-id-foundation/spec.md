@@ -25,7 +25,6 @@ _memory:
       - "../research/research.md"
       - "../../research/roadmap.md"
       - "../../research/synthesis/01-go-candidates.md"
-      - "../../../030-memory-search-intelligence-impl/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-001-determinism-foundation"
@@ -44,7 +43,7 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-This sub-phase is the determinism keystone of the Spec-Kit Memory MCP (the PRIMARY subsystem of packet 028's Memory Search Intelligence roadmap). It owns the shared total-comparator, the two SHA-256 content-id primitives (content-body and canonical-field), and the rank-time fusion-bonus / decay-clock seams that every other determinism candidate and every cross-subsystem consumer (Code Graph 002, Skill Advisor 003, Deep Loop 004) byte-compares its output against. The cheap, reversible, no-benchmark wins already shipped in the flat Wave-0 packet (030); this sub-phase records them as DONE with their commit evidence and carries the residue — the render-order serialization stage (C5-A), the configured-channel multichannel bonus (C-X1 `'configured'`), and the single-tenant-refuted identity-hardening pair — as documented PENDING work with explicit gates.
+This sub-phase is the determinism keystone of the Spec-Kit Memory MCP (the PRIMARY subsystem of packet 028's Memory Search Intelligence roadmap). It owns the shared total-comparator, the two SHA-256 content-id primitives (content-body and canonical-field), and the rank-time fusion-bonus / decay-clock seams that every other determinism candidate and every cross-subsystem consumer (Code Graph 002, Skill Advisor 003, Deep Loop 004) byte-compares its output against. The cheap, reversible, no-benchmark wins already shipped in the flat Wave-0 implementation record (030); this sub-phase records them as DONE with their commit evidence and carries the residue — the render-order serialization stage (C5-A), the configured-channel multichannel bonus (C-X1 `'configured'`), and the single-tenant-refuted identity-hardening pair — as documented PENDING work with explicit gates.
 
 **Key Decisions**: Build the total-comparator + content-id formula once and reuse N (the keystone, per `synthesis/01` Shared-infrastructure); ship the byte-identical-by-default seams (C-X1 `'active'`, C6-A clock) and the cheap tiebreaks (ANN, C5-B) first; leave the render-stage and the multi-writer identity hardening documented but unbuilt because they are either fuller-parity follow-ups or single-tenant-refuted.
 
@@ -62,7 +61,7 @@ This sub-phase is the determinism keystone of the Spec-Kit Memory MCP (the PRIMA
 | **Branch** | `system-speckit/028-memory-search-intelligence` |
 | **Parent Packet** | system-spec-kit/028-memory-search-intelligence/001-speckit-memory |
 | **Source research** | `../research/research.md`, `../../research/roadmap.md`, `../../research/synthesis/01-go-candidates.md` + `03` |
-| **Shipped record** | `../../../030-memory-search-intelligence-impl/spec.md` section 14 (Wave-0 commits `738e118751..ab5459fb6d`) |
+| **Shipped record** | Wave-0 record (Wave-0 commits `738e118751..ab5459fb6d`) |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -295,4 +294,3 @@ Establish the determinism + content-id foundation — one total comparator, two 
 - **Implementation Summary**: See `implementation-summary.md`
 - **Source research**: `../research/research.md`, `../../research/roadmap.md`, `../../research/synthesis/01-go-candidates.md` + `03-corrections-caveats-and-residuals.md`
 - **Per-candidate detail**: `../research/iterations/iteration-003.md` (C5-A/B, C9), `iteration-007.md` (sequencing), `iteration-014.md` + `iteration-023.md` (dual-class / clock-skew), `iteration-031.md` (C-X1 from-scratch confirmation)
-- **Shipped record (do not modify)**: `../../../030-memory-search-intelligence-impl/spec.md` section 14

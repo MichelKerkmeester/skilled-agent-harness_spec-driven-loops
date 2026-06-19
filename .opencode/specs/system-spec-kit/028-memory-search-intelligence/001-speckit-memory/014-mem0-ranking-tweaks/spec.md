@@ -52,7 +52,7 @@ _memory:
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Packet** | `system-spec-kit/028-memory-search-intelligence/001-speckit-memory` (Memory MCP research phase, PRIMARY) |
 | **Source research** | `../research/research.md`; `../research/from-007-memory-systems/{research.md,iterations,deltas}`; `../../research/synthesis/06-memory-systems-findings.md`; `../../research/roadmap.md` (MEMORY-SYSTEMS addendum) |
-| **Wave-0 done-record** | `../../../030-memory-search-intelligence-impl/spec.md` §14 — this bundle is **entirely absent** from it |
+| **Wave-0 done-record** | Wave-0 record — this bundle is **entirely absent** from it |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -250,5 +250,4 @@ Per-candidate; each candidate's seam is in the table above. Production code unde
 - **External-memory-systems detail**: `../research/from-007-memory-systems/{research.md, iterations/iteration-001.md, iteration-002.md, iteration-007.md, iteration-009.md, iteration-019.md}`
 - **Plain-language before→after**: `../../research/synthesis/06-memory-systems-findings.md`
 - **Roadmap (MEMORY-SYSTEMS addendum, authoritative)**: `../../research/roadmap.md`
-- **Wave-0 done-record (this bundle is ABSENT)**: `../../../030-memory-search-intelligence-impl/spec.md` §14
 <!-- /ANCHOR:related-docs -->

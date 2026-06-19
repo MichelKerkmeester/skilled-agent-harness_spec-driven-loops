@@ -122,5 +122,5 @@ _memory:
 - **Plan**: See `plan.md`
 - **Checklist**: See `checklist.md`
 - **Decision Records**: See `decision-record.md`
-- **Shipped evidence**: `../../../030-memory-search-intelligence-impl/spec.md` §14 (skip-closed-in-sweep = `e1c6a3c793`)
+- **Shipped evidence**: Wave-0 record (skip-closed-in-sweep = `e1c6a3c793`)
 <!-- /ANCHOR:cross-refs -->

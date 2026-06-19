@@ -110,5 +110,5 @@ _memory:
 - **Checklist**: See `checklist.md`
 - **Depends-on sibling**: `../010-consolidation-cursor-clock/` (C-G1 clock host + C4-C cursor + `LT-turn-cadence-trigger` gate)
 - **Supplies governor to sibling**: `../016-iterative-agentic-recall/` (`CG-agentic-tool-loop` reuses the tool-rule DAG)
-- **Shipped record (Wave-0)**: `../../../030-memory-search-intelligence-impl/spec.md` §14 (async-sleeptime-consolidation absent → all PENDING)
+- **Shipped record (Wave-0)**: Wave-0 record (async-sleeptime-consolidation absent → all PENDING)
 <!-- /ANCHOR:cross-refs -->

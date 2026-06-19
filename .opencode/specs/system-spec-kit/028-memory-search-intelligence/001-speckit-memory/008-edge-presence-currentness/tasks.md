@@ -123,5 +123,4 @@ _memory:
 - **Decision record**: `decision-record.md`.
 - **Phase research**: `../research/research.md`.
 - **Roadmap (authoritative)**: `../../research/roadmap.md`.
-- **Wave-0 done-evidence (read-only)**: `../../../030-memory-search-intelligence-impl/spec.md` §14.
 <!-- /ANCHOR:cross-refs -->

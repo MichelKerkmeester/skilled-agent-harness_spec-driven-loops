@@ -123,5 +123,4 @@ _memory:
 - **Decision Records**: See `decision-record.md`
 - **Research**: `../research/iterations/iteration-018.md` (aionforge-procedural the one genuine miss), `../research/research.md` (Broadening follow-up `SA-outcome-weighted-ranking`).
 - **Sibling (owns shared Beta + C4-seam promoter):** `../004-c4-shadow-seam-beta-posterior/`.
-- **Shipped record (none of these shipped):** `../../../030-memory-search-intelligence-impl/spec.md` §14.
 <!-- /ANCHOR:cross-refs -->

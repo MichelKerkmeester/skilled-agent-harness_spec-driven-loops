@@ -11,9 +11,9 @@
     "rename",
     "supersedes"
   ],
-  "lastUpdated": "2026-06-19T06:21:34.936Z",
+  "lastUpdated": "2026-06-19T11:32:15.939Z",
   "specId": "002",
-  "folderSlug": "002-edge-staleness-correctness",
+  "folderSlug": "edge-staleness-correctness",
   "parentChain": [
     "system-spec-kit",
     "028-memory-search-intelligence",

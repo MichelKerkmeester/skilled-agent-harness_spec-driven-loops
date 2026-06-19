@@ -225,5 +225,5 @@ Add two independent, additive capabilities: a deterministic zero-token doc-symbo
 - **Subsystem research**: See `../research/research.md` (doc-lane baseline row "Doc-lane is hash-only") and `../research/iterations/iteration-004.md` (Q5 answered; C1 build sketch; ranking Q5-C1=12 BUILD) + `../research/deltas/iter-004.jsonl` (findings `q5-f1..f4`, proposal `cand-q5-c1-doc-symbol-pass`).
 - **Authoritative roadmap**: See `../../research/roadmap.md` (Q5-C1 tier-2 BUILD, "not merely a SymbolKind tolerance note" L192; Q7 lease-classification telemetry L296, "no metrics sink today").
 - **Synthesis**: See `../../research/synthesis/05-all-findings-plain-language.md` (item 26 "Index doc + config symbols (Q5-C1) tier-2" L160) and `../../research/synthesis/01-go-candidates.md`.
-- **Prior shipped record (Wave-0)**: `../../../030-memory-search-intelligence-impl/spec.md` §14 was used only to confirm these candidates were not already shipped before this phase; Q5-C1 and Q7-lease are now implemented locally in this phase.
+- **Prior shipped record (Wave-0)**: Wave-0 record was used only to confirm these candidates were not already shipped before this phase; Q5-C1 and Q7-lease are now implemented locally in this phase.
 <!-- /ANCHOR:related-docs -->

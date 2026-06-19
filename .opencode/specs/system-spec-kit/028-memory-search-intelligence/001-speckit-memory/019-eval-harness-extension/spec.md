@@ -61,7 +61,7 @@ This implementation phase extends the Spec-Kit Memory MCP's **already ~80%-built
 | **Source synthesis** | `../../research/synthesis/08-retrieval-evaluation-findings.md` (Wave-1 spine) |
 | **Source roadmap** | `../../research/roadmap.md` (BROADENING + 027-REVISIT + MEMORY-SYSTEMS addenda, authoritative) |
 | **Gate-zero precondition** | `../001-corpus-reindex-gate-zero/` (sibling; reindex + C9-4 coverage guard) |
-| **Wave-0 shipped record** | `../../../030-memory-search-intelligence-impl/spec.md` §14 (none of these; its "C9" is the embedder-degrade candidate) |
+| **Wave-0 shipped record** | Wave-0 record (none of these; its "C9" is the embedder-degrade candidate) |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -124,11 +124,11 @@ Build the **one harness extension** the campaign converged on: a single-pass dia
 - **A8-3 recall-delta@k UNION panel** — RESCOPED to a low-priority coverage instrument (the "structural blindness" headline was refuted); not load-bearing for this phase.
 - **Wave-0 correctness items** (A7-4 maintenance-grace TTL, A4 015-residual `resolveSearchScore`, divergence-magnitude telemetry, S5-evalMode fix, cosine-math dedup) — ship in parallel with no harness dependency; their own phases.
 - **The traffic-selection cite-path wiring** (`recordUserSelection` on `/memory:search`) — adjacent label-bootstrap; not required to ship the three lanes against the static golden set.
-- Modifying any external reference system under `external/`, or the Wave-0 record under `030-memory-search-intelligence-impl/`.
+- Modifying any external reference system under `external/`, or the Wave-0 record under the Wave-0 implementation record.
 
 ### Files to Change
 
-Per-candidate seams above. Production code under `.opencode/skills/system-spec-kit/mcp_server/lib/eval/` (`ablation-framework.ts`, `eval-metrics.ts`) and `lib/feedback/` (`shadow-scoring.ts`, `shadow-evaluation-runtime.ts`, `rank-metrics.ts`), plus golden-set data tagging in `lib/eval/data/`. Tests alongside each change. No edits to `030-memory-search-intelligence-impl/` (Wave-0 record, read-only evidence) and no edits to the sibling gate-zero phase.
+Per-candidate seams above. Production code under `.opencode/skills/system-spec-kit/mcp_server/lib/eval/` (`ablation-framework.ts`, `eval-metrics.ts`) and `lib/feedback/` (`shadow-scoring.ts`, `shadow-evaluation-runtime.ts`, `rank-metrics.ts`), plus golden-set data tagging in `lib/eval/data/`. Tests alongside each change. No edits to the Wave-0 implementation record (Wave-0 record, read-only evidence) and no edits to the sibling gate-zero phase.
 <!-- /ANCHOR:scope -->
 
 ---
@@ -251,7 +251,7 @@ Per-candidate seams above. Production code under `.opencode/skills/system-spec-k
 <!-- ANCHOR:status -->
 ## 14. CANDIDATE STATUS
 
-> Cross-checked against the Wave-0 shipped record `../../../030-memory-search-intelligence-impl/spec.md` §14 and the 030 commit range (`git log --oneline 1ecc531431..ab5459fb6d`): **none of these candidates shipped in Wave-0.** 030 §14 row 2 ships a candidate it labels "C9" — that is the *embedder-degrade* candidate (recall degrades to lexical + `embedder_available:false`), a different C9 namespace from these C9-1/C9-2/C9-3 metric lanes. This phase now implements C9-1/C9-2/C9-3 as code + deterministic tests. A8 remains pending under the no-schema/no-live-benchmark constraint.
+> Cross-checked against the Wave-0 shipped record and the Wave-0 commit range (`git log --oneline 1ecc531431..ab5459fb6d`): **none of these candidates shipped in Wave-0.** the Wave-0 ships a candidate it labels "C9" — that is the *embedder-degrade* candidate (recall degrades to lexical + `embedder_available:false`), a different C9 namespace from these C9-1/C9-2/C9-3 metric lanes. This phase now implements C9-1/C9-2/C9-3 as code + deterministic tests. A8 remains pending under the no-schema/no-live-benchmark constraint.
 
 | # | Candidate | Status | Gate | 030 evidence | Notes |
 |---|-----------|--------|------|--------------|-------|
@@ -276,4 +276,3 @@ Per-candidate seams above. Production code under `.opencode/skills/system-spec-k
 - **Synthesis (the spine):** `../../research/synthesis/08-retrieval-evaluation-findings.md`.
 - **Cross-cutting roadmap (authoritative):** `../../research/roadmap.md` (BROADENING + 027-REVISIT + MEMORY-SYSTEMS addenda).
 - **Gate-zero precondition (sibling):** `../001-corpus-reindex-gate-zero/spec.md` (reindex + C9-4 `assertEmbeddingCoverage`).
-- **Wave-0 shipped record (done-evidence, read-only):** `../../../030-memory-search-intelligence-impl/spec.md` §14.

@@ -69,7 +69,7 @@ This is the first implementation sub-phase under the `001-speckit-memory` resear
 - **`MEM-fused-summary-channel`** — promote the built community/summaries from a weak-result post-pipeline fallback (and a stage-1 candidate source) into a first-class *weighted RRF fusion lane*.
 - **`CG-global-context-summary-hierarchy`** — add a two-tier world-summary (root world-summary + top-k subsections) prepended as a coarse-to-fine grounding prelude *before* retrieved context.
 
-Both are PENDING — neither was shipped in the flat Wave-0 record (`030-memory-search-intelligence-impl/spec.md` §14 has no row for either). Both are intelligence-class (they change recall ordering and prompt content), so they ship behind a default-off shadow flag and require a captured before/after retrieval baseline per the regression-baseline rule. No measured benefit number exists for either candidate today; all leverage estimates in the research are structural inference.
+Both are PENDING — neither was shipped in the flat Wave-0 record. Both are intelligence-class (they change recall ordering and prompt content), so they ship behind a default-off shadow flag and require a captured before/after retrieval baseline per the regression-baseline rule. No measured benefit number exists for either candidate today; all leverage estimates in the research are structural inference.
 
 **Scope Boundary**: This phase wires the existing summary/community substrate into fusion and adds the grounding prelude. It does NOT build new summary/community computation, new embedding collections, or the Wave-2 "semantic edge layer". Weight re-tuning is in scope (the inline RRF weights are ablation-derived and must be re-tuned), but a full ablation re-derivation campaign is deferred to its own benchmark.
 
@@ -274,5 +274,5 @@ Per-candidate status. The fused summary lane has shadow-gated code and determini
 - **Task Breakdown**: See `tasks.md`.
 - **Parent Spec**: See `../spec.md`.
 - **Source research**: `../../research/roadmap.md` (MEMORY-SYSTEMS ADDENDUM #5/#13), `../../research/synthesis/06-memory-systems-findings.md`, `../research/from-007-memory-systems/iterations/iteration-{017,018,019,022}.md`.
-- **Wave-0 shipped record**: `../../../030-memory-search-intelligence-impl/spec.md` §14 (neither candidate listed → PENDING).
+- **Wave-0 shipped record**: Wave-0 record (neither candidate listed → PENDING).
 <!-- /ANCHOR:related-docs -->

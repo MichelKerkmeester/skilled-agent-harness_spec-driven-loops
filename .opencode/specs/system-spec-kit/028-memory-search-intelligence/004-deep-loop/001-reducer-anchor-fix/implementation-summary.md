@@ -20,7 +20,6 @@ _memory:
       - "plan.md"
       - "tasks.md"
       - "implementation-summary.md"
-      - "../../../030-memory-search-intelligence-impl/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-004-001-replan"
@@ -115,5 +114,5 @@ Shipped as a single additive, template-only hunk in commit `738e118751` on the 0
 - **Specification**: See `spec.md`
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
-- **Shipped record (Wave-0)**: `../../../030-memory-search-intelligence-impl/spec.md` §14 candidate 1 (commit `738e118751`)
+- **Shipped record (Wave-0)**: Wave-0 record (commit `738e118751`)
 - **Source research**: `../research/research.md`; `../../research/roadmap.md`; `../../research/synthesis/01-go-candidates.md`

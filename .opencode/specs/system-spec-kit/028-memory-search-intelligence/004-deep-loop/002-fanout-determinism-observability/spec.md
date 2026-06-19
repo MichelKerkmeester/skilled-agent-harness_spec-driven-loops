@@ -25,7 +25,6 @@ _memory:
       - "../research/research.md"
       - "../../research/roadmap.md"
       - "../../research/synthesis/01-go-candidates.md"
-      - "../../../030-memory-search-intelligence-impl/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-004-fanout-determinism-observability"
@@ -45,7 +44,7 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-This sub-phase records the deep-loop fan-out **determinism + observability** cluster — the fan-out-layer group touching `fanout-merge.cjs` / `fanout-pool.cjs` / `fanout-run.cjs` — and completes its Wave-1 tail. Three candidates already **shipped** in the flat Wave-0 packet (030, commit `46812f12a8`): the **deterministic merge total-order** (a hand-written `compareByContentThenId` content-then-id total comparator layered on top of the first-write-wins `id||title` dedup), the **read-derived pool gauges** (`lag`/`pending`/`failed`, computed from the pool's `total`/`settled`/`pending`/`failed` counters with no new state), and **graceful self-stop** (a `stopped` partial-summary flush on SIGINT/SIGTERM plus treating an empty no-new-findings tick as valid convergence rather than failure). The Wave-1 tail is now implemented locally: the **order-invariance property tests** prove research and review merged registries stay byte-identical across lineage arrival-order permutations, and the **near-duplicate merge dedup** is available default-off behind an explicit flag so surface-variant findings can be collapsed by normalized content without changing default ranking behavior.
+This sub-phase records the deep-loop fan-out **determinism + observability** cluster — the fan-out-layer group touching `fanout-merge.cjs` / `fanout-pool.cjs` / `fanout-run.cjs` — and completes its Wave-1 tail. Three candidates already **shipped** in the flat Wave-0 implementation record (030, commit `46812f12a8`): the **deterministic merge total-order** (a hand-written `compareByContentThenId` content-then-id total comparator layered on top of the first-write-wins `id||title` dedup), the **read-derived pool gauges** (`lag`/`pending`/`failed`, computed from the pool's `total`/`settled`/`pending`/`failed` counters with no new state), and **graceful self-stop** (a `stopped` partial-summary flush on SIGINT/SIGTERM plus treating an empty no-new-findings tick as valid convergence rather than failure). The Wave-1 tail is now implemented locally: the **order-invariance property tests** prove research and review merged registries stay byte-identical across lineage arrival-order permutations, and the **near-duplicate merge dedup** is available default-off behind an explicit flag so surface-variant findings can be collapsed by normalized content without changing default ranking behavior.
 
 **Key Decisions**: Record-don't-rebuild — the trio shipped in Wave-0 and is re-confirmed here against current source and `030` §14 candidate 12, not re-implemented. The order-invariance gate added deterministic lineage-label and merged metadata ordering so full-registry byte comparisons no longer depend on arrival order. The near-dup dedup is a content-normalization addition, not a blunt key change: it collapses only when normalized body content matches, keeps same-id different-content findings as conflict variants, and remains default-off because it can affect downstream ranking/convergence signals.
 
@@ -63,7 +62,7 @@ This sub-phase records the deep-loop fan-out **determinism + observability** clu
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent research phase** | `028-memory-search-intelligence/004-deep-loop` (Deep Loop — convergence/fan-out/council intelligence) |
 | **Source research** | `../research/research.md`; `../../research/roadmap.md`; `../../research/synthesis/01-go-candidates.md` + `03` + `04` |
-| **Shipped predecessor** | `../../../030-memory-search-intelligence-impl/spec.md` section 14 candidate 12 (Deep-Loop trio + graceful-self-stop, commit `46812f12a8`) |
+| **Shipped predecessor** | Wave-0 record (Deep-Loop trio + graceful-self-stop, commit `46812f12a8`) |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -251,5 +250,5 @@ Record the deep-loop fan-out determinism + observability trio that shipped in Wa
 - **Task Breakdown**: See `tasks.md`
 - **Source research**: `../research/research.md` (Deep Loop external-mining synthesis; the merge-tiebreak/failure-class WEAKER corrections + the fan-out ledger baseline), `../research/iterations/iteration-011.md` (`DL-arrival-order-property-test` REAL, preserve/recover REFUTED); `../../research/roadmap.md` (BROADENING §2 merge-tiebreak/failure-class corrections, §5 newInfoRatio gap, §6 no-measured-number caveat); `../../research/synthesis/01-go-candidates.md` (Deep-Loop trio row + line 95 graceful-self-stop GO + line 101 property-test verification gate) + `03-corrections-caveats-and-residuals.md` + `04-sibling-and-cross-cutting.md`
 - **Sibling sub-phase (resilience cluster, do not duplicate)**: `../003-fanout-failure-recovery/` (failure-class taxonomy + transient/fatal retry + orphan reset + recover-vs-fresh gate)
-- **Shipped predecessor (do not modify)**: `../../../030-memory-search-intelligence-impl/spec.md` section 14 candidate 12 (Deep-Loop trio + graceful-self-stop, commit `46812f12a8`)
+- **Shipped predecessor (historical evidence)**: Wave-0 record (Deep-Loop trio + graceful-self-stop, commit `46812f12a8`)
 <!-- /ANCHOR:related-docs -->

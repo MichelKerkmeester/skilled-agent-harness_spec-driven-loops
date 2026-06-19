@@ -19,7 +19,6 @@ _memory:
       - "spec.md"
       - "plan.md"
       - "tasks.md"
-      - "../../../030-memory-search-intelligence-impl/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-001-determinism-foundation"
@@ -53,7 +52,7 @@ _memory:
 - [x] CHK-001 [P0] Foundation scope is documented and bounded to determinism + content-id seams.
   - **Evidence**: `spec.md` sections 2, 3, and 13 define the 9-candidate set and exclude downstream consumers (C2-A/B/C, C4-A, C4-B).
 - [x] CHK-002 [P0] 028 research is treated as roadmap input, shipped record traced to packet 030.
-  - **Evidence**: `spec.md` METADATA + section 13 cite `../research/research.md` and `../../../030-memory-search-intelligence-impl/spec.md` section 14.
+ - **Evidence**: `spec.md` METADATA + section 13 cite `../research/research.md` and Wave-0 record.
 - [x] CHK-003 [P1] Candidate seams identified before implementation.
   - **Evidence**: `spec.md` section 3 candidate table lists file:line seams; `plan.md` affected-surfaces table records them.
 <!-- /ANCHOR:pre-impl -->

@@ -236,4 +236,4 @@ Make the incremental scan dependency-transitive: when a dependency changes, forc
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`
 - **Research (PRIMARY)**: `../research/research.md`, `../research/iterations/iteration-022.md` (CG-incremental-edge-staleness-repair build sketch, repro CONFIRMED), `../research/iterations/iteration-016.md` (the gap), `../research/iterations/iteration-002.md` (Q1-C2 SUPERSEDES candidate), `../../research/roadmap.md` (BROADENING §5 + MEMORY-SYSTEMS addenda), `../../research/synthesis/01-go-candidates.md` (Wave-1 row), `../../research/synthesis/04-sibling-and-cross-cutting.md` (CG-edge-staleness correction: content-hash-gated, not mtime).
-- **Wave-0 shipped record**: `../../../030-memory-search-intelligence-impl/spec.md` §14 (neither candidate is in the done table; CG dependency-transitivity is listed in §Wave-1 at `030 spec.md:104`).
+- **Wave-0 shipped record**: Wave-0 record (neither candidate is in the done table; CG dependency-transitivity is listed in §Wave-1 at `the Wave-1 list`).

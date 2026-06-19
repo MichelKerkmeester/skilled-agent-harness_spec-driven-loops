@@ -255,4 +255,4 @@ Make the causal + lineage temporal model bi-temporally correct: close superseded
 - **Verification Checklist**: See `checklist.md`
 - **Decision Records**: See `decision-record.md`
 - **Research (PRIMARY)**: `../research/research.md`, `../../research/roadmap.md` (BROADENING + 027-REVISIT + MEMORY-SYSTEMS addenda), `../../research/synthesis/01-go-candidates.md`, `../../research/synthesis/06-memory-systems-findings.md`, `../research/from-005-revisit-027/research.md`.
-- **Wave-0 shipped record**: `../../../030-memory-search-intelligence-impl/spec.md` §14 (skip-closed-in-sweep = `e1c6a3c793`).
+- **Wave-0 shipped record**: Wave-0 record (skip-closed-in-sweep = `e1c6a3c793`).

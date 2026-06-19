@@ -13,9 +13,9 @@
     "q5-c1",
     "q7-lease"
   ],
-  "lastUpdated": "2026-06-19T06:21:35.798Z",
+  "lastUpdated": "2026-06-19T09:26:36.290Z",
   "specId": "008",
-  "folderSlug": "008-doc-symbol-lane",
+  "folderSlug": "doc-symbol-lane",
   "parentChain": [
     "system-spec-kit",
     "028-memory-search-intelligence",

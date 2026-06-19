@@ -244,7 +244,7 @@ The anti-flood Beta posterior is needed by two subsystems at once: Skill Advisor
 - **Tasks**: `tasks.md` (T008-T010 Beta primitive + adapter; T021 NO-GO record).
 - **Checklist**: `checklist.md` (CHK-100 architecture decisions documented).
 - **Source research**: `../research/research.md` (Internal Baseline + Broadening Addendum), `../../research/roadmap.md` (spine 5 + §2/§4), `../../research/synthesis/{01,04}-*` (RC6 shared-primitive correction); deltas `iter-010.jsonl` (C4-seam GO), `iter-014.jsonl` (no Beta math), `iter-016.jsonl` (build sequence + D2 sharing), `iter-017.jsonl` (13% unsourced).
-- **Shipped record (do not modify)**: `../../../030-memory-search-intelligence-impl/spec.md` section 14 (line 106 lists Advisor C4 / C5 as NO-GO until benchmarked/built; no advisor candidate shipped).
+- **Shipped record (historical evidence)**: Wave-0 record (line 106 lists Advisor C4 / C5 as NO-GO until benchmarked/built; no advisor candidate shipped).
 
 <!--
 Level 3 Decision Record (Addendum): One ADR per major decision.

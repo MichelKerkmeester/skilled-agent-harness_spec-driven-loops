@@ -20,7 +20,6 @@ _memory:
       - "spec.md"
       - "plan.md"
       - "tasks.md"
-      - "../../../030-memory-search-intelligence-impl/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-002-determinism-walk-order"
@@ -55,7 +54,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The Q4-C1 RRF-additive rank-time trust blend shipped in the flat Wave-0 packet (030) and is the prerequisite already in place: the code-graph impact/dependency ranker blends the already-plumbed `confidence`/`evidenceClass` edge metadata into ranking as an **additive** term. This pass implemented `det-context-order-global`: `rankContextEdges` now derives a stable content key from the related node content hash, related symbol id, file/fqName, edge type and endpoints, assigns baseline rank from that deterministic order, then uses the same key for equal-score ties. The `fuseResultsMulti` dual-channel adapter (`Q8` / `fuseResultsMulti-codegraph-promote`) and Q4-C1 boost-magnitude benchmark tuning remain pending with explicit gates.
+The Q4-C1 RRF-additive rank-time trust blend shipped in the flat Wave-0 implementation record (030) and is the prerequisite already in place: the code-graph impact/dependency ranker blends the already-plumbed `confidence`/`evidenceClass` edge metadata into ranking as an **additive** term. This pass implemented `det-context-order-global`: `rankContextEdges` now derives a stable content key from the related node content hash, related symbol id, file/fqName, edge type and endpoints, assigns baseline rank from that deterministic order, then uses the same key for equal-score ties. The `fuseResultsMulti` dual-channel adapter (`Q8` / `fuseResultsMulti-codegraph-promote`) and Q4-C1 boost-magnitude benchmark tuning remain pending with explicit gates.
 
 ### Files Changed
 

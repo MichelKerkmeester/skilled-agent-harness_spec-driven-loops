@@ -68,7 +68,7 @@ This is a Wave-2 implementation sub-phase under the `001-speckit-memory` researc
 - **`A2-isotonic-calibration`** — graduate the fully-built-but-dormant isotonic confidence calibration. The PAV fitter `fitCalibration` has zero non-test callers, the "proxy seed" the docs claim shipped is a phantom (no on-disk artifact), and no ECE/Brier/reliability metric exists anywhere — so 027's promote-on-evidence doctrine is literally unexecutable for this flag. Harvest real labels → fit → measure ECE vs identity → flip the flag on evidence.
 - **`A3-AB-shipped-levers`** — A/B the three levers 017/015 shipped default-on but never measured against recall: cosine head-reorder (S5), generic-query escalation (S3), and the top-dominant request-quality verdict (S2). On/off each on the golden set and report the measured effect.
 
-Both are PENDING — neither appears in the flat Wave-0 shipped record (`030-memory-search-intelligence-impl/spec.md` §14 has no row for either; that record's candidate ledger stops at the additive/reversible Wave-0 set). Both are intelligence-class (calibration changes reported confidence magnitudes; the levers change ranking, escalation, and the gate verdict), so they ship behind default-off shadow flags and promote only on captured live evidence per the 027 doctrine and the regression-baseline-and-delta rule. No measured benefit number exists for either candidate today; every leverage estimate in the research is structural inference (`synthesis/08`, "Honest caveats").
+Both are PENDING — neither appears in the flat Wave-0 shipped record (neither candidate is listed; that record's candidate ledger stops at the additive/reversible Wave-0 set). Both are intelligence-class (calibration changes reported confidence magnitudes; the levers change ranking, escalation, and the gate verdict), so they ship behind default-off shadow flags and promote only on captured live evidence per the 027 doctrine and the regression-baseline-and-delta rule. No measured benefit number exists for either candidate today; every leverage estimate in the research is structural inference (`synthesis/08`, "Honest caveats").
 
 **Scope Boundary**: This phase *consumes* the eval-harness — it does NOT build it. The harness metric lanes (gate-verdict / ECE / cold) and the per-class promotion gate (the `C9-1/C9-2/C9-3 → A8` spine) are a separate sibling phase; this phase adds the calibration label-harvest glue + the ECE validation lane's *consumer*, and the A/B searchFn wiring. It also does NOT build new calibration math (the PAV fitter is complete) or new lever logic (all three levers already ship in code).
 
@@ -254,7 +254,7 @@ Make the dormant isotonic calibration promotable on real evidence — harvest th
 <!-- ANCHOR:candidate-status -->
 ## 9. CANDIDATE STATUS
 
-Per-candidate status. Neither candidate appears in the Wave-0 shipped record (`030-memory-search-intelligence-impl/spec.md` §14), so both are PENDING. Both are Wave-2 intelligence-class consumers gated on the 019 eval-harness.
+Per-candidate status. Neither candidate appears in the Wave-0 shipped record (Wave-0 evidence), so both are PENDING. Both are Wave-2 intelligence-class consumers gated on the 019 eval-harness.
 
 | Candidate | Status | Gate | Evidence / Notes |
 |-----------|--------|------|------------------|
@@ -297,5 +297,5 @@ Per-candidate status. Neither candidate appears in the Wave-0 shipped record (`0
 - **Parent Spec**: See `../spec.md`.
 - **Source research**: `../../research/synthesis/08-retrieval-evaluation-findings.md` (#6 isotonic / #7 A/B levers), `../research/from-008-retrieval-evaluation/research.md`, `../research/from-008-retrieval-evaluation/deltas/iter-004.jsonl` (A2), `.../deltas/iter-005.jsonl` (A3), `.../deltas/iter-010.jsonl` + `iter-012.jsonl` (verify + tiering), `../../research/roadmap.md` (BROADENING §6 "no measured benefit number").
 - **Gate dependency**: `../001-corpus-reindex-gate-zero/spec.md` (gate-zero reindex); the 019 eval-harness spine (`C9-1/C9-2/C9-3 → A8`, sibling phase) for the ECE lane + promotion gate.
-- **Wave-0 shipped record**: `../../../030-memory-search-intelligence-impl/spec.md` §14 (neither candidate listed → PENDING).
+- **Wave-0 shipped record**: Wave-0 record (neither candidate listed → PENDING).
 <!-- /ANCHOR:related-docs -->

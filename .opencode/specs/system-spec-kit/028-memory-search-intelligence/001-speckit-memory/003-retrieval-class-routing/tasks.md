@@ -118,5 +118,5 @@ _memory:
 - **Plan**: See `plan.md`
 - **Verification Checklist**: See `checklist.md`
 - **Source research**: `../research/research.md`; `../../research/roadmap.md`; `../../research/synthesis/{01,03,06}`
-- **Shipped-record (done-candidate evidence)**: `../../../030-memory-search-intelligence-impl/spec.md` §14 (cluster absent → all PENDING)
+- **Shipped-record (done-candidate evidence)**: Wave-0 record (cluster absent → all PENDING)
 <!-- /ANCHOR:cross-refs -->

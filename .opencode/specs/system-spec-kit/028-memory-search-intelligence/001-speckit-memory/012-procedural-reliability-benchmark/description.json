@@ -10,9 +10,9 @@
     "benchmark-first",
     "proxy-only"
   ],
-  "lastUpdated": "2026-06-19T06:21:33.336Z",
+  "lastUpdated": "2026-06-19T17:42:41.314Z",
   "specId": "012",
-  "folderSlug": "012-procedural-reliability-benchmark",
+  "folderSlug": "procedural-reliability-benchmark",
   "parentChain": [
     "system-spec-kit",
     "028-memory-search-intelligence",

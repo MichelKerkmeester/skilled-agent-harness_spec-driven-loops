@@ -53,7 +53,6 @@ _memory:
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent research phase** | `028-memory-search-intelligence/004-deep-loop` (Deep Loop — convergence/fan-out/council intelligence) |
 | **Source research** | `../research/research.md`; `../../research/roadmap.md`; `../../research/synthesis/01-go-candidates.md` + `03` + `04` |
-| **Shipped-record cross-ref** | `030-memory-search-intelligence-impl/spec.md` §14 (Wave-0 flat record) |
 
 <!-- /ANCHOR:metadata -->
 ---
@@ -247,6 +246,6 @@ Land the deep-loop **STOP-input corroboration cluster** — the convergence-hard
 - **Parent research**: `../research/research.md` (Deep Loop external-mining synthesis); the STOP-corroboration detail in `../research/iterations/iteration-002.md`, `iteration-007.md`, `iteration-008.md`, `iteration-012.md`, `iteration-013.md`, `iteration-018.md` + `../research/deltas/iter-002.jsonl`, `iter-008.jsonl`, `iter-012.jsonl`, `iter-013.jsonl`, `iter-018.jsonl`.
 - **Cross-cutting roadmap**: `../../research/roadmap.md` (§5 item 2 "DL newInfoRatio audit" net-new gap; BROADENING ADDENDUM newInfoRatio non-ingestion); `../../research/synthesis/01-go-candidates.md` (the `:99-101` STOP-residuals + needs-benchmark residuals); `03-corrections-caveats-and-residuals.md` (`:47` prose-loop-does-consume precision); `04-sibling-and-cross-cutting.md`.
 - **Sibling impl sub-phase**: `../003-fanout-failure-recovery/` (the resilience cluster; this sub-phase is the convergence/STOP-corroboration complement).
-- **Shipped record (Wave-0)**: `../../../030-memory-search-intelligence-impl/spec.md` §14 candidate 12 (commit `46812f12a8` — gauges/merge/graceful-self-stop; the graceful-self-stop instance is C7 DONE here; explicitly did NOT ship failure-class or newInfoRatio consumption).
+- **Shipped record (Wave-0)**: Wave-0 record (commit `46812f12a8` — gauges/merge/graceful-self-stop; the graceful-self-stop instance is C7 DONE here; explicitly did NOT ship failure-class or newInfoRatio consumption).
 
 <!-- /ANCHOR:related-docs -->

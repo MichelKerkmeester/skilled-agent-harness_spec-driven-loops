@@ -263,7 +263,6 @@ Close the estimator→registry seam, build a shared flood-immune Beta-posterior 
 - **Decision Records**: See `decision-record.md`
 - **Parent research**: `../research/research.md`, `../research/iterations/iteration-007.md` (the gate family), `iteration-010.md` (C4-seam GO), `iteration-014.md` (no Beta math), `iteration-016.md` (build sequence + D2 sharing), `iteration-017.md` (13% unsourced).
 - **Roadmap**: `../../research/roadmap.md` (spine 5 Bounded Reliability-Weighted Learning + BROADENING §2/§4); synthesis `../../research/synthesis/{01,03,04}`.
-- **Wave-0 shipped record (none of these candidates shipped):** `../../../030-memory-search-intelligence-impl/spec.md` §14.
 
 ---
 

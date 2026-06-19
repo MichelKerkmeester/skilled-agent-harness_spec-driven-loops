@@ -60,7 +60,7 @@ This sub-phase implements the highest-stakes spine of the Spec-Kit Memory MCP �
 | **Parent research phase** | `system-spec-kit/028-memory-search-intelligence/001-speckit-memory` |
 | **Subsystem** | Spec-Kit Memory MCP (PRIMARY) — retrieval intelligence |
 | **Source research** | `../research/research.md` + `../../research/roadmap.md` + `../../research/synthesis/{01,03,04}-*.md` |
-| **Shipped record** | `../../../030-memory-search-intelligence-impl/spec.md` §14 (commits `738e118751..ab5459fb6d`) |
+| **Shipped record** | Wave-0 record (commits `738e118751..ab5459fb6d`) |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -239,4 +239,4 @@ This sub-phase owns exactly six candidates from the 028/001 research. Each is de
 - **Subsystem research (PRIMARY):** `../research/research.md`.
 - **Authoritative roadmap + corrections:** `../../research/roadmap.md` (BROADENING + 027-REVISIT + MEMORY-SYSTEMS addenda), `../../research/synthesis/01-go-candidates.md`, `../../research/synthesis/03-corrections-caveats-and-residuals.md`, `../../research/synthesis/04-sibling-and-cross-cutting.md`.
 - **Per-candidate deltas:** `../research/deltas/iter-012.jsonl` (residual-retention), `iter-016.jsonl` (feasibility), `iter-019.jsonl` (injection-filter / system-kind / HIGH net-new), `iter-033.jsonl` + `iter-036.jsonl` (recall-trust reference-impl + ready-to-spec).
-- **Shipped record (Wave-0, do NOT modify):** `../../../030-memory-search-intelligence-impl/spec.md` §14; commits `738e118751..ab5459fb6d`.
+- **Shipped record (Wave-0, historical evidence):** Wave-0 record; commits `738e118751..ab5459fb6d`.

@@ -108,5 +108,4 @@ _memory:
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 - **Source research**: `../research/research.md`, `../../research/roadmap.md`, `../../research/synthesis/01-go-candidates.md` + `06`
-- **Shipped record (Wave-0):** `../../../030-memory-search-intelligence-impl/spec.md` §14
 <!-- /ANCHOR:cross-refs -->

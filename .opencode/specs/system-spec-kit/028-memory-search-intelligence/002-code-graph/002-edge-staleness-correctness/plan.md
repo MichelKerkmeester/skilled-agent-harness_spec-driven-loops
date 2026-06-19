@@ -234,4 +234,4 @@ Phase 1 (Setup) ──► Phase 2 (Core) ──► Phase 3 (Verify)
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`
 - **Research (PRIMARY)**: `../research/iterations/iteration-022.md` (build sketch, repro CONFIRMED), `../research/iterations/iteration-016.md`, `../research/iterations/iteration-002.md`, `../../research/synthesis/04-sibling-and-cross-cutting.md` (content-hash-gated correction).
-- **Shipped record**: `../../../030-memory-search-intelligence-impl/spec.md` §14 + §Wave-1 (`030 spec.md:104`).
+- **Shipped record**: Wave-0 record and Wave-1 list.

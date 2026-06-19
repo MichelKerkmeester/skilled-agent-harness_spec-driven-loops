@@ -46,7 +46,7 @@ _memory:
 
 **Task Format**: `T### [P?] Description (file path)`
 
-**Per-candidate status** (cross-checked against `../../../030-memory-search-intelligence-impl/spec.md` §14 and `git log --oneline 1ecc531431..ab5459fb6d`):
+**Per-candidate status** (cross-checked against `git log --oneline 1ecc531431..ab5459fb6d`):
 
 | Candidate | Status | Gate / Evidence |
 |-----------|--------|-----------------|
@@ -116,7 +116,7 @@ Q6-C2 soft watermark (DONE).
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 - **Research**: `../research/research.md`; iter-21 (Q6-C2 build sketch), iter-23/24 (bump-site refutation)
-- **Shipped record**: `../../../030-memory-search-intelligence-impl/spec.md` §14 (Q6 pair absent → PENDING)
+- **Shipped record**: Wave-0 record (Q6 pair absent → PENDING)
 <!-- /ANCHOR:cross-refs -->
 
 ---

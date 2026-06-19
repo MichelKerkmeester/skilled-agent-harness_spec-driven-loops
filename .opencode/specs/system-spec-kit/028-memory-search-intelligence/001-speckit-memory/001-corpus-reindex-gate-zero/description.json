@@ -10,9 +10,9 @@
     "recall",
     "benchmarking"
   ],
-  "lastUpdated": "2026-06-19T06:21:31.694Z",
+  "lastUpdated": "2026-06-19T09:26:36.222Z",
   "specId": "001",
-  "folderSlug": "001-corpus-reindex-gate-zero",
+  "folderSlug": "corpus-reindex-gate-zero",
   "parentChain": [
     "system-spec-kit",
     "028-memory-search-intelligence",

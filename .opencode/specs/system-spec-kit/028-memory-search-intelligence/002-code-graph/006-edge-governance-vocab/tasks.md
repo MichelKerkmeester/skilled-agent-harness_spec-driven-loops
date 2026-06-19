@@ -126,5 +126,5 @@ _memory:
 - **Plan**: See `plan.md`
 - **Verification Checklist**: See `checklist.md`
 - **Research**: `../research/iterations/iteration-009.md` (cluster), `../research/iterations/iteration-008.md` (derived-clock), `../research/iterations/iteration-013.md` (feasibility), `../research/iterations/iteration-023.md` (build sequence), `../research/iterations/iteration-024.md` (GO re-verify)
-- **Wave-0 shipped record**: `../../../030-memory-search-intelligence-impl/spec.md` §14 (none of these candidates in the done table)
+- **Wave-0 shipped record**: Wave-0 record (none of these candidates in the done table)
 <!-- /ANCHOR:cross-refs -->

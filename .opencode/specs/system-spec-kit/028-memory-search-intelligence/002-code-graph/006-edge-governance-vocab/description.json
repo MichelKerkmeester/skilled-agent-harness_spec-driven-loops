@@ -16,9 +16,9 @@
     "derived-clock",
     "tiebreak"
   ],
-  "lastUpdated": "2026-06-19T06:21:35.512Z",
+  "lastUpdated": "2026-06-19T17:42:41.331Z",
   "specId": "006",
-  "folderSlug": "006-edge-governance-vocab",
+  "folderSlug": "edge-governance-vocab",
   "parentChain": [
     "system-spec-kit",
     "028-memory-search-intelligence",

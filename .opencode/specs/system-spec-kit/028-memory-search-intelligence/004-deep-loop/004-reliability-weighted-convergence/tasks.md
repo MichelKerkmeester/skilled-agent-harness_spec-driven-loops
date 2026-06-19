@@ -139,7 +139,7 @@ FAILURE MODES:
 - **Plan**: `plan.md` (phase dependencies, architecture overview)
 - **Decisions**: `decision-record.md` (f64-vs-integer, default-off, extract-first, read-only D2)
 - **Research**: `../research/research.md` (Candidate Catalog, Q1-Q7 answers, references); roadmap `../../research/roadmap.md`; synthesis `../../research/synthesis/01-go-candidates.md` + `03` + `04`
-- **Shipped record**: `../../../030-memory-search-intelligence-impl/spec.md` §14 (no reliability-cluster row → all PENDING)
+- **Shipped record**: Wave-0 record (no reliability-cluster row → all PENDING)
 
 <!-- /ANCHOR:cross-refs -->
 ---

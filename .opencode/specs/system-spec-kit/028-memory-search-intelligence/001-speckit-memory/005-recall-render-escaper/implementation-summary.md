@@ -121,4 +121,4 @@ This phase now has real code for every ungated candidate in the write→recall�
 ## RELATED DOCUMENTS
 - **Spec / plan / tasks / checklist:** this folder.
 - **Research:** `../research/research.md`; `../../research/roadmap.md`; `../../research/synthesis/{01,03,04}-*.md`; deltas `../research/deltas/iter-{012,016,019,033,036}.jsonl`.
-- **Shipped record (do NOT modify):** `../../../030-memory-search-intelligence-impl/spec.md` §14 (`e1c6a3c793`).
+- **Shipped record (historical evidence):** Wave-0 record (`e1c6a3c793`).

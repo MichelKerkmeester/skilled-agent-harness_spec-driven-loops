@@ -107,5 +107,5 @@ _memory:
 - **Plan**: See `plan.md`
 - **Checklist**: See `checklist.md`
 - **Research evidence**: `../research/iterations/iteration-003.md` (Q6 F5/F7, C5, C5a), `../research/iterations/iteration-014.md` (G14-03), `../research/iterations/iteration-016.md` (J16-01)
-- **Wave-0 shipped record (none done)**: `../../../030-memory-search-intelligence-impl/spec.md` §14 (no advisor row) + line 106 (C5 NO-GO)
+- **Wave-0 shipped record (none done)**: Wave-0 record (no advisor row) + (C5 NO-GO)
 <!-- /ANCHOR:cross-refs -->

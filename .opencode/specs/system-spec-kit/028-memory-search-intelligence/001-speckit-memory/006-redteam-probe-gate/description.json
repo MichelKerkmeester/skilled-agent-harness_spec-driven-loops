@@ -8,9 +8,9 @@
     "probe",
     "gate"
   ],
-  "lastUpdated": "2026-06-19T06:21:32.431Z",
+  "lastUpdated": "2026-06-19T12:24:10.678Z",
   "specId": "006",
-  "folderSlug": "006-redteam-probe-gate",
+  "folderSlug": "redteam-probe-gate",
   "parentChain": [
     "system-spec-kit",
     "028-memory-search-intelligence",

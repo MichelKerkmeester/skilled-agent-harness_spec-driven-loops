@@ -20,7 +20,6 @@ _memory:
       - "spec.md"
       - "plan.md"
       - "implementation-summary.md"
-      - "../../../030-memory-search-intelligence-impl/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-004-fanout-determinism-observability"
@@ -93,7 +92,7 @@ _memory:
 ## Completion Criteria
 
 - [x] All 6 candidate rows have a final status in `spec.md` section 11 (3 Wave-0 DONE-with-commit, 3 local DONE rows — near-dup spans two merge-path rows of one candidate).
-- [x] The shipped trio traces to Wave-0 commit `46812f12a8` in `../../../030-memory-search-intelligence-impl/spec.md` section 14 candidate 12.
+- [x] The shipped trio traces to Wave-0 commit `46812f12a8`.
 - [x] Each former gated tail task names its implementation disposition; near-dup is implemented default-off because it can affect ranking/convergence.
 - [x] The order-invariance property tests are built and assert byte-identical merges under shuffled lineage order; the near-dup dedup is built on both merge paths with content-normalization guards, and the order-invariance tests were rerun after it landed.
 - [x] Strict validation passes for this sub-phase. Evidence: `validate.sh --strict` passed with 0 errors / 0 warnings.
@@ -109,5 +108,5 @@ _memory:
 - **Implementation Summary**: `implementation-summary.md`.
 - **Source research**: `../research/research.md`, `../research/iterations/iteration-011.md`, `../../research/roadmap.md`, `../../research/synthesis/01-go-candidates.md` + `03` + `04`.
 - **Sibling sub-phase (resilience cluster, do not duplicate)**: `../003-fanout-failure-recovery/`.
-- **Shipped predecessor (do not modify)**: `../../../030-memory-search-intelligence-impl/spec.md` section 14 candidate 12.
+- **Shipped predecessor (historical evidence)**: Wave-0 record.
 <!-- /ANCHOR:cross-refs -->

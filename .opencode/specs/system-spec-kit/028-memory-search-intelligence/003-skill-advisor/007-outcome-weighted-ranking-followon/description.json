@@ -11,9 +11,9 @@
     "follow-on",
     "aionforge-procedural"
   ],
-  "lastUpdated": "2026-06-19T06:21:36.805Z",
+  "lastUpdated": "2026-06-19T13:59:35.510Z",
   "specId": "007",
-  "folderSlug": "007-outcome-weighted-ranking-followon",
+  "folderSlug": "outcome-weighted-ranking-followon",
   "parentChain": [
     "system-spec-kit",
     "028-memory-search-intelligence",

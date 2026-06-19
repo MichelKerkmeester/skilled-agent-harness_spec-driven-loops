@@ -11,9 +11,9 @@
     "beta",
     "posterior"
   ],
-  "lastUpdated": "2026-06-19T06:21:36.372Z",
+  "lastUpdated": "2026-06-19T14:20:12.888Z",
   "specId": "004",
-  "folderSlug": "004-c4-shadow-seam-beta-posterior",
+  "folderSlug": "c4-shadow-seam-beta-posterior",
   "parentChain": [
     "system-spec-kit",
     "028-memory-search-intelligence",

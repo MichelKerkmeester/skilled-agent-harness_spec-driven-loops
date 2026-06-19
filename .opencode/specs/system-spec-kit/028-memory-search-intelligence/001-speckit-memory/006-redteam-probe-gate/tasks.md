@@ -113,6 +113,5 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify |
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 - **Verification**: See `checklist.md`
-- **Shipped Wave-0 record (DONE evidence for sibling candidates):** `../../../030-memory-search-intelligence-impl/spec.md` §14
 
 <!-- /ANCHOR:cross-refs -->

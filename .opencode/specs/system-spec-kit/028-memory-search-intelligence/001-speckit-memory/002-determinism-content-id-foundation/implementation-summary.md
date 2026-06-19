@@ -54,7 +54,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-This sub-phase is the determinism keystone of the Spec-Kit Memory MCP retrieval-intelligence work. Five candidates — the two content-id primitives, the content-derived comparator/output tiebreak (C5-B), the ANN below-RRF tiebreak, the byte-identical `bonusOverChannels` param (C-X1 `'active'`), and the rank-time decay clock (C6-A) — were implemented and committed in the flat Wave-0 packet (030). They establish the shared total-comparator, the centralized SHA-256 content-id formula, and the byte-identical-by-default fusion seams that the three sibling subsystems (Code Graph 002, Skill Advisor 003, Deep Loop 004) byte-compare against. Four further candidates remain gated PENDING and were deliberately not built.
+This sub-phase is the determinism keystone of the Spec-Kit Memory MCP retrieval-intelligence work. Five candidates — the two content-id primitives, the content-derived comparator/output tiebreak (C5-B), the ANN below-RRF tiebreak, the byte-identical `bonusOverChannels` param (C-X1 `'active'`), and the rank-time decay clock (C6-A) — were implemented and committed in the flat Wave-0 implementation record (030). They establish the shared total-comparator, the centralized SHA-256 content-id formula, and the byte-identical-by-default fusion seams that the three sibling subsystems (Code Graph 002, Skill Advisor 003, Deep Loop 004) byte-compare against. Four further candidates remain gated PENDING and were deliberately not built.
 
 ### Shipped Candidates (Wave-0 / packet 030)
 
@@ -81,7 +81,7 @@ This sub-phase is the determinism keystone of the Spec-Kit Memory MCP retrieval-
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The five shipped candidates landed as scoped commits on `system-speckit/028-memory-search-intelligence` during the flat Wave-0 packet (030), each following the one-candidate-at-a-time loop: read the seam, patch only that seam, add a focused test, prove byte-identity (parity test / arithmetic trace), request opus review on the higher-risk fusion seams, then commit. This sub-phase re-homes those commits under the correct subsystem-research phase (028/001-speckit-memory) as the determinism + content-id foundation, records the four gated residue candidates that the flat layout missed or deferred, and documents the cross-subsystem byte-compare contract (`fuseResultsMulti` `'active'` default) that the foundation must hold for consumers 002/003/004.
+The five shipped candidates landed as scoped commits on `system-speckit/028-memory-search-intelligence` during the flat Wave-0 implementation record (030), each following the one-candidate-at-a-time loop: read the seam, patch only that seam, add a focused test, prove byte-identity (parity test / arithmetic trace), request opus review on the higher-risk fusion seams, then commit. This sub-phase re-homes those commits under the correct subsystem-research phase (028/001-speckit-memory) as the determinism + content-id foundation, records the four gated residue candidates that the flat layout missed or deferred, and documents the cross-subsystem byte-compare contract (`fuseResultsMulti` `'active'` default) that the foundation must hold for consumers 002/003/004.
 
 No code was written in this re-plan: the shipped work already exists in packet 030 (the Wave-0 shipped record), and the residue is deliberately unbuilt behind its gates.
 <!-- /ANCHOR:how-delivered -->
@@ -134,7 +134,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
   .opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/002-determinism-content-id-foundation --strict
 ```
 
-> The candidate-level test/build evidence is owned by the Wave-0 shipped record (`../../../030-memory-search-intelligence-impl/implementation-summary.md` verification table); this sub-phase re-homes the commits and adds the gated residue, it does not re-run the full subsystem suite.
+> The candidate-level test/build evidence is owned by the Wave-0 shipped record (Wave-0 verification evidence); this sub-phase re-homes the commits and adds the gated residue, it does not re-run the full subsystem suite.
 <!-- /ANCHOR:verification -->
 
 ---

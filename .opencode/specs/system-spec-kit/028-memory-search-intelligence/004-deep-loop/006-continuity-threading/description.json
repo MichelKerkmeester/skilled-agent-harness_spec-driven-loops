@@ -13,9 +13,9 @@
     "iterative-retrieval",
     "cluster"
   ],
-  "lastUpdated": "2026-06-19T06:21:37.696Z",
+  "lastUpdated": "2026-06-19T09:26:36.315Z",
   "specId": "006",
-  "folderSlug": "006-continuity-threading",
+  "folderSlug": "continuity-threading",
   "parentChain": [
     "system-spec-kit",
     "028-memory-search-intelligence",

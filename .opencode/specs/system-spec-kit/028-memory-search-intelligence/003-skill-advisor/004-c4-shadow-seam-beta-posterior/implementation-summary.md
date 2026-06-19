@@ -21,7 +21,6 @@ _memory:
       - "tasks.md"
       - "checklist.md"
       - "decision-record.md"
-      - "../../../030-memory-search-intelligence-impl/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-003-004-c4-shadow-seam"
@@ -130,7 +129,6 @@ The re-plan was authored from the authoritative 028 research: the advisor `resea
 - **Checklist**: `checklist.md`.
 - **Decision Record**: `decision-record.md` (ADR-001 shadow-only BUILD; ADR-002 shared Beta primitive).
 - **Source research**: `../research/research.md`, `../../research/roadmap.md`, `../../research/synthesis/{01,04}-*`; deltas `iter-010.jsonl` / `iter-013.jsonl` / `iter-014.jsonl` / `iter-016.jsonl` / `iter-017.jsonl`.
-- **Shipped record (do not modify)**: `../../../030-memory-search-intelligence-impl/spec.md` section 14.
 
 <!--
 CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.

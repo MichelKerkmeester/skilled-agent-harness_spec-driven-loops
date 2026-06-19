@@ -225,5 +225,5 @@ Ship the code seams as reversible, default-off scorer changes so they are testab
 - **Sibling sub-phase (hard dep)**: `../001-rrf-determinism-spine/spec.md` (C3 — the RRF determinism spine all three ride)
 - **Sibling sub-phase**: `../002-runtime-lane-health-degrade/spec.md` (C5/C5a/AMB — separate degrade unit)
 - **Parent spec**: `../spec.md`
-- **Wave-0 shipped record (evidence none done)**: `../../../030-memory-search-intelligence-impl/spec.md` §14 (no advisor C1/QCR/C6 row) + the candidate-status table (lines 213-226 cover only Memory/Code-Graph Wave-0 candidates)
+- **Wave-0 shipped record (evidence none done)**: Wave-0 record (no advisor C1/QCR/C6 row) + the candidate-status table (lines 213-226 cover only Memory/Code-Graph Wave-0 candidates)
 <!-- /ANCHOR:related-docs -->

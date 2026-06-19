@@ -48,7 +48,7 @@ _memory:
 
 **Task Format**: `T### [P?] Candidate or action (primary seam) [status/evidence]`
 
-> **Status note:** C9-1/C9-2/C9-3 are implemented as code plus deterministic tests in this phase. A8-1/A8-2/A8-5/A8-4 remain pending because the acceptance criteria require generalized ledger/schema work and live promotion-gate validation. Cross-checked against `../../../030-memory-search-intelligence-impl/spec.md` §14 and the 030 commit range (`git log --oneline 1ecc531431..ab5459fb6d`): 030 §14 row 2 ships an *embedder-degrade* candidate it labels "C9" — a different C9 namespace from these C9-1/C9-2/C9-3 metric lanes.
+> **Status note:** C9-1/C9-2/C9-3 are implemented as code plus deterministic tests in this phase. A8-1/A8-2/A8-5/A8-4 remain pending because the acceptance criteria require generalized ledger/schema work and live promotion-gate validation. Cross-checked against the Wave-0 commit range (`git log --oneline 1ecc531431..ab5459fb6d`): the Wave-0 ships an *embedder-degrade* candidate it labels "C9" — a different C9 namespace from these C9-1/C9-2/C9-3 metric lanes.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -124,5 +124,4 @@ _memory:
 - **Synthesis (the spine)**: `../../research/synthesis/08-retrieval-evaluation-findings.md`.
 - **Roadmap (authoritative)**: `../../research/roadmap.md`.
 - **Gate-zero precondition (sibling)**: `../001-corpus-reindex-gate-zero/`.
-- **Wave-0 done-evidence (read-only)**: `../../../030-memory-search-intelligence-impl/spec.md` §14.
 <!-- /ANCHOR:cross-refs -->

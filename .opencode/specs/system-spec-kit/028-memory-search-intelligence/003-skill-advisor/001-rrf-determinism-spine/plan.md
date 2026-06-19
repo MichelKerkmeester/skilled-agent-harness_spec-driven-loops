@@ -23,7 +23,6 @@ _memory:
       - "checklist.md"
       - "../research/research.md"
       - "../../research/synthesis/01-go-candidates.md"
-      - "../../../030-memory-search-intelligence-impl/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-003-rrf-determinism-spine"
@@ -54,7 +53,7 @@ _memory:
 ### Overview
 This sub-phase makes the single highest-leverage foundational change to the Skill Advisor fusion scorer: replace the raw-score weighted SUM (which mixes a hint-inflated lexical overlap, a `[0.2,1]` cosine, and a signed `[-1,1]` graph propagation on one incomparable axis) with rank-based deterministic RRF, by importing Memory's already-shipped `fuseResultsMulti` (`shared/algorithms/rrf-fusion.ts`) and passing the advisor's OWN smaller `k`. The byte-stable tiebreak (C2) is C3's mechanism and folds in. The one mandatory caveat is that `fuseResultsMulti` is positive-only and elides zero/negative-weight lanes, so the `graph_causal` `conflicts_with = -0.35` conflict suppression is preserved via a post-fusion re-rank rather than fed to RRF.
 
-Nothing in this sub-phase shipped in the flat Wave-0 packet (030) — 030 shipped only the Memory-side `fuseResultsMulti` API extension (`bonusOverChannels`, `65cfcea513`) that this import depends on. So every candidate here is PENDING. The plan's discipline mirrors packet 030's one-candidate-at-a-time method (read the seam, smallest reversible change, focused test, prove the property, commit independently) but adds a gate the Wave-0 tiebreaks did not need: because the RRF import *changes the fused ordering* (it is not byte-identical-by-default like the Memory tiebreaks), it is **needs-benchmark** — a top-1/top-3 routing-agreement baseline against the current weighted sum is captured before any live flip.
+Nothing in this sub-phase shipped in the flat Wave-0 implementation record (030) — 030 shipped only the Memory-side `fuseResultsMulti` API extension (`bonusOverChannels`, `65cfcea513`) that this import depends on. So every candidate here is PENDING. The plan's discipline mirrors packet 030's one-candidate-at-a-time method (read the seam, smallest reversible change, focused test, prove the property, commit independently) but adds a gate the Wave-0 tiebreaks did not need: because the RRF import *changes the fused ordering* (it is not byte-identical-by-default like the Memory tiebreaks), it is **needs-benchmark** — a top-1/top-3 routing-agreement baseline against the current weighted sum is captured before any live flip.
 
 The conflict re-rank ships as a *carrier* only: the post-fusion re-rank seam exists so the import is conflict-safe, but the full C1 (a populated split-conflict signal) is out of scope because `conflicts_with` is DORMANT in production (zero reciprocal declarations).
 <!-- /ANCHOR:summary -->
@@ -227,4 +226,4 @@ Inventory scoped to the advisor fusion seam + the graph-causal lane emit + the s
 - **Task Breakdown**: See `tasks.md`.
 - **Verification Checklist**: See `checklist.md`.
 - **Source research**: `../research/research.md`, `../../research/roadmap.md`, `../../research/synthesis/01-go-candidates.md` + `03`.
-- **Shipped record (do not modify)**: `../../../030-memory-search-intelligence-impl/spec.md` section 14 (dependency commit `65cfcea513`).
+- **Shipped record (historical evidence)**: Wave-0 record (dependency commit `65cfcea513`).

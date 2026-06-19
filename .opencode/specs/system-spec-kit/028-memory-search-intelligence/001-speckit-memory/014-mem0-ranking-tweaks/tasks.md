@@ -47,7 +47,7 @@ _memory:
 
 **Task Format**: `T### [P?] Description (file path) [effort]`
 
-> **Status note:** ALL tasks below are `[ ]` PENDING. None of the 8 distinct candidates in this bundle has a 030 commit — a per-ID grep of `030-memory-search-intelligence-impl/spec.md` §14 returns zero matches for every requested ID. There are no pre-checked `[x]` done tasks in this phase.
+> **Status note:** ALL tasks below are `[ ]` PENDING. None of the 8 distinct candidates in this bundle has a Wave-0 commit — a per-ID grep of the Wave-0 evidence returns zero matches for every requested ID. There are no pre-checked `[x]` done tasks in this phase.
 <!-- /ANCHOR:notation -->
 
 ---

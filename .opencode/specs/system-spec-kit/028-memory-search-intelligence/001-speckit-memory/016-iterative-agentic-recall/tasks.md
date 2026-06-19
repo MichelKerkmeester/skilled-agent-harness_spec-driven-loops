@@ -104,5 +104,5 @@ _memory:
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 - **Checklist**: See `checklist.md`
-- **Shipped record (Wave-0)**: `../../../030-memory-search-intelligence-impl/spec.md` §14 (CG-agentic-tool-loop absent → PENDING)
+- **Shipped record (Wave-0)**: Wave-0 record (CG-agentic-tool-loop absent → PENDING)
 <!-- /ANCHOR:cross-refs -->

@@ -21,7 +21,6 @@ _memory:
       - "plan.md"
       - "tasks.md"
       - "checklist.md"
-      - "../../../030-memory-search-intelligence-impl/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-003-rrf-determinism-spine"
@@ -118,4 +117,4 @@ The implementation follows the authoritative 028 research and the already-author
 - **Tasks**: `tasks.md`.
 - **Checklist**: `checklist.md`.
 - **Source research**: `../research/research.md`, `../../research/roadmap.md`, `../../research/synthesis/01-go-candidates.md` + `03`; deltas `iter-002.jsonl` / `iter-006.jsonl` / `iter-010.jsonl`.
-- **Shipped record (do not modify)**: `../../../030-memory-search-intelligence-impl/spec.md` section 14 (dependency commit `65cfcea513`).
+- **Shipped record (historical evidence)**: Wave-0 record (dependency commit `65cfcea513`).

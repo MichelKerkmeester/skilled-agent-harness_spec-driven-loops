@@ -131,6 +131,6 @@ _memory:
 - **Plan**: See `plan.md`
 - **Parent research**: `../research/research.md`; resilience detail in `../research/iterations/iteration-007.md`, `iteration-012.md`, `iteration-013.md`
 - **Cross-cutting roadmap / synthesis**: `../../research/roadmap.md`; `../../research/synthesis/01-go-candidates.md` (Deep-Loop recovery/resilience cluster, lines 91-101)
-- **Shipped record (Wave-0)**: `../../../030-memory-search-intelligence-impl/spec.md` §14 candidate 12 (commit `46812f12a8` — gauges/merge/graceful-self-stop; explicitly NOT failure-class)
+- **Shipped record (Wave-0)**: Wave-0 record (commit `46812f12a8` — gauges/merge/graceful-self-stop; explicitly NOT failure-class)
 
 <!-- /ANCHOR:cross-refs -->

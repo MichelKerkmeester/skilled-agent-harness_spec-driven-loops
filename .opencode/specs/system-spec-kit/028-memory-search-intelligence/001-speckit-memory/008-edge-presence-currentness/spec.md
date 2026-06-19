@@ -60,7 +60,7 @@ This implementation phase turns the Spec-Kit Memory MCP's bi-temporal substrate 
 | **Source roadmap** | `../../research/roadmap.md` (BROADENING + 027-REVISIT + MEMORY-SYSTEMS addenda, authoritative) |
 | **Source synthesis** | `../../research/synthesis/01-go-candidates.md`, `03-corrections-caveats-and-residuals.md` |
 | **Source research** | `../research/research.md`; `../research/from-005-revisit-027/research.md`; `../research/from-007-memory-systems/research.md` |
-| **Wave-0 shipped record** | `../../../030-memory-search-intelligence-impl/spec.md` §14 (none of these five) |
+| **Wave-0 shipped record** | Wave-0 record (none of these five) |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -118,7 +118,7 @@ Land the edge-presence currentness path and its temporal-recall surface as a **s
 
 ### Files to Change
 
-Per-candidate seams above. Production code under `.opencode/skills/system-spec-kit/mcp_server/` (`lib/graph/`, `lib/search/`, `lib/storage/`, `handlers/`, `tools/`). Tests alongside each change. No edits to `030-memory-search-intelligence-impl/` (Wave-0 shipped record, read-only evidence).
+Per-candidate seams above. Production code under `.opencode/skills/system-spec-kit/mcp_server/` (`lib/graph/`, `lib/search/`, `lib/storage/`, `handlers/`, `tools/`). Tests alongside each change. No edits to the Wave-0 implementation record (Wave-0 shipped record, read-only evidence).
 <!-- /ANCHOR:scope -->
 
 ---
@@ -234,7 +234,7 @@ Per-candidate seams above. Production code under `.opencode/skills/system-spec-k
 <!-- ANCHOR:status -->
 ## 14. CANDIDATE STATUS
 
-> Cross-checked against the Wave-0 shipped record `../../../030-memory-search-intelligence-impl/spec.md` §14 and the 030 commit range (`git log --oneline 1ecc531431..ab5459fb6d`): **none of these five candidates shipped in Wave-0** (zero temporal/history/unforget/currentness commits in range). Current working-tree status: C3-A is **DONE**; the other four candidates remain **PENDING**.
+> Cross-checked against the Wave-0 shipped record and the Wave-0 commit range (`git log --oneline 1ecc531431..ab5459fb6d`): **none of these five candidates shipped in Wave-0** (zero temporal/history/unforget/currentness commits in range). Current working-tree status: C3-A is **DONE**; the other four candidates remain **PENDING**.
 
 | # | Candidate | Status | Gate | 030 evidence | Notes |
 |---|-----------|--------|------|--------------|-------|
@@ -256,4 +256,3 @@ Per-candidate seams above. Production code under `.opencode/skills/system-spec-k
 - **Synthesis:** `../../research/synthesis/01-go-candidates.md`, `03-corrections-caveats-and-residuals.md`, `04-sibling-and-cross-cutting.md`.
 - **027 reconciliation (memory_history + bi-temporal scoping):** `../research/from-005-revisit-027/research.md`.
 - **Memory-systems mining (temporal-query-extraction):** `../research/from-007-memory-systems/research.md`.
-- **Wave-0 shipped record (done-evidence, read-only):** `../../../030-memory-search-intelligence-impl/spec.md` §14.

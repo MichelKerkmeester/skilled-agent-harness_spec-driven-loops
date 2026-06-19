@@ -106,5 +106,5 @@ _memory:
 - **Research evidence**: `../research/iterations/iteration-008.md` (the 6 NET-NEW contamination/drift candidates), `../research/iterations/iteration-011.md` (galadriel-advisor residue all REFUTED), `../research/iterations/iteration-012.md` (Round-E verify: self-boost scope-correction, attested-baseline shadow + durable-storage gate, anti-flap NO-GO)
 - **Deltas**: `../research/deltas/iter-008.jsonl` (the 3 candidate rows), `../research/deltas/iter-012.jsonl` (E12-01/E12-03/E12-04)
 - **Sibling sub-phase (shared substrate dep)**: `../004-c4-shadow-seam-beta-posterior/spec.md` (the durable calibration substrate these ride)
-- **Wave-0 shipped record (none done)**: `../../../030-memory-search-intelligence-impl/spec.md` §14 (no SA-* row)
+- **Wave-0 shipped record (none done)**: Wave-0 record (no SA-* row)
 <!-- /ANCHOR:cross-refs -->

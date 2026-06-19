@@ -40,7 +40,7 @@ _memory:
 
 **Task Format**: `T### [P?] Description (file path) [effort] {deps: T###}`
 
-> Shared benchmark-build plumbing is now implemented and tested. None of the four candidates was implemented in 030's shipped Wave-0 record (`030-memory-search-intelligence-impl/spec.md` §14 lists candidates 1-13; the procedural cluster is absent), and no candidate is promoted here until a measured benchmark delta exists.
+> Shared benchmark-build plumbing is now implemented and tested. None of the four candidates was implemented in the shipped Wave-0 record (the Wave-0 record lists candidates 1-13; the procedural cluster is absent), and no candidate is promoted here until a measured benchmark delta exists.
 
 <!-- /ANCHOR:notation -->
 

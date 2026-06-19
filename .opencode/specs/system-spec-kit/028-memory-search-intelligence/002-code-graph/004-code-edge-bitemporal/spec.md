@@ -270,4 +270,4 @@ Capture — faithfully and gated — the schema-migration cluster that would mak
 - **Research (Code Graph)**: `../research/research.md`, `../research/iterations/iteration-018.md` (aionforge schema reference), `iteration-023.md` (build sequence), `iteration-013.md` (standalone lifecycle REFUTED), `iteration-009.md` (edge-governance cluster).
 - **Cross-cutting research**: `../../research/roadmap.md` (BROADENING + 027-REVISIT + MEMORY-SYSTEMS addenda), `../../research/synthesis/01-go-candidates.md` (Wave-2 + DEFER), `../../research/synthesis/04-sibling-and-cross-cutting.md` (Q1-C1/Q6-C1 DEFER-speculative).
 - **Shared bi-temporal sibling (Memory)**: `../../001-speckit-memory/007-bitemporal-window/` (C3-B validity-window shape — build once, reconcile).
-- **Wave-0 shipped record**: `../../../030-memory-search-intelligence-impl/spec.md` §14 (Code Graph shipped Q4-C1 only; Q1-C1 listed DEFER-speculative, never implemented).
+- **Wave-0 shipped record**: Wave-0 record (Code Graph shipped Q4-C1 only; Q1-C1 listed DEFER-speculative, never implemented).

@@ -212,6 +212,5 @@ Run the deferred corpus reindex (force re-index + embedding reconcile) so the in
 - **Verification Checklist**: See `checklist.md`
 - **Parent research phase**: `../spec.md` + `../research/research.md`
 - **Gate-zero source**: `../../research/synthesis/08-retrieval-evaluation-findings.md` (C9-4-assertEmbeddingCoverage, Wave-1 gate-zero)
-- **Wave-0 shipped record (sibling candidates):** `../../../030-memory-search-intelligence-impl/spec.md` §14
 
 <!-- /ANCHOR:related-docs -->

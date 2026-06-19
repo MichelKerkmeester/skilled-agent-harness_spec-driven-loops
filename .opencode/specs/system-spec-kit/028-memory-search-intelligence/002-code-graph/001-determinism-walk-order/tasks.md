@@ -19,7 +19,6 @@ _memory:
       - "spec.md"
       - "plan.md"
       - "implementation-summary.md"
-      - "../../../030-memory-search-intelligence-impl/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-002-determinism-walk-order"
@@ -88,7 +87,7 @@ _memory:
 ## Completion Criteria
 
 - [x] All 4 candidates have a final status in `spec.md` section 11 (2 DONE, 2 PENDING-with-gate).
-- [x] The shipped Q4-C1 predecessor traces to Wave-0 commit `e21caf5de6` in `../../../030-memory-search-intelligence-impl/spec.md` section 14 candidate 13.
+- [x] The shipped Q4-C1 predecessor traces to Wave-0 commit `e21caf5de6`.
 - [x] Each gated residue task names its block reason (isolation-compatible shared-fuser consume path / needs-benchmark) and its consuming dependency; none is disguised as incomplete in-flight work.
 - [ ] The fuser adapter is built against an isolation-compatible shared-fuser consume path, and Q4-C1 magnitudes are re-tuned against a retrieval benchmark (downstream verification, tracked).
 - [x] Strict validation passes for this sub-phase.
@@ -104,5 +103,5 @@ _memory:
 - **Implementation Summary**: `implementation-summary.md`.
 - **Source research**: `../research/research.md`, `../../research/roadmap.md`, `../../research/synthesis/01-go-candidates.md` + `03` + `04`.
 - **001 foundation (consumed, not modified)**: `../../001-speckit-memory/002-determinism-content-id-foundation/`.
-- **Shipped predecessor (do not modify)**: `../../../030-memory-search-intelligence-impl/spec.md` section 14 candidate 13.
+- **Shipped predecessor (historical evidence)**: Wave-0 record.
 <!-- /ANCHOR:cross-refs -->

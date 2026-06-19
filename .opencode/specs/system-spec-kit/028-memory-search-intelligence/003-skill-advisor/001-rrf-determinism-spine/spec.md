@@ -26,7 +26,6 @@ _memory:
       - "../research/research.md"
       - "../../research/roadmap.md"
       - "../../research/synthesis/01-go-candidates.md"
-      - "../../../030-memory-search-intelligence-impl/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-003-rrf-determinism-spine"
@@ -65,7 +64,7 @@ The one mandatory caveat the port MUST carry is the **graph_causal signed-score 
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Packet** | system-spec-kit/028-memory-search-intelligence/003-skill-advisor |
 | **Source research** | `../research/research.md`, `../../research/roadmap.md`, `../../research/synthesis/01-go-candidates.md` |
-| **Shipped record** | `../../../030-memory-search-intelligence-impl/spec.md` section 14 (Wave-0 commits `738e118751..ab5459fb6d`) — the dependency `65cfcea513` (cand 5) ships the `fuseResultsMulti` API this import consumes; no advisor candidate shipped |
+| **Shipped record** | Wave-0 record (Wave-0 commits `738e118751..ab5459fb6d`) — the dependency `65cfcea513` (cand 5) ships the `fuseResultsMulti` API this import consumes; no advisor candidate shipped |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -291,4 +290,4 @@ Replace the incomparable-scale weighted sum with rank-based deterministic RRF by
 - **Verification Checklist**: See `checklist.md`
 - **Source research**: `../research/research.md`, `../../research/roadmap.md`, `../../research/synthesis/01-go-candidates.md` + `03-corrections-caveats-and-residuals.md`
 - **Per-candidate detail**: `../research/deltas/iter-002.jsonl` (F14/F16/F17/F18, C1/C2/C3), `iter-006.jsonl` (F6-01/F6-02, C1-rerank reframe, O6-01), `iter-010.jsonl` (O10-01 dormant conflicts_with)
-- **Shipped record (do not modify)**: `../../../030-memory-search-intelligence-impl/spec.md` section 14 (dependency commit `65cfcea513`)
+- **Shipped record (historical evidence)**: Wave-0 record (dependency commit `65cfcea513`)

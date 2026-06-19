@@ -49,7 +49,6 @@ _memory:
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Packet** | system-spec-kit/028-memory-search-intelligence/001-speckit-memory |
 | **Source research** | `../research/research.md` + `../../research/roadmap.md` + `../../research/synthesis/01-go-candidates.md` + `06` |
-| **Shipped-record cross-ref** | `../../../030-memory-search-intelligence-impl/spec.md` §14 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -131,7 +130,7 @@ Ship the result-shaping retention/recall-diversity candidates faithful to the 02
 
 ### Per-Candidate STATUS (8 candidates — none shipped in Wave-0)
 
-> Confirmed against `030-memory-search-intelligence-impl/spec.md` §14 + `git log 1ecc531431..HEAD`: NONE of these 8 candidates appeared in the Wave-0 shipped record (candidates 1-13 there are Q6-anchor / C9 / ANN-tiebreak / C5-B / C-X1+C6-A / two-primitive-id / gauges / skip-closed / CAS-guard / Deep-Loop-trio / Q4-C1; plus deferred C4-A and M-system-kind-exclusion). Current implementation status is tracked below.
+> Confirmed against the Wave-0 record + `git log 1ecc531431..HEAD`: NONE of these 8 candidates appeared in the Wave-0 shipped record (candidates 1-13 there are Q6-anchor / C9 / ANN-tiebreak / C5-B / C-X1+C6-A / two-primitive-id / gauges / skip-closed / CAS-guard / Deep-Loop-trio / Q4-C1; plus deferred C4-A and M-system-kind-exclusion). Current implementation status is tracked below.
 
 | Candidate | STATUS | Gate | Seam (file:line) | Evidence |
 |-----------|--------|------|------------------|----------|

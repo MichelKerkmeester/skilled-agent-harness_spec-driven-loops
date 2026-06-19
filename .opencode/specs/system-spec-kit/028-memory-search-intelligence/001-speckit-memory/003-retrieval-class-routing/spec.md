@@ -68,7 +68,7 @@ The Spec-Kit Memory MCP routes every query through two orthogonal classifiers (c
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Packet** | system-spec-kit/028-memory-search-intelligence/001-speckit-memory |
 | **Source research** | `../research/research.md`; `../../research/roadmap.md` (§3 Query-Class Routing + MEMORY-SYSTEMS ADDENDUM); `../../research/synthesis/{01,03,06}` |
-| **Shipped-record (done-candidate evidence)** | `../../../030-memory-search-intelligence-impl/spec.md` §14 + commits `1ecc531431..HEAD` |
+| **Shipped-record (done-candidate evidence)** | Wave-0 record + commits `1ecc531431..HEAD` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -297,4 +297,4 @@ Give recall a retrieval-shape axis: classify each query's shape (single-hop / mu
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`
 - **Source research**: `../research/research.md`; `../../research/roadmap.md` (§3 Query-Class Routing + MEMORY-SYSTEMS ADDENDUM top-7); `../../research/synthesis/{01-go-candidates.md, 03-corrections-caveats-and-residuals.md, 06-memory-systems-findings.md}`
-- **Shipped-record (done-candidate evidence)**: `../../../030-memory-search-intelligence-impl/spec.md` §14 (this cluster is absent → all PENDING)
+- **Shipped-record (done-candidate evidence)**: Wave-0 record (this cluster is absent → all PENDING)

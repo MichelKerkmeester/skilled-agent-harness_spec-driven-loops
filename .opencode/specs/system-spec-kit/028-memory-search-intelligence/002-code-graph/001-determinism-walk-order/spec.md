@@ -24,7 +24,6 @@ _memory:
       - "../research/research.md"
       - "../../research/roadmap.md"
       - "../../research/synthesis/01-go-candidates.md"
-      - "../../../030-memory-search-intelligence-impl/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-002-determinism-walk-order"
@@ -43,7 +42,7 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-This sub-phase makes the code-graph impact/dependency/neighborhood walk **reproducible across scan rebuilds** and lets it **fuse the dual impact channels through 001's shared determinism keystone**. Both wins land on a single seam — the `rankContextEdges` / `finalize()` ranking path in `code-graph-context.ts` — with **no schema migration**. The rank-time trust blend that turns the already-plumbed `confidence`/`evidenceClass` edge metadata into ranking signal (candidate Q4-C1) **already shipped** in the flat Wave-0 packet (030, commit `e21caf5de6`) as an RRF-**additive** term. This implementation adds `det-context-order-global`: baseline rank assignment now starts from a content-derived total edge order (`contentHash` coalescing to related symbol id and stable endpoint fields), so equal-trust impact/dependency/neighborhood walks no longer inherit SQLite row order. What remains is Q4-C1 **benchmark-driven magnitude tuning** and the **adapter that promotes 001's `fuseResultsMulti`** (synthesize `RrfItem.id`, pre-sort each channel, label the dual GRAPH channels) so CALLS-channel and IMPORTS-channel impact results fuse with a cross-channel bonus instead of being concatenated in DB order (`Q8-fuser-adapter` / `fuseResultsMulti-codegraph-promote`).
+This sub-phase makes the code-graph impact/dependency/neighborhood walk **reproducible across scan rebuilds** and lets it **fuse the dual impact channels through 001's shared determinism keystone**. Both wins land on a single seam — the `rankContextEdges` / `finalize()` ranking path in `code-graph-context.ts` — with **no schema migration**. The rank-time trust blend that turns the already-plumbed `confidence`/`evidenceClass` edge metadata into ranking signal (candidate Q4-C1) **already shipped** in the flat Wave-0 implementation record (030, commit `e21caf5de6`) as an RRF-**additive** term. This implementation adds `det-context-order-global`: baseline rank assignment now starts from a content-derived total edge order (`contentHash` coalescing to related symbol id and stable endpoint fields), so equal-trust impact/dependency/neighborhood walks no longer inherit SQLite row order. What remains is Q4-C1 **benchmark-driven magnitude tuning** and the **adapter that promotes 001's `fuseResultsMulti`** (synthesize `RrfItem.id`, pre-sort each channel, label the dual GRAPH channels) so CALLS-channel and IMPORTS-channel impact results fuse with a cross-channel bonus instead of being concatenated in DB order (`Q8-fuser-adapter` / `fuseResultsMulti-codegraph-promote`).
 
 **Key Decisions**: Reuse the pattern, do not rebuild the subsystem — the one-seam tiebreak applies the 001 content-derived total-order pattern locally to preserve code-graph isolation, and the dual-channel fuse must promote 001's `fuseResultsMulti` with an adapter rather than authoring a code-graph-specific fuser. Keep every change ordering-only and additive: the trust blend never mutates structural edge weight, the det-order seam only changes rank ordering, and the fuser remains pending until it can be consumed without silently widening subsystem coupling.
 
@@ -61,7 +60,7 @@ This sub-phase makes the code-graph impact/dependency/neighborhood walk **reprod
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Packet** | system-spec-kit/028-memory-search-intelligence/002-code-graph |
 | **Source research** | `../research/research.md`, `../../research/roadmap.md`, `../../research/synthesis/01-go-candidates.md` + `03` + `04` |
-| **Shipped predecessor** | `../../../030-memory-search-intelligence-impl/spec.md` section 14 candidate 13 (Q4-C1, commit `e21caf5de6`) |
+| **Shipped predecessor** | Wave-0 record (Q4-C1, commit `e21caf5de6`) |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -245,5 +244,5 @@ Answered in this pass:
 - **Task Breakdown**: See `tasks.md`
 - **Source research**: `../research/research.md`, `../../research/roadmap.md`, `../../research/synthesis/01-go-candidates.md` + `03-corrections-caveats-and-residuals.md` + `04-sibling-and-cross-cutting.md`
 - **001 foundation (pattern/signature reference, not modified)**: `../../001-speckit-memory/002-determinism-content-id-foundation/spec.md` (content-derived total-order pattern + `fuseResultsMulti` `{bonusOverChannels}` contract)
-- **Shipped predecessor (do not modify)**: `../../../030-memory-search-intelligence-impl/spec.md` section 14 candidate 13 (Q4-C1, commit `e21caf5de6`)
+- **Shipped predecessor (historical evidence)**: Wave-0 record (Q4-C1, commit `e21caf5de6`)
 <!-- /ANCHOR:related-docs -->

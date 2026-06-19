@@ -10,9 +10,9 @@
     "skill",
     "advisor"
   ],
-  "lastUpdated": "2026-06-19T06:21:35.940Z",
+  "lastUpdated": "2026-06-19T11:32:15.945Z",
   "specId": "001",
-  "folderSlug": "001-rrf-determinism-spine",
+  "folderSlug": "rrf-determinism-spine",
   "parentChain": [
     "system-spec-kit",
     "028-memory-search-intelligence",

@@ -48,7 +48,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing is implemented yet. This sub-phase is a re-plan output: it scopes two paired retrieval-intelligence candidates over the already-built summary/community substrate, both PENDING (neither appears in the Wave-0 shipped record `030-memory-search-intelligence-impl/spec.md` §14).
+Nothing is implemented yet. This sub-phase is a re-plan output: it scopes two paired retrieval-intelligence candidates over the already-built summary/community substrate, both PENDING (neither appears in the Wave-0 shipped record).
 
 ### Planned: Fused Summary/Community Lane (`MEM-fused-summary-channel`)
 

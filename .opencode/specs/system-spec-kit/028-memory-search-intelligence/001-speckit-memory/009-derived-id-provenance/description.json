@@ -10,9 +10,9 @@
     "artifacts",
     "c4-b"
   ],
-  "lastUpdated": "2026-06-19T06:21:32.891Z",
+  "lastUpdated": "2026-06-19T17:42:41.305Z",
   "specId": "009",
-  "folderSlug": "009-derived-id-provenance",
+  "folderSlug": "derived-id-provenance",
   "parentChain": [
     "system-spec-kit",
     "028-memory-search-intelligence",

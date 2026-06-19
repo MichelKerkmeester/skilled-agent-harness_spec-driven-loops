@@ -111,5 +111,5 @@ _memory:
 - **Plan**: See `plan.md`
 - **Checklist**: See `checklist.md`
 - **Research (PRIMARY)**: `../research/iterations/iteration-022.md`, `../research/iterations/iteration-016.md`, `../research/iterations/iteration-002.md`, `../../research/synthesis/01-go-candidates.md`, `../../research/synthesis/04-sibling-and-cross-cutting.md`.
-- **Shipped record**: `../../../030-memory-search-intelligence-impl/spec.md` §14 (done table) + §Wave-1 (`030 spec.md:104`, CG dependency-transitivity).
+- **Shipped record**: Wave-0 record (done table) (Wave-1: CG dependency-transitivity).
 <!-- /ANCHOR:cross-refs -->

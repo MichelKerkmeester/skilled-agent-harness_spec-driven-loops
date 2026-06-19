@@ -129,6 +129,6 @@ Deferred — blocked on Phase 2, except T056 (the strict-validation gate on the 
 - **Checklist**: See `checklist.md`
 - **Decision Records**: See `decision-record.md`
 - **Research**: `../research/iterations/iteration-018.md` (aionforge schema reference), `iteration-023.md` (build sequence), `iteration-013.md` (standalone REFUTED), `iteration-009.md` (edge-governance cluster)
-- **Shipped evidence**: `../../../030-memory-search-intelligence-impl/spec.md` §14 (Code Graph shipped Q4-C1 only; Q1-C1 = DEFER-speculative, never implemented)
+- **Shipped evidence**: Wave-0 record (Code Graph shipped Q4-C1 only; Q1-C1 = DEFER-speculative, never implemented)
 - **Shared bi-temporal sibling**: `../../001-speckit-memory/007-bitemporal-window/` (Memory C3-B validity-window shape)
 <!-- /ANCHOR:cross-refs -->

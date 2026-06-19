@@ -61,7 +61,7 @@ _memory:
 - **A8-5** golden-set label-source swap — changes live scheduled promotion-gate behavior and needs an operational validation run.
 - **A8-4** promote-on-evidence flag lifecycle — depends on class-specific A8 evidence records.
 
-**Wave-0 cross-check (done-evidence):** `030-memory-search-intelligence-impl/spec.md` §14 + `git log --oneline 1ecc531431..ab5459fb6d` — zero eval-harness-metric / promotion-gate-generalization commits. 030 §14 row 2 ships an *embedder-degrade* candidate it labels "C9" (recall → lexical + `embedder_available:false`), a different C9 namespace. All seven candidates here are PENDING.
+**Wave-0 cross-check (done-evidence):** Wave-0 record + `git log --oneline 1ecc531431..ab5459fb6d` — zero eval-harness-metric / promotion-gate-generalization commits. the Wave-0 ships an *embedder-degrade* candidate it labels "C9" (recall → lexical + `embedder_available:false`), a different C9 namespace. All seven candidates here are PENDING.
 <!-- /ANCHOR:what-built -->
 
 ---

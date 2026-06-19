@@ -119,5 +119,5 @@ _memory:
 - **Implementation Summary**: See `implementation-summary.md`
 - **Research evidence**: `../research/iterations/iteration-002.md` (Q2 findings 8/9/10), `../research/deltas/iter-002.jsonl` (`f2-8`, `cand-Q2-C1`)
 - **External source**: `../../external/aionforge-memory-development/docs/consolidation.md:60-68`
-- **Shipped record**: `../../../030-memory-search-intelligence-impl/spec.md` §14 (historical reference: Q2-C1 was absent there)
+- **Shipped record**: Wave-0 record (historical reference: Q2-C1 was absent there)
 <!-- /ANCHOR:cross-refs -->

@@ -52,7 +52,6 @@ _memory:
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent research phase** | `028-memory-search-intelligence/004-deep-loop` (Deep Loop — convergence/fan-out/council intelligence) |
 | **Source research** | `../research/research.md`; `../../research/roadmap.md`; `../../research/synthesis/01-go-candidates.md` + `03` + `04` |
-| **Shipped-record cross-ref** | `030-memory-search-intelligence-impl/spec.md` §14 (Wave-0 flat record) |
 
 <!-- /ANCHOR:metadata -->
 ---
@@ -232,6 +231,6 @@ Land the deep-loop **resilience GO cluster** — the cleanest reliability group 
 - **Task Breakdown**: See `tasks.md`
 - **Parent research**: `../research/research.md` (Deep Loop external-mining synthesis); resilience cluster detail in `../research/iterations/iteration-007.md`, `iteration-009.md`, `iteration-012.md`, `iteration-013.md` + `../research/deltas/iter-007.jsonl`, `iter-012.jsonl`.
 - **Cross-cutting roadmap**: `../../research/roadmap.md` (Graceful Degradation + Idempotent Async Consolidation spines); `../../research/synthesis/01-go-candidates.md` (Deep-Loop recovery/resilience cluster); `03-corrections-caveats-and-residuals.md`; `04-sibling-and-cross-cutting.md`.
-- **Shipped record (Wave-0)**: `../../../030-memory-search-intelligence-impl/spec.md` §14 candidate 12 (commit `46812f12a8` — gauges/merge/graceful-self-stop; explicitly NOT failure-class).
+- **Shipped record (Wave-0)**: Wave-0 record (commit `46812f12a8` — gauges/merge/graceful-self-stop; explicitly NOT failure-class).
 
 <!-- /ANCHOR:related-docs -->

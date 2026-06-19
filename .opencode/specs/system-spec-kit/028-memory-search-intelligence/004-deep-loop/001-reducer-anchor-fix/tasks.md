@@ -47,7 +47,7 @@ _memory:
 
 **Task Format**: `T### [P?] Description (file path)`
 
-> All tasks below are COMPLETE — the Q6-anchor candidate landed in commit `738e118751` (recorded in `030-memory-search-intelligence-impl/spec.md` §14 candidate 1). This sub-phase documents the shipped fix against that commit.
+> All tasks below are COMPLETE — the Q6-anchor candidate landed in commit `738e118751` (recorded). This sub-phase documents the shipped fix against that commit.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -103,5 +103,5 @@ _memory:
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 - **Implementation Summary**: See `implementation-summary.md`
-- **Shipped record**: `../../../030-memory-search-intelligence-impl/spec.md` §14 candidate 1 (commit `738e118751`)
+- **Shipped record**: Wave-0 record (commit `738e118751`)
 <!-- /ANCHOR:cross-refs -->

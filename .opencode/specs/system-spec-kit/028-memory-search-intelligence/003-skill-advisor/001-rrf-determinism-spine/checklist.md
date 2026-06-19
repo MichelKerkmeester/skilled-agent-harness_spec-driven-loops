@@ -20,7 +20,6 @@ _memory:
       - "spec.md"
       - "plan.md"
       - "tasks.md"
-      - "../../../030-memory-search-intelligence-impl/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-003-rrf-determinism-spine"
@@ -54,7 +53,7 @@ _memory:
 - [x] CHK-001 [P0] Spine scope is documented and bounded to C3 (RRF import) + C2 (folded) + the conflict-suppression carrier.
   - **Evidence**: `spec.md` sections 2, 3, and 13 define the 3-candidate set and exclude C5/C4/QCR and the full (dormant) C1.
 - [x] CHK-002 [P0] 028 research is treated as roadmap input; the shipped record is traced to packet 030.
-  - **Evidence**: `spec.md` METADATA + section 13 cite `../research/research.md` and `../../../030-memory-search-intelligence-impl/spec.md` section 14 (NO advisor candidate shipped; dependency `65cfcea513`).
+ - **Evidence**: `spec.md` METADATA + section 13 cite `../research/research.md` and Wave-0 record (NO advisor candidate shipped; dependency `65cfcea513`).
 - [x] CHK-003 [P0] The shared `fuseResultsMulti` dependency is confirmed shipped and shape-compatible before any import.
   - **Evidence**: `030` §14 cand 5 (`65cfcea513`) extended the API; `001` iter-2 F17 confirms `LaneMatch{skillId}` → `RrfItem{id}` 1:1.
 - [x] CHK-004 [P0] The signed-score conflict-suppression caveat is named as a requirement before implementation.
@@ -173,4 +172,4 @@ _memory:
 - **Plan**: `plan.md`.
 - **Tasks**: `tasks.md`.
 - **Source research**: `../research/research.md`, `../../research/synthesis/01-go-candidates.md` + `03`; deltas `iter-002.jsonl` / `iter-006.jsonl` / `iter-010.jsonl`.
-- **Shipped record (do not modify)**: `../../../030-memory-search-intelligence-impl/spec.md` section 14 (dependency commit `65cfcea513`).
+- **Shipped record (historical evidence)**: Wave-0 record (dependency commit `65cfcea513`).

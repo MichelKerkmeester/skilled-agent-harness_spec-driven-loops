@@ -33,7 +33,7 @@ _memory:
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level2-verify | v2.2 -->
 
-> **Status: PLANNING-STATE — NOT IMPLEMENTED.** This phase folder was authored as a re-plan deliverable. No candidate code has been written. All 8 distinct candidates are PENDING; none has a Wave-0 030 commit (a per-ID grep of `030-memory-search-intelligence-impl/spec.md` §14 returns zero matches for every requested ID). This summary records the planned scope and gating; it will be filled with real evidence when the phase is built.
+> **Status: PLANNING-STATE — NOT IMPLEMENTED.** This phase folder was authored as a re-plan deliverable. No candidate code has been written. All 8 distinct candidates are PENDING; none has a Wave-0 Wave-0 commit (a per-ID grep of the Wave-0 evidence returns zero matches for every requested ID). This summary records the planned scope and gating; it will be filled with real evidence when the phase is built.
 
 ---
 

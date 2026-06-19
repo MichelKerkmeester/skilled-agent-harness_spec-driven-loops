@@ -146,5 +146,4 @@ _memory:
 - **Plan**: See `plan.md`
 - **Checklist**: See `checklist.md`
 - **Decision Records**: See `decision-record.md`
-- **Wave-0 shipped record (DONE evidence)**: `../../../030-memory-search-intelligence-impl/spec.md` §14
 <!-- /ANCHOR:cross-refs -->

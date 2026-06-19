@@ -197,7 +197,7 @@ Close the load-time staleness hole by stamping the embedder signature (provider/
 
 ## 10. CANDIDATE STATUS
 
-> Per-candidate disposition with research citation and gate. STATUS = DONE (with its 030 Wave-0 commit) if already shipped, else PENDING with its gate. Both SA8 candidates are PENDING — neither appears in the 030 §14 status table; 030 §14 / the Wave-1 list explicitly schedules "advisor embedding-staleness" as future work (`030-memory-search-intelligence-impl/spec.md:104`), not shipped.
+> Per-candidate disposition with research citation and gate. STATUS = DONE (with its 030 Wave-0 commit) if already shipped, else PENDING with its gate. Both SA8 candidates are PENDING — neither appears in the Wave-0 status table; the Wave-1 list explicitly schedules "advisor embedding-staleness" as future work in the Wave-1 list, not shipped.
 
 | # | Candidate | Status | Gate | Evidence / Citation |
 |---|-----------|--------|------|---------------------|
@@ -218,6 +218,6 @@ Close the load-time staleness hole by stamping the embedder signature (provider/
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
 - **Source research**: `../research/research.md`, `../research/from-006-sibling-revisit/research.md:80`, `../../research/roadmap.md`, `../../research/synthesis/01-go-candidates.md:36`, `../../research/synthesis/04-sibling-and-cross-cutting.md:15,:34`.
-- **Wave-0 shipped record (done-candidate evidence)**: `../../../030-memory-search-intelligence-impl/spec.md` §14 (SA8 NOT present → PENDING) + Wave-1 list `:104`.
+- **Wave-0 shipped record (done-candidate evidence)**: Wave-0 record (SA8 NOT present → PENDING) + Wave-1 list.
 - **Shared-infra dependency**: `../../001-speckit-memory/010-consolidation-cursor-clock/spec.md` (idempotent-async primitive: durable cursor + bounded retry + idempotency token).
 - **Mirror reference**: `memory_embedding_reconcile` — `.opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:162-189`.

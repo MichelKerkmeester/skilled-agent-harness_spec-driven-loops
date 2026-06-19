@@ -14,9 +14,9 @@
     "resilience",
     "cluster"
   ],
-  "lastUpdated": "2026-06-19T06:21:37.237Z",
+  "lastUpdated": "2026-06-19T11:32:15.951Z",
   "specId": "003",
-  "folderSlug": "003-fanout-failure-recovery",
+  "folderSlug": "fanout-failure-recovery",
   "parentChain": [
     "system-spec-kit",
     "028-memory-search-intelligence",

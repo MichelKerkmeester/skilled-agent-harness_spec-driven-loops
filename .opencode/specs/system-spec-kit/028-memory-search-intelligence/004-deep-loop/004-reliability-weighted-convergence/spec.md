@@ -69,7 +69,6 @@ The deep-loop research convergence verdict is a fixed-weight linear blend (`conv
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent research phase** | `028-memory-search-intelligence/004-deep-loop` (Deep Loop — convergence/fan-out/council intelligence) |
 | **Source research** | `../research/research.md`; `../../research/roadmap.md` (BROADENING + MEMORY-SYSTEMS addenda authoritative); `../../research/synthesis/01-go-candidates.md` + `03` + `04` |
-| **Shipped-record cross-ref** | `030-memory-search-intelligence-impl/spec.md` §14 (Wave-0 flat record — NONE of this cluster shipped) |
 
 <!-- /ANCHOR:metadata -->
 ---
@@ -302,6 +301,6 @@ Land the reliability-weighted-learning cluster as a sequenced, off-by-default, b
 - **Parent research**: `../research/research.md` (Deep Loop external-mining synthesis — D1/D2/D3/D4/Q2/Q7 candidate catalog + Q1-Q7 answers + references); broadening corrections in `../research/research.md` "Broadening Addendum".
 - **Cross-cutting roadmap**: `../../research/roadmap.md` (reliability-weighted-learning spine; BROADENING §1-2; MEMORY-SYSTEMS addendum; §249-250 shared total-comparator + Beta posterior).
 - **Synthesis**: `../../research/synthesis/01-go-candidates.md` ("Needs validation / benchmark BEFORE go" + Shared-infra), `03-corrections-caveats-and-residuals.md` (§11 D2 absent; §27 D-reproducible-fold REFUTED → D-orderhelper), `04-sibling-and-cross-cutting.md` (§40 shared Beta primitive; §41 D3 weights the existing conjunction).
-- **Shipped record (Wave-0)**: `../../../030-memory-search-intelligence-impl/spec.md` §14 — NONE of this cluster shipped (Q6-anchor, Deep-Loop trio, Q4-C1 are the only Deep-Loop/adjacent entries marked Done).
+- **Shipped record (Wave-0)**: Wave-0 record — NONE of this cluster shipped (Q6-anchor, Deep-Loop trio, Q4-C1 are the only Deep-Loop/adjacent entries marked Done).
 
 <!-- /ANCHOR:questions -->

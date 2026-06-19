@@ -52,7 +52,7 @@ _memory:
 ### Overview
 This sub-phase is the determinism keystone of the Memory MCP retrieval-intelligence work. It establishes the shared total-comparator, the two SHA-256 content-id primitives, content-derived tiebreaks at every ordering seam, and the byte-identical-by-default rank-time fusion-bonus / decay-clock seams that every other determinism candidate and every cross-subsystem consumer (Code Graph 002, Skill Advisor 003, Deep Loop 004) byte-compares against.
 
-Five candidates already shipped in the flat Wave-0 packet (030) using the one-candidate-at-a-time method — read the seam, implement the smallest reversible change, add a focused test, prove byte-identity (parity test / arithmetic trace), and commit independently. This sub-phase records those as DONE with their commits and carries the residue — the per-class `'configured'` bonus mode (C-X1-true-multichannel), the render-order serialization stage (C5-A), and the single-tenant-refuted identity-hardening pair — as gated PENDING work.
+Five candidates already shipped in the flat Wave-0 implementation record (030) using the one-candidate-at-a-time method — read the seam, implement the smallest reversible change, add a focused test, prove byte-identity (parity test / arithmetic trace), and commit independently. This sub-phase records those as DONE with their commits and carries the residue — the per-class `'configured'` bonus mode (C-X1-true-multichannel), the render-order serialization stage (C5-A), and the single-tenant-refuted identity-hardening pair — as gated PENDING work.
 
 The plan's discipline is the same one packet 030 demonstrated: ship only what is additive, reversible, and byte-identical-by-default; defer anything that needs a downstream consumer, a still-open unit test, or a multi-writer threat model.
 <!-- /ANCHOR:summary -->
@@ -70,7 +70,7 @@ The plan's discipline is the same one packet 030 demonstrated: ship only what is
 
 ### Definition of Done
 - [x] All 9 candidate rows have a final status (DONE-with-commit or PENDING-with-gate). Evidence: `spec.md` section 13.
-- [x] All 5 shipped candidates trace to a Wave-0 commit in `../../../030-memory-search-intelligence-impl/spec.md` section 14.
+- [x] All 5 shipped candidates trace to a Wave-0 commit.
 - [ ] All 4 PENDING candidates name the blocking condition and the consuming sub-phase. Evidence: `spec.md` REQ-006/007/008 (recorded; residue not built this sub-phase).
 - [ ] Byte-identity of the shipped default seams is re-confirmed by the still-open fusion-bonus unit test before any `'configured'` promotion.
 - [x] Level-3 packet docs use the system-spec-kit templates and pass strict validation.

@@ -251,7 +251,7 @@ Give derived causal edges a content-addressed `derived_id = sha256(canonical-tri
 - **Verification Checklist**: See `checklist.md`
 - **Decision Records**: See `decision-record.md`
 - **Source research**: `../research/research.md`, `../../research/synthesis/01-go-candidates.md`, `../../research/synthesis/04-sibling-and-cross-cutting.md`, `../../research/roadmap.md`
-- **Shipped-record cross-reference (Wave-0, NOT this packet)**: `../../../030-memory-search-intelligence-impl/spec.md` §3 Out-of-Scope (C4-B listed as Wave-2), §14 Candidate Status
+- **Shipped-record cross-reference (Wave-0, NOT this packet)**: Wave-0 record (C4-B listed as Wave-2), Candidate Status
 
 ---
 

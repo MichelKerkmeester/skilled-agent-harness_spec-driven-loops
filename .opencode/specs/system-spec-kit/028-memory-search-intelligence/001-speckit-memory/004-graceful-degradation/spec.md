@@ -149,5 +149,5 @@ Detect embedder-unavailable on recall and route the null-embedding case into the
 - **Research evidence**: `../research/research.md`, `../research/iterations/iteration-003.md` (Q9), `../research/deltas/iter-003.jsonl` (f-iter003-007, p-iter003-C9A), `../research/deltas/iter-034.jsonl` (C9-sketch)
 - **Roadmap**: `../../research/roadmap.md` (C9 rows; Wave-0 spearhead)
 - **Synthesis**: `../../research/synthesis/01-go-candidates.md` (C9 row)
-- **Wave-0 shipped record**: `../../../030-memory-search-intelligence-impl/spec.md` §14 row 2 (commit `484b77b589`)
+- **Wave-0 shipped record**: Wave-0 record (commit `484b77b589`)
 <!-- /ANCHOR:related-docs -->

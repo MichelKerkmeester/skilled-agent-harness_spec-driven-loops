@@ -281,7 +281,6 @@ Carry the genuine `aionforge-procedural` follow-on as documented, evidence-cited
 - **Parent research**: `../research/research.md` (Broadening Addendum follow-up `SA-outcome-weighted-ranking`), `../research/iterations/iteration-018.md` (aionforge-procedural the one genuine miss).
 - **Roadmap**: `../../research/roadmap.md` (BROADENING §7 follow-ups; §4 shared-Beta infra); synthesis `../../research/synthesis/{01,03,04,06}` (01 shared-infra + procedural-proxy; 03 §scheduler/13%-unsourced; 04 procedural-PROXY-ONLY; 06 ADV-bm25-calibration).
 - **Sibling sub-phase (owns the shared Beta primitive + C4-seam promoter):** `../004-c4-shadow-seam-beta-posterior/`.
-- **Wave-0 shipped record (none of these candidates shipped):** `../../../030-memory-search-intelligence-impl/spec.md` §14.
 
 ---
 

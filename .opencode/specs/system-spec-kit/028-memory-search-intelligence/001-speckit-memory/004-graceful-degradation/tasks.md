@@ -99,5 +99,5 @@ _memory:
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 - **Implementation Summary**: See `implementation-summary.md`
-- **Shipped record**: `../../../030-memory-search-intelligence-impl/spec.md` §14 row 2 (commit `484b77b589`)
+- **Shipped record**: Wave-0 record (commit `484b77b589`)
 <!-- /ANCHOR:cross-refs -->

@@ -218,5 +218,5 @@ Stage a monotonic code-graph `generation` counter — first as a soft, non-break
 - **Subsystem research**: See `../research/research.md` (iterations 1-4 Q6 anchoring; 21 build sketch; 23/24 bump-site refutation).
 - **Authoritative roadmap**: See `../../research/roadmap.md` (Q6-C2 row L59/L147; BROADENING `:497` REFUTED L220).
 - **Synthesis**: See `../../research/synthesis/01-go-candidates.md` (Q6-C1 DEFER-speculative L24) and `../../research/synthesis/04-sibling-and-cross-cutting.md` (L27 DEFER reasoning).
-- **Shipped record (Wave-0)**: See `../../../030-memory-search-intelligence-impl/spec.md` §14 — only code-graph candidate shipped there was Q4-C1 (`e21caf5de6`); this phase ships Q6-C2 and leaves Q6-C1 gated.
+- **Shipped record (Wave-0)**: only code-graph candidate shipped there was Q4-C1 (`e21caf5de6`); this phase ships Q6-C2 and leaves Q6-C1 gated.
 <!-- /ANCHOR:related-docs -->

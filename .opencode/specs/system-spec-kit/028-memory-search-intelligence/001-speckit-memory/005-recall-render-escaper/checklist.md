@@ -117,7 +117,7 @@ Each item is verified against real evidence (file:line, command, or test output)
 ## File Organization
 
 - [x] CHK-060 [P1] All authored docs live under `001-speckit-memory/005-recall-render-escaper/`
-- [x] CHK-061 [P0] No edits to `030-memory-search-intelligence-impl/` (the shipped record is read-only)
+- [x] CHK-061 [P0] No edits to the Wave-0 implementation record (the shipped record is read-only)
 <!-- /ANCHOR:file-org -->
 
 ---
