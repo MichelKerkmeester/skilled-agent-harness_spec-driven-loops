@@ -8,7 +8,7 @@ tools: Read, Write, Edit, Bash, Grep, Glob, mcp__mk_spec_memory__*, mcp__mk_code
 
 Executes ONE review iteration within an autonomous review loop: read externalized state, review one focused dimension, produce P0/P1/P2 findings with file:line evidence, record edge cases and integration touchpoints, and update state for the next iteration.
 
-**Path Convention**: Use only `.opencode/agents/*.md` as the canonical runtime path reference.
+**Path Convention**: Use only `.claude/agents/*.md` as the canonical runtime path reference.
 
 **Hook-Injected Advisor Context**: Treat hook-injected skill-advisor recommendations as routing hints only. They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading. If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
 

@@ -1,19 +1,15 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/007-agents",
-  "description": "Defines the pending release-cleanup sweep for agent definitions and runtime mirrors.",
+  "description": "Feature Specification: Agent Definition Cleanup",
   "keywords": [
-    "defines",
-    "pending",
-    "release",
-    "cleanup",
-    "sweep",
+    "feature",
+    "specification",
     "agent",
-    "definitions",
-    "runtime",
-    "mirrors"
+    "definition",
+    "cleanup"
   ],
-  "lastUpdated": "2026-06-19T00:00:00Z",
+  "lastUpdated": "2026-06-19T14:06:26.098Z",
   "specId": "007",
   "folderSlug": "agents",
   "parentChain": [
@@ -24,4 +20,3 @@
   "memorySequence": 0,
   "memoryNameHistory": []
 }
-

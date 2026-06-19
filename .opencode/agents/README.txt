@@ -2,21 +2,22 @@ AGENTS DIRECTORY
 ================
 
 This directory contains agent definitions for the OpenCode runtime.
-Each .md file defines one live agent surface with frontmatter (tools, permissions, model)
+Each .md file defines one agent surface with frontmatter (tools, permissions, model)
 and behavioral instructions.
 
-Sibling runtimes: .claude/agents/ (.md), .codex/agents/ (.toml)
+Sibling runtimes: .claude/agents/ (.md) and .codex/agents/ (.toml)
 Inventory rule: if an agent file is not present in this directory, it is not a live runtime surface here.
 
 Agents:
-  code          — Application-code implementation (write-capable LEAF; sk-code stack delegation)
-  create    — /create:* documentation executor (write-capable LEAF; sk-doc templates; caller-restricted)
-  context       — Retrieval-first codebase exploration
-  debug         — Fresh-perspective debugging
-  deep-research — Autonomous research iterations
-  deep-review   — Autonomous code review iterations
-  deep-improvement — Evaluator-first bounded agent improvement
-  prompt-improver — Prompt engineering
-  orchestrate   — Multi-agent coordination
-  review        — Code review (read-only)
-  ai-council   — Multi-strategy planning
+  ai-council:       multi-strategy AI Council planning, writes only ai-council artifacts
+  code:             application-code implementation via sk-code, write-capable LEAF dispatched only by orchestrate
+  context:          retrieval-first context agent with canonical continuity recovery, read-only
+  debug:            user-invoked fresh-perspective debugger, 5-phase root-cause method, never auto-dispatched
+  deep-context:     read-only deep-context analyzer seat, one parallel sweep of a slice
+  deep-improvement: proposal-only mutator for bounded agent improvement, evaluator-first
+  deep-research:    autonomous deep-research iterations with externalized state
+  deep-review:      deep-review iteration agent, one dimension per pass with P0/P1/P2 findings
+  markdown:         template-first markdown and documentation executor for /create:* commands and spec docs
+  orchestrate:      senior multi-agent orchestration, decomposition, delegation and synthesis
+  prompt-improver:  prompt-engineering specialist, framework selection and CLEAR validation
+  review:           read-only code-review specialist, pattern validation and quality scoring

@@ -9,10 +9,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/007-agents"
-    last_updated_at: "2026-06-19T00:00:00Z"
-    last_updated_by: "codex-gpt-5"
-    recent_action: "Created PENDING cleanup phase scaffold"
-    next_safe_action: "Execute discovery before changing any target documentation"
+    last_updated_at: "2026-06-19T12:00:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Cleaned agent READMEs and localized claude path-convention lines"
+    next_safe_action: "Proceed to phase 008-agents-md cleanup"
     blockers: []
     key_files:
       - "spec.md"
@@ -23,11 +23,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-005-007-agents"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
-      - "This phase defines cleanup scope only."
-      - "All cleanup candidates remain PENDING."
+      - "Agent definition cleanup executed for this phase."
+      - "READMEs and claude path-convention lines fixed, bodies verified accurate."
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
@@ -42,7 +42,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | PENDING |
+| **Status** | COMPLETE |
 | **Created** | 2026-06-19 |
 | **Parent Spec** | ../spec.md |
 | **Parent Packet** | `system-spec-kit/028-memory-search-intelligence/005-release-cleanup` |
@@ -86,9 +86,9 @@ Agent roles, tools and dispatch language are accurate, three runtime mirrors are
 
 | Candidate Surface | Status | Note |
 |-------------------|--------|------|
-| .opencode agent definitions | PENDING | Defined for cleanup execution only |
-| .claude agent mirror definitions | PENDING | Defined for cleanup execution only |
-| .codex agent mirror definitions | PENDING | Defined for cleanup execution only |
+| .opencode agent definitions | DONE | README rewritten, 12 bodies reviewed, paths and counts verified |
+| .claude agent mirror definitions | DONE | README rewritten, two path-convention lines localized to .claude |
+| .codex agent mirror definitions | DONE | README rewritten with .toml runtime, bodies verified accurate |
 
 ### Files to Change
 

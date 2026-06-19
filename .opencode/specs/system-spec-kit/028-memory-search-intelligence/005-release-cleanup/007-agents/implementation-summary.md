@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Agent Definition Cleanup"
-description: "Pending scaffold summary for the Agent Definition Cleanup release-cleanup phase."
+description: "Execution summary for the Agent Definition Cleanup release-cleanup phase."
 trigger_phrases:
   - "007-agents implementation summary"
   - "028 release cleanup 007-agents"
@@ -9,10 +9,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/007-agents"
-    last_updated_at: "2026-06-19T00:00:00Z"
-    last_updated_by: "codex-gpt-5"
-    recent_action: "Scaffolded impl"
-    next_safe_action: "Do not mark cleanup complete until execution evidence exists"
+    last_updated_at: "2026-06-19T12:00:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Executed agent-definition cleanup and recorded evidence"
+    next_safe_action: "Proceed to phase 008-agents-md cleanup"
     blockers: []
     key_files:
       - "implementation-summary.md"
@@ -20,11 +20,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-summary-007-agents"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
-      - "This summary exists to satisfy the Level-2 contract."
-      - "Cleanup execution remains PENDING."
+      - "This summary records the executed Level-2 cleanup."
+      - "Cleanup execution is complete with verification evidence."
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
@@ -38,7 +38,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | system-spec-kit/028-memory-search-intelligence/005-release-cleanup/007-agents |
-| **Completed** | Not executed |
+| **Completed** | 2026-06-19 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -47,21 +47,27 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The scaffold now defines the Agent Definition Cleanup cleanup phase. No target documentation has been cleaned yet and every cleanup candidate remains PENDING.
+Discovery enumerated 39 in-scope files across three runtime mirrors: 12 agent definitions plus a README in each of `.opencode/agents/` (.md), `.claude/agents/` (.md) and `.codex/agents/` (.toml). Every agent definition was reviewed against the current shipped state for role accuracy, path validity, count accuracy and mirror parity. Two classes of stale content were found and fixed. The agent bodies were verified accurate and left unchanged.
 
-### Pending Cleanup Contract
+### What Was Fixed
 
-This child phase now has the required spec, plan, task list, checklist and summary docs. The docs define discovery, scope and verification so a later execution pass can clean only this surface.
+The three `README.txt` files were rewritten. They listed agents that no longer exist (`create`, `handover`, `speckit`), omitted live agents (`deep-context`, `markdown`, `deep-improvement`), gave the wrong runtime name for the Claude and Codex mirrors, and described the Codex mirror as `.md` when it ships `.toml`. Each README now names the live 12 agents, the correct runtime, the correct file extension and the correct sibling runtimes.
+
+The `.claude` Path Convention lines in `deep-review.md` and `review.md` pointed readers at `.opencode/agents/*.md` instead of the local `.claude/agents/*.md`. The Codex mirror already localizes this line to `.codex/agents/*.toml`, so the Claude mirror was brought into line.
+
+### What Was Verified Accurate
+
+All body path references resolve on disk. The `.opencode/skills/...` references inside the Claude and Codex mirrors are correct by convention because skills are cited from their canonical home. All 12 agents exist in all three runtimes with no orphans, and the bodies are near-identical across mirrors apart from runtime-specific packaging.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| spec.md | Created | Defines scope, objective and acceptance criteria |
-| plan.md | Created | Defines execution and verification approach |
-| tasks.md | Created | Lists pending cleanup tasks |
-| checklist.md | Created | Lists pending verification checks |
-| implementation-summary.md | Created | Records that this is scaffold only |
+| .opencode/agents/README.txt | Modified | Corrected agent list, runtime name and voice |
+| .claude/agents/README.txt | Modified | Corrected agent list, runtime name and voice |
+| .codex/agents/README.txt | Modified | Corrected agent list, runtime name, .toml extension and voice |
+| .claude/agents/deep-review.md | Modified | Localized Path Convention to .claude/agents/*.md |
+| .claude/agents/review.md | Modified | Localized Path Convention to .claude/agents/*.md |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -69,7 +75,7 @@ This child phase now has the required spec, plan, task list, checklist and summa
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The phase docs were created from the spec-kit Level-2 structure and kept in PENDING state. Cleanup execution is intentionally deferred.
+Discovery ran `rg --files` over the three agent directories. Review used parallel read-only verification of path resolution, count and cross-reference accuracy, and mirror parity, with each finding confirmed by a direct grep or `test -e` before any edit. Edits applied house voice to all rewritten prose. Out-of-scope surfaces were not touched.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -79,8 +85,9 @@ The phase docs were created from the spec-kit Level-2 structure and kept in PEND
 
 | Decision | Why |
 |----------|-----|
-| Keep a pending summary | The Level-2 validator requires the file and the content must avoid false completion claims |
-| Leave all checks unchecked | No cleanup evidence exists yet |
+| Targeted voice rather than corpus-wide purge | Em dashes are the established repo-wide style with 392 in skill docs and 39 in CLAUDE.md, so house voice was applied only to rewritten prose, not as a mass rewrite of load-bearing agent instructions |
+| Leave agent bodies unchanged | Review confirmed paths resolve, counts are accurate and mirrors match, so no body edits were warranted |
+| Localize the Claude Path Convention lines | The Codex mirror already localizes the same line, so the Claude mirror was the divergent one |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -90,8 +97,13 @@ The phase docs were created from the spec-kit Level-2 structure and kept in PEND
 
 | Check | Result |
 |-------|--------|
-| Cleanup execution | PENDING |
-| Strict validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/005-release-cleanup/007-agents --strict` |
+| Cleanup execution | DONE (5 files modified, agent bodies verified accurate) |
+| Em dash scan on edited READMEs | 0 hits |
+| Semicolon scan on edited READMEs | 0 hits |
+| Oxford comma scan on edited READMEs | 0 hits |
+| Stale-reference scan on agent docs | 0 actionable hits |
+| Path resolution on agent bodies | All references resolve |
+| Strict validation | PASSED, 0 errors and 0 warnings via `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/005-release-cleanup/007-agents --strict` |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -99,5 +111,5 @@ The phase docs were created from the spec-kit Level-2 structure and kept in PEND
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Cleanup not executed.** This phase defines the contract only and later work must run discovery before editing target docs.
+1. **Corpus-wide em dash style left in place.** House voice was applied only to rewritten prose. The pre-existing em dash and semicolon style across the agent bodies matches the wider repository and was out of scope for this targeted cleanup.
 <!-- /ANCHOR:limitations -->
