@@ -109,6 +109,7 @@ export interface LaneMatch {
   readonly lane: ScorerLane;
   readonly score: number;
   readonly evidence: readonly string[];
+  readonly producerSkillIds?: readonly string[];
   readonly shadowOnly?: boolean;
 }
 

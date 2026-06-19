@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Skill Advisor — Provenance Self-Boost Guard, Attested Baseline Drift & Skip-Never-Fabricate"
-description: "Three deferred observability/integrity refinements held as documented, evidence-cited PENDING candidates. No code shipped: the self-boost guard is a scoped generalization of two existing penalties, and the attested-baseline drift sweep plus the skip-never-fabricate taxonomy both ride a durable cross-session calibration substrate the tmpdir JSONL lacks (shared with Deep-Loop 028/004)."
+description: "SA-author-self-boost-guard shipped as a default-off scorer refinement behind SPECKIT_ADVISOR_SELF_RECOMMENDATION_GUARD. SA-attested-baseline-drift-sweep and SA-skip-never-fabricate remain documented PENDING candidates behind the durable cross-session calibration substrate the tmpdir JSONL lacks."
 trigger_phrases:
   - "advisor provenance drift summary"
   - "SA self boost guard implementation summary"
@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/006-provenance-drift-observability"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Author SA-self-boost/drift/skip deferred-plan impl doc (all PENDING)"
-    next_safe_action: "Hold until the durable calibration substrate (shared with 028/004) lands"
+    recent_action: "Implemented default-off self-boost guard"
+    next_safe_action: "Await durable calibration substrate"
     blockers: []
     key_files:
       - "implementation-summary.md"
@@ -26,7 +26,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-003-006-provenance-drift-observability"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 34
     open_questions: []
     answered_questions: []
 ---
@@ -44,7 +44,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 028-memory-search-intelligence/003-skill-advisor/006-provenance-drift-observability |
-| **Completed** | N/A — deferred plan authored 2026-06-19; no candidate shipped |
+| **Completed** | Partial — SA-author-self-boost-guard shipped default-off; drift/skip remain pending |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -53,11 +53,11 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-No calibration or scorer code shipped. This sub-phase captures three observability/integrity refinements the iter-8 mining of aionforge `cross-family-guard.md` + `drift.md` surfaced — two orthogonal NET-NEW families the fusion-math roadmap never touches (provenance-contamination, temporal-drift) plus a skip-reason taxonomy enrich — and that Round-E verification (iter-012) then deliberately softened to PARTIAL/CAUTION. The deliverable is the deferred plan: a problem statement, a per-candidate gate, and the one shared blocker that holds two of the three — a durable cross-session calibration substrate the current tmpdir JSONL window lacks. None of the three appears in the 030 Wave-0 shipped record (`git log 1ecc531431..ab5459fb6d` has no advisor/self-boost/drift/fabricate/signalReason/provenance commit; 030 §14 covers only the Memory, Code-Graph, and Deep-Loop Wave-0 candidates).
+One scorer candidate shipped. SA-author-self-boost-guard now has a default-off implementation behind `SPECKIT_ADVISOR_SELF_RECOMMENDATION_GUARD`: explicit-author scoring can carry producer identity when the guard path asks for it, fusion centralizes the advisor self-recommendation guard, and default scorer behavior remains byte-identical with the flag unset. The two substrate-backed candidates remain pending because the calibration store is still the ephemeral tmpdir JSONL window, not a durable attested-baseline substrate.
 
-### SA-author-self-boost-guard — provenance self-recommendation guard (PENDING, scope-correction gate)
+### SA-author-self-boost-guard — provenance self-recommendation guard (DONE, default-off)
 
-The mined framing was a blanket "a producer must not score off its own authored content." Round-E REFUTED that as over-broad: every skill scoring off its own authored signals IS the `explicit_author` lane working as designed (`explicit.ts:318-320` pushes `author:${phrase}` evidence; `:327` returns it as the lane score), so a blanket guard neuters it. The ONE real self-recommendation vector — the advisor recommending ITSELF — is already mitigated by two hardcoded penalties (`readOnlyExplainerFloor` at `fusion.ts:134`; `auditRecsAdvisorPenalty` at `fusion.ts:313`). The actionable scope is to GENERALIZE those two ad-hoc penalties into one principled producer-vs-scored-skill guard at the dedup/rank seam (`fusion.ts:173,464`), firing only on the self-recommendation vector. It needs no durable substrate, so it is the least-blocked of the three — but low-priority, because the real vector is already handled.
+Implemented as a guarded scorer refinement, not a blanket penalty. The explicit-author lane accepts an optional producer-identity mode and leaves its default output unchanged. Fusion reads that provenance only when `SPECKIT_ADVISOR_SELF_RECOMMENDATION_GUARD` is enabled, applies the self-recommendation guard to advisor aliases, and keeps non-advisor `explicit_author` routing byte-identical. The existing default path still preserves the current `readOnlyExplainerFloor` and `auditRecsAdvisorPenalty` behavior.
 
 ### SA-attested-baseline-drift-sweep — shadow-path drift sweep (PENDING, shared-infra-dep gate)
 
@@ -76,9 +76,11 @@ The estimator already abstains conservatively — `signalReason()` returns `low_
 | `tasks.md` | Created | T001-T011 breakdown, all PENDING/blocked with cited evidence |
 | `checklist.md` | Created | Level-2 verification checklist (planning items checked; build/test items gate on promotion) |
 | `implementation-summary.md` | Created | This deferred-plan summary |
-| `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/feedback-calibration.ts` | Unchanged (deferred) | Target for SA-skip-never-fabricate (`signalReason()` enum) + SA-attested-baseline-drift-sweep (attested baseline + drift sweep; move record root off tmpdir) when promoted |
-| `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/explicit.ts` | Unchanged (deferred) | SA-author-self-boost-guard target — thread producer identity through the `author:` evidence path |
-| `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts` | Unchanged (deferred) | SA-author-self-boost-guard target — generalize the two self-rec penalties (`:134,313`) into one producer-vs-scored guard |
+| `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/feedback-calibration.ts` | Unchanged (deferred) | Target for SA-skip-never-fabricate + SA-attested-baseline-drift-sweep when the durable substrate exists |
+| `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/types.ts` | Modified | Optional producer identity on lane matches |
+| `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/explicit.ts` | Modified | Producer identity is threaded only when requested by the default-off guard path |
+| `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts` | Modified | Adds `SPECKIT_ADVISOR_SELF_RECOMMENDATION_GUARD` and the centralized self-recommendation guard |
+| `.opencode/skills/system-skill-advisor/mcp_server/tests/scorer/provenance-self-boost-guard.vitest.ts` | Created | Default-off, flag-on, non-advisor byte-equivalence, and advisor audit penalty fixtures |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -86,7 +88,7 @@ The estimator already abstains conservatively — `signalReason()` returns `low_
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-This is a re-plan, not an implementation. The deferred plan was authored from the Skill Advisor research campaign — iter-008 (the 6 NET-NEW contamination/drift candidates), iter-011 (the galadriel-advisor residue all REFUTED), and iter-012 (Round-E verify, which softened all three of these candidates) — plus the deltas `iter-008.jsonl` (the three candidate rows) and `iter-012.jsonl` (E12-01/E12-03/E12-04). The seam citations were re-confirmed live before authoring: the two self-rec penalties (`fusion.ts:134,313`), the `author:${phrase}` push + symmetric lane score (`explicit.ts:320,327`), the `signalReason()` taxonomy (`feedback-calibration.ts:125-130`, now three exclude-reasons — richer than the iter-8 "two only" snapshot but still lacking the drift-specific distinctions), the live `thresholdSignals` recompute (`:193-203`), the shadow guardrails (`:230-237`), and the ephemeral tmpdir record root (`:25-26,248-251`). The all-PENDING status was cross-checked against the 030 Wave-0 shipped record (§14 candidate-status table has no SA-* row; the commit range carries no matching commit), confirming nothing here is already done.
+The implementation followed the Round-E correction: generalize only the advisor self-recommendation vector and preserve normal skill self-authored evidence. Drift and skip were deliberately left untouched after confirming the calibration store still uses `tmpdir()` plus a 50-record cap. The 030 Wave-0 record remains historical context only; this turn implemented the first 028/003/006 scorer candidate.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -96,7 +98,7 @@ This is a re-plan, not an implementation. The deferred plan was authored from th
 
 | Decision | Why |
 |----------|-----|
-| Keep all three candidates PENDING; ship no code | Two of the three ride a durable calibration substrate that does not exist yet (the live store is an ephemeral tmpdir 50-record window); the third is a scoped generalization that is already mitigated for its real vector. Speculative implementation would either build on a substrate that is not there or harden a path that is already handled. |
+| Ship only SA-author-self-boost-guard | It needs no durable substrate and can be made byte-identical by default behind a flag. Drift and skip still ride storage that does not exist yet. |
 | Scope SA-author-self-boost-guard to GENERALIZING two penalties, NOT a blanket guard | Round-E proved the blanket framing neuters the by-design `explicit_author` symmetry (every skill scoring off its own authored signals is correct). The only real vector is the advisor recommending itself, already mitigated by `readOnlyExplainerFloor` + `auditRecsAdvisorPenalty`; the guard generalizes those, nothing wider. |
 | Gate the attested-baseline drift sweep on durable storage, co-owned with 028/004 | An attested baseline must survive across sessions to mean anything; the tmpdir 50-record window cannot hold one. The durable substrate is the same one the C4 shadow-promotion seam (sibling 004) needs — build it once, do not fork a second store. |
 | NEVER auto-rebaseline the drift sweep | A drifting system that silently moves its own reference point launders its drift away. The baseline is an attested asset, updated only by an explicit re-attestation event, never by the running system. |
@@ -111,13 +113,18 @@ This is a re-plan, not an implementation. The deferred plan was authored from th
 
 | Check | Result |
 |-------|--------|
-| `validate.sh --strict` on this sub-phase | PASS expected after spec/plan/tasks/checklist/implementation-summary land (the FILE_EXISTS error was the 2 missing Level-2 files) |
+| `npm run typecheck` | PASS — 0 TypeScript errors |
+| Focused Vitest | PASS — `tests/scorer/provenance-self-boost-guard.vitest.ts` 5 tests passed |
+| Broad related Vitest | 119 passed / 2 skipped / 2 failed across 18 files; the 2 failures are pre-existing parity failures also present at baseline (`rr-iter2-060`, expected 62 preserved vs actual 61) |
+| OpenCode alignment drift | PASS — 37 files scanned, 0 findings |
+| Comment hygiene spot check | PASS — no ADR/REQ/CHK/spec-path strings in changed code files |
+| `validate.sh --strict` on this sub-phase | PASS after packet docs were updated |
 | Live seam citations (`fusion.ts:134,313`; `explicit.ts:320,327`; `feedback-calibration.ts:25,125-130,171,193-203,230-237`) | PASS — all read directly 2026-06-19; `signalReason()` confirmed to carry three exclude-reasons today (richer than the iter-8 snapshot) |
 | Tmpdir/ephemeral record root (the shared blocker) | PASS — `RECORD_ROOT = join(tmpdir(), ...)` (`:25`), `MAX_RECORDS=50` (`:26`), `existing.slice(-MAX_RECORDS)` (`:248-251`) confirm no durable cross-session state |
 | Shadow guardrails (anti-rebaseline already holds for live) | PASS — `{defaultOff, shadowOnly, liveWeightsFrozen, autoPromotion:false}` at `:230-237` |
 | Cited research iterations / deltas exist | PASS — iteration-008/011/012 + deltas iter-008/iter-012 all present |
 | 030 Wave-0 cross-check (none done) | PASS — §14 has no SA-* row; commit range has no matching commit |
-| Code shipped | NONE — all three candidates PENDING by design |
+| Code shipped | SA-author-self-boost-guard only; drift and skip left pending |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -125,9 +132,9 @@ This is a re-plan, not an implementation. The deferred plan was authored from th
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **All three candidates are unbuilt.** The calibration + scorer behave exactly as today. This sub-phase adds no default-on behavior; the drift sweep, when built, is default-off and shadow-only.
-2. **Two of the three are blocked on infrastructure this sub-phase does not own.** SA-attested-baseline-drift-sweep and SA-skip-never-fabricate need the durable calibration substrate built under sibling `004-c4-shadow-seam-beta-posterior`; co-own it, do not fork a second store (REQ-005).
-3. **SA-author-self-boost-guard is low-priority.** The real self-recommendation vector is already mitigated by the two existing penalties; the guard generalizes them for principled-ness, not to fix an open bug. It must NOT be shipped as a blanket guard (REQ-002/REQ-007).
+1. **The shipped guard is default-off.** Live ranking remains unchanged unless `SPECKIT_ADVISOR_SELF_RECOMMENDATION_GUARD` is enabled.
+2. **Two of the three candidates are still blocked on infrastructure this sub-phase does not own.** SA-attested-baseline-drift-sweep and SA-skip-never-fabricate need the durable calibration substrate built under sibling `004-c4-shadow-seam-beta-posterior`; co-own it, do not fork a second store (REQ-005).
+3. **The guard must stay scoped.** It must NOT become a blanket "no skill scores off its own authored content" rule (REQ-002/REQ-007).
 4. **The stale-embedder-space signal is undefined.** `stale_model` needs an embedder-model id stamped on the attested baseline to compare against the live embedder; that schema is owned by the durable-substrate design (028/004) and is open.
 5. **SA-anti-flap as a standalone, SA-family-normalization hard-collapse, and the galadriel residue are REFUTED.** They are recorded out-of-scope (spec §3) so they are not silently re-mined; only the anti-flap dedup discipline survives, scoped onto the new drift gauge.
 6. **No leaf `graph-metadata.json`.** Like sibling 004, this leaf sub-phase has no graph-metadata file; the parent `003-skill-advisor` owns the graph. The validator surfaces this as a non-blocking pass only.

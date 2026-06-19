@@ -17,7 +17,14 @@ import {
   rememberParseResultCaptures,
 } from './structural-indexer.js';
 import { isSpeckitMetricsEnabled, speckitMetrics } from './shared/metrics-stub.js';
-import { addToSkipList, lookupSkipList } from './parser-skip-list.js';
+import {
+  addToSkipList,
+  classifyParserErrorClass,
+  classifyParserRetryClass,
+  isParserSkipListEnabled,
+  lookupSkipList,
+  recordSuccess,
+} from './parser-skip-list.js';
 import type {
   ParseResult, SupportedLanguage, SymbolKind, EdgeType,
 } from './indexer-types.js';
@@ -67,7 +74,6 @@ let parserHealth: 'ok' | 'quarantined' = 'ok';
 type ParserLanguage = Exclude<SupportedLanguage, 'doc'>;
 const grammarCache = new Map<ParserLanguage, TreeSitterLanguage>();
 const SUPPORTED_LANGUAGES: ParserLanguage[] = ['javascript', 'typescript', 'python', 'bash'];
-const SKIP_LIST_ENABLED = process.env.SPECKIT_PARSER_SKIP_LIST_ENABLED !== 'false';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const localRequire = createRequire(import.meta.url);
@@ -111,10 +117,7 @@ export function resetParserHealth(): void {
 }
 
 export function classifyError(err: unknown): 'B1' | 'B2' | 'OTHER' {
-  const message = err instanceof Error ? err.message : String(err);
-  if (message.includes('resolved is not a function')) return 'B1';
-  if (message.includes('memory access out of bounds')) return 'B2';
-  return 'OTHER';
+  return classifyParserErrorClass(err);
 }
 
 function earlyReturnSentinel(
@@ -802,7 +805,7 @@ export class TreeSitterParser implements ParserAdapter {
         };
       }
 
-      if (SKIP_LIST_ENABLED && filePath) {
+      if (isParserSkipListEnabled() && filePath) {
         const skipEntry = lookupSkipList(filePath);
         if (skipEntry) {
           return earlyReturnSentinel(content, language, startTime, 'skip-list', skipEntry);
@@ -835,6 +838,9 @@ export class TreeSitterParser implements ParserAdapter {
             : (parseHealth === 'recovered' ? 'recovered' : 'success');
           speckitMetrics.recordHistogram('spec_kit.graph.parse_duration_ms', Date.now() - speckitParseStart, { language, outcome });
         }
+        if (filePath && parseHealth !== 'error') {
+          recordSuccess(filePath);
+        }
         return rememberParseResultCaptures({
           filePath: '',
           language,
@@ -854,15 +860,12 @@ export class TreeSitterParser implements ParserAdapter {
         speckitMetrics.recordHistogram('spec_kit.graph.parse_duration_ms', Date.now() - speckitParseStart, { language, outcome: 'error' });
       }
       const errorClass = classifyError(err);
+      const retryClass = classifyParserRetryClass(err);
       if (errorClass === 'B2') {
         parserHealth = 'quarantined';
       }
-      if (SKIP_LIST_ENABLED) {
-        if (errorClass === 'B1' || errorClass === 'B2') {
-          if (filePath) {
-            addToSkipList(filePath, errorClass, err instanceof Error ? err.message : String(err));
-          }
-        }
+      if (isParserSkipListEnabled() && filePath) {
+        addToSkipList(filePath, errorClass, err instanceof Error ? err.message : String(err), undefined, { retryClass });
       }
       return {
         filePath: '',

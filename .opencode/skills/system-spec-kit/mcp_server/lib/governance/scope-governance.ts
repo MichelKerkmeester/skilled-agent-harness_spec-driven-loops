@@ -8,6 +8,8 @@
    1. IMPORTS
 ──────────────────────────────────────────────────────────────── */
 
+import { canonicalFold } from '@spec-kit/shared/unicode-normalization';
+
 import { ensureGovernanceTables } from '../search/vector-index-schema.js';
 
 import type Database from 'better-sqlite3';
@@ -175,6 +177,22 @@ export const GOVERNANCE_AUDIT_ACTIONS = {
   CHECKPOINT_RESTORE_EXCLUDED_PATH_REJECTED: 'checkpoint_restore_excluded_path_rejected',
 } as const;
 
+const DENIAL_AUDIT_RAW_TEXT_KEYS = new Set([
+  'input',
+  'inputprompt',
+  'prompt',
+  'query',
+  'querytext',
+  'rawinput',
+  'rawprompt',
+  'rawquery',
+  'searchtext',
+  'userprompt',
+]);
+const DENIAL_AUDIT_REDACTION = '[redacted-query-text]';
+const DENIAL_AUDIT_INSTRUCTION_PATTERN =
+  /\b(ignore\s+(previous|all)\s+instructions|system\s*:|developer\s*:|assistant\s*:|instruction\s*:|execute\s*:)/i;
+
 /* ───────────────────────────────────────────────────────────────
    4. HELPERS
 ──────────────────────────────────────────────────────────────── */
@@ -183,6 +201,67 @@ function normalizeId(value: unknown): string | undefined {
   if (typeof value !== 'string') return undefined;
   const trimmed = value.trim();
   return trimmed.length > 0 ? trimmed : undefined;
+}
+
+function normalizeMetadataKey(key: string): string {
+  return key.replace(/[^a-z0-9]/gi, '').toLowerCase();
+}
+
+function isRawTextMetadataKey(key: string | undefined): boolean {
+  return typeof key === 'string' && DENIAL_AUDIT_RAW_TEXT_KEYS.has(normalizeMetadataKey(key));
+}
+
+function isPlainRecord(value: unknown): value is Record<string, unknown> {
+  return value !== null && typeof value === 'object' && !Array.isArray(value);
+}
+
+function isInstructionShapedText(value: string): boolean {
+  return DENIAL_AUDIT_INSTRUCTION_PATTERN.test(canonicalFold(value));
+}
+
+function sanitizeDenyAuditValue(value: unknown, key?: string): unknown {
+  if (isRawTextMetadataKey(key)) {
+    return DENIAL_AUDIT_REDACTION;
+  }
+
+  if (typeof value === 'string' && isInstructionShapedText(value)) {
+    return DENIAL_AUDIT_REDACTION;
+  }
+
+  if (Array.isArray(value)) {
+    return value.map((item) => sanitizeDenyAuditValue(item));
+  }
+
+  if (isPlainRecord(value)) {
+    return Object.fromEntries(
+      Object.entries(value).map(([entryKey, entryValue]) => [
+        entryKey,
+        sanitizeDenyAuditValue(entryValue, entryKey),
+      ]),
+    );
+  }
+
+  return value;
+}
+
+function sanitizeGovernanceAuditMetadata(entry: GovernanceAuditEntry): Record<string, unknown> | null {
+  if (!entry.metadata) {
+    return null;
+  }
+  if (entry.decision !== 'deny') {
+    return entry.metadata;
+  }
+  return sanitizeDenyAuditValue(entry.metadata) as Record<string, unknown>;
+}
+
+function sanitizeGovernanceAuditReason(entry: GovernanceAuditEntry): string | null {
+  if (!entry.reason) {
+    return null;
+  }
+  if (entry.decision === 'deny' && isInstructionShapedText(entry.reason)) {
+    return 'redacted_query_text';
+  }
+  return entry.reason;
 }
 
 /* ───────────────────────────────────────────────────────────────
@@ -387,6 +466,7 @@ export function ensureGovernanceRuntime(database: Database.Database): void {
 export function recordGovernanceAudit(database: Database.Database, entry: GovernanceAuditEntry): void {
   ensureGovernanceRuntime(database);
   const scope = normalizeScopeContext(entry);
+  const metadata = sanitizeGovernanceAuditMetadata(entry);
   database.prepare(`
     INSERT INTO governance_audit (
       action, decision, memory_id, logical_key, tenant_id, user_id, agent_id, session_id,
@@ -401,8 +481,8 @@ export function recordGovernanceAudit(database: Database.Database, entry: Govern
     scope.userId ?? null,
     scope.agentId ?? null,
     scope.sessionId ?? null,
-    entry.reason ?? null,
-    entry.metadata ? JSON.stringify(entry.metadata) : null,
+    sanitizeGovernanceAuditReason(entry),
+    metadata ? JSON.stringify(metadata) : null,
   );
 }
 

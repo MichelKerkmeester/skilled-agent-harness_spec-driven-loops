@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Deep Loop Fan-out Determinism + Observability"
-description: "Plan for the deep-loop fan-out determinism + observability sub-phase: the shipped Wave-0 trio (deterministic merge total-order, read-derived lag/pending/failed pool gauges, graceful self-stop — commit 46812f12a8) recorded as DONE, plus the two gated PENDING tail items — the arrival-order/order-invariance property test (verification gate on the shipped merge tiebreak) and the near-duplicate merge dedup (content-normalized collapse on both the research and review merge paths) — sequenced over the fanout-merge/fanout-pool/fanout-run modules with no schema migration and no dependency on the absent D2 reliability signal."
+description: "Plan for the deep-loop fan-out determinism + observability sub-phase: the shipped Wave-0 trio (deterministic merge total-order, read-derived lag/pending/failed pool gauges, graceful self-stop — commit 46812f12a8) recorded as DONE, plus the locally implemented Wave-1 tail — the arrival-order/order-invariance property tests and the default-off near-duplicate merge dedup on both the research and review merge paths — with no schema migration and no dependency on the absent D2 reliability signal."
 trigger_phrases:
   - "fanout determinism observability plan"
   - "order invariance property test sequencing"
@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/004-deep-loop/002-fanout-determinism-observability"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored plan"
-    next_safe_action: "Author tasks.md (pre-check shipped trio with commit, leave tail pending)"
+    recent_action: "Updated plan for implemented order-invariance tests and default-off near-duplicate dedup"
+    next_safe_action: "Run strict validation after packet doc reconciliation"
     blockers: []
     key_files:
       - "spec.md"
@@ -26,7 +26,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-004-fanout-determinism-observability"
       parent_session_id: null
-    completion_pct: 60
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -52,7 +52,7 @@ _memory:
 ### Overview
 This sub-phase records the deep-loop fan-out **determinism + observability** trio that shipped in the flat Wave-0 packet (030, commit `46812f12a8`) and completes its gated Wave-1 tail. The trio — the deterministic merge total-order (`compareByContentThenId` layered on the `id||title` first-write-wins dedup), the read-derived `lag`/`pending`/`failed` pool gauges (no new state), and graceful self-stop (`stopped` partial-summary flush on SIGINT/SIGTERM + empty-tick=convergence) — is DONE and re-confirmed against current source. Two candidates remain: the **arrival-order/order-invariance property test** (the verification gate proving the shipped merge tiebreak is independent of the OS-arbitrary lineage arrival order from the unsorted `readdirSync(...).filter` at `fanout-merge.cjs:398`), and the **near-duplicate merge dedup** (collapse surface-variant findings by normalized content on both the research and review merge paths so restatements do not inflate the distinct-finding count feeding `sourceDiversity`).
 
-The discipline is the one Wave-0 and the sibling sub-phases encode: ship only what is additive, deterministic, and reversible; reuse the existing content-normalization (`normalizeSortText`/`contentSortKey`) rather than authoring a new dedup primitive; the property test is a pure verification-gate addition (no production code); and the near-dup dedup is content-normalization-gated so a genuinely distinct finding sharing an `id||title` is never dropped. Nothing here depends on the absent D2 reliability signal — every input is `r=0.5` today, and the cluster is keyed only on content text and read-derived pool counters.
+The discipline is the one Wave-0 and the sibling sub-phases encode: ship only what is additive, deterministic, and reversible; reuse the existing content-normalization (`normalizeSortText`) rather than authoring a new dedup primitive; make full-registry ordering deterministic where the verification gate needs byte-identical output; and keep the near-dup dedup default-off because it changes membership and can affect downstream ranking/convergence signals. Nothing here depends on the absent D2 reliability signal — every input is `r=0.5` today, and the cluster is keyed only on content text and read-derived pool counters.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -64,13 +64,13 @@ The discipline is the one Wave-0 and the sibling sub-phases encode: ship only wh
 - [x] 028 research treated as roadmap input, not implementation authority. Evidence: `spec.md` sections 2 and 11 cite `research.md` / `roadmap.md` / `synthesis` + the iter-11 property-test confirmation per candidate.
 - [x] Scope limited to the fan-out merge/pool/run determinism + observability seam; the resilience cluster (failure-class/retry/orphan/recover-vs-fresh) is excluded to the sibling `003-fanout-failure-recovery`, and D2/D3/Q2 + newInfoRatio + heartbeat are excluded. Evidence: `spec.md` section 3 Out of Scope.
 - [x] Candidate seams identified from `../research/research.md` + the roadmap/synthesis corrections (merge-tiebreak is total-order-ON-TOP-of-dedup not pure total-order; the property test is the one REAL galadriel survivor; the dedup keys exact `id||title`) before any edit.
-- [x] PENDING candidates name a concrete gate (verification-gate / content-normalization-gated). Evidence: `spec.md` section 11.
+- [x] Former pending candidates name a concrete implementation disposition (property-test done; near-dup done default-off). Evidence: `spec.md` section 11.
 
 ### Definition of Done
-- [x] All 6 candidate rows have a final status (DONE-with-commit or PENDING-with-gate). Evidence: `spec.md` section 11.
+- [x] All 6 candidate rows have a final status (Wave-0 DONE-with-commit or local DONE-with-evidence). Evidence: `spec.md` section 11.
 - [x] The shipped trio traces to Wave-0 commit `46812f12a8` in `../../../030-memory-search-intelligence-impl/spec.md` section 14 candidate 12.
-- [ ] The arrival-order/order-invariance property test is built and asserts a byte-identical merge under shuffled lineage arrival order (downstream; tracked, not built this sub-phase).
-- [ ] The near-dup merge dedup is built on both the research and review merge paths with a content-normalization gate, and REQ-004's order-invariance test is re-run after it lands (downstream; tracked).
+- [x] The arrival-order/order-invariance property tests are built and assert byte-identical research and review merges under shuffled lineage arrival order.
+- [x] The near-dup merge dedup is built on both the research and review merge paths with a content-normalization gate, default-off flagging, and order-invariance coverage after the dedup landed.
 - [x] Level-2 packet docs use the system-spec-kit templates and pass strict validation.
 <!-- /ANCHOR:quality-gates -->
 
@@ -103,13 +103,13 @@ Each fan-out run dispatches N lineages through the capped pool (`runCappedPool`)
 - [x] DL-pool-gauges — read-derived `lag`/`pending`/`failed` from `buildPoolGauges` (`fanout-pool.cjs:58-63`); live per settle + final summary; no new state.
 - [x] DL-graceful-self-stop — empty-tick=convergence (`fanout-run.cjs:490`) + `stopped` partial-summary flush on SIGINT/SIGTERM (`:508-524`).
 
-### Phase 2: Order-invariance property test (PENDING — verification-gate, no production-code change)
-- [ ] DL-arrival-order-property-test — a test that runs the merge under multiple permutations of the lineage directory order (the merge reads them unsorted at `fanout-merge.cjs:398`) and asserts the merged registry (membership, dedup survivor, final order, severity rollup) is byte-identical across permutations. Gate: verification-gate; protects the shipped `compareByContentThenId` tiebreak; the one REAL galadriel-derived survivor (iter-11).
+### Phase 2: Order-invariance property test (DONE)
+- [x] DL-arrival-order-property-test — tests run research and review merges under multiple lineage-order permutations and assert byte-identical merged registries. The implementation also sorts lineage labels and merged metadata arrays so byte-level observability is stable, not only finding order. Gate satisfied.
 
-### Phase 3: Near-dup merge dedup (PENDING — content-normalization-gated)
-- [ ] DL-near-dup-merge-dedup (research merge) — collapse surface-variant findings by normalized content (`contentSortKey`/`normalizeSortText`) in the research `findingById` dedup (`fanout-merge.cjs:182-198`) so a same-finding restatement does not inflate the distinct count feeding `sourceDiversity`. Gate: content-normalization-gated — never drop a genuinely distinct finding that merely shares an `id||title`.
-- [ ] DL-near-dup-merge-dedup (review merge) — the same content-normalized collapse on the review `findingById`/`resolvedFindingById` dedup (`:272-314`) so cross-lineage P0/P1 surface-variants are not double-counted in the severity rollup. Gate: same content-normalization gate; shares the research-merge design.
-- [ ] Re-run the order-invariance property test (Phase 2) after the dedup lands — the dedup changes membership, so the byte-identical assertion must be re-validated.
+### Phase 3: Near-dup merge dedup (DONE, default-off)
+- [x] DL-near-dup-merge-dedup (research merge) — default-off normalized-body-content collapse in the research merge so same-finding restatements can merge without changing default behavior. Distinct same-id different-content records remain conflict variants.
+- [x] DL-near-dup-merge-dedup (review merge) — the same default-off collapse on review open and resolved findings; active collapsed findings preserve strongest-severity semantics.
+- [x] Re-run the order-invariance property tests after the dedup landed — covered by the broad deep-loop-runtime unit suite after implementation.
 
 ### Phase 4: Docs + verification
 - [x] Author Level-2 packet docs from the system-spec-kit templates.
@@ -125,8 +125,8 @@ Each fan-out run dispatches N lineages through the capped pool (`runCappedPool`)
 |-----------|-------|-------|
 | Syntax | Every touched `.cjs` parses | `node --check` |
 | Order-stability (shipped) | The trio: merge total-order, gauges, graceful self-stop | deep-loop-runtime vitest (58 fanout tests pass, mutation-checked, `46812f12a8`) |
-| Order-invariance (tail) | Same lineages, shuffled arrival order ⇒ byte-identical merged registry (membership/dedup survivor/final order/severity rollup) | new `fanout-merge.vitest.ts` property test (gated) |
-| Near-dup dedup (tail) | Surface-variant restatement collapses; two distinct findings sharing an `id||title` both survive | new `fanout-merge.vitest.ts` dedup tests (gated) |
+| Order-invariance (tail) | Same lineages, shuffled arrival order ⇒ byte-identical merged registry (membership/dedup survivor/final order/severity rollup) | `fanout-merge.vitest.ts` research + review property tests |
+| Near-dup dedup (tail) | Surface-variant restatement collapses when enabled; two distinct findings sharing an `id||title` both survive | `fanout-merge.vitest.ts` research/review/resolved dedup tests |
 | Regression | Full fan-out pool/run/merge suite green after any dedup change; re-run order-invariance after the dedup changes membership | existing deep-loop-runtime suite (baseline captured first) |
 | Packet docs | Level-2 structure, anchors, frontmatter, required files | `validate.sh --strict` |
 <!-- /ANCHOR:testing -->
@@ -181,8 +181,8 @@ The content-normalization basis (`normalizeSortText`/`contentSortKey`) the near-
 | DL-merge-tiebreak | S | Shipped `46812f12a8` — total comparator on top of the dedup |
 | DL-pool-gauges | S | Shipped `46812f12a8` — read-derived counters, no new state |
 | DL-graceful-self-stop | S | Shipped `46812f12a8` — `stopped` flush + empty-tick=convergence |
-| DL-arrival-order-property-test | S | Pending — verification-gate; new test, no production code |
-| DL-near-dup-merge-dedup (research + review) | S | Pending — content-normalization-gated; one design, two merge maps |
+| DL-arrival-order-property-test | S | Done — tests plus deterministic lineage/read metadata ordering |
+| DL-near-dup-merge-dedup (research + review) | S | Done default-off — one normalized-body-content design across research, review open and review resolved maps |
 | Docs + verification | M | Completed |
 
 > Effort tags are structural inference, never benchmarked (per the 028 honesty layer). The cluster is Level 2 (100-499 LOC band) but each candidate is independently small; the risk on the near-dup dedup (never drop a distinct finding) is the reason for the content-normalization gate + the re-run of the order-invariance test, not LOC.
@@ -198,6 +198,6 @@ The content-normalization basis (`normalizeSortText`/`contentSortKey`) the near-
 | DL-merge-tiebreak | Revert `46812f12a8` (restores the pre-Wave-0 merge order). Not rolled back here. |
 | DL-pool-gauges | Revert `46812f12a8` (drops the read-derived gauges). Not rolled back here. |
 | DL-graceful-self-stop | Revert `46812f12a8` (children die silently again, empty-tick reverts to failure). Not rolled back here. |
-| DL-arrival-order-property-test | Not built; pure-additive test — revert with zero production impact. |
-| DL-near-dup-merge-dedup | Not built; revert to the exact `id||title` / `findingId||title` first-write-wins dedup; re-run the fan-out suite + the order-invariance test to confirm membership restored. |
+| DL-arrival-order-property-test | Revert the test additions and deterministic label/metadata sorting if full-registry order tightening causes unexpected consumer drift. |
+| DL-near-dup-merge-dedup | Disable by default by leaving the flag unset; full rollback removes the bucket-index option and restores exact `id||title` / `findingId||title` only. Re-run the fan-out suite after rollback. |
 <!-- /ANCHOR:enhanced-rollback -->

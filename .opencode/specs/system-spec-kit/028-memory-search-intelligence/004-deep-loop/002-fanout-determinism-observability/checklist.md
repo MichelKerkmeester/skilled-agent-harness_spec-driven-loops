@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: Deep Loop Fan-out Determinism + Observability"
-description: "Level 2 checklist for the deep-loop fan-out determinism and observability sub-phase. Three Wave-0 candidates are verified as DONE with commit 46812f12a8. The property test and near-duplicate dedup tail remain PENDING with gates."
+description: "Level 2 checklist for the deep-loop fan-out determinism and observability sub-phase. Three Wave-0 candidates are verified as DONE with commit 46812f12a8; the property tests and default-off near-duplicate dedup tail are implemented locally with unit coverage."
 trigger_phrases:
   - "fanout determinism checklist"
   - "order invariance checklist"
@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/004-deep-loop/002-fanout-determinism-observability"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "codex"
-    recent_action: "Added the Level 2 checklist for the determinism and observability sub-phase"
-    next_safe_action: "Implement property test"
+    recent_action: "Checked off implemented property-test and default-off near-duplicate dedup evidence"
+    next_safe_action: "Run strict validation"
     blockers: []
     key_files:
       - "spec.md"
@@ -25,10 +25,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-004-fanout-determinism-observability"
       parent_session_id: null
-    completion_pct: 60
-    open_questions:
-      - "Should the property test sort lineage directories at read time or prove the current post-merge comparator is enough despite first-write-wins dedup?"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "The implementation sorts lineage labels at read time and sorts merged metadata arrays before byte-identical assertions."
+      - "Near-duplicate dedup is implemented default-off because it changes merge membership."
 ---
 # Verification Checklist: Deep Loop Fan-out Determinism + Observability
 
@@ -46,7 +47,7 @@ _memory:
 | **[P1]** | Required | Must complete or stay explicitly gated |
 | **[P2]** | Optional | Can defer with a recorded reason |
 
-Status: the Wave-0 trio is DONE with commit `46812f12a8`. The order-invariance property test and near-duplicate merge dedup remain PENDING.
+Status: the Wave-0 trio is DONE with commit `46812f12a8`. The order-invariance tests and default-off near-duplicate merge dedup are implemented locally and verified by the deep-loop-runtime unit suite.
 <!-- /ANCHOR:protocol -->
 
 ---
@@ -65,8 +66,8 @@ Status: the Wave-0 trio is DONE with commit `46812f12a8`. The order-invariance p
 ## Code Quality
 
 - [x] CHK-010 [P0] Shipped trio code passed syntax and fan-out tests. Evidence: implementation-summary.md Verification table cites `node --check`, 58 fanout tests and mutation check for `46812f12a8`.
-- [ ] CHK-011 [P0] Order-invariance property test exists and is green.
-- [ ] CHK-012 [P1] Near-duplicate dedup keeps distinct findings whose content differs.
+- [x] CHK-011 [P0] Order-invariance property test exists and is green. Evidence: `fanout-merge.vitest.ts` research/review byte-identical lineage-order tests; broad unit suite passed.
+- [x] CHK-012 [P1] Near-duplicate dedup keeps distinct findings whose content differs. Evidence: research and review same-id different-content tests keep conflict variants.
 - [x] CHK-013 [P1] Candidate boundaries follow project patterns. Evidence: spec.md Out of Scope keeps resilience and D2 reliability clusters in sibling phases.
 <!-- /ANCHOR:code-quality -->
 
@@ -76,9 +77,9 @@ Status: the Wave-0 trio is DONE with commit `46812f12a8`. The order-invariance p
 ## Testing
 
 - [x] CHK-020 [P0] DONE acceptance criteria met for the Wave-0 trio. Evidence: spec.md section 11 rows 1-3.
-- [ ] CHK-021 [P0] Arrival-order property test proves byte-identical merge under shuffled lineage order.
-- [ ] CHK-022 [P1] Near-duplicate dedup tests cover restatement collapse and distinct-content survival.
-- [ ] CHK-023 [P1] Order-invariance test rerun after the dedup changes membership.
+- [x] CHK-021 [P0] Arrival-order property test proves byte-identical merge under shuffled lineage order. Evidence: research and review permutation assertions in `fanout-merge.vitest.ts`.
+- [x] CHK-022 [P1] Near-duplicate dedup tests cover restatement collapse and distinct-content survival. Evidence: research collapse, review open collapse, review resolved collapse, and distinct-content survival tests.
+- [x] CHK-023 [P1] Order-invariance test rerun after the dedup changes membership. Evidence: post-implementation broad unit suite passed.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -89,10 +90,10 @@ Status: the Wave-0 trio is DONE with commit `46812f12a8`. The order-invariance p
 - [x] CHK-FIX-001 [P0] Each candidate has a class and status. Evidence: spec.md section 11.
 - [x] CHK-FIX-002 [P0] Same-class inventory recorded. Evidence: spec.md section 3 lists research and review merge paths separately for one dedup candidate.
 - [x] CHK-FIX-003 [P0] Consumer inventory recorded. Evidence: plan.md Data Flow names merge registry, severity rollup and sourceDiversity.
-- [ ] CHK-FIX-004 [P0] Dedup adversarial table tests written before tail completion.
-- [ ] CHK-FIX-005 [P1] Matrix axes recorded in tests: lineage order, same content, different content and research versus review merge.
-- [ ] CHK-FIX-006 [P1] Hostile order variant executed by the property test.
-- [ ] CHK-FIX-007 [P1] Tail evidence pinned to scoped commits when built.
+- [x] CHK-FIX-004 [P0] Dedup adversarial table tests written before tail completion. Evidence: same-content collapse and same-id different-content survival tests landed before closeout.
+- [x] CHK-FIX-005 [P1] Matrix axes recorded in tests: lineage order, same content, different content and research versus review merge. Evidence: nine new merge tests cover those axes.
+- [x] CHK-FIX-006 [P1] Hostile order variant executed by the property test. Evidence: direct permutation variants exercise non-baseline lineage orders for both merge types.
+- [x] CHK-FIX-007 [P1] Tail evidence pinned to scoped local changes. Evidence: no commit per instruction; evidence is pinned to modified files plus typecheck/vitest command results.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -110,7 +111,7 @@ Status: the Wave-0 trio is DONE with commit `46812f12a8`. The order-invariance p
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [x] CHK-040 [P1] Spec, plan, tasks and implementation summary are synchronized on 3 DONE plus 2 PENDING tail candidates.
+- [x] CHK-040 [P1] Spec, plan, tasks and implementation summary are synchronized on the Wave-0 DONE trio plus the implemented Wave-1 tail.
 - [x] CHK-041 [P1] Durable rationale captured in docs. Evidence: implementation-summary.md Key Decisions.
 - [x] CHK-042 [P2] README update not applicable. Evidence: internal fan-out runtime packet only.
 <!-- /ANCHOR:docs -->
@@ -131,11 +132,11 @@ Status: the Wave-0 trio is DONE with commit `46812f12a8`. The order-invariance p
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 9 | 6/9 |
-| P1 Items | 10 | 6/10 |
+| P0 Items | 9 | 9/9 |
+| P1 Items | 10 | 10/10 |
 | P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-06-19
 
-The unchecked items are the two PENDING tail candidates and their tests. The shipped trio remains verified through packet 030 commit `46812f12a8`.
+All checklist items are verified. The shipped trio remains verified through packet 030 commit `46812f12a8`; the Wave-1 tail is verified locally by typecheck and the broad deep-loop-runtime unit suite.
 <!-- /ANCHOR:summary -->

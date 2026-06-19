@@ -13,9 +13,9 @@
     "004",
     "cluster"
   ],
-  "lastUpdated": "2026-06-19T06:21:37.094Z",
+  "lastUpdated": "2026-06-19T12:01:25.460Z",
   "specId": "002",
-  "folderSlug": "002-fanout-determinism-observability",
+  "folderSlug": "fanout-determinism-observability",
   "parentChain": [
     "system-spec-kit",
     "028-memory-search-intelligence",

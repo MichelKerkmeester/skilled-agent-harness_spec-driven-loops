@@ -164,6 +164,17 @@ function contentIdentityKey(record) {
   });
 }
 
+function nearDuplicateContentKey(record) {
+  const durableText = [
+    record.summary,
+    record.description,
+    record.finding,
+    record.question,
+    record.direction,
+  ].map(normalizeSortText).filter(Boolean).join('\u0001');
+  return durableText || contentIdentityKey(record);
+}
+
 function contentDigest(record) {
   return crypto.createHash('sha256').update(contentIdentityKey(record)).digest('hex').slice(0, 12);
 }
@@ -201,6 +212,37 @@ function mergeLineageLabels(existing, incoming, label) {
   return [...lineages].sort();
 }
 
+function comparableRecord(record) {
+  const copy = { ...record };
+  delete copy._conflictOf;
+  delete copy._conflict_id;
+  delete copy._conflicts;
+  delete copy._lineages;
+  return copy;
+}
+
+function replaceRecord(target, source, lineages) {
+  const next = { ...source, _lineages: lineages };
+  for (const key of Object.keys(target)) {
+    delete target[key];
+  }
+  Object.assign(target, next);
+}
+
+function chooseCanonicalRecord(existing, incoming, idKeys) {
+  return compareByContentThenId(comparableRecord(incoming), comparableRecord(existing), idKeys) < 0
+    ? incoming
+    : existing;
+}
+
+function chooseReviewCanonicalRecord(existing, incoming, idKeys) {
+  const incomingRank = SEVERITY_RANK[incoming.severity] ?? 0;
+  const existingRank = SEVERITY_RANK[existing.severity] ?? 0;
+  if (incomingRank > existingRank) return incoming;
+  if (incomingRank < existingRank) return existing;
+  return chooseCanonicalRecord(existing, incoming, idKeys);
+}
+
 function conflictSafeRecord(record, baseId, idKey) {
   const conflictId = `${baseId}--${contentDigest(record)}`;
   return {
@@ -227,19 +269,94 @@ function attachConflictMarkers(records, baseId, idKey) {
   }));
 }
 
-function addResearchFinding(bucket, finding, label) {
-  const existing = bucket.find((entry) => contentIdentityKey(entry) === contentIdentityKey(finding));
+function parseBooleanOption(value) {
+  if (value === true) return true;
+  if (typeof value !== 'string') return false;
+  return ['1', 'true', 'yes', 'on'].includes(value.trim().toLowerCase());
+}
+
+function resolveMergeOptions(options = {}) {
+  return {
+    enableNearDuplicateDedup: parseBooleanOption(
+      options.enableNearDuplicateDedup ?? process.env.SPECKIT_FANOUT_NEAR_DUP_DEDUP,
+    ),
+  };
+}
+
+function createFindingBucketIndex() {
+  return {
+    buckets: [],
+    byContent: new Map(),
+    byId: new Map(),
+  };
+}
+
+function getFindingBucket(index, id, finding, enableNearDuplicateDedup) {
+  const contentKey = enableNearDuplicateDedup ? nearDuplicateContentKey(finding) : '';
+  const exactBucket = index.byId.get(id);
+  if (exactBucket) {
+    if (contentKey) index.byContent.set(contentKey, exactBucket);
+    return exactBucket;
+  }
+
+  const contentBucket = contentKey ? index.byContent.get(contentKey) : undefined;
+  if (contentBucket) {
+    index.byId.set(id, contentBucket);
+    return contentBucket;
+  }
+
+  const bucket = { baseId: id, records: [] };
+  index.buckets.push(bucket);
+  index.byId.set(id, bucket);
+  if (contentKey) index.byContent.set(contentKey, bucket);
+  return bucket;
+}
+
+function flattenFindingBucketIndex(index, idKey, sortKeys) {
+  const records = [];
+  for (const { baseId, records: bucket } of index.buckets) {
+    const variants = sortByContentThenId(bucket, sortKeys);
+    if (variants.length === 1) {
+      records.push(variants[0]);
+      continue;
+    }
+    records.push(...attachConflictMarkers(
+      variants.map((variant) => conflictSafeRecord(variant, baseId, idKey)),
+      baseId,
+      idKey,
+    ));
+  }
+  return sortByContentThenId(records, sortKeys);
+}
+
+function addResearchFinding(bucket, finding, label, options = {}) {
+  const identityKey = options.enableNearDuplicateDedup ? nearDuplicateContentKey : contentIdentityKey;
+  const existing = bucket.find((entry) => identityKey(entry) === identityKey(finding));
   if (existing) {
+    if (options.enableNearDuplicateDedup) {
+      replaceRecord(existing, chooseCanonicalRecord(existing, finding, ['id', 'title']), mergeLineageLabels(existing, finding, label));
+      return;
+    }
     addLineage(existing, label);
     return;
   }
   bucket.push({ ...finding, _lineages: [label] });
 }
 
-function addReviewFinding(bucket, finding, label) {
-  const existing = bucket.find((entry) => contentIdentityKey(entry) === contentIdentityKey(finding));
+function addReviewFinding(bucket, finding, label, options = {}) {
+  const identityKey = options.enableNearDuplicateDedup ? nearDuplicateContentKey : contentIdentityKey;
+  const existing = bucket.find((entry) => identityKey(entry) === identityKey(finding));
   if (!existing) {
     bucket.push({ ...finding, _lineages: [label] });
+    return;
+  }
+
+  if (options.enableNearDuplicateDedup) {
+    replaceRecord(
+      existing,
+      chooseReviewCanonicalRecord(existing, finding, ['findingId', 'title']),
+      mergeLineageLabels(existing, finding, label),
+    );
     return;
   }
 
@@ -281,20 +398,27 @@ function flattenFindingBuckets(findingById, idKey, sortKeys) {
  * Deduplicates by findingId; cross-model attribution via lineage labels.
  * Returns the merged registry object.
  */
-function mergeResearchRegistries(lineageData) {
-  const findingById = new Map();
+function mergeResearchRegistries(lineageData, options = {}) {
+  const mergeOptions = resolveMergeOptions(options);
+  const findingById = mergeOptions.enableNearDuplicateDedup ? createFindingBucketIndex() : new Map();
 
   for (const { label, registry } of lineageData) {
     if (!registry || !Array.isArray(registry.keyFindings)) continue;
     for (const finding of registry.keyFindings) {
       const id = finding.id || finding.title;
       if (!id) continue;
-      if (!findingById.has(id)) findingById.set(id, []);
-      addResearchFinding(findingById.get(id), finding, label);
+      if (mergeOptions.enableNearDuplicateDedup) {
+        addResearchFinding(getFindingBucket(findingById, id, finding, true).records, finding, label, mergeOptions);
+      } else {
+        if (!findingById.has(id)) findingById.set(id, []);
+        addResearchFinding(findingById.get(id), finding, label, mergeOptions);
+      }
     }
   }
 
-  const mergedFindings = flattenFindingBuckets(findingById, 'id', ['id', 'title']);
+  const mergedFindings = mergeOptions.enableNearDuplicateDedup
+    ? flattenFindingBucketIndex(findingById, 'id', ['id', 'title'])
+    : flattenFindingBuckets(findingById, 'id', ['id', 'title']);
   const openQuestionsById = new Map();
   const resolvedQuestionsById = new Map();
   const ruledOutById = new Map();
@@ -340,11 +464,11 @@ function mergeResearchRegistries(lineageData) {
       : 0;
 
   return {
-    mergedFrom: lineageData.map(({ label }) => label),
-    openQuestions: [...openQuestionsById.values()],
-    resolvedQuestions: [...resolvedQuestionsById.values()],
+    mergedFrom: lineageData.map(({ label }) => label).sort(),
+    openQuestions: sortByContentThenId([...openQuestionsById.values()], ['id', 'question', 'text']),
+    resolvedQuestions: sortByContentThenId([...resolvedQuestionsById.values()], ['id', 'question', 'text']),
     keyFindings: mergedFindings,
-    ruledOutDirections: [...ruledOutById.values()],
+    ruledOutDirections: sortByContentThenId([...ruledOutById.values()], ['id', 'direction']),
     metrics: {
       iterationsCompleted: totalIters,
       openQuestions: openQuestionsById.size,
@@ -365,8 +489,9 @@ function mergeResearchRegistries(lineageData) {
  * Any lineage with an active P0 finding causes the merged result to be FAIL.
  * Deduplication is by findingId; cross-lineage P0 wins if any lineage reports it.
  */
-function mergeReviewRegistries(lineageData) {
-  const findingById = new Map();
+function mergeReviewRegistries(lineageData, options = {}) {
+  const mergeOptions = resolveMergeOptions(options);
+  const findingById = mergeOptions.enableNearDuplicateDedup ? createFindingBucketIndex() : new Map();
 
   for (const { label, registry } of lineageData) {
     if (!registry || !Array.isArray(registry.openFindings)) continue;
@@ -374,31 +499,40 @@ function mergeReviewRegistries(lineageData) {
       if (finding.status !== 'active') continue;
       const id = finding.findingId || finding.title;
       if (!id) continue;
-      if (!findingById.has(id)) findingById.set(id, []);
-      addReviewFinding(findingById.get(id), finding, label);
+      if (mergeOptions.enableNearDuplicateDedup) {
+        addReviewFinding(getFindingBucket(findingById, id, finding, true).records, finding, label, mergeOptions);
+      } else {
+        if (!findingById.has(id)) findingById.set(id, []);
+        addReviewFinding(findingById.get(id), finding, label, mergeOptions);
+      }
     }
   }
 
   // Resolved findings are tracked separately per lineage and were previously
   // dropped here, zeroing the merged resolved coverage. Collect them by id with
   // _lineages attribution, without touching open-finding/verdict semantics.
-  const resolvedFindingById = new Map();
+  const resolvedFindingById = mergeOptions.enableNearDuplicateDedup ? createFindingBucketIndex() : new Map();
   for (const { label, registry } of lineageData) {
     if (!registry || !Array.isArray(registry.resolvedFindings)) continue;
     for (const finding of registry.resolvedFindings) {
       const id = finding.findingId || finding.title;
       if (!id) continue;
-      if (resolvedFindingById.has(id)) {
-        const existing = resolvedFindingById.get(id);
-        addLineage(existing, label);
+      if (mergeOptions.enableNearDuplicateDedup) {
+        addReviewFinding(getFindingBucket(resolvedFindingById, id, finding, true).records, finding, label, mergeOptions);
+      } else if (resolvedFindingById.has(id)) {
+        addLineage(resolvedFindingById.get(id), label);
       } else {
         resolvedFindingById.set(id, { ...finding, _lineages: [label] });
       }
     }
   }
-  const mergedResolvedFindings = sortByContentThenId([...resolvedFindingById.values()], ['findingId', 'title']);
+  const mergedResolvedFindings = mergeOptions.enableNearDuplicateDedup
+    ? flattenFindingBucketIndex(resolvedFindingById, 'findingId', ['findingId', 'title'])
+    : sortByContentThenId([...resolvedFindingById.values()], ['findingId', 'title']);
 
-  const mergedFindings = flattenFindingBuckets(findingById, 'findingId', ['findingId', 'title']);
+  const mergedFindings = mergeOptions.enableNearDuplicateDedup
+    ? flattenFindingBucketIndex(findingById, 'findingId', ['findingId', 'title'])
+    : flattenFindingBuckets(findingById, 'findingId', ['findingId', 'title']);
   const activeP0 = mergedFindings.filter((f) => f.severity === 'P0' && f.status === 'active').length;
   const activeP1 = mergedFindings.filter((f) => f.severity === 'P1' && f.status === 'active').length;
   const activeP2 = mergedFindings.filter((f) => f.severity === 'P2' && f.status === 'active').length;
@@ -414,7 +548,7 @@ function mergeReviewRegistries(lineageData) {
   }
 
   return {
-    mergedFrom: lineageData.map(({ label }) => label),
+    mergedFrom: lineageData.map(({ label }) => label).sort(),
     mergedVerdict,
     openFindings: mergedFindings,
     resolvedFindings: mergedResolvedFindings,
@@ -482,9 +616,9 @@ async function main() {
     return;
   }
 
-  const labelDirs = fs.readdirSync(lineagesDir).filter((entry) =>
-    fs.statSync(path.join(lineagesDir, entry)).isDirectory(),
-  );
+  const labelDirs = fs.readdirSync(lineagesDir)
+    .filter((entry) => fs.statSync(path.join(lineagesDir, entry)).isDirectory())
+    .sort();
 
   if (labelDirs.length === 0) {
     jsonOut({ status: 'ok', message: 'no lineage subdirs found', merged: 0 });
@@ -518,9 +652,9 @@ async function main() {
 
   let mergedRegistry;
   if (loopType === 'review') {
-    mergedRegistry = mergeReviewRegistries(lineagesWithRegistry);
+    mergedRegistry = mergeReviewRegistries(lineagesWithRegistry, resolveMergeOptions(args));
   } else {
-    mergedRegistry = mergeResearchRegistries(lineagesWithRegistry);
+    mergedRegistry = mergeResearchRegistries(lineagesWithRegistry, resolveMergeOptions(args));
   }
 
   // Write merged registry to base artifact dir (replacing single-executor path).

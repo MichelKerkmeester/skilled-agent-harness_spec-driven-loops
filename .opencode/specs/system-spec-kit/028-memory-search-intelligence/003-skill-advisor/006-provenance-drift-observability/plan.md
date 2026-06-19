@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Skill Advisor — Provenance Self-Boost Guard, Attested Baseline Drift & Skip-Never-Fabricate"
-description: "Substrate-first sequencing for three deferred observability/integrity refinements. SA-skip-never-fabricate (enum-only) and SA-attested-baseline-drift-sweep (shadow, anti-rebaseline) both ride the durable calibration substrate co-owned with Deep-Loop 028/004; SA-author-self-boost-guard is a scoped generalization of two existing penalties that needs no substrate. Hold each PENDING until its gate materializes, then implement as an additive, reversible, default-inert change."
+description: "Substrate-first sequencing for three observability/integrity refinements. SA-author-self-boost-guard is implemented default-off behind SPECKIT_ADVISOR_SELF_RECOMMENDATION_GUARD. SA-skip-never-fabricate and SA-attested-baseline-drift-sweep remain PENDING behind the durable calibration substrate co-owned with Deep-Loop 028/004."
 trigger_phrases:
   - "advisor provenance drift plan"
   - "SA self boost guard sequencing"
@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/006-provenance-drift-observability"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Author SA-self-boost/drift/skip deferred-observability plan (re-plan; all PENDING)"
-    next_safe_action: "Hold until the durable calibration substrate (shared with 028/004) lands"
+    recent_action: "Implemented default-off self-boost guard"
+    next_safe_action: "Await durable calibration substrate"
     blockers: []
     key_files:
       - "spec.md"
@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-003-006-provenance-drift-observability"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 34
     open_questions: []
     answered_questions: []
 ---
@@ -50,7 +50,7 @@ _memory:
 | **Testing** | vitest |
 
 ### Overview
-Three deferred refinements opened by the iter-8 mining of aionforge `cross-family-guard.md` + `drift.md` — two orthogonal NET-NEW families (provenance-contamination, temporal-drift) the fusion-math roadmap never touches, plus a skip-reason taxonomy enrich. Round-E verification (iter-012) softened all three to PARTIAL/CAUTION and converged them on one shared blocker: the calibration records are an ephemeral tmpdir 50-record window, so there is no durable cross-session state to attest a baseline against or to persist enriched signals into [CONFIRMED: iter-008; iter-012 E12-03]. The plan is substrate-first: **SA-author-self-boost-guard** generalizes the two existing hardcoded self-recommendation penalties (`fusion.ts:134,313`) into one producer-vs-scored guard on the self-recommendation vector ONLY — scoped, not a blanket guard, and needs no substrate so it can land independently but stays low-priority [CONFIRMED: iter-012 E12-01]. **SA-attested-baseline-drift-sweep** adds a versioned/committed baseline + a shadow-path drift sweep `clamp01(cos(baseline,anchor)−cos(current,anchor))` that NEVER auto-rebaselines, with content-addressed anti-flap dedup on the new gauge — gated on moving the record root off `tmpdir()` onto the durable substrate [CONFIRMED: iter-008 delta; iter-012 E12-03]. **SA-skip-never-fabricate** enriches `signalReason()` so a non-calibratable lane is named-skipped, never forced to a max/alarm — the small leading edge once the substrate exists [CONFIRMED: iter-008 delta]. Keep each PENDING, verify its gate, then implement only the unblocked one as an additive, reversible, default-inert change.
+Three refinements opened by the iter-8 mining of aionforge `cross-family-guard.md` + `drift.md` — two orthogonal NET-NEW families (provenance-contamination, temporal-drift) the fusion-math roadmap never touches, plus a skip-reason taxonomy enrich. Round-E verification (iter-012) softened all three to PARTIAL/CAUTION and confirmed the scope. **SA-author-self-boost-guard** is now implemented as a default-off scorer change: it threads producer identity through explicit-author matches only when `SPECKIT_ADVISOR_SELF_RECOMMENDATION_GUARD` is enabled, centralizes the advisor self-recommendation guard, and leaves non-advisor `explicit_author` behavior byte-identical. **SA-attested-baseline-drift-sweep** remains gated on moving the record root off `tmpdir()` onto a durable substrate. **SA-skip-never-fabricate** remains gated because the named drift-skip reasons only have meaning once an attested-baseline path exists.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -62,12 +62,14 @@ Three deferred refinements opened by the iter-8 mining of aionforge `cross-famil
 - [x] Problem statement clear and scope documented (the 3 candidates + the shared substrate blocker + each gate)
 - [x] Success criteria measurable (per-candidate invariants; default-inert/shadow-only when gate unmet)
 - [x] Dependencies identified (durable substrate shared with 028/004 for drift + skip; scope-correction for the self-boost guard)
-- [ ] Each candidate's gate materialized (none today: drift + skip need the durable substrate; the self-boost guard is a pending scope-correction)
+- [x] SA-author-self-boost-guard gate materialized and implemented default-off
+- [ ] Durable substrate gate materialized for drift + skip
 
 ### Definition of Done
-- [ ] Each candidate stays PENDING until its gate materializes, OR is implemented under its invariant once unblocked (REQ-002..004)
-- [ ] Tests passing (per-candidate fixtures when promoted; default-inert/shadow-only assertion otherwise)
-- [ ] Docs updated (spec/plan/tasks/implementation-summary; the REFUTED items stay recorded as out-of-scope)
+- [x] SA-author-self-boost-guard implemented under its invariant once unblocked
+- [ ] Drift + skip stay PENDING until the durable substrate gate materializes
+- [ ] Tests passing (self-boost fixtures pass; broad suite has pre-existing parity failures)
+- [x] Docs updated for implemented/pending candidate status; REFUTED items stay recorded as out-of-scope
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -84,7 +86,7 @@ Additive calibration/scorer-seam refinements layered on the durable substrate (w
 - **SA-skip-never-fabricate — enriched skip taxonomy (`feedback-calibration.ts:125-130`)**: extend `signalReason()` with `baselines_needed` / `stale_model` (stale-embedder-space) / `awaiting_first_behavior` / `thin`; a non-calibratable lane reports the specific named reason and is excluded — never forced to a max score nor a fabricated alarm [CONFIRMED: iter-008 delta].
 
 ### Data Flow
-Outcome records → (durable substrate, once it lands) attested baseline + cross-session window → calibration reduce (`reduceAdvisorFeedbackCalibration`) → (SA-skip-never-fabricate) `signalReason()` names a non-calibratable lane → (SA-attested-baseline-drift-sweep, shadow-only) drift sweep vs the attested baseline → content-addressed anti-flap gauge → shadow report (live weights frozen). Independently, on the live scoring path: prompt → lanes → (SA-author-self-boost-guard, when promoted) one producer-vs-scored guard at the dedup/rank seam → ranked recommendations. When a candidate's gate is unmet it is absent (drift/skip need the substrate; the self-boost guard leaves the two existing penalties in place) and behavior is exactly today's.
+Outcome records → (durable substrate, once it lands) attested baseline + cross-session window → calibration reduce (`reduceAdvisorFeedbackCalibration`) → (SA-skip-never-fabricate) `signalReason()` names a non-calibratable lane → (SA-attested-baseline-drift-sweep, shadow-only) drift sweep vs the attested baseline → content-addressed anti-flap gauge → shadow report (live weights frozen). Independently, on the live scoring path: prompt → lanes → optional producer identity on explicit-author matches → default-off self-recommendation guard → ranked recommendations. With the guard flag unset, behavior is exactly today's; drift/skip remain absent until the substrate exists.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -116,13 +118,14 @@ Required invariant: when a candidate's gate is unmet it is ABSENT (drift/skip ne
 - [ ] Re-confirm the self-boost scope-correction: the two penalties to generalize are `readOnlyExplainerFloor` (`fusion.ts:134`) + `auditRecsAdvisorPenalty` (`fusion.ts:313`); a blanket guard is rejected (REQ-002)
 
 ### Phase 2: Core Implementation
-- [ ] SA-author-self-boost-guard (scope-correction ready; no substrate needed, low-priority): generalize the two penalties into one producer-vs-scored guard at the dedup/rank seam, leaving the by-design `explicit_author` symmetry intact for non-self skills (REQ-002/REQ-007)
+- [x] SA-author-self-boost-guard (scope-correction ready; no substrate needed, low-priority): generalize the two penalties into one producer-vs-scored guard at the dedup/rank seam, leaving the by-design `explicit_author` symmetry intact for non-self skills (REQ-002/REQ-007)
 - [ ] SA-skip-never-fabricate (only once the durable substrate exists): extend `signalReason()` with the named drift-skip reasons; a non-calibratable lane is named-skipped, never fabricated (REQ-004)
 - [ ] SA-attested-baseline-drift-sweep (only once the durable substrate exists): attested baseline + shadow-path drift sweep that never auto-rebaselines, with a content-addressed anti-flap drift gauge (REQ-003/REQ-006)
 
 ### Phase 3: Verification
-- [ ] Per-candidate fixtures (self-boost guard fires ONLY on the self-rec vector + byte-identical for other skills; drift sweep never auto-rebaselines + anti-flaps on a stable drift; skip-never-fabricate names every reason + never fabricates a max/alarm)
-- [ ] `tsc` + advisor test suite green; independent adversarial review (refute a blanket self-boost guard, a self-laundering baseline, and a fabricated skip alarm)
+- [x] SA-author-self-boost-guard fixtures (guard fires only on advisor self-recommendation aliases + byte-identical for non-advisor skills)
+- [ ] Drift/skip fixtures deferred until durable substrate exists
+- [ ] `tsc` + advisor test suite green; independent adversarial review (typecheck passed; broad suite has pre-existing parity failures)
 <!-- /ANCHOR:phases -->
 
 ---
@@ -192,7 +195,7 @@ durable substrate (028/004) ────┘   (drift + skip ride it; self-boost 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
 | Setup (gate-verify) | Low | ~30m (substrate status + confirm the 2 penalties) |
-| SA-author-self-boost-guard (when promoted) | Med | ~2-4h (generalize 2 penalties + producer-vs-scored fixture); research effort M |
+| SA-author-self-boost-guard | Done | Implemented default-off with producer-vs-scored fixtures |
 | SA-skip-never-fabricate (when promoted) | Low | ~1-2h (enum enrich + named-skip fixtures); research effort S |
 | SA-attested-baseline-drift-sweep (when promoted) | Large | ~1-2d incl. the attested-baseline schema + drift sweep + anti-flap gauge (on top of the substrate); research effort L |
 | Verification | Med | ~2-3h per promoted candidate (fixtures + adversarial review) |

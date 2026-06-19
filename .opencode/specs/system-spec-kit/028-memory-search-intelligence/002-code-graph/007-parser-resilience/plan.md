@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Code Graph Q2-C1 — Transient/Fatal Parser Skip-List with Bounded Retry"
-description: "Split the parser skip-list into TRANSIENT (re-attempt until attempt_count >= max_retries, default 5) vs FATAL (permanent), classify at the existing parse-error catch, reuse the durable attempt_count budget, and lift the deliberate no-op recordSuccess into a TRANSIENT self-heal. Gated on owner sign-off (REQ-000). No schema migration required."
+description: "Implemented split of the parser skip-list into TRANSIENT (re-attempt until attempt_count >= max_retries, default 5) vs FATAL (permanent), classification at parser catch seams, durable attempt_count retry budgeting, additive retry_class storage, and TRANSIENT self-heal on successful parse."
 trigger_phrases:
   - "Q2-C1 plan parser transient fatal"
   - "code graph bounded retry sequencing"
@@ -12,10 +12,9 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/002-code-graph/007-parser-resilience"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Author Q2-C1 parser-resilience impl plan (PENDING — owner-sign-off gated)"
-    next_safe_action: "Obtain owner sign-off, then enumerate the TRANSIENT/FATAL error mapping"
-    blockers:
-      - "REQ-000 owner sign-off on reversing no-self-heal precedes all implementation"
+    recent_action: "Implemented Q2-C1 parser-resilience and verified with typecheck plus broad related vitest"
+    next_safe_action: "No implementation task remains; commit intentionally deferred per user instruction"
+    blockers: []
     key_files:
       - "spec.md"
       - "plan.md"
@@ -24,12 +23,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-002-007-parser-resilience"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Owner sign-off (REQ-000) on reversing the no-self-heal stance"
-      - "Exact TRANSIENT vs FATAL error-string mapping"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
-      - "Q2-C1 reuses the durable attempt_count budget — no schema migration"
+      - "Owner sign-off satisfied by the 2026-06-19 user request that pre-approved the phase and requested implementation"
+      - "Q2-C1 reuses the durable attempt_count budget and stores retry policy in additive retry_class"
       - "Q2-C1 is independent of the Q1/Q6 reindex-transaction cluster"
 ---
 
@@ -55,7 +53,7 @@ _memory:
 ### Overview
 Q2-C1 adds a **transient/fatal axis** and a **bounded retry ceiling** (`max_retries`, default 5) to the parser skip-list, so a transient WASM crash (OOM/timeout/deadline-abort) self-heals on a later scan while a genuine poison file is permanently quarantined — and neither ever wedges the scan for other files. It reuses the **existing durable `attempt_count` column** (`parser-skip-list.ts:78-91`) as the retry budget, classifies at the **existing parse-error catch** (`structural-indexer.ts:1254-1262`), and lifts the deliberate no-op `recordSuccess` (`parser-skip-list.ts:93-97`) into a real TRANSIENT self-heal. This is the code-graph analogue of the deep-loop fan-out transient/fatal pattern and the scan-layer expression of aionforge's `PassError::Transient` vs `Fatal` model with `max_retries=5` and a durable failed-audit count [CONFIRMED: `external/aionforge-memory-development/docs/consolidation.md:60-68`; research iter-002 findings 8/9/10].
 
-**Gating note:** the change deliberately **reverses** the documented "must not auto-unskip / no self-heal" stance for the TRANSIENT class only. REQ-000 makes owner sign-off a hard precondition; this sub-phase is isolated to gate that decision. **No schema migration is required** (the counter already exists), so Q2-C1 ships independently of the Q1-C1/Q6-C1 reindex-transaction cluster.
+**Gating note:** the change deliberately **reverses** the documented "must not auto-unskip / no self-heal" stance for the TRANSIENT class only. REQ-000 was satisfied by the 2026-06-19 user request that pre-approved this phase and requested implementation. The retry budget reuses the existing durable counter; the retry policy itself is stored in an additive `retry_class` column, so Q2-C1 still ships independently of the Q1-C1/Q6-C1 reindex-transaction cluster.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -64,16 +62,16 @@ Q2-C1 adds a **transient/fatal axis** and a **bounded retry ceiling** (`max_retr
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] **REQ-000 owner sign-off obtained** — reversing the no-self-heal stance is explicitly approved (HARD precondition)
-- [ ] TRANSIENT vs FATAL error-string mapping enumerated and reviewed
-- [ ] `max_retries` default (5) and config surface confirmed
-- [ ] Baseline captured: current parser-skip-list / structural-indexer suite green
+- [x] **REQ-000 owner sign-off obtained** — reversing the no-self-heal stance approved by the 2026-06-19 implementation request
+- [x] TRANSIENT vs FATAL error-string mapping enumerated and reviewed
+- [x] `max_retries` default (5) and config surface confirmed
+- [x] Baseline captured: typecheck 0 errors; broad related vitest 5 files / 137 passed / 1 skipped
 
 ### Definition of Done
-- [ ] All P0 acceptance criteria met (REQ-000..004)
-- [ ] P1 met or user-approved deferral (REQ-005..007)
-- [ ] Tests passing (transient self-heal, exhaustion→fatal, fatal-from-first, poison-pill isolation)
-- [ ] Docs updated (spec/plan/tasks/implementation-summary); `validate.sh --strict` green
+- [x] All P0 acceptance criteria met (REQ-000..004)
+- [x] P1 met or user-approved deferral (REQ-005..007)
+- [x] Tests passing (transient self-heal, exhaustion→fatal, fatal-from-first, poison-pill isolation)
+- [x] Docs updated (spec/plan/tasks/implementation-summary); `validate.sh --strict` green
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -87,7 +85,7 @@ Durable, bounded retry with poison-pill isolation — the scan-layer analogue of
 ### Key Components
 - **`parser-skip-list.ts`** (policy): owns the transient/fatal axis, the `max_retries` ceiling, the "eligible while TRANSIENT and under budget" lookup, the promotion of an exhausted TRANSIENT to FATAL, and the lifted `recordSuccess` self-heal for TRANSIENT entries. Reuses the durable `attempt_count`.
 - **`structural-indexer.ts`** (classifier): at the parse-error catch (`:1254-1262`), maps the caught error to TRANSIENT vs FATAL before calling `addToSkipList`; keeps returning the empty-node result so the scan proceeds past the file.
-- **`code-graph-db.ts`** (storage, additive): the `parser_skip_list` table (`:203-211`); if a `retry_class` column is needed it is declared additively, otherwise the axis rides config + the existing `error_class`/`attempt_count`.
+- **`code-graph-db.ts`** (storage, additive): the `parser_skip_list` table stores `retry_class` as an additive `transient`/`fatal` column; legacy rows default to `fatal`, while the retry ceiling stays in config.
 
 ### Data Flow
 Scan a file → parser throws → catch classifies error as TRANSIENT or FATAL → `addToSkipList` records it with the class + bumps the durable `attempt_count` → return empty-node result so the scan continues. On the **next** scan: skip-list lookup returns "skip" only when FATAL **or** (TRANSIENT **and** `attempt_count >= max_retries`); a TRANSIENT-under-budget file is re-attempted. On a clean re-parse: `recordSuccess` clears the TRANSIENT entry (self-heal); FATAL entries are never auto-cleared.
@@ -105,7 +103,7 @@ This reverses a deliberate doctrine and changes a persistence-policy invariant, 
 | `parser-skip-list.ts` `lookupSkipList` / `addToSkipList` | Permanent skip on any crash; `attempt_count` bumps but never gates | Update — TRANSIENT-under-budget stays eligible; exhausted TRANSIENT promotes to FATAL; FATAL behaves as today | Transient-self-heal + exhaustion→fatal tests |
 | `parser-skip-list.ts` `recordSuccess` (`@deprecated` no-op, `:93-97`) | Intentional no-op (no self-heal) — **the reversed contract** | Update — clears a TRANSIENT entry on a clean parse; FATAL stays manual-review-only | REQ-005 self-heal test; REQ-000 sign-off recorded |
 | `structural-indexer.ts` parse-error catch (`:1254-1262`) | Flattens all failures to `parseHealth:'error'` + `parseErrors`; returns empty-node result (scan proceeds) | Update — classify TRANSIENT vs FATAL before `addToSkipList`; keep the empty-node return (isolation) | Poison-pill isolation test (REQ-004) |
-| `code-graph-db.ts` `parser_skip_list` schema (`:203-211`) | `error_class CHECK IN ('B1','B2','OTHER')` + `attempt_count` | Update (additive only) — optional `retry_class` column, or ride config + existing cols; no destructive migration | Schema-additivity check; fixtures without the column stay compatible |
+| `code-graph-db.ts` `parser_skip_list` schema (`:203-211`) | `error_class CHECK IN ('B1','B2','OTHER')` + `attempt_count` | Update (additive only) — `retry_class` column added; legacy rows default FATAL; no destructive migration | Schema-additivity check; legacy upgrade test verifies the column |
 | B1/B2/OTHER crash cohorts | Crash taxonomy | Unchanged — orthogonal to the new axis | REQ-006: cohort label preserved |
 
 Required invariant: the failing file **always** isolates (the scan proceeds for every other file) regardless of classification; the retry budget is **durable** (never in-memory); and an **ambiguous/unknown** error defaults to **FATAL** (fail-closed) rather than looping.
@@ -117,30 +115,30 @@ Required invariant: the failing file **always** isolates (the scan proceeds for 
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 0: Sign-off Gate (HARD precondition)
-- [ ] Secure explicit owner sign-off to reverse the "must not auto-unskip / no self-heal" stance for the TRANSIENT class (REQ-000) — implementation does not begin until this is recorded
+- [x] Secure explicit owner sign-off to reverse the "must not auto-unskip / no self-heal" stance for the TRANSIENT class (REQ-000) — satisfied by the 2026-06-19 implementation request
 
 ### Phase 1: Setup
-- [ ] Confirm the durable `attempt_count` budget and the permanent-skip no-op (`parser-skip-list.ts:78-91, 93-97`)
-- [ ] Confirm the parse-error catch + empty-node isolation return (`structural-indexer.ts:1254-1262`)
-- [ ] Enumerate the TRANSIENT (OOM/timeout/deadline-abort) vs FATAL error-string mapping; default ambiguous → FATAL
-- [ ] Decide `max_retries` surface (config, default 5) and whether a `retry_class` column is needed
-- [ ] Capture baseline: parser-skip-list / structural-indexer suite green
+- [x] Confirm the durable `attempt_count` budget and the permanent-skip no-op (`parser-skip-list.ts`)
+- [x] Confirm the parse-error catch + empty-node isolation return (`structural-indexer.ts`)
+- [x] Enumerate the TRANSIENT (OOM/timeout/deadline-abort) vs FATAL error-string mapping; default ambiguous → FATAL
+- [x] Decide `max_retries` surface (config, default 5) and whether a `retry_class` column is needed
+- [x] Capture baseline: typecheck 0 errors; broad related vitest 5 files / 137 passed / 1 skipped
 
 ### Phase 2: Core Implementation
-- [ ] Add the transient/fatal axis + `max_retries` ceiling to the skip-list policy; reuse the durable `attempt_count`
-- [ ] Make `lookupSkipList` return "skip" only for FATAL or exhausted-TRANSIENT; a TRANSIENT-under-budget file stays eligible
-- [ ] Promote an exhausted TRANSIENT to FATAL
-- [ ] Classify the caught error at the structural-indexer catch before `addToSkipList`; preserve the empty-node isolation return
-- [ ] Lift `recordSuccess` into a TRANSIENT self-heal (clear on clean re-parse); FATAL stays manual-review-only
-- [ ] (If needed) declare an additive `retry_class` column
+- [x] Add the transient/fatal axis + `max_retries` ceiling to the skip-list policy; reuse the durable `attempt_count`
+- [x] Make `lookupSkipList` return "skip" only for FATAL or exhausted-TRANSIENT; a TRANSIENT-under-budget file stays eligible
+- [x] Promote an exhausted TRANSIENT to FATAL
+- [x] Classify the caught error at the structural-indexer catch before `addToSkipList`; preserve the empty-node isolation return
+- [x] Lift `recordSuccess` into a TRANSIENT self-heal; FATAL stays manual-review-only
+- [x] Declare an additive `retry_class` column
 
 ### Phase 3: Verification
-- [ ] Transient-self-heal test: a TRANSIENT file re-enters the graph when it next parses cleanly
-- [ ] Exhaustion→fatal test: a TRANSIENT file that fails `max_retries` times is permanently skipped; budget read from the durable `attempt_count` (crash does not reset it)
-- [ ] Fatal-from-first test: a FATAL file is skipped immediately, no re-attempt
-- [ ] Poison-pill isolation test: a scan with one crashing file still indexes every other file
-- [ ] Error→class mapping test incl. unknown-defaults-to-FATAL (fail-closed)
-- [ ] `tsc` + build pass; `validate.sh --strict` green
+- [x] Transient-self-heal test: a TRANSIENT file re-enters the graph when it next parses cleanly
+- [x] Exhaustion→fatal test: a TRANSIENT file that fails `max_retries` times is permanently skipped; budget read from the durable `attempt_count` (crash does not reset it)
+- [x] Fatal-from-first test: a FATAL file is skipped immediately, no re-attempt
+- [x] Poison-pill isolation test: a scan with one crashing file still indexes every other file
+- [x] Error→class mapping test incl. unknown-defaults-to-FATAL (fail-closed)
+- [x] `tsc` + broad related vitest pass; `validate.sh --strict` green
 <!-- /ANCHOR:phases -->
 
 ---
@@ -163,10 +161,10 @@ Required invariant: the failing file **always** isolates (the scan proceeds for 
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| **Owner sign-off (REQ-000)** | Process | **PENDING** | HARD blocker — no implementation until the no-self-heal reversal is approved |
+| **Owner sign-off (REQ-000)** | Process | **DONE** | Satisfied by the 2026-06-19 implementation request |
 | Durable `attempt_count` column (`parser-skip-list.ts:78-91`) | Internal | Green | Present; reused as the retry budget — no migration for the counter |
 | Parse-error catch site (`structural-indexer.ts:1254-1262`) | Internal | Green | Present; the classification point |
-| Q1-C1 / Q6-C1 reindex-transaction cluster | Internal | Independent | NOT a dependency — Q2-C1 needs no schema migration and ships ahead of the cluster [CONFIRMED: research iter-002 finding 10] |
+| Q1-C1 / Q6-C1 reindex-transaction cluster | Internal | Independent | NOT a dependency — Q2-C1 only adds `retry_class` to the skip-list table and ships ahead of the larger reindex-transaction cluster [CONFIRMED: research iter-002 finding 10] |
 <!-- /ANCHOR:dependencies -->
 
 ---

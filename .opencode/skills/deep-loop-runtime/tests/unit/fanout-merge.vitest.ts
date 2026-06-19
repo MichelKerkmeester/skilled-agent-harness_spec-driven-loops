@@ -13,8 +13,14 @@ const {
   mergeReviewRegistries,
   buildAttributionMd,
 } = require('../../scripts/fanout-merge.cjs') as {
-  mergeResearchRegistries: (lineageData: Array<{ label: string; registry: Record<string, unknown> | null }>) => Record<string, unknown>;
-  mergeReviewRegistries: (lineageData: Array<{ label: string; registry: Record<string, unknown> | null }>) => Record<string, unknown>;
+  mergeResearchRegistries: (
+    lineageData: Array<{ label: string; registry: Record<string, unknown> | null }>,
+    options?: { enableNearDuplicateDedup?: boolean },
+  ) => Record<string, unknown>;
+  mergeReviewRegistries: (
+    lineageData: Array<{ label: string; registry: Record<string, unknown> | null }>,
+    options?: { enableNearDuplicateDedup?: boolean },
+  ) => Record<string, unknown>;
   buildAttributionMd: (lineageData: unknown[], loopType: string) => string;
 };
 
@@ -34,6 +40,10 @@ afterEach(() => {
 });
 
 const fanoutMergeScript = join(runtimeRoot, 'scripts', 'fanout-merge.cjs');
+
+function registryBytes(value: unknown): string {
+  return JSON.stringify(value);
+}
 
 // ─── Research merge unit tests ─────────────────────────────────────────────
 
@@ -146,6 +156,126 @@ describe('mergeResearchRegistries', () => {
 
     expect((firstRun.keyFindings as Array<{ id: string }>).map((finding) => finding.id)).toEqual(['F3', 'F1', 'F2']);
     expect((secondRun.keyFindings as Array<{ id: string }>).map((finding) => finding.id)).toEqual(['F3', 'F1', 'F2']);
+  });
+
+  it('keeps the research registry byte-identical across lineage arrival orders', () => {
+    const lineages = [
+      {
+        label: 'zeta',
+        registry: {
+          keyFindings: [
+            { id: 'F3', title: 'Zebra finding', summary: 'Last content' },
+            { id: 'F2', title: 'Shared finding', summary: 'Shared content' },
+          ],
+          openQuestions: [{ id: 'Q2', question: 'Zeta question' }],
+          resolvedQuestions: [],
+          ruledOutDirections: [],
+          metrics: { iterationsCompleted: 2, convergenceScore: 0.8 },
+        },
+      },
+      {
+        label: 'alpha',
+        registry: {
+          keyFindings: [
+            { id: 'F1', title: 'Alpha finding', summary: 'First content' },
+            { id: 'F2', title: 'Shared finding', summary: 'Shared content' },
+          ],
+          openQuestions: [{ id: 'Q1', question: 'Alpha question' }],
+          resolvedQuestions: [],
+          ruledOutDirections: [],
+          metrics: { iterationsCompleted: 3, convergenceScore: 0.6 },
+        },
+      },
+      {
+        label: 'middle',
+        registry: {
+          keyFindings: [{ id: 'F4', title: 'Middle finding', summary: 'Middle content' }],
+          openQuestions: [],
+          resolvedQuestions: [{ id: 'RQ1', question: 'Resolved question' }],
+          ruledOutDirections: [{ id: 'D1', direction: 'Ruled out direction' }],
+          metrics: { iterationsCompleted: 1, convergenceScore: 0.7 },
+        },
+      },
+    ];
+
+    const baseline = registryBytes(mergeResearchRegistries(lineages));
+    expect(registryBytes(mergeResearchRegistries([lineages[2], lineages[0], lineages[1]]))).toBe(baseline);
+    expect(registryBytes(mergeResearchRegistries([lineages[1], lineages[2], lineages[0]]))).toBe(baseline);
+  });
+
+  it('collapses research surface variants by normalized content when enabled', () => {
+    const result = mergeResearchRegistries([
+      {
+        label: 'a',
+        registry: {
+          keyFindings: [{ id: 'F-cache-a', title: 'Cache invalidation missing', summary: 'Writer never refreshes cache TTL' }],
+          openQuestions: [],
+          ruledOutDirections: [],
+        },
+      },
+      {
+        label: 'b',
+        registry: {
+          keyFindings: [{ id: 'F-cache-b', title: 'Stale cache survives writes', summary: 'Writer never refreshes cache TTL' }],
+          openQuestions: [],
+          ruledOutDirections: [],
+        },
+      },
+    ], { enableNearDuplicateDedup: true });
+
+    const findings = result.keyFindings as Array<{ _lineages: string[] }>;
+    expect(findings).toHaveLength(1);
+    expect(findings[0]._lineages).toEqual(['a', 'b']);
+    expect((result.metrics as { keyFindings: number }).keyFindings).toBe(1);
+  });
+
+  it('leaves research surface variants separate by default', () => {
+    const result = mergeResearchRegistries([
+      {
+        label: 'a',
+        registry: {
+          keyFindings: [{ id: 'F-cache-a', title: 'Cache invalidation missing', summary: 'Writer never refreshes cache TTL' }],
+          openQuestions: [],
+          ruledOutDirections: [],
+        },
+      },
+      {
+        label: 'b',
+        registry: {
+          keyFindings: [{ id: 'F-cache-b', title: 'Stale cache survives writes', summary: 'Writer never refreshes cache TTL' }],
+          openQuestions: [],
+          ruledOutDirections: [],
+        },
+      },
+    ]);
+
+    expect(result.keyFindings as unknown[]).toHaveLength(2);
+    expect((result.metrics as { keyFindings: number }).keyFindings).toBe(2);
+  });
+
+  it('keeps distinct research findings that share an exact id when enabled', () => {
+    const result = mergeResearchRegistries([
+      {
+        label: 'a',
+        registry: {
+          keyFindings: [{ id: 'F1', title: 'Cache behavior', summary: 'TTL never updates' }],
+          openQuestions: [],
+          ruledOutDirections: [],
+        },
+      },
+      {
+        label: 'b',
+        registry: {
+          keyFindings: [{ id: 'F1', title: 'Cache behavior', summary: 'TTL refreshes after every write' }],
+          openQuestions: [],
+          ruledOutDirections: [],
+        },
+      },
+    ], { enableNearDuplicateDedup: true });
+
+    const findings = result.keyFindings as Array<{ _conflictOf?: string }>;
+    expect(findings).toHaveLength(2);
+    expect(findings.every((finding) => finding._conflictOf === 'F1')).toBe(true);
   });
 
   it('merges resolvedQuestions across lineages and dedupes shared ids', () => {
@@ -345,6 +475,112 @@ describe('mergeReviewRegistries — strongest-restriction', () => {
     expect((secondRun.openFindings as Array<{ findingId: string }>).map((finding) => finding.findingId)).toEqual(['R3', 'R1', 'R2']);
     expect(firstRun.mergedVerdict).toBe('FAIL');
   });
+
+  it('keeps the review registry byte-identical across lineage arrival orders', () => {
+    const lineages = [
+      {
+        label: 'zeta',
+        registry: {
+          openFindings: [
+            { findingId: 'R3', severity: 'P0', status: 'active', title: 'Zebra review finding' },
+            { findingId: 'R2', severity: 'P1', status: 'active', title: 'Shared review finding' },
+          ],
+          resolvedFindings: [],
+        },
+      },
+      {
+        label: 'alpha',
+        registry: {
+          openFindings: [
+            { findingId: 'R1', severity: 'P2', status: 'active', title: 'Alpha review finding' },
+            { findingId: 'R2', severity: 'P1', status: 'active', title: 'Shared review finding' },
+          ],
+          resolvedFindings: [{ findingId: 'RR1', severity: 'P2', status: 'resolved_fixed', title: 'Resolved review finding' }],
+        },
+      },
+      {
+        label: 'middle',
+        registry: {
+          openFindings: [{ findingId: 'R4', severity: 'P1', status: 'active', title: 'Middle review finding' }],
+          resolvedFindings: [],
+        },
+      },
+    ];
+
+    const baseline = registryBytes(mergeReviewRegistries(lineages));
+    expect(registryBytes(mergeReviewRegistries([lineages[2], lineages[0], lineages[1]]))).toBe(baseline);
+    expect(registryBytes(mergeReviewRegistries([lineages[1], lineages[2], lineages[0]]))).toBe(baseline);
+  });
+
+  it('collapses review surface variants by normalized content when enabled', () => {
+    const result = mergeReviewRegistries([
+      {
+        label: 'a',
+        registry: {
+          openFindings: [{ findingId: 'R-cache-a', severity: 'P2', status: 'active', title: 'Cache advisory', description: 'Writer never refreshes cache TTL' }],
+        },
+      },
+      {
+        label: 'b',
+        registry: {
+          openFindings: [{ findingId: 'R-cache-b', severity: 'P0', status: 'active', title: 'Critical stale cache', description: 'Writer never refreshes cache TTL' }],
+        },
+      },
+    ], { enableNearDuplicateDedup: true });
+
+    const findings = result.openFindings as Array<{ severity: string; _lineages: string[] }>;
+    expect(findings).toHaveLength(1);
+    expect(findings[0].severity).toBe('P0');
+    expect(findings[0]._lineages).toEqual(['a', 'b']);
+    expect(result.mergedVerdict).toBe('FAIL');
+    expect(result.activeP0).toBe(1);
+  });
+
+  it('keeps distinct review findings that share an exact id when enabled', () => {
+    const result = mergeReviewRegistries([
+      {
+        label: 'a',
+        registry: {
+          openFindings: [{ findingId: 'R1', severity: 'P1', status: 'active', title: 'Cache behavior', description: 'TTL never updates' }],
+        },
+      },
+      {
+        label: 'b',
+        registry: {
+          openFindings: [{ findingId: 'R1', severity: 'P2', status: 'active', title: 'Cache behavior', description: 'TTL refreshes after every write' }],
+        },
+      },
+    ], { enableNearDuplicateDedup: true });
+
+    const findings = result.openFindings as Array<{ _conflictOf?: string }>;
+    expect(findings).toHaveLength(2);
+    expect(findings.every((finding) => finding._conflictOf === 'R1')).toBe(true);
+    expect(result.mergedVerdict).toBe('CONDITIONAL');
+  });
+
+  it('collapses resolved review variants by normalized content when enabled', () => {
+    const result = mergeReviewRegistries([
+      {
+        label: 'a',
+        registry: {
+          openFindings: [],
+          resolvedFindings: [{ findingId: 'RR-cache-a', severity: 'P2', status: 'resolved_fixed', title: 'Cache resolved', description: 'Writer now refreshes cache TTL' }],
+        },
+      },
+      {
+        label: 'b',
+        registry: {
+          openFindings: [],
+          resolvedFindings: [{ findingId: 'RR-cache-b', severity: 'P2', status: 'resolved_fixed', title: 'Stale cache fixed', description: 'Writer now refreshes cache TTL' }],
+        },
+      },
+    ], { enableNearDuplicateDedup: true });
+
+    const resolved = result.resolvedFindings as Array<{ _lineages: string[] }>;
+    expect(resolved).toHaveLength(1);
+    expect(resolved[0]._lineages).toEqual(['a', 'b']);
+    expect(result.resolvedFindingsCount).toBe(1);
+  });
 });
 
 // ─── fanout-merge.cjs script tests ────────────────────────────────────────
@@ -396,5 +632,33 @@ describe('fanout-merge.cjs — script', () => {
 
     // Attribution md should exist
     expect(existsSync(join(baseDir, 'fanout-attribution.md'))).toBe(true);
+  });
+
+  it('enables near-duplicate research dedup through the CLI flag', () => {
+    const baseDir = makeTempDir('fanout-merge-research-dedup-');
+    const lineagesDir = join(baseDir, 'lineages');
+
+    const linADir = join(lineagesDir, 'lina');
+    mkdirSync(linADir, { recursive: true });
+    writeFileSync(
+      join(linADir, 'deep-research-findings-registry.json'),
+      JSON.stringify({ keyFindings: [{ id: 'F-cache-a', title: 'Cache invalidation missing', summary: 'Writer never refreshes cache TTL' }] }),
+      'utf8',
+    );
+
+    const linBDir = join(lineagesDir, 'linb');
+    mkdirSync(linBDir, { recursive: true });
+    writeFileSync(
+      join(linBDir, 'deep-research-findings-registry.json'),
+      JSON.stringify({ keyFindings: [{ id: 'F-cache-b', title: 'Stale cache survives writes', summary: 'Writer never refreshes cache TTL' }] }),
+      'utf8',
+    );
+
+    const { execSync } = require('node:child_process');
+    execSync(`node "${fanoutMergeScript}" --loop-type research --artifact-dir "${baseDir}" --enable-near-duplicate-dedup`, { encoding: 'utf8' });
+
+    const merged = JSON.parse(readFileSync(join(baseDir, 'deep-research-findings-registry.json'), 'utf8'));
+    expect(merged.keyFindings).toHaveLength(1);
+    expect(merged.metrics.keyFindings).toBe(1);
   });
 });

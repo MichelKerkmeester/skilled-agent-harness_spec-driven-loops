@@ -22,6 +22,12 @@ import { isSpeckitMetricsEnabled, speckitMetrics } from './shared/metrics-stub.j
 import { runPhases } from './phase-runner.js';
 import { CODE_GRAPH_DEFAULTS } from './config-defaults.js';
 import { extractDocSymbols } from './doc-symbol-extractor.js';
+import {
+  addToSkipList,
+  classifyParserErrorClass,
+  classifyParserRetryClass,
+  isParserSkipListEnabled,
+} from './parser-skip-list.js';
 import type {
   CodeNode, CodeEdge, ParseResult, SupportedLanguage,
   IndexerConfig, SymbolKind, DetectorProvenance, EdgeType,
@@ -1256,12 +1262,18 @@ export async function parseFile(
     const parserResult = parser.parse(content, language, edgeWeights, filePath);
     return attachFilePath(parserResult, filePath);
   } catch (err: unknown) {
+    const errorMessage = err instanceof Error ? err.message : String(err);
+    if (isParserSkipListEnabled()) {
+      addToSkipList(filePath, classifyParserErrorClass(err), errorMessage, undefined, {
+        retryClass: classifyParserRetryClass(err),
+      });
+    }
     return {
       filePath, language,
       nodes: [], edges: [], contentHash,
       detectorProvenance: detectorProvenanceFromParserBackend(getRequestedParserBackend()),
       parseHealth: 'error',
-      parseErrors: [err instanceof Error ? err.message : String(err)],
+      parseErrors: [errorMessage],
       parseDurationMs: Date.now() - startTime,
     };
   }

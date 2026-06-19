@@ -39,7 +39,7 @@
       "failed"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
       ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs",
@@ -197,7 +197,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This sub-phase records the deep-loop fan-out **determinism + observability** cluster — the fan-out-layer group touching `fanout-merge.cjs` / `fanout-pool.cjs` / `fanout-run.cjs` — and completes its gated Wave-1 tail. Three candidates already **shipped** in the flat Wave-0 packet (030, commit `46812f12a8`): the **deterministic merge total-order** (a hand-written `compareByContentThenId` content-then-id total comparator layered on top of the first-write-wins `id||title` dedup), the **read-derived pool gauges** (`lag`/`pending`/`failed`, computed from the pool's `total`/`settled`/`pending`/`failed` counters with no new state), and **graceful self-stop** (a `stopped` partial-summary flush on SIGINT/SIGTERM plus treating an empty no-new-findings tick as valid convergence rather than failure). Two candidates remain **PENDING** as the Wave-1 tail: the **order-invariance property test** — the verification gate that proves the shipped merge tiebreak is independent of the arrival order of the lineage directories (the merge reads `readdirSync(...).filter` with no `.sort()` at `fanout-merge.cjs:398`, so order-invariance is a *property the tiebreak must guarantee but no test asserts*), and the **near-duplicate merge dedup** — the shipped dedup keys on exact `id||title` (`fanout-merge.cjs:187`), so two surface-variant findings (same finding, differently-worded title, or distinct synthetic ids) escape dedup and inflate the distinct-finding count that feeds `sourceDiversity`.",
+    "causal_summary": "This sub-phase records the deep-loop fan-out **determinism + observability** cluster — the fan-out-layer group touching `fanout-merge.cjs` / `fanout-pool.cjs` / `fanout-run.cjs` — and completes its Wave-1 tail. Three candidates already **shipped** in the flat Wave-0 packet (030, commit `46812f12a8`): the **deterministic merge total-order**, the **read-derived pool gauges**, and **graceful self-stop**. The local Wave-1 implementation adds byte-identical research/review order-invariance tests, deterministic lineage/metadata ordering in `fanout-merge.cjs`, and a default-off normalized-body-content near-duplicate dedup option for research, review open, and review resolved findings.",
     "created_at": "2026-06-19T06:20:37.815Z",
     "last_save_at": "2026-06-19T06:20:37.815Z",
     "save_lineage": "graph_only",

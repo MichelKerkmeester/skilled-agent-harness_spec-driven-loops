@@ -1,6 +1,6 @@
 {
   "specFolder": "system-spec-kit/028-memory-search-intelligence/002-code-graph/007-parser-resilience",
-  "description": "Feature Specification: Code Graph Q2-C1 — Transient/Fatal Parser Skip-List with Bounded Retry",
+  "description": "Implemented Code Graph Q2-C1 — Transient/Fatal Parser Skip-List with Bounded Retry",
   "keywords": [
     "feature",
     "specification",
@@ -14,9 +14,9 @@
     "bounded",
     "retry"
   ],
-  "lastUpdated": "2026-06-19T06:21:35.657Z",
+  "lastUpdated": "2026-06-19T14:00:00.000Z",
   "specId": "007",
-  "folderSlug": "007-parser-resilience",
+  "folderSlug": "parser-resilience",
   "parentChain": [
     "system-spec-kit",
     "028-memory-search-intelligence",

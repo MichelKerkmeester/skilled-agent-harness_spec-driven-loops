@@ -5,6 +5,16 @@
 import type { AdvisorProjection, LaneMatch } from '../types.js';
 import { matchesPhraseBoundary, phraseSpecificity, skillNameVariants, tokenize } from '../text.js';
 
+interface ExplicitLaneOptions {
+  readonly includeProducerIdentity?: boolean;
+}
+
+interface ExplicitScoreEntry {
+  score: number;
+  readonly evidence: string[];
+  readonly producerSkillIds: Set<string>;
+}
+
 const TOKEN_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   audit: [['sk-code-review', 0.75]],
   branch: [['sk-git', 0.45]],
@@ -227,17 +237,30 @@ const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
 const WRITE_VERBS = /\b(add|build|change|configure|create|edit|fix|generate|implement|modify|patch|refactor|rename|replace|run|update|write)\b/;
 const MEMORY_PRESERVATION_SESSION_INTENT = /\b(preserve|remember|capture|keep|store)\b.*\b(next|future|later)\s+session\b|\b(next|future|later)\s+session\b.*\b(lose|lost|preserve|remember|capture|keep|store)\b/;
 
-function push(scores: Map<string, { score: number; evidence: string[] }>, skillId: string, amount: number, evidence: string): void {
-  const current = scores.get(skillId) ?? { score: 0, evidence: [] };
+function push(
+  scores: Map<string, ExplicitScoreEntry>,
+  skillId: string,
+  amount: number,
+  evidence: string,
+  producerSkillId?: string,
+): void {
+  const current = scores.get(skillId) ?? { score: 0, evidence: [], producerSkillIds: new Set<string>() };
   current.score += amount;
   current.evidence.push(evidence);
+  if (producerSkillId) {
+    current.producerSkillIds.add(producerSkillId);
+  }
   scores.set(skillId, current);
 }
 
-export function scoreExplicitLane(prompt: string, projection: AdvisorProjection): LaneMatch[] {
+export function scoreExplicitLane(
+  prompt: string,
+  projection: AdvisorProjection,
+  options: ExplicitLaneOptions = {},
+): LaneMatch[] {
   const lower = prompt.toLowerCase();
   const tokens = tokenize(prompt, true);
-  const scores = new Map<string, { score: number; evidence: string[] }>();
+  const scores = new Map<string, ExplicitScoreEntry>();
 
   for (const [phrase, boosts] of Object.entries(PHRASE_BOOSTS)) {
     if (!lower.includes(phrase)) continue;
@@ -317,15 +340,25 @@ export function scoreExplicitLane(prompt: string, projection: AdvisorProjection)
     }
     for (const phrase of [...skill.intentSignals, ...skill.keywords]) {
       if (matchesPhraseBoundary(lower, phrase)) {
-        push(scores, skill.id, phraseSpecificity(phrase), `author:${phrase}`);
+        push(
+          scores,
+          skill.id,
+          phraseSpecificity(phrase),
+          `author:${phrase}`,
+          options.includeProducerIdentity ? skill.id : undefined,
+        );
       }
     }
   }
 
-  return [...scores.entries()].map(([skillId, value]) => ({
-    skillId,
-    lane: 'explicit_author' as const,
-    score: Math.min(value.score, 1),
-    evidence: value.evidence.slice(0, 6),
-  }));
+  return [...scores.entries()].map(([skillId, value]) => {
+    const producerSkillIds = [...value.producerSkillIds].sort();
+    return {
+      skillId,
+      lane: 'explicit_author' as const,
+      score: Math.min(value.score, 1),
+      evidence: value.evidence.slice(0, 6),
+      ...(producerSkillIds.length > 0 ? { producerSkillIds } : {}),
+    };
+  });
 }

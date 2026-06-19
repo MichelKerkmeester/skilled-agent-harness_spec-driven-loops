@@ -48,7 +48,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify |
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Partial Implementation |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Spec** | ../spec.md |
@@ -92,11 +92,12 @@ Stand up one named, zero-success-ceiling CI red-team probe gate that aggregates 
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/system-spec-kit/mcp_server/tests/security/redteam-probe-gate.vitest.ts` | Create | The named aggregating gate: poisoned-RAG + query-only-injection + wrapper-breakout families, zero-success ceiling, structured per-probe report |
-| `.opencode/skills/system-spec-kit/mcp_server/tests/security/redteam-fixtures/` | Create | Probe payload fixtures per attack family (reuse/extend `promptPoisoningAdversarial.json` + `unicodeInstructionalSkillLabel.json`) |
-| `.opencode/skills/deep-loop-runtime/tests/unit/prompt-pack-injection.vitest.ts` | Create | The deep-loop prompt-pack render probe (the uncovered seam) |
-| `.opencode/skills/system-spec-kit/mcp_server/scripts/run-tests.mjs` | Modify | Add a security lane selector so the gate runs as one named group |
-| Namespace-denial audit path (seam TBD at impl time) | Modify | Record denial without storing query text; add an audit-coverage assertion to the gate |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/security/redteam-probe-gate.vitest.ts` | Created | The named aggregating gate: poisoned-RAG + query-only-injection + wrapper-breakout families, zero-success ceiling, structured per-probe report |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/security/redteam-fixtures/probe-payloads.json` | Created | Deterministic probe payload fixtures per attack family |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts` | Modified | Deny audit metadata/reason sanitization so rejected prompt/query text is not persisted |
+| `.opencode/skills/system-spec-kit/mcp_server/scripts/run-tests.mjs` | Modified | Add a security lane selector so the gate runs as one named group |
+| `.opencode/skills/system-spec-kit/mcp_server/package.json` | Modified | Route `npm test -- --security` arguments to the lane selector instead of the shell tail |
+| `.opencode/skills/deep-loop-runtime/tests/unit/prompt-pack-injection.vitest.ts` | Pending | Left pending because this turn was scoped to the Spec-Kit Memory MCP server code surface |
 
 <!-- /ANCHOR:scope -->
 
@@ -138,6 +139,22 @@ Stand up one named, zero-success-ceiling CI red-team probe gate that aggregates 
 - **SC-004**: The gate is additive — `tsc`/build green, the existing suite still passes, `validate.sh --strict` green on this packet, no sanitizer or recall behavior changed.
 
 <!-- /ANCHOR:success-criteria -->
+
+---
+
+<!-- ANCHOR:implementation-status -->
+## 5A. IMPLEMENTATION STATUS
+
+### Implemented
+- **M-redteam-probe-gate (MCP server seams)**: Implemented as `tests/security/redteam-probe-gate.vitest.ts`, default-on when invoked through `npm test -- --security`. The gate aggregates poisoned-RAG, query-only-injection, wrapper-breakout, and exfil-audit probes with a structured report and zero-success ceiling. It does not change sanitizer or recall rendering behavior.
+- **M-exfil-audit-no-querytext**: Implemented in `lib/governance/scope-governance.ts`. Deny audit rows redact raw query/prompt-shaped metadata and instruction-shaped deny reasons before persistence; allow/delete/conflict metadata remains unchanged.
+
+### Left Pending
+- **Deep-loop prompt-pack render probe (REQ-006 / SC-002)**: Left pending because the requested implementation surface was `.opencode/skills/system-spec-kit/mcp_server`. The renderer lives in `.opencode/skills/deep-loop-runtime/lib/deep-loop/prompt-pack.ts` and still performs raw variable substitution, so covering it correctly requires a sibling-runtime edit and test.
+- **Live `memory_save → recall` integration form of poisoned-RAG (REQ-003 strict integration wording)**: Left pending in favor of deterministic no-live-DB unit coverage, per the user constraint. The implemented gate drives the recalled-content render boundary with precomputed recalled rows.
+- **Independent adversarial review (T017)**: Left pending; no separate reviewer seat was run in this implementation turn.
+
+<!-- /ANCHOR:implementation-status -->
 
 ---
 
@@ -212,8 +229,9 @@ Stand up one named, zero-success-ceiling CI red-team probe gate that aggregates 
 ## 10. OPEN QUESTIONS
 
 - Which CI lane runs the aggregate gate, and does `run-tests.mjs` gain a dedicated security-group selector vs reusing an existing lane?
-- Does the deep-loop prompt-pack render probe assert on live callers or on the currently dead-code `renderPromptPack` sink (006 RD1)? Decide unit-vs-integration scope at impl time.
-- Exact namespace-denial audit seam: research dispositions it as a GAP (`spec-folder-mutex.ts` is a TOCTOU lock, not an Authorizer; no visible-set / `namespace_denied` audit exists) — confirm the seam before wiring REQ-007.
-- Is the `source_kind`-gated render escaper (C8/SB8) sequenced before this gate, or does this gate land red and act as the escaper's acceptance test?
+- Answered 2026-06-19: `run-tests.mjs` gains a dedicated `--security` / `security` / `redteam-probe-gate` selector; `npm test -- --security` invokes only this lane.
+- Answered 2026-06-19: the implementation is scoped to the MCP server. The sibling deep-loop prompt-pack renderer remains pending rather than being patched from this phase.
+- Answered 2026-06-19: no `namespace_denied` authorizer seam exists; the implemented seam is `governance_audit` deny persistence, where prompt/query-shaped denial metadata is redacted before storage.
+- Answered 2026-06-19: the existing recall render escaper is already present and covered; the gate verifies that behavior without changing it.
 
 <!-- /ANCHOR:questions -->

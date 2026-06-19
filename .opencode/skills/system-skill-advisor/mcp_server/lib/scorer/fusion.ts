@@ -46,6 +46,7 @@ import type { RankedList, RrfItem } from '@spec-kit/shared/algorithms/rrf-fusion
 const DEFAULT_CONFIDENCE_THRESHOLD = resolvedConfidenceThreshold();
 const DEFAULT_UNCERTAINTY_THRESHOLD = resolvedUncertaintyThreshold();
 export const ADVISOR_RRF_FUSION_FLAG = 'SPECKIT_ADVISOR_RRF_FUSION';
+export const ADVISOR_SELF_RECOMMENDATION_GUARD_FLAG = 'SPECKIT_ADVISOR_SELF_RECOMMENDATION_GUARD';
 export const ADVISOR_RRF_K = 8;
 const TASK_INTENT = /\b(add|append|build|change|configure|create|edit|fix|generate|implement|modify|move|patch|refactor|rename|replace|run|start|sweep|update|write)\b/;
 const DEEP_RESEARCH_CYCLE = /\b(automated research cycle|looped investigation|continue iteration|resume iteration|overnight run|overnight research run|packet-local iteration|delta record|canonical jsonl|same lineage)\b/;
@@ -62,6 +63,7 @@ const CONCERN_PERF = /\b(speed|latency|execution|throughput|performance|startup|
 const CONCERN_QUALITY = /\b(quality|accuracy|recommendation|recommendations|correctness|reliability|coverage)\b/;
 const TRUE_FLAG_VALUES = new Set(['1', 'true', 'yes', 'on', 'enabled']);
 const NO_RRF_RANK = Number.MAX_SAFE_INTEGER;
+const ADVISOR_SELF_RECOMMENDATION_SKILL_IDS = new Set(['system-skill-advisor', 'skill-advisor']);
 
 type MutableLaneScores = {
   -readonly [K in keyof LaneScores]: LaneMatch[];
@@ -86,6 +88,11 @@ function emptyLaneScores(): MutableLaneScores {
 
 export function isAdvisorRrfFusionEnabled(): boolean {
   const value = process.env[ADVISOR_RRF_FUSION_FLAG]?.trim().toLowerCase();
+  return value ? TRUE_FLAG_VALUES.has(value) : false;
+}
+
+export function isAdvisorSelfRecommendationGuardEnabled(): boolean {
+  const value = process.env[ADVISOR_SELF_RECOMMENDATION_GUARD_FLAG]?.trim().toLowerCase();
   return value ? TRUE_FLAG_VALUES.has(value) : false;
 }
 
@@ -118,7 +125,13 @@ function normalizeFreshnessLabel(value: string | undefined): AdvisorFreshnessLab
   return ADVISOR_HOOK_FRESHNESS_VALUES.includes(value as AdvisorFreshnessLabel) ? value as AdvisorFreshnessLabel : null;
 }
 
-type LaneMatchIndex = Map<string, { rawScore: number; evidence: string[] }>;
+interface LaneMatchIndexEntry {
+  rawScore: number;
+  evidence: string[];
+  producerSkillIds: string[];
+}
+
+type LaneMatchIndex = Map<string, LaneMatchIndexEntry>;
 
 function buildLaneRuntimeHealth(
   laneScores: LaneScores,
@@ -169,10 +182,15 @@ function degradedLaneReason(degradedLanes: readonly ScorerLane[]): string | null
 function buildLaneMatchIndex(matches: readonly LaneMatch[]): LaneMatchIndex {
   const index: LaneMatchIndex = new Map();
   for (const match of matches) {
-    const existing = index.get(match.skillId) ?? { rawScore: 0, evidence: [] };
+    const existing = index.get(match.skillId) ?? { rawScore: 0, evidence: [], producerSkillIds: [] };
     existing.rawScore = Math.max(existing.rawScore, match.score);
     if (existing.evidence.length < 6) {
       existing.evidence.push(...match.evidence.slice(0, 6 - existing.evidence.length));
+    }
+    for (const producerSkillId of match.producerSkillIds ?? []) {
+      if (!existing.producerSkillIds.includes(producerSkillId)) {
+        existing.producerSkillIds.push(producerSkillId);
+      }
     }
     index.set(match.skillId, existing);
   }
@@ -182,7 +200,7 @@ function buildLaneMatchIndex(matches: readonly LaneMatch[]): LaneMatchIndex {
 function buildConflictMatchIndex(matches: readonly LaneMatch[]): LaneMatchIndex {
   const index: LaneMatchIndex = new Map();
   for (const match of matches) {
-    const existing = index.get(match.skillId) ?? { rawScore: 0, evidence: [] };
+    const existing = index.get(match.skillId) ?? { rawScore: 0, evidence: [], producerSkillIds: [] };
     existing.rawScore = Math.min(existing.rawScore, match.score);
     if (existing.evidence.length < 6) {
       existing.evidence.push(...match.evidence.slice(0, 6 - existing.evidence.length));
@@ -252,6 +270,25 @@ function isDefaultRoutable(promptLower: string, skill: SkillProjection): boolean
   return true;
 }
 
+function isAdvisorSelfRecommendationSkill(skillId: string): boolean {
+  return ADVISOR_SELF_RECOMMENDATION_SKILL_IDS.has(skillId);
+}
+
+function hasAdvisorSelfAuthoredSignal(skillId: string, explicitMatch: LaneMatchIndexEntry | undefined): boolean {
+  return isAdvisorSelfRecommendationSkill(skillId)
+    && explicitMatch?.producerSkillIds.some((producerSkillId) => producerSkillId === skillId) === true;
+}
+
+function shouldApplyAdvisorSelfRecommendationGuard(args: {
+  readonly skillId: string;
+  readonly guardEnabled: boolean;
+  readonly hasSelfAuthoredSignal?: boolean;
+}): boolean {
+  return args.guardEnabled
+    && isAdvisorSelfRecommendationSkill(args.skillId)
+    && (args.hasSelfAuthoredSignal ?? true);
+}
+
 function confidenceFor(args: {
   liveNormalized: number;
   directScore: number;
@@ -261,9 +298,18 @@ function confidenceFor(args: {
   readOnlyRouteAllowed: boolean;
   derivedDominant: boolean;
   skillId: string;
+  selfRecommendationGuardEnabled: boolean;
+  hasAdvisorSelfAuthoredSignal: boolean;
 }): number {
   const C = SCORING_CALIBRATION.confidence;
-  if (args.readOnlyExplainer && args.skillId === 'skill-advisor') return C.readOnlyExplainerFloor;
+  if (!args.selfRecommendationGuardEnabled && args.readOnlyExplainer && args.skillId === 'skill-advisor') return C.readOnlyExplainerFloor;
+  if (args.readOnlyExplainer && shouldApplyAdvisorSelfRecommendationGuard({
+    skillId: args.skillId,
+    guardEnabled: args.selfRecommendationGuardEnabled,
+    hasSelfAuthoredSignal: args.hasAdvisorSelfAuthoredSignal,
+  })) {
+    return C.readOnlyExplainerFloor;
+  }
   const base = C.baseConstant
     + Math.min(1, args.liveNormalized * C.liveNormalizedRampGain) * C.liveNormalizedRampCoefficient;
   if (args.readOnlyExplainer && !args.readOnlyRouteAllowed) return C.readOnlyExplainerFloor;
@@ -320,9 +366,12 @@ function buildLaneScores(
   disabled: Set<ScorerLane>,
   affordances: readonly NormalizedAffordance[],
   useRrfFusion: boolean,
+  includeProducerIdentity: boolean,
 ): LaneScoreBundle {
   const scores = emptyLaneScores();
-  if (!disabled.has('explicit_author')) scores.explicit_author = scoreExplicitLane(prompt, projection);
+  if (!disabled.has('explicit_author')) {
+    scores.explicit_author = scoreExplicitLane(prompt, projection, { includeProducerIdentity });
+  }
   if (!disabled.has('lexical')) scores.lexical = scoreLexicalLane(prompt, projection);
   if (!disabled.has('derived_generated')) scores.derived_generated = scoreDerivedLane(prompt, projection, new Date(), affordances);
   if (!disabled.has('semantic_shadow')) scores.semantic_shadow = scoreSemanticShadowLane(prompt, projection);
@@ -392,7 +441,11 @@ function isPlainFileSavePrompt(promptLower: string): boolean {
   return FILE_SAVE_OPERATION.test(promptLower) && !MEMORY_SAVE_CONTEXT_ANCHOR.test(promptLower.replace(/\bfile(s)?\b/g, ''));
 }
 
-function primaryIntentBonus(promptLower: string, recommendation: AdvisorScoredRecommendation): number {
+function primaryIntentBonus(
+  promptLower: string,
+  recommendation: AdvisorScoredRecommendation,
+  selfRecommendationGuardEnabled: boolean,
+): number {
   const R = SCORING_CALIBRATION.routing;
   if (/\bsemantic (code )?search\b/.test(promptLower)) {
     if (recommendation.skill === 'system-code-graph') return R.semanticSearchCodeGraphBonus;
@@ -446,7 +499,13 @@ function primaryIntentBonus(promptLower: string, recommendation: AdvisorScoredRe
   // Auditing recommendation quality is a review task, not an advisor-self task.
   if (/\baudit\b/.test(promptLower) && /\b(recommendation|recommendations|recommendation quality|routing quality)\b/.test(promptLower)) {
     if (recommendation.skill === 'sk-code-review') return R.auditRecsCodeReviewBonus;
-    if (recommendation.skill === 'system-skill-advisor') return R.auditRecsAdvisorPenalty;
+    if (!selfRecommendationGuardEnabled && recommendation.skill === 'system-skill-advisor') return R.auditRecsAdvisorPenalty;
+    if (shouldApplyAdvisorSelfRecommendationGuard({
+      skillId: recommendation.skill,
+      guardEnabled: selfRecommendationGuardEnabled,
+    })) {
+      return R.auditRecsAdvisorPenalty;
+    }
   }
   if (/\b(save context|save memory)\b/.test(promptLower)) {
     if (recommendation.skill === 'memory:save') return R.saveContextMemorySaveBonus;
@@ -473,7 +532,15 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
   const disabled = new Set(options.disabledLanes ?? []);
   const affordances = normalize(options.affordances ?? []);
   const useRrfFusion = isAdvisorRrfFusionEnabled();
-  const { laneScores, graphConflictMatches } = buildLaneScores(prompt, projection, disabled, affordances, useRrfFusion);
+  const selfRecommendationGuardEnabled = isAdvisorSelfRecommendationGuardEnabled();
+  const { laneScores, graphConflictMatches } = buildLaneScores(
+    prompt,
+    projection,
+    disabled,
+    affordances,
+    useRrfFusion,
+    selfRecommendationGuardEnabled,
+  );
   const runtimeLaneHealth = projectionRuntimeLaneHealth(projection, options.runtimeLaneHealth);
   const laneHealth = buildLaneRuntimeHealth(laneScores, disabled, runtimeLaneHealth);
   const degradedLanes = laneHealth
@@ -538,6 +605,7 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
     );
     const derivedDominant = isDerivedDominant(contributions);
     const explicitSignal = hasExplicitWorkflowSignal(contributions, skill.id);
+    const explicitMatch = laneScoreIndexes.explicit_author.get(skill.id);
     const liveNormalized = score / liveTotal;
     let confidence = confidenceFor({
       liveNormalized,
@@ -548,6 +616,8 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
       readOnlyRouteAllowed: readOnlyRouteAllowed(promptLower, skill.id),
       derivedDominant,
       skillId: skill.id,
+      selfRecommendationGuardEnabled,
+      hasAdvisorSelfAuthoredSignal: hasAdvisorSelfAuthoredSignal(skill.id, explicitMatch),
     });
     if ((skill.id === 'memory:save' || skill.id === 'command-memory-save') && isPlainFileSavePrompt(promptLower)) {
       confidence = Math.min(confidence, 0.49);
@@ -570,7 +640,7 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
 
   if (isSpeckitMetricsEnabled()) {
     for (const recommendation of recommendations) {
-      if (primaryIntentBonus(promptLower, recommendation) !== 0) {
+      if (primaryIntentBonus(promptLower, recommendation, selfRecommendationGuardEnabled) !== 0) {
         speckitMetrics.incrementCounter('spec_kit.scorer.primary_intent_bonus_applied_total', { skill_id: recommendation.skill });
       }
     }
@@ -578,8 +648,8 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
   let ranked = recommendations.sort((left, right) => {
     const leftCommandBonus = left.kind === 'command' && !promptLower.includes('/') ? -0.08 : 0;
     const rightCommandBonus = right.kind === 'command' && !promptLower.includes('/') ? -0.08 : 0;
-    const leftIntent = primaryIntentBonus(promptLower, left);
-    const rightIntent = primaryIntentBonus(promptLower, right);
+    const leftIntent = primaryIntentBonus(promptLower, left, selfRecommendationGuardEnabled);
+    const rightIntent = primaryIntentBonus(promptLower, right, selfRecommendationGuardEnabled);
     const leftConflict = useRrfFusion ? graphConflictAdjustment(graphConflictIndex, left) : 0;
     const rightConflict = useRrfFusion ? graphConflictAdjustment(graphConflictIndex, right) : 0;
     const adjustedScoreDiff = (right.score + rightCommandBonus + rightIntent + rightConflict)

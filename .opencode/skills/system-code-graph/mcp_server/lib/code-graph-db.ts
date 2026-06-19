@@ -147,7 +147,7 @@ export interface DeleteAuditOptions {
 }
 
 /** Schema version for migration tracking */
-export const SCHEMA_VERSION = 5;
+export const SCHEMA_VERSION = 6;
 
 /** SQL schema for code graph tables */
 const SCHEMA_SQL = `
@@ -211,6 +211,7 @@ const SCHEMA_SQL = `
   CREATE TABLE IF NOT EXISTS parser_skip_list (
     file_path     TEXT PRIMARY KEY,
     error_class   TEXT NOT NULL CHECK (error_class IN ('B1', 'B2', 'OTHER')),
+    retry_class   TEXT NOT NULL DEFAULT 'fatal' CHECK (retry_class IN ('transient', 'fatal')),
     error_message TEXT,
     added_at      TEXT NOT NULL,
     last_seen_at  TEXT NOT NULL,
@@ -628,6 +629,7 @@ function ensureSchemaMigrations(database: Database.Database): void {
     CREATE TABLE IF NOT EXISTS parser_skip_list (
       file_path     TEXT PRIMARY KEY,
       error_class   TEXT NOT NULL CHECK (error_class IN ('B1', 'B2', 'OTHER')),
+      retry_class   TEXT NOT NULL DEFAULT 'fatal' CHECK (retry_class IN ('transient', 'fatal')),
       error_message TEXT,
       added_at      TEXT NOT NULL,
       last_seen_at  TEXT NOT NULL,
@@ -639,14 +641,20 @@ function ensureSchemaMigrations(database: Database.Database): void {
     CREATE INDEX IF NOT EXISTS idx_parser_skip_list_class ON parser_skip_list(error_class);
   `);
 
+  if (!hasColumn(database, 'parser_skip_list', 'retry_class')) {
+    database.exec("ALTER TABLE parser_skip_list ADD COLUMN retry_class TEXT NOT NULL DEFAULT 'fatal' CHECK (retry_class IN ('transient', 'fatal'))");
+  }
+  database.exec('CREATE INDEX IF NOT EXISTS idx_parser_skip_list_retry_class ON parser_skip_list(retry_class)');
+
   const now = new Date().toISOString();
   database.prepare(`
     INSERT OR IGNORE INTO parser_skip_list (
-      file_path, error_class, error_message, added_at, last_seen_at, attempt_count, source
+      file_path, error_class, retry_class, error_message, added_at, last_seen_at, attempt_count, source
     )
     SELECT
       file_path,
       'B1',
+      'fatal',
       error_message,
       ?,
       ?,

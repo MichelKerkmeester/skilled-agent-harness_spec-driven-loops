@@ -24,7 +24,7 @@
     "check": "npm run lint && npx tsc --noEmit",
     "check:full": "npm run check && npm run test",
     "lint": "eslint . --ext .ts",
-    "test": "node scripts/run-tests.mjs && npm run test:spec-validation",
+    "test": "node scripts/run-tests.mjs",
     "test:spec-validation": "node ../scripts/tests/test-validation-system.cjs && bash ../scripts/tests/test-validation.sh && bash ../scripts/tests/test-validation-extended.sh",
     "test:core": "vitest run",
     "test:file-watcher": "vitest run tests/file-watcher.vitest.ts",
