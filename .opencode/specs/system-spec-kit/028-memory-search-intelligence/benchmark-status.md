@@ -92,7 +92,9 @@ Remediation (deliberate data + judgment work, NOT implementation):
 Default-off flags awaiting per-flag benchmark evidence (registered in `tests/flag-ceiling.vitest.ts`):
 SPECKIT_BITEMPORAL_RECALL, SPECKIT_AGENTIC_RECALL, SPECKIT_EDGE_PRESENCE_CURRENTNESS, plus the
 derived-id / retention / semantic-edge / procedural / sleeptime / calibration flags from phases
-009/011/017/012/018/020, and the advisor SPECKIT_ADVISOR_* shadow flags.
+009/011/017/012/018/020, the advisor SPECKIT_ADVISOR_* shadow flags and the Code Graph
+SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING, SPECKIT_CODE_GRAPH_EDGE_BITEMPORAL_READS and
+SPECKIT_CODE_GRAPH_EDGE_GOVERNANCE_VOCAB flags.
 
 ## Criterion 6 — release-cleanup: 8/9, two items blocked on a concurrent session
 

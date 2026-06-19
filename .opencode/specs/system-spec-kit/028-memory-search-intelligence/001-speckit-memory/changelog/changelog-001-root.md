@@ -32,18 +32,18 @@ This root rollup tracks the Memory MCP child phases for packet 028. The parent r
 | `006-redteam-probe-gate` | Partial, MCP-server lane shipped | The MCP-server security gate, fixtures, selector and sanitized denial audit shipped. The sibling prompt-pack probe remains pending. |
 | `007-bitemporal-window` | Partial, schema foundation shipped | Schema version 38 adds the causal and lineage bi-temporal window with migration coverage. Event-time invalidation, chronology behavior and transaction-time recall remain pending consumers. |
 | `008-edge-presence-currentness` | Planned | The phase is a Level-3 re-plan for currentness and temporal recall candidates. No production code shipped. |
-| `009-derived-id-provenance` | Planned | The derived ID work remains behind a schema-migration gate. The shared hash dependency is confirmed. |
+| `009-derived-id-provenance` | Complete, default-off | Generated causal edges now carry a content-addressed derived ID behind schema version 40 with focused tests, reusing the shared hash primitive. Default behavior stays byte-identical until the gate is enabled. |
 | `010-consolidation-cursor-clock` | Planned | The consolidation cursor and clock chain is scoped, with crash-safety and quality gates recorded. No candidate shipped. |
-| `011-retention-forgetting` | Planned | Eight retention, forgetting and result-shaping candidates are traced and left pending behind their real gates. |
+| `011-retention-forgetting` | Partial, two candidates shipped | Spare-only retention eligibility and the live incoming-edge allowlist shipped with deterministic tests behind their gates. The benchmark-gated, cascade and trust-gated candidates remain pending. |
 | `012-procedural-reliability-benchmark` | Planned | Procedural reliability remains benchmark-first. The phase freezes the candidate set and promotion gate. |
 | `013-enrichment-observability` | Complete | Background enrichment backlog gauges now expose pending, failed and oldest-pending age using existing health data. |
 | `014-mem0-ranking-tweaks` | Partial | Declarative entity config and default-off cardinality penalty shipped. Content-hash reprocessing closed as no-transfer and the remaining candidates stay gated. |
 | `015-summary-fusion-grounding` | Partial | The summary/community fusion lane and read-only grounding prelude shipped behind flags. Benchmark delta, retune and persistent hierarchy remain pending. |
 | `016-iterative-agentic-recall` | Partial | The bounded agentic loop governor and default-off flag shipped. Router wiring and live benchmark remain pending. |
-| `017-semantic-edge-layer` | Planned | The semantic edge substrate is scoped for a future migration and prove-first build. No production code shipped. |
-| `018-sleeptime-consolidation` | Planned | The off-turn consolidation agent is scoped as governor-first and shadow-first. No production code shipped. |
+| `017-semantic-edge-layer` | Partial, substrate shipped | The semantic-edge substrate and a shadow retrieval primitive shipped behind default-off flags. The dedup-merge and invalidation-discovery consumers remain pending benchmark and safety evidence. |
+| `018-sleeptime-consolidation` | Partial, safe core shipped | The bounded sleep-time governor and shadow agent scaffold shipped behind default-off flags. Off-turn dispatch, live archival writes and benchmark promotion remain pending. |
 | `019-eval-harness-extension` | Partial | Optional diagnostics, label views and three corpus metric lanes shipped. The A8 promotion-gate work remains pending. |
-| `020-eval-calibration-ab` | Planned | Confidence calibration and shipped-lever A/B work remain pending consumers of the eval harness. |
+| `020-eval-calibration-ab` | Partial, observe-only utilities shipped | Observe-only confidence calibration and lever A/B utilities shipped behind default-off flags. Promotion waits on held-out ECE and golden-set delta evidence from 019. |
 | `021-residual-correctness` | Complete | Search score averaging now uses the calibrated relevance scale and maintenance marker TTL derives from the owner lease invariant. |
 
 ### Added

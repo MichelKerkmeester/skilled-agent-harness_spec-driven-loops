@@ -48,9 +48,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Trace the mislabeled rollup rows (009/011/017/018/020) to their commits and child summaries.
-- [ ] T002 Enumerate the commits omitted by `timeline.md` and `before-vs-after.md`.
-- [ ] T003 Confirm phase 001 has applied its `benchmark-status.md` re-run update.
+- [x] T001 Trace the mislabeled rollup rows (009/011/017/018/020) to their commits and child summaries. Traced to `ed53661043`, `5308401d95`, `8f8776e329` and each child implementation-summary; 008 confirmed no-code per its child.
+- [x] T002 Enumerate the commits omitted by `timeline.md` and `before-vs-after.md`. Full `git log main..HEAD` enumerated; the omitted window runs `4aa6473b3f` through `885f0c662e`.
+- [x] T003 Confirm phase 001 has applied its `benchmark-status.md` re-run update. Confirmed committed-clean at `885f0c662e` (criterion-4 re-derived).
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -58,12 +58,12 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Reclassify the Memory rollup rows, keeping phase 008 as no-code-shipped (P1-6).
-- [ ] T005 [P] Refresh the `timeline.md` epochs diagram and Section E classification.
-- [ ] T006 [P] Advance `before-vs-after.md` CURRENT STATE and correct release-cleanup claims.
-- [ ] T007 [P] Add `SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING` and the 17 new flags to the inventories.
-- [ ] T008 Reconcile the `005-release-cleanup/spec.md` phase-map and replace the zero-hash fingerprint.
-- [ ] T009 Populate `changelog-028-root.md` verification, files-changed and follow-up evidence.
+- [x] T004 Reclassify the Memory rollup rows, keeping phase 008 as no-code-shipped (P1-6). Rows 009 (Complete, default-off), 011/017/018/020 (Partial) corrected in `changelog-001-root.md`; 008 and 010 left as no-code per their children.
+- [x] T005 [P] Refresh the `timeline.md` epochs diagram and Section E classification. Diagram extended past commit 30 with the schema cluster, release-cleanup and benchmark commits; Section E reframed shipped-behind-flag vs held; new Section D2 added; dangling 030 pointer repointed.
+- [x] T006 [P] Advance `before-vs-after.md` CURRENT STATE and correct release-cleanup claims. CURRENT STATE advanced to `5ce5130b20`; Section 6 release-cleanup corrected from PENDING to executed; benchmark present-tense and measured-benefit framing reconciled to the criterion-4 run.
+- [x] T007 [P] Add `SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING` to the `benchmark-status.md` inventory (plus `SPECKIT_CODE_GRAPH_EDGE_BITEMPORAL_READS` and `SPECKIT_CODE_GRAPH_EDGE_GOVERNANCE_VOCAB`). The `ENV_REFERENCE.md` 17-flag portion is DEFERRED: that file is dirty with an active concurrent session's flag edits and is outside the parent-dispatched scope.
+- [ ] T008 Reconcile the `005-release-cleanup/spec.md` phase-map and replace the zero-hash fingerprint. DEFERRED: outside the parent-dispatched scope (3-file cluster + P1-6); overlaps phase 004 P2 triage and a sibling phase parent. Not executed.
+- [ ] T009 Populate `changelog-028-root.md` verification, files-changed and follow-up evidence. DEFERRED: outside the parent-dispatched scope; overlaps phase 004 P2 triage. Not executed.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +71,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T010 Confirm every status edit traces to a commit or implementation-summary.
-- [ ] T011 Re-run `validate.sh 005-release-cleanup --strict` after editing the sibling spec.
-- [ ] T012 Run strict validation for this child folder.
+- [x] T010 Confirm every status edit traces to a commit or implementation-summary. Each reclassified row and narrative claim is traced to a named commit or child summary; HVR scan confirms 0 em-dashes and 0 semicolons in the added lines.
+- [ ] T011 Re-run `validate.sh 005-release-cleanup --strict` after editing the sibling spec. N/A: the 005 sibling was not edited (T008 deferred), so no sibling re-validation was required.
+- [x] T012 Run strict validation for this child folder. validate.sh --strict exits 0 for this child and for the 028 root.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,10 +81,10 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`.
-- [ ] No `[B]` blocked tasks remaining.
-- [ ] Every status change has commit evidence.
-- [ ] Strict validation exits 0.
+- [x] All parent-dispatched tasks done: P1-6 (T004) plus the timeline / before-vs-after / benchmark-status cluster (T005-T007) plus tracing and validation (T001-T003, T010, T012).
+- [x] No `[B]` blocked tasks. T008, T009 and the `ENV_REFERENCE.md` portion of T007 are DEFERRED out of scope with reasons recorded above.
+- [x] Every executed status change has commit or child-summary evidence.
+- [x] Strict validation exits 0 for this child folder and the 028 root.
 <!-- /ANCHOR:completion -->
 
 ---

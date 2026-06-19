@@ -45,9 +45,9 @@ _memory:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Scope is limited to P1-6 and the iteration-9 doc staleness cluster.
-- [ ] CHK-002 [P0] The five mislabeled rollup rows are traced to commits.
-- [ ] CHK-003 [P1] Phase 001 has already updated `benchmark-status.md`.
+- [x] CHK-001 [P0] Scope is limited to P1-6 and the iteration-9 doc staleness cluster. Executed scope narrowed to the parent-dispatched 4 files (changelog-001-root, timeline, before-vs-after, benchmark-status).
+- [x] CHK-002 [P0] The five mislabeled rollup rows are traced to commits. 009/011/017/018/020 traced to `ed53661043`, `5308401d95`, `8f8776e329` plus each child summary.
+- [x] CHK-003 [P1] Phase 001 has already updated `benchmark-status.md`. Committed-clean at `885f0c662e`.
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -55,10 +55,10 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] No status is marked Complete without commit or summary evidence.
-- [ ] CHK-011 [P0] Default-off is not conflated with no code shipped.
-- [ ] CHK-012 [P1] Doc edits follow each surface's existing house voice.
-- [ ] CHK-013 [P1] Phase 008 stays no-code-shipped where its child agrees.
+- [x] CHK-010 [P0] No status is marked Complete without commit or summary evidence. 009 marked Complete only because its child reads completion_pct 100 and `ed53661043` shipped it; 011/017/018/020 marked Partial.
+- [x] CHK-011 [P0] Default-off is not conflated with no code shipped. The rollup, timeline Section E and before-vs-after Section 6 now read shipped-behind-flag rather than not-shipped.
+- [x] CHK-012 [P1] Doc edits follow each surface's existing house voice. HVR maintained; added lines carry 0 em-dashes and 0 semicolons.
+- [x] CHK-013 [P1] Phase 008 stays no-code-shipped where its child agrees. 008 and 010 left as no-code per their children.
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -66,10 +66,10 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] Each rollup, timeline and before-vs-after claim is git-traced.
-- [ ] CHK-021 [P0] The flag inventories list every default-off flag they should.
-- [ ] CHK-022 [P1] `validate.sh 005-release-cleanup --strict` exits 0 after the sibling edit.
-- [ ] CHK-023 [P1] Strict validation exits 0 for this child folder.
+- [x] CHK-020 [P0] Each rollup, timeline and before-vs-after claim is git-traced. Every reclassified row and narrative commit reference checked against `git log main..HEAD`.
+- [x] CHK-021 [P0] The flag inventories list every default-off flag they should. `benchmark-status.md` inventory completed with the three Code Graph flags. The `ENV_REFERENCE.md` inventory is DEFERRED to its concurrent owner, outside the parent-dispatched scope.
+- [ ] CHK-022 [P1] `validate.sh 005-release-cleanup --strict` exits 0 after the sibling edit. N/A: the 005 sibling was not edited (T008 deferred), so no sibling re-validation was required.
+- [x] CHK-023 [P1] Strict validation exits 0 for this child folder. Confirmed exit 0 for this child and the 028 root.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -77,10 +77,10 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-060 [P0] P1-6 and all 12 cluster items are addressed.
-- [ ] CHK-061 [P0] The zero-hash fingerprint is replaced with a real content-derived value.
-- [ ] CHK-062 [P1] The benchmark-status inventory fix does not revert the phase-001 re-run.
-- [ ] CHK-063 [P1] The concurrent session's files and packet 030 remain unchanged.
+- [ ] CHK-060 [P0] P1-6 and all 12 cluster items are addressed. PARTIAL: P1-6 plus the timeline / before-vs-after / benchmark-status cluster items (the parent-dispatched scope) are addressed. Cluster items 7 (`changelog-028-root.md`), 8 and 9 (`005-release-cleanup/spec.md`) and 10 (`ENV_REFERENCE.md`) are DEFERRED out of scope to phase 004 P2 triage and the concurrent owner.
+- [ ] CHK-061 [P0] The zero-hash fingerprint is replaced with a real content-derived value. DEFERRED: the `005-release-cleanup/spec.md` fingerprint (T008) is outside the parent-dispatched scope and was not touched.
+- [x] CHK-062 [P1] The benchmark-status inventory fix does not revert the phase-001 re-run. The criterion-4 re-run text is untouched; only the flag-inventory sentence was extended.
+- [x] CHK-063 [P1] The concurrent session's files and packet 030 remain unchanged. `rrf-fusion.ts`, deep-research, `commands/`, `.gitignore`, `ENV_REFERENCE.md` and packet 030 all left untouched.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -88,8 +88,8 @@ _memory:
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No secrets or private paths are added during the doc edits.
-- [ ] CHK-031 [P1] The recomputed fingerprint does not leak machine-local content.
+- [x] CHK-030 [P0] No secrets or private paths are added during the doc edits. Only commit hashes, flag names and phase identifiers were added.
+- [ ] CHK-031 [P1] The recomputed fingerprint does not leak machine-local content. N/A: no fingerprint was recomputed (T008 deferred).
 <!-- /ANCHOR:security -->
 
 ---
@@ -97,9 +97,9 @@ _memory:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec, plan, tasks and checklist remain synchronized.
-- [ ] CHK-041 [P1] Parent phase map still points to this child.
-- [ ] CHK-042 [P2] Commit-trace evidence is linked from this child when execution happens.
+- [x] CHK-040 [P1] Spec, plan, tasks and checklist remain synchronized. Tasks, checklist and implementation-summary updated to the executed scope with deferrals recorded.
+- [x] CHK-041 [P1] Parent phase map still points to this child. Parent roster untouched.
+- [x] CHK-042 [P2] Commit-trace evidence is linked from this child when execution happens. Commit hashes recorded in tasks.md and implementation-summary.md.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -107,8 +107,8 @@ _memory:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] No temp files are committed.
-- [ ] CHK-051 [P1] Edits stay within the cited doc surfaces.
+- [x] CHK-050 [P1] No temp files are committed. No commits made; no temp files created.
+- [x] CHK-051 [P1] Edits stay within the cited doc surfaces. Edits confined to the four parent-named docs plus this child's tasks / checklist / implementation-summary.
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -118,9 +118,14 @@ _memory:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 9 | 0/9 |
-| P1 Items | 9 | 0/9 |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 9 | 7/9 (CHK-060 partial, CHK-061 deferred out of scope) |
+| P1 Items | 12 | 10/12 (CHK-022 and CHK-031 N/A, sibling/fingerprint not edited) |
+| P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-06-19
+**Verification Date**: 2026-06-20
+
+> Two P0 items (CHK-060, CHK-061) stay unverified by design: they cover the scaffold's broader 12-item
+> ambition (changelog-028-root, 005-release-cleanup spec, ENV_REFERENCE) that the parent dispatch
+> narrowed out and that overlaps phase 004 P2 triage and a concurrent session. The parent-dispatched
+> scope (P1-6 plus the timeline / before-vs-after / benchmark-status cluster) is complete and verified.
 <!-- /ANCHOR:summary -->
