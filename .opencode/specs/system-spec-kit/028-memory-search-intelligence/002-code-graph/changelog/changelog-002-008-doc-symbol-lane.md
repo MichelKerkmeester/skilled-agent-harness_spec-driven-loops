@@ -1,6 +1,6 @@
 ---
-title: "Changelog: Code Graph — Doc-Symbol Lane + Lease Telemetry (Q5-C1, Q7-lease) [002-code-graph/008-doc-symbol-lane]"
-description: "Chronological changelog for the Code Graph — Doc-Symbol Lane + Lease Telemetry (Q5-C1, Q7-lease) phase."
+title: "Changelog: Code Graph - Doc-Symbol Lane + Lease Telemetry (Q5-C1, Q7-lease) [002-code-graph/008-doc-symbol-lane]"
+description: "Chronological changelog for the Code Graph - Doc-Symbol Lane + Lease Telemetry (Q5-C1, Q7-lease) phase."
 trigger_phrases:
   - "phase changelog"
   - "nested changelog"
@@ -19,53 +19,55 @@ contextType: "implementation"
 
 ### Summary
 
-This sub-phase built two independent, additive capability adds against confirmed seams. The code graph's doc lane now stops being a write-only content-hash and starts answering questions: markdown headings become queryable heading nodes nested by level, and json/jsonc/yaml/yml/toml keys become key nodes, all with deterministic ids that stay stable across rescans, all from a local regex/key walk with no LLM and no network. Track B gives the launcher its first lease-churn classification: lease lifecycle transitions get names and counter payloads, routed through a no-op-default sink until a real metrics sink exists.
+This phase adds two independent capabilities. The code graph doc lane now indexes markdown headings and config keys as stable `heading` and `key` nodes, using deterministic ids and local parsing only. The launcher also gains lease-transition classification routed through a no-op metrics sink until a real sink exists.
 
 ### Added
 
-- Confirm the SymbolKind union line and generateSymbolId kind-agnosticism (indexer-types.ts:13-16, :100) — union extended; existing ID helper used by new kinds
-- Track A: add non-code render tolerance for heading/key kinds (REQ-004) (code-graph-context.ts)
-- Track A: build extractMarkdownHeadings(content) — ATX ^#{1,6} + Setext, fenced-code-aware, parent-CONTAINS-child nesting by level, content-derived ids (REQ-001) (lib/doc-symbol-extractor.ts)
-- Track A: build extractConfigKeys(content, language) — json/yaml/toml top-level + nested shallow key walk → key nodes, content-derived ids (REQ-002) (lib/doc-symbol-extractor.ts)
-- [P] Track B: add the sink-agnostic emitLeaseMetric(class, …) stub, no-op default, no behavior change without a sink (REQ-008) (mk-code-index-launcher.cjs)
-- CHK-001 Requirements documented in spec.md — REQ-001..008 cover deterministic heading/key extraction, SymbolKind extension, render tolerance, additive-off-boundary, glob decision, and the Q7 classifier + no-op emit
+- `heading` and `key` symbol kinds, using the existing kind-agnostic id helper.
+- `extractMarkdownHeadings(content)` with ATX, Setext and fenced-code handling.
+- `extractConfigKeys(content, language)` for json, jsonc, yaml, yml and toml keys.
+- Non-code render tolerance for heading and key nodes.
+- Sink-agnostic lease metric emission that defaults to no-op.
 
 ### Changed
 
-- Confirm the live language === 'doc' early-return line range (currently :1237-1249) (.opencode/skills/system-code-graph/mcp_server/lib/structural-indexer.ts) — confirmed and replaced in the doc branch only
-- [P] Inventory SymbolKind consumers + code-graph-context render path for closed-vocab assumptions — render path now has explicit heading/key coverage
-- [P] Confirm the default-glob */.md omission and decide json/yaml/toml-first vs markdown opt-in — markdown remains opt-in; config docs exercise the lane by default
-- [P] Confirm zero existing doc-symbol / lease-metric tokens — baseline had no extractor/emit tokens before this phase
-- Track A: extend SymbolKind union with 'heading' \| 'key' (REQ-003) (indexer-types.ts:13-16)
-- Track A: replace the empty if (language === 'doc') early-return with the extractor output, preserving contentHash/parseHealth:'clean'/detectorProvenance (REQ-001/002/005) (structural-indexer.ts:1237-1249)
+- The `language === 'doc'` branch now emits extracted nodes and edges instead of an empty content-hash row.
+- Markdown remains opt-in through globs, while config files exercise the lane by default.
+- Existing content hash, clean parse health and detector provenance behavior are preserved.
 
 ### Fixed
 
-- Track B: lease classifier returns the correct class per transition; emitLeaseMetric() no-ops with no sink and changes no lease decision (REQ-007/008)
-- CHK-FIX-001 Each actionable finding has a finding class — doc-lane capability-add and launcher observability classes both implemented
-- CHK-FIX-002 Same-class producer inventory completed, or instance-only proven by grep — the === 'doc' early-return is the single parse seam; launcher emit tokens were absent at baseline
-- CHK-FIX-003 Consumer inventory completed for changed helpers/schema/response fields — SymbolKind consumers inventoried; context render path covered for heading and key
-- CHK-FIX-004 Parser/redaction fixes include adversarial table tests — fenced-block #, ATX/Setext headings, malformed json, and nested config keys covered
-- CHK-FIX-005 Matrix axes and row count listed before completion — axes covered: markdown heading variants, json/jsonc/yaml/yml/toml config formats, malformed json, and lease transition classes
+- The doc lane is no longer write-only for config files and opted-in markdown files.
+- Lease lifecycle transitions now have stable classes without changing lease decisions.
+- Fenced markdown headings, malformed json and nested config-key cases are covered.
 
 ### Verification
 
-- Q5-C1 markdown-heading extraction (ATX/Setext, fenced-skip, nesting) - PASS — doc-symbol-extractor.vitest.ts
-- Q5-C1 config-key extraction (json/jsonc/yaml/yml/toml shallow walk) - PASS — doc-symbol-extractor.vitest.ts; persistence-facing counts in code-graph-indexer.vitest.ts
-- SymbolKind union admits `'heading' - 'key'`; stable ids
-- Non-code render tolerance in code-graph-context - PASS — code-graph-context-handler.vitest.ts
-- Idempotence — rescan yields byte-identical doc nodes/edges - PASS — doc-symbol-extractor.vitest.ts
-- Markdown glob decision recorded (json/yaml/toml-first) - PASS — default globs remain markdown opt-in; config docs exercise the lane
-- Q7-lease classifier per transition + no-op-default emit - PASS — launcher-lease.vitest.ts
-- validate.sh --strict on this folder - To run after doc reconciliation
+- Markdown-heading extraction, including ATX, Setext, fenced-skip and nesting - PASS: `doc-symbol-extractor.vitest.ts`
+- Config-key extraction for json, jsonc, yaml, yml and toml - PASS: `doc-symbol-extractor.vitest.ts` and persistence counts in `code-graph-indexer.vitest.ts`
+- SymbolKind union admits `heading` and `key`, with stable ids
+- Non-code render tolerance in `code-graph-context` - PASS: `code-graph-context-handler.vitest.ts`
+- Idempotence, rescan yields byte-identical doc nodes and edges - PASS: `doc-symbol-extractor.vitest.ts`
+- Markdown glob decision recorded - PASS, markdown remains opt-in while config docs exercise the lane
+- Lease classifier per transition with no-op-default emit - PASS: `launcher-lease.vitest.ts`
+- Strict phase validation - PASS
 
 ### Files Changed
 
-_No file-level detail recorded._
+| File | Action | What changed |
+|---|---|---|
+| `.opencode/skills/system-code-graph/mcp_server/lib/doc-symbol-extractor.ts` | Added | Extracts markdown headings and config keys into stable document symbols |
+| `.opencode/skills/system-code-graph/mcp_server/lib/indexer-types.ts` | Modified | Extends symbol kinds for doc nodes |
+| `.opencode/skills/system-code-graph/mcp_server/lib/structural-indexer.ts` | Modified | Replaces the empty doc branch with extractor output |
+| `.opencode/skills/system-code-graph/mcp_server/lib/code-graph-context.ts` | Modified | Renders heading and key nodes safely |
+| `.opencode/skills/system-code-graph/mk-code-index-launcher.cjs` | Modified | Adds lease-transition classification and no-op metric emission |
+| `.opencode/skills/system-code-graph/mcp_server/tests/doc-symbol-extractor.vitest.ts` | Added | Covers heading, config-key and idempotence behavior |
+| `.opencode/skills/system-code-graph/mcp_server/tests/code-graph-indexer.vitest.ts` | Modified | Covers persistence-facing doc node counts |
+| `.opencode/skills/system-code-graph/mcp_server/tests/launcher-lease.vitest.ts` | Modified | Covers lease-transition classes |
 
 ### Follow-Ups
 
-- No commit hash. User requested no git commit, so evidence is the local dirty diff plus verification commands.
-- Markdown stays opt-in. The heading extractor is inert for .md until */.md is added by a caller; json/yaml/toml exercise the lane immediately.
-- Q7 has nowhere to emit by default. There is no metrics sink on the launcher today, so emitLeaseMetric() no-ops by default and no dashboard is wired. The classifier is the durable deliverable; actual telemetry is gated on a later sink decision.
-- No benefit number is measured. The phase proves capability and regression safety, not retrieval lift.
+- No commit was created by request, so evidence is the local diff plus verification commands.
+- Markdown stays opt-in until a caller adds markdown globs.
+- Lease metrics still need a real sink before dashboards or alerts can consume them.
+- No benefit number is measured. This phase proves capability and regression safety, not retrieval lift.

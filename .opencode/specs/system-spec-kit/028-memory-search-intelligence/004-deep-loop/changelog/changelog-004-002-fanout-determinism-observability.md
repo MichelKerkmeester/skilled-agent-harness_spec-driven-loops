@@ -19,34 +19,26 @@ contextType: "implementation"
 
 ### Summary
 
-The deep-loop fan-out determinism + observability trio shipped in the flat Wave-0 packet (030, commit 46812f12a8) and is the foundation already in place: the merge sorts its de-duplicated survivors with a hand-written content-then-id total comparator (compareByContentThenId, layered on the first-write-wins id||title dedup); the concurrent pool emits read-derived lag/pending/failed gauges (buildPoolGauges, no new state); and a SIGINT/SIGTERM during a long run flushes a stopped partial summary while an empty no-new-findings tick is valid convergence. This worktree now implements the Wave-1 tail: research and review order-invariance tests assert byte-identical merged registries across lineage-order permutations, fanout-merge.cjs sorts lineage labels and merged metadata arrays to close the full-registry arrival-order seam, and a default-off near-duplicate dedup option collapses normalized body-content restatements across research, review open, and review resolved findings.
+Deep-loop fan-out now has deterministic merge coverage, read-derived pool gauges and graceful stopped-run summaries. This phase adds the local tail work: order-invariance tests for research and review merges, deterministic ordering of lineage labels and metadata arrays and a default-off near-duplicate dedup option that collapses normalized body restatements when a caller opts in.
 
 ### Added
 
-- DL-pool-gauges — read-derived lag/pending/failed from buildPoolGauges({ total, settled, pending, failed }) with no new state; emitted live per settle and in the final summary (fanout-pool.cjs:58-63, :184-188, :240-248) [Done, commit 46812f12a8; the one un-caveated trio member ("gauges are clean", synthesis/01 gauges row); 030 §14 cand 12].
-- DL-graceful-self-stop — flush a stopped partial summary on SIGINT/SIGTERM + treat an empty no-new-findings tick as valid convergence (fanout-run.cjs:490 empty-tick=convergence, :508-524 stopped flush idempotent at :511, :66-76 signal handlers) [Done, commit 46812f12a8; the shutdown-summary half (distinct from the NEEDS-BENCHMARK progress-heartbeat half); GO — confirmed clean (synthesis/01:95); 030 §14 cand 12].
-- DL-arrival-order-property-test — added research and review property tests that run merges under multiple lineage-order permutations and assert byte-identical merged registries; sorted label dirs and merged metadata arrays close the arrival-order seam in full-registry output [Done locally; evidence: fanout-merge.vitest.ts, npx vitest run ../../deep-loop-runtime/tests/unit --reporter=dot → 34 files / 343 tests passed].
-- DL-near-dup-merge-dedup (research merge) — added default-off normalized-body-content collapse in the research merge, available via enableNearDuplicateDedup, --enable-near-duplicate-dedup, or SPECKIT_FANOUT_NEAR_DUP_DEDUP; distinct same-id different-content records remain conflict variants [Done locally, default-off; evidence: research restatement-collapse + distinct-content tests].
-- Re-confirm the shipped trio against 030 section 14 candidate 12 (46812f12a8) and current source: compareByContentThenId at the three merge sorts, buildPoolGauges lag/pending/failed, empty-tick=convergence + stopped flush.
-- Confirm the out-of-scope residuals (D2/D3/Q2 reliability learning, newInfoRatio non-consumption, progress-heartbeat, the REFUTED preserve/recover galadriel candidates) are recorded as NO-GO/needs-benchmark/elsewhere, not silently dropped (spec.md section 3 Out of Scope).
+- Research and review merge property tests that assert byte-identical registries across lineage-order permutations.
+- Deterministic sorting for lineage labels and merged metadata arrays in `fanout-merge.cjs`.
+- Default-off near-duplicate collapse for normalized body restatements, available through option, CLI flag or environment variable.
+- Read-derived pool gauges and stopped partial summaries remain part of the shipped foundation.
 
 ### Changed
 
-- DL-near-dup-merge-dedup (review merge) — applied the same default-off collapse to review open and resolved findings, preserving strongest-severity survivor selection and distinct-content conflict variants [Done locally, default-off; evidence: review open, review distinct-content, and review resolved variant tests].
-- Re-run the order-invariance property test after the near-dup dedup landed — the broad deep-loop-runtime unit suite reran after T005/T006 and passed [Done; evidence: 34 files / 343 tests passed].
-- Record that this cluster is independent of the absent D2 reliability signal (every input r=0.5; keyed only on content text + read-derived pool counters) in spec.md + plan.md.
-- Confirm the resilience cluster (failure-class taxonomy, transient/fatal retry, orphan reset, recover-vs-fresh gate) is recorded as belonging to the sibling 003-fanout-failure-recovery, not silently merged into this cluster (spec.md section 3 Out of Scope).
-- All 6 candidate rows have a final status in spec.md section 11 (3 Wave-0 DONE-with-commit, 3 local DONE rows — near-dup spans two merge-path rows of one candidate).
-- The shipped trio traces to Wave-0 commit 46812f12a8 in ../../../030-memory-search-intelligence-impl/spec.md section 14 candidate 12.
+- Review open and resolved findings use the same default-off near-duplicate collapse as research merges.
+- Distinct same-id records with different content remain conflict variants rather than disappearing.
+- This cluster stays independent of reliability scoring and failure-recovery work, which live in sibling phases.
 
 ### Fixed
 
-- DL-merge-tiebreak — layer compareByContentThenId (content key → normalized id key → full stable stringify) on top of the first-write-wins id||title dedup so merged output is reproducible across runs; consumed at the three merge sorts (fanout-merge.cjs:142-163 comparator, :198/:312/:314 sorts) [Done, commit 46812f12a8; total-order ON TOP of the dedup because finding.id is not always present (corrected from the pass-1 "SOLID total-order" billing, roadmap.md:221); node --check + 58 fanout tests + mutation-checked; 030 §14 cand 12].
-- Run validate.sh --strict on this sub-phase and fix structure issues.
-- CHK-FIX-001 Each candidate has a class and status. Evidence: spec.md section 11.
-- CHK-FIX-002 Same-class inventory recorded. Evidence: spec.md section 3 lists research and review merge paths separately for one dedup candidate.
-- CHK-FIX-003 Consumer inventory recorded. Evidence: plan.md Data Flow names merge registry, severity rollup and sourceDiversity.
-- CHK-FIX-004 Dedup adversarial table tests written before tail completion. Evidence: same-content collapse and same-id different-content survival tests landed before closeout.
+- Full-registry output no longer depends on lineage arrival order.
+- Near-duplicate collapse preserves strongest severity and keeps distinct-content variants.
+- Phase docs separate determinism work from reliability and recovery concerns.
 
 ### Verification
 
@@ -63,14 +55,14 @@ The deep-loop fan-out determinism + observability trio shipped in the flat Wave-
 
 | File | Action | What changed |
 |---|---|---|
-| `.opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs` | Modified | Wave-0 comparator remains; Wave-1 adds deterministic label/metadata ordering and default-off normalized-body-content dedup |
-| `.opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs` | Modified (Wave-0 46812f12a8) | buildPoolGauges read-derived lag/pending/failed; live per settle + final summary |
+| `.opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs` | Modified | Existing comparator remains, with deterministic label and metadata ordering plus default-off normalized-body-content dedup |
+| `.opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs` | Modified earlier | `buildPoolGauges` read-derived lag, pending and failed values, live per settle plus final summary |
 | `.opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs` | Modified (Wave-0 46812f12a8) | empty-tick=convergence + stopped partial-summary flush on SIGINT/SIGTERM |
-| `.opencode/skills/deep-loop-runtime/tests/unit/fanout-merge.vitest.ts` | Modified | Added 7 tests for order-invariance, default-off near-dup collapse, distinct-content survival, and resolved review variants |
+| `.opencode/skills/deep-loop-runtime/tests/unit/fanout-merge.vitest.ts` | Modified | Added tests for order-invariance, default-off near-dup collapse, distinct-content survival and resolved review variants |
 | `.opencode/specs/.../002-fanout-determinism-observability/{spec,plan,tasks,implementation-summary,checklist}.md` | Modified | Level-2 packet docs reconciled to 3 Wave-0 DONE rows plus 3 local Wave-1 DONE rows |
 
 ### Follow-Ups
 
-- No measured benefit number — every leverage/effort rating is structural inference; there is no before/after delta for the near-dup dedup's effect on sourceDiversity (roadmap.md §6; synthesis/03 §B).
-- The near-dup dedup changes merge membership when enabled — it remains default-off until a caller deliberately opts in with the option, CLI flag, or environment variable.
-- No live benchmark or reindex was run — per instruction, verification stayed at code, typecheck, and unit-test level.
+- No measured benefit number exists for source-diversity effects.
+- Near-duplicate dedup changes merge membership when enabled, so it remains opt-in.
+- No live benchmark or reindex was run. Verification stayed at code, typecheck and unit-test level.

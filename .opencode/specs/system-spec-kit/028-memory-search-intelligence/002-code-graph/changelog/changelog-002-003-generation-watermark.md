@@ -1,6 +1,6 @@
 ---
-title: "Changelog: Code Graph — Generation Watermark (Q6-C2 → Q6-C1) [002-code-graph/003-generation-watermark]"
-description: "Chronological changelog for the Code Graph — Generation Watermark (Q6-C2 → Q6-C1) phase."
+title: "Changelog: Code Graph - Generation Watermark (Q6-C2 → Q6-C1) [002-code-graph/003-generation-watermark]"
+description: "Chronological changelog for the Code Graph - Generation Watermark (Q6-C2 → Q6-C1) phase."
 trigger_phrases:
   - "phase changelog"
   - "nested changelog"
@@ -19,34 +19,25 @@ contextType: "implementation"
 
 ### Summary
 
-Q6-C2 is built. The code-graph subsystem now stores a monotonic generation counter in the existing code_graph_metadata KV table, advances it from the scan promotion finalize path, and surfaces it as an additive field on metadata.freshness from code_graph_context.
+The code-graph subsystem now stores a monotonic generation counter in the existing `code_graph_metadata` key-value table. Promoted full scans and selective reindexes bump the counter from the scan finalize path and `code_graph_context` exposes the value as an additive `metadata.freshness.generation` field. The hard stale-read error gate remains deferred until a named consumer needs it.
 
 ### Added
 
-- Re-confirm the live seams at implementation time: scanPromotable block in handlers/scan.ts, freshness envelope type in code-graph-context.ts, computeFreshness() (rg/direct read evidence)
-- Add getCodeGraphGeneration(): number — read graph_generation via getMetadata, parseInt(value, 10) || 0 (malformed/unset → 0) (code-graph-db.ts; covered by code-graph-db.vitest.ts)
-- Add bumpCodeGraphGeneration(): number — read current, setMetadata('graph_generation', String(n+1)), return n+1; export beside existing metadata helpers (code-graph-db.ts; covered by code-graph-db.vitest.ts)
-- Add generation: number to the freshness envelope type (code-graph-context.ts; covered by typecheck)
-- remains [B] by design (Q6-C1 DEFER-speculative) — recorded, not implemented
-- CHK-012 Error handling implemented (parseInt || 0 for malformed/unset generation; covered by code-graph-db.vitest.ts)
+- `getCodeGraphGeneration()` and `bumpCodeGraphGeneration()` over the existing metadata table.
+- `generation` on the freshness envelope returned by `code_graph_context`.
+- Fallback handling that treats unset or malformed metadata as generation `0`.
 
 ### Changed
 
-- Confirm the REFUTED bump site: ensure-ready.ts:497 is setLastGitHead(currentHead) inside the headChanged && headScope==='out-of-scope' return-fresh branch — does NOT fire on full_scan/selective_reindex (verified during planning; research iter-23/24, roadmap BROADENING L220)
-- Confirm storage substrate: code_graph_metadata KV table present (code-graph-db.ts:193/:456), stores strings only; Number.parseInt-with-fallback precedent at :241; helper export block ~:556-627 (verified during planning)
-- Confirm PENDING baseline: zero bumpCodeGraphGeneration/getCodeGraphGeneration/graph_generation tokens in system-code-graph/mcp_server (grep returned empty during planning)
-- Call graphDb.bumpCodeGraphGeneration() once inside the if (scanPromotable) finalize block (handlers/scan.ts) — NOT at ensure-ready.ts:497 (covered by code-graph-scan.vitest.ts)
-- Stamp generation: getCodeGraphGeneration() (default 0) in computeFreshness() so it flows to both main and empty-fallback envelopes (code-graph-context.ts; covered by code-graph-context-handler.vitest.ts)
-- Unit: getCodeGraphGeneration() returns 0 when unset and on a malformed KV value; bumpCodeGraphGeneration() increments 0→1→2 (code-graph-db.vitest.ts)
+- The bump happens in `handlers/scan.ts` after an actual promotable scan, not in readiness handling.
+- `computeFreshness()` stamps the current generation on both normal and empty fallback envelopes.
+- Generation state uses the existing string-valued metadata substrate.
 
 ### Fixed
 
-- Confirm the correct bump site: handlers/scan.ts if (scanPromotable) finalize block (~:666-679), beside setLastGitHead (:672) and setCodeGraphScope (:679) — fires after both full and selective promotion (verified during planning)
-- CHK-002 Technical approach defined in plan.md (staged Q6-C2 → Q6-C1, correct bump site)
-- CHK-FIX-001 Finding class recorded: cross-consumer (corrects the refuted bump-site claim; the freshness envelope is a public field)
-- CHK-FIX-002 Same-class producer inventory confirmed: the finalize block in handlers/scan.ts is the bump site
-- CHK-FIX-003 Consumer inventory for the changed freshness envelope reviewed; no consumer branches on generation
-- CHK-FIX-004 N/A — no security/path/parser/redaction surface; additive internal int only
+- Full and selective scan promotions now advance a shared read-visible counter.
+- Failed promotions and no-op scans leave the generation unchanged.
+- The stale bump-site assumption is corrected in the phase docs.
 
 ### Verification
 
@@ -73,7 +64,6 @@ Q6-C2 is built. The code-graph subsystem now stores a monotonic generation count
 
 ### Follow-Ups
 
-- [B] (Q6-C1, DEFER-speculative — do NOT implement) as-of-generation hard error gate replacing the binary freshness !== 'fresh' block at handlers/query.ts:903-915; blocked on Q1-C1 cluster + named consumer. Design captured in spec §3/§6; no code this phase.
-- Q6-C1 deferred. The hard as-of-generation error gate remains DEFER-speculative; it ships only on a named-consumer decision plus the Q1-C1 bi-temporal cluster (SCHEMA_VERSION 5→6).
-- Generated dist/ not refreshed. Verification used TypeScript source checks and Vitest; no build artifact update was requested.
-- No commit SHA. The user explicitly requested no git commit, so evidence is pinned to file changes and command results rather than a commit hash.
+- The hard as-of-generation error gate remains deferred until a named consumer appears.
+- Generated `dist/` output was not refreshed. Verification used TypeScript source checks and Vitest.
+- No commit was created by request, so evidence is pinned to local file changes and command results.

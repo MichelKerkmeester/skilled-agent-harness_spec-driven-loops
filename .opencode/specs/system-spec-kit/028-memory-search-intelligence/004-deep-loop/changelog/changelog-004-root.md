@@ -18,34 +18,34 @@ contextType: "implementation"
 
 ### Summary
 
-> Phase-parent note: This spec.md is the only authored document at this parent level. Detailed planning lives in the child phase folders listed below. <!-- /ANCHOR:problem -->
+The Deep Loop phase parent rolls up six child phases across reducer template safety, fan-out determinism, failure recovery, planned reliability scoring, STOP corroboration and continuity threading. The parent stays a rollup. Implementation details and verification live in the child phase folders listed below.
 
 ### Included Phases
 
 | Phase | Status | Summary |
 |---|---|---|
-| `001-reducer-anchor-fix` | Complete | A freshly-copied deep-research strategy file now folds its cross-iteration state cleanly instead of crashing on the first reduce. The shipped template deep_research_strategy.md previously carried thirteen section headings but none of the ANCHOR:* markers the reducer keys on, so the very first reduce after iteration 1 threw Missing anchor section key-questions in strategy file and the loop could not advance. The fix wraps the seven reducer-owned headings in their anchor pairs, restoring deterministic reducer behavior for every new deep-research run. |
-| `002-fanout-determinism-observability` | Complete locally (not committed per instruction) | The deep-loop fan-out determinism + observability trio shipped in the flat Wave-0 packet (030, commit 46812f12a8) and is the foundation already in place: the merge sorts its de-duplicated survivors with a hand-written content-then-id total comparator (compareByContentThenId, layered on the first-write-wins id||title dedup); the concurrent pool emits read-derived lag/pending/failed gauges (buildPoolGauges, no new state); and a SIGINT/SIGTERM during a long run flushes a stopped partial summary while an empty no-new-findings tick is valid convergence. This worktree now implements the Wave-1 tail: research and review order-invariance tests assert byte-identical merged registries across lineage-order permutations, fanout-merge.cjs sorts lineage labels and merged metadata arrays to close the full-registry arrival-order seam, and a default-off near-duplicate dedup option collapses normalized body-content restatements across research, review open, and review resolved findings. |
-| `003-fanout-failure-recovery` | Implemented | Implemented the Level 2 deep-loop resilience GO cluster. The change keeps the runtime fire-and-exit shape and adds only bounded, deterministic recovery behavior: |
-| `004-reliability-weighted-convergence` | Planned | No production reliability code was built in this sub-phase. The deliverable is the Level 3 plan for the reliability-weighted convergence cluster: D-orderhelper, D1 f64 Beta, D2 reliability, D3 cap and gate, D4 default-off policy, Q2 quarantine, Q2-adjudicator-seat and Q7 rank field. The incoming research list had a D3 alias, so the packet tracks the executable rows once and keeps the whole cluster PENDING until the benchmark gate is satisfied. |
-| `005-stop-input-corroboration` | Runtime implemented; live benchmark/wiring gates pending | C1 through C6 were implemented in .opencode/skills/deep-loop-runtime with deterministic tests. C7 remains already-shipped via packet 030 commit 46812f12a8 and was not re-implemented. |
-| `006-continuity-threading` | Implemented | Implemented both continuity candidates. C1 now computes a self-owned carried-forward open-questions block from iteration markdown / records, de-duplicated against the reducer's machine-owned strategy question fold. C2 now derives Next Focus from the carried-forward thread or latest finding before falling back to the first strategy question or terminal sentinel. Blocked-stop precedence remains ahead of derived focus, and no new convergence primitive was added. |
+| `001-reducer-anchor-fix` | Complete | The deep-research strategy template now ships the seven reducer-owned anchor pairs needed for fresh-copy reductions. |
+| `002-fanout-determinism-observability` | Complete locally, not committed by request | Fan-out merge output is order-invariant, read-derived gauges remain in place and near-duplicate dedup is available behind an opt-in switch. |
+| `003-fanout-failure-recovery` | Implemented | Fan-out failure recovery now has bounded failure classes, transient-only retries, orphan markers and explicit existing-state validation. |
+| `004-reliability-weighted-convergence` | Planned | Reliability-weighted convergence remains a Level 3 plan pending benchmark evidence and shared scoring primitives. |
+| `005-stop-input-corroboration` | Runtime implemented, live benchmark and wiring gates pending | Runtime convergence now corroborates reported novelty against graph novelty, warns on configured lag ceilings, keeps divergent findings and supports default-off progress events. |
+| `006-continuity-threading` | Implemented | The reducer now carries forward open questions and derives Next Focus from the carried-forward thread or latest finding without adding a new convergence primitive. |
 
 ### Added
 
-- No new additions recorded.
+- No root-level production additions. Child additions are recorded in the phase changelogs.
 
 ### Changed
 
-- > Phase-parent note: This spec.md is the only authored document at this parent level. Detailed planning lives in the child phase folders listed below. <!-- /ANCHOR:problem -->
+- The root changelog now summarizes child phase outcomes instead of repeating generated task-ledger prose.
 
 ### Fixed
 
-- No fixes recorded.
+- Removed stale and truncated child summaries from the rollup.
 
 ### Verification
 
-- No explicit verification recorded.
+- Root rollup is documentation-only. Phase verification remains in the child changelogs.
 
 ### Files Changed
 
@@ -53,4 +53,4 @@ _No file-level detail recorded._
 
 ### Follow-Ups
 
-- None recorded.
+- Continue the benchmark, live-wiring and reliability-scoring work in the child phases that own those seams.

@@ -19,38 +19,32 @@ contextType: "implementation"
 
 ### Summary
 
-The Q4-C1 RRF-additive rank-time trust blend shipped in the flat Wave-0 packet (030) and is the prerequisite already in place: the code-graph impact/dependency ranker blends the already-plumbed confidence/evidenceClass edge metadata into ranking as an additive term. This pass implemented det-context-order-global: rankContextEdges now derives a stable content key from the related node content hash, related symbol id, file/fqName, edge type and endpoints, assigns baseline rank from that deterministic order, then uses the same key for equal-score ties. The fuseResultsMulti dual-channel adapter (Q8 / fuseResultsMulti-codegraph-promote) and Q4-C1 boost-magnitude benchmark tuning remain pending with explicit gates.
+The code-graph context ranker now orders equal-trust edges from stable content-derived keys instead of database iteration order. The existing rank-time trust blend stays additive and `rankContextEdges` now derives baseline order from related node content, symbol identity, file path, edge type and endpoints before applying equal-score ties. The shared dual-channel fuser adapter and boost-magnitude tuning remain gated follow-ups.
 
 ### Added
 
-- Q4-C1 RRF-additive rank-time trust — blend confidence/evidenceClass into ranking as rankScore = 1/(60+index+1) + clamp(confidence)*evidenceClassFactor (additive, NOT score × reliability; structural weight unmutated); neutral edge byte-identical to the rowid baseline (code-graph-context.ts:355-378) [Done, commit e21caf5de6; 56 ranking/impact/gold-battery tests pass; the 8 full-package failures are unrelated IPC sandbox EPERM; 030 §14 cand 13].
-- det-context-order-global — replace DB-iteration-derived ordering with content-derived baseline rank assignment and equal-score ties in rankContextEdges; key order is related content hash, related symbol id, file/fqName, edge type and endpoints; covers the finalize() seam so impact + dependency/callees + outline-export are reproducible across scan rebuilds [Done — implemented in code-graph-context.ts; deterministic unit test verifies equal-trust impact callers return identical order across shifted DB row orders].
-- Author plan.md, tasks.md, implementation-summary.md from the system-spec-kit Level-2 templates.
-- CHK-010 Shipped Q4-C1 blend is RRF-additive, never multiplicative
-- CHK-021 det-order cross-rebuild reproducibility test implemented (REQ-002)
-- CHK-031 No new external data sink or trust boundary introduced
+- Content-derived baseline rank assignment for `rankContextEdges`, covering impact, dependency, callees and outline export results.
+- Equal-score tie keys based on related content hash, symbol id, file path, edge type and endpoints.
+- Level 2 phase documentation that records the shipped predecessor, local deterministic-order change and gated follow-ups.
 
 ### Changed
 
-- Re-confirm the shipped Q4-C1 commit against 030 section 14 candidate 13 (e21caf5de6).
-- Record the cross-subsystem consume-the-shared-signature contract (001 total-comparator + fuseResultsMulti, zero Memory coupling) in spec.md + plan.md.
-- Confirm the out-of-scope cluster (Q1-C1 bi-temporal, Q3-C1 PPR, Q6-* watermark, CG-edge-staleness) is recorded as belonging to other code-graph sub-phases, not silently dropped (spec.md section 3 Out of Scope).
-- All 4 candidates have a final status in spec.md section 11 (2 DONE, 2 PENDING-with-gate).
-- The shipped Q4-C1 predecessor traces to Wave-0 commit e21caf5de6 in ../../../030-memory-search-intelligence-impl/spec.md section 14 candidate 13.
-- Each gated residue task names its block reason (isolation-compatible shared-fuser consume path / needs-benchmark) and its consuming dependency; none is disguised as incomplete in-flight work.
+- `code-graph-context.ts` no longer lets database row order decide baseline rank for equal-trust context edges.
+- The phase keeps the trust blend additive and leaves structural edge weights unchanged.
+- The shared fuser work is recorded as an adapter problem rather than a code-graph-specific fork.
 
 ### Fixed
 
-- Run validate.sh --strict on this sub-phase and fix structure issues.
+- Equal-score impact and dependency walks no longer inherit row-order drift after scan rebuilds.
+- The phase docs distinguish shipped deterministic ordering from gated tuning and fuser work.
 
 ### Verification
 
-- Q4-C1 order-stability (shipped) - Pass
-- det-order cross-rebuild reproducibility - Pass
-- Fuser-adapter dual-channel fuse - Not built
-- Q4-C1 magnitude tuning - Not built
-- Strict packet validation - Pass
-- Tasks complete - 11 completed task item(s) recorded
+- Rank-order stability - PASS
+- Cross-rebuild reproducibility test - PASS
+- Shared fuser adapter - NOT BUILT
+- Boost-magnitude tuning benchmark - NOT BUILT
+- Strict phase validation - PASS
 
 ### Files Changed
 
@@ -62,8 +56,6 @@ The Q4-C1 RRF-additive rank-time trust blend shipped in the flat Wave-0 packet (
 
 ### Follow-Ups
 
-- [B] Q8-fuser-adapter / fuseResultsMulti-codegraph-promote — adapter over the shared fuseResultsMulti (shared/algorithms/rrf-fusion.ts) for the dual CALLS+IMPORTS impact channels: synthesize RrfItem.id, pre-sort each channel, label the dual GRAPH channels, apply the cross-channel bonus (code-graph-context.ts:627-671) [Pending — gate: isolation-compatible shared-fuser consume path; current code-graph isolation checks block production source imports from system-spec-kit and @spec-kit/*; do not fork a code-graph-specific fuser].
-- [B] Q4-C1-benchmark-tuning — re-tune CONTEXT_EDGE_EVIDENCE_RANK_FACTORS (EXTRACTED/STRUCTURED 0.01, INFERRED 0.004, AMBIGUOUS 0.002) against a code-graph retrieval benchmark (code-graph-context.ts:101-108) [Pending — gate: needs-benchmark; magnitudes are an unbenchmarked default; no before/after number exists campaign-wide (030 §14 cand 13 NOTE; synthesis/03 §B)].
-- The fuser adapter is built against an isolation-compatible shared-fuser consume path, and Q4-C1 magnitudes are re-tuned against a retrieval benchmark (downstream verification, tracked).
-- No measured benefit number — every leverage/effort rating is structural inference; the Q4-C1 boost magnitudes (0.01 / 0.004 / 0.002) are an unbenchmarked default, which is exactly why the tuning is a gated follow-up (synthesis/03 §B).
-- The fuser promotion is adapter-gated — fuseResultsMulti is promotable-with-adapter, not drop-in; the adapter (synthesize id, pre-sort, label channels) remains blocked until code-graph has an isolation-compatible shared-fuser consume path.
+- Build the shared fuser adapter once code-graph has an isolation-compatible consume path.
+- Tune the evidence-class boost magnitudes against a retrieval benchmark before claiming quality lift.
+- No measured benefit number exists yet. The current ranking factors are an unbenchmarked default.
