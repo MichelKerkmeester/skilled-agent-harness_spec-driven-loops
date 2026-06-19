@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/006-review-remediation/002-memory-schema-and-concurrency",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/006-review-remediation/002-memory-schema-and-concurrency",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/006-review-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [],
+    "importance_tier": "important",
+    "status": "pending",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [],
+    "causal_summary": "Memory Schema and Concurrency Remediation is PENDING and scopes the P1-2 derived-id split, P1-4 in-lock embedding, and P1-5 retention spare-only stale-snapshot fixes.",
+    "created_at": "2026-06-19T00:00:00Z",
+    "last_save_at": "2026-06-19T00:00:00Z",
+    "save_lineage": "scaffold",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": "2026-06-19T00:00:00Z"
+  }
+}

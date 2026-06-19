@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/006-review-remediation/004-p2-triage",
+  "description": "Feature Specification: P2 Triage",
+  "keywords": [
+    "feature",
+    "specification",
+    "p2",
+    "triage",
+    "findings",
+    "lens"
+  ],
+  "lastUpdated": "2026-06-19T00:00:00Z",
+  "specId": "004",
+  "folderSlug": "p2-triage",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "006-review-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
