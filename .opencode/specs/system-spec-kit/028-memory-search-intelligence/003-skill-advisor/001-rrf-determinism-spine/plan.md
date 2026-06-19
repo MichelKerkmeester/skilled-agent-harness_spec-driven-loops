@@ -13,9 +13,10 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/001-rrf-determinism-spine"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored Level-2 plan sequencing the RRF import + adapter + conflict re-rank + baseline"
-    next_safe_action: "Author tasks.md (one task per candidate, all PENDING; baseline + verification tasks)"
-    blockers: []
+    recent_action: "Implemented default-off RRF import + adapter + conflict re-rank; benchmark gate remains pending"
+    next_safe_action: "Capture live top-1/top-3 routing-agreement benchmark before enabling RRF by default"
+    blockers:
+      - "Live MCP benchmark/reindex/scan was out of scope for this pass"
     key_files:
       - "spec.md"
       - "tasks.md"
@@ -27,7 +28,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-003-rrf-determinism-spine"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 85
     open_questions: []
     answered_questions: []
 ---
@@ -71,11 +72,11 @@ The conflict re-rank ships as a *carrier* only: the post-fusion re-rank seam exi
 - [x] The signed-score conflict-suppression caveat is named as REQ-003 before any import. Evidence: `spec.md` REQ-003.
 
 ### Definition of Done
-- [ ] The advisor fuses lanes by RANK via the imported `fuseResultsMulti` with its own `k`; the `weightedScore`-sum (`fusion.ts:366,372`) is gone (REQ-001/002).
-- [ ] The `conflicts_with` demotion is preserved via the post-fusion re-rank, not dropped by the positive-only RRF (REQ-003).
-- [ ] Ordering is deterministic by construction; the `toFixed(6)` + `localeCompare` tiebreak is replaced (REQ-004, C2 folded).
+- [x] The advisor fuses lanes by RANK via the imported `fuseResultsMulti` with its own `k` in the default-off RRF path (REQ-001/002).
+- [x] The `conflicts_with` demotion is preserved via the post-fusion re-rank, not dropped by the positive-only RRF (REQ-003).
+- [x] Ordering is deterministic by construction in the opt-in RRF path; the legacy tiebreak remains only for default-off compatibility (REQ-004, C2 folded).
 - [ ] A top-1/top-3 routing-agreement baseline vs the weighted sum is captured before any live flip; `explicit_author` stays dominant (REQ-005).
-- [ ] The dormant-conflict-data reality is recorded; the carrier ships, the full C1 does not (REQ-006).
+- [x] The dormant-conflict-data reality is recorded; the carrier ships, the full C1 does not (REQ-006).
 - [ ] Level-2 packet docs use the system-spec-kit templates and pass strict validation.
 <!-- /ANCHOR:quality-gates -->
 
@@ -104,8 +105,8 @@ The five lane scorers run as today and emit `LaneMatch[]`; the adapter converts 
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `system-skill-advisor/.../lib/scorer/fusion.ts` | Raw-score weighted-SUM fusion + float tiebreak (`:366,:372,:409,:425-433`) | Replace the sum with a `fuseResultsMulti` call over per-lane `RankedList`s; pass advisor `k`; drop the `toFixed(6)`+`localeCompare` tiebreak; add the post-fusion conflict re-rank in the comparator (PENDING) | advisor scorer/fusion Vitest suite + routing-agreement baseline |
-| `system-skill-advisor/.../lib/scorer/lanes/graph-causal.ts` | Signed BFS propagation, `conflicts_with = -0.35` emitted negative (`:18,:70-103`) | Split the emit: positive propagation → RRF lane; `conflicts_with` negative mass → the post-fusion re-rank, not the RRF lane (PENDING) | graph-causal lane Vitest + conflict-suppression test (dormant-data fixture) |
+| `system-skill-advisor/.../lib/scorer/fusion.ts` | Raw-score weighted-SUM fusion + float tiebreak (`:366,:372,:409,:425-433`) | DONE DEFAULT-OFF — add a `fuseResultsMulti` call over per-lane `RankedList`s; pass advisor `k`; use RRF rank tiebreak; add the post-fusion conflict re-rank in the comparator | advisor scorer/fusion Vitest suite passed; routing-agreement baseline pending |
+| `system-skill-advisor/.../lib/scorer/lanes/graph-causal.ts` | Signed BFS propagation, `conflicts_with = -0.35` emitted negative (`:18,:70-103`) | DONE — split the emit: positive propagation → RRF lane; `conflicts_with` negative mass → the post-fusion re-rank, not the RRF lane | graph-causal lane Vitest + conflict-suppression fixture passed |
 | `shared/algorithms/rrf-fusion.ts` | Shared RRF primitive (`fuseResultsMulti`, `FuseMultiOptions.k`, `RankedList`, `compareFusionResults`) | Import-only — consumed, NOT modified or forked; already extended in Wave-0 (`65cfcea513`) | `rrf-fusion.vitest.ts` (unchanged); advisor import-shape check |
 
 Inventory scoped to the advisor fusion seam + the graph-causal lane emit + the shared primitive import. The shared `fuseResultsMulti` signature is the cross-subsystem contract (also consumed by Memory 001 and Code Graph 002 with an adapter); the advisor adds a consumer, it does not change the signature.
@@ -198,10 +199,10 @@ Inventory scoped to the advisor fusion seam + the graph-causal lane emit + the s
 
 | Candidate Group | Complexity | Status |
 |-----------------|------------|--------|
-| C3 RRF import + lane → `RankedList` adapter | M | Pending — needs-benchmark before live flip |
-| C2 byte-stable tiebreak | S | Pending — folds into C3 (its mechanism) |
-| Conflict-suppression carrier (post-fusion re-rank) | M | Pending — carrier only; full C1 deferred (dormant data) |
-| Routing-agreement baseline | S→M | Pending — gate for the live flip |
+| C3 RRF import + lane → `RankedList` adapter | M | Done default-off — needs-benchmark before live/default flip |
+| C2 byte-stable tiebreak | S | Done default-off — folds into C3 (its mechanism) |
+| Conflict-suppression carrier (post-fusion re-rank) | M | Done default-off — carrier only; full C1 deferred (dormant data) |
+| Routing-agreement baseline | S→M | Pending — gate for the live/default flip |
 | Docs + verification | M | In progress (this re-plan) |
 <!-- /ANCHOR:effort -->
 

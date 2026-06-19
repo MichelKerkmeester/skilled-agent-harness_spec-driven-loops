@@ -10,6 +10,21 @@ export interface GraphCausalOptions {
   readonly maxBreadth?: number;
 }
 
+export interface GraphCausalLaneSplit {
+  readonly combinedMatches: LaneMatch[];
+  readonly positiveMatches: LaneMatch[];
+  readonly conflictMatches: LaneMatch[];
+}
+
+interface GraphCausalScoreEntry {
+  readonly combinedScore: number;
+  readonly positiveScore: number;
+  readonly conflictScore: number;
+  readonly evidence: readonly string[];
+  readonly positiveEvidence: readonly string[];
+  readonly conflictEvidence: readonly string[];
+}
+
 const EDGE_MULTIPLIER: Readonly<Record<string, number>> = {
   enhances: 0.55,
   siblings: 0.35,
@@ -18,12 +33,12 @@ const EDGE_MULTIPLIER: Readonly<Record<string, number>> = {
   conflicts_with: -0.35,
 };
 
-export function scoreGraphCausalLane(
+function buildGraphCausalScores(
   seedMatches: readonly LaneMatch[],
   projection: AdvisorProjection,
   options: GraphCausalOptions = {},
   affordances: readonly NormalizedAffordance[] = [],
-): LaneMatch[] {
+): Map<string, GraphCausalScoreEntry> {
   const maxDepth = options.maxDepth ?? 2;
   const maxBreadth = options.maxBreadth ?? 4;
   const adjacency = new Map<string, typeof projection.edges>();
@@ -51,7 +66,14 @@ export function scoreGraphCausalLane(
     seedScores.set(match.skillId, Math.max(seedScores.get(match.skillId) ?? 0, match.score));
   }
 
-  const scores = new Map<string, { score: number; evidence: string[] }>();
+  const scores = new Map<string, {
+    combinedScore: number;
+    positiveScore: number;
+    conflictScore: number;
+    evidence: string[];
+    positiveEvidence: string[];
+    conflictEvidence: string[];
+  }>();
   for (const [seedId, seedScore] of seedScores) {
     const queue: Array<{ id: string; depth: number; strength: number; path: string }> = [{ id: seedId, depth: 0, strength: seedScore, path: seedId }];
     const seen = new Set([seedId]);
@@ -70,9 +92,24 @@ export function scoreGraphCausalLane(
         const propagated = current.strength * edge.weight * Math.abs(multiplier) * (1 / (current.depth + 1));
         if (propagated < 0.05) continue;
         const signed = multiplier < 0 ? -propagated : propagated;
-        const entry = scores.get(edge.targetId) ?? { score: 0, evidence: [] };
-        entry.score += signed;
-        entry.evidence.push(`edge:${current.id}->${edge.targetId}:${edge.edgeType}`);
+        const entry = scores.get(edge.targetId) ?? {
+          combinedScore: 0,
+          positiveScore: 0,
+          conflictScore: 0,
+          evidence: [],
+          positiveEvidence: [],
+          conflictEvidence: [],
+        };
+        const evidence = `edge:${current.id}->${edge.targetId}:${edge.edgeType}`;
+        entry.combinedScore += signed;
+        entry.evidence.push(evidence);
+        if (signed > 0) {
+          entry.positiveScore += signed;
+          entry.positiveEvidence.push(evidence);
+        } else {
+          entry.conflictScore += signed;
+          entry.conflictEvidence.push(evidence);
+        }
         scores.set(edge.targetId, entry);
         if (signed > 0) {
           queue.push({
@@ -86,19 +123,43 @@ export function scoreGraphCausalLane(
     }
   }
 
-  // Preserve negative graph contributions through lane emit.
-  // Previously the filter dropped any entry with `value.score <= 0`, which
-  // silently discarded suppressive evidence accumulated through `conflicts_with`
-  // edges (EDGE_MULTIPLIER = -0.35). The filter now keeps non-zero scores and
-  // the clamp covers the full signed range [-1, 1] so fusion sees both positive
-  // and negative contributions. The traversal queue above still only enqueues
-  // `signed > 0` neighbors, so negative signals stay local to the conflict edge.
+  return scores;
+}
+
+function toLaneMatches(
+  scores: Map<string, GraphCausalScoreEntry>,
+  scoreKey: 'combinedScore' | 'positiveScore' | 'conflictScore',
+  evidenceKey: 'evidence' | 'positiveEvidence' | 'conflictEvidence',
+): LaneMatch[] {
   return [...scores.entries()]
-    .filter(([, value]) => value.score !== 0)
+    .filter(([, value]) => value[scoreKey] !== 0)
     .map(([skillId, value]) => ({
       skillId,
       lane: 'graph_causal' as const,
-      score: Math.max(-1, Math.min(value.score, 1)),
-      evidence: value.evidence.slice(0, 6),
+      score: Math.max(-1, Math.min(value[scoreKey], 1)),
+      evidence: value[evidenceKey].slice(0, 6),
     }));
+}
+
+export function scoreGraphCausalLaneSplit(
+  seedMatches: readonly LaneMatch[],
+  projection: AdvisorProjection,
+  options: GraphCausalOptions = {},
+  affordances: readonly NormalizedAffordance[] = [],
+): GraphCausalLaneSplit {
+  const scores = buildGraphCausalScores(seedMatches, projection, options, affordances);
+  return {
+    combinedMatches: toLaneMatches(scores, 'combinedScore', 'evidence'),
+    positiveMatches: toLaneMatches(scores, 'positiveScore', 'positiveEvidence'),
+    conflictMatches: toLaneMatches(scores, 'conflictScore', 'conflictEvidence'),
+  };
+}
+
+export function scoreGraphCausalLane(
+  seedMatches: readonly LaneMatch[],
+  projection: AdvisorProjection,
+  options: GraphCausalOptions = {},
+  affordances: readonly NormalizedAffordance[] = [],
+): LaneMatch[] {
+  return scoreGraphCausalLaneSplit(seedMatches, projection, options, affordances).combinedMatches;
 }

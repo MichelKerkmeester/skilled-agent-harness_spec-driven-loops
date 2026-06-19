@@ -2,6 +2,8 @@
 // MODULE: Advisor 5-Lane Fusion
 // ───────────────────────────────────────────────────────────────
 
+import { fuseResultsMulti } from '@spec-kit/shared/algorithms/rrf-fusion.js';
+
 import { applyAmbiguity, isAmbiguousTopTwo } from './ambiguity.js';
 import { attributionReason, dominantLane, isDerivedDominant } from './attribution.js';
 import {
@@ -13,7 +15,7 @@ import {
 import { normalize } from '../affordance-normalizer.js';
 import { scoreDerivedLane } from './lanes/derived.js';
 import { scoreExplicitLane } from './lanes/explicit.js';
-import { scoreGraphCausalLane } from './lanes/graph-causal.js';
+import { scoreGraphCausalLaneSplit } from './lanes/graph-causal.js';
 import { scoreLexicalLane } from './lanes/lexical.js';
 import { scoreSemanticShadowLane } from './lanes/semantic-shadow.js';
 import { loadAdvisorProjection } from './projection.js';
@@ -39,9 +41,12 @@ import type {
   SkillProjection,
 } from './types.js';
 import type { NormalizedAffordance } from '../affordance-normalizer.js';
+import type { RankedList, RrfItem } from '@spec-kit/shared/algorithms/rrf-fusion.js';
 
 const DEFAULT_CONFIDENCE_THRESHOLD = resolvedConfidenceThreshold();
 const DEFAULT_UNCERTAINTY_THRESHOLD = resolvedUncertaintyThreshold();
+export const ADVISOR_RRF_FUSION_FLAG = 'SPECKIT_ADVISOR_RRF_FUSION';
+export const ADVISOR_RRF_K = 8;
 const TASK_INTENT = /\b(add|append|build|change|configure|create|edit|fix|generate|implement|modify|move|patch|refactor|rename|replace|run|start|sweep|update|write)\b/;
 const DEEP_RESEARCH_CYCLE = /\b(automated research cycle|looped investigation|continue iteration|resume iteration|overnight run|overnight research run|packet-local iteration|delta record|canonical jsonl|same lineage)\b/;
 const FILE_SAVE_OPERATION = /\bsave\b.{0,48}\b(file|files|document|documents|buffer|tab|workspace)\b|\b(file|files|document|documents|buffer|tab|workspace)\b.{0,48}\bsave\b/;
@@ -55,16 +60,33 @@ const BREADTH_NARROW_ANCHOR = /\.[a-z]{2,4}\b|\b(test|tests|error|bug|failure|fa
 const MULTI_CONCERN_VERB = /\b(optimize|improve|enhance|harden|speed up)\b/;
 const CONCERN_PERF = /\b(speed|latency|execution|throughput|performance|startup|memory|cpu)\b/;
 const CONCERN_QUALITY = /\b(quality|accuracy|recommendation|recommendations|correctness|reliability|coverage)\b/;
+const TRUE_FLAG_VALUES = new Set(['1', 'true', 'yes', 'on', 'enabled']);
+const NO_RRF_RANK = Number.MAX_SAFE_INTEGER;
 
 type MutableLaneScores = {
   -readonly [K in keyof LaneScores]: LaneMatch[];
 };
+
+interface LaneScoreBundle {
+  readonly laneScores: LaneScores;
+  readonly graphConflictMatches: readonly LaneMatch[];
+}
+
+interface AdvisorRrfFusion {
+  readonly scoreBySkill: ReadonlyMap<string, number>;
+  readonly rankBySkill: ReadonlyMap<string, number>;
+}
 
 type AdvisorRuntimeLabel = (typeof ADVISOR_RUNTIME_VALUES)[number];
 type AdvisorFreshnessLabel = (typeof ADVISOR_HOOK_FRESHNESS_VALUES)[number];
 
 function emptyLaneScores(): MutableLaneScores {
   return Object.fromEntries(SCORER_LANES.map((lane) => [lane, []])) as unknown as MutableLaneScores;
+}
+
+export function isAdvisorRrfFusionEnabled(): boolean {
+  const value = process.env[ADVISOR_RRF_FUSION_FLAG]?.trim().toLowerCase();
+  return value ? TRUE_FLAG_VALUES.has(value) : false;
 }
 
 function effectiveScorerWeights(
@@ -139,6 +161,69 @@ function buildLaneMatchIndex(matches: readonly LaneMatch[]): LaneMatchIndex {
     index.set(match.skillId, existing);
   }
   return index;
+}
+
+function buildConflictMatchIndex(matches: readonly LaneMatch[]): LaneMatchIndex {
+  const index: LaneMatchIndex = new Map();
+  for (const match of matches) {
+    const existing = index.get(match.skillId) ?? { rawScore: 0, evidence: [] };
+    existing.rawScore = Math.min(existing.rawScore, match.score);
+    if (existing.evidence.length < 6) {
+      existing.evidence.push(...match.evidence.slice(0, 6 - existing.evidence.length));
+    }
+    index.set(match.skillId, existing);
+  }
+  return index;
+}
+
+function rankedRrfItems(matches: readonly LaneMatch[]): RrfItem[] {
+  return [...matches]
+    .filter((match) => match.score > 0)
+    .sort((left, right) => right.score - left.score || left.skillId.localeCompare(right.skillId))
+    .map((match) => ({ id: match.skillId }));
+}
+
+export function fuseAdvisorLaneRanks(
+  laneScores: LaneScores,
+  weights: Readonly<Record<ScorerLane, number>>,
+  disabled: ReadonlySet<ScorerLane> = new Set(),
+  runtimeDegraded: ReadonlySet<ScorerLane> = new Set(),
+): AdvisorRrfFusion {
+  const lists: RankedList[] = SCORER_LANES.map((lane) => ({
+    source: lane,
+    results: rankedRrfItems(laneScores[lane]),
+    weight: disabled.has(lane) || runtimeDegraded.has(lane) || !isLiveScorerLane(lane)
+      ? 0
+      : weights[lane],
+  }));
+  const fused = fuseResultsMulti(lists, {
+    k: ADVISOR_RRF_K,
+    convergenceBonus: 0,
+    calibratedOverlapBeta: 0,
+    bonusOverChannels: 'configured',
+  });
+  const scoreBySkill = new Map<string, number>();
+  const rankBySkill = new Map<string, number>();
+  fused.forEach((result, index) => {
+    const skillId = String(result.id);
+    scoreBySkill.set(skillId, result.rrfScore);
+    rankBySkill.set(skillId, index);
+  });
+  return { scoreBySkill, rankBySkill };
+}
+
+function graphConflictAdjustment(
+  conflictIndex: LaneMatchIndex,
+  recommendation: AdvisorScoredRecommendation,
+): number {
+  return conflictIndex.get(recommendation.skill)?.rawScore ?? 0;
+}
+
+function rrfRankFor(
+  fusion: AdvisorRrfFusion | null,
+  recommendation: AdvisorScoredRecommendation,
+): number {
+  return fusion?.rankBySkill.get(recommendation.skill) ?? NO_RRF_RANK;
 }
 
 function promptMentionsSkill(promptLower: string, skill: SkillProjection): boolean {
@@ -218,20 +303,24 @@ function buildLaneScores(
   projection: AdvisorProjection,
   disabled: Set<ScorerLane>,
   affordances: readonly NormalizedAffordance[],
-): LaneScores {
+  useRrfFusion: boolean,
+): LaneScoreBundle {
   const scores = emptyLaneScores();
   if (!disabled.has('explicit_author')) scores.explicit_author = scoreExplicitLane(prompt, projection);
   if (!disabled.has('lexical')) scores.lexical = scoreLexicalLane(prompt, projection);
   if (!disabled.has('derived_generated')) scores.derived_generated = scoreDerivedLane(prompt, projection, new Date(), affordances);
   if (!disabled.has('semantic_shadow')) scores.semantic_shadow = scoreSemanticShadowLane(prompt, projection);
+  let graphConflictMatches: readonly LaneMatch[] = [];
   if (!disabled.has('graph_causal')) {
-    scores.graph_causal = scoreGraphCausalLane([
+    const graphSplit = scoreGraphCausalLaneSplit([
       ...scores.explicit_author,
       ...scores.lexical,
       ...scores.derived_generated,
     ], projection, {}, affordances);
+    scores.graph_causal = useRrfFusion ? graphSplit.positiveMatches : graphSplit.combinedMatches;
+    graphConflictMatches = graphSplit.conflictMatches;
   }
-  return scores;
+  return { laneScores: scores, graphConflictMatches };
 }
 
 function hasExplicitWorkflowSignal(contributions: readonly LaneContribution[], skillId: string): boolean {
@@ -367,12 +456,17 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
   const weights = effectiveScorerWeights(options.laneWeightsOverride);
   const disabled = new Set(options.disabledLanes ?? []);
   const affordances = normalize(options.affordances ?? []);
-  const laneScores = buildLaneScores(prompt, projection, disabled, affordances);
+  const useRrfFusion = isAdvisorRrfFusionEnabled();
+  const { laneScores, graphConflictMatches } = buildLaneScores(prompt, projection, disabled, affordances, useRrfFusion);
   const laneHealth = buildLaneRuntimeHealth(laneScores, disabled, options.runtimeLaneHealth);
   const degradedLanes = laneHealth
     .filter((lane) => lane.status === 'runtime_degraded')
     .map((lane) => lane.lane);
   const runtimeDegradedLanes = new Set(degradedLanes);
+  const graphConflictIndex = buildConflictMatchIndex(graphConflictMatches);
+  const rrfFusion = useRrfFusion
+    ? fuseAdvisorLaneRanks(laneScores, weights, disabled, runtimeDegradedLanes)
+    : null;
   const laneScoreIndexes = Object.fromEntries(
     SCORER_LANES.map((lane) => [lane, buildLaneMatchIndex(laneScores[lane])]),
   ) as Record<ScorerLane, LaneMatchIndex>;
@@ -409,7 +503,9 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
         shadowOnly,
       };
     });
-    const score = contributions.reduce((total, contribution) => total + contribution.weightedScore, 0);
+    const weightedScore = contributions.reduce((total, contribution) => total + contribution.weightedScore, 0);
+    const rrfScore = rrfFusion?.scoreBySkill.get(skill.id);
+    const score = useRrfFusion ? rrfScore ?? 0 : weightedScore;
     if (score <= 0 && contributions.every((contribution) => contribution.rawScore <= 0)) continue;
     if (isSpeckitMetricsEnabled()) {
       for (const contribution of contributions) {
@@ -446,7 +542,7 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
       uncertainty: uncertaintyFor(contributions, confidence, 0),
       passes_threshold: false,
       reason: attributionReason(contributions),
-      score: Number(score.toFixed(6)),
+      score: useRrfFusion ? score : Number(score.toFixed(6)),
       laneContributions: contributions,
       dominantLane: dominantLane(contributions),
       redirectTo: skill.redirectTo ?? undefined,
@@ -467,7 +563,15 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
     const rightCommandBonus = right.kind === 'command' && !promptLower.includes('/') ? -0.08 : 0;
     const leftIntent = primaryIntentBonus(promptLower, left);
     const rightIntent = primaryIntentBonus(promptLower, right);
-    return (right.score + rightCommandBonus + rightIntent) - (left.score + leftCommandBonus + leftIntent)
+    const leftConflict = useRrfFusion ? graphConflictAdjustment(graphConflictIndex, left) : 0;
+    const rightConflict = useRrfFusion ? graphConflictAdjustment(graphConflictIndex, right) : 0;
+    const adjustedScoreDiff = (right.score + rightCommandBonus + rightIntent + rightConflict)
+      - (left.score + leftCommandBonus + leftIntent + leftConflict);
+    if (useRrfFusion) {
+      return adjustedScoreDiff
+        || rrfRankFor(rrfFusion, left) - rrfRankFor(rrfFusion, right);
+    }
+    return adjustedScoreDiff
       || right.confidence - left.confidence
       || left.skill.localeCompare(right.skill);
   });

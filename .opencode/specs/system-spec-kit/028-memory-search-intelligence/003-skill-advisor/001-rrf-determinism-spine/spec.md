@@ -14,9 +14,10 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/001-rrf-determinism-spine"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored Level-2 spec for the advisor RRF determinism-spine impl sub-phase"
-    next_safe_action: "Author plan.md sequencing the import + adapter + conflict re-rank against the shared-infra dep"
-    blockers: []
+    recent_action: "Implemented default-off advisor RRF spine"
+    next_safe_action: "Capture live top-1/top-3 routing-agreement benchmark before enabling RRF by default"
+    blockers:
+      - "Live MCP benchmark/reindex/scan was out of scope for this implementation pass"
     key_files:
       - "spec.md"
       - "plan.md"
@@ -30,7 +31,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-003-rrf-determinism-spine"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 85
     open_questions:
       - "What is the advisor's own RRF k (skills << 1000 corpus), and does the lane->RankedList adapter preserve current top-1 ordering on the live skill graph?"
       - "Does the post-fusion conflict re-rank ever fire, given conflicts_with is DORMANT (zero reciprocal declarations in skill-graph.sqlite)?"
@@ -48,7 +49,7 @@ This sub-phase is the single highest-leverage, lowest-risk foundational change t
 
 The one mandatory caveat the port MUST carry is the **graph_causal signed-score conflict-suppression gap**: `fuseResultsMulti` only adds positive rank terms and elides zero/negative-weight lanes, so a naive import would silently drop the `conflicts_with = -0.35` demotion that the weighted sum carries today (`graph-causal.ts:18`; `rrf-fusion.ts:304,310`). The conflict mass is preserved via a **post-fusion re-rank** that mirrors `primaryIntentBonus` (applied at sort time, outside the lane sum) — deterministic, auditable, and lane-weight-independent.
 
-**Key Decisions**: Import the shared primitive, do not re-implement RRF (avoids a second RRF drifting from Memory's); pass the advisor's own smaller `k` via `FuseMultiOptions.k`; keep `explicit_author` dominant; relocate conflict demotion into a post-fusion comparator rather than feeding the negative term to RRF. **Status of this sub-phase: PENDING** — none of C3/C2/the conflict re-rank shipped in the flat Wave-0 packet (030); 030 shipped only the Memory-side `fuseResultsMulti` API extension (`bonusOverChannels`, commit `65cfcea513`) that this import depends on.
+**Key Decisions**: Import the shared primitive, do not re-implement RRF (avoids a second RRF drifting from Memory's); pass the advisor's own smaller `k` via `FuseMultiOptions.k`; keep the current weighted-sum path byte-stable by default; relocate conflict demotion into a post-fusion comparator rather than feeding the negative term to RRF. **Status of this sub-phase: IMPLEMENTED DEFAULT-OFF with benchmark gate PENDING** — C3/C2/the conflict re-rank carrier are implemented behind `SPECKIT_ADVISOR_RRF_FUSION`; 030 remains untouched and still records only the Memory-side `fuseResultsMulti` API extension (`bonusOverChannels`, commit `65cfcea513`) that this import depends on.
 
 **Critical Dependencies**: The advisor import depends on the shared `fuseResultsMulti` being a stable, generic primitive — confirmed shape-compatible for the advisor (`LaneMatch{skillId}` → `RrfItem{id}`, zero schema friction, `001` iter-2 F17) and extended in Wave-0 with the `bonusOverChannels` option (030 §14 cand 5, `65cfcea513`). The conflict re-rank's live impact is gated by data, not code: `conflicts_with` is **DORMANT** in production (`003` iter-10 O10-01).
 
@@ -59,7 +60,7 @@ The one mandatory caveat the port MUST carry is the **graph_causal signed-score 
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned (PENDING — not yet implemented) |
+| **Status** | Implemented default-off (benchmark gate pending before live flip) |
 | **Created** | 2026-06-19 |
 | **Branch** | `system-speckit/027-xce-research-based-refinement` |
 | **Parent Packet** | system-spec-kit/028-memory-search-intelligence/003-skill-advisor |
@@ -96,9 +97,9 @@ Replace the incomparable-scale weighted sum with rank-based deterministic RRF by
 
 | # | Candidate | One-line change | Seam (file:line) | Eff | Status |
 |---|-----------|-----------------|------------------|-----|--------|
-| 1 | **C3** (RRF import) | Import the shared `fuseResultsMulti` and adapt each lane's `LaneMatch[]` to a `RankedList{source, results}`; fuse by RANK; advisor passes its OWN smaller `k` via `FuseMultiOptions.k`; replaces the `weightedScore`-sum at `fusion.ts:366,372` | `fusion.ts:69-82, 366, 372, 425+`; `rrf-fusion.ts:272-399, 317` | M | **PENDING** (needs-benchmark) |
-| 2 | **C2** (byte-stable tiebreak) | Adopt RRF's by-construction deterministic order (`1/(k+rank)` over fixed lane order + stable id/content-hash tiebreak via `compareFusionResults`) replacing `toFixed(6)` + `localeCompare` | `fusion.ts:409, 425-433`; `rrf-fusion.ts:163-176` | S | **PENDING** (folds into C3) |
-| 3 | **C3-RRF-advisor-import** (conflict-suppression carrier) | Carry the graph_causal signed-score caveat into the port: split graph_causal into a positive RRF contribution + a separate **post-fusion conflict re-rank** in the sort comparator (mirroring `primaryIntentBonus`), so the import does not drop the `conflicts_with = -0.35` demotion | `fusion.ts:425-433, 428-430`; `graph-causal.ts:18, 70-103`; `rrf-fusion.ts:304, 310` | M | **PENDING** (carrier only; full C1 build out of scope — dormant data) |
+| 1 | **C3** (RRF import) | Import the shared `fuseResultsMulti` and adapt each lane's `LaneMatch[]` to a `RankedList{source, results}`; fuse by RANK; advisor passes its OWN smaller `k` via `FuseMultiOptions.k`; replaces the `weightedScore`-sum when `SPECKIT_ADVISOR_RRF_FUSION=true` | `fusion.ts`; `rrf-fusion.ts:272-399, 317` | M | **DONE DEFAULT-OFF** (live flip still needs benchmark) |
+| 2 | **C2** (byte-stable tiebreak) | Adopt RRF's by-construction deterministic order (`1/(k+rank)` over fixed lane order + stable id/content-hash tiebreak via `compareFusionResults`) replacing `toFixed(6)` + `localeCompare` in the opt-in RRF path | `fusion.ts`; `rrf-fusion.ts:163-176` | S | **DONE DEFAULT-OFF** (folds into C3) |
+| 3 | **C3-RRF-advisor-import** (conflict-suppression carrier) | Carry the graph_causal signed-score caveat into the port: split graph_causal into a positive RRF contribution + a separate **post-fusion conflict re-rank** in the sort comparator (mirroring `primaryIntentBonus`), so the import does not drop the `conflicts_with = -0.35` demotion | `fusion.ts`; `graph-causal.ts`; `rrf-fusion.ts:304, 310` | M | **DONE DEFAULT-OFF** (carrier only; full C1 build out of scope — dormant data) |
 
 > **C2 folds into C3.** The byte-stable order is C3's *mechanism*, not an independent candidate — RRF's fixed-order rank sum plus the shared `compareFusionResults` tiebreak (`rrfScore` desc → `content_hash` → canonical id, `rrf-fusion.ts:163-176`) IS the determinism win. They ship as one change.
 
@@ -130,17 +131,17 @@ Replace the incomparable-scale weighted sum with rank-based deterministic RRF by
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | The advisor fuses lanes by RANK via the shared `fuseResultsMulti`, not by a raw-score weighted sum | PENDING — each lane's `LaneMatch[]` is adapted to a `RankedList{source, results}` (`LaneMatch{skillId}` → `RrfItem{id}`, 1:1, `001` iter-2 F17); the `weightedScore`-sum at `fusion.ts:366,372` is removed; the advisor imports the primitive from `shared/algorithms/rrf-fusion.ts` and does NOT re-implement or fork it (`003` iter-2 C3) |
-| REQ-002 | The advisor passes its OWN smaller `k` (skills << ~1000-memory corpus) | PENDING — `FuseMultiOptions.k` is supplied with an advisor-specific value (`rrf-fusion.ts:317`, `:179-` k-resolution); the value is documented and justified against the skill count, not left at `DEFAULT_K` (`001` iter-2 F18 [CONFIRMED]) |
-| REQ-003 | The graph_causal signed-score conflict-suppression mass is NOT dropped by the positive-only RRF | PENDING — `conflicts_with` negative mass is preserved via a **post-fusion re-rank** in the sort comparator (mirroring `primaryIntentBonus`, applied outside the lane sum, `fusion.ts:428-430`), NOT fed as a negative term to `fuseResultsMulti` (which elides it, `rrf-fusion.ts:304,310`); positive graph propagation feeds the RRF lane (`003` iter-6 F6-02, C1-rerank) |
+| REQ-001 | The advisor fuses lanes by RANK via the shared `fuseResultsMulti`, not by a raw-score weighted sum | DONE DEFAULT-OFF — `fusion.ts` imports `fuseResultsMulti`, maps `LaneMatch{skillId}` to `RrfItem{id}`, builds fixed-order `RankedList`s, and uses the RRF score path only when `SPECKIT_ADVISOR_RRF_FUSION=true`; the default weighted-sum path remains byte-stable until benchmark acceptance |
+| REQ-002 | The advisor passes its OWN smaller `k` (skills << ~1000-memory corpus) | DONE DEFAULT-OFF — `ADVISOR_RRF_K = 8` is supplied through `FuseMultiOptions.k`, below Memory's corpus-tuned `DEFAULT_K=40` |
+| REQ-003 | The graph_causal signed-score conflict-suppression mass is NOT dropped by the positive-only RRF | DONE DEFAULT-OFF — `graph-causal.ts` exposes positive/conflict split output; positive graph matches feed RRF and conflict mass is indexed separately, then applied as a post-fusion comparator adjustment in `fusion.ts` |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-004 | Ordering is deterministic by construction, replacing the fragile float tiebreak (C2 folds in) | PENDING — the `toFixed(6)` + `localeCompare` tiebreak (`fusion.ts:409,425-433`) is replaced by RRF's `1/(k+rank)` over a fixed lane order plus the shared `compareFusionResults` tiebreak (`rrfScore` desc → `content_hash` → canonical id, `rrf-fusion.ts:163-176`); identical inputs produce byte-identical output across runs |
+| REQ-004 | Ordering is deterministic by construction, replacing the fragile float tiebreak (C2 folds in) | DONE DEFAULT-OFF — the opt-in RRF path uses `fuseResultsMulti` ordering plus an RRF rank map as the final comparator tiebreak; the legacy `toFixed(6)` + `localeCompare` path remains only for default-off compatibility |
 | REQ-005 | A routing-agreement baseline is captured before the advisor is flipped onto RRF live | PENDING — top-1 / top-3 recommendation agreement vs the current weighted sum is measured on the live skill graph (the import changes fused ordering; this is needs-benchmark per `synthesis/03` §B). `explicit_author` stays dominant after the change |
-| REQ-006 | The conflict re-rank's dormant-data reality is recorded; the carrier ships, the full C1 does not | PENDING/documented — the post-fusion re-rank seam ships so the import is conflict-safe, but the populated split-conflict signal (full C1) is out of scope because `conflicts_with` is DORMANT (zero reciprocal declarations, `003` iter-10 O10-01); C1 is NOT prioritized above C4 |
+| REQ-006 | The conflict re-rank's dormant-data reality is recorded; the carrier ships, the full C1 does not | DONE — the carrier seam is implemented and tested; the live effect remains dormant until real `conflicts_with` declarations exist, and the populated split-conflict signal remains out of scope |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -148,11 +149,11 @@ Replace the incomparable-scale weighted sum with rank-based deterministic RRF by
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: The advisor fuses by RANK using the imported `fuseResultsMulti` (no second RRF; no `weightedScore`-sum), with the advisor's own `k` — cross-lane comparability no longer rests on summing a hint-inflated overlap, a `[0.2,1]` cosine, and a signed `[-1,1]` propagation on one axis.
-- **SC-002**: Ordering is deterministic by construction — identical inputs yield byte-identical recommendation order via RRF's fixed-order rank sum + the shared `compareFusionResults` tiebreak, replacing `toFixed(6)` + `localeCompare` (C2 folded into C3).
-- **SC-003**: The graph_causal `conflicts_with` demotion is preserved through the port via a post-fusion re-rank — the positive-only RRF does not silently drop conflict suppression, and the demotion is auditable and lane-weight-independent.
-- **SC-004**: A top-1/top-3 routing-agreement baseline against the current weighted sum is captured before any live flip, and `explicit_author` remains the dominant signal.
-- **SC-005**: The dormant-data reality of the conflict signal and the PENDING/needs-benchmark gates are recorded so nothing is shipped ungated and the full C1 is not mis-prioritized.
+- **SC-001**: DONE DEFAULT-OFF — the advisor can fuse by RANK using the imported `fuseResultsMulti` with the advisor's own `k`; default live behavior remains the weighted-sum path pending benchmark acceptance.
+- **SC-002**: DONE DEFAULT-OFF — the opt-in path uses RRF's fixed-order rank sum + shared deterministic order, with an RRF rank map as the final post-bonus tiebreak.
+- **SC-003**: DONE DEFAULT-OFF — the graph_causal `conflicts_with` demotion is preserved through the port via a post-fusion re-rank; positive-only RRF does not receive negative mass.
+- **SC-004**: PENDING — a top-1/top-3 routing-agreement baseline against the current weighted sum still must be captured before any live/default flip, and `explicit_author` dominance must be confirmed there.
+- **SC-005**: DONE — the dormant-data reality of the conflict signal and the needs-benchmark live-flip gate are recorded so nothing is shipped ungated and the full C1 is not mis-prioritized.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -275,11 +276,11 @@ Replace the incomparable-scale weighted sum with rank-based deterministic RRF by
 
 | # | Candidate | Status | Commit | Gate / Notes |
 |---|-----------|--------|--------|--------------|
-| 1 | C3 (RRF import) | **PENDING** | — | **Gate: needs-benchmark** — import the shared `fuseResultsMulti`, adapt lanes to `RankedList`, pass the advisor's own smaller `k`; replaces the `weightedScore`-sum (`fusion.ts:366,372`). Shape-compatible (`001` iter-2 F17); fusion-MECHANISM replacement not a literal import (`003` iter-6 O6-01). Capture a routing-agreement baseline before any live flip (`synthesis/03` §B) |
-| 2 | C2 (byte-stable tiebreak) | **PENDING** | — | **Folds into C3** — RRF's `1/(k+rank)` over fixed lane order + the shared `compareFusionResults` tiebreak (`rrf-fusion.ts:163-176`) replaces `toFixed(6)` + `localeCompare` (`fusion.ts:409,425-433`); it is C3's mechanism, not a separate change (`003` iter-2 C2; `003` iter-4 ranking note) |
-| 3 | C3-RRF-advisor-import (conflict-suppression carrier) | **PENDING** | — | **Carrier ships; full C1 out of scope** — post-fusion re-rank preserves `conflicts_with = -0.35` so the positive-only RRF does not drop conflict suppression (`001` iter-2 F16; `003` iter-6 F6-02 C1-rerank). LIVE effect is dormant (`conflicts_with` count = 0, `003` iter-10 O10-01); ship the seam so the import is conflict-safe, defer the populated split-conflict signal |
+| 1 | C3 (RRF import) | **DONE DEFAULT-OFF** | Uncommitted | **Gate: needs-benchmark before live/default flip** — imports shared `fuseResultsMulti`, adapts lanes to `RankedList`, passes `ADVISOR_RRF_K = 8`, and leaves the weighted-sum path default-off for byte-stable compatibility until routing-agreement acceptance |
+| 2 | C2 (byte-stable tiebreak) | **DONE DEFAULT-OFF** | Uncommitted | **Folds into C3** — the opt-in RRF path uses fixed lane order + shared deterministic fusion order, then uses the RRF rank map as final post-bonus tiebreak; the legacy tiebreak remains only in the default weighted path |
+| 3 | C3-RRF-advisor-import (conflict-suppression carrier) | **DONE DEFAULT-OFF** | Uncommitted | **Carrier ships; full C1 out of scope** — `graph-causal.ts` exposes positive/conflict split output and `fusion.ts` applies conflict mass as a post-fusion demotion; live effect remains dormant until real `conflicts_with` data exists |
 
-**Sub-phase status: 0 DONE, 3 PENDING.** No advisor RRF candidate shipped in the flat Wave-0 packet (030) — 030 §14 shipped the Memory-side `fuseResultsMulti` API extension (`bonusOverChannels`, `65cfcea513`) that this import *depends on*, but none of C3 / C2 / the conflict carrier. C2 folds into C3 (one change); the conflict carrier ships as a seam (the full C1 is dormant and deferred). C3 is the determinism spine that unblocks C1, C6, and the query-class router (QCR) — all separate sub-phases.
+**Sub-phase status: 3 DONE DEFAULT-OFF, 1 benchmark gate PENDING.** The advisor RRF path, C2 folded deterministic order, and conflict carrier are implemented with deterministic unit coverage and a broad scorer-suite pass. The live/default flip remains pending because the required top-1/top-3 routing-agreement benchmark was out of scope for this pass and must run before enabling RRF by default. Packet 030 remains untouched.
 
 ---
 
