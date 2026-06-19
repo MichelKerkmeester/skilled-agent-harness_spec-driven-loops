@@ -1,0 +1,25 @@
+{
+  "level": "phase",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-release-cleanup",
+  "description": "Phase parent for the packet 028 release-readiness documentation sweep.",
+  "keywords": [
+    "phase",
+    "parent",
+    "packet",
+    "release",
+    "readiness",
+    "documentation",
+    "sweep"
+  ],
+  "lastUpdated": "2026-06-19T00:00:00Z",
+  "specId": "005",
+  "folderSlug": "release-cleanup",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "005-release-cleanup"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
+

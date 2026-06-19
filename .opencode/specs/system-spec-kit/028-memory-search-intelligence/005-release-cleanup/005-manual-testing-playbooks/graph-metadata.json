@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/005-manual-testing-playbooks",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/005-manual-testing-playbooks",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-release-cleanup",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [],
+    "importance_tier": "important",
+    "status": "pending",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [],
+    "causal_summary": "Manual Testing Playbook Cleanup is PENDING and defines cleanup scope only.",
+    "created_at": "2026-06-19T00:00:00Z",
+    "last_save_at": "2026-06-19T00:00:00Z",
+    "save_lineage": "scaffold",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": "2026-06-19T00:00:00Z"
+  }
+}

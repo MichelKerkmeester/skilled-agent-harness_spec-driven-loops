@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Memory Search Intelligence Phase Parent"
-description: "Phase parent for the four subsystem research and implementation-planning tracks."
+description: "Phase parent for the five subsystem and release-readiness tracks."
 trigger_phrases:
   - "028 memory search intelligence"
   - "external memory systems research"
@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence"
     last_updated_at: "2026-06-19T06:45:00Z"
     last_updated_by: "codex-gpt-5"
-    recent_action: "Collapsed to four subsystem phase parents"
-    next_safe_action: "Resume subsystem parents 001-004"
+    recent_action: "Added release cleanup phase parent scaffold"
+    next_safe_action: "Resume subsystem parents 001-004 or release cleanup parent 005"
     blockers: []
     key_files:
       - "spec.md"
@@ -25,6 +25,7 @@ _memory:
       - "002-code-graph/spec.md"
       - "003-skill-advisor/spec.md"
       - "004-deep-loop/spec.md"
+      - "005-release-cleanup/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-memory-search-intelligence-parent"
@@ -33,7 +34,8 @@ _memory:
     open_questions: []
     answered_questions:
       - "Children 001-004 record their implementation child maps."
-      - "Research-only phases 005-008 were folded into subsystem research archives."
+      - "Child 005 defines release-cleanup scope only."
+      - "Earlier research-only rounds live in subsystem research archives."
       - "Packet 030 is the Wave-0 SHIPPED done-evidence record and remains intentionally separate."
 ---
 
@@ -62,10 +64,10 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Packet 028 owns the planning record that turns external memory-system research into implementation sub-phases for internal retrieval surfaces. Its four top-level children are subsystem phase parents so the research inputs, candidate plans and child validation state are easy to navigate.
+Packet 028 owns the planning record that turns external memory-system research into implementation sub-phases for internal retrieval surfaces. Its five top-level children include four subsystem phase parents and one release-cleanup phase parent so research inputs, candidate plans, cleanup scopes and child validation state are easy to navigate.
 
 ### Purpose
-Provide the root purpose, child map and cross-packet boundary for packet 028. This parent routes the four subsystem children to their implementation child maps and records packet 030 as the Wave-0 SHIPPED done-evidence record.
+Provide the root purpose, child map and cross-packet boundary for packet 028. This parent routes the subsystem children to their implementation child maps, routes release cleanup to child 005 and records packet 030 as the Wave-0 SHIPPED done-evidence record.
 
 > **Phase-parent note:** This `spec.md` is the only authored document at this parent level. Detailed planning lives in the child phase folders listed below.
 <!-- /ANCHOR:problem -->
@@ -77,8 +79,9 @@ Provide the root purpose, child map and cross-packet boundary for packet 028. Th
 
 ### In Scope
 - Root-level routing for packet 028 subsystem phase parents.
-- Phase-documentation map updates for children 001 through 004.
-- Merged research archive pointers for the removed research-only phases.
+- Phase-documentation map updates for children 001 through 005.
+- Release-cleanup scope routing for every pre-release documentation surface.
+- Merged research archive pointers for earlier research-only rounds.
 - A pointer to packet 030 as the Wave-0 SHIPPED done-evidence record.
 
 ### Out of Scope
@@ -97,6 +100,7 @@ Provide the root purpose, child map and cross-packet boundary for packet 028. Th
 | `002-code-graph/spec.md` | Modify | 002 | Code Graph subsystem phase-parent map |
 | `003-skill-advisor/spec.md` | Modify | 003 | Skill Advisor subsystem phase-parent map |
 | `004-deep-loop/spec.md` | Modify | 004 | Deep Loop subsystem phase-parent map |
+| `005-release-cleanup/spec.md` | Create | 005 | Release-readiness documentation cleanup phase-parent map |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -110,19 +114,22 @@ Provide the root purpose, child map and cross-packet boundary for packet 028. Th
 | 002 | `002-code-graph/` | Code Graph research plus 8 implementation child plans | Phase parent |
 | 003 | `003-skill-advisor/` | Skill Advisor research plus 7 implementation child plans | Phase parent |
 | 004 | `004-deep-loop/` | Deep Loop Runtime research plus 6 implementation child plans | Phase parent |
+| 005 | `005-release-cleanup/` | Release-readiness documentation sweep across repository doc surfaces | Phase parent |
 
 ### Phase Transition Rules
 
 - Children 001 through 004 are subsystem phase parents. Their direct child folders own implementation specs, plans, tasks and validation evidence.
-- Research-only material from former children 005 through 008 lives under subsystem `research/from-*` archives.
-- Run strict validation on a subsystem parent and its direct implementation children before using it as an implementation source.
+- Child 005 is a release-cleanup phase parent. Its direct child folders define cleanup scopes only until a later execution pass.
+- Research-only material from earlier rounds lives under subsystem `research/from-*` archives.
+- Run strict validation on a child parent and its direct children before using it as an execution source.
 
 ### Phase Handoff Criteria
 
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
-| root | subsystem parent | Select a subsystem from children 001 through 004 | Subsystem `spec.md` lists all direct implementation children |
+| root | child parent | Select a child from 001 through 005 | Child `spec.md` lists all direct children or scoped docs |
 | subsystem parent | implementation child | Select the next PENDING candidate group | Child `spec.md` names gate, scope and evidence |
+| release cleanup parent | cleanup child | Select one PENDING documentation surface | Child `spec.md` names discovery, scope and verification |
 | implementation child | root | Child reaches strict validation green | `validate.sh <child> --strict` exits 0 |
 <!-- /ANCHOR:phase-map -->
 
@@ -147,6 +154,6 @@ Packet `030-memory-search-intelligence-impl` is the Wave-0 SHIPPED record for ca
 ## RELATED DOCUMENTS
 
 - **Roadmap**: `research/roadmap.md`
-- **Subsystem parents**: `001-speckit-memory/`, `002-code-graph/`, `003-skill-advisor/`, `004-deep-loop/`
+- **Child parents**: `001-speckit-memory/`, `002-code-graph/`, `003-skill-advisor/`, `004-deep-loop/`, `005-release-cleanup/`
 - **Merged research index**: `001-speckit-memory/research/merged-research-index.md`
 - **Graph metadata**: `graph-metadata.json`
