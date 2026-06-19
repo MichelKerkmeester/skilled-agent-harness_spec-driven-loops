@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Edge-Presence Currentness & Temporal Recall (028/001 impl phase)"
-description: "Task breakdown for the five PENDING temporal candidates: one task group per candidate (C3-A, C3-C, memory_history, CG-temporal-query-extraction, M-unforget-channel-disjointness), with the substrate prerequisite (C3-B), per-candidate gates, and verification. All implementation tasks pending; Wave-0 (030) done-evidence confirms none shipped."
+description: "Task breakdown for the temporal candidates: one task group per candidate (C3-A, C3-C, memory_history, CG-temporal-query-extraction, M-unforget-channel-disjointness), with the substrate prerequisite (C3-B), per-candidate gates, and verification. C3-A is implemented in the current working tree; four candidates remain pending."
 trigger_phrases:
   - "tasks edge presence currentness"
   - "temporal recall task breakdown"
@@ -49,7 +49,7 @@ _memory:
 
 **Task Format**: `T### [P?] Candidate or action (primary seam) [status/evidence]`
 
-> **Status note:** All five candidates are PENDING. Cross-checked against `../../../030-memory-search-intelligence-impl/spec.md` §14 and the 030 commit range (`git log --oneline 1ecc531431..ab5459fb6d`): zero temporal/history/unforget/currentness commits — none shipped in Wave-0. No task below is pre-checked.
+> **Status note:** Wave-0 still shipped none of these candidates. Current working-tree status: C3-A is implemented and verified locally; C3-C, memory_history, temporal-query-extraction, and unforget-disjointness remain pending behind their gates.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -70,7 +70,7 @@ _memory:
 ## Phase 1: Setup
 
 - [ ] T001 [B] Confirm C3-B four-timestamp window status in the sibling phase (substrate prerequisite for AsKnownAt + the 4-channel matrix) [Blocked on sibling phase].
-- [ ] T002 Designate lineage the canonical supersede writer; confirm causal `invalid_at` is a derived projection (`vector-index-schema.ts:184-185`) [Pending].
+- [x] T002 Designate lineage the canonical supersede writer; confirm causal `invalid_at` is a derived projection (`vector-index-schema.ts:184-185`) [Done; evidence: `invalidation_source` marker distinguishes lineage/direct/legacy closure provenance while open edges keep NULL].
 - [ ] T003 Capture the non-temporal recall baseline for additivity byte-checks [Pending].
 <!-- /ANCHOR:phase-1 -->
 
@@ -79,13 +79,13 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Candidate C3-A: wire the read-side `getValidEdges` currentness filter (`AND invalid_at IS NULL`) onto the recall read path (`contradiction-detection.ts:75-77, 99-110`) [Pending; gate: schema (C3-B) + reconciliation].
-- [ ] T005 Candidate C3-A: lineage↔causal-edge store reconciliation so the canonical supersede writer and the derived projection do not fork (`vector-index-schema.ts:184-185`) [Pending; riskiest hunk — keep separable from T004].
+- [x] T004 Candidate C3-A: wire the read-side `getValidEdges` currentness filter (`AND invalid_at IS NULL`) onto the recall read path (`contradiction-detection.ts:75-77, 99-110`) [Done; evidence: `getValidEdges()` reads only `invalid_at IS NULL` edges and `tests/edge-presence-currentness.vitest.ts` covers flag-off baseline preservation].
+- [x] T005 Candidate C3-A: lineage↔causal-edge store reconciliation so the canonical supersede writer and the derived projection do not fork (`vector-index-schema.ts:184-185`) [Done; evidence: schema up/backfill/rollback and flag-on reconciliation covered by `tests/edge-presence-currentness.vitest.ts`].
 - [ ] T006 [P] Candidate C3-C: add the `TemporalMode` enum (Current/AsOf/AsKnownAt/History) + a `current-support` provider; Current byte-identical via `active_memory_projection`; gate AsKnownAt on C3-B (`contradiction-detection.ts` new enum/provider) [Pending].
 - [ ] T007 [P] Candidate memory_history: expose the lib-only `resolveLineageAsOf`/`inspectLineageChain` (zero non-test callers) as a new MCP tool, ~5-surface parity add (`lineage-state.ts:1025-1043`) [Pending; depends on C3-A read path for currentness-correct chains].
-- [ ] T008 Candidate CG-temporal-query-extraction: parse a structured `QueryInterval` from the NL query, filter events by the range, vector-rank the filtered set, fall through to normal search when no bounds (new query-time parser) [Pending; gate: needs-benchmark for range-filter precision].
+- [ ] T008 Candidate CG-temporal-query-extraction: parse a structured `QueryInterval` from the NL query, filter events by the range, vector-rank the filtered set, fall through to normal search when no bounds (new query-time parser) [Pending; gate: benchmark needed for range-filter precision before shipping].
 - [ ] T009 [B] Candidate M-unforget-channel-disjointness: extend the C3-D revision matrix 2→4 channels leaving disjoint `(expired_at,status,edge)` fingerprints + a status-ownership write-refusal guard (`temporal-edges.ts`) [Blocked: needs both an unforget channel AND erasure; only one half present].
-- [ ] T010 Update `spec.md` §14 candidate-status rows with final DONE (commit) / PENDING (gate) per candidate.
+- [x] T010 Update `spec.md` §14 candidate-status rows with final DONE / PENDING gate per candidate [Done; evidence: C3-A DONE, four candidates PENDING, Pending count 4 / Done count 1; no commit created per user request].
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -93,11 +93,11 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T011 Run Memory MCP static gates [`npm run typecheck`, `npm run build`].
+- [ ] T011 Run Memory MCP static gates [`npm run typecheck`, `npm run build`] [Partial evidence: `npm run typecheck` exits 0; build not part of this scoped finish request].
 - [ ] T012 Verify Current-mode recall byte-identical to the baseline; AsOf/History window correctness; AsKnownAt presence once C3-B lands.
 - [ ] T013 Parity-test `memory_history` against the lib functions; byte-check non-temporal queries unchanged; property-test unforget disjointness (when built).
-- [ ] T014 Run the touched-area Vitest suite and classify any broad failures against baseline evidence.
-- [ ] T015 Run strict packet validation and fix structure issues [`validate.sh --strict`].
+- [x] T014 Run the touched-area Vitest suite and classify any broad failures against baseline evidence [Done; evidence: `npx vitest run tests/edge-presence-currentness.vitest.ts` = 3/3 pass; `npx vitest run tests/flag-ceiling.vitest.ts` = 6/6 pass].
+- [x] T015 Run strict packet validation and fix structure issues [`validate.sh --strict`] [Done; evidence: strict validation exits 0 with 0 errors / 0 warnings].
 <!-- /ANCHOR:phase-3 -->
 
 ---

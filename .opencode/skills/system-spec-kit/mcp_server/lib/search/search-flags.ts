@@ -791,6 +791,20 @@ export function isBitemporalRecallEnabled(): boolean {
 }
 
 /**
+ * Read-side reconciliation that keeps a causal edge's closure-provenance marker
+ * consistent with its edge presence (invalid_at), so the lineage canonical
+ * supersede writer and the derived causal projection cannot fork into a third
+ * source of truth. The additive schema (the invalidation_source column) lands
+ * unconditionally via migration; only this reconciliation pass is gated, because
+ * retiring a fact by edge presence is a live retirement-path change that must
+ * earn promotion on benchmark evidence before it runs by default.
+ * Default: FALSE (benchmark-gated). Set SPECKIT_EDGE_PRESENCE_CURRENTNESS=true to enable.
+ */
+export function isEdgePresenceCurrentnessEnabled(): boolean {
+  return isOptInEnabled('SPECKIT_EDGE_PRESENCE_CURRENTNESS');
+}
+
+/**
  * Usage-weighted ranking signal.
  * Default: TRUE (graduated). Set SPECKIT_USAGE_RANKING=false to disable.
  */

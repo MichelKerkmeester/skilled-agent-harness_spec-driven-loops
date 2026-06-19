@@ -13,9 +13,9 @@
     "impl",
     "phase"
   ],
-  "lastUpdated": "2026-06-19T06:21:32.740Z",
+  "lastUpdated": "2026-06-19T09:26:36.239Z",
   "specId": "008",
-  "folderSlug": "008-edge-presence-currentness",
+  "folderSlug": "edge-presence-currentness",
   "parentChain": [
     "system-spec-kit",
     "028-memory-search-intelligence",

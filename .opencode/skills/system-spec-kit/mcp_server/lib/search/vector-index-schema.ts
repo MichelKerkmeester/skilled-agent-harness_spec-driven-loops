@@ -625,8 +625,9 @@ function getMigrationAllowedBasePaths(): string[] {
 // V36: Add idempotency receipts and near-duplicate markers
 // V37: Add tombstone column and active/purgeable memory partitions
 // V38: Add bi-temporal window columns for causal edges and memory lineage
+// V39: Add causal-edge closure-provenance marker (open-edge index ensured at runtime)
 /** Current schema version for vector-index migrations. */
-export const SCHEMA_VERSION = 38;
+export const SCHEMA_VERSION = 39;
 
 const SOURCE_KIND_COLUMN_SQL = "ALTER TABLE memory_index ADD COLUMN source_kind TEXT NOT NULL DEFAULT 'system' CHECK(source_kind IN ('human', 'agent', 'system', 'import', 'feedback'))";
 const MEMORY_IDEMPOTENCY_RECEIPTS_OPERATION_INDEX_SQL = `
@@ -644,6 +645,20 @@ const MEMORY_LINEAGE_BITEMPORAL_COLUMNS: ReadonlyArray<{ name: string; sql: stri
   { name: 'ingested_at', sql: 'ALTER TABLE memory_lineage ADD COLUMN ingested_at TEXT' },
   { name: 'expired_at', sql: 'ALTER TABLE memory_lineage ADD COLUMN expired_at TEXT' },
 ];
+
+// Records how a causal edge was retired so the lineage canonical supersede
+// writer and the derived causal projection reconcile to one source of truth
+// instead of forking: 'lineage' (canonical), 'direct' (local close, e.g.
+// contradiction auto-invalidation), or 'legacy' (closed before this marker).
+// NULL on open edges, so the marker always agrees with edge presence.
+const CAUSAL_EDGE_CURRENTNESS_COLUMN: { name: string; sql: string } = {
+  name: 'invalidation_source',
+  sql: 'ALTER TABLE causal_edges ADD COLUMN invalidation_source TEXT',
+};
+// The open-edge currentness index is created at runtime by temporal-edges,
+// where invalid_at is guaranteed present; the migration teardown drops it by
+// name so a rollback leaves no trace of the currentness feature.
+const CAUSAL_EDGE_OPEN_CURRENTNESS_INDEX = 'idx_causal_edges_open_currentness';
 
 function addColumnIfMissing(
   database: Database.Database,
@@ -857,6 +872,62 @@ export function rollbackBitemporalWindowSchema(database: Database.Database, cont
   for (const column of ['expired_at', 'ingested_at']) {
     dropColumnIfPresent(database, MEMORY_LINEAGE_TABLE, column, context);
   }
+}
+
+/**
+ * Backfill closure provenance for causal edges retired before the marker
+ * existed. A closed edge (invalid_at present) with no marker is stamped
+ * 'legacy' — its original provenance (lineage canonical vs a direct local
+ * close) cannot be recovered after the fact — while open edges keep a NULL
+ * marker so the marker always agrees with edge presence. A no-op until the
+ * retirement column (invalid_at) is present, since temporal edges add it at
+ * runtime; without it there is no closed-edge concept to reconcile.
+ */
+export function backfillEdgePresenceCurrentness(
+  database: Database.Database,
+  context: string = 'edge-presence currentness backfill',
+): void {
+  requireTableForMigration(database, 'causal_edges', context);
+  requireColumnsForMigration(database, 'causal_edges', ['invalidation_source'], context);
+
+  const causalColumns = new Set(getTableColumns(database, 'causal_edges'));
+  if (!causalColumns.has('invalid_at')) {
+    return;
+  }
+
+  database.exec(`
+    UPDATE causal_edges
+    SET invalidation_source = 'legacy'
+    WHERE invalid_at IS NOT NULL AND invalidation_source IS NULL
+  `);
+}
+
+/**
+ * Add the causal-edge closure-provenance marker, then backfill legacy closures.
+ * Additive and idempotent. The supporting open-edge index is owned by the
+ * temporal-edges runtime convergence (where invalid_at is guaranteed present),
+ * so a fresh database — which has no invalid_at column when this migration runs
+ * — does not attempt to build a partial index over a missing column.
+ */
+export function ensureEdgePresenceCurrentnessSchema(database: Database.Database, context: string): void {
+  requireTableForMigration(database, 'causal_edges', context);
+
+  const causalColumns = new Set(getTableColumns(database, 'causal_edges'));
+  addColumnIfMissing(database, 'causal_edges', causalColumns, CAUSAL_EDGE_CURRENTNESS_COLUMN, context);
+
+  backfillEdgePresenceCurrentness(database, context);
+}
+
+/**
+ * Roll back the closure-provenance marker and its supporting open-edge index,
+ * preserving the v38 window columns and legacy valid_at/invalid_at.
+ */
+export function rollbackEdgePresenceCurrentnessSchema(
+  database: Database.Database,
+  context: string = 'edge-presence currentness rollback',
+): void {
+  database.exec(`DROP INDEX IF EXISTS ${CAUSAL_EDGE_OPEN_CURRENTNESS_INDEX}`);
+  dropColumnIfPresent(database, 'causal_edges', 'invalidation_source', context);
 }
 
 function sourceKindFromProvenanceSource(value: unknown): 'human' | 'agent' | 'system' | 'import' | 'feedback' {
@@ -2100,6 +2171,11 @@ export function run_migrations(database: Database.Database, from_version: number
   migrations[38] = () => {
     ensureBitemporalWindowSchema(database, 'Migration v38');
     logger.info('Migration v38: Added bi-temporal validity windows');
+  };
+
+  migrations[39] = () => {
+    ensureEdgePresenceCurrentnessSchema(database, 'Migration v39');
+    logger.info('Migration v39: Added causal-edge closure-provenance marker');
   };
 
   // Wrap all migrations in a transaction for atomicity

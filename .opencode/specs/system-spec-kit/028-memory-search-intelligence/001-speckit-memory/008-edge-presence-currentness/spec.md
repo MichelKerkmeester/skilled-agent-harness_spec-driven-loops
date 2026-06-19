@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Edge-Presence Currentness & Temporal Recall (028/001 impl phase)"
-description: "Make bi-temporal edge-presence the live currentness path for the Spec-Kit Memory MCP: wire the already-ON temporal-edge substrate into the read side (C3-A), add TemporalMode recall (C3-C), expose the lib-only as-of lineage resolver as a memory_history tool, parse a time range from the NL query (CG-temporal-query-extraction), and extend the C3-D 2-channel revision matrix to a 4-channel unforget-disjointness invariant. All five candidates are PENDING; none shipped in Wave-0 (030)."
+description: "Make bi-temporal edge-presence the live currentness path for the Spec-Kit Memory MCP: wire the already-ON temporal-edge substrate into the read side (C3-A), add TemporalMode recall (C3-C), expose the lib-only as-of lineage resolver as a memory_history tool, parse a time range from the NL query (CG-temporal-query-extraction), and extend the C3-D 2-channel revision matrix to a 4-channel unforget-disjointness invariant. C3-A is DONE in the current working tree; the other four candidates remain PENDING behind their gates."
 trigger_phrases:
   - "edge presence currentness"
   - "temporal mode recall"
@@ -44,7 +44,7 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-This implementation phase turns the Spec-Kit Memory MCP's bi-temporal substrate from a build-side, read-unwired feature into the **live currentness path**, and layers temporal recall capability on top of it. It covers five PENDING candidates from packet 028's Memory research: **C3-A** (edge-presence currentness as the live retirement path), **C3-C** (TemporalMode recall: Current / AsOf / AsKnownAt / History), **memory_history** (expose the lib-only as-of lineage resolver as a tool), **CG-temporal-query-extraction** (parse a time range from the NL query), and **M-unforget-channel-disjointness** (extend the C3-D 2-channel revision matrix to a 4-channel disjointness invariant). None of the five shipped in Wave-0 (packet 030); all are gated on schema and/or benchmark work and remain PENDING here.
+This implementation phase turns the Spec-Kit Memory MCP's bi-temporal substrate from a build-side, read-unwired feature into the **live currentness path**, and layers temporal recall capability on top of it. It covers five candidates from packet 028's Memory research: **C3-A** (edge-presence currentness as the live retirement path), **C3-C** (TemporalMode recall: Current / AsOf / AsKnownAt / History), **memory_history** (expose the lib-only as-of lineage resolver as a tool), **CG-temporal-query-extraction** (parse a time range from the NL query), and **M-unforget-channel-disjointness** (extend the C3-D 2-channel revision matrix to a 4-channel disjointness invariant). C3-A is now implemented in the current working tree; the remaining four candidates stay PENDING behind schema, benchmark, or shared-infra gates.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -234,17 +234,17 @@ Per-candidate seams above. Production code under `.opencode/skills/system-spec-k
 <!-- ANCHOR:status -->
 ## 14. CANDIDATE STATUS
 
-> Cross-checked against the Wave-0 shipped record `../../../030-memory-search-intelligence-impl/spec.md` §14 and the 030 commit range (`git log --oneline 1ecc531431..ab5459fb6d`): **none of these five candidates shipped in Wave-0** (zero temporal/history/unforget/currentness commits in range). All five are **PENDING**.
+> Cross-checked against the Wave-0 shipped record `../../../030-memory-search-intelligence-impl/spec.md` §14 and the 030 commit range (`git log --oneline 1ecc531431..ab5459fb6d`): **none of these five candidates shipped in Wave-0** (zero temporal/history/unforget/currentness commits in range). Current working-tree status: C3-A is **DONE**; the other four candidates remain **PENDING**.
 
 | # | Candidate | Status | Gate | 030 evidence | Notes |
 |---|-----------|--------|------|--------------|-------|
-| 1 | **C3-A** edge-presence currentness | PENDING | schema-migration (needs C3-B) + shared-infra-dep (lineage↔causal store reconciliation) | Not in 030 §14; 0 commits in range | Was Ship-First #3 as a "flip"; KILLED as a flip and reclassified to a read-side build (flag already ON) [roadmap §BROADENING-2] |
-| 2 | **C3-C** TemporalMode | PENDING | schema-migration (AsKnownAt needs C3-B); Current/AsOf/History buildable now | Not in 030 §14 | M if Current reads alongside `active_memory_projection`; L if it replaces the projection (open question) |
-| 3 | **memory_history** as-of tool | PENDING | shared-infra-dep (depends on C3-A read path for currentness-correct chains); tool surface itself independent | Not in 030 §14 | Lib-only `resolveLineageAsOf`/`inspectLineageChain` have zero non-test callers (`lineage-state.ts:1025-1043`); ~5-surface parity add |
-| 4 | **CG-temporal-query-extraction** | PENDING | needs-benchmark (precision of range-filter vs current recency boost) | Not in 030 §14 | NET-NEW H/M; Memory-home despite the CG- prefix (NO-TRANSFER cross-cut — don't double-count to Code Graph/Deep Loop) [007 iter-008:16, iter-014:20] |
-| 5 | **M-unforget-channel-disjointness** | PENDING | needs-benchmark + shared-infra-dep (needs both an unforget channel AND erasure; only one half present) | Not in 030 §14 | DEFER: extends C3-D 2→4 channels; cross-channel `(expired_at,status,edge)` disjointness invariant [001 iter-012:13, iter-016:13] |
+| 1 | **C3-A** edge-presence currentness | DONE | none for the implemented gated slice | Not in 030 §14; current working tree only (no commit per user request) | Implemented in `temporal-edges.ts`, `vector-index-schema.ts`, and `search-flags.ts`; verified by `tests/edge-presence-currentness.vitest.ts` (3/3), `tests/flag-ceiling.vitest.ts` (6/6), and `npm run typecheck` (0) |
+| 2 | **C3-C** TemporalMode | PENDING | schema-migration (AsKnownAt needs C3-B) + implementation not started | Not in 030 §14 | Pending until the TemporalMode read surface is implemented; Current must remain byte-identical via `active_memory_projection` |
+| 3 | **memory_history** as-of tool | PENDING | shared-infra-dep (depends on currentness-correct chains) + tool surface not started | Not in 030 §14 | Lib-only `resolveLineageAsOf`/`inspectLineageChain` still need MCP tool parity |
+| 4 | **CG-temporal-query-extraction** | PENDING | needs-benchmark (precision of range-filter vs current recency boost) | Not in 030 §14 | Benchmark-blocked; do not ship range filtering without a precision/fallthrough check |
+| 5 | **M-unforget-channel-disjointness** | PENDING | needs-benchmark + shared-infra-dep (needs both an unforget channel AND erasure; only one half present) | Not in 030 §14 | Benchmark/shared-infra blocked; leave deferred until the missing erasure half exists |
 
-**Pending count: 5. Done count: 0.**
+**Pending count: 4. Done count: 1.**
 <!-- /ANCHOR:status -->
 
 ---
