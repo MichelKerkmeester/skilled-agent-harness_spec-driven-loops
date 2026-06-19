@@ -63,7 +63,7 @@ storage and providers do not import handlers
 | Retrieval | `search/`, `rag/`, `query/` | Build ranked result sets and route query strategies. |
 | Memory state | `cognitive/`, `continuity/`, `session/`, `learning/` | Track recall state, continuity and session behavior. |
 | Persistence | `storage/`, `providers/`, `cache/` | Touch SQLite, embeddings and cached values. |
-| Policy | `validation/`, `governance/`, `contracts/` | Enforce limits, scope and IO contracts. |
+| Policy | `validation/`, `governance/` | Enforce limits, scope and IO contracts. |
 | Observability | `telemetry/`, `eval/`, `feedback/` | Record quality signals and evaluation data. |
 | Formatting | `response/`, `errors/`, `utils/` | Shape tool output and shared helpers. |
 

@@ -59,7 +59,7 @@ This module owns response shape and transport wrapping only. It does not fetch m
 
 ## 7. RELATED
 
-- `../formatters/README.md`
+- `../../formatters/README.md`
 - `../search/README.md`
 - `../../context-server.ts`
 - `../../tests/README.md`

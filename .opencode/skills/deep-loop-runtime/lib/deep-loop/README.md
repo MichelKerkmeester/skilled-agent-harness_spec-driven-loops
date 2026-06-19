@@ -38,5 +38,5 @@ The `scripts/loop-lock.cjs` CLI adapter is a thin front door over `loop-lock.ts`
 Related lifecycle helpers live outside this folder:
 
 - Code Graph: `system-code-graph/mcp_server/lib/owner-lease.ts`, `canonical-db-dir.ts`, `close-db-assertion.ts`.
-- Spec Kit runtime: `system-spec-kit/mcp_server/lib/memory/bounded-cache.ts`, `audit-rotation.ts`, `lib/runtime/timer-registry.ts`, `shutdown-hooks.ts`, `lib/embedders/sidecar-client.ts`.
+- Spec Kit runtime: `system-spec-kit/mcp_server/lib/memory/bounded-cache.ts`, `audit-rotation.ts`, `lib/runtime/timer-registry.ts`, `shutdown-hooks.ts`.
 - Ops: `system-spec-kit/scripts/ops/process-memory-harness.ts`, `process-sweep.ts`.

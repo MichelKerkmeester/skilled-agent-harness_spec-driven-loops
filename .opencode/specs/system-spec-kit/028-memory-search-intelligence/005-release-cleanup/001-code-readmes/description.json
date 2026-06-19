@@ -1,19 +1,15 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/001-code-readmes",
-  "description": "Defines the pending release-cleanup sweep for per-directory code README files.",
+  "description": "Feature Specification: Code README Cleanup",
   "keywords": [
-    "defines",
-    "pending",
-    "release",
-    "cleanup",
-    "sweep",
-    "directory",
+    "feature",
+    "specification",
     "code",
     "readme",
-    "files"
+    "cleanup"
   ],
-  "lastUpdated": "2026-06-19T00:00:00Z",
+  "lastUpdated": "2026-06-19T11:32:15.958Z",
   "specId": "001",
   "folderSlug": "code-readmes",
   "parentChain": [
@@ -24,4 +20,3 @@
   "memorySequence": 0,
   "memoryNameHistory": []
 }
-

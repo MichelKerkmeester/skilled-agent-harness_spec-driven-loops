@@ -51,4 +51,3 @@ npm test -- --runInBand
 
 - `../memory/`
 - `../routing/`
-- `../complexity/`

@@ -26,7 +26,7 @@ Use this file to identify the folder boundary, the likely verification path, and
 
 | Metric | Value |
 |---|---:|
-| Code files | 6 |
+| Code files | 1 |
 | README scope | Direct files in this folder |
 | Audit context | Internal validation notes |
 
@@ -66,12 +66,7 @@ Run the owning package test command from the nearest package boundary.
 
 | Path | Purpose |
 |---|---|
-| `cli-matrix.vitest.ts` | TS source file in this folder. |
-| `dispatch-failure.vitest.ts` | TS source file in this folder. |
-| `executor-audit.vitest.ts` | TS source file in this folder. |
-| `executor-config.vitest.ts` | TS source file in this folder. |
-| `post-dispatch-validate.vitest.ts` | TS source file in this folder. |
-| `prompt-pack.vitest.ts` | TS source file in this folder. |
+| `review-depth-reducer.vitest.ts` | TS source file in this folder. |
 
 ---
 

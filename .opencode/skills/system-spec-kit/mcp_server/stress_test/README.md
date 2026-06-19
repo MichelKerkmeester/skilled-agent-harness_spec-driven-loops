@@ -59,8 +59,6 @@ Execution boundary: default tests do not import or run stress suites.
 mcp_server/stress_test/
 ├── search-quality/                 # W3-W13 search-quality test grid, corpus, metrics, baseline
 ├── memory/                         # Memory search and trigger latency or throughput
-├── skill-advisor/                  # Skill graph rebuild concurrency stress
-├── code-graph/                     # Degraded readiness and large-input sweeps
 ├── session/                        # Session entry-limit and resume benchmarks
 ├── durability/                     # Checkpoint, recycle, and daemon re-election durability gate
 ├── matrix/                         # Synthetic search routing and latency comparison
@@ -78,7 +76,6 @@ mcp_server/stress_test/
 | `vitest.stress.config.ts` | Limits Vitest discovery to stress suites. |
 | `search-quality/` | Runs search-quality test-grid cells, corpus checks, metrics, and baseline comparisons. |
 | `memory/` | Measures memory search and trigger pathway behavior under load. |
-| `code-graph/` | Exercises degraded graph readiness and large input caps. |
 | `session/` | Measures session limits and resume latency. |
 | `matrix/` | Runs synthetic matrix routing and latency comparisons. |
 | `substrate/` | Promotes the 045 shared-daemon substrate runner and covers query expansion, token-budget edges, and V-rule save floods. |

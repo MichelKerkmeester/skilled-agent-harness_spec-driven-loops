@@ -33,7 +33,7 @@ Current state:
 ╰──────────────────────────────────────────────────────────────────╯
 
 ┌────────────────────┐      ┌────────────────────┐      ┌────────────────────┐
-│ Operator or CI     │ ───▶ │ run-matrix.ts      │ ───▶ │ adapter-base.ts    │
+│ Operator or CI     │ ───▶ │ run-matrix.ts      │ ───▶ │ adapter-common.ts  │
 │ selects cells      │      │ filters manifest   │      │ shared spawn logic │
 └────────┬───────────┘      └─────────┬──────────┘      └─────────┬──────────┘
          │                            │                           │
@@ -77,8 +77,8 @@ mcp_server/matrix_runners/
 |---|---|
 | `run-matrix.ts` | Parses flags, reads the manifest, dispatches cells, and writes output files. |
 | `matrix-manifest.json` | Defines feature ID, executor, applicability, prompt template, expected signal, and timeout. |
-| `adapter-base.ts` | Holds shared spawn behavior, timeout handling, and status mapping. |
-| `*-adapter.ts` | Maps one executor to its CLI argv and stdout matching contract. |
+| `adapter-common.ts` | Holds shared spawn behavior, timeout handling, and status mapping. |
+| `adapter-cli-*.ts` | Maps one executor to its CLI argv and stdout matching contract. |
 | `templates/` | Stores prompt payloads referenced by manifest cells. |
 
 ---
@@ -133,7 +133,7 @@ Main flow:
 |---|---|---|
 | `run-matrix.ts` | CLI module | Runs selected matrix cells and writes results. |
 | `matrix-manifest.json` | Data file | Defines available cells and expected signals. |
-| `adapter-base.ts` | Module | Centralizes shared adapter execution behavior. |
+| `adapter-common.ts` | Module | Centralizes shared adapter execution behavior. |
 | `templates/` | Prompt assets | Provides reusable prompts for manifest cells. |
 
 Example:

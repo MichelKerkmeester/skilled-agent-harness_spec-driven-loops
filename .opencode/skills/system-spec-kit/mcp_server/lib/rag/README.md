@@ -48,5 +48,3 @@ npm test -- --runInBand
 ## 7. RELATED
 
 - `../memory/`
-- `../code-graph/`
-- `../advisor/`

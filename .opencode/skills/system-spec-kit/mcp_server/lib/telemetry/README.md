@@ -109,7 +109,6 @@ python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sy
 
 ## 7. RELATED
 
-- `../contracts/README.md` documents trace and response contracts.
 - `../eval/README.md` documents metric and channel analysis.
 - `../search/README.md` documents retrieval flow.
 - `../scoring/README.md` documents score composition.

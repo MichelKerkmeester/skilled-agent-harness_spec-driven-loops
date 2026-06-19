@@ -26,7 +26,7 @@ Use this file to identify the folder boundary, the likely verification path, and
 
 | Metric | Value |
 |---|---:|
-| Code files | 4 |
+| Code files | 3 |
 | README scope | Direct files in this folder |
 | Audit context | Internal validation notes |
 
@@ -68,7 +68,6 @@ Run the owning package test command from the nearest package boundary.
 |---|---|
 | `cold-start.bench.ts` | TS source file in this folder. |
 | `embedding-latency.bench.ts` | TS source file in this folder. |
-| `migration-throughput.bench.ts` | TS source file in this folder. |
 | `throughput.bench.ts` | TS source file in this folder. |
 
 ---
