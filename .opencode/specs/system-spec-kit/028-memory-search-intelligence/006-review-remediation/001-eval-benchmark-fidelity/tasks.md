@@ -48,10 +48,10 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Reproduce the prior criterion-4 run and save its per-flag deltas as baseline.
-- [ ] T002 Confirm the `routeQuery()` vs `forceAllChannels` contract at `hybrid-search.ts:1394-1396`.
-- [ ] T003 Confirm the `exactTriggerSearch` call site at `hybrid-search.ts:1504` lacks the trigger guard.
-- [ ] T004 Confirm embedding coverage is healthy before any re-run.
+- [x] T001 Reproduce the prior criterion-4 run and save its per-flag deltas as baseline. Evidence: prior output copied to `/tmp/speckit-retrieval-flag-eval.PRIOR-baseline.json` (summary_fusion_lane delta -0.0528, cardinality_penalty 0; trigger row delta 0 / pValue null / unchanged 60).
+- [x] T002 Confirm the `routeQuery()` vs `forceAllChannels` contract at `hybrid-search.ts:1394-1396`. Evidence: `activeChannels = options.forceAllChannels ? new Set(allPossibleChannels) : new Set(routeResult.channels)`; complexity router is default-on (`isComplexityRouterEnabled` returns `raw !== 'false'`), so default queries route to a restricted subset.
+- [x] T003 Confirm the `exactTriggerSearch` call site at `hybrid-search.ts:1504` lacks the trigger guard. Evidence: line 1504 calls `exactTriggerSearch(query, options)` unconditionally (no `activeChannels.has('trigger')` guard) and `exactTriggerSearch` (783-826) only reads `{limit, specFolder, includeArchived}`, ignoring `triggerPhrases`. `'trigger'` is not a production `ChannelName`.
+- [x] T004 Confirm embedding coverage is healthy before any re-run. Evidence: corrected run on ollama nomic-embed-text-v1.5 (768) reported 0 query-embedding failures and vector-ablation delta +0.256; `runAblation` produced a report, so its embedding-coverage assertion passed.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -59,9 +59,9 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T005 Replace the forced all-channels path with default `routeQuery()` routing in `run-retrieval-flag-eval.mjs` (P1-1).
-- [ ] T006 Gate the trigger lane so the ablation genuinely removes it (P1-3).
-- [ ] T007 Keep all production routing code unchanged.
+- [x] T005 Replace the forced all-channels path with default `routeQuery()` routing in `run-retrieval-flag-eval.mjs`. Evidence: per-flag `search()` now uses `buildPerFlagSearchOptions()` with no `forceAllChannels`; per-flag deltas now measure the routed default path.
+- [x] T006 Make the trigger ablation honest. Evidence: implemented via removing the meaningless trigger row (`selectAblationChannels()` filters `'trigger'` out of `ALL_CHANNELS`; the inert `triggerPhrases: []` lever removed). DECISION — chose the "remove the meaningless trigger row" option over a production `activeChannels.has('trigger')` guard because gating the lane requires changes to `hybrid-search.ts`/`query-router.ts` (adding `'trigger'` to the `ChannelName` union + channel sets), which §3 Out-of-Scope forbids and which would risk default-off byte-identity. The corrected channel report now contains no trigger row, so no identical-by-construction noise feeds any flip decision.
+- [x] T007 Keep all production routing code unchanged. Evidence: only `run-retrieval-flag-eval.mjs` (driver) + a new test changed; no `.ts` lib files touched (`git status` shows driver + benchmark-status.md + new test only).
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -69,10 +69,10 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Re-run the criterion-4 per-flag benchmark on the corrected driver.
-- [ ] T009 Re-derive the criterion-4 flip verdict from the new deltas.
-- [ ] T010 Update `benchmark-status.md` with the new deltas and a supersession note.
-- [ ] T011 Run strict validation for this child folder.
+- [x] T008 Re-run the criterion-4 per-flag benchmark on the corrected driver. Evidence: `/tmp/speckit-retrieval-flag-eval.CORRECTED.json` (exit 0); corrected per-flag deltas summary_fusion_lane -0.0361, cardinality_penalty 0.0000; channel report now `vector/bm25/fts5/graph` (no trigger row).
+- [x] T009 Re-derive the criterion-4 flip verdict from the new deltas. Evidence: NO default-off flag earns a flip — summary_fusion_lane ON hurts recall (-0.0361 on the production routing path), cardinality_penalty shows zero Recall@20 movement; all other flags are `runSearch:false`. Recommendation: keep default-off; orchestrator decides.
+- [x] T010 Update `benchmark-status.md` with the new deltas and a supersession note. Evidence: added "Driver-fidelity correction — supersedes the per-flag measurement below" section with corrected tables and flip verdict; prior section relabeled "Prior measurement (superseded ...)".
+- [x] T011 Run strict validation for this child folder. Evidence: `validate.sh --strict` → RESULT: PASSED, Errors 0 / Warnings 0.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -80,10 +80,10 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`.
-- [ ] No `[B]` blocked tasks remaining.
-- [ ] Benchmark re-run evidence is recorded.
-- [ ] Strict validation exits 0.
+- [x] All tasks marked `[x]`.
+- [x] No `[B]` blocked tasks remaining.
+- [x] Benchmark re-run evidence is recorded (`/tmp/speckit-retrieval-flag-eval.CORRECTED.json`; deltas in `benchmark-status.md`).
+- [x] Strict validation exits 0.
 <!-- /ANCHOR:completion -->
 
 ---

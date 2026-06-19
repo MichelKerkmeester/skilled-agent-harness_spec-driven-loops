@@ -9,22 +9,24 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/006-review-remediation/001-eval-benchmark-fidelity"
-    last_updated_at: "2026-06-19T00:00:00Z"
+    last_updated_at: "2026-06-20T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded impl"
-    next_safe_action: "Do not mark the fix complete until the benchmark re-run evidence exists"
+    recent_action: "Fixed flag-eval driver routing + dropped trigger noise row; re-ran criterion-4"
+    next_safe_action: "Orchestrator commits; decides on the no-flip flag recommendation"
     blockers: []
     key_files:
       - "implementation-summary.md"
+      - "tasks.md"
+      - "checklist.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-06-19-summary-006-001-eval-benchmark-fidelity"
+      session_id: "2026-06-20-summary-006-001-eval-benchmark-fidelity"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
-      - "This summary exists to satisfy the Level-2 contract."
-      - "The fix and benchmark re-run remain PENDING."
+      - "Correcting the routing did not flip any criterion-4 flag verdict; default-off remains correct."
+      - "P1-3 trigger gating was satisfied by removing the unablatable trigger row (production guard was out of scope)."
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
@@ -38,7 +40,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | system-spec-kit/028-memory-search-intelligence/006-review-remediation/001-eval-benchmark-fidelity |
-| **Completed** | Not executed |
+| **Completed** | 2026-06-20 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -47,21 +49,31 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The scaffold defines the eval-benchmark-fidelity remediation phase. No code has been fixed and no benchmark has been re-run; both the P1-1 forceAllChannels fix and the P1-3 trigger-ablation fix remain PENDING.
+Two measurement-fidelity fixes to the per-flag retrieval benchmark driver, plus a corrected
+criterion-4 re-run that supersedes the prior measurement.
 
-### Pending Remediation Contract
+- **P1-1 (forceAllChannels):** the per-flag `search()` path no longer forces every channel active.
+  It now routes through the production default path (`routeQuery()` picks the channel subset; the
+  complexity router is default-on), so per-flag deltas reflect what production serves. The per-flag
+  off-baseline shifted from the forced all-channels 0.4583 to the routed 0.4861.
+- **P1-3 (trigger-ablation no-op):** the channel sweep no longer reports a `trigger` row. The trigger
+  lane (`exactTriggerSearch`) runs unconditionally and ignores `triggerPhrases`, so it could never be
+  ablated through the driver's public options and its row was identical-by-construction noise (prior
+  delta 0 / pValue null / unchanged 60). The inert `triggerPhrases: []` lever was removed and
+  `'trigger'` is filtered out of the swept channels.
 
-This child phase has the required spec, plan, task list, checklist and summary docs. They cite `run-retrieval-flag-eval.mjs:355` (P1-1) and `run-retrieval-flag-eval.mjs:371` (P1-3) with quoted fix intent so a later execution pass can correct the driver routing, gate the trigger channel, re-run the criterion-4 benchmark, and update `benchmark-status.md`.
+Result of the corrected re-run: NO default-off flag earns a flip (summary_fusion_lane ON hurts recall
+-0.0361 on the production path; cardinality_penalty 0.0 movement). Default-off remains correct;
+recommendation handed to the orchestrator (no unilateral flip).
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| spec.md | Created | Defines scope, cited findings and acceptance criteria |
-| plan.md | Created | Defines fix approach and verification route |
-| tasks.md | Created | Lists pending remediation tasks |
-| checklist.md | Created | Lists pending verification checks |
-| implementation-summary.md | Created | Records that this is scaffold only |
+| `mcp_server/scripts/evals/run-retrieval-flag-eval.mjs` | Modified | P1-1 default routing for per-flag pass; P1-3 drop trigger row + inert lever; export pure option builders + CLI-only main guard |
+| `mcp_server/tests/retrieval-flag-eval-driver.vitest.ts` | Created | Deterministic test that fails against the pre-fix driver (forceAllChannels present / trigger swept) |
+| `benchmark-status.md` (028 root) | Modified | Corrected per-flag + channel deltas, supersession note, reproducible command |
+| tasks.md / checklist.md | Updated | Marked DONE with evidence |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -69,7 +81,11 @@ This child phase has the required spec, plan, task list, checklist and summary d
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The phase docs were created from the spec-kit Level-2 structure and kept in PENDING state. The fix and benchmark re-run are intentionally deferred to a separate executing seat.
+The driver was corrected surgically (option builders extracted as pure exported functions so the
+behavior is testable; `main()` guarded to run only as a CLI). The corrected benchmark was re-run
+against the live aligned golden set on the ollama nomic-embed-text-v1.5 embedder; the vector lane was
+confirmed healthy before the deltas were trusted. Production routing code (`hybrid-search.ts`,
+`query-router.ts`) was left untouched.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -79,9 +95,9 @@ The phase docs were created from the spec-kit Level-2 structure and kept in PEND
 
 | Decision | Why |
 |----------|-----|
-| Keep a pending summary | The Level-2 validator requires the file and the content must avoid false completion claims |
-| Leave all checks unchecked | No fix or benchmark evidence exists yet |
-| Note the supersession | The re-run will supersede the prior criterion-4 measurement and that intent is recorded in spec.md |
+| P1-3 by removal, not a production guard | Gating the trigger lane requires adding `'trigger'` to the `ChannelName` union + channel sets in `hybrid-search.ts`/`query-router.ts` — §3 Out-of-Scope forbids changing production routing, and a guard risks default-off byte-identity. Removal kills the noise row with zero production change. (Orchestrator's task explicitly offered this option.) |
+| Keep `forceAllChannels: true` for the channel sweep | The ablation needs a full-channel baseline to isolate each lane's marginal contribution — correct there, unlike the per-flag pass. |
+| No flag flip | The two exercised flags either hurt recall or show zero movement on the corrected path; flipping a production memory-retrieval default is high-blast and the orchestrator decides. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -91,9 +107,12 @@ The phase docs were created from the spec-kit Level-2 structure and kept in PEND
 
 | Check | Result |
 |-------|--------|
-| Driver fix | PENDING |
-| Criterion-4 re-run | PENDING |
-| Strict validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/006-review-remediation/001-eval-benchmark-fidelity --strict` |
+| Driver fix | DONE (P1-1 default routing; P1-3 trigger row removed) |
+| Deterministic test | PASS — `tests/retrieval-flag-eval-driver.vitest.ts` (8/8); fails against pre-fix shapes |
+| Typecheck | PASS — `npm run typecheck` exit 0 |
+| Vitest (affected subsystem) | PASS — 48 files / 994 passed + 3 skipped, 0 failures |
+| Criterion-4 re-run | DONE — `/tmp/speckit-retrieval-flag-eval.CORRECTED.json`; no flag flip |
+| Strict validation | PASS — `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/006-review-remediation/001-eval-benchmark-fidelity --strict` → RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -101,5 +120,13 @@ The phase docs were created from the spec-kit Level-2 structure and kept in PEND
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Fix not executed.** This phase defines the remediation contract only; later work must correct the driver and re-run the benchmark before any completion claim.
+1. **Benchmark re-run depends on a live embedder + DB.** The corrected deltas were produced against
+   the local `database/context-index.sqlite` + ollama embedder; reproducing them requires the same
+   live inputs. The driver tolerates a degraded query embedder by dropping the vector lane, so any
+   future re-run must re-confirm vector-lane health (0 query-embedding failures, non-trivial vector
+   ablation) before trusting the numbers.
+2. **P1-3 left a production seam, not a closed gate.** The trigger lane still cannot be ablated through
+   public options; the benchmark stops reporting a misleading row but does not measure the trigger
+   lane's contribution. Doing so would require the (out-of-scope) production `activeChannels.has('trigger')`
+   guard plus `'trigger'` as a routable channel.
 <!-- /ANCHOR:limitations -->

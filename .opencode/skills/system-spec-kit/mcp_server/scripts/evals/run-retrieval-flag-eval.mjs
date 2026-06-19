@@ -156,6 +156,54 @@ const FLAG_SPECS = [
 
 const RUNTIME_FLAG_ENVS = new Set(FLAG_SPECS.map((flag) => flag.env));
 
+// Channels whose lane runs unconditionally inside hybridSearchEnhanced and cannot
+// be turned off through its public options. The trigger lane (exactTriggerSearch)
+// matches the raw query against the stored trigger_phrases column and ignores the
+// triggerPhrases option entirely, so an "ablated" trigger pass is byte-identical
+// to baseline. Sweeping it only manufactures a zero-signal, identical-by-
+// construction delta, so it is excluded from the channel ablation.
+export const UNABLATABLE_CHANNELS = Object.freeze(['trigger']);
+
+// Per-flag deltas must reflect the production default routing path. Letting
+// routeQuery() pick the channel subset (instead of forcing every channel active)
+// is what makes a degree- or summary-only flag measurable on a path that actually
+// carries that lane the way production does. forceAllChannels is therefore NOT set
+// here; per-query overrides (e.g. evaluationMode) are layered on last.
+export function buildPerFlagSearchOptions(recallK, overrides = {}) {
+  return {
+    limit: recallK,
+    useVector: true,
+    useBm25: true,
+    useFts: true,
+    useGraph: true,
+    includeContent: false,
+    ...overrides,
+  };
+}
+
+// The channel sweep is the opposite case: it needs every routable lane active as a
+// common baseline so each single-channel removal isolates that lane's marginal
+// contribution. forceAllChannels stays true here by design. No triggerPhrases lever
+// is passed because it is a no-op against the trigger lane (see UNABLATABLE_CHANNELS).
+export function buildChannelAblationOptions(channelFlags, recallK) {
+  return {
+    limit: recallK,
+    useVector: channelFlags.useVector,
+    useBm25: channelFlags.useBm25,
+    useFts: channelFlags.useFts,
+    useGraph: channelFlags.useGraph,
+    forceAllChannels: true,
+    evaluationMode: true,
+    includeContent: false,
+  };
+}
+
+// Drop lanes that cannot be genuinely disabled so the channel report never carries
+// an identical-by-construction row.
+export function selectAblationChannels(allChannels) {
+  return allChannels.filter((channel) => !UNABLATABLE_CHANNELS.includes(channel));
+}
+
 function moduleUrl(relativePath) {
   return pathToFileURL(path.resolve(relativePath)).href;
 }
@@ -346,38 +394,27 @@ async function main() {
 
   async function search(query, options = {}) {
     const embedding = await getEmbedding(query);
-    const rows = await hybridSearch.hybridSearchEnhanced(query, embedding, {
-      limit: RECALL_K,
-      useVector: true,
-      useBm25: true,
-      useFts: true,
-      useGraph: true,
-      forceAllChannels: true,
-      includeContent: false,
-      ...options,
-    });
+    const rows = await hybridSearch.hybridSearchEnhanced(
+      query,
+      embedding,
+      buildPerFlagSearchOptions(RECALL_K, options),
+    );
     return normalizeSearchResults(rows);
   }
 
   const channelSearchFn = async (query, disabledChannels) => {
     const channelFlags = ablation.toHybridSearchFlags(disabledChannels);
     const embedding = await getEmbedding(query);
-    const rows = await hybridSearch.hybridSearchEnhanced(query, embedding, {
-      limit: RECALL_K,
-      useVector: channelFlags.useVector,
-      useBm25: channelFlags.useBm25,
-      useFts: channelFlags.useFts,
-      useGraph: channelFlags.useGraph,
-      triggerPhrases: channelFlags.useTrigger ? undefined : [],
-      forceAllChannels: true,
-      evaluationMode: true,
-      includeContent: false,
-    });
+    const rows = await hybridSearch.hybridSearchEnhanced(
+      query,
+      embedding,
+      buildChannelAblationOptions(channelFlags, RECALL_K),
+    );
     return normalizeSearchResults(rows);
   };
 
   const channelReport = await ablation.runAblation(channelSearchFn, {
-    channels: ablation.ALL_CHANNELS,
+    channels: selectAblationChannels(ablation.ALL_CHANNELS),
     recallK: RECALL_K,
     alignmentDb: db,
     alignmentDbPath: evalDatabase.dbPath,
@@ -469,7 +506,14 @@ async function main() {
   console.log(JSON.stringify(output, null, 2));
 }
 
-main().catch((error) => {
-  console.error(error instanceof Error ? error.stack : String(error));
-  process.exitCode = 1;
-});
+// Only run the benchmark when invoked as a CLI; importing the module (e.g. from a
+// test that exercises the option builders) must not execute the full eval.
+const invokedDirectly = Boolean(process.argv[1])
+  && import.meta.url === pathToFileURL(process.argv[1]).href;
+
+if (invokedDirectly) {
+  main().catch((error) => {
+    console.error(error instanceof Error ? error.stack : String(error));
+    process.exitCode = 1;
+  });
+}
