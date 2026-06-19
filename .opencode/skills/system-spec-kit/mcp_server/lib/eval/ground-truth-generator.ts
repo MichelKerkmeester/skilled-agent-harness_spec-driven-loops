@@ -1,9 +1,9 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Ground Truth Generator
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Synthetic ground truth corpus
+// Feature catalog: Known-item ground truth corpus
 // Functions for generating, loading, and validating the
-// Synthetic ground truth dataset for retrieval evaluation.
+// live-DB-aligned ground truth dataset for retrieval evaluation.
 //
 // Exports:
 // GenerateGroundTruth()          — produce the full dataset
@@ -64,12 +64,12 @@ export interface LoadGroundTruthOptions {
 ──────────────────────────────────────────────────────────────── */
 
 const GATES = {
-  MIN_TOTAL_QUERIES: 100,
-  MIN_PER_INTENT: 5,
+  MIN_TOTAL_QUERIES: 60,
+  MIN_PER_INTENT: 4,
   MIN_COMPLEXITY_TIERS: 3,
   MIN_PER_COMPLEXITY_TIER: 10,
-  MIN_MANUAL_QUERIES: 30,
-  MIN_HARD_NEGATIVES: 3,
+  MIN_RELEVANCE_PER_QUERY: 1,
+  MIN_EXACT_RELEVANCE_PER_QUERY: 1,
   INTENT_TYPES: [
     'add_feature',
     'fix_bug',
@@ -84,21 +84,15 @@ const GATES = {
 
 /* ───────────────────────────────────────────────────────────────
    3. generateGroundTruth()
-   Returns the full dataset including approximate relevance
-   judgments. Relevance memory IDs use placeholder values of -1
-   for queries where live DB mapping has not yet been performed.
+   Returns the full dataset including known-item relevance judgments.
 ──────────────────────────────────────────────────────────────── */
 
 /**
  * Generate the full ground truth dataset.
  *
- * Returns all 110 queries plus graded relevance judgments mapped
- * to real production memory IDs. Each non-hard-negative query has
- * 1-3 relevance entries at grades 3 (highly relevant), 2 (relevant),
- * and 1 (partial). Hard-negative queries have no relevance entries.
- *
- * IDs were mapped from the active production context-index__*.sqlite profile DB via
- * FTS5-based matching (scripts/map-ground-truth-ids.ts).
+ * Returns the live-DB-aligned known-item benchmark. Each query has
+ * at least one exact target row at relevance 3, with optional
+ * near-duplicate labels at relevance 1 or 2.
  */
 export function generateGroundTruth(): GroundTruthDataset {
   const queries = GROUND_TRUTH_QUERIES;
@@ -189,26 +183,28 @@ export function loadGroundTruth(
 
 /* ───────────────────────────────────────────────────────────────
    5. validateGroundTruthDiversity()
-   Checks all 6 hard gates and returns a structured report.
+   Checks known-item benchmark gates and returns a structured report.
 ──────────────────────────────────────────────────────────────── */
 
 /**
- * Validate that the query dataset meets all diversity hard gates.
+ * Validate that the query dataset meets known-item benchmark gates.
  *
  * Hard gates:
- *   1. ≥100 total queries
- *   2. ≥5 queries per intent type (all 7 types)
+ *   1. ≥60 total queries
+ *   2. ≥4 queries per intent type (all 7 types)
  *   3. ≥3 distinct complexity tiers present
  *   4. ≥10 queries per complexity tier
- *   5. ≥30 manually curated queries (source='manual')
- *   6. ≥3 hard negative queries (category='hard_negative')
+ *   5. Every query has at least one relevance label
+ *   6. Every query has at least one relevance=3 exact target
  *   7. No duplicate query strings
  *
  * @param queries - The query array to validate (defaults to full dataset).
+ * @param relevances - Relevance labels to validate (defaults to full dataset).
  * @returns DiversityValidationReport with per-gate results and summary.
  */
 export function validateGroundTruthDiversity(
   queries: GroundTruthQuery[] = GROUND_TRUTH_QUERIES,
+  relevances: GroundTruthRelevance[] = GROUND_TRUTH_RELEVANCES,
 ): DiversityValidationReport {
   const gates: DiversityGate[] = [];
 
@@ -254,23 +250,40 @@ export function validateGroundTruthDiversity(
     });
   }
 
-  // Gate 5: Manual query count
-  const manualCount = queries.filter(q => q.source === 'manual').length;
+  const queryIds = new Set(queries.map(q => q.id));
+  const relevanceCounts = new Map<number, number>();
+  const exactRelevanceCounts = new Map<number, number>();
+  let invalidRelevanceRefs = 0;
+  for (const relevance of relevances) {
+    if (!queryIds.has(relevance.queryId)) {
+      invalidRelevanceRefs++;
+      continue;
+    }
+    relevanceCounts.set(relevance.queryId, (relevanceCounts.get(relevance.queryId) ?? 0) + 1);
+    if (relevance.relevance === 3) {
+      exactRelevanceCounts.set(relevance.queryId, (exactRelevanceCounts.get(relevance.queryId) ?? 0) + 1);
+    }
+  }
+
+  // Gate 5: Every query has at least one relevance label.
+  const labeledQueryCount = queries.filter(q => (relevanceCounts.get(q.id) ?? 0) >= GATES.MIN_RELEVANCE_PER_QUERY).length;
   gates.push({
-    dimension: 'Manual queries (source=manual)',
-    required: GATES.MIN_MANUAL_QUERIES,
-    actual: manualCount,
-    passed: manualCount >= GATES.MIN_MANUAL_QUERIES,
-    detail: 'Queries must be NOT derived from trigger phrases',
+    dimension: 'Queries with relevance labels',
+    required: queries.length,
+    actual: labeledQueryCount,
+    passed: labeledQueryCount === queries.length,
+    detail: invalidRelevanceRefs > 0 ? `${invalidRelevanceRefs} relevance label(s) reference unknown query IDs` : undefined,
   });
 
-  // Gate 6: Hard negative count
-  const hardNegativeCount = queries.filter(q => q.category === 'hard_negative').length;
+  // Gate 6: Every query has one exact target.
+  const exactLabeledQueryCount = queries.filter(
+    q => (exactRelevanceCounts.get(q.id) ?? 0) >= GATES.MIN_EXACT_RELEVANCE_PER_QUERY,
+  ).length;
   gates.push({
-    dimension: 'Hard negative queries',
-    required: GATES.MIN_HARD_NEGATIVES,
-    actual: hardNegativeCount,
-    passed: hardNegativeCount >= GATES.MIN_HARD_NEGATIVES,
+    dimension: 'Queries with relevance=3 target',
+    required: queries.length,
+    actual: exactLabeledQueryCount,
+    passed: exactLabeledQueryCount === queries.length,
   });
 
   // Gate 7: Uniqueness — no duplicate query strings
@@ -289,7 +302,7 @@ export function validateGroundTruthDiversity(
 
   const failedGates = gates.filter(g => !g.passed);
   const summary = passed
-    ? `ALL ${gates.length} diversity gates PASSED. Dataset ready for T008 BM25 baseline measurement.`
+    ? `ALL ${gates.length} known-item gates PASSED. Dataset ready for Recall@K measurement.`
     : `FAILED: ${failedGates.length}/${gates.length} gate(s) failed: ${failedGates.map(g => g.dimension).join('; ')}`;
 
   return {

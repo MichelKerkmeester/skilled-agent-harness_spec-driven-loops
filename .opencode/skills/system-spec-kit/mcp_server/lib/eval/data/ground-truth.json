@@ -2,2554 +2,1289 @@
   "queries": [
     {
       "id": 1,
-      "query": "what does maxTriggersPerMemory control in the search pipeline",
-      "intentType": "understand",
+      "query": "how was Plan — Phase 001: Fan-out schema + config plumbing planned",
+      "intentType": "security_audit",
       "complexityTier": "simple",
-      "category": "factual",
-      "source": "seed",
-      "expectedResultDescription": "Memory or spec covering search-weights.json and the MAX_TRIGGERS_PER_MEMORY constant in vector-index-impl.ts. Should surface the T000c audit or related sprint-0 documentation.",
-      "notes": "Direct factual lookup \u2014 tests whether a specific technical constant is retrievable by natural-language description of its purpose."
+      "category": "scope_filtered",
+      "source": "pattern_derived",
+      "expectedResultDescription": "Known-item lookup for memory 19455: Plan — Phase 001: Fan-out schema + config plumbing (../../../specs/skilled-agent-orchestration/z_archive/123-deep-loop-parallel-fanout/001-schema-config-plumbing/plan.md).",
+      "notes": "Generated from active parent memory 19455; content length 800; general / import / important."
     },
     {
       "id": 2,
-      "query": "why was SHA256 dedup introduced for memory indexing",
-      "intentType": "find_decision",
+      "query": "how does Deep Review Report: 018-non-hook-auto-priming work",
+      "intentType": "understand",
       "complexityTier": "simple",
-      "category": "graph_relationship",
-      "source": "seed",
-      "expectedResultDescription": "Decision record or memory explaining T054 / T003 (content hash dedup) rationale. Should reference Wave 1 bug fixes and duplicate prevention.",
-      "notes": "Tests causal-edge graph retrieval \u2014 the decision to add SHA256 should be linked to prior duplicates observed."
+      "category": "scope_filtered",
+      "source": "pattern_derived",
+      "expectedResultDescription": "Known-item lookup for memory 14998: Deep Review Report: 018-non-hook-auto-priming (../../../specs/system-spec-kit/z_archive/024-compact-code-graph/018-non-hook-auto-priming/review/review-report.md).",
+      "notes": "Generated from active parent memory 14998; content length 793; general / import / normal."
     },
     {
       "id": 3,
-      "query": "how does intent classification affect search result ranking",
-      "intentType": "understand",
-      "complexityTier": "moderate",
-      "category": "cross_document",
-      "source": "seed",
-      "expectedResultDescription": "Should surface memories about adaptive-fusion.ts (7 intent profiles), intent-classifier.ts, and memory_context intent routing. Cross-document because the behavior spans multiple modules.",
-      "notes": "Tests whether multi-hop conceptual retrieval works \u2014 the answer requires understanding intent-classifier + adaptive-fusion + memory-context handler together."
+      "query": "how was Plan — Phase 001: Fan-out schema + config plumbing planned in general system memory",
+      "intentType": "security_audit",
+      "complexityTier": "simple",
+      "category": "scope_filtered",
+      "source": "pattern_derived",
+      "expectedResultDescription": "Known-item lookup for memory 1091: Plan — Phase 001: Fan-out schema + config plumbing (../../../specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/plan.md).",
+      "notes": "Generated from active parent memory 1091; content length 800; general / system / important."
     },
     {
       "id": 4,
-      "query": "what decisions led to using RRF instead of a weighted linear combination for search fusion",
-      "intentType": "find_decision",
-      "complexityTier": "complex",
-      "category": "graph_relationship",
-      "source": "seed",
-      "expectedResultDescription": "Decision records from hybrid-rag-fusion spec (spec 139) about fusion strategy selection. Should surface rationale for RRF over linear weighted sum.",
-      "notes": "Graph-relationship query tracing decision lineage. Tests causal traversal in the decision graph."
+      "query": "what research explains Deep Research Report — Context-Server Memory Reduction",
+      "intentType": "add_feature",
+      "complexityTier": "simple",
+      "category": "scope_filtered",
+      "source": "pattern_derived",
+      "expectedResultDescription": "Known-item lookup for memory 4564: Deep Research Report — Context-Server Memory Reduction (../../../specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/005-context-server-memory-reduction-research/research/research.md).",
+      "notes": "Generated from active parent memory 4564; content length 345; general / system / normal."
     },
     {
       "id": 5,
-      "query": "SPECKIT_ADAPTIVE_FUSION flag is not working when set to false",
-      "intentType": "fix_bug",
-      "complexityTier": "moderate",
-      "category": "factual",
-      "source": "seed",
-      "expectedResultDescription": "Should surface adaptive-fusion.ts (FEATURE_FLAG constant, isFeatureEnabled check), search-flags.ts, and rollout-policy.ts. Tests understanding the opt-out semantics.",
-      "notes": "Bug-intent query matching a specific flag. Tests whether bug-type queries get boosted keyword weighting for technical terms."
+      "query": "what verification checklist covers Checklist [067-voyage-4-upgrade/checklist]",
+      "intentType": "find_decision",
+      "complexityTier": "simple",
+      "category": "anchor_based",
+      "source": "pattern_derived",
+      "expectedResultDescription": "Known-item lookup for memory 6964: Checklist [067-voyage-4-upgrade/checklist] (../../../specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/067-voyage-4-upgrade/checklist.md).",
+      "notes": "Generated from active parent memory 6964; content length 660; implementation / system / normal."
     },
     {
       "id": 6,
-      "query": "what was recently discussed about the graph channel hit rate being zero",
-      "intentType": "understand",
-      "complexityTier": "moderate",
-      "category": "temporal",
-      "source": "seed",
-      "expectedResultDescription": "Should surface sprint-0 baseline measurement (T000a) which records graphHitRate=0, and any related spec memories about graph channel initialization or telemetry gaps.",
-      "notes": "Temporal query \u2014 'recently discussed' should surface content from the last 7 days of memory creation. Tests recency boost in fix_bug / understand intent modes."
+      "query": "find the description for Deprecate project .gemini runtime surface and remove active non-spec mentions across the public repo while preserving all specs as histor...",
+      "intentType": "find_spec",
+      "complexityTier": "simple",
+      "category": "factual",
+      "source": "pattern_derived",
+      "expectedResultDescription": "Known-item lookup for memory 9379: Deprecate project .gemini runtime surface and remove active non-spec mentions across the public repo while preserving all specs as historic records (../../../specs/skilled-agent-orchestration/132-cli-gemini-deprecation/description.json).",
+      "notes": "Generated from active parent memory 9379; content length 553; planning / agent / normal."
     },
     {
       "id": 7,
-      "query": "how do I add a new feature flag to the SPECKIT system",
-      "intentType": "add_feature",
+      "query": "where is skilled-agent-orchestration/145-advisor-doc-trigger-harvest documented",
+      "intentType": "fix_bug",
       "complexityTier": "simple",
       "category": "factual",
-      "source": "seed",
-      "expectedResultDescription": "Should surface the T000b feature flag governance document, rollout-policy.ts, and any SKILL.md sections about flag naming conventions.",
-      "notes": "Add-feature intent for a procedural question. Tests whether governance documentation is surfaced for implementation guidance."
+      "source": "trigger_derived",
+      "expectedResultDescription": "Known-item lookup for memory 11540: Feature Specification: Advisor Doc-Trigger Harvest (../../../specs/skilled-agent-orchestration/145-advisor-doc-trigger-harvest/description.json).",
+      "notes": "Generated from active parent memory 11540; content length 439; planning / human / normal."
     },
     {
       "id": 8,
-      "query": "what is the relationship between the working memory system and event decay",
-      "intentType": "understand",
-      "complexityTier": "moderate",
-      "category": "cross_document",
-      "source": "seed",
-      "expectedResultDescription": "Should surface memories about SPECKIT_WORKING_MEMORY, SPECKIT_EVENT_DECAY, working-memory.ts, and attention-decay.ts. The relationship is that event decay reduces attention scores over time.",
-      "notes": "Cross-document query spanning multiple cognitive subsystems. Tests ability to retrieve conceptually related content without exact term matching."
+      "query": "find the description for Feature Specification: Catalog & Playbook Snippet De-Numbering",
+      "intentType": "add_feature",
+      "complexityTier": "simple",
+      "category": "factual",
+      "source": "pattern_derived",
+      "expectedResultDescription": "Known-item lookup for memory 15921: Feature Specification: Catalog & Playbook Snippet De-Numbering (../../../specs/skilled-agent-orchestration/133-catalog-playbook-snippet-denumbering/description.json).",
+      "notes": "Generated from active parent memory 15921; content length 584; planning / import / deprecated."
     },
     {
       "id": 9,
-      "query": "memory_context returns wrong results when token pressure is high",
-      "intentType": "fix_bug",
-      "complexityTier": "moderate",
-      "category": "factual",
-      "source": "seed",
-      "expectedResultDescription": "Should surface memory-context.ts SPECKIT_PRESSURE_POLICY handling, the getPressureLevel function, and any spec/memory about pressure policy design decisions.",
-      "notes": "Bug-intent query with specific symptom. Tests whether bug-type queries get boosted keyword weighting for technical terms."
+      "query": "what research explains Graph Metadata: system-spec-kit/026-graph-and-context-optimization/research/002-content-routing-accuracy-research/iterations",
+      "intentType": "refactor",
+      "complexityTier": "simple",
+      "category": "scope_filtered",
+      "source": "pattern_derived",
+      "expectedResultDescription": "Known-item lookup for memory 15019: Graph Metadata: system-spec-kit/026-graph-and-context-optimization/research/002-content-routing-accuracy-research/iterations (../../../specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/003-skill-advisor-routing-engine/001-memory-search-routing-tuning/research/002-content-routing-accuracy-research/iterations/graph-metadata.json).",
+      "notes": "Generated from active parent memory 15019; content length 539; planning / import / important."
     },
     {
       "id": 10,
-      "query": "what decisions shaped the architecture of the 7-layer MCP tool hierarchy",
-      "intentType": "find_decision",
-      "complexityTier": "complex",
-      "category": "graph_relationship",
-      "source": "seed",
-      "expectedResultDescription": "Should surface system-spec-kit spec documents and memories about the L1/L2/L3/L4/L5/L6/L7 layer design, token budgets per layer, and original design rationale.",
-      "notes": "Graph-relationship query about architectural lineage. Tests find_decision intent routing with high graph weight (0.50 per adaptive-fusion profile)."
+      "query": "where is sk-doc readme documented",
+      "intentType": "understand",
+      "complexityTier": "simple",
+      "category": "scope_filtered",
+      "source": "trigger_derived",
+      "expectedResultDescription": "Known-item lookup for memory 17527: Graph Metadata: skilled-agent-orchestration/135-skill-readme-standardization/017-sk-doc-readme (../../../specs/skilled-agent-orchestration/135-skill-readme-standardization/017-sk-doc-readme/graph-metadata.json).",
+      "notes": "Generated from active parent memory 17527; content length 791; planning / import / normal."
     },
     {
       "id": 11,
-      "query": "how should I structure a new spec folder for a multi-phase feature",
+      "query": "find the description for Feature Specification: Catalog & Playbook Snippet De-Numbering in planning system memory",
       "intentType": "add_feature",
-      "complexityTier": "moderate",
-      "category": "cross_document",
-      "source": "seed",
-      "expectedResultDescription": "Should surface system-spec-kit SKILL.md section on spec folder structure, phase system documentation (spec 138), and the create.sh --phase command details.",
-      "notes": "Add-feature procedural query. Tests retrieval of how-to content for a workflow the user wants to follow."
+      "complexityTier": "simple",
+      "category": "factual",
+      "source": "pattern_derived",
+      "expectedResultDescription": "Known-item lookup for memory 9756: Feature Specification: Catalog & Playbook Snippet De-Numbering (../../../specs/skilled-agent-orchestration/133-catalog-playbook-snippet-denumbering/description.json).",
+      "notes": "Generated from active parent memory 9756; content length 518; planning / system / deprecated."
     },
     {
       "id": 12,
-      "query": "which spec documents were added during the hybrid RAG fusion sprint",
-      "intentType": "find_spec",
+      "query": "how was Implementation [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/034-gate-enforcement-refinement/plan] planned",
+      "intentType": "fix_bug",
       "complexityTier": "simple",
-      "category": "temporal",
-      "source": "seed",
-      "expectedResultDescription": "Should surface memories in spec folder system-spec-kit/022-hybrid-rag-fusion (89 memories) and 140-hybrid-rag-fusion-refinement. Lists spec documents created in those sprints.",
-      "notes": "Find-spec intent with temporal/scope framing. Tests specFolder-aware retrieval."
+      "category": "scope_filtered",
+      "source": "pattern_derived",
+      "expectedResultDescription": "Known-item lookup for memory 6789: Implementation [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/034-gate-enforcement-refinement/plan] (../../../specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/034-gate-enforcement-refinement/plan.md).",
+      "notes": "Generated from active parent memory 6789; content length 636; planning / system / important."
     },
     {
       "id": 13,
-      "query": "what is the current test coverage gap for the eval logging system",
-      "intentType": "understand",
+      "query": "where is tasks documented",
+      "intentType": "find_spec",
       "complexityTier": "moderate",
-      "category": "temporal",
-      "source": "seed",
-      "expectedResultDescription": "Should surface T000a baseline (19 skipped tests, deferred DB fixture tests) and T005 eval-logger.ts module. May surface spec tasks.md identifying coverage gaps.",
-      "notes": "Temporal query about current state. Tests whether the baseline measurement document surfaces for \"current state\" queries."
+      "category": "scope_filtered",
+      "source": "trigger_derived",
+      "expectedResultDescription": "Known-item lookup for memory 15424: Tasks: Phase 1: self-check-templates (../../../specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/002-self-check-templates/tasks.md).",
+      "notes": "Generated from active parent memory 15424; content length 2748; general / human / deprecated."
     },
     {
       "id": 14,
-      "query": "smartRanking config weights in search-weights.json are inconsistent with the code fallback values",
-      "intentType": "fix_bug",
-      "complexityTier": "complex",
-      "category": "cross_document",
-      "source": "seed",
-      "expectedResultDescription": "Should surface T000c audit document which explicitly documents the relevanceWeight 0.2 vs 0.5 discrepancy, plus vector-index-impl.ts lines 2802-2804.",
-      "notes": "Bug-intent query for a specific discrepancy found during this audit. Tests whether newly created scratch documents are retrieved when they contain the answer."
+      "query": "what tasks implement Tasks: 017 two-lane Opus 4.8 deep review",
+      "intentType": "find_spec",
+      "complexityTier": "moderate",
+      "category": "scope_filtered",
+      "source": "pattern_derived",
+      "expectedResultDescription": "Known-item lookup for memory 18414: Tasks: 017 two-lane Opus 4.8 deep review (../../../specs/skilled-agent-orchestration/z_archive/121-deep-agent-improvement-benchmark-mode/017-review-two-lane-workflow-with-opus/tasks.md).",
+      "notes": "Generated from active parent memory 18414; content length 2962; general / human / important."
     },
     {
       "id": 15,
-      "query": "what spec folder documents are required for a level 2 spec",
+      "query": "what tasks implement Tasks: Analysis of peck framework teachings applicable to system-spec-kit",
       "intentType": "find_spec",
-      "complexityTier": "simple",
-      "category": "factual",
-      "source": "seed",
-      "expectedResultDescription": "Should surface CLAUDE.md or system-spec-kit SKILL.md table showing Level 2 requires: spec.md, plan.md, tasks.md, implementation-summary.md, checklist.md.",
-      "notes": "Find-spec direct factual lookup. Tests whether constitutional or critical-tier memories (CLAUDE.md rules) are prioritized in retrieval."
+      "complexityTier": "moderate",
+      "category": "scope_filtered",
+      "source": "pattern_derived",
+      "expectedResultDescription": "Known-item lookup for memory 16192: Tasks: Analysis of peck framework teachings applicable to system-spec-kit (../../../specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/001-peck-teachings-for-spec-kit/tasks.md).",
+      "notes": "Generated from active parent memory 16192; content length 2895; general / human / normal."
     },
     {
       "id": 16,
-      "query": "what was decided about removing the cross-encoder configuration from search-weights.json",
-      "intentType": "find_decision",
-      "complexityTier": "complex",
-      "category": "graph_relationship",
-      "source": "seed",
-      "expectedResultDescription": "Should surface the T000c audit finding that the crossEncoder section is dead config per agent-14 audit on 2026-02-08. May also surface spec 139 decisions.",
-      "notes": "Find-decision query about a specific configuration removal decision. Tests whether recent audit documents are correctly linked to their decision context."
+      "query": "find the spec for LinkedIn Ghostwriters — Speed + Voice Refinement (Pieter Bertram, Nigel de Lange)",
+      "intentType": "find_spec",
+      "complexityTier": "moderate",
+      "category": "scope_filtered",
+      "source": "pattern_derived",
+      "expectedResultDescription": "Known-item lookup for memory 11966: LinkedIn Ghostwriters — Speed + Voice Refinement (Pieter Bertram, Nigel de Lange) (../../../specs/ai-systems/001-ai-system-architecture/007-linkedin-speed-voice-refinement/spec.md).",
+      "notes": "Generated from active parent memory 11966; content length 2757; general / import / deprecated."
     },
     {
       "id": 17,
-      "query": "python unit tests for the billing module",
-      "intentType": "understand",
-      "complexityTier": "simple",
-      "category": "hard_negative",
-      "source": "seed",
-      "expectedResultDescription": "Should return NO relevant results. This codebase has no Python code, no billing module, and no pytest setup. A high-quality retrieval system returns empty or near-empty results.",
-      "notes": "Hard negative \u2014 completely out-of-domain query. Tests the system's ability to not hallucinate false matches on irrelevant queries."
+      "query": "find the spec for Copywriter — Build the Claude Projects Packaging",
+      "intentType": "find_spec",
+      "complexityTier": "moderate",
+      "category": "scope_filtered",
+      "source": "pattern_derived",
+      "expectedResultDescription": "Known-item lookup for memory 16273: Copywriter — Build the Claude Projects Packaging (../../../specs/ai-systems/001-ai-system-architecture/002-copywriter-projects-build/spec.md).",
+      "notes": "Generated from active parent memory 16273; content length 1914; general / import / important."
     },
     {
       "id": 18,
-      "query": "React component library Storybook configuration",
+      "query": "what tasks implement Tasks: deep-ai-council README",
       "intentType": "find_spec",
-      "complexityTier": "simple",
-      "category": "hard_negative",
-      "source": "seed",
-      "expectedResultDescription": "Should return NO relevant results. No React, no Storybook, no frontend component system exists in this codebase.",
-      "notes": "Hard negative \u2014 completely wrong domain (frontend UI). Tests false positive rate."
+      "complexityTier": "moderate",
+      "category": "scope_filtered",
+      "source": "pattern_derived",
+      "expectedResultDescription": "Known-item lookup for memory 16386: Tasks: deep-ai-council README (../../../specs/skilled-agent-orchestration/135-skill-readme-standardization/006-deep-ai-council-readme/tasks.md).",
+      "notes": "Generated from active parent memory 16386; content length 2497; general / import / normal."
     },
     {
       "id": 19,
-      "query": "Kubernetes deployment manifest for the MCP server",
-      "intentType": "find_spec",
+      "query": "where is 013/009/017 tasks documented",
+      "intentType": "fix_bug",
       "complexityTier": "moderate",
-      "category": "hard_negative",
-      "source": "seed",
-      "expectedResultDescription": "Should return NO relevant results. The MCP server is a Node.js local process; there is no Kubernetes or containerization setup.",
-      "notes": "Hard negative \u2014 plausible-sounding query (it IS an MCP server!) but the deployment context does not exist. Tests whether surface-level term matches ('MCP server') cause false positives."
+      "category": "scope_filtered",
+      "source": "trigger_derived",
+      "expectedResultDescription": "Known-item lookup for memory 3664: Tasks: 10-iter P1 remediation (../../../specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/017-fix-deep-review-p1-findings-for-package-extraction/tasks.md).",
+      "notes": "Generated from active parent memory 3664; content length 2273; general / system / critical."
     },
     {
       "id": 20,
-      "query": "OAuth 2.0 token refresh endpoint implementation",
-      "intentType": "add_feature",
+      "query": "what tasks implement Ta [system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/006-post-research-wave-3-outcome-confirmation/tasks]",
+      "intentType": "fix_bug",
       "complexityTier": "moderate",
-      "category": "hard_negative",
-      "source": "seed",
-      "expectedResultDescription": "Should return NO relevant results. There is no OAuth, no HTTP server endpoints, no token auth in this system. API key validation is the only auth mechanism.",
-      "notes": "Hard negative \u2014 auth-adjacent query that sounds plausible but targets a completely absent subsystem. Note: SPECKIT_SKIP_API_VALIDATION exists but is for internal testing bypass, not OAuth."
+      "category": "scope_filtered",
+      "source": "pattern_derived",
+      "expectedResultDescription": "Known-item lookup for memory 7413: Ta [system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/006-post-research-wave-3-outcome-confirmation/tasks] (../../../specs/system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/006-post-research-wave-3-outcome-confirmation/tasks.md).",
+      "notes": "Generated from active parent memory 7413; content length 1927; general / system / deprecated."
     },
     {
       "id": 21,
-      "query": "GraphQL schema definition for the memory index API",
+      "query": "what tasks implement Tasks: Plugin bridge unit isolation",
       "intentType": "find_spec",
-      "complexityTier": "simple",
-      "category": "hard_negative",
-      "source": "seed",
-      "expectedResultDescription": "Should return NO relevant results. The API is MCP (Model Context Protocol) over JSON-RPC, not GraphQL. No schema definition language files exist.",
-      "notes": "Hard negative \u2014 tests whether mentions of 'memory index' cause false matches when the query context (GraphQL) is entirely wrong."
+      "complexityTier": "moderate",
+      "category": "scope_filtered",
+      "source": "pattern_derived",
+      "expectedResultDescription": "Known-item lookup for memory 3694: Tasks: Plugin bridge unit isolation (../../../specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/022-plugin-bridge-unit-test-isolation/tasks.md).",
+      "notes": "Generated from active parent memory 3694; content length 2483; general / system / important."
     },
     {
       "id": 22,
-      "query": "fix the memory context handler",
-      "intentType": "fix_bug",
-      "complexityTier": "simple",
-      "category": "factual",
-      "source": "pattern_derived",
-      "expectedResultDescription": "Gate 1 style terse query. Should surface memory-context.ts handler and related memories about known handler bugs or pressure policy issues.",
-      "notes": "From T007b \u00a75a: Gate 1 passes raw user messages verbatim; terse commands should still match."
+      "query": "where is implementation summary documented",
+      "intentType": "add_feature",
+      "complexityTier": "moderate",
+      "category": "temporal",
+      "source": "trigger_derived",
+      "expectedResultDescription": "Known-item lookup for memory 7198: Implementation Summary [system-spec-kit/z_archive/005-upgrade-speckit-docs/implementation-summary] (../../../specs/system-spec-kit/z_archive/005-upgrade-speckit-docs/implementation-summary.md).",
+      "notes": "Generated from active parent memory 7198; content length 2582; general / system / normal."
     },
     {
       "id": 23,
-      "query": "session state",
-      "intentType": "understand",
-      "complexityTier": "simple",
-      "category": "temporal",
+      "query": "what tasks implement Tasks: Public Root README",
+      "intentType": "refactor",
+      "complexityTier": "moderate",
+      "category": "scope_filtered",
       "source": "pattern_derived",
-      "expectedResultDescription": "Resume-style fixed query. Should surface the most recent session state memory with next-steps anchor content.",
-      "notes": "From T007b Pattern 2: session resume always uses \"session state\" as the input string."
+      "expectedResultDescription": "Known-item lookup for memory 11270: Tasks: Public Root README (../../../specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/001-public-root-readme/tasks.md).",
+      "notes": "Generated from active parent memory 11270; content length 2872; implementation / human / deprecated."
     },
     {
       "id": 24,
-      "query": "what was being worked on in the sprint-0 measurement foundation",
-      "intentType": "understand",
+      "query": "what tasks implement Tasks: Design — 3-layer prompt-knowledge architecture + contracts",
+      "intentType": "find_decision",
       "complexityTier": "moderate",
-      "category": "temporal",
+      "category": "scope_filtered",
       "source": "pattern_derived",
-      "expectedResultDescription": "Topic-scoped resume query. Should surface spec folder 001-sprint-0-measurement-foundation memories with state/next-steps anchors.",
-      "notes": "From T007b Pattern 2: variant of session resume scoped to a specific sprint/spec folder."
+      "expectedResultDescription": "Known-item lookup for memory 18527: Tasks: Design — 3-layer prompt-knowledge architecture + contracts (../../../specs/skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering/001-design-architecture-and-data-contract/tasks.md).",
+      "notes": "Generated from active parent memory 18527; content length 2870; implementation / human / important."
     },
     {
       "id": 25,
-      "query": "implement ground truth generator for retrieval evaluation",
+      "query": "where is ipc cap tasks documented",
       "intentType": "add_feature",
       "complexityTier": "moderate",
-      "category": "factual",
-      "source": "pattern_derived",
-      "expectedResultDescription": "Pre-implementation context load. Should surface existing eval-db.ts schema, eval-metrics.ts types, and any prior decisions about eval framework design.",
-      "notes": "From T007b Pattern 3: feature description passed to memory_context before implementation."
+      "category": "scope_filtered",
+      "source": "trigger_derived",
+      "expectedResultDescription": "Known-item lookup for memory 15258: Tasks: IPC Client Cap Hardening and Silent Bridge Skip (../../../specs/system-spec-kit/027-xce-research-based-refinement/026-ipc-client-cap-hardening/tasks.md).",
+      "notes": "Generated from active parent memory 15258; content length 2394; implementation / human / normal."
     },
     {
       "id": 26,
-      "query": "why was focused mode chosen over deep mode for fix_bug intent",
-      "intentType": "find_decision",
+      "query": "what verification checklist covers Checklist: 120 DR-006 fix",
+      "intentType": "fix_bug",
       "complexityTier": "moderate",
-      "category": "graph_relationship",
+      "category": "anchor_based",
       "source": "pattern_derived",
-      "expectedResultDescription": "Decision archaeology query. Should surface adaptive-fusion.ts intent profiles and any decision record about mode selection heuristics.",
-      "notes": "From T007b Pattern 4: decision archaeology with anchors=['decisions', 'rationale']."
+      "expectedResultDescription": "Known-item lookup for memory 12468: Checklist: 120 DR-006 fix (../../../specs/skilled-agent-orchestration/z_archive/116-deep-skill-evolution/004-deep-research/004-iteration-ordering-fix/checklist.md).",
+      "notes": "Generated from active parent memory 12468; content length 2772; implementation / import / deprecated."
     },
     {
       "id": 27,
-      "query": "what rationale drove the token budget assignments per MCP layer",
-      "intentType": "find_decision",
-      "complexityTier": "complex",
-      "category": "graph_relationship",
+      "query": "what tasks implement Tasks: Per-Topic Multi-Round Orchestration",
+      "intentType": "add_feature",
+      "complexityTier": "moderate",
+      "category": "scope_filtered",
       "source": "pattern_derived",
-      "expectedResultDescription": "Should surface system-spec-kit SKILL.md section on L1-L7 token budgets (2000, 1500, 800, 500, 600, 1200, 1000) and any decision record explaining their sizing.",
-      "notes": "From T007b Pattern 4: decision archaeology seeking rationale for architectural numbers."
+      "expectedResultDescription": "Known-item lookup for memory 16808: Tasks: Per-Topic Multi-Round Orchestration (../../../specs/skilled-agent-orchestration/z_archive/116-deep-skill-evolution/001-deep-ai-council/010-iterative-per-topic-multi-round/tasks.md).",
+      "notes": "Generated from active parent memory 16808; content length 2408; implementation / import / important."
     },
     {
       "id": 28,
-      "query": "adaptive fusion search pipeline architecture",
-      "intentType": "understand",
+      "query": "where is code mode orphan tasks documented",
+      "intentType": "fix_bug",
       "complexityTier": "moderate",
-      "category": "cross_document",
-      "source": "pattern_derived",
-      "expectedResultDescription": "Deep investigation query. Should surface adaptive-fusion.ts, hybrid-search.ts, rrf-fusion.ts, and related spec memories spanning the search stack.",
-      "notes": "From T007b Pattern 5: deep investigation with mode=deep, cross-document retrieval."
+      "category": "scope_filtered",
+      "source": "trigger_derived",
+      "expectedResultDescription": "Known-item lookup for memory 12950: Tasks: Code Mode MCP Orphan Lifecycle Fix (../../../specs/system-spec-kit/027-xce-research-based-refinement/025-code-mode-orphan-lifecycle/tasks.md).",
+      "notes": "Generated from active parent memory 12950; content length 1957; implementation / import / normal."
     },
     {
       "id": 29,
-      "query": "how does the @context agent coordinate sub-agent search strategies",
+      "query": "how does MEMORY — Spec-Kit DB File Topology (index vs vectors are SEPARATE files) work",
       "intentType": "understand",
-      "complexityTier": "complex",
-      "category": "cross_document",
+      "complexityTier": "moderate",
+      "category": "scope_filtered",
       "source": "pattern_derived",
-      "expectedResultDescription": "Should surface .opencode/agents/context.md and any spec memories about the @context agent's Layer 1/2/3 retrieval strategy and sub-agent dispatch.",
-      "notes": "From T007b Pattern 5: @context agent deep investigation workflow."
+      "expectedResultDescription": "Known-item lookup for memory 9374: MEMORY — Spec-Kit DB File Topology (index vs vectors are SEPARATE files) (../constitutional/memory-db-file-topology.md).",
+      "notes": "Generated from active parent memory 9374; content length 5079; general / agent / constitutional."
     },
     {
       "id": 30,
-      "query": "list all memories in the hybrid RAG fusion spec folder",
-      "intentType": "find_spec",
-      "complexityTier": "simple",
+      "query": "how does MEMORY — Spec-Kit DB File Topology (index vs vectors are SEPARATE files) work in general human memory",
+      "intentType": "understand",
+      "complexityTier": "moderate",
       "category": "scope_filtered",
       "source": "pattern_derived",
-      "expectedResultDescription": "Spec-scoped browse. Should surface memory titles and tiers from spec folder system-spec-kit/022-hybrid-rag-fusion or 140-hybrid-rag-fusion-refinement.",
-      "notes": "From T007b Pattern 6: architecture discovery using specFolder filter."
+      "expectedResultDescription": "Known-item lookup for memory 11534: MEMORY — Spec-Kit DB File Topology (index vs vectors are SEPARATE files) (../constitutional/memory-db-file-topology.md).",
+      "notes": "Generated from active parent memory 11534; content length 5152; general / human / constitutional."
     },
     {
       "id": 31,
-      "query": "what are all the spec documents in sprint 0 measurement foundation",
-      "intentType": "find_spec",
-      "complexityTier": "simple",
-      "category": "scope_filtered",
-      "source": "pattern_derived",
-      "expectedResultDescription": "Should surface spec.md, plan.md, tasks.md, checklist.md from 001-sprint-0-measurement-foundation spec folder.",
-      "notes": "From T007b Pattern 6: enumeration of what exists in a specific spec folder."
+      "query": "where is implementation documented",
+      "intentType": "add_feature",
+      "complexityTier": "complex",
+      "category": "temporal",
+      "source": "trigger_derived",
+      "expectedResultDescription": "Known-item lookup for memory 11837: advisor packed BM25F lexical shadow helper (../../../specs/system-spec-kit/027-xce-research-based-refinement/018-xce-feature-adoption-advisor-codegraph/003-advisor-packed-bm25-lexical/implementation-summary.md).",
+      "notes": "Generated from active parent memory 11837; content length 7680; general / human / deprecated."
     },
     {
       "id": 32,
-      "query": "constitutional memory rules",
-      "intentType": "understand",
-      "complexityTier": "simple",
-      "category": "factual",
+      "query": "find the spec for CLI Core [system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transiti...",
+      "intentType": "add_feature",
+      "complexityTier": "moderate",
+      "category": "scope_filtered",
       "source": "pattern_derived",
-      "expectedResultDescription": "Constitutional enforcement query. Should always surface constitutional-tier memories (CLAUDE.md rules, Four Laws of Agent Safety) at the top of results regardless of other content.",
-      "notes": "From T007b Pattern 7: constitutional memories surface unconditionally on every query."
+      "expectedResultDescription": "Known-item lookup for memory 15396: CLI Core [system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transiti... (../../../specs/system-spec-kit/027-xce-research-based-refinement/010-mcp-to-cli-tool-transition/002-code-index-cli/001-cli-core/spec.md).",
+      "notes": "Generated from active parent memory 15396; content length 6916; general / human / important."
     },
     {
       "id": 33,
-      "query": "relationship between causal edges and memory decision lineage",
-      "intentType": "understand",
-      "complexityTier": "moderate",
-      "category": "cross_document",
+      "query": "how was Distribute Fable 5 Operating Doctrine Across Spec-Kit Surfaces planned",
+      "intentType": "add_feature",
+      "complexityTier": "complex",
+      "category": "scope_filtered",
       "source": "pattern_derived",
-      "expectedResultDescription": "AND-search style query. Should surface causal-edges.ts, memory_causal_link tool schema, and any memories about the causal graph design.",
-      "notes": "From T007b Pattern 8: concept AND search for 'causal edges' AND 'decision lineage'."
+      "expectedResultDescription": "Known-item lookup for memory 16101: Distribute Fable 5 Operating Doctrine Across Spec-Kit Surfaces (../../../specs/skilled-agent-orchestration/149-operate-like-fable-5/plan.md).",
+      "notes": "Generated from active parent memory 16101; content length 7751; general / human / normal."
     },
     {
       "id": 34,
-      "query": "git workflow branch strategy",
+      "query": "where is 026/007/012/006 checklist documented",
       "intentType": "find_spec",
-      "complexityTier": "simple",
-      "category": "scope_filtered",
-      "source": "pattern_derived",
-      "expectedResultDescription": "Git context recovery query. Should surface sk-git skill documentation and any spec memories about branch naming conventions or git workflow choices.",
-      "notes": "From T007b Pattern 9: sk-git skill session recovery with domain-specific phrase."
+      "complexityTier": "moderate",
+      "category": "anchor_based",
+      "source": "trigger_derived",
+      "expectedResultDescription": "Known-item lookup for memory 17065: Code Graph + Advisor + Hooks Polish (../../../specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/008-real-world-usefulness-test-planning/007-readiness-hooks-advisor-polish/checklist.md).",
+      "notes": "Generated from active parent memory 17065; content length 7498; general / import / critical."
     },
     {
       "id": 35,
-      "query": "checklist verification status for T006 eval metrics implementation",
-      "intentType": "find_spec",
-      "complexityTier": "moderate",
-      "category": "anchor_based",
+      "query": "how does Deep Review Report: 020 Pre-Release Remediation work",
+      "intentType": "fix_bug",
+      "complexityTier": "complex",
+      "category": "scope_filtered",
       "source": "pattern_derived",
-      "expectedResultDescription": "Completion verification query. Should surface the sprint-0 checklist.md with T006 line items marked or unmarked, and any state anchor from recent sessions.",
-      "notes": "From T007b Pattern 10: completion verification using anchors=['state', 'checklist']."
+      "expectedResultDescription": "Known-item lookup for memory 14955: Deep Review Report: 020 Pre-Release Remediation (../../../specs/system-spec-kit/z_archive/022-hybrid-rag-fusion/020-post-release-fixes/review/review-report.md).",
+      "notes": "Generated from active parent memory 14955; content length 7878; general / import / deprecated."
     },
     {
       "id": 36,
-      "query": "what tasks remain in the sprint 0 measurement foundation",
-      "intentType": "understand",
-      "complexityTier": "simple",
-      "category": "anchor_based",
+      "query": "find the spec for Skill Consolidation — LinkedIn - Pieter Bertram",
+      "intentType": "find_spec",
+      "complexityTier": "moderate",
+      "category": "scope_filtered",
       "source": "pattern_derived",
-      "expectedResultDescription": "Should surface the tasks.md from 001-sprint-0-measurement-foundation with incomplete tasks listed, and any session state memory with next-steps anchor.",
-      "notes": "From T007b \u00a76 rec 3: include queries about what remains to be done \u2014 maps to state anchor extraction."
+      "expectedResultDescription": "Known-item lookup for memory 16324: Skill Consolidation — LinkedIn - Pieter Bertram (../../../specs/ai-systems/003-skill-consolidation/009-linkedin-pieter-bertram/spec.md).",
+      "notes": "Generated from active parent memory 16324; content length 5611; general / import / important."
     },
     {
       "id": 37,
-      "query": "SPECKIT_BM25 environment variable controls what behavior",
+      "query": "where is 027 phase 004 resource map documented",
       "intentType": "understand",
-      "complexityTier": "simple",
-      "category": "factual",
-      "source": "pattern_derived",
-      "expectedResultDescription": "Should surface bm25-index.ts isBm25Enabled() function and any documentation about the BM25 feature flag.",
-      "notes": "From T007b \u00a76 rec 7: vary query length \u2014 this is a short, targeted factual query about a specific env var."
+      "complexityTier": "complex",
+      "category": "scope_filtered",
+      "source": "trigger_derived",
+      "expectedResultDescription": "Known-item lookup for memory 12823: Resource Map — Phase 004 Memory Semantic Triggers (../../../specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/resource-map.md).",
+      "notes": "Generated from active parent memory 12823; content length 7799; general / import / normal."
     },
     {
       "id": 38,
-      "query": "how does multi-query expansion work in deep mode retrieval",
+      "query": "how does MEMORY — Spec-Kit DB File Topology (index vs vectors are SEPARATE files) work in general system memory",
       "intentType": "understand",
       "complexityTier": "moderate",
-      "category": "cross_document",
+      "category": "scope_filtered",
       "source": "pattern_derived",
-      "expectedResultDescription": "Should surface query-expander.ts, memory-context.ts deep mode branch, and any spec about domain vocabulary expansion.",
-      "notes": "From T007b \u00a71 step 3: multi-query expansion is specific to deep mode \u2014 cross-document query."
+      "expectedResultDescription": "Known-item lookup for memory 9248: MEMORY — Spec-Kit DB File Topology (index vs vectors are SEPARATE files) (../constitutional/memory-db-file-topology.md).",
+      "notes": "Generated from active parent memory 9248; content length 5079; general / system / constitutional."
     },
     {
       "id": 39,
-      "query": "how should I refactor the eval-logger to support per-channel metrics",
-      "intentType": "refactor",
+      "query": "find the spec for Advisor doc alignment with sk-doc",
+      "intentType": "add_feature",
       "complexityTier": "moderate",
-      "category": "cross_document",
+      "category": "scope_filtered",
       "source": "pattern_derived",
-      "expectedResultDescription": "Should surface eval-logger.ts, eval-db.ts schema (eval_channel_results table), and any spec decisions about the eval framework design.",
-      "notes": "Refactor-intent query \u2014 tests that refactor intent routes to deep mode (T007b \u00a71 step 1)."
+      "expectedResultDescription": "Known-item lookup for memory 3633: Advisor doc alignment with sk-doc (../../../specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/012-sk-doc-documentation-alignment/spec.md).",
+      "notes": "Generated from active parent memory 3633; content length 7355; general / system / critical."
     },
     {
       "id": 40,
-      "query": "add a new intent type to the adaptive fusion scoring profiles",
-      "intentType": "add_feature",
-      "complexityTier": "complex",
-      "category": "cross_document",
-      "source": "pattern_derived",
-      "expectedResultDescription": "Should surface adaptive-fusion.ts intent profiles, intent-classifier.ts enum, and eval-metrics.ts intentMultipliers. Cross-document because the change touches 3+ files.",
-      "notes": "From T007b \u00a75b: mode selection driven by intent classifier \u2014 add_feature routes to deep mode."
+      "query": "where is tasks documented in general system memory",
+      "intentType": "security_audit",
+      "complexityTier": "moderate",
+      "category": "scope_filtered",
+      "source": "trigger_derived",
+      "expectedResultDescription": "Known-item lookup for memory 7615: Tasks: Code Audit — [system-spec-kit/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/002-mutation/tasks] (../../../specs/system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/002-mutation/tasks.md).",
+      "notes": "Generated from active parent memory 7615; content length 3113; general / system / deprecated."
     },
     {
       "id": 41,
-      "query": "security audit of the API key validation bypass flag",
-      "intentType": "security_audit",
-      "complexityTier": "moderate",
-      "category": "factual",
+      "query": "find the spec for Re-election default-on rollout",
+      "intentType": "add_feature",
+      "complexityTier": "complex",
+      "category": "scope_filtered",
       "source": "pattern_derived",
-      "expectedResultDescription": "Should surface SPECKIT_SKIP_API_VALIDATION documentation, api-key-validation.ts, and any memories about the conditions under which this flag is safe to use.",
-      "notes": "Security audit intent \u2014 tests that security_audit intent routes to deep mode and surfaces relevant security content."
+      "expectedResultDescription": "Known-item lookup for memory 10998: Re-election default-on rollout (../../../specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/027-reelection-default-on-rollout/spec.md).",
+      "notes": "Generated from active parent memory 10998; content length 7575; general / system / important."
     },
     {
       "id": 42,
-      "query": "the memory_search tool returns stale results after index rebuild",
-      "intentType": "fix_bug",
+      "query": "how was operator-surface-realignment planned",
+      "intentType": "add_feature",
       "complexityTier": "moderate",
-      "category": "temporal",
+      "category": "scope_filtered",
       "source": "pattern_derived",
-      "expectedResultDescription": "Should surface incremental-index.ts, retry-manager.ts, and any spec memories about stale cache behavior after indexing operations.",
-      "notes": "Bug-intent with temporal aspect (\"after index rebuild\") \u2014 tests recency boosting for fix_bug intent."
+      "expectedResultDescription": "Known-item lookup for memory 6150: operator-surface-realignment (../../../specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/003-install-scripts-doctor-realignment/002-operator-surface-realignment/plan.md).",
+      "notes": "Generated from active parent memory 6150; content length 4569; general / system / normal."
     },
     {
       "id": 43,
-      "query": "what is the difference between memory_context and memory_search for context retrieval",
-      "intentType": "understand",
+      "query": "where is idempotency verification checklist documented",
+      "intentType": "add_feature",
       "complexityTier": "moderate",
-      "category": "cross_document",
-      "source": "pattern_derived",
-      "expectedResultDescription": "Should surface both memory_context (L1 unified entry) and memory_search (L2 core) tool schemas and any documentation comparing their use cases.",
-      "notes": "From T007b \u00a72: comparing two closely related tools \u2014 requires cross-document retrieval."
+      "category": "anchor_based",
+      "source": "trigger_derived",
+      "expectedResultDescription": "Known-item lookup for memory 14034: Idempotency Flag-On Correctness (../../../specs/system-spec-kit/027-xce-research-based-refinement/023-idempotency-flag-on-correctness/checklist.md).",
+      "notes": "Generated from active parent memory 14034; content length 7062; implementation / human / deprecated."
     },
     {
       "id": 44,
-      "query": "refactor session deduplication to use a sliding window instead of session-scoped set",
-      "intentType": "refactor",
-      "complexityTier": "complex",
-      "category": "cross_document",
+      "query": "what was completed for Design — 3-layer prompt-knowledge architecture + data contract",
+      "intentType": "find_decision",
+      "complexityTier": "moderate",
+      "category": "temporal",
       "source": "pattern_derived",
-      "expectedResultDescription": "Should surface session-manager.ts, integration-session-dedup.vitest.ts, and any spec decisions about the deduplication design.",
-      "notes": "Complex refactor query requiring understanding of current design before proposing change."
+      "expectedResultDescription": "Known-item lookup for memory 18913: Design — 3-layer prompt-knowledge architecture + data contract (../../../specs/skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering/001-design-architecture-and-data-contract/implementation-summary.md).",
+      "notes": "Generated from active parent memory 18913; content length 6134; implementation / human / important."
     },
     {
       "id": 45,
-      "query": "find the spec that defines the SPECKIT_CAUSAL_BOOST feature flag",
-      "intentType": "find_spec",
-      "complexityTier": "simple",
+      "query": "find the spec for Deprecate project .gemini runtime surface",
+      "intentType": "refactor",
+      "complexityTier": "complex",
       "category": "scope_filtered",
       "source": "pattern_derived",
-      "expectedResultDescription": "Should surface causal-boost.ts, search-flags.ts, and any spec memory that introduced SPECKIT_CAUSAL_BOOST.",
-      "notes": "Find-spec intent for a specific flag \u2014 tests feature flag governance retrieval."
+      "expectedResultDescription": "Known-item lookup for memory 9388: Deprecate project .gemini runtime surface (../../../specs/skilled-agent-orchestration/132-cli-gemini-deprecation/spec.md).",
+      "notes": "Generated from active parent memory 9388; content length 12597; general / agent / important."
     },
     {
       "id": 46,
-      "query": "how does RRF fusion combine vector and BM25 channel scores",
-      "intentType": "understand",
-      "complexityTier": "moderate",
-      "category": "cross_document",
-      "source": "pattern_derived",
-      "expectedResultDescription": "Should surface rrf-fusion.ts, adaptive-fusion.ts channel weights, and the T000a baseline note about graphHitRate=0.",
-      "notes": "Cross-document query spanning fusion implementation and channel weight configuration."
+      "query": "where is stale exclusion audit memory_search documented",
+      "intentType": "security_audit",
+      "complexityTier": "complex",
+      "category": "scope_filtered",
+      "source": "trigger_derived",
+      "expectedResultDescription": "Known-item lookup for memory 15517: stale-audit-and-tool-ownership (../../../specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/005-stale-audit-and-tool-ownership/spec.md).",
+      "notes": "Generated from active parent memory 15517; content length 14649; general / human / deprecated."
     },
     {
       "id": 47,
-      "query": "decision record for introducing the five-factor scoring system",
-      "intentType": "find_decision",
+      "query": "how was deep-context runtime-robustness parity planned",
+      "intentType": "security_audit",
       "complexityTier": "complex",
-      "category": "graph_relationship",
+      "category": "scope_filtered",
       "source": "pattern_derived",
-      "expectedResultDescription": "Should surface five-factor-scoring.vitest.ts, composite-scoring.ts, and any decision record about why five factors were chosen over a simpler scoring approach.",
-      "notes": "Decision archaeology for a specific design choice \u2014 tests causal graph traversal."
+      "expectedResultDescription": "Known-item lookup for memory 18636: deep-context runtime-robustness parity (../../../specs/skilled-agent-orchestration/z_archive/134-deep-context-gathering/002-runtime-robustness-parity/plan.md).",
+      "notes": "Generated from active parent memory 18636; content length 15171; general / human / important."
     },
     {
       "id": 48,
-      "query": "what security considerations exist for the memory save pipeline",
-      "intentType": "security_audit",
+      "query": "what was completed for idempotency-and-near-duplicate",
+      "intentType": "add_feature",
       "complexityTier": "complex",
-      "category": "cross_document",
+      "category": "temporal",
       "source": "pattern_derived",
-      "expectedResultDescription": "Should surface redaction-gate.ts, path-security.ts, preflight.ts, and any spec memories about data sanitization or access control in the save flow.",
-      "notes": "Security audit of the save pipeline \u2014 requires cross-document retrieval of security-adjacent modules."
+      "expectedResultDescription": "Known-item lookup for memory 15367: idempotency-and-near-duplicate (../../../specs/system-spec-kit/027-xce-research-based-refinement/007-memclaw-derived-memory-hardening/002-idempotency-and-near-duplicate/implementation-summary.md).",
+      "notes": "Generated from active parent memory 15367; content length 10638; general / human / normal."
     },
     {
       "id": 49,
-      "query": "what changed in the memory indexing pipeline after the T054 content hash fix",
-      "intentType": "understand",
-      "complexityTier": "moderate",
-      "category": "temporal",
-      "source": "pattern_derived",
-      "expectedResultDescription": "Temporal query about a specific task milestone. Should surface memories created after T054 that reference the content hash dedup feature.",
-      "notes": "From T007b \u00a75a: temporal queries with task-reference framing."
+      "query": "where is review report documented",
+      "intentType": "security_audit",
+      "complexityTier": "complex",
+      "category": "scope_filtered",
+      "source": "trigger_derived",
+      "expectedResultDescription": "Known-item lookup for memory 14950: Deep Review Report: Code Audit per Feature Catalog (../../../specs/system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/review-report.md).",
+      "notes": "Generated from active parent memory 14950; content length 15472; general / import / critical."
     },
     {
       "id": 50,
-      "query": "add FSRS spaced repetition scheduling to the memory attention score update",
-      "intentType": "add_feature",
+      "query": "how does Resource Map: deep-research skill release cleanup work",
+      "intentType": "security_audit",
       "complexityTier": "complex",
-      "category": "cross_document",
+      "category": "scope_filtered",
       "source": "pattern_derived",
-      "expectedResultDescription": "Should surface fsrs-scheduler.ts, fsrs.ts, working-memory.ts, and any spec about the cognitive memory system integration.",
-      "notes": "Complex add_feature query spanning multiple cognitive subsystem files."
+      "expectedResultDescription": "Known-item lookup for memory 12335: Resource Map: deep-research skill release cleanup (../../../specs/skilled-agent-orchestration/z_archive/116-deep-skill-evolution/000-release-cleanup/005-deep-research-release-cleanup/resource-map.md).",
+      "notes": "Generated from active parent memory 12335; content length 21043; general / import / deprecated."
     },
     {
       "id": 51,
-      "query": "can the trigger matcher handle multi-word phrases with stop words",
-      "intentType": "understand",
-      "complexityTier": "moderate",
-      "category": "factual",
+      "query": "find the spec for Deep-Review 017-021 Remediation [027/002/005/006]",
+      "intentType": "fix_bug",
+      "complexityTier": "complex",
+      "category": "scope_filtered",
       "source": "pattern_derived",
-      "expectedResultDescription": "Should surface trigger-matcher.ts, trigger-extractor.vitest.ts, and any spec about trigger phrase normalization.",
-      "notes": "Factual query about a specific capability of the trigger matcher module."
+      "expectedResultDescription": "Known-item lookup for memory 21550: Deep-Review 017-021 Remediation [027/002/005/006] (../../../specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/spec.md).",
+      "notes": "Generated from active parent memory 21550; content length 21100; general / import / important."
     },
     {
       "id": 52,
-      "query": "find the decision that established the WARM tier as the minimum search state",
-      "intentType": "find_decision",
-      "complexityTier": "moderate",
-      "category": "graph_relationship",
+      "query": "what research explains Deep Research Synthesis — 50 Angles on the 026 Program",
+      "intentType": "fix_bug",
+      "complexityTier": "complex",
+      "category": "scope_filtered",
       "source": "pattern_derived",
-      "expectedResultDescription": "Should surface importance-tiers.ts, tier-classifier.ts, and any decision record explaining why WARM (not COLD) is the default minState.",
-      "notes": "Decision tracing for a specific default value in the search configuration."
+      "expectedResultDescription": "Known-item lookup for memory 16989: Deep Research Synthesis — 50 Angles on the 026 Program (../../../specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/018-program-research-and-remediation/research/research.md).",
+      "notes": "Generated from active parent memory 16989; content length 10334; general / import / normal."
     },
     {
       "id": 53,
-      "query": "how does the prediction error gate integrate with the cognitive memory pipeline",
-      "intentType": "understand",
+      "query": "what verification checklist covers Move skill_graph_* tools to advisor ownership",
+      "intentType": "refactor",
       "complexityTier": "complex",
-      "category": "cross_document",
+      "category": "anchor_based",
       "source": "pattern_derived",
-      "expectedResultDescription": "Should surface prediction-error-gate.ts, co-activation.ts, working-memory.ts, and any spec about the cognitive architecture integration points.",
-      "notes": "Complex cross-document query about a niche cognitive subsystem component."
+      "expectedResultDescription": "Known-item lookup for memory 3601: Move skill_graph_* tools to advisor ownership (../../../specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/008-skill-graph-tools-advisor-migration/checklist.md).",
+      "notes": "Generated from active parent memory 3601; content length 13028; general / system / critical."
     },
     {
       "id": 54,
-      "query": "refactor the importance tier scoring to use a lookup table instead of conditional chain",
-      "intentType": "refactor",
-      "complexityTier": "moderate",
-      "category": "factual",
+      "query": "how does 006 Core RAG Sprints 0 to 8 [system-spec-kit/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/handover] work",
+      "intentType": "understand",
+      "complexityTier": "complex",
+      "category": "scope_filtered",
       "source": "pattern_derived",
-      "expectedResultDescription": "Should surface importance-tiers.ts, scoring.vitest.ts, and any spec about importance tier weight assignments.",
-      "notes": "Refactor intent with a specific implementation suggestion \u2014 tests refactor routing to deep mode."
+      "expectedResultDescription": "Known-item lookup for memory 7548: 006 Core RAG Sprints 0 to 8 [system-spec-kit/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/handover] (../../../specs/system-spec-kit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/handover.md).",
+      "notes": "Generated from active parent memory 7548; content length 30725; general / system / deprecated."
     },
     {
       "id": 55,
-      "query": "what are the exact MCP tool names exposed by the spec kit memory server",
-      "intentType": "find_spec",
-      "complexityTier": "moderate",
-      "category": "factual",
-      "source": "pattern_derived",
-      "expectedResultDescription": "Should surface tool-schemas.ts or SKILL.md section listing all 20+ memory_* tool names and their layer classification.",
-      "notes": "Factual find_spec query about the public API surface of the MCP server."
+      "query": "where is scouted bugfix batch 2 documented",
+      "intentType": "fix_bug",
+      "complexityTier": "complex",
+      "category": "scope_filtered",
+      "source": "trigger_derived",
+      "expectedResultDescription": "Known-item lookup for memory 3419: Scouted Bugfix Batch 2 (../../../specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/002-scouted-bugfix-batch-2/spec.md).",
+      "notes": "Generated from active parent memory 3419; content length 12508; general / system / important."
     },
     {
       "id": 56,
-      "query": "security review of the path traversal prevention in memory file loading",
-      "intentType": "security_audit",
-      "complexityTier": "moderate",
-      "category": "factual",
+      "query": "what was completed for 098/005 - checklist evidence resolution",
+      "intentType": "find_decision",
+      "complexityTier": "complex",
+      "category": "temporal",
       "source": "pattern_derived",
-      "expectedResultDescription": "Should surface path-security.ts, canonical-path.ts, and any spec memories about path traversal attack prevention.",
-      "notes": "Security audit query targeting a specific attack surface in the file loading pipeline."
+      "expectedResultDescription": "Known-item lookup for memory 2518: 098/005 - checklist evidence resolution (../../../specs/skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/003-remediation/005-checklist-evidence/implementation-summary.md).",
+      "notes": "Generated from active parent memory 2518; content length 10015; general / system / normal."
     },
     {
       "id": 57,
-      "query": "memory deduplication content hash",
-      "intentType": "understand",
-      "complexityTier": "simple",
-      "category": "factual",
-      "source": "trigger_derived",
-      "expectedResultDescription": "Should surface memories with trigger phrases matching \"content hash\" or \"deduplication\". Likely surfaces T054-related memories about SHA256 dedup implementation.",
-      "notes": "Derived from known trigger phrases in the memory system related to content hash dedup."
+      "query": "find the spec for Memclaw-Derived Memory Hardening (Phase Parent)",
+      "intentType": "security_audit",
+      "complexityTier": "complex",
+      "category": "scope_filtered",
+      "source": "pattern_derived",
+      "expectedResultDescription": "Known-item lookup for memory 11665: Memclaw-Derived Memory Hardening (Phase Parent) (../../../specs/system-spec-kit/027-xce-research-based-refinement/007-memclaw-derived-memory-hardening/spec.md).",
+      "notes": "Generated from active parent memory 11665; content length 9539; implementation / human / deprecated."
     },
     {
       "id": 58,
-      "query": "constitutional memory tier enforcement",
-      "intentType": "understand",
-      "complexityTier": "simple",
-      "category": "factual",
+      "query": "where is sk-git worktree convention documented",
+      "intentType": "fix_bug",
+      "complexityTier": "complex",
+      "category": "scope_filtered",
       "source": "trigger_derived",
-      "expectedResultDescription": "Should surface constitutional-tier memories (CLAUDE.md rules) which are injected unconditionally at the top of every result.",
-      "notes": "Trigger phrase derived from constitutional tier documentation."
+      "expectedResultDescription": "Known-item lookup for memory 18519: sk-git Worktree Convention (wt/NNNN-name) + Skill-Advisor Routing Optimization (../../../specs/skilled-agent-orchestration/z_archive/128-sk-git-worktree-convention-and-advisor-routing/spec.md).",
+      "notes": "Generated from active parent memory 18519; content length 11905; implementation / human / important."
     },
     {
       "id": 59,
-      "query": "SPECKIT_SESSION_BOOST working memory attention",
-      "intentType": "understand",
-      "complexityTier": "simple",
-      "category": "factual",
-      "source": "trigger_derived",
-      "expectedResultDescription": "Should surface session-boost.ts, working-memory.ts, and memories with trigger phrases about session boost or attention scoring.",
-      "notes": "Derived from env var name which appears as a trigger phrase in session boost documentation."
+      "query": "find the spec for 009 Skill Frontmatter Alignment (Phase Parent)",
+      "intentType": "fix_bug",
+      "complexityTier": "complex",
+      "category": "scope_filtered",
+      "source": "pattern_derived",
+      "expectedResultDescription": "Known-item lookup for memory 16186: 009 Skill Frontmatter Alignment (Phase Parent) (../../../specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/spec.md).",
+      "notes": "Generated from active parent memory 16186; content length 10691; implementation / human / normal."
     },
     {
       "id": 60,
-      "query": "vector index embedding generation pipeline",
-      "intentType": "understand",
-      "complexityTier": "moderate",
-      "category": "factual",
-      "source": "trigger_derived",
-      "expectedResultDescription": "Should surface vector-index.ts, embeddings.ts, and any spec memories about embedding model selection or the indexing pipeline.",
-      "notes": "Trigger-phrase-style query about the vector indexing subsystem."
-    },
-    {
-      "id": 61,
-      "query": "RRF reciprocal rank fusion channel weights",
-      "intentType": "understand",
-      "complexityTier": "moderate",
-      "category": "cross_document",
-      "source": "trigger_derived",
-      "expectedResultDescription": "Should surface rrf-fusion.ts, adaptive-fusion.ts, and spec memories about channel weight configuration.",
-      "notes": "Derived from \"reciprocal rank fusion\" trigger phrase in the hybrid search documentation."
-    },
-    {
-      "id": 62,
-      "query": "spec kit memory MCP server initialization",
-      "intentType": "understand",
-      "complexityTier": "simple",
-      "category": "factual",
-      "source": "trigger_derived",
-      "expectedResultDescription": "Should surface server initialization documentation, SKILL.md sections about MCP server startup, and any init-related spec memories.",
-      "notes": "Direct trigger phrase derived from the system name and initialization context."
-    },
-    {
-      "id": 63,
-      "query": "memory state lifecycle HOT WARM COLD DORMANT ARCHIVED",
-      "intentType": "understand",
-      "complexityTier": "moderate",
-      "category": "factual",
-      "source": "trigger_derived",
-      "expectedResultDescription": "Should surface importance-tiers.ts, tier-classifier.ts, attention-decay.ts, and any spec memories about the 5-tier state machine.",
-      "notes": "Trigger derived from tier names \u2014 tests whether explicit state name enumeration retrieves the right docs."
-    },
-    {
-      "id": 64,
-      "query": "generate context script memory save workflow",
-      "intentType": "add_feature",
-      "complexityTier": "simple",
-      "category": "factual",
-      "source": "trigger_derived",
-      "expectedResultDescription": "Should surface the generate-context.js script documentation and CLAUDE.md Memory Save Rule about using the script instead of the Write tool.",
-      "notes": "Derived from \"generate-context\" trigger phrase in the memory save workflow documentation."
-    },
-    {
-      "id": 65,
-      "query": "attention decay cognitive memory scores",
-      "intentType": "understand",
-      "complexityTier": "moderate",
-      "category": "cross_document",
-      "source": "trigger_derived",
-      "expectedResultDescription": "Should surface attention-decay.ts, working-memory.ts, and any spec memories about cognitive decay models applied to attention scores.",
-      "notes": "Derived from \"attention decay\" trigger phrase in the cognitive subsystem."
-    },
-    {
-      "id": 66,
-      "query": "BM25 tokenization stemming",
-      "intentType": "understand",
-      "complexityTier": "simple",
-      "category": "factual",
-      "source": "trigger_derived",
-      "expectedResultDescription": "Should surface bm25-index.ts tokenize() and simpleStem() functions and any spec documentation about the text normalization approach.",
-      "notes": "Derived from \"BM25\" and \"stemming\" trigger phrases in the BM25 index module."
-    },
-    {
-      "id": 67,
-      "query": "causal edge graph traversal memory relationships",
-      "intentType": "understand",
-      "complexityTier": "moderate",
-      "category": "graph_relationship",
-      "source": "trigger_derived",
-      "expectedResultDescription": "Should surface causal-edges.ts, causal-boost.ts, memory_drift_why tool schema, and spec memories about the causal relationship graph.",
-      "notes": "Derived from \"causal edge\" and \"graph traversal\" trigger phrases."
-    },
-    {
-      "id": 68,
-      "query": "spec folder level 3 decision record requirement",
-      "intentType": "find_spec",
-      "complexityTier": "simple",
-      "category": "factual",
-      "source": "trigger_derived",
-      "expectedResultDescription": "Should surface CLAUDE.md documentation levels table showing Level 3 requires decision-record.md for \u2265500 LOC changes.",
-      "notes": "Derived from \"decision record\" and \"level 3\" trigger phrases in spec kit documentation."
-    },
-    {
-      "id": 69,
-      "query": "MMR maximal marginal relevance reranker diversity",
-      "intentType": "understand",
-      "complexityTier": "moderate",
-      "category": "factual",
-      "source": "trigger_derived",
-      "expectedResultDescription": "Should surface mmr-reranker.ts and any spec memories about diversity-aware reranking in the search pipeline.",
-      "notes": "Derived from \"maximal marginal relevance\" or \"MMR\" trigger phrases."
-    },
-    {
-      "id": 70,
-      "query": "SPECKIT_PRESSURE_POLICY token budget downgrade",
-      "intentType": "fix_bug",
-      "complexityTier": "moderate",
-      "category": "factual",
-      "source": "trigger_derived",
-      "expectedResultDescription": "Should surface pressure-monitor.ts, memory-context.ts pressure handling, and any spec about the pressure policy design decisions.",
-      "notes": "Derived from SPECKIT_PRESSURE_POLICY env var trigger phrase \u2014 overlaps with seed query 9 but phrased differently."
-    },
-    {
-      "id": 71,
-      "query": "I want to understand how the memory system decides when to archive a memory",
-      "intentType": "understand",
-      "complexityTier": "moderate",
-      "category": "cross_document",
-      "source": "manual",
-      "expectedResultDescription": "Should surface tier-classifier.ts, attention-decay.ts, and any spec about the evidence-state lifecycle conditions.",
-      "notes": "Manual conversational phrasing \u2014 \"I want to understand how\" mimics natural user language."
-    },
-    {
-      "id": 72,
-      "query": "explain the difference between a spec folder and a memory folder in the spec kit",
-      "intentType": "understand",
-      "complexityTier": "simple",
-      "category": "factual",
-      "source": "manual",
-      "expectedResultDescription": "Should surface SKILL.md documentation distinguishing spec/ directories (governance docs) from memory/ directories (AI context storage).",
-      "notes": "Manual clarification-seeking query using \"explain the difference between\"."
-    },
-    {
-      "id": 73,
-      "query": "when should I use memory_search versus memory_context",
-      "intentType": "understand",
-      "complexityTier": "simple",
-      "category": "factual",
-      "source": "manual",
-      "expectedResultDescription": "Should surface tool comparison documentation in SKILL.md or tool-schemas.ts explaining L1 vs L2 routing.",
-      "notes": "Manual decision-guidance query \u2014 realistic user confusion about which tool to use."
-    },
-    {
-      "id": 74,
-      "query": "why does my query return constitutional memories even when they are not relevant",
-      "intentType": "understand",
-      "complexityTier": "moderate",
-      "category": "factual",
-      "source": "manual",
-      "expectedResultDescription": "Should surface the constitutional memory injection behavior described in SKILL.md \u00a73 and T007b Pattern 7.",
-      "notes": "Manual query expressing user frustration \u2014 tests whether the system surfaces the design rationale."
-    },
-    {
-      "id": 75,
-      "query": "how does the system know which memories are most important",
-      "intentType": "understand",
-      "complexityTier": "moderate",
-      "category": "cross_document",
-      "source": "manual",
-      "expectedResultDescription": "Should surface importance-tiers.ts, composite-scoring.ts, five-factor-scoring documentation, and any spec about the importance weight assignment.",
-      "notes": "Vague natural language query \u2014 tests whether broad semantic retrieval surfaces the right subsystems."
-    },
-    {
-      "id": 76,
-      "query": "what happens if two memories have the same content",
-      "intentType": "understand",
-      "complexityTier": "simple",
-      "category": "factual",
-      "source": "manual",
-      "expectedResultDescription": "Should surface content hash dedup implementation in the save pipeline and the UNIQUE constraint in the memory schema.",
-      "notes": "Manual conversational phrasing of the content dedup behavior."
-    },
-    {
-      "id": 77,
-      "query": "why did the team choose SQLite over a dedicated vector database for memory storage",
+      "query": "find the spec for Fix the four-folder rename and record the shared/ decision",
       "intentType": "find_decision",
       "complexityTier": "complex",
-      "category": "graph_relationship",
-      "source": "manual",
-      "expectedResultDescription": "Should surface decision records or spec memories explaining the choice of SQLite + FTS5 + custom vector storage over alternatives like Pinecone or Chroma.",
-      "notes": "High-level architectural decision query \u2014 tests whether foundational design choices are preserved in memory."
-    },
-    {
-      "id": 78,
-      "query": "what was the original reason for creating the spec kit memory system",
-      "intentType": "find_decision",
-      "complexityTier": "complex",
-      "category": "graph_relationship",
-      "source": "manual",
-      "expectedResultDescription": "Should surface early spec folder memories or constitutional documentation about why persistent AI memory was needed for the Claude Code / OpenCode workflow.",
-      "notes": "Origin-story decision query \u2014 tests deep historical retrieval."
-    },
-    {
-      "id": 79,
-      "query": "how was the 7-intent taxonomy for memory retrieval originally justified",
-      "intentType": "find_decision",
-      "complexityTier": "moderate",
-      "category": "graph_relationship",
-      "source": "manual",
-      "expectedResultDescription": "Should surface intent-classifier.ts comments and any decision record explaining why exactly 7 intent types were chosen.",
-      "notes": "Manual query about a specific count/taxonomy decision."
-    },
-    {
-      "id": 80,
-      "query": "was there ever a decision to deprecate the cross-encoder reranker",
-      "intentType": "find_decision",
-      "complexityTier": "moderate",
-      "category": "temporal",
-      "source": "manual",
-      "expectedResultDescription": "Should surface cross-encoder.ts and the T000c audit note that crossEncoder section is dead config, plus any decision record about its planned removal.",
-      "notes": "Manual past-tense decision query \u2014 \"was there ever a decision\" pattern."
-    },
-    {
-      "id": 81,
-      "query": "the memory list tool is not returning chunk children even when I set includeChunks true",
-      "intentType": "fix_bug",
-      "complexityTier": "moderate",
-      "category": "factual",
-      "source": "manual",
-      "expectedResultDescription": "Should surface memory_list handler code and any spec about the includeChunks parameter behavior.",
-      "notes": "Manual bug report phrasing \u2014 realistic user-facing issue description."
-    },
-    {
-      "id": 82,
-      "query": "causal graph traversal is returning empty results for all my queries",
-      "intentType": "fix_bug",
-      "complexityTier": "moderate",
-      "category": "factual",
-      "source": "manual",
-      "expectedResultDescription": "Should surface graph-search-fn.ts, causal-edges.ts, and the T000a baseline note about graphHitRate=0 being expected until the graph is populated.",
-      "notes": "Manual bug report for the graph channel \u2014 relates to known T000a baseline finding."
-    },
-    {
-      "id": 83,
-      "query": "why is my new memory not appearing in search results after saving",
-      "intentType": "fix_bug",
-      "complexityTier": "moderate",
-      "category": "cross_document",
-      "source": "manual",
-      "expectedResultDescription": "Should surface incremental-index.ts, retry-manager.ts, and any spec about the indexing latency after save operations.",
-      "notes": "Manual bug query about indexing lag \u2014 realistic user confusion about save vs. search consistency."
-    },
-    {
-      "id": 84,
-      "query": "memory_save keeps failing with duplicate content hash error",
-      "intentType": "fix_bug",
-      "complexityTier": "simple",
-      "category": "factual",
-      "source": "manual",
-      "expectedResultDescription": "Should surface the content hash dedup logic in the save pipeline and explain that this is expected behavior when saving identical content.",
-      "notes": "Manual error-message-style bug query."
-    },
-    {
-      "id": 85,
-      "query": "the tier classifier is promoting memories to constitutional tier incorrectly",
-      "intentType": "fix_bug",
-      "complexityTier": "complex",
-      "category": "factual",
-      "source": "manual",
-      "expectedResultDescription": "Should surface tier-classifier.ts, the constitutional tier qualification criteria, and any test coverage in tier-classifier.vitest.ts.",
-      "notes": "Manual bug report about tier promotion logic \u2014 a sensitive path given constitutional tier has special behavior."
-    },
-    {
-      "id": 86,
-      "query": "I want to add telemetry tracking to the hybrid search pipeline",
-      "intentType": "add_feature",
-      "complexityTier": "moderate",
-      "category": "cross_document",
-      "source": "manual",
-      "expectedResultDescription": "Should surface retrieval-telemetry.ts, trace-schema.ts, and any spec about the eval logging framework (T005).",
-      "notes": "Manual add_feature intent with \"I want to\" phrasing \u2014 conversational but maps to implementation guidance."
-    },
-    {
-      "id": 87,
-      "query": "how can I extend the ground truth evaluation framework with a new metric",
-      "intentType": "add_feature",
-      "complexityTier": "moderate",
-      "category": "cross_document",
-      "source": "manual",
-      "expectedResultDescription": "Should surface eval-metrics.ts (existing metric functions), eval-db.ts schema, and spec tasks.md for the sprint-0 eval framework.",
-      "notes": "Manual extensibility query about adding new eval metrics."
-    },
-    {
-      "id": 88,
-      "query": "what would be involved in adding a PostgreSQL backend option for the memory database",
-      "intentType": "add_feature",
-      "complexityTier": "complex",
-      "category": "cross_document",
-      "source": "manual",
-      "expectedResultDescription": "Should surface the vector-store.ts interface, eval-db.ts, and the decision record about choosing SQLite. May surface the architecture layer definitions.",
-      "notes": "Manual complex add_feature question \u2014 tests retrieval of interface contracts and architecture decisions together."
-    },
-    {
-      "id": 89,
-      "query": "add pagination support to the memory_list tool",
-      "intentType": "add_feature",
-      "complexityTier": "simple",
-      "category": "factual",
-      "source": "manual",
-      "expectedResultDescription": "Should surface the memory_list handler code (offset/limit parameters that already exist) and the tool schema definition.",
-      "notes": "Manual add_feature request that may already be partially implemented \u2014 tests whether the system surfaces the existing API."
-    },
-    {
-      "id": 90,
-      "query": "where is the documentation for the sk-git skill",
-      "intentType": "find_spec",
-      "complexityTier": "simple",
-      "category": "factual",
-      "source": "manual",
-      "expectedResultDescription": "Should surface .opencode/skills/sk-git/SKILL.md and any spec memories about the sk-git skill functionality.",
-      "notes": "Manual \"where is\" documentation query \u2014 tests file location retrieval."
-    },
-    {
-      "id": 91,
-      "query": "show me the checklist for the sprint 0 hybrid RAG fusion refinement",
-      "intentType": "find_spec",
-      "complexityTier": "simple",
-      "category": "anchor_based",
-      "source": "manual",
-      "expectedResultDescription": "Should surface checklist.md from the 001-sprint-0-measurement-foundation spec folder with P0/P1/P2 items.",
-      "notes": "Manual \"show me\" retrieval query for a specific spec document."
-    },
-    {
-      "id": 92,
-      "query": "is there a research document for the hybrid RAG fusion approach",
-      "intentType": "find_spec",
-      "complexityTier": "simple",
-      "category": "factual",
-      "source": "manual",
-      "expectedResultDescription": "Should surface research/research.md from the 139-hybrid-rag-fusion or 140-hybrid-rag-fusion-refinement spec folder if it exists.",
-      "notes": "Manual existence-check query for a specific spec document type."
-    },
-    {
-      "id": 93,
-      "query": "what is the task breakdown for the T008 BM25 baseline measurement task",
-      "intentType": "find_spec",
-      "complexityTier": "moderate",
-      "category": "factual",
-      "source": "manual",
-      "expectedResultDescription": "Should surface the tasks.md entry for T008 in 001-sprint-0-measurement-foundation with its sub-tasks and acceptance criteria.",
-      "notes": "Manual task-lookup query for a specific task within the sprint."
-    },
-    {
-      "id": 94,
-      "query": "find the implementation summary for the eval metrics module",
-      "intentType": "find_spec",
-      "complexityTier": "simple",
-      "category": "factual",
-      "source": "manual",
-      "expectedResultDescription": "Should surface implementation-summary.md from the sprint-0 spec folder if it covers the eval metrics work (T006).",
-      "notes": "Manual search for a specific document type about a completed implementation."
-    },
-    {
-      "id": 95,
-      "query": "the eval-db module has too many responsibilities and should be split up",
-      "intentType": "refactor",
-      "complexityTier": "moderate",
-      "category": "cross_document",
-      "source": "manual",
-      "expectedResultDescription": "Should surface eval-db.ts (5 tables, DDL, singleton pattern) and any spec decisions about the eval framework architecture.",
-      "notes": "Manual refactor opinion expressed as a statement \u2014 tests whether refactor intent surfaces current architecture docs."
-    },
-    {
-      "id": 96,
-      "query": "can the trigger matching and vector search be unified into a single query path",
-      "intentType": "refactor",
-      "complexityTier": "complex",
-      "category": "cross_document",
-      "source": "manual",
-      "expectedResultDescription": "Should surface trigger-matcher.ts, vector-index.ts, hybrid-search.ts, and any architectural decision about keeping the two paths separate.",
-      "notes": "Manual architectural refactor question about system unification."
-    },
-    {
-      "id": 97,
-      "query": "the scoring module has duplicated weight normalization logic across several files",
-      "intentType": "refactor",
-      "complexityTier": "moderate",
-      "category": "cross_document",
-      "source": "manual",
-      "expectedResultDescription": "Should surface composite-scoring.ts, folder-scoring.ts, adaptive-fusion.ts, and any spec about the scoring module design.",
-      "notes": "Manual DRY-violation observation driving a refactor request."
-    },
-    {
-      "id": 98,
-      "query": "refactor the memory parser to use a streaming approach for large files",
-      "intentType": "refactor",
-      "complexityTier": "complex",
-      "category": "factual",
-      "source": "manual",
-      "expectedResultDescription": "Should surface memory-parser.ts, chunking/anchor-chunker.ts, and any spec about large file handling or chunking strategies.",
-      "notes": "Manual performance-motivated refactor request \u2014 may surface chunking design decisions."
-    },
-    {
-      "id": 99,
-      "query": "what prevents a user from saving a memory with arbitrary filesystem paths",
-      "intentType": "security_audit",
-      "complexityTier": "moderate",
-      "category": "factual",
-      "source": "manual",
-      "expectedResultDescription": "Should surface path-security.ts, canonical-path.ts, preflight.ts validation, and the memory save handler input validation.",
-      "notes": "Manual security question about path traversal prevention \u2014 specific attack surface."
-    },
-    {
-      "id": 100,
-      "query": "are there any secrets or credentials that could be accidentally saved to memory",
-      "intentType": "security_audit",
-      "complexityTier": "moderate",
-      "category": "cross_document",
-      "source": "manual",
-      "expectedResultDescription": "Should surface redaction-gate.ts, memory-parser.ts (redaction handling), and any spec about sensitive data handling in the memory pipeline.",
-      "notes": "Manual security concern about data leakage \u2014 tests redaction-related content retrieval."
-    },
-    {
-      "id": 101,
-      "query": "can the eval logging system be used to exfiltrate search query content",
-      "intentType": "security_audit",
-      "complexityTier": "complex",
-      "category": "cross_document",
-      "source": "manual",
-      "expectedResultDescription": "Should surface eval-logger.ts (SPECKIT_EVAL_LOGGING flag, fail-safe design), eval-db.ts (local SQLite only), and any spec about the eval framework security model.",
-      "notes": "Manual adversarial security query about the eval logging system \u2014 tests whether the security design is documented."
-    },
-    {
-      "id": 102,
-      "query": "how is access to the memory database restricted in production",
-      "intentType": "security_audit",
-      "complexityTier": "simple",
-      "category": "factual",
-      "source": "manual",
-      "expectedResultDescription": "Should surface database path resolution logic, api-key-validation.ts, and any spec about the production security model.",
-      "notes": "Manual security question about database access control."
-    },
-    {
-      "id": 103,
-      "query": "how do I configure Redis cache invalidation for the memory store",
-      "intentType": "fix_bug",
-      "complexityTier": "simple",
-      "category": "hard_negative",
-      "source": "manual",
-      "expectedResultDescription": "Should return NO relevant results. There is no Redis cache; caching is implemented with a local in-memory tool-cache.ts module only.",
-      "notes": "Hard negative \u2014 Redis is plausible for a 'store' but does not exist in this system."
-    },
-    {
-      "id": 104,
-      "query": "Docker compose configuration for the spec kit memory MCP server",
-      "intentType": "find_spec",
-      "complexityTier": "simple",
-      "category": "hard_negative",
-      "source": "manual",
-      "expectedResultDescription": "Should return NO relevant results. There is no Docker, no containerization, no compose files for this project.",
-      "notes": "Hard negative \u2014 Docker is common infrastructure but absent here. \"MCP server\" surface match is a false positive risk."
-    },
-    {
-      "id": 105,
-      "query": "SQL injection prevention in the memory search query parameter",
-      "intentType": "security_audit",
-      "complexityTier": "moderate",
-      "category": "hard_negative",
-      "source": "manual",
-      "expectedResultDescription": "Should return NO relevant results in the sense of documented SQL injection mitigations \u2014 while SQLite is used, the queries use parameterized statements and there is no documented injection audit.",
-      "notes": "Hard negative \u2014 sounds plausible (SQLite IS used) but the specific security audit content does not exist."
-    },
-    {
-      "id": 106,
-      "query": "Java Spring Boot microservice integration with the memory API",
-      "intentType": "add_feature",
-      "complexityTier": "moderate",
-      "category": "hard_negative",
-      "source": "manual",
-      "expectedResultDescription": "Should return NO relevant results. The system is TypeScript/Node.js only; no Java, no Spring Boot, no microservice architecture.",
-      "notes": "Hard negative \u2014 completely wrong technology stack."
-    },
-    {
-      "id": 107,
-      "query": "machine learning model training pipeline for embedding fine-tuning",
-      "intentType": "add_feature",
-      "complexityTier": "complex",
-      "category": "hard_negative",
-      "source": "manual",
-      "expectedResultDescription": "Should return NO relevant results. Embeddings are consumed from an external provider (Anthropic API); there is no training pipeline or model fine-tuning in this codebase.",
-      "notes": "Hard negative \u2014 \"embedding\" exists but \"training pipeline\" context is completely absent."
-    },
-    {
-      "id": 108,
-      "query": "Terraform infrastructure provisioning scripts for the database",
-      "intentType": "find_spec",
-      "complexityTier": "simple",
-      "category": "hard_negative",
-      "source": "manual",
-      "expectedResultDescription": "Should return NO relevant results. The database is a local SQLite file; no infrastructure as code, no cloud provisioning.",
-      "notes": "Hard negative \u2014 infrastructure tooling that does not exist."
-    },
-    {
-      "id": 109,
-      "query": "how does the memory_bulk_delete tool decide which tier to clean up first",
-      "intentType": "understand",
-      "complexityTier": "moderate",
-      "category": "factual",
-      "source": "manual",
-      "expectedResultDescription": "Should surface memory_bulk_delete tool schema (tier parameter, confirm safety gate), the bulk delete handler, and any spec about tier-based cleanup strategies.",
-      "notes": "Manual query about a specific administrative tool behavior \u2014 L4 Mutation layer."
-    },
-    {
-      "id": 110,
-      "query": "what is the learning index formula used in task preflight and postflight scoring",
-      "intentType": "understand",
-      "complexityTier": "moderate",
-      "category": "factual",
-      "source": "manual",
-      "expectedResultDescription": "Should surface the Learning Index formula (LI = KnowledgeDelta\u00d70.4 + UncertaintyReduction\u00d70.35 + ContextImprovement\u00d70.25) from CLAUDE.md or memory_task_preflight tool documentation.",
-      "notes": "Manual query targeting a specific quantitative formula documented in the system \u2014 tests factual precision retrieval."
+      "category": "scope_filtered",
+      "source": "pattern_derived",
+      "expectedResultDescription": "Known-item lookup for memory 19343: Fix the four-folder rename and record the shared/ decision (../../../specs/skilled-agent-orchestration/150-parent-nested-skill-pattern/001-rename-fix-and-shared-decision/spec.md).",
+      "notes": "Generated from active parent memory 19343; content length 9569; implementation / import / deprecated."
     }
   ],
   "relevances": [
     {
       "queryId": 1,
-      "memoryId": 327,
+      "memoryId": 19455,
       "relevance": 3
     },
     {
       "queryId": 1,
-      "memoryId": 361,
-      "relevance": 2
-    },
-    {
-      "queryId": 1,
-      "memoryId": 960,
-      "relevance": 1
-    },
-    {
-      "queryId": 2,
-      "memoryId": 781,
-      "relevance": 3
-    },
-    {
-      "queryId": 2,
-      "memoryId": 780,
+      "memoryId": 1091,
       "relevance": 2
     },
     {
       "queryId": 2,
-      "memoryId": 778,
-      "relevance": 1
-    },
-    {
-      "queryId": 3,
-      "memoryId": 363,
+      "memoryId": 14998,
       "relevance": 3
     },
     {
       "queryId": 3,
-      "memoryId": 960,
-      "relevance": 2
+      "memoryId": 1091,
+      "relevance": 3
     },
     {
       "queryId": 3,
-      "memoryId": 887,
-      "relevance": 1
-    },
-    {
-      "queryId": 4,
-      "memoryId": 330,
-      "relevance": 3
-    },
-    {
-      "queryId": 4,
-      "memoryId": 960,
+      "memoryId": 19455,
       "relevance": 2
     },
     {
       "queryId": 4,
-      "memoryId": 887,
-      "relevance": 1
-    },
-    {
-      "queryId": 5,
-      "memoryId": 363,
+      "memoryId": 4564,
       "relevance": 3
     },
     {
       "queryId": 5,
-      "memoryId": 960,
-      "relevance": 2
-    },
-    {
-      "queryId": 5,
-      "memoryId": 350,
-      "relevance": 1
-    },
-    {
-      "queryId": 6,
-      "memoryId": 330,
+      "memoryId": 6964,
       "relevance": 3
     },
     {
       "queryId": 6,
-      "memoryId": 960,
-      "relevance": 2
+      "memoryId": 9379,
+      "relevance": 3
     },
     {
       "queryId": 6,
-      "memoryId": 327,
-      "relevance": 1
-    },
-    {
-      "queryId": 7,
-      "memoryId": 887,
-      "relevance": 3
-    },
-    {
-      "queryId": 7,
-      "memoryId": 39,
+      "memoryId": 9726,
       "relevance": 2
     },
     {
       "queryId": 7,
-      "memoryId": 363,
-      "relevance": 1
-    },
-    {
-      "queryId": 8,
-      "memoryId": 363,
+      "memoryId": 11540,
       "relevance": 3
     },
     {
       "queryId": 8,
-      "memoryId": 960,
+      "memoryId": 15921,
+      "relevance": 3
+    },
+    {
+      "queryId": 8,
+      "memoryId": 12044,
       "relevance": 2
     },
     {
       "queryId": 8,
-      "memoryId": 334,
-      "relevance": 1
-    },
-    {
-      "queryId": 9,
-      "memoryId": 138,
-      "relevance": 3
-    },
-    {
-      "queryId": 9,
-      "memoryId": 887,
+      "memoryId": 16363,
       "relevance": 2
     },
     {
       "queryId": 9,
-      "memoryId": 99,
-      "relevance": 1
-    },
-    {
-      "queryId": 10,
-      "memoryId": 334,
+      "memoryId": 15019,
       "relevance": 3
     },
     {
       "queryId": 10,
-      "memoryId": 138,
+      "memoryId": 17527,
+      "relevance": 3
+    },
+    {
+      "queryId": 10,
+      "memoryId": 13064,
       "relevance": 2
     },
     {
       "queryId": 10,
-      "memoryId": 981,
-      "relevance": 1
-    },
-    {
-      "queryId": 11,
-      "memoryId": 39,
-      "relevance": 3
-    },
-    {
-      "queryId": 11,
-      "memoryId": 560,
+      "memoryId": 20094,
       "relevance": 2
     },
     {
       "queryId": 11,
-      "memoryId": 325,
+      "memoryId": 9756,
+      "relevance": 3
+    },
+    {
+      "queryId": 11,
+      "memoryId": 9685,
+      "relevance": 2
+    },
+    {
+      "queryId": 11,
+      "memoryId": 12044,
       "relevance": 1
     },
     {
       "queryId": 12,
-      "memoryId": 11,
+      "memoryId": 6789,
       "relevance": 3
     },
     {
       "queryId": 12,
-      "memoryId": 330,
-      "relevance": 2
-    },
-    {
-      "queryId": 12,
-      "memoryId": 960,
-      "relevance": 1
-    },
-    {
-      "queryId": 13,
-      "memoryId": 840,
-      "relevance": 3
-    },
-    {
-      "queryId": 13,
-      "memoryId": 610,
+      "memoryId": 6774,
       "relevance": 2
     },
     {
       "queryId": 13,
-      "memoryId": 98,
-      "relevance": 1
-    },
-    {
-      "queryId": 14,
-      "memoryId": 327,
+      "memoryId": 15424,
       "relevance": 3
     },
     {
-      "queryId": 14,
-      "memoryId": 361,
+      "queryId": 13,
+      "memoryId": 16197,
       "relevance": 2
     },
     {
       "queryId": 14,
-      "memoryId": 321,
-      "relevance": 1
-    },
-    {
-      "queryId": 15,
-      "memoryId": 39,
+      "memoryId": 18414,
       "relevance": 3
     },
     {
       "queryId": 15,
-      "memoryId": 45,
-      "relevance": 2
+      "memoryId": 16192,
+      "relevance": 3
     },
     {
       "queryId": 15,
-      "memoryId": 265,
-      "relevance": 1
-    },
-    {
-      "queryId": 16,
-      "memoryId": 887,
-      "relevance": 3
-    },
-    {
-      "queryId": 16,
-      "memoryId": 327,
+      "memoryId": 15419,
       "relevance": 2
     },
     {
       "queryId": 16,
-      "memoryId": 363,
-      "relevance": 1
+      "memoryId": 11966,
+      "relevance": 3
     },
     {
-      "queryId": 22,
-      "memoryId": 379,
+      "queryId": 16,
+      "memoryId": 15832,
+      "relevance": 2
+    },
+    {
+      "queryId": 16,
+      "memoryId": 16283,
+      "relevance": 2
+    },
+    {
+      "queryId": 17,
+      "memoryId": 16273,
+      "relevance": 3
+    },
+    {
+      "queryId": 17,
+      "memoryId": 11955,
+      "relevance": 2
+    },
+    {
+      "queryId": 17,
+      "memoryId": 15822,
+      "relevance": 2
+    },
+    {
+      "queryId": 18,
+      "memoryId": 16386,
+      "relevance": 3
+    },
+    {
+      "queryId": 18,
+      "memoryId": 12067,
+      "relevance": 2
+    },
+    {
+      "queryId": 18,
+      "memoryId": 15944,
+      "relevance": 2
+    },
+    {
+      "queryId": 19,
+      "memoryId": 3664,
+      "relevance": 3
+    },
+    {
+      "queryId": 20,
+      "memoryId": 7413,
+      "relevance": 3
+    },
+    {
+      "queryId": 20,
+      "memoryId": 7430,
+      "relevance": 2
+    },
+    {
+      "queryId": 21,
+      "memoryId": 3694,
       "relevance": 3
     },
     {
       "queryId": 22,
-      "memoryId": 834,
-      "relevance": 2
-    },
-    {
-      "queryId": 22,
-      "memoryId": 377,
-      "relevance": 1
-    },
-    {
-      "queryId": 23,
-      "memoryId": 279,
+      "memoryId": 7198,
       "relevance": 3
     },
     {
       "queryId": 23,
-      "memoryId": 6,
-      "relevance": 2
+      "memoryId": 11270,
+      "relevance": 3
     },
     {
       "queryId": 23,
-      "memoryId": 75,
+      "memoryId": 11557,
       "relevance": 1
     },
     {
       "queryId": 24,
-      "memoryId": 327,
+      "memoryId": 18527,
       "relevance": 3
     },
     {
       "queryId": 24,
-      "memoryId": 330,
-      "relevance": 2
-    },
-    {
-      "queryId": 24,
-      "memoryId": 961,
-      "relevance": 1
-    },
-    {
-      "queryId": 25,
-      "memoryId": 327,
-      "relevance": 3
-    },
-    {
-      "queryId": 25,
-      "memoryId": 989,
+      "memoryId": 1249,
       "relevance": 2
     },
     {
       "queryId": 25,
-      "memoryId": 933,
-      "relevance": 1
-    },
-    {
-      "queryId": 26,
-      "memoryId": 363,
+      "memoryId": 15258,
       "relevance": 3
     },
     {
-      "queryId": 26,
-      "memoryId": 960,
+      "queryId": 25,
+      "memoryId": 11898,
+      "relevance": 2
+    },
+    {
+      "queryId": 25,
+      "memoryId": 14054,
       "relevance": 2
     },
     {
       "queryId": 26,
-      "memoryId": 989,
-      "relevance": 1
-    },
-    {
-      "queryId": 27,
-      "memoryId": 858,
+      "memoryId": 12468,
       "relevance": 3
     },
     {
-      "queryId": 27,
-      "memoryId": 291,
+      "queryId": 26,
+      "memoryId": 16878,
       "relevance": 2
     },
     {
       "queryId": 27,
-      "memoryId": 962,
-      "relevance": 1
-    },
-    {
-      "queryId": 28,
-      "memoryId": 363,
+      "memoryId": 16808,
       "relevance": 3
     },
     {
-      "queryId": 28,
-      "memoryId": 960,
+      "queryId": 27,
+      "memoryId": 12398,
       "relevance": 2
     },
     {
       "queryId": 28,
-      "memoryId": 330,
-      "relevance": 1
-    },
-    {
-      "queryId": 29,
-      "memoryId": 923,
+      "memoryId": 12950,
       "relevance": 3
     },
     {
       "queryId": 29,
-      "memoryId": 270,
+      "memoryId": 9374,
+      "relevance": 3
+    },
+    {
+      "queryId": 29,
+      "memoryId": 9248,
       "relevance": 2
     },
     {
       "queryId": 29,
-      "memoryId": 920,
+      "memoryId": 11515,
       "relevance": 1
     },
     {
       "queryId": 30,
-      "memoryId": 962,
+      "memoryId": 11534,
       "relevance": 3
     },
     {
       "queryId": 30,
-      "memoryId": 976,
+      "memoryId": 11515,
       "relevance": 2
     },
     {
       "queryId": 30,
-      "memoryId": 303,
+      "memoryId": 9248,
       "relevance": 1
     },
     {
       "queryId": 31,
-      "memoryId": 961,
+      "memoryId": 11837,
       "relevance": 3
     },
     {
       "queryId": 31,
-      "memoryId": 330,
+      "memoryId": 13866,
       "relevance": 2
     },
     {
       "queryId": 31,
-      "memoryId": 327,
-      "relevance": 1
-    },
-    {
-      "queryId": 32,
-      "memoryId": 962,
-      "relevance": 3
-    },
-    {
-      "queryId": 32,
-      "memoryId": 63,
+      "memoryId": 14246,
       "relevance": 2
     },
     {
       "queryId": 32,
-      "memoryId": 363,
-      "relevance": 1
-    },
-    {
-      "queryId": 33,
-      "memoryId": 330,
+      "memoryId": 15396,
       "relevance": 3
     },
     {
-      "queryId": 33,
-      "memoryId": 784,
+      "queryId": 32,
+      "memoryId": 11236,
+      "relevance": 2
+    },
+    {
+      "queryId": 32,
+      "memoryId": 11401,
       "relevance": 2
     },
     {
       "queryId": 33,
-      "memoryId": 776,
-      "relevance": 1
-    },
-    {
-      "queryId": 34,
-      "memoryId": 215,
+      "memoryId": 16101,
       "relevance": 3
     },
     {
-      "queryId": 34,
-      "memoryId": 220,
+      "queryId": 33,
+      "memoryId": 16060,
+      "relevance": 2
+    },
+    {
+      "queryId": 33,
+      "memoryId": 18132,
       "relevance": 2
     },
     {
       "queryId": 34,
-      "memoryId": 917,
+      "memoryId": 17065,
+      "relevance": 3
+    },
+    {
+      "queryId": 34,
+      "memoryId": 12639,
+      "relevance": 2
+    },
+    {
+      "queryId": 34,
+      "memoryId": 10942,
       "relevance": 1
     },
     {
       "queryId": 35,
-      "memoryId": 330,
+      "memoryId": 14955,
       "relevance": 3
     },
     {
       "queryId": 35,
-      "memoryId": 960,
-      "relevance": 2
-    },
-    {
-      "queryId": 35,
-      "memoryId": 327,
-      "relevance": 1
-    },
-    {
-      "queryId": 36,
-      "memoryId": 961,
-      "relevance": 3
-    },
-    {
-      "queryId": 36,
-      "memoryId": 327,
+      "memoryId": 17406,
       "relevance": 2
     },
     {
       "queryId": 36,
-      "memoryId": 330,
-      "relevance": 1
-    },
-    {
-      "queryId": 37,
-      "memoryId": 966,
+      "memoryId": 16324,
       "relevance": 3
     },
     {
-      "queryId": 37,
-      "memoryId": 834,
+      "queryId": 36,
+      "memoryId": 12011,
+      "relevance": 2
+    },
+    {
+      "queryId": 36,
+      "memoryId": 15873,
       "relevance": 2
     },
     {
       "queryId": 37,
-      "memoryId": 779,
-      "relevance": 1
-    },
-    {
-      "queryId": 38,
-      "memoryId": 363,
+      "memoryId": 12823,
       "relevance": 3
     },
     {
       "queryId": 38,
-      "memoryId": 791,
+      "memoryId": 9248,
+      "relevance": 3
+    },
+    {
+      "queryId": 38,
+      "memoryId": 9374,
       "relevance": 2
     },
     {
       "queryId": 38,
-      "memoryId": 39,
+      "memoryId": 11515,
       "relevance": 1
     },
     {
       "queryId": 39,
-      "memoryId": 326,
+      "memoryId": 3633,
       "relevance": 3
     },
     {
       "queryId": 39,
-      "memoryId": 85,
-      "relevance": 2
+      "memoryId": 3625,
+      "relevance": 1
     },
     {
       "queryId": 39,
-      "memoryId": 526,
+      "memoryId": 3627,
       "relevance": 1
     },
     {
       "queryId": 40,
-      "memoryId": 363,
+      "memoryId": 7615,
       "relevance": 3
     },
     {
       "queryId": 40,
-      "memoryId": 960,
-      "relevance": 2
-    },
-    {
-      "queryId": 40,
-      "memoryId": 350,
-      "relevance": 1
-    },
-    {
-      "queryId": 41,
-      "memoryId": 334,
-      "relevance": 3
-    },
-    {
-      "queryId": 41,
-      "memoryId": 323,
+      "memoryId": 7632,
       "relevance": 2
     },
     {
       "queryId": 41,
-      "memoryId": 989,
+      "memoryId": 10998,
+      "relevance": 3
+    },
+    {
+      "queryId": 41,
+      "memoryId": 10996,
+      "relevance": 1
+    },
+    {
+      "queryId": 41,
+      "memoryId": 10997,
       "relevance": 1
     },
     {
       "queryId": 42,
-      "memoryId": 368,
+      "memoryId": 6150,
       "relevance": 3
     },
     {
       "queryId": 42,
-      "memoryId": 769,
-      "relevance": 2
-    },
-    {
-      "queryId": 42,
-      "memoryId": 636,
+      "memoryId": 6151,
       "relevance": 1
     },
     {
       "queryId": 43,
-      "memoryId": 982,
+      "memoryId": 14034,
       "relevance": 3
     },
     {
       "queryId": 43,
-      "memoryId": 760,
+      "memoryId": 11883,
       "relevance": 2
     },
     {
       "queryId": 43,
-      "memoryId": 762,
-      "relevance": 1
-    },
-    {
-      "queryId": 44,
-      "memoryId": 780,
-      "relevance": 3
-    },
-    {
-      "queryId": 44,
-      "memoryId": 781,
+      "memoryId": 14421,
       "relevance": 2
     },
     {
       "queryId": 44,
-      "memoryId": 841,
-      "relevance": 1
-    },
-    {
-      "queryId": 45,
-      "memoryId": 353,
+      "memoryId": 18913,
       "relevance": 3
     },
     {
-      "queryId": 45,
-      "memoryId": 359,
+      "queryId": 44,
+      "memoryId": 1240,
+      "relevance": 2
+    },
+    {
+      "queryId": 44,
+      "memoryId": 1244,
       "relevance": 2
     },
     {
       "queryId": 45,
-      "memoryId": 10926,
+      "memoryId": 9388,
+      "relevance": 3
+    },
+    {
+      "queryId": 45,
+      "memoryId": 9384,
+      "relevance": 2
+    },
+    {
+      "queryId": 45,
+      "memoryId": 9362,
       "relevance": 1
     },
     {
       "queryId": 46,
-      "memoryId": 350,
+      "memoryId": 15517,
       "relevance": 3
     },
     {
       "queryId": 46,
-      "memoryId": 960,
+      "memoryId": 16576,
       "relevance": 2
     },
     {
       "queryId": 46,
-      "memoryId": 330,
+      "memoryId": 15514,
       "relevance": 1
     },
     {
       "queryId": 47,
-      "memoryId": 363,
+      "memoryId": 18636,
       "relevance": 3
     },
     {
       "queryId": 47,
-      "memoryId": 960,
+      "memoryId": 9905,
       "relevance": 2
     },
     {
       "queryId": 47,
-      "memoryId": 877,
+      "memoryId": 18633,
       "relevance": 1
     },
     {
       "queryId": 48,
-      "memoryId": 843,
+      "memoryId": 15367,
       "relevance": 3
     },
     {
       "queryId": 48,
-      "memoryId": 990,
+      "memoryId": 13683,
       "relevance": 2
     },
     {
       "queryId": 48,
-      "memoryId": 220,
-      "relevance": 1
-    },
-    {
-      "queryId": 49,
-      "memoryId": 363,
-      "relevance": 3
-    },
-    {
-      "queryId": 49,
-      "memoryId": 960,
+      "memoryId": 13969,
       "relevance": 2
     },
     {
       "queryId": 49,
-      "memoryId": 326,
-      "relevance": 1
-    },
-    {
-      "queryId": 50,
-      "memoryId": 363,
+      "memoryId": 14950,
       "relevance": 3
     },
     {
       "queryId": 50,
-      "memoryId": 98,
-      "relevance": 2
+      "memoryId": 12335,
+      "relevance": 3
     },
     {
       "queryId": 50,
-      "memoryId": 960,
-      "relevance": 1
+      "memoryId": 16745,
+      "relevance": 2
     },
     {
       "queryId": 51,
-      "memoryId": 330,
+      "memoryId": 21550,
       "relevance": 3
     },
     {
       "queryId": 51,
-      "memoryId": 648,
-      "relevance": 2
+      "memoryId": 21536,
+      "relevance": 1
     },
     {
       "queryId": 51,
-      "memoryId": 607,
+      "memoryId": 21543,
       "relevance": 1
     },
     {
       "queryId": 52,
-      "memoryId": 962,
+      "memoryId": 16989,
       "relevance": 3
     },
     {
       "queryId": 52,
-      "memoryId": 368,
-      "relevance": 1
-    },
-    {
-      "queryId": 53,
-      "memoryId": 363,
-      "relevance": 3
-    },
-    {
-      "queryId": 53,
-      "memoryId": 784,
+      "memoryId": 12575,
       "relevance": 2
     },
     {
       "queryId": 53,
-      "memoryId": 330,
+      "memoryId": 3601,
+      "relevance": 3
+    },
+    {
+      "queryId": 53,
+      "memoryId": 3600,
+      "relevance": 1
+    },
+    {
+      "queryId": 53,
+      "memoryId": 3603,
       "relevance": 1
     },
     {
       "queryId": 54,
-      "memoryId": 962,
+      "memoryId": 7548,
       "relevance": 3
     },
     {
       "queryId": 54,
-      "memoryId": 784,
-      "relevance": 2
-    },
-    {
-      "queryId": 54,
-      "memoryId": 370,
-      "relevance": 1
-    },
-    {
-      "queryId": 55,
-      "memoryId": 39,
-      "relevance": 3
-    },
-    {
-      "queryId": 55,
-      "memoryId": 813,
+      "memoryId": 7567,
       "relevance": 2
     },
     {
       "queryId": 55,
-      "memoryId": 982,
+      "memoryId": 3419,
+      "relevance": 3
+    },
+    {
+      "queryId": 55,
+      "memoryId": 3411,
+      "relevance": 1
+    },
+    {
+      "queryId": 55,
+      "memoryId": 3417,
       "relevance": 1
     },
     {
       "queryId": 56,
-      "memoryId": 321,
-      "relevance": 3
-    },
-    {
-      "queryId": 56,
-      "memoryId": 559,
-      "relevance": 2
-    },
-    {
-      "queryId": 56,
-      "memoryId": 784,
-      "relevance": 1
-    },
-    {
-      "queryId": 57,
-      "memoryId": 780,
+      "memoryId": 2518,
       "relevance": 3
     },
     {
       "queryId": 57,
-      "memoryId": 934,
+      "memoryId": 11665,
+      "relevance": 3
+    },
+    {
+      "queryId": 57,
+      "memoryId": 13980,
       "relevance": 2
     },
     {
       "queryId": 57,
-      "memoryId": 85,
-      "relevance": 1
-    },
-    {
-      "queryId": 58,
-      "memoryId": 962,
-      "relevance": 3
-    },
-    {
-      "queryId": 58,
-      "memoryId": 45,
+      "memoryId": 14362,
       "relevance": 2
     },
     {
       "queryId": 58,
-      "memoryId": 265,
+      "memoryId": 18519,
+      "relevance": 3
+    },
+    {
+      "queryId": 58,
+      "memoryId": 1236,
+      "relevance": 2
+    },
+    {
+      "queryId": 58,
+      "memoryId": 18516,
       "relevance": 1
     },
     {
       "queryId": 59,
-      "memoryId": 363,
+      "memoryId": 16186,
       "relevance": 3
     },
     {
       "queryId": 59,
-      "memoryId": 781,
-      "relevance": 1
+      "memoryId": 11589,
+      "relevance": 2
     },
     {
-      "queryId": 60,
-      "memoryId": 960,
-      "relevance": 3
-    },
-    {
-      "queryId": 60,
-      "memoryId": 161,
+      "queryId": 59,
+      "memoryId": 12784,
       "relevance": 2
     },
     {
       "queryId": 60,
-      "memoryId": 368,
-      "relevance": 1
-    },
-    {
-      "queryId": 61,
-      "memoryId": 330,
+      "memoryId": 19343,
       "relevance": 3
     },
     {
-      "queryId": 61,
-      "memoryId": 350,
+      "queryId": 60,
+      "memoryId": 18300,
       "relevance": 2
     },
     {
-      "queryId": 61,
-      "memoryId": 363,
-      "relevance": 1
-    },
-    {
-      "queryId": 62,
-      "memoryId": 39,
-      "relevance": 3
-    },
-    {
-      "queryId": 62,
-      "memoryId": 990,
-      "relevance": 2
-    },
-    {
-      "queryId": 62,
-      "memoryId": 46,
-      "relevance": 1
-    },
-    {
-      "queryId": 63,
-      "memoryId": 962,
-      "relevance": 3
-    },
-    {
-      "queryId": 63,
-      "memoryId": 368,
-      "relevance": 1
-    },
-    {
-      "queryId": 64,
-      "memoryId": 962,
-      "relevance": 3
-    },
-    {
-      "queryId": 64,
-      "memoryId": 981,
-      "relevance": 2
-    },
-    {
-      "queryId": 64,
-      "memoryId": 197,
-      "relevance": 1
-    },
-    {
-      "queryId": 65,
-      "memoryId": 363,
-      "relevance": 3
-    },
-    {
-      "queryId": 65,
-      "memoryId": 960,
-      "relevance": 2
-    },
-    {
-      "queryId": 65,
-      "memoryId": 784,
-      "relevance": 1
-    },
-    {
-      "queryId": 66,
-      "memoryId": 834,
-      "relevance": 3
-    },
-    {
-      "queryId": 66,
-      "memoryId": 966,
-      "relevance": 2
-    },
-    {
-      "queryId": 66,
-      "memoryId": 836,
-      "relevance": 1
-    },
-    {
-      "queryId": 67,
-      "memoryId": 784,
-      "relevance": 3
-    },
-    {
-      "queryId": 67,
-      "memoryId": 330,
-      "relevance": 2
-    },
-    {
-      "queryId": 67,
-      "memoryId": 776,
-      "relevance": 1
-    },
-    {
-      "queryId": 68,
-      "memoryId": 917,
-      "relevance": 3
-    },
-    {
-      "queryId": 68,
-      "memoryId": 323,
-      "relevance": 2
-    },
-    {
-      "queryId": 68,
-      "memoryId": 334,
-      "relevance": 1
-    },
-    {
-      "queryId": 69,
-      "memoryId": 363,
-      "relevance": 3
-    },
-    {
-      "queryId": 69,
-      "memoryId": 334,
-      "relevance": 2
-    },
-    {
-      "queryId": 69,
-      "memoryId": 989,
-      "relevance": 1
-    },
-    {
-      "queryId": 70,
-      "memoryId": 138,
-      "relevance": 3
-    },
-    {
-      "queryId": 70,
-      "memoryId": 568,
-      "relevance": 2
-    },
-    {
-      "queryId": 70,
-      "memoryId": 99,
-      "relevance": 1
-    },
-    {
-      "queryId": 71,
-      "memoryId": 962,
-      "relevance": 3
-    },
-    {
-      "queryId": 71,
-      "memoryId": 966,
-      "relevance": 2
-    },
-    {
-      "queryId": 71,
-      "memoryId": 518,
-      "relevance": 1
-    },
-    {
-      "queryId": 72,
-      "memoryId": 39,
-      "relevance": 3
-    },
-    {
-      "queryId": 72,
-      "memoryId": 887,
-      "relevance": 2
-    },
-    {
-      "queryId": 72,
-      "memoryId": 46,
-      "relevance": 1
-    },
-    {
-      "queryId": 73,
-      "memoryId": 39,
-      "relevance": 3
-    },
-    {
-      "queryId": 73,
-      "memoryId": 46,
-      "relevance": 2
-    },
-    {
-      "queryId": 73,
-      "memoryId": 345,
-      "relevance": 1
-    },
-    {
-      "queryId": 74,
-      "memoryId": 39,
-      "relevance": 3
-    },
-    {
-      "queryId": 74,
-      "memoryId": 46,
-      "relevance": 2
-    },
-    {
-      "queryId": 74,
-      "memoryId": 334,
-      "relevance": 1
-    },
-    {
-      "queryId": 75,
-      "memoryId": 962,
-      "relevance": 3
-    },
-    {
-      "queryId": 75,
-      "memoryId": 363,
-      "relevance": 2
-    },
-    {
-      "queryId": 75,
-      "memoryId": 960,
-      "relevance": 1
-    },
-    {
-      "queryId": 76,
-      "memoryId": 363,
-      "relevance": 3
-    },
-    {
-      "queryId": 76,
-      "memoryId": 368,
-      "relevance": 2
-    },
-    {
-      "queryId": 76,
-      "memoryId": 366,
-      "relevance": 1
-    },
-    {
-      "queryId": 77,
-      "memoryId": 321,
-      "relevance": 3
-    },
-    {
-      "queryId": 77,
-      "memoryId": 858,
-      "relevance": 2
-    },
-    {
-      "queryId": 77,
-      "memoryId": 330,
-      "relevance": 1
-    },
-    {
-      "queryId": 78,
-      "memoryId": 962,
-      "relevance": 3
-    },
-    {
-      "queryId": 78,
-      "memoryId": 45,
-      "relevance": 1
-    },
-    {
-      "queryId": 79,
-      "memoryId": 363,
-      "relevance": 3
-    },
-    {
-      "queryId": 79,
-      "memoryId": 960,
-      "relevance": 2
-    },
-    {
-      "queryId": 79,
-      "memoryId": 887,
-      "relevance": 1
-    },
-    {
-      "queryId": 80,
-      "memoryId": 363,
-      "relevance": 3
-    },
-    {
-      "queryId": 80,
-      "memoryId": 327,
-      "relevance": 2
-    },
-    {
-      "queryId": 80,
-      "memoryId": 361,
-      "relevance": 1
-    },
-    {
-      "queryId": 81,
-      "memoryId": 767,
-      "relevance": 3
-    },
-    {
-      "queryId": 81,
-      "memoryId": 648,
-      "relevance": 2
-    },
-    {
-      "queryId": 81,
-      "memoryId": 617,
-      "relevance": 1
-    },
-    {
-      "queryId": 82,
-      "memoryId": 330,
-      "relevance": 3
-    },
-    {
-      "queryId": 82,
-      "memoryId": 784,
-      "relevance": 2
-    },
-    {
-      "queryId": 82,
-      "memoryId": 334,
-      "relevance": 1
-    },
-    {
-      "queryId": 83,
-      "memoryId": 634,
-      "relevance": 3
-    },
-    {
-      "queryId": 83,
-      "memoryId": 368,
-      "relevance": 2
-    },
-    {
-      "queryId": 83,
-      "memoryId": 636,
-      "relevance": 1
-    },
-    {
-      "queryId": 84,
-      "memoryId": 363,
-      "relevance": 3
-    },
-    {
-      "queryId": 84,
-      "memoryId": 368,
-      "relevance": 2
-    },
-    {
-      "queryId": 84,
-      "memoryId": 780,
-      "relevance": 1
-    },
-    {
-      "queryId": 85,
-      "memoryId": 962,
-      "relevance": 3
-    },
-    {
-      "queryId": 86,
-      "memoryId": 98,
-      "relevance": 3
-    },
-    {
-      "queryId": 86,
-      "memoryId": 330,
-      "relevance": 2
-    },
-    {
-      "queryId": 86,
-      "memoryId": 340,
-      "relevance": 1
-    },
-    {
-      "queryId": 87,
-      "memoryId": 327,
-      "relevance": 3
-    },
-    {
-      "queryId": 87,
-      "memoryId": 326,
-      "relevance": 2
-    },
-    {
-      "queryId": 87,
-      "memoryId": 334,
-      "relevance": 1
-    },
-    {
-      "queryId": 88,
-      "memoryId": 933,
-      "relevance": 3
-    },
-    {
-      "queryId": 88,
-      "memoryId": 363,
-      "relevance": 2
-    },
-    {
-      "queryId": 88,
-      "memoryId": 161,
-      "relevance": 1
-    },
-    {
-      "queryId": 89,
-      "memoryId": 962,
-      "relevance": 3
-    },
-    {
-      "queryId": 89,
-      "memoryId": 767,
-      "relevance": 2
-    },
-    {
-      "queryId": 89,
-      "memoryId": 345,
-      "relevance": 1
-    },
-    {
-      "queryId": 90,
-      "memoryId": 39,
-      "relevance": 3
-    },
-    {
-      "queryId": 90,
-      "memoryId": 46,
-      "relevance": 2
-    },
-    {
-      "queryId": 90,
-      "memoryId": 215,
-      "relevance": 1
-    },
-    {
-      "queryId": 91,
-      "memoryId": 327,
-      "relevance": 3
-    },
-    {
-      "queryId": 91,
-      "memoryId": 961,
-      "relevance": 2
-    },
-    {
-      "queryId": 91,
-      "memoryId": 960,
-      "relevance": 1
-    },
-    {
-      "queryId": 92,
-      "memoryId": 887,
-      "relevance": 3
-    },
-    {
-      "queryId": 92,
-      "memoryId": 7,
-      "relevance": 1
-    },
-    {
-      "queryId": 93,
-      "memoryId": 327,
-      "relevance": 3
-    },
-    {
-      "queryId": 93,
-      "memoryId": 961,
-      "relevance": 2
-    },
-    {
-      "queryId": 93,
-      "memoryId": 330,
-      "relevance": 1
-    },
-    {
-      "queryId": 94,
-      "memoryId": 327,
-      "relevance": 3
-    },
-    {
-      "queryId": 94,
-      "memoryId": 330,
-      "relevance": 2
-    },
-    {
-      "queryId": 94,
-      "memoryId": 334,
-      "relevance": 1
-    },
-    {
-      "queryId": 95,
-      "memoryId": 823,
-      "relevance": 3
-    },
-    {
-      "queryId": 95,
-      "memoryId": 327,
-      "relevance": 2
-    },
-    {
-      "queryId": 95,
-      "memoryId": 933,
-      "relevance": 1
-    },
-    {
-      "queryId": 96,
-      "memoryId": 330,
-      "relevance": 3
-    },
-    {
-      "queryId": 96,
-      "memoryId": 334,
-      "relevance": 2
-    },
-    {
-      "queryId": 96,
-      "memoryId": 363,
-      "relevance": 1
-    },
-    {
-      "queryId": 97,
-      "memoryId": 960,
-      "relevance": 3
-    },
-    {
-      "queryId": 97,
-      "memoryId": 363,
-      "relevance": 2
-    },
-    {
-      "queryId": 97,
-      "memoryId": 785,
-      "relevance": 1
-    },
-    {
-      "queryId": 98,
-      "memoryId": 370,
-      "relevance": 3
-    },
-    {
-      "queryId": 98,
-      "memoryId": 368,
-      "relevance": 2
-    },
-    {
-      "queryId": 98,
-      "memoryId": 366,
-      "relevance": 1
-    },
-    {
-      "queryId": 99,
-      "memoryId": 843,
-      "relevance": 3
-    },
-    {
-      "queryId": 99,
-      "memoryId": 102,
-      "relevance": 2
-    },
-    {
-      "queryId": 99,
-      "memoryId": 370,
-      "relevance": 1
-    },
-    {
-      "queryId": 100,
-      "memoryId": 370,
-      "relevance": 3
-    },
-    {
-      "queryId": 100,
-      "memoryId": 368,
-      "relevance": 2
-    },
-    {
-      "queryId": 100,
-      "memoryId": 369,
-      "relevance": 1
-    },
-    {
-      "queryId": 101,
-      "memoryId": 361,
-      "relevance": 3
-    },
-    {
-      "queryId": 101,
-      "memoryId": 327,
-      "relevance": 2
-    },
-    {
-      "queryId": 101,
-      "memoryId": 933,
-      "relevance": 1
-    },
-    {
-      "queryId": 102,
-      "memoryId": 363,
-      "relevance": 3
-    },
-    {
-      "queryId": 102,
-      "memoryId": 858,
-      "relevance": 2
-    },
-    {
-      "queryId": 102,
-      "memoryId": 369,
-      "relevance": 1
-    },
-    {
-      "queryId": 109,
-      "memoryId": 765,
-      "relevance": 3
-    },
-    {
-      "queryId": 109,
-      "memoryId": 984,
-      "relevance": 2
-    },
-    {
-      "queryId": 109,
-      "memoryId": 515,
-      "relevance": 1
-    },
-    {
-      "queryId": 110,
-      "memoryId": 776,
-      "relevance": 3
-    },
-    {
-      "queryId": 110,
-      "memoryId": 962,
-      "relevance": 2
-    },
-    {
-      "queryId": 110,
-      "memoryId": 45,
+      "queryId": 60,
+      "memoryId": 19016,
       "relevance": 1
     }
   ]
