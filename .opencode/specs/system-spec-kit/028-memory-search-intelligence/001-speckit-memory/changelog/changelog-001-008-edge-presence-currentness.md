@@ -19,17 +19,18 @@ contextType: "implementation"
 
 ### Summary
 
-This phase is a planning reframe, not a code shipment. It turns the temporal currentness candidates into a sequenced Level-3 implementation plan, anchored on the sibling bi-temporal substrate and the confirmed Wave-0 done record. All five candidates remain pending with explicit gates.
+This phase shipped the C3-A edge-presence currentness candidate behind the default-off `SPECKIT_EDGE_PRESENCE_CURRENTNESS` flag, alongside a sequenced Level-3 plan for the four remaining candidates. The read-side currentness reconciliation lands in `temporal-edges.ts` `getValidEdges` with its schema migration, and recall stays byte-identical while the flag is off. The four remaining currentness and temporal-recall candidates stay pending schema, benchmark and shared-infra evidence. Commit `cb92f2f211` carried the slice with a 241-line passing test.
 
 ### Added
 
-- Added the Level-3 planning set for the edge-presence currentness candidates.
-- Added candidate gating against the bi-temporal substrate and Wave-0 record.
+- Added the C3-A read-side currentness reconciliation in `lib/graph/temporal-edges.ts` behind `SPECKIT_EDGE_PRESENCE_CURRENTNESS`.
+- Added the schema migration in `lib/search/vector-index-schema.ts` and the default-off flag in `lib/search/search-flags.ts`.
+- Added the Level-3 planning set and candidate gating for the four remaining candidates.
 
 ### Changed
 
 - Converted the original flip-shaped idea into a read-side build plan.
-- Synchronized the spec, plan, task list and decision record around pending candidate status.
+- Synchronized the spec, plan, task list and decision record around C3-A shipped and four candidates pending.
 
 ### Fixed
 
@@ -39,11 +40,14 @@ _No fixes recorded._
 
 - Strict phase validation: PASS.
 - Wave-0 evidence cross-check: PASS.
-- Code verification: not applicable because no production code shipped.
+- Code verification: PASS. C3-A test 3 pass and typecheck 0 at commit `cb92f2f211`.
 
 ### Files Changed
 
-_No production file-level detail recorded._
+- `lib/graph/temporal-edges.ts`: C3-A `getValidEdges` currentness reconciliation, a no-op when the flag is off.
+- `lib/search/vector-index-schema.ts`: schema migration for the currentness slice.
+- `lib/search/search-flags.ts`: default-off `SPECKIT_EDGE_PRESENCE_CURRENTNESS` flag.
+- `tests/edge-presence-currentness.vitest.ts`: 241-line coverage, 3 pass.
 
 ### Follow-Ups
 

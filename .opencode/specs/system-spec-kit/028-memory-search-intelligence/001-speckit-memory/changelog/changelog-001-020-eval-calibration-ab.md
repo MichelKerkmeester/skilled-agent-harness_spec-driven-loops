@@ -19,17 +19,20 @@ contextType: "implementation"
 
 ### Summary
 
-This phase remains planning-only. It scopes two measurement-gated consumers of the eval harness: held-out confidence calibration and an A/B pass over already-shipped search levers. Both stay pending until the eval-harness calibration lane, gate-zero coverage and promotion evidence exist.
+This phase shipped observe-only confidence calibration and shipped-lever A/B utilities. The calibration fitter gains a real eval caller through the ablation harness, a three-way held-out shadow returns a promote-or-wait decision without flipping flags and the lever A/B emits measured S5 and S3 descriptors. Both candidates stay pending promotion until 019 supplies held-out ECE and golden-set delta evidence. Default behavior stays byte-identical because no flag default was flipped. Commit `8f8776e329` carried the utilities with a 232-line passing test.
 
 ### Added
 
-_No shipped additions recorded._
+- Added observe-only calibration harvest and fit wiring in `lib/eval/ablation-framework.ts` and `lib/search/confidence-calibration.ts`.
+- Added the three-way held-out shadow promote-or-wait decision in `lib/eval/shadow-scoring.ts`.
+- Added generic lever-delta and S5 and S2 metrics in `lib/eval/eval-metrics.ts`.
+- Added `tests/eval-calibration-ab.vitest.ts` coverage.
 
 ### Changed
 
-- Documented the label-harvest path needed to give the calibration fitter a real caller.
-- Documented the A/B path needed to measure the shipped search levers under the golden set.
-- Kept both candidates default-off until measured evidence exists.
+- Shipped the label-harvest path that gives the calibration fitter a real eval caller.
+- Shipped the A/B path that measures the shipped search levers under the golden set.
+- Kept both candidates observe-only with default behavior unchanged until measured evidence exists.
 
 ### Fixed
 
@@ -37,11 +40,18 @@ _No fixes recorded._
 
 ### Verification
 
-- Verification is pending because no implementation ran.
+- Strict phase validation: PASS.
+- Implementation tests: PASS via `tests/eval-calibration-ab.vitest.ts` and the calibration suite.
+- Promotion evidence remains pending on the 019 eval-harness.
 
 ### Files Changed
 
-_No production file-level detail recorded._
+- `lib/eval/ablation-framework.ts`: observe-only calibration sample harvest and lever A/B variant descriptors.
+- `lib/eval/eval-metrics.ts`: generic lever deltas and S5 and S2 metrics.
+- `lib/eval/shadow-scoring.ts`: deterministic three-way held-out promote-or-wait decision.
+- `lib/search/confidence-calibration.ts`: graded-label binarizer for the observe-only fitter.
+- `lib/search/confidence-scoring.ts`: diagnostic `preCalibrationValue` with the apply seam unchanged.
+- `tests/eval-calibration-ab.vitest.ts`: 232-line observe-only calibration and lever coverage.
 
 ### Follow-Ups
 

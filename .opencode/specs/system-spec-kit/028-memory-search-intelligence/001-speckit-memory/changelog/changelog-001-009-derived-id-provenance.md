@@ -19,17 +19,19 @@ contextType: "implementation"
 
 ### Summary
 
-This is a planning-stage packet for content-addressed derived causal artifacts. The shared content-id dependency exists, but the derived ID helper, migration and write-path changes remain behind the schema-migration gate. No production code shipped in this phase.
+This phase shipped the content-addressed derived ID for generated causal edges behind the default-off `SPECKIT_DERIVED_ID_PROVENANCE` flag. The derived-id helper reuses the shared content-id primitive, the schema version 40 migration adds the additive identity column with a partial unique index and the write path persists the id only for generated rows when the flag is on. Default behavior stays byte-identical until the gate is enabled. Commit `ed53661043` carried the lib code and a 396-line passing test.
 
 ### Added
 
-_No shipped additions recorded._
+- Added the default-off `SPECKIT_DERIVED_ID_PROVENANCE` flag and the derived-id helper in `lib/content-id.ts`.
+- Added the v40 `causal_edges.derived_id` migration with duplicate-safe backfill and a partial unique index.
+- Added `tests/derived-id-provenance.vitest.ts` covering helper stability, migration, flag gating, replay and rollback.
 
 ### Changed
 
-- Confirmed the shared canonical JSON hash helper exists and can be reused.
+- Confirmed the shared canonical JSON hash helper exists and reused it rather than adding a new primitive.
 - Documented that legacy anchor-inclusive uniqueness drives the derived ID input shape.
-- Planned the helper, migration, write-path and verification sequence.
+- Shipped the helper, migration and write-path wiring with the verification sequence.
 
 ### Fixed
 
@@ -38,12 +40,15 @@ _No shipped additions recorded._
 ### Verification
 
 - Planning docs strict validation: PASS.
-- Implementation tests: not run because the build is pending.
-- Migration and backfill tests: not run because the build is pending.
+- Implementation tests: PASS. Focused suite 5 files / 41 tests at commit `ed53661043`.
+- Migration and backfill tests: PASS, covered by the derived-id-provenance suite.
 
 ### Files Changed
 
-_No production file-level detail recorded._
+- `lib/content-id.ts`: derived-id helper composing the canonical triple plus source plus rule_version.
+- `lib/search/search-flags.ts`: default-off `SPECKIT_DERIVED_ID_PROVENANCE` flag.
+- `lib/search/vector-index-schema.ts`: v40 migration, identity column, partial unique index and duplicate-safe backfill.
+- `tests/derived-id-provenance.vitest.ts`: 396-line coverage of helper, migration and gating.
 
 ### Follow-Ups
 

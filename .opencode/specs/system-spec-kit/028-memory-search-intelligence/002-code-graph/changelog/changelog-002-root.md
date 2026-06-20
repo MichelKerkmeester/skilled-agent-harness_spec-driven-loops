@@ -29,7 +29,7 @@ The Code Graph phase parent rolls up eight child phases across deterministic ran
 | `003-generation-watermark` | Soft watermark implemented, hard gate deferred | Scan promotion now bumps a monotonic generation counter and exposes it in freshness metadata. |
 | `004-code-edge-bitemporal` | Draft, ships nothing this phase | Bi-temporal `code_edges` work is deferred until a real as-of or time-travel consumer exists. |
 | `005-seeded-ppr-ranking` | Implemented mechanism default-off, benchmark gates pending | Impact ranking can use a flagged bounded personalized PageRank mechanism over the weighted-walk substrate, with the existing flat walk preserved by default. |
-| `006-edge-governance-vocab` | Draft | Edge-governance migration and audit work are planned only, pending live vocabulary evidence and migration safety checks. |
+| `006-edge-governance-vocab` | Implemented default-off | The closed-vocab `edge_type` CHECK migration shipped behind `SPECKIT_CODE_GRAPH_EDGE_GOVERNANCE_VOCAB` with `SCHEMA_VERSION` 7 to 8, a pre-rebuild DISTINCT scan and focused tests. The churn cap, audit-subgraph and derived-clock siblings remain deferred. |
 | `007-parser-resilience` | Implemented | Parser skip-list behavior now separates crash cohort from transient or fatal retry policy. |
 | `008-doc-symbol-lane` | Implemented | The doc lane now indexes heading and key nodes and the launcher classifies lease transitions through a no-op-default metrics hook. |
 
