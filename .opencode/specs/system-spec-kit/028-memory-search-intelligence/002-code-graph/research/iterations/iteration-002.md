@@ -1,5 +1,16 @@
 # Iteration 2: Bi-temporal + Quarantine + PPR Mapping (Q1/Q2/Q3)
 
+> **Historical research snapshot.** This file is a frozen iteration from the code-graph external-mining
+> deep-research session. It maps aionforge primitives onto code-graph paths and proposes candidates
+> Q1-C1, Q1-C2, Q2-C1, Q2-C2 and Q3-C1, none of which are shipped-state claims. Two references are stale
+> against the current reality and are kept verbatim for the research record. The line-9 note that the
+> aionforge docs are present under a tracked path contradicts iteration 1 and the gitignore, where
+> `external/` is gitignored and absent on disk, so the doc-read confirmations below rest on a checkout
+> that the repository does not retain. The seeded-PPR candidate Q3-C1 is a research proposal, and the
+> `code_graph_seeded_ppr` flag stayed default-off after benchmarking, recorded in
+> [`../../../../keep-off-flag-roadmap.md`](../../../../keep-off-flag-roadmap.md). Read the synthesized
+> [`../../research.md`](../../research.md) for the converged code-graph conclusions.
+
 ## Focus
 Map the three aionforge primitives onto the code-graph code paths anchored in iter 1:
 - **Q1**: aionforge closed-validity-window edge model (`bi-temporal-model.md`) onto `code_edges` and the destructive DELETE sites (`replaceNodes`/`replaceEdges`/`pruneDanglingEdges`).

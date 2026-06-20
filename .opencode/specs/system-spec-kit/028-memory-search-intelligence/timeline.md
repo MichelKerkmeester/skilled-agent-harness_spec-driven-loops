@@ -13,7 +13,7 @@ _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence"
     last_updated_at: "2026-06-20T00:00:00Z"
-    recent_action: "Extended the chronological timeline to cover the four-round deep review and its remediation arc through the round-four close and the release-cleanup focused review"
+    recent_action: "Extended the chronological timeline to cover the keep-off flag reinvestigation, the four default-on flips, the procedural revert and the three-round deep-review validation arc"
     next_safe_action: "Use this file to trace what shipped when and in which commit across the four subsystems"
     completion_pct: 100
 ---
@@ -23,10 +23,13 @@ _memory:
 > This is the literal sequence the work landed in, not the candidate or phase numbering from the specs.
 >
 > **What this packet did.** It turned a long external memory-system research campaign into shipped
-> retrieval intelligence across four subsystems. The work landed in two epochs. The flat 030 Wave-0
+> retrieval intelligence across four subsystems. The work landed in four epochs. The flat 030 Wave-0
 > shipped the ship-ready spearhead first. Then the rest of the roadmap was re-planned into a phased
 > five-track program under 028 and built in dependency-ordered waves, every shipped change additive,
-> reversible and default-safe, none with a measured benefit number.
+> reversible and default-safe. A four-round deep review then audited the shipped state. Finally a
+> keep-off flag reinvestigation reopened every default-off flag, flipped four to default-on on real
+> evidence, reverted one after fixing its correctness bug and was validated across three deep-review
+> rounds, so the closing state carries a measured disposition rather than a uniform default-off posture.
 >
 > **Where the truth lives.** The superseded 030 Wave-0 packet was deleted at `5ce5130b20`, so its
 > done-evidence now lives in the per-track `changelog-00N-root.md` rollups and the before-and-after
@@ -97,7 +100,7 @@ Epoch two continued  --  the schema cluster, release-cleanup and the benchmark
  8f8776e329  feat(028)           memory 012 procedural + 018 sleeptime + 020 eval-calibration-ab (default-off)
  818db21c54  docs(028)           execute release-cleanup 006 (deep/agent_router deferred)
  0843d054f7  feat(028)           run the eval-harness benchmark (criterion 4, aligned golden set)
- 30958b1b0e  docs(028)           mark criterion 4 resolved (no default-off flag earned a flip)
+ 30958b1b0e  docs(028)           mark criterion 4 resolved (no flip on this pass, later reopened in Section G)
  5ce5130b20  chore(028)          delete the superseded Wave-0 packet 030
 
 Epoch three  --  the deep review and its remediation (after the build program)
@@ -262,8 +265,10 @@ tweaks at `0cf96409d8` and the advisor outcome-weighted and beta-posterior shado
 The release-cleanup track then executed all nine child phases across `ab405fa052` through `818db21c54`,
 with the deep-research SKILL surfaces and the command-router deferred to a concurrent session. Finally
 the eval-harness benchmark ran for criterion 4 at `0843d054f7` and resolved at `30958b1b0e`: the
-aligned golden set produced channel-level Recall@20 deltas but no default-off flag earned a flip, so
-the conservative default-off posture held. `5ce5130b20` then deleted the superseded Wave-0 packet 030.
+aligned golden set produced channel-level Recall@20 deltas but no default-off flag earned a flip on
+that pass, so the conservative default-off posture held for the build epoch. That verdict was later
+superseded by the keep-off flag reinvestigation in Section G, which reopened the flags and flipped four
+to default-on on its own evidence. `5ce5130b20` then deleted the superseded Wave-0 packet 030.
 
 ---
 
@@ -284,6 +289,11 @@ shared Beta posterior. Two roadmap rows are deferred on evidence, the system-kin
 idempotency default-on flip, and three are recorded as held-unbuilt NO-GO or DEFER-speculative, the
 reliability-weighted convergence cluster, the lexical-vector seed union and the as-of-generation hard
 gate. None of the gated work shipped on a structural guess.
+
+This held set describes the state at the close of the build epoch. The keep-off flag reinvestigation in
+Section G later reopened it and resolved four of these holds with a live flip: derived-id provenance and
+confidence calibration on an unqualified win and retention forgetting and world-summary prelude on a
+no-harm guarantee. The rest stay held for the reasons recorded above.
 
 ---
 
@@ -320,3 +330,48 @@ effectively converged with eighteen P1 fixed across rounds one through three and
 `ad8b166e7a` then ran a ten-seat release-cleanup focused review that read the cleanup tracking docs
 themselves, confirmed the work shipped and that [`benchmark-status.md`](./benchmark-status.md) records
 nine of nine executed, and flagged the repo-root README rule count for a live recount.
+
+---
+
+## G. The keep-off flag reinvestigation and the deep-review validation
+
+The build epoch closed with no default-off flag flipped, so the final arc reopened that verdict. Every
+028 flag that benchmarked keep-off was reinvestigated through deep research to find the concrete path
+that makes it improve a real metric, and the triage in
+[`keep-off-flag-roadmap.md`](./keep-off-flag-roadmap.md) recorded each flag with its root cause, its
+path to useful, its effort and its flip potential. The cross-cutting finding was that every keep-off
+flag is mechanism-shipped and claim-deferred by design, so each gap is a missing connection to live data
+rather than a logic bug. The decisions are recorded in [`benchmark-status.md`](./benchmark-status.md).
+
+Four flags earned a default-on flip, two on an unqualified win and two on a no-harm guarantee. The
+honest framing matters so a release sign-off does not read a safety flip as a precision win.
+`SPECKIT_CONFIDENCE_CALIBRATION` flipped on an unqualified win, held-out ECE 0.184 to 0.023 across all
+folds with a shipped isotonic model and a label-decoupling fix that removed the earlier overfit.
+`SPECKIT_DERIVED_ID_PROVENANCE` flipped on an unqualified win, content-addressed identity correctness 4
+of 4. `SPECKIT_RETENTION_FORGETTING_V1` flipped as a safety and no-harm guarantee, it spares 386
+keep-set rows the off path would delete with dropRecall delta 0, and its keep and drop labels are
+circular, so it is a guardrail and not a precision gain. `SPECKIT_WORLD_SUMMARY_PRELUDE` flipped as a
+no-displacement grounding aid once it moved from prepend to append, it recovers 11 targets with 0
+regressions by construction and never displaces a baseline row, so it is a grounding aid and not a
+recall-quality win.
+
+`SPECKIT_PROCEDURAL_RELIABILITY_RECALL` reverted to default-off. Its de-rate bug was fixed and the
+correctness fix stays committed, the multiplier is now a prior-centered evidence-weighted delta that can
+promote or demote a procedure in a near-tie, but it moves only synthetic near-ties with zero measurable
+effect on real data, so only a near-tie benchmark would earn it a flip.
+
+`SPECKIT_TEMPORAL_EDGES` ships default-on as the additive graph-lane mitigation, not the regression.
+Re-measured on a live-DB copy the edge-hop recall is +0.083 with the flag on versus off, so turning it
+off removes the mitigation and makes recall worse. The within-noise graph-channel harm belongs to the
+separate pre-028 graph flags `useGraph`, `SPECKIT_GRAPH_SIGNALS` and `SPECKIT_DEGREE_BOOST`, a noted
+follow-up out of 028 scope.
+
+The structural keep-offs stayed off because they are recall-inert at K=20: the summary-fusion lane, the
+cardinality penalty, sleeptime consolidation and the edge family. Two flags are wired and flip-deferred,
+not unbuilt: agentic recall needs a live chat LLM plus the daemon, and the advisor outcome-weighted
+rerank needs a real production ledger.
+
+The deep review ran three rounds over this disposition. It caught the delete-env evaluation bug where
+the off arm measured the on arm after a flip, so a flipped flag would have scored as a win against
+itself, and it established the principle that synthetic, circular or self-recall wins do not earn a flip.
+The four flips, the procedural revert and the structural keep-offs are the corrected closing state.
