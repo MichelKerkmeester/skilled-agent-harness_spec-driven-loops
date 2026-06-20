@@ -18,7 +18,7 @@ contextType: "implementation"
 
 ### Summary
 
-The Code Graph phase parent rolls up eight child phases across deterministic ranking, edge correctness, freshness metadata, deferred schema work, default-off impact ranking, parser resilience and document-symbol extraction. Detailed planning and verification live in the child phase folders listed below.
+The Code Graph phase parent rolls up eight child phases across deterministic ranking, edge correctness, freshness metadata, default-off bi-temporal schema foundation, default-off impact ranking, parser resilience and document-symbol extraction. Detailed planning and verification live in the child phase folders listed below.
 
 ### Included Phases
 
@@ -27,7 +27,7 @@ The Code Graph phase parent rolls up eight child phases across deterministic ran
 | `001-determinism-walk-order` | In Progress | Context-edge ranking now uses content-derived ordering for equal-trust walks, while fuser adapter work and boost tuning remain gated. |
 | `002-edge-staleness-correctness` | Implemented default-off, benchmark gate pending | Incremental scans can force-parse changed dependencies' importers before persistence and tombstone-gated rename lineage is available through `SUPERSEDES` edges. |
 | `003-generation-watermark` | Soft watermark implemented, hard gate deferred | Scan promotion now bumps a monotonic generation counter and exposes it in freshness metadata. |
-| `004-code-edge-bitemporal` | Draft, ships nothing this phase | Bi-temporal `code_edges` work is deferred until a real as-of or time-travel consumer exists. |
+| `004-code-edge-bitemporal` | Schema foundation shipped default-off | The `code_edges` table gained nullable `valid_at`/`invalid_at` columns with UP/BACKFILL/DOWN helpers behind `SPECKIT_CODE_GRAPH_EDGE_BITEMPORAL_READS`. Live views, lifecycle writes and the as-of read stay deferred until a named consumer exists. |
 | `005-seeded-ppr-ranking` | Implemented mechanism default-off, benchmark gates pending | Impact ranking can use a flagged bounded personalized PageRank mechanism over the weighted-walk substrate, with the existing flat walk preserved by default. |
 | `006-edge-governance-vocab` | Implemented default-off | The closed-vocab `edge_type` CHECK migration shipped behind `SPECKIT_CODE_GRAPH_EDGE_GOVERNANCE_VOCAB` with `SCHEMA_VERSION` 7 to 8, a pre-rebuild DISTINCT scan and focused tests. The churn cap, audit-subgraph and derived-clock siblings remain deferred. |
 | `007-parser-resilience` | Implemented | Parser skip-list behavior now separates crash cohort from transient or fatal retry policy. |
@@ -44,6 +44,7 @@ The Code Graph phase parent rolls up eight child phases across deterministic ran
 ### Fixed
 
 - Corrected the stale child summary for edge-staleness correctness in the rollup.
+- Corrected the bi-temporal child row from ships-nothing to schema foundation shipped default-off, after git confirmed the columns, migration helpers and tests landed.
 
 ### Verification
 

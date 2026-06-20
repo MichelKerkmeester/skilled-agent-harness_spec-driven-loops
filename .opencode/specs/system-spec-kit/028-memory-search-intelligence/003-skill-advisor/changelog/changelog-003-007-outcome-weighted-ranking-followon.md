@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ### Summary
 
-The stale planning-only summary is corrected: this phase delivered a shadow-only implementation. It added a distinct execution-success record, a durable append-only skill-outcome store, an idempotent out-of-process fold tick, a shadow outcome-weighted rerank, query-scored failure-mode recall and a default-off BM25 calibration seam. The live fused sort remains byte-identical by test. The remaining gates are the undecided runtime signal that fires the emitter and the shared Beta primitive from the sibling reliability phase. Live promotion remains a no-go until real execution-success data and benchmark evidence exist.
+The stale planning-only summary is corrected: this phase delivered a shadow-only implementation. It added a distinct execution-success record, a durable append-only skill-outcome store, an idempotent out-of-process fold tick, a shadow outcome-weighted rerank, query-scored failure-mode recall and a default-off BM25 calibration seam. The live fused sort remains byte-identical by test. The remaining gates are the undecided runtime signal that fires the emitter and wiring the rerank adapter to the shared Beta primitive, which the sibling reliability phase has now shipped. Live promotion remains a no-go until real execution-success data and benchmark evidence exist.
 
 ### Added
 
@@ -74,5 +74,5 @@ The stale planning-only summary is corrected: this phase delivered a shadow-only
 ### Follow-Ups
 
 - Decide which runtime post-task signal fires the execution-success emitter.
-- Wire the shared Beta posterior primitive when sibling reliability work lands.
+- Wire the shared Beta posterior primitive, now landed in the sibling reliability phase, into the rerank adapter.
 - Benchmark with real execution-success data before any live rerank or default promotion.
