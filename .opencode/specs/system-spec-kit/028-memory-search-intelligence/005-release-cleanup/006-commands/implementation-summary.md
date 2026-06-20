@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Command Documentation Cleanup"
-description: "Pending scaffold summary for the Command Documentation Cleanup release-cleanup phase."
+description: "Executed cleanup summary for the Command Documentation Cleanup release-cleanup phase. The command docs were aligned to shipped state with a route-drift fix in doctor/speckit.md (commit 818db21c54). The deep-research command-router and agent_router.md stay deferred to the concurrent session that owns them."
 trigger_phrases:
   - "006-commands implementation summary"
   - "028 release cleanup 006-commands"
@@ -10,9 +10,9 @@ _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/006-commands"
     last_updated_at: "2026-06-19T00:00:00Z"
-    last_updated_by: "codex-gpt-5"
-    recent_action: "Scaffolded impl"
-    next_safe_action: "Do not mark cleanup complete until execution evidence exists"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Executed command doc cleanup, route-drift fix in doctor/speckit.md"
+    next_safe_action: "Concurrent session owns deep/ and agent_router.md doc edits"
     blockers: []
     key_files:
       - "implementation-summary.md"
@@ -20,11 +20,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-summary-006-commands"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "This summary exists to satisfy the Level-2 contract."
-      - "Cleanup execution remains PENDING."
+      - "Cleanup executed, the deep-research and agent_router.md subsets stay deferred."
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
@@ -38,7 +38,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | system-spec-kit/028-memory-search-intelligence/005-release-cleanup/006-commands |
-| **Completed** | Not executed |
+| **Completed** | 2026-06-19 (commit 818db21c54) |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -47,21 +47,21 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The scaffold now defines the Command Documentation Cleanup cleanup phase. No target documentation has been cleaned yet and every cleanup candidate remains PENDING.
+The command documentation cleanup executed on this branch (commit 818db21c54). All 19 command docs under `.opencode/commands` were reviewed against shipped state, and the one factual drift found, a fable-mode route reference in `doctor/speckit.md`, was fixed. The `.claude/commands` mirror is a symlink to `.opencode/commands`, so the same edit covers it, and no `.codex/commands` directory exists in this checkout.
 
-### Pending Cleanup Contract
+### Deferred Subset
 
-This child phase now has the required spec, plan, task list, checklist and summary docs. The docs define discovery, scope and verification so a later execution pass can clean only this surface.
+The `.opencode/commands/deep` command-router and `agent_router.md` stay deferred to the concurrent session that owns those files, left untouched here. This is the same partial pattern as phase 003.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| spec.md | Created | Defines scope, objective and acceptance criteria |
-| plan.md | Created | Defines execution and verification approach |
-| tasks.md | Created | Lists pending cleanup tasks |
-| checklist.md | Created | Lists pending verification checks |
-| implementation-summary.md | Created | Records that this is scaffold only |
+| `.opencode/commands/doctor/speckit.md` | Modified | Fixed the one factual drift found, a fable-mode route reference |
+| spec.md | Updated | Candidate status set to DONE, completion recorded |
+| plan.md | Updated | Execution and verification route recorded as run |
+| tasks.md | Updated | Cleanup tasks marked done |
+| checklist.md | Updated | Verification items checked with evidence |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -69,7 +69,7 @@ This child phase now has the required spec, plan, task list, checklist and summa
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The phase docs were created from the spec-kit Level-2 structure and kept in PENDING state. Cleanup execution is intentionally deferred.
+Discovery globbed every command doc across `.opencode`, `.claude` and `.codex`, each candidate was checked against current routes and flags, and only the verified factual fix was applied. The concurrent-owned deep-research and agent_router surfaces were excluded by design.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -79,8 +79,8 @@ The phase docs were created from the spec-kit Level-2 structure and kept in PEND
 
 | Decision | Why |
 |----------|-----|
-| Keep a pending summary | The Level-2 validator requires the file and the content must avoid false completion claims |
-| Leave all checks unchecked | No cleanup evidence exists yet |
+| Fix only verified factual drift | Cleanup aligns docs to shipped state, it does not rewrite healthy content |
+| Defer the concurrent-owned subset | The deep-research router and agent_router.md belong to a session that holds them dirty |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -90,7 +90,7 @@ The phase docs were created from the spec-kit Level-2 structure and kept in PEND
 
 | Check | Result |
 |-------|--------|
-| Cleanup execution | PENDING |
+| Cleanup execution | Executed at 818db21c54, one route-drift fix in doctor/speckit.md |
 | Strict validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/005-release-cleanup/006-commands --strict` |
 <!-- /ANCHOR:verification -->
 
@@ -99,5 +99,5 @@ The phase docs were created from the spec-kit Level-2 structure and kept in PEND
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Cleanup not executed.** This phase defines the contract only and later work must run discovery before editing target docs.
+1. **Deferred subset.** The deep-research command-router and agent_router.md stay with the concurrent session that owns them, so this phase covers the command docs minus that subset.
 <!-- /ANCHOR:limitations -->

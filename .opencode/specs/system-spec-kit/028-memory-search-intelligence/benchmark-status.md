@@ -1,7 +1,7 @@
 # 028 Benchmark Status (DoD criterion 4) + remaining cleanup (criterion 6)
 
 Actionable record of the two open 028 completion items. Everything else (37 phases, all 42 sub-phases
-built-or-gated, schema cluster, NO-GO, narrative docs, full changelog polish, 8/9 release-cleanup) is
+built-or-gated, schema cluster, NO-GO, narrative docs, full changelog polish, 9/9 release-cleanup) is
 committed and pushed.
 
 ## Criterion 4 - eval-harness benchmark pass: RUN (resolved)
@@ -96,12 +96,14 @@ derived-id / retention / semantic-edge / procedural / sleeptime / calibration fl
 SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING, SPECKIT_CODE_GRAPH_EDGE_BITEMPORAL_READS and
 SPECKIT_CODE_GRAPH_EDGE_GOVERNANCE_VOCAB flags.
 
-## Criterion 6 - release-cleanup: 8/9, two items blocked on a concurrent session
+## Criterion 6 - release-cleanup: 9/9 executed, two file-subsets deferred to a concurrent session
 
-Done: 001, 002, 003 (skills subset), 004, 005, 007, 008, 009. Open:
-- 006-commands: a concurrent session has the command docs (and deep-research, rrf-fusion.ts, .gitignore)
-  dirty/uncommitted. Run after that session commits.
-- 003's deep-research subset: the same concurrent session owns those SKILL.md/references/assets; the
-  agent's overstep edits there were left uncommitted for reconciliation, not swept in.
+Executed: 001, 002, 003, 004, 005, 006, 007, 008, 009. All nine children ran their cleanup on this
+branch. Two file-subsets stay deferred to the concurrent session that owns those files, not
+whole-phase gaps:
+- 006-commands: the command docs executed with one route-drift fix in doctor/speckit.md (commit
+  818db21c54). The deep-research command-router and agent_router.md stay deferred to that session.
+- 003's deep-research subset: the same session owns those SKILL.md, references and assets, so the
+  agent's overstep edits there were left for reconciliation, not swept in.
 
-These are external/coordination blockers, not implementation gaps.
+These deferrals are external coordination boundaries, not implementation gaps.

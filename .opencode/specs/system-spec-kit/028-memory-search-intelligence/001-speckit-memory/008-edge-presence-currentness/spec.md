@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/008-edge-presence-currentness"
     last_updated_at: "2026-06-19T06:00:00+02:00"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored impl-phase spec/plan/tasks/checklist/decision-record from 028 research"
-    next_safe_action: "Land C3-B four-timestamp prerequisite, then C3-A read-side getValidEdges wiring"
+    recent_action: "Shipped C3-A edge-presence currentness default-off, 4 candidates pending"
+    next_safe_action: "Land C3-C TemporalMode and memory_history after the C3-B substrate lands"
     blockers: []
     key_files:
       - "spec.md"
@@ -30,7 +30,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-001-008-replan"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 20
     open_questions:
       - "Does C3-C Current replace active_memory_projection (L) or read alongside it (M)?"
       - "Is the C3-B four-timestamp window additive with no reader rewrites (unverified at source)?"

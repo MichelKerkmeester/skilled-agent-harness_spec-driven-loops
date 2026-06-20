@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Edge-Presence Currentness & Temporal Recall (028/001 impl phase)"
-description: "Re-plan implementation summary for the five PENDING temporal candidates (C3-A, C3-C, memory_history, CG-temporal-query-extraction, M-unforget-channel-disjointness). No code shipped yet; this records the planning artifacts, the per-candidate gates, and the Wave-0 done-evidence cross-check that confirms none shipped."
+description: "Implementation summary for the five temporal candidates. C3-A edge-presence currentness shipped default-off behind SPECKIT_EDGE_PRESENCE_CURRENTNESS with a focused test (commit cb92f2f211). The remaining four candidates (C3-C, memory_history, CG-temporal-query-extraction, M-unforget-channel-disjointness) stay pending their schema, benchmark and shared-infra gates."
 trigger_phrases:
   - "implementation summary edge presence currentness"
   - "temporal recall replan summary"
@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/008-edge-presence-currentness"
     last_updated_at: "2026-06-19T06:00:00+02:00"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored re-plan docs for five pending temporal candidates"
-    next_safe_action: "Confirm C3-B substrate in the sibling phase, then start C3-A read-side wiring"
+    recent_action: "Shipped C3-A edge-presence currentness default-off, 4 candidates pending"
+    next_safe_action: "Land C3-C TemporalMode and memory_history after the C3-B substrate lands"
     blockers: []
     key_files:
       - "spec.md"
@@ -26,7 +26,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-001-008-replan"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 20
     open_questions: []
     answered_questions: []
 ---
@@ -43,11 +43,11 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | system-spec-kit/028-memory-search-intelligence/001-speckit-memory/008-edge-presence-currentness |
-| **Status** | Planned (re-plan) — implementation pending |
+| **Status** | Partial. C3-A shipped default-off, four candidates pending |
 | **Level** | 3 |
-| **Scope** | Five PENDING temporal candidates |
-| **Branch** | system-speckit/027-xce-research-based-refinement |
-| **HEAD** | not yet implemented; no candidate commits in this phase |
+| **Scope** | Five temporal candidates, C3-A shipped and four pending |
+| **Branch** | system-speckit/028-memory-search-intelligence |
+| **HEAD** | cb92f2f211 shipped C3-A (temporal-edges, vector-index-schema, search-flags, 241-line test) |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -55,21 +55,21 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-This is a **re-plan**: no production code has been shipped in this phase. The deliverable is the Level-3 planning set (spec, plan, tasks, checklist, decision-record) that converts the 028 research roadmap into a sequenced, gate-aware implementation plan for the five edge-presence-currentness candidates.
+C3-A edge-presence currentness shipped behind `SPECKIT_EDGE_PRESENCE_CURRENTNESS` (default-off), committed at `cb92f2f211`. The candidate adds the read-side currentness reconciliation in `temporal-edges.ts`, the schema migration in `vector-index-schema.ts` and the flag in `search-flags.ts`, verified by a 241-line passing test (`tests/edge-presence-currentness.vitest.ts`, 3 pass). When the flag is off the reconciliation is a no-op, so default recall stays byte-identical. The phase also carries the Level-3 planning set (spec, plan, tasks, checklist, decision-record) that sequenced the gate-aware plan for all five candidates.
 
-All five candidates are **PENDING**. This was confirmed by cross-checking the Wave-0 shipped record and the Wave-0 commit range (`git log --oneline 1ecc531431..ab5459fb6d` = 10 commits, **zero** matching temporal / history / unforget / currentness).
+The remaining four candidates stay **PENDING** behind their schema, benchmark and shared-infra gates.
 
-### Pending Candidates
+### Candidate Status
 
-| # | Candidate | Status | Gate | 030 evidence |
-|---|-----------|--------|------|--------------|
-| 1 | C3-A edge-presence currentness | PENDING | schema (C3-B) + shared-infra (lineage↔causal reconciliation) | not in 030 §14; 0 commits in range |
-| 2 | C3-C TemporalMode | PENDING | schema (AsKnownAt needs C3-B); Current/AsOf/History buildable now | not in 030 §14 |
-| 3 | memory_history as-of tool | PENDING | shared-infra (C3-A read path for currentness-correct chains) | not in 030 §14 |
-| 4 | CG-temporal-query-extraction | PENDING | needs-benchmark (range-filter precision) | not in 030 §14 |
-| 5 | M-unforget-channel-disjointness | PENDING | needs-benchmark + shared-infra (needs both unforget channel AND erasure) | not in 030 §14 |
+| # | Candidate | Status | Gate | Evidence |
+|---|-----------|--------|------|----------|
+| 1 | C3-A edge-presence currentness | DONE, default-off | flag-gated (SPECKIT_EDGE_PRESENCE_CURRENTNESS) | shipped at cb92f2f211: temporal-edges.ts + vector-index-schema.ts + search-flags.ts + 241-line test (3 pass) |
+| 2 | C3-C TemporalMode | PENDING | schema (AsKnownAt needs C3-B), Current/AsOf/History buildable now | not started |
+| 3 | memory_history as-of tool | PENDING | shared-infra (C3-A read path for currentness-correct chains) | not started |
+| 4 | CG-temporal-query-extraction | PENDING | needs-benchmark (range-filter precision) | not started |
+| 5 | M-unforget-channel-disjointness | PENDING | needs-benchmark + shared-infra (needs both unforget channel and erasure) | not started |
 
-**Pending: 5. Done: 0.**
+**Pending: 4. Done: 1.**
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -79,7 +79,7 @@ All five candidates are **PENDING**. This was confirmed by cross-checking the Wa
 
 The planning set was authored from the authoritative 028 research: the cross-cutting `research/roadmap.md` (BROADENING + 027-REVISIT + MEMORY-SYSTEMS addenda), the `research/synthesis/01-go-candidates.md` + `03-corrections-caveats-and-residuals.md`, the phase-local `001-speckit-memory/research/research.md`, and the per-candidate iteration/delta evidence (001 iters 012/016/027/037/038; 005-revisit Q9; 007 iters 008/013/014). Each candidate's seam, `[CONFIRMED]`/`[INFERRED]` evidence, effort/leverage, and roadmap corrections were pulled forward into the spec scope table and the decision record.
 
-Implementation has not started. The `description.json` and `graph-metadata.json` are left for a separate `generate-context.js` regeneration; this re-plan authored spec docs only.
+C3-A is implemented and committed at `cb92f2f211`. The `description.json` and `graph-metadata.json` are regenerated separately by `generate-context.js`.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -102,7 +102,7 @@ Implementation has not started. The `description.json` and `graph-metadata.json`
 
 | Decision | Why |
 |----------|-----|
-| Keep all five candidates PENDING | Cross-check proves none shipped in Wave-0; each carries a schema / benchmark / shared-infra gate |
+| Ship C3-A default-off, hold the other four | C3-A is buildable now as a flag-gated slice. The other four still carry schema, benchmark or shared-infra gates |
 | Sequence on the C3-B substrate | AsKnownAt and the 4-channel matrix are unbuildable until the four-timestamp window lands (sibling phase) |
 | Lineage is the canonical supersede writer | Prevents a third source-of-truth fork between lineage, causal `invalid_at`, and the projection |
 | Exclude retention TTL from the currentness model | Physical deletion is the category-opposite of edge-presence currentness |
@@ -117,8 +117,8 @@ Implementation has not started. The `description.json` and `graph-metadata.json`
 | Item | Command | Result |
 |------|---------|--------|
 | Packet docs | `validate.sh --strict` on this phase | Target: PASS (0 errors, 0 warnings) |
-| Wave-0 done-evidence | `git log --oneline 1ecc531431..ab5459fb6d` filtered for temporal/history/unforget | 0 matches → all five candidates PENDING |
-| Code verification | n/a | No code shipped in this re-plan phase |
+| Wave-0 done-evidence | `git log --oneline 1ecc531431..ab5459fb6d` filtered for temporal/history/unforget | 0 Wave-0 matches. C3-A shipped later in the 028 phase at cb92f2f211 |
+| Code verification | edge-presence-currentness test (3 pass), typecheck 0 at cb92f2f211 | C3-A shipped default-off, four candidates not started |
 
 ### Commands
 
@@ -144,7 +144,7 @@ git log --oneline 1ecc531431..ab5459fb6d | grep -iE "temporal|history|unforget|c
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-- No candidate is implemented; this phase is planning only.
+- Only C3-A is implemented (default-off). The other four candidates are not started.
 - AsKnownAt and the 4-channel unforget matrix are blocked on the C3-B four-timestamp window, owned by a sibling phase whose status must be confirmed.
 - temporal-query-extraction's precision win over the existing recency boost is unmeasured.
 - The C3-B four-timestamp additivity claim is unverified at source (no migration spec exists to read).
@@ -158,7 +158,7 @@ git log --oneline 1ecc531431..ab5459fb6d | grep -iE "temporal|history|unforget|c
 | Risk | Realized? | Note |
 |------|-----------|------|
 | Candidate mis-scoped as a flag flip | Avoided | C3-A reclassified to a read-side build per the broadening addendum |
-| Store fork (lineage vs causal vs projection) | Open | Mitigated in plan via lineage-canonical invariant; not yet built |
+| Store fork (lineage vs causal vs projection) | Mitigated for C3-A | C3-A's reconciliation keeps lineage canonical, shipped default-off behind the flag |
 | temporal-query-extraction regresses non-temporal queries | Open | Mitigated by additive fallthrough design; needs the byte-check at build time |
 <!-- /ANCHOR:risks-realized -->
 
@@ -167,8 +167,8 @@ git log --oneline 1ecc531431..ab5459fb6d | grep -iE "temporal|history|unforget|c
 <!-- ANCHOR:follow-up -->
 ## Follow-Up Items
 
-- Confirm the C3-B four-timestamp window status in the sibling phase before starting C3-A.
-- Implement C3-A (read-side `getValidEdges` filter + lineage↔causal store reconciliation), then C3-C (Current/AsOf/History), then memory_history.
+- Confirm the C3-B four-timestamp window status in the sibling phase before starting C3-C AsKnownAt.
+- Implement C3-C (Current/AsOf/History), then memory_history, building on the shipped C3-A read path.
 - Run a benefit micro-benchmark for temporal-query-extraction range-filter precision before promoting it to go.
 - Track M-unforget-channel-disjointness against the erasure packet; keep C3-D a pure decision note (no persisted erased-id deny-list).
 - Run `generate-context.js` to regenerate `description.json` / `graph-metadata.json` and register this child under the `001-speckit-memory` parent's `children_ids`.
