@@ -2,13 +2,14 @@
 // MODULE: Outcome-Weighted Shadow Re-Rank
 // ───────────────────────────────────────────────────────────────
 // Ranks skills by `similarity x reliability x penalty` over OBSERVED execution
-// outcomes, not metadata similarity alone. This is a SHADOW channel: it is never
-// imported by the live fused sort, and it is off by default. `reliability` comes
-// from a thin adapter over the shared Beta-posterior primitive (owned by the
-// sibling C4 sub-phase); until that primitive is wired, the adapter returns the
-// neutral fresh-skill value, so the blend is a monotonic scaling of similarity
-// and the shadow order equals the similarity order — inert, no live impact.
+// outcomes, not metadata similarity alone. This channel is off by default and,
+// when wired into the live fused sort, only breaks near-ties — never the broad
+// ordering. `reliability` comes from a thin adapter over the shared Beta-posterior
+// primitive: an observed skill reads its bounded Beta posterior mean, while a
+// skill with no recorded outcomes always reads the neutral fresh value, so an
+// empty ledger leaves the blend a monotonic scaling of similarity (no re-order).
 
+import { NEUTRAL_PRIOR, betaPosteriorMean } from './beta-reliability.js';
 import type { SkillOutcomeFold } from './skill-outcome-store.js';
 
 export const ADVISOR_OUTCOME_WEIGHTED_RERANK_FLAG = 'SPECKIT_ADVISOR_OUTCOME_WEIGHTED_RERANK';
@@ -29,8 +30,18 @@ export interface SkillReliabilityCounts {
  * advisor consume it without forking the math. */
 export type ReliabilityResolver = (counts: SkillReliabilityCounts) => number;
 
-/** Default seam: neutral until the shared primitive is wired in. */
+/** Inert seam kept for callers that want a deliberately flat reliability (the
+ * blend then equals similarity). Not the production default. */
 export const neutralReliabilityResolver: ReliabilityResolver = () => FRESH_SKILL_RELIABILITY;
+
+/** Production resolver: the bounded Beta posterior mean over observed outcomes.
+ * Reuses the shared f64 primitive rather than forking the math, so an all-success
+ * skill can never reach certainty (anti-flood) and the neutral prior keeps a
+ * thin-evidence skill close to the fence. The rerank only consults this for a
+ * skill that has recorded outcomes; a fresh skill short-circuits to the neutral
+ * value before the resolver runs. */
+export const betaReliabilityResolver: ReliabilityResolver = ({ success, failure }) =>
+  betaPosteriorMean(NEUTRAL_PRIOR, { successes: success, failures: failure });
 
 export interface OutcomeWeightedCandidate {
   readonly skillId: string;
@@ -87,7 +98,7 @@ export function outcomeWeightedRerank(
   candidates: readonly OutcomeWeightedCandidate[],
   options: OutcomeWeightedRerankOptions = {},
 ): OutcomeWeightedRanked[] {
-  const resolver = options.reliabilityResolver ?? neutralReliabilityResolver;
+  const resolver = options.reliabilityResolver ?? betaReliabilityResolver;
   const penaltyResolver = options.penaltyResolver ?? (() => 1);
   const fold = options.fold;
 

@@ -327,6 +327,23 @@ export const AdvisorValidateInputSchema = z.object({
     correctedSkillId: z.string().min(1).optional(),
     timestamp: z.string().datetime().optional(),
   }).strict()).optional(),
+  // Execution-success events — a DIFFERENT signal from outcomeEvents above. Those
+  // record whether a recommendation was accepted; these record whether the
+  // recommended skill's TASK then succeeded or failed. This is the net-new
+  // post-task emitter seam that feeds the outcome-weighted reliability ledger.
+  // Same prompt-safety contract: only a skill id, a boolean outcome, an
+  // idempotency key, and optional caller-sanitized failure-mode/context tags —
+  // never the prompt. The validate handler is an explicit heavy run, never the
+  // prompt-time recommend path, so persisting here cannot fire on a hot path.
+  executionOutcomeEvents: z.array(z.object({
+    runtime: z.enum(['claude', 'copilot', 'codex']),
+    skillId: z.string().min(1),
+    success: z.boolean(),
+    eventId: z.string().min(1),
+    failureMode: z.string().min(1).optional(),
+    contextTags: z.array(z.string().min(1)).optional(),
+    timestamp: z.string().datetime().optional(),
+  }).strict()).optional(),
 }).strict();
 
 const validationSliceSchema = z.object({
@@ -374,6 +391,10 @@ const advisorValidateOutcomeTotalsSchema = z.object({
 const advisorValidateTelemetryOutcomesSchema = z.object({
   recordsPath: z.string().min(1),
   recordedThisRun: z.number().int().nonnegative(),
+  // Count of net-new execution-success events appended to the reliability ledger
+  // this run (distinct from the accepted/corrected/ignored recommendation count
+  // in recordedThisRun). Optional so older callers stay schema-valid.
+  executionOutcomesRecordedThisRun: z.number().int().nonnegative().optional(),
   scope: advisorValidateTelemetryScopeSchema,
   totals: advisorValidateOutcomeTotalsSchema,
 }).strict().describe('Outcome recording summary, including injected event count and retained accepted/corrected/ignored totals.');
