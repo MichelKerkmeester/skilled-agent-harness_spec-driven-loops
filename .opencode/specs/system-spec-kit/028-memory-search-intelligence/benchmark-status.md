@@ -138,6 +138,19 @@ All previously held-marginal flags have been resolved. SPECKIT_WORLD_SUMMARY_PRE
 no-displacement grounding aid once the prepend-to-append fix removed its baseline displacement (see
 Flipped to default-ON above).
 
+### Default-ON (graduated, separate from the per-flag flip pass)
+
+SPECKIT_TEMPORAL_EDGES ships default-ON (`isTemporalEdgesEnabled` graduates to TRUE via `isFeatureEnabled`,
+set `SPECKIT_TEMPORAL_EDGES=false` to disable). It is the additive graph-lane mitigation, not a regression.
+Re-measured on a live-DB copy the edge-hop recall is +0.083 with the flag ON versus OFF, so turning it OFF
+removes the mitigation and makes recall worse. The within-noise graph-channel harm belongs to the separate
+pre-028 graph flags `useGraph`, `SPECKIT_GRAPH_SIGNALS` and `SPECKIT_DEGREE_BOOST`, where the broad-corpus
+delta is -0.039 at p=0.219, a noted follow-up out of 028 scope.
+
+| Flag | Measurement | Verdict |
+|------|-------------|---------|
+| SPECKIT_TEMPORAL_EDGES | additive graph-lane mitigation, edge-hop recall +0.083 ON vs OFF on a live-DB copy | DEFAULT-ON |
+
 ### Kept OFF (measured)
 
 | Flag | Measurement | Verdict |
@@ -156,7 +169,6 @@ Flipped to default-ON above).
 | SPECKIT_EDGE_TRIPLET_SEARCH | edge family empty table | KEEP-OFF |
 | SPECKIT_SEMANTIC_EDGE_LAYER | edge family no-win | KEEP-OFF |
 | SPECKIT_EDGE_PRESENCE_CURRENTNESS | edge family no-win | KEEP-OFF |
-| SPECKIT_TEMPORAL_EDGES | edge family graph-lane -0.167 | KEEP-OFF |
 
 ### Follow-ups
 

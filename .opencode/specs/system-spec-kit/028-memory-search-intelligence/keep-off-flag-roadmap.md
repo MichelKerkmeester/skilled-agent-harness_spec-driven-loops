@@ -9,7 +9,7 @@ Every 028 flag that benchmarked keep-OFF, reinvestigated through deep research t
 | Flag | Root cause | Path to useful | Effort | Flip potential |
 |------|-----------|----------------|--------|----------------|
 | `procedural_reliability_recall` | multiplier is `score*(mean-1) <= 0`, only de-rates | FIXED with a prior-centered evidence-weighted delta, the de-rate is gone and the multiplier is promotion-capable (the correctness fix stays committed) | S | KEEP-OFF, the de-rate bug is fixed but the bounded nudge moves only synthetic near-ties with zero measurable effect on real data, so the flip still needs a near-tie benchmark to earn it |
-| `temporal_edges` graph lane | competitive top-K evicts lexical hits (-0.167) | additive reserved-slot, the append-not-displace pattern | S-M | HIGH, repairs a live regression (implementing) |
+| `temporal_edges` graph lane | the additive append-not-displace lane is the mitigation, not the regression | SHIPPED default-ON as the additive reserved-slot, edge-hop recall +0.083 ON vs OFF on a live-DB copy | S-M | DEFAULT-ON, the within-noise graph-channel harm belongs to the separate pre-028 graph flags |
 | `sleeptime_consolidation` | benefit unmeasurable, no index mutation, intrinsic-only metric | materialize dedup on a DB copy then A/B-query it | M | MED, cheap unlock, reuses the harness |
 | `code_graph_seeded_ppr` | data mismatch, uniform edges plus no depth-2 make PPR equal RRF | caller-centrality prior plus real depth-2 anchor fixtures | M-L | MED |
 | `agentic_recall` | half-built, no consumer and no reasoner (spec phase 016) | IRCoT wiring reusing the LLM-reformulation transport, plus a multi-hop golden set and the mode-enum | M | MED, prove-first |
@@ -32,7 +32,7 @@ The hypothesis was that the class skew explained the inert fusion levers. Author
 
 ## Quick wins versus packets
 
-- **Quick wins (low effort, clear flip):** `temporal_edges` (additive lane), being implemented and re-benchmarked now, which also repairs a current default-ON recall regression. `procedural_reliability_recall` had its de-rate bug fixed (the correctness fix stays committed) but the flag reverted to default-off, because the centered nudge moves only synthetic near-ties with zero real-data effect, so it needs a near-tie benchmark before it flips.
+- **Shipped default-ON:** `temporal_edges` (additive lane) ships default-ON as the additive reserved-slot mitigation, edge-hop recall +0.083 ON vs OFF on a live-DB copy. The within-noise graph-channel harm belongs to the separate pre-028 graph flags as a noted follow-up out of 028 scope. `procedural_reliability_recall` had its de-rate bug fixed (the correctness fix stays committed) but the flag reverted to default-off, because the centered nudge moves only synthetic near-ties with zero real-data effect, so it needs a near-tie benchmark before it flips.
 - **Cheap unlocks (medium, high leverage):** `sleeptime_consolidation` A/B reuses the existing backup-to-copy harness in full, and the PPR real-anchor fixtures are small.
 - **Scoped packets (prove-first):** `agentic_recall` (IRCoT plus multi-hop benchmark plus the mode-enum contract change) and the edge producer-then-consumer pair (gated on whether the flat graph carries relation signal).
 - **Long pole:** `advisor_outcome_weighted_rerank` needs a production post-task ledger emitter across three runtimes plus a corpus three to four times larger before its effect clears noise.
@@ -46,7 +46,7 @@ The hypothesis was that the class skew explained the inert fusion levers. Author
 ## Validation gates
 
 - procedural: `rankDelta > 0` AND `ndcgDelta > 0` on the existing procedural metric.
-- temporal_edges: `graphLaneDelta >= 0` (was -0.167) with no other lane regressing.
+- temporal_edges: SHIPPED default-ON, edge-hop recall +0.083 ON vs OFF on a live-DB copy. The within-noise graph-channel harm belongs to the separate pre-028 graph flags `useGraph`, `SPECKIT_GRAPH_SIGNALS` and `SPECKIT_DEGREE_BOOST` (broad-corpus -0.039 at p=0.219), a noted follow-up out of 028 scope.
 - sleeptime: `recall_delta >= -epsilon` AND `precision_delta >= 0` AND `row_count` down AND no ground-truth id in the drop-set.
 - ppr: `ranking_changed` plus `target_rank_improved` on real depth-2 anchors, multi-run.
 - agentic: net `Recall@K > 0` on a multi-hop golden set with near-zero single-hop regression and latency inside budget.
