@@ -167,7 +167,7 @@ const skillFamilyEnum = z.enum(['cli', 'mcp', 'sk-code', 'deep-loop', 'sk-util',
 
 const memoryContextSchema = getSchema({
   input: z.string().min(1),
-  mode: z.enum(['auto', 'quick', 'deep', 'focused', 'resume']).optional(),
+  mode: z.enum(['auto', 'quick', 'deep', 'focused', 'resume', 'agentic']).optional(),
   intent: intentEnum.optional(),
   specFolder: optionalPathString(),
   tenantId: z.string().optional(),
