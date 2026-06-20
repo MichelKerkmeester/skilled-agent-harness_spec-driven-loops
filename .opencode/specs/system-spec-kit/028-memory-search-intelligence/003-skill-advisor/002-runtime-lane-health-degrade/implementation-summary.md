@@ -122,6 +122,6 @@ Post-implementation verification:
 
 1. **graph_causal-specific evidence.** This phase wires handler-owned graph freshness into the scorer. The scorer option shape can represent other degraded lanes, but only `graph_causal` has production evidence here.
 2. **External reference not locally readable.** The packet cites the aionforge degrade-to-remaining pattern, but this workspace has no local `external/` tree. The implementation does not depend on that file.
-3. **Commit evidence N/A.** The user explicitly forbade `git commit`, evidence is pinned to changed files and verification commands instead of SHAs.
+3. **Commit.** This unit shipped in commit `99bfa4427d` (feat(028) first-wave build), touching `lib/scorer/fusion.ts`, `lib/scorer/types.ts` and `handlers/advisor-recommend.ts` plus `tests/scorer/runtime-lane-health.vitest.ts`. The Metadata and How-Delivered sections cite the same SHA.
 4. **Adjacent candidates out of scope.** C3 RRF, C4 Beta posterior + SA-two-gate chain, QCR query-class router, C1 split-conflict re-rank, and SA-asymmetric-deltas are explicitly out of scope here and tracked under sibling 028/003 sub-phases.
 <!-- /ANCHOR:limitations -->

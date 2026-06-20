@@ -1,6 +1,6 @@
 ---
-title: "Implementation Summary: Code Graph — Generation Watermark (Q6-C2 → Q6-C1)"
-description: "Implementation summary for the staged code-graph generation watermark. Q6-C2 is implemented and verified; Q6-C1 remains DEFER-speculative."
+title: "Implementation Summary: Code Graph - Generation Watermark (Q6-C2 → Q6-C1)"
+description: "Implementation summary for the staged code-graph generation watermark. Q6-C2 is implemented and verified, Q6-C1 remains DEFER-speculative."
 trigger_phrases:
   - "code graph generation watermark implementation summary"
 importance_tier: "important"
@@ -28,7 +28,7 @@ _memory:
     answered_questions: []
 ---
 
-# Implementation Summary: Code Graph — Generation Watermark (Q6-C2 → Q6-C1)
+# Implementation Summary: Code Graph - Generation Watermark (Q6-C2 → Q6-C1)
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
@@ -42,7 +42,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 028-memory-search-intelligence/002-code-graph/003-generation-watermark |
-| **Completed** | Q6-C2 implemented and verified on 2026-06-19; Q6-C1 remains gated |
+| **Completed** | Q6-C2 implemented and verified on 2026-06-19, Q6-C1 remains gated |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -53,11 +53,11 @@ _memory:
 
 Q6-C2 is built. The code-graph subsystem now stores a monotonic `generation` counter in the existing `code_graph_metadata` KV table, advances it from the scan promotion finalize path, and surfaces it as an additive field on `metadata.freshness` from `code_graph_context`.
 
-### Q6-C2 — Soft generation watermark (DONE)
+### Q6-C2 - Soft generation watermark (DONE)
 
-Every promoted full scan or selective reindex advances `graph_generation`; unchanged incremental scans and failed promotions leave it unchanged. Callers gain an as-of-generation key they can compare across reads, while the read path stays byte-identical: no filter change, no error gate, no schema migration.
+Every promoted full scan or selective reindex advances `graph_generation`, unchanged incremental scans and failed promotions leave it unchanged. Callers gain an as-of-generation key they can compare across reads, while the read path stays byte-identical: no filter change, no error gate, no schema migration.
 
-### Q6-C1 — Hard as-of-generation gate (DEFER-speculative, PENDING)
+### Q6-C1 - Hard as-of-generation gate (DEFER-speculative, PENDING)
 
 The hard gate would turn a stale read into an explicit ERROR rather than silently-stale edges ("a successful call is itself proof of freshness"). It is deferred: no named consumer wants as-of/time-travel reads today, and its safety is largely redundant with the shipped binary readiness gate. It is kept on the books because the monotonic counter Q6-C2 introduces is the close-out key the Q1-C1 bi-temporal cluster needs (today's close-outs would key on a non-monotonic timestamp).
 
@@ -89,10 +89,10 @@ Q6-C2 shipped as an additive, reversible metadata field with no feature flag and
 
 | Decision | Why |
 |----------|-----|
-| Bump at the `handlers/scan.ts` `scanPromotable` block, not `ensure-ready.ts:497` | The `:497` site is `setLastGitHead` inside the out-of-scope-HEAD return-fresh branch — it never fires on a real `full_scan`/`selective_reindex`. The finalize block is the one site that fires for both (research iter-23/24). |
+| Bump at the `handlers/scan.ts` `scanPromotable` block, not `ensure-ready.ts:497` | The `:497` site is `setLastGitHead` inside the out-of-scope-HEAD return-fresh branch - it never fires on a real `full_scan`/`selective_reindex`. The finalize block is the one site that fires for both (research iter-23/24). |
 | Store the counter in `code_graph_metadata`, not a new column | The KV table already exists with an int-as-string precedent, so Q6-C2 stays off the schema migration chokepoint and ships independently of Q1-C1. |
 | Defer Q6-C1 rather than build it now | No named consumer wants as-of-generation reads, and the hard gate's safety is redundant with the shipped readiness gate (synthesis `01`/`04`). |
-| Keep Q6-C1 on the books | Its counter is the monotonic close-out key the Q1-C1 bi-temporal cluster needs; dropping it would orphan that dependency. |
+| Keep Q6-C1 on the books | Its counter is the monotonic close-out key the Q1-C1 bi-temporal cluster needs, dropping it would orphan that dependency. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -119,7 +119,7 @@ Q6-C2 shipped as an additive, reversible metadata field with no feature flag and
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Q6-C1 deferred.** The hard as-of-generation error gate remains DEFER-speculative; it ships only on a named-consumer decision plus the Q1-C1 bi-temporal cluster (`SCHEMA_VERSION` 5→6).
-2. **Generated `dist/` not refreshed.** Verification used TypeScript source checks and Vitest; no build artifact update was requested.
-3. **No commit SHA.** The user explicitly requested no git commit, so evidence is pinned to file changes and command results rather than a commit hash.
+1. **Q6-C1 deferred.** The hard as-of-generation error gate remains DEFER-speculative, it ships only on a named-consumer decision plus the Q1-C1 bi-temporal cluster (`SCHEMA_VERSION` 5→6).
+2. **Generated `dist/` not refreshed.** Verification used TypeScript source checks and Vitest, no build artifact update was requested.
+3. **Commit.** Q6-C2 shipped in commit `99bfa4427d` (feat(028) first-wave build, which names the generation watermark), touching `code-graph-db.ts`, `handlers/scan.ts` and `code-graph-context.ts` plus the three vitest files.
 <!-- /ANCHOR:limitations -->
