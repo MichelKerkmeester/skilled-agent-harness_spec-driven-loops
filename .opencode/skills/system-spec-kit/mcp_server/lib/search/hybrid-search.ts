@@ -17,6 +17,7 @@ import {
   shouldUseSqliteLexicalEngine,
 } from './bm25-index.js';
 import { enforceChannelRepresentation } from './channel-enforcement.js';
+import { applyGraphAdditiveRecall } from './graph-additive-recall.js';
 import {
   DEFAULT_MIN_RESULTS,
   GAP_THRESHOLD_MULTIPLIER,
@@ -71,6 +72,7 @@ import {
   isMMREnabled,
   isSearchFallbackEnabled,
   isSummaryFusionLaneEnabled,
+  isTemporalEdgesEnabled,
 } from './search-flags.js';
 import { resolveFusionIntentContract } from './search-utils.js';
 import { fts5Bm25Search } from './sqlite-fts.js';
@@ -324,6 +326,8 @@ interface Sprint3PipelineMeta {
   };
   /** Channel enforcement result (SPECKIT_CHANNEL_MIN_REP). */
   enforcement?: { applied: boolean; promotedCount: number; underRepresentedChannels: string[] };
+  /** Graph additive recall result (SPECKIT_TEMPORAL_EDGES). */
+  graphAdditive?: { applied: boolean; reservedCount: number; baselineCount: number };
   /** Confidence truncation result (SPECKIT_CONFIDENCE_TRUNCATION). */
   truncation?: {
     truncated: boolean;
@@ -1910,6 +1914,32 @@ async function enrichFusedResults(
   } catch (err: unknown) {
     // Non-critical — enforcement failure does not block pipeline
     console.warn('[hybrid-search] channel enforcement failed:', err instanceof Error ? err.message : String(err));
+  }
+
+  // -- Stage C2: Graph Additive Recall (SPECKIT_TEMPORAL_EDGES) --
+  // Keep the graph edge lane additive rather than competitive. The graph
+  // channel injects edge-neighbor candidates into the fused pool, but on a
+  // low-signal edge graph a graph-only candidate can win a top-K slot and
+  // evict a lexical or vector hit that was already recalled on its own merit.
+  // Reserving graph-only candidates to the tail means the graph lane can only
+  // extend recall, never shrink it. When the flag is off this is a no-op and
+  // the fused ordering is preserved byte-for-byte.
+  try {
+    const graphAdditiveResult = applyGraphAdditiveRecall(
+      fusedHybridResults,
+      isTemporalEdgesEnabled(),
+    );
+    fusedHybridResults = graphAdditiveResult.results;
+    if (graphAdditiveResult.graphAdditive.applied) {
+      s3meta.graphAdditive = {
+        applied: true,
+        reservedCount: graphAdditiveResult.graphAdditive.reservedCount,
+        baselineCount: graphAdditiveResult.graphAdditive.baselineCount,
+      };
+    }
+  } catch (err: unknown) {
+    // Non-critical — additive reorder failure does not block pipeline
+    console.warn('[hybrid-search] graph additive recall failed:', err instanceof Error ? err.message : String(err));
   }
 
   // Preserve non-enumerable eval metadata across later array reallocations.
