@@ -213,6 +213,44 @@ function mergeSummaryFusionLaneRows(
     .slice(0, limit);
 }
 
+/**
+ * Thematic intents span a topic where a summary / community candidate can
+ * genuinely surface a bridging document, so the summary fusion lane stays active
+ * for them. Every other intent is a known-item lookup — the user already named
+ * the one document they want — where an extractive summary only competes for the
+ * same top-K slots and displaces the exact doc. Per-class evaluation showed the
+ * lane harming known-item recall (factual / find_spec / find_decision) with no
+ * measured benefit anywhere on the current set, so the lane is class-gated to
+ * thematic intents only.
+ */
+const SUMMARY_LANE_THEMATIC_INTENTS: ReadonlySet<string> = new Set([
+  'understand',
+]);
+
+/**
+ * Resolve the effective intent the same way fusion does — the caller-supplied
+ * intent when present, otherwise the query-classified one. The default eval and
+ * runtime path leaves options.intent undefined, so the classifier fallback is
+ * what keeps the gate live on the path the retrieval eval measures.
+ */
+function resolveSummaryFusionLaneIntent(
+  query: string,
+  intent: string | undefined,
+): string {
+  return intent ?? classifyIntent(query).intent;
+}
+
+/**
+ * Whether the summary fusion lane should contribute candidates for this query.
+ * Gating participation (not just fusion weight) is required: the lane's harm is
+ * structural — its candidates enter dedup, the cross-channel bonus, and top-K
+ * competition before any weight applies — so a down-weighted lane still displaces
+ * the known-item target. Only thematic intents admit the lane.
+ */
+function shouldRunSummaryFusionLane(query: string, intent: string | undefined): boolean {
+  return SUMMARY_LANE_THEMATIC_INTENTS.has(resolveSummaryFusionLaneIntent(query, intent));
+}
+
 function resolveSummaryFusionLaneWeight(
   query: string,
   intent: string | undefined,
@@ -1510,7 +1548,19 @@ async function collectAndFuseHybridResults(
       lists.push({ source: 'trigger', results: triggerChannelResults, weight: 1.4 });
     }
 
-    if (activeChannels.has('summary') && isSummaryFusionLaneEnabled() && db) {
+    // A known-item intent targets one specific document the user already named,
+    // so admitting summary/community candidates to the pool only displaces that
+    // exact doc — and the displacement is structural (dedup, cross-channel
+    // bonus, candidate competition), not just a fusion-weight effect, so the lane
+    // is skipped entirely rather than merely down-weighted. Thematic intents keep
+    // it. The intent is resolved the same way fusion sees it (caller-supplied,
+    // else classified) so the gate is live on the default options.intent-less path.
+    if (
+      activeChannels.has('summary')
+      && isSummaryFusionLaneEnabled()
+      && db
+      && shouldRunSummaryFusionLane(query, options.intent)
+    ) {
       try {
         const laneLimit = options.limit || DEFAULT_LIMIT;
         const scope = {
@@ -3090,6 +3140,10 @@ export const __testables = {
   checkDegradation,
   mergeResults,
   mergeRawCandidate,
+  resolveSummaryFusionLaneWeight,
+  shouldRunSummaryFusionLane,
+  resolveSummaryFusionLaneIntent,
+  SUMMARY_LANE_THEMATIC_INTENTS,
   setEnrichFusedResultsObserver(observer: (() => void) | null): void {
     enrichFusedResultsObserver = observer;
   },

@@ -599,6 +599,166 @@
       "source": "pattern_derived",
       "expectedResultDescription": "Known-item lookup for memory 19343: Fix the four-folder rename and record the shared/ decision (../../../specs/skilled-agent-orchestration/150-parent-nested-skill-pattern/001-rename-fix-and-shared-decision/spec.md).",
       "notes": "Generated from active parent memory 19343; content length 9569; implementation / import / deprecated."
+    },
+    {
+      "id": 61,
+      "query": "what is the overall approach to the daemon lifecycle reliability work",
+      "intentType": "understand",
+      "complexityTier": "complex",
+      "category": "cross_document",
+      "source": "manual",
+      "expectedResultDescription": "Thematic/relational lookup spanning the program cluster; primary memory 6320: Feature Specification: MCP daemon reliability (socket-dir, lifecycle, build-safety, embedd.",
+      "notes": "Authored for class coverage (cross_document); gold ids grounded against the live DB at observed ranks 6320:1, 10969:5, 10974:3, 10980:7, 12674:10."
+    },
+    {
+      "id": 62,
+      "query": "give me a broad understanding of how the daemon launcher watchdog and graceful exit fit together",
+      "intentType": "understand",
+      "complexityTier": "complex",
+      "category": "cross_document",
+      "source": "manual",
+      "expectedResultDescription": "Thematic/relational lookup spanning the program cluster; primary memory 6195: Deep Research: MCP daemon reliability — why the daemons keep dying/disconnecting and durab.",
+      "notes": "Authored for class coverage (cross_document); gold ids grounded against the live DB at observed ranks 5502:2, 5509:7, 6195:1, 6230:6, 6320:3."
+    },
+    {
+      "id": 63,
+      "query": "explain the general shape of the deep-loop runtime and fan-out work",
+      "intentType": "understand",
+      "complexityTier": "moderate",
+      "category": "cross_document",
+      "source": "manual",
+      "expectedResultDescription": "Thematic/relational lookup spanning the program cluster; primary memory 1704: Verification [skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wa.",
+      "notes": "Authored for class coverage (cross_document); gold ids grounded against the live DB at observed ranks 1113:4, 1704:1, 11549:6, 11551:2, 18104:3."
+    },
+    {
+      "id": 64,
+      "query": "what is the broad approach to the deep-loop executor and per-iteration model scheduling",
+      "intentType": "understand",
+      "complexityTier": "moderate",
+      "category": "cross_document",
+      "source": "manual",
+      "expectedResultDescription": "Thematic/relational lookup spanning the program cluster; primary memory 4657: Spec: 016/002/021 Hardcoded-Default Audit Deep-Research — broad sweep across spec-memory, .",
+      "notes": "Authored for class coverage (cross_document); gold ids grounded against the live DB at observed ranks 4657:1, 18806:3, 19172:4, 19481:2."
+    },
+    {
+      "id": 65,
+      "query": "help me understand the broad strategy behind the hybrid rag fusion epic",
+      "intentType": "understand",
+      "complexityTier": "complex",
+      "category": "cross_document",
+      "source": "manual",
+      "expectedResultDescription": "Thematic/relational lookup spanning the program cluster; primary memory 7515: ...hybrid-rag-fusion/001-hybrid-rag-fusion-epic/011-research-based-refinement/002-query-in.",
+      "notes": "Authored for class coverage (cross_document); gold ids grounded against the live DB at observed ranks 7509:3, 7515:1, 7517:4, 7531:2."
+    },
+    {
+      "id": 66,
+      "query": "what is the big picture of the memory search intelligence and retrieval program",
+      "intentType": "understand",
+      "complexityTier": "complex",
+      "category": "cross_document",
+      "source": "manual",
+      "expectedResultDescription": "Thematic/relational lookup spanning the program cluster; primary memory 18859: Graph Metadata: system-spec-kit/028-memory-search-intelligence/001-speckit-memory.",
+      "notes": "Authored for class coverage (cross_document); gold ids grounded against the live DB at observed ranks 3187:6, 12548:4, 18859:3, 18864:8."
+    },
+    {
+      "id": 67,
+      "query": "what is the overall approach to the code-graph structural search and impact analysis work",
+      "intentType": "understand",
+      "complexityTier": "complex",
+      "category": "cross_document",
+      "source": "manual",
+      "expectedResultDescription": "Thematic/relational lookup spanning the program cluster; primary memory 3235: Research Charter: memory_context Structural Channel Routing.",
+      "notes": "Authored for class coverage (cross_document); gold ids grounded against the live DB at observed ranks 3235:1, 5083:5, 19025:7, 21578:4, 21579:10."
+    },
+    {
+      "id": 68,
+      "query": "what are the recurring themes across the embedder architecture and backlog research",
+      "intentType": "understand",
+      "complexityTier": "complex",
+      "category": "cross_document",
+      "source": "manual",
+      "expectedResultDescription": "Thematic/relational lookup spanning the program cluster; primary memory 13477: Graph Metadata: system-spec-kit/026-graph-and-context-optimization/000-release-and-program.",
+      "notes": "Authored for class coverage (cross_document); gold ids grounded against the live DB at observed ranks 12555:3, 13477:2, 16969:4."
+    },
+    {
+      "id": 69,
+      "query": "what caused the daemon flap and what fix superseded the earlier relaunch approach",
+      "intentType": "fix_bug",
+      "complexityTier": "moderate",
+      "category": "graph_relationship",
+      "source": "manual",
+      "expectedResultDescription": "Thematic/relational lookup spanning the relation cluster; primary memory 10759: Verification Checklist: Daemon disposal relaunch-flap guard.",
+      "notes": "Authored for class coverage (graph_relationship); gold ids grounded against the live DB at observed ranks 10759:1, 10760:2, 10763:3."
+    },
+    {
+      "id": 70,
+      "query": "which decisions led to the code-graph resilience thresholds and how do they connect",
+      "intentType": "find_decision",
+      "complexityTier": "moderate",
+      "category": "graph_relationship",
+      "source": "manual",
+      "expectedResultDescription": "Thematic/relational lookup spanning the relation cluster; primary memory 5787: Code-Graph Resilience Research Synthesis.",
+      "notes": "Authored for class coverage (graph_relationship); gold ids grounded against the live DB at observed ranks 5783:9, 5787:1, 5793:2."
+    },
+    {
+      "id": 71,
+      "query": "how are the memory database corruption findings linked to the daemon concurrency fix",
+      "intentType": "fix_bug",
+      "complexityTier": "moderate",
+      "category": "graph_relationship",
+      "source": "manual",
+      "expectedResultDescription": "Thematic/relational lookup spanning the relation cluster; primary memory 5002: Concurrent Daemon Corruption Fix — Implementation Summary.",
+      "notes": "Authored for class coverage (graph_relationship); gold ids grounded against the live DB at observed ranks 5000:3, 5002:1, 5008:2."
+    },
+    {
+      "id": 72,
+      "query": "what derived from the CLI dispatch skill preload mandate across the program",
+      "intentType": "understand",
+      "complexityTier": "moderate",
+      "category": "graph_relationship",
+      "source": "manual",
+      "expectedResultDescription": "Thematic/relational lookup spanning the relation cluster; primary memory 11507: CLI DISPATCH — Skill Preload Mandate.",
+      "notes": "Authored for class coverage (graph_relationship); gold ids grounded against the live DB at observed ranks 11507:2, 11527:3."
+    },
+    {
+      "id": 73,
+      "query": "trace how the hybrid rag fusion sprints connect to the unified graph retrieval work",
+      "intentType": "understand",
+      "complexityTier": "complex",
+      "category": "graph_relationship",
+      "source": "manual",
+      "expectedResultDescription": "Thematic/relational lookup spanning the relation cluster; primary memory 7787: . [system-spec-kit/022-hybrid-rag-fusion/008-hydra-db-based-features/003-unified-graph-ret.",
+      "notes": "Authored for class coverage (graph_relationship); gold ids grounded against the live DB at observed ranks 7548:7, 7787:1, 7802:2."
+    },
+    {
+      "id": 74,
+      "query": "what enabled the re-election default-on rollout and what did it supersede",
+      "intentType": "find_decision",
+      "complexityTier": "moderate",
+      "category": "graph_relationship",
+      "source": "manual",
+      "expectedResultDescription": "Thematic/relational lookup spanning the relation cluster; primary memory 12695: Verification Checklist: Re-election default-on rollout.",
+      "notes": "Authored for class coverage (graph_relationship); gold ids grounded against the live DB at observed ranks 12695:1, 12696:2, 12698:3."
+    },
+    {
+      "id": 75,
+      "query": "how does the fail-loud executor provenance relate to the deep-loop config-dir override",
+      "intentType": "understand",
+      "complexityTier": "moderate",
+      "category": "graph_relationship",
+      "source": "manual",
+      "expectedResultDescription": "Thematic/relational lookup spanning the relation cluster; primary memory 11504: Feature Specification: Deep loop executor config-dir override [template:level_2/spec.md].",
+      "notes": "Authored for class coverage (graph_relationship); gold ids grounded against the live DB at observed ranks 11503:2, 11504:1, 18177:3."
+    },
+    {
+      "id": 76,
+      "query": "what connects the native per-iteration model schedule to the parallel fan-out epic",
+      "intentType": "understand",
+      "complexityTier": "complex",
+      "category": "graph_relationship",
+      "source": "manual",
+      "expectedResultDescription": "Thematic/relational lookup spanning the relation cluster; primary memory 9035: Graph Metadata: skilled-agent-orchestration/123-deep-loop-parallel-fanout/007-native-per-i.",
+      "notes": "Authored for class coverage (graph_relationship); gold ids grounded against the live DB at observed ranks 1113:20, 9035:6, 19481:11."
     }
   ],
   "relevances": [
@@ -1285,6 +1445,296 @@
     {
       "queryId": 60,
       "memoryId": 19016,
+      "relevance": 1
+    },
+    {
+      "queryId": 61,
+      "memoryId": 6320,
+      "relevance": 3
+    },
+    {
+      "queryId": 61,
+      "memoryId": 10969,
+      "relevance": 2
+    },
+    {
+      "queryId": 61,
+      "memoryId": 10974,
+      "relevance": 2
+    },
+    {
+      "queryId": 61,
+      "memoryId": 10980,
+      "relevance": 2
+    },
+    {
+      "queryId": 61,
+      "memoryId": 12674,
+      "relevance": 1
+    },
+    {
+      "queryId": 62,
+      "memoryId": 5502,
+      "relevance": 3
+    },
+    {
+      "queryId": 62,
+      "memoryId": 5509,
+      "relevance": 2
+    },
+    {
+      "queryId": 62,
+      "memoryId": 6195,
+      "relevance": 3
+    },
+    {
+      "queryId": 62,
+      "memoryId": 6230,
+      "relevance": 2
+    },
+    {
+      "queryId": 62,
+      "memoryId": 6320,
+      "relevance": 2
+    },
+    {
+      "queryId": 63,
+      "memoryId": 1113,
+      "relevance": 2
+    },
+    {
+      "queryId": 63,
+      "memoryId": 1704,
+      "relevance": 3
+    },
+    {
+      "queryId": 63,
+      "memoryId": 11549,
+      "relevance": 2
+    },
+    {
+      "queryId": 63,
+      "memoryId": 11551,
+      "relevance": 3
+    },
+    {
+      "queryId": 63,
+      "memoryId": 18104,
+      "relevance": 2
+    },
+    {
+      "queryId": 64,
+      "memoryId": 4657,
+      "relevance": 3
+    },
+    {
+      "queryId": 64,
+      "memoryId": 18806,
+      "relevance": 2
+    },
+    {
+      "queryId": 64,
+      "memoryId": 19172,
+      "relevance": 2
+    },
+    {
+      "queryId": 64,
+      "memoryId": 19481,
+      "relevance": 3
+    },
+    {
+      "queryId": 65,
+      "memoryId": 7509,
+      "relevance": 2
+    },
+    {
+      "queryId": 65,
+      "memoryId": 7515,
+      "relevance": 3
+    },
+    {
+      "queryId": 65,
+      "memoryId": 7517,
+      "relevance": 2
+    },
+    {
+      "queryId": 65,
+      "memoryId": 7531,
+      "relevance": 3
+    },
+    {
+      "queryId": 66,
+      "memoryId": 3187,
+      "relevance": 2
+    },
+    {
+      "queryId": 66,
+      "memoryId": 12548,
+      "relevance": 2
+    },
+    {
+      "queryId": 66,
+      "memoryId": 18859,
+      "relevance": 3
+    },
+    {
+      "queryId": 66,
+      "memoryId": 18864,
+      "relevance": 2
+    },
+    {
+      "queryId": 67,
+      "memoryId": 3235,
+      "relevance": 3
+    },
+    {
+      "queryId": 67,
+      "memoryId": 5083,
+      "relevance": 2
+    },
+    {
+      "queryId": 67,
+      "memoryId": 19025,
+      "relevance": 2
+    },
+    {
+      "queryId": 67,
+      "memoryId": 21578,
+      "relevance": 2
+    },
+    {
+      "queryId": 67,
+      "memoryId": 21579,
+      "relevance": 1
+    },
+    {
+      "queryId": 68,
+      "memoryId": 12555,
+      "relevance": 2
+    },
+    {
+      "queryId": 68,
+      "memoryId": 13477,
+      "relevance": 3
+    },
+    {
+      "queryId": 68,
+      "memoryId": 16969,
+      "relevance": 2
+    },
+    {
+      "queryId": 69,
+      "memoryId": 10759,
+      "relevance": 3
+    },
+    {
+      "queryId": 69,
+      "memoryId": 10760,
+      "relevance": 3
+    },
+    {
+      "queryId": 69,
+      "memoryId": 10763,
+      "relevance": 2
+    },
+    {
+      "queryId": 70,
+      "memoryId": 5783,
+      "relevance": 1
+    },
+    {
+      "queryId": 70,
+      "memoryId": 5787,
+      "relevance": 3
+    },
+    {
+      "queryId": 70,
+      "memoryId": 5793,
+      "relevance": 3
+    },
+    {
+      "queryId": 71,
+      "memoryId": 5000,
+      "relevance": 2
+    },
+    {
+      "queryId": 71,
+      "memoryId": 5002,
+      "relevance": 3
+    },
+    {
+      "queryId": 71,
+      "memoryId": 5008,
+      "relevance": 3
+    },
+    {
+      "queryId": 72,
+      "memoryId": 11507,
+      "relevance": 3
+    },
+    {
+      "queryId": 72,
+      "memoryId": 11527,
+      "relevance": 2
+    },
+    {
+      "queryId": 73,
+      "memoryId": 7548,
+      "relevance": 2
+    },
+    {
+      "queryId": 73,
+      "memoryId": 7787,
+      "relevance": 3
+    },
+    {
+      "queryId": 73,
+      "memoryId": 7802,
+      "relevance": 3
+    },
+    {
+      "queryId": 74,
+      "memoryId": 12695,
+      "relevance": 3
+    },
+    {
+      "queryId": 74,
+      "memoryId": 12696,
+      "relevance": 3
+    },
+    {
+      "queryId": 74,
+      "memoryId": 12698,
+      "relevance": 2
+    },
+    {
+      "queryId": 75,
+      "memoryId": 11503,
+      "relevance": 3
+    },
+    {
+      "queryId": 75,
+      "memoryId": 11504,
+      "relevance": 3
+    },
+    {
+      "queryId": 75,
+      "memoryId": 18177,
+      "relevance": 2
+    },
+    {
+      "queryId": 76,
+      "memoryId": 1113,
+      "relevance": 1
+    },
+    {
+      "queryId": 76,
+      "memoryId": 9035,
+      "relevance": 3
+    },
+    {
+      "queryId": 76,
+      "memoryId": 19481,
       "relevance": 1
     }
   ]
