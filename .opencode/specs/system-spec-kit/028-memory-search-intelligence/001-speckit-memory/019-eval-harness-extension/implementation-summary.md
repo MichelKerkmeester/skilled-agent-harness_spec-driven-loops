@@ -5,7 +5,7 @@ trigger_phrases:
   - "eval harness extension implementation summary"
   - "three corpus metric lanes status"
   - "per class promotion gate pending"
-  - "C9 A8 spine not started"
+  - "C9 corpus metric lanes shipped"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-001-019-replan"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 43
     open_questions: []
     answered_questions: []
 ---

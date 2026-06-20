@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Corpus Reindex — Gate-Zero for Recall Benchmarking"
-description: "Plan-only placeholder. The deferred corpus reindex + C9-4 embedding-coverage guard are NOT YET EXECUTED; this records the intended delivery and the pre-reindex baseline to beat."
+description: "The C9-4 embedding-coverage guard shipped and is tested. The corpus reindex was superseded after a live reconcile dry-run showed embedding coverage already whole. Records the shipped guard and the pre-reindex baseline."
 trigger_phrases:
   - "corpus reindex implementation summary"
   - "gate zero embedding coverage status"
@@ -12,14 +12,14 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/001-corpus-reindex-gate-zero"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Ship C9-4 coverage guard; verify embedding coverage already 100pct so reindex superseded"
-    next_safe_action: "Proceed to the benchmark tier; coverage gate is satisfied"
+    recent_action: "Shipped C9-4 coverage guard, verified 100pct coverage so reindex superseded"
+    next_safe_action: "Proceed to the benchmark tier, coverage gate is satisfied"
     blockers: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-001-001-corpus-reindex"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -73,7 +73,7 @@ _memory:
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered. Intended path (see `plan.md` §4): Baseline snapshot → force background reindex (poll to completion) → reconcile dry-run then apply → post-reindex snapshot + delta → conditional ground-truth re-alignment → add the coverage guard + tests.
+The C9-4 guard was delivered as `inspectEmbeddingCoverage` plus `assertEmbeddingCoverage` in `lib/eval/ablation-framework.ts`, wired beside `assertGroundTruthAlignment` at the `runAblation` pre-flight so every benchmark path inherits coverage enforcement. The reindex path (see `plan.md` §4) was deliberately superseded after a live `memory_embedding_reconcile` dry-run returned 0 mutations and `memory_health` reported vec rows 20,050 of 20,050. Coverage was already whole so the force-scan was not run.
 
 <!-- /ANCHOR:how-delivered -->
 ---
@@ -91,7 +91,7 @@ Not delivered. Intended path (see `plan.md` §4): Baseline snapshot → force ba
 <!-- ANCHOR:verification -->
 ## Verification
 
-Not yet run. Required at completion (see `checklist.md`): before/after `memory_health` delta showing `pending` driven to ~0; `assertEmbeddingCoverage` unit test (throws below / passes above); `runAblation` cold-index rejection probe; full `mcp_server/` vitest with no regression vs the captured baseline.
+The guard is verified. The `assertEmbeddingCoverage` unit tests pass (throws below threshold, passes at full coverage) inside the 59 ablation-framework tests that run green. Typecheck passes and `validate.sh --strict` on this folder is clean. The reindex-specific before/after `memory_health` delta was not run because the reindex was superseded. The live coverage evidence (reconcile dry-run 0 mutations, vec 20,050 of 20,050) stands in for it.
 
 <!-- /ANCHOR:verification -->
 ---
