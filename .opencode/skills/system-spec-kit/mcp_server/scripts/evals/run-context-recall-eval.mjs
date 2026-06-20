@@ -1,22 +1,21 @@
 #!/usr/bin/env node
 
-// Improvement-vs-baseline eval for the memory_context recall-mode flags.
+// Improvement-vs-baseline eval for the memory_context world-summary prelude flag.
 //
 // The sibling driver run-retrieval-flag-eval.mjs measures Recall@20 on
 // hybridSearchEnhanced and marks the recall-mode flags runSearch:false, because
-// those flags are consumed by memory_context response assembly and the adaptive
-// recall paths, NOT by hybridSearchEnhanced. This driver closes that gap.
+// those flags are consumed by memory_context response assembly, NOT by
+// hybridSearchEnhanced. This driver closes that gap for the prelude flag.
 //
-// An earlier revision of this driver measured ACTIVATION, not improvement: with a
-// flag OFF, the prelude is never built, the agentic loop is structurally disabled,
-// and the procedural multiplier is never applied, so every OFF metric collapses to
-// 0 by construction and every ON metric reports a trivially large delta. An
-// activation delta cannot justify a default-ON flip — it only proves the feature
-// turns on. This revision measures the real question instead: does the feature
-// recover relevant targets, or improve ranking correctness, RELATIVE TO the full
-// default-routing memory_context result the production handler already returns?
+// An earlier revision of this driver measured ACTIVATION, not improvement: with the
+// flag OFF the prelude is never built, so every OFF metric collapses to 0 by
+// construction and every ON metric reports a trivially large delta. An activation
+// delta cannot justify a default-ON flip — it only proves the feature turns on. This
+// revision measures the real question instead: does the prelude recover relevant
+// targets RELATIVE TO the full default-routing memory_context result the production
+// handler already returns?
 //
-// Baseline contract (shared by all three flags):
+// Baseline contract:
 //   The baseline is the FULL default-routing retrieval the handler runs before any
 //   recall-mode injection — hybridSearchEnhanced over the live channels with
 //   useVector/useBm25/useFts/useGraph on and forceAllChannels OFF (the exact option
@@ -31,15 +30,8 @@
 //       win is the set of targets the prelude RECOVERS that the baseline missed.
 //       Known-item recall is a deliberately strict, partly mismatched lens for a
 //       grounding feature, so a grounding-coverage metric is reported alongside it.
-//   SPECKIT_AGENTIC_RECALL         -> target recall of the bounded agentic loop
-//       driven by the REAL default-route retrieval as its tool, vs the single-shot
-//       baseline on the same queries. netRecallDelta = recall(loop) - recall(single).
-//   SPECKIT_PROCEDURAL_RELIABILITY_RECALL -> target rank and nDCG of a procedural
-//       known-item inside a realistic co-retrieved candidate set, WITH vs WITHOUT
-//       the reliability multiplier (buildAdaptiveShadowProposal). rankDelta and
-//       ndcgDelta measure ranking-correctness improvement, not whether a score moves.
 //
-// Every metric runs on the default routing path; none forces all channels.
+// The metric runs on the default routing path; it never forces all channels.
 
 import fs from 'node:fs';
 import os from 'node:os';
@@ -68,18 +60,6 @@ const RECALL_FLAGS = [
     env: 'SPECKIT_WORLD_SUMMARY_PRELUDE',
     metric: 'net_recall_delta',
     note: 'Recall@K of the known-item target in the full default-route result WITHOUT vs WITH the grounding prelude.',
-  },
-  {
-    label: 'agentic_recall',
-    env: 'SPECKIT_AGENTIC_RECALL',
-    metric: 'net_recall_delta',
-    note: 'Target recall of the bounded agentic loop (real retrieval tool) vs the single-shot default-route baseline.',
-  },
-  {
-    label: 'procedural_reliability_recall',
-    env: 'SPECKIT_PROCEDURAL_RELIABILITY_RECALL',
-    metric: 'rank_and_ndcg_delta',
-    note: 'Procedural target rank/nDCG inside a realistic candidate set WITH vs WITHOUT the reliability multiplier.',
   },
 ];
 
@@ -159,9 +139,6 @@ function deriveGoldenSet(db, count) {
     const queryText = normalizeQuery(triggers.length > 0 ? triggers[0] : row.title);
     if (queryText.length < 4 || seen.has(queryText.toLowerCase())) continue;
     seen.add(queryText.toLowerCase());
-    const isProcedural = [row.memoryType, row.contextType].some(
-      (value) => typeof value === 'string' && value.trim().toLowerCase() === 'procedural',
-    );
     golden.push({
       id: golden.length + 1,
       query: queryText,
@@ -169,7 +146,6 @@ function deriveGoldenSet(db, count) {
       title: row.title,
       specFolder: typeof row.specFolder === 'string' ? row.specFolder : null,
       querySource: triggers.length > 0 ? 'trigger_derived' : 'title_derived',
-      procedural: isProcedural,
     });
   }
   return golden;
@@ -407,321 +383,6 @@ function extractResultIdsFromEnvelope(injectedResult, prelude, placement = 'prep
   return ordered;
 }
 
-// ── Agentic flag: loop recall vs single-shot baseline ──────────────────────
-// The governor (runAgenticLoop) is pure: the agent and tool executor are injected.
-// To measure improvement honestly, the loop is driven by the REAL default-route
-// retrieval as its only tool. A deterministic multi-hop agent issues a retrieval
-// call, then answers with the target if the tool surfaced it. The loop result is
-// compared to the single-shot default-route baseline on the same queries.
-//
-// Honest caveat (reported in the right-metric note): runAgenticLoop has NO
-// production consumer in this build — no memory_context / memory_search path drives
-// it. With no real reasoning model wired, the loop can only re-derive the
-// single-shot result, so its net recall delta over the single shot is structurally
-// zero. The metric below makes that visible instead of hiding it behind an
-// activation success-rate.
-async function measureAgenticImprovement(governor, golden, defaultRouteResultIds) {
-  setFlag('SPECKIT_AGENTIC_RECALL', true);
-  let singleShotSum = 0;
-  let loopSum = 0;
-  let recovered = 0;
-  let evaluated = 0;
-
-  for (const item of golden) {
-    evaluated += 1;
-    const singleShotIds = await defaultRouteResultIds(item.query);
-    const singleShot = recallAtK(singleShotIds, item.memoryId, RECALL_K);
-
-    // Drive the bounded loop with the real retrieval tool. The agent issues one
-    // retrieval, observes its result ids, then answers. Because the only tool is the
-    // same default-route retrieval, the loop observes the same candidate set as the
-    // single shot — the comparison exposes whether the loop adds any recovery.
-    let toolDone = false;
-    let observedIds = [];
-    const result = await governor.runAgenticLoop({
-      allowedTools: new Set(['memory_retrieve']),
-      maxSteps: 4,
-      stepProvider: (state) => {
-        if (!toolDone && state.stepIndex === 0) {
-          toolDone = true;
-          return { kind: 'tool_call', tool: 'memory_retrieve', args: { query: item.query } };
-        }
-        return { kind: 'final_answer', answer: { resultIds: observedIds } };
-      },
-      toolExecutor: async () => {
-        observedIds = await defaultRouteResultIds(item.query);
-        return { resultIds: observedIds };
-      },
-    });
-
-    const loopIds = result.status === 'final' && Array.isArray(result.answer?.resultIds)
-      ? result.answer.resultIds
-      : [];
-    const loopRecall = recallAtK(loopIds, item.memoryId, RECALL_K);
-    singleShotSum += singleShot;
-    loopSum += loopRecall;
-    if (singleShot === 0 && loopRecall === 1) recovered += 1;
-  }
-
-  return {
-    singleShotRecall: evaluated === 0 ? 0 : singleShotSum / evaluated,
-    loopRecall: evaluated === 0 ? 0 : loopSum / evaluated,
-    netRecallDelta: evaluated === 0 ? 0 : (loopSum - singleShotSum) / evaluated,
-    recovered,
-    evaluated,
-  };
-}
-
-// ── Procedural reliability flag: rank / nDCG improvement of the target ──────
-// The multiplier reaches ranking through buildAdaptiveShadowProposal. To make a
-// ranking effect observable, the procedural target is placed inside a realistic
-// candidate set: its real co-retrieved neighbors from the default route, scored so
-// the target starts mid-pack (a relevant procedural item the multiplier could lift).
-// Rank and nDCG are measured WITH vs WITHOUT the multiplier; only the flag toggles
-// getProceduralReliabilityMultipliers, so the generic signal lane is held constant.
-async function measureProceduralImprovement(adaptiveRanking, db, golden, defaultRouteResultIds) {
-  process.env.SPECKIT_MEMORY_ADAPTIVE_RANKING = 'true';
-  process.env.SPECKIT_MEMORY_ADAPTIVE_MODE = 'shadow';
-  adaptiveRanking.ensureAdaptiveTables(db);
-
-  const proceduralItems = golden.filter((item) => item.procedural);
-  if (proceduralItems.length === 0) {
-    return {
-      evaluated: 0,
-      rankDelta: 0,
-      ndcgWithout: 0,
-      ndcgWith: 0,
-      ndcgDelta: 0,
-      improved: 0,
-      regressed: 0,
-      note: 'no procedural known-items in golden set',
-    };
-  }
-
-  let rankDeltaSum = 0;
-  let ndcgWithoutSum = 0;
-  let ndcgWithSum = 0;
-  let improved = 0;
-  let regressed = 0;
-  let evaluated = 0;
-
-  for (const item of proceduralItems) {
-    // Build a realistic candidate set: the target plus its real co-retrieved
-    // neighbors from the default route, descending score so the target sits mid-pack.
-    const neighborIds = (await defaultRouteResultIds(item.query)).filter((id) => id !== item.memoryId);
-    const candidates = buildProceduralCandidateSet(item.memoryId, neighborIds);
-    if (candidates.length < 2) continue;
-    evaluated += 1;
-
-    // Positive reliability evidence so the multiplier has the strongest honest case.
-    adaptiveRanking.recordAdaptiveSignal(db, {
-      memoryId: item.memoryId,
-      signalType: 'outcome',
-      signalValue: 1,
-      actor: 'context-recall-eval',
-    });
-
-    const withoutRank = proceduralShadowRank(adaptiveRanking, db, item, candidates, false);
-    const withRank = proceduralShadowRank(adaptiveRanking, db, item, candidates, true);
-
-    // Positive rankDelta = the target moved UP (improvement).
-    const rankDelta = withoutRank.rank - withRank.rank;
-    rankDeltaSum += rankDelta;
-    ndcgWithoutSum += withoutRank.ndcg;
-    ndcgWithSum += withRank.ndcg;
-    if (rankDelta > 0) improved += 1;
-    if (rankDelta < 0) regressed += 1;
-  }
-
-  return {
-    evaluated,
-    rankDelta: evaluated === 0 ? 0 : rankDeltaSum / evaluated,
-    ndcgWithout: evaluated === 0 ? 0 : ndcgWithoutSum / evaluated,
-    ndcgWith: evaluated === 0 ? 0 : ndcgWithSum / evaluated,
-    ndcgDelta: evaluated === 0 ? 0 : (ndcgWithSum - ndcgWithoutSum) / evaluated,
-    improved,
-    regressed,
-  };
-}
-
-// Place the procedural target mid-pack among real neighbors with a descending score
-// ramp, so a multiplier that boosts it could raise its rank and one that de-rates it
-// could lower it. The target is the relevant item whose ranking-correctness we score.
-function buildProceduralCandidateSet(targetId, neighborIds) {
-  const topNeighbors = neighborIds.slice(0, 4);
-  const ids = [...topNeighbors];
-  const insertAt = Math.min(2, ids.length); // mid-pack
-  ids.splice(insertAt, 0, targetId);
-  const baseScore = 0.7;
-  return ids.map((id, index) => ({
-    id,
-    score: Math.max(0.05, baseScore - index * 0.08),
-    similarity: Math.max(0.05, baseScore - index * 0.08),
-    title: id === targetId ? 'procedural target' : `neighbor ${id}`,
-    memory_type: id === targetId ? 'procedural' : 'declarative',
-  }));
-}
-
-function proceduralShadowRank(adaptiveRanking, db, item, candidates, enabled) {
-  setFlag('SPECKIT_PROCEDURAL_RELIABILITY_RECALL', enabled);
-  const proposal = adaptiveRanking.buildAdaptiveShadowProposal(db, item.query, candidates);
-  const orderedIds = Array.isArray(proposal?.rows)
-    ? [...proposal.rows].sort((a, b) => a.shadowRank - b.shadowRank).map((row) => row.memoryId)
-    : candidates.map((row) => row.id);
-  const idx = orderedIds.indexOf(item.memoryId);
-  const rank = idx >= 0 ? idx + 1 : orderedIds.length + 1;
-  return { rank, ndcg: ndcgForTarget(orderedIds, item.memoryId, candidates.length) };
-}
-
-// ── Procedural reliability flag: near-tie tie-break (the flag's designed use) ──
-// The large-gap case above correctly reads neutral: the candidate ramp opens an 0.08
-// score gap that no honest reliability nudge should override, so the bounded
-// prior-centered delta cannot — and should not — move it. That proves the multiplier
-// does not bulldoze a clear ordering, but it says nothing about the flag's REAL job,
-// which is breaking NEAR-TIES by demonstrated reliability.
-//
-// Measuring the multiplier's marginal effect honestly requires isolating it from a
-// confound: buildAdaptiveShadowProposal clamps the SUM of the generic signal lane and
-// the procedural reliability delta to ±maxAdaptiveDelta, and the generic lane reads
-// the SAME adaptive_signal_events the procedural evidence comes from. Two consequences
-// fall out of that wiring and both are reported, not hidden:
-//   1. Dense evidence SATURATES the generic lane on its own (e.g. 30 outcomes ×
-//      0.02 = 0.60, clamped to the 0.08 band), leaving zero headroom for the
-//      procedural term — the combined clamp swallows it. So the "obvious" strong case
-//      (~30/2) shows a ZERO marginal procedural effect, not a large one. The
-//      multiplier only has room to move ranking at thin-to-moderate evidence.
-//   2. The generic lane would itself reorder the field, masking whether the procedural
-//      term did anything. To isolate the procedural term, the declarative neighbor is
-//      given the SAME signal totals as the procedural target, so the generic lane
-//      applies an identical delta to both rows and cancels out of their relative order.
-//      Only the procedural multiplier — which applies solely to the procedural-typed
-//      row — can then break the tie. That is the marginal effect under test.
-//
-// Two synthetic contests, fully under the eval's control (synthetic ids far above any
-// real memory id, never written to the golden set, recorded only here):
-//   RELIABLE contest  — a procedure with moderate, clearly-positive evidence (5
-//       successes / 1 failure) sits a hair (~0.005) BELOW a declarative neighbor
-//       carrying the same 5/1 generic signals. Without the procedural flag the target
-//       ranks second; the prior-centered boost is the only force that can lift it. A
-//       clean promotion (rankDelta +1) means reliability legitimately broke the tie.
-//   UNRELIABLE contest — a failure-heavy procedure (1 success / 3 failures) sits a
-//       hair ABOVE a declarative neighbor carrying the same 1/3 signals, so production
-//       over-ranked it. The procedural de-rate should push it below the neighbor
-//       (rankDelta -1), confirming the signed delta demotes a procedure that lags its
-//       prior.
-function buildNearTieCandidateSet(targetId, neighborId, targetScore, neighborScore) {
-  // Two rows only — a clean head-to-head where score order is the entire contest.
-  // similarity mirrors score so the secondary tiebreak never decides the order; the
-  // procedural reliability delta applied to shadowScore is the sole differential.
-  return [
-    {
-      id: neighborId,
-      score: neighborScore,
-      similarity: neighborScore,
-      title: `near-tie neighbor ${neighborId}`,
-      memory_type: 'declarative',
-    },
-    {
-      id: targetId,
-      score: targetScore,
-      similarity: targetScore,
-      title: 'near-tie procedural target',
-      memory_type: 'procedural',
-    },
-  ];
-}
-
-function recordReliabilityEvidence(adaptiveRanking, db, memoryId, successes, failures) {
-  // The reliability SQL sums signal_value per signal_type, so one summed row per type
-  // is equivalent to N unit rows; recordAdaptiveSignal rejects non-positive values, so
-  // a zero count is simply skipped.
-  if (successes > 0) {
-    adaptiveRanking.recordAdaptiveSignal(db, {
-      memoryId,
-      signalType: 'outcome',
-      signalValue: successes,
-      actor: 'context-recall-eval-near-tie',
-    });
-  }
-  if (failures > 0) {
-    adaptiveRanking.recordAdaptiveSignal(db, {
-      memoryId,
-      signalType: 'correction',
-      signalValue: failures,
-      actor: 'context-recall-eval-near-tie',
-    });
-  }
-}
-
-function measureProceduralNearTie(adaptiveRanking, db) {
-  process.env.SPECKIT_MEMORY_ADAPTIVE_RANKING = 'true';
-  process.env.SPECKIT_MEMORY_ADAPTIVE_MODE = 'shadow';
-  adaptiveRanking.ensureAdaptiveTables(db);
-
-  // Synthetic ids well clear of any real memory id; never written to the golden set.
-  const RELIABLE_TARGET = 990000001;
-  const RELIABLE_NEIGHBOR = 990000002;
-  const UNRELIABLE_TARGET = 990000003;
-  const UNRELIABLE_NEIGHBOR = 990000004;
-
-  // Reliable contest: moderate positive evidence on BOTH rows so the generic lane
-  // cancels; target sits ~0.005 below the neighbor → rank 2 before the procedural nudge.
-  const reliableGap = 0.005;
-  recordReliabilityEvidence(adaptiveRanking, db, RELIABLE_TARGET, 5, 1);
-  recordReliabilityEvidence(adaptiveRanking, db, RELIABLE_NEIGHBOR, 5, 1);
-  const reliableCandidates = buildNearTieCandidateSet(
-    RELIABLE_TARGET,
-    RELIABLE_NEIGHBOR,
-    0.6,
-    0.6 + reliableGap,
-  );
-  const reliableItem = { query: 'near-tie reliable procedure', memoryId: RELIABLE_TARGET };
-  const reliableWithout = proceduralShadowRank(adaptiveRanking, db, reliableItem, reliableCandidates, false);
-  const reliableWith = proceduralShadowRank(adaptiveRanking, db, reliableItem, reliableCandidates, true);
-  const reliableRankDelta = reliableWithout.rank - reliableWith.rank; // +1 = promoted
-
-  // Unreliable contest: failure-heavy evidence on BOTH rows so the generic lane cancels;
-  // target sits ~0.004 above the neighbor → rank 1 before the de-rate.
-  const unreliableGap = 0.004;
-  recordReliabilityEvidence(adaptiveRanking, db, UNRELIABLE_TARGET, 1, 3);
-  recordReliabilityEvidence(adaptiveRanking, db, UNRELIABLE_NEIGHBOR, 1, 3);
-  const unreliableCandidates = buildNearTieCandidateSet(
-    UNRELIABLE_TARGET,
-    UNRELIABLE_NEIGHBOR,
-    0.605,
-    0.605 - unreliableGap,
-  );
-  const unreliableItem = { query: 'near-tie unreliable procedure', memoryId: UNRELIABLE_TARGET };
-  const unreliableWithout = proceduralShadowRank(adaptiveRanking, db, unreliableItem, unreliableCandidates, false);
-  const unreliableWith = proceduralShadowRank(adaptiveRanking, db, unreliableItem, unreliableCandidates, true);
-  const unreliableRankDelta = unreliableWithout.rank - unreliableWith.rank; // -1 = demoted
-
-  return {
-    reliable: {
-      evidence: '5 successes / 1 failure',
-      rankWithout: reliableWithout.rank,
-      rankWith: reliableWith.rank,
-      rankDelta: reliableRankDelta,
-      ndcgWithout: reliableWithout.ndcg,
-      ndcgWith: reliableWith.ndcg,
-      ndcgDelta: reliableWith.ndcg - reliableWithout.ndcg,
-      promoted: reliableRankDelta > 0,
-      scoreGap: reliableGap,
-    },
-    unreliable: {
-      evidence: '1 success / 3 failures',
-      rankWithout: unreliableWithout.rank,
-      rankWith: unreliableWith.rank,
-      rankDelta: unreliableRankDelta,
-      ndcgWithout: unreliableWithout.ndcg,
-      ndcgWith: unreliableWith.ndcg,
-      ndcgDelta: unreliableWith.ndcg - unreliableWithout.ndcg,
-      demoted: unreliableRankDelta < 0,
-      scoreGap: unreliableGap,
-    },
-  };
-}
-
 async function main() {
   if (!Number.isInteger(RECALL_K) || RECALL_K <= 0) {
     throw new Error(`Invalid Recall@K: ${RECALL_K}`);
@@ -730,11 +391,9 @@ async function main() {
   const evalDatabase = await prepareEvalDatabase(SOURCE_DB_PATH);
   process.env.MEMORY_DB_PATH = evalDatabase.dbPath;
 
-  const [vectorIndex, memorySummaries, governor, adaptiveRanking, handlerModule, hybridSearch, graphSearch, embeddings] = await Promise.all([
+  const [vectorIndex, memorySummaries, handlerModule, hybridSearch, graphSearch, embeddings] = await Promise.all([
     import(moduleUrl('dist/lib/search/vector-index.js')),
     import(moduleUrl('dist/lib/search/memory-summaries.js')),
-    import(moduleUrl('dist/lib/search/agentic-loop-governor.js')),
-    import(moduleUrl('dist/lib/cognitive/adaptive-ranking.js')),
     import(moduleUrl('dist/handlers/memory-context.js')),
     import(moduleUrl('dist/lib/search/hybrid-search.js')),
     import(moduleUrl('dist/lib/search/graph-search-fn.js')),
@@ -808,89 +467,6 @@ async function main() {
     });
   }
 
-  // Agentic recall — loop recall vs single-shot baseline
-  {
-    const result = await measureAgenticImprovement(governor, golden, defaultRouteResultIds);
-    restoreEnv(originalEnv);
-    const flip = result.netRecallDelta > 0;
-    flagRows.push({
-      flag: 'agentic_recall',
-      env: 'SPECKIT_AGENTIC_RECALL',
-      metric: 'net_recall_delta',
-      baseline: formatNumber(result.singleShotRecall),
-      withFeature: formatNumber(result.loopRecall),
-      delta: formatNumber(result.netRecallDelta),
-      detail: result,
-      rightMetricNote:
-        'runAgenticLoop has NO production consumer in this build (no memory_context/memory_search path '
-        + 'drives it) and no real reasoning model is wired, so the bounded loop can only re-derive the '
-        + 'single-shot result. Loop-vs-single recall is the right lens for the feature\'s intent (multi-hop '
-        + 'recovery), but it is structurally zero until the loop drives real iterative retrieval.',
-      flipRecommendation: flip
-        ? 'flip-ON: the loop recovers targets the single shot missed (positive net recall delta).'
-        : 'keep-OFF: unwired scaffold — no net recall improvement is possible until the loop has a real consumer and reasoning agent.',
-    });
-  }
-
-  // Procedural reliability recall — rank / nDCG improvement of the target
-  {
-    const result = await measureProceduralImprovement(adaptiveRanking, db, golden, defaultRouteResultIds);
-    const nearTie = measureProceduralNearTie(adaptiveRanking, db);
-    restoreEnv(originalEnv);
-    delete process.env.SPECKIT_MEMORY_ADAPTIVE_RANKING;
-    delete process.env.SPECKIT_MEMORY_ADAPTIVE_MODE;
-
-    // The large-gap golden case is the GUARDRAIL: it must stay neutral so the multiplier
-    // is proven not to bulldoze a clear ordering. The near-tie case is the flag's actual
-    // job: the bounded delta should break a genuine tie by demonstrated reliability.
-    const largeGapNeutral = result.rankDelta === 0 && result.ndcgDelta === 0 && result.regressed === 0;
-    const nearTiePromotesReliable = nearTie.reliable.promoted;
-    const nearTieDemotesUnreliable = nearTie.unreliable.demoted;
-    // The honest flip bar: the corrected multiplier earns a modest tie-break flip only
-    // when it BREAKS a near-tie in the reliable direction, DEMOTES the unreliable item,
-    // and leaves the large-gap case untouched. Tie-break improvement without large-gap
-    // harm is the whole design contract for a ~±0.02 nudge.
-    const flip = nearTiePromotesReliable && nearTieDemotesUnreliable && largeGapNeutral;
-    flagRows.push({
-      flag: 'procedural_reliability_recall',
-      env: 'SPECKIT_PROCEDURAL_RELIABILITY_RECALL',
-      metric: 'rank_and_ndcg_delta',
-      baseline: formatNumber(result.ndcgWithout),
-      withFeature: formatNumber(result.ndcgWith),
-      delta: formatNumber(result.ndcgDelta),
-      rankDelta: formatNumber(result.rankDelta),
-      detail: result,
-      nearTie,
-      rightMetricNote:
-        'Target rank / nDCG WITH vs WITHOUT the multiplier is the right lens (ranking correctness, not '
-        + 'whether a score merely moves). The reliability term is now prior-centered and evidence-weighted '
-        + '(computeCenteredReliabilityEvidence): reliabilityDelta = strength * (mean - priorMean) * '
-        + 'evidenceWeight * score, so a procedure that BEATS its prior is promoted, one that LAGS is '
-        + 'demoted, and a thin- or no-evidence procedure stays neutral. Two wiring facts bound how far it '
-        + 'reaches and both are measured, not assumed: (1) buildAdaptiveShadowProposal clamps the SUM of the '
-        + 'generic signal lane and this reliability delta to +/-maxAdaptiveDelta (0.08), and the generic lane '
-        + 'reads the same adaptive_signal_events the evidence comes from, so DENSE evidence saturates the '
-        + 'generic lane by itself and the combined clamp swallows the procedural term (a ~30/2 procedure shows '
-        + 'a ZERO marginal effect, not a large one) — the multiplier only has headroom at thin-to-moderate '
-        + 'evidence; (2) to isolate the procedural term the near-tie neighbor carries the SAME generic signals '
-        + 'as the target so the generic lane cancels and only the procedural multiplier can reorder them. The '
-        + 'bound makes this a tie-breaker, not a bulldozer: the large-gap golden case correctly stays neutral '
-        + '(it must not override an 0.08 ordering), and the near-tie case is where the flag earns its keep — a '
-        + 'moderately-proven procedure breaks a genuine tie and a failure-heavy one is pushed down.',
-      flipRecommendation: flip
-        ? 'flip-ON (modest tie-break): the corrected prior-centered multiplier breaks a near-tie in favor of a '
-          + 'proven-reliable procedure and demotes a failure-heavy one, while leaving the large-gap ordering '
-          + 'untouched. The nudge is bounded (~+/-0.02), so it earns a default-ON flip only as a reliability '
-          + 'tie-breaker, not as a primary ranking signal.'
-        : !largeGapNeutral
-          ? 'keep-OFF: the multiplier moved the large-gap case it should have left neutral — the nudge is '
-            + 'overriding a clear ordering. Re-check the clamp/strength before flipping.'
-          : 'keep-OFF: the bounded nudge could not even break a designed near-tie (reliable not promoted or '
-            + 'unreliable not demoted), so it does not earn a default-ON flip as wired.',
-    });
-  }
-
-  const proceduralCount = golden.filter((item) => item.procedural).length;
   const output = {
     generatedAt: new Date().toISOString(),
     sourceDbPath: SOURCE_DB_PATH,
@@ -900,7 +476,6 @@ async function main() {
     recallK: RECALL_K,
     searchLimit: SEARCH_LIMIT,
     queryCount: golden.length,
-    proceduralQueryCount: proceduralCount,
     metricContract: 'improvement-vs-baseline on the full default-routing memory_context result (forceAllChannels never set)',
     flags: flagRows,
   };
@@ -924,8 +499,6 @@ export {
   loadOrDeriveGolden,
   makeDefaultRouteSearch,
   measurePreludeImprovement,
-  measureAgenticImprovement,
-  measureProceduralImprovement,
   recallAtK,
   ndcgForTarget,
   RECALL_FLAGS,

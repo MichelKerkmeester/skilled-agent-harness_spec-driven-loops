@@ -25,6 +25,7 @@ import {
   isAutoEntitiesEnabled,
   isEntityLinkingEnabled,
   isDegreeBoostEnabled,
+  isConfidenceCalibrationEnabled,
 } from '../lib/search/search-flags';
 
 /**
@@ -52,6 +53,7 @@ const ALL_SPECKIT_FLAGS = [
   'SPECKIT_AUTO_ENTITIES',
   'SPECKIT_ENTITY_LINKING',
   'SPECKIT_DEGREE_BOOST',
+  'SPECKIT_CONFIDENCE_CALIBRATION',
 ] as const;
 
 /** Flag checker functions mapped to their flag names for batch verification */
@@ -74,6 +76,7 @@ const FLAG_CHECKERS: Array<{ flag: string; checker: () => boolean }> = [
   { flag: 'SPECKIT_AUTO_ENTITIES', checker: isAutoEntitiesEnabled },
   { flag: 'SPECKIT_ENTITY_LINKING', checker: isEntityLinkingEnabled },
   { flag: 'SPECKIT_DEGREE_BOOST', checker: isDegreeBoostEnabled },
+  { flag: 'SPECKIT_CONFIDENCE_CALIBRATION', checker: isConfidenceCalibrationEnabled },
 ];
 
 const ORIGINAL_ENV: Partial<Record<string, string | undefined>> = {};
@@ -116,7 +119,7 @@ describe('Feature Flag Ceiling Test (A10-P2-2)', () => {
     restoreOriginalEnv();
   });
 
-  it('activates 20 SPECKIT_* flags simultaneously without crash', () => {
+  it('activates all ceiling SPECKIT_* flags simultaneously without crash', () => {
     // Precondition: confirm we have 6+ flags (the ceiling threshold)
     expect(ALL_SPECKIT_FLAGS.length).toBeGreaterThanOrEqual(6);
 
@@ -218,7 +221,6 @@ const ACKNOWLEDGED_UNCEILINGED_FLAGS: string[] = [
   'SPECKIT_BITEMPORAL_RECALL',
   'SPECKIT_ABSOLUTE_RELEVANCE_CALIBRATION',
   'SPECKIT_CARDINALITY_PENALTY',
-  'SPECKIT_CONFIDENCE_CALIBRATION',
   'SPECKIT_CONFIDENCE_CALIBRATION_MODEL',
   'SPECKIT_COSINE_TOPN_REORDER',
   'SPECKIT_INCLUDE_ARCHIVED_DEFAULT',

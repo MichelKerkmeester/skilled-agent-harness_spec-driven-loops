@@ -6,7 +6,7 @@
 // ranking so recall expansion does not mechanically depress the verdict.
 // The weak/gap safety net for genuinely low-signal sets must stay intact.
 
-import { beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import {
   computeResultConfidence,
   assessRequestQuality,
@@ -14,6 +14,26 @@ import {
 } from '../lib/search/confidence-scoring';
 
 const CALIBRATION_FLAG = 'SPECKIT_ABSOLUTE_RELEVANCE_CALIBRATION';
+
+// This file asserts request-quality verdicts that depend on the uncalibrated
+// rebalance confidence labels. The isotonic confidence-calibration model now
+// applies by default and would cap those values; pin it OFF so the aggregation
+// subject stays visible. Isotonic default-on is covered separately.
+const CONFIDENCE_CALIBRATION_FLAG = 'SPECKIT_CONFIDENCE_CALIBRATION';
+let savedConfidenceCalibration: string | undefined;
+
+beforeEach(() => {
+  savedConfidenceCalibration = process.env[CONFIDENCE_CALIBRATION_FLAG];
+  process.env[CONFIDENCE_CALIBRATION_FLAG] = 'false';
+});
+
+afterEach(() => {
+  if (savedConfidenceCalibration === undefined) {
+    delete process.env[CONFIDENCE_CALIBRATION_FLAG];
+  } else {
+    process.env[CONFIDENCE_CALIBRATION_FLAG] = savedConfidenceCalibration;
+  }
+});
 
 // Cosine similarity (0–100) drives the absolute relevance that topScore reads.
 function strong(id: number, similarity: number): ScoredResult {

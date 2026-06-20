@@ -35,7 +35,7 @@ const MAX_SEED_RESULTS = 5;
 // ───────────────────────────────────────────────────────────────
 /** Graph density threshold below which community detection is disabled
  * and traversal is constrained to typed 1-hop expansion only.
- * Density = edgeCount / totalMemories (see edge-density.ts). */
+ * Density = edgeCount / totalMemories. */
 const SPARSE_DENSITY_THRESHOLD = 0.5;
 
 /** Traversal depth used in sparse mode (1-hop typed expansion). */

@@ -100,7 +100,6 @@ Generated from `lib/search/search-flags.ts`. "Default state" is the shipped beha
 | Graph context injection | ON | `SPECKIT_GRAPH_CONTEXT_INJECTION` | Graph neighbor lookup even without seed results | Phase B T020 |
 | Result provenance | ON | `SPECKIT_RESULT_PROVENANCE` | Graph evidence metadata in search results | Phase C T027 |
 | Temporal edges | ON | `SPECKIT_TEMPORAL_EDGES` | Temporal validity tracking for causal edges | Phase D T036 |
-| Bi-temporal recall | OFF | `SPECKIT_BITEMPORAL_RECALL` | Opt-in recall modes that consume transaction-time validity windows; keep OFF until benchmarked | current |
 | Usage ranking | ON | `SPECKIT_USAGE_RANKING` | Usage-weighted ranking signal | Phase D T036 |
 | Ontology hooks | ON | `SPECKIT_ONTOLOGY_HOOKS` | Ontology-guided extraction validation hooks | Phase D T036 |
 | Community search fallback | ON | `SPECKIT_COMMUNITY_SEARCH_FALLBACK` | Community-level fallback channel | Phase B T018 |
@@ -296,7 +295,6 @@ the publication guard helpers used by the evaluation dashboard.
 | `SPECKIT_DUAL_RETRIEVAL` | `true` | boolean | Dual-level retrieval mode: `local` (entity), `global` (community), `auto` (local + fallback) (Phase B T019). Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_DEGREE_BOOST` | `true` | boolean | Causal-edge degree-based re-ranking. Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_TEMPORAL_EDGES` | `true` | boolean | Temporal validity tracking for causal edges (Phase D T036). Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_BITEMPORAL_RECALL` | `false` | boolean | Opt-in recall modes that consume transaction-time validity windows. Default OFF until benchmarked. | `lib/search/search-flags.ts` |
 | `SPECKIT_TYPED_TRAVERSAL` | `true` | boolean | Sparse-first + intent-aware typed traversal (D3 Phase A). Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_ENTITY_LINKING` | `true` | boolean | Cross-document entity linking (S5). Requires AUTO_ENTITIES. Graduated ON. | `lib/search/search-flags.ts`, `lib/search/graph-lifecycle.ts` |
 | `SPECKIT_ENTITY_LINKING_MAX_DENSITY` | `1.0` | number | Density guard threshold: skip entity linking when projected graph density exceeds this value. | `lib/search/entity-linker.ts` |

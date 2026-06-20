@@ -1,9 +1,29 @@
-import { describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import {
   assessRequestQuality,
   computeResultConfidence,
   type ScoredResult,
 } from '../lib/search/confidence-scoring';
+
+// This file asserts uncalibrated retrieval-quality semantics. The isotonic
+// confidence-calibration model now applies by default and would cap the value
+// under test; pin it OFF so the rebalance subject stays visible. Isotonic
+// default-on is covered in confidence-calibration*.vitest.ts.
+const CONFIDENCE_CALIBRATION_FLAG = 'SPECKIT_CONFIDENCE_CALIBRATION';
+let savedConfidenceCalibration: string | undefined;
+
+beforeEach(() => {
+  savedConfidenceCalibration = process.env[CONFIDENCE_CALIBRATION_FLAG];
+  process.env[CONFIDENCE_CALIBRATION_FLAG] = 'false';
+});
+
+afterEach(() => {
+  if (savedConfidenceCalibration === undefined) {
+    delete process.env[CONFIDENCE_CALIBRATION_FLAG];
+  } else {
+    process.env[CONFIDENCE_CALIBRATION_FLAG] = savedConfidenceCalibration;
+  }
+});
 
 function makeRetrievalQualityResults(): ScoredResult[] {
   return [

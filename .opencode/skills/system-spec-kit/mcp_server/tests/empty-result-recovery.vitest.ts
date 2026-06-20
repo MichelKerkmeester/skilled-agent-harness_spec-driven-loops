@@ -6,6 +6,11 @@ import {
 } from '../formatters/search-results';
 
 const RECOVERY_FLAG = 'SPECKIT_EMPTY_RESULT_RECOVERY_V1';
+// Subject here is the recovery/citation-policy envelope, which reads the
+// uncalibrated request-quality verdict. The isotonic confidence-calibration model
+// now applies by default and would cap the "good" verdict; pin it OFF so the
+// envelope subject stays visible. Isotonic default-on is covered separately.
+const CONFIDENCE_CALIBRATION_FLAG = 'SPECKIT_CONFIDENCE_CALIBRATION';
 const VALID_RECOVERY_STATUSES = ['no_results', 'low_confidence', 'partial'] as const;
 const VALID_RECOVERY_REASONS = [
   'spec_filter_too_narrow',
@@ -112,10 +117,13 @@ function expectReasonableSuggestions(
 
 describe('D5 Phase A: empty result recovery', () => {
   let originalFlag: string | undefined;
+  let originalCalibrationFlag: string | undefined;
 
   beforeEach(() => {
     originalFlag = process.env[RECOVERY_FLAG];
     process.env[RECOVERY_FLAG] = 'true';
+    originalCalibrationFlag = process.env[CONFIDENCE_CALIBRATION_FLAG];
+    process.env[CONFIDENCE_CALIBRATION_FLAG] = 'false';
   });
 
   afterEach(() => {
@@ -123,6 +131,11 @@ describe('D5 Phase A: empty result recovery', () => {
       delete process.env[RECOVERY_FLAG];
     } else {
       process.env[RECOVERY_FLAG] = originalFlag;
+    }
+    if (originalCalibrationFlag === undefined) {
+      delete process.env[CONFIDENCE_CALIBRATION_FLAG];
+    } else {
+      process.env[CONFIDENCE_CALIBRATION_FLAG] = originalCalibrationFlag;
     }
   });
 

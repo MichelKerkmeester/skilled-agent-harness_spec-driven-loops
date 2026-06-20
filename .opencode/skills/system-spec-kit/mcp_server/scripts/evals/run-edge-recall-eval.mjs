@@ -56,41 +56,6 @@ const FLAG_SPECS = [
     metric: 'recall+behavior',
     note: 'Gates valid-edge reads (getValidEdges) and the lifecycle columns; recall path is graph edge channel.',
   },
-  {
-    label: 'edge_presence_currentness',
-    env: 'SPECKIT_EDGE_PRESENCE_CURRENTNESS',
-    currentDefault: 'off',
-    metric: 'behavior',
-    note: 'Gates reconcileEdgePresenceCurrentness, a DB-mutating closure-marker reconciliation pass.',
-  },
-  {
-    label: 'bitemporal_recall',
-    env: 'SPECKIT_BITEMPORAL_RECALL',
-    currentDefault: 'off',
-    metric: 'recall',
-    note: 'No reachable recall consumer in this build; bitemporal window columns land via schema migration unconditionally.',
-  },
-  {
-    label: 'semantic_edge_layer',
-    env: 'SPECKIT_SEMANTIC_EDGE_LAYER',
-    currentDefault: 'off',
-    metric: 'recall',
-    note: 'Consolidation-time edge-embedding substrate; no query-time recall consumer.',
-  },
-  {
-    label: 'edge_vector_index',
-    env: 'SPECKIT_EDGE_VECTOR_INDEX',
-    currentDefault: 'off',
-    metric: 'recall+behavior',
-    note: 'Gates findSemanticEdges (nearest edge vectors) AND the query-time edge-neighbor consumer in the graph lane; recall metric measures whether seeded edge vectors recover edge-hop targets additively. Requires populated edge_vector_embeddings.',
-  },
-  {
-    label: 'edge_triplet_search',
-    env: 'SPECKIT_EDGE_TRIPLET_SEARCH',
-    currentDefault: 'off',
-    metric: 'recall+behavior',
-    note: 'Gates rankEdgeTripletCandidates edge-aware (source,edge,target) scoring; recall metric requires SPECKIT_EDGE_VECTOR_INDEX co-enabled (triplet re-scores vector-index candidates).',
-  },
 ];
 
 const RUNTIME_FLAG_ENVS = new Set(FLAG_SPECS.map((flag) => flag.env));
@@ -221,45 +186,12 @@ function normalizeResultIds(rows) {
     .filter((id) => Number.isInteger(id));
 }
 
-// Direct behavior probes for flags whose gated path the recall metric cannot see.
-function probeEdgePresenceCurrentness(db, temporalEdges, enabled) {
-  const snapshot = { ...process.env };
-  process.env.SPECKIT_TEMPORAL_EDGES = 'true';
-  process.env.SPECKIT_EDGE_PRESENCE_CURRENTNESS = enabled ? 'true' : 'false';
-  try {
-    const result = temporalEdges.reconcileEdgePresenceCurrentness(db);
-    return { enabled: result.enabled, clearedOpenMarkers: result.clearedOpenMarkers, markedLegacyClosures: result.markedLegacyClosures };
-  } finally {
-    restoreEnv(snapshot);
-  }
-}
-
+// Direct behavior probe for the valid-edge read path the recall metric cannot see.
 function probeValidEdgeRead(db, temporalEdges, nodeId, enabled) {
   const snapshot = { ...process.env };
   process.env.SPECKIT_TEMPORAL_EDGES = enabled ? 'true' : 'false';
   try {
     return temporalEdges.getValidEdges(db, nodeId).length;
-  } finally {
-    restoreEnv(snapshot);
-  }
-}
-
-function probeSemanticEdgePrimitive(db, edgeSemantic, edgeStore, dim, enabled, flagEnv) {
-  const snapshot = { ...process.env };
-  process.env[flagEnv] = enabled ? 'true' : 'false';
-  try {
-    if (flagEnv === 'SPECKIT_EDGE_VECTOR_INDEX') {
-      const probe = new Array(dim).fill(0);
-      probe[0] = 1;
-      const hits = edgeSemantic.findSemanticEdges(db, probe, { limit: RECALL_K });
-      return { reachable: enabled, hitCount: hits.length };
-    }
-    // edge_triplet_search: a flag-OFF call must return empty regardless of input.
-    const ranked = edgeSemantic.rankEdgeTripletCandidates([{
-      edgeId: 1, sourceId: '1', targetId: '2', relation: 'supports', strength: 1,
-      factText: null, score: 0.9, modelId: 'm', profileKey: 'p', sourceScore: 0.8, targetScore: 0.7,
-    }]);
-    return { reachable: enabled, hitCount: ranked.length };
   } finally {
     restoreEnv(snapshot);
   }
@@ -282,15 +214,13 @@ async function main() {
   process.env.MEMORY_DB_PATH = evalDatabase.dbPath;
   process.env.SPECKIT_ABLATION = 'true';
 
-  const [vectorIndex, hybridSearch, graphSearch, embeddings, temporalEdges, edgeSemantic, edgeStore] =
+  const [vectorIndex, hybridSearch, graphSearch, embeddings, temporalEdges] =
     await Promise.all([
       import(moduleUrl('dist/lib/search/vector-index.js')),
       import(moduleUrl('dist/lib/search/hybrid-search.js')),
       import(moduleUrl('dist/lib/search/graph-search-fn.js')),
       import(moduleUrl('dist/lib/providers/embeddings.js')),
       import(moduleUrl('dist/lib/graph/temporal-edges.js')),
-      import(moduleUrl('dist/lib/graph/edge-semantic-retrieval.js')),
-      import(moduleUrl('dist/lib/storage/edge-vector-store.js')),
     ]);
 
   const db = vectorIndex.initializeDb(evalDatabase.dbPath, { skipRestoreRecovery: true });
@@ -355,13 +285,6 @@ async function main() {
       const runRecall = async (enabled) => {
         restoreEnv(originalEnv);
         process.env[flag.env] = enabled ? 'true' : 'false';
-        // edge_triplet_search re-scores only the candidates the vector-index
-        // consumer produces, so its recall ON variant must co-enable the
-        // vector-index flag — otherwise findSemanticEdgeNeighborCandidates
-        // returns [] and triplet ranking has nothing to reorder.
-        if (flag.env === 'SPECKIT_EDGE_TRIPLET_SEARCH' && enabled) {
-          process.env.SPECKIT_EDGE_VECTOR_INDEX = 'true';
-        }
         graphSearch.clearDegreeCacheForDb(db);
         const resultIds = await searchVariant();
         return computeEdgeRecall(goldenItems, resultIds, RECALL_K);
@@ -377,23 +300,13 @@ async function main() {
 
     if (flag.metric.includes('behavior')) {
       restoreEnv(originalEnv);
-      if (flag.env === 'SPECKIT_EDGE_PRESENCE_CURRENTNESS') {
-        row.behaviorOff = probeEdgePresenceCurrentness(db, temporalEdges, false);
-        row.behaviorOn = probeEdgePresenceCurrentness(db, temporalEdges, true);
-        row.behaviorChanged = row.behaviorOff.enabled !== row.behaviorOn.enabled;
-      } else if (flag.env === 'SPECKIT_TEMPORAL_EDGES') {
+      if (flag.env === 'SPECKIT_TEMPORAL_EDGES') {
         const nodeId = goldenItems[0].sourceMemoryId;
         const off = probeValidEdgeRead(db, temporalEdges, nodeId, false);
         const on = probeValidEdgeRead(db, temporalEdges, nodeId, true);
         row.behaviorOff = { validEdgesRead: off };
         row.behaviorOn = { validEdgesRead: on };
         row.behaviorChanged = off !== on;
-      } else if (flag.env === 'SPECKIT_EDGE_VECTOR_INDEX' || flag.env === 'SPECKIT_EDGE_TRIPLET_SEARCH') {
-        const off = probeSemanticEdgePrimitive(db, edgeSemantic, edgeStore, evalDatabase.activeEmbedder.dim, false, flag.env);
-        const on = probeSemanticEdgePrimitive(db, edgeSemantic, edgeStore, evalDatabase.activeEmbedder.dim, true, flag.env);
-        row.behaviorOff = off;
-        row.behaviorOn = on;
-        row.behaviorChanged = off.reachable !== on.reachable;
       }
     }
     flagRows.push(row);
@@ -408,10 +321,7 @@ async function main() {
     try {
       const totalEdges = sdb.prepare('SELECT COUNT(*) n FROM causal_edges').get().n;
       const openEdges = sdb.prepare('SELECT COUNT(*) n FROM causal_edges WHERE invalid_at IS NULL').get().n;
-      const markedClosures = sdb.prepare("SELECT COUNT(*) n FROM causal_edges WHERE invalid_at IS NOT NULL AND invalidation_source IS NULL").get().n;
-      const strayOpenMarkers = sdb.prepare("SELECT COUNT(*) n FROM causal_edges WHERE invalid_at IS NULL AND invalidation_source IS NOT NULL").get().n;
-      const edgeVectors = sdb.prepare("SELECT COUNT(*) n FROM edge_vector_embeddings WHERE embedding_status = 'ready'").get().n;
-      return { totalEdges, openEdges, markedClosures, strayOpenMarkers, edgeVectors };
+      return { totalEdges, openEdges };
     } finally {
       sdb.close();
     }
@@ -419,13 +329,7 @@ async function main() {
 
   const coverageCaveats = [];
   if (liveStats.openEdges === liveStats.totalEdges) {
-    coverageCaveats.push('All live edges are open (invalid_at IS NULL); bitemporal/closure invalidation paths exercise no derived data on this graph.');
-  }
-  if (liveStats.markedClosures === 0 && liveStats.strayOpenMarkers === 0) {
-    coverageCaveats.push('Edge-presence reconciliation has zero rows to repair on the live graph; its behavior delta is real (enabled flips) but mutates 0 rows.');
-  }
-  if (liveStats.edgeVectors === 0) {
-    coverageCaveats.push('edge_vector_embeddings has 0 ready rows; semantic-edge recall (edge_vector_index/edge_triplet_search) is reachable but yields no live hits without seeded edge vectors. ~20% un-enriched corpus rows further depress edge-derived coverage.');
+    coverageCaveats.push('All live edges are open (invalid_at IS NULL); the temporal-edge valid-edge read path exercises no closed-edge derived data on this graph.');
   }
 
   const output = {

@@ -48,34 +48,6 @@ const CLASS_DIMENSIONS = Object.freeze({
 
 const FLAG_SPECS = [
   {
-    label: 'bitemporal_recall',
-    env: 'SPECKIT_BITEMPORAL_RECALL',
-    currentDefault: 'off',
-    runSearch: false,
-    note: 'Not exercised by hybridSearchEnhanced; consumed by temporal edge recall paths outside this driver.',
-  },
-  {
-    label: 'agentic_recall',
-    env: 'SPECKIT_AGENTIC_RECALL',
-    currentDefault: 'off',
-    runSearch: false,
-    note: 'Not exercised by hybridSearchEnhanced; gates memory_context agentic recall.',
-  },
-  {
-    label: 'edge_presence_currentness',
-    env: 'SPECKIT_EDGE_PRESENCE_CURRENTNESS',
-    currentDefault: 'off',
-    runSearch: false,
-    note: 'Not exercised by hybridSearchEnhanced; gates temporal edge reconciliation.',
-  },
-  {
-    label: 'summary_fusion_lane',
-    env: 'SPECKIT_SUMMARY_FUSION_LANE',
-    currentDefault: 'off',
-    runSearch: true,
-    note: 'Runtime-togglable summary/community lane in hybridSearchEnhanced.',
-  },
-  {
     label: 'cosine_topn_reorder',
     env: 'SPECKIT_COSINE_TOPN_REORDER',
     currentDefault: 'on',
@@ -97,13 +69,6 @@ const FLAG_SPECS = [
     note: 'Current default is ON; affects confidence/display calibration, not Recall@20 ordering.',
   },
   {
-    label: 'cardinality_penalty',
-    env: 'SPECKIT_CARDINALITY_PENALTY',
-    currentDefault: 'off',
-    runSearch: true,
-    note: 'Runtime-togglable degree-channel damping.',
-  },
-  {
     label: 'world_summary_prelude',
     env: 'SPECKIT_WORLD_SUMMARY_PRELUDE',
     currentDefault: 'off',
@@ -123,69 +88,6 @@ const FLAG_SPECS = [
     currentDefault: 'off',
     runSearch: false,
     note: 'Retention safety layer; not a query-time ranking consumer.',
-  },
-  {
-    label: 'semantic_edge_layer',
-    env: 'SPECKIT_SEMANTIC_EDGE_LAYER',
-    currentDefault: 'off',
-    runSearch: false,
-    note: 'Semantic edge substrate flag; no live hybridSearchEnhanced consumer in this build.',
-  },
-  {
-    label: 'edge_vector_index',
-    env: 'SPECKIT_EDGE_VECTOR_INDEX',
-    currentDefault: 'off',
-    runSearch: false,
-    note: 'Semantic edge side-channel flag; no live hybridSearchEnhanced consumer in this build.',
-  },
-  {
-    label: 'edge_triplet_search',
-    env: 'SPECKIT_EDGE_TRIPLET_SEARCH',
-    currentDefault: 'off',
-    runSearch: false,
-    note: 'Semantic edge scoring primitive; no live hybridSearchEnhanced consumer in this build.',
-  },
-  {
-    label: 'edge_semantic_dedup',
-    env: 'SPECKIT_EDGE_SEMANTIC_DEDUP',
-    currentDefault: 'off',
-    runSearch: false,
-    note: 'Semantic edge maintenance flag; not a query-time ranking consumer.',
-  },
-  {
-    label: 'edge_semantic_invalidation',
-    env: 'SPECKIT_EDGE_SEMANTIC_INVALIDATION',
-    currentDefault: 'off',
-    runSearch: false,
-    note: 'Semantic edge maintenance flag; not a query-time ranking consumer.',
-  },
-  {
-    label: 'procedural_outcome_emitter',
-    env: 'SPECKIT_PROCEDURAL_OUTCOME_EMITTER',
-    currentDefault: 'off',
-    runSearch: false,
-    note: 'Feedback emission path; not a query-time ranking consumer.',
-  },
-  {
-    label: 'procedural_reliability_recall',
-    env: 'SPECKIT_PROCEDURAL_RELIABILITY_RECALL',
-    currentDefault: 'off',
-    runSearch: false,
-    note: 'No live hybridSearchEnhanced ranking consumer in this build.',
-  },
-  {
-    label: 'sleeptime_consolidation',
-    env: 'SPECKIT_SLEEPTIME_CONSOLIDATION',
-    currentDefault: 'off',
-    runSearch: false,
-    note: 'Off-turn consolidation shadow flag; not a query-time ranking consumer.',
-  },
-  {
-    label: 'sleeptime_live_write',
-    env: 'SPECKIT_SLEEPTIME_LIVE_WRITE',
-    currentDefault: 'off',
-    runSearch: false,
-    note: 'Off-turn live write flag; not a query-time ranking consumer.',
   },
 ];
 

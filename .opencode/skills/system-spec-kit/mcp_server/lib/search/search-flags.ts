@@ -327,14 +327,6 @@ export function isMemorySummariesEnabled(): boolean {
 }
 
 /**
- * First-class summary/community retrieval fusion lane.
- * Default: FALSE (shadow). Set SPECKIT_SUMMARY_FUSION_LANE=true to enable.
- */
-export function isSummaryFusionLaneEnabled(): boolean {
-  return isOptInEnabled('SPECKIT_SUMMARY_FUSION_LANE');
-}
-
-/**
  * Coarse-to-fine world-summary grounding prelude for memory_context.
  * Default: TRUE (graduated). The prelude now appends its grounding instead of
  * prepending it, so it adds net Recall@5 +0.275 without displacing any baseline
@@ -372,18 +364,6 @@ export function isEntityLinkingEnabled(): boolean {
 /** Whether causal-edge degree-based re-ranking is enabled (SPECKIT_DEGREE_BOOST). */
 export function isDegreeBoostEnabled(): boolean {
   return isFeatureEnabled('SPECKIT_DEGREE_BOOST');
-}
-
-/**
- * Cardinality penalty on the causal-degree boost channel. Damps high-cardinality
- * hub nodes via 1/(1 + 0.001·(numLinked−1)²) so a node connected to many others
- * does not dominate the degree channel on connection count alone. n ≤ 1 is
- * unpenalized. Default: FALSE (shadow) — it changes recall ordering and must earn
- * default-on from a reindexed before/after benchmark. Set
- * SPECKIT_CARDINALITY_PENALTY=true to enable.
- */
-export function isCardinalityPenaltyEnabled(): boolean {
-  return isOptInEnabled('SPECKIT_CARDINALITY_PENALTY');
 }
 
 /* ───────────────────────────────────────────────────────────────
@@ -660,35 +640,6 @@ export function isRetentionForgettingEnabled(): boolean {
 }
 
 /**
- * Semantic edge substrate.
- * Default: FALSE. Enables consolidation-time edge fact embeddings while keeping
- * live recall consumers behind their own shadow flags.
- */
-export function isSemanticEdgeLayerEnabled(): boolean {
-  return isOptInEnabled('SPECKIT_SEMANTIC_EDGE_LAYER');
-}
-
-/** Default-off semantic nearest-edge lookup side channel. */
-export function isEdgeVectorIndexEnabled(): boolean {
-  return isOptInEnabled('SPECKIT_EDGE_VECTOR_INDEX');
-}
-
-/** Default-off edge-aware triplet scoring primitive. */
-export function isEdgeTripletSearchEnabled(): boolean {
-  return isOptInEnabled('SPECKIT_EDGE_TRIPLET_SEARCH');
-}
-
-/** Default-off semantic edge dedup/merge shadow gate. */
-export function isEdgeSemanticDedupEnabled(): boolean {
-  return isOptInEnabled('SPECKIT_EDGE_SEMANTIC_DEDUP');
-}
-
-/** Default-off cross-pair semantic invalidation shadow gate. */
-export function isEdgeSemanticInvalidationEnabled(): boolean {
-  return isOptInEnabled('SPECKIT_EDGE_SEMANTIC_INVALIDATION');
-}
-
-/**
  * Per-result calibrated confidence scoring.
  * Default: TRUE (graduated). Set SPECKIT_RESULT_CONFIDENCE_V1=false to disable.
  */
@@ -798,22 +749,6 @@ export function isAssistiveReconsolidationEnabled(): boolean {
 }
 
 /**
- * Off-turn sleep-time memory reorganization.
- * Default: FALSE. Set SPECKIT_SLEEPTIME_CONSOLIDATION=true to enable shadow runs.
- */
-export function isSleeptimeConsolidationEnabled(): boolean {
-  return isOptInEnabled('SPECKIT_SLEEPTIME_CONSOLIDATION');
-}
-
-/**
- * Live archival writes for sleep-time reorganization.
- * Default: FALSE. Set SPECKIT_SLEEPTIME_LIVE_WRITE=true after shadow evidence earns it.
- */
-export function isSleeptimeLiveWriteEnabled(): boolean {
-  return isOptInEnabled('SPECKIT_SLEEPTIME_LIVE_WRITE');
-}
-
-/**
  * Two-tier result explainability.
  * Default: TRUE (graduated). Set SPECKIT_RESULT_EXPLAIN_V1=false to disable.
  */
@@ -879,49 +814,6 @@ export function isTemporalEdgesEnabled(): boolean {
 }
 
 /**
- * Recall modes that consume transaction-time validity windows.
- * Default: FALSE (benchmark-gated). Set SPECKIT_BITEMPORAL_RECALL=true to enable.
- */
-export function isBitemporalRecallEnabled(): boolean {
-  return isOptInEnabled('SPECKIT_BITEMPORAL_RECALL');
-}
-
-/**
- * Read-side reconciliation that keeps a causal edge's closure-provenance marker
- * consistent with its edge presence (invalid_at), so the lineage canonical
- * supersede writer and the derived causal projection cannot fork into a third
- * source of truth. The additive schema (the invalidation_source column) lands
- * unconditionally via migration; only this reconciliation pass is gated, because
- * retiring a fact by edge presence is a live retirement-path change that must
- * earn promotion on benchmark evidence before it runs by default.
- * Default: FALSE (benchmark-gated). Set SPECKIT_EDGE_PRESENCE_CURRENTNESS=true to enable.
- */
-export function isEdgePresenceCurrentnessEnabled(): boolean {
-  return isOptInEnabled('SPECKIT_EDGE_PRESENCE_CURRENTNESS');
-}
-
-/**
- * Mirrors strong feedback-ledger signals into adaptive outcome rows.
- * Default: FALSE. Set SPECKIT_PROCEDURAL_OUTCOME_EMITTER=true to enable.
- */
-export function isProceduralOutcomeEmitterEnabled(): boolean {
-  return isOptInEnabled('SPECKIT_PROCEDURAL_OUTCOME_EMITTER');
-}
-
-/**
- * Applies procedural reliability evidence to adaptive recall scoring.
- * Default: FALSE (opt-in). The de-rate bug is fixed — a prior-centered
- * evidence-weighted multiplier now promotes a reliable procedure and demotes an
- * unreliable one in a near-tie while leaving large-gap cases untouched — but the
- * multiplier moves only synthetic near-ties and has zero measurable effect on
- * real data, so it does not earn default-on. Set
- * SPECKIT_PROCEDURAL_RELIABILITY_RECALL=true to enable.
- */
-export function isProceduralReliabilityRecallEnabled(): boolean {
-  return isOptInEnabled('SPECKIT_PROCEDURAL_RELIABILITY_RECALL');
-}
-
-/**
  * Content-addressed identity for generated causal edges.
  * Default: TRUE (graduated). Content-addressed identity proved correct 4/4 (id
  * stability, replay reproducibility, dedup discrimination, zero collisions), so
@@ -976,22 +868,4 @@ export function isDualRetrievalEnabled(): boolean {
  */
 export function isIntentAutoProfileEnabled(): boolean {
   return isFeatureEnabled('SPECKIT_INTENT_AUTO_PROFILE');
-}
-
-/* ───────────────────────────────────────────────────────────────
-   15. AGENTIC RECALL FLAGS
-──────────────────────────────────────────────────────────────── */
-
-/**
- * Opt-in ReAct agentic recall strategy for memory_context. Gates a bounded
- * reason-act-observe loop that injects an LLM into the otherwise synchronous,
- * deterministic better-sqlite3 retrieval path. Default OFF (shadow): it must
- * never leak non-determinism into the deterministic strategies every existing
- * caller depends on, and it can only be promoted on benchmark evidence
- * (latency/cost/determinism). The bounded loop governor refuses to run while
- * this is off, so the agentic path is unreachable unless explicitly enabled.
- * Set SPECKIT_AGENTIC_RECALL=true to enable.
- */
-export function isAgenticRecallEnabled(): boolean {
-  return isOptInEnabled('SPECKIT_AGENTIC_RECALL');
 }

@@ -8,22 +8,18 @@
 //
 // Flag-to-consumer map under test:
 //   SPECKIT_WORLD_SUMMARY_PRELUDE          -> buildWorldSummaryPrelude + prepend
-//   SPECKIT_AGENTIC_RECALL                 -> runAgenticLoop governor gate
 
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import Database from 'better-sqlite3';
 
 import { buildWorldSummaryPrelude } from '../lib/search/memory-summaries';
 import { prependWorldSummaryPreludeToResult } from '../handlers/memory-context';
-import { runAgenticLoop } from '../lib/search/agentic-loop-governor';
 import {
-  isAgenticRecallEnabled,
   isWorldSummaryPreludeEnabled,
 } from '../lib/search/search-flags';
 
 const ENV_KEYS = [
   'SPECKIT_WORLD_SUMMARY_PRELUDE',
-  'SPECKIT_AGENTIC_RECALL',
 ] as const;
 
 const ORIGINAL_ENV: Partial<Record<typeof ENV_KEYS[number], string | undefined>> = {};
@@ -105,12 +101,10 @@ afterEach(() => {
 });
 
 describe('recall-mode flag defaults', () => {
-  it('runs the world-summary prelude on by default while agentic recall stays off', () => {
+  it('runs the world-summary prelude on by default', () => {
     // World-summary prelude graduated to default-on (a no-displacement append
-    // grounding aid), so env-absence means ON. Agentic recall is still an
-    // unwired scaffold and stays off until opted in.
+    // grounding aid), so env-absence means ON.
     expect(isWorldSummaryPreludeEnabled()).toBe(true);
-    expect(isAgenticRecallEnabled()).toBe(false);
   });
 
   it('honors an explicit false override on the prelude', () => {
@@ -168,55 +162,6 @@ describe('SPECKIT_WORLD_SUMMARY_PRELUDE ON-path behavior change', () => {
     expect(offParsed.data.results[0].id).toBe(99);
     expect(offParsed.data.worldSummaryPrelude).toBeUndefined();
     expect(onParsed.data.count).not.toBe(offParsed.data.count);
-  });
-});
-
-describe('SPECKIT_AGENTIC_RECALL ON-path behavior change', () => {
-  const config = {
-    allowedTools: new Set(['memory_lookup']),
-    maxSteps: 4,
-    stepProvider: (() => {
-      let called = false;
-      return (state: { stepIndex: number }) => {
-        if (!called && state.stepIndex === 0) {
-          called = true;
-          return { kind: 'tool_call' as const, tool: 'memory_lookup', args: { id: 1 } };
-        }
-        return { kind: 'final_answer' as const, answer: { memoryId: 1 } };
-      };
-    })(),
-    toolExecutor: () => ({ memoryId: 1 }),
-  };
-
-  it('runs the bounded loop to a clean terminal answer only when enabled', async () => {
-    // Flag OFF: structurally disabled, never runs a step.
-    process.env.SPECKIT_AGENTIC_RECALL = 'false';
-    expect(isAgenticRecallEnabled()).toBe(false);
-    const off = await runAgenticLoop({ ...config, stepProvider: config.stepProvider });
-    expect(off.status).toBe('disabled');
-    expect(off.stopReason).toBe('flag_disabled');
-    expect(off.steps).toBe(0);
-
-    // Flag ON: the governor runs and reaches a clean terminal answer.
-    process.env.SPECKIT_AGENTIC_RECALL = 'true';
-    expect(isAgenticRecallEnabled()).toBe(true);
-    let called = false;
-    const on = await runAgenticLoop({
-      allowedTools: new Set(['memory_lookup']),
-      maxSteps: 4,
-      stepProvider: (state) => {
-        if (!called && state.stepIndex === 0) {
-          called = true;
-          return { kind: 'tool_call', tool: 'memory_lookup', args: { id: 1 } };
-        }
-        return { kind: 'final_answer', answer: { memoryId: 1 } };
-      },
-      toolExecutor: () => ({ memoryId: 1 }),
-    });
-    expect(on.status).toBe('final');
-    expect(on.stopReason).toBe('final_answer');
-    expect(on.answer).toMatchObject({ memoryId: 1 });
-    expect(on.status).not.toBe(off.status);
   });
 });
 
