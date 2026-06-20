@@ -184,10 +184,12 @@ async function main() {
   // No feedback signals: this isolates the row-local safety axes (the SAFETY
   // layer) rather than positive-feedback extension. extend decisions therefore
   // never fire, so every non-protected row is a clean drop candidate.
+  // The flag is default-ON: isFeatureEnabled treats an unset env as ENABLED, so the
+  // OFF arm must explicitly set 'false'. Deleting the env would leave the reducer on
+  // its default-ON path, making OFF byte-identical to ON and the measured delta zero.
   const runVariant = (enabled) => {
     const previous = process.env[RETENTION_FORGETTING_FLAG];
-    if (enabled) process.env[RETENTION_FORGETTING_FLAG] = 'true';
-    else delete process.env[RETENTION_FORGETTING_FLAG];
+    process.env[RETENTION_FORGETTING_FLAG] = enabled ? 'true' : 'false';
     try {
       const evaluation = reducer.evaluateFeedbackRetention(candidates, [], { runAt: Date.now() });
       return {
