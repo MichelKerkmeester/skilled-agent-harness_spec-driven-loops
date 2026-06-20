@@ -100,13 +100,13 @@ Research input: `research/research.md` remains the subsystem source packet for c
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 001 | `001-rrf-determinism-spine/` | Shared RRF determinism spine | Planned |
-| 002 | `002-runtime-lane-health-degrade/` | Runtime lane health and fallback scoring | Planned |
-| 003 | `003-embedding-staleness-signal/` | Embedding freshness signal | Planned |
-| 004 | `004-c4-shadow-seam-beta-posterior/` | C4 shadow path and beta posterior | Planned |
-| 005 | `005-conflict-rerank-query-routing/` | Conflict rerank and query routing | Planned |
-| 006 | `006-provenance-drift-observability/` | Provenance drift observability | Planned |
-| 007 | `007-outcome-weighted-ranking-followon/` | Outcome-weighted ranking follow-on | Planned |
+| 001 | `001-rrf-determinism-spine/` | Shared RRF determinism spine | Implemented (default-off) |
+| 002 | `002-runtime-lane-health-degrade/` | Runtime lane health and fallback scoring | Implemented |
+| 003 | `003-embedding-staleness-signal/` | Embedding freshness signal | Partial (signal implemented) |
+| 004 | `004-c4-shadow-seam-beta-posterior/` | C4 shadow path and beta posterior | Implemented (shadow-only, live NO-GO) |
+| 005 | `005-conflict-rerank-query-routing/` | Conflict rerank and query routing | Implemented (default-off) |
+| 006 | `006-provenance-drift-observability/` | Provenance drift observability | Partial |
+| 007 | `007-outcome-weighted-ranking-followon/` | Outcome-weighted ranking follow-on | Implemented (shadow-only, live NO-GO) |
 
 ### Phase Transition Rules
 
