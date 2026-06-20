@@ -1,34 +1,42 @@
 # Git Ignore Configuration
 # Specifies intentionally untracked files that Git should ignore
 
-# ───────────────────────────────────────────
+# ═══════════════════════════════════════════════════════════════════════════════
 # CRITICAL: Override global gitignore
-# ───────────────────────────────────────────
+# ═══════════════════════════════════════════════════════════════════════════════
 # The global ~/.gitignore_global ignores /.opencode/ for symlinked repos.
-# But THIS repo is the SOURCE of .opencode/ content - it MUST be tracked.
-# The negation pattern below overrides the global ignore.
+# But THIS repo is the SOURCE of .opencode/ content — it MUST be tracked.
+# Negation patterns below override the global ignore.
 !.opencode/
 !specs
-~
 
-# ───────────────────────────────────────────
-# Archive
-# ───────────────────────────────────────────
-.opencode/agents/.provider-backups/
-.opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/*/fixtures/states/*.tar.gz
+# ═══════════════════════════════════════════════════════════════════════════════
+# OS-generated files
+# ═══════════════════════════════════════════════════════════════════════════════
+.DS_Store
 
-# ───────────────────────────────────────────
-# Eval-rig runtime materialization (repo-root only)
-# ───────────────────────────────────────────
-# The 113/120 eval-rig fixtures use a relative `scope.cwd: fixtures/fix-NNN/seed`.
-# Running the rig with the repo root as cwd (instead of RIG_ROOT) materializes a
-# stray /fixtures/ tree here. The canonical fixtures + seeds live under each
-# packet's eval-rig/fixtures/. Root-anchored so .opencode/**/fixtures/ is unaffected.
-/fixtures/
+# ═══════════════════════════════════════════════════════════════════════════════
+# Environment & local configuration
+# ═══════════════════════════════════════════════════════════════════════════════
+.env
+.env.*
+.env.*.local
+.env.local
+.env.pre-pat-removal.bak
+.local/
+.spec-kit
+*.local
 
-# ───────────────────────────────────────────
-# Build output
-# ───────────────────────────────────────────
+# ═══════════════════════════════════════════════════════════════════════════════
+# Secrets & certificates
+# ═══════════════════════════════════════════════════════════════════════════════
+*.cert
+*.key
+*.pem
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Build output & compiled artifacts
+# ═══════════════════════════════════════════════════════════════════════════════
 build/
 dist/
 .opencode/output/
@@ -37,52 +45,8 @@ dist/
 sweep-reports/
 
 # ───────────────────────────────────────────
-# Certificates & secrets
+# TypeScript compiler output: system-skill-advisor
 # ───────────────────────────────────────────
-*.cert
-*.key
-*.pem
-
-# ───────────────────────────────────────────
-# Database files
-# ───────────────────────────────────────────
-*.db
-*.db-shm
-*.db-wal
-*.sqlite3
-code-graph.sqlite
-.opencode/skills/.advisor-state/
-.opencode/skills/.smart-router-telemetry/
-**/.advisor-state/
-**/.advisor-state/**
-.opencode/skills/system-spec-kit/mcp_server/*.sqlite*
-.opencode/skills/system-spec-kit/mcp_server/database/*.sqlite
-.opencode/skills/system-spec-kit/mcp_server/database/*.sqlite-shm
-.opencode/skills/system-spec-kit/mcp_server/database/*.sqlite-wal
-.opencode/skills/system-spec-kit/mcp_server/database/*.sqlite.bak*
-.opencode/skills/system-spec-kit/mcp_server/database/.db-updated
-.opencode/skills/system-spec-kit/mcp_server/database/.doctor-update.flock
-.opencode/skills/system-spec-kit/mcp_server/database/.doctor-update.last-run.json
-.opencode/skills/system-spec-kit/mcp_server/database/.mk-spec-memory-launcher.json
-.opencode/skills/system-spec-kit/mcp_server/database/.mk-spec-memory-launcher.lockdir/
-.opencode/skills/system-spec-kit/mcp_server/database/.unclean-shutdown
-.opencode/skills/system-spec-kit/mcp_server/database/**/*.sqlite*
-.opencode/skills/system-spec-kit/shared/mcp_server/database/*.sqlite
-.opencode/skills/system-spec-kit/shared/mcp_server/database/*.sqlite-shm
-.opencode/skills/system-spec-kit/shared/mcp_server/database/*.sqlite-wal
-.opencode/skills/system-spec-kit/shared/mcp_server/database/.db-updated
-.opencode/skills/system-skill-advisor/mcp_server/database/*.sqlite
-.opencode/skills/system-skill-advisor/mcp_server/database/*.sqlite-*
-.opencode/skills/system-skill-advisor/mcp_server/database/*.sqlite.bak*
-.opencode/skills/system-skill-advisor/mcp_server/database/*.db
-.opencode/skills/system-skill-advisor/mcp_server/database/*.db-*
-.opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.json
-.opencode/skills/system-skill-advisor/mcp_server/database/.mk-skill-advisor-launcher.json
-.opencode/skills/system-skill-advisor/mcp_server/database/.mk-skill-advisor-launcher.lockdir/
-.opencode/skills/system-skill-advisor/mcp_server/data/shadow-deltas.jsonl
-.opencode/skills/system-skill-advisor/mcp_server/data/shadow-deltas.jsonl.*
-
-# system-skill-advisor source-tree compiler byproducts
 .opencode/skills/system-skill-advisor/mcp_server/lib/**/*.js
 .opencode/skills/system-skill-advisor/mcp_server/lib/**/*.js.map
 .opencode/skills/system-skill-advisor/mcp_server/lib/**/*.d.ts
@@ -93,8 +57,22 @@ code-graph.sqlite
 .opencode/skills/system-skill-advisor/mcp_server/schemas/**/*.d.ts.map
 
 # ───────────────────────────────────────────
-# Dependencies
+# TypeScript compiler output: system-spec-kit
 # ───────────────────────────────────────────
+.opencode/skills/system-spec-kit/mcp_server/lib/**/*.js
+.opencode/skills/system-spec-kit/mcp_server/lib/**/*.js.map
+.opencode/skills/system-spec-kit/mcp_server/lib/**/*.d.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/**/*.d.ts.map
+.opencode/skills/system-spec-kit/shared/**/*.js
+.opencode/skills/system-spec-kit/shared/**/*.js.map
+.opencode/skills/system-spec-kit/shared/**/*.d.ts
+.opencode/skills/system-spec-kit/shared/**/*.d.ts.map
+.opencode/skills/system-spec-kit/scripts/tests/*.vitest.d.ts.map
+.opencode/skills/system-spec-kit/scripts/tests/*.vitest.js.map
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Dependencies
+# ═══════════════════════════════════════════════════════════════════════════════
 node_modules/
 **/node_modules
 
@@ -103,22 +81,68 @@ node_modules/
 # stale fixture deps. Real MCP-server lockfiles elsewhere stay tracked + scanned.
 **/seed/package-lock.json
 
+# ═══════════════════════════════════════════════════════════════════════════════
+# Database files
+# ═══════════════════════════════════════════════════════════════════════════════
+
 # ───────────────────────────────────────────
-# Environment & local files
+# Generic database patterns
 # ───────────────────────────────────────────
-.env
-.env.*
-.env.*.local
-.env.local
-.env.pre-pat-removal.bak
-.local/
-.spec-kit
-*.local
-_sandbox
-# Skill-local code-graph DB runtime state (DB relocated here 2026-05-29; keep tracked docs like vectors/README.md)
+*.db
+*.db-shm
+*.db-wal
+*.sqlite3
+code-graph.sqlite
+
+# ───────────────────────────────────────────
+# Advisor state (global)
+# ───────────────────────────────────────────
+.opencode/skills/.advisor-state/
+.opencode/skills/.smart-router-telemetry/
+**/.advisor-state/
+**/.advisor-state/**
+
+# ───────────────────────────────────────────
+# Database: system-spec-kit
+# ───────────────────────────────────────────
+.opencode/skills/system-spec-kit/mcp_server/*.sqlite*
+.opencode/skills/system-spec-kit/mcp_server/database/*.sqlite
+.opencode/skills/system-spec-kit/mcp_server/database/*.sqlite-shm
+.opencode/skills/system-spec-kit/mcp_server/database/*.sqlite-wal
+.opencode/skills/system-spec-kit/mcp_server/database/*.sqlite.bak*
+.opencode/skills/system-spec-kit/mcp_server/database/**/*.sqlite*
+.opencode/skills/system-spec-kit/mcp_server/database/.db-updated
+.opencode/skills/system-spec-kit/mcp_server/database/.doctor-update.flock
+.opencode/skills/system-spec-kit/mcp_server/database/.doctor-update.last-run.json
+.opencode/skills/system-spec-kit/mcp_server/database/.mk-spec-memory-launcher.json
+.opencode/skills/system-spec-kit/mcp_server/database/.mk-spec-memory-launcher.lockdir/
+.opencode/skills/system-spec-kit/mcp_server/database/.unclean-shutdown
+.opencode/skills/system-spec-kit/mcp_server/dist/database/
+.opencode/skills/system-spec-kit/shared/mcp_server/database/*.sqlite
+.opencode/skills/system-spec-kit/shared/mcp_server/database/*.sqlite-shm
+.opencode/skills/system-spec-kit/shared/mcp_server/database/*.sqlite-wal
+.opencode/skills/system-spec-kit/shared/mcp_server/database/.db-updated
+
+# ───────────────────────────────────────────
+# Database: system-skill-advisor
+# ───────────────────────────────────────────
+.opencode/skills/system-skill-advisor/mcp_server/database/*.sqlite
+.opencode/skills/system-skill-advisor/mcp_server/database/*.sqlite-*
+.opencode/skills/system-skill-advisor/mcp_server/database/*.sqlite.bak*
+.opencode/skills/system-skill-advisor/mcp_server/database/*.db
+.opencode/skills/system-skill-advisor/mcp_server/database/*.db-*
+.opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.json
+.opencode/skills/system-skill-advisor/mcp_server/database/.mk-skill-advisor-launcher.json
+.opencode/skills/system-skill-advisor/mcp_server/database/.mk-skill-advisor-launcher.lockdir/
+
+# ───────────────────────────────────────────
+# Database: system-code-graph
+# ───────────────────────────────────────────
+# Skill-local code-graph DB runtime state (DB relocated 2026-05-29; tracked docs like vectors/README.md stay)
 .opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite*
 .opencode/skills/system-code-graph/mcp_server/database/.code-graph-*
 .opencode/skills/system-code-graph/mcp_server/database/.mk-code-index-launcher.*
+
 # Apply-pipeline runtime artifacts (audit journals, known-good/bad-apply snapshots,
 # quarantine/recovery triplets) — generated per apply run, database-local only.
 .opencode/skills/system-code-graph/mcp_server/database/apply-audit/
@@ -128,27 +152,25 @@ _sandbox
 .opencode/skills/system-code-graph/mcp_server/database/bad-apply-*/
 
 # ───────────────────────────────────────────
-# Log files
+# Database: deep-loop-runtime
 # ───────────────────────────────────────────
-*.log
+.opencode/skills/deep-loop-runtime/database/*.sqlite
+.opencode/skills/deep-loop-runtime/database/*.sqlite-shm
+.opencode/skills/deep-loop-runtime/database/*.sqlite-wal
+.opencode/skills/deep-loop-runtime/database/*.sqlite.bak*
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Runtime artifacts & data files
+# ═══════════════════════════════════════════════════════════════════════════════
 
 # ───────────────────────────────────────────
-# OS generated files
+# Runtime: system-skill-advisor
 # ───────────────────────────────────────────
-.DS_Store
+.opencode/skills/system-skill-advisor/mcp_server/data/shadow-deltas.jsonl
+.opencode/skills/system-skill-advisor/mcp_server/data/shadow-deltas.jsonl.*
 
 # ───────────────────────────────────────────
-# Python
-# ───────────────────────────────────────────
-__pycache__/
-*.egg-info/
-*.pyc
-*.pyo
-.pytest_cache/
-**/.venv/
-
-# ───────────────────────────────────────────
-# Runtime artifacts (skill-advisor / system-spec-kit)
+# Runtime: system-spec-kit
 # ───────────────────────────────────────────
 .opencode/skills/system-spec-kit/mcp_server/.opencode/
 .opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/out/*.json
@@ -156,70 +178,91 @@ __pycache__/
 .opencode/skills/system-spec-kit/mcp_server/data/search-decisions.jsonl.*
 .opencode/skills/system-spec-kit/mcp_server/.opencode/skills/system-spec-kit/mcp_server/data/search-decisions.jsonl
 .opencode/skills/system-spec-kit/mcp_server/.opencode/skills/system-spec-kit/mcp_server/data/search-decisions.jsonl.*
-.opencode/skills/system-spec-kit/mcp_server/dist/database/
-.opencode/skills/system-spec-kit/scripts/tests/*.vitest.d.ts.map
-.opencode/skills/system-spec-kit/scripts/tests/*.vitest.js.map
 
-# system-spec-kit source-tree compiler byproducts
-.opencode/skills/system-spec-kit/mcp_server/lib/**/*.js
-.opencode/skills/system-spec-kit/mcp_server/lib/**/*.js.map
-.opencode/skills/system-spec-kit/mcp_server/lib/**/*.d.ts
-.opencode/skills/system-spec-kit/mcp_server/lib/**/*.d.ts.map
-.opencode/skills/system-spec-kit/shared/**/*.js
-.opencode/skills/system-spec-kit/shared/**/*.js.map
-.opencode/skills/system-spec-kit/shared/**/*.d.ts
-.opencode/skills/system-spec-kit/shared/**/*.d.ts.map
+# ═══════════════════════════════════════════════════════════════════════════════
+# Logs
+# ═══════════════════════════════════════════════════════════════════════════════
+*.log
 
-# ───────────────────────────────────────────
-# Temporary files
-# ───────────────────────────────────────────
-external/
+# ═══════════════════════════════════════════════════════════════════════════════
+# Python
+# ═══════════════════════════════════════════════════════════════════════════════
+__pycache__/
+*.egg-info/
+*.pyc
+*.pyo
+.pytest_cache/
+**/.venv/
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Temporary files & caches
+# ═══════════════════════════════════════════════════════════════════════════════
 backup/
+external/
 tmp/
 .tmp/
+.worktrees/
 **/node-compile-cache/
 **/vitest-tmp/
+_sandbox
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Archive & testing fixtures
+# ═══════════════════════════════════════════════════════════════════════════════
+.opencode/agents/.provider-backups/
+.opencode/skills/system-spec-kit/manual_testing_playbook/_sandbox/*/fixtures/states/*.tar.gz
 
 # ───────────────────────────────────────────
-# Not part of framework (project-specific paths)
+# Eval-rig runtime materialization
+# ───────────────────────────────────────────
+/fixtures/
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Project-specific paths (not part of framework)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# ───────────────────────────────────────────
+# Top-level project directories
 # ───────────────────────────────────────────
 /a_nobel_en_zn
 /ai_systems
 /barter
-.opencode/barter
+
+# ───────────────────────────────────────────
+# Provider-specific local files
+# ───────────────────────────────────────────
 .claude/scheduled_tasks.lock
 .claude/settings.local.json
 
+# ───────────────────────────────────────────
+# Project-specific specs (all providers)
+# ───────────────────────────────────────────
+.opencode/barter
 .opencode/specs/00--ai-systems
-.claude/specs/00--ai-systems
-.codex/specs/00--ai-systems
-.agents/specs/00--ai-systems
-
-.opencode/specs/ai-systems/
-.claude/specs/ai-systems/
-.codex/specs/ai-systems/
-.agents/specs/ai-systems/
-
 .opencode/specs/00--anobel.com
-.claude/specs/00--anobel.com
-.codex/specs/00--anobel.com
-.agents/specs/00--anobel.com
-
 .opencode/specs/00--barter
-.claude/specs/00--barter
-.codex/specs/00--barter
-.agents/specs/00--barter
-
+.opencode/specs/ai-systems/
 .opencode/specs/barter
+
+.claude/specs/00--ai-systems
+.claude/specs/00--anobel.com
+.claude/specs/00--barter
+.claude/specs/ai-systems/
 .claude/specs/barter
+
+.codex/specs/00--ai-systems
+.codex/specs/00--anobel.com
+.codex/specs/00--barter
+.codex/specs/ai-systems/
 .codex/specs/barter
+
+.agents/specs/00--ai-systems
+.agents/specs/00--anobel.com
+.agents/specs/00--barter
+.agents/specs/ai-systems/
 .agents/specs/barter
 
-# deep-loop-runtime runtime-owned SQLite (regenerated on first run; external users do not ship the binary DB)
-.opencode/skills/deep-loop-runtime/database/*.sqlite
-.opencode/skills/deep-loop-runtime/database/*.sqlite-shm
-.opencode/skills/deep-loop-runtime/database/*.sqlite-wal
-.opencode/skills/deep-loop-runtime/database/*.sqlite.bak*
-
-# Per-session AI worktrees (worktree-session.sh) — never tracked
-.worktrees/
+# ───────────────────────────────────────────
+# Project-specific documentation
+# ───────────────────────────────────────────
+AGENTS_Barter.md
