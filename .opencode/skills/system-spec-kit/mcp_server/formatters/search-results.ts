@@ -1090,10 +1090,16 @@ export async function formatSearchResults(
   // Compute recovery payload for weak/partial results when flag is enabled
   let recoveryPayload: RecoveryPayload | null = null;
   if (isEmptyResultRecoveryEnabled() && formatted.length > 0) {
-    // Compute average confidence for recovery decision
+    // Compute average confidence for the recovery decision from the
+    // pre-calibration relevance signal, not the calibrated P(relevant) value.
+    // The shipped isotonic curve maps every input into a narrow low-probability
+    // band (max ~0.2), so averaging confidence.value would sit below the recovery
+    // threshold on every healthy result set and trip recovery unconditionally.
+    // preCalibrationValue is the same relevance-tier signal the confidence label
+    // bands off, which is the question recovery actually wants answered.
     let avgConfidence: number | undefined;
     if (confidenceData && confidenceData.length > 0) {
-      const sum = confidenceData.reduce((acc, c) => acc + c.confidence.value, 0);
+      const sum = confidenceData.reduce((acc, c) => acc + c.preCalibrationValue, 0);
       avgConfidence = sum / confidenceData.length;
     }
 
