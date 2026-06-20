@@ -17,7 +17,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/015-summary-fusion-grounding/checklist.md"
-    completion_pct: 0
+    completion_pct: 70
     open_questions: []
     answered_questions: []
 ---

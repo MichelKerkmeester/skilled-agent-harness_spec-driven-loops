@@ -1,6 +1,6 @@
 ---
-title: "Checklist: Code Graph — Generation Watermark (Q6-C2 → Q6-C1)"
-description: "Level-2 QA checklist for the staged code-graph generation watermark. Q6-C2 is implemented and verified; Q6-C1 remains gated."
+title: "Checklist: Code Graph - Generation Watermark (Q6-C2 → Q6-C1)"
+description: "Level-2 QA checklist for the staged code-graph generation watermark. Q6-C2 is implemented and verified, Q6-C1 remains gated."
 trigger_phrases:
   - "code graph generation watermark checklist"
 importance_tier: "important"
@@ -22,12 +22,12 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-002-003-generation-watermark"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 80
     open_questions: []
     answered_questions: []
 ---
 
-# Checklist: Code Graph — Generation Watermark (Q6-C2 → Q6-C1)
+# Checklist: Code Graph - Generation Watermark (Q6-C2 → Q6-C1)
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
@@ -51,7 +51,7 @@ _memory:
 
 - [x] CHK-001 [P0] Requirements documented in spec.md (REQ-001..005, Q6-C2 + Q6-C1)
 - [x] CHK-002 [P0] Technical approach defined in plan.md (staged Q6-C2 → Q6-C1, correct bump site)
-- [x] CHK-003 [P1] Dependencies identified and available (`code_graph_metadata` present; Q1-C1 cluster gates Q6-C1)
+- [x] CHK-003 [P1] Dependencies identified and available (`code_graph_metadata` present, Q1-C1 cluster gates Q6-C1)
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -59,9 +59,9 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [x] CHK-010 [P0] Code passes checks (`tsc --noEmit`; alignment drift scanned 155 files)
+- [x] CHK-010 [P0] Code passes checks (`tsc --noEmit`, alignment drift scanned 155 files)
 - [x] CHK-011 [P0] No console errors or warnings in targeted Vitest output
-- [x] CHK-012 [P1] Error handling implemented (`parseInt || 0` for malformed/unset generation; covered by `code-graph-db.vitest.ts`)
+- [x] CHK-012 [P1] Error handling implemented (`parseInt || 0` for malformed/unset generation, covered by `code-graph-db.vitest.ts`)
 - [x] CHK-013 [P1] Code follows project patterns (KV helper beside existing metadata helpers)
 <!-- /ANCHOR:code-quality -->
 
@@ -70,7 +70,7 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [x] CHK-020 [P0] All acceptance criteria met (REQ-001..004 for Q6-C2; REQ-005 design-only)
+- [x] CHK-020 [P0] All acceptance criteria met (REQ-001..004 for Q6-C2, REQ-005 design-only)
 - [x] CHK-021 [P0] Automated two-scan verification complete (`full_scan` + `selective_reindex` advance `generation`)
 - [x] CHK-022 [P1] Edge cases tested (unset→0, malformed→0, non-promoting scan no-op)
 - [x] CHK-023 [P1] Error scenarios validated (parse-error/persistence-error scan does not bump)
@@ -81,13 +81,13 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [x] CHK-FIX-001 [P0] Finding class recorded: `cross-consumer` (corrects the refuted bump-site claim; the freshness envelope is a public field)
+- [x] CHK-FIX-001 [P0] Finding class recorded: `cross-consumer` (corrects the refuted bump-site claim, the freshness envelope is a public field)
 - [x] CHK-FIX-002 [P0] Same-class producer inventory confirmed: the finalize block in `handlers/scan.ts` is the bump site
-- [x] CHK-FIX-003 [P0] Consumer inventory for the changed freshness envelope reviewed; no consumer branches on `generation`
-- [x] CHK-FIX-004 [P0] N/A — no security/path/parser/redaction surface; additive internal int only
+- [x] CHK-FIX-003 [P0] Consumer inventory for the changed freshness envelope reviewed, no consumer branches on `generation`
+- [x] CHK-FIX-004 [P0] N/A - no security/path/parser/redaction surface, additive internal int only
 - [x] CHK-FIX-005 [P1] Matrix axes covered: {full_scan, selective_reindex, non-promoting} × {unset, set}
-- [x] CHK-FIX-006 [P1] No process-wide state read by the counter; DB KV only
-- [x] CHK-FIX-007 [P1] N/A — no commit SHA because user explicitly requested no git commit; evidence pinned to files and commands
+- [x] CHK-FIX-006 [P1] No process-wide state read by the counter, DB KV only
+- [x] CHK-FIX-007 [P1] N/A - no commit SHA because user explicitly requested no git commit, evidence pinned to files and commands
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -96,7 +96,7 @@ _memory:
 ## Security
 
 - [x] CHK-030 [P0] No hardcoded secrets
-- [x] CHK-031 [P0] Input validation: `generation` is an internal monotonic int, not external input; N/A but stated
+- [x] CHK-031 [P0] Input validation: `generation` is an internal monotonic int, not external input, N/A but stated
 - [x] CHK-032 [P1] Auth/authz unchanged (no auth surface touched)
 <!-- /ANCHOR:security -->
 
@@ -130,7 +130,7 @@ _memory:
 | P1 Items | 13 | 13/13 |
 | P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-06-19 (Q6-C2 implemented; Q6-C1 gated)
+**Verification Date**: 2026-06-19 (Q6-C2 implemented, Q6-C1 gated)
 <!-- /ANCHOR:summary -->
 
 ---
