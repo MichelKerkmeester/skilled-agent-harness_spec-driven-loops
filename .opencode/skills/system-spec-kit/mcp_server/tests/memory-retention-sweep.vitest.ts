@@ -532,6 +532,24 @@ describe('memory retention sweep', () => {
       expect(memoryIds(db)).toEqual([1]);
     });
 
+    it('fails closed and protects expired rows when importance_tier is absent (unreadable tier)', () => {
+      const db = createMemoryIndexTestDatabase({ includeContentColumns: true });
+      insertMemory(db, 1, isoOffset(-3_600_000), 'unreadable tier');
+      // Simulate a legacy/partially-migrated schema where the tier protection
+      // column was never added: its protection state cannot be evaluated.
+      db.exec('ALTER TABLE memory_index DROP COLUMN importance_tier');
+
+      const result = runMemoryRetentionSweep(db);
+
+      expect(result.swept).toBe(0);
+      expect(result.deletedIds).toEqual([]);
+      expect(result.protectedIds).toEqual([1]);
+      expect(memoryIds(db)).toEqual([1]);
+      expect(protectedAuditRows(db)).toEqual([
+        { memory_id: 1, decision: 'deny', reason: 'retention_protection_columns_absent' },
+      ]);
+    });
+
     it('dry-run reports which expired candidates would be protected', () => {
       const db = createMemoryIndexTestDatabase({ includeContentColumns: true, includeRetentionColumns: true });
       insertTieredMemory(db, 1, isoOffset(-3_600_000), { tier: 'critical' });

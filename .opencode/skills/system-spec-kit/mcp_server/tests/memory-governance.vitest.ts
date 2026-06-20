@@ -30,6 +30,39 @@ describe('Phase 5 memory governance', () => {
     expect(decision.issues).toContain('provenanceSource is required for governed ingest');
   });
 
+  it('rejects keep-policy governed ingest when deleteAfter is a malformed timestamp (fail closed)', () => {
+    const decision = validateGovernedIngest({
+      tenantId: 'tenant-a',
+      userId: 'user-1',
+      sessionId: 'session-1',
+      provenanceSource: 'memory-save',
+      provenanceActor: 'agent:test',
+      retentionPolicy: 'keep',
+      deleteAfter: 'not-a-real-timestamp',
+    });
+
+    expect(decision.allowed).toBe(false);
+    expect(decision.issues).toContain('deleteAfter must be a valid ISO-8601 timestamp');
+    // The requested deadline must not be silently coerced into a persisted null.
+    expect(decision.normalized.deleteAfter).toBeNull();
+  });
+
+  it('accepts keep-policy governed ingest with a valid deleteAfter timestamp', () => {
+    const decision = validateGovernedIngest({
+      tenantId: 'tenant-a',
+      userId: 'user-1',
+      sessionId: 'session-1',
+      provenanceSource: 'memory-save',
+      provenanceActor: 'agent:test',
+      retentionPolicy: 'keep',
+      deleteAfter: '2999-01-01T00:00:00.000Z',
+    });
+
+    expect(decision.allowed).toBe(true);
+    expect(decision.issues).not.toContain('deleteAfter must be a valid ISO-8601 timestamp');
+    expect(decision.normalized.deleteAfter).toBe('2999-01-01T00:00:00.000Z');
+  });
+
   it('filters rows to the requested tenant and actor scope', () => {
     const filtered = filterRowsByScope([
       { id: 1, tenant_id: 'tenant-a', user_id: 'user-1', session_id: 'session-1' },

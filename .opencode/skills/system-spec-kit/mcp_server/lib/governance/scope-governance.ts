@@ -352,6 +352,10 @@ export function validateGovernedIngest(input: GovernedIngestInput): GovernanceDe
   const issues: string[] = [];
   const governedAt = normalizeIsoTimestamp(input.governedAt) ?? new Date().toISOString();
   const deleteAfter = normalizeIsoTimestamp(input.deleteAfter) ?? null;
+  // A caller that supplies a non-empty deleteAfter has asked for a retention
+  // deadline; distinguish that from "no deadline requested" so a value that
+  // fails ISO normalization can be rejected rather than silently coerced.
+  const deleteAfterProvided = typeof input.deleteAfter === 'string' && input.deleteAfter.trim().length > 0;
   const retentionPolicy: RetentionPolicy = input.retentionPolicy === 'ephemeral'
     ? input.retentionPolicy
     : 'keep';
@@ -388,6 +392,12 @@ export function validateGovernedIngest(input: GovernedIngestInput): GovernanceDe
   if (!scope.userId && !scope.agentId) issues.push('userId or agentId is required for governed ingest');
   if (!provenanceSource) issues.push('provenanceSource is required for governed ingest');
   if (!provenanceActor) issues.push('provenanceActor is required for governed ingest');
+  // Fail closed on a malformed deleteAfter: a supplied-but-unparseable timestamp
+  // would otherwise coerce to null and drop the requested deadline, persisting a
+  // row with no expiry and no error. Reject instead of swallowing the request.
+  if (deleteAfterProvided && deleteAfter === null) {
+    issues.push('deleteAfter must be a valid ISO-8601 timestamp');
+  }
   if (deleteAfter && new Date(deleteAfter).getTime() <= new Date(governedAt).getTime()) {
     issues.push('deleteAfter must be later than governedAt');
   }

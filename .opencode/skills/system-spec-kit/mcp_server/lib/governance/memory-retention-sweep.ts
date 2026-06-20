@@ -262,7 +262,23 @@ function hasLiveIncomingRetentionEdge(database: Database.Database, memoryId: num
   return row?.present === 1;
 }
 
+/**
+ * Tier protection can only be evaluated when importance_tier is readable. On a
+ * legacy memory_index that predates the tier migration the column aliases to
+ * NULL, making a constitutional/critical row indistinguishable from a genuinely
+ * unprotected one, so the sweep must fail closed (treat the row as protected)
+ * rather than delete a row whose tier is unknown. is_pinned is intentionally not
+ * required here: when that column is absent no row can ever have carried a pin,
+ * so reading "not pinned" is accurate rather than unreadable.
+ */
+function retentionTierColumnReadable(database: Database.Database): boolean {
+  return getTableColumns(database, 'memory_index').has('importance_tier');
+}
+
 function getRetentionProtectionReason(database: Database.Database, row: RetentionExpiredRow): string | null {
+  if (!retentionTierColumnReadable(database)) {
+    return 'retention_protection_columns_absent';
+  }
   if (isProtectedFromRetentionDelete(row)) {
     return 'retention_tier_protected';
   }
