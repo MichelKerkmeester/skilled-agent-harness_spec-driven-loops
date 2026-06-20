@@ -18,12 +18,6 @@ import { scoreExplicitLane } from './lanes/explicit.js';
 import { scoreGraphCausalLaneSplit } from './lanes/graph-causal.js';
 import { scoreLexicalLane } from './lanes/lexical.js';
 import { scoreSemanticShadowExactSubset, scoreSemanticShadowLane } from './lanes/semantic-shadow.js';
-import {
-  betaReliabilityResolver,
-  isAdvisorOutcomeWeightedRerankEnabled,
-  outcomeWeightedRerank,
-} from './outcome-weighted-rerank.js';
-import { readSkillOutcomeFoldSnapshot } from './skill-outcome-store.js';
 import { loadAdvisorProjection } from './projection.js';
 import { SCORING_CALIBRATION } from './scoring-constants.js';
 import { isReadOnlyExplainer, matchesPhraseBoundary } from './text.js';
@@ -58,12 +52,6 @@ export const ADVISOR_EXACT_SEMANTIC_RERANK_FLAG = 'SPECKIT_ADVISOR_EXACT_SEMANTI
 export const ADVISOR_RRF_K = 8;
 export const ADVISOR_EXACT_SEMANTIC_RERANK_TOP_K = 10;
 const ADVISOR_EXACT_SEMANTIC_RERANK_WINDOW = 0.05;
-// The outcome-weighted reliability blend only ever breaks a near-tie: when two
-// candidates' adjusted live scores are within this window AND both carry observed
-// execution outcomes, the more reliable one wins. Outside the window the live
-// fused order is authoritative, so a broad similarity gap is never overturned by
-// reliability alone.
-const ADVISOR_OUTCOME_RERANK_WINDOW = 0.05;
 const TASK_INTENT = /\b(add|append|build|change|configure|create|edit|fix|generate|implement|modify|move|patch|refactor|rename|replace|run|start|sweep|update|write)\b/;
 const DEEP_RESEARCH_CYCLE = /\b(automated research cycle|looped investigation|continue iteration|resume iteration|overnight run|overnight research run|packet-local iteration|delta record|canonical jsonl|same lineage)\b/;
 const FILE_SAVE_OPERATION = /\bsave\b.{0,48}\b(file|files|document|documents|buffer|tab|workspace)\b|\b(file|files|document|documents|buffer|tab|workspace)\b.{0,48}\bsave\b/;
@@ -104,11 +92,6 @@ interface ExactSemanticRerankEntry {
 }
 
 type ExactSemanticRerankIndex = ReadonlyMap<string, ExactSemanticRerankEntry>;
-
-// Reliability for the near-tie outcome rerank, keyed by skill id. Only skills
-// with OBSERVED execution outcomes appear here; a fresh/unobserved skill is
-// absent so it never tips a tie (its reliability would be the neutral value).
-type OutcomeReliabilityIndex = ReadonlyMap<string, number>;
 
 function emptyLaneScores(): MutableLaneScores {
   return Object.fromEntries(SCORER_LANES.map((lane) => [lane, []])) as unknown as MutableLaneScores;
@@ -384,43 +367,6 @@ function rrfRankFor(
   recommendation: AdvisorScoredRecommendation,
 ): number {
   return fusion?.rankBySkill.get(recommendation.skill) ?? NO_RRF_RANK;
-}
-
-// Build the reliability index from the durable outcome-fold snapshot. The
-// snapshot is produced out-of-process by the ambient fold-tick cadence — this
-// read never touches the prompt-time write-path. The shared `outcomeWeightedRerank`
-// owns the math: it keeps fresh skills neutral and resolves observed skills
-// through the Beta posterior. We project that into a per-skill reliability and
-// drop the neutral entries so only OBSERVED skills can break a tie. An empty
-// ledger therefore yields an empty index and zero live impact.
-function buildOutcomeReliabilityIndex(
-  workspaceRoot: string,
-  recommendations: readonly AdvisorScoredRecommendation[],
-): OutcomeReliabilityIndex {
-  const fold = readSkillOutcomeFoldSnapshot(workspaceRoot);
-  if (!fold || Object.keys(fold.bySkill).length === 0) return new Map();
-  const candidates = recommendations.map((recommendation) => ({
-    skillId: recommendation.skill,
-    similarity: 1,
-  }));
-  const ranked = outcomeWeightedRerank(candidates, { fold, reliabilityResolver: betaReliabilityResolver });
-  const index = new Map<string, number>();
-  for (const entry of ranked) {
-    // Only an observed skill (present in the fold with at least one outcome)
-    // contributes; a fresh skill stays at the neutral value and is dropped so
-    // it cannot tip the near-tie.
-    if ((fold.bySkill[entry.skillId]?.total ?? 0) > 0) {
-      index.set(entry.skillId, entry.reliability);
-    }
-  }
-  return index;
-}
-
-function outcomeReliabilityFor(
-  index: OutcomeReliabilityIndex,
-  recommendation: AdvisorScoredRecommendation,
-): number | null {
-  return index.get(recommendation.skill) ?? null;
 }
 
 function promptMentionsSkill(promptLower: string, skill: SkillProjection): boolean {
@@ -701,7 +647,6 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
   const affordances = normalize(options.affordances ?? []);
   const useRrfFusion = isAdvisorRrfFusionEnabled();
   const useExactSemanticRerank = useRrfFusion && isAdvisorExactSemanticRerankEnabled();
-  const useOutcomeWeightedRerank = isAdvisorOutcomeWeightedRerankEnabled();
   const selfRecommendationGuardEnabled = isAdvisorSelfRecommendationGuardEnabled();
   const { laneScores, graphConflictMatches } = buildLaneScores(
     prompt,
@@ -820,12 +765,6 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
   const exactSemanticRerankIndex = useExactSemanticRerank
     ? buildExactSemanticRerankIndex(prompt, projection, recommendations, rrfFusion)
     : new Map<string, ExactSemanticRerankEntry>();
-  // Off by default; when on, the index is empty unless the durable outcome
-  // ledger holds observed outcomes for candidate skills — so an empty ledger
-  // keeps the live order byte-identical.
-  const outcomeReliabilityIndex = useOutcomeWeightedRerank
-    ? buildOutcomeReliabilityIndex(options.workspaceRoot, recommendations)
-    : new Map<string, number>();
   let ranked = recommendations.sort((left, right) => {
     const leftCommandBonus = left.kind === 'command' && !promptLower.includes('/') ? -0.08 : 0;
     const rightCommandBonus = right.kind === 'command' && !promptLower.includes('/') ? -0.08 : 0;
@@ -835,21 +774,6 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
     const rightConflict = useRrfFusion ? graphConflictAdjustment(graphConflictIndex, right) : 0;
     const adjustedScoreDiff = (right.score + rightCommandBonus + rightIntent + rightConflict)
       - (left.score + leftCommandBonus + leftIntent + leftConflict);
-    // Near-tie outcome rerank (off by default). When two candidates' adjusted
-    // live scores are within the window AND both carry observed execution
-    // outcomes, the more reliable one wins. This only ever resolves a near-tie;
-    // a broad score gap is left to the live order. Runs ahead of the lane-specific
-    // tiebreaks below so it shares the same near-tie seam in both fusion paths.
-    if (useOutcomeWeightedRerank && Math.abs(adjustedScoreDiff) <= ADVISOR_OUTCOME_RERANK_WINDOW) {
-      const leftReliability = outcomeReliabilityFor(outcomeReliabilityIndex, left);
-      const rightReliability = outcomeReliabilityFor(outcomeReliabilityIndex, right);
-      if (leftReliability !== null && rightReliability !== null) {
-        const reliabilityDiff = rightReliability - leftReliability;
-        if (reliabilityDiff !== 0) {
-          return reliabilityDiff;
-        }
-      }
-    }
     if (useRrfFusion) {
       const leftExactSemantic = exactSemanticRerankScore(exactSemanticRerankIndex, left);
       const rightExactSemantic = exactSemanticRerankScore(exactSemanticRerankIndex, right);

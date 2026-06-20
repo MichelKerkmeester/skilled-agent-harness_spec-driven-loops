@@ -27,7 +27,6 @@ import {
   summarizeAdvisorHookOutcomeRecords,
 } from '../lib/metrics.js';
 import { recordAdvisorFeedbackCalibrationIfEnabled } from '../lib/scorer/feedback-calibration.js';
-import { recordSkillExecutionOutcome } from '../lib/scorer/skill-outcome-store.js';
 import {
   AdvisorValidateInputSchema,
   AdvisorValidateOutputSchema,
@@ -485,7 +484,6 @@ function buildTelemetrySummary(args: AdvisorValidateInput, workspaceRoot: string
     outcomes: {
       recordsPath: advisorHookOutcomesPath(workspaceRoot),
       recordedThisRun: args.outcomeEvents?.length ?? 0,
-      executionOutcomesRecordedThisRun: args.executionOutcomeEvents?.length ?? 0,
       scope: {
         kind: selectedSkillSlug === null ? 'workspace' : 'skill',
         skillSlug: selectedSkillSlug,
@@ -513,21 +511,6 @@ export function validateAdvisor(input: AdvisorValidateInput = { confirmHeavyRun:
     });
     recordedOutcomeRecords.push(record);
     persistAdvisorHookOutcomeRecord(workspaceRoot, record);
-  }
-  // Net-new execution-success emitter seam: append per-skill task outcomes to
-  // the durable outcome ledger the reliability rerank reads. Fire-and-forget
-  // like the acceptance persist above — the validate handler is a heavy explicit
-  // run, never the prompt-time recommend path.
-  for (const executionEvent of args.executionOutcomeEvents ?? []) {
-    void recordSkillExecutionOutcome(workspaceRoot, {
-      runtime: executionEvent.runtime,
-      skillId: executionEvent.skillId,
-      success: executionEvent.success,
-      eventId: executionEvent.eventId,
-      failureMode: executionEvent.failureMode,
-      contextTags: executionEvent.contextTags,
-      timestamp: executionEvent.timestamp,
-    });
   }
   const corpus = loadCorpus(workspaceRoot)
     .filter((row) => selectedSkillSlug ? row.skill_top_1 === selectedSkillSlug : true);
