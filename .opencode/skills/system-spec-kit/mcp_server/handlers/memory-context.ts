@@ -59,9 +59,7 @@ import {
   isPressurePolicyEnabled,
   isIntentAutoProfileEnabled,
   isWorldSummaryPreludeEnabled,
-  isAgenticRecallEnabled,
 } from '../lib/search/search-flags.js';
-import { runAgenticRecall } from '../lib/search/agentic-recall-strategy.js';
 import {
   buildWorldSummaryPrelude,
   type WorldSummaryPrelude,
@@ -1048,14 +1046,6 @@ const CONTEXT_MODES: Record<string, ContextMode> = {
     description: 'Resume previous work with state and next-steps anchors',
     strategy: 'resume',
     tokenBudget: 2000
-  },
-
-  // Agentic: opt-in bounded multi-hop ReAct recall (gated by SPECKIT_AGENTIC_RECALL)
-  agentic: {
-    name: 'Agentic',
-    description: 'Bounded multi-hop reason-act-observe recall for cross-spec chains',
-    strategy: 'agentic',
-    tokenBudget: 3500
   }
 };
 
@@ -1154,45 +1144,6 @@ async function executeFocusedStrategy(input: string, intent: string | null, opti
     mode: 'focused',
     intent: intent,
     ...result
-  };
-}
-
-async function executeAgenticStrategy(input: string, intent: string | null, options: ContextOptions): Promise<ContextResult> {
-  // Defense in depth: the mode is only reachable when the flag admits it, but if
-  // the case is reached with the flag off, degrade to the deterministic focused
-  // strategy rather than running the loop. The governor also fails closed.
-  if (!isAgenticRecallEnabled()) {
-    return executeFocusedStrategy(input, intent, options);
-  }
-
-  const recall = await runAgenticRecall({
-    query: input,
-    context: {
-      specFolder: options.specFolder,
-      tenantId: options.tenantId,
-      userId: options.userId,
-      agentId: options.agentId,
-      limit: options.limit || 8,
-      includeConstitutional: true,
-      sessionId: options.sessionId,
-      intent: intent ?? undefined,
-    },
-  });
-
-  // The seed result IS a focused single-shot envelope, so the response shape is
-  // unchanged for every downstream consumer. The agentic metadata is additive.
-  return {
-    strategy: 'agentic',
-    mode: 'agentic',
-    intent: intent,
-    ...recall.seedResult,
-    agenticRecall: {
-      status: recall.governor.status,
-      stopReason: recall.governor.stopReason,
-      steps: recall.governor.steps,
-      searchCalls: recall.searchCalls,
-      retrievedIdCount: recall.retrievedIds.length,
-    },
   };
 }
 
@@ -1451,9 +1402,6 @@ async function executeStrategy(
 
     case 'resume':
       return executeResumeStrategy(normalizedInput, args.intent || null, options);
-
-    case 'agentic':
-      return executeAgenticStrategy(normalizedInput, args.intent || null, options);
 
     case 'focused':
     default:

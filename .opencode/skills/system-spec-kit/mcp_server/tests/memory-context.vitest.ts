@@ -86,14 +86,13 @@ function invokeMemoryContext(args: Record<string, unknown>): Promise<MCPResponse
 describe('T001-T010: Context Modes Configuration [deferred - requires DB test fixtures]', () => {
   it('T001: CONTEXT_MODES contains all required modes', () => {
     const modes: string[] = Object.keys(CONTEXT_MODES);
-    // 5 always-on modes plus the opt-in agentic mode (gated by SPECKIT_AGENTIC_RECALL).
-    expect(modes.length).toBe(6);
+    // 5 always-on modes.
+    expect(modes.length).toBe(5);
     expect(modes).toContain('auto');
     expect(modes).toContain('quick');
     expect(modes).toContain('deep');
     expect(modes).toContain('focused');
     expect(modes).toContain('resume');
-    expect(modes).toContain('agentic');
   });
 
   it('T002: auto mode has adaptive strategy', () => {
@@ -849,7 +848,7 @@ describe('T101-T105: Module Exports Tests [deferred - requires DB test fixtures]
   });
 
   it('T102: CONTEXT_MODES is exported', () => {
-    expect(Object.keys(CONTEXT_MODES).sort()).toEqual(['agentic', 'auto', 'deep', 'focused', 'quick', 'resume']);
+    expect(Object.keys(CONTEXT_MODES).sort()).toEqual(['auto', 'deep', 'focused', 'quick', 'resume']);
   });
 
   it('T103: INTENT_TO_MODE is exported', () => {
