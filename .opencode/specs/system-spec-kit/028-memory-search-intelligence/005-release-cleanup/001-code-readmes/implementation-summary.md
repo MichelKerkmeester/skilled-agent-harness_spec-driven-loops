@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Code README Cleanup"
-description: "Pending scaffold summary for the Code README Cleanup release-cleanup phase."
+description: "Execution summary for the Code README Cleanup release-cleanup phase. The per-directory code READMEs were aligned to shipped state (commit a3621ebe33), edits only, every corrected path verified."
 trigger_phrases:
   - "001-code-readmes implementation summary"
   - "028 release cleanup 001-code-readmes"
@@ -9,10 +9,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/001-code-readmes"
-    last_updated_at: "2026-06-19T00:00:00Z"
-    last_updated_by: "codex-gpt-5"
-    recent_action: "Scaffolded impl"
-    next_safe_action: "Do not mark cleanup complete until execution evidence exists"
+    last_updated_at: "2026-06-19T12:00:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Executed code README cleanup, recorded evidence"
+    next_safe_action: "Phase complete, successor is ../002-skill-and-repo-readmes"
     blockers: []
     key_files:
       - "implementation-summary.md"
@@ -20,11 +20,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-summary-001-code-readmes"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
-      - "This summary exists to satisfy the Level-2 contract."
-      - "Cleanup execution remains PENDING."
+      - "This summary records the executed Level-2 cleanup (commit a3621ebe33)."
+      - "12 code READMEs aligned, edits only, strict validation 0/0."
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
@@ -38,7 +38,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | system-spec-kit/028-memory-search-intelligence/005-release-cleanup/001-code-readmes |
-| **Completed** | Not executed |
+| **Completed** | 2026-06-19 (commit a3621ebe33) |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -47,21 +47,17 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The scaffold now defines the Code README Cleanup cleanup phase. No target documentation has been cleaned yet and every cleanup candidate remains PENDING.
-
-### Pending Cleanup Contract
-
-This child phase now has the required spec, plan, task list, checklist and summary docs. The docs define discovery, scope and verification so a later execution pass can clean only this surface.
+The code README cleanup executed on this branch (commit a3621ebe33). Twelve per-directory code READMEs were aligned to current shipped state, fixing factual drift across stale references, counts, renamed or removed files and broken paths. No README was added or deleted and every corrected path was verified to resolve.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| spec.md | Created | Defines scope, objective and acceptance criteria |
-| plan.md | Created | Defines execution and verification approach |
-| tasks.md | Created | Lists pending cleanup tasks |
-| checklist.md | Created | Lists pending verification checks |
-| implementation-summary.md | Created | Records that this is scaffold only |
+| 12 per-directory code READMEs under `.opencode/skills` | Modified | Aligned each README to current shipped code and paths |
+| description.json | Updated | Search metadata regenerated for the executed phase |
+| spec.md | Updated | Status set to COMPLETE, completion recorded |
+| tasks.md | Updated | Cleanup and verification tasks marked done |
+| checklist.md | Updated | Verification items checked with evidence |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -69,7 +65,7 @@ This child phase now has the required spec, plan, task list, checklist and summa
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The phase docs were created from the spec-kit Level-2 structure and kept in PENDING state. Cleanup execution is intentionally deferred.
+Discovery globbed the per-directory code READMEs across skill folders. Each candidate was checked against current source files, and only verified factual drift was fixed with surgical path-only and count edits. Every corrected path was confirmed to resolve before commit. Out-of-scope surfaces, the concurrent session and packet 030 were left untouched.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -79,8 +75,8 @@ The phase docs were created from the spec-kit Level-2 structure and kept in PEND
 
 | Decision | Why |
 |----------|-----|
-| Keep a pending summary | The Level-2 validator requires the file and the content must avoid false completion claims |
-| Leave all checks unchecked | No cleanup evidence exists yet |
+| Fix only verified factual drift | Cleanup aligns READMEs to shipped state, it does not rewrite healthy content |
+| Edits only, no README added or deleted | Keeps the surface stable so directory inventories stay accurate |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -90,8 +86,9 @@ The phase docs were created from the spec-kit Level-2 structure and kept in PEND
 
 | Check | Result |
 |-------|--------|
-| Cleanup execution | PENDING |
-| Strict validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/005-release-cleanup/001-code-readmes --strict` |
+| Cleanup execution | Executed at a3621ebe33, 12 READMEs aligned, 0 added or deleted |
+| Path resolution | All corrected paths resolve |
+| Strict validation | PASSED, 0 errors and 0 warnings via `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/005-release-cleanup/001-code-readmes --strict` |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -99,5 +96,5 @@ The phase docs were created from the spec-kit Level-2 structure and kept in PEND
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Cleanup not executed.** This phase defines the contract only and later work must run discovery before editing target docs.
+1. **Targeted factual cleanup.** Only verified drift was corrected. Pre-existing house-voice style across the broader README corpus was left intact as out of scope.
 <!-- /ANCHOR:limitations -->

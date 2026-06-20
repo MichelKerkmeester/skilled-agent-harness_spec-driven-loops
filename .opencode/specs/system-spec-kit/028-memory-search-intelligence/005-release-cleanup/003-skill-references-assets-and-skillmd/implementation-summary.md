@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Skill References Assets And SKILL Cleanup"
-description: "Pending scaffold summary for the Skill References Assets And SKILL Cleanup release-cleanup phase."
+description: "Execution summary for the Skill References Assets And SKILL Cleanup release-cleanup phase. The SKILL.md, references and assets docs were aligned to shipped state (commit bb038e19ab). The deep-research and deep-loop-workflows skill docs stay deferred to the concurrent session that owns them."
 trigger_phrases:
   - "003-skill-references-assets-and-skillmd implementation summary"
   - "028 release cleanup 003-skill-references-assets-and-skillmd"
@@ -9,10 +9,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/003-skill-references-assets-and-skillmd"
-    last_updated_at: "2026-06-19T00:00:00Z"
-    last_updated_by: "codex-gpt-5"
-    recent_action: "Scaffolded impl"
-    next_safe_action: "Do not mark cleanup complete until execution evidence exists"
+    last_updated_at: "2026-06-19T12:00:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Executed SKILL.md, references and assets cleanup, recorded evidence"
+    next_safe_action: "Concurrent session owns the deferred deep-research skill subset"
     blockers: []
     key_files:
       - "implementation-summary.md"
@@ -20,11 +20,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-summary-003-skill-references-assets-and-skillmd"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
-      - "This summary exists to satisfy the Level-2 contract."
-      - "Cleanup execution remains PENDING."
+      - "This summary records the executed Level-2 cleanup (commit bb038e19ab)."
+      - "14 docs aligned, deep-research subset deferred, strict validation 0/0."
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
@@ -38,7 +38,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | system-spec-kit/028-memory-search-intelligence/005-release-cleanup/003-skill-references-assets-and-skillmd |
-| **Completed** | Not executed |
+| **Completed** | 2026-06-19 (commit bb038e19ab) |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -47,21 +47,21 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The scaffold now defines the Skill References Assets And SKILL Cleanup cleanup phase. No target documentation has been cleaned yet and every cleanup candidate remains PENDING.
+The skill SKILL.md, references and assets cleanup executed on this branch (commit bb038e19ab). Fourteen docs across the cli-opencode, sk-code, sk-interface-design, sk-prompt-small-model, system-skill-advisor and system-spec-kit skills were aligned to current shipped state, fixing factual drift across stale references, counts and paths. Every committed corrected path was verified to resolve.
 
-### Pending Cleanup Contract
+### Deferred Subset
 
-This child phase now has the required spec, plan, task list, checklist and summary docs. The docs define discovery, scope and verification so a later execution pass can clean only this surface.
+The deep-research and deep-loop-workflows skill docs stay deferred to the concurrent session that owns them, left untouched here. This is the same partial pattern as phase 006.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| spec.md | Created | Defines scope, objective and acceptance criteria |
-| plan.md | Created | Defines execution and verification approach |
-| tasks.md | Created | Lists pending cleanup tasks |
-| checklist.md | Created | Lists pending verification checks |
-| implementation-summary.md | Created | Records that this is scaffold only |
+| 14 SKILL.md, references and assets docs under `.opencode/skills` | Modified | Aligned each doc to current shipped state and paths |
+| description.json | Updated | Search metadata regenerated for the executed phase |
+| spec.md | Updated | Status set to COMPLETE, completion recorded |
+| tasks.md | Updated | Cleanup and verification tasks marked done |
+| checklist.md | Updated | Verification items checked with evidence |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -69,7 +69,7 @@ This child phase now has the required spec, plan, task list, checklist and summa
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The phase docs were created from the spec-kit Level-2 structure and kept in PENDING state. Cleanup execution is intentionally deferred.
+Discovery enumerated the SKILL.md, references and assets docs across the in-scope skills. Each candidate was checked against current state, and only verified factual drift was fixed with surgical edits. Every committed corrected path was confirmed to resolve. The concurrent-owned deep-research and deep-loop-workflows skill docs were excluded by design, and packet 030 was left untouched.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -79,8 +79,8 @@ The phase docs were created from the spec-kit Level-2 structure and kept in PEND
 
 | Decision | Why |
 |----------|-----|
-| Keep a pending summary | The Level-2 validator requires the file and the content must avoid false completion claims |
-| Leave all checks unchecked | No cleanup evidence exists yet |
+| Fix only verified factual drift | Cleanup aligns docs to shipped state, it does not rewrite healthy content |
+| Defer the concurrent-owned subset | The deep-research and deep-loop-workflows skill docs belong to a session that holds them dirty |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -90,8 +90,9 @@ The phase docs were created from the spec-kit Level-2 structure and kept in PEND
 
 | Check | Result |
 |-------|--------|
-| Cleanup execution | PENDING |
-| Strict validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/005-release-cleanup/003-skill-references-assets-and-skillmd --strict` |
+| Cleanup execution | Executed at bb038e19ab, 14 docs aligned, deep-research subset deferred |
+| Path resolution | All committed corrected paths resolve |
+| Strict validation | PASSED, 0 errors and 0 warnings via `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/005-release-cleanup/003-skill-references-assets-and-skillmd --strict` |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -99,5 +100,5 @@ The phase docs were created from the spec-kit Level-2 structure and kept in PEND
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Cleanup not executed.** This phase defines the contract only and later work must run discovery before editing target docs.
+1. **Deferred subset.** The deep-research and deep-loop-workflows skill docs stay with the concurrent session that owns them, so this phase covers the skill docs minus that subset.
 <!-- /ANCHOR:limitations -->

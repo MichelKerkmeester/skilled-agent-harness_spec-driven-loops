@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Feature Catalog Cleanup"
-description: "Pending scaffold summary for the Feature Catalog Cleanup release-cleanup phase."
+description: "Execution summary for the Feature Catalog Cleanup release-cleanup phase. The system-spec-kit feature_catalog was aligned to shipped behavior (commit ab405fa052), edits only with no entry added or removed."
 trigger_phrases:
   - "004-feature-catalogs implementation summary"
   - "028 release cleanup 004-feature-catalogs"
@@ -9,10 +9,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/004-feature-catalogs"
-    last_updated_at: "2026-06-19T00:00:00Z"
-    last_updated_by: "codex-gpt-5"
-    recent_action: "Scaffolded impl"
-    next_safe_action: "Do not mark cleanup complete until execution evidence exists"
+    last_updated_at: "2026-06-19T12:00:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Executed feature_catalog cleanup, recorded evidence"
+    next_safe_action: "Phase complete, successor is ../005-manual-testing-playbooks"
     blockers: []
     key_files:
       - "implementation-summary.md"
@@ -20,11 +20,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-summary-004-feature-catalogs"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
-      - "This summary exists to satisfy the Level-2 contract."
-      - "Cleanup execution remains PENDING."
+      - "This summary records the executed Level-2 cleanup (commit ab405fa052)."
+      - "12 catalog files aligned, count self-checks hold, strict validation 0/0."
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
@@ -38,7 +38,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | system-spec-kit/028-memory-search-intelligence/005-release-cleanup/004-feature-catalogs |
-| **Completed** | Not executed |
+| **Completed** | 2026-06-19 (commit ab405fa052) |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -47,21 +47,17 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The scaffold now defines the Feature Catalog Cleanup cleanup phase. No target documentation has been cleaned yet and every cleanup candidate remains PENDING.
-
-### Pending Cleanup Contract
-
-This child phase now has the required spec, plan, task list, checklist and summary docs. The docs define discovery, scope and verification so a later execution pass can clean only this surface.
+The feature catalog cleanup executed on this branch (commit ab405fa052). The system-spec-kit feature_catalog was reviewed against current shipped behavior and 12 files were aligned, fixing stale source-reference paths and drift across the retrieval, discovery, pipeline-architecture, governance and context-preservation entries. No catalog entry was added or removed, so the count self-checks still hold, and every corrected path was verified to resolve.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| spec.md | Created | Defines scope, objective and acceptance criteria |
-| plan.md | Created | Defines execution and verification approach |
-| tasks.md | Created | Lists pending cleanup tasks |
-| checklist.md | Created | Lists pending verification checks |
-| implementation-summary.md | Created | Records that this is scaffold only |
+| 12 feature_catalog entry files under `.opencode/skills/system-spec-kit/feature_catalog` | Modified | Fixed stale source-reference paths and drift |
+| description.json | Updated | Search metadata regenerated for the executed phase |
+| spec.md | Updated | Status set to COMPLETE, completion recorded |
+| tasks.md | Updated | Cleanup and verification tasks marked done |
+| checklist.md | Updated | Verification items checked with evidence |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -69,7 +65,7 @@ This child phase now has the required spec, plan, task list, checklist and summa
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The phase docs were created from the spec-kit Level-2 structure and kept in PENDING state. Cleanup execution is intentionally deferred.
+Discovery enumerated the system-spec-kit feature_catalog entries. Each candidate was checked against shipped behavior, and only verified source-reference drift was fixed with edits that left the entry count unchanged so the catalog self-checks hold. Every corrected path was confirmed to resolve. The concurrent session and packet 030 were left untouched.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -79,8 +75,8 @@ The phase docs were created from the spec-kit Level-2 structure and kept in PEND
 
 | Decision | Why |
 |----------|-----|
-| Keep a pending summary | The Level-2 validator requires the file and the content must avoid false completion claims |
-| Leave all checks unchecked | No cleanup evidence exists yet |
+| Fix only verified source-reference drift | Cleanup aligns the catalog to shipped behavior, it does not rewrite healthy entries |
+| Add or remove no entry | Keeps the catalog count self-checks valid |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -90,8 +86,9 @@ The phase docs were created from the spec-kit Level-2 structure and kept in PEND
 
 | Check | Result |
 |-------|--------|
-| Cleanup execution | PENDING |
-| Strict validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/005-release-cleanup/004-feature-catalogs --strict` |
+| Cleanup execution | Executed at ab405fa052, 12 catalog files aligned, 0 entries added or removed |
+| Path resolution | All corrected paths resolve |
+| Strict validation | PASSED, 0 errors and 0 warnings via `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/005-release-cleanup/004-feature-catalogs --strict` |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -99,5 +96,5 @@ The phase docs were created from the spec-kit Level-2 structure and kept in PEND
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Cleanup not executed.** This phase defines the contract only and later work must run discovery before editing target docs.
+1. **Targeted factual cleanup.** Only verified source-reference drift was corrected. Pre-existing house-voice style across the broader catalog corpus was left intact as out of scope.
 <!-- /ANCHOR:limitations -->

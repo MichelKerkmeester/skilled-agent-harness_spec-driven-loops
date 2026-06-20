@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Skill And Repo README Cleanup"
-description: "Pending scaffold summary for the Skill And Repo README Cleanup release-cleanup phase."
+description: "Execution summary for the Skill And Repo README Cleanup release-cleanup phase. The skill READMEs and root README were aligned to shipped state (commit 6754d3a133), edits only with house structure preserved."
 trigger_phrases:
   - "002-skill-and-repo-readmes implementation summary"
   - "028 release cleanup 002-skill-and-repo-readmes"
@@ -9,10 +9,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/002-skill-and-repo-readmes"
-    last_updated_at: "2026-06-19T00:00:00Z"
-    last_updated_by: "codex-gpt-5"
-    recent_action: "Scaffolded impl"
-    next_safe_action: "Do not mark cleanup complete until execution evidence exists"
+    last_updated_at: "2026-06-19T12:00:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Executed skill and repo README cleanup, recorded evidence"
+    next_safe_action: "Phase complete, successor is ../003-skill-references-assets-and-skillmd"
     blockers: []
     key_files:
       - "implementation-summary.md"
@@ -20,11 +20,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-summary-002-skill-and-repo-readmes"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
-      - "This summary exists to satisfy the Level-2 contract."
-      - "Cleanup execution remains PENDING."
+      - "This summary records the executed Level-2 cleanup (commit 6754d3a133)."
+      - "Skill READMEs and root README aligned, edits only, strict validation 0/0."
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
@@ -38,7 +38,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | system-spec-kit/028-memory-search-intelligence/005-release-cleanup/002-skill-and-repo-readmes |
-| **Completed** | Not executed |
+| **Completed** | 2026-06-19 (commit 6754d3a133) |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -47,21 +47,19 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The scaffold now defines the Skill And Repo README Cleanup cleanup phase. No target documentation has been cleaned yet and every cleanup candidate remains PENDING.
-
-### Pending Cleanup Contract
-
-This child phase now has the required spec, plan, task list, checklist and summary docs. The docs define discovery, scope and verification so a later execution pass can clean only this surface.
+The skill and repo README cleanup executed on this branch (commit 6754d3a133). The skill-level READMEs and the root repository README were aligned to current shipped state, fixing factual drift across stale references, counts and paths while preserving each document's deliberate house structure. No README was added or deleted and every corrected path was verified to resolve.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| spec.md | Created | Defines scope, objective and acceptance criteria |
-| plan.md | Created | Defines execution and verification approach |
-| tasks.md | Created | Lists pending cleanup tasks |
-| checklist.md | Created | Lists pending verification checks |
-| implementation-summary.md | Created | Records that this is scaffold only |
+| `.opencode/skills/mcp-click-up/README.md` | Modified | Aligned skill README to shipped state |
+| `.opencode/skills/system-spec-kit/README.md` | Modified | Aligned skill README to shipped state |
+| `README.md` | Modified | Aligned root repository README to shipped state |
+| description.json | Updated | Search metadata regenerated for the executed phase |
+| spec.md | Updated | Status set to COMPLETE, completion recorded |
+| tasks.md | Updated | Cleanup and verification tasks marked done |
+| checklist.md | Updated | Verification items checked with evidence |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -69,7 +67,7 @@ This child phase now has the required spec, plan, task list, checklist and summa
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The phase docs were created from the spec-kit Level-2 structure and kept in PENDING state. Cleanup execution is intentionally deferred.
+Discovery enumerated the skill-level and repo-level README surfaces. Each candidate was checked against current state, and only verified factual drift was fixed with surgical edits that preserved the existing house structure. Every corrected path was confirmed to resolve before commit. The concurrent session and packet 030 were left untouched.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -79,8 +77,8 @@ The phase docs were created from the spec-kit Level-2 structure and kept in PEND
 
 | Decision | Why |
 |----------|-----|
-| Keep a pending summary | The Level-2 validator requires the file and the content must avoid false completion claims |
-| Leave all checks unchecked | No cleanup evidence exists yet |
+| Fix only verified factual drift | Cleanup aligns READMEs to shipped state, it does not rewrite healthy content |
+| Preserve deliberate house structure | The skill and repo READMEs carry an intentional layout that was kept intact |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -90,8 +88,9 @@ The phase docs were created from the spec-kit Level-2 structure and kept in PEND
 
 | Check | Result |
 |-------|--------|
-| Cleanup execution | PENDING |
-| Strict validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/005-release-cleanup/002-skill-and-repo-readmes --strict` |
+| Cleanup execution | Executed at 6754d3a133, 3 READMEs aligned, 0 added or deleted |
+| Path resolution | All corrected paths resolve |
+| Strict validation | PASSED, 0 errors and 0 warnings via `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/005-release-cleanup/002-skill-and-repo-readmes --strict` |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -99,5 +98,5 @@ The phase docs were created from the spec-kit Level-2 structure and kept in PEND
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Cleanup not executed.** This phase defines the contract only and later work must run discovery before editing target docs.
+1. **Targeted factual cleanup.** Only verified drift was corrected. Pre-existing house-voice style across the broader README corpus was left intact as out of scope.
 <!-- /ANCHOR:limitations -->

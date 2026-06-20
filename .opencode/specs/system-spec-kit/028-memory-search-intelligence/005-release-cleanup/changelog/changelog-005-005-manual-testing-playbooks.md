@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ### Summary
 
-The packet-028 manual testing playbook cleanup ran against the system-spec-kit playbook package: the root index plus 410 numbered scenario files. The root index counts were rechecked against the live tree and matched. Thirteen stale source anchors were fixed across nine files, while other skills' playbook packages and packet 030 remained out of scope.
+The packet-028 manual testing playbook cleanup ran against the system-spec-kit playbook package: the root index plus 410 numbered scenario files. The root index counts were rechecked against the live tree and matched. Fourteen stale source anchors were fixed across ten files, while other skills' playbook packages and packet 030 remained out of scope.
 
 ### Added
 
@@ -47,7 +47,7 @@ The packet-028 manual testing playbook cleanup ran against the system-spec-kit p
 |-------|--------|
 | Discovery | PASS, 410 scenario files plus root index |
 | Count self-check | PASS, all recorded hard-coded counts match live values |
-| Stale anchors fixed | PASS, 13 fixes across 9 files |
+| Stale anchors fixed | PASS, 14 fixes across 10 files |
 | Packet 030 boundary | PASS, no packet 030 files edited |
 | Task completion | PASS, 15 done, 0 open |
 | Strict validation | PASS, 0 errors and 0 warnings |

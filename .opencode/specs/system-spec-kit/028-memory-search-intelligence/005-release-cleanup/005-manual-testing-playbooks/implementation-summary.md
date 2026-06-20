@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Manual Testing Playbook Cleanup"
-description: "Pending scaffold summary for the Manual Testing Playbook Cleanup release-cleanup phase."
+description: "Execution summary for the Manual Testing Playbook Cleanup release-cleanup phase. The packet-028 playbook anchors were aligned to shipped state (commit ab405fa052), 14 stale source anchors fixed across 10 scenario files."
 trigger_phrases:
   - "005-manual-testing-playbooks implementation summary"
   - "028 release cleanup 005-manual-testing-playbooks"
@@ -23,7 +23,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Cleanup executed: self-check counts verified, 13 stale anchors fixed across 9 files."
+      - "Cleanup executed: self-check counts verified, 14 stale anchors fixed across 10 files."
       - "Strict validation exits 0."
 ---
 
@@ -63,7 +63,7 @@ Discovery enumerated the package via the phase glob and `rg --files`. The packet
 | 3 category README exclusions | 3 | yes |
 | 344 feature-catalog files | 344 | yes |
 
-### Stale Source Anchors Fixed (13 across 9 files)
+### Stale Source Anchors Fixed (14 across 10 files)
 
 | File | Fix |
 |------|-----|
@@ -104,8 +104,9 @@ Each fix was confirmed against the live tree before editing: the successor path 
 
 | Check | Result |
 |-------|--------|
-| Cleanup execution | PENDING |
-| Strict validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/005-release-cleanup/005-manual-testing-playbooks --strict` |
+| Cleanup execution | Executed at ab405fa052, 14 anchors fixed across 10 scenario files |
+| Count self-check | Reproduced against the live tree, all hard-coded counts match |
+| Strict validation | PASSED, 0 errors and 0 warnings via `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/005-release-cleanup/005-manual-testing-playbooks --strict` |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -113,5 +114,5 @@ Each fix was confirmed against the live tree before editing: the successor path 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Cleanup not executed.** This phase defines the contract only and later work must run discovery before editing target docs.
+1. **Targeted anchor cleanup.** Only high-confidence stale anchors with a confirmed current target were fixed. The package-wide em dash table convention was left intact rather than restyled piecemeal.
 <!-- /ANCHOR:limitations -->

@@ -19,43 +19,42 @@ contextType: "implementation"
 
 ### Summary
 
-This child phase is scaffold-only. It defines the future cleanup contract for changelog directories, constitutional documents and system-spec-kit templates. No target cleanup has run yet and every candidate remains pending.
+This child phase executed (commit df7f733651). Four factual drifts were fixed across the constitutional docs and system-spec-kit templates, including the constitutional README rule-file count and a cli-dispatch model reference. The changelog entries were left historical as immutable archive records and every corrected path was verified to resolve.
 
 ### Added
 
 - Added the Level 2 spec packet for changelog, constitutional doc and template cleanup.
-- Added pending discovery, review, HVR and verification tasks.
-- Added a checklist and summary for a later execution pass.
+- Added the task list and checklist for discovery, review, HVR and verification.
+- Added the implementation summary that records the executed cleanup.
 
 ### Changed
 
-- Scoped the future sweep to changelogs, constitutional docs and templates.
-- Left all target documents unchanged until candidate discovery runs.
+- Fixed four factual drifts across the constitutional docs and templates.
+- Regenerated the phase search metadata for the executed state.
 
 ### Fixed
 
-- Reworded the generated changelog to make the scaffold-only state explicit.
+- Corrected the constitutional README rule-file count and a cli-dispatch model reference.
 
 ### Verification
 
 | Check | Result |
 |-------|--------|
-| Cleanup execution | PENDING |
-| Task completion | 0 done, 15 open |
-| Strict validation command | Recorded in the phase docs |
+| Cleanup execution | Executed at df7f733651, four factual drifts fixed, changelogs left historical |
+| Task completion | PASS, all tasks done, 0 open |
+| Strict validation | PASS, 0 errors and 0 warnings |
 
 ### Files Changed
 
 | File | Action | What changed |
 |---|---|---|
-| `spec.md` | Created | Scope, objective and acceptance criteria |
-| `plan.md` | Created | Execution and verification approach |
-| `tasks.md` | Created | Pending cleanup tasks |
-| `checklist.md` | Created | Pending verification checks |
-| `implementation-summary.md` | Created | Scaffold-only closeout |
+| `constitutional/README.md` | Modified | Corrected the rule-file count |
+| `constitutional/cli-dispatch-skill-preload.md` | Modified | Corrected a model reference |
+| `templates/README.md` | Modified | Aligned to current template set |
+| `spec.md` | Updated | Status set to COMPLETE, completion recorded |
+| `checklist.md` | Updated | Verification items checked with evidence |
+| `implementation-summary.md` | Updated | Executed cleanup closeout |
 
 ### Follow-Ups
 
-- Run discovery before touching target changelogs or templates.
-- Confirm packet 030 and concurrent-session files stay outside the candidate list.
-- Run HVR, stale-reference and strict validation checks after execution.
+- None. The changelogs, constitutional docs and templates cleanup is complete and strict validation is green.

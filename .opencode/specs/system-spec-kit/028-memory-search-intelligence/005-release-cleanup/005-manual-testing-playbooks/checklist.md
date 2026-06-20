@@ -66,7 +66,7 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [x] CHK-020 [P0] Stale-reference scan is run. A backtick-anchor resolution scan caught all unresolved paths; 13 genuine stale anchors fixed.
+- [x] CHK-020 [P0] Stale-reference scan is run. A backtick-anchor resolution scan caught all unresolved paths, 14 genuine stale anchors fixed.
 - [x] CHK-021 [P0] Source-file path claims are grep-traceable. Every fixed anchor points to a path confirmed present in the live tree.
 - [x] CHK-022 [P1] Mirror or index counts are checked. The root-index deterministic self-check reproduces 410 scenario files, 0 broken links, 82 orphans, 3 README exclusions, and 344 feature-catalog files all match the doc.
 - [x] CHK-023 [P1] Strict validation exits 0.

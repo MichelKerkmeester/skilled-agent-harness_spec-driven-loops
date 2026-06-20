@@ -18,51 +18,52 @@ contextType: "implementation"
 
 ### Summary
 
-This rollup now reflects the mixed state of the release-cleanup children. Six phases remain scaffold-only with no target cleanup executed. Three phases are complete: manual testing playbooks, agent definitions and AGENTS/runtime routing. The root table links every child changelog and marks completed work separately from pending cleanup contracts.
+This rollup reflects the executed state of the release-cleanup children. All nine phases ran against their documentation surfaces and committed factual-drift fixes. Seven phases are fully complete. Two phases, 003 and 006, are complete for their owned scope with a documented subset deferred to a concurrent session that holds those files. The root table links every child changelog and records each executed phase.
 
 ### Included Phases
 
 | Phase | Status | Summary |
 |---|---|---|
-| [`001-code-readmes`](./changelog-005-001-code-readmes.md) | Scaffold-only | Defines the future cleanup contract for per-directory code README surfaces. No target cleanup has run. |
-| [`002-skill-and-repo-readmes`](./changelog-005-002-skill-and-repo-readmes.md) | Scaffold-only | Defines the future cleanup contract for skill-level, repo-level and runtime README surfaces. No target cleanup has run. |
-| [`003-skill-references-assets-and-skillmd`](./changelog-005-003-skill-references-assets-and-skillmd.md) | Scaffold-only | Defines the future cleanup contract for skill `SKILL.md`, reference and asset Markdown. No target cleanup has run. |
-| [`004-feature-catalogs`](./changelog-005-004-feature-catalogs.md) | Scaffold-only | Defines the future cleanup contract for feature catalog packages. No target cleanup has run. |
-| [`005-manual-testing-playbooks`](./changelog-005-005-manual-testing-playbooks.md) | Complete | Rechecked the packet-028 manual testing playbook package and fixed 13 stale anchors across 9 files. |
-| [`006-commands`](./changelog-005-006-commands.md) | Scaffold-only | Defines the future cleanup contract for command documentation and runtime mirrors. No target cleanup has run. |
-| [`007-agents`](./changelog-005-007-agents.md) | Complete | Rewrote three agent mirror READMEs and localized two Claude path-convention lines after verifying all agent bodies. |
-| [`008-agents-md`](./changelog-005-008-agents-md.md) | Complete | Corrected the root AGENTS.md mk-spec-memory tool count from 37 to 39 and verified both runtime mirrors. |
-| [`009-changelogs-constitutional-and-templates`](./changelog-005-009-changelogs-constitutional-and-templates.md) | Scaffold-only | Defines the future cleanup contract for changelogs, constitutional docs and templates. No target cleanup has run. |
+| [`001-code-readmes`](./changelog-005-001-code-readmes.md) | Complete | Aligned 12 per-directory code READMEs to shipped state, edits only, every corrected path verified (commit a3621ebe33). |
+| [`002-skill-and-repo-readmes`](./changelog-005-002-skill-and-repo-readmes.md) | Complete | Aligned the skill READMEs and root README to shipped state with house structure preserved (commit 6754d3a133). |
+| [`003-skill-references-assets-and-skillmd`](./changelog-005-003-skill-references-assets-and-skillmd.md) | Complete, subset deferred | Aligned 14 SKILL.md, reference and asset docs. The deep-research and deep-loop-workflows skill docs stay with the concurrent session (commit bb038e19ab). |
+| [`004-feature-catalogs`](./changelog-005-004-feature-catalogs.md) | Complete | Fixed source-reference drift across 12 system-spec-kit feature_catalog files, no entry added or removed (commit ab405fa052). |
+| [`005-manual-testing-playbooks`](./changelog-005-005-manual-testing-playbooks.md) | Complete | Rechecked the packet-028 manual testing playbook package and fixed 14 stale anchors across 10 files (commit ab405fa052). |
+| [`006-commands`](./changelog-005-006-commands.md) | Complete, subset deferred | Reviewed 19 command docs and fixed a fable-mode route reference in doctor/speckit.md. The deep-research router and agent_router.md stay with the concurrent session (commit 818db21c54). |
+| [`007-agents`](./changelog-005-007-agents.md) | Complete | Rewrote three agent mirror READMEs and localized two Claude path-convention lines after verifying all agent bodies (commit 03f93fef81). |
+| [`008-agents-md`](./changelog-005-008-agents-md.md) | Complete | Corrected the root AGENTS.md mk-spec-memory tool count from 37 to 39 and verified both runtime mirrors (commit 04f45c8f7a). |
+| [`009-changelogs-constitutional-and-templates`](./changelog-005-009-changelogs-constitutional-and-templates.md) | Complete | Fixed four factual drifts across constitutional docs and templates, changelog entries left historical (commit df7f733651). |
 
 ### Added
 
 - Added linked rollup rows for all nine child changelogs.
-- Added a mixed-state summary that separates completed cleanup from scaffold-only contracts.
+- Added an executed-state summary that records every phase against its proving commit.
 
 ### Changed
 
 - Replaced the phase-parent placeholder with a source-grounded rollup.
-- Rewrote stale pending-only child summaries for the completed phases.
+- Reconciled every child summary to its committed execution state.
 
 ### Fixed
 
-- Corrected the root rollup so completed phases no longer read as pending.
-- Preserved pending status for scaffold-only phases instead of inventing execution.
+- Corrected the root rollup so all nine executed phases read as complete.
+- Corrected the 005 anchor count from 13 across 9 files to 14 across 10 files.
+- Recorded the 003 and 006 deferred subsets owned by the concurrent session.
 
 ### Verification
 
 | Check | Result |
 |-------|--------|
 | Child changelog inventory | PASS, 9 child changelogs plus root |
-| Source grounding | PASS, child statuses checked against specs, tasks and implementation summaries |
+| Source grounding | PASS, each child status traced to its execute commit in git |
 | Link check | PASS, every child row links to its local changelog |
 
 ### Files Changed
 
 | File | Action | What changed |
 |---|---|---|
-| `changelog-005-root.md` | Updated | Parent rollup rewritten with linked child summaries |
+| `changelog-005-root.md` | Updated | Parent rollup reconciled to the executed child state |
 
 ### Follow-Ups
 
-- Execute the six scaffold-only cleanup contracts when their document families are ready for a targeted pass.
+- Hand the deferred 003 and 006 subsets back to the concurrent session that owns those files.

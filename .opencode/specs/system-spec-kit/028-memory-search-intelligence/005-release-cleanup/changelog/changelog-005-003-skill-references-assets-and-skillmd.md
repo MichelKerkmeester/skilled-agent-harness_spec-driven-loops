@@ -19,43 +19,40 @@ contextType: "implementation"
 
 ### Summary
 
-This child phase is scaffold-only. It defines the future cleanup contract for skill `SKILL.md` files, skill reference Markdown and asset Markdown. No target documentation has been cleaned yet and every candidate remains pending.
+This child phase executed (commit bb038e19ab). Fourteen skill `SKILL.md`, reference and asset docs were aligned to current shipped state, fixing factual drift across stale references, counts and paths. Every committed corrected path was verified to resolve. The deep-research and deep-loop-workflows skill docs stay deferred to the concurrent session that owns them.
 
 ### Added
 
 - Added the Level 2 spec packet for skill references, assets and `SKILL.md` cleanup.
-- Added pending tasks for discovery, candidate evidence, HVR edits and verification.
-- Added a summary that records the phase as contract-only until execution begins.
+- Added the task list and checklist for discovery, candidate evidence, HVR edits and verification.
+- Added the summary that records the executed cleanup and the deferred subset.
 
 ### Changed
 
-- Scoped the future sweep to skill-local docs under `SKILL.md`, `references` and `assets`.
-- Left all target skill docs unchanged.
+- Aligned 14 skill-local docs under `SKILL.md`, `references` and `assets` to shipped state.
+- Regenerated the phase search metadata for the executed state.
 
 ### Fixed
 
-- Removed the duplicated "cleanup cleanup" wording from the generated narrative.
+- Corrected stale references, counts and paths across the committed skill docs.
 
 ### Verification
 
 | Check | Result |
 |-------|--------|
-| Cleanup execution | PENDING |
-| Task completion | 0 done, 15 open |
-| Strict validation command | Recorded in the phase docs |
+| Cleanup execution | Executed at bb038e19ab, 14 docs aligned, deep-research subset deferred |
+| Task completion | PASS, all tasks done, 0 open |
+| Strict validation | PASS, 0 errors and 0 warnings |
 
 ### Files Changed
 
 | File | Action | What changed |
 |---|---|---|
-| `spec.md` | Created | Scope, objective and acceptance criteria |
-| `plan.md` | Created | Execution and verification approach |
-| `tasks.md` | Created | Pending cleanup tasks |
-| `checklist.md` | Created | Pending verification checks |
-| `implementation-summary.md` | Created | Scaffold-only closeout |
+| 14 `SKILL.md`, reference and asset docs | Modified | Aligned to current shipped state and paths |
+| `spec.md` | Updated | Status set to COMPLETE, completion recorded |
+| `checklist.md` | Updated | Verification items checked with evidence |
+| `implementation-summary.md` | Updated | Executed cleanup closeout with deferred subset |
 
 ### Follow-Ups
 
-- Run discovery against skill `SKILL.md`, `references` and `assets`.
-- Save the candidate list before edits.
-- Verify HVR voice, stale references and strict validation after execution.
+- Hand the deferred deep-research and deep-loop-workflows skill docs back to the concurrent session that owns them.

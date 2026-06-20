@@ -11,7 +11,7 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/005-manual-testing-playbooks"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Executed cleanup: fixed 13 stale source anchors in 9 scenario files"
+    recent_action: "Executed cleanup: fixed 14 stale source anchors in 10 scenario files"
     next_safe_action: "Phase complete. Successor phase is ../006-commands"
     blockers: []
     key_files:
@@ -27,7 +27,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "Cleanup executed against the system-spec-kit manual_testing_playbook package."
-      - "Self-check counts verified accurate (410/0/82/3/344); 13 stale anchors fixed."
+      - "Self-check counts verified accurate (410/0/82/3/344) and 14 stale anchors fixed."
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
@@ -88,7 +88,7 @@ Scenarios match current behavior, source-file anchors are valid, file-count self
 | Candidate Surface | Status | Note |
 |-------------------|--------|------|
 | skill-local manual testing playbook roots | DONE | Reviewed `system-spec-kit/manual_testing_playbook` (the packet-028 playbook). Self-check counts verified accurate: 410 scenario files, 0 broken index links, 82 orphans, 3 README exclusions, 344 feature-catalog files |
-| numbered scenario files under playbook folders | DONE | 410 scenario files scanned for source-anchor validity. 13 genuine stale anchors fixed across 9 files. Remaining unresolved hits classified as intentional ledger rows, placeholders or non-actionable shorthand |
+| numbered scenario files under playbook folders | DONE | 410 scenario files scanned for source-anchor validity. 14 genuine stale anchors fixed across 10 files. Remaining unresolved hits classified as intentional ledger rows, placeholders or non-actionable shorthand |
 | repo-level manual testing playbooks when present | DONE | No repo-level playbook is part of the packet-028 surface. Other skills own separate playbook packages and stay out of scope |
 
 ### Files to Change

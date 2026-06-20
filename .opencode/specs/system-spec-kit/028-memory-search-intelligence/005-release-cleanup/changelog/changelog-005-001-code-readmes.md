@@ -19,43 +19,41 @@ contextType: "implementation"
 
 ### Summary
 
-This child phase is scaffold-only. It defines the future cleanup contract for code README surfaces, including discovery, candidate capture, HVR voice checks and strict validation. No target README cleanup has run yet and every cleanup candidate remains pending.
+This child phase executed (commit a3621ebe33). The per-directory code README sweep aligned 12 READMEs to current shipped state, fixing factual drift across stale references, counts, renamed or removed files and broken paths. No README was added or deleted and every corrected path was verified to resolve.
 
 ### Added
 
 - Added the Level 2 spec packet for the code README cleanup surface.
 - Added a task list and checklist for discovery, candidate evidence and voice verification.
-- Added an implementation summary that records this phase as scaffold-only.
+- Added an implementation summary that records the executed cleanup.
 
 ### Changed
 
-- Scoped the future sweep to per-directory code README files and similar code-adjacent README surfaces.
-- Left target documentation untouched until discovery and candidate review run in an execution pass.
+- Aligned 12 per-directory code READMEs to current shipped code and paths.
+- Regenerated the phase search metadata for the executed state.
 
 ### Fixed
 
-- Reworded the generated changelog so it no longer implies completed cleanup work.
+- Corrected stale references, counts and broken paths across the in-scope READMEs.
 
 ### Verification
 
 | Check | Result |
 |-------|--------|
-| Cleanup execution | PENDING |
-| Task completion | 0 done, 15 open |
-| Strict validation command | Recorded in the phase docs |
+| Cleanup execution | Executed at a3621ebe33, 12 READMEs aligned, 0 added or deleted |
+| Task completion | PASS, all tasks done, 0 open |
+| Strict validation | PASS, 0 errors and 0 warnings |
 
 ### Files Changed
 
 | File | Action | What changed |
 |---|---|---|
-| `spec.md` | Created | Scope, objective and acceptance criteria |
-| `plan.md` | Created | Execution and verification approach |
-| `tasks.md` | Created | Pending cleanup tasks |
-| `checklist.md` | Created | Pending verification checks |
-| `implementation-summary.md` | Created | Scaffold-only closeout |
+| 12 per-directory code READMEs | Modified | Aligned to current shipped code and paths |
+| `spec.md` | Updated | Status set to COMPLETE, completion recorded |
+| `tasks.md` | Updated | Cleanup and verification tasks marked done |
+| `checklist.md` | Updated | Verification items checked with evidence |
+| `implementation-summary.md` | Updated | Executed cleanup closeout |
 
 ### Follow-Ups
 
-- Run discovery before editing any target README.
-- Save the candidate list as phase evidence.
-- Run the voice and stale-reference scans after cleanup execution.
+- None. The code README cleanup is complete and strict validation is green.

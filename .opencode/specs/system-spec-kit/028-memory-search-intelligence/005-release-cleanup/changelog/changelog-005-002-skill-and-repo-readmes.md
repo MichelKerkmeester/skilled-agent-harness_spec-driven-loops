@@ -19,43 +19,42 @@ contextType: "implementation"
 
 ### Summary
 
-This child phase is scaffold-only. It defines the future cleanup contract for skill-level README files, top-level README files and runtime README mirrors. No target documentation has been cleaned yet and all candidates remain pending.
+This child phase executed (commit 6754d3a133). The skill READMEs and the root repository README were aligned to current shipped state, fixing factual drift across stale references, counts and paths while preserving each document's deliberate house structure. No README was added or deleted and every corrected path was verified to resolve.
 
 ### Added
 
 - Added the Level 2 spec packet for skill and repo README cleanup.
-- Added pending discovery, review, edit and verification tasks.
-- Added the checklist and implementation summary that keep the surface ready for a later execution pass.
+- Added the task list and checklist for discovery, review, edit and verification.
+- Added the implementation summary that records the executed cleanup.
 
 ### Changed
 
-- Scoped the phase to README surfaces only.
-- Kept repo, skill and runtime README candidates pending until the discovery command is run.
+- Aligned the skill READMEs and root README to shipped state with house structure preserved.
+- Regenerated the phase search metadata for the executed state.
 
 ### Fixed
 
-- Reworded the generated changelog so the scaffold state is clear and not framed as completed cleanup.
+- Corrected stale references, counts and paths across the in-scope READMEs.
 
 ### Verification
 
 | Check | Result |
 |-------|--------|
-| Cleanup execution | PENDING |
-| Task completion | 0 done, 15 open |
-| Strict validation command | Recorded in the phase docs |
+| Cleanup execution | Executed at 6754d3a133, 3 READMEs aligned, 0 added or deleted |
+| Task completion | PASS, all tasks done, 0 open |
+| Strict validation | PASS, 0 errors and 0 warnings |
 
 ### Files Changed
 
 | File | Action | What changed |
 |---|---|---|
-| `spec.md` | Created | Scope, objective and acceptance criteria |
-| `plan.md` | Created | Execution and verification approach |
-| `tasks.md` | Created | Pending cleanup tasks |
-| `checklist.md` | Created | Pending verification checks |
-| `implementation-summary.md` | Created | Scaffold-only closeout |
+| `.opencode/skills/mcp-click-up/README.md` | Modified | Aligned to shipped state |
+| `.opencode/skills/system-spec-kit/README.md` | Modified | Aligned to shipped state |
+| `README.md` | Modified | Aligned root repository README to shipped state |
+| `spec.md` | Updated | Status set to COMPLETE, completion recorded |
+| `checklist.md` | Updated | Verification items checked with evidence |
+| `implementation-summary.md` | Updated | Executed cleanup closeout |
 
 ### Follow-Ups
 
-- Run discovery across skill, repo and runtime README surfaces.
-- Record the exact candidate list before edits.
-- Apply HVR voice and stale-claim cleanup only to verified candidates.
+- None. The skill and repo README cleanup is complete and strict validation is green.

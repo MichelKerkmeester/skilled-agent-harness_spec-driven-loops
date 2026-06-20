@@ -59,7 +59,7 @@ This phase is a documentation cleanup work package, not an implementation pass. 
 ### Definition of Done
 - [x] Every candidate document is reviewed.
 - [x] HVR voice checks pass (no violation introduced by edits).
-- [x] Stale-reference checks pass (13 genuine anchors fixed; residuals classified).
+- [x] Stale-reference checks pass (14 genuine anchors fixed, residuals classified).
 - [x] Strict validation exits 0 for this child phase.
 <!-- /ANCHOR:quality-gates -->
 

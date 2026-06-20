@@ -37,7 +37,7 @@
       "009-changelogs-constitutional-and-templates/spec.md"
     ],
     "entities": [],
-    "causal_summary": "Release-cleanup phase parent that defines nine PENDING documentation cleanup phases without executing them.",
+    "causal_summary": "Release-cleanup phase parent whose nine documentation cleanup phases all executed and committed, with the 003 and 006 subsets deferred to a concurrent session.",
     "created_at": "2026-06-19T00:00:00Z",
     "last_save_at": "2026-06-19T00:00:00Z",
     "save_lineage": "scaffold",
@@ -54,8 +54,8 @@
       "008-agents-md/spec.md",
       "009-changelogs-constitutional-and-templates/spec.md"
     ],
-    "last_active_child_id": null,
-    "last_active_at": "2026-06-19T00:00:00Z"
+    "last_active_child_id": "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/009-changelogs-constitutional-and-templates",
+    "last_active_at": "2026-06-19T12:00:00Z"
   }
 }
 
