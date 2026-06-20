@@ -15,8 +15,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/006-redteam-probe-gate"
     last_updated_at: "2026-06-19T07:40:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored Level 2 implementation spec for the red-team probe gate sub-phase"
-    next_safe_action: "Operator review of the candidate status + gate before implementation"
+    recent_action: "Implemented MCP-server red-team probe gate + no-querytext denial audit"
+    next_safe_action: "Implement sibling prompt-pack probe"
     blockers: []
     key_files:
       - "spec.md"
@@ -27,7 +27,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "028-redteam-probe-gate-replan-2026-06-19"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 80
     open_questions:
       - "Which CI lane runs the aggregate gate, and does run-tests.mjs gain a security group selector?"
       - "Does the deep-loop prompt-pack render probe assert on live callers or on the dead-code renderPromptPack sink?"

@@ -14,7 +14,7 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/002-code-graph/001-determinism-walk-order"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored Level-2 spec for the code-graph determinism + walk-order impl sub-phase"
+    recent_action: "Implemented det-context-order-global, updated the Level-2 packet"
     next_safe_action: "Run canonical verification and keep Q8/tuning pending until their gates close"
     blockers: []
     key_files:
@@ -28,7 +28,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-002-determinism-walk-order"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 50
     open_questions:
       - "Are the Q4-C1 evidence-class boost magnitudes (EXTRACTED/STRUCTURED 0.01, INFERRED 0.004, AMBIGUOUS 0.002) earning retrieval quality, or do they need a benchmark-driven re-tune?"
     answered_questions:

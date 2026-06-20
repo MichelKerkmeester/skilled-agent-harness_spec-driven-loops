@@ -1,6 +1,6 @@
 ---
-title: "Feature Specification: Corpus Reindex — Gate-Zero for Recall Benchmarking"
-description: "Run the deferred corpus reindex restoring ~20-25% cold/un-embedded rows — the hard precondition for benchmarking any recall candidate in packet 028's Memory MCP retrieval-intelligence work."
+title: "Feature Specification: Corpus Reindex - Gate-Zero for Recall Benchmarking"
+description: "Run the deferred corpus reindex restoring ~20-25% cold/un-embedded rows - the hard precondition for benchmarking any recall candidate in packet 028's Memory MCP retrieval-intelligence work."
 trigger_phrases:
   - "corpus reindex gate zero"
   - "deferred reindex embedding coverage"
@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/001-corpus-reindex-gate-zero"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Author corpus-reindex gate-zero impl sub-phase spec"
-    next_safe_action: "Run reindex + reconcile, then add C9-4 coverage guard at ablation-framework.ts:580"
+    recent_action: "Shipped C9-4 coverage guard, coverage already 100pct so reindex superseded"
+    next_safe_action: "None - coverage gate satisfied, proceed to benchmark tier"
     blockers: []
     key_files:
       - "spec.md"
@@ -26,11 +26,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-001-001-corpus-reindex"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
-# Feature Specification: Corpus Reindex — Gate-Zero for Recall Benchmarking
+# Feature Specification: Corpus Reindex - Gate-Zero for Recall Benchmarking
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
@@ -57,11 +57,11 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The Spec-Kit Memory MCP index is partly cold: a measurable fraction of indexed rows are un-enriched / un-embedded, and the FTS/vector consistency state is degraded. Until that coverage is restored, **no recall, calibration, or cold-tier number can be trusted** — a benchmark run against a quarter-dark index silently measures the wrong corpus and believes the result. The 028 retrieval-evaluation campaign (child `008-retrieval-evaluation`) named this **the hard precondition for every recall-affecting candidate**: "Reindex is gate-zero" (`synthesis/08-retrieval-evaluation-findings.md` §"How to read each entry"; "Honest caveats"). The eval harness itself only checks ground-truth ID parenthood/presence (`assertGroundTruthAlignment`, `ablation-framework.ts:314`), not embedding coverage — so it cannot today refuse to run against a cold index.
+The Spec-Kit Memory MCP index is partly cold: a measurable fraction of indexed rows are un-enriched / un-embedded, and the FTS/vector consistency state is degraded. Until that coverage is restored, **no recall, calibration, or cold-tier number can be trusted** - a benchmark run against a quarter-dark index silently measures the wrong corpus and believes the result. The 028 retrieval-evaluation campaign (child `008-retrieval-evaluation`) named this **the hard precondition for every recall-affecting candidate**: "Reindex is gate-zero" (`synthesis/08-retrieval-evaluation-findings.md` §"How to read each entry"; "Honest caveats"). The eval harness itself only checks ground-truth ID parenthood/presence (`assertGroundTruthAlignment`, `ablation-framework.ts:314`), not embedding coverage - so it cannot today refuse to run against a cold index.
 
 Live evidence of the cold state (captured `2026-06-19` via `memory_health`, full report):
 - **20,050 rows indexed**; `backgroundEnrichment.pendingByStatus`: `failed=1570, partial=21, pending=2441` → **4,032 rows still pending enrichment** (the health hint states it verbatim: "4032 rows still pending enrichment").
-- That is **≈20.1%** of the corpus un-enriched — in the neighborhood of the research's "~25% cold/un-embedded" figure (the roadmap/synthesis figure is structural inference; the live number is ~20%).
+- That is **≈20.1%** of the corpus un-enriched - in the neighborhood of the research's "~25% cold/un-embedded" figure (the roadmap/synthesis figure is structural inference; the live number is ~20%).
 - `consistency.status: "degraded"` with FTS/vector mismatched IDs; `index.summary: "degraded_needs_repair"`.
 
 ### Purpose
@@ -80,8 +80,8 @@ Run the deferred corpus reindex (force re-index + embedding reconcile) so the in
 - Add the C9-4 coverage guard: extend `assertGroundTruthAlignment` (or add a sibling `assertEmbeddingCoverage`) so the ablation runner throws-with-remediation when the golden set's embedding coverage is below threshold (drop-in at the existing call site `ablation-framework.ts:580-586`).
 
 ### Out of Scope
-- Implementing any downstream recall candidate (C2-C class-gating, the three new corpus metrics C9-1/C9-2/C9-3, isotonic calibration, cold-tier re-measurement) — each is its own sub-phase, all gated behind this one.
-- Building the eval-harness metric lanes themselves (child `008` Wave-1 spine `C9-1/C9-2/C9-3`) — gate-zero is their precondition, not their delivery.
+- Implementing any downstream recall candidate (C2-C class-gating, the three new corpus metrics C9-1/C9-2/C9-3, isotonic calibration, cold-tier re-measurement) - each is its own sub-phase, all gated behind this one.
+- Building the eval-harness metric lanes themselves (child `008` Wave-1 spine `C9-1/C9-2/C9-3`) - gate-zero is their precondition, not their delivery.
 - Changing retention/TTL physical deletion, schema migrations, or the embedding provider/model.
 - Touching the other three subsystems (code-graph, skill-advisor, deep-loop).
 
@@ -109,7 +109,7 @@ Run the deferred corpus reindex (force re-index + embedding reconcile) so the in
 | REQ-002 | Run the force reindex | `memory_index_scan({ force: true })` completes; the scan re-evaluates all rows ignoring content hash |
 | REQ-003 | Run the embedding reconcile | `memory_embedding_reconcile({ mode: 'apply' })` completes; vector-present pending/retry/failed rows flip to success, genuinely-missing-vector retention failures reset to retry-eligible |
 | REQ-004 | Coverage restored | Post-reindex `pendingByStatus.pending` ≈ 0 (within the un-recoverable provider-failure residual), `consistency.status` no longer `degraded` OR the residual is explained as genuinely un-embeddable rows |
-| REQ-005 | Report the before/after delta | A baseline-vs-after table records the coverage delta (per the regression-baseline-and-delta rule) — not just the after-state |
+| REQ-005 | Report the before/after delta | A baseline-vs-after table records the coverage delta (per the regression-baseline-and-delta rule) - not just the after-state |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -125,9 +125,9 @@ Run the deferred corpus reindex (force re-index + embedding reconcile) so the in
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: Embedding/enrichment coverage is whole — `pendingByStatus.pending` driven to ~0 and any residual `failed` rows are explained (genuine provider failures vs recoverable), recorded as a before/after delta against the captured baseline.
-- **SC-002**: The eval harness can no longer trust a recall number against a cold index — `assertEmbeddingCoverage` is wired at `ablation-framework.ts:580-586` and throws-with-remediation below threshold (verified by a unit/integration check or a deliberate low-coverage probe).
-- **SC-003**: Downstream recall candidates in `001-speckit-memory` are unblocked — a benchmark run against the golden set now passes the coverage guard and measures the full corpus.
+- **SC-001**: Embedding/enrichment coverage is whole - `pendingByStatus.pending` driven to ~0 and any residual `failed` rows are explained (genuine provider failures vs recoverable), recorded as a before/after delta against the captured baseline.
+- **SC-002**: The eval harness can no longer trust a recall number against a cold index - `assertEmbeddingCoverage` is wired at `ablation-framework.ts:580-586` and throws-with-remediation below threshold (verified by a unit/integration check or a deliberate low-coverage probe).
+- **SC-003**: Downstream recall candidates in `001-speckit-memory` are unblocked - a benchmark run against the golden set now passes the coverage guard and measures the full corpus.
 
 <!-- /ANCHOR:success-criteria -->
 ---
@@ -154,7 +154,7 @@ Run the deferred corpus reindex (force re-index + embedding reconcile) so the in
 - **NFR-P01**: The reindex should run as a background job (`background: true`) so it does not block the daemon's normal recall traffic; status polled rather than blocking.
 
 ### Reliability
-- **NFR-R01**: The reconcile runs `dry-run` first, `apply` only after the bucket preview is confirmed — fail-closed against accidental mass mutation.
+- **NFR-R01**: The reconcile runs `dry-run` first, `apply` only after the bucket preview is confirmed - fail-closed against accidental mass mutation.
 - **NFR-R02**: No physical row deletion occurs; the operation only enriches/re-embeds and flips status flags.
 
 ### Observability
@@ -167,13 +167,13 @@ Run the deferred corpus reindex (force re-index + embedding reconcile) so the in
 ## 8. EDGE CASES
 
 ### Data Boundaries
-- **Irreducible failures**: rows whose content genuinely cannot embed (malformed / provider-rejected) stay `failed` after reconcile — report the count, do not loop forever.
-- **Masked duplicates**: `memory_embedding_reconcile` reconciles masked-duplicate failed rows to success (never prunes) — expected, not an error.
+- **Irreducible failures**: rows whose content genuinely cannot embed (malformed / provider-rejected) stay `failed` after reconcile - report the count, do not loop forever.
+- **Masked duplicates**: `memory_embedding_reconcile` reconciles masked-duplicate failed rows to success (never prunes) - expected, not an error.
 - **Already-warm corpus**: if a prior session already reindexed, the force scan is near-idempotent (re-derives embeddings); the guard still verifies coverage.
 
 ### Error Scenarios
 - **Embedder down mid-scan**: `embeddingRetry.circuitBreakerOpen` / provider unhealthy → abort, surface the provider error, retry when healthy (do NOT claim coverage restored).
-- **Ground-truth misalignment after reindex**: `assertGroundTruthAlignment` throws with the `map-ground-truth-ids.ts --write` remediation — run it, then re-verify.
+- **Ground-truth misalignment after reindex**: `assertGroundTruthAlignment` throws with the `map-ground-truth-ids.ts --write` remediation - run it, then re-verify.
 - **Coverage still below threshold after reconcile**: the C9-4 guard correctly blocks downstream benchmarks; treat as gate-zero-not-met, not a guard bug.
 
 ### Concurrent Operations
@@ -198,7 +198,7 @@ Run the deferred corpus reindex (force re-index + embedding reconcile) so the in
 <!-- ANCHOR:questions -->
 ## 9. OPEN QUESTIONS
 
-- What exact embedding-coverage threshold should C9-4 enforce — 100% of golden-set parents, or golden-set coverage ≥ a fraction that tolerates the irreducible residual? **TENTATIVE: golden-set parent coverage = 100% (the golden set is small and curated); corpus-wide residual is reported but not gated.**
+- What exact embedding-coverage threshold should C9-4 enforce - 100% of golden-set parents, or golden-set coverage ≥ a fraction that tolerates the irreducible residual? **TENTATIVE: golden-set parent coverage = 100% (the golden set is small and curated); corpus-wide residual is reported but not gated.**
 - Is the post-reindex `failed` residual genuinely un-embeddable, or recoverable on a second reconcile pass? **RESOLVE AT IMPL: run reconcile twice, compare residual; report the floor.**
 
 <!-- /ANCHOR:questions -->

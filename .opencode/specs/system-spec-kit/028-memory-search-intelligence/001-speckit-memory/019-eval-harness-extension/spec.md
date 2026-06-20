@@ -29,7 +29,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-001-019-replan"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 43
     open_questions:
       - "Exact ECE bin count / Brier formulation for the CLASS-G panel?"
       - "Does the generalized ledger add candidate_class+metric-JSON columns, or a sibling table?"

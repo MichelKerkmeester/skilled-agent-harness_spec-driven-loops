@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/002-determinism-content-id-foundation"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored Level-3 spec for the determinism + content-id foundation impl sub-phase"
-    next_safe_action: "Author plan.md sequencing the PENDING residue against the shipped keystone"
+    recent_action: "Shipped 5 determinism candidates byte-identical, 4 gated residue"
+    next_safe_action: "Land fusion-bonus invariant test before configured-mode promotion"
     blockers: []
     key_files:
       - "spec.md"
@@ -29,7 +29,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-001-determinism-foundation"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 55
     open_questions:
       - "Does the live fusion-bonus unit test confirm the C-X1 'active' default is byte-identical to pre-change fusion (the still-open determinism gate)?"
       - "Is M-dual-class-identity / M-clock-skew-replay-window ever worth building, given the single-tenant refutation, or do they stay documented-NO-GO?"

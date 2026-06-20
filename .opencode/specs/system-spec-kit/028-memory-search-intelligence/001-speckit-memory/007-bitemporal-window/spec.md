@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/007-bitemporal-window"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Author bi-temporal-window impl-phase spec from 028/001 research"
-    next_safe_action: "Plan MEM-fact-invalidation-event-time spearhead (H/S reader-transparent)"
+    recent_action: "Implemented schema-migration foundation for the bi-temporal window"
+    next_safe_action: "Run final broad verification and strict phase validation"
     blockers: []
     key_files:
       - "spec.md"
@@ -27,7 +27,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-001-007-bitemporal-window"
       parent_session_id: null
-    completion_pct: 20
+    completion_pct: 85
     open_questions:
       - "Is the C3-B four-timestamp window additive against active_memory_projection (no migration spec exists to verify)?"
       - "Does lineage already carry valid_from/valid_to/ingested_at, missing only expired_at?"

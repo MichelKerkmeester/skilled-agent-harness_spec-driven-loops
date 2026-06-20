@@ -15,8 +15,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/007-outcome-weighted-ranking-followon"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Author outcome-weighted-ranking follow-on impl sub-phase from 028/003 research"
-    next_safe_action: "Plan Phase-0 success-emitter + skill-outcome store, then the ambient-tick cadence driver"
+    recent_action: "Built shadow-only modules, typecheck and scorer suite green"
+    next_safe_action: "Wire emitter seam and sibling 004 Beta primitive, then benchmark"
     blockers: []
     key_files:
       - "spec.md"
@@ -27,7 +27,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-003-007-outcome-weighted-ranking"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 85
     open_questions: []
     answered_questions: []
 ---

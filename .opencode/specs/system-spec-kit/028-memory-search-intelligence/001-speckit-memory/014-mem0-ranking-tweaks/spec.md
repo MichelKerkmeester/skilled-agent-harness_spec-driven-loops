@@ -14,7 +14,7 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/014-mem0-ranking-tweaks"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored Level-2 docs for Mem0 ranking bundle"
+    recent_action: "Shipped 4 candidates always-on + 2 default-off, closed 8 NO-TRANSFER"
     next_safe_action: "Run gate-zero corpus reindex"
     blockers: []
     key_files:
@@ -28,7 +28,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-001-014-mem0-ranking-tweaks"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 30
     open_questions: []
     answered_questions: []
 ---

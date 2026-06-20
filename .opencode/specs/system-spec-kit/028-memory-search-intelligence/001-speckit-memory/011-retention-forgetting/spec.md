@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/011-retention-forgetting"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Author retention/forgetting impl sub-phase from 028/001 research"
-    next_safe_action: "Implement T101 spare-only forget eligibility (EXTENDABLE_TIERS fix)"
+    recent_action: "Implemented retention spare-only eligibility + incoming-edge allowlist"
+    next_safe_action: "Run strict validation, then continue semantic edge layer"
     blockers: []
     key_files:
       - "spec.md"
@@ -26,7 +26,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-001-011-retention-forgetting"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 45
     open_questions: []
     answered_questions: []
 ---
