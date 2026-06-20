@@ -493,8 +493,15 @@ describe('Phase 4 adaptive ranking shadow proposals', () => {
     ]);
 
     expect(proposal?.rows.map((row) => row.memoryId)).toEqual([1, 2, 3]);
-    expect(proposal?.rows[0]?.shadowScore).toBeCloseTo(0.663333333333, 12);
-    expect(proposal?.rows[0]?.scoreDelta).toBeCloseTo(-0.036666666667, 12);
+    // Memory 1 is a reliable procedure (4 successes, 0 failures). Its reliability
+    // delta is now prior-centered and positive (+0.0124 pre-clamp), reinforcing the
+    // generic outcome lane in the same direction; the combined raw delta saturates the
+    // bounded ±0.08 band. Memory 2 is an unreliable procedure (4 failures) whose
+    // centered reliability delta is symmetrically negative, and memory 3 is declarative
+    // so the reliability lane never touches it. The flag now promotes the reliable
+    // procedure instead of de-rating it.
+    expect(proposal?.rows[0]?.shadowScore).toBeCloseTo(0.78, 12);
+    expect(proposal?.rows[0]?.scoreDelta).toBeCloseTo(0.08, 12);
     expect(proposal?.rows[1]?.shadowScore).toBeCloseTo(0.62, 12);
     expect(proposal?.rows[1]?.scoreDelta).toBeCloseTo(-0.08, 12);
     expect(proposal?.rows[2]?.shadowScore).toBeCloseTo(0.62, 12);

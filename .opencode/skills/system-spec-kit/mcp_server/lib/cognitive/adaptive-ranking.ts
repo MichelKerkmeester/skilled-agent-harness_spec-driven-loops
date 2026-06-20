@@ -6,7 +6,8 @@
 // signal aggregation, threshold tuning, and promotion gates.
 import type Database from 'better-sqlite3';
 import {
-  computeProceduralReliabilityMultiplier,
+  computeCenteredReliabilityEvidence,
+  type CenteredReliabilityEvidence,
 } from '../scoring/bayesian-scorer.js';
 import { isProceduralReliabilityRecallEnabled } from '../search/search-flags.js';
 
@@ -92,6 +93,13 @@ const ADAPTIVE_SIGNAL_WEIGHTS: Record<AdaptiveSignalType, number> = {
   outcome: 0.02,
   correction: -0.03,
 };
+/**
+ * Scalar that converts a prior-centered reliability signal into a score delta.
+ * Defaulted to the bounded-delta budget so a fully-confident, fully-reliable
+ * procedure can claim the whole adaptive band; the ±maxAdaptiveDelta clamp still
+ * caps the blast radius regardless of how this scalar is tuned.
+ */
+const RELIABILITY_STRENGTH = MAX_ADAPTIVE_DELTA;
 const DEFAULT_ADAPTIVE_THRESHOLDS: AdaptiveThresholdSnapshot = {
   maxAdaptiveDelta: MAX_ADAPTIVE_DELTA,
   minSignalsForPromotion: MIN_SIGNALS_FOR_PROMOTION,
@@ -730,10 +738,10 @@ function getSignalDeltas(database: Database.Database, memoryIds: readonly number
   return deltaMap;
 }
 
-function getProceduralReliabilityMultipliers(
+function getProceduralReliabilityEvidence(
   database: Database.Database,
   results: Array<Record<string, unknown> & { id: number }>,
-): Map<number, number> {
+): Map<number, CenteredReliabilityEvidence> {
   if (!isProceduralReliabilityRecallEnabled()) return new Map();
 
   const proceduralIds = results
@@ -753,16 +761,28 @@ function getProceduralReliabilityMultipliers(
   `).all(...proceduralIds) as ProceduralReliabilityRow[];
 
   const evidenceByMemory = new Map(rows.map((row) => [row.memory_id, row]));
-  const multiplierMap = new Map<number, number>();
+  const reliabilityMap = new Map<number, CenteredReliabilityEvidence>();
   for (const memoryId of proceduralIds) {
     const evidence = evidenceByMemory.get(memoryId);
-    multiplierMap.set(memoryId, computeProceduralReliabilityMultiplier({
+    reliabilityMap.set(memoryId, computeCenteredReliabilityEvidence({
       successes: evidence?.successes ?? 0,
       failures: evidence?.failures ?? 0,
     }));
   }
 
-  return multiplierMap;
+  return reliabilityMap;
+}
+
+/**
+ * Translate a procedure's reliability evidence into a bounded, signed score delta.
+ *
+ * The delta is centered on the prior mean and scaled by the evidence weight, so a
+ * procedure that beats its prior is promoted, one that lags is demoted, and a
+ * prior-equal or evidence-free procedure stays neutral. The returned value is the
+ * pre-clamp contribution; the ±maxAdaptiveDelta clamp at the call site bounds it.
+ */
+function computeReliabilityDelta(evidence: CenteredReliabilityEvidence, score: number): number {
+  return RELIABILITY_STRENGTH * evidence.centered * evidence.evidenceWeight * score;
 }
 
 /**
@@ -782,7 +802,7 @@ export function buildAdaptiveShadowProposal(
   if (mode === 'disabled' || results.length === 0) return null;
   const thresholds = getAdaptiveThresholdConfig(database);
   const signalDeltaMap = getSignalDeltas(database, results.map((row) => row.id));
-  const reliabilityMultiplierMap = getProceduralReliabilityMultipliers(database, results);
+  const reliabilityEvidenceMap = getProceduralReliabilityEvidence(database, results);
 
   const production = results.map((row, index) => ({
     ...row,
@@ -796,10 +816,10 @@ export function buildAdaptiveShadowProposal(
   }));
 
   const shadow = production.map((row) => {
-    const reliabilityMultiplier = reliabilityMultiplierMap.get(row.id);
-    const reliabilityDelta = reliabilityMultiplier === undefined
+    const reliabilityEvidence = reliabilityEvidenceMap.get(row.id);
+    const reliabilityDelta = reliabilityEvidence === undefined
       ? 0
-      : (row.score * reliabilityMultiplier) - row.score;
+      : computeReliabilityDelta(reliabilityEvidence, row.score);
     const rawDelta = (signalDeltaMap.get(row.id) ?? 0) + reliabilityDelta;
     const delta = Math.max(-thresholds.maxAdaptiveDelta, Math.min(thresholds.maxAdaptiveDelta, rawDelta));
     return {
