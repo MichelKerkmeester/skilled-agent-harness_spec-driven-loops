@@ -124,7 +124,7 @@ Generated from `lib/search/search-flags.ts`. "Default state" is the shipped beha
 <!-- PHASE-010-ENV-SLOT: SPECKIT_RERANK_USE_SHARED_RERANK / SPECKIT_EMBEDDING_CACHE_* flags inserted here (027/010) -->
 <!-- PHASE-011-ENV-SLOT: SPECKIT_CODE_GRAPH_EXEMPLARS_* / SPECKIT_CONTEXT_CURATOR_* flags inserted here (027/011) -->
 
-Total unique variables documented: 252, counted as unique backticked names in first table columns (legacy HYDRA aliases removed; dual-stack CLI front-door variables included — see the "CLI front door" section). Recount with that method when adding rows; multi-variable cells count once per cell here.
+Total unique variables documented: 261, counted as unique backticked names in first table columns (legacy HYDRA aliases removed; dual-stack CLI front-door variables included — see the "CLI front door" section). Recount with that method when adding rows; multi-variable cells count once per cell here.
 
 ### Provisional Measurement Contract
 
@@ -219,6 +219,8 @@ the publication guard helpers used by the evaluation dashboard.
 | `SPECKIT_TOKEN_BUDGET` | `2000` | number (positive int) | Effective token budget for hybrid-search result truncation. Non-numeric or non-positive values fall back to the default. | `lib/search/hybrid-search.ts` |
 | `SPECKIT_TRM` | `true` | boolean | Transparent Reasoning Module: evidence-gap detection. Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_ADAPTIVE_FUSION` | `true` | boolean | Intent-aware adaptive fusion with document-type weight shifting. Graduated ON. | `shared/algorithms/adaptive-fusion.ts` |
+| `SPECKIT_DETERMINISTIC_MULTIHOP` | `false` | boolean | 028 built-but-held, default-off track B. Parses explicit sibling and cross-reference folder slugs out of the top recalled docs, resolves each 1:1 to a unique spec folder and appends that folder's spec.md to the result tail with no LLM and no re-embedding. The append is tail-only and never evicts a baseline hit, so flag-off is byte-identical. Held off because the prod default route truncates to a 3-result floor, so a tail-additive append never reaches the prod reader. Set `true` to enable. | `lib/search/deterministic-multihop.ts`, `lib/search/search-flags.ts` |
+| `SPECKIT_LANE_CHAMPION_BACKFILL` | `false` | boolean | 028 built-but-held, default-off track B. After fusion, appends each base lane's top candidate (vector, fts, bm25, trigger) that missed the fused top-K into empty tail slots, reusing the already-populated per-lane arrays with no new query. The append is tail-only and never evicts a baseline hit, so flag-off is byte-identical. Held off for the same prod-truncation reason as the multi-hop append. Set `true` to enable. | `lib/search/lane-champion-backfill.ts`, `lib/search/search-flags.ts` |
 
 ---
 
@@ -233,6 +235,9 @@ the publication guard helpers used by the evaluation dashboard.
 | `SPECKIT_SESSION_BOOST` | `true` | boolean | Session attention boost for search result re-ranking. Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_CAUSAL_BOOST` | `true` | boolean | Causal graph traversal boost for search result amplification. Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_CALIBRATED_OVERLAP_BONUS` | `true` | boolean | Calibrated overlap bonus for multi-channel convergence (REQ-D1-001). Graduated ON. | `lib/search/search-flags.ts` |
+| `SPECKIT_CONFIDENCE_CALIBRATION` | `true` | boolean | 028 keep-on, unqualified win. Maps per-result confidence through a fitted isotonic model so `confidence.value` approximates P(relevant), held-out ECE 0.184 to 0.023 across all folds after the label-decoupling fix removed the earlier overfit. A model applies only when this is ON and a readable model resolves, else it degrades to identity. Set `false` to disable. | `lib/search/search-flags.ts` |
+| `SPECKIT_CONFIDENCE_CALIBRATION_MODEL` | (committed default model) | string | Filesystem path to a fitted isotonic CalibrationModel JSON. UNSET uses the committed default model at `lib/eval/data/confidence-calibration-model.json` so default-on calibration runs without extra config. An explicitly EMPTY value disables calibration. An unreadable or invalid path degrades to uncalibrated identity. | `lib/search/search-flags.ts` |
+| `SPECKIT_ABSOLUTE_RELEVANCE_CALIBRATION` | `true` | boolean | Calibrate confidence and result-set digests on an absolute cosine relevance signal instead of the RRF fusion score, so good results stop reading as weak. Ordering is unaffected, only the calibration and display scale change. Pre-028 switch kept on as the calibration pair partner. Set `false` to disable. | `lib/search/search-flags.ts` |
 | `SPECKIT_NEGATIVE_FEEDBACK` | `true` | boolean | Negative-feedback confidence demotion in ranking (T002b/A4). Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_TEMPORAL_CONTIGUITY` | `true` | boolean | Temporal contiguity boost on raw Stage 1 vector results. Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_RECENCY_FUSION_WEIGHT` | `0.07` | number | Weight of recency signal in Stage 2 fusion scoring. | `lib/search/pipeline/stage2-fusion.ts` |
@@ -294,7 +299,8 @@ the publication guard helpers used by the evaluation dashboard.
 | `SPECKIT_COMMUNITY_SEARCH_FALLBACK` | `true` | boolean | Community-level search as fallback channel (Phase B T018). Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_DUAL_RETRIEVAL` | `true` | boolean | Dual-level retrieval mode: `local` (entity), `global` (community), `auto` (local + fallback) (Phase B T019). Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_DEGREE_BOOST` | `true` | boolean | Causal-edge degree-based re-ranking. Graduated ON. | `lib/search/search-flags.ts` |
-| `SPECKIT_TEMPORAL_EDGES` | `true` | boolean | Temporal validity tracking for causal edges (Phase D T036). Graduated ON. | `lib/search/search-flags.ts` |
+| `SPECKIT_TEMPORAL_EDGES` | `true` | boolean | Temporal validity tracking for causal edges (Phase D T036). Graduated ON. 028 keep-on as a defensive guard, not a recall feature: its graph-additive reorder in `applyGraphAdditiveRecall` protects the prod top-3 from graph-channel displacement, while its +0.083 edge-hop recall is an eval-mode artifact the 3-result prod truncation floor cuts to a 0.000 delta. | `lib/search/search-flags.ts`, `lib/search/graph-additive-recall.ts` |
+| `SPECKIT_DERIVED_ID_PROVENANCE` | `true` | boolean | 028 keep-on, unqualified win. Content-addressed identity for generated causal edges, proved correct 4 of 4 (stability 50/50, replay 3/3, dedup discrimination 50/50, 0 collisions), so write-time derived_id persistence runs by default. Set `false` to disable derived_id persistence. | `lib/search/search-flags.ts` |
 | `SPECKIT_TYPED_TRAVERSAL` | `true` | boolean | Sparse-first + intent-aware typed traversal (D3 Phase A). Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_ENTITY_LINKING` | `true` | boolean | Cross-document entity linking (S5). Requires AUTO_ENTITIES. Graduated ON. | `lib/search/search-flags.ts`, `lib/search/graph-lifecycle.ts` |
 | `SPECKIT_ENTITY_LINKING_MAX_DENSITY` | `1.0` | number | Density guard threshold: skip entity linking when projected graph density exceeds this value. | `lib/search/entity-linker.ts` |
@@ -351,6 +357,8 @@ Code-graph P1 config defaults with env-var overrides.  Numeric values are parsed
 | `SPECKIT_ASSISTIVE_RECONSOLIDATION` | `true` | boolean | Assistive reconsolidation for near-duplicate detection (REQ-D4-005). Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_CONSOLIDATION` | `true` | boolean | Consolidation engine: contradiction scan, Hebbian strengthening, staleness detection (N3-lite). Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_MEMORY_SUMMARIES` | `true` | boolean | TF-IDF extractive summary generation as search channel (R8). Graduated ON. | `lib/search/search-flags.ts` |
+| `SPECKIT_RETENTION_FORGETTING_V1` | `true` | boolean | 028 keep-on as a no-harm safety guardrail, not a precision win. The conservative spare-only retention axes and live incoming-edge protection spare keep-set rows the OFF path would delete with dropRecall delta 0. The keep and drop labels are circular (derived from the reducer's own thresholds), so it earns the keep as a guardrail. Set `false` to disable. | `lib/search/search-flags.ts` |
+| `SPECKIT_WORLD_SUMMARY_PRELUDE` | `true` | boolean | 028 keep-on as a no-displacement grounding aid, not a ranking win. The coarse-to-fine world-summary prelude for memory_context appends its grounding instead of prepending it, recovering recall targets with 0 regressions because it never displaces a baseline row. The gain is partly a self-recall plus an append-by-construction artifact. Set `false` to disable. | `lib/search/search-flags.ts` |
 | `SPECKIT_PRESSURE_POLICY` | `true` | boolean | Token-pressure policy for memory_context responses. Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_AUTO_RESUME` | `true` | boolean | Automatic session resume context injection for memory_context. Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_MEMORY_ADAPTIVE_MODE` | `shadow` | string | Adaptive ranking mode: `shadow` (evaluation-only, do not apply) or `promoted` (apply to ranking). | `lib/cognitive/adaptive-ranking.ts` |
@@ -365,6 +373,7 @@ Code-graph P1 config defaults with env-var overrides.  Numeric values are parsed
 |----------|---------|------|-------------|--------|
 | `SPECKIT_IMPLICIT_FEEDBACK_LOG` | `true` | boolean | Implicit feedback event ledger for `search_shown`, `result_cited`, `query_reformulated`, `same_topic_requery`, and `follow_on_tool_use`. Event logging only, with no ranking side effects (REQ-D4-001). Graduated ON. | `lib/feedback/feedback-ledger.ts` |
 | `SPECKIT_SHADOW_FEEDBACK` | `true` | boolean | Shadow scoring with holdout evaluation: compares would-have-changed vs live rankings (REQ-D4-006). Graduated ON. | `lib/feedback/shadow-scoring.ts` |
+| `SPECKIT_TRUE_CITATION_EMITTER` | `false` | boolean | 028 built-but-held, default-off track B. Mines the post-hoc transcript for the memory_ids the assistant actually referenced after a search and writes used/not-used pairs to a separate shadow ledger, the source of shown-but-unused negatives the hollow `result_cited` signal lacks. Held off because it adds a transcript-mining write path that must earn ledger density before any future reranker consumes it. Set `true` to enable. | `lib/feedback/true-citation-emitter.ts`, `lib/search/search-flags.ts` |
 | `SPECKIT_SHADOW_LEARNING` | `false` | boolean | Shadow learned model loading for Stage 2 weight combiner. Opt-in: set `true` to enable. | `lib/search/pipeline/stage2-fusion.ts` |
 | `SPECKIT_LEARNED_STAGE2_COMBINER` | `true` | boolean | Learned Stage 2 weight combiner in shadow mode (REQ-D1-006). Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_LEARNED_STAGE2_MODEL` | (auto) | string | Custom file path for the learned Stage 2 model. Absolute or relative to cwd. | `lib/search/pipeline/stage2-fusion.ts` |

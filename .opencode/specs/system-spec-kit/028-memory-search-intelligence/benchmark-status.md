@@ -176,6 +176,15 @@ effect, and deleted the structural keep-offs, the ledger-gated flags, the consum
 family rather than leaving them dormant. `SPECKIT_ABSOLUTE_RELEVANCE_CALIBRATION` is a pre-028 default-on
 switch and is unaffected, kept on as the calibration pair partner.
 
+### Temporal edges sign-off
+
+SPECKIT_TEMPORAL_EDGES is signed off as a defensive guard with no measured prod-K recall benefit on the
+eval-v2 classes (0 of 21 queries put a graph-only candidate in the top-3, so the reorder never fires there),
+kept only for its load-bearing displacement protection on the edge-hop golden set (3 of 12, 0 regressions).
+The guard is regression-pinned by `mcp_server/tests/temporal-edges-displacement-protection.vitest.ts`, which
+fails closed if the graph-additive reorder ever stops quarantining a graph-only candidate that would
+otherwise evict a higher-scored lexical hit from the truncated top-3.
+
 ### Follow-ups
 
 1. Add a coupling guard on the kept calibration pair so `absolute_relevance_calibration=false` with
