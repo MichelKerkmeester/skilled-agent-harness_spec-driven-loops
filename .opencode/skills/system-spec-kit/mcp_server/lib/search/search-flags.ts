@@ -458,6 +458,22 @@ export function isImplicitFeedbackLogEnabled(): boolean {
 }
 
 /**
+ * True-citation emitter (Stage 1 of the outcome signal).
+ *
+ * Opt-in (default OFF). The existing result_cited signal is hollow: it fires
+ * for every shown result on includeContent searches, so cited == shown and the
+ * corpus has zero shown-but-unused negatives. This emitter mines the post-hoc
+ * transcript for the memory_ids the assistant ACTUALLY referenced after a
+ * search, then writes used/not-used pairs to a separate shadow ledger — which
+ * is where the negative examples come from. Kept opt-in because it adds a new
+ * write path mining the transcript; it must earn density before any reranker
+ * (a future packet) consumes it. Set SPECKIT_TRUE_CITATION_EMITTER=true to enable.
+ */
+export function isTrueCitationEmitterEnabled(): boolean {
+  return isOptInEnabled('SPECKIT_TRUE_CITATION_EMITTER');
+}
+
+/**
  * Hybrid decay policy — type-aware no-decay for permanent artifacts.
  * Default: TRUE (graduated). Set SPECKIT_HYBRID_DECAY_POLICY=false to disable.
  * When enabled: decision/constitutional/critical context types receive Infinity
@@ -868,4 +884,36 @@ export function isDualRetrievalEnabled(): boolean {
  */
 export function isIntentAutoProfileEnabled(): boolean {
   return isFeatureEnabled('SPECKIT_INTENT_AUTO_PROFILE');
+}
+
+/* ───────────────────────────────────────────────────────────────
+   15. ADDITIVE TAIL-LANE RECALL FLAGS (opt-in)
+──────────────────────────────────────────────────────────────── */
+
+/**
+ * Deterministic multi-hop recall: parse explicit sibling/cross-reference folder
+ * slugs out of the top recalled docs' content, resolve each 1:1 to a unique spec
+ * folder, and append that folder's spec.md to the result tail. No LLM and no
+ * re-embedding — it only follows pointers the docs already wrote. Default: FALSE
+ * (opt-in): appending new candidates changes the result set, so it must earn
+ * promotion on an off-vs-on benchmark before running by default. The append is
+ * tail-only and never evicts a baseline hit, so flag-off is byte-identical. Set
+ * SPECKIT_DETERMINISTIC_MULTIHOP=true to enable.
+ */
+export function isDeterministicMultihopEnabled(): boolean {
+  return isOptInEnabled('SPECKIT_DETERMINISTIC_MULTIHOP');
+}
+
+/**
+ * Lane champion backfill: after fusion, append each base lane's top candidate
+ * (vector / fts / bm25 / trigger) that did not make the fused top-K into empty
+ * tail slots, so a single lane's strongest belief still reaches the user. Reuses
+ * the already-populated per-lane arrays — no new query or re-scoring. Default:
+ * FALSE (opt-in): it adds tail candidates, so it must earn promotion on an
+ * off-vs-on benchmark first. The append is tail-only and never evicts a baseline
+ * hit, so flag-off is byte-identical. Set SPECKIT_LANE_CHAMPION_BACKFILL=true to
+ * enable.
+ */
+export function isLaneChampionBackfillEnabled(): boolean {
+  return isOptInEnabled('SPECKIT_LANE_CHAMPION_BACKFILL');
 }

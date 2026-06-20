@@ -18,6 +18,8 @@ import {
 } from './bm25-index.js';
 import { enforceChannelRepresentation } from './channel-enforcement.js';
 import { applyGraphAdditiveRecall } from './graph-additive-recall.js';
+import { applyDeterministicMultihop } from './deterministic-multihop.js';
+import { applyLaneChampionBackfill } from './lane-champion-backfill.js';
 import {
   DEFAULT_MIN_RESULTS,
   GAP_THRESHOLD_MULTIPLIER,
@@ -56,7 +58,9 @@ import {
   isContextHeadersEnabled,
   isCosineTopnReorderEnabled,
   isDegreeBoostEnabled,
+  isDeterministicMultihopEnabled,
   isDocscoreAggregationEnabled,
+  isLaneChampionBackfillEnabled,
   isMMREnabled,
   isSearchFallbackEnabled,
   isTemporalEdgesEnabled,
@@ -255,6 +259,10 @@ interface Sprint3PipelineMeta {
   enforcement?: { applied: boolean; promotedCount: number; underRepresentedChannels: string[] };
   /** Graph additive recall result (SPECKIT_TEMPORAL_EDGES). */
   graphAdditive?: { applied: boolean; reservedCount: number; baselineCount: number };
+  /** Deterministic multi-hop tail append (SPECKIT_DETERMINISTIC_MULTIHOP). */
+  multihop?: { applied: boolean; slugsParsed: number; slugsResolved: number; appendedCount: number };
+  /** Lane champion backfill tail append (SPECKIT_LANE_CHAMPION_BACKFILL). */
+  laneChampionBackfill?: { applied: boolean; appendedCount: number; perLane: Record<string, number> };
   /** Confidence truncation result (SPECKIT_CONFIDENCE_TRUNCATION). */
   truncation?: {
     truncated: boolean;
@@ -1833,6 +1841,63 @@ async function enrichFusedResults(
   } catch (err: unknown) {
     // Non-critical — additive reorder failure does not block pipeline
     console.warn('[hybrid-search] graph additive recall failed:', err instanceof Error ? err.message : String(err));
+  }
+
+  // -- Stage C3: Deterministic Multi-Hop Recall (SPECKIT_DETERMINISTIC_MULTIHOP) --
+  // Follow the explicit folder-slug cross-references the top recalled docs wrote
+  // in their own content, resolve each 1:1 to a unique spec folder, and append
+  // that folder's spec.md to the tail. No LLM, no re-embedding. The append is
+  // tail-only and deduped against the protected window, so a hop-2 doc can never
+  // evict a baseline hit. When the flag is off this is a no-op and the fused
+  // ordering is preserved byte-for-byte.
+  try {
+    const multihopResult = applyDeterministicMultihop(
+      fusedHybridResults,
+      isDeterministicMultihopEnabled(),
+      db,
+      { specFolder: options.specFolder },
+    );
+    fusedHybridResults = multihopResult.results;
+    if (multihopResult.multihop.applied) {
+      s3meta.multihop = {
+        applied: true,
+        slugsParsed: multihopResult.multihop.slugsParsed,
+        slugsResolved: multihopResult.multihop.slugsResolved,
+        appendedCount: multihopResult.multihop.appendedCount,
+      };
+    }
+  } catch (err: unknown) {
+    // Non-critical — multihop append failure does not block pipeline
+    console.warn('[hybrid-search] deterministic multihop failed:', err instanceof Error ? err.message : String(err));
+  }
+
+  // -- Stage C4: Lane Champion Backfill (SPECKIT_LANE_CHAMPION_BACKFILL) --
+  // Append each base lane's top candidate that did not make the fused top-K into
+  // empty tail slots, so a single lane's strongest belief still reaches the user.
+  // Reuses the per-lane arrays already collected in `lists` (vector / fts / bm25 /
+  // trigger) — no new query or re-scoring. The append is tail-only and deduped,
+  // so a champion can never evict a baseline hit. Flag-off is byte-identical.
+  try {
+    const BASE_LANES = new Set(['vector', 'fts', 'bm25', 'trigger']);
+    const laneCandidates = lists
+      .filter((list) => BASE_LANES.has(list.source))
+      .map((list) => ({ lane: list.source, results: list.results }));
+    const backfillResult = applyLaneChampionBackfill(
+      fusedHybridResults,
+      laneCandidates,
+      isLaneChampionBackfillEnabled(),
+    );
+    fusedHybridResults = backfillResult.results;
+    if (backfillResult.backfill.applied) {
+      s3meta.laneChampionBackfill = {
+        applied: true,
+        appendedCount: backfillResult.backfill.appendedCount,
+        perLane: backfillResult.backfill.perLane,
+      };
+    }
+  } catch (err: unknown) {
+    // Non-critical — lane champion backfill failure does not block pipeline
+    console.warn('[hybrid-search] lane champion backfill failed:', err instanceof Error ? err.message : String(err));
   }
 
   // Preserve non-enumerable eval metadata across later array reallocations.

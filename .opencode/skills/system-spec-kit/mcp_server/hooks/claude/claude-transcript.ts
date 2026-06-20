@@ -265,6 +265,110 @@ export async function parseTranscriptTurns(
   }
 }
 
+/** An assistant turn's plain text plus the time it was emitted. */
+export interface AssistantTextTurn {
+  text: string;
+  timestamp: number;
+}
+
+/**
+ * Flatten a transcript message's `content` (string or Anthropic content-block
+ * array) into plain text. Only text blocks contribute; tool_use/tool_result and
+ * other block kinds are ignored because the true-citation signal is about what
+ * the assistant WROTE, not what tools returned.
+ */
+function flattenAssistantContent(content: unknown): string {
+  if (typeof content === 'string') {
+    return content;
+  }
+  if (Array.isArray(content)) {
+    const parts: string[] = [];
+    for (const block of content) {
+      if (typeof block === 'string') {
+        parts.push(block);
+        continue;
+      }
+      if (block && typeof block === 'object') {
+        const candidate = block as { type?: unknown; text?: unknown };
+        if (candidate.type === 'text' && typeof candidate.text === 'string') {
+          parts.push(candidate.text);
+        }
+      }
+    }
+    return parts.join('\n');
+  }
+  return '';
+}
+
+/**
+ * Resolve a per-turn timestamp from a transcript line. Real Claude transcripts
+ * carry an ISO `timestamp` on each row; the fallback keeps mining usable on
+ * minimal fixtures by treating ordering as monotonic when no timestamp exists.
+ */
+function resolveTurnTimestamp(parsed: TranscriptLine, fallback: number): number {
+  const raw = parsed.timestamp;
+  if (typeof raw === 'number' && Number.isFinite(raw)) {
+    return raw;
+  }
+  if (typeof raw === 'string') {
+    const ms = Date.parse(raw);
+    if (!Number.isNaN(ms)) {
+      return ms;
+    }
+  }
+  return fallback;
+}
+
+/**
+ * Extract assistant turns as plain text (with timestamps) from a transcript.
+ *
+ * Used by the true-citation emitter to discover which surfaced memory_ids the
+ * assistant actually referenced after a search. Read-only and best-effort:
+ * malformed lines are skipped and any I/O error yields an empty list rather
+ * than throwing, so a session-stop hook is never broken by transcript mining.
+ *
+ * The synthetic-fallback timestamp advances by line index so that, on fixtures
+ * with no per-row timestamp, later turns still sort after earlier ones — which
+ * is what the post-search reference window relies on.
+ */
+export async function parseAssistantTextTurns(
+  filePath: string,
+): Promise<AssistantTextTurn[]> {
+  const turns: AssistantTextTurn[] = [];
+
+  try {
+    const stream = createReadStream(filePath, { encoding: 'utf-8' });
+    const lineReader = createInterface({ input: stream, crlfDelay: Infinity });
+
+    let lineIndex = 0;
+    for await (const line of lineReader) {
+      lineIndex += 1;
+      if (!line.trim()) {
+        continue;
+      }
+      try {
+        const parsed = JSON.parse(line) as TranscriptLine;
+        const msg: TranscriptMessage = parsed.message ?? {};
+        if ((msg.role ?? 'assistant') !== 'assistant') {
+          continue;
+        }
+        const text = flattenAssistantContent(msg.content).trim();
+        if (!text) {
+          continue;
+        }
+        turns.push({ text, timestamp: resolveTurnTimestamp(parsed, lineIndex) });
+      } catch {
+        // Skip malformed JSON lines.
+      }
+    }
+
+    return turns;
+  } catch (err: unknown) {
+    hookLog('warn', 'transcript', `Failed to parse assistant text turns: ${err instanceof Error ? err.message : String(err)}`);
+    return turns;
+  }
+}
+
 /** Estimate cost in USD based on model and token counts */
 export function estimateCost(usage: TranscriptUsage): number {
   const model = (usage.model ?? '').toLowerCase();
