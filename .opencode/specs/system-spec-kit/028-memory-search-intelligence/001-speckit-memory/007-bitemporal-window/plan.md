@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Bi-temporal Window for Spec-Kit Memory Causal + Lineage"
-description: "Ship the reader-transparent event-time fact-invalidation spearhead first, then the additive four-timestamp window (C3-B) on causal + lineage, chronology-scoped supersession (GR-temporal-ordering-invalidation), and the C3-D separation-of-concerns note — referencing the already-shipped skip-closed-in-sweep guard."
+description: "Ship the reader-transparent event-time fact-invalidation spearhead first, then the additive four-timestamp window (C3-B) on causal + lineage, chronology-scoped supersession (GR-temporal-ordering-invalidation), and the C3-D separation-of-concerns note - referencing the already-shipped skip-closed-in-sweep guard."
 trigger_phrases:
   - "bitemporal window memory plan"
   - "event-time invalidation plan"
@@ -43,11 +43,11 @@ _memory:
 |--------|-------|
 | **Language/Stack** | TypeScript (Node, better-sqlite3) |
 | **Framework** | Spec-Kit Memory MCP server (`.opencode/skills/system-spec-kit/mcp_server/`) |
-| **Storage** | SQLite — `causal_edges` table + lineage store; `active_memory_projection` is the live current-store |
+| **Storage** | SQLite - `causal_edges` table + lineage store, `active_memory_projection` is the live current-store |
 | **Testing** | Vitest (focused causal/temporal suites alongside each change) |
 
 ### Overview
-Ship four candidates against the causal + lineage temporal substrate, plus reference one already-shipped guard. The spearhead (`MEM-fact-invalidation-event-time`) is a single-site, reader-transparent writer change at `invalidateEdge()`. The four-timestamp window (C3-B) is the additive schema substrate the rest sits on; chronology-scoped supersession (`GR-temporal-ordering-invalidation`) and the C3-D separation note follow. Lineage is the canonical event-time writer; causal `invalid_at` is a derived projection; retention TTL is excluded.
+Ship four candidates against the causal + lineage temporal substrate, plus reference one already-shipped guard. The spearhead (`MEM-fact-invalidation-event-time`) is a single-site, reader-transparent writer change at `invalidateEdge()`. The four-timestamp window (C3-B) is the additive schema substrate the rest sits on, chronology-scoped supersession (`GR-temporal-ordering-invalidation`) and the C3-D separation note follow. Lineage is the canonical event-time writer, causal `invalid_at` is a derived projection, retention TTL is excluded.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -62,10 +62,10 @@ Ship four candidates against the causal + lineage temporal substrate, plus refer
 
 ### Definition of Done
 - [ ] Spearhead: event-time close written, readers unchanged (grep proof), fail-open preserved
-- [ ] C3-B: four columns declared once, existing readers byte-identical, additivity confirmed
+- [x] C3-B: four columns (`valid_from`/`valid_to`/`ingested_at`/`expired_at`) declared in v38 migration, existing readers byte-identical (still filter `invalid_at IS NULL`), UP/BACKFILL/DOWN + idempotency tests pass
 - [ ] `GR-temporal-ordering`: scoped to conflicting pairs, co-valid non-conflicting test green
-- [ ] C3-D note recorded; skip-closed verified intact
-- [ ] Typecheck + focused tests green; `validate.sh --strict` passes
+- [ ] C3-D note recorded, skip-closed verified intact
+- [ ] Typecheck + focused tests green, `validate.sh --strict` passes
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -74,13 +74,13 @@ Ship four candidates against the causal + lineage temporal substrate, plus refer
 ## 3. ARCHITECTURE
 
 ### Pattern
-Additive substrate evolution behind a reader-transparent writer change — no read-path rewrite for the spearhead; schema columns added once and consumed lazily.
+Additive substrate evolution behind a reader-transparent writer change - no read-path rewrite for the spearhead, schema columns added once and consumed lazily.
 
 ### Key Components
-- **`invalidateEdge()`** (`lib/graph/temporal-edges.ts:68-101`): the spearhead site — derive the close timestamp from lineage event-time instead of `new Date().toISOString()`.
+- **`invalidateEdge()`** (`lib/graph/temporal-edges.ts:68-101`): the spearhead site - derive the close timestamp from lineage event-time instead of `new Date().toISOString()`.
 - **Schema declaration** (`lib/search/vector-index-schema.ts:184-185`): the single point where the four-timestamp window is declared, reconciling causal-edge and lineage column shapes (unify, do not fork).
 - **`contradiction-detection.ts`** (`:75-77,99-110`): the conflicting-pair detector that `GR-temporal-ordering-invalidation` extends with chronology.
-- **`active_memory_projection`**: the live current-memory read store (the real "current" store; C3-C "Current"-replaces-projection is out of scope, L effort).
+- **`active_memory_projection`**: the live current-memory read store (the real "current" store, C3-C "Current"-replaces-projection is out of scope, L effort).
 
 ### Data Flow
 A new fact supersedes an old causal edge → lineage records its event-time → `invalidateEdge()` stamps the old edge's close column with that lineage event-time (not `now()`) → readers filter `invalid_at IS NULL` unchanged → "as of date X" lineage queries read correct belief-state. Chronology invalidation, when two conflicting same-pair edges exist, closes the earlier `valid_at` by the same writer path.
@@ -98,14 +98,14 @@ The spearhead touches a persistence + temporal-semantics boundary (schema column
 | `invalidateEdge()` (`temporal-edges.ts:68-101`) | Writer: stamps `invalid_at = now()` | Update: stamp lineage event-time, fall back to `now()` | Unit test on close column value + fallback |
 | `getValidEdgesForNode` (`temporal-edges.ts:108-138`) | Reader: `WHERE ... invalid_at IS NULL` | Unchanged (reader-transparent) | grep proof: still `IS NULL`, no `< now()` |
 | `contradiction-detection.ts:75-77,99-110` | Reader + auto-invalidation on conflicting pairs | Update: add chronology scoped to conflicting pairs | Test: earlier-valid_at closed, co-valid untouched |
-| `frontmatter-promoter.ts` `openEdgeClause` | Cleanup: `AND invalid_at IS NULL` (SHIPPED) | Unchanged; verify intact | Closed-edge fixture not re-touched |
-| `vector-index-schema.ts:184-185` | Schema: single `valid_at`/`invalid_at` pair | Update: declare four-timestamp window additively | Existing readers byte-identical; additivity confirmed |
+| `frontmatter-promoter.ts` `openEdgeClause` | Cleanup: `AND invalid_at IS NULL` (SHIPPED) | Unchanged, verify intact | Closed-edge fixture not re-touched |
+| `vector-index-schema.ts:184-185` | Schema: single `valid_at`/`invalid_at` pair | Update: declare four-timestamp window additively | Existing readers byte-identical, additivity confirmed |
 | `active_memory_projection` consumers | Live current store | Not a consumer this phase (C3-C deferred) | Confirm no projection reshape needed for spearhead |
 
 Required inventories:
 - Same-class producers: `rg -n 'invalid_at = |invalidateEdge|new Date\(\).toISOString' lib/graph lib/causal`.
 - Consumers of changed symbols: `rg -n 'invalid_at|valid_at|valid_from|valid_to|ingested_at|expired_at' . --glob '*.ts' --glob '*.md'`.
-- Algorithm invariant: a current-edge read must remain `invalid_at IS NULL` only; closing an edge must write the correct event-time exactly once and be a no-op if already closed.
+- Algorithm invariant: a current-edge read must remain `invalid_at IS NULL` only, closing an edge must write the correct event-time exactly once and be a no-op if already closed.
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -119,15 +119,15 @@ Required inventories:
 - [ ] Confirm whether lineage already carries `valid_from`/`valid_to`/`ingested_at` (only `expired_at` missing per research)
 
 ### Phase 2: Core Implementation
-- [ ] Spearhead `MEM-fact-invalidation-event-time`: derive close timestamp from lineage event-time at `invalidateEdge()`; fail-open to `now()`
-- [ ] C3-B: declare four-timestamp window additively in the schema; keep existing readers byte-identical
+- [ ] Spearhead `MEM-fact-invalidation-event-time`: derive close timestamp from lineage event-time at `invalidateEdge()`, fail-open to `now()`
+- [x] C3-B: four-timestamp window declared additively in v38 schema, existing readers kept byte-identical (legacy `valid_at`/`invalid_at` preserved)
 - [ ] `GR-temporal-ordering-invalidation`: chronology-driven auto-invalidation scoped to conflicting/superseding pairs
-- [ ] C3-D: record the tombstone-sweep vs temporal-close separation note; verify skip-closed guard intact
+- [ ] C3-D: record the tombstone-sweep vs temporal-close separation note, verify skip-closed guard intact
 
 ### Phase 3: Verification
-- [ ] Event-time close + fallback test; reader-transparency grep
-- [ ] Four-timestamp additivity test; chronology scope test (co-valid untouched)
-- [ ] Typecheck + focused suite green; `validate.sh --strict` on this folder
+- [ ] Event-time close + fallback test, reader-transparency grep
+- [ ] Four-timestamp additivity test, chronology scope test (co-valid untouched)
+- [ ] Typecheck + focused suite green, `validate.sh --strict` on this folder
 <!-- /ANCHOR:phases -->
 
 ---
@@ -151,10 +151,10 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| C3-B four-timestamp window | Internal | Yellow (additivity unverified) | Gates C3-A live retirement (later phase) + Code-Graph Q1-C1 column shape (sibling); spearhead independent |
+| C3-B four-timestamp window | Internal | Yellow (additivity unverified) | Gates C3-A live retirement (later phase) + Code-Graph Q1-C1 column shape (sibling), spearhead independent |
 | lineage canonical event-time writer | Internal | Green (decision recorded) | Spearhead sources the wrong time if not lineage |
-| `SPECKIT_TEMPLATE_EDGES` flag | Internal | Green (already ON) | None — spearhead does not depend on a flip |
-| skip-closed-in-sweep | Internal | Green (SHIPPED `e1c6a3c793`) | Defensive hardening only; not a gate |
+| `SPECKIT_TEMPLATE_EDGES` flag | Internal | Green (already ON) | None - spearhead does not depend on a flip |
+| skip-closed-in-sweep | Internal | Green (SHIPPED `e1c6a3c793`) | Defensive hardening only, not a gate |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -163,7 +163,7 @@ Required inventories:
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: reader-transparency breaks, a focused test regresses, or the C3-B migration proves non-additive against `active_memory_projection`.
-- **Procedure**: revert the per-candidate scoped commit (each candidate is an independent, reversible hunk); the spearhead and C3-B land as separate commits so either reverts alone. Additive columns are forward-compatible (left in place, unread) if only the writer change is reverted.
+- **Procedure**: revert the per-candidate scoped commit (each candidate is an independent, reversible hunk), the spearhead and C3-B land as separate commits so either reverts alone. Additive columns are forward-compatible (left in place, unread) if only the writer change is reverted.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -220,7 +220,7 @@ Phase 1 (Setup) ──► Phase 2 (Core) ──► Phase 3 (Verify)
 
 ### Data Reversal
 - **Has data migrations?** Yes (C3-B additive columns).
-- **Reversal procedure**: additive columns are nullable and unread until a consumer opts in; no down-migration needed unless a consumer began writing them.
+- **Reversal procedure**: additive columns are nullable and unread until a consumer opts in, no down-migration needed unless a consumer began writing them.
 <!-- /ANCHOR:enhanced-rollback -->
 
 ---
@@ -255,10 +255,10 @@ Phase 1 (Setup) ──► Phase 2 (Core) ──► Phase 3 (Verify)
 <!-- ANCHOR:critical-path -->
 ## L3: CRITICAL PATH
 
-1. **Phase 1 Setup** — 1-2 hours — CRITICAL
-2. **Core: spearhead** — 2-3 hours — CRITICAL (the H/S correctness win)
-3. **Core: C3-B window** — 4-6 hours — CRITICAL (substrate for the rest)
-4. **Verification** — 2-3 hours — CRITICAL
+1. **Phase 1 Setup** - 1-2 hours - CRITICAL
+2. **Core: spearhead** - 2-3 hours - CRITICAL (the H/S correctness win)
+3. **Core: C3-B window** - 4-6 hours - CRITICAL (substrate for the rest)
+4. **Verification** - 2-3 hours - CRITICAL
 
 **Total Critical Path**: ~9-14 hours
 
@@ -275,8 +275,8 @@ Phase 1 (Setup) ──► Phase 2 (Core) ──► Phase 3 (Verify)
 | Milestone | Description | Success Criteria | Target |
 |-----------|-------------|------------------|--------|
 | M1 | Spearhead shipped | Event-time close + fail-open + reader-transparency grep | Phase 2 |
-| M2 | C3-B window additive | Four columns declared; existing readers byte-identical | Phase 2 |
-| M3 | Chronology supersession scoped | Conflicting-pair invalidation; co-valid untouched | Phase 2 |
+| M2 | C3-B window additive | Four columns declared, existing readers byte-identical | Phase 2 |
+| M3 | Chronology supersession scoped | Conflicting-pair invalidation, co-valid untouched | Phase 2 |
 | M4 | Phase verified | Typecheck + focused suite + `validate.sh --strict` green | Phase 3 |
 <!-- /ANCHOR:milestones -->
 
@@ -284,4 +284,4 @@ Phase 1 (Setup) ──► Phase 2 (Core) ──► Phase 3 (Verify)
 
 ## L3: ARCHITECTURE DECISION RECORD
 
-See `decision-record.md` for the full ADRs. Headlines: (ADR-001) lineage is the canonical event-time writer, causal `invalid_at` is a derived projection; (ADR-002) retention TTL is EXCLUDED from the bi-temporal consumer set; (ADR-003) tombstone-sweep and temporal-close are separate concerns (C3-D), and skip-closed ships as defensive hardening, not a data-loss gate.
+See `decision-record.md` for the full ADRs. Headlines: (ADR-001) lineage is the canonical event-time writer, causal `invalid_at` is a derived projection, (ADR-002) retention TTL is EXCLUDED from the bi-temporal consumer set, (ADR-003) tombstone-sweep and temporal-close are separate concerns (C3-D), and skip-closed ships as defensive hardening, not a data-loss gate.

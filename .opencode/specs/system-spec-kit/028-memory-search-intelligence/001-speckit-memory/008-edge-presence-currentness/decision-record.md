@@ -46,18 +46,18 @@ _memory:
 |-------|-------|
 | **Status** | Accepted |
 | **Date** | 2026-06-19 |
-| **Deciders** | Re-plan author; grounded in 028 BROADENING addendum |
+| **Deciders** | Re-plan author, grounded in 028 BROADENING addendum |
 
 ---
 
 <!-- ANCHOR:adr-001-context -->
 ### Context
 
-Pass-1 ranked C3-A as Ship-First #3, a "clean reversible flag flip" to make edge-presence currentness live. The 028 broadening pass refuted that: `SPECKIT_TEMPORAL_EDGES` is **already ON** (`ENV_REFERENCE.md:296`, `search-flags.ts:706`). The bi-temporal substrate (`temporal-edges.ts`, `contradiction-detection.ts:75-77, 99-110`) compiles but is read-unwired; making "currentness = edge presence" the live retirement path needs a read-side filter plus store reconciliation.
+Pass-1 ranked C3-A as Ship-First #3, a "clean reversible flag flip" to make edge-presence currentness live. The 028 broadening pass refuted that: `SPECKIT_TEMPORAL_EDGES` is **already ON** (`ENV_REFERENCE.md:296`, `search-flags.ts:706`). The bi-temporal substrate (`temporal-edges.ts`, `contradiction-detection.ts:75-77, 99-110`) now carries the read-side wiring: the read-side filter plus store reconciliation shipped at cb92f2f211.
 
 ### Constraints
 
-- No flag flip is available; the flag is already on.
+- No flag flip is available, the flag is already on.
 - The lineage canonical writer and the causal-edge `invalid_at` projection must not fork into a third source of truth (`vector-index-schema.ts:184-185`).
 - A superseded fact must be closed (History-readable), never physically destroyed.
 <!-- /ANCHOR:adr-001-context -->
@@ -67,9 +67,9 @@ Pass-1 ranked C3-A as Ship-First #3, a "clean reversible flag flip" to make edge
 <!-- ANCHOR:adr-001-decision -->
 ### Decision
 
-**We chose**: Implement C3-A as a read-side `getValidEdges` filter (`AND invalid_at IS NULL`) on the recall path plus a lineage↔causal-edge store reconciliation, classed as a BUILD (medium, med-high risk), not a promote.
+**We chose**: Implement C3-A as a read-side `getValidEdges` filter (`AND invalid_at IS NULL`) on the recall path plus a lineage↔causal-edge store reconciliation, a BUILD (medium, med-high risk). Shipped at cb92f2f211 with a 241-line passing test.
 
-**How it works**: Recall derives currentness from edge presence on the read side; the reconciliation keeps lineage canonical and the causal `invalid_at` projection derived, so there is exactly one supersede writer.
+**How it works**: Recall derives currentness from edge presence on the read side, the reconciliation keeps lineage canonical and the causal `invalid_at` projection derived, so there is exactly one supersede writer.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -79,11 +79,11 @@ Pass-1 ranked C3-A as Ship-First #3, a "clean reversible flag flip" to make edge
 
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
-| **Read-side build + store reconciliation** | Honest; makes currentness actually live | Med-high effort; live retirement-path change | 10/10 |
-| Flip `SPECKIT_TEMPORAL_EDGES` and trust the substrate | Cheap on paper | Flag is already ON; nothing flips; currentness stays read-unwired | 1/10 |
-| Forget physical-deletion + retire via retention TTL | Familiar | Category-opposite of edge-presence currentness; destroys history | 2/10 |
+| **Read-side build + store reconciliation** | Honest, makes currentness actually live | Med-high effort, live retirement-path change | 10/10 |
+| Flip `SPECKIT_TEMPORAL_EDGES` and trust the substrate | Cheap on paper | Flag is already ON, nothing flips, currentness stays read-unwired | 1/10 |
+| Forget physical-deletion + retire via retention TTL | Familiar | Category-opposite of edge-presence currentness, destroys history | 2/10 |
 
-**Why this one**: The broadening pass proved the flip is fictional; the read-side build is the only path that delivers the capability.
+**Why this one**: The broadening pass proved the flip is fictional, the read-side build is the only path that delivers the capability.
 <!-- /ANCHOR:adr-001-alternatives -->
 
 ---
@@ -113,7 +113,7 @@ Pass-1 ranked C3-A as Ship-First #3, a "clean reversible flag flip" to make edge
 
 | # | Check | Result | Evidence |
 |---|-------|--------|----------|
-| 1 | **Necessary?** | PASS | The substrate is unwired; currentness is not live today |
+| 1 | **Necessary?** | PASS | The substrate is unwired, currentness is not live today |
 | 2 | **Beyond Local Maxima?** | PASS | Flip and retention-TTL options rejected with evidence |
 | 3 | **Sufficient?** | PASS | Read-side filter + reconciliation deliver the capability |
 | 4 | **Fits Goal?** | PASS | Goal is live edge-presence currentness |
@@ -131,7 +131,7 @@ Pass-1 ranked C3-A as Ship-First #3, a "clean reversible flag flip" to make edge
 - Read-side `getValidEdges` currentness filter on the recall path.
 - Lineage↔causal-edge store reconciliation (lineage canonical).
 
-**How to roll back**: Revert the read-side filter; unwind the reconciliation hunk separately.
+**How to roll back**: Revert the read-side filter, unwind the reconciliation hunk separately.
 <!-- /ANCHOR:adr-001-impl -->
 <!-- /ANCHOR:adr-001 -->
 
@@ -146,7 +146,7 @@ Pass-1 ranked C3-A as Ship-First #3, a "clean reversible flag flip" to make edge
 |-------|-------|
 | **Status** | Accepted |
 | **Date** | 2026-06-19 |
-| **Deciders** | Re-plan author; grounded in 028 027-REVISIT edit #4 |
+| **Deciders** | Re-plan author, grounded in 028 027-REVISIT edit #4 |
 
 ---
 
@@ -166,9 +166,9 @@ TemporalMode (Current / AsOf / AsKnownAt / History) needs a "Current" provider. 
 <!-- ANCHOR:adr-002-decision -->
 ### Decision
 
-**We chose**: Default C3-C "Current" to read alongside `active_memory_projection` (M), not to replace it (L); gate AsKnownAt on C3-B; ship Current/AsOf/History first.
+**We chose**: Default C3-C "Current" to read alongside `active_memory_projection` (M), not to replace it (L), gate AsKnownAt on C3-B, ship Current/AsOf/History first.
 
-**How it works**: Current preserves the existing projection read; AsOf/History select the closed-window edge set by `invalid_at`; AsKnownAt returns a typed gated-capability error until C3-B's transaction-time columns exist.
+**How it works**: Current preserves the existing projection read, AsOf/History select the closed-window edge set by `invalid_at`, AsKnownAt returns a typed gated-capability error until C3-B's transaction-time columns exist.
 <!-- /ANCHOR:adr-002-decision -->
 
 ---
@@ -178,8 +178,8 @@ TemporalMode (Current / AsOf / AsKnownAt / History) needs a "Current" provider. 
 
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
-| **Current alongside the projection (M)** | Byte-identical default; lower blast radius | Two read stores coexist | 10/10 |
-| Current replaces the projection with edge-presence reads (L) | Single source of truth | ~12 JOIN sites / 2 writers; high blast radius | 4/10 |
+| **Current alongside the projection (M)** | Byte-identical default, lower blast radius | Two read stores coexist | 10/10 |
+| Current replaces the projection with edge-presence reads (L) | Single source of truth | ~12 JOIN sites / 2 writers, high blast radius | 4/10 |
 | Ship AsKnownAt before C3-B | Feature-complete sooner | Silently-wrong transaction-time answers | 1/10 |
 
 **Why this one**: Lowest-blast default that still surfaces the temporal-mode capability.
@@ -194,7 +194,7 @@ TemporalMode (Current / AsOf / AsKnownAt / History) needs a "Current" provider. 
 - TemporalMode ships at M effort with byte-identical Current behavior.
 
 **What it costs**:
-- AsKnownAt is gated until C3-B. Mitigation: typed gated-capability error; ship the other three modes now.
+- AsKnownAt is gated until C3-B. Mitigation: typed gated-capability error, ship the other three modes now.
 
 **Risks**:
 
@@ -213,7 +213,7 @@ TemporalMode (Current / AsOf / AsKnownAt / History) needs a "Current" provider. 
 |---|-------|--------|----------|
 | 1 | **Necessary?** | PASS | Temporal recall has no UX today |
 | 2 | **Beyond Local Maxima?** | PASS | Replace-projection and ship-AsKnownAt-early options rejected |
-| 3 | **Sufficient?** | PASS | Three modes ship; AsKnownAt gated cleanly |
+| 3 | **Sufficient?** | PASS | Three modes ship, AsKnownAt gated cleanly |
 | 4 | **Fits Goal?** | PASS | Goal is temporal-mode recall without recall regression |
 | 5 | **Open Horizons?** | PASS | Projection migration stays an open, separable decision |
 
@@ -226,10 +226,10 @@ TemporalMode (Current / AsOf / AsKnownAt / History) needs a "Current" provider. 
 ### Implementation
 
 **What changes**:
-- `TemporalMode` enum + `current-support` provider; Current via `active_memory_projection`.
+- `TemporalMode` enum + `current-support` provider, Current via `active_memory_projection`.
 - AsKnownAt gated on C3-B (typed error pre-migration).
 
-**How to roll back**: Remove the `TemporalMode` enum and provider; recall falls back to Current-only.
+**How to roll back**: Remove the `TemporalMode` enum and provider, recall falls back to Current-only.
 <!-- /ANCHOR:adr-002-impl -->
 <!-- /ANCHOR:adr-002 -->
 
@@ -244,14 +244,14 @@ TemporalMode (Current / AsOf / AsKnownAt / History) needs a "Current" provider. 
 |-------|-------|
 | **Status** | Accepted |
 | **Date** | 2026-06-19 |
-| **Deciders** | Re-plan author; grounded in 028 MEMORY-SYSTEMS addendum |
+| **Deciders** | Re-plan author, grounded in 028 MEMORY-SYSTEMS addendum |
 
 ---
 
 <!-- ANCHOR:adr-003-context -->
 ### Context
 
-The Memory MCP has no query-time temporal parsing — recency is only a decay/boost weight, and records carry timestamps that are never searched by an extracted range (007 iter-013, iter-008:16). The Cognee `temporal_retriever` pattern extracts a structured `QueryInterval` from the NL query, filters events by range, then vector-ranks. The candidate carries a "CG-" prefix but is Memory-home (NO-TRANSFER cross-cut — not Code Graph / Deep Loop).
+The Memory MCP has no query-time temporal parsing - recency is only a decay/boost weight, and records carry timestamps that are never searched by an extracted range (007 iter-013, iter-008:16). The Cognee `temporal_retriever` pattern extracts a structured `QueryInterval` from the NL query, filters events by range, then vector-ranks. The candidate carries a "CG-" prefix but is Memory-home (NO-TRANSFER cross-cut - not Code Graph / Deep Loop).
 
 ### Constraints
 
@@ -265,9 +265,9 @@ The Memory MCP has no query-time temporal parsing — recency is only a decay/bo
 <!-- ANCHOR:adr-003-decision -->
 ### Decision
 
-**We chose**: Build the extractor as an additive pre-rank filter with a strict bounds-detection gate and a fallthrough to the existing search when no bounds are found; treat the go decision as benchmark-gated for range-filter precision.
+**We chose**: Build the extractor as an additive pre-rank filter with a strict bounds-detection gate and a fallthrough to the existing search when no bounds are found, treat the go decision as benchmark-gated for range-filter precision.
 
-**How it works**: When the parser finds explicit bounds, events are filtered by the `QueryInterval` before vector ranking; otherwise the path is byte-identical to baseline.
+**How it works**: When the parser finds explicit bounds, events are filtered by the `QueryInterval` before vector ranking, otherwise the path is byte-identical to baseline.
 <!-- /ANCHOR:adr-003-decision -->
 
 ---
@@ -327,7 +327,7 @@ The Memory MCP has no query-time temporal parsing — recency is only a decay/bo
 **What changes**:
 - A query-time `QueryInterval` parser + event range-filter + non-temporal fallthrough.
 
-**How to roll back**: Remove the parser and filter; recall is byte-identical to baseline.
+**How to roll back**: Remove the parser and filter, recall is byte-identical to baseline.
 <!-- /ANCHOR:adr-003-impl -->
 <!-- /ANCHOR:adr-003 -->
 
@@ -342,7 +342,7 @@ The Memory MCP has no query-time temporal parsing — recency is only a decay/bo
 |-------|-------|
 | **Status** | Accepted |
 | **Date** | 2026-06-19 |
-| **Deciders** | Re-plan author; grounded in 001 iter-012 / iter-016 |
+| **Deciders** | Re-plan author, grounded in 001 iter-012 / iter-016 |
 
 ---
 
@@ -364,7 +364,7 @@ M-unforget-channel-disjointness extends the C3-D 2-channel revision base to a 4-
 
 **We chose**: Keep the candidate PENDING (defer) within this phase: author the 4-channel invariant + a property test against the channels that exist, but do not claim R5 complete until both halves are present.
 
-**How it works**: The status-ownership write-refusal guard and the disjointness property test land against the existing channels; the full bare-key `unforget(id)` safety is gated on the erasure/unforget pair.
+**How it works**: The status-ownership write-refusal guard and the disjointness property test land against the existing channels, the full bare-key `unforget(id)` safety is gated on the erasure/unforget pair.
 <!-- /ANCHOR:adr-004-decision -->
 
 ---
@@ -374,7 +374,7 @@ M-unforget-channel-disjointness extends the C3-D 2-channel revision base to a 4-
 
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
-| **Defer with a partial invariant + property test** | Honest; banks the testable half | Full unforget safety waits | 10/10 |
+| **Defer with a partial invariant + property test** | Honest, banks the testable half | Full unforget safety waits | 10/10 |
 | Build the full 4-channel unforget now | Feature-complete | Unprovable while erasure/unforget half is absent | 2/10 |
 | Drop the candidate entirely | No work | Loses the disjointness reasoning the matrix needs | 3/10 |
 
@@ -390,7 +390,7 @@ M-unforget-channel-disjointness extends the C3-D 2-channel revision base to a 4-
 - The revision matrix has a documented 4-channel disjointness target and a property test.
 
 **What it costs**:
-- Full `unforget(id)` bare-key safety is not delivered this phase. Mitigation: gate it on the erasure packet; keep C3-D a decision note.
+- Full `unforget(id)` bare-key safety is not delivered this phase. Mitigation: gate it on the erasure packet, keep C3-D a decision note.
 
 **Risks**:
 
@@ -424,6 +424,6 @@ M-unforget-channel-disjointness extends the C3-D 2-channel revision base to a 4-
 **What changes**:
 - A 4-channel disjointness invariant + status-ownership guard + property test against existing channels (PENDING for full bare-key safety).
 
-**How to roll back**: Remove the guard; the revision matrix reverts to the 2-channel base.
+**How to roll back**: Remove the guard, the revision matrix reverts to the 2-channel base.
 <!-- /ANCHOR:adr-004-impl -->
 <!-- /ANCHOR:adr-004 -->

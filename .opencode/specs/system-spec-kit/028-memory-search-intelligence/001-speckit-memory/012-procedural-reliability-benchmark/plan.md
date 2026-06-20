@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Procedural Reliability Memory (benchmark-first, PROXY-ONLY)"
-description: "Sequencing and shared-infra dependencies for the Memory MCP procedural-reliability cluster. Plan only — the whole unit is benchmark-gated and PENDING. The critical path is: build the outcome/usefulness emitter, build the shared f64 Beta primitive + procedural adapter, run ONE benefit micro-benchmark, and only then promote reliability-recall; bad-pattern (schema migration), skill-induction (write-side risk), and version-reset (already-exists residual) follow with their own gates."
+description: "Sequencing and shared-infra dependencies for the Memory MCP procedural-reliability cluster. Plan only - the whole unit is benchmark-gated and PENDING. The critical path is: build the outcome/usefulness emitter, build the shared f64 Beta primitive + procedural adapter, run ONE benefit micro-benchmark, and only then promote reliability-recall, bad-pattern (schema migration), skill-induction (write-side risk), and version-reset (already-exists residual) follow with their own gates."
 trigger_phrases:
   - "procedural reliability plan"
   - "outcome emitter prerequisite"
@@ -39,10 +39,10 @@ _memory:
 | **Language/Stack** | TypeScript (Node), Spec-Kit Memory MCP server |
 | **Subsystem** | `system-spec-kit/mcp_server/` (ranking, reconsolidation, causal-edges, adaptive signals) |
 | **Storage** | SQLite (`memory_index`, `causal_edges`, `adaptive_signal_events`) + vector index |
-| **Verification** | Vitest unit suites + `validate.sh --strict`; a net-new benefit micro-benchmark is the promotion gate |
+| **Verification** | Vitest unit suites + `validate.sh --strict`, a net-new benefit micro-benchmark is the promotion gate |
 
 ### Overview
-This plan does NOT authorize implementation — the entire procedural-reliability cluster is **benchmark-first and PENDING** (`research/iterations/iteration-021.md:14`). It records the *order* a future implementer must follow so no candidate is shipped as a free byproduct. The spine is: **(A)** build the missing outcome/usefulness emitter (the recall→task-success `'outcome'` signal that is barely emitted today), **(B)** build the shared bounded-Beta f64 primitive + a procedural adapter (the live integer scorer throws on fractional inputs), **(C)** run ONE benefit micro-benchmark to decide whether reliability-weighting out-earns the existing `access`/confirmation signals, and only **(D)** promote M-procedural-reliability-recall. The other three candidates each carry an independent gate: bad-pattern needs a `HAS_FAILURE` schema migration (or a `'deprecated'`/`contradicts` precedent + a full retrieval-filter-site audit), skill-induction is the heaviest BUILD with write-side corpus risk, and version-reset's mechanism already ships — only the reliability-reset-to-zero residual is net-new.
+This plan does NOT authorize implementation - the entire procedural-reliability cluster is **benchmark-first and PENDING** (`research/iterations/iteration-021.md:14`). It records the *order* a future implementer must follow so no candidate is shipped as a free byproduct. The spine is: **(A)** build the missing outcome/usefulness emitter (the recall→task-success `'outcome'` signal that is barely emitted today), **(B)** build the shared bounded-Beta f64 primitive + a procedural adapter (the live integer scorer throws on fractional inputs), **(C)** run ONE benefit micro-benchmark to decide whether reliability-weighting out-earns the existing `access`/confirmation signals, and only **(D)** promote M-procedural-reliability-recall. The other three candidates each carry an independent gate: bad-pattern needs a `HAS_FAILURE` schema migration (or a `'deprecated'`/`contradicts` precedent + a full retrieval-filter-site audit), skill-induction is the heaviest BUILD with write-side corpus risk, and version-reset's mechanism already ships - only the reliability-reset-to-zero residual is net-new.
 
 <!-- /ANCHOR:summary -->
 
@@ -56,12 +56,12 @@ This plan does NOT authorize implementation — the entire procedural-reliabilit
 - [x] Each candidate carries a frozen research verdict + file:line citation
 - [x] Shared-infra prerequisites identified (outcome emitter, f64 Beta primitive)
 - [x] The micro-benchmark is named as the promotion gate
-- [ ] An outcome/usefulness emitter exists (REQ-001) — NOT YET; blocks all builds
+- [ ] An outcome/usefulness emitter exists (REQ-001) - NOT YET, blocks all builds
 
 ### Definition of Done (for a FUTURE implementation packet, not this re-plan)
 - [ ] Outcome emitter emits `'outcome'` at >2 attributed call sites
 - [ ] Shared f64 Beta primitive + procedural adapter unit-tested (cold-start 0.5, count-floor)
-- [ ] Benefit micro-benchmark run; result decides reliability-recall promotion
+- [ ] Benefit micro-benchmark run, result decides reliability-recall promotion
 - [ ] Per-candidate gates resolved or candidate kept PENDING with recorded reason
 - [ ] `validate.sh --strict` green on this folder
 
@@ -73,13 +73,13 @@ This plan does NOT authorize implementation — the entire procedural-reliabilit
 ## 3. ARCHITECTURE
 
 ### Pattern
-GRAFT onto the existing chunk-save / reconsolidation-on-save hook + `adaptive_signal_events` — **do NOT adopt an episode model** [CONFIRMED: `research/iterations/iteration-018.md:16`]. Internal Memory is doc/chunk-granular; aionforge's immutable-episode capture↔consolidation split has no substrate here.
+GRAFT onto the existing chunk-save / reconsolidation-on-save hook + `adaptive_signal_events` - **do NOT adopt an episode model** [CONFIRMED: `research/iterations/iteration-018.md:16`]. Internal Memory is doc/chunk-granular, aionforge's immutable-episode capture↔consolidation split has no substrate here.
 
 ### Key Components
 - **Outcome emitter** (`lib/feedback/feedback-ledger.ts` → `recordAdaptiveSignal('outcome', …)`): the missing recall→task-success signal source. Shared prerequisite for reliability-recall and the version-reset residual.
-- **Bounded-Beta f64 primitive** (`lib/scoring/bayesian-scorer.ts` new export): `(α₀+s)/(α₀+β₀+s+f)`, cold-start `0.5`, count-floor; a procedural adapter consumes it as a recall multiplier. Shared with Advisor C4 (build once, wire twice — `01-go-candidates.md:65`).
+- **Bounded-Beta f64 primitive** (`lib/scoring/bayesian-scorer.ts` new export): `(α₀+s)/(α₀+β₀+s+f)`, cold-start `0.5`, count-floor, a procedural adapter consumes it as a recall multiplier. Shared with Advisor C4 (build once, wire twice - `01-go-candidates.md:65`).
 - **Reliability fold** (`lib/ranking/adaptive-ranking.ts:346`): multiplies the procedural match score by the Beta-posterior mean once `'outcome'` data accrues.
-- **Negative-memory tier / `HAS_FAILURE` edge** (`lib/storage/causal-edges.ts:21-28` + `lib/search/vector-index-schema.ts:1113-1115`): bad-pattern's host; needs a table-rebuild migration OR the `'deprecated'` tier + `contradicts` 0.8 dampener precedent.
+- **Negative-memory tier / `HAS_FAILURE` edge** (`lib/storage/causal-edges.ts:21-28` + `lib/search/vector-index-schema.ts:1113-1115`): bad-pattern's host, needs a table-rebuild migration OR the `'deprecated'` tier + `contradicts` 0.8 dampener precedent.
 - **Induction pass** (`lib/reconsolidation.ts:38,202-210`): a new reconsolidation action + a non-existent repetition counter + an induction-precision gate.
 
 ### Data Flow
@@ -109,7 +109,7 @@ recall hit / task signal → feedback-ledger → recordAdaptiveSignal('outcome',
 | `lib/feedback/feedback-ledger.ts` | reliability-recall, version-reset | net-new emitter | Shared prereq (REQ-001) |
 | `lib/scoring/bayesian-scorer.ts` | reliability-recall (+ Advisor C4) | additive f64 export | Integer scorer throws on fractional inputs |
 | `lib/ranking/adaptive-ranking.ts:346` | reliability-recall | rank-fold | No-op until `'outcome'` data accrues |
-| `lib/storage/causal-edges.ts:21-28`; `lib/search/vector-index-schema.ts:1113-1115,1781-1783` | bad-pattern | schema migration | `HAS_FAILURE` rejected at 2 layers |
+| `lib/storage/causal-edges.ts:21-28`, `lib/search/vector-index-schema.ts:1113-1115,1781-1783` | bad-pattern | schema migration | `HAS_FAILURE` rejected at 2 layers |
 | `lib/reconsolidation.ts:38,202-210,527-533` | skill-induction, bad-pattern | new action + counter | Write-side corpus risk |
 | benchmark harness (net-new) | reliability-recall | add-only | Promotion gate (REQ-002) |
 
@@ -120,11 +120,11 @@ recall hit / task signal → feedback-ledger → recordAdaptiveSignal('outcome',
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-> These phases are for a FUTURE implementation packet. This re-plan ships none of them.
+> Safe-core phases shipped default-off at 8f8776e329 (outcome emitter, f64 Beta primitive, procedural-reliability recall fold), candidate promotion stays benchmark-gated.
 
 ### Phase A: Outcome/usefulness emitter (shared prerequisite)
 - [ ] Confirm `feedback-ledger.ts` `FeedbackEventType` can be the canonical `'outcome'` source (or add a call site)
-- [ ] Emit `'outcome'` with skill/memory attribution at >2 sites; verify it lands in `adaptive_signal_events`
+- [ ] Emit `'outcome'` with skill/memory attribution at >2 sites, verify it lands in `adaptive_signal_events`
 
 ### Phase B: Shared bounded-Beta primitive + procedural adapter
 - [ ] Add f64 `(α₀+s)/(α₀+β₀+s+f)` export with cold-start `0.5` + count-floor (NOT the integer scorer)
@@ -132,7 +132,7 @@ recall hit / task signal → feedback-ledger → recordAdaptiveSignal('outcome',
 
 ### Phase C: Benefit micro-benchmark (promotion gate)
 - [ ] Design the benchmark: reliability-weighting vs `access`/confirmation on accrued/synthetic outcomes
-- [ ] Run it; record the delta; decide reliability-recall promotion (non-result keeps it PENDING)
+- [ ] Run it, record the delta, decide reliability-recall promotion (non-result keeps it PENDING)
 
 ### Phase D: M-procedural-reliability-recall fold
 - [ ] Fold the Beta-posterior mean into `adaptive-ranking.ts:346` (only if Phase C earns it)
@@ -141,11 +141,11 @@ recall hit / task signal → feedback-ledger → recordAdaptiveSignal('outcome',
 - [ ] Decide: `HAS_FAILURE` table-rebuild migration vs `'deprecated'`/`contradicts` precedent
 - [ ] If precedent path: audit ALL retrieval-filter sites so anti-patterns never resurface as positive guidance
 
-### Phase F: M-skill-induction-repetition (heaviest; last)
+### Phase F: M-skill-induction-repetition (heaviest, last)
 - [ ] New reconsolidation action + repetition counter + induction-precision gate (verbatim, content-addressed, off-by-default, no auto-promotion across trust boundary)
 
 ### Phase G: M-procedural-version-reset residual
-- [ ] Confirm append-only deprecate-never-delete already covers versioning; add only the explicit reliability-reset-to-zero on a contract-surface change (rides Phase A's counter)
+- [ ] Confirm append-only deprecate-never-delete already covers versioning, add only the explicit reliability-reset-to-zero on a contract-surface change (rides Phase A's counter)
 
 <!-- /ANCHOR:phases -->
 
@@ -171,10 +171,10 @@ recall hit / task signal → feedback-ledger → recordAdaptiveSignal('outcome',
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Outcome/usefulness emitter | Internal (net-new) | Blocked | Reliability prior stays `r=0.5`; recall fold is a cold-start no-op |
+| Outcome/usefulness emitter | Internal (net-new) | Blocked | Reliability prior stays `r=0.5`, recall fold is a cold-start no-op |
 | Shared bounded-Beta f64 primitive | Internal (net-new) | Blocked | Integer scorer throws on fractional inputs |
 | `HAS_FAILURE` schema migration | Internal (net-new) | Blocked | Bad-pattern cannot host a failure edge |
-| Benefit micro-benchmark harness | Internal (net-new) | Blocked | No promotion gate; reliability-recall stays PENDING |
+| Benefit micro-benchmark harness | Internal (net-new) | Blocked | No promotion gate, reliability-recall stays PENDING |
 | 028 research record | Internal | Green | Acceptance criteria frozen from `research/` |
 
 <!-- /ANCHOR:dependencies -->
@@ -184,8 +184,8 @@ recall hit / task signal → feedback-ledger → recordAdaptiveSignal('outcome',
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: This is a planning-only re-plan; nothing is implemented, so no runtime rollback applies.
-- **Procedure**: If a future implementer ships any candidate, each is a self-contained reversible change behind a default-OFF flag (mirroring the 030 per-candidate discipline) — revert the scoped commit. The emitter and Beta primitive are additive and order-neutral when no `'outcome'` data exists.
+- **Trigger**: This is a planning-only re-plan, nothing is implemented, so no runtime rollback applies.
+- **Procedure**: If a future implementer ships any candidate, each is a self-contained reversible change behind a default-OFF flag (mirroring the 030 per-candidate discipline) - revert the scoped commit. The emitter and Beta primitive are additive and order-neutral when no `'outcome'` data exists.
 
 <!-- /ANCHOR:rollback -->
 
@@ -223,12 +223,12 @@ Phase G (Version-reset residual) ──> rides Phase A's reliability counter
 
 | Phase | Candidate | Effort (research) | Note |
 |-------|-----------|-------------------|------|
-| A | Emitter prereq | M | Net-new write-path; `'outcome'` barely emitted |
+| A | Emitter prereq | M | Net-new write-path, `'outcome'` barely emitted |
 | B | f64 Beta primitive | S | Additive export + adapter |
 | C | Benchmark | M | The promotion gate |
 | D | reliability-recall | M | Fold once earned |
 | E | bad-pattern | M | Schema migration OR precedent + audit |
-| F | skill-induction | L (heaviest) | New action + counter + precision gate; write-side risk |
+| F | skill-induction | L (heaviest) | New action + counter + precision gate, write-side risk |
 | G | version-reset residual | S | Mechanism already ships |
 
 <!-- /ANCHOR:effort -->
@@ -241,7 +241,7 @@ Phase G (Version-reset residual) ──> rides Phase A's reliability counter
 ### Pre-build Checklist (future packet)
 - [ ] Default-OFF flag per candidate (mirror 030's reversibility discipline)
 - [ ] Baseline captured before any ranking-order change (regression-baseline rule)
-- [ ] Branch-only; nothing pushed to main without explicit go
+- [ ] Branch-only, nothing pushed to main without explicit go
 
 ### Rollback Procedure
 1. Revert the scoped per-candidate commit.
@@ -300,10 +300,10 @@ Phase G (Version-reset residual) ──> rides Phase A's reliability counter
 <!-- ANCHOR:critical-path -->
 ## L3: CRITICAL PATH
 
-1. **Phase A — Outcome emitter** — CRITICAL (everything reliability-shaped is `r=0.5` without it)
-2. **Phase B — f64 Beta primitive + adapter** — CRITICAL
-3. **Phase C — Benefit micro-benchmark** — CRITICAL (the promotion gate)
-4. **Phase D — Reliability fold** — CRITICAL (only if C earns it)
+1. **Phase A - Outcome emitter** - CRITICAL (everything reliability-shaped is `r=0.5` without it)
+2. **Phase B - f64 Beta primitive + adapter** - CRITICAL
+3. **Phase C - Benefit micro-benchmark** - CRITICAL (the promotion gate)
+4. **Phase D - Reliability fold** - CRITICAL (only if C earns it)
 
 **Off the critical path (independent gates)**: Phase E (bad-pattern, schema), Phase F (skill-induction, heaviest), Phase G (version-reset residual).
 
@@ -332,6 +332,6 @@ Phase G (Version-reset residual) ──> rides Phase A's reliability counter
 - **Specification**: See `spec.md`
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`
-- **Source research**: `../research/research.md`; `../../research/synthesis/01-go-candidates.md`
+- **Source research**: `../research/research.md`, `../../research/synthesis/01-go-candidates.md`
 
 <!-- /ANCHOR:related-docs -->

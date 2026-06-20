@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Red-Team Probe Gate [system-spec-kit/028-memory-search-intelligence/001-speckit-memory/006-redteam-probe-gate/plan]"
-description: "Aggregate the existing per-seam Memory MCP injection sanitizers into one named zero-success-ceiling CI gate, add the missing deep-loop prompt-pack render probe, and fold in the no-querytext exfil-audit assertion — additive test infrastructure plus one audit-path edit."
+description: "Aggregate the existing per-seam Memory MCP injection sanitizers into one named zero-success-ceiling CI gate, add the missing deep-loop prompt-pack render probe, and fold in the no-querytext exfil-audit assertion - additive test infrastructure plus one audit-path edit."
 trigger_phrases:
   - "red-team probe gate plan"
   - "memory injection ci gate plan"
@@ -63,12 +63,12 @@ Build one named CI red-team probe gate that aggregates the Memory MCP's existing
 ### Definition of Ready
 - [x] Problem statement clear and scope documented (spec.md)
 - [x] Success criteria measurable (SC-001..SC-004)
-- [x] Dependencies identified (C8/SB8 escaper; prompt-pack dead-code status; audit seam)
+- [x] Dependencies identified (C8/SB8 escaper, prompt-pack dead-code status, audit seam)
 
-### Definition of Done
-- [ ] All acceptance criteria met (REQ-001..REQ-010)
-- [ ] Tests passing: the gate runs as one named group; `tsc`/build green; existing suite green
-- [ ] Docs updated (spec/plan/tasks/checklist) and `validate.sh --strict` green on this packet
+### Definition of Done (PARTIAL - prompt-pack probe + adversarial seat pending)
+- [x] MCP-server acceptance criteria met (gate + exfil-audit), prompt-pack probe (REQ deep-loop) deferred to sibling runtime
+- [x] `npm test -- --security` PASS (1 file, 2 passed, 1 todo), related suite PASS (15 files, 481 passed, 2 skipped), `tsc` 0 errors
+- [x] Docs updated, `validate.sh --strict` PASS (0/0) on this packet
 
 <!-- /ANCHOR:quality-gates -->
 
@@ -81,7 +81,7 @@ Build one named CI red-team probe gate that aggregates the Memory MCP's existing
 Test-gate aggregation: one named Vitest module fans out into three attack-family suites + the deep-loop probe + the exfil-audit assertion, emitting a single structured report with a fixed zero-success ceiling. Reuses the existing sanitizer seams rather than reimplementing them.
 
 ### Key Components
-- **`redteam-probe-gate.vitest.ts`**: the named aggregator — drives poisoned-RAG, query-only-injection, and wrapper-breakout families; collects per-probe verdicts; fails on any success.
+- **`redteam-probe-gate.vitest.ts`**: the named aggregator - drives poisoned-RAG, query-only-injection, and wrapper-breakout families, collects per-probe verdicts, fails on any success.
 - **`redteam-fixtures/`**: deterministic payload fixtures per family (extends `promptPoisoningAdversarial.json`, `unicodeInstructionalSkillLabel.json`).
 - **`prompt-pack-injection.vitest.ts`** (deep-loop-runtime): the previously-uncovered render-seam probe.
 - **`run-tests.mjs` security lane**: a named selector so the gate runs as one group.
@@ -101,21 +101,21 @@ Security-adjacent: this gate probes injection seams and edits an audit path, so 
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `lib/utils/skill-label-sanitizer.ts` (`sanitizeSkillLabel`) | Neutralizes injection in skill labels | not a consumer (probed, unchanged) | `architecture-seam.vitest.ts` asserts `'ignore previous instructions' → null`; gate re-asserts under named group |
+| `lib/utils/skill-label-sanitizer.ts` (`sanitizeSkillLabel`) | Neutralizes injection in skill labels | not a consumer (probed, unchanged) | `architecture-seam.vitest.ts` asserts `'ignore previous instructions' → null`, gate re-asserts under named group |
 | `tests/architecture-seam.vitest.ts` | Existing query-only-injection assertion | aggregate under gate | gate imports/re-runs the assertion as REQ-004 |
 | `tests/bm25-security.vitest.ts` | BM25-path injection assertion | aggregate under gate | gate references as a covered seam |
 | `tests/security/adversarial-unicode.vitest.ts` + `tests/advisor-fixtures/unicodeInstructionalSkillLabel.json` | Unicode-instructional / wrapper-breakout surface | reuse | wrapper-breakout family (REQ-005) drives these fixtures |
 | `tests/advisor-fixtures/promptPoisoningAdversarial.json` | Poisoning fixture | reuse/extend | poisoned-RAG family (REQ-003) |
-| `formatters/search-results.ts` + `handlers/memory-triggers.ts` | Render boundary (recalled content body, raw today) | probe target (escaper is C8/SB8, out of scope to build) | poisoned-RAG/wrapper-breakout assert neutralization here; red if escaper absent |
+| `formatters/search-results.ts` + `handlers/memory-triggers.ts` | Render boundary (recalled content body, raw today) | probe target (escaper is C8/SB8, out of scope to build) | poisoned-RAG/wrapper-breakout assert neutralization here, red if escaper absent |
 | `deep-loop-runtime/lib/deep-loop/prompt-pack.ts` (`renderPromptPack`) | Prompt-pack render sink (dead-code today, 006 RD1) | new probe | `prompt-pack-injection.vitest.ts` asserts neutralization at the renderer unit |
-| Namespace-denial audit path (seam TBD; `spec-folder-mutex.ts` is a lock not an authorizer) | No `namespace_denied` audit exists today (GAP) | update | record denial without query text; gate asserts no verbatim query in the audit record (REQ-007) |
+| Namespace-denial audit path (seam TBD, `spec-folder-mutex.ts` is a lock not an authorizer) | No `namespace_denied` audit exists today (GAP) | update | record denial without query text, gate asserts no verbatim query in the audit record (REQ-007) |
 | `scripts/run-tests.mjs` | Lane router | update | add a security-group selector running the gate as one group |
 
 Required inventories (run at implementation time):
 - Same-class producers: `rg -n 'sanitizeSkillLabel|ignore previous instructions|promptPoisoning|unicodeInstructional' .opencode/skills/system-spec-kit/mcp_server`.
 - Consumers of the render boundary: `rg -n 'formatSearchResults|memory-triggers|getTieredContent' .opencode/skills/system-spec-kit/mcp_server --glob '*.ts'`.
 - Audit-path discovery: `rg -n 'namespace_denied|audit|denial' .opencode/skills/system-spec-kit/mcp_server --glob '*.ts'` to confirm the GAP and the wiring point before REQ-007.
-- Algorithm invariant: every injection probe must show the neutralized output AND name the adversarial payload class; the exfil-audit invariant is "denial recorded, query text absent."
+- Algorithm invariant: every injection probe must show the neutralized output AND name the adversarial payload class, the exfil-audit invariant is "denial recorded, query text absent."
 
 <!-- /ANCHOR:affected-surfaces -->
 
@@ -130,16 +130,16 @@ Required inventories (run at implementation time):
 - [ ] Decide the C8/SB8 sequencing (escaper-first vs gate-lands-red as acceptance test)
 
 ### Phase 2: Core Implementation
-- [ ] Author `redteam-probe-gate.vitest.ts` with the three attack families + zero-success ceiling + structured report
-- [ ] Add per-family fixtures under `redteam-fixtures/` (reuse/extend existing)
-- [ ] Author the deep-loop `prompt-pack-injection.vitest.ts` render probe
-- [ ] Wire the no-querytext exfil-audit edit + its gate assertion
-- [ ] Add the `run-tests.mjs` security lane selector
+- [x] `redteam-probe-gate.vitest.ts` authored (poisoned-RAG, query-only-injection, wrapper-breakout, exfil-audit, zero-success ceiling, structured rows)
+- [x] Per-family fixtures added at `redteam-fixtures/probe-payloads.json`
+- [ ] Deep-loop `prompt-pack-injection.vitest.ts` render probe pending - sibling `deep-loop-runtime` outside MCP-server scope
+- [x] No-querytext exfil-audit wired in `lib/governance/scope-governance.ts` + gate assertion
+- [x] `run-tests.mjs` security lane selector added (+ `npm test -- --security` forwarding)
 
 ### Phase 3: Verification
 - [ ] Both recall shapes (full + compact) covered by poisoned-RAG / wrapper-breakout
 - [ ] Negative control passes (no false-pass on a no-op payload)
-- [ ] `tsc`/build green; existing suite green; `validate.sh --strict` green on this packet; adversarial review of the gate
+- [ ] `tsc`/build green, existing suite green, `validate.sh --strict` green on this packet, adversarial review of the gate
 
 <!-- /ANCHOR:phases -->
 
@@ -150,8 +150,8 @@ Required inventories (run at implementation time):
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | prompt-pack renderer probe; skill-label sanitizer re-assertion | Vitest |
-| Integration | poisoned-RAG `memory_save → recall` (full + compact); wrapper-breakout at render | Vitest |
+| Unit | prompt-pack renderer probe, skill-label sanitizer re-assertion | Vitest |
+| Integration | poisoned-RAG `memory_save → recall` (full + compact), wrapper-breakout at render | Vitest |
 | Gate | aggregate the above into one named zero-success-ceiling group with a structured report | Vitest + `run-tests.mjs` lane |
 
 <!-- /ANCHOR:testing -->
@@ -163,10 +163,10 @@ Required inventories (run at implementation time):
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `source_kind`-gated render escaper (C8/SB8) | Internal (sibling candidate) | Yellow (not built) | Poisoned-RAG / wrapper-breakout probes land red until built; gate can act as its acceptance test |
-| Deep-loop `renderPromptPack` caller wiring | Internal | Yellow (dead-code, 006 RD1) | Probe runs as a unit against the renderer regardless; reports dormant-caller status |
-| Namespace-denial audit seam | Internal | Red (GAP — no `namespace_denied` audit today) | REQ-007 needs the seam confirmed/created before the assertion can pass |
-| Existing per-seam sanitizers + fixtures | Internal | Green (confirmed live) | Aggregation only; no behavior change |
+| `source_kind`-gated render escaper (C8/SB8) | Internal (sibling candidate) | Yellow (not built) | Poisoned-RAG / wrapper-breakout probes land red until built, gate can act as its acceptance test |
+| Deep-loop `renderPromptPack` caller wiring | Internal | Yellow (dead-code, 006 RD1) | Probe runs as a unit against the renderer regardless, reports dormant-caller status |
+| Namespace-denial audit seam | Internal | Red (GAP - no `namespace_denied` audit today) | REQ-007 needs the seam confirmed/created before the assertion can pass |
+| Existing per-seam sanitizers + fixtures | Internal | Green (confirmed live) | Aggregation only, no behavior change |
 
 <!-- /ANCHOR:dependencies -->
 
@@ -192,7 +192,7 @@ Phase 1 (Setup / seam confirm) ──► Phase 2 (Core: gate + probes + audit) �
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
 | Setup | None | Core |
-| Core | Setup; (C8/SB8 escaper for green probes); audit seam for REQ-007 | Verify |
+| Core | Setup, (C8/SB8 escaper for green probes), audit seam for REQ-007 | Verify |
 | Verify | Core | None |
 
 <!-- /ANCHOR:phase-deps -->
@@ -207,7 +207,7 @@ Phase 1 (Setup / seam confirm) ──► Phase 2 (Core: gate + probes + audit) �
 | Setup | Low | seam + audit-gap confirmation |
 | Core Implementation | Med | aggregator + 3 families + fixtures + prompt-pack probe + audit edit + lane |
 | Verification | Med | full+compact coverage, negative control, adversarial review of the gate |
-| **Total** | | Research effort tag: **L-M** (gate) + **M** (exfil-audit sub-req) — structural inference, unbenchmarked |
+| **Total** | | Research effort tag: **L-M** (gate) + **M** (exfil-audit sub-req) - structural inference, unbenchmarked |
 
 <!-- /ANCHOR:effort -->
 
@@ -217,8 +217,8 @@ Phase 1 (Setup / seam confirm) ──► Phase 2 (Core: gate + probes + audit) �
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] No backup needed (additive tests; one reversible audit edit)
-- [ ] No feature flag (gate is always-on by design; zero-success ceiling has no relaxation knob)
+- [ ] No backup needed (additive tests, one reversible audit edit)
+- [ ] No feature flag (gate is always-on by design, zero-success ceiling has no relaxation knob)
 - [ ] Confirm the existing suite baseline (count + pass/fail) before adding the gate
 
 ### Rollback Procedure
