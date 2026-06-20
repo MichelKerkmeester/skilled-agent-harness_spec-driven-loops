@@ -39,7 +39,7 @@
       "adv"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "partial",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -197,7 +197,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 100-iteration mining campaign closed with exactly one external crate genuinely skipped: `aionforge-procedural`, the procedural-memory / skill-ranking crate. Iteration 18 mined it and found a net-new candidate for the advisor — rank skills by their OBSERVED execution success/failure history (a Beta-posterior reliability blended `score = similarity x reliability x penalty`, fresh skill = neutral 0.5) plus per-skill failure-mode recall (\"how this skill tends to fail on inputs like yours\"). The 006 sibling-revisit then stress-tested it and downgraded it to PROXY-ONLY: the advisor today captures only whether a *recommendation* was accepted (`AdvisorHookOutcomeRecord.outcome in {accepted, corrected, ignored}`, keyed on `skillLabel` — `metrics.ts:81-86,394-409`), never whether the recommended skill's TASK actually succeeded. The Completion-Verification gate has zero skill attribution. So this is not a free byproduct of a present signal — a net-new execution-success emitter + a skill-outcome store must be BUILT FIRST, and only then can reliability-over-execution be computed.",
+    "causal_summary": "The 100-iteration mining campaign closed with exactly one external crate genuinely skipped: `aionforge-procedural`, the procedural-memory / skill-ranking crate. Iteration 18 mined it and found a net-new candidate for the advisor - rank skills by their OBSERVED execution success/failure history (a Beta-posterior reliability blended `score = similarity x reliability x penalty`, fresh skill = neutral 0.5) plus per-skill failure-mode recall (\"how this skill tends to fail on inputs like yours\"). The 006 sibling-revisit then stress-tested it and downgraded it to PROXY-ONLY: the advisor today captures only whether a *recommendation* was accepted (`AdvisorHookOutcomeRecord.outcome in {accepted, corrected, ignored}`, keyed on `skillLabel` - `metrics.ts:81-86,394-409`), never whether the recommended skill's TASK actually succeeded. The Completion-Verification gate has zero skill attribution. So this is not a free byproduct of a present signal - a net-new execution-success emitter + a skill-outcome store must be BUILT FIRST, and only then can reliability-over-execution be computed.",
     "created_at": "2026-06-19T06:06:27.156Z",
     "last_save_at": "2026-06-19T06:20:37.812Z",
     "save_lineage": "graph_only",

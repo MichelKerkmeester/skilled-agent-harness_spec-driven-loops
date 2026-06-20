@@ -39,7 +39,7 @@
       "weighted"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "partial",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -196,7 +196,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The Skill Advisor ships an end-to-end *shadow* feedback pipeline — durable outcome capture, a bounded delta estimator, a parallel shadow-weight channel — but the estimator's proposal is written to a JSONL log that **no consumer ever reads back**, so the loop never closes. This sub-phase builds the missing seam: an out-of-process promoter that reads the estimator's proposals, plus the reliability math that turns raw acceptance frequency into a flood-immune posterior, plus the aionforge attestation-and-promotion gate family that decides — conservatively, shadow-only — whether a lane weight should ever move. Net-new throughout: 027 shipped no lane attribution and the live estimator carries zero Beta math, so this is a BUILD, not a graduation.",
+    "causal_summary": "The Skill Advisor ships an end-to-end *shadow* feedback pipeline - durable outcome capture, a bounded delta estimator, a parallel shadow-weight channel - but the estimator's proposal is written to a JSONL log that **no consumer ever reads back**, so the loop never closes. This sub-phase builds the missing seam: an out-of-process promoter that reads the estimator's proposals, plus the reliability math that turns raw acceptance frequency into a flood-immune posterior, plus the aionforge attestation-and-promotion gate family that decides - conservatively, shadow-only - whether a lane weight should ever move. Net-new throughout: 027 shipped no lane attribution and the live estimator carries zero Beta math, so this is a BUILD, not a graduation.",
     "created_at": "2026-06-19T06:06:27.153Z",
     "last_save_at": "2026-06-19T06:06:27.153Z",
     "save_lineage": "graph_only",

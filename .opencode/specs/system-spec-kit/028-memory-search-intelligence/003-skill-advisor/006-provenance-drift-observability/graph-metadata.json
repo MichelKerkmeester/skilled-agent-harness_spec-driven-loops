@@ -39,7 +39,7 @@
       "skip"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "partial",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -184,7 +184,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The iter-8 mining of aionforge `cross-family-guard.md` + `drift.md` opened **two orthogonal families the fusion-math roadmap never touches** — provenance-contamination and temporal-drift — plus a skip-reason taxonomy refinement [CONFIRMED: iter-008 focus; \"both docs occupy families the roadmap never touches\"]. Round-E verification (iter-012) then *softened* every one of them: each is PARTIAL/CAUTION, not the build it was first mined as, and all three converge on one shared blocker — **the live calibration records are an ephemeral tmpdir 50-record window** (`RECORD_ROOT = join(tmpdir(), 'speckit-skill-advisor-calibration')` at `feedback-calibration.ts:25`; `MAX_RECORDS = 50` at `:26`; `writeFileSync(... existing.slice(-MAX_RECORDS) ...)` at `:248-251`), so there is no durable cross-session state to attest a baseline against or to persist an enriched signal into [CONFIRMED: iter-008 \"both need durable cross-session state the current tmpdir JSONL lacks\"; iter-012 E12-03]:",
+    "causal_summary": "The iter-8 mining of aionforge `cross-family-guard.md` + `drift.md` opened **two orthogonal families the fusion-math roadmap never touches** - provenance-contamination and temporal-drift - plus a skip-reason taxonomy refinement [CONFIRMED: iter-008 focus, \"both docs occupy families the roadmap never touches\"]. Round-E verification (iter-012) then *softened* every one of them: each is PARTIAL/CAUTION, not the build it was first mined as, and all three converge on one shared blocker - **the live calibration records are an ephemeral tmpdir 50-record window** (`RECORD_ROOT = join(tmpdir(), 'speckit-skill-advisor-calibration')` at `feedback-calibration.ts:25`, `MAX_RECORDS = 50` at `:26`, `writeFileSync(... existing.slice(-MAX_RECORDS) ...)` at `:248-251`), so there is no durable cross-session state to attest a baseline against or to persist an enriched signal into [CONFIRMED: iter-008 \"both need durable cross-session state the current tmpdir JSONL lacks\", iter-012 E12-03]:",
     "created_at": "2026-06-19T06:06:27.155Z",
     "last_save_at": "2026-06-19T06:20:37.811Z",
     "save_lineage": "graph_only",

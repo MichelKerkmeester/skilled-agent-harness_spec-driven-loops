@@ -39,7 +39,7 @@
       "cross"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "partial",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -199,7 +199,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The deep-loop convergence verdict decides STOP-vs-CONTINUE from a fixed set of structural graph signals. After 030's Wave-0 pass, four independent STOP-decision and fan-out-observability gaps remain — none of which need the absent D2 reliability signal, and each of which leaves a computed self-assessment unaudited, an advisory budget unenforced, a losing finding silently discarded, or a long lineage's liveness unobservable:",
+    "causal_summary": "The deep-loop convergence verdict decides STOP-vs-CONTINUE from a fixed set of structural graph signals. After 030's Wave-0 pass, four independent STOP-decision and fan-out-observability gaps remain - none of which need the absent D2 reliability signal, and each of which leaves a computed self-assessment unaudited, an advisory budget unenforced, a losing finding silently discarded, or a long lineage's liveness unobservable:",
     "created_at": "2026-06-19T06:20:37.819Z",
     "last_save_at": "2026-06-19T06:20:37.819Z",
     "save_lineage": "graph_only",

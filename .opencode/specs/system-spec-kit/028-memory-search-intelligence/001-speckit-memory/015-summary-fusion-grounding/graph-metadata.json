@@ -39,7 +39,7 @@
       "retrieval"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "partial",
     "key_files": [
       "spec.md",
       "plan.md",

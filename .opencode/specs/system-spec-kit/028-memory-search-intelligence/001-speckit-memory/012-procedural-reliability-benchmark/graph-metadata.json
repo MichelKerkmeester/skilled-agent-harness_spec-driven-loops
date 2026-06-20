@@ -39,7 +39,7 @@
       "repetition"
     ],
     "importance_tier": "normal",
-    "status": "draft_(all_candidates_pending_/_benchmark_gated)",
+    "status": "partial",
     "key_files": [
       "lib/feedback/feedback-ledger.ts",
       "decision-record.md",

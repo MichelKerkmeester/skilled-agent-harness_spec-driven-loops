@@ -39,7 +39,7 @@
       "skip"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "partial",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/lib/graph/temporal-edges.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
@@ -200,7 +200,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The Memory MCP already ships an edge-presence currentness substrate (`SPECKIT_TEMPLATE_EDGES`-gated `valid_at`/`invalid_at` columns on `causal_edges`, an `invalidateEdge()` writer, and `IS NULL`-filtered current-edge readers), but the substrate is bi-temporally *incorrect in two ways*: (1) it carries only a single `valid_at`/`invalid_at` pair, conflating real-world event-time with our transaction-time, and (2) `invalidateEdge()` always stamps `invalid_at = now()` — recording *when we noticed* a fact died rather than *when it actually died*. This phase fixes the spearhead correctness bug (close at event-time, reader-transparent), defines the additive four-timestamp window shared with Code-Graph and lineage, adds chronology-driven supersession scoped to conflicting relation pairs, and records the tombstone-sweep vs temporal-close separation-of-concerns note. The one already-shipped candidate (skip-closed-in-sweep) is referenced for completeness.",
+    "causal_summary": "The Memory MCP already ships an edge-presence currentness substrate (`SPECKIT_TEMPLATE_EDGES`-gated `valid_at`/`invalid_at` columns on `causal_edges`, an `invalidateEdge()` writer, and `IS NULL`-filtered current-edge readers), but the substrate is bi-temporally *incorrect in two ways*: (1) it carries only a single `valid_at`/`invalid_at` pair, conflating real-world event-time with our transaction-time, and (2) `invalidateEdge()` always stamps `invalid_at = now()` - recording *when we noticed* a fact died rather than *when it actually died*. This phase fixes the spearhead correctness bug (close at event-time, reader-transparent), defines the additive four-timestamp window shared with Code-Graph and lineage, adds chronology-driven supersession scoped to conflicting relation pairs, and records the tombstone-sweep vs temporal-close separation-of-concerns note. The one already-shipped candidate (skip-closed-in-sweep) is referenced for completeness.",
     "created_at": "2026-06-19T05:40:37.444Z",
     "last_save_at": "2026-06-19T05:47:05.564Z",
     "save_lineage": "graph_only",

@@ -39,7 +39,7 @@
       "cas"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "partial",
     "key_files": [
       "plan.md",
       "tasks.md",
@@ -202,7 +202,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This phase implemented the ungated write→recall→prompt trust spine candidates for the Spec-Kit Memory MCP. C8 now wraps and escapes recalled content at the search-results formatter; M-write-time-injection-filter now flags prompt-injection markers non-destructively in the shared memory-save indexing core; CAS P2 polish removed the dead downgrade branch while keeping self-edit protection unconditional and expectedHash CAS opt-in; residual_retention is exposed on retention sweep results. M-system-kind-exclusion remains pending because it needs a substrate-only signal and live-DB validation before default recall behavior can change. Done: 5 / Pending: 1.",
+    "causal_summary": "This phase implemented the ungated write→recall→prompt trust spine candidates for the Spec-Kit Memory MCP. C8 now wraps and escapes recalled content at the search-results formatter, M-write-time-injection-filter now flags prompt-injection markers non-destructively in the shared memory-save indexing core, CAS P2 polish removed the dead downgrade branch while keeping self-edit protection unconditional and expectedHash CAS opt-in, residual_retention is exposed on retention sweep results. M-system-kind-exclusion remains pending because it needs a substrate-only signal and live-DB validation before default recall behavior can change. Done: 5 / Pending: 1.",
     "created_at": "2026-06-19T05:40:47.073Z",
     "last_save_at": "2026-06-19T05:47:05.555Z",
     "save_lineage": "graph_only",

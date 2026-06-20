@@ -39,7 +39,7 @@
       "next"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -196,7 +196,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The deep-research iteration cycle is itself a retrieval loop, but it threads forward in the \"reactive, reconstruct-cold\" mode — each iteration rebuilds its working set from the reducer's distilled snapshot rather than carrying its own prior thread, and the \"next focus\" it pursues is whatever free-text the previous iteration hand-wrote, not a function of what that iteration actually found. Two confirmed continuity gaps remain after the 030 Wave-0 pass:",
+    "causal_summary": "The deep-research iteration cycle is itself a retrieval loop, but it threads forward in the \"reactive, reconstruct-cold\" mode - each iteration rebuilds its working set from the reducer's distilled snapshot rather than carrying its own prior thread, and the \"next focus\" it pursues is whatever free-text the previous iteration hand-wrote, not a function of what that iteration actually found. Two confirmed continuity gaps remain after the 030 Wave-0 pass:",
     "created_at": "2026-06-19T06:20:37.820Z",
     "last_save_at": "2026-06-19T06:20:37.820Z",
     "save_lineage": "graph_only",

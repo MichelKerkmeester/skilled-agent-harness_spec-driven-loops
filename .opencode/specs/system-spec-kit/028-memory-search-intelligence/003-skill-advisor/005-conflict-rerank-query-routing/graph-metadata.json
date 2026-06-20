@@ -39,7 +39,7 @@
       "semantic"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "partial",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -191,7 +191,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The Skill Advisor fuses five lanes — `explicit_author 0.42 / lexical 0.28 / graph_causal 0.13 / derived_generated 0.12 / semantic_shadow 0.05` (`lane-registry.ts:8-19`) — via a raw-score weighted SUM (`weightedScore = rawScore * weights[lane]` at `fusion.ts:366`; `score = Σ weightedScore` at `fusion.ts:372`) [CONFIRMED: research.md Internal Baseline; iter-001 F5/F6]. The research campaign catalogued three routing-quality refinements that ALL ride the 001 RRF determinism spine (sibling sub-phase `001-rrf-determinism-spine`, candidate C3 — \"import the shared `fuseResultsMulti` so fusion reads RANK, not raw score\") and are each individually un-actionable today for a distinct reason:",
+    "causal_summary": "The Skill Advisor fuses five lanes - `explicit_author 0.42 / lexical 0.28 / graph_causal 0.13 / derived_generated 0.12 / semantic_shadow 0.05` (`lane-registry.ts:8-19`) - via a raw-score weighted SUM (`weightedScore = rawScore * weights[lane]` at `fusion.ts:366`, `score = Σ weightedScore` at `fusion.ts:372`) [CONFIRMED: research.md Internal Baseline, iter-001 F5/F6]. The research campaign catalogued three routing-quality refinements that ALL ride the 001 RRF determinism spine (sibling sub-phase `001-rrf-determinism-spine`, candidate C3 - \"import the shared `fuseResultsMulti` so fusion reads RANK, not raw score\") and are each individually un-actionable today for a distinct reason:",
     "created_at": "2026-06-19T06:06:27.154Z",
     "last_save_at": "2026-06-19T06:06:27.154Z",
     "save_lineage": "graph_only",

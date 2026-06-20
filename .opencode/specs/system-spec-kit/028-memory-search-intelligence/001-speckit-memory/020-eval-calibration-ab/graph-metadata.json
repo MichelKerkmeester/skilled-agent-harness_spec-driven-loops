@@ -39,7 +39,7 @@
       "reorder"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "partial",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -207,7 +207,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is a Wave-2 implementation sub-phase under the `001-speckit-memory` research phase of packet 028 (the PRIMARY subsystem). It implements the two measurement-gated retrieval-intelligence candidates the `008-retrieval-evaluation` campaign converged on as the eval-harness's first *consumers* — both are downstream of the C9→A8 build spine and ship only once that harness can produce the evidence they promote on:",
+    "causal_summary": "This is a Wave-2 implementation sub-phase under the `001-speckit-memory` research phase of packet 028 (the PRIMARY subsystem). It implements the two measurement-gated retrieval-intelligence candidates the `008-retrieval-evaluation` campaign converged on as the eval-harness's first *consumers* - both are downstream of the C9→A8 build spine and ship only once that harness can produce the evidence they promote on:",
     "created_at": "2026-06-19T05:52:29.576Z",
     "last_save_at": "2026-06-19T06:06:27.135Z",
     "save_lineage": "graph_only",

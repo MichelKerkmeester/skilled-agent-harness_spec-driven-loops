@@ -39,7 +39,7 @@
       "trust"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "partial",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-retention-sweep.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage4-filter.ts",
@@ -199,7 +199,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The Spec-Kit Memory MCP retains and recalls memories with no diversity or eligibility shaping at the result-set boundary. Three concrete gaps were confirmed by the 028/001 deep-research loop: (1) forget eligibility is incomplete — the feedback-retention reducer only spares by tier/pin (`feedback-retention-reducer.ts:153-155`), so a non-`important` row with strong positive feedback is annotated yet still deletes, and there is no live-edge protection against forgetting a still-referenced memory; (2) there is NO session/spec-folder dominance cap anywhere in the search pipeline (`stage4-filter.ts:305-309` truncates with a bare `slice(0, limit)`), so one chatty session or dominant spec-folder can occupy the entire top-k; (3) the constitutional always-surface prefix counts toward the recall limit but is never itself capped (`vector-index-queries.ts:435`), so constitutional rows can silently fill the slice and starve regular results. The erasure surface (hard-purge cascade, per-namespace authorization, signed writes) is partially modelled in aionforge but unbuilt here.",
+    "causal_summary": "The Spec-Kit Memory MCP retains and recalls memories with no diversity or eligibility shaping at the result-set boundary. Three concrete gaps were confirmed by the 028/001 deep-research loop: (1) forget eligibility is incomplete - the feedback-retention reducer only spares by tier/pin (`feedback-retention-reducer.ts:153-155`), so a non-`important` row with strong positive feedback is annotated yet still deletes, and there is no live-edge protection against forgetting a still-referenced memory, (2) there is NO session/spec-folder dominance cap anywhere in the search pipeline (`stage4-filter.ts:305-309` truncates with a bare `slice(0, limit)`), so one chatty session or dominant spec-folder can occupy the entire top-k, (3) the constitutional always-surface prefix counts toward the recall limit but is never itself capped (`vector-index-queries.ts:435`), so constitutional rows can silently fill the slice and starve regular results. The erasure surface (hard-purge cascade, per-namespace authorization, signed writes) is partially modelled in aionforge but unbuilt here.",
     "created_at": "2026-06-19T05:40:37.446Z",
     "last_save_at": "2026-06-19T05:47:05.570Z",
     "save_lineage": "graph_only",

@@ -39,7 +39,7 @@
       "context"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "partial",
     "key_files": [
       "mcp_server/handlers/memory-context.ts",
       "mcp_server/lib/search/search-flags.ts",
@@ -202,7 +202,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Add a ReAct-style agentic strategy to the Memory MCP's `memory_context` mode router so that complex asks get an LLM-driven reason-act-observe retrieval loop over the existing memory tools, instead of a single straight-line search call. Research (028/007, iterations 11/17/22) confirmed the strategy seam is clean and additive, but blast-radius scoping corrected the original H/L \"best lev/eff\" rating down to **L effort**: the loop injects an LLM into a synchronous, deterministic, pure better-sqlite3 retrieval hot path, and **no loop/cost governor exists anywhere today** — controller, step-cap, cost-ceiling, and stop-condition are all greenfield. This is its own design packet, prove-first, gated default-off.",
+    "causal_summary": "Add a ReAct-style agentic strategy to the Memory MCP's `memory_context` mode router so that complex asks get an LLM-driven reason-act-observe retrieval loop over the existing memory tools, instead of a single straight-line search call. Research (028/007, iterations 11/17/22) confirmed the strategy seam is clean and additive, but blast-radius scoping corrected the original H/L \"best lev/eff\" rating down to **L effort**: the loop injects an LLM into a synchronous, deterministic, pure better-sqlite3 retrieval hot path, and **no loop/cost governor exists anywhere today** - controller, step-cap, cost-ceiling, and stop-condition are all greenfield. This is its own design packet, prove-first, gated default-off.",
     "created_at": "2026-06-19T05:40:37.449Z",
     "last_save_at": "2026-06-19T05:47:05.577Z",
     "save_lineage": "graph_only",

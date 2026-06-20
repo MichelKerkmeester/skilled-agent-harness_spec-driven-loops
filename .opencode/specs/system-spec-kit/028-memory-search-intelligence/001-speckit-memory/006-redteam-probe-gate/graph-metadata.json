@@ -39,7 +39,7 @@
       "audit"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "partial",
     "key_files": [
       "lib/utils/skill-label-sanitizer.ts",
       "tests/security/adversarial-unicode.vitest.ts",
@@ -205,7 +205,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The Spec-Kit Memory MCP already defends its individual injection seams, but no single gate proves the whole surface holds. The per-seam sanitizers and their tests exist and pass in isolation — `sanitizeSkillLabel` (`lib/utils/skill-label-sanitizer.ts`), `architecture-seam.vitest.ts` (which asserts `'ignore previous instructions' → null`), `bm25-security.vitest.ts`, the adversarial-unicode suite (`tests/security/adversarial-unicode.vitest.ts`), and the poisoning fixtures (`tests/advisor-fixtures/promptPoisoningAdversarial.json`). What is missing, confirmed in research (001 iter-19, 006 SB7), is a single named aggregating CI probe-gate with structured reports and a fixed zero-success ceiling — so the security posture is a scatter of green checkmarks rather than one honest pass/fail. One seam stays entirely uncovered: the deep-loop prompt-pack render path (`deep-loop-runtime/lib/deep-loop/prompt-pack.ts`), where recalled or fanned-out content reaches a prompt template with no injection probe at all.",
+    "causal_summary": "The Spec-Kit Memory MCP already defends its individual injection seams, but no single gate proves the whole surface holds. The per-seam sanitizers and their tests exist and pass in isolation - `sanitizeSkillLabel` (`lib/utils/skill-label-sanitizer.ts`), `architecture-seam.vitest.ts` (which asserts `'ignore previous instructions' → null`), `bm25-security.vitest.ts`, the adversarial-unicode suite (`tests/security/adversarial-unicode.vitest.ts`), and the poisoning fixtures (`tests/advisor-fixtures/promptPoisoningAdversarial.json`). What is missing, confirmed in research (001 iter-19, 006 SB7), is a single named aggregating CI probe-gate with structured reports and a fixed zero-success ceiling - so the security posture is a scatter of green checkmarks rather than one honest pass/fail. One seam stays entirely uncovered: the deep-loop prompt-pack render path (`deep-loop-runtime/lib/deep-loop/prompt-pack.ts`), where recalled or fanned-out content reaches a prompt template with no injection probe at all.",
     "created_at": "2026-06-19T05:40:37.443Z",
     "last_save_at": "2026-06-19T05:47:05.560Z",
     "save_lineage": "graph_only",

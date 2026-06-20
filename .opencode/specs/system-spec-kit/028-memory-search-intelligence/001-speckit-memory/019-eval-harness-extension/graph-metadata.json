@@ -39,7 +39,7 @@
       "brier"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "partial",
     "key_files": [
       "plan.md",
       "checklist.md",
@@ -199,7 +199,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This implementation phase extends the Spec-Kit Memory MCP's **already ~80%-built retrieval eval harness** with the three accuracy lanes it has never had, and un-welds its single promotion gate from one candidate-class. It covers the keystone build spine the 028 retrieval-evaluation campaign converged on (`synthesis/08`): **C9-1** (capture the verdict/confidence/tier the ablation runner already computes but throws away), **C9-2** (tag the golden labels three ways in one DB-join), **C9-3** (the three new corpus-level metric lanes: gate-verdict P/R/F1, ECE+Brier+reliability bins, cold-appearance-rate/precision), and **A8-1(+A8-2/A8-5/A8-4)** (swap a per-class metric panel for the hardcoded `meanNdcgDelta`, add the CLASS-G panel, route held-out labels through the golden set, encode promote-on-evidence as the flag lifecycle). This is the **single buildable spine** that makes isotonic calibration (A2), the A3 default-on lever A/B, and cold-tier promote-on-evidence measurable; without it those candidates' promote signal is literally unexecutable. None of these shipped in Wave-0 (packet 030 §14 ships an unrelated embedder-degrade candidate it calls \"C9\", not these C9-N metric lanes); all are **PENDING**. The corpus reindex (gate-zero, owned by sibling phase `001-corpus-reindex-gate-zero`) is the hard precondition for every recall/calibration/cold number this harness produces.",
+    "causal_summary": "This implementation phase extends the Spec-Kit Memory MCP's **already ~80%-built retrieval eval harness** with the three accuracy lanes it has never had, and un-welds its single promotion gate from one candidate-class. It covers the keystone build spine the 028 retrieval-evaluation campaign converged on (`synthesis/08`): **C9-1** (capture the verdict/confidence/tier the ablation runner already computes but throws away), **C9-2** (tag the golden labels three ways in one DB-join), **C9-3** (the three new corpus-level metric lanes: gate-verdict P/R/F1, ECE+Brier+reliability bins, cold-appearance-rate/precision), and **A8-1(+A8-2/A8-5/A8-4)** (swap a per-class metric panel for the hardcoded `meanNdcgDelta`, add the CLASS-G panel, route held-out labels through the golden set, encode promote-on-evidence as the flag lifecycle). This is the **single buildable spine** that makes isotonic calibration (A2), the A3 default-on lever A/B, and cold-tier promote-on-evidence measurable, without it those candidates' promote signal is literally unexecutable. None of these shipped in Wave-0 (packet 030 §14 ships an unrelated embedder-degrade candidate it calls \"C9\", not these C9-N metric lanes), all are **PENDING**. The corpus reindex (gate-zero, owned by sibling phase `001-corpus-reindex-gate-zero`) is the hard precondition for every recall/calibration/cold number this harness produces.",
     "created_at": "2026-06-19T05:52:29.575Z",
     "last_save_at": "2026-06-19T06:06:27.134Z",
     "save_lineage": "graph_only",

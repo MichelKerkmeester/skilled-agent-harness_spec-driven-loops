@@ -39,7 +39,7 @@
       "rank-time"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "partial",
     "key_files": [
       ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-context.ts",
       ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-context-handler.vitest.ts",
