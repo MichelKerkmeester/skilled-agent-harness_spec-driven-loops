@@ -109,7 +109,7 @@ Research input: `research/research.md` remains the subsystem source packet for c
 | 007 | `007-bitemporal-window/` | Temporal validity windows for memory facts | Done (schema foundation) |
 | 008 | `008-edge-presence-currentness/` | Presence edges and currentness checks | Partial |
 | 009 | `009-derived-id-provenance/` | Derived IDs and provenance links | Done |
-| 010 | `010-010-consoli<!-- pp-scan -->dation-cursor-clock/` | Cursor clock and async write follow-on | Planned |
+| 010 | `010-consolidation-cursor-clock/` | Cursor clock and async write follow-on | Planned |
 | 011 | `011-retention-forgetting/` | Retention and forgetting policy | Partial |
 | 012 | `012-procedural-reliability-benchmark/` | Procedural reliability benchmark | Partial (plumbing only, benchmark-gated) |
 | 013 | `013-enrichment-observability/` | Enrichment metrics and traceability | Complete |
@@ -117,7 +117,7 @@ Research input: `research/research.md` remains the subsystem source packet for c
 | 015 | `015-summary-fusion-grounding/` | Summary fusion and grounding safeguards | In Progress |
 | 016 | `016-iterative-agentic-recall/` | Agentic recall loop planning | Partial (Phase 1) |
 | 017 | `017-semantic-edge-layer/` | Semantic edge representation | Partial |
-| 018 | `018-018-sleeptime-consoli<!-- pp-scan -->dation/` | Sleeptime background processing | Partial (safe core) |
+| 018 | `018-sleeptime-consolidation/` | Sleeptime background processing | Partial (safe core) |
 | 019 | `019-eval-harness-extension/` | Evaluation harness extension | Partial |
 | 020 | `020-eval-calibration-ab/` | Evaluation calibration A/B plan | Partial (observe-only) |
 | 021 | `021-residual-correctness/` | Residual correctness from candidate 015 | Done |
