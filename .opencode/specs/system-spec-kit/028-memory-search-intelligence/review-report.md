@@ -760,3 +760,38 @@ The fourth review pass ran after the eight round-3 P1 were fixed and committed. 
 Root cause of the stale re-report. The gpt-5.5 seats read review-report.md and re-surfaced the prior findings, and the same-model gpt-5.5 verify re-confirmed them off the old reason text plus the literal unchanged anchor line. Line 354 still does normalizeIsoTimestamp(...) ?? null and line 1184 still reads includeConstitutional and not tier and not vectorSearchSkipped, so a verifier that only re-reads the flagged line sees the old shape and misses the fix that lives one line away. The same-model verify is not independent enough to catch a fix adjacent to the flagged line.
 
 Convergence assessment. Effectively converged. No genuinely-new real defect surfaced in round 4. The eighteen P1 across rounds 1 to 3 are all fixed and committed. The review loop is stopped here per the operator.
+
+## Release-cleanup focused review (10 claude2-opus iterations)
+
+Ten read-only review iterations on the 005-release-cleanup phases, run as claude2 opus seats (one per child plus a cross-cutting release-readiness pass). Raw total: 23 findings (0 P0, 8 P1, 15 P2). Every P0 and P1 was host-verified against the actual docs and git history.
+
+| Seat | Scope | Findings |
+| --- | --- | --- |
+| 01 | 001-code-readmes | P1 1, P2 3 |
+| 02 | 002-skill-and-repo-readmes | P1 2, P2 1 |
+| 03 | 003-skill-references-assets-skillmd | clean |
+| 04 | 004-feature-catalogs | P2 1 |
+| 05 | 005-manual-testing-playbooks | P1 2, P2 1 |
+| 06 | 006-commands | P1 1, P2 1 |
+| 07 | 007-agents | P2 1 |
+| 08 | 008-agents-md | P2 3 |
+| 09 | 009-changelogs-constitutional-templates | P2 2 |
+| 10 | cross-cutting release-readiness | P1 2, P2 2 |
+
+### Host-verified verdict
+
+The dominant finding is real and new. The prior four review rounds never looked at the release-cleanup phase tracking docs themselves. The release-cleanup WORK shipped: git records execute commits for 001 (a3621ebe33), 002 (6754d3a133), 004 and 005 (ab405fa052), and 009 (df7f733651), and benchmark-status records 9 of 9 executed. But the phase tracking docs for children 001-004 were left frozen at completion_pct 0 with "Cleanup execution remains PENDING / Not executed" (11 PENDING hits each in their implementation-summary), and changelog-005-root still presents 6 of 9 cleanups as never run. The tracking docs are the stale side, not benchmark-status.
+
+Confirmed P1 (one fork, several surfaces):
+- 001-code-readmes, 002-skill-and-repo-readmes, 003-skill-references, 004-feature-catalogs spec frontmatter completion_pct 0 plus implementation-summary "PENDING / Not executed" despite executed and committed cleanup.
+- changelog-005-root.md claims 6 of 9 cleanups never ran.
+- 005-manual-playbooks implementation-summary is completion_pct 100 yet still carries PENDING language (internal contradiction).
+
+Refuted: the 006-commands ".codex command mirror falsely declared absent" finding. The .codex/commands directory genuinely does not exist, so declaring it absent is correct.
+
+Unconfirmed plausible count drift (not host-confirmed, check the live count before acting): the root README "validate.sh runs 20 rules" line, and the manual-playbook self-check "13 anchors across 9 files" versus a possible 14 across 10.
+
+The 15 P2 are seat-reported minor items not individually host-verified: stale references, cross-link drift, and smaller count mismatches across the cleaned docs.
+
+### Verdict
+The release-cleanup execution is sound. The docs were cleaned and committed. The defect is self-referential: the release-cleanup phase tracking docs for 001-004 plus changelog-005-root were never updated to mark themselves done, so they still read as PENDING and contradict both the shipped reality and the 9 of 9 benchmark-status claim. This is a real doc-accuracy fork worth a scoped remediation pass over the release-cleanup tracking docs.
