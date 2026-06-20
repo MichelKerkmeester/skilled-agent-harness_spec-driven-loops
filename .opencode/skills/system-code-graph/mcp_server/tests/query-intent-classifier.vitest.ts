@@ -14,7 +14,6 @@ describe('query-intent-classifier', () => {
       const result = classifyQueryIntent('who calls handleSave');
       expect(result.intent).toBe('structural');
       expect(result.queryClass).toBe('single_hop');
-      expect(result.seededPprEligible).toBe(false);
       expect(result.structuralScore).toBeGreaterThan(result.semanticScore);
       expect(result.matchedKeywords).toContain('calls');
     });
@@ -66,24 +65,21 @@ describe('query-intent-classifier', () => {
     it('routes explicit impact mode to multi-hop expansion', () => {
       const result = classifyQueryExpansion('', 'impact');
       expect(result.queryClass).toBe('multi_hop');
-      expect(result.seededPprEligible).toBe(true);
     });
 
     it('keeps neighborhood and outline modes single-hop', () => {
-      expect(classifyQueryExpansion('impact of handleSave', 'neighborhood').seededPprEligible).toBe(false);
+      expect(classifyQueryExpansion('impact of handleSave', 'neighborhood').queryClass).toBe('single_hop');
       expect(classifyQueryExpansion('impact of handleSave', 'outline').queryClass).toBe('single_hop');
     });
 
     it('routes blast-radius text to multi-hop when no mode hint is present', () => {
       const result = classifyQueryExpansion('blast radius of handleSave');
       expect(result.queryClass).toBe('multi_hop');
-      expect(result.seededPprEligible).toBe(true);
     });
 
     it('fails ambiguous text closed for expansion', () => {
       const result = classifyQueryExpansion('tell me about the system');
       expect(result.queryClass).toBe('ambiguous');
-      expect(result.seededPprEligible).toBe(false);
     });
   });
 
@@ -96,7 +92,6 @@ describe('query-intent-classifier', () => {
       expect(typeof result.structuralScore).toBe('number');
       expect(typeof result.semanticScore).toBe('number');
       expect(Array.isArray(result.matchedKeywords)).toBe(true);
-      expect(typeof result.seededPprEligible).toBe('boolean');
     });
 
     it('confidence never exceeds 0.95', () => {

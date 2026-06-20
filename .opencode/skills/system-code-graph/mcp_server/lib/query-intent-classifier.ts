@@ -14,13 +14,11 @@ export interface ClassificationResult {
   semanticScore: number;
   matchedKeywords: string[];
   queryClass: QueryExpansionClass;
-  seededPprEligible: boolean;
 }
 
 export interface QueryExpansionClassification {
   queryClass: QueryExpansionClass;
   confidence: number;
-  seededPprEligible: boolean;
   matchedSignals: string[];
 }
 
@@ -120,7 +118,6 @@ function expansionFromMode(mode: QueryModeHint | undefined): QueryExpansionClass
     return {
       queryClass: 'multi_hop',
       confidence: 0.95,
-      seededPprEligible: true,
       matchedSignals: ['mode:impact'],
     };
   }
@@ -128,7 +125,6 @@ function expansionFromMode(mode: QueryModeHint | undefined): QueryExpansionClass
     return {
       queryClass: 'single_hop',
       confidence: 0.95,
-      seededPprEligible: false,
       matchedSignals: [`mode:${mode}`],
     };
   }
@@ -149,7 +145,6 @@ export function classifyQueryExpansion(
     return {
       queryClass: 'ambiguous',
       confidence: 0.5,
-      seededPprEligible: false,
       matchedSignals: [],
     };
   }
@@ -159,7 +154,6 @@ export function classifyQueryExpansion(
     return {
       queryClass: 'entity',
       confidence: Math.min(0.95, 0.7 + entityHits * 0.1),
-      seededPprEligible: true,
       matchedSignals: ['entity'],
     };
   }
@@ -170,7 +164,6 @@ export function classifyQueryExpansion(
     return {
       queryClass: 'multi_hop',
       confidence: Math.min(0.95, 0.65 + multiHopHits * 0.1),
-      seededPprEligible: true,
       matchedSignals: ['multi-hop'],
     };
   }
@@ -178,7 +171,6 @@ export function classifyQueryExpansion(
     return {
       queryClass: 'single_hop',
       confidence: Math.min(0.95, 0.65 + singleHopHits * 0.1),
-      seededPprEligible: false,
       matchedSignals: ['single-hop'],
     };
   }
@@ -186,7 +178,6 @@ export function classifyQueryExpansion(
   return {
     queryClass: 'ambiguous',
     confidence: 0.5,
-    seededPprEligible: false,
     matchedSignals: [],
   };
 }
@@ -208,7 +199,6 @@ export function classifyQueryIntent(query: string): ClassificationResult {
       semanticScore: 0,
       matchedKeywords: [],
       queryClass: expansion.queryClass,
-      seededPprEligible: expansion.seededPprEligible,
     };
   }
 
@@ -232,7 +222,6 @@ export function classifyQueryIntent(query: string): ClassificationResult {
       semanticScore,
       matchedKeywords,
       queryClass: expansion.queryClass,
-      seededPprEligible: expansion.seededPprEligible,
     };
   }
 
@@ -251,6 +240,5 @@ export function classifyQueryIntent(query: string): ClassificationResult {
     semanticScore,
     matchedKeywords,
     queryClass: expansion.queryClass,
-    seededPprEligible: expansion.seededPprEligible,
   };
 }

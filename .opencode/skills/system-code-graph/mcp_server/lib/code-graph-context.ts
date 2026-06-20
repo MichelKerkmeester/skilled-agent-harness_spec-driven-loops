@@ -5,35 +5,9 @@
 // Provides the code_graph_context MCP tool implementation.
 
 import { performance } from 'node:perf_hooks';
-import { existsSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
 import * as graphDb from './code-graph-db.js';
-import { classifyQueryExpansion } from './query-intent-classifier.js';
 import { resolveSeeds, type AnySeed, type ArtifactRef } from './seed-resolver.js';
 import { isSpeckitMetricsEnabled, speckitMetrics } from './shared/metrics-stub.js';
-import type {
-  WeightedTraversalEdge,
-  WeightedWalkResult,
-} from '../../../system-spec-kit/mcp_server/dist/lib/graph/bfs-traversal.js';
-
-type MemoryWeightedWalkModule = typeof import('../../../system-spec-kit/mcp_server/dist/lib/graph/bfs-traversal.js');
-
-function resolveMemoryWeightedWalkModuleUrl(): URL {
-  const candidates = [
-    new URL('../../../system-spec-kit/mcp_server/dist/lib/graph/bfs-traversal.js', import.meta.url),
-    new URL('../../../../system-spec-kit/mcp_server/dist/lib/graph/bfs-traversal.js', import.meta.url),
-  ];
-  const resolved = candidates.find((candidate) => existsSync(fileURLToPath(candidate)));
-  if (!resolved) {
-    throw new Error('Memory weighted-walk traversal module not found');
-  }
-  return resolved;
-}
-
-const memoryWeightedWalkModule = await import(
-  resolveMemoryWeightedWalkModuleUrl().href
-) as MemoryWeightedWalkModule;
-const collectMemoryWeightedWalk = memoryWeightedWalkModule.collectWeightedWalk;
 
 /** Map internal QueryMode → canonical spec_kit metric `mode` label value. */
 function speckitQueryModeLabel(mode: QueryMode): 'outline' | 'blast_radius' | 'relationship' {
@@ -136,19 +110,6 @@ const CONTEXT_EDGE_EVIDENCE_RANK_FACTORS: Readonly<Record<string, number>> = {
   INFERRED: 0.004,
   AMBIGUOUS: 0.002,
 };
-const SEEDED_PPR_ENABLED_ENV = 'SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING';
-const SEEDED_PPR_ENABLED_VALUES = new Set(['1', 'true', 'yes', 'on', 'experimental']);
-const SEEDED_PPR_IMPACT_EDGE_TYPES = ['CALLS', 'IMPORTS'] as const;
-const SEEDED_PPR_MAX_HOPS = 3;
-const SEEDED_PPR_MAX_ITERATIONS = 20;
-const SEEDED_PPR_DAMPING = 0.85;
-const SEEDED_PPR_EPSILON = 1e-6;
-const SEEDED_PPR_EVIDENCE_TRANSITION_FACTORS: Readonly<Record<string, number>> = {
-  EXTRACTED: 1.0,
-  STRUCTURED: 1.0,
-  INFERRED: 0.45,
-  AMBIGUOUS: 0.25,
-};
 
 interface ExpansionResult {
   section: GraphContextSection;
@@ -176,39 +137,6 @@ interface RankedContextEdge<T extends ContextEdgeResult> {
   readonly result: T;
   readonly rankScore: number;
   readonly tieKey: readonly string[];
-}
-
-type PprNodeId = string | number;
-
-export interface BoundedPersonalizedPageRankOptions<TNode extends PprNodeId> {
-  readonly seeds: readonly TNode[];
-  readonly maxHops: number;
-  readonly maxIterations: number;
-  readonly damping: number;
-  readonly convergenceEpsilon?: number;
-  readonly readEdges: (nodeIds: readonly TNode[]) => readonly WeightedTraversalEdge<TNode>[];
-  readonly deadlineExpired?: () => boolean;
-}
-
-export interface BoundedPersonalizedPageRankResult<TNode extends PprNodeId> {
-  readonly scores: Map<TNode, number>;
-  readonly reached: Map<TNode, WeightedWalkResult<TNode>>;
-  readonly iterations: number;
-  readonly boundedReason: 'converged' | 'iteration_cap' | 'deadline' | 'empty';
-}
-
-interface SeededPprImpactCandidate {
-  readonly result: graphDb.CodeEdgeSourceResult;
-  readonly targetLabel: string;
-  readonly targetFile: string | null;
-  readonly pprScore: number;
-  readonly minHop: number;
-  readonly tieKey: readonly string[];
-}
-
-interface SeededPprImpactRanking {
-  readonly candidates: SeededPprImpactCandidate[];
-  readonly deadlineExceeded: boolean;
 }
 
 function defaultDeadlineMsForProfile(profile: ContextArgs['profile']): number {
@@ -300,7 +228,6 @@ export function buildContext(args: ContextArgs): ContextResult {
       queryMode,
       Math.max(0, deadlineMs - (performance.now() - contextStart)),
       args.includeTrace === true,
-      args.input,
     );
     sections.push(expansion.section);
     totalNodes += expansion.section.nodes.length;
@@ -457,147 +384,6 @@ function contextEdgeReliability(edge: graphDb.CodeEdgeTargetResult['edge'] | gra
   return clampConfidence(edge.metadata?.confidence) * evidenceClassFactor;
 }
 
-function seededPprRankingEnabled(env: NodeJS.ProcessEnv = process.env): boolean {
-  const raw = env[SEEDED_PPR_ENABLED_ENV]?.trim().toLowerCase();
-  return raw ? SEEDED_PPR_ENABLED_VALUES.has(raw) : false;
-}
-
-function shouldUseSeededPprRanking(mode: QueryMode, input: string | undefined): boolean {
-  if (!seededPprRankingEnabled()) {
-    return false;
-  }
-  return classifyQueryExpansion(input ?? '', mode).seededPprEligible;
-}
-
-function positiveFinite(value: unknown, fallback: number): number {
-  return typeof value === 'number' && Number.isFinite(value) && value > 0 ? value : fallback;
-}
-
-function contextEdgeTransitionWeight(edge: graphDb.CodeEdgeTargetResult['edge'] | graphDb.CodeEdgeSourceResult['edge']): number {
-  const evidenceClass = typeof edge.metadata?.evidenceClass === 'string'
-    ? edge.metadata.evidenceClass
-    : null;
-  const evidenceFactor = evidenceClass
-    ? SEEDED_PPR_EVIDENCE_TRANSITION_FACTORS[evidenceClass] ?? 1
-    : 1;
-  const confidence = typeof edge.metadata?.confidence === 'number'
-    ? Math.max(clampConfidence(edge.metadata.confidence), 0.001)
-    : 1;
-  return positiveFinite(edge.weight, 1) * confidence * evidenceFactor * (1 + contextEdgeReliability(edge));
-}
-
-function uniquePprNodes<TNode extends PprNodeId>(nodeIds: readonly TNode[]): TNode[] {
-  return Array.from(new Set(nodeIds));
-}
-
-function normalizeTeleport<TNode extends PprNodeId>(seeds: readonly TNode[]): Map<TNode, number> {
-  const uniqueSeeds = uniquePprNodes(seeds);
-  const teleport = new Map<TNode, number>();
-  if (uniqueSeeds.length === 0) {
-    return teleport;
-  }
-  const mass = 1 / uniqueSeeds.length;
-  for (const seed of uniqueSeeds) {
-    teleport.set(seed, mass);
-  }
-  return teleport;
-}
-
-function weightedAdjacency<TNode extends PprNodeId>(
-  nodes: readonly TNode[],
-  edges: readonly WeightedTraversalEdge<TNode>[],
-): Map<TNode, Array<{ to: TNode; weight: number }>> {
-  const nodeSet = new Set(nodes);
-  const adjacency = new Map<TNode, Array<{ to: TNode; weight: number }>>();
-  for (const edge of edges) {
-    if (!nodeSet.has(edge.from) || !nodeSet.has(edge.to)) {
-      continue;
-    }
-    const weight = positiveFinite(edge.weight, 0) * positiveFinite(edge.strength, 1);
-    if (weight <= 0) {
-      continue;
-    }
-    const bucket = adjacency.get(edge.from) ?? [];
-    bucket.push({ to: edge.to, weight });
-    adjacency.set(edge.from, bucket);
-  }
-  return adjacency;
-}
-
-export function computeBoundedPersonalizedPageRank<TNode extends PprNodeId>(
-  options: BoundedPersonalizedPageRankOptions<TNode>,
-): BoundedPersonalizedPageRankResult<TNode> {
-  const seeds = uniquePprNodes(options.seeds);
-  const teleport = normalizeTeleport(seeds);
-  if (seeds.length === 0) {
-    return { scores: new Map(), reached: new Map(), iterations: 0, boundedReason: 'empty' };
-  }
-
-  const maxHops = Math.max(0, Math.trunc(options.maxHops));
-  const maxIterations = Math.max(1, Math.trunc(options.maxIterations));
-  const damping = Math.max(0, Math.min(1, options.damping));
-  const epsilon = options.convergenceEpsilon ?? SEEDED_PPR_EPSILON;
-  const reached = collectMemoryWeightedWalk({
-    seeds,
-    maxHops,
-    readEdges: options.readEdges,
-  });
-  const nodes = uniquePprNodes([...seeds, ...reached.keys()]);
-  let scores = new Map<TNode, number>(teleport);
-  if (nodes.length === seeds.length && reached.size === 0) {
-    return { scores, reached, iterations: 0, boundedReason: 'empty' };
-  }
-
-  const adjacency = weightedAdjacency(nodes, options.readEdges(nodes));
-  let boundedReason: BoundedPersonalizedPageRankResult<TNode>['boundedReason'] = 'iteration_cap';
-  let iterations = 0;
-  for (let iteration = 0; iteration < maxIterations; iteration += 1) {
-    if (options.deadlineExpired?.() === true) {
-      boundedReason = 'deadline';
-      break;
-    }
-
-    const next = new Map<TNode, number>();
-    for (const [node, mass] of teleport) {
-      next.set(node, (next.get(node) ?? 0) + (1 - damping) * mass);
-    }
-
-    for (const node of nodes) {
-      const currentScore = scores.get(node) ?? 0;
-      if (currentScore === 0) {
-        continue;
-      }
-      const outgoing = adjacency.get(node) ?? [];
-      if (outgoing.length === 0) {
-        for (const [seed, mass] of teleport) {
-          next.set(seed, (next.get(seed) ?? 0) + damping * currentScore * mass);
-        }
-        continue;
-      }
-      const totalWeight = outgoing.reduce((sum, edge) => sum + edge.weight, 0);
-      if (totalWeight <= 0) {
-        continue;
-      }
-      for (const edge of outgoing) {
-        next.set(edge.to, (next.get(edge.to) ?? 0) + damping * currentScore * (edge.weight / totalWeight));
-      }
-    }
-
-    let delta = 0;
-    for (const node of nodes) {
-      delta += Math.abs((next.get(node) ?? 0) - (scores.get(node) ?? 0));
-    }
-    scores = next;
-    iterations = iteration + 1;
-    if (delta <= epsilon) {
-      boundedReason = 'converged';
-      break;
-    }
-  }
-
-  return { scores, reached, iterations, boundedReason };
-}
-
 function stableTieValue(value: unknown): string | null {
   if (typeof value !== 'string') return null;
   const trimmed = value.trim();
@@ -674,154 +460,6 @@ function rankContextEdges<T extends ContextEdgeResult>(
     .map((ranked) => ranked.result);
 }
 
-function contextNodeFromEdgeResult(
-  result: graphDb.CodeEdgeTargetResult | graphDb.CodeEdgeSourceResult,
-): ContextNodeSummary | null {
-  const node = 'targetNode' in result ? result.targetNode : result.sourceNode;
-  if (!node) {
-    return null;
-  }
-  return {
-    name: node.fqName,
-    kind: node.kind,
-    file: node.filePath,
-    line: node.startLine,
-  };
-}
-
-function seededPprEdgeKey(edge: graphDb.CodeEdgeSourceResult['edge']): string {
-  return `${edge.sourceId}\u0000${edge.targetId}\u0000${edge.edgeType}`;
-}
-
-function compareSeededPprImpactCandidates(
-  left: SeededPprImpactCandidate,
-  right: SeededPprImpactCandidate,
-): number {
-  if (left.pprScore > right.pprScore) return -1;
-  if (left.pprScore < right.pprScore) return 1;
-  if (left.minHop < right.minHop) return -1;
-  if (left.minHop > right.minHop) return 1;
-
-  const comparedEdges = compareRankedContextEdges(
-    { result: left.result, rankScore: contextEdgeReliability(left.result.edge), tieKey: left.tieKey },
-    { result: right.result, rankScore: contextEdgeReliability(right.result.edge), tieKey: right.tieKey },
-  );
-  if (comparedEdges !== 0) return comparedEdges;
-  return compareStrings(left.targetLabel, right.targetLabel);
-}
-
-function collectSeededPprImpactRanking(
-  anchor: ArtifactRef,
-  anchorLabel: string,
-  budgetExpired: () => boolean,
-): SeededPprImpactRanking {
-  const anchorId = anchor.symbolId;
-  if (!anchorId) {
-    return { candidates: [], deadlineExceeded: false };
-  }
-
-  let deadlineExceeded = false;
-  const edgesByNode = new Map<string, WeightedTraversalEdge<string>[]>();
-  const nodeSummaries = new Map<string, ContextNodeSummary>([
-    [anchorId, { name: anchorLabel, kind: anchor.kind ?? 'unknown', file: anchor.filePath, line: anchor.startLine }],
-  ]);
-  const candidatesByEdge = new Map<string, {
-    result: graphDb.CodeEdgeSourceResult;
-    targetLabel: string;
-    targetFile: string | null;
-  }>();
-
-  const ensureNodeEdges = (nodeId: string): WeightedTraversalEdge<string>[] => {
-    const cached = edgesByNode.get(nodeId);
-    if (cached) {
-      return cached;
-    }
-    if (budgetExpired()) {
-      deadlineExceeded = true;
-      edgesByNode.set(nodeId, []);
-      return [];
-    }
-
-    const weightedEdges: WeightedTraversalEdge<string>[] = [];
-    for (const edgeType of SEEDED_PPR_IMPACT_EDGE_TYPES) {
-      const incoming = graphDb.queryEdgesTo(nodeId, edgeType);
-      for (const result of incoming) {
-        const related = contextNodeFromEdgeResult(result);
-        if (related) {
-          nodeSummaries.set(result.edge.sourceId, related);
-        }
-        if (result.edge.sourceId !== anchorId) {
-          candidatesByEdge.set(seededPprEdgeKey(result.edge), {
-            result,
-            targetLabel: nodeSummaries.get(nodeId)?.name ?? nodeId,
-            targetFile: nodeSummaries.get(nodeId)?.file ?? null,
-          });
-        }
-        weightedEdges.push({
-          from: nodeId,
-          to: result.edge.sourceId,
-          weight: contextEdgeTransitionWeight(result.edge),
-        });
-      }
-
-      const outgoing = graphDb.queryEdgesFrom(nodeId, edgeType);
-      for (const result of outgoing) {
-        const related = contextNodeFromEdgeResult(result);
-        if (related) {
-          nodeSummaries.set(result.edge.targetId, related);
-        }
-        weightedEdges.push({
-          from: nodeId,
-          to: result.edge.targetId,
-          weight: contextEdgeTransitionWeight(result.edge),
-        });
-      }
-    }
-
-    edgesByNode.set(nodeId, weightedEdges);
-    return weightedEdges;
-  };
-
-  const readEdges = (nodeIds: readonly string[]): WeightedTraversalEdge<string>[] => (
-    uniquePprNodes(nodeIds).flatMap((nodeId) => ensureNodeEdges(nodeId))
-  );
-
-  const ppr = computeBoundedPersonalizedPageRank({
-    seeds: [anchorId],
-    maxHops: SEEDED_PPR_MAX_HOPS,
-    maxIterations: SEEDED_PPR_MAX_ITERATIONS,
-    damping: SEEDED_PPR_DAMPING,
-    convergenceEpsilon: SEEDED_PPR_EPSILON,
-    readEdges,
-    deadlineExpired: budgetExpired,
-  });
-  if (ppr.boundedReason === 'deadline') {
-    deadlineExceeded = true;
-  }
-
-  readEdges([anchorId, ...ppr.reached.keys()]);
-
-  const candidates = [...candidatesByEdge.values()]
-    .map((candidate): SeededPprImpactCandidate | null => {
-      const sourceId = candidate.result.edge.sourceId;
-      const pprScore = ppr.scores.get(sourceId);
-      if (pprScore === undefined) {
-        return null;
-      }
-      const reached = ppr.reached.get(sourceId);
-      return {
-        ...candidate,
-        pprScore,
-        minHop: reached?.minHop ?? 1,
-        tieKey: contextEdgeTieKey(candidate.result),
-      };
-    })
-    .filter((candidate): candidate is SeededPprImpactCandidate => candidate !== null)
-    .sort(compareSeededPprImpactCandidates);
-
-  return { candidates, deadlineExceeded };
-}
-
 function formatContextEdge(edge: graphDb.CodeEdgeTargetResult['edge'] | graphDb.CodeEdgeSourceResult['edge']): {
   confidence: number | null;
   detectorProvenance: string | null;
@@ -856,7 +494,6 @@ function expandAnchor(
   mode: QueryMode,
   remainingMs?: number,
   includeTrace = false,
-  queryText?: string,
 ): ExpansionResult {
   const startTime = performance.now();
   const budgetMs = remainingMs ?? 400; // 400ms default latency budget
@@ -1122,40 +759,6 @@ function expandAnchor(
       break;
     }
     case 'impact': {
-      if (shouldUseSeededPprRanking(mode, queryText)) {
-        const seededRanking = collectSeededPprImpactRanking(anchor, anchorLabel, budgetExpired);
-        deadlineExceeded = seededRanking.deadlineExceeded;
-        let processedIncoming = 0;
-        for (const candidate of seededRanking.candidates) {
-          if (budgetExpired()) {
-            deadlineExceeded = true;
-            omittedEdges += seededRanking.candidates.length - processedIncoming;
-            break;
-          }
-          const { edge, sourceNode } = candidate.result;
-          edges.push({
-            from: sourceNode?.fqName ?? edge.sourceId,
-            to: candidate.targetLabel,
-            type: edge.edgeType,
-            ...formatContextEdge(edge),
-          });
-          recordWhyIncluded({
-            filePath: sourceNode?.filePath,
-            depth: candidate.minHop,
-            edge,
-            from: sourceNode?.fqName ?? edge.sourceId,
-            to: candidate.targetLabel,
-            fromFile: sourceNode?.filePath ?? null,
-            toFile: candidate.targetFile,
-          });
-          if (sourceNode) {
-            nodes.push({ name: sourceNode.fqName, kind: sourceNode.kind, file: sourceNode.filePath, line: sourceNode.startLine });
-          }
-          processedIncoming += 1;
-        }
-        break;
-      }
-
       // Reverse: who calls this? who imports this?
       // Latency guard: break early if queries exceed budget (400ms default)
       for (const edgeType of ['CALLS', 'IMPORTS'] as const) {
