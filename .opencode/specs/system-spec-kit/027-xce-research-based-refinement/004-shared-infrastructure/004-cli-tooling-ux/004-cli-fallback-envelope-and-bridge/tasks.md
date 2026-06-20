@@ -1,5 +1,5 @@
 ---
-title: "Tasks: CLI Fallback Envelope and Bridge Allowlist [template:level_1/tasks.md]"
+title: "Tasks: CLI Fallback Envelope and Bridge Allowlist"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "004-cli-fallback-envelope-and-bridge tasks"

@@ -1,5 +1,6 @@
 {
   "level": "phase",
+  "status": "phase-parent",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening",
   "description": "Feature Specification: Memclaw-Derived Memory Hardening (Phase Parent)",
   "keywords": [
@@ -11,7 +12,7 @@
     "phase",
     "parent"
   ],
-  "lastUpdated": "2026-06-11T18:34:30.107Z",
+  "lastUpdated": "2026-06-20T10:59:13.917Z",
   "specId": "005",
   "folderSlug": "memclaw-derived-memory-hardening",
   "parentChain": [

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: CLI Freshness Gate Fix and Offline Smoke [template:level_1/tasks.md]"
+title: "Tasks: CLI Freshness Gate Fix and Offline Smoke"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "001-cli-freshness-and-smoke tasks"

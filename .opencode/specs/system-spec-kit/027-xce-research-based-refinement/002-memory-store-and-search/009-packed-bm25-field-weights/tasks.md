@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Packed In-Memory BM25 Engine with Field Weights [template:level_1/tasks.md]"
+title: "Tasks: Packed In-Memory BM25 Engine with Field Weights"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "014-packed-bm25-field-weights tasks"

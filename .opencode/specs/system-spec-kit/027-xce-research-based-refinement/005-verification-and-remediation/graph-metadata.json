@@ -23,7 +23,10 @@
       "finding remediation",
       "tri-system deep research",
       "deep research remediation",
-      "residual design units"
+      "residual design units",
+      "fresh regression remediation",
+      "deep review 017-021 remediation",
+      "release alignment review"
     ],
     "key_topics": [
       "027",
@@ -88,15 +91,15 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The 027 program produced review and research evidence that had to become terminal, verified work queues rather than assumed-true claims. The epic finding remediation, the tri-system deep-research sweep, the deep-research remediation, and the residual high-blast-radius design units share a single verify-first doctrine, so they belong under one themed parent.",
+    "causal_summary": "The 027 program produced review and research evidence that had to become terminal, verified work queues rather than assumed-true claims. The epic finding remediation, the tri-system deep-research sweep, the deep-research remediation, the residual high-blast-radius design units, the fresh+regression remediation, the deep-review 017-021 remediation, and the release-alignment review all share a single verify-first doctrine, so they belong under one themed parent.",
     "created_at": "2026-06-14T00:00:00Z",
-    "last_save_at": "2026-06-18T12:37:50.387Z",
+    "last_save_at": "2026-06-20T00:00:00Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "last_active_child_id": null,
-    "last_active_at": null
+    "last_active_child_id": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation",
+    "last_active_at": "2026-06-20T00:00:00Z"
   }
 }

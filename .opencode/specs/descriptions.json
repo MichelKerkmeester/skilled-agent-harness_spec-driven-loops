@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated": "2026-06-19T17:44:10.852Z",
+  "generated": "2026-06-20T11:01:15.136Z",
   "folders": [
     {
       "specFolder": "ai-systems/001-ai-system-architecture",
@@ -385,7 +385,7 @@
         "fleet",
         "pass"
       ],
-      "lastUpdated": "2026-06-19T17:44:10.852Z"
+      "lastUpdated": "2026-06-20T11:01:15.136Z"
     },
     {
       "specFolder": "ai-systems/005-sales-hubspot-automation-merge",
@@ -531,7 +531,7 @@
         "small",
         "inventory"
       ],
-      "lastUpdated": "2026-06-19T17:44:10.852Z"
+      "lastUpdated": "2026-06-20T11:01:15.136Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/142-sk-code-ponytail-based-refinement",
@@ -2333,7 +2333,7 @@
         "folder",
         "convention"
       ],
-      "lastUpdated": "2026-06-19T17:44:10.852Z"
+      "lastUpdated": "2026-06-20T11:01:15.136Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/043-cli-skill-improved-prompting",
@@ -6728,7 +6728,7 @@
         "doc",
         "rebuild"
       ],
-      "lastUpdated": "2026-06-19T17:44:10.852Z"
+      "lastUpdated": "2026-06-20T11:01:15.136Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/122-deep-improvement-skill-benchmark-mode/008-playbook-manual-test-run",
@@ -8973,7 +8973,7 @@
         "standards",
         "contract"
       ],
-      "lastUpdated": "2026-06-19T17:44:10.852Z"
+      "lastUpdated": "2026-06-20T11:01:15.136Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/023-fix-baseline-test-failures",
@@ -8999,7 +8999,7 @@
         "concurrency",
         "fixes"
       ],
-      "lastUpdated": "2026-06-19T17:44:10.852Z"
+      "lastUpdated": "2026-06-20T11:01:15.136Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/025-readme-architecture-diagrams-topology",
@@ -10061,7 +10061,7 @@
         "accuracy",
         "re-audit"
       ],
-      "lastUpdated": "2026-06-19T17:44:10.852Z"
+      "lastUpdated": "2026-06-20T11:01:15.136Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/009-readme-and-references-accuracy",
@@ -10191,7 +10191,7 @@
         "review",
         "slice"
       ],
-      "lastUpdated": "2026-06-19T17:44:10.852Z"
+      "lastUpdated": "2026-06-20T11:01:15.136Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/002-mcp-retrieval-causal",
@@ -10205,7 +10205,7 @@
         "review",
         "slice"
       ],
-      "lastUpdated": "2026-06-19T17:44:10.852Z"
+      "lastUpdated": "2026-06-20T11:01:15.136Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/003-mcp-session-index-schema",
@@ -10221,7 +10221,7 @@
         "review",
         "slice"
       ],
-      "lastUpdated": "2026-06-19T17:44:10.852Z"
+      "lastUpdated": "2026-06-20T11:01:15.136Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/004-026-integrity",
@@ -10235,7 +10235,7 @@
         "review",
         "slice"
       ],
-      "lastUpdated": "2026-06-19T17:44:10.852Z"
+      "lastUpdated": "2026-06-20T11:01:15.136Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/005-feature-catalog-playbook",
@@ -10249,7 +10249,7 @@
         "verification",
         "slice"
       ],
-      "lastUpdated": "2026-06-19T17:44:10.852Z"
+      "lastUpdated": "2026-06-20T11:01:15.136Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/006-governance-skdoc-skcode",
@@ -10264,7 +10264,7 @@
         "review",
         "slice"
       ],
-      "lastUpdated": "2026-06-19T17:44:10.852Z"
+      "lastUpdated": "2026-06-20T11:01:15.136Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/007-interconnected-mcps",
@@ -10277,7 +10277,7 @@
         "review",
         "slice"
       ],
-      "lastUpdated": "2026-06-19T17:44:10.852Z"
+      "lastUpdated": "2026-06-20T11:01:15.136Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/008-027-launch-state",
@@ -10290,7 +10290,7 @@
         "review",
         "slice"
       ],
-      "lastUpdated": "2026-06-19T17:44:10.852Z"
+      "lastUpdated": "2026-06-20T11:01:15.136Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis",
@@ -10305,7 +10305,7 @@
         "deep-review",
         "audit"
       ],
-      "lastUpdated": "2026-06-19T17:44:10.852Z"
+      "lastUpdated": "2026-06-20T11:01:15.136Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation",
@@ -11110,7 +11110,7 @@
         "coverage",
         "audit"
       ],
-      "lastUpdated": "2026-06-19T17:44:10.852Z"
+      "lastUpdated": "2026-06-20T11:01:15.136Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/027-typescript-header-normalization",
@@ -11632,7 +11632,7 @@
         "template",
         "alignment"
       ],
-      "lastUpdated": "2026-06-19T17:44:10.852Z"
+      "lastUpdated": "2026-06-20T11:01:15.136Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation",
@@ -13277,7 +13277,7 @@
         "audit",
         "deep-research"
       ],
-      "lastUpdated": "2026-06-19T17:44:10.852Z"
+      "lastUpdated": "2026-06-20T11:01:15.136Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc",
@@ -16473,7 +16473,7 @@
         "isolation",
         "finalize"
       ],
-      "lastUpdated": "2026-06-19T17:44:10.852Z"
+      "lastUpdated": "2026-06-20T11:01:15.136Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes",
@@ -18418,7 +18418,7 @@
         "deep-review",
         "remediation"
       ],
-      "lastUpdated": "2026-06-19T17:44:10.852Z"
+      "lastUpdated": "2026-06-20T11:01:15.136Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-039-system-code-graph-deferred-followon",
@@ -18458,7 +18458,7 @@
         "reorg",
         "renumber"
       ],
-      "lastUpdated": "2026-06-19T17:44:10.852Z"
+      "lastUpdated": "2026-06-20T11:01:15.136Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement",
@@ -18473,7 +18473,7 @@
         "phase",
         "parent"
       ],
-      "lastUpdated": "2026-06-16T15:23:34.724Z"
+      "lastUpdated": "2026-06-20T10:59:13.864Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup",
@@ -18487,7 +18487,7 @@
         "phase",
         "parent"
       ],
-      "lastUpdated": "2026-06-16T15:23:34.729Z"
+      "lastUpdated": "2026-06-20T10:59:13.871Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/000-spec-tree-consolidation",
@@ -18524,7 +18524,7 @@
         "docs",
         "alignment"
       ],
-      "lastUpdated": "2026-06-10T16:42:09.629Z"
+      "lastUpdated": "2026-06-20T10:59:13.876Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/003-skill-feature-catalog",
@@ -18582,7 +18582,7 @@
         "command",
         "alignment"
       ],
-      "lastUpdated": "2026-06-10T16:42:09.643Z"
+      "lastUpdated": "2026-06-20T10:59:13.881Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/007-agent-alignment",
@@ -18941,7 +18941,7 @@
         "phase",
         "parent"
       ],
-      "lastUpdated": "2026-06-16T15:23:34.742Z"
+      "lastUpdated": "2026-06-20T10:59:13.888Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption",
@@ -18958,7 +18958,7 @@
         "source-pass",
         "t5-t10"
       ],
-      "lastUpdated": "2026-06-11T16:04:31.620Z"
+      "lastUpdated": "2026-06-20T10:59:13.893Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/001-peck-teachings-for-spec-kit",
@@ -18973,7 +18973,7 @@
         "applicable",
         "system-spec-kit"
       ],
-      "lastUpdated": "2026-06-04T12:33:53.296Z"
+      "lastUpdated": "2026-06-20T10:59:13.898Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/002-self-check-templates",
@@ -18984,7 +18984,7 @@
         "phase",
         "self-check-templates"
       ],
-      "lastUpdated": "2026-06-10T04:53:31.231Z"
+      "lastUpdated": "2026-06-20T10:59:13.902Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/003-current-state-discipline",
@@ -18995,7 +18995,7 @@
         "phase",
         "current-state-discipline"
       ],
-      "lastUpdated": "2026-06-10T11:00:20.757Z"
+      "lastUpdated": "2026-06-20T10:59:13.906Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/004-constitutional-rule-review",
@@ -19006,7 +19006,7 @@
         "phase",
         "constitutional-rule-review"
       ],
-      "lastUpdated": "2026-06-10T11:00:20.762Z"
+      "lastUpdated": "2026-06-20T10:59:13.910Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/005-reviewer-prompt-benchmark-substrate",
@@ -19105,21 +19105,21 @@
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search",
-      "description": "Implement the search-intelligence and AI-output findings from the 016 deep-research via fresh claude2 Opus agents",
+      "description": "Phase-parent for the memory store and search hardening track: write-path safety, incremental index and causal lifecycle, semantic trigger fallback, learning feedback reducers, derived-memory hardening, retrieval observability, session continuity, vector/BM25 read-path resilience, retrieval gating and recall recovery, search/output intelligence, and maintenance-grace daemon responsiveness.",
       "keywords": [
-        "implement",
-        "search-intelligence",
-        "ai-output",
-        "findings",
-        "016",
-        "deep-research",
-        "via",
-        "fresh",
-        "claude2",
-        "opus",
-        "agents"
+        "memory",
+        "store",
+        "search",
+        "write-safety",
+        "causal-lifecycle",
+        "semantic-trigger",
+        "feedback-reducers",
+        "vector",
+        "bm25",
+        "retrieval",
+        "resilience"
       ],
-      "lastUpdated": "2026-06-17T06:03:00.900Z"
+      "lastUpdated": "2026-06-20T00:00:00.000Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/001-memory-write-safety",
@@ -19345,78 +19345,62 @@
         "phase",
         "parent"
       ],
-      "lastUpdated": "2026-06-11T18:34:30.107Z"
+      "lastUpdated": "2026-06-20T10:59:13.917Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/001-provenance-and-audit",
-      "description": "Implemented provenance-and-audit hardening for source_kind, write-ingress protection, and automated mutation audit",
+      "description": "Feature Specification: Phase 1: provenance-and-audit",
       "keywords": [
         "feature",
         "specification",
         "phase",
         "provenance-and-audit"
       ],
-      "lastUpdated": "2026-06-10T12:25:00.000Z"
+      "lastUpdated": "2026-06-20T10:59:13.922Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/002-idempotency-and-near-duplicate",
-      "description": "Implemented server-derived memory write idempotency receipts and near-duplicate advisory hints",
+      "description": "Feature Specification: Phase 2: idempotency-and-near-duplicate",
       "keywords": [
         "feature",
         "specification",
         "phase",
         "idempotency-and-near-duplicate"
       ],
-      "lastUpdated": "2026-06-10T11:05:00.000Z"
+      "lastUpdated": "2026-06-20T10:59:13.926Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/003-feedback-log-and-005-reframe",
-      "description": "Feedback safety posture: reserved feedback type guard, shadow-only assertions, fail-safe ledger, future reducer invariants, and diagnostics-first coordination.",
-      "keywords": [
-        "feedback",
-        "safety",
-        "posture",
-        "reserved",
-        "type",
-        "guard",
-        "shadow-only",
-        "assertions",
-        "fail-safe",
-        "ledger",
-        "future",
-        "reducer",
-        "invariants",
-        "diagnostics-first",
-        "coordination"
-      ],
-      "lastUpdated": "2026-06-10T11:27:28.370Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/004-tombstones-and-edge-promotion",
-      "description": "Completed phase: default hard-delete remains active while SPECKIT_SOFT_DELETE_TOMBSTONES gates first-timestamp tombstones; skip-manual causal-edge promotion, active/purgeable partial indexes, and entity-not-causal advisory rule remain in place.",
-      "keywords": [
-        "SPECKIT_SOFT_DELETE_TOMBSTONES",
-        "hard-delete default",
-        "first-timestamp tombstones",
-        "skip-manual causal edges",
-        "active purgeable partial indexes",
-        "entity cooccurrence not causal"
-      ],
-      "lastUpdated": "2026-06-10T14:30:00.000Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/005-stale-audit-and-tool-ownership",
-      "description": "Completed read-only stale/status hard-exclusion audit and derived TOOL_DEFINITIONS ownership lint with no recall or stored-data change.",
+      "description": "Feature Specification: Phase 3: feedback-log-and-008-reframe",
       "keywords": [
         "feature",
         "specification",
         "phase",
-        "stale-audit-and-tool-ownership",
-        "hard-exclusion-audit",
-        "tool-ownership-lint",
-        "TOOL_DEFINITIONS"
+        "feedback-log-and-008-reframe"
       ],
-      "lastUpdated": "2026-06-10T14:35:00.000Z"
+      "lastUpdated": "2026-06-20T10:59:13.930Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/004-tombstones-and-edge-promotion",
+      "description": "Feature Specification: Phase 4: tombstones-and-edge-promotion",
+      "keywords": [
+        "feature",
+        "specification",
+        "phase",
+        "tombstones-and-edge-promotion"
+      ],
+      "lastUpdated": "2026-06-20T10:59:13.934Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/005-stale-audit-and-tool-ownership",
+      "description": "Feature Specification: Phase 5: stale-audit-and-tool-ownership",
+      "keywords": [
+        "feature",
+        "specification",
+        "phase",
+        "stale-audit-and-tool-ownership"
+      ],
+      "lastUpdated": "2026-06-20T10:59:13.938Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/006-openltm-retrieval-observability",
@@ -19475,7 +19459,7 @@
         "resilience",
         "performance"
       ],
-      "lastUpdated": "2026-06-11T05:33:36.376Z"
+      "lastUpdated": "2026-06-20T10:59:13.943Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/009-packed-bm25-field-weights",
@@ -19490,7 +19474,7 @@
         "field",
         "weights"
       ],
-      "lastUpdated": "2026-06-11T05:33:36.380Z"
+      "lastUpdated": "2026-06-20T10:59:13.948Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/010-bm25-warmup-churn-reduction",
@@ -19503,7 +19487,7 @@
         "churn",
         "reduction"
       ],
-      "lastUpdated": "2026-06-11T07:49:58.154Z"
+      "lastUpdated": "2026-06-20T10:59:13.953Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/011-vector-resilience-durability",
@@ -19567,54 +19551,22 @@
         "recall",
         "recovery"
       ],
-      "lastUpdated": "2026-06-17T03:35:45.273Z"
+      "lastUpdated": "2026-06-20T10:59:13.959Z"
     },
     {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence-research",
-      "description": "Deep research child loop",
-      "keywords": [
-        "deep",
-        "research",
-        "child",
-        "loop"
-      ],
-      "lastUpdated": "2026-06-17T05:10:30.271Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence-research/001-search-intelligence",
-      "description": "Feature Specification: Phase 1: search-intelligence",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence",
+      "description": "Feature Specification: Search and Output Intelligence",
       "keywords": [
         "feature",
         "specification",
-        "phase",
-        "search-intelligence"
+        "search",
+        "output",
+        "intelligence"
       ],
-      "lastUpdated": "2026-06-17T06:11:08.638Z"
+      "lastUpdated": "2026-06-20T10:59:13.963Z"
     },
     {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence-research/002-ai-output-command-vs-conversation",
-      "description": "Feature Specification: Phase 2: ai-output-command-vs-conversation",
-      "keywords": [
-        "feature",
-        "specification",
-        "phase",
-        "ai-output-command-vs-conversation"
-      ],
-      "lastUpdated": "2026-06-17T06:11:08.643Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/017-search-and-output-intelligence-implementation",
-      "description": "Feature Specification: Phase 1: search-and-output-intelligence-implementation",
-      "keywords": [
-        "feature",
-        "specification",
-        "phase",
-        "search-and-output-intelligence-implementation"
-      ],
-      "lastUpdated": "2026-06-18T03:33:51.793Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/017-search-and-output-intelligence-implementation/001-token-budget-truncation-safety",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/001-token-budget-truncation-safety",
       "description": "Feature Specification: Phase 1: token-budget-truncation-safety",
       "keywords": [
         "feature",
@@ -19625,7 +19577,7 @@
       "lastUpdated": "2026-06-18T03:33:51.800Z"
     },
     {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/017-search-and-output-intelligence-implementation/002-request-quality-aggregation",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/002-request-quality-aggregation",
       "description": "Feature Specification: Phase 2: request-quality-aggregation",
       "keywords": [
         "feature",
@@ -19636,7 +19588,7 @@
       "lastUpdated": "2026-06-18T03:33:51.805Z"
     },
     {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/017-search-and-output-intelligence-implementation/003-generic-query-deep-routing",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/003-generic-query-deep-routing",
       "description": "Feature Specification: Phase 3: generic-query-deep-routing",
       "keywords": [
         "feature",
@@ -19647,7 +19599,7 @@
       "lastUpdated": "2026-06-18T03:33:51.812Z"
     },
     {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/017-search-and-output-intelligence-implementation/004-confidence-calibration-labeled-set",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/004-confidence-calibration-labeled-set",
       "description": "Feature Specification: Phase 4: confidence-calibration-labeled-set",
       "keywords": [
         "feature",
@@ -19658,7 +19610,7 @@
       "lastUpdated": "2026-06-18T03:33:51.817Z"
     },
     {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/017-search-and-output-intelligence-implementation/005-cosine-topn-reorder",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/005-cosine-topn-reorder",
       "description": "Feature Specification: Phase 5: cosine-topn-reorder",
       "keywords": [
         "feature",
@@ -19669,7 +19621,7 @@
       "lastUpdated": "2026-06-18T03:33:51.822Z"
     },
     {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/017-search-and-output-intelligence-implementation/006-command-contract-structural",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/006-command-contract-structural",
       "description": "Feature Specification: Phase 6: command-contract-structural",
       "keywords": [
         "feature",
@@ -19680,7 +19632,7 @@
       "lastUpdated": "2026-06-18T03:33:51.826Z"
     },
     {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/017-search-and-output-intelligence-implementation/007-output-surface-parity",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/007-output-surface-parity",
       "description": "Feature Specification: Phase 7: output-surface-parity",
       "keywords": [
         "feature",
@@ -19691,7 +19643,40 @@
       "lastUpdated": "2026-06-18T03:33:51.831Z"
     },
     {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/018-reindex-scan-responsiveness-and-cancellation",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/research",
+      "description": "Deep research child loop",
+      "keywords": [
+        "deep",
+        "research",
+        "child",
+        "loop"
+      ],
+      "lastUpdated": "2026-06-17T05:10:30.271Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/research/001-search-intelligence",
+      "description": "Feature Specification: Phase 1: search-intelligence",
+      "keywords": [
+        "feature",
+        "specification",
+        "phase",
+        "search-intelligence"
+      ],
+      "lastUpdated": "2026-06-17T06:11:08.638Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/research/002-ai-output-command-vs-conversation",
+      "description": "Feature Specification: Phase 2: ai-output-command-vs-conversation",
+      "keywords": [
+        "feature",
+        "specification",
+        "phase",
+        "ai-output-command-vs-conversation"
+      ],
+      "lastUpdated": "2026-06-17T06:11:08.643Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/017-reindex-scan-responsiveness-and-cancellation",
       "description": "Feature Specification: reindex-scan responsiveness and cancellation",
       "keywords": [
         "feature",
@@ -19703,7 +19688,7 @@
       "lastUpdated": "2026-06-17T12:03:13.967Z"
     },
     {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/019-maintenance-grace-daemon-survives-reelection",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/018-maintenance-grace-daemon-survives-reelection",
       "description": "Feature Specification: maintenance-grace daemon survives re-election",
       "keywords": [
         "feature",
@@ -19716,7 +19701,7 @@
       "lastUpdated": "2026-06-18T03:33:51.836Z"
     },
     {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/020-maintenance-grace-background-embedding",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/019-maintenance-grace-background-embedding",
       "description": "Feature Specification: maintenance-grace covers background embedding",
       "keywords": [
         "feature",
@@ -19729,7 +19714,7 @@
       "lastUpdated": "2026-06-18T03:33:51.841Z"
     },
     {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/021-cooperative-heavy-phases",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/020-cooperative-heavy-phases",
       "description": "Feature Specification: cooperative heavy phases keep the daemon responsive",
       "keywords": [
         "feature",
@@ -19755,7 +19740,7 @@
         "phase",
         "parent"
       ],
-      "lastUpdated": "2026-06-15T18:16:13.948Z"
+      "lastUpdated": "2026-06-20T00:00:00.000Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/001-causal-traversal-bfs",
@@ -19769,11 +19754,11 @@
         "read",
         "path"
       ],
-      "lastUpdated": "2026-06-10T20:30:00.000Z"
+      "lastUpdated": "2026-06-20T10:59:13.967Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph",
-      "description": "Completed phase parent: adopted proven spec-027 memory-system features into the skill advisor and code graph systems across nine implemented child phases",
+      "description": "Feature Specification: Adopt proven spec-027 memory-system features into the skill advisor and code graph systems",
       "keywords": [
         "feature",
         "specification",
@@ -19788,29 +19773,29 @@
         "graph",
         "systems"
       ],
-      "lastUpdated": "2026-06-11T00:00:00.000Z"
+      "lastUpdated": "2026-06-20T10:59:13.972Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/001-advisor-observability",
-      "description": "Completed advisor observability phase: prompt-safe why_recommended attribution and semantic-lane health diagnostics.",
+      "description": "Feature Specification: Phase 1: advisor-observability",
       "keywords": [
         "feature",
         "specification",
         "phase",
         "advisor-observability"
       ],
-      "lastUpdated": "2026-06-10T22:36:00.000Z"
+      "lastUpdated": "2026-06-20T10:59:13.976Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/002-advisor-provenance-guard",
-      "description": "Completed advisor source-provenance guard for automated skill-graph edge writes",
+      "description": "Feature Specification: Phase 2: advisor-provenance-guard",
       "keywords": [
         "feature",
         "specification",
         "phase",
         "advisor-provenance-guard"
       ],
-      "lastUpdated": "2026-06-10T23:03:00Z"
+      "lastUpdated": "2026-06-20T10:59:13.981Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/003-advisor-packed-bm25-lexical",
@@ -19821,7 +19806,7 @@
         "phase",
         "advisor-packed-bm25-lexical"
       ],
-      "lastUpdated": "2026-06-10T21:52:41.637Z"
+      "lastUpdated": "2026-06-20T10:59:13.986Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/004-advisor-bfs-consolidation",
@@ -19847,14 +19832,14 @@
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/006-codegraph-tombstone-audit",
-      "description": "Completed bounded default-off code-graph tombstone audit lineage",
+      "description": "Feature Specification: Phase 6: codegraph-tombstone-audit",
       "keywords": [
         "feature",
         "specification",
         "phase",
         "codegraph-tombstone-audit"
       ],
-      "lastUpdated": "2026-06-10T23:00:00.000Z"
+      "lastUpdated": "2026-06-20T10:59:13.991Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/007-codegraph-bfs-consolidation",
@@ -19879,7 +19864,7 @@
         "phase",
         "codegraph-why-included"
       ],
-      "lastUpdated": "2026-06-10T21:52:41.645Z"
+      "lastUpdated": "2026-06-20T10:59:13.996Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/009-codegraph-bm25-symbol-resolver",
@@ -19890,7 +19875,7 @@
         "phase",
         "codegraph-bm25-symbol-resolver"
       ],
-      "lastUpdated": "2026-06-10T21:52:41.649Z"
+      "lastUpdated": "2026-06-20T10:59:13.999Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/003-skill-advisor-cross-session-reconnect",
@@ -19923,7 +19908,7 @@
         "fable-5",
         "governo"
       ],
-      "lastUpdated": "2026-06-15T18:16:13.955Z"
+      "lastUpdated": "2026-06-20T10:59:14.004Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/005-advisor-state-spec-folder-leak",
@@ -19938,7 +19923,7 @@
         "spec",
         "folders"
       ],
-      "lastUpdated": "2026-06-18T20:55:14.472Z"
+      "lastUpdated": "2026-06-20T10:59:14.008Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure",
@@ -19951,7 +19936,7 @@
         "phase",
         "parent"
       ],
-      "lastUpdated": "2026-06-14T08:43:57.580Z"
+      "lastUpdated": "2026-06-20T10:59:14.013Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition",
@@ -20508,7 +20493,7 @@
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/003-storage-adapter-ports",
-      "description": "Storage Adapter Ports complete: five storage seams, conservative routing, fakes, contracts, and justified coupling exceptions",
+      "description": "Feature Specification: Storage Adapter Ports (Five Divergence Seams)",
       "keywords": [
         "feature",
         "specification",
@@ -20519,7 +20504,7 @@
         "divergence",
         "seams"
       ],
-      "lastUpdated": "2026-06-11T00:43:00.000Z"
+      "lastUpdated": "2026-06-20T10:59:14.022Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux",
@@ -20549,7 +20534,7 @@
         "offline",
         "smoke"
       ],
-      "lastUpdated": "2026-06-11T01:57:23.160Z"
+      "lastUpdated": "2026-06-20T10:59:14.027Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/002-cli-help-aliases-errors",
@@ -20563,7 +20548,7 @@
         "aliases",
         "errors"
       ],
-      "lastUpdated": "2026-06-12T14:18:51.280Z"
+      "lastUpdated": "2026-06-20T10:59:14.032Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/003-cli-reference-and-skill-docs",
@@ -20578,7 +20563,7 @@
         "skill",
         "docs"
       ],
-      "lastUpdated": "2026-06-11T01:21:47Z"
+      "lastUpdated": "2026-06-20T10:59:14.036Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/004-cli-fallback-envelope-and-bridge",
@@ -20592,7 +20577,7 @@
         "bridge",
         "allowlist"
       ],
-      "lastUpdated": "2026-06-11T01:57:23.166Z"
+      "lastUpdated": "2026-06-20T10:59:14.040Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux/005-cli-automation-compact-completion",
@@ -20606,7 +20591,7 @@
         "shell",
         "completion"
       ],
-      "lastUpdated": "2026-06-11T01:50:00.000Z"
+      "lastUpdated": "2026-06-20T10:59:14.044Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/005-autonomous-dependency-patching",
@@ -20694,7 +20679,7 @@
         "phase",
         "parent"
       ],
-      "lastUpdated": "2026-06-16T15:23:34.768Z"
+      "lastUpdated": "2026-06-20T10:59:14.048Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation",
@@ -20723,7 +20708,7 @@
         "safety",
         "guards"
       ],
-      "lastUpdated": "2026-06-19T17:44:10.852Z"
+      "lastUpdated": "2026-06-20T11:01:15.136Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/002-causal-and-memo",
@@ -20737,7 +20722,7 @@
         "causal",
         "memo"
       ],
-      "lastUpdated": "2026-06-19T17:44:10.852Z"
+      "lastUpdated": "2026-06-20T11:01:15.136Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/003-search-and-triggers",
@@ -20751,7 +20736,7 @@
         "search",
         "triggers"
       ],
-      "lastUpdated": "2026-06-19T17:44:10.852Z"
+      "lastUpdated": "2026-06-20T11:01:15.136Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/004-vector-and-checkpoint-durability",
@@ -20766,7 +20751,7 @@
         "checkpoint",
         "durability"
       ],
-      "lastUpdated": "2026-06-19T17:44:10.852Z"
+      "lastUpdated": "2026-06-20T11:01:15.136Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/005-bm25-indexing-fidelity",
@@ -20781,7 +20766,7 @@
         "indexing",
         "fidelity"
       ],
-      "lastUpdated": "2026-06-19T17:44:10.852Z"
+      "lastUpdated": "2026-06-20T11:01:15.136Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/006-launchers-and-cli",
@@ -20795,7 +20780,7 @@
         "launchers",
         "cli"
       ],
-      "lastUpdated": "2026-06-19T17:44:10.852Z"
+      "lastUpdated": "2026-06-20T11:01:15.136Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/007-continuity-and-save-concurrency",
@@ -20810,7 +20795,7 @@
         "save",
         "concurrency"
       ],
-      "lastUpdated": "2026-06-19T17:44:10.852Z"
+      "lastUpdated": "2026-06-20T11:01:15.136Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/008-doc-truth-and-test-fidelity",
@@ -20826,7 +20811,7 @@
         "test",
         "fidelity"
       ],
-      "lastUpdated": "2026-06-19T17:44:10.852Z"
+      "lastUpdated": "2026-06-20T11:01:15.136Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/sandbox-test",
@@ -20837,7 +20822,7 @@
         "test",
         "doc"
       ],
-      "lastUpdated": "2026-06-19T17:44:10.852Z"
+      "lastUpdated": "2026-06-20T11:01:15.136Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/002-tri-system-deep-research",
@@ -20854,14 +20839,19 @@
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/003-deep-research-remediation",
-      "description": "Deep-Research Remediation — Phase Parent",
+      "description": "Verify-first remediation of the deep-research and command-adherence backlog across nine lanes (027)",
       "keywords": [
-        "deep-research",
+        "verify-first",
         "remediation",
-        "phase",
-        "parent"
+        "deep-research",
+        "command-adherence",
+        "backlog",
+        "across",
+        "nine",
+        "lanes",
+        "027"
       ],
-      "lastUpdated": "2026-06-19T17:44:10.852Z"
+      "lastUpdated": "2026-06-20T00:00:00Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/004-residual-design-units",
@@ -21004,7 +20994,7 @@
         "retrieval",
         "subsystem"
       ],
-      "lastUpdated": "2026-06-19T17:44:10.852Z"
+      "lastUpdated": "2026-06-20T11:01:15.136Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/B-rest-of-002",
@@ -21019,7 +21009,7 @@
         "002",
         "non-search"
       ],
-      "lastUpdated": "2026-06-19T17:44:10.852Z"
+      "lastUpdated": "2026-06-20T11:01:15.136Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/C-rest-of-server",
@@ -21034,7 +21024,7 @@
         "providers",
         "daemon"
       ],
-      "lastUpdated": "2026-06-19T17:44:10.852Z"
+      "lastUpdated": "2026-06-20T11:01:15.136Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review",
@@ -21086,7 +21076,7 @@
         "phase",
         "parent"
       ],
-      "lastUpdated": "2026-06-19T11:32:15.930Z"
+      "lastUpdated": "2026-06-19T22:04:55.729Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory",
@@ -21100,11 +21090,11 @@
         "phase",
         "parent"
       ],
-      "lastUpdated": "2026-06-19T09:26:36.194Z"
+      "lastUpdated": "2026-06-20T10:59:14.056Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/001-corpus-reindex-gate-zero",
-      "description": "Feature Specification: Corpus Reindex — Gate-Zero for Recall Benchmarking",
+      "description": "Feature Specification: Corpus Reindex - Gate-Zero for Recall Benchmarking",
       "keywords": [
         "feature",
         "specification",
@@ -21114,7 +21104,7 @@
         "recall",
         "benchmarking"
       ],
-      "lastUpdated": "2026-06-19T09:26:36.222Z"
+      "lastUpdated": "2026-06-20T10:59:14.061Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/002-determinism-content-id-foundation",
@@ -21129,7 +21119,7 @@
         "memory",
         "mcp"
       ],
-      "lastUpdated": "2026-06-19T06:21:31.836Z"
+      "lastUpdated": "2026-06-20T09:26:59.653Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/003-retrieval-class-routing",
@@ -21144,7 +21134,7 @@
         "recall-shape",
         "intelligence"
       ],
-      "lastUpdated": "2026-06-19T11:51:33.900Z"
+      "lastUpdated": "2026-06-19T22:04:55.748Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/004-graceful-degradation",
@@ -21158,7 +21148,7 @@
         "embedder-degrade",
         "lexical"
       ],
-      "lastUpdated": "2026-06-19T06:21:32.129Z"
+      "lastUpdated": "2026-06-19T22:04:55.753Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/005-recall-render-escaper",
@@ -21177,7 +21167,7 @@
         "impl",
         "phase"
       ],
-      "lastUpdated": "2026-06-19T09:26:36.229Z"
+      "lastUpdated": "2026-06-19T22:04:55.757Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/006-redteam-probe-gate",
@@ -21189,7 +21179,7 @@
         "probe",
         "gate"
       ],
-      "lastUpdated": "2026-06-19T12:24:10.678Z"
+      "lastUpdated": "2026-06-20T09:26:59.658Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/007-bitemporal-window",
@@ -21204,7 +21194,7 @@
         "causal",
         "lineage"
       ],
-      "lastUpdated": "2026-06-19T14:10:06.172Z"
+      "lastUpdated": "2026-06-20T09:26:59.663Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/008-edge-presence-currentness",
@@ -21221,7 +21211,7 @@
         "impl",
         "phase"
       ],
-      "lastUpdated": "2026-06-19T17:42:41.298Z"
+      "lastUpdated": "2026-06-20T10:59:14.067Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/009-derived-id-provenance",
@@ -21235,7 +21225,7 @@
         "artifacts",
         "c4-b"
       ],
-      "lastUpdated": "2026-06-19T17:42:41.305Z"
+      "lastUpdated": "2026-06-19T22:04:55.769Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/010-consolidation-cursor-clock",
@@ -21254,7 +21244,7 @@
         "crash-safety",
         "hardening"
       ],
-      "lastUpdated": "2026-06-19T06:21:33.042Z"
+      "lastUpdated": "2026-06-19T22:04:55.773Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/011-retention-forgetting",
@@ -21270,7 +21260,7 @@
         "028",
         "wave-1"
       ],
-      "lastUpdated": "2026-06-19T17:42:41.310Z"
+      "lastUpdated": "2026-06-20T10:59:14.071Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/012-procedural-reliability-benchmark",
@@ -21284,7 +21274,7 @@
         "benchmark-first",
         "proxy-only"
       ],
-      "lastUpdated": "2026-06-19T17:42:41.314Z"
+      "lastUpdated": "2026-06-19T22:04:55.781Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/013-enrichment-observability",
@@ -21315,7 +21305,7 @@
         "phase",
         "014"
       ],
-      "lastUpdated": "2026-06-19T13:59:35.496Z"
+      "lastUpdated": "2026-06-20T09:26:59.671Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/015-summary-fusion-grounding",
@@ -21328,7 +21318,7 @@
         "world-summary",
         "grounding"
       ],
-      "lastUpdated": "2026-06-19T12:42:18.969Z"
+      "lastUpdated": "2026-06-19T22:04:55.794Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/016-iterative-agentic-recall",
@@ -21342,7 +21332,7 @@
         "strategy",
         "cg-agentic-tool-loop"
       ],
-      "lastUpdated": "2026-06-19T14:20:12.878Z"
+      "lastUpdated": "2026-06-19T22:04:55.798Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/017-semantic-edge-layer",
@@ -21356,7 +21346,7 @@
         "semantic-edge-layer",
         "gr-fact-embedding-on-edge"
       ],
-      "lastUpdated": "2026-06-19T17:42:41.319Z"
+      "lastUpdated": "2026-06-19T22:04:55.802Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/018-sleeptime-consolidation",
@@ -21371,7 +21361,7 @@
         "lt-llm-transcript-chunking",
         "governed"
       ],
-      "lastUpdated": "2026-06-19T17:42:41.323Z"
+      "lastUpdated": "2026-06-19T22:04:55.806Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/019-eval-harness-extension",
@@ -21393,7 +21383,7 @@
         "impl",
         "phase"
       ],
-      "lastUpdated": "2026-06-19T09:26:36.266Z"
+      "lastUpdated": "2026-06-20T09:26:59.675Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/020-eval-calibration-ab",
@@ -21406,7 +21396,7 @@
         "calibration",
         "shipped-lever"
       ],
-      "lastUpdated": "2026-06-19T17:42:41.327Z"
+      "lastUpdated": "2026-06-19T22:04:55.814Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/021-residual-correctness",
@@ -21420,7 +21410,7 @@
         "maintenance-grace",
         "ttl"
       ],
-      "lastUpdated": "2026-06-19T09:26:36.276Z"
+      "lastUpdated": "2026-06-19T22:04:55.818Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/002-code-graph",
@@ -21433,7 +21423,7 @@
         "phase",
         "parent"
       ],
-      "lastUpdated": "2026-06-19T09:26:36.281Z"
+      "lastUpdated": "2026-06-20T10:59:14.076Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/002-code-graph/001-determinism-walk-order",
@@ -21448,7 +21438,7 @@
         "retrieval",
         "intelligence"
       ],
-      "lastUpdated": "2026-06-19T11:43:31.478Z"
+      "lastUpdated": "2026-06-20T09:26:59.679Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/002-code-graph/002-edge-staleness-correctness",
@@ -21463,7 +21453,7 @@
         "rename",
         "supersedes"
       ],
-      "lastUpdated": "2026-06-19T11:32:15.939Z"
+      "lastUpdated": "2026-06-19T22:04:55.826Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/002-code-graph/003-generation-watermark",
@@ -21478,7 +21468,7 @@
         "q6-c2",
         "q6-c1"
       ],
-      "lastUpdated": "2026-06-19T09:26:36.285Z"
+      "lastUpdated": "2026-06-19T22:04:55.830Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/002-code-graph/004-code-edge-bitemporal",
@@ -21492,7 +21482,7 @@
         "q1-c1",
         "cluster"
       ],
-      "lastUpdated": "2026-06-19T14:32:22.583Z"
+      "lastUpdated": "2026-06-19T22:04:55.834Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/002-code-graph/005-seeded-ppr-ranking",
@@ -21508,7 +21498,7 @@
         "retrieval",
         "intelligence"
       ],
-      "lastUpdated": "2026-06-19T12:40:29.073Z"
+      "lastUpdated": "2026-06-19T22:04:55.839Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/002-code-graph/006-edge-governance-vocab",
@@ -21528,7 +21518,7 @@
         "derived-clock",
         "tiebreak"
       ],
-      "lastUpdated": "2026-06-19T17:42:41.331Z"
+      "lastUpdated": "2026-06-19T22:04:55.842Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/002-code-graph/007-parser-resilience",
@@ -21563,7 +21553,7 @@
         "q5-c1",
         "q7-lease"
       ],
-      "lastUpdated": "2026-06-19T09:26:36.290Z"
+      "lastUpdated": "2026-06-19T22:04:55.850Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/003-skill-advisor",
@@ -21576,7 +21566,7 @@
         "phase",
         "parent"
       ],
-      "lastUpdated": "2026-06-19T09:26:36.295Z"
+      "lastUpdated": "2026-06-20T10:59:14.081Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/001-rrf-determinism-spine",
@@ -21590,7 +21580,7 @@
         "skill",
         "advisor"
       ],
-      "lastUpdated": "2026-06-19T11:32:15.945Z"
+      "lastUpdated": "2026-06-19T22:04:55.854Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/002-runtime-lane-health-degrade",
@@ -21621,7 +21611,7 @@
         "signal",
         "sa8"
       ],
-      "lastUpdated": "2026-06-19T11:43:31.484Z"
+      "lastUpdated": "2026-06-19T22:04:55.862Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/004-c4-shadow-seam-beta-posterior",
@@ -21636,7 +21626,7 @@
         "beta",
         "posterior"
       ],
-      "lastUpdated": "2026-06-19T14:20:12.888Z"
+      "lastUpdated": "2026-06-19T22:04:55.866Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/005-conflict-rerank-query-routing",
@@ -21654,11 +21644,11 @@
         "exact-rerank",
         "qcr"
       ],
-      "lastUpdated": "2026-06-19T12:40:29.079Z"
+      "lastUpdated": "2026-06-19T22:04:55.871Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/006-provenance-drift-observability",
-      "description": "Feature Specification: Skill Advisor — Provenance Self-Boost Guard, Attested Baseline Drift & Skip-Never-Fabricate",
+      "description": "Feature Specification: Skill Advisor - Provenance Self-Boost Guard, Attested Baseline Drift & Skip-Never-Fabricate",
       "keywords": [
         "feature",
         "specification",
@@ -21672,7 +21662,7 @@
         "drift",
         "skip-never-fabricate"
       ],
-      "lastUpdated": "2026-06-19T12:14:56.096Z"
+      "lastUpdated": "2026-06-20T10:59:14.086Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/007-outcome-weighted-ranking-followon",
@@ -21687,7 +21677,7 @@
         "follow-on",
         "aionforge-procedural"
       ],
-      "lastUpdated": "2026-06-19T13:59:35.510Z"
+      "lastUpdated": "2026-06-20T09:26:59.685Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/004-deep-loop",
@@ -21701,7 +21691,7 @@
         "phase",
         "parent"
       ],
-      "lastUpdated": "2026-06-19T09:26:36.306Z"
+      "lastUpdated": "2026-06-20T10:59:14.091Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/004-deep-loop/001-reducer-anchor-fix",
@@ -21719,7 +21709,7 @@
         "ship-first",
         "correctness"
       ],
-      "lastUpdated": "2026-06-19T06:21:36.950Z"
+      "lastUpdated": "2026-06-19T22:04:55.883Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/004-deep-loop/002-fanout-determinism-observability",
@@ -21736,7 +21726,7 @@
         "004",
         "cluster"
       ],
-      "lastUpdated": "2026-06-19T12:01:25.460Z"
+      "lastUpdated": "2026-06-19T22:04:55.887Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/004-deep-loop/003-fanout-failure-recovery",
@@ -21754,7 +21744,7 @@
         "resilience",
         "cluster"
       ],
-      "lastUpdated": "2026-06-19T11:32:15.951Z"
+      "lastUpdated": "2026-06-19T22:04:55.891Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/004-deep-loop/004-reliability-weighted-convergence",
@@ -21769,7 +21759,7 @@
         "keystone",
         "cluster"
       ],
-      "lastUpdated": "2026-06-19T17:42:41.336Z"
+      "lastUpdated": "2026-06-19T22:04:55.895Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/004-deep-loop/005-stop-input-corroboration",
@@ -21786,7 +21776,7 @@
         "convergence-hardening",
         "cluster"
       ],
-      "lastUpdated": "2026-06-19T11:51:33.913Z"
+      "lastUpdated": "2026-06-19T22:04:55.899Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/004-deep-loop/006-continuity-threading",
@@ -21803,21 +21793,20 @@
         "iterative-retrieval",
         "cluster"
       ],
-      "lastUpdated": "2026-06-19T09:26:36.315Z"
+      "lastUpdated": "2026-06-19T22:04:55.903Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/005-release-cleanup",
-      "description": "Phase parent for the packet 028 release-readiness documentation sweep.",
+      "description": "Feature Specification: Release Cleanup Phase Parent",
       "keywords": [
-        "phase",
-        "parent",
-        "packet",
+        "feature",
+        "specification",
         "release",
-        "readiness",
-        "documentation",
-        "sweep"
+        "cleanup",
+        "phase",
+        "parent"
       ],
-      "lastUpdated": "2026-06-19T00:00:00Z"
+      "lastUpdated": "2026-06-20T09:26:59.689Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/001-code-readmes",
@@ -21829,7 +21818,7 @@
         "readme",
         "cleanup"
       ],
-      "lastUpdated": "2026-06-19T11:32:15.958Z"
+      "lastUpdated": "2026-06-20T09:26:59.694Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/002-skill-and-repo-readmes",
@@ -21842,7 +21831,7 @@
         "readme",
         "cleanup"
       ],
-      "lastUpdated": "2026-06-19T11:32:15.962Z"
+      "lastUpdated": "2026-06-20T09:26:59.705Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/003-skill-references-assets-and-skillmd",
@@ -21855,7 +21844,7 @@
         "assets",
         "cleanup"
       ],
-      "lastUpdated": "2026-06-19T11:32:15.966Z"
+      "lastUpdated": "2026-06-20T09:26:59.711Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/004-feature-catalogs",
@@ -21866,7 +21855,7 @@
         "catalog",
         "cleanup"
       ],
-      "lastUpdated": "2026-06-19T11:32:15.970Z"
+      "lastUpdated": "2026-06-20T09:26:59.716Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/005-manual-testing-playbooks",
@@ -21879,7 +21868,7 @@
         "playbook",
         "cleanup"
       ],
-      "lastUpdated": "2026-06-19T13:59:35.518Z"
+      "lastUpdated": "2026-06-20T09:26:59.721Z"
     },
     {
       "specFolder": "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/006-commands",
@@ -21930,6 +21919,72 @@
         "cleanup"
       ],
       "lastUpdated": "2026-06-19T17:42:41.344Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/006-review-remediation",
+      "description": "Phase parent for remediating the 028 deep-review findings (0 P0, 6 P1, 91 P2, NOT CONVERGED).",
+      "keywords": [
+        "phase",
+        "parent",
+        "review",
+        "remediation",
+        "deep",
+        "findings",
+        "convergence"
+      ],
+      "lastUpdated": "2026-06-19T00:00:00Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/006-review-remediation/001-eval-benchmark-fidelity",
+      "description": "Feature Specification: Eval Benchmark Fidelity Remediation",
+      "keywords": [
+        "feature",
+        "specification",
+        "eval",
+        "benchmark",
+        "fidelity",
+        "remediation"
+      ],
+      "lastUpdated": "2026-06-19T00:00:00Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/006-review-remediation/002-memory-schema-and-concurrency",
+      "description": "Feature Specification: Memory Schema and Concurrency Remediation",
+      "keywords": [
+        "feature",
+        "specification",
+        "memory",
+        "schema",
+        "concurrency",
+        "remediation"
+      ],
+      "lastUpdated": "2026-06-19T00:00:00Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/006-review-remediation/003-doc-accuracy",
+      "description": "Feature Specification: Doc Accuracy Remediation",
+      "keywords": [
+        "feature",
+        "specification",
+        "doc",
+        "accuracy",
+        "remediation",
+        "staleness"
+      ],
+      "lastUpdated": "2026-06-19T00:00:00Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-memory-search-intelligence/006-review-remediation/004-p2-triage",
+      "description": "Feature Specification: P2 Triage",
+      "keywords": [
+        "feature",
+        "specification",
+        "p2",
+        "triage",
+        "findings",
+        "lens"
+      ],
+      "lastUpdated": "2026-06-19T00:00:00Z"
     },
     {
       "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch",
@@ -26322,7 +26377,7 @@
         "knowledge",
         "base"
       ],
-      "lastUpdated": "2026-06-19T17:44:10.852Z"
+      "lastUpdated": "2026-06-20T11:01:15.136Z"
     },
     {
       "specFolder": "z_future/sqlite-to-turso",

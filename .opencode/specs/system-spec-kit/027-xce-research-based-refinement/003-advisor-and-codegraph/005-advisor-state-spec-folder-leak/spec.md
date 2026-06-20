@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Stop skill-advisor state from leaking into spec folders [template:level_2/spec.md]"
+title: "Feature Specification: Stop skill-advisor state from leaking into spec folders"
 description: "The skill-advisor resolves its workspace root by walking up for a canonical SKILL.md sentinel and, on failure, fell back to the start directory. Advisor-bearing processes dispatched with a cwd inside a specs/ packet subtree therefore wrote a stray .opencode/skills/.advisor-state/ tree into the packet on every run — 23 such strays accumulated. This packet hardens the fallback so it can never return a path inside a specs/ subtree, adds a regression test, and removes the 23 existing strays."
 trigger_phrases:
   - "advisor state spec folder leak"

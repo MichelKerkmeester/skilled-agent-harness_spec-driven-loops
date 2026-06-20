@@ -40,7 +40,8 @@
       "epic"
     ],
     "importance_tier": "important",
-    "status": "scaffolded_—_6_sub_phases_created;_no_fixes_applied",
+    "status": "in_progress",
+    "status_note": "Nested phase parent (7 sub-phases). Lanes 004/006/007 implemented; lanes 001/002/003/005 still planned (findings carried as tasks, no fixes applied).",
     "key_files": [
       "fix-coverage.json",
       "spec.md"

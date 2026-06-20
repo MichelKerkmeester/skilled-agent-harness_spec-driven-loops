@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Causal Traversal BFS Read Path [template:level_1/plan.md]"
+title: "Implementation Plan: Causal Traversal BFS Read Path"
 description: "Build one shared BFS traversal helper (hop-capped weighted walk + directed unbounded reachability), prove output equivalence against the two recursive CTEs on a live-DB fixture, then cut both call sites over with empty-table fast paths."
 trigger_phrases:
   - "012-causal-traversal-bfs plan"

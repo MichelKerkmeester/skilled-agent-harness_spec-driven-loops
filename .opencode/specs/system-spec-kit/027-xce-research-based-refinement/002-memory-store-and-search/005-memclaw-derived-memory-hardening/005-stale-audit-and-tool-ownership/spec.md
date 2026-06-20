@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 5: stale-audit-and-tool-ownership [template:level_1/spec.md]"
+title: "Feature Specification: Phase 5: stale-audit-and-tool-ownership"
 description: "Default memory_search may silently hard-exclude deprecated-but-relevant rows, and the 37-tool MCP surface has no derived ownership map, so tool/command ownership can drift. This phase adds a read-only exclusion-risk audit and a derived tool-ownership lint."
 trigger_phrases:
   - "stale exclusion audit memory_search"

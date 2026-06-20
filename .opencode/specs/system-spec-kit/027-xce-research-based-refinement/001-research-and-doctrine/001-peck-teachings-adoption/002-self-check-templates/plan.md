@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 1: self-check-templates [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 1: self-check-templates"
 description: "Add concise self-check + failure-mode guidance blocks to three manifest templates; verify scaffolds still validate."
 trigger_phrases:
   - "implementation"

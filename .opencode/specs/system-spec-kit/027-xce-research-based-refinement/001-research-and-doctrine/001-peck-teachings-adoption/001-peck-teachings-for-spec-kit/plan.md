@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Analysis of peck framework teachings applicable to system-spec-kit [template:level_1/plan.md]"
+title: "Implementation Plan: Analysis of peck framework teachings applicable to system-spec-kit"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
   - "implementation"

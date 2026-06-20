@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 4: tombstones-and-edge-promotion [template:level_1/tasks.md]"
+title: "Tasks: Phase 4: tombstones-and-edge-promotion"
 description: "Completed task list for default-off tombstone gating, skip-manual causal-edge promotion, active/purgeable partial indexes, and entity-not-causal documentation."
 trigger_phrases:
   - "tombstone soft-delete idempotent deleted_at tasks"

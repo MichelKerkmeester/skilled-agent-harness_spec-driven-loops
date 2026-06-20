@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/003-generic-query-deep-routing",
+  "description": "Feature Specification: Phase 3: generic-query-deep-routing",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "generic-query-deep-routing"
+  ],
+  "lastUpdated": "2026-06-18T03:33:51.812Z",
+  "specId": "003",
+  "folderSlug": "generic-query-deep-routing",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "002-memory-store-and-search",
+    "016-search-and-output-intelligence"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

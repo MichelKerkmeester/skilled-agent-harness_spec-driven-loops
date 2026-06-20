@@ -12,20 +12,18 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine"
-    last_updated_at: "2026-06-14T00:00:00Z"
+    last_updated_at: "2026-06-20T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Author 001-research-and-doctrine phase-parent control trio"
-    next_safe_action: "Resume or validate a child phase folder"
+    recent_action: "Both child phase-parents shipped (peck teachings + gem-team); grandchildren complete"
+    next_safe_action: "Resume or validate a child phase folder if further work is needed"
     blockers: []
     key_files:
       - "spec.md"
-      - "001-peck-teachings-adoption/spec.md"
-      - "002-gem-team-adoption/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-14-027-six-track"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -103,8 +101,8 @@ Summary of aggregate file scope. Per-phase detail lives in each child's plan.md.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 001 | `001-peck-teachings-adoption/` | Peck adoption phase-parent — README teachings T1-T4 + source-pass T5-T10 (reviewer benchmark, verification discipline, acceptance-coverage gate) | Complete |
-| 002 | `002-gem-team-adoption/` | Gem-team adoption phase-parent — typed agent I/O contract, scoped pre-execution gates, advisory reviewer/drift fields | Complete |
+| 001 | `001-peck-teachings-adoption/` | Peck adoption phase-parent — README teachings T1-T4 + source-pass T5-T10 (reviewer benchmark, verification discipline, acceptance-coverage gate); all 7 children shipped | Phase Parent |
+| 002 | `002-gem-team-adoption/` | Gem-team adoption phase-parent — typed agent I/O contract, scoped pre-execution gates, advisory reviewer/drift fields; all 3 children shipped | Phase Parent |
 
 ### Phase Transition Rules
 

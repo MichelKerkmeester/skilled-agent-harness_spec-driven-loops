@@ -13,32 +13,18 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search"
-    last_updated_at: "2026-06-14T00:00:00Z"
+    last_updated_at: "2026-06-20T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Author 002-memory-store-and-search phase-parent control trio"
+    recent_action: "Reconcile phase map + metadata to on-disk state — all 21 direct children documented"
     next_safe_action: "Resume or validate a child phase folder"
     blockers: []
     key_files:
       - "spec.md"
-      - "001-memory-write-safety/spec.md"
-      - "002-memory-index-causal-lifecycle/spec.md"
-      - "003-semantic-trigger-fallback/spec.md"
-      - "004-learning-feedback-reducers/spec.md"
-      - "005-memclaw-derived-memory-hardening/spec.md"
-      - "006-openltm-retrieval-observability/spec.md"
-      - "007-openltm-continuity-resilience/spec.md"
-      - "008-vector-read-path-resilience/spec.md"
-      - "009-packed-bm25-field-weights/spec.md"
-      - "010-bm25-warmup-churn-reduction/spec.md"
-      - "011-vector-resilience-durability/spec.md"
-      - "012-hybrid-search-scope-then-limit/spec.md"
-      - "013-provenance-injection/spec.md"
-      - "014-idempotency-flag-on-correctness/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-14-027-six-track"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -122,20 +108,22 @@ Summary of aggregate file scope. Per-phase detail lives in each child's plan.md.
 | 002 | `002-memory-index-causal-lifecycle/` | Memory index & causal write lifecycle — incremental index, causal-edge tombstones, metadata-edge promoter, write-path reconciliation | Phase Parent |
 | 003 | `003-semantic-trigger-fallback/` | Hybrid lexical-plus-semantic trigger matching (lexical primary, semantic union fallback, default-off) | Phase Parent |
 | 004 | `004-learning-feedback-reducers/` | Learning feedback reducers (aggregator, causal, retention) — default-off, shadow-first | Phase Parent |
-| 005 | `005-memclaw-derived-memory-hardening/` | MemClaw-derived memory write/surface hardening — idempotency receipts, tool-ownership map, stale-recall audit | Draft (plan only) |
+| 005 | `005-memclaw-derived-memory-hardening/` | MemClaw-derived memory write/surface hardening — idempotency receipts, tool-ownership map, stale-recall audit (5 shipped children) | Phase Parent |
 | 006 | `006-openltm-retrieval-observability/` | OpenLTM-derived retrieval observability — why_ranked, inline contradiction/supersession warnings, degraded-vector signal | Complete |
 | 007 | `007-openltm-continuity-resilience/` | OpenLTM-derived continuity/session resilience — bounded restore panel, authored PreCompact snapshot, facet taxonomy | Complete |
 | 008 | `008-vector-read-path-resilience/` | Vector shard integrity probe, quarantine, and auto-rebuild with authoritative dimension discovery | Complete |
-| 009 | `009-packed-bm25-field-weights/` | Packed in-memory BM25 engine with restored BM25F field weighting | Shipped |
+| 009 | `009-packed-bm25-field-weights/` | Packed in-memory BM25 engine with restored BM25F field weighting | Complete |
 | 010 | `010-bm25-warmup-churn-reduction/` | Packed-BM25 warmup RSS cut 743MB to 136.5MB peak-sampled, ranking byte-identical | Complete |
 | 011 | `011-vector-resilience-durability/` | Persist shard-repair-pending sentinel across restart with boot-time completeness check | Complete |
 | 012 | `012-hybrid-search-scope-then-limit/` | Resolve spec-folder/tier filters before truncating to limit so scoped search returns its real set | Complete |
 | 013 | `013-provenance-injection/` | Automated reducer/feedback writers inject source-kind provenance so the write-ingress guard holds | Complete |
 | 014 | `014-idempotency-flag-on-correctness/` | Flag-ON correctness for memory idempotency — verbatim replay, immutable first-write receipts | Complete |
-
-| 15 | 015-retrieval-gating-and-recall-recovery/ | [Phase 15 scope] | Pending |
-| 16 | 016-search-and-output-intelligence-research/ | [Phase 16 scope] | Pending |
-| 17 | 017-search-and-output-intelligence-implementation/ | [Phase 17 scope] | Pending |
+| 015 | `015-retrieval-gating-and-recall-recovery/` | Recalibrate the request-quality/confidence gate off absolute cosine (not RRF magnitude) and include cold tiers; calibration + query-time cold-tier inclusion + presentation shipped, vector-lane projection rebuild deferred to index repair, reranker rejected (ADR-003) | Complete · lane deferred |
+| 016 | `016-search-and-output-intelligence/` | Search and output intelligence — deep research (in `research/`) plus its implementation across seven child phases: token-budget truncation safety, request-quality aggregation, generic-query deep routing, confidence calibration, cosine top-N reorder, command-contract structural parity, output-surface parity | Phase Parent |
+| 017 | `017-reindex-scan-responsiveness-and-cancellation/` | Make the background `memory_index_scan` yield the event loop in its all-rows tail phases so IPC stays responsive and the scan is genuinely cancellable | Complete |
+| 018 | `018-maintenance-grace-daemon-survives-reelection/` | Write a refreshed maintenance-active marker so a re-electing launcher adopts a busy-but-healthy daemon instead of reaping it mid-scan | Complete |
+| 019 | `019-maintenance-grace-background-embedding/` | Extend the maintenance marker to a shared, reference-counted module so both the scan and the post-scan background-embedding queue stay protected through their overlap | Complete |
+| 020 | `020-cooperative-heavy-phases/` | Instrument the scan to pin true event-loop blocks, bound the unbounded trigger-embedding-backfill transaction, and refresh the marker on entry to each un-yielded tail phase so heavy phases stay responsive | Complete |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins.
@@ -148,9 +136,6 @@ Summary of aggregate file scope. Per-phase detail lives in each child's plan.md.
 | From | To | Criteria | Verification |
 |------|----|----------|--------------|
 | (per-child) | (next child) | Each child ships and validates independently under tolerant policy | Per-child strict validation evidence |
-| 014-idempotency-flag-on-correctness | 015-retrieval-gating-and-recall-recovery | [Criteria TBD] | [Verification TBD] |
-| 015-retrieval-gating-and-recall-recovery | 016-search-and-output-intelligence-research | [Criteria TBD] | [Verification TBD] |
-| 016-search-and-output-intelligence-research | 017-search-and-output-intelligence-implementation | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

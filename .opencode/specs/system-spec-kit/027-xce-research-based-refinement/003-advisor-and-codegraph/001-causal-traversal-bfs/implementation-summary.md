@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Shipped causal traversal BFS read path: shared BFS helper replaces recursive CTE traversal consumers, with exact equivalence and latency evidence."
 trigger_phrases:
   - "012-causal-traversal-bfs summary"

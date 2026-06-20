@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Retrieval Gating and Recall Recovery [template:level_3/spec.md]"
+title: "Feature Specification: Retrieval Gating and Recall Recovery"
 description: "On-topic memory searches report requestQuality:weak and do_not_cite_results because the request-quality gate reads the RRF fusion score against cosine-calibrated thresholds, making good structurally unreachable."
 trigger_phrases:
   - "retrieval gating"

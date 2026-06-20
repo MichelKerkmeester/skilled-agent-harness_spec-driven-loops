@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Status: completed. Registered an info advisory for current-state summary discipline."
 trigger_phrases:
   - "implementation"

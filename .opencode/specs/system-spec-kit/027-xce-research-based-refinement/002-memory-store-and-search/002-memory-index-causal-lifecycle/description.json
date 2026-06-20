@@ -1,4 +1,5 @@
 {
+  "status": "phase-parent",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/002-memory-index-causal-lifecycle",
   "description": "Feature Specification: 003 — Memory Index & Causal Write Lifecycle (Phase Parent)",
   "keywords": [

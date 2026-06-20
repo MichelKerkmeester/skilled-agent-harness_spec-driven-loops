@@ -1,5 +1,5 @@
 ---
-title: "Tasks: CLI Compact Output and Shell Completion [template:level_1/tasks.md]"
+title: "Tasks: CLI Compact Output and Shell Completion"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "005-cli-automation-compact-completion tasks"

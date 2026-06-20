@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Implemented normalized warm-fallback envelopes across the three hook helpers and a spec-memory bridge allowlist."
 trigger_phrases:
   - "004-cli-fallback-envelope-and-bridge summary"

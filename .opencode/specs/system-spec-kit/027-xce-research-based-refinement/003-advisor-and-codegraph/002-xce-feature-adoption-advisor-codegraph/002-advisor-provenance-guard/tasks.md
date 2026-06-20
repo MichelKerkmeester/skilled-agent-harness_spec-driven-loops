@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 2: advisor-provenance-guard [template:level_1/tasks.md]"
+title: "Tasks: Phase 2: advisor-provenance-guard"
 description: "Completed task list for the advisor provenance guard implementation and verification."
 trigger_phrases:
   - "tasks"

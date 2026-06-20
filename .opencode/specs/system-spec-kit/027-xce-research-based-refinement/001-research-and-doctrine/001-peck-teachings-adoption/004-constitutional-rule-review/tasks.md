@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 4: constitutional-rule-review [template:level_2/tasks.md]"
+title: "Tasks: Phase 4: constitutional-rule-review"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"

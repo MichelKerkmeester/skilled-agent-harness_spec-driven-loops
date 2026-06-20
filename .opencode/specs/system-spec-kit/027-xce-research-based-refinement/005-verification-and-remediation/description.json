@@ -5,7 +5,10 @@
     "001-finding-remediation",
     "002-tri-system-deep-research",
     "003-deep-research-remediation",
-    "004-residual-design-units"
+    "004-residual-design-units",
+    "005-fresh-regression-remediation",
+    "006-deep-review-017-021-remediation",
+    "007-release-alignment-review"
   ],
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation",
   "description": "Feature Specification: Verification and Remediation (Phase Parent)",
@@ -17,7 +20,7 @@
     "phase",
     "parent"
   ],
-  "lastUpdated": "2026-06-16T15:23:34.768Z",
+  "lastUpdated": "2026-06-20T10:59:14.048Z",
   "specId": "005",
   "folderSlug": "verification-and-remediation",
   "parentChain": [

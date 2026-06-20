@@ -1,14 +1,14 @@
 {
   "level": "1",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/006-codegraph-tombstone-audit",
-  "description": "Completed bounded default-off code-graph tombstone audit lineage",
+  "description": "Feature Specification: Phase 6: codegraph-tombstone-audit",
   "keywords": [
     "feature",
     "specification",
     "phase",
     "codegraph-tombstone-audit"
   ],
-  "lastUpdated": "2026-06-10T23:00:00.000Z",
+  "lastUpdated": "2026-06-20T10:59:13.991Z",
   "specId": "006",
   "folderSlug": "codegraph-tombstone-audit",
   "parentChain": [

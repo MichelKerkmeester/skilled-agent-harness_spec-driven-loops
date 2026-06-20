@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Storage Adapter Ports (Five Divergence Seams) [template:level_1/plan.md]"
+title: "Implementation Plan: Storage Adapter Ports (Five Divergence Seams)"
 description: "Extract five typed port interfaces (VectorStore, LexicalSearch, GraphTraversal, Maintenance, ContentionPolicy) with the current better-sqlite3 implementations behind them; no behavior change; port fakes enable storage-free unit tests. Planning starts with a split-vs-promote decision."
 trigger_phrases:
   - "015-storage-adapter-ports plan"

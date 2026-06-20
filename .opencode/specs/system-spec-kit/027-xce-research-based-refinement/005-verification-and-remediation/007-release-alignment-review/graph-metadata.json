@@ -37,7 +37,8 @@
       "time"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "phase_parent",
+    "status_note": "Review-output children 001/002 complete (read-only review artifacts); remediation children 003/004 shipped.",
     "key_files": [
       "spec.md"
     ],

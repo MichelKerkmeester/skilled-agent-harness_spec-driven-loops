@@ -1,5 +1,5 @@
 ---
-title: "Verification Checklist: Retrieval Gating and Recall Recovery [template:level_3/checklist.md]"
+title: "Verification Checklist: Retrieval Gating and Recall Recovery"
 description: "Verification checklist for the absolute-relevance calibration of the retrieval request-quality gate and default cold-tier inclusion, with vector-lane inclusion and index repair tracked as deferred."
 trigger_phrases:
   - "retrieval gating checklist"

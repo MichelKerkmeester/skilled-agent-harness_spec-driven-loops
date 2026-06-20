@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 2: idempotency-and-near-duplicate [template:level_1/spec.md]"
+title: "Feature Specification: Phase 2: idempotency-and-near-duplicate"
 description: "memory_save/memory_update are retryable but a retried save can create a duplicate row, there is no operation receipt to replay a prior result, and near-duplicates are never surfaced. This phase adds a server-derived idempotency receipt so identical retries replay, mismatched-payload retries fail closed, and near-duplicates surface as one non-blocking advisory hint."
 trigger_phrases:
   - "memory save idempotency receipt"

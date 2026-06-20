@@ -12,7 +12,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement"
-    last_updated_at: "2026-06-18T10:01:09Z"
+    last_updated_at: "2026-06-20T12:47:25Z"
     recent_action: "Regenerated chronological timeline from git history"
     next_safe_action: "Use this file to find the most recent / oldest spec folder"
     completion_pct: 100
@@ -21,7 +21,7 @@ _memory:
 
 <!-- GENERATED FILE — do not hand-edit. Regenerate: `python3 scratch/gen-timeline.py > timeline.md` (run from the 027 root). -->
 
-> **Generated:** 2026-06-18T10:01:09Z — regenerate before relying on intra-day ordering; same-day commits made
+> **Generated:** 2026-06-20T12:47:25Z — regenerate before relying on intra-day ordering; same-day commits made
 > after this stamp are not reflected until the next run.
 > **Sort key:** git last-commit timestamp touching each folder subtree, **newest → oldest** (the
 > recency view), taken from one atomic `git log` snapshot. The last-active column shows
@@ -38,30 +38,30 @@ _memory:
 > (docs-only, research, or work consolidated into a parent rollup) show `(none)`. Phase parents link
 > their `-root.md` rollup, which indexes the child phase changelogs.
 >
-> **Most recent live spec folder:** `005-verification-and-remediation/006-deep-review-017-021-remediation`
-> **Oldest live spec folder:** `000-release-cleanup/001-public-root-readme`
-> **Counts:** 189 live spec folders · 0 archived (`z_archive/`).
+> **Most recent live spec folder:** `003-advisor-and-codegraph/005-advisor-state-spec-folder-leak`
+> **Oldest live spec folder:** `002-memory-store-and-search/017-reindex-scan-responsiveness-and-cancellation`
+> **Counts:** 193 live spec folders · 0 archived (`z_archive/`).
 
 ---
 
 ## 0. Most recent 15 (quick answer to "what was worked on last")
 
 ```
- 1. 2026-06-18 10:48  005-verification-and-remediation/006-deep-review-017-021-remediation
- 2. 2026-06-18 10:48  005-verification-and-remediation
- 3. 2026-06-18 10:24  005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/C-rest-of-server
- 4. 2026-06-18 10:24  005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/B-rest-of-002
- 5. 2026-06-18 10:24  005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/A-search-retrieval
- 6. 2026-06-18 07:06  002-memory-store-and-search/021-cooperative-heavy-phases
- 7. 2026-06-18 07:06  002-memory-store-and-search
- 8. 2026-06-17 22:53  002-memory-store-and-search/017-search-and-output-intelligence-implementation/007-output-surface-parity
- 9. 2026-06-17 22:53  002-memory-store-and-search/017-search-and-output-intelligence-implementation/006-command-contract-structural
-10. 2026-06-17 22:53  002-memory-store-and-search/017-search-and-output-intelligence-implementation/005-cosine-topn-reorder
-11. 2026-06-17 22:53  002-memory-store-and-search/017-search-and-output-intelligence-implementation/004-confidence-calibration-labeled-set
-12. 2026-06-17 22:53  002-memory-store-and-search/017-search-and-output-intelligence-implementation/003-generic-query-deep-routing
-13. 2026-06-17 22:53  002-memory-store-and-search/017-search-and-output-intelligence-implementation/002-request-quality-aggregation
-14. 2026-06-17 22:53  002-memory-store-and-search/017-search-and-output-intelligence-implementation/001-token-budget-truncation-safety
-15. 2026-06-17 22:53  002-memory-store-and-search/017-search-and-output-intelligence-implementation
+ 1. 2026-06-19 06:32  003-advisor-and-codegraph/005-advisor-state-spec-folder-leak
+ 2. 2026-06-19 06:32  003-advisor-and-codegraph
+ 3. 2026-06-18 21:46  005-verification-and-remediation/007-release-alignment-review/004-code-remediation
+ 4. 2026-06-18 21:46  005-verification-and-remediation/007-release-alignment-review/003-readme-remediation
+ 5. 2026-06-18 21:46  005-verification-and-remediation/007-release-alignment-review
+ 6. 2026-06-18 21:46  005-verification-and-remediation
+ 7. 2026-06-18 15:10  005-verification-and-remediation/005-fresh-regression-remediation/006-doc-truth-completion-and-mirrors
+ 8. 2026-06-18 15:10  005-verification-and-remediation/005-fresh-regression-remediation/005-spec-folder-metadata-reconciliation
+ 9. 2026-06-18 15:10  005-verification-and-remediation/005-fresh-regression-remediation/004-cli-frontdoor-safety
+10. 2026-06-18 15:10  005-verification-and-remediation/005-fresh-regression-remediation/003-code-graph-robustness
+11. 2026-06-18 15:10  005-verification-and-remediation/005-fresh-regression-remediation/002-daemon-launcher-lifecycle
+12. 2026-06-18 15:10  005-verification-and-remediation/005-fresh-regression-remediation/001-memory-storage-and-search
+13. 2026-06-18 15:10  005-verification-and-remediation/006-deep-review-017-021-remediation
+14. 2026-06-18 15:10  002-memory-store-and-search/015-retrieval-gating-and-recall-recovery
+15. 2026-06-18 15:10  005-verification-and-remediation/005-fresh-regression-remediation
 ```
 
 ---
@@ -73,12 +73,12 @@ traces through the reorg `git mv` history to each track's true origin.
 
 | Rank | Last active | Born | Track |
 |------|------------------|------------|-------|
-| 1 | 2026-06-18 10:48 | 2026-06-14 | `005-verification-and-remediation/` |
-| 2 | 2026-06-18 07:06 | 2026-06-14 | `002-memory-store-and-search/` |
-| 3 | 2026-06-17 08:22 | 2026-06-14 | `004-shared-infrastructure/` |
-| 4 | 2026-06-17 08:22 | 2026-06-14 | `003-advisor-and-codegraph/` |
-| 5 | 2026-06-17 08:22 | 2026-06-14 | `001-research-and-doctrine/` |
-| 6 | 2026-06-17 08:22 | 2026-06-10 | `000-release-cleanup/` |
+| 1 | 2026-06-19 06:32 | 2026-06-14 | `003-advisor-and-codegraph/` |
+| 2 | 2026-06-18 21:46 | 2026-06-14 | `005-verification-and-remediation/` |
+| 3 | 2026-06-18 15:10 | 2026-06-14 | `002-memory-store-and-search/` |
+| 4 | 2026-06-18 15:10 | 2026-06-10 | `000-release-cleanup/` |
+| 5 | 2026-06-17 08:22 | 2026-06-14 | `004-shared-infrastructure/` |
+| 6 | 2026-06-17 08:22 | 2026-06-14 | `001-research-and-doctrine/` |
 
 > Note: `000-release-cleanup/` carries a deliberate `000` prefix (cross-cutting / program
 > track), so it sorts first by number but is **not** the oldest by creation — see `Born` above and §B.
@@ -92,54 +92,43 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 (a shipped hint). Folders with no committed git history (uncommitted) show `??????????` and sort last.
 
 ```
-2026-06-18 10:48  born:2026-06-17  impl  005-verification-and-remediation/006-deep-review-017-021-remediation
-2026-06-18 10:48  born:2026-06-14        005-verification-and-remediation
+2026-06-19 06:32  born:2026-06-18  impl  003-advisor-and-codegraph/005-advisor-state-spec-folder-leak
+2026-06-19 06:32  born:2026-06-14        003-advisor-and-codegraph
+2026-06-18 21:46  born:2026-06-18  impl  005-verification-and-remediation/007-release-alignment-review/004-code-remediation
+2026-06-18 21:46  born:2026-06-18  impl  005-verification-and-remediation/007-release-alignment-review/003-readme-remediation
+2026-06-18 21:46  born:2026-06-18        005-verification-and-remediation/007-release-alignment-review
+2026-06-18 21:46  born:2026-06-14        005-verification-and-remediation
+2026-06-18 15:10  born:2026-06-18  impl  005-verification-and-remediation/005-fresh-regression-remediation/006-doc-truth-completion-and-mirrors
+2026-06-18 15:10  born:2026-06-18  impl  005-verification-and-remediation/005-fresh-regression-remediation/005-spec-folder-metadata-reconciliation
+2026-06-18 15:10  born:2026-06-18  impl  005-verification-and-remediation/005-fresh-regression-remediation/004-cli-frontdoor-safety
+2026-06-18 15:10  born:2026-06-18  impl  005-verification-and-remediation/005-fresh-regression-remediation/003-code-graph-robustness
+2026-06-18 15:10  born:2026-06-18  impl  005-verification-and-remediation/005-fresh-regression-remediation/002-daemon-launcher-lifecycle
+2026-06-18 15:10  born:2026-06-18  impl  005-verification-and-remediation/005-fresh-regression-remediation/001-memory-storage-and-search
+2026-06-18 15:10  born:2026-06-17  impl  005-verification-and-remediation/006-deep-review-017-021-remediation
+2026-06-18 15:10  born:2026-06-17  impl  002-memory-store-and-search/015-retrieval-gating-and-recall-recovery
+2026-06-18 15:10  born:2026-06-16        005-verification-and-remediation/005-fresh-regression-remediation
+2026-06-18 15:10  born:2026-06-14        002-memory-store-and-search
+2026-06-18 15:10  born:2026-06-11  impl  000-release-cleanup/009-skill-frontmatter-alignment/019-sk-prompt-small-model
+2026-06-18 15:10  born:2026-06-11        000-release-cleanup/009-skill-frontmatter-alignment
+2026-06-18 15:10  born:2026-06-10        000-release-cleanup
 2026-06-18 10:24  born:??????????        005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/C-rest-of-server
 2026-06-18 10:24  born:??????????        005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/B-rest-of-002
 2026-06-18 10:24  born:??????????        005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/A-search-retrieval
-2026-06-18 07:06  born:2026-06-17  impl  002-memory-store-and-search/021-cooperative-heavy-phases
-2026-06-18 07:06  born:2026-06-14        002-memory-store-and-search
-2026-06-17 22:53  born:2026-06-17  impl  002-memory-store-and-search/017-search-and-output-intelligence-implementation/007-output-surface-parity
-2026-06-17 22:53  born:2026-06-17  impl  002-memory-store-and-search/017-search-and-output-intelligence-implementation/006-command-contract-structural
-2026-06-17 22:53  born:2026-06-17  impl  002-memory-store-and-search/017-search-and-output-intelligence-implementation/005-cosine-topn-reorder
-2026-06-17 22:53  born:2026-06-17  impl  002-memory-store-and-search/017-search-and-output-intelligence-implementation/004-confidence-calibration-labeled-set
-2026-06-17 22:53  born:2026-06-17  impl  002-memory-store-and-search/017-search-and-output-intelligence-implementation/003-generic-query-deep-routing
-2026-06-17 22:53  born:2026-06-17  impl  002-memory-store-and-search/017-search-and-output-intelligence-implementation/002-request-quality-aggregation
-2026-06-17 22:53  born:2026-06-17  impl  002-memory-store-and-search/017-search-and-output-intelligence-implementation/001-token-budget-truncation-safety
-2026-06-17 22:53  born:2026-06-17  impl  002-memory-store-and-search/017-search-and-output-intelligence-implementation
-2026-06-17 22:53  born:2026-06-17  impl  002-memory-store-and-search/020-maintenance-grace-background-embedding
-2026-06-17 22:53  born:2026-06-17  impl  002-memory-store-and-search/019-maintenance-grace-daemon-survives-reelection
-2026-06-17 14:06  born:2026-06-17  impl  002-memory-store-and-search/018-reindex-scan-responsiveness-and-cancellation
-2026-06-17 08:22  born:2026-06-17  impl  002-memory-store-and-search/016-search-and-output-intelligence-research/002-ai-output-command-vs-conversation
-2026-06-17 08:22  born:2026-06-17  impl  002-memory-store-and-search/016-search-and-output-intelligence-research/001-search-intelligence
-2026-06-17 08:22  born:2026-06-17  impl  002-memory-store-and-search/016-search-and-output-intelligence-research
 2026-06-17 08:22  born:2026-06-16  impl  005-verification-and-remediation/005-fresh-regression-remediation/007-consolidation-hardening
-2026-06-17 08:22  born:2026-06-16        005-verification-and-remediation/005-fresh-regression-remediation
 2026-06-17 08:22  born:2026-06-15  impl  003-advisor-and-codegraph/004-skill-advisor-suite-repair
 2026-06-17 08:22  born:2026-06-14        004-shared-infrastructure
-2026-06-17 08:22  born:2026-06-14        003-advisor-and-codegraph
 2026-06-17 08:22  born:2026-06-14        001-research-and-doctrine
 2026-06-17 08:22  born:2026-06-13  impl  005-verification-and-remediation/004-residual-design-units
 2026-06-17 08:22  born:2026-06-12  impl  004-shared-infrastructure/002-command-presentation-workflow-separation/008-router-consistency-hardening
 2026-06-17 08:22  born:2026-06-12  impl  004-shared-infrastructure/002-command-presentation-workflow-separation/007-presentation-asset-format
 2026-06-17 08:22  born:2026-06-12  impl  005-verification-and-remediation/002-tri-system-deep-research
-2026-06-17 08:22  born:2026-06-11  impl  000-release-cleanup/009-skill-frontmatter-alignment/019-sk-prompt-small-model
-2026-06-17 08:22  born:2026-06-11        000-release-cleanup/009-skill-frontmatter-alignment
 2026-06-17 08:22  born:2026-06-11  impl  004-shared-infrastructure/002-command-presentation-workflow-separation/005-deep-commands
 2026-06-17 08:22  born:2026-06-10        004-shared-infrastructure/002-command-presentation-workflow-separation
 2026-06-17 08:22  born:2026-06-10  impl  000-release-cleanup/005-mcp-cli-stress-tests
-2026-06-17 08:22  born:2026-06-10        000-release-cleanup
 2026-06-17 08:22  born:2026-06-06  impl  001-research-and-doctrine/001-peck-teachings-adoption/005-reviewer-prompt-benchmark-substrate
 2026-06-17 08:22  born:2026-06-06  impl  001-research-and-doctrine/002-gem-team-adoption/002-scoped-preexec-and-handoff-gates
 2026-06-17 08:22  born:2026-06-06        001-research-and-doctrine/002-gem-team-adoption
 2026-06-17 08:22  born:2026-06-02        001-research-and-doctrine/001-peck-teachings-adoption
-2026-06-17 08:22  born:??????????  impl  005-verification-and-remediation/005-fresh-regression-remediation/006-doc-truth-completion-and-mirrors
-2026-06-17 08:22  born:??????????  impl  005-verification-and-remediation/005-fresh-regression-remediation/005-spec-folder-metadata-reconciliation
-2026-06-17 08:22  born:??????????  impl  005-verification-and-remediation/005-fresh-regression-remediation/004-cli-frontdoor-safety
-2026-06-17 08:22  born:??????????  impl  005-verification-and-remediation/005-fresh-regression-remediation/003-code-graph-robustness
-2026-06-17 08:22  born:??????????  impl  005-verification-and-remediation/005-fresh-regression-remediation/002-daemon-launcher-lifecycle
-2026-06-17 08:22  born:??????????  impl  005-verification-and-remediation/005-fresh-regression-remediation/001-memory-storage-and-search
-2026-06-17 08:02  born:2026-06-17  impl  002-memory-store-and-search/015-retrieval-gating-and-recall-recovery
 2026-06-16 16:59  born:2026-05-12  impl  002-memory-store-and-search/004-learning-feedback-reducers/004-retention-reducer
 2026-06-16 16:59  born:2026-05-09        002-memory-store-and-search/004-learning-feedback-reducers
 2026-06-16 15:46  born:2026-06-11        005-verification-and-remediation/001-finding-remediation
@@ -281,7 +270,21 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 2026-06-14 08:03  born:2026-06-10  impl  000-release-cleanup/003-skill-feature-catalog
 2026-06-14 08:03  born:2026-06-10  impl  000-release-cleanup/002-skill-docs-alignment
 2026-06-14 08:03  born:2026-06-10  impl  000-release-cleanup/001-public-root-readme
-??????????        born:??????????  impl  003-advisor-and-codegraph/005-advisor-state-spec-folder-leak
+??????????       born:2026-06-17  impl  002-memory-store-and-search/016-search-and-output-intelligence/007-output-surface-parity
+??????????       born:2026-06-17  impl  002-memory-store-and-search/016-search-and-output-intelligence/006-command-contract-structural
+??????????       born:2026-06-17  impl  002-memory-store-and-search/016-search-and-output-intelligence/005-cosine-topn-reorder
+??????????       born:2026-06-17  impl  002-memory-store-and-search/016-search-and-output-intelligence/004-confidence-calibration-labeled-set
+??????????       born:2026-06-17  impl  002-memory-store-and-search/016-search-and-output-intelligence/003-generic-query-deep-routing
+??????????       born:2026-06-17  impl  002-memory-store-and-search/016-search-and-output-intelligence/002-request-quality-aggregation
+??????????       born:2026-06-17  impl  002-memory-store-and-search/016-search-and-output-intelligence/001-token-budget-truncation-safety
+??????????       born:2026-06-17  impl  002-memory-store-and-search/016-search-and-output-intelligence
+??????????       born:2026-06-17  impl  002-memory-store-and-search/016-search-and-output-intelligence/research/002-ai-output-command-vs-conversation
+??????????       born:2026-06-17  impl  002-memory-store-and-search/016-search-and-output-intelligence/research/001-search-intelligence
+??????????       born:2026-06-17  impl  002-memory-store-and-search/016-search-and-output-intelligence/research
+??????????       born:2026-06-17  impl  002-memory-store-and-search/020-cooperative-heavy-phases
+??????????       born:2026-06-17  impl  002-memory-store-and-search/019-maintenance-grace-background-embedding
+??????????       born:2026-06-17  impl  002-memory-store-and-search/018-maintenance-grace-daemon-survives-reelection
+??????????       born:2026-06-17  impl  002-memory-store-and-search/017-reindex-scan-responsiveness-and-cancellation
 ```
 
 ---
@@ -307,54 +310,43 @@ changelogs the rollup covers). Links resolve relative to this file.
 
 | Spec folder | impl | Changelog |
 |-------------|------|-----------|
-| `005-verification-and-remediation/006-deep-review-017-021-remediation` | impl | [changelog-005-006-deep-review-017-021-remediation.md](./changelog/005-verification-and-remediation/changelog-005-006-deep-review-017-021-remediation.md) |
-| `005-verification-and-remediation` |  | [changelog-005-verification-and-remediation-root.md](./changelog/005-verification-and-remediation/changelog-005-verification-and-remediation-root.md) |
-| `005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/C-rest-of-server` |  | (none) |
-| `005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/B-rest-of-002` |  | (none) |
-| `005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/A-search-retrieval` |  | (none) |
-| `002-memory-store-and-search/021-cooperative-heavy-phases` | impl | [changelog-002-021-cooperative-heavy-phases.md](./changelog/002-memory-store-and-search/changelog-002-021-cooperative-heavy-phases.md) |
-| `002-memory-store-and-search` |  | [changelog-002-memory-store-and-search-root.md](./changelog/002-memory-store-and-search/changelog-002-memory-store-and-search-root.md) |
-| `002-memory-store-and-search/017-search-and-output-intelligence-implementation/007-output-surface-parity` | impl | [changelog-002-017-007-output-surface-parity.md](./changelog/002-memory-store-and-search/changelog-002-017-007-output-surface-parity.md) |
-| `002-memory-store-and-search/017-search-and-output-intelligence-implementation/006-command-contract-structural` | impl | [changelog-002-017-006-command-contract-structural.md](./changelog/002-memory-store-and-search/changelog-002-017-006-command-contract-structural.md) |
-| `002-memory-store-and-search/017-search-and-output-intelligence-implementation/005-cosine-topn-reorder` | impl | [changelog-002-017-005-cosine-topn-reorder.md](./changelog/002-memory-store-and-search/changelog-002-017-005-cosine-topn-reorder.md) |
-| `002-memory-store-and-search/017-search-and-output-intelligence-implementation/004-confidence-calibration-labeled-set` | impl | [changelog-002-017-004-confidence-calibration-labeled-set.md](./changelog/002-memory-store-and-search/changelog-002-017-004-confidence-calibration-labeled-set.md) |
-| `002-memory-store-and-search/017-search-and-output-intelligence-implementation/003-generic-query-deep-routing` | impl | [changelog-002-017-003-generic-query-deep-routing.md](./changelog/002-memory-store-and-search/changelog-002-017-003-generic-query-deep-routing.md) |
-| `002-memory-store-and-search/017-search-and-output-intelligence-implementation/002-request-quality-aggregation` | impl | [changelog-002-017-002-request-quality-aggregation.md](./changelog/002-memory-store-and-search/changelog-002-017-002-request-quality-aggregation.md) |
-| `002-memory-store-and-search/017-search-and-output-intelligence-implementation/001-token-budget-truncation-safety` | impl | [changelog-002-017-001-token-budget-truncation-safety.md](./changelog/002-memory-store-and-search/changelog-002-017-001-token-budget-truncation-safety.md) |
-| `002-memory-store-and-search/017-search-and-output-intelligence-implementation` | impl | [changelog-002-017-search-and-output-intelligence-implementation-root.md](./changelog/002-memory-store-and-search/changelog-002-017-search-and-output-intelligence-implementation-root.md) |
-| `002-memory-store-and-search/020-maintenance-grace-background-embedding` | impl | [changelog-002-020-maintenance-grace-background-embedding.md](./changelog/002-memory-store-and-search/changelog-002-020-maintenance-grace-background-embedding.md) |
-| `002-memory-store-and-search/019-maintenance-grace-daemon-survives-reelection` | impl | [changelog-002-019-maintenance-grace-daemon-survives-reelection.md](./changelog/002-memory-store-and-search/changelog-002-019-maintenance-grace-daemon-survives-reelection.md) |
-| `002-memory-store-and-search/018-reindex-scan-responsiveness-and-cancellation` | impl | [changelog-002-018-reindex-scan-responsiveness-and-cancellation.md](./changelog/002-memory-store-and-search/changelog-002-018-reindex-scan-responsiveness-and-cancellation.md) |
-| `002-memory-store-and-search/016-search-and-output-intelligence-research/002-ai-output-command-vs-conversation` | impl | (none) |
-| `002-memory-store-and-search/016-search-and-output-intelligence-research/001-search-intelligence` | impl | (none) |
-| `002-memory-store-and-search/016-search-and-output-intelligence-research` | impl | [changelog-002-016-search-and-output-intelligence-research.md](./changelog/002-memory-store-and-search/changelog-002-016-search-and-output-intelligence-research.md) |
-| `005-verification-and-remediation/005-fresh-regression-remediation/007-consolidation-hardening` | impl | [changelog-005-005-007-consolidation-hardening.md](./changelog/005-verification-and-remediation/changelog-005-005-007-consolidation-hardening.md) |
-| `005-verification-and-remediation/005-fresh-regression-remediation` |  | [changelog-005-005-fresh-regression-remediation-root.md](./changelog/005-verification-and-remediation/changelog-005-005-fresh-regression-remediation-root.md) |
-| `003-advisor-and-codegraph/004-skill-advisor-suite-repair` | impl | [changelog-003-004-skill-advisor-suite-repair.md](./changelog/003-advisor-and-codegraph/changelog-003-004-skill-advisor-suite-repair.md) |
-| `004-shared-infrastructure` |  | [changelog-004-shared-infrastructure-root.md](./changelog/004-shared-infrastructure/changelog-004-shared-infrastructure-root.md) |
+| `003-advisor-and-codegraph/005-advisor-state-spec-folder-leak` | impl | [changelog-003-005-advisor-state-spec-folder-leak.md](./changelog/003-advisor-and-codegraph/changelog-003-005-advisor-state-spec-folder-leak.md) |
 | `003-advisor-and-codegraph` |  | [changelog-003-advisor-and-codegraph-root.md](./changelog/003-advisor-and-codegraph/changelog-003-advisor-and-codegraph-root.md) |
-| `001-research-and-doctrine` |  | [changelog-001-research-and-doctrine-root.md](./changelog/001-research-and-doctrine/changelog-001-research-and-doctrine-root.md) |
-| `005-verification-and-remediation/004-residual-design-units` | impl | [changelog-005-004-residual-design-units.md](./changelog/005-verification-and-remediation/changelog-005-004-residual-design-units.md) |
-| `004-shared-infrastructure/002-command-presentation-workflow-separation/008-router-consistency-hardening` | impl | [changelog-004-002-008-router-consistency-hardening.md](./changelog/004-shared-infrastructure/changelog-004-002-008-router-consistency-hardening.md) |
-| `004-shared-infrastructure/002-command-presentation-workflow-separation/007-presentation-asset-format` | impl | [changelog-004-002-007-presentation-asset-format.md](./changelog/004-shared-infrastructure/changelog-004-002-007-presentation-asset-format.md) |
-| `005-verification-and-remediation/002-tri-system-deep-research` | impl | [changelog-005-002-tri-system-deep-research-root.md](./changelog/005-verification-and-remediation/changelog-005-002-tri-system-deep-research-root.md) |
-| `000-release-cleanup/009-skill-frontmatter-alignment/019-sk-prompt-small-model` | impl | [changelog-000-009-019-sk-prompt-small-model.md](./changelog/000-release-cleanup/changelog-000-009-019-sk-prompt-small-model.md) |
-| `000-release-cleanup/009-skill-frontmatter-alignment` |  | [changelog-000-009-skill-frontmatter-alignment.md](./changelog/000-release-cleanup/changelog-000-009-skill-frontmatter-alignment.md) |
-| `004-shared-infrastructure/002-command-presentation-workflow-separation/005-deep-commands` | impl | [changelog-004-002-005-deep-commands.md](./changelog/004-shared-infrastructure/changelog-004-002-005-deep-commands.md) |
-| `004-shared-infrastructure/002-command-presentation-workflow-separation` |  | [changelog-004-002-command-presentation-workflow-separation-root.md](./changelog/004-shared-infrastructure/changelog-004-002-command-presentation-workflow-separation-root.md) |
-| `000-release-cleanup/005-mcp-cli-stress-tests` | impl | [changelog-000-005-mcp-cli-stress-tests.md](./changelog/000-release-cleanup/changelog-000-005-mcp-cli-stress-tests.md) |
-| `000-release-cleanup` |  | [changelog-000-release-cleanup-root.md](./changelog/000-release-cleanup/changelog-000-release-cleanup-root.md) |
-| `001-research-and-doctrine/001-peck-teachings-adoption/005-reviewer-prompt-benchmark-substrate` | impl | [changelog-001-001-005-reviewer-prompt-benchmark-substrate.md](./changelog/001-research-and-doctrine/changelog-001-001-005-reviewer-prompt-benchmark-substrate.md) |
-| `001-research-and-doctrine/002-gem-team-adoption/002-scoped-preexec-and-handoff-gates` | impl | [changelog-001-002-002-scoped-preexec-and-handoff-gates.md](./changelog/001-research-and-doctrine/changelog-001-002-002-scoped-preexec-and-handoff-gates.md) |
-| `001-research-and-doctrine/002-gem-team-adoption` |  | [changelog-001-002-gem-team-adoption-root.md](./changelog/001-research-and-doctrine/changelog-001-002-gem-team-adoption-root.md) |
-| `001-research-and-doctrine/001-peck-teachings-adoption` |  | [changelog-001-001-peck-teachings-adoption-root.md](./changelog/001-research-and-doctrine/changelog-001-001-peck-teachings-adoption-root.md) |
+| `005-verification-and-remediation/007-release-alignment-review/004-code-remediation` | impl | (none) |
+| `005-verification-and-remediation/007-release-alignment-review/003-readme-remediation` | impl | (none) |
+| `005-verification-and-remediation/007-release-alignment-review` |  | (none) |
+| `005-verification-and-remediation` |  | [changelog-005-verification-and-remediation-root.md](./changelog/005-verification-and-remediation/changelog-005-verification-and-remediation-root.md) |
 | `005-verification-and-remediation/005-fresh-regression-remediation/006-doc-truth-completion-and-mirrors` | impl | [changelog-005-005-006-doc-truth-completion-and-mirrors.md](./changelog/005-verification-and-remediation/changelog-005-005-006-doc-truth-completion-and-mirrors.md) |
 | `005-verification-and-remediation/005-fresh-regression-remediation/005-spec-folder-metadata-reconciliation` | impl | [changelog-005-005-005-spec-folder-metadata-reconciliation.md](./changelog/005-verification-and-remediation/changelog-005-005-005-spec-folder-metadata-reconciliation.md) |
 | `005-verification-and-remediation/005-fresh-regression-remediation/004-cli-frontdoor-safety` | impl | [changelog-005-005-004-cli-frontdoor-safety.md](./changelog/005-verification-and-remediation/changelog-005-005-004-cli-frontdoor-safety.md) |
 | `005-verification-and-remediation/005-fresh-regression-remediation/003-code-graph-robustness` | impl | [changelog-005-005-003-code-graph-robustness.md](./changelog/005-verification-and-remediation/changelog-005-005-003-code-graph-robustness.md) |
 | `005-verification-and-remediation/005-fresh-regression-remediation/002-daemon-launcher-lifecycle` | impl | [changelog-005-005-002-daemon-launcher-lifecycle.md](./changelog/005-verification-and-remediation/changelog-005-005-002-daemon-launcher-lifecycle.md) |
 | `005-verification-and-remediation/005-fresh-regression-remediation/001-memory-storage-and-search` | impl | [changelog-005-005-001-memory-storage-and-search.md](./changelog/005-verification-and-remediation/changelog-005-005-001-memory-storage-and-search.md) |
+| `005-verification-and-remediation/006-deep-review-017-021-remediation` | impl | [changelog-005-006-deep-review-017-021-remediation.md](./changelog/005-verification-and-remediation/changelog-005-006-deep-review-017-021-remediation.md) |
 | `002-memory-store-and-search/015-retrieval-gating-and-recall-recovery` | impl | [changelog-002-015-retrieval-gating-and-recall-recovery.md](./changelog/002-memory-store-and-search/changelog-002-015-retrieval-gating-and-recall-recovery.md) |
+| `005-verification-and-remediation/005-fresh-regression-remediation` |  | [changelog-005-005-fresh-regression-remediation-root.md](./changelog/005-verification-and-remediation/changelog-005-005-fresh-regression-remediation-root.md) |
+| `002-memory-store-and-search` |  | [changelog-002-memory-store-and-search-root.md](./changelog/002-memory-store-and-search/changelog-002-memory-store-and-search-root.md) |
+| `000-release-cleanup/009-skill-frontmatter-alignment/019-sk-prompt-small-model` | impl | [changelog-000-009-019-sk-prompt-small-model.md](./changelog/000-release-cleanup/changelog-000-009-019-sk-prompt-small-model.md) |
+| `000-release-cleanup/009-skill-frontmatter-alignment` |  | [changelog-000-009-skill-frontmatter-alignment.md](./changelog/000-release-cleanup/changelog-000-009-skill-frontmatter-alignment.md) |
+| `000-release-cleanup` |  | [changelog-000-release-cleanup-root.md](./changelog/000-release-cleanup/changelog-000-release-cleanup-root.md) |
+| `005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/C-rest-of-server` |  | (none) |
+| `005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/B-rest-of-002` |  | (none) |
+| `005-verification-and-remediation/006-deep-review-017-021-remediation/review-r2/scopes/A-search-retrieval` |  | (none) |
+| `005-verification-and-remediation/005-fresh-regression-remediation/007-consolidation-hardening` | impl | [changelog-005-005-007-consolidation-hardening.md](./changelog/005-verification-and-remediation/changelog-005-005-007-consolidation-hardening.md) |
+| `003-advisor-and-codegraph/004-skill-advisor-suite-repair` | impl | [changelog-003-004-skill-advisor-suite-repair.md](./changelog/003-advisor-and-codegraph/changelog-003-004-skill-advisor-suite-repair.md) |
+| `004-shared-infrastructure` |  | [changelog-004-shared-infrastructure-root.md](./changelog/004-shared-infrastructure/changelog-004-shared-infrastructure-root.md) |
+| `001-research-and-doctrine` |  | [changelog-001-research-and-doctrine-root.md](./changelog/001-research-and-doctrine/changelog-001-research-and-doctrine-root.md) |
+| `005-verification-and-remediation/004-residual-design-units` | impl | [changelog-005-004-residual-design-units.md](./changelog/005-verification-and-remediation/changelog-005-004-residual-design-units.md) |
+| `004-shared-infrastructure/002-command-presentation-workflow-separation/008-router-consistency-hardening` | impl | [changelog-004-002-008-router-consistency-hardening.md](./changelog/004-shared-infrastructure/changelog-004-002-008-router-consistency-hardening.md) |
+| `004-shared-infrastructure/002-command-presentation-workflow-separation/007-presentation-asset-format` | impl | [changelog-004-002-007-presentation-asset-format.md](./changelog/004-shared-infrastructure/changelog-004-002-007-presentation-asset-format.md) |
+| `005-verification-and-remediation/002-tri-system-deep-research` | impl | [changelog-005-002-tri-system-deep-research-root.md](./changelog/005-verification-and-remediation/changelog-005-002-tri-system-deep-research-root.md) |
+| `004-shared-infrastructure/002-command-presentation-workflow-separation/005-deep-commands` | impl | [changelog-004-002-005-deep-commands.md](./changelog/004-shared-infrastructure/changelog-004-002-005-deep-commands.md) |
+| `004-shared-infrastructure/002-command-presentation-workflow-separation` |  | [changelog-004-002-command-presentation-workflow-separation-root.md](./changelog/004-shared-infrastructure/changelog-004-002-command-presentation-workflow-separation-root.md) |
+| `000-release-cleanup/005-mcp-cli-stress-tests` | impl | [changelog-000-005-mcp-cli-stress-tests.md](./changelog/000-release-cleanup/changelog-000-005-mcp-cli-stress-tests.md) |
+| `001-research-and-doctrine/001-peck-teachings-adoption/005-reviewer-prompt-benchmark-substrate` | impl | [changelog-001-001-005-reviewer-prompt-benchmark-substrate.md](./changelog/001-research-and-doctrine/changelog-001-001-005-reviewer-prompt-benchmark-substrate.md) |
+| `001-research-and-doctrine/002-gem-team-adoption/002-scoped-preexec-and-handoff-gates` | impl | [changelog-001-002-002-scoped-preexec-and-handoff-gates.md](./changelog/001-research-and-doctrine/changelog-001-002-002-scoped-preexec-and-handoff-gates.md) |
+| `001-research-and-doctrine/002-gem-team-adoption` |  | [changelog-001-002-gem-team-adoption-root.md](./changelog/001-research-and-doctrine/changelog-001-002-gem-team-adoption-root.md) |
+| `001-research-and-doctrine/001-peck-teachings-adoption` |  | [changelog-001-001-peck-teachings-adoption-root.md](./changelog/001-research-and-doctrine/changelog-001-001-peck-teachings-adoption-root.md) |
 | `002-memory-store-and-search/004-learning-feedback-reducers/004-retention-reducer` | impl | [changelog-002-004-004-feedback-retention-reducer.md](./changelog/002-memory-store-and-search/changelog-002-004-004-feedback-retention-reducer.md) |
 | `002-memory-store-and-search/004-learning-feedback-reducers` |  | [changelog-002-004-learning-feedback-reducers-root.md](./changelog/002-memory-store-and-search/changelog-002-004-learning-feedback-reducers-root.md) |
 | `005-verification-and-remediation/001-finding-remediation` |  | [changelog-005-001-finding-remediation-root.md](./changelog/005-verification-and-remediation/changelog-005-001-finding-remediation-root.md) |
@@ -496,5 +488,19 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `000-release-cleanup/003-skill-feature-catalog` | impl | [changelog-000-003-skill-feature-catalog.md](./changelog/000-release-cleanup/changelog-000-003-skill-feature-catalog.md) |
 | `000-release-cleanup/002-skill-docs-alignment` | impl | [changelog-000-002-skill-docs-alignment.md](./changelog/000-release-cleanup/changelog-000-002-skill-docs-alignment.md) |
 | `000-release-cleanup/001-public-root-readme` | impl | [changelog-000-001-public-root-readme.md](./changelog/000-release-cleanup/changelog-000-001-public-root-readme.md) |
-| `003-advisor-and-codegraph/005-advisor-state-spec-folder-leak` (uncommitted) | impl | [changelog-003-005-advisor-state-spec-folder-leak.md](./changelog/003-advisor-and-codegraph/changelog-003-005-advisor-state-spec-folder-leak.md) |
+| `002-memory-store-and-search/016-search-and-output-intelligence/007-output-surface-parity` | impl | [changelog-002-016-007-output-surface-parity.md](./changelog/002-memory-store-and-search/changelog-002-016-007-output-surface-parity.md) |
+| `002-memory-store-and-search/016-search-and-output-intelligence/006-command-contract-structural` | impl | [changelog-002-016-006-command-contract-structural.md](./changelog/002-memory-store-and-search/changelog-002-016-006-command-contract-structural.md) |
+| `002-memory-store-and-search/016-search-and-output-intelligence/005-cosine-topn-reorder` | impl | [changelog-002-016-005-cosine-topn-reorder.md](./changelog/002-memory-store-and-search/changelog-002-016-005-cosine-topn-reorder.md) |
+| `002-memory-store-and-search/016-search-and-output-intelligence/004-confidence-calibration-labeled-set` | impl | [changelog-002-016-004-confidence-calibration-labeled-set.md](./changelog/002-memory-store-and-search/changelog-002-016-004-confidence-calibration-labeled-set.md) |
+| `002-memory-store-and-search/016-search-and-output-intelligence/003-generic-query-deep-routing` | impl | [changelog-002-016-003-generic-query-deep-routing.md](./changelog/002-memory-store-and-search/changelog-002-016-003-generic-query-deep-routing.md) |
+| `002-memory-store-and-search/016-search-and-output-intelligence/002-request-quality-aggregation` | impl | [changelog-002-016-002-request-quality-aggregation.md](./changelog/002-memory-store-and-search/changelog-002-016-002-request-quality-aggregation.md) |
+| `002-memory-store-and-search/016-search-and-output-intelligence/001-token-budget-truncation-safety` | impl | [changelog-002-016-001-token-budget-truncation-safety.md](./changelog/002-memory-store-and-search/changelog-002-016-001-token-budget-truncation-safety.md) |
+| `002-memory-store-and-search/016-search-and-output-intelligence` | impl | [changelog-002-016-search-and-output-intelligence-root.md](./changelog/002-memory-store-and-search/changelog-002-016-search-and-output-intelligence-root.md) |
+| `002-memory-store-and-search/016-search-and-output-intelligence/research/002-ai-output-command-vs-conversation` | impl | (none) |
+| `002-memory-store-and-search/016-search-and-output-intelligence/research/001-search-intelligence` | impl | (none) |
+| `002-memory-store-and-search/016-search-and-output-intelligence/research` | impl | [changelog-002-016-search-and-output-intelligence-research.md](./changelog/002-memory-store-and-search/changelog-002-016-search-and-output-intelligence-research.md) |
+| `002-memory-store-and-search/020-cooperative-heavy-phases` | impl | [changelog-002-020-cooperative-heavy-phases.md](./changelog/002-memory-store-and-search/changelog-002-020-cooperative-heavy-phases.md) |
+| `002-memory-store-and-search/019-maintenance-grace-background-embedding` | impl | [changelog-002-019-maintenance-grace-background-embedding.md](./changelog/002-memory-store-and-search/changelog-002-019-maintenance-grace-background-embedding.md) |
+| `002-memory-store-and-search/018-maintenance-grace-daemon-survives-reelection` | impl | [changelog-002-018-maintenance-grace-daemon-survives-reelection.md](./changelog/002-memory-store-and-search/changelog-002-018-maintenance-grace-daemon-survives-reelection.md) |
+| `002-memory-store-and-search/017-reindex-scan-responsiveness-and-cancellation` | impl | [changelog-002-017-reindex-scan-responsiveness-and-cancellation.md](./changelog/002-memory-store-and-search/changelog-002-017-reindex-scan-responsiveness-and-cancellation.md) |
 

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: CLI Fallback Envelope and Bridge Allowlist [template:level_1/spec.md]"
+title: "Feature Specification: CLI Fallback Envelope and Bridge Allowlist"
 description: "Normalize the warm-fallback result envelopes and reason codes across the three hook helpers and add an explicit prompt-time allowlist to the spec-memory plugin bridge, mirroring the code-index maintenance denylist."
 trigger_phrases:
   - "cli fallback envelope normalization"

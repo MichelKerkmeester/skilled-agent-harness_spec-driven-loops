@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 3: feedback-log-and-008-reframe [template:level_1/tasks.md]"
+title: "Tasks: Phase 3: feedback-log-and-008-reframe"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "feedback reframe tasks 005"

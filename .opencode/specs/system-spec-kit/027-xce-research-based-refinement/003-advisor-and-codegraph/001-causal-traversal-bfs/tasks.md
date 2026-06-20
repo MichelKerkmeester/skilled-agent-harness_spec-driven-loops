@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Causal Traversal BFS Read Path [template:level_1/tasks.md]"
+title: "Tasks: Causal Traversal BFS Read Path"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "012-causal-traversal-bfs tasks"

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Vector Read-Path Resilience & Performance [template:level_1/implementation-summary.md]"
+title: "Implementation Summary: Vector Read-Path Resilience & Performance"
 description: "Implemented vector shard integrity probing, quarantine, repair reindex wiring, degraded-vector observability counters, authoritative dimension fallback behavior, and KNN query-shape benchmark coverage."
 trigger_phrases:
   - "013-vector-read-path-resilience summary"

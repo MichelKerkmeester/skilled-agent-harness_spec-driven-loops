@@ -1,5 +1,5 @@
 ---
-title: "Verification Checklist: Phase 1: provenance-and-audit [template:level_2/checklist.md]"
+title: "Verification Checklist: Phase 1: provenance-and-audit"
 description: "Verification acceptance items for provenance-and-audit: server-derived source_kind on every write, the auto-cannot-overwrite-manual/constitutional guard at write ingress, deduped mutation_ledger audit, and the constitutional immunity rule."
 trigger_phrases:
   - "provenance audit checklist"

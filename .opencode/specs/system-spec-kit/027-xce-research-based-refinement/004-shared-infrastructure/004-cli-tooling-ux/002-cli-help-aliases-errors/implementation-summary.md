@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Completed per-command help, unified aliases, and improved unknown-command errors across the three daemon CLIs."
 trigger_phrases:
   - "002-cli-help-aliases-errors summary"

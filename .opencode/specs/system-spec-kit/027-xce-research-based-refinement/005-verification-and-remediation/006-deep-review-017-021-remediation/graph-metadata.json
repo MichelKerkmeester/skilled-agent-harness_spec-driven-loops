@@ -39,7 +39,8 @@
       "reindex"
     ],
     "importance_tier": "important",
-    "status": "not_started_—_findings_carried_as_tasks;_no_fixes_applied",
+    "status": "in_progress",
+    "status_note": "Authoring step complete (docs + metadata); findings carried as tasks, per-file fixes not yet applied.",
     "key_files": [
       ".opencode/commands/memory/search.md",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts",

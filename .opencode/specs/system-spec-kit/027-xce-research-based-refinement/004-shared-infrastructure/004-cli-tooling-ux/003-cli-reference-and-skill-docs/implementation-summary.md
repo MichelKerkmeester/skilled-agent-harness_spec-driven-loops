@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Completed unified Daemon CLI Reference page, per-system SKILL.md recovery links, and jsonl clarification for the three daemon-backed CLIs."
 trigger_phrases:
   - "003-cli-reference-and-skill-docs summary"

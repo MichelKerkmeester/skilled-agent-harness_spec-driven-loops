@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Vector Read-Path Resilience & Performance [template:level_1/plan.md]"
+title: "Implementation Plan: Vector Read-Path Resilience & Performance"
 description: "Add an integrity probe to shard open/attach, quarantine + auto-rebuild corrupted shards through the existing reindex staging path, surface degraded state via health counters, replace regex dimension discovery with the embedder profile, and benchmark the KNN query shape."
 trigger_phrases:
   - "013-vector-read-path-resilience plan"

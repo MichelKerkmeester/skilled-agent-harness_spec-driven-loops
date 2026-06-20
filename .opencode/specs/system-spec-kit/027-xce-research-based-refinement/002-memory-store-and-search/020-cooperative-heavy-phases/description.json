@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/020-cooperative-heavy-phases",
+  "description": "Feature Specification: cooperative heavy phases keep the daemon responsive",
+  "keywords": [
+    "feature",
+    "specification",
+    "cooperative",
+    "heavy",
+    "phases",
+    "keep",
+    "daemon",
+    "responsive"
+  ],
+  "lastUpdated": "2026-06-18T03:33:51.846Z",
+  "specId": "020",
+  "folderSlug": "cooperative-heavy-phases",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "002-memory-store-and-search"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: CLI Freshness Gate Fix and Offline Smoke [template:level_1/plan.md]"
+title: "Implementation Plan: CLI Freshness Gate Fix and Offline Smoke"
 description: "Make the spec-memory freshness gate content-hash durable, surface an actionable stale-dist plugin status, and add a daemon-free offline smoke check of the 37/8/9 list-tools counts."
 trigger_phrases:
   - "001-cli-freshness-and-smoke plan"

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Packed BM25 warmup RSS spike cut from ~687MB to 136.5MB peak-sampled (under the 150MB budget) with ranking byte-identical, via no-copy chunked packed postings and compact typed-array promotion."
 trigger_phrases:
   - "bm25 warmup churn reduction summary"

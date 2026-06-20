@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Deep-Research Remediation Program [template:level_1/tasks.md]"
+title: "Tasks: Deep-Research Remediation Program"
 description: "Lane-ordered task list for remediating the 198 Fable-verified findings: L1 security and L8 adherence complete; L2–L7 and L9 remain, each following the verify-first per-finding loop."
 trigger_phrases:
   - "029 remediation tasks"

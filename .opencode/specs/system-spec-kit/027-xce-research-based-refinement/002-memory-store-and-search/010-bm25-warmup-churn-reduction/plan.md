@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: BM25 Warmup Churn Reduction [template:level_1/plan.md]"
+title: "Implementation Plan: BM25 Warmup Churn Reduction"
 description: "Reduce peak transient allocation during packed-BM25 warmup (field-by-field tokenization, buffer reuse, pre-sized postings, bounded-peak streaming) so the committed-page RSS high-water-mark stays within the 150MB budget, with BM25 ranking byte-identical."
 trigger_phrases:
   - "bm25 warmup churn plan"

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Implemented compact/names-only list-tools output and generated bash/zsh shell completion across the three daemon CLIs."
 trigger_phrases:
   - "005-cli-automation-compact-completion summary"

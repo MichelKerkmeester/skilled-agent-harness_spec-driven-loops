@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: CLI Compact Output and Shell Completion [template:level_1/spec.md]"
+title: "Feature Specification: CLI Compact Output and Shell Completion"
 description: "Add list-tools --compact/--names-only machine-friendly JSON to all three CLIs and generate bash/zsh shell completion from the existing tool manifests."
 trigger_phrases:
   - "cli list-tools compact names-only"

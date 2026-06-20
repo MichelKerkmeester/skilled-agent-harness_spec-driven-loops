@@ -34,45 +34,41 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "shipped",
+    "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/eval/fixtures/bm25-packed-fixture.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/bm25-packed-inmemory.vitest.ts",
+      "mcp_server/lib/search/bm25-index.ts",
+      "mcp_server/lib/eval/bm25-baseline.ts",
+      "mcp_server/lib/eval/fixtures/bm25-packed-fixture.ts",
+      "mcp_server/tests/bm25-packed-inmemory.vitest.ts",
+      "mcp_server/lib/storage/canonical-fingerprint.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "mcp_server/lib/storage/canonical-fingerprint.ts",
-      "scripts/deploy-mcp.sh",
-      "mcp_server/lib/search/bm25-index.ts",
-      "mcp_server/lib/eval/bm25-baseline.ts",
-      "scratch/rss-probe-evidence.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "bm25-index.ts",
         "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts",
+        "path": "mcp_server/lib/search/bm25-index.ts",
         "source": "derived"
       },
       {
         "name": "bm25-baseline.ts",
         "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts",
+        "path": "mcp_server/lib/eval/bm25-baseline.ts",
         "source": "derived"
       },
       {
         "name": "bm25-packed-fixture.ts",
         "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/eval/fixtures/bm25-packed-fixture.ts",
+        "path": "mcp_server/lib/eval/fixtures/bm25-packed-fixture.ts",
         "source": "derived"
       },
       {
         "name": "bm25-packed-inmemory.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/bm25-packed-inmemory.vitest.ts",
+        "path": "mcp_server/tests/bm25-packed-inmemory.vitest.ts",
         "source": "derived"
       },
       {
@@ -103,18 +99,6 @@
         "name": "canonical-fingerprint.ts",
         "kind": "code",
         "path": "mcp_server/lib/storage/canonical-fingerprint.ts",
-        "source": "derived"
-      },
-      {
-        "name": "deploy-mcp.sh",
-        "kind": "script",
-        "path": "scripts/deploy-mcp.sh",
-        "source": "derived"
-      },
-      {
-        "name": "rss-probe-evidence.md",
-        "kind": "doc",
-        "path": "scratch/rss-probe-evidence.md",
         "source": "derived"
       },
       {

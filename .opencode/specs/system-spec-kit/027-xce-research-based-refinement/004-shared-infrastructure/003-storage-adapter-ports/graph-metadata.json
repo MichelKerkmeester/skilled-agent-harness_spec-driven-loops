@@ -34,7 +34,8 @@
       "summary"
     ],
     "importance_tier": "normal",
-    "status": "complete_slices_1_5_verified",
+    "status": "complete",
+    "status_note": "slices 1-5 verified",
     "key_files": [
       "tests/hybrid-search.vitest.ts",
       "tests/memory-search-ux-hooks.vitest.ts",

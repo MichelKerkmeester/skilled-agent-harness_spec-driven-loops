@@ -1,20 +1,19 @@
 {
   "title": "XCE-Derived Spec Kit Refinement",
   "trigger_phrases": [
-    "027 xce memory refinement",
+    "027 xce research based refinement",
+    "027 root packet",
+    "027 phase map",
+    "xce refinement program",
+    "027 memory store and search",
+    "027 advisor and codegraph",
+    "027 shared infrastructure",
+    "027 verification and remediation",
     "memory semantic triggers",
-    "feedback P0 correctness",
     "feedback reducers",
-    "memoization dependency dag",
     "causal graph tombstones",
-    "frontmatter causal edge promoter",
-    "statediff reconciliation layer",
-    "incremental memory index",
-    "memory feedback reducers",
     "peck teachings adoption",
-    "self-check templates",
-    "current-state discipline",
-    "constitutional rule review"
+    "gem-team agent io contract"
   ],
   "level": 2,
   "schema_version": 1,
@@ -44,7 +43,7 @@
     "phase",
     "parent"
   ],
-  "lastUpdated": "2026-06-16T15:23:34.724Z",
+  "lastUpdated": "2026-06-20T10:59:13.864Z",
   "specId": "027",
   "folderSlug": "xce-research-based-refinement",
   "parentChain": [

@@ -39,7 +39,8 @@
       "pool"
     ],
     "importance_tier": "important",
-    "status": "resolved_(units_a/b_+_tail_shipped;_unit_c_documented;_tri_163_refuted;_tri_129_deferred;_tri_135_already_correct)",
+    "status": "complete",
+    "status_note": "Units A/B + tail shipped; unit C documented; tri-163 refuted; tri-129 deferred; tri-135 already correct.",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -192,7 +193,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 30** of the 027 XCE epic: the dedicated follow-on for the residual 029 work the operator routed off the tail-grind session. 029 closed both original goals plus the round-2 deep-review queue (18 P1 + 33 P2). What remains is not a flat backlog. It is three packet-scale builds, each delicate enough that the AI Council (`029-deep-research-remediation/ai-council/council-report.md`) recommended structuring this packet as design units rather than a task list.",
+    "causal_summary": "This is **Phase 30** of the 027 XCE epic: the dedicated follow-on for the residual 029 work the operator routed off the tail-grind session. 029 closed both original goals plus the round-2 deep-review queue (18 P1 + 33 P2). What remains is not a flat backlog. It is three packet-scale builds, each delicate enough that the AI Council (`../003-deep-research-remediation/ai-council/council-report.md`) recommended structuring this packet as design units rather than a task list.",
     "created_at": "2026-06-13T12:15:34Z",
     "last_save_at": "2026-06-15T09:09:34.850Z",
     "save_lineage": "graph_only",

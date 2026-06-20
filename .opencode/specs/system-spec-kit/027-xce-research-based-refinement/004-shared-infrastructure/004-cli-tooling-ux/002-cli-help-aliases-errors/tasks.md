@@ -1,5 +1,5 @@
 ---
-title: "Tasks: CLI Per-Command Help, Aliases, and Errors [template:level_1/tasks.md]"
+title: "Tasks: CLI Per-Command Help, Aliases, and Errors"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "002-cli-help-aliases-errors tasks"

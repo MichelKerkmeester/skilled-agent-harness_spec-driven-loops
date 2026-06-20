@@ -39,7 +39,8 @@
       "only"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "phase_parent",
+    "status_note": "Nested phase parent; all 8 lane children shipped (each has an implementation-summary.md).",
     "key_files": [
       "backlog/p1-backlog.json",
       "backlog/p2-backlog.json",

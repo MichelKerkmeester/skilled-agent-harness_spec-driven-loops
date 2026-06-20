@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: CLI Freshness Gate Fix and Offline Smoke [template:level_1/implementation-summary.md]"
+title: "Implementation Summary: CLI Freshness Gate Fix and Offline Smoke"
 description: "Implemented content-hash CLI freshness gates, actionable stale-dist plugin status, and a daemon-free offline 37/8/9 smoke command."
 trigger_phrases:
   - "001-cli-freshness-and-smoke summary"

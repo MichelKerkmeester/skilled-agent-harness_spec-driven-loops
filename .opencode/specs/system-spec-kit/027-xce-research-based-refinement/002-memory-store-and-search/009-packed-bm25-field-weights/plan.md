@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Packed In-Memory BM25 Engine with Field Weights [template:level_1/plan.md]"
+title: "Implementation Plan: Packed In-Memory BM25 Engine with Field Weights"
 description: "Implement the reserved packed-inmemory engine (term dictionary + typed-array postings), add BM25F per-field weighting from the exported weights, and gate on measured RAM/warmup budgets plus the bm25-baseline eval."
 trigger_phrases:
   - "014-packed-bm25-field-weights plan"

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: CLI Fallback Envelope and Bridge Allowlist [template:level_1/plan.md]"
+title: "Implementation Plan: CLI Fallback Envelope and Bridge Allowlist"
 description: "Define one normalized warm-fallback envelope with reason codes consumed by the three hook helpers and add a prompt-time allowlist to the spec-memory plugin bridge, all additive to current consumers."
 trigger_phrases:
   - "004-cli-fallback-envelope-and-bridge plan"

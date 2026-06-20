@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 3: feedback-log-and-008-reframe [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 3: feedback-log-and-008-reframe"
 description: "Keep the feedback ledger shadow-only, reserve system feedback artifact types at the write boundary, and document symmetric-damping / rare-but-correct / constitutional-immunity invariants for any future reducer. Mostly validation + scoping, little new code."
 trigger_phrases:
   - "feedback ledger shadow only plan"

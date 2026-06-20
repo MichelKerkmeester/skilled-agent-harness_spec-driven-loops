@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 2: self-check-templates [template:level_1/spec.md]"
+title: "Feature Specification: Phase 2: self-check-templates"
 description: "Phase 2 (T3): add concise self-check + failure-mode guidance blocks to the spec/plan/checklist manifest templates so verification is anchored to each artifact."
 trigger_phrases:
   - "feature"

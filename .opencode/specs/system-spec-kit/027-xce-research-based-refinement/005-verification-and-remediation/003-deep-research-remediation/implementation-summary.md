@@ -1,8 +1,8 @@
 ---
-title: "Implementation Summary: Deep-Research Remediation Program [template:level_1/implementation-summary.md]"
-description: "Progressive summary of the 029 remediation program: L1 security (single-writer DB lock, fail-closed CLI scrubbing, fingerprint redaction, truthful catalog) and L8 adherence are shipped and Fable-verified, and the 15-seat deep-review round-2 remediation is complete (Waves A-F closed; all 18 P1 + 33 P2 addressed; verdict PASS); several L2/L5/L7 lane code queues remain."
+title: "Implementation Summary: Deep-Research Remediation Program"
+description: "Progressive summary of the 027 deep-research remediation program: L1 security (single-writer DB lock, fail-closed CLI scrubbing, fingerprint redaction, truthful catalog) and L8 adherence are shipped and Fable-verified, and the 15-seat deep-review round-2 remediation is complete (Waves A-F closed; all 18 P1 + 33 P2 addressed; verdict PASS); several L2/L5/L7 lane code queues remain."
 trigger_phrases:
-  - "029 implementation summary"
+  - "027 implementation summary"
   - "remediation program summary"
   - "single writer lock summary"
 importance_tier: "important"
@@ -21,8 +21,8 @@ _memory:
       - "L9-pxx-sweep/disposition.md"
     session_dedup:
       fingerprint: "sha256:2003d4aca44bb943b1eae69b36f1d9ebe8fe3f8a5e907a323dbee96013ac03b3"
-      session_id: "029-remediation-tail-grind-2026-06-13"
-      parent_session_id: "029-remediation-resume-2026-06-12"
+      session_id: "027-remediation-tail-grind-2026-06-13"
+      parent_session_id: "027-remediation-resume-2026-06-12"
     completion_pct: 97
     open_questions: []
     answered_questions: []

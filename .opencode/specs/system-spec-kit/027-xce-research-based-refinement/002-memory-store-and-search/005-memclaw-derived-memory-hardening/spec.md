@@ -57,7 +57,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft (plan only — not implemented) |
+| **Status** | Phase Parent |
 | **Created** | 2026-06-06 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |

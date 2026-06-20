@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 1: provenance-and-audit [template:level_1/tasks.md]"
+title: "Tasks: Phase 1: provenance-and-audit"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "memory source_kind provenance tasks"

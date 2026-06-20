@@ -1,9 +1,9 @@
 ---
-title: "Deep-Research Remediation (Phase Parent)"
+title: "Deep-Research Remediation"
 description: "Verify-first remediation of every deep-research and adherence finding across nine lanes: a Fable 5 agent (claude2) re-verifies each issue against current code during phase creation, gpt-5.5-fast high implements the confirmed ones, and a fresh Fable pass re-checks before each lane commits."
 trigger_phrases:
   - "deep research remediation"
-  - "029 remediation lanes"
+  - "027 remediation lanes"
   - "tri-system finding fixes"
 importance_tier: "important"
 contextType: "implementation"
@@ -21,22 +21,23 @@ _memory:
       - "L8-command-adherence/disposition.md"
     session_dedup:
       fingerprint: "sha256:2003d4aca44bb943b1eae69b36f1d9ebe8fe3f8a5e907a323dbee96013ac03b3"
-      session_id: "029-remediation-resume-2026-06-12"
+      session_id: "027-remediation-resume-2026-06-12"
       parent_session_id: null
     completion_pct: 10
     open_questions: []
     answered_questions: []
 ---
-# Deep-Research Remediation — Phase Parent
+# Deep-Research Remediation
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 1 -->
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | Phase Parent |
+| **Level** | 1 |
 | **Priority** | P0 |
 | **Status** | In Progress |
 | **Created** | 2026-06-12 |

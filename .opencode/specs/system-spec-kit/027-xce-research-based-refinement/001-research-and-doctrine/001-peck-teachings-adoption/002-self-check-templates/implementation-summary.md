@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Concise self-check and failure-mode guidance now ships in the spec, plan, and checklist manifest templates."
 trigger_phrases:
   - "implementation"

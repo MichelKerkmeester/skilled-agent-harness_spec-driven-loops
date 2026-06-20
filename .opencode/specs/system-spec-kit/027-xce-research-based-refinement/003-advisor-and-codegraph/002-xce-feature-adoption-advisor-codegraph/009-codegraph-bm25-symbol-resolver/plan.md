@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 9: codegraph-bm25-symbol-resolver [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 9: codegraph-bm25-symbol-resolver"
 description: "Implemented an optional default-off BM25 symbol resolver for code-graph disambiguation suggestions without changing exact structural matching."
 trigger_phrases:
   - "implementation"

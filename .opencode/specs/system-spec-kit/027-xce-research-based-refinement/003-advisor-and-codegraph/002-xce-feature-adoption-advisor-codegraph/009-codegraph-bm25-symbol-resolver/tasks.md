@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 9: codegraph-bm25-symbol-resolver [template:level_1/tasks.md]"
+title: "Tasks: Phase 9: codegraph-bm25-symbol-resolver"
 description: "Task completion record for the optional default-off BM25 code-graph symbol resolver."
 trigger_phrases:
   - "tasks"

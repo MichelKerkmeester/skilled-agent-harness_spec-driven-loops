@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Skill-advisor test-suite repair: fix pre-existing scorer/hook failures and align brief-assertion tests with the fable-5 governor [template:level_2/spec.md]"
+title: "Feature Specification: Skill-advisor test-suite repair: fix pre-existing scorer/hook failures and align brief-assertion tests with the fable-5 governor"
 description: "The system-skill-advisor vitest suite had 61 pre-existing failures from the deep-loop-workflows skill merge plus 15 brief-assertion failures introduced by the always-appended fable-5 governor line. This packet drives the suite to 0 failures: it first repaired the 26 scorer/governor failures, then retargeted the settings-parity test to the committed portable settings.json and added the missing reciprocal symmetry edges so graph-health passes."
 trigger_phrases:
   - "skill advisor test repair"

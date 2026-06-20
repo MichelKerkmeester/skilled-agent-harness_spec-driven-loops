@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 2: idempotency-and-near-duplicate [template:level_1/implementation-summary.md]"
+title: "Implementation Summary: Phase 2: idempotency-and-near-duplicate"
 description: "Implemented server-derived idempotency receipts, replay/fail-closed handling, advisory near_duplicate_of, and last_dedup_checked_at markers behind SPECKIT_MEMORY_IDEMPOTENCY."
 trigger_phrases:
   - "memory save idempotency receipt summary"

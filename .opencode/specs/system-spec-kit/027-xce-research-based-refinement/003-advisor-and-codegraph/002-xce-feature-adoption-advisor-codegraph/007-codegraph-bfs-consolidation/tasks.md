@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 7: codegraph-bfs-consolidation [template:level_1/tasks.md]"
+title: "Tasks: Phase 7: codegraph-bfs-consolidation"
 description: "Completed task list for the code-graph BFS helper extraction and query-handler call-site cutover."
 trigger_phrases:
   - "tasks"

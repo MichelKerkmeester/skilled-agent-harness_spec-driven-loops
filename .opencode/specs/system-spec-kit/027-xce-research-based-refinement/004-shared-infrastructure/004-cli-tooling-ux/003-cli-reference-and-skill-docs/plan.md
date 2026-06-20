@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Unified Daemon CLI Reference and Skill Docs [template:level_1/plan.md]"
+title: "Implementation Plan: Unified Daemon CLI Reference and Skill Docs"
 description: "Author one canonical Daemon CLI Reference page, link or inline recovery + exit-code taxonomy in each system SKILL.md, and document jsonl as a single-line JSON payload."
 trigger_phrases:
   - "003-cli-reference-and-skill-docs plan"

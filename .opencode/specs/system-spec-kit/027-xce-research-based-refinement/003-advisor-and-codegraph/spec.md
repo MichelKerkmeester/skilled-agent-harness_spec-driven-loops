@@ -6,26 +6,24 @@ trigger_phrases:
   - "causal traversal bfs"
   - "xce feature adoption advisor codegraph"
   - "skill advisor cross session reconnect"
+  - "advisor state spec folder leak"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph"
-    last_updated_at: "2026-06-14T00:00:00Z"
+    last_updated_at: "2026-06-20T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Author 003-advisor-and-codegraph phase-parent control trio"
+    recent_action: "Reconcile phase-parent map + topology to the five shipped child phases"
     next_safe_action: "Resume or validate a child phase folder"
     blockers: []
     key_files:
       - "spec.md"
-      - "001-causal-traversal-bfs/spec.md"
-      - "002-xce-feature-adoption-advisor-codegraph/spec.md"
-      - "003-skill-advisor-cross-session-reconnect/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-14-027-six-track"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -69,7 +67,7 @@ Two sibling daemons beyond the memory store needed 027's hardening: the skill-ad
 ### Purpose
 Own the advisor and code-graph child phases so each can be resumed and validated independently while the parent keeps the phase map and handoff order visible.
 
-> **Phase-parent note:** This spec.md is the only REQUIRED authored document at the parent level. All detailed planning, task breakdowns, checklists, decisions, and continuity live inside the child phase folders listed in the Phase Documentation Map below.
+> **Phase-parent note:** This spec.md is the only REQUIRED authored document at the parent level. All detailed planning, task breakdowns, checklists, decisions, and continuity live inside the child phase folders listed in the Phase Documentation Map below. Program-level history and consolidation narrative live in the 027 root `../context-index.md` and `../timeline.md` — not here.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -104,10 +102,11 @@ Summary of aggregate file scope. Per-phase detail lives in each child's plan.md.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 001 | `001-causal-traversal-bfs/` | Replace the recursive-CTE graph traversals with a shared snapshot-equivalent BFS helper | Shipped |
-| 002 | `002-xce-feature-adoption-advisor-codegraph/` | XCE feature transfers into the skill-advisor and code-graph skills (observability, provenance, packed BM25, BFS, tombstones) | Complete |
+| 001 | `001-causal-traversal-bfs/` | Replace the recursive-CTE graph traversals with a shared snapshot-equivalent BFS helper | Complete |
+| 002 | `002-xce-feature-adoption-advisor-codegraph/` | Nested phase parent: nine XCE feature transfers into the skill-advisor and code-graph skills (observability, provenance, packed BM25, BFS, tombstones, why-included, symbol resolver) | Phase Parent |
 | 003 | `003-skill-advisor-cross-session-reconnect/` | Owner-lease + reconnecting proxy so mk_skill_advisor survives MCP transport drops | Complete |
 | 004 | `004-skill-advisor-suite-repair/` | Fix deep-loop-workflows merge fallout in the advisor test suite + align brief-assertion tests with the fable-5 governor | Complete |
+| 005 | `005-advisor-state-spec-folder-leak/` | Harden the advisor workspace-root fallback so it can never write `.advisor-state` into a `specs/` subtree, plus regression test and stray cleanup | Complete |
 
 ### Phase Transition Rules
 
@@ -137,4 +136,5 @@ Summary of aggregate file scope. Per-phase detail lives in each child's plan.md.
 
 - **Phase children**: See sub-folders `[0-9][0-9][0-9]-*/` for per-phase spec.md, plan.md, tasks.md.
 - **Parent Spec**: See `../spec.md`.
+- **Program history**: See `../context-index.md` and `../timeline.md` at the 027 root.
 - **Graph Metadata**: See `graph-metadata.json` for `derived.last_active_child_id` pointer.

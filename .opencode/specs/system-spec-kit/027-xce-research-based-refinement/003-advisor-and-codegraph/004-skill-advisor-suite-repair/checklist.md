@@ -1,5 +1,5 @@
 ---
-title: "Verification Checklist: Skill-advisor test-suite repair: fix pre-existing scorer/hook failures and align brief-assertion tests with the fable-5 governor [template:level_2/checklist.md]"
+title: "Verification Checklist: Skill-advisor test-suite repair: fix pre-existing scorer/hook failures and align brief-assertion tests with the fable-5 governor"
 description: "Verification Date: 2026-06-15"
 trigger_phrases:
   - "verification checklist skill advisor repair"

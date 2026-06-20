@@ -40,25 +40,11 @@
       "research"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "phase_parent",
     "key_files": [
-      "mcp_server/ENV_REFERENCE.md",
-      "001-peck-teachings-for-spec-kit/peck-teachings-analysis.md",
       "spec.md"
     ],
     "entities": [
-      {
-        "name": "ENV_REFERENCE.md",
-        "kind": "doc",
-        "path": "mcp_server/ENV_REFERENCE.md",
-        "source": "derived"
-      },
-      {
-        "name": "peck-teachings-analysis.md",
-        "kind": "doc",
-        "path": "001-peck-teachings-for-spec-kit/peck-teachings-analysis.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -72,7 +58,7 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Phase Parent",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"

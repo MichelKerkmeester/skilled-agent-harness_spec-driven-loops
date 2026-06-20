@@ -52,7 +52,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Completed |
+| **Status** | Complete |
 | **Created** | 2026-06-10 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |

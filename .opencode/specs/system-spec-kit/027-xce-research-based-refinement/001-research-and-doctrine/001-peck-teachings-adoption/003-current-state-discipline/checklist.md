@@ -1,5 +1,5 @@
 ---
-title: "Verification Checklist: current-state-discipline [template:level_1/checklist.md]"
+title: "Verification Checklist: current-state-discipline"
 description: "Verification Date: 2026-06-10"
 trigger_phrases:
   - "verification"

@@ -12,9 +12,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure"
-    last_updated_at: "2026-06-14T00:00:00Z"
+    last_updated_at: "2026-06-20T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Author 004-shared-infrastructure phase-parent control trio"
+    recent_action: "Reconcile phase map + child topology/status to nine on-disk children"
     next_safe_action: "Resume or validate a child phase folder"
     blockers: []
     key_files:
@@ -27,11 +27,12 @@ _memory:
       - "006-code-mode-orphan-lifecycle/spec.md"
       - "007-ipc-client-cap-hardening/spec.md"
       - "008-mcp-config-alignment-reelection-default/spec.md"
+      - "009-code-graph-code-only-indexing/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-14-027-six-track"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -118,6 +119,7 @@ Summary of aggregate file scope. Per-phase detail lives in each child's plan.md.
 | 006 | `006-code-mode-orphan-lifecycle/` | mcp-code-mode stdio server exits with its session; PPID-1 orphan reap | Complete |
 | 007 | `007-ipc-client-cap-hardening/` | Daemon IPC client cap raised 8 to 64 across sources and nine config env blocks | Complete |
 | 008 | `008-mcp-config-alignment-reelection-default/` | MCP config 1:1 alignment across runtimes + daemon re-election default-on | Complete |
+| 009 | `009-code-graph-code-only-indexing/` | Drop markdown/prose from the code graph (code + structured config only) + selectable maintainer mode | Complete |
 
 ### Phase Transition Rules
 

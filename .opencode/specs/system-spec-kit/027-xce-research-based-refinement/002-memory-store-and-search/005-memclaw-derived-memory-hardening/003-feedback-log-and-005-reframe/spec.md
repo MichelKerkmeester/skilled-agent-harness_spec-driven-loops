@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 3: feedback-log-and-008-reframe [template:level_1/spec.md]"
+title: "Feature Specification: Phase 3: feedback-log-and-008-reframe"
 description: "caura-memclaw's feedback loop mutates ranking weight directly (success +0.10 / failure -0.15) with no shadow state and feeds stale-archival; for a single-user store this is an anti-pattern. Lock in event-capture + diagnostics only and keep the existing shadow-first posture."
 trigger_phrases:
   - "feedback event ledger shadow only"

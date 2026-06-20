@@ -9,6 +9,7 @@ trigger_phrases:
   - "027 timeline before-after context-index"
 importance_tier: "normal"
 contextType: "general"
+status: "complete"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/000-spec-tree-consolidation"

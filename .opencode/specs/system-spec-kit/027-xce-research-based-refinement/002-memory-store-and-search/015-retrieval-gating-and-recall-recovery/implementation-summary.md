@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_3/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Recalibrated the retrieval request-quality gate to read absolute cosine relevance so on-topic memory searches stop reporting weak/do_not_cite, with ordering left untouched and the change flag-gated."
 trigger_phrases:
   - "retrieval gating implementation"

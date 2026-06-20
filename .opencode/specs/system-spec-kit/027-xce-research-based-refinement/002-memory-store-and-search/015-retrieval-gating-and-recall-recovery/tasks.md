@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Retrieval Gating and Recall Recovery [template:level_3/tasks.md]"
+title: "Tasks: Retrieval Gating and Recall Recovery"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "retrieval gating tasks"

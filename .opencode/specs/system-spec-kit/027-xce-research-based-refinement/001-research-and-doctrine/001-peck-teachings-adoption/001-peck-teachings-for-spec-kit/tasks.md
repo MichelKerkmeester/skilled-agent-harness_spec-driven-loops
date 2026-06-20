@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Analysis of peck framework teachings applicable to system-spec-kit [template:level_1/tasks.md]"
+title: "Tasks: Analysis of peck framework teachings applicable to system-spec-kit"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"

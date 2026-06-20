@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: Retrieval Gating and Recall Recovery [template:level_3/decision-record.md]"
+title: "Decision Record: Retrieval Gating and Recall Recovery"
 description: "Architecture decisions for recalibrating the retrieval request-quality gate to read absolute cosine relevance, including archived/cold tiers in retrieval by default, and declining a reranker."
 trigger_phrases:
   - "retrieval gating decision record"

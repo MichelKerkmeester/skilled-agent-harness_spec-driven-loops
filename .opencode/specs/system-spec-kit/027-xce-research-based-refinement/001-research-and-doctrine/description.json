@@ -1,6 +1,9 @@
 {
   "title": "Feature Specification: Research and Doctrine (Phase Parent)",
   "type": "coordination-parent",
+  "level": "2",
+  "status": "phase-parent",
+  "is_phase_parent": true,
   "childTopology": [
     "001-peck-teachings-adoption",
     "002-gem-team-adoption"
@@ -15,7 +18,7 @@
     "phase",
     "parent"
   ],
-  "lastUpdated": "2026-06-16T15:23:34.742Z",
+  "lastUpdated": "2026-06-20T10:59:13.888Z",
   "specId": "001",
   "folderSlug": "research-and-doctrine",
   "parentChain": [

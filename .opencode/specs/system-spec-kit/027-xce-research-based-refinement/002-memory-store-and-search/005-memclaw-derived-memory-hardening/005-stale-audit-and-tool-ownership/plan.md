@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 5: stale-audit-and-tool-ownership [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 5: stale-audit-and-tool-ownership"
 description: "Read-only audit comparing live memory_search exclusion predicates against an intended-exclusion policy, plus a derived tool-ownership lint over TOOL_DEFINITIONS, both wired into health, /doctor, and pre-commit without changing recall behavior."
 trigger_phrases:
   - "stale exclusion audit plan memory_search"

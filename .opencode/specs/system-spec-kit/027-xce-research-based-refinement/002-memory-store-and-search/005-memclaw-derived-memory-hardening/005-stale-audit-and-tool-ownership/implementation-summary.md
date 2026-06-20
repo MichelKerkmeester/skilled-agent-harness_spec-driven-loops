@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: stale-audit-and-tool-ownership [template:level_1/implementation-summary.md]"
+title: "Implementation Summary: stale-audit-and-tool-ownership"
 description: "Completed read-only stale/status hard-exclusion audit plus derived TOOL_DEFINITIONS ownership lint. Recall behavior and stored data are unchanged."
 trigger_phrases:
   - "stale exclusion audit implementation status"

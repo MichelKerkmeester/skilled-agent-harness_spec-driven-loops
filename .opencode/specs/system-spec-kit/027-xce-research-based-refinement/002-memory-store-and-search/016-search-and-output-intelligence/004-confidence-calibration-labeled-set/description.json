@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/004-confidence-calibration-labeled-set",
+  "description": "Feature Specification: Phase 4: confidence-calibration-labeled-set",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "confidence-calibration-labeled-set"
+  ],
+  "lastUpdated": "2026-06-18T03:33:51.817Z",
+  "specId": "004",
+  "folderSlug": "confidence-calibration-labeled-set",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "002-memory-store-and-search",
+    "016-search-and-output-intelligence"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Optional BM25 symbol suggestions now help unresolved code-graph subjects without changing exact structural matching."
 trigger_phrases:
   - "implementation"

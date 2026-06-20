@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 5: advisor-feedback-calibration [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 5: advisor-feedback-calibration"
 description: "Implementation plan for the default-off advisor feedback calibration reducer and no-live-drift verification."
 trigger_phrases:
   - "implementation"

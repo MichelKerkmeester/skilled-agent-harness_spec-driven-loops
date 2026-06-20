@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Status: completed. Constitutional rules now carry review metadata and a read-only staleness diagnostic."
 trigger_phrases:
   - "implementation"

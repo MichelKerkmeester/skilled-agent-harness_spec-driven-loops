@@ -1,5 +1,5 @@
 ---
-title: "Verification Checklist: Stop skill-advisor state from leaking into spec folders [template:level_2/checklist.md]"
+title: "Verification Checklist: Stop skill-advisor state from leaking into spec folders"
 description: "Verification evidence for the advisor workspace-root fallback hardening, the lockstep schema twin, the regression test, the dist rebuild, and the removal of the 23 stray advisor-state directories."
 trigger_phrases:
   - "advisor state leak checklist"

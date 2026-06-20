@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Deep-Research Remediation Program [template:level_1/plan.md]"
+title: "Implementation Plan: Deep-Research Remediation Program"
 description: "Verify-first remediation of the 198 Fable-verified findings from the tri-system deep research, ordered by risk lane (security → code-graph apply → idempotency → launcher → advisor → continuity → shadow/feedback → sweep), plus the dashboard render-contract true-solution investigation."
 trigger_phrases:
   - "deep research remediation plan"

@@ -1,5 +1,5 @@
 ---
-title: "Verification Checklist: Phase 3: feedback-log-and-008-reframe [template:level_2/checklist.md]"
+title: "Verification Checklist: Phase 3: feedback-log-and-008-reframe"
 description: "Verification checklist for the 008 feedback reframe: shadow-only ledger, reserved system feedback types, deferred active reducers, and the symmetric-damping / rare-but-correct / constitutional-immunity invariants."
 trigger_phrases:
   - "feedback reframe checklist shadow only"

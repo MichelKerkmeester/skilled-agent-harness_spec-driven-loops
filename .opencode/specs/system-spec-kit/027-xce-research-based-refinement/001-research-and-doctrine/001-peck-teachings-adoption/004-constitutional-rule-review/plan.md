@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 4: constitutional-rule-review [template:level_2/plan.md]"
+title: "Implementation Plan: Phase 4: constitutional-rule-review"
 description: "Add last-confirmed metadata to constitutional rules and a read-only diagnostic that lists them by staleness."
 trigger_phrases:
   - "implementation"

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 1: advisor-observability [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 1: advisor-observability"
 description: "Completed adoption of the cited 027 observability patterns into the skill advisor: prompt-safe recommendation attribution and semantic-lane health reporting."
 trigger_phrases:
   - "implementation"

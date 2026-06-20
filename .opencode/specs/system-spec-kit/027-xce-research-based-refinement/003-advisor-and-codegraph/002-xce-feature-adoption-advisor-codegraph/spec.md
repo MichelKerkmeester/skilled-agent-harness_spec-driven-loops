@@ -48,11 +48,11 @@ _memory:
 |-------|-------|
 | **Level** | 2 (phase parent) |
 | **Priority** | P1 |
-| **Status** | Complete |
+| **Status** | Phase Parent |
 | **Created** | 2026-06-10 |
 | **Branch** | `main` |
-| **Parent Spec** | None (track root) |
-| **Parent Packet** | None |
+| **Parent Spec** | `../spec.md` |
+| **Parent Packet** | system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph |
 | **Source of truth** | `/tmp/xce-adoption-analysis.md` (ranked 027 transfer analysis, 2026-06-10) |
 | **Handoff Criteria** | Each child phase validates `--strict` independently before its work begins |
 <!-- /ANCHOR:metadata -->

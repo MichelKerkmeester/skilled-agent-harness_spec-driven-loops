@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Analysis of peck framework teachings applicable to system-spec-kit [template:level_1/spec.md]"
+title: "Feature Specification: Analysis of peck framework teachings applicable to system-spec-kit"
 description: "Analyze the external repo gytis-ivaskevicius/peck and extract transferable teachings that could improve system-spec-kit. Analysis-only deliverable; no behavioral changes to spec-kit."
 trigger_phrases:
   - "feature"

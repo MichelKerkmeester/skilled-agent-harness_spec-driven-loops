@@ -15,7 +15,7 @@ contextType: "implementation"
 
 ## 2026-06-17
 
-> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence-research` (Phase Parent, research)
+> Spec folder: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/research` (Phase Parent, research)
 > Parent packet: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement`
 
 ### Summary
@@ -44,4 +44,4 @@ With the dominant retrieval miscalibration fixed in phase `015`, this packet ran
 
 ### Follow-Ups
 
-- The implementation of every actioned finding is tracked under [changelog-002-017-search-and-output-intelligence-implementation-root.md](./changelog-002-017-search-and-output-intelligence-implementation-root.md).
+- The implementation of every actioned finding is tracked under [changelog-002-016-search-and-output-intelligence-root.md](./changelog-002-016-search-and-output-intelligence-root.md).

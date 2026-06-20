@@ -1,5 +1,6 @@
 {
   "level": "2",
+  "status": "phase-parent",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/004-cli-tooling-ux",
   "description": "Feature Specification: Daemon CLI Front-Door UX Hardening (Phase Parent)",
   "keywords": [

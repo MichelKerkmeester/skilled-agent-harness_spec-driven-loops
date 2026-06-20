@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption"
     last_updated_at: "2026-06-06T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Added source-pass phases 005/006/007 to peck adoption"
-    next_safe_action: "Plan phase 005 (reviewer-benchmark) before 006/007 rules"
+    recent_action: "All seven peck-adoption child phases shipped (README T1-T4 + source-pass T5-T10)"
+    next_safe_action: "Resume or validate a child phase folder if further work is needed"
     blockers: []
     key_files:
       - "spec.md"
@@ -54,7 +54,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Phase Parent |
 | **Created** | 2026-06-02 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: CLI Compact Output and Shell Completion [template:level_1/plan.md]"
+title: "Implementation Plan: CLI Compact Output and Shell Completion"
 description: "Add a compact/names-only list-tools JSON mode to all three CLIs and generate bash/zsh shell completion from the existing tool manifests, keeping the 37/8/9 counts intact."
 trigger_phrases:
   - "005-cli-automation-compact-completion plan"

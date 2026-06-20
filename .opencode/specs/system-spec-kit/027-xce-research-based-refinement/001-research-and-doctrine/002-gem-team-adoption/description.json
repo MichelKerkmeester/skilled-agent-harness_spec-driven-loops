@@ -1,5 +1,6 @@
 {
   "level": "2",
+  "status": "phase-parent",
   "is_phase_parent": true,
   "children": [
     "001-typed-agent-io-adapter",

@@ -34,14 +34,13 @@
       "012-causal-traversal-bfs"
     ],
     "importance_tier": "normal",
-    "status": "shipped",
+    "status": "complete",
     "key_files": [
       "mcp_server/lib/graph/bfs-traversal.ts",
       "mcp_server/lib/search/causal-boost.ts",
       "mcp_server/lib/storage/memo.ts",
       "mcp_server/tests/causal-traversal-bfs-equivalence.vitest.ts",
       "mcp_server/lib/storage/canonical-fingerprint.ts",
-      "lib/graph/bfs-traversal.ts",
       "spec.md",
       "plan.md",
       "tasks.md",

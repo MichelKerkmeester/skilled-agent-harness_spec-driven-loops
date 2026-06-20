@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Skill-advisor test-suite repair: fix pre-existing scorer/hook failures and align brief-assertion tests with the fable-5 governor [template:level_2/plan.md]"
+title: "Implementation Plan: Skill-advisor test-suite repair: fix pre-existing scorer/hook failures and align brief-assertion tests with the fable-5 governor"
 description: "Root-cause and repair the deep-loop-workflows merge fallout (legacy skill ids in fixtures/corpora/ledgers/Python disambiguation/metadata allowlist) and align governor brief-assertion tests, verifying via clean build and a re-run that drops failures from 61 to 36."
 trigger_phrases:
   - "implementation plan skill advisor repair"

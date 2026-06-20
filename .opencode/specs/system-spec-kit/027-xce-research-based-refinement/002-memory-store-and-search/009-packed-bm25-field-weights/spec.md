@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Packed In-Memory BM25 Engine with Field Weights [template:level_1/spec.md]"
+title: "Feature Specification: Packed In-Memory BM25 Engine with Field Weights"
 description: "Implement the reserved packed-inmemory BM25 engine (typed-array postings) and BM25F per-field weighting so the fallback lexical channel is memory-safe and relevance-equivalent to FTS5."
 trigger_phrases:
   - "packed bm25"

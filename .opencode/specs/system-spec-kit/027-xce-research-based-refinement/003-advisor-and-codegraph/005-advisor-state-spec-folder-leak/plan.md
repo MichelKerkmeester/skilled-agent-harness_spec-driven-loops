@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Stop skill-advisor state from leaking into spec folders [template:level_2/plan.md]"
+title: "Implementation Plan: Stop skill-advisor state from leaking into spec folders"
 description: "Add a pure path-math guard to the skill-advisor workspace-root resolver so the sentinel-not-found fallback can never return a path inside a specs/ subtree, mirror it in the schema's detectRepoRoot twin, cover it with a regression test, rebuild dist, and remove the 23 existing strays."
 trigger_phrases:
   - "advisor state leak plan"

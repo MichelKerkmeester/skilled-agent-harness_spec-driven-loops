@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Stop skill-advisor state from leaking into spec folders [template:level_2/tasks.md]"
+title: "Tasks: Stop skill-advisor state from leaking into spec folders"
 description: "Task breakdown for hardening the advisor workspace-root fallback, mirroring the schema twin, adding a regression test, rebuilding dist, and removing the 23 stray advisor-state directories."
 trigger_phrases:
   - "advisor state leak tasks"

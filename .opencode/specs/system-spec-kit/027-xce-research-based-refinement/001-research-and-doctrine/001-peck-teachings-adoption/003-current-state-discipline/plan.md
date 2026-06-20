@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 2: current-state-discipline [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 2: current-state-discipline"
 description: "Broaden the current-state content rule to more long-lived docs as an advisory check; reuse the existing fence-aware scanner."
 trigger_phrases:
   - "implementation"

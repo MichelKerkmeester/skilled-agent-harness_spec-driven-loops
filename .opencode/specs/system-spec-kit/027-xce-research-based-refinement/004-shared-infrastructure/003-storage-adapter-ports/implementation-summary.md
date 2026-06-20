@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Slices 1-5 implemented for Storage Adapter Ports: foundation ports, better-sqlite3 adapters, conservative production routing, fakes, contract coverage, and justified coupling exceptions."
 trigger_phrases:
   - "015-storage-adapter-ports summary"

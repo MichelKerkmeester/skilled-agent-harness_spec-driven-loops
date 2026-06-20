@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: BM25 Warmup Churn Reduction [template:level_1/spec.md]"
+title: "Feature Specification: BM25 Warmup Churn Reduction"
 description: "Packed BM25 warmup transiently spikes RSS to ~687MB on a realistic corpus while retained heap is only ~105MB, breaching phase 014's REQ-001 150MB RSS budget; reduce peak transient allocation during warmup so the committed-page high-water-mark stays within budget."
 trigger_phrases:
   - "bm25 warmup churn reduction"

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Retrieval Gating and Recall Recovery [template:level_3/plan.md]"
+title: "Implementation Plan: Retrieval Gating and Recall Recovery"
 description: "Recalibrate the retrieval confidence and request-quality gate to read absolute cosine relevance instead of the RRF fusion magnitude, and include archived/cold tiers in retrieval by default, then defer the vector-lane rebuild and index repair."
 trigger_phrases:
   - "retrieval gating plan"

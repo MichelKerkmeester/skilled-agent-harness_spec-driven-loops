@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Skill-advisor test-suite repair: fix pre-existing scorer/hook failures and align brief-assertion tests with the fable-5 governor [template:level_2/tasks.md]"
+title: "Tasks: Skill-advisor test-suite repair: fix pre-existing scorer/hook failures and align brief-assertion tests with the fable-5 governor"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks skill advisor repair"

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 4: tombstones-and-edge-promotion [template:level_1/implementation-summary.md]"
+title: "Implementation Summary: Phase 4: tombstones-and-edge-promotion"
 description: "Delivered summary for flag-gated memory tombstones, skip-manual causal-edge promotion, active/purgeable partial indexes, and the entity-not-causal advisory invariant."
 trigger_phrases:
   - "SPECKIT_SOFT_DELETE_TOMBSTONES default off"

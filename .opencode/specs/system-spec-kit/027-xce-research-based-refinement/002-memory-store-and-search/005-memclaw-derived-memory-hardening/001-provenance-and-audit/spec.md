@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 1: provenance-and-audit [template:level_1/spec.md]"
+title: "Feature Specification: Phase 1: provenance-and-audit"
 description: "Automated writers (enrichment, promoters, reducers) can overwrite human and constitutional memory fields, there is no explicit source_kind on writes, and automated mutations are not uniformly audited. This phase tags every write with a server-derived source_kind, blocks automated overwrites of manual data at write ingress, and standardizes automated-mutation audit."
 trigger_phrases:
   - "memory source_kind provenance"

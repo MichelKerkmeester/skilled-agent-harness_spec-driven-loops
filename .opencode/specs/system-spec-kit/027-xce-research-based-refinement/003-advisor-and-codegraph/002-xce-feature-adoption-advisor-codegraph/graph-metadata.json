@@ -41,7 +41,7 @@
       "spec"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "phase_parent",
     "key_files": [
       "spec.md"
     ],

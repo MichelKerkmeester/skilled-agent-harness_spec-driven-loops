@@ -23,8 +23,9 @@ Top rollup for the `002-memory-store-and-search/` themed track. Each row links t
 | `002-memory-store-and-search/013` provenance injection | [changelog-002-013-provenance-injection.md](./changelog-002-013-provenance-injection.md) |
 | `002-memory-store-and-search/014` idempotency flag on correctness | [changelog-002-014-idempotency-flag-on-correctness.md](./changelog-002-014-idempotency-flag-on-correctness.md) |
 | `002-memory-store-and-search/015` retrieval gating and recall recovery | [changelog-002-015-retrieval-gating-and-recall-recovery.md](./changelog-002-015-retrieval-gating-and-recall-recovery.md) |
-| `002-memory-store-and-search/016` search and output intelligence research | [changelog-002-016-search-and-output-intelligence-research.md](./changelog-002-016-search-and-output-intelligence-research.md) |
-| `002-memory-store-and-search/017` search and output intelligence implementation (rollup) | [changelog-002-017-search-and-output-intelligence-implementation-root.md](./changelog-002-017-search-and-output-intelligence-implementation-root.md) |
-| `002-memory-store-and-search/018` reindex scan responsiveness and cancellation | [changelog-002-018-reindex-scan-responsiveness-and-cancellation.md](./changelog-002-018-reindex-scan-responsiveness-and-cancellation.md) |
-| `002-memory-store-and-search/019` maintenance grace daemon survives re-election | [changelog-002-019-maintenance-grace-daemon-survives-reelection.md](./changelog-002-019-maintenance-grace-daemon-survives-reelection.md) |
-| `002-memory-store-and-search/020` maintenance grace background embedding | [changelog-002-020-maintenance-grace-background-embedding.md](./changelog-002-020-maintenance-grace-background-embedding.md) |
+| `002-memory-store-and-search/016` search and output intelligence (research + implementation rollup) | [changelog-002-016-search-and-output-intelligence-root.md](./changelog-002-016-search-and-output-intelligence-root.md) |
+| `002-memory-store-and-search/016` search and output intelligence — research | [changelog-002-016-search-and-output-intelligence-research.md](./changelog-002-016-search-and-output-intelligence-research.md) |
+| `002-memory-store-and-search/017` reindex scan responsiveness and cancellation | [changelog-002-017-reindex-scan-responsiveness-and-cancellation.md](./changelog-002-017-reindex-scan-responsiveness-and-cancellation.md) |
+| `002-memory-store-and-search/018` maintenance grace daemon survives re-election | [changelog-002-018-maintenance-grace-daemon-survives-reelection.md](./changelog-002-018-maintenance-grace-daemon-survives-reelection.md) |
+| `002-memory-store-and-search/019` maintenance grace background embedding | [changelog-002-019-maintenance-grace-background-embedding.md](./changelog-002-019-maintenance-grace-background-embedding.md) |
+| `002-memory-store-and-search/020` cooperative heavy phases | [changelog-002-020-cooperative-heavy-phases.md](./changelog-002-020-cooperative-heavy-phases.md) |

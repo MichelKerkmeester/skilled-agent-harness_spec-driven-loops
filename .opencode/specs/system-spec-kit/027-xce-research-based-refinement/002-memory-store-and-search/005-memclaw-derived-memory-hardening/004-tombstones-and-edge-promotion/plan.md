@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 4: tombstones-and-edge-promotion [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 4: tombstones-and-edge-promotion"
 description: "Keeps default hard-delete behavior, gates first-timestamp tombstones behind SPECKIT_SOFT_DELETE_TOMBSTONES, preserves manual causal edges during auto promotion, and keeps active/purgeable partial indexes plus the entity-not-causal invariant."
 trigger_phrases:
   - "tombstone soft-delete idempotent deleted_at"

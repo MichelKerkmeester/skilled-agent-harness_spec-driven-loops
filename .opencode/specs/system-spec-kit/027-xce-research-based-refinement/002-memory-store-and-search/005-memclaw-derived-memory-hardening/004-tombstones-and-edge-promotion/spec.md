@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 4: tombstones-and-edge-promotion [template:level_1/spec.md]"
+title: "Feature Specification: Phase 4: tombstones-and-edge-promotion"
 description: "Default hard-delete remains active while opt-in SPECKIT_SOFT_DELETE_TOMBSTONES preserves first tombstone timestamps, auto edge promotion skips manual causal edges, active/purgeable indexes are additive, and entity/co-occurrence signals remain non-causal recall evidence."
 trigger_phrases:
   - "tombstone soft-delete idempotent deleted_at"

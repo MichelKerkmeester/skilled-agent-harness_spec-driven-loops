@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/018-maintenance-grace-daemon-survives-reelection",
+  "description": "Feature Specification: maintenance-grace daemon survives re-election",
+  "keywords": [
+    "feature",
+    "specification",
+    "maintenance-grace",
+    "daemon",
+    "survives",
+    "re-election"
+  ],
+  "lastUpdated": "2026-06-18T03:33:51.836Z",
+  "specId": "018",
+  "folderSlug": "maintenance-grace-daemon-survives-reelection",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "002-memory-store-and-search"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "17-06-26_13-47__maintenance-grace-marker-so-a-competing-launcher.md"
+  ]
+}

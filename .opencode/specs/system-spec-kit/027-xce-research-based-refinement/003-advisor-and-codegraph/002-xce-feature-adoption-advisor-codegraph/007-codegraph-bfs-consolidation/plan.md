@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 7: codegraph-bfs-consolidation [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 7: codegraph-bfs-consolidation"
 description: "Completed plan for consolidating code-graph transitive symbol traversal and blast-radius traversal onto one local BFS helper without response drift."
 trigger_phrases:
   - "implementation"

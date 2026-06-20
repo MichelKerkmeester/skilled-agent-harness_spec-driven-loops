@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Stop skill-advisor state from leaking into spec folders [template:level_2/implementation-summary.md]"
+title: "Implementation Summary: Stop skill-advisor state from leaking into spec folders"
 description: "Hardened the skill-advisor workspace-root fallback so it can never return a path inside a specs/ subtree, mirrored the guard in the schema's detectRepoRoot twin, added a 5-case regression test, rebuilt dist, and removed the 23 stray .advisor-state directories. Pre-existing parity failures were attributed via a stash baseline."
 trigger_phrases:
   - "advisor state leak summary"

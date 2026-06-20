@@ -39,7 +39,7 @@
       "tombstone"
     ],
     "importance_tier": "important",
-    "status": "draft_(plan_only_—_not_implemented)",
+    "status": "phase_parent",
     "key_files": [
       "lib/storage/causal-edges.ts",
       "spec.md"

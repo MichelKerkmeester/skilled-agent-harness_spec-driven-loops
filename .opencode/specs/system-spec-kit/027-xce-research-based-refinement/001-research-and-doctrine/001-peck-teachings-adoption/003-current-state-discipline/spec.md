@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 3: current-state-discipline [template:level_1/spec.md]"
+title: "Feature Specification: Phase 3: current-state-discipline"
 description: "Phase 3 (T4): broaden the current-state-only content discipline beyond phase parents to more long-lived docs, as an advisory (info-severity) check that prevents doc rot."
 trigger_phrases:
   - "feature"

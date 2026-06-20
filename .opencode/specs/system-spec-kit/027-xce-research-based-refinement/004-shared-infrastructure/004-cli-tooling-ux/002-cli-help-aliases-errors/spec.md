@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: CLI Per-Command Help, Aliases, and Errors [template:level_1/spec.md]"
+title: "Feature Specification: CLI Per-Command Help, Aliases, and Errors"
 description: "Add per-command help/schema to spec-memory + code-index, consistent snake/kebab/camel aliases across all three CLIs, and improved unknown-command errors with a list-tools hint and closest-match suggestion."
 trigger_phrases:
   - "cli per-command help"

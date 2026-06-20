@@ -87,13 +87,13 @@
     ],
     "causal_summary": "Two sibling daemons beyond the memory store needed 027's hardening: the skill-advisor lacked launcher resilience and had not adopted the proven write-safety and observability patterns, and the code-graph carried recursive-CTE traversals that defeated its indexes. The advisor and code-graph work is cross-cutting between two subsystems, so it belongs under one themed parent.",
     "created_at": "2026-06-14T00:00:00Z",
-    "last_save_at": "2026-06-15T16:24:38.199Z",
+    "last_save_at": "2026-06-20T00:00:00Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "last_active_child_id": null,
-    "last_active_at": null
+    "last_active_child_id": "system-spec-kit/027-xce-research-based-refinement/003-advisor-and-codegraph/005-advisor-state-spec-folder-leak",
+    "last_active_at": "2026-06-19T00:00:00Z"
   }
 }

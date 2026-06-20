@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 3: feedback-log-and-008-reframe [template:level_1/implementation-summary.md]"
+title: "Implementation Summary: Phase 3: feedback-log-and-008-reframe"
 description: "Completed summary for the feedback safety posture phase: reserved feedback type rejection, shadow-only assertions, ledger fail-safe proof, future-reducer invariants, and reducer coordination notes."
 trigger_phrases:
   - "feedback event ledger shadow only summary"

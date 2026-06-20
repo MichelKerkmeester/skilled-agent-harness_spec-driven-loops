@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 2: idempotency-and-near-duplicate [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 2: idempotency-and-near-duplicate"
 description: "Plan for a minimal SQLite idempotency receipt plus a pre-mutation replay wrapper for memory_save/memory_update, a deterministic advisory near_duplicate_of computed only when embeddings exist, and a last_dedup_checked_at marker to skip unchanged rows. Server-derived, zero added friction, behind a flag."
 trigger_phrases:
   - "memory save idempotency receipt"

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 2: advisor-provenance-guard [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 2: advisor-provenance-guard"
 description: "Implemented advisor edge provenance guard: automated propagation stamps server-derived source_kind and preserves manual provenance while trusted-maintainer writes can update protected fields."
 trigger_phrases:
   - "implementation"

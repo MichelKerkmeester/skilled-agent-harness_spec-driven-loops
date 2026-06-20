@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Unified Daemon CLI Reference and Skill Docs [template:level_1/tasks.md]"
+title: "Tasks: Unified Daemon CLI Reference and Skill Docs"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "003-cli-reference-and-skill-docs tasks"

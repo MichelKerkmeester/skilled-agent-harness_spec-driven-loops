@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Storage Adapter Ports (Five Divergence Seams) [template:level_1/spec.md]"
+title: "Feature Specification: Storage Adapter Ports (Five Divergence Seams)"
 description: "Introduce a five-port storage adapter seam (vector, lexical, traversal, maintenance, contention) over the better-sqlite3 layer - hygiene and testability now, backend option-value later."
 trigger_phrases:
   - "storage adapter"

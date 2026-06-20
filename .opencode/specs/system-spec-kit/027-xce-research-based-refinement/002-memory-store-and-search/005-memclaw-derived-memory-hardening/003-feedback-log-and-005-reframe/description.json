@@ -1,25 +1,14 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/005-memclaw-derived-memory-hardening/003-feedback-log-and-005-reframe",
-  "description": "Feedback safety posture: reserved feedback type guard, shadow-only assertions, fail-safe ledger, future reducer invariants, and diagnostics-first coordination.",
+  "description": "Feature Specification: Phase 3: feedback-log-and-008-reframe",
   "keywords": [
-    "feedback",
-    "safety",
-    "posture",
-    "reserved",
-    "type",
-    "guard",
-    "shadow-only",
-    "assertions",
-    "fail-safe",
-    "ledger",
-    "future",
-    "reducer",
-    "invariants",
-    "diagnostics-first",
-    "coordination"
+    "feature",
+    "specification",
+    "phase",
+    "feedback-log-and-008-reframe"
   ],
-  "lastUpdated": "2026-06-10T11:27:28.370Z",
+  "lastUpdated": "2026-06-20T10:59:13.930Z",
   "specId": "003",
   "folderSlug": "feedback-log-and-005-reframe",
   "parentChain": [

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 4: constitutional-rule-review [template:level_2/spec.md]"
+title: "Feature Specification: Phase 4: constitutional-rule-review"
 description: "Phase 4 (T2): add a read-only review surface that lists constitutional rules with last-confirmed metadata, so stale always-surface rules can be retired by a human."
 trigger_phrases:
   - "feature"

@@ -1,5 +1,5 @@
 ---
-title: "Verification Checklist: Phase 4: tombstones-and-edge-promotion [template:level_2/checklist.md]"
+title: "Verification Checklist: Phase 4: tombstones-and-edge-promotion"
 description: "Verified checklist for default-off tombstone gating, hard-delete preservation, skip-manual edge promotion, active/purgeable partial indexes, and entity-not-causal advisory documentation."
 trigger_phrases:
   - "SPECKIT_SOFT_DELETE_TOMBSTONES default off"

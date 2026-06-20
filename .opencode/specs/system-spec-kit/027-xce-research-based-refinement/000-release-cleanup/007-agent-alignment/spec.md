@@ -7,7 +7,7 @@ trigger_phrases:
   - "shipped 027 alignment"
 importance_tier: "important"
 contextType: "implementation"
-status: "completed"
+status: "complete"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/007-agent-alignment"
@@ -44,7 +44,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Completed |
+| **Status** | Complete |
 | **Created** | 2026-06-10 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |

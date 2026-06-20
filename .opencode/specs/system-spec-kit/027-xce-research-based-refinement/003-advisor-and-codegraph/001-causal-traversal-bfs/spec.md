@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Causal Traversal BFS Read Path [template:level_1/spec.md]"
+title: "Feature Specification: Causal Traversal BFS Read Path"
 description: "Replace the two recursive-CTE graph traversals with a shared app-level BFS helper: the current CTE join condition defeats index use, and the memo path queries empty tables on every insert."
 trigger_phrases:
   - "causal traversal bfs"
@@ -46,7 +46,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Shipped |
+| **Status** | Complete |
 | **Created** | 2026-06-10 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |

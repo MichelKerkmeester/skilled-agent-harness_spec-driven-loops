@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 2: idempotency-and-near-duplicate [template:level_1/tasks.md]"
+title: "Tasks: Phase 2: idempotency-and-near-duplicate"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "memory save idempotency receipt tasks"

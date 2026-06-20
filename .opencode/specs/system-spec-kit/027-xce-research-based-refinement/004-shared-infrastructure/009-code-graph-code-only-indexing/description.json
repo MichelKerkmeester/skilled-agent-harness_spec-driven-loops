@@ -1,4 +1,5 @@
 {
+  "status": "complete",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/009-code-graph-code-only-indexing",
   "description": "Feature Specification: Code Graph Code-Only Indexing and Selectable Maintainer Mode",
   "keywords": [

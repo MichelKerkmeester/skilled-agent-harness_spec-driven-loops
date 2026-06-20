@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Drove the system-skill-advisor vitest suite from 61 failed to 0 failed: first 26 scorer/governor fixes (61 to 36), then retargeted the settings-parity guard to the committed portable settings.json and added three reciprocal symmetry edges to external skill graph-metadata (36 to 0)."
 trigger_phrases:
   - "skill advisor suite repair summary"

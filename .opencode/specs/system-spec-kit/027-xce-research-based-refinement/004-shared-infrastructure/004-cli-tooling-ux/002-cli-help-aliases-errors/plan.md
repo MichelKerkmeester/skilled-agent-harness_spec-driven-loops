@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: CLI Per-Command Help, Aliases, and Errors [template:level_1/plan.md]"
+title: "Implementation Plan: CLI Per-Command Help, Aliases, and Errors"
 description: "Mirror the skill-advisor per-command help pattern into spec-memory and code-index, unify snake/kebab/camel aliases with a collision test, and add a list-tools hint plus closest-match suggestion to unknown-command errors."
 trigger_phrases:
   - "002-cli-help-aliases-errors plan"

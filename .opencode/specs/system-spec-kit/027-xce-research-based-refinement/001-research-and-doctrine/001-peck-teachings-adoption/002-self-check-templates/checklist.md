@@ -1,5 +1,5 @@
 ---
-title: "Verification Checklist: Phase 2: self-check-templates [template:level_2/checklist.md]"
+title: "Verification Checklist: Phase 2: self-check-templates"
 description: "Verification Date: 2026-06-10"
 trigger_phrases:
   - "verification"

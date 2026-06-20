@@ -1,5 +1,5 @@
 ---
-title: "Verification Checklist: Phase 5: stale-audit-and-tool-ownership [template:level_2/checklist.md]"
+title: "Verification Checklist: Phase 5: stale-audit-and-tool-ownership"
 description: "Verification acceptance items for Phase 5 stale-audit-and-tool-ownership: read-only stale/status hard-exclusion audit (intended vs silent exclusion), derived tool-ownership lint over TOOL_DEFINITIONS, and wiring into health, /doctor, and pre-commit. Plan only — all items unchecked."
 trigger_phrases:
   - "stale exclusion audit checklist"

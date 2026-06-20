@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 2: current-state-discipline [template:level_1/tasks.md]"
+title: "Tasks: Phase 2: current-state-discipline"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"

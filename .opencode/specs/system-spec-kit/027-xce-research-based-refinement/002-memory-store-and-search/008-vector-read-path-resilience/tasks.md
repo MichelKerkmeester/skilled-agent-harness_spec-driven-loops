@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Vector Read-Path Resilience & Performance [template:level_1/tasks.md]"
+title: "Tasks: Vector Read-Path Resilience & Performance"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "013-vector-read-path-resilience tasks"

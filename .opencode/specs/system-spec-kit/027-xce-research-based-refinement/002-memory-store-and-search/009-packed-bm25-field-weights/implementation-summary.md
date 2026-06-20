@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
+title: "Implementation Summary"
 description: "Shipped packed-inmemory BM25 engine with typed-array postings, BM25F field weighting, explicit engine selection, budget tests, and fixture-backed baseline eval evidence."
 trigger_phrases:
   - "014-packed-bm25-field-weights summary"

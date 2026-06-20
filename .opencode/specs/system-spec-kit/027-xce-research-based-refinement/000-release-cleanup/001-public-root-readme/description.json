@@ -10,7 +10,7 @@
   "level": 1,
   "schema_version": 1,
   "packet_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/001-public-root-readme",
-  "status": "completed",
+  "status": "complete",
   "parent_id": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup",
   "importance_tier": "important",
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/001-public-root-readme",

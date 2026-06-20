@@ -35,7 +35,7 @@
       "retention-sweep"
     ],
     "importance_tier": "important",
-    "status": "complete_(2026_06_10)",
+    "status": "complete",
     "key_files": [
       "mcp_server/lib/storage/causal-edges.ts",
       "mcp_server/lib/storage/consolidation.ts",

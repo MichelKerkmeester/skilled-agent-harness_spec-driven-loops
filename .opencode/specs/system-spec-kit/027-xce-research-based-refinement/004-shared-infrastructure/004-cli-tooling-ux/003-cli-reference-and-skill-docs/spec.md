@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Unified Daemon CLI Reference and Skill Docs [template:level_1/spec.md]"
+title: "Feature Specification: Unified Daemon CLI Reference and Skill Docs"
 description: "Author one unified Daemon CLI Reference page, add recovery commands and exit-code taxonomy to each system SKILL.md (or link the unified page), and document that jsonl is a single-line JSON payload, not streaming."
 trigger_phrases:
   - "unified daemon cli reference"

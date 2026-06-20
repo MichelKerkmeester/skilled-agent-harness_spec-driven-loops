@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 1: provenance-and-audit [template:level_1/plan.md]"
+title: "Implementation Plan: Phase 1: provenance-and-audit"
 description: "Adds a server-derived source_kind enum to the memory index schema, enforces the auto-cannot-overwrite-manual/constitutional invariant in the pre-mutation phase of the write path, and standardizes automated-mutation audit on the existing mutation_ledger via the post-write hook."
 trigger_phrases:
   - "memory source_kind provenance"

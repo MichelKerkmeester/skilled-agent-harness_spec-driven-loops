@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 1: provenance-and-audit [template:level_1/implementation-summary.md]"
+title: "Implementation Summary: Phase 1: provenance-and-audit"
 description: "Completed implementation summary for provenance-and-audit: source_kind tagging, write-ingress overwrite guard, deduped mutation_ledger audit, and advisory constitutional rule."
 trigger_phrases:
   - "memory source_kind provenance"

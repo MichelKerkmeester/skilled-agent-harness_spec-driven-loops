@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Storage Adapter Ports (Five Divergence Seams) [template:level_1/tasks.md]"
+title: "Tasks: Storage Adapter Ports (Five Divergence Seams)"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "015-storage-adapter-ports tasks"

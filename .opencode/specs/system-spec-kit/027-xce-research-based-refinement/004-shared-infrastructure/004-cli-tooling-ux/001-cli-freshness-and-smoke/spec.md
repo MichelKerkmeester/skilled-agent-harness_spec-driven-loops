@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: CLI Freshness Gate Fix and Offline Smoke [template:level_1/spec.md]"
+title: "Feature Specification: CLI Freshness Gate Fix and Offline Smoke"
 description: "Durably fix the spec-memory stale-dist freshness gate, surface stale-dist as an actionable plugin status, and add a unified offline smoke check of the 37/8/9 list-tools counts without a daemon, build, or scan."
 trigger_phrases:
   - "cli freshness and smoke"

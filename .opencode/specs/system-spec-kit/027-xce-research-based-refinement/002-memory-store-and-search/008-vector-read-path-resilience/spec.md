@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Vector Read-Path Resilience & Performance [template:level_1/spec.md]"
+title: "Feature Specification: Vector Read-Path Resilience & Performance"
 description: "Detect, quarantine, and auto-rebuild corrupted vector shards (a live malformed shard was observed silently degrading search), harden dimension discovery, and benchmark the KNN query shape."
 trigger_phrases:
   - "vector shard corruption"
