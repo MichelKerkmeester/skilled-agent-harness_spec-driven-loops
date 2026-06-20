@@ -96,6 +96,19 @@ derived-id / retention / semantic-edge / procedural / sleeptime / calibration fl
 SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING, SPECKIT_CODE_GRAPH_EDGE_BITEMPORAL_READS and
 SPECKIT_CODE_GRAPH_EDGE_GOVERNANCE_VOCAB flags.
 
+### Production-truth baseline - what the prod route actually serves
+
+This is the production-truth baseline any append-placement feature has to clear. The production default
+route collapses every query to the `DEFAULT_MIN_RESULTS=3` floor through token-budget truncation, so the
+prod result window is three rows for the benchmarked corpus. Measured against that floor the prod
+`completeRecall` is FLAT at about 0.0357 across K=3, K=5 and K=8, because the truncation cuts the window
+to three before K=5 or K=8 can ever see a fourth row. The consequence for feature evaluation is direct:
+any contribution that lands past rank 3 is invisible at prod, so a tail-additive append never reaches the
+prod reader and an eval-mode gain that lives past the truncation floor does not transfer to production. A
+feature earns a prod-path keep only by changing the composition of the top-3, not by adding rows the floor
+cuts. The eval-mode-versus-prod-mode fidelity gap that 008 exposed is the same effect viewed from the
+metric side.
+
 ## Criterion 6 - release-cleanup: 9/9 executed, two file-subsets deferred to a concurrent session
 
 Executed: 001, 002, 003, 004, 005, 006, 007, 008, 009. All nine children ran their cleanup on this
@@ -133,7 +146,7 @@ force any flag off with `SPECKIT_<FLAG>=false`.
 | SPECKIT_CONFIDENCE_CALIBRATION | isConfidenceCalibrationEnabled | UNQUALIFIED win: held-out ECE 0.184 to 0.023 across all folds with a shipped isotonic model resolved by default, so the earlier overfit (fit and eval on the same set) no longer applies | KEEP-ON |
 | SPECKIT_RETENTION_FORGETTING_V1 | isRetentionForgettingEnabled | SAFETY / no-harm: spares 386 keep-set rows the OFF path would delete, with dropRecall delta 0. NOT a precision win - the keep/drop labels are circular (derived from the reducer's own thresholds), so it earns the keep as a no-harm guardrail, not a measured precision gain | KEEP-ON |
 | SPECKIT_WORLD_SUMMARY_PRELUDE | isWorldSummaryPreludeEnabled | GROUNDING aid: in APPEND placement it recovers 11 targets with 0 regressions by construction (it never displaces a baseline row). NOT a recall-quality win - the gain is partly a self-recall plus an append-by-construction artifact, so it earns the keep as a no-displacement grounding aid, not a ranking improvement | KEEP-ON |
-| SPECKIT_TEMPORAL_EDGES | isTemporalEdgesEnabled | ADDITIVE graph lane: edge-hop recall +0.083 ON vs OFF on a live-DB copy, so turning it OFF removes the mitigation and makes recall worse. The within-noise graph-channel harm belongs to the separate pre-028 graph flags `useGraph`, `SPECKIT_GRAPH_SIGNALS` and `SPECKIT_DEGREE_BOOST` (broad-corpus -0.039 at p=0.219), a noted follow-up out of 028 scope | KEEP-ON |
+| SPECKIT_TEMPORAL_EDGES | isTemporalEdgesEnabled | PROD-PATH displacement protection: the +0.083 edge-hop recall is an eval-mode artifact that the 3-result token-budget truncation floor cuts entirely (prod edge-hop recall delta 0.000). The keep is justified upstream of truncation. The graph-additive REORDER in `applyGraphAdditiveRecall` protects the prod top-3 from graph-channel displacement. With it OFF, low-signal graph-only candidates evict higher-scored lexical and vector hits from the truncated top-3, measured on 3 of 12 golden queries with 0 regressions (one case rescued a 64.6-scored lexical hit from eviction by roughly 31-scored graph-only candidates). The within-noise graph-channel harm belongs to the separate pre-028 graph flags `useGraph`, `SPECKIT_GRAPH_SIGNALS` and `SPECKIT_DEGREE_BOOST` (broad-corpus -0.039 at p=0.219), a noted follow-up out of 028 scope | KEEP-ON |
 
 ### Deleted (10)
 

@@ -53,13 +53,13 @@ The 028 flag experiment is closed with a clean decision per flag. The build epoc
 
 ### The five kept default-on
 
-Two are unqualified wins where a real metric moved, two are no-harm guarantees that add protection or grounding without dropping a real result, and one is an additive graph lane.
+Two are unqualified wins where a real metric moved, two are no-harm guarantees that add protection or grounding without dropping a real result, and one earns its keep on prod-path displacement protection.
 
 - **`SPECKIT_DERIVED_ID_PROVENANCE`** kept on content-addressed identity correctness 4 of 4, stability 50 of 50, replay 3 of 3, dedup discrimination 50 of 50 and zero collisions.
 - **`SPECKIT_CONFIDENCE_CALIBRATION`** kept on held-out ECE 0.184 to 0.023 across all folds with a shipped isotonic model, after a label-decoupling fix removed the earlier overfit. It rides a pre-028 switch promoted during 028.
 - **`SPECKIT_RETENTION_FORGETTING_V1`** kept as a safety guarantee, it spares 386 keep-set rows the off path would delete with dropRecall delta 0. The keep and drop labels are circular, so it is a guardrail and not a precision win.
 - **`SPECKIT_WORLD_SUMMARY_PRELUDE`** kept as a no-displacement grounding aid, it recovers 11 targets with 0 regressions by construction in append placement and never displaces a baseline row.
-- **`SPECKIT_TEMPORAL_EDGES`** kept as the additive graph lane, edge-hop recall +0.083 on versus off on a live-DB copy, so turning it off removes the mitigation.
+- **`SPECKIT_TEMPORAL_EDGES`** kept on prod-path displacement protection. The +0.083 edge-hop recall is an eval-mode artifact the 3-result prod truncation floor cuts to a 0.000 delta, so the keep rests upstream of truncation on the graph-additive reorder that protects the prod top-3 from graph-channel displacement, 3 of 12 golden queries with 0 regressions.
 
 ### The ten deleted
 
@@ -109,7 +109,7 @@ The decisions came from a method designed to refuse a plausible-but-wrong keep. 
 |----------|-----|
 | Delete the path-to-useful framing | When the connection to live data was made and the metric still did not move, the path was not a deferred flip, it was dead code |
 | Delete procedural despite a committed fix | The de-rate fix was correct but the multiplier moved only synthetic near-ties, so the flag earned no keep even though the code change stayed |
-| Keep temporal in the kept five | It is the additive graph lane with a +0.083 edge-hop recovery, not the regression the pre-028 graph flags carry |
+| Keep temporal in the kept five | Its prod-path keep is the graph-additive reorder that protects the truncated prod top-3 from graph-channel displacement, not the +0.083 edge-hop recall the prod truncation floor cuts, and it is not the regression the pre-028 graph flags carry |
 | Keep the honest framing on the no-harm flips | A release sign-off must not read retention or the prelude as a precision win when they are safety and grounding guarantees |
 | Use a real-world simulation plus a fresh-Opus gate | A synthetic harness over-credits inert levers, and a single model can keep a plausible-but-wrong flag |
 <!-- /ANCHOR:decisions -->

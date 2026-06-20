@@ -64,7 +64,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Packet 028 owns the planning record that turns external memory-system research into implementation sub-phases for internal retrieval surfaces. Its five top-level children include four subsystem phase parents and one release-cleanup phase parent so research inputs, candidate plans, cleanup scopes and child validation state are easy to navigate.
+Packet 028 owns the planning record that turns external memory-system research into implementation sub-phases for internal retrieval surfaces. Its eight top-level children span four subsystem phase parents, one release-cleanup phase parent, a review-remediation phase parent, the kept-off flag-resolution reckoning and the TRACK B new-feature research-and-build arc so research inputs, candidate plans, cleanup scopes and child validation state are easy to navigate.
 
 ### Purpose
 Provide the root purpose, child map and cross-packet boundary for packet 028. This parent routes the subsystem children to their implementation child maps, routes release cleanup to child 005 and records packet 030 as the Wave-0 SHIPPED done-evidence record.

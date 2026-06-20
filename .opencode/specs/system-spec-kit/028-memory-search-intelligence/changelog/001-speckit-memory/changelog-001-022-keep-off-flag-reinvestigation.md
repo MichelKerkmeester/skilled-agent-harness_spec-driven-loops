@@ -33,7 +33,7 @@ This milestone is the flag-resolution reckoning that closed the keep-off experim
 - Kept `SPECKIT_DERIVED_ID_PROVENANCE` default-on as an unqualified win. Content-addressed identity correctness is 4 of 4, with stability 50 of 50, replay 3 of 3, dedup discrimination 50 of 50 and 0 collisions.
 - Kept `SPECKIT_RETENTION_FORGETTING_V1` default-on as a safety and no-harm guarantee, not a precision win. It spares 386 keep-set rows the off path would delete with a dropRecall delta of 0, and the keep and drop labels are circular because they derive from the reducer's own thresholds, so it earns its keep as a no-harm guardrail rather than a measured precision gain.
 - Kept `SPECKIT_WORLD_SUMMARY_PRELUDE` default-on as a no-displacement grounding aid, not a recall-quality win. In append placement it recovers 11 targets with 0 regressions by construction because it never displaces a baseline row, and its apparent gain is partly a self-recall and an append-by-construction artifact rather than a ranking improvement.
-- Kept `SPECKIT_TEMPORAL_EDGES` default-on as the additive graph lane. Edge-hop recall is +0.083 on versus off on a live-DB copy, so turning it off removes the mitigation and makes recall worse.
+- Kept `SPECKIT_TEMPORAL_EDGES` default-on on prod-path displacement protection. The +0.083 edge-hop recall is an eval-mode artifact the 3-result prod truncation floor cuts to a 0.000 delta, so the keep rests upstream of truncation on the graph-additive reorder that protects the prod top-3 from graph-channel displacement, 3 of 12 golden queries with 0 regressions.
 - The five kept helpers route through `isFeatureEnabled` so the environment override still works and a user can force any of them off with an explicit `false`.
 
 ### Removed
@@ -68,4 +68,4 @@ This milestone is the flag-resolution reckoning that closed the keep-off experim
 ### Follow-Ups
 
 - Add the coupling guard on the kept calibration pair so `absolute_relevance_calibration=false` with `confidence_calibration=true` degrades to identity rather than silently mis-calibrating.
-- Track the within-noise graph-channel harm on the separate pre-028 graph flags `useGraph`, `SPECKIT_GRAPH_SIGNALS` and `SPECKIT_DEGREE_BOOST` as a follow-up out of 028 scope. `SPECKIT_TEMPORAL_EDGES` stays default-on as the additive graph-lane mitigation with edge-hop recall +0.083 on versus off on a live-DB copy, so the harm does not belong to it.
+- Track the within-noise graph-channel harm on the separate pre-028 graph flags `useGraph`, `SPECKIT_GRAPH_SIGNALS` and `SPECKIT_DEGREE_BOOST` as a follow-up out of 028 scope. `SPECKIT_TEMPORAL_EDGES` stays default-on for its prod-path displacement protection, the graph-additive reorder that protects the truncated prod top-3, so the harm does not belong to it.

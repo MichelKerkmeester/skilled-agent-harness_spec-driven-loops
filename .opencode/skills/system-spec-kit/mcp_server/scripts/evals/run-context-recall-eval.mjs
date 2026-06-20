@@ -338,16 +338,17 @@ async function measurePreludeImprovement(memorySummaries, handlerModule, db, gol
 // candidates the prelude contributes; their ranked position relative to the
 // baseline rows is what decides whether a baseline hit gets displaced past K.
 //
-// placement === 'prepend' reproduces the current production handler: section ids
-// rank AHEAD of the baseline rows (sections first), so every section consumes a
-// ranked slot before K and can push a baseline hit out of the top-K window.
+// placement === 'append' reproduces the current production handler: it appends the
+// prelude to the tail, so baseline rows keep their exact ranks and the section ids
+// trail AFTER them and a baseline hit at rank < K can never be displaced by a
+// grounding section. In this mode the prelude can still RECOVER a missed target when
+// a section id lands at append position < K (i.e. the baseline returned fewer than K
+// rows and the grounding fills the tail), but it can never REGRESS one.
 //
-// placement === 'append' models the proposed grounding-without-displacement mode:
-// baseline rows keep their exact ranks and the section ids trail AFTER them, so a
-// baseline hit at rank < K can never be displaced by a grounding section. The
-// prelude can still RECOVER a missed target when a section id lands at append
-// position < K (i.e. the baseline returned fewer than K rows and the grounding
-// fills the tail), but it can never REGRESS one.
+// placement === 'prepend' models the older displacement mode the handler no longer
+// uses: section ids rank AHEAD of the baseline rows (sections first), so every
+// section consumes a ranked slot before K and can push a baseline hit out of the
+// top-K window.
 function extractResultIdsFromEnvelope(injectedResult, prelude, placement = 'prepend') {
   const first = Array.isArray(injectedResult.content) ? injectedResult.content[0] : undefined;
   let baselineIds = [];

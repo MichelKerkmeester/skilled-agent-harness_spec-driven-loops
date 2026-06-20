@@ -358,8 +358,10 @@ correctness 4 of 4. `SPECKIT_RETENTION_FORGETTING_V1` kept as a safety and no-ha
 386 keep-set rows the off path would delete with dropRecall delta 0, and its keep and drop labels are
 circular, so it is a guardrail and not a precision gain. `SPECKIT_WORLD_SUMMARY_PRELUDE` kept as a
 no-displacement grounding aid, it recovers 11 targets with 0 regressions by construction in append
-placement and never displaces a baseline row. `SPECKIT_TEMPORAL_EDGES` kept as the additive graph lane,
-edge-hop recall +0.083 on versus off on a live-DB copy, so turning it off removes the mitigation.
+placement and never displaces a baseline row. `SPECKIT_TEMPORAL_EDGES` kept on prod-path displacement
+protection, where the +0.083 edge-hop recall is an eval-mode artifact the 3-result prod truncation floor
+cuts to a 0.000 delta and the keep rests upstream of truncation on the graph-additive reorder that
+protects the prod top-3 from graph-channel displacement, 3 of 12 golden queries with 0 regressions.
 
 Ten switches were deleted along with their code. `SPECKIT_PROCEDURAL_RELIABILITY_RECALL` and its
 `SPECKIT_PROCEDURAL_OUTCOME_EMITTER` companion went because the de-rate fix was real but the ledger
