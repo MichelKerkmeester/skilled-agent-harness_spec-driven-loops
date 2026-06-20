@@ -17,11 +17,11 @@ Spec 028 (memory-search-intelligence) turned a long external memory-system resea
 
 | Track | Leaf changelogs | Top rollup |
 |-------|-----------------|------------|
-| 001 speckit memory | 21 | [changelog-001-root.md](../001-speckit-memory/changelog/changelog-001-root.md) |
-| 002 code graph | 8 | [changelog-002-root.md](../002-code-graph/changelog/changelog-002-root.md) |
-| 003 skill advisor | 7 | [changelog-003-root.md](../003-skill-advisor/changelog/changelog-003-root.md) |
-| 004 deep loop | 6 | [changelog-004-root.md](../004-deep-loop/changelog/changelog-004-root.md) |
-| 005 release cleanup | 9 | [changelog-005-root.md](../005-release-cleanup/changelog/changelog-005-root.md) |
+| 001 speckit memory | 21 | [changelog-001-root.md](./001-speckit-memory/changelog-001-root.md) |
+| 002 code graph | 8 | [changelog-002-root.md](./002-code-graph/changelog-002-root.md) |
+| 003 skill advisor | 7 | [changelog-003-root.md](./003-skill-advisor/changelog-003-root.md) |
+| 004 deep loop | 6 | [changelog-004-root.md](./004-deep-loop/changelog-004-root.md) |
+| 005 release cleanup | 9 | [changelog-005-root.md](./005-release-cleanup/changelog-005-root.md) |
 
 ## How to read these
 
