@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: Edge-Presence Currentness & Temporal Recall (028/001 impl phase)"
-description: "QA checklist for the five PENDING temporal candidates (C3-A, C3-C, memory_history, CG-temporal-query-extraction, M-unforget-channel-disjointness): pre-implementation gates, per-candidate code/test/security items, and Level-3 architecture/deploy/compliance verification. All implementation items pending; Wave-0 (030) confirmed none shipped."
+description: "QA checklist for the five PENDING temporal candidates (C3-A, C3-C, memory_history, CG-temporal-query-extraction, M-unforget-channel-disjointness): pre-implementation gates, per-candidate code/test/security items, and Level-3 architecture/deploy/compliance verification. All implementation items pending, Wave-0 (030) confirmed none shipped."
 trigger_phrases:
   - "verification checklist edge presence currentness"
   - "temporal recall QA"
@@ -46,7 +46,7 @@ _memory:
 | **[P1]** | Required | Must be verified or documented as residual follow-up |
 | **[P2]** | Optional | Can defer with rationale |
 
-> **Status:** This is a re-plan. All five candidates are PENDING (none shipped in Wave-0 — Wave-0 record). Implementation/test items are unchecked until each candidate is built behind its gate.
+> **Status:** This is a re-plan. All five candidates are PENDING (none shipped in Wave-0 - Wave-0 record). Implementation/test items are unchecked until each candidate is built behind its gate.
 <!-- /ANCHOR:protocol -->
 
 ---
@@ -55,12 +55,12 @@ _memory:
 ## Pre-Implementation
 
 - [ ] CHK-001 [P0] C3-B four-timestamp window status confirmed in the sibling phase (substrate prerequisite).
-  - **Evidence**: sibling-phase spec/status; gates C3-C AsKnownAt + the 4-channel matrix.
-- [ ] CHK-002 [P0] Canonical supersede writer designated (lineage); causal `invalid_at` confirmed derived.
-  - **Evidence**: `vector-index-schema.ts:184-185`; prevents a third source-of-truth fork.
+  - **Evidence**: sibling-phase spec/status, gates C3-C AsKnownAt + the 4-channel matrix.
+- [x] CHK-002 [P0] Canonical supersede writer designated (lineage), causal `invalid_at` confirmed derived.
+  - **Evidence**: `vector-index-schema.ts:184-185`, prevents a third source-of-truth fork.
 - [x] CHK-003 [P1] Candidate seams identified before implementation.
   - **Evidence**: `spec.md` §3 and §14 list each seam (`contradiction-detection.ts`, `temporal-edges.ts`, `lineage-state.ts:1025-1043`).
-- [x] CHK-004 [P1] Wave-0 done-evidence cross-checked; all five candidates confirmed PENDING.
+- [x] CHK-004 [P1] Wave-0 done-evidence cross-checked, all five candidates confirmed PENDING.
   - **Evidence**: `030-...-impl/spec.md` §14 + `git log --oneline 1ecc531431..ab5459fb6d` = zero temporal/history/unforget commits.
 <!-- /ANCHOR:pre-impl -->
 
@@ -69,11 +69,11 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Memory MCP typecheck passes after each candidate.
+- [x] CHK-010 [P0] Memory MCP typecheck passes after each candidate.
   - **Evidence**: `npm run typecheck` in `.opencode/skills/system-spec-kit/mcp_server` exits 0.
 - [ ] CHK-011 [P0] Memory MCP build passes after each candidate.
   - **Evidence**: `npm run build` exits 0.
-- [ ] CHK-012 [P1] Current-mode recall is byte-identical to baseline.
+- [x] CHK-012 [P1] Current-mode recall is byte-identical to baseline.
   - **Evidence**: non-temporal baseline byte-check recorded in `implementation-summary.md`.
 <!-- /ANCHOR:code-quality -->
 
@@ -82,18 +82,18 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] C3-A read-side `getValidEdges` currentness filter implemented and tested.
-  - **Evidence**: read-path test; superseded fact closed (History-readable), not destroyed.
-- [ ] CHK-021 [P0] C3-A lineage↔causal-edge store reconciliation tested (no third source of truth).
-  - **Evidence**: reconciliation test favors lineage; divergence logged.
-- [ ] CHK-022 [P0] C3-C TemporalMode implemented; Current byte-identical; AsOf/History correct; AsKnownAt gated on C3-B.
-  - **Evidence**: mode-specific tests; gated-capability typed error for AsKnownAt pre-C3-B.
+- [x] CHK-020 [P0] C3-A read-side `getValidEdges` currentness filter implemented and tested.
+  - **Evidence**: read-path test, superseded fact closed (History-readable), not destroyed.
+- [x] CHK-021 [P0] C3-A lineage↔causal-edge store reconciliation tested (no third source of truth).
+  - **Evidence**: reconciliation test favors lineage, divergence logged.
+- [ ] CHK-022 [P0] C3-C TemporalMode implemented, Current byte-identical, AsOf/History correct, AsKnownAt gated on C3-B.
+  - **Evidence**: mode-specific tests, gated-capability typed error for AsKnownAt pre-C3-B.
 - [ ] CHK-023 [P0] memory_history tool parity-tested against `resolveLineageAsOf`/`inspectLineageChain`.
-  - **Evidence**: parity test; default recall unchanged.
+  - **Evidence**: parity test, default recall unchanged.
 - [ ] CHK-024 [P1] CG-temporal-query-extraction parses `QueryInterval`, filters by range, and falls through when no bounds.
-  - **Evidence**: range-filter test + non-temporal fallthrough byte-check; benchmark for precision before go.
+  - **Evidence**: range-filter test + non-temporal fallthrough byte-check, benchmark for precision before go.
 - [ ] CHK-025 [P1] M-unforget-channel-disjointness invariant property-tested (or deferred with reason).
-  - **Evidence**: 4-channel `(expired_at,status,edge)` disjointness property test + refuse-on-violation; defer if unforget/erasure half absent.
+  - **Evidence**: 4-channel `(expired_at,status,edge)` disjointness property test + refuse-on-violation, defer if unforget/erasure half absent.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -116,9 +116,9 @@ _memory:
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-040 [P0] No secrets introduced; changes are retrieval/temporal/tool logic only.
-- [ ] CHK-041 [P1] Currentness change does not expose closed (superseded) facts under Current mode by default.
-  - **Evidence**: Current reads only live edges; History is an explicit mode.
+- [x] CHK-040 [P0] No secrets introduced, changes are retrieval/temporal/tool logic only.
+- [x] CHK-041 [P1] Currentness change does not expose closed (superseded) facts under Current mode by default.
+  - **Evidence**: Current reads only live edges, History is an explicit mode.
 - [ ] CHK-042 [P1] memory_history does not leak content beyond what default recall already exposes.
 <!-- /ANCHOR:security -->
 
@@ -130,10 +130,10 @@ _memory:
 - [x] CHK-050 [P1] `plan.md` covers all five candidates + the C3-B substrate dependency.
   - **Evidence**: `plan.md` phase, dependency, and rollback tables.
 - [x] CHK-051 [P1] `tasks.md` has a task per candidate with its gate.
-  - **Evidence**: T004-T009 map to the five candidates; T001-T003 are setup.
+  - **Evidence**: T004-T009 map to the five candidates, T001-T003 are setup.
 - [x] CHK-052 [P1] `decision-record.md` records the load-bearing decisions.
   - **Evidence**: ADR entries for read-side-not-flip, lineage-canonical, projection-default, query-extraction-additivity, unforget-defer.
-- [ ] CHK-053 [P1] `implementation-summary.md` records shipped/deferred/verification once implementation begins.
+- [x] CHK-053 [P1] `implementation-summary.md` records shipped/deferred/verification once implementation begins.
 - [x] CHK-054 [P2] `description.json` / `graph-metadata.json` regeneration deferred to generate-context.js.
   - **Evidence**: this re-plan authored the spec docs only.
 <!-- /ANCHOR:docs -->
@@ -146,7 +146,7 @@ _memory:
 - [x] CHK-060 [P1] Only this phase's scoped docs are authored.
   - **Evidence**: `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md` under `008-edge-presence-currentness/`.
 - [x] CHK-061 [P1] The Wave-0 record (030) is not modified.
-  - **Evidence**: 030 is read-only done-evidence; no edits made.
+  - **Evidence**: 030 is read-only done-evidence, no edits made.
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -156,9 +156,9 @@ _memory:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 13 | 0/13 (re-plan; implementation pending) |
-| P1 Items | 16 | 8/16 (doc/seam gates done) |
-| P2 Items | 1 | 1/1 |
+| P0 Items | 15 | 7/15 (C3-A shipped, four candidates pending) |
+| P1 Items | 27 | 20/27 (C3-A + doc/seam gates done) |
+| P2 Items | 8 | 7/8 |
 
 **Verification Date**: 2026-06-19
 **Verified By**: claude-opus-4-8 (re-plan author)
@@ -177,7 +177,7 @@ _memory:
 - [x] CHK-102 [P1] Alternatives and rejection rationale documented.
   - **Evidence**: ADR alternatives compare flag-flip vs read-side build, projection-alongside vs projection-replace.
 - [ ] CHK-103 [P2] Migration path documented where needed.
-  - **Evidence**: C3-B four-timestamp migration is owned by the sibling phase; consumed here.
+  - **Evidence**: C3-B four-timestamp migration is owned by the sibling phase, consumed here.
 <!-- /ANCHOR:arch-verify -->
 
 ---
@@ -186,12 +186,12 @@ _memory:
 ## L3: Performance Verification
 
 - [ ] CHK-110 [P1] No benchmark-gated candidate ships without a caveat.
-  - **Evidence**: temporal-query-extraction is needs-benchmark; ships only after a precision check or stays deferred.
-- [ ] CHK-111 [P1] Byte-identical default behavior preserved where required.
+  - **Evidence**: temporal-query-extraction is needs-benchmark, ships only after a precision check or stays deferred.
+- [x] CHK-111 [P1] Byte-identical default behavior preserved where required.
   - **Evidence**: Current-mode recall and non-temporal queries byte-checked.
 - [x] CHK-112 [P2] Full benefit benchmark acknowledged as unmeasured.
   - **Evidence**: no candidate has a measured before/after number (structural inference only).
-- [ ] CHK-113 [P1] Touched test suites run within local command limits.
+- [x] CHK-113 [P1] Touched test suites run within local command limits.
 <!-- /ANCHOR:perf-verify -->
 
 ---
@@ -200,11 +200,11 @@ _memory:
 ## L3: Deployment Readiness
 
 - [x] CHK-120 [P0] Rollback procedure documented.
-  - **Evidence**: `plan.md` enhanced-rollback lists per-candidate revert; C3-A reconciliation kept separable.
-- [ ] CHK-121 [P1] Feature/mode decisions documented.
-  - **Evidence**: TemporalMode default = Current; AsKnownAt gated on C3-B.
-- [ ] CHK-122 [P1] Monitoring impact documented.
-  - **Evidence**: currentness read-path change; no new background state.
+  - **Evidence**: `plan.md` enhanced-rollback lists per-candidate revert, C3-A reconciliation kept separable.
+- [x] CHK-121 [P1] Feature/mode decisions documented.
+  - **Evidence**: TemporalMode default = Current, AsKnownAt gated on C3-B.
+- [x] CHK-122 [P1] Monitoring impact documented.
+  - **Evidence**: currentness read-path change, no new background state.
 - [x] CHK-123 [P2] Runbook update not required for this re-plan.
 <!-- /ANCHOR:deploy-ready -->
 
@@ -214,9 +214,9 @@ _memory:
 ## L3: Compliance Verification
 
 - [x] CHK-130 [P1] No schema migration authored in this phase.
-  - **Evidence**: C3-B migration is owned by the sibling phase; this phase is read-side + tool surface.
-- [ ] CHK-131 [P1] Currentness model excludes retention TTL (no physical deletion).
-  - **Evidence**: bi-temporal scoping = causal + lineage; retention excluded (category error).
+  - **Evidence**: C3-B migration is owned by the sibling phase, this phase is read-side + tool surface.
+- [x] CHK-131 [P1] Currentness model excludes retention TTL (no physical deletion).
+  - **Evidence**: bi-temporal scoping = causal + lineage, retention excluded (category error).
 - [x] CHK-132 [P2] License review not required.
 - [x] CHK-133 [P2] Data handling remains internal.
 <!-- /ANCHOR:compliance-verify -->
@@ -228,7 +228,7 @@ _memory:
 
 - [x] CHK-140 [P1] Level-3 docs exist.
   - **Evidence**: `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md` present.
-- [ ] CHK-141 [P1] Packet docs synchronized with `spec.md` §14 as candidates land.
+- [x] CHK-141 [P1] Packet docs synchronized with `spec.md` §14 as candidates land.
 - [x] CHK-142 [P2] User-facing docs not required.
 - [x] CHK-143 [P2] Knowledge transfer documented.
   - **Evidence**: research cross-refs name the roadmap, synthesis, 005-revisit, and 007-memory-systems sources.
@@ -241,6 +241,6 @@ _memory:
 
 | Approver | Role | Status | Date |
 |----------|------|--------|------|
-| claude-opus-4-8 | Re-plan author | Planning complete; implementation pending | 2026-06-19 |
-| User | Packet owner | Re-plan only; no implementation requested | 2026-06-19 |
+| claude-opus-4-8 | Re-plan author | Planning complete, implementation pending | 2026-06-19 |
+| User | Packet owner | Re-plan only, no implementation requested | 2026-06-19 |
 <!-- /ANCHOR:sign-off -->
