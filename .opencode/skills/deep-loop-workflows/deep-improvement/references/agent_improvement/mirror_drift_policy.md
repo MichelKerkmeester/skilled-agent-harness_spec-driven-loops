@@ -83,4 +83,4 @@ Forbidden outcomes:
 
 - `../shared/rollback_runbook.md`
 - `../shared/promotion_rules.md`
-- `../scripts/agent-improvement/check-mirror-drift.cjs`
+- `../../scripts/agent-improvement/check-mirror-drift.cjs`

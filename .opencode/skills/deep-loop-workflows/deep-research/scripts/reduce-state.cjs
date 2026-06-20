@@ -13,6 +13,11 @@ const path = require('node:path');
 const crypto = require('node:crypto');
 const { emitResourceMap } = require('../../shared/synthesis/resource-map.cjs');
 const { resolveArtifactRoot } = require('../../../deep-loop-runtime/lib/deep-loop/artifact-root.cjs');
+const {
+  buildCarriedForwardOpenQuestions,
+  deriveNextFocusFromContinuity,
+  formatCarriedForwardOpenQuestions,
+} = require('../../../deep-loop-runtime/lib/deep-loop/continuity-thread.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS
@@ -153,9 +158,37 @@ function createCorruptionError(stateLogPath, corruptionWarnings) {
   return error;
 }
 
+function createRecoveryRefusedError(stateLogPath, reason, details = {}) {
+  const error = new Error(`[deep-research] refusing resume: ${reason} (${stateLogPath})`);
+  error.code = 'STATE_RECOVERY_REFUSED';
+  error.reason = reason;
+  error.stateLogPath = stateLogPath;
+  Object.assign(error, details);
+  return error;
+}
+
+function readStateLogForReduction(stateLogPath, requireExistingState) {
+  if (requireExistingState && !fs.existsSync(stateLogPath)) {
+    throw createRecoveryRefusedError(stateLogPath, 'missing state log');
+  }
+
+  const content = readUtf8(stateLogPath);
+  if (requireExistingState && content.trim() === '') {
+    throw createRecoveryRefusedError(stateLogPath, 'empty state log');
+  }
+
+  const parsed = parseJsonlDetailed(content);
+  if (requireExistingState && parsed.corruptionWarnings.length > 0) {
+    throw createRecoveryRefusedError(stateLogPath, 'corrupt state log', {
+      corruptionWarnings: parsed.corruptionWarnings,
+    });
+  }
+  return parsed;
+}
+
 function extractSection(markdown, heading) {
   // Drop the `m` flag so `$` anchors to end-of-string, not end-of-line
-  const pattern = new RegExp(`(?:^|\\n)##\\s+${escapeRegExp(heading)}\\s*\\n([\\s\\S]*?)(?=\\n##\\s|$)`, 'i');
+  const pattern = new RegExp(`(?:^|\\n)##\\s+${escapeRegExp(heading)}[^\\S\\n]*\\n([\\s\\S]*?)(?=\\n##\\s|$)`, 'i');
   const match = markdown.match(pattern);
   return match ? match[1].trim() : '';
 }
@@ -188,6 +221,7 @@ function parseIterationFile(iterationPath) {
   const findingsSection = extractSection(markdown, 'Findings');
   const ruledOutSection = extractSection(markdown, 'Ruled Out');
   const deadEndsSection = extractSection(markdown, 'Dead Ends');
+  const questionsRemainingSection = extractSection(markdown, 'Questions Remaining');
   const sourcesSection = extractSection(markdown, 'Sources Consulted');
   const reflectionSection = extractSection(markdown, 'Reflection');
   const nextFocusSection = extractSection(markdown, 'Recommended Next Focus');
@@ -199,6 +233,7 @@ function parseIterationFile(iterationPath) {
     findings: extractListItems(findingsSection),
     ruledOut: extractListItems(ruledOutSection),
     deadEnds: extractListItems(deadEndsSection),
+    questionsRemaining: extractListItems(questionsRemainingSection),
     sources: extractListItems(sourcesSection),
     reflectionWorked: parseReflectionValue(reflectionSection, 'What worked and why'),
     reflectionFailed: parseReflectionValue(reflectionSection, 'What did not work and why'),
@@ -535,9 +570,12 @@ function resolveNextFocus(registry, iterationFiles, iterationRecords) {
     }
   }
 
-  return iterationFiles.map((iteration) => iteration.nextFocus).filter(Boolean).at(-1)
-    || registry.openQuestions[0]?.text
-    || '[All tracked questions are resolved]';
+  return deriveNextFocusFromContinuity({
+    iterationFiles,
+    iterationRecords,
+    carriedForwardOpenQuestions: registry.carriedForwardOpenQuestions,
+    machineOpenQuestions: registry.openQuestions,
+  });
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -617,6 +655,17 @@ function buildRegistry(strategyQuestions, iterationFiles, iterationRecords, even
   const lineage = reducerState.lineage && typeof reducerState.lineage === 'object'
     ? reducerState.lineage
     : {};
+  const openQuestions = keyedQuestions.filter((question) => !question.resolved).map((question) => ({
+    id: question.id,
+    text: question.text,
+    addedAtIteration: question.addedAtIteration,
+    resolvedAtIteration: null,
+  }));
+  const carriedForwardOpenQuestions = buildCarriedForwardOpenQuestions({
+    iterationFiles,
+    iterationRecords,
+    machineOpenQuestions: openQuestions,
+  });
   const uncoveredQuestions = keyedQuestions.filter((question) => !question.resolved).map((question) => question.text);
 
   return {
@@ -626,18 +675,14 @@ function buildRegistry(strategyQuestions, iterationFiles, iterationRecords, even
     generation: lineage.generation ?? 1,
     continuedFromRun: lineage.continuedFromRun ?? null,
     terminalStop: reducerState.terminalStop || null,
-    openQuestions: keyedQuestions.filter((question) => !question.resolved).map((question) => ({
-      id: question.id,
-      text: question.text,
-      addedAtIteration: question.addedAtIteration,
-      resolvedAtIteration: null,
-    })),
+    openQuestions,
     resolvedQuestions: keyedQuestions.filter((question) => question.resolved).map((question) => ({
       id: question.id,
       text: question.text,
       addedAtIteration: question.addedAtIteration,
       resolvedAtIteration: question.resolvedAtIteration,
     })),
+    carriedForwardOpenQuestions,
     uncoveredQuestions,
     keyFindings,
     ruledOutDirections,
@@ -649,6 +694,7 @@ function buildRegistry(strategyQuestions, iterationFiles, iterationRecords, even
       iterationsCompleted: iterationRecords.filter((record) => record.type === 'iteration').length,
       openQuestions: keyedQuestions.filter((question) => !question.resolved).length,
       resolvedQuestions: keyedQuestions.filter((question) => question.resolved).length,
+      carriedForwardOpenQuestions: carriedForwardOpenQuestions.length,
       keyFindings: keyFindings.length,
       convergenceScore,
       coverageBySources,
@@ -696,21 +742,41 @@ function buildExhaustedApproaches(iterationFiles) {
   return blocked.join('\n\n');
 }
 
-function replaceAnchorSection(content, anchorId, heading, body) {
-  const pattern = new RegExp(`<!-- ANCHOR:${anchorId} -->[\\s\\S]*?<!-- \\/ANCHOR:${anchorId} -->`, 'm');
-  const replacement = [
+function buildAnchorSection(anchorId, heading, body) {
+  return [
     `<!-- ANCHOR:${anchorId} -->`,
     `## ${heading}`,
     body.trim() ? body.trim() : '[None yet]',
     '',
     `<!-- /ANCHOR:${anchorId} -->`,
   ].join('\n');
+}
+
+function replaceAnchorSection(content, anchorId, heading, body) {
+  const pattern = new RegExp(`<!-- ANCHOR:${anchorId} -->[\\s\\S]*?<!-- \\/ANCHOR:${anchorId} -->`, 'm');
+  const replacement = buildAnchorSection(anchorId, heading, body);
 
   if (!pattern.test(content)) {
     throw new Error(`Missing anchor section ${anchorId} in strategy file`);
   }
 
   return content.replace(pattern, replacement);
+}
+
+function upsertAnchorSectionBefore(content, anchorId, heading, body, beforeAnchorId) {
+  const pattern = new RegExp(`<!-- ANCHOR:${anchorId} -->[\\s\\S]*?<!-- \\/ANCHOR:${anchorId} -->`, 'm');
+  const replacement = buildAnchorSection(anchorId, heading, body);
+
+  if (pattern.test(content)) {
+    return content.replace(pattern, replacement);
+  }
+
+  const beforePattern = new RegExp(`\\n?<!-- ANCHOR:${beforeAnchorId} -->`, 'm');
+  if (!beforePattern.test(content)) {
+    throw new Error(`Missing insertion anchor ${beforeAnchorId} in strategy file`);
+  }
+
+  return content.replace(beforePattern, `\n${replacement}\n$&`);
 }
 
 function updateStrategyContent(strategyContent, registry, iterationFiles, iterationRecords) {
@@ -741,6 +807,13 @@ function updateStrategyContent(strategyContent, registry, iterationFiles, iterat
     'ruled-out-directions',
     '10. RULED OUT DIRECTIONS',
     blockFromBulletList(registry.ruledOutDirections.map((entry) => `${entry.text} (iteration ${entry.addedAtIteration})`)),
+  );
+  updated = upsertAnchorSectionBefore(
+    updated,
+    'carried-forward-open-questions',
+    '11A. CARRIED-FORWARD OPEN QUESTIONS',
+    formatCarriedForwardOpenQuestions(registry.carriedForwardOpenQuestions),
+    'next-focus',
   );
   updated = replaceAnchorSection(updated, 'next-focus', '11. NEXT FOCUS', nextFocus);
   return updated;
@@ -896,6 +969,7 @@ function reduceResearchState(specFolder, options = {}) {
   const write = options.write !== false;
   const lenient = Boolean(options.lenient);
   const emitResourceMapOutput = Boolean(options.emitResourceMap);
+  const requireExistingState = Boolean(options.requireExistingState);
   const resolvedSpecFolder = path.resolve(specFolder);
   const { artifactDir: researchDir } = resolveArtifactRoot(resolvedSpecFolder, 'research');
   const configPath = path.join(researchDir, 'deep-research-config.json');
@@ -908,7 +982,7 @@ function reduceResearchState(specFolder, options = {}) {
   const deltaDir = path.join(researchDir, 'deltas');
 
   const config = readJson(configPath);
-  const { records: parsedRecords, corruptionWarnings } = parseJsonlDetailed(readUtf8(stateLogPath));
+  const { records: parsedRecords, corruptionWarnings } = readStateLogForReduction(stateLogPath, requireExistingState);
   const records = parsedRecords.filter((record) => record.type === 'iteration');
   const events = parsedRecords.filter((record) => record.type === 'event');
   const strategyContent = readUtf8(strategyPath);
@@ -1013,6 +1087,7 @@ if (require.main === module) {
   const args = process.argv.slice(2);
   const lenient = args.includes('--lenient');
   const emitResourceMapOutput = args.includes('--emit-resource-map');
+  const requireExistingState = args.includes('--require-existing-state');
   const positional = args.filter((arg) => !arg.startsWith('--'));
   const specFolder = positional[0];
 
@@ -1024,7 +1099,12 @@ if (require.main === module) {
   }
 
   try {
-    const result = reduceResearchState(specFolder, { write: true, lenient, emitResourceMap: emitResourceMapOutput });
+    const result = reduceResearchState(specFolder, {
+      write: true,
+      lenient,
+      emitResourceMap: emitResourceMapOutput,
+      requireExistingState,
+    });
     process.stdout.write(
       `${JSON.stringify(
         {
@@ -1046,6 +1126,10 @@ if (require.main === module) {
       process.exit(2);
     }
   } catch (error) {
+    if (error && error.code === 'STATE_RECOVERY_REFUSED') {
+      process.stderr.write(`${error.message}\n`);
+      process.exit(2);
+    }
     if (error && error.code === 'STATE_CORRUPTION') {
       process.stderr.write(`${error.message}\n`);
       process.exit(2);
@@ -1069,4 +1153,5 @@ module.exports = {
   parseJsonl,
   parseJsonlDetailed,
   reduceResearchState,
+  readStateLogForReduction,
 };

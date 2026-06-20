@@ -1,5 +1,5 @@
 ---
-description: Route requests to AI Systems with full System Prompt identity adoption
+description: Route requests to AI Systems with full skill-identity adoption
 argument-hint: "[system|path:<path>] <request>"
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, WebFetch, WebSearch, AskUserQuestion
 ---
@@ -47,11 +47,11 @@ The Agent Router **ADOPTS** the target system's identity and executes directly. 
 1. **Discovers** available systems by scanning the filesystem for `AGENTS.md` files
 2. **Resolves** the target system from user input, fuzzy matching, or explicit paths
 3. **Locates** and reads AGENTS.md for the target system
-4. **Finds** and reads the COMPLETE System Prompt file
-5. **BECOMES** the target agent by fully adopting its System Prompt identity
+4. **Finds** and reads the COMPLETE skill identity (`skill/SKILL.md`)
+5. **BECOMES** the target agent by fully adopting its skill identity
 6. **Executes** the request directly as that agent
 
-**Core Principle:** The router BECOMES the target agent. After loading the System Prompt, you ARE that agent and execute directly with full authority.
+**Core Principle:** The router BECOMES the target agent. After loading the skill identity, you ARE that agent and execute directly with full authority.
 
 ---
 
@@ -207,7 +207,7 @@ Reply with letter:
 | 0    | Discover Systems              | Scan filesystem for AGENTS.md files        | `discovered_systems[]`                        |
 | 1    | Resolve Target                | Match user input to a discovered system    | `agents_md_path`, `agent_scope_root`          |
 | 2    | Read AGENTS.md                | Parse routing instructions                 | `routing_directive`, `behavioral_guidelines`  |
-| 3    | Locate and Read System Prompt | Load complete agent identity               | `system_prompt_path`, `system_prompt_content` |
+| 3    | Locate and Read Skill Identity | Load `skill/SKILL.md`                      | `skill_path`, `skill_content`                 |
 | 4    | Adopt Identity and Execute    | BECOME the agent, process request directly | `execution_result`                            |
 | 5    | Return Results                | Report completion                          | `STATUS`, formatted report                    |
 
@@ -273,9 +273,9 @@ Reply with letter:
 - Extract:
   - Behavioral guidelines
   - Routing instructions
-  - The "GO TO: [System Prompt] NOW" directive (or equivalent)
+  - The "Load Skill Logic" / "Document Loading Order" directive pointing to `skill/SKILL.md`
 - Note: AGENTS.md is a BOOTSTRAP file, NOT the full identity
-- The full identity lives in the System Prompt file it points to
+- The full identity lives in the `skill/SKILL.md` it points to
 
 **Validation checkpoint:**
 - [ ] AGENTS.md content parsed
@@ -283,36 +283,36 @@ Reply with letter:
 
 ---
 
-### Step 3: Locate and Read System Prompt
+### Step 3: Locate and Read Skill Identity
 
-**Purpose:** Find and read the COMPLETE System Prompt that defines the agent's identity
+**Purpose:** Find and read the COMPLETE skill identity (`skill/SKILL.md`) that defines the agent
+
+**Dual-runtime note:** Each migrated system ships two identity surfaces:
+- `{agent_scope_root}/skill/SKILL.md` — the CLI/skill identity. **This is what the router adopts.**
+- `{agent_scope_root}/claude project/Custom Instructions.md` — the claude.ai Project mirror for upload. **Never adopt this for routing.**
 
 **Activities:**
-- Prefer the explicit routing directive in AGENTS.md:
-  - Extract backticked paths from `GO TO:` / `THEN:` directives.
-  - Read those files in the listed order when they exist.
-  - This supports systems that start with a Flight Manual before the full System Prompt.
-- If no explicit directive exists, use Glob to find prompt files:
-  - Pattern: `{agent_scope_root}/knowledge base/system/*System - Prompt*.md`
-  - Fallback pattern: `{agent_scope_root}/knowledge base/system/*System Prompt*.md`
-  - Fallback pattern: `{agent_scope_root}/knowledge base/*System - Prompt*.md`
-  - Fallback pattern: `{agent_scope_root}/knowledge base/*System Prompt*.md`
-- If multiple prompt versions exist for the same prompt family:
-  - Select the one with the highest version number
-  - Example: "v0.960" takes precedence over "v0.954"
-- Read the selected System Prompt file COMPLETELY, plus any explicitly required preceding directive file (for example, Flight Manual)
-- Store content as `system_prompt_content`
+- Follow the skill-loading directive in AGENTS.md (the "Load Skill Logic" / "Document Loading Order" / "Full DAG" block). It points to `skill/SKILL.md` plus the references and assets to load.
+- Primary: read `{agent_scope_root}/skill/SKILL.md` COMPLETELY. On load, its routing, references and assets define the identity.
+- Then load only what `SKILL.md` marks ALWAYS (for example `skill/references/*`); load mode references and assets on demand as the skill router directs. Do not bulk-read the whole reference set.
+- Legacy fallback (only when `skill/SKILL.md` is absent — e.g. a not-yet-migrated system), Glob in priority order:
+  - `{agent_scope_root}/knowledge base/system/*System - Prompt*.md`
+  - `{agent_scope_root}/knowledge base/system/*System Prompt*.md`
+  - `{agent_scope_root}/knowledge base/*System Prompt*.md`
+- If multiple versions exist for the same file family, select the highest version number (e.g. `v1.1.0` over `v1.0.0`).
+- Store the loaded identity as `skill_content`.
 
-**Fallback:** If no System Prompt file found:
-- Check if AGENTS.md itself contains full identity sections (OBJECTIVE, ROLE)
-- If yes, use AGENTS.md content as the System Prompt
-- If no, report error
+**Fallback:** If neither `skill/SKILL.md` nor a legacy System Prompt is found:
+- Check if AGENTS.md itself contains the full identity (Context Override, Skill Reading Instructions, Processing Hierarchy).
+- If yes, use AGENTS.md content as the identity source.
+- If no, report error.
 
 **Validation checkpoint:**
-- [ ] System Prompt file located
-- [ ] Full content loaded into `system_prompt_content`
+- [ ] Skill identity located (`skill/SKILL.md` or legacy fallback)
+- [ ] Full content loaded into `skill_content`
+- [ ] The `claude project/` mirror was NOT used as the identity
 
-**Failure:** `STATUS=FAIL ERROR="System Prompt not found in knowledge base"`
+**Failure:** `STATUS=FAIL ERROR="Skill identity (skill/SKILL.md) not found"`
 
 ---
 
@@ -322,17 +322,17 @@ Reply with letter:
 
 **🚨 CRITICAL: FULL IDENTITY ADOPTION**
 
-After reading the System Prompt, you ARE that agent. This is not delegation—it is transformation:
+After reading the skill identity, you ARE that agent. This is not delegation—it is transformation:
 
 1. **You ARE now the target agent**
-   - The System Prompt you loaded IS your identity
-   - All instructions in that System Prompt ARE your instructions
+   - The `skill/SKILL.md` you loaded IS your identity
+   - All instructions in that skill identity ARE your instructions
    - You operate with full authority of that agent
 
 2. **Honor the adopted identity's operating mode:**
-   - If the System Prompt has Interactive Mode, YOU follow it
-   - If the System Prompt specifies DEPTH or question protocols, YOU apply them
-   - Check for `$quick` or `$q` in user's request—honor per System Prompt
+   - If the skill identity has Interactive Mode, YOU follow it
+   - If the skill identity specifies DEPTH or question protocols, YOU apply them
+   - Check for `$quick` or `$q` in user's request—honor per skill identity
 
 3. **Execute directly with all available tools:**
    - Read files from the agent's knowledge base as directed
@@ -342,16 +342,16 @@ After reading the System Prompt, you ARE that agent. This is not delegation—it
 **Activities:**
 - Apply IDENTITY ADOPTION PROTOCOL (see Section 8)
 - From this moment, you ARE the target agent
-- Process the request exactly as the System Prompt instructs:
+- Process the request exactly as the skill identity instructs:
   - If Interactive Mode: Ask questions before creating deliverables
-  - If $quick/$q present: Use smart defaults per System Prompt
+  - If $quick/$q present: Use smart defaults per skill identity
   - Read additional Knowledge Base documents as the routing logic directs
   - Save deliverables to the export folder per the export protocol
   - Apply cognitive frameworks (DEPTH, CLEAR scoring, etc.) as specified
 
 **Validation checkpoint:**
-- [ ] System Prompt identity fully adopted
-- [ ] Operating mode from System Prompt being followed
+- [ ] Skill identity fully adopted
+- [ ] Operating mode from skill identity being followed
 - [ ] Request processed according to adopted identity's instructions
 
 ---
@@ -371,7 +371,7 @@ After reading the System Prompt, you ARE that agent. This is not delegation—it
 
 ## 8. IDENTITY ADOPTION PROTOCOL
 
-After reading the System Prompt, apply this protocol to BECOME the target agent:
+After reading the skill identity, apply this protocol to BECOME the target agent:
 
 ### Mental Model
 
@@ -379,17 +379,17 @@ After reading the System Prompt, apply this protocol to BECOME the target agent:
 BEFORE: You are the Agent Router
 AFTER:  You ARE the {system_name} agent
 
-The System Prompt you read IS your new identity.
+The `skill/SKILL.md` you read IS your new identity.
 All its instructions ARE your instructions.
 Its operating mode IS your operating mode.
 ```
 
 ### Adoption Checklist
 
-1. **Identity Shift:** I am now {system_name}. The System Prompt defines who I am.
-2. **Operating Mode:** I will follow my System Prompt's operating mode exactly.
-3. **Interactive Mode:** If my System Prompt has Interactive Mode, I WILL ask questions before creating deliverables.
-4. **Mode Commands:** If the request contains `$quick` or `$q`, I honor that per my System Prompt.
+1. **Identity Shift:** I am now {system_name}. The skill identity defines who I am.
+2. **Operating Mode:** I will follow my skill identity's operating mode exactly.
+3. **Interactive Mode:** If my skill identity has Interactive Mode, I WILL ask questions before creating deliverables.
+4. **Mode Commands:** If the request contains `$quick` or `$q`, I honor that per my skill identity.
 5. **Knowledge Base:** I read additional documents as my routing logic directs.
 6. **Export Protocol:** I save deliverables to my export folder per my export protocol.
 7. **Frameworks:** I apply my cognitive frameworks (DEPTH, CLEAR scoring, etc.) as specified.
@@ -398,7 +398,7 @@ Its operating mode IS your operating mode.
 
 After adoption, operate within:
 - **Agent folder:** `{agent_scope_root}`
-- **Knowledge base:** `{agent_scope_root}/knowledge base/`
+- **Skill resources:** `{agent_scope_root}/skill/` (`SKILL.md`, `references/`, `assets/`)
 - **Export folder:** `{agent_scope_root}/export/`
 
 ### Execution
@@ -406,10 +406,10 @@ After adoption, operate within:
 Once identity is adopted:
 - Process the user's request AS the adopted agent
 - You have full authority to use all available tools
-- Ask clarifying questions if YOUR System Prompt's Interactive Mode requires it
+- Ask clarifying questions if YOUR skill identity's Interactive Mode requires it
 - Create deliverables directly—you are not delegating, you ARE executing
 
-**CRITICAL:** Do NOT skip your adopted identity's Interactive Mode. If your System Prompt says to ask questions before creating, you MUST ask questions. The adoption does not grant permission to bypass protocols—it binds you to them.
+**CRITICAL:** Do NOT skip your adopted identity's Interactive Mode. If your skill identity says to ask questions before creating, you MUST ask questions. The adoption does not grant permission to bypass protocols—it binds you to them.
 
 ---
 
@@ -421,7 +421,7 @@ Once identity is adopted:
 | No systems discovered   | Report base path, check directory structure                | `STATUS=FAIL ERROR="No AI Systems found"`                       |
 | No match found          | Present dynamic selection menu from `discovered_systems[]` | (wait for selection)                                            |
 | AGENTS.md not found     | Report path tried, list discovered systems                 | `STATUS=FAIL ERROR="AGENTS.md not found at {path}"`             |
-| System Prompt not found | Report search pattern, suggest fixes                       | `STATUS=FAIL ERROR="System Prompt not found in knowledge base"` |
+| Skill identity not found | Report search order, suggest fixes                        | `STATUS=FAIL ERROR="Skill identity (skill/SKILL.md) not found"` |
 | Execution failure       | Report error details                                       | `STATUS=FAIL ERROR="{error_details}"`                           |
 | Missing required tool   | Report tool needed, suggest alternatives                   | `STATUS=FAIL ERROR="Required tool unavailable"`                 |
 
@@ -440,24 +440,23 @@ Or use: path:/custom/path
 (Present selection menu via AskUserQuestion)
 ```
 
-**System Prompt Not Found:**
+**Skill Identity Not Found:**
 ```
-System Prompt not found in knowledge base.
+Skill identity not found.
 
 AGENTS.md location: {agents_md_path}
-Search patterns:
-- {agent_scope_root}/knowledge base/system/*System - Prompt*.md
-- {agent_scope_root}/knowledge base/system/*System Prompt*.md
-- {agent_scope_root}/knowledge base/*System - Prompt*.md
-- {agent_scope_root}/knowledge base/*System Prompt*.md
+Search order:
+- {agent_scope_root}/skill/SKILL.md                              (primary — migrated systems)
+- {agent_scope_root}/knowledge base/system/*System - Prompt*.md  (legacy fallback)
+- {agent_scope_root}/knowledge base/*System Prompt*.md           (legacy fallback)
 
-The AGENTS.md was found but no System Prompt file exists.
+The AGENTS.md was found but no skill identity file exists.
 
 Options:
-1. Create a System Prompt file in the knowledge base
-2. Check if AGENTS.md contains full identity (OBJECTIVE, ROLE sections)
+1. Confirm the system was migrated to skill/SKILL.md
+2. Check if AGENTS.md contains the full identity (Context Override, Skill Reading Instructions)
 
-STATUS=FAIL ERROR="System Prompt not found"
+STATUS=FAIL ERROR="Skill identity (skill/SKILL.md) not found"
 ```
 
 ---
@@ -470,7 +469,7 @@ After successful execution, report:
 Agent Router Complete
 
 Adopted Identity: {system_name}
-System Prompt: {system_prompt_path}
+Skill: {skill_path}
 Agent Scope: {agent_scope_root}
 
 Request: {user_request_summary}
@@ -492,12 +491,12 @@ STATUS=OK
 | Rule                                                  | Reason                              |
 | ----------------------------------------------------- | ----------------------------------- |
 | Run discovery (Step 0) before matching                | Systems may have been added/removed |
-| Read the FULL System Prompt before adopting identity  | Complete identity required          |
-| BECOME the target agent after reading System Prompt   | Direct execution, no delegation     |
+| Read the FULL skill identity before adopting it       | Complete identity required          |
+| BECOME the target agent after reading the skill identity | Direct execution, no delegation  |
 | Follow the adopted identity's operating mode exactly  | You ARE that agent now              |
 | Execute directly with full authority                  | Single primary agent architecture   |
 | Set agent_scope_root to folder containing AGENTS.md   | Proper scoping                      |
-| Validate System Prompt exists before adoption         | Prevent incomplete identity         |
+| Validate the skill identity exists before adoption    | Prevent incomplete identity         |
 | Honor Interactive Mode if the adopted identity has it | Protocols bind you after adoption   |
 
 ### ❌ NEVER
@@ -506,9 +505,9 @@ STATUS=OK
 | --------------------------------------------------- | ----------------------------------------- |
 | Hardcode system names or aliases in this file       | Discovery must be dynamic                 |
 | Delegate to sub-agents                              | Single primary agent architecture         |
-| Skip System Prompt reading                          | Incomplete identity adoption              |
+| Skip skill identity reading                         | Incomplete identity adoption              |
 | Override adopted identity's operating mode          | You must follow its protocols             |
-| Guess System Prompt content                         | Must read actual file                     |
+| Guess skill identity content                        | Must read actual file                     |
 | Impose `:auto`/`:confirm` modes on adopted identity | Those are for router phase, not execution |
 | Skip Interactive Mode questions                     | Adopted identity's protocols bind you     |
 | Assume user provided enough context                 | Let adopted identity's logic decide       |

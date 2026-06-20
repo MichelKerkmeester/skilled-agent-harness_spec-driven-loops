@@ -93,9 +93,9 @@ Promotion is a per-target decision under dynamic mode and remains a guarded late
 ## 7. RELATED RESOURCES
 
 - `quick_reference.md`
-- `../model-benchmark/evaluator_contract.md`
-- `../agent-improvement/integration_scanning.md`
-- `../model-benchmark/benchmark_operator_guide.md`
+- `../model_benchmark/evaluator_contract.md`
+- `../agent_improvement/integration_scanning.md`
+- `../model_benchmark/benchmark_operator_guide.md`
 - `rollback_runbook.md`
-- `../README.md`
+- `../../README.md`
 

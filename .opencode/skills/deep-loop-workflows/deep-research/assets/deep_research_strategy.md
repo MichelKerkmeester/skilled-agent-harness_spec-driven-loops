@@ -25,7 +25,7 @@ Serves as the "persistent brain" for a deep research session. Records what to in
 ### Usage
 
 - **Init:** Orchestrator copies this template to `{spec_folder}/research/deep-research-strategy.md` and populates Topic, Key Questions, Known Context, and Research Boundaries from config and memory context.
-- **Per iteration:** Agent reads Next Focus, writes iteration evidence, and the reducer refreshes What Worked/Failed, answered questions, ruled-out directions, and Next Focus.
+- **Per iteration:** Agent reads Next Focus, writes iteration evidence, and the reducer refreshes What Worked/Failed, answered questions, carried-forward questions, ruled-out directions, and Next Focus.
 - **Mutability:** Mutable — analyst-owned sections remain stable, while machine-owned sections are rewritten by the reducer after each iteration.
 - **Protection:** Shared state with explicit ownership boundaries. Orchestrator validates consistency on resume.
 
@@ -103,6 +103,13 @@ Serves as the "persistent brain" for a deep research session. Records what to in
 
 ---
 
+<!-- ANCHOR:carried-forward-open-questions -->
+## 11A. CARRIED-FORWARD OPEN QUESTIONS
+[Self-owned open questions from iteration write-back -- populated after iteration 1 completes]
+<!-- /ANCHOR:carried-forward-open-questions -->
+
+---
+
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
 [Recommended focus area for the next iteration -- updated at end of each iteration]
@@ -123,7 +130,7 @@ Serves as the "persistent brain" for a deep research session. Records what to in
 - Progressive synthesis: true (default)
 - research/research.md ownership: workflow-owned canonical synthesis output
 - Lifecycle branches: `resume`, `restart` (live); `fork`, `completed-continue` (deferred, not runtime-wired)
-- Machine-owned sections: reducer controls Sections 3, 6, 7-11
+- Machine-owned sections: reducer controls Sections 3, 6, 7-11A
 - Canonical pause sentinel: `research/.deep-research-pause`
 - Capability matrix: `.opencode/skills/deep-loop-workflows/deep-research/assets/runtime_capabilities.json`
 - Capability matrix doc: `.opencode/skills/deep-loop-workflows/deep-research/references/guides/capability_matrix.md`

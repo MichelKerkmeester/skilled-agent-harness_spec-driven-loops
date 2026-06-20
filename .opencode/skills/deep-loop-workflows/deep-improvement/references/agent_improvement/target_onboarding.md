@@ -80,6 +80,6 @@ Dynamic mode is the only scoring path. There are no static profiles to maintain.
 
 ## 6. RELATED RESOURCES
 
-- `../model-benchmark/evaluator_contract.md`
+- `../model_benchmark/evaluator_contract.md`
 - `../../assets/agent_improvement/target_manifest.jsonc`
 
