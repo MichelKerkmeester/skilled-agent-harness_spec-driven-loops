@@ -129,7 +129,6 @@ describe('Phase 4 adaptive ranking shadow proposals', () => {
     for (const key of [
       'SPECKIT_MEMORY_ADAPTIVE_RANKING',
       'SPECKIT_MEMORY_ADAPTIVE_MODE',
-      'SPECKIT_PROCEDURAL_RELIABILITY_RECALL',
       'SPECKIT_NEGATIVE_FEEDBACK',
       'SPECKIT_GRAPH_UNIFIED',
       'SPECKIT_GRAPH_SIGNALS',
@@ -441,71 +440,6 @@ describe('Phase 4 adaptive ranking shadow proposals', () => {
     expect(proposal?.bounded).toBe(true);
     expect(proposal?.rows).toHaveLength(2);
     expect(proposal?.rows.some((row) => row.memoryId === 2 && row.shadowRank === 1)).toBe(true);
-  });
-
-  it('keeps procedural reliability recall disabled until opted in', () => {
-    process.env.SPECKIT_MEMORY_ADAPTIVE_RANKING = 'true';
-
-    db = new Database(':memory:');
-    ensureAdaptiveTables(db);
-
-    recordAdaptiveSignal(db, { memoryId: 1, signalType: 'outcome', signalValue: 4 });
-    recordAdaptiveSignal(db, { memoryId: 2, signalType: 'correction', signalValue: 4 });
-
-    const proposal = buildAdaptiveShadowProposal(db, 'procedural reliability query', [
-      { id: 1, score: 0.7, similarity: 70, memory_type: 'procedural' },
-      { id: 2, score: 0.7, similarity: 70, memory_type: 'procedural' },
-    ]);
-
-    expect(proposal?.rows[0]).toMatchObject({
-      memoryId: 1,
-      productionScore: 0.7,
-      productionRank: 1,
-      shadowRank: 1,
-    });
-    expect(proposal?.rows[0]?.shadowScore).toBeCloseTo(0.78, 12);
-    expect(proposal?.rows[0]?.scoreDelta).toBeCloseTo(0.08, 12);
-    expect(proposal?.rows[1]).toMatchObject({
-      memoryId: 2,
-      productionScore: 0.7,
-      productionRank: 2,
-      shadowRank: 2,
-    });
-    expect(proposal?.rows[1]?.shadowScore).toBeCloseTo(0.62, 12);
-    expect(proposal?.rows[1]?.scoreDelta).toBeCloseTo(-0.08, 12);
-  });
-
-  it('applies bounded procedural reliability recall only to procedural rows when opted in', () => {
-    process.env.SPECKIT_MEMORY_ADAPTIVE_RANKING = 'true';
-    process.env.SPECKIT_PROCEDURAL_RELIABILITY_RECALL = 'true';
-
-    db = new Database(':memory:');
-    ensureAdaptiveTables(db);
-
-    recordAdaptiveSignal(db, { memoryId: 1, signalType: 'outcome', signalValue: 4 });
-    recordAdaptiveSignal(db, { memoryId: 2, signalType: 'correction', signalValue: 4 });
-    recordAdaptiveSignal(db, { memoryId: 3, signalType: 'correction', signalValue: 4 });
-
-    const proposal = buildAdaptiveShadowProposal(db, 'procedural reliability query', [
-      { id: 1, score: 0.7, similarity: 70, memory_type: 'procedural' },
-      { id: 2, score: 0.7, similarity: 70, memory_type: 'procedural' },
-      { id: 3, score: 0.7, similarity: 70, memory_type: 'declarative' },
-    ]);
-
-    expect(proposal?.rows.map((row) => row.memoryId)).toEqual([1, 2, 3]);
-    // Memory 1 is a reliable procedure (4 successes, 0 failures). Its reliability
-    // delta is now prior-centered and positive (+0.0124 pre-clamp), reinforcing the
-    // generic outcome lane in the same direction; the combined raw delta saturates the
-    // bounded ±0.08 band. Memory 2 is an unreliable procedure (4 failures) whose
-    // centered reliability delta is symmetrically negative, and memory 3 is declarative
-    // so the reliability lane never touches it. The flag now promotes the reliable
-    // procedure instead of de-rating it.
-    expect(proposal?.rows[0]?.shadowScore).toBeCloseTo(0.78, 12);
-    expect(proposal?.rows[0]?.scoreDelta).toBeCloseTo(0.08, 12);
-    expect(proposal?.rows[1]?.shadowScore).toBeCloseTo(0.62, 12);
-    expect(proposal?.rows[1]?.scoreDelta).toBeCloseTo(-0.08, 12);
-    expect(proposal?.rows[2]?.shadowScore).toBeCloseTo(0.62, 12);
-    expect(proposal?.rows[2]?.scoreDelta).toBeCloseTo(-0.08, 12);
   });
 
   it('clears adaptive shadow state during rollback drills without reversing schema', () => {

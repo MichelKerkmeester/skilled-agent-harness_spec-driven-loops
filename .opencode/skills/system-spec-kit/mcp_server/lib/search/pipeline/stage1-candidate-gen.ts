@@ -38,7 +38,7 @@ import { resolveEffectiveScore } from './types.js';
 import * as vectorIndex from '../vector-index.js';
 import * as hybridSearch from '../hybrid-search.js';
 import { vectorSearchWithContiguity } from '../../cognitive/temporal-contiguity.js';
-import { isMultiQueryEnabled, isEmbeddingExpansionEnabled, isMemorySummariesEnabled, isQueryDecompositionEnabled, isGraphConceptRoutingEnabled, isLlmReformulationEnabled, isHyDEEnabled, isQuerySurrogatesEnabled, isTemporalContiguityEnabled, isQueryConceptExpansionEnabled, isSummaryFusionLaneEnabled } from '../search-flags.js';
+import { isMultiQueryEnabled, isEmbeddingExpansionEnabled, isMemorySummariesEnabled, isQueryDecompositionEnabled, isGraphConceptRoutingEnabled, isLlmReformulationEnabled, isHyDEEnabled, isQuerySurrogatesEnabled, isTemporalContiguityEnabled, isQueryConceptExpansionEnabled } from '../search-flags.js';
 import { expandQuery } from '../query-expander.js';
 import { expandQueryWithEmbeddings, isExpansionActive } from '../embedding-expansion.js';
 import { querySummaryEmbeddings, checkScaleGate } from '../memory-summaries.js';
@@ -105,7 +105,7 @@ function hasEmbedding(embedding: Float32Array | number[] | null | undefined): em
 }
 
 function shouldRunStage1SummaryEmbeddingChannel(vectorSearchSkipped: boolean): boolean {
-  return !vectorSearchSkipped && isMemorySummariesEnabled() && !isSummaryFusionLaneEnabled();
+  return !vectorSearchSkipped && isMemorySummariesEnabled();
 }
 
 async function collectLexicalOnlyCandidates(

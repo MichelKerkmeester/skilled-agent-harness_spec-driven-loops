@@ -5,12 +5,7 @@
 // Strengthening, staleness detection, edge bounds enforcement.
 // Behind SPECKIT_CONSOLIDATION flag.
 import type Database from 'better-sqlite3';
-import { isConsolidationEnabled, isSemanticEdgeLayerEnabled } from '../search/search-flags.js';
-import {
-  markEdgeVectorFailed,
-  upsertEdgeVector,
-} from './edge-vector-store.js';
-import { beginMaintenance } from './maintenance-marker.js';
+import { isConsolidationEnabled } from '../search/search-flags.js';
 import {
   updateEdge,
   getStaleEdges,
@@ -60,26 +55,6 @@ export interface ConsolidationResult {
   hebbian: { strengthened: number; decayed: number };
   stale: { flagged: number };
   edgeBounds: { rejected: number };
-  semanticEdges?: SemanticEdgeEmbeddingSummary;
-}
-
-export interface EdgeEmbeddingProvider {
-  embedEdgeText(text: string): readonly number[] | Float32Array | null;
-  modelId?: string;
-  profileKey?: string;
-}
-
-export interface ConsolidationCycleOptions {
-  edgeEmbeddingProvider?: EdgeEmbeddingProvider | null;
-  edgeEmbeddingLimit?: number;
-}
-
-export interface SemanticEdgeEmbeddingSummary {
-  attempted: number;
-  embedded: number;
-  skipped: number;
-  failed: number;
-  providerAvailable: boolean;
 }
 
 /* ───────────────────────────────────────────────────────────────
@@ -512,93 +487,6 @@ function scanReadOnly(database: Database.Database): {
   };
 }
 
-function runSemanticEdgeEmbeddingPass(
-  database: Database.Database,
-  options: ConsolidationCycleOptions = {},
-): SemanticEdgeEmbeddingSummary | null {
-  if (!isSemanticEdgeLayerEnabled()) {
-    return null;
-  }
-  const provider = options.edgeEmbeddingProvider ?? null;
-  if (!provider) {
-    return {
-      attempted: 0,
-      embedded: 0,
-      skipped: 0,
-      failed: 0,
-      providerAvailable: false,
-    };
-  }
-
-  let attempted = 0;
-  let embedded = 0;
-  let skipped = 0;
-  let failed = 0;
-  const limit = Math.max(1, Math.floor(options.edgeEmbeddingLimit ?? 100));
-
-  // The loop runs up to `limit` synchronous provider calls, any of which can
-  // block for seconds. A blocked event loop cannot fire the marker's unref'd
-  // refresh timer, so signal busy-by-design maintenance and refresh the lease at
-  // each row boundary; otherwise a slow provider lets a competing launcher treat
-  // this daemon as wedged and reap it mid-pass.
-  const maintenance = beginMaintenance('consolidation-edge-embedding');
-  try {
-    const rows = database.prepare(`
-      SELECT id, fact_text
-      FROM causal_edges
-      WHERE fact_text IS NOT NULL
-        AND TRIM(CAST(fact_text AS text)) != ''
-      ORDER BY id ASC
-      LIMIT ?
-    `).all(limit) as Array<{ id: number; fact_text: string | null }>;
-
-    for (const row of rows) {
-      maintenance.refresh();
-      const factText = row.fact_text?.trim();
-      if (!factText) {
-        skipped += 1;
-        continue;
-      }
-      attempted += 1;
-      try {
-        const embedding = provider.embedEdgeText(factText);
-        if (!embedding || embedding.length === 0) {
-          skipped += 1;
-          continue;
-        }
-        upsertEdgeVector(database, {
-          edgeId: row.id,
-          embedding,
-          factText,
-          modelId: provider.modelId,
-          profileKey: provider.profileKey,
-        });
-        embedded += 1;
-      } catch (error: unknown) {
-        const message = error instanceof Error ? error.message : String(error);
-        markEdgeVectorFailed(database, row.id, message, {
-          modelId: provider.modelId,
-          profileKey: provider.profileKey,
-        });
-        failed += 1;
-      }
-    }
-  } catch (error: unknown) {
-    const message = error instanceof Error ? error.message : String(error);
-    console.warn(`[consolidation] semantic edge embedding pass skipped: ${message}`);
-  } finally {
-    maintenance.end();
-  }
-
-  return {
-    attempted,
-    embedded,
-    skipped,
-    failed,
-    providerAvailable: true,
-  };
-}
-
 /**
  * Run a full N3-lite consolidation cycle:
  * 1. Contradiction scan
@@ -610,21 +498,18 @@ function runSemanticEdgeEmbeddingPass(
  */
 export function runConsolidationCycle(
   database: Database.Database,
-  options: ConsolidationCycleOptions = {},
 ): ConsolidationResult {
   // Contradiction scan + cluster surfacing + staleness + bounds (read-only)
   const { contradictions, stale, edgeBounds } = scanReadOnly(database);
 
   // Hebbian strengthening + decay
   const hebbian = runHebbianCycle(database);
-  const semanticEdges = runSemanticEdgeEmbeddingPass(database, options);
 
   return {
     contradictions,
     hebbian,
     stale,
     edgeBounds,
-    ...(semanticEdges ? { semanticEdges } : {}),
   };
 }
 
@@ -675,7 +560,6 @@ function isConsolidationDue(database: Database.Database): boolean {
  */
 export function runConsolidationCycleIfEnabled(
   database: Database.Database,
-  options: ConsolidationCycleOptions = {},
 ): ConsolidationResult | null {
   if (!isConsolidationEnabled()) return null;
 
@@ -720,18 +604,11 @@ export function runConsolidationCycleIfEnabled(
       beganImmediate = false;
     }
 
-    // Semantic-edge embedding runs only AFTER the immediate lock is released: its
-    // up-to-100 synchronous provider calls would otherwise hold BEGIN IMMEDIATE
-    // long enough to block writers and starve the maintenance lease. Idempotent
-    // upserts make this commit-then-embed ordering safe to re-run.
-    const semanticEdges = runSemanticEdgeEmbeddingPass(database, options);
-
     return {
       contradictions,
       hebbian,
       stale,
       edgeBounds,
-      ...(semanticEdges ? { semanticEdges } : {}),
     };
   } catch (err: unknown) {
     if (beganImmediate) {

@@ -29,7 +29,6 @@ import {
   type RetrievalClass,
 } from './retrieval-class-classifier.js';
 import {
-  isSummaryFusionLaneEnabled,
   isRetrievalClassRoutingEnabled,
 } from './search-flags.js';
 
@@ -77,7 +76,6 @@ interface QualityGapFallbackPlan {
 /** Stable default channels in execution order. */
 const BASE_CHANNELS: readonly ChannelName[] = ['vector', 'fts', 'bm25', 'graph', 'degree'] as const;
 const ALL_CHANNELS: readonly ChannelName[] = BASE_CHANNELS;
-const SUMMARY_FUSION_CHANNELS: readonly ChannelName[] = ['summary'] as const;
 
 /** Minimum required channels for safe routing. */
 const MIN_CHANNELS = 2;
@@ -120,20 +118,11 @@ const DEFAULT_ROUTING_CONFIG: ChannelRoutingConfig = {
 };
 
 function getAllChannels(): ChannelName[] {
-  return isSummaryFusionLaneEnabled()
-    ? [...BASE_CHANNELS, ...SUMMARY_FUSION_CHANNELS]
-    : [...BASE_CHANNELS];
+  return [...BASE_CHANNELS];
 }
 
 function getDefaultRoutingConfig(): ChannelRoutingConfig {
-  if (!isSummaryFusionLaneEnabled()) {
-    return DEFAULT_ROUTING_CONFIG;
-  }
-
-  return {
-    ...DEFAULT_ROUTING_CONFIG,
-    complex: [...DEFAULT_ROUTING_CONFIG.complex, ...SUMMARY_FUSION_CHANNELS],
-  };
+  return DEFAULT_ROUTING_CONFIG;
 }
 
 /* ───────────────────────────────────────────────────────────────

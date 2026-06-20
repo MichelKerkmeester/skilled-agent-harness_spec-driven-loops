@@ -38,19 +38,7 @@ import {
   twoPhaseRetrieval,
 } from './folder-relevance.js';
 import { computeDegreeScores, DEGREE_CHANNEL_WEIGHT } from './graph-search-fn.js';
-import {
-  getStrategyChannelWeight,
-  getStrategyForQuery as getArtifactStrategyForQuery,
-} from './artifact-routing.js';
-import {
-  queryCommunityMembersAsRankedList,
-  type CommunityRankedResult,
-} from './community-search.js';
 import { INTENT_LAMBDA_MAP, classifyIntent } from './intent-classifier.js';
-import {
-  querySummaryEmbeddingRows,
-  type SummaryRankedResult,
-} from './memory-summaries.js';
 import { resolveAbsoluteRelevance } from './pipeline/types.js';
 import {
   DEFAULT_PAGE_SIZE,
@@ -69,13 +57,10 @@ import {
   isCosineTopnReorderEnabled,
   isDegreeBoostEnabled,
   isDocscoreAggregationEnabled,
-  isEdgeVectorIndexEnabled,
   isMMREnabled,
   isSearchFallbackEnabled,
-  isSummaryFusionLaneEnabled,
   isTemporalEdgesEnabled,
 } from './search-flags.js';
-import { findSemanticEdgeNeighborCandidates } from '../graph/edge-semantic-retrieval.js';
 import { resolveFusionIntentContract } from './search-utils.js';
 import { fts5Bm25Search } from './sqlite-fts.js';
 import { parse_trigger_phrases, specFolderLikePattern } from './vector-index-types.js';
@@ -162,104 +147,6 @@ interface HybridSearchResult {
   source: string;
   title?: string;
   [key: string]: unknown;
-}
-
-type SummaryFusionInput = SummaryRankedResult | CommunityRankedResult;
-
-function mergeSummaryFusionLaneRows(
-  rows: SummaryFusionInput[],
-  limit: number,
-): HybridSearchResult[] {
-  const merged = new Map<string, HybridSearchResult & { summaryLaneSources?: string[] }>();
-
-  for (const row of rows) {
-    const key = canonicalResultId(row.id);
-    const score = typeof row.score === 'number' && Number.isFinite(row.score)
-      ? row.score
-      : typeof row.similarity === 'number' && Number.isFinite(row.similarity)
-        ? row.similarity
-        : 0;
-    const incomingSources = Array.isArray(row.summaryLaneSources)
-      ? row.summaryLaneSources.filter((source): source is string => typeof source === 'string')
-      : [row.source];
-    const existing = merged.get(key);
-
-    if (existing) {
-      existing.score = Math.max(existing.score, score);
-      existing.similarity = Math.max(
-        typeof existing.similarity === 'number' ? existing.similarity : 0,
-        score,
-      );
-      existing.summaryLaneSources = Array.from(new Set([
-        ...(existing.summaryLaneSources ?? []),
-        ...incomingSources,
-      ]));
-      continue;
-    }
-
-    merged.set(key, {
-      ...row,
-      id: row.id,
-      source: 'summary',
-      score,
-      similarity: score,
-      summaryLaneSources: Array.from(new Set(incomingSources)),
-    });
-  }
-
-  return Array.from(merged.values())
-    .sort((a, b) => {
-      if (b.score !== a.score) return b.score - a.score;
-      return canonicalResultId(a.id).localeCompare(canonicalResultId(b.id));
-    })
-    .slice(0, limit);
-}
-
-/**
- * Thematic intents span a topic where a summary / community candidate can
- * genuinely surface a bridging document, so the summary fusion lane stays active
- * for them. Every other intent is a known-item lookup — the user already named
- * the one document they want — where an extractive summary only competes for the
- * same top-K slots and displaces the exact doc. Per-class evaluation showed the
- * lane harming known-item recall (factual / find_spec / find_decision) with no
- * measured benefit anywhere on the current set, so the lane is class-gated to
- * thematic intents only.
- */
-const SUMMARY_LANE_THEMATIC_INTENTS: ReadonlySet<string> = new Set([
-  'understand',
-]);
-
-/**
- * Resolve the effective intent the same way fusion does — the caller-supplied
- * intent when present, otherwise the query-classified one. The default eval and
- * runtime path leaves options.intent undefined, so the classifier fallback is
- * what keeps the gate live on the path the retrieval eval measures.
- */
-function resolveSummaryFusionLaneIntent(
-  query: string,
-  intent: string | undefined,
-): string {
-  return intent ?? classifyIntent(query).intent;
-}
-
-/**
- * Whether the summary fusion lane should contribute candidates for this query.
- * Gating participation (not just fusion weight) is required: the lane's harm is
- * structural — its candidates enter dedup, the cross-channel bonus, and top-K
- * competition before any weight applies — so a down-weighted lane still displaces
- * the known-item target. Only thematic intents admit the lane.
- */
-function shouldRunSummaryFusionLane(query: string, intent: string | undefined): boolean {
-  return SUMMARY_LANE_THEMATIC_INTENTS.has(resolveSummaryFusionLaneIntent(query, intent));
-}
-
-function resolveSummaryFusionLaneWeight(
-  query: string,
-  intent: string | undefined,
-  options: HybridSearchOptions,
-): number {
-  const routing = getArtifactStrategyForQuery(query, options.specFolder, intent);
-  return getStrategyChannelWeight(routing.strategy, 'summary', 0.2);
 }
 
 type HardExclusionSource = 'archived-tier' | 'deprecated-tier';
@@ -1075,9 +962,6 @@ function getAllowedChannels(options: HybridSearchOptions): Set<ChannelName> {
   if (isBm25Enabled()) {
     allowed.add('bm25');
   }
-  if (isSummaryFusionLaneEnabled()) {
-    allowed.add('summary');
-  }
 
   if (options.useVector === false) allowed.delete('vector');
   if (options.useBm25 === false) allowed.delete('bm25');
@@ -1432,9 +1316,7 @@ async function collectAndFuseHybridResults(
     // When enabled, classifies query complexity and restricts channels to a
     // Subset (e.g., simple queries skip graph+degree). When disabled, all channels run.
     const routeResult = routeQuery(query, options.triggerPhrases);
-    const allPossibleChannels: ChannelName[] = isSummaryFusionLaneEnabled()
-      ? ['vector', 'fts', 'bm25', 'graph', 'degree', 'summary']
-      : ['vector', 'fts', 'bm25', 'graph', 'degree'];
+    const allPossibleChannels: ChannelName[] = ['vector', 'fts', 'bm25', 'graph', 'degree'];
     const activeChannels = options.forceAllChannels
       ? new Set<ChannelName>(allPossibleChannels)
       : new Set<ChannelName>(routeResult.channels);
@@ -1550,48 +1432,6 @@ async function collectAndFuseHybridResults(
       lists.push({ source: 'trigger', results: triggerChannelResults, weight: 1.4 });
     }
 
-    // A known-item intent targets one specific document the user already named,
-    // so admitting summary/community candidates to the pool only displaces that
-    // exact doc — and the displacement is structural (dedup, cross-channel
-    // bonus, candidate competition), not just a fusion-weight effect, so the lane
-    // is skipped entirely rather than merely down-weighted. Thematic intents keep
-    // it. The intent is resolved the same way fusion sees it (caller-supplied,
-    // else classified) so the gate is live on the default options.intent-less path.
-    if (
-      activeChannels.has('summary')
-      && isSummaryFusionLaneEnabled()
-      && db
-      && shouldRunSummaryFusionLane(query, options.intent)
-    ) {
-      try {
-        const laneLimit = options.limit || DEFAULT_LIMIT;
-        const scope = {
-          specFolder: options.specFolder,
-          tenantId: options.tenantId,
-          userId: options.userId,
-          agentId: options.agentId,
-        };
-        const summaryRows = embedding
-          ? querySummaryEmbeddingRows(db, embedding, laneLimit, scope)
-          : [];
-        const communityRows = queryCommunityMembersAsRankedList(query, db, laneLimit, scope);
-        const summaryLaneResults = mergeSummaryFusionLaneRows(
-          [...summaryRows, ...communityRows],
-          laneLimit,
-        );
-
-        if (summaryLaneResults.length > 0) {
-          lists.push({
-            source: 'summary',
-            results: summaryLaneResults,
-            weight: resolveSummaryFusionLaneWeight(query, options.intent, options),
-          });
-        }
-      } catch (_err: unknown) {
-        console.warn('[hybrid-search] Channel error:', _err instanceof Error ? _err.message : String(_err));
-      }
-    }
-
     // Graph channel — gated by query-complexity routing
     const useGraph = (options.useGraph !== false) && activeChannels.has('graph');
     if (useGraph && graphSearchFn) {
@@ -1603,28 +1443,13 @@ async function collectAndFuseHybridResults(
           intent: options.intent,
         });
 
-        // Semantic-edge consumer (SPECKIT_EDGE_VECTOR_INDEX). When the edge
-        // vectors are seeded, retrieve edge neighbors by query→fact_text vector
-        // similarity and fold them into the SAME graph source list. They carry
-        // source:'graph', so the Stage-C2 additive reserved-slot path treats
-        // them as graph-only and reserves them to the tail — they can extend
-        // recall but never displace a baseline lexical or vector hit. Off-flag
-        // or unseeded, this returns [] and the channel is unchanged.
-        const semanticEdgeCandidates = (embedding && isEdgeVectorIndexEnabled() && db)
-          ? findSemanticEdgeNeighborCandidates(db, embedding, {
-            limit: options.limit || DEFAULT_LIMIT,
-          })
-          : [];
+        const normalizedGraphResults: Array<Record<string, unknown> & { id: string | number }> =
+          graphResults.map((r: Record<string, unknown>) => ({ ...r, id: r.id as number | string }));
 
-        const mergedGraphResults: Array<Record<string, unknown> & { id: string | number }> = [
-          ...graphResults.map((r: Record<string, unknown>) => ({ ...r, id: r.id as number | string })),
-          ...semanticEdgeCandidates,
-        ];
-
-        if (mergedGraphResults.length > 0) {
+        if (normalizedGraphResults.length > 0) {
           graphMetrics.graphHits++;
-          graphMetrics.graphResultCount += mergedGraphResults.length;
-          lists.push({ source: 'graph', results: mergedGraphResults, weight: 0.5 });
+          graphMetrics.graphResultCount += normalizedGraphResults.length;
+          lists.push({ source: 'graph', results: normalizedGraphResults, weight: 0.5 });
         }
       } catch (_err: unknown) {
         // Non-critical — graph channel failure does not block pipeline
@@ -3158,10 +2983,6 @@ export const __testables = {
   checkDegradation,
   mergeResults,
   mergeRawCandidate,
-  resolveSummaryFusionLaneWeight,
-  shouldRunSummaryFusionLane,
-  resolveSummaryFusionLaneIntent,
-  SUMMARY_LANE_THEMATIC_INTENTS,
   setEnrichFusedResultsObserver(observer: (() => void) | null): void {
     enrichFusedResultsObserver = observer;
   },

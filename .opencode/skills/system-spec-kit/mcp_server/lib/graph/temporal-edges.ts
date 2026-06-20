@@ -7,7 +7,7 @@
 // Feature-gated via SPECKIT_TEMPORAL_EDGES (default OFF).
 import type Database from 'better-sqlite3';
 
-import { isEdgePresenceCurrentnessEnabled, isTemporalEdgesEnabled } from '../search/search-flags.js';
+import { isTemporalEdgesEnabled } from '../search/search-flags.js';
 
 // Closure-provenance marker value for edges retired by a direct local close
 // (e.g. contradiction auto-invalidation), as opposed to the lineage canonical
@@ -189,61 +189,5 @@ export function getValidEdges(db: Database.Database, nodeId: number): Edge[] {
     const message = error instanceof Error ? error.message : String(error);
     console.warn(`[temporal-edges] getValidEdges failed (fail-open): ${message}`);
     return [];
-  }
-}
-
-// ───────────────────────────────────────────────────────────────
-// 5. EDGE-PRESENCE CURRENTNESS RECONCILIATION
-// ───────────────────────────────────────────────────────────────
-
-export interface CurrentnessReconciliation {
-  /** Whether the reconciliation pass was permitted to run. */
-  enabled: boolean;
-  /** Open edges whose stray closure marker was cleared (marker must match presence). */
-  clearedOpenMarkers: number;
-  /** Closed edges whose missing marker was backfilled to 'legacy'. */
-  markedLegacyClosures: number;
-}
-
-/**
- * Reconcile the closure-provenance marker with edge presence so the lineage
- * canonical writer and the derived causal projection cannot fork into a third
- * source of truth. The invariant: an OPEN edge (invalid_at IS NULL) carries no
- * marker, and a CLOSED edge always carries one. Two stray states are repaired —
- * an open edge with a marker (clear it) and a closed edge without one (stamp
- * 'legacy'). Gated default-off behind SPECKIT_EDGE_PRESENCE_CURRENTNESS because
- * making edge presence the live retirement path must earn benchmark promotion;
- * when off this is a no-op, so default recall is byte-identical to today.
- */
-export function reconcileEdgePresenceCurrentness(db: Database.Database): CurrentnessReconciliation {
-  if (!isEdgePresenceCurrentnessEnabled()) {
-    return { enabled: false, clearedOpenMarkers: 0, markedLegacyClosures: 0 };
-  }
-
-  try {
-    ensureTemporalColumns(db);
-    const columns = new Set((db.prepare('PRAGMA table_info(causal_edges)').all() as Array<{ name: string }>)
-      .map((column) => column.name));
-    if (!columns.has('invalid_at') || !columns.has('invalidation_source')) {
-      return { enabled: true, clearedOpenMarkers: 0, markedLegacyClosures: 0 };
-    }
-
-    const clearedOpenMarkers = (db.prepare(`
-      UPDATE causal_edges
-      SET invalidation_source = NULL
-      WHERE invalid_at IS NULL AND invalidation_source IS NOT NULL
-    `) as Database.Statement).run().changes;
-
-    const markedLegacyClosures = (db.prepare(`
-      UPDATE causal_edges
-      SET invalidation_source = 'legacy'
-      WHERE invalid_at IS NOT NULL AND invalidation_source IS NULL
-    `) as Database.Statement).run().changes;
-
-    return { enabled: true, clearedOpenMarkers, markedLegacyClosures };
-  } catch (error: unknown) {
-    const message = error instanceof Error ? error.message : String(error);
-    console.warn(`[temporal-edges] reconcileEdgePresenceCurrentness failed (fail-open): ${message}`);
-    return { enabled: true, clearedOpenMarkers: 0, markedLegacyClosures: 0 };
   }
 }

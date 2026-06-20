@@ -3,8 +3,7 @@
 // ───────────────────────────────────────────────────────────────
 // Feature catalog: Implicit feedback log
 // Records implicit feedback signals from search/save interactions
-// into a shadow-only SQLite table. An opt-in bridge can mirror
-// usefulness signals into adaptive feedback rows.
+// into a shadow-only SQLite table.
 //
 // Feature flag: SPECKIT_IMPLICIT_FEEDBACK_LOG (default ON, graduated)
 // Signal confidence tiers:
@@ -12,8 +11,6 @@
 //   medium  — query_reformulated (implicit relevance dissatisfaction)
 //   weak    — search_shown, same_topic_requery (passive exposure)
 import type Database from 'better-sqlite3';
-import { recordAdaptiveSignal } from '../cognitive/adaptive-ranking.js';
-import { isProceduralOutcomeEmitterEnabled } from '../search/search-flags.js';
 
 /* ───────────────────────────────────────────────────────────────
    1. TYPES
@@ -99,12 +96,6 @@ const EVENT_TYPE_CONFIDENCE: Record<FeedbackEventType, FeedbackConfidence> = {
   search_shown:         'weak',
 };
 
-const FEEDBACK_TO_ADAPTIVE_SIGNAL: Partial<Record<FeedbackEventType, 'outcome' | 'correction'>> = {
-  result_cited: 'outcome',
-  follow_on_tool_use: 'outcome',
-  query_reformulated: 'correction',
-};
-
 /**
  * Resolve confidence for a feedback event.
  * Uses the caller-supplied value when present, otherwise infers from type.
@@ -128,37 +119,6 @@ export function resolveConfidence(
 export function isImplicitFeedbackLogEnabled(): boolean {
   const val = process.env.SPECKIT_IMPLICIT_FEEDBACK_LOG?.toLowerCase().trim();
   return val !== 'false' && val !== '0';
-}
-
-function mirrorAdaptiveOutcomeSignal(
-  db: Database.Database,
-  event: FeedbackEvent,
-  confidence: FeedbackConfidence,
-): void {
-  try {
-    if (!isProceduralOutcomeEmitterEnabled()) return;
-
-    const signalType = FEEDBACK_TO_ADAPTIVE_SIGNAL[event.type];
-    if (!signalType) return;
-
-    const memoryId = Number(event.memoryId);
-    if (!Number.isSafeInteger(memoryId) || memoryId <= 0) return;
-
-    recordAdaptiveSignal(db, {
-      memoryId,
-      signalType,
-      signalValue: 1,
-      query: event.queryId,
-      actor: event.sessionId ?? 'feedback-ledger',
-      metadata: {
-        feedbackType: event.type,
-        confidence,
-      },
-    });
-  } catch (err: unknown) {
-    const message = err instanceof Error ? err.message : String(err);
-    console.warn('[feedback-ledger] mirrorAdaptiveOutcomeSignal error:', message);
-  }
 }
 
 /* ───────────────────────────────────────────────────────────────
@@ -243,8 +203,6 @@ export function logFeedbackEvent(
       event.timestamp,
       event.sessionId ?? null
     );
-
-    mirrorAdaptiveOutcomeSignal(db, event, confidence);
 
     return (result as { lastInsertRowid: number | bigint }).lastInsertRowid as number;
   } catch (err: unknown) {

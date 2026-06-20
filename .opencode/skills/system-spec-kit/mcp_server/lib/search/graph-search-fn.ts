@@ -7,7 +7,6 @@
 import { sanitizeFTS5Query } from './bm25-index.js';
 import { queryHierarchyMemories } from './spec-folder-hierarchy.js';
 import { escapeLikePattern } from './vector-index-types.js';
-import { isCardinalityPenaltyEnabled } from './search-flags.js';
 import { registerDatabaseRebindListener } from '../../core/db-state.js';
 
 import type Database from 'better-sqlite3';
@@ -547,29 +546,10 @@ function computeTypedDegreesBatch(
   return rawDegrees;
 }
 
-/** Quadratic damping coefficient for the cardinality penalty (Mem0-derived). */
-const CARDINALITY_PENALTY_COEFFICIENT = 0.001;
-
-/**
- * Cardinality penalty for a node linked to `numLinked` other nodes.
- *
- * Damps high-cardinality hub nodes via 1/(1 + 0.001·(numLinked−1)²). Nodes with
- * 0 or 1 links are unpenalized (returns 1.0); the penalty grows quadratically so
- * a generic hub connected to many nodes is pulled below a sharply-connected node.
- *
- * @param numLinked - Number of distinct nodes linked to this node.
- * @returns A multiplier in (0, 1].
- */
-function cardinalityPenalty(numLinked: number): number {
-  if (!Number.isFinite(numLinked) || numLinked <= 1) return 1;
-  const excess = numLinked - 1;
-  return 1 / (1 + CARDINALITY_PENALTY_COEFFICIENT * excess * excess);
-}
-
 /**
  * Count distinct linked neighbours for each candidate node in one SQL round-trip.
  * A node's neighbour is any node it shares a causal edge with (as source or
- * target). Used only when the cardinality penalty is enabled.
+ * target).
  */
 function computeLinkedNodeCountsBatch(
   database: Database.Database,
@@ -607,41 +587,11 @@ function computeLinkedNodeCountsBatch(
 }
 
 /**
- * Apply the cardinality penalty to already-computed boost scores in place.
- *
- * Only nodes with a positive boost are considered (constitutional/zero nodes are
- * untouched). Computed on the final scores rather than the cache so the cached
- * per-node boosts stay penalty-free and the flag can toggle between calls. Fails
- * closed: a lookup error leaves scores unchanged.
- */
-function applyCardinalityPenaltyToScores(
-  database: Database.Database,
-  results: Map<string, number>
-): void {
-  const ids: string[] = [];
-  for (const [id, boost] of results) {
-    if (boost > 0) ids.push(id);
-  }
-  if (ids.length === 0) return;
-
-  try {
-    const linkedCounts = computeLinkedNodeCountsBatch(database, ids);
-    for (const id of ids) {
-      const boost = results.get(id) ?? 0;
-      results.set(id, boost * cardinalityPenalty(linkedCounts.get(id) ?? 0));
-    }
-  } catch (_err: unknown) {
-    // Penalty is best-effort: on lookup failure keep the un-penalized scores.
-  }
-}
-
-/**
  * Batch compute degree boost scores for multiple memory IDs.
  *
  * - Excludes constitutional memories (returns 0 to prevent artificial inflation)
  * - Uses in-memory cache for repeated lookups
  * - Computes global max once per batch for normalization
- * - Optionally damps high-cardinality hub nodes (cardinality penalty, default-off)
  *
  * @param database  - An open better-sqlite3 Database instance
  * @param memoryIds - Array of memory IDs to compute scores for
@@ -711,10 +661,6 @@ function computeDegreeScores(
     }
 
     results.set(key, nodeBoostCache.get(key) ?? 0);
-  }
-
-  if (isCardinalityPenaltyEnabled()) {
-    applyCardinalityPenaltyToScores(database, results);
   }
 
   return results;
@@ -797,7 +743,6 @@ export {
   computeDegreeScores,
   clearDegreeCache,
   clearDegreeCacheForDb,
-  // Cardinality penalty (degree-channel damping, default-off)
-  cardinalityPenalty,
+  // Distinct-neighbour counting over the causal-edge graph
   computeLinkedNodeCountsBatch,
 };

@@ -10,7 +10,7 @@ import * as causalEdges from '../lib/storage/causal-edges.js';
 import * as sessionManager from '../lib/session/session-manager.js';
 import * as intentClassifier from '../lib/search/intent-classifier.js';
 // TierClassifier, crossEncoder imports removed — only used by legacy V1 pipeline.
-import { isSessionBoostEnabled, isCausalBoostEnabled, isCommunitySearchFallbackEnabled, isDualRetrievalEnabled, isIntentAutoProfileEnabled, isSummaryFusionLaneEnabled } from '../lib/search/search-flags.js';
+import { isSessionBoostEnabled, isCausalBoostEnabled, isCommunitySearchFallbackEnabled, isDualRetrievalEnabled, isIntentAutoProfileEnabled } from '../lib/search/search-flags.js';
 import { searchCommunities } from '../lib/search/community-search.js';
 // 4-stage pipeline architecture
 import { executePipeline } from '../lib/search/pipeline/index.js';
@@ -366,7 +366,6 @@ interface SearchArgs {
 interface CommunityFallbackDecisionInput {
   dualRetrievalEnabled: boolean;
   communityFallbackEnabled: boolean;
-  summaryFusionLaneEnabled: boolean;
   query: string;
   retrievalLevel: 'local' | 'global' | 'auto';
 }
@@ -377,13 +376,11 @@ interface CommunityFallbackDecisionInput {
 function shouldRunCommunityFallback({
   dualRetrievalEnabled,
   communityFallbackEnabled,
-  summaryFusionLaneEnabled,
   query,
   retrievalLevel,
 }: CommunityFallbackDecisionInput): boolean {
   return dualRetrievalEnabled
     && communityFallbackEnabled
-    && !summaryFusionLaneEnabled
     && query.length > 0
     && (retrievalLevel === 'global' || retrievalLevel === 'auto');
 }
@@ -1137,7 +1134,6 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
   const causalEdgesGenerationForCache = enableCausalBoost
     ? causalEdges.getCausalEdgesGeneration()
     : undefined;
-  const summaryFusionLaneEnabled = isSummaryFusionLaneEnabled();
 
   // Build cache key args
   const cacheArgs = buildCacheArgs({
@@ -1172,7 +1168,6 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     cacheVersion: CANONICAL_READER_CACHE_VERSION,
     causalEdgesGeneration: causalEdgesGenerationForCache,
     folderBoost,
-    summaryFusionLaneEnabled,
   });
 
   let _evalChannelPayloads: EvalChannelPayload[] = [];
@@ -1235,7 +1230,6 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     const shouldRunCommunitySearch = shouldRunCommunityFallback({
       dualRetrievalEnabled: isDualRetrievalEnabled(),
       communityFallbackEnabled: isCommunitySearchFallbackEnabled(),
-      summaryFusionLaneEnabled,
       query: effectiveQuery,
       retrievalLevel,
     });

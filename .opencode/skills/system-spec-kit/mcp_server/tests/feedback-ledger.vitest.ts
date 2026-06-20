@@ -15,7 +15,6 @@ import {
   EVENT_TYPE_CONFIDENCE,
 } from '../lib/feedback/feedback-ledger';
 import type { FeedbackEvent, FeedbackEventType } from '../lib/feedback/feedback-ledger';
-import { ensureAdaptiveTables } from '../lib/cognitive/adaptive-ranking';
 
 /* ───────────────────────────────────────────────────────────────
    HELPERS
@@ -247,48 +246,6 @@ describe('Feedback Event Ledger — logFeedbackEvent', () => {
     });
     const events = getFeedbackEvents(db);
     expect(events[0].confidence).toBe('medium');
-  });
-
-  it('keeps adaptive outcome mirroring off by default', () => {
-    vi.stubEnv('SPECKIT_MEMORY_ADAPTIVE_RANKING', 'true');
-    const db = createTestDb();
-    ensureAdaptiveTables(db);
-
-    logFeedbackEvent(db, makeEvent({
-      type: 'result_cited',
-      memoryId: '42',
-      confidence: 'strong',
-    }));
-
-    expect(db.prepare('SELECT COUNT(*) AS count FROM adaptive_signal_events').get()).toEqual({ count: 0 });
-  });
-
-  it('mirrors strong usefulness and reformulation signals when explicitly enabled', () => {
-    vi.stubEnv('SPECKIT_MEMORY_ADAPTIVE_RANKING', 'true');
-    vi.stubEnv('SPECKIT_PROCEDURAL_OUTCOME_EMITTER', 'true');
-    const db = createTestDb();
-
-    logFeedbackEvent(db, makeEvent({
-      type: 'result_cited',
-      memoryId: '42',
-      confidence: 'strong',
-      sessionId: 'session-a',
-    }));
-    logFeedbackEvent(db, makeEvent({
-      type: 'query_reformulated',
-      memoryId: '43',
-      confidence: 'medium',
-      sessionId: 'session-b',
-    }));
-
-    expect(db.prepare(`
-      SELECT memory_id, signal_type, signal_value, query, actor
-      FROM adaptive_signal_events
-      ORDER BY memory_id
-    `).all()).toEqual([
-      { memory_id: 42, signal_type: 'outcome', signal_value: 1, query: 'query-001', actor: 'session-a' },
-      { memory_id: 43, signal_type: 'correction', signal_value: 1, query: 'query-001', actor: 'session-b' },
-    ]);
   });
 });
 

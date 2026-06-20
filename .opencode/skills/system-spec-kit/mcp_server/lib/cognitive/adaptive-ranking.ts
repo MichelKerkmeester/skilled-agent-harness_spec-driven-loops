@@ -5,11 +5,6 @@
 // Shadow-mode adaptive ranking with bounded feedback loops,
 // signal aggregation, threshold tuning, and promotion gates.
 import type Database from 'better-sqlite3';
-import {
-  computeCenteredReliabilityEvidence,
-  type CenteredReliabilityEvidence,
-} from '../scoring/bayesian-scorer.js';
-import { isProceduralReliabilityRecallEnabled } from '../search/search-flags.js';
 
 /**
  * Adaptive feedback channels that influence shadow ranking proposals.
@@ -93,13 +88,6 @@ const ADAPTIVE_SIGNAL_WEIGHTS: Record<AdaptiveSignalType, number> = {
   outcome: 0.02,
   correction: -0.03,
 };
-/**
- * Scalar that converts a prior-centered reliability signal into a score delta.
- * Defaulted to the bounded-delta budget so a fully-confident, fully-reliable
- * procedure can claim the whole adaptive band; the ±maxAdaptiveDelta clamp still
- * caps the blast radius regardless of how this scalar is tuned.
- */
-const RELIABILITY_STRENGTH = MAX_ADAPTIVE_DELTA;
 const DEFAULT_ADAPTIVE_THRESHOLDS: AdaptiveThresholdSnapshot = {
   maxAdaptiveDelta: MAX_ADAPTIVE_DELTA,
   minSignalsForPromotion: MIN_SIGNALS_FOR_PROMOTION,
@@ -125,12 +113,6 @@ interface AdaptiveThresholdRow {
   min_signals_for_promotion: number;
   updated_at?: string;
   last_tune_watermark?: string | null;
-}
-
-interface ProceduralReliabilityRow {
-  memory_id: number;
-  successes: number;
-  failures: number;
 }
 
 function getCachedThresholdForDb(database?: object): AdaptiveThresholdCacheEntry | undefined {
@@ -334,18 +316,6 @@ function compareAdaptiveRows(
 
   // Use relational comparison instead of subtraction so very large integer ids stay deterministic above 2^53.
   return a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
-}
-
-function isProceduralCandidate(row: Record<string, unknown>): boolean {
-  const labels = [
-    row.memory_type,
-    row.memoryType,
-    row.document_type,
-    row.documentType,
-    row.type,
-  ];
-
-  return labels.some((value) => typeof value === 'string' && value.trim().toLowerCase() === 'procedural');
 }
 
 function isAdaptiveEnabled(): boolean {
@@ -738,53 +708,6 @@ function getSignalDeltas(database: Database.Database, memoryIds: readonly number
   return deltaMap;
 }
 
-function getProceduralReliabilityEvidence(
-  database: Database.Database,
-  results: Array<Record<string, unknown> & { id: number }>,
-): Map<number, CenteredReliabilityEvidence> {
-  if (!isProceduralReliabilityRecallEnabled()) return new Map();
-
-  const proceduralIds = results
-    .filter(isProceduralCandidate)
-    .map((row) => row.id);
-  if (proceduralIds.length === 0) return new Map();
-
-  ensureAdaptiveTables(database);
-  const rows = database.prepare(`
-    SELECT
-      memory_id,
-      COALESCE(SUM(CASE WHEN signal_type = 'outcome' THEN signal_value ELSE 0 END), 0) AS successes,
-      COALESCE(SUM(CASE WHEN signal_type = 'correction' THEN signal_value ELSE 0 END), 0) AS failures
-    FROM adaptive_signal_events
-    WHERE memory_id IN (${proceduralIds.map(() => '?').join(', ')})
-    GROUP BY memory_id
-  `).all(...proceduralIds) as ProceduralReliabilityRow[];
-
-  const evidenceByMemory = new Map(rows.map((row) => [row.memory_id, row]));
-  const reliabilityMap = new Map<number, CenteredReliabilityEvidence>();
-  for (const memoryId of proceduralIds) {
-    const evidence = evidenceByMemory.get(memoryId);
-    reliabilityMap.set(memoryId, computeCenteredReliabilityEvidence({
-      successes: evidence?.successes ?? 0,
-      failures: evidence?.failures ?? 0,
-    }));
-  }
-
-  return reliabilityMap;
-}
-
-/**
- * Translate a procedure's reliability evidence into a bounded, signed score delta.
- *
- * The delta is centered on the prior mean and scaled by the evidence weight, so a
- * procedure that beats its prior is promoted, one that lags is demoted, and a
- * prior-equal or evidence-free procedure stays neutral. The returned value is the
- * pre-clamp contribution; the ±maxAdaptiveDelta clamp at the call site bounds it.
- */
-function computeReliabilityDelta(evidence: CenteredReliabilityEvidence, score: number): number {
-  return RELIABILITY_STRENGTH * evidence.centered * evidence.evidenceWeight * score;
-}
-
 /**
  * Build a bounded shadow-ranking proposal for a production result set.
  *
@@ -802,7 +725,6 @@ export function buildAdaptiveShadowProposal(
   if (mode === 'disabled' || results.length === 0) return null;
   const thresholds = getAdaptiveThresholdConfig(database);
   const signalDeltaMap = getSignalDeltas(database, results.map((row) => row.id));
-  const reliabilityEvidenceMap = getProceduralReliabilityEvidence(database, results);
 
   const production = results.map((row, index) => ({
     ...row,
@@ -816,11 +738,7 @@ export function buildAdaptiveShadowProposal(
   }));
 
   const shadow = production.map((row) => {
-    const reliabilityEvidence = reliabilityEvidenceMap.get(row.id);
-    const reliabilityDelta = reliabilityEvidence === undefined
-      ? 0
-      : computeReliabilityDelta(reliabilityEvidence, row.score);
-    const rawDelta = (signalDeltaMap.get(row.id) ?? 0) + reliabilityDelta;
+    const rawDelta = signalDeltaMap.get(row.id) ?? 0;
     const delta = Math.max(-thresholds.maxAdaptiveDelta, Math.min(thresholds.maxAdaptiveDelta, rawDelta));
     return {
       ...row,

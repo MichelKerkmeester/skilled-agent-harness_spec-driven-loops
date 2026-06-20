@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────
 // Covers:
 //   - Declarative regex entity config (always-on, parity with built-in rules)
-//   - Entity cardinality penalty on the degree channel (default-off)
+//   - Distinct-neighbour counting over the causal-edge graph
 
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { readFileSync, writeFileSync, rmSync } from 'node:fs';
@@ -20,11 +20,7 @@ import {
 import type { EntityExtractionRule } from '../lib/extraction/entity-extractor.js';
 
 import {
-  computeDegreeScores,
-  clearDegreeCache,
-  cardinalityPenalty,
   computeLinkedNodeCountsBatch,
-  DEGREE_BOOST_CAP,
 } from '../lib/search/graph-search-fn.js';
 
 const ASSET_PATH = fileURLToPath(
@@ -32,7 +28,6 @@ const ASSET_PATH = fileURLToPath(
 );
 
 const ENV_KEY = 'SPECKIT_ENTITY_CONFIG_PATH';
-const PENALTY_FLAG = 'SPECKIT_CARDINALITY_PENALTY';
 
 // ===============================================================
 // 1. Declarative regex entity config (candidate 4)
@@ -188,35 +183,6 @@ function createGraphDb(): InstanceType<typeof Database> {
   return db;
 }
 
-describe('cardinalityPenalty (pure math)', () => {
-  it('returns 1.0 (no penalty) at n=0 and n=1', () => {
-    expect(cardinalityPenalty(0)).toBe(1);
-    expect(cardinalityPenalty(1)).toBe(1);
-  });
-
-  it('returns 1.0 for negative / non-finite inputs', () => {
-    expect(cardinalityPenalty(-5)).toBe(1);
-    expect(cardinalityPenalty(Number.NaN)).toBe(1);
-  });
-
-  it('matches the quadratic formula for known cardinalities', () => {
-    expect(cardinalityPenalty(2)).toBeCloseTo(1 / 1.001, 9);
-    expect(cardinalityPenalty(10)).toBeCloseTo(1 / 1.081, 9);
-    expect(cardinalityPenalty(50)).toBeCloseTo(1 / 3.401, 9);
-  });
-
-  it('is monotonically decreasing for n >= 1 and bounded in (0, 1]', () => {
-    let prev = cardinalityPenalty(1);
-    for (let n = 2; n <= 100; n++) {
-      const v = cardinalityPenalty(n);
-      expect(v).toBeLessThan(prev);
-      expect(v).toBeGreaterThan(0);
-      expect(v).toBeLessThanOrEqual(1);
-      prev = v;
-    }
-  });
-});
-
 describe('computeLinkedNodeCountsBatch', () => {
   let db: InstanceType<typeof Database>;
   beforeEach(() => {
@@ -241,65 +207,5 @@ describe('computeLinkedNodeCountsBatch', () => {
 
   it('returns an empty map for empty input', () => {
     expect(computeLinkedNodeCountsBatch(db, []).size).toBe(0);
-  });
-});
-
-describe('cardinality penalty wiring in computeDegreeScores', () => {
-  let db: InstanceType<typeof Database>;
-
-  beforeEach(() => {
-    db = createGraphDb();
-    const insertMem = db.prepare('INSERT INTO memory_index (id, spec_folder, file_path, title, importance_tier) VALUES (?, ?, ?, ?, ?)');
-    for (let i = 1; i <= 12; i++) {
-      insertMem.run(i, 'test', `/mem/${i}.md`, `Memory ${i}`, 'normal');
-    }
-    const insertEdge = db.prepare('INSERT INTO causal_edges (source_id, target_id, relation, strength) VALUES (?, ?, ?, ?)');
-    // Node 1 is a hub: linked to 10 distinct neighbours (2..11).
-    for (let i = 2; i <= 11; i++) {
-      insertEdge.run('1', String(i), 'caused', 1.0);
-    }
-    // Node 12 has a single link (low cardinality).
-    insertEdge.run('12', '2', 'caused', 1.0);
-    clearDegreeCache();
-  });
-
-  afterEach(() => {
-    delete process.env[PENALTY_FLAG];
-    clearDegreeCache();
-    db.close();
-  });
-
-  it('is byte-identical with the flag off (default)', () => {
-    delete process.env[PENALTY_FLAG];
-    clearDegreeCache();
-    const off = computeDegreeScores(db, [1, 12]);
-    // Hub node keeps full (capped) boost when the penalty is disabled.
-    expect(off.get('1')).toBeGreaterThan(0);
-    expect(off.get('1')).toBeLessThanOrEqual(DEGREE_BOOST_CAP);
-  });
-
-  it('damps a high-cardinality hub when the flag is on', () => {
-    clearDegreeCache();
-    delete process.env[PENALTY_FLAG];
-    const off = computeDegreeScores(db, [1]).get('1') ?? 0;
-
-    clearDegreeCache();
-    process.env[PENALTY_FLAG] = 'true';
-    const on = computeDegreeScores(db, [1]).get('1') ?? 0;
-
-    expect(on).toBeLessThan(off);
-    expect(on).toBeCloseTo(off * cardinalityPenalty(10), 9);
-  });
-
-  it('leaves a low-cardinality node (1 link) unpenalized', () => {
-    clearDegreeCache();
-    delete process.env[PENALTY_FLAG];
-    const off = computeDegreeScores(db, [12]).get('12') ?? 0;
-
-    clearDegreeCache();
-    process.env[PENALTY_FLAG] = 'true';
-    const on = computeDegreeScores(db, [12]).get('12') ?? 0;
-
-    expect(on).toBe(off);
   });
 });

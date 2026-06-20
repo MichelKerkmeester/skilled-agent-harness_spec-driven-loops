@@ -9,8 +9,6 @@
 // Flag-to-consumer map under test:
 //   SPECKIT_WORLD_SUMMARY_PRELUDE          -> buildWorldSummaryPrelude + prepend
 //   SPECKIT_AGENTIC_RECALL                 -> runAgenticLoop governor gate
-//   SPECKIT_PROCEDURAL_RELIABILITY_RECALL  -> getProceduralReliabilityMultipliers
-//                                              via buildAdaptiveShadowProposal
 
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import Database from 'better-sqlite3';
@@ -19,22 +17,13 @@ import { buildWorldSummaryPrelude } from '../lib/search/memory-summaries';
 import { prependWorldSummaryPreludeToResult } from '../handlers/memory-context';
 import { runAgenticLoop } from '../lib/search/agentic-loop-governor';
 import {
-  buildAdaptiveShadowProposal,
-  ensureAdaptiveTables,
-  recordAdaptiveSignal,
-} from '../lib/cognitive/adaptive-ranking';
-import {
   isAgenticRecallEnabled,
-  isProceduralReliabilityRecallEnabled,
   isWorldSummaryPreludeEnabled,
 } from '../lib/search/search-flags';
 
 const ENV_KEYS = [
   'SPECKIT_WORLD_SUMMARY_PRELUDE',
   'SPECKIT_AGENTIC_RECALL',
-  'SPECKIT_PROCEDURAL_RELIABILITY_RECALL',
-  'SPECKIT_MEMORY_ADAPTIVE_RANKING',
-  'SPECKIT_MEMORY_ADAPTIVE_MODE',
 ] as const;
 
 const ORIGINAL_ENV: Partial<Record<typeof ENV_KEYS[number], string | undefined>> = {};
@@ -116,21 +105,17 @@ afterEach(() => {
 });
 
 describe('recall-mode flag defaults', () => {
-  it('runs the world-summary prelude on by default while procedural reliability recall and agentic recall stay off', () => {
+  it('runs the world-summary prelude on by default while agentic recall stays off', () => {
     // World-summary prelude graduated to default-on (a no-displacement append
-    // grounding aid), so env-absence means ON. Procedural reliability recall
-    // reverted to default-off — its multiplier moves only synthetic near-ties
-    // with zero real-data effect. Agentic recall is still an unwired scaffold.
+    // grounding aid), so env-absence means ON. Agentic recall is still an
+    // unwired scaffold and stays off until opted in.
     expect(isWorldSummaryPreludeEnabled()).toBe(true);
-    expect(isProceduralReliabilityRecallEnabled()).toBe(false);
     expect(isAgenticRecallEnabled()).toBe(false);
   });
 
-  it('honors an explicit false override on the prelude and an opt-in on procedural reliability recall', () => {
+  it('honors an explicit false override on the prelude', () => {
     process.env.SPECKIT_WORLD_SUMMARY_PRELUDE = 'false';
-    process.env.SPECKIT_PROCEDURAL_RELIABILITY_RECALL = 'true';
     expect(isWorldSummaryPreludeEnabled()).toBe(false);
-    expect(isProceduralReliabilityRecallEnabled()).toBe(true);
   });
 });
 
@@ -235,40 +220,3 @@ describe('SPECKIT_AGENTIC_RECALL ON-path behavior change', () => {
   });
 });
 
-describe('SPECKIT_PROCEDURAL_RELIABILITY_RECALL ON-path behavior change', () => {
-  it('applies a reliability score delta to procedural rows only when enabled', () => {
-    const fixtureDb = db as InstanceType<typeof Database>;
-    process.env.SPECKIT_MEMORY_ADAPTIVE_RANKING = 'true';
-    process.env.SPECKIT_MEMORY_ADAPTIVE_MODE = 'shadow';
-    ensureAdaptiveTables(fixtureDb);
-
-    // Outcome evidence so the reliability multiplier has a signal to act on.
-    recordAdaptiveSignal(fixtureDb, {
-      memoryId: 1,
-      signalType: 'outcome',
-      signalValue: 1,
-      actor: 'context-recall-flags-test',
-    });
-
-    const results = [{ id: 1, score: 0.5, similarity: 0.5, title: 'Agentic recall governor bounds', memory_type: 'procedural' }];
-
-    // Flag OFF: getProceduralReliabilityMultipliers returns an empty map, so the
-    // reliability contribution to scoreDelta is zero.
-    process.env.SPECKIT_PROCEDURAL_RELIABILITY_RECALL = 'false';
-    expect(isProceduralReliabilityRecallEnabled()).toBe(false);
-    const offProposal = buildAdaptiveShadowProposal(fixtureDb, 'agentic recall governor', results);
-    const offDelta = offProposal?.rows.find((row) => row.memoryId === 1)?.scoreDelta ?? 0;
-
-    // Flag ON: the multiplier is applied, moving the procedural row's score delta.
-    process.env.SPECKIT_PROCEDURAL_RELIABILITY_RECALL = 'true';
-    expect(isProceduralReliabilityRecallEnabled()).toBe(true);
-    const onProposal = buildAdaptiveShadowProposal(fixtureDb, 'agentic recall governor', results);
-    const onDelta = onProposal?.rows.find((row) => row.memoryId === 1)?.scoreDelta ?? 0;
-
-    expect(offProposal).not.toBeNull();
-    expect(onProposal).not.toBeNull();
-    // Contract: reliability evidence changes the procedural row's shadow score
-    // delta only when the flag is enabled.
-    expect(onDelta).not.toBe(offDelta);
-  });
-});
