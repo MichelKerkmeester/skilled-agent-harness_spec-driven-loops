@@ -250,6 +250,7 @@ describe('derived id provenance', () => {
   it('leaves generated writes byte-compatible when the flag is off', () => {
     const db = createDbWithDerivedId();
     try {
+      process.env[FLAG_NAME] = 'false';
       causalEdges.init(db);
 
       const edgeId = causalEdges.insertEdge(

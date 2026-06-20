@@ -95,7 +95,10 @@ describe('memory retention sweep feedback learning', () => {
     vi.unstubAllEnvs();
   });
 
-  it('leaves the default-off sweep result and mutations on the existing path', () => {
+  it('leaves the disabled-flag sweep result and mutations on the existing path', () => {
+    // Retention forgetting is now default-ON, so the existing-path assertion
+    // must pin the flag OFF explicitly to exercise the unchanged sweep.
+    vi.stubEnv('SPECKIT_RETENTION_FORGETTING_V1', 'false');
     vi.stubEnv('SPECKIT_FEEDBACK_RETENTION_MODE', 'active');
     const db = createMemoryIndexTestDatabase({ includeContentColumns: true, includeRetentionColumns: true });
     insertMemory(db, 1, 'normal');

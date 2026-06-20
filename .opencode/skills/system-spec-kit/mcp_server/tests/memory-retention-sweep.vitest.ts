@@ -611,10 +611,10 @@ describe('memory retention sweep', () => {
       ]);
     });
 
-    it('keeps live-edge protection default-off and ignores invalidated incoming edges', () => {
+    it('keeps live-edge protection off when explicitly disabled and ignores invalidated incoming edges', () => {
       const db = createMemoryIndexTestDatabase({ includeContentColumns: true, includeWorkingMemory: true });
       db.exec('ALTER TABLE causal_edges ADD COLUMN invalid_at TEXT');
-      insertMemory(db, 1, isoOffset(-3_600_000), 'default off');
+      insertMemory(db, 1, isoOffset(-3_600_000), 'explicit off');
       insertMemory(db, 2, isoOffset(-3_600_000), 'invalidated');
       db.prepare(`
         INSERT INTO causal_edges (source_id, target_id, relation, invalid_at)
@@ -625,14 +625,17 @@ describe('memory retention sweep', () => {
         VALUES ('99', '2', 'supports', '2026-06-10T00:00:00.000Z')
       `).run();
 
-      const defaultOff = withRetentionForgettingFlag(undefined, () => (
+      // Retention forgetting is now default-ON, so the off path is reached by an
+      // explicit 'false' rather than by absence: a live incoming edge is then
+      // ignored entirely.
+      const explicitlyOff = withRetentionForgettingFlag('false', () => (
         __retentionSweepTestables.hasLiveIncomingRetentionEdge(db, 1)
       ));
       const invalidated = withRetentionForgettingFlag('true', () => (
         __retentionSweepTestables.hasLiveIncomingRetentionEdge(db, 2)
       ));
 
-      expect(defaultOff).toBe(false);
+      expect(explicitlyOff).toBe(false);
       expect(invalidated).toBe(false);
     });
   });

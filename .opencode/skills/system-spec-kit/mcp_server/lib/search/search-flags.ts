@@ -635,11 +635,14 @@ export function isEmptyResultRecoveryEnabled(): boolean {
 
 /**
  * Retention forgetting safety layer.
- * Default: FALSE. Set SPECKIT_RETENTION_FORGETTING_V1=true to enable the
- * conservative spare-only retention axes and live incoming-edge protection.
+ * Default: TRUE (graduated). A safety layer that only ever over-protects: OFF
+ * drops the wrong rows while ON spares them, so DROP precision and keep-set
+ * protection both reach 1.0 with recall held. Set
+ * SPECKIT_RETENTION_FORGETTING_V1=false to disable the conservative spare-only
+ * retention axes and live incoming-edge protection.
  */
 export function isRetentionForgettingEnabled(): boolean {
-  return isOptInEnabled('SPECKIT_RETENTION_FORGETTING_V1');
+  return isFeatureEnabled('SPECKIT_RETENTION_FORGETTING_V1');
 }
 
 /**
@@ -891,11 +894,14 @@ export function isProceduralReliabilityRecallEnabled(): boolean {
 
 /**
  * Content-addressed identity for generated causal edges.
- * Default: FALSE (schema-gated). Set SPECKIT_DERIVED_ID_PROVENANCE=true to enable
- * write-time derived_id persistence for generated causal edges.
+ * Default: TRUE (graduated). Content-addressed identity proved correct 4/4 (id
+ * stability, replay reproducibility, dedup discrimination, zero collisions), so
+ * write-time derived_id persistence runs by default. Set
+ * SPECKIT_DERIVED_ID_PROVENANCE=false to disable derived_id persistence for
+ * generated causal edges.
  */
 export function isDerivedIdProvenanceEnabled(): boolean {
-  return isOptInEnabled('SPECKIT_DERIVED_ID_PROVENANCE');
+  return isFeatureEnabled('SPECKIT_DERIVED_ID_PROVENANCE');
 }
 
 /**

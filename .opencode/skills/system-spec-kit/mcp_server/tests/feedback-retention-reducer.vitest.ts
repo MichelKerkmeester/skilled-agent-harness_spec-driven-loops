@@ -172,8 +172,10 @@ describe('feedback retention reducer', () => {
 });
 
 describe('in-transaction spare-axis re-validation', () => {
-  it('returns null when retention forgetting is disabled (default-off, unchanged)', () => {
-    // No flag stubbed: a stale delete must stay a delete on the default path.
+  it('returns null when retention forgetting is disabled (explicit OFF, unchanged)', () => {
+    // The flag is default-ON, so the disabled path is reached by an explicit
+    // 'false': a stale delete must stay a delete when the safety layer is off.
+    vi.stubEnv(RETENTION_FORGETTING_FLAG, 'false');
     expect(revalidateSpareOnlyRetention(candidate(1, 'normal', { importanceWeight: 0.99 }))).toBeNull();
   });
 

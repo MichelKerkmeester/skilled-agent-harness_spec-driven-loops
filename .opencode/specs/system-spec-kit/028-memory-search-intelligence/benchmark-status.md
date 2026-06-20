@@ -107,3 +107,54 @@ whole-phase gaps:
   agent's overstep edits there were left for reconciliation, not swept in.
 
 These deferrals are external coordination boundaries, not implementation gaps.
+
+## Flip decisions
+
+This section records the per-flag promotion decisions made after the criterion-4 measurement above.
+Two flags earned a default-on flip on independently verified evidence. The rest hold off, stay off, or
+carry a follow-up. The decisions below are the authoritative disposition for each measured flag.
+
+### Flipped to default-ON
+
+| Flag | Helper | Evidence | Verdict |
+|------|--------|----------|---------|
+| SPECKIT_DERIVED_ID_PROVENANCE | isDerivedIdProvenanceEnabled | content-addressed identity correctness 4/4 (stability 50/50, replay 3/3, dedup discrimination 50/50, 0 collisions) | FLIP-ON |
+| SPECKIT_RETENTION_FORGETTING_V1 | isRetentionForgettingEnabled | DROP precision 0.33 to 1.0, keep-set protection 0.059 to 1.0, recall held at 1.0 (a safety layer that only ever over-protects) | FLIP-ON |
+
+Both helpers now route through `isFeatureEnabled` so the env override still works. A user can force either
+flag off with `SPECKIT_<FLAG>=false`. The test cascade was true-fixed: every test that encoded the old
+default-off via env absence now reaches the off path through an explicit `false`, and the flag-ceiling
+drift guard keeps both tokens accounted for as default-on.
+
+### Held marginal
+
+| Flag | Measurement | Verdict |
+|------|-------------|---------|
+| SPECKIT_WORLD_SUMMARY_PRELUDE | net Recall@5 +0.10 (13 recovered minus 9 displaced), grounding coverage 0.925 | HOLD - fix prepend to append then re-measure |
+
+### Kept OFF (measured)
+
+| Flag | Measurement | Verdict |
+|------|-------------|---------|
+| SPECKIT_AGENTIC_RECALL | net 0, unwired scaffold with no production consumer (BUG) | KEEP-OFF |
+| SPECKIT_PROCEDURAL_RELIABILITY_RECALL | nDCG -0.046, the reliability multiplier is a beta-posterior mean in [0,1] at bayesian-scorer.ts:61 so it can only de-rate never boost (BUG) | KEEP-OFF |
+| SPECKIT_CONFIDENCE_CALIBRATION | ECE 0.193 to 0.018 but OVERFIT (fit and eval on the same set), needs held-out split plus a shipped model | KEEP-OFF |
+| SPECKIT_ABSOLUTE_RELEVANCE_CALIBRATION | default-on already, raw cosine overstates, ECE +0.022 | KEEP-OFF (no change) |
+| SPECKIT_SLEEPTIME_CONSOLIDATION | dedup 1.0 and no data loss in shadow, net benefit unmeasured | KEEP-OFF |
+| SPECKIT_SLEEPTIME_LIVE_WRITE | dedup 1.0 and no data loss in shadow, net benefit unmeasured | KEEP-OFF |
+| SPECKIT_ADVISOR_OUTCOME_WEIGHTED_RERANK | +0.023 held-out (2 prompts within noise), shadow-only | KEEP-OFF |
+| SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING | no change on a real forward-CALLS graph | KEEP-OFF |
+| SPECKIT_SUMMARY_FUSION_LANE | -0.0361 Recall@20 | KEEP-OFF |
+| SPECKIT_CARDINALITY_PENALTY | 0.000 Recall@20 movement | KEEP-OFF |
+| SPECKIT_BITEMPORAL_RECALL | edge family no-win | KEEP-OFF |
+| SPECKIT_EDGE_VECTOR_INDEX | edge family dead flag | KEEP-OFF |
+| SPECKIT_EDGE_TRIPLET_SEARCH | edge family empty table | KEEP-OFF |
+| SPECKIT_SEMANTIC_EDGE_LAYER | edge family no-win | KEEP-OFF |
+| SPECKIT_EDGE_PRESENCE_CURRENTNESS | edge family no-win | KEEP-OFF |
+| SPECKIT_TEMPORAL_EDGES | edge family graph-lane -0.167 | KEEP-OFF |
+
+### Follow-ups
+
+1. Fix the two bugs: wire SPECKIT_AGENTIC_RECALL or remove it, and correct the procedural multiplier to a >=1 boost.
+2. Give SPECKIT_CONFIDENCE_CALIBRATION a held-out eval plus a shipped model before reconsidering a flip.
+3. Re-measure SPECKIT_WORLD_SUMMARY_PRELUDE after the prepend to append fix.
