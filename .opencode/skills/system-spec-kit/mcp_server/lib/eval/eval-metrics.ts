@@ -351,6 +351,75 @@ export function computeRecall(
 }
 
 /**
+ * Complete-Recall@K — fraction of a query's FULL relevant set found in top-K.
+ *
+ * This is the same numerator/denominator as Recall@K; the distinction is in how
+ * it is meant to be read and at which cutoffs. Recall@20 on the known-item
+ * golden set saturates near 1.0 because each query has a single target that
+ * almost always lands somewhere in a 20-wide window — so it cannot tell a recall
+ * gain apart from noise. Complete-Recall asks the harder question at TIGHT
+ * cutoffs (K=3/5/8) against multi-target gold sets: did the system surface the
+ * WHOLE sibling/cause/chain set high enough to be seen, not just one member of
+ * it somewhere in the long tail. A query whose gold set is fully covered scores
+ * 1.0; a query that finds three of five relevant docs in the top-K scores 0.6.
+ *
+ * Identical contract to Recall@K for empty inputs and de-duplication, so the two
+ * reconcile when called with the same K — the value of the metric is the cutoff
+ * and the multi-target fixtures it is paired with, not a different formula.
+ *
+ * @returns Value in [0, 1]. Returns 0 when no relevant items exist.
+ */
+export function computeCompleteRecall(
+  results: EvalResult[],
+  groundTruth: GroundTruthEntry[],
+  k: number,
+): number {
+  if (!Number.isFinite(k) || k <= 0) return 0;
+  if (results.length === 0 || groundTruth.length === 0) return 0;
+
+  const relevantIds = new Set(
+    groundTruth.filter(e => e.relevance > 0).map(e => e.memoryId),
+  );
+  if (relevantIds.size === 0) return 0;
+
+  const topResults = topK(results, k);
+  const seenIds = new Set<number>();
+  let hits = 0;
+  for (const r of topResults) {
+    if (relevantIds.has(r.memoryId) && !seenIds.has(r.memoryId)) {
+      hits++;
+      seenIds.add(r.memoryId);
+    }
+  }
+
+  return hits / relevantIds.size;
+}
+
+/**
+ * Complete-Recall reported across several tight cutoffs at once.
+ *
+ * Returns a record keyed by `completeRecallAt<K>` so a caller can splice the
+ * whole tight-cutoff profile into a report row without re-iterating K values.
+ * Defaults to the K=3/5/8 ladder the eval-v2 measurability gate uses; a gain
+ * that only shows at one cutoff is still visible because every rung is reported.
+ *
+ * @returns e.g. { completeRecallAt3, completeRecallAt5, completeRecallAt8 }.
+ */
+export function computeCompleteRecallProfile(
+  results: EvalResult[],
+  groundTruth: GroundTruthEntry[],
+  ks: number[] = [3, 5, 8],
+): Record<string, number> {
+  const profile: Record<string, number> = {};
+  for (const k of ks) {
+    const safeK = Number.isFinite(k) ? Math.floor(k) : 0;
+    if (safeK <= 0) continue;
+    profile[`completeRecallAt${safeK}`] = computeCompleteRecall(results, groundTruth, safeK);
+  }
+  return profile;
+}
+
+/**
  * Compute Precision@K — fraction of retrieved results that are relevant.
  * Precision = |relevant ∩ retrieved@K| / K
  */

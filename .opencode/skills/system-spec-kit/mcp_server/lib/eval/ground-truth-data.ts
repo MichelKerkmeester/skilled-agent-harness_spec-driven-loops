@@ -22,7 +22,12 @@ export type QueryCategory =
   | 'cross_document'
   | 'hard_negative'
   | 'anchor_based'
-  | 'scope_filtered';
+  | 'scope_filtered'
+  // eval-v2 multi-target measurability classes. These carry multiple
+  // graded-relevant targets per query so completeRecall@K at tight cutoffs has
+  // something to be incomplete about — the saturated known-item set cannot.
+  | 'thematic_multi_target'
+  | 'causal_chain';
 
 export type QuerySource = 'manual' | 'trigger_derived' | 'pattern_derived' | 'seed';
 

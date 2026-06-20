@@ -759,6 +759,216 @@
       "source": "manual",
       "expectedResultDescription": "Thematic/relational lookup spanning the relation cluster; primary memory 9035: Graph Metadata: skilled-agent-orchestration/123-deep-loop-parallel-fanout/007-native-per-i.",
       "notes": "Authored for class coverage (graph_relationship); gold ids grounded against the live DB at observed ranks 1113:20, 9035:6, 19481:11."
+    },
+    {
+      "id": 77,
+      "query": "show me every sprint spec in the hybrid rag fusion epic",
+      "intentType": "understand",
+      "complexityTier": "complex",
+      "category": "thematic_multi_target",
+      "source": "manual",
+      "expectedResultDescription": "All nine sprint (0-8) feature specs under the hybrid-rag-fusion epic.",
+      "notes": "eval-v2 multi-target measurability fixture; hand-authored, gold ids live-DB verified."
+    },
+    {
+      "id": 78,
+      "query": "list all the finding-remediation lane specs from the spec-027 fleet",
+      "intentType": "find_spec",
+      "complexityTier": "complex",
+      "category": "thematic_multi_target",
+      "source": "manual",
+      "expectedResultDescription": "All eight finding-remediation lane specs (write-safety through doc-truth).",
+      "notes": "eval-v2 multi-target measurability fixture; hand-authored, gold ids live-DB verified."
+    },
+    {
+      "id": 79,
+      "query": "what are all the CLI tooling UX phase specs",
+      "intentType": "find_spec",
+      "complexityTier": "moderate",
+      "category": "thematic_multi_target",
+      "source": "manual",
+      "expectedResultDescription": "All five CLI tooling-UX phase specs (freshness, help, reference, fallback, automation).",
+      "notes": "eval-v2 multi-target measurability fixture; hand-authored, gold ids live-DB verified."
+    },
+    {
+      "id": 80,
+      "query": "give me the full set of deep-loop-workflows consolidation phase specs",
+      "intentType": "understand",
+      "complexityTier": "complex",
+      "category": "thematic_multi_target",
+      "source": "manual",
+      "expectedResultDescription": "All nine deep-loop-workflows phase specs (parity baseline through old-skill deletion).",
+      "notes": "eval-v2 multi-target measurability fixture; hand-authored, gold ids live-DB verified."
+    },
+    {
+      "id": 81,
+      "query": "walk me through all the sk-interface-design build and research phases",
+      "intentType": "understand",
+      "complexityTier": "complex",
+      "category": "thematic_multi_target",
+      "source": "manual",
+      "expectedResultDescription": "All nine sk-interface-design phase specs (install through mobbin/refero integration).",
+      "notes": "eval-v2 multi-target measurability fixture; hand-authored, gold ids live-DB verified."
+    },
+    {
+      "id": 82,
+      "query": "what is every phase of the mcp-open-design skill program",
+      "intentType": "understand",
+      "complexityTier": "complex",
+      "category": "thematic_multi_target",
+      "source": "manual",
+      "expectedResultDescription": "The mcp-open-design phase specs (research through live design-playbook run).",
+      "notes": "eval-v2 multi-target measurability fixture; hand-authored, gold ids live-DB verified."
+    },
+    {
+      "id": 83,
+      "query": "show me all the mcp daemon reliability packets in the 026 program",
+      "intentType": "fix_bug",
+      "complexityTier": "complex",
+      "category": "thematic_multi_target",
+      "source": "manual",
+      "expectedResultDescription": "The daemon-reliability cluster specs (flap-guard, code-index proxy, orphan-sweep, re-election).",
+      "notes": "eval-v2 multi-target measurability fixture; hand-authored, gold ids live-DB verified."
+    },
+    {
+      "id": 84,
+      "query": "what are all the embedder bake-off and promotion specs in the 026 stack",
+      "intentType": "find_decision",
+      "complexityTier": "complex",
+      "category": "thematic_multi_target",
+      "source": "manual",
+      "expectedResultDescription": "The embedder-stack specs (bake-off, cascade/Nomic default, drift-fix) plus the BGE supersession ADR.",
+      "notes": "eval-v2 multi-target measurability fixture; hand-authored, gold ids live-DB verified."
+    },
+    {
+      "id": 85,
+      "query": "what caused the mcp daemon to die with its owner session and what foundation superseded the kill-on-shutdown approach",
+      "intentType": "fix_bug",
+      "complexityTier": "complex",
+      "category": "causal_chain",
+      "source": "manual",
+      "expectedResultDescription": "Flap-guard (cause: SIGTERM/relaunch flap) plus the RC-2 re-election foundation that supersedes kill-on-shutdown.",
+      "notes": "eval-v2 multi-target measurability fixture; hand-authored, gold ids live-DB verified."
+    },
+    {
+      "id": 86,
+      "query": "why was the magicpath design skill deprecated and what replaced it",
+      "intentType": "understand",
+      "complexityTier": "moderate",
+      "category": "causal_chain",
+      "source": "manual",
+      "expectedResultDescription": "magicpath deprecation (cause) plus the mcp-open-design skill build that superseded it.",
+      "notes": "eval-v2 multi-target measurability fixture; hand-authored, gold ids live-DB verified."
+    },
+    {
+      "id": 87,
+      "query": "why did the BGE-code embedder confirmation close as superseded and what default replaced it",
+      "intentType": "find_decision",
+      "complexityTier": "complex",
+      "category": "causal_chain",
+      "source": "manual",
+      "expectedResultDescription": "BGE-code-v1 supersession ADR (cause) plus the cascade-reorder Nomic-default spec that replaced it.",
+      "notes": "eval-v2 multi-target measurability fixture; hand-authored, gold ids live-DB verified."
+    },
+    {
+      "id": 88,
+      "query": "what drove the gemini runtime deprecation and how was the cli-gemini executor finally purged",
+      "intentType": "understand",
+      "complexityTier": "moderate",
+      "category": "causal_chain",
+      "source": "manual",
+      "expectedResultDescription": "Gemini runtime-surface deprecation (cause) plus the full cli-gemini executor purge that completed it.",
+      "notes": "eval-v2 multi-target measurability fixture; hand-authored, gold ids live-DB verified."
+    },
+    {
+      "id": 89,
+      "query": "which embedder migration left stale hardcoded defaults and what drift-fix eliminated them",
+      "intentType": "fix_bug",
+      "complexityTier": "complex",
+      "category": "causal_chain",
+      "source": "manual",
+      "expectedResultDescription": "ADR-014 cascade/Nomic migration (cause) plus the default-drift-fix that removed the surviving hardcoded fallbacks.",
+      "notes": "eval-v2 multi-target measurability fixture; hand-authored, gold ids live-DB verified."
+    },
+    {
+      "id": 90,
+      "query": "why did mk-code-index surface a hard connection-closed on owner death and what proxy fixed it",
+      "intentType": "fix_bug",
+      "complexityTier": "moderate",
+      "category": "causal_chain",
+      "source": "manual",
+      "expectedResultDescription": "code-index raw-socket no-reconnect (cause) plus the reconnecting session proxy that fixed it.",
+      "notes": "eval-v2 multi-target measurability fixture; hand-authored, gold ids live-DB verified."
+    },
+    {
+      "id": 91,
+      "query": "what caused orphaned mcp daemons to accumulate and which stop-hook sweep addressed it",
+      "intentType": "fix_bug",
+      "complexityTier": "moderate",
+      "category": "causal_chain",
+      "source": "manual",
+      "expectedResultDescription": "Stop-hook no-op when CLAUDE_SESSION_PID absent (cause) plus the orphan-sweep activation that addressed it.",
+      "notes": "eval-v2 multi-target measurability fixture; hand-authored, gold ids live-DB verified."
+    },
+    {
+      "id": 92,
+      "query": "the BM25 indexing fidelity remediation lane for the memory store",
+      "intentType": "fix_bug",
+      "complexityTier": "moderate",
+      "category": "hard_negative",
+      "source": "manual",
+      "expectedResultDescription": "BM25 indexing-fidelity lane (11913). Decoy EXCLUDED: 11863 codegraph BM25 fuzzy symbol resolver — same BM25 token, code-graph subsystem, not memory indexing.",
+      "notes": "eval-v2 multi-target measurability fixture; hand-authored, gold ids live-DB verified."
+    },
+    {
+      "id": 93,
+      "query": "the causal reducer that derives session-trace edges from feedback",
+      "intentType": "add_feature",
+      "complexityTier": "moderate",
+      "category": "hard_negative",
+      "source": "manual",
+      "expectedResultDescription": "Causal reducer session-trace spec (10393). Decoy EXCLUDED: 12807 causal edge tombstones — shares 'causal edge', it is deletion-lifecycle not edge derivation.",
+      "notes": "eval-v2 multi-target measurability fixture; hand-authored, gold ids live-DB verified."
+    },
+    {
+      "id": 94,
+      "query": "the decision record for decoupling the spec-kit advisor imports",
+      "intentType": "refactor",
+      "complexityTier": "moderate",
+      "category": "hard_negative",
+      "source": "manual",
+      "expectedResultDescription": "Advisor import decoupling ADR (3670). Decoy EXCLUDED: 3676 spec-kit code-graph decoupling — same 'decoupling' word, code-graph not advisor.",
+      "notes": "eval-v2 multi-target measurability fixture; hand-authored, gold ids live-DB verified."
+    },
+    {
+      "id": 95,
+      "query": "the embedder default drift fix that eliminated the surviving hardcoded fallbacks",
+      "intentType": "fix_bug",
+      "complexityTier": "moderate",
+      "category": "hard_negative",
+      "source": "manual",
+      "expectedResultDescription": "Embedder default drift-fix (4651). Decoy EXCLUDED: 4626 cascade-reorder Nomic default — both about the embedder 'default', the reorder is not the drift-fix.",
+      "notes": "eval-v2 multi-target measurability fixture; hand-authored, gold ids live-DB verified."
+    },
+    {
+      "id": 96,
+      "query": "the deep-context loop foundation phase for parallel context gathering",
+      "intentType": "understand",
+      "complexityTier": "moderate",
+      "category": "hard_negative",
+      "source": "manual",
+      "expectedResultDescription": "deep-context loop foundation (9916). Decoy EXCLUDED: 19258 deep-loop-workflows parity baseline — 'deep' + 'loop' overlap, different program.",
+      "notes": "eval-v2 multi-target measurability fixture; hand-authored, gold ids live-DB verified."
+    },
+    {
+      "id": 97,
+      "query": "the daemon disposal relaunch-flap guard that gated the launcher respawn",
+      "intentType": "fix_bug",
+      "complexityTier": "moderate",
+      "category": "hard_negative",
+      "source": "manual",
+      "expectedResultDescription": "Flap-guard spec (10762). Decoy EXCLUDED: 10813 RC-2 re-election foundation — same daemon-lifecycle cluster, re-election is a different later approach.",
+      "notes": "eval-v2 multi-target measurability fixture; hand-authored, gold ids live-DB verified."
     }
   ],
   "relevances": [
@@ -1736,6 +1946,406 @@
       "queryId": 76,
       "memoryId": 19481,
       "relevance": 1
+    },
+    {
+      "queryId": 77,
+      "memoryId": 7440,
+      "relevance": 3
+    },
+    {
+      "queryId": 77,
+      "memoryId": 7447,
+      "relevance": 3
+    },
+    {
+      "queryId": 77,
+      "memoryId": 7455,
+      "relevance": 3
+    },
+    {
+      "queryId": 77,
+      "memoryId": 7464,
+      "relevance": 3
+    },
+    {
+      "queryId": 77,
+      "memoryId": 7470,
+      "relevance": 3
+    },
+    {
+      "queryId": 77,
+      "memoryId": 7475,
+      "relevance": 2
+    },
+    {
+      "queryId": 77,
+      "memoryId": 7482,
+      "relevance": 2
+    },
+    {
+      "queryId": 77,
+      "memoryId": 7490,
+      "relevance": 2
+    },
+    {
+      "queryId": 77,
+      "memoryId": 7499,
+      "relevance": 2
+    },
+    {
+      "queryId": 78,
+      "memoryId": 11901,
+      "relevance": 3
+    },
+    {
+      "queryId": 78,
+      "memoryId": 11904,
+      "relevance": 3
+    },
+    {
+      "queryId": 78,
+      "memoryId": 11907,
+      "relevance": 3
+    },
+    {
+      "queryId": 78,
+      "memoryId": 11910,
+      "relevance": 3
+    },
+    {
+      "queryId": 78,
+      "memoryId": 11913,
+      "relevance": 2
+    },
+    {
+      "queryId": 78,
+      "memoryId": 11916,
+      "relevance": 2
+    },
+    {
+      "queryId": 78,
+      "memoryId": 11919,
+      "relevance": 2
+    },
+    {
+      "queryId": 78,
+      "memoryId": 11922,
+      "relevance": 2
+    },
+    {
+      "queryId": 79,
+      "memoryId": 11812,
+      "relevance": 3
+    },
+    {
+      "queryId": 79,
+      "memoryId": 11815,
+      "relevance": 3
+    },
+    {
+      "queryId": 79,
+      "memoryId": 11818,
+      "relevance": 3
+    },
+    {
+      "queryId": 79,
+      "memoryId": 11821,
+      "relevance": 2
+    },
+    {
+      "queryId": 79,
+      "memoryId": 11824,
+      "relevance": 2
+    },
+    {
+      "queryId": 80,
+      "memoryId": 19258,
+      "relevance": 3
+    },
+    {
+      "queryId": 80,
+      "memoryId": 19263,
+      "relevance": 3
+    },
+    {
+      "queryId": 80,
+      "memoryId": 19269,
+      "relevance": 3
+    },
+    {
+      "queryId": 80,
+      "memoryId": 19273,
+      "relevance": 2
+    },
+    {
+      "queryId": 80,
+      "memoryId": 19278,
+      "relevance": 2
+    },
+    {
+      "queryId": 80,
+      "memoryId": 19283,
+      "relevance": 2
+    },
+    {
+      "queryId": 80,
+      "memoryId": 19290,
+      "relevance": 2
+    },
+    {
+      "queryId": 80,
+      "memoryId": 19294,
+      "relevance": 2
+    },
+    {
+      "queryId": 80,
+      "memoryId": 19300,
+      "relevance": 2
+    },
+    {
+      "queryId": 81,
+      "memoryId": 19076,
+      "relevance": 2
+    },
+    {
+      "queryId": 81,
+      "memoryId": 19080,
+      "relevance": 2
+    },
+    {
+      "queryId": 81,
+      "memoryId": 19086,
+      "relevance": 3
+    },
+    {
+      "queryId": 81,
+      "memoryId": 19090,
+      "relevance": 2
+    },
+    {
+      "queryId": 81,
+      "memoryId": 19095,
+      "relevance": 2
+    },
+    {
+      "queryId": 81,
+      "memoryId": 19102,
+      "relevance": 2
+    },
+    {
+      "queryId": 81,
+      "memoryId": 19106,
+      "relevance": 3
+    },
+    {
+      "queryId": 81,
+      "memoryId": 19110,
+      "relevance": 2
+    },
+    {
+      "queryId": 81,
+      "memoryId": 19114,
+      "relevance": 2
+    },
+    {
+      "queryId": 82,
+      "memoryId": 19185,
+      "relevance": 2
+    },
+    {
+      "queryId": 82,
+      "memoryId": 19190,
+      "relevance": 3
+    },
+    {
+      "queryId": 82,
+      "memoryId": 19195,
+      "relevance": 2
+    },
+    {
+      "queryId": 82,
+      "memoryId": 19200,
+      "relevance": 2
+    },
+    {
+      "queryId": 82,
+      "memoryId": 19206,
+      "relevance": 2
+    },
+    {
+      "queryId": 82,
+      "memoryId": 19210,
+      "relevance": 2
+    },
+    {
+      "queryId": 82,
+      "memoryId": 19215,
+      "relevance": 3
+    },
+    {
+      "queryId": 82,
+      "memoryId": 19220,
+      "relevance": 2
+    },
+    {
+      "queryId": 82,
+      "memoryId": 19224,
+      "relevance": 2
+    },
+    {
+      "queryId": 82,
+      "memoryId": 19229,
+      "relevance": 2
+    },
+    {
+      "queryId": 83,
+      "memoryId": 10762,
+      "relevance": 3
+    },
+    {
+      "queryId": 83,
+      "memoryId": 10801,
+      "relevance": 3
+    },
+    {
+      "queryId": 83,
+      "memoryId": 10804,
+      "relevance": 2
+    },
+    {
+      "queryId": 83,
+      "memoryId": 10813,
+      "relevance": 3
+    },
+    {
+      "queryId": 84,
+      "memoryId": 4626,
+      "relevance": 3
+    },
+    {
+      "queryId": 84,
+      "memoryId": 4651,
+      "relevance": 3
+    },
+    {
+      "queryId": 84,
+      "memoryId": 5086,
+      "relevance": 2
+    },
+    {
+      "queryId": 85,
+      "memoryId": 10760,
+      "relevance": 2
+    },
+    {
+      "queryId": 85,
+      "memoryId": 10762,
+      "relevance": 3
+    },
+    {
+      "queryId": 85,
+      "memoryId": 10811,
+      "relevance": 2
+    },
+    {
+      "queryId": 85,
+      "memoryId": 10813,
+      "relevance": 3
+    },
+    {
+      "queryId": 86,
+      "memoryId": 19220,
+      "relevance": 3
+    },
+    {
+      "queryId": 86,
+      "memoryId": 19190,
+      "relevance": 3
+    },
+    {
+      "queryId": 87,
+      "memoryId": 5086,
+      "relevance": 3
+    },
+    {
+      "queryId": 87,
+      "memoryId": 4626,
+      "relevance": 3
+    },
+    {
+      "queryId": 88,
+      "memoryId": 9362,
+      "relevance": 3
+    },
+    {
+      "queryId": 88,
+      "memoryId": 11010,
+      "relevance": 2
+    },
+    {
+      "queryId": 88,
+      "memoryId": 11017,
+      "relevance": 3
+    },
+    {
+      "queryId": 89,
+      "memoryId": 4626,
+      "relevance": 2
+    },
+    {
+      "queryId": 89,
+      "memoryId": 4651,
+      "relevance": 3
+    },
+    {
+      "queryId": 90,
+      "memoryId": 10801,
+      "relevance": 3
+    },
+    {
+      "queryId": 90,
+      "memoryId": 10760,
+      "relevance": 1
+    },
+    {
+      "queryId": 91,
+      "memoryId": 10804,
+      "relevance": 3
+    },
+    {
+      "queryId": 91,
+      "memoryId": 10762,
+      "relevance": 1
+    },
+    {
+      "queryId": 92,
+      "memoryId": 11913,
+      "relevance": 3
+    },
+    {
+      "queryId": 93,
+      "memoryId": 10393,
+      "relevance": 3
+    },
+    {
+      "queryId": 94,
+      "memoryId": 3670,
+      "relevance": 3
+    },
+    {
+      "queryId": 95,
+      "memoryId": 4651,
+      "relevance": 3
+    },
+    {
+      "queryId": 96,
+      "memoryId": 9916,
+      "relevance": 3
+    },
+    {
+      "queryId": 97,
+      "memoryId": 10762,
+      "relevance": 3
     }
   ]
 }
