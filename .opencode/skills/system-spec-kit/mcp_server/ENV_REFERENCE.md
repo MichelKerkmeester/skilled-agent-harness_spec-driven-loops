@@ -100,6 +100,7 @@ Generated from `lib/search/search-flags.ts`. "Default state" is the shipped beha
 | Graph context injection | ON | `SPECKIT_GRAPH_CONTEXT_INJECTION` | Graph neighbor lookup even without seed results | Phase B T020 |
 | Result provenance | ON | `SPECKIT_RESULT_PROVENANCE` | Graph evidence metadata in search results | Phase C T027 |
 | Temporal edges | ON | `SPECKIT_TEMPORAL_EDGES` | Temporal validity tracking for causal edges | Phase D T036 |
+| Bi-temporal recall | OFF | `SPECKIT_BITEMPORAL_RECALL` | Opt-in recall modes that consume transaction-time validity windows; keep OFF until benchmarked | current |
 | Usage ranking | ON | `SPECKIT_USAGE_RANKING` | Usage-weighted ranking signal | Phase D T036 |
 | Ontology hooks | ON | `SPECKIT_ONTOLOGY_HOOKS` | Ontology-guided extraction validation hooks | Phase D T036 |
 | Community search fallback | ON | `SPECKIT_COMMUNITY_SEARCH_FALLBACK` | Community-level fallback channel | Phase B T018 |
@@ -261,6 +262,7 @@ the publication guard helpers used by the evaluation dashboard.
 | `SPECKIT_FOLDER_DISCOVERY_TOKEN_THRESHOLD` | `0.45` | number (0..1) | Per-token similarity threshold for folder-discovery name matching. Values outside `[0,1]` or non-numeric fall back to the default. | `lib/search/folder-discovery.ts` |
 | `SPECKIT_DESCRIPTION_REPAIR_MERGE_SAFE` | `true` | boolean | Merge-safe description repair during folder discovery. Graduated ON; set `false`/`0` to disable. | `lib/search/folder-discovery.ts` |
 | `SPECKIT_GRAPH_CHANNEL_PRESERVATION` | `true` | boolean | Preserve graph-channel results through query routing so graph hits are not dropped by channel pruning. Graduated ON; accepts `0`/`false`/`no`/`off` to disable. | `lib/search/query-router.ts` |
+| `SPECKIT_RETRIEVAL_CLASS_ROUTING` | `false` | boolean | Class-aware query routing. For a narrow single-hop find-one-item query it suppresses the graph and degree channels that tend to add noise there. Default OFF keeps single-hop routing byte-identical to baseline. Set `true` to enable. | `lib/search/query-router.ts` |
 | `SPECKIT_ROUTER_TIER3_ENABLED` | `false` | boolean | Tier 3 prototype-routing opt-in gate (`true`/`1` to enable). Canonical routing remains the default save path; this is an additional router tier. | `lib/routing/content-router.ts` |
 | `SPECKIT_SEARCH_DECISION_AUDIT_PATH` | `<cwd>/.opencode/skills/system-spec-kit/mcp_server/data/search-decisions.jsonl` | string | Override the JSONL file path for the search-decision audit log. | `lib/search/decision-audit.ts` |
 | `SPECKIT_SEARCH_DECISION_AUDIT_MAX_FILES` | `5` | number (positive int) | Maximum rotated search-decision audit files retained. Non-positive/invalid values fall back to the default. | `lib/search/decision-audit.ts` |
@@ -294,6 +296,7 @@ the publication guard helpers used by the evaluation dashboard.
 | `SPECKIT_DUAL_RETRIEVAL` | `true` | boolean | Dual-level retrieval mode: `local` (entity), `global` (community), `auto` (local + fallback) (Phase B T019). Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_DEGREE_BOOST` | `true` | boolean | Causal-edge degree-based re-ranking. Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_TEMPORAL_EDGES` | `true` | boolean | Temporal validity tracking for causal edges (Phase D T036). Graduated ON. | `lib/search/search-flags.ts` |
+| `SPECKIT_BITEMPORAL_RECALL` | `false` | boolean | Opt-in recall modes that consume transaction-time validity windows. Default OFF until benchmarked. | `lib/search/search-flags.ts` |
 | `SPECKIT_TYPED_TRAVERSAL` | `true` | boolean | Sparse-first + intent-aware typed traversal (D3 Phase A). Graduated ON. | `lib/search/search-flags.ts` |
 | `SPECKIT_ENTITY_LINKING` | `true` | boolean | Cross-document entity linking (S5). Requires AUTO_ENTITIES. Graduated ON. | `lib/search/search-flags.ts`, `lib/search/graph-lifecycle.ts` |
 | `SPECKIT_ENTITY_LINKING_MAX_DENSITY` | `1.0` | number | Density guard threshold: skip entity linking when projected graph density exceeds this value. | `lib/search/entity-linker.ts` |
