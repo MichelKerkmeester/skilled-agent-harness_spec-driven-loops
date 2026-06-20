@@ -14,9 +14,9 @@
     "ship-first",
     "correctness"
   ],
-  "lastUpdated": "2026-06-19T06:21:36.950Z",
+  "lastUpdated": "2026-06-19T22:04:55.883Z",
   "specId": "001",
-  "folderSlug": "001-reducer-anchor-fix",
+  "folderSlug": "reducer-anchor-fix",
   "parentChain": [
     "system-spec-kit",
     "028-memory-search-intelligence",

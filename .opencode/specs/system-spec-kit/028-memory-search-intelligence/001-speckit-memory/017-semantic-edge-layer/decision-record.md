@@ -35,6 +35,8 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
+> DELETED, superseded by measurement. The `SPECKIT_SEMANTIC_EDGE_LAYER` flag and the whole edge family it fed (`SPECKIT_EDGE_VECTOR_INDEX`, `SPECKIT_EDGE_TRIPLET_SEARCH`, `SPECKIT_EDGE_SEMANTIC_DEDUP`, `SPECKIT_EDGE_SEMANTIC_INVALIDATION`) and their code were removed in the flag-resolution reckoning. The fact-text was generic relation-template boilerplate carrying no pair identity, so the family stayed recall-inert at K=20 with a single-item +0.083 that did not generalize. See [`../../007-kept-off-flag-resolution/`](../../007-kept-off-flag-resolution/). The ADRs below are retained as the design-of-record.
+
 ---
 
 <!-- ANCHOR:adr-001 -->

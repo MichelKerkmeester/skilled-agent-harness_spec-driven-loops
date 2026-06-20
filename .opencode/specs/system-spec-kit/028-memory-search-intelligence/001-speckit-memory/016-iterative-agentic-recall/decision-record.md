@@ -35,6 +35,8 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
+> DELETED, superseded by measurement. The `SPECKIT_AGENTIC_RECALL` flag and its code were removed in the flag-resolution reckoning. The oracle ceiling reached +0.344 but the live reasoner netted zero with regressions at 51s per query, and the loop had no production consumer. See [`../../007-kept-off-flag-resolution/`](../../007-kept-off-flag-resolution/). The ADRs below are retained as the design-of-record.
+
 ---
 
 <!-- ANCHOR:adr-001 -->

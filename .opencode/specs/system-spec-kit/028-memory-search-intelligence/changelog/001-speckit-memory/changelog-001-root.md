@@ -18,7 +18,7 @@ contextType: "implementation"
 
 ### Summary
 
-This root rollup tracks the Memory MCP child phases for packet 028. The parent remains a phase container: detailed planning, implementation evidence and verification live in the child folders below. The rollup now reflects the corrected child status mix: one phase is planning-only, most are partial implementations and the complete phases are limited to the scopes their own verification supports. A closing flag-validation milestone sits after the phase builds, recorded in `changelog-001-022-keep-off-flag-reinvestigation.md`: it reinvestigated every keep-off flag, flipped four to default-on, reverted procedural reliability recall to default-off after fixing its de-rate bug and validated the disposition across three deep-review rounds.
+This root rollup tracks the Memory MCP child phases for packet 028. The parent remains a phase container: detailed planning, implementation evidence and verification live in the child folders below. The rollup now reflects the corrected child status mix: one phase is planning-only, most are partial implementations and the complete phases are limited to the scopes their own verification supports. A closing flag-resolution reckoning sits after the phase builds, recorded in `changelog-001-022-keep-off-flag-reinvestigation.md`: it simulated every keep-off flag under a fair real-world load, kept 5 default-on, deleted 10 along with their code and validated the disposition across three deep-review rounds.
 
 ### Included Phases
 
@@ -45,18 +45,18 @@ This root rollup tracks the Memory MCP child phases for packet 028. The parent r
 | `019-eval-harness-extension` | Partial | Optional diagnostics, label views and three corpus metric lanes shipped. The A8 promotion-gate work remains pending. |
 | `020-eval-calibration-ab` | Partial, observe-only utilities shipped | Observe-only confidence calibration and lever A/B utilities shipped behind default-off flags. Promotion waits on held-out ECE and golden-set delta evidence from 019. |
 | `021-residual-correctness` | Complete | Search score averaging now uses the calibrated relevance scale and maintenance marker TTL derives from the owner lease invariant. |
-| `022-keep-off-flag-reinvestigation` | Milestone, after the phase builds | Flag-validation arc that ran after the build program. Four flags flipped default-on, confidence calibration and derived-id provenance on an unqualified win and retention forgetting and world-summary prelude on a no-harm guarantee, procedural reliability recall reverted to default-off with its correctness fix kept, the structural and edge-family flags stayed off and a three-round deep review validated the disposition and caught an off-arm measurement bug. |
+| `022-keep-off-flag-reinvestigation` | Milestone, after the phase builds | Flag-resolution reckoning that ran after the build program. Five flags kept default-on, derived-id provenance and confidence calibration on an unqualified win, retention forgetting and world-summary prelude on a no-harm guarantee and temporal edges as the additive graph lane. Ten flags deleted along with their code, procedural reliability recall among them after its de-rate fix moved only synthetic near-ties. A three-round deep review validated the disposition and caught an off-arm measurement bug. The full method lives in `007-kept-off-flag-resolution/`. |
 
 ### Added
 
 - Added a polished root status table that matches child phase evidence.
-- Added the closing flag-validation milestone row that records the keep-off flag reinvestigation and the four default-on flips.
+- Added the closing flag-resolution milestone row that records the keep 5 default-on and delete 10 reckoning.
 
 ### Changed
 
 - Replaced generated placeholder summaries with grounded child-phase narratives.
 - Corrected stale planning-only statuses for phases that now have partial implementation evidence.
-- Updated the rollup to carry the corrected four-flag outcome rather than the pre-reinvestigation no-flip state.
+- Updated the rollup to carry the final keep 5 and delete 10 outcome rather than the transitional four-flip state.
 
 ### Fixed
 

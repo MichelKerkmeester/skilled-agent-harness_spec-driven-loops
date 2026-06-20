@@ -1,6 +1,6 @@
 {
   "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/001-corpus-reindex-gate-zero",
-  "description": "Feature Specification: Corpus Reindex — Gate-Zero for Recall Benchmarking",
+  "description": "Feature Specification: Corpus Reindex - Gate-Zero for Recall Benchmarking",
   "keywords": [
     "feature",
     "specification",
@@ -10,7 +10,7 @@
     "recall",
     "benchmarking"
   ],
-  "lastUpdated": "2026-06-19T09:26:36.222Z",
+  "lastUpdated": "2026-06-20T10:59:14.061Z",
   "specId": "001",
   "folderSlug": "corpus-reindex-gate-zero",
   "parentChain": [

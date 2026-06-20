@@ -16,9 +16,9 @@
     "crash-safety",
     "hardening"
   ],
-  "lastUpdated": "2026-06-19T06:21:33.042Z",
+  "lastUpdated": "2026-06-19T22:04:55.773Z",
   "specId": "010",
-  "folderSlug": "010-consolidation-cursor-clock",
+  "folderSlug": "consolidation-cursor-clock",
   "parentChain": [
     "system-spec-kit",
     "028-memory-search-intelligence",

@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/007-kept-off-flag-resolution",
+  "description": "Feature Specification: Kept-Off Flag Resolution",
+  "keywords": [
+    "feature",
+    "specification",
+    "kept",
+    "off",
+    "flag",
+    "resolution"
+  ],
+  "lastUpdated": "2026-06-20T00:00:00Z",
+  "specId": "007",
+  "folderSlug": "kept-off-flag-resolution",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

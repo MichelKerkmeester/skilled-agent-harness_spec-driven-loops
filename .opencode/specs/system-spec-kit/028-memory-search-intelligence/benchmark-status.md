@@ -108,79 +108,65 @@ whole-phase gaps:
 
 These deferrals are external coordination boundaries, not implementation gaps.
 
-## Flip decisions
+## Flip decisions: the final flag-resolution tally
 
-This section records the per-flag promotion decisions made after the criterion-4 measurement above.
-Four flags earned a default-on flip, two on an unqualified recall/calibration win and two on a no-harm
-safety or grounding guarantee rather than a precision number. The rest hold off, stay off, or carry a
-follow-up. The decisions below are the authoritative disposition for each measured flag.
+This section records the final per-flag disposition after the criterion-4 measurement above, the
+keep-off reinvestigation and the flag-resolution reckoning. The earlier transitional state had four
+default-on flips with the rest held off pending a path to useful. The reckoning closed that experiment.
+Each default-off flag was simulated under a fair real-world load and given a final keep-or-delete decision
+per flag, fresh-Opus confirmed. Five switches earned default-ON and stayed. Ten did not earn their keep
+and their code was removed from the tree. The full per-flag method and the 4-layer verification live in
+[`007-kept-off-flag-resolution/`](./007-kept-off-flag-resolution/).
 
-### Flipped to default-ON
+**Final tally: KEEP 5 default-ON, DELETE 10.**
 
-Two flags flipped on an unqualified win, two on a no-harm guarantee. The honest framing of each is in the
-Evidence column so a release sign-off does not read the safety flips as precision wins they are not.
+### Kept default-ON (5)
+
+Two flags kept on an unqualified win, two on a no-harm guarantee, one as an additive graph lane. The honest
+framing of each is in the Evidence column so a release sign-off does not read the safety flips as precision
+wins they are not. All five route through `isFeatureEnabled` so the env override still works and a user can
+force any flag off with `SPECKIT_<FLAG>=false`.
 
 | Flag | Helper | Evidence | Verdict |
 |------|--------|----------|---------|
-| SPECKIT_DERIVED_ID_PROVENANCE | isDerivedIdProvenanceEnabled | UNQUALIFIED win: content-addressed identity correctness 4/4 (stability 50/50, replay 3/3, dedup discrimination 50/50, 0 collisions) | FLIP-ON |
-| SPECKIT_CONFIDENCE_CALIBRATION | isConfidenceCalibrationEnabled | UNQUALIFIED win: held-out ECE 0.184 to 0.023 across all folds with a shipped isotonic model resolved by default, so the earlier overfit (fit and eval on the same set) no longer applies | FLIP-ON |
-| SPECKIT_RETENTION_FORGETTING_V1 | isRetentionForgettingEnabled | SAFETY / no-harm: spares 386 keep-set rows the OFF path would delete, with dropRecall delta 0. NOT a precision win - the keep/drop labels are circular (derived from the reducer's own thresholds), so it earns the flip as a no-harm guardrail, not a measured precision gain | FLIP-ON |
-| SPECKIT_WORLD_SUMMARY_PRELUDE | isWorldSummaryPreludeEnabled | GROUNDING aid: in APPEND placement it recovers 11 targets with 0 regressions by construction (it never displaces a baseline row). NOT a recall-quality win - the +0.275 is partly a self-recall plus an append-by-construction artifact, so it earns the flip as a no-displacement grounding aid, not a ranking improvement | FLIP-ON |
+| SPECKIT_DERIVED_ID_PROVENANCE | isDerivedIdProvenanceEnabled | UNQUALIFIED win: content-addressed identity correctness 4/4 (stability 50/50, replay 3/3, dedup discrimination 50/50, 0 collisions) | KEEP-ON |
+| SPECKIT_CONFIDENCE_CALIBRATION | isConfidenceCalibrationEnabled | UNQUALIFIED win: held-out ECE 0.184 to 0.023 across all folds with a shipped isotonic model resolved by default, so the earlier overfit (fit and eval on the same set) no longer applies | KEEP-ON |
+| SPECKIT_RETENTION_FORGETTING_V1 | isRetentionForgettingEnabled | SAFETY / no-harm: spares 386 keep-set rows the OFF path would delete, with dropRecall delta 0. NOT a precision win - the keep/drop labels are circular (derived from the reducer's own thresholds), so it earns the keep as a no-harm guardrail, not a measured precision gain | KEEP-ON |
+| SPECKIT_WORLD_SUMMARY_PRELUDE | isWorldSummaryPreludeEnabled | GROUNDING aid: in APPEND placement it recovers 11 targets with 0 regressions by construction (it never displaces a baseline row). NOT a recall-quality win - the gain is partly a self-recall plus an append-by-construction artifact, so it earns the keep as a no-displacement grounding aid, not a ranking improvement | KEEP-ON |
+| SPECKIT_TEMPORAL_EDGES | isTemporalEdgesEnabled | ADDITIVE graph lane: edge-hop recall +0.083 ON vs OFF on a live-DB copy, so turning it OFF removes the mitigation and makes recall worse. The within-noise graph-channel harm belongs to the separate pre-028 graph flags `useGraph`, `SPECKIT_GRAPH_SIGNALS` and `SPECKIT_DEGREE_BOOST` (broad-corpus -0.039 at p=0.219), a noted follow-up out of 028 scope | KEEP-ON |
 
-All four helpers now route through `isFeatureEnabled` so the env override still works. A user can force any
-flag off with `SPECKIT_<FLAG>=false`. The test cascade was true-fixed: every test that encoded the old
-default-off via env absence now reaches the off path through an explicit `false`, and the flag-ceiling
-drift guard keeps every token accounted for as default-on.
+### Deleted (10)
 
-### Held marginal
+Ten default-off switches and their code were removed after the fair real-world simulation showed each one
+was not worthwhile. The deciding evidence is one line per flag. The code removal is already committed, so
+the tree no longer carries these switches.
 
-All previously held-marginal flags have been resolved. SPECKIT_WORLD_SUMMARY_PRELUDE flipped on as a
-no-displacement grounding aid once the prepend-to-append fix removed its baseline displacement (see
-Flipped to default-ON above).
+| Flag | Deciding evidence | Verdict |
+|------|-------------------|---------|
+| SPECKIT_PROCEDURAL_RELIABILITY_RECALL (with SPECKIT_PROCEDURAL_OUTCOME_EMITTER) | shadow-only with an empty outcome ledger and eval rankDelta 0, the de-rate correctness fix stayed committed but the bounded multiplier moves only synthetic near-ties with zero real-data effect | DELETE |
+| SPECKIT_SUMMARY_FUSION_LANE | displacement-only, Recall@20 -0.036, the lane only pushes a real channel hit out of the list, structural at K=20 | DELETE |
+| SPECKIT_CARDINALITY_PENALTY | Recall@20 movement 0.0000, the degree-lane cap is too small to be decisive at K=20, flat even with hub distractors present | DELETE |
+| SPECKIT_SLEEPTIME_CONSOLIDATION | net -1.67pp, the dedup pass hurts recall rather than helping it | DELETE |
+| SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING | negative on the real forward-CALLS graph, uniform edges make PPR equal to the prior ranking | DELETE |
+| SPECKIT_SEMANTIC_EDGE_LAYER + edge family (SPECKIT_EDGE_VECTOR_INDEX, SPECKIT_EDGE_TRIPLET_SEARCH, SPECKIT_EDGE_SEMANTIC_DEDUP, SPECKIT_EDGE_SEMANTIC_INVALIDATION) | generic relation-template edges carry no pair identity, recall-inert at K=20 with a single-item +0.083 that does not generalize | DELETE |
+| SPECKIT_ADVISOR_OUTCOME_WEIGHTED_RERANK | MRR within noise on an empty ledger, every skill resolves to neutral so the order never moves | DELETE |
+| SPECKIT_BITEMPORAL_RECALL | zero callers, no point-in-time consumer reads the validity window | DELETE |
+| SPECKIT_EDGE_PRESENCE_CURRENTNESS | a correct integrity reconciliation pass that repairs 0 on the live graph, not a recall lever | DELETE |
+| SPECKIT_AGENTIC_RECALL | oracle ceiling +0.344 but the live reasoner nets zero with regressions at 51s per query and no production consumer | DELETE |
 
-### Default-ON (graduated, separate from the per-flag flip pass)
+### What the reckoning changed from the transitional state
 
-SPECKIT_TEMPORAL_EDGES ships default-ON (`isTemporalEdgesEnabled` graduates to TRUE via `isFeatureEnabled`,
-set `SPECKIT_TEMPORAL_EDGES=false` to disable). It is the additive graph-lane mitigation, not a regression.
-Re-measured on a live-DB copy the edge-hop recall is +0.083 with the flag ON versus OFF, so turning it OFF
-removes the mitigation and makes recall worse. The within-noise graph-channel harm belongs to the separate
-pre-028 graph flags `useGraph`, `SPECKIT_GRAPH_SIGNALS` and `SPECKIT_DEGREE_BOOST`, where the broad-corpus
-delta is -0.039 at p=0.219, a noted follow-up out of 028 scope.
-
-| Flag | Measurement | Verdict |
-|------|-------------|---------|
-| SPECKIT_TEMPORAL_EDGES | additive graph-lane mitigation, edge-hop recall +0.083 ON vs OFF on a live-DB copy | DEFAULT-ON |
-
-### Kept OFF (measured)
-
-| Flag | Measurement | Verdict |
-|------|-------------|---------|
-| SPECKIT_AGENTIC_RECALL | net 0, unwired scaffold with no production consumer (BUG) | KEEP-OFF |
-| SPECKIT_PROCEDURAL_RELIABILITY_RECALL | the de-rate bug is fixed (the multiplier is now a prior-centered evidence-weighted delta that promotes a reliable procedure and demotes an unreliable one in a near-tie, a correctness fix that stays committed), but it moves only synthetic near-ties and has zero measurable effect on real data, so it does not earn default-on | KEEP-OFF |
-| SPECKIT_ABSOLUTE_RELEVANCE_CALIBRATION | default-on already, raw cosine overstates, ECE +0.022 | KEEP-OFF (no change) |
-| SPECKIT_SLEEPTIME_CONSOLIDATION | dedup 1.0 and no data loss in shadow, net benefit unmeasured | KEEP-OFF |
-| SPECKIT_SLEEPTIME_LIVE_WRITE | dedup 1.0 and no data loss in shadow, net benefit unmeasured | KEEP-OFF |
-| SPECKIT_ADVISOR_OUTCOME_WEIGHTED_RERANK | +0.023 held-out (2 prompts within noise), shadow-only | KEEP-OFF |
-| SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING | no change on a real forward-CALLS graph | KEEP-OFF |
-| SPECKIT_SUMMARY_FUSION_LANE | -0.0361 Recall@20 | KEEP-OFF |
-| SPECKIT_CARDINALITY_PENALTY | 0.000 Recall@20 movement | KEEP-OFF |
-| SPECKIT_BITEMPORAL_RECALL | edge family no-win | KEEP-OFF |
-| SPECKIT_EDGE_VECTOR_INDEX | edge family dead flag | KEEP-OFF |
-| SPECKIT_EDGE_TRIPLET_SEARCH | edge family empty table | KEEP-OFF |
-| SPECKIT_SEMANTIC_EDGE_LAYER | edge family no-win | KEEP-OFF |
-| SPECKIT_EDGE_PRESENCE_CURRENTNESS | edge family no-win | KEEP-OFF |
+The transitional state read four flips plus a separately-graduated temporal lane, with procedural held off
+behind a committed de-rate fix and the rest awaiting a path to useful. The reckoning folded temporal into
+the kept-five, moved procedural from held-off to deleted because its path to useful led to zero real-data
+effect, and deleted the structural keep-offs, the ledger-gated flags, the consumer-gated flags and the edge
+family rather than leaving them dormant. `SPECKIT_ABSOLUTE_RELEVANCE_CALIBRATION` is a pre-028 default-on
+switch and is unaffected, kept on as the calibration pair partner.
 
 ### Follow-ups
 
-1. Wire SPECKIT_AGENTIC_RECALL to a real production consumer or remove the unwired scaffold. This is the
-   only open flag bug, it stays default-off until it has a consumer to measure.
-2. Re-measure SPECKIT_PROCEDURAL_RELIABILITY_RECALL on a near-tie benchmark. The de-rate bug is fixed and
-   the multiplier is now promotion-capable, but it is a bounded tie-breaker with zero measurable effect on
-   real data, so it stays default-off until a near-tie golden set shows a real win.
-
-Resolved since the original follow-up list: confidence calibration earned a held-out ECE 0.184 to 0.023
-across all folds with a shipped isotonic model and flipped on as an unqualified win, and the world-summary
-prelude switched from prepend to append, erased its baseline displacement, and flipped on as a
-no-displacement grounding aid. The procedural de-rate bug was fixed (the multiplier is committed as a
-prior-centered evidence-weighted delta) but the flag reverted to default-off because the fix moves only
-synthetic near-ties.
+1. Add a coupling guard on the kept calibration pair so `absolute_relevance_calibration=false` with
+   `confidence_calibration=true` degrades to identity rather than silently mis-calibrating.
+2. Track the within-noise graph-channel harm on the separate pre-028 graph flags `useGraph`,
+   `SPECKIT_GRAPH_SIGNALS` and `SPECKIT_DEGREE_BOOST` as a follow-up out of 028 scope. `SPECKIT_TEMPORAL_EDGES`
+   is the additive mitigation and is not the source of that harm.

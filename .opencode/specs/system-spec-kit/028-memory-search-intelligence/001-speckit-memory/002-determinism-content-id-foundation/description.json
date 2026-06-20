@@ -11,9 +11,9 @@
     "memory",
     "mcp"
   ],
-  "lastUpdated": "2026-06-19T06:21:31.836Z",
+  "lastUpdated": "2026-06-20T09:26:59.653Z",
   "specId": "002",
-  "folderSlug": "002-determinism-content-id-foundation",
+  "folderSlug": "determinism-content-id-foundation",
   "parentChain": [
     "system-spec-kit",
     "028-memory-search-intelligence",

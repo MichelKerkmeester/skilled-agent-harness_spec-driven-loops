@@ -34,6 +34,8 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
+> DELETED, superseded by measurement. The `SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING` flag and its code were removed in the flag-resolution reckoning because PPR went negative on the real forward-CALLS graph where uniform edges make it equal to the prior ranking. See [`../../007-kept-off-flag-resolution/`](../../007-kept-off-flag-resolution/). The ADRs below are retained as the design-of-record for why the mechanism was built and gated.
+
 ---
 
 <!-- ANCHOR:adr-001 -->

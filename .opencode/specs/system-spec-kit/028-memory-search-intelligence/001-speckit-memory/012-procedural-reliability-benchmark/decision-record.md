@@ -26,6 +26,8 @@ _memory:
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 
+> DELETED, superseded by measurement. The `SPECKIT_PROCEDURAL_RELIABILITY_RECALL` flag and its `SPECKIT_PROCEDURAL_OUTCOME_EMITTER` companion and their code were removed in the flag-resolution reckoning. The de-rate correctness fix was real but the outcome ledger stayed empty and the bounded multiplier moved only synthetic near-ties with an eval rankDelta of 0. See [`../../007-kept-off-flag-resolution/`](../../007-kept-off-flag-resolution/). The ADRs below are retained as the design-of-record.
+
 ---
 
 <!-- ANCHOR:adr-001 -->

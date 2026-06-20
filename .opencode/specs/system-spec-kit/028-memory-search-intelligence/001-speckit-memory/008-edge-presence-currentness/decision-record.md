@@ -35,6 +35,8 @@ _memory:
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 
+> DELETED, superseded by measurement. The `SPECKIT_EDGE_PRESENCE_CURRENTNESS` flag and its code were removed in the flag-resolution reckoning because the reconciliation pass repaired 0 rows on the live graph, an integrity pass and not a recall lever. See [`../../007-kept-off-flag-resolution/`](../../007-kept-off-flag-resolution/). The ADRs below are retained as the design-of-record.
+
 ---
 
 <!-- ANCHOR:adr-001 -->

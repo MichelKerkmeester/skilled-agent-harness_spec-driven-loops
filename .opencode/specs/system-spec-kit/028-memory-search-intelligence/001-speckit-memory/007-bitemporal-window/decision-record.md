@@ -33,6 +33,8 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
+> DELETED, superseded by measurement. The `SPECKIT_BITEMPORAL_RECALL` flag and its code were removed in the flag-resolution reckoning because the validity window had zero callers and no point-in-time consumer ever read it. See [`../../007-kept-off-flag-resolution/`](../../007-kept-off-flag-resolution/). The ADRs below are retained as the design-of-record.
+
 ---
 
 <!-- ANCHOR:adr-001 -->

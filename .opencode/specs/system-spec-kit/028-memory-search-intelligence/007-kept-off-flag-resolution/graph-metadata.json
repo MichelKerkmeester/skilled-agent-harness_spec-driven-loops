@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/007-kept-off-flag-resolution",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/007-kept-off-flag-resolution",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/028-memory-search-intelligence/006-review-remediation"
+    ],
+    "supersedes": [],
+    "related_to": [
+      "system-spec-kit/028-memory-search-intelligence/001-speckit-memory"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "028 kept off flag resolution",
+      "028 flag flip or delete reckoning",
+      "028 keep 5 delete 10 flags",
+      "028 final flag disposition"
+    ],
+    "key_topics": [
+      "028",
+      "kept",
+      "off",
+      "flag",
+      "resolution",
+      "flip",
+      "delete",
+      "reckoning"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [],
+    "causal_summary": "Kept-Off Flag Resolution is the final flip-or-delete reckoning for every 028 default-off flag. Five switches earned default-on and stayed, ten did not and their code was removed, each decided per flag under a fair real-world simulation with a fresh-Opus final gate and a 4-layer verification.",
+    "created_at": "2026-06-20T00:00:00Z",
+    "last_save_at": "2026-06-20T00:00:00Z",
+    "save_lineage": "scaffold",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": "2026-06-20T00:00:00Z"
+  }
+}

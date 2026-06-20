@@ -13,7 +13,7 @@ _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence"
     last_updated_at: "2026-06-20T00:00:00Z"
-    recent_action: "Extended the chronological timeline to cover the keep-off flag reinvestigation, the four default-on flips, the procedural revert and the three-round deep-review validation arc"
+    recent_action: "Reconciled the timeline to the final flag-resolution reckoning: keep 5 default-on, delete 10 and their code, validated across three deep-review rounds"
     next_safe_action: "Use this file to trace what shipped when and in which commit across the four subsystems"
     completion_pct: 100
 ---
@@ -27,9 +27,9 @@ _memory:
 > shipped the ship-ready spearhead first. Then the rest of the roadmap was re-planned into a phased
 > five-track program under 028 and built in dependency-ordered waves, every shipped change additive,
 > reversible and default-safe. A four-round deep review then audited the shipped state. Finally a
-> keep-off flag reinvestigation reopened every default-off flag, flipped four to default-on on real
-> evidence, reverted one after fixing its correctness bug and was validated across three deep-review
-> rounds, so the closing state carries a measured disposition rather than a uniform default-off posture.
+> flag-resolution reckoning reopened every default-off flag, kept five default-on on real evidence,
+> deleted ten along with their code and was validated across three deep-review rounds, so the closing
+> state carries a measured disposition rather than a uniform default-off posture.
 >
 > **Where the truth lives.** The superseded 030 Wave-0 packet was deleted at `5ce5130b20`, so its
 > done-evidence now lives in the per-track `changelog-00N-root.md` rollups and the before-and-after
@@ -267,8 +267,9 @@ with the deep-research SKILL surfaces and the command-router deferred to a concu
 the eval-harness benchmark ran for criterion 4 at `0843d054f7` and resolved at `30958b1b0e`: the
 aligned golden set produced channel-level Recall@20 deltas but no default-off flag earned a flip on
 that pass, so the conservative default-off posture held for the build epoch. That verdict was later
-superseded by the keep-off flag reinvestigation in Section G, which reopened the flags and flipped four
-to default-on on its own evidence. `5ce5130b20` then deleted the superseded Wave-0 packet 030.
+superseded by the flag-resolution reckoning in Section G, which reopened the flags, kept five default-on
+on its own evidence and deleted ten along with their code. `5ce5130b20` then deleted the superseded
+Wave-0 packet 030.
 
 ---
 
@@ -333,45 +334,49 @@ nine of nine executed, and flagged the repo-root README rule count for a live re
 
 ---
 
-## G. The keep-off flag reinvestigation and the deep-review validation
+## G. The keep-off flag-resolution reckoning and the deep-review validation
 
-The build epoch closed with no default-off flag flipped, so the final arc reopened that verdict. Every
-028 flag that benchmarked keep-off was reinvestigated through deep research to find the concrete path
-that makes it improve a real metric, and the triage in
-[`keep-off-flag-roadmap.md`](./keep-off-flag-roadmap.md) recorded each flag with its root cause, its
-path to useful, its effort and its flip potential. The cross-cutting finding was that every keep-off
-flag is mechanism-shipped and claim-deferred by design, so each gap is a missing connection to live data
-rather than a logic bug. The decisions are recorded in [`benchmark-status.md`](./benchmark-status.md).
+The build epoch closed with no default-off flag flipped, so the final arc reopened that verdict and ran
+it to a clean decision. Every 028 flag that benchmarked keep-off was first reinvestigated for a path to
+useful, then simulated under a fair real-world load with claude2 and gpt-5.5 as the live signal, and
+finally given a per-flag keep-or-delete decision behind a fresh-Opus gate. The reckoning ended the
+path-to-useful framing. Where the connection to live data was made and the metric still did not move, the
+flag was deleted along with its code rather than left dormant. The final tally is keep 5 default-on and
+delete 10. The per-flag resolution table lives in
+[`keep-off-flag-roadmap.md`](./keep-off-flag-roadmap.md) and the final tally in
+[`benchmark-status.md`](./benchmark-status.md), with the full method and 4-layer verification in
+[`007-kept-off-flag-resolution/`](./007-kept-off-flag-resolution/).
 
-Four flags earned a default-on flip, two on an unqualified win and two on a no-harm guarantee. The
-honest framing matters so a release sign-off does not read a safety flip as a precision win.
-`SPECKIT_CONFIDENCE_CALIBRATION` flipped on an unqualified win, held-out ECE 0.184 to 0.023 across all
-folds with a shipped isotonic model and a label-decoupling fix that removed the earlier overfit.
-`SPECKIT_DERIVED_ID_PROVENANCE` flipped on an unqualified win, content-addressed identity correctness 4
-of 4. `SPECKIT_RETENTION_FORGETTING_V1` flipped as a safety and no-harm guarantee, it spares 386
-keep-set rows the off path would delete with dropRecall delta 0, and its keep and drop labels are
-circular, so it is a guardrail and not a precision gain. `SPECKIT_WORLD_SUMMARY_PRELUDE` flipped as a
-no-displacement grounding aid once it moved from prepend to append, it recovers 11 targets with 0
-regressions by construction and never displaces a baseline row, so it is a grounding aid and not a
-recall-quality win.
+Five switches earned default-on. The honest framing matters so a release sign-off does not read a safety
+flip as a precision win. `SPECKIT_CONFIDENCE_CALIBRATION` kept on an unqualified win, held-out ECE 0.184
+to 0.023 across all folds with a shipped isotonic model and a label-decoupling fix that removed the
+earlier overfit. `SPECKIT_DERIVED_ID_PROVENANCE` kept on an unqualified win, content-addressed identity
+correctness 4 of 4. `SPECKIT_RETENTION_FORGETTING_V1` kept as a safety and no-harm guarantee, it spares
+386 keep-set rows the off path would delete with dropRecall delta 0, and its keep and drop labels are
+circular, so it is a guardrail and not a precision gain. `SPECKIT_WORLD_SUMMARY_PRELUDE` kept as a
+no-displacement grounding aid, it recovers 11 targets with 0 regressions by construction in append
+placement and never displaces a baseline row. `SPECKIT_TEMPORAL_EDGES` kept as the additive graph lane,
+edge-hop recall +0.083 on versus off on a live-DB copy, so turning it off removes the mitigation.
 
-`SPECKIT_PROCEDURAL_RELIABILITY_RECALL` reverted to default-off. Its de-rate bug was fixed and the
-correctness fix stays committed, the multiplier is now a prior-centered evidence-weighted delta that can
-promote or demote a procedure in a near-tie, but it moves only synthetic near-ties with zero measurable
-effect on real data, so only a near-tie benchmark would earn it a flip.
+Ten switches were deleted along with their code. `SPECKIT_PROCEDURAL_RELIABILITY_RECALL` and its
+`SPECKIT_PROCEDURAL_OUTCOME_EMITTER` companion went because the de-rate fix was real but the ledger
+stayed empty and the bounded multiplier moves only synthetic near-ties with an eval rankDelta of 0. The
+structural keep-offs went because they are recall-inert at K=20: `SPECKIT_SUMMARY_FUSION_LANE`
+(displacement-only, -0.036), `SPECKIT_CARDINALITY_PENALTY` (0.0000, cap too small) and
+`SPECKIT_SLEEPTIME_CONSOLIDATION` (-1.67pp, dedup hurts recall). `SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING`
+went negative on the real forward-CALLS graph. The edge family `SPECKIT_SEMANTIC_EDGE_LAYER`,
+`SPECKIT_EDGE_VECTOR_INDEX`, `SPECKIT_EDGE_TRIPLET_SEARCH`, `SPECKIT_EDGE_SEMANTIC_DEDUP` and
+`SPECKIT_EDGE_SEMANTIC_INVALIDATION` went because the generic relation-template edges carry no pair
+identity. `SPECKIT_ADVISOR_OUTCOME_WEIGHTED_RERANK` went because MRR stayed within noise on an empty
+ledger, `SPECKIT_BITEMPORAL_RECALL` because it had zero callers, `SPECKIT_EDGE_PRESENCE_CURRENTNESS`
+because the integrity pass repairs 0 on the live graph, and `SPECKIT_AGENTIC_RECALL` because the live
+reasoner nets zero with regressions at 51s per query despite a +0.344 oracle ceiling and has no consumer.
 
-`SPECKIT_TEMPORAL_EDGES` ships default-on as the additive graph-lane mitigation, not the regression.
-Re-measured on a live-DB copy the edge-hop recall is +0.083 with the flag on versus off, so turning it
-off removes the mitigation and makes recall worse. The within-noise graph-channel harm belongs to the
-separate pre-028 graph flags `useGraph`, `SPECKIT_GRAPH_SIGNALS` and `SPECKIT_DEGREE_BOOST`, a noted
-follow-up out of 028 scope.
+The within-noise graph-channel harm belongs to the separate pre-028 graph flags `useGraph`,
+`SPECKIT_GRAPH_SIGNALS` and `SPECKIT_DEGREE_BOOST`, a noted follow-up out of 028 scope. `SPECKIT_TEMPORAL_EDGES`
+is the additive mitigation and is not the source of that harm.
 
-The structural keep-offs stayed off because they are recall-inert at K=20: the summary-fusion lane, the
-cardinality penalty, sleeptime consolidation and the edge family. Two flags are wired and flip-deferred,
-not unbuilt: agentic recall needs a live chat LLM plus the daemon, and the advisor outcome-weighted
-rerank needs a real production ledger.
-
-The deep review ran three rounds over this disposition. It caught the delete-env evaluation bug where
-the off arm measured the on arm after a flip, so a flipped flag would have scored as a win against
-itself, and it established the principle that synthetic, circular or self-recall wins do not earn a flip.
-The four flips, the procedural revert and the structural keep-offs are the corrected closing state.
+The deep review ran three rounds over this disposition. It caught the delete-env evaluation bug where the
+off arm measured the on arm after a flip, so a flipped flag would have scored as a win against itself, and
+it established the principle that synthetic, circular or self-recall wins do not earn a keep. The five
+kept flags and the ten deletions are the corrected closing state.

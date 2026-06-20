@@ -115,6 +115,8 @@ Provide the root purpose, child map and cross-packet boundary for packet 028. Th
 | 003 | `003-skill-advisor/` | Skill Advisor research plus 7 implementation child plans | Phase parent |
 | 004 | `004-deep-loop/` | Deep Loop Runtime research plus 6 implementation child plans | Phase parent |
 | 005 | `005-release-cleanup/` | Release-readiness documentation sweep across repository doc surfaces | Phase parent |
+| 006 | `006-review-remediation/` | Four-round deep review and its scoped remediation track | Phase parent |
+| 007 | `007-kept-off-flag-resolution/` | Final flip-or-delete reckoning for every default-off flag, keep 5 and delete 10 | Complete |
 
 ### Phase Transition Rules
 
@@ -154,6 +156,6 @@ The Wave-0 implementation record is the Wave-0 SHIPPED record for candidates alr
 ## RELATED DOCUMENTS
 
 - **Roadmap**: `research/roadmap.md`
-- **Child parents**: `001-speckit-memory/`, `002-code-graph/`, `003-skill-advisor/`, `004-deep-loop/`, `005-release-cleanup/`
+- **Child parents**: `001-speckit-memory/`, `002-code-graph/`, `003-skill-advisor/`, `004-deep-loop/`, `005-release-cleanup/`, `006-review-remediation/`, `007-kept-off-flag-resolution/`
 - **Merged research index**: `001-speckit-memory/research/merged-research-index.md`
 - **Graph metadata**: `graph-metadata.json`

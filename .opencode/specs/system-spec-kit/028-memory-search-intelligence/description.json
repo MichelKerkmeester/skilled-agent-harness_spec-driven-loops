@@ -11,15 +11,16 @@
     "phase",
     "parent"
   ],
-  "lastUpdated": "2026-06-19T11:32:15.930Z",
+  "lastUpdated": "2026-06-20T14:47:31.602Z",
   "specId": "028",
   "folderSlug": "memory-search-intelligence",
   "parentChain": [
     "system-spec-kit"
   ],
-  "memorySequence": 2,
+  "memorySequence": 3,
   "memoryNameHistory": [
     "16-06-26_18-01__completed-a-phase-decomposed-deep-research.md",
-    "16-06-26_22-38__confirmed-the-stopping-condition-is-satisfied-and.md"
+    "16-06-26_22-38__confirmed-the-stopping-condition-is-satisfied-and.md",
+    "20-06-26_15-47__the-temporal-edges-investigation-delivered-a.md"
   ]
 }
