@@ -8,6 +8,7 @@ import {
 } from '../lib/graph/edge-semantic-retrieval';
 import {
   getEdgeVector,
+  markEdgeVectorFailed,
   nearestEdgeVectors,
   upsertEdgeVector,
 } from '../lib/storage/edge-vector-store';
@@ -105,6 +106,51 @@ describe('semantic edge layer', () => {
     expect(hits.map((hit) => hit.edgeId)).toEqual([1, 2]);
     expect(hits[0].score).toBeGreaterThan(hits[1].score);
     expect(getEdgeVector(db, 1, { modelId: 'unit' })?.dimensions).toBe(2);
+  });
+
+  it('resolves a failed marker on retry without leaving a dimensions=0 orphan', () => {
+    const db = createEdgeDb();
+    db.prepare(`
+      INSERT INTO causal_edges (id, source_id, target_id, relation, fact_text)
+      VALUES (1, '10', '20', 'supports', 'alpha relationship')
+    `).run();
+
+    const rowsForEdge = (): Array<{ embedding_status: string; dimensions: number }> =>
+      db.prepare(`
+        SELECT embedding_status, dimensions
+        FROM edge_vector_embeddings
+        WHERE edge_id = 1 AND profile_key = 'default' AND input_kind = 'edge' AND model_id = 'unit'
+        ORDER BY dimensions ASC
+      `).all() as Array<{ embedding_status: string; dimensions: number }>;
+
+    // Provider failure records a marker before any embedding dimension is known.
+    markEdgeVectorFailed(db, 1, 'provider boom', { modelId: 'unit', profileKey: 'default' });
+    expect(rowsForEdge()).toEqual([{ embedding_status: 'failed', dimensions: 0 }]);
+
+    // Retry succeeds at the real dimension. The failed marker lands on a
+    // different PK slot (dimensions=0), so without cleanup it would orphan
+    // beside the ready row and the marker would never clear.
+    upsertEdgeVector(db, {
+      edgeId: 1,
+      embedding: [1, 0, 0.5],
+      factText: 'alpha relationship',
+      modelId: 'unit',
+      profileKey: 'default',
+    });
+
+    expect(rowsForEdge()).toEqual([{ embedding_status: 'ready', dimensions: 3 }]);
+    expect(getEdgeVector(db, 1, { modelId: 'unit' })?.status).toBe('ready');
+
+    // A second fail->retry cycle must not accumulate orphans either.
+    markEdgeVectorFailed(db, 1, 'provider boom again', { modelId: 'unit', profileKey: 'default' });
+    upsertEdgeVector(db, {
+      edgeId: 1,
+      embedding: [0, 1, 0.25],
+      factText: 'alpha relationship',
+      modelId: 'unit',
+      profileKey: 'default',
+    });
+    expect(rowsForEdge()).toEqual([{ embedding_status: 'ready', dimensions: 3 }]);
   });
 
   it('keeps semantic edge lookup flag-off until the shadow flag is enabled', () => {

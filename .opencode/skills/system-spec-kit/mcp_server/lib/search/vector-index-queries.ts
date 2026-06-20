@@ -102,7 +102,7 @@ function tableExists(database: Database.Database, tableName: string): boolean {
   return row?.found === 1;
 }
 
-function getActiveVectorSourceForQuery(database: Database.Database): VectorSource {
+export function getActiveVectorSourceForQuery(database: Database.Database): VectorSource {
   const active = getActiveEmbedder(database);
   const dimTableName = `vec_${active.dim}`;
   if (active.name !== DEFAULT_ACTIVE_EMBEDDER.name && tableExists(database, dimTableName)) {

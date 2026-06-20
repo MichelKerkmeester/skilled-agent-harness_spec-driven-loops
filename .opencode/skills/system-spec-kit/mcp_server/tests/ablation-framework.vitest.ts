@@ -40,6 +40,7 @@ import type {
 } from '../lib/eval/ablation-framework';
 import type { EvalResult } from '../lib/eval/eval-metrics';
 import { initEvalDb, closeEvalDb, getEvalDb } from '../lib/eval/eval-db';
+import { setActiveEmbedder } from '../lib/embedders/schema';
 
 // ═══════════════════════════════════════════════════════════════════
 // HELPERS
@@ -251,6 +252,12 @@ describe('Ablation Framework (R13-S3)', () => {
       omitIds?: number[];
       pendingIds?: number[];
       omitVectorIds?: number[];
+      // Seed a non-default active embedder so production vectors live in
+      // active_vec.vec_<dim> (id column), matching the live ranker.
+      activeEmbedder?: { name: string; dim: number; provider?: 'ollama' };
+      // Create a stale bare vec_memories shadow inside active_vec to prove the
+      // coverage guard reads the active source, not the unqualified shadow.
+      shadowVecMemories?: 'full' | 'empty';
     } = {}): Promise<Database.Database> {
       const { GROUND_TRUTH_RELEVANCES } = await import('../lib/eval/ground-truth-data');
       const uniqueIds = Array.from(
@@ -265,9 +272,23 @@ describe('Ablation Framework (R13-S3)', () => {
           parent_id INTEGER,
           embedding_status TEXT
         );
-        CREATE TABLE vec_memories (
-          rowid INTEGER PRIMARY KEY,
-          embedding BLOB
+      `);
+      // Production attaches the vector shard as active_vec; mirror that here so
+      // getActiveVectorSourceForQuery resolves the same schema-qualified table.
+      alignmentDb.exec("ATTACH DATABASE ':memory:' AS active_vec");
+
+      const embedder = overrides.activeEmbedder;
+      if (embedder) {
+        setActiveEmbedder(alignmentDb, embedder.name, embedder.dim, embedder.provider);
+      }
+
+      const vectorTable = embedder ? `vec_${embedder.dim}` : 'vec_memories';
+      const idColumn = embedder ? 'id' : 'rowid';
+      const embeddingColumn = embedder ? 'vec' : 'embedding';
+      alignmentDb.exec(`
+        CREATE TABLE active_vec.${vectorTable} (
+          ${idColumn} INTEGER PRIMARY KEY,
+          ${embeddingColumn} BLOB
         );
       `);
 
@@ -276,7 +297,9 @@ describe('Ablation Framework (R13-S3)', () => {
       const pendingIdSet = new Set(overrides.pendingIds ?? []);
       const omitVectorIdSet = new Set(overrides.omitVectorIds ?? []);
       const insert = alignmentDb.prepare('INSERT INTO memory_index (id, parent_id, embedding_status) VALUES (?, ?, ?)');
-      const insertVector = alignmentDb.prepare('INSERT INTO vec_memories (rowid, embedding) VALUES (?, ?)');
+      const insertVector = alignmentDb.prepare(
+        `INSERT INTO active_vec.${vectorTable} (${idColumn}, ${embeddingColumn}) VALUES (?, ?)`,
+      );
       const embedding = Buffer.from(new Float32Array([0.1, 0.2]).buffer);
 
       for (const id of uniqueIds) {
@@ -284,6 +307,24 @@ describe('Ablation Framework (R13-S3)', () => {
         insert.run(id, chunkIdSet.has(id) ? 999999 : null, pendingIdSet.has(id) ? 'pending' : 'success');
         if (!omitVectorIdSet.has(id)) {
           insertVector.run(id, embedding);
+        }
+      }
+
+      if (overrides.shadowVecMemories) {
+        alignmentDb.exec(`
+          CREATE TABLE active_vec.vec_memories (
+            rowid INTEGER PRIMARY KEY,
+            embedding BLOB
+          );
+        `);
+        if (overrides.shadowVecMemories === 'full') {
+          const insertShadow = alignmentDb.prepare(
+            'INSERT INTO active_vec.vec_memories (rowid, embedding) VALUES (?, ?)',
+          );
+          for (const id of uniqueIds) {
+            if (omitIdSet.has(id)) continue;
+            insertShadow.run(id, embedding);
+          }
         }
       }
 
@@ -419,6 +460,51 @@ describe('Ablation Framework (R13-S3)', () => {
 
       expect(report).not.toBeNull();
       expect(searchSpy).toHaveBeenCalled();
+    });
+
+    describe('active-embedder vector source coverage', () => {
+      const NOMIC = { name: 'nomic-embed-text-v1.5', dim: 768, provider: 'ollama' as const };
+
+      it('validates coverage against active_vec.vec_<dim>, ignoring a stale empty vec_memories shadow', async () => {
+        const db = await createAlignmentDb({
+          activeEmbedder: NOMIC,
+          shadowVecMemories: 'empty',
+        });
+
+        const summary = inspectEmbeddingCoverage(db);
+
+        // The live ranker reads active_vec.vec_768 (full), so coverage is
+        // complete. The old guard probed bare vec_memories, resolved the empty
+        // shadow through the attach, and reported a false 0% — this assertion
+        // fails under that regression.
+        expect(summary.vectorTableAvailable).toBe(true);
+        expect(summary.missingVectorMemoryCount).toBe(0);
+        expect(summary.coverageRatio).toBe(1);
+        expect(assertEmbeddingCoverage(db)).toEqual(summary);
+      });
+
+      it('fails closed when the active vector source is empty even if a full vec_memories shadow exists', async () => {
+        const { GROUND_TRUTH_RELEVANCES } = await import('../lib/eval/ground-truth-data');
+        const uniqueIds = Array.from(new Set(GROUND_TRUTH_RELEVANCES.map((row) => row.memoryId)));
+
+        const db = await createAlignmentDb({
+          activeEmbedder: NOMIC,
+          omitVectorIds: uniqueIds, // production vec_768 has no rows
+          shadowVecMemories: 'full', // stale shadow is fully populated
+        });
+
+        const summary = inspectEmbeddingCoverage(db);
+
+        // The old guard would read the full shadow and falsely pass; the active
+        // source the ranker reads is empty, so the readiness gate must fail.
+        expect(summary.vectorTableAvailable).toBe(true);
+        expect(summary.missingVectorMemoryCount).toBeGreaterThan(0);
+        expect(summary.coverageRatio).toBeLessThan(1);
+        expect(() => assertEmbeddingCoverage(db, {
+          dbPath: '/tmp/test-context-index.sqlite',
+          context: 'unit-test',
+        })).toThrow(/Ground-truth embedding coverage/i);
+      });
     });
   });
 

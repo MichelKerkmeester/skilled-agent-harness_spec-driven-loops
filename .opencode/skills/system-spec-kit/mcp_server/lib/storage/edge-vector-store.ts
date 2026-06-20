@@ -155,7 +155,7 @@ export function upsertEdgeVector(database: Database.Database, record: EdgeVector
   const modelId = record.modelId?.trim() || DEFAULT_MODEL_ID;
   const profileKey = record.profileKey?.trim() || DEFAULT_PROFILE_KEY;
   const inputKind = record.inputKind ?? 'edge';
-  database.prepare(`
+  const writeReady = database.prepare(`
     INSERT INTO edge_vector_embeddings (
       edge_id, profile_key, input_kind, model_id, dimensions,
       embedding, embedding_status, failure_reason, fact_hash, updated_at
@@ -167,15 +167,33 @@ export function upsertEdgeVector(database: Database.Database, record: EdgeVector
       failure_reason = NULL,
       fact_hash = excluded.fact_hash,
       updated_at = datetime('now')
-  `).run(
-    record.edgeId,
-    profileKey,
-    inputKind,
-    modelId,
-    embedding.length,
-    embeddingToBuffer(embedding),
-    factHash(record.factText),
-  );
+  `);
+  // A failure marker is recorded before the embedding dimension is known, so it
+  // lands on a different PRIMARY KEY slot (dimensions defaults to 0) than this
+  // ready row. Clear stale failed markers for the same logical edge so a
+  // failed->ready retry resolves to a single ready row instead of leaving an
+  // orphan failure row that never clears and permanently over-counts failures.
+  const clearFailedOrphans = database.prepare(`
+    DELETE FROM edge_vector_embeddings
+    WHERE edge_id = ?
+      AND profile_key = ?
+      AND input_kind = ?
+      AND model_id = ?
+      AND dimensions != ?
+      AND embedding_status = 'failed'
+  `);
+  database.transaction(() => {
+    writeReady.run(
+      record.edgeId,
+      profileKey,
+      inputKind,
+      modelId,
+      embedding.length,
+      embeddingToBuffer(embedding),
+      factHash(record.factText),
+    );
+    clearFailedOrphans.run(record.edgeId, profileKey, inputKind, modelId, embedding.length);
+  })();
 }
 
 export function markEdgeVectorFailed(

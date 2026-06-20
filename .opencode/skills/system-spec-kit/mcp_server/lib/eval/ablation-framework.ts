@@ -65,6 +65,7 @@ import {
   type ScoreSnapshot,
   type Stage4ReadonlyRow,
 } from '../search/pipeline/types.js';
+import { getActiveVectorSourceForQuery } from '../search/vector-index-queries.js';
 import type Database from 'better-sqlite3';
 
 /* --- 1. FEATURE FLAG --- */
@@ -378,13 +379,38 @@ function formatPreflightContextSuffix(options: { dbPath?: string; context?: stri
   return contextParts.length > 0 ? ` for ${contextParts.join(' @ ')}` : '';
 }
 
-function canQueryVecMemories(database: Database.Database): boolean {
+interface ActiveVectorProbe {
+  tableName: string;
+  idColumn: string;
+  available: boolean;
+}
+
+// Resolve the exact vector table the production ranker reads, then confirm it is
+// queryable. The active_vec attach can resolve a bare `vec_memories` name to a
+// stale shadow shard, so coverage must be validated against the table the live
+// query actually reads (active_vec.vec_<dim> for a non-default embedder), never
+// the unqualified shadow — otherwise the readiness gate can false-pass against a
+// stale shadow or false-fail where no shadow exists.
+function probeActiveVectorSource(database: Database.Database): ActiveVectorProbe {
+  let tableName = '';
+  let idColumn = '';
   try {
-    database.prepare('SELECT rowid FROM vec_memories LIMIT 1').get();
-    return true;
+    const source = getActiveVectorSourceForQuery(database);
+    tableName = source.tableName;
+    idColumn = source.idColumn;
   } catch {
-    return false;
+    return { tableName, idColumn, available: false };
   }
+  try {
+    database.prepare(`SELECT ${idColumn} FROM ${tableName} LIMIT 1`).get();
+    return { tableName, idColumn, available: true };
+  } catch {
+    return { tableName, idColumn, available: false };
+  }
+}
+
+function canQueryVecMemories(database: Database.Database): boolean {
+  return probeActiveVectorSource(database).available;
 }
 
 function getUniqueGroundTruthMemoryIds(): number[] {
@@ -522,7 +548,8 @@ export function inspectEmbeddingCoverage(
   database: Database.Database,
 ): GroundTruthEmbeddingCoverageSummary {
   const uniqueMemoryIds = getUniqueGroundTruthMemoryIds();
-  const vectorTableAvailable = canQueryVecMemories(database);
+  const vectorSource = probeActiveVectorSource(database);
+  const vectorTableAvailable = vectorSource.available;
 
   if (uniqueMemoryIds.length === 0) {
     return {
@@ -548,9 +575,9 @@ export function inspectEmbeddingCoverage(
         m.id,
         m.parent_id,
         m.embedding_status,
-        CASE WHEN v.rowid IS NULL THEN 0 ELSE 1 END AS has_vector
+        CASE WHEN v.${vectorSource.idColumn} IS NULL THEN 0 ELSE 1 END AS has_vector
       FROM memory_index m
-      LEFT JOIN vec_memories v ON v.rowid = m.id
+      LEFT JOIN ${vectorSource.tableName} v ON v.${vectorSource.idColumn} = m.id
       WHERE m.id IN (${placeholders})
     `).all(...uniqueMemoryIds) as EmbeddingCoverageLookupRow[]
     : database.prepare(`
