@@ -239,9 +239,12 @@ afterEach(() => {
 });
 
 describe('summary fusion feature flags and routing', () => {
-  it('keeps summary fusion and world-summary prelude opt-in by default', () => {
+  it('keeps the summary-fusion lane opt-in while the world-summary prelude defaults on', () => {
+    // The summary-fusion lane is still opt-in, so the summary channel stays
+    // out of routing by default. The world-summary prelude (a memory_context
+    // grounding pass, not a routing channel) graduated to default-on.
     expect(isSummaryFusionLaneEnabled()).toBe(false);
-    expect(isWorldSummaryPreludeEnabled()).toBe(false);
+    expect(isWorldSummaryPreludeEnabled()).toBe(true);
     expect(getAllChannels()).not.toContain('summary');
     expect(getChannelSubset('complex')).not.toContain('summary');
   });

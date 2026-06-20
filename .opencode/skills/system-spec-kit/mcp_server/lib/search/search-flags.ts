@@ -336,10 +336,12 @@ export function isSummaryFusionLaneEnabled(): boolean {
 
 /**
  * Coarse-to-fine world-summary grounding prelude for memory_context.
- * Default: FALSE (shadow). Set SPECKIT_WORLD_SUMMARY_PRELUDE=true to enable.
+ * Default: TRUE (graduated). The prelude now appends its grounding instead of
+ * prepending it, so it adds net Recall@5 +0.275 without displacing any baseline
+ * result. Set SPECKIT_WORLD_SUMMARY_PRELUDE=false to disable.
  */
 export function isWorldSummaryPreludeEnabled(): boolean {
-  return isOptInEnabled('SPECKIT_WORLD_SUMMARY_PRELUDE');
+  return isFeatureEnabled('SPECKIT_WORLD_SUMMARY_PRELUDE');
 }
 
 /**
@@ -908,10 +910,13 @@ export function isProceduralOutcomeEmitterEnabled(): boolean {
 
 /**
  * Applies procedural reliability evidence to adaptive recall scoring.
- * Default: FALSE. Set SPECKIT_PROCEDURAL_RELIABILITY_RECALL=true to enable.
+ * Default: TRUE (graduated). A prior-centered evidence-weighted multiplier
+ * promotes a reliable procedure and demotes an unreliable one in a near-tie
+ * while leaving large-gap cases untouched, so it is a bounded reliability
+ * tie-breaker. Set SPECKIT_PROCEDURAL_RELIABILITY_RECALL=false to disable.
  */
 export function isProceduralReliabilityRecallEnabled(): boolean {
-  return isOptInEnabled('SPECKIT_PROCEDURAL_RELIABILITY_RECALL');
+  return isFeatureEnabled('SPECKIT_PROCEDURAL_RELIABILITY_RECALL');
 }
 
 /**

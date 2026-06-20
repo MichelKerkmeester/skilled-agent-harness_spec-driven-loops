@@ -19,7 +19,7 @@ measurement defects that made its per-flag deltas non-representative of producti
 
 Both are fixed driver-side only - production routing code is unchanged and default-off byte-identity
 is preserved. The criterion-4 per-flag benchmark was re-run on the corrected driver against the same
-aligned golden set (60 queries, 137 labels, 0 missing/chunk; vector lane healthy, 0 query-embedding
+aligned golden set (60 queries, 137 labels, 0 missing/chunk, vector lane healthy, 0 query-embedding
 failures, vector-ablation delta +0.256 confirming the live embedder). **This re-run supersedes the
 prior per-flag measurement.**
 
@@ -36,7 +36,7 @@ Corrected per-flag Recall@20 on the default routing path (K=20):
 The per-flag off-baseline (0.4861) is now higher than the forced all-channels baseline (0.4583)
 precisely because the default routed path is what production serves - the prior all-channels number
 was the non-representative artifact. All other flags are `runSearch: false` (not exercised by this
-Recall@20 hybrid path; they live in memory_context / temporal-edge / write-time / maintenance /
+Recall@20 hybrid path, they live in memory_context / temporal-edge / write-time / maintenance /
 off-turn / confidence-display paths) and stay conservatively default-off pending path-specific evals.
 
 Channel ablation (forced all-channels baseline 0.4583, K=20), trigger noise row dropped:
@@ -52,16 +52,16 @@ Channel ablation (forced all-channels baseline 0.4583, K=20), trigger noise row 
 flags exercised by this path either hurt recall when enabled (`summary_fusion_lane`: -0.0361 on the
 production routing path, confirming the prior all-channels signal) or show zero Recall@20 movement
 (`cardinality_penalty`). Default-off remains the correct conservative state. Recommendation to the
-orchestrator: hold all default-off flags off; no unilateral production-default flip is warranted on
+orchestrator: hold all default-off flags off, no unilateral production-default flip is warranted on
 this evidence.
 
 ### Prior measurement (superseded by the corrected re-run above)
 
 RESOLVED. The golden set was regenerated as a live-DB-aligned known-item benchmark (60 queries, 137
-labels, 0 missing; the old curated set is backed up to `ground-truth.curated.bak.json`). The harness ran
+labels, 0 missing, the old curated set is backed up to `ground-truth.curated.bak.json`). The harness ran
 on it via the `lib/eval` ablation framework and produced channel Recall@20 deltas (baseline ~0.46, some
 channels contributing +0.09 to +0.26) plus per-flag deltas. No default-off flag earned a flip: the flags
-exercised by the Recall@20 hybrid path are flat; the rest live in paths this harness does not exercise
+exercised by the Recall@20 hybrid path are flat, the rest live in paths this harness does not exercise
 (memory_context, temporal-edge, write-time, maintenance, off-turn, confidence/display) so stay
 conservatively default-off pending path-specific evals. Reusable helpers landed in `scripts/evals/`
 (generate-known-item-ground-truth, run-retrieval-flag-eval, assert-ground-truth-alignment). Remaining
@@ -75,7 +75,7 @@ score and named the remediation. Root cause, confirmed by direct inspection:
 
 - The golden set is STATIC and hand-curated: `mcp_server/lib/eval/data/ground-truth.json` mirrors
   `GROUND_TRUTH_QUERIES` + `GROUND_TRUTH_RELEVANCES` in `lib/eval/ground-truth-data.ts`.
-  `generateGroundTruth()` just returns that static data; it does NOT derive labels from the live DB.
+  `generateGroundTruth()` just returns that static data, it does NOT derive labels from the live DB.
 - Its relevance `memoryId`s reference parent IDs that have turned over: they resolve against
   `memory_history` (99/50 sampled) but only 1/50 against the active `memory_index` (20,050 rows).
 - Net: 0 of 110 queries align with the current index. `scripts/map-ground-truth-ids.js --write` runs
@@ -87,7 +87,7 @@ Remediation (deliberate data + judgment work, NOT implementation):
 2. Re-run `eval_run_ablation` (requires `SPECKIT_ABLATION=true`, already honored by the daemon).
 3. Review the channel + C9 deltas, then flip ONLY the default-off flags whose own metric improves.
    Flipping memory-retrieval behavior defaults on a benchmark of unknown validity is high-blast and
-   was deliberately NOT done; default-off is the correct conservative interim state.
+   was deliberately NOT done, default-off is the correct conservative interim state.
 
 Default-off flags awaiting per-flag benchmark evidence (registered in `tests/flag-ceiling.vitest.ts`):
 SPECKIT_BITEMPORAL_RECALL, SPECKIT_AGENTIC_RECALL, SPECKIT_EDGE_PRESENCE_CURRENTNESS, plus the
@@ -111,7 +111,7 @@ These deferrals are external coordination boundaries, not implementation gaps.
 ## Flip decisions
 
 This section records the per-flag promotion decisions made after the criterion-4 measurement above.
-Two flags earned a default-on flip on independently verified evidence. The rest hold off, stay off, or
+Five flags earned a default-on flip on independently verified evidence. The rest hold off, stay off, or
 carry a follow-up. The decisions below are the authoritative disposition for each measured flag.
 
 ### Flipped to default-ON
@@ -120,25 +120,25 @@ carry a follow-up. The decisions below are the authoritative disposition for eac
 |------|--------|----------|---------|
 | SPECKIT_DERIVED_ID_PROVENANCE | isDerivedIdProvenanceEnabled | content-addressed identity correctness 4/4 (stability 50/50, replay 3/3, dedup discrimination 50/50, 0 collisions) | FLIP-ON |
 | SPECKIT_RETENTION_FORGETTING_V1 | isRetentionForgettingEnabled | DROP precision 0.33 to 1.0, keep-set protection 0.059 to 1.0, recall held at 1.0 (a safety layer that only ever over-protects) | FLIP-ON |
+| SPECKIT_WORLD_SUMMARY_PRELUDE | isWorldSummaryPreludeEnabled | the prelude now appends its grounding instead of prepending it, so it adds net Recall@5 +0.275 with zero baseline displacement (the displaced-row regression that held it marginal is gone) | FLIP-ON |
+| SPECKIT_PROCEDURAL_RELIABILITY_RECALL | isProceduralReliabilityRecallEnabled | the prior-centered evidence-weighted multiplier promotes a reliable procedure and demotes an unreliable one in a near-tie while leaving large-gap cases neutral, a bounded reliability tie-breaker (supersedes the de-rate-only beta-posterior bug) | FLIP-ON |
+| SPECKIT_CONFIDENCE_CALIBRATION | isConfidenceCalibrationEnabled | held-out ECE 0.193 to 0.019 with a shipped isotonic model resolved by default, so the earlier overfit (fit and eval on the same set) no longer applies | FLIP-ON |
 
-Both helpers now route through `isFeatureEnabled` so the env override still works. A user can force either
+All five helpers now route through `isFeatureEnabled` so the env override still works. A user can force any
 flag off with `SPECKIT_<FLAG>=false`. The test cascade was true-fixed: every test that encoded the old
 default-off via env absence now reaches the off path through an explicit `false`, and the flag-ceiling
-drift guard keeps both tokens accounted for as default-on.
+drift guard keeps every token accounted for as default-on.
 
 ### Held marginal
 
-| Flag | Measurement | Verdict |
-|------|-------------|---------|
-| SPECKIT_WORLD_SUMMARY_PRELUDE | net Recall@5 +0.10 (13 recovered minus 9 displaced), grounding coverage 0.925 | HOLD - fix prepend to append then re-measure |
+All previously held-marginal flags have been resolved. SPECKIT_WORLD_SUMMARY_PRELUDE flipped on once
+the prepend-to-append fix removed its baseline displacement (see Flipped to default-ON above).
 
 ### Kept OFF (measured)
 
 | Flag | Measurement | Verdict |
 |------|-------------|---------|
 | SPECKIT_AGENTIC_RECALL | net 0, unwired scaffold with no production consumer (BUG) | KEEP-OFF |
-| SPECKIT_PROCEDURAL_RELIABILITY_RECALL | nDCG -0.046, the reliability multiplier is a beta-posterior mean in [0,1] at bayesian-scorer.ts:61 so it can only de-rate never boost (BUG) | KEEP-OFF |
-| SPECKIT_CONFIDENCE_CALIBRATION | ECE 0.193 to 0.018 but OVERFIT (fit and eval on the same set), needs held-out split plus a shipped model | KEEP-OFF |
 | SPECKIT_ABSOLUTE_RELEVANCE_CALIBRATION | default-on already, raw cosine overstates, ECE +0.022 | KEEP-OFF (no change) |
 | SPECKIT_SLEEPTIME_CONSOLIDATION | dedup 1.0 and no data loss in shadow, net benefit unmeasured | KEEP-OFF |
 | SPECKIT_SLEEPTIME_LIVE_WRITE | dedup 1.0 and no data loss in shadow, net benefit unmeasured | KEEP-OFF |
@@ -155,6 +155,10 @@ drift guard keeps both tokens accounted for as default-on.
 
 ### Follow-ups
 
-1. Fix the two bugs: wire SPECKIT_AGENTIC_RECALL or remove it, and correct the procedural multiplier to a >=1 boost.
-2. Give SPECKIT_CONFIDENCE_CALIBRATION a held-out eval plus a shipped model before reconsidering a flip.
-3. Re-measure SPECKIT_WORLD_SUMMARY_PRELUDE after the prepend to append fix.
+1. Wire SPECKIT_AGENTIC_RECALL to a real production consumer or remove the unwired scaffold. This is the
+   only open flag bug, it stays default-off until it has a consumer to measure.
+
+Resolved since the original follow-up list: the procedural multiplier was rebuilt as a prior-centered
+evidence-weighted delta (not the old de-rate-only beta-posterior mean) and flipped on, confidence
+calibration earned a held-out ECE 0.193 to 0.019 with a shipped isotonic model and flipped on, and the
+world-summary prelude switched from prepend to append, erased its baseline displacement, and flipped on.

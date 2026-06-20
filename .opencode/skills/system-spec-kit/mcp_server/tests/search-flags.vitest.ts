@@ -135,15 +135,17 @@ describe('Search Feature Flags', () => {
     expect(isBitemporalRecallEnabled()).toBe(true);
   });
 
-  it('procedural benchmark-build gates remain opt-in by default', () => {
+  it('keeps the procedural outcome emitter opt-in while reliability recall defaults on', () => {
+    // The outcome emitter is still a benchmark-build gate (opt-in). Procedural
+    // reliability recall graduated to default-on, so env-absence means ON.
     expect(isProceduralOutcomeEmitterEnabled()).toBe(false);
-    expect(isProceduralReliabilityRecallEnabled()).toBe(false);
+    expect(isProceduralReliabilityRecallEnabled()).toBe(true);
 
     process.env.SPECKIT_PROCEDURAL_OUTCOME_EMITTER = 'true';
-    process.env.SPECKIT_PROCEDURAL_RELIABILITY_RECALL = 'true';
+    process.env.SPECKIT_PROCEDURAL_RELIABILITY_RECALL = 'false';
 
     expect(isProceduralOutcomeEmitterEnabled()).toBe(true);
-    expect(isProceduralReliabilityRecallEnabled()).toBe(true);
+    expect(isProceduralReliabilityRecallEnabled()).toBe(false);
   });
 
   it('sleeptime consolidation gates remain opt-in by default', () => {

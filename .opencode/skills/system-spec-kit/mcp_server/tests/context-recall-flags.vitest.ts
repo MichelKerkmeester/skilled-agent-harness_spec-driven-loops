@@ -115,10 +115,20 @@ afterEach(() => {
   }
 });
 
-describe('recall-mode flags are opt-in by default', () => {
-  it('keeps all three recall-mode flags off without explicit opt-in', () => {
-    expect(isWorldSummaryPreludeEnabled()).toBe(false);
+describe('recall-mode flag defaults', () => {
+  it('runs world-summary prelude and procedural reliability recall on by default, agentic recall still off', () => {
+    // World-summary prelude and procedural reliability recall graduated to
+    // default-on, so env-absence now means ON. Agentic recall is still an
+    // unwired scaffold and stays opt-in.
+    expect(isWorldSummaryPreludeEnabled()).toBe(true);
+    expect(isProceduralReliabilityRecallEnabled()).toBe(true);
     expect(isAgenticRecallEnabled()).toBe(false);
+  });
+
+  it('honors an explicit false override on the graduated recall-mode flags', () => {
+    process.env.SPECKIT_WORLD_SUMMARY_PRELUDE = 'false';
+    process.env.SPECKIT_PROCEDURAL_RELIABILITY_RECALL = 'false';
+    expect(isWorldSummaryPreludeEnabled()).toBe(false);
     expect(isProceduralReliabilityRecallEnabled()).toBe(false);
   });
 });
