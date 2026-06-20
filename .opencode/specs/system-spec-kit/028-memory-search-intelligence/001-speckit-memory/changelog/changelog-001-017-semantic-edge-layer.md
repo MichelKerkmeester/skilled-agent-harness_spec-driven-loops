@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ### Summary
 
-This phase shipped the semantic-edge substrate and a shadow retrieval primitive behind default-off flags. The v41 migration adds fact text and a dedicated edge-relationship vector store, edge embedding is wired into the consolidation cycle and the synchronous insert path stays unchanged. The dedup-merge and invalidation-discovery consumers stay pending behind benchmark and safety gates. Commit `5308341d95` carried the lib code with focused tests.
+This phase shipped the semantic-edge substrate and a shadow retrieval primitive behind default-off flags. The v41 migration adds fact text and a dedicated edge-relationship vector store, edge embedding is wired into the consolidation cycle and the synchronous insert path stays unchanged. The dedup-merge and invalidation-discovery consumers stay pending behind benchmark and safety gates. Commit `5308401d95` carried the lib code with focused tests.
 
 ### Added
 

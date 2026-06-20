@@ -19,35 +19,44 @@ contextType: "implementation"
 
 ### Summary
 
-This is a benchmark-first planning packet. It does not implement procedural reliability. The authored docs freeze four candidates, their prerequisites and the benchmark that must prove reliability weighting out-earns existing access and confirmation signals before any ranking fold ships.
+This phase shipped the default-off safe core for procedural reliability and left every candidate promotion benchmark-gated. The outcome and correction mirror, an f64 Beta reliability primitive and a procedural recall fold all landed behind their flags with deterministic tests, while default recall stays byte-identical with both flags off. The four candidates stay pending until a benefit benchmark proves the reliability fold out-earns the existing access and confirmation signals. Commit `8f8776e329` carried the lib code with focused tests.
 
 ### Added
 
-- Added the Level-3 planning set and decision record.
-- Added the prerequisite chain for the outcome emitter and numeric reliability primitive.
+- Added the default-off outcome and correction mirror into adaptive signals in `lib/feedback/feedback-ledger.ts` behind `SPECKIT_PROCEDURAL_OUTCOME_EMITTER`.
+- Added the f64 Beta reliability primitive and multiplier helper in `lib/scoring/bayesian-scorer.ts`.
+- Added the default-off procedural reliability recall fold for procedural rows in `lib/cognitive/adaptive-ranking.ts` behind `SPECKIT_PROCEDURAL_RELIABILITY_RECALL`.
+- Added both flags to the flag-ceiling known list in `lib/search/search-flags.ts`.
+- Added the Level-3 candidate ledger with the benefit benchmark as the promotion gate.
 
 ### Changed
 
 - Reframed the reliability host as present but under-emitted rather than missing.
-- Made the benefit micro-benchmark the promotion gate.
+- Kept default recall byte-identical with both flags off.
 
 ### Fixed
 
-- Prevented reliability weighting from shipping as a free byproduct without measured evidence.
+- Prevented reliability weighting from promoting as a free byproduct without a measured benefit number.
 
 ### Verification
 
 - Strict phase validation: PASS.
 - Research faithfulness: PASS.
-- Implementation tests: not applicable because no code shipped.
-- Benefit benchmark: not run.
+- Implementation tests: PASS. The bayesian-scorer, feedback-ledger, adaptive-ranking, search-flags and flag-ceiling suites passed.
+- Benefit benchmark: not run. It remains the promotion gate, so all four candidates stay pending.
 
 ### Files Changed
 
-_No production file-level detail recorded._
+| File | Action | What changed |
+|---|---|---|
+| `lib/feedback/feedback-ledger.ts` | Modified | Default-off outcome and correction mirror into adaptive signals |
+| `lib/scoring/bayesian-scorer.ts` | Modified | f64 Beta reliability primitive and multiplier helper |
+| `lib/cognitive/adaptive-ranking.ts` | Modified | Default-off procedural reliability recall fold for procedural rows |
+| `lib/search/search-flags.ts` | Modified | Registered `SPECKIT_PROCEDURAL_OUTCOME_EMITTER` and `SPECKIT_PROCEDURAL_RELIABILITY_RECALL` |
+| `tests/*.vitest.ts` | Modified | Deterministic scorer, ledger, ranking, flag and flag-ceiling coverage |
 
 ### Follow-Ups
 
-- Implement the numeric reliability primitive with boundary tests.
-- Emit outcomes with attribution before folding reliability into ranking.
-- Run the benefit benchmark before any promotion decision.
+- Build the execution-success outcome emitter so the reliability counter can accrue.
+- Run one benefit micro-benchmark before any promotion decision.
+- Decide the bad-pattern host and the skill-induction build before promoting the sibling candidates.

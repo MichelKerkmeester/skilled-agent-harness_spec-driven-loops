@@ -18,7 +18,7 @@ contextType: "implementation"
 
 ### Summary
 
-This root rollup tracks the Memory MCP child phases for packet 028. The parent remains a phase container: detailed planning, implementation evidence and verification live in the child folders below. The rollup now reflects the corrected child status mix: several phases are planning-only, several are partial implementations and the complete phases are limited to the scopes their own verification supports.
+This root rollup tracks the Memory MCP child phases for packet 028. The parent remains a phase container: detailed planning, implementation evidence and verification live in the child folders below. The rollup now reflects the corrected child status mix: one phase is planning-only, most are partial implementations and the complete phases are limited to the scopes their own verification supports.
 
 ### Included Phases
 
@@ -35,7 +35,7 @@ This root rollup tracks the Memory MCP child phases for packet 028. The parent r
 | `009-derived-id-provenance` | Complete, default-off | Generated causal edges now carry a content-addressed derived ID behind schema version 40 with focused tests, reusing the shared hash primitive. Default behavior stays byte-identical until the gate is enabled. |
 | `010-consolidation-cursor-clock` | Planned | The consolidation cursor and clock chain is scoped, with crash-safety and quality gates recorded. No candidate shipped. |
 | `011-retention-forgetting` | Partial, two candidates shipped | Spare-only retention eligibility and the live incoming-edge allowlist shipped with deterministic tests behind their gates. The benchmark-gated, cascade and trust-gated candidates remain pending. |
-| `012-procedural-reliability-benchmark` | Planned | Procedural reliability remains benchmark-first. The phase freezes the candidate set and promotion gate. |
+| `012-procedural-reliability-benchmark` | Partial, safe core shipped default-off | The procedural reliability safe core shipped behind `SPECKIT_PROCEDURAL_OUTCOME_EMITTER` and `SPECKIT_PROCEDURAL_RELIABILITY_RECALL` with focused tests. Default recall stays byte-identical and all four candidate promotions remain pending the benefit benchmark. |
 | `013-enrichment-observability` | Complete | Background enrichment backlog gauges now expose pending, failed and oldest-pending age using existing health data. |
 | `014-mem0-ranking-tweaks` | Partial | Declarative entity config and default-off cardinality penalty shipped. Content-hash reprocessing closed as no-transfer and the remaining candidates stay gated. |
 | `015-summary-fusion-grounding` | Partial | The summary/community fusion lane and read-only grounding prelude shipped behind flags. Benchmark delta, retune and persistent hierarchy remain pending. |
