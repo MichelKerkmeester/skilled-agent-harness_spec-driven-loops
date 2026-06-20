@@ -10,6 +10,41 @@ import Database from 'better-sqlite3';
 const SOURCE_DB_PATH = path.resolve(process.env.MEMORY_DB_PATH ?? 'database/context-index.sqlite');
 const OUTPUT_PATH = path.resolve(process.env.SPECKIT_RETRIEVAL_EVAL_OUTPUT ?? '/tmp/speckit-retrieval-flag-eval.json');
 const RECALL_K = Number.parseInt(process.env.SPECKIT_RETRIEVAL_EVAL_K ?? '20', 10);
+// nDCG cutoff is intentionally tighter than RECALL_K: Recall@20 is order-insensitive
+// within the top-20, so displacement and tie-break effects are invisible to it but
+// visible to nDCG@10 (rank-discounted) and MRR (first-relevant rank). Those are the
+// two metrics that make tie-breaker and class-conditional flags evaluable.
+const NDCG_K = Number.parseInt(process.env.SPECKIT_RETRIEVAL_EVAL_NDCG_K ?? '10', 10);
+// MRR reads the first relevant hit's rank across the full retrieved window, so it
+// shares the recall cutoff rather than the tighter nDCG cutoff.
+const MRR_K = RECALL_K;
+
+// The class dimensions the eval splits on, and the full set of class values each
+// dimension can take. The value lists mirror the IntentType / ComplexityTier /
+// QueryCategory unions in lib/eval/ground-truth-data.ts; any class enumerated here
+// but absent from the loaded golden set is reported as a coverage gap so the
+// fixture-authoring follow-up can be scoped without guessing.
+const CLASS_DIMENSIONS = Object.freeze({
+  category: Object.freeze([
+    'factual',
+    'temporal',
+    'graph_relationship',
+    'cross_document',
+    'hard_negative',
+    'anchor_based',
+    'scope_filtered',
+  ]),
+  complexityTier: Object.freeze(['simple', 'moderate', 'complex']),
+  intentType: Object.freeze([
+    'add_feature',
+    'fix_bug',
+    'refactor',
+    'security_audit',
+    'understand',
+    'find_spec',
+    'find_decision',
+  ]),
+});
 
 const FLAG_SPECS = [
   {
@@ -325,19 +360,93 @@ function groupGroundTruth(relevances) {
   return byQuery;
 }
 
-function computeMeanRecall(queries, relevancesByQuery, resultMap, computeRecall) {
+// Mean recall + nDCG@10 + MRR over a query subset. The subset is whatever caller
+// passes in `queries`: the full golden set for the overall mean, or one class slice
+// for a grouped row. Queries with no ground truth are skipped (same contract the
+// recall-only predecessor used), so `evaluatedQueries` is the per-metric denominator
+// and is what the reconciliation check weights by.
+function computeMeanMetrics(queries, relevancesByQuery, resultMap, metrics) {
   const recalls = [];
+  const ndcgs = [];
+  const mrrs = [];
   for (const query of queries) {
     const groundTruth = relevancesByQuery.get(query.id) ?? [];
     if (groundTruth.length === 0) continue;
-    recalls.push(computeRecall(resultMap.get(query.id) ?? [], groundTruth, RECALL_K));
+    const results = resultMap.get(query.id) ?? [];
+    recalls.push(metrics.computeRecall(results, groundTruth, RECALL_K));
+    ndcgs.push(metrics.computeNDCG(results, groundTruth, NDCG_K));
+    mrrs.push(metrics.computeMRR(results, groundTruth, MRR_K));
   }
-  return recalls.length === 0
-    ? { recall: 0, evaluatedQueries: 0 }
-    : {
-      recall: recalls.reduce((sum, value) => sum + value, 0) / recalls.length,
-      evaluatedQueries: recalls.length,
-    };
+  const mean = (values) => (values.length === 0
+    ? 0
+    : values.reduce((sum, value) => sum + value, 0) / values.length);
+  return {
+    recall: mean(recalls),
+    ndcg: mean(ndcgs),
+    mrr: mean(mrrs),
+    evaluatedQueries: recalls.length,
+  };
+}
+
+// Bucket the golden queries by each class dimension. Returns a Map keyed by
+// dimension name → Map(classValue → query[]), preserving only the queries that are
+// actually present so a slice with zero queries is simply absent from the output.
+function groupQueriesByClass(queries) {
+  const byDimension = new Map();
+  for (const dimension of Object.keys(CLASS_DIMENSIONS)) {
+    const byClass = new Map();
+    for (const query of queries) {
+      const value = query[dimension];
+      if (value === undefined || value === null) continue;
+      if (!byClass.has(value)) byClass.set(value, []);
+      byClass.get(value).push(query);
+    }
+    byDimension.set(dimension, byClass);
+  }
+  return byDimension;
+}
+
+// Report which enumerated class values never appear in the loaded golden set. This
+// is the scoping signal for the separate fixture-authoring task — it does NOT author
+// fixtures, it only names the gaps.
+function findMissingClasses(queries) {
+  const missing = {};
+  for (const [dimension, allValues] of Object.entries(CLASS_DIMENSIONS)) {
+    const present = new Set(queries.map((query) => query[dimension]));
+    const absent = allValues.filter((value) => !present.has(value));
+    if (absent.length > 0) missing[dimension] = absent;
+  }
+  return missing;
+}
+
+// Non-lossy invariant: the per-class n-weighted average of Recall@20 must reconcile
+// to the overall mean. Every query lands in exactly one class per dimension, so for
+// any single dimension the weighted average of its slices equals the overall mean.
+// A mismatch means a query was dropped, double-counted, or misbucketed — a defect in
+// the grouping, not a tolerable rounding artifact. Tolerance covers float summation
+// order only.
+function reconcileWeightedRecall(overall, groupedByDimension, tolerance = 1e-9) {
+  const checks = [];
+  for (const [dimension, groups] of Object.entries(groupedByDimension)) {
+    let weightedSum = 0;
+    let totalN = 0;
+    for (const group of groups) {
+      weightedSum += group.recall * group.n;
+      totalN += group.n;
+    }
+    const weightedMean = totalN === 0 ? 0 : weightedSum / totalN;
+    const diff = Math.abs(weightedMean - overall.recall);
+    checks.push({
+      dimension,
+      weightedMeanRecall: formatNumber(weightedMean),
+      overallMeanRecall: formatNumber(overall.recall),
+      groupedQueryCount: totalN,
+      overallEvaluatedQueries: overall.evaluatedQueries,
+      diff: formatNumber(diff),
+      reconciled: diff <= tolerance && totalN === overall.evaluatedQueries,
+    });
+  }
+  return checks;
 }
 
 async function main() {
@@ -428,8 +537,30 @@ async function main() {
 
   const queries = groundTruth.GROUND_TRUTH_QUERIES;
   const relevancesByQuery = groupGroundTruth(groundTruth.GROUND_TRUTH_RELEVANCES);
+  const classGroups = groupQueriesByClass(queries);
+  const missingClasses = findMissingClasses(queries);
   const originalEnv = Object.fromEntries([...RUNTIME_FLAG_ENVS].map((name) => [name, process.env[name]]));
   const flagRows = [];
+
+  // A grouped variant carries the overall mean plus, for each class dimension, a map
+  // of class value → per-slice metrics. The off/on result maps are searched once per
+  // variant and re-sliced per dimension, so grouping adds no extra retrieval cost.
+  const evaluateVariant = (resultMap) => {
+    const overall = computeMeanMetrics(queries, relevancesByQuery, resultMap, evalMetrics);
+    const groups = {};
+    for (const [dimension, byClass] of classGroups) {
+      groups[dimension] = {};
+      for (const [classValue, classQueries] of byClass) {
+        groups[dimension][classValue] = computeMeanMetrics(
+          classQueries,
+          relevancesByQuery,
+          resultMap,
+          evalMetrics,
+        );
+      }
+    }
+    return { overall, groups };
+  };
 
   for (const flag of FLAG_SPECS) {
     if (!flag.runSearch) {
@@ -438,7 +569,14 @@ async function main() {
         env: flag.env,
         recallOff: null,
         recallOn: null,
-        delta: null,
+        recallDelta: null,
+        ndcgOff: null,
+        ndcgOn: null,
+        ndcgDelta: null,
+        mrrOff: null,
+        mrrOn: null,
+        mrrDelta: null,
+        byClass: null,
         note: `untestable: ${flag.note}`,
         currentDefault: flag.currentDefault,
       });
@@ -453,19 +591,81 @@ async function main() {
       for (const query of queries) {
         resultMap.set(query.id, await search(query.query, { evaluationMode: true }));
       }
-      return computeMeanRecall(queries, relevancesByQuery, resultMap, evalMetrics.computeRecall);
+      return evaluateVariant(resultMap);
     };
 
     const off = await runVariant(false);
     const on = await runVariant(true);
-    const delta = on.recall - off.recall;
+
+    // Per-class rows pair each off slice with its on slice. A class present in only
+    // one variant cannot happen here (the golden set is fixed across variants), but
+    // we read membership from `off` defensively and fall back to a zeroed slice.
+    const byClass = {};
+    for (const dimension of Object.keys(CLASS_DIMENSIONS)) {
+      const offDim = off.groups[dimension] ?? {};
+      const onDim = on.groups[dimension] ?? {};
+      const classValues = new Set([...Object.keys(offDim), ...Object.keys(onDim)]);
+      const rows = {};
+      for (const classValue of classValues) {
+        const offSlice = offDim[classValue] ?? { recall: 0, ndcg: 0, mrr: 0, evaluatedQueries: 0 };
+        const onSlice = onDim[classValue] ?? { recall: 0, ndcg: 0, mrr: 0, evaluatedQueries: 0 };
+        rows[classValue] = {
+          recallOff: formatNumber(offSlice.recall),
+          recallOn: formatNumber(onSlice.recall),
+          recallDelta: formatNumber(onSlice.recall - offSlice.recall),
+          ndcgOff: formatNumber(offSlice.ndcg),
+          ndcgOn: formatNumber(onSlice.ndcg),
+          ndcgDelta: formatNumber(onSlice.ndcg - offSlice.ndcg),
+          mrrOff: formatNumber(offSlice.mrr),
+          mrrOn: formatNumber(onSlice.mrr),
+          mrrDelta: formatNumber(onSlice.mrr - offSlice.mrr),
+          n: offSlice.evaluatedQueries,
+        };
+      }
+      byClass[dimension] = rows;
+    }
+
+    // Non-lossy invariant: every query lands in exactly one class per dimension, so
+    // the n-weighted average of each dimension's per-class Recall@20 must equal the
+    // overall mean. Reconcile against the RAW per-slice recalls (off.groups), not the
+    // formatNumber-rounded display values — weighting rounded slices would reintroduce
+    // up to ~5e-7 of rounding error and spuriously trip a real partition.
+    const reconciliationByDimension = Object.fromEntries(
+      Object.entries(off.groups).map(([dimension, slices]) => [
+        dimension,
+        Object.values(slices).map((slice) => ({
+          recall: slice.recall,
+          n: slice.evaluatedQueries,
+        })),
+      ]),
+    );
+    const reconciliation = reconcileWeightedRecall(off.overall, reconciliationByDimension);
+    const unreconciled = reconciliation.filter((check) => !check.reconciled);
+    if (unreconciled.length > 0) {
+      const detail = unreconciled
+        .map((check) => `${check.dimension} (weighted=${check.weightedMeanRecall}, overall=${check.overallMeanRecall}, n=${check.groupedQueryCount}/${check.overallEvaluatedQueries})`)
+        .join('; ');
+      throw new Error(
+        `Per-class recall reconciliation failed for flag ${flag.label}: ${detail}. `
+        + 'The grouped slices do not partition the golden set; refusing to report lossy results.',
+      );
+    }
+
     flagRows.push({
       flag: flag.label,
       env: flag.env,
-      recallOff: formatNumber(off.recall),
-      recallOn: formatNumber(on.recall),
-      delta: formatNumber(delta),
-      note: `${flag.note} Evaluated queries: off=${off.evaluatedQueries}, on=${on.evaluatedQueries}.`,
+      recallOff: formatNumber(off.overall.recall),
+      recallOn: formatNumber(on.overall.recall),
+      recallDelta: formatNumber(on.overall.recall - off.overall.recall),
+      ndcgOff: formatNumber(off.overall.ndcg),
+      ndcgOn: formatNumber(on.overall.ndcg),
+      ndcgDelta: formatNumber(on.overall.ndcg - off.overall.ndcg),
+      mrrOff: formatNumber(off.overall.mrr),
+      mrrOn: formatNumber(on.overall.mrr),
+      mrrDelta: formatNumber(on.overall.mrr - off.overall.mrr),
+      byClass,
+      reconciliation,
+      note: `${flag.note} Evaluated queries: off=${off.overall.evaluatedQueries}, on=${on.overall.evaluatedQueries}.`,
       currentDefault: flag.currentDefault,
     });
   }
@@ -479,9 +679,22 @@ async function main() {
     sourceShardPath: evalDatabase.sourceShardPath,
     evalShardPath: evalDatabase.evalShardPath,
     recallK: RECALL_K,
+    ndcgK: NDCG_K,
+    mrrK: MRR_K,
     alignment,
     queryCount: queries.length,
     relevanceCount: groundTruth.GROUND_TRUTH_RELEVANCES.length,
+    // Per-dimension class membership of the loaded golden set, and which enumerated
+    // classes never appear. The empty-or-absent entries in missingClasses scope the
+    // separate fixture-authoring task (e.g. thematic/understand, graph_relationship,
+    // cross_document) — this driver reports the gap, it does not author fixtures.
+    classDistribution: Object.fromEntries(
+      [...classGroups].map(([dimension, byClass]) => [
+        dimension,
+        Object.fromEntries([...byClass].map(([value, qs]) => [value, qs.length])),
+      ]),
+    ),
+    missingClasses,
     channelAblation: {
       baselineRecall: formatNumber(channelReport.overallBaselineRecall),
       evaluatedQueryCount: channelReport.evaluatedQueryCount ?? null,
