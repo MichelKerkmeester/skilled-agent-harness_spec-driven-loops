@@ -1,10 +1,11 @@
 // ───────────────────────────────────────────────────────────────
-// TEST: Confidence Calibration (flag-gated, default-OFF infrastructure)
+// TEST: Confidence Calibration (flag-gated, default-ON graduated)
 // ───────────────────────────────────────────────────────────────
 // Covers the isotonic fit/apply math (monotonicity + 0–1 bounds), the
-// labeled-set loader validation, and the default-OFF wiring guarantee:
-// with the calibration flag unset, per-result confidence is the
-// rebalance-only value, untouched by any configured model.
+// labeled-set loader validation, and the default-ON wiring contract:
+// with the flag unset the committed model calibrates, while explicitly
+// opting out (flag='false') fails safe to the rebalance-only value at
+// output precision regardless of any configured model.
 
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { mkdtempSync, writeFileSync, rmSync } from 'node:fs';
@@ -255,14 +256,22 @@ describe('loadCalibrationModel()', () => {
   });
 });
 
-// -- Wiring: default-OFF guarantee --
+// -- Wiring: default-ON contract + opt-out fail-safe --
 
-describe('confidence-scoring wiring — calibration default OFF', () => {
+describe('confidence-scoring wiring — calibration default ON', () => {
   let dir: string;
   const sample: ScoredResult[] = [
     { id: 1, similarity: 80, sources: ['vector', 'fts'], anchorMetadata: [{ id: 'a' }, { id: 'b' }] },
     { id: 2, similarity: 40 },
   ];
+
+  // The rebalance-only value with calibration explicitly disabled: the identity
+  // baseline every opt-out assertion compares against, independent of any model.
+  function rebalanceOnlyValue(): number {
+    process.env[FLAG] = 'false';
+    delete process.env[MODEL_PATH_VAR];
+    return computeResultConfidence(sample)[0].confidence.value;
+  }
 
   beforeEach(() => {
     dir = mkdtempSync(join(tmpdir(), 'calib-wire-'));
@@ -275,8 +284,8 @@ describe('confidence-scoring wiring — calibration default OFF', () => {
     rmSync(dir, { recursive: true, force: true });
   });
 
-  it('leaves value at the rebalance-only path when the flag is unset, even with a model configured', () => {
-    const baseline = computeResultConfidence(sample)[0].confidence.value;
+  it('opts out to the uncalibrated identity when the flag is "false", even with a model configured', () => {
+    const baseline = rebalanceOnlyValue();
 
     // A model that would collapse everything to ~0 if it were applied.
     const flatModel: CalibrationModel = {
@@ -287,14 +296,54 @@ describe('confidence-scoring wiring — calibration default OFF', () => {
     const p = join(dir, 'flat.json');
     writeFileSync(p, JSON.stringify(flatModel));
     process.env[MODEL_PATH_VAR] = p;
-    // Flag still OFF — model must be ignored.
+    process.env[FLAG] = 'false';
+    // Flag explicitly OFF — model must be ignored at output precision.
 
     const withModelButFlagOff = computeResultConfidence(sample)[0].confidence.value;
     expect(withModelButFlagOff).toBeCloseTo(baseline, 6);
   });
 
-  it('applies the model only when the flag is ON and a model is configured', () => {
-    const baselineResult = computeResultConfidence(sample)[0];
+  it('opts out to the uncalibrated identity when the flag is "false" with the model path unset (default model not loaded)', () => {
+    const baseline = rebalanceOnlyValue();
+
+    // Flag OFF, MODEL_PATH_VAR unset: the committed default model must NOT be
+    // consulted — opting out is byte-stable against the default-on path too.
+    process.env[FLAG] = 'false';
+    const value = computeResultConfidence(sample)[0].confidence.value;
+    expect(value).toBeCloseTo(baseline, 6);
+  });
+
+  it('calibrates by default (flag unset, model path unset) via the committed model', () => {
+    const baseline = rebalanceOnlyValue();
+    expect(baseline).toBeGreaterThan(0.1); // rebalance-only value is healthy
+
+    // Default-on, no env model: the committed isotonic model resolves and
+    // reshapes confidence away from the rebalance-only identity.
+    delete process.env[FLAG];
+    delete process.env[MODEL_PATH_VAR];
+    const defaultResult = computeResultConfidence(sample)[0];
+    expect(defaultResult.confidence.value).not.toBeCloseTo(baseline, 4);
+    // The pre-calibration value is preserved regardless of calibration.
+    expect(defaultResult.preCalibrationValue).toBeGreaterThan(0.1);
+  });
+
+  it('an empty model path disables calibration even with the flag on', () => {
+    const baseline = rebalanceOnlyValue();
+
+    // Explicit empty string disables: no model resolves, so the flag-on path
+    // fails safe to the rebalance-only identity rather than the default model.
+    process.env[FLAG] = 'true';
+    process.env[MODEL_PATH_VAR] = '';
+    const value = computeResultConfidence(sample)[0].confidence.value;
+    expect(value).toBeCloseTo(baseline, 6);
+  });
+
+  it('applies an override model when the flag is ON and a model path is configured', () => {
+    const baselineResult = (() => {
+      process.env[FLAG] = 'false';
+      delete process.env[MODEL_PATH_VAR];
+      return computeResultConfidence(sample)[0];
+    })();
     const baseline = baselineResult.confidence.value;
     expect(baseline).toBeGreaterThan(0.1); // rebalance-only value is healthy
 

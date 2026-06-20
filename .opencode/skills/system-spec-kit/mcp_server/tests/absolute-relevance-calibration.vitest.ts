@@ -15,6 +15,26 @@ import { resolveAbsoluteRelevance, resolveEffectiveScore } from '../lib/search/p
 
 const FLAG = 'SPECKIT_ABSOLUTE_RELEVANCE_CALIBRATION';
 
+// This file's subject is absolute-relevance (cosine-vs-RRF) calibration. The
+// isotonic confidence-calibration model now applies by default and would reshape
+// the rebalance value those assertions read; pin it OFF so the cosine subject
+// stays visible. Isotonic default-on is covered in confidence-calibration*.vitest.ts.
+const CONFIDENCE_CALIBRATION_FLAG = 'SPECKIT_CONFIDENCE_CALIBRATION';
+let savedConfidenceCalibration: string | undefined;
+
+beforeEach(() => {
+  savedConfidenceCalibration = process.env[CONFIDENCE_CALIBRATION_FLAG];
+  process.env[CONFIDENCE_CALIBRATION_FLAG] = 'false';
+});
+
+afterEach(() => {
+  if (savedConfidenceCalibration === undefined) {
+    delete process.env[CONFIDENCE_CALIBRATION_FLAG];
+  } else {
+    process.env[CONFIDENCE_CALIBRATION_FLAG] = savedConfidenceCalibration;
+  }
+});
+
 // Two strong cosine hits that agree across channels but sit next to each other in
 // rank — exactly the shape that produced a "weak" verdict before the fix.
 function strongCosineResults(): ScoredResult[] {

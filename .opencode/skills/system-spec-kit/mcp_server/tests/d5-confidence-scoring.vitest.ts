@@ -4,13 +4,34 @@
 // Validates confidence computation, label thresholds, driver list
 // population, request-level quality assessment, and feature flag gating.
 
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import {
   computeResultConfidence,
   assessRequestQuality,
   isResultConfidenceEnabled,
   type ScoredResult,
 } from '../lib/search/confidence-scoring';
+
+// These suites assert on the uncalibrated rebalance value and its label
+// thresholds — the subject of computeResultConfidence itself, not the isotonic
+// calibration model that now applies by default. Pin the calibration flag OFF so
+// the model does not reshape the value under test; the default-on isotonic
+// behavior is covered in confidence-calibration*.vitest.ts.
+const CONFIDENCE_CALIBRATION_FLAG = 'SPECKIT_CONFIDENCE_CALIBRATION';
+let savedConfidenceCalibration: string | undefined;
+
+beforeEach(() => {
+  savedConfidenceCalibration = process.env[CONFIDENCE_CALIBRATION_FLAG];
+  process.env[CONFIDENCE_CALIBRATION_FLAG] = 'false';
+});
+
+afterEach(() => {
+  if (savedConfidenceCalibration === undefined) {
+    delete process.env[CONFIDENCE_CALIBRATION_FLAG];
+  } else {
+    process.env[CONFIDENCE_CALIBRATION_FLAG] = savedConfidenceCalibration;
+  }
+});
 
 // -- Test Helpers --
 

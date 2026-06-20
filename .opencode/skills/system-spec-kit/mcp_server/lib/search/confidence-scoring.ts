@@ -211,9 +211,10 @@ function resolveCalibrationModel(): CalibrationModel | null {
 
 /**
  * Map a rebalanced confidence value through the empirical calibration model
- * when enabled. Default OFF and a no-op when no model is configured, so the
- * returned value is identical to the rebalance-only path until a validated
- * model is wired in.
+ * when enabled. Default ON (graduated): the committed isotonic model resolves
+ * by default. Returns the rebalance-only value unchanged when the flag is
+ * disabled or no readable model resolves, so opting out — or a missing model —
+ * fails safe to the uncalibrated identity rather than erroring.
  */
 function maybeCalibrate(value: number): number {
   if (!isConfidenceCalibrationEnabled()) return value;
@@ -348,9 +349,9 @@ export function computeResultConfidence(results: ScoredResult[]): ResultConfiden
     const heuristicValue = rawValue * WEIGHT_HEURISTIC;
     const rebalancedValue = Math.max(0, Math.min(1, heuristicValue + scorePrior));
 
-    // Optional empirical calibration to P(relevant). Default OFF: only applied
-    // when the flag is on AND a fitted model is available, so production
-    // confidence is the rebalance-only value until a validated model exists.
+    // Empirical calibration to P(relevant). Default ON: applied when the flag
+    // is on AND a fitted model resolves (the committed default, or an override
+    // path). Falls back to the rebalance-only value when disabled or unresolved.
     const value = maybeCalibrate(rebalancedValue);
 
     const drivers: ConfidenceDriver[] = [];
