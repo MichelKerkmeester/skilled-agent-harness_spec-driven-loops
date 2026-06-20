@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ### Summary
 
-Deep-loop fan-out now has deterministic merge coverage, read-derived pool gauges and graceful stopped-run summaries. This phase adds the local tail work: order-invariance tests for research and review merges, deterministic ordering of lineage labels and metadata arrays and a default-off near-duplicate dedup option that collapses normalized body restatements when a caller opts in.
+Deep-loop fan-out now has deterministic merge coverage, read-derived pool gauges and graceful stopped-run summaries. The Wave-0 trio shipped in commit `46812f12a8` and this phase adds the tail work in commit `fd30af2cb6`: order-invariance tests for research and review merges, deterministic ordering of lineage labels and metadata arrays and a default-off near-duplicate dedup option that collapses normalized body restatements when a caller opts in.
 
 ### Added
 
@@ -55,11 +55,11 @@ Deep-loop fan-out now has deterministic merge coverage, read-derived pool gauges
 
 | File | Action | What changed |
 |---|---|---|
-| `.opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs` | Modified | Existing comparator remains, with deterministic label and metadata ordering plus default-off normalized-body-content dedup |
-| `.opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs` | Modified earlier | `buildPoolGauges` read-derived lag, pending and failed values, live per settle plus final summary |
-| `.opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs` | Modified (Wave-0 46812f12a8) | empty-tick=convergence + stopped partial-summary flush on SIGINT/SIGTERM |
-| `.opencode/skills/deep-loop-runtime/tests/unit/fanout-merge.vitest.ts` | Modified | Added tests for order-invariance, default-off near-dup collapse, distinct-content survival and resolved review variants |
-| `.opencode/specs/.../002-fanout-determinism-observability/{spec,plan,tasks,implementation-summary,checklist}.md` | Modified | Level-2 packet docs reconciled to 3 Wave-0 DONE rows plus 3 local Wave-1 DONE rows |
+| `.opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs` | Modified (Wave-1 `fd30af2cb6`) | Existing comparator remains, with deterministic label and metadata ordering plus default-off normalized-body-content dedup |
+| `.opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs` | Modified (Wave-0 `46812f12a8`) | `buildPoolGauges` read-derived lag, pending and failed values, live per settle plus final summary |
+| `.opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs` | Modified (Wave-0 `46812f12a8`) | empty-tick=convergence + stopped partial-summary flush on SIGINT/SIGTERM |
+| `.opencode/skills/deep-loop-runtime/tests/unit/fanout-merge.vitest.ts` | Modified (Wave-1 `fd30af2cb6`) | Added tests for order-invariance, default-off near-dup collapse, distinct-content survival and resolved review variants |
+| `.opencode/specs/.../002-fanout-determinism-observability/{spec,plan,tasks,implementation-summary,checklist}.md` | Modified | Level-2 packet docs reconciled to 3 Wave-0 DONE rows plus 3 Wave-1 DONE rows |
 
 ### Follow-Ups
 

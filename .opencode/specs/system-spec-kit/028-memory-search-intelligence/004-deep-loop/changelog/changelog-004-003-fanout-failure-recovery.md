@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ### Summary
 
-Deep-loop fan-out recovery now has bounded, deterministic failure handling while keeping the runtime's fire-and-exit shape. Failed lineages receive fixed failure classes, transient failures can retry alone within a durable budget, orphaned lineages are marked from the status ledger and recovery mode refuses missing or corrupt expected state instead of silently starting fresh.
+Deep-loop fan-out recovery now has bounded, deterministic failure handling while keeping the runtime's fire-and-exit shape. Failed lineages receive fixed failure classes, transient failures can retry alone within a durable budget, orphaned lineages are marked from the status ledger and recovery mode refuses missing or corrupt expected state instead of silently starting fresh. The cluster shipped in commit `c1f2466811`.
 
 ### Added
 

@@ -69,4 +69,4 @@ Continuity threading is implemented. The reducer now computes a self-owned carri
 ### Follow-Ups
 
 - No measured benefit number exists. This was implemented for continuity correctness, not quantified retrieval lift.
-- No commit was created by request.
+- The continuity work shipped in commit `99bfa4427d`.

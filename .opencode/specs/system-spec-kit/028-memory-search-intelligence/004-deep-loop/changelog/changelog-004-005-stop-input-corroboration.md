@@ -74,4 +74,4 @@ The STOP-input corroboration runtime work is implemented with deterministic test
 - Confirm whether the orchestrator forwards reducer rolling ratio to `convergence.cjs`.
 - Run an independent adversarial review of novelty anti-gaming and same-id keep-both behavior.
 - Benchmark lag ceiling and progress heartbeat cadence before enabling either by default.
-- No commit was created by request.
+- The runtime work shipped in commit `f038ff140e`, with benchmark, wiring and persistence gates still open.

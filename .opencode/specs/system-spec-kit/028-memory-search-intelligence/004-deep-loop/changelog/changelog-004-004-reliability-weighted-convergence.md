@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ### Summary
 
-No production reliability code shipped in this phase. The deliverable is the Level 3 plan for reliability-weighted convergence: a shared order helper, fractional Bayesian scoring, a read-only reliability signal, convergence caps, default-off policy, quarantine behavior, adjudicator seating and ranking fields. The whole cluster stays pending until the benefit benchmark and shared primitives exist.
+No production reliability code shipped in this phase. The deliverable is the Level 3 plan for reliability-weighted convergence: a shared order helper, fractional Bayesian scoring, a read-only reliability signal, convergence caps, default-off policy, quarantine behavior, adjudicator seating and ranking fields. The whole cluster is a documented NO-GO and stays held until the benefit benchmark and shared primitives exist. Commit `4e1e205481` records that NO-GO in the phase spec.
 
 ### Added
 

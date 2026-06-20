@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ### Summary
 
-A fresh deep-research strategy file now reduces cleanly on the first iteration. The shipped template had the reducer-owned headings but lacked the anchor comment pairs the reducer uses to update those sections. This phase adds the seven required anchor pairs to `deep_research_strategy.md`, so new deep-research runs can fold cross-iteration state without a first-reduce crash.
+A fresh deep-research strategy file now reduces cleanly on the first iteration. The shipped template had the reducer-owned headings but lacked the anchor comment pairs the reducer uses to update those sections. This phase adds the seven required anchor pairs to `deep_research_strategy.md`, so new deep-research runs can fold cross-iteration state without a first-reduce crash. It shipped as a template-only change in commit `738e118751`.
 
 ### Added
 
