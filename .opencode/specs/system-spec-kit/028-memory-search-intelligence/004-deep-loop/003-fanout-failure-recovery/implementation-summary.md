@@ -18,9 +18,9 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "C4 implemented detect + marker; auto-redispatch remains lease/heartbeat-gated."
+      - "C4 implemented detect + marker, auto-redispatch remains lease/heartbeat-gated."
       - "C5 uses explicit --require-existing-state / requireExistingState mode."
-      - "fanout maxRetries defaults to 5 and remains config-overridable; direct pool callers stay no-retry unless opted in."
+      - "fanout maxRetries defaults to 5 and remains config-overridable, direct pool callers stay no-retry unless opted in."
 ---
 # Implementation Summary: Deep Loop Fan-out Failure Recovery (028/004 resilience cluster)
 
@@ -35,7 +35,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | `028-memory-search-intelligence/004-deep-loop/003-fanout-failure-recovery` |
-| **Status** | IMPLEMENTED — deterministic unit verification complete |
+| **Status** | IMPLEMENTED - deterministic unit verification complete |
 | **Completed** | 2026-06-19 |
 | **Level** | 2 |
 | **Actual Effort** | C1-C5 implemented surgically across fan-out pool/run, CLI guards, fan-out config, reducer gate, and tests |
@@ -50,10 +50,10 @@ Implemented the Level 2 deep-loop **resilience GO cluster**. The change keeps th
 
 | # | Candidate | What was built | Status |
 |---|-----------|-----------------|--------|
-| C1 | DL-failure-class-taxonomy | `settleItem` preserves `error:{name,message}` and adds bounded `failure_class`; `buildPoolSummary` emits fixed `failure_classes` rollup | DONE |
-| C2 | Q3-fanout-recovery | `classifyLineageFailure` derives transient/fatal verdicts from `timedOut`, `exitCode`, and `salvage` only; unknown/default exit remains fatal | DONE |
+| C1 | DL-failure-class-taxonomy | `settleItem` preserves `error:{name,message}` and adds bounded `failure_class`, `buildPoolSummary` emits fixed `failure_classes` rollup | DONE |
+| C2 | Q3-fanout-recovery | `classifyLineageFailure` derives transient/fatal verdicts from `timedOut`, `exitCode`, and `salvage` only, unknown/default exit remains fatal | DONE |
 | C3 | Q3-fanout-transient-fatal-retry | `runCappedPool` requeues only the failed transient lineage, honors `maxRetries`, reads prior retry count from `orchestration-status.log`, and preserves final summary counts | DONE |
-| C4 | DL-orphan-lineage-reset | status-ledger scan detects started-without-terminal lineages and appends `orphan_requeued` markers; auto-redispatch remains lease/heartbeat-gated | DONE |
+| C4 | DL-orphan-lineage-reset | status-ledger scan detects started-without-terminal lineages and appends `orphan_requeued` markers, auto-redispatch remains lease/heartbeat-gated | DONE |
 | C5 | DL-recover-vs-fresh-gate | `reduce-state.cjs` supports explicit `--require-existing-state` / `requireExistingState` mode and refuses missing, empty, or corrupt state logs distinctly from fresh starts | DONE |
 
 ### Files Changed
@@ -84,11 +84,11 @@ The implementation followed the planned C1 -> C2 -> C3 dependency chain, then ad
 
 | Decision | Rationale |
 |----------|-----------|
-| All 5 candidates implemented in this sub-phase | The prerequisite fan-out infrastructure was present; this phase added the still-missing recovery behavior |
-| D2/D3/Q2 (reliability-weighted learning) explicitly OUT OF SCOPE | D2 is a wholly-absent net-new build (every input `r=0.5`); NO-GO until built AND benchmarked [iter-13] |
-| C4 scoped to detect + marker (GO); auto-redispatch deferred | auto-redispatch without a lease/heartbeat risks re-running live work |
+| All 5 candidates implemented in this sub-phase | The prerequisite fan-out infrastructure was present, this phase added the still-missing recovery behavior |
+| D2/D3/Q2 (reliability-weighted learning) explicitly OUT OF SCOPE | D2 is a wholly-absent net-new build (every input `r=0.5`), NO-GO until built AND benchmarked [iter-13] |
+| C4 scoped to detect + marker (GO), auto-redispatch deferred | auto-redispatch without a lease/heartbeat risks re-running live work |
 | Default-conservative classification (unknown → fatal) | a misclassification must not cause a runaway retry loop (NFR-R02) |
-| Explicit recover-vs-fresh flag | inferring from config/state presence risks refusing legitimate fresh starts; explicit mode is safer and testable |
+| Explicit recover-vs-fresh flag | inferring from config/state presence risks refusing legitimate fresh starts, explicit mode is safer and testable |
 
 <!-- /ANCHOR:decisions -->
 ---
@@ -134,7 +134,7 @@ The implementation followed the planned C1 -> C2 -> C3 dependency chain, then ad
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **No measured benefit number.** No candidate has a before/after benchmark delta; this phase shipped correctness and reversibility only.
+1. **No measured benefit number.** No candidate has a before/after benchmark delta, this phase shipped correctness and reversibility only.
 2. **C4 auto-redispatch remains lease/heartbeat-gated.** The implemented GO scope is detect + marker (`orphan_requeued`) only.
 3. **Reliability-weighted learning remains out of scope.** No D2/D3/Q2 reliability signal was introduced or consumed.
 
@@ -146,7 +146,7 @@ The implementation followed the planned C1 -> C2 -> C3 dependency chain, then ad
 
 | Planned | Actual | Reason |
 |---------|--------|--------|
-| One commit per candidate | No commits created | User explicitly instructed no git commit |
-| External adversarial review seat | Skipped | User constrained this run to code + unit tests; local adversarial tests cover retry-success, retry-exhaustion, fatal no-retry, durable budget, salvage-miss retry, and all-fatal behavior |
+| One commit per candidate | Shipped together in commit `c1f2466811` | The 028 build batched this phase (fanout-pool + fanout-run + cli-guards) into one commit |
+| External adversarial review seat | Skipped | User constrained this run to code + unit tests, local adversarial tests cover retry-success, retry-exhaustion, fatal no-retry, durable budget, salvage-miss retry, and all-fatal behavior |
 
 <!-- /ANCHOR:deviations -->

@@ -87,7 +87,7 @@ The implementation kept the continuity carrier on the two confirmed paths: a red
 | Decision | Why |
 |----------|-----|
 | Build Q5 before C2 | The carried-forward block is the thread C2 can read. |
-| Use a strategy anchor plus prompt-pack variable | The strategy anchor is durable on disk; the prompt variable exposes it through the existing dispatch path. |
+| Use a strategy anchor plus prompt-pack variable | The strategy anchor is durable on disk, the prompt variable exposes it through the existing dispatch path. |
 | Preserve blocked-stop precedence | A fresh blocker must override any derived focus. |
 | Preserve the terminal sentinel | All-resolved state must still stop cleanly. |
 | Add no new model call | The carried-forward block is host-computed from existing records. |
@@ -120,5 +120,5 @@ The implementation kept the continuity carrier on the two confirmed paths: a red
 ## Known Limitations
 
 1. **No measured benefit number exists.** This was implemented for continuity correctness, not a quantified retrieval delta.
-2. **No commit was created.** User explicitly requested no git commit.
+2. **Committed at `99bfa4427d`.** The code shipped in that first-wave 028 build commit (continuity-thread module + vitest).
 <!-- /ANCHOR:limitations -->
