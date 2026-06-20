@@ -6,6 +6,15 @@ import {
 } from '../formatters/search-results';
 
 const CONFIDENCE_FLAG = 'SPECKIT_RESULT_CONFIDENCE_V1';
+// This suite asserts the rebalance-only contract: that score margin, channel
+// agreement, and anchor density drive a numeric confidence value whose BAND
+// matches the high/medium/low label. That value↔label coupling only holds on
+// the uncalibrated path. With calibration on, the value becomes a calibrated
+// P(relevant) (committed model caps output ~0.2) and is intentionally decoupled
+// from the label, which is derived from the pre-calibration relevance tier. So
+// pin calibration off here; the decoupled on-path contract lives in
+// confidence-calibration-label-distribution.vitest.ts.
+const CALIBRATION_FLAG = 'SPECKIT_CONFIDENCE_CALIBRATION';
 const DRIVER_NAMES = [
   'large_margin',
   'multi_channel_agreement',
@@ -87,10 +96,13 @@ function getResultConfidence(envelope: SearchEnvelope, resultId: number): Confid
 
 describe('D5 Phase A: result confidence scoring', () => {
   let originalFlag: string | undefined;
+  let originalCalibrationFlag: string | undefined;
 
   beforeEach(() => {
     originalFlag = process.env[CONFIDENCE_FLAG];
+    originalCalibrationFlag = process.env[CALIBRATION_FLAG];
     process.env[CONFIDENCE_FLAG] = 'true';
+    process.env[CALIBRATION_FLAG] = 'false';
   });
 
   afterEach(() => {
@@ -98,6 +110,11 @@ describe('D5 Phase A: result confidence scoring', () => {
       delete process.env[CONFIDENCE_FLAG];
     } else {
       process.env[CONFIDENCE_FLAG] = originalFlag;
+    }
+    if (originalCalibrationFlag === undefined) {
+      delete process.env[CALIBRATION_FLAG];
+    } else {
+      process.env[CALIBRATION_FLAG] = originalCalibrationFlag;
     }
   });
 

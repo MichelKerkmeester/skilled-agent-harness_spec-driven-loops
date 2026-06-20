@@ -387,6 +387,18 @@ export function computeResultConfidence(results: ScoredResult[]): ResultConfiden
     // path). Falls back to the rebalance-only value when disabled or unresolved.
     const value = maybeCalibrate(rebalancedValue);
 
+    // The high/medium/low band is derived from the PRE-calibration relevance
+    // value, not the calibrated probability. The two answer different questions:
+    // the label is an ordinal relevance tier ("how good is this result relative
+    // to the band thresholds"), while the calibrated value is an absolute
+    // P(relevant) estimate. The shipped isotonic curve maps every input into a
+    // narrow low-probability range (max ~0.2 here), so banding off the calibrated
+    // value would collapse every result to "low" and make the label useless —
+    // even though the calibrated value is honest. Banding off the rebalanced
+    // value keeps the label distribution meaningful while the numeric value still
+    // reads as a calibrated probability.
+    const label = toConfidenceLabel(rebalancedValue);
+
     const drivers: ConfidenceDriver[] = [];
     if (margin >= LARGE_MARGIN_THRESHOLD) drivers.push('large_margin');
     if (channelCount >= STRONG_CHANNEL_AGREEMENT_MIN) drivers.push('multi_channel_agreement');
@@ -395,7 +407,7 @@ export function computeResultConfidence(results: ScoredResult[]): ResultConfiden
       return {
         preCalibrationValue: rebalancedValue,
         confidence: {
-          label: toConfidenceLabel(value),
+          label,
           value: asRankingConfidenceValue(value),
           drivers,
         },
