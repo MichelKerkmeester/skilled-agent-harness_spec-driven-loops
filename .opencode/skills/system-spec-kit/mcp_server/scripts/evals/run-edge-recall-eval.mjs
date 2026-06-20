@@ -81,15 +81,15 @@ const FLAG_SPECS = [
     label: 'edge_vector_index',
     env: 'SPECKIT_EDGE_VECTOR_INDEX',
     currentDefault: 'off',
-    metric: 'behavior',
-    note: 'Gates findSemanticEdges (nearest edge vectors); requires populated edge_vector_embeddings.',
+    metric: 'recall+behavior',
+    note: 'Gates findSemanticEdges (nearest edge vectors) AND the query-time edge-neighbor consumer in the graph lane; recall metric measures whether seeded edge vectors recover edge-hop targets additively. Requires populated edge_vector_embeddings.',
   },
   {
     label: 'edge_triplet_search',
     env: 'SPECKIT_EDGE_TRIPLET_SEARCH',
     currentDefault: 'off',
-    metric: 'behavior',
-    note: 'Gates rankEdgeTripletCandidates edge-aware (source,edge,target) scoring.',
+    metric: 'recall+behavior',
+    note: 'Gates rankEdgeTripletCandidates edge-aware (source,edge,target) scoring; recall metric requires SPECKIT_EDGE_VECTOR_INDEX co-enabled (triplet re-scores vector-index candidates).',
   },
 ];
 
@@ -355,6 +355,13 @@ async function main() {
       const runRecall = async (enabled) => {
         restoreEnv(originalEnv);
         process.env[flag.env] = enabled ? 'true' : 'false';
+        // edge_triplet_search re-scores only the candidates the vector-index
+        // consumer produces, so its recall ON variant must co-enable the
+        // vector-index flag — otherwise findSemanticEdgeNeighborCandidates
+        // returns [] and triplet ranking has nothing to reorder.
+        if (flag.env === 'SPECKIT_EDGE_TRIPLET_SEARCH' && enabled) {
+          process.env.SPECKIT_EDGE_VECTOR_INDEX = 'true';
+        }
         graphSearch.clearDegreeCacheForDb(db);
         const resultIds = await searchVariant();
         return computeEdgeRecall(goldenItems, resultIds, RECALL_K);

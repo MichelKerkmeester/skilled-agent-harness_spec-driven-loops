@@ -132,3 +132,72 @@ export function rankEdgeTripletCandidates(
     }))
     .sort((a, b) => b.tripletScore - a.tripletScore || a.edgeId - b.edgeId);
 }
+
+/** A fused-pool candidate sourced from a semantically retrieved edge neighbor. */
+export interface SemanticEdgeNeighborCandidate {
+  id: number;
+  score: number;
+  source: 'graph';
+  edgeId: number;
+  relation: string;
+  via: 'edge-semantic';
+}
+
+/**
+ * Resolve query-time edge-neighbor candidates for the fused graph lane.
+ *
+ * Given a query embedding, find the nearest edges by fact_text embedding, then
+ * emit each edge's BOTH endpoint memories as graph-family candidates (source:
+ * 'graph') so the additive reserved-slot path can extend recall with edge
+ * neighbors without ever displacing a baseline hit. When edge-triplet search is
+ * enabled the per-candidate score is the relation-aware triplet score; otherwise
+ * it is the raw edge cosine score. Returns [] when the vector-index flag is off
+ * or no edge vectors are seeded, so the off-path is a strict no-op.
+ *
+ * Endpoint ids that fail to parse as integers (legacy spec-folder string ids on
+ * hierarchy edges) are dropped, because the fused pool keys numeric memory ids.
+ */
+export function findSemanticEdgeNeighborCandidates(
+  database: Database.Database,
+  queryEmbedding: readonly number[] | Float32Array,
+  options: EdgeVectorSearchOptions,
+): SemanticEdgeNeighborCandidate[] {
+  const hits = findSemanticEdges(database, queryEmbedding, options);
+  if (hits.length === 0) {
+    return [];
+  }
+
+  // Relation-aware re-scoring when triplet search is on. The endpoint memories
+  // are not independently re-queried here (the fused pool already carries their
+  // lexical/vector scores), so source and target weights stay neutral and the
+  // edge score carries the relation signal.
+  const ranked = isEdgeTripletSearchEnabled()
+    ? new Map(
+      rankEdgeTripletCandidates(
+        hits.map((hit) => ({ ...hit, sourceScore: hit.score, targetScore: hit.score })),
+      ).map((entry) => [entry.edgeId, entry.tripletScore]),
+    )
+    : null;
+
+  const candidates: SemanticEdgeNeighborCandidate[] = [];
+  const seen = new Set<number>();
+  for (const hit of hits) {
+    const score = ranked?.get(hit.edgeId) ?? hit.score;
+    for (const endpoint of [hit.sourceId, hit.targetId]) {
+      const memoryId = Number.parseInt(endpoint, 10);
+      if (!Number.isInteger(memoryId) || seen.has(memoryId)) {
+        continue;
+      }
+      seen.add(memoryId);
+      candidates.push({
+        id: memoryId,
+        score,
+        source: 'graph',
+        edgeId: hit.edgeId,
+        relation: hit.relation,
+        via: 'edge-semantic',
+      });
+    }
+  }
+  return candidates;
+}

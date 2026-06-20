@@ -69,11 +69,13 @@ import {
   isCosineTopnReorderEnabled,
   isDegreeBoostEnabled,
   isDocscoreAggregationEnabled,
+  isEdgeVectorIndexEnabled,
   isMMREnabled,
   isSearchFallbackEnabled,
   isSummaryFusionLaneEnabled,
   isTemporalEdgesEnabled,
 } from './search-flags.js';
+import { findSemanticEdgeNeighborCandidates } from '../graph/edge-semantic-retrieval.js';
 import { resolveFusionIntentContract } from './search-utils.js';
 import { fts5Bm25Search } from './sqlite-fts.js';
 import { parse_trigger_phrases, specFolderLikePattern } from './vector-index-types.js';
@@ -1600,13 +1602,29 @@ async function collectAndFuseHybridResults(
           specFolder: options.specFolder,
           intent: options.intent,
         });
-        if (graphResults.length > 0) {
+
+        // Semantic-edge consumer (SPECKIT_EDGE_VECTOR_INDEX). When the edge
+        // vectors are seeded, retrieve edge neighbors by query→fact_text vector
+        // similarity and fold them into the SAME graph source list. They carry
+        // source:'graph', so the Stage-C2 additive reserved-slot path treats
+        // them as graph-only and reserves them to the tail — they can extend
+        // recall but never displace a baseline lexical or vector hit. Off-flag
+        // or unseeded, this returns [] and the channel is unchanged.
+        const semanticEdgeCandidates = (embedding && isEdgeVectorIndexEnabled() && db)
+          ? findSemanticEdgeNeighborCandidates(db, embedding, {
+            limit: options.limit || DEFAULT_LIMIT,
+          })
+          : [];
+
+        const mergedGraphResults: Array<Record<string, unknown> & { id: string | number }> = [
+          ...graphResults.map((r: Record<string, unknown>) => ({ ...r, id: r.id as number | string })),
+          ...semanticEdgeCandidates,
+        ];
+
+        if (mergedGraphResults.length > 0) {
           graphMetrics.graphHits++;
-          graphMetrics.graphResultCount += graphResults.length;
-          lists.push({ source: 'graph', results: graphResults.map((r: Record<string, unknown>) => ({
-            ...r,
-            id: r.id as number | string,
-          })), weight: 0.5 });
+          graphMetrics.graphResultCount += mergedGraphResults.length;
+          lists.push({ source: 'graph', results: mergedGraphResults, weight: 0.5 });
         }
       } catch (_err: unknown) {
         // Non-critical — graph channel failure does not block pipeline
