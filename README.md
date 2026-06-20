@@ -109,7 +109,7 @@ The framework adds four layers on top of the base platform:
          ┌──────────────────────────────────────────┐
          │     SPEC KIT (documentation framework)   │
          │  specs/###-feature/ - scratch/           │
-         │  4 levels - template set - 20 rules      │
+         │  4 levels - template set - 38 rules      │
          │  nomic-v1.5 (Ollama) │ HF Local │ Voyage │
          └──────────────────────────────────────────┘
 ```
@@ -277,7 +277,7 @@ Use `create.sh --phase` to create a parent with its first child in one step. Run
 &nbsp;
 #### Validation
 
-The `validate.sh` script runs 20 rules against a spec folder and reports what passes and what needs fixing. Rules check for required files, template compliance, placeholder detection, anchor markers and cross-reference consistency.
+The `validate.sh` script runs 38 rules against a spec folder and reports what passes and what needs fixing. Rules check for required files, template compliance, placeholder detection, anchor markers and cross-reference consistency.
 
 - **Exit 0** - All rules pass. Ready to proceed.
 - **Exit 1** - User error (bad flags or invalid input).
@@ -292,7 +292,7 @@ Run with `--verbose` to see details behind each rule or `--recursive` to validat
 **Spec Management Scripts** (in `.opencode/skills/system-spec-kit/scripts/spec/`):
 
 - **`create.sh`** - Create spec folders with level-appropriate templates. Use `--phase` for parent + child
-- **`validate.sh`** - Run 20 validation rules. Use `--recursive` for phase folders
+- **`validate.sh`** - Run 38 validation rules. Use `--recursive` for phase folders
 - **`upgrade-level.sh`** - Upgrade a spec folder to a higher level by injecting new sections
 - **`recommend-level.sh`** - Analyze scope and risk to recommend the right documentation level
 - **`calculate-completeness.sh`** - Calculate spec folder completeness as a percentage
@@ -879,7 +879,7 @@ For details, see the [Deep Loop Runtime README](.opencode/skills/deep-loop-runti
 - Mandatory orchestrator for all file modifications - activates automatically for any code file change
 - Creates numbered spec folders with manifest templates rendered through Level contracts across 4 levels (1-3+)
 - Integrates the 39-tool memory surface with constitutional-tier support, session bootstrap and hybrid 5-channel retrieval
-- Manages the manifest template source, 20 validation rules, the spec-kit script suite and the feature-catalog / testing-playbook documentation surfaces
+- Manages the manifest template source, 38 validation rules, the spec-kit script suite and the feature-catalog / testing-playbook documentation surfaces
 
 **system-code-graph**
 - Structural code-graph subsystem at `.opencode/skills/system-code-graph/`

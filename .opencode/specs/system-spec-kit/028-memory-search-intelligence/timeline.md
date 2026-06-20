@@ -1,6 +1,6 @@
 ---
 title: "Chronological Timeline [system-spec-kit/028-memory-search-intelligence/timeline]"
-description: "Chronological build sequence of packet 028 memory-search-intelligence: the flat 030 Wave-0 spearhead, the re-plan into a phased five-track program, the dependency-ordered implementation waves, the eval and benchmark harness extension and the linked per-phase changelog generation."
+description: "Chronological build sequence of packet 028 memory-search-intelligence: the flat 030 Wave-0 spearhead, the re-plan into a phased five-track program, the dependency-ordered implementation waves, the eval and benchmark harness extension, the linked per-phase changelog generation and the four-round deep review and its remediation."
 trigger_phrases:
   - "028 timeline"
   - "028 build sequence"
@@ -13,7 +13,7 @@ _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence"
     last_updated_at: "2026-06-20T00:00:00Z"
-    recent_action: "Extended the chronological build timeline past commit 30 to cover the schema cluster, the release-cleanup executions, the criterion-4 benchmark run and the packet-030 deletion"
+    recent_action: "Extended the chronological timeline to cover the four-round deep review and its remediation arc through the round-four close and the release-cleanup focused review"
     next_safe_action: "Use this file to trace what shipped when and in which commit across the four subsystems"
     completion_pct: 100
 ---
@@ -99,11 +99,31 @@ Epoch two continued  --  the schema cluster, release-cleanup and the benchmark
  0843d054f7  feat(028)           run the eval-harness benchmark (criterion 4, aligned golden set)
  30958b1b0e  docs(028)           mark criterion 4 resolved (no default-off flag earned a flip)
  5ce5130b20  chore(028)          delete the superseded Wave-0 packet 030
+
+Epoch three  --  the deep review and its remediation (after the build program)
+ 3eca12c05b  docs(028)           deep-review report (tri-model 40-seat + 10-iteration, 0 P0 / 6 P1)
+ 0076797859  docs(028)           phase-plan the remediation (006-review-remediation, 4 children)
+ 885f0c662e  fix(028)            round-1: eval-driver fidelity + criterion-4 re-derived
+ 642357af0c  fix(028)            round-1: memory schema identity + consolidation lock + retention re-validation
+ f3cb9b5a41  fix(028)            round-1: doc accuracy vs committed code
+ 378ace8459  fix(028)            round-1: benchmark-status em-dash + 003 continuity cleanup
+ 20f37fb283  docs(028)           round-2: convergence re-review (0 P0 / 4 new P1)
+ 0e3a224421  fix(028)            round-2: release-cleanup fork + 008 shipped-vs-no-code (doc)
+ 85cede4363  fix(028)            round-2: eval coverage guard + edge-vector orphan (code)
+ 228a320de2  docs(028)           round-3: gpt-5.5 xhigh parallel review (0 P0 / 8 P1)
+ 43be836513  fix(028)            round-3: 2 fail-open governance/retention holes now fail closed
+ ed420eeda4  docs(028)           round-3: reconcile leaf-changelog no-code-shipped forks
+ 221813f404  fix(028)            round-3: 2 default-on gating violations gated / contract restored
+ 9452523954  docs(028)           round-3: add feature-flags.md (37 env switches)
+ 669ae88a8d  fix(028)            round-3: ENV_REFERENCE + embedder-degrade test follow-up
+ 529e0af7bf  docs(028)           round-4: closing note (stale re-report, effectively converged)
+ ad8b166e7a  docs(028)           release-cleanup focused review (10 claude2-opus iterations)
 ```
 
 > Interleaved house-voice changelog-polish commits (`c415143c10`, `2ad1f7bc88`, `7fddf1cad3`,
 > `4e1e205481`) are omitted from this build view. The deep-review report and its remediation
-> (`3eca12c05b` onward) are meta-work on top of the build program and sit outside this build sequence.
+> (`3eca12c05b` onward) ran after the build program. They are listed in the Epoch three block above
+> and narrated in Section F.
 
 ---
 
@@ -256,10 +276,47 @@ code. The Memory bitemporal window, derived-id provenance, semantic edge layer a
 code-edge bitemporal and edge-governance clusters all shipped their schema and default-off reads, held
 back from a live flip until a migration consumer and a benchmark justify it. Needs-benchmark holds the
 seeded-PPR tuning, the Q4-C1 magnitudes, the advisor RRF,
-query-class and exact-rerank live flips, the reliability-weighted convergence cluster, the eval
+query-class and exact-rerank live flips, the eval
 calibration A/B promotion and the remaining retention and forgetting promotions. The
 shared-infrastructure chain holds the work
 waiting on the Memory consolidation-cursor clock, the durable advisor calibration substrate and the
 shared Beta posterior. Two roadmap rows are deferred on evidence, the system-kind exclusion and the
-idempotency default-on flip, and two are recorded as NO-GO or DEFER-speculative, the lexical-vector seed
-union and the as-of-generation hard gate. None of the gated work shipped on a structural guess.
+idempotency default-on flip, and three are recorded as held-unbuilt NO-GO or DEFER-speculative, the
+reliability-weighted convergence cluster, the lexical-vector seed union and the as-of-generation hard
+gate. None of the gated work shipped on a structural guess.
+
+---
+
+## F. The deep review and its remediation
+
+After the build program landed, the packet ran a four-round deep review with a scoped remediation
+track, the `006-review-remediation` phase parent and its four children for eval-benchmark fidelity,
+memory schema and concurrency, doc accuracy and P2 triage. This sequence sits after the build, not
+inside it, and it is the reason the shipped state is audited rather than only asserted.
+
+`3eca12c05b` opened with a tri-model report, forty seats split twenty on gpt-5.5, ten on
+deepseek-v4-pro and ten on mimo-v2.5-pro, claude adversarial verification across five dimensions and a
+ten-iteration deep-dive on top: zero P0, six P1, not converged. `0076797859` phase-planned the
+remediation, then `885f0c662e`, `642357af0c`, `f3cb9b5a41` and `378ace8459` fixed the six round-one
+P1, re-deriving the criterion-4 benchmark on a driver that measures the default routed path and closing
+a memory content-identity split, a consolidation-lock gap and a doc-accuracy cluster.
+
+`20f37fb283` re-reviewed for convergence and found four new P1 with no blocker. `0e3a224421` and
+`85cede4363` closed them, making the eval coverage guard fail closed on an empty relevance set and
+fixing an edge-vector orphan-row hole and a release-cleanup status fork.
+
+`228a320de2` ran round three as a single parallel sweep, every lens concurrent and verified on
+gpt-5.5-fast at xhigh with no claude seat: zero P0, eight new P1. `43be836513` made a scope-governance
+path and a retention sweep fail closed, `221813f404` gated a default-on SingleHop graph-suppression
+behind the new default-off `SPECKIT_RETRIEVAL_CLASS_ROUTING` flag and restored the always-included
+constitutional contract on the embedder-down path, `ed420eeda4` reconciled the leaf-changelog
+no-code-shipped forks, and `9452523954` and `669ae88a8d` added the feature-flags guide, the
+ENV_REFERENCE entry and the embedder-degrade test follow-up.
+
+`529e0af7bf` re-ran the sweep a fourth time after the round-three fixes. Eight of nine candidates
+returned as real, but every one was a re-report of an exact round-three finding rather than a new
+defect, and host inspection confirmed each fix present in the committed code, so the loop closed
+effectively converged with eighteen P1 fixed across rounds one through three and zero P0 throughout.
+`ad8b166e7a` then ran a ten-seat release-cleanup focused review that read the cleanup tracking docs
+themselves, confirmed the work shipped and that [`benchmark-status.md`](./benchmark-status.md) records
+nine of nine executed, and flagged the repo-root README rule count for a live recount.
