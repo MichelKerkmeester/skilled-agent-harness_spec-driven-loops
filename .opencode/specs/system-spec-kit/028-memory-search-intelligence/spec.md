@@ -117,6 +117,7 @@ Provide the root purpose, child map and cross-packet boundary for packet 028. Th
 | 005 | `005-release-cleanup/` | Release-readiness documentation sweep across repository doc surfaces | Phase parent |
 | 006 | `006-review-remediation/` | Four-round deep review and its scoped remediation track | Phase parent |
 | 007 | `007-kept-off-flag-resolution/` | Final flip-or-delete reckoning for every default-off flag, keep 5 and delete 10 | Complete |
+| 008 | `008-new-feature-research-build/` | TRACK B new-feature arc, eval-v2 built and kept and 3 features built default-off and held | Complete |
 
 ### Phase Transition Rules
 
@@ -156,6 +157,6 @@ The Wave-0 implementation record is the Wave-0 SHIPPED record for candidates alr
 ## RELATED DOCUMENTS
 
 - **Roadmap**: `research/roadmap.md`
-- **Child parents**: `001-speckit-memory/`, `002-code-graph/`, `003-skill-advisor/`, `004-deep-loop/`, `005-release-cleanup/`, `006-review-remediation/`, `007-kept-off-flag-resolution/`
+- **Child parents**: `001-speckit-memory/`, `002-code-graph/`, `003-skill-advisor/`, `004-deep-loop/`, `005-release-cleanup/`, `006-review-remediation/`, `007-kept-off-flag-resolution/`, `008-new-feature-research-build/`
 - **Merged research index**: `001-speckit-memory/research/merged-research-index.md`
 - **Graph metadata**: `graph-metadata.json`

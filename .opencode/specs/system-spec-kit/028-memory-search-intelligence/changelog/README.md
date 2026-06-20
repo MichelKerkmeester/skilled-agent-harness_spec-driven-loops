@@ -17,7 +17,7 @@ Spec 028 (memory-search-intelligence) turned a long external memory-system resea
 
 | Track | Leaf changelogs | Top rollup |
 |-------|-----------------|------------|
-| 001 speckit memory | 22 | [changelog-001-root.md](./001-speckit-memory/changelog-001-root.md) |
+| 001 speckit memory | 23 | [changelog-001-root.md](./001-speckit-memory/changelog-001-root.md) |
 | 002 code graph | 8 | [changelog-002-root.md](./002-code-graph/changelog-002-root.md) |
 | 003 skill advisor | 7 | [changelog-003-root.md](./003-skill-advisor/changelog-003-root.md) |
 | 004 deep loop | 6 | [changelog-004-root.md](./004-deep-loop/changelog-004-root.md) |
@@ -25,7 +25,7 @@ Spec 028 (memory-search-intelligence) turned a long external memory-system resea
 
 ## How to read these
 
-Each track's top rollup is its phase parent's Included Phases table, listing every child phase with its status and a one-line summary. Each leaf changelog follows the canonical template: Summary, Added, Changed, Fixed, Verification, Files Changed and Follow-Ups. The memory track carries the most phases because the campaign weighted the Memory MCP heaviest, and the release-cleanup track carries nine PENDING documentation-surface scaffolds rather than shipped code. A phase whose leaf Summary reads as planning-only may have been superseded by a later build commit, so the Added, Changed and Fixed evidence rows and the per-track rollup are the authoritative shipped state. The memory track's final leaf `changelog-001-022-keep-off-flag-reinvestigation.md` records a cross-cutting milestone rather than a single phase build: the keep-off flag-resolution reckoning that kept 5 default-on, deleted 10 along with their code and validated the disposition across three deep-review rounds after the build program closed. The full per-flag method lives in `007-kept-off-flag-resolution/`.
+Each track's top rollup is its phase parent's Included Phases table, listing every child phase with its status and a one-line summary. Each leaf changelog follows the canonical template: Summary, Added, Changed, Fixed, Verification, Files Changed and Follow-Ups. The memory track carries the most phases because the campaign weighted the Memory MCP heaviest, and the release-cleanup track carries nine PENDING documentation-surface scaffolds rather than shipped code. A phase whose leaf Summary reads as planning-only may have been superseded by a later build commit, so the Added, Changed and Fixed evidence rows and the per-track rollup are the authoritative shipped state. The memory track's two closing leaves record cross-cutting milestones rather than single phase builds. `changelog-001-022-keep-off-flag-reinvestigation.md` is the keep-off flag-resolution reckoning that kept 5 default-on, deleted 10 along with their code and validated the disposition across three deep-review rounds after the build program closed, with the full per-flag method in `007-kept-off-flag-resolution/`. `changelog-001-023-new-feature-research-build.md` is the TRACK B new-feature arc that followed it, where the deleted-10 teachings drove research that found 4 candidates, eval-v2 was built and kept as the measurability gate and 3 features were built default-off and fresh-Opus held, with the full method in `008-new-feature-research-build/`.
 
 ## Conventions
 

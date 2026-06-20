@@ -63,3 +63,19 @@ The reckoning deleted ten default-off switches and their code after a fair real-
 | `SPECKIT_AGENTIC_RECALL` | Oracle ceiling +0.344 but the live reasoner nets zero with regressions at 51s per query and has no production consumer. | 001 |
 
 The path-and-value knobs that only existed to serve a deleted feature were removed with it. The retrieval-class routing flag and the calibration and parser value knobs that serve surviving or always-on behavior remain, documented in `mcp_server/ENV_REFERENCE.md`.
+
+---
+
+## 5. THE TRACK B BUILT-BUT-HELD SWITCHES
+
+The deleted ten taught the campaign why a lever fails to move live recall, and those teachings drove a research pass that found four new candidates. One of the four was a measurability tool rather than a switch. eval-v2 was built and kept as standing infrastructure: it adds three non-self-recall classes so a feature cannot win by recalling the query back to itself (`thematic_multi_target`, `causal_chain` and `hard_negative`), a completeRecall@K metric at K of 3, 5 and 8 that scores whether the full target set is recovered, and a dual-mode eval-vs-prod fidelity measurement. The headline it exposed is the eval-saturation that had hidden the deleted features: eval-mode completeRecall@8 is 0.212 against prod-mode 0.036, a +0.176 fidelity gap. eval-v2 is not a flag and ships as kept infrastructure regardless of any feature decision.
+
+The other three candidates were built default-off, benchmarked in prod mode and held by a fresh-Opus gate. None flips on prod-mode evidence. They stay in the tree as honest shadows with a measured reason and a next step each, routed through the shared `isFeatureEnabled` resolver like every other switch.
+
+| env var | default | what it does (plain English) | why it is held (prod-mode evidence) | next step | 028 phase |
+| --- | --- | --- | --- | --- | --- |
+| `SPECKIT_DETERMINISTIC_MULTIHOP` | OFF (`false`) | Appends a second-hop set of related memories to the result so an edge-hop target gets a recall path. | Prod completeRecall delta 0.000. The appended hop-2 docs land at the tail and prod confidence-truncation cuts them, so the multi-hop content never reaches the prod result window. | A scoped truncation-exemption probe on the causal_chain class with displacement accounting. It earns the flip on that class or proves tail-recall structurally doomed at prod K. | 001 |
+| `SPECKIT_LANE_CHAMPION_BACKFILL` | OFF (`false`) | Reserves a backfill slot for the top hit of each retrieval lane so no lane is shut out of the result set. | 0.000 delta, structurally redundant with RRF which already absorbs every lane champion. Reserving a slot duplicates work the fuser already does. | Retire the investment. It has no path to a flip and is redundant with the fuser. | 001 |
+| `SPECKIT_TRUE_CITATION_EMITTER` | OFF (`false`) | Emits a clean default-off shadow that produces the corpus's missing negative-citation labels for evaluation. | The shadow is clean and produces the missing negatives, but its positive label depends on the assistant literally echoing the memory id, so positives are under-counted and the measured signal cannot credit it yet. | Fix the positive label with content-attribution, then run a one-shot offline mining pass before any collection decision. | 001 |
+
+The full method, the per-feature prod-mode numbers and the append-not-displace truncation finding live in [`008-new-feature-research-build/`](./008-new-feature-research-build/).

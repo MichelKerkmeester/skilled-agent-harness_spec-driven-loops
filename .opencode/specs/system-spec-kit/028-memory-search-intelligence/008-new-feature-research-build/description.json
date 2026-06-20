@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/008-new-feature-research-build",
+  "description": "Feature Specification: New-Feature Research and Build",
+  "keywords": [
+    "feature",
+    "specification",
+    "new-feature",
+    "research",
+    "build"
+  ],
+  "lastUpdated": "2026-06-20T19:52:01.276Z",
+  "specId": "008",
+  "folderSlug": "new-feature-research-build",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

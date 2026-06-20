@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/008-new-feature-research-build",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/008-new-feature-research-build",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/028-memory-search-intelligence/007-kept-off-flag-resolution"
+    ],
+    "supersedes": [],
+    "related_to": [
+      "system-spec-kit/028-memory-search-intelligence/001-speckit-memory"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "028 new feature research build",
+      "028 track b new feature outcome",
+      "028 eval-v2 measurability gate",
+      "028 append not displace truncation finding"
+    ],
+    "key_topics": [
+      "028",
+      "new",
+      "feature",
+      "research",
+      "build",
+      "eval-v2",
+      "truncation",
+      "multihop"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [],
+    "causal_summary": "New-Feature Research and Build is the TRACK B arc that turned the deleted-10 teachings into four candidate features. eval-v2 was built and kept as the measurability gate that exposed the eval-vs-prod fidelity gap, and three features were built default-off and fresh-Opus held because the append-not-displace pattern makes tail-additive recall zero at prod K by construction.",
+    "created_at": "2026-06-20T00:00:00Z",
+    "last_save_at": "2026-06-20T00:00:00Z",
+    "save_lineage": "scaffold",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": "2026-06-20T00:00:00Z"
+  }
+}

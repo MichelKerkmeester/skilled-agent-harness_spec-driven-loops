@@ -1,6 +1,6 @@
 ---
 title: "Chronological Timeline [system-spec-kit/028-memory-search-intelligence/timeline]"
-description: "Chronological build sequence of packet 028 memory-search-intelligence: the flat 030 Wave-0 spearhead, the re-plan into a phased five-track program, the dependency-ordered implementation waves, the eval and benchmark harness extension, the linked per-phase changelog generation and the four-round deep review and its remediation."
+description: "Chronological build sequence of packet 028 memory-search-intelligence: the flat 030 Wave-0 spearhead, the re-plan into a phased five-track program, the dependency-ordered implementation waves, the eval and benchmark harness extension, the linked per-phase changelog generation, the four-round deep review and its remediation, the flag-resolution reckoning and the TRACK B new-feature research-and-build arc."
 trigger_phrases:
   - "028 timeline"
   - "028 build sequence"
@@ -13,7 +13,7 @@ _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence"
     last_updated_at: "2026-06-20T00:00:00Z"
-    recent_action: "Reconciled the timeline to the final flag-resolution reckoning: keep 5 default-on, delete 10 and their code, validated across three deep-review rounds"
+    recent_action: "Added the TRACK B new-feature arc: eval-v2 built and kept as the measurability gate, 3 features built default-off and fresh-Opus held on the append-not-displace truncation finding"
     next_safe_action: "Use this file to trace what shipped when and in which commit across the four subsystems"
     completion_pct: 100
 ---
@@ -23,13 +23,16 @@ _memory:
 > This is the literal sequence the work landed in, not the candidate or phase numbering from the specs.
 >
 > **What this packet did.** It turned a long external memory-system research campaign into shipped
-> retrieval intelligence across four subsystems. The work landed in four epochs. The flat 030 Wave-0
+> retrieval intelligence across four subsystems. The work landed in five epochs. The flat 030 Wave-0
 > shipped the ship-ready spearhead first. Then the rest of the roadmap was re-planned into a phased
 > five-track program under 028 and built in dependency-ordered waves, every shipped change additive,
-> reversible and default-safe. A four-round deep review then audited the shipped state. Finally a
+> reversible and default-safe. A four-round deep review then audited the shipped state. A
 > flag-resolution reckoning reopened every default-off flag, kept five default-on on real evidence,
 > deleted ten along with their code and was validated across three deep-review rounds, so the closing
-> state carries a measured disposition rather than a uniform default-off posture.
+> state carries a measured disposition rather than a uniform default-off posture. Finally a TRACK B
+> new-feature arc read the ten deletions as a research input, built and kept eval-v2 as the
+> measurability gate and built three more features default-off that a fresh-Opus gate held on the
+> append-not-displace truncation finding.
 >
 > **Where the truth lives.** The superseded 030 Wave-0 packet was deleted at `5ce5130b20`, so its
 > done-evidence now lives in the per-track `changelog-00N-root.md` rollups and the before-and-after
@@ -380,3 +383,39 @@ The deep review ran three rounds over this disposition. It caught the delete-env
 off arm measured the on arm after a flip, so a flipped flag would have scored as a win against itself, and
 it established the principle that synthetic, circular or self-recall wins do not earn a keep. The five
 kept flags and the ten deletions are the corrected closing state.
+
+---
+
+## H. The TRACK B new-feature research-and-build arc
+
+The reckoning did not end the campaign, it opened the next one. The ten deletions taught the campaign why a
+lever fails to move live recall, and those teachings were read as a research input rather than a dead end.
+The research found four candidate features that might earn a flip where the deleted ten did not. The arc
+then ran research to eval-v2 to build to benchmark to a fresh-Opus hold. The full method lives in
+[`008-new-feature-research-build/`](./008-new-feature-research-build/) and the held flags are recorded in
+[`feature-flags.md`](./feature-flags.md).
+
+eval-v2 was built first and kept. The old harness had hidden the deleted features behind eval-saturation, so
+a new candidate measured on it would repeat the same mistake. eval-v2 is the fix and it earns its keep on its
+own merit. It adds three non-self-recall classes so a feature cannot win by recalling the query back to
+itself, `thematic_multi_target`, `causal_chain` and `hard_negative`, a completeRecall@K metric at K of 3, 5
+and 8 that scores whether the full target set is recovered, and a dual-mode eval-vs-prod fidelity
+measurement. The headline it exposed is the eval-saturation itself, eval-mode completeRecall@8 0.212 against
+prod-mode 0.036, a +0.176 fidelity gap that had hidden the deleted features.
+
+Three features were then built default-off, benchmarked in prod mode and held by a fresh-Opus gate. None
+flips. `SPECKIT_DETERMINISTIC_MULTIHOP` held on a prod completeRecall delta of 0.000, the appended hop-2 docs
+land at the tail and prod truncation cuts them. `SPECKIT_LANE_CHAMPION_BACKFILL` held on a 0.000 delta,
+structurally redundant with RRF which already absorbs every lane champion. `SPECKIT_TRUE_CITATION_EMITTER`
+held on an under-counted positive label, the shadow is clean and produces the corpus's missing negatives but
+its positive label depends on the assistant echoing the memory id.
+
+The key architectural finding is the append-not-displace pattern. It is the only non-regressing architecture
+the campaign found, and it carries a property that decides the multihop result. It appends to the tail, and
+prod confidence-truncation keeps about three results, so the tail-additive content is cut before it reaches
+the reader. Tail-additive recall is 0 at prod K by construction, not by defect. Capturing it requires
+injecting ahead of the truncation point, which is a displacement decision that trades a baseline row for the
+new content, and that decision is deferred. The per-feature next steps follow from this: multihop gets a
+scoped truncation-exemption probe on the causal_chain class with displacement accounting, lane-champion
+retires its investment as redundant with RRF, and the citation-emitter fixes its positive label with
+content-attribution and runs a one-shot offline mining pass before any collection decision.
