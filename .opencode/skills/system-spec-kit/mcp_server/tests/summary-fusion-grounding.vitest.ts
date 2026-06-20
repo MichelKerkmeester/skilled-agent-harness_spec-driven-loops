@@ -404,7 +404,7 @@ describe('double-count suppression and cache identity', () => {
 });
 
 describe('world-summary prelude insertion', () => {
-  it('prepends the prelude row to a parsed memory_context result', () => {
+  it('appends the prelude grounding after the baseline rows without displacing them', () => {
     const nestedEnvelope = {
       summary: 'ok',
       data: {
@@ -439,12 +439,75 @@ describe('world-summary prelude insertion', () => {
     };
 
     expect(next.worldSummaryPreludeInjected).toBe(true);
+    // Section id 1 already occupies a baseline rank, so it is not duplicated:
+    // one baseline row plus the trailing marker row.
     expect(parsed.data.count).toBe(2);
-    expect(parsed.data.results[0]).toMatchObject({
+    // Baseline row keeps rank 0 — the grounding never displaces it.
+    expect(parsed.data.results[0]).toMatchObject({ id: 1, title: 'Existing' });
+    // The grounding marker trails at the tail, not the head.
+    expect(parsed.data.results.at(-1)).toMatchObject({
       id: 'world-summary-prelude',
       source: 'world_summary',
       groundingPrelude: true,
     });
     expect(parsed.data.worldSummaryPrelude.sectionCount).toBe(1);
+  });
+
+  it('keeps every baseline top-K id in its exact rank while grounding adds a recoverable tail row', () => {
+    // Models the ON-path: a baseline result list at the top-K boundary plus a
+    // grounding section the baseline missed. The append contract guarantees the
+    // baseline ranks are byte-identical to the flag-OFF list (zero displacement)
+    // while the missed target becomes reachable as a trailing row.
+    const baselineResults = [
+      { id: 10, title: 'Hit A' },
+      { id: 11, title: 'Hit B' },
+      { id: 12, title: 'Hit C' },
+      { id: 13, title: 'Hit D' },
+      { id: 14, title: 'Hit E' },
+    ];
+    const offIds = baselineResults.map((row) => row.id);
+
+    const nestedEnvelope = {
+      summary: 'ok',
+      data: { count: baselineResults.length, results: baselineResults },
+    };
+    const result = {
+      strategy: 'search',
+      mode: 'deep',
+      content: [{ type: 'text', text: JSON.stringify(nestedEnvelope) }],
+    } as Parameters<typeof prependWorldSummaryPreludeToResult>[0];
+
+    const recoveredTargetId = 99;
+    const next = prependWorldSummaryPreludeToResult(result, {
+      rootSummary: 'Grounding recovers a missed target.',
+      sections: [{
+        memoryId: recoveredTargetId,
+        title: 'Recovered target',
+        specFolder: 'specs/parent',
+        summary: 'A target the baseline missed.',
+        score: 0.8,
+      }],
+      text: 'World summary\nGrounding recovers a missed target.',
+    });
+    const content = next.content as Array<{ text: string }>;
+    const parsed = JSON.parse(content[0].text) as {
+      data: { results: Array<Record<string, unknown>> };
+    };
+
+    const onIds = parsed.data.results
+      .filter((row) => row.id !== 'world-summary-prelude' && typeof row.id === 'number')
+      .map((row) => row.id);
+
+    // Zero displacement: the baseline top-K prefix is byte-identical to flag-OFF.
+    expect(onIds.slice(0, offIds.length)).toEqual(offIds);
+    // Grounding present: the recovered target is reachable in the result list.
+    expect(onIds).toContain(recoveredTargetId);
+    // The recovered target trails AFTER the baseline, never ahead of it.
+    expect(onIds.indexOf(recoveredTargetId)).toBeGreaterThanOrEqual(offIds.length);
+    // The grounding marker is still the last row, preserving its consumer contract.
+    expect(parsed.data.results.at(-1)).toMatchObject({
+      id: 'world-summary-prelude',
+      groundingPrelude: true,
+    });
   });
 });

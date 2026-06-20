@@ -144,17 +144,24 @@ describe('SPECKIT_WORLD_SUMMARY_PRELUDE ON-path behavior change', () => {
     const onResult = prependWorldSummaryPreludeToResult(baseResult, prelude!);
     const onParsed = JSON.parse((onResult.content as Array<{ text: string }>)[0].text);
 
-    // Contract: prelude is injected at position 0 with the grounding marker, count
-    // grows by one, and the world-summary target memory id is recalled in sections.
+    // Contract: grounding is APPENDED at the tail — the baseline row keeps rank 0
+    // (zero displacement), the grounding marker trails last, and the world-summary
+    // target memory id stays recallable in sections and reachable in results.
     expect(onResult.worldSummaryPreludeInjected).toBe(true);
-    expect(onParsed.data.results[0]).toMatchObject({
+    expect(onParsed.data.results[0]).toMatchObject({ id: 99, title: 'existing' });
+    expect(onParsed.data.results.at(-1)).toMatchObject({
       id: 'world-summary-prelude',
       source: 'world_summary',
       groundingPrelude: true,
     });
-    expect(onParsed.data.count).toBe(2);
+    expect(onParsed.data.count).toBeGreaterThan(1);
     expect(onParsed.data.worldSummaryPrelude.sectionCount).toBeGreaterThan(0);
     expect(prelude!.sections.map((section) => section.memoryId)).toContain(2);
+    // The recovered target is reachable in the result list (as a trailing row),
+    // and the baseline hit at rank 0 was never pushed out.
+    const onIds = (onParsed.data.results as Array<{ id: unknown }>).map((row) => row.id);
+    expect(onIds).toContain(2);
+    expect(onIds.indexOf(2)).toBeGreaterThan(0);
 
     // Flag OFF: the handler never builds/injects. The base result is unchanged —
     // assert behavior differs from ON, not merely byte-identity of the base.

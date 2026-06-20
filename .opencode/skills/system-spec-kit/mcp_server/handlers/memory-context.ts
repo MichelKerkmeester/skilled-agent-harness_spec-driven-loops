@@ -344,9 +344,43 @@ function prependWorldSummaryPreludeToResult(
       groundingPrelude: true,
     };
 
-    const nextResults = [preludeRow, ...results];
+    // Append grounding at the TAIL so the baseline retrieval keeps its exact
+    // order and top-K — a baseline hit can never be displaced past K by the
+    // prelude. Each grounding section is materialized as its own trailing row so
+    // a target the baseline missed becomes reachable in the result list, while
+    // the synthetic marker row trails last to preserve the groundingPrelude
+    // consumer contract. Sections that already appear in the baseline are not
+    // duplicated; their original rank is what counts.
+    const baselineIds = new Set(
+      results
+        .map((row) => row?.id)
+        .filter((id): id is string | number => typeof id === 'string' || typeof id === 'number'),
+    );
+    const sectionRows: Array<Record<string, unknown>> = [];
+    const seenSectionIds = new Set<string | number>();
+    for (const section of prelude.sections) {
+      const sectionId = section.memoryId;
+      if (baselineIds.has(sectionId) || seenSectionIds.has(sectionId)) {
+        continue;
+      }
+      seenSectionIds.add(sectionId);
+      sectionRows.push({
+        id: sectionId,
+        title: section.title,
+        source: 'world_summary',
+        score: section.score,
+        similarity: section.score,
+        summary: section.summary,
+        specFolder: section.specFolder,
+        groundingSection: true,
+      });
+    }
+
+    const nextResults = [...results, ...sectionRows, preludeRow];
     data.results = nextResults;
-    data.count = typeof data.count === 'number' ? data.count + 1 : nextResults.length;
+    data.count = typeof data.count === 'number'
+      ? data.count + sectionRows.length + 1
+      : nextResults.length;
     data.worldSummaryPrelude = {
       rootSummary: prelude.rootSummary,
       sectionCount: prelude.sections.length,
