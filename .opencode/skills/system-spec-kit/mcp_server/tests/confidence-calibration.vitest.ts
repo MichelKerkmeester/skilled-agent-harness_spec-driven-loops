@@ -24,6 +24,7 @@ import { computeResultConfidence, type ScoredResult } from '../lib/search/confid
 
 const FLAG = 'SPECKIT_CONFIDENCE_CALIBRATION';
 const MODEL_PATH_VAR = 'SPECKIT_CONFIDENCE_CALIBRATION_MODEL';
+const ABSOLUTE_FLAG = 'SPECKIT_ABSOLUTE_RELEVANCE_CALIBRATION';
 
 // -- Fit math --
 
@@ -362,5 +363,107 @@ describe('confidence-scoring wiring — calibration default ON', () => {
     expect(calibrated).toBeLessThan(baseline);
     expect(calibrated).toBeCloseTo(0.01, 3);
     expect(calibratedResult.preCalibrationValue).toBeCloseTo(baselineResult.preCalibrationValue, 6);
+  });
+});
+
+// -- Coupling guard: calibration model provenance vs live absolute-relevance --
+//
+// The shipped curve is fitted against the cosine-prior value distribution, so its
+// input domain assumes absolute-relevance calibration is ON. Running confidence
+// calibration ON while absolute-relevance is OFF feeds the curve an RRF-magnitude
+// input it never saw and silently mis-calibrates. The guard reads each model's
+// fittedUnderAbsoluteRelevance provenance and refuses a mismatched model, degrading
+// to the uncalibrated identity. Models without provenance stay legacy-applied.
+
+describe('confidence-scoring wiring — absolute-relevance coupling guard', () => {
+  let dir: string;
+  const sample: ScoredResult[] = [
+    { id: 1, similarity: 80, sources: ['vector', 'fts'], anchorMetadata: [{ id: 'a' }, { id: 'b' }] },
+    { id: 2, similarity: 40 },
+  ];
+
+  // A model that collapses everything to ~0.02 if applied — a large, easily
+  // detected departure from the rebalance-only identity.
+  function flatModelJson(provenance?: boolean): string {
+    const model: Record<string, unknown> = {
+      method: 'isotonic',
+      points: [{ x: 0, y: 0.02 }, { x: 1, y: 0.02 }],
+      fittedFrom: 2,
+    };
+    if (provenance !== undefined) model.fittedUnderAbsoluteRelevance = provenance;
+    return JSON.stringify(model);
+  }
+
+  // The rebalance-only identity with calibration explicitly disabled — the value
+  // the guard must reproduce when it degrades. Absolute-relevance is forced ON so
+  // the pre-calibration value is the same scorePrior basis used in the ON cases.
+  function rebalanceOnlyValue(): number {
+    process.env[FLAG] = 'false';
+    process.env[ABSOLUTE_FLAG] = 'true';
+    delete process.env[MODEL_PATH_VAR];
+    return computeResultConfidence(sample)[0].confidence.value;
+  }
+
+  beforeEach(() => {
+    dir = mkdtempSync(join(tmpdir(), 'calib-couple-'));
+    delete process.env[FLAG];
+    delete process.env[MODEL_PATH_VAR];
+    delete process.env[ABSOLUTE_FLAG];
+  });
+  afterEach(() => {
+    delete process.env[FLAG];
+    delete process.env[MODEL_PATH_VAR];
+    delete process.env[ABSOLUTE_FLAG];
+    rmSync(dir, { recursive: true, force: true });
+  });
+
+  it('calibrates when confidence ON, absolute ON, and the model is fitted under absolute (matching)', () => {
+    const baseline = rebalanceOnlyValue();
+    expect(baseline).toBeGreaterThan(0.1);
+
+    const p = join(dir, 'match.json');
+    writeFileSync(p, flatModelJson(true));
+    process.env[MODEL_PATH_VAR] = p;
+    process.env[FLAG] = 'true';
+    process.env[ABSOLUTE_FLAG] = 'true';
+
+    // State matches the model's fitted prior — the curve applies and reshapes
+    // the value away from the rebalance-only identity, down toward ~0.02.
+    const value = computeResultConfidence(sample)[0].confidence.value;
+    expect(value).toBeLessThan(baseline);
+    expect(value).toBeCloseTo(0.02, 3);
+  });
+
+  it('degrades to the uncalibrated identity when confidence ON, absolute OFF, model fitted under absolute (mismatch)', () => {
+    const baseline = rebalanceOnlyValue();
+
+    const p = join(dir, 'mismatch.json');
+    writeFileSync(p, flatModelJson(true));
+    process.env[MODEL_PATH_VAR] = p;
+    process.env[FLAG] = 'true';
+    process.env[ABSOLUTE_FLAG] = 'false';
+
+    // The model assumes a cosine-prior input but absolute-relevance is OFF, so the
+    // guard refuses it and returns the rebalance-only identity at output precision.
+    const value = computeResultConfidence(sample)[0].confidence.value;
+    expect(value).toBeCloseTo(baseline, 6);
+    // Must NOT have applied the flat model.
+    expect(value).not.toBeCloseTo(0.02, 3);
+  });
+
+  it('applies a model without provenance as legacy (no coupling check), even when absolute is OFF', () => {
+    const baseline = rebalanceOnlyValue();
+
+    const p = join(dir, 'legacy.json');
+    writeFileSync(p, flatModelJson(undefined)); // no fittedUnderAbsoluteRelevance
+    process.env[MODEL_PATH_VAR] = p;
+    process.env[FLAG] = 'true';
+    process.env[ABSOLUTE_FLAG] = 'false';
+
+    // Legacy model carries no provenance: the guard does not block it, so it still
+    // applies and reshapes toward ~0.02 — existing behavior is preserved.
+    const value = computeResultConfidence(sample)[0].confidence.value;
+    expect(value).toBeLessThan(baseline);
+    expect(value).toBeCloseTo(0.02, 3);
   });
 });

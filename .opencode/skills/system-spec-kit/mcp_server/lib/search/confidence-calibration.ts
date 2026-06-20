@@ -60,6 +60,15 @@ export interface CalibrationModel {
   points: Array<{ x: number; y: number }>;
   /** Number of samples the model was fit from (provenance / sanity check). */
   fittedFrom: number;
+  /**
+   * Provenance flag: the input-value distribution the curve was fitted against.
+   * `true` means the rawValue samples were drawn with absolute-relevance
+   * calibration ON — the curve's input domain assumes a cosine-prior magnitude.
+   * Apply-time uses this to refuse a model whose fitted prior no longer matches
+   * the live absolute-relevance state (see confidence-scoring maybeCalibrate).
+   * Absent on legacy models that predate provenance stamping; treat as unknown.
+   */
+  fittedUnderAbsoluteRelevance?: boolean;
 }
 
 // -- Helpers --
@@ -166,7 +175,13 @@ export function loadCalibrationModel(path: string): CalibrationModel | null {
   }
   if (points.length === 0) return null;
   const fittedFrom = typeof m.fittedFrom === 'number' ? m.fittedFrom : points.length;
-  return { method: 'isotonic', points, fittedFrom };
+  // Preserve provenance when present; leave undefined for legacy models so the
+  // apply-time guard can distinguish "fitted under absolute=ON" from "unknown".
+  const model: CalibrationModel = { method: 'isotonic', points, fittedFrom };
+  if (typeof m.fittedUnderAbsoluteRelevance === 'boolean') {
+    model.fittedUnderAbsoluteRelevance = m.fittedUnderAbsoluteRelevance;
+  }
+  return model;
 }
 
 // -- Fitting --

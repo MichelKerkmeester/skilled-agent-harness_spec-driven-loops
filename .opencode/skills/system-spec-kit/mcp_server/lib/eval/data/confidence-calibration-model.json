@@ -30,5 +30,6 @@
       "y": 0.2
     }
   ],
-  "fittedFrom": 879
+  "fittedFrom": 879,
+  "fittedUnderAbsoluteRelevance": true
 }

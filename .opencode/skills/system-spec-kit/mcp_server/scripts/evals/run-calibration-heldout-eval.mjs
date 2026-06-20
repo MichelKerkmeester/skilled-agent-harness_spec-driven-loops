@@ -310,6 +310,11 @@ async function main() {
   const fullModel = confidenceCalibration.fitCalibration(
     allSamples.map((s) => ({ rawValue: s.rawValue, relevant: s.relevant })),
   );
+  // Stamp the value-distribution provenance: every sample above was built with
+  // ABSOLUTE_FLAG forced ON, so the fitted curve's input domain assumes
+  // absolute-relevance calibration. The apply-time coupling guard reads this to
+  // refuse the model when the live absolute-relevance state no longer matches.
+  fullModel.fittedUnderAbsoluteRelevance = true;
   let shipModelWritten = null;
   if (SHIP_MODEL_PATH) {
     const absShip = path.resolve(SHIP_MODEL_PATH);

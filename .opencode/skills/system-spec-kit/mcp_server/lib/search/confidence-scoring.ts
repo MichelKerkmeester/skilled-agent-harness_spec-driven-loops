@@ -209,17 +209,50 @@ function resolveCalibrationModel(): CalibrationModel | null {
   return cachedCalibrationModel;
 }
 
+// One-shot warning latches so the coupling guard logs at most once per distinct
+// condition rather than on every result in every search. Reset only on process
+// restart — the conditions are configuration-level, not per-query.
+let warnedCalibrationCouplingMismatch = false;
+let warnedCalibrationLegacyProvenance = false;
+
 /**
  * Map a rebalanced confidence value through the empirical calibration model
  * when enabled. Default ON (graduated): the committed isotonic model resolves
  * by default. Returns the rebalance-only value unchanged when the flag is
  * disabled or no readable model resolves, so opting out — or a missing model —
  * fails safe to the uncalibrated identity rather than erroring.
+ *
+ * Coupling guard: the shipped curve is fitted against the cosine-prior value
+ * distribution, so its input domain assumes absolute-relevance calibration is
+ * ON. Applying it to an RRF-magnitude input (absolute-relevance OFF) feeds the
+ * model values it never saw and silently mis-calibrates. When the model declares
+ * it was fitted under absolute-relevance but the live state has it OFF, degrade
+ * to the uncalibrated identity instead of trusting a mismatched curve. A model
+ * without provenance is treated as legacy and still applied (no behavior break),
+ * with a one-time note so the gap is visible.
  */
 function maybeCalibrate(value: number): number {
   if (!isConfidenceCalibrationEnabled()) return value;
   const model = resolveCalibrationModel();
   if (!model) return value;
+
+  if (model.fittedUnderAbsoluteRelevance === true) {
+    if (!isAbsoluteRelevanceCalibrationEnabled()) {
+      if (!warnedCalibrationCouplingMismatch) {
+        warnedCalibrationCouplingMismatch = true;
+        console.warn(
+          '[confidence-calibration] model fitted under absolute-relevance ON but SPECKIT_ABSOLUTE_RELEVANCE_CALIBRATION is OFF — degrading to uncalibrated identity to avoid feeding the curve an out-of-domain input.',
+        );
+      }
+      return value;
+    }
+  } else if (!warnedCalibrationLegacyProvenance) {
+    warnedCalibrationLegacyProvenance = true;
+    console.warn(
+      '[confidence-calibration] model has no fittedUnderAbsoluteRelevance provenance — applying as legacy without a coupling check.',
+    );
+  }
+
   return applyCalibration(model, value);
 }
 
