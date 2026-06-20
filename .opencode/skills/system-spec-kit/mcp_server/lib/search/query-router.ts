@@ -28,7 +28,10 @@ import {
   isSingleHopRetrieval,
   type RetrievalClass,
 } from './retrieval-class-classifier.js';
-import { isSummaryFusionLaneEnabled } from './search-flags.js';
+import {
+  isSummaryFusionLaneEnabled,
+  isRetrievalClassRoutingEnabled,
+} from './search-flags.js';
 
 // Feature catalog: Query complexity router
 // Feature catalog: Query complexity router
@@ -243,6 +246,12 @@ interface GraphPreservationDecision {
  * - Entity-density: ≥2 query terms exact-match titles/triggers of memory_index
  *   rows with ≥3 outgoing causal_edges → preserved + degree.
  *
+ * Retrieval-class SingleHop suppression is gated behind the default-off
+ * `SPECKIT_RETRIEVAL_CLASS_ROUTING` flag: with the flag OFF (default) the
+ * SingleHop short-circuit is skipped so graph preservation matches the
+ * pre-retrieval-class baseline; with the flag ON a SingleHop query suppresses
+ * graph + degree before the intent/entity-density checks run.
+ *
  * Cold-start (empty causal_edges or missing DB): the entity-density signal
  * scores 0 and the override stays inactive.
  *
@@ -261,7 +270,7 @@ function shouldPreserveGraph(
     return { preserved: false, reasons: [], includeDegree: false };
   }
 
-  if (isSingleHopRetrieval(retrievalClass)) {
+  if (isRetrievalClassRoutingEnabled() && isSingleHopRetrieval(retrievalClass)) {
     return { preserved: false, reasons: [], includeDegree: false };
   }
 

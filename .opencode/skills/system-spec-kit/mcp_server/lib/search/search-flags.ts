@@ -435,6 +435,21 @@ export function isQuerySurrogatesEnabled(): boolean {
   return isFeatureEnabled('SPECKIT_QUERY_SURROGATES');
 }
 
+/**
+ * Retrieval-class routing — query-shape graph/degree channel suppression.
+ * When enabled, a SingleHop-classified query (e.g. "find the decision record
+ * for X") suppresses the graph + degree channels in the query router, dropping
+ * the intent-driven and entity-density graph preservation that would otherwise
+ * keep them. Default: FALSE (opt-in): suppression changes default channel
+ * routing and result ordering, so with the flag OFF the router preserves graph
+ * exactly as the pre-retrieval-class baseline did. It must earn promotion on a
+ * reindexed before/after benchmark before running by default. Set
+ * SPECKIT_RETRIEVAL_CLASS_ROUTING=true to enable.
+ */
+export function isRetrievalClassRoutingEnabled(): boolean {
+  return isOptInEnabled('SPECKIT_RETRIEVAL_CLASS_ROUTING');
+}
+
 /* ───────────────────────────────────────────────────────────────
    6. FEEDBACK & QUALITY LEARNING FLAGS
 ──────────────────────────────────────────────────────────────── */

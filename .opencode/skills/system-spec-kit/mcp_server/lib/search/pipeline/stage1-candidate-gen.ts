@@ -1221,6 +1221,49 @@ async function executeStage1Core(input: Stage1Input, startTime: number): Promise
         constitutionalInjectedCount = filteredConstitutional.length;
       }
     }
+  } else if (includeConstitutional && !tier && vectorSearchSkipped) {
+    // Lexical-fallback path: the live embedder is unavailable, so the
+    // vector-based injection above cannot run (it requires a query embedding).
+    // The constitutional-always-surface guarantee is independent of vector
+    // availability, so fetch constitutional rows directly by tier from the
+    // index (no embedding required) and inject them the same way.
+    const existingConstitutional = candidates.filter(
+      (r) => r.importance_tier === 'constitutional'
+    );
+
+    if (existingConstitutional.length === 0) {
+      try {
+        const constitutionalDb = requireDb();
+        const constitutionalResults = vectorIndex.get_constitutional_memories(
+          constitutionalDb,
+          specFolder ?? null,
+          includeArchived ?? false,
+        ) as PipelineRow[];
+
+        // Only inject rows not already present.
+        const existingIds = new Set(candidates.map((r) => r.id));
+        const uniqueConstitutional = constitutionalResults.filter(
+          (r) => !existingIds.has(r.id)
+        );
+
+        // Re-apply the same context/governance filters the vector path applies,
+        // because the tier-only fetch bypasses the earlier candidate gates.
+        const contextFilteredConstitutional = contextType
+          ? uniqueConstitutional.filter((r) => resolveRowContextType(r) === contextType)
+          : uniqueConstitutional;
+        const filteredConstitutional = shouldApplyScopeFiltering
+          ? filterRowsByScope(contextFilteredConstitutional, scopeFilter)
+          : contextFilteredConstitutional;
+        candidates = [...candidates, ...filteredConstitutional];
+        constitutionalInjectedCount = filteredConstitutional.length;
+      } catch (constitutionalErr: unknown) {
+        const constitutionalMsg =
+          constitutionalErr instanceof Error ? constitutionalErr.message : String(constitutionalErr);
+        console.warn(
+          `[stage1-candidate-gen] lexical constitutional injection failed (fail-open): ${constitutionalMsg}`
+        );
+      }
+    }
   } else if (!includeConstitutional) {
     // Explicitly exclude constitutional results if flag is off
     candidates = candidates.filter(

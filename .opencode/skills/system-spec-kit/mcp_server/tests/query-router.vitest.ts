@@ -37,6 +37,7 @@ import { setEnv, restoreEnv, withFeatureFlag } from './__helpers__/test-env';
 
 const COMPLEXITY_FLAG = 'SPECKIT_COMPLEXITY_ROUTER';
 const GRAPH_PRESERVATION_FLAG = 'SPECKIT_GRAPH_CHANNEL_PRESERVATION';
+const RETRIEVAL_CLASS_ROUTING_FLAG = 'SPECKIT_RETRIEVAL_CLASS_ROUTING';
 
 const TRIGGER_PHRASES = [
   'save context',
@@ -459,6 +460,21 @@ describe('012-T1: shouldPreserveGraph', () => {
     expect(decision.reasons).toContain('graph-preserved-by-intent');
     expect(decision.includeDegree).toBe(false);
   });
+
+  it('012-T1.6: SingleHop class does NOT suppress graph with SPECKIT_RETRIEVAL_CLASS_ROUTING off (flag-off baseline)', () => {
+    // Default-off flag: the SingleHop short-circuit is skipped, so a SingleHop
+    // find_spec query still preserves graph by intent — identical to baseline.
+    const decision = shouldPreserveGraph('find the spec for auth flow', null, undefined, 'SingleHop');
+    expect(decision.preserved).toBe(true);
+    expect(decision.reasons).toContain('graph-preserved-by-intent');
+  });
+
+  it('012-T1.7: SingleHop class suppresses graph only with SPECKIT_RETRIEVAL_CLASS_ROUTING on', () => {
+    withFeatureFlag(RETRIEVAL_CLASS_ROUTING_FLAG, 'true', () => {
+      const decision = shouldPreserveGraph('find the spec for auth flow', null, undefined, 'SingleHop');
+      expect(decision).toEqual({ preserved: false, reasons: [], includeDegree: false });
+    });
+  });
 });
 
 /* ───────────────────────────────────────────────────────────────
@@ -498,12 +514,25 @@ describe('012-T2: routeQuery graph-preservation', () => {
     expect(result.queryPlan.routingReasons).not.toContain('bm25-preserved-by-artifact-class');
   });
 
-  it('012-T2.2: moderate-tier single-hop find_spec query does not route graph channel', () => {
+  it('012-T2.2: moderate-tier single-hop find_spec query preserves graph by default (flag-off baseline)', () => {
+    // SPECKIT_RETRIEVAL_CLASS_ROUTING is default-off, so the SingleHop
+    // graph-suppression branch is skipped and the router preserves graph by
+    // intent exactly as the pre-retrieval-class baseline did.
     const result = routeQuery('find the spec for auth scope');
     expect(result.tier).toBe('moderate');
     expect(result.retrievalClass).toBe('SingleHop');
-    expect(result.channels).not.toContain('graph');
-    expect(result.queryPlan.routingReasons).not.toContain('graph-preserved-by-intent');
+    expect(result.channels).toContain('graph');
+    expect(result.queryPlan.routingReasons).toContain('graph-preserved-by-intent');
+  });
+
+  it('012-T2.2a: SingleHop suppresses graph only when SPECKIT_RETRIEVAL_CLASS_ROUTING is on', () => {
+    withFeatureFlag(RETRIEVAL_CLASS_ROUTING_FLAG, 'true', () => {
+      const result = routeQuery('find the spec for auth scope');
+      expect(result.tier).toBe('moderate');
+      expect(result.retrievalClass).toBe('SingleHop');
+      expect(result.channels).not.toContain('graph');
+      expect(result.queryPlan.routingReasons).not.toContain('graph-preserved-by-intent');
+    });
   });
 
   it('012-T2.2b: moderate-tier multi-hop query retains graph preservation', () => {
