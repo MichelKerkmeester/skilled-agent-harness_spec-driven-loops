@@ -8,7 +8,7 @@ Every 028 flag that benchmarked keep-OFF, reinvestigated through deep research t
 
 | Flag | Root cause | Path to useful | Effort | Flip potential |
 |------|-----------|----------------|--------|----------------|
-| `procedural_reliability_recall` | multiplier is `score*(mean-1) <= 0`, only de-rates | FIXED with a prior-centered evidence-weighted delta, the de-rate is gone and it is promotion-capable (committed df25873966) | S | SAFE now, but the flip needs a near-tie benchmark because the bounded nudge is a tie-breaker not a large-gap mover |
+| `procedural_reliability_recall` | multiplier is `score*(mean-1) <= 0`, only de-rates | FIXED with a prior-centered evidence-weighted delta, the de-rate is gone and the multiplier is promotion-capable (the correctness fix stays committed) | S | KEEP-OFF, the de-rate bug is fixed but the bounded nudge moves only synthetic near-ties with zero measurable effect on real data, so the flip still needs a near-tie benchmark to earn it |
 | `temporal_edges` graph lane | competitive top-K evicts lexical hits (-0.167) | additive reserved-slot, the append-not-displace pattern | S-M | HIGH, repairs a live regression (implementing) |
 | `sleeptime_consolidation` | benefit unmeasurable, no index mutation, intrinsic-only metric | materialize dedup on a DB copy then A/B-query it | M | MED, cheap unlock, reuses the harness |
 | `code_graph_seeded_ppr` | data mismatch, uniform edges plus no depth-2 make PPR equal RRF | caller-centrality prior plus real depth-2 anchor fixtures | M-L | MED |
@@ -32,7 +32,7 @@ The hypothesis was that the class skew explained the inert fusion levers. Author
 
 ## Quick wins versus packets
 
-- **Quick wins (low effort, clear flip):** `procedural_reliability_recall` (center on prior) and `temporal_edges` (additive lane). Both are being implemented and re-benchmarked now. The temporal-edges fix also repairs a current default-ON recall regression.
+- **Quick wins (low effort, clear flip):** `temporal_edges` (additive lane), being implemented and re-benchmarked now, which also repairs a current default-ON recall regression. `procedural_reliability_recall` had its de-rate bug fixed (the correctness fix stays committed) but the flag reverted to default-off, because the centered nudge moves only synthetic near-ties with zero real-data effect, so it needs a near-tie benchmark before it flips.
 - **Cheap unlocks (medium, high leverage):** `sleeptime_consolidation` A/B reuses the existing backup-to-copy harness in full, and the PPR real-anchor fixtures are small.
 - **Scoped packets (prove-first):** `agentic_recall` (IRCoT plus multi-hop benchmark plus the mode-enum contract change) and the edge producer-then-consumer pair (gated on whether the flat graph carries relation signal).
 - **Long pole:** `advisor_outcome_weighted_rerank` needs a production post-task ledger emitter across three runtimes plus a corpus three to four times larger before its effect clears noise.

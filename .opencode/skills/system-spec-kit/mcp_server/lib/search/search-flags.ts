@@ -910,13 +910,15 @@ export function isProceduralOutcomeEmitterEnabled(): boolean {
 
 /**
  * Applies procedural reliability evidence to adaptive recall scoring.
- * Default: TRUE (graduated). A prior-centered evidence-weighted multiplier
- * promotes a reliable procedure and demotes an unreliable one in a near-tie
- * while leaving large-gap cases untouched, so it is a bounded reliability
- * tie-breaker. Set SPECKIT_PROCEDURAL_RELIABILITY_RECALL=false to disable.
+ * Default: FALSE (opt-in). The de-rate bug is fixed — a prior-centered
+ * evidence-weighted multiplier now promotes a reliable procedure and demotes an
+ * unreliable one in a near-tie while leaving large-gap cases untouched — but the
+ * multiplier moves only synthetic near-ties and has zero measurable effect on
+ * real data, so it does not earn default-on. Set
+ * SPECKIT_PROCEDURAL_RELIABILITY_RECALL=true to enable.
  */
 export function isProceduralReliabilityRecallEnabled(): boolean {
-  return isFeatureEnabled('SPECKIT_PROCEDURAL_RELIABILITY_RECALL');
+  return isOptInEnabled('SPECKIT_PROCEDURAL_RELIABILITY_RECALL');
 }
 
 /**

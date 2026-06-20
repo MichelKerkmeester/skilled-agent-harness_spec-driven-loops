@@ -111,34 +111,39 @@ These deferrals are external coordination boundaries, not implementation gaps.
 ## Flip decisions
 
 This section records the per-flag promotion decisions made after the criterion-4 measurement above.
-Five flags earned a default-on flip on independently verified evidence. The rest hold off, stay off, or
-carry a follow-up. The decisions below are the authoritative disposition for each measured flag.
+Four flags earned a default-on flip, two on an unqualified recall/calibration win and two on a no-harm
+safety or grounding guarantee rather than a precision number. The rest hold off, stay off, or carry a
+follow-up. The decisions below are the authoritative disposition for each measured flag.
 
 ### Flipped to default-ON
 
+Two flags flipped on an unqualified win, two on a no-harm guarantee. The honest framing of each is in the
+Evidence column so a release sign-off does not read the safety flips as precision wins they are not.
+
 | Flag | Helper | Evidence | Verdict |
 |------|--------|----------|---------|
-| SPECKIT_DERIVED_ID_PROVENANCE | isDerivedIdProvenanceEnabled | content-addressed identity correctness 4/4 (stability 50/50, replay 3/3, dedup discrimination 50/50, 0 collisions) | FLIP-ON |
-| SPECKIT_RETENTION_FORGETTING_V1 | isRetentionForgettingEnabled | DROP precision 0.33 to 1.0, keep-set protection 0.059 to 1.0, recall held at 1.0 (a safety layer that only ever over-protects) | FLIP-ON |
-| SPECKIT_WORLD_SUMMARY_PRELUDE | isWorldSummaryPreludeEnabled | the prelude now appends its grounding instead of prepending it, so it adds net Recall@5 +0.275 with zero baseline displacement (the displaced-row regression that held it marginal is gone) | FLIP-ON |
-| SPECKIT_PROCEDURAL_RELIABILITY_RECALL | isProceduralReliabilityRecallEnabled | the prior-centered evidence-weighted multiplier promotes a reliable procedure and demotes an unreliable one in a near-tie while leaving large-gap cases neutral, a bounded reliability tie-breaker (supersedes the de-rate-only beta-posterior bug) | FLIP-ON |
-| SPECKIT_CONFIDENCE_CALIBRATION | isConfidenceCalibrationEnabled | held-out ECE 0.193 to 0.019 with a shipped isotonic model resolved by default, so the earlier overfit (fit and eval on the same set) no longer applies | FLIP-ON |
+| SPECKIT_DERIVED_ID_PROVENANCE | isDerivedIdProvenanceEnabled | UNQUALIFIED win: content-addressed identity correctness 4/4 (stability 50/50, replay 3/3, dedup discrimination 50/50, 0 collisions) | FLIP-ON |
+| SPECKIT_CONFIDENCE_CALIBRATION | isConfidenceCalibrationEnabled | UNQUALIFIED win: held-out ECE 0.184 to 0.023 across all folds with a shipped isotonic model resolved by default, so the earlier overfit (fit and eval on the same set) no longer applies | FLIP-ON |
+| SPECKIT_RETENTION_FORGETTING_V1 | isRetentionForgettingEnabled | SAFETY / no-harm: spares 386 keep-set rows the OFF path would delete, with dropRecall delta 0. NOT a precision win - the keep/drop labels are circular (derived from the reducer's own thresholds), so it earns the flip as a no-harm guardrail, not a measured precision gain | FLIP-ON |
+| SPECKIT_WORLD_SUMMARY_PRELUDE | isWorldSummaryPreludeEnabled | GROUNDING aid: in APPEND placement it recovers 11 targets with 0 regressions by construction (it never displaces a baseline row). NOT a recall-quality win - the +0.275 is partly a self-recall plus an append-by-construction artifact, so it earns the flip as a no-displacement grounding aid, not a ranking improvement | FLIP-ON |
 
-All five helpers now route through `isFeatureEnabled` so the env override still works. A user can force any
+All four helpers now route through `isFeatureEnabled` so the env override still works. A user can force any
 flag off with `SPECKIT_<FLAG>=false`. The test cascade was true-fixed: every test that encoded the old
 default-off via env absence now reaches the off path through an explicit `false`, and the flag-ceiling
 drift guard keeps every token accounted for as default-on.
 
 ### Held marginal
 
-All previously held-marginal flags have been resolved. SPECKIT_WORLD_SUMMARY_PRELUDE flipped on once
-the prepend-to-append fix removed its baseline displacement (see Flipped to default-ON above).
+All previously held-marginal flags have been resolved. SPECKIT_WORLD_SUMMARY_PRELUDE flipped on as a
+no-displacement grounding aid once the prepend-to-append fix removed its baseline displacement (see
+Flipped to default-ON above).
 
 ### Kept OFF (measured)
 
 | Flag | Measurement | Verdict |
 |------|-------------|---------|
 | SPECKIT_AGENTIC_RECALL | net 0, unwired scaffold with no production consumer (BUG) | KEEP-OFF |
+| SPECKIT_PROCEDURAL_RELIABILITY_RECALL | the de-rate bug is fixed (the multiplier is now a prior-centered evidence-weighted delta that promotes a reliable procedure and demotes an unreliable one in a near-tie, a correctness fix that stays committed), but it moves only synthetic near-ties and has zero measurable effect on real data, so it does not earn default-on | KEEP-OFF |
 | SPECKIT_ABSOLUTE_RELEVANCE_CALIBRATION | default-on already, raw cosine overstates, ECE +0.022 | KEEP-OFF (no change) |
 | SPECKIT_SLEEPTIME_CONSOLIDATION | dedup 1.0 and no data loss in shadow, net benefit unmeasured | KEEP-OFF |
 | SPECKIT_SLEEPTIME_LIVE_WRITE | dedup 1.0 and no data loss in shadow, net benefit unmeasured | KEEP-OFF |
@@ -157,8 +162,13 @@ the prepend-to-append fix removed its baseline displacement (see Flipped to defa
 
 1. Wire SPECKIT_AGENTIC_RECALL to a real production consumer or remove the unwired scaffold. This is the
    only open flag bug, it stays default-off until it has a consumer to measure.
+2. Re-measure SPECKIT_PROCEDURAL_RELIABILITY_RECALL on a near-tie benchmark. The de-rate bug is fixed and
+   the multiplier is now promotion-capable, but it is a bounded tie-breaker with zero measurable effect on
+   real data, so it stays default-off until a near-tie golden set shows a real win.
 
-Resolved since the original follow-up list: the procedural multiplier was rebuilt as a prior-centered
-evidence-weighted delta (not the old de-rate-only beta-posterior mean) and flipped on, confidence
-calibration earned a held-out ECE 0.193 to 0.019 with a shipped isotonic model and flipped on, and the
-world-summary prelude switched from prepend to append, erased its baseline displacement, and flipped on.
+Resolved since the original follow-up list: confidence calibration earned a held-out ECE 0.184 to 0.023
+across all folds with a shipped isotonic model and flipped on as an unqualified win, and the world-summary
+prelude switched from prepend to append, erased its baseline displacement, and flipped on as a
+no-displacement grounding aid. The procedural de-rate bug was fixed (the multiplier is committed as a
+prior-centered evidence-weighted delta) but the flag reverted to default-off because the fix moves only
+synthetic near-ties.

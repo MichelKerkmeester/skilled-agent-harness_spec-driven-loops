@@ -1,21 +1,21 @@
 # Packet 028 Feature Flags: Every New Switch In Plain Words
 
-> Packet 028 added a lot of new search and memory behavior. Almost none of it runs on its own. Every new behavior sits behind an environment-variable switch, and every switch ships in the OFF position. With all of these switches off, the system behaves exactly the way it did before 028. This document explains each switch in everyday language: what the feature is, what turning it ON changes and what happens when it stays OFF.
+> Packet 028 added a lot of new search and memory behavior. Almost all of it sits behind an environment-variable switch, and almost every switch ships in the OFF position. Three of 028's own new switches earned a default-ON flip after a benchmark: derived-id provenance on an unqualified correctness win, and the retention-forgetting safety layer and the world-summary prelude on a no-harm guarantee (a forgetting guardrail and a no-displacement grounding aid). A fourth flip, confidence calibration, lives on a pre-028 (027/017) switch whose promotion was decided during 028, it is not a new 028 variable, so it is noted but not counted among the 37. With every other switch off, the system behaves exactly the way it did before 028 on those paths. This document explains each switch in everyday language: what the feature is, what turning it ON changes and what happens when it stays OFF, and which ones ship ON.
 
 ---
 
 ## THE BIG IDEA
 
-Think of 028 as a box of new parts that are all unplugged. The code for each new feature is in the tree, but it does nothing until you set its environment variable. This is on purpose. The team wanted to ship the new machinery for correctness and safety first, and only switch features on later once a real before-and-after benchmark earns the flip. So far none of them has earned it, so they all stay off.
+Think of 028 as a box of new parts that mostly ship unplugged. The code for each new feature is in the tree, and most of it does nothing until you set its environment variable. This is on purpose. The team wanted to ship the new machinery for correctness and safety first, and only switch a feature on once a real before-and-after benchmark earns the flip. Three of 028's own switches have earned it and ship ON: derived-id provenance on an unqualified correctness win, and the retention-forgetting safety layer and the world-summary prelude on a no-harm guarantee. A fourth default-ON flip, confidence calibration, rides a pre-028 switch promoted during 028 and is noted separately below. Every other switch stays off.
 
-There is a promise attached to this, called **flag-off byte-identity**. It means that when a switch is off, the output the system produces is identical, byte for byte, to the output it produced before the feature existed. A test called **flag-ceiling** locks this in. It runs the search and memory paths with every new 028 switch off and checks that nothing about the result changed. So "off" is not "mostly off". It is "the old behavior, unchanged".
+There is a promise attached to the off switches, called **flag-off byte-identity**. It means that when one of those switches is off, the output the system produces is identical, byte for byte, to the output it produced before the feature existed. A test called **flag-ceiling** locks this in for the default-off flags. It runs the search and memory paths with every still-off 028 switch off and checks that nothing about the result changed. So "off" is not "mostly off". It is "the old behavior, unchanged".
 
 **How many switches and what kind.** Packet 028 added **37** new environment variables. They split into two groups.
 
-- **On/off feature gates (30 of them).** Each one turns a single new feature on. The default is OFF. You set it to `true` to try the feature.
+- **On/off feature gates (30 of them).** Each one turns a single new feature on. Twenty-seven default OFF and you set them to `true` to try the feature, three default ON after earning a flip (`SPECKIT_DERIVED_ID_PROVENANCE`, `SPECKIT_RETENTION_FORGETTING_V1`, `SPECKIT_WORLD_SUMMARY_PRELUDE`) and you set them to `false` to turn them back off.
 - **Value and path knobs (7 of them).** These do not turn a feature on. They tune a number or point a path somewhere. They are `SPECKIT_PARSER_SKIP_LIST_MAX_RETRIES`, `SPECKIT_KNOWN_ITEM_QUERY_COUNT`, `SPECKIT_RETRIEVAL_EVAL_K`, `SPECKIT_RETRIEVAL_EVAL_OUTPUT`, `SPECKIT_ENTITY_CONFIG_PATH`, `SPECKIT_ADVISOR_OUTCOME_STORE_DIR` and `SPECKIT_WORKSPACE_ROOT`. Each one has a safe default that keeps the prior behavior, so leaving them unset changes nothing.
 
-**Nothing 028 added ships ON.** There is no new 028 switch that is enabled by default. The closest thing to "always-on" is the value and path knobs above, and even those only matter once the feature they belong to is turned on, or they simply re-point a file location.
+**Three 028 switches ship ON, plus one pre-028 calibration flip.** Of 028's own new gates, `SPECKIT_DERIVED_ID_PROVENANCE` flipped on an unqualified correctness win, and `SPECKIT_RETENTION_FORGETTING_V1` and `SPECKIT_WORLD_SUMMARY_PRELUDE` flipped on a no-harm guarantee (a forgetting safety guardrail and a no-displacement grounding aid). Separately, `SPECKIT_CONFIDENCE_CALIBRATION` - a pre-028 (027/017) calibration switch - was promoted to default-ON during 028 on a held-out calibration win, it is not a new 028 variable, so it is not in the 37 count. Every other on/off gate defaults OFF. The value and path knobs are not features and only matter once the feature they belong to is on, or they simply re-point a file location.
 
 A note on phases. Packet 028 is split into phase folders. Phase `001-speckit-memory` is the memory and search engine. Phase `002-code-graph` is the code structure index. Phase `003-skill-advisor` is the skill recommender. Phase `004-deep-loop` is the multi-agent loop runtime. The last column of each table below tells you which phase a switch came from.
 
@@ -40,7 +40,7 @@ Routing is the decision about which search sources to even run for a given quest
 | env var | default | what it does (plain English) | 028 phase |
 | --- | --- | --- | --- |
 | `SPECKIT_RETRIEVAL_CLASS_ROUTING` | OFF (`false`) | Looks at the shape of your question and, for a narrow "find this one item" question, skips the graph and link-count sources because they tend to add noise there. ON turns on that skipping. OFF keeps every source in play for every question, exactly like before. | 001 |
-| `SPECKIT_WORLD_SUMMARY_PRELUDE` | OFF (`false`) | Adds a quick coarse-to-fine warm-up step. Before the detailed search runs, it reads a high-level summary of the whole memory to get its bearings, then drills in. ON runs that warm-up step for context lookups. OFF skips straight to the detailed search, as before. | 001 |
+| `SPECKIT_WORLD_SUMMARY_PRELUDE` | ON (`true`) | Adds a quick coarse-to-fine warm-up step. Before the detailed search runs, it reads a high-level summary of the whole memory to get its bearings, then appends that grounding to the results. It earned default-ON as a no-displacement grounding aid: in append placement it never pushes a real result out, so it recovers extra targets with no regressions by construction. It is not a recall-quality win - the recall number it adds is partly a self-recall plus an append-by-construction artifact. ON runs that warm-up step for context lookups. Set it to `false` to skip straight to the detailed search, as before. | 001 |
 
 ---
 
@@ -79,7 +79,7 @@ Memory cannot keep everything forever. "Retention" is deciding what to keep. "Fo
 
 | env var | default | what it does (plain English) | 028 phase |
 | --- | --- | --- | --- |
-| `SPECKIT_RETENTION_FORGETTING_V1` | OFF (`false`) | Adds conservative guardrails so forgetting only ever drops genuinely spare items and never drops something that other live memories still point to. ON turns on those spare-only rules and the live-link protection. OFF keeps the existing retention behavior unchanged. | 001 |
+| `SPECKIT_RETENTION_FORGETTING_V1` | ON (`true`) | Adds conservative guardrails so forgetting only ever drops genuinely spare items and never drops something that other live memories still point to. It earned default-ON as a no-harm safety layer: it spares keep-set rows the OFF path would otherwise delete, with no loss of recall. It is not a precision win - the keep-versus-drop labels are circular (derived from the reducer's own thresholds), so the flip is a safety guarantee, not a measured precision gain. ON runs those spare-only rules and the live-link protection. Set it to `false` to keep the prior retention behavior. | 001 |
 
 ---
 
@@ -110,7 +110,7 @@ When the system creates a link on its own rather than being told about it, it he
 
 | env var | default | what it does (plain English) | 028 phase |
 | --- | --- | --- | --- |
-| `SPECKIT_DERIVED_ID_PROVENANCE` | OFF (`false`) | Gives every auto-generated link a stable id computed from its own content, so the same generated link always gets the same id and is traceable. ON writes those content-based ids at the time the link is made. OFF leaves generated links without that stable id, as before. | 001 |
+| `SPECKIT_DERIVED_ID_PROVENANCE` | ON (`true`) | Gives every auto-generated link a stable id computed from its own content, so the same generated link always gets the same id and is traceable. It earned default-ON on an unqualified correctness win: content-addressed identity passed every check (stable ids, reproducible on replay, near-duplicates kept distinct, zero collisions). ON writes those content-based ids at the time the link is made. Set it to `false` to leave generated links without that stable id, as before. | 001 |
 
 ---
 
@@ -181,9 +181,9 @@ The accepted "on" values are `true`, `1`, `yes`, `on` and `enabled`. Anything el
 
 ## WHY THE OFF STATE IS SAFE
 
-The whole point of this design is that doing nothing is safe. With every 028 switch left at its default, the system runs exactly as it did before any of these features existed. Two kinds of tests prove this rather than assume it.
+The whole point of this design is that doing nothing is safe. With every still-off 028 switch left at its default, the system runs exactly as it did before those features existed. Two kinds of tests prove this rather than assume it. The three flipped-on 028 switches are the exception by intent: each earned its default-ON state on a benchmark - derived-id provenance on an unqualified correctness win, retention-forgetting and the world-summary prelude on a no-harm guarantee that adds protection or grounding without dropping a real result.
 
-- **The flag-ceiling test.** It exercises the search and memory paths with all new 028 switches off and confirms the results did not move. This is the guarantee that "off" means "the old behavior".
-- **The flag-off byte-identity tests.** For the riskier features, there are checks that the output with the flag off is identical down to the byte to the output from before the feature was added. No silent drift, no rounding, no reordering.
+- **The flag-ceiling test.** It exercises the search and memory paths with every still-off new 028 switch off and confirms the results did not move. This is the guarantee that "off" means "the old behavior" for the default-off flags.
+- **The flag-off byte-identity tests.** For the riskier off features, there are checks that the output with the flag off is identical down to the byte to the output from before the feature was added. No silent drift, no rounding, no reordering.
 
-That is why these features could land in the codebase without changing anyone's results. The new behavior is present but dormant. It waits for a deliberate switch and, for the ranking-changing ones, for a real benchmark to show the change is an improvement before it ever runs by default.
+That is why these features could land in the codebase without changing anyone's results before they earned a flip. The default-off behavior is present but dormant. It waits for a deliberate switch and, for the ranking-changing ones, for a real benchmark to show the change is an improvement before it ever runs by default - which is exactly the bar the three flipped switches cleared.
