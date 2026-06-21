@@ -1,15 +1,15 @@
 ---
 name: sk-design-md-generator
-description: "Extracts a live website's real CSS into a 17-section DESIGN.md via a vendored extract-write-validate pipeline."
+description: "Extracts a live website's real CSS into a 17-section DESIGN.md via an embedded extract-write-validate pipeline."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
 version: 1.0.0
 ---
 
 <!-- Keywords: design system, design tokens, css extraction, design.md, website design extraction, design reference, tokens.json, playwright, design-to-markdown, design-system generator, css tokens, color extraction, typography extraction, hex extraction, shadow extraction, spacing extraction, design fidelity, anti-hallucination -->
 
-# Design MD Generator (sk-design-md-generator)
+# Design System Extractor (sk-design-md-generator)
 
-Captures a live website's **real, measured CSS** into a publication-quality `DESIGN.md` — a 17-section design-system reference that AI agents build against without hallucinating colors, fonts, spacing, or shadows. Runs a three-phase pipeline (extract, write, validate) through a vendored Playwright crawler that samples five viewports and emits verbatim `tokens.json`. Deep operational detail lives in [`tool/design-md-workflow.md`](tool/design-md-workflow.md) and [`tool/resources/`](tool/resources/).
+Captures a live website's **real, measured CSS** into a publication-quality `DESIGN.md` — a 17-section design-system reference that AI agents build against without hallucinating colors, fonts, spacing, or shadows. Runs a three-phase pipeline (extract, write, validate) through an embedded Playwright crawler that samples five viewports and emits verbatim `tokens.json`. Deep operational detail lives in [`tool/resources/`](tool/resources/).
 
 > **Family boundary.** This skill is the **extraction and format-fidelity engine** of the `sk-design-*` family. It captures what already exists. Sibling `sk-design-interface` invents **new** distinctive direction (palette, type, anti-default critique). The transports — `mcp-open-design` and `mcp-figma` — move design data; this skill produces the authoritative reference those transports and `sk-design-interface` consume.
 
@@ -83,7 +83,7 @@ TASK CONTEXT
 
 ### Resource Domains
 
-The router discovers knowledge from two root domains: the vendored `tool/resources/` (six deep-reference docs on format, style, taxonomies, anti-patterns, and quality) and this skill's own `references/` (advisor-routable operational docs authored separately). Examples under `tool/examples/` are study artifacts, not resources.
+The router discovers knowledge from two root domains: the embedded `tool/resources/` (six deep-reference docs on format, style, taxonomies, anti-patterns, and quality) and this skill's own `references/` (advisor-routable operational docs authored separately). Examples under `tool/examples/` are study artifacts, not resources.
 
 ```text
 tool/resources/design-md-format.md       # v2 DESIGN.md section specification
@@ -92,7 +92,6 @@ tool/resources/color-role-taxonomy.md    # color role naming + classification
 tool/resources/component-taxonomy.md     # component naming + hierarchy patterns
 tool/resources/anti-patterns.md          # common DESIGN.md mistakes to avoid
 tool/resources/quality-checklist.md      # pre-validate self-check
-tool/design-md-workflow.md               # full upstream 3-phase workflow spec (canonical)
 tool/examples/{stripe,vercel,linear,supabase}/  # gold-standard DESIGN.md + tokens.json pairs
 references/                              # skill-owned advisor-routable reference docs
 ```
@@ -105,7 +104,7 @@ references/                              # skill-owned advisor-routable referenc
 | CONDITIONAL | EXTRACT_WRITE intent                 | `tool/resources/color-role-taxonomy.md`, `tool/resources/component-taxonomy.md`, `tool/resources/anti-patterns.md` |
 | CONDITIONAL | VALIDATE / completion claim          | `tool/resources/quality-checklist.md`, `tool/resources/anti-patterns.md`  |
 | CONDITIONAL | STUDY intent                         | `tool/examples/` (one site at a time, loaded as reference pairs)           |
-| ON_DEMAND   | Deep format questions or workflow debugging | `tool/design-md-workflow.md` (the full upstream spec)                     |
+| ON_DEMAND   | Deep format edge-cases or component patterns | `tool/resources/anti-patterns.md`, `tool/resources/component-taxonomy.md` |
 
 ### Smart Router Pseudocode
 
@@ -293,7 +292,7 @@ The classifier lives in `tool/scripts/cluster.ts` and is deterministic. Tokens t
 5. **ALWAYS run `validate.ts` before claiming completion** of any extraction or DESIGN.md edit. Validation checks hex accuracy against `tokens.json` and section completeness against the v2 format specification.
 6. **ALWAYS include a dark-mode section ONLY when `tokens.json` contains a detected dark-mode palette.** Never infer, derive, or fabricate a dark palette from the light tokens.
 7. **ALWAYS include an accessibility section** drawn from the `tokens.json` a11y data (contrast ratios, focus ring styles, minimum touch-target sizes). If the extractor captured no a11y data, note the absence rather than inventing values.
-8. **ALWAYS confirm tool readiness** before any extract/validate/report invocation: `cd tool && npm install && npx playwright install chromium`. The vendored tool requires Node.js and a Playwright Chromium binary.
+8. **ALWAYS confirm tool readiness** before any extract/validate/report invocation: `cd tool && npm install && npx playwright install chromium`. The embedded tool requires Node.js and a Playwright Chromium binary.
 
 ### ❌ NEVER
 
@@ -315,7 +314,7 @@ The classifier lives in `tool/scripts/cluster.ts` and is deterministic. Tokens t
 
 ## 5. REFERENCES
 
-### Core References (Vendored Tool)
+### Core References (Embedded Tool)
 
 - [design-md-format.md](tool/resources/design-md-format.md) — The authoritative v2 DESIGN.md section specification: 17 required sections, heading conventions, token-to-section mapping.
 - [writing-style-guide.md](tool/resources/writing-style-guide.md) — Voice, tone, tense, and section-composition rules for DESIGN.md prose.
@@ -323,10 +322,6 @@ The classifier lives in `tool/scripts/cluster.ts` and is deterministic. Tokens t
 - [component-taxonomy.md](tool/resources/component-taxonomy.md) — Component naming, hierarchy patterns, and the component-to-section mapping rules.
 - [anti-patterns.md](tool/resources/anti-patterns.md) — Common DESIGN.md authoring mistakes: invented values, missing sections, wrong hex case, L4 leaks, and dark-mode fabrication.
 - [quality-checklist.md](tool/resources/quality-checklist.md) — Pre-validate self-check list: hex format, section presence, stability-class compliance, dark-mode gate, a11y section presence.
-
-### Workflow Specification
-
-- [design-md-workflow.md](tool/design-md-workflow.md) — The full upstream three-phase workflow specification (extract, write, validate, report). Canonical reference for pipeline mechanics, CLI flags, and edge-case handling.
 
 ### Gold-Standard Examples
 
@@ -337,14 +332,19 @@ The classifier lives in `tool/scripts/cluster.ts` and is deterministic. Tokens t
 
 ### Skill-Owned References
 
-- [references/](references/) — Advisor-routable operational reference docs authored for this skill. Load per the Smart Router (Section 2) intent model.
+- [references/extraction_workflow.md](references/extraction_workflow.md) — The three-phase workflow as it runs in this framework: invocations, output paths, stability classes, and handoff.
+- [references/troubleshooting.md](references/troubleshooting.md) — Failure modes and fixes (Chromium, crawl blocks, dark-mode gaps, validation mismatches).
+
+### Assets
+
+- [assets/design_md_prompt_template.md](assets/design_md_prompt_template.md) — Copy-paste WRITE-phase prompt that encodes the cardinal rules and the 17-section contract.
+- [assets/cardinal_rules_card.md](assets/cardinal_rules_card.md) — One-page fidelity checklist for a pre-validate self-check.
 
 ### Reference Loading Notes
 
 - `tool/resources/design-md-format.md` is the baseline (always loaded). Load `writing-style-guide.md` alongside it for any write-phase work.
 - Load the taxonomy docs (`color-role-taxonomy.md`, `component-taxonomy.md`) and `anti-patterns.md` only when the intent is EXTRACT_WRITE.
 - Load `quality-checklist.md` before any validation or completion claim.
-- Load `tool/design-md-workflow.md` only for deep pipeline debugging or when the standard invocation pattern is insufficient.
 - Load one example site at a time from `tool/examples/` when in STUDY intent; compare the DESIGN.md against the tokens.json to understand format conventions.
 - Keep Section 2 (SMART ROUTING) as the single routing authority for all resource loads.
 
@@ -375,7 +375,7 @@ The classifier lives in `tool/scripts/cluster.ts` and is deterministic. Tokens t
 
 ### Tool Usage Guidelines
 
-- **Bash** owns all vendored-tool invocations: `npx ts-node scripts/extract.ts`, `npx ts-node scripts/validate.ts`, `npx ts-node scripts/report-gen.ts`, `npx ts-node scripts/preview-gen.ts`, `npm install`, `npx playwright install chromium`. All commands run from `tool/` as the working directory.
+- **Bash** owns all embedded-tool invocations: `npx ts-node scripts/extract.ts`, `npx ts-node scripts/validate.ts`, `npx ts-node scripts/report-gen.ts`, `npx ts-node scripts/preview-gen.ts`, `npm install`, `npx playwright install chromium`. All commands run from `tool/` as the working directory.
 - **Read** loads `tokens.json`, the existing DESIGN.md for re-extraction context, and all resource/reference docs.
 - **Write** produces the DESIGN.md output. Only Write when the token data is fully loaded and the v2 format specification has been read.
 - **Edit** is used for targeted fixes to DESIGN.md after validation reveals specific errors.
@@ -390,9 +390,9 @@ The classifier lives in `tool/scripts/cluster.ts` and is deterministic. Tokens t
 
 ### External Tools
 
-- **Playwright** (Microsoft, Apache 2.0): installed via `npx playwright install chromium`. Required for the extraction phase. The vendored tool uses Playwright to crawl live URLs and read computed CSS.
-- **Node.js**: required by the vendored tool. The `tool/package.json` declares the version range.
-- **`ts-node`**: used to execute the vendored TypeScript modules directly. Included in `tool/package.json` devDependencies.
+- **Playwright** (Microsoft, Apache 2.0): installed via `npx playwright install chromium`. Required for the extraction phase. The embedded tool uses Playwright to crawl live URLs and read computed CSS.
+- **Node.js**: required by the embedded tool. The `tool/package.json` declares the version range.
+- **`ts-node`**: used to execute the embedded TypeScript modules directly. Included in `tool/package.json` devDependencies.
 
 ### Knowledge Base Dependencies
 
@@ -406,10 +406,10 @@ The router (Section 2) discovers resource and reference docs dynamically. Start 
 
 Examples: `tool/examples/{stripe,vercel,linear,supabase}/` provide gold-standard DESIGN.md + tokens.json pairs, loaded in STUDY intent. Study the DESIGN.md alongside the matching tokens.json to understand the format conventions.
 
-Scripts: the vendored `tool/scripts/` directory contains 19 TypeScript modules. The primary entry points are `extract.ts` (Phase 1), `validate.ts` (Phase 3), `report-gen.ts`, and `preview-gen.ts` (Phase 4). The remaining modules are internal pipeline stages called by the orchestrator.
+Scripts: the embedded `tool/scripts/` directory contains 19 TypeScript modules. The primary entry points are `extract.ts` (Phase 1), `validate.ts` (Phase 3), `report-gen.ts`, and `preview-gen.ts` (Phase 4). The remaining modules are internal pipeline stages called by the orchestrator.
 
 Related skills: `sk-design-interface` (the design-judgment sibling — invents new direction, consumes DESIGN.md as ground truth), `sk-code` (consumes DESIGN.md as the implementation contract), `mcp-figma` (extracts from Figma Desktop, not live URLs), `mcp-open-design` (extracts from Open Design projects), `mcp-chrome-devtools` (for browser inspection and visual preview, not structured extraction), and `system-spec-kit` when the extraction is part of a tracked packet.
 
 Install guide: tool setup is `cd tool && npm install && npx playwright install chromium`. A dedicated INSTALL_GUIDE.md for Node.js + Playwright + Chromium setup is authored separately.
 
-Upstream: the vendored tool at `tool/` is MIT-licensed. See `tool/LICENSE` for terms. This skill documents driving the vendored tool and does not vendor or redistribute upstream dependencies beyond what `tool/package.json` declares.
+The embedded tool under `tool/` is a self-contained TypeScript pipeline; its runtime dependencies are declared in `tool/package.json` and installed per the INSTALL_GUIDE, not redistributed in the skill.

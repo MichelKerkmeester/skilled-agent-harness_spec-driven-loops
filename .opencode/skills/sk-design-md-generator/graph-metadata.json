@@ -34,9 +34,21 @@
   },
   "manual": {
     "depends_on": [],
-    "related_to": ["sk-design-interface", "mcp-figma", "mcp-open-design", "sk-code"]
+    "related_to": [
+      "sk-design-interface",
+      "mcp-figma",
+      "mcp-open-design",
+      "sk-code"
+    ]
   },
-  "domains": ["design-systems", "design-tokens", "css-extraction", "design-to-markdown", "web-design-capture", "design-reference"],
+  "domains": [
+    "design-systems",
+    "design-tokens",
+    "css-extraction",
+    "design-to-markdown",
+    "web-design-capture",
+    "design-reference"
+  ],
   "intent_signals": [
     "extract design system",
     "generate DESIGN.md",
@@ -64,7 +76,7 @@
       "6-digit lowercase hex and L1-L4 stability classification",
       "tokens.json output at output/<domain>/ and validate.ts fidelity check",
       "gold-standard examples (stripe/vercel/linear/supabase)",
-      "vendored MIT tool under tool/ with pinned upstream commit"
+      "self-contained TypeScript pipeline embedded under tool/"
     ],
     "intent_signals": [
       "design system extraction",
@@ -80,27 +92,65 @@
       ".opencode/skills/sk-design-md-generator/INSTALL_GUIDE.md",
       ".opencode/skills/sk-design-md-generator/references/extraction_workflow.md",
       ".opencode/skills/sk-design-md-generator/references/troubleshooting.md",
-      ".opencode/skills/sk-design-md-generator/NOTICE.md",
       ".opencode/skills/sk-design-md-generator/changelog/v1.0.0.0.md",
-      ".opencode/skills/sk-design-md-generator/tool/design-md-workflow.md",
-      ".opencode/skills/sk-design-md-generator/tool/resources/design-md-format.md"
+      ".opencode/skills/sk-design-md-generator/tool/resources/design-md-format.md",
+      ".opencode/skills/sk-design-md-generator/assets/design_md_prompt_template.md",
+      ".opencode/skills/sk-design-md-generator/assets/cardinal_rules_card.md"
     ],
     "entities": [
-      {"name": "sk-design-md-generator", "kind": "skill", "path": ".opencode/skills/sk-design-md-generator/SKILL.md", "source": "derived"},
-      {"name": "README", "kind": "reference", "path": ".opencode/skills/sk-design-md-generator/README.md", "source": "derived"},
-      {"name": "INSTALL_GUIDE", "kind": "reference", "path": ".opencode/skills/sk-design-md-generator/INSTALL_GUIDE.md", "source": "derived"},
-      {"name": "extraction_workflow", "kind": "reference", "path": ".opencode/skills/sk-design-md-generator/references/extraction_workflow.md", "source": "derived"},
-      {"name": "troubleshooting", "kind": "reference", "path": ".opencode/skills/sk-design-md-generator/references/troubleshooting.md", "source": "derived"}
+      {
+        "name": "sk-design-md-generator",
+        "kind": "skill",
+        "path": ".opencode/skills/sk-design-md-generator/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README",
+        "kind": "reference",
+        "path": ".opencode/skills/sk-design-md-generator/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "INSTALL_GUIDE",
+        "kind": "reference",
+        "path": ".opencode/skills/sk-design-md-generator/INSTALL_GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "extraction_workflow",
+        "kind": "reference",
+        "path": ".opencode/skills/sk-design-md-generator/references/extraction_workflow.md",
+        "source": "derived"
+      },
+      {
+        "name": "troubleshooting",
+        "kind": "reference",
+        "path": ".opencode/skills/sk-design-md-generator/references/troubleshooting.md",
+        "source": "derived"
+      },
+      {
+        "name": "design_md_prompt_template",
+        "kind": "reference",
+        "path": ".opencode/skills/sk-design-md-generator/assets/design_md_prompt_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "cardinal_rules_card",
+        "kind": "reference",
+        "path": ".opencode/skills/sk-design-md-generator/assets/cardinal_rules_card.md",
+        "source": "derived"
+      }
     ],
-    "causal_summary": "sk-design-md-generator captures a live website's real, measured CSS into a publication-quality 17-section DESIGN.md so AI agents build against ground truth instead of hallucinating colours, fonts, spacing, and shadows. It wraps a vendored MIT tool (jasonhnd/design-md-generator, pinned b591554648) under tool/ that runs a three-phase pipeline: EXTRACT (a Playwright crawler samples five viewports and emits output/<domain>/tokens.json with every token tagged a 4-layer stability class), WRITE (the agent composes the 17-section DESIGN.md copying every numeric value verbatim from tokens.json, 6-digit lowercase hex, L1+L2 in main sections, L3 marked subject-to-change, L4 excluded), and VALIDATE (validate.ts checks hex accuracy and section completeness). The cardinal rule is verbatim fidelity: a value that is estimated, rounded, or invented breaks the document's whole reason to exist. It is the extraction-and-format-fidelity engine of the sk-design-* family - sibling to sk-design-interface (which invents new distinctive direction) and the mcp-figma / mcp-open-design transports (which source from Figma and Open Design rather than live URLs) - and its DESIGN.md is the implementation contract sk-code builds against. Setup is a one-time cd tool && npm install && npx playwright install chromium.",
+    "causal_summary": "sk-design-md-generator captures a live website's real, measured CSS into a publication-quality 17-section DESIGN.md so AI agents build against ground truth instead of hallucinating colours, fonts, spacing, and shadows. It ships an embedded TypeScript pipeline under tool/ that runs a three-phase pipeline: EXTRACT (a Playwright crawler samples five viewports and emits output/<domain>/tokens.json with every token tagged a 4-layer stability class), WRITE (the agent composes the 17-section DESIGN.md copying every numeric value verbatim from tokens.json, 6-digit lowercase hex, L1+L2 in main sections, L3 marked subject-to-change, L4 excluded), and VALIDATE (validate.ts checks hex accuracy and section completeness). The cardinal rule is verbatim fidelity: a value that is estimated, rounded, or invented breaks the document's whole reason to exist. It is the extraction-and-format-fidelity engine of the sk-design-* family - sibling to sk-design-interface (which invents new distinctive direction) and the mcp-figma / mcp-open-design transports (which source from Figma and Open Design rather than live URLs) - and its DESIGN.md is the implementation contract sk-code builds against. Setup is a one-time cd tool && npm install && npx playwright install chromium.",
     "source_docs": [
       "SKILL.md",
       "README.md",
       "INSTALL_GUIDE.md",
       "references/extraction_workflow.md",
       "references/troubleshooting.md",
-      "NOTICE.md",
-      "changelog/v1.0.0.0.md"
+      "changelog/v1.0.0.0.md",
+      "assets/design_md_prompt_template.md",
+      "assets/cardinal_rules_card.md"
     ],
     "created_at": "2026-06-21T10:00:00Z",
     "last_updated_at": "2026-06-21T10:00:00Z"

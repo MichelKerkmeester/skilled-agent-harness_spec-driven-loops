@@ -1,15 +1,15 @@
 #!/usr/bin/env node
 
 /**
- * design-md-gen CLI
+ * Design System Extractor CLI
  *
  * Quick extraction mode — runs Phase 1 (crawl + extract + cluster) and outputs tokens.json.
  * For full DESIGN.md generation, use the Claude Code skill `/design-md`.
  *
  * Usage:
- *   npx design-md-gen <url> [options]
- *   npx design-md-gen https://stripe.com --max-pages 10
- *   npx design-md-gen https://example.com --output ./my-output --wait-for css
+ *   npx ts-node scripts/extract.ts <url> [options]
+ *   npx ts-node scripts/extract.ts https://stripe.com --max-pages 10
+ *   npx ts-node scripts/extract.ts https://example.com --output ./my-output --wait-for css
  */
 
 import { extract, parseArgs } from './extract';
@@ -19,7 +19,7 @@ async function main(): Promise<void> {
 
   console.log(`
 ┌─────────────────────────────────────────────────┐
-│  design-md-gen — Design Token Extractor          │
+│  Design System Extractor          │
 │  Extracting from: ${options.urls[0].slice(0, 30).padEnd(30)}│
 │  Output: ${options.output.slice(0, 39).padEnd(39)}│
 └─────────────────────────────────────────────────┘

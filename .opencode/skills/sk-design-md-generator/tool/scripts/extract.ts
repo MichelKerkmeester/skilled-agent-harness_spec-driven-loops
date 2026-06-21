@@ -177,7 +177,7 @@ interface PageExtraction {
 
 async function extract(options: ExtractOptions): Promise<void> {
   const startTime = Date.now();
-  console.log(`\n  Design MD Generator — Extracting design tokens\n`);
+  console.log(`\n  Design System Extractor — Extracting design tokens\n`);
   console.log(`  URLs: ${options.urls.join(', ')}`);
   console.log(`  Output: ${options.output}`);
   console.log(`  Max pages: ${options.maxPages}`);

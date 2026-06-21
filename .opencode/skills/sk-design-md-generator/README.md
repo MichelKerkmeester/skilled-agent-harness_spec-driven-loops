@@ -23,7 +23,7 @@ AI agents invent colors, guess font sizes, and approximate shadows. When you tel
 
 ### What It Does
 
-The skill wraps a vendored Playwright crawler (`jasonhnd/design-md-generator`, MIT) that runs a three-phase pipeline. **Extract** crawls the target URL across five responsive viewports, collects every computed CSS value, clusters them with OKLCH delta-E, and classifies each token by temporal stability (L1 permanent through L4 content). **Write** produces a `DESIGN.md` conforming to the v2 17-section format, copying every numeric value verbatim from `tokens.json`. **Validate** checks hex accuracy and section completeness. A fourth optional phase renders HTML previews and visual-diff reports.
+The skill ships an embedded Playwright crawler that runs a three-phase pipeline. **Extract** crawls the target URL across five responsive viewports, collects every computed CSS value, clusters them with OKLCH delta-E, and classifies each token by temporal stability (L1 permanent through L4 content). **Write** produces a `DESIGN.md` conforming to the v2 17-section format, copying every numeric value verbatim from `tokens.json`. **Validate** checks hex accuracy and section completeness. A fourth optional phase renders HTML previews and visual-diff reports.
 
 The cardinal rule: every value in `DESIGN.md` traces back to a token in `tokens.json`. No estimation, no rounding, no invention.
 
@@ -199,9 +199,7 @@ A: This skill captures what exists on a live site. `sk-design-interface` invents
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, and references |
 | [`INSTALL_GUIDE.md`](./INSTALL_GUIDE.md) | Node.js, Playwright, Chromium setup and first-extraction walkthrough |
-| [`NOTICE.md`](./NOTICE.md) | Vendoring provenance: upstream source, pinned commit, what was changed |
 | [`tool/README.md`](./tool/README.md) | Upstream tool README with CLI options, architecture, and output structure |
 | [`tool/resources/design-md-format.md`](./tool/resources/design-md-format.md) | The authoritative v2 DESIGN.md section specification (17 sections) |
 | [`tool/resources/writing-style-guide.md`](./tool/resources/writing-style-guide.md) | Voice, tone, and section-composition rules for DESIGN.md prose |
-| [`tool/design-md-workflow.md`](./tool/design-md-workflow.md) | Full upstream three-phase workflow specification |
 | [Skills Library](../README.md) | The skill catalog and routing front door |

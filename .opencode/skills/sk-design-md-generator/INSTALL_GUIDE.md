@@ -1,6 +1,6 @@
 # INSTALL_GUIDE — sk-design-md-generator
 
-Setup for the vendored `design-md-generator` tool: Node.js, Playwright, Chromium, and a first extraction.
+Setup for the embedded extraction tool: Node.js, Playwright, Chromium, and a first extraction.
 
 ---
 
@@ -131,4 +131,4 @@ rm -rf node_modules
 npx playwright uninstall chromium
 ```
 
-The vendored source under `tool/scripts/` and `tool/resources/` is part of the repo and is not affected by uninstalling dependencies.
+The embedded source under `tool/scripts/` and `tool/resources/` is part of the repo and is not affected by uninstalling dependencies.
