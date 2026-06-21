@@ -2,6 +2,10 @@
 // MODULE: Interaction State Capture
 // ────────────────────────────────────────────────────────────────
 
+// ────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ────────────────────────────────────────────────────────────────
+
 import type { Page } from 'playwright';
 import type {
   InteractionData,
@@ -10,6 +14,10 @@ import type {
   EmptyStateInfo,
   ErrorStateInfo,
 } from './types';
+
+// ────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ────────────────────────────────────────────────────────────────
 
 // ─── Constants ───────────────────────────────────────────────────────────────
 
@@ -26,7 +34,15 @@ const CAPTURED_PROPERTIES = [
   'textDecoration', 'cursor',
 ] as const;
 
+// ────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ────────────────────────────────────────────────────────────────
+
 type CapturedProperty = (typeof CAPTURED_PROPERTIES)[number];
+
+// ────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ────────────────────────────────────────────────────────────────
 
 const PER_ELEMENT_TIMEOUT = 2_000;
 const PAGE_TIMEOUT = 15_000;
@@ -34,6 +50,10 @@ const MAX_ELEMENTS = 50;
 const MAX_TAB_PRESSES = 20;
 
 // ─── Element Discovery ──────────────────────────────────────────────────────
+
+// ────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ────────────────────────────────────────────────────────────────
 
 interface DiscoveredElement {
   index: number;
@@ -43,6 +63,10 @@ interface DiscoveredElement {
   role: string;
   rect: { x: number; y: number; width: number; height: number };
 }
+
+// ────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ────────────────────────────────────────────────────────────────
 
 async function discoverElements(page: Page): Promise<DiscoveredElement[]> {
   return page.evaluate(
@@ -347,11 +371,19 @@ function withTimeout<T>(
 
 // ─── Loading State Detection ────────────────────────────────────────────────
 
+// ────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ────────────────────────────────────────────────────────────────
+
 const LOADING_CLASS_PATTERNS = ['loading', 'spinner', 'skeleton', 'shimmer', 'placeholder'];
 const LOADING_STYLE_PROPS = [
   'backgroundColor', 'opacity', 'animation', 'animationName',
   'backgroundImage', 'borderRadius', 'width', 'height',
 ] as const;
+
+// ────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ────────────────────────────────────────────────────────────────
 
 async function detectLoadingStates(page: Page): Promise<LoadingStateInfo[]> {
   return page.evaluate(
@@ -450,8 +482,16 @@ async function detectLoadingStates(page: Page): Promise<LoadingStateInfo[]> {
 
 // ─── Empty State Detection ──────────────────────────────────────────────────
 
+// ────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ────────────────────────────────────────────────────────────────
+
 const EMPTY_CLASS_PATTERNS = ['empty', 'no-data', 'no-results', 'zero-state', 'empty-state'];
 const EMPTY_TEXT_PATTERNS = ['no results', 'nothing here', 'get started', 'no items', 'no data'];
+
+// ────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ────────────────────────────────────────────────────────────────
 
 async function detectEmptyStates(page: Page): Promise<EmptyStateInfo[]> {
   return page.evaluate(
@@ -534,11 +574,19 @@ async function detectEmptyStates(page: Page): Promise<EmptyStateInfo[]> {
 
 // ─── Error State Detection ──────────────────────────────────────────────────
 
+// ────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ────────────────────────────────────────────────────────────────
+
 const ERROR_CLASS_PATTERNS = ['error', 'invalid', 'danger', 'alert'];
 const ERROR_STYLE_PROPS = [
   'color', 'backgroundColor', 'borderColor', 'borderWidth',
   'outline', 'boxShadow', 'backgroundImage',
 ] as const;
+
+// ────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ────────────────────────────────────────────────────────────────
 
 async function detectErrorStates(page: Page): Promise<ErrorStateInfo[]> {
   return page.evaluate(
@@ -634,6 +682,10 @@ async function detectErrorStates(page: Page): Promise<ErrorStateInfo[]> {
     { classPatterns: ERROR_CLASS_PATTERNS, styleProps: [...ERROR_STYLE_PROPS] },
   );
 }
+
+// ────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ────────────────────────────────────────────────────────────────
 
 // ─── Main Export ─────────────────────────────────────────────────────────────
 
