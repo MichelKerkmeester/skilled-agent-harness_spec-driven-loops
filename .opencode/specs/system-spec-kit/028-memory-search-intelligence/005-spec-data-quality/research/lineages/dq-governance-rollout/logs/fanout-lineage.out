@@ -1,0 +1,18 @@
+The fan-out lineage is complete and verified. All artifacts are written within the target lineage directory only; prior lineages and the parent were read-only inputs.
+
+**Lineage `dq-governance-rollout` — summary**
+
+- **phase_init**: bound `artifact_dir` to the override; wrote `deep-research-config.json` + `deep-research-strategy.md` (charter with Non-Goals + Stop Conditions, inheriting the truncation law and two rails as settled).
+- **phase_main_loop**: 7 iterations to convergence (newInfoRatio 0.88 → 0.80 → 0.72 → 0.66 → 0.40 → 0.30 → 0.05), one per deliverable plus reconciliation and an adversarial pass. Each wrote `iterations/iteration-00N.md`, appended a JSONL delta (all carry `newInfoRatio`/`status`/`focus`), and refreshed reducer state (`deep-research-dashboard.md`, `findings-registry.json`).
+- **phase_synthesis**: wrote `research.md` (the canonical consolidation) + the `synthesis_complete` event.
+
+**The governance/rollout layer produced** (consolidating all five prior lineages, not repeating them):
+1. **Unified rollout** — 17 stages / 7 phases as a topological sort of 5 inviolable dependency edges; three tracks (floor-bypassing ships on cost, novel correctness/adherence ships report-only in parallel, retrieval frozen behind C2).
+2. **Migration** — the four-beat per-gate discipline (warn→backfill→re-measure-to-zero→error) on the Stage-0 census; two distinct migrations (doc-gate vs retrieval, the latter behind a net-new coverage guard + dual-cache-key fix); the legacy-corpus invariant.
+3. **Safety/governance** — the `fixClass` taxonomy (safe/guarded/report-only) under INV-1/INV-2, per-stage rollback, four human-in-the-loop boundaries, four drift guards, and a self-guarding registry (the one gap the adversarial pass closed).
+4. **Measurement** — one-reader-one-metric, four tiers each with an "earns its keep" bar; prod-mode completeRecall@3 RISE as the sole retrieval admittance.
+5. **NO-GO + anti-patterns** — 18 NO-GOs derived from 10 generative governance anti-patterns.
+
+Stop reason: converged (7/7 questions, 3 build-stage measurements named not resolved), within `maxIterations=15`.
+
+FANOUT_LINEAGE_COMPLETE:dq-governance-rollout

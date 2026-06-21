@@ -1,0 +1,8 @@
+{"type":"iteration","iteration":2,"newInfoRatio":0.55,"status":"complete","focus":"Rank out-of-the-box automated features across the full surface by reader and truncation-floor relationship"}
+{"type":"finding","id":"f-iter002-007","severity":"P2","label":"The context-engineering/memory layer has retroactive HYGIENE ops (memory:manage) but none refine source-doc data quality","iteration":2}
+{"type":"finding","id":"f-iter002-008","severity":"P2","label":"Routing-metadata validators (advisor_validate, skill_graph_validate) exist but are orthogonal to doc DQI","iteration":2}
+{"type":"finding","id":"f-iter002-009","severity":"P1","label":"The injection layer is a pure consumer with no quality feedback loop to source docs; the inject->refine loop is the one missing retrieval-class automation and PAYS the floor","iteration":2}
+{"type":"invariant","id":"inv-iter002-001","label":"Highest-ROI cheap wins are write-time floor-bypassing doc-quality gates reusing the half-built DQI scorer; retrieval-class automations stay hypothesis-until-prod-measured","iteration":2}
+{"type":"observation","id":"obs-iter002-001","packet":"005","classification":"real","label":"Feature 1 (wire existing DQI scorer on-write + retroactive) is the single highest-ROI move: lever fully built, blind only by lack of wiring","iteration":2}
+{"type":"ruled_out","direction":"Treat memory:manage or advisor_validate as the doc-quality automation","reason":"Both operate on the index/routing axis, not the source-document data-quality axis","iteration":2}
+{"type":"edge","id":"e-iter002-001","relation":"EXTENDS","source":"obs-iter002-001","target":"inv-iter001-001","iteration":2}

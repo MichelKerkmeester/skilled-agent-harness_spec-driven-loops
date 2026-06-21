@@ -1,0 +1,29 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    "Q1: The automated machinery is bifurcated and surface-incomplete; skill docs, references, command docs, and context-engineering assets have NO automated data-quality gate.",
+    "Q2: Adherence/logic automations are write-time and floor-bypassing (features 1-5, half-built); the one retrieval automation (inject->refine loop, feature 6) PAYS the floor and needs prod-mode proof.",
+    "Q3: Highest-ROI set = features 1-5; rank 1 (wire the existing DQI scorer on-write + retroactively) is the single highest-ROI move."
+  ],
+  "keyFindings": [
+    {"id": "f-iter001-001", "label": "All 33 validator-registry rules are spec-doc-scoped; none target skill/reference/command/context-engineering docs", "evidence": "validator-registry.json:1-313"},
+    {"id": "f-iter001-003", "label": "The pre-commit hook gates code/MCP/prompt-registry integrity (5 gates) but never document data-quality or DQI", "evidence": ".git/hooks/pre-commit"},
+    {"id": "f-iter001-004", "label": "sk-doc extract_structure.py computes a deterministic type-aware DQI with per-type gates but is never automated", "evidence": "sk-doc/references/global/validation.md:177-310"},
+    {"id": "f-iter001-005", "label": "Skill/reference/command docs carry floor-bypassing retrieval+adherence frontmatter with zero automated quality gate", "evidence": "sampled reference headers"},
+    {"id": "f-iter001-006", "label": "generate-context post-save-review auto-reviews trigger_phrase quality but only on spec-folder saves", "evidence": "core/post-save-review.ts"},
+    {"id": "f-iter002-007", "label": "memory:manage has retroactive HYGIENE ops but none refine source-doc data quality", "evidence": "commands/memory/manage.md:2-53"},
+    {"id": "f-iter002-008", "label": "advisor_validate / skill_graph_validate are routing-metadata validators, orthogonal to doc DQI", "evidence": "system-skill-advisor/SKILL.md:289-345"},
+    {"id": "f-iter002-009", "label": "The injection layer is a pure consumer with no quality feedback loop; inject->refine is the missing retrieval-class automation and PAYS the floor", "evidence": "confidence-truncation.js (parent law)"}
+  ],
+  "ruledOutDirections": [
+    {"direction": "A corpus-wide retroactive doc-quality sweep already exists", "reason": "validation.md batch snippets are illustrative, no shipped runner", "iteration": 1},
+    {"direction": "memory:manage or advisor_validate IS the doc-quality automation", "reason": "both operate on the index/routing axis, not the source-document data-quality axis", "iteration": 2}
+  ],
+  "metrics": {
+    "iterationsCompleted": 2,
+    "keyFindings": 8,
+    "openQuestions": 0,
+    "resolvedQuestions": 3,
+    "stopReason": "maxIterationsReached"
+  }
+}

@@ -1,0 +1,16 @@
+The fan-out lineage is complete. All artifacts are present and confined to the lineage directory:
+
+- **`deep-research-config.json`** (status: complete), **`deep-research-state.jsonl`** (config + 6 iterations + synthesis_complete event), **`deep-research-strategy.md`**, **`findings-registry.json`**, **`deep-research-dashboard.md`**
+- **`research.md`** — the canonical synthesis
+- **`iterations/iteration-001…006.md`**
+
+**What this lineage found (distinct from the priors):** the DQ enforcement surface runs in **three timing tiers** — pre-commit (5 gates), PR-time CI (8 path-filtered GitHub Actions), and scheduled (cron) which is **empirically empty**. This *corrects* dq-deep's premise that no retroactive automation exists, while *validating + sharpening* its conclusion: the scheduled tier is the unique empty slot and the multiplier.
+
+Below that topology, 14 granular, file:line-grounded, reuse-first per-surface detectors — all bypassing the truncation floor except one:
+- **SKILL DOCS (S1–S5):** extend the CI frontmatter gate to the excluded SKILL.md hub + version-grammar/field-uniformity; skill-graph content-drift gate; cross-skill signal-collision gate (ambiguity is measured live but `conflicts:[]` is ungated); three-surface keyword coherence; enhances reciprocity.
+- **COMMANDS (C1–C4):** generalize the doctor-only 8-assertion `route-validate.py` corpus-wide; argument-grammar parser; the missing workflow-YAML schema gate; corpus-wide mutation_class lint.
+- **CONTEXT-ENGINEERING (X1–X5):** triple-copy trigger-vocabulary coherence (CLAUDE.md ↔ gate-3-classifier ↔ advisor prompt-policy) via the proven `rule-canary-sync` pattern; automate the manual hook-validation playbook; template↔renderer placeholder parity; resource-map freshness; telemetry→refine (the sole retrieval-class item, gated on prod-mode @3).
+
+Two prior-lineage corrections logged as negative knowledge (dq-deep B1 premise; dq-probe F5 wikilink validator). Converged at 6/15 iterations on all-questions-answered with quality guards passing.
+
+FANOUT_LINEAGE_COMPLETE:dq-skilldoc-cmd-ctx

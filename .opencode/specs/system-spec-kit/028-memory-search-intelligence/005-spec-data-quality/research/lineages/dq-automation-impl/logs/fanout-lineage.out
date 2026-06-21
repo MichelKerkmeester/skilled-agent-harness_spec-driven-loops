@@ -1,0 +1,12 @@
+The fan-out lineage is complete. All artifacts are written inside the bound `dq-automation-impl` directory only.
+
+**Summary of `dq-automation-impl`** — the build-ready implementation deep-dive of the five keystone DQ automations the prior lineages named:
+
+- **7 iterations**, converged (newInfoRatio 0.90→0.22), 6/6 key questions answered with file:line seams, adversarial pass complete (2 confirmations, 2 corrections — no verdict overturned).
+- **Core finding:** the program is a wiring job over two existing machineries plus one small new gate. The decisive seam decision — reuse the *pure* scorer (`computeMemoryQualityScore`) and the *non-mutating* reviewer (`reviewPostSaveQuality`), never the destructive `attemptAutoFix` loop on authored bodies — corrects dq-deep's literal "extend quality-loop.ts".
+- **A1** seams verified across two files (`generate-context.ts:398` + `workflow.ts:1854` + a `CONTENT_QUALITY` rule in `validate.sh`); **B1** scheduler = CI `schedule:`+`workflow_dispatch` (the empty tier) with a deny-by-default `fixClass` allow-list; **B2** = a `data-quality` /doctor route modeled on `code-graph` with inverted `mutation_boundaries`; **B3** = capture the absent impression signal and split never-retrieved by the floor (edge-a bypass vs edge-b C2-gated); **C2** = `run-eval-v2.mjs` already is the prod-mode @3 dual-mode harness, so the build is a spec-corpus golden + a genuinely-new baseline gate.
+- **Architecture:** one `dq-engine.ts` + `detector-registry.ts`, three front doors, a 12-stage rollout with per-stage rollback, retrieval half last and C2-gated; two hard rails preserved.
+
+Artifacts: `research.md` (synthesis), 7 iteration files, config/state/strategy/findings-registry/dashboard.
+
+FANOUT_LINEAGE_COMPLETE:dq-automation-impl

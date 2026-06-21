@@ -1,0 +1,10 @@
+{"type":"iteration","iteration":1,"newInfoRatio":0.85,"status":"complete","focus":"Inventory automated quality machinery and coverage gaps across the spec-kit surface"}
+{"type":"finding","id":"f-iter001-001","severity":"P1","label":"All 33 validator-registry rules are spec-doc-scoped; none target skill docs, references, command docs, or context-engineering assets","iteration":1}
+{"type":"finding","id":"f-iter001-002","severity":"P2","label":"validate.sh is a completion-time manual gate, not wired into the commit hook even for spec docs","iteration":1}
+{"type":"finding","id":"f-iter001-003","severity":"P1","label":"The active pre-commit hook gates code/MCP/prompt-registry integrity (5 gates) but never document data-quality, DQI, or retrieval-shaping frontmatter","iteration":1}
+{"type":"finding","id":"f-iter001-004","severity":"P1","label":"sk-doc extract_structure.py computes a deterministic type-aware DQI (0-100) with per-type gates but is never automated on-write or retroactively","iteration":1}
+{"type":"finding","id":"f-iter001-005","severity":"P1","label":"Skill/reference/command docs carry trigger_phrases/importance_tier/contextType (floor-bypassing write-time retrieval+adherence signals) with zero automated quality gate","iteration":1}
+{"type":"finding","id":"f-iter001-006","severity":"P2","label":"generate-context post-save-review.ts auto-reviews trigger_phrase quality but only on spec-folder memory saves, fixes hand-applied","iteration":1}
+{"type":"invariant","id":"inv-iter001-001","label":"Write-time/adherence/logic signals bypass the 3-result prod truncation floor; retrieval signals pay it","iteration":1}
+{"type":"observation","id":"obs-iter001-001","packet":"005","classification":"real","label":"The most mature quality gate (validate.sh, 33 rules) is structurally blind to the largest doc surface (skills+references)","iteration":1}
+{"type":"ruled_out","direction":"A corpus-wide retroactive doc-quality sweep already exists","reason":"validation.md batch snippets are illustrative shell examples, not a shipped runner; no wiring of DQI across the surface found","iteration":1}

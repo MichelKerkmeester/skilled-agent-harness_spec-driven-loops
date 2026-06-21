@@ -1,0 +1,35 @@
+{
+  "openQuestions": [
+    "Write latency of extending quality-loop.ts to large authored specs (needs measurement)",
+    "Corpus-wide count of docs failing each Tier-A detector (Stage-0 baseline, deferred to build)",
+    "Whether C2 prod-mode completeRecall@3 benchmark promotes any Tier-C retrieval candidate (inherited)"
+  ],
+  "resolvedQuestions": [
+    "KQ1: on-write automation = 38-rule shape/presence validator registry; gaps = no content-quality checks, no refinement",
+    "KQ2: retroactive = drift-detect (read-only) + manual backfills + index rebuild; gaps = no continuous content-quality sweep, no scheduled invocation, near-zero auto-remediation",
+    "KQ3: auto-enrich description.json (propagate triggers, real summary), enum-constrain tier/status/content_type, add provenance/freshness, cross-surface trigger consistency",
+    "KQ4: spec-doc refinement absent; opportunity = 3-rung tier (deterministic auto-fix, extractive generation, gated LLM); embedding strips frontmatter + flattens headings",
+    "KQ5: skills already have benchmark+regression+graph-validate routing loop the spec corpus lacks; port it with a prod-mode-@3 metric",
+    "KQ6: command QA is /doctor-scoped manifest integrity (mutation-class enum, >=1 trigger); borrow the enforced enum for spec metadata",
+    "KQ7: live default-ON quality loop with auto-fix exists on memory-save (quality-loop.ts); extend it to the authored surface rather than build new",
+    "KQ8: four-tier reuse-first program; keystones A1 (extend loop) + B1 (scheduled sweep); C2 (prod-mode @3 benchmark) is retrieval unblocker"
+  ],
+  "keyFindings": [
+    "Automation asymmetry: gate-rich authored surface, refinement-rich memory surface, never connected",
+    "Refinement machinery already exists (quality-loop.ts default ON, auto-fix re-extracts triggers + trims budget) but only on memory-save",
+    "content-normalizer strips frontmatter (step 1) + flattens headings (step 7) so curated signal never enters the dense vector",
+    "Destructive auto-fix hazard: substring budget-trim amputates authored docs -> authored surface must be score+suggest only",
+    "Retrieval ceiling stays gated by the truncation law; only a prod-mode completeRecall@3 benchmark (C2) can promote Tier-C"
+  ],
+  "ruledOutDirections": [
+    "DESCRIPTION_SHAPE/GRAPH_METADATA_SHAPE as sufficient quality gates (warn-only, presence-only)",
+    "/doctor memory as content-quality tool (read-only, index-drift scope)",
+    "new metadata file/node type for enrichment (enrich existing derived record)",
+    "description.json keywords as retrieval trigger surface (title word-splits)",
+    "existing extractors / check-normalizer-lint.sh as doc-refinement/HVR substrate",
+    "building a new quality scorer (extend live quality-loop.ts)",
+    "silent auto-apply of content-removing fixes on authored docs (destructive)",
+    "strict-equality trigger consistency (false-positives; use subset/superset)",
+    "promoting Tier-C retrieval on external recall@K (K=3 floor hides that band)"
+  ]
+}

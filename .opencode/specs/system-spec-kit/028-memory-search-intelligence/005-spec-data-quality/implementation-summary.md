@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality"
     last_updated_at: "2026-06-21T00:00:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Synthesized nineteen iterations into the canonical research verdict"
+    recent_action: "Synthesized five lineages and thirty-seven iterations into the canonical verdict"
     next_safe_action: "Stage 1 build, the JSON-schema validation gate, if the operator approves a build"
     blockers: []
     key_files:
@@ -21,8 +21,8 @@ _memory:
       - "research/stage-0-external-findings.md"
     session_dedup:
       fingerprint: "sha256:c72a91f3e8b40d6519a7c2f04e8b1d735908a6c41f2e7b53d9046a1c8e2f5071"
-      session_id: "031-research-synthesis"
-      parent_session_id: "031-stage-0-init"
+      session_id: "multi-lineage-research-synthesis"
+      parent_session_id: "multi-lineage-research-synthesis"
     completion_pct: 100
     open_questions: []
     answered_questions:
@@ -51,19 +51,19 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-This packet ran the full spec-kit data-quality research and produced a canonical synthesis. Nothing was shipped. The value is a verified evidence base and a tiered go or no-go program that a build stage can act on without re-deriving the corpus facts.
+This packet ran the full spec-kit data-quality research as the official multi-lineage loop and produced a canonical synthesis. Nothing was shipped. The value is a verified evidence base and a tiered go or no-go program that a build stage can act on without re-deriving the corpus facts.
 
 ### Stage 0 external-findings brief
 
 The brief at `research/stage-0-external-findings.md` sorts the external sweep into seven angles: retrieval, adherence, logic, metadata artifacts, Turso and libSQL, automation and reference repos. It preserves every cited source URL so each claim stays reproducible. It also records the honest caveats, including the adherence ceiling and the vendor-only nature of the Turso sync claims.
 
-### The by-angle verification loop
+### The five-lineage verification loop
 
-Nineteen iterations verified each ranked candidate against the live retrieval code: retrieval, adherence, logic, metadata-artifact, architecture-fit, rollout and a cross-cutting adversarial audit. Each iteration grounded its verdict in file:line evidence and tagged it on-write or retroactive and by reader.
+Five distinct deep-research lineages ran thirty-seven substantive iterations, executed as parallel opus-via-claude2 read-only seats. dq-deep (9) built the 4-tier reuse-first program and the floor-aware ROI tiering. dq-skilldoc-cmd-ctx (6) mapped per-surface depth and the three-timing-tier topology. dq-automation-impl (7) produced the build-ready seams, the shared safe-fix engine and the detector registry. dq-novel-oob (8) attacked twelve out-of-the-box candidates against the truncation law. dq-governance-rollout (7) consolidated the rollout, migration, safety, measurement and NO-GO layers. Each iteration grounded its verdict in file:line evidence and tagged it on-write or retroactive and by reader. All five lineages converged.
 
 ### The canonical research synthesis
 
-The synthesis at `research/research.md` converges the loop into one program. It records the truncation law, tiers every recommendation GO, GO-on-cost, CONDITIONAL or NO-GO, lays out a six-stage rollout with a per-stage rollback and re-measured checkpoint, then restates which claims are measured versus hypothesis-until-prod-measured.
+The synthesis at `research/research.md` converges the five lineages into one program. It records the truncation law and the live default-ON quality-loop keystone, tiers every recommendation GO, GO-on-cost, CONDITIONAL or NO-GO, names the four novel floor-bypassing capabilities, lays out the build-ready engine plus the 17-stage governance rollout with a per-stage rollback and re-measured checkpoint, then restates which claims are measured versus hypothesis-until-prod-measured.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -71,7 +71,7 @@ The synthesis at `research/research.md` converges the loop into one program. It 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The research ran in two stages. Stage 0 was a read-only online sweep. The by-angle loop then ran nineteen read-only iterations against the live retrieval code, each writing only its own iteration doc plus a delta row, with the synthesis composed last from the converged findings. The packet was validated with validate.sh strict and read for HVR voice before this summary was written. No code ran and no live system changed.
+The research ran in two stages. Stage 0 was a read-only online sweep. The official multi-lineage loop then ran five lineages across thirty-seven read-only iterations against the live retrieval and validation code, with the orchestrator writing each iteration doc plus its delta row and state, and the canonical synthesis composed last from the converged findings. The packet was validated with validate.sh strict and read for HVR voice before this summary was written. No code ran and no live system changed.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -95,11 +95,11 @@ The research ran in two stages. Stage 0 was a read-only online sweep. The by-ang
 
 | Check | Result |
 |-------|--------|
-| validate.sh --strict on 031 | PASS, exit 0 |
+| validate.sh --strict on 005-spec-data-quality | PASS, exit 0 |
 | HVR voice across authored docs | PASS, no em-dashes, no prose semicolons, no Oxford commas |
 | Source preservation in the brief | PASS, every cited URL retained |
-| Synthesis convergence | PASS, nineteen iterations plus three delta logs reconciled into one tiered verdict |
-| Tier reconciliation | PASS, 1 GO, 5 GO-on-cost, 4 CONDITIONAL, 5 NO-GO |
+| Synthesis convergence | PASS, five lineages across thirty-seven iterations all converged and reconciled into one tiered verdict |
+| Tier reconciliation | PASS, 1 measured GO, a GO-on-cost cluster (Tier A and B plus 7 novel), 5 CONDITIONAL retrieval items, 18 consolidated NO-GO |
 <!-- /ANCHOR:verification -->
 
 ---

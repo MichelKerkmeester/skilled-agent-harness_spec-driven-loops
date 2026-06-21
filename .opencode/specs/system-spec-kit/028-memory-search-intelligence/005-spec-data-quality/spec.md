@@ -14,7 +14,7 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality"
     last_updated_at: "2026-06-21T00:00:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Wrote the canonical research synthesis and tiered every candidate"
+    recent_action: "Compiled the canonical multi-lineage research synthesis and tiered candidates"
     next_safe_action: "Stage 1 build, the JSON-schema validation gate, if the operator approves a build"
     blockers: []
     key_files:
@@ -22,8 +22,8 @@ _memory:
       - "research/stage-0-external-findings.md"
     session_dedup:
       fingerprint: "sha256:b41f6e5c0a92d7184c3f0b58a6e7d2934f1a8c06b9e3d5742a0f9c81e6d34b27"
-      session_id: "031-research-synthesis"
-      parent_session_id: "031-stage-0-init"
+      session_id: "multi-lineage-research-synthesis"
+      parent_session_id: "multi-lineage-research-synthesis"
     completion_pct: 100
     open_questions:
       - "Whether the prod-mode completeRecall@3 read promotes any retrieval candidate once a build runs"
@@ -46,9 +46,9 @@ FAILURE MODES:
 
 ## EXECUTIVE SUMMARY
 
-Spec-kit already stores rich docs and two metadata JSONs per packet, but that data is not tuned for the three jobs it has to do: feed retrieval, steer AI adherence and stay readable as logic. This packet ran the research that decides which of those quality levers are worth building by default. Stage 0 captured a fresh-Opus online sweep of about thirty cited sources across seven angles. Nineteen by-angle iterations then verified each ranked candidate against the live retrieval code.
+Spec-kit already stores rich docs and two metadata JSONs per packet, but that data is not tuned for the three jobs it has to do: feed retrieval, steer AI adherence and stay readable as logic. This packet ran the research that decides which of those quality levers are worth building by default. Stage 0 captured a fresh-Opus online sweep of about thirty cited sources across seven angles. The official multi-lineage loop then ran five distinct deep-research lineages across thirty-seven substantive iterations, executed as parallel opus-via-claude2 read-only seats, each verifying its ranked candidates against the live retrieval and validation code. All five lineages converged.
 
-The research converged on the truncation law. The prod retrieval path truncates to a 3-result floor, so it taxes retrieval candidates only while adherence, logic and write-time candidates bypass the floor. The decisive consequence is that the external brief's recall@K numbers are mechanically hidden by the K=3 prod floor, so external validation alone cannot promote a retrieval candidate, only a prod-mode eval-v2 dual-mode measurement can. The full tiering and the staged rollout live in `research/research.md`.
+The research converged on the truncation law. The prod retrieval path truncates to a 3-result floor, so it taxes retrieval candidates only while adherence and logic and write-time candidates bypass the floor. The decisive consequence is that the external brief's recall@K numbers are mechanically hidden by the K=3 prod floor, so external validation alone cannot promote a retrieval candidate, only a prod-mode eval-v2 dual-mode measurement can. The five lineages also surfaced the live default-ON quality-loop keystone, four novel floor-bypassing capabilities and a build-ready engine plus governance rollout. The full tiering and the staged rollout live in `research/research.md`.
 
 **Key Decisions**: research-first before any build, rank candidates by external evidence strength, gate every retrieval candidate on a prod-mode completeRecall@3 read
 
@@ -215,7 +215,7 @@ Decide, from external evidence, which data-quality techniques spec-kit should ad
 
 ## 12. OPEN QUESTIONS
 
-- Which ranked candidates survive corpus-specific verification once the loop runs. ANSWERED: one measured unconditional GO (the JSON-schema gate), a set of floor-bypassing GO-on-cost fields and gates, four conditional retrieval and logic candidates that stay hypothesis-until-prod-measured, plus a no-go set of already-shipped or premature techniques. See `research/research.md`.
+- Which ranked candidates survive corpus-specific verification once the loop runs. ANSWERED by the five-lineage loop: one measured unconditional GO (the JSON-schema gate), a cluster of floor-bypassing GO-on-cost fields and gates plus seven novel floor-bypassing capabilities, a conditional retrieval slate of five items that stay hypothesis-until-prod-measured, plus a consolidated no-go list of eighteen already-shipped or premature or over-engineered techniques. See `research/research.md`.
 - How much of the Turso and libSQL claim set holds up under an independent benchmark. ANSWERED: no-go. RRF plus sqlite-vec already ship, the swap moves nothing measurable, while quantization is premature on a roughly 2022-row corpus.
 - Whether the prod-mode completeRecall@3 read promotes any retrieval candidate once a build runs. OPEN, deferred to a build stage.
 <!-- /ANCHOR:questions -->

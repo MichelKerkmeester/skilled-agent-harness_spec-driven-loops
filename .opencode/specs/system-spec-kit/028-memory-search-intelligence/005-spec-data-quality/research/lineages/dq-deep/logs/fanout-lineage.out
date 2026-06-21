@@ -1,0 +1,14 @@
+The `dq-deep` lineage loop is complete. All artifacts are in place under `research/lineages/dq-deep/`, scoped entirely within the lineage directory:
+
+- **config** (status: complete), **state.jsonl** (12 records: config + 9 iterations + convergence + synthesis_complete), **strategy.md**, **findings-registry.json**, **dashboard.md**, **research.md** (synthesis), and **9 iteration files**.
+
+**Lineage verdict — the automation asymmetry:** the spec-kit authored surface is gate-rich but refinement-poor, while the memory/context-engineering layer already runs a live, default-ON verify-fix-verify quality loop with auto-fix (`quality-loop.ts`; `SPECKIT_QUALITY_LOOP`/`SPECKIT_QUALITY_AUTO_FIX` default TRUE) that never reaches the authored docs or the two JSONs. So best-possible automated DQ is overwhelmingly a wiring problem, not green-field:
+
+- **Keystone A1 (on-write):** extend the live quality loop to the authored spec-doc + metadata-JSON surface in score+suggest mode (auto-fix's `substring` budget-trim would amputate authored docs — the load-bearing safety rail).
+- **Keystone B1 (retroactive):** a standing scheduled sweep with guarded auto-fix (dry-run/batched/git-tracked) — the genuinely missing "most automated" layer.
+- **Unblocker C2:** port the skill corpus's benchmark+regression loop to specs, wired to **prod-mode completeRecall@3** — the only thing that can promote any retrieval candidate under the inherited truncation law.
+- Supporting on-write hygiene (propagate curated triggers, real summaries, enforced enums borrowed from the command `mutation_class` pattern, schema warn→error, HVR linter) all bypass the floor and ship on cost.
+
+Converged at iteration 9 (all 8 key questions answered, program tiered, adversarial pass done; newInfoRatio 0.90→0.30; quality guards pass). Save phase intentionally skipped — `generate-context.js` writes outside the lineage dir (orchestrator's job).
+
+FANOUT_LINEAGE_COMPLETE:dq-deep

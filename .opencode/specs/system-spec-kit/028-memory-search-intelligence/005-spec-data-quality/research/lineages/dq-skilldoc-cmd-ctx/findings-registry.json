@@ -1,0 +1,41 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    "KQ1 SKILL DOCS smart-router fidelity + frontmatter uniformity",
+    "KQ2 SKILL DOCS cross-skill consistency",
+    "KQ3 COMMANDS argument/router/mutation_class/YAML-workflow DQ",
+    "KQ4 CONTEXT-ENGINEERING per-turn assembly DQ",
+    "KQ5 synthesis: most-automated per-surface layer + truncation-law tiering"
+  ],
+  "keyFindings": [
+    {"id":"F5.1","title":"Three-tier timing topology; scheduled (cron) tier is EMPTY","evidence":"grep schedule:/cron: .github/workflows -> 0; 8 workflows all on:pull_request","surface":"all","floor":"bypass"},
+    {"id":"S1","title":"Extend CI frontmatter coverage to the SKILL.md HUB + version grammar + field uniformity","evidence":"skill-doc-frontmatter.yml:6-7 (refs/assets only); grep ^version: 20 hits/2 grammars","surface":"skill-docs","floor":"bypass"},
+    {"id":"S2","title":"Skill-graph content-drift gate via advisor_rebuild->advisor_validate","evidence":"skill-graph.json topology_warnings/conflicts; routing-registry-drift.yml guards only registry<->map parity","surface":"skill-docs","floor":"bypass"},
+    {"id":"S3","title":"Cross-skill signal-collision gate (ambiguity measured live, conflicts:[] empty=ungated)","evidence":"skill-graph.json conflicts:[]; session hook 0.95 vs 0.92","surface":"skill-docs","floor":"bypass"},
+    {"id":"S4","title":"Three-surface keyword coherence (Keywords comment 17/20 + trigger_phrases + advisor signals)","evidence":"grep <!-- Keywords: -> 17/20","surface":"skill-docs","floor":"bypass"},
+    {"id":"S5","title":"enhances-edge reciprocity gate (propagate_enhances detect mode)","evidence":"propagate_enhances.md:1-30","surface":"skill-docs","floor":"bypass"},
+    {"id":"C1","title":"KEYSTONE: generalize route-validate.py 8 assertions beyond doctor","evidence":"route-validate.py:1-22; find _routes.yaml -> 1","surface":"commands","floor":"bypass"},
+    {"id":"C2","title":"Argument-grammar parser (declared :mode <-> owned-asset YAML presence)","evidence":"speckit/plan.md:2-3; create/assets auto+confirm pairs","surface":"commands","floor":"bypass"},
+    {"id":"C3","title":"Workflow-YAML schema gate (none exists; ~30 YAMLs unchecked)","evidence":"empty grep; speckit/plan.md:11-13","surface":"commands","floor":"bypass"},
+    {"id":"C4","title":"Corpus-wide mutation_class lint (machine-checked on 2 narrow surfaces only)","evidence":"check-mcp-mutation-class.sh:73-83; route-validate E","surface":"commands","floor":"bypass"},
+    {"id":"X1","title":"KEYSTONE: triple-copy trigger-vocabulary coherence via rule-canary-sync pattern","evidence":"gate-3-classifier.ts:9,67-72,149-151; prompt-policy.json WORK_INTENT_VERBS; rule-canary-sync.yml","surface":"context-eng","floor":"bypass"},
+    {"id":"X2","title":"Automate the manual hook-validation playbook as on-write contract test","evidence":"skill_advisor_hook_validation.md:1-40","surface":"context-eng","floor":"bypass"},
+    {"id":"X3","title":"Template<->renderer placeholder parity over .md.tmpl assets","evidence":"prompt-pack.ts; prompt-pack.vitest.ts","surface":"context-eng","floor":"bypass"},
+    {"id":"X4","title":"Resource-map corpus freshness (per-packet concept only today)","evidence":"grep resource_map_present -> packet scope","surface":"context-eng","floor":"bypass"},
+    {"id":"X5","title":"Telemetry->refine loop (only retrieval-class item; needs prod-mode @3)","evidence":"parent truncation law; confidence-truncation.ts:35","surface":"context-eng","floor":"pays"},
+    {"id":"ARCH","title":"Most-automated = one scheduled corpus sweep (empty tier) running S/C/X detectors report->guarded-fix","evidence":"dq-deep B1+B2 instantiated; destructive-fix rail preserved","surface":"all","floor":"bypass"}
+  ],
+  "ruledOutDirections": [
+    {"approach":"DQI scorer as cross-skill-aware","reason":"single-file/single-type by construction","evidence":"extract_structure.py:949-972"},
+    {"approach":"Re-spec a skill [[wikilink]] validator (dq-probe F5)","reason":"already built+CI-wired, fence-aware","evidence":"check-links.sh:5,25; markdown-link-integrity.yml"},
+    {"approach":"conflicts:[] empty = no collision risk","reason":"ambiguity measured live but unpersisted; empty=ungated","evidence":"skill-graph.json; session hook"},
+    {"approach":"command routing broadly validated","reason":"route-validate doctor-only; 27/28 ungated","evidence":"find _routes.yaml -> 1"},
+    {"approach":"workflow-YAML schema gate exists","reason":"none; only asset-existence checked","evidence":"empty grep"},
+    {"approach":"three trigger vocabularies auto-sync","reason":"hand-maintained per classifier comment","evidence":"gate-3-classifier.ts:9"},
+    {"approach":"dq-deep B1 premise no retroactive automation","reason":"8 PR-time CI workflows exist","evidence":".github/workflows (8 files)"},
+    {"approach":"one monolithic gate","reason":"per-surface path-scoped detectors are the idiom","evidence":"8 path-filtered workflows"},
+    {"approach":"rule-canary-sync already covers trigger vocab","reason":"covers rule wording; vocab in no workflow/hook","evidence":"grep WORK_INTENT_VERBS/FILE_WRITE_TRIGGERS empty"},
+    {"approach":"context-engineering ungated wholesale","reason":"prompt-card-sync gates the prompt-craft layer","evidence":"prompt-card-sync.yml"},
+    {"approach":"promote X5 on eval-mode evidence","reason":"retrieval-class pays the floor; needs prod-mode @3","evidence":"parent truncation law"}
+  ]
+}
