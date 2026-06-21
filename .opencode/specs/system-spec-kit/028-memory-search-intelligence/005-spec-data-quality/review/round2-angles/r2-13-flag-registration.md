@@ -1,0 +1,34 @@
+# r2-13 flag-registration
+
+**Angle summary:** Whether the flags the 005 phases propose can actually register in `search-flags.ts` and survive the `flag-ceiling.vitest.ts` drift guard, and whether any flag is named in one doc but not another or left unnamed where a phase needs one.
+
+## Context the findings rest on (LIVE CODE)
+
+Two separate flag registries exist, and the phases conflate them.
+
+1. `search-flags.ts` holds the MCP search and save pipeline gates (header line 4: "Default-on runtime gates for search pipeline controls"). `flag-ceiling.vitest.ts` guards it.
+2. `validator-registry.json` holds the `validate.sh` rule flags (the `AC_COVERAGE` triad `SPECKIT_AC_COVERAGE` / `_ENFORCE` / `_FLOOR` at `validator-registry.json:56-60`). These appear in neither `flag-ceiling.vitest.ts` list nor `search-flags.ts`. No drift guard covers this registry.
+
+The drift guard (`flag-ceiling.vitest.ts:199-203`) reads `liveTokens` from `search-flags.ts` ONLY, then fails on any `SPECKIT_*` token in that file absent from `ALL_SPECKIT_FLAGS` union `ACKNOWLEDGED_UNCEILINGED_FLAGS`. `FLAG_CHECKERS` (`flag-ceiling.vitest.ts:9-29,60-80`) imports every checker function from `../lib/search/search-flags`. So a `FLAG_CHECKERS` entry only compiles if a checker is exported from `search-flags.ts`.
+
+Clean routing confirmed: A1 `CONTENT_QUALITY`, A3, A5, A6, A9 and A10 all route to `validator-registry.json` and correctly never touch `search-flags.ts` (benchmark-and-test-status.md:21,23,25,26,29,30). The drift guard is not at risk from the validate.sh-rule phases.
+
+## Findings
+
+### F1 [P1] FLAG_CHECKERS plus drift-guard registration is non-constructible as written — LIVE-CODE
+B1, 019, 021 and 025 all instruct adding their flag to `ALL_SPECKIT_FLAGS` plus `FLAG_CHECKERS`, yet none of those phase docs reference `search-flags.ts` (grep of `011/`, `019/`, `025/` returns no `search-flags` hit). A `FLAG_CHECKERS` entry imports its checker from `search-flags.ts` (`flag-ceiling.vitest.ts:9-29`) and the drift guard only scans `search-flags.ts` (`flag-ceiling.vitest.ts:199-203`). Without a checker exported there, the `FLAG_CHECKERS` pair will not compile and the token never enters `liveTokens`, so the ceiling proves nothing about it. Evidence: 011 plan.md:151 + tasks.md:T013, 019 plan.md:163,187 + tasks.md:T013, 021 plan.md:155,170 + tasks.md:T015, 025 plan.md:152,166 + tasks.md:T012. These are SPEC-PREMISE gaps: the registration step is under-specified against the real import and scan contract.
+
+### F2 [P1] "flag-ceiling proves default-off" is false, and default-off flags target the wrong list — LIVE-CODE
+`flag-ceiling.vitest.ts` sets every flag to an explicit `'true'` or `'false'` (lines 100-104, 158-159, 175-177) and never reads an env-UNSET flag, so it cannot prove any flag "defaults off." Multiple phases cite it as exactly that proof: 011 plan.md:151 ("the ceiling test proves it defaults off"), 021 plan.md:170 and checklist CHK-026 ("reads off by default via flag-ceiling.vitest.ts"), 025 plan.md:166 and checklist CHK-026 [P0] ("checker returns false by default ... ceiling test green with the flag unset"). Separately, all four proposed flags are default-OFF, but `ALL_SPECKIT_FLAGS` (`flag-ceiling.vitest.ts:37-57`) is the default-ON soak set while every live default-off or opt-in flag sits in `ACKNOWLEDGED_UNCEILINGED_FLAGS` (`flag-ceiling.vitest.ts:219-290`, e.g. `SPECKIT_RETRIEVAL_CLASS_ROUTING`, `SPECKIT_DETERMINISTIC_MULTIHOP`, `SPECKIT_LANE_CHAMPION_BACKFILL`, `SPECKIT_FILE_WATCHER`). Adding a default-off flag to `ALL_SPECKIT_FLAGS` makes `activateAllFlags()` soak it at `true` and assert true (`flag-ceiling.vitest.ts:130-132`), which conflates it with the production-default set. SPEC-PREMISE: the byte-identical corpus diff each phase also cites is the real default-off proof, the flag-ceiling attribution is misplaced and the target list is wrong by precedent.
+
+### F3 [P1] A7 mis-routes validate.sh flags into flag-ceiling, contradicting its own AC_COVERAGE precedent — SPEC-PREMISE
+A7 spec.md:95,111 correctly registers `REQ_COVERAGE` in `validator-registry.json` "mirroring AC_COVERAGE." But A7 plan.md:187 and tasks.md:T017 then instruct extending `flag-ceiling.vitest.ts` to add `SPECKIT_REQ_COVERAGE` and `SPECKIT_EARS_LINT` to `ALL_SPECKIT_FLAGS` with a `FLAG_CHECKERS` entry each. These are bash-evaluated `validate.sh` rule flags with no TypeScript checker in `search-flags.ts` to import, so the `FLAG_CHECKERS` entries cannot be built, and the cited precedent `AC_COVERAGE` is itself absent from both flag-ceiling lists (`validator-registry.json:56-60` vs `flag-ceiling.vitest.ts`). The spec and the plan disagree on the registration surface. benchmark-and-test-status.md:27 repeats the wrong surface ("flags-off byte-identity via flag-ceiling").
+
+### F4 [P2] SPECKIT_FLOOR_OVERRIDE is named in the benchmark doc but unnamed in phase 027 — SPEC-PREMISE
+benchmark-and-test-status.md:51 names the 027 flag as `SPECKIT_FLOOR_OVERRIDE`. Phase 027's own docs never name that variable: spec.md:80,95,109,127, plan.md:89, tasks.md:T004 and implementation-summary.md:58-60 describe it only generically as "an env-flagged override" or "a default-off env read for DEFAULT_MIN_RESULTS and the token budget." A grep of `027-retrieval-floor-experiment/` for `FLOOR_OVERRIDE` returns nothing. This is the exact "flag named in one doc but not another" case. It is not a `search-flags.ts` flag (it gates `confidence-truncation.ts:35`), so it does not hit the drift guard, but the name mismatch should be reconciled before the env read is implemented.
+
+### F5 [P2] Four Tier-C phases declare a default-off gate with no flag named — SPEC-PREMISE
+Tier-C phases 014, 016, 017 and 018 each declare "default OFF" in benchmark-and-test-status.md:36,38,39,40 with the explicit qualifier "strategy flag not named in docs" / "consumer flag not named in docs" / "lane flag not named in docs." A grep of `014/` through `018/` finds no `SPECKIT_<feature>` token at all (only the `SPECKIT_LEVEL` and `SPECKIT_TEMPLATE_SOURCE` frontmatter tokens). A default-off gate with no flag name cannot register in any registry. 015 is the gate itself and needs no flag, but the other four leave the gating flag unspecified. This directly answers "unnamed where a phase needs one": yes, in four of five Tier-C phases.
+
+## Slice verdict
+The slice is NOT clean. The proposed `search-flags.ts` flags (B1, 019, 021, 025) cannot register as the docs describe because the docs never wire the checker into `search-flags.ts`, and several phases credit the ceiling test with a default-off proof it does not perform. A7 mis-routes a validate.sh flag into the ceiling. Two more phases have flag-naming gaps (027 name mismatch, Tier-C unnamed gates). The validate.sh-rule phases (A1/A3/A5/A6/A9/A10) route correctly and pose no drift-guard risk.
