@@ -2,6 +2,10 @@
 // MODULE: Shared Type Definitions
 // ────────────────────────────────────────────────────────────────
 
+// ────────────────────────────────────────────────────────────────
+// 1. TYPE DEFINITIONS
+// ────────────────────────────────────────────────────────────────
+
 // ─── Crawl Types ──────────────────────────────────────────────────────────────
 
 export interface CrawlResult {
@@ -320,7 +324,7 @@ export interface DesignBoundary {
 export interface StabilityClassification {
   layer: 'infrastructure' | 'system' | 'campaign' | 'content';
   confidence: number;  // 0.0 to 1.0
-  signals: string[];   // human-readable reasons for classification
+  signals: string[];   // Human-readable reasons for classification
 }
 
 // ─── Design Tokens (Final Output) ─────────────────────────────────────────────

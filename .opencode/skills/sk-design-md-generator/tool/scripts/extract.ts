@@ -2,6 +2,10 @@
 // MODULE: Extraction Orchestrator
 // ────────────────────────────────────────────────────────────────
 
+// ────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ────────────────────────────────────────────────────────────────
+
 import * as path from 'path';
 import * as fs from 'fs';
 import { crawlPages, type WaitStrategy } from './crawl';
@@ -32,6 +36,10 @@ import type {
 
 // ─── CLI Argument Parsing ─────────────────────────────────────────────────────
 
+// ────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ────────────────────────────────────────────────────────────────
+
 interface ExtractOptions {
   urls: string[];
   output: string;
@@ -44,6 +52,10 @@ interface ExtractOptions {
   waitFor?: WaitStrategy;
   mergeWith?: string;
 }
+
+// ────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ────────────────────────────────────────────────────────────────
 
 function parseArgs(argv: string[]): ExtractOptions {
   const args = argv.slice(2);
@@ -144,6 +156,10 @@ function parseArgs(argv: string[]): ExtractOptions {
   };
 }
 
+// ────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ────────────────────────────────────────────────────────────────
+
 function printUsage(): void {
   console.log(`
 Usage: npx ts-node scripts/extract.ts <url1> [url2] [url3] ...
@@ -172,12 +188,20 @@ function log(verbose: boolean, ...args: unknown[]): void {
 
 // ─── Main Extraction Pipeline ─────────────────────────────────────────────────
 
+// ────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ────────────────────────────────────────────────────────────────
+
 interface PageExtraction {
   url: string;
   dom: DOMCollection;
   css?: CSSAnalysis;
   interactions?: InteractionData;
 }
+
+// ────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ────────────────────────────────────────────────────────────────
 
 async function extract(options: ExtractOptions): Promise<void> {
   const startTime = Date.now();
@@ -536,6 +560,10 @@ async function extract(options: ExtractOptions): Promise<void> {
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
+// ────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ────────────────────────────────────────────────────────────────
+
 function urlToSlug(url: string): string {
   const parsed = new URL(url);
   const p = parsed.pathname === '/' ? 'homepage' : parsed.pathname.replace(/^\//, '').replace(/\//g, '-').replace(/[^a-zA-Z0-9-]/g, '');
@@ -543,6 +571,10 @@ function urlToSlug(url: string): string {
 }
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
+
+// ────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ────────────────────────────────────────────────────────────────
 
 if (require.main === module) {
   const options = parseArgs(process.argv);
@@ -554,5 +586,9 @@ if (require.main === module) {
     process.exit(1);
   });
 }
+
+// ────────────────────────────────────────────────────────────────
+// 6. EXPORTS
+// ────────────────────────────────────────────────────────────────
 
 export { extract, parseArgs, type ExtractOptions, type PageExtraction };

@@ -2,6 +2,10 @@
 // MODULE: CSS Analyzer
 // ────────────────────────────────────────────────────────────────
 
+// ────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ────────────────────────────────────────────────────────────────
+
 import type { Page } from 'playwright';
 import * as csstree from 'css-tree';
 import type {
@@ -14,6 +18,10 @@ import type {
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
+// ────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ────────────────────────────────────────────────────────────────
+
 const TRACKED_PSEUDO_CLASSES = new Set([
   'hover',
   'focus',
@@ -23,10 +31,18 @@ const TRACKED_PSEUDO_CLASSES = new Set([
   'focus-within',
 ]);
 
+// ────────────────────────────────────────────────────────────────
+// 3. TYPE DEFINITIONS
+// ────────────────────────────────────────────────────────────────
+
 interface CSSSource {
   inlineStyles: string[];
   externalUrls: string[];
 }
+
+// ────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ────────────────────────────────────────────────────────────────
 
 async function collectCSSSources(page: Page): Promise<CSSSource> {
   return page.evaluate(() => {
@@ -403,6 +419,10 @@ function extractAtRuleQueries(
 }
 
 // ─── Main analyzer ──────────────────────────────────────────────────────────
+
+// ────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ────────────────────────────────────────────────────────────────
 
 function countTotalRules(ast: csstree.CssNode): number {
   let count = 0;

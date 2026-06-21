@@ -2,6 +2,10 @@
 // MODULE: DOM Style Collector
 // ────────────────────────────────────────────────────────────────
 
+// ────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ────────────────────────────────────────────────────────────────
+
 import type { Page } from 'playwright';
 import type {
   DOMCollection,
@@ -10,6 +14,10 @@ import type {
   PseudoElementInfo,
   GradientInfo,
 } from './types';
+
+// ────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ────────────────────────────────────────────────────────────────
 
 interface BrowserCollectionResult {
   cssVariables: CSSVariable[];
@@ -25,6 +33,10 @@ interface BrowserCollectionResult {
   };
   logoColors: string[] | null;
 }
+
+// ────────────────────────────────────────────────────────────────
+// 3. CORE LOGIC
+// ────────────────────────────────────────────────────────────────
 
 export async function collectDOM(page: Page): Promise<DOMCollection> {
   const result = await page.evaluate((): BrowserCollectionResult => {

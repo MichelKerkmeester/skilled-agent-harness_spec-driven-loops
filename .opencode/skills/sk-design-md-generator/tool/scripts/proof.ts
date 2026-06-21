@@ -2,6 +2,10 @@
 // MODULE: Fidelity Proof
 // ────────────────────────────────────────────────────────────────
 
+// ────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ────────────────────────────────────────────────────────────────
+
 import * as fs from 'fs';
 import * as path from 'path';
 import { chromium } from 'playwright';
@@ -9,7 +13,15 @@ import type { DesignTokens } from './types';
 
 // ─── Color Math ─────────────────────────────────────────────────────────────
 
+// ────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ────────────────────────────────────────────────────────────────
+
 interface RGB { r: number; g: number; b: number }
+
+// ────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ────────────────────────────────────────────────────────────────
 
 function hexToRgb(hex: string): RGB {
   const h = hex.replace('#', '');
@@ -91,7 +103,7 @@ function scoreColorCoverage(
 
     const idx = i * 4;
     const r = pixels[idx], g = pixels[idx + 1], b = pixels[idx + 2], a = pixels[idx + 3];
-    if (a < 128) continue; // skip transparent
+    if (a < 128) continue; // Skip transparent pixels
 
     totalSampled++;
     const oklch = rgbToOklch({ r, g, b });
@@ -282,6 +294,10 @@ ${result.unmatchedColors.map((c) => {
 
 // ─── Main ───────────────────────────────────────────────────────────────────
 
+// ────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ────────────────────────────────────────────────────────────────
+
 async function runProof(
   url: string,
   tokensPath: string,
@@ -438,5 +454,9 @@ Example:
     process.exit(1);
   });
 }
+
+// ────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ────────────────────────────────────────────────────────────────
 
 export { runProof };
