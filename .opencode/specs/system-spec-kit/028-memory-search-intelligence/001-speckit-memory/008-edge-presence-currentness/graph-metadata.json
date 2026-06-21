@@ -39,12 +39,13 @@
       "extraction"
     ],
     "importance_tier": "important",
-    "status": "partial",
+    "status": "partial._c3_a_shipped_default_off,_four_candidates_pending",
     "key_files": [
       "decision-record.md",
       "implementation-summary.md",
       "lib/graph/temporal-edges.ts",
       "lib/graph/contradiction-detection.ts",
+      "tests/flag-ceiling.vitest.ts",
       "spec.md",
       "lib/storage/lineage-state.ts",
       "plan.md",
@@ -74,6 +75,12 @@
         "name": "contradiction-detection.ts",
         "kind": "code",
         "path": "lib/graph/contradiction-detection.ts",
+        "source": "derived"
+      },
+      {
+        "name": "flag-ceiling.vitest.ts",
+        "kind": "test",
+        "path": "tests/flag-ceiling.vitest.ts",
         "source": "derived"
       },
       {
@@ -189,17 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "This implementation phase turns the Spec-Kit Memory MCP's bi-temporal substrate from a build-side, read-unwired feature into the **live currentness path**, and layers temporal recall capability on top of it. It covers five PENDING candidates from packet 028's Memory research: **C3-A** (edge-presence currentness as the live retirement path), **C3-C** (TemporalMode recall: Current / AsOf / AsKnownAt / History), **memory_history** (expose the lib-only as-of lineage resolver as a tool), **CG-temporal-query-extraction** (parse a time range from the NL query), and **M-unforget-channel-disjointness** (extend the C3-D 2-channel revision matrix to a 4-channel disjointness invariant). None of the five shipped in Wave-0 (packet 030), all are gated on schema and/or benchmark work and remain PENDING here.",
+    "causal_summary": "This implementation phase turns the Spec-Kit Memory MCP's bi-temporal substrate from a build-side, read-unwired feature into the **live currentness path**, and layers temporal recall capability on top of it. It covers five candidates from packet 028's Memory research: **C3-A** (edge-presence currentness as the live retirement path), **C3-C** (TemporalMode recall: Current / AsOf / AsKnownAt / History), **memory_history** (expose the lib-only as-of lineage resolver as a tool), **CG-temporal-query-extraction** (parse a time range from the NL query), and **M-unforget-channel-disjointness** (extend the C3-D 2-channel revision matrix to a 4-channel disjointness invariant). C3-A is now implemented in the current working tree, the remaining four candidates stay PENDING behind schema, benchmark, or shared-infra gates.",
     "created_at": "2026-06-19T05:40:37.444Z",
-    "last_save_at": "2026-06-19T05:47:05.565Z",
+    "last_save_at": "2026-06-21T07:23:18.807Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

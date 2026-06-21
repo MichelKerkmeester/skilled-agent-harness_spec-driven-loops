@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/005-manual-testing-playbooks"
+    packet_pointer: "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/005-manual-testing-playbooks"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "All cleanup tasks executed and marked complete with evidence"

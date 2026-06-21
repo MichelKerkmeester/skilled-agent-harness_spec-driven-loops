@@ -37,7 +37,7 @@ Family (b): temporal and freshness governance.
 - Retroactive durability via passthrough: `description-merge.ts:33-44,62`, reserved-key gate `description-schema.ts:33-38`. Live proof of a non-schema `level` key surviving four sequence bumps: `028-memory-search-intelligence/description.json`.
 - The single embed seam: `memory-parser.ts:528-538` carrier, `:540-593` parser, `:595-607` indexable-text builder.
 - Content-type is structural and per-file today: `memory-parser.ts:420-453`. Chunk-label seam for a per-chunk tag: `chunking-orchestrator.ts:315,347`. Keyword derivation is mechanical: `folder-discovery.ts:514-535`.
-- Real target file lacks every proposed field: `031-spec-data-quality/description.json:1-23` (level, specFolder, description, keywords, lastUpdated, specId, folderSlug, parentChain, memorySequence, memoryNameHistory only).
+- Real target file lacks every proposed field: `005-spec-data-quality/description.json:1-23` (level, specFolder, description, keywords, lastUpdated, specId, folderSlug, parentChain, memorySequence, memoryNameHistory only).
 - `lastUpdated` already machine-bumped on every save, the freshness hook to extend: `workflow.ts:1714-1720`.
 - Truncation law: `confidence-truncation.ts:30-35`, doctrine `028/before-vs-after.md:169`. Brief sources: metadata fusion at 82.5 vs 73.3 precision `stage-0-external-findings.md:12`, intent and answerable-questions tag `:42`, temporal block `:44-46`, candidate 10 freshness `:99`.
 

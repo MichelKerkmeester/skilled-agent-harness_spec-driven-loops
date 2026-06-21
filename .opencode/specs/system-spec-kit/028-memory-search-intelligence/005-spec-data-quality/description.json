@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "system-spec-kit/031-spec-data-quality",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
   "description": "Feature Specification: Spec-Kit Data Quality by Default",
   "keywords": [
     "spec",
@@ -13,10 +13,11 @@
     "fusion"
   ],
   "lastUpdated": "2026-06-21T00:00:00.000Z",
-  "specId": "031",
+  "specId": "005",
   "folderSlug": "spec-data-quality",
   "parentChain": [
-    "system-spec-kit"
+    "system-spec-kit",
+    "028-memory-search-intelligence"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

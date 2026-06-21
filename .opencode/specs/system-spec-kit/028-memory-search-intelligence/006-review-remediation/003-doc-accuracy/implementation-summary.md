@@ -24,7 +24,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "The parent-dispatched doc fixes are executed and commit-traced."
-      - "The changelog-028-root, 005-release-cleanup spec and ENV_REFERENCE items are deferred out of scope."
+      - "The changelog-028-root, 000-release-cleanup spec and ENV_REFERENCE items are deferred out of scope."
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
@@ -61,7 +61,7 @@ The parent-dispatched doc-accuracy fixes are executed against committed code. Th
 Three scaffold items fall outside the parent-dispatched scope (P1-6 plus the three-file cluster) and overlap phase 004 P2 triage or a concurrent session, so they were not executed:
 
 - `changelog-028-root.md` verification / files-changed / follow-up population (cluster item 7).
-- `005-release-cleanup/spec.md` phase-map reconciliation and zero-hash fingerprint replacement (cluster items 8 and 9).
+- `000-release-cleanup/spec.md` phase-map reconciliation and zero-hash fingerprint replacement (cluster items 8 and 9).
 - `ENV_REFERENCE.md` 17-flag inventory (cluster item 10): the file is dirty with an active concurrent session's flag edits.
 
 ### Files Changed
@@ -117,6 +117,6 @@ Phase 001 first committed its `benchmark-status.md` criterion-4 re-run at `885f0
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Three cluster items deferred.** `changelog-028-root.md`, `005-release-cleanup/spec.md` (phase-map and fingerprint) and `ENV_REFERENCE.md` were not edited. They sit outside the parent-dispatched scope and overlap phase 004 P2 triage and a concurrent session that owns `ENV_REFERENCE.md`.
+1. **Three cluster items deferred.** `changelog-028-root.md`, `000-release-cleanup/spec.md` (phase-map and fingerprint) and `ENV_REFERENCE.md` were not edited. They sit outside the parent-dispatched scope and overlap phase 004 P2 triage and a concurrent session that owns `ENV_REFERENCE.md`.
 2. **No commit made.** The edits are staged in the working tree only. Committing is the dispatcher's decision.
 <!-- /ANCHOR:limitations -->

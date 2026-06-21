@@ -24,7 +24,10 @@
     "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/018-sleeptime-consolidation",
     "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/019-eval-harness-extension",
     "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/020-eval-calibration-ab",
-    "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/021-residual-correctness"
+    "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/021-residual-correctness",
+    "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/022-kept-off-flag-resolution",
+    "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/023-new-feature-research-build",
+    "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/024-reranker-research"
   ],
   "manual": {
     "depends_on": [],
@@ -211,7 +214,7 @@
     ],
     "causal_summary": "The Spec-Kit Memory MCP research surfaced candidate work across recall retrieval, deterministic IDs, currentness, reliability and eval coverage. This parent needs to route those candidate groups to child folders so the research evidence and implementation planning stay addressable without placing task detail at the parent level.",
     "created_at": "2026-06-16T14:27:21.651Z",
-    "last_save_at": "2026-06-19T06:27:43.581Z",
+    "last_save_at": "2026-06-21T07:23:18.796Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

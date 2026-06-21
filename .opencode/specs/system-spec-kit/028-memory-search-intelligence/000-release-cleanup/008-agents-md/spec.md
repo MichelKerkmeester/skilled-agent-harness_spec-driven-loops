@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/008-agents-md"
+    packet_pointer: "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/008-agents-md"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Executed cleanup, fixed mk-spec-memory tool count 37 to 39"
@@ -45,7 +45,7 @@ _memory:
 | **Status** | COMPLETE |
 | **Created** | 2026-06-19 |
 | **Parent Spec** | ../spec.md |
-| **Parent Packet** | `system-spec-kit/028-memory-search-intelligence/005-release-cleanup` |
+| **Parent Packet** | `system-spec-kit/028-memory-search-intelligence/000-release-cleanup` |
 | **Phase** | 008 of 009 |
 | **Predecessor** | ../007-agents/spec.md |
 | **Successor** | ../009-changelogs-constitutional-and-templates/spec.md |
@@ -133,7 +133,7 @@ Gates, rules and routing tables are current, section structure is clean and refe
 - Routing tables point to real skills and commands
 - Section structure is clean and non-duplicative
 - No contradiction remains with referenced skill docs
-- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/005-release-cleanup/008-agents-md --strict` exits 0 after cleanup.
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/008-agents-md --strict` exits 0 after cleanup.
 <!-- /ANCHOR:success-criteria -->
 
 ---

@@ -41,7 +41,7 @@
       "masks"
     ],
     "importance_tier": "important",
-    "status": "partial",
+    "status": "signal_implemented;_rebuild_reuse_gated",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -192,15 +192,15 @@
         "source": "derived"
       },
       {
-        "name": "Authored Level",
+        "name": "Verification Protocol",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "The Skill Advisor has a load-time staleness blind spot. Its WRITE path is already embedder-aware - `refreshSkillEmbeddingsViaAdapter` skips a re-embed only when `vec_model_id === modelId && vec_content_hash === contentHash` and fails fast on an adapter-vs-active-pointer dim mismatch (`skill-graph-db.ts` per-row guard + `:599-600` `providerModelId` signature builder, columns `embedding_model_id`/`embedding_content_hash` at `:187,:348-352`). But the READ/projection boundary the scorer actually consumes carries no embedder signature at all: `loadSqliteProjection` builds the in-memory `AdvisorProjection` and stamps `generatedAt: new Date().toISOString()` at load (`projection.ts:315`, same load-time stamp at `:328,:375,:413`). Because `generatedAt` is recomputed to *now* on every load, any embedder-version drift between the stored vectors and the active embedder is masked - the `semantic_shadow` lane (`semantic-shadow.ts`, exact cosine over the cached rows) silently consumes vectors produced by a superseded embedder whenever a refresh has not run or only partially ran, with no detection and no repair signal. This is the same \"stable source / stale derived artifact\" family as the Memory and Code-Graph staleness gaps, but on the advisor's derived projection. **[CONFIRMED - `projection.ts:315`, `skill-graph-db.ts:187/348-352/599-600` read directly, research `../research/from-006-sibling-revisit/research.md:80`, synthesis `01-go-candidates.md:36` & `04-sibling-and-cross-cutting.md:15`]**",
+    "causal_summary": "The Skill Advisor has a load-time staleness blind spot. Its WRITE path is already embedder-aware — `refreshSkillEmbeddingsViaAdapter` skips a re-embed only when `vec_model_id === modelId && vec_content_hash === contentHash` and fails fast on an adapter-vs-active-pointer dim mismatch (`skill-graph-db.ts` per-row guard + `:599-600` `providerModelId` signature builder; columns `embedding_model_id`/`embedding_content_hash` at `:187,:348-352`). But the READ/projection boundary the scorer actually consumes carries no embedder signature at all: `loadSqliteProjection` builds the in-memory `AdvisorProjection` and stamps `generatedAt: new Date().toISOString()` at load (`projection.ts:315`; same load-time stamp at `:328,:375,:413`). Because `generatedAt` is recomputed to *now* on every load, any embedder-version drift between the stored vectors and the active embedder is masked — the `semantic_shadow` lane (`semantic-shadow.ts`, exact cosine over the cached rows) silently consumes vectors produced by a superseded embedder whenever a refresh has not run or only partially ran, with no detection and no repair signal. This is the same \"stable source / stale derived artifact\" family as the Memory and Code-Graph staleness gaps, but on the advisor's derived projection. **[CONFIRMED — `projection.ts:315`, `skill-graph-db.ts:187/348-352/599-600` read directly; research `../research/from-006-sibling-revisit/research.md:80`, synthesis `01-go-candidates.md:36` & `04-sibling-and-cross-cutting.md:15`]**",
     "created_at": "2026-06-19T08:00:00.000Z",
-    "last_save_at": "2026-06-19T06:06:27.152Z",
+    "last_save_at": "2026-06-21T07:23:18.844Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

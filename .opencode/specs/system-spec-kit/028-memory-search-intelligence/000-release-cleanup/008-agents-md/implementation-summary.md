@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/008-agents-md"
+    packet_pointer: "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/008-agents-md"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Executed cleanup, fixed mk-spec-memory tool count 37 to 39"
@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/028-memory-search-intelligence/005-release-cleanup/008-agents-md |
+| **Spec Folder** | system-spec-kit/028-memory-search-intelligence/000-release-cleanup/008-agents-md |
 | **Completed** | 2026-06-19 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
@@ -96,7 +96,7 @@ Discovery enumerated every `AGENTS.md` and `CLAUDE.md` under the repo, then filt
 | Path resolution | Every referenced path in root AGENTS.md resolves |
 | Tool counts | mk-spec-memory 39, advisor 9, code-index 8 confirmed against live CLIs |
 | Edited-prose voice | Edited line has no em dash, semicolon or Oxford comma |
-| Strict validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/005-release-cleanup/008-agents-md --strict` exits 0 |
+| Strict validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/008-agents-md --strict` exits 0 |
 <!-- /ANCHOR:verification -->
 
 ---

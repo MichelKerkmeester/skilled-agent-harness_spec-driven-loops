@@ -8,7 +8,7 @@ Cohort R3. Model opus via claude2. Wave-3 redesign of `graph-metadata.json` that
 
 Two inherited loop assumptions are wrong against the real corpus and reshape the design.
 
-The claim that 0 of 2022 typed edges are populated is false. A scan across all 2022 `graph-metadata.json` files shows 57 files at 2.8 percent carry at least one manual edge for 103 total entries, 52 `depends_on`, 1 `supersedes`, 22 `related_to`. A real hand-authored example is `028-memory-search-intelligence/009-reranker-research/graph-metadata.json` with a `depends_on` to `008-new-feature-research-build` and a `related_to` to `001-speckit-memory`. The edges are sparse not absent and `supersedes` is effectively dead at 1 file. Dropping the slots would destroy 103 real edges and break `packetReferencesToCausalLinks` consumers.
+The claim that 0 of 2022 typed edges are populated is false. A scan across all 2022 `graph-metadata.json` files shows 57 files at 2.8 percent carry at least one manual edge for 103 total entries, 52 `depends_on`, 1 `supersedes`, 22 `related_to`. A real hand-authored example is `028-memory-search-intelligence/001-speckit-memory/024-reranker-research/graph-metadata.json` with a `depends_on` to `008-new-feature-research-build` and a `related_to` to `001-speckit-memory`. The edges are sparse not absent and `supersedes` is effectively dead at 1 file. Dropping the slots would destroy 103 real edges and break `packetReferencesToCausalLinks` consumers.
 
 The rollup record does not need to be invented because it already exists first-class. `graph_metadata` is a real embedded document type with weight 0.75 (`lib/storage/document-helpers.ts:34`), higher than `description_metadata` at 0.55, `plan` at 0.7 and `tasks` plus `research` at 0.6. It flows through `parseMemoryFile` returning a content field (`lib/parsing/memory-parser.ts:333,353`) and gets a plus 0.12 on packet-oriented queries (`lib/search/pipeline/stage1-candidate-gen.ts:341-368`). So the candidate-6 escape via a first-class embedded record is already 90 percent done, the parent record is first-class but semantically empty about its children. The literal 0.02 keyword-fallback multiplier could not be located in `lib/search`, nearest 0.02 values are the adaptive-ranking outcome weight and the cross-channel bonus, treat the 0.02 as inherited loop context and ground the actionable half in the weight table.
 
@@ -28,7 +28,7 @@ Typed-edge population conditional-go for auto-derived `depends_on` plus `superse
 - First-class embedded parent record carrier: `lib/storage/document-helpers.ts:34` (graph_metadata 0.75 above description_metadata 0.55), `lib/parsing/memory-parser.ts:333,353`, `lib/search/pipeline/stage1-candidate-gen.ts:341-368` (plus 0.12 packet boost).
 - Rollup schema site: `graph-metadata-schema.ts:40-59`, derive wiring at `deriveGraphMetadata` after `resolveChildrenIds`.
 - Edge preservation and source discriminator: `graph-metadata-schema.ts:22`, `graph-metadata-parser.ts:1133`, union sites `graph-metadata-parser.ts:1339-1347,1361-1367`.
-- Real corpus edges: 57 files with 103 entries, example `028-memory-search-intelligence/009-reranker-research/graph-metadata.json`, parent thin example `028-memory-search-intelligence/graph-metadata.json` with 9 children.
+- Real corpus edges: 57 files with 103 entries, example `028-memory-search-intelligence/001-speckit-memory/024-reranker-research/graph-metadata.json`, parent thin example `028-memory-search-intelligence/graph-metadata.json` with 9 children.
 
 ## READER
 

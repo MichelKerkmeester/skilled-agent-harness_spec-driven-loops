@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/001-code-readmes"
+    packet_pointer: "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/001-code-readmes"
     last_updated_at: "2026-06-19T12:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Executed code README cleanup, recorded evidence"
@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/028-memory-search-intelligence/005-release-cleanup/001-code-readmes |
+| **Spec Folder** | system-spec-kit/028-memory-search-intelligence/000-release-cleanup/001-code-readmes |
 | **Completed** | 2026-06-19 (commit a3621ebe33) |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
@@ -88,7 +88,7 @@ Discovery globbed the per-directory code READMEs across skill folders. Each cand
 |-------|--------|
 | Cleanup execution | Executed at a3621ebe33, 12 READMEs aligned, 0 added or deleted |
 | Path resolution | All corrected paths resolve |
-| Strict validation | PASSED, 0 errors and 0 warnings via `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/005-release-cleanup/001-code-readmes --strict` |
+| Strict validation | PASSED, 0 errors and 0 warnings via `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/001-code-readmes --strict` |
 <!-- /ANCHOR:verification -->
 
 ---

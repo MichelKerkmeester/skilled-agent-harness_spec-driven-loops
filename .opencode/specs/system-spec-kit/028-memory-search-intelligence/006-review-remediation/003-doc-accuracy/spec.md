@@ -96,8 +96,8 @@ Correct the changelog rollup so it reflects committed code, and refresh the stal
 | 5 | `before-vs-after.md:155` | "carries the same false `wait rather than shipped` framing" as the timeline Section E classification. |
 | 6 | `benchmark-status.md:41` | "Default-off flag inventory omits `SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING` ... The gating inventory is incomplete, understating the set of flags that must stay default-off until benchmarked." |
 | 7 | `changelog/changelog-028-root.md:46` | "Packet root changelog records zero verification, files-changed, and follow-up evidence for the whole 028 program." |
-| 8 | `005-release-cleanup/spec.md:103` | "phase-map lists all nine phases PENDING while the track changelog records three Complete (stale canonical status table)." |
-| 9 | `005-release-cleanup/spec.md:23` | "`session_dedup.fingerprint` is an all-zeros placeholder hash ... a real-content recompute is never all-zeros." |
+| 8 | `000-release-cleanup/spec.md:103` | "phase-map lists all nine phases PENDING while the track changelog records three Complete (stale canonical status table)." |
+| 9 | `000-release-cleanup/spec.md:23` | "`session_dedup.fingerprint` is an all-zeros placeholder hash ... a real-content recompute is never all-zeros." |
 | 10 | `mcp_server/ENV_REFERENCE.md:296` | "All 17 new 028 `SPECKIT_*` opt-in flags are absent from `ENV_REFERENCE.md`, the canonical flag/schema baseline AGENTS.md cites." |
 | 11 | `before-vs-after.md` Section 6 | "Section 6 states `All nine are PENDING and define cleanup scope only`" while `changelog-005-root.md` marks 005/007/008 Complete. |
 | 12 | `001-speckit-memory/changelog/changelog-001-root.md` rows 009/011/017/018/020 | The same rollup rows that drive P1-6, treated here as the doc-staleness rows to reconcile against each child implementation-summary. |
@@ -111,7 +111,7 @@ Correct the changelog rollup so it reflects committed code, and refresh the stal
 | `before-vs-after.md` (028 root) | Modify later | Advance CURRENT STATE past commit 30; correct release-cleanup PENDING claims |
 | `benchmark-status.md` (028 root) | Modify later | Complete the default-off flag inventory; layer on top of the phase-001 re-run update |
 | `changelog/changelog-028-root.md` (028 root) | Modify later | Populate verification, files-changed and follow-up evidence |
-| `005-release-cleanup/spec.md` | Modify later | Reconcile the phase-map status table; replace the zero-hash fingerprint |
+| `000-release-cleanup/spec.md` | Modify later | Reconcile the phase-map status table; replace the zero-hash fingerprint |
 | `mcp_server/ENV_REFERENCE.md` | Modify later | Add the 17 new 028 opt-in flags with defaults and gating rationale |
 | `spec.md` | Create | Defines remediation scope and acceptance criteria |
 | `plan.md` | Create | Defines fix approach and verification route |
@@ -137,8 +137,8 @@ Correct the changelog rollup so it reflects committed code, and refresh the stal
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-005 | Sibling status tables reconciled | `005-release-cleanup/spec.md` phase-map and root changelog agree with the track changelog |
-| REQ-006 | Real fingerprint replaces placeholder | The `005-release-cleanup/spec.md` `session_dedup.fingerprint` is content-derived, not all-zeros |
+| REQ-005 | Sibling status tables reconciled | `000-release-cleanup/spec.md` phase-map and root changelog agree with the track changelog |
+| REQ-006 | Real fingerprint replaces placeholder | The `000-release-cleanup/spec.md` `session_dedup.fingerprint` is content-derived, not all-zeros |
 | REQ-007 | No false completion claims introduced | Every status edit is traceable to a commit or implementation-summary |
 <!-- /ANCHOR:requirements -->
 
@@ -162,7 +162,7 @@ Correct the changelog rollup so it reflects committed code, and refresh the stal
 |------|------|--------|------------|
 | Risk | benchmark-status.md double-edited | Phase 001 also updates this file | Sequence phase 003 after phase 001; layer the inventory fix on the re-run update |
 | Risk | Status reconciliation overstates progress | A doc could flip to Complete without evidence | Trace every status change to a commit or implementation-summary |
-| Risk | Editing the 005 sibling spec.md changes its validation | The phase-map and fingerprint edits touch a validated child | Re-run `validate.sh 005-release-cleanup --strict` after the edit |
+| Risk | Editing the 005 sibling spec.md changes its validation | The phase-map and fingerprint edits touch a validated child | Re-run `validate.sh 000-release-cleanup --strict` after the edit |
 | Dependency | Branch commit history | Status claims must trace to commits | Use `git log` evidence during execution |
 <!-- /ANCHOR:risks -->
 

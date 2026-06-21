@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/003-skill-references-assets-and-skillmd"
+    packet_pointer: "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/003-skill-references-assets-and-skillmd"
     last_updated_at: "2026-06-19T12:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Executed cleanup: aligned 14 skill SKILL.md, references and assets docs"
@@ -46,7 +46,7 @@ _memory:
 | **Created** | 2026-06-19 |
 | **Completed** | 2026-06-19 |
 | **Parent Spec** | ../spec.md |
-| **Parent Packet** | `system-spec-kit/028-memory-search-intelligence/005-release-cleanup` |
+| **Parent Packet** | `system-spec-kit/028-memory-search-intelligence/000-release-cleanup` |
 | **Phase** | 003 of 009 |
 | **Predecessor** | ../002-skill-and-repo-readmes/spec.md |
 | **Successor** | ../004-feature-catalogs/spec.md |
@@ -134,7 +134,7 @@ Skill routing sections, reference docs and asset docs are current, cross-linked 
 - Reference and asset docs point to real files
 - Cross-links between SKILL.md, references and assets resolve
 - No dangling pointer remains after path scans
-- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/005-release-cleanup/003-skill-references-assets-and-skillmd --strict` exits 0 after cleanup.
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/003-skill-references-assets-and-skillmd --strict` exits 0 after cleanup.
 <!-- /ANCHOR:success-criteria -->
 
 ---

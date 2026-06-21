@@ -39,8 +39,11 @@
       "as-of"
     ],
     "importance_tier": "important",
-    "status": "partial",
+    "status": "done_(schema_foundation_shipped;_consumers_default_off)",
     "key_files": [
+      ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      ".opencode/skills/system-code-graph/mcp_server/tests/code-edge-bitemporal-schema.vitest.ts",
+      ".opencode/skills/system-code-graph/mcp_server/tests/edge-staleness-correctness.vitest.ts",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -49,6 +52,24 @@
       "spec.md"
     ],
     "entities": [
+      {
+        "name": "code-graph-db.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+        "source": "derived"
+      },
+      {
+        "name": "code-edge-bitemporal-schema.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-code-graph/mcp_server/tests/code-edge-bitemporal-schema.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "edge-staleness-correctness.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-code-graph/mcp_server/tests/edge-staleness-correctness.vitest.ts",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -174,29 +195,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "The code-graph reindex is destructive DELETE+INSERT with **no temporal columns**: `code_edges(id, source_id, target_id, edge_type, weight, metadata)` carries no validity window, and currentness equals physical edge presence (`code-graph-db.ts:177-184`, SCHEMA_VERSION 5). This phase captures the heavy schema-migration cluster that would make code structure *explicitly* bi-temporal - a symbol/edge valid for a commit range (event-time) and indexed at scan-time (transaction-time) - mirroring Memory's causal four-timestamp window (C3-B). The cluster is: **Q1-C1** (`valid_at`/`invalid_at` columns, replace reindex DELETEs with `UPDATE ... SET invalid_at = <generation>` + INSERT new, default read filters `invalid_at IS NULL`), **Q1-C1-views** (the `code_nodes_live`/`code_edges_live` current-view chokepoint that localizes the migration - the keystone), **CG-edge-bitemporal-lifecycle** (the edge-granularity validity + relabel-revision layer), and **CG-symbol-timeline-query** (the timeline/as-of read). Q1-C1 and Q1-C1-views MUST co-ship atomically through ONE `code-graph-db.ts` reindex transaction boundary, the whole cluster depends on **Q6-C1 (the hard generation watermark) landing first**.",
+    "causal_summary": "The code-graph reindex is destructive DELETE+INSERT with **no temporal columns**: `code_edges(id, source_id, target_id, edge_type, weight, metadata)` carries no validity window, and currentness equals physical edge presence (`code-graph-db.ts:177-184`, SCHEMA_VERSION 5). This phase captures the heavy schema-migration cluster that would make code structure *explicitly* bi-temporal — a symbol/edge valid for a commit range (event-time) and indexed at scan-time (transaction-time) — mirroring Memory's causal four-timestamp window (C3-B). The cluster is: **Q1-C1** (`valid_at`/`invalid_at` columns; replace reindex DELETEs with `UPDATE ... SET invalid_at = <generation>` + INSERT new; default read filters `invalid_at IS NULL`), **Q1-C1-views** (the `code_nodes_live`/`code_edges_live` current-view chokepoint that localizes the migration — the keystone), **CG-edge-bitemporal-lifecycle** (the edge-granularity validity + relabel-revision layer), and **CG-symbol-timeline-query** (the timeline/as-of read). Q1-C1 and Q1-C1-views MUST co-ship atomically through ONE `code-graph-db.ts` reindex transaction boundary; the whole cluster depends on **Q6-C1 (the hard generation watermark) landing first**.",
     "created_at": "2026-06-19T05:52:29.581Z",
-    "last_save_at": "2026-06-19T06:06:27.141Z",
+    "last_save_at": "2026-06-21T07:23:18.834Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

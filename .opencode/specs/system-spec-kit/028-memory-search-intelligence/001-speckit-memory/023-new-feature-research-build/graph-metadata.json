@@ -1,24 +1,30 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/008-new-feature-research-build",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/008-new-feature-research-build",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence",
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/023-new-feature-research-build",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/023-new-feature-research-build",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/028-memory-search-intelligence/007-kept-off-flag-resolution"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/028-memory-search-intelligence/001-speckit-memory"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
       "028 new feature research build",
       "028 track b new feature outcome",
       "028 eval-v2 measurability gate",
-      "028 append not displace truncation finding"
+      "028 append not displace truncation finding",
+      "028 new feature build plan",
+      "028 eval-v2 build method",
+      "028 research to hold method",
+      "028 new feature build tasks",
+      "028 track b tasks",
+      "028 new feature build checklist",
+      "028 track b checklist",
+      "028 new feature research build summary"
     ],
     "key_topics": [
       "028",
@@ -26,9 +32,13 @@
       "feature",
       "research",
       "build",
+      "track",
+      "outcome",
       "eval-v2",
-      "truncation",
-      "multihop"
+      "measurability",
+      "gate",
+      "append",
+      "displace"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -39,11 +49,156 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "entities": [],
-    "causal_summary": "New-Feature Research and Build is the TRACK B arc that turned the deleted-10 teachings into four candidate features. eval-v2 was built and kept as the measurability gate that exposed the eval-vs-prod fidelity gap, and three features were built default-off and fresh-Opus held because the append-not-displace pattern makes tail-additive recall zero at prod K by construction.",
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Record",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The flag-resolution reckoning deleted ten default-off switches, and each deletion taught something specific about why a lever fails to move live recall. Those teachings were a research input, not a dead end. They pointed at a small set of new candidate features that might earn a flip where the deleted ten did not. The campaign needed a fair way to measure a new candidate before trusting it, and the old eval harness had hidden the deleted features behind eval-saturation, so a measurement built on it would repeat the same mistake.",
     "created_at": "2026-06-20T00:00:00Z",
-    "last_save_at": "2026-06-20T00:00:00Z",
-    "save_lineage": "scaffold",
+    "last_save_at": "2026-06-21T07:23:18.828Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -53,6 +208,6 @@
       "implementation-summary.md"
     ],
     "last_active_child_id": null,
-    "last_active_at": "2026-06-20T00:00:00Z"
+    "last_active_at": null
   }
 }

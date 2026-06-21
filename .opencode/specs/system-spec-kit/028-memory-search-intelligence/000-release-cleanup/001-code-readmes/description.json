@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/001-code-readmes",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/001-code-readmes",
   "description": "Feature Specification: Code README Cleanup",
   "keywords": [
     "feature",
@@ -15,7 +15,7 @@
   "parentChain": [
     "system-spec-kit",
     "028-memory-search-intelligence",
-    "005-release-cleanup"
+    "000-release-cleanup"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

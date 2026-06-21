@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/006-commands"
+    packet_pointer: "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/006-commands"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Executed command doc cleanup, route-drift fix in doctor/speckit.md"
@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/028-memory-search-intelligence/005-release-cleanup/006-commands |
+| **Spec Folder** | system-spec-kit/028-memory-search-intelligence/000-release-cleanup/006-commands |
 | **Completed** | 2026-06-19 (commit 818db21c54) |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
@@ -91,7 +91,7 @@ Discovery globbed every command doc across `.opencode`, `.claude` and `.codex`, 
 | Check | Result |
 |-------|--------|
 | Cleanup execution | Executed at 818db21c54, one route-drift fix in doctor/speckit.md |
-| Strict validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/005-release-cleanup/006-commands --strict` |
+| Strict validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/006-commands --strict` |
 <!-- /ANCHOR:verification -->
 
 ---

@@ -39,23 +39,36 @@
       "guard"
     ],
     "importance_tier": "normal",
-    "status": "partial",
+    "status": "done_(closed_vocab_check_shipped;_governance_siblings_deferred)",
     "key_files": [
       ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      ".opencode/skills/system-code-graph/mcp_server/lib/indexer-types.ts",
+      ".opencode/skills/system-code-graph/mcp_server/tests/code-edge-governance-vocab.vitest.ts",
       ".opencode/skills/system-code-graph/mcp_server/lib/structural-indexer.ts",
       ".opencode/skills/system-code-graph/mcp_server/lib/edge-drift.ts",
-      ".opencode/skills/system-code-graph/mcp_server/lib/indexer-types.ts",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "spec.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "spec.md"
     ],
     "entities": [
       {
         "name": "code-graph-db.ts",
         "kind": "code",
         "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+        "source": "derived"
+      },
+      {
+        "name": "indexer-types.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/indexer-types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "code-edge-governance-vocab.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-code-graph/mcp_server/tests/code-edge-governance-vocab.vitest.ts",
         "source": "derived"
       },
       {
@@ -68,12 +81,6 @@
         "name": "edge-drift.ts",
         "kind": "code",
         "path": ".opencode/skills/system-code-graph/mcp_server/lib/edge-drift.ts",
-        "source": "derived"
-      },
-      {
-        "name": "indexer-types.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-code-graph/mcp_server/lib/indexer-types.ts",
         "source": "derived"
       },
       {
@@ -95,15 +102,15 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -187,19 +194,13 @@
       {
         "name": "Verification Checklist",
         "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Date",
-        "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The code-graph edge table is **ungoverned at write time**. Four distinct holes share that one theme:",
     "created_at": "2026-06-19T05:52:29.582Z",
-    "last_save_at": "2026-06-19T06:06:27.144Z",
+    "last_save_at": "2026-06-21T07:23:18.837Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

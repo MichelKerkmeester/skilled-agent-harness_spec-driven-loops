@@ -39,10 +39,12 @@
       "context"
     ],
     "importance_tier": "important",
-    "status": "partial",
+    "status": "phase_1_implemented_(governor_+_flag,_default_off,_unit_proven);_phase_2_wiring_+_phase_3_benchmark_pending",
     "key_files": [
-      "mcp_server/handlers/memory-context.ts",
       "mcp_server/lib/search/search-flags.ts",
+      "mcp_server/tests/flag-ceiling.vitest.ts",
+      "mcp_server/handlers/memory-context.ts",
+      "schemas/tool-input-schemas.ts",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
       "plan.md",
@@ -58,15 +60,27 @@
     ],
     "entities": [
       {
+        "name": "search-flags.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/search-flags.ts",
+        "source": "derived"
+      },
+      {
+        "name": "flag-ceiling.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/flag-ceiling.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "memory-context.ts",
         "kind": "code",
         "path": "mcp_server/handlers/memory-context.ts",
         "source": "derived"
       },
       {
-        "name": "search-flags.ts",
+        "name": "tool-input-schemas.ts",
         "kind": "code",
-        "path": "mcp_server/lib/search/search-flags.ts",
+        "path": "schemas/tool-input-schemas.ts",
         "source": "derived"
       },
       {
@@ -136,7 +150,7 @@
         "source": "derived"
       },
       {
-        "name": "Authored Level",
+        "name": "Letta Init",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -155,6 +169,12 @@
       },
       {
         "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -182,29 +202,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "step-cap",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "Add a ReAct-style agentic strategy to the Memory MCP's `memory_context` mode router so that complex asks get an LLM-driven reason-act-observe retrieval loop over the existing memory tools, instead of a single straight-line search call. Research (028/007, iterations 11/17/22) confirmed the strategy seam is clean and additive, but blast-radius scoping corrected the original H/L \"best lev/eff\" rating down to **L effort**: the loop injects an LLM into a synchronous, deterministic, pure better-sqlite3 retrieval hot path, and **no loop/cost governor exists anywhere today** - controller, step-cap, cost-ceiling, and stop-condition are all greenfield. This is its own design packet, prove-first, gated default-off.",
+    "causal_summary": "Add a ReAct-style agentic strategy to the Memory MCP's `memory_context` mode router so that complex asks get an LLM-driven reason-act-observe retrieval loop over the existing memory tools, instead of a single straight-line search call. Research (028/007, iterations 11/17/22) confirmed the strategy seam is clean and additive, but blast-radius scoping corrected the original H/L \"best lev/eff\" rating down to **L effort**: the loop injects an LLM into a synchronous, deterministic, pure better-sqlite3 retrieval hot path, and **no loop/cost governor exists anywhere today** — controller, step-cap, cost-ceiling, and stop-condition are all greenfield. This is its own design packet, prove-first, gated default-off.",
     "created_at": "2026-06-19T05:40:37.449Z",
-    "last_save_at": "2026-06-19T05:47:05.577Z",
+    "last_save_at": "2026-06-21T07:23:18.817Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

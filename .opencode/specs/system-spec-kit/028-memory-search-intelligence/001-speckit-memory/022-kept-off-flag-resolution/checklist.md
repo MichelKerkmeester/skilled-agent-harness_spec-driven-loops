@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/007-kept-off-flag-resolution"
+    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/022-kept-off-flag-resolution"
     last_updated_at: "2026-06-20T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Created the flag-resolution checklist"
@@ -18,7 +18,7 @@ _memory:
       - "checklist.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-06-20-checklist-028-007-kept-off-flag-resolution"
+      session_id: "2026-06-20-checklist-028-022-kept-off-flag-resolution"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
@@ -98,7 +98,7 @@ _memory:
 ## Documentation
 
 - [x] CHK-040 [P1] Spec, plan, tasks and checklist for this phase are synchronized. All five Level-2 docs present and consistent.
-- [x] CHK-041 [P1] The parent and the affected decision-records point back to this phase. The deleted-flag records link to `007-kept-off-flag-resolution/`.
+- [x] CHK-041 [P1] The parent and the affected decision-records point back to this phase. The deleted-flag records link to `022-kept-off-flag-resolution/`.
 - [x] CHK-042 [P2] The cross-cutting docs link to this phase for the full method. feature-flags, benchmark-status, before-vs-after, roadmap and timeline reference it.
 <!-- /ANCHOR:docs -->
 

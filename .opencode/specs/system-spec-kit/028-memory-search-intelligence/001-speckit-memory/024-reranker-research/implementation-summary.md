@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/009-reranker-research"
+    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/024-reranker-research"
     last_updated_at: "2026-06-21T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Recorded the reranker research outcome, CONDITIONAL-GO blocked on data"
@@ -20,7 +20,7 @@ _memory:
       - "research.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-06-21-summary-028-009-reranker-research"
+      session_id: "2026-06-21-summary-028-024-reranker-research"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/028-memory-search-intelligence/009-reranker-research |
+| **Spec Folder** | system-spec-kit/028-memory-search-intelligence/001-speckit-memory/024-reranker-research |
 | **Completed** | 2026-06-21 |
 | **Level** | 2 |
 | **Phase type** | Research, read-only, no code shipped |

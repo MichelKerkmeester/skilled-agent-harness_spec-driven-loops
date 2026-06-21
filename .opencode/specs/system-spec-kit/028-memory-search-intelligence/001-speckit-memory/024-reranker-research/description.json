@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/009-reranker-research",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/024-reranker-research",
   "description": "Feature Specification: Citation-Ledger Reranker Research",
   "keywords": [
     "reranker",
@@ -11,11 +11,12 @@
     "demote-only"
   ],
   "lastUpdated": "2026-06-21T00:00:00.000Z",
-  "specId": "009",
+  "specId": "024",
   "folderSlug": "reranker-research",
   "parentChain": [
     "system-spec-kit",
-    "028-memory-search-intelligence"
+    "028-memory-search-intelligence",
+    "001-speckit-memory"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

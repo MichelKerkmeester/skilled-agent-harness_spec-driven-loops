@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/007-kept-off-flag-resolution"
+    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/022-kept-off-flag-resolution"
     last_updated_at: "2026-06-20T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Created the flag-resolution plan"
@@ -19,7 +19,7 @@ _memory:
       - "plan.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-06-20-plan-028-007-kept-off-flag-resolution"
+      session_id: "2026-06-20-plan-028-022-kept-off-flag-resolution"
       parent_session_id: null
     completion_pct: 100
     open_questions: []

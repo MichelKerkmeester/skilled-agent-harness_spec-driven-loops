@@ -15,7 +15,7 @@ _memory:
     last_updated_at: "2026-06-19T06:45:00Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "Added release cleanup phase parent scaffold"
-    next_safe_action: "Resume subsystem parents 001-004 or release cleanup parent 005"
+    next_safe_action: "Resume subsystem parents 001-004 or release cleanup parent 000"
     blockers: []
     key_files:
       - "spec.md"
@@ -25,7 +25,7 @@ _memory:
       - "002-code-graph/spec.md"
       - "003-skill-advisor/spec.md"
       - "004-deep-loop/spec.md"
-      - "005-release-cleanup/spec.md"
+      - "000-release-cleanup/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-06-19-028-memory-search-intelligence-parent"
@@ -34,7 +34,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "Children 001-004 record their implementation child maps."
-      - "Child 005 defines release-cleanup scope only."
+      - "Child 000 defines release-cleanup scope only."
       - "Earlier research-only rounds live in subsystem research archives."
       - "Packet 030 is the Wave-0 SHIPPED done-evidence record and remains intentionally separate."
 ---
@@ -64,10 +64,10 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Packet 028 owns the planning record that turns external memory-system research into implementation sub-phases for internal retrieval surfaces. Its nine top-level children span four subsystem phase parents, one release-cleanup phase parent, a review-remediation phase parent, the kept-off flag-resolution reckoning, the TRACK B new-feature research-and-build arc and the reranker deep research so research inputs, candidate plans, cleanup scopes and child validation state are easy to navigate.
+Packet 028 owns the planning record that turns external memory-system research into implementation sub-phases for internal retrieval surfaces. Its seven top-level children span a release-cleanup phase parent, four subsystem phase parents, the spec-data-quality research packet and a review-remediation phase parent so research inputs, candidate plans, cleanup scopes and child validation state are easy to navigate. The kept-off flag-resolution, new-feature-research-build and reranker-research phases are nested under 001-speckit-memory as children 022 through 024.
 
 ### Purpose
-Provide the root purpose, child map and cross-packet boundary for packet 028. This parent routes the subsystem children to their implementation child maps, routes release cleanup to child 005 and records packet 030 as the Wave-0 SHIPPED done-evidence record.
+Provide the root purpose, child map and cross-packet boundary for packet 028. This parent routes the subsystem children to their implementation child maps, routes release cleanup to child 000 and records packet 030 as the Wave-0 SHIPPED done-evidence record.
 
 > **Phase-parent note:** This `spec.md` is the only authored document at this parent level. Detailed planning lives in the child phase folders listed below.
 <!-- /ANCHOR:problem -->
@@ -79,7 +79,7 @@ Provide the root purpose, child map and cross-packet boundary for packet 028. Th
 
 ### In Scope
 - Root-level routing for packet 028 subsystem phase parents.
-- Phase-documentation map updates for children 001 through 005.
+- Phase-documentation map updates for children 000 through 006.
 - Release-cleanup scope routing for every pre-release documentation surface.
 - Merged research archive pointers for earlier research-only rounds.
 - A pointer to packet 030 as the Wave-0 SHIPPED done-evidence record.
@@ -100,7 +100,7 @@ Provide the root purpose, child map and cross-packet boundary for packet 028. Th
 | `002-code-graph/spec.md` | Modify | 002 | Code Graph subsystem phase-parent map |
 | `003-skill-advisor/spec.md` | Modify | 003 | Skill Advisor subsystem phase-parent map |
 | `004-deep-loop/spec.md` | Modify | 004 | Deep Loop subsystem phase-parent map |
-| `005-release-cleanup/spec.md` | Create | 005 | Release-readiness documentation cleanup phase-parent map |
+| `000-release-cleanup/spec.md` | Create | 000 | Release-readiness documentation cleanup phase-parent map |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -110,20 +110,18 @@ Provide the root purpose, child map and cross-packet boundary for packet 028. Th
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 001 | `001-speckit-memory/` | Spec-Kit Memory MCP research plus 21 implementation child plans | Phase parent |
+| 000 | `000-release-cleanup/` | Release-readiness documentation sweep across repository doc surfaces | Phase parent |
+| 001 | `001-speckit-memory/` | Spec-Kit Memory MCP research plus 24 implementation child plans, including the kept-off-flag resolution, new-feature-research-build and reranker-research phases now nested as 022 through 024 | Phase parent |
 | 002 | `002-code-graph/` | Code Graph research plus 8 implementation child plans | Phase parent |
 | 003 | `003-skill-advisor/` | Skill Advisor research plus 7 implementation child plans | Phase parent |
 | 004 | `004-deep-loop/` | Deep Loop Runtime research plus 6 implementation child plans | Phase parent |
-| 005 | `005-release-cleanup/` | Release-readiness documentation sweep across repository doc surfaces | Phase parent |
+| 005 | `005-spec-data-quality/` | Spec-kit data-quality deep research, 19 iterations, go/no-go tiering of 1 GO and 5 GO-on-cost and 4 conditional and 5 NO-GO | Complete |
 | 006 | `006-review-remediation/` | Four-round deep review and its scoped remediation track | Phase parent |
-| 007 | `007-kept-off-flag-resolution/` | Final flip-or-delete reckoning for every default-off flag, keep 5 and delete 10 | Complete |
-| 008 | `008-new-feature-research-build/` | TRACK B new-feature arc, eval-v2 built and kept and 3 features built default-off and held | Complete |
-| 009 | `009-reranker-research/` | Reranker deep research, CONDITIONAL-GO, a demote-only Beta-posterior penalty hits the oracle ceiling under synthesis but earns 0.000 on real data | Complete |
 
 ### Phase Transition Rules
 
 - Children 001 through 004 are subsystem phase parents. Their direct child folders own implementation specs, plans, tasks and validation evidence.
-- Child 005 is a release-cleanup phase parent. Its direct child folders define cleanup scopes only until a later execution pass.
+- Child 000 is a release-cleanup phase parent. Its direct child folders define cleanup scopes only until a later execution pass.
 - Research-only material from earlier rounds lives under subsystem `research/from-*` archives.
 - Run strict validation on a child parent and its direct children before using it as an execution source.
 
@@ -131,7 +129,7 @@ Provide the root purpose, child map and cross-packet boundary for packet 028. Th
 
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
-| root | child parent | Select a child from 001 through 005 | Child `spec.md` lists all direct children or scoped docs |
+| root | child parent | Select a child from 000 through 006 | Child `spec.md` lists all direct children or scoped docs |
 | subsystem parent | implementation child | Select the next PENDING candidate group | Child `spec.md` names gate, scope and evidence |
 | release cleanup parent | cleanup child | Select one PENDING documentation surface | Child `spec.md` names discovery, scope and verification |
 | implementation child | root | Child reaches strict validation green | `validate.sh <child> --strict` exits 0 |
@@ -158,6 +156,6 @@ The Wave-0 implementation record is the Wave-0 SHIPPED record for candidates alr
 ## RELATED DOCUMENTS
 
 - **Roadmap**: `research/roadmap.md`
-- **Child parents**: `001-speckit-memory/`, `002-code-graph/`, `003-skill-advisor/`, `004-deep-loop/`, `005-release-cleanup/`, `006-review-remediation/`, `007-kept-off-flag-resolution/`, `008-new-feature-research-build/`, `009-reranker-research/`
+- **Child parents**: `000-release-cleanup/`, `001-speckit-memory/`, `002-code-graph/`, `003-skill-advisor/`, `004-deep-loop/`, `005-spec-data-quality/`, `006-review-remediation/`
 - **Merged research index**: `001-speckit-memory/research/merged-research-index.md`
 - **Graph metadata**: `graph-metadata.json`

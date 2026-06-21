@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/004-feature-catalogs"
+    packet_pointer: "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/004-feature-catalogs"
     last_updated_at: "2026-06-19T12:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Executed feature_catalog cleanup, recorded evidence"
@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/028-memory-search-intelligence/005-release-cleanup/004-feature-catalogs |
+| **Spec Folder** | system-spec-kit/028-memory-search-intelligence/000-release-cleanup/004-feature-catalogs |
 | **Completed** | 2026-06-19 (commit ab405fa052) |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
@@ -88,7 +88,7 @@ Discovery enumerated the system-spec-kit feature_catalog entries. Each candidate
 |-------|--------|
 | Cleanup execution | Executed at ab405fa052, 12 catalog files aligned, 0 entries added or removed |
 | Path resolution | All corrected paths resolve |
-| Strict validation | PASSED, 0 errors and 0 warnings via `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/005-release-cleanup/004-feature-catalogs --strict` |
+| Strict validation | PASSED, 0 errors and 0 warnings via `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/004-feature-catalogs --strict` |
 <!-- /ANCHOR:verification -->
 
 ---

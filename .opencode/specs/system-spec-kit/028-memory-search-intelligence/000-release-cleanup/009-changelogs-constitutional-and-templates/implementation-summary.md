@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/009-changelogs-constitutional-and-templates"
+    packet_pointer: "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/009-changelogs-constitutional-and-templates"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Executed cleanup: fixed 4 factual drifts, changelogs left historical"
@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/028-memory-search-intelligence/005-release-cleanup/009-changelogs-constitutional-and-templates |
+| **Spec Folder** | system-spec-kit/028-memory-search-intelligence/000-release-cleanup/009-changelogs-constitutional-and-templates |
 | **Completed** | 2026-06-19 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
@@ -96,7 +96,7 @@ Discovery enumerated the candidate set with `rg --files`. Each constitutional do
 | Path resolution | All written paths resolve (64-file scan, 0 unresolved) |
 | Em dash and semicolon scan | CLEAN on edited fragments |
 | Stale-reference scan | CLEAN on edited files |
-| Strict validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/005-release-cleanup/009-changelogs-constitutional-and-templates --strict` exits 0 |
+| Strict validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/009-changelogs-constitutional-and-templates --strict` exits 0 |
 <!-- /ANCHOR:verification -->
 
 ---

@@ -1,31 +1,204 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/005-manual-testing-playbooks",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/005-manual-testing-playbooks",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-release-cleanup",
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/005-manual-testing-playbooks",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/005-manual-testing-playbooks",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
+    "trigger_phrases": [
+      "028 release cleanup manual testing",
+      "manual testing playbook cleanup phase",
+      "028 release cleanup manual testing plan",
+      "manual-testing-playbooks cleanup plan",
+      "028 release cleanup manual testing tasks",
+      "manual-testing-playbooks cleanup tasks",
+      "028 release cleanup manual testing checklist",
+      "manual-testing-playbooks cleanup checklist",
+      "005-manual-testing-playbooks implementation summary",
+      "028 release cleanup 005-manual-testing-playbooks"
+    ],
+    "key_topics": [
+      "028",
+      "release",
+      "cleanup",
+      "manual",
+      "testing",
+      "playbook",
+      "phase",
+      "plan",
+      "manual-testing-playbooks",
+      "tasks",
+      "checklist",
+      "005-manual-testing-playbooks"
+    ],
     "importance_tier": "important",
-    "status": "pending",
+    "status": "complete",
     "key_files": [
+      "mcp_server/stress_test/search-quality/corpus.ts",
+      "handlers/memory-context.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
     ],
-    "entities": [],
-    "causal_summary": "Manual Testing Playbook Cleanup is PENDING and defines cleanup scope only.",
+    "entities": [
+      {
+        "name": "corpus.ts",
+        "kind": "code",
+        "path": "mcp_server/stress_test/search-quality/corpus.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-context.ts",
+        "kind": "code",
+        "path": "handlers/memory-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Manual Testing Playbook Cleanup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Scenarios",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The every manual testing playbook document across skills and repo-level packages needs a release-readiness cleanup contract before any document edits begin. Without a bounded phase, stale claims and path fixes can spread across unrelated documentation surfaces.",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-06-19T00:00:00Z",
-    "save_lineage": "scaffold",
+    "last_save_at": "2026-06-21T07:23:18.792Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -35,6 +208,6 @@
       "implementation-summary.md"
     ],
     "last_active_child_id": null,
-    "last_active_at": "2026-06-19T00:00:00Z"
+    "last_active_at": null
   }
 }

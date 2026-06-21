@@ -39,16 +39,20 @@
       "lease"
     ],
     "importance_tier": "important",
-    "status": "completed",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/storage/maintenance-marker.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/maintenance-marker.vitest.ts",
       "tests/launcher-maintenance-guard.vitest.ts",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "spec.md",
       ".opencode/bin/mk-spec-memory-launcher.cjs",
+      "tests/memory-search-quality-filter.vitest.ts",
+      "tests/maintenance-marker.vitest.ts",
       "implementation-summary.md"
     ],
     "entities": [
@@ -62,6 +66,18 @@
         "name": "maintenance-marker.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/maintenance-marker.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-search-quality-filter.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/memory-search-quality-filter.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "maintenance-marker.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/maintenance-marker.vitest.ts",
         "source": "derived"
       },
       {
@@ -125,12 +141,6 @@
         "source": "derived"
       },
       {
-        "name": "DONE",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Packet",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -138,6 +148,12 @@
       },
       {
         "name": "Problem Statement This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Ship",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -183,23 +199,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "All Phase",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "This sub-phase closes two **always-on correctness residuals** surfaced by the 008 retrieval-evaluation campaign. Both are Wave-0 — they ship independent of the eval harness, carry no schema migration, and depend on no Wave-1 shared infrastructure [research: `../../research/synthesis/08-retrieval-evaluation-findings.md:14,69-76`].",
     "created_at": "2026-06-19T05:52:29.577Z",
-    "last_save_at": "2026-06-19T08:55:00.000Z",
+    "last_save_at": "2026-06-21T07:23:18.825Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -68,7 +68,7 @@ _memory:
 
 - [x] CHK-020 [P0] Each rollup, timeline and before-vs-after claim is git-traced. Every reclassified row and narrative commit reference checked against `git log main..HEAD`.
 - [x] CHK-021 [P0] The flag inventories list every default-off flag they should. `benchmark-status.md` inventory completed with the three Code Graph flags. The `ENV_REFERENCE.md` inventory is DEFERRED to its concurrent owner, outside the parent-dispatched scope.
-- [ ] CHK-022 [P1] `validate.sh 005-release-cleanup --strict` exits 0 after the sibling edit. N/A: the 005 sibling was not edited (T008 deferred), so no sibling re-validation was required.
+- [ ] CHK-022 [P1] `validate.sh 000-release-cleanup --strict` exits 0 after the sibling edit. N/A: the 005 sibling was not edited (T008 deferred), so no sibling re-validation was required.
 - [x] CHK-023 [P1] Strict validation exits 0 for this child folder. Confirmed exit 0 for this child and the 028 root.
 <!-- /ANCHOR:testing -->
 
@@ -77,8 +77,8 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-060 [P0] P1-6 and all 12 cluster items are addressed. PARTIAL: P1-6 plus the timeline / before-vs-after / benchmark-status cluster items (the parent-dispatched scope) are addressed. Cluster items 7 (`changelog-028-root.md`), 8 and 9 (`005-release-cleanup/spec.md`) and 10 (`ENV_REFERENCE.md`) are DEFERRED out of scope to phase 004 P2 triage and the concurrent owner.
-- [ ] CHK-061 [P0] The zero-hash fingerprint is replaced with a real content-derived value. DEFERRED: the `005-release-cleanup/spec.md` fingerprint (T008) is outside the parent-dispatched scope and was not touched.
+- [ ] CHK-060 [P0] P1-6 and all 12 cluster items are addressed. PARTIAL: P1-6 plus the timeline / before-vs-after / benchmark-status cluster items (the parent-dispatched scope) are addressed. Cluster items 7 (`changelog-028-root.md`), 8 and 9 (`000-release-cleanup/spec.md`) and 10 (`ENV_REFERENCE.md`) are DEFERRED out of scope to phase 004 P2 triage and the concurrent owner.
+- [ ] CHK-061 [P0] The zero-hash fingerprint is replaced with a real content-derived value. DEFERRED: the `000-release-cleanup/spec.md` fingerprint (T008) is outside the parent-dispatched scope and was not touched.
 - [x] CHK-062 [P1] The benchmark-status inventory fix does not revert the phase-001 re-run. The criterion-4 re-run text is untouched; only the flag-inventory sentence was extended.
 - [x] CHK-063 [P1] The concurrent session's files and packet 030 remain unchanged. `rrf-fusion.ts`, deep-research, `commands/`, `.gitignore`, `ENV_REFERENCE.md` and packet 030 all left untouched.
 <!-- /ANCHOR:fix-completeness -->
@@ -125,7 +125,7 @@ _memory:
 **Verification Date**: 2026-06-20
 
 > Two P0 items (CHK-060, CHK-061) stay unverified by design: they cover the scaffold's broader 12-item
-> ambition (changelog-028-root, 005-release-cleanup spec, ENV_REFERENCE) that the parent dispatch
+> ambition (changelog-028-root, 000-release-cleanup spec, ENV_REFERENCE) that the parent dispatch
 > narrowed out and that overlaps phase 004 P2 triage and a concurrent session. The parent-dispatched
 > scope (P1-6 plus the timeline / before-vs-after / benchmark-status cluster) is complete and verified.
 <!-- /ANCHOR:summary -->

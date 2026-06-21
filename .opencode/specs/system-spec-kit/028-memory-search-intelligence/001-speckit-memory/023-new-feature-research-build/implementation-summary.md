@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/008-new-feature-research-build"
+    packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/023-new-feature-research-build"
     last_updated_at: "2026-06-20T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Recorded the TRACK B arc, eval-v2 kept and three features held"
@@ -19,7 +19,7 @@ _memory:
       - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-06-20-summary-028-008-new-feature-research-build"
+      session_id: "2026-06-20-summary-028-023-new-feature-research-build"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/028-memory-search-intelligence/008-new-feature-research-build |
+| **Spec Folder** | system-spec-kit/028-memory-search-intelligence/001-speckit-memory/023-new-feature-research-build |
 | **Completed** | 2026-06-20 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

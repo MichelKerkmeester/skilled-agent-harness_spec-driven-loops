@@ -39,18 +39,25 @@
       "weighted"
     ],
     "importance_tier": "important",
-    "status": "partial",
+    "status": "implemented_(shadow_only;_t006_daemon_reload_+_t010_d2_coordination_pending;_live_flip_no_go)",
     "key_files": [
+      "decision-record.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md",
       ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/feedback-calibration.ts",
       ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lane-registry.ts",
+      "scratch/estimator-baseline.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -76,12 +83,6 @@
         "source": "derived"
       },
       {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
         "name": "feedback-calibration.ts",
         "kind": "code",
         "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/feedback-calibration.ts",
@@ -91,6 +92,12 @@
         "name": "lane-registry.ts",
         "kind": "code",
         "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lane-registry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "estimator-baseline.md",
+        "kind": "doc",
+        "path": "scratch/estimator-baseline.md",
         "source": "derived"
       },
       {
@@ -124,13 +131,13 @@
         "source": "derived"
       },
       {
-        "name": "Plan Phase",
+        "name": "The Skill Advisor",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "The Skill Advisor",
+        "name": "Key Decisions",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -188,17 +195,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Decision Record",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "The Skill Advisor ships an end-to-end *shadow* feedback pipeline - durable outcome capture, a bounded delta estimator, a parallel shadow-weight channel - but the estimator's proposal is written to a JSONL log that **no consumer ever reads back**, so the loop never closes. This sub-phase builds the missing seam: an out-of-process promoter that reads the estimator's proposals, plus the reliability math that turns raw acceptance frequency into a flood-immune posterior, plus the aionforge attestation-and-promotion gate family that decides - conservatively, shadow-only - whether a lane weight should ever move. Net-new throughout: 027 shipped no lane attribution and the live estimator carries zero Beta math, so this is a BUILD, not a graduation.",
+    "causal_summary": "The Skill Advisor ships an end-to-end *shadow* feedback pipeline — durable outcome capture, a bounded delta estimator, a parallel shadow-weight channel — but the estimator's proposal is written to a JSONL log that **no consumer ever reads back**, so the loop never closes. This sub-phase builds the missing seam: an out-of-process promoter that reads the estimator's proposals, plus the reliability math that turns raw acceptance frequency into a flood-immune posterior, plus the aionforge attestation-and-promotion gate family that decides — conservatively, shadow-only — whether a lane weight should ever move. Net-new throughout: 027 shipped no lane attribution and the live estimator carries zero Beta math, so this is a BUILD, not a graduation.",
     "created_at": "2026-06-19T06:06:27.153Z",
-    "last_save_at": "2026-06-19T06:06:27.153Z",
+    "last_save_at": "2026-06-21T07:23:18.845Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

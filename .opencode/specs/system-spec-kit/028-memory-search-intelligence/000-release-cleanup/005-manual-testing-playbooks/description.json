@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/005-manual-testing-playbooks",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/005-manual-testing-playbooks",
   "description": "Feature Specification: Manual Testing Playbook Cleanup",
   "keywords": [
     "feature",
@@ -16,7 +16,7 @@
   "parentChain": [
     "system-spec-kit",
     "028-memory-search-intelligence",
-    "005-release-cleanup"
+    "000-release-cleanup"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

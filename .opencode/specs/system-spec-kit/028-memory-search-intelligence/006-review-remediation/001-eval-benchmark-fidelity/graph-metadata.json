@@ -4,35 +4,215 @@
   "spec_folder": "system-spec-kit/028-memory-search-intelligence/006-review-remediation/001-eval-benchmark-fidelity",
   "parent_id": "system-spec-kit/028-memory-search-intelligence/006-review-remediation",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
+    "trigger_phrases": [
+      "028 eval benchmark fidelity remediation",
+      "forceAllChannels flag eval fix",
+      "trigger ablation no-op fix",
+      "028 eval benchmark fidelity plan",
+      "flag eval driver fix plan",
+      "028 eval benchmark fidelity tasks",
+      "flag eval driver fix tasks",
+      "028 eval benchmark fidelity checklist",
+      "flag eval driver fix checklist",
+      "001-eval-benchmark-fidelity implementation summary",
+      "028 review remediation eval benchmark fidelity"
+    ],
+    "key_topics": [
+      "028",
+      "eval",
+      "benchmark",
+      "fidelity",
+      "remediation",
+      "forceallchannels",
+      "flag",
+      "fix",
+      "trigger",
+      "ablation",
+      "no-op",
+      "plan"
+    ],
     "importance_tier": "important",
     "status": "pending",
     "key_files": [
+      "mcp_server/scripts/evals/run-retrieval-flag-eval.mjs",
+      "mcp_server/tests/retrieval-flag-eval-driver.vitest.ts",
+      "tests/retrieval-flag-eval-driver.vitest.ts",
+      "database/context-index.sqlite",
+      "scripts/evals/run-retrieval-flag-eval.mjs",
+      "mcp_server/lib/search/hybrid-search.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "entities": [],
-    "causal_summary": "Eval Benchmark Fidelity Remediation is PENDING and scopes the P1-1 forceAllChannels and P1-3 trigger-ablation fixes plus a criterion-4 benchmark re-run.",
+    "entities": [
+      {
+        "name": "run-retrieval-flag-eval.mjs",
+        "kind": "file",
+        "path": "mcp_server/scripts/evals/run-retrieval-flag-eval.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-flag-eval-driver.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/retrieval-flag-eval-driver.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context-index.sqlite",
+        "kind": "file",
+        "path": "database/context-index.sqlite",
+        "source": "derived"
+      },
+      {
+        "name": "hybrid-search.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/hybrid-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Eval Benchmark Fidelity Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Source Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Eval",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "default",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The per-flag retrieval benchmark feeds the criterion-4 flip decision, but its driver measures every flag on a non-representative all-channels path, and its trigger-channel ablation is a complete no-op. Both defects are 028's own eval code, in scope, confirmed real against source. This is the only release-blocking finding class in the review: a flag can read baseline-neutral in the harness while changing real default behavior, so the benchmark evidence cannot be trusted until the driver routes the way production does.",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-06-19T00:00:00Z",
-    "save_lineage": "scaffold",
+    "last_save_at": "2026-06-21T07:23:18.861Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "last_active_child_id": null,
-    "last_active_at": "2026-06-19T00:00:00Z"
+    "last_active_at": null
   }
 }

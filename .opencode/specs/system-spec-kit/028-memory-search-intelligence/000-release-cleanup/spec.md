@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-release-cleanup"
+    packet_pointer: "system-spec-kit/028-memory-search-intelligence/000-release-cleanup"
     last_updated_at: "2026-06-19T12:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "All nine child cleanup phases executed and committed"
@@ -21,7 +21,7 @@ _memory:
       - "009-changelogs-constitutional-and-templates/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-06-19-028-005-release-cleanup-parent"
+      session_id: "2026-06-19-028-000-release-cleanup-parent"
       parent_session_id: null
     completion_pct: 100
     open_questions: []

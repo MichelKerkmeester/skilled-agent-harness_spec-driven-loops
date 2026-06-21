@@ -39,14 +39,23 @@
       "trust"
     ],
     "importance_tier": "important",
-    "status": "partial",
+    "status": "partial._m_spare_only_eligibility_and_forget_allowlist_shipped,_three_candidates_pending",
     "key_files": [
+      "mcp_server/lib/feedback/feedback-retention-reducer.ts",
+      "mcp_server/lib/governance/memory-retention-sweep.ts",
+      "mcp_server/lib/search/vector-index-schema.ts",
+      "mcp_server/lib/search/search-flags.ts",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-retention-sweep.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage4-filter.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts",
       ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
       "tools/memory-tools.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-retention-reducer.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/feedback-retention-reducer.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -55,9 +64,27 @@
     ],
     "entities": [
       {
+        "name": "feedback-retention-reducer.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/feedback/feedback-retention-reducer.ts",
+        "source": "derived"
+      },
+      {
         "name": "memory-retention-sweep.ts",
         "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-retention-sweep.ts",
+        "path": "mcp_server/lib/governance/memory-retention-sweep.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-schema.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/vector-index-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-flags.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/search-flags.ts",
         "source": "derived"
       },
       {
@@ -88,6 +115,18 @@
         "name": "memory-tools.ts",
         "kind": "code",
         "path": "tools/memory-tools.ts",
+        "source": "derived"
+      },
+      {
+        "name": "feedback-retention-reducer.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/feedback-retention-reducer.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-retention-sweep.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts",
         "source": "derived"
       },
       {
@@ -167,41 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Implement",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "CONTRADICTS",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The Spec-Kit Memory MCP retains and recalls memories with no diversity or eligibility shaping at the result-set boundary. Three concrete gaps were confirmed by the 028/001 deep-research loop: (1) forget eligibility is incomplete - the feedback-retention reducer only spares by tier/pin (`feedback-retention-reducer.ts:153-155`), so a non-`important` row with strong positive feedback is annotated yet still deletes, and there is no live-edge protection against forgetting a still-referenced memory, (2) there is NO session/spec-folder dominance cap anywhere in the search pipeline (`stage4-filter.ts:305-309` truncates with a bare `slice(0, limit)`), so one chatty session or dominant spec-folder can occupy the entire top-k, (3) the constitutional always-surface prefix counts toward the recall limit but is never itself capped (`vector-index-queries.ts:435`), so constitutional rows can silently fill the slice and starve regular results. The erasure surface (hard-purge cascade, per-namespace authorization, signed writes) is partially modelled in aionforge but unbuilt here.",
     "created_at": "2026-06-19T05:40:37.446Z",
-    "last_save_at": "2026-06-19T05:47:05.570Z",
+    "last_save_at": "2026-06-21T07:23:18.811Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

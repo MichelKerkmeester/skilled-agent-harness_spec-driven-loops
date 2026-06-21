@@ -93,7 +93,7 @@ Each doc claim is checked against `git log` and the relevant implementation-summ
 | `before-vs-after.md` | CURRENT STATE at commit 30 | Advance and correct cleanup claims | Matches changelog-005-root |
 | `benchmark-status.md` | Incomplete flag inventory | Add missing flag(s) | `SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING` listed |
 | `ENV_REFERENCE.md` | Missing 17 new flags | Add flags with defaults | All 17 getters documented |
-| `005-release-cleanup/spec.md` | Stale phase-map, zero-hash fingerprint | Reconcile and recompute | `validate.sh 005-release-cleanup --strict` exits 0 |
+| `000-release-cleanup/spec.md` | Stale phase-map, zero-hash fingerprint | Reconcile and recompute | `validate.sh 000-release-cleanup --strict` exits 0 |
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -115,7 +115,7 @@ Each doc claim is checked against `git log` and the relevant implementation-summ
 
 ### Phase 3: Verification
 - [ ] Confirm every status edit traces to a commit or implementation-summary.
-- [ ] Re-run `validate.sh 005-release-cleanup --strict` after editing the sibling spec.
+- [ ] Re-run `validate.sh 000-release-cleanup --strict` after editing the sibling spec.
 - [ ] Run strict validation for this child folder.
 <!-- /ANCHOR:phases -->
 

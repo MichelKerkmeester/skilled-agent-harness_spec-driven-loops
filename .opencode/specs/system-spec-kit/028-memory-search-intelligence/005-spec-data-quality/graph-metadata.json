@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/031-spec-data-quality",
-  "spec_folder": "system-spec-kit/031-spec-data-quality",
-  "parent_id": "system-spec-kit",
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -11,11 +11,18 @@
   },
   "derived": {
     "trigger_phrases": [
-      "spec kit data quality by default",
-      "retrieval adherence logic reading",
-      "metadata fusion embedding context",
-      "stage 0 external findings brief",
-      "data quality candidate ranking"
+      "spec data quality",
+      "retrieval adherence logic",
+      "metadata fusion",
+      "embedding context",
+      "spec corpus quality",
+      "spec data quality plan",
+      "research loop plan",
+      "by angle research",
+      "ranked candidates",
+      "data quality default",
+      "spec data quality tasks",
+      "research loop tasks"
     ],
     "key_topics": [
       "spec",
@@ -27,20 +34,27 @@
       "metadata",
       "fusion",
       "embedding",
-      "research"
+      "context",
+      "corpus",
+      "plan"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "research_complete",
     "key_files": [
-      "spec.md",
+      "research/stage-0-external-findings.md",
       "research/research.md",
-      "research/stage-0-external-findings.md"
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "spec.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "spec.md",
+        "name": "stage-0-external-findings.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "research/stage-0-external-findings.md",
         "source": "derived"
       },
       {
@@ -50,21 +64,151 @@
         "source": "derived"
       },
       {
-        "name": "stage-0-external-findings.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": "research/stage-0-external-findings.md",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Data Quality",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Complete",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Research",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "The spec-kit data-quality research opened with a Stage 0 external sweep across retrieval, adherence, and logic reading. This packet records that sweep and ranks ten candidate techniques so the by-angle loop can verify each one against the spec-kit corpus before any default change lands.",
+    "causal_summary": "Spec-kit already stores rich docs and two metadata JSONs per packet, but that data is not tuned for the three jobs it has to do: feed retrieval, steer AI adherence and stay readable as logic. This packet ran the research that decides which of those quality levers are worth building by default. Stage 0 captured a fresh-Opus online sweep of about thirty cited sources across seven angles. Nineteen by-angle iterations then verified each ranked candidate against the live retrieval code.",
     "created_at": "2026-06-21T00:00:00.000Z",
-    "last_save_at": "2026-06-21T00:00:00.000Z",
+    "last_save_at": "2026-06-21T07:23:18.859Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "research/research.md",
-      "research/stage-0-external-findings.md"
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
     ],
     "last_active_child_id": null,
     "last_active_at": null

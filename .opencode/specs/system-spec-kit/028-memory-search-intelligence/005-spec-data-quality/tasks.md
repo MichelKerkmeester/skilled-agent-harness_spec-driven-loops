@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/031-spec-data-quality"
+    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality"
     last_updated_at: "2026-06-21T00:00:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Listed the research tasks"
@@ -52,7 +52,7 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Create the Level 3 packet structure (031-spec-data-quality)
+- [x] T001 Create the Level 3 packet structure (005-spec-data-quality)
 - [x] T002 Record the Stage 0 external-findings brief (research/stage-0-external-findings.md)
 - [x] T003 Point the research index at the brief (research/research.md)
 <!-- /ANCHOR:phase-1 -->

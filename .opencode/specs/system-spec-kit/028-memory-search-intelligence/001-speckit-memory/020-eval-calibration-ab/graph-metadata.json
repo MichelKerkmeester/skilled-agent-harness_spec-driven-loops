@@ -39,14 +39,17 @@
       "reorder"
     ],
     "importance_tier": "important",
-    "status": "partial",
+    "status": "observe_only_consumer_utilities_implemented;_promotion_and_measured_a/b_deltas_pending",
     "key_files": [
-      "spec.md",
-      "plan.md",
+      "lib/eval/ablation-framework.ts",
+      "lib/eval/eval-metrics.ts",
+      "lib/eval/shadow-scoring.ts",
+      "lib/search/confidence-calibration.ts",
+      "lib/search/confidence-scoring.ts",
+      "tests/eval-calibration-ab.vitest.ts",
+      "tests/confidence-calibration.vitest.ts",
       "checklist.md",
       "implementation-summary.md",
-      "lib/eval/eval-metrics.ts",
-      "tests/confidence-calibration.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts",
@@ -57,21 +60,49 @@
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
-      "tasks.md",
-      "lib/eval/shadow-scoring.ts",
-      "lib/eval/ablation-framework.ts"
+      "plan.md"
     ],
     "entities": [
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "name": "ablation-framework.ts",
+        "kind": "code",
+        "path": "lib/eval/ablation-framework.ts",
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
+        "name": "eval-metrics.ts",
+        "kind": "code",
+        "path": "lib/eval/eval-metrics.ts",
+        "source": "derived"
+      },
+      {
+        "name": "shadow-scoring.ts",
+        "kind": "code",
+        "path": "lib/eval/shadow-scoring.ts",
+        "source": "derived"
+      },
+      {
+        "name": "confidence-calibration.ts",
+        "kind": "code",
+        "path": "lib/search/confidence-calibration.ts",
+        "source": "derived"
+      },
+      {
+        "name": "confidence-scoring.ts",
+        "kind": "code",
+        "path": "lib/search/confidence-scoring.ts",
+        "source": "derived"
+      },
+      {
+        "name": "eval-calibration-ab.vitest.ts",
+        "kind": "test",
+        "path": "tests/eval-calibration-ab.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "confidence-calibration.vitest.ts",
+        "kind": "test",
+        "path": "tests/confidence-calibration.vitest.ts",
         "source": "derived"
       },
       {
@@ -87,45 +118,9 @@
         "source": "derived"
       },
       {
-        "name": "eval-metrics.ts",
-        "kind": "code",
-        "path": "lib/eval/eval-metrics.ts",
-        "source": "derived"
-      },
-      {
-        "name": "confidence-calibration.vitest.ts",
-        "kind": "test",
-        "path": "tests/confidence-calibration.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "ablation-framework.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts",
-        "source": "derived"
-      },
-      {
         "name": "ground-truth-feedback.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts",
-        "source": "derived"
-      },
-      {
-        "name": "confidence-scoring.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts",
-        "source": "derived"
-      },
-      {
-        "name": "confidence-calibration.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-calibration.ts",
-        "source": "derived"
-      },
-      {
-        "name": "shadow-scoring.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts",
         "source": "derived"
       },
       {
@@ -147,9 +142,9 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -205,11 +200,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "This is a Wave-2 implementation sub-phase under the `001-speckit-memory` research phase of packet 028 (the PRIMARY subsystem). It implements the two measurement-gated retrieval-intelligence candidates the `008-retrieval-evaluation` campaign converged on as the eval-harness's first *consumers* - both are downstream of the C9→A8 build spine and ship only once that harness can produce the evidence they promote on:",
+    "causal_summary": "This is a Wave-2 implementation sub-phase under the `001-speckit-memory` research phase of packet 028 (the PRIMARY subsystem). It implements the two measurement-gated retrieval-intelligence candidates the `008-retrieval-evaluation` campaign converged on as the eval-harness's first *consumers* — both are downstream of the C9→A8 build spine and ship only once that harness can produce the evidence they promote on:",
     "created_at": "2026-06-19T05:52:29.576Z",
-    "last_save_at": "2026-06-19T06:06:27.135Z",
+    "last_save_at": "2026-06-21T07:23:18.824Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

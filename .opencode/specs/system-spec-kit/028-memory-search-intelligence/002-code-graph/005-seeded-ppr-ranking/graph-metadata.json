@@ -39,7 +39,7 @@
       "multi"
     ],
     "importance_tier": "important",
-    "status": "implemented_default_off_benchmark_schema_gated",
+    "status": "implemented_mechanism_default_off;_benchmark/schema_gates_pending",
     "key_files": [
       "lib/graph/bfs-traversal.ts",
       "plan.md",
@@ -117,13 +117,13 @@
         "source": "derived"
       },
       {
-        "name": "Internal Baseline",
+        "name": "Key Decisions",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Key Decisions",
+        "name": "Critical Dependencies",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -195,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Implemented the code-graph seeded-PPR impact-ranking mechanism behind SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING (default OFF): bounded personalized PageRank over the reused Memory weighted-walk substrate, impact/multi-hop class gating, undirected PPR projection, and Q4-C2 confidence/evidence transition decay. Ranking-quality benefit and tuned damping/cap/decay values remain pending on a retrieval benchmark; invalid_at current-set semantics remain pending on a separate schema migration. CG-lexical-vector-seed-union remains CUT as a scope violation against the structural-only design.",
+    "causal_summary": "The code-graph impact/blast-radius walk previously ranked callers through flat reverse `CALLS`/`IMPORTS` enumeration. This phase implements the query-seeded multi-hop ranking mechanism behind `SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING` (default OFF): **Q3-C1** bounded personalized PageRank over the reused Memory weighted-walk substrate, **GATED** to impact/multi-hop modes only, with an undirected working projection and Q4-C2 confidence/evidence transition decay. The implementation does not claim a ranking-quality delta; damping/cap/decay tuning remains blocked on a code-graph retrieval benchmark. The current-set intersection degrades to physical edge presence because `invalid_at`/`valid_at` columns require a separate schema migration. **lexical-vector-seed-union remains NO-GO** — the code-graph module deliberately has no vector backend.",
     "created_at": "2026-06-19T06:06:27.142Z",
-    "last_save_at": "2026-06-19T06:20:37.801Z",
+    "last_save_at": "2026-06-21T07:23:18.836Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

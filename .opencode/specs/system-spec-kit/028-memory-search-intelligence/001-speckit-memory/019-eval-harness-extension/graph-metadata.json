@@ -39,10 +39,8 @@
       "brier"
     ],
     "importance_tier": "important",
-    "status": "partial",
+    "status": "c9_implemented;_a8_pending",
     "key_files": [
-      "plan.md",
-      "checklist.md",
       "lib/feedback/shadow-scoring.ts",
       "spec.md",
       "implementation-summary.md",
@@ -50,22 +48,14 @@
       "lib/eval/eval-metrics.ts",
       "lib/feedback/shadow-evaluation-runtime.ts",
       "lib/feedback/rank-metrics.ts",
+      "plan.md",
+      "checklist.md",
+      "tests/ablation-framework.vitest.ts",
+      "tests/eval-metrics.vitest.ts",
       "tasks.md",
       "decision-record.md"
     ],
     "entities": [
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
       {
         "name": "shadow-scoring.ts",
         "kind": "code",
@@ -106,6 +96,30 @@
         "name": "rank-metrics.ts",
         "kind": "code",
         "path": "lib/feedback/rank-metrics.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "ablation-framework.vitest.ts",
+        "kind": "test",
+        "path": "tests/ablation-framework.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "eval-metrics.vitest.ts",
+        "kind": "test",
+        "path": "tests/eval-metrics.vitest.ts",
         "source": "derived"
       },
       {
@@ -185,23 +199,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Milestone Reference",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "This implementation phase extends the Spec-Kit Memory MCP's **already ~80%-built retrieval eval harness** with the three accuracy lanes it has never had, and un-welds its single promotion gate from one candidate-class. It covers the keystone build spine the 028 retrieval-evaluation campaign converged on (`synthesis/08`): **C9-1** (capture the verdict/confidence/tier the ablation runner already computes but throws away), **C9-2** (tag the golden labels three ways in one DB-join), **C9-3** (the three new corpus-level metric lanes: gate-verdict P/R/F1, ECE+Brier+reliability bins, cold-appearance-rate/precision), and **A8-1(+A8-2/A8-5/A8-4)** (swap a per-class metric panel for the hardcoded `meanNdcgDelta`, add the CLASS-G panel, route held-out labels through the golden set, encode promote-on-evidence as the flag lifecycle). This is the **single buildable spine** that makes isotonic calibration (A2), the A3 default-on lever A/B, and cold-tier promote-on-evidence measurable, without it those candidates' promote signal is literally unexecutable. None of these shipped in Wave-0 (packet 030 §14 ships an unrelated embedder-degrade candidate it calls \"C9\", not these C9-N metric lanes), all are **PENDING**. The corpus reindex (gate-zero, owned by sibling phase `001-corpus-reindex-gate-zero`) is the hard precondition for every recall/calibration/cold number this harness produces.",
+    "causal_summary": "This implementation phase extends the Spec-Kit Memory MCP's **already ~80%-built retrieval eval harness** with the three accuracy lanes it has never had, and scopes the promotion-gate generalization that must follow. It covers the keystone build spine the 028 retrieval-evaluation campaign converged on (`synthesis/08`): **C9-1** (capture the verdict/confidence/tier the ablation runner already computes but throws away), **C9-2** (tag the golden labels three ways in one DB-join), **C9-3** (the three new corpus-level metric lanes: gate-verdict P/R/F1, ECE+Brier+reliability bins, cold-appearance-rate/precision), and **A8-1(+A8-2/A8-5/A8-4)** (swap a per-class metric panel for the hardcoded `meanNdcgDelta`, add the CLASS-G panel, route held-out labels through the golden set, encode promote-on-evidence as the flag lifecycle). C9-1/C9-2/C9-3 are now implemented as code plus deterministic unit tests; A8 remains **PENDING** because the ledger/gate acceptance criteria require a schema change and live operational validation. The corpus reindex (gate-zero, owned by sibling phase `001-corpus-reindex-gate-zero`) remains the hard precondition for every trusted recall/calibration/cold number this harness produces.",
     "created_at": "2026-06-19T05:52:29.575Z",
-    "last_save_at": "2026-06-19T06:06:27.134Z",
+    "last_save_at": "2026-06-21T07:23:18.822Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -46,11 +46,10 @@
       "tasks.md",
       "checklist.md",
       ".opencode/skills/system-code-graph/mcp_server/lib/indexer-types.ts",
-      ".opencode/skills/system-code-graph/mcp_server/lib/doc-symbol-extractor.ts",
       ".opencode/skills/system-code-graph/mcp_server/lib/structural-indexer.ts",
+      ".opencode/skills/system-code-graph/mcp_server/lib/doc-symbol-extractor.ts",
       ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-context.ts",
       ".opencode/bin/mk-code-index-launcher.cjs",
-      ".opencode/skills/system-code-graph/mcp_server/tests/doc-symbol-extractor.vitest.ts",
       "implementation-summary.md"
     ],
     "entities": [
@@ -88,6 +87,12 @@
         "name": "structural-indexer.ts",
         "kind": "code",
         "path": ".opencode/skills/system-code-graph/mcp_server/lib/structural-indexer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "doc-symbol-extractor.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/lib/doc-symbol-extractor.ts",
         "source": "derived"
       },
       {
@@ -133,13 +138,13 @@
         "source": "derived"
       },
       {
-        "name": "Authored Level",
+        "name": "Parent Packet",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Parent Packet",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -151,7 +156,13 @@
         "source": "derived"
       },
       {
-        "name": "Implement Track",
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -163,7 +174,13 @@
         "source": "derived"
       },
       {
-        "name": "Begin Phase",
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -179,29 +196,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Author Level",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The code-graph doc lane is hash-only: `'doc'` is excluded from the tree-sitter parser type (`tree-sitter-parser.ts:67` `type ParserLanguage = Exclude<SupportedLanguage,'doc'>`), and when `language === 'doc'` the indexer short-circuits to an empty result (`structural-indexer.ts:1237-1249` returns `{nodes:[], edges:[], contentHash, parseHealth:'clean'…}`). A doc row is therefore purely a change-detection content-hash — markdown headings and json/yaml/toml keys are never queryable as graph nodes (and `**/*.md` is omitted from the default include globs entirely). Separately, the mk-code-index launcher classifies lease lifecycle events (held / bridged / reclaimed / respawned) but has no metrics sink, so that classification is computed for control flow and dropped — there is no observability into lease churn.",
     "created_at": "2026-06-19T05:53:16.600Z",
-    "last_save_at": "2026-06-19T06:06:27.146Z",
+    "last_save_at": "2026-06-21T07:23:18.839Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

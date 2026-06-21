@@ -16,7 +16,7 @@ Prefixing plus metadata fusion is externally validated but the spec-kit improvem
 
 Implement a deterministic embedding-context layer in the MCP indexing path not just in generate-context.js. Prefix shape:
 
-`Packet: system-spec-kit/031-spec-data-quality | Doc: spec.md | Status: in_progress | Tier: important | Header path: spec.md > 4. REQUIREMENTS | Anchor: requirements`
+`Packet: system-spec-kit/028-memory-search-intelligence/005-spec-data-quality | Doc: spec.md | Status: in_progress | Tier: important | Header path: spec.md > 4. REQUIREMENTS | Anchor: requirements`
 
 Apply it before `generateDocumentEmbedding()` for non-chunked docs at `embedding-pipeline.ts:106-118,168-171` and chunked child docs at `chunking-orchestrator.ts:274-323`. Then add metadata fusion: build metadata text from description.json, graph-metadata.json, parsed doc type, file path, anchor and header path, compute metadata embeddings once per joined metadata block, store `fused = normalize(alpha * text_emb + (1 - alpha) * metadata_emb)`. Version the input with `embedding_context_version` and `metadata_fusion_version` and update cache keys, since current cache keys use normalized content only at `embedding-pipeline.ts:121-123,138` and chunk content only at `chunking-orchestrator.ts:288-301` so unchanged keys would incorrectly reuse pre-prefix vectors.
 

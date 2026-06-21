@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/002-skill-and-repo-readmes"
+    packet_pointer: "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/002-skill-and-repo-readmes"
     last_updated_at: "2026-06-19T12:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Executed cleanup tasks, all marked done"

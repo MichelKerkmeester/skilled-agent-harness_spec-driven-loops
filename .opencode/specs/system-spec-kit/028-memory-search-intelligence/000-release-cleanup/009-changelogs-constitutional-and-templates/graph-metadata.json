@@ -1,31 +1,205 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/009-changelogs-constitutional-and-templates",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/009-changelogs-constitutional-and-templates",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-release-cleanup",
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/009-changelogs-constitutional-and-templates",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/009-changelogs-constitutional-and-templates",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/000-release-cleanup",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
+    "trigger_phrases": [
+      "028 release cleanup changelogs",
+      "constitutional templates cleanup phase",
+      "028 release cleanup changelogs plan",
+      "changelogs-constitutional-and-templates cleanup plan",
+      "028 release cleanup changelogs tasks",
+      "changelogs-constitutional-and-templates cleanup tasks",
+      "028 release cleanup changelogs checklist",
+      "changelogs-constitutional-and-templates cleanup checklist",
+      "009-changelogs-constitutional-and-templates implementation summary",
+      "028 release cleanup 009-changelogs-constitutional-and-templates"
+    ],
+    "key_topics": [
+      "028",
+      "release",
+      "cleanup",
+      "changelogs",
+      "constitutional",
+      "templates",
+      "phase",
+      "plan",
+      "changelogs-constitutional-and-templates",
+      "tasks",
+      "checklist",
+      "009-changelogs-constitutional-and-templates"
+    ],
     "importance_tier": "important",
-    "status": "pending",
+    "status": "complete",
     "key_files": [
+      "constitutional/README.md",
+      "constitutional/cli-dispatch-skill-preload.md",
+      "templates/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
     ],
-    "entities": [],
-    "causal_summary": "Changelogs Constitutional And Templates Cleanup is PENDING and defines cleanup scope only.",
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "constitutional/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-dispatch-skill-preload.md",
+        "kind": "doc",
+        "path": "constitutional/cli-dispatch-skill-preload.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Changelogs Constitutional And Templates Cleanup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Changelogs",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The changelog directories, constitutional docs and the system-spec-kit templates package needs a release-readiness cleanup contract before any document edits begin. Without a bounded phase, stale claims and path fixes can spread across unrelated documentation surfaces.",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-06-19T00:00:00Z",
-    "save_lineage": "scaffold",
+    "last_save_at": "2026-06-21T07:23:18.796Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -35,6 +209,6 @@
       "implementation-summary.md"
     ],
     "last_active_child_id": null,
-    "last_active_at": "2026-06-19T00:00:00Z"
+    "last_active_at": null
   }
 }

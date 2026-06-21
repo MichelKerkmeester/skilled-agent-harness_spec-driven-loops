@@ -39,7 +39,7 @@
       "crash"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "implemented",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -185,7 +185,7 @@
     ],
     "causal_summary": "A single crashing file is permanently removed from the code graph with no bounded-retry escape. The parser skip-list classifies files only by tree-sitter WASM crash **cohort** — `SkipListErrorClass = 'B1' | 'B2' | 'OTHER'` — which is a crash taxonomy, **not** a retry policy [CONFIRMED: `parser-skip-list.ts:9,27-35`; research iter-002 finding 8]. Adding a file is an idempotent upsert that only bumps `attempt_count` [CONFIRMED: `parser-skip-list.ts:78-91`]; there is **no `max_retries` ceiling**, **no transient-leaves-pending** semantics, and removal is an **intentional permanent no-op** — `recordSuccess()` is `@deprecated` with an empty body, documented \"must not auto-unskip… or imply self-heal support\" [CONFIRMED: `parser-skip-list.ts:93-97`]. So a file that crashes the WASM parser **once** — even for a transient reason like an OOM, a timeout, or a deadline-abort — is skipped **forever** with no path back into the graph short of manual review.",
     "created_at": "2026-06-19T05:52:29.582Z",
-    "last_save_at": "2026-06-19T06:06:27.145Z",
+    "last_save_at": "2026-06-21T07:23:18.838Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

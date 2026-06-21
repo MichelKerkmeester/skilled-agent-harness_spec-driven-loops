@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/002-skill-and-repo-readmes"
+    packet_pointer: "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/002-skill-and-repo-readmes"
     last_updated_at: "2026-06-19T12:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Executed cleanup: aligned skill READMEs and repo README"
@@ -46,7 +46,7 @@ _memory:
 | **Created** | 2026-06-19 |
 | **Completed** | 2026-06-19 |
 | **Parent Spec** | ../spec.md |
-| **Parent Packet** | `system-spec-kit/028-memory-search-intelligence/005-release-cleanup` |
+| **Parent Packet** | `system-spec-kit/028-memory-search-intelligence/000-release-cleanup` |
 | **Phase** | 002 of 009 |
 | **Predecessor** | ../001-code-readmes/spec.md |
 | **Successor** | ../003-skill-references-assets-and-skillmd/spec.md |
@@ -134,7 +134,7 @@ Narrative README files use the house voice, describe current capability and avoi
 - Version, release and feature claims are backed by current source files
 - Narrative tone follows HVR voice
 - No stale pointers remain to removed docs, commands or assets
-- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/005-release-cleanup/002-skill-and-repo-readmes --strict` exits 0 after cleanup.
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/002-skill-and-repo-readmes --strict` exits 0 after cleanup.
 <!-- /ANCHOR:success-criteria -->
 
 ---

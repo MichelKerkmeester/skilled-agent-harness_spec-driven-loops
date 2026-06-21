@@ -39,10 +39,12 @@
       "supersedes"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "implemented_default_off;_benchmark_gate_pending",
     "key_files": [
       ".opencode/skills/system-code-graph/mcp_server/lib/structural-indexer.ts",
       ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+      ".opencode/skills/system-code-graph/mcp_server/handlers/scan.ts",
+      ".opencode/skills/system-code-graph/mcp_server/tests/edge-staleness-correctness.vitest.ts",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -60,6 +62,18 @@
         "name": "code-graph-db.ts",
         "kind": "code",
         "path": ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-db.ts",
+        "source": "derived"
+      },
+      {
+        "name": "scan.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/handlers/scan.ts",
+        "source": "derived"
+      },
+      {
+        "name": "edge-staleness-correctness.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-code-graph/mcp_server/tests/edge-staleness-correctness.vitest.ts",
         "source": "derived"
       },
       {
@@ -181,23 +195,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The code-graph incremental scan silently loses cross-file edges when a file's *dependency* is refactored. Symbol IDs are path-coupled — `sha256(filePath + '::' + fqName + '::' + kind).slice(0,16)` (`indexer-types.ts:102,104`) — so a rename, kind-flip, or move of an exported symbol B mints a NEW id, while a dependent A that imports B is content-hash-stable and gets skipped by the incremental scan (`isFileStale` is **content-hash-gated, not mtime** — `code-graph-db.ts:1042`; skip site `structural-indexer.ts:2175`). Because cross-file edges are derived only from the parsed batch, A's outbound edge to B is never re-derived against B's new id; B's `replaceNodes` drops the old target node and `pruneDanglingEdges` (`code-graph-db.ts:1030`) physically deletes the now-dangling A→B edge. The relationship **silently vanishes until A itself changes**. The lever to fix it already exists but is wired to the wrong path: `queryFileImportDependents()` (`code-graph-db.ts:1343`) has exactly one non-test caller — `handlers/query.ts:1017`, a read-path / `detect_changes` consumer — so the scan loop never consults it.",
     "created_at": "2026-06-19T05:52:29.579Z",
-    "last_save_at": "2026-06-19T05:52:29.579Z",
+    "last_save_at": "2026-06-21T07:23:18.832Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

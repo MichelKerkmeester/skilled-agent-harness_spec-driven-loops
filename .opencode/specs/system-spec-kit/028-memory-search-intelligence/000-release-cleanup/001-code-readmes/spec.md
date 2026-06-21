@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/001-code-readmes"
+    packet_pointer: "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/001-code-readmes"
     last_updated_at: "2026-06-19T12:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Executed cleanup: aligned 12 code READMEs to shipped state"
@@ -46,7 +46,7 @@ _memory:
 | **Created** | 2026-06-19 |
 | **Completed** | 2026-06-19 |
 | **Parent Spec** | ../spec.md |
-| **Parent Packet** | `system-spec-kit/028-memory-search-intelligence/005-release-cleanup` |
+| **Parent Packet** | `system-spec-kit/028-memory-search-intelligence/000-release-cleanup` |
 | **Phase** | 001 of 009 |
 | **Predecessor** | None |
 | **Successor** | ../002-skill-and-repo-readmes/spec.md |
@@ -136,7 +136,7 @@ Each README reflects its directory's current code, its key-file map is current, 
 - Each key-file map is grep-traceable against the current tree
 - Removed, renamed and stale file pointers are replaced or deleted
 - HVR voice checks pass with no em dash, semicolon character or Oxford comma findings
-- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/005-release-cleanup/001-code-readmes --strict` exits 0 after cleanup.
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/001-code-readmes --strict` exits 0 after cleanup.
 <!-- /ANCHOR:success-criteria -->
 
 ---

@@ -39,28 +39,82 @@
       "next"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "implemented",
     "key_files": [
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/continuity-thread.cjs",
+      ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
+      ".opencode/skills/deep-loop-workflows/deep-research/assets/prompt_pack_iteration.md.tmpl",
+      ".opencode/commands/deep/assets/deep_research_auto.yaml",
+      ".opencode/commands/deep/assets/deep_research_confirm.yaml",
+      ".opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_strategy.md",
+      ".opencode/skills/deep-loop-runtime/tests/unit/continuity-thread.vitest.ts",
+      ".opencode/skills/deep-loop-runtime/tests/unit/prompt-pack.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts",
       "spec.md",
-      "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
-      ".opencode/skills/deep-loop-workflows/deep-research/assets/prompt_pack_iteration.md.tmpl",
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/prompt-pack.ts"
+      "plan.md"
     ],
     "entities": [
+      {
+        "name": "continuity-thread.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/continuity-thread.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "prompt_pack_iteration.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-workflows/deep-research/assets/prompt_pack_iteration.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "deep_research_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_research_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep_research_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_research_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep_research_strategy.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-loop-workflows/deep-research/assets/deep_research_strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "continuity-thread.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/continuity-thread.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-pack.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-loop-runtime/tests/unit/prompt-pack.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-reducer.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -82,21 +136,9 @@
         "source": "derived"
       },
       {
-        "name": "reduce-state.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-workflows/deep-research/scripts/reduce-state.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "prompt_pack_iteration.md.tmpl",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-workflows/deep-research/assets/prompt_pack_iteration.md.tmpl",
-        "source": "derived"
-      },
-      {
-        "name": "prompt-pack.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/prompt-pack.ts",
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -158,47 +200,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Unit Tests",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "The deep-research iteration cycle is itself a retrieval loop, but it threads forward in the \"reactive, reconstruct-cold\" mode - each iteration rebuilds its working set from the reducer's distilled snapshot rather than carrying its own prior thread, and the \"next focus\" it pursues is whatever free-text the previous iteration hand-wrote, not a function of what that iteration actually found. Two confirmed continuity gaps remain after the 030 Wave-0 pass:",
+    "causal_summary": "The deep-research iteration cycle is itself a retrieval loop, but it threads forward in the \"reactive, reconstruct-cold\" mode — each iteration rebuilds its working set from the reducer's distilled snapshot rather than carrying its own prior thread, and the \"next focus\" it pursues is whatever free-text the previous iteration hand-wrote, not a function of what that iteration actually found. Two confirmed continuity gaps remain after the 030 Wave-0 pass:",
     "created_at": "2026-06-19T06:20:37.820Z",
-    "last_save_at": "2026-06-19T06:20:37.820Z",
+    "last_save_at": "2026-06-21T07:23:18.858Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

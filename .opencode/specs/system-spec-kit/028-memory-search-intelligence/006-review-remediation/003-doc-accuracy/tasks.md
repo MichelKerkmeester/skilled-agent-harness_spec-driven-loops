@@ -62,7 +62,7 @@ _memory:
 - [x] T005 [P] Refresh the `timeline.md` epochs diagram and Section E classification. Diagram extended past commit 30 with the schema cluster, release-cleanup and benchmark commits; Section E reframed shipped-behind-flag vs held; new Section D2 added; dangling 030 pointer repointed.
 - [x] T006 [P] Advance `before-vs-after.md` CURRENT STATE and correct release-cleanup claims. CURRENT STATE advanced to `5ce5130b20`; Section 6 release-cleanup corrected from PENDING to executed; benchmark present-tense and measured-benefit framing reconciled to the criterion-4 run.
 - [x] T007 [P] Add `SPECKIT_CODE_GRAPH_SEEDED_PPR_RANKING` to the `benchmark-status.md` inventory (plus `SPECKIT_CODE_GRAPH_EDGE_BITEMPORAL_READS` and `SPECKIT_CODE_GRAPH_EDGE_GOVERNANCE_VOCAB`). The `ENV_REFERENCE.md` 17-flag portion is DEFERRED: that file is dirty with an active concurrent session's flag edits and is outside the parent-dispatched scope.
-- [ ] T008 Reconcile the `005-release-cleanup/spec.md` phase-map and replace the zero-hash fingerprint. DEFERRED: outside the parent-dispatched scope (3-file cluster + P1-6); overlaps phase 004 P2 triage and a sibling phase parent. Not executed.
+- [ ] T008 Reconcile the `000-release-cleanup/spec.md` phase-map and replace the zero-hash fingerprint. DEFERRED: outside the parent-dispatched scope (3-file cluster + P1-6); overlaps phase 004 P2 triage and a sibling phase parent. Not executed.
 - [ ] T009 Populate `changelog-028-root.md` verification, files-changed and follow-up evidence. DEFERRED: outside the parent-dispatched scope; overlaps phase 004 P2 triage. Not executed.
 <!-- /ANCHOR:phase-2 -->
 
@@ -72,7 +72,7 @@ _memory:
 ## Phase 3: Verification
 
 - [x] T010 Confirm every status edit traces to a commit or implementation-summary. Each reclassified row and narrative claim is traced to a named commit or child summary; HVR scan confirms 0 em-dashes and 0 semicolons in the added lines.
-- [ ] T011 Re-run `validate.sh 005-release-cleanup --strict` after editing the sibling spec. N/A: the 005 sibling was not edited (T008 deferred), so no sibling re-validation was required.
+- [ ] T011 Re-run `validate.sh 000-release-cleanup --strict` after editing the sibling spec. N/A: the 005 sibling was not edited (T008 deferred), so no sibling re-validation was required.
 - [x] T012 Run strict validation for this child folder. validate.sh --strict exits 0 for this child and for the 028 root.
 <!-- /ANCHOR:phase-3 -->
 

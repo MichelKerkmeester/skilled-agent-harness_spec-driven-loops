@@ -39,7 +39,7 @@
       "rank-time"
     ],
     "importance_tier": "important",
-    "status": "partial",
+    "status": "in_progress",
     "key_files": [
       ".opencode/skills/system-code-graph/mcp_server/lib/code-graph-context.ts",
       ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-context-handler.vitest.ts",
@@ -118,12 +118,6 @@
         "source": "derived"
       },
       {
-        "name": "Authored Level",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Key Decisions",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -136,7 +130,19 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -188,17 +194,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "This sub-phase makes the code-graph impact/dependency/neighborhood walk reproducible across scan rebuilds at the `rankContextEdges` / `finalize()` seam in `code-graph-context.ts`, with no schema migration. Q4-C1 rank-time trust already shipped as an RRF-additive term in Wave-0. This pass implements `det-context-order-global`: baseline rank and equal-score ties now use content-derived keys (related content hash coalescing to related symbol id and stable endpoint fields), so equal-trust walks no longer inherit SQLite row order. Remaining gates: Q4-C1 boost-magnitude tuning still needs a retrieval benchmark, and the Q8 / `fuseResultsMulti` dual-channel adapter still needs an isolation-compatible shared-fuser consume path rather than a code-graph-specific fuser fork.",
+    "causal_summary": "This sub-phase makes the code-graph impact/dependency/neighborhood walk **reproducible across scan rebuilds** and lets it **fuse the dual impact channels through 001's shared determinism keystone**. Both wins land on a single seam — the `rankContextEdges` / `finalize()` ranking path in `code-graph-context.ts` — with **no schema migration**. The rank-time trust blend that turns the already-plumbed `confidence`/`evidenceClass` edge metadata into ranking signal (candidate Q4-C1) **already shipped** in the flat Wave-0 implementation record (030, commit `e21caf5de6`) as an RRF-**additive** term. This implementation adds `det-context-order-global`: baseline rank assignment now starts from a content-derived total edge order (`contentHash` coalescing to related symbol id and stable endpoint fields), so equal-trust impact/dependency/neighborhood walks no longer inherit SQLite row order. What remains is Q4-C1 **benchmark-driven magnitude tuning** and the **adapter that promotes 001's `fuseResultsMulti`** (synthesize `RrfItem.id`, pre-sort each channel, label the dual GRAPH channels) so CALLS-channel and IMPORTS-channel impact results fuse with a cross-channel bonus instead of being concatenated in DB order (`Q8-fuser-adapter` / `fuseResultsMulti-codegraph-promote`).",
     "created_at": "2026-06-19T05:52:29.579Z",
-    "last_save_at": "2026-06-19T06:06:27.138Z",
+    "last_save_at": "2026-06-21T07:23:18.831Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

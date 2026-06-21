@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/006-commands"
+    packet_pointer: "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/006-commands"
     last_updated_at: "2026-06-19T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Cleanup executed, factual-drift route fix applied, strict validation passed"

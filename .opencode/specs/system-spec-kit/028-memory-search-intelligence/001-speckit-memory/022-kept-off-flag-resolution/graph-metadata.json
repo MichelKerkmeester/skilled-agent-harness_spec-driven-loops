@@ -1,34 +1,44 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/007-kept-off-flag-resolution",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/007-kept-off-flag-resolution",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence",
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/022-kept-off-flag-resolution",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/022-kept-off-flag-resolution",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/028-memory-search-intelligence/006-review-remediation"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/028-memory-search-intelligence/001-speckit-memory"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
       "028 kept off flag resolution",
       "028 flag flip or delete reckoning",
       "028 keep 5 delete 10 flags",
-      "028 final flag disposition"
+      "028 final flag disposition",
+      "028 flag resolution plan",
+      "028 flip or delete method",
+      "028 real world simulation flag gate",
+      "028 flag resolution tasks",
+      "028 flip or delete tasks",
+      "028 flag resolution checklist",
+      "028 flip or delete checklist",
+      "028 kept off flag resolution summary"
     ],
     "key_topics": [
       "028",
       "kept",
-      "off",
       "flag",
       "resolution",
       "flip",
       "delete",
-      "reckoning"
+      "reckoning",
+      "keep",
+      "flags",
+      "final",
+      "disposition",
+      "plan"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -39,11 +49,156 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "entities": [],
-    "causal_summary": "Kept-Off Flag Resolution is the final flip-or-delete reckoning for every 028 default-off flag. Five switches earned default-on and stayed, ten did not and their code was removed, each decided per flag under a fair real-world simulation with a fresh-Opus final gate and a 4-layer verification.",
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Off Flag Resolution",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 028 build epoch shipped most of its new search and memory behavior behind default-off flags and closed with no flag flipped. A keep-off reinvestigation then gave each flag a path to useful, and a transitional pass flipped four to default-on while the rest waited behind that path. That left the tree carrying many dormant switches whose someday-flip was an assumption, not a measured fact. A release sign-off could not tell which switches earned their place and which were dead code carrying a hopeful note.",
     "created_at": "2026-06-20T00:00:00Z",
-    "last_save_at": "2026-06-20T00:00:00Z",
-    "save_lineage": "scaffold",
+    "last_save_at": "2026-06-21T07:23:18.827Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -53,6 +208,6 @@
       "implementation-summary.md"
     ],
     "last_active_child_id": null,
-    "last_active_at": "2026-06-20T00:00:00Z"
+    "last_active_at": null
   }
 }

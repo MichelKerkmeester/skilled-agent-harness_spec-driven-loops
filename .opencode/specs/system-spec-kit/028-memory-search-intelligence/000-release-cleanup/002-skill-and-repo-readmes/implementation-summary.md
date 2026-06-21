@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-release-cleanup/002-skill-and-repo-readmes"
+    packet_pointer: "system-spec-kit/028-memory-search-intelligence/000-release-cleanup/002-skill-and-repo-readmes"
     last_updated_at: "2026-06-19T12:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Executed skill and repo README cleanup, recorded evidence"
@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/028-memory-search-intelligence/005-release-cleanup/002-skill-and-repo-readmes |
+| **Spec Folder** | system-spec-kit/028-memory-search-intelligence/000-release-cleanup/002-skill-and-repo-readmes |
 | **Completed** | 2026-06-19 (commit 6754d3a133) |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
@@ -90,7 +90,7 @@ Discovery enumerated the skill-level and repo-level README surfaces. Each candid
 |-------|--------|
 | Cleanup execution | Executed at 6754d3a133, 3 READMEs aligned, 0 added or deleted |
 | Path resolution | All corrected paths resolve |
-| Strict validation | PASSED, 0 errors and 0 warnings via `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/005-release-cleanup/002-skill-and-repo-readmes --strict` |
+| Strict validation | PASSED, 0 errors and 0 warnings via `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/000-release-cleanup/002-skill-and-repo-readmes --strict` |
 <!-- /ANCHOR:verification -->
 
 ---

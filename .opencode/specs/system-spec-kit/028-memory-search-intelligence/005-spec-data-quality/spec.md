@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/031-spec-data-quality"
+    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality"
     last_updated_at: "2026-06-21T00:00:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Wrote the canonical research synthesis and tiered every candidate"
@@ -64,7 +64,7 @@ The research converged on the truncation law. The prod retrieval path truncates 
 | **Priority** | P1 |
 | **Status** | Research Complete |
 | **Created** | 2026-06-21 |
-| **Branch** | `031-spec-data-quality` |
+| **Branch** | `005-spec-data-quality` |
 <!-- /ANCHOR:metadata -->
 
 ---

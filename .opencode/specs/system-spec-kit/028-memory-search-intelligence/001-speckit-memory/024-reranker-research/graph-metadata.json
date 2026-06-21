@@ -1,24 +1,30 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/028-memory-search-intelligence/009-reranker-research",
-  "spec_folder": "system-spec-kit/028-memory-search-intelligence/009-reranker-research",
-  "parent_id": "system-spec-kit/028-memory-search-intelligence",
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/024-reranker-research",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/024-reranker-research",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/028-memory-search-intelligence/008-new-feature-research-build"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/028-memory-search-intelligence/001-speckit-memory"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
       "028 reranker research",
       "028 citation ledger reranker",
       "028 demote only beta posterior penalty",
-      "028 reranker conditional go data blocked"
+      "028 reranker conditional go data blocked",
+      "028 reranker research plan",
+      "028 reranker prototype method",
+      "028 reranker conditional go method",
+      "028 reranker research tasks",
+      "028 reranker prototype tasks",
+      "028 reranker research checklist",
+      "028 reranker conditional go checklist",
+      "028 reranker research summary"
     ],
     "key_topics": [
       "028",
@@ -26,9 +32,13 @@
       "research",
       "citation",
       "ledger",
-      "beta-posterior",
-      "demote-only",
-      "truncation"
+      "demote",
+      "only",
+      "beta",
+      "posterior",
+      "penalty",
+      "conditional",
+      "data"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -38,13 +48,159 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "research.md"
+      "research.md",
+      ".opencode/skills/sk-doc/references/global/hvr_rules.md"
     ],
-    "entities": [],
-    "causal_summary": "Citation-Ledger Reranker Research is the read-only deep research that found a reranker is the one recall lever the truncation law permits. The recommended demote-only Beta-posterior penalty hit the oracle ceiling under a synthesized ledger but earned 0.000 on real data because the gold set and the strong-negative set do not intersect, so the verdict is CONDITIONAL-GO blocked on ledger density and corpus geometry not on the algorithm.",
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research.md",
+        "source": "derived"
+      },
+      {
+        "name": "hvr_rules.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/references/global/hvr_rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ledger Reranker Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Record",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The new-feature arc closed with a hard architectural finding. The append-not-displace pattern is the only non-regressing way to add content, and prod confidence-truncation cuts the tail before a reader sees it, so any tail-additive feature reads as zero at prod K by construction. That law leaves exactly one recall lever untried. A reranker does not append to the cut tail, it reorders the survivors that already sit inside the prod top-3, so it is the one mechanism the truncation law permits. The campaign needed to know whether a reranker could earn a measured prod win, and whether a demote-only design could do it safely without the citation-emitter's under-counted positives ever fabricating a promotion.",
     "created_at": "2026-06-21T00:00:00Z",
-    "last_save_at": "2026-06-21T00:00:00Z",
-    "save_lineage": "scaffold",
+    "last_save_at": "2026-06-21T07:23:18.829Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -55,6 +211,6 @@
       "research.md"
     ],
     "last_active_child_id": null,
-    "last_active_at": "2026-06-21T00:00:00Z"
+    "last_active_at": null
   }
 }
