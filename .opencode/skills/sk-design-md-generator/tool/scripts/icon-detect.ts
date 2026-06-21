@@ -1,3 +1,7 @@
+// ────────────────────────────────────────────────────────────────
+// MODULE: Icon System Detection
+// ────────────────────────────────────────────────────────────────
+
 import type { Page } from 'playwright';
 import type { DOMCollection, IconSystemInfo } from './types';
 

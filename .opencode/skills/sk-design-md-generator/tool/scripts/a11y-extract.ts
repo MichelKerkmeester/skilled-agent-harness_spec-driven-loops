@@ -1,3 +1,7 @@
+// ────────────────────────────────────────────────────────────────
+// MODULE: Accessibility Extraction
+// ────────────────────────────────────────────────────────────────
+
 import type { DOMCollection, InteractionData, CSSAnalysis, A11yTokens } from './types';
 import type { Page } from 'playwright';
 

@@ -1,3 +1,7 @@
+// ────────────────────────────────────────────────────────────────
+// MODULE: Report Generator
+// ────────────────────────────────────────────────────────────────
+
 import * as fs from 'fs';
 import * as path from 'path';
 import type { DesignTokens, ColorToken, TypographyLevel, ShadowToken, RadiusToken } from './types';

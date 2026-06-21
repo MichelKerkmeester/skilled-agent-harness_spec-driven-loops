@@ -1,3 +1,7 @@
+// ────────────────────────────────────────────────────────────────
+// MODULE: Motion Extraction
+// ────────────────────────────────────────────────────────────────
+
 import type { CSSAnalysis, DOMCollection, MotionSystem } from './types';
 
 function parseDurationToMs(raw: string): number | null {

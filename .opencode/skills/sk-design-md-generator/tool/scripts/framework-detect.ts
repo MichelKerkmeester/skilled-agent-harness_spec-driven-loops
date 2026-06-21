@@ -1,3 +1,7 @@
+// ────────────────────────────────────────────────────────────────
+// MODULE: Framework Detection
+// ────────────────────────────────────────────────────────────────
+
 import type { Page } from 'playwright';
 import type { FrameworkDetection } from './types';
 

@@ -1,3 +1,7 @@
+// ────────────────────────────────────────────────────────────────
+// MODULE: Interaction State Capture
+// ────────────────────────────────────────────────────────────────
+
 import type { Page } from 'playwright';
 import type {
   InteractionData,

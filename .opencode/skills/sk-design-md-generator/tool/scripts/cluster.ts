@@ -1,3 +1,7 @@
+// ────────────────────────────────────────────────────────────────
+// MODULE: Token Clustering
+// ────────────────────────────────────────────────────────────────
+
 // @ts-expect-error culori has no bundled declarations in this setup
 import * as culori from 'culori';
 import type {

@@ -1,3 +1,7 @@
+// ────────────────────────────────────────────────────────────────
+// MODULE: DOM Style Collector
+// ────────────────────────────────────────────────────────────────
+
 import type { Page } from 'playwright';
 import type {
   DOMCollection,

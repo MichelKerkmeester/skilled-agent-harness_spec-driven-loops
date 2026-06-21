@@ -1,3 +1,7 @@
+// ────────────────────────────────────────────────────────────────
+// MODULE: Extraction Orchestrator
+// ────────────────────────────────────────────────────────────────
+
 import * as path from 'path';
 import * as fs from 'fs';
 import { crawlPages, type WaitStrategy } from './crawl';

@@ -1,3 +1,7 @@
+// ────────────────────────────────────────────────────────────────
+// MODULE: Dark Mode Detection
+// ────────────────────────────────────────────────────────────────
+
 import type { Page } from 'playwright';
 import type { CSSAnalysis, CSSVariable, DarkModeData } from './types';
 

@@ -1,3 +1,7 @@
+// ────────────────────────────────────────────────────────────────
+// MODULE: CSS Analyzer
+// ────────────────────────────────────────────────────────────────
+
 import type { Page } from 'playwright';
 import * as csstree from 'css-tree';
 import type {

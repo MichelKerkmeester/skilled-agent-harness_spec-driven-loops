@@ -1,3 +1,7 @@
+// ────────────────────────────────────────────────────────────────
+// MODULE: Page Crawler
+// ────────────────────────────────────────────────────────────────
+
 import { chromium, type Browser, type BrowserContext, type Page } from 'playwright';
 import type { CrawlResult, PageData } from './types';
 
@@ -627,7 +631,7 @@ async function processPage(
         return { page: null, discoveredLinks: [], error: `Timeout: ${url}` };
       }
 
-      // Retry on 403/429
+      // Retry on rate-limit and forbidden responses
       if (status === 403 || status === 429) {
         log(verbose, `RETRY (${status}) ${url}`);
         await delay(3000);
@@ -646,7 +650,7 @@ async function processPage(
 
     // Handle non-retry HTTP errors
     if (status !== null && status >= 400 && status !== 403 && status !== 429) {
-      // 403/429 already handled above in the error block
+      // Rate-limit and forbidden responses already handled above
       return { page: null, discoveredLinks: [], error: `HTTP ${status}: ${url}` };
     }
 
