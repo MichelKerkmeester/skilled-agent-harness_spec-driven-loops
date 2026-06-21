@@ -139,20 +139,29 @@ From `od --help`. Read-only verbs are safe to surface freely. Mutating verbs are
 | Verb | Purpose | Class |
 |---|---|---|
 | `od [--port --host --no-open]` | Start the local daemon plus chat web UI (`--no-open` skips the browser). Defaults `--port 7456` (`OD_PORT`), `--host 127.0.0.1` (`OD_BIND_HOST`). | **mutating** (starts a server) |
+| `od daemon start [--headless] [--serve-web] [--port <port>]` | Start the daemon as a subprocess. `--headless` runs without GUI, `--serve-web` serves the chat web UI, `--port` sets the HTTP port (default 7456). | **mutating** (starts daemon process) |
 | `od mcp [--daemon-url]` | stdio MCP server proxying project tools to the daemon. | read + write (tool-dependent) |
 | `od mcp install <agent>` | Register the Open Design MCP server into an agent's config. Flags: `--uninstall --print/--dry-run --json --name --daemon-url`. | **mutating** (writes config) |
 | `od mcp live-artifacts` | stdio MCP exposing live-artifact and connector tools (no `--help` output). | read + write |
+| `od project create --name "<name>" [--skill <skill>] [--design-system <system>] [--json] [--daemon-url]` | Create a new Open Design project. Returns `{ project: { id }, conversationId }` with `--json`. | **mutating** (creates project) |
 | `od run <start\|watch\|cancel\|list\|info>` | Commission and manage headless generation runs. `start --project <id> [--conversation <id>] --message "<brief>" [--plugin od-new-generation] [--agent claude\|codex\|gemini\|opencode] [--model <id>] [--follow] [--json]` fires turn 1, which returns a discovery question-form (0 files, `awaiting_input`). `watch`/`list`/`info` inspect runs. `cancel` aborts. | start = **mutating** (commissions a build); watch/list/info = **read-only**; cancel = **mutating** |
 | `od tools live-artifacts <create\|list\|update\|refresh>` | Live artifacts via daemon wrappers. | list = read; create/update/refresh = **mutating** |
 | `od tools connectors <list\|execute\|github-design-context\|local-design-context\|design-system-package-audit>` | Discover and run connectors, build design-context packs. | list = read; execute = **mutating / side-effecting** |
 | `od tools design-systems read --path <manifest-path> [--design-system <id>]` | Read a registered design system's pull-layer files (allowlisted). | **read-only** |
+| `od design-systems list [--json]` | List registered design-systems available locally. | **read-only** |
+| `od skills list [--json]` | List registered skills available locally. | **read-only** |
 | `od artifacts create --name <path> --input <file> [--project] [--manifest] [--encoding] [--daemon-url]` | Create one project artifact file (rejects an existing target). | **mutating** |
+| `od files list <projectId> [--json] [--daemon-url]` | List files in a project. | **read-only** |
+| `od files read <projectId> <path> [--daemon-url]` | Read a file from a project, writes content to stdout. | **read-only** |
+| `od files write <projectId> <path>` | Write content from stdin to a project file. | **mutating** |
 | `od media generate --surface <image\|video\|audio> --model <id> …` (plus `media wait <taskId>`) | Generate media into the active project. Picks up `OD_DAEMON_URL`/`OD_PROJECT_ID` injected by the daemon. | **mutating** |
 | `od research search --query <text> [--max-sources 5] [--daemon-url]` | Tavily-backed shallow research, JSON to stdout. | read (external fetch) |
 | `od automation <…>` | Drive the Automations surface headlessly (same store as the UI tab). | mixed (see Section 5) |
 | `od memory tree <list\|view\|edit\|move>` | Inspect or edit the memory tree injected into agent prompts. | list/view = read; edit/move = **mutating** |
 | `od ui <list\|show\|respond\|revoke\|prefill>` | Read and answer GenUI surfaces (form / choice / confirmation / oauth-prompt) from any process. | list/show = read; respond/revoke/prefill = **mutating** |
-| `od plugin <list\|info\|install\|uninstall\|apply\|doctor\|replay\|trust\|publish-repo\|open-design-pr\|scaffold\|pack\|export\|…>` | Plugin lifecycle via the daemon. | mixed; install/apply/trust = **mutating** |
+| `od plugin <list\|info\|install\|uninstall\|apply\|replay\|trust\|publish-repo\|open-design-pr\|scaffold\|pack\|export\|…>` | Plugin lifecycle via the daemon. | mixed; install/apply/trust = **mutating** |
+| `od doctor` | Verify daemon health and detect agent CLIs on your PATH. | **read-only** |
+| `od daemon status [--json] [--daemon-url]` | Report daemon runtime snapshot. `--json` outputs structured status. | **read-only** |
 | `od diagnostics export [<path>] [--output] [--json] [--daemon-url]` | Bundle logs, machine info, and crashes into a zip (same as Settings to About). | **mutating** (writes a zip) |
 
 ### Notes on the verb surface
@@ -171,7 +180,7 @@ These are the headless equivalents of typing into the in-app chat box. The mutat
 A visible, rendered design is produced by a **multi-turn** flow, never a single call. **[CONFIRMED - live-verified this session]**
 
 1. **Turn 1.** `start_run(prompt, [skill], [plugin], [inputs], [agent], [model])` (MCP) or `od run start --project <id> [--conversation <id>] --message "<brief>" [--plugin od-new-generation] [--agent claude|codex|gemini|opencode] [--model <id>] [--follow] [--json]` (CLI) spawns the inner agent (`claude` / `codex` / `gemini`, per `list_agents`; `opencode` also works as the inner agent, verified live, and needs an explicit `--model <id>` or the run uses opencode's default, shown as `"model":null` in the run's `events.jsonl` start event). It returns a **GenUI discovery question-form** (the inner agent asking about fidelity, data, and behaviour, with recommended defaults) and ends `awaiting_input` with **zero files**. A run that stops here has produced no design.
-2. **Answer the form.** `od ui list --run <runId>` and `od ui show` give the `surfaceId`; `od ui respond --run <runId> <surfaceId> --value <txt> | --value-json <json> | --skip` submits the answer (`--skip` accepts the recommended defaults). A follow-up message such as "use the recommended defaults" works too. This is what fires the **build run**.
+2. **Answer the form.** `od ui list --run <runId>` and `od ui show` give the `surfaceId`; `od ui respond --run <runId> <surfaceId> --value <txt> | --value-json <json> | --skip` submits the answer (`--skip` accepts the recommended defaults). Alternatively, send a follow-up `od run start --project <id> --conversation <conversationId> --message "<form answers>"` on the same conversation to submit answers directly inline. A follow-up message such as "use the recommended defaults" works too. This is what fires the **build run**.
 3. **Build and fetch.** The build run writes the design files (`index.html` and friends). The project then gains an `entryFile` and a `previewUrl` and renders. Poll `get_run(runId)` (`od run watch/info`), then fetch with `get_artifact`. `cancel_run` (`od run cancel`) aborts.
 
 Live proof this session: turn 1 produced a question-form (`awaiting_input`, 0 files); after it was answered, a build run wrote a 26 KB `index.html` and the project "Brackwater" rendered with a `previewUrl`.

@@ -67,14 +67,14 @@ This policy is the spine of how the skill exposes the surface. It spans both the
 Call these without ceremony:
 
 - MCP: `list_projects`, `get_active_context`, `get_artifact`, `get_project`, `get_file`, `search_files`, `list_files`, `list_skills`, `list_plugins`, `list_agents`, `get_run`.
-- CLI: `od tools design-systems read`, and the `list`/`view`/`show` forms of `od automation`, `od memory tree`, and `od ui`. (`od daemon status` and a standalone `od doctor` are **[UNVERIFIED]**. They are not in the confirmed `od --help` verb table, which only implements `od --no-open` to start the daemon and exposes `doctor` under `od plugin ... doctor`. Confirm with a live `od --help` before surfacing them.)
+- CLI: `od tools design-systems read`, `od files list`, `od files read`, `od skills list`, `od design-systems list`, `od doctor`, `od daemon status`, and the `list`/`view`/`show` forms of `od automation`, `od memory tree`, and `od ui`.
 
 ### Surface but GATE (confirmation + explicit target + rollback note)
 
 Before any of these, state the effect and a one-line rollback, name the explicit target project or name, and stop for confirmation:
 
 - MCP: `create_artifact`, `create_project`, `start_run`, `cancel_run`.
-- CLI: `od artifacts create`, `od media generate`, `od research search`, `od automation create/run/…`, `od ui respond/revoke/prefill`, `od memory tree edit/move`, `od plugin install/…`, `od diagnostics export`.
+- CLI: `od artifacts create`, `od files write`, `od media generate`, `od research search`, `od automation create/run/…`, `od ui respond/revoke/prefill`, `od memory tree edit/move`, `od plugin install/…`, `od diagnostics export`, `od daemon start`, `od project create`.
 
 ### OMIT from the default path (reference docs only)
 
