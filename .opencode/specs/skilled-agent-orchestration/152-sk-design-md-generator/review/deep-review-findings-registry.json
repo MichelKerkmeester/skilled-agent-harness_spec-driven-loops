@@ -1,0 +1,1313 @@
+{
+  "sessionId": "2026-06-21T10:32:25Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "F001-01",
+      "severity": "P1",
+      "title": "403 and 429 HTTP responses bypass error-handling and are processed as successful pages",
+      "file": ".opencode/skills/sk-design-md-generator/tool/scripts/crawl.ts",
+      "line": null,
+      "description": "Restructure the guards to check status before the error-only block, or move the 403/429 retry logic outside the `if (error)` gate. A clean fix: extract status checks first (`if (status === 403 || status === 429) { retry... }`), then handle network errors, then reject other HTTP errors.",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "d0f9a1c9f529",
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002-01",
+      "severity": "P1",
+      "title": "Hue-grouping angular distance formula broken for negative JS modulo",
+      "file": "cluster.ts",
+      "line": null,
+      "description": "Replace with a sign-safe formula, e.g.: `const d = ((color.h - other.h) % 360 + 360) % 360; Math.min(d, 360 - d) <= 10`, or equivalently `((color.h - other.h + 180) % 360 + 360) % 360 - 180`.",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "7d3f9869a2fb",
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002-02",
+      "severity": "P1",
+      "title": "parseTransitionShorthand misidentifies CSS property when transition shorthand omits property name",
+      "file": "css-analyzer.ts",
+      "line": null,
+      "description": "Add logic to distinguish time values (matching `/^\\d+\\.?\\d*(s|ms)$/`) from property names; if the first token is a time value, default `property` to `'all'` and shift remaining tokens.",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "244c81bbf1d5",
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003-01",
+      "severity": "P1",
+      "title": "SSL certificate validation disabled site-wide",
+      "file": ".opencode/skills/sk-design-md-generator/tool/scripts/crawl.ts",
+      "line": null,
+      "description": "Remove `ignoreHTTPSErrors: true`. If certain sites legitimately need it, gate it behind an explicit `--insecure` CLI flag with a warning so the user opts in knowingly.",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "0f11da939cd1",
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003-02",
+      "severity": "P1",
+      "title": "Unvalidated parseInt on --concurrency/--max-pages allows negative/NaN values",
+      "file": ".opencode/skills/sk-design-md-generator/tool/scripts/extract.ts",
+      "line": null,
+      "description": "Validate with `Math.max(1, parseInt(...))` or reject values < 1 with an error message before constructing the options object.",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "1f752cdf30ad",
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003-03",
+      "severity": "P1",
+      "title": "Unguarded JSON.parse on --merge-with file crashes on malformed input",
+      "file": ".opencode/skills/sk-design-md-generator/tool/scripts/extract.ts",
+      "line": null,
+      "description": "Wrap in try/catch; on parse failure, log a warning and continue without merging instead of crashing.",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "d5149c467e42",
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003-04",
+      "severity": "P1",
+      "title": "Unguarded JSON.parse + readFileSync crashes on missing/corrupt tokens file",
+      "file": ".opencode/skills/sk-design-md-generator/tool/scripts/proof.ts",
+      "line": null,
+      "description": "Wrap in try/catch; on failure, print a clear error message and exit gracefully rather than dumping a stack trace.",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "8500801b8dd4",
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004-01",
+      "severity": "P1",
+      "title": "Stroke width detection uses borderTopWidth instead of SVG stroke-width",
+      "file": ".opencode/skills/sk-design-md-generator/tool/scripts/icon-detect.ts",
+      "line": null,
+      "description": "Either add a `strokeWidth: number` field to ElementStyle and populate it from computed style `stroke-width` in the DOM collector, or scrape the SVG `stroke-width` attribute directly via `page.evaluate` in icon-detect.",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "3f208c2a2c3f",
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F007-01",
+      "severity": "P1",
+      "title": "Validator checks only 12 of 17 required sections, contradicting SKILL.md's repeated 17-section claim",
+      "file": ".opencode/skills/sk-design-md-generator/tool/scripts/validate.ts",
+      "line": null,
+      "description": "Either update validate.ts v2Sections to check all 17 sections (add the missing section identifiers), or correct SKILL.md to reflect the actual validator coverage (12 sections checked, not 17).",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "ed0f7ecfaa72",
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F007-02",
+      "severity": "P1",
+      "title": "SKILL.md claims validate.ts checks L1-L4 stability rules but no such check is implemented",
+      "file": ".opencode/skills/sk-design-md-generator/tool/scripts/validate.ts",
+      "line": null,
+      "description": "Either add a stability-classification verification function to validate.ts, or remove the claim from SKILL.md's VALIDATE phase description.",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "1358584a7cec",
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F007-03",
+      "severity": "P1",
+      "title": "SKILL.md L1-L4 stability taxonomy (Permanent/System/Campaign/Content) doesn't match code taxonomy (infrastructure/system/campaign/content)",
+      "file": ".opencode/skills/sk-design-md-generator/SKILL.md",
+      "line": null,
+      "description": "Align the taxonomy names between doc and code. Either rename code layers to match SKILL.md (L1/L2/L3/L4 with Permanent/System/Campaign/Content), or update SKILL.md to document the actual layer values output by the clusterer.",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "3b6aaa2aed18",
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F007-04",
+      "severity": "P1",
+      "title": "SKILL.md claims validate output includes \"per-error line references\" but most validation checks report no line numbers",
+      "file": ".opencode/skills/sk-design-md-generator/SKILL.md",
+      "line": null,
+      "description": "Either add line-number tracking to all validation checks (tracking position in mdContent), or update SKILL.md to say \"per-error line references for format errors only\" instead of the universal claim.",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "6356208231db",
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F008-01",
+      "severity": "P1",
+      "title": "Validator checks only 12 v2 sections but format spec requires sections 6.5, 11, and 12 as core",
+      "file": "tool/scripts/validate.ts",
+      "line": null,
+      "description": "Add `## 6.5. Motion System`, `## 11. State Matrix`, and `## 12. Iconography` to the v2Sections array in validate.ts:214-226.",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "4b38065335cb",
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F001-02",
+      "severity": "P2",
+      "title": "PageData.errors array is always empty (dead field)",
+      "file": ".opencode/skills/sk-design-md-generator/tool/scripts/crawl.ts",
+      "line": null,
+      "description": "Either remove the field from PageData (and the type definition) if unused, or wire up error-pushing at the catch sites within the try block (e.g., line 713 before re-throwing wrapping exceptions).",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "86f5c68b4589",
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F001-03",
+      "severity": "P2",
+      "title": "No SVG logo fallback when canvas pixel extraction fails on a found logo image",
+      "file": ".opencode/skills/sk-design-md-generator/tool/scripts/dom-collector.ts",
+      "line": null,
+      "description": "Add an SVG fallback attempt in the catch block at line 545 before returning null, or restructure to try SVG extraction regardless of img discovery when canvas analysis fails.",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "781c50a4b6e8",
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F001-04",
+      "severity": "P2",
+      "title": "Hardcoded viewport count (5) in screenshotCount calculation",
+      "file": ".opencode/skills/sk-design-md-generator/tool/scripts/extract.ts",
+      "line": null,
+      "description": "Import or derive the viewport count from a shared constant, or compute it dynamically from the crawl result (e.g., `Object.keys(crawlResult.pages[0]?.screenshots ?? {}).length`).",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "b64fc659c9f0",
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002-03",
+      "severity": "P2",
+      "title": "Identical classifyShadow redefined locally, shadowing the exported version",
+      "file": "cluster.ts",
+      "line": null,
+      "description": "Delete the local copy at line 1044 and call the exported `classifyShadow` (line 374) directly within `clusterTokens`.",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "7822bd4150d0",
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003-05",
+      "severity": "P2",
+      "title": "--output flag reads undefined when no value follows, default overrides it silently",
+      "file": ".opencode/skills/sk-design-md-generator/tool/scripts/extract.ts",
+      "line": null,
+      "description": "Check that `i + 1 < args.length` and that `args[i+1]` does not start with `--` before consuming the value; print an error and exit if the value is missing.",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "29901075cb21",
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004-02",
+      "severity": "P2",
+      "title": "extractA11y accepts unused page parameter",
+      "file": ".opencode/skills/sk-design-md-generator/tool/scripts/a11y-extract.ts",
+      "line": null,
+      "description": "Remove the `page?: Page` parameter from the signature and update callers.",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "33224271cb57",
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004-03",
+      "severity": "P2",
+      "title": "parseRgb returns null for CSS Color Level 4 shorthand hex values",
+      "file": ".opencode/skills/sk-design-md-generator/tool/scripts/a11y-extract.ts",
+      "line": null,
+      "description": "Add explicit handling for 4-char and 8-char hex lengths in parseRgb, or tighten the regex to only match lengths the function handles (`{3}|{6}`).",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "64d262a33983",
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004-04",
+      "severity": "P2",
+      "title": "Skip link detection only works for anchor elements",
+      "file": ".opencode/skills/sk-design-md-generator/tool/scripts/a11y-extract.ts",
+      "line": null,
+      "description": "Also check `<button>` elements with skip-link text patterns, or broaden the selector to `a[href^='#']` to only match anchor-links.",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "48870377a419",
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004-05",
+      "severity": "P2",
+      "title": "Dead no-op filter in toggle button locator",
+      "file": ".opencode/skills/sk-design-md-generator/tool/scripts/dark-mode-detect.ts",
+      "line": null,
+      "description": "Remove the `filter` call; the locator already correctly selects buttons/checkboxes with dark/theme/mode/light text via `hasText`.",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "818a5982d7c4",
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004-06",
+      "severity": "P2",
+      "title": "buildVariableDiff silently drops dark-mode-only variables",
+      "file": ".opencode/skills/sk-design-md-generator/tool/scripts/dark-mode-detect.ts",
+      "line": null,
+      "description": "Add a second pass that captures variables unique to dark mode, or change the return type to include `darkOnly: {name,value}[]`.",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "29fd96f44ffc",
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004-07",
+      "severity": "P2",
+      "title": "SVG data-attribute checks in detectLibrary are unreachable dead code",
+      "file": ".opencode/skills/sk-design-md-generator/tool/scripts/icon-detect.ts",
+      "line": null,
+      "description": "Populate `attributes` from the actual ElementStyle fields (the type has no generic attribute map), or add a `page.evaluate` step in `detectIconLabels` to collect `data-lucide`/`data-feather` attributes from live SVG elements.",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "0624d86f39ea",
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004-08",
+      "severity": "P2",
+      "title": "Dead _domCollections parameter",
+      "file": ".opencode/skills/sk-design-md-generator/tool/scripts/motion-extract.ts",
+      "line": null,
+      "description": "Remove the parameter from the function signature and update callers.",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "3abd7919215c",
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004-09",
+      "severity": "P2",
+      "title": "Dead assignment: globalColors set never read",
+      "file": ".opencode/skills/sk-design-md-generator/tool/scripts/design-boundary-detect.ts",
+      "line": null,
+      "description": "Remove the `globalColors` variable and Line 176 assignment, or use it (e.g., to report global-vs-page-unique color ratios).",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "1381ddcaf162",
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004-10",
+      "severity": "P2",
+      "title": "hexToRgb returns wrong channels for 8-digit hex with alpha",
+      "file": ".opencode/skills/sk-design-md-generator/tool/scripts/design-boundary-detect.ts",
+      "line": null,
+      "description": "Detect and skip alpha channel: if `clean.length >= 8`, extract `(n >> 24) & 255` for R instead of `>>16`, or strip alpha before parsing.",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "05f502545246",
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F005-01",
+      "severity": "P2",
+      "title": "Component variant names not HTML-escaped",
+      "file": ".opencode/skills/sk-design-md-generator/tool/scripts/report-gen.ts",
+      "line": null,
+      "description": "Wrap with `esc()`: `cg.variants.map((v) => esc(v.name)).join(', ')`.",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "fdb74afa0aa4",
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F005-02",
+      "severity": "P2",
+      "title": "withTimeout timer never cleared, produces misleading timeout warnings",
+      "file": ".opencode/skills/sk-design-md-generator/tool/scripts/interaction-capture.ts",
+      "line": null,
+      "description": "Capture the timer ID (`const id = setTimeout(...)`) and call `clearTimeout(id)` in a `.then/.finally` on the inner promise.",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "9ab1f7c68efd",
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F005-03",
+      "severity": "P2",
+      "title": "Font-family names in HTML comment may break comment structure",
+      "file": ".opencode/skills/sk-design-md-generator/tool/scripts/report-gen.ts",
+      "line": null,
+      "description": "Escape `-->` sequences: `uniqueFamilies.map(f => f.replace(/-->/g, '-- >')).join(', ')`, or place outside the comment.",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "d5037891daec",
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F005-04",
+      "severity": "P2",
+      "title": "Shadow value not HTML-escaped in Card section (inconsistent with Shadow section)",
+      "file": ".opencode/skills/sk-design-md-generator/tool/scripts/preview-gen.ts",
+      "line": null,
+      "description": "Apply `escapeHtml()` consistently: `box-shadow:${escapeHtml(shadows[0].value)}` at line 233.",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "4427a17725a9",
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F006-01",
+      "severity": "P2",
+      "title": "Section dividers duplicated and interleaved across file",
+      "file": ".opencode/skills/sk-design-md-generator/tool/scripts/extract.ts",
+      "line": null,
+      "description": "Reorganize extract.ts so each section number appears once in standard order: move all type definitions to a single section 2, all helpers (printUsage, log, urlToSlug) to section 4, and keep core logic (parseArgs, extract, CLI entry point) in section 5.",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "8d6f7872588c",
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F006-02",
+      "severity": "P2",
+      "title": "Section 5 (CORE LOGIC) appears before Section 4 (HELPERS)",
+      "file": ".opencode/skills/sk-design-md-generator/tool/scripts/cluster.ts",
+      "line": null,
+      "description": "Move the HELPERS section (lines 186-324: hslToRgb, clampByte, clamp01, rgbaToHex, rgbaKey, extractShadowColors, extractGradientColors, relativeLuminance, wcagContrast, gcd, mode, parsePxValue) before the CORE LOGIC section (parseColor and clusterTokens).",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "606e399ecf37",
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F006-03",
+      "severity": "P2",
+      "title": "Duplicate classifyShadow function: exported version (line 374) and nested version (line 1044)",
+      "file": ".opencode/skills/sk-design-md-generator/tool/scripts/cluster.ts",
+      "line": null,
+      "description": "Remove the nested `classifyShadow` at line 1044 and call the exported `classifyShadow` at line 374 instead. If the nested version intentionally differs, document why and rename to avoid collision.",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "4bb7c402359c",
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F006-04",
+      "severity": "P2",
+      "title": "CONSTANTS (section 2) and TYPE DEFINITIONS (section 3) are reversed from standard order",
+      "file": ".opencode/skills/sk-design-md-generator/tool/scripts/css-analyzer.ts",
+      "line": null,
+      "description": "Swap sections: move the `interface CSSSource` block to section 2 TYPE DEFINITIONS and `const TRACKED_PSEUDO_CLASSES` to section 3 CONSTANTS.",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "181e618cbc00",
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F006-05",
+      "severity": "P2",
+      "title": "PageExtraction interface duplicated in cluster.ts and extract.ts instead of shared in types.ts",
+      "file": ".opencode/skills/sk-design-md-generator/tool/scripts/cluster.ts",
+      "line": null,
+      "description": "Move `PageExtraction` to types.ts as an exported interface, then import it from both cluster.ts and extract.ts. Remove the local definitions in both files.",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "323cf9388017",
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F007-05",
+      "severity": "P2",
+      "title": "WRITE phase (Phase 2) described as automated pipeline step but has no TypeScript implementation",
+      "file": ".opencode/skills/sk-design-md-generator/SKILL.md",
+      "line": null,
+      "description": "Clarify in SKILL.md §3 that EXTRACT and VALIDATE are automated TypeScript tools while WRITE is a handover step performed by the AI agent using tokens.json + design-md-format.md. Remove the implication of full automation.",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "492615a6ff8b",
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F008-02",
+      "severity": "P2",
+      "title": "HTML footer in report-gen.ts still contains original project name \"design-md-generator\"",
+      "file": "tool/scripts/report-gen.ts",
+      "line": null,
+      "description": "Replace with \"sk-design-md-generator\" or a neutral identity label consistent with the tool's current name in package.json (\"design-system-extractor\").",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "0b42ca20091d",
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F008-03",
+      "severity": "P2",
+      "title": "\"17-section\" count is repeated across all docs but does not match the format spec or the validator",
+      "file": "README.md",
+      "line": null,
+      "description": "Pick a consistent section count that matches the format spec (e.g. \"14-section core format\" or \"18-section v2 format\"), update all doc occurrences, and align validate.ts to enforce the same required set defined by design-md-format.md.",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "1d3c56bc4144",
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F010-01",
+      "severity": "P2",
+      "title": "Version string mismatch between SKILL.md frontmatter and changelog",
+      "file": ".opencode/skills/sk-design-md-generator/SKILL.md",
+      "line": null,
+      "description": "Align to a single version-segment convention. The house practice for global component changelogs uses four-segment (vA.B.C.D), so update SKILL.md frontmatter `version: 1.0.0.0` to match the changelog, or vice versa.",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "c7fd98ec0cff",
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F010-02",
+      "severity": "P2",
+      "title": "Dead link to tool/README.md in invocation section",
+      "file": ".opencode/skills/sk-design-md-generator/SKILL.md",
+      "line": null,
+      "description": "Either ship a minimal `tool/README.md` documenting extract flags, or re-point the reference to `INSTALL_GUIDE.md` which already covers extract flags (line 100-113).",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "2684bf864335",
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F010-03",
+      "severity": "P2",
+      "title": "Spec continuity key_files points to a non-existent file",
+      "file": ".opencode/specs/skilled-agent-orchestration/152-sk-design-md-generator/spec.md",
+      "line": null,
+      "description": "Update spec.md `_memory.continuity.key_files` to list the actual shipped files: `tool/resources/design-md-format.md`, `SKILL.md`, `references/extraction_workflow.md`, etc.; or remove the stale entry.",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "70b4252a716e",
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F010-04",
+      "severity": "P2",
+      "title": "Sections 5 (REFERENCES) and 8 (REFERENCES AND RELATED RESOURCES) duplicate content",
+      "file": ".opencode/skills/sk-design-md-generator/SKILL.md",
+      "line": null,
+      "description": "Collapse the overlapping content. Keep §5 as the canonical reference list and reduce §8 to a 2-3 line pointer back to §5 and §2 (the router), removing the duplicated entries.",
+      "findingClass": null,
+      "deltaStatus": "open",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "08c3c956c1f3",
+      "dimension": "correctness",
+      "firstSeen": 0,
+      "lastSeen": 0,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 0,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 13,
+    "P2": 30
+  },
+  "openFindingsCount": 43,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.907,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}
