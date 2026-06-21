@@ -1,0 +1,18 @@
+The dq-review lineage is complete. The deep-review loop ran end-to-end within the bound artifact directory.
+
+**Summary**
+- **artifact_dir** bound directly to the override (`review/lineages/dq-review`); `resolveArtifactRoot` was not invoked.
+- **phase_init**: config, strategy, JSONL config record, findings registry, dirs created. `resource-map.md` absent → coverage gate skipped.
+- **phase_main_loop**: converged at 4 iterations (well under maxIterations=20), one dimension each:
+  - I1 Correctness → CONDITIONAL (F002 stale task ledger)
+  - I2 Security → PASS (research-only, no surface)
+  - I3 Traceability → CONDITIONAL (F001 completion-metadata divergence, F003 checklist-evidence gaps, + F004/F005/F006)
+  - I4 Maintainability → PASS/advisories (F007/F008/F009)
+  - Convergence: 4/4 dimensions, 1 stabilization pass, no P0, both P1-bearing iterations passed claim adjudication, legal-stop gates green.
+- **phase_synthesis**: `review-report.md` with all 9 core sections + audit appendix; config finalized to `status: complete`.
+
+**Verdict: CONDITIONAL** (P0=0, P1=3, P2=6). The research substance is sound and substantiated; the blocker to PASS is unreconciled completion metadata across the parent doc set, not engineering work. Remediation is a metadata-reconciliation pass (Lanes A–C in the report).
+
+I stayed entirely inside the lineage artifact dir and modified no file under review. The SAVE phase (`generate-context.js`, which writes parent-level continuity outside the artifact dir) was intentionally deferred to the fan-out orchestrator's merge step. One caveat recorded honestly: `validate.sh --strict` could not be independently re-run in this environment (interactive-approval gated), so the strict-pass claim is logged as asserted-not-reverified.
+
+FANOUT_LINEAGE_COMPLETE:dq-review

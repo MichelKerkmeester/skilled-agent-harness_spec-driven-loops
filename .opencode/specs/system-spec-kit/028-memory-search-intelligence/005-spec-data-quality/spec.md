@@ -88,18 +88,20 @@ Decide, from external evidence, which data-quality techniques spec-kit should ad
 - Research how to improve spec-kit data quality by default for retrieval, AI adherence and logic reading
 - Record the Stage 0 external-findings brief as the loop seed
 - Rank candidate techniques by external evidence strength
+- Scaffold the converged recommendations into 28 implementation child phases under this parent
 
 ### Out of Scope
-- Building or shipping any candidate. This packet is research only
+- Building or shipping any candidate. This packet delivers the research and the child scaffolds, not a build
 - Touching packet 028, packet 030 or any concurrent-session file. They stay frozen
-- Changing the live metadata JSON schemas. Schema work follows the loop verdict
+- Changing the live metadata JSON schemas. Schema work follows the per-phase build
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `research/research.md` | Create | The research index for this packet |
+| `research/research.md` | Create | The canonical research synthesis for this packet |
 | `research/stage-0-external-findings.md` | Create | The Stage 0 external sweep brief |
+| `[NNN-slug]/` (28 child phase folders) | Create | One Level-2 doc set per converged recommendation, inventoried in the PHASE DOCUMENTATION MAP |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -148,7 +150,7 @@ Decide, from external evidence, which data-quality techniques spec-kit should ad
 <!-- ANCHOR:phase-map -->
 ## PHASE DOCUMENTATION MAP
 
-This packet is now a phase parent. The research lives at the root and the implementation lives in the 28 child phases below, one child per converged recommendation. Each child carries its own spec.md plus the two metadata JSONs. The verdict tier comes straight from the canonical synthesis in `research/research.md`.
+This packet is now a phase parent. The research lives at the root and the implementation lives in the 28 child phases below, one child per converged recommendation. Each child carries its own full Level-2 doc set, spec.md plus plan.md plus tasks.md plus checklist.md plus implementation-summary.md, alongside the two metadata JSONs. The verdict tier comes straight from the canonical synthesis in `research/research.md`.
 
 ### Tier A on-write reuse-first
 

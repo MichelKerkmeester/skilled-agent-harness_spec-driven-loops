@@ -28,7 +28,7 @@ _memory:
 
 ## 1. CURRENT STATE
 
-A long multi-task session on branch `system-speckit/028-memory-search-intelligence`. The ACTIVE task is scaffolding 28 implementation phases (one per data-quality recommendation) under this packet. A workflow (`w4gvus4y5`) is RUNNING, writing each phase `spec.md` grounded in `research/research.md`. Everything else in the session is committed and pushed.
+A long multi-task session on branch `system-speckit/028-memory-search-intelligence`. The packet scaffolded 28 implementation phases (one per data-quality recommendation) under this parent. The scaffold workflow (`w4gvus4y5`) completed and the 28 child phases now carry their full Level-2 doc sets grounded in `research/research.md`. Everything else in the session is committed and pushed.
 
 ## 2. WHAT WAS COMPLETED (all committed + pushed)
 
@@ -37,9 +37,9 @@ A long multi-task session on branch `system-speckit/028-memory-search-intelligen
 - **Missing track-root JSONs**: added `description.json` + `graph-metadata.json` to the `ai-systems`, `anobel.com`, `barter` track roots (ai-systems and barter are gitignored, on-disk only).
 - **THE DATA-QUALITY DEEP-RESEARCH**: re-run via the OFFICIAL deep-research workflow (`fanout-run.cjs` driving the command YAML), opus-via-claude2/account2, 5 distinct lineages, 37 substantive iterations, synthesized into `research/research.md` (DQI 94, validate 0). Last research commit `6047df6cc8`.
 
-## 3. IN PROGRESS
+## 3. COMPLETED SCAFFOLD
 
-The 28-phase scaffold workflow `w4gvus4y5`. Each agent writes `028/005-spec-data-quality/<NNN-slug>/spec.md` for one recommendation. Phases: Tier A on-write 001-010, Tier B automation 011-013, Tier C retrieval 014-018, novel 019-025, shared engine 026, the floor experiment 027, governance/rollout 028.
+The 28-phase scaffold workflow `w4gvus4y5` finished. Each agent wrote one phase folder `028/005-spec-data-quality/<NNN-slug>/`, since filled out to a full Level-2 doc set. Phases: Tier A on-write 001-010, Tier B automation 011-013, Tier C retrieval 014-018, novel 019-025, shared engine 026, the floor experiment 027, governance/rollout 028.
 
 ## 4. NEXT STEPS (resume here)
 
