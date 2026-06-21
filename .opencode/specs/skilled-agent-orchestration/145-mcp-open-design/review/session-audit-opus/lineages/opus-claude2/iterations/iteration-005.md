@@ -2,7 +2,7 @@
 
 ## Focus
 **Dimension**: Stabilization pass across all dimensions — verify the phase 005/006/008 integration surfaces not yet deep-read, confirm no new P0/P1, age coverage to satisfy `minStabilizationPasses`
-**Files reviewed**: `sk-interface-design/references/claude_design_parity.md` (phase 008 rewrite), `sk-prompt/references/design_generation_patterns.md` (phase 006/008), `sk-interface-design/references/variation_diversity.md` (phase 005)
+**Files reviewed**: `sk-design-interface/references/claude_design_parity.md` (phase 008 rewrite), `sk-prompt/references/design_generation_patterns.md` (phase 006/008), `sk-design-interface/references/variation_diversity.md` (phase 005)
 
 ## Scorecard
 - Dimensions covered: correctness, security, traceability, maintainability (re-confirmed; no new dimension)
@@ -12,7 +12,7 @@
 - New findings ratio: 0.00
 
 ## Stabilization Results
-- **Cross-skill parity protocol (`claude_design_parity.md`): COHERENT.** Fully re-centered onto mcp-open-design (judgment = sk-interface-design, transport = mcp-open-design; `:15,17`). The multi-turn generation model (turn 1 discovery form → answer → build → `previewUrl`) matches the mcp-open-design references verbatim (`:83,87`). Anti-default guardrails (no style chooser/preset/theme-swap) are explicit and consistent with both skills (`:104-111`). No magicpath residue.
+- **Cross-skill parity protocol (`claude_design_parity.md`): COHERENT.** Fully re-centered onto mcp-open-design (judgment = sk-design-interface, transport = mcp-open-design; `:15,17`). The multi-turn generation model (turn 1 discovery form → answer → build → `previewUrl`) matches the mcp-open-design references verbatim (`:83,87`). Anti-default guardrails (no style chooser/preset/theme-swap) are explicit and consistent with both skills (`:104-111`). No magicpath residue.
 - **`design_generation_patterns.md`: COHERENT.** Scoped to the `mcp-open-design start_run` usecase only (`:16,30`); no magicpath; the multi-turn discovery-form pre-answer pattern (`:81-85`) aligns with the mcp-open-design and parity docs. Plugs into the existing DEPTH/CLEAR pass without a new pipeline.
 - **`variation_diversity.md` (phase 005): COHERENT.** Seed-of-thought non-median debias is self-consistent (`:45-62`); grounding and anti-default critique stay primary; never a style chooser. No magicpath.
 

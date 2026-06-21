@@ -105,7 +105,7 @@ Read-first across `sk-prompt` and the three usecase skills, with the multi-turn 
 | README structure check | PASS, 0 issues |
 | `validate.sh --strict` on this packet | PASS, 0 errors |
 | Router consistency | DESIGN_GEN present in INTENT_MODEL, RESOURCE_MAP, resource domains, loading levels, §5, §9 |
-| `sk-interface-design` unchanged | PASS, no diff in the skill dir |
+| `sk-design-interface` unchanged | PASS, no diff in the skill dir |
 <!-- /ANCHOR:verification -->
 
 ---

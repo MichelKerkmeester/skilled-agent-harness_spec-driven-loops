@@ -54,10 +54,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] Rewrite `sk-interface-design/references/claude_design_parity.md`: two-member parity (sk-interface-design and mcp-open-design), fidelity check on the real `previewUrl` and `get_artifact`
+- [x] Rewrite `sk-design-interface/references/claude_design_parity.md`: two-member parity (sk-design-interface and mcp-open-design), fidelity check on the real `previewUrl` and `get_artifact`
 - [x] Rewrite `sk-prompt/references/design_generation_patterns.md` to the `mcp-open-design` start_run usecase, dropping the MagicPath canvas-authoring usecase
 - [x] Delete the `mcp-magicpath` skill folder, all 16 files
-- [x] [P] Sweep sk-interface-design (SKILL.md, README, feature_catalog, manual_testing_playbook, design_inventory.md, graph-metadata sibling edge) and bump to v1.3.0 with `changelog/v1.3.0.0.md`
+- [x] [P] Sweep sk-design-interface (SKILL.md, README, feature_catalog, manual_testing_playbook, design_inventory.md, graph-metadata sibling edge) and bump to v1.3.0 with `changelog/v1.3.0.0.md`
 - [x] [P] Sweep sk-prompt (SKILL.md, README) and bump to v2.3.0 with `changelog/v2.3.0.0.md`
 - [x] [P] Sweep mcp-open-design (SKILL/README mentions, graph-metadata sibling edge dropped) and bump to v1.2.0 with `changelog/v1.2.0.0.md`
 - [x] [P] Sweep mcp-figma: SKILL/README/graph-metadata, drop the dead magicpath sibling edge and repoint the sibling language to mcp-open-design
@@ -70,7 +70,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] `package_skill.py --check` PASS on sk-interface-design, sk-prompt, and mcp-open-design
+- [x] `package_skill.py --check` PASS on sk-design-interface, sk-prompt, and mcp-open-design
 - [x] Grep sweep: no live magicpath reference remains, only historical changelog and spec-142 mentions
 - [x] Voice sweep: no em dashes, no prose semicolons in new prose
 - [x] `validate.sh --strict` on this packet reports zero errors
@@ -95,6 +95,6 @@ _memory:
 
 - Superseding transport: `.opencode/skills/mcp-open-design/`
 - Original install packet: `.opencode/specs/skilled-agent-orchestration/147-mcp-magicpath/`
-- Sibling design skill: `.opencode/skills/sk-interface-design/`
+- Sibling design skill: `.opencode/skills/sk-design-interface/`
 - Parent: `../spec.md` (150 phase map)
 <!-- /ANCHOR:cross-refs -->

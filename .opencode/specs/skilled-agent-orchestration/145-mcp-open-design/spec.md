@@ -1,10 +1,10 @@
 ---
 title: "Feature Specification: mcp-open-design skill, integration, and verification"
-description: "Make the installed Open Design desktop app drivable from the terminal via a new mcp-open-design skill, de-vendor and integrate sk-interface-design with it, and verify the integrated design tooling end to end. Phases 001-007 built the skill, the de-vendor, live verification plus deep review, variation-diversity and prompt patterns, and the generation-flow correction to v1.1.0. Phase 008 deprecated the superseded mcp-magicpath skill. Phases 009-010 ran a MiMo-vs-DeepSeek design integration test and a live run plus refinement of both design skills' manual testing playbooks."
+description: "Make the installed Open Design desktop app drivable from the terminal via a new mcp-open-design skill, de-vendor and integrate sk-design-interface with it, and verify the integrated design tooling end to end. Phases 001-007 built the skill, the de-vendor, live verification plus deep review, variation-diversity and prompt patterns, and the generation-flow correction to v1.1.0. Phase 008 deprecated the superseded mcp-magicpath skill. Phases 009-010 ran a MiMo-vs-DeepSeek design integration test and a live run plus refinement of both design skills' manual testing playbooks."
 trigger_phrases:
   - "open design terminal control"
   - "mcp-open-design skill"
-  - "sk-interface-design open design integration"
+  - "sk-design-interface open design integration"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
@@ -49,10 +49,10 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The installed Open Design desktop app (nexu-io/open-design) holds rich, local-first design systems and a generation engine, but the framework can only reach them through the in-app chat UI. There is no terminal path. Separately, the `sk-interface-design` skill still vendors data and scripts derived from the MIT `ui-ux-pro-max` repo, which carries license obligations and AI-default patterns the skill exists to resist. Both gaps want closing together: a terminal control surface for Open Design, and a de-vendored design skill that reads from the user's own app instead.
+The installed Open Design desktop app (nexu-io/open-design) holds rich, local-first design systems and a generation engine, but the framework can only reach them through the in-app chat UI. There is no terminal path. Separately, the `sk-design-interface` skill still vendors data and scripts derived from the MIT `ui-ux-pro-max` repo, which carries license obligations and AI-default patterns the skill exists to resist. Both gaps want closing together: a terminal control surface for Open Design, and a de-vendored design skill that reads from the user's own app instead.
 
 ### Purpose
-Make Open Design drivable from the terminal through a new `mcp-open-design` skill, then de-vendor `sk-interface-design` and integrate it with that skill so design work draws on live, locally owned sources under a clean license, and verify the integrated design tooling end to end.
+Make Open Design drivable from the terminal through a new `mcp-open-design` skill, then de-vendor `sk-design-interface` and integrate it with that skill so design work draws on live, locally owned sources under a clean license, and verify the integrated design tooling end to end.
 
 > **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the phase children listed in the Phase Documentation Map below.
 <!-- /ANCHOR:problem -->
@@ -64,7 +64,7 @@ Make Open Design drivable from the terminal through a new `mcp-open-design` skil
 
 ### In Scope
 - A new `mcp-open-design` skill that controls the Open Design desktop app from the terminal, modeled on `mcp-magicpath`.
-- The `sk-interface-design` skill: de-vendoring it from `ui-ux-pro-max` and integrating it with `mcp-open-design`.
+- The `sk-design-interface` skill: de-vendoring it from `ui-ux-pro-max` and integrating it with `mcp-open-design`.
 - The ordered licensing cleanup for the de-vendor: data first, MIT notices second, with the Apache-2.0 base retained.
 - Validation, feature catalog, manual testing playbook, and changelog for the shipped work.
 - End-to-end verification of the integrated design tooling: a cross-model design integration test and a live run plus refinement of both design skills' manual testing playbooks.
@@ -86,15 +86,15 @@ Make Open Design drivable from the terminal through a new `mcp-open-design` skil
 |-------|--------|-------|--------|
 | 1 | `001-terminal-control-and-integration-research/` | Research Open Design's terminal/MCP/CLI surface and design both skills plus the de-vendor/integration/licensing path | Complete |
 | 2 | `002-mcp-open-design-skill-build/` | Build the `mcp-open-design` skill (terminal control of Open Design), modeled on `mcp-magicpath`. Shipped into the skill at `.opencode/skills/mcp-open-design/` (v1.0.0.0) | Complete |
-| 3 | `003-sk-interface-design-evolution/` | De-vendor `sk-interface-design` from ui-ux-pro-max, integrate with `mcp-open-design`, remove the MIT notices (ordered: data then notices, keep the Apache-2.0 base). Shipped into the skill at `.opencode/skills/sk-interface-design/` (v1.1.0.0) | Complete |
+| 3 | `003-sk-design-interface-evolution/` | De-vendor `sk-design-interface` from ui-ux-pro-max, integrate with `mcp-open-design`, remove the MIT notices (ordered: data then notices, keep the Apache-2.0 base). Shipped into the skill at `.opencode/skills/sk-design-interface/` (v1.1.0.0) | Complete |
 | 4 | `004-validation-and-docs/` | Live verification (a real design rendered, `od artifacts create` only adds a file, generation is a multi-turn discovery-form flow) plus a 10-seat deep review with all P0/P1 and the P2 backlog remediated | Complete |
-| 5 | `005-sk-interface-design-variation-diversity/` | Seed-of-thought variation-diversity logic in sk-interface-design (v1.2.0) so multiple directions break the median default | Complete |
+| 5 | `005-sk-design-interface-variation-diversity/` | Seed-of-thought variation-diversity logic in sk-design-interface (v1.2.0) so multiple directions break the median default | Complete |
 | 6 | `006-sk-prompt-design-tool-usecases/` | Design-generation prompt patterns in sk-prompt (v2.2.0) for the magicpath and open-design usecases | Complete |
 | 7 | `007-mcp-open-design-generation-flow-correction/` | Correct `mcp-open-design` (v1.1.0) to the live-verified reality: multi-turn generation via `od run start` plus a discovery form, `od artifacts create` adds a file only, HTTP API and ephemeral-port rotation, and `od run` verbs | Complete |
 | 8 | `008-mcp-magicpath-deprecation/` | Deprecate `mcp-magicpath` completely now that `mcp-open-design` covers the usecase: delete the skill, re-center the Claude Design parity protocol and the sk-prompt design-generation patterns onto `mcp-open-design`, sweep all live references, and mark spec 147 superseded | Complete |
-| 9 | `009-design-skill-integration-test/` | Live integration test of `sk-interface-design` with `mcp-open-design`: MiMo v2.5 Pro and DeepSeek v4 Pro each generate designs through the parity loop, then compare. Includes the WCAG AA contrast fix both models surfaced | Complete |
-| 10 | `010-design-playbook-live-run-and-refinement/` | Run all 13 `mcp-open-design` and `sk-interface-design` manual-testing-playbook scenarios live (Kimi K2.7 plus DeepSeek v4 Pro), refining each scenario the run exposed a gap in (12 PASS, 1 PARTIAL, 0 SKIP) | Complete |
-| 11 | `011-mandatory-interface-design-coupling/` | Make `sk-interface-design` an absolute hard precondition for all Open Design design work (top banner, routing hard gate, RULES ALWAYS+NEVER, success-criteria gate); README + v1.3.0.0 + changelog. Pure transport (wiring, bare inventory) stays exempt | Complete |
+| 9 | `009-design-skill-integration-test/` | Live integration test of `sk-design-interface` with `mcp-open-design`: MiMo v2.5 Pro and DeepSeek v4 Pro each generate designs through the parity loop, then compare. Includes the WCAG AA contrast fix both models surfaced | Complete |
+| 10 | `010-design-playbook-live-run-and-refinement/` | Run all 13 `mcp-open-design` and `sk-design-interface` manual-testing-playbook scenarios live (Kimi K2.7 plus DeepSeek v4 Pro), refining each scenario the run exposed a gap in (12 PASS, 1 PARTIAL, 0 SKIP) | Complete |
+| 11 | `011-mandatory-interface-design-coupling/` | Make `sk-design-interface` an absolute hard precondition for all Open Design design work (top banner, routing hard gate, RULES ALWAYS+NEVER, success-criteria gate); README + v1.3.0.0 + changelog. Pure transport (wiring, bare inventory) stays exempt | Complete |
 | 12 | `012-catalog-playbook-realignment/` | Realign the feature_catalog + manual_testing_playbook to the post-011 reality: rewrite the grounding feature from "optional" to MANDATORY, and add a hard-gate manual-testing scenario (GATE-001) | Complete |
 
 ### Phase Transition Rules
@@ -125,5 +125,5 @@ Make Open Design drivable from the terminal through a new `mcp-open-design` skil
 
 - **Phase children**: see sub-folders `[0-9][0-9][0-9]-*/` for per-phase spec.md, plan.md, tasks.md.
 - **The mcp-magicpath skill**: `.opencode/skills/mcp-magicpath/` (structural model for the new skill).
-- **The sk-interface-design skill**: `.opencode/skills/sk-interface-design/`.
+- **The sk-design-interface skill**: `.opencode/skills/sk-design-interface/`.
 - **Graph Metadata**: see `graph-metadata.json` for the `derived.last_active_child_id` pointer.

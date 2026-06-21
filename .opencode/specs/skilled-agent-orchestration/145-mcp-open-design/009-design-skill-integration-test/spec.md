@@ -1,10 +1,10 @@
 ---
-title: "Feature Specification: sk-interface-design + mcp-open-design integration test (MiMo vs DeepSeek)"
-description: "We standardized the design skills but had not exercised sk-interface-design end to end with a real model. This packet runs a controlled test: two models each create several designs through the shared design-parity loop, so we can see the skill working and compare the models."
+title: "Feature Specification: sk-design-interface + mcp-open-design integration test (MiMo vs DeepSeek)"
+description: "We standardized the design skills but had not exercised sk-design-interface end to end with a real model. This packet runs a controlled test: two models each create several designs through the shared design-parity loop, so we can see the skill working and compare the models."
 trigger_phrases:
   - "design skill integration test"
   - "mimo vs deepseek designs"
-  - "sk-interface-design real render"
+  - "sk-design-interface real render"
   - "anti-default design test"
 importance_tier: "normal"
 contextType: "general"
@@ -29,7 +29,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: sk-interface-design + mcp-open-design integration test (MiMo vs DeepSeek)
+# Feature Specification: sk-design-interface + mcp-open-design integration test (MiMo vs DeepSeek)
 
 <!-- SPECKIT_LEVEL: 1 -->
 
@@ -53,10 +53,10 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Packet 153 standardized the design skills' install and doctor surface, but sk-interface-design had not been exercised end to end with a real model, and the two design skills had never been run together to produce actual designs. We do not know how well a model applies the anti-default judgment in practice, or which model does it better.
+Packet 153 standardized the design skills' install and doctor surface, but sk-design-interface had not been exercised end to end with a real model, and the two design skills had never been run together to produce actual designs. We do not know how well a model applies the anti-default judgment in practice, or which model does it better.
 
 ### Purpose
-See sk-interface-design produce real, viewable designs through its shared parity loop with mcp-open-design, and get a side-by-side read on MiMo v2.5 Pro versus DeepSeek v4 Pro as the design author.
+See sk-design-interface produce real, viewable designs through its shared parity loop with mcp-open-design, and get a side-by-side read on MiMo v2.5 Pro versus DeepSeek v4 Pro as the design author.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -66,14 +66,14 @@ See sk-interface-design produce real, viewable designs through its shared parity
 
 ### In Scope
 - Three design briefs (a coffee-roaster landing page, an indie podcast-host pricing page, a home-energy-monitor dashboard), each chosen so the templated AI default is tempting.
-- MiMo v2.5 Pro creates all three as self-contained HTML, applying sk-interface-design and the shared parity loop.
+- MiMo v2.5 Pro creates all three as self-contained HTML, applying sk-design-interface and the shared parity loop.
 - DeepSeek v4 Pro creates the same three under an identical brief.
 - A host comparison of the two models across the three briefs.
 
 ### Out of Scope
 - Live Open Design generation runs - they are mutating, gated, and need the desktop app running plus cloud auth, so they are an explicit user-confirmed follow-up.
 - Building or shipping any of these designs into a real product - they are test artifacts.
-- Modifying sk-interface-design or mcp-open-design - this packet only exercises them.
+- Modifying sk-design-interface or mcp-open-design - this packet only exercises them.
 
 ### Files to Change
 

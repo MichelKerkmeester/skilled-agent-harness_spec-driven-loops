@@ -1,6 +1,6 @@
 ---
 title: "Changelog: mandatory interface-design coupling [145-mcp-open-design/011-mandatory-interface-design-coupling]"
-description: "Chronological changelog for the mandatory sk-interface-design coupling phase."
+description: "Chronological changelog for the mandatory sk-design-interface coupling phase."
 trigger_phrases:
   - "phase changelog"
   - "mandatory coupling"
@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ### Summary
 
-This phase made the Open Design pairing absolute. `mcp-open-design` already referenced `sk-interface-design`, but only conditionally when a read or run fed a design decision. The phase made `sk-interface-design` a hard precondition for any design work, while pure transport such as wiring and bare inventory stays exempt.
+This phase made the Open Design pairing absolute. `mcp-open-design` already referenced `sk-design-interface`, but only conditionally when a read or run fed a design decision. The phase made `sk-design-interface` a hard precondition for any design work, while pure transport such as wiring and bare inventory stays exempt.
 
 ### Added
 
@@ -30,10 +30,10 @@ This phase made the Open Design pairing absolute. `mcp-open-design` already refe
 - Added a top MANDATORY banner before Section 1 in `SKILL.md`, including the WIRE and inventory exemption.
 - Added the phase-detection hard gate in Section 2.
 - Made resource rows mandatory.
-- Added the router precondition that blocks a design step without `sk-interface-design`.
-- Added the mandatory `sk-interface-design` pre-step before `start_run` and form answers.
+- Added the router precondition that blocks a design step without `sk-design-interface`.
+- Added the mandatory `sk-design-interface` pre-step before `start_run` and form answers.
 - Rewrote ALWAYS rule 5 as a hard precondition.
-- Added the NEVER rule forbidding UI output without `sk-interface-design`.
+- Added the NEVER rule forbidding UI output without `sk-design-interface`.
 - Updated success criteria and integration wording.
 - Bumped frontmatter version to `1.3.0.0`.
 - Added README mandate banner and strengthened grounding, related-skills and FAQ wording.

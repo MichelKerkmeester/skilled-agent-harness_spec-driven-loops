@@ -41,12 +41,12 @@
 ## Cross-Reference Results
 | Protocol | Status | Gate | Evidence | Notes |
 |----------|--------|------|----------|-------|
-| spec_code | pass | hard | `mcp-open-design/SKILL.md:9` (1.2.0), `sk-interface-design/SKILL.md:5` (1.3.0), `sk-prompt/SKILL.md` (2.3.0.0), `147-mcp-magicpath/spec.md:48` (Superseded by 150), `mcp-figma/SKILL.md:54,345` (repointed to mcp-open-design) | All checked normative claims from phases 006-008 verified against shipped state. Parent's "both skills stay advisor-routable" holds for the surviving skills. The one degradation (deleted skill still in advisor DB) is captured as F005, not a spec_code contradiction since the summary discloses it. |
+| spec_code | pass | hard | `mcp-open-design/SKILL.md:9` (1.2.0), `sk-design-interface/SKILL.md:5` (1.3.0), `sk-prompt/SKILL.md` (2.3.0.0), `147-mcp-magicpath/spec.md:48` (Superseded by 150), `mcp-figma/SKILL.md:54,345` (repointed to mcp-open-design) | All checked normative claims from phases 006-008 verified against shipped state. Parent's "both skills stay advisor-routable" holds for the surviving skills. The one degradation (deleted skill still in advisor DB) is captured as F005, not a spec_code contradiction since the summary discloses it. |
 | checklist_evidence | pass | hard | `008-.../checklist.md` 26/26 `[x]`, 0 unchecked; independent regression grep clean | Phase 008 checklist fully checked; the "no live reference remains" evidence is accurate for markdown/metadata (its scoped meaning). The sqlite runtime surface is carved out as a Known Limitation, so the checked items are not overstated within their declared scope. |
 
 ## Overlay protocols (advisory, spec-folder)
-- `feature_catalog_code`: spot-checked — `mcp-open-design/feature_catalog/` (5 sections) and `sk-interface-design/feature_catalog/` (7 sections incl. 07--claude-design-parity) align with the shipped reference surface. No contradiction found this pass. Deeper pass deferred to maintainability.
-- `playbook_capability`: `sk-interface-design/manual_testing_playbook/06--licensing-and-provenance/` scenario maps to the verified-clean de-vendor state (iteration 2). Executable as written.
+- `feature_catalog_code`: spot-checked — `mcp-open-design/feature_catalog/` (5 sections) and `sk-design-interface/feature_catalog/` (7 sections incl. 07--claude-design-parity) align with the shipped reference surface. No contradiction found this pass. Deeper pass deferred to maintainability.
+- `playbook_capability`: `sk-design-interface/manual_testing_playbook/06--licensing-and-provenance/` scenario maps to the verified-clean de-vendor state (iteration 2). Executable as written.
 
 ## Assessment
 - New findings ratio: 0.50 (P0/P1 override floor; one new P1).
@@ -54,7 +54,7 @@
 - Novelty justification: F005 is the only substantive traceability gap — a runtime-vs-disk drift in the advisor DB. It is independently verified (sqlite byte-count) and reconciled against the team's own disclosure, so the severity reflects active degraded behavior tempered by a documented deferral path.
 
 ## Ruled Out
-- **Version drift across the three bumped skills:** ruled out — each `SKILL.md` version matches its latest changelog (mcp-open-design 1.2.0, sk-interface-design 1.3.0, sk-prompt 2.3.0.0). No stale-version P1 (the sibling deepseek lineage's F001 class) survives in current state.
+- **Version drift across the three bumped skills:** ruled out — each `SKILL.md` version matches its latest changelog (mcp-open-design 1.2.0, sk-design-interface 1.3.0, sk-prompt 2.3.0.0). No stale-version P1 (the sibling deepseek lineage's F001 class) survives in current state.
 - **mcp-figma version bump omission:** ruled out — the summary's Key Decision (`implementation-summary.md:101`) correctly scopes mcp-figma's edit as a sibling repoint (no behavior change → no bump). Verified figma now cites mcp-open-design and not magicpath.
 - **Historical magicpath mentions in changelogs / spec 142:** correctly preserved as history (not a sweep gap) per the documented "preserve every historical mention" decision.
 
@@ -63,6 +63,6 @@
 
 ## Recommended Next Focus
 **Dimension**: Maintainability
-**Rationale**: Cover doc-structure quality (duplicate section names in `mcp-open-design/SKILL.md`), version-format convention drift (3-part `1.2.0`/`1.3.0` frontmatter vs 4-part `2.3.0.0`), the sk-interface-design `allowed-tools` least-privilege question deferred from iteration 2, and comment/reference hygiene across the touched references. Then evaluate convergence (all 4 dimensions will be covered).
+**Rationale**: Cover doc-structure quality (duplicate section names in `mcp-open-design/SKILL.md`), version-format convention drift (3-part `1.2.0`/`1.3.0` frontmatter vs 4-part `2.3.0.0`), the sk-design-interface `allowed-tools` least-privilege question deferred from iteration 2, and comment/reference hygiene across the touched references. Then evaluate convergence (all 4 dimensions will be covered).
 
 Review verdict: CONDITIONAL

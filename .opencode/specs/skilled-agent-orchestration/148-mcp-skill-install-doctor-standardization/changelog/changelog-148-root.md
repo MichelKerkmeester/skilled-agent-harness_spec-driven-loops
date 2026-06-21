@@ -52,7 +52,7 @@ The `mcp-*` skills now meet users at the same install and diagnostic line. Each 
 - `bash -n` on all 5 new scripts: PASS.
 - `package_skill --check mcp-figma`: PASS.
 - `package_skill --check mcp-open-design`: PASS, with 1 soft warning because `SKILL.md` is 3003 of 3000 recommended words.
-- JSON validity for `mcp-figma` and `sk-interface-design` graph metadata: PASS.
+- JSON validity for `mcp-figma` and `sk-design-interface` graph metadata: PASS.
 - `doctor_mcp_install.yaml` YAML parse: PASS.
 - CLI fact fidelity for `bdg`, `cupt`, the `od` daemon CLI path and socket: PASS, verified against real sources.
 - House-voice and comment-hygiene sweep on authored content: PASS, with 0 em dashes and no artifact tokens in script comments.
@@ -71,7 +71,7 @@ The `mcp-*` skills now meet users at the same install and diagnostic line. Each 
 | `mcp-open-design/{README.md, SKILL.md}` | Modified | Cross-reference `mcp-figma` |
 | `mcp-chrome-devtools/scripts/doctor.sh` | Created | Read-only diagnostic for the `bdg` CLI |
 | `mcp-click-up/scripts/doctor.sh` | Created | Read-only diagnostic for the `cupt` CLI |
-| `sk-interface-design/{README.md, SKILL.md, graph-metadata.json}` | Modified | Cross-reference and graph-link `mcp-figma` |
+| `sk-design-interface/{README.md, SKILL.md, graph-metadata.json}` | Modified | Cross-reference and graph-link `mcp-figma` |
 | `commands/doctor/assets/doctor_mcp_install.yaml` | Modified | Added the `cli_skill_diagnostics:` class |
 | `commands/doctor/mcp.md` | Modified | Documented the CLI-skill diagnostic class |
 

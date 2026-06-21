@@ -1,6 +1,6 @@
 ---
 title: "Tasks: terminal-control-and-integration-research"
-description: "Task breakdown for the wave-1 read-only research fleet on driving Open Design from the terminal and de-vendoring sk-interface-design. All tasks complete; deliverable is research/research.md."
+description: "Task breakdown for the wave-1 read-only research fleet on driving Open Design from the terminal and de-vendoring sk-design-interface. All tasks complete; deliverable is research/research.md."
 trigger_phrases:
   - "open design terminal research tasks"
   - "mcp-open-design research tasks"
@@ -54,7 +54,7 @@ _memory:
 ## Phase 2: Implementation
 
 - [x] [P] Run Seat A (claude2-opus): Open Design terminal control surface from bundled code
-- [x] [P] Run Seat B (claude2-opus): sk-interface-design de-vendor, integration, licensing
+- [x] [P] Run Seat B (claude2-opus): sk-design-interface de-vendor, integration, licensing
 - [x] [P] Run Seat C (gpt-5.5-fast): mcp-open-design skill design plus adversarial cross-check
 - [x] Reconcile Seat A and Seat C on the terminal surface
 <!-- /ANCHOR:phase-2 -->

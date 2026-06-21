@@ -63,9 +63,9 @@ Deprecate `mcp-magicpath` completely. Remove the skill folder, rewrite the two s
 
 ### In Scope
 - Delete the whole `mcp-magicpath` skill folder (16 files).
-- Rewrite `sk-interface-design/references/claude_design_parity.md` so the parity protocol's two members are sk-interface-design (judgment) and mcp-open-design (Open Design terminal transport), with the fidelity check moved onto mcp-open-design's real `previewUrl` and `get_artifact`, and bump sk-interface-design v1.2.0 to v1.3.0 with a changelog.
+- Rewrite `sk-design-interface/references/claude_design_parity.md` so the parity protocol's two members are sk-design-interface (judgment) and mcp-open-design (Open Design terminal transport), with the fidelity check moved onto mcp-open-design's real `previewUrl` and `get_artifact`, and bump sk-design-interface v1.2.0 to v1.3.0 with a changelog.
 - Rewrite `sk-prompt/references/design_generation_patterns.md` to cover only the `mcp-open-design` start_run usecase, dropping the MagicPath canvas-authoring usecase, and bump sk-prompt v2.2.0 to v2.3.0 with a changelog.
-- Sweep remaining live references across sk-interface-design, sk-prompt, mcp-open-design (bump v1.1.0 to v1.2.0 with a changelog), mcp-figma, and the skills index `.opencode/skills/README.md`.
+- Sweep remaining live references across sk-design-interface, sk-prompt, mcp-open-design (bump v1.1.0 to v1.2.0 with a changelog), mcp-figma, and the skills index `.opencode/skills/README.md`.
 - Remove the reciprocal graph sibling edges between mcp-magicpath and the other skills, repointing mcp-figma's sibling language to mcp-open-design.
 - Mark the original install packet `147-mcp-magicpath` superseded by spec 150.
 
@@ -79,14 +79,14 @@ Deprecate `mcp-magicpath` completely. Remove the skill folder, rewrite the two s
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/skills/mcp-magicpath/` | Delete | The whole skill folder, all 16 files |
-| `.opencode/skills/sk-interface-design/references/claude_design_parity.md` | Modify | Two-member parity onto mcp-open-design, fidelity check on previewUrl and get_artifact |
-| `.opencode/skills/sk-interface-design/SKILL.md` | Modify | Drop magicpath references, bump version to 1.3.0 |
-| `.opencode/skills/sk-interface-design/README.md` | Modify | Drop magicpath references |
-| `.opencode/skills/sk-interface-design/feature_catalog/` | Modify | Drop live magicpath references |
-| `.opencode/skills/sk-interface-design/manual_testing_playbook/` | Modify | Drop live magicpath references |
-| `.opencode/skills/sk-interface-design/references/design_inventory.md` | Modify | Drop live magicpath references |
-| `.opencode/skills/sk-interface-design/graph-metadata.json` | Modify | Drop the magicpath sibling edge, add changelog entry |
-| `.opencode/skills/sk-interface-design/changelog/v1.3.0.0.md` | Create | Deprecation and re-centering changelog |
+| `.opencode/skills/sk-design-interface/references/claude_design_parity.md` | Modify | Two-member parity onto mcp-open-design, fidelity check on previewUrl and get_artifact |
+| `.opencode/skills/sk-design-interface/SKILL.md` | Modify | Drop magicpath references, bump version to 1.3.0 |
+| `.opencode/skills/sk-design-interface/README.md` | Modify | Drop magicpath references |
+| `.opencode/skills/sk-design-interface/feature_catalog/` | Modify | Drop live magicpath references |
+| `.opencode/skills/sk-design-interface/manual_testing_playbook/` | Modify | Drop live magicpath references |
+| `.opencode/skills/sk-design-interface/references/design_inventory.md` | Modify | Drop live magicpath references |
+| `.opencode/skills/sk-design-interface/graph-metadata.json` | Modify | Drop the magicpath sibling edge, add changelog entry |
+| `.opencode/skills/sk-design-interface/changelog/v1.3.0.0.md` | Create | Deprecation and re-centering changelog |
 | `.opencode/skills/sk-prompt/references/design_generation_patterns.md` | Modify | mcp-open-design start_run usecase only |
 | `.opencode/skills/sk-prompt/SKILL.md` | Modify | Drop magicpath references, bump version to 2.3.0 |
 | `.opencode/skills/sk-prompt/README.md` | Modify | Drop magicpath references |
@@ -112,7 +112,7 @@ Deprecate `mcp-magicpath` completely. Remove the skill folder, rewrite the two s
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | The mcp-magicpath skill folder is removed | `.opencode/skills/mcp-magicpath/` no longer exists and none of its 16 files remain |
-| REQ-002 | The parity protocol re-centers on mcp-open-design | `claude_design_parity.md` names sk-interface-design and mcp-open-design as the two members, with the fidelity check on the real `previewUrl` and `get_artifact`, and carries no live magicpath mechanism |
+| REQ-002 | The parity protocol re-centers on mcp-open-design | `claude_design_parity.md` names sk-design-interface and mcp-open-design as the two members, with the fidelity check on the real `previewUrl` and `get_artifact`, and carries no live magicpath mechanism |
 | REQ-003 | The sk-prompt design pattern covers only mcp-open-design | `design_generation_patterns.md` documents the `mcp-open-design` start_run usecase and no longer documents the MagicPath canvas-authoring usecase |
 | REQ-004 | No live reference to mcp-magicpath remains | A grep across the design and prompt skills plus the skills index finds no live routing, sibling edge, or how-to reference to mcp-magicpath, only historical records |
 
@@ -120,8 +120,8 @@ Deprecate `mcp-magicpath` completely. Remove the skill folder, rewrite the two s
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-005 | Reciprocal graph sibling edges removed | mcp-magicpath sibling edges are dropped from sk-interface-design, mcp-open-design, and mcp-figma graph-metadata, and mcp-figma's sibling language repoints to mcp-open-design |
-| REQ-006 | The four affected skills are version-bumped with changelogs | sk-interface-design v1.3.0, sk-prompt v2.3.0, and mcp-open-design v1.2.0 each have a matching changelog file |
+| REQ-005 | Reciprocal graph sibling edges removed | mcp-magicpath sibling edges are dropped from sk-design-interface, mcp-open-design, and mcp-figma graph-metadata, and mcp-figma's sibling language repoints to mcp-open-design |
+| REQ-006 | The four affected skills are version-bumped with changelogs | sk-design-interface v1.3.0, sk-prompt v2.3.0, and mcp-open-design v1.2.0 each have a matching changelog file |
 | REQ-007 | The original install packet is marked superseded | `147-mcp-magicpath/spec.md` records that spec 150 supersedes it |
 | REQ-008 | Historical records preserved | Spec 142 references and the skills' historical changelog entries that mention magicpath are unchanged |
 <!-- /ANCHOR:requirements -->

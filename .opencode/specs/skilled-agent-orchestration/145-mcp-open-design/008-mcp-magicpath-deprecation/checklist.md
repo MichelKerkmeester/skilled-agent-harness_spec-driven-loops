@@ -79,7 +79,7 @@ _memory:
 
 - [x] CHK-FIX-001 [P0] Deprecation classified (confirmed) a superseded-tool removal spanning the skill folder, two shared docs, and reference sweep
 - [x] CHK-FIX-002 [P0] Reference inventory complete (verified) grep located every magicpath mention across the skills and the index
-- [x] CHK-FIX-003 [P0] Consumer inventory complete (verified) sk-interface-design, sk-prompt, mcp-open-design, mcp-figma, the skills index, and the 147 packet all handled
+- [x] CHK-FIX-003 [P0] Consumer inventory complete (verified) sk-design-interface, sk-prompt, mcp-open-design, mcp-figma, the skills index, and the 147 packet all handled
 - [x] CHK-FIX-004 [P0] Adversarial tests scoped [EVIDENCE: N/A - docs and metadata deprecation, no security, path, or parser surface]
 - [x] CHK-FIX-005 [P1] Matrix axes listed [EVIDENCE: N/A - removal and re-centering, no test matrix]
 - [x] CHK-FIX-006 [P1] Hostile env variant [EVIDENCE: N/A - no process-wide state code touched]
@@ -103,7 +103,7 @@ _memory:
 
 - [x] CHK-040 [P1] Spec, plan, tasks synchronized (verified) all three reflect the completed deprecation
 - [x] CHK-041 [P1] Comment hygiene held (confirmed) no spec paths or artifact ids in skill code-block comments
-- [x] CHK-042 [P2] Changelogs added (confirmed) sk-interface-design v1.3.0.0, sk-prompt v2.3.0.0, and mcp-open-design v1.2.0.0 changelogs present
+- [x] CHK-042 [P2] Changelogs added (confirmed) sk-design-interface v1.3.0.0, sk-prompt v2.3.0.0, and mcp-open-design v1.2.0.0 changelogs present
 <!-- /ANCHOR:docs -->
 
 ---

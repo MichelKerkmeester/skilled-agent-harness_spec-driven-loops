@@ -28,7 +28,7 @@ _Auto-generated. Do not edit by hand._
 - **Dimensions**: 4/4 (correctness, security, traceability, maintainability)
 - **Core traceability protocols**: spec_code = pass, checklist_evidence = pass
 - **Overlay protocols**: feature_catalog_code = spot-checked/pass, playbook_capability = pass
-- **Files reviewed**: mcp-open-design (SKILL + 3 references + changelog + graph-metadata), sk-interface-design (SKILL + LICENSE + 4 references + changelog + playbook), sk-prompt (patterns), phase 007/008 docs, spec 147, mcp-figma, skill-graph.sqlite
+- **Files reviewed**: mcp-open-design (SKILL + 3 references + changelog + graph-metadata), sk-design-interface (SKILL + LICENSE + 4 references + changelog + playbook), sk-prompt (patterns), phase 007/008 docs, spec 147, mcp-figma, skill-graph.sqlite
 
 ## Trend
 Last 3 newFindingsRatio: 0.50 → 0.25 → 0.00 (descending → converged)

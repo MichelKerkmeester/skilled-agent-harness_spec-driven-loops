@@ -63,7 +63,7 @@ The review produced one FAIL (a broken relative path in a manual-test doc, not a
 | File | Action | Purpose |
 |------|--------|---------|
 | `mcp-open-design/` references, catalog, playbook, SKILL.md | Modified | P0/P1 path, accuracy, and gating-list fixes from the review |
-| `sk-interface-design/` playbook index, SKILL.md, graph-metadata | Modified | P0/P1 path, licensing-wording, and reciprocal-edge fixes |
+| `sk-design-interface/` playbook index, SKILL.md, graph-metadata | Modified | P0/P1 path, licensing-wording, and reciprocal-edge fixes |
 | `../review/review-report.md` | Created | Verdicts, P0/P1 fixes, P2 backlog, WONTFIX rationale, remediation validation |
 | `../review/seats/` | Created | Raw deep-review seat outputs |
 | `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, this file | Created | Packet control docs (this retroactive record) |

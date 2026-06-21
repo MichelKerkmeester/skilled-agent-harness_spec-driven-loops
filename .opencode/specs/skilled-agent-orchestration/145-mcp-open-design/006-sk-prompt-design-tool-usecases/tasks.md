@@ -47,7 +47,7 @@ _memory:
 
 - [x] Read `sk-prompt` SKILL.md, depth_framework.md, patterns_evaluation.md, README
 - [x] [P] Read `mcp-magicpath` and `mcp-open-design` SKILL.md
-- [x] [P] Read `sk-interface-design/references/claude_design_parity.md`
+- [x] [P] Read `sk-design-interface/references/claude_design_parity.md`
 - [x] Ground the multi-turn discovery flow in the `mcp-open-design` references (`od ui respond`, `start_run`)
 - [x] Baseline `package_skill.py --check` (PASS, 1 pre-existing naming warning)
 <!-- /ANCHOR:phase-1 -->
@@ -82,7 +82,7 @@ _memory:
 
 - [x] Assessment verdict recorded with reasons (yes for the brief, variation, and discovery-form needs, plus a pointer for handoff)
 - [x] One new reference plus router wiring, no new pipeline or scoring change
-- [x] `sk-interface-design` untouched (read-only)
+- [x] `sk-design-interface` untouched (read-only)
 - [x] Both validators pass
 <!-- /ANCHOR:completion -->
 

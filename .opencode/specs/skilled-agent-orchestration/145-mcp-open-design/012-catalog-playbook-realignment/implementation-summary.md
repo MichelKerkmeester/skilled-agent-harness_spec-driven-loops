@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary [template:level_1/implementation-summary.md]"
-description: "Status: DONE. mcp-open-design's grounding feature now states the sk-interface-design coupling as MANDATORY (was 'optional and on-demand'), and a new GATE-001 manual-testing scenario verifies the hard gate (design work blocked without sk-interface-design; transport exempt)."
+description: "Status: DONE. mcp-open-design's grounding feature now states the sk-design-interface coupling as MANDATORY (was 'optional and on-demand'), and a new GATE-001 manual-testing scenario verifies the hard gate (design work blocked without sk-design-interface; transport exempt)."
 trigger_phrases:
   - "mcp-open-design catalog realignment done"
   - "mandatory grounding feature"
@@ -51,13 +51,13 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-> **Status: DONE.** Phase 011 made the `sk-interface-design` coupling a hard precondition, but the grounding feature catalog still called it "optional and on-demand" and no scenario tested the gate. Both are now fixed.
+> **Status: DONE.** Phase 011 made the `sk-design-interface` coupling a hard precondition, but the grounding feature catalog still called it "optional and on-demand" and no scenario tested the gate. Both are now fixed.
 
 ### Grounding feature rewritten to MANDATORY
 `feature_catalog/03--grounding/design-system-grounding.md` was reworded from optional/on-demand to a hard precondition across its frontmatter description, §1 OVERVIEW, the §2 "Apply the judgment layer" line ("MUST load first ... blocked, not merely flagged"), and the §2 guardrails line, with the pure-transport exemption stated. The split-doc references (`design_parity_transport.md`, `real_ui_loop.md`) were left intact. The root `feature_catalog.md` §4 line that still read "applied whenever" was corrected to the hard-precondition wording.
 
 ### GATE-001 scenario added
-A new `manual_testing_playbook/05--design-gate/mandatory-design-gate.md` (GATE-001) verifies all three controls: NEGATIVE (a design RUN and a design-feeding READ are refused without `sk-interface-design` loaded, not merely unconfirmed); POSITIVE (with it loaded and ground→token-system→critique applied, the work proceeds); EXEMPTION (pure transport — `od mcp install` wiring, a bare `list_projects` — succeeds without it). The playbook index was updated: scenario count 4→5, the coverage/critical-path/execution-wave tables, and the §10 cross-reference.
+A new `manual_testing_playbook/05--design-gate/mandatory-design-gate.md` (GATE-001) verifies all three controls: NEGATIVE (a design RUN and a design-feeding READ are refused without `sk-design-interface` loaded, not merely unconfirmed); POSITIVE (with it loaded and ground→token-system→critique applied, the work proceeds); EXEMPTION (pure transport — `od mcp install` wiring, a bare `list_projects` — succeeds without it). The playbook index was updated: scenario count 4→5, the coverage/critical-path/execution-wave tables, and the §10 cross-reference.
 
 ### Files Changed
 
@@ -74,7 +74,7 @@ A new `manual_testing_playbook/05--design-gate/mandatory-design-gate.md` (GATE-0
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The audit found the grounding feature's wording directly contradicted the SKILL.md hard gate, and that the most important new invariant was untested. The fix reworded the feature to match the runtime rule and added a scenario whose negative control is the load-bearing part — it proves a design step without `sk-interface-design` is blocked, not just flagged. The authoring was delegated to a scoped writer constrained to `feature_catalog/` and `manual_testing_playbook/`, gated on the sk-doc validators and a zero-residue grep.
+The audit found the grounding feature's wording directly contradicted the SKILL.md hard gate, and that the most important new invariant was untested. The fix reworded the feature to match the runtime rule and added a scenario whose negative control is the load-bearing part — it proves a design step without `sk-design-interface` is blocked, not just flagged. The authoring was delegated to a scoped writer constrained to `feature_catalog/` and `manual_testing_playbook/`, gated on the sk-doc validators and a zero-residue grep.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -85,7 +85,7 @@ The audit found the grounding feature's wording directly contradicted the SKILL.
 | Decision | Why |
 |----------|-----|
 | Reword the feature, don't just append | The "optional and on-demand" line actively contradicted the gate; it had to be replaced, not supplemented |
-| Negative control is the core of GATE-001 | The hard-block invariant is only proven by showing design work is refused without sk-interface-design |
+| Negative control is the core of GATE-001 | The hard-block invariant is only proven by showing design work is refused without sk-design-interface |
 | Keep the transport-exemption explicit in both | Wiring/inventory must stay usable without the design skill, matching SKILL.md |
 | Doc-only, no version bump | The skill's behavior did not change in this phase; only the docs caught up |
 <!-- /ANCHOR:decisions -->

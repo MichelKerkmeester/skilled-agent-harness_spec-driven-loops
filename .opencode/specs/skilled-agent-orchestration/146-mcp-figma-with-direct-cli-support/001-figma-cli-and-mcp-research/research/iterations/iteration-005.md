@@ -47,7 +47,7 @@ Seat recommendation: keep 002 cohesive (SKILL.md WITH its core CLI reference + s
 - figma-cli docs drift from source/help (M/H) → source-verified refs + live --help; mark verify-before-use [002/003]
 - daemon token exposure (L/H) → doctor redacts; never paste; localhost-bound [002/003]
 - Figma rate/seat limits (M/M) → document; prefer sparse metadata; MCP optional [004/005]
-- design-judgment scope creep (H/M) → transport only; route to sk-interface-design; no vibe catalog [002/005]
+- design-judgment scope creep (H/M) → transport only; route to sk-design-interface; no vibe catalog [002/005]
 - cross-platform overclaim (H/L) → macOS baseline; mark others unverified [003/005]
 
 ## Whole-skill acceptance checklist (16 items) — full at raw/iter-005.out:48-64

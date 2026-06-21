@@ -52,22 +52,22 @@ This packet deprecated the `mcp-magicpath` skill. mcp-magicpath drove the hosted
 The whole `mcp-magicpath` skill folder (16 files) was deleted. mcp-open-design is now the single live design transport, and no live route points at the hosted-canvas mechanism anymore.
 
 ### The re-centering: two shared docs onto mcp-open-design
-`sk-interface-design/references/claude_design_parity.md` was rewritten so the parity protocol's two members are sk-interface-design (judgment) and mcp-open-design (the Open Design terminal transport). The fidelity check moved off magicpath's `previewImageUrl` and `scripts/design_fidelity.py` and onto mcp-open-design's real `previewUrl`, where the rendered design comes from a completed multi-turn `od run` build and the design files are read with `get_artifact`. `sk-prompt/references/design_generation_patterns.md` dropped the MagicPath canvas-authoring usecase so it now covers the `mcp-open-design` start_run usecase only.
+`sk-design-interface/references/claude_design_parity.md` was rewritten so the parity protocol's two members are sk-design-interface (judgment) and mcp-open-design (the Open Design terminal transport). The fidelity check moved off magicpath's `previewImageUrl` and `scripts/design_fidelity.py` and onto mcp-open-design's real `previewUrl`, where the rendered design comes from a completed multi-turn `od run` build and the design files are read with `get_artifact`. `sk-prompt/references/design_generation_patterns.md` dropped the MagicPath canvas-authoring usecase so it now covers the `mcp-open-design` start_run usecase only.
 
 ### The sweep: every live reference removed
-Live references were swept across sk-interface-design (SKILL.md, README, feature_catalog, manual_testing_playbook, design_inventory.md, graph-metadata), sk-prompt (SKILL.md, README), mcp-open-design (SKILL/README mentions, graph-metadata), mcp-figma (SKILL/README/graph-metadata), and the skills index README. The reciprocal graph sibling edges between mcp-magicpath and the other skills were dropped, and mcp-figma's sibling language was repointed from magicpath to mcp-open-design.
+Live references were swept across sk-design-interface (SKILL.md, README, feature_catalog, manual_testing_playbook, design_inventory.md, graph-metadata), sk-prompt (SKILL.md, README), mcp-open-design (SKILL/README mentions, graph-metadata), mcp-figma (SKILL/README/graph-metadata), and the skills index README. The reciprocal graph sibling edges between mcp-magicpath and the other skills were dropped, and mcp-figma's sibling language was repointed from magicpath to mcp-open-design.
 
 ### Version bumps and the superseded packet
-sk-interface-design bumped v1.2.0 to v1.3.0, sk-prompt bumped v2.2.0 to v2.3.0, and mcp-open-design bumped v1.1.0 to v1.2.0, each with a matching changelog. The original install packet `147-mcp-magicpath` was marked superseded by spec 150. Historical records were left intact: spec 142 references and the skills' historical changelog entries that mention magicpath were not rewritten.
+sk-design-interface bumped v1.2.0 to v1.3.0, sk-prompt bumped v2.2.0 to v2.3.0, and mcp-open-design bumped v1.1.0 to v1.2.0, each with a matching changelog. The original install packet `147-mcp-magicpath` was marked superseded by spec 150. Historical records were left intact: spec 142 references and the skills' historical changelog entries that mention magicpath were not rewritten.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
 | `.opencode/skills/mcp-magicpath/` | Deleted | The whole skill folder, all 16 files |
-| `sk-interface-design/references/claude_design_parity.md` | Modified | Two-member parity onto mcp-open-design, fidelity on previewUrl and get_artifact |
-| `sk-interface-design/SKILL.md`, `README.md`, `feature_catalog/*`, `manual_testing_playbook/*`, `design_inventory.md`, `graph-metadata.json` | Modified | Live magicpath references dropped, sibling edge removed, v1.3.0 |
-| `sk-interface-design/changelog/v1.3.0.0.md` | Created | Deprecation and re-centering changelog |
+| `sk-design-interface/references/claude_design_parity.md` | Modified | Two-member parity onto mcp-open-design, fidelity on previewUrl and get_artifact |
+| `sk-design-interface/SKILL.md`, `README.md`, `feature_catalog/*`, `manual_testing_playbook/*`, `design_inventory.md`, `graph-metadata.json` | Modified | Live magicpath references dropped, sibling edge removed, v1.3.0 |
+| `sk-design-interface/changelog/v1.3.0.0.md` | Created | Deprecation and re-centering changelog |
 | `sk-prompt/references/design_generation_patterns.md` | Modified | mcp-open-design start_run usecase only |
 | `sk-prompt/SKILL.md`, `README.md` | Modified | Live magicpath references dropped, v2.3.0 |
 | `sk-prompt/changelog/v2.3.0.0.md` | Created | Drop-magicpath-usecase changelog |
@@ -108,7 +108,7 @@ A supersede-and-re-center deprecation. mcp-open-design was confirmed as the sing
 
 | Check | Result |
 |-------|--------|
-| `package_skill.py --check` (sk-interface-design, sk-prompt, mcp-open-design) | PASS, each skill valid, no warnings |
+| `package_skill.py --check` (sk-design-interface, sk-prompt, mcp-open-design) | PASS, each skill valid, no warnings |
 | Live-reference regression grep | PASS, no live mcp-magicpath reference remains across the skills and the index |
 | Historical-record preservation | PASS, spec 142 references and historical changelog entries unchanged |
 | Graph sibling edges | PASS, reciprocal mcp-magicpath edges dropped, mcp-figma repointed to mcp-open-design |

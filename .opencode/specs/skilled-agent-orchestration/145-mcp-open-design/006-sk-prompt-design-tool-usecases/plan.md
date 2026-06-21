@@ -91,7 +91,7 @@ Design-generation request to router intent scoring to `DESIGN_GEN` to load `desi
 | `.opencode/skills/sk-prompt/SKILL.md` | Skill router and rules | router wiring + version | router rows present and consistent |
 | `.opencode/skills/sk-prompt/README.md` | Skill overview | RELATED DOCUMENTS row | README structure check 0 issues |
 | `.opencode/skills/sk-prompt/changelog/v2.2.0.0.md` | Changelog | created | matches the version bump |
-| `.opencode/skills/sk-interface-design/` | Look and parity protocol | unchanged (read-only) | no diff in skill dir |
+| `.opencode/skills/sk-design-interface/` | Look and parity protocol | unchanged (read-only) | no diff in skill dir |
 <!-- /ANCHOR:affected-surfaces -->
 
 ---

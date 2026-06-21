@@ -1,6 +1,6 @@
 ---
-title: "Implementation Plan: sk-interface-design + mcp-open-design integration test (MiMo vs DeepSeek)"
-description: "Dispatch two model seats under an identical brief that loads sk-interface-design and follows the shared parity loop, each producing three self-contained HTML designs, then compare them on the host."
+title: "Implementation Plan: sk-design-interface + mcp-open-design integration test (MiMo vs DeepSeek)"
+description: "Dispatch two model seats under an identical brief that loads sk-design-interface and follows the shared parity loop, each producing three self-contained HTML designs, then compare them on the host."
 trigger_phrases:
   - "design skill integration test plan"
   - "mimo deepseek design dispatch"
@@ -25,7 +25,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: sk-interface-design + mcp-open-design integration test (MiMo vs DeepSeek)
+# Implementation Plan: sk-design-interface + mcp-open-design integration test (MiMo vs DeepSeek)
 
 <!-- SPECKIT_LEVEL: 1 -->
 
@@ -39,12 +39,12 @@ _memory:
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | Self-contained HTML and inline CSS (the design artifacts) |
-| **Framework** | sk-interface-design judgment plus the shared claude_design_parity loop |
+| **Framework** | sk-design-interface judgment plus the shared claude_design_parity loop |
 | **Storage** | None |
 | **Testing** | Host opens each HTML offline; reads each NOTES.md; cross-model comparison |
 
 ### Overview
-Two cli-opencode seats run an identical brief: load sk-interface-design, follow the ground / anti-default / build loop it shares with mcp-open-design, and produce three self-contained HTML designs plus a notes file. One seat is MiMo v2.5 Pro, the other DeepSeek v4 Pro. The host then compares the two.
+Two cli-opencode seats run an identical brief: load sk-design-interface, follow the ground / anti-default / build loop it shares with mcp-open-design, and produce three self-contained HTML designs plus a notes file. One seat is MiMo v2.5 Pro, the other DeepSeek v4 Pro. The host then compares the two.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -72,12 +72,12 @@ Two cli-opencode seats run an identical brief: load sk-interface-design, follow 
 Controlled head-to-head. One variable changes between the two runs (the model), everything else identical, so differences are attributable to the model.
 
 ### Key Components
-- **The brief**: identical instructions pointing at the sk-interface-design references and the three subjects.
+- **The brief**: identical instructions pointing at the sk-design-interface references and the three subjects.
 - **The seats**: MiMo and DeepSeek via `opencode run --variant high`.
 - **The comparison**: host-authored, grounded in the actual HTML and NOTES.
 
 ### Data Flow
-Brief -> model reads sk-interface-design references -> model writes three HTML files plus NOTES.md to its own subdir -> host opens, reads, and compares.
+Brief -> model reads sk-design-interface references -> model writes three HTML files plus NOTES.md to its own subdir -> host opens, reads, and compares.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -90,7 +90,7 @@ Not a bug fix. This packet only creates test artifacts under its own folder and 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
 | `154-.../designs/` | Test output only | created | files exist and open offline |
-| sk-interface-design, mcp-open-design | Skills under test | unchanged (read only) | no edits to either skill |
+| sk-design-interface, mcp-open-design | Skills under test | unchanged (read only) | no edits to either skill |
 <!-- /ANCHOR:affected-surfaces -->
 
 ---

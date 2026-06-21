@@ -71,7 +71,7 @@ Build the `mcp-open-design` skill so an agent can drive the installed Open Desig
 - The headless `od` verbs (runs, reads, UI responses, artifacts, transport) and the live `tools/list` verification requirement.
 
 ### Out of Scope
-- The `sk-interface-design` de-vendor and Open Design integration (phase 003).
+- The `sk-design-interface` de-vendor and Open Design integration (phase 003).
 - Live verification of `od mcp install opencode` against a running daemon (phase 004).
 - Changes to the Open Design app or its upstream repo (read-only third-party input).
 - The standalone `mcp-magicpath` skill (packet `147-mcp-magicpath`), used here only as the structural model.

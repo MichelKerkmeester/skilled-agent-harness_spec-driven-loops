@@ -1,0 +1,20 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/145-mcp-open-design/003-sk-design-interface-evolution",
+  "description": "Feature Specification: sk-design-interface evolution",
+  "keywords": [
+    "feature",
+    "specification",
+    "sk-design-interface",
+    "evolution"
+  ],
+  "lastUpdated": "2026-06-15T13:45:21.700Z",
+  "specId": "003",
+  "folderSlug": "sk-design-interface-evolution",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "145-mcp-open-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

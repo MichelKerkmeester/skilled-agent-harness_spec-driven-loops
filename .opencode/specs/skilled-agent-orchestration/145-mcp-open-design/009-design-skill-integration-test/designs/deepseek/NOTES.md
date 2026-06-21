@@ -1,6 +1,6 @@
 # Design Notes — DeepSeek v4 Pro
 
-Three self-contained HTML designs built against the sk-interface-design process: ground in the subject, derive a distinctive token system that avoids the templated AI default for that category, build, and self-critique against the quality floor.
+Three self-contained HTML designs built against the sk-design-interface process: ground in the subject, derive a distinctive token system that avoids the templated AI default for that category, build, and self-critique against the quality floor.
 
 ---
 

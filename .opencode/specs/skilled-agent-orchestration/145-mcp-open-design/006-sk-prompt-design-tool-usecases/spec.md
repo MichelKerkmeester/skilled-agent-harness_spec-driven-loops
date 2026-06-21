@@ -54,10 +54,10 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-`sk-prompt` is the framework's prompt-engineering skill: seven text frameworks, a five-phase DEPTH pass, CLEAR scoring, and three format guides. It is built for text tasks. The framework now drives two design-generation tools from the terminal, `mcp-magicpath` (canvas authoring through the `magicpath-ai` CLI) and `mcp-open-design` (headless `start_run` against the Open Design app), where the visible output is driven by a generation prompt. A generic content brief asked of those tools produces the median AI look that `sk-interface-design` exists to resist. `sk-prompt` had no design-generation usecase and nothing for the anti-default brief, variation diversity, or the multi-turn discovery flow.
+`sk-prompt` is the framework's prompt-engineering skill: seven text frameworks, a five-phase DEPTH pass, CLEAR scoring, and three format guides. It is built for text tasks. The framework now drives two design-generation tools from the terminal, `mcp-magicpath` (canvas authoring through the `magicpath-ai` CLI) and `mcp-open-design` (headless `start_run` against the Open Design app), where the visible output is driven by a generation prompt. A generic content brief asked of those tools produces the median AI look that `sk-design-interface` exists to resist. `sk-prompt` had no design-generation usecase and nothing for the anti-default brief, variation diversity, or the multi-turn discovery flow.
 
 ### Purpose
-Assess honestly whether `sk-prompt` already serves design-generation prompting, and improve it only if a real gap exists. The improvement, if warranted, must fit `sk-prompt`'s existing architecture (a reference doc plus router wiring) and must not duplicate the design judgment owned by `sk-interface-design` or the run transport owned by the two MCP skills.
+Assess honestly whether `sk-prompt` already serves design-generation prompting, and improve it only if a real gap exists. The improvement, if warranted, must fit `sk-prompt`'s existing architecture (a reference doc plus router wiring) and must not duplicate the design judgment owned by `sk-design-interface` or the run transport owned by the two MCP skills.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -72,9 +72,9 @@ Assess honestly whether `sk-prompt` already serves design-generation prompting, 
 - Bump the skill version and add a matching changelog entry.
 
 ### Out of Scope
-- The design judgment and anti-default mandate (owned by `sk-interface-design`).
+- The design judgment and anti-default mandate (owned by `sk-design-interface`).
 - The CLI and run transports, their gating, and the fidelity loop (owned by `mcp-magicpath`, `mcp-open-design`, and the shared `claude_design_parity.md`).
-- Editing `sk-interface-design` (phase 005 owns it).
+- Editing `sk-design-interface` (phase 005 owns it).
 - Editing the 150 parent `spec.md` or `graph-metadata.json` (the orchestrator registers this child after the phase finishes).
 - Any new `$` mode prefix or change to CLEAR scoring math.
 
@@ -107,7 +107,7 @@ Assess honestly whether `sk-prompt` already serves design-generation prompting, 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-005 | The router actually loads the new reference | `DESIGN_GEN` intent and `RESOURCE_MAP` entry present and consistent across SKILL.md surfaces |
-| REQ-006 | The boundary is explicit | The reference defers the look to `sk-interface-design` and the transport to the MCP skills, and points to `claude_design_parity.md` §6 for handoff |
+| REQ-006 | The boundary is explicit | The reference defers the look to `sk-design-interface` and the transport to the MCP skills, and points to `claude_design_parity.md` §6 for handoff |
 | REQ-007 | The anti-default guardrail is honored | The seed-of-thought indexes brief-grounded directions, never a reusable style preset (`claude_design_parity.md` §8) |
 <!-- /ANCHOR:requirements -->
 

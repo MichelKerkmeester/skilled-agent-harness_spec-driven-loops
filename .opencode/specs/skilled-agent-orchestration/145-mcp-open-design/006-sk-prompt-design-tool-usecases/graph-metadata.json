@@ -199,7 +199,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Assess honestly whether `sk-prompt` already serves design-generation prompting, and improve it only if a real gap exists. The improvement, if warranted, must fit `sk-prompt`'s existing architecture (a reference doc plus router wiring) and must not duplicate the design judgment owned by `sk-interface-design` or the run transport owned by the two MCP skills.",
+    "causal_summary": "Assess honestly whether `sk-prompt` already serves design-generation prompting, and improve it only if a real gap exists. The improvement, if warranted, must fit `sk-prompt`'s existing architecture (a reference doc plus router wiring) and must not duplicate the design judgment owned by `sk-design-interface` or the run transport owned by the two MCP skills.",
     "created_at": "2026-06-14T12:00:00Z",
     "last_save_at": "2026-06-15T09:09:33.189Z",
     "save_lineage": "graph_only",

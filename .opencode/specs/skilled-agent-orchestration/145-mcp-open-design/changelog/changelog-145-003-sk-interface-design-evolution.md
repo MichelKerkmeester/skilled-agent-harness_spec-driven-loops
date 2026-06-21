@@ -1,6 +1,6 @@
 ---
-title: "Changelog: sk-interface-design evolution [145-mcp-open-design/003-sk-interface-design-evolution]"
-description: "Chronological changelog for the sk-interface-design de-vendor and Open Design integration phase."
+title: "Changelog: sk-design-interface evolution [145-mcp-open-design/003-sk-design-interface-evolution]"
+description: "Chronological changelog for the sk-design-interface de-vendor and Open Design integration phase."
 trigger_phrases:
   - "phase changelog"
   - "interface design evolution"
@@ -14,12 +14,12 @@ contextType: "implementation"
 
 ## 2026-06-18
 
-> Spec folder: `.opencode/specs/skilled-agent-orchestration/145-mcp-open-design/003-sk-interface-design-evolution` (Level 2)
+> Spec folder: `.opencode/specs/skilled-agent-orchestration/145-mcp-open-design/003-sk-design-interface-evolution` (Level 2)
 > Parent packet: `.opencode/specs/skilled-agent-orchestration/145-mcp-open-design`
 
 ### Summary
 
-This phase de-vendored `sk-interface-design` from the MIT `ui-ux-pro-max` repo to an Apache-2.0-only `v1.1.0`, then wired its Open Design integration. It shipped as commit `b12ffd3d76` with 30 files, mostly removals, and the deliverable lives at `.opencode/skills/sk-interface-design/`. This record documents the completed de-vendor and does not repeat it.
+This phase de-vendored `sk-design-interface` from the MIT `ui-ux-pro-max` repo to an Apache-2.0-only `v1.1.0`, then wired its Open Design integration. It shipped as commit `b12ffd3d76` with 30 files, mostly removals, and the deliverable lives at `.opencode/skills/sk-design-interface/`. This record documents the completed de-vendor and does not repeat it.
 
 ### Added
 

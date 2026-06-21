@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/143-sk-design-interface",
+  "spec_folder": "skilled-agent-orchestration/143-sk-design-interface",
+  "parent_id": null,
+  "children_ids": [
+    "skilled-agent-orchestration/143-sk-design-interface/001-install-claude-frontend-design",
+    "skilled-agent-orchestration/143-sk-design-interface/002-ui-ux-pro-max-merge-research",
+    "skilled-agent-orchestration/143-sk-design-interface/003-ui-ux-pro-max-merge",
+    "skilled-agent-orchestration/143-sk-design-interface/004-doc-alignment-catalog-playbook",
+    "skilled-agent-orchestration/143-sk-design-interface/005-claude-design-parity-research",
+    "skilled-agent-orchestration/143-sk-design-interface/006-competitor-design-tools-research",
+    "skilled-agent-orchestration/143-sk-design-interface/007-claude-design-parity-build",
+    "skilled-agent-orchestration/143-sk-design-interface/008-doc-realignment",
+    "skilled-agent-orchestration/143-sk-design-interface/009-mobbin-refero-design-reference-integration",
+    "skilled-agent-orchestration/143-sk-design-interface/010-decouple-from-open-design",
+    "skilled-agent-orchestration/143-sk-design-interface/011-mobbin-refero-smart-routing",
+    "skilled-agent-orchestration/143-sk-design-interface/012-catalog-playbook-realignment"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-design-interface",
+      "interface design skill"
+    ],
+    "key_topics": [
+      "sk-design-interface",
+      "interface",
+      "design",
+      "skill",
+      "framework",
+      "needs",
+      "strong",
+      "advisor-routable",
+      "distinctive",
+      "work",
+      "default",
+      "templated"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The framework needs a strong, advisor-routable skill for distinctive UI design so that design work does not default to templated, AI-generic output. Installing a capable base skill is the first step; making it genuinely better, with richer data, patterns, and automation, requires evaluating external sources before adopting anything.",
+    "created_at": "2026-06-13T16:00:00Z",
+    "last_save_at": "2026-06-15T09:09:33.164Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

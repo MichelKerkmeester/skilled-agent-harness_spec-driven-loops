@@ -3,7 +3,7 @@
 ## Focus
 **Dimension**: Traceability — Spec/code alignment, checklist evidence, cross-reference integrity  
 **Protocols executed**: spec_code (core), checklist_evidence (core)  
-**Files reviewed**: `.opencode/specs/.../150-open-design-terminal-and-interface-integration/spec.md`, `.../008-mcp-magicpath-deprecation/checklist.md`, `.../008-mcp-magicpath-deprecation/implementation-summary.md`, `.../007-mcp-open-design-generation-flow-correction/checklist.md`, `.../007-mcp-open-design-generation-flow-correction/implementation-summary.md`, plus live skill files (mcp-open-design, sk-interface-design SKILL.md, graph-metadata.json)
+**Files reviewed**: `.opencode/specs/.../150-open-design-terminal-and-interface-integration/spec.md`, `.../008-mcp-magicpath-deprecation/checklist.md`, `.../008-mcp-magicpath-deprecation/implementation-summary.md`, `.../007-mcp-open-design-generation-flow-correction/checklist.md`, `.../007-mcp-open-design-generation-flow-correction/implementation-summary.md`, plus live skill files (mcp-open-design, sk-design-interface SKILL.md, graph-metadata.json)
 
 ## Scorecard
 - Dimensions covered: correctness, security, traceability
@@ -19,14 +19,14 @@
 
 - **F010**: Phase 007 checklist CHK-021 ("every start_run and od run start mention qualified as multi-turn") is independently verified against live files, passing the independent audit. All 12+ mentions of `start_run` and `od run start` across mcp-open-design's SKILL.md, README, references/, feature_catalog/, and manual_testing_playbook/ properly describe the multi-turn flow. No regression. This finding confirms the checklist claim rather than refuting it — but highlights a wider issue: the remaining checklist items in both 007 and 008 have no independent re-verification in this review beyond F009's contradiction. The phase's own verification reports are the sole evidence for most checklist items.
 
-- **F011**: sk-interface-design graph-metadata.json `prerequisite_for` edge still lists `mcp-open-design` but the `changelog/v1.3.0.0.md:39` changelog comparison table shows "Parity members: sk-interface-design, mcp-magicpath → sk-interface-design, mcp-open-design" implying the transition completed. The graph edge is correct (prerequisite_for stays on mcp-open-design), but the historical changelog v1.0.0.0.md:53 mentions "render fidelity check (via mcp-magicpath previewImageUrl)" which is now a stale claim in a historical changelog that never received a correction note. The v1.3.0.0 changelog itself uses `previewImageUrl` in its narrative (line 9: "fidelity check moves off the MagicPath hosted-canvas mechanism (`previewImageUrl` plus the `design_fidelity.py` helper)") — this is a historical description, not a live claim, but the fact it names a deprecated mechanism in a post-deprecation changelog could confuse readers.
+- **F011**: sk-design-interface graph-metadata.json `prerequisite_for` edge still lists `mcp-open-design` but the `changelog/v1.3.0.0.md:39` changelog comparison table shows "Parity members: sk-design-interface, mcp-magicpath → sk-design-interface, mcp-open-design" implying the transition completed. The graph edge is correct (prerequisite_for stays on mcp-open-design), but the historical changelog v1.0.0.0.md:53 mentions "render fidelity check (via mcp-magicpath previewImageUrl)" which is now a stale claim in a historical changelog that never received a correction note. The v1.3.0.0 changelog itself uses `previewImageUrl` in its narrative (line 9: "fidelity check moves off the MagicPath hosted-canvas mechanism (`previewImageUrl` plus the `design_fidelity.py` helper)") — this is a historical description, not a live claim, but the fact it names a deprecated mechanism in a post-deprecation changelog could confuse readers.
 
 - **F012**: Phase parent spec.md line 49 says "Both skills stay advisor-routable and house-conformant." The mcp-open-design SKILL.md version field at 1.1.0 (F001) means an advisor reading the frontmatter sees the wrong version, which technically violates "advisor-routable" since the routing metadata is stale. However, this is a consequence of F001, not an independent finding.
 
 ## Cross-Reference Results
 | Protocol | Status | Gate | Evidence | Notes |
 |----------|--------|------|----------|-------|
-| spec_code | pass | hard | phase 008 claims verified against live files: magicpath references removed from live routing (grep confirmed), sk-interface-design v1.3.0 confirmed, parity protocol re-centered on mcp-open-design confirmed | F001 (version field stale) is the only normative-claim failure in spec_code |
+| spec_code | pass | hard | phase 008 claims verified against live files: magicpath references removed from live routing (grep confirmed), sk-design-interface v1.3.0 confirmed, parity protocol re-centered on mcp-open-design confirmed | F001 (version field stale) is the only normative-claim failure in spec_code |
 | checklist_evidence | partial | hard | phase 008 CHK-010 evidence partially invalid (F001 + F009); phase 007 CHK-021 confirmed by independent audit; remaining checklist items rely on phase's own verification | Single checklist item evidence gap |
 
 ## Assessment

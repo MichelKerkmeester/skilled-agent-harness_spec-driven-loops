@@ -55,7 +55,7 @@ _memory:
 
 - [ ] T001 Add the top MANDATORY banner before §1, with the WIRE/inventory exemption (SKILL.md)
 - [ ] T002 §2: add the phase-detection hard gate, make the resource rows mandatory, add the router precondition that blocks a design step (SKILL.md)
-- [ ] T003 §3 Run direction: add the mandatory sk-interface-design pre-step before start_run + form answers (SKILL.md)
+- [ ] T003 §3 Run direction: add the mandatory sk-design-interface pre-step before start_run + form answers (SKILL.md)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -65,7 +65,7 @@ _memory:
 
 > Rules, success criteria, and supporting docs.
 
-- [ ] T004 §4: rewrite ALWAYS #5 as a hard precondition; add the NEVER rule forbidding UI output without sk-interface-design (SKILL.md)
+- [ ] T004 §4: rewrite ALWAYS #5 as a hard precondition; add the NEVER rule forbidding UI output without sk-design-interface (SKILL.md)
 - [ ] T005 §6 success criteria + §7/§8 integration: mandatory-partner wording; frontmatter version 1.3.0.0 + description note (SKILL.md)
 - [ ] T006 README: mandate banner + strengthen grounding / related-skills / FAQ wording (README.md)
 - [ ] T007 Create changelog/v1.3.0.0.md

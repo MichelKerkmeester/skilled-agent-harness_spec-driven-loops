@@ -1,9 +1,9 @@
 ---
 title: "Feature Specification: Phase 12: catalog-playbook-realignment [template:level_1/spec.md]"
-description: "Realign mcp-open-design's feature_catalog and manual_testing_playbook to the post-011 reality: the sk-interface-design coupling became MANDATORY (a hard precondition) but the grounding feature still called it 'optional and on-demand' and no playbook scenario tested the hard gate. Rewrite the grounding feature to mandatory framing and add a gate-enforcement scenario."
+description: "Realign mcp-open-design's feature_catalog and manual_testing_playbook to the post-011 reality: the sk-design-interface coupling became MANDATORY (a hard precondition) but the grounding feature still called it 'optional and on-demand' and no playbook scenario tested the hard gate. Rewrite the grounding feature to mandatory framing and add a gate-enforcement scenario."
 trigger_phrases:
   - "mcp-open-design catalog playbook realignment"
-  - "mandatory sk-interface-design gate scenario"
+  - "mandatory sk-design-interface gate scenario"
   - "grounding feature mandatory framing"
   - "phase 012 spec"
 importance_tier: "normal"
@@ -55,7 +55,7 @@ FAILURE MODES:
 | **Phase** | 12 |
 | **Predecessor** | 011-mandatory-interface-design-coupling |
 | **Successor** | None |
-| **Handoff Criteria** | The grounding feature states the coupling as MANDATORY; a manual-testing scenario verifies the hard gate (design work blocked without sk-interface-design, transport exempt); sk-doc validators 0 issues; `validate.sh --strict` exits 0 |
+| **Handoff Criteria** | The grounding feature states the coupling as MANDATORY; a manual-testing scenario verifies the hard gate (design work blocked without sk-design-interface, transport exempt); sk-doc validators 0 issues; `validate.sh --strict` exits 0 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -67,7 +67,7 @@ This is **Phase 12** of the mcp-open-design specification — a doc-realignment 
 
 **Scope Boundary**: Edit only `feature_catalog/` and `manual_testing_playbook/` in `mcp-open-design`. No change to SKILL.md/README (they already carry the mandatory-coupling reality). No behavior change.
 
-**Dependencies**: Phase 011 (the mandatory sk-interface-design coupling) and phase 143/010 (the split `design_parity_transport.md`) are the reality the docs must match.
+**Dependencies**: Phase 011 (the mandatory sk-design-interface coupling) and phase 143/010 (the split `design_parity_transport.md`) are the reality the docs must match.
 
 **Deliverables**: the grounding feature rewritten to MANDATORY framing, a gate-enforcement manual-testing scenario, and reconciled indexes/counts.
 
@@ -80,10 +80,10 @@ This is **Phase 12** of the mcp-open-design specification — a doc-realignment 
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Phase 011 made the `sk-interface-design` coupling a hard precondition for all design work (banner, hard gate, NEVER #6, success-criteria gate). But the grounding feature catalog entry still described the coupling as "optional and on-demand", directly contradicting the runtime rule, and no manual-testing scenario verified the gate — so the docs both mis-state the coupling and leave the most important new invariant untested.
+Phase 011 made the `sk-design-interface` coupling a hard precondition for all design work (banner, hard gate, NEVER #6, success-criteria gate). But the grounding feature catalog entry still described the coupling as "optional and on-demand", directly contradicting the runtime rule, and no manual-testing scenario verified the gate — so the docs both mis-state the coupling and leave the most important new invariant untested.
 
 ### Purpose
-Make the grounding feature state the coupling as MANDATORY, and add a scenario that proves a design RUN/READ without `sk-interface-design` is blocked while pure transport is exempt.
+Make the grounding feature state the coupling as MANDATORY, and add a scenario that proves a design RUN/READ without `sk-design-interface` is blocked while pure transport is exempt.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -118,7 +118,7 @@ Make the grounding feature state the coupling as MANDATORY, and add a scenario t
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | Mandatory framing | The grounding feature states the coupling as a hard precondition; no "optional and on-demand" / "applied whenever" wording remains |
-| REQ-002 | Gate scenario | A scenario verifies: design RUN/READ without sk-interface-design is blocked (negative); proceeds with it (positive); pure transport is exempt |
+| REQ-002 | Gate scenario | A scenario verifies: design RUN/READ without sk-design-interface is blocked (negative); proceeds with it (positive); pure transport is exempt |
 | REQ-003 | Indexes reconciled | playbook index, counts, cross-references include the new scenario; all links resolve |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -148,7 +148,7 @@ Make the grounding feature state the coupling as MANDATORY, and add a scenario t
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Risk | Feature still reads optional | Docs contradict the runtime gate | Rewrite all conditional wording (description, overview, guardrails) to mandatory |
-| Risk | Scenario tests a soft gate | The hard-block invariant stays untested | Require a negative control (blocked without sk-interface-design) and an exemption control (transport allowed) |
+| Risk | Scenario tests a soft gate | The hard-block invariant stays untested | Require a negative control (blocked without sk-design-interface) and an exemption control (transport allowed) |
 | Dependency | Phase 011 + 143/010 | The reality the docs match | Mirror the SKILL.md banner/RULES and the split transport doc |
 <!-- /ANCHOR:risks -->
 

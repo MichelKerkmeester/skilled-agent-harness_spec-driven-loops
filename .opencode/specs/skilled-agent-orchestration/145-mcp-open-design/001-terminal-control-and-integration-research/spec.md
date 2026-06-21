@@ -1,10 +1,10 @@
 ---
 title: "Research Specification: Open Design terminal control and skill integration"
-description: "Wave-1 read-only research fleet (2x claude2-opus + 1x gpt-5.5-fast) into how to drive the installed Open Design desktop app from a terminal, how to design the mcp-open-design skill, and how to de-vendor plus integrate sk-interface-design with it. Research-only: the deliverable is a synthesized recommendation; the builds are later phases."
+description: "Wave-1 read-only research fleet (2x claude2-opus + 1x gpt-5.5-fast) into how to drive the installed Open Design desktop app from a terminal, how to design the mcp-open-design skill, and how to de-vendor plus integrate sk-design-interface with it. Research-only: the deliverable is a synthesized recommendation; the builds are later phases."
 trigger_phrases:
   - "open design terminal control research"
   - "mcp-open-design skill design"
-  - "sk-interface-design de-vendor research"
+  - "sk-design-interface de-vendor research"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
@@ -53,11 +53,11 @@ _memory:
 
 ### Problem Statement
 
-The installed Open Design desktop app (nexu-io/open-design, v0.9.0, Electron plus Next.js) holds rich local-first design systems and a generation engine, but the framework can only reach them through the in-app chat UI. Whether and how it can be driven from a terminal was unknown. In parallel, `sk-interface-design` still vendors data and scripts derived from the MIT `ui-ux-pro-max` repo, which carries license obligations and the AI-default patterns the skill is built to resist. The framework needed an evidence-backed answer that reads the app's actual bundled code rather than guessing.
+The installed Open Design desktop app (nexu-io/open-design, v0.9.0, Electron plus Next.js) holds rich local-first design systems and a generation engine, but the framework can only reach them through the in-app chat UI. Whether and how it can be driven from a terminal was unknown. In parallel, `sk-design-interface` still vendors data and scripts derived from the MIT `ui-ux-pro-max` repo, which carries license obligations and the AI-default patterns the skill is built to resist. The framework needed an evidence-backed answer that reads the app's actual bundled code rather than guessing.
 
 ### Purpose
 
-Run a read-only research fleet to produce a concrete, cross-checked recommendation covering three questions: how to drive Open Design from the terminal (MCP plus CLI), how to design the new `mcp-open-design` skill, and how to de-vendor and integrate `sk-interface-design` with it under a clean license. The builds are separate follow-up phases.
+Run a read-only research fleet to produce a concrete, cross-checked recommendation covering three questions: how to drive Open Design from the terminal (MCP plus CLI), how to design the new `mcp-open-design` skill, and how to de-vendor and integrate `sk-design-interface` with it under a clean license. The builds are separate follow-up phases.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -70,7 +70,7 @@ Run a read-only research fleet to produce a concrete, cross-checked recommendati
 **In scope:**
 - Inventory of Open Design's terminal control surface: the `od` CLI entry, the stdio MCP server and its tool set, daemon transport, and headless verbs.
 - A skill design for `mcp-open-design` modeled on `mcp-magicpath`, including a tool-exposure policy (surface, gate, omit).
-- A de-vendor and integration plan for `sk-interface-design`: the CSV replacement map, the uniqueness it gains from live Open Design reads, the integration contract, and the ordered licensing cleanup.
+- A de-vendor and integration plan for `sk-design-interface`: the CSV replacement map, the uniqueness it gains from live Open Design reads, the integration contract, and the ordered licensing cleanup.
 - A cross-lineage reconciliation and a recorded set of ruled-out directions and live-verification items.
 
 **Out of scope:**
@@ -89,7 +89,7 @@ Run a read-only research fleet to produce a concrete, cross-checked recommendati
 
 - R1: The Open Design terminal control surface documented from the bundled code: the real `od` CLI entry, the MCP tool set with read-only, mutating, and destructive tiers, the daemon transport, and the headless verb list.
 - R2: A concrete `mcp-open-design` skill design fitted to house conventions, with a tool-exposure policy classifying every verb as surface, gate, or omit.
-- R3: A de-vendor and integration plan for `sk-interface-design`: per-CSV disposition, the integration contract with guardrails, and the ordered licensing sequence (data first, MIT notices second, Apache-2.0 base kept).
+- R3: A de-vendor and integration plan for `sk-design-interface`: per-CSV disposition, the integration contract with guardrails, and the ordered licensing sequence (data first, MIT notices second, Apache-2.0 base kept).
 - R4: The fleet cross-checked: agreements, divergences, and the resolved recommendation called out.
 - R5: Negative knowledge (directions ruled out) and a live-verification list recorded as first-class output.
 <!-- /ANCHOR:requirements -->
@@ -102,7 +102,7 @@ Run a read-only research fleet to produce a concrete, cross-checked recommendati
 - `research/research.md` synthesized from the wave-1 fleet, with a cross-lineage agreement and divergence section.
 - A clear terminal control answer: the correct `od` entry, the MCP tool tiers, the socket-discovery transport, and the headless verbs, each sourced from a seat finding.
 - A `mcp-open-design` skill design with an explicit surface, gate, and omit policy.
-- A `sk-interface-design` de-vendor and integration plan with the ordered licensing sequence and surviving guardrails.
+- A `sk-design-interface` de-vendor and integration plan with the ordered licensing sequence and surviving guardrails.
 - Ruled-out directions and live-verification items documented.
 <!-- /ANCHOR:success-criteria -->
 
@@ -136,7 +136,7 @@ Run a read-only research fleet to produce a concrete, cross-checked recommendati
 Deep-research is complete for this topic. `research/research.md` is the canonical synthesis output. Inputs assessed:
 
 - The installed app: `/Applications/Open Design.app` (v0.9.0) and its bundled `daemon-cli.mjs` plus `open-design-config.json`.
-- Target skills: `.opencode/skills/mcp-magicpath/` (the structural model) and `.opencode/skills/sk-interface-design/` (the de-vendor target).
+- Target skills: `.opencode/skills/mcp-magicpath/` (the structural model) and `.opencode/skills/sk-design-interface/` (the de-vendor target).
 - House skill standards: `sk-doc` templates and the SKILL.md structure and size conventions.
 
 <!-- /ANCHOR:research-context -->

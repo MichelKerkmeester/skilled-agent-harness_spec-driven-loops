@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ### Summary
 
-This phase ran both design skills' manual testing playbooks end to end for the first time. All 13 scenarios received live verdicts: 12 PASS, 1 PARTIAL and 0 SKIP. Kimi K2.7 and DeepSeek v4 Pro, both driven by `sk-interface-design`, passed every model-judgment scenario.
+This phase ran both design skills' manual testing playbooks end to end for the first time. All 13 scenarios received live verdicts: 12 PASS, 1 PARTIAL and 0 SKIP. Kimi K2.7 and DeepSeek v4 Pro, both driven by `sk-design-interface`, passed every model-judgment scenario.
 
 ### Added
 
@@ -36,7 +36,7 @@ This phase ran both design skills' manual testing playbooks end to end for the f
 
 ### Fixed
 
-- Applied `sk-interface-design` refinements for `ID-003` fixture, `ID-004` and `ID-008` system source, `ID-007` tokens and `ID-009` runId.
+- Applied `sk-design-interface` refinements for `ID-003` fixture, `ID-004` and `ID-008` system source, `ID-007` tokens and `ID-009` runId.
 - Fixed the 154 contrast cross-finding and committed it under 154.
 - Recorded `CHK-FIX-001` through `CHK-FIX-004`, covering traceability to live-run gaps, same-class consistency, consumer self-checks and no security, path or parser fix.
 
@@ -46,7 +46,7 @@ This phase ran both design skills' manual testing playbooks end to end for the f
 |-------|--------|
 | All 13 scenarios | PASS: all ran live with verdicts, 12 PASS, 1 PARTIAL and 0 SKIP. |
 | Two models on five judgment and routing scenarios | PASS: Kimi and DeepSeek both ran. |
-| `package_skill --check` | PASS: `mcp-open-design` and `sk-interface-design` both passed. |
+| `package_skill --check` | PASS: `mcp-open-design` and `sk-design-interface` both passed. |
 | Self-check counts and prompt equality | PASS: counts preserved and prompt equality held. |
 | House voice on edited files | PASS: no em dashes. |
 | 154 contrast fix | PASS: re-graded, cited ratios now clear AA. |
@@ -59,7 +59,7 @@ This phase ran both design skills' manual testing playbooks end to end for the f
 |------|--------|--------------|
 | `mcp-open-design/manual_testing_playbook/{manual_testing_playbook.md, 02--reading/read-design-system.md, 03--gated-runs/gated-verb-confirm.md}` | Updated | Socket precondition, READ token wall, RUN model-pinning and form answer. |
 | `mcp-open-design/references/mcp_wiring.md` | Updated | Code Mode UTCP wiring path. |
-| `sk-interface-design/manual_testing_playbook/{03,04,06,07}--/.md` | Updated | Fixture, system source, de-vendor tokens and runId source. |
+| `sk-design-interface/manual_testing_playbook/{03,04,06,07}--/.md` | Updated | Fixture, system source, de-vendor tokens and runId source. |
 
 ### Follow-Ups
 

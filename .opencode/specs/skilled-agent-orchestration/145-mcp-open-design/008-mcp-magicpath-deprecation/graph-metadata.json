@@ -48,10 +48,10 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      ".opencode/skills/sk-interface-design/SKILL.md",
-      ".opencode/skills/sk-interface-design/README.md",
-      ".opencode/skills/sk-interface-design/graph-metadata.json",
-      ".opencode/skills/sk-interface-design/changelog/v1.3.0.0.md",
+      ".opencode/skills/sk-design-interface/SKILL.md",
+      ".opencode/skills/sk-design-interface/README.md",
+      ".opencode/skills/sk-design-interface/graph-metadata.json",
+      ".opencode/skills/sk-design-interface/changelog/v1.3.0.0.md",
       ".opencode/skills/sk-prompt/references/design_generation_patterns.md",
       ".opencode/skills/sk-prompt/SKILL.md",
       ".opencode/skills/sk-prompt/README.md",
@@ -98,19 +98,19 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-interface-design/SKILL.md",
+        "path": ".opencode/skills/sk-design-interface/SKILL.md",
         "source": "derived"
       },
       {
         "name": "graph-metadata.json",
         "kind": "config",
-        "path": ".opencode/skills/sk-interface-design/graph-metadata.json",
+        "path": ".opencode/skills/sk-design-interface/graph-metadata.json",
         "source": "derived"
       },
       {
         "name": "v1.3.0.0.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-interface-design/changelog/v1.3.0.0.md",
+        "path": ".opencode/skills/sk-design-interface/changelog/v1.3.0.0.md",
         "source": "derived"
       },
       {

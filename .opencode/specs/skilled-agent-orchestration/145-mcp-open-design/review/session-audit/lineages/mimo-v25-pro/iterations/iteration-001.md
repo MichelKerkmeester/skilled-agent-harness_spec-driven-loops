@@ -22,7 +22,7 @@ D1 Correctness dimension. Reviewed `mcp-open-design/SKILL.md`, its three referen
 
 ### P2, Suggestion
 
-- **F002**: sk-interface-design SKILL.md version 1.3.0 is correct per phase 008, but the SKILL.md header `source` URL still points to the Anthropic frontend-design repo (line 8), which is accurate for the vendored origin but could mislead readers into thinking the current skill lives there. Consider noting it as the upstream origin, not the live source. `.opencode/skills/sk-interface-design/SKILL.md:8`.
+- **F002**: sk-design-interface SKILL.md version 1.3.0 is correct per phase 008, but the SKILL.md header `source` URL still points to the Anthropic frontend-design repo (line 8), which is accurate for the vendored origin but could mislead readers into thinking the current skill lives there. Consider noting it as the upstream origin, not the live source. `.opencode/skills/sk-design-interface/SKILL.md:8`.
 
 - **F003**: `od_cli_reference.md` Section 7 lists 8 uncertainty items. Items 1 and 4 are marked resolved or strongly inferred, but items 5-8 remain open. The skill accurately tags these `[INFERRED]` or `[UNVERIFIED]`, which is good practice. However, for a v1.2.0 release, having 5 open uncertainty items in a reference doc could be tightened by either resolving them or explicitly marking them as deferred with a tracking note. `.opencode/skills/mcp-open-design/references/od_cli_reference.md:233-244`.
 
@@ -47,7 +47,7 @@ D1 Correctness dimension. Reviewed `mcp-open-design/SKILL.md`, its three referen
 - Checked for stale mcp-magicpath references in mcp-open-design; none found (phase 008 sweep was thorough).
 
 ## Recommended Next Focus
-D2 Security: Review the gating policy, auth guidance, and destructive-verb safeguards in the mcp-open-design and sk-interface-design skills for security correctness.
+D2 Security: Review the gating policy, auth guidance, and destructive-verb safeguards in the mcp-open-design and sk-design-interface skills for security correctness.
 
 ## Claim Adjudication Packets
 

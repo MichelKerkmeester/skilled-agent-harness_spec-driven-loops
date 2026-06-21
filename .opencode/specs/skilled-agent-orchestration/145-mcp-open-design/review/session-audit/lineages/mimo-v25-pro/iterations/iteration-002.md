@@ -24,7 +24,7 @@ D2 Security dimension. Reviewed the gating policy for mutating/destructive verbs
 
 - **F004**: Auth requirements per verb are partially [INFERRED] in `od_cli_reference.md`. Items 5-6 in Section 7 list open questions about whether `start_run`, `media generate`, and `research search` need a logged-in `vela` account or `OD_TOOL_TOKEN` when invoked by a user (vs. a daemon-spawned agent). For a security-sensitive review, these should be resolved or explicitly documented as deferred with a tracking issue. `.opencode/skills/mcp-open-design/references/od_cli_reference.md:241-242`.
 
-- **F005**: The `claude_design_parity.md` protocol's Section 8 guardrail states "No unsanctioned write-back. Open Design's mutating verbs are STOP-and-confirm points" but does not specify what constitutes "sanctioned" write-back. The guardrail could be tightened by defining the exact conditions under which write-back is permitted (e.g., explicit user approval per the mcp-open-design gating policy). `.opencode/skills/sk-interface-design/references/claude_design_parity.md:109`.
+- **F005**: The `claude_design_parity.md` protocol's Section 8 guardrail states "No unsanctioned write-back. Open Design's mutating verbs are STOP-and-confirm points" but does not specify what constitutes "sanctioned" write-back. The guardrail could be tightened by defining the exact conditions under which write-back is permitted (e.g., explicit user approval per the mcp-open-design gating policy). `.opencode/skills/sk-design-interface/references/claude_design_parity.md:109`.
 
 ## Cross-Reference Results
 | Protocol | Status | Gate | Evidence | Notes |
@@ -76,7 +76,7 @@ D3 Traceability: Cross-check spec.md normative claims against shipped implementa
   "findingId": "F005",
   "claim": "claude_design_parity.md write-back guardrail uses 'unsanctioned' without defining what constitutes sanctioned write-back.",
   "evidenceRefs": [
-    ".opencode/skills/sk-interface-design/references/claude_design_parity.md:109"
+    ".opencode/skills/sk-design-interface/references/claude_design_parity.md:109"
   ],
   "counterevidenceSought": "Checked the mcp-open-design SKILL.md gating policy for a definition of sanctioned write-back. The gating policy defines confirmation requirements but the parity protocol does not cross-reference it.",
   "alternativeExplanation": "The term 'unsanctioned' may be intentionally loose to allow future flexibility. The mcp-open-design gating policy provides the concrete requirements.",

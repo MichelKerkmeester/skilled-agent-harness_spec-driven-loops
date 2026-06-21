@@ -1,7 +1,7 @@
 # Deep Review Strategy
 
 ## Topic
-Deep review of spec 150: Open Design terminal control and interface integration. Phase-parent spec with 8 child phases (001-008), all marked complete. Two skills delivered: `mcp-open-design` (v1.2.0) and `sk-interface-design` (v1.3.0). `mcp-magicpath` deprecated.
+Deep review of spec 150: Open Design terminal control and interface integration. Phase-parent spec with 8 child phases (001-008), all marked complete. Two skills delivered: `mcp-open-design` (v1.2.0) and `sk-design-interface` (v1.3.0). `mcp-magicpath` deprecated.
 
 ## Review Dimensions
 
@@ -44,7 +44,7 @@ Deep review of spec 150: Open Design terminal control and interface integration.
 
 **Dimension**: D2 Security
 **Rationale**: Second priority dimension. Focus on the gating policy for mutating/destructive verbs, auth guidance, credential handling, and the safety safeguards in both skills.
-**Files**: `.opencode/skills/mcp-open-design/SKILL.md` (rules section), `.opencode/skills/mcp-open-design/references/tool_surface.md`, `.opencode/skills/sk-interface-design/SKILL.md`, `.opencode/skills/sk-interface-design/references/`
+**Files**: `.opencode/skills/mcp-open-design/SKILL.md` (rules section), `.opencode/skills/mcp-open-design/references/tool_surface.md`, `.opencode/skills/sk-design-interface/SKILL.md`, `.opencode/skills/sk-design-interface/references/`
 
 ## Known Context
 
@@ -77,9 +77,9 @@ Deep review of spec 150: Open Design terminal control and interface integration.
 | File | Status | Notes |
 |------|--------|-------|
 | `.opencode/skills/mcp-open-design/SKILL.md` | reviewed-iter1 | P1 version stale found |
-| `.opencode/skills/sk-interface-design/SKILL.md` | reviewed-iter1 | P2 source URL noted |
+| `.opencode/skills/sk-design-interface/SKILL.md` | reviewed-iter1 | P2 source URL noted |
 | `.opencode/skills/mcp-open-design/references/*.md` | reviewed-iter1 | P2 open uncertainty items |
-| `.opencode/skills/sk-interface-design/references/*.md` | not-reviewed | Next: security focus |
+| `.opencode/skills/sk-design-interface/references/*.md` | not-reviewed | Next: security focus |
 | Phase children spec/plan/tasks/checklist | not-reviewed | 8 phases of control docs |
 
 ## Review Boundaries

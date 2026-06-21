@@ -33,7 +33,7 @@ This phase first asked whether `sk-prompt` already covered the design-generation
 
 - Read `sk-prompt` `SKILL.md`, `depth_framework.md`, `patterns_evaluation.md` and `README.md`.
 - Read `mcp-magicpath` and `mcp-open-design` `SKILL.md`.
-- Read `sk-interface-design/references/claude_design_parity.md`.
+- Read `sk-design-interface/references/claude_design_parity.md`.
 - Grounded the multi-turn discovery flow in `mcp-open-design` references, including `od ui respond` and `start_run`.
 - Captured baseline `package_skill.py --check` as PASS with one pre-existing naming warning.
 - Reached the assessment verdict for needs (a) to (d) with reasons.
@@ -51,7 +51,7 @@ This phase first asked whether `sk-prompt` already covered the design-generation
 | README structure check | PASS: 0 issues. |
 | `validate.sh --strict` | PASS: this packet returned 0 errors. |
 | Router consistency | PASS: `DESIGN_GEN` present in all expected router and documentation surfaces. |
-| `sk-interface-design` unchanged | PASS: no diff in the skill directory. |
+| `sk-design-interface` unchanged | PASS: no diff in the skill directory. |
 | Tasks complete | PASS: 18 completed task items recorded. |
 
 ### Files Changed

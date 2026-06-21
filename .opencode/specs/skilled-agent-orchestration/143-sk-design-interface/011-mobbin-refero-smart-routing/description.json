@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/143-sk-design-interface/011-mobbin-refero-smart-routing",
+  "description": "Feature Specification: Phase 11: mobbin-refero-smart-routing",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "mobbin-refero-smart-routing",
+    "sk-design-interface",
+    "design-references"
+  ],
+  "lastUpdated": "2026-06-17T00:00:00.000Z",
+  "specId": "011",
+  "folderSlug": "mobbin-refero-smart-routing",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "143-sk-design-interface"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

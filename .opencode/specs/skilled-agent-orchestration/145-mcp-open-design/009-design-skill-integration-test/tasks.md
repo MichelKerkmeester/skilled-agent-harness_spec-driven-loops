@@ -1,5 +1,5 @@
 ---
-title: "Tasks: sk-interface-design + mcp-open-design integration test (MiMo vs DeepSeek)"
+title: "Tasks: sk-design-interface + mcp-open-design integration test (MiMo vs DeepSeek)"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "design skill integration test tasks"
@@ -24,7 +24,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: sk-interface-design + mcp-open-design integration test (MiMo vs DeepSeek)
+# Tasks: sk-design-interface + mcp-open-design integration test (MiMo vs DeepSeek)
 
 <!-- SPECKIT_LEVEL: 1 -->
 

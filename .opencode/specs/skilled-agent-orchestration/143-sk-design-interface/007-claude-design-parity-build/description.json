@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/143-sk-design-interface/007-claude-design-parity-build",
+  "description": "Feature Specification: Claude Design parity keystone build",
+  "keywords": [
+    "feature",
+    "specification",
+    "claude",
+    "design",
+    "parity",
+    "keystone",
+    "build"
+  ],
+  "lastUpdated": "2026-06-14T09:49:50.996Z",
+  "specId": "007",
+  "folderSlug": "claude-design-parity-build",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "143-sk-design-interface"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

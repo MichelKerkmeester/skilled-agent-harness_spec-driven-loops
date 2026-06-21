@@ -5,7 +5,7 @@ All artifacts validate. The fan-out lineage review is complete.
 **Verdict: CONDITIONAL** (P0=0, P1=1, P2=6) · converged in 5 iterations · 4/4 dimensions · both core hard gates (`spec_code`, `checklist_evidence`) passed.
 
 **What the packet got right (verified, not assumed):**
-- `sk-interface-design` is **cleanly de-vendored to Apache-2.0 only** — the headline legal driver. No residual MIT/ui-ux-pro-max material on disk (only historical changelogs + the verification playbook); no `scripts/`/`data/`/`assets/` payload.
+- `sk-design-interface` is **cleanly de-vendored to Apache-2.0 only** — the headline legal driver. No residual MIT/ui-ux-pro-max material on disk (only historical changelogs + the verification playbook); no `scripts/`/`data/`/`assets/` payload.
 - `mcp-magicpath` deprecation swept every **live markdown/metadata** reference (clean tree-wide grep); spec 147 correctly marked "Superseded (by spec 150)"; mcp-figma repointed; versions consistent across the three bumped skills.
 - The multi-turn generation model is internally consistent across all mcp-open-design docs and the parity protocol.
 

@@ -90,7 +90,7 @@ The live test exercised the running Open Design app read and run verbs only (no 
 |---------|--------------|--------|--------------|
 | `/Applications/Open Design.app` | Live verification target | unchanged (read and run only) | one design generated, no destructive verb |
 | `.opencode/skills/mcp-open-design/` | Reviewed skill | P0/P1 reference, catalog, playbook, link fixes | package check PASS, paths resolve |
-| `.opencode/skills/sk-interface-design/` | Reviewed skill | P0/P1 path, licensing-wording, graph-edge fixes | package check PASS, grep clean |
+| `.opencode/skills/sk-design-interface/` | Reviewed skill | P0/P1 path, licensing-wording, graph-edge fixes | package check PASS, grep clean |
 | `../review/review-report.md` | Review record | Authored with verdicts, fixes, backlog | present |
 <!-- /ANCHOR:affected-surfaces -->
 

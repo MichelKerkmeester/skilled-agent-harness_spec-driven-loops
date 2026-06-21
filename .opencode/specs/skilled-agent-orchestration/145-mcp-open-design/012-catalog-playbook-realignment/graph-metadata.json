@@ -14,7 +14,7 @@
   "derived": {
     "trigger_phrases": [
       "mcp-open-design catalog playbook realignment",
-      "mandatory sk-interface-design gate scenario",
+      "mandatory sk-design-interface gate scenario",
       "grounding feature mandatory framing",
       "phase 012 spec",
       "mcp-open-design catalog realignment plan",
@@ -32,7 +32,7 @@
       "playbook",
       "realignment",
       "mandatory",
-      "sk-interface-design",
+      "sk-design-interface",
       "gate",
       "scenario",
       "grounding",

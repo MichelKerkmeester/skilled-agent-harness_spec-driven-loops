@@ -2,7 +2,7 @@
 
 ## Focus
 **Dimension**: Maintainability (stabilization) — Re-check coverage completeness, verify prior findings, review remaining unreviewed secondary references  
-**Files reviewed**: `.opencode/skills/sk-interface-design/references/design_inventory.md`, `.opencode/skills/sk-interface-design/references/ux_quality_reference.md`, re-verified `.opencode/skills/mcp-open-design/SKILL.md:9` (F001)
+**Files reviewed**: `.opencode/skills/sk-design-interface/references/design_inventory.md`, `.opencode/skills/sk-design-interface/references/ux_quality_reference.md`, re-verified `.opencode/skills/mcp-open-design/SKILL.md:9` (F001)
 
 ## Scorecard
 - Dimensions covered: correctness, security, traceability, maintainability (all 4, stabilized)
@@ -14,7 +14,7 @@
 ## Findings
 
 ### P2, Suggestion
-- **F016**: `design_inventory.md` Section 5 Related Resources links to `claude_design_parity.md` for the "no-chooser guardrail" but the parity protocol's guardrails section (Section 8) is a general "what this protocol does not add" list, not a dedicated chooser-prevention rule, `.opencode/skills/sk-interface-design/references/design_inventory.md:81`, This is a minor cross-reference precision issue: design_inventory.md directs readers to claude_design_parity.md for a guardrail that the target document only covers as one bullet of many. The link works but the reference precision could be tighter.
+- **F016**: `design_inventory.md` Section 5 Related Resources links to `claude_design_parity.md` for the "no-chooser guardrail" but the parity protocol's guardrails section (Section 8) is a general "what this protocol does not add" list, not a dedicated chooser-prevention rule, `.opencode/skills/sk-design-interface/references/design_inventory.md:81`, This is a minor cross-reference precision issue: design_inventory.md directs readers to claude_design_parity.md for a guardrail that the target document only covers as one bullet of many. The link works but the reference precision could be tighter.
 
 ## Cross-Reference Results
 | Protocol | Status | Gate | Evidence | Notes |

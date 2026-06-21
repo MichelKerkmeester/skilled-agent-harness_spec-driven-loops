@@ -15,15 +15,15 @@
     "trigger_phrases": [
       "open design terminal control research",
       "mcp-open-design skill design",
-      "sk-interface-design de-vendor research",
+      "sk-design-interface de-vendor research",
       "open design terminal research plan",
       "mcp-open-design research plan",
-      "sk-interface-design de-vendor plan",
+      "sk-design-interface de-vendor plan",
       "open design terminal research tasks",
       "mcp-open-design research tasks",
       "open design terminal research outcome",
       "mcp-open-design research summary",
-      "sk-interface-design de-vendor open design"
+      "sk-design-interface de-vendor open design"
     ],
     "key_topics": [
       "open",
@@ -33,7 +33,7 @@
       "research",
       "mcp-open-design",
       "skill",
-      "sk-interface-design",
+      "sk-design-interface",
       "de-vendor",
       "plan",
       "tasks",
@@ -194,7 +194,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The installed Open Design desktop app (nexu-io/open-design, v0.9.0, Electron plus Next.js) holds rich local-first design systems and a generation engine, but the framework can only reach them through the in-app chat UI. Whether and how it can be driven from a terminal was unknown. In parallel, `sk-interface-design` still vendors data and scripts derived from the MIT `ui-ux-pro-max` repo, which carries license obligations and the AI-default patterns the skill is built to resist. The framework needed an evidence-backed answer that reads the app's actual bundled code rather than guessing.",
+    "causal_summary": "The installed Open Design desktop app (nexu-io/open-design, v0.9.0, Electron plus Next.js) holds rich local-first design systems and a generation engine, but the framework can only reach them through the in-app chat UI. Whether and how it can be driven from a terminal was unknown. In parallel, `sk-design-interface` still vendors data and scripts derived from the MIT `ui-ux-pro-max` repo, which carries license obligations and the AI-default patterns the skill is built to resist. The framework needed an evidence-backed answer that reads the app's actual bundled code rather than guessing.",
     "created_at": "2026-06-14T12:30:00Z",
     "last_save_at": "2026-06-15T09:09:33.181Z",
     "save_lineage": "graph_only",

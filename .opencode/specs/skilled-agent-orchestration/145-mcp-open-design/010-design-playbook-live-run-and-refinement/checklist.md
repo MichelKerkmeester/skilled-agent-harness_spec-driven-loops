@@ -14,7 +14,7 @@ _memory:
     next_safe_action: "Validate, commit, then restructure under 145-mcp-open-design"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-interface-design/manual_testing_playbook/manual_testing_playbook.md"
+      - ".opencode/skills/sk-design-interface/manual_testing_playbook/manual_testing_playbook.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "session-010-design-playbook-live-run-and-refinement"

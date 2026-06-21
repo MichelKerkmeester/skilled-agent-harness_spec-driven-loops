@@ -25,14 +25,14 @@ This phase deprecated `mcp-magicpath`. That skill drove the hosted MagicPath can
 
 - Completed a voice sweep with no em dashes and no prose semicolons in new prose.
 - Recorded `CHK-013`, `CHK-030`, `CHK-042` and `CHK-050`.
-- Added changelogs for `sk-interface-design` `v1.3.0.0`, `sk-prompt` `v2.3.0.0` and `mcp-open-design` `v1.2.0.0`.
+- Added changelogs for `sk-design-interface` `v1.3.0.0`, `sk-prompt` `v2.3.0.0` and `mcp-open-design` `v1.2.0.0`.
 
 ### Changed
 
 - Grepped every `magicpath` reference across `.opencode/skills/` and the skills index README.
 - Classified each reference as live or historical so historical records were preserved.
 - Captured baseline `package_skill.py --check` for the three skills to bump.
-- Rewrote `sk-interface-design/references/claude_design_parity.md` to two-member parity: `sk-interface-design` and `mcp-open-design`.
+- Rewrote `sk-design-interface/references/claude_design_parity.md` to two-member parity: `sk-design-interface` and `mcp-open-design`.
 - Made fidelity checks use the real `previewUrl` and `get_artifact`.
 - Rewrote `sk-prompt/references/design_generation_patterns.md` to the `mcp-open-design` `start_run` use case.
 - Dropped the MagicPath canvas-authoring use case.
@@ -47,7 +47,7 @@ This phase deprecated `mcp-magicpath`. That skill drove the hosted MagicPath can
 
 | Check | Result |
 |-------|--------|
-| `package_skill.py --check` | PASS: `sk-interface-design`, `sk-prompt` and `mcp-open-design` each valid with no warnings. |
+| `package_skill.py --check` | PASS: `sk-design-interface`, `sk-prompt` and `mcp-open-design` each valid with no warnings. |
 | Live-reference regression grep | PASS: no live `mcp-magicpath` reference remains across skills and the index. |
 | Historical-record preservation | PASS: spec 142 references and historical changelog entries unchanged. |
 | Graph sibling edges | PASS: reciprocal `mcp-magicpath` edges dropped, `mcp-figma` repointed to `mcp-open-design`. |
@@ -61,9 +61,9 @@ This phase deprecated `mcp-magicpath`. That skill drove the hosted MagicPath can
 | File | Action | What changed |
 |------|--------|--------------|
 | `.opencode/skills/mcp-magicpath/` | Updated | Deleted the whole skill folder, all 16 files. |
-| `sk-interface-design/references/claude_design_parity.md` | Updated | Two-member parity onto `mcp-open-design`, fidelity on `previewUrl` and `get_artifact`. |
-| `sk-interface-design/SKILL.md`, `README.md`, `feature_catalog/`, `manual_testing_playbook/`, `design_inventory.md`, `graph-metadata.json` | Updated | Live MagicPath references dropped, sibling edge removed and version `v1.3.0`. |
-| `sk-interface-design/changelog/v1.3.0.0.md` | Created | Deprecation and re-centering changelog. |
+| `sk-design-interface/references/claude_design_parity.md` | Updated | Two-member parity onto `mcp-open-design`, fidelity on `previewUrl` and `get_artifact`. |
+| `sk-design-interface/SKILL.md`, `README.md`, `feature_catalog/`, `manual_testing_playbook/`, `design_inventory.md`, `graph-metadata.json` | Updated | Live MagicPath references dropped, sibling edge removed and version `v1.3.0`. |
+| `sk-design-interface/changelog/v1.3.0.0.md` | Created | Deprecation and re-centering changelog. |
 | `sk-prompt/references/design_generation_patterns.md` | Updated | `mcp-open-design` `start_run` use case only. |
 | `sk-prompt/SKILL.md`, `README.md` | Updated | Live MagicPath references dropped and version `v2.3.0`. |
 | `sk-prompt/changelog/v2.3.0.0.md` | Created | Drop-MagicPath-usecase changelog. |

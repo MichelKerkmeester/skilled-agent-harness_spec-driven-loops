@@ -95,7 +95,7 @@ _memory:
 - [x] CHK-031 [P0] Anti-default guardrail honored
   - **Evidence**: The seed-of-thought indexes brief-grounded directions only, and the reference restates the no-preset rule from `claude_design_parity.md` §8
 - [x] CHK-032 [P1] Ownership boundary explicit
-  - **Evidence**: The reference defers the look to `sk-interface-design`, the transport to the MCP skills, and points to `claude_design_parity.md` §6 for handoff
+  - **Evidence**: The reference defers the look to `sk-design-interface`, the transport to the MCP skills, and points to `claude_design_parity.md` §6 for handoff
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -127,8 +127,8 @@ _memory:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [x] CHK-060 [P1] `sk-interface-design` untouched
-  - **Evidence**: No edits under `.opencode/skills/sk-interface-design/`. Phase 005 owns it
+- [x] CHK-060 [P1] `sk-design-interface` untouched
+  - **Evidence**: No edits under `.opencode/skills/sk-design-interface/`. Phase 005 owns it
 - [x] CHK-061 [P2] No stray temp files left behind
   - **Evidence**: No scratch or temp files created outside this packet and the sk-prompt skill
 <!-- /ANCHOR:file-org -->

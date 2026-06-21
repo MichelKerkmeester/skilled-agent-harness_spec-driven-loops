@@ -13,7 +13,7 @@
     "trigger_phrases": [
       "design playbook live run",
       "mcp-open-design playbook scenarios",
-      "sk-interface-design playbook scenarios",
+      "sk-design-interface playbook scenarios",
       "kimi deepseek design judgment",
       "playbook scenario refinement",
       "design playbook live run plan",
@@ -30,7 +30,7 @@
       "run",
       "mcp-open-design",
       "scenarios",
-      "sk-interface-design",
+      "sk-design-interface",
       "kimi",
       "deepseek",
       "judgment",
@@ -192,7 +192,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The mcp-open-design (4 scenarios) and sk-interface-design (9 scenarios) manual testing playbooks had never been executed end to end against the real tooling, so it was unknown whether the scenarios were accurate, runnable, or complete. The earlier live Open Design work showed that running for real surfaces things the docs assume.",
+    "causal_summary": "The mcp-open-design (4 scenarios) and sk-design-interface (9 scenarios) manual testing playbooks had never been executed end to end against the real tooling, so it was unknown whether the scenarios were accurate, runnable, or complete. The earlier live Open Design work showed that running for real surfaces things the docs assume.",
     "created_at": "2026-06-15T09:24:28Z",
     "last_save_at": "2026-06-16T14:27:20.555Z",
     "save_lineage": "graph_only",

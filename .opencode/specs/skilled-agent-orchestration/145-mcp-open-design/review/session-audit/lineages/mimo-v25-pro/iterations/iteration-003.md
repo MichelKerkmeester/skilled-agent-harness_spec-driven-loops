@@ -22,7 +22,7 @@ D3 Traceability dimension. Cross-checked spec.md normative claims against phase 
 
 ### P2, Suggestion
 
-- **F006**: Parent spec.md does not record final version numbers for the delivered skills. The Phase Documentation Map lists status as "Complete" for all 8 phases but does not state that mcp-open-design shipped at v1.2.0 or sk-interface-design shipped at v1.3.0. A reader must cross-reference the child implementation-summaries and changelogs to determine the actual versions. `.opencode/specs/skilled-agent-orchestration/150-open-design-terminal-and-interface-integration/spec.md:84-93`.
+- **F006**: Parent spec.md does not record final version numbers for the delivered skills. The Phase Documentation Map lists status as "Complete" for all 8 phases but does not state that mcp-open-design shipped at v1.2.0 or sk-design-interface shipped at v1.3.0. A reader must cross-reference the child implementation-summaries and changelogs to determine the actual versions. `.opencode/specs/skilled-agent-orchestration/150-open-design-terminal-and-interface-integration/spec.md:84-93`.
 
 ### Refined Findings
 

@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ### Summary
 
-Phase 011 made the `sk-interface-design` coupling a hard precondition, but the grounding feature catalog still called it optional and on-demand, and no scenario tested the gate. This phase aligned the catalog and playbook to the actual contract. The gate is now documented as mandatory and has a manual scenario with negative, positive and exemption controls.
+Phase 011 made the `sk-design-interface` coupling a hard precondition, but the grounding feature catalog still called it optional and on-demand, and no scenario tested the gate. This phase aligned the catalog and playbook to the actual contract. The gate is now documented as mandatory and has a manual scenario with negative, positive and exemption controls.
 
 ### Added
 

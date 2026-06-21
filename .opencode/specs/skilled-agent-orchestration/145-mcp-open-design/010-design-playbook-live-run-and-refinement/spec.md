@@ -4,7 +4,7 @@ description: "Both design skills' manual testing playbooks had never been execut
 trigger_phrases:
   - "design playbook live run"
   - "mcp-open-design playbook scenarios"
-  - "sk-interface-design playbook scenarios"
+  - "sk-design-interface playbook scenarios"
   - "kimi deepseek design judgment"
   - "playbook scenario refinement"
 importance_tier: "normal"
@@ -19,7 +19,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/mcp-open-design/manual_testing_playbook/manual_testing_playbook.md"
-      - ".opencode/skills/sk-interface-design/manual_testing_playbook/manual_testing_playbook.md"
+      - ".opencode/skills/sk-design-interface/manual_testing_playbook/manual_testing_playbook.md"
       - ".opencode/specs/skilled-agent-orchestration/145-mcp-open-design/010-design-playbook-live-run-and-refinement/scratch/results-matrix.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -55,7 +55,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The mcp-open-design (4 scenarios) and sk-interface-design (9 scenarios) manual testing playbooks had never been executed end to end against the real tooling, so it was unknown whether the scenarios were accurate, runnable, or complete. The earlier live Open Design work showed that running for real surfaces things the docs assume.
+The mcp-open-design (4 scenarios) and sk-design-interface (9 scenarios) manual testing playbooks had never been executed end to end against the real tooling, so it was unknown whether the scenarios were accurate, runnable, or complete. The earlier live Open Design work showed that running for real surfaces things the docs assume.
 
 ### Purpose
 Every playbook scenario is run live with real evidence and an honest verdict, and each scenario is refined wherever the live run exposes a concrete gap.
@@ -83,7 +83,7 @@ Every playbook scenario is run live with real evidence and an honest verdict, an
 |-----------|-------------|-------------|
 | `mcp-open-design/manual_testing_playbook/{manual_testing_playbook.md, 02--reading/*, 03--gated-runs/*}` | Modify | Socket-export precondition, READ token-wall note, RUN model-pinning + form-answer path |
 | `mcp-open-design/references/mcp_wiring.md` | Modify | Code Mode (UTCP) wiring path |
-| `sk-interface-design/manual_testing_playbook/{03,04,06,07}--*/*` | Modify | Fixture, bundled-system source, exact de-vendor tokens, runId source |
+| `sk-design-interface/manual_testing_playbook/{03,04,06,07}--*/*` | Modify | Fixture, bundled-system source, exact de-vendor tokens, runId source |
 | `157-.../{spec,plan,tasks,checklist,implementation-summary}.md` | Create | The packet record + results matrix |
 <!-- /ANCHOR:scope -->
 

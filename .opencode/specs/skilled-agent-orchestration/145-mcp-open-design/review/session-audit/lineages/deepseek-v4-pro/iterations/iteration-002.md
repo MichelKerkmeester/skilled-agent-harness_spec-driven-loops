@@ -2,7 +2,7 @@
 
 ## Focus
 **Dimension**: Security — Vulnerabilities, exposure, secrets, trust boundaries, injection risks  
-**Files reviewed**: `.opencode/skills/mcp-open-design/SKILL.md`, `.opencode/skills/mcp-open-design/references/mcp_wiring.md`, `.opencode/skills/mcp-open-design/references/od_cli_reference.md`, `.opencode/skills/mcp-open-design/references/tool_surface.md`, `.opencode/skills/sk-interface-design/SKILL.md`, `.opencode/skills/sk-interface-design/references/design_principles.md`, `.opencode/skills/sk-interface-design/references/variation_diversity.md`
+**Files reviewed**: `.opencode/skills/mcp-open-design/SKILL.md`, `.opencode/skills/mcp-open-design/references/mcp_wiring.md`, `.opencode/skills/mcp-open-design/references/od_cli_reference.md`, `.opencode/skills/mcp-open-design/references/tool_surface.md`, `.opencode/skills/sk-design-interface/SKILL.md`, `.opencode/skills/sk-design-interface/references/design_principles.md`, `.opencode/skills/sk-design-interface/references/variation_diversity.md`
 
 ## Scorecard
 - Dimensions covered: correctness, security

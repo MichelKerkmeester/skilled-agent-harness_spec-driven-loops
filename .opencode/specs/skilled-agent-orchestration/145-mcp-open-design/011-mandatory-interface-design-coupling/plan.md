@@ -1,9 +1,9 @@
 ---
 title: "Implementation Plan: Phase 11: mandatory-interface-design-coupling [template:level_1/plan.md]"
-description: "Plan to convert mcp-open-design's conditional sk-interface-design coupling into an absolute hard precondition for all design work, across SKILL.md, README, version, and changelog."
+description: "Plan to convert mcp-open-design's conditional sk-design-interface coupling into an absolute hard precondition for all design work, across SKILL.md, README, version, and changelog."
 trigger_phrases:
   - "open design mandatory coupling plan"
-  - "sk-interface-design hard block plan"
+  - "sk-design-interface hard block plan"
   - "phase 011 plan"
 importance_tier: "normal"
 contextType: "general"
@@ -82,14 +82,14 @@ Defense in depth across one document: the same hard rule restated at the banner,
 
 ### Key Components
 - **Top banner** (before §1): the mandate stated first, with the transport-vs-taste framing and the exemption
-- **§2 routing**: a phase-detection hard gate (STEP) + a router-pseudocode precondition that blocks a design step without sk-interface-design
-- **§3 Run direction**: a mandatory pre-step that shapes the brief and discovery-form answers with sk-interface-design
+- **§2 routing**: a phase-detection hard gate (STEP) + a router-pseudocode precondition that blocks a design step without sk-design-interface
+- **§3 Run direction**: a mandatory pre-step that shapes the brief and discovery-form answers with sk-design-interface
 - **§4 RULES**: ALWAYS #5 rewritten as a hard precondition + a new NEVER forbidding UI output without it
-- **§6 success criteria + §7/§8 integration**: a design step is incomplete without sk-interface-design evidence; the partner is mandatory
+- **§6 success criteria + §7/§8 integration**: a design step is incomplete without sk-design-interface evidence; the partner is mandatory
 - **Frontmatter**: version 1.2.0.0 -> 1.3.0.0 + description note
 
 ### Data Flow
-A request enters the router; if it is a RUN or a design-feeding READ, the hard gate requires sk-interface-design before any design output; pure WIRE/inventory bypasses the gate. The rules and success criteria hold the same line so the constraint is enforced whether the agent reads top-down or jumps to RULES.
+A request enters the router; if it is a RUN or a design-feeding READ, the hard gate requires sk-design-interface before any design output; pure WIRE/inventory bypasses the gate. The rules and success criteria hold the same line so the constraint is enforced whether the agent reads top-down or jumps to RULES.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -100,7 +100,7 @@ A request enters the router; if it is a RUN or a design-feeding READ, the hard g
 ### Phase 1: SKILL.md hard-block
 - [ ] Add the top MANDATORY banner before §1 (with the WIRE/inventory exemption)
 - [ ] §2: add the phase-detection hard gate + mandatory resource rows + router precondition
-- [ ] §3 Run direction: add the mandatory sk-interface-design pre-step
+- [ ] §3 Run direction: add the mandatory sk-design-interface pre-step
 - [ ] §4: rewrite ALWAYS #5 as a hard precondition; add the NEVER rule
 - [ ] §6 success criteria + §7/§8 integration: mandatory-partner wording
 - [ ] Frontmatter: version 1.3.0.0 + description note
@@ -132,7 +132,7 @@ A request enters the router; if it is a RUN or a design-feeding READ, the hard g
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `sk-interface-design` | Internal | Green | The mandated partner; referenced, not edited |
+| `sk-design-interface` | Internal | Green | The mandated partner; referenced, not edited |
 | sk-doc validators | Tooling | Green | README/feature structure checks |
 | `validate.sh` | Tooling | Green | Cannot confirm phase structure |
 <!-- /ANCHOR:dependencies -->

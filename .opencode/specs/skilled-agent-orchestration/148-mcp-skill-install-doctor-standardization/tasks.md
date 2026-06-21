@@ -68,7 +68,7 @@ _memory:
 - [x] T008 [P] Author mcp-chrome-devtools `scripts/doctor.sh` (gpt-5.5 seat)
 - [x] T009 [P] Author mcp-click-up `scripts/doctor.sh` (gpt-5.5 seat)
 - [x] T010 Add `cli_skill_diagnostics:` to the central doctor and a router note (`.opencode/commands/doctor/`)
-- [x] T011 Cross-reference mcp-figma in mcp-open-design and sk-interface-design (README, SKILL.md, graph-metadata)
+- [x] T011 Cross-reference mcp-figma in mcp-open-design and sk-design-interface (README, SKILL.md, graph-metadata)
 - [x] T012 Add the mcp-open-design `mcp-servers/open-design` pointer doc
 <!-- /ANCHOR:phase-2 -->
 

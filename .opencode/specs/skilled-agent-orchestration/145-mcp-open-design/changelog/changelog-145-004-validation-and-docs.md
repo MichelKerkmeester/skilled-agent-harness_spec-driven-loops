@@ -35,7 +35,7 @@ This phase supplied the live proof and deep-review closeout for the earlier work
 - Scoped 10 narrow review slices across both skills and the research packet.
 - Ran five `claude2-opus` judgment seats for `SKILL.md` accuracy, licensing, integration, research and coherence.
 - Ran five `gpt-5.5-fast` mechanical seats for references, catalog and playbook twice, graph metadata and links.
-- Ran `package_skill.py --check` for `mcp-open-design` and `sk-interface-design`.
+- Ran `package_skill.py --check` for `mcp-open-design` and `sk-design-interface`.
 
 ### Fixed
 
@@ -63,7 +63,7 @@ This phase supplied the live proof and deep-review closeout for the earlier work
 | File | Action | What changed |
 |------|--------|--------------|
 | `mcp-open-design/ references, catalog, playbook, SKILL.md` | Updated | P0/P1 path, accuracy and gating-list fixes from the review. |
-| `sk-interface-design/ playbook index, SKILL.md, graph-metadata` | Updated | P0/P1 path, licensing-wording and reciprocal-edge fixes. |
+| `sk-design-interface/ playbook index, SKILL.md, graph-metadata` | Updated | P0/P1 path, licensing-wording and reciprocal-edge fixes. |
 | `../review/review-report.md` | Created | Verdicts, P0/P1 fixes, P2 backlog, WONTFIX rationale and remediation validation. |
 | `../review/seats/` | Created | Raw deep-review seat outputs. |
 | `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `this file` | Created | Packet control docs for the retroactive record. |

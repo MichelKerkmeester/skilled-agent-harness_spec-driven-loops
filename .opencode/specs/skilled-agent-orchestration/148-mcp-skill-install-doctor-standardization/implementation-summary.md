@@ -71,7 +71,7 @@ The central `doctor_mcp_install.yaml` gained a `cli_skill_diagnostics:` class th
 
 ### The three design skills cross-reference each other
 
-mcp-figma already named the other two. Now mcp-open-design names mcp-figma in its Related Skills, sk-interface-design names mcp-figma as a sibling transport, and the skill graph carries the reciprocal edges (sk-interface-design is `prerequisite_for` both mcp-figma and mcp-open-design).
+mcp-figma already named the other two. Now mcp-open-design names mcp-figma in its Related Skills, sk-design-interface names mcp-figma as a sibling transport, and the skill graph carries the reciprocal edges (sk-design-interface is `prerequisite_for` both mcp-figma and mcp-open-design).
 
 ### Files Changed
 
@@ -86,7 +86,7 @@ mcp-figma already named the other two. Now mcp-open-design names mcp-figma in it
 | `mcp-open-design/{README.md, SKILL.md}` | Modified | Cross-reference mcp-figma |
 | `mcp-chrome-devtools/scripts/doctor.sh` | Created | Read-only diagnostic for the bdg CLI |
 | `mcp-click-up/scripts/doctor.sh` | Created | Read-only diagnostic for the cupt CLI |
-| `sk-interface-design/{README.md, SKILL.md, graph-metadata.json}` | Modified | Cross-reference and graph-link mcp-figma |
+| `sk-design-interface/{README.md, SKILL.md, graph-metadata.json}` | Modified | Cross-reference and graph-link mcp-figma |
 | `commands/doctor/assets/doctor_mcp_install.yaml` | Modified | Added the `cli_skill_diagnostics:` class |
 | `commands/doctor/mcp.md` | Modified | Documented the CLI-skill diagnostic class |
 <!-- /ANCHOR:what-built -->
@@ -123,7 +123,7 @@ The work ran as three parallel gpt-5.5-fast xhigh write seats for the templated,
 | `bash -n` on all 5 new scripts | PASS |
 | `package_skill --check` mcp-figma | PASS |
 | `package_skill --check` mcp-open-design | PASS (1 soft warning: SKILL.md 3003/3000 words) |
-| JSON validity (mcp-figma, sk-interface-design graph-metadata) | PASS |
+| JSON validity (mcp-figma, sk-design-interface graph-metadata) | PASS |
 | `doctor_mcp_install.yaml` YAML parse | PASS |
 | CLI fact fidelity (bdg, cupt, od daemon-cli path, socket) | PASS, verified against real sources |
 | House-voice and comment-hygiene sweep on authored content | PASS (0 em dashes, no artifact tokens in script comments) |

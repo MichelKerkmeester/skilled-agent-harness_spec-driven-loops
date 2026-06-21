@@ -73,7 +73,7 @@ Supersede and re-center. mcp-open-design is the single live design transport, mc
 ### Key Components
 - **The deleted skill**: `mcp-magicpath/` (16 files), the hosted-canvas transport that mcp-open-design supersedes.
 - **The two shared design docs**: `claude_design_parity.md` (the parity protocol) and `design_generation_patterns.md` (the prompt usecase), both rewritten onto mcp-open-design.
-- **The reference sweep surface**: sk-interface-design, sk-prompt, mcp-open-design, mcp-figma, and the skills index README.
+- **The reference sweep surface**: sk-design-interface, sk-prompt, mcp-open-design, mcp-figma, and the skills index README.
 - **Graph metadata**: the reciprocal sibling edges between mcp-magicpath and the other skills, dropped, with mcp-figma repointed to mcp-open-design.
 
 ### Data Flow
@@ -90,7 +90,7 @@ The writes are to five skills, the skills index, and one historical spec packet.
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
 | `.opencode/skills/mcp-magicpath/` | Hosted-canvas design transport | Deleted | Folder absent |
-| `.opencode/skills/sk-interface-design/` | Design judgment and parity protocol | Re-centered onto mcp-open-design, v1.3.0 | package check PASS, grep clean |
+| `.opencode/skills/sk-design-interface/` | Design judgment and parity protocol | Re-centered onto mcp-open-design, v1.3.0 | package check PASS, grep clean |
 | `.opencode/skills/sk-prompt/` | Prompt patterns | design usecase to mcp-open-design only, v2.3.0 | package check PASS, grep clean |
 | `.opencode/skills/mcp-open-design/` | Terminal design transport | magicpath mentions dropped, v1.2.0 | package check PASS, grep clean |
 | `.opencode/skills/mcp-figma/` | Figma transport sibling | sibling repointed to mcp-open-design | grep clean |
@@ -114,7 +114,7 @@ The writes are to five skills, the skills index, and one historical spec packet.
 - [x] Sweep the remaining live references, drop the graph sibling edges, repoint mcp-figma to mcp-open-design, bump the three skills with changelogs, and mark the 147 packet superseded
 
 ### Phase 3: Verification
-- [x] `package_skill.py --check` PASS on sk-interface-design, sk-prompt, and mcp-open-design
+- [x] `package_skill.py --check` PASS on sk-design-interface, sk-prompt, and mcp-open-design
 - [x] Grep sweep confirms no live magicpath reference, only historical records
 - [x] `validate.sh --strict` on this packet reports zero errors
 <!-- /ANCHOR:phases -->

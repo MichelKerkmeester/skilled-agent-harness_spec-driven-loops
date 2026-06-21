@@ -78,11 +78,11 @@ The open-design work created the largest new skill-local surface in the packet. 
 
 **Before**
 
-The three design-facing skills were related in practice, but their docs and graph metadata did not fully advertise that relationship. A user could discover `mcp-figma`, `mcp-open-design` or `sk-interface-design` without seeing the adjacent tool that should inform the next step.
+The three design-facing skills were related in practice, but their docs and graph metadata did not fully advertise that relationship. A user could discover `mcp-figma`, `mcp-open-design` or `sk-design-interface` without seeing the adjacent tool that should inform the next step.
 
 **After**
 
-`mcp-open-design/README.md` and `mcp-open-design/SKILL.md` now cross-reference `mcp-figma`. `sk-interface-design/README.md`, `sk-interface-design/SKILL.md` and `sk-interface-design/graph-metadata.json` now cross-reference and graph-link `mcp-figma`. The result connects the design judgment skill with the Figma and Open Design transport skills in both prose and structured metadata.
+`mcp-open-design/README.md` and `mcp-open-design/SKILL.md` now cross-reference `mcp-figma`. `sk-design-interface/README.md`, `sk-design-interface/SKILL.md` and `sk-design-interface/graph-metadata.json` now cross-reference and graph-link `mcp-figma`. The result connects the design judgment skill with the Figma and Open Design transport skills in both prose and structured metadata.
 
 **Impact**
 

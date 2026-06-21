@@ -1,10 +1,10 @@
 ---
 title: "Feature Specification: Phase 11: mandatory-interface-design-coupling [template:level_1/spec.md]"
-description: "Upgrade mcp-open-design so the sk-interface-design coupling becomes an absolute hard precondition for all design work, not a conditional best-effort. Any generation/RUN and any READ that feeds a design decision MUST load sk-interface-design and run its ground -> token-system -> critique first; pure transport (wiring, bare inventory) stays exempt. Strengthens SKILL.md, README, version, and changelog."
+description: "Upgrade mcp-open-design so the sk-design-interface coupling becomes an absolute hard precondition for all design work, not a conditional best-effort. Any generation/RUN and any READ that feeds a design decision MUST load sk-design-interface and run its ground -> token-system -> critique first; pure transport (wiring, bare inventory) stays exempt. Strengthens SKILL.md, README, version, and changelog."
 trigger_phrases:
   - "open design mandatory interface design"
-  - "mcp-open-design sk-interface-design hard coupling"
-  - "open design ui design requires sk-interface-design"
+  - "mcp-open-design sk-design-interface hard coupling"
+  - "open design ui design requires sk-design-interface"
   - "phase 011 spec"
 importance_tier: "important"
 contextType: "general"
@@ -56,7 +56,7 @@ FAILURE MODES:
 | **Phase** | 11 |
 | **Predecessor** | 010-design-playbook-live-run-and-refinement |
 | **Successor** | None |
-| **Handoff Criteria** | SKILL.md makes the sk-interface-design coupling a hard precondition for all design work (banner + router gate + RULES + success criteria); README + changelog + version reflect it; `validate.sh --strict` exits 0 |
+| **Handoff Criteria** | SKILL.md makes the sk-design-interface coupling a hard precondition for all design work (banner + router gate + RULES + success criteria); README + changelog + version reflect it; `validate.sh --strict` exits 0 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -66,12 +66,12 @@ FAILURE MODES:
 
 This is **Phase 11** of the mcp-open-design specification.
 
-**Scope Boundary**: Edit the `mcp-open-design` skill only (SKILL.md, README.md, changelog, version). The coupling is made an absolute hard precondition for design work. No change to `sk-interface-design` (the asymmetry is intentional: interface design does not require Open Design, but Open Design design-work requires interface design). No change to the `od` CLI contract, the tool surface, or the gating taxonomy.
+**Scope Boundary**: Edit the `mcp-open-design` skill only (SKILL.md, README.md, changelog, version). The coupling is made an absolute hard precondition for design work. No change to `sk-design-interface` (the asymmetry is intentional: interface design does not require Open Design, but Open Design design-work requires interface design). No change to the `od` CLI contract, the tool surface, or the gating taxonomy.
 
 **Decision (scope of the mandate)**: Confirmed with the user — the hard block binds ALL design work: any generation/RUN, and any READ that feeds a design decision (grounding, reusing tokens/components). Pure transport — wiring the MCP server (`od mcp install`), bare inventory listing that feeds no design decision — stays exempt because it makes no design decision.
 
 **Dependencies**:
-- `sk-interface-design` (the mandated judgment partner) and its `claude_design_parity.md` shared loop.
+- `sk-design-interface` (the mandated judgment partner) and its `claude_design_parity.md` shared loop.
 
 **Deliverables**:
 - `SKILL.md` upgraded: a top MANDATORY banner, a phase-detection hard gate, mandatory resource-loading rows, a router precondition that blocks a design step without the design skill, a Run-direction pre-step, a hardened ALWAYS rule plus a new NEVER rule, and a success-criteria gate.
@@ -88,10 +88,10 @@ This is **Phase 11** of the mcp-open-design specification.
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-`mcp-open-design` already references `sk-interface-design`, but the coupling is **conditional and best-effort**: §4 ALWAYS #5 reads "apply sk-interface-design WHEN an Open Design read or run feeds a design decision," there is no NEVER counterpart, and nothing in the smart router BLOCKS a generation run that skipped the design judgment. The result is that an agent can fire `start_run` and produce UI from Open Design without ever invoking the design skill, which is exactly the failure the user wants foreclosed.
+`mcp-open-design` already references `sk-design-interface`, but the coupling is **conditional and best-effort**: §4 ALWAYS #5 reads "apply sk-design-interface WHEN an Open Design read or run feeds a design decision," there is no NEVER counterpart, and nothing in the smart router BLOCKS a generation run that skipped the design judgment. The result is that an agent can fire `start_run` and produce UI from Open Design without ever invoking the design skill, which is exactly the failure the user wants foreclosed.
 
 ### Purpose
-Make the coupling absolute: when Open Design is used for any design work, the agent MUST also use `sk-interface-design` — it can never produce or shape an interface from Open Design without it. Open Design is the transport; the design judgment is non-negotiable and lives in `sk-interface-design`.
+Make the coupling absolute: when Open Design is used for any design work, the agent MUST also use `sk-design-interface` — it can never produce or shape an interface from Open Design without it. Open Design is the transport; the design judgment is non-negotiable and lives in `sk-design-interface`.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -105,7 +105,7 @@ Make the coupling absolute: when Open Design is used for any design work, the ag
 - Add `changelog/v1.3.0.0.md` and bump the SKILL.md frontmatter `version` to `1.3.0.0`.
 
 ### Out of Scope
-- Any change to `sk-interface-design` (the reverse direction stays optional by design).
+- Any change to `sk-design-interface` (the reverse direction stays optional by design).
 - The `od` CLI contract, tool surface, gating taxonomy, or daemon model.
 - Feature-catalog and manual-testing-playbook rewrites (the SKILL.md + README are the authoritative runtime surfaces; deeper doc propagation can follow if needed).
 
@@ -127,16 +127,16 @@ Make the coupling absolute: when Open Design is used for any design work, the ag
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | The coupling is a hard precondition in RULES | §4 ALWAYS #5 states sk-interface-design runs BEFORE/THROUGHOUT any design step as a hard precondition, and a NEVER rule forbids producing/shaping UI from Open Design without it |
-| REQ-002 | The mandate is unmissable at the top of the skill | A MANDATORY callout appears before §1 stating any design work MUST use sk-interface-design |
-| REQ-003 | The router/flow enforces it | §2 phase detection has a hard gate before RUN/design-feeding READ; the router pseudocode blocks a design step without sk-interface-design; §3 Run direction requires it before `start_run` and form answers |
+| REQ-001 | The coupling is a hard precondition in RULES | §4 ALWAYS #5 states sk-design-interface runs BEFORE/THROUGHOUT any design step as a hard precondition, and a NEVER rule forbids producing/shaping UI from Open Design without it |
+| REQ-002 | The mandate is unmissable at the top of the skill | A MANDATORY callout appears before §1 stating any design work MUST use sk-design-interface |
+| REQ-003 | The router/flow enforces it | §2 phase detection has a hard gate before RUN/design-feeding READ; the router pseudocode blocks a design step without sk-design-interface; §3 Run direction requires it before `start_run` and form answers |
 | REQ-004 | Pure transport stays exempt | The banner, gate, and rules explicitly exempt WIRE and bare inventory that feeds no design decision |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-005 | Success criteria gate it | §6 requires sk-interface-design evidence for any design step; a run is not complete without it |
+| REQ-005 | Success criteria gate it | §6 requires sk-design-interface evidence for any design step; a run is not complete without it |
 | REQ-006 | README + version + changelog | README reflects the mandate; frontmatter `version` is `1.3.0.0`; `changelog/v1.3.0.0.md` exists |
 | REQ-007 | Strict validate passes | `validate.sh --strict` exits 0 on this phase; parent 150 phase map + `children_ids` reconciled |
 <!-- /ANCHOR:requirements -->
@@ -146,8 +146,8 @@ Make the coupling absolute: when Open Design is used for any design work, the ag
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: A reader of `SKILL.md` cannot miss that any Open Design design work requires `sk-interface-design` first — it is stated as a hard precondition in the banner, the routing gate, ALWAYS, NEVER, and success criteria.
-- **SC-002**: The router/flow language BLOCKS a generation run composed without `sk-interface-design`; pure transport is explicitly exempt.
+- **SC-001**: A reader of `SKILL.md` cannot miss that any Open Design design work requires `sk-design-interface` first — it is stated as a hard precondition in the banner, the routing gate, ALWAYS, NEVER, and success criteria.
+- **SC-002**: The router/flow language BLOCKS a generation run composed without `sk-design-interface`; pure transport is explicitly exempt.
 - **SC-003**: README, frontmatter `version` (1.3.0.0), and `changelog/v1.3.0.0.md` all reflect the upgrade.
 - **SC-004**: `validate.sh --strict` exits 0 on this phase folder.
 <!-- /ANCHOR:success-criteria -->
@@ -162,7 +162,7 @@ Make the coupling absolute: when Open Design is used for any design work, the ag
 | Risk | Over-broad mandate harms usability | Forcing the design skill before wiring/inventory would be absurd | Scope the hard block to design work only; explicitly exempt WIRE and bare inventory |
 | Risk | Wording stays soft and the block is ignorable | The original conditional failure recurs | Use explicit hard-precondition language plus a NEVER rule plus a router precondition that raises/blocks |
 | Risk | Drift between SKILL.md and README | Mixed signals about whether it is mandatory | Update both in the same phase; the changelog records the single intent |
-| Dependency | `sk-interface-design` | The mandated partner | Reference its principles and the shared parity loop; no edit to it |
+| Dependency | `sk-design-interface` | The mandated partner | Reference its principles and the shared parity loop; no edit to it |
 <!-- /ANCHOR:risks -->
 
 ---

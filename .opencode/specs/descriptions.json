@@ -638,17 +638,17 @@
       "lastUpdated": "2026-06-14T07:35:35.215Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/143-sk-interface-design",
-      "description": "Feature Specification: sk-interface-design",
+      "specFolder": "skilled-agent-orchestration/143-sk-design-interface",
+      "description": "Feature Specification: sk-design-interface",
       "keywords": [
         "feature",
         "specification",
-        "sk-interface-design"
+        "sk-design-interface"
       ],
       "lastUpdated": "2026-06-17T06:18:24.635Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/143-sk-interface-design/001-install-claude-frontend-design",
+      "specFolder": "skilled-agent-orchestration/143-sk-design-interface/001-install-claude-frontend-design",
       "description": "Feature Specification: install-claude-frontend-design",
       "keywords": [
         "feature",
@@ -658,20 +658,20 @@
       "lastUpdated": "2026-06-13T17:55:07.460Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/143-sk-interface-design/002-ui-ux-pro-max-merge-research",
-      "description": "Research Specification: ui-ux-pro-max merge into sk-interface-design",
+      "specFolder": "skilled-agent-orchestration/143-sk-design-interface/002-ui-ux-pro-max-merge-research",
+      "description": "Research Specification: ui-ux-pro-max merge into sk-design-interface",
       "keywords": [
         "research",
         "specification",
         "ui-ux-pro-max-merge-research",
-        "sk-interface-design",
+        "sk-design-interface",
         "phase",
         "deep-research"
       ],
       "lastUpdated": "2026-06-13T16:30:00Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/143-sk-interface-design/003-ui-ux-pro-max-merge",
+      "specFolder": "skilled-agent-orchestration/143-sk-design-interface/003-ui-ux-pro-max-merge",
       "description": "Feature Specification: ui-ux-pro-max-merge",
       "keywords": [
         "feature",
@@ -681,12 +681,12 @@
       "lastUpdated": "2026-06-14T08:30:50.870Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/143-sk-interface-design/004-doc-alignment-catalog-playbook",
-      "description": "Feature Specification: sk-interface-design doc alignment, catalog, playbook",
+      "specFolder": "skilled-agent-orchestration/143-sk-design-interface/004-doc-alignment-catalog-playbook",
+      "description": "Feature Specification: sk-design-interface doc alignment, catalog, playbook",
       "keywords": [
         "feature",
         "specification",
-        "sk-interface-design",
+        "sk-design-interface",
         "doc",
         "alignment",
         "catalog",
@@ -695,35 +695,35 @@
       "lastUpdated": "2026-06-14T08:30:50.876Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/143-sk-interface-design/005-claude-design-parity-research",
-      "description": "Research Specification: Claude Design parity for sk-interface-design and mcp-magicpath",
+      "specFolder": "skilled-agent-orchestration/143-sk-design-interface/005-claude-design-parity-research",
+      "description": "Research Specification: Claude Design parity for sk-design-interface and mcp-magicpath",
       "keywords": [
         "research",
         "specification",
         "claude",
         "design",
         "parity",
-        "sk-interface-design",
+        "sk-design-interface",
         "mcp-magicpath"
       ],
       "lastUpdated": "2026-06-14T08:30:50.879Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/143-sk-interface-design/006-competitor-design-tools-research",
-      "description": "Research Specification: Competitor AI design-tool ideas for sk-interface-design and mcp-magicpath",
+      "specFolder": "skilled-agent-orchestration/143-sk-design-interface/006-competitor-design-tools-research",
+      "description": "Research Specification: Competitor AI design-tool ideas for sk-design-interface and mcp-magicpath",
       "keywords": [
         "research",
         "specification",
         "competitor",
         "design-tool",
         "ideas",
-        "sk-interface-design",
+        "sk-design-interface",
         "mcp-magicpath"
       ],
       "lastUpdated": "2026-06-14T08:30:50.883Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/143-sk-interface-design/007-claude-design-parity-build",
+      "specFolder": "skilled-agent-orchestration/143-sk-design-interface/007-claude-design-parity-build",
       "description": "Feature Specification: Claude Design parity keystone build",
       "keywords": [
         "feature",
@@ -737,7 +737,7 @@
       "lastUpdated": "2026-06-14T09:49:50.996Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/143-sk-interface-design/008-doc-realignment",
+      "specFolder": "skilled-agent-orchestration/143-sk-design-interface/008-doc-realignment",
       "description": "Feature Specification: doc realignment to the parity keystone",
       "keywords": [
         "feature",
@@ -750,7 +750,7 @@
       "lastUpdated": "2026-06-14T08:30:50.887Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/143-sk-interface-design/009-mobbin-refero-design-reference-integration",
+      "specFolder": "skilled-agent-orchestration/143-sk-design-interface/009-mobbin-refero-design-reference-integration",
       "description": "Feature Specification: Mobbin and Refero design-reference integration",
       "keywords": [
         "feature",
@@ -763,40 +763,40 @@
       "lastUpdated": "2026-06-15T18:16:13.722Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/143-sk-interface-design/010-decouple-from-open-design",
+      "specFolder": "skilled-agent-orchestration/143-sk-design-interface/010-decouple-from-open-design",
       "description": "Feature Specification: Phase 10: decouple-from-open-design",
       "keywords": [
         "feature",
         "specification",
         "phase",
         "decouple-from-open-design",
-        "sk-interface-design",
+        "sk-design-interface",
         "real_ui_loop"
       ],
       "lastUpdated": "2026-06-17T00:00:00.000Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/143-sk-interface-design/011-mobbin-refero-smart-routing",
+      "specFolder": "skilled-agent-orchestration/143-sk-design-interface/011-mobbin-refero-smart-routing",
       "description": "Feature Specification: Phase 11: mobbin-refero-smart-routing",
       "keywords": [
         "feature",
         "specification",
         "phase",
         "mobbin-refero-smart-routing",
-        "sk-interface-design",
+        "sk-design-interface",
         "design-references"
       ],
       "lastUpdated": "2026-06-17T00:00:00.000Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/143-sk-interface-design/012-catalog-playbook-realignment",
+      "specFolder": "skilled-agent-orchestration/143-sk-design-interface/012-catalog-playbook-realignment",
       "description": "Feature Specification: Phase 12: catalog-playbook-realignment",
       "keywords": [
         "feature",
         "specification",
         "phase",
         "catalog-playbook-realignment",
-        "sk-interface-design",
+        "sk-design-interface",
         "mobbin-refero"
       ],
       "lastUpdated": "2026-06-17T00:00:00.000Z"
@@ -1037,12 +1037,12 @@
       "lastUpdated": "2026-06-15T13:45:21.695Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/145-mcp-open-design/003-sk-interface-design-evolution",
-      "description": "Feature Specification: sk-interface-design evolution",
+      "specFolder": "skilled-agent-orchestration/145-mcp-open-design/003-sk-design-interface-evolution",
+      "description": "Feature Specification: sk-design-interface evolution",
       "keywords": [
         "feature",
         "specification",
-        "sk-interface-design",
+        "sk-design-interface",
         "evolution"
       ],
       "lastUpdated": "2026-06-15T13:45:21.700Z"
@@ -1059,12 +1059,12 @@
       "lastUpdated": "2026-06-15T13:45:21.705Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/145-mcp-open-design/005-sk-interface-design-variation-diversity",
-      "description": "Feature Specification: sk-interface-design variation diversity",
+      "specFolder": "skilled-agent-orchestration/145-mcp-open-design/005-sk-design-interface-variation-diversity",
+      "description": "Feature Specification: sk-design-interface variation diversity",
       "keywords": [
         "feature",
         "specification",
-        "sk-interface-design",
+        "sk-design-interface",
         "variation",
         "diversity"
       ],
@@ -1109,11 +1109,11 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/145-mcp-open-design/009-design-skill-integration-test",
-      "description": "Feature Specification: sk-interface-design + mcp-open-design integration test (MiMo vs DeepSeek)",
+      "description": "Feature Specification: sk-design-interface + mcp-open-design integration test (MiMo vs DeepSeek)",
       "keywords": [
         "feature",
         "specification",
-        "sk-interface-design",
+        "sk-design-interface",
         "mcp-open-design",
         "integration",
         "test",
@@ -1144,7 +1144,7 @@
         "phase",
         "mandatory-interface-design-coupling",
         "mcp-open-design",
-        "sk-interface-design"
+        "sk-design-interface"
       ],
       "lastUpdated": "2026-06-16T00:00:00.000Z"
     },

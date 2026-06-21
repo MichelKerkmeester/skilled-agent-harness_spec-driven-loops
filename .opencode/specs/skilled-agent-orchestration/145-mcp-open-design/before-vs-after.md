@@ -1,12 +1,12 @@
 # What Changed in 145: Open Design as the Local Design Transport
 
-> Spec 145 shipped a live-verified Open Design transport, made `sk-interface-design` the mandatory design judgment and retired the older hosted MagicPath path.
+> Spec 145 shipped a live-verified Open Design transport, made `sk-design-interface` the mandatory design judgment and retired the older hosted MagicPath path.
 
 ---
 
 ## THE UNIFYING PRINCIPLE
 
-The packet is built around one operating rule. Open Design moves pixels and files, but it does not decide what good interface work is. `mcp-open-design` is the terminal transport. `sk-interface-design` is the design judgment. Any agent using Open Design for real design work must load the design skill first, ground itself in the live design system and then run the multi-turn Open Design flow.
+The packet is built around one operating rule. Open Design moves pixels and files, but it does not decide what good interface work is. `mcp-open-design` is the terminal transport. `sk-design-interface` is the design judgment. Any agent using Open Design for real design work must load the design skill first, ground itself in the live design system and then run the multi-turn Open Design flow.
 
 That separation mattered because the earliest build still carried two risks. It inferred the generation flow from code rather than live operation, and it treated design judgment as conditional. The later phases corrected both. Live testing proved generation is multi-turn, `od artifacts create` is not a design path and the catalog plus playbook now state the design gate as mandatory.
 
@@ -38,11 +38,11 @@ A transport without a skill would leave every agent to rediscover wiring, verb c
 
 **Before**
 
-`sk-interface-design` still carried MIT-derived `ui-ux-pro-max` data, scripts and notices. It also leaned on a cached design corpus rather than the live Open Design systems that the new transport made reachable.
+`sk-design-interface` still carried MIT-derived `ui-ux-pro-max` data, scripts and notices. It also leaned on a cached design corpus rather than the live Open Design systems that the new transport made reachable.
 
 **After**
 
-Phase 003 removed the nine MIT CSVs, the data README, the design-search scripts, the MIT license notice and the third-party notices in the safe order: data first, notices second. It kept the Apache base, including `LICENSE.txt` and `design_principles.md`, and rewired the parity loop toward live Open Design reads through `mcp-open-design`. The result shipped at commit `b12ffd3d76` as Apache-2.0-only `sk-interface-design` `v1.1.0`.
+Phase 003 removed the nine MIT CSVs, the data README, the design-search scripts, the MIT license notice and the third-party notices in the safe order: data first, notices second. It kept the Apache base, including `LICENSE.txt` and `design_principles.md`, and rewired the parity loop toward live Open Design reads through `mcp-open-design`. The result shipped at commit `b12ffd3d76` as Apache-2.0-only `sk-design-interface` `v1.1.0`.
 
 **Impact**
 
@@ -78,15 +78,15 @@ A transport skill is only safe if the run model is true. This was the highest-ri
 
 **Before**
 
-`mcp-open-design` referenced `sk-interface-design`, but the reference was conditional. It applied when a read or run fed a design decision, and nothing explicitly blocked a generation step that skipped the design judgment. The feature catalog still described grounding as optional and on-demand.
+`mcp-open-design` referenced `sk-design-interface`, but the reference was conditional. It applied when a read or run fed a design decision, and nothing explicitly blocked a generation step that skipped the design judgment. The feature catalog still described grounding as optional and on-demand.
 
 **After**
 
-Phase 011 made the coupling mandatory. `mcp-open-design/SKILL.md` gained a MANDATORY banner, a design gate, mandatory resource rows, a router precondition, a Run pre-step, an ALWAYS hard precondition and a NEVER rule forbidding UI output without `sk-interface-design`. Phase 012 then aligned the feature catalog and playbook, replacing optional language with hard-precondition framing and adding `GATE-001` with negative, positive and exemption controls.
+Phase 011 made the coupling mandatory. `mcp-open-design/SKILL.md` gained a MANDATORY banner, a design gate, mandatory resource rows, a router precondition, a Run pre-step, an ALWAYS hard precondition and a NEVER rule forbidding UI output without `sk-design-interface`. Phase 012 then aligned the feature catalog and playbook, replacing optional language with hard-precondition framing and adding `GATE-001` with negative, positive and exemption controls.
 
 **Impact**
 
-Open Design is now clearly the transport, not the design brain. Any design work must load `sk-interface-design` first. Pure transport tasks like wiring and bare inventory stay exempt, which keeps the rule strong without blocking operator setup.
+Open Design is now clearly the transport, not the design brain. Any design work must load `sk-design-interface` first. Pure transport tasks like wiring and bare inventory stay exempt, which keeps the rule strong without blocking operator setup.
 
 **Why not rely on a soft reference**
 
@@ -102,11 +102,11 @@ The design stack could still collapse into average outputs when a brief asked fo
 
 **After**
 
-Phase 005 added `sk-interface-design/references/variation_diversity.md`, a grounded adaptation of string seed-of-thought for multi-direction briefs. It picks non-median starts over a median-excluded option space and records the procedure, combination rules, worked example and guardrails. Phase 006 added `sk-prompt/references/design_generation_patterns.md` plus `DESIGN_GEN` router wiring, grounding the multi-turn discovery flow in `mcp-open-design`.
+Phase 005 added `sk-design-interface/references/variation_diversity.md`, a grounded adaptation of string seed-of-thought for multi-direction briefs. It picks non-median starts over a median-excluded option space and records the procedure, combination rules, worked example and guardrails. Phase 006 added `sk-prompt/references/design_generation_patterns.md` plus `DESIGN_GEN` router wiring, grounding the multi-turn discovery flow in `mcp-open-design`.
 
 **Impact**
 
-The framework now has both sides of design generation. `sk-interface-design` steers the visual directions away from defaults, and `sk-prompt` helps craft prompts for the Open Design run loop without adding a new scoring pipeline.
+The framework now has both sides of design generation. `sk-design-interface` steers the visual directions away from defaults, and `sk-prompt` helps craft prompts for the Open Design run loop without adding a new scoring pipeline.
 
 **Why this stayed small**
 
@@ -122,7 +122,7 @@ Both phases changed documentation and routing, not code. The existing skills alr
 
 **After**
 
-Phase 008 deleted `.opencode/skills/mcp-magicpath/`, all 16 files. It re-centered `sk-interface-design`, `sk-prompt`, `mcp-open-design`, `mcp-figma` and the skills index on `mcp-open-design`, while preserving historical records. The live-reference grep found no remaining live `mcp-magicpath` references, and the later skill graph scan removed the node and edges from `skill-graph.sqlite`.
+Phase 008 deleted `.opencode/skills/mcp-magicpath/`, all 16 files. It re-centered `sk-design-interface`, `sk-prompt`, `mcp-open-design`, `mcp-figma` and the skills index on `mcp-open-design`, while preserving historical records. The live-reference grep found no remaining live `mcp-magicpath` references, and the later skill graph scan removed the node and edges from `skill-graph.sqlite`.
 
 **Impact**
 
@@ -138,11 +138,11 @@ Deprecation was only safe after the Open Design flow was both live-verified and 
 
 **Before**
 
-The manual testing playbooks for both design skills existed, but they had not been run end to end. The integration claim between `sk-interface-design` and `mcp-open-design` also needed evidence from more than one model.
+The manual testing playbooks for both design skills existed, but they had not been run end to end. The integration claim between `sk-design-interface` and `mcp-open-design` also needed evidence from more than one model.
 
 **After**
 
-Phase 009 ran MiMo v2.5 Pro and DeepSeek v4 Pro on the exact same brief. Both rejected the same three defaults: the warm-brown serif coffee page, the purple-gradient three-card SaaS page and the dark-mode neon dashboard. Phase 010 then ran all 13 playbook scenarios live, with 12 PASS, 1 PARTIAL and 0 SKIP. Kimi K2.7 and DeepSeek v4 Pro passed every model-judgment scenario driven by `sk-interface-design`.
+Phase 009 ran MiMo v2.5 Pro and DeepSeek v4 Pro on the exact same brief. Both rejected the same three defaults: the warm-brown serif coffee page, the purple-gradient three-card SaaS page and the dark-mode neon dashboard. Phase 010 then ran all 13 playbook scenarios live, with 12 PASS, 1 PARTIAL and 0 SKIP. Kimi K2.7 and DeepSeek v4 Pro passed every model-judgment scenario driven by `sk-design-interface`.
 
 **Impact**
 
@@ -176,6 +176,6 @@ The packet changed agent-facing contracts. A wrong path or stale rule in a skill
 
 ## CURRENT STATE
 
-Spec 145 is complete as a phased packet. `mcp-open-design` is the live local transport for Open Design. `sk-interface-design` is Apache-2.0-only, grounded in live Open Design reads and mandatory for design work. `sk-prompt` has design-generation guidance. `mcp-magicpath` is deleted from the active skill tree and removed from the skill graph.
+Spec 145 is complete as a phased packet. `mcp-open-design` is the live local transport for Open Design. `sk-design-interface` is Apache-2.0-only, grounded in live Open Design reads and mandatory for design work. `sk-prompt` has design-generation guidance. `mcp-magicpath` is deleted from the active skill tree and removed from the skill graph.
 
 The verified run model is multi-turn: start the run, answer the discovery form and use `od ui respond` as the build trigger. `od artifacts create` only adds a file. The playbooks have live evidence across 13 scenarios, with `WIRE-001` still requiring a fresh Code Mode session for final `tools/list` confirmation. The remaining open items are explicit: formal operator-gated install wiring, full headless `od --no-open` confirmation, some per-verb auth details and judgment-based verification for visual variation quality.

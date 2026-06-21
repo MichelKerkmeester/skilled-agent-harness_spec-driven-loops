@@ -1,8 +1,8 @@
-# Seat B — sk-interface-design de-vendor + uniqueness + Open Design integration
+# Seat B — sk-design-interface de-vendor + uniqueness + Open Design integration
 
-**Mode:** READ-ONLY analysis (sk-interface-design + Open Design bundle). No mutating commands run; nothing deleted or edited. One file written (this one).
+**Mode:** READ-ONLY analysis (sk-design-interface + Open Design bundle). No mutating commands run; nothing deleted or edited. One file written (this one).
 **Date:** 2026-06-14
-**Scope note vs siblings:** Seat A owns the terminal-control surface (how to invoke `od`, MCP wiring, daemon/socket model). Seat C owns authoring the new `mcp-open-design` SKILL.md and the adversarial live-verification of OD's terminal claims. This seat (B) owns **sk-interface-design's side**: the OD data model *as it bears on replacing the CSVs*, the de-vendor plan, the integration *contract from sk-interface-design*, and the licensing sequence. Terminal mechanics and the new skill's section layout are referenced as dependencies, not duplicated.
+**Scope note vs siblings:** Seat A owns the terminal-control surface (how to invoke `od`, MCP wiring, daemon/socket model). Seat C owns authoring the new `mcp-open-design` SKILL.md and the adversarial live-verification of OD's terminal claims. This seat (B) owns **sk-design-interface's side**: the OD data model *as it bears on replacing the CSVs*, the de-vendor plan, the integration *contract from sk-design-interface*, and the licensing sequence. Terminal mechanics and the new skill's section layout are referenced as dependencies, not duplicated.
 
 ---
 
@@ -11,9 +11,9 @@
 `git status` shows all three license/attribution files **deleted in the working tree** (unstaged `D`):
 
 ```
- D .opencode/skills/sk-interface-design/LICENSE-ui-ux-pro-max.txt
- D .opencode/skills/sk-interface-design/LICENSE.txt
- D .opencode/skills/sk-interface-design/THIRD-PARTY-NOTICES.md
+ D .opencode/skills/sk-design-interface/LICENSE-ui-ux-pro-max.txt
+ D .opencode/skills/sk-design-interface/LICENSE.txt
+ D .opencode/skills/sk-design-interface/THIRD-PARTY-NOTICES.md
 ```
 
 They still exist in `HEAD` (confirmed via `git show HEAD:…`). Deleting `LICENSE-ui-ux-pro-max.txt` and `THIRD-PARTY-NOTICES.md` *before* the MIT data is gone is **out of order** (MIT notice must be retained while the MIT compilation still ships — the CSVs and search scripts are still present on disk). Deleting **`LICENSE.txt` is a defect regardless of sequencing**: `LICENSE.txt` is the **Apache-2.0** license for the Anthropic `frontend-design` base, which `design_principles.md` is "adapted verbatim" from and which the skill **keeps**. That license MUST stay.
@@ -74,13 +74,13 @@ od: { mode: design-system, category: creative-direction, upstream: "https://gith
  the upstream bundle into your active agent's skills directory."
 ```
 
-So an OD skill = frontmatter (`name`, `description`, `triggers`, `od:{mode,category,upstream}`) + a body that **points to an external repo and tells you to install it yourself**. The daemon scans `skills/` at startup and shows them in the picker (per `skills/README.md`); the skill folder itself carries `assets/` + `references/` + `example.html` only sometimes. **Implication for us: OD *skills* are discovery pointers to third-party repos, not a usable knowledge base to fold into `sk-interface-design`.** The integration value is ~entirely in the **design-systems** (and secondarily the 111 `design-templates`), not the skills.
+So an OD skill = frontmatter (`name`, `description`, `triggers`, `od:{mode,category,upstream}`) + a body that **points to an external repo and tells you to install it yourself**. The daemon scans `skills/` at startup and shows them in the picker (per `skills/README.md`); the skill folder itself carries `assets/` + `references/` + `example.html` only sometimes. **Implication for us: OD *skills* are discovery pointers to third-party repos, not a usable knowledge base to fold into `sk-design-interface`.** The integration value is ~entirely in the **design-systems** (and secondarily the 111 `design-templates`), not the skills.
 
-### 1.3 Richer / different vs sk-interface-design's CSVs
+### 1.3 Richer / different vs sk-design-interface's CSVs
 
-sk-interface-design's nine CSVs (verified headers + row counts): `styles` (84), `colors` (160), `typography` (73), `ui-reasoning` (161), `products` (161), `landing` (34), `ux-guidelines` (98), `charts` (25), `app-interface` (29).
+sk-design-interface's nine CSVs (verified headers + row counts): `styles` (84), `colors` (160), `typography` (73), `ui-reasoning` (161), `products` (161), `landing` (34), `ux-guidelines` (98), `charts` (25), `app-interface` (29).
 
-| Dimension | sk-interface-design CSV | OD design system | Verdict |
+| Dimension | sk-design-interface CSV | OD design system | Verdict |
 |---|---|---|---|
 | Granularity | Per-**pattern / product-type** generic rows ("luxury e-comm → glassmorphism + Playfair") | Per-**brand realized system** (apple, airbnb, stripe…) | OD is concrete & grounded; CSV is generic |
 | Tokens | `colors.csv` = 160 shadcn-style semantic palettes, *as data* | `tokens.css` = compiled, lint-governed `:root`, paste-ready, 4-layer schema | **OD richer** — executable, not just listed |
@@ -118,16 +118,16 @@ Net: the **aesthetic inventory** (colors, typography, and the realized-style rol
 The honest framing: **don't swap one vendor (ui-ux-pro-max) for another bundle (OD).** OD is *also* third-party (Apache-2.0 + MIT subskills). Uniqueness comes from two things we own:
 
 1. **The anti-default judgment layer** — `design_principles.md` (Apache-2.0 Anthropic base, kept & attributed) + our critique-against discipline + the quality-floor gate. This is the skill's spine and is unchanged by de-vendoring.
-2. **The live-OD *orchestration*, which is original synthesis:** sk-interface-design treats an OD design system in **two distinct anti-default-safe ways**, switched by the brief — (a) *reuse-before-generate* grounding when a real brand fits, and (b) *critique-against* ("name the OD system closest to the generic answer, then deviate"). No off-the-shelf tool does this dual use; ui-ux-pro-max only did (b), and only over static generic rows. This is the differentiator.
+2. **The live-OD *orchestration*, which is original synthesis:** sk-design-interface treats an OD design system in **two distinct anti-default-safe ways**, switched by the brief — (a) *reuse-before-generate* grounding when a real brand fits, and (b) *critique-against* ("name the OD system closest to the generic answer, then deviate"). No off-the-shelf tool does this dual use; ui-ux-pro-max only did (b), and only over static generic rows. This is the differentiator.
 3. **Live read, not vendored copy** — we source from the user's *installed* OD app at run time and **never copy OD content into the skill**. That means (i) the data is ~150 real, maintained brand systems instead of a frozen CSV snapshot, and (ii) **no new vendored-license burden** is introduced (no redistribution → no notice obligation). This is the clean structural win over the current arrangement.
 
 **Third-party dependency dropped:** the entire `ui-ux-pro-max` CSV inventory (9 files) + the BM25 search engine (`design_search.py` + `design_search_core.py`). After de-vendor, the skill ships **zero MIT-covered material** and depends only on its Apache-2.0 Anthropic base plus the user's separately-installed OD app.
 
 ---
 
-## TASK 3 — Integration design (sk-interface-design → mcp-open-design)
+## TASK 3 — Integration design (sk-design-interface → mcp-open-design)
 
-Routing *mechanics* (the `od mcp` config, which verbs, daemon discovery) belong to `mcp-open-design` (Seat C). From sk-interface-design's side the contract is small and folds into the existing `claude_design_parity.md` loop.
+Routing *mechanics* (the `od mcp` config, which verbs, daemon discovery) belong to `mcp-open-design` (Seat C). From sk-design-interface's side the contract is small and folds into the existing `claude_design_parity.md` loop.
 
 ### 3.1 Where it folds into the parity loop
 
@@ -137,7 +137,7 @@ Routing *mechanics* (the `od mcp` config, which verbs, daemon discovery) belong 
 - **§3 Reuse-before-generate:** add — *"When an OD system is the grounding system, reuse its `tokens.css` tokens and `components.html` components before authoring net-new. Adherence check = the same one already defined (no raw hex where a token exists, no hand-rolled component the system provides)."* Reuse-before-generate is anti-default *by construction*, so this strengthens the existing mandate rather than diluting it.
 - **§5 Fidelity check / §6 handoff:** unchanged.
 
-### 3.2 When sk-interface-design routes to mcp-open-design
+### 3.2 When sk-design-interface routes to mcp-open-design
 
 - The brief **names or strongly implies a brand/aesthetic** that has an OD system (e.g. "make it feel like Linear", "Apple-clean product page").
 - The agent needs a **real system to ground/reuse** (Parity §3) and one exists.
@@ -148,7 +148,7 @@ If no OD system fits, the free-axis anti-default process governs exactly as toda
 ### 3.3 Keeping it lean & anti-default (the guardrails that must survive integration)
 
 - **No style chooser.** The ~150 OD systems must **never** be surfaced as a pick-a-vibe menu. The agent resolves *one* system from the subject + brief, the same way `design_principles.md` Step 0 grounds the subject. A menu of reusable styles is precisely the templated default the skill resists (`claude_design_parity.md §8` already forbids "pick-a-vibe / theme-swap menu / named aesthetic dials" — that guardrail now also covers OD).
-- **No generator.** OD's *creation* verbs (`create_artifact`, `media generate`, `automation run`) are **out of sk-interface-design's scope** — generation/handoff is `mcp-open-design` + `sk-code`. sk-interface-design only **reads** OD (judgment in, no artifacts out).
+- **No generator.** OD's *creation* verbs (`create_artifact`, `media generate`, `automation run`) are **out of sk-design-interface's scope** — generation/handoff is `mcp-open-design` + `sk-code`. sk-design-interface only **reads** OD (judgment in, no artifacts out).
 - **OD is an input to judgment, not an authority.** `design_principles.md` stays the authority. An OD match never overrides subject-grounding, the one-justified-risk mandate, or the quality floor. Reused tokens still get critiqued ("am I reinventing the default this brand also defaults to?").
 - **Live read only.** Never cache/vendor OD content into the skill (preserves the licensing win in §2.2 — see Task 4 risk).
 
@@ -194,7 +194,7 @@ After (a), **no MIT-covered material ships.** Only now is the MIT notice removab
 
 - **`design_principles.md`** — Apache-2.0 Anthropic-derived **verbatim**. Cannot be de-attributed; this is the single hard "keep attribution" case. `LICENSE.txt` exists for it.
 - **`ux_quality_reference.md`** — currently *claims* MIT provenance (line 37: "adopted from the MIT-licensed ui-ux-pro-max repo") but the body is **"Distilled from the CRITICAL and HIGH severity rows"** (line 36) — i.e. paraphrased rules (WCAG AA contrast, `prefers-reduced-motion`, touch targets…). Factual rules and paraphrased rule-prose are **not copyrightable expression**, so the *content* can stay without MIT attribution. **VERIFY before dropping the notice:** confirm `ux_quality_reference.md` did not copy any **`Code Example Good/Bad`** snippets *verbatim* from `ux-guidelines.csv`/`app-interface.csv`/`charts.csv` (those code strings are the one place expressive MIT material could have been lifted). Sections read (2-4) are pure paraphrased prose with no copied code blocks — low risk, but confirm the full file before erasing provenance.
-- **New OD third-party surface** — the OD bundle is **not uniformly Apache-2.0**: skills are Apache-2.0 "unless their own LICENSE says otherwise" (`skills/README.md` flags `guizang-ppt/` as verbatim MIT); design-systems derive from MIT sources (`getdesign`/awesome-design-md, `tw93/kami`). **Because we READ OD live from the user's installed app and never copy its content into `sk-interface-design`, no OD license attaches to our skill.** **FLAG (hard guardrail):** if the integration ever caches, vendors, or copies OD `DESIGN.md`/`tokens.css`/`components.html` into the skill repo, each source's license (Apache-2.0 / MIT / per-skill) immediately attaches and a new THIRD-PARTY-NOTICES becomes required. Keep integration strictly live-read (this is also Task 3.3's guardrail).
+- **New OD third-party surface** — the OD bundle is **not uniformly Apache-2.0**: skills are Apache-2.0 "unless their own LICENSE says otherwise" (`skills/README.md` flags `guizang-ppt/` as verbatim MIT); design-systems derive from MIT sources (`getdesign`/awesome-design-md, `tw93/kami`). **Because we READ OD live from the user's installed app and never copy its content into `sk-design-interface`, no OD license attaches to our skill.** **FLAG (hard guardrail):** if the integration ever caches, vendors, or copies OD `DESIGN.md`/`tokens.css`/`components.html` into the skill repo, each source's license (Apache-2.0 / MIT / per-skill) immediately attaches and a new THIRD-PARTY-NOTICES becomes required. Keep integration strictly live-read (this is also Task 3.3's guardrail).
 
 ---
 
@@ -230,4 +230,4 @@ After (a), **no MIT-covered material ships.** Only now is the MIT notice removab
 | R7 | **Capability regression** — the quality-floor CSVs (`ux-guidelines`/`charts`/`app-interface`) have **no OD equivalent**; dropping them naively loses the a11y/chart/web rule base. | Medium | They are already distilled into `ux_quality_reference.md`; keep that doc as the authored source. Only the *generic-pattern* CSVs move to OD; the quality floor stays authored. |
 | R8 | **Anti-default erosion** — surfacing ~150 OD systems as a chooser turns the skill into the pick-a-vibe menu it was built to resist. | Medium | Resolve exactly one OD system from the subject; reuse the `claude_design_parity.md §8` no-menu guardrail; OD is input to judgment, not authority. |
 | R9 | **Dangling references** after CSV/script deletion across feature_catalog + manual_testing_playbook (10+ files). | Low | Checklist 9-10 sweep; `grep -rl "ui-ux-pro-max\|design_search\|assets/data\|LICENSE-ui-ux\|THIRD-PARTY"` until clean. |
-| R10 | **`mcp-open-design` skill does not exist yet** in `.opencode/skills/` (confirmed absent; being authored by Seat C). sk-interface-design must not hard-depend on it before it ships. | Low | Gate the OD integration on `mcp-open-design` landing; keep the OD path "ON_DEMAND / optional," same posture the CSVs had. |
+| R10 | **`mcp-open-design` skill does not exist yet** in `.opencode/skills/` (confirmed absent; being authored by Seat C). sk-design-interface must not hard-depend on it before it ships. | Low | Gate the OD integration on `mcp-open-design` landing; keep the OD path "ON_DEMAND / optional," same posture the CSVs had. |

@@ -1,6 +1,6 @@
 ---
-title: "Changelog: sk-interface-design variation diversity [145-mcp-open-design/005-sk-interface-design-variation-diversity]"
-description: "Chronological changelog for the sk-interface-design variation-diversity phase."
+title: "Changelog: sk-design-interface variation diversity [145-mcp-open-design/005-sk-design-interface-variation-diversity]"
+description: "Chronological changelog for the sk-design-interface variation-diversity phase."
 trigger_phrases:
   - "phase changelog"
   - "variation diversity"
@@ -14,12 +14,12 @@ contextType: "implementation"
 
 ## 2026-06-18
 
-> Spec folder: `.opencode/specs/skilled-agent-orchestration/145-mcp-open-design/005-sk-interface-design-variation-diversity` (Level 2)
+> Spec folder: `.opencode/specs/skilled-agent-orchestration/145-mcp-open-design/005-sk-design-interface-variation-diversity` (Level 2)
 > Parent packet: `.opencode/specs/skilled-agent-orchestration/145-mcp-open-design`
 
 ### Summary
 
-This phase addressed the moment when `sk-interface-design` is most likely to collapse into defaults: a brief that asks for several directions at once. Median-biased models tend to return several safe versions of the same layout. The new mechanism adapts string seed-of-thought into a grounded, median-excluded option space so multiple directions stay distinct.
+This phase addressed the moment when `sk-design-interface` is most likely to collapse into defaults: a brief that asks for several directions at once. Median-biased models tend to return several safe versions of the same layout. The new mechanism adapts string seed-of-thought into a grounded, median-excluded option space so multiple directions stay distinct.
 
 ### Added
 
@@ -51,7 +51,7 @@ This phase addressed the moment when `sk-interface-design` is most likely to col
 | `validate_document.py --type reference` | PASS: `variation_diversity.md` returned 0 issues. |
 | `validate.sh --strict` | PASS: this folder returned 0 errors. |
 | `SKILL.md` version | PASS: version `1.2.0`. |
-| Other skills | PASS: skills other than `sk-interface-design` untouched. |
+| Other skills | PASS: skills other than `sk-design-interface` untouched. |
 | Parent control files | PASS: `150` parent control files untouched. |
 | Tasks complete | PASS: 18 completed task items recorded. |
 
@@ -59,11 +59,11 @@ This phase addressed the moment when `sk-interface-design` is most likely to col
 
 | File | Action | What changed |
 |------|--------|--------------|
-| `.opencode/skills/sk-interface-design/references/variation_diversity.md` | Created | Seed-of-thought debias, option space, procedure, combination rules, worked example and guardrails. |
-| `.opencode/skills/sk-interface-design/SKILL.md` | Updated | Version `1.2.0`, SMART ROUTING trigger, resource row, router branch, ALWAYS rule 6 and Section 5 entry. |
-| `.opencode/skills/sk-interface-design/changelog/v1.2.0.0.md` | Created | Release notes in house voice. |
-| `.opencode/skills/sk-interface-design/graph-metadata.json` | Updated | Registered the reference and refreshed trigger, key topics and causal summary. |
-| `.opencode/skills/sk-interface-design/README.md` | Updated | Listed the reference in Related Documents. |
+| `.opencode/skills/sk-design-interface/references/variation_diversity.md` | Created | Seed-of-thought debias, option space, procedure, combination rules, worked example and guardrails. |
+| `.opencode/skills/sk-design-interface/SKILL.md` | Updated | Version `1.2.0`, SMART ROUTING trigger, resource row, router branch, ALWAYS rule 6 and Section 5 entry. |
+| `.opencode/skills/sk-design-interface/changelog/v1.2.0.0.md` | Created | Release notes in house voice. |
+| `.opencode/skills/sk-design-interface/graph-metadata.json` | Updated | Registered the reference and refreshed trigger, key topics and causal summary. |
+| `.opencode/skills/sk-design-interface/README.md` | Updated | Listed the reference in Related Documents. |
 | `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `this file` | Created | Level 2 packet control docs. |
 
 ### Follow-Ups

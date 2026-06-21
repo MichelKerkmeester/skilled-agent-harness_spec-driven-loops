@@ -9,7 +9,7 @@
 | **Active P0** | 0 |
 | **Active P1** | 1 |
 | **Active P2** | 6 |
-| **Scope** | Phase-parent spec 150 with 8 child phases (001-008), two skills: `mcp-open-design` (v1.2.0) and `sk-interface-design` (v1.3.0) |
+| **Scope** | Phase-parent spec 150 with 8 child phases (001-008), two skills: `mcp-open-design` (v1.2.0) and `sk-design-interface` (v1.3.0) |
 | **Stop Reason** | converged |
 | **Iterations** | 5 |
 | **Composite Stop Score** | 1.00 |
@@ -43,10 +43,10 @@ The review converged after 5 iterations covering all 4 dimensions (correctness, 
 
 | ID | Title | Dimension | File:Line | First Seen | Status |
 |----|-------|-----------|-----------|------------|--------|
-| F002 | sk-interface-design source URL points to upstream origin | correctness | `.opencode/skills/sk-interface-design/SKILL.md:8` | iter 1 | active |
+| F002 | sk-design-interface source URL points to upstream origin | correctness | `.opencode/skills/sk-design-interface/SKILL.md:8` | iter 1 | active |
 | F003 | od_cli_reference.md has 5 open uncertainty items at v1.2.0 | correctness | `.opencode/skills/mcp-open-design/references/od_cli_reference.md:233` | iter 1 | active |
 | F004 | Auth requirements per verb partially inferred | security | `.opencode/skills/mcp-open-design/references/od_cli_reference.md:241` | iter 2 | active |
-| F005 | Parity protocol write-back guardrail terminology loose | security | `.opencode/skills/sk-interface-design/references/claude_design_parity.md:109` | iter 2 | active |
+| F005 | Parity protocol write-back guardrail terminology loose | security | `.opencode/skills/sk-design-interface/references/claude_design_parity.md:109` | iter 2 | active |
 | F006 | Parent spec.md missing final version numbers | traceability | `spec.md:84` | iter 3 | active |
 | F007 | mcp-open-design changelog/SKILL.md version desync | maintainability | `.opencode/skills/mcp-open-design/SKILL.md:9` | iter 4 | active |
 
@@ -65,7 +65,7 @@ The review converged after 5 iterations covering all 4 dimensions (correctness, 
 
 **Priority**: P2 (advisory)
 **Effort**: 5 minutes
-**Action**: Add a row to the Phase Documentation Map in `spec.md` noting final versions: mcp-open-design v1.2.0, sk-interface-design v1.3.0.
+**Action**: Add a row to the Phase Documentation Map in `spec.md` noting final versions: mcp-open-design v1.2.0, sk-design-interface v1.3.0.
 
 ### Workstream 3: Deferred Items (F002-F005)
 
@@ -82,7 +82,7 @@ The parent spec.md should record the final version numbers of the delivered skil
 | Skill | Final Version |
 |-------|---------------|
 | mcp-open-design | 1.2.0 |
-| sk-interface-design | 1.3.0 |
+| sk-design-interface | 1.3.0 |
 ```
 
 ---
@@ -182,12 +182,12 @@ The parent spec.md should record the final version numbers of the delivered skil
 - `.opencode/skills/mcp-open-design/references/mcp_wiring.md`
 - `.opencode/skills/mcp-open-design/feature_catalog/feature_catalog.md`
 - `.opencode/skills/mcp-open-design/changelog/v1.2.0.0.md`
-- `.opencode/skills/sk-interface-design/SKILL.md`
-- `.opencode/skills/sk-interface-design/references/claude_design_parity.md`
-- `.opencode/skills/sk-interface-design/references/design_principles.md`
-- `.opencode/skills/sk-interface-design/references/design_inventory.md`
-- `.opencode/skills/sk-interface-design/references/variation_diversity.md`
-- `.opencode/skills/sk-interface-design/references/ux_quality_reference.md`
-- `.opencode/skills/sk-interface-design/changelog/v1.3.0.0.md`
+- `.opencode/skills/sk-design-interface/SKILL.md`
+- `.opencode/skills/sk-design-interface/references/claude_design_parity.md`
+- `.opencode/skills/sk-design-interface/references/design_principles.md`
+- `.opencode/skills/sk-design-interface/references/design_inventory.md`
+- `.opencode/skills/sk-design-interface/references/variation_diversity.md`
+- `.opencode/skills/sk-design-interface/references/ux_quality_reference.md`
+- `.opencode/skills/sk-design-interface/changelog/v1.3.0.0.md`
 - `spec.md` (parent)
 - Phase children: 002, 003, 004, 005, 007, 008 checklists and implementation-summaries

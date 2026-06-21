@@ -2,7 +2,7 @@
 
 ## Focus
 **Dimension**: Correctness — Logic errors, broken invariants, wrong claims, contradictions  
-**Files reviewed**: `.opencode/skills/mcp-open-design/SKILL.md`, `.opencode/skills/mcp-open-design/references/od_cli_reference.md`, `.opencode/skills/mcp-open-design/references/mcp_wiring.md`, `.opencode/skills/mcp-open-design/references/tool_surface.md`, `.opencode/skills/sk-interface-design/SKILL.md`, `.opencode/skills/sk-interface-design/references/claude_design_parity.md`
+**Files reviewed**: `.opencode/skills/mcp-open-design/SKILL.md`, `.opencode/skills/mcp-open-design/references/od_cli_reference.md`, `.opencode/skills/mcp-open-design/references/mcp_wiring.md`, `.opencode/skills/mcp-open-design/references/tool_surface.md`, `.opencode/skills/sk-design-interface/SKILL.md`, `.opencode/skills/sk-design-interface/references/claude_design_parity.md`
 
 ## Scorecard
 - Dimensions covered: correctness
@@ -42,9 +42,9 @@
 
 - **F003**: `tool_surface.md` doesn't classify `od mcp live-artifacts` tools, `.opencode/skills/mcp-open-design/references/tool_surface.md` and `.opencode/skills/mcp-open-design/references/od_cli_reference.md:144`, The CLI reference documents `od mcp live-artifacts` and `od tools live-artifacts` on the verb table but the tool_surface.md classification (read-only/mutating/destructive) doesn't mention live-artifacts at all. This creates a gap: an agent reading only tool_surface.md to gate verbs would not know that live-artifacts has mutating members (`create`, `update`, `refresh`) that need gating.
 
-- **F004**: DESIGN_INTENTS declared but unused in routing pseudocode, `.opencode/skills/mcp-open-design/SKILL.md:113-116`, The SKILL.md routing section declares `DESIGN_INTENTS = {"READ", "RUN"}` with a comment: "Also load sk-interface-design and apply its principles before deciding." But the `route_open_design_resources()` pseudocode function never references `DESIGN_INTENTS` and never loads the cross-skill. The comment describes a contract the code doesn't deliver. This is pseudo-code, but the intent-signaling gap could cause an implementer to miss the cross-skill loading requirement.
+- **F004**: DESIGN_INTENTS declared but unused in routing pseudocode, `.opencode/skills/mcp-open-design/SKILL.md:113-116`, The SKILL.md routing section declares `DESIGN_INTENTS = {"READ", "RUN"}` with a comment: "Also load sk-design-interface and apply its principles before deciding." But the `route_open_design_resources()` pseudocode function never references `DESIGN_INTENTS` and never loads the cross-skill. The comment describes a contract the code doesn't deliver. This is pseudo-code, but the intent-signaling gap could cause an implementer to miss the cross-skill loading requirement.
 
-- **F005**: Fidelity check loop has an automation gap at the inspection step, `.opencode/skills/sk-interface-design/references/claude_design_parity.md:83`, The parity protocol says "open the previewUrl to inspect the render" as step 4 (fidelity check) but neither `mcp-open-design` nor `sk-interface-design` documents an agent-side mechanism to open a URL in a browser for inspection. The `mcp-chrome-devtools` skill is mentioned for dev-server UIs controlled by sk-code (Section 5, line 84), but for Open Design's local `previewUrl`, no tool is prescribed. The protocol describes a loop step the agent can't fully automate.
+- **F005**: Fidelity check loop has an automation gap at the inspection step, `.opencode/skills/sk-design-interface/references/claude_design_parity.md:83`, The parity protocol says "open the previewUrl to inspect the render" as step 4 (fidelity check) but neither `mcp-open-design` nor `sk-design-interface` documents an agent-side mechanism to open a URL in a browser for inspection. The `mcp-chrome-devtools` skill is mentioned for dev-server UIs controlled by sk-code (Section 5, line 84), but for Open Design's local `previewUrl`, no tool is prescribed. The protocol describes a loop step the agent can't fully automate.
 
 ## Cross-Reference Results
 | Protocol | Status | Gate | Evidence | Notes |

@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/143-sk-design-interface/004-doc-alignment-catalog-playbook",
+  "description": "Feature Specification: sk-design-interface doc alignment, catalog, playbook",
+  "keywords": [
+    "feature",
+    "specification",
+    "sk-design-interface",
+    "doc",
+    "alignment",
+    "catalog",
+    "playbook"
+  ],
+  "lastUpdated": "2026-06-14T08:30:50.876Z",
+  "specId": "004",
+  "folderSlug": "doc-alignment-catalog-playbook",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "143-sk-design-interface"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -90,7 +90,7 @@ Not a bug fix, but the refinements touch shared skill docs, so recorded here.
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
 | mcp-open-design playbook + mcp_wiring.md | The skill's test + wiring docs | update (preconditions, RUN-001, READ-001, Code Mode path) | package_skill PASS; self-check counts preserved |
-| sk-interface-design playbook scenarios | The skill's test docs | update (fixture, system source, de-vendor tokens, runId) | package_skill PASS; prompt-equality held |
+| sk-design-interface playbook scenarios | The skill's test docs | update (fixture, system source, de-vendor tokens, runId) | package_skill PASS; prompt-equality held |
 | `.utcp_config.json` | Code Mode manuals | open-design manual added (separate from this packet's edits) | YAML/JSON parses |
 <!-- /ANCHOR:affected-surfaces -->
 

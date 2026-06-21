@@ -1,10 +1,10 @@
 ---
-title: "Research: driving Open Design from the terminal + sk-interface-design integration"
-description: "Synthesis of the wave-1 fleet (2x claude2-opus + 1x gpt-5.5-fast) on how to control the Open Design desktop app from a terminal, how to build the mcp-open-design skill, and how to de-vendor + integrate sk-interface-design with it."
+title: "Research: driving Open Design from the terminal + sk-design-interface integration"
+description: "Synthesis of the wave-1 fleet (2x claude2-opus + 1x gpt-5.5-fast) on how to control the Open Design desktop app from a terminal, how to build the mcp-open-design skill, and how to de-vendor + integrate sk-design-interface with it."
 trigger_phrases:
   - "open design terminal control research"
   - "mcp-open-design skill design"
-  - "sk-interface-design de-vendor open design"
+  - "sk-design-interface de-vendor open design"
 importance_tier: "important"
 contextType: "research"
 _memory:
@@ -26,11 +26,11 @@ _memory:
     answered_questions: []
 ---
 
-# Research: driving Open Design from the terminal + sk-interface-design integration
+# Research: driving Open Design from the terminal + sk-design-interface integration
 
 <!-- SPECKIT_LEVEL: 1 -->
 
-Wave-1 fleet (read-only): Seat A = claude2-opus (OD terminal-control surface), Seat B = claude2-opus (sk-interface-design de-vendor + integration + licensing), Seat C = gpt-5.5-fast (mcp-open-design skill design + adversarial cross-check). Full per-seat detail in `seats/seat-a.findings.md`, `seats/seat-b.findings.md`, `seats/seat-c.out`.
+Wave-1 fleet (read-only): Seat A = claude2-opus (OD terminal-control surface), Seat B = claude2-opus (sk-design-interface de-vendor + integration + licensing), Seat C = gpt-5.5-fast (mcp-open-design skill design + adversarial cross-check). Full per-seat detail in `seats/seat-a.findings.md`, `seats/seat-b.findings.md`, `seats/seat-c.out`.
 
 ---
 
@@ -81,7 +81,7 @@ The three biggest accuracy risks the skill must hedge (Seat C): CLI naming (no `
 
 ---
 
-## 3. `sk-interface-design` de-vendor + integration (phase 003)
+## 3. `sk-design-interface` de-vendor + integration (phase 003)
 
 ### 3.1 Live licensing defect — FIXED this session
 All three license files were deleted in the working tree (out of order): `LICENSE.txt` (Apache-2.0), `LICENSE-ui-ux-pro-max.txt` (MIT), `THIRD-PARTY-NOTICES.md`. **Restored to clean baseline** (`git checkout HEAD --`). `LICENSE.txt` must stay (the kept `design_principles.md` is verbatim Apache-2.0 Anthropic content). [SOURCE: seats/seat-b.findings.md LEAD FINDING; verified live via git status]
@@ -89,7 +89,7 @@ All three license files were deleted in the working tree (out of order): `LICENS
 ### 3.2 Data model + replacement map
 OD **design-systems** are far richer than the vendored CSVs: each is a 9-section `DESIGN.md` + a lint-governed paste-ready `tokens.css` (4-layer schema) + real `components.html`. OD **skills**, by contrast, are thin catalogue stubs pointing at upstream repos — no integration value. [SOURCE: seat-b Task 1]
 
-| sk-interface-design CSV | Disposition |
+| sk-design-interface CSV | Disposition |
 |---|---|
 | `colors.csv`, `typography.csv` | Replace with **live OD reads** (richer, compiled tokens) |
 | `styles.csv` | Author-original (condense contraindication value) or drop |
@@ -101,7 +101,7 @@ OD **design-systems** are far richer than the vendored CSVs: each is a 9-section
 OD is *also* third-party. Uniqueness = (1) the anti-default **judgment** layer (`design_principles.md`, Apache base, kept) + (2) original **dual-use orchestration** — reuse-before-generate grounding AND critique-against, switched by the brief — folded into `claude_design_parity.md`; (3) **live-read-only** sourcing from the user's installed OD app (never cache → no license attaches → the structural win). [SOURCE: seat-b Task 2.2]
 
 ### 3.4 Integration contract
-Folds into `claude_design_parity.md` §2 (intake: if an OD system matches the brief, read it via `mcp-open-design`) and §3 (reuse-before-generate: reuse its tokens/components). Guardrails that MUST survive: no style chooser (never surface ~150 OD systems as a pick-a-vibe menu), no generator (sk-interface-design only reads OD), OD is input to judgment not authority, live-read only. OD integration stays ON_DEMAND/optional (same posture the CSVs had) and is gated on `mcp-open-design` shipping. [SOURCE: seat-b Task 3]
+Folds into `claude_design_parity.md` §2 (intake: if an OD system matches the brief, read it via `mcp-open-design`) and §3 (reuse-before-generate: reuse its tokens/components). Guardrails that MUST survive: no style chooser (never surface ~150 OD systems as a pick-a-vibe menu), no generator (sk-design-interface only reads OD), OD is input to judgment not authority, live-read only. OD integration stays ON_DEMAND/optional (same posture the CSVs had) and is gated on `mcp-open-design` shipping. [SOURCE: seat-b Task 3]
 
 ### 3.5 Ordered de-vendor sequence (legally strict: data first, notices second)
 (a) delete `assets/data/*.csv` (9) + `assets/data/README.md` + `scripts/design_search{,_core}.py` (serve only the CSVs, MIT-derivative). (b) THEN delete `LICENSE-ui-ux-pro-max.txt` + `THIRD-PARTY-NOTICES.md` + the MIT clause in SKILL.md frontmatter + dangling references across feature_catalog/manual_testing_playbook. (c) KEEP `LICENSE.txt` + all Anthropic Apache-2.0 attribution + `design_principles.md` header. Full 13-step checklist + 10-row risk table in `seats/seat-b.findings.md`. **Verify before (b):** confirm `ux_quality_reference.md` copied no verbatim `Code Example` snippets from the MIT CSVs (rule-prose is non-copyrightable; copied code strings are not). [SOURCE: seat-b Task 4 + checklist]
@@ -118,13 +118,13 @@ Folds into `claude_design_parity.md` §2 (intake: if an OD system matches the br
 
 ## 6. Prioritized recommendation (phaseable)
 1. **002 — build `mcp-open-design`** (additive, safe): SKILL.md + references + feature_catalog + manual_testing_playbook + changelog v1.0.0.0 + schema-2 graph-metadata, encoding §1–§2 above.
-2. **003 — evolve `sk-interface-design`** (destructive — gate on user go): execute §3.5 ordered de-vendor + §3.4 integration; bump changelog.
+2. **003 — evolve `sk-design-interface`** (destructive — gate on user go): execute §3.5 ordered de-vendor + §3.4 integration; bump changelog.
 3. **004 — validate + docs**: live `od mcp install opencode` + `tools/list` verification, resolve the §5 live-verification list, validate `--strict`.
 
 <!-- ANCHOR:references -->
 ## References
 - [SOURCE: seats/seat-a.findings.md] — Open Design terminal-control surface (claude2-opus, code-read + `--help`).
-- [SOURCE: seats/seat-b.findings.md] — sk-interface-design de-vendor + integration + licensing (claude2-opus).
+- [SOURCE: seats/seat-b.findings.md] — sk-design-interface de-vendor + integration + licensing (claude2-opus).
 - [SOURCE: seats/seat-c.out] — mcp-open-design skill design + adversarial cross-check (gpt-5.5-fast, opencode JSON stream).
 - [SOURCE: /Applications/Open Design.app/Contents/Resources/open-design-config.json] — appVersion 0.9.0, daemonCliEntryRelative.
 - [SOURCE: https://github.com/nexu-io/open-design] — upstream repo (Open Design, "official open-source local-first Claude Design alternative").

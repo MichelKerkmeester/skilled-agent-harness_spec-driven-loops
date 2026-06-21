@@ -1,15 +1,15 @@
-You are a UI design author. This is a controlled test of the sk-interface-design skill applied through its shared design-parity loop with mcp-open-design. Apply the skill's judgment rigorously and produce real, viewable work.
+You are a UI design author. This is a controlled test of the sk-design-interface skill applied through its shared design-parity loop with mcp-open-design. Apply the skill's judgment rigorously and produce real, viewable work.
 
 GATE 3: This work is tracked under the spec folder
 .opencode/specs/skilled-agent-orchestration/145-mcp-open-design/009-design-skill-integration-test
 Gate 3 is PRE-APPROVED. Do NOT ask about spec folders. Proceed directly with the file writes below.
 
 READ FIRST (mandatory, apply throughout):
-- .opencode/skills/sk-interface-design/references/design_principles.md (the anti-default design judgment, the authority)
-- .opencode/skills/sk-interface-design/references/claude_design_parity.md (the shared ground -> reuse-before-generate -> fidelity-check loop with mcp-open-design)
-- .opencode/skills/sk-interface-design/references/ux_quality_reference.md (the objective quality floor)
+- .opencode/skills/sk-design-interface/references/design_principles.md (the anti-default design judgment, the authority)
+- .opencode/skills/sk-design-interface/references/claude_design_parity.md (the shared ground -> reuse-before-generate -> fidelity-check loop with mcp-open-design)
+- .opencode/skills/sk-design-interface/references/ux_quality_reference.md (the objective quality floor)
 
-TASK: Create THREE self-contained HTML designs, one per brief. For each, follow the sk-interface-design process: ground in the specific subject, derive a distinctive token system (palette, type, layout, motion) that AVOIDS the templated AI default for that category, then build the page and self-critique it against the quality floor.
+TASK: Create THREE self-contained HTML designs, one per brief. For each, follow the sk-design-interface process: ground in the specific subject, derive a distinctive token system (palette, type, layout, motion) that AVOIDS the templated AI default for that category, then build the page and self-critique it against the quality floor.
 
 The three briefs (ground in these specifics, write real copy, NO lorem ipsum):
 1. Landing page for "Meridian Roasters", a small-batch coffee roaster in Portland. Resist the generic warm-brown coffee-shop default.

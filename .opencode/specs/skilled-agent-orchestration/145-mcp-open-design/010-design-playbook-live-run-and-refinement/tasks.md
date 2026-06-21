@@ -63,7 +63,7 @@ _memory:
 - [x] T006 RUN-001 gated od generation (throwaway, model-pinned) + ID-009 fidelity + FAIL-001 simulated
 - [x] T007 Capture the results matrix (12 PASS / 1 PARTIAL / 0 SKIP)
 - [x] T008 Apply mcp-open-design refinements (preconditions, RUN-001, READ-001, mcp_wiring Code Mode)
-- [x] T009 Apply sk-interface-design refinements (ID-003 fixture, ID-004/008 system source, ID-007 tokens, ID-009 runId)
+- [x] T009 Apply sk-design-interface refinements (ID-003 fixture, ID-004/008 system source, ID-007 tokens, ID-009 runId)
 <!-- /ANCHOR:phase-2 -->
 
 ---

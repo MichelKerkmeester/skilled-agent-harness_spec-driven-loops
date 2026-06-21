@@ -90,7 +90,7 @@ This is **Phase 5** of the kimi-k2-7-code-support specification, a filename-conv
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The house convention for descriptive markdown and asset filenames is underscores (`document_name.md`), matching peer skills such as `mcp-open-design` (`od_cli_reference.md`) and `sk-interface-design` (`design_principles.md`). `sk-prompt-small-model` is inconsistent: several `references/` and `assets/` files use dashes (`pattern-index.md`, `context-budget.md`, `output-verification.md`, `quota-fallback.md`, `confidence-scoring-rubric.md`, `model-profiles.json`, `per-model-budgets.json`).
+The house convention for descriptive markdown and asset filenames is underscores (`document_name.md`), matching peer skills such as `mcp-open-design` (`od_cli_reference.md`) and `sk-design-interface` (`design_principles.md`). `sk-prompt-small-model` is inconsistent: several `references/` and `assets/` files use dashes (`pattern-index.md`, `context-budget.md`, `output-verification.md`, `quota-fallback.md`, `confidence-scoring-rubric.md`, `model-profiles.json`, `per-model-budgets.json`).
 
 ### Purpose
 Bring the skill's filenames into line with the underscore convention without breaking the live tooling that points at them, and without breaking the one hard contract that legitimately requires dashes (the model-profile filenames that mirror external model ids).

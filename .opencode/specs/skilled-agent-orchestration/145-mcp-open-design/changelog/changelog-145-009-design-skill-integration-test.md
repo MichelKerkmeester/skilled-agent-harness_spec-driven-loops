@@ -1,5 +1,5 @@
 ---
-title: "Changelog: sk-interface-design and mcp-open-design integration test [145-mcp-open-design/009-design-skill-integration-test]"
+title: "Changelog: sk-design-interface and mcp-open-design integration test [145-mcp-open-design/009-design-skill-integration-test]"
 description: "Chronological changelog for the MiMo and DeepSeek design-skill integration test phase."
 trigger_phrases:
   - "phase changelog"
@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ### Summary
 
-This phase tested whether the design doctrine steered different models the same way. MiMo v2.5 Pro and DeepSeek v4 Pro received the exact same brief: load `sk-interface-design`, follow the shared ground, anti-default and build loop with `mcp-open-design` and produce three self-contained HTML designs plus notes. Both models rejected the same three templated defaults, which showed that the steering came from the skill rather than from a single model's taste.
+This phase tested whether the design doctrine steered different models the same way. MiMo v2.5 Pro and DeepSeek v4 Pro received the exact same brief: load `sk-design-interface`, follow the shared ground, anti-default and build loop with `mcp-open-design` and produce three self-contained HTML designs plus notes. Both models rejected the same three templated defaults, which showed that the steering came from the skill rather than from a single model's taste.
 
 ### Added
 

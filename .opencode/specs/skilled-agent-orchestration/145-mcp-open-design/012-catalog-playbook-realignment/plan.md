@@ -53,7 +53,7 @@ FAILURE MODES:
 | **Testing** | sk-doc `validate_document.py`; `validate.sh --strict`; grep for stale wording |
 
 ### Overview
-Close the catalog/playbook gap from phase 011. The grounding feature is reworded from "optional and on-demand" to a hard precondition, and a gate-enforcement scenario is added so the most important new invariant (no design output without sk-interface-design; transport exempt) is tested.
+Close the catalog/playbook gap from phase 011. The grounding feature is reworded from "optional and on-demand" to a hard precondition, and a gate-enforcement scenario is added so the most important new invariant (no design output without sk-design-interface; transport exempt) is tested.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -82,11 +82,11 @@ Doc-to-runtime reconciliation: the feature wording and the test matrix are broug
 
 ### Key Components
 - **Grounding feature rewrite**: optional -> MANDATORY framing (description, overview, guardrails)
-- **Gate-enforcement scenario**: negative (blocked without sk-interface-design) + positive (proceeds with it) + exemption (transport allowed)
+- **Gate-enforcement scenario**: negative (blocked without sk-design-interface) + positive (proceeds with it) + exemption (transport allowed)
 - **Index reconciliation**: counts, cross-references, waves
 
 ### Data Flow
-A reader of the grounding feature now sees the hard precondition; the playbook now has a scenario that proves a design RUN without sk-interface-design is refused while wiring/inventory is exempt.
+A reader of the grounding feature now sees the hard precondition; the playbook now has a scenario that proves a design RUN without sk-design-interface is refused while wiring/inventory is exempt.
 <!-- /ANCHOR:architecture -->
 
 ---

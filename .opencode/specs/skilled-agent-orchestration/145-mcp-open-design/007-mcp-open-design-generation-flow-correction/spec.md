@@ -71,7 +71,7 @@ Correct every doc in the skill to the live-verified reality so an agent drives g
 
 ### Out of Scope
 - Editing the 150 parent control docs - that folder is owned elsewhere.
-- Editing `sk-interface-design` or `sk-prompt` - not in this correction.
+- Editing `sk-design-interface` or `sk-prompt` - not in this correction.
 - Re-running the live generation test - the proven facts are taken as authoritative input.
 
 ### Files to Change

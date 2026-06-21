@@ -14,7 +14,7 @@ Review of the mcp-figma skill package and phase-parent spec folder (`146-mcp-fig
 ## Non-Goals
 - Not reviewing the upstream silships/figma-cli repo or the Figma Desktop app itself (third-party, read-only input)
 - Not reviewing the npm `figma-cli` package (unrelated, named only as a trap)
-- Not evaluating design taste or interface aesthetics (owned by sk-interface-design)
+- Not evaluating design taste or interface aesthetics (owned by sk-design-interface)
 
 ## Stop Conditions
 - Max 10 iterations reached

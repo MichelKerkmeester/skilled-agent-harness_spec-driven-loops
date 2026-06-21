@@ -11,7 +11,7 @@ contextType: "implementation"
 
 # Spec 145 Changelog Index
 
-Spec 145 shipped the Open Design terminal-control path, the `mcp-open-design` skill, the paired `sk-interface-design` doctrine, the `sk-prompt` design-generation prompt support and the deprecation of the older `mcp-magicpath` path. This changelog mirrors the phase tree so the root rollup gives the whole story and each phase file preserves the local evidence.
+Spec 145 shipped the Open Design terminal-control path, the `mcp-open-design` skill, the paired `sk-design-interface` doctrine, the `sk-prompt` design-generation prompt support and the deprecation of the older `mcp-magicpath` path. This changelog mirrors the phase tree so the root rollup gives the whole story and each phase file preserves the local evidence.
 
 ## Phases
 
@@ -19,9 +19,9 @@ Spec 145 shipped the Open Design terminal-control path, the `mcp-open-design` sk
 |-------|--------|-----------|
 | 001-terminal-control-and-integration-research | DONE | [changelog-145-001-terminal-control-and-integration-research.md](./changelog-145-001-terminal-control-and-integration-research.md) |
 | 002-mcp-open-design-skill-build | DONE | [changelog-145-002-mcp-open-design-skill-build.md](./changelog-145-002-mcp-open-design-skill-build.md) |
-| 003-sk-interface-design-evolution | DONE | [changelog-145-003-sk-interface-design-evolution.md](./changelog-145-003-sk-interface-design-evolution.md) |
+| 003-sk-design-interface-evolution | DONE | [changelog-145-003-sk-design-interface-evolution.md](./changelog-145-003-sk-design-interface-evolution.md) |
 | 004-validation-and-docs | DONE | [changelog-145-004-validation-and-docs.md](./changelog-145-004-validation-and-docs.md) |
-| 005-sk-interface-design-variation-diversity | DONE | [changelog-145-005-sk-interface-design-variation-diversity.md](./changelog-145-005-sk-interface-design-variation-diversity.md) |
+| 005-sk-design-interface-variation-diversity | DONE | [changelog-145-005-sk-design-interface-variation-diversity.md](./changelog-145-005-sk-design-interface-variation-diversity.md) |
 | 006-sk-prompt-design-tool-usecases | DONE | [changelog-145-006-sk-prompt-design-tool-usecases.md](./changelog-145-006-sk-prompt-design-tool-usecases.md) |
 | 007-mcp-open-design-generation-flow-correction | DONE | [changelog-145-007-mcp-open-design-generation-flow-correction.md](./changelog-145-007-mcp-open-design-generation-flow-correction.md) |
 | 008-mcp-magicpath-deprecation | DONE | [changelog-145-008-mcp-magicpath-deprecation.md](./changelog-145-008-mcp-magicpath-deprecation.md) |

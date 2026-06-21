@@ -19,7 +19,7 @@
 | **hasAdvisories** | true |
 | **Dimensions Covered** | 4/4 (correctness, security, traceability, maintainability) |
 | **Iterations** | 5 |
-| **Scope** | 2 shipped skills: `mcp-open-design` v1.2.0, `sk-interface-design` v1.3.0; spec folder with 8 phase children; ~15 files reviewed |
+| **Scope** | 2 shipped skills: `mcp-open-design` v1.2.0, `sk-design-interface` v1.3.0; spec folder with 8 phase children; ~15 files reviewed |
 | **Stop Reason** | Practical convergence (composite score 0.70, all dimensions stabilized, latest ratio 0.08) |
 | **Release Readiness** | `converged` (no blocking P0, single P1 is a documentation hygiene fix) |
 
@@ -51,11 +51,11 @@ The CONDITIONAL verdict is driven by one active P1: F001 (mcp-open-design SKILL.
 | F008 | P2 | security | Manual fallback hardcodes absolute app path | `mcp_wiring.md:125` | 2 |
 | F009 | P2 | traceability | Phase 008 CHK-010 evidence partially invalidated by F001 | `008-.../checklist.md:60` | 3 |
 | F010 | P2 | traceability | Remaining checklist items rely solely on phase verification | `007-.../checklist.md:70` | 3 |
-| F011 | P2 | traceability | Historical changelog mentions deprecated magicpath mechanism | `sk-interface-design/changelog/v1.0.0.0.md:53` | 3 |
+| F011 | P2 | traceability | Historical changelog mentions deprecated magicpath mechanism | `sk-design-interface/changelog/v1.0.0.0.md:53` | 3 |
 | F012 | P2 | traceability | Spec parent advisor-routable claim undercut by stale version | `150-.../spec.md:49` | 3 |
 | F013 | P2 | maintainability | claude_design_parity.md references ephemeral packet identifiers | `claude_design_parity.md:121` | 4 |
 | F014 | P2 | maintainability | Sections 5 and 8 both named REFERENCES — ambiguous ToC | `mcp-open-design/SKILL.md:266` | 4 |
-| F015 | P2 | maintainability | sk-interface-design allowed-tools broader than judgment-only contract | `sk-interface-design/SKILL.md:4` | 4 |
+| F015 | P2 | maintainability | sk-design-interface allowed-tools broader than judgment-only contract | `sk-design-interface/SKILL.md:4` | 4 |
 | F016 | P2 | maintainability | design_inventory.md cross-reference to claude_design_parity.md imprecise | `design_inventory.md:81` | 5 |
 
 ---
@@ -78,13 +78,13 @@ The CONDITIONAL verdict is driven by one active P1: F001 (mcp-open-design SKILL.
 ### WS-4: Traceability evidence (P2 traceability)
 - **F009**: Update phase 008 checklist CHK-010 evidence to note the version-field omission.
 - **F010**: (Advisory only — no action required. The phase's own verification is sufficient for items not re-checked.)
-- **F011**: Add a one-line correction note to `sk-interface-design/changelog/v1.0.0.0.md:53` about the now-deprecated magicpath previewImageUrl mechanism.
+- **F011**: Add a one-line correction note to `sk-design-interface/changelog/v1.0.0.0.md:53` about the now-deprecated magicpath previewImageUrl mechanism.
 - **F012**: (Resolved by F001 — no independent action needed.)
 
 ### WS-5: Maintainability polish (P2 maintainability)
 - **F013**: Remove packet identifier references (`005-claude-design-parity-research`, `006-competitor-design-tools-research`) from `claude_design_parity.md:121`.
 - **F014**: Rename Section 5 in both SKILL.md files to "CORE REFERENCES" for clarity.
-- **F015**: Review sk-interface-design's `allowed-tools` list — consider restricting to `[Read, Grep, Glob]` matching the judgment-only contract.
+- **F015**: Review sk-design-interface's `allowed-tools` list — consider restricting to `[Read, Grep, Glob]` matching the judgment-only contract.
 - **F016**: Tighten the cross-reference in `design_inventory.md:81` to point directly to `claude_design_parity.md` Section 8 bullet about no-chooser.
 
 ---
@@ -94,7 +94,7 @@ The CONDITIONAL verdict is driven by one active P1: F001 (mcp-open-design SKILL.
 A minimal spec delta for the version-field fix:
 
 - **REQ-F001**: `mcp-open-design` SKILL.md version field must match the latest changelog version. Current: 1.1.0. Target: 1.2.0.
-- **REQ-F015**: `sk-interface-design` allowed-tools list should reflect the skill's read-only judgment contract. Current: `[Read, Write, Edit, Bash, Grep, Glob]`. Proposed: `[Read, Grep, Glob]`.
+- **REQ-F015**: `sk-design-interface` allowed-tools list should reflect the skill's read-only judgment contract. Current: `[Read, Write, Edit, Bash, Grep, Glob]`. Proposed: `[Read, Grep, Glob]`.
 - **REQ-F013**: `claude_design_parity.md` Related Resources should not reference ephemeral packet identifiers. Remove `005-...` and `006-...` references.
 
 ---
@@ -108,7 +108,7 @@ A minimal spec delta for the version-field fix:
 | T3 | F003 | Add live-artifacts classification to tool_surface.md | P2 |
 | T4 | F004 | Clean up DESIGN_INTENTS in routing pseudocode | P2 |
 | T5 | F013 | Remove ephemeral packet IDs from claude_design_parity.md | P2 |
-| T6 | F015 | Review sk-interface-design allowed-tools list | P2 |
+| T6 | F015 | Review sk-design-interface allowed-tools list | P2 |
 
 ---
 
@@ -172,14 +172,14 @@ Composite vote passed at 0.70. convergenceGate blocked on rolling average (0.155
 | `mcp-open-design/references/tool_surface.md` | 1, 2 | F003 |
 | `mcp-open-design/references/mcp_wiring.md` | 1, 2 | F006, F008 |
 | `mcp-open-design/README.md` | 4 | — |
-| `sk-interface-design/SKILL.md` | 1, 2, 4 | F015 |
-| `sk-interface-design/README.md` | 4 | — |
-| `sk-interface-design/references/design_principles.md` | 1, 2 | — |
-| `sk-interface-design/references/claude_design_parity.md` | 1, 3, 4 | F005, F013 |
-| `sk-interface-design/references/variation_diversity.md` | 2 | — |
-| `sk-interface-design/references/design_inventory.md` | 5 | F016 |
-| `sk-interface-design/references/ux_quality_reference.md` | 5 | — |
-| `sk-interface-design/changelog/v1.0.0.0.md` | 3 | F011 |
+| `sk-design-interface/SKILL.md` | 1, 2, 4 | F015 |
+| `sk-design-interface/README.md` | 4 | — |
+| `sk-design-interface/references/design_principles.md` | 1, 2 | — |
+| `sk-design-interface/references/claude_design_parity.md` | 1, 3, 4 | F005, F013 |
+| `sk-design-interface/references/variation_diversity.md` | 2 | — |
+| `sk-design-interface/references/design_inventory.md` | 5 | F016 |
+| `sk-design-interface/references/ux_quality_reference.md` | 5 | — |
+| `sk-design-interface/changelog/v1.0.0.0.md` | 3 | F011 |
 | `150-.../spec.md` | 1, 3 | F012 |
 | `150-.../008-.../checklist.md` | 3 | F009 |
 | `150-.../007-.../checklist.md` | 3 | F010 |

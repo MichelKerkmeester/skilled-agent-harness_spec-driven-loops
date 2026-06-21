@@ -1,6 +1,6 @@
 ---
-title: "Implementation Summary: sk-interface-design integration test, MiMo v2.5 Pro vs DeepSeek v4 Pro"
-description: "Both models, driven by sk-interface-design through the loop it shares with mcp-open-design, produced three self-contained designs each and independently avoided the same templated defaults. That convergence is the headline: the skill, not the model, did the steering."
+title: "Implementation Summary: sk-design-interface integration test, MiMo v2.5 Pro vs DeepSeek v4 Pro"
+description: "Both models, driven by sk-design-interface through the loop it shares with mcp-open-design, produced three self-contained designs each and independently avoided the same templated defaults. That convergence is the headline: the skill, not the model, did the steering."
 trigger_phrases:
   - "design skill integration test result"
   - "mimo vs deepseek design verdict"
@@ -49,7 +49,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Two models ran the exact same brief: load sk-interface-design, follow the ground / anti-default / build loop it shares with mcp-open-design, and produce three self-contained HTML designs (a coffee-roaster landing page, an indie-podcast pricing page, a home-energy dashboard) plus a notes file. The headline result is the agreement: MiMo v2.5 Pro and DeepSeek v4 Pro independently rejected the same three templated defaults (the warm-brown serif coffee page, the purple-gradient three-card SaaS page, the dark-mode neon dashboard) and reached for grounded, subject-specific directions instead. When two different models steered the same way, the steering came from the skill, not the model.
+Two models ran the exact same brief: load sk-design-interface, follow the ground / anti-default / build loop it shares with mcp-open-design, and produce three self-contained HTML designs (a coffee-roaster landing page, an indie-podcast pricing page, a home-energy dashboard) plus a notes file. The headline result is the agreement: MiMo v2.5 Pro and DeepSeek v4 Pro independently rejected the same three templated defaults (the warm-brown serif coffee page, the purple-gradient three-card SaaS page, the dark-mode neon dashboard) and reached for grounded, subject-specific directions instead. When two different models steered the same way, the steering came from the skill, not the model.
 
 ### The designs are real and self-contained
 
@@ -74,7 +74,7 @@ Both passed the test. The separation is on rigor and adherence, not on whether t
 | Markup thoroughness | Richer, more ARIA (25 and 29 attributes on two pages), larger files | Leaner (6 and 10 ARIA), tighter files |
 | Color confidence | Solid, restrained | Bolder bets (the navy pricing page) |
 
-MiMo edges ahead on instruction adherence, accessibility markup, and notes-to-code fidelity. DeepSeek edges ahead on self-critique honesty and bolder color choices. Neither is a clear overall winner, and both validate that sk-interface-design changes model behavior in the intended direction.
+MiMo edges ahead on instruction adherence, accessibility markup, and notes-to-code fidelity. DeepSeek edges ahead on self-critique honesty and bolder color choices. Neither is a clear overall winner, and both validate that sk-design-interface changes model behavior in the intended direction.
 
 ### Live Open Design follow-up
 

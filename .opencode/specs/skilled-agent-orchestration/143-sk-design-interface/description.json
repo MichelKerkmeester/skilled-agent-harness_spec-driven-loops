@@ -1,0 +1,18 @@
+{
+  "level": "phase",
+  "specFolder": "skilled-agent-orchestration/143-sk-design-interface",
+  "description": "Feature Specification: sk-design-interface",
+  "keywords": [
+    "feature",
+    "specification",
+    "sk-design-interface"
+  ],
+  "lastUpdated": "2026-06-17T06:18:24.635Z",
+  "specId": "148",
+  "folderSlug": "sk-design-interface",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

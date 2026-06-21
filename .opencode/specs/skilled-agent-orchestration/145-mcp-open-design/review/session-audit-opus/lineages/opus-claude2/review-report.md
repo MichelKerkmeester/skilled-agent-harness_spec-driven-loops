@@ -11,7 +11,7 @@
 - **Stop reason**: converged (5 iterations; all legal-stop gates green; new-findings ratio decayed to 0.00 over a stabilization pass)
 - **Release-readiness state**: converged
 
-The packet's shipped work is in good shape. The headline objectives are genuinely met: `mcp-open-design` documents a live-verified, internally consistent terminal control surface for the Open Design app; `sk-interface-design` is **cleanly de-vendored to Apache-2.0 only** with no residual MIT/ui-ux-pro-max material on disk (the original legal driver); and the `mcp-magicpath` deprecation swept every live markdown/metadata reference and correctly marked spec 147 superseded. The single P1 is a disclosed, deliberately-deferred runtime artifact: the deleted `mcp-magicpath` skill still exists in the skill-advisor's `skill-graph.sqlite`, so the advisor can route to a skill whose files are gone. The six P2s are documentation-consistency and contract-clarity advisories.
+The packet's shipped work is in good shape. The headline objectives are genuinely met: `mcp-open-design` documents a live-verified, internally consistent terminal control surface for the Open Design app; `sk-design-interface` is **cleanly de-vendored to Apache-2.0 only** with no residual MIT/ui-ux-pro-max material on disk (the original legal driver); and the `mcp-magicpath` deprecation swept every live markdown/metadata reference and correctly marked spec 147 superseded. The single P1 is a disclosed, deliberately-deferred runtime artifact: the deleted `mcp-magicpath` skill still exists in the skill-advisor's `skill-graph.sqlite`, so the advisor can route to a skill whose files are gone. The six P2s are documentation-consistency and contract-clarity advisories.
 
 ## 2. Planning Trigger
 
@@ -22,18 +22,18 @@ The CONDITIONAL verdict routes to `/speckit:plan` for a small remediation packet
 | ID | Sev | Category | Location | Summary |
 |----|-----|----------|----------|---------|
 | F005 | P1 | traceability | `system-skill-advisor/.../skill-graph.sqlite` | Deleted `mcp-magicpath` skill persists in the runtime advisor DB (12 occurrences vs 0 files on disk); `advisor_recommend` can surface a skill that no longer exists. **Disclosed + deliberately deferred** (Known Limitation 1; Key Decision to defer the sqlite rescan). Remediation: run the advisor skill-graph rescan. Confidence 0.78; downgrades to P2 if the deferral is accepted as out-of-scope. |
-| F001 | P2 | correctness | `mcp-open-design/SKILL.md:116` | `DESIGN_INTENTS = {"READ","RUN"}` declared but never referenced in `route_open_design_resources()`; the mandatory cross-skill sk-interface-design load (ALWAYS rule 5) is unexpressed in the routing pseudocode. |
+| F001 | P2 | correctness | `mcp-open-design/SKILL.md:116` | `DESIGN_INTENTS = {"READ","RUN"}` declared but never referenced in `route_open_design_resources()`; the mandatory cross-skill sk-design-interface load (ALWAYS rule 5) is unexpressed in the routing pseudocode. |
 | F002 | P2 | correctness | `mcp-open-design/references/mcp_wiring.md:65` | Daemon-down install fallback (`{command:"od",...}`) asserted as known behavior in `mcp_wiring.md` but listed as needs-live-verification in `od_cli_reference.md:244` item 8 — contradictory confidence between two references in the same skill. |
 | F003 | P2 | correctness | `mcp-open-design/references/mcp_wiring.md:60` | §2 emphasizes `command[0]` is the Helper binary "(NOT `Contents/MacOS/Open Design`)" while §5 manual fallback uses exactly `Contents/MacOS/Open Design` as `command[0]`, with no note reconciling the apparent contradiction (both are in fact valid for their distinct contexts). |
 | F004 | P2 | security | `mcp-open-design/references/od_cli_reference.md:131` | No safe-handling directive (env-not-argv, no-logging) for the `OD_TOOL_TOKEN` bearer when a user sets it for standalone `od tools` use; the credential guidance only covers cloud `vela` auth. Bounded exposure (loopback + same-origin 403). |
-| F006 | P2 | maintainability | `mcp-open-design/SKILL.md:9`, `sk-interface-design/SKILL.md:5` | Frontmatter `version` is 3-part (`1.2.0`, `1.3.0`) vs the 4-part library convention and the skills' own 4-part changelog filenames (`v1.2.0.0.md`, `v1.3.0.0.md`). `sk-prompt` (`2.3.0.0`) is conformant. |
-| F007 | P2 | maintainability | `sk-interface-design/SKILL.md:192` | Build/hand-off contract is internally ambiguous: STEP 3/4 + `allowed-tools` imply this skill builds, while §7 says sk-code owns implementation. The least-privilege/seam question is undefined. |
+| F006 | P2 | maintainability | `mcp-open-design/SKILL.md:9`, `sk-design-interface/SKILL.md:5` | Frontmatter `version` is 3-part (`1.2.0`, `1.3.0`) vs the 4-part library convention and the skills' own 4-part changelog filenames (`v1.2.0.0.md`, `v1.3.0.0.md`). `sk-prompt` (`2.3.0.0`) is conformant. |
+| F007 | P2 | maintainability | `sk-design-interface/SKILL.md:192` | Build/hand-off contract is internally ambiguous: STEP 3/4 + `allowed-tools` imply this skill builds, while §7 says sk-code owns implementation. The least-privilege/seam question is undefined. |
 
 ## 4. Remediation Workstreams
 
 1. **Advisor graph integrity (F005)** — run the skill-advisor `skill_graph_scan` rescan to drop the `mcp-magicpath` node + edges, then confirm `advisor_recommend` no longer surfaces it. (Or formally accept the deferral and re-tier to P2.)
 2. **mcp-open-design reference reconciliation (F001, F002, F003)** — add the cross-skill load to the router pseudocode (or annotate it as illustrative); align the daemon-down-fallback confidence tag between the two references; add a one-line note reconciling the `command[0]` install-info value vs the manual-fallback value.
-3. **Hardening + convention hygiene (F004, F006, F007)** — add a one-line `OD_TOOL_TOKEN` safe-handling directive; normalize the two design skills' frontmatter versions to 4-part; add a one-line build/hand-off scope statement to sk-interface-design.
+3. **Hardening + convention hygiene (F004, F006, F007)** — add a one-line `OD_TOOL_TOKEN` safe-handling directive; normalize the two design skills' frontmatter versions to 4-part; add a one-line build/hand-off scope statement to sk-design-interface.
 
 ## 5. Spec Seed
 
@@ -50,7 +50,7 @@ The CONDITIONAL verdict routes to `/speckit:plan` for a small remediation packet
 2. Edit `mcp-open-design/SKILL.md` router block — reference `DESIGN_INTENTS` or annotate pseudocode as illustrative. (F001)
 3. Edit `mcp_wiring.md` — align the daemon-down fallback confidence tag with `od_cli_reference.md` item 8; add the `command[0]` reconciliation note. (F002, F003)
 4. Edit `od_cli_reference.md:131` — add `OD_TOOL_TOKEN` safe-handling line. (F004)
-5. Bump `mcp-open-design`/`sk-interface-design` frontmatter to 4-part; add sk-interface-design build/hand-off scope line. (F006, F007)
+5. Bump `mcp-open-design`/`sk-design-interface` frontmatter to 4-part; add sk-design-interface build/hand-off scope line. (F006, F007)
 6. `validate.sh --strict` on the target spec folder; `package_skill.py --check` on the three skills.
 
 ## 7. Traceability Status
@@ -59,7 +59,7 @@ The CONDITIONAL verdict routes to `/speckit:plan` for a small remediation packet
 |----------|-------|--------|----------|
 | `spec_code` | core (hard) | **pass** | Phase 006-008 normative claims verified vs shipped state: versions consistent, spec 147 = "Superseded (by spec 150)", mcp-figma repointed to mcp-open-design. The advisor-DB drift is captured as F005. |
 | `checklist_evidence` | core (hard) | **pass** | Phase 008 checklist 26/26 `[x]`, 0 unchecked; "no live reference remains" accurate for markdown/metadata scope; sqlite runtime carved out as a Known Limitation. |
-| `feature_catalog_code` | overlay (advisory) | pass (spot) | mcp-open-design (5 sections) + sk-interface-design (7 sections) catalogs align with the shipped reference surface. |
+| `feature_catalog_code` | overlay (advisory) | pass (spot) | mcp-open-design (5 sections) + sk-design-interface (7 sections) catalogs align with the shipped reference surface. |
 | `playbook_capability` | overlay (advisory) | pass | The licensing-and-provenance playbook maps to the verified-clean de-vendor state. |
 
 ## 8. Deferred Items

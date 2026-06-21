@@ -35,7 +35,7 @@ Stabilization pass across all dimensions. Verified cross-skill integration consi
 ## Assessment
 - New findings ratio: 0.00 (no new findings)
 - Dimensions addressed: [correctness, security, traceability, maintainability]
-- Novelty justification: Stabilization pass found no new issues. The phase 008 magicpath deprecation sweep was thorough. Cross-skill integration between sk-interface-design and mcp-open-design is consistent.
+- Novelty justification: Stabilization pass found no new issues. The phase 008 magicpath deprecation sweep was thorough. Cross-skill integration between sk-design-interface and mcp-open-design is consistent.
 
 ## Ruled Out
 - All live mcp-magicpath references removed (only historical changelog entries remain, which is correct)

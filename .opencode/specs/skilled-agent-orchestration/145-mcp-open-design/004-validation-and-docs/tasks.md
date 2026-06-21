@@ -66,7 +66,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] `package_skill.py --check` PASS for mcp-open-design and sk-interface-design
+- [x] `package_skill.py --check` PASS for mcp-open-design and sk-design-interface
 - [x] `validate.sh --strict --recursive` on 150 green, with document validation clean on the affected indexes
 - [x] Every fixed path re-resolved against its target on disk
 - [x] Review report authored at `../review/review-report.md`

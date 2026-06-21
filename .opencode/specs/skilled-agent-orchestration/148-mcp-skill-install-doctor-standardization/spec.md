@@ -57,7 +57,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The five mcp-* skills had drifted out of a shared shape. mcp-figma was still labelled pre-1.0 (`0.1.0`) even though its CLI was live-verified and an embedded install scaffold was added. mcp-open-design had no INSTALL_GUIDE and no `scripts/` at all, so it could not be installed or diagnosed like its siblings. mcp-chrome-devtools and mcp-click-up had an `install.sh` but no read-only `doctor.sh`. The central `/doctor:mcp` command knew only the registered MCP servers, so the CLI-primary design skills were invisible to it. Finally, the three design skills (mcp-figma, mcp-open-design, sk-interface-design) referenced each other only partially.
+The five mcp-* skills had drifted out of a shared shape. mcp-figma was still labelled pre-1.0 (`0.1.0`) even though its CLI was live-verified and an embedded install scaffold was added. mcp-open-design had no INSTALL_GUIDE and no `scripts/` at all, so it could not be installed or diagnosed like its siblings. mcp-chrome-devtools and mcp-click-up had an `install.sh` but no read-only `doctor.sh`. The central `/doctor:mcp` command knew only the registered MCP servers, so the CLI-primary design skills were invisible to it. Finally, the three design skills (mcp-figma, mcp-open-design, sk-design-interface) referenced each other only partially.
 
 ### Purpose
 Every mcp-* skill ships the same install-and-doctor surface and is reachable from the central doctor command, and the three design skills cross-reference each other consistently in prose and in the skill graph.
@@ -73,7 +73,7 @@ Every mcp-* skill ships the same install-and-doctor surface and is reachable fro
 - Bring mcp-open-design to install/doctor parity: a new INSTALL_GUIDE.md and `scripts/{_common.sh, install.sh, doctor.sh}`.
 - Add a read-only `scripts/doctor.sh` to mcp-chrome-devtools and mcp-click-up.
 - Wire all mcp skills into the central `/doctor:mcp` setup, adding a `cli_skill_diagnostics:` reference class for the CLI-primary skills.
-- Make mcp-figma, mcp-open-design, and sk-interface-design cross-reference each other in README, SKILL.md, graph-metadata, and the repo READMEs.
+- Make mcp-figma, mcp-open-design, and sk-design-interface cross-reference each other in README, SKILL.md, graph-metadata, and the repo READMEs.
 - Add the open-design `mcp-servers/` pointer doc so its layout matches the embedded-server skills.
 
 ### Out of Scope
@@ -94,7 +94,7 @@ Every mcp-* skill ships the same install-and-doctor surface and is reachable fro
 | `.opencode/commands/doctor/assets/doctor_mcp_install.yaml` | Modify | Add `cli_skill_diagnostics:` reference class |
 | `.opencode/commands/doctor/mcp.md` | Modify | Document the CLI-skill diagnostic class |
 | `.opencode/skills/mcp-open-design/{README.md,SKILL.md}` | Modify | Cross-reference mcp-figma |
-| `.opencode/skills/sk-interface-design/{README.md,SKILL.md,graph-metadata.json}` | Modify | Cross-reference and graph-link mcp-figma |
+| `.opencode/skills/sk-design-interface/{README.md,SKILL.md,graph-metadata.json}` | Modify | Cross-reference and graph-link mcp-figma |
 | `.opencode/skills/mcp-open-design/mcp-servers/open-design/README.md` | Create | Pointer doc for the bundled CLI and MCP |
 <!-- /ANCHOR:scope -->
 
@@ -116,7 +116,7 @@ Every mcp-* skill ships the same install-and-doctor surface and is reachable fro
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-004 | All mcp skills part of the central doctor setup | `doctor_mcp_install.yaml` lists the 4 CLI-primary skills under `cli_skill_diagnostics:`; mcp.md documents the class; YAML still parses |
-| REQ-005 | Three design skills cross-reference each other | Each of mcp-figma, mcp-open-design, sk-interface-design names the other two in its Related section; graph edges are reciprocal |
+| REQ-005 | Three design skills cross-reference each other | Each of mcp-figma, mcp-open-design, sk-design-interface names the other two in its Related section; graph edges are reciprocal |
 | REQ-006 | Embedded server layout consistency | mcp-figma `mcp-servers/{figma-cli,figma-mcp}` and mcp-open-design `mcp-servers/open-design` pointer docs exist, mirroring mcp-click-up |
 <!-- /ANCHOR:requirements -->
 
@@ -127,7 +127,7 @@ Every mcp-* skill ships the same install-and-doctor surface and is reachable fro
 
 - **SC-001**: All five mcp-* skills have an INSTALL_GUIDE.md, an install.sh, and a read-only doctor.sh (or are correctly classed as a registered server).
 - **SC-002**: The central `/doctor:mcp` setup enumerates every mcp skill, with CLI-primary skills in a distinct, non-server class.
-- **SC-003**: mcp-figma, mcp-open-design, and sk-interface-design mutually cross-reference each other in prose and in the skill graph.
+- **SC-003**: mcp-figma, mcp-open-design, and sk-design-interface mutually cross-reference each other in prose and in the skill graph.
 - **SC-004**: `validate.sh --strict` passes for this packet and no new house-voice or comment-hygiene violations are introduced.
 
 ### Acceptance Scenarios
@@ -137,7 +137,7 @@ Every mcp-* skill ships the same install-and-doctor surface and is reachable fro
 - **Given** the mcp-chrome-devtools doctor, **When** it runs, **Then** it reports the bdg CLI and Chrome presence read-only and exits 0.
 - **Given** the click-up doctor, **When** the `clickup_official` manual is registered, **Then** it reports the ClickUp manual as present.
 - **Given** the central doctor YAML, **When** parsed, **Then** `cli_skill_diagnostics:` lists the four CLI-primary skills beside the `servers:` block.
-- **Given** sk-interface-design, **When** reading its Related section and graph edges, **Then** both mcp-figma and mcp-open-design appear.
+- **Given** sk-design-interface, **When** reading its Related section and graph edges, **Then** both mcp-figma and mcp-open-design appear.
 <!-- /ANCHOR:success-criteria -->
 
 ---

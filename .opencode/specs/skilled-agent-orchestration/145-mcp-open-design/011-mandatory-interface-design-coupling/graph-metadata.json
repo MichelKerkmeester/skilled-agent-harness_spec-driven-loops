@@ -12,17 +12,17 @@
   "derived": {
     "trigger_phrases": [
       "open design mandatory interface design",
-      "mcp-open-design sk-interface-design hard coupling",
-      "open design ui design requires sk-interface-design",
+      "mcp-open-design sk-design-interface hard coupling",
+      "open design ui design requires sk-design-interface",
       "phase 011 spec",
       "open design mandatory coupling plan",
-      "sk-interface-design hard block plan",
+      "sk-design-interface hard block plan",
       "phase 011 plan",
       "open design mandatory coupling tasks",
       "phase 011 tasks",
       "tasks core",
       "open design mandatory coupling status",
-      "sk-interface-design hard precondition done"
+      "sk-design-interface hard precondition done"
     ],
     "key_topics": [
       "open",
@@ -30,7 +30,7 @@
       "mandatory",
       "interface",
       "mcp-open-design",
-      "sk-interface-design",
+      "sk-design-interface",
       "hard",
       "coupling",
       "requires",

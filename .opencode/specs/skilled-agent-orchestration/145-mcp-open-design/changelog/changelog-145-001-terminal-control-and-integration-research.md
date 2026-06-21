@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ### Summary
 
-This phase answered the questions that made the later build safe: how to drive the installed Open Design app from a terminal, how to shape the `mcp-open-design` skill and how to de-vendor plus integrate `sk-interface-design`. It produced `research/research.md` as the prioritized phaseable recommendation. It changed no skill or app surface beyond restoring license files that were already broken in the working tree.
+This phase answered the questions that made the later build safe: how to drive the installed Open Design app from a terminal, how to shape the `mcp-open-design` skill and how to de-vendor plus integrate `sk-design-interface`. It produced `research/research.md` as the prioritized phaseable recommendation. It changed no skill or app surface beyond restoring license files that were already broken in the working tree.
 
 ### Added
 
@@ -33,7 +33,7 @@ This phase answered the questions that made the later build safe: how to drive t
 - Assigned three read-only seats for terminal surface, de-vendor work, skill design and cross-check.
 - Confirmed the installed app path and bundled `daemon-cli.mjs` entry.
 - Ran Seat A on `claude2-opus` for the Open Design terminal control surface from bundled code.
-- Ran Seat B on `claude2-opus` for `sk-interface-design` de-vendor, integration and licensing.
+- Ran Seat B on `claude2-opus` for `sk-design-interface` de-vendor, integration and licensing.
 - Ran Seat C on `gpt-5.5-fast` for `mcp-open-design` skill design plus adversarial cross-check.
 - Reconciled Seat A and Seat C on the terminal surface.
 
@@ -59,7 +59,7 @@ This phase answered the questions that made the later build safe: how to drive t
 | `research/research.md` | Created | Canonical cross-checked recommendation. |
 | `research/seats/{seat-a,seat-b,seat-c}` | Created | Per-seat findings and raw output. |
 | `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`, `this file` | Created | Packet control docs. |
-| `.opencode/skills/sk-interface-design/ license files` | Updated | Reverted an out-of-order deletion to clean baseline. |
+| `.opencode/skills/sk-design-interface/ license files` | Updated | Reverted an out-of-order deletion to clean baseline. |
 
 ### Follow-Ups
 

@@ -1,9 +1,9 @@
 ---
 title: "Implementation Summary [template:level_1/implementation-summary.md]"
-description: "Status: DONE. mcp-open-design now treats sk-interface-design as an absolute hard precondition for all design work, across the SKILL.md banner, routing gate, rules, and success criteria, plus README, version 1.3.0.0, and a changelog. Pure transport stays exempt."
+description: "Status: DONE. mcp-open-design now treats sk-design-interface as an absolute hard precondition for all design work, across the SKILL.md banner, routing gate, rules, and success criteria, plus README, version 1.3.0.0, and a changelog. Pure transport stays exempt."
 trigger_phrases:
   - "open design mandatory coupling status"
-  - "sk-interface-design hard precondition done"
+  - "sk-design-interface hard precondition done"
   - "mcp-open-design v1.3.0.0"
   - "impl summary core"
 importance_tier: "important"
@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/145-mcp-open-design/011-mandatory-interface-design-coupling"
     last_updated_at: "2026-06-16T00:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Shipped the mandatory sk-interface-design coupling (v1.3.0.0)"
+    recent_action: "Shipped the mandatory sk-design-interface coupling (v1.3.0.0)"
     next_safe_action: "Phase complete; optionally rescan the advisor and commit"
     blockers: []
     key_files:
@@ -52,14 +52,14 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-> **Status: DONE.** `mcp-open-design` already referenced `sk-interface-design`, but only conditionally ("apply it when a read or run feeds a design decision"), with no NEVER rule and nothing that blocked a generation run that skipped the design judgment. This phase made the coupling absolute: for any design work, `sk-interface-design` is a hard precondition. Open Design is the transport; the design judgment is non-negotiable. Pure transport (wiring, bare inventory) stays exempt.
+> **Status: DONE.** `mcp-open-design` already referenced `sk-design-interface`, but only conditionally ("apply it when a read or run feeds a design decision"), with no NEVER rule and nothing that blocked a generation run that skipped the design judgment. This phase made the coupling absolute: for any design work, `sk-design-interface` is a hard precondition. Open Design is the transport; the design judgment is non-negotiable. Pure transport (wiring, bare inventory) stays exempt.
 
 ### SKILL.md — hard block at every reading path
 - **MANDATORY PAIRING banner** before Section 1: the mandate is the first thing a reader sees, with the transport-vs-taste framing and the pure-transport exemption.
-- **Section 2 routing**: a phase-detection HARD GATE (STEP 2) before any RUN or design-feeding READ; the two design-work resource rows marked ⛔ MANDATORY; a `design_gate` precondition added to the router pseudocode that blocks a design step composed without `sk-interface-design`.
-- **Section 3 Run Direction**: a MANDATORY-before-turn-1 step requiring `sk-interface-design` to shape the `start_run` brief and every `od ui respond` answer.
-- **Section 4 RULES**: ALWAYS #5 rewritten as a hard precondition; new NEVER #6 forbidding producing or shaping UI from Open Design without `sk-interface-design`.
-- **Section 6 success criteria**: a design step is incomplete without `sk-interface-design` evidence.
+- **Section 2 routing**: a phase-detection HARD GATE (STEP 2) before any RUN or design-feeding READ; the two design-work resource rows marked ⛔ MANDATORY; a `design_gate` precondition added to the router pseudocode that blocks a design step composed without `sk-design-interface`.
+- **Section 3 Run Direction**: a MANDATORY-before-turn-1 step requiring `sk-design-interface` to shape the `start_run` brief and every `od ui respond` answer.
+- **Section 4 RULES**: ALWAYS #5 rewritten as a hard precondition; new NEVER #6 forbidding producing or shaping UI from Open Design without `sk-design-interface`.
+- **Section 6 success criteria**: a design step is incomplete without `sk-design-interface` evidence.
 - **Sections 7/8**: reworded to "MANDATORY partner for all design work".
 - **Frontmatter**: `version` 1.2.0.0 → 1.3.0.0; `description` states the mandatory pairing.
 
@@ -95,7 +95,7 @@ The existing coupling was located in five places in SKILL.md (When-NOT-to-Use, r
 | Make the coupling a hard precondition, not a recommendation | The conditional wording let an agent fire `start_run` and produce UI without ever invoking the design skill — the exact failure to foreclose |
 | Scope the block to design work; exempt pure transport | Forcing the design skill before `od mcp install` or a bare `list_projects` would be absurd; the user confirmed the design-work reading |
 | Restate the rule at banner + router + rules + success criteria | Defense in depth: no single reading path can miss it |
-| Do NOT edit `sk-interface-design` | The asymmetry is correct — interface design does not require Open Design, but Open Design design-work requires interface design |
+| Do NOT edit `sk-design-interface` | The asymmetry is correct — interface design does not require Open Design, but Open Design design-work requires interface design |
 <!-- /ANCHOR:decisions -->
 
 ---

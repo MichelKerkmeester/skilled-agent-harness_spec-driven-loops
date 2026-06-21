@@ -13,7 +13,7 @@
     "trigger_phrases": [
       "design skill integration test",
       "mimo vs deepseek designs",
-      "sk-interface-design real render",
+      "sk-design-interface real render",
       "anti-default design test",
       "design skill integration test plan",
       "mimo deepseek design dispatch",
@@ -29,7 +29,7 @@
       "mimo",
       "deepseek",
       "designs",
-      "sk-interface-design",
+      "sk-design-interface",
       "real",
       "render",
       "anti-default",
@@ -189,7 +189,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 153 standardized the design skills' install and doctor surface, but sk-interface-design had not been exercised end to end with a real model, and the two design skills had never been run together to produce actual designs. We do not know how well a model applies the anti-default judgment in practice, or which model does it better.",
+    "causal_summary": "Packet 153 standardized the design skills' install and doctor surface, but sk-design-interface had not been exercised end to end with a real model, and the two design skills had never been run together to produce actual designs. We do not know how well a model applies the anti-default judgment in practice, or which model does it better.",
     "created_at": "2026-06-15T07:10:36Z",
     "last_save_at": "2026-06-15T09:09:33.214Z",
     "save_lineage": "graph_only",

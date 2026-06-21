@@ -1,4 +1,4 @@
-# Design Notes: sk-interface-design Integration Test
+# Design Notes: sk-design-interface Integration Test
 
 ## Design 1: Meridian Roasters Landing Page
 

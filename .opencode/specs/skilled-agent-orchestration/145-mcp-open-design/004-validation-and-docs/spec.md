@@ -51,7 +51,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The `mcp-open-design` skill (phase 002) was built from a reverse-engineering pass, and the `sk-interface-design` de-vendor (phase 003) shipped without an independent audit. Two gaps remained. First, the run direction was never exercised against the real app, so whether generation worked as the skill described was unconfirmed. Second, no adversarial review had checked the shipped skills for accuracy, broken paths, stale licensing wording, or graph-metadata defects. Both needed closing before the spec-150 work could be called done.
+The `mcp-open-design` skill (phase 002) was built from a reverse-engineering pass, and the `sk-design-interface` de-vendor (phase 003) shipped without an independent audit. Two gaps remained. First, the run direction was never exercised against the real app, so whether generation worked as the skill described was unconfirmed. Second, no adversarial review had checked the shipped skills for accuracy, broken paths, stale licensing wording, or graph-metadata defects. Both needed closing before the spec-150 work could be called done.
 
 ### Purpose
 Verify the shipped work against the running app and an adversarial review fleet. Run a live generation test to ground the run direction in reality, and run a 10-seat deep review across both skills and the research packet to find and fix accuracy, path, licensing, and record-integrity defects.

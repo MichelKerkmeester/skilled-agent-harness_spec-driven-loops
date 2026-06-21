@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: live-run and refinement of the design playbooks"
-description: "All 13 manual-testing-playbook scenarios across mcp-open-design and sk-interface-design were run live (12 PASS, 1 PARTIAL, 0 SKIP), and each scenario the run exposed a gap in was refined in place. Kimi K2.7 and DeepSeek v4 Pro both passed every model-judgment scenario, which also surfaced real WCAG failures in the 154 designs."
+description: "All 13 manual-testing-playbook scenarios across mcp-open-design and sk-design-interface were run live (12 PASS, 1 PARTIAL, 0 SKIP), and each scenario the run exposed a gap in was refined in place. Kimi K2.7 and DeepSeek v4 Pro both passed every model-judgment scenario, which also surfaced real WCAG failures in the 154 designs."
 trigger_phrases:
   - "design playbook live run result"
   - "kimi deepseek playbook verdict"
@@ -16,7 +16,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/mcp-open-design/manual_testing_playbook/03--gated-runs/gated-verb-confirm.md"
-      - ".opencode/skills/sk-interface-design/manual_testing_playbook/06--licensing-and-provenance/licensing-and-provenance-integrity.md"
+      - ".opencode/skills/sk-design-interface/manual_testing_playbook/06--licensing-and-provenance/licensing-and-provenance-integrity.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "session-010-design-playbook-live-run-and-refinement"
@@ -48,7 +48,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Both design skills' manual testing playbooks had never been run end to end. Now all 13 scenarios have been executed live with real evidence, and the scenarios that the run exposed gaps in have been refined. The headline: **12 PASS, 1 PARTIAL, 0 SKIP**, and both Kimi K2.7 and DeepSeek v4 Pro, driven by sk-interface-design, passed every model-judgment scenario.
+Both design skills' manual testing playbooks had never been run end to end. Now all 13 scenarios have been executed live with real evidence, and the scenarios that the run exposed gaps in have been refined. The headline: **12 PASS, 1 PARTIAL, 0 SKIP**, and both Kimi K2.7 and DeepSeek v4 Pro, driven by sk-design-interface, passed every model-judgment scenario.
 
 ### The live run
 
@@ -71,7 +71,7 @@ Both design skills' manual testing playbooks had never been run end to end. Now 
 ### The refinements (evidence-driven, in place)
 
 - **mcp-open-design:** added the `OD_SIDECAR_IPC_PATH` precondition; RUN-001 model-pinning (omitting `--model` runs opencode's default, not the configured model) + the answer-via-follow-up-message path; READ-001 token-wall + bundled-system location; a Code Mode (UTCP) wiring section in mcp_wiring.md.
-- **sk-interface-design:** ID-003 names a concrete fixture; ID-004/008 name the bundled-system source; ID-007 names the exact de-vendor artifacts (check by file absence, not a prose grep that false-positives on the legitimate Apache attribution); ID-009 names the runId source.
+- **sk-design-interface:** ID-003 names a concrete fixture; ID-004/008 name the bundled-system source; ID-007 names the exact de-vendor artifacts (check by file absence, not a prose grep that false-positives on the legitimate Apache attribution); ID-009 names the runId source.
 
 Self-check counts were preserved (mcp-od "5 features / 4 scenarios", sk-id 9), the sk-id prompt-equality invariant held, and both skills still pass `package_skill --check`.
 
@@ -81,7 +81,7 @@ Self-check counts were preserved (mcp-od "5 features / 4 scenarios", sk-id 9), t
 |------|--------|---------|
 | `mcp-open-design/manual_testing_playbook/{manual_testing_playbook.md, 02--reading/read-design-system.md, 03--gated-runs/gated-verb-confirm.md}` | Modified | Socket precondition, READ token-wall, RUN model-pinning + form-answer |
 | `mcp-open-design/references/mcp_wiring.md` | Modified | Code Mode (UTCP) wiring path |
-| `sk-interface-design/manual_testing_playbook/{03,04,06,07}--*/*.md` | Modified | Fixture, system source, de-vendor tokens, runId source |
+| `sk-design-interface/manual_testing_playbook/{03,04,06,07}--*/*.md` | Modified | Fixture, system source, de-vendor tokens, runId source |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -115,7 +115,7 @@ The 13 scenarios ran by class: ID-007 deterministically (greps + `package_skill`
 |-------|--------|
 | All 13 scenarios run live with a verdict | PASS (12 PASS, 1 PARTIAL, 0 SKIP) |
 | Both models on the 5 judgment/routing scenarios | PASS (Kimi + DeepSeek) |
-| `package_skill --check` (mcp-open-design, sk-interface-design) | PASS both |
+| `package_skill --check` (mcp-open-design, sk-design-interface) | PASS both |
 | Self-check counts preserved + prompt-equality held | PASS |
 | House-voice (no em dashes) on edited files | PASS |
 | 154 contrast fix re-graded | PASS (cited ratios now clear AA) |

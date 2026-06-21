@@ -1,10 +1,10 @@
 ---
 title: "Implementation Plan: terminal-control-and-integration-research"
-description: "Plan for the wave-1 read-only research fleet assessing how to drive Open Design from the terminal, how to design mcp-open-design, and how to de-vendor plus integrate sk-interface-design. Research-only; the deliverable is a recommendation, not a build."
+description: "Plan for the wave-1 read-only research fleet assessing how to drive Open Design from the terminal, how to design mcp-open-design, and how to de-vendor plus integrate sk-design-interface. Research-only; the deliverable is a recommendation, not a build."
 trigger_phrases:
   - "open design terminal research plan"
   - "mcp-open-design research plan"
-  - "sk-interface-design de-vendor plan"
+  - "sk-design-interface de-vendor plan"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
@@ -44,7 +44,7 @@ _memory:
 | **Testing** | Cross-seat reconciliation; orchestrator ground-truths live-observed facts |
 
 ### Overview
-Run a read-only research fleet over the installed Open Design app and the two skills to determine how to drive Open Design from the terminal, how to design `mcp-open-design`, and how to de-vendor plus integrate `sk-interface-design`. Three seats produce independent findings that are reconciled and synthesized into one canonical recommendation.
+Run a read-only research fleet over the installed Open Design app and the two skills to determine how to drive Open Design from the terminal, how to design `mcp-open-design`, and how to de-vendor plus integrate `sk-design-interface`. Three seats produce independent findings that are reconciled and synthesized into one canonical recommendation.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -55,7 +55,7 @@ Run a read-only research fleet over the installed Open Design app and the two sk
 ### Definition of Ready
 - [x] Problem statement clear and scope documented (spec.md)
 - [x] Success criteria measurable (terminal surface, skill design, de-vendor plan, cross-check)
-- [x] Inputs identified (installed app, mcp-magicpath model, sk-interface-design target)
+- [x] Inputs identified (installed app, mcp-magicpath model, sk-design-interface target)
 
 ### Definition of Done
 - [x] All seats completed and reconciled
@@ -73,7 +73,7 @@ Wave-1 multi-seat fan-out (read-only), independent findings, central synthesis.
 
 ### Key Components
 - **Seat A (claude2-opus)**: Open Design terminal control surface, by reading the bundled code.
-- **Seat B (claude2-opus)**: sk-interface-design de-vendor, integration, and licensing.
+- **Seat B (claude2-opus)**: sk-design-interface de-vendor, integration, and licensing.
 - **Seat C (gpt-5.5-fast)**: mcp-open-design skill design plus adversarial cross-check of Seat A.
 
 ### Data Flow
@@ -90,7 +90,7 @@ Not applicable. This is a read-only research packet. No code, skill, or app surf
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
 | `/Applications/Open Design.app` | Research input (installed app) | unchanged (read-only) | no diff; bundled code only read |
-| `.opencode/skills/sk-interface-design/` | De-vendor target under study | unchanged this packet | no diff in skill dir |
+| `.opencode/skills/sk-design-interface/` | De-vendor target under study | unchanged this packet | no diff in skill dir |
 | `.opencode/skills/mcp-magicpath/` | Structural model | unchanged (read-only) | no diff in skill dir |
 <!-- /ANCHOR:affected-surfaces -->
 

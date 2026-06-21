@@ -1,7 +1,7 @@
 # Deep Review Strategy
 
 ## Topic
-Review of `150-open-design-terminal-and-interface-integration` — a phase-parent spec folder with 8 completed child phases that built `mcp-open-design` (terminal control of Open Design desktop app), de-vendored `sk-interface-design`, and integrated the two skills.
+Review of `150-open-design-terminal-and-interface-integration` — a phase-parent spec folder with 8 completed child phases that built `mcp-open-design` (terminal control of Open Design desktop app), de-vendored `sk-design-interface`, and integrated the two skills.
 
 ## Review Dimensions
 - [x] **Correctness** — 1 P1, 4 P2. Stale version number (F001), evidence-tag inconsistency (F002), tool-surface gap (F003), pseudocode gap (F004), automation gap (F005).
@@ -32,7 +32,7 @@ Review of `150-open-design-terminal-and-interface-integration` — a phase-paren
 
 ## Next Focus
 **Dimension**: Security  
-**Files**: `.opencode/skills/mcp-open-design/references/mcp_wiring.md`, `.opencode/skills/mcp-open-design/SKILL.md`, `.opencode/skills/sk-interface-design/SKILL.md`  
+**Files**: `.opencode/skills/mcp-open-design/references/mcp_wiring.md`, `.opencode/skills/mcp-open-design/SKILL.md`, `.opencode/skills/sk-design-interface/SKILL.md`  
 **Rationale**: CLI invocation patterns, environment variable handling, MCP server config, paths that could enable injection, and trust-boundary violations. Wired configs include `ELECTRON_RUN_AS_NODE=1` and socket paths — review for safe defaults and privilege exposure.
 
 ## Cross-Reference Status
@@ -57,10 +57,10 @@ Review of `150-open-design-terminal-and-interface-integration` — a phase-paren
 | `.opencode/skills/mcp-open-design/references/od_cli_reference.md` | mcp-open-design | CLI reference, daemon model, verb surface | reviewed (001) |
 | `.opencode/skills/mcp-open-design/references/tool_surface.md` | mcp-open-design | MCP tool surface and gating policy | reviewed (001) |
 | `.opencode/skills/mcp-open-design/references/mcp_wiring.md` | mcp-open-design | MCP wiring instructions | reviewed (001) |
-| `.opencode/skills/sk-interface-design/SKILL.md` | sk-interface-design | Main skill doc, design process, routing | reviewed (001) |
-| `.opencode/skills/sk-interface-design/references/design_principles.md` | sk-interface-design | Core design principles and two-pass process | pending |
-| `.opencode/skills/sk-interface-design/references/claude_design_parity.md` | sk-interface-design | Cross-skill parity protocol with mcp-open-design | reviewed (001) |
-| `.opencode/skills/sk-interface-design/references/variation_diversity.md` | sk-interface-design | Seed-of-thought debias for multiple directions | pending |
+| `.opencode/skills/sk-design-interface/SKILL.md` | sk-design-interface | Main skill doc, design process, routing | reviewed (001) |
+| `.opencode/skills/sk-design-interface/references/design_principles.md` | sk-design-interface | Core design principles and two-pass process | pending |
+| `.opencode/skills/sk-design-interface/references/claude_design_parity.md` | sk-design-interface | Cross-skill parity protocol with mcp-open-design | reviewed (001) |
+| `.opencode/skills/sk-design-interface/references/variation_diversity.md` | sk-design-interface | Seed-of-thought debias for multiple directions | pending |
 
 ## Review Boundaries
 - **Max Iterations**: 10
@@ -71,7 +71,7 @@ Review of `150-open-design-terminal-and-interface-integration` — a phase-paren
 
 ## Known Context
 - All 8 child phases (001-008) are marked Complete.
-- The two shipped skills are `mcp-open-design` v1.2.0 (per changelog, SKILL.md says v1.1.0) and `sk-interface-design` v1.3.0.
+- The two shipped skills are `mcp-open-design` v1.2.0 (per changelog, SKILL.md says v1.1.0) and `sk-design-interface` v1.3.0.
 - `mcp-magicpath` was fully deprecated and deleted in phase 008; references were re-centered on `mcp-open-design`.
 - Generation flow in `mcp-open-design` was corrected in phase 007 from one-shot to multi-turn.
 - resource-map.md not present. Skipping coverage gate.

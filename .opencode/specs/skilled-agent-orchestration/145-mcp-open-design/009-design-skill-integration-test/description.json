@@ -1,11 +1,11 @@
 {
   "level": "1",
   "specFolder": "skilled-agent-orchestration/145-mcp-open-design/009-design-skill-integration-test",
-  "description": "Feature Specification: sk-interface-design + mcp-open-design integration test (MiMo vs DeepSeek)",
+  "description": "Feature Specification: sk-design-interface + mcp-open-design integration test (MiMo vs DeepSeek)",
   "keywords": [
     "feature",
     "specification",
-    "sk-interface-design",
+    "sk-design-interface",
     "mcp-open-design",
     "integration",
     "test",

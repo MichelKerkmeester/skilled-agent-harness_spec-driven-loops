@@ -77,7 +77,7 @@ Shared skill convention. Each skill's scripts follow the mcp-figma reference sha
 ### Key Components
 - **Per-skill scripts**: `install.sh` (non-mutating) and `doctor.sh` (read-only) per skill.
 - **Central doctor class**: `cli_skill_diagnostics:` in `doctor_mcp_install.yaml`, separate from `servers:`.
-- **Cross-reference graph**: reciprocal edges among mcp-figma, mcp-open-design, sk-interface-design.
+- **Cross-reference graph**: reciprocal edges among mcp-figma, mcp-open-design, sk-design-interface.
 
 ### Data Flow
 `doctor.sh` reads local state (PATH, app paths, sockets, config files) and prints a report. `install.sh` detects the tool or app, verifies it, and prints gated next steps. Nothing mutates state.

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: terminal-control-and-integration-research"
-description: "A wave-1 read-only research fleet (2x claude2-opus + 1x gpt-5.5-fast) produced a cross-checked recommendation: drive Open Design via its stdio MCP server plus headless od verbs, build mcp-open-design on the mcp-magicpath model with a strict gate policy, and de-vendor sk-interface-design data-first then notices while keeping the Apache-2.0 base. A live license-deletion defect was found and restored."
+description: "A wave-1 read-only research fleet (2x claude2-opus + 1x gpt-5.5-fast) produced a cross-checked recommendation: drive Open Design via its stdio MCP server plus headless od verbs, build mcp-open-design on the mcp-magicpath model with a strict gate policy, and de-vendor sk-design-interface data-first then notices while keeping the Apache-2.0 base. A live license-deletion defect was found and restored."
 trigger_phrases:
   - "open design terminal research outcome"
   - "mcp-open-design research summary"
@@ -46,13 +46,13 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-This packet is research, not code. It produced a cross-checked answer to three questions: how to drive the installed Open Design app from a terminal, how to design the `mcp-open-design` skill, and how to de-vendor plus integrate `sk-interface-design`. The deliverable is `research/research.md` with a prioritized, phaseable recommendation. No skill or app surface was changed beyond restoring files that were already broken in the working tree.
+This packet is research, not code. It produced a cross-checked answer to three questions: how to drive the installed Open Design app from a terminal, how to design the `mcp-open-design` skill, and how to de-vendor plus integrate `sk-design-interface`. The deliverable is `research/research.md` with a prioritized, phaseable recommendation. No skill or app surface was changed beyond restoring files that were already broken in the working tree.
 
 ### The recommendation
-Open Design is driven by wiring its stdio MCP server into the terminal agent and calling its headless `od` verbs, with no in-app chat needed. The `mcp-open-design` skill follows the `mcp-magicpath` model and carries a strict tool-exposure policy: surface read-only verbs freely, gate every mutating verb behind explicit confirmation, and omit destructive verbs from the default path. The `sk-interface-design` de-vendor runs data-first then notices-second, replacing the vendored CSVs with live Open Design reads where they are richer, keeping the paraphrased quality-floor reference, and retaining the Apache-2.0 base and Anthropic attribution.
+Open Design is driven by wiring its stdio MCP server into the terminal agent and calling its headless `od` verbs, with no in-app chat needed. The `mcp-open-design` skill follows the `mcp-magicpath` model and carries a strict tool-exposure policy: surface read-only verbs freely, gate every mutating verb behind explicit confirmation, and omit destructive verbs from the default path. The `sk-design-interface` de-vendor runs data-first then notices-second, replacing the vendored CSVs with live Open Design reads where they are richer, keeping the paraphrased quality-floor reference, and retaining the Apache-2.0 base and Anthropic attribution.
 
 ### A live defect, found and fixed
-Seat B found that all three license files in `sk-interface-design` had been deleted in the working tree, out of the legally safe order. They were restored to clean baseline this session via `git checkout HEAD --`. `LICENSE.txt` must stay because the kept `design_principles.md` is verbatim Apache-2.0 Anthropic content.
+Seat B found that all three license files in `sk-design-interface` had been deleted in the working tree, out of the legally safe order. They were restored to clean baseline this session via `git checkout HEAD --`. `LICENSE.txt` must stay because the kept `design_principles.md` is verbatim Apache-2.0 Anthropic content.
 
 ### Three seats, reconciled
 The fleet ran as three independent read-only seats so the recommendation does not rest on one model's judgment. Seat A read the bundled code; Seat C reached the same terminal-surface corrections adversarially, a strong cross-validation. The two diverged only on how strictly to gate tools, resolved in favor of the stricter policy.
@@ -64,7 +64,7 @@ The fleet ran as three independent read-only seats so the recommendation does no
 | `research/research.md` | Created | Canonical cross-checked recommendation |
 | `research/seats/{seat-a,seat-b,seat-c}` | Created | Per-seat findings and raw output |
 | `spec.md`, `plan.md`, `tasks.md`, this file | Created | Packet control docs |
-| `.opencode/skills/sk-interface-design/` license files | Restored | Reverted an out-of-order deletion to clean baseline |
+| `.opencode/skills/sk-design-interface/` license files | Restored | Reverted an out-of-order deletion to clean baseline |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -72,7 +72,7 @@ The fleet ran as three independent read-only seats so the recommendation does no
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Via a wave-1 read-only research fleet: two `claude2-opus` seats (one on the Open Design terminal-control surface read straight from the bundled code, one on the `sk-interface-design` de-vendor, integration, and licensing) plus one `openai/gpt-5.5-fast` seat (the `mcp-open-design` skill design and an adversarial cross-check of the terminal surface). The orchestrator ground-truthed the live-observed transport and tool-tier facts, restored the license defect, and authored the canonical synthesis from the per-seat findings.
+Via a wave-1 read-only research fleet: two `claude2-opus` seats (one on the Open Design terminal-control surface read straight from the bundled code, one on the `sk-design-interface` de-vendor, integration, and licensing) plus one `openai/gpt-5.5-fast` seat (the `mcp-open-design` skill design and an adversarial cross-check of the terminal surface). The orchestrator ground-truthed the live-observed transport and tool-tier facts, restored the license defect, and authored the canonical synthesis from the per-seat findings.
 <!-- /ANCHOR:how-delivered -->
 
 ---

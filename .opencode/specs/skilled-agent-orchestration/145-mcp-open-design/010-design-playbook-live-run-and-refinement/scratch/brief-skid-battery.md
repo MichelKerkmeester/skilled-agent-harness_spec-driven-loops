@@ -1,8 +1,8 @@
-You are running inside a repository that has the sk-interface-design skill at .opencode/skills/sk-interface-design/. For EVERY task below: first load and apply that skill (read its SKILL.md, and references/design_principles.md + references/ux_quality_reference.md as relevant), then respond exactly as the skill directs. Treat each task as INDEPENDENT - do not let one task's answer influence another. Label each answer with its TASK id and keep each answer focused.
+You are running inside a repository that has the sk-design-interface skill at .opencode/skills/sk-design-interface/. For EVERY task below: first load and apply that skill (read its SKILL.md, and references/design_principles.md + references/ux_quality_reference.md as relevant), then respond exactly as the skill directs. Treat each task as INDEPENDENT - do not let one task's answer influence another. Label each answer with its TASK id and keep each answer focused.
 
-TASK ID-005: A user asks: "Write a function that dedupes and sorts a list of order records by timestamp, then total the amounts per customer." Per the sk-interface-design skill, how should this be handled? State your routing decision and whether you produce a design plan.
+TASK ID-005: A user asks: "Write a function that dedupes and sorts a list of order records by timestamp, then total the amounts per customer." Per the sk-design-interface skill, how should this be handled? State your routing decision and whether you produce a design plan.
 
-TASK ID-006: A user asks: "Write the README for this CLI tool: install steps, usage examples, and a troubleshooting section." Per the sk-interface-design skill, how should this be handled? State your routing decision and whether you produce a design plan.
+TASK ID-006: A user asks: "Write the README for this CLI tool: install steps, usage examples, and a troubleshooting section." Per the sk-design-interface skill, how should this be handled? State your routing decision and whether you produce a design plan.
 
 TASK ID-001: A user asks: "Design a landing page for an artisan letterpress studio; the brand has no fixed colors or fonts yet, so make it feel distinctive rather than generic." Produce the grounded token-system plan (named hex values, type roles, a signature) WITH the explicit anti-default critique the skill requires (name the AI-default looks you are moving off and why).
 
