@@ -345,3 +345,19 @@ _None._
 - Coverage: 19 tool modules + 6 skill-layer docs + graph-metadata, across 10 passes.
 - Method: parallel read-only DeepSeek-v4-pro review seats (the deep-review packet structure, canonical state in `review/`), reduced via `reduce-state.cjs`.
 - Sources reviewed: `tool/scripts/*.ts`, `SKILL.md`, `README.md`, `INSTALL_GUIDE.md`, `references/*`, `assets/*`, `graph-metadata.json`, `changelog/v1.0.0.0.md`.
+
+---
+
+## 11. Remediation Addendum (2026-06-21T12:12:36Z)
+
+All **13 P1 findings remediated** (commit `10a5a7cc88`). The 30 P2 advisories remain as backlog.
+
+| Group | P1s fixed | Files |
+|---|---|---|
+| Input hardening (security) | parseInt validation, two guarded JSON.parse, TLS bypass gated behind opt-in `--insecure` | extract.ts, proof.ts, crawl.ts |
+| Extraction correctness | 403/429 fall-through, circular hue-distance modulo, transition-shorthand token classification, SVG stroke-width (threaded through collector) | crawl.ts, cluster.ts, css-analyzer.ts, icon-detect.ts, types.ts, dom-collector.ts |
+| Doc-vs-code drift | validate.ts tightened to check core sections 6.5/11/12; SKILL.md Process Flow corrected to validate.ts's real behavior | validate.ts, SKILL.md |
+
+**Verification:** tsc 0 errors · vitest 50/50 · alignment verifier 0 findings · live extraction green · negative test (`--concurrency 0` now fails loudly) · comment hygiene 0 violations.
+
+**Post-remediation state:** 0 P0, 0 active P1, 30 P2 advisory (backlog). Effective verdict: **PASS (with P2 advisories)**.
