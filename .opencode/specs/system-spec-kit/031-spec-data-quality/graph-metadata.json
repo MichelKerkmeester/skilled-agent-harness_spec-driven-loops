@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/031-spec-data-quality",
+  "spec_folder": "system-spec-kit/031-spec-data-quality",
+  "parent_id": "system-spec-kit",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "spec kit data quality by default",
+      "retrieval adherence logic reading",
+      "metadata fusion embedding context",
+      "stage 0 external findings brief",
+      "data quality candidate ranking"
+    ],
+    "key_topics": [
+      "spec",
+      "data",
+      "quality",
+      "retrieval",
+      "adherence",
+      "logic",
+      "metadata",
+      "fusion",
+      "embedding",
+      "research"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "research/research.md",
+      "research/stage-0-external-findings.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "stage-0-external-findings.md",
+        "kind": "doc",
+        "path": "research/stage-0-external-findings.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The spec-kit data-quality research opened with a Stage 0 external sweep across retrieval, adherence, and logic reading. This packet records that sweep and ranks ten candidate techniques so the by-angle loop can verify each one against the spec-kit corpus before any default change lands.",
+    "created_at": "2026-06-21T00:00:00.000Z",
+    "last_save_at": "2026-06-21T00:00:00.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research/research.md",
+      "research/stage-0-external-findings.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

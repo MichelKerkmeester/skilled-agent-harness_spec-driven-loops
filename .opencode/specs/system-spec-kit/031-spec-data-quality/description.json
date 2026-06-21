@@ -1,0 +1,23 @@
+{
+  "level": "3",
+  "specFolder": "system-spec-kit/031-spec-data-quality",
+  "description": "Feature Specification: Spec-Kit Data Quality by Default",
+  "keywords": [
+    "spec",
+    "data",
+    "quality",
+    "retrieval",
+    "adherence",
+    "logic",
+    "metadata",
+    "fusion"
+  ],
+  "lastUpdated": "2026-06-21T00:00:00.000Z",
+  "specId": "031",
+  "folderSlug": "spec-data-quality",
+  "parentChain": [
+    "system-spec-kit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
