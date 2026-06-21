@@ -23,7 +23,7 @@ The skill is the **extraction and format-fidelity engine** of the `sk-design-*` 
 
 Use this catalog as the inventory for the live `sk-design-md-generator` surface. The numbered sections below group the skill by capability area so readers can move from a top-level summary into the per-feature detail without losing the pipeline context.
 
-The capability surface has one hard prerequisite and four phases. Everything depends on a **tool installation**: `cd tool && npm install && npx playwright install chromium`. From there the **extract** phase crawls a live URL across five viewports and emits verbatim `tokens.json`. The **cluster** phase classifies every token L1 through L4 for stability gating. The **write** phase produces the 17-section `DESIGN.md` with every value copied verbatim from `tokens.json`. The **validate** phase checks hex accuracy and section completeness. An optional **report** phase renders visual HTML previews and proof artifacts. The last area covers six per-feature detectors that run during extraction.
+The capability surface has one hard prerequisite and four phases. Everything depends on a **tool installation**: `cd tool && npm install && npx playwright install chromium`. From there the **extract** phase crawls a live URL across five viewports and emits verbatim `tokens.json`. The **cluster** phase classifies every token L1 through L4 for stability gating. The **write** phase produces the 17-section `DESIGN.md` with every value copied verbatim from `tokens.json`. The **validate** phase checks hex accuracy and section completeness. An optional **report** phase renders visual HTML previews and proof artifacts. The **feature-extractors** area covers six per-feature detectors that run during extraction, and the **interaction-capture** area records component states (`--with-interaction`) for the State Matrix.
 
 ### Capability areas
 
@@ -35,6 +35,7 @@ The capability surface has one hard prerequisite and four phases. Everything dep
 | Validate | Checks hex accuracy against tokens.json and v2 core-section completeness | `04--validate/validate.md` |
 | Report and preview | Generates HTML report, visual preview, and proof artifacts | `05--report-preview/report-preview.md` |
 | Feature extractors | Per-feature detection: accessibility, dark mode, framework, icons, motion, design boundary | `06--feature-extractors/feature-extractors.md` |
+| Interaction capture | Records hover/focus/active/disabled component states (`--with-interaction`), producing the §11 State Matrix | `07--interaction-capture/interaction-capture.md` |
 
 ---
 
@@ -74,6 +75,7 @@ Transforms raw color data from `tokens.json` into stability-classified tokens vi
 - L4 (content, one-off, image-derived) tokens are excluded entirely.
 - Boundary tokens are assigned the higher (more restrictive) class.
 - The classification is deterministic; token gating drives the write phase.
+- Incremental extraction: `mergeTokenSets` (exported from `cluster.ts`) merges a prior `tokens.json` with a fresh run when extraction is invoked with `--merge-with`, deduplicating and re-clustering the combined set.
 
 #### Source Files
 
@@ -161,3 +163,23 @@ Six per-feature detectors that run inline during extraction, each targeting a sp
 #### Source Files
 
 See [`06--feature-extractors/feature-extractors.md`](06--feature-extractors/feature-extractors.md) for each detector's extraction method, the token-schema fields it populates, and the absence-reporting rule.
+
+---
+
+## 8. INTERACTION CAPTURE
+
+#### Description
+
+Captures hover, focus, active, and disabled component states when extraction runs with `--with-interaction`, producing the data for the required v2 DESIGN.md section 11 (State Matrix).
+
+#### Current Reality
+
+- Gated by the `--with-interaction` flag; default extraction skips interaction capture.
+- `captureInteractions()` drives a real page, triggering hover, focus, active, and disabled states and recording the resulting computed styles per component.
+- The captured state data populates DESIGN.md section 11 (State Matrix), which `validate.ts` checks as a required section.
+- State tokens are classified L3 (interaction states are component-specific) and feed the accessibility focus-indicator data.
+- A component with no distinct state styling records the absence rather than inventing a state.
+
+#### Source Files
+
+See [`07--interaction-capture/interaction-capture.md`](07--interaction-capture/interaction-capture.md) for the interaction-capture method, the state-matrix schema, and the `--with-interaction` flag contract.

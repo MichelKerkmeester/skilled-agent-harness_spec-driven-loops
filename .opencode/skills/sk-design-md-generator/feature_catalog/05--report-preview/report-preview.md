@@ -73,8 +73,8 @@ All three scripts write to a user-specified output directory. They do not silent
 
 | File | Type | Role |
 |---|---|---|
-| `../../manual_testing_playbook/05--setup/tool-readiness.md` | Manual playbook | Tool readiness scenario — confirms npm install and Playwright Chromium setup prepare the report-generation environment |
-| (no automated test) | Automated test | Covered by the manual playbook scenario |
+| `../../manual_testing_playbook/07--report/report-generation.md` | Manual playbook | Report and preview generation scenario (REPORT-001) — runs report-gen, preview-gen, and proof and confirms each emits its artifact |
+| (no automated test) | Automated test | Covered by the REPORT-001 manual playbook scenario |
 
 ---
 

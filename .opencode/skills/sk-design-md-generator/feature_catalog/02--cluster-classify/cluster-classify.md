@@ -47,6 +47,10 @@ The classification drives the write-phase gating:
 - L3 tokens appear in the `Current Campaign Colors` table (section 2) with a "Subject to change" annotation.
 - L4 tokens are excluded entirely from DESIGN.md.
 
+### Incremental extraction
+
+`mergeTokenSets` (exported from `cluster.ts`) supports incremental extraction: when `extract.ts` runs with `--merge-with <prior-tokens.json>`, the prior token set is merged with the fresh run, deduplicated, and re-clustered so a re-crawl refines rather than replaces the existing tokens.
+
 ---
 
 ## 3. SOURCE FILES
