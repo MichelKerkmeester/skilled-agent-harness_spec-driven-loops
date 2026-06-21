@@ -63,9 +63,9 @@ The phase will author a `spec-corpus-golden.json` whose every query carries a re
 
 The phase will build a `run-spec-recall-gate.mjs` wrapper with a PROMOTION mode and a REGRESSION mode that read only the prod-lens completeRecall@3 column. PROMOTION asserts the prod column rises over a stored baseline, and REGRESSION asserts it does not fall below the baseline by more than the configured tolerance. The gate emits a real recall-verdict exit code distinct from the existing crash handler at line 357, so a retrieval-class change can be promoted only on a measured prod-column rise and regressed when it falls.
 
-### Stored baseline and narrow harness export
+### Stored baseline and harness export reuse
 
-The phase will write a `spec-recall-baseline.json` that records the prod-column completeRecall@3 per class and overall, with a generated-at stamp and source DB path. It will add one narrow export to the unchanged `run-eval-v2.mjs` so the gate consumes the prod lens and the measurability classes through `buildSearchLenses`, `meanCompleteRecallProfile`, and `MEASURABILITY_CLASSES` rather than re-implementing the lenses. The baseline freezes only after the first non-saturating prod run.
+The phase will write a `spec-recall-baseline.json` that records the prod-column completeRecall@3 per class and overall, with a generated-at stamp and source DB path. It will reuse the exports the unchanged `run-eval-v2.mjs` already provides (`buildSearchLenses`, `meanCompleteRecallProfile` and `MEASURABILITY_CLASSES` are exported today) so the gate consumes the prod lens and the measurability classes rather than re-implementing the lenses. The baseline freezes only after the first non-saturating prod run.
 
 ### Files Changed
 
@@ -76,7 +76,7 @@ This table lists the planned changes. None have been applied.
 | `.opencode/skills/system-spec-kit/mcp_server/scripts/evals/spec-corpus-golden.json` | Planned create | Multi-target gold set, one relevance set per query across the measurability classes |
 | `.opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-spec-recall-gate.mjs` | Planned create | PROMOTION and REGRESSION gate reading only the prod-lens completeRecall@3 column |
 | `.opencode/skills/system-spec-kit/mcp_server/scripts/evals/spec-recall-baseline.json` | Planned create | Stored prod-column completeRecall@3 baseline with provenance |
-| `.opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-eval-v2.mjs` | Planned modify | Add a narrow export for the prod lens and classes, lenses unchanged |
+| `.opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-eval-v2.mjs` | Verify only | The prod lens and class exports already exist, the gate reuses them with no modify |
 <!-- /ANCHOR:what-built -->
 
 ---
