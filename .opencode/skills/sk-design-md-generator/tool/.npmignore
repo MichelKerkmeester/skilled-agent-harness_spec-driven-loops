@@ -1,0 +1,14 @@
+scripts/
+examples/
+output/
+__tests__/
+*.ts
+!*.d.ts
+.DS_Store
+.claude/
+vitest.config.ts
+tsconfig.json
+gallery.html
+*.png
+raw-data.json
+proof-data.json
