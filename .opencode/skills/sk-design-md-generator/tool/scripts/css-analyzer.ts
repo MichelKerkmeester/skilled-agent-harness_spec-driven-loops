@@ -223,13 +223,28 @@ function parseTransitionShorthand(value: string): Partial<TransitionInfo>[] {
   // A transition shorthand can contain comma-separated transitions
   const parts = value.split(',').map((s) => s.trim());
 
+  const isTime = (t: string): boolean => /^[\d.]+m?s$/.test(t);
+  const isTimingFunction = (t: string): boolean =>
+    /^(ease|ease-in|ease-out|ease-in-out|linear|step-start|step-end|steps|cubic-bezier)/.test(t);
+
   return parts.map((part) => {
-    const tokens = part.split(/\s+/);
+    const tokens = part.split(/\s+/).filter(Boolean);
+    // The transition shorthand order is flexible and the property is optional
+    // (defaults to `all`), so classify tokens by shape instead of trusting
+    // positions: the first time value is the duration, the second is the delay.
+    let property = 'all';
+    let timingFunction = 'ease';
+    const times: string[] = [];
+    for (const token of tokens) {
+      if (isTime(token)) times.push(token);
+      else if (isTimingFunction(token)) timingFunction = token;
+      else property = token;
+    }
     return {
-      property: tokens[0] ?? 'all',
-      duration: tokens[1] ?? '0s',
-      timingFunction: tokens[2] ?? 'ease',
-      delay: tokens[3] ?? '0s',
+      property,
+      duration: times[0] ?? '0s',
+      timingFunction,
+      delay: times[1] ?? '0s',
     };
   });
 }

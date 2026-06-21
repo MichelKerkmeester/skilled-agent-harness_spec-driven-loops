@@ -224,10 +224,10 @@ WRITE (Phase 2)
     └─ Output: DESIGN.md at the user-specified path
          ↓
 VALIDATE (Phase 3)
-    ├─ Run validate.ts: check every hex code in DESIGN.md matches tokens.json
-    ├─ Check all 17 required sections are present and non-empty
-    ├─ Confirm L1/L2/L3/L4 classification rules were followed
-    └─ Output: validation pass/fail with per-error line references
+    ├─ Run validate.ts: check every hex code in DESIGN.md exists in tokens.json
+    ├─ Check the required v2 core sections are present and non-empty
+    ├─ Check format consistency (hex casing, phantom colors, unknown fonts)
+    └─ Output: validation pass/fail with a score and per-finding messages
          ↓
 REPORT (Phase 4, optional)
     ├─ report-gen.ts: render an HTML report of token-to-section mapping

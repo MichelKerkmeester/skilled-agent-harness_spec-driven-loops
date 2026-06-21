@@ -236,6 +236,8 @@ export async function collectDOM(page: Page): Promise<DOMCollection> {
           borderBottomWidth: cs.borderBottomWidth,
           borderLeftWidth: cs.borderLeftWidth,
           borderStyle: cs.borderStyle,
+          // SVG icon stroke — the real stroke-width, not the box-model border.
+          strokeWidth: cs.strokeWidth,
           // Depth
           boxShadow: cs.boxShadow,
           opacity: cs.opacity,

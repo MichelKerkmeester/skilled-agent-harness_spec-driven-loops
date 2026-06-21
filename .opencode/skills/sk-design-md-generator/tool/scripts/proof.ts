@@ -304,7 +304,19 @@ async function runProof(
   outputDir: string,
   previewPath?: string,
 ): Promise<void> {
-  const tokens: DesignTokens = JSON.parse(fs.readFileSync(tokensPath, 'utf-8'));
+  // A missing or corrupt tokens file must fail with a clear message, not an
+  // uncaught ENOENT/SyntaxError stack trace.
+  if (!fs.existsSync(tokensPath)) {
+    console.error(`Error: tokens file not found: ${tokensPath}`);
+    process.exit(1);
+  }
+  let tokens: DesignTokens;
+  try {
+    tokens = JSON.parse(fs.readFileSync(tokensPath, 'utf-8'));
+  } catch (err) {
+    console.error(`Error: could not parse tokens file ${tokensPath}: ${(err as Error).message}`);
+    process.exit(1);
+  }
 
   // Build palette in OKLCH
   const palette = tokens.colorTokens

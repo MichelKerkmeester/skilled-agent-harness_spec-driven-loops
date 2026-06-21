@@ -23,6 +23,9 @@ export interface CrawlOptions {
   extraUrls?: string[];
   verbose: boolean;
   waitFor?: WaitStrategy;
+  // Opt-in TLS bypass. Default false keeps certificate validation on so a
+  // crawl cannot be silently MITM'd.
+  insecure?: boolean;
 }
 
 // ────────────────────────────────────────────────────────────────
@@ -33,6 +36,7 @@ const DEFAULT_OPTIONS: CrawlOptions = {
   maxPages: 8,
   concurrency: 5,
   verbose: false,
+  insecure: false,
 };
 
 // ─── Constants ───────────────────────────────────────────────────────────────
@@ -623,6 +627,7 @@ async function processPage(
   url: string,
   verbose: boolean,
   waitStrategy?: WaitStrategy,
+  insecure = false,
 ): Promise<{ page: PageData | null; discoveredLinks: DiscoveredLink[]; error: string | null }> {
   const start = Date.now();
   log(verbose, `START ${url}`);
@@ -630,7 +635,8 @@ async function processPage(
   const context = await browser.newContext({
     userAgent: USER_AGENT,
     viewport: { width: 1440, height: 900 },
-    ignoreHTTPSErrors: true,
+    // TLS validation stays on unless the caller explicitly opts into --insecure.
+    ignoreHTTPSErrors: insecure,
   });
 
   const page = await context.newPage();
@@ -640,33 +646,31 @@ async function processPage(
     // Load page
     const { status, error } = await loadPage(page, url, waitStrategy);
 
-    if (error) {
-      // Check for timeout specifically
+    // Rate-limit / forbidden: retry regardless of whether a navigation error was
+    // raised. A clean forbidden or rate-limited response returns error === null,
+    // so it must be checked before the error branch or that error page gets
+    // crawled as a normal page.
+    if (status === 403 || status === 429) {
+      log(verbose, `RETRY (${status}) ${url}`);
+      await delay(3000);
+      const retry = await loadPage(page, url, waitStrategy);
+      if (retry.error || retry.status === 403 || retry.status === 429) {
+        return {
+          page: null,
+          discoveredLinks: [],
+          error: `HTTP ${status} after retry: ${url}`,
+        };
+      }
+      // Retry succeeded: the page now holds good content; fall through.
+    } else if (error) {
       if (error.includes('Timeout') || error.includes('timeout')) {
         log(verbose, `TIMEOUT ${url}`);
         return { page: null, discoveredLinks: [], error: `Timeout: ${url}` };
       }
-
-      // Retry on rate-limit and forbidden responses
-      if (status === 403 || status === 429) {
-        log(verbose, `RETRY (${status}) ${url}`);
-        await delay(3000);
-        const retry = await loadPage(page, url, waitStrategy);
-        if (retry.error || retry.status === 403 || retry.status === 429) {
-          return {
-            page: null,
-            discoveredLinks: [],
-            error: `HTTP ${status} after retry: ${url}`,
-          };
-        }
-      } else {
-        return { page: null, discoveredLinks: [], error: `Navigation error: ${error}` };
-      }
-    }
-
-    // Handle non-retry HTTP errors
-    if (status !== null && status >= 400 && status !== 403 && status !== 429) {
-      // Rate-limit and forbidden responses already handled above
+      return { page: null, discoveredLinks: [], error: `Navigation error: ${error}` };
+    } else if (status !== null && status >= 400) {
+      // Other client/server HTTP errors that are not the retryable forbidden
+      // or rate-limited statuses handled above.
       return { page: null, discoveredLinks: [], error: `HTTP ${status}: ${url}` };
     }
 
@@ -771,7 +775,7 @@ export async function crawlPages(
         await semaphore.acquire();
         try {
           await enforceDomainDelay(url, lastRequestByDomain);
-          return processPage(browser, url, opts.verbose, opts.waitFor);
+          return processPage(browser, url, opts.verbose, opts.waitFor, opts.insecure ?? false);
         } finally {
           semaphore.release();
         }
@@ -833,7 +837,7 @@ export async function crawlPages(
           await semaphore.acquire();
           try {
             await enforceDomainDelay(url, lastRequestByDomain);
-            return { url, result: await processPage(browser, url, opts.verbose) };
+            return { url, result: await processPage(browser, url, opts.verbose, undefined, opts.insecure ?? false) };
           } finally {
             semaphore.release();
           }

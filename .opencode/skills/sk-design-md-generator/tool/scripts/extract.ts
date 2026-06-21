@@ -51,11 +51,24 @@ interface ExtractOptions {
   verbose: boolean;
   waitFor?: WaitStrategy;
   mergeWith?: string;
+  insecure: boolean;
 }
 
 // ────────────────────────────────────────────────────────────────
 // 5. CORE LOGIC
 // ────────────────────────────────────────────────────────────────
+
+// Parse a CLI integer flag, rejecting NaN and non-positive values. A bad
+// --concurrency/--max-pages must fail loudly: Semaphore(-5) would silently
+// never admit a page (its `active < limit` guard can never hold).
+function parsePositiveInt(value: string | undefined, flag: string): number {
+  const parsed = Number.parseInt(value ?? '', 10);
+  if (!Number.isFinite(parsed) || parsed < 1) {
+    console.error(`Error: ${flag} requires a positive integer (got: ${value ?? '<missing>'})`);
+    process.exit(1);
+  }
+  return parsed;
+}
 
 function parseArgs(argv: string[]): ExtractOptions {
   const args = argv.slice(2);
@@ -69,6 +82,7 @@ function parseArgs(argv: string[]): ExtractOptions {
   let verbose = false;
   let waitFor: WaitStrategy | undefined;
   let mergeWith: string | undefined;
+  let insecure = false;
 
   let i = 0;
   while (i < args.length) {
@@ -79,9 +93,9 @@ function parseArgs(argv: string[]): ExtractOptions {
     } else if (arg === '--output') {
       output = args[++i];
     } else if (arg === '--concurrency') {
-      concurrency = parseInt(args[++i], 10);
+      concurrency = parsePositiveInt(args[++i], '--concurrency');
     } else if (arg === '--max-pages') {
-      maxPages = parseInt(args[++i], 10);
+      maxPages = parsePositiveInt(args[++i], '--max-pages');
     } else if (arg === '--extra-urls') {
       const file = args[++i];
       if (fs.existsSync(file)) {
@@ -106,6 +120,8 @@ function parseArgs(argv: string[]): ExtractOptions {
       concurrency = 8;
     } else if (arg === '--verbose') {
       verbose = true;
+    } else if (arg === '--insecure') {
+      insecure = true;
     } else if (!arg.startsWith('--')) {
       urls.push(arg);
     }
@@ -153,6 +169,7 @@ function parseArgs(argv: string[]): ExtractOptions {
     verbose,
     waitFor,
     mergeWith,
+    insecure,
   };
 }
 
@@ -225,6 +242,7 @@ async function extract(options: ExtractOptions): Promise<void> {
     extraUrls: options.extraUrls,
     verbose: options.verbose,
     waitFor: options.waitFor,
+    insecure: options.insecure,
   });
 
   console.log(`  Crawled ${crawlResult.pages.length} pages in ${(crawlResult.totalTime / 1000).toFixed(1)}s`);
@@ -494,9 +512,15 @@ async function extract(options: ExtractOptions): Promise<void> {
   let finalTokens = tokens;
   if (options.mergeWith && fs.existsSync(options.mergeWith)) {
     log(options.verbose, `Merging with existing tokens from ${options.mergeWith}...`);
-    const existingTokens: DesignTokens = JSON.parse(fs.readFileSync(options.mergeWith, 'utf-8'));
-    finalTokens = mergeTokenSets(existingTokens, tokens);
-    console.log(`  Merged: ${existingTokens.colorTokens.length} existing + ${tokens.colorTokens.length} new → ${finalTokens.colorTokens.length} colors`);
+    // A corrupt merge file must not discard a completed extraction. Fall back to
+    // the fresh tokens with a warning rather than crashing after all the work.
+    try {
+      const existingTokens: DesignTokens = JSON.parse(fs.readFileSync(options.mergeWith, 'utf-8'));
+      finalTokens = mergeTokenSets(existingTokens, tokens);
+      console.log(`  Merged: ${existingTokens.colorTokens.length} existing + ${tokens.colorTokens.length} new → ${finalTokens.colorTokens.length} colors`);
+    } catch (err) {
+      console.warn(`  Warning: could not read/parse --merge-with file (${options.mergeWith}); writing fresh tokens. ${(err as Error).message}`);
+    }
   }
   fs.writeFileSync(
     path.join(options.output, 'tokens.json'),

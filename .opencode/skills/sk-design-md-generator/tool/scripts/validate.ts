@@ -209,7 +209,8 @@ function checkFormatConsistency(md: string): { passed: boolean; failures: Valida
 }
 
 function checkSectionCompleteness(md: string): { passed: boolean; failures: ValidationIssue[] } {
-  // Support both v1 (9 sections) and v2 (17 sections) formats
+  // Required v2 core sections. Section 2.5 (Dark Mode) is conditional on a
+  // detected dark palette, and 14-17 are optional, so they are not required here.
   const v2Sections = [
     '## 0. Brand Context',
     '## 1. Visual Theme & Atmosphere',
@@ -218,10 +219,13 @@ function checkSectionCompleteness(md: string): { passed: boolean; failures: Vali
     '## 4. Component Stylings',
     '## 5. Layout Principles',
     '## 6. Depth & Elevation',
+    '## 6.5. Motion System',
     '## 7. Content & Voice',
     "## 8. Do's and Don'ts",
     '## 9. Accessibility Contract',
     '## 10. Responsive Behavior',
+    '## 11. State Matrix',
+    '## 12. Iconography',
     '## 13. Agent Prompt Guide',
   ];
   const v1Sections = [

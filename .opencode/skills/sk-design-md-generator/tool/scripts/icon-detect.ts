@@ -153,7 +153,7 @@ export function detectIcons(domCollections: DOMCollection[]): IconSystemInfo | n
   for (const collection of domCollections) {
     for (const el of collection.elements) {
       if (el.tag === 'svg' || el.tag === 'path' || el.tag === 'line' || el.tag === 'circle') {
-        const bw = parseFloat(el.borderTopWidth);
+        const bw = parseFloat(el.strokeWidth);
         if (!isNaN(bw) && bw > 0) strokeWidths.push(bw);
       }
     }

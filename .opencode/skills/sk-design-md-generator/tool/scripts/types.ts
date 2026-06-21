@@ -87,6 +87,7 @@ export interface ElementStyle {
   borderBottomWidth: string;
   borderLeftWidth: string;
   borderStyle: string;
+  strokeWidth: string;
   boxShadow: string;
   opacity: string;
   zIndex: string;

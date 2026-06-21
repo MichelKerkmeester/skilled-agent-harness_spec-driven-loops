@@ -773,12 +773,15 @@ export function clusterTokens(pages: PageExtraction[], cssVariables: CSSVariable
     if (usedInScale.has(color.hex)) continue;
     if (color.c < 0.01) continue; // skip near-achromatic
 
-    const group = oklchColors.filter(
-      (other) =>
-        !usedInScale.has(other.hex) &&
-        Math.abs(((color.h - other.h + 180) % 360) - 180) <= 10 &&
-        other.c >= 0.01,
-    );
+    const group = oklchColors.filter((other) => {
+      if (usedInScale.has(other.hex) || other.c < 0.01) return false;
+      // Circular hue distance in [0, 180]. A bare JS modulo of a negative
+      // difference returns a negative value, so normalize explicitly instead
+      // of the (diff + 180) % 360 - 180 trick (which breaks for diff < -180).
+      let hueDist = Math.abs(color.h - other.h) % 360;
+      if (hueDist > 180) hueDist = 360 - hueDist;
+      return hueDist <= 10;
+    });
 
     if (group.length >= 3) {
       const sorted = [...group].sort((a, b) => a.l - b.l);
