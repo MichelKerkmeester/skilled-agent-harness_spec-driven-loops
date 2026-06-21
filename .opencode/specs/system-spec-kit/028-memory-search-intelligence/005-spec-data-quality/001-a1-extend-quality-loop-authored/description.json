@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-a1-extend-quality-loop-authored",
+  "description": "Feature Specification: A1 Extend the Live Quality Machinery to Authored Specs",
+  "keywords": [
+    "feature",
+    "specification",
+    "extend",
+    "live",
+    "quality",
+    "machinery",
+    "authored",
+    "specs"
+  ],
+  "lastUpdated": "2026-06-21T10:22:30.613Z",
+  "specId": "001",
+  "folderSlug": "a1-extend-quality-loop-authored",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "005-spec-data-quality"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,23 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/019-novel-contradiction-detection",
+  "description": "Feature Specification: Novel Cross-Doc Contradiction and Staleness Detection",
+  "keywords": [
+    "feature",
+    "specification",
+    "novel",
+    "cross-doc",
+    "contradiction",
+    "staleness",
+    "detection"
+  ],
+  "lastUpdated": "2026-06-21T10:22:33.413Z",
+  "specId": "019",
+  "folderSlug": "novel-contradiction-detection",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "005-spec-data-quality"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/016-c3-answerable-questions-tags",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/016-c3-answerable-questions-tags",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "answerable questions tags",
+      "semantic intent tags",
+      "c3 retrieval tags",
+      "memory parser allow list",
+      "fusion consumer tags"
+    ],
+    "key_topics": [
+      "answerable",
+      "questions",
+      "tags",
+      "semantic",
+      "intent",
+      "retrieval",
+      "memory",
+      "parser",
+      "allow",
+      "list",
+      "fusion",
+      "consumer"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "memory-parser.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stage2-fusion.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A document can carry curated `answerable_questions` and `semantic_intent` tags that name the queries it should win and the intent class it serves, but those tags are inert today. The frontmatter extractors in `memory-parser.ts` only pull a fixed set of known fields (`trigger_phrases` at L785-863, `content_type` at L864, `importance_tier` at L880), so an `answerable_questions` field persists on disk and is silently dropped from the vector and the metadata payload. The fusion stage in `stage2-fusion.ts` consumes only `validationMetadata.qualityScore` and a few spec signals (L260-289), so even if the tags reached the row there is no consumer to read them. This is the 028 dead-field trap: a field that exists on the JSON surface but never moves a single retrieval result.",
+    "created_at": "2026-06-21T10:22:34.987Z",
+    "last_save_at": "2026-06-21T10:22:34.987Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

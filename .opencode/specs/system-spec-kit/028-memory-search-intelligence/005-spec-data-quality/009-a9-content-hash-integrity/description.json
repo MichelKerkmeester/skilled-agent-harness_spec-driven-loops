@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/009-a9-content-hash-integrity",
+  "description": "Feature Specification: A9 Read-Time Content-Hash Integrity Verification",
+  "keywords": [
+    "feature",
+    "specification",
+    "read-time",
+    "content-hash",
+    "integrity",
+    "verification"
+  ],
+  "lastUpdated": "2026-06-21T10:22:31.918Z",
+  "specId": "009",
+  "folderSlug": "a9-content-hash-integrity",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "005-spec-data-quality"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

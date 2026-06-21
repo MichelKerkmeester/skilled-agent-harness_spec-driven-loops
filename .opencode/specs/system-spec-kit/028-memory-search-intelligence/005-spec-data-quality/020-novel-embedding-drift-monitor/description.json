@@ -1,0 +1,23 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/020-novel-embedding-drift-monitor",
+  "description": "Feature Specification: Novel embedding-drift monitoring plus alerting",
+  "keywords": [
+    "feature",
+    "specification",
+    "novel",
+    "embedding-drift",
+    "monitoring",
+    "plus",
+    "alerting"
+  ],
+  "lastUpdated": "2026-06-21T10:22:33.566Z",
+  "specId": "020",
+  "folderSlug": "novel-embedding-drift-monitor",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "005-spec-data-quality"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/025-novel-per-doc-quality-slas",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/025-novel-per-doc-quality-slas",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "per doc quality sla",
+      "quality threshold",
+      "report only ticket",
+      "freshness queue",
+      "description governance block"
+    ],
+    "key_topics": [
+      "per",
+      "doc",
+      "quality",
+      "sla",
+      "threshold",
+      "report",
+      "only",
+      "ticket",
+      "freshness",
+      "queue",
+      "description",
+      "governance"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/description/description-schema.ts",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "description-schema.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/description/description-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Doc Quality",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The system computes a per-doc quality score but never holds a doc to a named quality bar over time. The pure scorer `computeMemoryQualityScore` ships and runs on the live save path (`quality-loop.ts:392`). The governance fields that describe a doc (provenance, source_kind, document-weight, content_type, temporal and freshness governance) are already computed on the memory side at `pe-gating.ts` and `write-provenance.ts`. What is missing is a named threshold that says this score is below an acceptable level for this surface and that turns that fact into a tracked actionable item. Today a doc whose quality drifts below a reasonable bar is silently acceptable. There is no SLA and no ticket and no queue entry, so quality regression on an authored doc is invisible until someone reads it again.",
+    "created_at": "2026-06-21T10:22:34.993Z",
+    "last_save_at": "2026-06-21T10:22:34.993Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

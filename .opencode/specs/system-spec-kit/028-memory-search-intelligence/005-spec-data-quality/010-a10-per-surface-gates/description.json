@@ -1,0 +1,21 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/010-a10-per-surface-gates",
+  "description": "Feature Specification: A10 Per-Surface Gates",
+  "keywords": [
+    "feature",
+    "specification",
+    "a10",
+    "per-surface",
+    "gates"
+  ],
+  "lastUpdated": "2026-06-21T10:22:32.072Z",
+  "specId": "010",
+  "folderSlug": "a10-per-surface-gates",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "005-spec-data-quality"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

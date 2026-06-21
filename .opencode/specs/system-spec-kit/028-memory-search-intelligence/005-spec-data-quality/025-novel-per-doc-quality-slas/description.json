@@ -1,0 +1,21 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/025-novel-per-doc-quality-slas",
+  "description": "Feature Specification: Per-Doc Quality SLAs",
+  "keywords": [
+    "feature",
+    "specification",
+    "per-doc",
+    "quality",
+    "slas"
+  ],
+  "lastUpdated": "2026-06-21T10:22:34.370Z",
+  "specId": "025",
+  "folderSlug": "novel-per-doc-quality-slas",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "005-spec-data-quality"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

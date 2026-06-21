@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality"
     last_updated_at: "2026-06-21T00:00:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Synthesized five lineages and thirty-seven iterations into the canonical verdict"
-    next_safe_action: "Stage 1 build, the JSON-schema validation gate, if the operator approves a build"
+    recent_action: "Scaffolded 28 implementation child phases and recorded the phase-parent state"
+    next_safe_action: "Build 026 the shared safe-fix engine first, then 004 the measured GO schema gate"
     blockers: []
     key_files:
       - "research/research.md"
@@ -42,7 +42,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 005-spec-data-quality |
-| **Completed** | Research complete, no build shipped |
+| **Completed** | Research complete, 28 implementation child phases scaffolded, no build shipped |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
@@ -64,6 +64,10 @@ Five distinct deep-research lineages ran thirty-seven substantive iterations, ex
 ### The canonical research synthesis
 
 The synthesis at `research/research.md` converges the five lineages into one program. It records the truncation law and the live default-ON quality-loop keystone, tiers every recommendation GO, GO-on-cost, CONDITIONAL or NO-GO, names the four novel floor-bypassing capabilities, lays out the build-ready engine plus the 17-stage governance rollout with a per-stage rollback and re-measured checkpoint, then restates which claims are measured versus hypothesis-until-prod-measured.
+
+### Current state, the 28-phase scaffold
+
+This packet is now a phase parent. The research stays at the root and the implementation moved into 28 child phases, one per converged recommendation. The children group as 10 Tier-A on-write reuse-first phases, 3 Tier-B retroactive automation phases, 5 Tier-C retrieval phases gated on C2, 7 novel out-of-the-box GO phases and 3 infra phases. Each child carries its own spec.md plus description.json plus graph-metadata.json. The parent graph-metadata.json children_ids lists all 28. The build order is fixed by two dependencies. 026 the shared safe-fix engine ships before A1 and B1 and B2 because those three reuse it. 015 the C2 prod-mode benchmark gate ships before every Tier-C item and before the 027 floor experiment because no retrieval candidate promotes without a prod-mode completeRecall@3 read. The full per-phase map and verdict tiers live in the parent spec.md phase-documentation map.
 <!-- /ANCHOR:what-built -->
 
 ---

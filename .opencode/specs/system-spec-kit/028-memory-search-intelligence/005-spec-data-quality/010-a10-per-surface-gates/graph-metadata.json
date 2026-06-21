@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/010-a10-per-surface-gates",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/010-a10-per-surface-gates",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "per-surface gates",
+      "skill-doc frontmatter gate",
+      "route-validate contract",
+      "workflow yaml schema",
+      "trigger vocabulary canary"
+    ],
+    "key_topics": [
+      "per-surface",
+      "gates",
+      "skill-doc",
+      "frontmatter",
+      "gate",
+      "route-validate",
+      "contract",
+      "workflow",
+      "yaml",
+      "schema",
+      "trigger",
+      "vocabulary"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/commands/doctor/scripts/route-validate.py",
+      ".opencode/skills/system-skill-advisor/mcp_server/tools/advisor-rebuild.ts",
+      ".opencode/skills/system-spec-kit/shared/gate-3-classifier.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/data/prompt-policy.default.json",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "route-validate.py",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/route-validate.py",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-rebuild.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tools/advisor-rebuild.ts",
+        "source": "derived"
+      },
+      {
+        "name": "gate-3-classifier.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/gate-3-classifier.ts",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-policy.default.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/data/prompt-policy.default.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Surface Gates",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Three",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Each",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Three authoring surfaces beyond spec-doc and JSON ship machinery that is never enforced at write time. The skill-doc surface has 20 SKILL.md files carrying two distinct version grammars (`vX.Y` and `version: N`, confirmed across the live skill corpus) with no linter to hold either steady. The command surface ships `route-validate.py` with eight assertions, but they run doctor-only, so 27 of 28 command docs are ungated against the router contract. About 30 workflow YAMLs have no schema validator. The intent-trigger vocabulary lives in three hand-synced copies (CLAUDE.md prose, `gate-3-classifier.ts` FILE_WRITE_TRIGGERS at line 67, and advisor `prompt-policy.default.json` WORK_INTENT_VERBS read at `prompt-policy.ts:42`) with no canary to catch divergence.",
+    "created_at": "2026-06-21T10:22:34.984Z",
+    "last_save_at": "2026-06-21T10:22:34.984Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/008-a8-surface-provenance-fields",
+  "description": "Feature Specification: A8 Surface Provenance Fields",
+  "keywords": [
+    "feature",
+    "specification",
+    "surface",
+    "provenance",
+    "fields"
+  ],
+  "lastUpdated": "2026-06-21T10:22:31.737Z",
+  "specId": "008",
+  "folderSlug": "a8-surface-provenance-fields",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "005-spec-data-quality"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

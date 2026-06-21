@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/011-b1-scheduled-dq-sweep",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/011-b1-scheduled-dq-sweep",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "scheduled dq sweep",
+      "data quality sweep",
+      "github actions schedule",
+      "post-merge hook",
+      "guarded auto-fix"
+    ],
+    "key_topics": [
+      "scheduled",
+      "sweep",
+      "data",
+      "quality",
+      "github",
+      "actions",
+      "schedule",
+      "post-merge",
+      "hook",
+      "guarded",
+      "auto-fix",
+      "eight"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The eight shipped CI workflows are all `on: pull_request` with `paths:` filters, and a grep for `schedule:` or `cron:` across `.github/workflows/` returns empty, so no data-quality check runs on a timer or on demand. The change-triggered tiers are blind to three escape classes: a defect in a file the `paths:` filter never matched, a backfill blind spot a one-shot migration left behind, and cross-surface coherence drift between a spec doc and its JSONs that no single-file gate sees.",
+    "created_at": "2026-06-21T10:22:34.984Z",
+    "last_save_at": "2026-06-21T10:22:34.984Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

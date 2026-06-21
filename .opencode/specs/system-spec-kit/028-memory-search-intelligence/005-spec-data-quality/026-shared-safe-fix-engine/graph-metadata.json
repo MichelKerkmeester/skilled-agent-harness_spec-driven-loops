@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/026-shared-safe-fix-engine",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/026-shared-safe-fix-engine",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "shared safe-fix engine",
+      "detector registry",
+      "fixClass allow-list",
+      "dq-engine runDetectors",
+      "content_hash idempotency"
+    ],
+    "key_topics": [
+      "shared",
+      "safe-fix",
+      "engine",
+      "detector",
+      "registry",
+      "fixclass",
+      "allow-list",
+      "dq-engine",
+      "rundetectors",
+      "idempotency",
+      "five",
+      "keystone"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shared Safe",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Engine",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose One",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The five keystone front doors converge on one shared core that does not exist yet (`research.md` section 4). A1 is on-write and report-only, B1 is scheduled and headless, B2 is interactive on `/doctor`, B3 emits queue rows, and every Tier-C retrieval detector must pass one promotion gate. With no shared core each front door would carry its own detector list, its own notion of what a safe fix is, and its own write path, so the five would drift on the one decision that matters: whether a given fix is allowed to mutate a git-tracked authored artifact. There is no `detector-registry.ts` single source of truth and no `dq-engine.ts` pure runner today, so the deny-by-default safety property the program depends on has nowhere to live.",
+    "created_at": "2026-06-21T10:22:34.993Z",
+    "last_save_at": "2026-06-21T10:22:34.993Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

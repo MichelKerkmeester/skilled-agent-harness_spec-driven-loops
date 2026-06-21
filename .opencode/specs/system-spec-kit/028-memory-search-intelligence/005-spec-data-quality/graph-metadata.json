@@ -3,7 +3,36 @@
   "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
   "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
   "parent_id": "system-spec-kit/028-memory-search-intelligence",
-  "children_ids": [],
+  "children_ids": [
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/001-a1-extend-quality-loop-authored",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/002-a2-trigger-propagation-description",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-a3-enum-constrain-schemas",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-a4-schema-warn-to-error",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-a5-trigger-coherence-assertion",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-a6-hvr-style-autofix",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/007-a7-ears-constraints-req-coverage",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/008-a8-surface-provenance-fields",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/009-a9-content-hash-integrity",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/010-a10-per-surface-gates",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/011-b1-scheduled-dq-sweep",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/012-b2-doctor-dq-route",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/013-b3-retrieval-feedback-edge",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/014-c1-chunk-prefix",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/015-c2-prodmode-recall-gate",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/016-c3-answerable-questions-tags",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/017-c4-metadata-fusion",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/018-c5-llm-judge-scorer",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/019-novel-contradiction-detection",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/020-novel-embedding-drift-monitor",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/021-novel-example-test-generation",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/022-novel-context-budget-assembler",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/023-novel-typed-relation-kg",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/024-novel-freshness-decay-queue",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/025-novel-per-doc-quality-slas",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/026-shared-safe-fix-engine",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/027-retrieval-floor-experiment",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/028-governance-rollout"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -48,7 +77,9 @@
       "checklist.md",
       "decision-record.md",
       "spec.md",
-      "implementation-summary.md"
+      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+      "implementation-summary.md",
+      "handover.md"
     ],
     "entities": [
       {
@@ -94,9 +125,21 @@
         "source": "derived"
       },
       {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -182,23 +225,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "Spec-kit already stores rich docs and two metadata JSONs per packet, but that data is not tuned for the three jobs it has to do: feed retrieval, steer AI adherence and stay readable as logic. This packet ran the research that decides which of those quality levers are worth building by default. Stage 0 captured a fresh-Opus online sweep of about thirty cited sources across seven angles. Nineteen by-angle iterations then verified each ranked candidate against the live retrieval code.",
+    "causal_summary": "Spec-kit already stores rich docs and two metadata JSONs per packet, but that data is not tuned for the three jobs it has to do: feed retrieval, steer AI adherence and stay readable as logic. This packet ran the research that decides which of those quality levers are worth building by default. Stage 0 captured a fresh-Opus online sweep of about thirty cited sources across seven angles. The official multi-lineage loop then ran five distinct deep-research lineages across thirty-seven substantive iterations, executed as parallel opus-via-claude2 read-only seats, each verifying its ranked candidates against the live retrieval and validation code. All five lineages converged.",
     "created_at": "2026-06-21T00:00:00.000Z",
-    "last_save_at": "2026-06-21T07:23:18.859Z",
+    "last_save_at": "2026-06-21T10:22:34.971Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,7 +239,8 @@
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
-      "research/research.md"
+      "research/research.md",
+      "handover.md"
     ],
     "last_active_child_id": null,
     "last_active_at": null

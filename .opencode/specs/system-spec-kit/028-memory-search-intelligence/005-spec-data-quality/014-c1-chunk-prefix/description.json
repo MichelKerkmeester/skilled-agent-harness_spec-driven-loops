@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/014-c1-chunk-prefix",
+  "description": "Feature Specification: C1 deterministic header-path plus curated-signal chunk prefix",
+  "keywords": [
+    "feature",
+    "specification",
+    "deterministic",
+    "header-path",
+    "plus",
+    "curated-signal",
+    "chunk",
+    "prefix"
+  ],
+  "lastUpdated": "2026-06-21T10:22:32.665Z",
+  "specId": "014",
+  "folderSlug": "c1-chunk-prefix",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "005-spec-data-quality"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

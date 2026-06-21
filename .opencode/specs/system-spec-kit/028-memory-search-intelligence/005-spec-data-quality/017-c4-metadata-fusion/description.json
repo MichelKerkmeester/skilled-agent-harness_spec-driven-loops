@@ -1,0 +1,21 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/017-c4-metadata-fusion",
+  "description": "Feature Specification: C4 metadata fusion alpha-blend",
+  "keywords": [
+    "feature",
+    "specification",
+    "metadata",
+    "fusion",
+    "alpha-blend"
+  ],
+  "lastUpdated": "2026-06-21T10:22:33.113Z",
+  "specId": "017",
+  "folderSlug": "c4-metadata-fusion",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "005-spec-data-quality"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

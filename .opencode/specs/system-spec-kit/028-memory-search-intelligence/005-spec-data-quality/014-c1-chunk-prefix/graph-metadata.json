@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/014-c1-chunk-prefix",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/014-c1-chunk-prefix",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "chunk prefix",
+      "header path",
+      "embedding coverage guard",
+      "dual cache key",
+      "retrieval re-embed"
+    ],
+    "key_topics": [
+      "chunk",
+      "prefix",
+      "header",
+      "path",
+      "embedding",
+      "coverage",
+      "guard",
+      "dual",
+      "cache",
+      "key",
+      "retrieval",
+      "re-embed"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/content-normalizer.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts",
+      ".opencode/skills/system-spec-kit/shared/embeddings.ts",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "content-normalizer.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/content-normalizer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embedding-cache.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embeddings.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Re",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The embed path strips the highest-value curated retrieval signal before it ever reaches a vector. `normalizeContentForEmbedding` at `content-normalizer.ts:216-231` strips the YAML frontmatter at line 222, strips anchors at line 223, and flattens every markdown heading to a plain label at line 228 via `normalizeHeadings`. The frontmatter `trigger_phrases` and `title` and the header path that the author curated are gone by the time the chunk is hashed and embedded, so a spec-doc chunk vector carries only its flattened body prose and none of its strongest intent signal.",
+    "created_at": "2026-06-21T10:22:34.986Z",
+    "last_save_at": "2026-06-21T10:22:34.986Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

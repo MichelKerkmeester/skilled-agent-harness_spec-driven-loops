@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/021-novel-example-test-generation",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/021-novel-example-test-generation",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "example generation",
+      "test generation from specs",
+      "additive adherence artifacts",
+      "novel go floor bypass",
+      "ears ac coverage consumer"
+    ],
+    "key_topics": [
+      "example",
+      "generation",
+      "test",
+      "specs",
+      "additive",
+      "adherence",
+      "artifacts",
+      "novel",
+      "floor",
+      "bypass",
+      "ears",
+      "coverage"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl",
+      ".opencode/skills/system-spec-kit/templates/manifest/tasks.md.tmpl",
+      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/templates/manifest/tasks.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "validator-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Automatic Example",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Generation From Specs",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Authored",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Authored spec requirements are prose-only, so adherence to a requirement is unprovable per requirement: there is no worked example showing the intended behavior and no test stub that pins it. The downstream `AC_COVERAGE` and `REQ_COVERAGE` gates measure that a requirement is linked to a task or acceptance criterion, but they cannot measure whether the requirement is concretely exercised because no concrete artifact exists for them to count. The research names this the strongest adherence lever in the topic and a genuinely novel floor-bypasser the reuse-first work missed: it writes additive adherence artifacts not vector rows, so it pays no truncation-floor tax and no re-index cost (`research.md` section 3 row \"Automatic example and test generation from specs\", verdict GO-on-cost; `research.md` section 1 truncation law). The opposing rail is equally clear: an auto-generator that silently rewrote requirement prose would cross the no-body-mutate rail and reward-hack a proxy (`research.md` section 3 NO-GO row \"Retrieval-driven doc AUTO-rewriting\"; `research.md` section 5 INV-1).",
+    "created_at": "2026-06-21T10:22:34.990Z",
+    "last_save_at": "2026-06-21T10:22:34.990Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

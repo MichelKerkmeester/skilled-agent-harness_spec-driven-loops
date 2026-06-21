@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/015-c2-prodmode-recall-gate",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/015-c2-prodmode-recall-gate",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "prod mode recall gate",
+      "complete recall at 3",
+      "spec corpus golden",
+      "run spec recall gate",
+      "retrieval regression gate"
+    ],
+    "key_topics": [
+      "prod",
+      "mode",
+      "recall",
+      "gate",
+      "complete",
+      "spec",
+      "corpus",
+      "golden",
+      "run",
+      "retrieval",
+      "regression",
+      "path"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-eval-v2.mjs",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "run-eval-v2.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-eval-v2.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mode Recall Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The prod retrieval path truncates every query to a 3-result floor (`confidence-truncation.ts`, `DEFAULT_MIN_RESULTS = 3`, applied at the prod seam), so 028 measured a 5.9x eval-versus-prod fidelity gap on this corpus. The dual-mode harness `run-eval-v2.mjs` already runs an eval lens and a prod lens on one copy DB and reports an `evalVsProdDelta` fidelity metric at K of 3, 5 and 8, but it performs no baseline comparison and its `process.exitCode = 1` (line 357) is a crash handler rather than a recall verdict. The shipped single-target goldens saturate and hide wins because a 3-target query has something to be incomplete about and a single-target query does not. The net effect is that every Tier-C retrieval candidate (C1, C3, C4, C5) stays a hypothesis with no instrument to promote or regress it.",
+    "created_at": "2026-06-21T10:22:34.987Z",
+    "last_save_at": "2026-06-21T10:22:34.987Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

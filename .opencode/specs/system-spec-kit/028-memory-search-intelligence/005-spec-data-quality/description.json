@@ -3,16 +3,14 @@
   "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
   "description": "Feature Specification: Spec-Kit Data Quality by Default",
   "keywords": [
-    "spec",
+    "feature",
+    "specification",
+    "spec-kit",
     "data",
     "quality",
-    "retrieval",
-    "adherence",
-    "logic",
-    "metadata",
-    "fusion"
+    "default"
   ],
-  "lastUpdated": "2026-06-21T00:00:00.000Z",
+  "lastUpdated": "2026-06-21T10:27:31.361Z",
   "specId": "005",
   "folderSlug": "spec-data-quality",
   "parentChain": [

@@ -1,0 +1,21 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-a5-trigger-coherence-assertion",
+  "description": "Feature Specification: Cross-Surface trigger_phrases Coherence Assertion",
+  "keywords": [
+    "feature",
+    "specification",
+    "cross-surface",
+    "coherence",
+    "assertion"
+  ],
+  "lastUpdated": "2026-06-21T10:22:31.223Z",
+  "specId": "005",
+  "folderSlug": "a5-trigger-coherence-assertion",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "005-spec-data-quality"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

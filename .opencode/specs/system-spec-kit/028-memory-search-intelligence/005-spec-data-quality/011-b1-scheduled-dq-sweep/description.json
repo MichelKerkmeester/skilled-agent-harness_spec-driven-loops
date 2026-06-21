@@ -1,0 +1,20 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/011-b1-scheduled-dq-sweep",
+  "description": "Feature Specification: B1 Scheduled DQ Sweep",
+  "keywords": [
+    "feature",
+    "specification",
+    "scheduled",
+    "sweep"
+  ],
+  "lastUpdated": "2026-06-21T10:22:32.219Z",
+  "specId": "011",
+  "folderSlug": "b1-scheduled-dq-sweep",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "005-spec-data-quality"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

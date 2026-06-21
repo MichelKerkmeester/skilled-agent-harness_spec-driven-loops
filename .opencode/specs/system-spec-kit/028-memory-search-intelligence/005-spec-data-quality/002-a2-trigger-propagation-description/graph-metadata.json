@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/002-a2-trigger-propagation-description",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/002-a2-trigger-propagation-description",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "trigger propagation description",
+      "extractive description derive",
+      "description json triggers",
+      "extractTriggersFromContent cap",
+      "subset coherence triggers"
+    ],
+    "key_topics": [
+      "trigger",
+      "propagation",
+      "description",
+      "extractive",
+      "derive",
+      "json",
+      "triggers",
+      "extracttriggersfromcontent",
+      "cap",
+      "subset",
+      "coherence",
+      "per-folder"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/description/description-schema.ts",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "folder-discovery.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts",
+        "source": "derived"
+      },
+      {
+        "name": "quality-loop.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts",
+        "source": "derived"
+      },
+      {
+        "name": "description-schema.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/description/description-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Trigger Propagation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Derived Description",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Data Quality",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The per-folder `description.json` generator never propagates the curated frontmatter `trigger_phrases` and its `description` is a verbatim copy of the spec title. `extractDescription` Pass 1 returns the first `# ` heading unchanged (`folder-discovery.ts:455-461`), `generatePerFolderDescription` builds the record with `description` and `keywords` but no `trigger_phrases` key (`folder-discovery.ts:872-902`), and the field is declared optional in both the interface (`folder-discovery.ts:54`) and the schema (`description-schema.ts:66`) yet is never written. The live sibling `005/description.json` proves both gaps in one file. Its `description` reads \"Feature Specification: Spec-Kit Data Quality by Default\" and it carries no `trigger_phrases` key at all even though `005/spec.md` frontmatter holds five curated triggers.",
+    "created_at": "2026-06-21T10:22:34.978Z",
+    "last_save_at": "2026-06-21T10:22:34.978Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

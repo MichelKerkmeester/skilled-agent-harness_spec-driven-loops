@@ -1,0 +1,21 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/023-novel-typed-relation-kg",
+  "description": "Feature Specification: Novel typed-relation KG auto-extracted",
+  "keywords": [
+    "feature",
+    "specification",
+    "novel",
+    "typed-relation",
+    "auto-extracted"
+  ],
+  "lastUpdated": "2026-06-21T10:22:34.052Z",
+  "specId": "023",
+  "folderSlug": "novel-typed-relation-kg",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "005-spec-data-quality"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

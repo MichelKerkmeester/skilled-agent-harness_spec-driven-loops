@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/009-a9-content-hash-integrity",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/009-a9-content-hash-integrity",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "content hash integrity",
+      "read time hash verify",
+      "storage drift guard",
+      "verify_integrity content hash",
+      "silent corruption detection"
+    ],
+    "key_topics": [
+      "content",
+      "hash",
+      "integrity",
+      "read",
+      "time",
+      "verify",
+      "storage",
+      "drift",
+      "guard",
+      "silent",
+      "corruption",
+      "detection"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/content-id.ts",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "vector-index-queries.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts",
+        "source": "derived"
+      },
+      {
+        "name": "content-id.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/content-id.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Time Content",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hash Integrity Verification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Recompute",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `content_hash` column on `memory_index` is written once at save time and used only as an embedding-cache key and an idempotency receipt key. It is never recomputed against the stored body on read. The existing `verify_integrity` function at `lib/search/vector-index-queries.ts:1524` checks for orphaned vectors, missing vectors and orphaned files, but it never re-hashes a row body to confirm the body still matches its stored hash. A SHA-256 helper already exists at `lib/content-id.ts:14` (`hashContentBody`). So silent DB or migration corruption of a stored body surfaces as degraded recall with no fault signal, when the stored hash is exactly the witness that could catch it.",
+    "created_at": "2026-06-21T10:22:34.983Z",
+    "last_save_at": "2026-06-21T10:22:34.983Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

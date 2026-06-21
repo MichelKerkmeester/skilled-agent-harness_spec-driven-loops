@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality"
     last_updated_at: "2026-06-21T00:00:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Compiled the canonical multi-lineage research synthesis and tiered candidates"
-    next_safe_action: "Stage 1 build, the JSON-schema validation gate, if the operator approves a build"
+    recent_action: "Scaffolded the 28-phase implementation children and added the parent phase-documentation map"
+    next_safe_action: "Build 026 the shared safe-fix engine first, then 004 the measured GO schema gate"
     blockers: []
     key_files:
       - "research/research.md"
@@ -142,6 +142,72 @@ Decide, from external evidence, which data-quality techniques spec-kit should ad
 | Risk | Vendor-only claims treated as benchmarked fact | Med | Flag every vendor-only claim in the brief and downgrade it during the loop |
 | Risk | Chunking choice presented as universal | Med | Carry metadata fusion as the robust signal rather than a specific chunker |
 <!-- /ANCHOR:risks -->
+
+---
+
+<!-- ANCHOR:phase-map -->
+## PHASE DOCUMENTATION MAP
+
+This packet is now a phase parent. The research lives at the root and the implementation lives in the 28 child phases below, one child per converged recommendation. Each child carries its own spec.md plus the two metadata JSONs. The verdict tier comes straight from the canonical synthesis in `research/research.md`.
+
+### Tier A on-write reuse-first
+
+| Phase | Folder | Scope | Verdict tier |
+|-------|--------|-------|--------------|
+| 001 | `001-a1-extend-quality-loop-authored/` | Extend the live default-ON quality loop to score authored spec docs, the keystone on-write reuse seam | GO-on-cost |
+| 002 | `002-a2-trigger-propagation-description/` | Propagate trigger phrases into description.json so retrieval and adherence read the same signal | GO-on-cost |
+| 003 | `003-a3-enum-constrain-schemas/` | Enum-constrain the two metadata JSON schemas so invalid field values fail fast | GO-on-cost |
+| 004 | `004-a4-schema-warn-to-error/` | Promote the JSON-schema validation gate from warn to error, the one measured unconditional GO | GO |
+| 005 | `005-a5-trigger-coherence-assertion/` | Assert trigger coherence between spec.md and description.json so they cannot drift | GO-on-cost |
+| 006 | `006-a6-hvr-style-autofix/` | Autofix HVR style violations at write time so the voice rules hold without manual passes | GO-on-cost |
+| 007 | `007-a7-ears-constraints-req-coverage/` | Add EARS constraints and requirement-coverage checks to raise adherence on authored docs | GO-on-cost |
+| 008 | `008-a8-surface-provenance-fields/` | Surface provenance fields on each doc so a reader can trace where a claim came from | GO-on-cost |
+| 009 | `009-a9-content-hash-integrity/` | Add a content-hash integrity field so a stale or tampered doc surfaces as an error | GO-on-cost |
+| 010 | `010-a10-per-surface-gates/` | Add per-surface gates so each doc family enforces only the checks that fit it | GO-on-cost |
+
+### Tier B retroactive automation
+
+| Phase | Folder | Scope | Verdict tier |
+|-------|--------|-------|--------------|
+| 011 | `011-b1-scheduled-dq-sweep/` | Run a scheduled data-quality sweep across the corpus, the keystone retroactive automation | GO-on-cost |
+| 012 | `012-b2-doctor-dq-route/` | Add a doctor data-quality route so an operator can run the sweep on demand | GO-on-cost |
+| 013 | `013-b3-retrieval-feedback-edge/` | Write a retrieval-feedback edge so observed recall flows back into the quality signal | GO-on-cost |
+
+### Tier C retrieval, C2-gated
+
+| Phase | Folder | Scope | Verdict tier |
+|-------|--------|-------|--------------|
+| 014 | `014-c1-chunk-prefix/` | Prefix each embedded chunk with its header path and global identity to lift recall | CONDITIONAL |
+| 015 | `015-c2-prodmode-recall-gate/` | Stand up the prod-mode completeRecall@3 benchmark gate, the unblocker for every Tier-C item | CONDITIONAL |
+| 016 | `016-c3-answerable-questions-tags/` | Tag each doc with the questions it can answer so retrieval matches intent | CONDITIONAL |
+| 017 | `017-c4-metadata-fusion/` | Fuse metadata into the embedding so the signal travels inside the vector not beside it | CONDITIONAL |
+| 018 | `018-c5-llm-judge-scorer/` | Add an LLM-judge scorer to grade retrieval candidates the floor would otherwise hide | CONDITIONAL |
+
+### Novel out-of-the-box GO
+
+| Phase | Folder | Scope | Verdict tier |
+|-------|--------|-------|--------------|
+| 019 | `019-novel-contradiction-detection/` | Detect contradictions across docs so conflicting claims surface before a reader trusts one | GO |
+| 020 | `020-novel-embedding-drift-monitor/` | Monitor embedding drift so a re-index need surfaces as a signal not a guess | GO |
+| 021 | `021-novel-example-test-generation/` | Generate example tests from a doc so its claims carry executable evidence | GO |
+| 022 | `022-novel-context-budget-assembler/` | Assemble a context budget so the most relevant docs fit the window without truncation loss | GO |
+| 023 | `023-novel-typed-relation-kg/` | Build a typed-relation knowledge graph so edges carry meaning not just adjacency | GO |
+| 024 | `024-novel-freshness-decay-queue/` | Queue docs by freshness decay so stale records get re-checked first | GO |
+| 025 | `025-novel-per-doc-quality-slas/` | Set per-doc quality SLAs so each doc family carries its own measurable floor | GO |
+
+### Infra
+
+| Phase | Folder | Scope | Verdict tier |
+|-------|--------|-------|--------------|
+| 026 | `026-shared-safe-fix-engine/` | Build the shared safe-fix engine that A1, B1 and B2 all reuse, the foundation seam | Infra |
+| 027 | `027-retrieval-floor-experiment/` | Raise the result budget and measure whether results 4 through 10 carry signal | Infra |
+| 028 | `028-governance-rollout/` | Define the 17-stage rollout plus migration plus safety model plus the consolidated NO-GO list | Infra |
+
+### Build-Order Dependencies
+
+- The 026 shared safe-fix engine ships before 001 A1 and 011 B1 and 012 B2, because those three reuse it as their fix path.
+- The 015 C2 prod-mode benchmark gate ships before every Tier-C item and before the 027 floor experiment, because no retrieval candidate can promote without a prod-mode completeRecall@3 read.
+<!-- /ANCHOR:phase-map -->
 
 ---
 

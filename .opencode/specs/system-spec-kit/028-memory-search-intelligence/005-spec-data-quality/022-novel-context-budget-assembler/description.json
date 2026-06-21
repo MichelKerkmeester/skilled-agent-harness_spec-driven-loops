@@ -1,0 +1,21 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/022-novel-context-budget-assembler",
+  "description": "Feature Specification: Novel Context-Budget-Fitting Assembler",
+  "keywords": [
+    "feature",
+    "specification",
+    "novel",
+    "context-budget-fitting",
+    "assembler"
+  ],
+  "lastUpdated": "2026-06-21T10:22:33.895Z",
+  "specId": "022",
+  "folderSlug": "novel-context-budget-assembler",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "005-spec-data-quality"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

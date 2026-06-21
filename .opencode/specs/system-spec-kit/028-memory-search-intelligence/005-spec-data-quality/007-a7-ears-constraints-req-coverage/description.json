@@ -1,0 +1,23 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/007-a7-ears-constraints-req-coverage",
+  "description": "Feature Specification: A7 EARS Patterns, Constraint Tier, and REQ_COVERAGE Gate",
+  "keywords": [
+    "feature",
+    "specification",
+    "ears",
+    "patterns",
+    "constraint",
+    "tier",
+    "gate"
+  ],
+  "lastUpdated": "2026-06-21T10:22:31.564Z",
+  "specId": "007",
+  "folderSlug": "a7-ears-constraints-req-coverage",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "005-spec-data-quality"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

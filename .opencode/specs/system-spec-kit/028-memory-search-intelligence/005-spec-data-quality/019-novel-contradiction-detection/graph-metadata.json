@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/019-novel-contradiction-detection",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/019-novel-contradiction-detection",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "contradiction detection",
+      "staleness detection",
+      "cross-doc consistency",
+      "llm entailment scoring",
+      "candidate-pair gating"
+    ],
+    "key_topics": [
+      "contradiction",
+      "detection",
+      "staleness",
+      "cross-doc",
+      "consistency",
+      "llm",
+      "entailment",
+      "scoring",
+      "candidate-pair",
+      "gating",
+      "corpus",
+      "detectors"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "tools/causal-tools.ts",
+      "lib/extraction/entity-extractor.ts",
+      "handlers/causal-graph.ts",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "causal-tools.ts",
+        "kind": "code",
+        "path": "tools/causal-tools.ts",
+        "source": "derived"
+      },
+      {
+        "name": "entity-extractor.ts",
+        "kind": "code",
+        "path": "lib/extraction/entity-extractor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "causal-graph.ts",
+        "kind": "code",
+        "path": "handlers/causal-graph.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Novel Cross",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Doc Contradiction",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Staleness Detection",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The corpus has detectors for shape, frontmatter and cross-surface coherence within a single packet, but nothing checks whether two distinct docs that describe the same entity actually agree on the facts. A claim and its later correction can both sit live in the index at once, and the staleness case is the same defect on a time axis where an old assertion outlives the fact it stated. This is the logic-consistency reader the truncation law leaves wide open, since a contradiction is a finding and not a vector row, so no retrieval gate or recall measurement ever surfaces it.",
+    "created_at": "2026-06-21T10:22:34.989Z",
+    "last_save_at": "2026-06-21T10:22:34.989Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

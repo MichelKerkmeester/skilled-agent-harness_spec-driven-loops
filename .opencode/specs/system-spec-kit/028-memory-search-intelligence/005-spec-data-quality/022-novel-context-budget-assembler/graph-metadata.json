@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/022-novel-context-budget-assembler",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/022-novel-context-budget-assembler",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "context budget assembler",
+      "near duplicate dedup",
+      "diverse packet selection",
+      "context density",
+      "token per relevant row"
+    ],
+    "key_topics": [
+      "context",
+      "budget",
+      "assembler",
+      "near",
+      "duplicate",
+      "dedup",
+      "diverse",
+      "packet",
+      "selection",
+      "density",
+      "token",
+      "per"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "hybrid-search.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Novel Context",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fitting Assembler",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The prod search path returns the post-floor result set with no density discipline. After `truncateByConfidence` runs at `hybrid-search.ts:2051`, the `reranked` set is passed straight through to the trace-metadata mapping at `hybrid-search.ts:2078` and returned, so near-duplicate packets and redundant chunks survive into the caller context unchecked. The pipeline already collapses adjacent same-document chunks via `collapseAndReassembleChunkResults` at `hybrid-search.ts:1757`, but that is structural reassembly within one document and does nothing for cross-document near-duplicates or for diversity. The result is wasted context budget: two packets that say nearly the same thing both occupy slots a more diverse packet could have used, which lowers the distinct-information-per-token a caller receives without changing what was recalled.",
+    "created_at": "2026-06-21T10:22:34.991Z",
+    "last_save_at": "2026-06-21T10:22:34.991Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

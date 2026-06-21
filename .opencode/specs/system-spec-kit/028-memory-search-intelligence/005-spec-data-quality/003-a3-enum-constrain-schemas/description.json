@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-a3-enum-constrain-schemas",
+  "description": "Feature Specification: A3 Enum-Constrain JSON Metadata Schemas",
+  "keywords": [
+    "feature",
+    "specification",
+    "enum-constrain",
+    "json",
+    "metadata",
+    "schemas"
+  ],
+  "lastUpdated": "2026-06-21T10:22:30.917Z",
+  "specId": "003",
+  "folderSlug": "a3-enum-constrain-schemas",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "005-spec-data-quality"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

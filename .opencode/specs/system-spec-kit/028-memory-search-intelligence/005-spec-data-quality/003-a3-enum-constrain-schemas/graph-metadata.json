@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-a3-enum-constrain-schemas",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-a3-enum-constrain-schemas",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "enum constrain schemas",
+      "importance_tier status content_type",
+      "graph-metadata zod schema",
+      "description schema enum",
+      "mutation_class enum discipline"
+    ],
+    "key_topics": [
+      "enum",
+      "constrain",
+      "schemas",
+      "status",
+      "graph-metadata",
+      "zod",
+      "schema",
+      "description",
+      "discipline",
+      "two",
+      "metadata",
+      "type"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/description/description-schema.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "graph-metadata-schema.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "description-schema.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/description/description-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata-parser.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Metadata Schemas",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Constrain",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The two zod metadata schemas type their controlled-vocabulary fields as free strings. In `graph-metadata-schema.ts:43-44` `importance_tier` and `status` are `z.string().min(1)` so any typo or drifted token validates clean, and `content_type` has no enum target on either schema. The description schema carries `type` as a bare `z.string().optional()` (`description-schema.ts:64`) with no `importance_tier` or `content_type` field at all. The command surface already proves the better rail. `route-validate.py` machine-checks a closed `mutation_class` enum (`VALID_MUTATING = {\"read-only\", \"add-only\", \"mutates\"}` at line 48, assertion E at line 13), and the same schema file already uses an in-house enum for `save_lineage` (`z.enum(SAVE_LINEAGE_VALUES)` at `graph-metadata-schema.ts:50`). The metadata enums are the unguarded gap.",
+    "created_at": "2026-06-21T10:22:34.979Z",
+    "last_save_at": "2026-06-21T10:22:34.979Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

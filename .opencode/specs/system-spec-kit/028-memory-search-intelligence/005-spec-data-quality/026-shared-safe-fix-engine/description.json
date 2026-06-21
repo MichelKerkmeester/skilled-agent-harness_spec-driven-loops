@@ -1,0 +1,21 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/026-shared-safe-fix-engine",
+  "description": "Feature Specification: Shared Safe-Fix Engine",
+  "keywords": [
+    "feature",
+    "specification",
+    "shared",
+    "safe-fix",
+    "engine"
+  ],
+  "lastUpdated": "2026-06-21T10:22:34.519Z",
+  "specId": "026",
+  "folderSlug": "shared-safe-fix-engine",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "005-spec-data-quality"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

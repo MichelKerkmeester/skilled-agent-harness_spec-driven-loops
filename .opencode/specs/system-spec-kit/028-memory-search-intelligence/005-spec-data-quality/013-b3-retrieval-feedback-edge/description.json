@@ -1,0 +1,21 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/013-b3-retrieval-feedback-edge",
+  "description": "Feature Specification: B3 Retrieval-Learning Feedback Edge",
+  "keywords": [
+    "feature",
+    "specification",
+    "retrieval-learning",
+    "feedback",
+    "edge"
+  ],
+  "lastUpdated": "2026-06-21T10:22:32.518Z",
+  "specId": "013",
+  "folderSlug": "b3-retrieval-feedback-edge",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "005-spec-data-quality"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

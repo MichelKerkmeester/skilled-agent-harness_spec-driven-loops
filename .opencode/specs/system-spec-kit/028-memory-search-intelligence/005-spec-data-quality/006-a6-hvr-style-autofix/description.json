@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-a6-hvr-style-autofix",
+  "description": "Feature Specification: A6 HVR Style Auto-Fix Linter",
+  "keywords": [
+    "feature",
+    "specification",
+    "hvr",
+    "style",
+    "auto-fix",
+    "linter"
+  ],
+  "lastUpdated": "2026-06-21T10:22:31.408Z",
+  "specId": "006",
+  "folderSlug": "a6-hvr-style-autofix",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "005-spec-data-quality"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

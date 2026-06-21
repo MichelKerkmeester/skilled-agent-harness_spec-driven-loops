@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/012-b2-doctor-dq-route",
+  "description": "Feature Specification: B2 Guarded data-quality Route on /doctor",
+  "keywords": [
+    "feature",
+    "specification",
+    "guarded",
+    "data-quality",
+    "route",
+    "doctor"
+  ],
+  "lastUpdated": "2026-06-21T10:22:32.369Z",
+  "specId": "012",
+  "folderSlug": "b2-doctor-dq-route",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "005-spec-data-quality"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

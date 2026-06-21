@@ -1,0 +1,21 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/027-retrieval-floor-experiment",
+  "description": "Feature Specification: Retrieval Floor Experiment",
+  "keywords": [
+    "feature",
+    "specification",
+    "retrieval",
+    "floor",
+    "experiment"
+  ],
+  "lastUpdated": "2026-06-21T10:22:34.665Z",
+  "specId": "027",
+  "folderSlug": "retrieval-floor-experiment",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "005-spec-data-quality"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

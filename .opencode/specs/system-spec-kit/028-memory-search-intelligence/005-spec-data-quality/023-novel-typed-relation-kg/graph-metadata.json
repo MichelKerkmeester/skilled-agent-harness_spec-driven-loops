@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/023-novel-typed-relation-kg",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/023-novel-typed-relation-kg",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "typed relation kg",
+      "llm graph backfill",
+      "knowledge graph navigation",
+      "causal edges provenance",
+      "deterministic extractor"
+    ],
+    "key_topics": [
+      "typed",
+      "relation",
+      "llm",
+      "graph",
+      "backfill",
+      "knowledge",
+      "navigation",
+      "causal",
+      "edges",
+      "provenance",
+      "deterministic",
+      "extractor"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "causal-edges.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-search-fn.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/graph-search-fn.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Wire",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The save-time LLM typed-relation backfill is scaffolded but unwired. `graph-lifecycle.ts:599-605` calls `_scheduleLlmBackfill` behind `SPECKIT_LLM_GRAPH_BACKFILL` for high-value docs, but `registerLlmBackfillFn` (`graph-lifecycle.ts:635`) is never called outside its own module, so the registered callback stays null and the scheduler is a no-op. Separately the deterministic extractor emits four STRUCTURAL relation types (`heading_link`, `alias_link`, `relation_phrase`, `technology_link` at `deterministic-extractor.ts:27-31`) while the `causal_edges.relation` column is CHECK-constrained to six SEMANTIC types (`caused`, `enabled`, `supersedes`, `contradicts`, `derived_from`, `supports` at `vector-index-schema.ts:1675-1677` and `:2343-2345`, canonical enum `RELATION_TYPES` at `causal-edges.ts:28-35`). Those structural edges fail the constraint and `createTypedEdges` swallows them via `INSERT OR IGNORE` (`deterministic-extractor.ts:202-206`). The result is a typed-relation knowledge graph with no LLM-derived semantic edges from document prose and no navigation or provenance surface a reader can use.",
+    "created_at": "2026-06-21T10:22:34.991Z",
+    "last_save_at": "2026-06-21T10:22:34.991Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

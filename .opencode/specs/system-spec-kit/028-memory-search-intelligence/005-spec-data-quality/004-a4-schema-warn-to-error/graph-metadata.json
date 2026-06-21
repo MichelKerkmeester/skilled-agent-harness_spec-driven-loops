@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-a4-schema-warn-to-error",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/004-a4-schema-warn-to-error",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "schema warn to error",
+      "description shape",
+      "graph metadata shape",
+      "legacy grandfathered",
+      "zod schema validation"
+    ],
+    "key_topics": [
+      "schema",
+      "warn",
+      "error",
+      "description",
+      "shape",
+      "graph",
+      "metadata",
+      "legacy",
+      "grandfathered",
+      "zod",
+      "validation",
+      "two"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/rules/check-description-shape.sh",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-graph-metadata-shape.sh",
+      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "check-description-shape.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-description-shape.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-graph-metadata-shape.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-graph-metadata-shape.sh",
+        "source": "derived"
+      },
+      {
+        "name": "validator-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Schema Warn",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Promote",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The two structural JSON-shape rules ship at warn severity and never block, so a malformed `description.json` or `graph-metadata.json` reaches the corpus unchecked. Both rule scripts hand-roll their own JSON checks in inline Node rather than running the real zod schemas that already exist next to them, so the validator and the canonical writer can drift apart. A `legacy_grandfathered` strict-mode bypass at `validate.sh:175-183` still gates the strict RESULT, yet the live census counts 0 grandfathered packets, so the bypass is dead code that only weakens the strict gate.",
+    "created_at": "2026-06-21T10:22:34.979Z",
+    "last_save_at": "2026-06-21T10:22:34.979Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

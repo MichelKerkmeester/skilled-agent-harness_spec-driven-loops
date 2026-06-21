@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-a6-hvr-style-autofix",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-a6-hvr-style-autofix",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hvr style",
+      "em-dash linter",
+      "prose semicolon",
+      "oxford comma",
+      "style auto-fix"
+    ],
+    "key_topics": [
+      "hvr",
+      "style",
+      "em-dash",
+      "linter",
+      "prose",
+      "semicolon",
+      "oxford",
+      "comma",
+      "auto-fix",
+      "house",
+      "voice",
+      "em-dashes"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Style Auto",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Linter",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Ship",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The HVR house voice (no em-dashes, no prose semicolons, no Oxford commas) is a documented authoring rule that no tool enforces, so adherence drifts every time a spec-doc is hand-edited. The live quality machinery in `quality-loop.ts` scores triggers, anchors, budget and structure but carries no prose-style check (grep for em-dash, semicolon, oxford and fence in that file returns only unrelated JSDoc matches), and the destructive `runQualityLoop` auto-fix path is the wrong host because it trims content to an 8000-char budget via `substring` and would silently amputate a 10KB spec.",
+    "created_at": "2026-06-21T10:22:34.981Z",
+    "last_save_at": "2026-06-21T10:22:34.981Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/015-c2-prodmode-recall-gate",
+  "description": "Feature Specification: C2 Prod-Mode Recall Gate",
+  "keywords": [
+    "feature",
+    "specification",
+    "prod-mode",
+    "recall",
+    "gate"
+  ],
+  "lastUpdated": "2026-06-21T10:22:32.813Z",
+  "specId": "015",
+  "folderSlug": "c2-prodmode-recall-gate",
+  "parentChain": [
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "005-spec-data-quality"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
