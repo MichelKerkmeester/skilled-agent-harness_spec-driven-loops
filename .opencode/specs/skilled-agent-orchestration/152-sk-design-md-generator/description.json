@@ -1,0 +1,23 @@
+{
+  "level": "3",
+  "specFolder": "skilled-agent-orchestration/152-sk-design-md-generator",
+  "description": "Feature Specification: Create sk-design-md-generator skill by vendoring jasonhnd design-md-generator",
+  "keywords": [
+    "feature",
+    "specification",
+    "create",
+    "sk-design-md-generator",
+    "skill",
+    "vendoring",
+    "jasonhnd",
+    "design-md-generator"
+  ],
+  "lastUpdated": "2026-06-21T08:31:36.067Z",
+  "specId": "152",
+  "folderSlug": "sk-design-md-generator",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
