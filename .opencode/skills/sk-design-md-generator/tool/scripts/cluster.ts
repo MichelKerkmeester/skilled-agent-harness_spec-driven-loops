@@ -2,6 +2,10 @@
 // MODULE: Token Clustering
 // ────────────────────────────────────────────────────────────────
 
+// ────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ────────────────────────────────────────────────────────────────
+
 // @ts-expect-error culori has no bundled declarations in this setup
 import * as culori from 'culori';
 import type {
@@ -23,6 +27,10 @@ import type {
   TypographyLevel,
 } from './types';
 
+// ────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ────────────────────────────────────────────────────────────────
+
 // ─── Input Interface ─────────────────────────────────────────────────────────
 
 interface PageExtraction {
@@ -31,6 +39,10 @@ interface PageExtraction {
   css?: CSSAnalysis;
   interactions?: InteractionData;
 }
+
+// ────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ────────────────────────────────────────────────────────────────
 
 // ─── Named Color Map ─────────────────────────────────────────────────────────
 
@@ -56,6 +68,10 @@ interface RGBA {
   b: number;
   a: number;
 }
+
+// ────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ────────────────────────────────────────────────────────────────
 
 export function parseColor(value: string): RGBA | null {
   if (!value || value === 'none' || value === 'currentcolor' || value === 'currentColor' || value === 'inherit') {
@@ -148,7 +164,7 @@ export function parseColor(value: string): RGBA | null {
     return { r: rgb.r, g: rgb.g, b: rgb.b, a: clamp01(alpha) };
   }
 
-  // Fallback: try culori
+  // Fallback: Try culori
   try {
     const parsed = culori.parse(trimmed);
     if (parsed) {
@@ -161,11 +177,15 @@ export function parseColor(value: string): RGBA | null {
       };
     }
   } catch {
-    // ignore parse failures
+    // Ignore parse failures
   }
 
   return null;
 }
+
+// ────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ────────────────────────────────────────────────────────────────
 
 function hslToRgb(h: number, s: number, l: number): { r: number; g: number; b: number } {
   h = ((h % 360) + 360) % 360;
