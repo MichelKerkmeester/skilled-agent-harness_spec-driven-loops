@@ -2,10 +2,18 @@
 // MODULE: DESIGN.md Validator
 // ────────────────────────────────────────────────────────────────
 
+// ────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ────────────────────────────────────────────────────────────────
+
 import * as fs from 'fs';
 import type { DesignTokens } from './types';
 
 // ─── Result Types ────────────────────────────────────────────────────────────
+
+// ────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ────────────────────────────────────────────────────────────────
 
 interface ValidationIssue {
   type: string;
@@ -21,6 +29,10 @@ export interface ValidationResult {
 }
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
+
+// ────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ────────────────────────────────────────────────────────────────
 
 function normalizeHex(raw: string): string {
   const h = raw.replace('#', '').toLowerCase();
@@ -265,6 +277,10 @@ function checkContent(md: string): { passed: boolean; warnings: ValidationIssue[
 
 // ─── Main Validation ─────────────────────────────────────────────────────────
 
+// ────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ────────────────────────────────────────────────────────────────
+
 export function validateDesignMd(mdContent: string, tokens: DesignTokens): ValidationResult {
   const passed: string[] = [];
   const warnings: ValidationIssue[] = [];
@@ -297,11 +313,19 @@ export function validateDesignMd(mdContent: string, tokens: DesignTokens): Valid
 
 // ─── CLI ─────────────────────────────────────────────────────────────────────
 
+// ────────────────────────────────────────────────────────────────
+// 5. CONSTANTS
+// ────────────────────────────────────────────────────────────────
+
 const RED = '\x1b[31m';
 const YELLOW = '\x1b[33m';
 const GREEN = '\x1b[32m';
 const BOLD = '\x1b[1m';
 const RESET = '\x1b[0m';
+
+// ────────────────────────────────────────────────────────────────
+// 6. HELPERS
+// ────────────────────────────────────────────────────────────────
 
 function printResult(result: ValidationResult): void {
   console.log(`\n${BOLD}=== DESIGN.md Validation ===${RESET}\n`);
@@ -334,6 +358,10 @@ function printResult(result: ValidationResult): void {
     console.log(`${RED}Result: FAIL (minimum 80 required)${RESET}\n`);
   }
 }
+
+// ────────────────────────────────────────────────────────────────
+// 7. CORE LOGIC
+// ────────────────────────────────────────────────────────────────
 
 if (require.main === module) {
   const args = process.argv.slice(2);

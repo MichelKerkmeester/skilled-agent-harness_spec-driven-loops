@@ -2,8 +2,16 @@
 // MODULE: Accessibility Extraction
 // ────────────────────────────────────────────────────────────────
 
+// ────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ────────────────────────────────────────────────────────────────
+
 import type { DOMCollection, InteractionData, CSSAnalysis, A11yTokens } from './types';
 import type { Page } from 'playwright';
+
+// ────────────────────────────────────────────────────────────────
+// 2. HELPERS
+// ────────────────────────────────────────────────────────────────
 
 function linearize(channel: number): number {
   const c = channel / 255;
@@ -60,10 +68,18 @@ function isLargeText(fontSize: string, fontWeight: string): boolean {
   return size >= 18 || (isBold && size >= 14);
 }
 
+// ────────────────────────────────────────────────────────────────
+// 3. TYPE DEFINITIONS
+// ────────────────────────────────────────────────────────────────
+
 interface ContrastPairKey {
   foreground: string;
   background: string;
 }
+
+// ────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ────────────────────────────────────────────────────────────────
 
 function pairKey(fg: string, bg: string): string {
   return `${fg}|||${bg}`;
@@ -233,6 +249,10 @@ async function extractAltTextCoverage(
 }
 
 // ─── Main Export ─────────────────────────────────────────────────────────────
+
+// ────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ────────────────────────────────────────────────────────────────
 
 export function extractA11y(
   domCollections: DOMCollection[],

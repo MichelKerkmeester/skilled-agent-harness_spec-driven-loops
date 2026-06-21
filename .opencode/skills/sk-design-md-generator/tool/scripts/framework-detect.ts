@@ -2,13 +2,25 @@
 // MODULE: Framework Detection
 // ────────────────────────────────────────────────────────────────
 
+// ────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ────────────────────────────────────────────────────────────────
+
 import type { Page } from 'playwright';
 import type { FrameworkDetection } from './types';
+
+// ────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ────────────────────────────────────────────────────────────────
 
 const TAILWIND_PATTERN =
   /^(?:sm:|md:|lg:|xl:|2xl:|hover:|focus:|active:|disabled:|dark:|group-hover:|peer-|first:|last:)*(?:bg|text|border|ring|shadow|rounded|p|m|w|h|flex|grid|gap|space|divide|font|leading|tracking|z|opacity|transition|duration|ease|scale|rotate|translate|skew)-/;
 
 const JIT_PATTERN = /\[.+\]/;
+
+// ────────────────────────────────────────────────────────────────
+// 3. TYPE DEFINITIONS
+// ────────────────────────────────────────────────────────────────
 
 interface TailwindResult {
   detected: boolean;
@@ -16,6 +28,10 @@ interface TailwindResult {
   sampleClasses: string[];
   jitDetected: boolean;
 }
+
+// ────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ────────────────────────────────────────────────────────────────
 
 async function detectTailwind(page: Page): Promise<TailwindResult | null> {
   const result = await page.evaluate(
@@ -122,6 +138,10 @@ async function detectDesignSystemUrl(page: Page): Promise<string | null> {
 
   return null;
 }
+
+// ────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ────────────────────────────────────────────────────────────────
 
 export async function detectFramework(page: Page): Promise<FrameworkDetection> {
   const [tailwind, uiFramework, designSystemUrl] = await Promise.all([

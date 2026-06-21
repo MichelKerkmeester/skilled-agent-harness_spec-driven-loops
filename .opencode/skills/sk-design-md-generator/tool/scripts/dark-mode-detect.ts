@@ -2,10 +2,22 @@
 // MODULE: Dark Mode Detection
 // ────────────────────────────────────────────────────────────────
 
+// ────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ────────────────────────────────────────────────────────────────
+
 import type { Page } from 'playwright';
 import type { CSSAnalysis, CSSVariable, DarkModeData } from './types';
 
+// ────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ────────────────────────────────────────────────────────────────
+
 const VIEWPORTS = [1920, 1440, 768, 375, 320] as const;
+
+// ────────────────────────────────────────────────────────────────
+// 3. TYPE DEFINITIONS
+// ────────────────────────────────────────────────────────────────
 
 type DetectionMethod = DarkModeData['detectionMethod'];
 
@@ -13,6 +25,10 @@ interface DetectionResult {
   method: DetectionMethod;
   switchAction: 'media-query' | 'class-toggle' | 'data-attr' | 'toggle-button';
 }
+
+// ────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ────────────────────────────────────────────────────────────────
 
 async function collectCSSVariables(page: Page): Promise<CSSVariable[]> {
   return page.evaluate(() => {
@@ -209,6 +225,10 @@ async function captureDarkScreenshots(page: Page): Promise<Record<string, Buffer
 
   return screenshots;
 }
+
+// ────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ────────────────────────────────────────────────────────────────
 
 export async function detectDarkMode(
   page: Page,

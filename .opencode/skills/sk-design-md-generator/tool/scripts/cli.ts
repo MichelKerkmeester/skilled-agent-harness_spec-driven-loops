@@ -16,7 +16,15 @@
  *   npx ts-node scripts/extract.ts https://example.com --output ./my-output --wait-for css
  */
 
+// ────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ────────────────────────────────────────────────────────────────
+
 import { extract, parseArgs } from './extract';
+
+// ────────────────────────────────────────────────────────────────
+// 2. CORE LOGIC
+// ────────────────────────────────────────────────────────────────
 
 async function main(): Promise<void> {
   const options = parseArgs(process.argv);

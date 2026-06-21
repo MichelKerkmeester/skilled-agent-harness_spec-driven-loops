@@ -2,7 +2,15 @@
 // MODULE: Motion Extraction
 // ────────────────────────────────────────────────────────────────
 
+// ────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ────────────────────────────────────────────────────────────────
+
 import type { CSSAnalysis, DOMCollection, MotionSystem } from './types';
+
+// ────────────────────────────────────────────────────────────────
+// 2. HELPERS
+// ────────────────────────────────────────────────────────────────
 
 function parseDurationToMs(raw: string): number | null {
   const trimmed = raw.trim().toLowerCase();
@@ -79,6 +87,10 @@ function classifyKeyframeAnimation(
 
   return 'generic';
 }
+
+// ────────────────────────────────────────────────────────────────
+// 3. CORE LOGIC
+// ────────────────────────────────────────────────────────────────
 
 export function extractMotion(
   cssAnalysis: CSSAnalysis,

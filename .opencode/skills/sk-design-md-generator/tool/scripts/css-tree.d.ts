@@ -2,6 +2,10 @@
 // MODULE: css-tree Type Declarations
 // ────────────────────────────────────────────────────────────────
 
+// ────────────────────────────────────────────────────────────────
+// 1. TYPE DEFINITIONS
+// ────────────────────────────────────────────────────────────────
+
 declare module 'css-tree' {
   export function parse(source: string, options?: Record<string, unknown>): CssNode;
   export function walk(ast: CssNode, handler: WalkHandler): void;

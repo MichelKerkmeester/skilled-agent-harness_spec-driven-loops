@@ -2,13 +2,25 @@
 // MODULE: Icon System Detection
 // ────────────────────────────────────────────────────────────────
 
+// ────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ────────────────────────────────────────────────────────────────
+
 import type { Page } from 'playwright';
 import type { DOMCollection, IconSystemInfo } from './types';
+
+// ────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ────────────────────────────────────────────────────────────────
 
 interface SvgClassData {
   className: string;
   attributes: Record<string, string>;
 }
+
+// ────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ────────────────────────────────────────────────────────────────
 
 function buildFrequencyMap(values: number[]): Map<number, number> {
   const map = new Map<number, number>();
@@ -111,6 +123,10 @@ function buildColorUsage(svgColors: string[]): { currentColor: number; fixedFill
 
 // ─── Main Export ─────────────────────────────────────────────────────────────
 
+// ────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ────────────────────────────────────────────────────────────────
+
 export function detectIcons(domCollections: DOMCollection[]): IconSystemInfo | null {
   const allSizes: { width: number; height: number }[] = [];
   const allColors: string[] = [];
@@ -147,17 +163,17 @@ export function detectIcons(domCollections: DOMCollection[]): IconSystemInfo | n
   const colorMode = determineColorMode(allColors);
   const library = detectLibrary(allClassData);
 
-  // New: stroke width distribution
+  // Stroke width distribution
   const strokeWidthDistribution = strokeWidths.length > 0
     ? buildStrokeWidthDistribution(strokeWidths)
     : undefined;
 
-  // New: size distribution
+  // Size distribution
   const sizeDistribution = allSizes.length > 0
     ? buildSizeDistribution(allSizes)
     : undefined;
 
-  // New: color usage breakdown
+  // Color usage breakdown
   const colorUsage = allColors.length > 0
     ? buildColorUsage(allColors)
     : undefined;
