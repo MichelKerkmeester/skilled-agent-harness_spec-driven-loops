@@ -103,6 +103,16 @@ describe('validateDesignMd', () => {
     expect(phantoms[0].value).toContain('deadbe');
   });
 
+  it('detects content (L4) colors that must be excluded from the doc', () => {
+    const tokens = makeTokens();
+    // Mark the primary color (present in VALID_MD) as a content-layer (L4) token.
+    (tokens.colorTokens[0] as unknown as { stability: { layer: string } }).stability = { layer: 'content' };
+    const result = validateDesignMd(VALID_MD, tokens);
+    const l4 = result.failures.filter((f) => f.type === 'content-color');
+    expect(l4.length).toBeGreaterThan(0);
+    expect(l4[0].value.toLowerCase()).toContain('6b5ce7');
+  });
+
   it('detects uppercase hex as format issue', () => {
     const mdUpper = VALID_MD.replace('#6b5ce7', '#6B5CE7');
     const result = validateDesignMd(mdUpper, makeTokens());

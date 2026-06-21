@@ -92,6 +92,36 @@ function checkPhantomColors(md: string, tokens: DesignTokens): { passed: boolean
   return { passed: failures.length === 0, failures };
 }
 
+// Cardinal-rule gating: L1/L2 belong in main sections, L3 only in a "Subject to
+// change" block, and L4 (content-layer, one-off/image-derived) colors are excluded
+// entirely. A content-layer hex appearing anywhere in DESIGN.md is a gating
+// violation that hex-tracing alone (checkPhantomColors) cannot catch — the color is
+// real, it just must not be presented as a design token.
+function checkStabilityGating(md: string, tokens: DesignTokens): { passed: boolean; failures: ValidationIssue[] } {
+  const cleaned = stripHtmlComments(md);
+  const matches = cleaned.match(/#[0-9a-fA-F]{3,8}\b/g) ?? [];
+  const layerByHex = new Map<string, string>();
+  for (const c of tokens.colorTokens) {
+    const layer = (c as unknown as { stability?: { layer?: string } }).stability?.layer;
+    if (layer) layerByHex.set(normalizeHex(c.hex), layer);
+  }
+  const failures: ValidationIssue[] = [];
+  const seen = new Set<string>();
+  for (const raw of matches) {
+    const normalized = normalizeHex(raw);
+    if (normalized.length !== 6 || seen.has(normalized)) continue;
+    seen.add(normalized);
+    if (layerByHex.get(normalized) === 'content') {
+      failures.push({
+        type: 'content-color',
+        value: raw,
+        message: `Color ${raw} is a content (L4) token and must be excluded from DESIGN.md (cardinal rule: L4 colors are not design tokens)`,
+      });
+    }
+  }
+  return { passed: failures.length === 0, failures };
+}
+
 function checkUnknownFonts(md: string, tokens: DesignTokens): { passed: boolean; warnings: ValidationIssue[] } {
   const backtickPattern = /`([^`]+)`/g;
   const knownFonts = new Set<string>();
@@ -294,6 +324,10 @@ export function validateDesignMd(mdContent: string, tokens: DesignTokens): Valid
   if (phantom.passed) passed.push('phantom-color');
   else failures.push(...phantom.failures);
 
+  const gating = checkStabilityGating(mdContent, tokens);
+  if (gating.passed) passed.push('stability-gating');
+  else failures.push(...gating.failures);
+
   const fonts = checkUnknownFonts(mdContent, tokens);
   if (fonts.passed) passed.push('unknown-font');
   else warnings.push(...fonts.warnings);
@@ -335,7 +369,7 @@ const RESET = '\x1b[0m';
 // sections are hard failures for an anti-hallucination tool: they fail the
 // document regardless of the numeric score, so a single fabricated color cannot
 // pass on points.
-const CRITICAL_FAILURE_TYPES = new Set(['phantom-color', 'missing-section']);
+const CRITICAL_FAILURE_TYPES = new Set(['phantom-color', 'missing-section', 'content-color']);
 
 function hasCriticalFailure(result: ValidationResult): boolean {
   return result.failures.some((f) => CRITICAL_FAILURE_TYPES.has(f.type));
