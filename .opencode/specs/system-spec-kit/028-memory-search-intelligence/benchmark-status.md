@@ -109,6 +109,30 @@ feature earns a prod-path keep only by changing the composition of the top-3, no
 cuts. The eval-mode-versus-prod-mode fidelity gap that 008 exposed is the same effect viewed from the
 metric side.
 
+## Track C - spec-kit data quality benchmark status: PROPOSED, not run
+
+The Track-C data-quality program (005-spec-data-quality, 28 phases) is research-only and scaffolded. Every
+phase carries a Level-2 doc set marked PLANNED and no code has landed, so NOTHING in the program is measured
+yet. The status below records what each proposed measurement would have to clear, not a result.
+
+The keystone retrieval unblocker is a spec-corpus prod-mode `completeRecall@3` benchmark (phase
+015-c2-prodmode-recall-gate) built around the existing dual-mode `run-eval-v2.mjs`. It would read the
+spec-doc corpus through the production default route and score completeRecall at the 3-result floor the prod
+reader actually serves. It is PROPOSED and not yet built or run. The operator-agreed retrieval-floor
+experiment (phase 027-retrieval-floor-experiment) to raise the token budget and measure whether results 4
+through 10 are signal or truncation noise is also PROPOSED, not run.
+
+The program explicitly inherits the production-truth 3-result-floor finding above. That floor is why every
+Tier-C retrieval phase (014 through 018) stays default-off: a retrieval candidate cannot earn a prod-path
+keep until the prod-mode read at phase 015 moves, and the floor itself does not move until the phase-027
+experiment shows results past rank 3 are signal rather than noise. Until both run, no Tier-C retrieval claim
+carries measured support.
+
+The one measured-class item in the whole program is A4 (phase 004-a4-schema-warn-to-error, the JSON-schema
+shape-rule warn-to-error promotion). It touches write-time validation not retrieval ranking, so it bypasses
+the truncation floor entirely and carries zero prod-retrieval risk. Every other phase ships on cost reasoning
+or stays gated, none on a measured retrieval gain.
+
 ## Criterion 6 - release-cleanup: 9/9 executed, two file-subsets deferred to a concurrent session
 
 Executed: 001, 002, 003, 004, 005, 006, 007, 008, 009. All nine children ran their cleanup on this

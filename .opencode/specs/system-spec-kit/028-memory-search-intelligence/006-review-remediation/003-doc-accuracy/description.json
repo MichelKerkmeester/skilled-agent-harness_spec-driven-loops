@@ -7,10 +7,9 @@
     "specification",
     "doc",
     "accuracy",
-    "remediation",
-    "staleness"
+    "remediation"
   ],
-  "lastUpdated": "2026-06-19T00:00:00Z",
+  "lastUpdated": "2026-06-21T08:31:36.326Z",
   "specId": "003",
   "folderSlug": "doc-accuracy",
   "parentChain": [

@@ -83,6 +83,41 @@ This schedule orders phases, not task files. Candidate counts are phase-local ca
 | 4 | `004-reliability-weighted-convergence` | 3 | 0 done, 9 pending | Benchmark gate before GO, shared Beta with advisor |
 | 5 | `005-stop-input-corroboration` | 2 | 1 done, 6 pending | Novelty audit before STOP consumption, keep-both before conflict record |
 
+### Spec-Kit Data Quality
+
+RESEARCH-ONLY. This is Track-C `005-spec-data-quality`, a 28-phase scaffold where every child carries spec, plan, tasks, checklist and implementation-summary all PLANNED with no code landed. The order below is the build plan for a future packet, not work in progress, so the Count column reads scaffold because nothing is done. Two hard constraints drive the order. 026 the shared safe-fix engine ships first because the on-write and retroactive front doors reuse it. 015 the C2 prod-mode benchmark gate ships before every Tier-C retrieval phase and the 027 floor experiment because no retrieval candidate promotes without a prod-mode completeRecall@3 read.
+
+| Order | Phase | Level | Count | Gate |
+|-------|-------|-------|-------|------|
+| 1 | `026-shared-safe-fix-engine` | 2 | 0 done, scaffold | Infra foundation. The one fix engine the on-write and retroactive front doors share, ships before A1, B1 and B2 |
+| 2 | `015-c2-prodmode-recall-gate` | 2 | 0 done, scaffold | CONDITIONAL. Prod-mode completeRecall@3 benchmark that unblocks the whole retrieval tier and the 027 experiment |
+| 3 | `004-a4-schema-warn-to-error` | 2 | 0 done, scaffold | GO measured. Promote the JSON-schema shape rules from warn to error, validation not ranking, no re-index, leads Tier A |
+| 4 | `001-a1-extend-quality-loop-authored` | 2 | 0 done, scaffold | GO-on-cost. Keystone on-write seam, extends the live quality loop to authored docs, reuses 026 |
+| 5 | `002-a2-trigger-propagation-description` | 2 | 0 done, scaffold | GO-on-cost. Propagate trigger phrases into description.json |
+| 6 | `003-a3-enum-constrain-schemas` | 2 | 0 done, scaffold | GO-on-cost. Enum-constrain the two metadata JSON schemas |
+| 7 | `005-a5-trigger-coherence-assertion` | 2 | 0 done, scaffold | GO-on-cost. Assert trigger coherence between spec.md and description.json |
+| 8 | `006-a6-hvr-style-autofix` | 2 | 0 done, scaffold | GO-on-cost. Autofix HVR style violations at write time |
+| 9 | `007-a7-ears-constraints-req-coverage` | 2 | 0 done, scaffold | GO-on-cost. EARS constraints and requirement-coverage checks |
+| 10 | `008-a8-surface-provenance-fields` | 2 | 0 done, scaffold | GO-on-cost. Surface provenance fields on each doc |
+| 11 | `009-a9-content-hash-integrity` | 2 | 0 done, scaffold | GO-on-cost. Content-hash integrity field so a stale or tampered doc errors |
+| 12 | `010-a10-per-surface-gates` | 2 | 0 done, scaffold | GO-on-cost. Per-surface gates so each doc family enforces only its checks |
+| 13 | `011-b1-scheduled-dq-sweep` | 2 | 0 done, scaffold | GO-on-cost. Standing scheduled DQ sweep with guarded auto-fix, reuses 026 |
+| 14 | `012-b2-doctor-dq-route` | 2 | 0 done, scaffold | GO-on-cost. /doctor data-quality auto-remediation route, reuses 026 |
+| 15 | `013-b3-retrieval-feedback-edge` | 2 | 0 done, scaffold | GO-on-cost. Retrieval-learning feedback edge from observed recall |
+| 16 | `019-novel-contradiction-detection` | 2 | 0 done, scaffold | GO. Floor-bypassing report-only seam, cross-doc contradiction detection |
+| 17 | `020-novel-embedding-drift-monitor` | 2 | 0 done, scaffold | GO. Floor-bypassing report-only seam, embedding-drift monitor |
+| 18 | `021-novel-example-test-generation` | 2 | 0 done, scaffold | GO. Floor-bypassing report-only seam, auto example and test generation |
+| 19 | `022-novel-context-budget-assembler` | 2 | 0 done, scaffold | GO. Floor-bypassing report-only seam, context-budget assembler |
+| 20 | `023-novel-typed-relation-kg` | 2 | 0 done, scaffold | GO. Floor-bypassing report-only seam, typed-relation knowledge graph |
+| 21 | `024-novel-freshness-decay-queue` | 2 | 0 done, scaffold | GO. Floor-bypassing report-only seam, freshness-decay re-check queue |
+| 22 | `025-novel-per-doc-quality-slas` | 2 | 0 done, scaffold | GO. Floor-bypassing report-only seam, per-doc quality SLAs |
+| 23 | `014-c1-chunk-prefix` | 2 | 0 done, scaffold | CONDITIONAL. Header-path and global-identity chunk prefix, gated behind 015 |
+| 24 | `016-c3-answerable-questions-tags` | 2 | 0 done, scaffold | CONDITIONAL. Answerable-questions tags, gated behind 015 |
+| 25 | `017-c4-metadata-fusion` | 2 | 0 done, scaffold | CONDITIONAL. Metadata fused into the embedding, gated behind 015 |
+| 26 | `018-c5-llm-judge-scorer` | 2 | 0 done, scaffold | CONDITIONAL. LLM-judge scorer for floor-hidden candidates, gated behind 015 |
+| 27 | `027-retrieval-floor-experiment` | 2 | 0 done, scaffold | Infra. Raise the result budget and measure whether results 4 through 10 are signal, gated behind 015 |
+| 28 | `028-governance-rollout` | 2 | 0 done, scaffold | Infra. Owns the full 17-stage rollout, four-beat migration, safety model and measurement plan |
+
 ## Gated Track
 
 | Phase | Gate | Concrete Unblock Condition |
@@ -133,7 +168,7 @@ This schedule orders phases, not task files. Candidate counts are phase-local ca
 
 ## Critical Path
 
-The longest dependency chain is the recall measurement path: `001/001-corpus-reindex-gate-zero` -> `001/019-eval-harness-extension` C9-1 snapshot -> C9-2 labels -> C9-3 metrics -> A8 promotion gate -> `001/020-eval-calibration-ab` calibration harvest -> held-out ECE and lever A/B. This chain gates any trustworthy recall, calibration, cold-tier and ranking claim. The main gated cross-subsystem tail is separate: `001/007-bitemporal-window` + `002/003-generation-watermark` + `002/006-edge-governance-vocab` -> `002/004-code-edge-bitemporal`.
+The longest dependency chain is the recall measurement path: `001/001-corpus-reindex-gate-zero` -> `001/019-eval-harness-extension` C9-1 snapshot -> C9-2 labels -> C9-3 metrics -> A8 promotion gate -> `001/020-eval-calibration-ab` calibration harvest -> held-out ECE and lever A/B. This chain gates any trustworthy recall, calibration, cold-tier and ranking claim. The main gated cross-subsystem tail is separate: `001/007-bitemporal-window` + `002/003-generation-watermark` + `002/006-edge-governance-vocab` -> `002/004-code-edge-bitemporal`. The research-only Track-C data-quality retrieval tier rides the same discipline: every Tier-C phase plus the `005/027-retrieval-floor-experiment` gates on the `005/015-c2-prodmode-recall-gate` prod-mode completeRecall@3 benchmark, the data-quality mirror of this packet's prod-mode-benchmark gate.
 
 ## Recommended First Wave
 

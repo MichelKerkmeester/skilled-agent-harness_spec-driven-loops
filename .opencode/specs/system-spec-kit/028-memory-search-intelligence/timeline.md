@@ -12,9 +12,9 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence"
-    last_updated_at: "2026-06-20T00:00:00Z"
-    recent_action: "Added the TRACK B new-feature arc: eval-v2 built and kept as the measurability gate, 3 features built default-off and fresh-Opus held on the append-not-displace truncation finding"
-    next_safe_action: "Use this file to trace what shipped when and in which commit across the four subsystems"
+    last_updated_at: "2026-06-21T00:00:00Z"
+    recent_action: "Added the TRACK C epoch: a research-only multi-lineage deep-research produced 28 truncation-law data-quality recommendations then scaffolded all 28 as Level-2 phases with per-phase changelogs, nothing built or measured"
+    next_safe_action: "Trace what shipped when across the four subsystems and read TRACK C as research-only and scaffolded with nothing built or measured"
     completion_pct: 100
 ---
 # 028 Chronological Timeline
@@ -421,3 +421,58 @@ new content, and that decision is deferred. The per-feature next steps follow fr
 scoped truncation-exemption probe on the causal_chain class with displacement accounting, lane-champion
 retires its investment as redundant with RRF, and the citation-emitter fixes its positive label with
 content-attribution and runs a one-shot offline mining pass before any collection decision.
+
+---
+
+## I. The TRACK C spec-kit data-quality research-and-scaffold arc
+
+The reckoning's successor is not another shipped wave but a researched one. TRACK B closed on the
+truncation law, that prod confidence-truncation keeps about three results so any tail-additive content is
+cut before it reaches the reader. TRACK C reads that same law not as a property of one feature but as the
+gate on a whole class of work, and asks what data-quality the campaign can win on the write surface the
+floor cannot reach. This epoch is RESEARCH-ONLY and scaffolded. Nothing in it is built and nothing is
+measured, the proposed flags are names and not switches and the two proposed benchmarks have not run.
+
+An official multi-lineage deep-research ran first, five lineages across thirty-seven substantive
+iterations on opus via claude2, and produced twenty-eight data-quality recommendations every one grounded
+in the truncation law. The law it works from is the same 3-result prod floor packet 028 already documents
+in the [`benchmark-status.md`](./benchmark-status.md) production-truth baseline and
+[`before-vs-after.md`](./before-vs-after.md) section 7: the prod retrieval path collapses every query to a
+`DEFAULT_MIN_RESULTS=3` floor through token-budget truncation, so any contribution past rank three is
+invisible to the prod reader. That single fact sorts the whole recommendation set. Retrieval-class
+candidates are gated and cannot earn a keep on eval-mode numbers, while adherence, logic and write-time
+candidates bypass the floor and can ship on cost.
+
+The keystone recommendation is to extend the live default-on `quality-loop.ts`, the memory-save scorers and
+auto-fix that already ship, to the authored spec-doc and metadata-JSON write surface. From there the
+program tiers by where each candidate sits against the floor. Tier A is on-write reuse-first across
+`001-a1-extend-quality-loop-authored` through `010-a10-per-surface-gates`, and its one measured
+unconditional GO is `004-a4-schema-warn-to-error` which promotes the JSON-schema shape rules from warn to
+error, a validation tightening and not a ranking win, while the rest of the tier ships on cost. Tier B is
+retroactive automation across `011-b1-scheduled-dq-sweep` through `013-b3-retrieval-feedback-edge`, a
+standing scheduled DQ sweep with guarded auto-fix, a `/doctor` data-quality auto-remediation route and a
+retrieval-learning feedback edge. Tier C is retrieval across `014-c1-chunk-prefix` through
+`018-c5-llm-judge-scorer`, all default-off and all gated on the prod-mode completeRecall@3 benchmark in
+`015-c2-prodmode-recall-gate`, which is the unblocker for the tier and has not run. The novel
+out-of-the-box GO tier across `019-novel-contradiction-detection` through `025-novel-per-doc-quality-slas`
+is seven floor-bypassing capabilities, cross-doc contradiction detection, embedding-drift monitoring, auto
+example and test generation, a context-budget assembler, a typed-relation knowledge graph, a
+freshness-decay queue and per-doc quality SLAs. The infrastructure phases close it,
+`026-shared-safe-fix-engine` the one engine the on-write and retroactive front doors share,
+`027-retrieval-floor-experiment` the operator-agreed experiment to raise the retrieval budget and measure
+whether results four through ten are signal or noise and `028-governance-rollout` the seventeen-stage
+rollout with its four-beat migration, safety model and measurement plan. The 027 experiment could
+un-freeze the whole Tier-C slate, and like C2 it is proposed not run.
+
+The research then scaffolded all twenty-eight recommendations as Level-2 phase children under
+[`005-spec-data-quality/`](./005-spec-data-quality/), each carrying the full doc set of spec, plan, tasks,
+checklist and implementation-summary and each marked PLANNED with no code landed. The phase tree runs
+`001-a1-extend-quality-loop-authored` through `028-governance-rollout`. Finally the per-phase changelogs
+were generated in the 027 pattern, one leaf changelog per phase under
+[`changelog/005-spec-data-quality/`](./changelog/005-spec-data-quality/) with the
+[`changelog-005-root.md`](./changelog/005-spec-data-quality/changelog-005-root.md) rollup over them.
+
+So TRACK C adds a researched and scaffolded program and not a shipped one. Its single measured GO is A4 and
+that is a validation tightening not a ranking win, its retrieval tier is frozen behind a benchmark nobody
+has run, and its proposed flags name an intent no code yet honors. It is the successor question the
+truncation law raised, carried as far as a plan and no further.
