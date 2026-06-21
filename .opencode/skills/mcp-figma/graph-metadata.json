@@ -33,6 +33,11 @@
         "target": "mcp-chrome-devtools",
         "weight": 0.5,
         "context": "Sibling CLI-primary plus MCP-via-Code-Mode skill sharing the same router and gating pattern"
+      },
+      {
+        "target": "sk-design-md-generator",
+        "weight": 0.45,
+        "context": "Sibling design-extraction tool sourcing from live URLs instead of Figma, with a DESIGN.md output overlap"
       }
     ],
     "conflicts_with": [],
@@ -40,9 +45,23 @@
   },
   "manual": {
     "depends_on": [],
-    "related_to": ["sk-design-interface", "sk-code", "mcp-code-mode", "mcp-open-design", "mcp-chrome-devtools"]
+    "related_to": [
+      "sk-design-interface",
+      "sk-code",
+      "mcp-code-mode",
+      "mcp-open-design",
+      "mcp-chrome-devtools",
+      "sk-design-md-generator"
+    ]
   },
-  "domains": ["figma", "design-to-code", "design-systems", "cli", "mcp", "figma-desktop"],
+  "domains": [
+    "figma",
+    "design-to-code",
+    "design-systems",
+    "cli",
+    "mcp",
+    "figma-desktop"
+  ],
   "intent_signals": [
     "figma cli",
     "figma-ds-cli",
@@ -99,12 +118,42 @@
       ".opencode/skills/mcp-figma/changelog/v1.0.0.0.md"
     ],
     "entities": [
-      {"name": "mcp-figma", "kind": "skill", "path": ".opencode/skills/mcp-figma/SKILL.md", "source": "derived"},
-      {"name": "README", "kind": "reference", "path": ".opencode/skills/mcp-figma/README.md", "source": "derived"},
-      {"name": "figma_cli_reference", "kind": "reference", "path": ".opencode/skills/mcp-figma/references/figma_cli_reference.md", "source": "derived"},
-      {"name": "tool_surface", "kind": "reference", "path": ".opencode/skills/mcp-figma/references/tool_surface.md", "source": "derived"},
-      {"name": "mcp_wiring", "kind": "reference", "path": ".opencode/skills/mcp-figma/references/mcp_wiring.md", "source": "derived"},
-      {"name": "troubleshooting", "kind": "reference", "path": ".opencode/skills/mcp-figma/references/troubleshooting.md", "source": "derived"}
+      {
+        "name": "mcp-figma",
+        "kind": "skill",
+        "path": ".opencode/skills/mcp-figma/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README",
+        "kind": "reference",
+        "path": ".opencode/skills/mcp-figma/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "figma_cli_reference",
+        "kind": "reference",
+        "path": ".opencode/skills/mcp-figma/references/figma_cli_reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "tool_surface",
+        "kind": "reference",
+        "path": ".opencode/skills/mcp-figma/references/tool_surface.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp_wiring",
+        "kind": "reference",
+        "path": ".opencode/skills/mcp-figma/references/mcp_wiring.md",
+        "source": "derived"
+      },
+      {
+        "name": "troubleshooting",
+        "kind": "reference",
+        "path": ".opencode/skills/mcp-figma/references/troubleshooting.md",
+        "source": "derived"
+      }
     ],
     "causal_summary": "mcp-figma teaches a terminal agent to drive Figma Desktop through the silships figma-cli, published to npm as figma-ds-cli (the npm package literally named figma-cli is an unrelated tool by unic, bin 'figma' - never install it). figma-cli has no MCP of its own; it drives the live Figma Desktop session via a local daemon (HTTP 127.0.0.1:3456, X-Daemon-Token). Connect is either safe (FigCli plugin, no patch - the default) or yolo (patches Figma app.asar, CDP 9222 - gated, rollback via unpatch). The CLI is primary for authoring/modifying/exporting in Figma; an optional Figma MCP (the community Framelink figma manual already in this repo's Code Mode) is opt-in for pulling design data into the agent for codegen. Commands are gated read-only / mutating / destructive, with eval/raw/run treated as arbitrary mutation and local exports requiring explicit no-overwrite paths. Pairs with sk-design-interface (design judgment) and sk-code (adapting exports into an app). Modeled on mcp-chrome-devtools and mcp-open-design.",
     "source_docs": [

@@ -17,6 +17,11 @@
         "target": "sk-code",
         "weight": 0.4,
         "context": "Design-and-build pair: this skill owns the look, sk-code owns the implementation"
+      },
+      {
+        "target": "sk-design-md-generator",
+        "weight": 0.55,
+        "context": "Design-family pair: sk-design-md-generator captures an existing site's real design system; this skill invents new distinctive direction"
       }
     ],
     "conflicts_with": [],
@@ -30,9 +35,21 @@
   },
   "manual": {
     "depends_on": [],
-    "related_to": ["sk-code", "sk-code-review", "mcp-chrome-devtools", "mcp-figma"]
+    "related_to": [
+      "sk-code",
+      "sk-code-review",
+      "mcp-chrome-devtools",
+      "mcp-figma",
+      "sk-design-md-generator"
+    ]
   },
-  "domains": ["frontend", "ui-design", "visual-design", "typography", "design-systems"],
+  "domains": [
+    "frontend",
+    "ui-design",
+    "visual-design",
+    "typography",
+    "design-systems"
+  ],
   "intent_signals": [
     "interface design",
     "frontend design",

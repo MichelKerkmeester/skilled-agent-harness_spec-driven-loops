@@ -23,6 +23,11 @@
         "target": "mcp-figma",
         "weight": 0.55,
         "context": "Sibling terminal-driven design tool with a daemon model, gated mutating verbs, and an sk-design-interface handoff"
+      },
+      {
+        "target": "sk-design-md-generator",
+        "weight": 0.45,
+        "context": "Sibling design tool: sk-design-md-generator is the live-URL extraction path"
       }
     ],
     "conflicts_with": [],
@@ -34,7 +39,8 @@
       "sk-design-interface",
       "sk-code",
       "mcp-chrome-devtools",
-      "mcp-figma"
+      "mcp-figma",
+      "sk-design-md-generator"
     ]
   },
   "domains": [
