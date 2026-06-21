@@ -43,17 +43,17 @@ Operators run the exact command sequence for `VALIDATE-001` and confirm the expe
 4. Compare the observed output against the desired user-visible outcome.
 5. Return a concise final answer that a real user would understand.
 
-PRE: A prior extraction (EXTRACT-001 or equivalent) must have produced a valid `tokens.json` at `output/<domain>/tokens.json` and a faithfully-written DESIGN.md must exist. Confirm the DESIGN.md contains only hexes from tokens.json before starting.
+PRE: A prior extraction (EXTRACT-001 or equivalent) must have produced a valid `tokens.json` at `<--output>/tokens.json` and a faithfully-written DESIGN.md must exist. Confirm the DESIGN.md contains only hexes from tokens.json before starting.
 
-1. `cd .opencode/skills/sk-design-md-generator/tool && npx ts-node scripts/validate.ts <path-to-faithful-DESIGN.md> output/<domain>/tokens.json`  # -> exit 0, score 100, failures array empty
+1. `cd .opencode/skills/sk-design-md-generator/tool && npx ts-node scripts/validate.ts <path-to-faithful-DESIGN.md> <--output>/tokens.json`  # -> exit 0, score 100, failures array empty
 2. copy the faithful DESIGN.md: `cp <faithful-DESIGN.md> /tmp/planted-DESIGN.md`
 3. append a phantom hex to the copy: `echo "" >> /tmp/planted-DESIGN.md && echo "Phantom test color: #ff0000" >> /tmp/planted-DESIGN.md`  # -> phantom hex planted in a prose line outside comments
-4. `cd tool && npx ts-node scripts/validate.ts /tmp/planted-DESIGN.md output/<domain>/tokens.json`  # -> exit non-zero or failures non-empty, at least one phantom-color finding for ff0000
+4. `cd tool && npx ts-node scripts/validate.ts /tmp/planted-DESIGN.md <--output>/tokens.json`  # -> exit non-zero or failures non-empty, at least one phantom-color finding for ff0000
 5. agent reports both results: faithful PASS, planted FAIL with phantom-color finding
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| VALIDATE-001 | Fidelity validation | Verify `validate.ts` passes on faithful DESIGN.md and flags a planted phantom hex | `Validate the DESIGN.md I just wrote against its tokens.json.` | 1. `cd tool && npx ts-node scripts/validate.ts <faithful-DESIGN.md> output/<domain>/tokens.json` -> 2. copy DESIGN.md, append `#ff0000` in a prose line -> 3. `cd tool && npx ts-node scripts/validate.ts <planted-DESIGN.md> output/<domain>/tokens.json` | Step 1: exit 0, score 100, zero `phantom-color` failures. Step 2: phantom hex planted. Step 3: exit non-zero (or failures array non-empty), at least one `phantom-color` finding for `#ff0000` | Transcript of both validation runs, the planted DESIGN.md snippet, and the phantom-color finding | PASS if the faithful run passes with no phantom-hex failures AND the planted run flags `#ff0000` as a phantom color. FAIL if the faithful run reports false positives OR the planted run does not flag the phantom hex | 1. Confirm the faithful DESIGN.md contains only hexes from tokens.json. 2. Confirm the planted hex is not in tokens.json (check manually). 3. Confirm the validator's `checkPhantomColors` produced the expected finding. |
+| VALIDATE-001 | Fidelity validation | Verify `validate.ts` passes on faithful DESIGN.md and flags a planted phantom hex | `Validate the DESIGN.md I just wrote against its tokens.json.` | 1. `cd tool && npx ts-node scripts/validate.ts <faithful-DESIGN.md> <--output>/tokens.json` -> 2. copy DESIGN.md, append `#ff0000` in a prose line -> 3. `cd tool && npx ts-node scripts/validate.ts <planted-DESIGN.md> <--output>/tokens.json` | Step 1: exit 0, score 100, zero `phantom-color` failures. Step 2: phantom hex planted. Step 3: exit non-zero (or failures array non-empty), at least one `phantom-color` finding for `#ff0000` | Transcript of both validation runs, the planted DESIGN.md snippet, and the phantom-color finding | PASS if the faithful run passes with no phantom-hex failures AND the planted run flags `#ff0000` as a phantom color. FAIL if the faithful run reports false positives OR the planted run does not flag the phantom hex | 1. Confirm the faithful DESIGN.md contains only hexes from tokens.json. 2. Confirm the planted hex is not in tokens.json (check manually). 3. Confirm the validator's `checkPhantomColors` produced the expected finding. |
 
 ### Optional Supplemental Checks
 
@@ -76,8 +76,8 @@ Test additional negative controls: plant a 3-digit hex (`#333`) and confirm it i
 | `../../tool/scripts/validate.ts` | Fidelity validator — `checkPhantomColors`, `checkUnknownFonts`, `checkFormatConsistency`, `checkSectionCompleteness` |
 | `../../tool/scripts/cluster.ts` | Token classifier — produces the colorTokens that validate.ts checks against |
 | `../../tool/scripts/types.ts` | Shared type definitions — `DesignTokens`, `ValidationResult`, `ValidationIssue` |
-| `../../tool/resources/design-md-format.md` | v2 DESIGN.md section specification — defines the 17 required sections |
-| `../../tool/resources/quality-checklist.md` | Pre-validate self-check list |
+| `../../tool/resources/design_md_format.md` | v2 DESIGN.md section specification — defines the 17 required sections |
+| `../../tool/resources/quality_checklist.md` | Pre-validate self-check list |
 | `../../SKILL.md` | §3 VALIDATE phase definition and §4 ALWAYS rule 5 (run validate.ts before claiming completion) |
 
 ---

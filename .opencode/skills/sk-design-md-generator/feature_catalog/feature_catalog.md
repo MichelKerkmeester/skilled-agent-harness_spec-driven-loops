@@ -51,7 +51,7 @@ Crawls a live URL across five viewports with Playwright, collects computed CSS v
 - Computed color, typography, shadow, radius, spacing, and CSS variable collection.
 - Dark-mode palette detection via `prefers-color-scheme` media query and class/attribute toggles.
 - Per-feature detectors run inline during extraction (accessibility, framework, icons, motion).
-- Output written to `output/<domain>/tokens.json`.
+- Output written to `<--output>/tokens.json`.
 - The `--fast` flag controls crawl depth; `--with-interaction` captures hover, focus, and active state styles.
 - If Playwright cannot reach the URL or the page emits no measurable CSS, the extractor exits with an error.
 
@@ -69,7 +69,7 @@ Transforms raw color data from `tokens.json` into stability-classified tokens vi
 
 #### Current Reality
 
-- OKLCH color space clustering groups visually similar colors into named roles following the taxonomy in `tool/resources/color-role-taxonomy.md`.
+- OKLCH color space clustering groups visually similar colors into named roles following the taxonomy in `tool/resources/color_role_taxonomy.md`.
 - L1 (permanent, brand-level) and L2 (system, component-level) tokens populate the main DESIGN.md sections.
 - L3 (campaign, temporary) tokens enter with a "Subject to change" annotation.
 - L4 (content, one-off, image-derived) tokens are excluded entirely.
@@ -96,7 +96,7 @@ Produces the 17-section `DESIGN.md` from `tokens.json` under the cardinal fideli
 - Dark-mode section appears only when `tokens.json` contains a detected dark palette with populated variable diffs.
 - Accessibility section drawn from a11y data in `tokens.json`.
 - The write-phase prompt template (`assets/design_md_prompt_template.md`) and cardinal rules card (`assets/cardinal_rules_card.md`) front-load the fidelity contract.
-- The writer loads the v2 section spec from `tool/resources/design-md-format.md` and voice rules from `tool/resources/writing-style-guide.md` before composing.
+- The writer loads the v2 section spec from `tool/resources/design_md_format.md` and voice rules from `tool/resources/writing_style_guide.md` before composing.
 
 #### Source Files
 

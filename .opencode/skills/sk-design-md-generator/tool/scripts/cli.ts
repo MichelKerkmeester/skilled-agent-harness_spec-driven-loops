@@ -10,10 +10,10 @@
  * Quick extraction mode — runs Phase 1 (crawl + extract + cluster) and outputs tokens.json.
  * For full DESIGN.md generation, use the Claude Code skill `/design-md`.
  *
- * Usage:
- *   npx ts-node scripts/extract.ts <url> [options]
- *   npx ts-node scripts/extract.ts https://stripe.com --max-pages 10
- *   npx ts-node scripts/extract.ts https://example.com --output ./my-output --wait-for css
+ * Usage (--output is REQUIRED and must point at a spec folder, not the skill):
+ *   npx ts-node scripts/extract.ts <url> --output <spec-folder>/output [options]
+ *   npx ts-node scripts/extract.ts https://stripe.com --max-pages 10 --output .opencode/specs/<track>/<packet>/output
+ *   npx ts-node scripts/extract.ts https://example.com --output .opencode/specs/<track>/<packet>/output --wait-for css
  */
 
 // ────────────────────────────────────────────────────────────────

@@ -60,7 +60,7 @@ The `InteractionData` payload contains an array of `InteractionCapture` objects 
 
 ### Validation enforcement
 
-The validator (`validate.ts`) checks that `## 11. State Matrix` is present and non-empty as part of its section-completeness scan. The v2 format specification (`design-md-format.md`) marks section 11 as required. An extraction run without `--with-interaction` can still produce a conformant DESIGN.md as long as section 11 is written with an explicit absence note (e.g., "Interaction state capture was not enabled for this extraction").
+The validator (`validate.ts`) checks that `## 11. State Matrix` is present and non-empty as part of its section-completeness scan. The v2 format specification (`design_md_format.md`) marks section 11 as required. An extraction run without `--with-interaction` can still produce a conformant DESIGN.md as long as section 11 is written with an explicit absence note (e.g., "Interaction state capture was not enabled for this extraction").
 
 ---
 

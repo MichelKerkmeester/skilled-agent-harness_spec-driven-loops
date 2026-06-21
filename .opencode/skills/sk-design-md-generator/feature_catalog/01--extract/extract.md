@@ -52,7 +52,7 @@ During the crawl, six detectors run inline and write their findings into the tok
 
 ### Output
 
-The extraction writes `output/<domain>/tokens.json` (a flat JSON file with structured token arrays), plus viewport screenshots and an extraction report. The JSON is the single source of truth for the WRITE and VALIDATE phases.
+The extraction writes `<--output>/tokens.json` (a flat JSON file with structured token arrays), plus viewport screenshots and an extraction report. The JSON is the single source of truth for the WRITE and VALIDATE phases.
 
 ### Failure modes
 

@@ -24,7 +24,7 @@ The WRITE phase is where hallucination risk is highest: an agent reading `tokens
 
 ### Usage
 
-Fill the three placeholders (`<DOMAIN>`, `<TOKENS_JSON_PATH>`, `<DESIGN_MD_PATH>`), then hand the prompt to the writing agent. Load `tool/resources/design-md-format.md` (the section spec) and `tool/resources/writing-style-guide.md` (voice) alongside it.
+Fill the three placeholders (`<DOMAIN>`, `<TOKENS_JSON_PATH>`, `<DESIGN_MD_PATH>`), then hand the prompt to the writing agent. Load `tool/resources/design_md_format.md` (the section spec) and `tool/resources/writing_style_guide.md` (voice) alongside it.
 
 ---
 
@@ -34,8 +34,8 @@ Fill the three placeholders (`<DOMAIN>`, `<TOKENS_JSON_PATH>`, `<DESIGN_MD_PATH>
 Write a DESIGN.md for <DOMAIN> from the extracted tokens.
 
 Source of truth: <TOKENS_JSON_PATH>. Output: <DESIGN_MD_PATH>.
-Read tool/resources/design-md-format.md for the 17-section v2 specification and
-tool/resources/writing-style-guide.md for voice before writing.
+Read tool/resources/design_md_format.md for the 17-section v2 specification and
+tool/resources/writing_style_guide.md for voice before writing.
 
 CARDINAL RULES (non-negotiable):
 1. Every hex, pixel, font-weight, shadow, and radius MUST be copied verbatim from the
@@ -64,10 +64,10 @@ Resolve every hex mismatch and missing section before reporting completion.
 - The human label for the source site (e.g. `Stripe`, `stripe.com`).
 
 **`<TOKENS_JSON_PATH>`**:
-- The extractor output, e.g. `output/stripe.com/tokens.json`.
+- The extractor output, e.g. `<--output>/tokens.json`.
 
 **`<DESIGN_MD_PATH>`**:
-- Where the document is written, e.g. `output/stripe.com/DESIGN.md`.
+- Where the document is written, e.g. `<--output>/DESIGN.md`.
 
 ---
 

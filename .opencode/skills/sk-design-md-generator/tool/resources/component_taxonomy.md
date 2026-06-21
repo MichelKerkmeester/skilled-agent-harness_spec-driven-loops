@@ -1,10 +1,26 @@
+---
+title: Component Taxonomy
+description: Reference for identifying, classifying, and documenting UI components extracted from a live site to produce consistent DESIGN.md output.
+trigger_phrases:
+  - component taxonomy
+  - ui component classification
+  - component documentation
+  - standard component definitions
+  - distinctive components
+  - component extraction checklist
+  - component state matrix
+  - component decision logic
+importance_tier: normal
+contextType: general
+---
+
 # Component Taxonomy
 
 Reference for identifying, classifying, and documenting UI components extracted from a live site. Use this taxonomy to produce consistent component documentation in DESIGN.md output.
 
 ---
 
-## Standard Component Definitions
+## 1. OVERVIEW
 
 ### Button
 - **DOM signals**: `<button>`, `<a role="button">`, `<input type="submit">`, elements with `cursor: pointer` and `background-color` + `padding` + `border-radius` combination. Class patterns: `.btn`, `.button`, `[class*="cta"]`, `MuiButton`, `chakra-button`.
@@ -265,7 +281,7 @@ Reference for identifying, classifying, and documenting UI components extracted 
 
 ---
 
-## Distinctive Components
+## 2. DISTINCTIVE COMPONENTS
 
 How to identify unique visual elements not covered by the standard categories above.
 
@@ -312,7 +328,7 @@ When a distinctive component is identified:
 
 ---
 
-## Component Extraction Checklist
+## 3. COMPONENT EXTRACTION CHECKLIST
 
 Before finalizing component documentation:
 
@@ -327,7 +343,7 @@ Before finalizing component documentation:
 
 ---
 
-## "Use:" Line Requirement
+## 4. "USE:" LINE REQUIREMENT
 
 Every component entry in the DESIGN.md must include a **Use:** line that answers: "When does a developer reach for this component instead of another?"
 
@@ -372,7 +388,7 @@ Without it, developers choose components by visual similarity ("this looks like 
 
 ---
 
-## State Matrix Template
+## 5. STATE MATRIX TEMPLATE
 
 Every interactive or data-dependent component must document its states beyond the default. Use this template:
 
@@ -420,7 +436,7 @@ This is better than silent omission, which causes implementers to invent states 
 
 ---
 
-## Decision Logic: When to Use Which Component
+## 6. DECISION LOGIC
 
 Some components serve overlapping purposes. This decision logic helps the DESIGN.md document the right component for each communication need.
 

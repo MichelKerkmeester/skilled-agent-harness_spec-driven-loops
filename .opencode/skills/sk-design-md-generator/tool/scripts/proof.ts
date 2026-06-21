@@ -450,9 +450,9 @@ if (require.main === module) {
   if (args.length < 2) {
     console.error(`Usage: npx ts-node scripts/proof.ts <url> <tokens-json> [output-dir] [preview-html]
 
-Example:
-  npx ts-node scripts/proof.ts https://stripe.com output/stripe.com/tokens.json
-  npx ts-node scripts/proof.ts https://vercel.com examples/vercel/tokens.json examples/vercel/`);
+Example (read from the spec-folder output where extraction wrote):
+  npx ts-node scripts/proof.ts https://stripe.com <spec>/output/tokens.json
+  npx ts-node scripts/proof.ts https://vercel.com <spec>/output/tokens.json <spec>/output/`);
     process.exit(1);
   }
 

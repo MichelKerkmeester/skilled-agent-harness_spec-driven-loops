@@ -50,19 +50,19 @@ Expected: all tests pass with exit code 0. If any test fails, check the troubles
 Run a fast extraction against a public site to confirm everything works end-to-end:
 
 ```bash
-npx ts-node scripts/extract.ts https://stripe.com --fast
+npx ts-node scripts/extract.ts https://stripe.com --fast --output .opencode/specs/<track>/<packet>/output
 ```
 
 Expected output:
 
 - The crawler visits 5 pages at 8 concurrency.
-- `tokens.json` is written to `output/stripe.com/`.
+- `tokens.json` is written to `<--output>/`.
 - The file contains non-empty token arrays for colors, typography, shadows, radii, and spacing.
 
 Validate a `DESIGN.md` against the extracted tokens:
 
 ```bash
-npx ts-node scripts/validate.ts DESIGN.md output/stripe.com/tokens.json
+npx ts-node scripts/validate.ts DESIGN.md <--output>/tokens.json
 ```
 
 Expected: zero hex mismatches, zero missing sections.
@@ -90,7 +90,7 @@ If the install fails, check your network connection and proxy settings. Playwrig
 **Fix:** Try adjusting the wait strategy:
 
 ```bash
-npx ts-node scripts/extract.ts https://example.com --fast --wait-for networkidle
+npx ts-node scripts/extract.ts https://example.com --fast --wait-for networkidle --output .opencode/specs/<track>/<packet>/output
 ```
 
 If the site requires authentication, it is out of scope. The tool only works on publicly accessible URLs that render JavaScript.

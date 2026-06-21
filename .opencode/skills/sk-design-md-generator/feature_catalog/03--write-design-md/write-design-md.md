@@ -16,7 +16,7 @@ importance_tier: "normal"
 
 ## 1. OVERVIEW
 
-Produces the 17-section `DESIGN.md` that AI agents consume as a hallucination-proof design-system reference. This is the highest-risk phase: an agent reading `tokens.json` must transcribe every value without estimating, rounding, normalizing, or inventing. The cardinal fidelity rule is the single non-negotiable contract of the skill. The writer loads the v2 section specification from `tool/resources/design-md-format.md` and the voice/tone rules from `tool/resources/writing-style-guide.md` before composing. The write-phase prompt template (`assets/design_md_prompt_template.md`) and the cardinal rules card (`assets/cardinal_rules_card.md`) front-load the fidelity contract.
+Produces the 17-section `DESIGN.md` that AI agents consume as a hallucination-proof design-system reference. This is the highest-risk phase: an agent reading `tokens.json` must transcribe every value without estimating, rounding, normalizing, or inventing. The cardinal fidelity rule is the single non-negotiable contract of the skill. The writer loads the v2 section specification from `tool/resources/design_md_format.md` and the voice/tone rules from `tool/resources/writing_style_guide.md` before composing. The write-phase prompt template (`assets/design_md_prompt_template.md`) and the cardinal rules card (`assets/cardinal_rules_card.md`) front-load the fidelity contract.
 
 ---
 
@@ -44,7 +44,7 @@ Section 9 (Accessibility Contract) is always present and drawn from `tokens.json
 
 ### The 17-section contract
 
-The v2 DESIGN.md format specifies 14 numbered core sections (0-13), one half-section (6.5 Motion System), and 4 optional sections (14-17). Every core section is present and non-empty. Section numbering follows the specification in `tool/resources/design-md-format.md` exactly. The file opens with two HTML comment lines (generation date, source URL, page count, framework detection, format version).
+The v2 DESIGN.md format specifies 14 numbered core sections (0-13), one half-section (6.5 Motion System), and 4 optional sections (14-17). Every core section is present and non-empty. Section numbering follows the specification in `tool/resources/design_md_format.md` exactly. The file opens with two HTML comment lines (generation date, source URL, page count, framework detection, format version).
 
 ### Write-phase prompt
 
@@ -64,7 +64,7 @@ The cardinal rules card (`assets/cardinal_rules_card.md`) is a one-page checklis
 |---|---|---|
 | `assets/design_md_prompt_template.md` | Script | Write-phase prompt encoding the cardinal rules and the 17-section contract |
 | `assets/cardinal_rules_card.md` | Script | One-page fidelity checklist for pre-validate self-check |
-| `tool/resources/design-md-format.md` | Shared | Authoritative v2 DESIGN.md section specification |
+| `tool/resources/design_md_format.md` | Shared | Authoritative v2 DESIGN.md section specification |
 
 ### Validation And Tests
 
@@ -82,7 +82,7 @@ The cardinal rules card (`assets/cardinal_rules_card.md`) is a one-page checklis
 - Feature file path: `03--write-design-md/write-design-md.md`
 
 Related references:
-- [tool/resources/writing-style-guide.md](../../tool/resources/writing-style-guide.md) — voice, tone, tense, and section-composition rules
-- [tool/resources/anti-patterns.md](../../tool/resources/anti-patterns.md) — common DESIGN.md authoring mistakes
+- [tool/resources/writing_style_guide.md](../../tool/resources/writing_style_guide.md) — voice, tone, tense, and section-composition rules
+- [tool/resources/anti_patterns.md](../../tool/resources/anti_patterns.md) — common DESIGN.md authoring mistakes
 - [cluster-classify.md](../02--cluster-classify/cluster-classify.md) — the stability classes that gate token inclusion
 - [validate.md](../04--validate/validate.md) — the hex-and-section validator that confirms fidelity

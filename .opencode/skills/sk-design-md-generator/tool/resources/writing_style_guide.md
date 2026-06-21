@@ -1,10 +1,25 @@
+---
+title: DESIGN.md Writing Style Guide
+description: Writing quality standard for publication-level DESIGN.md files with concrete examples and banned-word discipline.
+trigger_phrases:
+  - design writing style
+  - banned words in design docs
+  - opening paragraph rules
+  - key characteristics format
+  - comparative framing
+  - value embedding in prose
+  - agent prompt self-containment
+  - information density
+importance_tier: normal
+contextType: general
+---
 # DESIGN.md Writing Style Guide
 
 Writing quality standard for publication-level DESIGN.md files. Every rule here is derived from what separates the best DESIGN.md files (Vercel, Stripe, Linear, Notion) from the forgettable ones.
 
 ---
 
-## 1. Overall Tone
+## 1. OVERVIEW
 
 Write like a senior design systems engineer explaining a system to a peer who will implement it tomorrow. The reader already knows CSS, typography, and color theory -- never explain fundamentals.
 

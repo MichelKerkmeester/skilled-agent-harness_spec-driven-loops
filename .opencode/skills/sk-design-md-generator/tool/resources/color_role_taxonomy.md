@@ -1,10 +1,26 @@
+---
+title: Color Role Taxonomy
+description: Reference for assigning semantic roles to extracted color values and transforming raw hex values into a meaningful structured palette.
+trigger_phrases:
+  - color role taxonomy
+  - semantic color roles
+  - color role assignment
+  - hex color classification
+  - brand vs structural color
+  - css variable naming
+  - color frequency interpretation
+  - ambiguity resolution
+importance_tier: normal
+contextType: general
+---
+
 # Color Role Taxonomy
 
 Reference for assigning semantic roles to extracted color values. Use this taxonomy to transform raw hex values into a meaningful, structured palette.
 
 ---
 
-## Semantic Role Definitions
+## 1. OVERVIEW
 
 ### primary
 - **Definition**: The dominant brand/action color used for primary interactive elements and key visual anchors.
@@ -188,7 +204,7 @@ Reference for assigning semantic roles to extracted color values. Use this taxon
 
 ---
 
-## Role Assignment Priority
+## 2. ROLE ASSIGNMENT PRIORITY
 
 When assigning a semantic role to an extracted color, evaluate evidence in this order. Higher priority signals override lower ones.
 
@@ -204,7 +220,7 @@ When assigning a semantic role to an extracted color, evaluate evidence in this 
 
 ---
 
-## Recommended Grouping Order for DESIGN.md Output
+## 3. RECOMMENDED GROUPING ORDER
 
 When presenting the final color palette in the design system document, use this ordering:
 
@@ -223,7 +239,7 @@ Within each group, order from most prominent/saturated to least.
 
 ---
 
-## Ambiguity Resolution
+## 4. AMBIGUITY RESOLUTION
 
 When a color could reasonably be assigned to multiple roles:
 
@@ -235,7 +251,7 @@ When a color could reasonably be assigned to multiple roles:
 
 ---
 
-## Frequency Interpretation by Role
+## 5. FREQUENCY INTERPRETATION
 
 Each color role has an expected frequency range. Deviations from these expectations are design signals worth narrating.
 
@@ -262,7 +278,7 @@ When an extracted frequency deviates from the expected range, narrate the deviat
 
 ---
 
-## Brand vs Structural Color Classification
+## 6. BRAND VS STRUCTURAL COLOR CLASSIFICATION
 
 Not all colors serve the same strategic purpose. Classify each color as **Brand** or **Structural** to help the DESIGN.md reader understand which colors are negotiable (structural) and which are identity-critical (brand).
 
@@ -311,7 +327,7 @@ In the DESIGN.md color section, group or tag colors:
 
 ---
 
-## CSS Variable Naming Conventions
+## 7. CSS VARIABLE NAMING CONVENTIONS
 
 When the extracted data contains CSS custom properties, document the naming convention to help implementers maintain consistency.
 

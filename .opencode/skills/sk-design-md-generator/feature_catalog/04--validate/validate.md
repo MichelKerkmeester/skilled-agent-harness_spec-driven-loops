@@ -25,7 +25,7 @@ Confirms that a DESIGN.md is faithful to its source `tokens.json` before any com
 ### Invocation
 
 ```bash
-npx ts-node scripts/validate.ts <DESIGN.md> output/<domain>/tokens.json
+npx ts-node scripts/validate.ts <DESIGN.md> <--output>/tokens.json
 ```
 
 The first argument is the DESIGN.md path. The second is the tokens.json path. The validator reads both, parses DESIGN.md to extract all hex values, and cross-references each against the token source.
@@ -91,6 +91,6 @@ Four conditions require escalation rather than automated correction:
 - Feature file path: `04--validate/validate.md`
 
 Related references:
-- [tool/resources/quality-checklist.md](../../tool/resources/quality-checklist.md) — pre-validate self-check list
+- [tool/resources/quality_checklist.md](../../tool/resources/quality_checklist.md) — pre-validate self-check list
 - [write-design-md.md](../03--write-design-md/write-design-md.md) — the write phase that produces the DESIGN.md under validation
 - [references/troubleshooting.md](../../references/troubleshooting.md) — failure modes and escalation guidance

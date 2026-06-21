@@ -42,8 +42,8 @@ You MUST complete each phase before proceeding to the next; VALIDATE and REPORT 
 #### Phase 1: EXTRACT
 
 **Actions**:
-1. `cd tool && npx ts-node scripts/extract.ts <url> --fast`
-2. Playwright crawls five viewports and writes `output/<domain>/tokens.json` plus screenshots and an extraction report.
+1. `cd tool && npx ts-node scripts/extract.ts <url> --fast --output .opencode/specs/<track>/<packet>/output`
+2. Playwright crawls five viewports and writes `<--output>/tokens.json` plus screenshots and an extraction report.
 3. `--fast` means 5 pages at 8 concurrency; drop it (or set `--max-pages 10`) for a deeper crawl; add `--with-interaction` to capture hover/focus/active states.
 
 **Validation**: `tokens_emitted`
@@ -51,7 +51,7 @@ You MUST complete each phase before proceeding to the next; VALIDATE and REPORT 
 #### Phase 2: WRITE
 
 **Actions**:
-1. Read `tool/resources/design-md-format.md` and `tool/resources/writing-style-guide.md`.
+1. Read `tool/resources/design_md_format.md` and `tool/resources/writing_style_guide.md`.
 2. Compose the 17-section `DESIGN.md`, copying every hex, pixel, font-weight, shadow, and radius verbatim from `tokens.json`.
 3. 6-digit lowercase hex only. L1+L2 tokens in main sections, L3 marked "Subject to change", L4 excluded.
 
@@ -60,7 +60,7 @@ You MUST complete each phase before proceeding to the next; VALIDATE and REPORT 
 #### Phase 3: VALIDATE
 
 **Actions**:
-1. `npx ts-node scripts/validate.ts <DESIGN.md> output/<domain>/tokens.json`
+1. `npx ts-node scripts/validate.ts <DESIGN.md> <--output>/tokens.json`
 2. Resolve every hex mismatch and missing section before claiming completion.
 3. Optional visual artifacts: `proof.ts <url> <tokens.json>`, `report-gen.ts <tokens.json> <dir> <DESIGN.md>`, `preview-gen.ts <tokens.json> <dir>`.
 

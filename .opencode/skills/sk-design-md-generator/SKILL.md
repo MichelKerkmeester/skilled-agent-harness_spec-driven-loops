@@ -86,12 +86,12 @@ TASK CONTEXT
 The router discovers knowledge from two root domains: the embedded `tool/resources/` (six deep-reference docs on format, style, taxonomies, anti-patterns, and quality) and this skill's own `references/` (advisor-routable operational docs authored separately). Examples under `tool/examples/` are study artifacts, not resources.
 
 ```text
-tool/resources/design-md-format.md       # v2 DESIGN.md section specification
-tool/resources/writing-style-guide.md    # voice, tone, section composition rules
-tool/resources/color-role-taxonomy.md    # color role naming + classification
-tool/resources/component-taxonomy.md     # component naming + hierarchy patterns
-tool/resources/anti-patterns.md          # common DESIGN.md mistakes to avoid
-tool/resources/quality-checklist.md      # pre-validate self-check
+tool/resources/design_md_format.md       # v2 DESIGN.md section specification
+tool/resources/writing_style_guide.md    # voice, tone, section composition rules
+tool/resources/color_role_taxonomy.md    # color role naming + classification
+tool/resources/component_taxonomy.md     # component naming + hierarchy patterns
+tool/resources/anti_patterns.md          # common DESIGN.md mistakes to avoid
+tool/resources/quality_checklist.md      # pre-validate self-check
 tool/examples/{stripe,vercel,linear,supabase}/  # gold-standard DESIGN.md + tokens.json pairs
 references/                              # skill-owned advisor-routable reference docs
 ```
@@ -100,11 +100,11 @@ references/                              # skill-owned advisor-routable referenc
 
 | Level       | When to Load                         | Resources                                                                 |
 | ----------- | ------------------------------------ | ------------------------------------------------------------------------- |
-| ALWAYS      | Every invocation                     | `tool/resources/design-md-format.md`, `tool/resources/writing-style-guide.md` |
-| CONDITIONAL | EXTRACT_WRITE intent                 | `tool/resources/color-role-taxonomy.md`, `tool/resources/component-taxonomy.md`, `tool/resources/anti-patterns.md` |
-| CONDITIONAL | VALIDATE / completion claim          | `tool/resources/quality-checklist.md`, `tool/resources/anti-patterns.md`  |
+| ALWAYS      | Every invocation                     | `tool/resources/design_md_format.md`, `tool/resources/writing_style_guide.md` |
+| CONDITIONAL | EXTRACT_WRITE intent                 | `tool/resources/color_role_taxonomy.md`, `tool/resources/component_taxonomy.md`, `tool/resources/anti_patterns.md` |
+| CONDITIONAL | VALIDATE / completion claim          | `tool/resources/quality_checklist.md`, `tool/resources/anti_patterns.md`  |
 | CONDITIONAL | STUDY intent                         | `tool/examples/` (one site at a time, loaded as reference pairs)           |
-| ON_DEMAND   | Deep format edge-cases or component patterns | `tool/resources/anti-patterns.md`, `tool/resources/component-taxonomy.md` |
+| ON_DEMAND   | Deep format edge-cases or component patterns | `tool/resources/anti_patterns.md`, `tool/resources/component_taxonomy.md` |
 
 ### Smart Router Pseudocode
 
@@ -115,7 +115,7 @@ from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "tool" / "resources", SKILL_ROOT / "references")
-DEFAULT_RESOURCE = "tool/resources/design-md-format.md"
+DEFAULT_RESOURCE = "tool/resources/design_md_format.md"
 
 INTENT_MODEL = {
     "EXTRACT_WRITE": {"keywords": [("extract", 4), ("crawl", 4), ("url", 4), ("design.md", 4), ("generate", 3),
@@ -129,13 +129,13 @@ INTENT_MODEL = {
 }
 
 RESOURCE_MAP = {
-    "EXTRACT_WRITE": ["tool/resources/design-md-format.md", "tool/resources/writing-style-guide.md",
-                       "tool/resources/color-role-taxonomy.md", "tool/resources/component-taxonomy.md",
-                       "tool/resources/anti-patterns.md"],
-    "VALIDATE":      ["tool/resources/quality-checklist.md", "tool/resources/anti-patterns.md",
-                       "tool/resources/design-md-format.md"],
-    "REPORT":        ["tool/resources/design-md-format.md"],
-    "STUDY":         ["tool/resources/design-md-format.md", "tool/resources/writing-style-guide.md"],
+    "EXTRACT_WRITE": ["tool/resources/design_md_format.md", "tool/resources/writing_style_guide.md",
+                       "tool/resources/color_role_taxonomy.md", "tool/resources/component_taxonomy.md",
+                       "tool/resources/anti_patterns.md"],
+    "VALIDATE":      ["tool/resources/quality_checklist.md", "tool/resources/anti_patterns.md",
+                       "tool/resources/design_md_format.md"],
+    "REPORT":        ["tool/resources/design_md_format.md"],
+    "STUDY":         ["tool/resources/design_md_format.md", "tool/resources/writing_style_guide.md"],
 }
 
 UNKNOWN_FALLBACK_CHECKLIST = [
@@ -216,7 +216,7 @@ EXTRACT (Phase 1)
     └─ Output: tokens.json (verbatim measured values)
          ↓
 WRITE (Phase 2)
-    ├─ Read tokens.json and tool/resources/design-md-format.md for the v2 section specification
+    ├─ Read tokens.json and tool/resources/design_md_format.md for the v2 section specification
     ├─ Compose 17-section DESIGN.md, copying EVERY numeric value verbatim from tokens.json
     ├─ L1 (permanent) + L2 (system) tokens go in main sections
     ├─ L3 (campaign) tokens marked "subject to change"
@@ -250,18 +250,18 @@ REPORT (Phase 4, optional)
 cd tool && npm install && npx playwright install chromium
 
 # Phase 1 — extract. --fast crawls 5 pages at 8 concurrency (default is 8 pages).
-# tokens.json is written to output/<domain>/.
-npx ts-node scripts/extract.ts <url> --fast
+# tokens.json is written to <--output>/.
+npx ts-node scripts/extract.ts <url> --fast --output .opencode/specs/<track>/<packet>/output
 
-# Phase 2 — write DESIGN.md per tool/resources/design-md-format.md, every value from tokens.json.
+# Phase 2 — write DESIGN.md per tool/resources/design_md_format.md, every value from tokens.json.
 
 # Phase 3 — validate (DESIGN.md first, tokens.json second):
-npx ts-node scripts/validate.ts <DESIGN.md> output/<domain>/tokens.json
+npx ts-node scripts/validate.ts <DESIGN.md> <--output>/tokens.json
 
 # Optional — fidelity proof + visual report/preview (these take tokens.json FIRST):
-npx ts-node scripts/proof.ts <url> output/<domain>/tokens.json
-npx ts-node scripts/report-gen.ts output/<domain>/tokens.json <dir> <DESIGN.md>
-npx ts-node scripts/preview-gen.ts output/<domain>/tokens.json <dir>
+npx ts-node scripts/proof.ts <url> <--output>/tokens.json
+npx ts-node scripts/report-gen.ts <--output>/tokens.json <dir> <DESIGN.md>
+npx ts-node scripts/preview-gen.ts <--output>/tokens.json <dir>
 ```
 
 Real extract flags (see `tool/README.md`): `--fast` (5 pages, 8 concurrency), `--max-pages <n>` (default 8), `--concurrency <n>` (default 5), `--with-interaction` / `--no-interaction`, `--no-dark-mode` (skip dark detection), `--wait-for <strategy>`, `--extra-urls`, `--merge-with`, `--output <dir>`, `--verbose`.
@@ -285,7 +285,7 @@ The classifier lives in `tool/scripts/cluster.ts` and is deterministic. Tokens t
 
 ### ✅ ALWAYS
 
-1. **ALWAYS read `tool/resources/design-md-format.md` and `tool/resources/writing-style-guide.md` before writing DESIGN.md.** These define the v2 section specification and the voice/tone rules. No DESIGN.md is conformant without them.
+1. **ALWAYS read `tool/resources/design_md_format.md` and `tool/resources/writing_style_guide.md` before writing DESIGN.md.** These define the v2 section specification and the voice/tone rules. No DESIGN.md is conformant without them.
 2. **ALWAYS copy every numeric CSS value verbatim from `tokens.json`.** Hex colors, pixel sizes, font weights, box shadows, border radii, spacing values — every number must match `tokens.json` exactly. This is the cardinal fidelity rule.
 3. **ALWAYS use 6-digit lowercase hex** for every color in DESIGN.md (e.g., `#1a1a2e`, never `#1A1A2E`, `#333`, `rgb()`, or `hsl()`).
 4. **ALWAYS apply stability gates:** L1 and L2 tokens in main 17 sections; L3 tokens in the L3 subsection with a "Subject to change" annotation; L4 tokens excluded entirely.
@@ -316,12 +316,12 @@ The classifier lives in `tool/scripts/cluster.ts` and is deterministic. Tokens t
 
 ### Core References (Embedded Tool)
 
-- [design-md-format.md](tool/resources/design-md-format.md) — The authoritative v2 DESIGN.md section specification: 17 required sections, heading conventions, token-to-section mapping.
-- [writing-style-guide.md](tool/resources/writing-style-guide.md) — Voice, tone, tense, and section-composition rules for DESIGN.md prose.
-- [color-role-taxonomy.md](tool/resources/color-role-taxonomy.md) — Color role naming conventions and the classification hierarchy (brand, semantic, surface, border, text, interactive).
-- [component-taxonomy.md](tool/resources/component-taxonomy.md) — Component naming, hierarchy patterns, and the component-to-section mapping rules.
-- [anti-patterns.md](tool/resources/anti-patterns.md) — Common DESIGN.md authoring mistakes: invented values, missing sections, wrong hex case, L4 leaks, and dark-mode fabrication.
-- [quality-checklist.md](tool/resources/quality-checklist.md) — Pre-validate self-check list: hex format, section presence, stability-class compliance, dark-mode gate, a11y section presence.
+- [design_md_format.md](tool/resources/design_md_format.md) — The authoritative v2 DESIGN.md section specification: 17 required sections, heading conventions, token-to-section mapping.
+- [writing_style_guide.md](tool/resources/writing_style_guide.md) — Voice, tone, tense, and section-composition rules for DESIGN.md prose.
+- [color_role_taxonomy.md](tool/resources/color_role_taxonomy.md) — Color role naming conventions and the classification hierarchy (brand, semantic, surface, border, text, interactive).
+- [component_taxonomy.md](tool/resources/component_taxonomy.md) — Component naming, hierarchy patterns, and the component-to-section mapping rules.
+- [anti_patterns.md](tool/resources/anti_patterns.md) — Common DESIGN.md authoring mistakes: invented values, missing sections, wrong hex case, L4 leaks, and dark-mode fabrication.
+- [quality_checklist.md](tool/resources/quality_checklist.md) — Pre-validate self-check list: hex format, section presence, stability-class compliance, dark-mode gate, a11y section presence.
 
 ### Gold-Standard Examples
 
@@ -342,9 +342,9 @@ The classifier lives in `tool/scripts/cluster.ts` and is deterministic. Tokens t
 
 ### Reference Loading Notes
 
-- `tool/resources/design-md-format.md` is the baseline (always loaded). Load `writing-style-guide.md` alongside it for any write-phase work.
-- Load the taxonomy docs (`color-role-taxonomy.md`, `component-taxonomy.md`) and `anti-patterns.md` only when the intent is EXTRACT_WRITE.
-- Load `quality-checklist.md` before any validation or completion claim.
+- `tool/resources/design_md_format.md` is the baseline (always loaded). Load `writing_style_guide.md` alongside it for any write-phase work.
+- Load the taxonomy docs (`color_role_taxonomy.md`, `component_taxonomy.md`) and `anti_patterns.md` only when the intent is EXTRACT_WRITE.
+- Load `quality_checklist.md` before any validation or completion claim.
 - Load one example site at a time from `tool/examples/` when in STUDY intent; compare the DESIGN.md against the tokens.json to understand format conventions.
 - Keep Section 2 (SMART ROUTING) as the single routing authority for all resource loads.
 
@@ -354,7 +354,7 @@ The classifier lives in `tool/scripts/cluster.ts` and is deterministic. Tokens t
 
 **Extraction complete when:**
 - [x] `tokens.json` was written by `extract.ts` with no fatal errors, and the file is valid JSON with non-empty token arrays.
-- [x] `DESIGN.md` was written conforming to the v2 17-section format in `tool/resources/design-md-format.md`.
+- [x] `DESIGN.md` was written conforming to the v2 17-section format in `tool/resources/design_md_format.md`.
 - [x] Every hex, pixel, font-weight, shadow, and radius in DESIGN.md matches `tokens.json` verbatim.
 - [x] All hex codes use 6-digit lowercase format.
 - [x] L1 + L2 tokens populate the main sections; L3 tokens appear with "Subject to change"; L4 tokens are absent.
@@ -396,13 +396,13 @@ The classifier lives in `tool/scripts/cluster.ts` and is deterministic. Tokens t
 
 ### Knowledge Base Dependencies
 
-**Required** (every invocation): `tool/resources/design-md-format.md` (v2 section specification). **Conditional**: `writing-style-guide.md`, taxonomy docs, `anti-patterns.md`, `quality-checklist.md` (per intent model in Section 2).
+**Required** (every invocation): `tool/resources/design_md_format.md` (v2 section specification). **Conditional**: `writing_style_guide.md`, taxonomy docs, `anti_patterns.md`, `quality_checklist.md` (per intent model in Section 2).
 
 ---
 
 ## 8. REFERENCES AND RELATED RESOURCES
 
-The router (Section 2) discovers resource and reference docs dynamically. Start from `tool/resources/design-md-format.md` for the v2 section specification, load `tool/resources/writing-style-guide.md` for voice/tone rules, and load taxonomy/anti-pattern/quality docs per the intent model. References stay the primary loaded resources.
+The router (Section 2) discovers resource and reference docs dynamically. Start from `tool/resources/design_md_format.md` for the v2 section specification, load `tool/resources/writing_style_guide.md` for voice/tone rules, and load taxonomy/anti-pattern/quality docs per the intent model. References stay the primary loaded resources.
 
 Examples: `tool/examples/{stripe,vercel,linear,supabase}/` provide gold-standard DESIGN.md + tokens.json pairs, loaded in STUDY intent. Study the DESIGN.md alongside the matching tokens.json to understand the format conventions.
 

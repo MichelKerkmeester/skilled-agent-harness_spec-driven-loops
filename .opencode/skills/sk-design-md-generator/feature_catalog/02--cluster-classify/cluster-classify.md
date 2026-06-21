@@ -24,7 +24,7 @@ Transforms the raw color data from `tokens.json` into a stability-gated token se
 
 ### OKLCH color clustering
 
-`cluster.ts` reads the extracted color tokens and converts each hex value to OKLCH coordinates (lightness, chroma, hue). Colors within a defined perceptual-distance threshold are grouped into a shared role. The algorithm avoids splitting visually identical colors across roles and keeps the role count manageable for DESIGN.md authoring. Roles follow the taxonomy in `tool/resources/color-role-taxonomy.md`: brand colors, semantic role colors (success, error, warning, info), surface colors, border colors, text ladder colors, and interactive-state colors.
+`cluster.ts` reads the extracted color tokens and converts each hex value to OKLCH coordinates (lightness, chroma, hue). Colors within a defined perceptual-distance threshold are grouped into a shared role. The algorithm avoids splitting visually identical colors across roles and keeps the role count manageable for DESIGN.md authoring. Roles follow the taxonomy in `tool/resources/color_role_taxonomy.md`: brand colors, semantic role colors (success, error, warning, info), surface colors, border colors, text ladder colors, and interactive-state colors.
 
 ### Stability classification (L1-L4)
 
@@ -77,6 +77,6 @@ The classification drives the write-phase gating:
 - Feature file path: `02--cluster-classify/cluster-classify.md`
 
 Related references:
-- [tool/resources/color-role-taxonomy.md](../../tool/resources/color-role-taxonomy.md) — color role naming conventions and hierarchy
+- [tool/resources/color_role_taxonomy.md](../../tool/resources/color_role_taxonomy.md) — color role naming conventions and hierarchy
 - [extract.md](../01--extract/extract.md) — the extraction phase that produces tokens consumed by the cluster
 - [write-design-md.md](../03--write-design-md/write-design-md.md) — the write phase that applies stability gating

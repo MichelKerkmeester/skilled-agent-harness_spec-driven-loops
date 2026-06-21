@@ -50,8 +50,8 @@ Resolve the failures that block an extraction run: missing browser binaries, uni
 **`validate.ts` reports hex mismatches.** Validation flags a hex in `DESIGN.md` that is not in `tokens.json`. Usual cause: a write-phase value was estimated or its case/format drifted.
 - Fix: make the `DESIGN.md` value match `tokens.json` exactly (6-digit lowercase). If `tokens.json` itself holds an invalid value (uppercase or a 3-digit hex), that is an extractor issue - escalate before editing source data.
 
-**Output landed somewhere unexpected.** `tokens.json` and screenshots go to `output/<domain>/` by default, not the working directory.
-- Fix: override with `--output <dir>`. Validation and report commands take the explicit `tokens.json` path, so point them at `output/<domain>/tokens.json`.
+**Output landed somewhere unexpected.** `tokens.json` and screenshots go to `<--output>/` by default, not the working directory.
+- Fix: override with `--output <dir>`. Validation and report commands take the explicit `tokens.json` path, so point them at `<--output>/tokens.json`.
 
 ---
 

@@ -1,8 +1,26 @@
+---
+title: DESIGN.md Anti-Pattern Catalog
+description: A catalog of common mistakes when generating DESIGN.md files from extracted design data, with detection methods and correct approaches.
+trigger_phrases:
+  - anti-pattern catalog
+  - design.md anti-patterns
+  - phantom color
+  - generic description
+  - semantic misattribution
+  - missing interaction states
+  - format inconsistency
+  - dark mode omission
+importance_tier: normal
+contextType: general
+---
+
 # DESIGN.md Anti-Pattern Catalog
 
 A catalog of common mistakes when generating DESIGN.md files from extracted design data. Each entry documents the mistake, why it degrades output quality, and how to avoid it.
 
 ---
+
+## 1. OVERVIEW
 
 ### AP-01: Phantom Color
 **Description**: Outputting a hex color value that does not exist in the extracted `tokens.json` or style data. Often caused by rounding, autocomplete, or confusing similarly-named values.
@@ -703,7 +721,7 @@ Match the emoji policy to the brand's observed behavior. If the source contains 
 
 ---
 
-## Summary Checklist
+## 2. SUMMARY CHECKLIST
 
 Use this checklist when reviewing a generated DESIGN.md:
 

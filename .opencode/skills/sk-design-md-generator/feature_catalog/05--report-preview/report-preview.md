@@ -25,7 +25,7 @@ Renders visual artifacts from a validated DESIGN.md + tokens.json pair. Three sc
 ### HTML report (report-gen.ts)
 
 ```bash
-npx ts-node scripts/report-gen.ts output/<domain>/tokens.json <output-dir> <DESIGN.md>
+npx ts-node scripts/report-gen.ts <--output>/tokens.json <output-dir> <DESIGN.md>
 ```
 
 Produces an HTML file that maps every token to its DESIGN.md section. The report shows:
@@ -40,7 +40,7 @@ The report is a single HTML file with embedded CSS, designed for browser viewing
 ### Visual preview (preview-gen.ts)
 
 ```bash
-npx ts-node scripts/preview-gen.ts output/<domain>/tokens.json <output-dir>
+npx ts-node scripts/preview-gen.ts <--output>/tokens.json <output-dir>
 ```
 
 Renders the design system as styled HTML: color swatches with hex labels and role names, typography samples at each hierarchy level with actual font-family, size, weight, line-height, and letter-spacing applied, shadow examples rendered as layered boxes, spacing scale visualized as proportional bars, and border radius examples. The preview uses the exact values from `tokens.json` -- every rendered element reflects measured CSS, not approximations.
@@ -48,7 +48,7 @@ Renders the design system as styled HTML: color swatches with hex labels and rol
 ### Fidelity proof (proof.ts)
 
 ```bash
-npx ts-node scripts/proof.ts <url> output/<domain>/tokens.json
+npx ts-node scripts/proof.ts <url> <--output>/tokens.json
 ```
 
 Takes the original extraction URL and the token set, then produces a proof artifact that compares the live page against the extracted values. This catches changes to the source site between extraction and review. The proof highlights any value that would now extract differently, giving reviewers confidence that the DESIGN.md still represents the live site.

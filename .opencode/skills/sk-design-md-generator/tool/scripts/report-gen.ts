@@ -662,9 +662,9 @@ if (require.main === module) {
     console.error(`Usage:
   npx ts-node scripts/report-gen.ts <tokens-json> [output-dir] [design-md]
 
-Examples:
-  npx ts-node scripts/report-gen.ts output/stripe.com/tokens.json
-  npx ts-node scripts/report-gen.ts output/stripe.com/tokens.json output/stripe.com/ DESIGN.md`);
+Examples (read from the spec-folder output where extraction wrote):
+  npx ts-node scripts/report-gen.ts <spec>/output/tokens.json
+  npx ts-node scripts/report-gen.ts <spec>/output/tokens.json <spec>/output/ <spec>/output/DESIGN.md`);
     process.exit(1);
   }
 

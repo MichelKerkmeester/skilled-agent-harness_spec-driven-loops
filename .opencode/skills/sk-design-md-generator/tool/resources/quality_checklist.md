@@ -1,10 +1,31 @@
+---
+title: Design System Documentation Quality Checklist
+description: Validation checklist for generated design system documents covering numerical accuracy, semantic correctness, completeness, and publication quality.
+trigger_phrases:
+  - quality checklist
+  - numerical accuracy validation
+  - semantic correctness check
+  - description quality
+  - accessibility contract checklist
+  - publication quality gate
+  - brand context requirements
+  - state matrix validation
+importance_tier: normal
+contextType: general
+---
 # Design System Documentation Quality Checklist
 
 Use this checklist to validate every generated design system document before delivery. Each item includes verification steps, common failure modes, and fixes.
 
 ---
 
-## 1. Numerical Accuracy
+## 1. OVERVIEW
+
+Use this checklist to validate every generated design system document before delivery. Each item includes verification steps, common failure modes, and fixes.
+
+---
+
+## 2. Numerical Accuracy
 
 - [ ] **[NA-01]** All hex values originate from tokens.json or extracted data
   - Check: Cross-reference every hex in the document against the source token file or extraction output
@@ -58,7 +79,7 @@ Use this checklist to validate every generated design system document before del
 
 ---
 
-## 2. Semantic Correctness
+## 3. Semantic Correctness
 
 - [ ] **[SC-01]** Color roles match actual usage, not just hue similarity
   - Check: Verify that "primary" is assigned to the most prominent brand/action color, not just the first color listed
@@ -102,7 +123,7 @@ Use this checklist to validate every generated design system document before del
 
 ---
 
-## 3. Completeness
+## 4. Completeness
 
 - [ ] **[CP-01]** All 9 core sections are present
   - Check: Verify document contains: Overview, Color, Typography, Spacing, Components, Shadows/Depth, Layout, Dark Mode (if applicable), Agent Prompt Guide
@@ -166,7 +187,7 @@ Use this checklist to validate every generated design system document before del
 
 ---
 
-## 4. Description Quality
+## 5. Description Quality
 
 - [ ] **[DQ-01]** No banned words used
   - Check: Search for: "sleek", "modern", "clean", "minimalist", "beautiful", "stunning", "elegant", "seamless", "intuitive", "cutting-edge", "state-of-the-art", "leverage", "utilize", "robust"
@@ -174,7 +195,7 @@ Use this checklist to validate every generated design system document before del
   - Fix: Replace with concrete descriptors: "high-contrast" not "bold", "24px section gaps" not "generous spacing"
 
 - [ ] **[DQ-02]** Opening sentence is differentiating
-  - Check: Read the first sentence and ask "could this describe any other design system?" — if yes, it fails
+  - Check: Read the first sentence and ask "could this describe any other design system?" -- if yes, it fails
   - Fail reason: LLM wrote a generic opener like "A clean, modern design system for web applications"
   - Fix: Lead with what makes this system unique: specific color temperature, typography personality, density philosophy
 
@@ -230,10 +251,10 @@ Use this checklist to validate every generated design system document before del
 
 ---
 
-## 5. Publication Quality
+## 6. Publication Quality
 
 - [ ] **[PQ-01]** Passes the "10 tech companies" differentiation test
-  - Check: Give the document to someone unfamiliar; ask "could this be from any of 10 different companies?" — should be clearly one
+  - Check: Give the document to someone unfamiliar; ask "could this be from any of 10 different companies?" -- should be clearly one
   - Fail reason: LLM produced a generic template that reads like boilerplate
   - Fix: Audit every section for specificity; add the unique values, constraints, and personality of this particular system
 
@@ -274,7 +295,7 @@ Use this checklist to validate every generated design system document before del
 
 ---
 
-## 6. Brand Context
+## 7. Brand Context
 
 - [ ] **[BC-01]** Company or product identity is stated in the opening
   - Check: The first paragraph names the company/product and positions the design system within its brand context
@@ -298,7 +319,7 @@ Use this checklist to validate every generated design system document before del
 
 ---
 
-## 7. Content & Voice
+## 8. Content & Voice
 
 - [ ] **[CV-01]** Tone is defined with specific adjectives
   - Check: A Content & Voice or Brand Voice section exists with 2-4 tone adjectives backed by evidence from UI text
@@ -332,7 +353,7 @@ Use this checklist to validate every generated design system document before del
 
 ---
 
-## 8. Accessibility Contract
+## 9. Accessibility Contract
 
 - [ ] **[AC-01]** WCAG conformance level is stated
   - Check: The document specifies a target WCAG level (AA or AAA) or notes the observed conformance level
@@ -361,7 +382,7 @@ Use this checklist to validate every generated design system document before del
 
 ---
 
-## 9. State Matrix
+## 10. State Matrix
 
 - [ ] **[SM-01]** Loading states are documented for data-dependent components
   - Check: Components that display dynamic data (cards, tables, lists) have loading/skeleton state documentation
@@ -380,7 +401,7 @@ Use this checklist to validate every generated design system document before del
 
 ---
 
-## 10. Iconography
+## 11. Iconography
 
 - [ ] **[IC-01]** Icon system is identified
   - Check: The document states which icon library is used (Lucide, Heroicons, Material Symbols, custom SVG, etc.)
@@ -399,7 +420,7 @@ Use this checklist to validate every generated design system document before del
 
 ---
 
-## 11. Frequency Data
+## 12. Frequency Data
 
 - [ ] **[FQ-01]** Color usage frequencies are present
   - Check: The color palette includes frequency or prevalence data (percentage, rank, or tier like "dominant/common/rare")

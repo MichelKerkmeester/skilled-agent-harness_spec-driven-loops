@@ -152,11 +152,9 @@ function parseArgs(argv: string[]): ExtractOptions {
     }
   }
 
-  // Default output directory
-  if (!output) {
-    const domain = new URL(normalizedUrls[0]).hostname;
-    output = path.join('output', domain);
-  }
+  // No default output: extraction output must live in a spec folder, not inside
+  // the skill. The guard in main() requires --output and rejects skill-internal
+  // paths. (`output` stays empty when --output is omitted.)
 
   return {
     urls: normalizedUrls,
@@ -182,7 +180,8 @@ function printUsage(): void {
 Usage: npx ts-node scripts/extract.ts <url1> [url2] [url3] ...
 
 Options:
-  --output <dir>         Output directory (default: output/<domain>/)
+  --output <dir>         Output directory (REQUIRED; must be a spec folder, not the
+                         skill, e.g. .opencode/specs/<track>/<packet>/output)
   --concurrency <n>      Playwright concurrency (default: 5)
   --max-pages <n>        Max pages to crawl (default: 8)
   --extra-urls <file>    File with additional URLs (one per line)
@@ -227,6 +226,22 @@ async function extract(options: ExtractOptions): Promise<void> {
   console.log(`  Output: ${options.output}`);
   console.log(`  Max pages: ${options.maxPages}`);
   console.log('');
+
+  // Output must live in a spec folder, not inside the skill. Require --output and
+  // refuse any path that resolves inside the skill directory (the old default
+  // dumped extraction artifacts into tool/output/, polluting the skill).
+  const skillRoot = path.resolve(__dirname, '..', '..');
+  if (!options.output) {
+    console.error('Error: --output is required. Extraction output must live in a spec folder, not the skill.');
+    console.error('  e.g. --output .opencode/specs/<track>/<packet>/output');
+    process.exit(1);
+  }
+  const resolvedOut = path.resolve(options.output);
+  if (resolvedOut === skillRoot || resolvedOut.startsWith(skillRoot + path.sep)) {
+    console.error(`Error: refusing to write output inside the skill directory (${resolvedOut}).`);
+    console.error('  Pass --output pointing at a spec folder, e.g. --output .opencode/specs/<track>/<packet>/output');
+    process.exit(1);
+  }
 
   // Ensure output directory exists
   fs.mkdirSync(options.output, { recursive: true });
