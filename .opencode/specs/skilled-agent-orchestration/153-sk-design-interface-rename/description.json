@@ -1,0 +1,19 @@
+{
+  "specFolder": "153-sk-design-interface-rename",
+  "description": "Rename sk-interface-design skill to sk-design-interface across the framework",
+  "keywords": [
+    "rename",
+    "sk-interface-design",
+    "skill",
+    "sk-design-interface",
+    "across",
+    "framework"
+  ],
+  "lastUpdated": "2026-06-21T07:44:03.596Z",
+  "specId": "153",
+  "folderSlug": "sk-design-interface-rename",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
