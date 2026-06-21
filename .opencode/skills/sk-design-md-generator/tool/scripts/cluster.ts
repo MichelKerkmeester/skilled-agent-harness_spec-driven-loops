@@ -1578,7 +1578,7 @@ export function clusterTokens(pages: PageExtraction[], cssVariables: CSSVariable
       sourceUrls: pages.map((p) => p.url),
       totalPages,
       extractionDate: new Date().toISOString(),
-      framework: { tailwind: null, uiFramework: null, designSystemUrl: null },
+      framework: { tailwind: null, uiFramework: null, designSystemUrl: null, webflow: false },
       totalElements,
       extractionTime: 0,
     },

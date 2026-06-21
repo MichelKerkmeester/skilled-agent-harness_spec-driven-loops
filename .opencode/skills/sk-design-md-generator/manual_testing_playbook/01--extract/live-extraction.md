@@ -11,7 +11,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates live extraction for `EXTRACT-001`. It focuses on confirming `extract.ts --fast` against a live, JavaScript-renderable URL produces a valid `tokens.json` at `output/<domain>/tokens.json` with non-empty `colorTokens`, `typographyLevels`, `shadowTokens`, `radiusTokens`, and `spacingScale` arrays, plus screenshots and an extraction report.
+This scenario validates live extraction for `EXTRACT-001`. It focuses on confirming `extract.ts --fast` against a live, JavaScript-renderable URL produces a valid `tokens.json` at `output/<domain>/tokens.json` with non-empty `colorTokens`, `typographyLevels`, and `radiusTokens` arrays plus a populated `cssVariables` array and `spacingSystem` object, plus screenshots and an extraction report. (`shadowTokens` may be an empty array on a flat, shadowless design — that is honest extraction, not a failure.)
 
 ### Why This Matters
 
@@ -26,7 +26,7 @@ Operators run the exact command sequence for `EXTRACT-001` and confirm the expec
 - Objective: confirm the full extraction phase runs against a live URL and emits valid tokens.json
 - Real user request: `Extract the design system from example.com.`
 - Prompt: `Extract the design system from example.com.`
-- Expected execution process: detect the EXTRACT_WRITE phase from the request, verify tool readiness, run `cd tool && npx ts-node scripts/extract.ts https://example.com --fast`, confirm `output/example.com/tokens.json` exists, is valid JSON, and contains non-empty `colorTokens`, `typographyLevels`, `shadowTokens`, `radiusTokens`, and `spacingScale` arrays
+- Expected execution process: detect the EXTRACT_WRITE phase from the request, verify tool readiness, run `cd tool && npx ts-node scripts/extract.ts https://example.com --fast`, confirm `output/example.com/tokens.json` exists, is valid JSON, and contains non-empty `colorTokens`, `typographyLevels`, and `radiusTokens` arrays plus a populated `spacingSystem` object (`shadowTokens` may legitimately be empty on a flat design)
 - Expected signals: `extract.ts` exits 0; `output/example.com/tokens.json` is a valid JSON file > 1 KB with populated token arrays; screenshots land in `output/example.com/`; an extraction report is written
 - Desired user-visible outcome: the agent reports the extraction completed, the output path, and a summary of captured token counts
 - Pass/fail: PASS if `extract.ts` exits 0 AND `tokens.json` is valid JSON with non-empty token arrays AND agent reports the output correctly; FAIL if extraction exits non-zero OR tokens.json is empty/missing OR agent fabricates token counts
@@ -49,7 +49,7 @@ PRE: Wave 1 (SETUP-001) must be PASS. The `tool/node_modules/` directory must ex
 2. verify tool readiness: `bash: node --version`, glob `tool/node_modules/`  # -> Node >= 18, node_modules exists
 3. `cd .opencode/skills/sk-design-md-generator/tool && npx ts-node scripts/extract.ts https://example.com --fast`  # -> exits 0, crawl progress on stdout
 4. `bash: ls -la output/example.com/tokens.json`  # -> file exists, > 1 KB
-5. `bash: node -e "const t = require('./output/example.com/tokens.json'); console.log('colorTokens:', t.colorTokens?.length, 'typographyLevels:', t.typographyLevels?.length, 'shadowTokens:', t.shadowTokens?.length, 'radiusTokens:', t.radiusTokens?.length, 'spacingScale:', t.spacingScale?.length)"` (run from `tool/`)  # -> all lengths > 0
+5. `bash: node -e "const t = require('./output/example.com/tokens.json'); console.log('colorTokens:', t.colorTokens?.length, 'typographyLevels:', t.typographyLevels?.length, 'radiusTokens:', t.radiusTokens?.length, 'cssVariables:', t.cssVariables?.length, 'spacingSystem:', !!t.spacingSystem, 'shadowTokens:', t.shadowTokens?.length)"` (run from `tool/`)  # -> colorTokens/typographyLevels/radiusTokens/cssVariables > 0, spacingSystem present; shadowTokens may be 0 on a flat design
 6. agent reports token counts and output path
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |

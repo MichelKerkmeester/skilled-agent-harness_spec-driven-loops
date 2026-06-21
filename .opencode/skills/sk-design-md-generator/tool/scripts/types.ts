@@ -234,6 +234,7 @@ export interface FrameworkDetection {
   tailwind: { detected: boolean; matchCount: number; sampleClasses: string[]; jitDetected: boolean } | null;
   uiFramework: string | null;
   designSystemUrl: string | null;
+  webflow: boolean;
 }
 
 // ─── Icon System Types ────────────────────────────────────────────────────────

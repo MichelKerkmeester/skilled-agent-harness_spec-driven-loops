@@ -44,10 +44,13 @@ type CapturedProperty = (typeof CAPTURED_PROPERTIES)[number];
 // 3. CONSTANTS
 // ────────────────────────────────────────────────────────────────
 
-const PER_ELEMENT_TIMEOUT = 2_000;
-const PAGE_TIMEOUT = 15_000;
+// JS-heavy sites (e.g. Webflow) keep the main thread busy, so each in-page style
+// read is slow. A single element walks default -> hover -> focus -> active ->
+// disabled, each a real page round-trip; 2s starved every element. 6s gives the
+// reads headroom, bounded overall by the page budget.
+const PER_ELEMENT_TIMEOUT = 6_000;
+const PAGE_TIMEOUT = 30_000;
 const MAX_ELEMENTS = 50;
-const MAX_TAB_PRESSES = 20;
 
 // ─── Element Discovery ──────────────────────────────────────────────────────
 
@@ -237,7 +240,7 @@ async function restoreState(page: Page): Promise<void> {
     const active = document.activeElement as HTMLElement | null;
     active?.blur?.();
   });
-  await page.waitForTimeout(200);
+  await page.waitForTimeout(120);
 }
 
 // ─── Per-Element Capture ─────────────────────────────────────────────────────
@@ -251,6 +254,11 @@ async function captureElement(
   // Default state
   const defaultStyle = await readProperties(page, el.index);
   if (Object.keys(defaultStyle).length === 0) return null;
+
+  // Read the (static) transition definition now, while the page is stable and
+  // before any mouse interaction. Reading it last hung on JS-heavy pages once the
+  // active-state mouse sequence had left the page unsettled.
+  const transition = await readTransition(page, el.index);
 
   // Hover
   let hoverDiff: Record<string, string> | null = null;
@@ -267,28 +275,24 @@ async function captureElement(
 
   await restoreState(page);
 
-  // Focus-visible (Tab navigation)
+  // Focus-visible: focus the element directly. The previous Tab-walk did a page
+  // round-trip per key press to navigate focus to the element, which dominated the
+  // per-element budget on JS-heavy pages and starved every other state. Direct
+  // focus is one round-trip and captures the focused appearance.
   let focusVisibleDiff: Record<string, string> | null = null;
   try {
-    for (let t = 0; t < MAX_TAB_PRESSES; t++) {
-      await page.keyboard.press('Tab');
-      const isFocused = await page.evaluate(
-        ({ idx }) => {
-          const all = document.querySelectorAll(
-            'button, a, input, select, textarea, [role="button"], [role="link"], [role="tab"], [role="menuitem"], [role="checkbox"], [role="radio"], [tabindex]:not([tabindex="-1"])',
-          );
-          return document.activeElement === all[idx];
-        },
-        { idx: el.index },
-      );
-
-      if (isFocused) {
-        await page.waitForTimeout(100);
-        const focusVisibleStyle = await readProperties(page, el.index);
-        focusVisibleDiff = computeDiff(defaultStyle, focusVisibleStyle);
-        break;
-      }
-    }
+    await page.evaluate(
+      ({ idx }) => {
+        const all = document.querySelectorAll(
+          'button, a, input, select, textarea, [role="button"], [role="link"], [role="tab"], [role="menuitem"], [role="checkbox"], [role="radio"], [tabindex]:not([tabindex="-1"])',
+        );
+        (all[idx] as HTMLElement | undefined)?.focus();
+      },
+      { idx: el.index },
+    );
+    await page.waitForTimeout(100);
+    const focusVisibleStyle = await readProperties(page, el.index);
+    focusVisibleDiff = computeDiff(defaultStyle, focusVisibleStyle);
   } catch {
     // focus-visible failed, continue
   }
@@ -330,9 +334,6 @@ async function captureElement(
   // Disabled
   const disabledStyle = await captureDisabledStyle(page, el.index);
 
-  // Transition
-  const transition = await readTransition(page, el.index);
-
   return {
     element: {
       tag: el.tag,
@@ -358,15 +359,20 @@ function withTimeout<T>(
   ms: number,
   label: string,
 ): Promise<T | null> {
-  return Promise.race([
-    promise,
-    new Promise<null>((resolve) => {
-      setTimeout(() => {
-        console.warn(`[interaction-capture] Timeout: ${label} after ${ms}ms`);
-        resolve(null);
-      }, ms);
-    }),
-  ]);
+  // The timer MUST be cleared once the work settles. Without this the timeout
+  // fired ~ms after every element had already resolved, logging a spurious
+  // "Timeout" and keeping the timer alive — which read as a total failure even
+  // though the capture had succeeded.
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  const timeout = new Promise<null>((resolve) => {
+    timer = setTimeout(() => {
+      console.warn(`[interaction-capture] Timeout: ${label} after ${ms}ms`);
+      resolve(null);
+    }, ms);
+  });
+  return Promise.race([promise, timeout]).finally(() => {
+    if (timer) clearTimeout(timer);
+  });
 }
 
 // ─── Loading State Detection ────────────────────────────────────────────────
@@ -699,6 +705,35 @@ export async function captureInteractions(page: Page): Promise<InteractionData> 
   } catch (err) {
     console.error('[interaction-capture] Failed to discover elements:', err);
     return { captures };
+  }
+
+  // Calm the page before capturing: emulate reduced motion (Webflow IX2 and most
+  // JS animation libraries skip animations under it) and pause CSS animations.
+  // On animation-heavy pages this frees the main thread so the per-element style
+  // reads stop queueing behind the compositor and blowing the per-element budget.
+  // Transitions are unaffected, so hover/focus/active appearance is still captured.
+  try {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.addStyleTag({
+      content: '*, *::before, *::after { animation-play-state: paused !important; }',
+    });
+  } catch {
+    // non-fatal; capture proceeds without calming the page
+  }
+
+  // Suppress the default action during capture. The focus and active states are
+  // triggered with real mouse clicks (mouse.click / mouse.down+up); without this
+  // those clicks would follow links and submit forms, navigating away and
+  // destroying the page mid-capture — which starved every element of its states.
+  // preventDefault keeps the :focus/:active visual states while blocking navigation.
+  try {
+    await page.evaluate(() => {
+      const prevent = (e: Event) => e.preventDefault();
+      document.addEventListener('click', prevent, true);
+      document.addEventListener('submit', prevent, true);
+    });
+  } catch {
+    // non-fatal; capture proceeds without navigation suppression
   }
 
   for (const el of elements) {

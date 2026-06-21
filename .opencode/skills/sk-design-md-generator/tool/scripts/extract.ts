@@ -382,7 +382,7 @@ async function extract(options: ExtractOptions): Promise<void> {
 
   // ── Step 8: Framework detection (first page only) ────────────────────────
 
-  let frameworkData: FrameworkDetection = { tailwind: null, uiFramework: null, designSystemUrl: null };
+  let frameworkData: FrameworkDetection = { tailwind: null, uiFramework: null, designSystemUrl: null, webflow: false };
 
   if (pageExtractions.length > 0) {
     log(options.verbose, 'Detecting frameworks...');

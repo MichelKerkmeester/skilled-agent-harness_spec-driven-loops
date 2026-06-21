@@ -331,6 +331,20 @@ const RESET = '\x1b[0m';
 // 6. HELPERS
 // ────────────────────────────────────────────────────────────────
 
+// Phantom colors (hallucinated values not in tokens.json) and missing required
+// sections are hard failures for an anti-hallucination tool: they fail the
+// document regardless of the numeric score, so a single fabricated color cannot
+// pass on points.
+const CRITICAL_FAILURE_TYPES = new Set(['phantom-color', 'missing-section']);
+
+function hasCriticalFailure(result: ValidationResult): boolean {
+  return result.failures.some((f) => CRITICAL_FAILURE_TYPES.has(f.type));
+}
+
+function isPass(result: ValidationResult): boolean {
+  return result.score >= 80 && !hasCriticalFailure(result);
+}
+
 function printResult(result: ValidationResult): void {
   console.log(`\n${BOLD}=== DESIGN.md Validation ===${RESET}\n`);
 
@@ -356,10 +370,13 @@ function printResult(result: ValidationResult): void {
   }
 
   console.log(`\n${BOLD}Score: ${result.score}/100${RESET}`);
-  if (result.score >= 80) {
+  if (isPass(result)) {
     console.log(`${GREEN}Result: PASS${RESET}\n`);
   } else {
-    console.log(`${RED}Result: FAIL (minimum 80 required)${RESET}\n`);
+    const reason = hasCriticalFailure(result)
+      ? 'phantom colors or missing required sections are hard failures'
+      : 'minimum score 80 required';
+    console.log(`${RED}Result: FAIL (${reason})${RESET}\n`);
   }
 }
 
@@ -381,5 +398,5 @@ if (require.main === module) {
 
   const result = validateDesignMd(mdContent, tokens);
   printResult(result);
-  process.exit(result.score >= 80 ? 0 : 1);
+  process.exit(isPass(result) ? 0 : 1);
 }
