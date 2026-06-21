@@ -89,7 +89,7 @@ Reuse-first additive seams over the shipped quality core. The on-write report-on
 - **H3 validate rule**: a new `scripts/validation/content-quality.ts` rule body registered in `validator-registry.json` next to the existing shape rules at severity `warn`, default-off.
 
 ### Data Flow
-A save composes each metadata payload, H1 scores it before its own write — the `atomicWriteJson` write for `graph-metadata.json` and the `savePerFolderDescription` write for `description.json` — and reports the score, and the bytes written stay identical to the pre-scoring payload for both JSONs. The authored spec-doc artifacts flow through the existing reviewer wiring under H2. A separate `validate.sh` run exercises the H3 warn rule against the corpus.
+A save composes each metadata payload, H1 scores it before its own write, the `atomicWriteJson` write for `graph-metadata.json` and the `savePerFolderDescription` write for `description.json`, and reports the score, and the bytes written stay identical to the pre-scoring payload for both JSONs. The authored spec-doc artifacts flow through the existing reviewer wiring under H2. A separate `validate.sh` run exercises the H3 warn rule against the corpus.
 <!-- /ANCHOR:architecture -->
 
 ---

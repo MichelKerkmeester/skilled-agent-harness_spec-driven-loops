@@ -88,7 +88,7 @@ Gate wrapper over an unchanged measurement harness: two net-new data and script 
 - **`spec-corpus-golden.json`**: multi-target gold set where every query carries a relevance set across the enumerated measurability classes, so completeRecall@3 has multiple targets to be incomplete about.
 - **`run-spec-recall-gate.mjs`**: the gate wrapper with a PROMOTION mode and a REGRESSION mode, reading only the prod-lens completeRecall@3 column and emitting a real recall-verdict exit code.
 - **`spec-recall-baseline.json`**: the stored prod-column completeRecall@3 baseline per class and overall, with a generated-at stamp and source DB path.
-- **`run-eval-v2.mjs`**: the unchanged dual-mode harness; the gate reuses the prod lens and measurability classes through the export already present at line 361, with no harness change.
+- **`run-eval-v2.mjs`**: the unchanged dual-mode harness. The gate reuses the prod lens and measurability classes through the export already present at line 361, with no harness change.
 
 ### Data Flow
 The harness exports the prod lens, `meanCompleteRecallProfile` and the measurability classes at line 361 but not its copy-DB prep, ground-truth grouping or retrieval loop. The gate imports the three exported symbols, then owns copy-DB prep, gold-set ingestion into a `relevancesByQuery` map and the retrieval loop, reads only the prod completeRecall@3 column, compares it to the stored baseline, and returns a recall-verdict exit code distinct from the existing crash handler.

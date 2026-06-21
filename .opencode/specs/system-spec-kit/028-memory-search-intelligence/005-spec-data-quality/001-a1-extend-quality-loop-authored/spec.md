@@ -123,7 +123,7 @@ Extend the SHIPPED quality machinery to the authored write surface through three
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- Both metadata JSONs carry a reported quality score on write — `graph-metadata.json` scored at the `atomicWriteJson` seam and `description.json` scored at the `savePerFolderDescription` seam — and both bodies are unchanged.
+- Both metadata JSONs carry a reported quality score on write, `graph-metadata.json` scored at the `atomicWriteJson` seam and `description.json` scored at the `savePerFolderDescription` seam, and both bodies are unchanged.
 - The authored spec-doc save artifacts pass through the non-mutating reviewer in `workflow.ts`.
 - `validate.sh` runs a `CONTENT_QUALITY` warn rule that the legacy corpus passes.
 - No code path reaches `runQualityLoop` or any content-mutating fix.
