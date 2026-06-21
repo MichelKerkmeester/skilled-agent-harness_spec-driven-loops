@@ -3,7 +3,7 @@ title: "Tasks: Rename sk-interface-design skill to sk-design-interface across th
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "rename tasks"
-  - "sk-design-interface"
+  - "design-interface skill"
   - "skill-graph rebuild"
   - "tasks core"
 importance_tier: "normal"
@@ -11,17 +11,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/153-sk-design-interface-rename"
-    last_updated_at: "2026-06-21T08:50:00Z"
+    last_updated_at: "2026-06-21T09:30:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Authored Level 2 rename task list"
-    next_safe_action: "Execute T101 git mv"
+    recent_action: "Completed rename and graph rebuild"
+    next_safe_action: "Verify packet 153 closure"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "session-153-rename"
       parent_session_id: null
-    completion_pct: 10
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -60,12 +60,12 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 `git mv` skill dir + changelog symlink; recreate symlink target (`.opencode/skills/sk-interface-design`, `.opencode/changelog/sk-interface-design`)
-- [ ] T005 Edit renamed skill internals: SKILL.md, README, graph-metadata (skill_id, key_files, entities, causal_summary), feature_catalog, manual_testing_playbook, references
-- [ ] T006 Update reciprocal sibling graph edges BEFORE rebuild (`{mcp-open-design,mcp-figma,sk-code}/graph-metadata.json`)
-- [ ] T007 Update cross-skill live prose (`mcp-open-design`, `mcp-figma`, `sk-prompt`)
-- [ ] T008 Update root + index docs (`/README.md`, `.opencode/skills/README.md`)
-- [ ] T009 History rewrite: `git mv` 143 folder (+ child folders), reconcile pointers, global string-replace across `.opencode/specs/**` + `descriptions.json`
+- [x] T004 `git mv` skill dir + changelog symlink; recreate symlink target (commit 8ba686c04a)
+- [x] T005 Edit renamed skill internals: SKILL.md, README, graph-metadata, feature_catalog, playbook, references (66 occurrences, 0 remaining)
+- [x] T006 Update reciprocal sibling graph edges before rebuild (`{mcp-open-design,mcp-figma,sk-code}/graph-metadata.json`)
+- [x] T007 Update cross-skill live prose (`mcp-open-design`, `mcp-figma`, `sk-prompt`) + AGENTS.md/CLAUDE.md co-load mandate (commit cffa3e056f)
+- [x] T008 Update root + index docs (`/README.md`, `.opencode/skills/README.md`)
+- [x] T009 History rewrite: `git mv` 143 folder + 2 child folders, reconcile pointers, replace doc/metadata across track + `descriptions.json` (commit 2aaec599fb)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -73,9 +73,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T010 `skill_graph_scan` rebuild + `skill_graph_validate` + `advisor_validate`
-- [ ] T011 Verify zero live hits (`rg`), sqlite node present/old absent + 6 edges, routing smoke (`advisor_recommend`), symlink resolves
-- [ ] T012 `validate.sh --strict` on touched spec folders; finalize implementation-summary + checklist
+- [x] T010 `skill_graph_scan` rebuild + `skill_graph_validate` (isValid, 0 errors) + routing smoke (conf 0.95)
+- [x] T011 Verified zero live hits (`rg`), sqlite node present/old absent + 6 symmetric edges, symlink resolves
+- [x] T012 `validate.sh --strict` PASS on 143 + 153; machine artifacts left honest (documented)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -83,9 +83,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed (SC-001..004)
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed (SC-001..004)
 <!-- /ANCHOR:completion -->
 
 ---
