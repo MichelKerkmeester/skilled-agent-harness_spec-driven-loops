@@ -76,7 +76,7 @@ Drive the full vitest suite to 0 failures with `npm run build` clean: fix the de
 ### In Scope
 - Update scorer-rename fallout: native-scorer council test, intent-prompt corpus labels, parity baselines (61 to 62), CLI parity row, and the local-vs-native divergence ledger.
 - Fix the Python `_apply_deep_research_disambiguation` so the margin contract targets the merged `deep-loop-workflows` id (legacy ids are gone) and update the corresponding Python compat assertions.
-- Extend the metadata-category allowlist in `skill_graph_compiler.py` to recognize the `workflow` and `design` categories carried by `deep-loop-workflows` and `sk-interface-design`.
+- Extend the metadata-category allowlist in `skill_graph_compiler.py` to recognize the `workflow` and `design` categories carried by `deep-loop-workflows` and `sk-design-interface`.
 - Update the governor brief-assertion tests (renderer, brief-producer, claude/codex hook tests) to expect the appended fable-5 governor line.
 - Retarget `tests/hooks/settings-driven-invocation-parity.vitest.ts` to validate the committed `.claude/settings.json` (the shared source of truth) instead of the gitignored machine-local `settings.local.json`, and relax only the machine-specific assertions to accept the committed portable command form while preserving every real-contract guard.
 - Add the three missing reciprocal edges to external skill `graph-metadata.json` so `advisor-graph-health` (which runs `skill_graph_compiler.py --validate-only`) passes its symmetry gate.

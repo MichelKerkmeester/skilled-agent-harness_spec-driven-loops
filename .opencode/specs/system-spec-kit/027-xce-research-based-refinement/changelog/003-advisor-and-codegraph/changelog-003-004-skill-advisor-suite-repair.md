@@ -30,7 +30,7 @@ The `system-skill-advisor/mcp_server` vitest suite reported 61 of 553 tests fail
 ### Changed
 
 - `scripts/skill_advisor.py` — `_apply_deep_research_disambiguation` margin contract now targets the merged `deep-loop-workflows` id (with a legacy fallback), restoring the >= 0.10 routing margin the dead legacy-id lookup had silently dropped.
-- `scripts/skill_graph_compiler.py` — metadata-category allowlist extended to recognize the `workflow` and `design` categories carried by `deep-loop-workflows` and `sk-interface-design`.
+- `scripts/skill_graph_compiler.py` — metadata-category allowlist extended to recognize the `workflow` and `design` categories carried by `deep-loop-workflows` and `sk-design-interface`.
 - Scorer-rename fallout across test data: native-scorer council fixture, the intent-prompt corpus labels, two re-baselined parity counts (61 to 62), the CLI parity council row, the Python compat lookups (SA-011/SA-012), and the regenerated local-vs-native divergence ledger (67 to 73 entries).
 - Governor brief-assertion tests (renderer, brief-producer, claude/codex hooks, codex prompt-wrapper) now expect the appended fable-5 governor line; two length/token-cap checks strip the appended suffix before measuring the capped advisor portion.
 - `tests/hooks/settings-driven-invocation-parity.vitest.ts` — `SETTINGS_PATH` retargeted from the gitignored machine-local `settings.local.json` (no hooks) to the committed shared `.claude/settings.json`; only the absolute-anchor + pinned-node assertion was relaxed to accept the portable `cd "${CLAUDE_PROJECT_DIR:-$PWD}"` + bare-node command form, with every real-contract guard preserved.

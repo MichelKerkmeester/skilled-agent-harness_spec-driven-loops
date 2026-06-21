@@ -47,7 +47,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The skill SKILL.md, references and assets cleanup executed on this branch (commit bb038e19ab). Fourteen docs across the cli-opencode, sk-code, sk-interface-design, sk-prompt-small-model, system-skill-advisor and system-spec-kit skills were aligned to current shipped state, fixing factual drift across stale references, counts and paths. Every committed corrected path was verified to resolve.
+The skill SKILL.md, references and assets cleanup executed on this branch (commit bb038e19ab). Fourteen docs across the cli-opencode, sk-code, sk-design-interface, sk-prompt-small-model, system-skill-advisor and system-spec-kit skills were aligned to current shipped state, fixing factual drift across stale references, counts and paths. Every committed corrected path was verified to resolve.
 
 ### Deferred Subset
 
