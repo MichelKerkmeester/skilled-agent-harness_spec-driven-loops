@@ -8,9 +8,11 @@
     "create",
     "sk-design-md-generator",
     "skill",
-    "design-md-generator"
+    "embedded",
+    "extraction",
+    "pipeline"
   ],
-  "lastUpdated": "2026-06-21T08:31:36.067Z",
+  "lastUpdated": "2026-06-21T10:27:31.310Z",
   "specId": "152",
   "folderSlug": "sk-design-md-generator",
   "parentChain": [
