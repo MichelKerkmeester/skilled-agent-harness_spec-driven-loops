@@ -13,9 +13,9 @@ _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/021-novel-example-test-generation"
     last_updated_at: "2026-06-21T00:00:00Z"
-    last_updated_by: "markdown-agent"
-    recent_action: "Drafted phase QA checklist"
-    next_safe_action: "Record planned implementation status"
+    last_updated_by: "plan-bench-agent"
+    recent_action: "Mirrored GEN_COVERAGE benchmark and named test rows"
+    next_safe_action: "Hold for implementation, no item verified"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/scripts/sweep/gen-examples-tests.ts"
@@ -86,6 +86,9 @@ This phase is PLANNED and not yet built, so every item stays unchecked until the
 - [ ] CHK-021 [P0] Manual testing complete
 - [ ] CHK-022 [P1] Edge cases tested
 - [ ] CHK-023 [P1] Error scenarios validated
+- [ ] CHK-024 [P0] Benchmark GEN_COVERAGE passes PROMOTION on the planted fixture: un-covered-requirement count 0, fenced-decoy false-positives 0 and REQUIREMENTS-prose bytes-changed 0
+- [ ] CHK-025 [P0] Named test `scripts/tests/gen-examples-tests.vitest.ts` pins per-REQ coverage, REQUIREMENTS byte-identity, fence-decoy skip and the dry-run-writes-nothing gate
+- [ ] CHK-026 [P1] SPECKIT_GEN_EXAMPLES reads off by default via `flag-ceiling.vitest.ts` and SPECKIT_GEN_EXAMPLES=false restores the byte-for-byte no-op
 <!-- /ANCHOR:testing -->
 
 ---
@@ -138,8 +141,8 @@ This phase is PLANNED and not yet built, so every item stays unchecked until the
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 0/12 |
-| P1 Items | 13 | 0/13 |
+| P0 Items | 14 | 0/14 |
+| P1 Items | 14 | 0/14 |
 | P2 Items | 1 | 0/1 |
 
 **Verification Date**: Not yet verified

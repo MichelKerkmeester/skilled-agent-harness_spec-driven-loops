@@ -13,8 +13,8 @@ _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/028-governance-rollout"
     last_updated_at: "2026-06-21T00:00:00Z"
-    last_updated_by: "markdown-agent"
-    recent_action: "Authored PLANNED task breakdown for the five docs"
+    last_updated_by: "benchmark-test-author"
+    recent_action: "Mirrored benchmark and flags-off test as T013 to T016"
     next_safe_action: "Start T004 author rollout-sequence.md"
     blockers: []
     key_files:
@@ -69,6 +69,8 @@ _memory:
 - [ ] T007 Author one reader and one metric with the three sweep escape classes (`028-governance-rollout/measurement-plan.md`)
 - [ ] T008 Author the eighteen NO-GO items keyed to ten anti-patterns (`028-governance-rollout/no-go-list.md`)
 - [ ] T009 Add a grep guard that no sibling phase spec is modified by this phase (`028-governance-rollout`)
+- [ ] T013 Specify the rollout-manifest conformance benchmark test, topo-sort 0 edge-violations plus a planted out-of-order fixture caught 1 of 1 (`scripts/tests/governance-rollout-manifest.vitest.ts`)
+- [ ] T014 Specify the flags-off byte-identical proof, ALL_SPECKIT_FLAGS gains no flag and no `validator-registry.json` rule is added (`mcp_server/tests/flag-ceiling.vitest.ts`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -79,6 +81,8 @@ _memory:
 - [ ] T010 Confirm the rollout order violates none of the five edges
 - [ ] T011 Confirm every gate phase can import the four-beat runbook by reference
 - [ ] T012 Confirm the NO-GO list enumerates all eighteen items and marks the three rail-crossing novel rewrites
+- [ ] T015 Confirm the benchmark PASS gate reads 0 edge-violations and 18 NO-GO items with every gate-phase runbook import resolving
+- [ ] T016 Confirm the REGRESS proof, the planted out-of-order fixture is flagged and the flags-off corpus output stays byte-identical
 <!-- /ANCHOR:phase-3 -->
 
 ---

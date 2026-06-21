@@ -14,7 +14,7 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/007-a7-ears-constraints-req-coverage"
     last_updated_at: "2026-06-21T00:00:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Drafted phase checklist scaffold"
+    recent_action: "Added benchmark and flags-off checklist rows"
     next_safe_action: "Build the REQ_COVERAGE clone"
     blockers: []
     key_files:
@@ -82,6 +82,10 @@ FAILURE MODES:
 - [ ] CHK-021 [P0] Manual testing complete
 - [ ] CHK-022 [P1] Edge cases tested
 - [ ] CHK-023 [P1] Error scenarios validated
+- [ ] CHK-024 [P0] REQ_COVERAGE catch-rate is 1.0 on the planted unlinked-REQ fixture with zero false positives on a fully-linked fixture
+- [ ] CHK-025 [P0] Flags-off run is byte-identical to the pre-phase baseline on a 005 sibling, proven by check-req-coverage.test.sh and flag-ceiling.vitest.ts
+- [ ] CHK-026 [P1] First-run real-defect floor on the live 005 corpus surfaces at least one real unlinked REQ
+- [ ] CHK-027 [P1] EARS_LINT swap-precision is 1.0 on the fixture set, advisory only and never blocking
 <!-- /ANCHOR:testing -->
 
 ---
@@ -134,8 +138,8 @@ FAILURE MODES:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 11 | 0/11 |
-| P1 Items | 11 | 0/11 |
+| P0 Items | 13 | 0/13 |
+| P1 Items | 13 | 0/13 |
 | P2 Items | 2 | 0/2 |
 
 **Verification Date**: PLANNED, not yet built

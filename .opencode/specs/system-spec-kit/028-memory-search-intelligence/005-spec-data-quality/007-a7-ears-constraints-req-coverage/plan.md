@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/007-a7-ears-constraints-req-coverage"
     last_updated_at: "2026-06-21T00:00:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Drafted phase plan from spec seams"
-    next_safe_action: "Write the tasks breakdown"
+    recent_action: "Specified detector benchmark and flags-off test"
+    next_safe_action: "Build the REQ_COVERAGE clone"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/scripts/rules/check-ac-coverage.sh"
@@ -136,6 +136,34 @@ Required inventories:
 - [ ] Run validate.sh strict with `SPECKIT_REQ_COVERAGE=true` on a spec with an unlinked REQ and confirm a warn line
 - [ ] Run validate.sh strict with the flag unset on a 005 sibling and confirm the same exit code as before
 - [ ] Confirm an existing Level 2 spec still validates clean after the template edits
+
+### Benchmark
+
+A7 is a detector-class phase on the adherence and logic readers, so its benchmark is a planted-mismatch catch-rate and a first-run real-defect floor, not recall. It does NOT route through the prod-mode completeRecall@3 gate that `015-c2-prodmode-recall-gate` owns (`run-eval-v2.mjs:361` exports `buildSearchLenses`, `meanCompleteRecallProfile` and `MEASURABILITY_CLASSES` for that retrieval path), because A7 is floor-bypassing and touches no vector or ranking surface.
+
+| Metric | Pass | Regress |
+|--------|------|---------|
+| REQ_COVERAGE catch-rate on the planted fixture | every planted unlinked REQ flagged, catch-rate 1.0 | any planted unlinked REQ left unflagged |
+| REQ_COVERAGE false-positive rate on a fully-linked fixture | zero `REQ_COVERAGE WARNING` lines, rate 0.0 | any warn on a clean fixture |
+| EARS_LINT swap-precision on fixtures | every planted free-form row flagged and every EARS or constraint-tier row silent, precision 1.0 | a free-form row missed or an EARS row flagged |
+| First-run real-defect floor on the live 005 corpus | at least one real unlinked REQ surfaced, floor >= 1 | zero real defects, the gate is vacuous and is not promoted |
+| Conformance-to-zero after backfill | linking the planted REQ drives the unlinked count to zero and clears the warn | the warn persists after the fix |
+| Flags-off no-regress on a 005 sibling | byte-identical stdout and the pre-phase exit code | any byte delta or exit-code change |
+
+Reproduce:
+```bash
+# Detector catch-rate and no-op, on the planted fixture
+SPECKIT_REQ_COVERAGE=true bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
+  .opencode/skills/system-spec-kit/scripts/tests/fixtures/req-coverage-unlinked --strict
+# expect exactly one REQ_COVERAGE WARNING
+
+# Flags-off byte-identical no-regress, on a real 005 sibling
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
+  .opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/015-c2-prodmode-recall-gate --strict
+# expect zero REQ_COVERAGE and EARS_LINT lines and the pre-phase exit code
+```
+
+Default-safety: both flags default OFF. The keep-off rationale is that the legacy corpus predates EARS grammar and the REQ-reference marker, so an enabled error tier would break clean historical packets. No-regress is the flags-off byte-identical row above. Runtime reversibility is `SPECKIT_REQ_COVERAGE=false` and `SPECKIT_EARS_LINT=false`, which silence both rules with no revert. This benchmark is SPECIFIED, not run, and completion stays 0.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -148,6 +176,16 @@ Required inventories:
 | Unit | check-req-coverage.sh linkage scan, fence skipping, clamp | bash, fixture spec folders |
 | Integration | validate.sh dispatch of both rules, flag-on and flag-off | validate.sh --strict |
 | Manual | Registry node-parse, no-op equivalence on a 005 sibling | node, diff of exit codes |
+| Benchmark | REQ_COVERAGE catch-rate, EARS_LINT swap-precision, first-run real-defect floor | scripts/tests/check-req-coverage.test.sh, scripts/tests/check-ears-lint.test.sh |
+| Default-off proof | Both flags default OFF and a flags-off run is byte-identical to the pre-phase baseline | mcp_server/tests/flag-ceiling.vitest.ts (ALL_SPECKIT_FLAGS, FLAG_CHECKERS) |
+
+### Benchmark Metric and Test Artifacts
+
+- **Named metric**: the REQ_COVERAGE planted-mismatch catch-rate and the EARS_LINT swap-precision over `scripts/tests/fixtures/`, plus the first-run real-defect floor on the live 005 corpus. This is a detector-class metric, not recall, so it bypasses the `015` completeRecall@3 gate.
+- **`scripts/tests/check-req-coverage.test.sh`** asserts a planted unlinked REQ yields exactly one `REQ_COVERAGE WARNING`, a fully-linked fixture yields the advisory pass message with zero warnings, a no-REQ fixture yields the `coverage gate is a no-op` message and an out-of-range `SPECKIT_REQ_COVERAGE_FLOOR` clamps to `[0,1]` with a clamp note, mirroring `check-ac-coverage.sh:177-224`.
+- **`scripts/tests/check-ears-lint.test.sh`** asserts a planted free-form row yields one advisory line and an all-EARS or constraint-tier fixture yields zero, following the fixture-driven scorer pattern in `quality-loop.vitest.ts` (`computeMemoryQualityScore`, `QUALITY_WEIGHTS`).
+- **Flags-off byte-identical proof**: extend `mcp_server/tests/flag-ceiling.vitest.ts` to add `SPECKIT_REQ_COVERAGE` and `SPECKIT_EARS_LINT` to `ALL_SPECKIT_FLAGS` with a `FLAG_CHECKERS` entry each, proving both default OFF and capturing a flags-unset `validate.sh` run on a 005 sibling that diffs byte-identical to the pre-phase baseline.
+- **Status**: SPECIFIED, not run. No fixture, test or rule has landed and completion stays 0.
 <!-- /ANCHOR:testing -->
 
 ---

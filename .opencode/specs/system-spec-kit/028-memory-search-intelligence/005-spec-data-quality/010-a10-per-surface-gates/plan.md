@@ -13,9 +13,9 @@ _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/010-a10-per-surface-gates"
     last_updated_at: "2026-06-21T00:00:00Z"
-    last_updated_by: "markdown-agent"
-    recent_action: "Authored plan from spec seams"
-    next_safe_action: "Author tasks and checklist"
+    last_updated_by: "benchmark-test-scaffold"
+    recent_action: "Specified per-phase benchmark and named test"
+    next_safe_action: "Hold for implementation"
     blockers: []
     key_files:
       - "plan.md"
@@ -139,6 +139,23 @@ Required inventories:
 - [ ] Confirm the route gate covers all 28 docs
 - [ ] Confirm the canary reports drift when one copy is mutated out of sync
 - [ ] Update spec, plan, and tasks
+
+### Benchmark (SPECIFIED, not run)
+
+Recall is not the metric for this write-time phase. Prod search truncates to a three-result floor, so retrieval-class measurement routes through the prod-mode completeRecall@3 gate that phase `015-c2-prodmode-recall-gate` owns via the export at `run-eval-v2.mjs:361` (`buildSearchLenses`, `meanCompleteRecallProfile`, `MEASURABILITY_CLASSES`). These five gates are write-time detectors, so the benchmark is conformance against fixtures, scored in the spirit of the `quality-loop.ts` scorer dimensions (`computeMemoryQualityScore`, `QUALITY_WEIGHTS`) rather than recall.
+
+| Metric | PROMOTION threshold | REGRESSION threshold |
+|--------|---------------------|----------------------|
+| Planted-mismatch catch-rate | 1.0 across all five gates over the planted-defect fixture set | any planted defect missed (catch-rate below 1.0) |
+| Clean-fixture swap-precision | zero findings on the known-conforming fixture set | any false positive on a clean fixture |
+| First-run real-defect floor | the route-contract gate and the SKILL.md grammar gate each surface at least one real finding on the live corpus and the canary catches one planted out-of-sync copy | the first run surfaces zero real findings on a corpus known to carry the dual-grammar split |
+
+The first warn-tier run records the per-gate finding count as the frozen baseline census. The count-to-zero drive and the warn-to-error flip are a later migration beat and stay out of scope here.
+
+Reproduce:
+- Conformance: `node mcp_server/node_modules/vitest/vitest.mjs run tests/per-surface-gates.vitest.ts --root scripts --config ../mcp_server/vitest.config.ts`
+- Live census: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <target-corpus> --strict`
+- Default-off proof: `npx vitest run tests/flag-ceiling.vitest.ts` from `.opencode/skills/system-spec-kit/mcp_server`
 <!-- /ANCHOR:phases -->
 
 ---
@@ -151,6 +168,18 @@ Required inventories:
 | Unit | Each detector and the canary set comparison | Vitest |
 | Integration | Route-validate 28-doc census run | Python harness |
 | Manual | Mutate one canary copy and confirm a drift finding | Shell |
+| Named suite | `scripts/tests/per-surface-gates.vitest.ts` asserts per-gate catch-rate 1.0 on planted-defect fixtures and zero findings on clean fixtures | Vitest (`--root scripts --config ../mcp_server/vitest.config.ts`) |
+| Default-off proof | All five `SPECKIT_GATE_*` flags unset yield byte-for-byte identical validate output versus the pre-gate baseline, modeled on the `flag-ceiling.vitest.ts` drift guard (`ALL_SPECKIT_FLAGS`, `FLAG_CHECKERS`) | Vitest |
+
+**Named test file**: `.opencode/skills/system-spec-kit/scripts/tests/per-surface-gates.vitest.ts`
+
+Assertions:
+- Each of the five detectors emits the expected warn-tier finding over a planted-defect fixture (catch-rate 1.0).
+- Each detector emits zero findings over a known-conforming fixture (swap-precision 1.0).
+- The canary reports drift on three out-of-sync copies and none on three coherent copies.
+- Flags-off byte-identical proof: with `SPECKIT_GATE_SKILL_GRAMMAR`, `SPECKIT_GATE_ROUTE_CONTRACT`, `SPECKIT_GATE_WORKFLOW_YAML`, `SPECKIT_GATE_SKILLGRAPH_DRIFT` and `SPECKIT_GATE_TRIGGER_CANARY` unset, validate output is byte-for-byte identical to the pre-gate baseline. Each new token registers in `ALL_SPECKIT_FLAGS` with a `FLAG_CHECKERS` entry proving it reads false when unset, matching the `flag-ceiling.vitest.ts` drift guard.
+
+**Default safety**: every gate defaults OFF behind its own `SPECKIT_GATE_<NAME>=false` flag. Keep-off rationale: the warn-only first beat absorbs the legacy census without blocking, and the count-to-zero plus warn-to-error flip are deferred to a later migration beat. No-regress is the flags-off byte-identical proof above. Runtime reversibility: setting `SPECKIT_GATE_<NAME>=false` stops the detector at runtime and the durable rollback reverts the registry entry at `.opencode/skills/system-spec-kit/scripts/lib/validator-registry.json`.
 <!-- /ANCHOR:testing -->
 
 ---

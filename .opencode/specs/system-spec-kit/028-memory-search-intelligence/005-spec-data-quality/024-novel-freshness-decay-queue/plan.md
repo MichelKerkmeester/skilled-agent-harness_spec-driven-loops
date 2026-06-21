@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "028-memory-search-intelligence/005-spec-data-quality/024-novel-freshness-decay-queue"
     last_updated_at: "2026-06-21T00:00:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Authored plan for the freshness decay queue build"
-    next_safe_action: "Author tasks and checklist for the queue build"
+    recent_action: "Added benchmark and flag-off proof to plan sections 4 and 5"
+    next_safe_action: "Hold for implementation, no detector code lands yet"
     blockers: []
     key_files: []
     session_dedup:
@@ -135,6 +135,15 @@ Required inventories:
 - [ ] A sub-threshold fixture emits one `refresh_queue` row and zero body writes (REQ-003)
 - [ ] Edge cases handled (pinned memory at retrievability 1.0 never queued, no last_reviewed clamps to fresh, already-queued doc deduped by TTL, accessor unavailable emits zero rows, missing queue table aborts before emit)
 - [ ] Documentation updated (spec/plan/tasks/checklist)
+
+### Benchmark
+This is a write-time detector phase, so the metric is NOT recall. The queue emits findings not vector rows, so it does not route through the 015-c2-prodmode-recall-gate prod-mode completeRecall@3 instrument that reuses `buildSearchLenses`, `meanCompleteRecallProfile` and `MEASURABILITY_CLASSES` (`run-eval-v2.mjs:361`). The detector-class metric is a planted-decay catch-rate and a swap-precision on a fixture corpus plus a first-run-finds-at-least-one-real-defect floor on the live corpus.
+
+- **Metric**: planted-decay catch-rate (planted sub-threshold docs queued over planted sub-threshold docs total), swap-precision (pinned or fresh fixture docs left unqueued over pinned or fresh docs total) and the first flag-on live count of genuinely decayed docs surfaced.
+- **PASS thresholds**: catch-rate equals 1.0 so every planted sub-threshold doc is queued, swap-precision equals 1.0 so zero pinned or fresh docs are queued and the first flag-on live report surfaces at least one genuinely decayed doc.
+- **REGRESS thresholds**: any planted sub-threshold doc missed pushes catch-rate below 1.0, any pinned or fresh doc queued pushes precision below 1.0 or any body write or non-empty git diff on an apply run.
+- **Reproduce**: `(cd .opencode/skills/system-spec-kit/mcp_server && vitest run tests/freshness-decay.vitest.ts)` for the catch-rate and precision assertions, then a flag-on report sweep over the fixture corpus with `SPECKIT_FRESHNESS_DECAY_QUEUE=true` for the live floor.
+- **DEFAULT-SAFETY**: the detector is default OFF behind `SPECKIT_FRESHNESS_DECAY_QUEUE`. Keep-off rationale: the legacy corpus must never gain a new always-on signal on docs that decay by design, matching the B3 feedback-edge precedent. No-regress: with the flag unset the detector emits zero rows and the sweep output stays byte-identical to the pre-detector baseline, proven the way `flag-ceiling.vitest.ts` exercises `ALL_SPECKIT_FLAGS` and `FLAG_CHECKERS`. Runtime reversibility: `SPECKIT_FRESHNESS_DECAY_QUEUE=false` lands the detector dark with no corpus rollback because it writes no body.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -147,6 +156,8 @@ Required inventories:
 | Unit | The shipped-number read, the threshold compare and the safe skip of pinned or fresh memories | vitest |
 | Integration | The report path against a decayed-fixture corpus through the B1 report-mode fan-out | fixture corpus, the B1 report-mode fan-out |
 | Manual | A flag-on report run on the live corpus to confirm a genuinely decayed doc surfaces as a candidate | local shell |
+| Benchmark | Planted-decay catch-rate equals 1.0 and swap-precision equals 1.0 on the fixture corpus, the first flag-on live run surfaces at least one genuinely decayed doc and an apply run yields a clean git diff | `mcp_server/tests/freshness-decay.vitest.ts` asserting catch-rate, precision and the empty diff, plus a flag-on report sweep |
+| Flag-off proof | With `SPECKIT_FRESHNESS_DECAY_QUEUE` unset the detector emits zero rows and the sweep output is byte-identical to the pre-detector baseline, reversible via `SPECKIT_FRESHNESS_DECAY_QUEUE=false` | `mcp_server/tests/freshness-decay.vitest.ts` mirroring the `ALL_SPECKIT_FLAGS` and `FLAG_CHECKERS` default-off pattern in `flag-ceiling.vitest.ts`, plus a diff of the returned sets |
 <!-- /ANCHOR:testing -->
 
 ---

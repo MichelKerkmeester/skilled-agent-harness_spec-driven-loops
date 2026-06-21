@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/009-a9-content-hash-integrity"
     last_updated_at: "2026-06-21T00:00:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Authored phase plan for A9 read-time content-hash integrity scaffold"
-    next_safe_action: "Hold for implementation, no code change has landed yet"
+    recent_action: "Specified planted-mismatch catch-rate benchmark and named vitest for the A9 scaffold"
+    next_safe_action: "Hold for implementation, no code has landed"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts"
@@ -134,6 +134,18 @@ Required inventories:
 - [ ] A deliberately corrupted scratch row is reported in `contentHashMismatches` with its id, while a clean corpus reports zero
 - [ ] A re-read of a mismatched row confirms the body and stored hash are untouched
 - [ ] The flag-off integrity summary keeps the current shape and `validate.sh --strict` exits 0
+
+### Benchmark
+
+The phase benchmark is a planted-mismatch catch-rate, not a recall number, because the recompute is a write-class drift detector with zero ranking effect and the prod search path truncates to a 3-result floor it never touches.
+
+| Metric | Pass | Regress |
+|--------|------|---------|
+| Planted-mismatch catch-rate | 100 percent of planted corrupt-body rows reported in `contentHashMismatches` with their ids | any planted mismatch missed |
+| Clean-corpus false-positive rate | 0 across clean rows and null-hash rows | any clean or null-hash row reported |
+| Flag-off summary parity | byte-identical to the pre-change summary shape with no extra row-body read | any field or read added with the flag off |
+
+Reproduce: `cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run tests/content-hash-integrity.vitest.ts`. The named test builds a scratch `memory_index`, plants a known corrupt-body set alongside clean and null-hash rows, runs `verify_integrity` at `lib/search/vector-index-queries.ts:1524` with `SPECKIT_CONTENT_HASH_INTEGRITY=true` and asserts four things: the planted ids appear in `contentHashMismatches`, a clean corpus reports zero, null-hash rows are skipped and a re-read proves the body and stored hash are untouched. A fifth case runs the sweep with the flag off and asserts the summary is byte-identical to the pre-change shape. Default-off is held by registering `SPECKIT_CONTENT_HASH_INTEGRITY` in the `flag-ceiling.vitest.ts` drift guard, and the flag is reversible at runtime through `SPECKIT_CONTENT_HASH_INTEGRITY=false`. Specified-not-run, no benchmark has executed and no code has landed.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -146,6 +158,9 @@ Required inventories:
 | Unit | A clean row, a corrupted row, and a null-hash row through the recompute branch | direct `verify_integrity` invocation |
 | Integration | The integrity sweep flag-on over a corrupted scratch row and flag-off over a clean corpus | integrity sweep run plus summary inspection |
 | Manual | Re-read of a mismatched row to prove no body or hash mutation | row read plus diff evidence |
+| Benchmark | Planted-mismatch catch-rate of 100 percent and a 0 false-positive rate on clean and null-hash rows | `tests/content-hash-integrity.vitest.ts` planted-corruption scratch DB |
+| Regression | Flag-off integrity summary byte-identical to the pre-change shape with no `contentHashMismatches` populated and no extra row-body read | `tests/content-hash-integrity.vitest.ts` flag-off case |
+| Default-off proof | `SPECKIT_CONTENT_HASH_INTEGRITY` defaults off and the new flag is registered in the flag-ceiling drift guard | `tests/flag-ceiling.vitest.ts` ALL_SPECKIT_FLAGS and FLAG_CHECKERS |
 <!-- /ANCHOR:testing -->
 
 ---

@@ -13,9 +13,9 @@ _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/021-novel-example-test-generation"
     last_updated_at: "2026-06-21T00:00:00Z"
-    last_updated_by: "markdown-agent"
-    recent_action: "Drafted phase tasks from plan phases"
-    next_safe_action: "Write the QA checklist"
+    last_updated_by: "plan-bench-agent"
+    recent_action: "Mirrored GEN_COVERAGE benchmark and named test tasks"
+    next_safe_action: "Hold for implementation, no task started"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/scripts/sweep/gen-examples-tests.ts"
@@ -83,6 +83,9 @@ This phase is PLANNED and not yet built, so every task stays pending.
 - [ ] T010 Run the generator on a Level 2 spec and confirm one example or stub per requirement with the source REQUIREMENTS prose byte-for-byte unchanged, REQ-001
 - [ ] T011 Run the generator with no confirm and confirm nothing is written, then confirm and check the artifact lands, REQ-003
 - [ ] T012 Run validate.sh strict flag-unset on a 005 sibling and confirm the same exit code and the same files as before, REQ-002
+- [ ] T013 Benchmark GEN_COVERAGE: run the generator over the planted fixture and assert un-covered-requirement count 0, fenced-decoy false-positives 0 and REQUIREMENTS-prose bytes-changed 0, SPECIFIED-not-run, REQ-001 REQ-004 (.opencode/skills/system-spec-kit/scripts/tests/fixtures)
+- [ ] T014 Author the named test pinning per-REQ coverage, REQUIREMENTS byte-identity, fence-decoy skip and the dry-run-writes-nothing gate, REQ-001 REQ-003 (.opencode/skills/system-spec-kit/scripts/tests/gen-examples-tests.vitest.ts)
+- [ ] T015 Register SPECKIT_GEN_EXAMPLES in the flag ceiling so the default-off proof and the SPECKIT_GEN_EXAMPLES=false reversibility ride the shipped assertions, REQ-002 (.opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts)
 <!-- /ANCHOR:phase-3 -->
 
 ---

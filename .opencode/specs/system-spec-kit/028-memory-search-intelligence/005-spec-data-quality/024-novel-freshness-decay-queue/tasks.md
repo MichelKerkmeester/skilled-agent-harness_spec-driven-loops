@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "028-memory-search-intelligence/005-spec-data-quality/024-novel-freshness-decay-queue"
     last_updated_at: "2026-06-21T00:00:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Authored task breakdown for the freshness decay queue build"
-    next_safe_action: "Author checklist for the queue build"
+    recent_action: "Mirrored benchmark and flag-off proof as T013 and T014"
+    next_safe_action: "Hold for implementation, no task has started yet"
     blockers: []
     key_files: []
     session_dedup:
@@ -77,6 +77,8 @@ _memory:
 - [ ] T010 The detector output equals the value computeMemoryState returns byte for byte and an apply run leaves the git working tree clean
 - [ ] T011 A sub-threshold fixture emits one refresh_queue row and zero body writes, plus edge cases (pinned memory at 1.0 never queued, no last_reviewed clamps to fresh, already-queued doc deduped by TTL, accessor unavailable emits zero rows, missing queue table aborts before emit)
 - [ ] T012 Update documentation (spec/plan/tasks/checklist)
+- [ ] T013 Benchmark: assert planted-decay catch-rate equals 1.0 and swap-precision equals 1.0 on the fixture corpus, the first flag-on live run surfaces at least one genuinely decayed doc and an apply run yields a clean git diff. Detector-class metric, not recall, since the queue emits findings not vector rows (.opencode/skills/system-spec-kit/mcp_server/tests/freshness-decay.vitest.ts)
+- [ ] T014 Default-off proof: with SPECKIT_FRESHNESS_DECAY_QUEUE unset the detector emits zero rows and the sweep output is byte-identical to the pre-detector baseline, mirroring the ALL_SPECKIT_FLAGS and FLAG_CHECKERS pattern, reversible via SPECKIT_FRESHNESS_DECAY_QUEUE=false (.opencode/skills/system-spec-kit/mcp_server/tests/freshness-decay.vitest.ts)
 <!-- /ANCHOR:phase-3 -->
 
 ---

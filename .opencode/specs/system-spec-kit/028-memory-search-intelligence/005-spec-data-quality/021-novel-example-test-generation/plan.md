@@ -13,9 +13,9 @@ _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/021-novel-example-test-generation"
     last_updated_at: "2026-06-21T00:00:00Z"
-    last_updated_by: "markdown-agent"
-    recent_action: "Drafted phase plan from spec seams"
-    next_safe_action: "Write the tasks breakdown"
+    last_updated_by: "plan-bench-agent"
+    recent_action: "Specified GEN_COVERAGE benchmark and named test"
+    next_safe_action: "Hold for implementation, no code landed"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/scripts/rules/check-ac-coverage.sh"
@@ -137,6 +137,22 @@ Required inventories:
 - [ ] Run the generator on a Level 2 spec and confirm one example or stub per requirement with the source REQUIREMENTS prose byte-for-byte unchanged (REQ-001)
 - [ ] Run the generator with no confirm and confirm nothing is written, then confirm and check the artifact lands (REQ-003)
 - [ ] Run validate.sh strict flag-unset on a 005 sibling and confirm the same exit code and the same files as before (REQ-002)
+
+### Benchmark
+
+This is a write-time generator phase, so the metric is NOT recall. The item is floor-bypassing and writes additive artifacts not vector rows, so it routes through no prod-mode `completeRecall@3` gate and the C2 gate owned by `015-c2-prodmode-recall-gate` does not apply. The bar is a per-requirement generation-conformance count driven to zero plus a fence-decoy planted-mismatch catch-rate.
+
+| Field | Value |
+|-------|-------|
+| **Metric** | `GEN_COVERAGE`, the count of fixture requirements left without a tagged proposed artifact, driven to zero, paired with the fenced-decoy false-positive count and the source REQUIREMENTS-prose bytes-changed count |
+| **Class** | conformance-count-driven-to-zero plus planted-mismatch catch-rate, drawn from the write-time detector family not the retrieval family |
+| **Fixture** | A planted Level 2 spec under `scripts/tests/fixtures` carrying N out-of-fence requirement rows plus at least one in-fence decoy requirement-shaped row, mirroring the fence-aware scan at `check-ac-coverage.sh:84-85` |
+| **PROMOTION threshold** | A first run on the fixture passes only when the un-covered-requirement count is 0 so every REQ id gets exactly one tagged proposed artifact, the source REQUIREMENTS-anchor bytes-changed count is 0 and the fenced-decoy false-positive count is 0 |
+| **REGRESSION threshold** | Any un-covered requirement, any byte changed in the source REQUIREMENTS prose or any fenced decoy tagged fails the gate with a generator-conformance non-zero exit distinct from a crash code |
+| **Baseline** | The first clean fixture run freezes per-class coverage at N/N and the prose-immutability invariant at zero bytes, stored next to the test fixture |
+| **Reproduce** | `SPECKIT_GEN_EXAMPLES=true node .opencode/skills/system-spec-kit/scripts/sweep/gen-examples-tests.ts --dry-run <fixture-spec>` then assert the coverage, fence-decoy and prose-immutability counts. SPECIFIED-not-run while the phase is PLANNED |
+
+The default-off safety proof rides the shipped flag ceiling. `SPECKIT_GEN_EXAMPLES` registers in `ALL_SPECKIT_FLAGS` and `FLAG_CHECKERS` in `flag-ceiling.vitest.ts` so the existing default-off assertions cover it with no new harness, and runtime reversibility is `SPECKIT_GEN_EXAMPLES=false` which returns the byte-for-byte no-op proven by REQ-002.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -149,6 +165,9 @@ Required inventories:
 | Unit | REQUIREMENTS scan, fence skipping, per-REQ tagging, empty-anchor no-op | bash, fixture spec folders |
 | Integration | Dry-run report then confirm-gated write, flag-on and flag-off | validate.sh --strict, node generator run |
 | Manual | Registry node-parse, no-op equivalence on a 005 sibling, byte-for-byte prose check | node, diff of exit codes and source prose |
+| Benchmark | `GEN_COVERAGE` un-covered count driven to 0, fenced-decoy false-positives 0 and REQUIREMENTS-prose bytes-changed 0 on the planted fixture, see section 4 Benchmark | `gen-examples-tests.ts --dry-run`, planted fixture under `scripts/tests/fixtures` |
+| Named test | `scripts/tests/gen-examples-tests.vitest.ts` pins per-REQ coverage N/N, REQUIREMENTS byte-identity, fence-decoy skip and the dry-run-writes-nothing gate | vitest, planted fixture spec |
+| Default-off proof | `mcp_server/tests/flag-ceiling.vitest.ts` pins `SPECKIT_GEN_EXAMPLES` off by default so a flag-unset run is byte-identical, reversible at runtime via `SPECKIT_GEN_EXAMPLES=false` | vitest, ALL_SPECKIT_FLAGS plus FLAG_CHECKERS |
 <!-- /ANCHOR:testing -->
 
 ---

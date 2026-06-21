@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-a5-trigger-coherence-assertion"
     last_updated_at: "2026-06-21T00:00:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Authored phase QA checklist for A5 trigger coherence scaffold"
-    next_safe_action: "Hold for implementation, no item has been verified yet"
+    recent_action: "Added benchmark and default-off rows under Testing"
+    next_safe_action: "Hold for implementation, no item verified"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/scripts/rules/check-trigger-coherence.sh"
@@ -83,6 +83,9 @@ FAILURE MODES:
 - [ ] CHK-021 [P0] A divergent fixture emits a warn finding naming the orphan phrases
 - [ ] CHK-022 [P1] A capped 12-entry derived subset against 15 frontmatter triggers reports no finding
 - [ ] CHK-023 [P1] A case-only difference normalizes away and a missing derived surface reports no finding
+- [ ] CHK-024 [P0] Benchmark catch-rate is 1.0 over the planted-divergence fixtures and false-positive count is 0 over the coherent fixtures, proven by `scripts/tests/trigger-coherence.vitest.ts`
+- [ ] CHK-025 [P1] `SPECKIT_TRIGGER_COHERENCE` defaults OFF in the `flag-ceiling.vitest.ts` roster and `validate.sh --strict` output is byte-identical with the flag unset
+- [ ] CHK-026 [P1] First-run floor met where a census dry run over `.opencode/specs` surfaces at least 1 real divergence and exits non-error
 <!-- /ANCHOR:testing -->
 
 ---
@@ -135,8 +138,8 @@ FAILURE MODES:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 0/12 |
-| P1 Items | 13 | 0/13 |
+| P0 Items | 13 | 0/13 |
+| P1 Items | 15 | 0/15 |
 | P2 Items | 1 | 0/1 |
 
 **Verification Date**: Pending (scaffold, not yet verified)

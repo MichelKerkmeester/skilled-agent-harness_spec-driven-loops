@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "028-memory-search-intelligence/005-spec-data-quality/024-novel-freshness-decay-queue"
     last_updated_at: "2026-06-21T00:00:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Authored QA checklist for the freshness decay queue build"
-    next_safe_action: "Build the freshness decay detector after the engine lands"
+    recent_action: "Mirrored benchmark and flag-off proof as CHK-024 and CHK-025"
+    next_safe_action: "Hold for implementation, no item verified yet"
     blockers: []
     key_files: []
     session_dedup:
@@ -80,6 +80,8 @@ FAILURE MODES:
 - [ ] CHK-021 [P0] Manual testing complete
 - [ ] CHK-022 [P1] Edge cases tested
 - [ ] CHK-023 [P1] Error scenarios validated
+- [ ] CHK-024 [P0] Benchmark met: planted-decay catch-rate equals 1.0 and swap-precision equals 1.0 on the fixture corpus, the first flag-on live run surfaces at least one genuinely decayed doc and an apply run yields a clean git diff, asserted in `mcp_server/tests/freshness-decay.vitest.ts`
+- [ ] CHK-025 [P0] Default-off proof: with `SPECKIT_FRESHNESS_DECAY_QUEUE` unset the detector emits zero rows and the sweep output is byte-identical to the pre-detector baseline, reversible via `SPECKIT_FRESHNESS_DECAY_QUEUE=false`, mirroring the `flag-ceiling.vitest.ts` default-off pattern
 <!-- /ANCHOR:testing -->
 
 ---
@@ -132,7 +134,7 @@ FAILURE MODES:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 0/12 |
+| P0 Items | 14 | 0/14 |
 | P1 Items | 13 | 0/13 |
 | P2 Items | 1 | 0/1 |
 

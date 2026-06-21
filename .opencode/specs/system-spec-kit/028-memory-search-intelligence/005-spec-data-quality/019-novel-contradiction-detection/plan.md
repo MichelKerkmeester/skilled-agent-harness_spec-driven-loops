@@ -13,9 +13,9 @@ _memory:
   continuity:
     packet_pointer: "028-memory-search-intelligence/005-spec-data-quality/019-novel-contradiction-detection"
     last_updated_at: "2026-06-21T00:00:00Z"
-    last_updated_by: "markdown-agent"
-    recent_action: "Authored plan for the contradiction detector build"
-    next_safe_action: "Author tasks and checklist for the detector build"
+    last_updated_by: "benchmark-test-author"
+    recent_action: "Added benchmark and default-off proof to plan"
+    next_safe_action: "Build the detector after deps land"
     blockers: []
     key_files: []
     session_dedup:
@@ -134,6 +134,43 @@ Required inventories:
 - [ ] The stale fixture is tagged `stale` and the same-time conflict is tagged `contradict`
 - [ ] Edge cases handled (no-entity doc skipped, self-pair filtered, empty subtree clean, scorer timeout errored and continued, empty catalog degrades to edges-only, deleted target skipped)
 - [ ] Documentation updated (spec/plan/tasks/checklist)
+
+### Benchmark
+
+This is a detector phase, so the metric is not recall. A finding is not a vector row, so the C2 prod-mode completeRecall@3 gate that 015-c2-prodmode-recall-gate owns through the `run-eval-v2.mjs:361` export (`buildSearchLenses`, `meanCompleteRecallProfile`, `MEASURABILITY_CLASSES`) does not apply and is recorded here only to mark the bypass. The metric is a planted-mismatch catch-rate over a fixture corpus paired with a clean-control false-positive floor.
+
+| Metric | PASS | REGRESS |
+|--------|------|---------|
+| `plantedMismatchCatchRate` over the planted fixture corpus | `== 1.0`, every planted contradiction and every planted stale claim emits a finding | `< 1.0`, any planted defect missed |
+| Clean-control false-positive count on a no-conflict fixture | `== 0`, no finding on a corpus with nothing planted | `> 0`, any finding fired on the clean control |
+| Candidate-pair count versus adjacency on the fixture corpus | `<= 3x` the shared-entity-plus-causal-edge adjacency count | `> 3x` adjacency, drifting toward the all-pairs quadratic |
+| First flag-on live-corpus run (SC-001 deferred standing-value proof) | `>= 1` real cross-doc conflict no shape, frontmatter or coherence gate could catch | `0` findings on a corpus a reviewer confirms holds a real conflict |
+
+Reproduce the fixture catch-rate and the false-positive floor:
+
+```bash
+SPECKIT_CONTRADICTION_DETECTOR=true npx vitest run \
+  .opencode/skills/system-spec-kit/scripts/tests/contradiction-detector.vitest.ts
+```
+
+Reproduce the first flag-on live-corpus value proof:
+
+```bash
+SPECKIT_CONTRADICTION_DETECTOR=true node \
+  .opencode/skills/system-spec-kit/scripts/sweep/dq-sweep.ts --report-only
+```
+
+Default-off safety: the flag is `SPECKIT_CONTRADICTION_DETECTOR` and defaults OFF. The keep-off rationale is that an unreviewed LLM-entailment detector can flood the report, so it lands dark until a confidence threshold is agreed. Runtime reversibility is `SPECKIT_CONTRADICTION_DETECTOR=false`, which skips the detector on the next sweep with no corpus rollback since it writes nothing. No-regress is a byte-identical report between a default run and an explicit `SPECKIT_CONTRADICTION_DETECTOR=false` run, and the flag is registered in `ALL_SPECKIT_FLAGS` and `FLAG_CHECKERS` so `mcp_server/tests/flag-ceiling.vitest.ts` proves it holds the ceiling with no interaction regression.
+
+Reproduce the default-off byte-identical proof and the flag-ceiling proof:
+
+```bash
+node .opencode/skills/system-spec-kit/scripts/sweep/dq-sweep.ts --report-only > /tmp/off.txt
+SPECKIT_CONTRADICTION_DETECTOR=false node \
+  .opencode/skills/system-spec-kit/scripts/sweep/dq-sweep.ts --report-only > /tmp/explicit-off.txt
+diff /tmp/off.txt /tmp/explicit-off.txt
+npx vitest run .opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts
+```
 <!-- /ANCHOR:phases -->
 
 ---
@@ -146,6 +183,8 @@ Required inventories:
 | Unit | The candidate-pair gate, the safe skip of unpaired docs, the verdict-to-finding fold | vitest |
 | Integration | The report path against a planted-contradiction and planted-stale fixture corpus | fixture corpus, the B1 report-mode fan-out |
 | Manual | A flag-on report run on the live corpus to confirm a real cross-doc conflict surfaces | local shell |
+| Benchmark | `plantedMismatchCatchRate == 1.0` on the planted fixture corpus and a `0` false-positive floor on the clean control, asserted in the named test file | `scripts/tests/contradiction-detector.vitest.ts` via vitest |
+| Default-off | The flag `SPECKIT_CONTRADICTION_DETECTOR` defaults OFF and a default run is byte-identical to an explicit `=false` run, the flag registered in `ALL_SPECKIT_FLAGS` and `FLAG_CHECKERS` | `scripts/tests/contradiction-detector.vitest.ts` plus `mcp_server/tests/flag-ceiling.vitest.ts` |
 <!-- /ANCHOR:testing -->
 
 ---

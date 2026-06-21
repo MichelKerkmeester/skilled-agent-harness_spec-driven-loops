@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-a5-trigger-coherence-assertion"
     last_updated_at: "2026-06-21T00:00:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Authored phase task breakdown for A5 trigger coherence scaffold"
-    next_safe_action: "Hold for implementation, no task has started yet"
+    recent_action: "Added benchmark and default-off tasks under Phase 3"
+    next_safe_action: "Hold for implementation, no task has started"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/scripts/rules/check-trigger-coherence.sh"
@@ -78,6 +78,10 @@ _memory:
 - [ ] T008 Confirm a crafted fixture with an indexed or derived trigger absent from frontmatter emits a warn finding, and a capped 12-entry derived subset against 15 frontmatter triggers reports no finding
 - [ ] T009 Confirm a fixture lacking the derived surface reports no coherence finding for that surface, and a case-only difference normalizes away
 - [ ] T010 Run a dry pass across the live spec corpus and confirm exit non-error with current divergences listed as warn findings
+- [ ] T011 Stage the fixture matrix of at least 3 planted-divergence fixtures and 4 coherent fixtures, then author the named test asserting the warn findings and the no-finding cases (`.opencode/skills/system-spec-kit/scripts/tests/trigger-coherence.vitest.ts`)
+- [ ] T012 Specify the benchmark gate so catch-rate is 1.0 over the planted fixtures and false-positive count is 0 over the coherent fixtures, with the warn-to-error flip gated on the pair, reproduced by `npx vitest run .opencode/skills/system-spec-kit/scripts/tests/trigger-coherence.vitest.ts`
+- [ ] T013 Gate the rule behind `SPECKIT_TRIGGER_COHERENCE` default OFF, add it to the flag roster for the default-off proof, and prove `validate.sh --strict` output byte-identical with the flag unset (`.opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts`)
+- [ ] T014 Record the first-run floor where a census dry run over `.opencode/specs` surfaces at least 1 real divergence and exits non-error
 <!-- /ANCHOR:phase-3 -->
 
 ---

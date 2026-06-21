@@ -13,9 +13,9 @@ _memory:
   continuity:
     packet_pointer: "028-memory-search-intelligence/005-spec-data-quality/011-b1-scheduled-dq-sweep"
     last_updated_at: "2026-06-21T00:00:00Z"
-    last_updated_by: "markdown-agent"
-    recent_action: "Authored verification checklist scaffold"
-    next_safe_action: "Build the sweep then verify each item"
+    last_updated_by: "benchmark-spec-author"
+    recent_action: "Mirrored benchmark and test into checklist rows"
+    next_safe_action: "Hold for implementation, no code has landed"
     blockers: []
     key_files: []
     session_dedup:
@@ -80,6 +80,9 @@ FAILURE MODES:
 - [ ] CHK-021 [P0] Manual testing complete (manual workflow_dispatch run and a local apply on a corrupted packet)
 - [ ] CHK-022 [P1] Edge cases tested (empty subtree, missing metadata file, malformed validate output, detector throw)
 - [ ] CHK-023 [P1] Error scenarios validated (read-only filesystem apply, partial apply interrupted mid-batch)
+- [ ] CHK-024 [P0] Benchmark thresholds pinned with reproduce commands (planted catch-rate 100 percent, safe-class conformance count 0, swap precision 1.0, idempotency, first-run real-defect floor)
+- [ ] CHK-025 [P0] Named caller test present with its assertions (.opencode/skills/system-spec-kit/scripts/tests/dq-sweep.vitest.ts)
+- [ ] CHK-026 [P1] Default-off proven, SPECKIT_DQ_SWEEP defaults false with a flags-off byte-identical corpus hash and an ALL_SPECKIT_FLAGS plus FLAG_CHECKERS entry
 <!-- /ANCHOR:testing -->
 
 ---
@@ -132,8 +135,8 @@ FAILURE MODES:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 11 | 0/11 |
-| P1 Items | 11 | 0/11 |
+| P0 Items | 13 | 0/13 |
+| P1 Items | 12 | 0/12 |
 | P2 Items | 2 | 0/2 |
 
 **Verification Date**: TBD

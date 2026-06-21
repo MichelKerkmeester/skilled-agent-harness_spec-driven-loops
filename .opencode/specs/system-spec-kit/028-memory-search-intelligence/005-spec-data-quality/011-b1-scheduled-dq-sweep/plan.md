@@ -13,9 +13,9 @@ _memory:
   continuity:
     packet_pointer: "028-memory-search-intelligence/005-spec-data-quality/011-b1-scheduled-dq-sweep"
     last_updated_at: "2026-06-21T00:00:00Z"
-    last_updated_by: "markdown-agent"
-    recent_action: "Authored plan for the scheduled DQ sweep build"
-    next_safe_action: "Author tasks and checklist for the sweep build"
+    last_updated_by: "benchmark-spec-author"
+    recent_action: "Specified benchmark and named test for the sweep"
+    next_safe_action: "Hold for implementation, no code has landed"
     blockers: []
     key_files: []
     session_dedup:
@@ -131,6 +131,24 @@ Required inventories:
 - [ ] Apply run on the mixed fixture mutates only safe-class targets, a second apply is an empty diff
 - [ ] Edge cases handled (empty subtree, missing metadata file, malformed validate output, detector throw)
 - [ ] Documentation updated (spec/plan/tasks/checklist)
+
+### Benchmark (SPECIFIED, not run)
+
+This is a write-time detector fan-out, not a retrieval-class change, so the metric is not recall. The spec confirms B1 carries no retrieval-class detector and does not route through the `015-c2-prodmode-recall-gate` prod-mode completeRecall@3 instrument (`run-eval-v2.mjs:361` exports `buildSearchLenses`, `meanCompleteRecallProfile` and `MEASURABILITY_CLASSES` for that retrieval path). Any retrieval-class detector added later inherits that gate on its own.
+
+**Frozen fixture**: a dirty scratch packet under `scratch/dq-sweep-fixture/` carrying a planted-defect manifest across the three escape classes (path-filter escape, backfill blind spot and cross-surface coherence drift), each defect tagged with its `fixClass`.
+
+| Metric | Pass threshold | Regress threshold | Reproduce |
+|--------|----------------|-------------------|-----------|
+| Planted-mismatch catch-rate | report surfaces 100 percent of planted defects on the frozen fixture | any planted defect unsurfaced | `node scripts/sweep/dq-sweep.ts --roots scratch/dq-sweep-fixture` then diff the finding set against the planted manifest |
+| Safe-class conformance count | `validate.sh --json` safe-class finding count is 0 after one `--apply` | any safe-class finding remaining after apply | `node scripts/sweep/dq-sweep.ts --roots scratch/dq-sweep-fixture --apply` then `validate.sh --json scratch/dq-sweep-fixture` |
+| Swap precision | apply mutates only `safe` fixClass targets, precision is 1.0 | any risky or none-class target mutated | `git diff scratch/dq-sweep-fixture` carries only safe-class paths after apply |
+| Idempotency | a second `--apply` on the fixed fixture is an empty diff | the second apply mutates anything | re-run `--apply` then confirm `git diff` is empty |
+| First-run real-defect floor | the first scheduled real-corpus run finds at least one escape-class defect the change-triggered tiers missed | the first run finds nothing they missed and the tier downgrades to on-demand per SC-001 | one `workflow_dispatch` run over `.opencode/specs` compared against the change-triggered tier coverage |
+
+The named test `scripts/tests/dq-sweep.vitest.ts` asserts the safe-class filter selects only `fixClass` safe, the report fold catches every planted defect, apply precision is 1.0 and a second apply is empty. It also asserts each edge case (empty subtree, missing metadata file, malformed validate output and a detector throw) resolves as the spec specifies.
+
+**Default-safety**: the mutation path is gated by `SPECKIT_DQ_SWEEP`, default false. Keep-off rationale is the corpus-wide blast radius on git-tracked docs, so the apply path stays inert until an operator opts in. No-regress is proven flags-off, where the sweep performs no corpus mutation and a corpus content hash is byte-identical before and after a flags-off run. Runtime reversibility is `SPECKIT_DQ_SWEEP=false`, which returns the sweep to report-only with no restart. The flag registers in `ALL_SPECKIT_FLAGS` with a matching `FLAG_CHECKERS` entry in `mcp_server/tests/flag-ceiling.vitest.ts` so the ceiling test proves it defaults off.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -140,8 +158,10 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | The fan-out caller, the safe-class filter, the report fold | vitest |
+| Unit | The fan-out caller, the safe-class filter, the report fold | vitest, `scripts/tests/dq-sweep.vitest.ts` |
 | Integration | CI report path and operator-local apply path against a scratch fixture | dirty scratch packet, `validate.sh --json` |
+| Benchmark | Planted-mismatch catch-rate, safe-class conformance count, swap precision and idempotency on the frozen fixture | `scripts/tests/dq-sweep.vitest.ts`, the planted manifest |
+| Default-off | Flags-off byte-identical corpus hash and the `SPECKIT_DQ_SWEEP` ceiling entry | `mcp_server/tests/flag-ceiling.vitest.ts` (`ALL_SPECKIT_FLAGS`, `FLAG_CHECKERS`) |
 | Manual | A manual `workflow_dispatch` run and a local `--apply` on a corrupted packet | GitHub Actions, local shell |
 <!-- /ANCHOR:testing -->
 

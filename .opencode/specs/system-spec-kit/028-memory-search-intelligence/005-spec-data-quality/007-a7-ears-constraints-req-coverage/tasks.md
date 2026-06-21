@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/007-a7-ears-constraints-req-coverage"
     last_updated_at: "2026-06-21T00:00:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Drafted phase tasks from the plan"
-    next_safe_action: "Write the verification checklist"
+    recent_action: "Mirrored benchmark and test into tasks"
+    next_safe_action: "Build the REQ_COVERAGE clone"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/scripts/rules/check-ac-coverage.sh"
@@ -81,6 +81,11 @@ _memory:
 - [ ] T011 Run validate.sh strict with SPECKIT_REQ_COVERAGE=true on a spec with an unlinked REQ and confirm the warn line (.opencode/skills/system-spec-kit/scripts/spec/validate.sh) [REQ-001]
 - [ ] T012 Run validate.sh strict flag-unset on a 005 sibling and confirm the same exit code as before (.opencode/skills/system-spec-kit/scripts/spec/validate.sh) [REQ-002]
 - [ ] T013 Confirm an existing Level 2 spec still validates clean after the template edits (.opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl) [REQ-004]
+- [ ] T014 Author the planted fixtures, one unlinked-REQ spec and one fully-linked spec, for the catch-rate benchmark (.opencode/skills/system-spec-kit/scripts/tests/fixtures/req-coverage-unlinked) [REQ-001]
+- [ ] T015 Write check-req-coverage.test.sh asserting catch-rate 1.0, zero false positives, the no-op message and the floor clamp (.opencode/skills/system-spec-kit/scripts/tests/check-req-coverage.test.sh) [REQ-001]
+- [ ] T016 Write check-ears-lint.test.sh asserting one advisory on a free-form row and zero on an all-EARS fixture (.opencode/skills/system-spec-kit/scripts/tests/check-ears-lint.test.sh) [REQ-005]
+- [ ] T017 Extend flag-ceiling.vitest.ts with SPECKIT_REQ_COVERAGE and SPECKIT_EARS_LINT to prove both default off and a flags-off byte-identical run (.opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts) [REQ-002]
+- [ ] T018 Measure the first-run real-defect floor on the live 005 corpus and confirm at least one real unlinked REQ surfaces (.opencode/skills/system-spec-kit/scripts/spec/validate.sh) [REQ-001]
 <!-- /ANCHOR:phase-3 -->
 
 ---

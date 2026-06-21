@@ -13,8 +13,8 @@ _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-a3-enum-constrain-schemas"
     last_updated_at: "2026-06-21T00:00:00Z"
-    last_updated_by: "markdown-agent"
-    recent_action: "Authored phase QA checklist for A3 enum-constrain schemas scaffold"
+    last_updated_by: "benchmark-spec-agent"
+    recent_action: "Added benchmark, test and default-safety rows to checklist"
     next_safe_action: "Hold for implementation, no item has been verified yet"
     blockers: []
     key_files:
@@ -83,6 +83,9 @@ FAILURE MODES:
 - [ ] CHK-021 [P0] A derive-then-parse round trip over a real packet produces only in-enum values with zero re-index
 - [ ] CHK-022 [P1] An out-of-enum value yields a precise per-field message through `formatDescriptionSchemaIssues`
 - [ ] CHK-023 [P1] Case or separator drift normalizes before the value reaches the strict enum
+- [ ] CHK-024 [P0] Enum swap-precision benchmark passes, catch-rate 1.00 and false-reject-rate 0.00 on the planted fixture set across both schemas, reproduced via `enum-constrain-schemas.vitest.ts`
+- [ ] CHK-025 [P0] Corpus conformance-count baseline frozen through the warn-tier `GRAPH_METADATA_SHAPE` and `DESCRIPTION_SHAPE` rules with the count-to-zero handed to A4
+- [ ] CHK-026 [P0] Flags-off byte-identical parse proven with `SPECKIT_SCHEMA_ENUM_ENFORCE` off and the flag registered in the flag-ceiling drift guard
 <!-- /ANCHOR:testing -->
 
 ---
@@ -135,7 +138,7 @@ FAILURE MODES:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 0/12 |
+| P0 Items | 15 | 0/15 |
 | P1 Items | 13 | 0/13 |
 | P2 Items | 1 | 0/1 |
 

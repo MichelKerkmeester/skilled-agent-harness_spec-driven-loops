@@ -13,9 +13,9 @@ _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/010-a10-per-surface-gates"
     last_updated_at: "2026-06-21T00:00:00Z"
-    last_updated_by: "markdown-agent"
-    recent_action: "Authored task breakdown from plan"
-    next_safe_action: "Author checklist and impl scaffold"
+    last_updated_by: "benchmark-test-scaffold"
+    recent_action: "Mirrored benchmark and test tasks"
+    next_safe_action: "Hold for implementation"
     blockers: []
     key_files:
       - "tasks.md"
@@ -79,6 +79,9 @@ _memory:
 
 - [ ] T011 Run each detector over its target corpus and confirm warn-tier non-blocking
 - [ ] T012 Mutate one canary copy and confirm a drift finding
+- [ ] T014 Author the planted-defect and clean fixtures plus the named suite asserting per-gate catch-rate 1.0 and zero false positives (`.opencode/skills/system-spec-kit/scripts/tests/per-surface-gates.vitest.ts`)
+- [ ] T015 Prove flags-off byte-identical validate output with all five `SPECKIT_GATE_*` flags unset, each registered in `ALL_SPECKIT_FLAGS` with a `FLAG_CHECKERS` entry per the drift guard (`.opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts`)
+- [ ] T016 Record the per-gate first-run baseline census count and confirm the route-contract and SKILL.md grammar gates each surface at least one real finding
 - [ ] T013 Update spec, plan, and tasks
 <!-- /ANCHOR:phase-3 -->
 

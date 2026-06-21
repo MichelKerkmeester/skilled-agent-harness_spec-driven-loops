@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/009-a9-content-hash-integrity"
     last_updated_at: "2026-06-21T00:00:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Authored phase task breakdown for A9 read-time content-hash integrity scaffold"
-    next_safe_action: "Hold for implementation, no task has started yet"
+    recent_action: "Added benchmark, test and default-off tasks for the A9 scaffold"
+    next_safe_action: "Hold for implementation, no task has started"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts"
@@ -68,6 +68,7 @@ _memory:
 - [ ] T005 Skip rows with a null or absent `content_hash` so a pre-migration row is never counted as a mismatch (`.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts`)
 - [ ] T006 Surface mismatch row ids on a new `contentHashMismatches` field, report-only with no body or hash mutation (`.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts`)
 - [ ] T007 Gate the whole recompute behind the default-off flag so the flag-off sweep performs no extra row-body read (`.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts`)
+- [ ] T010 Name the recompute flag `SPECKIT_CONTENT_HASH_INTEGRITY` default-off with an `isContentHashIntegrityEnabled()` checker in the search-flags pattern and register it in the flag-ceiling drift guard (`.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts`, `.opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -77,6 +78,8 @@ _memory:
 
 - [ ] T008 Confirm a deliberately corrupted scratch row is reported in `contentHashMismatches` with its id while a clean corpus reports zero, and re-read the mismatched row to prove the body and stored hash are untouched
 - [ ] T009 Confirm the flag-off integrity summary keeps the current shape and a null-hash pre-migration row stays out of the mismatch count, then run `validate.sh --strict` to exit 0
+- [ ] T011 Author the named test with the catch-rate, clean-zero, null-skip, no-mutation and flags-off byte-identical assertions (`.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-integrity.vitest.ts`)
+- [ ] T012 Specify the planted-mismatch catch-rate benchmark at 100 percent caught and 0 false positives with the `npx vitest run tests/content-hash-integrity.vitest.ts` reproduce path (`.opencode/skills/system-spec-kit/mcp_server/tests/content-hash-integrity.vitest.ts`)
 <!-- /ANCHOR:phase-3 -->
 
 ---

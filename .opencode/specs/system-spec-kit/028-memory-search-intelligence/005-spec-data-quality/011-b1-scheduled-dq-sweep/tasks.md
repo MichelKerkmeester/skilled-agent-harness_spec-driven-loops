@@ -13,9 +13,9 @@ _memory:
   continuity:
     packet_pointer: "028-memory-search-intelligence/005-spec-data-quality/011-b1-scheduled-dq-sweep"
     last_updated_at: "2026-06-21T00:00:00Z"
-    last_updated_by: "markdown-agent"
-    recent_action: "Authored task breakdown for the sweep build"
-    next_safe_action: "Author checklist for the sweep build"
+    last_updated_by: "benchmark-spec-author"
+    recent_action: "Mirrored benchmark and test into Phase 3 tasks"
+    next_safe_action: "Hold for implementation, no code has landed"
     blockers: []
     key_files: []
     session_dedup:
@@ -75,6 +75,9 @@ _memory:
 - [ ] T008 Report run on a dirty scratch packet exits non-zero with findings and leaves the working tree clean
 - [ ] T009 Apply run mutates only safe-class targets, a second apply is an empty diff, plus edge cases (empty subtree, missing metadata, malformed validate output, detector throw)
 - [ ] T010 Update documentation (spec/plan/tasks/checklist)
+- [ ] T011 Pin the benchmark thresholds and reproduce commands on the frozen fixture (planted catch-rate 100 percent, safe-class conformance count 0, swap precision 1.0, idempotency, first-run real-defect floor) (scratch/dq-sweep-fixture/)
+- [ ] T012 Author the named caller test asserting the safe-class filter, the planted catch-rate, apply precision, idempotency and the edge cases (.opencode/skills/system-spec-kit/scripts/tests/dq-sweep.vitest.ts)
+- [ ] T013 Gate the mutation path behind SPECKIT_DQ_SWEEP default false, register it in ALL_SPECKIT_FLAGS plus FLAG_CHECKERS and prove flags-off byte-identical (.opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts)
 <!-- /ANCHOR:phase-3 -->
 
 ---

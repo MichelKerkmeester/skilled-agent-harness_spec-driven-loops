@@ -13,8 +13,8 @@ _memory:
   continuity:
     packet_pointer: "028-memory-search-intelligence/005-spec-data-quality/025-novel-per-doc-quality-slas"
     last_updated_at: "2026-06-21T00:00:00Z"
-    last_updated_by: "markdown-agent"
-    recent_action: "Authored Level 2 task list for per-doc quality SLA scaffold"
+    last_updated_by: "benchmark-test-scaffold"
+    recent_action: "Added benchmark and default-off proof tasks to verification"
     next_safe_action: "Build SLA evaluator once a host queue ships"
     blockers:
       - "Host queue (freshness decay queue or B3 refinement_queue) must exist before build"
@@ -78,6 +78,9 @@ _memory:
 
 - [ ] T008 Test the threshold boundary, report-only output and default-off dormancy (`.opencode/skills/system-spec-kit/mcp_server/tests/quality-sla.vitest.ts`)
 - [ ] T009 Test the no-host-queue no-op, the missing-score skip and the no-SLA doc skip (`.opencode/skills/system-spec-kit/mcp_server/tests/quality-sla.vitest.ts`)
+- [ ] T011 Benchmark the detector at planted catch-rate 1.0 and swap-precision zero-false-positive over the fixture roster with exactly one report-only ticket per flagged doc, reproduced via `npx vitest run quality-sla.vitest.ts` (`.opencode/skills/system-spec-kit/mcp_server/tests/quality-sla.vitest.ts`)
+- [ ] T012 Add `SPECKIT_QUALITY_SLA` to the `ALL_SPECKIT_FLAGS` roster and a `FLAG_CHECKERS` pair, asserting the checker returns false by default and the ceiling test stays green with the flag unset (`.opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts`)
+- [ ] T013 Prove runtime reversibility through `SPECKIT_QUALITY_SLA=false`, keeping the save and search responses byte-for-byte unchanged and the path dormant at zero cost (`.opencode/skills/system-spec-kit/mcp_server/tests/quality-sla.vitest.ts`)
 - [ ] T010 Update spec, plan, tasks and checklist to the shipped state
 <!-- /ANCHOR:phase-3 -->
 

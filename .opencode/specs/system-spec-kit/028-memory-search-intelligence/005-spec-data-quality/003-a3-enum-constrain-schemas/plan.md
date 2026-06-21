@@ -13,9 +13,9 @@ _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-a3-enum-constrain-schemas"
     last_updated_at: "2026-06-21T00:00:00Z"
-    last_updated_by: "markdown-agent"
-    recent_action: "Authored phase plan for A3 enum-constrain schemas scaffold"
-    next_safe_action: "Hold for implementation, no code change has landed yet"
+    last_updated_by: "benchmark-spec-agent"
+    recent_action: "Specified per-phase benchmark, test and default-safety in plan"
+    next_safe_action: "Mirror benchmark and test into tasks and checklist"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts"
@@ -136,6 +136,27 @@ Required inventories:
 - [ ] A fixture with an out-of-enum `importance_tier`, `status`, or `content_type` fails, and an in-enum fixture passes
 - [ ] A derive-then-parse round trip over a real packet with a malformed source status produces an in-enum status that parses clean
 - [ ] A description fixture with extra authored keys still parses while an out-of-enum `importance_tier` fails
+
+### Benchmark (SPECIFIED, not run)
+
+This is a write-time schema-conformance phase, so the metric is not recall. Prod search truncates to the 3-result floor and a validation-only change moves no retrieval number, so the per-phase benchmark is enum swap-precision on a planted fixture set paired with a frozen corpus conformance-count.
+
+| Aspect | Value |
+|--------|-------|
+| **Primary metric** | Enum swap-precision over a planted fixture set covering an in-enum and an out-of-enum value for `importance_tier`, `status` and `content_type` on both schemas |
+| **Pass threshold** | Catch-rate 1.00, every planted out-of-enum value rejected, AND false-reject-rate 0.00, every in-enum value accepted, across `graphMetadataDerivedSchema` and the description schema |
+| **Regress threshold** | Any in-enum value false-rejected, or any out-of-enum value accepted. A false-reject is the blocking direction because it would hard-break a valid legacy file |
+| **Conformance metric** | The count of live spec-folder metadata files whose `importance_tier`, `status` or `content_type` falls outside the new enum, swept at warn tier and frozen as the A4 starting count |
+| **Conformance target** | This phase does not drive the count to zero. It freezes the baseline and confirms the enum adds no new violation of its own. A4 (phase `002`) owns the count-to-zero backfill and the warn-to-error flip |
+| **Reproduce** | `npx vitest run .opencode/skills/system-spec-kit/mcp_server/tests/enum-constrain-schemas.vitest.ts` for swap-precision, then `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-root>` running the `GRAPH_METADATA_SHAPE` and `DESCRIPTION_SHAPE` warn-tier rules for the conformance count |
+| **Reuse** | The warn-tier `check-graph-metadata-shape.sh` and `check-description-shape.sh` rules registered in `validator-registry.json` are the corpus sweepers, so no new sweep harness lands |
+
+### Default-Safety (SPECIFIED, not run)
+
+- **Default state**: `SPECKIT_SCHEMA_ENUM_ENFORCE` defaults OFF through the existing `isFeatureEnabled` helper, so the parse-on-load and save path keep the current free-string acceptance and every existing or freshly saved file parses byte-identical to baseline. The unit-level enum reject of REQ-001 and REQ-002 stays provable on fixtures with the flag off.
+- **Keep-off rationale**: the legacy corpus still carries drifted `importance_tier`, `status` and `content_type` tokens that the A4 backfill has not yet driven to zero, so enforcing on the live write path now would risk a premature false-fire before the count reads clean.
+- **No-regress**: with the flag off both schemas parse byte-identical to baseline, and `GRAPH_METADATA_SHAPE` and `DESCRIPTION_SHAPE` stay at `severity: warn` in `validator-registry.json` so a drifted value reports without blocking.
+- **Reversibility**: `export SPECKIT_SCHEMA_ENUM_ENFORCE=false`, or leaving it unset, reverts at runtime with zero re-index and zero retrieval-path change. The new flag is registered in the `flag-ceiling.vitest.ts` drift guard so default-off coverage never silently gaps.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -145,9 +166,11 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | Passing and failing parse fixtures for each constrained field on both schemas | direct schema parse |
+| Unit | Passing and failing parse fixtures for each constrained field on both schemas | `enum-constrain-schemas.vitest.ts`, direct schema parse |
 | Integration | Derive-then-parse round trip over a real packet folder | parser plus schema parse |
 | Manual | Message-shape check that an out-of-enum value names the field and its allowed set | `formatDescriptionSchemaIssues` output |
+| Benchmark | Enum swap-precision on the planted fixture set, catch-rate 1.00 and false-reject-rate 0.00 across both schemas, plus the frozen corpus conformance-count baseline | `enum-constrain-schemas.vitest.ts` plus the warn-tier shape rules via `validate.sh` |
+| Default-safety | Flags-off byte-identical parse of a legacy-corpus fixture with `SPECKIT_SCHEMA_ENUM_ENFORCE` off, with the flag registered in the flag-ceiling drift guard | `enum-constrain-schemas.vitest.ts` plus `flag-ceiling.vitest.ts` |
 <!-- /ANCHOR:testing -->
 
 ---

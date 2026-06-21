@@ -13,8 +13,8 @@ _memory:
   continuity:
     packet_pointer: "028-memory-search-intelligence/005-spec-data-quality/019-novel-contradiction-detection"
     last_updated_at: "2026-06-21T00:00:00Z"
-    last_updated_by: "markdown-agent"
-    recent_action: "Authored QA checklist for the detector build"
+    last_updated_by: "benchmark-test-author"
+    recent_action: "Added benchmark and default-off rows"
     next_safe_action: "Build the detector after deps land"
     blockers: []
     key_files: []
@@ -82,6 +82,9 @@ All items below stay unchecked. This packet is a planned scaffold and the detect
 - [ ] CHK-021 [P0] Manual testing complete (a flag-on report run surfaces a real cross-doc conflict)
 - [ ] CHK-022 [P1] Edge cases tested (no-entity doc skipped, self-pair filtered, empty subtree clean, deleted target skipped)
 - [ ] CHK-023 [P1] Error scenarios validated (scorer timeout errored and continued, empty catalog degrades to edges-only)
+- [ ] CHK-024 [P0] Benchmark met: `plantedMismatchCatchRate == 1.0` on the planted fixture corpus and a `0` false-positive floor on the clean control (scripts/tests/contradiction-detector.vitest.ts)
+- [ ] CHK-025 [P0] Default-off no-regress: a default run is byte-identical to an explicit `SPECKIT_CONTRADICTION_DETECTOR=false` run and flag-ceiling.vitest.ts holds with the flag in ALL_SPECKIT_FLAGS and FLAG_CHECKERS
+- [ ] CHK-026 [P1] The named test file asserts the pair-gate bound, the verdict-to-finding fold and the scorer-timeout-continue path (scripts/tests/contradiction-detector.vitest.ts)
 <!-- /ANCHOR:testing -->
 
 ---
@@ -134,8 +137,8 @@ All items below stay unchecked. This packet is a planned scaffold and the detect
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 0/12 |
-| P1 Items | 13 | 0/13 |
+| P0 Items | 14 | 0/14 |
+| P1 Items | 14 | 0/14 |
 | P2 Items | 1 | 0/1 |
 
 **Verification Date**: Not yet verified (PLANNED scaffold)

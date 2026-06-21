@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/005-a5-trigger-coherence-assertion"
     last_updated_at: "2026-06-21T00:00:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Authored phase plan for A5 trigger coherence scaffold"
-    next_safe_action: "Hold for implementation, no code change has landed yet"
+    recent_action: "Added benchmark, test and default-off gate to plan"
+    next_safe_action: "Hold for implementation, no code has landed"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/scripts/rules/check-trigger-coherence.sh"
@@ -132,6 +132,25 @@ Required inventories:
 - [ ] A crafted fixture with an indexed or derived trigger absent from frontmatter emits a warn finding listing that phrase
 - [ ] A fixture with 15 frontmatter triggers and a capped 12-entry derived subset reports no finding
 - [ ] A dry run across the live spec corpus exits non-error and lists current divergences as warn findings
+
+### Benchmark
+
+This is a detector phase so the benchmark is a planted-mismatch catch-rate, not recall. Prod search truncates to a 3-result floor, which is why recall does not measure a write-time validation rule. The metric pairs a catch-rate on planted cross-surface divergences with a false-positive count on coherent fixtures, plus a first-run floor on the live corpus.
+
+- **Metric**: `trigger-coherence catch-rate`, the planted divergences flagged over the planted divergences staged, reported with a companion false-positive count over the coherent fixtures.
+- **PROMOTION threshold**: catch-rate is 1.0 over at least 3 planted-divergence fixtures (indexed orphan, derived orphan and both-surface orphan) and false-positive count is 0 over the 4 coherent fixtures (capped 12-entry derived subset against 15 frontmatter triggers, case-only difference, missing derived surface and all surfaces empty). The warn-to-error flip is gated on this pair holding.
+- **REGRESSION threshold**: any planted divergence missed (catch-rate below 1.0) or any coherent fixture emitting a finding (false-positive count above 0) is a regress and blocks the flip.
+- **First-run floor**: a dry run across `.opencode/specs` surfaces at least 1 real divergence as a warn finding and exits non-error, proving the rail fires on real data and not only fixtures (SC-003).
+- **Reproduce**: `npx vitest run .opencode/skills/system-spec-kit/scripts/tests/trigger-coherence.vitest.ts` for the fixture catch-rate and false-positive count, then a `SPECKIT_TRIGGER_COHERENCE=true` census loop calling `check-trigger-coherence.sh` across `.opencode/specs` for the first-run floor.
+- **Status**: SPECIFIED, not run. No fixture is staged and no number is measured yet.
+
+### Default Safety
+
+- **Default OFF**: the rule registers at `severity: warn` in `validator-registry.json` and is gated behind `SPECKIT_TRIGGER_COHERENCE`, which defaults OFF.
+- **Keep-off rationale**: until A2 backfills curated triggers into `description.json`, the legacy corpus carries known curated-versus-title-copy divergences, so the rule stays OFF to avoid warn noise on every validate pass and flips ON once A2 shrinks the backfill list.
+- **No-regress**: with `SPECKIT_TRIGGER_COHERENCE` unset, `validate.sh --strict` output is byte-identical to the pre-rule baseline because the rule is skipped at the registry gate.
+- **Default-off proof**: `SPECKIT_TRIGGER_COHERENCE` joins the `ALL_SPECKIT_FLAGS` roster and a `FLAG_CHECKERS` entry in `flag-ceiling.vitest.ts`, which asserts the flag reads OFF by default.
+- **Reversibility**: `SPECKIT_TRIGGER_COHERENCE=false` disables the rule at runtime with no other change.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -144,6 +163,8 @@ Required inventories:
 | Unit | A coherent fixture and a divergent fixture through the rule script | direct rule-script invocation |
 | Integration | Warn-tier behavior over a valid packet under the strict gate | `validate.sh --strict` |
 | Manual | Dry-run pass over `.opencode/specs` listing current divergences as warn findings | census pass plus grep evidence |
+| Benchmark | Planted-mismatch catch-rate is 1.0 over the divergence fixtures and false-positive count is 0 over the coherent fixtures | `scripts/tests/trigger-coherence.vitest.ts` |
+| Default-off | `validate.sh --strict` output is byte-identical with `SPECKIT_TRIGGER_COHERENCE` unset and the flag reads OFF by default | `scripts/tests/trigger-coherence.vitest.ts` plus `flag-ceiling.vitest.ts` roster |
 <!-- /ANCHOR:testing -->
 
 ---

@@ -13,8 +13,8 @@ _memory:
   continuity:
     packet_pointer: "028-memory-search-intelligence/005-spec-data-quality/025-novel-per-doc-quality-slas"
     last_updated_at: "2026-06-21T00:00:00Z"
-    last_updated_by: "markdown-agent"
-    recent_action: "Authored Level 2 QA checklist for per-doc quality SLA scaffold"
+    last_updated_by: "benchmark-test-scaffold"
+    recent_action: "Added benchmark and default-off proof rows to verification"
     next_safe_action: "Verify checklist items once SLA evaluator is built"
     blockers:
       - "Host queue (freshness decay queue or B3 refinement_queue) must exist before build"
@@ -84,6 +84,10 @@ FAILURE MODES:
 - [ ] CHK-021 [P0] Threshold boundary and report-only behavior tested
 - [ ] CHK-022 [P1] Edge cases tested (no-SLA doc, missing score, at-threshold boundary)
 - [ ] CHK-023 [P1] Error scenarios validated (no host queue, queue write failure, duplicate ticket)
+- [ ] CHK-024 [P0] Benchmark met, planted catch-rate 1.0 and swap-precision zero-false-positive over the fixture roster with exactly one report-only ticket per flagged doc and no doc mutation
+- [ ] CHK-025 [P1] Benchmark reproduce path pinned to `npx vitest run quality-sla.vitest.ts` with the first-run-defect sweep specified for the live corpus
+- [ ] CHK-026 [P0] `SPECKIT_QUALITY_SLA` default off, added to `ALL_SPECKIT_FLAGS` and `FLAG_CHECKERS`, checker returns false by default and `flag-ceiling.vitest.ts` stays green
+- [ ] CHK-027 [P1] Runtime reversibility through `SPECKIT_QUALITY_SLA=false` keeps the save and search responses byte-for-byte unchanged
 <!-- /ANCHOR:testing -->
 
 ---
@@ -117,6 +121,7 @@ FAILURE MODES:
 
 - [ ] CHK-040 [P1] Spec/plan/tasks synchronized
 - [ ] CHK-041 [P1] Code comments adequate
+- [ ] CHK-043 [P1] PLANNED scaffold passes `validate.sh --strict` through `validator-registry.json` and `scripts/rules/check-*.sh`
 - [ ] CHK-042 [P2] README updated (if applicable)
 <!-- /ANCHOR:docs -->
 
@@ -136,8 +141,8 @@ FAILURE MODES:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 0/12 |
-| P1 Items | 13 | 0/13 |
+| P0 Items | 14 | 0/14 |
+| P1 Items | 16 | 0/16 |
 | P2 Items | 1 | 0/1 |
 
 **Verification Date**: pending build (PLANNED scaffold, not yet implemented)

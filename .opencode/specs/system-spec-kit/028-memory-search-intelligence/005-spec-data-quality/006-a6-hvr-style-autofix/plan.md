@@ -14,7 +14,7 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-a6-hvr-style-autofix"
     last_updated_at: "2026-06-21T00:00:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Authored phase plan for A6 hvr style auto-fix scaffold"
+    recent_action: "Specified benchmark and default-off test for A6 scaffold"
     next_safe_action: "Hold for implementation, no code change has landed yet"
     blockers: []
     key_files:
@@ -133,6 +133,22 @@ Required inventories:
 - [ ] A spec-doc with em-dashes prose semicolons and Oxford commas in body prose auto-fixes to zero issues with all code inline-code and frontmatter regions byte-identical (SC-001)
 - [ ] A re-run over already-clean prose applies zero changes, proving length-neutrality and idempotency (SC-002)
 - [ ] A byte-diff confirms fenced and frontmatter regions are unchanged after a round-trip
+
+### Benchmark (SPECIFIED, not run)
+
+This is a write-time fix, so the metric is NOT prod-mode recall (prod search truncates to a 3-result floor and this detector emits no vector rows). It is a swap-precision and planted-catch pair on fixtures, a post-apply conformance count driven to zero, and a first-run real-defect floor over the live corpus. Every threshold below is specified, not yet measured.
+
+| Metric | PROMOTION (pass) | REGRESSION (fail) |
+|--------|------------------|-------------------|
+| Swap precision on fixtures, correct swaps over total swaps | 1.0, every swap fires inside a prose range only | below 1.0, any swap fires inside a code, inline-code or frontmatter range |
+| Planted-violation catch-rate, caught over planted | 1.0, every planted em-dash, prose semicolon or Oxford comma in body prose is flagged | below 1.0, any planted prose violation is missed |
+| Post-apply conformance count, re-scanned over the fixed fixture | 0 remaining prose issues and a second pass applies 0 changes | non-zero remaining issues or a second pass mutates |
+| Non-prose byte-diff after a round-trip | 0 bytes changed across code, inline-code and frontmatter ranges | any non-prose byte changes |
+| First-run real-defect floor, report mode over the live `.opencode/specs` corpus | at least 1 genuine HVR-style violation flagged in real authored prose | 0 flagged, the detector earns no place |
+
+- **Reproduce**: `npx vitest run .opencode/skills/system-spec-kit/mcp_server/.../detectors/__tests__/hvr-style.vitest.ts` covers swap precision, planted catch-rate, conformance and the non-prose byte-diff. The first-run real-defect floor runs `detect` in report mode over the live `.opencode/specs` corpus inside the same suite with no write. The conformance oracle reuses the validator rules in `scripts/rules/check-*.sh` registered through `scripts/lib/validator-registry.json`.
+- **Floor relation**: floor-bypassing. This detector mutates authored prose and emits no vector rows, so it is NOT routed through the prod-mode completeRecall@3 gate that phase 015 owns (the gate built on the `run-eval-v2.mjs:361` export of `buildSearchLenses`, `meanCompleteRecallProfile` and `MEASURABILITY_CLASSES`) and it pays no re-index or prod@3 tax.
+- **Default-safety**: the detector ships behind `SPECKIT_HVR_STYLE_AUTOFIX`, default OFF. Keep-off rationale: it is the one safe content-mutating fix in the frozen allow-list, so it stays opt-in until every fence and frontmatter fixture passes. No-regress: with the flag absent the engine resolves no `hvr.style` entry and each spec-doc stays byte-identical to its pre-detector state. Runtime reversibility: `SPECKIT_HVR_STYLE_AUTOFIX=false` returns the engine to no-op with no rebuild. The default-off contract is proven by `flag-ceiling.vitest.ts` through `ALL_SPECKIT_FLAGS` and `FLAG_CHECKERS`.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -145,6 +161,8 @@ Required inventories:
 | Unit | Each swap rule, fence exclusion, frontmatter exclusion, and idempotency | Vitest fixtures |
 | Integration | The detector resolved from the registry in report mode and apply mode | engine-driven detector run |
 | Manual | A byte-diff over a mixed fixture confirming non-prose regions stay identical | local diff plus grep evidence |
+| Benchmark | Swap precision and planted catch-rate on fixtures, post-apply conformance to zero and the first-run real-defect floor over the live `.opencode/specs` corpus | `hvr-style.vitest.ts` plus a report-mode scan |
+| Default-off | The flag absent keeps the engine at no-op and a spec-doc round-trip byte-identical, proving no-regress and runtime reversibility | `flag-ceiling.vitest.ts` `ALL_SPECKIT_FLAGS` and `FLAG_CHECKERS`, plus a flags-off case in `hvr-style.vitest.ts` |
 <!-- /ANCHOR:testing -->
 
 ---

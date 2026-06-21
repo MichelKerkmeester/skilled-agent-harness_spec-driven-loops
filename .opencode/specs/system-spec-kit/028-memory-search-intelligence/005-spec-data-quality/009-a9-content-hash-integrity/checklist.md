@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/009-a9-content-hash-integrity"
     last_updated_at: "2026-06-21T00:00:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Authored phase QA checklist for A9 read-time content-hash integrity scaffold"
-    next_safe_action: "Hold for implementation, no item has been verified yet"
+    recent_action: "Added benchmark, test and default-off checklist rows for the A9 scaffold"
+    next_safe_action: "Hold for implementation, no item verified yet"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts"
@@ -83,6 +83,10 @@ FAILURE MODES:
 - [ ] CHK-021 [P0] A corrupted scratch row is reported in `contentHashMismatches` with its id while a clean corpus reports zero
 - [ ] CHK-022 [P1] A re-read of a mismatched row proves the body and stored hash are untouched
 - [ ] CHK-023 [P1] The flag-off integrity summary keeps the current shape with no extra row-body read
+- [ ] CHK-024 [P0] Planted-mismatch catch-rate benchmark specified at 100 percent of planted corrupt rows caught in `contentHashMismatches` with 0 false positives on clean and null-hash rows
+- [ ] CHK-025 [P0] Named test `mcp_server/tests/content-hash-integrity.vitest.ts` specified with the catch-rate, clean-zero, null-skip, no-mutation and flags-off byte-identical assertions
+- [ ] CHK-026 [P1] Flags-off byte-identical proof specified, the flag-off integrity summary matches the pre-change shape with no `contentHashMismatches` populated and no extra row-body read
+- [ ] CHK-027 [P1] Default-off safety specified, `SPECKIT_CONTENT_HASH_INTEGRITY` defaults off, registered in `flag-ceiling.vitest.ts` ALL_SPECKIT_FLAGS and FLAG_CHECKERS, reversible at runtime via `SPECKIT_CONTENT_HASH_INTEGRITY=false`
 <!-- /ANCHOR:testing -->
 
 ---
@@ -135,8 +139,8 @@ FAILURE MODES:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 0/12 |
-| P1 Items | 13 | 0/13 |
+| P0 Items | 14 | 0/14 |
+| P1 Items | 15 | 0/15 |
 | P2 Items | 1 | 0/1 |
 
 **Verification Date**: Pending (scaffold, not yet verified)

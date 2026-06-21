@@ -13,8 +13,8 @@ _memory:
   continuity:
     packet_pointer: "028-memory-search-intelligence/005-spec-data-quality/025-novel-per-doc-quality-slas"
     last_updated_at: "2026-06-21T00:00:00Z"
-    last_updated_by: "markdown-agent"
-    recent_action: "Authored Level 2 plan for per-doc quality SLA scaffold"
+    last_updated_by: "benchmark-test-scaffold"
+    recent_action: "Specified SLA detector benchmark and default-off flag proof"
     next_safe_action: "Build SLA evaluator once a host queue ships"
     blockers:
       - "Host queue (freshness decay queue or B3 refinement_queue) must exist before build"
@@ -132,6 +132,24 @@ Required inventory before build:
 - [ ] Run the Vitest suite for threshold, report-only, default-off and no-queue cases
 - [ ] Confirm the flag-off path leaves the save and search responses byte-for-byte unchanged
 - [ ] Update spec, plan, tasks and checklist to the shipped state
+
+### Benchmark: SLA Detector Catch-Rate and Swap-Precision
+
+This is a write-time detector phase, not a retrieval-class phase, so the benchmark is NOT recall. Prod search truncates to a three-result floor, which makes recall a dead instrument for a path that files report-only tickets rather than ranking results. The metric is a planted-mismatch catch-rate plus a swap-precision check over a fixed fixture roster, holding the PROMOTION and REGRESSION discipline that phase `015-c2-prodmode-recall-gate` carries for the recall gate. Every threshold below is SPECIFIED, not run. No code has landed and completion stays 0.
+
+**Fixture roster**: a fixed set of synthetic description.json docs, each carrying a known `computeMemoryQualityScore` output (`mcp_server/handlers/quality-loop.ts:392`) and a declared SLA threshold on its governance block. The roster splits into a planted-below cohort (score strictly under threshold, MUST flag), a planted-at-or-above cohort (score at or over threshold, MUST NOT flag) and the exact-boundary doc (score equal to threshold, passes). The fixture scores are pinned to the dimensions `quality-loop.vitest.ts` already validates, so the benchmark exercises the SLA threshold comparison and never re-scores, which is REQ-001.
+
+| Metric | Definition | PROMOTION (pass) | REGRESSION (block) |
+|--------|------------|------------------|--------------------|
+| Catch-rate | Planted-below docs the evaluator flags | 1.0, every planted below-SLA doc flagged | Under 1.0, any planted below-SLA doc missed |
+| Swap-precision | Planted-at-or-above docs the evaluator flags | 0, no false positive | Over 0, any at-or-above doc flagged |
+| Ticket exactness | Report-only ticket rows per flagged doc | Exactly one, dedup holds on doc identity | A flagged doc with zero rows or stacked rows |
+| Mutation guard | Doc body or metadata fields the path touches | Zero across the whole roster | Any doc mutation observed |
+| First-run defect | First on-flag sweep over the live corpus surfaces a genuine below-SLA doc | At least one real below-SLA doc surfaced, proving the threshold is not vacuous | Zero real defects, the threshold fires on nothing live |
+
+**Reproduce**: `npx vitest run quality-sla.vitest.ts` from `.opencode/skills/system-spec-kit/mcp_server`, which loads the fixture roster, runs the evaluator with the flag on and reports catch-rate, swap-precision and ticket count per cohort. The first-run-defect row reproduces through one on-flag sweep over the live description.json corpus once a host queue exists. SPECIFIED-not-run while the phase stays PLANNED.
+
+**Default-safety**: the whole benchmark path is gated behind `SPECKIT_QUALITY_SLA`, default off. The keep-off rationale is that the ticket is report-only and has no host queue to file into until the freshness decay queue or the B3 `refinement_queue` ships, so the path stays dormant on ship and adds zero cost. No-regress is proven through `flag-ceiling.vitest.ts`, where `SPECKIT_QUALITY_SLA` joins the `ALL_SPECKIT_FLAGS` roster and gains a `FLAG_CHECKERS` pair whose checker returns false by default. Runtime reversibility is `SPECKIT_QUALITY_SLA=false`, which returns the evaluator and emitter to fully dormant with the save and search responses byte-for-byte unchanged.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -144,6 +162,9 @@ Required inventory before build:
 | Unit | Threshold comparison, boundary at-or-above versus strictly-below, missing-score skip | Vitest |
 | Integration | Save path with the flag on and a host queue present files exactly one ticket | Vitest |
 | Manual | Flag-off byte-for-byte check that no save or search response changes | Local run |
+| Benchmark | Planted catch-rate 1.0 and swap-precision zero-false-positive over the fixture roster, exactly one report-only ticket per flagged doc, no doc mutation | `quality-sla.vitest.ts` |
+| Default-off | `SPECKIT_QUALITY_SLA` added to `ALL_SPECKIT_FLAGS` and `FLAG_CHECKERS`, checker false by default, ceiling test green with the flag unset | `flag-ceiling.vitest.ts` |
+| Regression | A missed below-SLA doc, a false positive, a stacked duplicate ticket or any doc mutation fails the suite | `quality-sla.vitest.ts` |
 <!-- /ANCHOR:testing -->
 
 ---

@@ -14,7 +14,7 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-a6-hvr-style-autofix"
     last_updated_at: "2026-06-21T00:00:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Authored phase task breakdown for A6 hvr style auto-fix scaffold"
+    recent_action: "Added benchmark and default-off verification tasks for A6"
     next_safe_action: "Hold for implementation, no task has started yet"
     blockers: []
     key_files:
@@ -77,6 +77,9 @@ _memory:
 
 - [ ] T010 Prove a spec-doc with em-dashes prose semicolons and Oxford commas auto-fixes to zero issues with all code inline-code and frontmatter regions byte-identical, SC-001 (`.opencode/skills/system-spec-kit/mcp_server/.../detectors/__tests__/hvr-style.vitest.ts`)
 - [ ] T011 Prove a re-run over already-clean prose applies zero changes and a byte-diff confirms fenced and frontmatter regions are unchanged, SC-002 (`.opencode/skills/system-spec-kit/mcp_server/.../detectors/__tests__/hvr-style.vitest.ts`)
+- [ ] T012 Benchmark, assert swap precision 1.0 and planted catch-rate 1.0 on fixtures with post-apply conformance to zero and a second-pass no-op (`.opencode/skills/system-spec-kit/mcp_server/.../detectors/__tests__/hvr-style.vitest.ts`)
+- [ ] T013 First-run real-defect floor, a report-mode `detect` scan over the live `.opencode/specs` corpus flags at least one genuine HVR-style violation in real authored prose (`.opencode/skills/system-spec-kit/mcp_server/.../detectors/__tests__/hvr-style.vitest.ts`)
+- [ ] T014 Default-off, declare `SPECKIT_HVR_STYLE_AUTOFIX` default OFF and prove it through `ALL_SPECKIT_FLAGS` and `FLAG_CHECKERS` plus a flags-off byte-identical round-trip (`.opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts`)
 <!-- /ANCHOR:phase-3 -->
 
 ---

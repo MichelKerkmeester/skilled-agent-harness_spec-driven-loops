@@ -13,8 +13,8 @@ _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/003-a3-enum-constrain-schemas"
     last_updated_at: "2026-06-21T00:00:00Z"
-    last_updated_by: "markdown-agent"
-    recent_action: "Authored phase task breakdown for A3 enum-constrain schemas scaffold"
+    last_updated_by: "benchmark-spec-agent"
+    recent_action: "Added benchmark, test and default-safety tasks to Phase 3"
     next_safe_action: "Hold for implementation, no task has started yet"
     blockers: []
     key_files:
@@ -78,6 +78,9 @@ _memory:
 
 - [ ] T009 Confirm an out-of-enum `importance_tier`, `status`, or `content_type` fixture fails while an in-enum fixture passes on both schemas
 - [ ] T010 Run a derive-then-parse round trip over a real packet with a malformed source status, confirm an in-enum status parses clean, and confirm a description fixture with extra authored keys still passes while an out-of-enum tier fails
+- [ ] T011 Author the named test asserting in-enum fixtures parse and out-of-enum fixtures fail with a per-field `formatDescriptionSchemaIssues` message for tier, status and content_type on both schemas (`.opencode/skills/system-spec-kit/mcp_server/tests/enum-constrain-schemas.vitest.ts`)
+- [ ] T012 Capture the enum swap-precision benchmark, catch-rate 1.00 and false-reject-rate 0.00, then freeze the corpus conformance-count baseline through the warn-tier `GRAPH_METADATA_SHAPE` and `DESCRIPTION_SHAPE` rules and hand the count-to-zero to A4 (`.opencode/skills/system-spec-kit/scripts/spec/validate.sh`)
+- [ ] T013 Prove flags-off byte-identical parse with `SPECKIT_SCHEMA_ENUM_ENFORCE` off and register the flag in the flag-ceiling drift guard (`.opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts`)
 <!-- /ANCHOR:phase-3 -->
 
 ---

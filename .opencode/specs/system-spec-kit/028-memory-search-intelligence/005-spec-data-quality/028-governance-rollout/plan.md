@@ -13,9 +13,9 @@ _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/028-governance-rollout"
     last_updated_at: "2026-06-21T00:00:00Z"
-    last_updated_by: "markdown-agent"
-    recent_action: "Authored PLANNED plan for the governance rollout layer"
-    next_safe_action: "Author rollout-sequence.md as the topological sort"
+    last_updated_by: "benchmark-test-author"
+    recent_action: "Specified the conformance benchmark and flags-off test in plan 4 and 5"
+    next_safe_action: "Author rollout-sequence.md"
     blockers: []
     key_files:
       - "spec.md"
@@ -137,6 +137,16 @@ Required inventories:
 - [ ] Confirm the rollout order violates none of the five edges
 - [ ] Confirm every gate phase can import the four-beat runbook by reference
 - [ ] Confirm the NO-GO list enumerates all eighteen items and marks the three rail-crossing novel rewrites
+
+### Benchmark: rollout-manifest conformance gate
+This is an INFRA governance phase so the metric is not recall. Prod search truncates to a three-result floor so completeRecall@3 does not apply here, the retrieval half routes through the prod-mode completeRecall@3 gate that `015-c2-prodmode-recall-gate` owns through the export at `run-eval-v2.mjs:361` (`buildSearchLenses`, `meanCompleteRecallProfile`, `MEASURABILITY_CLASSES`). The write-time analog this phase earns its keep on is a conformance count driven to zero plus a planted-mismatch catch.
+
+- **Metric**: the rollout-manifest edge-violation count from the topological-sort check, the NO-GO enumeration count and the runbook-import resolution count.
+- **PASS**: the edge-violation count is 0 across all five inviolable edges, each edge appears as a named stage boundary, the NO-GO enumeration count reads 18 and every gate phase resolves its four-beat runbook import by reference.
+- **REGRESS**: any edge-violation above 0, any of the five edges absent as a stage boundary, a NO-GO count below 18 or a gate phase whose runbook reference does not resolve.
+- **Planted-mismatch catch**: a deliberately reordered fixture manifest, engine placed after a front door or C2 placed after a retrieval promotion, MUST be flagged at a catch-rate of 1 of 1. This is the regress proof a green corpus alone cannot give.
+- **Default-safety**: this phase registers no new SPECKIT flag and adds no `validator-registry.json` rule, so there is no runtime switch to default OFF. The five documents are read-time, removing them restores byte-identical validate.sh output, and reversibility holds with no `SPECKIT_<FLAG>=false` needed because no flag is introduced. The keep-off rationale is that governance is blast-radius review, not a runtime toggle.
+- **Reproduce**: `npx vitest run .opencode/skills/system-spec-kit/scripts/tests/governance-rollout-manifest.vitest.ts` for the conformance and planted-mismatch assertions plus `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/028-governance-rollout --strict` for the scaffold gate. SPECIFIED not run, no code lands in this phase.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -149,6 +159,8 @@ Required inventories:
 | Unit | The rollout manifest is a valid topological sort of the five edges | manifest sort check |
 | Integration | Every gate phase imports the four-beat runbook by reference | doc cross-reference grep |
 | Manual | validate.sh strict on the phase scaffold exits 0 | validate.sh |
+| Benchmark | The topo-sort conformance count is 0 and a planted out-of-order fixture is caught 1 of 1 | `scripts/tests/governance-rollout-manifest.vitest.ts` (asserts edge-violations, NO-GO count of 18, runbook-import resolution) |
+| Regression | ALL_SPECKIT_FLAGS gains no flag, no `validator-registry.json` rule is added and validate.sh strict output stays byte-identical with every flag default-off | `mcp_server/tests/flag-ceiling.vitest.ts` (`ALL_SPECKIT_FLAGS`, `FLAG_CHECKERS`) plus a byte-identical validate.sh corpus run |
 <!-- /ANCHOR:testing -->
 
 ---

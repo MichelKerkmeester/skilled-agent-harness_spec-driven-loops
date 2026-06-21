@@ -13,9 +13,9 @@ _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/010-a10-per-surface-gates"
     last_updated_at: "2026-06-21T00:00:00Z"
-    last_updated_by: "markdown-agent"
-    recent_action: "Authored verification checklist"
-    next_safe_action: "Begin phase one setup tasks"
+    last_updated_by: "benchmark-test-scaffold"
+    recent_action: "Mirrored benchmark and test rows"
+    next_safe_action: "Hold for implementation"
     blockers: []
     key_files:
       - "checklist.md"
@@ -82,6 +82,10 @@ FAILURE MODES:
 - [ ] CHK-021 [P0] Manual testing complete
 - [ ] CHK-022 [P1] Edge cases tested
 - [ ] CHK-023 [P1] Error scenarios validated
+- [ ] CHK-024 [P0] Planted-mismatch catch-rate is 1.0 across all five gates and clean-fixture swap-precision yields zero false positives in `scripts/tests/per-surface-gates.vitest.ts`
+- [ ] CHK-025 [P0] Flags-off byte-identical proof: all five `SPECKIT_GATE_*` flags default off and validate output matches the pre-gate baseline, with the new tokens registered in the `flag-ceiling.vitest.ts` drift guard
+- [ ] CHK-026 [P1] First-run real-defect floor met: the route-contract gate and the SKILL.md grammar gate each surface at least one real finding and the canary catches one planted out-of-sync copy
+- [ ] CHK-027 [P1] Per-gate baseline census count recorded with count-to-zero and warn-to-error flip deferred to a later beat
 <!-- /ANCHOR:testing -->
 
 ---
@@ -134,8 +138,8 @@ FAILURE MODES:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 11 | 0/11 |
-| P1 Items | 12 | 0/12 |
+| P0 Items | 14 | 0/14 |
+| P1 Items | 15 | 0/15 |
 | P2 Items | 1 | 0/1 |
 
 **Verification Date**: pending scaffold

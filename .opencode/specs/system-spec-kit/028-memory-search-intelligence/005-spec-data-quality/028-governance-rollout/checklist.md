@@ -13,8 +13,8 @@ _memory:
   continuity:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/028-governance-rollout"
     last_updated_at: "2026-06-21T00:00:00Z"
-    last_updated_by: "markdown-agent"
-    recent_action: "Authored PLANNED checklist with items unchecked"
+    last_updated_by: "benchmark-test-author"
+    recent_action: "Added CHK-024 and CHK-025 for benchmark and flags-off proof"
     next_safe_action: "Verify items after the five docs land"
     blockers: []
     key_files:
@@ -82,6 +82,8 @@ FAILURE MODES:
 - [ ] CHK-021 [P0] The rollout order is a valid topological sort of the five edges
 - [ ] CHK-022 [P1] Every gate phase imports the four-beat runbook by reference
 - [ ] CHK-023 [P1] The NO-GO list enumerates all eighteen items against ten anti-patterns
+- [ ] CHK-024 [P0] The rollout-manifest conformance benchmark reads 0 edge-violations and catches a planted out-of-order fixture 1 of 1 (`scripts/tests/governance-rollout-manifest.vitest.ts`)
+- [ ] CHK-025 [P1] The flags-off proof shows ALL_SPECKIT_FLAGS gains no flag and validate.sh strict output is byte-identical (`mcp_server/tests/flag-ceiling.vitest.ts`)
 <!-- /ANCHOR:testing -->
 
 ---
@@ -134,8 +136,8 @@ FAILURE MODES:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 0/12 |
-| P1 Items | 13 | 0/13 |
+| P0 Items | 13 | 0/13 |
+| P1 Items | 14 | 0/14 |
 | P2 Items | 1 | 0/1 |
 
 **Verification Date**: PENDING

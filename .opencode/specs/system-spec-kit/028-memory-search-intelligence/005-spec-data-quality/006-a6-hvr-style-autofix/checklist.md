@@ -14,7 +14,7 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/006-a6-hvr-style-autofix"
     last_updated_at: "2026-06-21T00:00:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Authored phase QA checklist for A6 hvr style auto-fix scaffold"
+    recent_action: "Added benchmark and default-off QA rows for A6"
     next_safe_action: "Hold for implementation, no item has been verified yet"
     blockers: []
     key_files:
@@ -81,6 +81,9 @@ FAILURE MODES:
 - [ ] CHK-021 [P0] A mixed fixture auto-fixes to zero issues with code inline-code and frontmatter regions byte-identical
 - [ ] CHK-022 [P1] A re-run over already-clean prose applies zero changes under the `content_hash` guard
 - [ ] CHK-023 [P1] An ambiguous em-dash or semicolon swap asserts its exact documented output
+- [ ] CHK-024 [P0] Benchmark: swap precision 1.0 and planted catch-rate 1.0 on fixtures, post-apply conformance to zero and a byte-identical non-prose round-trip
+- [ ] CHK-025 [P1] First-run real-defect floor: a report-mode scan over the live `.opencode/specs` corpus flags at least one genuine HVR-style violation
+- [ ] CHK-026 [P1] Default-off proof: `SPECKIT_HVR_STYLE_AUTOFIX` defaults OFF via `flag-ceiling.vitest.ts` and a flags-off round-trip is byte-identical
 <!-- /ANCHOR:testing -->
 
 ---
@@ -133,8 +136,8 @@ FAILURE MODES:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 0/12 |
-| P1 Items | 13 | 0/13 |
+| P0 Items | 13 | 0/13 |
+| P1 Items | 15 | 0/15 |
 | P2 Items | 1 | 0/1 |
 
 **Verification Date**: Pending (scaffold, not yet verified)
