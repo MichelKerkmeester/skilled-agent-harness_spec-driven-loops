@@ -1,0 +1,66 @@
+---
+title: "Cluster and classify"
+description: "OKLCH color space clustering groups extracted colors into named roles, and L1-L4 stability classification gates which tokens enter DESIGN.md."
+trigger_phrases:
+  - "OKLCH color clustering"
+  - "token stability classification"
+  - "L1 L2 L3 L4 tokens"
+  - "color role naming"
+  - "cluster tokens by stability"
+importance_tier: "normal"
+---
+
+# Cluster and classify (cluster.ts / types.ts)
+
+## 1. OVERVIEW
+
+Transforms the raw color data from `tokens.json` into a stability-gated token set ready for DESIGN.md composition. Colors are clustered in the OKLCH color space into named roles (brand, semantic, surface, border, text, interactive). Each token then receives an L1 through L4 stability classification that governs whether and where it appears in the final document. This is the gating stage between raw extraction and publication: colors without a classification cannot reach DESIGN.md.
+
+---
+
+## 2. HOW IT WORKS
+
+### OKLCH color clustering
+
+`cluster.ts` reads the extracted color tokens and converts each hex value to OKLCH coordinates (lightness, chroma, hue). Colors within a defined perceptual-distance threshold are grouped into a shared role. The algorithm avoids splitting visually identical colors across roles and keeps the role count manageable for DESIGN.md authoring. Roles follow the taxonomy in `tool/resources/color-role-taxonomy.md`: brand colors, semantic role colors (success, error, warning, info), surface colors, border colors, text ladder colors, and interactive-state colors.
+
+### Stability classification (L1-L4)
+
+After clustering, each token receives a stability class. The heuristic is deterministic and defined in `types.ts`:
+
+- **L1 (Permanent)**: colors that appear at high frequency with low variance across pages and viewports. Logo colors, brand-defining typefaces, core border radii. These represent brand identity that rarely changes.
+- **L2 (System)**: semantic colors, spacing scale values, shadow tokens, typography hierarchy values. These represent the stable design system.
+- **L3 (Campaign)**: hero-section gradient endpoints, seasonal accent colors, launch-specific background treatments. These are temporary and tagged with the extraction date.
+- **L4 (Content)**: colors derived from images, hero photographs, product thumbnails, or single-use text treatments. These are one-off values that do not represent a design rule.
+
+### Boundary disambiguation
+
+When a token straddles the L2/L3 or L3/L4 boundary, the classifier assigns the higher (more restrictive) class. An L2/L3 boundary token becomes L3; an L3/L4 boundary token becomes L4 and is excluded. Tokens on the L1/L2 boundary become L2. This conservative rule prevents campaign colors from leaking into main sections and content colors from appearing at all.
+
+### DESIGN.md gating
+
+The classification drives the write-phase gating:
+
+- L1 and L2 tokens populate the main 17 sections.
+- L3 tokens appear in the `Current Campaign Colors` table (section 2) with a "Subject to change" annotation.
+- L4 tokens are excluded entirely from DESIGN.md.
+
+---
+
+## 3. SOURCE FILES
+
+- `tool/scripts/cluster.ts` -- OKLCH color space clustering engine, role assignment, stability heuristic
+- `tool/scripts/types.ts` -- token type definitions, L1-L4 classification enum, interface contracts
+
+---
+
+## 4. SOURCE METADATA
+
+- Group: sk-design-md-generator
+- Catalog source: `feature_catalog.md`
+- Feature file: `02--cluster-classify/cluster-classify.md`
+
+Related references:
+- [tool/resources/color-role-taxonomy.md](../../tool/resources/color-role-taxonomy.md) -- color role naming conventions and hierarchy
+- [extract.md](../01--extract/extract.md) -- the extraction phase that produces tokens consumed by the cluster
+- [write-design-md.md](../03--write-design-md/write-design-md.md) -- the write phase that applies stability gating
