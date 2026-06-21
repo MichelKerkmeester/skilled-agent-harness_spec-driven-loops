@@ -24,7 +24,7 @@ Use this catalog as the inventory for the live `mcp-figma` surface. The numbered
 
 The capability surface has one hard prerequisite and three working directions, plus an optional context pull. Everything depends on a **connection**: figma-cli drives **Figma Desktop (open with a file)**, with no Figma API key, over a local daemon. From there the **read** direction inspects and exports without changing the document, the **write** direction authors, renders, sets tokens, and imports design systems behind gates, and a small **destructive** subset deletes content behind hard confirms. Underneath the optional last direction sits the community Figma MCP, reached through this repo's Code Mode rather than by anything figma-cli ships.
 
-A note on what stays out of scope. This skill is the terminal transport, not the design judgment: the look-and-feel decisions belong to `sk-interface-design`. figma-cli does **not** ship or spawn its own MCP (source-verified zero hits), and its daemon is a private HTTP/WebSocket bridge, not an MCP server. The OFFICIAL Figma Dev Mode MCP is out of scope for this release, and only the community Framelink `figma` manual is documented as a supported optional path.
+A note on what stays out of scope. This skill is the terminal transport, not the design judgment: the look-and-feel decisions belong to `sk-design-interface`. figma-cli does **not** ship or spawn its own MCP (source-verified zero hits), and its daemon is a private HTTP/WebSocket bridge, not an MCP server. The OFFICIAL Figma Dev Mode MCP is out of scope for this release, and only the community Framelink `figma` manual is documented as a supported optional path.
 
 ### Command class tags
 

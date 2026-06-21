@@ -6,9 +6,9 @@
   "edges": {
     "depends_on": [
       {
-        "target": "sk-interface-design",
+        "target": "sk-design-interface",
         "weight": 0.7,
-        "context": "When a Figma read or export feeds a design decision, apply sk-interface-design's anti-default judgment before deciding"
+        "context": "When a Figma read or export feeds a design decision, apply sk-design-interface's anti-default judgment before deciding"
       },
       {
         "target": "mcp-code-mode",
@@ -27,7 +27,7 @@
       {
         "target": "mcp-open-design",
         "weight": 0.55,
-        "context": "Sibling terminal-driven design tool with a daemon model, gated mutating verbs, and an sk-interface-design handoff"
+        "context": "Sibling terminal-driven design tool with a daemon model, gated mutating verbs, and an sk-design-interface handoff"
       },
       {
         "target": "mcp-chrome-devtools",
@@ -40,7 +40,7 @@
   },
   "manual": {
     "depends_on": [],
-    "related_to": ["sk-interface-design", "sk-code", "mcp-code-mode", "mcp-open-design", "mcp-chrome-devtools"]
+    "related_to": ["sk-design-interface", "sk-code", "mcp-code-mode", "mcp-open-design", "mcp-chrome-devtools"]
   },
   "domains": ["figma", "design-to-code", "design-systems", "cli", "mcp", "figma-desktop"],
   "intent_signals": [
@@ -75,7 +75,7 @@
       "design-system extract (DESIGN.md) and import (tailwind/css/tokens/storybook)",
       "tokens, variables, var:name binding",
       "optional Framelink figma MCP via Code Mode",
-      "sk-interface-design handoff for design judgment"
+      "sk-design-interface handoff for design judgment"
     ],
     "intent_signals": [
       "figma",
@@ -106,7 +106,7 @@
       {"name": "mcp_wiring", "kind": "reference", "path": ".opencode/skills/mcp-figma/references/mcp_wiring.md", "source": "derived"},
       {"name": "troubleshooting", "kind": "reference", "path": ".opencode/skills/mcp-figma/references/troubleshooting.md", "source": "derived"}
     ],
-    "causal_summary": "mcp-figma teaches a terminal agent to drive Figma Desktop through the silships figma-cli, published to npm as figma-ds-cli (the npm package literally named figma-cli is an unrelated tool by unic, bin 'figma' - never install it). figma-cli has no MCP of its own; it drives the live Figma Desktop session via a local daemon (HTTP 127.0.0.1:3456, X-Daemon-Token). Connect is either safe (FigCli plugin, no patch - the default) or yolo (patches Figma app.asar, CDP 9222 - gated, rollback via unpatch). The CLI is primary for authoring/modifying/exporting in Figma; an optional Figma MCP (the community Framelink figma manual already in this repo's Code Mode) is opt-in for pulling design data into the agent for codegen. Commands are gated read-only / mutating / destructive, with eval/raw/run treated as arbitrary mutation and local exports requiring explicit no-overwrite paths. Pairs with sk-interface-design (design judgment) and sk-code (adapting exports into an app). Modeled on mcp-chrome-devtools and mcp-open-design.",
+    "causal_summary": "mcp-figma teaches a terminal agent to drive Figma Desktop through the silships figma-cli, published to npm as figma-ds-cli (the npm package literally named figma-cli is an unrelated tool by unic, bin 'figma' - never install it). figma-cli has no MCP of its own; it drives the live Figma Desktop session via a local daemon (HTTP 127.0.0.1:3456, X-Daemon-Token). Connect is either safe (FigCli plugin, no patch - the default) or yolo (patches Figma app.asar, CDP 9222 - gated, rollback via unpatch). The CLI is primary for authoring/modifying/exporting in Figma; an optional Figma MCP (the community Framelink figma manual already in this repo's Code Mode) is opt-in for pulling design data into the agent for codegen. Commands are gated read-only / mutating / destructive, with eval/raw/run treated as arbitrary mutation and local exports requiring explicit no-overwrite paths. Pairs with sk-design-interface (design judgment) and sk-code (adapting exports into an app). Modeled on mcp-chrome-devtools and mcp-open-design.",
     "source_docs": [
       "SKILL.md",
       "README.md",

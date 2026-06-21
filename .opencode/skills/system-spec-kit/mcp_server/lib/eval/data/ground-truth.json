@@ -802,12 +802,12 @@
     },
     {
       "id": 81,
-      "query": "walk me through all the sk-interface-design build and research phases",
+      "query": "walk me through all the sk-design-interface build and research phases",
       "intentType": "understand",
       "complexityTier": "complex",
       "category": "thematic_multi_target",
       "source": "manual",
-      "expectedResultDescription": "All nine sk-interface-design phase specs (install through mobbin/refero integration).",
+      "expectedResultDescription": "All nine sk-design-interface phase specs (install through mobbin/refero integration).",
       "notes": "eval-v2 multi-target measurability fixture; hand-authored, gold ids live-DB verified."
     },
     {

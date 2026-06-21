@@ -1,6 +1,6 @@
 ---
 title: "Design Parity Transport (Open Design terminal)"
-description: "How Open Design's terminal transport realizes each step of the real-UI loop: read a system, reuse before generating, route revisions, check the render via the run's previewUrl and artifacts, and self-heal a stalled run. The design judgment these mechanics serve lives in sk-interface-design's real_ui_loop.md."
+description: "How Open Design's terminal transport realizes each step of the real-UI loop: read a system, reuse before generating, route revisions, check the render via the run's previewUrl and artifacts, and self-heal a stalled run. The design judgment these mechanics serve lives in sk-design-interface's real_ui_loop.md."
 trigger_phrases:
   - "open design parity transport"
   - "open design fidelity check previewurl"
@@ -12,15 +12,15 @@ contextType: implementation
 
 # Design Parity Transport (Open Design terminal)
 
-This reference is the Open Design terminal side of the real-UI loop. The loop itself — ground -> reuse -> render -> check the real render -> revise -> hand off — and all of its judgment is owned by `sk-interface-design` in [`../../sk-interface-design/references/design-process/real_ui_loop.md`](../../sk-interface-design/references/design-process/real_ui_loop.md). This file records only HOW Open Design's transport realizes each step. Read it alongside the run flow in `SKILL.md` §3 (the Run Direction) when an Open Design read or run feeds a design decision.
+This reference is the Open Design terminal side of the real-UI loop. The loop itself — ground -> reuse -> render -> check the real render -> revise -> hand off — and all of its judgment is owned by `sk-design-interface` in [`../../sk-design-interface/references/design-process/real_ui_loop.md`](../../sk-design-interface/references/design-process/real_ui_loop.md). This file records only HOW Open Design's transport realizes each step. Read it alongside the run flow in `SKILL.md` §3 (the Run Direction) when an Open Design read or run feeds a design decision.
 
-`mcp-open-design` is the transport; `sk-interface-design` is the mandatory judgment (see `SKILL.md` MANDATORY PAIRING banner). This file never restates the design judgment; it maps the loop's steps onto `od` mechanics.
+`mcp-open-design` is the transport; `sk-design-interface` is the mandatory judgment (see `SKILL.md` MANDATORY PAIRING banner). This file never restates the design judgment; it maps the loop's steps onto `od` mechanics.
 
 ---
 
 ## 1. INTAKE — read a system
 
-For an installed Open Design app, read a matching system via the read-only tools (`od mcp` get_file/search_files, or `od tools design-systems read`): its `DESIGN.md` for direction, `tokens.css` for the paste-ready `:root` tokens, and `components.html` for reusable markup. Resolve exactly one system from the subject and brief (never a chooser — that is `sk-interface-design`'s rule). The read is live and never cached into the repo; copying Open Design content would attach its per-source license.
+For an installed Open Design app, read a matching system via the read-only tools (`od mcp` get_file/search_files, or `od tools design-systems read`): its `DESIGN.md` for direction, `tokens.css` for the paste-ready `:root` tokens, and `components.html` for reusable markup. Resolve exactly one system from the subject and brief (never a chooser — that is `sk-design-interface`'s rule). The read is live and never cached into the repo; copying Open Design content would attach its per-source license.
 
 ## 2. REUSE BEFORE GENERATE
 
@@ -46,6 +46,6 @@ Treat generated design files as one-way, because a re-run overwrites them, so ap
 
 ## RELATED
 
-- [`../../sk-interface-design/references/design-process/real_ui_loop.md`](../../sk-interface-design/references/design-process/real_ui_loop.md) — the transport-agnostic real-UI loop and all of its judgment.
-- [`../SKILL.md`](../SKILL.md) — the Run Direction (§3) and the mandatory `sk-interface-design` pairing.
+- [`../../sk-design-interface/references/design-process/real_ui_loop.md`](../../sk-design-interface/references/design-process/real_ui_loop.md) — the transport-agnostic real-UI loop and all of its judgment.
+- [`../SKILL.md`](../SKILL.md) — the Run Direction (§3) and the mandatory `sk-design-interface` pairing.
 - [`tool_surface.md`](./tool_surface.md) — the MCP tools, the surface/gate/omit policy, and the live-verification requirement.

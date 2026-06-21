@@ -21,7 +21,7 @@ contextType: implementation
 
 ## 1. OVERVIEW
 
-Refero is a large library of real shipped UI, organized into three layers: **styles** (visual direction from marketing/product pages), **screens** (concrete in-app UI patterns), and **flows** (multi-step journeys). Inside sk-interface-design these are a CRITIQUE-AGAINST reference; the discipline (one reference, read live, never copy) lives in `design_references_mcp.md`, and this file is the tool catalog.
+Refero is a large library of real shipped UI, organized into three layers: **styles** (visual direction from marketing/product pages), **screens** (concrete in-app UI patterns), and **flows** (multi-step journeys). Inside sk-design-interface these are a CRITIQUE-AGAINST reference; the discipline (one reference, read live, never copy) lives in `design_references_mcp.md`, and this file is the tool catalog.
 
 Refero's own guidance reinforces the skill's anti-default mandate: "do not average references into a safe middle. A dark, acid, or saturated reference should not become a warm cream canvas with muted accents. Strong references should stay strong or be rejected, not softened into generic AI taste." Treat a style as a reference ingredient, never a wholesale copy.
 

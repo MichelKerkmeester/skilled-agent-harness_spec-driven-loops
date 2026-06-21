@@ -3,7 +3,7 @@ title: "Design and implementation boundary"
 description: "The boundary where this skill decides the look and hands implementation and verification to sk-code and the screenshot tooling."
 trigger_phrases:
   - "design and implementation boundary"
-  - "sk-interface-design owns the look sk-code implements"
+  - "sk-design-interface owns the look sk-code implements"
   - "hand implementation to sk-code"
   - "screenshot self-critique tooling"
 ---

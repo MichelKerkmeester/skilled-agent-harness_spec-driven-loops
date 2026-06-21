@@ -26,7 +26,7 @@ End-to-end manual testing reference for the mcp-open-design skill. Every scenari
 | Failure Paths | daemon model and tool-surface verification | 1 |
 | **TOTAL** | **5 features** | **5 scenarios** |
 
-This package ships 5 per-feature scenario files, one per row in the cross-reference index in Section 10. The grounding and reuse feature is validated two ways: the design-system read scenario exercises reading a system as the grounding input, and the design-gate scenario validates the mandatory `sk-interface-design` precondition that must hold before any read or run feeds a design decision.
+This package ships 5 per-feature scenario files, one per row in the cross-reference index in Section 10. The grounding and reuse feature is validated two ways: the design-system read scenario exercises reading a system as the grounding input, and the design-gate scenario validates the mandatory `sk-design-interface` precondition that must hold before any read or run feeds a design decision.
 
 ### Realistic Test Model
 
@@ -101,7 +101,7 @@ A scenario is FAIL when any of the above conditions is not met.
 |---|---|---|
 | WIRE-001 | od mcp install plus live tools/list | Nothing else works until the MCP server is wired and verified |
 | RUN-001 | Gated verb confirmation and negative control | Safety gate: an unconfirmed mutating verb must be refused |
-| GATE-001 | Mandatory sk-interface-design precondition | Safety gate: a design run or design-feeding read without `sk-interface-design` must be blocked, not run |
+| GATE-001 | Mandatory sk-design-interface precondition | Safety gate: a design run or design-feeding read without `sk-design-interface` must be blocked, not run |
 | FAIL-001 | Daemon not running | The app-closed path must fail gracefully, not silently |
 
 ### Feature Verdict
@@ -165,7 +165,7 @@ Expected: dry-run prints the exact entry and writes nothing, the install deep-me
 Verify a registered design system's `DESIGN.md` and `tokens.css` can be read read-only, with nothing written.
 
 Prompt: `"Read the DESIGN.md and tokens for one of Open Design's design systems."`
-Expected: `node "$OD_BIN" tools design-systems read --path <manifest-path>` returns the 9-section `DESIGN.md` and a `:root` `tokens.css`, no files are written to the repo, and the read is usable as grounding input for `sk-interface-design`.
+Expected: `node "$OD_BIN" tools design-systems read --path <manifest-path>` returns the 9-section `DESIGN.md` and a `:root` `tokens.css`, no files are written to the repo, and the read is usable as grounding input for `sk-design-interface`.
 
 > **Feature File:** [02--reading/read-design-system.md](02--reading/read-design-system.md)
 > **Catalog:** [02--reading/read-only-content.md](../feature_catalog/02--reading/read-only-content.md)
@@ -186,12 +186,12 @@ Expected: the agent first describes the effect and a rollback note and stops for
 
 ---
 
-### GATE-001 | Mandatory sk-interface-design Precondition (Negative, Positive, Exemption)
+### GATE-001 | Mandatory sk-design-interface Precondition (Negative, Positive, Exemption)
 
-Verify a design generation RUN, and a design-feeding READ, are blocked when `sk-interface-design` is not loaded; that the same design work proceeds once `sk-interface-design` is loaded and its ground -> token-system -> critique has been applied; and that pure transport (`od mcp install` wiring, a bare `list_projects` that feeds no design decision) succeeds without `sk-interface-design`.
+Verify a design generation RUN, and a design-feeding READ, are blocked when `sk-design-interface` is not loaded; that the same design work proceeds once `sk-design-interface` is loaded and its ground -> token-system -> critique has been applied; and that pure transport (`od mcp install` wiring, a bare `list_projects` that feeds no design decision) succeeds without `sk-design-interface`.
 
 Prompt: `"Ground a design in an Open Design system and commission a run for it."`
-Expected: with `sk-interface-design` not loaded, the design run is blocked before turn 1 and the design-feeding read is refused as grounding (not merely left unconfirmed); after `sk-interface-design` is loaded and ground -> token-system -> critique is applied, the grounded design work proceeds; and pure transport (`od mcp install --print --json`, a bare `list_projects`) completes with no `sk-interface-design` requirement.
+Expected: with `sk-design-interface` not loaded, the design run is blocked before turn 1 and the design-feeding read is refused as grounding (not merely left unconfirmed); after `sk-design-interface` is loaded and ground -> token-system -> critique is applied, the grounded design work proceeds; and pure transport (`od mcp install --print --json`, a bare `list_projects`) completes with no `sk-design-interface` requirement.
 
 > **Feature File:** [05--design-gate/mandatory-design-gate.md](05--design-gate/mandatory-design-gate.md)
 > **Catalog:** [03--grounding/design-system-grounding.md](../feature_catalog/03--grounding/design-system-grounding.md)
@@ -217,5 +217,5 @@ Expected: the socket is gone so the call fails with a meaningful error naming th
 | WIRE-001 | Install and verify the live tools | Wiring | [01--wiring/install-and-verify.md](01--wiring/install-and-verify.md) | `../feature_catalog/01--wiring/od-mcp-install.md` |
 | READ-001 | Read a design system | Reading | [02--reading/read-design-system.md](02--reading/read-design-system.md) | `../feature_catalog/02--reading/read-only-content.md` |
 | RUN-001 | Gated verb requires confirmation | Gated Runs | [03--gated-runs/gated-verb-confirm.md](03--gated-runs/gated-verb-confirm.md) | `../feature_catalog/04--runs/headless-runs.md` |
-| GATE-001 | Mandatory sk-interface-design precondition | Design Gate | [05--design-gate/mandatory-design-gate.md](05--design-gate/mandatory-design-gate.md) | `../feature_catalog/03--grounding/design-system-grounding.md` |
+| GATE-001 | Mandatory sk-design-interface precondition | Design Gate | [05--design-gate/mandatory-design-gate.md](05--design-gate/mandatory-design-gate.md) | `../feature_catalog/03--grounding/design-system-grounding.md` |
 | FAIL-001 | Daemon not running | Failure Paths | [04--failure-paths/daemon-not-running.md](04--failure-paths/daemon-not-running.md) | `../feature_catalog/05--transport/daemon-and-verification.md` |

@@ -1,5 +1,5 @@
 ---
-title: sk-interface-design
+title: sk-design-interface
 description: Aesthetic-direction skill for distinctive, intentional UI. Drives palette, typography, layout and motion choices that avoid templated AI defaults, then hands implementation to sk-code.
 trigger_phrases:
   - "interface design"
@@ -9,7 +9,7 @@ trigger_phrases:
   - "redesign"
 ---
 
-# sk-interface-design
+# sk-design-interface
 
 > Design interfaces that could not be mistaken for anyone else's: deliberate palette, typography, layout and motion grounded in the brief, with a critique pass that kills templated AI defaults before a line of code is written.
 
@@ -46,7 +46,7 @@ This is vendored from Anthropic's `frontend-design` skill (Apache-2.0). The full
 
 ```bash
 # The advisor surfaces this skill on design intent. To read it directly:
-cat .opencode/skills/sk-interface-design/SKILL.md
+cat .opencode/skills/sk-design-interface/SKILL.md
 ```
 
 **Step 2: Ground the subject and brainstorm a token system.**
@@ -147,10 +147,10 @@ A: It is vendored from Anthropic's official `frontend-design` skill under Apache
 
 | Check | How to run it |
 |---|---|
-| Skill structure | `python3 .opencode/skills/sk-doc/scripts/package_skill.py .opencode/skills/sk-interface-design/` reports the skill valid |
-| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-interface-design/README.md --type readme` reports zero issues |
-| Reference structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-interface-design/references/design-process/design_principles.md --type reference` reports zero issues |
-| Advisor discovery | `node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"make this landing page look distinctive"}' --warm-only --format json` lists `sk-interface-design` |
+| Skill structure | `python3 .opencode/skills/sk-doc/scripts/package_skill.py .opencode/skills/sk-design-interface/` reports the skill valid |
+| README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-design-interface/README.md --type readme` reports zero issues |
+| Reference structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-design-interface/references/design-process/design_principles.md --type reference` reports zero issues |
+| Advisor discovery | `node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"make this landing page look distinctive"}' --warm-only --format json` lists `sk-design-interface` |
 
 ---
 

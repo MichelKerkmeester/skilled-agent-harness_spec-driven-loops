@@ -17,7 +17,7 @@ trigger_phrases:
 
 Reads local Open Design content without writing anything: projects, files, the active context the user has open now, registered design-systems, and finished artifacts. This is the safe default direction and the one an agent reaches for most.
 
-The read tools never need a cloud account for local content and never mutate state, so they run freely before any decision about a gated verb. They are also the input to design work: a design-system read feeds the judgment that `sk-interface-design` owns.
+The read tools never need a cloud account for local content and never mutate state, so they run freely before any decision about a gated verb. They are also the input to design work: a design-system read feeds the judgment that `sk-design-interface` owns.
 
 ---
 

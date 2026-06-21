@@ -25,9 +25,9 @@
         "context": "review baseline"
       },
       {
-        "target": "sk-interface-design",
+        "target": "sk-design-interface",
         "weight": 0.4,
-        "context": "design-and-build pair: sk-interface-design owns the look, sk-code owns the implementation"
+        "context": "design-and-build pair: sk-design-interface owns the look, sk-code owns the implementation"
       }
     ],
     "conflicts_with": [],

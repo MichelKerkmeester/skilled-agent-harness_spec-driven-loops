@@ -1,17 +1,17 @@
 ---
-title: "sk-interface-design: Manual Testing Playbook"
-description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-feature validation files for the sk-interface-design skill."
+title: "sk-design-interface: Manual Testing Playbook"
+description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-feature validation files for the sk-design-interface skill."
 ---
 
-# sk-interface-design: Manual Testing Playbook
+# sk-design-interface: Manual Testing Playbook
 
-> **EXECUTION POLICY**: Every scenario MUST be executed against the live `sk-interface-design` skill and its on-disk references, scripts, and data. No mocks, no stubs, and no "unautomatable" verdicts. Acceptable verdicts are PASS, PARTIAL, FAIL, or SKIP with a concrete sandbox or tool-availability blocker.
+> **EXECUTION POLICY**: Every scenario MUST be executed against the live `sk-design-interface` skill and its on-disk references, scripts, and data. No mocks, no stubs, and no "unautomatable" verdicts. Acceptable verdicts are PASS, PARTIAL, FAIL, or SKIP with a concrete sandbox or tool-availability blocker.
 
-This document combines the full manual-validation contract for the `sk-interface-design` skill into one reference. The root playbook acts as the operator directory, review protocol, and orchestration guide, while the per-feature files carry scenario-specific execution truth for distinctive, intentional interface-design behavior.
+This document combines the full manual-validation contract for the `sk-design-interface` skill into one reference. The root playbook acts as the operator directory, review protocol, and orchestration guide, while the per-feature files carry scenario-specific execution truth for distinctive, intentional interface-design behavior.
 
 ---
 
-This playbook package adopts the Feature Catalog split-document pattern for the `sk-interface-design` skill. The root document acts as the directory, review surface, and orchestration guide, while per-feature execution detail lives in the numbered category folders at the playbook root.
+This playbook package adopts the Feature Catalog split-document pattern for the `sk-design-interface` skill. The root document acts as the directory, review surface, and orchestration guide, while per-feature execution detail lives in the numbered category folders at the playbook root.
 
 Canonical package artifacts:
 - `manual_testing_playbook.md`
@@ -28,7 +28,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 10 deterministic scenarios across 8 categories validating the `sk-interface-design` skill surface. Each scenario maps to a dedicated per-feature file with exact prompt, command sequence, expected signals, evidence, pass/fail criteria, and failure triage.
+This playbook provides 10 deterministic scenarios across 8 categories validating the `sk-design-interface` skill surface. Each scenario maps to a dedicated per-feature file with exact prompt, command sequence, expected signals, evidence, pass/fail criteria, and failure triage.
 
 Coverage note (2026-06-17): the playbook covers the free-axis brainstorm-critique-deviate process against the three named AI-default clusters, brief-pinning precedence where the brief always wins, the objective quality-floor gate sourced from `ux_quality_reference.md`, the system-as-critique-against use where a real design system is read live as the default to deviate from with a negative control that it is never surfaced as a chooser and never copied, abstention and routing to `sk-code` for pure-logic work and to `sk-doc` for documentation work, licensing and provenance integrity confirming the skill is Apache-2.0 only with no vendored MIT material remaining, the real-UI loop covering reuse-before-generate when a design system is present and the render fidelity check gated on the quality floor and the anti-default critique each with a negative control, and the design-references hybrid initiative/ask routing where the skill pulls one real-world Mobbin or Refero reference on its own initiative when a convention-heavy category benefits and a subscription is connected, asks the user when borderline or unknown, and falls back to the generic process otherwise, with a negative control that it is never a chooser and never copied. Per-feature files anchor directly to `SKILL.md`, the `references/` docs, and the `feature_catalog/` entries on disk.
 
@@ -52,8 +52,8 @@ Coverage note (2026-06-17): the playbook covers the free-axis brainstorm-critiqu
 ## 2. GLOBAL PRECONDITIONS
 
 1. Working directory is the repository root.
-2. `.opencode/skills/sk-interface-design/SKILL.md` and all files under `.opencode/skills/sk-interface-design/references/` resolve on disk.
-3. `.opencode/skills/sk-interface-design/LICENSE.txt` resolves on disk and is the skill's single Apache-2.0 license.
+2. `.opencode/skills/sk-design-interface/SKILL.md` and all files under `.opencode/skills/sk-design-interface/references/` resolve on disk.
+3. `.opencode/skills/sk-design-interface/LICENSE.txt` resolves on disk and is the skill's single Apache-2.0 license.
 4. The operator can run `python3`, `rg`, and `git diff` from the repository root.
 5. Routing scenarios assume `sk-code` and `sk-doc` are installed under `.opencode/skills/`; the design-system grounding scenario assumes a real design system you own is available to read live, the render fidelity scenario assumes `mcp-chrome-devtools`, and the design-references routing scenario assumes the Mobbin or Refero MCPs resolve through Code Mode with a connected subscription for its initiative path (its fall-back path stays exercisable without one), otherwise record SKIP with the missing dependency.
 6. No scenario writes design-system files, copies any external design-system content into the skill, or edits the skill's reference files. Any such mutation is contradictory evidence.
@@ -101,7 +101,7 @@ For each executed scenario, check:
 2. Prompt and command sequence were executed as written.
 3. Expected signals are present without contradictory evidence.
 4. Evidence is complete and readable.
-5. Pass/fail criteria cite the relevant `sk-interface-design` source file.
+5. Pass/fail criteria cite the relevant `sk-design-interface` source file.
 6. Outcome rationale is explicit and useful to a real user.
 
 Scenario verdict:
@@ -143,12 +143,12 @@ Before declaring this playbook release-ready, confirm:
 4. Every table row has exactly 9 columns.
 5. Every scenario prompt is realistic per the RCAF-vs-natural-human heuristic in sk-doc creation reference section 5.
 6. Every SCENARIO CONTRACT prompt equals its table prompt.
-7. Every pass/fail rule cites a real sk-interface-design source file.
+7. Every pass/fail rule cites a real sk-design-interface source file.
 8. The system-as-critique-against scenario records both the named default look and the no-chooser, no-cache negative control.
 9. The licensing scenario records the actual provenance state honestly, confirming the skill is Apache-2.0 only with no vendored MIT material remaining.
 10. The real-UI loop scenarios record their negative controls: no style-preset menu for reuse-before-generate, and no finished-design claim from a build that never rendered or a file write with no visible UI for the fidelity check.
 11. The design-references routing scenario records its three branches (initiative, ask, fall-back), the Mobbin-vs-Refero source pick, and its negative control: no chooser or gallery, no copied or cached reference, read live, and grounding kept upstream.
-12. The final report separates playbook defects from sk-interface-design product defects.
+12. The final report separates playbook defects from sk-design-interface product defects.
 
 ---
 
@@ -400,7 +400,7 @@ Desired user-visible outcome: A single named real-world default with its cited U
 
 ## 15. AUTOMATED TEST CROSS-REFERENCE
 
-The current repository has no dedicated automated test module for `sk-interface-design/manual_testing_playbook/`, and the sk-doc validator currently checks the root playbook only. The scenarios exercise the on-disk reference surface and a live design-system read directly.
+The current repository has no dedicated automated test module for `sk-design-interface/manual_testing_playbook/`, and the sk-doc validator currently checks the root playbook only. The scenarios exercise the on-disk reference surface and a live design-system read directly.
 
 | Test Module | Coverage | Playbook Overlap |
 |---|---|---|

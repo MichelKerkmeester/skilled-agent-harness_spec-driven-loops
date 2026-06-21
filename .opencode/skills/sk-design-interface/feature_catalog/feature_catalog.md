@@ -1,22 +1,22 @@
 ---
-title: "sk-interface-design: Feature Catalog"
-description: "Unified reference combining the complete feature inventory and current-reality reference for the sk-interface-design interface design system."
+title: "sk-design-interface: Feature Catalog"
+description: "Unified reference combining the complete feature inventory and current-reality reference for the sk-design-interface interface design system."
 trigger_phrases:
-  - "sk-interface-design"
+  - "sk-design-interface"
   - "interface design feature catalog"
   - "feature catalog"
 last_updated: "2026-06-14"
 ---
 
-# sk-interface-design: Feature Catalog
+# sk-design-interface: Feature Catalog
 
-This document combines the current feature inventory for the `sk-interface-design` system into a single reference. The root catalog acts as the system-level directory: it summarizes the design process, the objective quality floor, design grounding in a real design system, interface writing, the integration boundary, and the real-UI loop, and it points to the per-feature files that carry the deeper behavior and source anchors.
+This document combines the current feature inventory for the `sk-design-interface` system into a single reference. The root catalog acts as the system-level directory: it summarizes the design process, the objective quality floor, design grounding in a real design system, interface writing, the integration boundary, and the real-UI loop, and it points to the per-feature files that carry the deeper behavior and source anchors.
 
 ---
 
 ## 1. OVERVIEW
 
-Use this catalog as the canonical inventory for the live `sk-interface-design` feature surface. The numbered sections below group the skill by capability area so readers can move from a top-level summary into per-feature reference files without losing the design intent behind each step. This skill owns the look of an interface: it drives deliberate palette, typography, layout, motion, and copy choices, holds those choices to an objective quality floor, and hands implementation to `sk-code`.
+Use this catalog as the canonical inventory for the live `sk-design-interface` feature surface. The numbered sections below group the skill by capability area so readers can move from a top-level summary into per-feature reference files without losing the design intent behind each step. This skill owns the look of an interface: it drives deliberate palette, typography, layout, motion, and copy choices, holds those choices to an objective quality floor, and hands implementation to `sk-code`.
 
 | Category | Coverage | Primary Surfaces |
 |---|---:|---|

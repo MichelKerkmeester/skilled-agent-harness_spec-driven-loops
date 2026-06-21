@@ -1,5 +1,5 @@
 ---
-name: sk-interface-design
+name: sk-design-interface
 description: Guidance for distinctive, intentional UI design when building or reshaping an interface. Drives deliberate palette, typography, layout and motion choices that avoid templated AI defaults, with a brainstorm-critique-build process and interface writing rules.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 1.5.0.0
@@ -11,7 +11,7 @@ license: Apache-2.0; see LICENSE.txt
 
 <!-- keywords: interface-design frontend-design visual-design typography palette ui-aesthetics -->
 
-# Interface Design (sk-interface-design)
+# Interface Design (sk-design-interface)
 
 Approach UI work as the design lead at a studio known for visual identities that could not be mistaken for anyone else's. Make deliberate, opinionated choices specific to the brief, take one justified aesthetic risk, and reject anything that reads as a templated default. Full guidance lives in [`references/design-process/design_principles.md`](references/design-process/design_principles.md). Vendored from Anthropic's `frontend-design` skill (Apache-2.0).
 

@@ -15,7 +15,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-Moves a design system out of Figma read-only, or into Figma behind a gate. Extract feeds design judgment in `sk-interface-design`; import changes the document and is gated. A typical caller extracts a `DESIGN.md` to ground later work, or imports an existing token source to populate Figma collections.
+Moves a design system out of Figma read-only, or into Figma behind a gate. Extract feeds design judgment in `sk-design-interface`; import changes the document and is gated. A typical caller extracts a `DESIGN.md` to ground later work, or imports an existing token source to populate Figma collections.
 
 Extract is read-only against the Figma document but still writes a file, so it carries the local-export rule: an explicit output path and no silent overwrite. Import is MUTATING.
 

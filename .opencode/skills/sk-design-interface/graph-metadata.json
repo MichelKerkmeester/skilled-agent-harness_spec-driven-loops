@@ -1,0 +1,137 @@
+{
+  "schema_version": 2,
+  "skill_id": "sk-design-interface",
+  "family": "sk-code",
+  "category": "design",
+  "edges": {
+    "depends_on": [],
+    "enhances": [
+      {
+        "target": "sk-code",
+        "weight": 0.5,
+        "context": "Sets the visual direction that sk-code implements and verifies for the detected web surface"
+      }
+    ],
+    "siblings": [
+      {
+        "target": "sk-code",
+        "weight": 0.4,
+        "context": "Design-and-build pair: this skill owns the look, sk-code owns the implementation"
+      }
+    ],
+    "conflicts_with": [],
+    "prerequisite_for": [
+      {
+        "target": "mcp-figma",
+        "weight": 0.7,
+        "context": "mcp-figma applies this skill's anti-default judgment whenever a Figma read or export feeds a design decision"
+      }
+    ]
+  },
+  "manual": {
+    "depends_on": [],
+    "related_to": ["sk-code", "sk-code-review", "mcp-chrome-devtools", "mcp-figma"]
+  },
+  "domains": ["frontend", "ui-design", "visual-design", "typography", "design-systems"],
+  "intent_signals": [
+    "interface design",
+    "frontend design",
+    "visual design",
+    "make it look good",
+    "looks templated",
+    "looks ai-generated",
+    "redesign",
+    "hero section",
+    "typography",
+    "palette",
+    "color palette",
+    "font pairing",
+    "design tokens",
+    "ux checklist",
+    "chart type"
+  ],
+  "derived": {
+    "trigger_phrases": [
+      "interface design",
+      "frontend design",
+      "visual design",
+      "make it look good",
+      "looks templated",
+      "redesign the ui",
+      "hero section",
+      "typography and palette",
+      "color palette",
+      "font pairing",
+      "design tokens",
+      "ux quality checklist",
+      "give me N design variations"
+    ],
+    "key_topics": [
+      "distinctive visual design",
+      "palette and typography",
+      "layout and signature element",
+      "deliberate motion",
+      "avoiding AI-default looks",
+      "brainstorm-critique-build process",
+      "interface writing",
+      "real design system grounding (reuse or critique-against)",
+      "ux quality-floor reference",
+      "reuse-ground or critique-against design system",
+      "seed-of-thought variation diversity"
+    ],
+    "intent_signals": [
+      "interface design",
+      "frontend design",
+      "visual design",
+      "looks templated",
+      "redesign",
+      "hero section",
+      "typography",
+      "palette"
+    ],
+    "key_files": [
+      ".opencode/skills/sk-design-interface/SKILL.md",
+      ".opencode/skills/sk-design-interface/README.md",
+      ".opencode/skills/sk-design-interface/references/design-process/design_principles.md",
+      ".opencode/skills/sk-design-interface/references/design-process/ux_quality_reference.md",
+      ".opencode/skills/sk-design-interface/references/design-grounding/design_inventory.md",
+      ".opencode/skills/sk-design-interface/references/design-process/real_ui_loop.md",
+      ".opencode/skills/sk-design-interface/references/design-process/variation_diversity.md",
+      ".opencode/skills/sk-design-interface/references/design-grounding/design_references_mcp.md",
+      ".opencode/skills/sk-design-interface/references/mcp-tooling/mobbin_tools.md",
+      ".opencode/skills/sk-design-interface/references/mcp-tooling/refero_tools.md",
+      ".opencode/skills/sk-design-interface/feature_catalog/feature_catalog.md",
+      ".opencode/skills/sk-design-interface/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/sk-design-interface/LICENSE.txt"
+    ],
+    "entities": [
+      {
+        "name": "sk-design-interface",
+        "kind": "skill",
+        "path": ".opencode/skills/sk-design-interface/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README",
+        "kind": "reference",
+        "path": ".opencode/skills/sk-design-interface/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "design_principles",
+        "kind": "reference",
+        "path": ".opencode/skills/sk-design-interface/references/design-process/design_principles.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "sk-design-interface vendored from Anthropic's frontend-design skill (Apache-2.0) to give the framework reusable, advisor-routable guidance for distinctive UI design. It owns aesthetic direction (palette, typography, layout, motion, copy) and a brainstorm-critique-build process that avoids templated AI defaults; sk-code owns the implementation. Lean house-template SKILL.md routes to the full principles in references/design-process/design_principles.md. The skill is Apache-2.0 only: the design principles are unchanged vendored Apache content and LICENSE.txt is its single license. The aesthetic inventory can be sourced live from a real design system you own, used as either reuse-ground (reuse its tokens and components before generating) or critique-against (name the closest realized default, then deviate). Exactly one system is resolved from the subject, never a chooser, and nothing is cached into the skill, which keeps it free of any third party license burden. The objective quality floor stays authored in references/design-process/ux_quality_reference.md as paraphrased non-copyrightable facts. When a brief asks for two or more directions, references/design-process/variation_diversity.md applies a seed-of-thought debias so the set is not N safe copies of the median: a committed random seed picks a non-median start in a subject-grounded option space and the rest are spread to be distinct, with grounding and the anti-default critique still primary and never a style chooser. The skill ships a feature_catalog/ and a manual_testing_playbook/ for sk-doc alignment.",
+    "source_docs": [
+      "SKILL.md",
+      "README.md",
+      "references/design-process/design_principles.md",
+      "LICENSE.txt"
+    ],
+    "created_at": "2026-06-13T00:00:00Z",
+    "last_updated_at": "2026-06-14T14:00:00Z"
+  }
+}

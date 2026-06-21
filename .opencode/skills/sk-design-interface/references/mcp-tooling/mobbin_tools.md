@@ -21,7 +21,7 @@ contextType: implementation
 
 ## 1. OVERVIEW
 
-Mobbin indexes real, shipped iOS and web app screens and flows. It exposes two natural-language search tools. Inside sk-interface-design these are a CRITIQUE-AGAINST reference: name the real-world default for a pattern, then deviate from it deliberately. The discipline (one reference, read live, never copy) lives in `design_references_mcp.md`; this file is the tool catalog.
+Mobbin indexes real, shipped iOS and web app screens and flows. It exposes two natural-language search tools. Inside sk-design-interface these are a CRITIQUE-AGAINST reference: name the real-world default for a pattern, then deviate from it deliberately. The discipline (one reference, read live, never copy) lives in `design_references_mcp.md`; this file is the tool catalog.
 
 ---
 

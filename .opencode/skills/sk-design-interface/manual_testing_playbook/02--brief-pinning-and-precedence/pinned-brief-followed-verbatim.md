@@ -40,7 +40,7 @@ Operators run the exact prompt and command sequence for `ID-002` and confirm the
 1. Restate the user request in plain design-scope language.
 2. Confirm the brief pins the visual direction before deciding whether to apply deviation guidance.
 3. Execute the deterministic steps exactly as written.
-4. Compare the produced plan against the cited `sk-interface-design` reference files.
+4. Compare the produced plan against the cited `sk-design-interface` reference files.
 5. Return a concise final verdict that names any unauthorized substitution when the scenario fails.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
