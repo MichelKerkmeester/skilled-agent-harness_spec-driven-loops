@@ -2,12 +2,18 @@
 // MODULE: Report Generator
 // ────────────────────────────────────────────────────────────────
 
+// ────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ────────────────────────────────────────────────────────────────
+
 import * as fs from 'fs';
 import * as path from 'path';
 import type { DesignTokens, ColorToken, TypographyLevel, ShadowToken, RadiusToken } from './types';
 import { validateDesignMd, type ValidationResult } from './validate';
 
-// ─── Helpers ────────────────────────────────────────────────────────────────
+// ────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ────────────────────────────────────────────────────────────────
 
 function esc(s: string): string {
   return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -66,7 +72,7 @@ function inferPreviewTokens(colors: ColorToken[], typo: TypographyLevel[], shado
   headingFont: string; headingWeight: string; bodyFont: string; bodyWeight: string;
   successColor: string; warningColor: string;
 } {
-  // Primary: darkest chromatic or high-frequency bg color
+  // Darkest chromatic or high-frequency bg color
   const chromaticBgs = colors.filter((c) => isChromatic(c) && c.usedAs.bgColor > 0);
   const chromaticAll = colors.filter(isChromatic);
   const primaryCandidate = chromaticBgs.sort((a, b) => b.frequency - a.frequency)[0]
@@ -78,16 +84,16 @@ function inferPreviewTokens(colors: ColorToken[], typo: TypographyLevel[], shado
   const primaryBg = primaryCandidate?.hex ?? '#6b5ce7';
   const primaryText = contrastOn(primaryBg);
 
-  // Border: most frequent border color
+  // Most frequent border color
   const borderCandidates = colors.filter((c) => c.usedAs.borderColor > 0).sort((a, b) => b.usedAs.borderColor - a.usedAs.borderColor);
   const borderColor = borderCandidates[0]?.hex ?? '#e5e7eb';
 
-  // Secondary button: border + text from brand or text color
+  // Border + text from brand or text color
   const secondaryBorderColor = borderColor;
   const textCandidates = colors.filter((c) => c.usedAs.textColor > 0).sort((a, b) => b.usedAs.textColor - a.usedAs.textColor);
   const secondaryTextColor = textCandidates[0]?.hex ?? '#1a1a2e';
 
-  // Surface bg: lightest bg color
+  // Lightest bg color
   const bgCandidates = colors.filter((c) => c.usedAs.bgColor > 0).sort((a, b) => {
     const aLum = lumRgb(a.rgba[0], a.rgba[1], a.rgba[2]);
     const bLum = lumRgb(b.rgba[0], b.rgba[1], b.rgba[2]);
@@ -111,7 +117,7 @@ function inferPreviewTokens(colors: ColorToken[], typo: TypographyLevel[], shado
   const bodyFont = bodyLevel?.fontFamily ?? 'system-ui';
   const bodyWeight = bodyLevel?.fontWeight ?? '400';
 
-  // Success/warning: infer from chromatic palette or use fallbacks
+  // Infer from chromatic palette or use fallbacks
   const greens = chromaticAll.filter((c) => {
     const [r, g, b] = c.rgba;
     return g > r && g > b && g > 100;
@@ -196,7 +202,9 @@ function proofLabel(p: number): string {
   return 'Needs Work';
 }
 
-// ─── Types ──────────────────────────────────────────────────────────────────
+// ────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ────────────────────────────────────────────────────────────────
 
 interface ProofData {
   sourceUrl: string;
@@ -209,7 +217,9 @@ interface ProofData {
   excludedRegions: number;
 }
 
-// ─── HTML ───────────────────────────────────────────────────────────────────
+// ────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ────────────────────────────────────────────────────────────────
 
 function generateReportHtml(
   tokens: DesignTokens,
@@ -614,8 +624,6 @@ ${designMdContent ? `
 </html>`;
 }
 
-// ─── Main Export ─────────────────────────────────────────────────────────────
-
 export function generateReport(
   tokensPath: string,
   outputDir: string,
@@ -647,8 +655,6 @@ export function generateReport(
     console.log(`  Quality score: ${validation.score}/100 (${validation.passed.length} passed, ${validation.failures.length} failures, ${validation.warnings.length} warnings)`);
   }
 }
-
-// ─── CLI ────────────────────────────────────────────────────────────────────
 
 if (require.main === module) {
   const args = process.argv.slice(2);
