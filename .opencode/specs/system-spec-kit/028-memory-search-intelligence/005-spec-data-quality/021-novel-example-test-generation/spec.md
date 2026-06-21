@@ -85,7 +85,7 @@ Add an additive, human-approved generator that proposes worked examples and test
 - Auto-committing or auto-applying generated artifacts. CI and the save path stay report-only and human-gated (`research.md` section 5, CI never auto-commits).
 - Building or modifying the `AC_COVERAGE` rule, the `REQ_COVERAGE` rule, the EARS patterns, or the constraint tier. Those are owned by the sibling A7 phase (`007-a7-ears-constraints-req-coverage`); this phase produces the artifacts A7 consumes.
 - Any retrieval-class or vector change. This item is floor-bypassing on the adherence reader only and is not gated on `015-c2-prodmode-recall-gate`.
-- Running the generated tests in CI or wiring an execution harness. This phase generates stubs and examples; execution wiring is a later, separate concern.
+- Running the generated tests in CI or wiring an execution harness. This phase generates stubs and examples. Execution wiring is a later, separate concern.
 
 ### Files to Change
 
@@ -135,9 +135,9 @@ Add an additive, human-approved generator that proposes worked examples and test
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | `007-a7-ears-constraints-req-coverage` (the `AC_COVERAGE` and `REQ_COVERAGE` gates and the EARS patterns) | This phase generates the concrete examples and test stubs that A7's coverage gates consume; without A7 the artifacts have no gate to count them | Land this phase as the producer, A7 as the consumer; the two can ship in either order since the generator is additive and the gates are default-off |
-| Dependency | None on `026-shared-safe-fix-engine` | The shared safe-fix engine gates the A1, B1, and B2 mutating front doors only; this generator writes a brand-new additive artifact, not a fix onto an existing body, so INV-1 keeps it out of the `safe` fix path entirely | Treat the generator as a standalone additive producer, not a registered `fixClass`; record here that `026-shared-safe-fix-engine` does NOT gate it |
-| Dependency | None on `015-c2-prodmode-recall-gate` | The C2 prod-mode recall gate gates every Tier-C and 027 retrieval item only; this item is floor-bypassing on the adherence reader and emits no vector rows | Ship standalone on cost as a novel GO-on-cost capability; note the C2 gate does NOT apply |
+| Dependency | `007-a7-ears-constraints-req-coverage` (the `AC_COVERAGE` and `REQ_COVERAGE` gates and the EARS patterns) | This phase generates the concrete examples and test stubs that A7's coverage gates consume. Without A7 the artifacts have no gate to count them | Land this phase as the producer, A7 as the consumer. The two can ship in either order since the generator is additive and the gates are default-off |
+| Dependency | None on `026-shared-safe-fix-engine` | The shared safe-fix engine gates the A1, B1, and B2 mutating front doors only. This generator writes a brand-new additive artifact, not a fix onto an existing body, so INV-1 keeps it out of the `safe` fix path entirely | Treat the generator as a standalone additive producer, not a registered `fixClass`; record here that `026-shared-safe-fix-engine` does NOT gate it |
+| Dependency | None on `015-c2-prodmode-recall-gate` | The C2 prod-mode recall gate gates every Tier-C and 027 retrieval item only. This item is floor-bypassing on the adherence reader and emits no vector rows | Ship standalone on cost as a novel GO-on-cost capability. Note the C2 gate does NOT apply |
 | Risk | The auto-rewrite rail (`research.md` section 3 NO-GO, section 5 INV-1) | An over-eager generator that edited requirement prose would mutate an authored git-tracked artifact and reward-hack the adherence proxy | Make additivity structural: write only into the named examples-and-tests artifact, never touch the REQUIREMENTS prose, and gate every write behind an explicit human confirm |
 | Risk | Low-quality or hallucinated examples landing unreviewed | A generated example that misstates the requirement would mislead a future reader | Keep every proposal pending-review by default (REQ-006) and require the human-approval confirm (REQ-003) before any artifact lands |
 <!-- /ANCHOR:risks -->
@@ -189,7 +189,7 @@ Add an additive, human-approved generator that proposes worked examples and test
 |-----------|-------|-------|
 | Scope | 13/25 | One new generator script, two template edits, one registry entry for the flag |
 | Risk | 10/25 | Additive-only and human-gated, no body mutation and no auto-apply, but it does invoke a generation backend |
-| Research | 8/20 | Novel-GO with the floor-bypass and additivity rails grounded; the generation quality bar is the open part |
+| Research | 8/20 | Novel-GO with the floor-bypass and additivity rails grounded. The generation quality bar is the open part |
 | **Total** | **31/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->
 

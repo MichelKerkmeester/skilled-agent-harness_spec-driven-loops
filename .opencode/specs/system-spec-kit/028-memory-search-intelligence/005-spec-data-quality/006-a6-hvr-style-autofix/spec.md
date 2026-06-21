@@ -111,7 +111,7 @@ Ship a fence-aware, length-neutral prose-style fixer that is the one safe conten
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-005 | The swap rules SHALL distinguish a prose semicolon from a semicolon inside an inline code span or an HTML entity and SHALL distinguish an Oxford comma from a comma in a code-like list. | Fixtures with `a; b` inside backticks and a list comma inside a fence yield zero issues. |
+| REQ-005 | The swap rules SHALL distinguish a prose semicolon from a semicolon inside an inline code span or an HTML entity and SHALL distinguish an Oxford comma from a comma in a code-like list. | Fixtures with `a. B` inside backticks and a list comma inside a fence yield zero issues. |
 | REQ-006 | WHERE an em-dash or semicolon swap is ambiguous between a spaced-hyphen and a sentence split, the fixer SHALL apply the deterministic default documented in the detector and SHALL NOT change clause meaning. | The chosen default is documented inline and a fixture asserts the exact output for each ambiguous case. |
 <!-- /ANCHOR:requirements -->
 

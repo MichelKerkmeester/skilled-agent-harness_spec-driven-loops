@@ -102,8 +102,8 @@ Make answerable-question and semantic-intent tags first-class retrieval signals:
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | WHEN a document is saved, the system SHALL auto-generate `answerable_questions` and `semantic_intent` tags and persist them into the metadata JSON surface | A saved doc's metadata JSON contains both fields populated from content, generation is deterministic for the same input, and the write path is non-destructive to the body |
-| REQ-002 | WHEN `memory-parser.ts` parses a document carrying these fields, the parser SHALL extract them through the allow-list so they reach the row payload | A parser unit test asserts both fields are present and non-empty on the parsed row for an input that declares them; an input without them parses unchanged |
-| REQ-003 | The consumer half SHALL be gated default-off behind a flag and SHALL NOT be promoted to default-on within this phase | Grep confirms the flag default is off; the prod retrieval path is byte-identical with the flag off; no completion claim asserts a retrieval win |
+| REQ-002 | WHEN `memory-parser.ts` parses a document carrying these fields, the parser SHALL extract them through the allow-list so they reach the row payload | A parser unit test asserts both fields are present and non-empty on the parsed row for an input that declares them. An input without them parses unchanged |
+| REQ-003 | The consumer half SHALL be gated default-off behind a flag and SHALL NOT be promoted to default-on within this phase | Grep confirms the flag default is off. The prod retrieval path is byte-identical with the flag off. No completion claim asserts a retrieval win |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -129,11 +129,11 @@ Make answerable-question and semantic-intent tags first-class retrieval signals:
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | 015-c2-prodmode-recall-gate | The consumer half cannot be promoted to default-on without a prod-mode completeRecall@3 RISE through C2. This is the shared unblock condition for every Tier-C and 027 retrieval item | Ship default-off; promotion is gated on the C2 prod@3 read, not on eval-mode @K |
-| Dependency | Metadata write path | The auto-generator must persist into the existing JSON write path without re-implementing it | Resolve the exact host module in plan.md against the live save path; reuse the additive write contract |
+| Dependency | 015-c2-prodmode-recall-gate | The consumer half cannot be promoted to default-on without a prod-mode completeRecall@3 RISE through C2. This is the shared unblock condition for every Tier-C and 027 retrieval item | Ship default-off. Promotion is gated on the C2 prod@3 read, not on eval-mode @K |
+| Dependency | Metadata write path | The auto-generator must persist into the existing JSON write path without re-implementing it | Resolve the exact host module in plan.md against the live save path. Reuse the additive write contract |
 | Risk | Dead-field regression (the 028 trap) | Auto-generating the field without admitting it through the parser allow-list leaves it silently dropped from the vector | REQ-002 makes the parser allow-list extension a P0 blocker, not an afterthought |
-| Risk | Unmeasured retrieval claim | Eval-mode @K hides the 3-result prod floor, so a fusion win measured in eval mode is inadmissible | Consumer stays default-off; no retrieval win is claimed until C2 measures prod@3 |
-| Risk | Fusion-bound drift | A new fusion signal could over-weight tagged rows | Reuse the existing `clampMultiplier` bound and the `applyValidationMultiplier` deny-by-default shape; rows without tags are untouched |
+| Risk | Unmeasured retrieval claim | Eval-mode @K hides the 3-result prod floor, so a fusion win measured in eval mode is inadmissible | Consumer stays default-off. No retrieval win is claimed until C2 measures prod@3 |
+| Risk | Fusion-bound drift | A new fusion signal could over-weight tagged rows | Reuse the existing `clampMultiplier` bound and the `applyValidationMultiplier` deny-by-default shape. Rows without tags are untouched |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -142,11 +142,11 @@ Make answerable-question and semantic-intent tags first-class retrieval signals:
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
-- **NFR-P01**: The fusion consumer SHALL add no new per-query DB round-trip; it reads tags already present on the row payload.
+- **NFR-P01**: The fusion consumer SHALL add no new per-query DB round-trip. It reads tags already present on the row payload.
 - **NFR-P02**: Auto-generation runs on the write path only and SHALL NOT add latency to the read path.
 
 ### Security
-- **NFR-S01**: The auto-generator SHALL NOT mutate the authored document body; it writes only metadata JSON fields (the no-body-mutate rail).
+- **NFR-S01**: The auto-generator SHALL NOT mutate the authored document body. It writes only metadata JSON fields (the no-body-mutate rail).
 
 ### Reliability
 - **NFR-R01**: With the consumer flag off the retrieval path SHALL be byte-identical to baseline.
@@ -163,11 +163,11 @@ Make answerable-question and semantic-intent tags first-class retrieval signals:
 - Invalid format: a malformed or legacy frontmatter field is skipped by the extractor, never throws.
 
 ### Error Scenarios
-- Missing field: a legacy document without the tags parses exactly as before; this is the back-compat floor.
-- Consumer flag off: the field is present but inert; no row score changes.
+- Missing field: a legacy document without the tags parses exactly as before. This is the back-compat floor.
+- Consumer flag off: the field is present but inert. No row score changes.
 
 ### State Transitions
-- Partial completion: the write-time half may ship before the consumer half; the field populates and persists with the consumer still off.
+- Partial completion: the write-time half may ship before the consumer half. The field populates and persists with the consumer still off.
 <!-- /ANCHOR:edge-cases -->
 
 ---
@@ -179,7 +179,7 @@ Make answerable-question and semantic-intent tags first-class retrieval signals:
 |-----------|-------|-------|
 | Scope | 10/25 | Two known-file modifications (parser, fusion) plus one generator module |
 | Risk | 12/25 | Retrieval-class fusion touch, but gated default-off so prod risk is deferred to C2 |
-| Research | 6/20 | Seams already grounded to file:line in research.md; generator host module resolved in plan.md |
+| Research | 6/20 | Seams already grounded to file:line in research.md. Generator host module resolved in plan.md |
 | **Total** | **28/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->
 

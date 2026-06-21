@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "010-a10-per-surface-gates"
+    packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/010-a10-per-surface-gates"
     last_updated_at: "2026-06-21T00:00:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Authored phase spec from research A10 row"
@@ -81,7 +81,7 @@ Each non-spec-doc authoring surface gains a write-time conformance gate that byp
 ### Out of Scope
 - The shared safe-fix engine (`dq-engine.ts`) and detector registry - owned by 026-shared-safe-fix-engine, consumed here not built.
 - Any retrieval-class change or re-index - these gates touch validation only, zero prod-retrieval risk.
-- Auto-mutating any authored body - all five gates are report-only at this phase; no fix is granted `safe` here.
+- Auto-mutating any authored body - all five gates are report-only at this phase. No fix is granted `safe` here.
 - The scheduled sweep front door (B1) and the doctor front door (B2) - separate phases; A10 detectors run on-write only.
 - Re-speccing the already-built fence-aware `[[wikilink]]` validator - it is shipped and CI-wired (NO-GO per research section 2 Tier D).
 
@@ -108,7 +108,7 @@ Each non-spec-doc authoring surface gains a write-time conformance gate that byp
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | WHEN a SKILL.md is authored or validated, the system SHALL check its frontmatter against one pinned version grammar and emit a warn-tier finding for the non-conforming grammar | Running the detector over the 21 SKILL.md corpus reports the dual-grammar split as findings and exits non-blocking under warn tier |
-| REQ-002 | WHEN the command router-contract gate runs, the system SHALL execute route-validate assertions D (YAML asset existence, line 182), E (mutation class validity, line 200), and F (MCP tool subset check, line 215) across all 28 command docs | The gate runs outside the doctor-only path and reports per-doc pass/fail for all 28 docs; exit 0 on a clean corpus, exit 1 on at least one assertion failure |
+| REQ-002 | WHEN the command router-contract gate runs, the system SHALL execute route-validate assertions D (YAML asset existence, line 182), E (mutation class validity, line 200), and F (MCP tool subset check, line 215) across all 28 command docs | The gate runs outside the doctor-only path and reports per-doc pass/fail for all 28 docs. Exit 0 on a clean corpus, exit 1 on at least one assertion failure |
 | REQ-003 | WHEN the trigger-vocabulary canary runs, the system SHALL compare the three hand-synced copies and emit a finding on any divergence | The canary reads FILE_WRITE_TRIGGERS (`gate-3-classifier.ts:67`), WORK_INTENT_VERBS (advisor prompt-policy), and the CLAUDE.md prose set, and reports drift when the three sets disagree |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -116,8 +116,8 @@ Each non-spec-doc authoring surface gains a write-time conformance gate that byp
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-004 | WHEN a workflow YAML is validated, the system SHALL check it against a workflow-YAML schema and emit a warn-tier finding for malformed structure | The schema detector runs over the workflow YAML census and reports structural violations without blocking under warn tier |
-| REQ-005 | WHEN the skill-graph drift gate runs, the system SHALL invoke `advisor_rebuild` followed by `advisor_validate` and surface signal-collision and drift findings | The gate calls the shipped advisor tools as a check tier and reports drift or collision findings; no new graph traversal logic is added |
-| REQ-006 | Each of the five gates SHALL land default-off and warn-only first | No gate flips to error in this phase; the count-to-zero and error flip are deferred to a later migration beat per packet governance |
+| REQ-005 | WHEN the skill-graph drift gate runs, the system SHALL invoke `advisor_rebuild` followed by `advisor_validate` and surface signal-collision and drift findings | The gate calls the shipped advisor tools as a check tier and reports drift or collision findings. No new graph traversal logic is added |
+| REQ-006 | Each of the five gates SHALL land default-off and warn-only first | No gate flips to error in this phase. The count-to-zero and error flip are deferred to a later migration beat per packet governance |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -138,11 +138,11 @@ Each non-spec-doc authoring surface gains a write-time conformance gate that byp
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | 026-shared-safe-fix-engine | The detector-registry and `dq-engine.ts` plumbing these gates register against | Consume the shipped registry contract; register A10 detectors as `fixClass: none` warn-tier entries so no engine fix path is exercised |
-| Dependency | Shipped `route-validate.py` assertion machinery | Generalizing D/E/F depends on the existing assertion harness staying stable | Wrap, do not rewrite; the eight assertions already ship and are CI-asserted |
-| Dependency | Shipped `advisor_rebuild` and `advisor_validate` tools | The skill-graph drift gate is wiring, not new graph logic | Call the tools as-is; if the advisor graph is loaded from skill-graph.sqlite only, the rebuild path stays the source of truth |
+| Dependency | 026-shared-safe-fix-engine | The detector-registry and `dq-engine.ts` plumbing these gates register against | Consume the shipped registry contract. Register A10 detectors as `fixClass: none` warn-tier entries so no engine fix path is exercised |
+| Dependency | Shipped `route-validate.py` assertion machinery | Generalizing D/E/F depends on the existing assertion harness staying stable | Wrap, do not rewrite. The eight assertions already ship and are CI-asserted |
+| Dependency | Shipped `advisor_rebuild` and `advisor_validate` tools | The skill-graph drift gate is wiring, not new graph logic | Call the tools as-is. If the advisor graph is loaded from skill-graph.sqlite only, the rebuild path stays the source of truth |
 | Risk | Triple-copy canary false-positive on intentional vocabulary divergence | Medium | Subset/coherence comparison with an allow-list for legitimately surface-specific verbs, not byte equality |
-| Risk | Generalizing route-validate to 28 docs surfaces pre-existing latent failures | Low | Warn-tier first beat absorbs the census; error flip deferred until the count reaches zero |
+| Risk | Generalizing route-validate to 28 docs surfaces pre-existing latent failures | Low | Warn-tier first beat absorbs the census. Error flip deferred until the count reaches zero |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -155,11 +155,11 @@ Each non-spec-doc authoring surface gains a write-time conformance gate that byp
 - **NFR-P02**: The 28-doc route-validate pass and the SKILL.md corpus scan complete within the existing validate.sh budget.
 
 ### Security
-- **NFR-S01**: All five gates are read-only over their target surfaces in this phase; no authored body is mutated.
+- **NFR-S01**: All five gates are read-only over their target surfaces in this phase. No authored body is mutated.
 - **NFR-S02**: The advisor drift gate honors the skill_graph_scan workspace-path guard and does not act on out-of-workspace paths.
 
 ### Reliability
-- **NFR-R01**: A gate failure reports a finding and exits warn-tier; it never blocks the legacy corpus in this phase.
+- **NFR-R01**: A gate failure reports a finding and exits warn-tier. It never blocks the legacy corpus in this phase.
 - **NFR-R02**: The canary reports drift deterministically given identical inputs across the three copies.
 <!-- /ANCHOR:nfr -->
 
@@ -191,13 +191,14 @@ Each non-spec-doc authoring surface gains a write-time conformance gate that byp
 | Dimension | Score | Notes |
 |-----------|-------|-------|
 | Scope | 16/25 | Five distinct gates across three surfaces, two new detectors plus one route-validate generalization plus one advisor wiring plus one canary |
-| Risk | 8/25 | Validation-only, zero prod-retrieval risk, warn-tier first beat; main risk is latent census failures and canary false-positives |
-| Research | 6/20 | Seams already verified to file:line in research.md; remaining work is build, not investigation |
+| Risk | 8/25 | Validation-only, zero prod-retrieval risk, warn-tier first beat. Main risk is latent census failures and canary false-positives |
+| Research | 6/20 | Seams already verified to file:line in research.md. Remaining work is build, not investigation |
 | **Total** | **30/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 - Which version grammar is pinned canonical for SKILL.md (`vX.Y` versus `version: N`), and is the other deprecated or co-allowed.

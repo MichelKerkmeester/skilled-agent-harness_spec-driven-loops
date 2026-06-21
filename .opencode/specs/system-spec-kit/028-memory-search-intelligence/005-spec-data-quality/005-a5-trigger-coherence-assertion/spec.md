@@ -133,8 +133,8 @@ Add a cross-surface coherence assertion that catches divergent `trigger_phrases`
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | A2 trigger propagation | Without A2, many folders show a divergence between a curated frontmatter set and a title-copy derived set | Land A5 as warn-only so it reports the gap A2 then closes; the two pair |
-| Dependency | 026-shared-safe-fix-engine | A5 reports divergence but does not fix it; any auto-remediation routes through the shared safe-fix engine and frozen fixClass registry | Keep A5 report-only; the `triggers.propagate` safe fix lives in the shared engine, not here |
+| Dependency | A2 trigger propagation | Without A2, many folders show a divergence between a curated frontmatter set and a title-copy derived set | Land A5 as warn-only so it reports the gap A2 then closes. The two pair |
+| Dependency | 026-shared-safe-fix-engine | A5 reports divergence but does not fix it. Any auto-remediation routes through the shared safe-fix engine and frozen fixClass registry | Keep A5 report-only. The `triggers.propagate` safe fix lives in the shared engine, not here |
 | Dependency | A4 shape-error migration | The warn-to-error flip for this rule rides the same four-beat migration as the JSON shape rules | Defer the error flip until the backfill report reads zero |
 | Risk | Normalization drift from the extractor | A divergent normalization would false-fire or miss real divergence | Mirror `spec-folder-extractor.ts:387-390` exactly and pin it with a fixture matching the capped derive |
 | Risk | Surface-absence false positives | Older folders missing `graph-metadata.derived` triggers could be read as divergence | Treat missing or empty surfaces as no-data per REQ-006 |

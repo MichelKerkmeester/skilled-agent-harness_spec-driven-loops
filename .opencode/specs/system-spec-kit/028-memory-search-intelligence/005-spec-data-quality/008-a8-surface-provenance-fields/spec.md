@@ -24,7 +24,7 @@ _memory:
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "a8-spec-authoring"
-      parent_session_id: "spec-data-quality-phase-author"
+      parent_session_id: null
     completion_pct: 0
     open_questions:
       - "Whether content_type and document_weight have a compute site to reuse or must be derived fresh"

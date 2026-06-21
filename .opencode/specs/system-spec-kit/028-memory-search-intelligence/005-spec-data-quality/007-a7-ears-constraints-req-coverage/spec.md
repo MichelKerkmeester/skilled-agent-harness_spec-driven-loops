@@ -114,8 +114,8 @@ Give spec requirements an EARS grammar plus a constraint tier in the templates, 
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-004 | The spec template REQUIREMENTS anchor shall present EARS patterns and an always / ask-first / never constraint tier as authoring guidance without breaking the existing requirement tables. | `spec.md.tmpl` REQUIREMENTS anchor renders the EARS patterns and the three constraint classes; an existing Level 2 spec still validates clean. |
-| REQ-005 | When `SPECKIT_EARS_LINT` is enabled, the system shall report requirement rows that match neither an EARS shape nor a constraint-tier class, advisory only and never blocking. | With `SPECKIT_EARS_LINT=true`, a spec containing a free-form non-EARS requirement emits an advisory line; with the flag unset there is no output and no exit-code change. |
+| REQ-004 | The spec template REQUIREMENTS anchor shall present EARS patterns and an always / ask-first / never constraint tier as authoring guidance without breaking the existing requirement tables. | `spec.md.tmpl` REQUIREMENTS anchor renders the EARS patterns and the three constraint classes. An existing Level 2 spec still validates clean. |
+| REQ-005 | When `SPECKIT_EARS_LINT` is enabled, the system shall report requirement rows that match neither an EARS shape nor a constraint-tier class, advisory only and never blocking. | With `SPECKIT_EARS_LINT=true`, a spec containing a free-form non-EARS requirement emits an advisory line. With the flag unset there is no output and no exit-code change. |
 | REQ-006 | The `tasks.md` template shall carry a requirement-reference marker so a task row can name the REQ it builds, giving `REQ_COVERAGE` a canonical linkage location. | `tasks.md.tmpl` shows the REQ-reference column or marker; `check-req-coverage.sh` reads that location to compute coverage. |
 <!-- /ANCHOR:requirements -->
 
@@ -136,9 +136,9 @@ Give spec requirements an EARS grammar plus a constraint tier in the templates, 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Dependency | `AC_COVERAGE` shipped rule (`check-ac-coverage.sh`, `validator-registry.json:51-62`) | The clone inherits its registry shape, flag triad, and `run_check` contract | Mirror the AC entry verbatim and retarget only the scan target from checklist AC rows to tasks REQ linkage |
-| Dependency | None on `026-shared-safe-fix-engine` or `015-c2-prodmode-recall-gate` | A7 is independent: the shared safe-fix engine gates A1/B1/B2 only, and the C2 prod-mode gate gates every Tier-C and 027 retrieval item only | A7 ships standalone on cost as a floor-bypassing Tier A item; note the two dependencies here only to record that they do NOT apply |
+| Dependency | None on `026-shared-safe-fix-engine` or `015-c2-prodmode-recall-gate` | A7 is independent: the shared safe-fix engine gates A1/B1/B2 only, and the C2 prod-mode gate gates every Tier-C and 027 retrieval item only | A7 ships standalone on cost as a floor-bypassing Tier A item. Note the two dependencies here only to record that they do NOT apply |
 | Risk | The `req.ears_coverage` fix is risky / suggest-only (`research.md` section 4) | An over-eager auto-rewrite would mutate authored requirement prose and reward-hack a proxy | Keep this phase report-only: the linter and gate warn, they never rewrite a body |
-| Risk | A premature warn-to-error flip breaks the legacy corpus | Existing specs predate EARS and the linkage marker | Hold the four-beat migration (`research.md` section 5) for a later phase; this phase lands WARN only |
+| Risk | A premature warn-to-error flip breaks the legacy corpus | Existing specs predate EARS and the linkage marker | Hold the four-beat migration (`research.md` section 5) for a later phase. This phase lands WARN only |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -187,7 +187,7 @@ Give spec requirements an EARS grammar plus a constraint tier in the templates, 
 |-----------|-------|-------|
 | Scope | 12/25 | Two template edits, two new rule scripts, two registry entries |
 | Risk | 8/25 | Default-off and warn, no error flip, no body mutation, clones a shipped rule |
-| Research | 6/20 | Seams verified to file:line; pattern already shipped |
+| Research | 6/20 | Seams verified to file:line. Pattern already shipped |
 | **Total** | **26/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->
 

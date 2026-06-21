@@ -101,16 +101,16 @@ Add a metadata-signal fusion lane to the scoring path, default-off and alpha-cal
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | The metadata-fusion lane SHALL be gated default-off behind a flag and SHALL NOT be promoted to default-on within this phase | Grep confirms the flag default is off; the prod retrieval path is byte-identical with the flag off; no completion claim asserts a retrieval win |
-| REQ-002 | WHEN the lane is built, alpha SHALL be a tunable parameter calibrated against this corpus and SHALL NOT be a hard-coded value borrowed from an external finding | The alpha-sweep mode reports a prod-mode completeRecall@3 number per setting; the chosen alpha cites that readout, not the SEC-10K finding |
-| REQ-003 | The metadata-signal score SHALL be derived from metadata already present on the candidate and SHALL add no new per-query DB round-trip | A code read confirms the meta score reads only fields already on the row; a fusion unit test shows no added query |
+| REQ-001 | The metadata-fusion lane SHALL be gated default-off behind a flag and SHALL NOT be promoted to default-on within this phase | Grep confirms the flag default is off. The prod retrieval path is byte-identical with the flag off. No completion claim asserts a retrieval win |
+| REQ-002 | WHEN the lane is built, alpha SHALL be a tunable parameter calibrated against this corpus and SHALL NOT be a hard-coded value borrowed from an external finding | The alpha-sweep mode reports a prod-mode completeRecall@3 number per setting. The chosen alpha cites that readout, not the SEC-10K finding |
+| REQ-003 | The metadata-signal score SHALL be derived from metadata already present on the candidate and SHALL add no new per-query DB round-trip | A code read confirms the meta score reads only fields already on the row. A fusion unit test shows no added query |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-004 | WHEN the lane flag is on, the blend SHALL keep the composite score in the existing bounded range and leave candidates without a metadata signal unchanged | The blend reuses the `clampMultiplier` bound; a fusion unit test shows the score stays in range and a no-metadata candidate scores identically to baseline |
-| REQ-005 | The phase SHALL document that C4 is justified only as a measured improvement over the C1 prefix, not as a parallel lane | The decision-record or spec states the C1-first ordering; no task ships C4 ahead of a C1 floor-movement readout |
+| REQ-004 | WHEN the lane flag is on, the blend SHALL keep the composite score in the existing bounded range and leave candidates without a metadata signal unchanged | The blend reuses the `clampMultiplier` bound. A fusion unit test shows the score stays in range and a no-metadata candidate scores identically to baseline |
+| REQ-005 | The phase SHALL document that C4 is justified only as a measured improvement over the C1 prefix, not as a parallel lane | The decision-record or spec states the C1-first ordering. No task ships C4 ahead of a C1 floor-movement readout |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -129,11 +129,11 @@ Add a metadata-signal fusion lane to the scoring path, default-off and alpha-cal
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | 014-c1-chunk-prefix | C4 is subsumed by the cheaper C1 deterministic prefix. C4 is justified only after C1 demonstrates the prod floor can move and only as a measured improvement over it | Do not build C4 ahead of a C1 floor-movement readout; treat C4 as an alpha-calibrated experiment on top of the C1 baseline |
-| Dependency | 015-c2-prodmode-recall-gate | The lane cannot be promoted to default-on without a prod-mode completeRecall@3 RISE through C2. This is the shared unblock condition for every Tier-C and 027 retrieval item | Ship default-off; promotion is gated on the C2 prod@3 read, not on eval-mode @K |
-| Risk | Un-calibrated alpha | A borrowed alpha could dilute text relevance instead of sharpening it, since the metadata-carries-most-signal claim is a SEC-10K finding not a spec-corpus finding | REQ-002 forces an on-corpus alpha sweep; no external alpha ships as a default |
-| Risk | Redundancy with C1 | C4 fuses the same header-path and curated-trigger signal that C1 re-injects more cheaply and deterministically into the embedded text | Gate C4 behind a measured C1 floor movement; build only if the alpha blend beats the C1 prefix on prod@3 |
-| Risk | Unmeasured retrieval claim | Eval-mode @K hides the 3-result prod floor (`confidence-truncation.ts:35`), so a fusion win measured in eval mode is inadmissible | Lane stays default-off; the only admissible readout is the prod-mode completeRecall@3 column through C2 |
+| Dependency | 014-c1-chunk-prefix | C4 is subsumed by the cheaper C1 deterministic prefix. C4 is justified only after C1 demonstrates the prod floor can move and only as a measured improvement over it | Do not build C4 ahead of a C1 floor-movement readout. Treat C4 as an alpha-calibrated experiment on top of the C1 baseline |
+| Dependency | 015-c2-prodmode-recall-gate | The lane cannot be promoted to default-on without a prod-mode completeRecall@3 RISE through C2. This is the shared unblock condition for every Tier-C and 027 retrieval item | Ship default-off. Promotion is gated on the C2 prod@3 read, not on eval-mode @K |
+| Risk | Un-calibrated alpha | A borrowed alpha could dilute text relevance instead of sharpening it, since the metadata-carries-most-signal claim is a SEC-10K finding not a spec-corpus finding | REQ-002 forces an on-corpus alpha sweep. No external alpha ships as a default |
+| Risk | Redundancy with C1 | C4 fuses the same header-path and curated-trigger signal that C1 re-injects more cheaply and deterministically into the embedded text | Gate C4 behind a measured C1 floor movement. Build only if the alpha blend beats the C1 prefix on prod@3 |
+| Risk | Unmeasured retrieval claim | Eval-mode @K hides the 3-result prod floor (`confidence-truncation.ts:35`), so a fusion win measured in eval mode is inadmissible | Lane stays default-off. The only admissible readout is the prod-mode completeRecall@3 column through C2 |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -179,7 +179,7 @@ Add a metadata-signal fusion lane to the scoring path, default-off and alpha-cal
 |-----------|-------|-------|
 | Scope | 9/25 | One fusion-stage modification plus an alpha-sweep mode in the existing eval harness |
 | Risk | 14/25 | Retrieval-class scoring touch with an un-calibrated parameter, gated default-off and ordered behind C1 so prod risk is deferred |
-| Research | 7/20 | Seams grounded to file:line in research.md; alpha calibration is the genuine open question this phase resolves |
+| Research | 7/20 | Seams grounded to file:line in research.md. Alpha calibration is the genuine open question this phase resolves |
 | **Total** | **30/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->
 

@@ -24,7 +24,7 @@ _memory:
     session_dedup:
       fingerprint: "sha256:a2b7c1e0f4938d652170c5a8b9e6d3471f2086c0d5e93b487a1f6c20e9d745b3"
       session_id: "a2-trigger-propagation-description-spec"
-      parent_session_id: "multi-lineage-research-synthesis"
+      parent_session_id: null
     completion_pct: 0
     open_questions:
       - "Whether the curated frontmatter triggers should override or merge with the derived extractive set when both exist"
@@ -92,7 +92,7 @@ The retrieval and adherence readers see a real extractive description and the cu
 |-----------|-------------|-------------|
 | `.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts` | Modify | Populate `trigger_phrases` in `generatePerFolderDescription` (:872-902), demote the title-copy in `extractDescription` (:455-461) to a fallback, read curated frontmatter triggers from spec.md. |
 | `.opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts` | Modify | Raise the `extractTriggersFromContent` cap from 8 to 12 (:515) to match the propagation cap. |
-| `.opencode/skills/system-spec-kit/mcp_server/lib/description/description-schema.ts` | Modify | Confirm `trigger_phrases` validation tolerates the populated capped array; no schema break since the field is already declared (:66). |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/description/description-schema.ts` | Modify | Confirm `trigger_phrases` validation tolerates the populated capped array. No schema break since the field is already declared (:66). |
 <!-- /ANCHOR:scope -->
 
 ---
