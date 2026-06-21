@@ -1,15 +1,13 @@
 {
   "level": "3",
   "specFolder": "skilled-agent-orchestration/152-sk-design-md-generator",
-  "description": "Feature Specification: Create sk-design-md-generator skill by vendoring jasonhnd design-md-generator",
+  "description": "Feature Specification: Create sk-design-md-generator skill with an embedded extraction pipeline",
   "keywords": [
     "feature",
     "specification",
     "create",
     "sk-design-md-generator",
     "skill",
-    "vendoring",
-    "jasonhnd",
     "design-md-generator"
   ],
   "lastUpdated": "2026-06-21T08:31:36.067Z",

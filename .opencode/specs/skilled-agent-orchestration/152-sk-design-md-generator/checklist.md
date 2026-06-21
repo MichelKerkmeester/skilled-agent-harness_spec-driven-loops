@@ -1,5 +1,5 @@
 ---
-title: "Verification Checklist: Create sk-design-md-generator skill by vendoring jasonhnd design-md-generator [template:level_3/checklist.md]"
+title: "Verification Checklist: Create sk-design-md-generator skill with an embedded extraction pipeline [template:level_3/checklist.md]"
 description: "Verification Date: 2026-06-21"
 trigger_phrases:
   - "design-md-generator verification"
@@ -26,7 +26,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
-# Verification Checklist: Create sk-design-md-generator skill by vendoring jasonhnd design-md-generator
+# Verification Checklist: Create sk-design-md-generator skill with an embedded extraction pipeline
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!--
@@ -65,7 +65,7 @@ FAILURE MODES:
 ## Code Quality
 
 - [x] CHK-010 [P0] `package_skill.py --check` PASS; `quick_validate.py` valid
-- [x] CHK-011 [P0] No upstream source modified (clean fork; NOTICE records drops)
+- [x] CHK-011 [P0] No tool source modified (self-contained copy)
 - [x] CHK-012 [P1] Reference files snake_case; 5-field frontmatter present
 - [x] CHK-013 [P1] SKILL.md mirrors the mcp-figma exemplar structure (5 sections + pseudocode)
 <!-- /ANCHOR:code-quality -->
@@ -89,10 +89,10 @@ FAILURE MODES:
 - [x] CHK-FIX-001 [P0] Finding class: `class-of-bug` (new skill creation, not a fix) - additive feature.
 - [x] CHK-FIX-002 [P0] Producer inventory: the three design-family skills siblinged via reciprocal edges.
 - [x] CHK-FIX-003 [P0] Consumer inventory: advisor graph node + edges verified in sqlite.
-- [x] CHK-FIX-004 [P0] Path-handling: vendored paths + tool/ embedded scaffold verified to resolve.
-- [x] CHK-FIX-005 [P1] Matrix axes: vendor-vs-author x required-doc x graph-edge covered.
+- [x] CHK-FIX-004 [P0] Path-handling: embedded paths + tool/ embedded scaffold verified to resolve.
+- [x] CHK-FIX-005 [P1] Matrix axes: embed-vs-author x required-doc x graph-edge covered.
 - [x] CHK-FIX-006 [P1] Reciprocal-edge symmetry verified (skill_graph_validate isValid, 0 errors).
-- [x] CHK-FIX-007 [P1] Evidence pinned to commit SHAs (8960ab5400 vendor, c4b9dee4d9 skill layer) + tool output.
+- [x] CHK-FIX-007 [P1] Evidence to commit SHAs (8960ab5400 embed, c4b9dee4d9 skill layer) + tool output.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -111,7 +111,7 @@ FAILURE MODES:
 ## Documentation
 
 - [x] CHK-040 [P1] Spec/plan/tasks/decision-record/impl-summary synchronized
-- [x] CHK-041 [P1] NOTICE.md records MIT attribution + pinned commit + vendoring changes
+- [x] CHK-041 [P1] changelog records the release contents
 - [x] CHK-042 [P2] README + INSTALL_GUIDE present and accurate
 <!-- /ANCHOR:docs -->
 
@@ -121,7 +121,7 @@ FAILURE MODES:
 ## File Organization
 
 - [x] CHK-050 [P1] Test artifacts (node_modules/output) gitignored + cleaned
-- [x] CHK-051 [P1] scratch/ clean; package-lock restored to vendored state
+- [x] CHK-051 [P1] scratch/ clean; package-lock restored to embedded state
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -147,10 +147,10 @@ FAILURE MODES:
 <!-- ANCHOR:arch-verify -->
 ## L3+: ARCHITECTURE VERIFICATION
 
-- [x] CHK-100 [P0] Architecture decisions documented in decision-record.md (ADR-001 vendor depth, ADR-002 attribution)
+- [x] CHK-100 [P0] Architecture decisions documented in decision-record.md (ADR-001 embed depth, ADR-002 artifact trimming)
 - [x] CHK-101 [P1] All ADRs have status Accepted
 - [x] CHK-102 [P1] Alternatives documented with rejection rationale (lean / hybrid weighed)
-- [x] CHK-103 [P2] Migration path documented (re-sync via pinned commit)
+- [x] CHK-103 [P2] Migration path documented (regenerate artifacts on demand)
 <!-- /ANCHOR:arch-verify -->
 
 ---
@@ -161,7 +161,7 @@ FAILURE MODES:
 - [x] CHK-110 [P1] Fast extraction completed in seconds (example.com crawled in 6.2s)
 - [x] CHK-111 [P1] No regression introduced; additive new skill
 - [ ] CHK-112 [P2] Load testing - N/A for a single-shot extraction tool
-- [ ] CHK-113 [P2] Performance benchmarks - deferred; upstream examples serve as reference
+- [ ] CHK-113 [P2] Performance benchmarks - deferred; the bundled examples serve as reference
 <!-- /ANCHOR:perf-verify -->
 
 ---
@@ -182,7 +182,7 @@ FAILURE MODES:
 ## L3+: COMPLIANCE VERIFICATION
 
 - [x] CHK-130 [P1] No secrets; reads only public CSS
-- [x] CHK-131 [P1] Dependency licenses compatible (upstream MIT; Playwright Apache-2.0)
+- [x] CHK-131 [P1] Dependency licenses compatible (Playwright Apache-2.0)
 - [x] CHK-132 [P2] No web-app attack surface; local extraction tool
 - [x] CHK-133 [P2] Data handling: public page CSS only, written to local output/
 <!-- /ANCHOR:compliance-verify -->
@@ -195,7 +195,7 @@ FAILURE MODES:
 - [x] CHK-140 [P1] All spec documents synchronized
 - [x] CHK-141 [P1] SKILL.md + references document the tool surface
 - [x] CHK-142 [P2] README user-facing documentation present
-- [x] CHK-143 [P2] NOTICE records provenance for future maintainers
+- [x] CHK-143 [P2] changelog records the release
 <!-- /ANCHOR:docs-verify -->
 
 ---

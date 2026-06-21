@@ -9,18 +9,30 @@
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
+  "derived": {
     "trigger_phrases": [],
     "key_topics": [],
     "importance_tier": "important",
     "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md","checklist.md","decision-record.md"],
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
     "entities": [],
-    "causal_summary": "Create sk-design-md-generator skill by vendoring jasonhnd design-md-generator",
+    "causal_summary": "Create sk-design-md-generator skill with an embedded extraction pipeline",
     "created_at": "2026-06-21T07:44:10Z",
     "last_save_at": "2026-06-21T07:44:10Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md","checklist.md","decision-record.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ]
   }
 }

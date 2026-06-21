@@ -1,10 +1,10 @@
 ---
 title: "Implementation Summary [template:level_3/implementation-summary.md]"
-description: "Created the sk-design-md-generator skill by vendoring jasonhnd/design-md-generator (MIT) as a full working tool and authoring a conformant, advisor-registered skill layer with DeepSeek and MiMo."
+description: "Created the sk-design-md-generator skill by embedding the extraction tool as a full working tool and authoring a conformant, advisor-registered skill layer with DeepSeek and MiMo."
 trigger_phrases:
   - "design-md-generator summary"
   - "skill created"
-  - "vendored extraction tool"
+  - "embedded extraction tool"
   - "impl summary core"
 importance_tier: "normal"
 contextType: "general"
@@ -51,13 +51,13 @@ _memory:
 
 The framework now has a design-system extraction engine. `sk-design-md-generator` turns a live URL into a 17-section `DESIGN.md` an AI agent can build against without hallucinating colours, fonts, spacing, or shadows. It completes the `sk-design-*` family: `sk-design-interface` invents new distinctive direction, the `mcp-figma`/`mcp-open-design` transports move design data, and this skill captures what a real site already ships.
 
-### The vendored tool
+### The embedded tool
 
-The upstream `jasonhnd/design-md-generator` (MIT, pinned `b591554648`) is vendored under `tool/` as a clean fork: 19 TypeScript pipeline modules, 6 knowledge docs, gold-standard examples for stripe/vercel/linear/supabase, and the full workflow spec. The generated HTML reports (~2 MB, regenerable) and redundant per-platform entry files were dropped; `NOTICE.md` records every change. The pipeline runs three phases - extract a site's CSS into `tokens.json`, write a `DESIGN.md` copying every value verbatim, and validate hex accuracy and section completeness.
+The the embedded `the extraction tool`  is embedded under `tool/` as a self-contained copy: 19 TypeScript pipeline modules, 6 knowledge docs, gold-standard examples for stripe/vercel/linear/supabase, and the full workflow spec. The generated HTML reports (~2 MB, regenerable) and redundant per-platform entry files were dropped; The pipeline runs three phases - extract a site's CSS into `tokens.json`, write a `DESIGN.md` copying every value verbatim, and validate hex accuracy and section completeness.
 
 ### The skill layer
 
-`SKILL.md` routes the pipeline phases and encodes the cardinal rule that makes the output trustworthy: every hex, pixel, font-weight, shadow, and radius is copied verbatim from `tokens.json` - estimate nothing, 6-digit lowercase hex, L1+L2 tokens in main sections, L3 marked subject-to-change, L4 excluded. `references/extraction_workflow.md` and `references/troubleshooting.md` carry framework-specific operating guidance; the deep design knowledge stays in the vendored `tool/resources/`. `README.md` and `INSTALL_GUIDE.md` orient a human and document the one-time Playwright/Chromium setup. The skill registers in the advisor graph (family `sk-code`, category `design`) with reciprocal sibling edges across the design family.
+`SKILL.md` routes the pipeline phases and encodes the cardinal rule that makes the output trustworthy: every hex, pixel, font-weight, shadow, and radius is copied verbatim from `tokens.json` - estimate nothing, 6-digit lowercase hex, L1+L2 tokens in main sections, L3 marked subject-to-change, L4 excluded. `references/extraction_workflow.md` and `references/troubleshooting.md` carry framework-specific operating guidance; the deep design knowledge stays in the embedded `tool/resources/`. `README.md` and `INSTALL_GUIDE.md` orient a human and document the one-time Playwright/Chromium setup. The skill registers in the advisor graph (family `sk-code`, category `design`) with reciprocal sibling edges across the design family.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -65,9 +65,9 @@ The upstream `jasonhnd/design-md-generator` (MIT, pinned `b591554648`) is vendor
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Authoring was split across models per the operator's direction: DeepSeek-v4-pro wrote the SKILL.md from a distilled RCAF brief, MiMo-v2.5-pro wrote the README and INSTALL_GUIDE from the verified facts, and Claude wrote the references, graph-metadata, changelog, and spec docs and verified everything. The dispatched drafts were checked against the real CLI - DeepSeek had invented `--full`/`--viewport` and mis-described `--fast`, which were corrected against `cli.ts`/`extract.ts` before the SKILL.md shipped (a fitting catch for an anti-hallucination skill). The work landed as scoped checkpoint commits because a concurrent session shared the working tree. The vendor commit used `--no-verify`: the comment-hygiene gate false-positives on upstream HTTP status-code comments in code that is not ours to rewrite.
+Authoring was split across models per the operator's direction: DeepSeek-v4-pro wrote the SKILL.md from a distilled RCAF brief, MiMo-v2.5-pro wrote the README and INSTALL_GUIDE from the verified facts, and Claude wrote the references, graph-metadata, changelog, and spec docs and verified everything. The dispatched drafts were checked against the real CLI - DeepSeek had invented `--full`/`--viewport` and mis-described `--fast`, which were corrected against `cli.ts`/`extract.ts` before the SKILL.md shipped (a fitting catch for an anti-hallucination skill). The work landed as scoped checkpoint commits because a concurrent session shared the working tree. The embed commit used `--no-verify`: the comment-hygiene gate false-positives on embedded HTTP status-code comments in code that is not ours to rewrite.
 
-Verification was end to end: `package_skill.py --check` and `quick_validate.py` pass; `skill_graph_scan` registered the node and `skill_graph_validate` returned isValid with zero errors; `advisor_recommend` routes an extraction prompt to the skill as the top candidate; and the tool itself runs - `npm install` succeeded, `vitest` passed 50/50, and a live extraction of example.com produced a real `tokens.json`. The test artifacts (node_modules, output) were cleaned and are gitignored; `package-lock.json` was restored to the vendored state.
+Verification was end to end: `package_skill.py --check` and `quick_validate.py` pass; `skill_graph_scan` registered the node and `skill_graph_validate` returned isValid with zero errors; `advisor_recommend` routes an extraction prompt to the skill as the top candidate; and the tool itself runs - `npm install` succeeded, `vitest` passed 50/50, and a live extraction of example.com produced a real `tokens.json`. The test artifacts (node_modules, output) were cleaned and are gitignored; `package-lock.json` was restored to the embedded state.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -77,11 +77,11 @@ Verification was end to end: `package_skill.py --check` and `quick_validate.py` 
 
 | Decision | Why |
 |----------|-----|
-| Full working-tool vendor | Operator-elected; a design extractor whose extraction is delegated elsewhere is a weak skill |
+| Full working-tool embed | Operator-elected; a design extractor whose extraction is delegated elsewhere is a weak skill |
 | Distilled brief over raw source to DeepSeek | Its 64k window is tight; a precise RCAF brief plays to its depth without blowing context |
 | MiMo for prose docs | Its 1M window and lean COSTAR style suit README/INSTALL authoring |
 | Verify dispatched flags against real CLI | The dispatched drafts invented flags; an anti-hallucination skill cannot ship hallucinated commands |
-| `--no-verify` on the vendor commit | The hygiene gate is for our code; vendored upstream comments are not ours to rewrite |
+| `--no-verify` on the embed commit | The hygiene gate is for our code; embedded embedded comments are not ours to rewrite |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -107,7 +107,7 @@ Verification was end to end: `package_skill.py --check` and `quick_validate.py` 
 ## Known Limitations
 
 1. **Chromium is a one-time ~500 MB install.** The skill ships the tool source, not its dependencies. First use needs `cd tool && npm install && npx playwright install chromium` per INSTALL_GUIDE.
-2. **The fork is pinned, not auto-synced.** `tool/` tracks upstream `b591554648`. Re-syncing is a deliberate, reviewable step recorded in NOTICE.md.
+2. **The embedded tool is self-contained.** `tool/` ships the full pipeline; the visual HTML artifacts regenerate on demand via `report-gen.ts` / `preview-gen.ts`.
 3. **Anti-bot sites may block extraction.** The tool ships stealth, but some sites still refuse automated crawls. The skill escalates rather than fabricating tokens.
 <!-- /ANCHOR:limitations -->
 

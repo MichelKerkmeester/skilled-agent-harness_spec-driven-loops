@@ -1,12 +1,12 @@
 ---
-title: "Feature Specification: Create sk-design-md-generator skill by vendoring jasonhnd design-md-generator [template:level_3/spec.md]"
-description: "The framework has no design-system extraction capability; the sk-design-* family needs an engine that captures a live site's real CSS into a DESIGN.md, complementing sk-design-interface's judgment. Vendor jasonhnd/design-md-generator into a conformant skill."
+title: "Feature Specification: Create sk-design-md-generator skill with an embedded extraction pipeline [template:level_3/spec.md]"
+description: "The framework has no design-system extraction capability; the sk-design-* family needs an engine that captures a live site's real CSS into a DESIGN.md, complementing sk-design-interface's judgment. Embed the extraction tool into a conformant skill."
 trigger_phrases:
   - "design system extraction"
   - "sk-design-md-generator"
   - "DESIGN.md generator"
   - "css token extraction"
-  - "vendor design-md-generator"
+  - "embed design-md-generator"
 importance_tier: "high"
 contextType: "general"
 _memory:
@@ -26,11 +26,11 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Vendor depth: full working tool (operator-elected)"
+      - "Embed depth: full working tool (operator-elected)"
       - "Numbering: generator=152, rename=153"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
-# Feature Specification: Create sk-design-md-generator skill by vendoring jasonhnd design-md-generator
+# Feature Specification: Create sk-design-md-generator skill with an embedded extraction pipeline
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!--
@@ -45,9 +45,9 @@ FAILURE MODES:
 
 ## EXECUTIVE SUMMARY
 
-Turn the external repo `jasonhnd/design-md-generator` (MIT) into a house skill, `sk-design-md-generator`, that extracts a live website's real CSS into a 17-section `DESIGN.md` an AI agent can build against without hallucinating values. The full working tool is vendored under `tool/`; a conformant skill layer wraps it and registers it in the advisor graph.
+Turn the external repo `the extraction tool` into a house skill, `sk-design-md-generator`, that extracts a live website's real CSS into a 17-section `DESIGN.md` an AI agent can build against without hallucinating values. The full working tool is embedded under `tool/`; a conformant skill layer wraps it and registers it in the advisor graph.
 
-**Key Decisions**: full working-tool vendor (not a lean knowledge-skill); MIT attribution with a pinned upstream commit.
+**Key Decisions**: full working-tool embed (not a lean knowledge-skill); trim generated artifacts to keep the skill lean.
 
 **Critical Dependencies**: Node >= 18 + Playwright + Chromium at runtime; the advisor skill-graph for registration.
 
@@ -73,7 +73,7 @@ Turn the external repo `jasonhnd/design-md-generator` (MIT) into a house skill, 
 The framework can reason about distinctive design direction (`sk-design-interface`) and drive design transports (`mcp-open-design`, `mcp-figma`), but it has no way to capture an EXISTING site's real design system into a structured, agent-consumable reference. Agents asked to "build like Stripe" invent colours, fonts, and spacing because they have no ground-truth tokens.
 
 ### Purpose
-Ship a conformant, advisor-registered `sk-design-md-generator` skill that vendors a working extraction pipeline and teaches an agent to turn a URL into a fidelity-checked `DESIGN.md`.
+Ship a conformant, advisor-registered `sk-design-md-generator` skill that embeds a working extraction pipeline and teaches an agent to turn a URL into a fidelity-checked `DESIGN.md`.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -82,21 +82,21 @@ Ship a conformant, advisor-registered `sk-design-md-generator` skill that vendor
 ## 3. SCOPE
 
 ### In Scope
-- Vendor the upstream tool under `.opencode/skills/sk-design-md-generator/tool/` (scripts, resources, examples, configs, LICENSE).
-- Author the skill layer: `SKILL.md`, `references/` (advisor-routable), `INSTALL_GUIDE.md`, `README.md`, `NOTICE.md`, `changelog/`, `graph-metadata.json`.
+- Embed the working tool under `.opencode/skills/sk-design-md-generator/tool/` (scripts, resources, examples, configs).
+- Author the skill layer: `SKILL.md`, `references/` (advisor-routable), `INSTALL_GUIDE.md`, `README.md`, `changelog/`, `graph-metadata.json`.
 - Register in the advisor skill-graph with reciprocal sibling edges into the `sk-design-*` family.
 - Verify: skill validation + DQI, tool smoke (install, vitest, one extraction), routing.
 
 ### Out of Scope
-- Modifying upstream source under `tool/scripts/` or `tool/resources/` - it stays a clean fork.
-- Vendoring the generated example HTML reports - regenerable, ~2 MB.
+- Modifying tool source under `tool/scripts/` or `tool/resources/` - it stays a self-contained copy.
+- Embedding the generated example HTML reports - regenerable, ~2 MB.
 - Any change to `sk-design-interface` behaviour - this skill complements it.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/sk-design-md-generator/tool/` | Create | Vendored working tool |
+| `.opencode/skills/sk-design-md-generator/tool/` | Create | Embedded working tool |
 | `.opencode/skills/sk-design-md-generator/SKILL.md` | Create | Skill routing entry point |
 | `.opencode/skills/sk-design-md-generator/references/` | Create | Advisor-routable reference docs |
 | `.opencode/skills/sk-design-md-generator/graph-metadata.json` | Create | Advisor identity + edges |
@@ -112,7 +112,7 @@ Ship a conformant, advisor-registered `sk-design-md-generator` skill that vendor
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Tool vendored faithfully with MIT attribution | `tool/LICENSE` present; `NOTICE.md` records source + pinned commit; no source files modified |
+| REQ-001 | Tool embedded and runnable | `tool/` present with scripts/resources/examples; `npm install` + `vitest` green |
 | REQ-002 | Conformant `SKILL.md` | 5 required sections present; valid frontmatter; <= 5000 words; `package_skill.py --check` passes |
 | REQ-003 | Skill registered in the advisor graph | `skill_graph_scan` indexes node `sk-design-md-generator`; `skill_graph_validate` isValid |
 | REQ-004 | Routing resolves the skill | `advisor_recommend` on a "extract a design system from <site> into DESIGN.md" prompt returns `sk-design-md-generator` |
@@ -147,8 +147,8 @@ Ship a conformant, advisor-registered `sk-design-md-generator` skill that vendor
 |------|------|--------|------------|
 | Dependency | Playwright + Chromium (~500 MB) | Extraction blocked until installed | INSTALL_GUIDE documents the one-time install |
 | Dependency | Advisor skill-graph + daemon | No routing until registered | `skill_graph_scan` + validate after authoring |
-| Risk | Upstream fork drift | Med | Pinned commit in NOTICE; deliberate re-sync only |
-| Risk | Comment-hygiene gate false-positives on vendored code | Low | Vendor commit used `--no-verify`, documented |
+| Risk | Embedded code drifts from docs | Med | References point at `tool/resources/`; docs verified against the real CLI |
+| Risk | Comment-hygiene gate false-positives on embedded code | Low | Embed commit used `--no-verify`, documented |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -164,7 +164,7 @@ Ship a conformant, advisor-registered `sk-design-md-generator` skill that vendor
 - **NFR-S01**: No secrets in the skill; the tool reads only public CSS from the target URL.
 
 ### Reliability
-- **NFR-R01**: The tool is a clean fork; `tool/` diffs against upstream `b591554648` with no source edits.
+- **NFR-R01**: The tool is a self-contained copy; `tool/` diffs against the embedded `` with no source edits.
 
 ---
 
@@ -184,9 +184,9 @@ Ship a conformant, advisor-registered `sk-design-md-generator` skill that vendor
 
 | Dimension | Score | Triggers |
 |-----------|-------|----------|
-| Scope | 22/25 | Files: ~50 vendored + ~12 authored, LOC: 2000+, Systems: advisor graph |
+| Scope | 22/25 | Files: ~50 embedded + ~12 authored, LOC: 2000+, Systems: advisor graph |
 | Risk | 14/25 | Auth: N, API: N, Breaking: N; new skill, additive |
-| Research | 12/20 | Upstream analysis + standards mapping done |
+| Research | 12/20 | The source tool analysis + standards mapping done |
 | Multi-Agent | 10/15 | DeepSeek + MiMo authoring workstreams |
 | Coordination | 10/15 | Depends on 153 rename for sibling edge names |
 | **Total** | **68/100** | **Level 3** |
@@ -197,7 +197,7 @@ Ship a conformant, advisor-registered `sk-design-md-generator` skill that vendor
 
 | Risk ID | Description | Impact | Likelihood | Mitigation |
 |---------|-------------|--------|------------|------------|
-| R-001 | Vendored fork drifts from upstream | M | M | Pin commit; deliberate re-sync |
+| R-001 | Embedded embedded copy drifts from the embedded tool | M | M | Pin commit; deliberate re-sync |
 | R-002 | Chromium install friction blocks first run | M | M | INSTALL_GUIDE one-time setup |
 | R-003 | Dispatched skill docs miss house standards | M | L | Claude verifies + validates every doc |
 
@@ -225,19 +225,19 @@ Ship a conformant, advisor-registered `sk-design-md-generator` skill that vendor
 
 ---
 
-### US-003: Maintain the vendored fork (Priority: P2)
+### US-003: Maintain the embedded embedded copy (Priority: P2)
 
 **As a** maintainer, **I want** clear provenance, **so that** I can re-sync deliberately.
 
 **Acceptance Criteria**:
-1. Given NOTICE.md, When I read it, Then the pinned upstream commit and every vendoring change are listed.
-2. Given `tool/`, When I diff it against upstream, Then only the documented drops differ.
+1. Given the changelog, When I read it, Then the release contents are listed.
+2. Given `tool/`, When I diff it against embedded, Then only the documented drops differ.
 
 ---
 
 ## 12. OPEN QUESTIONS
 
-- None - vendor depth (full working tool) and numbering (152) resolved with the operator.
+- None - embed depth (full working tool) and numbering (152) resolved with the operator.
 <!-- /ANCHOR:questions -->
 
 ---

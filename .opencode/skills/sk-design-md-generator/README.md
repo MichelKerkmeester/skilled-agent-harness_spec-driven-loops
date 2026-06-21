@@ -199,7 +199,6 @@ A: This skill captures what exists on a live site. `sk-design-interface` invents
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, and references |
 | [`INSTALL_GUIDE.md`](./INSTALL_GUIDE.md) | Node.js, Playwright, Chromium setup and first-extraction walkthrough |
-| [`tool/README.md`](./tool/README.md) | Upstream tool README with CLI options, architecture, and output structure |
 | [`tool/resources/design-md-format.md`](./tool/resources/design-md-format.md) | The authoritative v2 DESIGN.md section specification (17 sections) |
 | [`tool/resources/writing-style-guide.md`](./tool/resources/writing-style-guide.md) | Voice, tone, and section-composition rules for DESIGN.md prose |
 | [Skills Library](../README.md) | The skill catalog and routing front door |

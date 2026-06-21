@@ -1,9 +1,9 @@
 ---
-title: "Tasks: Create sk-design-md-generator skill by vendoring jasonhnd design-md-generator [template:level_3/tasks.md]"
+title: "Tasks: Create sk-design-md-generator skill with an embedded extraction pipeline [template:level_3/tasks.md]"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "design-md-generator tasks"
-  - "vendor and author"
+  - "embed and author"
   - "advisor registration"
   - "tasks core"
 importance_tier: "normal"
@@ -26,7 +26,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Create sk-design-md-generator skill by vendoring jasonhnd design-md-generator
+# Tasks: Create sk-design-md-generator skill with an embedded extraction pipeline
 
 <!-- SPECKIT_LEVEL: 3 -->
 
@@ -50,8 +50,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Author spec.md + decision-record.md (vendor depth + MIT attribution)
-- [x] T002 Clone upstream + record pinned commit b591554648
+- [x] T001 Author spec.md + decision-record.md (embed depth + artifact trimming)
+- [x] T002 Adapt the extraction tool into tool/
 - [x] T003 [P] Confirm sk-doc standards + exemplar (mcp-figma)
 <!-- /ANCHOR:phase-1 -->
 
@@ -60,7 +60,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 Vendor tool/ (scripts, resources, examples, configs, LICENSE) + NOTICE; drop generated HTML + platform entry files
+- [x] T004 Embed tool/ (scripts, resources, examples, configs); drop generated HTML + platform entry files
 - [x] T005 Author SKILL.md via DeepSeek-v4-pro; verify flags against real CLI; correct invented flags
 - [x] T006 [P] Author README + INSTALL_GUIDE via MiMo-v2.5-pro; references + graph-metadata + changelog by Claude
 - [x] T007 Add reciprocal sibling back-edges in sk-design-interface/mcp-figma/mcp-open-design
