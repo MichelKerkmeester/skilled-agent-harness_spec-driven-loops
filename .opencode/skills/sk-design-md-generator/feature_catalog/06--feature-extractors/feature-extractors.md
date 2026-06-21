@@ -13,6 +13,8 @@ importance_tier: "normal"
 
 # Feature extractors (six detectors)
 
+<!-- sk-doc-template: skill_asset_feature_catalog -->
+
 ## 1. OVERVIEW
 
 Six per-feature detectors that run inline during the extraction phase, each targeting a specific design-system dimension. They enrich `tokens.json` with structured metadata that the write and validate phases consume. Each detector writes into its own section of the token schema and reports findings even when none are found: a detector that captures no data records the absence rather than fabricating values. The detectors are the source of truth for DESIGN.md sections that depend on conditional data: dark mode (section 2.5), accessibility (section 9), icons (section 12), motion (section 6.5), and framework markers in the file header.
@@ -53,22 +55,33 @@ Every detector that finds no data writes a minimal "not detected" record into it
 
 ## 3. SOURCE FILES
 
-- `tool/scripts/a11y-extract.ts` -- contrast-ratio calculator, focus-indicator capture, touch-target measurement, ARIA detection
-- `tool/scripts/dark-mode-detect.ts` -- media-query probe, class/attribute toggle detection, variable-diff recorder
-- `tool/scripts/framework-detect.ts` -- CSS framework class scanning, custom-variable analysis
-- `tool/scripts/icon-detect.ts` -- SVG inspection, library-signature matching, stroke-weight and grid-size capture
-- `tool/scripts/motion-extract.ts` -- transition/animation reading, easing-function capture, choreography detection, reduced-motion check
-- `tool/scripts/design-boundary-detect.ts` -- system-vs-content token classification, cross-page frequency analysis
+### Implementation
+
+| File | Layer | Role |
+|---|---|---|
+| `tool/scripts/a11y-extract.ts` | Script | Contrast-ratio calculator, focus-indicator capture, touch-target measurement, ARIA detection |
+| `tool/scripts/dark-mode-detect.ts` | Script | Media-query probe, class/attribute toggle detection, variable-diff recorder |
+| `tool/scripts/framework-detect.ts` | Script | CSS framework class scanning, custom-variable analysis |
+| `tool/scripts/icon-detect.ts` | Script | SVG inspection, library-signature matching, stroke-weight and grid-size capture |
+| `tool/scripts/motion-extract.ts` | Script | Transition/animation reading, easing-function capture, choreography detection, reduced-motion check |
+| `tool/scripts/design-boundary-detect.ts` | Script | System-vs-content token classification, cross-page frequency analysis |
+
+### Validation And Tests
+
+| File | Type | Role |
+|---|---|---|
+| `../../manual_testing_playbook/04--dark-mode/dark-mode-001.md` | Manual playbook | Dark-mode gate scenario — confirms section 2.5 appears only when a dark palette is detected and is never fabricated |
+| (no automated test) | Automated test | Covered by the manual playbook scenario |
 
 ---
 
 ## 4. SOURCE METADATA
 
-- Group: sk-design-md-generator
-- Catalog source: `feature_catalog.md`
-- Feature file: `06--feature-extractors/feature-extractors.md`
+- Group: FEATURE EXTRACTORS
+- Canonical catalog source: `feature_catalog.md`
+- Feature file path: `06--feature-extractors/feature-extractors.md`
 
 Related references:
-- [extract.md](../01--extract/extract.md) -- the extraction phase where these detectors run inline
-- [cluster-classify.md](../02--cluster-classify/cluster-classify.md) -- the stability classification that consumes design-boundary output
-- [write-design-md.md](../03--write-design-md/write-design-md.md) -- the write phase that gates sections on detector output (dark mode, a11y, icons, motion)
+- [extract.md](../01--extract/extract.md) — the extraction phase where these detectors run inline
+- [cluster-classify.md](../02--cluster-classify/cluster-classify.md) — the stability classification that consumes design-boundary output
+- [write-design-md.md](../03--write-design-md/write-design-md.md) — the write phase that gates sections on detector output (dark mode, a11y, icons, motion)

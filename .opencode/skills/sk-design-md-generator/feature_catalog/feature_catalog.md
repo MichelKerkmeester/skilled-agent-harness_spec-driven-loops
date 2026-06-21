@@ -40,14 +40,21 @@ The capability surface has one hard prerequisite and four phases. Everything dep
 
 ## 2. EXTRACT
 
-The entry point of the pipeline. Crawls a live URL, collects computed CSS values across five responsive viewports, and writes `tokens.json`. Every downstream phase depends on this phase completing cleanly. The extractor runs Playwright with Chromium, reads `getComputedStyle`, and tags each token with its source viewport and DOM context. The `--fast` flag controls crawl depth. Interaction capture (`--with-interaction`) records hover, focus, and active state styles.
+#### Description
 
-Key behaviors:
+Crawls a live URL across five viewports with Playwright, collects computed CSS values, runs per-feature detectors, and writes `tokens.json` — the entry point everything downstream depends on.
+
+#### Current Reality
+
 - Five viewports from mobile (375px) through wide desktop (1440px).
 - Computed color, typography, shadow, radius, spacing, and CSS variable collection.
 - Dark-mode palette detection via `prefers-color-scheme` media query and class/attribute toggles.
 - Per-feature detectors run inline during extraction (accessibility, framework, icons, motion).
 - Output written to `output/<domain>/tokens.json`.
+- The `--fast` flag controls crawl depth; `--with-interaction` captures hover, focus, and active state styles.
+- If Playwright cannot reach the URL or the page emits no measurable CSS, the extractor exits with an error.
+
+#### Source Files
 
 See [`01--extract/extract.md`](01--extract/extract.md) for the crawl model, extraction flags, and the tokens.json schema.
 
@@ -55,14 +62,20 @@ See [`01--extract/extract.md`](01--extract/extract.md) for the crawl model, extr
 
 ## 3. CLUSTER AND CLASSIFY
 
-Runs after extraction to transform raw color data into a stability-classified token set. Colors are clustered in the OKLCH color space into named roles, and each token receives an L1 through L4 stability classification that governs whether it appears in `DESIGN.md`. The classifier is deterministic; boundary tokens are assigned the higher class.
+#### Description
 
-Key behaviors:
-- OKLCH color space clustering groups visually similar colors into named roles.
-- L1 (permanent, brand-level) and L2 (system, component-level) tokens enter main DESIGN.md sections.
+Transforms raw color data from `tokens.json` into stability-classified tokens via OKLCH color-space clustering and L1-L4 classification, gating which tokens enter DESIGN.md.
+
+#### Current Reality
+
+- OKLCH color space clustering groups visually similar colors into named roles following the taxonomy in `tool/resources/color-role-taxonomy.md`.
+- L1 (permanent, brand-level) and L2 (system, component-level) tokens populate the main DESIGN.md sections.
 - L3 (campaign, temporary) tokens enter with a "Subject to change" annotation.
 - L4 (content, one-off, image-derived) tokens are excluded entirely.
-- Color role naming follows the taxonomy in `tool/resources/color-role-taxonomy.md`.
+- Boundary tokens are assigned the higher (more restrictive) class.
+- The classification is deterministic; token gating drives the write phase.
+
+#### Source Files
 
 See [`02--cluster-classify/cluster-classify.md`](02--cluster-classify/cluster-classify.md) for the OKLCH clustering algorithm, the stability-classification heuristic, and the boundary-disambiguation rule.
 
@@ -70,14 +83,20 @@ See [`02--cluster-classify/cluster-classify.md`](02--cluster-classify/cluster-cl
 
 ## 4. WRITE DESIGN.MD
 
-The highest-hallucination-risk phase. Produces the 17-section `DESIGN.md` by reading `tokens.json` and copying every hex, pixel, font-weight, shadow, radius, and spacing value verbatim. The cardinal fidelity rule forbids estimation, rounding, normalization, or invention. The writer loads the v2 format specification from `tool/resources/design-md-format.md` and the voice rules from `tool/resources/writing-style-guide.md` before composing.
+#### Description
 
-Key behaviors:
+Produces the 17-section `DESIGN.md` from `tokens.json` under the cardinal fidelity rule — every hex, pixel, font-weight, shadow, radius, and spacing value copied verbatim, with no estimation, rounding, or invention.
+
+#### Current Reality
+
 - Hex codes in 6-digit lowercase only (`#1a1a2e`, never `#1A1A2E`, `#333`, `rgb()`, or `hsl()`).
 - L1 and L2 tokens populate the main 17 sections. L3 tokens appear only in a "Subject to change" block. L4 tokens absent.
-- Dark-mode section included only when `tokens.json` contains a detected dark palette.
+- Dark-mode section appears only when `tokens.json` contains a detected dark palette with populated variable diffs.
 - Accessibility section drawn from a11y data in `tokens.json`.
 - The write-phase prompt template (`assets/design_md_prompt_template.md`) and cardinal rules card (`assets/cardinal_rules_card.md`) front-load the fidelity contract.
+- The writer loads the v2 section spec from `tool/resources/design-md-format.md` and voice rules from `tool/resources/writing-style-guide.md` before composing.
+
+#### Source Files
 
 See [`03--write-design-md/write-design-md.md`](03--write-design-md/write-design-md.md) for the cardinal fidelity rule, the 17-section contract, and the write-phase prompt template.
 
@@ -85,14 +104,20 @@ See [`03--write-design-md/write-design-md.md`](03--write-design-md/write-design-
 
 ## 5. VALIDATE
 
-Confirms that every hex code in `DESIGN.md` traces to a value in `tokens.json` and that all required v2 core sections are present and non-empty. This is the gating step before any completion claim: an unvalidated DESIGN.md is a draft. Validation is always run after writing and can also be run standalone on an existing DESIGN.md + tokens.json pair.
+#### Description
 
-Key behaviors:
-- Hex-accuracy check: cross-references every hex in DESIGN.md against `tokens.colorTokens[].hex` and `tokens.cssVariables[].value`.
-- Section-completeness check: confirms all 14 core sections, section 6.5 (Motion System), and sections 11 (State Matrix) and 12 (Iconography) are present.
-- Hex casing check: flags uppercase hex, 3-digit shortcuts, `rgb()`, and `hsl()` as format violations.
-- Phantom-color detection: flags hex values in DESIGN.md with no token source.
+Confirms every hex in DESIGN.md traces to `tokens.json`, all v2 core sections are present and non-empty, and no format violations exist — the gating step before any completion claim.
+
+#### Current Reality
+
+- Hex-accuracy check cross-references every hex in DESIGN.md against `tokens.colorTokens[].hex` and `tokens.cssVariables[].value`.
+- Section-completeness check confirms all 14 core sections, section 6.5 (Motion System), and sections 11 (State Matrix) and 12 (Iconography) are present.
+- Hex casing check flags uppercase hex, 3-digit shortcuts, `rgb()`, and `hsl()` as format violations.
+- Phantom-color detection flags hex values in DESIGN.md with no token source.
 - Score output with per-finding messages and a pass/fail verdict.
+- Four escalation conditions require human judgment rather than automated correction.
+
+#### Source Files
 
 See [`04--validate/validate.md`](04--validate/validate.md) for the validation rules, the score model, and the escalation triggers.
 
@@ -100,12 +125,18 @@ See [`04--validate/validate.md`](04--validate/validate.md) for the validation ru
 
 ## 6. REPORT AND PREVIEW
 
-Optional post-validation phase that renders visual artifacts from a DESIGN.md + tokens.json pair. Generates an HTML report mapping tokens to sections, a visual preview of the design system as rendered CSS, and a fidelity proof artifact. These outputs serve human review and team handoff.
+#### Description
 
-Key behaviors:
+Optional post-validation phase that renders visual artifacts — HTML report, CSS visual preview, and fidelity proof — from a DESIGN.md + tokens.json pair for human review and team handoff.
+
+#### Current Reality
+
 - `report-gen.ts` produces an HTML report with token-to-section provenance and occurrence counts.
 - `preview-gen.ts` renders a visual CSS preview of the design system colors, type, shadows, and spacing.
 - `proof.ts` takes a URL and tokens.json and produces a fidelity proof artifact comparing live extraction against the token set.
+- All three scripts write to a user-specified output directory as standalone browser-viewable files.
+
+#### Source Files
 
 See [`05--report-preview/report-preview.md`](05--report-preview/report-preview.md) for the report schema, preview rendering, and proof artifact format.
 
@@ -113,32 +144,20 @@ See [`05--report-preview/report-preview.md`](05--report-preview/report-preview.m
 
 ## 7. FEATURE EXTRACTORS
 
-Six per-feature detectors that run inline during the extraction phase, each targeting a specific design-system dimension. They enrich `tokens.json` with structured metadata that the write and validate phases consume. Every detector produces its own section of the token schema; a detector that finds no data records the absence rather than inventing values.
+#### Description
 
-Key behaviors:
+Six per-feature detectors that run inline during extraction, each targeting a specific design-system dimension — accessibility, dark mode, framework, icons, motion, and design boundary — enriching `tokens.json` with structured metadata.
+
+#### Current Reality
+
 - **Accessibility** (`a11y-extract.ts`): captures contrast ratios, focus indicator styles, touch-target sizes, ARIA patterns.
 - **Dark mode** (`dark-mode-detect.ts`): detects `prefers-color-scheme` media queries, class/attribute dark toggles, and records variable diffs between light and dark.
 - **Framework** (`framework-detect.ts`): identifies CSS framework markers (Tailwind, Bootstrap, custom CSS variables).
 - **Icons** (`icon-detect.ts`): detects icon library signatures (Heroicons, Lucide, Font Awesome, custom SVG), stroke weights, and grid sizes.
 - **Motion** (`motion-extract.ts`): captures transition durations, easing functions, and enter/exit choreography.
 - **Design boundary** (`design-boundary-detect.ts`): distinguishes design-system tokens from content-level values to aid L3/L4 boundary classification.
+- Every detector that finds no data records the absence rather than inventing values.
+
+#### Source Files
 
 See [`06--feature-extractors/feature-extractors.md`](06--feature-extractors/feature-extractors.md) for each detector's extraction method, the token-schema fields it populates, and the absence-reporting rule.
-
----
-
-## 8. CAPABILITY COUNT SUMMARY
-
-Each capability area maps to exactly one per-feature file in its numbered category folder.
-
-| Section | Area | Per-feature file |
-|---|---|---|
-| 2 | Extract | `01--extract/extract.md` |
-| 3 | Cluster and classify | `02--cluster-classify/cluster-classify.md` |
-| 4 | Write DESIGN.md | `03--write-design-md/write-design-md.md` |
-| 5 | Validate | `04--validate/validate.md` |
-| 6 | Report and preview | `05--report-preview/report-preview.md` |
-| 7 | Feature extractors | `06--feature-extractors/feature-extractors.md` |
-| **Total** | **6 capability areas** | **6 per-feature files** |
-
-Total: 6 capability areas = 6 per-feature files

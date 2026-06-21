@@ -12,6 +12,8 @@ importance_tier: "normal"
 
 # Cluster and classify (cluster.ts / types.ts)
 
+<!-- sk-doc-template: skill_asset_feature_catalog -->
+
 ## 1. OVERVIEW
 
 Transforms the raw color data from `tokens.json` into a stability-gated token set ready for DESIGN.md composition. Colors are clustered in the OKLCH color space into named roles (brand, semantic, surface, border, text, interactive). Each token then receives an L1 through L4 stability classification that governs whether and where it appears in the final document. This is the gating stage between raw extraction and publication: colors without a classification cannot reach DESIGN.md.
@@ -49,18 +51,28 @@ The classification drives the write-phase gating:
 
 ## 3. SOURCE FILES
 
-- `tool/scripts/cluster.ts` -- OKLCH color space clustering engine, role assignment, stability heuristic
-- `tool/scripts/types.ts` -- token type definitions, L1-L4 classification enum, interface contracts
+### Implementation
+
+| File | Layer | Role |
+|---|---|---|
+| `tool/scripts/cluster.ts` | Script | OKLCH color space clustering engine, role assignment, stability heuristic |
+| `tool/scripts/types.ts` | Shared | Token type definitions, L1-L4 classification enum, interface contracts |
+
+### Validation And Tests
+
+| File | Type | Role |
+|---|---|---|
+| `tool/scripts/__tests__/cluster.test.ts` | Automated test | Color parsing, px-value extraction, and cluster classification unit tests |
 
 ---
 
 ## 4. SOURCE METADATA
 
-- Group: sk-design-md-generator
-- Catalog source: `feature_catalog.md`
-- Feature file: `02--cluster-classify/cluster-classify.md`
+- Group: CLUSTER AND CLASSIFY
+- Canonical catalog source: `feature_catalog.md`
+- Feature file path: `02--cluster-classify/cluster-classify.md`
 
 Related references:
-- [tool/resources/color-role-taxonomy.md](../../tool/resources/color-role-taxonomy.md) -- color role naming conventions and hierarchy
-- [extract.md](../01--extract/extract.md) -- the extraction phase that produces tokens consumed by the cluster
-- [write-design-md.md](../03--write-design-md/write-design-md.md) -- the write phase that applies stability gating
+- [tool/resources/color-role-taxonomy.md](../../tool/resources/color-role-taxonomy.md) — color role naming conventions and hierarchy
+- [extract.md](../01--extract/extract.md) — the extraction phase that produces tokens consumed by the cluster
+- [write-design-md.md](../03--write-design-md/write-design-md.md) — the write phase that applies stability gating

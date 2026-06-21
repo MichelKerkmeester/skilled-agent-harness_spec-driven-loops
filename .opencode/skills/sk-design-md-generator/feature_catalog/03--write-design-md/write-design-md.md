@@ -12,6 +12,8 @@ importance_tier: "normal"
 
 # Write DESIGN.md (Phase 2)
 
+<!-- sk-doc-template: skill_asset_feature_catalog -->
+
 ## 1. OVERVIEW
 
 Produces the 17-section `DESIGN.md` that AI agents consume as a hallucination-proof design-system reference. This is the highest-risk phase: an agent reading `tokens.json` must transcribe every value without estimating, rounding, normalizing, or inventing. The cardinal fidelity rule is the single non-negotiable contract of the skill. The writer loads the v2 section specification from `tool/resources/design-md-format.md` and the voice/tone rules from `tool/resources/writing-style-guide.md` before composing. The write-phase prompt template (`assets/design_md_prompt_template.md`) and the cardinal rules card (`assets/cardinal_rules_card.md`) front-load the fidelity contract.
@@ -56,20 +58,31 @@ The cardinal rules card (`assets/cardinal_rules_card.md`) is a one-page checklis
 
 ## 3. SOURCE FILES
 
-- `assets/design_md_prompt_template.md` -- write-phase prompt encoding the cardinal rules and the 17-section contract
-- `assets/cardinal_rules_card.md` -- one-page fidelity checklist for pre-validate self-check
-- `tool/resources/design-md-format.md` -- authoritative v2 DESIGN.md section specification
+### Implementation
+
+| File | Layer | Role |
+|---|---|---|
+| `assets/design_md_prompt_template.md` | Script | Write-phase prompt encoding the cardinal rules and the 17-section contract |
+| `assets/cardinal_rules_card.md` | Script | One-page fidelity checklist for pre-validate self-check |
+| `tool/resources/design-md-format.md` | Shared | Authoritative v2 DESIGN.md section specification |
+
+### Validation And Tests
+
+| File | Type | Role |
+|---|---|---|
+| `../../manual_testing_playbook/03--fidelity/fidelity-001.md` | Manual playbook | Cardinal verbatim-value rule enforcement — confirms every value is copied verbatim with no estimation |
+| (no automated test) | Automated test | Covered by the manual playbook scenario |
 
 ---
 
 ## 4. SOURCE METADATA
 
-- Group: sk-design-md-generator
-- Catalog source: `feature_catalog.md`
-- Feature file: `03--write-design-md/write-design-md.md`
+- Group: WRITE DESIGN.MD
+- Canonical catalog source: `feature_catalog.md`
+- Feature file path: `03--write-design-md/write-design-md.md`
 
 Related references:
-- [tool/resources/writing-style-guide.md](../../tool/resources/writing-style-guide.md) -- voice, tone, tense, and section-composition rules
-- [tool/resources/anti-patterns.md](../../tool/resources/anti-patterns.md) -- common DESIGN.md authoring mistakes
-- [cluster-classify.md](../02--cluster-classify/cluster-classify.md) -- the stability classes that gate token inclusion
-- [validate.md](../04--validate/validate.md) -- the hex-and-section validator that confirms fidelity
+- [tool/resources/writing-style-guide.md](../../tool/resources/writing-style-guide.md) — voice, tone, tense, and section-composition rules
+- [tool/resources/anti-patterns.md](../../tool/resources/anti-patterns.md) — common DESIGN.md authoring mistakes
+- [cluster-classify.md](../02--cluster-classify/cluster-classify.md) — the stability classes that gate token inclusion
+- [validate.md](../04--validate/validate.md) — the hex-and-section validator that confirms fidelity

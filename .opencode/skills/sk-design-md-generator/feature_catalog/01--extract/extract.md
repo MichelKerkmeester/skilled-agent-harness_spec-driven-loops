@@ -12,6 +12,8 @@ importance_tier: "normal"
 
 # Extract (extract.ts / crawl.ts)
 
+<!-- sk-doc-template: skill_asset_feature_catalog -->
+
 ## 1. OVERVIEW
 
 Crawls a live URL across five responsive viewports, collects every computed CSS value the page actually renders, and writes `tokens.json`. This is the entry point of the three-phase pipeline: everything downstream depends on a clean, full extraction. The extractor runs Playwright with Chromium, reads `getComputedStyle` on sampled elements, and tags each token with its source viewport, DOM selector path, and pixel context. Six per-feature detectors run inline during the crawl to enrich the token set with accessibility data, dark-mode information, framework markers, icon-system signatures, motion tokens, and design-boundary classifications.
@@ -60,20 +62,32 @@ If Playwright cannot reach the URL, JavaScript rendering times out, or the page 
 
 ## 3. SOURCE FILES
 
-- `tool/scripts/extract.ts` -- orchestrator entry point, dispatch flags, phase sequencing
-- `tool/scripts/crawl.ts` -- Playwright crawl engine, viewport sampling, page spidering
-- `tool/scripts/dom-collector.ts` -- DOM tree walker, element selection, computed-style readout
-- `tool/scripts/css-analyzer.ts` -- computed CSS parsing, value extraction, token assignment
+### Implementation
+
+| File | Layer | Role |
+|---|---|---|
+| `tool/scripts/extract.ts` | Script | Orchestrator entry point, dispatch flags, phase sequencing |
+| `tool/scripts/crawl.ts` | Script | Playwright crawl engine, viewport sampling, page spidering |
+| `tool/scripts/dom-collector.ts` | Script | DOM tree walker, element selection, computed-style readout |
+| `tool/scripts/css-analyzer.ts` | Script | Computed CSS parsing, value extraction, token assignment |
+
+### Validation And Tests
+
+| File | Type | Role |
+|---|---|---|
+| `../../manual_testing_playbook/01--extract/extract-001.md` | Manual playbook | Live extraction end-to-end scenario — confirms extract.ts produces a valid, non-empty tokens.json |
+| `../../manual_testing_playbook/06--escalation/escalate-001.md` | Manual playbook | Anti-bot crawl escalation scenario — confirms blocked crawls never fabricate tokens |
+| (no automated test) | Automated test | Covered by the manual playbook scenarios |
 
 ---
 
 ## 4. SOURCE METADATA
 
-- Group: sk-design-md-generator
-- Catalog source: `feature_catalog.md`
-- Feature file: `01--extract/extract.md`
+- Group: EXTRACT
+- Canonical catalog source: `feature_catalog.md`
+- Feature file path: `01--extract/extract.md`
 
 Related references:
-- [references/extraction_workflow.md](../../references/extraction_workflow.md) -- the three-phase operational guide
-- [references/troubleshooting.md](../../references/troubleshooting.md) -- failure modes and fixes
-- [cluster-classify.md](../02--cluster-classify/cluster-classify.md) -- the clustering and stability-classification phase that consumes extract output
+- [references/extraction_workflow.md](../../references/extraction_workflow.md) — the three-phase operational guide
+- [references/troubleshooting.md](../../references/troubleshooting.md) — failure modes and fixes
+- [cluster-classify.md](../02--cluster-classify/cluster-classify.md) — the clustering and stability-classification phase that consumes extract output

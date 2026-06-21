@@ -12,6 +12,8 @@ importance_tier: "normal"
 
 # Report and preview (report-gen.ts / preview-gen.ts / proof.ts)
 
+<!-- sk-doc-template: skill_asset_feature_catalog -->
+
 ## 1. OVERVIEW
 
 Renders visual artifacts from a validated DESIGN.md + tokens.json pair. Three scripts cover distinct review needs: a token-to-section HTML report for provenance auditing, a CSS visual preview that renders the design system as styled HTML, and a fidelity proof that compares live extraction against the token set. These outputs serve human review, team handoff, and stakeholder sign-off. All three scripts take `tokens.json` as their first argument and write to an output directory.
@@ -59,18 +61,29 @@ All three scripts write to a user-specified output directory. They do not silent
 
 ## 3. SOURCE FILES
 
-- `tool/scripts/report-gen.ts` -- token-to-section HTML report generator
-- `tool/scripts/preview-gen.ts` -- visual CSS preview renderer
-- `tool/scripts/proof.ts` -- fidelity proof artifact generator
+### Implementation
+
+| File | Layer | Role |
+|---|---|---|
+| `tool/scripts/report-gen.ts` | Script | Token-to-section HTML report generator |
+| `tool/scripts/preview-gen.ts` | Script | Visual CSS preview renderer |
+| `tool/scripts/proof.ts` | Script | Fidelity proof artifact generator |
+
+### Validation And Tests
+
+| File | Type | Role |
+|---|---|---|
+| `../../manual_testing_playbook/05--setup/setup-001.md` | Manual playbook | Tool readiness scenario — confirms npm install and Playwright Chromium setup prepare the report-generation environment |
+| (no automated test) | Automated test | Covered by the manual playbook scenario |
 
 ---
 
 ## 4. SOURCE METADATA
 
-- Group: sk-design-md-generator
-- Catalog source: `feature_catalog.md`
-- Feature file: `05--report-preview/report-preview.md`
+- Group: REPORT AND PREVIEW
+- Canonical catalog source: `feature_catalog.md`
+- Feature file path: `05--report-preview/report-preview.md`
 
 Related references:
-- [validate.md](../04--validate/validate.md) -- the validation phase that precedes report generation
-- [references/extraction_workflow.md](../../references/extraction_workflow.md) -- the full pipeline including report as Phase 4
+- [validate.md](../04--validate/validate.md) — the validation phase that precedes report generation
+- [references/extraction_workflow.md](../../references/extraction_workflow.md) — the full pipeline including report as Phase 4

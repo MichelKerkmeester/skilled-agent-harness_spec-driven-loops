@@ -313,18 +313,29 @@ Prompt: `"Extract the design system from this site: https://www.cloudflare.com"`
 
 ---
 
-## 13. SCENARIO CROSS-REFERENCE INDEX
+## 13. AUTOMATED TEST CROSS-REFERENCE
 
-Each scenario maps to exactly one per-scenario file in a numbered category folder at the playbook root. Keep the per-scenario filenames stable once published.
+| Test Module | Coverage | Playbook Overlap |
+|---|---|---|
+| `tool/scripts/__tests__/cluster.test.ts` | OKLCH clustering and L1-L4 stability classification | FIDELITY-001 |
+| `tool/scripts/__tests__/validate.test.ts` | Hex-accuracy and v2 core-section validation | VALIDATE-001 |
 
-| ID | Scenario | Category | Feature File |
-|---|---|---|---|
-| EXTRACT-001 | Live extraction produces valid tokens.json | Extract | [01--extract/extract-001.md](01--extract/extract-001.md) |
-| VALIDATE-001 | Validator passes on faithful DESIGN.md and flags phantom hexes | Validate | [02--validate/validate-001.md](02--validate/validate-001.md) |
-| FIDELITY-001 | Cardinal verbatim-value rule enforced | Fidelity | [03--fidelity/fidelity-001.md](03--fidelity/fidelity-001.md) |
-| DARKMODE-001 | Dark-mode section appears only when detected | Dark Mode | [04--dark-mode/dark-mode-001.md](04--dark-mode/dark-mode-001.md) |
-| SETUP-001 | Tool readiness from a fresh checkout | Setup | [05--setup/setup-001.md](05--setup/setup-001.md) |
-| ESCALATE-001 | Anti-bot site causes clear escalation, never fabricates tokens | Escalation | [06--escalation/escalate-001.md](06--escalation/escalate-001.md) |
+The vitest suite (50 tests) covers the deterministic clustering and validation logic. The manual scenarios cover the live-crawl, fidelity, dark-mode gate, setup, and escalation behavior that automated tests cannot exercise end to end.
+
+---
+
+## 14. FEATURE CATALOG CROSS-REFERENCE INDEX
+
+Each scenario maps to exactly one per-scenario file in a numbered category folder at the playbook root, and to its capability area in the feature catalog. Keep the per-scenario filenames stable once published.
+
+| ID | Scenario | Category | Feature File | Catalog File |
+|---|---|---|---|---|
+| EXTRACT-001 | Live extraction produces valid tokens.json | Extract | [01--extract/extract-001.md](01--extract/extract-001.md) | [../feature_catalog/01--extract/extract.md](../feature_catalog/01--extract/extract.md) |
+| VALIDATE-001 | Validator passes on faithful DESIGN.md and flags phantom hexes | Validate | [02--validate/validate-001.md](02--validate/validate-001.md) | [../feature_catalog/04--validate/validate.md](../feature_catalog/04--validate/validate.md) |
+| FIDELITY-001 | Cardinal verbatim-value rule enforced | Fidelity | [03--fidelity/fidelity-001.md](03--fidelity/fidelity-001.md) | [../feature_catalog/03--write-design-md/write-design-md.md](../feature_catalog/03--write-design-md/write-design-md.md) |
+| DARKMODE-001 | Dark-mode section appears only when detected | Dark Mode | [04--dark-mode/dark-mode-001.md](04--dark-mode/dark-mode-001.md) | [../feature_catalog/06--feature-extractors/feature-extractors.md](../feature_catalog/06--feature-extractors/feature-extractors.md) |
+| SETUP-001 | Tool readiness from a fresh checkout | Setup | [05--setup/setup-001.md](05--setup/setup-001.md) | [../feature_catalog/01--extract/extract.md](../feature_catalog/01--extract/extract.md) |
+| ESCALATE-001 | Anti-bot site causes clear escalation, never fabricates tokens | Escalation | [06--escalation/escalate-001.md](06--escalation/escalate-001.md) | [../feature_catalog/01--extract/extract.md](../feature_catalog/01--extract/extract.md) |
 
 This index lists 6 scenario IDs and ships 6 per-scenario files. The count of per-scenario files MUST equal the count of IDs in this table (6), so keep them in sync as scenarios are added or revised.
 
