@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "028-memory-search-intelligence/005-spec-data-quality/026-shared-safe-fix-engine"
     last_updated_at: "2026-06-21T00:00:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Authored shared safe-fix engine spec from research synthesis"
-    next_safe_action: "Author plan.md and tasks.md for the engine and registry build"
+    recent_action: "Resolved F001 scorer import via the mcp_server/api public barrel"
+    next_safe_action: "Build the engine per the resolved import route once implementation begins"
     blockers: []
     key_files: []
     session_dedup:
@@ -75,7 +75,7 @@ One pure engine and one frozen registry, so the front doors share a single sourc
 - A self-guarding allow-list: granting a detector `safe` requires editing the frozen list, and that edit is itself a `guarded`-class change that re-checks the two structural invariants.
 - A new `dq-engine.ts`, the pure core, exposing `runDetectors(target, opts)` that returns `{issues, applied, skipped}` and never writes in report mode.
 - An apply mode that executes `fix()` only for detectors whose `fixClass` is in `opts.allowFixClass`, which is always `['safe']`, behind a content_hash idempotency guard and atomic writes.
-- Verbatim reuse of the shipped pure scorer `computeMemoryQualityScore` and the non-mutating reviewer `reviewPostSaveQuality`, with no scoring logic of the engine's own.
+- Verbatim reuse of the shipped pure scorer `computeMemoryQualityScore`, reached through the public `@spec-kit/mcp-server/api` barrel because it lives across the enforced `scripts` to `mcp_server/handlers` import boundary, and the non-mutating reviewer `reviewPostSaveQuality`, reached by a legal intra-`scripts` import, with no scoring logic of the engine's own.
 - The two structural invariants encoded mechanically. INV-1, a detector that touches an authored-doc body is never `safe`. INV-2, a retrieval-class change is never promoted without the C2 prod-mode read.
 
 ### Out of Scope
@@ -93,6 +93,7 @@ One pure engine and one frozen registry, so the front doors share a single sourc
 |-----------|-------------|-------------|
 | `.opencode/skills/system-spec-kit/scripts/dq/detector-registry.ts` | Create | Single source of truth: per-detector `{id, surface, detect, fixClass, fix}`, deny-by-default, frozen self-guarding allow-list |
 | `.opencode/skills/system-spec-kit/scripts/dq/dq-engine.ts` | Create | Pure `runDetectors(target, opts)` returning `{issues, applied, skipped}`, report vs safe-apply, content_hash idempotency, atomic writes, reuses shipped scorers |
+| `.opencode/skills/system-spec-kit/mcp_server/api/index.ts` | Modify | Re-export the pure `computeMemoryQualityScore` through the `@public` barrel so `scripts/dq/` reaches it via `@spec-kit/mcp-server/api` without crossing the enforced `scripts` to `mcp_server/handlers` import boundary |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -116,7 +117,7 @@ One pure engine and one frozen registry, so the front doors share a single sourc
 | REQ-005 | While applying, the system SHALL guard each fix with a content_hash idempotency check so a second apply on a fixed target is a no-op. | Two consecutive apply runs on the same target produce an empty diff on the second run. |
 | REQ-006 | While applying, the system SHALL write through atomic writes so a partial or interrupted apply never leaves a torn file. | An apply interrupted mid-write leaves either the original or the fully-written file, never a partial. |
 | REQ-007 | Granting a detector `safe` SHALL be a `guarded`-class registry change that re-checks INV-1 and INV-2. | An allow-list edit that promotes a detector to `safe` runs the two invariant checks before the promotion is accepted. |
-| REQ-008 | The engine SHALL reuse the shipped scorers verbatim and add no scoring logic of its own. | The engine imports `computeMemoryQualityScore` and `reviewPostSaveQuality` and defines no parallel scorer. |
+| REQ-008 | The engine SHALL reuse the shipped scorers verbatim and add no scoring logic of its own, reaching `computeMemoryQualityScore` through the public `mcp_server/api` barrel and `reviewPostSaveQuality` through a legal intra-`scripts` import. | The engine imports `computeMemoryQualityScore` from `@spec-kit/mcp-server/api` and `reviewPostSaveQuality` from `scripts/core/post-save-review.ts`, defines no parallel scorer and passes `check-no-mcp-lib-imports`. |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -135,7 +136,7 @@ One pure engine and one frozen registry, so the front doors share a single sourc
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Shipped scorers `computeMemoryQualityScore` and `reviewPostSaveQuality` | The engine reuses them verbatim, a parallel scorer would risk divergent verdicts | Import the shipped pure scorer and non-mutating reviewer, define none of the engine's own |
+| Dependency | Shipped scorers `computeMemoryQualityScore` and `reviewPostSaveQuality` | The engine reuses them verbatim, a parallel scorer would risk divergent verdicts | Reach the pure scorer through the public `mcp_server/api` barrel and the reviewer by a legal intra-`scripts` import, define none of the engine's own |
 | Risk | A detector touching an authored body slips in as `safe` | A safe-class fix would amputate or rewrite a git-tracked authored artifact | INV-1 made mechanical, the body-mutating class is never grantable `safe`, granting `safe` is a guarded change that re-runs the invariant |
 | Risk | A retrieval-class detector promoted without a prod-mode read | The 028 saturation mistake, an eval-mode win that hides a prod-mode regression | INV-2 routes every retrieval-class promotion through the 015-c2 prod@3 gate |
 | Risk | The engine drifts into the DESTRUCTIVE `runQualityLoop` budget-trim | The 8000-char substring trim silently amputates docs larger than the budget | The budget-trim stays quarantined to memory-save, the engine never calls `runQualityLoop` |
@@ -206,7 +207,7 @@ The exact seams, grounded to `research.md` sections 4 and 5 and verified to file
 - `detector-registry.ts` is the single source of truth. Each entry declares `{id, surface, detect, fixClass, fix}` where `fixClass` is one of `safe`, `risky`, or `none`, deny-by-default. Adding a detector is one entry. Granting it `safe` requires editing the frozen allow-list, and that edit is itself a `guarded`-class change that re-checks the two structural invariants, so the registry guards itself with the same invariants it enforces.
 - The frozen `fixClass` allow-list, consolidated from `research.md` section 4. Safe class: `desc.shape` regenerate from frontmatter, `enum.tier_status_ctype` case-normalize, `triggers.propagate` additive subset copy capped at 12, `hvr.style` length-neutral fence-aware swap, `anchor.unclosed` append closer. Risky and suggest-only: `desc.generic`, `graph.child_aggregation`, `req.ears_coverage`, the edge-a recall-gap enrich-triggers action. None and advisory: `budget.overlength`, the edge-b below-floor row. The single invariant across all of it: a detector that touches an authored-doc body is never `safe`.
 - `dq-engine.ts` is the pure core. `runDetectors(target, opts)` returns `{issues, applied, skipped}`, never writes in report mode, and in apply mode executes only `fix()` for detectors whose `fixClass` is in `opts.allowFixClass`, which is always `['safe']`, with the content_hash idempotency guard and atomic writes. It reuses the shipped scorers verbatim and adds no scoring logic of its own.
-- The reused scorers are the PURE `computeMemoryQualityScore` and the non-mutating `reviewPostSaveQuality`, both already shipped and wired into the live save workflow (`quality-loop.ts:392,747`, `post-save-review.ts:573,1041,1077`). The engine NEVER calls the destructive `runQualityLoop` auto-fix, whose `attemptAutoFix` trims content by substring to an 8000-char budget.
+- The reused scorers are the PURE `computeMemoryQualityScore` and the non-mutating `reviewPostSaveQuality`, both already shipped and wired into the live save workflow. They live in different trees and are reached by different routes. `computeMemoryQualityScore` lives at `mcp_server/handlers/quality-loop.ts:392,747`, across the enforced `scripts` to `mcp_server/handlers` import boundary that `scripts/evals/import-policy-rules.ts` defines and `scripts/evals/check-no-mcp-lib-imports.ts` enforces, so the engine reaches it through the `@public` `mcp_server/api/index.ts` barrel (alias `@spec-kit/mcp-server/api`) where it is added as a re-export, never by a relative `../../mcp_server/handlers/...` path the eval gate would reject. `reviewPostSaveQuality` lives at `scripts/core/post-save-review.ts:573,1041,1077`, a legal intra-`scripts` import from `scripts/core` to `scripts/dq`, so the engine imports it directly. Both are reused verbatim with no scoring logic of the engine's own. The engine NEVER calls the destructive `runQualityLoop` auto-fix, whose `attemptAutoFix` trims content by substring to an 8000-char budget.
 - The two structural invariants from `research.md` section 5. INV-1, a fix touching an authored body is never `safe`, made mechanical by a `computeAuthoredDocQuality` wrapper that throws on full-auto and by quarantining the budget-trim to memory-save. INV-2, a retrieval-class change is never promoted without a prod@3 read through the C2 gate.
 
 ## 8. DEPENDENCIES AND VERDICT
@@ -219,6 +220,6 @@ The exact seams, grounded to `research.md` sections 4 and 5 and verified to file
 
 ## 10. OPEN QUESTIONS
 
-- Where does the `dq` script directory live precisely, alongside the existing validation scripts under `scripts/validation/` or in a new `scripts/dq/`, given the front doors that import it.
+- RESOLVED. The `dq` script directory location is settled at `.opencode/skills/system-spec-kit/scripts/dq/`. The load-bearing decision that location forces is how the engine reaches `computeMemoryQualityScore`, which lives across the enforced `scripts` to `mcp_server/handlers` import boundary. Resolved per the deep-review remediation by re-exporting the pure scorer through the `@public` `mcp_server/api` barrel and importing it via `@spec-kit/mcp-server/api`, which keeps the engine in `scripts/dq/` and the boundary intact.
 - Does the content_hash idempotency guard reuse the stored `content_hash` cache key or compute a fresh per-target hash at apply time, to stay inside the existing trust boundary without a schema change.
 <!-- /ANCHOR:questions -->

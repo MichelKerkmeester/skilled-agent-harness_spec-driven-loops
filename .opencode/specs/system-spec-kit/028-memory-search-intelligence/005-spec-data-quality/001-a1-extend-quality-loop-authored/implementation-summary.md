@@ -59,7 +59,7 @@ Nothing has shipped yet. This phase is PLANNED and scaffolded only. The spec, pl
 
 ### Planned: reach the shipped quality machinery into the authored surface
 
-The plan reuses the shipped pure scorer `computeMemoryQualityScore` and the non-mutating reviewer `reviewPostSaveQuality`, never the destructive `runQualityLoop`. H1 will score the two metadata JSONs at the `atomicWriteJson` seam report-only. H2 will extend the existing reviewer call in `workflow.ts` to the authored spec-doc artifacts. H3 will add a default-off warn `CONTENT_QUALITY` rule to `validate.sh`. When this work lands, the authored corpus that feeds retrieval will earn a quality score and a gate without any body mutation.
+The plan reuses the shipped pure scorer `computeMemoryQualityScore` and the non-mutating reviewer `reviewPostSaveQuality`, never the destructive `runQualityLoop`. H1 will score BOTH metadata JSONs report-only at their real write seams: `graph-metadata.json` at the `atomicWriteJson` seam in `generate-context.ts` and `description.json` at the `savePerFolderDescription` seam reached through `runWorkflow` in `workflow.ts`. H2 will extend the existing reviewer call in `workflow.ts` to the authored spec-doc artifacts. H3 will add a default-off warn `CONTENT_QUALITY` rule to `validate.sh`. When this work lands, the authored corpus that feeds retrieval will earn a quality score and a gate without any body mutation.
 
 ### Files Changed
 

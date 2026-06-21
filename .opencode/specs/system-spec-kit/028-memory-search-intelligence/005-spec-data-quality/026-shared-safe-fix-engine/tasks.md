@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "028-memory-search-intelligence/005-spec-data-quality/026-shared-safe-fix-engine"
     last_updated_at: "2026-06-21T00:00:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Authored task breakdown for the engine build"
-    next_safe_action: "Author checklist for the engine build"
+    recent_action: "Added the deep-review F001 import-boundary gate tasks and renumbered the task list"
+    next_safe_action: "Build the engine per the resolved import route once implementation begins"
     blockers: []
     key_files: []
     session_dedup:
@@ -51,9 +51,10 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Resolve the dq script directory location alongside the existing validation scripts (.opencode/skills/system-spec-kit/scripts/dq/)
-- [ ] T002 Confirm the shipped scorers are importable (quality-loop.ts computeMemoryQualityScore, post-save-review.ts reviewPostSaveQuality)
-- [ ] T003 [P] Stand up a dirty scratch fixture with a mixed safe, risky and none defect set
+- [ ] T001 Add computeMemoryQualityScore to the mcp_server/api public barrel and import it in dq-engine.ts via @spec-kit/mcp-server/api, directory settled at scripts/dq/ (.opencode/skills/system-spec-kit/mcp_server/api/index.ts)
+- [ ] T002 Confirm the shipped scorers are importable, computeMemoryQualityScore through the public barrel (mcp_server/handlers/quality-loop.ts:392,747) and reviewPostSaveQuality by a direct intra-scripts import (scripts/core/post-save-review.ts:573)
+- [ ] T003 Verify the dq-engine.ts import of computeMemoryQualityScore passes check-no-mcp-lib-imports (.opencode/skills/system-spec-kit/scripts/evals/check-no-mcp-lib-imports.ts)
+- [ ] T004 [P] Stand up a dirty scratch fixture with a mixed safe, risky and none defect set
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -61,11 +62,11 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Build the single-source-of-truth registry with per-detector {id, surface, detect, fixClass, fix}, deny-by-default (.opencode/skills/system-spec-kit/scripts/dq/detector-registry.ts)
-- [ ] T005 Seed the frozen safe-class allow-list (desc.shape, enum.tier_status_ctype, triggers.propagate, hvr.style, anchor.unclosed) (.opencode/skills/system-spec-kit/scripts/dq/detector-registry.ts)
-- [ ] T006 Build the pure runDetectors returning {issues, applied, skipped}, report mode writes nothing (.opencode/skills/system-spec-kit/scripts/dq/dq-engine.ts)
-- [ ] T007 Add the apply path running fix() only for opts.allowFixClass detectors behind content_hash idempotency and atomic writes (.opencode/skills/system-spec-kit/scripts/dq/dq-engine.ts)
-- [ ] T008 Encode INV-1 and INV-2 mechanically and make the allow-list edit a guarded-class change that re-checks them (.opencode/skills/system-spec-kit/scripts/dq/detector-registry.ts)
+- [ ] T005 Build the single-source-of-truth registry with per-detector {id, surface, detect, fixClass, fix}, deny-by-default (.opencode/skills/system-spec-kit/scripts/dq/detector-registry.ts)
+- [ ] T006 Seed the frozen safe-class allow-list (desc.shape, enum.tier_status_ctype, triggers.propagate, hvr.style, anchor.unclosed) (.opencode/skills/system-spec-kit/scripts/dq/detector-registry.ts)
+- [ ] T007 Build the pure runDetectors returning {issues, applied, skipped}, report mode writes nothing (.opencode/skills/system-spec-kit/scripts/dq/dq-engine.ts)
+- [ ] T008 Add the apply path running fix() only for opts.allowFixClass detectors behind content_hash idempotency and atomic writes (.opencode/skills/system-spec-kit/scripts/dq/dq-engine.ts)
+- [ ] T009 Encode INV-1 and INV-2 mechanically and make the allow-list edit a guarded-class change that re-checks them (.opencode/skills/system-spec-kit/scripts/dq/detector-registry.ts)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -73,9 +74,10 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T009 Report run over a dirty fixture returns populated issues, an empty applied set and a clean working tree
-- [ ] T010 Apply run with allowFixClass ['safe'] mutates only safe targets and records risky and none in skipped, plus edge cases (unrecognized surface, empty allowFixClass, detect throw, fix throw, scorer signature drift)
-- [ ] T011 Update documentation (spec/plan/tasks/checklist)
+- [ ] T010 Report run over a dirty fixture returns populated issues, an empty applied set and a clean working tree
+- [ ] T011 Apply run with allowFixClass ['safe'] mutates only safe targets and records risky and none in skipped, plus edge cases (unrecognized surface, empty allowFixClass, detect throw, fix throw, scorer signature drift)
+- [ ] T012 Run check-no-mcp-lib-imports against the new scripts/dq/ files and confirm zero violations (.opencode/skills/system-spec-kit/scripts/evals/check-no-mcp-lib-imports.ts)
+- [ ] T013 Update documentation (spec/plan/tasks/checklist)
 <!-- /ANCHOR:phase-3 -->
 
 ---

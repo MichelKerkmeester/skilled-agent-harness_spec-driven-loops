@@ -1,0 +1,100 @@
+{
+  "sessionId": "fanout-review-1782055955337-zaecgs",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "NO-GO count arithmetic (10 Tier-D + 8 novel = 18) reconciles only under a loose reading of 'non-GO and conditional'",
+      "file": "spec.md",
+      "line": 83,
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Stale harness path in spec frontmatter key_files: scripts/eval/ vs actual scripts/evals/run-eval-v2.mjs",
+      "file": "spec.md",
+      "line": 23,
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "transitions": [
+        { "iteration": 3, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "computeAuthoredDocQuality forward-referenced in present tense; symbol not shipped (owned by sibling A1/026)",
+      "file": "spec.md",
+      "line": 81,
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "transitions": [
+        { "iteration": 3, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "research/research.md citations unresolvable from the phase folder (file lives in parent 005 track root; vantage unstated)",
+      "file": "spec.md",
+      "line": 66,
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "transitions": [
+        { "iteration": 3, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    { "findingId": "F001", "severity": "P2", "iterations": [1, 5] },
+    { "findingId": "F002", "severity": "P2", "iterations": [3, 5] },
+    { "findingId": "F003", "severity": "P2", "iterations": [3, 5] },
+    { "findingId": "F004", "severity": "P2", "iterations": [3, 5] }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    { "findingId": "F001", "severity": "P2" },
+    { "findingId": "F002", "severity": "P2" },
+    { "findingId": "F003", "severity": "P2" },
+    { "findingId": "F004", "severity": "P2" }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 4
+  },
+  "openFindingsCount": 4,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.0,
+  "graphConvergenceScore": 1.0,
+  "graphDecision": "STOP_ALLOWED",
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

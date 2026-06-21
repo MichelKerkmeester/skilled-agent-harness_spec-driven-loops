@@ -1,0 +1,66 @@
+{
+  "mode": "review",
+  "sessionId": "fanout-review-1782055946319-8qzc54",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "finalSeverity": "P1",
+      "category": "spec_code",
+      "finding_class": "cross-consumer",
+      "file": "plan.md:101",
+      "content_hash": "a1f0c7d2",
+      "firstSeenIteration": 1,
+      "evidence": [
+        "spec.md:94-95",
+        "spec.md:119",
+        "plan.md:101",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:392",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/quality-loop.ts:747",
+        ".opencode/skills/system-spec-kit/scripts/evals/import-policy-rules.ts",
+        ".opencode/skills/system-spec-kit/scripts/evals/check-no-mcp-lib-imports.ts",
+        ".opencode/skills/system-spec-kit/mcp_server/api/index.ts"
+      ],
+      "summary": "Mandated verbatim reuse of computeMemoryQualityScore from a scripts/dq/ engine violates the enforced scripts->mcp_server/handlers import boundary; the symbol is not re-exported through mcp_server/api/."
+    },
+    {
+      "findingId": "F002",
+      "severity": "P2",
+      "finalSeverity": "P2",
+      "category": "spec_code",
+      "finding_class": "instance-only",
+      "file": "plan.md:101-102",
+      "content_hash": "b2e1d8a3",
+      "firstSeenIteration": 1,
+      "evidence": ["plan.md:101-102", "spec.md:209"],
+      "summary": "Seam citations omit directories; the two scorers live in different trees (mcp_server/handlers vs scripts/core)."
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "finalSeverity": "P2",
+      "category": "internal-consistency",
+      "finding_class": "instance-only",
+      "file": "spec.md:222",
+      "content_hash": "c3a9f4b1",
+      "firstSeenIteration": 2,
+      "evidence": ["spec.md:222", "spec.md:94-95", "tasks.md:54"],
+      "summary": "OPEN QUESTION #1 (dq directory location) is already decided in the same spec's Files-to-Change table and tasks.md."
+    }
+  ],
+  "resolvedFindings": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true,
+    "count": 4,
+    "total": 4
+  },
+  "findingsBySeverity": { "P0": 0, "P1": 1, "P2": 2 },
+  "convergenceScore": 0.86,
+  "verdict": "CONDITIONAL",
+  "hasAdvisories": true,
+  "releaseReadinessState": "converged"
+}

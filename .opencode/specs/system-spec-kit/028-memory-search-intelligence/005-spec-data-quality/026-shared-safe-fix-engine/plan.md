@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "028-memory-search-intelligence/005-spec-data-quality/026-shared-safe-fix-engine"
     last_updated_at: "2026-06-21T00:00:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Authored plan for the safe-fix engine build"
-    next_safe_action: "Author tasks and checklist for the engine build"
+    recent_action: "Recorded the F001 import-route decision (Option A, api barrel)"
+    next_safe_action: "Build the engine per the resolved import route once implementation begins"
     blockers: []
     key_files: []
     session_dedup:
@@ -53,7 +53,7 @@ FAILURE MODES:
 | **Testing** | vitest for the pure runner, a dirty scratch fixture for the report and apply paths |
 
 ### Overview
-The engine is two new files under `scripts/dq/`. `detector-registry.ts` is the single source of truth where each entry declares `{id, surface, detect, fixClass, fix}` and `fixClass` is one of `safe`, `risky` or `none`, deny-by-default. `dq-engine.ts` exposes a pure `runDetectors(target, opts)` that returns `{issues, applied, skipped}`, writes nothing in report mode and in apply mode runs `fix()` only for detectors whose `fixClass` is in `opts.allowFixClass`. It reuses the shipped scorers verbatim and adds none of its own.
+The engine is two new files under `scripts/dq/`, plus a one-line re-export added to the `mcp_server/api` public barrel so the engine can reach `computeMemoryQualityScore` legally. `detector-registry.ts` is the single source of truth where each entry declares `{id, surface, detect, fixClass, fix}` and `fixClass` is one of `safe`, `risky` or `none`, deny-by-default. `dq-engine.ts` exposes a pure `runDetectors(target, opts)` that returns `{issues, applied, skipped}`, writes nothing in report mode and in apply mode runs `fix()` only for detectors whose `fixClass` is in `opts.allowFixClass`. It reuses the shipped scorers verbatim and adds none of its own.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -80,6 +80,9 @@ The engine is two new files under `scripts/dq/`. `detector-registry.ts` is the s
 ### Pattern
 One pure core plus one frozen self-guarding registry, no new scorer and no new store.
 
+### Decision: scorer import route
+The engine stays under `scripts/dq/` and reaches the cross-tree scorer `computeMemoryQualityScore` through the `@public` `mcp_server/api` barrel (Option A of the deep-review remediation, alias `@spec-kit/mcp-server/api`), so the enforced `scripts` to `mcp_server/handlers` import boundary stays intact. `reviewPostSaveQuality` stays a direct intra-`scripts` import from `scripts/core`. The rejected alternatives were a time-boxed `check-no-mcp-lib-imports` allowlist exception (carries an expiry obligation) and relocating the engine under `mcp_server/` (would force A1, B1 and B2 to restate their import story).
+
 ### Key Components
 - **detector-registry.ts**: The single source of truth. Each entry declares `{id, surface, detect, fixClass, fix}`, deny-by-default, and the frozen safe-class allow-list is part of the same file so the registry guards itself with the invariants it enforces.
 - **dq-engine.ts**: The pure core. `runDetectors(target, opts)` folds the detector issues and returns `{issues, applied, skipped}`, writes nothing in report mode, and in apply mode runs `fix()` only for detectors whose `fixClass` is in `opts.allowFixClass`.
@@ -98,8 +101,9 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `computeMemoryQualityScore` (quality-loop.ts) | The shipped pure scorer | Not a consumer, reused verbatim | grep the import in `dq-engine.ts`, reuse pinned at `quality-loop.ts:392,747` |
-| `reviewPostSaveQuality` (post-save-review.ts) | The shipped non-mutating reviewer | Not a consumer, reused verbatim | grep the import, reuse pinned at `post-save-review.ts:573,1041,1077` |
+| `computeMemoryQualityScore` (`mcp_server/handlers/quality-loop.ts:392,747`) | The shipped pure scorer, across the enforced `scripts` to `mcp_server/handlers` boundary | Reused verbatim, reached through the `@public` `mcp_server/api` barrel, never by a relative handlers path | grep `dq-engine.ts` imports it from `@spec-kit/mcp-server/api`, `check-no-mcp-lib-imports` passes |
+| `reviewPostSaveQuality` (`scripts/core/post-save-review.ts:573,1041,1077`) | The shipped non-mutating reviewer | Reused verbatim by a legal intra-`scripts` import from `scripts/core` to `scripts/dq` | grep the import, reuse pinned at `post-save-review.ts:573,1041,1077` |
+| `mcp_server/api/index.ts` | The `@public` barrel for `scripts/` consumers | Add a re-export of `computeMemoryQualityScore` | grep the new export line, `dq-engine.ts` imports it via `@spec-kit/mcp-server/api` |
 | `runQualityLoop` `attemptAutoFix` | The destructive 8000-char substring trim | Excluded, the engine never calls it | grep confirms no `runQualityLoop` call site in `dq-engine.ts` |
 | 015-c2-prodmode-recall-gate | The prod@3 recall gate INV-2 points at | Not built here, INV-2 routes retrieval promotions through it | grep the INV-2 guard references the C2 gate, not a fresh scorer |
 
@@ -116,8 +120,9 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Resolve the `scripts/dq/` directory location alongside the existing validation scripts (open question in spec.md)
-- [ ] Confirm the shipped scorers are importable, `computeMemoryQualityScore` and `reviewPostSaveQuality`
+- [ ] Add `computeMemoryQualityScore` to the `mcp_server/api` public barrel and import it in `dq-engine.ts` via `@spec-kit/mcp-server/api` (directory settled at `scripts/dq/`)
+- [ ] Confirm the shipped scorers are importable, `computeMemoryQualityScore` through the public barrel and `reviewPostSaveQuality` by a direct intra-`scripts` import
+- [ ] Verify the `dq-engine.ts` import of `computeMemoryQualityScore` passes `check-no-mcp-lib-imports`
 - [ ] Stand up a dirty scratch fixture with a mixed safe, risky and none defect set
 
 ### Phase 2: Core Implementation
@@ -131,6 +136,7 @@ Required inventories:
 - [ ] Report run over a dirty fixture returns populated issues with an empty applied set and a clean working tree
 - [ ] Apply run with `allowFixClass ['safe']` mutates only safe targets and records risky and none in `skipped`
 - [ ] Edge cases handled (unrecognized surface, empty `allowFixClass`, detect throw, fix throw, scorer signature drift)
+- [ ] Run `node scripts/evals/check-no-mcp-lib-imports.ts` (or its dist build) against the new `scripts/dq/` files and confirm zero violations
 - [ ] Documentation updated (spec/plan/tasks/checklist)
 <!-- /ANCHOR:phases -->
 

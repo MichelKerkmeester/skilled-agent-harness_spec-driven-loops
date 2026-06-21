@@ -53,9 +53,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm the five inviolable edges and the seventeen-stage order (`research/research.md:104-118`)
-- [ ] T002 Confirm the Stage-0 census numbers against the live spec root (`research/research.md`, live spec root)
-- [ ] T003 [P] Confirm the eighteen NO-GO items across both research tables (`research/research.md:55-66`, `research/research.md:83-85`)
+- [ ] T001 Confirm the five inviolable edges and the seventeen-stage order (`../research/research.md:104-118`)
+- [ ] T002 Confirm the Stage-0 census numbers against the live spec root (`../research/research.md`, live spec root)
+- [ ] T003 [P] Confirm the eighteen NO-GO items across both research tables (`../research/research.md:55-66`, `../research/research.md:78-85`)
 <!-- /ANCHOR:phase-1 -->
 
 ---

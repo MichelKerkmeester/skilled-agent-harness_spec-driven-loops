@@ -15,7 +15,7 @@ _memory:
     last_updated_at: "2026-06-21T00:00:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Authored PLANNED task breakdown for H1 H2 H3"
-    next_safe_action: "Start T004 H1 score-and-report at the seam"
+    next_safe_action: "Start T004 H1a score graph-metadata.json at the atomicWriteJson seam"
     blockers: []
     key_files:
       - "spec.md"
@@ -54,7 +54,7 @@ _memory:
 ## Phase 1: Setup
 
 - [ ] T001 Confirm the pure scorer and reviewer exports are importable (`quality-loop.ts`, `post-save-review.ts`)
-- [ ] T002 Confirm the atomicWriteJson seam and reviewer call site line up with the spec seams (`generate-context.ts`, `workflow.ts`)
+- [ ] T002 Confirm BOTH metadata-JSON write seams line up with the spec: `graph-metadata.json` at the atomicWriteJson seam (`generate-context.ts`) and `description.json` at the savePerFolderDescription seam (`workflow.ts`), plus the reviewer call site (`workflow.ts`)
 - [ ] T003 [P] Confirm the warn-rule registry contract next to the shape rules (`validator-registry.json`)
 <!-- /ANCHOR:phase-1 -->
 
@@ -63,12 +63,13 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 H1 score the two metadata JSONs at the atomicWriteJson seam report-only (`scripts/memory/generate-context.ts`)
-- [ ] T005 H1 assert byte-identity so the written JSON body is unchanged (`scripts/memory/generate-context.ts`)
-- [ ] T006 H2 extend the reviewPostSaveQuality call to the authored spec-doc artifacts (`scripts/core/workflow.ts`)
-- [ ] T007 H3 add the CONTENT_QUALITY rule body default-off and warn (`scripts/validation/content-quality.ts`)
-- [ ] T008 H3 register the rule next to the shape rules at severity warn (`scripts/lib/validator-registry.json`)
-- [ ] T009 Add a grep guard that no new path reaches runQualityLoop or attemptAutoFix (`scripts`)
+- [ ] T004 H1a score `graph-metadata.json` at the atomicWriteJson seam (`:587`) report-only (`scripts/memory/generate-context.ts`)
+- [ ] T005 H1b score `description.json` at the savePerFolderDescription seam (`:1683`, `:1720`, via runWorkflow) report-only (`scripts/core/workflow.ts`)
+- [ ] T006 H1 serialize each payload deterministically into the scorer content argument and assert byte-identity of both written JSON bodies (`scripts/memory/generate-context.ts`, `scripts/core/workflow.ts`)
+- [ ] T007 H2 extend the reviewPostSaveQuality call to the authored spec-doc artifacts (`scripts/core/workflow.ts`)
+- [ ] T008 H3 add the CONTENT_QUALITY rule body default-off and warn (`scripts/validation/content-quality.ts`)
+- [ ] T009 H3 register the rule next to the shape rules at severity warn (`scripts/lib/validator-registry.json`)
+- [ ] T010 Add a grep guard that no new path reaches runQualityLoop or attemptAutoFix (`scripts`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -76,9 +77,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T010 Run the byte-identity check on the two metadata JSONs
-- [ ] T011 Run CONTENT_QUALITY against the legacy corpus and confirm a warning with exit 0
-- [ ] T012 Update spec, plan, and this task list to reflect the shipped state
+- [ ] T011 Run the byte-identity check on BOTH metadata JSONs at both write seams
+- [ ] T012 Run CONTENT_QUALITY against the legacy corpus and confirm a warning with exit 0
+- [ ] T013 Update spec, plan, and this task list to reflect the shipped state
 <!-- /ANCHOR:phase-3 -->
 
 ---

@@ -1,0 +1,13 @@
+Review loop complete. All canonical artifacts written within the bound `artifact_dir` (nothing outside it touched).
+
+**Summary** — fan-out lineage `review`, target `001-a1-extend-quality-loop-authored` (PLANNED scaffold):
+
+- **Verdict: CONDITIONAL** · P0=0, P1=1, P2=2 · converged at iteration 4 of 6.
+- **F001 (P1, traceability)** — The headline defect: spec/plan claim "the two metadata JSONs are written by `atomicWriteJson` at `generate-context.ts:398`" (`spec.md:61,73`, `plan.md:106`), but `atomicWriteJson` is called exactly once there — `:587` for `graph-metadata.json`. `description.json` has zero write references in that file; it flows through the imported `runWorkflow`. REQ-001's singular acceptance criterion (`spec.md:107`) also contradicts the plural scope. The H1 seam-to-requirement mapping needs a spec amendment before build.
+- **F002 (P2, correctness)** — scorer input shape unspecified (object vs `computeMemoryQualityScore(content:string,…)`).
+- **F003 (P2, maintainability)** — citations are source/dist-relative + unanchored; `tasks.md` T004/T005 encode the single-seam framing.
+- 6 of 7 load-bearing citations verified byte-exact; the destructive-loop hazard analysis (8000-char `substring` trim, `quality-loop.ts:465-467`) is accurate; security posture is clean (report-only, fail-open on malformed JSON).
+
+Artifacts: config, JSONL state, findings-registry, strategy, dashboard, 4 iteration files (each ending with the canonical `Review verdict:` line), and the 9-section `review-report.md`. No resource-map present → coverage gate skipped.
+
+FANOUT_LINEAGE_COMPLETE:review

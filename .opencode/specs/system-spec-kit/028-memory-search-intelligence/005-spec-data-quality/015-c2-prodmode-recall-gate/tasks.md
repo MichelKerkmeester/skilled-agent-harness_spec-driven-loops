@@ -55,9 +55,10 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm the prod lens, `meanCompleteRecallProfile`, and `MEASURABILITY_CLASSES` are reachable for export without touching the lens bodies (`.opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-eval-v2.mjs`)
-- [ ] T002 Add the narrow export for `buildSearchLenses`, `meanCompleteRecallProfile`, and `MEASURABILITY_CLASSES` so the gate consumes the prod lens and classes (`.opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-eval-v2.mjs`)
-- [ ] T003 [P] Enumerate the measurability classes the gold set must cover
+- [ ] T001 Verify the existing export at `run-eval-v2.mjs:361` covers `buildSearchLenses`, `meanCompleteRecallProfile`, and `MEASURABILITY_CLASSES`, with no lens-body edit (`.opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-eval-v2.mjs`)
+- [ ] T002 Confirm the gate reuses the line-361 export and the harness gains no second `export {}` (`.opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-eval-v2.mjs`)
+- [ ] T003 Define the gold-set ingestion path, either extend the harness ground-truth source (`GROUND_TRUTH_QUERIES`/`GROUND_TRUTH_RELEVANCES` in `dist/lib/eval/ground-truth-data.js`) or build a gate-side loader producing `relevancesByQuery` (`.opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-spec-recall-gate.mjs`)
+- [ ] T004 [P] Enumerate the measurability classes the gold set must cover
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -65,10 +66,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Author the multi-target gold set with one relevance set per query across the measurability classes and no single-target query (`.opencode/skills/system-spec-kit/mcp_server/scripts/evals/spec-corpus-golden.json`)
-- [ ] T005 Build the gate reading only the prod completeRecall@3 column, with PROMOTION mode, REGRESSION mode, and a recall-verdict exit code distinct from the line 357 crash code (`.opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-spec-recall-gate.mjs`)
-- [ ] T006 Refuse an eval-lens input and reject a gold set carrying an empty relevance set at load (`.opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-spec-recall-gate.mjs`)
-- [ ] T007 Write the first baseline from a non-saturating prod run, with per-class and overall completeRecall@3 plus a generated-at stamp and source DB path (`.opencode/skills/system-spec-kit/mcp_server/scripts/evals/spec-recall-baseline.json`)
+- [ ] T005 Author the multi-target gold set with one relevance set per query across the measurability classes and no single-target query (`.opencode/skills/system-spec-kit/mcp_server/scripts/evals/spec-corpus-golden.json`)
+- [ ] T006 Build the gate reading only the prod completeRecall@3 column, with PROMOTION mode, REGRESSION mode, and a recall-verdict exit code distinct from the line 357 crash code (`.opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-spec-recall-gate.mjs`)
+- [ ] T007 Refuse an eval-lens input and reject a gold set carrying an empty relevance set at load (`.opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-spec-recall-gate.mjs`)
+- [ ] T008 Write the first baseline from a non-saturating prod run, with per-class and overall completeRecall@3 plus a generated-at stamp and source DB path (`.opencode/skills/system-spec-kit/mcp_server/scripts/evals/spec-recall-baseline.json`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -76,8 +77,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Confirm a degraded scratch prod profile fails REGRESSION mode with the recall-verdict exit code and a measured prod rise passes PROMOTION mode while an unchanged profile does not
-- [ ] T009 Confirm the gold set has no single-target query, every query carries a class tag, and a missing baseline seeds a first baseline rather than scoring as complete
+- [ ] T009 Confirm a degraded scratch prod profile fails REGRESSION mode with the recall-verdict exit code and a measured prod rise passes PROMOTION mode while an unchanged profile does not
+- [ ] T010 Confirm the gold set has no single-target query, every query carries a class tag, and a missing baseline seeds a first baseline rather than scoring as complete
 <!-- /ANCHOR:phase-3 -->
 
 ---

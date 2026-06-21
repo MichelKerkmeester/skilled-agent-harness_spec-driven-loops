@@ -15,7 +15,7 @@ _memory:
     last_updated_at: "2026-06-21T00:00:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Authored PLANNED plan for the H1 H2 H3 seams"
-    next_safe_action: "Build H1 score-and-report at the atomicWriteJson seam"
+    next_safe_action: "Build H1a graph-metadata at atomicWriteJson, then H1b description at savePerFolderDescription"
     blockers: []
     key_files:
       - "spec.md"
@@ -56,7 +56,7 @@ FAILURE MODES:
 | **Testing** | vitest unit checks plus a byte-identity check on the JSONs |
 
 ### Overview
-This phase reaches the shipped quality machinery into the authored write surface through three additive seams. H1 scores the two metadata JSONs at the `atomicWriteJson` seam in `generate-context.ts` report-only. H2 extends the non-mutating `reviewPostSaveQuality` call already wired in `workflow.ts` to cover the authored spec-doc artifacts. H3 adds a default-off warn `CONTENT_QUALITY` rule to `validate.sh`. No new scorer is written and no body is mutated.
+This phase reaches the shipped quality machinery into the authored write surface through three additive seams. H1 scores BOTH metadata JSONs at their real write seams report-only: `graph-metadata.json` at the `atomicWriteJson` seam in `generate-context.ts` (`:587`) and `description.json` at the `savePerFolderDescription` seam reached through `runWorkflow` in `workflow.ts` (`:1683`, `:1720`). H2 extends the non-mutating `reviewPostSaveQuality` call already wired in `workflow.ts` (`:1854`, a distinct call site from the H1b write seam) to cover the authored spec-doc artifacts. H3 adds a default-off warn `CONTENT_QUALITY` rule to `validate.sh`. No new scorer is written and no body is mutated.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -84,12 +84,12 @@ This phase reaches the shipped quality machinery into the authored write surface
 Reuse-first additive seams over the shipped quality core. The on-write report-only front door sits ahead of the later B1 sweep and B2 doctor front doors.
 
 ### Key Components
-- **H1 metadata score**: at the `atomicWriteJson` seam (`generate-context.ts:398`) call the pure `computeMemoryQualityScore` on the payload and report the score, never write a body field.
+- **H1 metadata score**: score BOTH metadata JSONs report-only at their real seams. H1a scores `graph-metadata.json` at the `atomicWriteJson` seam (defined `generate-context.ts:398`, sole call `:587`). H1b scores `description.json` at the `savePerFolderDescription` seam reached through `runWorkflow` in `workflow.ts` (`:1683`, `:1720`). For each, serialize the metadata object deterministically (matching the written `JSON.stringify(value, null, 2)` body) into the scorer `content` argument and pass the object as the `metadata` argument, then call the pure `computeMemoryQualityScore` and report the score, never writing a body field.
 - **H2 reviewer extension**: extend the `reviewPostSaveQuality` call already wired at `workflow.ts:1854` so the authored spec-doc save artifacts are reviewed alongside the memory artifacts, report-only and non-blocking.
 - **H3 validate rule**: a new `scripts/validation/content-quality.ts` rule body registered in `validator-registry.json` next to the existing shape rules at severity `warn`, default-off.
 
 ### Data Flow
-A save composes the metadata payload, H1 scores it before the atomic write and reports the score, and the bytes written stay identical to the pre-scoring payload. The authored spec-doc artifacts flow through the existing reviewer wiring under H2. A separate `validate.sh` run exercises the H3 warn rule against the corpus.
+A save composes each metadata payload, H1 scores it before its own write — the `atomicWriteJson` write for `graph-metadata.json` and the `savePerFolderDescription` write for `description.json` — and reports the score, and the bytes written stay identical to the pre-scoring payload for both JSONs. The authored spec-doc artifacts flow through the existing reviewer wiring under H2. A separate `validate.sh` run exercises the H3 warn rule against the corpus.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -103,13 +103,14 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 |---------|--------------|--------|--------------|
 | `computeMemoryQualityScore` (`quality-loop.ts:392`, export `:747`) | The shipped pure scorer used on memory saves | Import and reuse verbatim | grep the import is the pure export and not `runQualityLoop` |
 | `reviewPostSaveQuality` (`post-save-review.ts:573`) | The shipped non-mutating reviewer | Extend its `workflow.ts` call to authored artifacts | grep the call site at `workflow.ts:1854` covers spec-doc artifacts |
-| `atomicWriteJson` seam (`generate-context.ts:398`) | Writes the two metadata JSONs | Score the payload before the write, no body change | byte-identity diff of the written JSON against the pre-scoring payload |
+| `atomicWriteJson` seam (def `generate-context.ts:398`, sole call `:587`) | Writes `graph-metadata.json` | Score the serialized payload before the write, no body change | byte-identity diff of the written `graph-metadata.json` against the pre-scoring payload |
+| `savePerFolderDescription` seam (`workflow.ts:1683,1720`, via `runWorkflow`) | Writes `description.json` | Score the serialized payload before the write, no body change | byte-identity diff of the written `description.json` against the pre-scoring payload |
 | `validator-registry.json` shape rules | Register validate.sh rules | Add `CONTENT_QUALITY` at severity `warn` default-off | run validate.sh against the legacy corpus and confirm exit 0 |
 | `runQualityLoop` / `attemptAutoFix` (`quality-loop.ts:582`) | Destructive auto-fix that trims to an 8000-char budget | Not a consumer, never reached | grep proves no new path imports or calls it |
 
 Required inventories:
 - Same-class producers: `rg -n 'computeMemoryQualityScore|reviewPostSaveQuality|runQualityLoop|attemptAutoFix' .opencode/skills/system-spec-kit`.
-- Consumers of changed symbols: `rg -n 'atomicWriteJson|reviewPostSaveQuality|CONTENT_QUALITY' . --glob '*.ts' --glob '*.json' --glob '*.sh'`.
+- Consumers of changed symbols: `rg -n 'atomicWriteJson|savePerFolderDescription|reviewPostSaveQuality|CONTENT_QUALITY' . --glob '*.ts' --glob '*.json' --glob '*.sh'`.
 - Matrix axes: metadata JSON type (description vs graph-metadata), payload health (well-formed vs malformed), corpus age (new vs legacy).
 - Algorithm invariant: the metadata-JSON body written under H1 is byte-identical to the pre-scoring payload, and no path reaches a content-mutating fix.
 <!-- /ANCHOR:affected-surfaces -->
@@ -121,11 +122,13 @@ Required inventories:
 
 ### Phase 1: Setup
 - [ ] Confirm the shipped exports `computeMemoryQualityScore` and `reviewPostSaveQuality` are importable from the script surface
-- [ ] Confirm the `atomicWriteJson` seam and the `workflow.ts` reviewer call site line up with the spec seams
+- [ ] Confirm both metadata-JSON write seams (the `atomicWriteJson` seam in `generate-context.ts` for `graph-metadata.json` and the `savePerFolderDescription` seam in `workflow.ts` for `description.json`) and the `workflow.ts` reviewer call site line up with the spec seams
 - [ ] Confirm the `validator-registry.json` shape-rule contract for a new warn rule
 
 ### Phase 2: Core Implementation
-- [ ] H1: score the two metadata JSONs at the `atomicWriteJson` seam report-only, no body write
+- [ ] H1a: score `graph-metadata.json` at the `atomicWriteJson` seam (`generate-context.ts:587`) report-only, no body write
+- [ ] H1b: score `description.json` at the `savePerFolderDescription` seam (`workflow.ts:1683,1720`, via `runWorkflow`) report-only, no body write
+- [ ] H1: serialize each payload deterministically into the scorer `content` argument so the scored bytes equal the written bytes
 - [ ] H2: extend the `reviewPostSaveQuality` call in `workflow.ts` to the authored spec-doc artifacts
 - [ ] H3: add `content-quality.ts` and register `CONTENT_QUALITY` at severity `warn` default-off
 

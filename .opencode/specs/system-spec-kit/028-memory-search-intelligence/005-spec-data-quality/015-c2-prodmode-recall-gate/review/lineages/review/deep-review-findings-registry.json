@@ -1,0 +1,64 @@
+{
+  "sessionId": "fanout-review-1782055949478-i1h3i4",
+  "mode": "review",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "spec-alignment",
+      "finding_class": "instance-only",
+      "file": "run-eval-v2.mjs:361",
+      "content_hash": "f001-export-already-present",
+      "iterationsContributing": [3],
+      "adjudicated": true,
+      "confidence": 0.9,
+      "summary": "Plan/tasks premise 'add narrow export' is stale; harness already exports buildSearchLenses, meanCompleteRecallProfile, MEASURABILITY_CLASSES at run-eval-v2.mjs:361. REQ-005 already satisfiable with zero harness change."
+    },
+    {
+      "findingId": "F002",
+      "severity": "P2",
+      "category": "completeness",
+      "finding_class": "instance-only",
+      "file": "run-eval-v2.mjs:107-122",
+      "content_hash": "f002-thin-wrapper-orchestration",
+      "iterationsContributing": [4],
+      "adjudicated": false,
+      "summary": "'Thin wrapper' understates the non-lens orchestration the gate must replicate (prepareEvalDatabase, dist imports, groupGroundTruth, retrieval loop are unexported)."
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "category": "completeness",
+      "finding_class": "instance-only",
+      "file": "run-eval-v2.mjs:272-277",
+      "content_hash": "f003-goldenset-wiring-unspecified",
+      "iterationsContributing": [4],
+      "adjudicated": false,
+      "summary": "No loader exists for an external spec-corpus-golden.json; the gold-set to harness retrieval-path wiring seam is unspecified in spec/plan."
+    }
+  ],
+  "resolvedFindings": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true,
+    "covered": 4,
+    "configured": 4
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 2
+  },
+  "traceabilityProtocols": {
+    "spec_code": "partial",
+    "checklist_evidence": "pass",
+    "feature_catalog_code": "n/a",
+    "playbook_capability": "n/a"
+  },
+  "convergenceScore": 0.91,
+  "verdict": "CONDITIONAL",
+  "hasAdvisories": true
+}
