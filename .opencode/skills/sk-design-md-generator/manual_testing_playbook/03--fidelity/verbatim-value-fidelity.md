@@ -90,4 +90,4 @@ Run the full `validate.ts` against the DESIGN.md and confirm it passes (score 10
 - Group: Fidelity
 - Playbook ID: FIDELITY-001
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `03--fidelity/fidelity-001.md`
+- Feature file path: `03--fidelity/verbatim-value-fidelity.md`

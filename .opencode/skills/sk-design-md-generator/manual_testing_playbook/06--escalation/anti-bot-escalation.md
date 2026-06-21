@@ -86,4 +86,4 @@ Test with a URL that is not a website at all (`https://this-domain-does-not-exis
 - Group: Escalation
 - Playbook ID: ESCALATE-001
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `06--escalation/escalate-001.md`
+- Feature file path: `06--escalation/anti-bot-escalation.md`

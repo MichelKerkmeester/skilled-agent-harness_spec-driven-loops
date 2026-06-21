@@ -96,4 +96,4 @@ If the user requests a deeper crawl, re-run with `--max-pages 10` (no `--fast`) 
 - Group: Extract
 - Playbook ID: EXTRACT-001
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `01--extract/extract-001.md`
+- Feature file path: `01--extract/live-extraction.md`

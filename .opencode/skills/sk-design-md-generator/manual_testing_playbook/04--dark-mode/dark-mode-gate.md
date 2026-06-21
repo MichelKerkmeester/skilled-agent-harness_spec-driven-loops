@@ -87,4 +87,4 @@ Run a second extraction of the same site with `--no-dark-mode` and confirm §2.5
 - Group: Dark Mode
 - Playbook ID: DARKMODE-001
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `04--dark-mode/dark-mode-001.md`
+- Feature file path: `04--dark-mode/dark-mode-gate.md`

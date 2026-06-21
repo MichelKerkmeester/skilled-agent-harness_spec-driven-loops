@@ -79,7 +79,7 @@ Four conditions require escalation rather than automated correction:
 
 | File | Type | Role |
 |---|---|---|
-| `../../manual_testing_playbook/02--validate/validate-001.md` | Manual playbook | Validator pass/fail scenario — confirms faithful DESIGN.md passes and phantom hexes are flagged |
+| `../../manual_testing_playbook/02--validate/phantom-hex-detection.md` | Manual playbook | Validator pass/fail scenario — confirms faithful DESIGN.md passes and phantom hexes are flagged |
 | `tool/scripts/__tests__/validate.test.ts` | Automated test | Validation engine unit tests covering hex accuracy, section completeness, and format consistency |
 
 ---

@@ -29,9 +29,9 @@ End-to-end manual testing reference for the sk-design-md-generator skill. Every 
 | Escalation | 1 | ESCALATE-001 |
 | **TOTAL** | **6** | **6 scenarios** |
 
-This playbook defines 6 deterministic scenarios across 6 categories validating the full surface of the `sk-design-md-generator` skill. Each scenario keeps its own ID, is summarized inline in Sections 7-12, and links to a dedicated per-scenario file with the full execution contract, with the cross-reference index in Section 13.
+This playbook defines 6 deterministic scenarios across 6 categories validating the full surface of the `sk-design-md-generator` skill. Each scenario keeps its own ID, is summarized inline in Sections 7-12, and links to a dedicated per-scenario file with the full execution contract, with the cross-reference index in Section 14.
 
-> **Per-scenario files:** The root playbook is the directory, review surface, and orchestration guide, while per-scenario execution detail lives in one file per scenario inside numbered category folders at the playbook root. The cross-reference index in Section 13 lists every scenario file.
+> **Per-scenario files:** The root playbook is the directory, review surface, and orchestration guide, while per-scenario execution detail lives in one file per scenario inside numbered category folders at the playbook root. The cross-reference index in Section 14 lists every scenario file.
 
 ### Realistic Test Model
 
@@ -134,7 +134,7 @@ Release is READY only when no scenario verdict is FAIL, all critical-path scenar
 
 ### Root-vs-Feature Rule
 
-Keep global verdict logic in this root playbook. Put scenario-specific acceptance caveats in the matching per-scenario file (see Section 13).
+Keep global verdict logic in this root playbook. Put scenario-specific acceptance caveats in the matching per-scenario file (see Section 14).
 
 ---
 
@@ -189,7 +189,7 @@ Prompt: `"Extract the design system from example.com."`
 |---|---|---|---|---|---|---|---|---|
 | EXTRACT-001 | Live extraction | Verify `extract.ts --fast` against a live URL produces valid tokens.json | `Extract the design system from example.com.` | 1. agent detects EXTRACT_WRITE phase -> 2. verify tool readiness (`node --version`, check `tool/node_modules/`) -> 3. `cd tool && npx ts-node scripts/extract.ts https://example.com --fast` -> 4. `bash: ls -la output/example.com/tokens.json` -> 5. agent reports token counts | Step 1: phase detected as EXTRACT_WRITE. Step 2: Node >= 18, tool dependencies present. Step 3: extract exits 0, crawl output on stdout. Step 4: tokens.json exists, >1 KB, valid JSON. Step 5: agent reports counts from colorTokens, typographyLevels, etc. | Transcript of `extract.ts --fast`, `ls -la` of output, token count summary | PASS if `extract.ts` exits 0 AND `tokens.json` is valid JSON with non-empty token arrays AND agent reports the output correctly. FAIL if extraction exits non-zero OR tokens.json is empty/missing OR agent fabricates token counts | 1. Confirm `--fast` was used (5 pages, 8 concurrency). 2. Confirm `output/example.com/tokens.json` exists and parses as JSON. 3. Confirm token arrays are non-empty. 4. If the site returns 403/429, skip with a blocker (site blocks crawlers) and route to ESCALATE-001. |
 
-> **Feature File:** [01--extract/extract-001.md](01--extract/extract-001.md)
+> **Feature File:** [01--extract/live-extraction.md](01--extract/live-extraction.md)
 
 ---
 
@@ -213,7 +213,7 @@ Prompt: `"Validate the DESIGN.md I just wrote against its tokens.json."`
 |---|---|---|---|---|---|---|---|---|
 | VALIDATE-001 | Fidelity validation | Verify `validate.ts` passes on faithful DESIGN.md and flags a planted phantom hex | `Validate the DESIGN.md I just wrote against its tokens.json.` | 1. `cd tool && npx ts-node scripts/validate.ts <faithful-DESIGN.md> output/<domain>/tokens.json` -> 2. copy DESIGN.md, append `#ff0000` in a prose line -> 3. `cd tool && npx ts-node scripts/validate.ts <planted-DESIGN.md> output/<domain>/tokens.json` | Step 1: exit 0, score 100, zero `phantom-color` failures. Step 2: phantom hex planted. Step 3: exit non-zero (or failures array non-empty), at least one `phantom-color` finding for `#ff0000` | Transcript of both validation runs, the planted DESIGN.md snippet, and the phantom-color finding | PASS if the faithful run passes with no phantom-hex failures AND the planted run flags `#ff0000` as a phantom color. FAIL if the faithful run reports false positives OR the planted run does not flag the phantom hex | 1. Confirm the faithful DESIGN.md contains only hexes from tokens.json. 2. Confirm the planted hex is not in tokens.json (check manually). 3. Confirm the validator's `checkPhantomColors` produced the expected finding. |
 
-> **Feature File:** [02--validate/validate-001.md](02--validate/validate-001.md)
+> **Feature File:** [02--validate/phantom-hex-detection.md](02--validate/phantom-hex-detection.md)
 
 ---
 
@@ -237,7 +237,7 @@ Prompt: `"Check that the DESIGN.md you wrote copies every value exactly from tok
 |---|---|---|---|---|---|---|---|---|
 | FIDELITY-001 | Verbatim-value fidelity | Verify DESIGN.md copies values verbatim from tokens.json, no estimation, 6-digit lowercase hex, L4 excluded, L3 annotated | `Check that the DESIGN.md you wrote copies every value exactly from tokens.json — no estimates, no rounding.` | 1. `read: output/<domain>/tokens.json` (extract 5 hex values, 3 px values, 2 font weights, 2 shadows) -> 2. `read: <DESIGN.md>` (find the same values) -> 3. confirm exact match for each pair -> 4. grep DESIGN.md for hex patterns, confirm all are 6-digit lowercase -> 5. `bash: rg -c 'L4' <DESIGN.md>` confirm zero or only in explanatory text, no L4 token values -> 6. `bash: rg 'Subject to change' <DESIGN.md>` confirm present for L3 tokens if any exist | Step 1: token values extracted from JSON. Step 2: same values found verbatim in DESIGN.md. Step 3: all sampled values match. Step 4: all hex codes 6-digit lowercase. Step 5: no L4 token values in DESIGN.md. Step 6: L3 tokens annotated if present | Transcript of the value-matching spot-checks, hex-format grep output, L4/L3 grep output | PASS if every sampled value matches tokens.json verbatim AND all hex codes are 6-digit lowercase AND no L4 token values appear AND any L3 token is annotated. FAIL if any value is estimated/rounded OR a hex uses 3-digit/uppercase format OR an L4 token value appears OR an un-annotated L3 token appears | 1. Pick values from different sections (color, typography, spacing, shadows). 2. If a mismatch is found, check whether tokens.json was edited after extraction. 3. If L4 values appear, check the cluster.ts L4 classification logic. 4. If no L3 tokens exist in the source, the annotation check does not apply (note it). |
 
-> **Feature File:** [03--fidelity/fidelity-001.md](03--fidelity/fidelity-001.md)
+> **Feature File:** [03--fidelity/verbatim-value-fidelity.md](03--fidelity/verbatim-value-fidelity.md)
 
 ---
 
@@ -261,7 +261,7 @@ Prompt: `"Does the DESIGN.md have a dark-mode section? Show me the condition."`
 |---|---|---|---|---|---|---|---|---|
 | DARKMODE-001 | Dark-mode gate | Verify DESIGN.md §2.5 appears only when tokens.json has a detected dark palette and is never fabricated | `Does the DESIGN.md have a dark-mode section? Show me the condition.` | 1. `read: output/<domain>/tokens.json` (inspect `darkMode` field) -> 2. `read: <DESIGN.md>` (search for `## 2.5 Dark Mode` or equivalent) -> 3. correlate — if darkMode present and non-empty, §2.5 must exist with verbatim dark values; if absent/empty, §2.5 must not exist -> 4. agent reports the gate condition and the evidence | Step 1: darkMode present (with variableDiff/darkTokens) or absent/empty. Step 2: §2.5 present or absent. Step 3: presence/absence aligns exactly. Step 4: agent names the evidence, does not fabricate a dark palette | tokens.json darkMode snippet and the corresponding DESIGN.md section 2.5 (or its absence) | PASS if §2.5 exists iff tokens.json.darkMode is non-empty AND no dark-mode section was fabricated from light tokens. FAIL if §2.5 appears without a detected dark palette OR is missing when darkMode is non-empty OR contains derived/invented dark values | 1. Check `dark-mode-detect.ts` detection method in tokens.json (`media-query`, `class-toggle`, etc.). 2. If the site has a dark mode but it was not detected (JS class toggle), note it as a known gap (troubleshooting.md §3) and SKIP the scenario or mark it PASS with a documented gap. 3. Confirm `--no-dark-mode` was NOT used (unless testing that branch explicitly). |
 
-> **Feature File:** [04--dark-mode/dark-mode-001.md](04--dark-mode/dark-mode-001.md)
+> **Feature File:** [04--dark-mode/dark-mode-gate.md](04--dark-mode/dark-mode-gate.md)
 
 ---
 
@@ -285,7 +285,7 @@ Prompt: `"Set up the design extractor tool so I can extract a design system from
 |---|---|---|---|---|---|---|---|---|
 | SETUP-001 | Tool readiness | Verify `npm install` + `npx playwright install chromium` prepare the tool, and missing Chromium is reported clearly | `Set up the design extractor tool so I can extract a design system from a URL.` | 1. `bash: node --version` -> 2. `cd tool && npm install` -> 3. `cd tool && npx playwright install chromium` -> 4. `cd tool && npx ts-node scripts/extract.ts --help` -> 5. smoke: `cd tool && npx ts-node scripts/extract.ts https://example.com --fast` | Step 1: Node >= 18. Step 2: npm install exits 0, no errors. Step 3: Playwright Chromium installed or confirmed. Step 4: --help prints usage. Step 5: extract runs (success or clear crawl error, never `Executable doesn't exist`) | Transcript of install steps, `--help` output, and smoke-test outcome | PASS if all setup steps complete without errors AND the smoke test either succeeds or fails with a crawl-specific error (not a missing-binary crash). FAIL if `npm install` or `playwright install` fails fatally OR the smoke test crashes with `Executable doesn't exist` OR `ts-node` is not found after install | 1. If `npm install` fails, check `tool/package.json` for version requirements. 2. If Chromium install fails (disk space, network), note as an environment blocker. 3. If the smoke test crashes with a missing binary, confirm `npx playwright install chromium` completed. 4. If `ts-node` is not found, confirm `npm install` ran in the `tool/` directory. |
 
-> **Feature File:** [05--setup/setup-001.md](05--setup/setup-001.md)
+> **Feature File:** [05--setup/tool-readiness.md](05--setup/tool-readiness.md)
 
 ---
 
@@ -309,7 +309,7 @@ Prompt: `"Extract the design system from this site: https://www.cloudflare.com"`
 |---|---|---|---|---|---|---|---|---|
 | ESCALATE-001 | Anti-bot escalation | Verify a blocked crawl causes a clear escalation and zero tokens are fabricated | `Extract the design system from this site: https://www.cloudflare.com` | 1. NEGATIVE CONTROL: `cd tool && npx ts-node scripts/extract.ts https://www.cloudflare.com --fast` -> 2. observe crawl output (errors, page count) -> 3. inspect `output/cloudflare.com/tokens.json` (if written) -> 4. agent escalates with error + URL + anti-bot conclusion | Step 1: extraction exits non-zero or reports zero pages crawled. Step 2: error messages reference 403/429/empty pages. Step 3: tokens.json is absent, empty, or has zero-page token arrays. Step 4: agent escalation is clear, names the URL and the error, and fabricates nothing | Transcript of the failed extraction, the tokens.json inspection (or confirmation it was not written), and the agent's escalation message | PASS if the extraction failed clearly AND no tokens were fabricated AND the agent escalated with the specific error and URL. FAIL if the skill fabricated any token value OR produced a partial tokens.json from invented data OR silently reported success | 1. Confirm `--fast` was used (the scenario does not require a deep crawl to fail). 2. Confirm no hex, pixel, font-weight, or shadow value appeared that was not measured from a real page load. 3. If the chosen anti-bot site actually rendered crawlable pages (unlikely), pick a different known-blocker and re-run. 4. Confirm the escalation follows SKILL.md §4 ESCALATE IF rule 1 verbatim. |
 
-> **Feature File:** [06--escalation/escalate-001.md](06--escalation/escalate-001.md)
+> **Feature File:** [06--escalation/anti-bot-escalation.md](06--escalation/anti-bot-escalation.md)
 
 ---
 
@@ -330,12 +330,12 @@ Each scenario maps to exactly one per-scenario file in a numbered category folde
 
 | ID | Scenario | Category | Feature File | Catalog File |
 |---|---|---|---|---|
-| EXTRACT-001 | Live extraction produces valid tokens.json | Extract | [01--extract/extract-001.md](01--extract/extract-001.md) | [../feature_catalog/01--extract/extract.md](../feature_catalog/01--extract/extract.md) |
-| VALIDATE-001 | Validator passes on faithful DESIGN.md and flags phantom hexes | Validate | [02--validate/validate-001.md](02--validate/validate-001.md) | [../feature_catalog/04--validate/validate.md](../feature_catalog/04--validate/validate.md) |
-| FIDELITY-001 | Cardinal verbatim-value rule enforced | Fidelity | [03--fidelity/fidelity-001.md](03--fidelity/fidelity-001.md) | [../feature_catalog/03--write-design-md/write-design-md.md](../feature_catalog/03--write-design-md/write-design-md.md) |
-| DARKMODE-001 | Dark-mode section appears only when detected | Dark Mode | [04--dark-mode/dark-mode-001.md](04--dark-mode/dark-mode-001.md) | [../feature_catalog/06--feature-extractors/feature-extractors.md](../feature_catalog/06--feature-extractors/feature-extractors.md) |
-| SETUP-001 | Tool readiness from a fresh checkout | Setup | [05--setup/setup-001.md](05--setup/setup-001.md) | [../feature_catalog/01--extract/extract.md](../feature_catalog/01--extract/extract.md) |
-| ESCALATE-001 | Anti-bot site causes clear escalation, never fabricates tokens | Escalation | [06--escalation/escalate-001.md](06--escalation/escalate-001.md) | [../feature_catalog/01--extract/extract.md](../feature_catalog/01--extract/extract.md) |
+| EXTRACT-001 | Live extraction produces valid tokens.json | Extract | [01--extract/live-extraction.md](01--extract/live-extraction.md) | [../feature_catalog/01--extract/extract.md](../feature_catalog/01--extract/extract.md) |
+| VALIDATE-001 | Validator passes on faithful DESIGN.md and flags phantom hexes | Validate | [02--validate/phantom-hex-detection.md](02--validate/phantom-hex-detection.md) | [../feature_catalog/04--validate/validate.md](../feature_catalog/04--validate/validate.md) |
+| FIDELITY-001 | Cardinal verbatim-value rule enforced | Fidelity | [03--fidelity/verbatim-value-fidelity.md](03--fidelity/verbatim-value-fidelity.md) | [../feature_catalog/03--write-design-md/write-design-md.md](../feature_catalog/03--write-design-md/write-design-md.md) |
+| DARKMODE-001 | Dark-mode section appears only when detected | Dark Mode | [04--dark-mode/dark-mode-gate.md](04--dark-mode/dark-mode-gate.md) | [../feature_catalog/06--feature-extractors/feature-extractors.md](../feature_catalog/06--feature-extractors/feature-extractors.md) |
+| SETUP-001 | Tool readiness from a fresh checkout | Setup | [05--setup/tool-readiness.md](05--setup/tool-readiness.md) | [../feature_catalog/01--extract/extract.md](../feature_catalog/01--extract/extract.md) |
+| ESCALATE-001 | Anti-bot site causes clear escalation, never fabricates tokens | Escalation | [06--escalation/anti-bot-escalation.md](06--escalation/anti-bot-escalation.md) | [../feature_catalog/01--extract/extract.md](../feature_catalog/01--extract/extract.md) |
 
 This index lists 6 scenario IDs and ships 6 per-scenario files. The count of per-scenario files MUST equal the count of IDs in this table (6), so keep them in sync as scenarios are added or revised.
 

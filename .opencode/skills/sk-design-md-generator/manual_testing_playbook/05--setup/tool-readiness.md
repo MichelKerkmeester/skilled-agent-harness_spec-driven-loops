@@ -88,4 +88,4 @@ Run `cd tool && npx vitest run` after setup to confirm the clustering and valida
 - Group: Setup
 - Playbook ID: SETUP-001
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `05--setup/setup-001.md`
+- Feature file path: `05--setup/tool-readiness.md`

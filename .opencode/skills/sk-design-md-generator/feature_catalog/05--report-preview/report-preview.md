@@ -73,7 +73,7 @@ All three scripts write to a user-specified output directory. They do not silent
 
 | File | Type | Role |
 |---|---|---|
-| `../../manual_testing_playbook/05--setup/setup-001.md` | Manual playbook | Tool readiness scenario — confirms npm install and Playwright Chromium setup prepare the report-generation environment |
+| `../../manual_testing_playbook/05--setup/tool-readiness.md` | Manual playbook | Tool readiness scenario — confirms npm install and Playwright Chromium setup prepare the report-generation environment |
 | (no automated test) | Automated test | Covered by the manual playbook scenario |
 
 ---

@@ -70,7 +70,7 @@ The cardinal rules card (`assets/cardinal_rules_card.md`) is a one-page checklis
 
 | File | Type | Role |
 |---|---|---|
-| `../../manual_testing_playbook/03--fidelity/fidelity-001.md` | Manual playbook | Cardinal verbatim-value rule enforcement — confirms every value is copied verbatim with no estimation |
+| `../../manual_testing_playbook/03--fidelity/verbatim-value-fidelity.md` | Manual playbook | Cardinal verbatim-value rule enforcement — confirms every value is copied verbatim with no estimation |
 | (no automated test) | Automated test | Covered by the manual playbook scenario |
 
 ---

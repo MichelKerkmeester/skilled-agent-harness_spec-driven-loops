@@ -87,4 +87,4 @@ Test additional negative controls: plant a 3-digit hex (`#333`) and confirm it i
 - Group: Validate
 - Playbook ID: VALIDATE-001
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `02--validate/validate-001.md`
+- Feature file path: `02--validate/phantom-hex-detection.md`
