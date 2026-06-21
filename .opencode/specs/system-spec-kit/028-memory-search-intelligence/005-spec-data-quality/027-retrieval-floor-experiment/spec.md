@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Retrieval Floor Experiment [template:level_2/spec.md]"
-description: "The prod retrieval path floors every query at 3 results with no measurement of whether results 4-10 are signal or noise on this corpus. The whole frozen Tier-C truncation-law constraint rests on an untested assumption about that tail."
+description: "The prod retrieval path guarantees a never-cut-below-3 minimum then narrows the returned set through a cliff-conditional confidence truncation and a token budget, with no measurement of whether results 4-10 are signal or noise on this corpus. The whole frozen Tier-C truncation-law constraint rests on an untested assumption about that tail."
 trigger_phrases:
   - "retrieval floor experiment"
   - "raise the retrieval floor"
@@ -64,7 +64,7 @@ FAILURE MODES:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The prod retrieval path truncates every query to a 3-result floor (`confidence-truncation.ts:35`, `DEFAULT_MIN_RESULTS = 3`) layered with a gap-cliff at roughly 2x the median gap and a token budget, all applied at the prod seam `if (!evaluationMode)` in `hybrid-search.ts` (the floor guarantee surfaces at `hybrid-search.ts:2065` as `minResultsGuaranteed: DEFAULT_MIN_RESULTS`). The frozen Tier-C retrieval slate and the entire truncation-law framing rest on one untested assumption, that results 4 through 10 are noise the floor is right to cut. Nobody has measured whether that tail carries real recall on this corpus. If the tail is signal the truncation-law constraint loosens and the frozen Tier-C slate must be re-evaluated. If it is noise the 3-floor and the framing are confirmed. The experiment cannot run until there is a prod-mode completeRecall@3 instrument to read, which is exactly what 015-c2 builds.
+The prod retrieval path guarantees a never-cut-below-3 minimum (`confidence-truncation.ts:35`, `DEFAULT_MIN_RESULTS = 3`, a floor not a cap), then layers a cliff-conditional confidence truncation that returns 3 to 20 at roughly 2x the median gap and a token budget that is the real prod-limiting stage, all applied at the prod seam `if (!evaluationMode)` in `hybrid-search.ts` (the minimum guarantee surfaces at `hybrid-search.ts:2065` as `minResultsGuaranteed: DEFAULT_MIN_RESULTS`). The frozen Tier-C retrieval slate and the entire truncation-law framing rest on one untested assumption, that results 4 through 10 are noise the truncation stages are right to cut. Nobody has measured whether that tail carries real recall on this corpus. If the tail is signal the truncation-law constraint loosens and the frozen Tier-C slate must be re-evaluated. If it is noise the never-cut-below-3 minimum and the framing are confirmed. The experiment cannot run until there is a prod-mode completeRecall@3 instrument to read, which is exactly what 015-c2 builds.
 
 ### Purpose
 Run a prod-mode measurement that raises the retrieval floor and token budget across a small sweep and reports whether the recovered tail is signal or noise, producing one verdict that either loosens or confirms the truncation-law constraint.
@@ -76,15 +76,15 @@ Run a prod-mode measurement that raises the retrieval floor and token budget acr
 ## 3. SCOPE
 
 ### In Scope
-- A measurement-only floor sweep that runs the C2 prod-mode harness with the floor raised above the current 3 (for example 5, 8 and 10) and a correspondingly widened token budget, on the same copy DB the harness already builds.
-- An env-flagged override of `DEFAULT_MIN_RESULTS` and the token budget, default-off and read only inside the experiment driver, so the prod default at `confidence-truncation.ts:35` is never changed on disk.
+- A measurement-only floor sweep that runs the C2 prod-mode harness with the minimum guarantee raised above the current 3 (for example 5, 8 and 10) and a correspondingly widened token budget, on the same copy DB the harness already builds.
+- An env-flagged override named `SPECKIT_FLOOR_OVERRIDE` over `DEFAULT_MIN_RESULTS` and the token budget, default-off and read only inside the experiment driver, so the prod default at `confidence-truncation.ts:35` is never changed on disk.
 - A delta report that reads ONLY the prod-lens completeRecall@3 column per floor setting and quantifies the recall recovered by each step up from 3, against the C2 baseline.
-- One written verdict, signal or noise, that either re-opens the frozen Tier-C retrieval slate for re-evaluation or confirms the 3-floor and the truncation-law framing.
+- One written verdict, signal or noise, that either re-opens the frozen Tier-C retrieval slate for re-evaluation or confirms the never-cut-below-3 minimum and the truncation-law framing.
 
 ### Out of Scope
-- Any change to the prod default floor, the gap-cliff multiplier or the token budget on disk - this phase is a measurement experiment, not a default change. The floor stays at 3 in `confidence-truncation.ts:35` after this phase.
+- Any change to the prod default minimum, the gap-cliff multiplier or the token budget on disk - this phase is a measurement experiment, not a default change. The never-cut-below-3 minimum stays at 3 in `confidence-truncation.ts:35` after this phase.
 - Building or changing the prod-mode harness or the recall gate - that is 015-c2 and this phase consumes it unchanged.
-- Eval-mode @K and external @5/@10/@20 numbers as a verdict input - they are inadmissible because the K=3 floor hides exactly the band under test.
+- Eval-mode @K and external @5/@10/@20 numbers as a verdict input - they are inadmissible because the prod truncation stages hide exactly the band under test.
 - Any retrieval-class ranking, re-embed or coverage-guard work - the C1 and downstream Tier-C builds are gated on the verdict this phase produces, not done here.
 
 ### Files to Change
@@ -92,7 +92,7 @@ Run a prod-mode measurement that raises the retrieval floor and token budget acr
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-floor-experiment.mjs` | Create | Experiment driver that sweeps floor settings via the env override and reports the prod-column completeRecall@3 delta per setting against the C2 baseline |
-| `.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-truncation.ts` | Modify | Read an env override for `DEFAULT_MIN_RESULTS` and the token budget, default-off so the on-disk prod default stays 3 |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-truncation.ts` | Modify | Read the default-off `SPECKIT_FLOOR_OVERRIDE` env override for `DEFAULT_MIN_RESULTS` and the token budget so the on-disk prod default stays 3 |
 | `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/027-retrieval-floor-experiment/floor-experiment-report.md` | Create | The measured per-setting recall deltas and the one signal-or-noise verdict |
 <!-- /ANCHOR:scope -->
 
@@ -106,7 +106,7 @@ Run a prod-mode measurement that raises the retrieval floor and token budget acr
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | The experiment MUST read the prod-lens completeRecall@3 column from the C2 harness and never the eval-lens column | A driver assertion confirms the verdict input is the prod profile and an eval-lens input is refused |
-| REQ-002 | The floor override MUST be env-gated and default-off so the on-disk prod default at `confidence-truncation.ts:35` stays `DEFAULT_MIN_RESULTS = 3` after the run | A diff confirms the literal `3` is unchanged and a run with no env flag uses the 3-floor |
+| REQ-002 | The floor override `SPECKIT_FLOOR_OVERRIDE` MUST be env-gated and default-off so the on-disk prod default at `confidence-truncation.ts:35` stays `DEFAULT_MIN_RESULTS = 3` after the run | A diff confirms the literal `3` is unchanged and a run with no env flag uses the 3-result minimum |
 | REQ-003 | The experiment SHALL report prod completeRecall@3 for each swept floor setting against the stored C2 baseline | The report carries one prod-column delta row per floor setting referencing the baseline source DB |
 | REQ-004 | The experiment SHALL emit one verdict, signal or noise, with the recall threshold that decides it stated up front | The report states the decision threshold before the numbers and the verdict follows from the measured delta |
 
@@ -165,7 +165,7 @@ Run a prod-mode measurement that raises the retrieval floor and token budget acr
 
 ### Error Scenarios
 - The C2 baseline or harness export is missing: the driver fails at import with a clear dependency error rather than silently re-implementing a lens or floor.
-- The env override is set but unread by `confidence-truncation.ts`: the driver detects the floor did not move and fails closed rather than reporting a flat no-signal result.
+- The `SPECKIT_FLOOR_OVERRIDE` env override is set but unread by `confidence-truncation.ts`: the driver detects the floor did not move and fails closed rather than reporting a flat no-signal result.
 <!-- /ANCHOR:edge-cases -->
 
 ---
@@ -195,5 +195,5 @@ Run a prod-mode measurement that raises the retrieval floor and token budget acr
 <!-- ANCHOR:verdict -->
 ## 11. VERDICT
 
-Experiment, the operator-agreed measurement. This is not a GO on a default change and not a default flip - it is a prod-mode experiment that asks one question and returns one answer. The verdict it produces is conditional-C2-gated, because the experiment cannot run until 015-c2 ships the prod-mode completeRecall@3 instrument it reads. If the swept tail is signal the truncation-law constraint loosens and the frozen Tier-C retrieval slate (C1, C3, C4, C5) re-opens for re-evaluation. If the tail is noise the 3-floor at `confidence-truncation.ts:35` and the truncation-law framing are confirmed. Prod-mode for the read is non-negotiable, eval-mode @K and external @5/@10/@20 numbers are inadmissible because the K=3 floor hides exactly the band under test.
+Experiment, the operator-agreed measurement. This is not a GO on a default change and not a default flip - it is a prod-mode experiment that asks one question and returns one answer. The verdict it produces is conditional-C2-gated, because the experiment cannot run until 015-c2 ships the prod-mode completeRecall@3 instrument it reads. If the swept tail is signal the truncation-law constraint loosens and the frozen Tier-C retrieval slate (C1, C3, C4, C5) re-opens for re-evaluation. If the tail is noise the never-cut-below-3 minimum at `confidence-truncation.ts:35` and the truncation-law framing are confirmed. Prod-mode for the read is non-negotiable, eval-mode @K and external @5/@10/@20 numbers are inadmissible because the prod truncation stages hide exactly the band under test.
 <!-- /ANCHOR:verdict -->

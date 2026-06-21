@@ -95,7 +95,7 @@ Each non-spec-doc authoring surface gains a write-time conformance gate that byp
 | `.opencode/skills/system-spec-kit/shared/gate-3-classifier.ts` (read-only source) | Reference | One of three canary inputs (FILE_WRITE_TRIGGERS at line 67) |
 | `.opencode/skills/system-skill-advisor/mcp_server/data/prompt-policy.default.json` (read-only source) | Reference | Second canary input (WORK_INTENT_VERBS) |
 | `CLAUDE.md` (read-only source) | Reference | Third canary input (intent-trigger prose) |
-| `.opencode/skills/system-spec-kit/scripts/validation/validator-registry.json` | Modify | Register the new per-surface detectors as warn-tier rules |
+| `.opencode/skills/system-spec-kit/scripts/lib/validator-registry.json` | Modify | Register the new per-surface detectors as warn-tier rules, the same shipped validate.sh registry the A1 keystone uses |
 <!-- /ANCHOR:scope -->
 
 ---

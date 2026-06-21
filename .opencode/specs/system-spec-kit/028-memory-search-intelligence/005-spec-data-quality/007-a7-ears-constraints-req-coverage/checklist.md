@@ -83,7 +83,7 @@ FAILURE MODES:
 - [ ] CHK-022 [P1] Edge cases tested
 - [ ] CHK-023 [P1] Error scenarios validated
 - [ ] CHK-024 [P0] REQ_COVERAGE catch-rate is 1.0 on the planted unlinked-REQ fixture with zero false positives on a fully-linked fixture
-- [ ] CHK-025 [P0] Flags-off run is byte-identical to the pre-phase baseline on a 005 sibling, proven by check-req-coverage.test.sh and flag-ceiling.vitest.ts
+- [ ] CHK-025 [P0] Flags-off run is byte-identical to the pre-phase baseline on a 005 sibling, proven by check-req-coverage.test.sh (REQ_COVERAGE and EARS_LINT register in validator-registry.json, not flag-ceiling.vitest.ts)
 - [ ] CHK-026 [P1] First-run real-defect floor on the live 005 corpus surfaces at least one real unlinked REQ
 - [ ] CHK-027 [P1] EARS_LINT swap-precision is 1.0 on the fixture set, advisory only and never blocking
 <!-- /ANCHOR:testing -->

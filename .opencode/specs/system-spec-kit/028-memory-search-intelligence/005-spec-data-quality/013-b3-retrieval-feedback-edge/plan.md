@@ -89,7 +89,7 @@ Seam capture plus offline detector plus governed queue, all gated by a default-o
 - **Refinement queue**: A new `refinement_queue` table that mirrors the `learned_feedback_audit` governance columns and stores edge-tagged rows report-only.
 
 ### Data Flow
-A query assembles a candidate set. With the flag on, the seam records the impression aggregate and per-doc pre-truncation rank, then the floor truncates as it does today. The detector later reads those impressions, classifies each never-retrieved doc by edge, and writes edge-tagged rows into the `refinement_queue`. Nothing is auto-applied. The edge-a action is registered suggest-only and the edge-b row is advisory only.
+A query assembles a candidate set. With the flag on, the seam records the impression aggregate and per-doc pre-truncation rank, then truncation narrows the set as it does today. The detector later reads those impressions, classifies each never-retrieved doc by edge, and writes edge-tagged rows into the `refinement_queue`. Nothing is auto-applied. The edge-a action is registered suggest-only and the edge-b row is advisory only.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -102,7 +102,9 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
 | `hybrid-search.ts` result-assembly seam | Owns the assembled result set before `truncateByConfidence` | Add aggregate capture behind the default-off flag | Test asserts capture is skipped with the flag off and `min_rank_seen` is pre-truncation with it on |
-| `confidence-truncation.ts:35 DEFAULT_MIN_RESULTS` | Owns the 3-result floor that cuts below-floor candidates | Unchanged, B3 only observes what it cut | Grep confirms no edit to the floor constant |
+| `search-flags.ts` | Owns the default-on runtime gates for search-pipeline controls | Export the default-off `SPECKIT_RETRIEVAL_GAP_DETECT` checker the seam reads | Checker compiles and the seam reads it through the exported function |
+| `flag-ceiling.vitest.ts` `ACKNOWLEDGED_UNCEILINGED_FLAGS` | The drift-guard default-off acknowledgement list | Acknowledge `SPECKIT_RETRIEVAL_GAP_DETECT` as default-off, not in `ALL_SPECKIT_FLAGS` | Drift guard passes and the token is not soaked at true in `ALL_SPECKIT_FLAGS` |
+| `confidence-truncation.ts:35 DEFAULT_MIN_RESULTS` | Owns the never-cut-below-3 minimum guarantee, not a cap. The cliff-conditional confidence stage (returns 3 to 20) and the token-budget stage are what cut candidates from the returned set | Unchanged, B3 only observes what truncation cut | Grep confirms no edit to the minimum-guarantee constant |
 | `learned-feedback.ts:257 recordSelection` | Owns the positive selection edge and the audit governance shape | Unchanged, the queue copies its governance not its writes | Grep confirms no new write into the existing audit path |
 | `learned-triggers-schema.ts` | Owns the learned-trigger DDL | Add the `refinement_queue` table mirrored on the audit columns | Schema test asserts the four governance columns exist |
 | `detect-retrieval-gaps.vitest.ts` | New tests | Create edge-discriminator and report-only tests | Vitest run is green |
@@ -122,7 +124,7 @@ Required inventories:
 ### Phase 1: Setup
 - [ ] Confirm the result-assembly seam and the floor constant by grep before any edit
 - [ ] Add the `refinement_queue` DDL mirrored on the `learned_feedback_audit` columns
-- [ ] Register the default-off `SPECKIT_RETRIEVAL_GAP_DETECT` flag
+- [ ] Register the default-off `SPECKIT_RETRIEVAL_GAP_DETECT` checker in `search-flags.ts` and acknowledge the token in the `flag-ceiling.vitest.ts` `ACKNOWLEDGED_UNCEILINGED_FLAGS` default-off list, not `ALL_SPECKIT_FLAGS`
 
 ### Phase 2: Core Implementation
 - [ ] Add aggregate impression capture recording `impression_count` and per-doc `min_rank_seen` before truncation
@@ -145,6 +147,8 @@ Required inventories:
 | Unit | Edge discriminator on `min_rank_seen`, flag-off no-op, report-only governance | Vitest |
 | Integration | Seam capture against a controlled corpus producing one edge-a and one edge-b row | Vitest |
 | Manual | Spot-check the queue rows carry the advisory C2 marker | Direct read |
+
+**CI home.** The `detect-retrieval-gaps.vitest.ts` suite is a local-reproduce command only and is not wired into any CI workflow yet, so the declared test gate is unenforced in CI until a CI-wiring phase lands.
 <!-- /ANCHOR:testing -->
 
 ---

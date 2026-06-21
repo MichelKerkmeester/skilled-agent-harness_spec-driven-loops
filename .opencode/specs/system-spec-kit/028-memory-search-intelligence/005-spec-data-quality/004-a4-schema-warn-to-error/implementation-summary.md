@@ -72,7 +72,7 @@ This table lists the planned changes. None have been applied.
 | `.opencode/skills/system-spec-kit/scripts/rules/check-description-shape.sh` | Planned modify | Swap the inline check for a `folderDescriptionSchema` call routed through `formatDescriptionSchemaIssues`, surface every issue as error |
 | `.opencode/skills/system-spec-kit/scripts/rules/check-graph-metadata-shape.sh` | Planned modify | Swap the inline check for a `graphMetadataSchema` call, keep the pointer check, promote warnings to error |
 | `.opencode/skills/system-spec-kit/scripts/lib/validator-registry.json` | Planned modify | Set `severity` to `error` for `GRAPH_METADATA_SHAPE` and `DESCRIPTION_SHAPE` |
-| `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` | Planned modify | Delete `detect_legacy_grandfathered`, its call site, and the `LEGACY_GRANDFATHERED` read in the strict RESULT branch |
+| `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` | Planned modify | Delete `detect_legacy_grandfathered` (175-183), its declaration (41), its call site (1044), and all four `LEGACY_GRANDFATHERED` reads (912, 927, 935, 1062) |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -117,8 +117,9 @@ No verification has run. The checks below are planned and currently unmet.
 ## Known Limitations
 
 1. **Not implemented.** This is a scaffold. No code change has landed and no check has passed.
-2. **Backfill precondition.** The parent census counted 11 invalid live-root graph files. The error flip cannot land until those are backfilled and the count reads zero.
-3. **Open schema-entry question.** Whether the rule scripts call the zod schema through a thin compiled Node entry or a `tsx` shim is unresolved, pending alignment with the existing `tsx_bin` resolution in `validate.sh`.
+2. **Backfill precondition, and the census is bigger than the parent reported.** A real `graphMetadataSchema.safeParse` over the 2059-file corpus fails 24 files (16 excluding archives), not 11. The 11 are nested `research/.../iterations/` text-stubs, not roots. The genuine failing roots are `.opencode/specs/graph-metadata.json` (legacy two-key shape) and three `026/022` packets (`migration_source` not "legacy", missing `manual.depends_on[].source`, out-of-enum `derived.save_lineage`). The error flip cannot land until those are backfilled and the count reads zero. A4 is unconditional as a DECISION, not as a FLIP. The description half is already clean (0 of 2054 `description.json` files fail `folderDescriptionSchema`), so the backfill burden sits on the graph half.
+3. **Dropped legacy-migration tolerance.** The live reader `validateGraphMetadataContent` (`graph-metadata-parser.ts:338-387`) catches a strict-parse failure and falls back to `parseLegacyGraphMetadataContent`, accepting legacy on-disk files in memory. A bare `graphMetadataSchema.parse` at error severity rejects exactly those, so the flip drops that tolerance. The re-measure-to-zero gate surfaces them first, so they get backfilled to the canonical shape rather than tolerated.
+4. **Open schema-entry question.** Whether the rule scripts call the zod schema through a thin compiled Node entry or a `tsx` shim is unresolved, pending alignment with the existing `tsx_bin` resolution in `validate.sh`.
 <!-- /ANCHOR:limitations -->
 
 ---

@@ -70,10 +70,10 @@ Extend the SHIPPED quality machinery to the authored write surface through three
 ## 3. SCOPE
 
 ### In Scope
-- H1: score BOTH metadata JSONs at their real write seams using the PURE `computeMemoryQualityScore`, report-only, attach the score, never mutate either JSON body. H1a scores `graph-metadata.json` at the `atomicWriteJson` seam in `generate-context.ts` (`:587`). H1b scores `description.json` at the `savePerFolderDescription` seam reached through `runWorkflow` in `workflow.ts`. Both seams serialize the metadata payload deterministically into the scorer `content` argument so the scored bytes equal the written bytes.
+- H1: score BOTH metadata JSONs at their real write seams using the PURE `computeMemoryQualityScore`, report-only, attach the score, never mutate either JSON body. H1a scores `graph-metadata.json` at the `atomicWriteJson` seam in `generate-context.ts` (`:587`), where `atomicWriteJson` writes its own argument plus a trailing newline, so the call-site payload is the written body once that newline is accounted for. H1b scores `description.json` at the `savePerFolderDescription` seam reached through `runWorkflow` in `workflow.ts`, where the writer does NOT write its argument. `savePerFolderDescription` builds a merged payload through `getDescriptionWritePayload` (it merges the incoming argument against the existing on-disk `description.json` plus canonical fields at `folder-discovery.ts:238,250`) before writing, so byte-identity for H1b can only hold against that post-merge payload scored inside or after the merge, never against the `regenerated` or `sequenceSnapshot` call-site argument.
 - H2: extend the existing non-mutating post-save reviewer where it already runs in `workflow.ts` so the authored spec-doc save artifacts are reviewed alongside the memory artifacts.
 - H3: add a `CONTENT_QUALITY` rule to `validate.sh` via a new `scripts/validation/content-quality.ts` registered in `validator-registry.json` next to the existing shape rules, default-off and warn so the legacy corpus never breaks.
-- Reuse the shipped scorers verbatim. Add no scoring logic.
+- Reuse the shipped scorers as the single scoring engine. Add no second or parallel scorer. CAVEAT for the JSON surface: `computeMemoryQualityScore` is markdown-body-shaped, so a verbatim pass of serialized metadata JSON is degenerate. Three of its four dimensions read near-constant on JSON (anchors fall to the neutral 0.5 with no `<!-- ANCHOR -->` tags, coherence caps at 0.75 with no markdown heading and triggers read 0 because the JSON stores snake_case `trigger_phrases` while the scorer reads camelCase `triggerPhrases`), so every `graph-metadata.json` lands near 0.54 for structural reasons unrelated to quality. H1 therefore needs an input adaptation that projects the metadata into a scorer-legible shape, not a verbatim pass of the serialized bytes. The markdown spec-doc artifacts under H2 are already markdown bodies, so they reuse the scorer without that adaptation.
 
 ### Out of Scope
 - The DESTRUCTIVE `runQualityLoop` at `quality-loop.ts:582`. Its `attemptAutoFix` trims content by `substring` to an 8000-char budget, and the 005 `spec.md` is 10.6KB, so wiring it onto authored docs would silently amputate the body. Reason: a fix touching an authored body is never `safe` (research INV-1).
@@ -86,8 +86,8 @@ Extend the SHIPPED quality machinery to the authored write surface through three
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts` | Modify later | H1a: at the `atomicWriteJson` seam (def `:398`, sole call `:587`) call `computeMemoryQualityScore` on the serialized `graph-metadata.json` payload and report the score, no body write |
-| `.opencode/skills/system-spec-kit/scripts/core/workflow.ts` | Modify later | H1b: at the `savePerFolderDescription` seam reached through `runWorkflow` (`:1683`, `:1720`) call `computeMemoryQualityScore` on the serialized `description.json` payload and report the score, no body write |
-| `.opencode/skills/system-spec-kit/scripts/core/workflow.ts` | Modify later | H2: extend the `reviewPostSaveQuality` call already wired at `:1854` to cover the authored spec-doc artifacts |
+| `.opencode/skills/system-spec-kit/scripts/core/workflow.ts` | Modify later | H1b: score the post-merge `description.json` payload that `savePerFolderDescription` writes (merged by `getDescriptionWritePayload`, `folder-discovery.ts:238,250`), not the call-site argument, reached through `runWorkflow` (`:1683`, `:1720`), report the score, no body write |
+| `.opencode/skills/system-spec-kit/scripts/core/workflow.ts` | Modify later | H2: extend the `reviewPostSaveQuality` call already wired at `:1855` (dynamic import at `:1854`) to cover the authored spec-doc artifacts |
 | `.opencode/skills/system-spec-kit/scripts/validation/content-quality.ts` | Create later | H3: the `CONTENT_QUALITY` rule body, default-off and warn |
 | `.opencode/skills/system-spec-kit/scripts/lib/validator-registry.json` | Modify later | Register the new rule next to the shape rules with severity `warn` |
 | `spec.md` | Create | Defines this phase scope and acceptance criteria |
@@ -105,7 +105,7 @@ Extend the SHIPPED quality machinery to the authored write surface through three
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | H1 scores BOTH metadata JSONs without mutating either | WHEN a save writes `graph-metadata.json` via `atomicWriteJson` (`generate-context.ts:587`) AND WHEN it writes `description.json` via `savePerFolderDescription` through `runWorkflow` (`workflow.ts:1683,1720`), THE SYSTEM SHALL serialize each payload deterministically (matching the written `JSON.stringify(value, null, 2)` body) into the scorer `content` argument, pass the object as the `metadata` argument, compute `computeMemoryQualityScore`, and report the score, and each written JSON body SHALL be byte-identical to its pre-scoring payload |
+| REQ-001 | H1 scores BOTH metadata JSONs without mutating either | WHEN a save writes `graph-metadata.json` via `atomicWriteJson` (`generate-context.ts:587`) AND WHEN it writes `description.json` via `savePerFolderDescription` through `runWorkflow` (`workflow.ts:1683,1720`), THE SYSTEM SHALL score the exact bytes each seam writes and report the score, with each written JSON body byte-identical to its pre-scoring state. SEAM ASYMMETRY: `atomicWriteJson` writes its own argument plus a trailing newline, so H1a scores the call-site payload directly. `savePerFolderDescription` writes a MERGED payload from `getDescriptionWritePayload` (`folder-discovery.ts:238,250`), not its argument, so H1b SHALL score that post-merge payload inside or after the merge, never the `regenerated` or `sequenceSnapshot` call-site argument. SCORER ADAPTATION: because `computeMemoryQualityScore` is markdown-body-shaped, H1 SHALL project each metadata payload into a scorer-legible shape rather than pass raw serialized JSON, otherwise the verdict is structurally degenerate near 0.54 |
 | REQ-002 | The destructive auto-fix path is never reached | No code path added by this phase calls `runQualityLoop` or `attemptAutoFix`, and only `computeMemoryQualityScore` and `reviewPostSaveQuality` are imported |
 | REQ-003 | H2 reviews the authored spec-doc artifacts | THE SYSTEM SHALL pass the authored spec-doc save artifacts to `reviewPostSaveQuality` through the existing `workflow.ts` reviewer wiring, report-only, non-blocking |
 | REQ-004 | H3 adds a default-off warn CONTENT_QUALITY rule | `validate.sh` exposes a `CONTENT_QUALITY` rule registered in `validator-registry.json` at severity `warn`, and running it against the legacy corpus blocks nothing |
@@ -114,7 +114,7 @@ Extend the SHIPPED quality machinery to the authored write surface through three
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-005 | One scorer, no divergence | THE SYSTEM SHALL reuse the shipped `computeMemoryQualityScore` verbatim and SHALL NOT introduce a second or parallel quality scorer (research Tier D NO-GO) |
+| REQ-005 | One scorer, adapted input, no second scorer | THE SYSTEM SHALL reuse the shipped `computeMemoryQualityScore` as the only scoring engine and SHALL NOT introduce a second or parallel quality scorer (research Tier D NO-GO). On the metadata-JSON surface THE SYSTEM SHALL adapt the scorer INPUT into a scorer-legible shape rather than reuse it verbatim on raw serialized JSON, because the shipped scorer is markdown-body-shaped and degenerates on JSON |
 | REQ-006 | The rule reads next to the existing shape rules | The `content-quality.ts` rule follows the same registry contract as `DESCRIPTION_SHAPE` and `GRAPH_METADATA_SHAPE`, so a later A4 warn-to-error flip reuses the same migration discipline |
 <!-- /ANCHOR:requirements -->
 
@@ -123,7 +123,7 @@ Extend the SHIPPED quality machinery to the authored write surface through three
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- Both metadata JSONs carry a reported quality score on write, `graph-metadata.json` scored at the `atomicWriteJson` seam and `description.json` scored at the `savePerFolderDescription` seam, and both bodies are unchanged.
+- Both metadata JSONs carry a reported quality score on write with both bodies unchanged. `graph-metadata.json` is scored on the `atomicWriteJson` call-site payload and `description.json` on the post-merge payload that `savePerFolderDescription` actually writes.
 - The authored spec-doc save artifacts pass through the non-mutating reviewer in `workflow.ts`.
 - `validate.sh` runs a `CONTENT_QUALITY` warn rule that the legacy corpus passes.
 - No code path reaches `runQualityLoop` or any content-mutating fix.
@@ -149,7 +149,7 @@ Extend the SHIPPED quality machinery to the authored write surface through three
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 - The change is additive and report-only. No authored body and no metadata-JSON body is mutated by this phase.
-- The score computation reuses the shipped pure scorer, so the authored-surface verdict cannot diverge from the memory-surface verdict.
+- The score computation reuses the one shipped pure scorer, so no second scorer can drift from the memory-surface engine. On the markdown spec-doc surface the verdict matches the memory surface directly. On the metadata-JSON surface the scorer is markdown-body-shaped, so the input is adapted into a scorer-legible shape before scoring, which keeps the JSON verdict meaningful rather than the near-constant 0.54 a verbatim JSON pass produces.
 - The new validate.sh rule is default-off and warn, so default-off byte-identity of every existing packet is preserved.
 <!-- /ANCHOR:nfr -->
 

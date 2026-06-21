@@ -79,13 +79,14 @@ FAILURE MODES:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] All acceptance criteria met (REQ-001 through REQ-007)
-- [ ] CHK-021 [P0] A derive-then-parse round trip over a real packet produces only in-enum values with zero re-index
+- [ ] CHK-020 [P0] All acceptance criteria met (REQ-001 through REQ-008)
+- [ ] CHK-021 [P0] A derive-then-parse round trip over real packets exercising all three producer paths produces only in-enum values with zero re-index
 - [ ] CHK-022 [P1] An out-of-enum value yields a precise per-field message through `formatDescriptionSchemaIssues`
 - [ ] CHK-023 [P1] Case or separator drift normalizes before the value reaches the strict enum
 - [ ] CHK-024 [P0] Enum swap-precision benchmark passes, catch-rate 1.00 and false-reject-rate 0.00 on the planted fixture set across both schemas, reproduced via `enum-constrain-schemas.vitest.ts`
 - [ ] CHK-025 [P0] Corpus conformance-count baseline frozen through the warn-tier `GRAPH_METADATA_SHAPE` and `DESCRIPTION_SHAPE` rules with the count-to-zero handed to A4
 - [ ] CHK-026 [P0] Flags-off byte-identical parse proven with `SPECKIT_SCHEMA_ENUM_ENFORCE` off and the flag registered in the flag-ceiling drift guard
+- [ ] CHK-027 [P0] The enum is reachable only through the flag seam, not a bare `z.enum` baked into the base schema, verified by a grep showing free-string base `importance_tier` and `status` plus the `isSchemaEnumEnforceEnabled()` resolver
 <!-- /ANCHOR:testing -->
 
 ---
@@ -138,7 +139,7 @@ FAILURE MODES:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 15 | 0/15 |
+| P0 Items | 16 | 0/16 |
 | P1 Items | 13 | 0/13 |
 | P2 Items | 1 | 0/1 |
 

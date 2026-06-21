@@ -48,7 +48,7 @@ FAILURE MODES:
 
 Spec-kit already stores rich docs and two metadata JSONs per packet, but that data is not tuned for the three jobs it has to do: feed retrieval, steer AI adherence and stay readable as logic. This packet ran the research that decides which of those quality levers are worth building by default. Stage 0 captured a fresh-Opus online sweep of about thirty cited sources across seven angles. The official multi-lineage loop then ran five distinct deep-research lineages across thirty-seven substantive iterations, executed as parallel opus-via-claude2 read-only seats, each verifying its ranked candidates against the live retrieval and validation code. All five lineages converged.
 
-The research converged on the truncation law. The prod retrieval path truncates to a 3-result floor, so it taxes retrieval candidates only while adherence and logic and write-time candidates bypass the floor. The decisive consequence is that the external brief's recall@K numbers are mechanically hidden by the K=3 prod floor, so external validation alone cannot promote a retrieval candidate, only a prod-mode eval-v2 dual-mode measurement can. The five lineages also surfaced the live default-ON quality-loop keystone, four novel floor-bypassing capabilities and a build-ready engine plus governance rollout. The full tiering and the staged rollout live in `research/research.md`.
+The research converged on the truncation law. The prod retrieval path never cuts below a 3-result minimum, but that minimum is a guaranteed floor not a cap. Confidence truncation trims the tail only on a relevance cliff and otherwise returns all results up to a 20-wide window, and the real prod-limiting stage is token-budget truncation. The direction the law sets still holds. Retrieval candidates stay gated because the eval path skips truncation while the prod path applies it, so the external brief's recall@K numbers do not survive the prod fidelity gap and external validation alone cannot promote a retrieval candidate, only a prod-mode eval-v2 dual-mode measurement can. Adherence and logic and write-time candidates bypass the floor and ship on cost. The five lineages also surfaced the live default-ON quality-loop keystone, four novel floor-bypassing capabilities and a build-ready engine plus governance rollout. The full tiering and the staged rollout live in `research/research.md`.
 
 **Key Decisions**: research-first before any build, rank candidates by external evidence strength, gate every retrieval candidate on a prod-mode completeRecall@3 read
 
@@ -152,6 +152,16 @@ Decide, from external evidence, which data-quality techniques spec-kit should ad
 
 This packet is now a phase parent. The research lives at the root and the implementation lives in the 28 child phases below, one child per converged recommendation. Each child carries its own full Level-2 doc set, spec.md plus plan.md plus tasks.md plus checklist.md plus implementation-summary.md, alongside the two metadata JSONs. The verdict tier comes straight from the canonical synthesis in `research/research.md`.
 
+### Build Readiness
+
+All 28 children are scaffolded so the design is captured, but scaffolded is not build-ready. The honest scope is a single-digit buildable subset plus a measurement gate, not 28 phases ready to ship. Build readiness splits three ways.
+
+- **Buildable now, the minimal high-value subset:** 004 the A4 schema gate (measured, with the decision-versus-flip note below), 026 the shared safe-fix engine that A1 and B1 and B2 mount on, 001 the A1 keystone and 003 the A3 enum-constrain. These four carry their own evidence and do not wait on a prod retrieval read.
+- **Deferred until measured:** all of Tier C (014, 015, 016, 017, 018) plus the thin novel items. Every Tier-C item is hypothesis-until-prod-measured and unlocks only after the 015 C2 prod-mode read shows the floor can move. These keep their scaffolds so the design survives, but they are not build-ready and must not be built until that read lands.
+- **Sequenced behind the engine or the gate:** the remaining Tier-A, Tier-B and novel GO-on-cost phases build once their named dependency (026 or 015) ships.
+
+A4 is the one measured GO. It is unconditional as a decision but flip-gated as an action, because the error flip is the final beat of a four-beat discipline and only fires once the live corpus re-measures to zero schema failures. That count is not zero today. A real run of the target `graphMetadataSchema` over the corpus fails 16 to 24 graph files (16 excluding archives, 24 including), not the parse-only subcount of 11 the earlier census cited, and the re-measure-to-zero gate is exactly what catches that undercount before any flip.
+
 ### Tier A on-write reuse-first
 
 | Phase | Folder | Scope | Verdict tier |
@@ -159,7 +169,7 @@ This packet is now a phase parent. The research lives at the root and the implem
 | 001 | `001-a1-extend-quality-loop-authored/` | Extend the live default-ON quality loop to score authored spec docs, the keystone on-write reuse seam | GO-on-cost |
 | 002 | `002-a2-trigger-propagation-description/` | Propagate trigger phrases into description.json so retrieval and adherence read the same signal | GO-on-cost |
 | 003 | `003-a3-enum-constrain-schemas/` | Enum-constrain the two metadata JSON schemas so invalid field values fail fast | GO-on-cost |
-| 004 | `004-a4-schema-warn-to-error/` | Promote the JSON-schema validation gate from warn to error, the one measured unconditional GO | GO |
+| 004 | `004-a4-schema-warn-to-error/` | Promote the JSON-schema validation gate from warn to error, the one measured GO, unconditional as a decision but flip-gated on re-measuring the corpus to zero schema failures | GO |
 | 005 | `005-a5-trigger-coherence-assertion/` | Assert trigger coherence between spec.md and description.json so they cannot drift | GO-on-cost |
 | 006 | `006-a6-hvr-style-autofix/` | Autofix HVR style violations at write time so the voice rules hold without manual passes | GO-on-cost |
 | 007 | `007-a7-ears-constraints-req-coverage/` | Add EARS constraints and requirement-coverage checks to raise adherence on authored docs | GO-on-cost |
@@ -180,7 +190,7 @@ This packet is now a phase parent. The research lives at the root and the implem
 | Phase | Folder | Scope | Verdict tier |
 |-------|--------|-------|--------------|
 | 014 | `014-c1-chunk-prefix/` | Prefix each embedded chunk with its header path and global identity to lift recall | CONDITIONAL |
-| 015 | `015-c2-prodmode-recall-gate/` | Stand up the prod-mode completeRecall@3 benchmark gate, the unblocker for every Tier-C item | CONDITIONAL |
+| 015 | `015-c2-prodmode-recall-gate/` | Stand up the prod-mode completeRecall@3 benchmark gate, the unblocker for every other Tier-C retrieval candidate (C1, C3, C4, C5) | CONDITIONAL |
 | 016 | `016-c3-answerable-questions-tags/` | Tag each doc with the questions it can answer so retrieval matches intent | CONDITIONAL |
 | 017 | `017-c4-metadata-fusion/` | Fuse metadata into the embedding so the signal travels inside the vector not beside it | CONDITIONAL |
 | 018 | `018-c5-llm-judge-scorer/` | Add an LLM-judge scorer to grade retrieval candidates the floor would otherwise hide | CONDITIONAL |
@@ -208,7 +218,9 @@ This packet is now a phase parent. The research lives at the root and the implem
 ### Build-Order Dependencies
 
 - The 026 shared safe-fix engine ships before 001 A1 and 011 B1 and 012 B2, because those three reuse it as their fix path.
-- The 015 C2 prod-mode benchmark gate ships before every Tier-C item and before the 027 floor experiment, because no retrieval candidate can promote without a prod-mode completeRecall@3 read.
+- The 015 C2 prod-mode benchmark gate ships before every other Tier-C retrieval candidate (C1, C3, C4, C5) and before the 027 floor experiment, because no retrieval candidate can promote without a prod-mode completeRecall@3 read. 015 is itself a Tier-C item, so the edge is to the other four candidates and not to itself.
+
+These two are the only folder-to-folder build edges. The full sequence is five inviolable edges owned by `028-governance-rollout`. The other three are intra-migration beats that order steps inside a single phase rather than between phase folders: the A4 census re-measure before the schema-error flip, the backfill before the error promotion and the coverage guard before retrieval trust.
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -283,7 +295,7 @@ This packet is now a phase parent. The research lives at the root and the implem
 
 ## 12. OPEN QUESTIONS
 
-- Which ranked candidates survive corpus-specific verification once the loop runs. ANSWERED by the five-lineage loop: one measured unconditional GO (the JSON-schema gate), a cluster of floor-bypassing GO-on-cost fields and gates plus seven novel floor-bypassing capabilities, a conditional retrieval slate of five items that stay hypothesis-until-prod-measured, plus a consolidated no-go list of eighteen already-shipped or premature or over-engineered techniques. See `research/research.md`.
+- Which ranked candidates survive corpus-specific verification once the loop runs. ANSWERED by the five-lineage loop: one measured GO that is unconditional as a decision but flip-gated on a re-measure-to-zero backfill (the JSON-schema gate), a cluster of floor-bypassing GO-on-cost fields and gates plus seven novel floor-bypassing capabilities, a conditional retrieval slate of five items that stay hypothesis-until-prod-measured, plus a consolidated no-go list of eighteen already-shipped or premature or over-engineered techniques. See `research/research.md`.
 - How much of the Turso and libSQL claim set holds up under an independent benchmark. ANSWERED: no-go. RRF plus sqlite-vec already ship, the swap moves nothing measurable, while quantization is premature on a roughly 2022-row corpus.
 - Whether the prod-mode completeRecall@3 read promotes any retrieval candidate once a build runs. OPEN, deferred to a build stage.
 <!-- /ANCHOR:questions -->

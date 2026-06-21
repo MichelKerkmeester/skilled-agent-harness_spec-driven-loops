@@ -14,7 +14,7 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/015-c2-prodmode-recall-gate"
     last_updated_at: "2026-06-21T00:00:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Authored phase QA checklist for C2 prod-mode recall gate scaffold"
+    recent_action: "Round-2 remediation: re-scoped QA for @3/@5/@8 plus order-sensitive metric"
     next_safe_action: "Hold for implementation, no item has been verified yet"
     blockers: []
     key_files:
@@ -61,7 +61,7 @@ FAILURE MODES:
 
 - [ ] CHK-001 [P0] Requirements documented in spec.md
 - [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Harness lens export and non-saturating baseline dependency identified and available
+- [ ] CHK-003 [P1] Harness lens export, the shared eval-metrics order-sensitive functions, and the non-saturating baseline dependency identified and available
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -69,7 +69,7 @@ FAILURE MODES:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] The gate reuses the harness prod lens and classes through the export with no lens logic duplicated
+- [ ] CHK-010 [P0] The gate reuses the harness prod lens and classes through the export, and the shared `computeNDCG`/`computeMRR` for the order-sensitive companion, with no lens logic duplicated
 - [ ] CHK-011 [P0] No console errors or warnings from the gate on a valid run
 - [ ] CHK-012 [P1] Missing baseline and empty relevance set branches handled
 - [ ] CHK-013 [P1] Change follows the existing eval-script patterns
@@ -80,10 +80,10 @@ FAILURE MODES:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] All acceptance criteria met (REQ-001 through REQ-006)
+- [ ] CHK-020 [P0] All acceptance criteria met (REQ-001 through REQ-007)
 - [ ] CHK-021 [P0] A degraded scratch prod profile fails REGRESSION mode with the recall-verdict exit code, not the crash code
-- [ ] CHK-022 [P1] A measured prod completeRecall@3 rise passes PROMOTION mode and an unchanged profile does not
-- [ ] CHK-023 [P1] The gold set has no single-target query and every query carries a class tag
+- [ ] CHK-022 [P1] A measured prod completeRecall@3/@5/@8 rise that holds NDCG@K and top1 passes PROMOTION mode, while an unchanged profile and a top1-degrading window-membership rise both fail
+- [ ] CHK-023 [P1] The gold set has no single-target citable query, every citable query carries a class tag, `hard_negative` is excluded from the completeRecall pool, and a class at its K/N ceiling does not trip REGRESSION
 <!-- /ANCHOR:testing -->
 
 ---

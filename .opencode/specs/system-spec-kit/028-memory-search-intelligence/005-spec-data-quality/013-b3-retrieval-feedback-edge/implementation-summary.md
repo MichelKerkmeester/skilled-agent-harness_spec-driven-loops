@@ -56,7 +56,7 @@ Nothing is built yet. This phase is a PLANNED scaffold. The spec, plan, tasks, a
 
 ### Planned: Impression Capture (not yet built)
 
-The plan adds an aggregate impression capture at the result-assembly seam in `hybrid-search.ts`, recording an `impression_count` and a per-doc `min_rank_seen` before the floor truncates, all behind the default-off `SPECKIT_RETRIEVAL_GAP_DETECT` flag. With the flag off the search path stays unchanged.
+The plan adds an aggregate impression capture at the result-assembly seam in `hybrid-search.ts`, recording an `impression_count` and a per-doc `min_rank_seen` before truncation narrows the set, all behind the default-off `SPECKIT_RETRIEVAL_GAP_DETECT` flag. With the flag off the search path stays unchanged.
 
 ### Planned: Gap Detector and Refinement Queue (not yet built)
 
@@ -89,7 +89,7 @@ Not yet delivered. Nothing is tested or shipped. The intended rollout keeps ever
 
 | Decision | Why |
 |----------|-----|
-| Capture at the pre-truncation assembly point | Recorded `min_rank_seen` after the floor would misclassify a below-floor casualty as a recall gap |
+| Capture at the pre-truncation assembly point | Recorded `min_rank_seen` after truncation would misclassify a truncation casualty as a recall gap |
 | Mirror the `learned_feedback_audit` governance | Copying the four safeguards avoids a second un-governed audit surface |
 | Keep edge-b advisory only | Acting on below-floor rows needs the prod-mode completeRecall@3 proof from `015-c2-prodmode-recall-gate` which does not exist yet |
 <!-- /ANCHOR:decisions -->

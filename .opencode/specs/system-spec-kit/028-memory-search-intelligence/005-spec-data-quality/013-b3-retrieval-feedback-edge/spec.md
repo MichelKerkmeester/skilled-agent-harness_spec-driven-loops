@@ -62,7 +62,7 @@ FAILURE MODES:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The retrieval-learning loop records only the positive selection edge. `learned-feedback.ts:257 recordSelection` logs a term-add audit row when a user selects a result, but the grep for impression or never-retrieved telemetry across the search lib is empty, so the system has no signal for a doc that was never retrieved. That gap matters because the prod path truncates every query to a 3-result floor at `confidence-truncation.ts:35 DEFAULT_MIN_RESULTS`, which means a never-retrieved doc is one of two very different things and the system cannot tell them apart. One is a real recall gap where the doc ranked below the candidate set, the other is a below-floor truncation casualty where the doc was a real candidate the floor cut.
+The retrieval-learning loop records only the positive selection edge. `learned-feedback.ts:257 recordSelection` logs a term-add audit row when a user selects a result, but the grep for impression or never-retrieved telemetry across the search lib is empty, so the system has no signal for a doc that was never retrieved. That gap matters because the prod path narrows the returned set through layered truncation. `confidence-truncation.ts:35 DEFAULT_MIN_RESULTS = 3` is a never-cut-below-3 minimum guarantee, not a cap. Above that minimum the confidence stage is cliff-conditional and returns 3 to 20, and token-budget truncation is the real prod-limiting stage. A never-retrieved doc is then one of two very different things the system cannot tell apart. One is a real recall gap where the doc ranked below the candidate set, the other is a truncation casualty where the doc was a real candidate the cliff or token-budget stage cut from the returned set.
 
 ### Purpose
 Capture an aggregate impression signal at the result-assembly seam, split never-retrieved into a recall-gap edge versus a below-floor-truncation edge using `min_rank_seen`, and queue edge-tagged refinement actions report-only behind a default-off flag so the loop can learn from what it failed to surface without ever auto-applying a change.
@@ -75,14 +75,15 @@ Capture an aggregate impression signal at the result-assembly seam, split never-
 
 ### In Scope
 - An aggregate impression capture at the result-assembly seam in `hybrid-search.ts`, recording an `impression_count` and a per-doc `min_rank_seen` behind `SPECKIT_RETRIEVAL_GAP_DETECT` default-off.
-- A `detect-retrieval-gaps.ts` detector that reads the captured impressions, classifies a never-retrieved doc into edge (a) recall-gap when the doc was seen but ranked outside the returned set, versus edge (b) below-floor truncation when the doc was a candidate the 3-result floor cut, using `min_rank_seen` as the discriminator.
+- Flag registration. `SPECKIT_RETRIEVAL_GAP_DETECT` is a default-off search-pipeline gate, so its checker registers in `search-flags.ts` where the seam reads it and the token is acknowledged in the `flag-ceiling.vitest.ts` `ACKNOWLEDGED_UNCEILINGED_FLAGS` default-off list rather than the default-ON `ALL_SPECKIT_FLAGS` soak set. The default-off proof is the flag-off no-op test in REQ-001, because the ceiling test sets explicit true or false values and cannot prove an env-unset default.
+- A `detect-retrieval-gaps.ts` detector that reads the captured impressions, classifies a never-retrieved doc into edge (a) recall-gap when the doc was seen but ranked outside the returned set, versus edge (b) below-floor truncation when the doc was a real candidate the cliff or token-budget truncation cut from the returned set, using `min_rank_seen` as the discriminator.
 - A `refinement_queue` table that stores edge-tagged refinement rows, mirroring the `learned_feedback_audit` governance shape (age eligibility, shadow period, TTL expiry, nuclear rollback).
 - Report-only emission: the detector proposes refinement actions and never auto-applies them. The edge-a recall-gap enrich-triggers action is registered suggest-only, the edge-b below-floor row is advisory only.
 
 ### Out of Scope
 - Acting on edge-b below-floor rows. They are C2-gated and require the prod-mode completeRecall@3 proof from `015-c2-prodmode-recall-gate`, which does not exist yet.
 - Any auto-apply or auto-refine path. B3 proposes, it never refines.
-- Changing the truncation floor itself at `confidence-truncation.ts`. The floor stays. B3 only observes what it cut.
+- Changing the minimum-guarantee constant itself at `confidence-truncation.ts`. The minimum stays. B3 only observes what truncation cut.
 - Re-embedding or any re-index work. The capture reads the assembled result set already in memory.
 
 ### Files to Change
@@ -90,9 +91,11 @@ Capture an aggregate impression signal at the result-assembly seam, split never-
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts` | Modify | Add aggregate impression capture at the result-assembly seam where `truncateByConfidence` is applied, recording `impression_count` and per-doc `min_rank_seen` behind the default-off flag |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts` | Modify | Export the default-off `SPECKIT_RETRIEVAL_GAP_DETECT` checker the seam reads |
 | `.opencode/skills/system-spec-kit/mcp_server/lib/search/detect-retrieval-gaps.ts` | Create | New detector that classifies never-retrieved docs into recall-gap versus below-floor edges and writes edge-tagged rows |
 | `.opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts` | Modify | Add the `refinement_queue` table DDL mirrored on the `learned_feedback_audit` governance columns |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/detect-retrieval-gaps.vitest.ts` | Create | Edge-discriminator and report-only governance tests |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts` | Modify | Acknowledge `SPECKIT_RETRIEVAL_GAP_DETECT` in the `ACKNOWLEDGED_UNCEILINGED_FLAGS` default-off list so the drift guard passes |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -105,8 +108,8 @@ Capture an aggregate impression signal at the result-assembly seam, split never-
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | While `SPECKIT_RETRIEVAL_GAP_DETECT` is unset or false, the search seam MUST behave byte-for-byte as it does today. | Search output and timing are unchanged with the flag off. A test asserts the capture path is never entered when the flag is absent. |
-| REQ-002 | When the flag is on, the seam MUST record an aggregate `impression_count` and a per-doc `min_rank_seen` at the result-assembly point before the floor truncates. | A test feeds a candidate set wider than the floor and asserts `min_rank_seen` reflects the pre-truncation rank, not the post-floor rank. |
-| REQ-003 | The detector MUST split a never-retrieved doc into edge (a) recall-gap versus edge (b) below-floor truncation using `min_rank_seen` as the discriminator. | A test asserts a doc whose `min_rank_seen` is within the floor maps to edge-b and a doc whose `min_rank_seen` is outside the returned set maps to edge-a. |
+| REQ-002 | When the flag is on, the seam MUST record an aggregate `impression_count` and a per-doc `min_rank_seen` at the result-assembly point before truncation runs. | A test feeds a candidate set wider than the returned set and asserts `min_rank_seen` reflects the pre-truncation rank, not the post-truncation rank. |
+| REQ-003 | The detector MUST split a never-retrieved doc into edge (a) recall-gap versus edge (b) below-floor truncation using `min_rank_seen` as the discriminator. | A test asserts a doc whose `min_rank_seen` falls within the returned-set band the truncation could have surfaced maps to edge-b and a doc whose `min_rank_seen` ranks beyond that band maps to edge-a. |
 | REQ-004 | The detector MUST queue refinement actions report-only and MUST NOT auto-apply any action. | A test asserts no body mutation and no learned-term write occur on a detector run. Only `refinement_queue` rows are written. |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -136,7 +139,7 @@ Capture an aggregate impression signal at the result-assembly seam, split never-
 | Dependency | `015-c2-prodmode-recall-gate` | Edge-b below-floor actions cannot be acted on until the prod-mode completeRecall@3 gate exists. | Keep edge-b advisory only. The gate is the explicit unblock condition named in the row. |
 | Dependency | `learned_feedback_audit` governance in `learned-feedback.ts` | The queue copies this shape, so a divergence would create a second un-governed audit surface. | Mirror the columns and the four safeguards verbatim rather than re-inventing them. |
 | Risk | Per-query capture overhead on a hot search path | Medium | Aggregate the signal and gate the whole capture behind the default-off flag so prod pays nothing until the experiment is explicitly enabled. |
-| Risk | Misreading `min_rank_seen` as the post-floor rank | High | Capture at the pre-truncation assembly point, before `truncateByConfidence` runs, and assert the pre-truncation rank in a test. |
+| Risk | Misreading `min_rank_seen` as the post-truncation rank | High | Capture at the pre-truncation assembly point, before `truncateByConfidence` runs, and assert the pre-truncation rank in a test. |
 | Risk | An action silently auto-applied | High | All actions are report-only. The edge-a action is suggest-only and the edge-b row is advisory. A test asserts no mutation. |
 <!-- /ANCHOR:risks -->
 
@@ -164,7 +167,7 @@ Capture an aggregate impression signal at the result-assembly seam, split never-
 ### Data Boundaries
 - Empty candidate set: no impression rows recorded and the detector returns an empty queue.
 - All candidates returned (no truncation): no below-floor edge rows since nothing was cut.
-- A doc seen at exactly the floor boundary: classified by the `min_rank_seen` comparison, which a test pins.
+- A doc seen at exactly the returned-set boundary: classified by the `min_rank_seen` comparison, which a test pins.
 
 ### Error Scenarios
 - DB write failure on the queue: log and continue, the search response is unaffected.

@@ -142,7 +142,7 @@ Required inventories:
 
 ### Benchmark (SPECIFIED, not run)
 
-Recall is not the metric for this write-time phase. Prod search truncates to a three-result floor, so retrieval-class measurement routes through the prod-mode completeRecall@3 gate that phase `015-c2-prodmode-recall-gate` owns via the export at `run-eval-v2.mjs:361` (`buildSearchLenses`, `meanCompleteRecallProfile`, `MEASURABILITY_CLASSES`). These five gates are write-time detectors, so the benchmark is conformance against fixtures, scored in the spirit of the `quality-loop.ts` scorer dimensions (`computeMemoryQualityScore`, `QUALITY_WEIGHTS`) rather than recall.
+Recall is not the metric for this write-time phase. Prod search holds a never-cut-below-3 minimum floor (`DEFAULT_MIN_RESULTS=3`, a guarantee not a cap), confidence truncation is cliff-conditional and returns 3 to 20, and token-budget truncation is the real prod-limiting stage, so a retrieval-class win cannot be proven by external recall@K alone and routes instead through the prod-mode completeRecall@3 gate that phase `015-c2-prodmode-recall-gate` owns via the export at `run-eval-v2.mjs:361` (`buildSearchLenses`, `meanCompleteRecallProfile`, `MEASURABILITY_CLASSES`). These five gates are write-time detectors that bypass that retrieval floor and ship on cost, so the benchmark is conformance against fixtures, scored in the spirit of the `quality-loop.ts` scorer dimensions (`computeMemoryQualityScore`, `QUALITY_WEIGHTS`) rather than recall.
 
 | Metric | PROMOTION threshold | REGRESSION threshold |
 |--------|---------------------|----------------------|

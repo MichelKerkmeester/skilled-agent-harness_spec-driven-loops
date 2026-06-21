@@ -84,7 +84,7 @@ _memory:
 - [ ] T014 Author the planted fixtures, one unlinked-REQ spec and one fully-linked spec, for the catch-rate benchmark (.opencode/skills/system-spec-kit/scripts/tests/fixtures/req-coverage-unlinked) [REQ-001]
 - [ ] T015 Write check-req-coverage.test.sh asserting catch-rate 1.0, zero false positives, the no-op message and the floor clamp (.opencode/skills/system-spec-kit/scripts/tests/check-req-coverage.test.sh) [REQ-001]
 - [ ] T016 Write check-ears-lint.test.sh asserting one advisory on a free-form row and zero on an all-EARS fixture (.opencode/skills/system-spec-kit/scripts/tests/check-ears-lint.test.sh) [REQ-005]
-- [ ] T017 Extend flag-ceiling.vitest.ts with SPECKIT_REQ_COVERAGE and SPECKIT_EARS_LINT to prove both default off and a flags-off byte-identical run (.opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts) [REQ-002]
+- [ ] T017 Assert the flags-off byte-identical run on a 005 sibling that proves both default off, via check-req-coverage.test.sh (REQ_COVERAGE and EARS_LINT are validate.sh rules in validator-registry.json next to AC_COVERAGE, so they do not register in flag-ceiling.vitest.ts) (.opencode/skills/system-spec-kit/scripts/tests/check-req-coverage.test.sh) [REQ-002]
 - [ ] T018 Measure the first-run real-defect floor on the live 005 corpus and confirm at least one real unlinked REQ surfaces (.opencode/skills/system-spec-kit/scripts/spec/validate.sh) [REQ-001]
 <!-- /ANCHOR:phase-3 -->
 

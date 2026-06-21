@@ -8,6 +8,8 @@ The data-quality program rests on a real, code-grounded foundation. The keystone
 
 Coverage: all 30 slices returned findings. Roughly 100 findings total: 1 design-blocking, ~29 P1, ~40 P2, the rest confirmed-clean. The findings cluster into six themes below. This is research-only, so every finding is correctable in the spec before a line of code lands.
 
+> **REMEDIATION (this session, RESOLVED):** all P0/P1 and the actionable P2 findings were fixed across 44 files via 10 file-scoped remediation seats. The truncation-law framing is corrected and consistent across SUMMARY, spec, research and the tracking doc (floor-not-cap, cliff-conditional, token-budget as the real prod stage, surviving direction kept). The C2 gate is widened to the @3/@5/@8 columns the harness already emits plus an order-sensitive NDCG@K and top1 companion. The A4 census is re-sized (24 files, 16 live, not 11) and reframed as a decision-unconditional but backfill-gated flip. The 003 producer guard now covers all three out-of-enum paths and the enum-enforce design uses a dual schema. The over-scaffolding is reframed honestly (buildable-now versus deferred-until-measured) WITHOUT deleting any phase, per the operator's intent to keep all 28 scaffolds. Recursive validate --strict exits 0, HVR clean.
+
 ---
 
 ## Theme 1: The truncation-law spine overstates the K=3 cutoff (HEADLINE, convergent across 5 independent slices)

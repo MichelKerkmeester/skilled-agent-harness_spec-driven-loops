@@ -81,15 +81,16 @@ This phase swaps the free-string `importance_tier`, `status`, and `content_type`
 ## 3. ARCHITECTURE
 
 ### Pattern
-Schema-field type tightening plus a producer guard. No new abstraction and no retrieval-path change. The constant-then-enum shape reuses the existing `SAVE_LINEAGE_VALUES` pattern in `graph-metadata-schema.ts`.
+Flag-gated schema-field tightening plus three producer guards. No new abstraction and no retrieval-path change. The constant-then-enum shape reuses the existing `SAVE_LINEAGE_VALUES` pattern in `graph-metadata-schema.ts`, and the flag seam reuses the existing per-flag resolver pattern in `search-flags.ts`. The enum is not baked into the unconditionally parsed base schema. A strict schema variant or a flag-gated `superRefine` carries it so the default-off path keeps free-string acceptance.
 
 ### Key Components
-- **`graph-metadata-schema.ts`**: hosts `graphMetadataDerivedSchema` where `importance_tier` and `status` are `z.string().min(1)` at lines 43-44 and `save_lineage` already reads `z.enum(SAVE_LINEAGE_VALUES)` at line 50. Target of the three `as const` vocabularies and the `z.enum(...)` swap.
-- **`description-schema.ts`**: hosts the description schema where `type` is a bare `z.string().optional()` at line 64 with no `importance_tier` or `content_type` field. Target of the two added enums, the tightened `type`, the preserved `.passthrough()`, and the existing `formatDescriptionSchemaIssues` per-field message path.
-- **`graph-metadata-parser.ts`**: hosts `deriveStatus`, `deriveImportanceTier`, and `normalizeDerivedStatus` whose default branch at lines 179-180 returns the raw normalized token. Target of the closed default so the producer never emits an out-of-enum value.
+- **`graph-metadata-schema.ts`**: hosts `graphMetadataDerivedSchema` where `importance_tier` is `z.string().min(1)` at line 43, `status` at line 44, and `save_lineage` already reads `z.enum(SAVE_LINEAGE_VALUES)` at line 50. Target of the three `as const` vocabularies and the strict enum variant (or `superRefine`) that the flag selects, with the base fields left free-string.
+- **`description-schema.ts`**: hosts the description schema where `type` is a bare `z.string().optional()` at line 64 with no `importance_tier` or `content_type` field. Target of the two added enums behind the same flag seam, the tightened `type`, the preserved `.passthrough()`, and the existing `formatDescriptionSchemaIssues` per-field message path.
+- **`graph-metadata-parser.ts`**: hosts `deriveStatus`, `deriveImportanceTier` and `normalizeDerivedStatus`. Three out-of-enum producer paths feed `graphMetadataSchema.parse`: the `normalizeDerivedStatus` default branch returns the raw normalized token at line 180, `deriveStatus` returns `'unknown'` at line 1041 and `deriveImportanceTier` returns the unnormalized frontmatter tier at lines 1071-1079. Target of all three guards so the producer never emits an out-of-enum value.
+- **`search-flags.ts`**: hosts the per-flag `isXEnabled()` resolvers that wrap `isFeatureEnabled` (imported from `cognitive/rollout-policy.js`). Target of a new `isSchemaEnumEnforceEnabled()` resolver for `SPECKIT_SCHEMA_ENUM_ENFORCE` that the schema seam consults to select strict-versus-free-string.
 
 ### Data Flow
-A metadata file is parsed on load through its zod schema. Today a drifted `importance_tier`, `status`, or `content_type` validates clean because the field is a free string. After this phase the field is a closed enum, so an out-of-vocabulary value fails at parse time. The producer side derives a status or tier, and the closed `normalizeDerivedStatus` default maps an unknown source token to a defined fallback before the value reaches the schema, so a freshly derived file always parses clean against its own enums.
+A metadata file is parsed on load through its zod schema. Today a drifted `importance_tier`, `status`, or `content_type` validates clean because the field is a free string. After this phase, when `SPECKIT_SCHEMA_ENUM_ENFORCE` is on, the strict variant (or `superRefine`) makes an out-of-vocabulary value fail at parse time, and when the flag is off the base free-string schema parses byte-identical to baseline. The producer side derives a status or tier, and all three producer paths map an unknown source token to a defined in-enum fallback before the value reaches the schema, so a freshly derived file always parses clean against the strict variant.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -101,11 +102,14 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `graphMetadataDerivedSchema.importance_tier` | Free `z.string().min(1)` at line 44 | swap to `z.enum(...)` over the canonical tier tuple | a fixture with `high` fails, `important` passes |
-| `graphMetadataDerivedSchema.status` | Free `z.string().min(1)` at line 43 | swap to `z.enum(...)` over the derived-status tuple | a fixture with `wip` fails, `in_progress` passes |
-| `content_type` on the schema that carries it | No enum target on either schema | add an `as const` tuple sourced from the live doc-type axis plus a `z.enum(...)` | an unknown content_type fails, a known one passes |
-| `description-schema.ts` `type` plus added enums | `type` is bare `z.string().optional()` at line 64, no tier or content_type field | add closed `importance_tier` and `content_type` enums, tighten `type`, keep `.passthrough()` | an extra authored key still parses, an out-of-enum tier fails |
-| `normalizeDerivedStatus` default branch | Returns the raw normalized token at lines 179-180 | close the default to a defined fallback | a malformed source status derives to an in-enum value |
+| `graphMetadataDerivedSchema.importance_tier` | Free `z.string().min(1)` at line 43 | add the canonical tier tuple plus a flag-gated strict variant (or `superRefine`), leave the base field free-string | with the flag on a fixture with `high` fails and `important` passes, with the flag off both accept |
+| `graphMetadataDerivedSchema.status` | Free `z.string().min(1)` at line 44 | add the derived-status tuple plus the same flag-gated strict variant | with the flag on a fixture with `wip` fails and `in_progress` passes, with the flag off both accept |
+| `content_type` on the schema that carries it | No enum target on either schema | add an `as const` tuple sourced from the live doc-type axis plus the same flag-gated strict variant | with the flag on an unknown content_type fails and a known one passes |
+| `description-schema.ts` `type` plus added enums | `type` is bare `z.string().optional()` at line 64, no tier or content_type field | add closed `importance_tier` and `content_type` enums behind the same flag seam, tighten `type`, keep `.passthrough()` | an extra authored key still parses, an out-of-enum tier fails with the flag on |
+| `normalizeDerivedStatus` default branch | Returns the raw normalized token at line 180 | close the default to a defined in-enum fallback | a malformed source status derives to an in-enum value |
+| `deriveStatus` `'unknown'` branch | Returns the literal `'unknown'` at line 1041, outside `{complete, in_progress, planned}` | map the `'unknown'`-availability case to an in-enum status fallback | an `unknown`-availability ranked doc derives to an in-enum status |
+| `deriveImportanceTier` raw-tier return | Returns the unnormalized frontmatter tier at lines 1071-1079, fallback `important` | normalize the frontmatter tier to an in-enum value before it returns | a frontmatter `importance_tier: "high"` derives to an in-enum tier |
+| `isSchemaEnumEnforceEnabled()` flag resolver | No flag seam exists in the schema or parser today | add the resolver in `search-flags.ts` wrapping `isFeatureEnabled('SPECKIT_SCHEMA_ENUM_ENFORCE')`, default off | the strict variant runs only when the resolver returns true |
 | `formatDescriptionSchemaIssues` | Per-field issue formatter | reuse so an out-of-enum value yields a precise message | a failing parse names the offending field and its allowed set |
 
 Required inventories:
@@ -126,20 +130,21 @@ Required inventories:
 - [ ] Confirm the derived-status set against `normalizeDerivedStatus` outputs at `graph-metadata-parser.ts:170-181`
 
 ### Phase 2: Core Implementation
-- [ ] Add the three `as const` vocabularies in `graph-metadata-schema.ts` and swap `importance_tier` and `status` to `z.enum(...)`, adding `content_type` where the derived block carries it
-- [ ] Add closed `importance_tier` and `content_type` enums to `description-schema.ts`, tighten `type`, and keep `.passthrough()`
+- [ ] Add the three `as const` vocabularies in `graph-metadata-schema.ts` and add the flag-gated strict variant (or `superRefine`) for `importance_tier`, `status` and `content_type`, leaving the base fields free-string so the default-off parse is byte-identical to baseline
+- [ ] Add the `isSchemaEnumEnforceEnabled()` resolver in `search-flags.ts` wrapping `isFeatureEnabled('SPECKIT_SCHEMA_ENUM_ENFORCE')` and select the strict variant only when it returns true
+- [ ] Add closed `importance_tier` and `content_type` enums to `description-schema.ts` behind the same flag seam, tighten `type`, and keep `.passthrough()`
 - [ ] Wire the out-of-enum message through `formatDescriptionSchemaIssues` so a failing parse names the field and its allowed set
-- [ ] Close the `normalizeDerivedStatus` default branch so an unknown derived token maps to a defined fallback rather than leaking raw
+- [ ] Close all three producer paths so a derived token never leaks raw: the `normalizeDerivedStatus` default branch (line 180), the `deriveStatus` `'unknown'` return (line 1041) and the unnormalized `deriveImportanceTier` raw-tier return (lines 1071-1079), each mapping to a defined in-enum fallback
 - [ ] Cite the `content_type` source vocabulary in a code comment that states the durable WHY with no artifact id
 
 ### Phase 3: Verification
-- [ ] A fixture with an out-of-enum `importance_tier`, `status`, or `content_type` fails, and an in-enum fixture passes
-- [ ] A derive-then-parse round trip over a real packet with a malformed source status produces an in-enum status that parses clean
-- [ ] A description fixture with extra authored keys still parses while an out-of-enum `importance_tier` fails
+- [ ] With the flag on a fixture with an out-of-enum `importance_tier`, `status`, or `content_type` fails and an in-enum fixture passes, with the flag off the same out-of-enum fixture is accepted byte-identical to baseline
+- [ ] A derive-then-parse round trip over real packets exercising all three producer paths (malformed source status, an `unknown`-availability ranked doc, a frontmatter `importance_tier: "high"`) produces in-enum values that parse clean against the strict variant
+- [ ] A description fixture with extra authored keys still parses while an out-of-enum `importance_tier` fails with the flag on
 
 ### Benchmark (SPECIFIED, not run)
 
-This is a write-time schema-conformance phase, so the metric is not recall. Prod search truncates to the 3-result floor and a validation-only change moves no retrieval number, so the per-phase benchmark is enum swap-precision on a planted fixture set paired with a frozen corpus conformance-count.
+This is a write-time schema-conformance phase, so the metric is not recall. The confidence floor is a never-cut-below-3 minimum guarantee not a cap (it returns 3..20, cliff-conditional), token-budget truncation is the real prod-limiting stage, and write-time candidates ship on cost and bypass the floor, so a validation-only change moves no retrieval number. The per-phase benchmark is enum swap-precision on a planted fixture set paired with a frozen corpus conformance-count.
 
 | Aspect | Value |
 |--------|-------|
@@ -153,7 +158,7 @@ This is a write-time schema-conformance phase, so the metric is not recall. Prod
 
 ### Default-Safety (SPECIFIED, not run)
 
-- **Default state**: `SPECKIT_SCHEMA_ENUM_ENFORCE` defaults OFF through the existing `isFeatureEnabled` helper, so the parse-on-load and save path keep the current free-string acceptance and every existing or freshly saved file parses byte-identical to baseline. The unit-level enum reject of REQ-001 and REQ-002 stays provable on fixtures with the flag off.
+- **Default state**: `SPECKIT_SCHEMA_ENUM_ENFORCE` defaults OFF through a new `isSchemaEnumEnforceEnabled()` resolver in `search-flags.ts` that wraps `isFeatureEnabled('SPECKIT_SCHEMA_ENUM_ENFORCE')`, mirroring the existing per-flag resolvers. The flag seam is load-bearing because a bare `z.enum` baked into the base schema is parsed unconditionally at all five `graphMetadataSchema.parse` sites (`graph-metadata-parser.ts:220,282,341,1125,1149`) with no env seam, so the byte-identical claim is only achievable through a dual free-string/strict schema or a flag-gated `superRefine`. With the flag off the base free-string schema runs, so the parse-on-load and save path keep the current acceptance and every existing or freshly saved file parses byte-identical to baseline. The unit-level enum reject of REQ-001 and REQ-002 stays provable by parsing the strict variant directly in the fixture, independent of the runtime flag state.
 - **Keep-off rationale**: the legacy corpus still carries drifted `importance_tier`, `status` and `content_type` tokens that the A4 backfill has not yet driven to zero, so enforcing on the live write path now would risk a premature false-fire before the count reads clean.
 - **No-regress**: with the flag off both schemas parse byte-identical to baseline, and `GRAPH_METADATA_SHAPE` and `DESCRIPTION_SHAPE` stay at `severity: warn` in `validator-registry.json` so a drifted value reports without blocking.
 - **Reversibility**: `export SPECKIT_SCHEMA_ENUM_ENFORCE=false`, or leaving it unset, reverts at runtime with zero re-index and zero retrieval-path change. The new flag is registered in the `flag-ceiling.vitest.ts` drift guard so default-off coverage never silently gaps.

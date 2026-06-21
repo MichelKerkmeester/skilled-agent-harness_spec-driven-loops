@@ -57,7 +57,7 @@ FAILURE MODES:
 | **Testing** | A floor sweep on a fixed copy DB plus a no-flag diff proof that the on-disk default stays 3 |
 
 ### Overview
-This phase runs a measurement-only floor sweep on the C2 prod-mode harness. It adds a `run-floor-experiment.mjs` driver that raises the retrieval floor and token budget through an env-gated default-off override read inside `confidence-truncation.ts`, reads only the prod-lens completeRecall@3 column per swept setting and reports the recall delta against the stored C2 baseline. The driver returns one verdict, signal or noise, and the on-disk default at `confidence-truncation.ts:35` stays `DEFAULT_MIN_RESULTS = 3` after the run.
+This phase runs a measurement-only floor sweep on the C2 prod-mode harness. It adds a `run-floor-experiment.mjs` driver that raises the never-cut-below-3 minimum and widens the token budget through an env-gated default-off `SPECKIT_FLOOR_OVERRIDE` read inside `confidence-truncation.ts`, reads only the prod-lens completeRecall@3 column per swept setting and reports the recall delta against the stored C2 baseline. The driver returns one verdict, signal or noise, and the on-disk default at `confidence-truncation.ts:35` stays `DEFAULT_MIN_RESULTS = 3` after the run.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -86,7 +86,7 @@ A thin measurement driver over the unchanged C2 prod-mode harness, plus one env-
 
 ### Key Components
 - **`run-floor-experiment.mjs`**: the sweep driver that sets the floor override per setting, runs the C2 prod lens over the existing copy DB, reads only the prod completeRecall@3 column and records the per-setting delta against the C2 baseline.
-- **`confidence-truncation.ts`**: gains a default-off env read for `DEFAULT_MIN_RESULTS` and the token budget so the floor can move for the experiment without changing the on-disk default of 3.
+- **`confidence-truncation.ts`**: gains a default-off `SPECKIT_FLOOR_OVERRIDE` env read for `DEFAULT_MIN_RESULTS` and the token budget so the minimum guarantee can move for the experiment without changing the on-disk default of 3.
 - **`floor-experiment-report.md`**: the measured per-setting recall deltas and the one signal-or-noise verdict against a pre-stated threshold.
 - **`run-eval-v2.mjs`**: the unchanged dual-mode harness, consumed through the C2 export for the prod lens and the measurability classes.
 
@@ -103,8 +103,8 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `confidence-truncation.ts:35` `DEFAULT_MIN_RESULTS` | The on-disk prod floor literal of 3 | leave the literal at 3, add a default-off env read above it | a diff shows the literal 3 unchanged and a no-flag run uses the 3-floor |
-| `confidence-truncation.ts` token budget | The prod token budget applied at truncation | add a default-off env read for the budget | a no-flag run uses the shipped budget |
+| `confidence-truncation.ts:35` `DEFAULT_MIN_RESULTS` | The on-disk never-cut-below-3 minimum literal of 3, a floor not a cap | leave the literal at 3, add a default-off `SPECKIT_FLOOR_OVERRIDE` env read above it | a diff shows the literal 3 unchanged and a no-flag run uses the 3-result minimum |
+| `confidence-truncation.ts` token budget | The prod token budget applied at truncation, the real prod-limiting stage | add a default-off `SPECKIT_FLOOR_OVERRIDE` env read for the budget | a no-flag run uses the shipped budget |
 | `hybrid-search.ts:2065` `minResultsGuaranteed` | Surfaces the floor guarantee as `DEFAULT_MIN_RESULTS` at the prod seam | not a consumer change, reads the same constant | grep shows no edit to the guarantee line |
 | `run-eval-v2.mjs` prod lens via the C2 export | The prod-lens completeRecall@3 profile | not a consumer change, reuse through the C2 export | the driver imports the prod lens and class symbols and duplicates no lens or floor logic |
 | `run-floor-experiment.mjs` | Does not exist | create the sweep driver reading only the prod column and refusing an eval-lens input | an eval-lens input fails the driver assertion and an unmoved floor fails closed |
@@ -128,7 +128,7 @@ Required inventories:
 - [ ] Fix the floor settings to sweep above 3 and the matching token budget per setting
 
 ### Phase 2: Core Implementation
-- [ ] Add a default-off env read for `DEFAULT_MIN_RESULTS` and the token budget in `confidence-truncation.ts` so the on-disk default stays 3
+- [ ] Add the default-off `SPECKIT_FLOOR_OVERRIDE` env read for `DEFAULT_MIN_RESULTS` and the token budget in `confidence-truncation.ts` so the on-disk default stays 3
 - [ ] Build `run-floor-experiment.mjs` to set the override per setting, run the C2 prod lens and read only the prod completeRecall@3 column
 - [ ] Refuse an eval-lens input and fail closed when the env override is set but the floor did not move
 - [ ] Write `floor-experiment-report.md` with the pre-stated threshold, the per-setting prod-column deltas against the C2 baseline and the one signal-or-noise verdict
@@ -169,7 +169,7 @@ Required inventories:
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: The env override leaks into the on-disk default, or the driver reads the wrong lens.
-- **Procedure**: Remove the `run-floor-experiment.mjs` driver and the report, then revert the default-off env read so `confidence-truncation.ts` returns to its shipped state with the 3-floor.
+- **Procedure**: Remove the `run-floor-experiment.mjs` driver and the report, then revert the default-off `SPECKIT_FLOOR_OVERRIDE` env read so `confidence-truncation.ts` returns to its shipped state with the 3-result minimum.
 <!-- /ANCHOR:rollback -->
 
 ---

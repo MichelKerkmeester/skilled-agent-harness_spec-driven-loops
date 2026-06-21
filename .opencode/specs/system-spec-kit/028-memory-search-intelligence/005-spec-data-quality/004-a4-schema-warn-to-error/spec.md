@@ -54,7 +54,7 @@ FAILURE MODES:
 | **Status** | Draft |
 | **Created** | 2026-06-21 |
 | **Branch** | `004-a4-schema-warn-to-error` |
-| **Verdict** | measured-GO (parent's only measured unconditional GO, ships first) |
+| **Verdict** | measured-GO, unconditional as a DECISION but flip-gated on backfill-to-zero (the live failing count is 16-to-24 today, not 0), ships first |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -94,7 +94,7 @@ Promote `DESCRIPTION_SHAPE` and `GRAPH_METADATA_SHAPE` to error against the real
 | `.opencode/skills/system-spec-kit/scripts/rules/check-description-shape.sh` | Modify | Replace the inline hand-rolled Node check (lines 32-60) with a call into `folderDescriptionSchema` plus `formatDescriptionSchemaIssues`, surface every issue as an error |
 | `.opencode/skills/system-spec-kit/scripts/rules/check-graph-metadata-shape.sh` | Modify | Replace the inline hand-rolled Node check (lines 32-69) with a call into `graphMetadataSchema`, keep the phase-parent `last_active_child_id` pointer check, promote remaining warnings to errors |
 | `.opencode/skills/system-spec-kit/scripts/lib/validator-registry.json` | Modify | Set `severity` to `error` for `GRAPH_METADATA_SHAPE` (line 195) and `DESCRIPTION_SHAPE` (line 203) |
-| `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` | Modify | Delete `detect_legacy_grandfathered` (lines 175-183), its call site (line 1044), and the `LEGACY_GRANDFATHERED` read in the strict RESULT branch (line 927) |
+| `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` | Modify | Delete `detect_legacy_grandfathered` (lines 175-183), its declaration (line 41), its call site (line 1044), and all four `LEGACY_GRANDFATHERED` reads in the strict RESULT and exit logic (lines 912, 927, 935, 1062), not the single read the earlier draft named |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -137,7 +137,9 @@ Promote `DESCRIPTION_SHAPE` and `GRAPH_METADATA_SHAPE` to error against the real
 |------|------|--------|------------|
 | Dependency | Real zod schemas `graphMetadataSchema` and `folderDescriptionSchema` already exported with `formatDescriptionSchemaIssues` | None, schemas ship today and import `zod` | Reuse verbatim, add no new schema logic in the rule scripts |
 | Dependency | Four-beat migration discipline (WARN, BACKFILL, RE-MEASURE TO ZERO, ERROR) from the parent rollout layer | An early flip would fail-block legacy files | Hold the error flip until the dry-run failing count reads 0 |
-| Risk | Hidden live-root files still failing the stricter schema (parent census counted 11 invalid graph files) | Med, an early flip would block validation on legacy packets | BACKFILL through the canonical save/backfill flow then re-measure to zero before flipping |
+| Risk | Live-root files still failing the stricter `graphMetadataSchema`. A real `safeParse` over the 2059-file corpus fails 24 files (16 excluding archives), not the 11 the parent census reported. The 11 are nested `research/.../iterations/` text-stub artifacts, not roots. The 11 also exclude the genuine failing roots | Med, an early flip would block validation on the real failing roots | The real failing roots are `.opencode/specs/graph-metadata.json` (legacy two-key `{derived, children_ids}` shape) and three `026/022` packets (`migration_source` not "legacy", missing `manual.depends_on[].source`, out-of-enum `derived.save_lineage`). BACKFILL these to the canonical shape then re-measure to zero before flipping |
+| Dependency | A4 spans two validators, `DESCRIPTION_SHAPE` (`folderDescriptionSchema`) and `GRAPH_METADATA_SHAPE` (`graphMetadataSchema`) | The description half re-measures clean today (0 of 2054 `description.json` files fail), so the whole backfill burden sits on the graph half | Scope the backfill to `graph-metadata.json` files only |
+| Risk | The error flip drops the live reader's legacy-migration tolerance. `validateGraphMetadataContent` (`graph-metadata-parser.ts:338-387`) catches a strict-parse failure and falls back to `parseLegacyGraphMetadataContent`, accepting legacy on-disk files that a bare `graphMetadataSchema.parse` at error rejects | Med, legacy-format files the loader tolerates would fail strict after the flip | The re-measure-to-zero gate surfaces them before the flip. Backfill them to the canonical shape, do not re-add a tolerance path inside the rule |
 | Risk | The stricter zod schema rejects a shape the hand-rolled check tolerated | Low, the schemas are the canonical writer contract | Run the full dry-run pass and backfill any newly-surfaced gap before the flip |
 <!-- /ANCHOR:risks -->
 
@@ -192,6 +194,6 @@ Promote `DESCRIPTION_SHAPE` and `GRAPH_METADATA_SHAPE` to error against the real
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Should the backfill of the 11 census-counted invalid live-root graph files run through `generate-context` or a one-shot backfill, and is that backfill in this phase or a precondition owned by the parent Stage-0 census.
+- Should the backfill of the real failing graph roots (the legacy two-key `.opencode/specs/graph-metadata.json` plus the three `026/022` packets, not the 11 `research/.../iterations/` text-stubs) run through `generate-context` or a one-shot backfill, and is that backfill in this phase or a precondition owned by the parent Stage-0 census.
 - Do the rule scripts call the zod schema through a thin compiled Node entry or a `tsx` shim, matching how the strict-only validators already resolve `tsx_bin` in `validate.sh`.
 <!-- /ANCHOR:questions -->

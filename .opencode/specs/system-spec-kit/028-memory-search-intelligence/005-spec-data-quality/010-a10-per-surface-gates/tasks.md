@@ -55,7 +55,7 @@ _memory:
 
 - [ ] T001 Read the shipped route-validate assertion harness (`.opencode/commands/doctor/scripts/route-validate.py`)
 - [ ] T002 Read the advisor rebuild and validate contracts (`.opencode/skills/system-skill-advisor/mcp_server/tools/advisor-rebuild.ts`)
-- [ ] T003 [P] Confirm the warn-tier entry shape (`.opencode/skills/system-spec-kit/scripts/validation/validator-registry.json`)
+- [ ] T003 [P] Confirm the warn-tier entry shape (`.opencode/skills/system-spec-kit/scripts/lib/validator-registry.json`)
 - [ ] T004 Resolve the canonical SKILL.md version grammar with the operator (`vX.Y` versus `version: N`)
 <!-- /ANCHOR:phase-1 -->
 
@@ -69,7 +69,7 @@ _memory:
 - [ ] T007 Generalize route-validate assertions D, E, F across all 28 command docs (`.opencode/commands/doctor/scripts/route-validate.py`)
 - [ ] T008 Wire advisor_rebuild to advisor_validate as a check tier (`.opencode/skills/system-skill-advisor/mcp_server/tools/advisor-rebuild.ts`)
 - [ ] T009 Build the triple-copy trigger-vocabulary canary across the three hand-synced copies
-- [ ] T010 Register all five gates as default-off warn-tier entries (`.opencode/skills/system-spec-kit/scripts/validation/validator-registry.json`)
+- [ ] T010 Register all five gates as default-off warn-tier entries (`.opencode/skills/system-spec-kit/scripts/lib/validator-registry.json`)
 <!-- /ANCHOR:phase-2 -->
 
 ---

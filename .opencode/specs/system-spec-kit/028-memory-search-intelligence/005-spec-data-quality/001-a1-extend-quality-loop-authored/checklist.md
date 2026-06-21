@@ -79,7 +79,7 @@ FAILURE MODES:
 ## Testing
 
 - [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] H1 byte-identity check on the two metadata JSONs passes
+- [ ] CHK-021 [P0] H1 byte-identity check passes against the exact bytes each seam writes (post-merge payload for description.json, call-site payload plus newline for graph-metadata.json)
 - [ ] CHK-022 [P1] H3 warn rule on the legacy corpus reports a warning and exits 0
 - [ ] CHK-023 [P1] No path reaches runQualityLoop or attemptAutoFix
 <!-- /ANCHOR:testing -->

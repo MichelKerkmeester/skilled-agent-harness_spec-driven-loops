@@ -69,7 +69,7 @@ _memory:
 - [ ] T005 Replace the inline hand-rolled check with a `graphMetadataSchema` call, keeping the phase-parent `last_active_child_id` pointer check and promoting remaining warnings to error (`.opencode/skills/system-spec-kit/scripts/rules/check-graph-metadata-shape.sh`)
 - [ ] T006 Backfill every file the new schemas surface as failing, then re-measure the census to zero
 - [ ] T007 Flip `severity` to `error` for `GRAPH_METADATA_SHAPE` and `DESCRIPTION_SHAPE` (`.opencode/skills/system-spec-kit/scripts/lib/validator-registry.json`)
-- [ ] T008 Delete `detect_legacy_grandfathered`, its call site, and the `LEGACY_GRANDFATHERED` read in the strict RESULT branch (`.opencode/skills/system-spec-kit/scripts/spec/validate.sh`)
+- [ ] T008 Delete `detect_legacy_grandfathered` (175-183), its declaration (41), its call site (1044), and all four `LEGACY_GRANDFATHERED` reads (912, 927, 935, 1062) (`.opencode/skills/system-spec-kit/scripts/spec/validate.sh`)
 <!-- /ANCHOR:phase-2 -->
 
 ---

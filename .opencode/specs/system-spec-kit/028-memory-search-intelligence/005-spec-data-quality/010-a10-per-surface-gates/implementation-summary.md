@@ -67,7 +67,7 @@ No files changed yet. The table below lists the planned targets from the spec.
 | `.opencode/skills/system-spec-kit/scripts/validation/` | Planned Create | New SKILL.md grammar detector and workflow-YAML schema detector |
 | `.opencode/commands/doctor/scripts/route-validate.py` | Planned Modify | Generalize assertions D, E, F across all 28 command docs |
 | `.opencode/skills/system-skill-advisor/mcp_server/tools/advisor-rebuild.ts` | Planned Reference | Wire advisor_rebuild to advisor_validate as a check tier |
-| `.opencode/skills/system-spec-kit/scripts/validation/validator-registry.json` | Planned Modify | Register the new detectors as warn-tier rules |
+| `.opencode/skills/system-spec-kit/scripts/lib/validator-registry.json` | Planned Modify | Register the new detectors as warn-tier rules |
 <!-- /ANCHOR:what-built -->
 
 ---

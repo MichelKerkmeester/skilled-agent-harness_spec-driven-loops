@@ -57,7 +57,7 @@ Status PLANNED. This phase is scaffolded and not yet implemented. No code change
 
 ### Env-gated floor override
 
-The phase will add a default-off env read for `DEFAULT_MIN_RESULTS` and the token budget inside `confidence-truncation.ts`. The override moves the floor for the experiment only. The on-disk prod default at `confidence-truncation.ts:35` stays `DEFAULT_MIN_RESULTS = 3` because the read is default-off and a no-flag run uses the shipped 3-floor.
+The phase will add a default-off `SPECKIT_FLOOR_OVERRIDE` env read for `DEFAULT_MIN_RESULTS` and the token budget inside `confidence-truncation.ts`. The override raises the never-cut-below-3 minimum for the experiment only. The on-disk prod default at `confidence-truncation.ts:35` stays `DEFAULT_MIN_RESULTS = 3` because the read is default-off and a no-flag run uses the shipped 3-result minimum.
 
 ### Prod-mode floor sweep driver
 
@@ -73,7 +73,7 @@ This table lists the planned changes. None have been applied.
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-truncation.ts` | Planned modify | Default-off env read for `DEFAULT_MIN_RESULTS` and the token budget, on-disk default stays 3 |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-truncation.ts` | Planned modify | Default-off `SPECKIT_FLOOR_OVERRIDE` env read for `DEFAULT_MIN_RESULTS` and the token budget, on-disk default stays 3 |
 | `.opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-floor-experiment.mjs` | Planned create | Floor sweep driver reading only the prod-lens completeRecall@3 column against the C2 baseline |
 | `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/027-retrieval-floor-experiment/floor-experiment-report.md` | Planned create | Per-setting prod-column recall deltas and the one signal-or-noise verdict |
 | `.opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-eval-v2.mjs` | Planned reuse | Consumed unchanged through the C2 export for the prod lens and the measurability classes |
@@ -94,8 +94,8 @@ Not yet delivered. The planned sequence confirms the C2 prod lens and baseline a
 
 | Decision | Why |
 |----------|-----|
-| Read only the prod column | The K=3 prod floor hides the exact band under test, so an eval-lens or external @K read would repeat the 028 saturation mistake and surface a phantom tail signal |
-| Move the floor behind a default-off env flag | The experiment must measure the tail without changing the on-disk default, so the flag keeps the literal 3 at `confidence-truncation.ts:35` intact |
+| Read only the prod column | The prod truncation stages hide the exact band under test, so an eval-lens or external @K read would repeat the 028 saturation mistake and surface a phantom tail signal |
+| Move the minimum behind the default-off `SPECKIT_FLOOR_OVERRIDE` env flag | The experiment must measure the tail without changing the on-disk default, so the flag keeps the literal 3 at `confidence-truncation.ts:35` intact |
 | Fail closed on an unmoved floor | An override the truncation seam never read would report a false no-signal, so the driver detects an unmoved floor and stops |
 | Hold for C2 before running | No prod-mode completeRecall@3 instrument exists to read until 015-c2 ships it, so the verdict is C2-gated |
 <!-- /ANCHOR:decisions -->

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Shared Safe-Fix Engine [template:level_2/plan.md]"
-description: "A pure runDetectors engine plus one frozen detector registry the five front doors share. Report mode never writes. Apply mode runs only safe-class fixes behind content_hash idempotency and atomic writes."
+description: "A pure runDetectors engine plus one frozen detector registry the keystone consumers share, three write-time front doors plus B3 and the Tier-C detectors. Report mode never writes. Apply mode runs only safe-class fixes behind content_hash idempotency and atomic writes."
 trigger_phrases:
   - "shared safe-fix engine"
   - "detector registry"
@@ -111,7 +111,7 @@ Required inventories:
 - Same-class producers: `rg -n 'fixClass|detector-registry|runDetectors' .opencode/skills/system-spec-kit/scripts`.
 - Consumers of changed symbols: the engine adds the new public surface `runDetectors` and `detector-registry`, so A1, B1 and B2 are the consumers to inventory after build with `rg -n 'runDetectors|detector-registry' .`.
 - Matrix axes: report mode versus apply mode and all three `fixClass` values `safe`, `risky` and `none`. INV-1 and INV-2 are the invariants the fixtures must assert.
-- Algorithm invariant: a body-mutating detector is never `safe` (INV-1) and a second apply on a fixed target is a no-op under content_hash.
+- Algorithm invariant: a detector declaring `touchesBody` is never granted `safe` (INV-1, a declaration check plus guarded-edit review, not a runtime proof) and a second apply on a fixed target is a no-op under content_hash.
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -130,7 +130,7 @@ Required inventories:
 - [ ] Seed the frozen safe-class allow-list (`desc.shape`, `enum.tier_status_ctype`, `triggers.propagate`, `hvr.style`, `anchor.unclosed`)
 - [ ] Build `dq-engine.ts` pure `runDetectors(target, opts)` returning `{issues, applied, skipped}`, report mode writes nothing
 - [ ] Add the apply path that runs `fix()` only for `opts.allowFixClass` detectors behind content_hash idempotency and atomic writes
-- [ ] Encode INV-1 and INV-2 mechanically and make the allow-list edit a guarded-class change that re-checks them
+- [ ] Encode INV-1 and INV-2 as registry-declaration checks (`fixClass` against a declared `touchesBody` flag) and make the allow-list edit a guarded-class change that re-checks them under review
 
 ### Phase 3: Verification
 - [ ] Report run over a dirty fixture returns populated issues with an empty applied set and a clean working tree

@@ -66,7 +66,7 @@ _memory:
 - [ ] T006 Seed the frozen safe-class allow-list (desc.shape, enum.tier_status_ctype, triggers.propagate, hvr.style, anchor.unclosed) (.opencode/skills/system-spec-kit/scripts/dq/detector-registry.ts)
 - [ ] T007 Build the pure runDetectors returning {issues, applied, skipped}, report mode writes nothing (.opencode/skills/system-spec-kit/scripts/dq/dq-engine.ts)
 - [ ] T008 Add the apply path running fix() only for opts.allowFixClass detectors behind content_hash idempotency and atomic writes (.opencode/skills/system-spec-kit/scripts/dq/dq-engine.ts)
-- [ ] T009 Encode INV-1 and INV-2 mechanically and make the allow-list edit a guarded-class change that re-checks them (.opencode/skills/system-spec-kit/scripts/dq/detector-registry.ts)
+- [ ] T009 Encode INV-1 and INV-2 as registry-declaration checks (fixClass against a declared touchesBody flag, not a runtime proof) and make the allow-list edit a guarded-class change that re-checks them under review (.opencode/skills/system-spec-kit/scripts/dq/detector-registry.ts)
 <!-- /ANCHOR:phase-2 -->
 
 ---

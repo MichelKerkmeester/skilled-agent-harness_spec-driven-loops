@@ -54,7 +54,7 @@ _memory:
 
 - [ ] T001 Grep the result-assembly seam and the floor constant to pin the edit points (`.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-truncation.ts`)
 - [ ] T002 Add the `refinement_queue` table DDL mirrored on the `learned_feedback_audit` governance columns (`.opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts`)
-- [ ] T003 [P] Register the default-off `SPECKIT_RETRIEVAL_GAP_DETECT` flag (`.opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts`)
+- [ ] T003 [P] Register the default-off `SPECKIT_RETRIEVAL_GAP_DETECT` checker in `search-flags.ts` and acknowledge the token in the `flag-ceiling.vitest.ts` `ACKNOWLEDGED_UNCEILINGED_FLAGS` default-off list, not `ALL_SPECKIT_FLAGS` (`.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts`, `.opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts`)
 <!-- /ANCHOR:phase-1 -->
 
 ---

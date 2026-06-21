@@ -64,8 +64,8 @@ _memory:
 ## Phase 2: Implementation
 
 - [ ] T004 H1a score `graph-metadata.json` at the atomicWriteJson seam (`:587`) report-only (`scripts/memory/generate-context.ts`)
-- [ ] T005 H1b score `description.json` at the savePerFolderDescription seam (`:1683`, `:1720`, via runWorkflow) report-only (`scripts/core/workflow.ts`)
-- [ ] T006 H1 serialize each payload deterministically into the scorer content argument and assert byte-identity of both written JSON bodies (`scripts/memory/generate-context.ts`, `scripts/core/workflow.ts`)
+- [ ] T005 H1b score the post-merge `description.json` payload that savePerFolderDescription writes (merged by getDescriptionWritePayload), not the call-site argument, at the seam (`:1683`, `:1720`, via runWorkflow) report-only (`scripts/core/workflow.ts`)
+- [ ] T006 H1 adapt the markdown-body-shaped scorer input per seam and assert byte-identity of each written JSON body against the exact bytes scored (post-merge payload for description.json, call-site payload plus newline for graph-metadata.json) (`scripts/memory/generate-context.ts`, `scripts/core/workflow.ts`)
 - [ ] T007 H2 extend the reviewPostSaveQuality call to the authored spec-doc artifacts (`scripts/core/workflow.ts`)
 - [ ] T008 H3 add the CONTENT_QUALITY rule body default-off and warn (`scripts/validation/content-quality.ts`)
 - [ ] T009 H3 register the rule next to the shape rules at severity warn (`scripts/lib/validator-registry.json`)

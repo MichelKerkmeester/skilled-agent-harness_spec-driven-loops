@@ -177,14 +177,15 @@ Default-safety: both flags default OFF. The keep-off rationale is that the legac
 | Integration | validate.sh dispatch of both rules, flag-on and flag-off | validate.sh --strict |
 | Manual | Registry node-parse, no-op equivalence on a 005 sibling | node, diff of exit codes |
 | Benchmark | REQ_COVERAGE catch-rate, EARS_LINT swap-precision, first-run real-defect floor | scripts/tests/check-req-coverage.test.sh, scripts/tests/check-ears-lint.test.sh |
-| Default-off proof | Both flags default OFF and a flags-off run is byte-identical to the pre-phase baseline | mcp_server/tests/flag-ceiling.vitest.ts (ALL_SPECKIT_FLAGS, FLAG_CHECKERS) |
+| Default-off proof | Both flags default OFF and a flags-off run is byte-identical to the pre-phase baseline | scripts/tests/check-req-coverage.test.sh no-op assertion plus a flags-unset `validate.sh` byte-diff on a 005 sibling |
 
 ### Benchmark Metric and Test Artifacts
 
 - **Named metric**: the REQ_COVERAGE planted-mismatch catch-rate and the EARS_LINT swap-precision over `scripts/tests/fixtures/`, plus the first-run real-defect floor on the live 005 corpus. This is a detector-class metric, not recall, so it bypasses the `015` completeRecall@3 gate.
 - **`scripts/tests/check-req-coverage.test.sh`** asserts a planted unlinked REQ yields exactly one `REQ_COVERAGE WARNING`, a fully-linked fixture yields the advisory pass message with zero warnings, a no-REQ fixture yields the `coverage gate is a no-op` message and an out-of-range `SPECKIT_REQ_COVERAGE_FLOOR` clamps to `[0,1]` with a clamp note, mirroring `check-ac-coverage.sh:177-224`.
 - **`scripts/tests/check-ears-lint.test.sh`** asserts a planted free-form row yields one advisory line and an all-EARS or constraint-tier fixture yields zero, following the fixture-driven scorer pattern in `quality-loop.vitest.ts` (`computeMemoryQualityScore`, `QUALITY_WEIGHTS`).
-- **Flags-off byte-identical proof**: extend `mcp_server/tests/flag-ceiling.vitest.ts` to add `SPECKIT_REQ_COVERAGE` and `SPECKIT_EARS_LINT` to `ALL_SPECKIT_FLAGS` with a `FLAG_CHECKERS` entry each, proving both default OFF and capturing a flags-unset `validate.sh` run on a 005 sibling that diffs byte-identical to the pre-phase baseline.
+- **Flags-off byte-identical proof**: `REQ_COVERAGE` and `EARS_LINT` are `validate.sh` rules registered in `validator-registry.json` next to `AC_COVERAGE`, which is itself absent from `flag-ceiling.vitest.ts`, so their default-off proof is not a ceiling entry. The proof is a flags-unset `validate.sh` run on a 005 sibling that diffs byte-identical to the pre-phase baseline, asserted by `check-req-coverage.test.sh`. The `flag-ceiling.vitest.ts` drift guard scans `search-flags.ts` runtime gates only and is not the registration surface for these validate.sh rule flags.
+- **CI home**: `check-req-coverage.test.sh` and `check-ears-lint.test.sh` are local-reproduce commands only and are not wired into any CI workflow yet, so the declared test gate is unenforced in CI until a CI-wiring phase lands.
 - **Status**: SPECIFIED, not run. No fixture, test or rule has landed and completion stays 0.
 <!-- /ANCHOR:testing -->
 

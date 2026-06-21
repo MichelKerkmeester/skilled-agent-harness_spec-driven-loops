@@ -78,7 +78,7 @@ No source files have changed. The table below lists the docs authored for this s
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered. The phase is scaffolded for a later build. Delivery will reuse the shipped scorer and reviewer verbatim, assert byte-identity on the metadata JSONs, and land the validate rule default-off and warn so the legacy corpus never breaks.
+Not delivered. The phase is scaffolded for a later build. Delivery will reuse the one shipped scorer and reviewer without adding a parallel scorer, adapt the markdown-body-shaped scorer input for the metadata JSONs rather than pass raw serialized JSON, assert byte-identity against the exact bytes each seam writes (the post-merge payload for `description.json`, not the call-site argument) and land the validate rule default-off and warn so the legacy corpus never breaks.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -88,7 +88,7 @@ Not delivered. The phase is scaffolded for a later build. Delivery will reuse th
 
 | Decision | Why |
 |----------|-----|
-| Reuse the shipped pure scorer and reviewer | One scorer keeps the authored-surface verdict from diverging from the memory-surface verdict |
+| Reuse the one shipped pure scorer and reviewer, adapt its input for the JSON surface | One scorer prevents a second engine from drifting from the memory surface. The scorer is markdown-body-shaped, so the metadata JSON is projected into a scorer-legible shape rather than scored verbatim |
 | Keep the destructive loop out of scope | `attemptAutoFix` trims content to an 8000-char budget and would amputate a 10.6KB spec body |
 | Land the validate rule default-off and warn | A hard rule on day one would fail every legacy packet |
 <!-- /ANCHOR:decisions -->
@@ -103,7 +103,7 @@ The phase-doc scaffold was checked with `bash .opencode/skills/system-spec-kit/s
 | Check | Command or Artifact | Result |
 |-------|---------------------|--------|
 | Phase-doc scaffold passes strict validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <phase-folder> --strict` | PASS, exit 0 |
-| H1 byte-identity on the two metadata JSONs | `diff <pre-scoring-payload> <written-json>` | PENDING, not yet implemented |
+| H1 byte-identity on the two metadata JSONs | `diff <bytes-scored-per-seam> <written-json>` | PENDING, not yet implemented |
 | H3 warn rule on the legacy corpus exits 0 | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <corpus> --strict` | PENDING, not yet implemented |
 | No path reaches runQualityLoop or attemptAutoFix | `rg -n 'runQualityLoop\|attemptAutoFix' .opencode/skills/system-spec-kit/scripts` | PENDING, not yet implemented |
 <!-- /ANCHOR:verification -->

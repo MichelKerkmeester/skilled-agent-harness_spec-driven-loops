@@ -83,7 +83,7 @@ Not delivered. This is a planning scaffold. No tests were run and no apply execu
 
 | Decision | Why |
 |----------|-----|
-| Keep the registry the single source of truth, deny-by-default | The five front doors must not fork the detector list or the notion of a safe fix, so one frozen registry holds both |
+| Keep the registry the single source of truth, deny-by-default | The keystone consumers must not fork the detector list or the notion of a safe fix, so one frozen registry holds both |
 | Reuse the shipped scorers verbatim, add none of the engine's own | A parallel scorer would risk divergent verdicts, so the engine imports computeMemoryQualityScore and reviewPostSaveQuality and defines no scorer |
 | Quarantine the destructive runQualityLoop budget-trim to memory-save | Its 8000-char substring trim would amputate any doc larger than the budget, so the engine never calls it |
 <!-- /ANCHOR:decisions -->

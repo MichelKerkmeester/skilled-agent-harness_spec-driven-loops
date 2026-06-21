@@ -65,7 +65,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Add a default-off env read for `DEFAULT_MIN_RESULTS` and the token budget so the on-disk default stays 3 (`.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-truncation.ts`)
+- [ ] T004 Add the default-off `SPECKIT_FLOOR_OVERRIDE` env read for `DEFAULT_MIN_RESULTS` and the token budget so the on-disk default stays 3 (`.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-truncation.ts`)
 - [ ] T005 Build the sweep driver to set the override per setting, run the C2 prod lens and read only the prod completeRecall@3 column against the C2 baseline (`.opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-floor-experiment.mjs`)
 - [ ] T006 Refuse an eval-lens input and fail closed when the env override is set but the floor did not move (`.opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-floor-experiment.mjs`)
 - [ ] T007 Write the report with the pre-stated threshold, the per-setting prod-column deltas and the one signal-or-noise verdict (`.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/027-retrieval-floor-experiment/floor-experiment-report.md`)

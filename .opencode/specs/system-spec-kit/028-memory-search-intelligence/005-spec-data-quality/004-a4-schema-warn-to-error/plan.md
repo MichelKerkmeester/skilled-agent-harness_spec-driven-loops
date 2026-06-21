@@ -88,7 +88,7 @@ Validator rule swap plus registry severity flip plus dead-code deletion. No new 
 - **`check-description-shape.sh`**: structural rule for `description.json`, today carrying an inline ad-hoc shape check, target consumer of `folderDescriptionSchema` and `formatDescriptionSchemaIssues`.
 - **`check-graph-metadata-shape.sh`**: structural rule for `graph-metadata.json`, today carrying an inline ad-hoc shape check, target consumer of `graphMetadataSchema` while keeping its phase-parent pointer check.
 - **`validator-registry.json`**: owns the `severity` field per rule id, the single place the warn-to-error flip lands.
-- **`validate.sh`**: the strict gate, host of the dead `detect_legacy_grandfathered` function and the `LEGACY_GRANDFATHERED` read in the strict RESULT branch.
+- **`validate.sh`**: the strict gate, host of the dead `detect_legacy_grandfathered` function (lines 175-183), its declaration (line 41), its call site (line 1044), and all four `LEGACY_GRANDFATHERED` reads in the strict RESULT and exit logic (lines 912, 927, 935, 1062).
 
 ### Data Flow
 `validate.sh` resolves each rule from the registry, runs the rule script against the packet JSON, then folds the rule status into the strict RESULT. After this phase the two shape rules route their JSON through the canonical zod schemas and return `error` on a shape miss, and the strict RESULT no longer consults any grandfathered bypass.
@@ -106,7 +106,7 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 | `check-description-shape.sh` | Hand-rolls the `description.json` shape check inline at warn | update to call `folderDescriptionSchema` plus `formatDescriptionSchemaIssues`, surface every issue as error | grep shows the schema names and no surviving inline shape logic, a valid file passes |
 | `check-graph-metadata-shape.sh` | Hand-rolls the `graph-metadata.json` shape check inline at warn | update to call `graphMetadataSchema`, keep the `last_active_child_id` pointer check, promote warnings to error | grep shows the schema name, a valid file passes, a stale pointer still fails |
 | `validator-registry.json` | Declares `severity: warn` for both shape rule ids | update both to `severity: error` | registry lists `error` for `GRAPH_METADATA_SHAPE` and `DESCRIPTION_SHAPE` |
-| `validate.sh` strict RESULT | Reads the `LEGACY_GRANDFATHERED` flag through `detect_legacy_grandfathered` | delete the function, its call site, and the strict-branch read | grep returns zero matches for `legacy_grandfathered` and `LEGACY_GRANDFATHERED` |
+| `validate.sh` strict RESULT | Reads the `LEGACY_GRANDFATHERED` flag at four sites (lines 912, 927, 935, 1062) through `detect_legacy_grandfathered` | delete the function (175-183), its declaration (41), its call site (1044), and all four reads | grep returns zero matches for `legacy_grandfathered` and `LEGACY_GRANDFATHERED` |
 | `graph-metadata-schema.ts`, `description-schema.ts` | Canonical writer schemas already exported | not a consumer change, reuse verbatim | the schemas import `zod` and ship today, no new schema logic added |
 
 Required inventories:
@@ -131,7 +131,7 @@ Required inventories:
 - [ ] Replace the inline check in `check-graph-metadata-shape.sh` with a `graphMetadataSchema` call, keeping the phase-parent `last_active_child_id` pointer check
 - [ ] Backfill every file the new schemas surface as failing, then re-measure the census to zero
 - [ ] Flip `severity` to `error` for `GRAPH_METADATA_SHAPE` and `DESCRIPTION_SHAPE` in `validator-registry.json`
-- [ ] Delete `detect_legacy_grandfathered`, its call site, and the `LEGACY_GRANDFATHERED` read in the strict RESULT branch of `validate.sh`
+- [ ] Delete `detect_legacy_grandfathered` (175-183), its declaration (41), its call site (1044), and all four `LEGACY_GRANDFATHERED` reads (912, 927, 935, 1062) in `validate.sh`
 
 ### Phase 3: Verification
 - [ ] A valid corpus passes `validate.sh --strict` with exit 0
@@ -160,7 +160,7 @@ Required inventories:
 |------------|------|--------|-------------------|
 | `graphMetadataSchema`, `folderDescriptionSchema`, `formatDescriptionSchemaIssues` exports | Internal | Green | None, the schemas ship today and import `zod` |
 | Four-beat migration discipline (WARN, BACKFILL, RE-MEASURE TO ZERO, ERROR) | Internal | Yellow | An early flip fail-blocks legacy files |
-| Backfill path for the census-counted invalid live-root graph files | Internal | Yellow | The flip cannot land until the failing count reads zero |
+| Backfill path for the real failing graph roots (the legacy two-key `.opencode/specs/graph-metadata.json` plus three `026/022` packets, a real `safeParse` fails 24 files and 16 excluding archives, not 11), including legacy-format files the live reader migrates in memory but a strict `graphMetadataSchema.parse` rejects | Internal | Yellow | The flip cannot land until the failing count reads zero |
 <!-- /ANCHOR:dependencies -->
 
 ---
