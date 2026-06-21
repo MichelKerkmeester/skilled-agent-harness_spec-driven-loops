@@ -69,15 +69,22 @@ function resolveSkillGraphSourceDir(): string | null {
 }
 
 function resolveWorkspaceRoot(): string {
-  const candidates = Array.from(new Set([
-    process.cwd(),
-    path.resolve(import.meta.dirname, '..', '..', '..', '..'),
-  ]));
-
-  for (const candidate of candidates) {
-    if (fs.existsSync(path.join(candidate, '.opencode', 'skills'))) {
-      return candidate;
+  // Walk up from this module's own location to the repo root — the directory
+  // whose .opencode/skills tree contains this advisor. This is robust to the
+  // source-vs-dist depth difference (the compiled file lives one level deeper
+  // under dist/mcp_server/) and can never resolve a subdirectory cwd, which is
+  // what created stray nested .opencode/.advisor-state directories whenever the
+  // advisor ran with a subdirectory as its working directory.
+  let dir = import.meta.dirname;
+  for (let i = 0; i < 12; i += 1) {
+    if (fs.existsSync(path.join(dir, '.opencode', 'skills', 'system-skill-advisor'))) {
+      return dir;
     }
+    const parent = path.dirname(dir);
+    if (parent === dir) {
+      break;
+    }
+    dir = parent;
   }
 
   return process.cwd();
@@ -131,7 +138,7 @@ async function startupSkillGraphScan(): Promise<void> {
   try {
     const result = indexSkillMetadata(skillGraphSourceDir);
     logSkillGraphIndexResult('startup-scan', result);
-    const workspaceRoot = process.cwd();
+    const workspaceRoot = resolveWorkspaceRoot();
     const sourceSignature = computeAdvisorSourceSignature(workspaceRoot);
     publishSkillGraphGeneration({
       workspaceRoot,
@@ -295,7 +302,7 @@ export async function main(): Promise<void> {
   await startupSkillGraphScan();
   const watchFactory = await loadSkillGraphWatchFactory();
   skillGraphDaemon = await startSkillGraphDaemon({
-    workspaceRoot: process.cwd(),
+    workspaceRoot: resolveWorkspaceRoot(),
     skillsRoot: resolveSkillGraphSourceDir() ?? undefined,
     generationReason: 'advisor-server-watcher-reindex',
     watchFactory,
