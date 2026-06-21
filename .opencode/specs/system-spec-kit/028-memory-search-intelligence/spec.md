@@ -64,7 +64,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Packet 028 owns the planning record that turns external memory-system research into implementation sub-phases for internal retrieval surfaces. Its eight top-level children span four subsystem phase parents, one release-cleanup phase parent, a review-remediation phase parent, the kept-off flag-resolution reckoning and the TRACK B new-feature research-and-build arc so research inputs, candidate plans, cleanup scopes and child validation state are easy to navigate.
+Packet 028 owns the planning record that turns external memory-system research into implementation sub-phases for internal retrieval surfaces. Its nine top-level children span four subsystem phase parents, one release-cleanup phase parent, a review-remediation phase parent, the kept-off flag-resolution reckoning, the TRACK B new-feature research-and-build arc and the reranker deep research so research inputs, candidate plans, cleanup scopes and child validation state are easy to navigate.
 
 ### Purpose
 Provide the root purpose, child map and cross-packet boundary for packet 028. This parent routes the subsystem children to their implementation child maps, routes release cleanup to child 005 and records packet 030 as the Wave-0 SHIPPED done-evidence record.
@@ -118,6 +118,7 @@ Provide the root purpose, child map and cross-packet boundary for packet 028. Th
 | 006 | `006-review-remediation/` | Four-round deep review and its scoped remediation track | Phase parent |
 | 007 | `007-kept-off-flag-resolution/` | Final flip-or-delete reckoning for every default-off flag, keep 5 and delete 10 | Complete |
 | 008 | `008-new-feature-research-build/` | TRACK B new-feature arc, eval-v2 built and kept and 3 features built default-off and held | Complete |
+| 009 | `009-reranker-research/` | Reranker deep research, CONDITIONAL-GO, a demote-only Beta-posterior penalty hits the oracle ceiling under synthesis but earns 0.000 on real data | Complete |
 
 ### Phase Transition Rules
 
@@ -157,6 +158,6 @@ The Wave-0 implementation record is the Wave-0 SHIPPED record for candidates alr
 ## RELATED DOCUMENTS
 
 - **Roadmap**: `research/roadmap.md`
-- **Child parents**: `001-speckit-memory/`, `002-code-graph/`, `003-skill-advisor/`, `004-deep-loop/`, `005-release-cleanup/`, `006-review-remediation/`, `007-kept-off-flag-resolution/`, `008-new-feature-research-build/`
+- **Child parents**: `001-speckit-memory/`, `002-code-graph/`, `003-skill-advisor/`, `004-deep-loop/`, `005-release-cleanup/`, `006-review-remediation/`, `007-kept-off-flag-resolution/`, `008-new-feature-research-build/`, `009-reranker-research/`
 - **Merged research index**: `001-speckit-memory/research/merged-research-index.md`
 - **Graph metadata**: `graph-metadata.json`

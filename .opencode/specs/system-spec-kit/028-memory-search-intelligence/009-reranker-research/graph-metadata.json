@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/009-reranker-research",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/009-reranker-research",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/028-memory-search-intelligence/008-new-feature-research-build"
+    ],
+    "supersedes": [],
+    "related_to": [
+      "system-spec-kit/028-memory-search-intelligence/001-speckit-memory"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "028 reranker research",
+      "028 citation ledger reranker",
+      "028 demote only beta posterior penalty",
+      "028 reranker conditional go data blocked"
+    ],
+    "key_topics": [
+      "028",
+      "reranker",
+      "research",
+      "citation",
+      "ledger",
+      "beta-posterior",
+      "demote-only",
+      "truncation"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research.md"
+    ],
+    "entities": [],
+    "causal_summary": "Citation-Ledger Reranker Research is the read-only deep research that found a reranker is the one recall lever the truncation law permits. The recommended demote-only Beta-posterior penalty hit the oracle ceiling under a synthesized ledger but earned 0.000 on real data because the gold set and the strong-negative set do not intersect, so the verdict is CONDITIONAL-GO blocked on ledger density and corpus geometry not on the algorithm.",
+    "created_at": "2026-06-21T00:00:00Z",
+    "last_save_at": "2026-06-21T00:00:00Z",
+    "save_lineage": "scaffold",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": "2026-06-21T00:00:00Z"
+  }
+}

@@ -11,7 +11,8 @@
     "system-spec-kit/028-memory-search-intelligence/005-release-cleanup",
     "system-spec-kit/028-memory-search-intelligence/006-review-remediation",
     "system-spec-kit/028-memory-search-intelligence/007-kept-off-flag-resolution",
-    "system-spec-kit/028-memory-search-intelligence/008-new-feature-research-build"
+    "system-spec-kit/028-memory-search-intelligence/008-new-feature-research-build",
+    "system-spec-kit/028-memory-search-intelligence/009-reranker-research"
   ],
   "migrated": true,
   "migration_source": "legacy",
