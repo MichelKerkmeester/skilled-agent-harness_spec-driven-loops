@@ -58,9 +58,9 @@ FAILURE MODES:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] The 031 P0 dependencies, the DB or index access path, and the volatile-ignoring projection identified and available
+- [x] CHK-001 [P0] Requirements documented in spec.md
+- [x] CHK-002 [P0] Technical approach defined in plan.md
+- [x] CHK-003 [P1] Dependencies confirmed: 031 identity resolver/merge guard present in `graph-metadata-parser.ts`; index access path is the new `access-telemetry.ts` store; projection is ISO-datetime normalization in `computeSourceFingerprintFromDocs`
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -68,10 +68,10 @@ FAILURE MODES:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] The `source_fingerprint` derives over the volatile-ignoring projection so a no-op re-derive is identical and does not dirty the file
-- [ ] CHK-011 [P0] No console errors or warnings from the generator on a valid run with the flag default-off
-- [ ] CHK-012 [P1] The grandfather report mode and the missing-field schema branch handled
-- [ ] CHK-013 [P1] Change follows the existing graph-metadata generator and rule patterns
+- [x] CHK-010 [P0] Fingerprint derives over the ISO-normalized projection; the no-op-re-derive vitest case proves an identical fingerprint and a clean idempotent skip (`created:false`, byte-identical)
+- [x] CHK-011 [P0] Typecheck clean (0 TS errors); flag default-off path is byte-identical (field omitted), proven by the flag-off vitest case
+- [x] CHK-012 [P1] Grandfather mode resolves a missing/mismatched fingerprint to non-blocking `info`; the optional schema field parses with and without the value
+- [x] CHK-013 [P1] Follows the existing capability-flag, generator, and first-class-validator patterns (`isIdentityMergeSafetyEnabled` sibling shape, `GENERATED_METADATA_INTEGRITY` validator)
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -79,10 +79,10 @@ FAILURE MODES:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] All acceptance criteria met (REQ-001 through REQ-007)
-- [ ] CHK-021 [P0] A re-derive on unchanged docs yields an identical fingerprint and does not dirty the file, a source-doc change yields a different one
-- [ ] CHK-022 [P1] `isPhaseParent` and `resolveChildrenIds` both resolve through `listPhaseChildren` and agree on a fixture tree
-- [ ] CHK-023 [P1] A read and a resume leave the generated JSON byte-identical while the access record updates in the DB or index layer, and a strict run over an un-migrated file reports under the grandfather mode
+- [x] CHK-020 [P0] All acceptance criteria met (REQ-001 through REQ-007), 15/15 vitest passing
+- [x] CHK-021 [P0] Proven by the source_fingerprint vitest cases (no-op identical + clean skip; doc change differs)
+- [x] CHK-022 [P1] Proven by the unified-child-contract vitest cases on a fixture tree (qualifying + bare child)
+- [x] CHK-023 [P1] Proven by the telemetry-split vitest cases (read records to store, JSON byte-identical; resume resolves from store; strict run reports `info` under grandfather)
 <!-- /ANCHOR:testing -->
 
 ---
@@ -90,13 +90,13 @@ FAILURE MODES:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
-- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
-- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
-- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
+- [x] CHK-FIX-001 [P0] Finding class: `algorithmic` (fingerprint projection + unified child enumeration) plus `cross-consumer` (telemetry relocation across parser, resume, validator)
+- [x] CHK-FIX-002 [P0] Producer inventory run: `rg 'source_fingerprint|listPhaseChildren|isPhaseParent|resolveChildrenIds|last_active_child_id'` over `mcp_server` confirmed the changed symbols and their existing consumers
+- [x] CHK-FIX-003 [P0] Consumers checked: `isPhaseParent` consumers (`orchestrator.ts`) keep flag-off behavior byte-identical; `resolveChildrenIds` now exported; schema field optional so all loaders tolerate absence
+- [x] CHK-FIX-004 [P0] Adversarial cases tested: no-op re-derive, store-miss fallback, bare (non-qualifying) child, missing/mismatched fingerprint; `writeGraphMetadataFile` retains its existing outside-root guard
+- [x] CHK-FIX-005 [P1] Matrix axes: flag on/off x {fingerprint write, child contract, telemetry split}, grandfather on/off, schema with/without field, store hit/miss
+- [x] CHK-FIX-006 [P1] Hostile env/global-state covered: every vitest case sets and cleans `SPECKIT_GENERATOR_HARDENING`/`SPECKIT_GENERATED_METADATA_GRANDFATHER` per-case; the env-reference-drift guard passes
+- [x] CHK-FIX-007 [P1] Evidence pinned to the working-tree diff for this phase (uncommitted, no SHA yet, listed in implementation-summary.md)
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -104,9 +104,9 @@ FAILURE MODES:
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets
-- [ ] CHK-031 [P0] The fingerprint derives over the source docs the generator already reads and introduces no new untrusted input
-- [ ] CHK-032 [P1] No new execution surface introduced by the strict read or the telemetry split
+- [x] CHK-030 [P0] No hardcoded secrets
+- [x] CHK-031 [P0] Fingerprint derives over the canonical source docs the generator already reads; no new untrusted input
+- [x] CHK-032 [P1] No new execution surface: the strict read is a pure sha256 compare, the telemetry store is a best-effort fail-closed JSON read/write
 <!-- /ANCHOR:security -->
 
 ---
@@ -114,9 +114,9 @@ FAILURE MODES:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P1] Code comments adequate
-- [ ] CHK-042 [P2] README updated (if applicable)
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized; ENV_REFERENCE.md documents the new flag plus the sibling-phase flags
+- [x] CHK-041 [P1] Code comments adequate (durable WHY, no artifact ids or spec paths in comments)
+- [ ] CHK-042 [P2] README updated — N/A, no folder README in scope for this internal lib hardening
 <!-- /ANCHOR:docs -->
 
 ---
@@ -124,8 +124,8 @@ FAILURE MODES:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-050 [P1] No scratch files created; all changes are in the named source files and the phase docs
+- [x] CHK-051 [P1] No scratch/ directory created
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -135,11 +135,11 @@ FAILURE MODES:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 0/12 |
-| P1 Items | 13 | 0/13 |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 12 | 12/12 |
+| P1 Items | 13 | 13/13 |
+| P2 Items | 1 | 0/1 (CHK-042 N/A, deferred) |
 
-**Verification Date**: Pending (scaffold, not yet verified)
+**Verification Date**: 2026-06-22 — 15/15 vitest passing, `validate.sh --strict` exit 0, typecheck 0 errors
 <!-- /ANCHOR:summary -->
 
 ---

@@ -28,6 +28,8 @@ readonly EVIDENCE_MARKER_LINT_TS="$SCRIPT_DIR/../validation/evidence-marker-lint
 readonly EVIDENCE_MARKER_LINT_JS="$SCRIPT_DIR/../dist/validation/evidence-marker-lint.js"
 readonly GENERATED_METADATA_INTEGRITY_TS="$SCRIPT_DIR/../validation/generated-metadata-integrity.ts"
 readonly GENERATED_METADATA_INTEGRITY_JS="$SCRIPT_DIR/../dist/validation/generated-metadata-integrity.js"
+readonly GENERATED_METADATA_DRIFT_TS="$SCRIPT_DIR/../validation/generated-metadata-drift.ts"
+readonly GENERATED_METADATA_DRIFT_JS="$SCRIPT_DIR/../dist/validation/generated-metadata-drift.js"
 readonly VERSION="2.0.0"
 
 # Source shared libraries
@@ -885,6 +887,64 @@ run_generated_metadata_integrity_check() {
     fi
 }
 
+run_generated_metadata_drift_check() {
+    local folder="$1"
+    local output=""
+    local exit_code=0
+    local rule_name="GENERATED_METADATA_DRIFT"
+    local status=""
+    local message=""
+    local details=()
+    local tsx_bin="$SCRIPT_DIR/../node_modules/.bin/tsx"
+
+    # Prefer the TS source through tsx: the bridge imports the shared check across the
+    # scripts/mcp_server tree boundary, which only resolves from the source location.
+    if [[ -f "$GENERATED_METADATA_DRIFT_TS" ]]; then
+        if [[ ! -x "$tsx_bin" ]]; then
+            log_error "$rule_name" "tsx runtime missing: $tsx_bin"
+            return 0
+        fi
+        output=$("$tsx_bin" "$GENERATED_METADATA_DRIFT_TS" --folder "$folder" --strict 2>&1) || exit_code=$?
+    else
+        if [[ ! -f "$GENERATED_METADATA_DRIFT_JS" ]]; then
+            log_warn "$rule_name" "Strict-mode validator missing: $GENERATED_METADATA_DRIFT_TS"
+            return 0
+        fi
+        output=$(node "$GENERATED_METADATA_DRIFT_JS" --folder "$folder" --strict 2>&1) || exit_code=$?
+    fi
+    if [[ $exit_code -gt 1 ]]; then
+        log_error "$rule_name" "Generated metadata drift validator failed to execute"
+        log_detail "$output"
+        return 0
+    fi
+
+    while IFS=$'\t' read -r kind value; do
+        [[ -z "$kind" ]] && continue
+        case "$kind" in
+            rule) rule_name="$value" ;;
+            status) status="$value" ;;
+            message) message="$value" ;;
+            detail) details+=("$value") ;;
+        esac
+    done <<< "$output"
+    if [[ -z "$status" || -z "$message" ]]; then
+        log_error "$rule_name" "Generated metadata drift validator returned no parseable output"
+        log_detail "$output"
+        return 0
+    fi
+
+    case "$status" in
+        pass) log_pass "$rule_name" "$message" ;;
+        warn) log_warn "$rule_name" "$message" ;;
+        fail) log_error "$rule_name" "$message" ;;
+        info) $VERBOSE && log_info "$rule_name" "$message" ;;
+        *) log_error "$rule_name" "Generated metadata drift validator returned unknown status" ; log_detail "$output" ;;
+    esac
+    if [[ -n "${details[*]-}" ]]; then
+        for detail in "${details[@]}"; do log_detail "$detail"; done
+    fi
+}
+
 run_strict_validators() {
     local folder="$1"
     $STRICT_MODE || return 0
@@ -893,6 +953,7 @@ run_strict_validators() {
     fi
     should_run_rule "EVIDENCE_MARKER_LINT" && run_evidence_marker_lint_check "$folder"
     should_run_rule "GENERATED_METADATA_INTEGRITY" && run_generated_metadata_integrity_check "$folder"
+    should_run_rule "GENERATED_METADATA_DRIFT" && run_generated_metadata_drift_check "$folder"
     return 0
 }
 

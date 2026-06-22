@@ -318,5 +318,14 @@
     "category": "structural",
     "strict_only": true,
     "description": "Validates description.json and graph-metadata.json through the shared schemas plus path-prefix and status-enum invariants, error under strict behind a grandfather report mode."
+  },
+  {
+    "rule_id": "GENERATED_METADATA_DRIFT",
+    "aliases": ["METADATA_DRIFT", "SYNOPSIS_DRIFT"],
+    "script_path": "validation/generated-metadata-drift.ts",
+    "severity": "error",
+    "category": "structural",
+    "strict_only": true,
+    "description": "Re-derives a folder and reports drift between the stored description/causal_summary and the current docs, read-only, error under strict only when the drift-gate flag is on and otherwise grandfather report mode."
   }
 ]

@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/038-generator-hardening"
     last_updated_at: "2026-06-22T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded generator hardening phase from recs 13 and 14"
-    next_safe_action: "Run speckit plan to decompose the fingerprint and telemetry split build"
+    recent_action: "Built fingerprint, child-contract unify, telemetry split behind SPECKIT_GENERATOR_HARDENING"
+    next_safe_action: "Scoped migration to backfill source_fingerprint then graduate the flag"
     blockers: []
     key_files:
       - "../031-generated-json-quality-research/research/research.md"
@@ -25,11 +25,12 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "markdown-session"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Which hash input set defines source_fingerprint without re-introducing volatile drift"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "Whether the fingerprint is a fix or hardening, it is hardening because graph metadata is already idempotent"
+      - "Which hash input set defines source_fingerprint without volatile drift, the ISO-datetime-normalized projection of the canonical source docs"
+      - "Whether the access record lives in the DB or index layer, a JSON store next to the runtime database holds it"
 ---
 # Feature Specification: Generator Hardening
 
@@ -52,7 +53,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | PLANNED |
+| **Status** | COMPLETE |
 | **Created** | 2026-06-22 |
 | **Branch** | `038-generator-hardening` |
 <!-- /ANCHOR:metadata -->

@@ -68,6 +68,18 @@ export const graphMetadataDerivedSchema = z.object({
   save_lineage: z.enum(SAVE_LINEAGE_VALUES).optional(),
   last_accessed_at: z.string().datetime({ offset: true }).nullable(),
   source_docs: z.array(z.string().min(1)),
+  // Drift-detection proof that the derived causal_summary and description were re-derived
+  // from the current source docs rather than carried forward stale: sha256 over a single
+  // volatile-ignoring projection of those docs (timestamps normalized out so a no-op
+  // re-derive is identical). Optional so legacy files and a flag-off derive omit it
+  // cleanly; a strict read re-derives over the current docs and reports a mismatch as
+  // drift. Persisted only when the generator-hardening flag is on.
+  source_fingerprint: z.string().min(1).optional(),
+  // Freshness key for the drift gate: sha256 of each present source doc keyed by its
+  // packet-relative path. Optional so legacy files and a flag-off derive omit it cleanly;
+  // a doc edit changes its digest, letting a strict run skip the re-derive when the docs
+  // are unchanged. Persisted only when the drift-gate flag is on.
+  source_doc_hashes: z.record(z.string().min(1), z.string().min(1)).optional(),
   // Phase-parent chronology pointer: the most-recently-active direct child and when.
   // The resume ladder reads these to redirect into the live child phase. Optional +
   // nullable so leaf packets and freshly-derived metadata omit them cleanly; declared

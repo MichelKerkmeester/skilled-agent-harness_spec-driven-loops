@@ -15,9 +15,11 @@ import {
 import { stripYamlFrontmatter } from '../parsing/content-normalizer.js';
 import { resolveSpecFolderIdentity, SpecFolderIdentityError } from '../config/spec-doc-paths.js';
 import {
+  isGeneratedMetadataDriftGateEnabled,
   isIdentityMergeSafetyEnabled,
   isIdempotentDescriptionWritesEnabled,
 } from '../config/capability-flags.js';
+import { derivePacketSynopsis } from '../description/packet-synopsis.js';
 import { isExcludedFromGeneratedMetadata } from '../utils/index-scope.js';
 
 // ───────────────────────────────────────────────────────────────
@@ -531,6 +533,13 @@ function collectDiscoveredSpecState(basePaths: string[]): DiscoveredSpecState {
 export function extractDescription(specContent: string): string {
   if (!specContent || typeof specContent !== 'string') {
     return '';
+  }
+
+  // With the drift-gate flag on, the description derives from the one shared synopsis extractor
+  // so it shares precedence and source with the causal_summary field and the two stop diverging.
+  // With the flag off this keeps the legacy local extractor below, byte-identical.
+  if (isGeneratedMetadataDriftGateEnabled()) {
+    return derivePacketSynopsis(specContent, 'description');
   }
 
   let content = specContent.trim();

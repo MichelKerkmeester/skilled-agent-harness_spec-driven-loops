@@ -54,10 +54,10 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm the 031 P0 identity resolver and merge-path lineage guard already shipped, since this phase assumes them as dependencies (`.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts`)
-- [ ] T002 Confirm the DB or index layer exposes an access and freshness write path the telemetry split can route to (`.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts`)
-- [ ] T003 Define the volatile-ignoring projection the `source_fingerprint` derives over, matching the projection the idempotency compare already uses (`.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts`)
-- [ ] T004 [P] Define the default-off flag name and the grandfather report mode the strict read honors
+- [x] T001 Confirmed the 031 identity resolver (`resolveSpecFolderIdentity`, `isIdentityMergeSafetyEnabled`) and merge-path lineage guard already shipped in `graph-metadata-parser.ts`
+- [x] T002 Confirmed the index layer hosts the access and freshness write path: a new `access-telemetry.ts` store next to the runtime database holds the relocated signals. NOTE: the residual generated-JSON pointer lived in the parser carry-forward, not `folder-discovery.ts`, so the split landed in `access-telemetry.ts` + `resume-ladder.ts`
+- [x] T003 Defined the volatile-ignoring projection: ISO-8601 datetimes normalized out before the sha256, mirroring the idempotency compare so a no-op re-derive is identical (`graph-metadata-parser.ts` `computeSourceFingerprintFromDocs`)
+- [x] T004 [P] Flag is `SPECKIT_GENERATOR_HARDENING` (default-off); the strict read honors the existing `SPECKIT_GENERATED_METADATA_GRANDFATHER` report mode
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -65,12 +65,12 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T005 Add the `source_fingerprint` write over the volatile-ignoring projection, behind the default-off flag (`.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts`)
-- [ ] T006 Add the optional `source_fingerprint` field to the schema, tolerant of absence under the grandfather mode (`.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts`)
-- [ ] T007 Replace the two child-detection paths with one shared `listPhaseChildren` helper consumed by both `isPhaseParent` and `resolveChildrenIds` (`.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts`)
-- [ ] T008 Stop writing `last_accessed_at`, `last_active_child_id`, and `last_active_at` into the generated JSON, route them to the DB or index layer behind the flag (`.opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts`)
-- [ ] T009 Add the strict-mode read that re-derives and compares the `source_fingerprint`, registered with a grandfather report mode (`.opencode/skills/system-spec-kit/scripts/rules/`)
-- [ ] T010 Author the vitest proving the fingerprint, the unified child contract, the telemetry split, the flag, and the grandfather mode (`.opencode/skills/system-spec-kit/mcp_server/scripts/tests/generator-hardening.vitest.ts`)
+- [x] T005 Added the `source_fingerprint` write over the volatile-ignoring projection from the already-collected docs, behind the default-off flag (`.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts`)
+- [x] T006 Added the optional `source_fingerprint` field to the schema, tolerant of absence (`.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts`)
+- [x] T007 Added one shared `listPhaseChildren` helper consumed by both `isPhaseParent` and `resolveChildrenIds` behind the flag (`.opencode/skills/system-spec-kit/mcp_server/lib/spec/is-phase-parent.ts`, `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts`)
+- [x] T008 Routed the access and freshness signals to the index-layer store behind the flag. DEVIATION: implemented as a new `access-telemetry.ts` store plus a `resume-ladder.ts` store-first read, since the residual JSON pointer was the parser carry-forward, not a `folder-discovery.ts` emit; the parser keeps carrying the JSON pointer for readback (the generate-context write relocation is the documented graduation step)
+- [x] T009 Added the strict-mode `source_fingerprint` re-derive-and-compare read. DEVIATION: registered inside the existing first-class validator `lib/validation/generated-metadata-integrity.ts` (which `validate.sh` runs and which already owns the grandfather mode), not a new `scripts/rules/` bash check
+- [x] T010 Authored the vitest. DEVIATION: placed at `mcp_server/tests/generator-hardening.vitest.ts` (the path the vitest config include glob covers and every sibling uses); the spec's `mcp_server/scripts/tests/` path is not in the config include list
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -78,8 +78,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T011 Confirm a re-derive on unchanged docs yields an identical fingerprint and does not dirty the file, a source-doc change yields a different one, and both child helpers resolve through `listPhaseChildren` and agree on a fixture tree
-- [ ] T012 Confirm a read and a resume leave the generated JSON byte-identical while the access record updates in the DB or index layer, and a strict run over an un-migrated file reports under the grandfather mode rather than exiting non-zero
+- [x] T011 Confirmed via `generator-hardening.vitest.ts`: no-op re-derive is fingerprint-identical and does not dirty the file, a doc change differs, and `isPhaseParent` + `resolveChildrenIds` resolve through `listPhaseChildren` and agree on a fixture tree
+- [x] T012 Confirmed via the vitest: a read event records to the index-layer store and leaves the generated JSON byte-identical, a resume resolves the last active child from the store, and a strict run over an un-migrated file reports `SOURCE_FINGERPRINT_MISSING` as a non-blocking grandfather note (status `info`)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -87,9 +87,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed (15/15 vitest, `validate.sh --strict` exit 0)
 <!-- /ANCHOR:completion -->
 
 ---

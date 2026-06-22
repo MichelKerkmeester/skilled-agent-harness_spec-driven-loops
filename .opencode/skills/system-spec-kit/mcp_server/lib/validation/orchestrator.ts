@@ -12,7 +12,14 @@ import {
   checkGeneratedMetadataIntegrity,
   resolveGeneratedMetadataIntegrity,
 } from './generated-metadata-integrity.js';
-import { isGeneratedMetadataGrandfatherEnabled } from '../config/capability-flags.js';
+import {
+  checkGeneratedMetadataDrift,
+  resolveGeneratedMetadataDrift,
+} from '../graph/generated-metadata-drift.js';
+import {
+  isGeneratedMetadataDriftGateEnabled,
+  isGeneratedMetadataGrandfatherEnabled,
+} from '../config/capability-flags.js';
 
 export interface ValidateOpts {
   strict?: boolean;
@@ -371,6 +378,16 @@ function validateGeneratedMetadataIntegrity(folder: string): ValidationEntry {
   return entry(resolved.rule, resolved.status, resolved.message, resolved.details);
 }
 
+function validateGeneratedMetadataDrift(folder: string): ValidationEntry {
+  const report = checkGeneratedMetadataDrift(folder);
+  // Flag off keeps the gate in grandfather report mode, flag on enforces the verdict. The
+  // gate reads and reports only, it never writes the folder it re-derives.
+  const resolved = resolveGeneratedMetadataDrift(report, {
+    grandfather: !isGeneratedMetadataDriftGateEnabled(),
+  });
+  return entry(resolved.rule, resolved.status, resolved.message, resolved.details);
+}
+
 function validateFrontmatterBasics(folder: string, level: SpecKitLevel): ValidationEntry {
   const missing: string[] = [];
   for (const docName of docsForLevel(level)) {
@@ -409,6 +426,7 @@ export function validateFolder(folderPath: string, opts: ValidateOpts = {}): Val
   entries.push(entry('LEVEL_DECLARED', 'info', `Detected Level ${level}`));
   entries.push(entry('GRAPH_METADATA_PRESENT', fs.existsSync(path.join(folder, 'graph-metadata.json')) ? 'pass' : 'warn', 'Graph metadata checked'));
   entries.push(validateGeneratedMetadataIntegrity(folder));
+  entries.push(validateGeneratedMetadataDrift(folder));
 
   const summary = {
     errors: entries.filter((item) => item.status === 'error').length,

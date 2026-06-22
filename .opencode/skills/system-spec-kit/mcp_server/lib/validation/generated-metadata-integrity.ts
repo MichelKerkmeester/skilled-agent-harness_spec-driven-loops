@@ -12,6 +12,8 @@ import path from 'node:path';
 
 import { graphMetadataSchema } from '../graph/graph-metadata-schema.js';
 import { perFolderDescriptionSchema } from '../description/description-schema.js';
+import { computeSourceFingerprintForFolder } from '../graph/graph-metadata-parser.js';
+import { isGeneratorHardeningEnabled } from '../config/capability-flags.js';
 
 export const GENERATED_METADATA_INTEGRITY_RULE = 'GENERATED_METADATA_INTEGRITY' as const;
 
@@ -105,6 +107,57 @@ function validateGraphMetadataFile(filePath: string, violations: GeneratedMetada
       file: 'graph-metadata.json',
       code: 'SPEC_FOLDER_PREFIXED',
       message: `spec_folder must be specs-root-relative, got '${specFolderValue}'`,
+    });
+  }
+
+  assertSourceFingerprint(filePath, parsed, violations);
+}
+
+/**
+ * Assert the stored source_fingerprint matches a re-derive of the current source docs.
+ *
+ * Runs only when the hardening rollout is active or the field is already present, so the
+ * default world (flag off, no field) sees no new violation and an un-migrated file's strict
+ * output is unchanged. A missing field on an active rollout, or a stored value that diverges
+ * from a re-derive over the current docs, surfaces as a violation the grandfather mode keeps
+ * non-blocking until a scoped migration graduates the rule.
+ */
+function assertSourceFingerprint(
+  filePath: string,
+  parsed: Record<string, unknown> | null,
+  violations: GeneratedMetadataViolation[],
+): void {
+  const derived = parsed && typeof parsed.derived === 'object' && parsed.derived
+    ? (parsed.derived as Record<string, unknown>)
+    : null;
+  const rawStored = derived ? derived.source_fingerprint : undefined;
+  const storedFingerprint = typeof rawStored === 'string' && rawStored.length > 0 ? rawStored : null;
+
+  if (!isGeneratorHardeningEnabled() && !storedFingerprint) {
+    return;
+  }
+
+  let expected: string | null = null;
+  try {
+    expected = computeSourceFingerprintForFolder(path.dirname(filePath));
+  } catch {
+    expected = null;
+  }
+
+  if (!storedFingerprint) {
+    violations.push({
+      file: 'graph-metadata.json',
+      code: 'SOURCE_FINGERPRINT_MISSING',
+      message: 'source_fingerprint is absent while the generator-hardening rollout expects a persisted fingerprint',
+    });
+    return;
+  }
+
+  if (expected && storedFingerprint !== expected) {
+    violations.push({
+      file: 'graph-metadata.json',
+      code: 'SOURCE_FINGERPRINT_MISMATCH',
+      message: 'source_fingerprint does not match a re-derive of the current source docs, the stored derived fields may be stale',
     });
   }
 }

@@ -18,6 +18,7 @@ import path from 'node:path';
 
 import {
   canClassifyAsGraphMetadataPath,
+  checkGeneratedMetadataDrift,
   deriveGraphMetadata,
   loadGraphMetadata,
   refreshGraphMetadataForSpecFolder,
@@ -47,6 +48,9 @@ interface BackfillSummary {
   skipped: Array<{ specFolder: string; reason: string }>;
   failed: Array<{ specFolder: string; error: string }>;
   reviewFlags: Array<{ specFolder: string; flags: string[] }>;
+  // Report-only drift surface: which packets carry a stored synopsis field that drifted from
+  // the current docs. Populated from a read-only re-derive, never a write side effect.
+  drift: Array<{ specFolder: string; fields: string[] }>;
 }
 
 export interface BackfillOptions {
@@ -321,6 +325,7 @@ export function runBackfill({ dryRun, root, activeOnly = false, specFolder }: Ba
     skipped: [],
     failed: [],
     reviewFlags: [],
+    drift: [],
   };
 
   for (const specFolderPath of specFolders) {
@@ -360,6 +365,16 @@ export function runBackfill({ dryRun, root, activeOnly = false, specFolder }: Ba
         summary.reviewFlags.push({
           specFolder: metadata.spec_folder,
           flags,
+        });
+      }
+
+      // Surface synopsis drift as a read-only report. The check never writes, so it holds in
+      // dry-run and live alike and cannot churn the files the gate exists to keep clean.
+      const driftReport = checkGeneratedMetadataDrift(specFolderPath);
+      if (driftReport.driftedFields.length > 0) {
+        summary.drift.push({
+          specFolder: metadata.spec_folder,
+          fields: driftReport.driftedFields.map((field) => field.field),
         });
       }
     } catch (error) {

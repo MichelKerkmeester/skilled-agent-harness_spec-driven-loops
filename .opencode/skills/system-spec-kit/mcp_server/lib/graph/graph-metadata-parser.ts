@@ -18,7 +18,14 @@ import {
   resolveSpecFolderIdentity,
   SpecFolderIdentityError,
 } from '../config/spec-doc-paths.js';
-import { isIdentityMergeSafetyEnabled } from '../config/capability-flags.js';
+import {
+  isGeneratedMetadataDriftGateEnabled,
+  isGeneratorHardeningEnabled,
+  isIdentityMergeSafetyEnabled,
+} from '../config/capability-flags.js';
+import { listPhaseChildren } from '../spec/is-phase-parent.js';
+import { derivePacketSynopsis } from '../description/packet-synopsis.js';
+import { computeSourceDocHashes } from './generated-metadata-drift.js';
 import {
   createEmptyGraphMetadataManual,
   type GraphEntityReference,
@@ -689,6 +696,56 @@ function collectPacketDocs(specFolderPath: string): CollectedPacketDocs {
   return { docs, availability };
 }
 
+// Replace every ISO-8601 datetime substring with one stable token before hashing, so the
+// volatile continuity timestamps the source docs carry (last_updated_at, last_save_at and
+// the like) never move the fingerprint. This mirrors the volatile-ignoring projection the
+// idempotency compare already uses: a no-op re-derive on unchanged docs stays identical
+// while a real body edit changes the digest.
+const VOLATILE_ISO_DATETIME_RE = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})/g;
+
+function projectDocForFingerprint(relativePath: string, content: string): [string, string] {
+  return [relativePath.replace(/\\/g, '/'), content.replace(VOLATILE_ISO_DATETIME_RE, 'ISO_TS')];
+}
+
+/**
+ * Hash a set of source docs into a single drift-detection fingerprint.
+ *
+ * Sorts the projected (path, normalized-content) pairs so order is irrelevant and only the
+ * doc set plus their non-volatile content decide the digest. Both the generator write and
+ * the strict read go through this one function, so a fingerprint produced at write time and
+ * one re-derived at validation time are comparable byte-for-byte.
+ *
+ * @param docs - The source docs to fingerprint, by packet-relative path and raw content
+ * @returns A `sha256:`-prefixed hex digest of the volatile-ignoring projection
+ */
+export function computeSourceFingerprintFromDocs(
+  docs: Array<{ relativePath: string; content: string }>,
+): string {
+  const projected = docs
+    .map((doc) => projectDocForFingerprint(doc.relativePath, doc.content))
+    .sort((a, b) => (a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : 0));
+  const hash = crypto.createHash('sha256').update(JSON.stringify(projected)).digest('hex');
+  return `sha256:${hash}`;
+}
+
+/**
+ * Re-derive the source fingerprint for a spec folder by reading its canonical docs.
+ *
+ * Used by the strict read path that has only a folder path. It reads the same canonical doc
+ * set the generator reads, so the re-derived fingerprint matches the stored one when the
+ * docs are unchanged and diverges when a source doc changed without a re-derive.
+ *
+ * @param specFolderPath - Absolute path to the packet/spec folder
+ * @returns The `sha256:`-prefixed fingerprint over the current source docs
+ */
+export function computeSourceFingerprintForFolder(specFolderPath: string): string {
+  const docs = collectPacketDocs(specFolderPath).docs.map((doc) => ({
+    relativePath: doc.relativePath,
+    content: doc.content,
+  }));
+  return computeSourceFingerprintFromDocs(docs);
+}
+
 function resolveSpecFolderPath(specFolderPath: string): string {
   const normalized = specFolderPath.replace(/\\/g, '/');
   const explicit = extractSpecFolderFromGraphMetadataPath(path.join(normalized, GRAPH_METADATA_FILENAME));
@@ -717,7 +774,16 @@ function resolveParentId(specFolder: string): string | null {
   return segments.slice(0, -1).join('/');
 }
 
-function resolveChildrenIds(specFolderPath: string, specFolder: string): string[] {
+export function resolveChildrenIds(specFolderPath: string, specFolder: string): string[] {
+  // With the hardening flag on, the derived children resolve through the one shared
+  // listPhaseChildren enumeration that isPhaseParent also consumes, so the parent
+  // classification and the children list can no longer disagree on what a child is.
+  // With the flag off this is byte-identical to the previous direct readdir filter.
+  if (isGeneratorHardeningEnabled()) {
+    return listPhaseChildren(specFolderPath)
+      .map((child) => `${specFolder}/${child.name}`)
+      .sort();
+  }
   try {
     return fs.readdirSync(specFolderPath, { withFileTypes: true })
       .filter((entry) => entry.isDirectory() && isSpecLeafSegment(entry.name))
@@ -1066,7 +1132,16 @@ function deriveKeyTopics(docs: ParsedSpecDoc[], triggerPhrases: string[], causal
 
 function deriveCausalSummary(docs: ParsedSpecDoc[]): string {
   const specDoc = docs.find((doc) => doc.relativePath === 'spec.md');
-  if (specDoc) {
+
+  // With the drift-gate flag on, the causal_summary derives from the one shared synopsis
+  // extractor so it shares precedence and source with the description field and the two stop
+  // diverging. With the flag off this keeps the legacy local extractor, byte-identical.
+  if (isGeneratedMetadataDriftGateEnabled() && specDoc) {
+    const synopsis = derivePacketSynopsis(specDoc.content, 'causal_summary');
+    if (synopsis) {
+      return synopsis;
+    }
+  } else if (specDoc) {
     const summary = extractSummary(specDoc.content);
     if (summary) {
       return summary;
@@ -1196,11 +1271,23 @@ export function deriveGraphMetadata(
     key_files: keyFiles,
     entities,
     causal_summary: causalSummary,
+    // Persisted only when the drift-gate flag is on so a flag-off derive stays byte-identical;
+    // it is the cheap freshness key a later strict run compares before paying for a re-derive.
+    source_doc_hashes: isGeneratedMetadataDriftGateEnabled()
+      ? computeSourceDocHashes(specFolderPath)
+      : undefined,
     created_at: existing?.derived.created_at ?? nowIso,
     last_save_at: nowIso,
     save_lineage: options.saveLineage,
     last_accessed_at: existing?.derived.last_accessed_at ?? null,
     source_docs: sourceDocs,
+    // Written only when the hardening flag is on so a flag-off derive stays byte-identical.
+    // Derived from the already-collected docs over the volatile-ignoring projection, so it
+    // adds no extra tree walk and a no-op re-derive yields the same value (no churn). It
+    // proves the stored causal_summary and description were re-derived from current docs.
+    source_fingerprint: isGeneratorHardeningEnabled()
+      ? computeSourceFingerprintFromDocs(docs.map((doc) => ({ relativePath: doc.relativePath, content: doc.content })))
+      : undefined,
     // Chronology pointer is owned by the canonical save path (generate-context.ts);
     // a derive/re-derive must carry it forward, never invent or drop it.
     last_active_child_id: existing?.derived.last_active_child_id ?? null,
@@ -1509,6 +1596,21 @@ export function packetReferencesToCausalLinks(manual: GraphMetadataManual): Reco
     related_to: manual.related_to.map((ref) => ref.packet_id),
   };
 }
+
+// The drift gate re-derives one folder and compares the stored synopsis fields ignoring
+// volatile timestamps. It lives in its own module to avoid an import cycle and is surfaced
+// here alongside the generators it reports on.
+export {
+  GENERATED_METADATA_DRIFT_RULE,
+  checkGeneratedMetadataDrift,
+  computeSourceDocHashes,
+  resolveGeneratedMetadataDrift,
+} from './generated-metadata-drift.js';
+export type {
+  DriftedSynopsisField,
+  GeneratedMetadataDriftReport,
+  ResolvedDriftStatus,
+} from './generated-metadata-drift.js';
 
 export const __testables = {
   readDoc,

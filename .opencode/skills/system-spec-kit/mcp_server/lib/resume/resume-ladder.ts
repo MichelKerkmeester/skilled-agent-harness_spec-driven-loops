@@ -18,6 +18,8 @@ import {
   type ContinuityFacets,
   type ThinContinuityRecord,
 } from '../continuity/thin-continuity-record.js';
+import { isGeneratorHardeningEnabled } from '../config/capability-flags.js';
+import { resolveLastActiveChildFromStore } from '../graph/access-telemetry.js';
 
 export type ResumeLadderSource = 'handover' | 'continuity' | 'spec-docs' | 'none';
 
@@ -125,15 +127,16 @@ const PHASE_CHILD_NAME_RE = /^[0-9]{3}-[a-z0-9-]+$/u;
 /**
  * Follow a phase parent's `derived.last_active_child_id` pointer down to the
  * live child packet. Phase parents keep only the lean control trio at their
- * root, so resuming on the parent itself recovers stale or empty context —
+ * root, so resuming on the parent itself recovers stale or empty context -
  * the chronology pointer in graph-metadata.json names where work actually
  * lives. Bounded depth + an existence/shape check on every hop keep a stale
  * or malformed pointer from escaping the packet tree.
  */
-function followPhaseParentRedirect(
+export function followPhaseParentRedirect(
   startFolderPath: string,
   startSpecFolder: string,
   hints: string[],
+  telemetryStorePath?: string,
 ): { folderPath: string; specFolder: string } {
   let folderPath = startFolderPath;
   let specFolder = startSpecFolder;
@@ -145,15 +148,28 @@ function followPhaseParentRedirect(
     }
 
     let pointer: string | null = null;
-    try {
-      const metadata = JSON.parse(fs.readFileSync(metadataPath, 'utf8')) as {
-        derived?: { last_active_child_id?: unknown } | null;
-      };
-      const raw = metadata?.derived?.last_active_child_id;
-      pointer = typeof raw === 'string' && raw.trim().length > 0 ? raw.trim().replace(/\\/g, '/').replace(/\/+$/u, '') : null;
-    } catch {
-      hints.push(`Skipping phase-parent redirect: ${path.basename(folderPath)}/graph-metadata.json is unreadable.`);
-      break;
+
+    // With the hardening flag on, the freshness pointer lives in the index-layer store
+    // rather than the generated JSON, so consult it first. A miss falls back to the JSON
+    // pointer so an un-migrated parent still redirects during the transition window.
+    if (isGeneratorHardeningEnabled()) {
+      const stored = resolveLastActiveChildFromStore(specFolder, { storePath: telemetryStorePath });
+      if (stored) {
+        pointer = stored.replace(/\\/g, '/').replace(/\/+$/u, '');
+      }
+    }
+
+    if (!pointer) {
+      try {
+        const metadata = JSON.parse(fs.readFileSync(metadataPath, 'utf8')) as {
+          derived?: { last_active_child_id?: unknown } | null;
+        };
+        const raw = metadata?.derived?.last_active_child_id;
+        pointer = typeof raw === 'string' && raw.trim().length > 0 ? raw.trim().replace(/\\/g, '/').replace(/\/+$/u, '') : null;
+      } catch {
+        hints.push(`Skipping phase-parent redirect: ${path.basename(folderPath)}/graph-metadata.json is unreadable.`);
+        break;
+      }
     }
 
     if (!pointer) {

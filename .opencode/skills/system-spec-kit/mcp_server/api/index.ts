@@ -147,6 +147,22 @@ export type {
   ResolvedIntegrityStatus,
 } from '../lib/validation/generated-metadata-integrity.js';
 export {
+  GENERATED_METADATA_DRIFT_RULE,
+  checkGeneratedMetadataDrift,
+  computeSourceDocHashes,
+  resolveGeneratedMetadataDrift,
+} from '../lib/graph/generated-metadata-drift.js';
+export type {
+  DriftedSynopsisField,
+  GeneratedMetadataDriftReport,
+  ResolvedDriftStatus,
+} from '../lib/graph/generated-metadata-drift.js';
+export {
+  derivePacketSynopsis,
+  SYNOPSIS_FIELD_LIMITS,
+} from '../lib/description/packet-synopsis.js';
+export type { SynopsisField } from '../lib/description/packet-synopsis.js';
+export {
   validateGraphMetadataContent,
   loadGraphMetadata,
   deriveGraphMetadata,

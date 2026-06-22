@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/037-drift-gate-synopsis-extractor"
     last_updated_at: "2026-06-22T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded drift-gate and shared-synopsis spec from recs 10 and 11"
-    next_safe_action: "Run speckit plan to decompose the drift gate and the extractor build"
+    recent_action: "Implemented drift gate and shared extractor behind the default-OFF flag, all gates green"
+    next_safe_action: "Decide the scoped migration that flips SPECKIT_GENERATED_METADATA_DRIFT_GATE on"
     blockers: []
     key_files:
       - "../031-generated-json-quality-research/research/research.md"
@@ -25,11 +25,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "markdown-session"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Whether the drift gate persists source_doc_hashes in graph-metadata or in a sidecar"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "Whether the fixes ship guarded, they ship behind a default-OFF flag and a grandfather report mode"
+      - "source_doc_hashes persists inside graph-metadata.json under derived, optional and flag-gated, not a sidecar"
 ---
 # Feature Specification: Drift Gate and Shared Synopsis Extractor
 
@@ -52,7 +52,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | PLANNED |
+| **Status** | COMPLETE |
 | **Created** | 2026-06-22 |
 | **Branch** | `037-drift-gate-synopsis-extractor` |
 <!-- /ANCHOR:metadata -->
@@ -196,8 +196,8 @@ Add two convergent freshness and consistency fixes to the generated-metadata sur
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Whether `source_doc_hashes` persists inside `graph-metadata.json` or in a sidecar, given the 031 mandate to keep generated JSON from churning on non-source changes.
-- Which precedence the shared `derivePacketSynopsis` helper applies when the spec summary and the problem statement disagree, and whether the two fields share that precedence or only the extraction body.
+- RESOLVED: `source_doc_hashes` persists inside `graph-metadata.json` under `derived`, optional and flag-gated, so a flag-off derive and legacy files omit it cleanly and no non-source change churns it.
+- RESOLVED: the shared `derivePacketSynopsis` precedence is Overview paragraph, then Problem/Purpose first sentence, then frontmatter description, then title heading, then first body line. Both fields share that one precedence and differ only in the length ceiling.
 <!-- /ANCHOR:questions -->
 
 ---

@@ -125,7 +125,22 @@ Generated from `lib/search/search-flags.ts`. "Default state" is the shipped beha
 <!-- PHASE-010-ENV-SLOT: SPECKIT_RERANK_USE_SHARED_RERANK / SPECKIT_EMBEDDING_CACHE_* flags inserted here (027/010) -->
 <!-- PHASE-011-ENV-SLOT: SPECKIT_CODE_GRAPH_EXEMPLARS_* / SPECKIT_CONTEXT_CURATOR_* flags inserted here (027/011) -->
 
-Total unique variables documented: 261, counted as unique backticked names in first table columns (legacy HYDRA aliases removed; dual-stack CLI front-door variables included — see the "CLI front door" section). Recount with that method when adding rows; multi-variable cells count once per cell here.
+Total unique variables documented: 269, counted as unique backticked names in first table columns (legacy HYDRA aliases removed; dual-stack CLI front-door variables included — see the "CLI front door" section). Recount with that method when adding rows; multi-variable cells count once per cell here.
+
+### Data Quality and Generator Hardening (028/005)
+
+Default-OFF safety and grandfather flags for the spec-data-quality and generator-hardening packets. Each stays opt-in (or in report mode) because existing generated files carry the legacy shapes the new contracts reject, so a strict-by-default rollout would mass-fail un-migrated folders before a scoped migration restamps them.
+
+| flag name | default state (ON/OFF) | governing env var | which automation it gates | runtime read site |
+| --- | --- | --- | --- | --- |
+| Generator hardening | OFF | `SPECKIT_GENERATOR_HARDENING` | Persists the graph-metadata `source_fingerprint`, routes the phase-parent classification and the derived children list through one `listPhaseChildren` enumeration, and moves access/freshness telemetry to the index-layer store so a read or resume no longer dirties the generated JSON | `lib/config/capability-flags.ts`, `lib/graph/graph-metadata-parser.ts`, `lib/spec/is-phase-parent.ts`, `lib/graph/access-telemetry.ts`, `lib/resume/resume-ladder.ts`, `lib/validation/generated-metadata-integrity.ts` |
+| Generated-metadata grandfather | ON | `SPECKIT_GENERATED_METADATA_GRANDFATHER` | Keeps generated-metadata integrity violations (including a missing or mismatched `source_fingerprint`) non-blocking report-mode `info` during the migration window; set `false`/`0`/`off` to graduate them to hard strict errors | `lib/config/capability-flags.ts`, `lib/validation/generated-metadata-integrity.ts` |
+| Identity and merge safety | OFF | `SPECKIT_IDENTITY_MERGE_SAFETY` | Resolves a shared specs-root-relative spec-folder identity across both generators and preserves a non-null parent plus unions children on merge so a scoped re-derive cannot erase lineage | `lib/config/capability-flags.ts`, `lib/graph/graph-metadata-parser.ts` |
+| Idempotent description writes | OFF | `SPECKIT_IDEMPOTENT_DESCRIPTION_WRITES` | Skips a per-folder description write whose only delta is the volatile stamp and gates the aggregate-cache write on a real member delta, preserving the prior timestamp | `lib/config/capability-flags.ts` |
+| Generated-metadata z-exclusion | ON | `SPECKIT_GENERATED_METADATA_Z_EXCLUSION` | Excludes `z_*` archive directories from the spec-folder discovery scanner; set `false` to restore the prior scanner that descended them | `lib/search/folder-discovery.ts` |
+| Lexical grounding v1 | OFF | `SPECKIT_LEXICAL_GROUNDING_V1` | Opt-in lexical grounding pass for generated synopsis quality | `lib/search/search-flags.ts` |
+| False-confirm max rate | OFF | `SPECKIT_FALSE_CONFIRM_MAX_RATE` | Caps the tolerated false-confirm rate for the off-corpus evaluation fixture gate; unset leaves the gate at its built-in default | `scripts` eval fixture gate |
+| Entity config path override | (bundled rules) | `SPECKIT_ENTITY_CONFIG_PATH` | Overrides the path to the entity-extraction rules JSON; unset uses the bundled ruleset | `lib/extraction/entity-extractor.ts` |
 
 ### Provisional Measurement Contract
 
@@ -248,6 +263,12 @@ the publication guard helpers used by the evaluation dashboard.
 | `SPECKIT_FOLDER_BOOST_FACTOR` | `1.3` | number | Multiplier applied to results matching the discovered spec folder. | `handlers/memory-context.ts` |
 | `SPECKIT_FOLDER_TOP_K` | `5` | number | Number of top folder-scored results to inject. | `lib/search/hybrid-search.ts` |
 | `SPECKIT_FOLDER_DISCOVERY` | `true` | boolean | Automatic spec folder discovery via description cache (PI-B3). Graduated ON. | `lib/search/search-flags.ts` |
+| `SPECKIT_GROUNDING_SIGNAL_V1` | `false` | boolean | Surfaces a `grounding` field (`grounded` / `low_grounding`) on the search envelope, built from the lexical overlap already on the result rows, so a downgrade or borderline cite is legible. **Default OFF**: opt-in. With it off no grounding field is added and the response shape is byte-for-byte the shipped behavior. | `lib/search/search-flags.ts` |
+| `SPECKIT_NOISE_FLOOR_SUBTRACTION_V1` | `false` | boolean | Subtracts a measured corpus noise-floor from absolute relevance before the request-quality band read (floored at zero), so the embedder background cosine no longer inflates an off-corpus hit to good. The floor is recorded per embedder; an embedder with no measured floor fails closed to the raw band. **Default OFF**: opt-in. With it off the band reads raw relevance unchanged. | `lib/search/search-flags.ts`, `lib/search/noise-floor.ts` |
+| `SPECKIT_CITE_WITH_CAVEAT_V1` | `false` | boolean | Adds a `cite_with_caveat` citation-policy tier between `cite_results` and `do_not_cite_results`, so a weak verdict whose top hit is still lexically grounded is hedged rather than dropped. A fully ungrounded hit is never promoted. **Default OFF**: opt-in. With it off the citation policy is the shipped two-state output. | `lib/search/search-flags.ts` |
+| `SPECKIT_EVIDENCE_GAP_VERDICT_V1` | `false` | boolean | Bridges the Stage 4 `evidenceGapDetected` signal into the request-quality verdict: a true gap caps a good verdict at weak. The gap is read from the Stage 4 signal, never recomputed. **Default OFF**: opt-in. With it off the verdict ignores the gap exactly as today. | `lib/search/search-flags.ts` |
+
+> **Calibration re-fit is a proven non-fix (documentation only).** The verdict band is taken off the PRE-calibration value: `confidence-scoring` bands on the rebalanced value while the isotonic model is applied separately to the displayed `confidence.value`. Re-fitting `SPECKIT_CONFIDENCE_CALIBRATION_MODEL` against off-corpus negatives therefore cannot move good versus weak versus gap, so no curve re-fit ships for the off-corpus false-positive. The scoring-hardening flags above are the real levers; the calibration curve and its application point are intentionally untouched.
 
 ---
 
@@ -271,6 +292,7 @@ the publication guard helpers used by the evaluation dashboard.
 | `SPECKIT_ROUTER_TIER3_ENABLED` | `false` | boolean | Tier 3 prototype-routing opt-in gate (`true`/`1` to enable). Canonical routing remains the default save path; this is an additional router tier. | `lib/routing/content-router.ts` |
 | `SPECKIT_SEARCH_DECISION_AUDIT_PATH` | `<cwd>/.opencode/skills/system-spec-kit/mcp_server/data/search-decisions.jsonl` | string | Override the JSONL file path for the search-decision audit log. | `lib/search/decision-audit.ts` |
 | `SPECKIT_SEARCH_DECISION_AUDIT_MAX_FILES` | `5` | number (positive int) | Maximum rotated search-decision audit files retained. Non-positive/invalid values fall back to the default. | `lib/search/decision-audit.ts` |
+| `SPECKIT_LEXICAL_GROUNDING_V1` | `false` | boolean | Lexical grounding floor for low-overlap results. **Default OFF**: env-only opt-in. Set `true` to enable. | `lib/search/search-flags.ts` |
 
 ---
 
@@ -412,6 +434,12 @@ Code-graph P1 config defaults with env-var overrides.  Numeric values are parsed
 | `SPECKIT_AUTHORED_CONTINUITY_SNAPSHOT` | `false` | flag (`"1"`) | Opt-in compact-hook authored continuity snapshot mode. When set, the hook can emit the authored snapshot path instead of relying only on transcript-derived fallback context. | `mcp_server/hooks/claude/compact-inject.ts` |
 | `SPECKIT_COMPLETION_FRESHNESS` | `false` | boolean | Enables the strict-only completion freshness validation rule. The rule recomputes the packet content fingerprint and compares it with stored continuity metadata; unset preserves existing validation output. | `scripts/validation/continuity-freshness.ts`, `mcp_server/tests/continuity-freshness.vitest.ts` |
 | `SPECKIT_COMPLETION_FRESHNESS_ENFORCE` | `false` | boolean | When completion freshness is enabled, promotes stale freshness findings from warning to error. | `scripts/validation/continuity-freshness.ts`, `mcp_server/tests/continuity-freshness.vitest.ts` |
+| `SPECKIT_IDENTITY_MERGE_SAFETY` | `false` | boolean | Shared spec-folder identity resolver and lineage-merge guard. **Default OFF**: env-only opt-in. When set both generators resolve a specs-root-relative identity and the merge preserves a non-null parent and unions children, so a scoped or null-deriving re-derive can no longer erase lineage. | `lib/config/capability-flags.ts` |
+| `SPECKIT_GENERATED_METADATA_GRANDFATHER` | `true` | boolean | Grandfather report mode for the `GENERATED_METADATA_INTEGRITY` rule. **Default ON**: violations report non-blocking so legacy files do not mass-fail strict. Set `false`/`0`/`off` to graduate the rule to a hard error once a scoped migration has restamped the legacy files. | `lib/config/capability-flags.ts` |
+| `SPECKIT_GENERATED_METADATA_DRIFT_GATE` | `false` | boolean | Synopsis drift gate and shared-extractor routing. **Default OFF**: grandfather report mode keeps drift non-blocking, both fields keep their legacy extractors, and no `source_doc_hashes` persist (generated bytes unchanged). When set both `description` and `causal_summary` derive from the one shared synopsis extractor, `source_doc_hashes` persist as the freshness key, and a drift report fails strict validation. | `lib/config/capability-flags.ts` |
+| `SPECKIT_GENERATED_METADATA_Z_EXCLUSION` | `true` | boolean | Excludes `z_*` staging and archive folders from the global descriptions.json cache. **Default ON**: set `false` to restore the prior scanner that included them. | `lib/search/folder-discovery.ts` |
+| `SPECKIT_IDEMPOTENT_DESCRIPTION_WRITES` | `false` | boolean | Content-gated description.json and global-cache writes. **Default OFF**: env-only opt-in. When set a per-folder save that changes only the volatile stamp is skipped, the aggregate cache write is gated on a real member delta, and the targeted upsert replaces only the changed entry. | `lib/config/capability-flags.ts` |
+| `SPECKIT_ENTITY_CONFIG_PATH` | (unset) | string (path) | Override path to a declarative entity-extraction rules JSON. When unset the built-in rules apply; a malformed or unreadable file falls back to the built-in rules. | `lib/extraction/entity-extractor.ts` |
 
 ---
 
@@ -437,6 +465,7 @@ Code-graph P1 config defaults with env-var overrides.  Numeric values are parsed
 | Variable | Default | Type | Description | Source |
 |----------|---------|------|-------------|--------|
 | `SPECKIT_ABLATION` | `false` | boolean | Enable ablation study framework. Opt-in: set `true` to enable. | `lib/eval/ablation-framework.ts` |
+| `SPECKIT_FALSE_CONFIRM_MAX_RATE` | (unset) | number (0..1) | False-confirm eval gate ceiling. **Default off**: with the var unset the eval driver reports the rate without failing; set a max rate to enforce the gate. | `scripts/evals/run-false-confirm-eval.mjs` |
 | `SPECKIT_EVAL_LOGGING` | `false` | boolean | Enable evaluation event logging. Opt-in: set `true` to enable. | `lib/eval/eval-logger.ts`, `handlers/quality-loop.ts` |
 | `SPECKIT_DASHBOARD_LIMIT` | `10000` | number | Maximum row limit for reporting dashboard queries. | `lib/eval/reporting-dashboard.ts` |
 | `SPECKIT_EXTENDED_TELEMETRY` | `false` | boolean | Detailed retrieval metrics collection (latency breakdown, quality scores). Opt-in: set `true` to enable. | `lib/telemetry/retrieval-telemetry.ts` |
