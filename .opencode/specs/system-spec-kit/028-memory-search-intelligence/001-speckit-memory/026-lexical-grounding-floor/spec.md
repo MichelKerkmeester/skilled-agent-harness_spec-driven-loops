@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/026-lexical-grounding-floor"
     last_updated_at: "2026-06-22T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded the floor and corroboration spec from rec 3 and rec 4"
-    next_safe_action: "Run speckit plan to decompose the floor gate and the corroboration build"
+    recent_action: "Shipped floor and corroboration guard behind default-OFF flag, vitest green"
+    next_safe_action: "Graduate the flag to ON after a wider off-corpus and aligned-good validation pass"
     blockers: []
     key_files:
       - "../../005-spec-data-quality/030-improvement-research/research/research.md"
@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-026-lexical-grounding-floor"
       parent_session_id: "phase-026-lexical-grounding-floor"
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
       - "What lexical-grounding floor value separates the kubernetes off-corpus hit from the aligned good queries on the current embedder"
     answered_questions:
@@ -52,7 +52,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | PLANNED |
+| **Status** | COMPLETE |
 | **Created** | 2026-06-22 |
 | **Branch** | `026-lexical-grounding-floor` |
 <!-- /ANCHOR:metadata -->
@@ -97,7 +97,7 @@ Require lexical grounding, a query-term or BM25 overlap floor, before awarding g
 | `.opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts` | Modify | Add the lexical-grounding floor and the single-hit corroboration guard to `assessRequestQuality`, both gated by the default-OFF flag |
 | `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts` | Modify | Add the `SPECKIT_LEXICAL_GROUNDING_V1` default-OFF flag reader alongside the existing `isResultConfidenceEnabled` |
 | `.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts` | Verify (no change) | `deriveCitationPolicy` already derives cite_results from the label and the lexical signal is already on the rows, so cite_results follows the gated label with no formatter edit |
-| `.opencode/skills/system-spec-kit/mcp_server/__tests__/search/lexical-grounding-floor.vitest.ts` | Create | Verdict-level vitest over the off-corpus anchor, the aligned good queries, the weak case and the lone-hit path, flag ON and flag OFF |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/lexical-grounding-floor.vitest.ts` | Create | Verdict-level vitest over the off-corpus anchor, the aligned good queries, the weak case and the lone-hit path, flag ON and flag OFF |
 <!-- /ANCHOR:scope -->
 
 ---

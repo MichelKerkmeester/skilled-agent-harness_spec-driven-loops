@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/026-lexical-grounding-floor"
     last_updated_at: "2026-06-22T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Planned the floor gate, the corroboration guard and the flag"
-    next_safe_action: "Hold for implementation, no code change has landed yet"
+    recent_action: "Implemented and verified the floor gate, the corroboration guard and the flag"
+    next_safe_action: "Graduate the flag after a wider validation pass"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts"
@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-026-lexical-grounding-floor"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -65,14 +65,14 @@ This phase changes only the verdict gate. It adds a lexical-grounding floor and 
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -126,22 +126,22 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Confirm the lexical signal `fts_score`/`bm25_score`/`keyword` is on the scored results reaching `assessRequestQuality`, and decide how the floor reads it off the top hit
-- [ ] Add the `SPECKIT_LEXICAL_GROUNDING_V1` default-OFF flag reader to `search-flags.ts`, resolving an unparseable value to OFF
-- [ ] Confirm `deriveCitationPolicy` needs no edit because cite_results already follows the label
-- [ ] Pull the 030 off-corpus anchor, the aligned good queries and the correctly-weak authentication case as the validation set
+- [x] Confirm the lexical signal `fts_score`/`bm25_score`/`keyword` is on the scored results reaching `assessRequestQuality`, and decide how the floor reads it off the top hit
+- [x] Add the `SPECKIT_LEXICAL_GROUNDING_V1` default-OFF flag reader to `search-flags.ts`, resolving an unparseable value to OFF
+- [x] Confirm `deriveCitationPolicy` needs no edit because cite_results already follows the label
+- [x] Pull the 030 off-corpus anchor, the aligned good queries and the correctly-weak authentication case as the validation set
 
 ### Phase 2: Core Implementation
-- [ ] Add the lexical-grounding floor to `assessRequestQuality`, denying good when the top hit carries no overlap above the floor, gated by the flag, failing closed on an absent or zero signal
-- [ ] Add the single-hit corroboration guard requiring a second above-threshold hit before good is reachable through the margin path or the `qualityRatio`-on-a-lone-hit path, gated by the flag
-- [ ] Keep the flag-OFF path byte-for-byte the shipped behavior, with the new branches reachable only when the flag is ON
-- [ ] Author `lexical-grounding-floor.vitest.ts` over the off-corpus anchor, the aligned good queries, the weak case and the lone-hit path, asserting a cosine profile, flag ON and flag OFF
+- [x] Add the lexical-grounding floor to `assessRequestQuality`, denying good when the top hit carries no overlap above the floor, gated by the flag, failing closed on an absent or zero signal
+- [x] Add the single-hit corroboration guard requiring a second above-threshold hit before good is reachable through the margin path or the `qualityRatio`-on-a-lone-hit path, gated by the flag
+- [x] Keep the flag-OFF path byte-for-byte the shipped behavior, with the new branches reachable only when the flag is ON
+- [x] Author `lexical-grounding-floor.vitest.ts` over the off-corpus anchor, the aligned good queries, the weak case and the lone-hit path, asserting a cosine profile, flag ON and flag OFF
 
 ### Phase 3: Verification
-- [ ] With the flag ON the kubernetes off-corpus sample scores weak or gap and returns do_not_cite_results
-- [ ] With the flag ON a single-result zero-margin sample scores weak and a two-hit corroborated query at the same top score scores good
-- [ ] With the flag OFF the kubernetes sample still scores good, proving the dark default leaves the shipped contract and the spec-doc prose statuses untouched
-- [ ] The aligned good queries still score good and the authentication case still scores weak with the flag ON
+- [x] With the flag ON the kubernetes off-corpus sample scores weak or gap and returns do_not_cite_results
+- [x] With the flag ON a single-result zero-margin sample scores weak and a two-hit corroborated query at the same top score scores good
+- [x] With the flag OFF the kubernetes sample still scores good, proving the dark default leaves the shipped contract and the spec-doc prose statuses untouched
+- [x] The aligned good queries still score good and the authentication case still scores weak with the flag ON
 <!-- /ANCHOR:phases -->
 
 ---
@@ -151,7 +151,7 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | `assessRequestQuality` floor and corroboration branches, the margin path and the `qualityRatio`-on-a-lone-hit path each exercised, an absent lexical signal failing closed | `__tests__/search/lexical-grounding-floor.vitest.ts` |
+| Unit | `assessRequestQuality` floor and corroboration branches, the margin path and the `qualityRatio`-on-a-lone-hit path each exercised, an absent lexical signal failing closed | `tests/lexical-grounding-floor.vitest.ts` |
 | Integration | Flag OFF returns the shipped verdict and cite_results, flag ON denies the off-corpus sample and the lone hit, `deriveCitationPolicy` follows the gated label | the same vitest driving the verdict and the citation policy together |
 | Manual | Confirm the floor and the corroboration thresholds separate the off-corpus anchor from the aligned good queries on the 030 fixture cosine profile | inspection of the validation set against the floor |
 <!-- /ANCHOR:testing -->
@@ -216,9 +216,9 @@ Phase 1 (Setup) ──► Phase 2 (Core) ──► Phase 3 (Verify)
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Flag defaults OFF and the OFF path proven byte-for-byte the shipped verdict
-- [ ] Off-corpus denial and aligned-good non-regression proven with the flag ON
-- [ ] The single-result zero-margin lone-hit case proven to score weak
+- [x] Flag defaults OFF and the OFF path proven byte-for-byte the shipped verdict
+- [x] Off-corpus denial and aligned-good non-regression proven with the flag ON
+- [x] The single-result zero-margin lone-hit case proven to score weak
 
 ### Rollback Procedure
 1. Leave `SPECKIT_LEXICAL_GROUNDING_V1` OFF, the default, to restore the shipped behavior with no code change

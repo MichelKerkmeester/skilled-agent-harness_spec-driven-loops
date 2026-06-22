@@ -148,7 +148,7 @@ export function resolveSavePlannerMode(): SavePlannerMode {
 
 /**
  * Save-time reconsolidation gate. Opt-in (default OFF): it enables the destructive
- * reconsolidate() path that can merge near-duplicate rows and deprecate older ones — itself
+ * reconsolidate() path that can merge near-duplicate rows and deprecate older ones, itself
  * further gated on a per-spec-folder "pre-reconsolidation" checkpoint. Kept opt-in so a
  * destructive merge never happens without explicit intent. Set SPECKIT_RECONSOLIDATION_ENABLED=true to enable.
  */
@@ -158,7 +158,7 @@ export function isSaveReconsolidationEnabled(): boolean {
 
 /**
  * Save-time post-insert enrichment bundle gate (causal links, entity extraction,
- * summaries, entity linking, graph lifecycle — populates the causal/entity graph).
+ * summaries, entity linking, graph lifecycle, populates the causal/entity graph).
  * Default: TRUE (graduated). Set SPECKIT_POST_INSERT_ENRICHMENT_ENABLED=false to disable.
  */
 export function isPostInsertEnrichmentEnabled(): boolean {
@@ -255,7 +255,7 @@ export function isEmbeddingExpansionEnabled(): boolean {
 // -- Indexing and Graph flags --
 
 /**
- * N3-lite: Consolidation engine — contradiction scan, Hebbian strengthening,
+ * N3-lite: Consolidation engine, contradiction scan, Hebbian strengthening,
  * staleness detection, edge bounds enforcement.
  * Default: TRUE (graduated). Set SPECKIT_CONSOLIDATION=false to disable.
  */
@@ -401,7 +401,7 @@ export function isQualityLoopEnabled(): boolean {
 ──────────────────────────────────────────────────────────────── */
 
 /**
- * Query decomposition — bounded facet detection.
+ * Query decomposition, bounded facet detection.
  * Deep-mode only: multi-faceted queries split into up to 3 sub-queries.
  * Default: TRUE (graduated). Set SPECKIT_QUERY_DECOMPOSITION=false to disable.
  */
@@ -410,7 +410,7 @@ export function isQueryDecompositionEnabled(): boolean {
 }
 
 /**
- * Graph concept routing — query-time alias matching.
+ * Graph concept routing, query-time alias matching.
  * Extracts noun phrases from the query and matches against concept alias table,
  * activating the graph channel for matched concepts.
  * Default: TRUE (graduated). Set SPECKIT_GRAPH_CONCEPT_ROUTING=false to disable.
@@ -430,7 +430,7 @@ export function isQuerySurrogatesEnabled(): boolean {
 }
 
 /**
- * Retrieval-class routing — query-shape graph/degree channel suppression.
+ * Retrieval-class routing, query-shape graph/degree channel suppression.
  * When enabled, a SingleHop-classified query (e.g. "find the decision record
  * for X") suppresses the graph + degree channels in the query router, dropping
  * the intent-driven and entity-density graph preservation that would otherwise
@@ -450,7 +450,7 @@ export function isRetrievalClassRoutingEnabled(): boolean {
 
 /**
  * Implicit feedback event ledger.
- * Shadow-only — no ranking side effects.
+ * Shadow-only, no ranking side effects.
  * Default: TRUE (graduated). Set SPECKIT_IMPLICIT_FEEDBACK_LOG=false to disable.
  */
 export function isImplicitFeedbackLogEnabled(): boolean {
@@ -464,7 +464,7 @@ export function isImplicitFeedbackLogEnabled(): boolean {
  * for every shown result on includeContent searches, so cited == shown and the
  * corpus has zero shown-but-unused negatives. This emitter mines the post-hoc
  * transcript for the memory_ids the assistant ACTUALLY referenced after a
- * search, then writes used/not-used pairs to a separate shadow ledger — which
+ * search, then writes used/not-used pairs to a separate shadow ledger, which
  * is where the negative examples come from. Kept opt-in because it adds a new
  * write path mining the transcript; it must earn density before any reranker
  * (a future packet) consumes it. Set SPECKIT_TRUE_CITATION_EMITTER=true to enable.
@@ -474,7 +474,7 @@ export function isTrueCitationEmitterEnabled(): boolean {
 }
 
 /**
- * Hybrid decay policy — type-aware no-decay for permanent artifacts.
+ * Hybrid decay policy, type-aware no-decay for permanent artifacts.
  * Default: TRUE (graduated). Set SPECKIT_HYBRID_DECAY_POLICY=false to disable.
  * When enabled: decision/constitutional/critical context types receive Infinity
  * stability (no decay). All other types follow the standard FSRS schedule.
@@ -578,7 +578,7 @@ export function isLearnedStage2CombinerEnabled(): boolean {
 /**
  * Shadow scoring with holdout evaluation.
  * Compares would-have-changed rankings vs live rankings on a holdout
- * slice of queries. Shadow-only — no ranking side effects.
+ * slice of queries. Shadow-only, no ranking side effects.
  * Default: TRUE (graduated). Set SPECKIT_SHADOW_FEEDBACK=false to disable.
  */
 export function isShadowFeedbackEnabled(): boolean {
@@ -664,10 +664,28 @@ export function isResultConfidenceEnabled(): boolean {
 }
 
 /**
+ * Lexical-grounding floor and single-hit corroboration for the request-quality
+ * verdict. When enabled, good (and therefore cite_results) is denied unless the
+ * top hit carries a query-term or BM25 lexical overlap above the grounding floor,
+ * and a lone above-floor hit must be corroborated by a second above-threshold hit
+ * before it can reach good through the margin or quality-ratio path. Both read the
+ * lexical signal already on the result rows and add no new query or DB read.
+ *
+ * Default: FALSE (opt-in). The gate sits on the citation verdict, so over-denial
+ * is the live risk; it ships dark and graduates only after validating on the
+ * off-corpus fixtures. With the flag OFF the verdict is byte-for-byte the shipped
+ * behavior. An unparseable value resolves to OFF. Set
+ * SPECKIT_LEXICAL_GROUNDING_V1=true to enable.
+ */
+export function isLexicalGroundingEnabled(): boolean {
+  return isOptInEnabled('SPECKIT_LEXICAL_GROUNDING_V1');
+}
+
+/**
  * Calibrate confidence/request-quality and result-set digests on an absolute
  * relevance signal (cosine similarity) instead of the RRF fusion score. RRF
  * magnitudes (~0.01–0.05) understate relevance and make "good" unreachable, so
- * every hybrid query degrades to "weak"/"gap". Ordering is unaffected — this
+ * every hybrid query degrades to "weak"/"gap". Ordering is unaffected, this
  * only changes the calibration/display scale.
  * Default: TRUE (graduated). Set SPECKIT_ABSOLUTE_RELEVANCE_CALIBRATION=false to disable.
  */
@@ -696,7 +714,7 @@ export function isConfidenceCalibrationEnabled(): boolean {
  * (a stable sort, so ties keep their fused RRF order). RRF fusion stays the
  * ordering baseline; only the head is rebalanced toward the strongest absolute
  * semantic signal, which matters now that downstream consumers treat position 1
- * as decisive. Near-zero latency and no model/LLM involved — a pure reorder.
+ * as decisive. Near-zero latency and no model/LLM involved, a pure reorder.
  * Default: TRUE (graduated, low-risk lift). Set SPECKIT_COSINE_TOPN_REORDER=false to disable.
  */
 export function isCosineTopnReorderEnabled(): boolean {
@@ -812,7 +830,7 @@ export function isGraphContextInjectionEnabled(): boolean {
 }
 
 /**
- * Result provenance — include graph evidence metadata in search results.
+ * Result provenance, include graph evidence metadata in search results.
  * When enabled, search results include graphEvidence with contributing edges,
  * communities, and boost factors for transparency and debuggability.
  * Default: TRUE (enabled). Set SPECKIT_RESULT_PROVENANCE=false to disable.
@@ -894,7 +912,7 @@ export function isIntentAutoProfileEnabled(): boolean {
  * Deterministic multi-hop recall: parse explicit sibling/cross-reference folder
  * slugs out of the top recalled docs' content, resolve each 1:1 to a unique spec
  * folder, and append that folder's spec.md to the result tail. No LLM and no
- * re-embedding — it only follows pointers the docs already wrote. Default: FALSE
+ * re-embedding, it only follows pointers the docs already wrote. Default: FALSE
  * (opt-in): appending new candidates changes the result set, so it must earn
  * promotion on an off-vs-on benchmark before running by default. The append is
  * tail-only and never evicts a baseline hit, so flag-off is byte-identical. Set
@@ -908,7 +926,7 @@ export function isDeterministicMultihopEnabled(): boolean {
  * Lane champion backfill: after fusion, append each base lane's top candidate
  * (vector / fts / bm25 / trigger) that did not make the fused top-K into empty
  * tail slots, so a single lane's strongest belief still reaches the user. Reuses
- * the already-populated per-lane arrays — no new query or re-scoring. Default:
+ * the already-populated per-lane arrays, no new query or re-scoring. Default:
  * FALSE (opt-in): it adds tail candidates, so it must earn promotion on an
  * off-vs-on benchmark first. The append is tail-only and never evicts a baseline
  * hit, so flag-off is byte-identical. Set SPECKIT_LANE_CHAMPION_BACKFILL=true to

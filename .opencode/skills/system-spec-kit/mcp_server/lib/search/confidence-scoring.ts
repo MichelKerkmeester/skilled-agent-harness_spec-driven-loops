@@ -5,7 +5,7 @@
 //
 // PURPOSE: Combine margin, multi-channel agreement,
 // and anchor density into a single calibrated confidence score per
-// result. V1 uses heuristic scoring only — no LLM calls in the hot path.
+// result. V1 uses heuristic scoring only, no LLM calls in the hot path.
 //
 // FEATURE FLAG: SPECKIT_RESULT_CONFIDENCE_V1 (default ON, graduated)
 //
@@ -28,6 +28,7 @@ import { resolveEffectiveScore, resolveAbsoluteRelevance, type PipelineRow } fro
 import {
   isAbsoluteRelevanceCalibrationEnabled,
   isConfidenceCalibrationEnabled,
+  isLexicalGroundingEnabled,
   getConfidenceCalibrationModelPath,
 } from './search-flags.js';
 import { applyCalibration, loadCalibrationModel, type CalibrationModel } from './confidence-calibration.js';
@@ -41,7 +42,7 @@ const LOW_THRESHOLD = 0.4;
 
 // Weights for each active confidence factor. The former reranker weight (0.20)
 // was removed with the LLM reranker; its term was already inert (always 0), so
-// rawValue stays capped at 0.80 exactly as before — behavior-neutral. The 0.20
+// rawValue stays capped at 0.80 exactly as before, behavior-neutral. The 0.20
 // is intentionally NOT redistributed (that would change confidence scores).
 const WEIGHT_MARGIN = 0.35;
 const WEIGHT_CHANNEL_AGREEMENT = 0.30;
@@ -81,6 +82,29 @@ const TOP_DOMINANT_THRESHOLD = 0.8;
 // for recall appends weaker tail results; counting them would mechanically
 // depress the ratio and penalize a query for retrieving more candidates.
 const QUALITY_RATIO_HEAD = 5;
+
+// Lexical-grounding floor: the minimum query-term or BM25 overlap the top hit
+// must carry before good is reachable. The off-corpus failure is a top hit pulled
+// only by the vector lane, so its lexical signal is absent or zero. A strictly
+// positive floor treats absent and zero overlap as below floor and fails closed.
+// Kept at zero rather than a pinned cosine so the gate stays embedder-portable: a
+// present lexical match grounds, a missing one does not, on any embedder.
+const LEXICAL_GROUNDING_FLOOR = 0;
+
+// Corroboration: the margin and quality-ratio paths to good require at least this
+// many hits whose absolute relevance clears the corroboration threshold, so a lone
+// spurious hit over a weak tail cannot reach good. The top-dominant path is exempt
+// (a strong, grounded single hit stays citable).
+const CORROBORATION_THRESHOLD = LOW_THRESHOLD;
+const CORROBORATION_MIN_HITS = 2;
+
+// Drop stopwords and one/two-character tokens so query-term overlap measures
+// content terms, not function words that match almost any document.
+const QUERY_STOPWORDS = new Set([
+  'the', 'a', 'an', 'and', 'or', 'of', 'to', 'in', 'on', 'for', 'with', 'is',
+  'are', 'was', 'were', 'be', 'by', 'at', 'as', 'it', 'this', 'that', 'how',
+  'what', 'why', 'when', 'where', 'do', 'does', 'did', 'from', 'into', 'about',
+]);
 
 // -- Types --
 
@@ -162,7 +186,7 @@ function resolveScore(result: ScoredResult): number {
 }
 
 /**
- * Absolute relevance used for confidence calibration and request-quality — keeps
+ * Absolute relevance used for confidence calibration and request-quality, keeps
  * ordering on the RRF/effective score while reading an absolute 0–1 signal for
  * "how good is this", so the 0.7/0.4 thresholds mean what they say. Reverts to the
  * effective score when SPECKIT_ABSOLUTE_RELEVANCE_CALIBRATION is disabled.
@@ -211,7 +235,7 @@ function resolveCalibrationModel(): CalibrationModel | null {
 
 // One-shot warning latches so the coupling guard logs at most once per distinct
 // condition rather than on every result in every search. Reset only on process
-// restart — the conditions are configuration-level, not per-query.
+// restart, the conditions are configuration-level, not per-query.
 let warnedCalibrationCouplingMismatch = false;
 let warnedCalibrationLegacyProvenance = false;
 
@@ -219,7 +243,7 @@ let warnedCalibrationLegacyProvenance = false;
  * Map a rebalanced confidence value through the empirical calibration model
  * when enabled. Default ON (graduated): the committed isotonic model resolves
  * by default. Returns the rebalance-only value unchanged when the flag is
- * disabled or no readable model resolves, so opting out — or a missing model —
+ * disabled or no readable model resolves, so opting out, or a missing model -
  * fails safe to the uncalibrated identity rather than erroring.
  *
  * Coupling guard: the shipped curve is fitted against the cosine-prior value
@@ -312,6 +336,77 @@ function computeMargin(score: number, nextScore: number | null): number {
   return Math.max(0, gap);
 }
 
+/** First finite, non-negative number in the list, else null. */
+function firstLexicalNumber(...values: unknown[]): number | null {
+  for (const v of values) {
+    if (typeof v === 'number' && Number.isFinite(v) && v >= 0) return v;
+  }
+  return null;
+}
+
+/**
+ * Read the lexical (query-term / BM25) overlap signal already populated on a
+ * result row by the search pipeline. Mirrors the formatter's lexical projection:
+ * `fts_score`, then `bm25_score`, then the keyword/fts/bm25 entries on
+ * `sourceScores`. Returns null when no lexical signal is present, which the floor
+ * treats as below floor (fail closed) rather than as a zero score.
+ */
+function resolveLexicalSignal(result: ScoredResult): number | null {
+  const direct = firstLexicalNumber(result.fts_score, result.bm25_score);
+  if (direct !== null) return direct;
+  const sourceScores = result.sourceScores;
+  if (sourceScores && typeof sourceScores === 'object') {
+    const ss = sourceScores as Record<string, unknown>;
+    return firstLexicalNumber(ss.keyword, ss.fts, ss.bm25);
+  }
+  return null;
+}
+
+/** Tokenize to lowercase content words, dropping stopwords and short tokens. */
+function contentTokens(text: string): string[] {
+  return text
+    .toLowerCase()
+    .split(/[^a-z0-9]+/)
+    .filter((t) => t.length > 2 && !QUERY_STOPWORDS.has(t));
+}
+
+/**
+ * Whether any content term of the query appears in the row's own text fields
+ * (title, content, trigger phrases). A secondary grounding signal used when the
+ * row carries no numeric lexical score but a query string is available, so an
+ * exact-term match still grounds a hit the lexical lane did not score.
+ */
+function hasQueryTermOverlap(result: ScoredResult, query: string | undefined): boolean {
+  if (typeof query !== 'string') return false;
+  const queryTokens = contentTokens(query);
+  if (queryTokens.length === 0) return false;
+
+  const fields: string[] = [];
+  if (typeof result.title === 'string') fields.push(result.title);
+  if (typeof result.content === 'string') fields.push(result.content);
+  const triggers = result.triggerPhrases ?? result.trigger_phrases;
+  if (Array.isArray(triggers)) {
+    for (const t of triggers) if (typeof t === 'string') fields.push(t);
+  } else if (typeof triggers === 'string') {
+    fields.push(triggers);
+  }
+  if (fields.length === 0) return false;
+
+  const docTokens = new Set(contentTokens(fields.join(' ')));
+  return queryTokens.some((t) => docTokens.has(t));
+}
+
+/**
+ * Whether the top hit clears the lexical-grounding floor: a numeric lexical
+ * signal above the floor, or, failing that, a direct query-term overlap. Absent
+ * and zero lexical overlap with no query-term match fails closed (not grounded).
+ */
+function isTopHitGrounded(result: ScoredResult, query: string | undefined): boolean {
+  const signal = resolveLexicalSignal(result);
+  if (signal !== null && signal > LEXICAL_GROUNDING_FLOOR) return true;
+  return hasQueryTermOverlap(result, query);
+}
+
 /**
  * Map raw confidence value to a coarse label.
  */
@@ -375,7 +470,7 @@ export function computeResultConfidence(results: ScoredResult[]): ResultConfiden
 
     // Base score is a strong prior: if the score itself is very high, confidence
     // should reflect that even when heuristic signals are weak. Use the absolute
-    // relevance (cosine) here, not the RRF ordering score — an RRF magnitude of
+    // relevance (cosine) here, not the RRF ordering score, an RRF magnitude of
     // ~0.03 would make this prior contribute ~0.01 and defeat its purpose.
     // Relevance carries the larger weight so the band stays monotonic in it.
     const scorePrior = resolveCalibrationScore(result) * WEIGHT_SCORE_PRIOR;
@@ -393,7 +488,7 @@ export function computeResultConfidence(results: ScoredResult[]): ResultConfiden
     // to the band thresholds"), while the calibrated value is an absolute
     // P(relevant) estimate. The shipped isotonic curve maps every input into a
     // narrow low-probability range (max ~0.2 here), so banding off the calibrated
-    // value would collapse every result to "low" and make the label useless —
+    // value would collapse every result to "low" and make the label useless -
     // even though the calibrated value is honest. Banding off the rebalanced
     // value keeps the label distribution meaningful while the numeric value still
     // reads as a calibrated probability.
@@ -425,7 +520,7 @@ export function computeResultConfidence(results: ScoredResult[]): ResultConfiden
  * The "good" rule is top-dominant and margin-aware: a single strong, well-separated
  * top hit is citable even when the tail is weak. Without this, a strong top result
  * is dragged to "weak" by a weaker tail, and expanding recall (more tail candidates)
- * mechanically lowers the quality ratio — penalizing the very recall that found the hit.
+ * mechanically lowers the quality ratio, penalizing the very recall that found the hit.
  *
  * @param results   - The scored results for the query.
  * @param confidences - Parallel confidence array from `computeResultConfidence`.
@@ -433,6 +528,7 @@ export function computeResultConfidence(results: ScoredResult[]): ResultConfiden
 export function assessRequestQuality(
   results: ScoredResult[],
   confidences: ResultConfidence[],
+  options?: { query?: string },
 ): RequestQualityAssessment {
   if (!Array.isArray(results) || results.length === 0) {
     return { requestQuality: { label: 'gap' } };
@@ -442,7 +538,7 @@ export function assessRequestQuality(
   // computeResultConfidence(results)). A length mismatch means the head slice
   // below would pair results[i] with an unrelated confidence, so degrade to the
   // conservative do-not-cite verdict rather than emit a quality label off
-  // misaligned data. Holds at every call site today — defensive only.
+  // misaligned data. Holds at every call site today, defensive only.
   if (!Array.isArray(confidences) || confidences.length !== results.length) {
     return { requestQuality: { label: 'gap' } };
   }
@@ -467,6 +563,40 @@ export function assessRequestQuality(
     ? computeMargin(topScore, resolveCalibrationScore(results[1]))
     : 0;
 
+  // Lexical-grounding floor + single-hit corroboration. The absolute cosine plus
+  // top-margin alone hands a fluent but off-corpus hit a confident verdict, so
+  // when enabled good additionally requires the top hit to carry a query-term or
+  // BM25 overlap above the floor, and the margin / quality-ratio paths require a
+  // corroborating second hit. Default-OFF: the shipped branch below is unchanged.
+  if (isLexicalGroundingEnabled()) {
+    const grounded = isTopHitGrounded(results[0], options?.query);
+    const corroboratingHits = results.filter(
+      (r) => resolveCalibrationScore(r) >= CORROBORATION_THRESHOLD,
+    ).length;
+    const corroborated = corroboratingHits >= CORROBORATION_MIN_HITS;
+
+    // A grounded, absolutely-dominant top hit stands on its own, even single.
+    if (grounded && topScore >= TOP_DOMINANT_THRESHOLD) {
+      return { requestQuality: { label: 'good' } };
+    }
+    // The margin and quality-ratio paths need grounding AND corroboration, so a
+    // lone off-corpus hit with a zero margin can no longer reach good through the
+    // ratio on a single result.
+    if (
+      grounded &&
+      corroborated &&
+      topScore >= HIGH_THRESHOLD &&
+      (qualityRatio >= 0.6 || topMargin >= LARGE_MARGIN_THRESHOLD)
+    ) {
+      return { requestQuality: { label: 'good' } };
+    }
+    // weak/gap floor unchanged from the shipped path.
+    if (topScore >= LOW_THRESHOLD || qualityRatio >= 0.3) {
+      return { requestQuality: { label: 'weak' } };
+    }
+    return { requestQuality: { label: 'gap' } };
+  }
+
   // A sufficiently strong top hit is citable on its own, regardless of the tail.
   if (topScore >= TOP_DOMINANT_THRESHOLD) {
     return { requestQuality: { label: 'good' } };
@@ -476,7 +606,7 @@ export function assessRequestQuality(
   if (topScore >= HIGH_THRESHOLD && (qualityRatio >= 0.6 || topMargin >= LARGE_MARGIN_THRESHOLD)) {
     return { requestQuality: { label: 'good' } };
   }
-  // weak/gap thresholds unchanged — preserves the do-not-cite safety net for
+  // weak/gap thresholds unchanged, preserves the do-not-cite safety net for
   // genuinely low-signal queries.
   if (topScore >= LOW_THRESHOLD || qualityRatio >= 0.3) {
     return { requestQuality: { label: 'weak' } };

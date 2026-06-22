@@ -171,10 +171,10 @@ export interface MemoryResultTrace {
    *   snapshot was returned by the DB query.
    * - `failureReason`: structured reason when `attempted` was
    *   true but `derivedCount` is zero or the query crashed:
-   *   * `'no_db'`           — `requireDb` threw / returned null
-   *   * `'no_results'`      — query ran cleanly, returned 0 rows
-   *   * `'query_error'`     — query threw during execute/iterate
-   *   * `null`              — no failure to attribute
+   *   * `'no_db'`, `requireDb` threw / returned null
+   *   * `'no_results'`, query ran cleanly, returned 0 rows
+   *   * `'query_error'`, query threw during execute/iterate
+   *   * `null`, no failure to attribute
    */
   trustBadgeDerivation?: {
     attempted: boolean;
@@ -296,11 +296,11 @@ export function renderRecalledMemoryContent(content: string, sourceKind: unknown
 // any element-shape failure and preserves the existing fallback semantics.
 // Exported for direct shape-tests.
 export function parseTriggerPhrases(value: unknown): string[] {
-  // Already an array — element-validate.
+  // Already an array, element-validate.
   if (Array.isArray(value)) {
     return value.filter((item): item is string => typeof item === 'string');
   }
-  // String — JSON-parse then element-validate.
+  // String, JSON-parse then element-validate.
   if (typeof value === 'string') {
     try {
       const parsed = JSON.parse(value) as unknown;
@@ -393,7 +393,7 @@ function sanitizeAgeLabel(value: unknown, fallbackIso: unknown): string {
     if (trimmed.length <= MAX_AGE_LABEL_LENGTH && ALLOWED_AGE_LABEL.test(trimmed)) {
       return trimmed;
     }
-    // Explicit string supplied but failed allowlist — fall through
+    // Explicit string supplied but failed allowlist, fall through
     // to derivation rather than surfacing the raw value.
   }
   return formatAgeString(typeof fallbackIso === 'string' ? fallbackIso : null);
@@ -402,7 +402,7 @@ function sanitizeAgeLabel(value: unknown, fallbackIso: unknown): string {
 /**
  * Normalize a caller-supplied `trustBadges` payload into
  * a strict `MemoryTrustBadges` shape. Each field is sanitized
- * independently — `null` / wrong type means "fall through to
+ * independently, `null` / wrong type means "fall through to
  * derivation" at merge time. Returns `null` only when the input is
  * not an object at all.
  */
@@ -756,7 +756,7 @@ function extractTrace(rawResult: RawSearchResult, extraData?: Record<string, unk
     addChannel(channelsUsed, channel);
   }
 
-  // Fallback — read queryComplexity from traceMetadata if not found in stages
+  // Fallback, read queryComplexity from traceMetadata if not found in stages
   if (!queryComplexity) {
     const tm = rawResult.traceMetadata as Record<string, unknown> | undefined;
     if (typeof tm?.queryComplexity === 'string' && (tm.queryComplexity as string).length > 0) {
@@ -1081,10 +1081,10 @@ export async function formatSearchResults(
   let confidenceData: ReturnType<typeof computeResultConfidence> | null = null;
   let requestQualityData: ReturnType<typeof assessRequestQuality> | null = null;
   if (confidenceEnabled) {
-    // Cast to ScoredResult — RawSearchResult extends Record<string,unknown> and has the same shape
+    // Cast to ScoredResult, RawSearchResult extends Record<string,unknown> and has the same shape
     const scoredResults = results as unknown as ScoredResult[];
     confidenceData = computeResultConfidence(scoredResults);
-    requestQualityData = assessRequestQuality(scoredResults, confidenceData);
+    requestQualityData = assessRequestQuality(scoredResults, confidenceData, { query: query ?? undefined });
   }
 
   // Compute recovery payload for weak/partial results when flag is enabled
