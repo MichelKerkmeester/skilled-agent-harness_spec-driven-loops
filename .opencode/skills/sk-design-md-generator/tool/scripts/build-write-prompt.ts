@@ -106,6 +106,12 @@ if (require.main === module) {
     console.error('Usage: build-write-prompt.ts <tokens.json>');
     process.exit(1);
   }
-  const tokens = JSON.parse(fs.readFileSync(tokensPath, 'utf-8')) as DesignTokens;
+  let tokens: DesignTokens;
+  try {
+    tokens = JSON.parse(fs.readFileSync(tokensPath, 'utf-8')) as DesignTokens;
+  } catch (err) {
+    console.error(`Could not read tokens at ${tokensPath}: ${(err as Error).message}`);
+    process.exit(1);
+  }
   process.stdout.write(buildWritePrompt(tokens));
 }

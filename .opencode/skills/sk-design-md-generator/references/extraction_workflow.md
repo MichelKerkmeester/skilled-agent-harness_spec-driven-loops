@@ -53,7 +53,7 @@ You MUST complete each phase before proceeding to the next; VALIDATE and REPORT 
 
 **Actions**:
 1. Run `npx ts-node scripts/build-write-prompt.ts <--output>/tokens.json` first. It pre-renders §2 Color, §3 Typography, and §6 Depth deterministically from the tokens (via `formatters.ts`) and emits a PRESENT/ABSENT manifest for the data-gated sections.
-2. Read `tool/resources/design_md_format.md` and `tool/resources/writing_style_guide.md`.
+2. Read `tool/resources/design_md_format_v3.md` and `tool/resources/writing_style_guide.md`.
 3. Paste the pre-rendered §2/§3/§6 tables unchanged; compose the remaining sections, copying every hex, pixel, font-weight, shadow, and radius verbatim from `tokens.json`.
 4. Data-driven sections (§0, §6, §6.5, §7, §9, §11, §12) follow the manifest: PRESENT → write from tokens; ABSENT → stamp `_No <X> data was extracted._`, never invent. Interpretive claims cite a token or are labelled `[INFERRED]`.
 5. 6-digit lowercase hex only. L1+L2 tokens in main sections, L3 marked "Subject to change", L4 excluded.

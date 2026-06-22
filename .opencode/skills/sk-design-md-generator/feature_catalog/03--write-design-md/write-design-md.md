@@ -78,7 +78,6 @@ The cardinal rules card (`assets/cardinal_rules_card.md`) is a one-page checklis
 |---|---|---|
 | `tool/scripts/build-write-prompt.ts` | Script | Pre-renders the v3 value sections, assembles the FACTS block, and emits the prose-only WRITE prompt; run first by the WRITE phase |
 | `tool/scripts/formatters-v3.ts` | Script | Deterministic v3 emitters: hue+lightness colour namer, Tokens — Colors, Tokens — Spacing & Shapes, Surfaces, and Quick Start (every value verbatim from tokens, L4 excluded) |
-| `tool/scripts/formatters.ts` | Script | Legacy v2 doc-as-view renderers (§2 Color, §3 Typography, §6 Depth) retained for older v2 docs |
 | `assets/design_md_prompt_template.md` | Script | Write-phase prompt encoding the cardinal rules and the section contract |
 | `assets/cardinal_rules_card.md` | Script | One-page fidelity checklist for pre-validate self-check |
 | `tool/resources/design_md_format_v3.md` | Shared | Authoritative v3 Style Reference section specification |

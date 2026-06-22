@@ -543,8 +543,15 @@ if (require.main === module) {
 
   const [mdPath, tokensPath] = args;
 
-  const mdContent = fs.readFileSync(mdPath, 'utf-8');
-  const tokens: DesignTokens = JSON.parse(fs.readFileSync(tokensPath, 'utf-8'));
+  let mdContent: string;
+  let tokens: DesignTokens;
+  try {
+    mdContent = fs.readFileSync(mdPath, 'utf-8');
+    tokens = JSON.parse(fs.readFileSync(tokensPath, 'utf-8'));
+  } catch (err) {
+    console.error(`Could not read inputs: ${(err as Error).message}`);
+    process.exit(1);
+  }
 
   const result = validateDesignMd(mdContent, tokens);
   printResult(result);

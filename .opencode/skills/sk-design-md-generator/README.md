@@ -46,7 +46,7 @@ npx ts-node scripts/extract.ts https://stripe.com --fast --output .opencode/spec
 # --fast crawls 5 pages at 8 concurrency. tokens.json is written to <--output>/.
 ```
 
-**Step 3: Write `DESIGN.md` per the v2 format.** Read `tool/resources/design_md_format.md` and `tool/resources/writing_style_guide.md`, then compose the 17-section document. Every hex, pixel, font-weight, shadow, and radius must come from `tokens.json`.
+**Step 3: Write `DESIGN.md` per the v2 format.** Read `tool/resources/design_md_format_v3.md` and `tool/resources/writing_style_guide.md`, then compose the 17-section document. Every hex, pixel, font-weight, shadow, and radius must come from `tokens.json`.
 
 **Step 4: Validate before claiming completion.**
 
@@ -70,7 +70,7 @@ EXTRACT (Phase 1)
   Output: tokens.json at <--output>/.
 
 WRITE (Phase 2)
-  Read tokens.json + design_md_format.md for the v2 section specification.
+  Read tokens.json + design_md_format_v3.md for the v2 section specification.
   Compose 17-section DESIGN.md, every numeric value copied verbatim.
   L1 + L2 tokens go in main sections. L3 tokens get a "Subject to change" note.
   L4 tokens excluded entirely.
@@ -170,7 +170,7 @@ A: No. The crawler needs a publicly accessible URL that renders JavaScript. Auth
 
 **Q: Do I need to write `DESIGN.md` by hand?**
 
-A: Yes. Phase 2 (write) is the AI agent's job. The skill provides `tokens.json` and the v2 format specification in `tool/resources/design_md_format.md`. The agent composes the 17-section document, copying every value verbatim from `tokens.json`. The skill validates the result.
+A: Yes. Phase 2 (write) is the AI agent's job. The skill provides `tokens.json` and the v2 format specification in `tool/resources/design_md_format_v3.md`. The agent composes the 17-section document, copying every value verbatim from `tokens.json`. The skill validates the result.
 
 **Q: What if I only want to validate an existing `DESIGN.md`?**
 
@@ -199,6 +199,6 @@ A: This skill captures what exists on a live site. `sk-design-interface` invents
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, and references |
 | [`INSTALL_GUIDE.md`](./INSTALL_GUIDE.md) | Node.js, Playwright, Chromium setup and first-extraction walkthrough |
-| [`tool/resources/design_md_format.md`](./tool/resources/design_md_format.md) | The authoritative v2 DESIGN.md section specification (17 sections) |
+| [`tool/resources/design_md_format_v3.md`](./tool/resources/design_md_format_v3.md) | The authoritative v2 DESIGN.md section specification (17 sections) |
 | [`tool/resources/writing_style_guide.md`](./tool/resources/writing_style_guide.md) | Voice, tone, and section-composition rules for DESIGN.md prose |
 | [Skills Library](../README.md) | The skill catalog and routing front door |
