@@ -496,3 +496,10 @@ producer guard widened to three out-of-enum paths through a dual lenient and str
 over-scaffolding was reframed honestly with no phase deleted and all twenty-eight scaffolds kept by operator
 intent. The report is in
 [`005-spec-data-quality/review/review-report-round2.md`](./005-spec-data-quality/review/review-report-round2.md).
+
+On 2026-06-22 the skill-advisor workspace-root resolution work was folded into the skill-advisor subsystem as
+phase `003-skill-advisor/008-advisor-workspace-root-resolution`, relocated from its former standalone home
+under system-skill-advisor with surgical metadata only and no content change. The same pass added a
+category-scoped `before-vs-after.md` inside each of the five subsystem parents, `001-speckit-memory`,
+`002-code-graph`, `003-skill-advisor`, `004-deep-loop` and `005-spec-data-quality`, each telling only its own
+subsystem story while the packet-root `before-vs-after.md` stays the comprehensive cross-subsystem record.
