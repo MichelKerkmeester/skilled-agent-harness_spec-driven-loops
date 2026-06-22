@@ -6,7 +6,8 @@
   "children_ids": [
     "anobel.com/001-button-text-link-disabled-state",
     "anobel.com/002-link-card-button-and-mobile-animation",
-    "anobel.com/003-slider-refactor"
+    "anobel.com/003-slider-refactor",
+    "anobel.com/004-bento-visuals"
   ],
   "manual": {
     "depends_on": [],
@@ -29,7 +30,7 @@
     "entities": [],
     "causal_summary": "Packet metadata derived from canonical spec documents.",
     "created_at": "2026-06-21T07:36:16.590Z",
-    "last_save_at": "2026-06-21T07:36:16.590Z",
+    "last_save_at": "2026-06-22T18:54:58.923Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [],
