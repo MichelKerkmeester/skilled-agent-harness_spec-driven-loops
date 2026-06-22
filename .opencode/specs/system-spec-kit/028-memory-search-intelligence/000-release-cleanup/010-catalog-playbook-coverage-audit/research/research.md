@@ -103,7 +103,7 @@ The release-cleanup aligned existing entries and explicitly added none. So the f
 
 - **Kept-on flags missing from the catalog (4 of 5):** `SPECKIT_DERIVED_ID_PROVENANCE`, `SPECKIT_CONFIDENCE_CALIBRATION`, `SPECKIT_RETENTION_FORGETTING_V1`, `SPECKIT_WORLD_SUMMARY_PRELUDE`. `SPECKIT_TEMPORAL_EDGES` IS present (2 files), so it is not a gap.
 - **028 Memory-MCP always-on features missing or thin in the catalog:** recall trust-escaper, red-team gate, content-id centralization, retrieval-class routing, world-summary grounding prelude, the eval-harness coverage guard, and the calibrated search-score residual. The eval-harness extension is PARTIAL.
-- **Playbook scenario gaps:** the red-team gate and the trust escaper have no scenario; content-id and the enrichment gauges are PARTIAL.
+- **Playbook scenario gaps:** the red-team gate and the trust escaper have no scenario. Content-id and the enrichment gauges are PARTIAL.
 
 ### 3.4 Cross-cutting: the Deep Loop runtime has no catalog owner
 
