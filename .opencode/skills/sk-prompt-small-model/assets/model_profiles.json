@@ -34,7 +34,8 @@
       ],
       "weaknesses": [
         "slower on non-trivial fixtures",
-        "needs timeout headroom"
+        "needs timeout headroom",
+        "visual/illustration tasks: richest individual drawings but gold-heavy and brand-blue-starved despite a brand brief (informal bento bake-off, n=1 fixture, 2026-06-22; see references/models/deepseek-v4-pro.md)"
       ],
       "avg_iter_wall_clock_min": 18,
       "status": "active",
@@ -85,7 +86,8 @@
         "dedicated Kimi For Coding subscription pool (`kimi-for-coding`), independent of opencode-go / minimax / xiaomi pools",
         "coding-optimized Kimi K2.7 (display name 'Kimi K2.7 Code')",
         "256k (262,144-token) context for long-file and multi-file work",
-        "subscription billing — dispatch cost 0 (no pay-per-token burn)"
+        "subscription billing — dispatch cost 0 (no pay-per-token burn)",
+        "visual/illustration tasks: strongest brand restraint of the rotation — blue-led, orange reserved for one alert, gold rare, cohesive set mapping to feature facets (informal bento bake-off, n=1 fixture, 2026-06-22; see references/models/kimi-k2.7-code.md)"
       ],
       "weaknesses": [
         "single executor path (no fallback if the kimi-for-coding pool is exhausted)",
@@ -214,7 +216,8 @@
       "weaknesses": [
         "long-context quality degrades past ~512k despite the 1M window",
         "Token-Plan subscription request-window semantics unverified",
-        "prompt-framework benchmark 004 used 2 fixtures / single-sample — COSTAR vs RACE tie is within noise"
+        "prompt-framework benchmark 004 used 2 fixtures / single-sample — COSTAR vs RACE tie is within noise",
+        "visual/illustration tasks: over-accents — spreads orange/gold across most cards, weak color restraint despite clean shapes and a reserved-accent brief (informal bento bake-off, n=1 fixture, 2026-06-22; see references/models/mimo-v2.5-pro.md)"
       ],
       "avg_iter_wall_clock_min": null,
       "status": "active",

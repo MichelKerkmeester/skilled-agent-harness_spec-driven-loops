@@ -2,7 +2,7 @@
 name: sk-prompt-small-model
 description: Per-model prompt-craft hub for small-model dispatch (DeepSeek-v4-pro + Kimi-k2.7-code + MiniMax-M3 + MiMo-V2.5-Pro via cli-opencode). OWNS the per-model prompt-craft profiles in references/models/ (framework + scaffold + gotchas, mirroring model_profiles.json); executor MECHANICS (binary flags, invocation wrappers) stay in cli-opencode. Advisor co-surfaces it with that executor.
 allowed-tools: []
-version: 0.7.2.0
+version: 0.8.0.0
 ---
 
 <!-- Keywords: small-model, deepseek-v4-pro, kimi-k2.7-code, kimi-for-coding, minimax-m3, minimax-coding-plan, minimax-token-plan, minimax-api, haiku, opencode-go, deepseek-api, context-budget, output-verification, model-profiles, structured-permissions, quota-fallback -->

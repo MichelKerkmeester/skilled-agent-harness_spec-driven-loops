@@ -163,7 +163,19 @@ Source of truth for model-specific capability fields and flags: [`model_profiles
 
 ---
 
-## 7. SEE ALSO
+## 7. DESIGN & ILLUSTRATION TASKS (informal observation, n=1)
+
+**Task type:** bento-card visual illustration applying `sk-design-interface` (1 page = Budgetteren, single sample, 2026-06-22 bake-off vs kimi-k2.7-code + mimo-v2.5-pro; same brief, same shell, all three read the design skill).
+
+**Observed — gold-heavy / blue-starved:** the **richest, most-detailed individual drawings** of the three — but gold filled 4/5 cards and the brand's lead blue was under-used (output skewed dark/gold), with two overlapping concepts (two chests). It respected the hard constraints (brand palette only, flat).
+
+**Implication:** strong raw illustration craft, weak brand-palette discipline. For a brand-critical illustration set prefer kimi-k2.7-code (strongest restraint); if deepseek is used, **pin the lead color and cap gold explicitly** in the brief and palette-check the output.
+
+**Caveat:** informal, n=1 fixture / single sample — a dispatch observation, **NOT benchmark evidence**. Mirror of `model_profiles.json#deepseek-v4-pro.weaknesses`. Path to canonical: `/deep:model-benchmark` (≥3 illustration fixtures × ≥2 samples; results land in `sk-prompt-small-model/benchmarks/<label>/`).
+
+---
+
+## 8. SEE ALSO
 
 - [`../../../sk-prompt-small-model/assets/model_profiles.json#deepseek-v4-pro`](../../../sk-prompt-small-model/assets/model_profiles.json) — Registry entry; authoritative for all capability fields and `recommended_frameworks` data
 - [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md) — Generic RCAF definition, CLEAR scoring, full framework matrix

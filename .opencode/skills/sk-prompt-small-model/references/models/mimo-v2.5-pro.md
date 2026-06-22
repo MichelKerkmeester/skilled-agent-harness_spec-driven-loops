@@ -171,7 +171,19 @@ Source of truth for the capability fields below: `model_profiles.json#mimo-v2.5-
 
 ---
 
-## 7. SEE ALSO
+## 7. DESIGN & ILLUSTRATION TASKS (informal observation, n=1)
+
+**Task type:** bento-card visual illustration applying `sk-design-interface` (1 page = Budgetteren, single sample, 2026-06-22 bake-off vs kimi-k2.7-code + deepseek-v4-pro; same brief, same shell, all three read the design skill).
+
+**Observed — over-accents:** clean and fast (~2.5 min), more brand-blue than deepseek — but **orange/gold appeared on all 5 cards**, ignoring the reserved-accent brief, and a couple of metaphors were tenuous (a compass for "budget"). It respected the other hard constraints (no off-brand hexes, flat). Consistent with its general framing preference (COSTAR / lean / format-focused, §3): it optimizes output shape and format over color-budget restraint.
+
+**Implication:** for restraint-sensitive / reserved-accent visual work, give MiMo an **explicit per-card accent cap** (e.g. "orange on ≤1 card; gold rare") AND run a post-dispatch palette/accent check — or prefer kimi-k2.7-code (strongest restraint).
+
+**Caveat:** informal, n=1 fixture / single sample — a dispatch observation, **NOT benchmark evidence**. Mirror of `model_profiles.json#mimo-v2.5-pro.weaknesses`. Path to canonical: `/deep:model-benchmark` (≥3 illustration fixtures × ≥2 samples; results land in `sk-prompt-small-model/benchmarks/<label>/`).
+
+---
+
+## 8. SEE ALSO
 
 - [`model_profiles.json#mimo-v2.5-pro`](../../../sk-prompt-small-model/assets/model_profiles.json) — Canonical capability fields and recommended_frameworks data; this profile mirrors and annotates it.
 - [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md) — Generic framework definitions (COSTAR, RACE, TIDD-EC, RCAF, CIDI, CRISPE, CRAFT). Section 4 (Tuned Template Snippet) links here rather than copying.

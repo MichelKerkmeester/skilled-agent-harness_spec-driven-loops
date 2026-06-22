@@ -152,7 +152,19 @@ Model-specific capability fields and flags are sourced from the `kimi-k2.7-code`
 
 ---
 
-## 7. SEE ALSO
+## 7. DESIGN & ILLUSTRATION TASKS (informal observation, n=1)
+
+**Task type:** bento-card visual illustration applying `sk-design-interface` (1 page = Budgetteren, single sample, 2026-06-22 bake-off vs deepseek-v4-pro + mimo-v2.5-pro; same brief, same shell, all three read the design skill).
+
+**Observed — best of the three:** blue-led composition; **orange reserved for the one functional alert**; gold rare/intentional; a cohesive set whose cards map to the feature's facets (per schip / per locatie / overschrijdingsalert / balans). Cleaner brand discipline than deepseek (gold-heavy) or mimo (over-accents). More icon-like/simpler in places, but the most intentional and on-brand. Respected the hard constraints (brand palette only, flat, no gradients).
+
+**Implication:** preferred small-model for **brand-critical illustration / color-budgeted visual** work; the COSTAR + read-cap scaffold (§5) plus an embedded brand brief carries it.
+
+**Caveat:** informal, n=1 fixture / single sample — a dispatch observation, **NOT benchmark evidence**. Mirror of `model_profiles.json#kimi-k2.7-code.strengths`. Path to canonical: `/deep:model-benchmark` (≥3 illustration fixtures × ≥2 samples; results land in `sk-prompt-small-model/benchmarks/<label>/`).
+
+---
+
+## 8. SEE ALSO
 
 - [`../../../sk-prompt-small-model/assets/model_profiles.json`](../../../sk-prompt-small-model/assets/model_profiles.json) `#kimi-k2.7-code` — Registry entry; the authoritative DATA this profile mirrors.
 - [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md) — Generic framework definitions (RCAF § 3, full framework library).
