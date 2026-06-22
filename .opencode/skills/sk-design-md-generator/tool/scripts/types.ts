@@ -271,6 +271,9 @@ export interface A11yTokens {
   focusIndicator: {
     style: Record<string, string>;
     consistent: boolean;
+    // True only when at least one focus style was actually captured. When false,
+    // `consistent` carries no evidence and must not be asserted as a finding.
+    captured: boolean;
   };
   contrastPairs: {
     foreground: string;

@@ -1,0 +1,5 @@
+# Regenerable extraction + research artifacts (large binaries / raw dumps).
+output/*/screenshots/
+research/logs/
+research/prompts/
+research/deltas/

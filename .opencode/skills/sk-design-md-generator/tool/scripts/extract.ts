@@ -16,7 +16,7 @@ import { detectDarkMode } from './dark-mode-detect';
 import { detectFramework } from './framework-detect';
 import { detectIcons } from './icon-detect';
 import { extractMotion } from './motion-extract';
-import { extractA11y } from './a11y-extract';
+import { extractA11y, extractA11yAsync } from './a11y-extract';
 import { clusterTokens, mergeTokenSets } from './cluster';
 import { detectBoundaries } from './design-boundary-detect';
 import type {
@@ -78,7 +78,10 @@ function parseArgs(argv: string[]): ExtractOptions {
   let maxPages = 8;
   const extraUrls: string[] = [];
   let noDarkMode = false;
-  let noInteraction = true;
+  // Interaction capture is ON by default. A run that omits it leaves §11 (State
+  // Matrix) and §9 focus with no backing data, which the DESIGN.md writer fills
+  // by inventing. Opt out explicitly with --no-interaction / --fast-no-interaction.
+  let noInteraction = false;
   let verbose = false;
   let waitFor: WaitStrategy | undefined;
   let mergeWith: string | undefined;
@@ -110,14 +113,18 @@ function parseArgs(argv: string[]): ExtractOptions {
     } else if (arg === '--no-dark-mode') {
       noDarkMode = true;
     } else if (arg === '--no-interaction') {
-      // Already the default; kept for backward compatibility
+      // Explicit opt-out (interaction capture is now on by default).
       noInteraction = true;
     } else if (arg === '--with-interaction') {
       noInteraction = false;
     } else if (arg === '--fast') {
       maxPages = 5;
-      noInteraction = true;
       concurrency = 8;
+    } else if (arg === '--fast-no-interaction') {
+      // Fast crawl AND skip interaction capture (the old --fast behavior).
+      maxPages = 5;
+      concurrency = 8;
+      noInteraction = true;
     } else if (arg === '--verbose') {
       verbose = true;
     } else if (arg === '--insecure') {
@@ -213,6 +220,7 @@ interface PageExtraction {
   dom: DOMCollection;
   css?: CSSAnalysis;
   interactions?: InteractionData;
+  asyncA11y?: Awaited<ReturnType<typeof extractA11yAsync>>;
 }
 
 // ────────────────────────────────────────────────────────────────
@@ -327,7 +335,16 @@ async function extract(options: ExtractOptions): Promise<void> {
         }
       }
 
-      pageExtractions.push({ url: pageData.url, dom, css, interactions });
+      // Page-dependent accessibility (tab order, lang, skip link, alt-text) must
+      // run while the page is live; otherwise these §9 fields stay null and get invented.
+      let asyncA11y: PageExtraction['asyncA11y'];
+      try {
+        asyncA11y = await extractA11yAsync(page);
+      } catch (err) {
+        log(options.verbose, `    Async a11y extraction failed: ${err}`);
+      }
+
+      pageExtractions.push({ url: pageData.url, dom, css, interactions, asyncA11y });
     } catch (err) {
       console.log(`    WARN: Extraction failed for ${pageData.url}: ${err}`);
     } finally {
@@ -436,13 +453,22 @@ async function extract(options: ExtractOptions): Promise<void> {
   }
 
   // Motion system
-  const motionSystem = cssAnalyses.length > 0 ? extractMotion(cssAnalyses[0], domCollections) : null;
+  // Merge motion data across ALL crawled pages, not just the first — keyframes and
+  // transitions on later pages were previously discarded, leaving §6.5 thin.
+  const mergedMotionCss = cssAnalyses.length > 0
+    ? { ...cssAnalyses[0], transitions: cssAnalyses.flatMap((c) => c.transitions), animations: cssAnalyses.flatMap((c) => c.animations) }
+    : null;
+  const motionSystem = mergedMotionCss ? extractMotion(mergedMotionCss, domCollections) : null;
   if (motionSystem) {
     console.log(`  Motion: ${motionSystem.durationScale.length} duration tiers, ${motionSystem.keyframeAnimations.length} animations`);
   }
 
   // Accessibility
-  const a11yTokens = extractA11y(domCollections, interactionSets);
+  const a11yTokens = extractA11y(domCollections, interactionSets, cssAnalyses);
+  // Merge the page-level async a11y from the representative (first available) page;
+  // extractA11y cannot compute tab order / lang / skip-link / alt-text without a live page.
+  const primaryAsyncA11y = pageExtractions.find((p) => p.asyncA11y)?.asyncA11y;
+  if (primaryAsyncA11y) Object.assign(a11yTokens, primaryAsyncA11y);
 
   // ── Step 12: Cluster tokens ──────────────────────────────────────────────
 

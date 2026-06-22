@@ -431,6 +431,16 @@ function classifyColorStability(color: ColorToken, _totalPages: number): Stabili
   else if (score >= 0) layer = 'campaign';
   else layer = 'content';
 
+  // Coverage-election pre-gate: a colour seen on fewer than 30% of crawled pages is a
+  // one-off, not a site-wide system colour, so cap it at campaign (L3) — it must not
+  // reach the main palette (L1/L2). On single-page crawls pagesCoverage is 1.0, so this
+  // never fires there. This is the safe fix for one-off leakage; the perceptual deltaE
+  // threshold stays tight (a live measurement showed loosening it merges distinct brand colours).
+  if (color.pagesCoverage < 0.3 && (layer === 'infrastructure' || layer === 'system')) {
+    layer = 'campaign';
+    signals.push('coverage-gate: <30% pages -> capped at L3');
+  }
+
   return { layer, confidence: Math.min(1, Math.max(0, (score + 40) / 100)), signals };
 }
 
@@ -795,8 +805,10 @@ export function clusterTokens(pages: PageExtraction[], cssVariables: CSSVariable
     }
   }
 
-  // WCAG contrast pairs for high-frequency colors
-  const highFreqColors = colorTokens.filter((c) => c.frequency >= 5).slice(0, 20);
+  // WCAG contrast pairs for high-frequency colors. Cap raised (20 -> 50) and frequency
+  // floor lowered (5 -> 3) so lower-frequency but semantically important text-on-bg pairs
+  // reach the §9 contrast table instead of being dropped (and then invented).
+  const highFreqColors = colorTokens.filter((c) => c.frequency >= 3).slice(0, 50);
   const contrastPairs: {
     foreground: string;
     background: string;
@@ -1044,32 +1056,9 @@ export function clusterTokens(pages: PageExtraction[], cssVariables: CSSVariable
     }
   }
 
-  function classifyShadow(value: string): ShadowToken['type'] {
-    // Split on commas OUTSIDE parentheses to handle rgba(r,g,b,a) correctly
-    const parts = splitShadowLayers(value);
-    if (parts.length > 1) return 'complex-stack';
-    if (value.includes('inset')) return 'inset';
-
-    // Remove color portions for analysis
-    const cleaned = value
-      .replace(/rgba?\([^)]+\)/g, '')
-      .replace(/hsla?\([^)]+\)/g, '')
-      .replace(/#[0-9a-fA-F]{3,8}/g, '')
-      .trim();
-
-    const nums = cleaned.match(/-?\d+(\.\d+)?(px)?/g)?.map((n) => parseFloat(n)) ?? [];
-    // box-shadow: offsetX offsetY blur spread
-    const offsetX = nums[0] ?? 0;
-    const offsetY = nums[1] ?? 0;
-    const blur = nums[2] ?? 0;
-    const spread = nums[3] ?? 0;
-
-    if (offsetX === 0 && offsetY === 0 && blur === 0 && spread > 0) return 'border-shadow';
-    if (offsetX === 0 && offsetY === 0 && blur === 0 && spread !== 0) return 'ring';
-    if (offsetY > 0 && blur > 0) return 'elevation';
-
-    return 'elevation';
-  }
+  // Shadow type classification uses the single module-level classifyShadow (defined
+  // above). An inline duplicate of it previously lived here and could drift from the
+  // exported version (zero-blur border-shadow handling in particular).
 
   function shadowIntensity(value: string): number {
     const cleaned = value
@@ -1187,8 +1176,9 @@ export function clusterTokens(pages: PageExtraction[], cssVariables: CSSVariable
         continue;
       }
 
-      // Badge
-      if (radiusPx >= 100 && el.rect.height < 30 && hasBg) {
+      // Badge: fully-pill (radius>=100) OR rounded relative to its height (catches
+      // small rounded pills the >=100 floor missed), and short.
+      if ((radiusPx >= 100 || radiusPx > el.rect.height * 0.3) && el.rect.height < 40 && hasBg) {
         identified.push({ type: 'Badge', element: el, pageUrl: page.url });
         continue;
       }
@@ -1204,9 +1194,9 @@ export function clusterTokens(pages: PageExtraction[], cssVariables: CSSVariable
       if (
         (hasShadowOrBorder || hasBg) &&
         radiusPx > 0 &&
-        padding >= 12 &&
-        el.childrenCount >= 2 &&
-        el.rect.width >= 200 &&
+        padding >= 6 &&
+        el.childrenCount >= 1 &&
+        el.rect.width >= 120 &&
         el.rect.width <= 800
       ) {
         identified.push({ type: 'Card', element: el, pageUrl: page.url });
@@ -1248,11 +1238,18 @@ export function clusterTokens(pages: PageExtraction[], cssVariables: CSSVariable
     if (bgLum < 0.3 && textLum > 0.5) return 'Primary';
 
     // Light/white bg + dark text + border/shadow → Secondary
-    const hasShadowOrBorder =
-      (el.boxShadow && el.boxShadow !== 'none') ||
-      parseFloat(el.borderTopWidth) > 0;
+    const hasShadow = !!el.boxShadow && el.boxShadow !== 'none';
+    const hasBorder = parseFloat(el.borderTopWidth) > 0;
+    const hasShadowOrBorder = hasShadow || hasBorder;
     if (bgLum > 0.7 && textLum < 0.4 && hasShadowOrBorder) return 'Secondary';
 
+    // Visible border, no fill contrast, no shadow → Outline (bordered, unfilled button).
+    if (hasBorder && !hasShadow && bgLum > 0.5) return 'Outline';
+
+    // Light, flat, no border or shadow → Tertiary (subtle / text-style button).
+    if (bgLum > 0.7 && !hasBorder && !hasShadow) return 'Tertiary';
+
+    // Solid mid/dark fill that matched none of the above → Primary (the CTA default).
     return 'Primary';
   }
 
@@ -1285,13 +1282,16 @@ export function clusterTokens(pages: PageExtraction[], cssVariables: CSSVariable
   for (const page of pages) {
     if (!page.interactions) continue;
     for (const capture of page.interactions.captures) {
-      const key = `${capture.element.tag}|${capture.element.classes}|${capture.componentType}`;
+      // Key on tag|classes only. The previous key appended componentType, but the
+      // lookup side has no componentType for a raw element, so the exact match
+      // could never hit and every hover/focus/active diff was silently dropped.
+      const key = `${capture.element.tag}|${capture.element.classes}`;
       interactionLookup.set(key, capture);
     }
   }
 
   function findInteraction(el: ElementStyle): InteractionCapture | undefined {
-    const key1 = `${el.tag}|${el.className}|${el.tag}`;
+    const key1 = `${el.tag}|${el.className}`;
     if (interactionLookup.has(key1)) return interactionLookup.get(key1);
     // Try matching by tag and partial class
     for (const [, cap] of interactionLookup) {
@@ -1505,66 +1505,22 @@ export function clusterTokens(pages: PageExtraction[], cssVariables: CSSVariable
 
   // ── A11y Tokens (basic) ───────────────────────────────────────────────
 
-  // Focus indicator: check pseudo-class rules for :focus-visible
-  let focusStyle: Record<string, string> = {};
-  let focusConsistent = true;
-  const focusStyles: string[] = [];
-
-  for (const page of pages) {
-    if (!page.css) continue;
-    for (const rule of page.css.pseudoClassRules) {
-      if (rule.pseudoClass === ':focus-visible' || rule.pseudoClass === ':focus') {
-        const outline = rule.properties['outline'] || rule.properties['box-shadow'] || '';
-        if (outline) focusStyles.push(outline);
-        if (Object.keys(focusStyle).length === 0) {
-          focusStyle = { ...rule.properties };
-        }
-      }
-    }
-  }
-
-  if (focusStyles.length > 1) {
-    const unique = new Set(focusStyles);
-    focusConsistent = unique.size <= 2;
-  }
-
-  // Min touch target and font size
-  let minTouchWidth = Infinity;
-  let minTouchHeight = Infinity;
-  let minFontSize = Infinity;
-
-  for (const page of pages) {
-    for (const el of page.dom.elements) {
-      if (el.tag === 'button' || el.tag === 'a' || el.tag === 'input' || el.role === 'button') {
-        if (el.rect.width > 0 && el.rect.width < minTouchWidth) minTouchWidth = el.rect.width;
-        if (el.rect.height > 0 && el.rect.height < minTouchHeight) minTouchHeight = el.rect.height;
-      }
-      const fs = parsePxValue(el.fontSize);
-      if (fs && fs > 0 && fs < minFontSize) minFontSize = fs;
-    }
-  }
-
-  // A11y contrast pairs from the color tokens
-  const a11yContrastPairs = contrastPairs.slice(0, 20).map((cp) => ({
-    foreground: cp.foreground,
-    background: cp.background,
-    ratio: cp.contrastRatio,
-    meetsAA: cp.meetsAA,
-    meetsAAA: cp.meetsAAA,
-    usageCount: cp.usageCount,
-  }));
-
+  // The real a11y tokens are computed by extractA11y in extract.ts (it has interaction
+  // data and live pages) and overwrite this placeholder before the doc is written. The
+  // inline a11y computation that used to live here was dead code that duplicated — and
+  // could silently drift from — extractA11y (e.g. focus consistency, min touch target).
   const a11yTokens = {
-    focusIndicator: {
-      style: focusStyle,
-      consistent: focusConsistent,
-    },
-    contrastPairs: a11yContrastPairs,
-    minTouchTarget: {
-      width: minTouchWidth === Infinity ? 44 : Math.round(minTouchWidth),
-      height: minTouchHeight === Infinity ? 44 : Math.round(minTouchHeight),
-    },
-    minFontSize: minFontSize === Infinity ? '16px' : `${Math.round(minFontSize)}px`,
+    focusIndicator: { style: {} as Record<string, string>, consistent: false, captured: false },
+    contrastPairs: contrastPairs.slice(0, 0).map((cp) => ({
+      foreground: cp.foreground,
+      background: cp.background,
+      ratio: cp.contrastRatio,
+      meetsAA: cp.meetsAA,
+      meetsAAA: cp.meetsAAA,
+      usageCount: cp.usageCount,
+    })),
+    minTouchTarget: { width: 44, height: 44 },
+    minFontSize: '16px',
   };
 
   // ── Total Elements ────────────────────────────────────────────────────

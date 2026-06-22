@@ -87,7 +87,7 @@ function pairKey(fg: string, bg: string): string {
 
 function extractFocusIndicator(
   interactions: InteractionData[],
-): { style: Record<string, string>; consistent: boolean } {
+): { style: Record<string, string>; consistent: boolean; captured: boolean } {
   const focusStyles: Record<string, string>[] = [];
 
   for (const interaction of interactions) {
@@ -98,8 +98,11 @@ function extractFocusIndicator(
     }
   }
 
+  // Honest absence: with no captured focus styles there is no evidence of
+  // consistency. Reporting consistent:true here is what let the DESIGN.md writer
+  // assert "focus indicators are consistent" with zero backing data.
   if (focusStyles.length === 0) {
-    return { style: {}, consistent: true };
+    return { style: {}, consistent: false, captured: false };
   }
 
   const first = focusStyles[0];
@@ -124,7 +127,7 @@ function extractFocusIndicator(
     }
   }
 
-  return { style: { ...first }, consistent };
+  return { style: { ...first }, consistent, captured: true };
 }
 
 // ─── ARIA Role Statistics ───────────────────────────────────────────────────
@@ -331,7 +334,9 @@ export function extractA11y(
     for (const el of collection.elements) {
       if (!el.fontSize || !el.textContent?.trim()) continue;
       const size = parseFontSize(el.fontSize);
-      if (size > 0 && size < smallestFontSize) {
+      // Skip sub-8px text: almost always hidden/decorative artifacts, not readable copy.
+      // Without this a 1px hidden element becomes a fabricated "minimum font size".
+      if (size >= 8 && size < smallestFontSize) {
         smallestFontSize = size;
         smallestFontSizeStr = el.fontSize;
       }
