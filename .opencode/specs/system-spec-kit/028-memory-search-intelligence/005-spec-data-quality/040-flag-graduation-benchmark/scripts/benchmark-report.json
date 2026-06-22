@@ -1,0 +1,84 @@
+{
+  "generatedFrom": "flag-graduation-benchmark.mjs",
+  "migration": {
+    "sampleSize": 62,
+    "treeFolders": 2093,
+    "treeFingerprint": 0,
+    "treeDocHashes": 0,
+    "verifyDefault": {
+      "enumerated": 2106,
+      "failed": 0,
+      "foldersChecked": 2049,
+      "violationCount": 0,
+      "clean": true,
+      "exitCode": 0,
+      "codes": {}
+    },
+    "verifyHardening": {
+      "enumerated": 2106,
+      "failed": 0,
+      "foldersChecked": 2049,
+      "violationCount": 2049,
+      "clean": false,
+      "exitCode": 1,
+      "codes": {
+        "SOURCE_FINGERPRINT_MISSING": 2049
+      }
+    },
+    "idemChecked": 61,
+    "idemDeterministic": 61,
+    "storedMatchesDerive": 26
+  },
+  "benchmark": {
+    "baseline": {
+      "rate": 0.833333,
+      "ratio": "5/6",
+      "exitCode": 0
+    },
+    "lexical": {
+      "rate": 0,
+      "ratio": "0/6",
+      "exitCode": 0
+    },
+    "noise": {
+      "rate": 0,
+      "ratio": "0/6",
+      "exitCode": 0
+    },
+    "evidence": {
+      "rate": 0.833333,
+      "ratio": "5/6",
+      "exitCode": 0
+    },
+    "cite": {
+      "rate": 0.833333,
+      "ratio": "5/6",
+      "exitCode": 0
+    },
+    "grounding": {
+      "rate": 0.833333,
+      "ratio": "5/6",
+      "exitCode": 0
+    },
+    "gatePass": {
+      "rate": 0,
+      "ratio": "0/6",
+      "exitCode": 0
+    },
+    "gateFail": {
+      "rate": 0.833333,
+      "ratio": "5/6",
+      "exitCode": 1
+    },
+    "envelope": {
+      "conforming": {
+        "status": "conforming",
+        "exitCode": 0
+      },
+      "dropped": {
+        "status": "non_conforming",
+        "exitCode": 1
+      }
+    }
+  }
+}
