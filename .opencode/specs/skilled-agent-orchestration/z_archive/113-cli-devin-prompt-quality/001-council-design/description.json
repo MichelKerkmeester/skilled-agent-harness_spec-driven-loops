@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "skilled-agent-orchestration/113-cli-devin-prompt-quality/001-council-design",
+  "specFolder": "skilled-agent-orchestration/z_archive/113-cli-devin-prompt-quality/001-council-design",
   "description": "Feature Specification: Council Design for cli-devin SWE 1.6 Optimization",
   "keywords": [
     "feature",
@@ -11,11 +11,12 @@
     "swe",
     "optimization"
   ],
-  "lastUpdated": "2026-05-28T21:38:19.756Z",
+  "lastUpdated": "2026-06-22T18:55:00.255Z",
   "specId": "001",
   "folderSlug": "council-design",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "113-cli-devin-prompt-quality"
   ],
   "memorySequence": 1,

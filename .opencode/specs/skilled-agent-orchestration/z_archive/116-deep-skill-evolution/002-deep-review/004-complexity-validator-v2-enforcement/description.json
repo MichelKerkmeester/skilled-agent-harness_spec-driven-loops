@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review/004-complexity-validator-v2-enforcement",
+  "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/002-deep-review/004-complexity-validator-v2-enforcement",
   "description": "Feature Specification: 116/004 — Validator v2 Enforcement",
   "keywords": [
     "feature",
@@ -10,11 +10,12 @@
     "validator",
     "enforcement"
   ],
-  "lastUpdated": "2026-05-25T11:53:22.300Z",
+  "lastUpdated": "2026-06-22T18:55:00.568Z",
   "specId": "004",
   "folderSlug": "complexity-validator-v2-enforcement",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "116-deep-skill-evolution",
     "002-deep-review"
   ],

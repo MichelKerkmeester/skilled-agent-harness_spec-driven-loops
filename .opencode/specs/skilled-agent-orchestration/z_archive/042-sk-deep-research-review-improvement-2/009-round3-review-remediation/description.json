@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/009-round3-review-remediation",
+  "specFolder": "skilled-agent-orchestration/z_archive/042-sk-deep-research-review-improvement-2/009-round3-review-remediation",
   "description": "Feature Specification: Round 3 Review Remediation",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "review",
     "remediation"
   ],
-  "lastUpdated": "2026-05-16T17:59:27.870Z",
+  "lastUpdated": "2026-06-22T18:54:59.412Z",
   "specId": "009",
   "folderSlug": "round3-review-remediation",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "042-sk-deep-research-review-improvement-2"
   ],
   "memorySequence": 0,

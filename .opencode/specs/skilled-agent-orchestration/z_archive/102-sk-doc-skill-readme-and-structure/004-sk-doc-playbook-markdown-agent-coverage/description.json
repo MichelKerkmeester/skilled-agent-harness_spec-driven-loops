@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/102-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage",
+  "specFolder": "skilled-agent-orchestration/z_archive/102-sk-doc-skill-readme-and-structure/004-sk-doc-playbook-markdown-agent-coverage",
   "description": "Feature Specification: sk-doc playbook markdown-agent coverage",
   "keywords": [
     "feature",
@@ -10,11 +10,12 @@
     "markdown-agent",
     "coverage"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.589Z",
+  "lastUpdated": "2026-06-22T18:55:00.089Z",
   "specId": "004",
   "folderSlug": "sk-doc-playbook-markdown-agent-coverage",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "102-sk-doc-skill-readme-and-structure"
   ],
   "memorySequence": 0,

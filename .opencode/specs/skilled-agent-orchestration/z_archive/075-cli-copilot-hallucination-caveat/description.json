@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/075-cli-copilot-hallucination-caveat",
+  "specFolder": "skilled-agent-orchestration/z_archive/075-cli-copilot-hallucination-caveat",
   "description": "Feature Specification: 075 cli-copilot Hallucination Caveat",
   "keywords": [
     "feature",
@@ -10,11 +10,12 @@
     "hallucination",
     "caveat"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.251Z",
+  "lastUpdated": "2026-06-22T18:54:59.799Z",
   "specId": "075",
   "folderSlug": "cli-copilot-hallucination-caveat",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/101-deep-multi-ai-council-skill/008-council-surface-polish",
+  "specFolder": "skilled-agent-orchestration/z_archive/101-deep-multi-ai-council-skill/008-council-surface-polish",
   "description": "Feature Specification: 101/008 Council Surface Polish",
   "keywords": [
     "feature",
@@ -11,11 +11,12 @@
     "surface",
     "polish"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.568Z",
+  "lastUpdated": "2026-06-22T18:55:00.064Z",
   "specId": "008",
   "folderSlug": "council-surface-polish",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "101-deep-multi-ai-council-skill"
   ],
   "memorySequence": 1,

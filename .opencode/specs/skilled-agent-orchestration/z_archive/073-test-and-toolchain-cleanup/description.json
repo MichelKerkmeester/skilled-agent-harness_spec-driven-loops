@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/073-test-and-toolchain-cleanup",
+  "specFolder": "skilled-agent-orchestration/z_archive/073-test-and-toolchain-cleanup",
   "description": "Feature Specification: 073 Test + Toolchain Cleanup",
   "keywords": [
     "feature",
@@ -10,11 +10,12 @@
     "toolchain",
     "cleanup"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.242Z",
+  "lastUpdated": "2026-06-22T18:54:59.789Z",
   "specId": "073",
   "folderSlug": "test-and-toolchain-cleanup",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

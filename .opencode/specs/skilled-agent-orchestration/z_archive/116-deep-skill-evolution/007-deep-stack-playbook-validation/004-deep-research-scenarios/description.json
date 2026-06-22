@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/004-deep-research-scenarios",
+  "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/007-deep-stack-playbook-validation/004-deep-research-scenarios",
   "description": "Feature Specification: Deep-Research Scenarios (Deep-Loop Playbook 004)",
   "keywords": [
     "feature",
@@ -10,11 +10,12 @@
     "playbook",
     "004"
   ],
-  "lastUpdated": "2026-05-28T21:38:19.810Z",
+  "lastUpdated": "2026-06-22T18:55:00.809Z",
   "specId": "004",
   "folderSlug": "deep-research-scenarios",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "116-deep-skill-evolution",
     "007-deep-stack-playbook-validation"
   ],

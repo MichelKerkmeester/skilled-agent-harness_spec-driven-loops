@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": ".opencode/specs/skilled-agent-orchestration/133-catalog-playbook-snippet-denumbering/004-migrate-high-volume-skills",
+  "specFolder": "skilled-agent-orchestration/z_archive/133-catalog-playbook-snippet-denumbering/004-migrate-high-volume-skills",
   "description": "Feature Specification: Migrate High-Volume Skills (Wave B)",
   "keywords": [
     "feature",
@@ -10,13 +10,12 @@
     "skills",
     "wave"
   ],
-  "lastUpdated": "2026-06-06T10:04:29.594Z",
+  "lastUpdated": "2026-06-22T18:55:01.449Z",
   "specId": "004",
   "folderSlug": "migrate-high-volume-skills",
   "parentChain": [
-    ".opencode",
-    "specs",
     "skilled-agent-orchestration",
+    "z_archive",
     "133-catalog-playbook-snippet-denumbering"
   ],
   "memorySequence": 0,

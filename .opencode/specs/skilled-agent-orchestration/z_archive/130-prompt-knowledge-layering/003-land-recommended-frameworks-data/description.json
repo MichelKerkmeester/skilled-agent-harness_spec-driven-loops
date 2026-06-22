@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/130-prompt-knowledge-layering/003-land-recommended-frameworks-data",
+  "specFolder": "skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering/003-land-recommended-frameworks-data",
   "description": "Feature Specification: Phase 3: land-recommended-frameworks-data",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "phase",
     "land-recommended-frameworks-data"
   ],
-  "lastUpdated": "2026-06-03T06:37:53.255Z",
+  "lastUpdated": "2026-06-22T18:55:01.318Z",
   "specId": "003",
   "folderSlug": "land-recommended-frameworks-data",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "130-prompt-knowledge-layering"
   ],
   "memorySequence": 0,

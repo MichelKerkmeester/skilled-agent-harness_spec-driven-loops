@@ -48,7 +48,7 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "phase_parent_—_research_complete;_implementation_phased_(6_children)",
+    "status": "complete",
     "key_files": [
       "research/research.md",
       "research/deep-research-state.jsonl",
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "Packet 146 bundles the external **ponytail** project (`external/ponytail-main/`) and asks how its *logic, hooks, etc.* can improve our `sk-code` and `sk-code-review` skills. Ponytail enforces a \"lazy senior developer\" discipline via a 6-rung decision ladder, SessionStart/UserPromptSubmit hooks with flag-file mode state, lite/full/ultra intensity sliders, `// ponytail:` ceiling comments, a `check-rule-copies.js` rule-invariant guard, a `ponytail-review` deletion skill, and a PromptFoo benchmark harness. None of these mechanisms has been evaluated for transplant into our code-standards (`sk-code`) and code-review (`sk-code-review`) skills, which already carry a surface-aware smart router, an Iron-Law verification loop, a Phase 1.5 comment-hygiene hook, and a findings-first P0/P1/P2 review baseline.",
     "created_at": "2026-06-13T11:19:39.612Z",
-    "last_save_at": "2026-06-13T15:52:48.236Z",
+    "last_save_at": "2026-06-22T18:54:58.947Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

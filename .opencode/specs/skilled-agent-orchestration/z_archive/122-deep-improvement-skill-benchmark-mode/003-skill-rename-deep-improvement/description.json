@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/003-skill-rename-deep-improvement",
+  "specFolder": "skilled-agent-orchestration/z_archive/122-deep-improvement-skill-benchmark-mode/003-skill-rename-deep-improvement",
   "description": "Phase 003 — Rename deep-agent-improvement → deep-improvement",
   "keywords": [
     "phase",
@@ -8,11 +8,12 @@
     "deep-agent-improvement",
     "deep-improvement"
   ],
-  "lastUpdated": "2026-06-01T11:13:19.448Z",
+  "lastUpdated": "2026-06-22T18:55:01.054Z",
   "specId": "003",
   "folderSlug": "skill-rename-deep-improvement",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "122-deep-improvement-skill-benchmark-mode"
   ],
   "memorySequence": 0,

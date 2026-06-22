@@ -1,0 +1,23 @@
+{
+  "specFolder": "skilled-agent-orchestration/z_archive/042-sk-deep-research-review-improvement-2/010-root-level-review-research-convention",
+  "description": "Feature Specification: Root-Level Review/Research Folder Convention",
+  "keywords": [
+    "feature",
+    "specification",
+    "root-level",
+    "review",
+    "research",
+    "folder",
+    "convention"
+  ],
+  "lastUpdated": "2026-06-22T18:54:59.417Z",
+  "specId": "010",
+  "folderSlug": "root-level-review-research-convention",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
+    "042-sk-deep-research-review-improvement-2"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

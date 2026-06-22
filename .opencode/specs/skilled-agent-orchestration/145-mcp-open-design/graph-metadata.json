@@ -15,7 +15,8 @@
     "skilled-agent-orchestration/145-mcp-open-design/009-design-skill-integration-test",
     "skilled-agent-orchestration/145-mcp-open-design/010-design-playbook-live-run-and-refinement",
     "skilled-agent-orchestration/145-mcp-open-design/011-mandatory-interface-design-coupling",
-    "skilled-agent-orchestration/145-mcp-open-design/012-catalog-playbook-realignment"
+    "skilled-agent-orchestration/145-mcp-open-design/012-catalog-playbook-realignment",
+    "skilled-agent-orchestration/145-mcp-open-design/013-update-mcp-open-design-skill-verb-surface-table-with-missing-od-cli-commands"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -95,7 +96,7 @@
     ],
     "causal_summary": "The installed Open Design desktop app (nexu-io/open-design) holds rich, local-first design systems and a generation engine, but the framework can only reach them through the in-app chat UI. There is no terminal path. Separately, the `sk-design-interface` skill still vendors data and scripts derived from the MIT `ui-ux-pro-max` repo, which carries license obligations and AI-default patterns the skill exists to resist. Both gaps want closing together: a terminal control surface for Open Design, and a de-vendored design skill that reads from the user's own app instead.",
     "created_at": "2026-06-14T12:30:00Z",
-    "last_save_at": "2026-06-15T09:09:33.181Z",
+    "last_save_at": "2026-06-22T18:54:59.035Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

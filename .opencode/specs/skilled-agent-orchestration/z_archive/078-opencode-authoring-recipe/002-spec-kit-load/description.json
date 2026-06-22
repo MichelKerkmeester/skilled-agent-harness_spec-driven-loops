@@ -1,22 +1,24 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/078-opencode-authoring-recipe/002-spec-kit-load",
+  "specFolder": "skilled-agent-orchestration/z_archive/078-opencode-authoring-recipe/002-spec-kit-load",
   "description": "Feature Specification: 078/002 /speckit:complete Authoring-Time sk-code Load",
   "keywords": [
     "feature",
     "specification",
     "078",
     "002",
+    "speckit",
     "complete",
     "authoring-time",
     "sk-code",
     "load"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.275Z",
+  "lastUpdated": "2026-06-22T18:54:59.819Z",
   "specId": "002",
   "folderSlug": "spec-kit-load",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "078-opencode-authoring-recipe"
   ],
   "memorySequence": 0,

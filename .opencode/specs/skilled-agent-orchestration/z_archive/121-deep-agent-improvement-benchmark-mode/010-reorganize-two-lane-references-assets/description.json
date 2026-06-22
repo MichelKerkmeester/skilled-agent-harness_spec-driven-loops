@@ -1,7 +1,7 @@
 {
   "title": "Feature Specification: reorganize references and assets for two-lane workflow",
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/010-reorganize-two-lane-references-assets",
+  "specFolder": "skilled-agent-orchestration/z_archive/121-deep-agent-improvement-benchmark-mode/010-reorganize-two-lane-references-assets",
   "description": "Feature Specification: reorganize references and assets for two-lane workflow",
   "keywords": [
     "feature",
@@ -12,11 +12,12 @@
     "two-lane",
     "workflow"
   ],
-  "lastUpdated": "2026-06-01T11:13:19.414Z",
+  "lastUpdated": "2026-06-22T18:55:00.981Z",
   "specId": "010",
   "folderSlug": "reorganize-two-lane-references-assets",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "121-deep-agent-improvement-benchmark-mode"
   ],
   "memorySequence": 0,

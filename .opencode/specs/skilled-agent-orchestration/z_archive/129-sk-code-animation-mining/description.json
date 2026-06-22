@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "skilled-agent-orchestration/129-sk-code-animation-mining",
+  "specFolder": "skilled-agent-orchestration/z_archive/129-sk-code-animation-mining",
   "description": "Feature Specification: sk-code Animation Surface Mining (web-motion-skill)",
   "keywords": [
     "feature",
@@ -11,11 +11,12 @@
     "mining",
     "web-motion-skill"
   ],
-  "lastUpdated": "2026-06-02T16:26:46.132Z",
+  "lastUpdated": "2026-06-22T18:55:01.298Z",
   "specId": "129",
   "folderSlug": "sk-code-animation-mining",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

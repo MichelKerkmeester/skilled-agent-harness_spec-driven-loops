@@ -7,7 +7,7 @@
       "skilled-agent-orchestration/116-deep-skill-evolution"
     ]
   },
-  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation",
+  "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/006-deep-stack-cross-cutting/001-unique-value-differentiation",
   "description": "Feature Specification: Deep Skills Unique-Value Differentiation Analysis",
   "keywords": [
     "feature",
@@ -18,11 +18,12 @@
     "differentiation",
     "analysis"
   ],
-  "lastUpdated": "2026-05-26T13:39:54.163431+00:00",
+  "lastUpdated": "2026-06-22T18:55:00.739Z",
   "specId": "001",
   "folderSlug": "unique-value-differentiation",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "116-deep-skill-evolution",
     "006-deep-stack-cross-cutting"
   ],

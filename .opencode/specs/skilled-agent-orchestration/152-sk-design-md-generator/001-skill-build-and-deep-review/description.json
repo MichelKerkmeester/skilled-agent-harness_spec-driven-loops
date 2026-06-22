@@ -1,20 +1,20 @@
 {
   "level": "2",
   "specFolder": "skilled-agent-orchestration/152-sk-design-md-generator/001-skill-build-and-deep-review",
-  "description": "Original sk-design-md-generator skill build with embedded extraction tool and deep-review remediation",
+  "description": "Feature Specification: Create sk-design-md-generator skill with an embedded extraction pipeline",
   "keywords": [
-    "original",
+    "feature",
+    "specification",
+    "create",
     "sk-design-md-generator",
     "skill",
-    "build",
-    "with",
     "embedded",
     "extraction",
-    "tool"
+    "pipeline"
   ],
-  "lastUpdated": "2026-06-22T00:00:00Z",
+  "lastUpdated": "2026-06-22T18:54:59.171Z",
   "specId": "001",
-  "folderSlug": "001-skill-build-and-deep-review",
+  "folderSlug": "skill-build-and-deep-review",
   "parentChain": [
     "skilled-agent-orchestration",
     "152-sk-design-md-generator"

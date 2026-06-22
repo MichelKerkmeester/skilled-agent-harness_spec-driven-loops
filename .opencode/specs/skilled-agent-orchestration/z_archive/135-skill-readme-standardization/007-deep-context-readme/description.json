@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/135-skill-readme-standardization/007-deep-context-readme",
+  "specFolder": "skilled-agent-orchestration/z_archive/135-skill-readme-standardization/007-deep-context-readme",
   "description": "Feature Specification: deep-context README",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "deep-context",
     "readme"
   ],
-  "lastUpdated": "2026-06-10T04:53:30.764Z",
+  "lastUpdated": "2026-06-22T18:55:01.553Z",
   "specId": "007",
   "folderSlug": "deep-context-readme",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "135-skill-readme-standardization"
   ],
   "memorySequence": 0,

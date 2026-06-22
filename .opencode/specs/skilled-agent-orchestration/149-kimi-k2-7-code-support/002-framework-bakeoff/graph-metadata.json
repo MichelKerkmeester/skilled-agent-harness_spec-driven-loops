@@ -39,7 +39,7 @@
       "core"
     ],
     "importance_tier": "normal",
-    "status": "complete_(bakeoff_006_ran;_verdict_tie,_correctness_saturated)",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/kimi-k2.7-frameworks.json",
       ".opencode/skills/deep-loop-workflows/deep-improvement/assets/model_benchmark/benchmark-profiles/framework-bakeoff.json",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "This is **Phase 2** of the kimi-k2-7-code-support specification.",
     "created_at": "2026-06-15T09:21:01Z",
-    "last_save_at": "2026-06-17T19:57:23.056Z",
+    "last_save_at": "2026-06-22T18:54:59.121Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

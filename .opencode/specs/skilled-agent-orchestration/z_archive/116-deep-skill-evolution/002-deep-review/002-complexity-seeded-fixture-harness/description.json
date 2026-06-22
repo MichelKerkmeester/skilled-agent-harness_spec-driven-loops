@@ -6,7 +6,7 @@
   "level": "2",
   "importance_tier": "important",
   "contextType": "implementation",
-  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review/002-complexity-seeded-fixture-harness",
+  "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/002-deep-review/002-complexity-seeded-fixture-harness",
   "description": "Feature Specification: 116/002 - Seeded Fixture Harness",
   "keywords": [
     "feature",
@@ -17,11 +17,12 @@
     "fixture",
     "harness"
   ],
-  "lastUpdated": "2026-05-25T11:53:22.291Z",
+  "lastUpdated": "2026-06-22T18:55:00.554Z",
   "specId": "002",
   "folderSlug": "complexity-seeded-fixture-harness",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "116-deep-skill-evolution",
     "002-deep-review"
   ],

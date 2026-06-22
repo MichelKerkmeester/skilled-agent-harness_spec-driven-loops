@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/102-sk-doc-skill-readme-and-structure/005-deep-review-p1-p2-remediation",
+  "specFolder": "skilled-agent-orchestration/z_archive/102-sk-doc-skill-readme-and-structure/005-deep-review-p1-p2-remediation",
   "description": "Feature Specification: deep-review P1+P2 remediation",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "deep-review",
     "remediation"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.594Z",
+  "lastUpdated": "2026-06-22T18:55:00.095Z",
   "specId": "005",
   "folderSlug": "deep-review-p1-p2-remediation",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "102-sk-doc-skill-readme-and-structure"
   ],
   "memorySequence": 0,

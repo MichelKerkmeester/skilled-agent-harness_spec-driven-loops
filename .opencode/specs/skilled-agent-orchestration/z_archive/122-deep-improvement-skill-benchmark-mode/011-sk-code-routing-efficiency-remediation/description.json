@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/011-sk-code-routing-efficiency-remediation",
+  "specFolder": "skilled-agent-orchestration/z_archive/122-deep-improvement-skill-benchmark-mode/011-sk-code-routing-efficiency-remediation",
   "description": "Feature Specification: sk-code Routing-Efficiency and Usefulness Remediation",
   "keywords": [
     "feature",
@@ -10,11 +10,12 @@
     "usefulness",
     "remediation"
   ],
-  "lastUpdated": "2026-06-02T16:26:46.038Z",
+  "lastUpdated": "2026-06-22T18:55:01.093Z",
   "specId": "011",
   "folderSlug": "sk-code-routing-efficiency-remediation",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "122-deep-improvement-skill-benchmark-mode"
   ],
   "memorySequence": 0,

@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/101-deep-multi-ai-council-skill/002-deep-ai-council-reference-expansion",
+  "specFolder": "skilled-agent-orchestration/z_archive/101-deep-multi-ai-council-skill/002-deep-ai-council-reference-expansion",
   "description": "Feature Specification: 101/004 Deep AI Council Reference Expansion",
   "keywords": [
     "feature",
@@ -12,11 +12,12 @@
     "reference",
     "expansion"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.539Z",
+  "lastUpdated": "2026-06-22T18:55:00.033Z",
   "specId": "002",
   "folderSlug": "deep-ai-council-reference-expansion",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "101-deep-multi-ai-council-skill"
   ],
   "memorySequence": 0,

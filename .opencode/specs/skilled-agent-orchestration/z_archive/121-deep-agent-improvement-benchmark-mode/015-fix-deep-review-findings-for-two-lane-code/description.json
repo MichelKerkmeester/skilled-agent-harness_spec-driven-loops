@@ -1,21 +1,25 @@
 {
-  "specFolder": "121-deep-agent-improvement-benchmark-mode/015-fix-deep-review-findings-for-two-lane-code",
-  "description": "Fix the 014 deep-review findings for two-lane code, including the Lane B command parser defect, security hardening, traceability gaps, and dispositions.",
+  "title": "Feature Specification: fix deep-review findings for two-lane code",
+  "level": "3",
+  "specFolder": "skilled-agent-orchestration/z_archive/121-deep-agent-improvement-benchmark-mode/015-fix-deep-review-findings-for-two-lane-code",
+  "description": "Feature Specification: fix deep-review findings for two-lane code",
   "keywords": [
-    "two-lane-review-remediation",
-    "014-findings",
-    "lane-b-parser",
-    "security-hardening",
-    "traceability"
+    "feature",
+    "specification",
+    "fix",
+    "deep-review",
+    "findings",
+    "two-lane",
+    "code"
   ],
-  "lastUpdated": "2026-05-29T12:50:00.000Z",
+  "lastUpdated": "2026-06-22T18:55:01.009Z",
   "specId": "015",
-  "folderSlug": "015-fix-deep-review-findings-for-two-lane-code",
+  "folderSlug": "fix-deep-review-findings-for-two-lane-code",
   "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
     "121-deep-agent-improvement-benchmark-mode"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3",
-  "title": "Feature Specification: fix deep-review findings for two-lane code"
+  "memoryNameHistory": []
 }

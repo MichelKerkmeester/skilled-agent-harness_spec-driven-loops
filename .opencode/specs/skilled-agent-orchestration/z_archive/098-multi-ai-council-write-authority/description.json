@@ -29,7 +29,7 @@
     "last_active_child_id": null
   },
   "lastUpdatedAt": null,
-  "specFolder": "skilled-agent-orchestration/098-multi-ai-council-write-authority",
+  "specFolder": "skilled-agent-orchestration/z_archive/098-multi-ai-council-write-authority",
   "description": "Feature Specification: Multi-AI Council write authority",
   "keywords": [
     "feature",
@@ -39,11 +39,12 @@
     "write",
     "authority"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.513Z",
+  "lastUpdated": "2026-06-22T18:55:00.005Z",
   "specId": "098",
   "folderSlug": "multi-ai-council-write-authority",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

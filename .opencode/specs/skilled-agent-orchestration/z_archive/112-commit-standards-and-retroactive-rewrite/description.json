@@ -1,6 +1,6 @@
 {
   "level": "phase",
-  "specFolder": "skilled-agent-orchestration/112-commit-standards-and-retroactive-rewrite",
+  "specFolder": "skilled-agent-orchestration/z_archive/112-commit-standards-and-retroactive-rewrite",
   "description": "112 — Commit Standards & Retroactive Rewrite",
   "keywords": [
     "112",
@@ -9,11 +9,12 @@
     "retroactive",
     "rewrite"
   ],
-  "lastUpdated": "2026-05-23T15:24:58.865Z",
+  "lastUpdated": "2026-06-22T18:55:00.212Z",
   "specId": "112",
   "folderSlug": "commit-standards-and-retroactive-rewrite",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

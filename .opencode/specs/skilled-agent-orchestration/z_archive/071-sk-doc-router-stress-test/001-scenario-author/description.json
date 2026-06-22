@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/071-sk-doc-router-stress-test/001-scenario-author",
+  "specFolder": "skilled-agent-orchestration/z_archive/071-sk-doc-router-stress-test/001-scenario-author",
   "description": "Feature Specification: Phase 1: scenario-author",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "phase",
     "scenario-author"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.200Z",
+  "lastUpdated": "2026-06-22T18:54:59.736Z",
   "specId": "001",
   "folderSlug": "scenario-author",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "071-sk-doc-router-stress-test"
   ],
   "memorySequence": 0,

@@ -5,7 +5,7 @@
   "status": "planned",
   "track": "skilled-agent-orchestration",
   "created": "2026-05-31",
-  "specFolder": "skilled-agent-orchestration/125-feature-catalog-template-improvements/004-trigger-phrases-advisor-codegraph",
+  "specFolder": "skilled-agent-orchestration/z_archive/125-feature-catalog-template-improvements/004-trigger-phrases-advisor-codegraph",
   "description": "Phase 004: Trigger Phrases — system-skill-advisor + system-code-graph",
   "keywords": [
     "phase",
@@ -15,11 +15,12 @@
     "system-skill-advisor",
     "system-code-graph"
   ],
-  "lastUpdated": "2026-06-01T11:13:19.529Z",
+  "lastUpdated": "2026-06-22T18:55:01.193Z",
   "specId": "004",
   "folderSlug": "trigger-phrases-advisor-codegraph",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "125-feature-catalog-template-improvements"
   ],
   "memorySequence": 0,

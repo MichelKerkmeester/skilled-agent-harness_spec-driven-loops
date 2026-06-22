@@ -28,7 +28,7 @@
       "handover"
     ],
     "importance_tier": "important",
-    "status": "not_started",
+    "status": "planned",
     "key_files": [
       "handover.md",
       "spec.md"
@@ -109,7 +109,7 @@
     ],
     "causal_summary": "Run every scenario in `.opencode/skills/deep-improvement/manual_testing_playbook/`",
     "created_at": "2026-06-18T12:37:48.647Z",
-    "last_save_at": "2026-06-18T12:37:48.647Z",
+    "last_save_at": "2026-06-22T18:56:35.850Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

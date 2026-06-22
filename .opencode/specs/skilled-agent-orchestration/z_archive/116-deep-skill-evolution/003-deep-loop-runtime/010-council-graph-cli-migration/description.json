@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/010-council-graph-cli-migration",
+  "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/003-deep-loop-runtime/010-council-graph-cli-migration",
   "description": "Feature Specification: 010 — Council Graph CLI Migration",
   "keywords": [
     "feature",
@@ -11,11 +11,12 @@
     "cli",
     "migration"
   ],
-  "lastUpdated": "2026-05-25T11:53:22.362Z",
+  "lastUpdated": "2026-06-22T18:55:00.658Z",
   "specId": "010",
   "folderSlug": "council-graph-cli-migration",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "116-deep-skill-evolution",
     "003-deep-loop-runtime"
   ],

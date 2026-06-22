@@ -39,7 +39,7 @@
       "checklist"
     ],
     "importance_tier": "normal",
-    "status": "draft_(scaffolded)",
+    "status": "complete",
     "key_files": [
       "checklist.md",
       "implementation-summary.md",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Execute all 32 `deep-ai-council` scenarios — the deterministic majority via `cli-devin` SWE-1.6 (`rg`/`sed` inspection) and the six graph-value A/B reasoning scenarios via `cli-codex` GPT-5.5 medium-fast — record a verdict + evidence per scenario, and hold the council-graph-dependent categories (08/09) behind phase 001's `06--coverage-graph` / `07--script-entry-points` / `08--council` gate so a downstream false-green is not recorded.",
     "created_at": "2026-05-27T07:08:08.393Z",
-    "last_save_at": "2026-06-07T09:00:45.930Z",
+    "last_save_at": "2026-06-22T18:55:00.795Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

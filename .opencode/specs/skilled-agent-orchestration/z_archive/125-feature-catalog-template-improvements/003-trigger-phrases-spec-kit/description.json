@@ -5,7 +5,7 @@
   "status": "planned",
   "track": "skilled-agent-orchestration",
   "created": "2026-05-31",
-  "specFolder": "skilled-agent-orchestration/125-feature-catalog-template-improvements/003-trigger-phrases-spec-kit",
+  "specFolder": "skilled-agent-orchestration/z_archive/125-feature-catalog-template-improvements/003-trigger-phrases-spec-kit",
   "description": "Phase 003: Trigger Phrases — system-spec-kit",
   "keywords": [
     "phase",
@@ -14,11 +14,12 @@
     "phrases",
     "system-spec-kit"
   ],
-  "lastUpdated": "2026-06-01T11:13:19.524Z",
+  "lastUpdated": "2026-06-22T18:55:01.188Z",
   "specId": "003",
   "folderSlug": "trigger-phrases-spec-kit",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "125-feature-catalog-template-improvements"
   ],
   "memorySequence": 0,

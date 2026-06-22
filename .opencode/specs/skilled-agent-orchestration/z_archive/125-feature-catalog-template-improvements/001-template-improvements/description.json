@@ -5,7 +5,7 @@
   "status": "complete",
   "track": "skilled-agent-orchestration",
   "created": "2026-05-31",
-  "specFolder": "skilled-agent-orchestration/125-feature-catalog-template-improvements/001-template-improvements",
+  "specFolder": "skilled-agent-orchestration/z_archive/125-feature-catalog-template-improvements/001-template-improvements",
   "description": "Feature Catalog Standards — Templates & Retroactive Rework",
   "keywords": [
     "feature",
@@ -15,11 +15,12 @@
     "retroactive",
     "rework"
   ],
-  "lastUpdated": "2026-06-02T16:26:46.087Z",
+  "lastUpdated": "2026-06-22T18:55:01.178Z",
   "specId": "001",
   "folderSlug": "template-improvements",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "125-feature-catalog-template-improvements"
   ],
   "memorySequence": 0,

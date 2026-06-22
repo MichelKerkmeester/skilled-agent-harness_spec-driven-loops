@@ -1,6 +1,6 @@
 {
   "level": "phase",
-  "specFolder": "skilled-agent-orchestration/120-cli-opencode-minimax-optimization",
+  "specFolder": "skilled-agent-orchestration/z_archive/120-cli-opencode-minimax-optimization",
   "description": "Feature Specification: MiniMax 2.7 direct-API provider optimization for cli-opencode and sk-prompt-small-model",
   "keywords": [
     "feature",
@@ -12,11 +12,12 @@
     "cli-opencode",
     "sk-prompt-small-model"
   ],
-  "lastUpdated": "2026-05-28T21:38:19.842Z",
+  "lastUpdated": "2026-06-22T18:55:00.899Z",
   "specId": "120",
   "folderSlug": "cli-opencode-minimax-optimization",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

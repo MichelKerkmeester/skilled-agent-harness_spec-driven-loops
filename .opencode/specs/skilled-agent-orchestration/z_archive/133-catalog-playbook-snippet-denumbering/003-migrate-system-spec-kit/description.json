@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": ".opencode/specs/skilled-agent-orchestration/133-catalog-playbook-snippet-denumbering/003-migrate-system-spec-kit",
+  "specFolder": "skilled-agent-orchestration/z_archive/133-catalog-playbook-snippet-denumbering/003-migrate-system-spec-kit",
   "description": "Feature Specification: Migrate system-spec-kit (Wave A)",
   "keywords": [
     "feature",
@@ -9,13 +9,12 @@
     "system-spec-kit",
     "wave"
   ],
-  "lastUpdated": "2026-06-06T10:04:29.427Z",
+  "lastUpdated": "2026-06-22T18:55:01.444Z",
   "specId": "003",
   "folderSlug": "migrate-system-spec-kit",
   "parentChain": [
-    ".opencode",
-    "specs",
     "skilled-agent-orchestration",
+    "z_archive",
     "133-catalog-playbook-snippet-denumbering"
   ],
   "memorySequence": 0,

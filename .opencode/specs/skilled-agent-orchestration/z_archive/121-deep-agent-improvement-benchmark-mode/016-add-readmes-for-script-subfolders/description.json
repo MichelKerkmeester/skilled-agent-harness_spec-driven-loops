@@ -1,24 +1,24 @@
 {
-  "specFolder": "121-deep-agent-improvement-benchmark-mode/016-add-readmes-for-script-subfolders",
-  "description": "Add code-folder READMEs to every source script subfolder and audit the script-folder documentation coverage.",
+  "title": "Feature Specification: add READMEs for script subfolders",
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/z_archive/121-deep-agent-improvement-benchmark-mode/016-add-readmes-for-script-subfolders",
+  "description": "Feature Specification: add READMEs for script subfolders",
   "keywords": [
-    "script-subfolder-readmes",
-    "code-folder readme",
-    "deep-agent-improvement scripts",
-    "sk-doc code template",
-    "lane readme",
-    "agent-improvement",
-    "model-benchmark",
-    "shared"
+    "feature",
+    "specification",
+    "add",
+    "readmes",
+    "script",
+    "subfolders"
   ],
-  "lastUpdated": "2026-05-29T13:30:00.000Z",
+  "lastUpdated": "2026-06-22T18:55:01.015Z",
   "specId": "016",
-  "folderSlug": "016-add-readmes-for-script-subfolders",
+  "folderSlug": "add-readmes-for-script-subfolders",
   "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
     "121-deep-agent-improvement-benchmark-mode"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2",
-  "title": "Feature Specification: add READMEs for script subfolders"
+  "memoryNameHistory": []
 }

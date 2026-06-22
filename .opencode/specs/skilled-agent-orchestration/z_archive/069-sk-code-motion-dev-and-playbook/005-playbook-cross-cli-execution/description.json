@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/005-playbook-cross-cli-execution",
+  "specFolder": "skilled-agent-orchestration/z_archive/069-sk-code-motion-dev-and-playbook/005-playbook-cross-cli-execution",
   "description": "Feature Specification: Phase 005 Cross-CLI Playbook Execution Harness",
   "keywords": [
     "feature",
@@ -11,11 +11,12 @@
     "execution",
     "harness"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.142Z",
+  "lastUpdated": "2026-06-22T18:54:59.681Z",
   "specId": "005",
   "folderSlug": "playbook-cross-cli-execution",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "069-sk-code-motion-dev-and-playbook"
   ],
   "memorySequence": 0,

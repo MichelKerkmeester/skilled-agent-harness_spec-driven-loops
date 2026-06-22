@@ -1,23 +1,25 @@
 {
+  "title": "Feature Specification: fix hardening-review findings for model-benchmark mode",
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/004-fix-hardening-findings-for-model-benchmark",
-  "description": "Fix the hardening-review findings for model-benchmark mode, including cwd propagation, path boundary checks, criteria-exec gating, grader clamping, and regression tests.",
+  "specFolder": "skilled-agent-orchestration/z_archive/121-deep-agent-improvement-benchmark-mode/004-fix-hardening-findings-for-model-benchmark",
+  "description": "Feature Specification: fix hardening-review findings for model-benchmark mode",
   "keywords": [
     "feature",
     "specification",
-    "deep-agent-improvement",
+    "fix",
+    "hardening-review",
+    "findings",
     "model-benchmark",
-    "mode",
-    "remediation"
+    "mode"
   ],
-  "lastUpdated": "2026-05-29T09:27:47.355Z",
+  "lastUpdated": "2026-06-22T18:55:00.948Z",
   "specId": "004",
-  "folderSlug": "004-fix-hardening-findings-for-model-benchmark",
+  "folderSlug": "fix-hardening-findings-for-model-benchmark",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "121-deep-agent-improvement-benchmark-mode"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "title": "Feature Specification: fix hardening-review findings for model-benchmark mode"
+  "memoryNameHistory": []
 }

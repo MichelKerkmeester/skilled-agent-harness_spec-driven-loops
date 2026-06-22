@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/010-sk-doc-rename",
+  "specFolder": "skilled-agent-orchestration/z_archive/010-sk-doc-rename",
   "description": "Feature Specification: sk-doc Repo-Wide Rename and Visual Skill Cleanup",
   "keywords": [
     "feature",
@@ -11,11 +11,12 @@
     "skill",
     "cleanup"
   ],
-  "lastUpdated": "2026-05-16T17:59:27.645Z",
+  "lastUpdated": "2026-06-22T18:54:59.228Z",
   "specId": "010",
   "folderSlug": "sk-doc-rename",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

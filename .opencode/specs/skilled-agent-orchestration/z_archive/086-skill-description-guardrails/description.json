@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/086-skill-description-guardrails",
+  "specFolder": "skilled-agent-orchestration/z_archive/086-skill-description-guardrails",
   "description": "Feature Specification: Skill Description Budget Guardrails",
   "keywords": [
     "feature",
@@ -9,11 +9,12 @@
     "budget",
     "guardrails"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.352Z",
+  "lastUpdated": "2026-06-22T18:54:59.892Z",
   "specId": "086",
   "folderSlug": "skill-description-guardrails",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

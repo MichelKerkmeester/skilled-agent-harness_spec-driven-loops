@@ -1,17 +1,18 @@
 {
   "level": "3",
-  "specFolder": "skilled-agent-orchestration/066-sk-code-opencode-merger",
+  "specFolder": "skilled-agent-orchestration/z_archive/066-sk-code-opencode-merger",
   "description": "Feature Specification: sk-code-opencode-merger",
   "keywords": [
     "feature",
     "specification",
     "sk-code-opencode-merger"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.067Z",
+  "lastUpdated": "2026-06-22T18:54:59.602Z",
   "specId": "066",
   "folderSlug": "sk-code-opencode-merger",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

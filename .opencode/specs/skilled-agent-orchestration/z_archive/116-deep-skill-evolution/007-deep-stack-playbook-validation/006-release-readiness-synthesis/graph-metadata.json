@@ -39,7 +39,7 @@
       "006"
     ],
     "importance_tier": "normal",
-    "status": "draft_(scaffolded_—_runbook_+_matrix_skeleton_authored)",
+    "status": "complete",
     "key_files": [
       "implementation-summary.md",
       "checklist.md",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The validation run spans 177 scenarios across five per-skill children (001-005), each maintaining its own verdict ledger. Without (a) a single documented dispatch methodology and (b) a cross-skill rollup, the run cannot be executed consistently or assert release readiness for the deep-loop family.",
     "created_at": "2026-05-27T07:08:08.399Z",
-    "last_save_at": "2026-06-07T09:00:45.936Z",
+    "last_save_at": "2026-06-22T18:55:00.819Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

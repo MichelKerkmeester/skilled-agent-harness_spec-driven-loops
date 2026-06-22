@@ -1,17 +1,18 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/130-prompt-knowledge-layering/013-card-relocation-and-guard",
+  "specFolder": "skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering/013-card-relocation-and-guard",
   "description": "Feature Specification: card-relocation-and-guard",
   "keywords": [
     "feature",
     "specification",
     "card-relocation-and-guard"
   ],
-  "lastUpdated": "2026-06-03T14:51:58.068Z",
+  "lastUpdated": "2026-06-22T18:55:01.368Z",
   "specId": "013",
   "folderSlug": "card-relocation-and-guard",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "130-prompt-knowledge-layering"
   ],
   "memorySequence": 0,

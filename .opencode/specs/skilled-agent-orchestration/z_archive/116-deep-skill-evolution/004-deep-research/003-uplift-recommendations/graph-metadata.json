@@ -1,40 +1,37 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/116-deep-skill-evolution/004-deep-research/003-uplift-recommendations",
-  "spec_folder": "skilled-agent-orchestration/116-deep-skill-evolution/004-deep-research/003-uplift-recommendations",
-  "parent_id": "skilled-agent-orchestration/116-deep-skill-evolution/004-deep-research",
+  "packet_id": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/004-deep-research/003-uplift-recommendations",
+  "spec_folder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/004-deep-research/003-uplift-recommendations",
+  "parent_id": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/004-deep-research",
   "children_ids": [],
-  "migrated": false,
-  "migration_source": "backfill-during-consolidation-131",
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": [
-      "033 deep research uplift recommendations"
-    ],
+    "trigger_phrases": [],
     "key_topics": [
-      "033",
-      "deep",
-      "research",
-      "uplift",
-      "recommendations"
+      "packet",
+      "metadata",
+      "derived",
+      "canonical",
+      "spec",
+      "documents"
     ],
     "importance_tier": "important",
     "status": "in_progress",
-    "key_files": [
-      "uplift-roadmap.md"
-    ],
+    "key_files": [],
     "entities": [],
-    "causal_summary": "3-packet follow-on roadmap closing the 5 actionable items from the 10-iter deep-research investigation. Outputs: uplift-roadmap.md with prioritized packet 120/121/122 plan.",
+    "causal_summary": "Packet metadata derived from canonical spec documents.",
     "created_at": "2026-05-23T09:26:27.622610Z",
-    "last_save_at": "2026-05-23T09:53:18.749092Z",
-    "save_lineage": "backfill",
+    "last_save_at": "2026-06-22T18:55:00.674Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": [
-      "uplift-roadmap.md"
-    ]
+    "source_docs": [],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/130-prompt-knowledge-layering/005-backfill-remaining-profiles",
+  "specFolder": "skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering/005-backfill-remaining-profiles",
   "description": "Feature Specification: Phase 5: backfill-remaining-profiles",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "phase",
     "backfill-remaining-profiles"
   ],
-  "lastUpdated": "2026-06-03T06:37:53.264Z",
+  "lastUpdated": "2026-06-22T18:55:01.328Z",
   "specId": "005",
   "folderSlug": "backfill-remaining-profiles",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "130-prompt-knowledge-layering"
   ],
   "memorySequence": 0,

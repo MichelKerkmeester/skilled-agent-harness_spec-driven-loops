@@ -1,7 +1,7 @@
 {
   "title": "Feature Specification: review two-lane workflow implementation",
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/014-review-two-lane-workflow-implementation",
+  "specFolder": "skilled-agent-orchestration/z_archive/121-deep-agent-improvement-benchmark-mode/014-review-two-lane-workflow-implementation",
   "description": "Feature Specification: review two-lane workflow implementation",
   "keywords": [
     "feature",
@@ -11,11 +11,12 @@
     "workflow",
     "implementation"
   ],
-  "lastUpdated": "2026-06-01T11:13:19.429Z",
+  "lastUpdated": "2026-06-22T18:55:01.003Z",
   "specId": "014",
   "folderSlug": "review-two-lane-workflow-implementation",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "121-deep-agent-improvement-benchmark-mode"
   ],
   "memorySequence": 0,

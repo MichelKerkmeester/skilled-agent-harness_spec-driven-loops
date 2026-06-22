@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/068-sk-doc-organization/002-update-and-mirror",
+  "specFolder": "skilled-agent-orchestration/z_archive/068-sk-doc-organization/002-update-and-mirror",
   "description": "Feature Specification: Phase 2: update-and-mirror",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "phase",
     "update-and-mirror"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.103Z",
+  "lastUpdated": "2026-06-22T18:54:59.641Z",
   "specId": "002",
   "folderSlug": "update-and-mirror",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "068-sk-doc-organization"
   ],
   "memorySequence": 0,

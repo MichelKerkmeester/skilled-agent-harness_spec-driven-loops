@@ -6,11 +6,9 @@
     "feature",
     "specification",
     "phase",
-    "decouple-from-open-design",
-    "sk-design-interface",
-    "real_ui_loop"
+    "decouple-from-open-design"
   ],
-  "lastUpdated": "2026-06-17T00:00:00.000Z",
+  "lastUpdated": "2026-06-22T18:54:58.997Z",
   "specId": "010",
   "folderSlug": "decouple-from-open-design",
   "parentChain": [

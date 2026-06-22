@@ -5,7 +5,7 @@
   "status": "planned",
   "track": "skilled-agent-orchestration",
   "created": "2026-05-31",
-  "specFolder": "skilled-agent-orchestration/125-feature-catalog-template-improvements/009-validation-sweep",
+  "specFolder": "skilled-agent-orchestration/z_archive/125-feature-catalog-template-improvements/009-validation-sweep",
   "description": "Phase 009: Validation Sweep — All Skills",
   "keywords": [
     "phase",
@@ -14,11 +14,12 @@
     "sweep",
     "skills"
   ],
-  "lastUpdated": "2026-06-01T11:13:19.554Z",
+  "lastUpdated": "2026-06-22T18:55:01.218Z",
   "specId": "009",
   "folderSlug": "validation-sweep",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "125-feature-catalog-template-improvements"
   ],
   "memorySequence": 0,

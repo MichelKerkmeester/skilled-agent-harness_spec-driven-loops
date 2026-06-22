@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/135-skill-readme-standardization/004-cli-devin-readme",
+  "specFolder": "skilled-agent-orchestration/z_archive/135-skill-readme-standardization/004-cli-devin-readme",
   "description": "Feature Specification: cli-devin README",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "cli-devin",
     "readme"
   ],
-  "lastUpdated": "2026-06-10T04:53:30.752Z",
+  "lastUpdated": "2026-06-22T18:55:01.539Z",
   "specId": "004",
   "folderSlug": "cli-devin-readme",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "135-skill-readme-standardization"
   ],
   "memorySequence": 0,

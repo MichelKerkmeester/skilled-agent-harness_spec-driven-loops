@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/005-deep-agent-improvement-scenarios",
+  "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/007-deep-stack-playbook-validation/005-deep-agent-improvement-scenarios",
   "description": "Feature Specification: Deep-Agent-Improvement Scenarios (Deep-Loop Playbook 005)",
   "keywords": [
     "feature",
@@ -10,11 +10,12 @@
     "playbook",
     "005"
   ],
-  "lastUpdated": "2026-05-28T21:38:19.814Z",
+  "lastUpdated": "2026-06-22T18:55:00.815Z",
   "specId": "005",
   "folderSlug": "deep-agent-improvement-scenarios",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "116-deep-skill-evolution",
     "007-deep-stack-playbook-validation"
   ],

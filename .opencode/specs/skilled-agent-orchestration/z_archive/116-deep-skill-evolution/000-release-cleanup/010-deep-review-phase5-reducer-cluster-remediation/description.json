@@ -1,35 +1,26 @@
 {
-  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/010-deep-review-phase5-reducer-cluster-remediation",
-  "description": "Reducer-cluster backlog remediation: 5 behavioral changes to reduce-state.cjs (LG-0001/0005/0006/0008/0033) with vitest, 4 by-design gaps documented.",
+  "level": "3",
+  "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/000-release-cleanup/010-deep-review-phase5-reducer-cluster-remediation",
+  "description": "Feature Specification: deep-review reducer-cluster backlog remediation",
   "keywords": [
+    "feature",
+    "specification",
+    "deep-review",
     "reducer-cluster",
     "backlog",
-    "remediation",
-    "behavioral",
-    "changes",
-    "reduce-state",
-    "cjs",
-    "lg-0001",
-    "0005",
-    "0006",
-    "0008",
-    "0033",
-    "vitest",
-    "by-design",
-    "gaps",
-    "documented"
+    "remediation"
   ],
-  "lastUpdated": "2026-05-26T14:39:10.416384+00:00",
+  "lastUpdated": "2026-06-22T18:55:00.423Z",
   "specId": "010",
   "folderSlug": "deep-review-phase5-reducer-cluster-remediation",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "116-deep-skill-evolution",
     "000-release-cleanup"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [
     "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/003-deep-review/002-phase5-backlog/002-reducer-cluster-remediation"
-  ],
-  "level": "3"
+  ]
 }

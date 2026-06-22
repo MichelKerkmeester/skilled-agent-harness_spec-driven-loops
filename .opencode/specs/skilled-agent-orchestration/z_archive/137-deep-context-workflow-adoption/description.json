@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/137-deep-context-workflow-adoption",
+  "specFolder": "skilled-agent-orchestration/z_archive/137-deep-context-workflow-adoption",
   "description": "Feature Specification: deep-context workflow adoption (root-cause fix)",
   "keywords": [
     "feature",
@@ -10,11 +10,12 @@
     "root-cause",
     "fix"
   ],
-  "lastUpdated": "2026-06-10T04:53:30.843Z",
+  "lastUpdated": "2026-06-22T18:55:01.651Z",
   "specId": "137",
   "folderSlug": "deep-context-workflow-adoption",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

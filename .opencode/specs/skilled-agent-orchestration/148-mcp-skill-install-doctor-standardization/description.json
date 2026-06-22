@@ -12,8 +12,8 @@
     "doctor",
     "system"
   ],
-  "lastUpdated": "2026-06-15T08:49:57.415Z",
-  "specId": "153",
+  "lastUpdated": "2026-06-22T18:54:59.109Z",
+  "specId": "148",
   "folderSlug": "mcp-skill-install-doctor-standardization",
   "parentChain": [
     "skilled-agent-orchestration"

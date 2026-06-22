@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "skilled-agent-orchestration/131-relocate-model-registry-and-benchmarks",
+  "specFolder": "skilled-agent-orchestration/z_archive/131-relocate-model-registry-and-benchmarks",
   "description": "Feature Specification: Relocate the model registry + all model benchmarks into sk-prompt-small-model; make sk-prompt a forkable standalone framework e",
   "keywords": [
     "feature",
@@ -16,11 +16,12 @@
     "standalone",
     "framework"
   ],
-  "lastUpdated": "2026-06-03T06:37:53.290Z",
+  "lastUpdated": "2026-06-22T18:55:01.389Z",
   "specId": "131",
   "folderSlug": "relocate-model-registry-and-benchmarks",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

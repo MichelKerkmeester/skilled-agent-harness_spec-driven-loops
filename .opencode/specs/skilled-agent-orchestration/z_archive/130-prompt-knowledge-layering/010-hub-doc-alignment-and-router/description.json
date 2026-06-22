@@ -1,17 +1,18 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/130-prompt-knowledge-layering/010-hub-doc-alignment-and-router",
+  "specFolder": "skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering/010-hub-doc-alignment-and-router",
   "description": "Feature Specification: hub-doc-alignment-and-router",
   "keywords": [
     "feature",
     "specification",
     "hub-doc-alignment-and-router"
   ],
-  "lastUpdated": "2026-06-03T14:51:58.049Z",
+  "lastUpdated": "2026-06-22T18:55:01.353Z",
   "specId": "010",
   "folderSlug": "hub-doc-alignment-and-router",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "130-prompt-knowledge-layering"
   ],
   "memorySequence": 0,

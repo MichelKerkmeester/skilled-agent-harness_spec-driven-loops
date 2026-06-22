@@ -32,7 +32,7 @@
     "last_active_child_id": null
   },
   "lastUpdatedAt": null,
-  "specFolder": "skilled-agent-orchestration/100-multi-ai-council-main-agent-write-enforcement",
+  "specFolder": "skilled-agent-orchestration/z_archive/100-multi-ai-council-main-agent-write-enforcement",
   "description": "Feature Specification: Multi-AI Council main-agent write enforcement",
   "keywords": [
     "feature",
@@ -43,11 +43,12 @@
     "write",
     "enforcement"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.524Z",
+  "lastUpdated": "2026-06-22T18:55:00.018Z",
   "specId": "100",
   "folderSlug": "multi-ai-council-main-agent-write-enforcement",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

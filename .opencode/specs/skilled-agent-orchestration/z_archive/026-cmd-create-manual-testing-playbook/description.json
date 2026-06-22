@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/026-cmd-create-manual-testing-playbook",
+  "specFolder": "skilled-agent-orchestration/z_archive/026-cmd-create-manual-testing-playbook",
   "description": "Feature Specification: /create:testing-playbook Command",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "testing-playbook",
     "command"
   ],
-  "lastUpdated": "2026-05-16T17:59:27.717Z",
+  "lastUpdated": "2026-06-22T18:54:59.310Z",
   "specId": "026",
   "folderSlug": "cmd-create-manual-testing-playbook",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/052-cli-skill-patterns",
+  "specFolder": "skilled-agent-orchestration/z_archive/052-cli-skill-patterns",
   "description": "Feature Specification: cli-* skill consistency patterns",
   "keywords": [
     "feature",
@@ -9,11 +9,12 @@
     "consistency",
     "patterns"
   ],
-  "lastUpdated": "2026-05-16T17:59:27.910Z",
+  "lastUpdated": "2026-06-22T18:54:59.463Z",
   "specId": "052",
   "folderSlug": "cli-skill-patterns",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

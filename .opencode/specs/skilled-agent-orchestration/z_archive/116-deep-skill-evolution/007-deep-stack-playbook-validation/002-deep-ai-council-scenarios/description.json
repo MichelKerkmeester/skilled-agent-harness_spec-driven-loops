@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/002-deep-ai-council-scenarios",
+  "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/007-deep-stack-playbook-validation/002-deep-ai-council-scenarios",
   "description": "Feature Specification: Deep-AI-Council Scenarios (Deep-Loop Playbook 002)",
   "keywords": [
     "feature",
@@ -10,11 +10,12 @@
     "playbook",
     "002"
   ],
-  "lastUpdated": "2026-05-28T21:38:19.802Z",
+  "lastUpdated": "2026-06-22T18:55:00.796Z",
   "specId": "002",
   "folderSlug": "deep-ai-council-scenarios",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "116-deep-skill-evolution",
     "007-deep-stack-playbook-validation"
   ],

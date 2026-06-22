@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/120-cli-opencode-minimax-optimization/001-minimax-provider-integration",
+  "specFolder": "skilled-agent-orchestration/z_archive/120-cli-opencode-minimax-optimization/001-minimax-provider-integration",
   "description": "Feature Specification: Phase 1: minimax-provider-integration",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "phase",
     "minimax-provider-integration"
   ],
-  "lastUpdated": "2026-05-28T21:38:19.847Z",
+  "lastUpdated": "2026-06-22T18:55:00.904Z",
   "specId": "001",
   "folderSlug": "minimax-provider-integration",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "120-cli-opencode-minimax-optimization"
   ],
   "memorySequence": 0,

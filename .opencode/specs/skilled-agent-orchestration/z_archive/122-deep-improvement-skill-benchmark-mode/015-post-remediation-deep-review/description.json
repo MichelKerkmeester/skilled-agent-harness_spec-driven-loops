@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/015-post-remediation-deep-review",
+  "specFolder": "skilled-agent-orchestration/z_archive/122-deep-improvement-skill-benchmark-mode/015-post-remediation-deep-review",
   "description": "Feature Specification: Post-Remediation Dual-Pass Deep Review (skill:deep-improvement)",
   "keywords": [
     "feature",
@@ -12,11 +12,12 @@
     "skill",
     "deep-improvement"
   ],
-  "lastUpdated": "2026-06-02T16:26:46.059Z",
+  "lastUpdated": "2026-06-22T18:55:01.117Z",
   "specId": "015",
   "folderSlug": "post-remediation-deep-review",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "122-deep-improvement-skill-benchmark-mode"
   ],
   "memorySequence": 0,

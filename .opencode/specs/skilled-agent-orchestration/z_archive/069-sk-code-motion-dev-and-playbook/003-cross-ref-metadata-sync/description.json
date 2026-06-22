@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/003-cross-ref-metadata-sync",
+  "specFolder": "skilled-agent-orchestration/z_archive/069-sk-code-motion-dev-and-playbook/003-cross-ref-metadata-sync",
   "description": "Feature Specification: sk-code Cross-Reference and Metadata Sync",
   "keywords": [
     "feature",
@@ -9,11 +9,12 @@
     "metadata",
     "sync"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.133Z",
+  "lastUpdated": "2026-06-22T18:54:59.668Z",
   "specId": "003",
   "folderSlug": "cross-ref-metadata-sync",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "069-sk-code-motion-dev-and-playbook"
   ],
   "memorySequence": 0,

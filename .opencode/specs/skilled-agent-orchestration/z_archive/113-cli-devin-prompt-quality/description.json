@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "skilled-agent-orchestration/113-cli-devin-prompt-quality",
+  "specFolder": "skilled-agent-orchestration/z_archive/113-cli-devin-prompt-quality",
   "description": "Feature Specification: cli-devin prompt-quality arc",
   "keywords": [
     "feature",
@@ -9,11 +9,12 @@
     "prompt-quality",
     "arc"
   ],
-  "lastUpdated": "2026-05-23T15:24:58.871Z",
+  "lastUpdated": "2026-06-22T18:55:00.248Z",
   "specId": "113",
-  "folderSlug": "cli-devin-prompt-quality-arc",
+  "folderSlug": "cli-devin-prompt-quality",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

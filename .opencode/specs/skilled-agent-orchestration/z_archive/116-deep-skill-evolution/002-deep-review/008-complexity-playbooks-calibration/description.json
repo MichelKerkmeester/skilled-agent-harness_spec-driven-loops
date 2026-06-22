@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review/008-complexity-playbooks-calibration",
+  "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/002-deep-review/008-complexity-playbooks-calibration",
   "description": "Feature Specification: 116/008 — Playbooks and Default Calibration",
   "keywords": [
     "feature",
@@ -11,11 +11,12 @@
     "default",
     "calibration"
   ],
-  "lastUpdated": "2026-05-25T11:53:22.318Z",
+  "lastUpdated": "2026-06-22T18:55:00.590Z",
   "specId": "008",
   "folderSlug": "complexity-playbooks-calibration",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "116-deep-skill-evolution",
     "002-deep-review"
   ],

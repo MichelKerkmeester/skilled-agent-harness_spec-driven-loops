@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/114-small-ai-model-optimization",
+  "specFolder": "skilled-agent-orchestration/z_archive/114-small-ai-model-optimization",
   "description": "Feature Specification: small-AI-model optimization",
   "keywords": [
     "feature",
@@ -7,11 +7,12 @@
     "small-ai-model",
     "optimization"
   ],
-  "lastUpdated": "2026-05-28T21:38:19.768Z",
+  "lastUpdated": "2026-06-22T18:55:00.295Z",
   "specId": "114",
   "folderSlug": "small-ai-model-optimization",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 5,
   "memoryNameHistory": [

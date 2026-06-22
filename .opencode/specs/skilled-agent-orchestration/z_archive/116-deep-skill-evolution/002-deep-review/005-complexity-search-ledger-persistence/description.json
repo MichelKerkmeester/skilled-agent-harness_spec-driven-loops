@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review/005-complexity-search-ledger-persistence",
+  "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/002-deep-review/005-complexity-search-ledger-persistence",
   "description": "Feature Specification: 116/005 — Search Ledger Persistence and Reporting",
   "keywords": [
     "feature",
@@ -12,11 +12,12 @@
     "persistence",
     "reporting"
   ],
-  "lastUpdated": "2026-05-25T11:53:22.304Z",
+  "lastUpdated": "2026-06-22T18:55:00.573Z",
   "specId": "005",
   "folderSlug": "complexity-search-ledger-persistence",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "116-deep-skill-evolution",
     "002-deep-review"
   ],

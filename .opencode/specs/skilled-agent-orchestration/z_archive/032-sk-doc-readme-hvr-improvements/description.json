@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/032-sk-doc-readme-hvr-improvements",
+  "specFolder": "skilled-agent-orchestration/z_archive/032-sk-doc-readme-hvr-improvements",
   "description": "Feature Specification: sk-doc README and HVR Improvements",
   "keywords": [
     "feature",
@@ -9,11 +9,12 @@
     "hvr",
     "improvements"
   ],
-  "lastUpdated": "2026-05-16T17:59:27.742Z",
+  "lastUpdated": "2026-06-22T18:54:59.330Z",
   "specId": "032",
   "folderSlug": "sk-doc-readme-hvr-improvements",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 2,
   "memoryNameHistory": [

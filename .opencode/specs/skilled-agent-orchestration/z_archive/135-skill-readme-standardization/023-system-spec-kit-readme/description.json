@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/135-skill-readme-standardization/023-system-spec-kit-readme",
+  "specFolder": "skilled-agent-orchestration/z_archive/135-skill-readme-standardization/023-system-spec-kit-readme",
   "description": "Feature Specification: system-spec-kit README",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "system-spec-kit",
     "readme"
   ],
-  "lastUpdated": "2026-06-10T04:53:30.831Z",
+  "lastUpdated": "2026-06-22T18:55:01.636Z",
   "specId": "023",
   "folderSlug": "system-spec-kit-readme",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "135-skill-readme-standardization"
   ],
   "memorySequence": 0,

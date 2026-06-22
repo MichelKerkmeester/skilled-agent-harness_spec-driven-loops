@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/002-deep-skills-executor-integration",
+  "specFolder": "skilled-agent-orchestration/z_archive/126-cli-opencode-mimo-pro-optimization/002-deep-skills-executor-integration",
   "description": "Feature Specification: Phase 2: deep-skills-executor-integration",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "phase",
     "deep-skills-executor-integration"
   ],
-  "lastUpdated": "2026-06-02T16:26:46.098Z",
+  "lastUpdated": "2026-06-22T18:55:01.234Z",
   "specId": "002",
   "folderSlug": "deep-skills-executor-integration",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "126-cli-opencode-mimo-pro-optimization"
   ],
   "memorySequence": 0,

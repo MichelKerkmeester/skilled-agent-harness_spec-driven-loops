@@ -5,7 +5,7 @@
   "status": "planned",
   "track": "skilled-agent-orchestration",
   "created": "2026-05-31",
-  "specFolder": "skilled-agent-orchestration/125-feature-catalog-template-improvements/005-subheadings-spec-kit",
+  "specFolder": "skilled-agent-orchestration/z_archive/125-feature-catalog-template-improvements/005-subheadings-spec-kit",
   "description": "Phase 005: Sub-headings — system-spec-kit",
   "keywords": [
     "phase",
@@ -13,11 +13,12 @@
     "sub-headings",
     "system-spec-kit"
   ],
-  "lastUpdated": "2026-06-01T11:13:19.534Z",
+  "lastUpdated": "2026-06-22T18:55:01.198Z",
   "specId": "005",
   "folderSlug": "subheadings-spec-kit",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "125-feature-catalog-template-improvements"
   ],
   "memorySequence": 0,

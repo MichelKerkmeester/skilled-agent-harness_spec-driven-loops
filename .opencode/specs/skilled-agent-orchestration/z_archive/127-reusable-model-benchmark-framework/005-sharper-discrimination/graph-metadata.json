@@ -39,7 +39,7 @@
       "pack"
     ],
     "importance_tier": "important",
-    "status": "complete_(negative_result_—_computational_fixtures_saturated;_validation_iteration_in_006)",
+    "status": "in_progress",
     "key_files": [
       "implementation-summary.md",
       "spec.md",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The 004 capability run discriminated only on the margins: 3 of 4 hard fixtures saturated (both MiniMax-M3 and MiMo-V2.5-Pro scored 1.0), so correctness could not rank and the framework fell back to a format-TIE. The only signal was `hard-roman-to-int`, where MiMo's mean (0.627) came from a single catastrophic 0.0 across n=3 — a reliability blip, not a certified capability margin. The benchmark cannot yet CI-certify which model is better.",
     "created_at": "2026-06-02T09:30:00.000Z",
-    "last_save_at": "2026-06-17T19:57:23.731Z",
+    "last_save_at": "2026-06-22T18:55:01.279Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

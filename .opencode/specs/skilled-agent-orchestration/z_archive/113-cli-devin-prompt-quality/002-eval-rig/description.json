@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "skilled-agent-orchestration/113-cli-devin-prompt-quality/002-eval-rig",
+  "specFolder": "skilled-agent-orchestration/z_archive/113-cli-devin-prompt-quality/002-eval-rig",
   "description": "Feature Specification: Eval Rig for cli-devin SWE 1.6 Optimization",
   "keywords": [
     "feature",
@@ -11,11 +11,12 @@
     "swe",
     "optimization"
   ],
-  "lastUpdated": "2026-05-21T10:22:37.568Z",
+  "lastUpdated": "2026-06-22T18:55:00.261Z",
   "specId": "002",
   "folderSlug": "eval-rig",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "113-cli-devin-prompt-quality"
   ],
   "memorySequence": 1,

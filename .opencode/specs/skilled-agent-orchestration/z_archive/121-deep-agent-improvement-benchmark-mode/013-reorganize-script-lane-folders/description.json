@@ -1,23 +1,25 @@
 {
+  "title": "Feature Specification: reorganize scripts into physical lane folders",
   "level": "3",
-  "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/013-reorganize-script-lane-folders",
-  "description": "Move scripts into agent-improvement, model-benchmark, and shared folders, update references, and verify runtime path handling.",
+  "specFolder": "skilled-agent-orchestration/z_archive/121-deep-agent-improvement-benchmark-mode/013-reorganize-script-lane-folders",
+  "description": "Feature Specification: reorganize scripts into physical lane folders",
   "keywords": [
     "feature",
     "specification",
+    "reorganize",
     "scripts",
     "physical",
     "lane",
-    "reorg"
+    "folders"
   ],
-  "lastUpdated": "2026-05-29T09:27:47.385Z",
+  "lastUpdated": "2026-06-22T18:55:00.997Z",
   "specId": "013",
-  "folderSlug": "013-reorganize-script-lane-folders",
+  "folderSlug": "reorganize-script-lane-folders",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "121-deep-agent-improvement-benchmark-mode"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "title": "Feature Specification: reorganize scripts into physical lane folders"
+  "memoryNameHistory": []
 }

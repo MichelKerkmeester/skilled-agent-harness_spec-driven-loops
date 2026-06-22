@@ -1,7 +1,7 @@
 {
   "title": "Feature Specification: label catalog, playbook, and advisor lanes",
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/012-label-catalog-playbook-and-advisor-lanes",
+  "specFolder": "skilled-agent-orchestration/z_archive/121-deep-agent-improvement-benchmark-mode/012-label-catalog-playbook-and-advisor-lanes",
   "description": "Feature Specification: label catalog, playbook, and advisor lanes",
   "keywords": [
     "feature",
@@ -12,11 +12,12 @@
     "advisor",
     "lanes"
   ],
-  "lastUpdated": "2026-06-01T11:13:19.424Z",
+  "lastUpdated": "2026-06-22T18:55:00.991Z",
   "specId": "012",
   "folderSlug": "label-catalog-playbook-and-advisor-lanes",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "121-deep-agent-improvement-benchmark-mode"
   ],
   "memorySequence": 0,

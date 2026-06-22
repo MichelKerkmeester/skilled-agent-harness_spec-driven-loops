@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/123-deep-loop-parallel-fanout/005-consumer-merges-synthesis",
+  "specFolder": "skilled-agent-orchestration/z_archive/123-deep-loop-parallel-fanout/005-consumer-merges-synthesis",
   "description": "Phase 005 — Consumer-specific merges + synthesis hooks",
   "keywords": [
     "phase",
@@ -9,11 +9,12 @@
     "synthesis",
     "hooks"
   ],
-  "lastUpdated": "2026-06-01T11:13:19.487Z",
+  "lastUpdated": "2026-06-22T18:55:01.146Z",
   "specId": "005",
   "folderSlug": "consumer-merges-synthesis",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "123-deep-loop-parallel-fanout"
   ],
   "memorySequence": 0,

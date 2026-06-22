@@ -1,7 +1,7 @@
 {
   "level": "3",
-  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting/002-commands-relocation",
-  "description": "Feature Specification: 131/007 \u2014 Deep-* Commands Relocation",
+  "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/006-deep-stack-cross-cutting/002-commands-relocation",
+  "description": "Feature Specification: 131/007 — Deep-* Commands Relocation",
   "keywords": [
     "feature",
     "specification",
@@ -11,11 +11,12 @@
     "commands",
     "relocation"
   ],
-  "lastUpdated": "2026-05-26T13:39:54.163431+00:00",
+  "lastUpdated": "2026-06-22T18:55:00.746Z",
   "specId": "002",
   "folderSlug": "commands-relocation",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "116-deep-skill-evolution",
     "006-deep-stack-cross-cutting"
   ],

@@ -1,7 +1,7 @@
 {
   "title": "Feature Specification: align skill docs and consolidate changelog",
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/019-align-skill-docs-and-consolidate-changelog",
+  "specFolder": "skilled-agent-orchestration/z_archive/121-deep-agent-improvement-benchmark-mode/019-align-skill-docs-and-consolidate-changelog",
   "description": "Feature Specification: align skill docs and consolidate changelog",
   "keywords": [
     "feature",
@@ -12,11 +12,12 @@
     "consolidate",
     "changelog"
   ],
-  "lastUpdated": "2026-06-01T11:13:19.439Z",
+  "lastUpdated": "2026-06-22T18:55:01.033Z",
   "specId": "019",
   "folderSlug": "align-skill-docs-and-consolidate-changelog",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "121-deep-agent-improvement-benchmark-mode"
   ],
   "memorySequence": 0,

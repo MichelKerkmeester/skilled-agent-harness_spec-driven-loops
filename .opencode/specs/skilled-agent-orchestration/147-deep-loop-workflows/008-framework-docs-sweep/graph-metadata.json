@@ -38,7 +38,7 @@
       "deep-loop-workflows"
     ],
     "importance_tier": "important",
-    "status": "planned_(scaffold)",
+    "status": "in_progress",
     "key_files": [
       ".opencode/skills/README.md",
       "constitutional/deep-skill-workflow-required.md",
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The cross-repo documentation is written around a five-skill model: the root README enumerates five loop skills (including a brittle slash-enumeration and per-skill README links that will 404), .opencode/skills/README.md counts \"23 skills\" and \"deep-* (6)\", CLAUDE.md and AGENTS.md are hand-mirrored at identical line numbers, the deep-loop-runtime README is built around a five-consumer model, and constitutional/deep-skill-workflow-required.md enumerates all five names. descriptions.json and changelog history must be EXCLUDED from the rename sweep.",
     "created_at": "2026-06-14T20:16:09.680Z",
-    "last_save_at": "2026-06-16T14:27:20.570Z",
+    "last_save_at": "2026-06-22T18:54:59.102Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "skilled-agent-orchestration/127-reusable-model-benchmark-framework/005-sharper-discrimination",
+  "specFolder": "skilled-agent-orchestration/z_archive/127-reusable-model-benchmark-framework/005-sharper-discrimination",
   "description": "Feature Specification: Sharper discrimination",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "sharper",
     "discrimination"
   ],
-  "lastUpdated": "2026-06-02T12:06:06.172Z",
+  "lastUpdated": "2026-06-22T18:55:01.281Z",
   "specId": "005",
   "folderSlug": "sharper-discrimination",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "127-reusable-model-benchmark-framework"
   ],
   "memorySequence": 1,

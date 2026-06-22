@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/123-deep-loop-parallel-fanout",
+  "specFolder": "skilled-agent-orchestration/z_archive/123-deep-loop-parallel-fanout",
   "description": "Spec 123 — deep-loop native fan-out parallel multi-executor",
   "keywords": [
     "spec",
@@ -10,11 +10,12 @@
     "parallel",
     "multi-executor"
   ],
-  "lastUpdated": "2026-06-01T11:13:19.464Z",
+  "lastUpdated": "2026-06-22T18:55:01.122Z",
   "specId": "123",
   "folderSlug": "deep-loop-parallel-fanout",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

@@ -1,6 +1,6 @@
 {
   "level": "phase",
-  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/006-yaml-workflow-update",
+  "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/003-deep-loop-runtime/006-yaml-workflow-update",
   "description": "Feature Specification: 118/005 — YAML Workflow Update (MCP → bash script)",
   "keywords": [
     "feature",
@@ -14,11 +14,12 @@
     "bash",
     "script"
   ],
-  "lastUpdated": "2026-05-25T11:53:22.346Z",
+  "lastUpdated": "2026-06-22T18:55:00.636Z",
   "specId": "006",
   "folderSlug": "yaml-workflow-update",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "116-deep-skill-evolution",
     "003-deep-loop-runtime"
   ],

@@ -48,7 +48,7 @@
       "tasks"
     ],
     "importance_tier": "important",
-    "status": "planned_—_gated_on_council_approval",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Two efficiency gaps in deep-review's multi-dimensional iteration model:",
     "created_at": "2026-05-16T11:00:00Z",
-    "last_save_at": "2026-06-15T09:09:33.610Z",
+    "last_save_at": "2026-06-22T18:55:00.193Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

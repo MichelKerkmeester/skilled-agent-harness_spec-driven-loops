@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/135-skill-readme-standardization/022-system-skill-advisor-readme",
+  "specFolder": "skilled-agent-orchestration/z_archive/135-skill-readme-standardization/022-system-skill-advisor-readme",
   "description": "Feature Specification: system-skill-advisor README",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "system-skill-advisor",
     "readme"
   ],
-  "lastUpdated": "2026-06-10T04:53:30.827Z",
+  "lastUpdated": "2026-06-22T18:55:01.631Z",
   "specId": "022",
   "folderSlug": "system-skill-advisor-readme",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "135-skill-readme-standardization"
   ],
   "memorySequence": 0,

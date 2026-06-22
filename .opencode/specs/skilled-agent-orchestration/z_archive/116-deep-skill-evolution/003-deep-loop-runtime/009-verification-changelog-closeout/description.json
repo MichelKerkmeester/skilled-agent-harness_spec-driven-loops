@@ -1,6 +1,6 @@
 {
   "level": "feature",
-  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/009-verification-changelog-closeout",
+  "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/003-deep-loop-runtime/009-verification-changelog-closeout",
   "description": "Feature Specification: Verification + Changelog + Closeout",
   "keywords": [
     "feature",
@@ -9,11 +9,12 @@
     "changelog",
     "closeout"
   ],
-  "lastUpdated": "2026-05-25T11:53:22.358Z",
+  "lastUpdated": "2026-06-22T18:55:00.650Z",
   "specId": "009",
   "folderSlug": "verification-changelog-closeout",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "116-deep-skill-evolution",
     "003-deep-loop-runtime"
   ],

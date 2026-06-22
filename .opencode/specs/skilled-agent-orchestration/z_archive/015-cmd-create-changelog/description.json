@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/015-cmd-create-changelog",
+  "specFolder": "skilled-agent-orchestration/z_archive/015-cmd-create-changelog",
   "description": "Feature Specification: Create Changelog Command",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "changelog",
     "command"
   ],
-  "lastUpdated": "2026-05-16T17:59:27.665Z",
+  "lastUpdated": "2026-06-22T18:54:59.255Z",
   "specId": "015",
   "folderSlug": "cmd-create-changelog",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

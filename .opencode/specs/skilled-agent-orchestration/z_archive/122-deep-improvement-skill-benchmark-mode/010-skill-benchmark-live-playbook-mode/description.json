@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/010-skill-benchmark-live-playbook-mode",
+  "specFolder": "skilled-agent-orchestration/z_archive/122-deep-improvement-skill-benchmark-mode/010-skill-benchmark-live-playbook-mode",
   "description": "Feature Specification: Lane C Skill-Benchmark Live Playbook Mode (Mode B)",
   "keywords": [
     "feature",
@@ -10,14 +10,13 @@
     "playbook",
     "mode"
   ],
-  "lastUpdated": "2026-06-01T14:22:41.913Z",
-  "specId": "127",
+  "lastUpdated": "2026-06-22T18:55:01.087Z",
+  "specId": "010",
   "folderSlug": "skill-benchmark-live-playbook-mode",
   "parentChain": [
-    "..",
-    ".opencode",
-    "specs",
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive",
+    "122-deep-improvement-skill-benchmark-mode"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

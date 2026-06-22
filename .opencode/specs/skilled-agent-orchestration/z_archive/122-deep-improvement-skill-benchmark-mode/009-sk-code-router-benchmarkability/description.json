@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/009-sk-code-router-benchmarkability",
+  "specFolder": "skilled-agent-orchestration/z_archive/122-deep-improvement-skill-benchmark-mode/009-sk-code-router-benchmarkability",
   "description": "Feature Specification: sk-code Router Benchmarkability",
   "keywords": [
     "feature",
@@ -9,11 +9,12 @@
     "router",
     "benchmarkability"
   ],
-  "lastUpdated": "2026-06-02T16:26:46.031Z",
+  "lastUpdated": "2026-06-22T18:55:01.080Z",
   "specId": "009",
   "folderSlug": "sk-code-router-benchmarkability",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "122-deep-improvement-skill-benchmark-mode"
   ],
   "memorySequence": 1,

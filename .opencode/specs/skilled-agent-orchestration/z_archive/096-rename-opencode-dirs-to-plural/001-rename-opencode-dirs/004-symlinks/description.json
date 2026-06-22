@@ -1,7 +1,7 @@
 {
   "completionPct": 0,
   "lastOutcome": "Spec docs authored; awaiting Phases 001-003 completion.",
-  "specFolder": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/001-rename-opencode-dirs/004-symlinks",
+  "specFolder": "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/001-rename-opencode-dirs/004-symlinks",
   "description": "Feature Specification: 096/004 - redirect cross-runtime symlinks",
   "keywords": [
     "feature",
@@ -12,11 +12,12 @@
     "cross-runtime",
     "symlinks"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.427Z",
+  "lastUpdated": "2026-06-22T18:54:59.945Z",
   "specId": "004",
   "folderSlug": "symlinks",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "096-rename-opencode-dirs-to-plural",
     "001-rename-opencode-dirs"
   ],

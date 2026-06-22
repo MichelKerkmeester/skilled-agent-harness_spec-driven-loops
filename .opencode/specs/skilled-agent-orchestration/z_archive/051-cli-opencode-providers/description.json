@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/051-cli-opencode-providers",
+  "specFolder": "skilled-agent-orchestration/z_archive/051-cli-opencode-providers",
   "description": "Feature Specification: cli-opencode provider realignment",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "provider",
     "realignment"
   ],
-  "lastUpdated": "2026-05-16T17:59:27.906Z",
+  "lastUpdated": "2026-06-22T18:54:59.457Z",
   "specId": "051",
   "folderSlug": "cli-opencode-providers",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 2,
   "memoryNameHistory": [

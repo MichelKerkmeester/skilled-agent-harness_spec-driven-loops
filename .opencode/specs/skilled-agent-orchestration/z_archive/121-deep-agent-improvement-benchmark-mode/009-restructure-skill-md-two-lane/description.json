@@ -1,22 +1,24 @@
 {
+  "title": "Feature Specification: restructure SKILL.md for two-lane workflow",
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/009-restructure-skill-md-two-lane",
-  "description": "Restructure SKILL.md around co-equal agent-improvement and model-benchmark lanes and add model-benchmark routing.",
+  "specFolder": "skilled-agent-orchestration/z_archive/121-deep-agent-improvement-benchmark-mode/009-restructure-skill-md-two-lane",
+  "description": "Feature Specification: restructure SKILL.md for two-lane workflow",
   "keywords": [
     "feature",
     "specification",
+    "restructure",
     "skill",
     "two-lane",
-    "restructure"
+    "workflow"
   ],
-  "lastUpdated": "2026-05-29T09:27:47.369Z",
+  "lastUpdated": "2026-06-22T18:55:00.976Z",
   "specId": "009",
-  "folderSlug": "009-restructure-skill-md-two-lane",
+  "folderSlug": "restructure-skill-md-two-lane",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "121-deep-agent-improvement-benchmark-mode"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "title": "Feature Specification: restructure SKILL.md for two-lane workflow"
+  "memoryNameHistory": []
 }

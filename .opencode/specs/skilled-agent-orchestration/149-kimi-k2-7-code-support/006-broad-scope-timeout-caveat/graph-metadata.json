@@ -44,7 +44,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "system-spec-kit/028-memory-search-intelligence/007-memory-systems/research/research.md",
       "spec.md"
     ],
     "entities": [
@@ -195,7 +194,7 @@
     ],
     "causal_summary": "The Kimi K2.7 Code docs note `--variant high` is \"accepted-unverified\" but do NOT capture a real operational failure mode: on a broad / large-repo dispatch at `--variant high`, `kimi-for-coding/k2p7` **over-explores** (many sequential file reads) and **exceeds a 600s timeout WITHOUT emitting** — and because opencode flushes only the final assistant message to stdout, the killed run yields **0 bytes** (looks like a hang though the model was working). The profile even recommends k2.7 for \"sprawling / multi-repo\" work — exactly the scope that triggers this. Adjacent cli-opencode references also still cite the retired `kimi-k2.6` / `opencode-go/kimi-k2.6`.",
     "created_at": "2026-06-17T11:00:00Z",
-    "last_save_at": "2026-06-17T19:57:23.061Z",
+    "last_save_at": "2026-06-22T18:54:59.132Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

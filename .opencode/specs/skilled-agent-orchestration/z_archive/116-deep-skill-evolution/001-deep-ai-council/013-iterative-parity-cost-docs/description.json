@@ -9,7 +9,7 @@
       "skilled-agent-orchestration/116-deep-skill-evolution/006-deep-skills-differentiation/001-unique-value-differentiation"
     ]
   },
-  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/001-deep-ai-council/013-iterative-parity-cost-docs",
+  "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/001-deep-ai-council/013-iterative-parity-cost-docs",
   "description": "Feature Specification: Parity Tests, Cost Guards, and Docs",
   "keywords": [
     "feature",
@@ -20,11 +20,12 @@
     "guards",
     "docs"
   ],
-  "lastUpdated": "2026-05-26T13:39:54.163431+00:00",
+  "lastUpdated": "2026-06-22T18:55:00.531Z",
   "specId": "013",
   "folderSlug": "iterative-parity-cost-docs",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "116-deep-skill-evolution",
     "001-deep-ai-council"
   ],

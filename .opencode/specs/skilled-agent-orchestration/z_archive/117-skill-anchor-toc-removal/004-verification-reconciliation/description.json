@@ -1,5 +1,6 @@
 {
-  "specFolder": "skilled-agent-orchestration/117-skill-anchor-toc-removal/004-verification-reconciliation",
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/117-skill-anchor-toc-removal/004-verification-reconciliation",
   "description": "Feature Specification: Verification & Reconciliation",
   "keywords": [
     "feature",
@@ -7,14 +8,14 @@
     "verification",
     "reconciliation"
   ],
-  "lastUpdated": "2026-05-26T09:40:15.986Z",
+  "lastUpdated": "2026-06-22T18:55:00.871Z",
   "specId": "004",
   "folderSlug": "verification-reconciliation",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "117-skill-anchor-toc-removal"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

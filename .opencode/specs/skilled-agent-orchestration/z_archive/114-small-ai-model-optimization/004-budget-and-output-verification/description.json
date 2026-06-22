@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/114-small-ai-model-optimization/004-budget-and-output-verification",
+  "specFolder": "skilled-agent-orchestration/z_archive/114-small-ai-model-optimization/004-budget-and-output-verification",
   "description": "Feature Specification: cli-devin quality optimization",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "quality",
     "optimization"
   ],
-  "lastUpdated": "2026-05-21T10:22:37.604Z",
+  "lastUpdated": "2026-06-22T18:55:00.321Z",
   "specId": "004",
-  "folderSlug": "cli-devin-quality",
+  "folderSlug": "budget-and-output-verification",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "114-small-ai-model-optimization"
   ],
   "memorySequence": 1,

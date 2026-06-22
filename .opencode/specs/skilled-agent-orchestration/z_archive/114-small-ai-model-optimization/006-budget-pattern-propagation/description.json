@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/114-small-ai-model-optimization/006-budget-pattern-propagation",
+  "specFolder": "skilled-agent-orchestration/z_archive/114-small-ai-model-optimization/006-budget-pattern-propagation",
   "description": "Feature Specification: cross-skill propagation",
   "keywords": [
     "feature",
@@ -7,11 +7,12 @@
     "cross-skill",
     "propagation"
   ],
-  "lastUpdated": "2026-05-21T10:22:37.608Z",
+  "lastUpdated": "2026-06-22T18:55:00.335Z",
   "specId": "006",
-  "folderSlug": "cross-skill-propagation",
+  "folderSlug": "budget-pattern-propagation",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "114-small-ai-model-optimization"
   ],
   "memorySequence": 1,

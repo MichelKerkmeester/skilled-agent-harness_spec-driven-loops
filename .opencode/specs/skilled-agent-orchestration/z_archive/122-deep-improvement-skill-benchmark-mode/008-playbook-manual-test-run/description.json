@@ -1,5 +1,5 @@
 {
-  "specFolder": "008-playbook-manual-test-run",
+  "specFolder": "skilled-agent-orchestration/z_archive/122-deep-improvement-skill-benchmark-mode/008-playbook-manual-test-run",
   "description": "008 — Deep-Improvement Playbook Manual Test Run",
   "keywords": [
     "008",
@@ -9,14 +9,12 @@
     "test",
     "run"
   ],
-  "lastUpdated": "2026-05-31T17:50:44.535Z",
+  "lastUpdated": "2026-06-22T18:55:01.074Z",
   "specId": "008",
   "folderSlug": "playbook-manual-test-run",
   "parentChain": [
-    "..",
-    ".opencode",
-    "specs",
     "skilled-agent-orchestration",
+    "z_archive",
     "122-deep-improvement-skill-benchmark-mode"
   ],
   "memorySequence": 1,

@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph",
+  "specFolder": "skilled-agent-orchestration/z_archive/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph",
   "description": "Feature Specification: Semantic Coverage Graph",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "coverage",
     "graph"
   ],
-  "lastUpdated": "2026-05-16T17:59:27.842Z",
+  "lastUpdated": "2026-06-22T18:54:59.397Z",
   "specId": "002",
   "folderSlug": "semantic-coverage-graph",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "042-sk-deep-research-review-improvement-2"
   ],
   "memorySequence": 0,

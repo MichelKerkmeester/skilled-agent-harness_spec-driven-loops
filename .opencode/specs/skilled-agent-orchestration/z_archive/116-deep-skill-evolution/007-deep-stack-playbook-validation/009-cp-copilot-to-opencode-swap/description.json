@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/009-cp-copilot-to-opencode-swap",
+  "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/007-deep-stack-playbook-validation/009-cp-copilot-to-opencode-swap",
   "description": "Feature Specification: CP Stress Scenarios — copilot → opencode Executor Swap (007 Phase 009)",
   "keywords": [
     "feature",
@@ -14,11 +14,12 @@
     "phase",
     "009"
   ],
-  "lastUpdated": "2026-05-28T21:38:19.831Z",
+  "lastUpdated": "2026-06-22T18:55:00.838Z",
   "specId": "009",
   "folderSlug": "cp-copilot-to-opencode-swap",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "116-deep-skill-evolution",
     "007-deep-stack-playbook-validation"
   ],

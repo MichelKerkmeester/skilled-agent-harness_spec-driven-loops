@@ -41,7 +41,7 @@
       "plan"
     ],
     "importance_tier": "important",
-    "status": "scaffolded",
+    "status": "in_progress",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
       ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Phase 004 deletes the entire MCP tool surface for the four `deep_loop_graph_*` tools after phase 003 ships the `.cjs` script shims that consumers now invoke directly. The deletion removes five handler files under `mcp_server/handlers/coverage-graph/`, four entries in `tool-schemas.ts`, four entries in `schemas/tool-input-schemas.ts`, and four registration calls in the tools index. No aliases, wrappers, or transition layers remain; the MCP server still starts, and the four tool IDs are absent from `mcp tools list`.",
     "created_at": "2026-05-22T19:55:00Z",
-    "last_save_at": "2026-06-07T09:00:45.880Z",
+    "last_save_at": "2026-06-22T18:55:00.627Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

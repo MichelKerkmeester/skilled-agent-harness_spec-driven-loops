@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/001-skill-benchmark-deep-research",
+  "specFolder": "skilled-agent-orchestration/z_archive/122-deep-improvement-skill-benchmark-mode/001-skill-benchmark-deep-research",
   "description": "Phase 001 — Skill-benchmark deep research",
   "keywords": [
     "phase",
@@ -8,11 +8,12 @@
     "deep",
     "research"
   ],
-  "lastUpdated": "2026-05-30T08:24:53.483Z",
+  "lastUpdated": "2026-06-22T18:55:01.044Z",
   "specId": "001",
   "folderSlug": "skill-benchmark-deep-research",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "122-deep-improvement-skill-benchmark-mode"
   ],
   "memorySequence": 0,

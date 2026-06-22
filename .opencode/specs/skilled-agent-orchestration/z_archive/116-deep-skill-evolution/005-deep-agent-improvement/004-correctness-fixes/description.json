@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/005-deep-agent-improvement/004-correctness-fixes",
+  "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/005-deep-agent-improvement/004-correctness-fixes",
   "description": "Packet 124: deep-agent-improvement correctness fixes",
   "keywords": [
     "packet",
@@ -9,11 +9,12 @@
     "correctness",
     "fixes"
   ],
-  "lastUpdated": "2026-05-25T11:53:22.378Z",
+  "lastUpdated": "2026-06-22T18:55:00.700Z",
   "specId": "004",
   "folderSlug": "correctness-fixes",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "116-deep-skill-evolution",
     "005-deep-agent-improvement"
   ],

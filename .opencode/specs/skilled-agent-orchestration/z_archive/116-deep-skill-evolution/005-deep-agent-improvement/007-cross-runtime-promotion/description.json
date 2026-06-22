@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/005-deep-agent-improvement/007-cross-runtime-promotion",
+  "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/005-deep-agent-improvement/007-cross-runtime-promotion",
   "description": "Packet 127: deep-agent-improvement cross-runtime promotion gate",
   "keywords": [
     "packet",
@@ -10,11 +10,12 @@
     "promotion",
     "gate"
   ],
-  "lastUpdated": "2026-05-25T11:53:22.392Z",
+  "lastUpdated": "2026-06-22T18:55:00.717Z",
   "specId": "007",
   "folderSlug": "cross-runtime-promotion",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "116-deep-skill-evolution",
     "005-deep-agent-improvement"
   ],

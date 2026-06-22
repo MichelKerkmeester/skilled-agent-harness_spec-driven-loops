@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/002-skill-router-stress-tests",
+  "specFolder": "skilled-agent-orchestration/z_archive/065-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results/002-skill-router-stress-tests",
   "description": "Spec: 065/002 — skill-router-stress-tests",
   "keywords": [
     "spec",
@@ -7,11 +7,12 @@
     "002",
     "skill-router-stress-tests"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.046Z",
+  "lastUpdated": "2026-06-22T18:54:59.578Z",
   "specId": "002",
   "folderSlug": "skill-router-stress-tests",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "065-skill-advisor-reindex-and-stress-test",
     "001-baseline-reindex-and-stress-results"
   ],

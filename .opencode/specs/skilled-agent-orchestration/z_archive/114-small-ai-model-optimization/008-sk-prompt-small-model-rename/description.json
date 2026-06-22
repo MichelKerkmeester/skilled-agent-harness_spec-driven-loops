@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/114-small-ai-model-optimization/008-sk-prompt-small-model-rename",
+  "specFolder": "skilled-agent-orchestration/z_archive/114-small-ai-model-optimization/008-sk-prompt-small-model-rename",
   "description": "Feature Specification: Phase 8 — rename sk-ai-small-model → sk-prompt-small-model",
   "keywords": [
     "feature",
@@ -10,11 +10,12 @@
     "sk-ai-small-model",
     "sk-prompt-small-model"
   ],
-  "lastUpdated": "2026-05-23T18:03:58.220Z",
+  "lastUpdated": "2026-06-22T18:55:00.348Z",
   "specId": "008",
   "folderSlug": "sk-prompt-small-model-rename",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "114-small-ai-model-optimization"
   ],
   "memorySequence": 0,

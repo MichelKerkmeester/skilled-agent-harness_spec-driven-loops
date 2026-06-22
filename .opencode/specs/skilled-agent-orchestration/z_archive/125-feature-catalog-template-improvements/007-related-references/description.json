@@ -5,7 +5,7 @@
   "status": "planned",
   "track": "skilled-agent-orchestration",
   "created": "2026-05-31",
-  "specFolder": "skilled-agent-orchestration/125-feature-catalog-template-improvements/007-related-references",
+  "specFolder": "skilled-agent-orchestration/z_archive/125-feature-catalog-template-improvements/007-related-references",
   "description": "Phase 007: Related References — All Skills",
   "keywords": [
     "phase",
@@ -14,11 +14,12 @@
     "references",
     "skills"
   ],
-  "lastUpdated": "2026-06-01T11:13:19.544Z",
+  "lastUpdated": "2026-06-22T18:55:01.208Z",
   "specId": "007",
   "folderSlug": "related-references",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "125-feature-catalog-template-improvements"
   ],
   "memorySequence": 0,

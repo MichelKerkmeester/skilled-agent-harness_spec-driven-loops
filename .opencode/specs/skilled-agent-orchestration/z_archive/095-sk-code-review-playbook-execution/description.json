@@ -1,7 +1,7 @@
 {
   "completionPct": 0,
   "lastOutcome": "Spec packet scaffolded; awaiting dispatch loop.",
-  "specFolder": "skilled-agent-orchestration/095-sk-code-review-playbook-execution",
+  "specFolder": "skilled-agent-orchestration/z_archive/095-sk-code-review-playbook-execution",
   "description": "Feature Specification: 095 - execute sk-code-review playbook via cli-opencode + deepseek",
   "keywords": [
     "feature",
@@ -14,11 +14,12 @@
     "cli-opencode",
     "deepseek"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.400Z",
+  "lastUpdated": "2026-06-22T18:54:59.918Z",
   "specId": "095",
   "folderSlug": "sk-code-review-playbook-execution",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 1,
   "memoryNameHistory": []

@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/006-routing-precision-fixes",
+  "specFolder": "skilled-agent-orchestration/z_archive/069-sk-code-motion-dev-and-playbook/006-routing-precision-fixes",
   "description": "Feature Specification: Phase 006 Routing Precision Fixes",
   "keywords": [
     "feature",
@@ -10,11 +10,12 @@
     "precision",
     "fixes"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.146Z",
+  "lastUpdated": "2026-06-22T18:54:59.686Z",
   "specId": "006",
   "folderSlug": "routing-precision-fixes",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "069-sk-code-motion-dev-and-playbook"
   ],
   "memorySequence": 0,

@@ -7,7 +7,7 @@
     ],
     "related_to": []
   },
-  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/001-deep-ai-council/011-iterative-session-findings-registry",
+  "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/001-deep-ai-council/011-iterative-session-findings-registry",
   "description": "Feature Specification: Multi-Topic Session and Findings Registry",
   "keywords": [
     "feature",
@@ -17,11 +17,12 @@
     "findings",
     "registry"
   ],
-  "lastUpdated": "2026-05-26T13:39:54.163431+00:00",
+  "lastUpdated": "2026-06-22T18:55:00.520Z",
   "specId": "011",
   "folderSlug": "iterative-session-findings-registry",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "116-deep-skill-evolution",
     "001-deep-ai-council"
   ],

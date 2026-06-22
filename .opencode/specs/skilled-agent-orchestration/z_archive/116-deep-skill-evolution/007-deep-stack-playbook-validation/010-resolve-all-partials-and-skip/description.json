@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/010-resolve-all-partials-and-skip",
+  "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/007-deep-stack-playbook-validation/010-resolve-all-partials-and-skip",
   "description": "Remediation: Resolve all 007 PARTIALs + the DR-032 SKIP (Phase 010, READY push)",
   "keywords": [
     "remediation",
@@ -13,11 +13,12 @@
     "ready",
     "push"
   ],
-  "lastUpdated": "2026-05-28T21:38:19.836Z",
+  "lastUpdated": "2026-06-22T18:55:00.844Z",
   "specId": "010",
   "folderSlug": "resolve-all-partials-and-skip",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "116-deep-skill-evolution",
     "007-deep-stack-playbook-validation"
   ],

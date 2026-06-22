@@ -27,7 +27,7 @@
     ".opencode/skills/sk-code/references/router/cross_stack_pairing.md",
     ".opencode/skills/sk-code/changelog/v1.3.0.0.md"
   ],
-  "specFolder": "skilled-agent-orchestration/056-sk-code-fullstack-branch",
+  "specFolder": "skilled-agent-orchestration/z_archive/056-sk-code-fullstack-branch",
   "description": "Feature Specification: sk-code multi-stack scaffolding",
   "keywords": [
     "feature",
@@ -36,11 +36,12 @@
     "multi-stack",
     "scaffolding"
   ],
-  "lastUpdated": "2026-05-16T17:59:27.926Z",
+  "lastUpdated": "2026-06-22T18:54:59.489Z",
   "specId": "056",
   "folderSlug": "sk-code-fullstack-branch",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 2,
   "memoryNameHistory": [

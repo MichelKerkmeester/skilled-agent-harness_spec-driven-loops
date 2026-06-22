@@ -1,17 +1,22 @@
 {
-  "specFolder": "112-commit-standards-and-retroactive-rewrite/004-cli-devin-rewrite-prompts",
-  "description": "Phase 4: cli-devin-rewrite-prompts",
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/112-commit-standards-and-retroactive-rewrite/004-cli-devin-rewrite-prompts",
+  "description": "Phase 004: cli-devin Rewrite Prompts",
   "keywords": [
     "phase",
-    "cli-devin-rewrite-prompts"
+    "004",
+    "cli-devin",
+    "rewrite",
+    "prompts"
   ],
-  "lastUpdated": "2026-05-16T09:42:35.847Z",
+  "lastUpdated": "2026-06-22T18:55:00.237Z",
   "specId": "004",
   "folderSlug": "cli-devin-rewrite-prompts",
   "parentChain": [
+    "skilled-agent-orchestration",
+    "z_archive",
     "112-commit-standards-and-retroactive-rewrite"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

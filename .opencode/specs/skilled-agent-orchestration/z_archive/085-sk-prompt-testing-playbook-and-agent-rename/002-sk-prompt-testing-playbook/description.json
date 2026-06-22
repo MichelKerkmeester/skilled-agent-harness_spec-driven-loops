@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/085-sk-prompt-testing-playbook-and-agent-rename/002-sk-prompt-testing-playbook",
+  "specFolder": "skilled-agent-orchestration/z_archive/085-sk-prompt-testing-playbook-and-agent-rename/002-sk-prompt-testing-playbook",
   "description": "Feature Specification: Phase 002 — Manual Testing Playbook for sk-prompt Skill",
   "keywords": [
     "feature",
@@ -13,11 +13,12 @@
     "sk-prompt",
     "skill"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.348Z",
+  "lastUpdated": "2026-06-22T18:54:59.886Z",
   "specId": "002",
   "folderSlug": "sk-prompt-testing-playbook",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "085-sk-prompt-testing-playbook-and-agent-rename"
   ],
   "memorySequence": 0,

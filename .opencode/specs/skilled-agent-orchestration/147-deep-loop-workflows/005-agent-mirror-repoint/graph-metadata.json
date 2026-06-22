@@ -38,7 +38,7 @@
       "agent-mirror-repoint"
     ],
     "importance_tier": "important",
-    "status": "planned_(scaffold)",
+    "status": "in_progress",
     "key_files": [
       "checklist.md",
       "plan.md",
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The five deep agents (deep-context, deep-research, deep-review, deep-improvement, ai-council) exist as real three-file mirrors (.opencode/agents canonical + .claude + .codex), not symlinks; a missed mirror is a silent native-seat failure in that runtime (risk R5). The decision is to keep the five agent names (the ai-council/deep-ai-council asymmetry is precedent that a skill rename does not force an agent rename). The ai-council agent is the highest-effort (~27 path edits, executing persist-artifacts.cjs from literal paths in lockstep with output_schema.md), and the .codex toml mirrors are hand-maintained derived files guarded by the mirror-sync verifier.",
     "created_at": "2026-06-14T20:16:09.679Z",
-    "last_save_at": "2026-06-16T14:27:20.566Z",
+    "last_save_at": "2026-06-22T18:54:59.096Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

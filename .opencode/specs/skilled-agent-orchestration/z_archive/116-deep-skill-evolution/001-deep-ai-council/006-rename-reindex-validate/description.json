@@ -1,7 +1,7 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/001-deep-ai-council/006-rename-reindex-validate",
-  "description": "Feature Specification: 115/006 \u2014 reindex + validate + reconcile",
+  "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/001-deep-ai-council/006-rename-reindex-validate",
+  "description": "Feature Specification: 115/006 — reindex + validate + reconcile",
   "keywords": [
     "feature",
     "specification",
@@ -11,11 +11,12 @@
     "validate",
     "reconcile"
   ],
-  "lastUpdated": "2026-05-26T13:39:54.163431+00:00",
+  "lastUpdated": "2026-06-22T18:55:00.490Z",
   "specId": "006",
   "folderSlug": "rename-reindex-validate",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "116-deep-skill-evolution",
     "001-deep-ai-council"
   ],

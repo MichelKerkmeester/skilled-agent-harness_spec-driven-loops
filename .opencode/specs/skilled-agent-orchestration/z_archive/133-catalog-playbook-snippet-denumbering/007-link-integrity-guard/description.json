@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": ".opencode/specs/skilled-agent-orchestration/133-catalog-playbook-snippet-denumbering/007-link-integrity-guard",
+  "specFolder": "skilled-agent-orchestration/z_archive/133-catalog-playbook-snippet-denumbering/007-link-integrity-guard",
   "description": "Feature Specification: Markdown-Link Integrity Guard",
   "keywords": [
     "feature",
@@ -9,13 +9,12 @@
     "integrity",
     "guard"
   ],
-  "lastUpdated": "2026-06-06T17:14:39.088Z",
+  "lastUpdated": "2026-06-22T18:55:01.464Z",
   "specId": "007",
   "folderSlug": "link-integrity-guard",
   "parentChain": [
-    ".opencode",
-    "specs",
     "skilled-agent-orchestration",
+    "z_archive",
     "133-catalog-playbook-snippet-denumbering"
   ],
   "memorySequence": 2,

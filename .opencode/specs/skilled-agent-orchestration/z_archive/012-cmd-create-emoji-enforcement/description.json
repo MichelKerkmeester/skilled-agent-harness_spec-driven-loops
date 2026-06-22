@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/012-cmd-create-emoji-enforcement",
+  "specFolder": "skilled-agent-orchestration/z_archive/012-cmd-create-emoji-enforcement",
   "description": "Feature Specification: Remove Emoji Enforcement from /create Command",
   "keywords": [
     "feature",
@@ -10,11 +10,12 @@
     "create",
     "command"
   ],
-  "lastUpdated": "2026-05-16T17:59:27.653Z",
+  "lastUpdated": "2026-06-22T18:54:59.239Z",
   "specId": "012",
   "folderSlug": "cmd-create-emoji-enforcement",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

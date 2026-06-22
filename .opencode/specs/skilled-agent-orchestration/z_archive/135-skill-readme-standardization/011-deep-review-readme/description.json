@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/135-skill-readme-standardization/011-deep-review-readme",
+  "specFolder": "skilled-agent-orchestration/z_archive/135-skill-readme-standardization/011-deep-review-readme",
   "description": "Feature Specification: deep-review README",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "deep-review",
     "readme"
   ],
-  "lastUpdated": "2026-06-10T04:53:30.780Z",
+  "lastUpdated": "2026-06-22T18:55:01.573Z",
   "specId": "011",
   "folderSlug": "deep-review-readme",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "135-skill-readme-standardization"
   ],
   "memorySequence": 0,

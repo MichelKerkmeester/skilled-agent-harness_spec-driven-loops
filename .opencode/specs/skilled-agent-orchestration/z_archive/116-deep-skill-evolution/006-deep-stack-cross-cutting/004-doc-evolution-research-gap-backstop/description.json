@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting/004-doc-evolution-research-gap-backstop",
+  "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/006-deep-stack-cross-cutting/004-doc-evolution-research-gap-backstop",
   "description": "Feature Specification: deep-research gap backstop for 008 doc-evolution",
   "keywords": [
     "feature",
@@ -11,11 +11,12 @@
     "008",
     "doc-evolution"
   ],
-  "lastUpdated": "2026-05-26T13:39:54.163431+00:00",
+  "lastUpdated": "2026-06-22T18:55:00.758Z",
   "specId": "004",
   "folderSlug": "doc-evolution-research-gap-backstop",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "116-deep-skill-evolution",
     "006-deep-stack-cross-cutting"
   ],

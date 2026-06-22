@@ -1,23 +1,21 @@
 {
-  "specFolder": "skilled-agent-orchestration/120-cli-opencode-minimax-optimization/003-minimax-prompt-framework-benchmark",
-  "description": "MiniMax 2.7 prompt-framework benchmark: TIDD-EC + dense pre-planning won (real MiniMax M2.7 runs, 113 rig); integrated into cli-opencode dispatch path.",
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/120-cli-opencode-minimax-optimization/003-minimax-prompt-framework-benchmark",
+  "description": "Feature Specification: Phase 1: minimax-prompt-framework-benchmark",
   "keywords": [
-    "minimax",
-    "prompt-framework",
-    "benchmark",
-    "tidd-ec",
-    "cli-opencode",
-    "eval-rig",
-    "sk-prompt-small-model"
+    "feature",
+    "specification",
+    "phase",
+    "minimax-prompt-framework-benchmark"
   ],
-  "lastUpdated": "2026-05-28T11:03:06.616Z",
+  "lastUpdated": "2026-06-22T18:55:00.915Z",
   "specId": "003",
   "folderSlug": "minimax-prompt-framework-benchmark",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "120-cli-opencode-minimax-optimization"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -45,7 +45,17 @@
     "skilled-agent-orchestration/137-deep-context-workflow-adoption",
     "skilled-agent-orchestration/145-advisor-doc-trigger-harvest",
     "skilled-agent-orchestration/142-sk-code-ponytail-based-refinement",
-    "skilled-agent-orchestration/144-operate-like-fable-5"
+    "skilled-agent-orchestration/144-operate-like-fable-5",
+    "skilled-agent-orchestration/143-sk-design-interface",
+    "skilled-agent-orchestration/145-mcp-open-design",
+    "skilled-agent-orchestration/146-mcp-figma-with-direct-cli-support",
+    "skilled-agent-orchestration/147-deep-loop-workflows",
+    "skilled-agent-orchestration/148-mcp-skill-install-doctor-standardization",
+    "skilled-agent-orchestration/149-kimi-k2-7-code-support",
+    "skilled-agent-orchestration/150-parent-nested-skill-pattern",
+    "skilled-agent-orchestration/151-deep-loop-kasper-based-refinement",
+    "skilled-agent-orchestration/152-sk-design-md-generator",
+    "skilled-agent-orchestration/153-sk-design-interface-rename"
   ],
   "manual": {
     "depends_on": [],
@@ -53,45 +63,25 @@
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": [
-      "skilled-agent-orchestration",
-      "skilled",
-      "agent",
-      "orchestration",
-      "skilled-agent",
-      "track",
-      "skill",
-      "command",
-      "cli",
-      "provider",
-      "executor",
-      "skill-advisor"
-    ],
+    "trigger_phrases": [],
     "key_topics": [
-      "skilled-agent",
-      "orchestration",
-      "track",
-      "skill",
-      "agent",
-      "command",
-      "cli",
-      "provider",
-      "executor",
-      "skill-advisor",
-      "mcp",
-      "deep-loop"
+      "packet",
+      "metadata",
+      "derived",
+      "canonical",
+      "spec",
+      "documents"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [],
     "entities": [],
-    "causal_summary": "Track folder for skilled-agent-orchestration packets — improving how skills, agents, commands, and CLI executors collaborate across the OpenCode runtime. Hosts spec folders 051-070+ covering CLI providers, skill patterns + removals, sk-code merger + fullstack split, command-spec-kit UX, agent improvements, deep-loop stress tests, sk-doc alignment, agent creation, skill-advisor re-indexing, MCP transfers, sk-doc reorg, motion.dev integration, and rename refactors.",
+    "causal_summary": "Packet metadata derived from canonical spec documents.",
     "created_at": "2026-05-05T11:35:00.000Z",
-    "last_save_at": "2026-06-15T18:14:27.412Z",
+    "last_save_at": "2026-06-22T18:54:58.946Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": [
-      "description.json"
-    ],
+    "source_docs": [],
     "last_active_child_id": null,
     "last_active_at": null
   }

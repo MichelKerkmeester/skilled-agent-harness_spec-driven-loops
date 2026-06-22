@@ -26,7 +26,7 @@
     "completion_pct": 0,
     "last_active_child_id": null
   },
-  "specFolder": "skilled-agent-orchestration/103-spec-kit-auto-mode-noninteractive-contract/003-skill-advisor-render-103-alignment",
+  "specFolder": "skilled-agent-orchestration/z_archive/103-spec-kit-auto-mode-noninteractive-contract/003-skill-advisor-render-103-alignment",
   "description": "Feature Specification: Skill Advisor Render-Layer 103 Alignment",
   "keywords": [
     "feature",
@@ -37,11 +37,12 @@
     "103",
     "alignment"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.613Z",
+  "lastUpdated": "2026-06-22T18:55:00.118Z",
   "specId": "003",
   "folderSlug": "skill-advisor-render-103-alignment",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "103-spec-kit-auto-mode-noninteractive-contract"
   ],
   "memorySequence": 0,

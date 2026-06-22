@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger",
+  "specFolder": "skilled-agent-orchestration/z_archive/123-deep-loop-parallel-fanout/002-capped-pool-status-ledger",
   "description": "Phase 002 — Capped worker pool + status ledger",
   "keywords": [
     "phase",
@@ -10,11 +10,12 @@
     "status",
     "ledger"
   ],
-  "lastUpdated": "2026-06-01T11:13:19.474Z",
+  "lastUpdated": "2026-06-22T18:55:01.132Z",
   "specId": "002",
   "folderSlug": "capped-pool-status-ledger",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "123-deep-loop-parallel-fanout"
   ],
   "memorySequence": 0,

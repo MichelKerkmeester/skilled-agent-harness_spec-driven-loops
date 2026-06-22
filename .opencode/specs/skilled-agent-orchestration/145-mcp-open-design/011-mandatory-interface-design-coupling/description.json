@@ -6,11 +6,9 @@
     "feature",
     "specification",
     "phase",
-    "mandatory-interface-design-coupling",
-    "mcp-open-design",
-    "sk-design-interface"
+    "mandatory-interface-design-coupling"
   ],
-  "lastUpdated": "2026-06-16T00:00:00.000Z",
+  "lastUpdated": "2026-06-22T18:54:59.051Z",
   "specId": "011",
   "folderSlug": "mandatory-interface-design-coupling",
   "parentChain": [

@@ -17,7 +17,7 @@
   "completed_at": "2026-06-07T11:30:00Z",
   "is_phase_parent": false,
   "children": [],
-  "specFolder": "skilled-agent-orchestration/134-deep-context-gathering/006-native-default-executor-pool",
+  "specFolder": "skilled-agent-orchestration/z_archive/134-deep-context-gathering/006-native-default-executor-pool",
   "description": "Feature Specification: Deep-context native-only default executor pool",
   "keywords": [
     "feature",
@@ -28,11 +28,12 @@
     "executor",
     "pool"
   ],
-  "lastUpdated": "2026-06-10T04:53:30.723Z",
+  "lastUpdated": "2026-06-22T18:55:01.503Z",
   "specId": "006",
   "folderSlug": "native-default-executor-pool",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "134-deep-context-gathering"
   ],
   "memorySequence": 0,

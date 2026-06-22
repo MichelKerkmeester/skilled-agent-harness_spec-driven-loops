@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/029-sk-deep-research-first-upgrade",
+  "specFolder": "skilled-agent-orchestration/z_archive/029-sk-deep-research-first-upgrade",
   "description": "Feature Specification: sk-deep-research First Upgrade",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "first",
     "upgrade"
   ],
-  "lastUpdated": "2026-05-16T17:59:27.726Z",
+  "lastUpdated": "2026-06-22T18:54:59.317Z",
   "specId": "029",
   "folderSlug": "sk-deep-research-first-upgrade",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

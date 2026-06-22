@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/011-migration-closeout-cli-verification",
+  "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/003-deep-loop-runtime/011-migration-closeout-cli-verification",
   "description": "Feature Specification: deep-loop MCP→CLI migration closeout + CLI verification",
   "keywords": [
     "feature",
@@ -11,11 +11,12 @@
     "closeout",
     "verification"
   ],
-  "lastUpdated": "2026-05-25T13:19:42.745Z",
+  "lastUpdated": "2026-06-22T18:55:00.663Z",
   "specId": "011",
   "folderSlug": "migration-closeout-cli-verification",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "116-deep-skill-evolution",
     "003-deep-loop-runtime"
   ],

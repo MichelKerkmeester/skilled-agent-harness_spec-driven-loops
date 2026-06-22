@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/111-base-files-renumbering-name-cleanup",
+  "specFolder": "skilled-agent-orchestration/z_archive/111-base-files-renumbering-name-cleanup",
   "description": "111: 026 cleanup remediation (Wave 3)",
   "keywords": [
     "111",
@@ -9,11 +9,12 @@
     "remediation",
     "wave"
   ],
-  "lastUpdated": "2026-05-21T10:22:37.559Z",
+  "lastUpdated": "2026-06-22T18:55:00.206Z",
   "specId": "111",
   "folderSlug": "base-files-renumbering-name-cleanup",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 1,
   "memoryNameHistory": []

@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/101-deep-multi-ai-council-skill/006-council-graph-value-scenario-automation",
+  "specFolder": "skilled-agent-orchestration/z_archive/101-deep-multi-ai-council-skill/006-council-graph-value-scenario-automation",
   "description": "Feature Specification: 101/006 Council Graph Value-Scenario Automation",
   "keywords": [
     "feature",
@@ -12,11 +12,12 @@
     "value-scenario",
     "automation"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.559Z",
+  "lastUpdated": "2026-06-22T18:55:00.054Z",
   "specId": "006",
   "folderSlug": "council-graph-value-scenario-automation",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "101-deep-multi-ai-council-skill"
   ],
   "memorySequence": 0,

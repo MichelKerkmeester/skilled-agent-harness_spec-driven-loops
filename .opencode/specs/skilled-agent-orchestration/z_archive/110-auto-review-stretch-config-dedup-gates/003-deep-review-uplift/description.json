@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/110-auto-review-stretch-config-dedup-gates/003-deep-review-uplift",
+  "specFolder": "skilled-agent-orchestration/z_archive/110-auto-review-stretch-config-dedup-gates/003-deep-review-uplift",
   "description": "Feature Specification: H-7 finding dedup + H-9 bounded evidence for deep-review",
   "keywords": [
     "feature",
@@ -13,11 +13,12 @@
     "evidence",
     "deep-review"
   ],
-  "lastUpdated": "2026-05-23T15:24:58.860Z",
+  "lastUpdated": "2026-06-22T18:55:00.195Z",
   "specId": "003",
   "folderSlug": "deep-review-uplift",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "110-auto-review-stretch-config-dedup-gates"
   ],
   "memorySequence": 0,

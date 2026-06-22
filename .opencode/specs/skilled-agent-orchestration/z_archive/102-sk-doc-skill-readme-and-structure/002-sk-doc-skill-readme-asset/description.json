@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/102-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset",
+  "specFolder": "skilled-agent-orchestration/z_archive/102-sk-doc-skill-readme-and-structure/002-sk-doc-skill-readme-asset",
   "description": "Feature Specification: sk-doc skill README asset",
   "keywords": [
     "feature",
@@ -10,11 +10,12 @@
     "readme",
     "asset"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.581Z",
+  "lastUpdated": "2026-06-22T18:55:00.079Z",
   "specId": "002",
   "folderSlug": "sk-doc-skill-readme-asset",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "102-sk-doc-skill-readme-and-structure"
   ],
   "memorySequence": 1,

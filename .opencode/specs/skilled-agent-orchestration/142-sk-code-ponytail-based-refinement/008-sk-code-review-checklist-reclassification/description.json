@@ -1,17 +1,24 @@
 {
-  "specFolder": "142-sk-code-ponytail-based-refinement/008-sk-code-review-checklist-reclassification",
-  "description": "Phase 8: reclassify sk-code-review review checklists from references/ to assets/ and align them to the sk-doc asset template, updating all coupling and runtime mirrors.",
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/142-sk-code-ponytail-based-refinement/008-sk-code-review-checklist-reclassification",
+  "description": "Feature Specification: Phase 8: sk-code-review Checklist Reclassification (references to assets)",
   "keywords": [
+    "feature",
+    "specification",
     "phase",
-    "sk-code-review-checklist-reclassification"
+    "sk-code-review",
+    "checklist",
+    "reclassification",
+    "references",
+    "assets"
   ],
-  "lastUpdated": "2026-06-14T07:35:35.215Z",
+  "lastUpdated": "2026-06-22T18:54:58.970Z",
   "specId": "008",
   "folderSlug": "sk-code-review-checklist-reclassification",
   "parentChain": [
+    "skilled-agent-orchestration",
     "142-sk-code-ponytail-based-refinement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -21,7 +21,7 @@
     "003-runtime-feature-utilization",
     "004-reference-architecture-alignment"
   ],
-  "specFolder": "skilled-agent-orchestration/134-deep-context-gathering",
+  "specFolder": "skilled-agent-orchestration/z_archive/134-deep-context-gathering",
   "description": "Feature Specification: deep-context loop (Phase Parent)",
   "keywords": [
     "feature",
@@ -31,11 +31,12 @@
     "phase",
     "parent"
   ],
-  "lastUpdated": "2026-06-10T04:53:30.699Z",
+  "lastUpdated": "2026-06-22T18:55:01.469Z",
   "specId": "134",
   "folderSlug": "deep-context-gathering",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

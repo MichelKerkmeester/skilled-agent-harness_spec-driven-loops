@@ -1,7 +1,7 @@
 {
   "title": "Feature Specification: add agent lane-awareness note",
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/011-add-agent-lane-awareness-note",
+  "specFolder": "skilled-agent-orchestration/z_archive/121-deep-agent-improvement-benchmark-mode/011-add-agent-lane-awareness-note",
   "description": "Feature Specification: add agent lane-awareness note",
   "keywords": [
     "feature",
@@ -11,11 +11,12 @@
     "lane-awareness",
     "note"
   ],
-  "lastUpdated": "2026-06-01T11:13:19.419Z",
+  "lastUpdated": "2026-06-22T18:55:00.986Z",
   "specId": "011",
   "folderSlug": "add-agent-lane-awareness-note",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "121-deep-agent-improvement-benchmark-mode"
   ],
   "memorySequence": 0,

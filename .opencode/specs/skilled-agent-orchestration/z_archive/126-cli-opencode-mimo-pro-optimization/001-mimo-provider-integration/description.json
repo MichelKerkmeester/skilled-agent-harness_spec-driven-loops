@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/001-mimo-provider-integration",
+  "specFolder": "skilled-agent-orchestration/z_archive/126-cli-opencode-mimo-pro-optimization/001-mimo-provider-integration",
   "description": "Feature Specification: Phase 1: mimo-provider-integration",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "phase",
     "mimo-provider-integration"
   ],
-  "lastUpdated": "2026-06-02T16:26:46.093Z",
+  "lastUpdated": "2026-06-22T18:55:01.228Z",
   "specId": "001",
   "folderSlug": "mimo-provider-integration",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "126-cli-opencode-mimo-pro-optimization"
   ],
   "memorySequence": 0,

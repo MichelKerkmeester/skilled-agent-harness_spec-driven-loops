@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support",
+  "specFolder": "skilled-agent-orchestration/z_archive/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support",
   "description": "Feature Specification: 101/003 Deep AI Council Graph Support",
   "keywords": [
     "feature",
@@ -12,11 +12,12 @@
     "graph",
     "support"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.544Z",
+  "lastUpdated": "2026-06-22T18:55:00.038Z",
   "specId": "003",
   "folderSlug": "deep-ai-council-graph-support",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "101-deep-multi-ai-council-skill"
   ],
   "memorySequence": 0,

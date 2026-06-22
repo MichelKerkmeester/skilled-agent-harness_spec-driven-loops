@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": ".opencode/specs/skilled-agent-orchestration/120-cli-opencode-minimax-optimization/004-minimax-token-plan-provider",
+  "specFolder": "skilled-agent-orchestration/z_archive/120-cli-opencode-minimax-optimization/004-minimax-token-plan-provider",
   "description": "Feature Specification: Phase 4: minimax-token-plan-provider",
   "keywords": [
     "feature",
@@ -8,13 +8,12 @@
     "phase",
     "minimax-token-plan-provider"
   ],
-  "lastUpdated": "2026-06-01T06:51:07.987Z",
+  "lastUpdated": "2026-06-22T18:55:00.922Z",
   "specId": "004",
   "folderSlug": "minimax-token-plan-provider",
   "parentChain": [
-    ".opencode",
-    "specs",
     "skilled-agent-orchestration",
+    "z_archive",
     "120-cli-opencode-minimax-optimization"
   ],
   "memorySequence": 1,

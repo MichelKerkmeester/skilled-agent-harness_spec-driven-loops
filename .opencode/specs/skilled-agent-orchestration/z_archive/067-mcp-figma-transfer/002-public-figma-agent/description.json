@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/067-mcp-figma-transfer/002-public-figma-agent",
+  "specFolder": "skilled-agent-orchestration/z_archive/067-mcp-figma-transfer/002-public-figma-agent",
   "description": "Feature Specification: Phase 2 — Dual-publish Figma agent to AI_Systems/Public",
   "keywords": [
     "feature",
@@ -11,11 +11,12 @@
     "agent",
     "public"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.080Z",
+  "lastUpdated": "2026-06-22T18:54:59.615Z",
   "specId": "002",
   "folderSlug": "public-figma-agent",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "067-mcp-figma-transfer"
   ],
   "memorySequence": 0,

@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/005-validation-and-docs",
+  "specFolder": "skilled-agent-orchestration/z_archive/122-deep-improvement-skill-benchmark-mode/005-validation-and-docs",
   "description": "Phase 005 — Validation & docs (three-lane)",
   "keywords": [
     "phase",
@@ -8,11 +8,12 @@
     "docs",
     "three-lane"
   ],
-  "lastUpdated": "2026-06-01T11:13:19.459Z",
+  "lastUpdated": "2026-06-22T18:55:01.064Z",
   "specId": "005",
   "folderSlug": "validation-and-docs",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "122-deep-improvement-skill-benchmark-mode"
   ],
   "memorySequence": 0,

@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/001-core-isolation-deliberation",
+  "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/003-deep-loop-runtime/001-core-isolation-deliberation",
   "description": "Feature Specification: 117 — Deep-Loop Core Script Isolation Deliberation",
   "keywords": [
     "feature",
@@ -12,11 +12,12 @@
     "isolation",
     "deliberation"
   ],
-  "lastUpdated": "2026-05-25T11:53:22.323Z",
+  "lastUpdated": "2026-06-22T18:55:00.602Z",
   "specId": "001",
   "folderSlug": "core-isolation-deliberation",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "116-deep-skill-evolution",
     "003-deep-loop-runtime"
   ],

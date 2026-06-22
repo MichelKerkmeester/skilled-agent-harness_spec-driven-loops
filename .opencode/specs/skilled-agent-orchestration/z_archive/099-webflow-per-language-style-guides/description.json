@@ -29,7 +29,7 @@
   ],
   "importance_tier": "normal",
   "contextType": "implementation",
-  "specFolder": "skilled-agent-orchestration/099-webflow-per-language-style-guides",
+  "specFolder": "skilled-agent-orchestration/z_archive/099-webflow-per-language-style-guides",
   "description": "Feature Specification: Refactor sk-code Webflow style guides to per-language structure mirroring opencode",
   "keywords": [
     "feature",
@@ -44,11 +44,12 @@
     "mirroring",
     "opencode"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.518Z",
+  "lastUpdated": "2026-06-22T18:55:00.011Z",
   "specId": "099",
   "folderSlug": "webflow-per-language-style-guides",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

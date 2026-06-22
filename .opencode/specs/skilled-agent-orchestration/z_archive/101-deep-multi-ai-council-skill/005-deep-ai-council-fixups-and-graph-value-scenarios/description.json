@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/101-deep-multi-ai-council-skill/005-deep-ai-council-fixups-and-graph-value-scenarios",
+  "specFolder": "skilled-agent-orchestration/z_archive/101-deep-multi-ai-council-skill/005-deep-ai-council-fixups-and-graph-value-scenarios",
   "description": "Feature Specification: 101/005 Deep AI Council Fix-ups and Graph Value Scenarios",
   "keywords": [
     "feature",
@@ -14,11 +14,12 @@
     "value",
     "scenarios"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.554Z",
+  "lastUpdated": "2026-06-22T18:55:00.049Z",
   "specId": "005",
   "folderSlug": "deep-ai-council-fixups-and-graph-value-scenarios",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "101-deep-multi-ai-council-skill"
   ],
   "memorySequence": 0,

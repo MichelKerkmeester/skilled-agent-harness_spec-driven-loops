@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/120-cli-opencode-minimax-optimization/002-minimax-efficiency-deep-research",
+  "specFolder": "skilled-agent-orchestration/z_archive/120-cli-opencode-minimax-optimization/002-minimax-efficiency-deep-research",
   "description": "Feature Specification: Phase 2: minimax-efficiency-deep-research",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "phase",
     "minimax-efficiency-deep-research"
   ],
-  "lastUpdated": "2026-05-28T21:38:19.852Z",
+  "lastUpdated": "2026-06-22T18:55:00.910Z",
   "specId": "002",
   "folderSlug": "minimax-efficiency-deep-research",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "120-cli-opencode-minimax-optimization"
   ],
   "memorySequence": 0,

@@ -1,17 +1,18 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/130-prompt-knowledge-layering/014-doc-divider-sweep-and-sk-prompt-cleanup",
+  "specFolder": "skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering/014-doc-divider-sweep-and-sk-prompt-cleanup",
   "description": "Feature Specification: doc-divider-sweep-and-sk-prompt-cleanup",
   "keywords": [
     "feature",
     "specification",
     "doc-divider-sweep-and-sk-prompt-cleanup"
   ],
-  "lastUpdated": "2026-06-03T14:51:58.073Z",
+  "lastUpdated": "2026-06-22T18:55:01.373Z",
   "specId": "014",
   "folderSlug": "doc-divider-sweep-and-sk-prompt-cleanup",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "130-prompt-knowledge-layering"
   ],
   "memorySequence": 0,

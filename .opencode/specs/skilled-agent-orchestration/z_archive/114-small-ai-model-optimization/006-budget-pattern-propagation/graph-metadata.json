@@ -34,7 +34,7 @@
       "phase"
     ],
     "importance_tier": "normal",
-    "status": "implemented",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/cli-opencode/references/context-budget.md",
       ".opencode/skills/cli-opencode/assets/prompt_templates.md",
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Phase E of 114 roadmap. Propagate the context-budget patterns from cli-devin Phase C to cli-opencode (eviction support for larger-context models like DeepSeek-v4-pro / Kimi-k2.6) and sk-prompt (budget-awareness composition guidance in cli_prompt_quality_card.md). 2-stage tool routing port from smallcode is deferred or dropped per research iter-011 verdict (overlaps mcp-code-mode). Effort: ~6-12 hours.",
     "created_at": "2026-05-18T12:42:58.569Z",
-    "last_save_at": "2026-06-08T17:32:20.459Z",
+    "last_save_at": "2026-06-22T18:55:00.333Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

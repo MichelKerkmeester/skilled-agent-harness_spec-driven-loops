@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/040-sk-deep-research-review-improvement-1",
+  "specFolder": "skilled-agent-orchestration/z_archive/040-sk-deep-research-review-improvement-1",
   "description": "Feature Specification: 040 Auto Deep Research / Review Improvement",
   "keywords": [
     "feature",
@@ -11,11 +11,12 @@
     "review",
     "improvement"
   ],
-  "lastUpdated": "2026-05-16T17:59:27.774Z",
+  "lastUpdated": "2026-06-22T18:54:59.354Z",
   "specId": "040",
   "folderSlug": "sk-deep-research-review-improvement-1",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

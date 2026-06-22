@@ -41,7 +41,7 @@
       "cross-ai"
     ],
     "importance_tier": "important",
-    "status": "planned_—_awaiting_iteration_001_dispatch",
+    "status": "complete",
     "key_files": [
       "research/review-report.md",
       "research/iterations/iteration-020.md",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The upstream `dzianisv/opencode-plugins` repository ships an `auto-review` OpenCode plugin (branch `issue-136-package-auto-review`) that automatically dispatches a cross-model review session whenever an OpenCode session goes idle. The plugin demonstrates several design choices we have not adopted in our own ecosystem: event-driven activation via `session.idle` hooks, dynamic provider/model discovery via the OpenCode SDK, deterministic cross-AI family ranking, marker-based loop prevention, abort-race handling, and a structured PASS/FAIL/UNKNOWN checklist contract. We need to evaluate whether any of these patterns would improve our local skills (`sk-code-review`, `deep-research`, `deep-review`, `deep-agent-improvement`) and the OpenCode plugin ecosystem (`mk-skill-advisor`, `mk-code-graph`).",
     "created_at": "2026-05-16T06:30:00Z",
-    "last_save_at": "2026-06-15T09:09:33.600Z",
+    "last_save_at": "2026-06-22T18:55:00.135Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -5,7 +5,7 @@
   "status": "planned",
   "track": "skilled-agent-orchestration",
   "created": "2026-05-31",
-  "specFolder": "skilled-agent-orchestration/125-feature-catalog-template-improvements/008-master-catalog-enrichment",
+  "specFolder": "skilled-agent-orchestration/z_archive/125-feature-catalog-template-improvements/008-master-catalog-enrichment",
   "description": "Phase 008: Master Catalog Enrichment — All Skills",
   "keywords": [
     "phase",
@@ -15,11 +15,12 @@
     "enrichment",
     "skills"
   ],
-  "lastUpdated": "2026-06-01T11:13:19.549Z",
+  "lastUpdated": "2026-06-22T18:55:01.213Z",
   "specId": "008",
   "folderSlug": "master-catalog-enrichment",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "125-feature-catalog-template-improvements"
   ],
   "memorySequence": 0,

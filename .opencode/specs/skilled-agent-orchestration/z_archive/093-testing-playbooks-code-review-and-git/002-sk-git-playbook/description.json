@@ -1,7 +1,7 @@
 {
   "completionPct": 0,
   "lastOutcome": "Authored Level 2 spec docs; awaiting cli-codex implementation dispatch.",
-  "specFolder": "skilled-agent-orchestration/093-testing-playbooks-code-review-and-git/002-sk-git-playbook",
+  "specFolder": "skilled-agent-orchestration/z_archive/093-testing-playbooks-code-review-and-git/002-sk-git-playbook",
   "description": "Feature Specification: 002 - sk-git manual testing playbook",
   "keywords": [
     "feature",
@@ -12,11 +12,12 @@
     "testing",
     "playbook"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.390Z",
+  "lastUpdated": "2026-06-22T18:54:59.912Z",
   "specId": "002",
   "folderSlug": "sk-git-playbook",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "093-testing-playbooks-code-review-and-git"
   ],
   "memorySequence": 1,

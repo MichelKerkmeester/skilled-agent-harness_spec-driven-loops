@@ -1,7 +1,7 @@
 {
   "completionPct": 100,
   "lastOutcome": "Phases 002-005 complete. Final CP replay: CP-100 sk-code-review, CP-101 non-memory top-1, CP-102 no recommendations, CP-103 sk-deep-review alias-aware PASS, CP-104 memory:save, CP-105 create:testing-playbook.",
-  "specFolder": "skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test",
+  "specFolder": "skilled-agent-orchestration/z_archive/065-skill-advisor-reindex-and-stress-test",
   "description": "Spec: 065 - skill-advisor routing quality program",
   "keywords": [
     "spec",
@@ -11,11 +11,12 @@
     "quality",
     "program"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.034Z",
+  "lastUpdated": "2026-06-22T18:54:59.558Z",
   "specId": "065",
   "folderSlug": "skill-advisor-reindex-and-stress-test",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 1,
   "memoryNameHistory": []

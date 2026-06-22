@@ -1,17 +1,18 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/130-prompt-knowledge-layering/016-sk-prompt-playbook-forkability-decouple",
+  "specFolder": "skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering/016-sk-prompt-playbook-forkability-decouple",
   "description": "Feature Specification: sk-prompt-playbook-forkability-decouple",
   "keywords": [
     "feature",
     "specification",
     "sk-prompt-playbook-forkability-decouple"
   ],
-  "lastUpdated": "2026-06-07T14:08:17.967Z",
+  "lastUpdated": "2026-06-22T18:55:01.383Z",
   "specId": "016",
   "folderSlug": "sk-prompt-playbook-forkability-decouple",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "130-prompt-knowledge-layering"
   ],
   "memorySequence": 0,

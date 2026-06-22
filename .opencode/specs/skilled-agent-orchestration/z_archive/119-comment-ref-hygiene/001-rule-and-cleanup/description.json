@@ -27,7 +27,7 @@
     ".opencode/skills/sk-code/references/opencode/shared/universal_patterns.md",
     ".opencode/skills/sk-code/references/webflow/shared/cross_language_rules.md"
   ],
-  "specFolder": "skilled-agent-orchestration/119-comment-ref-hygiene/001-rule-and-cleanup",
+  "specFolder": "skilled-agent-orchestration/z_archive/119-comment-ref-hygiene/001-rule-and-cleanup",
   "description": "Feature Specification: Forbid ephemeral-artifact references in code comments",
   "keywords": [
     "feature",
@@ -38,11 +38,12 @@
     "code",
     "comments"
   ],
-  "lastUpdated": "2026-06-01T11:13:19.378Z",
+  "lastUpdated": "2026-06-22T18:55:00.888Z",
   "specId": "001",
   "folderSlug": "rule-and-cleanup",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "119-comment-ref-hygiene"
   ],
   "memorySequence": 0,

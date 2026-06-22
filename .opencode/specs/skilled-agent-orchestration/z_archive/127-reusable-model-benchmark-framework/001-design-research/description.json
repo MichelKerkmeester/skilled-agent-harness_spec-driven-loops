@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/127-reusable-model-benchmark-framework/001-design-research",
+  "specFolder": "skilled-agent-orchestration/z_archive/127-reusable-model-benchmark-framework/001-design-research",
   "description": "Feature Specification: Reusable model-benchmark framework for deep-improvement",
   "keywords": [
     "feature",
@@ -10,11 +10,12 @@
     "framework",
     "deep-improvement"
   ],
-  "lastUpdated": "2026-06-02T16:26:46.111Z",
+  "lastUpdated": "2026-06-22T18:55:01.257Z",
   "specId": "001",
   "folderSlug": "design-research",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "127-reusable-model-benchmark-framework"
   ],
   "memorySequence": 0,

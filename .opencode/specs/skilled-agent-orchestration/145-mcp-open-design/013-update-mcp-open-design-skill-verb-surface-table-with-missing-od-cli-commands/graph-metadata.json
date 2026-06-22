@@ -39,7 +39,7 @@
       "reference"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/mcp-open-design/references/od_cli_reference.md",
       ".opencode/skills/mcp-open-design/references/tool_surface.md",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The `od_cli_reference.md` verb surface table (Section 4) used by the `mcp-open-design` skill is incomplete. Live `od` CLI usage reveals several commands that are absent from the formal classification: `od project create`, `od files list`/`read`, `od skills list`, `od design-systems list`, `od daemon start`, `od doctor`, and `od status --json`. Agents and operators relying on the skill's documentation are unaware of these commands or their read-only vs mutating classification. Additionally, `od doctor` is flagged as `[UNVERIFIED]` in the current table despite being confirmed working from live usage.",
     "created_at": "2026-06-21T13:29:37Z",
-    "last_save_at": "2026-06-21T13:36:13.528Z",
+    "last_save_at": "2026-06-22T18:54:59.058Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

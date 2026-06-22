@@ -39,7 +39,7 @@
       "coverage"
     ],
     "importance_tier": "important",
-    "status": "planned_(scaffold)",
+    "status": "in_progress",
     "key_files": [
       ".opencode/commands/doctor/assets/doctor_deep-loop.yaml",
       ".opencode/commands/doctor/_routes.yaml",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The five old skill directories must be deleted only after every surface (skill, commands, agents, advisor, governance, docs, runtime) is green, so that rollback stays per-strata until the very end. The /doctor deep-loop council-graph coverage gap (blocker B1 / risk R8) must be resolved before the council mode ships unmonitored — /doctor deep-loop currently probes only deep-loop-graph.sqlite, not the host-confirmed council-graph.sqlite.",
     "created_at": "2026-06-14T20:16:09.680Z",
-    "last_save_at": "2026-06-16T14:27:20.572Z",
+    "last_save_at": "2026-06-22T18:54:59.104Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

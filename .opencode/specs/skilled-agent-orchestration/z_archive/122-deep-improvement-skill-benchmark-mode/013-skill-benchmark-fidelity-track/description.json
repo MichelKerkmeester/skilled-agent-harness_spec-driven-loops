@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/013-skill-benchmark-fidelity-track",
+  "specFolder": "skilled-agent-orchestration/z_archive/122-deep-improvement-skill-benchmark-mode/013-skill-benchmark-fidelity-track",
   "description": "Feature Specification: Skill-Benchmark D3/D4 Fidelity Track",
   "keywords": [
     "feature",
@@ -9,11 +9,12 @@
     "fidelity",
     "track"
   ],
-  "lastUpdated": "2026-06-02T16:26:46.048Z",
+  "lastUpdated": "2026-06-22T18:55:01.105Z",
   "specId": "013",
   "folderSlug": "skill-benchmark-fidelity-track",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "122-deep-improvement-skill-benchmark-mode"
   ],
   "memorySequence": 0,

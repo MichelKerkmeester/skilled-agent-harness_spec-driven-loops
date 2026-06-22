@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode",
+  "specFolder": "skilled-agent-orchestration/z_archive/121-deep-agent-improvement-benchmark-mode",
   "description": "Feature Specification: deep-agent-improvement model-benchmark mode",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "model-benchmark",
     "mode"
   ],
-  "lastUpdated": "2026-06-01T11:13:19.384Z",
+  "lastUpdated": "2026-06-22T18:55:00.927Z",
   "specId": "121",
   "folderSlug": "deep-agent-improvement-benchmark-mode",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

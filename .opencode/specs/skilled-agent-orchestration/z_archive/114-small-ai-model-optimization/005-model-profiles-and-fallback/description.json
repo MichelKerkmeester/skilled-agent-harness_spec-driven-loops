@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/114-small-ai-model-optimization/005-model-profiles-and-fallback",
+  "specFolder": "skilled-agent-orchestration/z_archive/114-small-ai-model-optimization/005-model-profiles-and-fallback",
   "description": "Feature Specification: shared model intelligence",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "model",
     "intelligence"
   ],
-  "lastUpdated": "2026-05-21T10:57:41.524Z",
+  "lastUpdated": "2026-06-22T18:55:00.328Z",
   "specId": "005",
   "folderSlug": "model-profiles-and-fallback",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "114-small-ai-model-optimization"
   ],
   "memorySequence": 1,

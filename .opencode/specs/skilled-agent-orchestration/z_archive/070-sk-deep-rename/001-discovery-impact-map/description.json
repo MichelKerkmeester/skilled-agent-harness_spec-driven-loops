@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/070-sk-deep-rename/001-discovery-impact-map",
+  "specFolder": "skilled-agent-orchestration/z_archive/070-sk-deep-rename/001-discovery-impact-map",
   "description": "Feature Specification: Phase 001 Discovery Impact Map",
   "keywords": [
     "feature",
@@ -10,11 +10,12 @@
     "impact",
     "map"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.155Z",
+  "lastUpdated": "2026-06-22T18:54:59.694Z",
   "specId": "001",
   "folderSlug": "discovery-impact-map",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "070-sk-deep-rename"
   ],
   "memorySequence": 0,

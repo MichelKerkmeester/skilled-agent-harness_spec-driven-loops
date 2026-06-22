@@ -1,17 +1,18 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/130-prompt-knowledge-layering/011-model-profiles-and-benchmark-merge",
+  "specFolder": "skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering/011-model-profiles-and-benchmark-merge",
   "description": "Feature Specification: model-profiles-and-benchmark-merge",
   "keywords": [
     "feature",
     "specification",
     "model-profiles-and-benchmark-merge"
   ],
-  "lastUpdated": "2026-06-03T14:51:58.055Z",
+  "lastUpdated": "2026-06-22T18:55:01.358Z",
   "specId": "011",
   "folderSlug": "model-profiles-and-benchmark-merge",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "130-prompt-knowledge-layering"
   ],
   "memorySequence": 0,

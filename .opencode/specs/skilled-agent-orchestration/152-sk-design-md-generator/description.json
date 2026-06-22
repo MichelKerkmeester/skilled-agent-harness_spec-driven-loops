@@ -1,18 +1,16 @@
 {
   "level": "3",
   "specFolder": "skilled-agent-orchestration/152-sk-design-md-generator",
-  "description": "Phase parent: sk-design-md-generator skill (live-CSS to DESIGN.md extraction engine) and its research-driven anti-fabrication hardening (phases 001 build, 002-006 remediation)",
+  "description": "Phase Parent: sk-design-md-generator skill + research-driven hardening",
   "keywords": [
     "phase",
     "parent",
     "sk-design-md-generator",
-    "design",
-    "extraction",
-    "hardening",
-    "fabrication",
-    "remediation"
+    "skill",
+    "research-driven",
+    "hardening"
   ],
-  "lastUpdated": "2026-06-22T17:09:48.350Z",
+  "lastUpdated": "2026-06-22T18:54:59.164Z",
   "specId": "152",
   "folderSlug": "sk-design-md-generator",
   "parentChain": [

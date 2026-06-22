@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/123-deep-loop-parallel-fanout/003-per-lineage-spawn-isolation",
+  "specFolder": "skilled-agent-orchestration/z_archive/123-deep-loop-parallel-fanout/003-per-lineage-spawn-isolation",
   "description": "Phase 003 — Per-lineage spawn + sub-packet isolation",
   "keywords": [
     "phase",
@@ -9,11 +9,12 @@
     "sub-packet",
     "isolation"
   ],
-  "lastUpdated": "2026-06-01T11:13:19.478Z",
+  "lastUpdated": "2026-06-22T18:55:01.137Z",
   "specId": "003",
   "folderSlug": "per-lineage-spawn-isolation",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "123-deep-loop-parallel-fanout"
   ],
   "memorySequence": 0,

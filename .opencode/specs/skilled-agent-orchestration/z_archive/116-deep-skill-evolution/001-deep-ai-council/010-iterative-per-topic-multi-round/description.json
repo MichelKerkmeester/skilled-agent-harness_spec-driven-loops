@@ -7,7 +7,7 @@
     ],
     "related_to": []
   },
-  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/001-deep-ai-council/010-iterative-per-topic-multi-round",
+  "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/001-deep-ai-council/010-iterative-per-topic-multi-round",
   "description": "Feature Specification: Per-Topic Multi-Round Orchestration",
   "keywords": [
     "feature",
@@ -16,11 +16,12 @@
     "multi-round",
     "orchestration"
   ],
-  "lastUpdated": "2026-05-26T13:39:54.163431+00:00",
+  "lastUpdated": "2026-06-22T18:55:00.514Z",
   "specId": "010",
   "folderSlug": "iterative-per-topic-multi-round",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "116-deep-skill-evolution",
     "001-deep-ai-council"
   ],

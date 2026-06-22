@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/071-sk-doc-router-stress-test/002-matrix-execute",
+  "specFolder": "skilled-agent-orchestration/z_archive/071-sk-doc-router-stress-test/002-matrix-execute",
   "description": "Feature Specification: Phase 2: matrix-execute",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "phase",
     "matrix-execute"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.205Z",
+  "lastUpdated": "2026-06-22T18:54:59.741Z",
   "specId": "002",
   "folderSlug": "matrix-execute",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "071-sk-doc-router-stress-test"
   ],
   "memorySequence": 0,

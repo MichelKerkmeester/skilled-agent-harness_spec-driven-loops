@@ -1,19 +1,26 @@
 {
-  "specFolder": "skilled-agent-orchestration/110-auto-review-stretch-config-dedup-gates/001-mk-plugins-config-uplift",
-  "description": "110 phase 001-mk-plugins-config-uplift",
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/110-auto-review-stretch-config-dedup-gates/001-mk-plugins-config-uplift",
+  "description": "Feature Specification: H-5 3-tier config + M-6 async init for mk-* plugins",
   "keywords": [
-    "110",
-    "phase",
-    "001-mk-plugins-config-uplift"
+    "feature",
+    "specification",
+    "h-5",
+    "3-tier",
+    "config",
+    "m-6",
+    "async",
+    "init",
+    "plugins"
   ],
-  "lastUpdated": "2026-05-16T06:47:29.220Z",
+  "lastUpdated": "2026-06-22T18:55:00.183Z",
   "specId": "001",
   "folderSlug": "mk-plugins-config-uplift",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "110-auto-review-stretch-config-dedup-gates"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/004-deep-research/006-hygiene-fix-pack",
+  "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/004-deep-research/006-hygiene-fix-pack",
   "description": "Feature Specification: Deep Research Hygiene and Negative Knowledge Dedup",
   "keywords": [
     "feature",
@@ -12,11 +12,12 @@
     "knowledge",
     "dedup"
   ],
-  "lastUpdated": "2026-05-25T11:53:22.374Z",
+  "lastUpdated": "2026-06-22T18:55:00.687Z",
   "specId": "006",
   "folderSlug": "hygiene-fix-pack",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "116-deep-skill-evolution",
     "004-deep-research"
   ],

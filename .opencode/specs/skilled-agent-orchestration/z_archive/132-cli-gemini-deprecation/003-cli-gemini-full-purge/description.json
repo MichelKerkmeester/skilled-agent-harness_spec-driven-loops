@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/132-cli-gemini-deprecation/003-cli-gemini-full-purge",
+  "specFolder": "skilled-agent-orchestration/z_archive/132-cli-gemini-deprecation/003-cli-gemini-full-purge",
   "description": "Feature Specification: Purge the cli-gemini executor everywhere outside specs",
   "keywords": [
     "feature",
@@ -11,11 +11,12 @@
     "outside",
     "specs"
   ],
-  "lastUpdated": "2026-06-10T04:53:30.688Z",
+  "lastUpdated": "2026-06-22T18:55:01.414Z",
   "specId": "003",
   "folderSlug": "cli-gemini-full-purge",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "132-cli-gemini-deprecation"
   ],
   "memorySequence": 0,

@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/008-cli-copilot-creation",
+  "specFolder": "skilled-agent-orchestration/z_archive/008-cli-copilot-creation",
   "description": "Feature Specification: cli-copilot Skill",
   "keywords": [
     "feature",
@@ -7,11 +7,12 @@
     "cli-copilot",
     "skill"
   ],
-  "lastUpdated": "2026-05-16T17:59:27.637Z",
+  "lastUpdated": "2026-06-22T18:54:59.218Z",
   "specId": "008",
   "folderSlug": "cli-copilot-creation",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

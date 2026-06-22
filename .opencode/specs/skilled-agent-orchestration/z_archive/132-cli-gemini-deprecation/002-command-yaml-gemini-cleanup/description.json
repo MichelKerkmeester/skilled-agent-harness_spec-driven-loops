@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/132-cli-gemini-deprecation/002-command-yaml-gemini-cleanup",
+  "specFolder": "skilled-agent-orchestration/z_archive/132-cli-gemini-deprecation/002-command-yaml-gemini-cleanup",
   "description": "Feature Specification: Command-layer Gemini cleanup",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "gemini",
     "cleanup"
   ],
-  "lastUpdated": "2026-06-10T04:53:30.684Z",
+  "lastUpdated": "2026-06-22T18:55:01.407Z",
   "specId": "002",
   "folderSlug": "command-yaml-gemini-cleanup",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "132-cli-gemini-deprecation"
   ],
   "memorySequence": 0,

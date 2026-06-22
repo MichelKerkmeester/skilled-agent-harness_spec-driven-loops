@@ -6,11 +6,9 @@
     "feature",
     "specification",
     "phase",
-    "filename-underscore-alignment",
-    "sk-prompt-small-model",
-    "rename"
+    "filename-underscore-alignment"
   ],
-  "lastUpdated": "2026-06-16T00:00:00.000Z",
+  "lastUpdated": "2026-06-22T18:54:59.127Z",
   "specId": "005",
   "folderSlug": "filename-underscore-alignment",
   "parentChain": [

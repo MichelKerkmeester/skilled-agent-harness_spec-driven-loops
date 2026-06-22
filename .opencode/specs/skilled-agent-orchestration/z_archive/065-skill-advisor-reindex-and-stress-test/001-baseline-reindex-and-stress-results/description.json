@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results",
+  "specFolder": "skilled-agent-orchestration/z_archive/065-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results",
   "description": "Spec: 065/001 - baseline reindex and stress results",
   "keywords": [
     "spec",
@@ -10,11 +10,12 @@
     "stress",
     "results"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.038Z",
+  "lastUpdated": "2026-06-22T18:54:59.565Z",
   "specId": "001",
   "folderSlug": "baseline-reindex-and-stress-results",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "065-skill-advisor-reindex-and-stress-test"
   ],
   "memorySequence": 1,

@@ -2,7 +2,7 @@
   "status": "complete",
   "completionPct": 100,
   "lastOutcome": "CP-101 and CP-104 now pass without regressing save context.",
-  "specFolder": "skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test/002-memory-save-negative-trigger-calibration",
+  "specFolder": "skilled-agent-orchestration/z_archive/065-skill-advisor-reindex-and-stress-test/002-memory-save-negative-trigger-calibration",
   "description": "Spec: 065/002 - memory-save negative trigger calibration",
   "keywords": [
     "spec",
@@ -13,11 +13,12 @@
     "trigger",
     "calibration"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.050Z",
+  "lastUpdated": "2026-06-22T18:54:59.584Z",
   "specId": "002",
   "folderSlug": "memory-save-negative-trigger-calibration",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "065-skill-advisor-reindex-and-stress-test"
   ],
   "memorySequence": 2,

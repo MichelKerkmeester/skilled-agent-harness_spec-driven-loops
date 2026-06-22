@@ -1,7 +1,7 @@
 {
   "title": "Feature Specification: design model-benchmark mode selector",
   "level": "3",
-  "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/001-design-model-benchmark-mode-selector",
+  "specFolder": "skilled-agent-orchestration/z_archive/121-deep-agent-improvement-benchmark-mode/001-design-model-benchmark-mode-selector",
   "description": "Feature Specification: design model-benchmark mode selector",
   "keywords": [
     "feature",
@@ -11,11 +11,12 @@
     "mode",
     "selector"
   ],
-  "lastUpdated": "2026-06-01T11:13:19.389Z",
+  "lastUpdated": "2026-06-22T18:55:00.933Z",
   "specId": "001",
   "folderSlug": "design-model-benchmark-mode-selector",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "121-deep-agent-improvement-benchmark-mode"
   ],
   "memorySequence": 0,

@@ -1,21 +1,22 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/006-deep-stack-cross-cutting/005-doc-evolution-post-impl-deep-review",
+  "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/006-deep-stack-cross-cutting/005-doc-evolution-post-impl-deep-review",
   "description": "Feature Specification: post-implementation deep-review of the 008 doc-evolution ship",
   "keywords": [
     "feature",
     "specification",
+    "post-implementation",
     "deep-review",
     "008",
     "doc-evolution",
-    "post-implementation",
-    "verdict"
+    "ship"
   ],
-  "lastUpdated": "2026-05-26T13:39:54.163431+00:00",
+  "lastUpdated": "2026-06-22T18:55:00.770Z",
   "specId": "005",
   "folderSlug": "doc-evolution-post-impl-deep-review",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "116-deep-skill-evolution",
     "006-deep-stack-cross-cutting"
   ],

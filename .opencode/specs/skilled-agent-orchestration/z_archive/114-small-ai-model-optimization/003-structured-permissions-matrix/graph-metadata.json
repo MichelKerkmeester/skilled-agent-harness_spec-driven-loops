@@ -36,7 +36,7 @@
       "tasks"
     ],
     "importance_tier": "important",
-    "status": "implemented_with_documented_hook_scope_deviation",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/cli-opencode/assets/permissions-matrix.schema.json",
       ".opencode/skills/cli-opencode/references/permissions-matrix.md",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Phase B of the 114 follow-on roadmap. Replace the four-layer prose mitigation shipped to cli-opencode after the RM-8 2026-05-04 incident (44 files deleted by deepseek-v4-pro under `--dangerously-skip-permissions`) with a structured JSON permissions-matrix that a runtime pre-tool-call gate enforces deterministically. The schema encodes file-glob × operation-class × scope tuples; the enforcer rejects any tool call falling outside the allowlist BEFORE execution. Effort: ~12 hours. Highest blast-radius prevention in the 114 arc — proven against the RM-8 replay scenario in 001-research-smallcode/iter-009.",
     "created_at": "2026-05-18T12:32:47.354Z",
-    "last_save_at": "2026-06-07T09:00:45.769Z",
+    "last_save_at": "2026-06-22T18:55:00.314Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

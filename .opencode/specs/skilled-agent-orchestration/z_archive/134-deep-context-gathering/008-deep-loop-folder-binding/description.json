@@ -17,7 +17,7 @@
   "completed_at": "2026-06-07T12:21:00Z",
   "is_phase_parent": false,
   "children": [],
-  "specFolder": "skilled-agent-orchestration/134-deep-context-gathering/008-deep-loop-folder-binding",
+  "specFolder": "skilled-agent-orchestration/z_archive/134-deep-context-gathering/008-deep-loop-folder-binding",
   "description": "Feature Specification: Fix deep-loop spec-folder binding: extract a named spec-folder path from the positional scope and add a fail-closed standalone ",
   "keywords": [
     "feature",
@@ -35,11 +35,12 @@
     "fail-closed",
     "standalone"
   ],
-  "lastUpdated": "2026-06-10T04:53:30.730Z",
+  "lastUpdated": "2026-06-22T18:55:01.513Z",
   "specId": "008",
   "folderSlug": "deep-loop-folder-binding",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "134-deep-context-gathering"
   ],
   "memorySequence": 0,

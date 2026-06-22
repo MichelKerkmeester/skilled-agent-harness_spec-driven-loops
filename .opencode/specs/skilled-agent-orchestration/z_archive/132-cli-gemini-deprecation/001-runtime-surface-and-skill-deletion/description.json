@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "skilled-agent-orchestration/132-cli-gemini-deprecation/001-runtime-surface-and-skill-deletion",
+  "specFolder": "skilled-agent-orchestration/z_archive/132-cli-gemini-deprecation/001-runtime-surface-and-skill-deletion",
   "description": "Feature Specification: Deprecate project .gemini runtime surface",
   "keywords": [
     "feature",
@@ -11,11 +11,12 @@
     "runtime",
     "surface"
   ],
-  "lastUpdated": "2026-06-10T04:53:30.680Z",
+  "lastUpdated": "2026-06-22T18:55:01.402Z",
   "specId": "001",
   "folderSlug": "runtime-surface-and-skill-deletion",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "132-cli-gemini-deprecation"
   ],
   "memorySequence": 1,

@@ -7,7 +7,7 @@
   "level": "3",
   "importance_tier": "important",
   "contextType": "implementation",
-  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review/003-complexity-schema-prompt-contract",
+  "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/002-deep-review/003-complexity-schema-prompt-contract",
   "description": "Feature Specification: 116/003 - Review-Depth Schema and Prompt Contract",
   "keywords": [
     "feature",
@@ -19,11 +19,12 @@
     "prompt",
     "contract"
   ],
-  "lastUpdated": "2026-05-25T11:53:22.296Z",
+  "lastUpdated": "2026-06-22T18:55:00.562Z",
   "specId": "003",
   "folderSlug": "complexity-schema-prompt-contract",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "116-deep-skill-evolution",
     "002-deep-review"
   ],

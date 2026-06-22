@@ -14,7 +14,7 @@
   "level": "3",
   "importance_tier": "important",
   "contextType": "implementation",
-  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/004-script-shim-db-relocation",
+  "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/003-deep-loop-runtime/004-script-shim-db-relocation",
   "description": "Feature Specification: 003 — Script Shim + DB Relocation",
   "keywords": [
     "feature",
@@ -24,11 +24,12 @@
     "shim",
     "relocation"
   ],
-  "lastUpdated": "2026-05-25T11:53:22.337Z",
+  "lastUpdated": "2026-06-22T18:55:00.623Z",
   "specId": "004",
   "folderSlug": "script-shim-db-relocation",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "116-deep-skill-evolution",
     "003-deep-loop-runtime"
   ],

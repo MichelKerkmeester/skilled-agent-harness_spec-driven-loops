@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/004-deep-research/005-uncovered-questions",
+  "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/004-deep-research/005-uncovered-questions",
   "description": "Feature Specification: Deep Research Uncovered Questions Tracking",
   "keywords": [
     "feature",
@@ -11,11 +11,12 @@
     "questions",
     "tracking"
   ],
-  "lastUpdated": "2026-05-25T11:53:22.370Z",
+  "lastUpdated": "2026-06-22T18:55:00.682Z",
   "specId": "005",
   "folderSlug": "uncovered-questions",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "116-deep-skill-evolution",
     "004-deep-research"
   ],

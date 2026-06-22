@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/002-skill-scaffold",
+  "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/003-deep-loop-runtime/002-skill-scaffold",
   "description": "Feature Specification: 118/001 — Runtime Skill Scaffold",
   "keywords": [
     "feature",
@@ -10,11 +10,12 @@
     "skill",
     "scaffold"
   ],
-  "lastUpdated": "2026-05-25T11:53:22.328Z",
+  "lastUpdated": "2026-06-22T18:55:00.609Z",
   "specId": "002",
   "folderSlug": "skill-scaffold",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "116-deep-skill-evolution",
     "003-deep-loop-runtime"
   ],

@@ -3,14 +3,14 @@
   "specFolder": "skilled-agent-orchestration/146-mcp-figma-with-direct-cli-support/002-skill-build-and-registration",
   "description": "Feature Specification: mcp-figma skill build and registration",
   "keywords": [
+    "feature",
+    "specification",
     "mcp-figma",
-    "figma-ds-cli",
-    "figma terminal control",
-    "skill build",
-    "graph registration",
-    "phase"
+    "skill",
+    "build",
+    "registration"
   ],
-  "lastUpdated": "2026-06-14T17:00:00Z",
+  "lastUpdated": "2026-06-22T18:54:59.078Z",
   "specId": "002",
   "folderSlug": "skill-build-and-registration",
   "parentChain": [

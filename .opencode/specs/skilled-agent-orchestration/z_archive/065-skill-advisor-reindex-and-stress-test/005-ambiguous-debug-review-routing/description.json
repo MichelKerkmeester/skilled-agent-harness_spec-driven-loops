@@ -1,7 +1,7 @@
 {
   "completionPct": 100,
   "lastOutcome": "CP-100 now routes to sk-code-review top-1 at confidence 0.82; clear implementation prompts still route to sk-code.",
-  "specFolder": "skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test/005-ambiguous-debug-review-routing",
+  "specFolder": "skilled-agent-orchestration/z_archive/065-skill-advisor-reindex-and-stress-test/005-ambiguous-debug-review-routing",
   "description": "Spec: 065/005 - ambiguous debug review routing",
   "keywords": [
     "spec",
@@ -12,11 +12,12 @@
     "review",
     "routing"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.062Z",
+  "lastUpdated": "2026-06-22T18:54:59.592Z",
   "specId": "005",
   "folderSlug": "ambiguous-debug-review-routing",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "065-skill-advisor-reindex-and-stress-test"
   ],
   "memorySequence": 5,

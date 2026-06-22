@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/072-sk-doc-router-rerun-refined-extraction",
+  "specFolder": "skilled-agent-orchestration/z_archive/072-sk-doc-router-rerun-refined-extraction",
   "description": "Feature Specification: Refined Resource-Detection + Metric Re-extraction (072)",
   "keywords": [
     "feature",
@@ -11,11 +11,12 @@
     "re-extraction",
     "072"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.237Z",
+  "lastUpdated": "2026-06-22T18:54:59.784Z",
   "specId": "072",
   "folderSlug": "sk-doc-router-rerun-refined-extraction",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

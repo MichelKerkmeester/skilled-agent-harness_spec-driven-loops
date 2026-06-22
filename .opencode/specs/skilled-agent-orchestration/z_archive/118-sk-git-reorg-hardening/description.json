@@ -1,29 +1,22 @@
 {
-  "specFolder": "skilled-agent-orchestration/118-sk-git-reorg-hardening",
-  "description": "Harden the sk-git skill so large rename/reorg + worktree workflows avoid the failure modes hit during the 026 wave-4 reorg.",
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/z_archive/118-sk-git-reorg-hardening",
+  "description": "Feature Specification: sk-git Large-Reorg + Worktree Hardening",
   "keywords": [
-    "harden",
+    "feature",
+    "specification",
     "sk-git",
-    "skill",
-    "large",
-    "rename",
-    "reorg",
+    "large-reorg",
     "worktree",
-    "workflows",
-    "avoid",
-    "failure",
-    "modes",
-    "hit",
-    "026",
-    "wave-4"
+    "hardening"
   ],
-  "lastUpdated": "2026-05-26T17:36:50.383Z",
+  "lastUpdated": "2026-06-22T18:55:00.876Z",
   "specId": "118",
   "folderSlug": "sk-git-reorg-hardening",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

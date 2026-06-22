@@ -36,7 +36,7 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "complete_—_all_28_findings_fixed_+_integrated;_suite_358/358_+_drift_4/4_green",
+    "status": "complete",
     "key_files": [
       "proposals/REMEDIATION.md",
       "spec.md",
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The MiMo-v2.5-pro deep review of `skill:deep-improvement` (recorded under sibling phase `013/review/review-report.md`) produced 28 findings: 0 P0, 8 P1, 20 P2. None are blockers, but the P1s cluster in correctness-adjacent places — the new D4-R task-outcome grader still carries leftover \"old D4 hallucination\" wiring in its fallback path, a 2000-char truncation penalizes the (longer) D4-R answers, and a resume-hint helper interpolates a path into a shell string unescaped — plus the docs (SKILL.md router pseudocode + Section-11 script list, README counts/tables) lag the shipped code. This phase applies ALL 28 findings, behavior-preserving, keeping the 349-test suite green.",
     "created_at": "2026-06-02T00:00:00.000Z",
-    "last_save_at": "2026-06-17T19:57:23.688Z",
+    "last_save_at": "2026-06-22T18:55:01.110Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

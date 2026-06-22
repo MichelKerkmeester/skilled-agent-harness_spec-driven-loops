@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/003-mimo-efficiency-deep-research",
+  "specFolder": "skilled-agent-orchestration/z_archive/126-cli-opencode-mimo-pro-optimization/003-mimo-efficiency-deep-research",
   "description": "Feature Specification: Phase 3: mimo-efficiency-deep-research",
   "keywords": [
     "feature",
@@ -8,11 +8,12 @@
     "phase",
     "mimo-efficiency-deep-research"
   ],
-  "lastUpdated": "2026-06-02T16:26:46.103Z",
+  "lastUpdated": "2026-06-22T18:55:01.239Z",
   "specId": "003",
   "folderSlug": "mimo-efficiency-deep-research",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "126-cli-opencode-mimo-pro-optimization"
   ],
   "memorySequence": 0,

@@ -39,7 +39,7 @@
       "phase"
     ],
     "importance_tier": "important",
-    "status": "complete_—_r1_superseded_by_decision_record.md;_per_mode_trees_intentional",
+    "status": "in_progress",
     "key_files": [
       "decision-record.md",
       "spec.md",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "All five skills ship a feature_catalog and a manual_testing_playbook (roughly 198 combined playbook scenarios) with no common category schema (lifecycle vs sweep vs four-lane vs council). Feature-ID prefixes collide (CP- reused across research, review, and improvement at different bands), some count self-checks are machine-enforced literals (deep-improvement == 48) and others are prose, the council catalog is UPPERCASE while the others are lowercase, and there is pre-existing intra-skill drift (false \"no catalog exists\" prose, duplicate headings). Every per-feature file embeds old skill-rooted SOURCE FILES paths.",
     "created_at": "2026-06-14T20:16:09.680Z",
-    "last_save_at": "2026-06-16T14:27:20.569Z",
+    "last_save_at": "2026-06-22T18:54:59.100Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

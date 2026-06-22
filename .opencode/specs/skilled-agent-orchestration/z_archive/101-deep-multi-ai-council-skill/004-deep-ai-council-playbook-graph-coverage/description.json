@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/101-deep-multi-ai-council-skill/004-deep-ai-council-playbook-graph-coverage",
+  "specFolder": "skilled-agent-orchestration/z_archive/101-deep-multi-ai-council-skill/004-deep-ai-council-playbook-graph-coverage",
   "description": "Feature Specification: 101/004 Deep AI Council Playbook Graph Coverage",
   "keywords": [
     "feature",
@@ -13,11 +13,12 @@
     "graph",
     "coverage"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.549Z",
+  "lastUpdated": "2026-06-22T18:55:00.044Z",
   "specId": "004",
   "folderSlug": "deep-ai-council-playbook-graph-coverage",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "101-deep-multi-ai-council-skill"
   ],
   "memorySequence": 0,

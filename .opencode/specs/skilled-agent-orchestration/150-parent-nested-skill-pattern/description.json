@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": ".opencode/specs/skilled-agent-orchestration/150-parent-nested-skill-pattern",
+  "specFolder": "skilled-agent-orchestration/150-parent-nested-skill-pattern",
   "description": "Feature Specification: Parent skill with nested sub-skills — define and optimize the pattern",
   "keywords": [
     "feature",
@@ -13,12 +13,10 @@
     "optimize",
     "pattern"
   ],
-  "lastUpdated": "2026-06-15T12:25:44.681Z",
-  "specId": "155",
+  "lastUpdated": "2026-06-22T18:54:59.139Z",
+  "specId": "150",
   "folderSlug": "parent-nested-skill-pattern",
   "parentChain": [
-    ".opencode",
-    "specs",
     "skilled-agent-orchestration"
   ],
   "memorySequence": 0,

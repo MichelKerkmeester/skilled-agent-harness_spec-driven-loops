@@ -35,7 +35,7 @@
     ".opencode/skills/sk-code/SKILL.md",
     "CLAUDE.md"
   ],
-  "specFolder": "002-active-enforcement-layer",
+  "specFolder": "skilled-agent-orchestration/z_archive/119-comment-ref-hygiene/002-active-enforcement-layer",
   "description": "Feature Specification: Active Enforcement Layer for Comment Hygiene",
   "keywords": [
     "feature",
@@ -46,14 +46,12 @@
     "comment",
     "hygiene"
   ],
-  "lastUpdated": "2026-05-30T11:45:59.164Z",
+  "lastUpdated": "2026-06-22T18:55:00.894Z",
   "specId": "002",
   "folderSlug": "active-enforcement-layer",
   "parentChain": [
-    "..",
-    ".opencode",
-    "specs",
     "skilled-agent-orchestration",
+    "z_archive",
     "119-comment-ref-hygiene"
   ],
   "memorySequence": 1,

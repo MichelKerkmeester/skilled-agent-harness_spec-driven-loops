@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/123-deep-loop-parallel-fanout/009-fanout-remediation",
+  "specFolder": "skilled-agent-orchestration/z_archive/123-deep-loop-parallel-fanout/009-fanout-remediation",
   "description": "Feature Specification: Deep-loop fan-out remediation (009)",
   "keywords": [
     "feature",
@@ -9,11 +9,12 @@
     "remediation",
     "009"
   ],
-  "lastUpdated": "2026-06-01T11:13:19.502Z",
+  "lastUpdated": "2026-06-22T18:55:01.162Z",
   "specId": "009",
   "folderSlug": "fanout-remediation",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "123-deep-loop-parallel-fanout"
   ],
   "memorySequence": 0,

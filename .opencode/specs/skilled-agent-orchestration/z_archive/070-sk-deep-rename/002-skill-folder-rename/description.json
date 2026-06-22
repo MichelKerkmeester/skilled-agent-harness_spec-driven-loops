@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/070-sk-deep-rename/002-skill-folder-rename",
+  "specFolder": "skilled-agent-orchestration/z_archive/070-sk-deep-rename/002-skill-folder-rename",
   "description": "Feature Specification: Phase 002 Skill Folder Rename",
   "keywords": [
     "feature",
@@ -10,11 +10,12 @@
     "folder",
     "rename"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.159Z",
+  "lastUpdated": "2026-06-22T18:54:59.699Z",
   "specId": "002",
   "folderSlug": "skill-folder-rename",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "070-sk-deep-rename"
   ],
   "memorySequence": 0,

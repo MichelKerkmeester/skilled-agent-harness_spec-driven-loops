@@ -1,41 +1,37 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/116-deep-skill-evolution/004-deep-research/002-uplift-applicability-analysis",
-  "spec_folder": "skilled-agent-orchestration/116-deep-skill-evolution/004-deep-research/002-uplift-applicability-analysis",
-  "parent_id": "skilled-agent-orchestration/116-deep-skill-evolution/004-deep-research",
+  "packet_id": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/004-deep-research/002-uplift-applicability-analysis",
+  "spec_folder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/004-deep-research/002-uplift-applicability-analysis",
+  "parent_id": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/004-deep-research",
   "children_ids": [],
-  "migrated": false,
-  "migration_source": "backfill-during-consolidation-131",
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": [
-      "032 deep research uplift applicability analysis"
-    ],
+    "trigger_phrases": [],
     "key_topics": [
-      "032",
-      "deep",
-      "research",
-      "uplift",
-      "applicability",
-      "analysis"
+      "packet",
+      "metadata",
+      "derived",
+      "canonical",
+      "spec",
+      "documents"
     ],
     "importance_tier": "important",
     "status": "in_progress",
-    "key_files": [
-      "applicability-table.md"
-    ],
+    "key_files": [],
     "entities": [],
-    "causal_summary": "Applicability classification table for all 47 changes catalogued from arc 118. Outputs: applicability-table.md mapping each C-NNN to APPLY / SKIP / ADAPT / ALREADY-DONE.",
+    "causal_summary": "Packet metadata derived from canonical spec documents.",
     "created_at": "2026-05-23T09:26:27.622610Z",
-    "last_save_at": "2026-05-23T09:53:18.749092Z",
-    "save_lineage": "backfill",
+    "last_save_at": "2026-06-22T18:55:00.674Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": [
-      "applicability-table.md"
-    ]
+    "source_docs": [],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

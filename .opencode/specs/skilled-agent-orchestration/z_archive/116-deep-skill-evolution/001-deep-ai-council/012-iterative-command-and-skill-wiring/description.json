@@ -7,7 +7,7 @@
     ],
     "related_to": []
   },
-  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/001-deep-ai-council/012-iterative-command-and-skill-wiring",
+  "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/001-deep-ai-council/012-iterative-command-and-skill-wiring",
   "description": "Feature Specification: Command and Skill Wiring",
   "keywords": [
     "feature",
@@ -16,11 +16,12 @@
     "skill",
     "wiring"
   ],
-  "lastUpdated": "2026-05-26T13:39:54.163431+00:00",
+  "lastUpdated": "2026-06-22T18:55:00.526Z",
   "specId": "012",
   "folderSlug": "iterative-command-and-skill-wiring",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "116-deep-skill-evolution",
     "001-deep-ai-council"
   ],

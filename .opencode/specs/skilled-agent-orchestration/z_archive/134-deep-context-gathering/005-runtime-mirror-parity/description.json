@@ -17,7 +17,7 @@
   "completed_at": "2026-06-07T10:30:00Z",
   "is_phase_parent": false,
   "children": [],
-  "specFolder": "skilled-agent-orchestration/134-deep-context-gathering/005-runtime-mirror-parity",
+  "specFolder": "skilled-agent-orchestration/z_archive/134-deep-context-gathering/005-runtime-mirror-parity",
   "description": "Feature Specification: Deep-context native agent runtime mirror parity",
   "keywords": [
     "feature",
@@ -29,11 +29,12 @@
     "mirror",
     "parity"
   ],
-  "lastUpdated": "2026-06-10T04:53:30.719Z",
+  "lastUpdated": "2026-06-22T18:55:01.498Z",
   "specId": "005",
   "folderSlug": "runtime-mirror-parity",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "134-deep-context-gathering"
   ],
   "memorySequence": 0,

@@ -1,37 +1,24 @@
 {
   "level": "2",
-  "specFolder": ".opencode/specs/skilled-agent-orchestration/144-operate-like-fable-5",
-  "description": "Surgically distribute the Fable 5 agent operating doctrine across AGENTS.md, two new constitutional rules, an existing-rule fold, and sk-code, validat",
+  "specFolder": "skilled-agent-orchestration/144-operate-like-fable-5/001-initial-refinement",
+  "description": "Feature Specification: Distribute Fable 5 Operating Doctrine Across Spec-Kit Surfaces",
   "keywords": [
-    "surgically",
+    "feature",
+    "specification",
     "distribute",
     "fable",
-    "agent",
     "operating",
     "doctrine",
     "across",
-    "agents",
-    "two",
-    "new",
-    "constitutional",
-    "rules",
-    "existing-rule",
-    "fold",
-    "sk-code",
-    "validated",
-    "converged",
-    "deep-research",
-    "loop",
-    "without",
-    "bloating"
+    "spec-kit",
+    "surfaces"
   ],
-  "lastUpdated": "2026-06-14T08:37:47.339Z",
-  "specId": "149",
-  "folderSlug": "operate-like-fable-5",
+  "lastUpdated": "2026-06-22T18:54:59.019Z",
+  "specId": "001",
+  "folderSlug": "initial-refinement",
   "parentChain": [
-    ".opencode",
-    "specs",
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "144-operate-like-fable-5"
   ],
   "memorySequence": 5,
   "memoryNameHistory": [

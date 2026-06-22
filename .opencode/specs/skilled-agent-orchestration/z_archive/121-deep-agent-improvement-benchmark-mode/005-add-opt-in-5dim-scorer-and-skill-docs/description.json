@@ -1,7 +1,7 @@
 {
   "title": "Feature Specification: add opt-in 5dim scorer and skill docs",
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/005-add-opt-in-5dim-scorer-and-skill-docs",
+  "specFolder": "skilled-agent-orchestration/z_archive/121-deep-agent-improvement-benchmark-mode/005-add-opt-in-5dim-scorer-and-skill-docs",
   "description": "Feature Specification: add opt-in 5dim scorer and skill docs",
   "keywords": [
     "feature",
@@ -13,11 +13,12 @@
     "skill",
     "docs"
   ],
-  "lastUpdated": "2026-06-01T11:13:19.399Z",
+  "lastUpdated": "2026-06-22T18:55:00.953Z",
   "specId": "005",
   "folderSlug": "add-opt-in-5dim-scorer-and-skill-docs",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "121-deep-agent-improvement-benchmark-mode"
   ],
   "memorySequence": 0,

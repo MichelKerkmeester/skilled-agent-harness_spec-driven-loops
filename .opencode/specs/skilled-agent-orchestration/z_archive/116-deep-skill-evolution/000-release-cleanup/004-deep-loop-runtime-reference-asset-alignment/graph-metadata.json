@@ -41,7 +41,7 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "phase_8_complete,_phase_9_approval_gate",
+    "status": "in_progress",
     "key_files": [
       "plan.md",
       "tasks.md",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "This phase aligns the three deep skills to one sk-doc-compatible resource model without flattening their domain differences. `deep-ai-council` gains the missing council-specific reference and asset family, `deep-review` gains focused convergence/state references, and `deep-research` records that its prior split is the aligned research model.",
     "created_at": "2026-05-25T06:37:29.559Z",
-    "last_save_at": "2026-06-15T09:09:33.677Z",
+    "last_save_at": "2026-06-22T18:55:00.390Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

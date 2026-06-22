@@ -1,7 +1,7 @@
 {
   "title": "Feature Specification: add model-benchmark lane selection prompts",
   "level": "2",
-  "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/008-add-model-benchmark-lane-selection-prompts",
+  "specFolder": "skilled-agent-orchestration/z_archive/121-deep-agent-improvement-benchmark-mode/008-add-model-benchmark-lane-selection-prompts",
   "description": "Feature Specification: add model-benchmark lane selection prompts",
   "keywords": [
     "feature",
@@ -12,11 +12,12 @@
     "selection",
     "prompts"
   ],
-  "lastUpdated": "2026-06-01T11:13:19.409Z",
+  "lastUpdated": "2026-06-22T18:55:00.969Z",
   "specId": "008",
   "folderSlug": "add-model-benchmark-lane-selection-prompts",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "121-deep-agent-improvement-benchmark-mode"
   ],
   "memorySequence": 0,

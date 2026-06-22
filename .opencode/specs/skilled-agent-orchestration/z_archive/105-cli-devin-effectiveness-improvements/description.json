@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/105-cli-devin-effectiveness-improvements",
+  "specFolder": "skilled-agent-orchestration/z_archive/105-cli-devin-effectiveness-improvements",
   "description": "105: cli-devin v1.0.4.0 — SWE-1.6 effectiveness improvements",
   "keywords": [
     "105",
@@ -9,11 +9,12 @@
     "effectiveness",
     "improvements"
   ],
-  "lastUpdated": "2026-05-23T15:24:58.839Z",
+  "lastUpdated": "2026-06-22T18:55:00.130Z",
   "specId": "105",
   "folderSlug": "cli-devin-effectiveness-improvements",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 1,
   "memoryNameHistory": []

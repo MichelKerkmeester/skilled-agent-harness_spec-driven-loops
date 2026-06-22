@@ -1,20 +1,23 @@
 {
-  "specFolder": "skilled-agent-orchestration/108-auto-review-quick-wins-verdict-markers-logging/004-stretch-goals",
-  "description": "Phase 4: stretch goals (optional)",
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/z_archive/108-auto-review-quick-wins-verdict-markers-logging/004-stretch-goals",
+  "description": "Feature Specification: Phase 4 Stretch Goals (OPTIONAL)",
   "keywords": [
+    "feature",
+    "specification",
     "phase",
     "stretch",
     "goals",
     "optional"
   ],
-  "lastUpdated": "2026-05-16T05:33:43.342Z",
+  "lastUpdated": "2026-06-22T18:55:00.166Z",
   "specId": "004",
   "folderSlug": "stretch-goals",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "108-auto-review-quick-wins-verdict-markers-logging"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

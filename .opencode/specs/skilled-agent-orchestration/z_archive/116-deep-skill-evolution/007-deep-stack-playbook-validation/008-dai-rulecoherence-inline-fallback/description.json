@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/008-dai-rulecoherence-inline-fallback",
+  "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/007-deep-stack-playbook-validation/008-dai-rulecoherence-inline-fallback",
   "description": "Remediation: deep-agent-improvement ruleCoherence inline fallback (Playbook 008)",
   "keywords": [
     "remediation",
@@ -10,11 +10,12 @@
     "playbook",
     "008"
   ],
-  "lastUpdated": "2026-05-28T21:38:19.828Z",
+  "lastUpdated": "2026-06-22T18:55:00.831Z",
   "specId": "008",
   "folderSlug": "dai-rulecoherence-inline-fallback",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "116-deep-skill-evolution",
     "007-deep-stack-playbook-validation"
   ],

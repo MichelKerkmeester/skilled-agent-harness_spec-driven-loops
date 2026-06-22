@@ -1,17 +1,18 @@
 {
   "level": "1",
-  "specFolder": "skilled-agent-orchestration/130-prompt-knowledge-layering/012-cli-doc-alignment",
+  "specFolder": "skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering/012-cli-doc-alignment",
   "description": "Feature Specification: cli-doc-alignment",
   "keywords": [
     "feature",
     "specification",
     "cli-doc-alignment"
   ],
-  "lastUpdated": "2026-06-03T14:51:58.061Z",
+  "lastUpdated": "2026-06-22T18:55:01.363Z",
   "specId": "012",
   "folderSlug": "cli-doc-alignment",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "130-prompt-knowledge-layering"
   ],
   "memorySequence": 0,

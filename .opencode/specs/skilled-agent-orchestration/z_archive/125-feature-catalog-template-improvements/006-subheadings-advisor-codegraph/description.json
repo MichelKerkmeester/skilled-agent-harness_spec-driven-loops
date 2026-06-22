@@ -5,7 +5,7 @@
   "status": "planned",
   "track": "skilled-agent-orchestration",
   "created": "2026-05-31",
-  "specFolder": "skilled-agent-orchestration/125-feature-catalog-template-improvements/006-subheadings-advisor-codegraph",
+  "specFolder": "skilled-agent-orchestration/z_archive/125-feature-catalog-template-improvements/006-subheadings-advisor-codegraph",
   "description": "Phase 006: Sub-headings — system-skill-advisor + system-code-graph",
   "keywords": [
     "phase",
@@ -14,11 +14,12 @@
     "system-skill-advisor",
     "system-code-graph"
   ],
-  "lastUpdated": "2026-06-01T11:13:19.539Z",
+  "lastUpdated": "2026-06-22T18:55:01.203Z",
   "specId": "006",
   "folderSlug": "subheadings-advisor-codegraph",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "125-feature-catalog-template-improvements"
   ],
   "memorySequence": 0,

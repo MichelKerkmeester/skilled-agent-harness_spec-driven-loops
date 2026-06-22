@@ -1,7 +1,7 @@
 {
   "completionPct": 0,
   "lastOutcome": "Scaffolded phase parent and 4 children; awaiting phase 001 dispatch.",
-  "specFolder": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/001-rename-opencode-dirs",
+  "specFolder": "skilled-agent-orchestration/z_archive/096-rename-opencode-dirs-to-plural/001-rename-opencode-dirs",
   "description": "Spec: 096 - rename .opencode/{skill,agent,command}/ to plural",
   "keywords": [
     "spec",
@@ -13,11 +13,12 @@
     "command",
     "plural"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.410Z",
+  "lastUpdated": "2026-06-22T18:54:59.929Z",
   "specId": "001",
   "folderSlug": "rename-opencode-dirs",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "096-rename-opencode-dirs-to-plural"
   ],
   "memorySequence": 1,

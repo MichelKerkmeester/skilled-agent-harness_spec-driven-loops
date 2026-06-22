@@ -41,7 +41,7 @@
     "023-system-spec-kit-readme",
     "024-skills-index-readme"
   ],
-  "specFolder": "skilled-agent-orchestration/135-skill-readme-standardization",
+  "specFolder": "skilled-agent-orchestration/z_archive/135-skill-readme-standardization",
   "description": "Feature Specification: Skill README standardization (Phase Parent)",
   "keywords": [
     "feature",
@@ -52,11 +52,12 @@
     "phase",
     "parent"
   ],
-  "lastUpdated": "2026-06-10T04:53:30.734Z",
+  "lastUpdated": "2026-06-22T18:55:01.518Z",
   "specId": "135",
   "folderSlug": "skill-readme-standardization",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

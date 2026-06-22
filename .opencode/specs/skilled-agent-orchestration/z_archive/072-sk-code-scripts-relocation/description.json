@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "skilled-agent-orchestration/072-sk-code-scripts-relocation",
+  "specFolder": "skilled-agent-orchestration/z_archive/072-sk-code-scripts-relocation",
   "description": "Feature Specification: Phase 072 sk-code scripts relocation",
   "keywords": [
     "feature",
@@ -11,11 +11,12 @@
     "scripts",
     "relocation"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.233Z",
+  "lastUpdated": "2026-06-22T18:54:59.779Z",
   "specId": "072",
   "folderSlug": "sk-code-scripts-relocation",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

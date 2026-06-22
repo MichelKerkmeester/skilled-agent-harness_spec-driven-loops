@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/084-ambiguity-window-confidence-fix",
+  "specFolder": "skilled-agent-orchestration/z_archive/084-ambiguity-window-confidence-fix",
   "description": "Feature Specification: Ambiguity Window Confidence Fix",
   "keywords": [
     "feature",
@@ -9,11 +9,12 @@
     "confidence",
     "fix"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.333Z",
+  "lastUpdated": "2026-06-22T18:54:59.878Z",
   "specId": "084",
   "folderSlug": "ambiguity-window-confidence-fix",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "z_archive"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

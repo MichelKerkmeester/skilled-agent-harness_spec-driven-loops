@@ -1,42 +1,29 @@
 {
+  "title": "Feature Specification: fix empty archive directory handling for deep-loop runtime",
   "level": "1",
-  "specFolder": ".opencode/specs/skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/006-deep-loop-empty-archive-dir",
-  "description": "Fix deep-loop runtime archive handling so restart branches create archive directories lazily and avoid empty directory churn.",
+  "specFolder": "skilled-agent-orchestration/z_archive/121-deep-agent-improvement-benchmark-mode/006-deep-loop-empty-archive-dir",
+  "description": "Feature Specification: fix empty archive directory handling for deep-loop runtime",
   "keywords": [
-    "deep-loop",
-    "empty",
-    "archive-dir",
+    "feature",
+    "specification",
     "fix",
-    "research",
-    "init",
-    "longer",
-    "eagerly",
-    "creates",
-    "mode",
-    "four",
-    "restart",
-    "branches",
+    "empty",
     "archive",
-    "lazily",
-    "guarded",
-    "regression",
-    "tests",
-    "added",
-    "dirs",
-    "removed"
+    "directory",
+    "handling",
+    "deep-loop",
+    "runtime"
   ],
-  "lastUpdated": "2026-05-29T06:14:31.376Z",
+  "lastUpdated": "2026-06-22T18:55:00.959Z",
   "specId": "006",
-  "folderSlug": "006-deep-loop-empty-archive-dir",
+  "folderSlug": "deep-loop-empty-archive-dir",
   "parentChain": [
-    ".opencode",
-    "specs",
     "skilled-agent-orchestration",
+    "z_archive",
     "121-deep-agent-improvement-benchmark-mode"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [
     "29-05-26_07-14__root-cause-deep-research-command-init-step-create.md"
-  ],
-  "title": "Feature Specification: fix empty archive directory handling for deep-loop runtime"
+  ]
 }

@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/015-deep-agent-improvement-deep-research-followon-findings",
+  "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/000-release-cleanup/015-deep-agent-improvement-deep-research-followon-findings",
   "description": "Feature Specification: resolve 005 deep-research follow-on findings",
   "keywords": [
     "feature",
@@ -10,11 +10,12 @@
     "follow-on",
     "findings"
   ],
-  "lastUpdated": "2026-05-26T14:39:10.416384+00:00",
+  "lastUpdated": "2026-06-22T18:55:00.453Z",
   "specId": "015",
   "folderSlug": "deep-agent-improvement-deep-research-followon-findings",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "116-deep-skill-evolution",
     "000-release-cleanup"
   ],

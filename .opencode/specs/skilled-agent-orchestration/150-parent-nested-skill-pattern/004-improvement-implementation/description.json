@@ -1,5 +1,5 @@
 {
-  "specFolder": "004-improvement-implementation",
+  "specFolder": "skilled-agent-orchestration/150-parent-nested-skill-pattern/004-improvement-implementation",
   "description": "Feature Specification: Implement the improvement-research findings",
   "keywords": [
     "feature",
@@ -8,13 +8,10 @@
     "improvement-research",
     "findings"
   ],
-  "lastUpdated": "2026-06-15T14:54:56.469Z",
+  "lastUpdated": "2026-06-22T18:54:59.159Z",
   "specId": "004",
   "folderSlug": "improvement-implementation",
   "parentChain": [
-    "..",
-    ".opencode",
-    "specs",
     "skilled-agent-orchestration",
     "150-parent-nested-skill-pattern"
   ],

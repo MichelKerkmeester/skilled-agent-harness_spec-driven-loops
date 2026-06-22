@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/002-deep-review",
+  "specFolder": "skilled-agent-orchestration/z_archive/116-deep-skill-evolution/002-deep-review",
   "description": "Feature Specification: Deep Review complexity-hardening arc",
   "keywords": [
     "feature",
@@ -10,11 +10,12 @@
     "complexity-hardening",
     "arc"
   ],
-  "lastUpdated": "2026-05-23T15:24:58.983Z",
+  "lastUpdated": "2026-06-22T18:55:00.536Z",
   "specId": "002",
   "folderSlug": "deep-review",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "116-deep-skill-evolution"
   ],
   "memorySequence": 0,

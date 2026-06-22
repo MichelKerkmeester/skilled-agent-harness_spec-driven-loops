@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/070-sk-deep-rename/007-deep-review-remediation",
+  "specFolder": "skilled-agent-orchestration/z_archive/070-sk-deep-rename/007-deep-review-remediation",
   "description": "Feature Specification: Phase 007 Deep Review Remediation",
   "keywords": [
     "feature",
@@ -10,11 +10,12 @@
     "review",
     "remediation"
   ],
-  "lastUpdated": "2026-05-16T17:59:28.181Z",
+  "lastUpdated": "2026-06-22T18:54:59.718Z",
   "specId": "007",
   "folderSlug": "deep-review-remediation",
   "parentChain": [
     "skilled-agent-orchestration",
+    "z_archive",
     "070-sk-deep-rename"
   ],
   "memorySequence": 0,
