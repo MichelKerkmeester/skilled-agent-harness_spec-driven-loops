@@ -100,7 +100,7 @@ references/                              # skill-owned advisor-routable referenc
 
 | Level       | When to Load                         | Resources                                                                 |
 | ----------- | ------------------------------------ | ------------------------------------------------------------------------- |
-| ALWAYS      | Every invocation                     | `tool/resources/design_md_format.md`, `tool/resources/writing_style_guide.md` |
+| ALWAYS      | Every invocation                     | `tool/resources/design_md_format.md`, `tool/resources/writing_style_guide.md`, `assets/cardinal_rules_card.md` (pre-write fabrication gate) |
 | CONDITIONAL | EXTRACT_WRITE intent                 | `tool/resources/color_role_taxonomy.md`, `tool/resources/component_taxonomy.md`, `tool/resources/anti_patterns.md` |
 | CONDITIONAL | VALIDATE / completion claim          | `tool/resources/quality_checklist.md`, `tool/resources/anti_patterns.md`  |
 | CONDITIONAL | STUDY intent                         | `tool/examples/` (one site at a time, loaded as reference pairs)           |

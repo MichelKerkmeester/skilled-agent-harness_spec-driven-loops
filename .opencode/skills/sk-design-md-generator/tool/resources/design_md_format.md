@@ -26,26 +26,28 @@ A complete v2 DESIGN.md contains **14 numbered core sections** (0--13), one half
 
 | # | Title | Required |
 |---|-------|----------|
-| 0 | Brand Context | yes |
+| 0 | Brand Context | conditional (inferred — label `[INFERRED]`, else stamp ABSENT) |
 | 1 | Visual Theme & Atmosphere | yes |
 | 2 | Color Palette & Roles | yes |
 | 2.5 | Dark Mode System | conditional (`darkMode.supported`) |
 | 3 | Typography Rules | yes |
 | 4 | Component Stylings | yes |
 | 5 | Layout Principles | yes |
-| 6 | Depth & Elevation | yes |
-| 6.5 | Motion System | yes |
-| 7 | Content & Voice | yes |
+| 6 | Depth & Elevation | conditional (`shadowTokens` or `gradients` present, else stamp ABSENT) |
+| 6.5 | Motion System | conditional (`motionSystem` present) |
+| 7 | Content & Voice | conditional (`sampleTexts` — inferred, label `[INFERRED]`) |
 | 8 | Do's and Don'ts | yes |
-| 9 | Accessibility Contract | yes |
+| 9 | Accessibility Contract | conditional (`a11yTokens` present) |
 | 10 | Responsive Behavior | yes |
-| 11 | State Matrix | yes |
-| 12 | Iconography | yes |
+| 11 | State Matrix | conditional (interaction data captured, else stamp ABSENT) |
+| 12 | Iconography | conditional (`iconSystem` present) |
 | 13 | Agent Prompt Guide | yes |
 | 14 | Pattern Compositions | optional |
 | 15 | Platform Adaptations | optional |
 | 16 | Internationalization Notes | optional |
 | 17 | Design Tokens Dictionary | optional |
+
+**Conditional sections are data-driven.** A section marked `conditional` is REQUIRED only when its backing tokens exist; when the data is absent, stamp the section ABSENT (a one-line `_No <X> data was extracted._`) instead of inventing content. Sections marked `[INFERRED]` carry interpretive prose the tokens cannot directly support -- every such paragraph MUST be labeled `[INFERRED]` and cite at least one real token value. This data-driven contract is what stops an empty section (e.g. §6 Depth with zero shadow tokens) from being filled with fabricated narrative.
 
 ### File Header
 
@@ -119,7 +121,7 @@ Every DESIGN.md begins with exactly three HTML comment lines, followed by a blan
    - **P3 -- Meso (Typography Character):** What font defines the system? Reference the font name, a specific weight, size, and letter-spacing values.
    - **P4 -- Micro (Unique Technique):** What single technical decision distinguishes this system from peers? Name the technique (e.g. "chromatic depth", "shadow-as-border"), provide exact CSS value, explain the architectural reason.
 
-3. **Named design principles** -- after the prose paragraphs, name and briefly define the 2--4 most distinctive principles of the system:
+3. **Named design principles** (evidence-gated) -- after the prose paragraphs, name and briefly define the most distinctive principles, but ONLY those backed by extracted tokens (cite the value). Do not invent principles to reach a count; if the data supports none, omit this subsection:
 
 ```
 **Design Principles:**
@@ -127,7 +129,7 @@ Every DESIGN.md begins with exactly three HTML comment lines, followed by a blan
 - **Compression as Identity**: Aggressive negative tracking at display sizes (-2.4px at 48px)
 ```
 
-4. **Comparative framing** -- at least one sentence in the prose must use a comparative structure: "Unlike most systems...", "Where others...", "This is not..."
+4. **Intra-system comparison** (optional) -- when useful, compare elements WITHIN this system using extracted values ("the H1 at -2.4px tracking is tighter than body at 0px"). Do NOT compare to "other systems" / "most systems" / "where others" -- `tokens.json` carries no data about other design systems, so any such claim is fabrication.
 
 5. **Key Characteristics list**. 8--12 bullet items using em-dash format:
 
@@ -541,7 +543,7 @@ List radius tokens from smallest to largest with frequency counts showing the do
 
 **Required content:**
 
-1. **Named principle** -- state the depth philosophy upfront using one of these categories (or a custom name):
+1. **Named principle** (evidence-gated) -- state the depth philosophy ONLY when there are >=3 shadow/gradient tokens across >=2 pages to support it, and CITE the backing token(s). If `shadowTokens` AND `gradients` are both empty/absent, do NOT name a principle: stamp the section ABSENT (`_No shadow or gradient depth data was extracted; this site uses flat surfaces._`). Categories (or a custom name) when evidence exists:
    - Chromatic depth (shadows carry brand color)
    - Shadow-as-border (zero-blur shadows replace CSS borders)
    - Luminance stepping (surface color changes create depth, minimal shadows)
@@ -588,7 +590,9 @@ Include 4--6 levels. The Frequency column shows occurrence count.
 ```
 ## 6.5. Motion System
 
-**Motion philosophy:** No transitions or animations were detected in the extraction data. The site relies on instant state changes. When implementing, consider adding subtle transitions (150ms ease for hover states, 300ms for reveals) to prevent visual jarring, while respecting `prefers-reduced-motion`.
+**OBSERVED:** No transitions or animations were detected in the extraction data; the site relies on instant state changes.
+
+**RECOMMENDED [INFERRED -- not measured from this site]:** When implementing you MAY add subtle transitions (e.g. ~150ms ease for hover, ~300ms for reveals) while respecting `prefers-reduced-motion`. These are generic suggestions, NOT values extracted from the source -- keep them under the RECOMMENDED label so they are never mistaken for measured data.
 ```
 
 **When motion data exists, include:**

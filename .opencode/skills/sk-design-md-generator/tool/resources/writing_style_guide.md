@@ -528,12 +528,12 @@ Before publishing a DESIGN.md, run these checks:
 
 ## 15. Comparative Framing Pattern
 
-The best DESIGN.md files position the system relative to convention. Comparative framing tells the reader not just what the system does, but what it chose NOT to do -- and that negative space is where design intent lives.
+Comparative framing is useful ONLY when it compares elements WITHIN this system using extracted values. Do NOT compare to "most systems", "convention", or "the typical approach" -- `tokens.json` carries no data about other systems, so those claims are fabrication. (This pattern previously produced ungrounded "unlike most systems" sentences; keep comparisons intra-system.)
 
-### Sentence templates
+### Sentence templates (intra-system only)
 
-- "Where most systems use X, this system uses Y"
-- "Unlike the typical approach of X, this system..."
+- "The H1 (-2.4px tracking) is tighter than body (0px) -- compression scales with size"
+- "Cards use a 7px radius while buttons use 10.5px -- the system distinguishes containers from controls"
 - "This is not the [common thing]; it is [the specific thing]"
 - "The conventional choice would be X; here, Y signals [intent]"
 - "Rather than defaulting to X, the system [specific verb] Y"
@@ -588,7 +588,7 @@ GOOD: "Where most design systems give buttons solid backgrounds and obvious affo
 
 ## 16. Named Principle Pattern
 
-Every major design decision should get a memorable name. Unnamed decisions get forgotten. Named decisions become system vocabulary that the team can reference in code reviews, Slack, and PRs.
+Name a design decision ONLY when extracted tokens back it (cite the value). A named principle without backing data is fabrication -- this pattern previously produced "gradient-as-depth" from a site with zero shadow tokens. When the data supports no distinctive principle, omit the name; do not invent one to fill the section.
 
 ### Naming formula
 

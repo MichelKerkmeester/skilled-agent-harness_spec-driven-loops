@@ -48,8 +48,16 @@ CARDINAL RULES (non-negotiable):
    palette. Never derive a dark palette from the light one.
 5. Accessibility: include the accessibility section from the tokens' a11y data
    (contrast, focus, touch-target). If no a11y data was captured, note the absence
-   rather than inventing values.
-6. Keep all 17 sections; do not collapse or rename them.
+   rather than inventing values. Never assert focus "consistency" unless the tokens
+   show captured focus styles.
+6. Sections are data-driven: render the required sections always and the conditional
+   sections ONLY when their backing tokens exist; when a section's data is empty, stamp
+   it ABSENT (`_No <X> data was extracted._`) instead of inventing content. Follow the
+   section table in design_md_format.md.
+7. NEVER assert an interpretive claim -- a relationship, cause, consistency, or named
+   principle -- that is not directly backed by a token value. No "gradient-as-depth", no
+   "focus is consistent", no "unlike most systems". If an inference is genuinely useful,
+   label it `[INFERRED]` and cite the token it rests on.
 
 After writing, validate:
   npx ts-node scripts/validate.ts <DESIGN_MD_PATH> <TOKENS_JSON_PATH>

@@ -749,7 +749,8 @@ Use this checklist when reviewing a generated DESIGN.md:
 - [ ] **AP-22**: Voice matches brand -- no generic enthusiasm for formal brands
 - [ ] **AP-23**: Accessibility contract present -- contrast ratios, focus specs, touch targets
 - [ ] **AP-24**: All component states documented -- not just the happy path
-- [ ] **AP-25**: Design principles are named -- decisions have vocabulary, not just values
-- [ ] **AP-26**: System contrasted with convention -- reader knows what makes this system different
+- [ ] **AP-25**: Named principles are EVIDENCE-BACKED -- a principle is named only when >=3 backing tokens support it; no invented principles to fill the section
+- [ ] **AP-26**: Comparisons are INTRA-SYSTEM -- the doc compares its own elements (extracted values), never an invented "convention" or "most systems"
 - [ ] **AP-27**: Frequency data present -- reader knows which values dominate
 - [ ] **AP-28**: Emoji policy matches brand -- no emoji in formal copy, no sterility in playful brands
+- [ ] **AP-29 (Interpretive Fabrication)**: No prose asserts a relationship, cause, consistency, or named principle absent from `tokens.json`. Canonical failures: "gradient-as-depth replaces shadow elevation" (zero shadow/gradient tokens supporting it) and "focus indicators are consistent" (no captured focus styles). Every interpretive claim cites a token or is labeled `[INFERRED]`; an empty section is stamped ABSENT, never filled.

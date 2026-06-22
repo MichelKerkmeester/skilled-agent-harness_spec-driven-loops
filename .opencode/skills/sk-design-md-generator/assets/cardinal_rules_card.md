@@ -39,8 +39,12 @@ Read top to bottom against the draft `DESIGN.md`. Every box must be checkable wi
 □ L4 (content / image-derived) tokens are excluded entirely
 □ A dark-mode section exists ONLY if tokens.json has a detected dark palette
 □ The accessibility section is drawn from tokens.json a11y data (or notes its absence)
-□ All 17 v2 sections are present, named, and non-empty
-□ validate.ts passes with zero hex mismatches and zero missing sections
+□ Required sections are present; conditional sections appear ONLY when their backing tokens exist
+□ Any section with no backing data is stamped ABSENT (_No <X> data was extracted._), never invented
+□ No interpretive claim - a relationship, cause, consistency, or named principle - lacks a backing token
+□ No "gradient-as-depth", "focus is consistent", or "unlike most systems" without token evidence
+□ Any necessary inference is labeled [INFERRED] and cites a token
+□ validate.ts passes with zero hex mismatches and zero missing required sections
 ```
 
 ---
