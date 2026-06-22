@@ -24,7 +24,9 @@ The WRITE phase is where hallucination risk is highest: an agent reading `tokens
 
 ### Usage
 
-Fill the three placeholders (`<DOMAIN>`, `<TOKENS_JSON_PATH>`, `<DESIGN_MD_PATH>`), then hand the prompt to the writing agent. Load `tool/resources/design_md_format.md` (the section spec) and `tool/resources/writing_style_guide.md` (voice) alongside it.
+**Recommended (doc-as-view):** first run `npx ts-node tool/scripts/build-write-prompt.ts <TOKENS_JSON_PATH>`. It pre-renders the deterministic value sections (§2 Color, §3 Typography, §6 Depth) directly from the tokens and emits a PRESENT/ABSENT manifest for the data-gated sections. Paste those PRE-RENDERED tables into the doc unchanged — the agent never hand-assembles a value table — and follow the manifest for which conditional sections to write versus stamp ABSENT.
+
+Then fill the three placeholders (`<DOMAIN>`, `<TOKENS_JSON_PATH>`, `<DESIGN_MD_PATH>`) and hand the prompt to the writing agent. Load `tool/resources/design_md_format.md` (the section spec) and `tool/resources/writing_style_guide.md` (voice) alongside it.
 
 ---
 
