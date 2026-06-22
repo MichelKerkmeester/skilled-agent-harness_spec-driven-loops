@@ -226,3 +226,46 @@ otherwise evict a higher-scored lexical hit from the truncated top-3.
 2. Track the within-noise graph-channel harm on the separate pre-028 graph flags `useGraph`,
    `SPECKIT_GRAPH_SIGNALS` and `SPECKIT_DEGREE_BOOST` as a follow-up out of 028 scope. `SPECKIT_TEMPORAL_EDGES`
    is the additive mitigation and is not the source of that harm.
+
+## 005 data-quality flag benchmarks: one measured, twelve deferred to phase 040
+
+The `005-spec-data-quality` build landed thirteen real switches this session, unlike the still-PROPOSED Track-C
+slate above. One carries a measured before-and-after today. The other twelve are built default-off (two ship
+default-ON, one report-only) and their per-flag before-and-after is deferred to the phase
+040 benchmark, the same earn-or-delete discipline that produced the kept five.
+
+### Measured: lexical grounding drives the off-corpus false-confirm rate to zero
+
+`SPECKIT_LEXICAL_GROUNDING_V1` (phase 026) is the lead graduation candidate and the only 005 switch with a
+number taken. A measured pass on the off-corpus eval fixture drove the false-confirm rate from 0.833 to 0. That
+is a before-and-after on the metric the switch exists to move, so it is the one 005 flag positioned to flip on
+the evidence rather than on cost. The companion CI gate `SPECKIT_FALSE_CONFIRM_MAX_RATE` (phase 025) stays
+report-only until that 0 holds on the gate corpus, then a max rate enforces it. Phase 040 confirms both reads
+on live data before either flip lands.
+
+### Deferred to phase 040: the per-flag before-and-after for the remaining twelve
+
+No other 005 switch has a number yet. The migration-gated switches cannot be benchmarked meaningfully until the
+phase 039 full-repo restamp gives them a tree in the new shape to read, and the behavioral switches dark-launch
+off until the phase 040 benchmark measures each one's before-and-after on live data. The table records what each
+proposed measurement would have to clear, not a result.
+
+| Flag | Default | Phase | Pending measurement at phase 040 |
+|------|---------|-------|----------------------------------|
+| `SPECKIT_GROUNDING_SIGNAL_V1` | off | 028-scoring-hardening | Whether surfacing the `grounding` field changes the reader's cite decision without a recall regression. |
+| `SPECKIT_NOISE_FLOOR_SUBTRACTION_V1` | off | 028-scoring-hardening | Whether subtracting the per-embedder noise-floor moves the request-quality band the right way on off-corpus hits. |
+| `SPECKIT_CITE_WITH_CAVEAT_V1` | off | 028-scoring-hardening | Whether the hedged tier recovers grounded weak-verdict hits the two-state policy drops, with no ungrounded promotion. |
+| `SPECKIT_EVIDENCE_GAP_VERDICT_V1` | off | 028-scoring-hardening | Whether capping a good verdict at weak on a true Stage 4 gap improves verdict fidelity. |
+| `SPECKIT_ENVELOPE_FIDELITY_V1` | off | 027 | Whether the pre-rendered fragment and the mandatory render slots hold byte-for-byte after a clean grandfather report. |
+| `SPECKIT_IDENTITY_MERGE_SAFETY` | off | 033 | Migration-gated. No before-and-after until phase 039 restamps the graph-metadata tree. |
+| `SPECKIT_IDEMPOTENT_DESCRIPTION_WRITES` | off | 035 | Migration-gated. No before-and-after until phase 039 normalizes the wall-clock stamps. |
+| `SPECKIT_GENERATED_METADATA_DRIFT_GATE` | off (grandfather) | 037 | Migration-gated. No drift baseline until phase 039 persists `source_doc_hashes`. |
+| `SPECKIT_GENERATOR_HARDENING` | off (grandfather) | 038 | Migration-gated. No fingerprint baseline until phase 039 stamps `source_fingerprint`. |
+| `SPECKIT_GENERATED_METADATA_GRANDFATHER` | on (report-only) | 036 | Migration-gated, inverted. Flips off to a hard error once phase 039 leaves the tree clean. |
+| `SPECKIT_GENERATED_METADATA_Z_EXCLUSION` | on (opt-out) | 034 | None. Ships on cost, cannot mass-fail, needs no benchmark to keep. |
+
+Phase 039 is the full-repo migration that restamps every `description.json` and `graph-metadata.json` in the
+whole tree, including `z_archive` and `z_future`, which unblocks the five migration-gated reads and the
+grandfather flip to error. Phase 040 is the benchmark that takes each behavioral switch's before-and-after on
+live data and graduates the earners to default-ON. Until those two phases run, lexical grounding is the only
+005 flag carrying measured support and the rest stay conservatively in their built state.
