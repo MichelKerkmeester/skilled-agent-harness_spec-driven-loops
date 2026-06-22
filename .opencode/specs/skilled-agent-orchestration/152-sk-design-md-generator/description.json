@@ -12,14 +12,15 @@
     "fabrication",
     "remediation"
   ],
-  "lastUpdated": "2026-06-22T15:13:59.784Z",
+  "lastUpdated": "2026-06-22T17:09:48.350Z",
   "specId": "152",
   "folderSlug": "sk-design-md-generator",
   "parentChain": [
     "skilled-agent-orchestration"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "22-06-26_16-13__hardened-the-sk-design-md-generator-skill-against.md"
+    "22-06-26_16-13__hardened-the-sk-design-md-generator-skill-against.md",
+    "22-06-26_18-09__overhauled-the-sk-design-md-generator-output-to-a.md"
   ]
 }

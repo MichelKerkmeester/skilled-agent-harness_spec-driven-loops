@@ -9,7 +9,8 @@
     "skilled-agent-orchestration/152-sk-design-md-generator/003-doc-prompt-routing-fixes",
     "skilled-agent-orchestration/152-sk-design-md-generator/004-validator-semantic-checks",
     "skilled-agent-orchestration/152-sk-design-md-generator/005-doc-as-view-architecture",
-    "skilled-agent-orchestration/152-sk-design-md-generator/006-deferred-enhancements"
+    "skilled-agent-orchestration/152-sk-design-md-generator/006-deferred-enhancements",
+    "skilled-agent-orchestration/152-sk-design-md-generator/007-reference-format-overhaul"
   ],
   "manual": {
     "depends_on": [],
@@ -132,14 +133,14 @@
     ],
     "causal_summary": "This packet is a **phase parent**. Phase `001` documents the original skill build and its deep-review remediation. Phases `002`–`006` are the **anti-fabrication hardening** program derived from a 50-iteration deep-research loop (`research/research.md`), which found that the AI WRITE phase fabricates interpretive prose not grounded in `tokens.json` and that the validator is blind to prose. The remediation is sequenced so extraction accuracy (002) precedes incentive removal (003), which precedes semantic validation (004), which precedes the optional deterministic-render rebuild (005); deferred enhancements are isolated in 006.",
     "created_at": "2026-06-21T07:44:10Z",
-    "last_save_at": "2026-06-22T15:14:03.550Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-06-22T17:09:52.853Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
     "last_active_child_id": null,
-    "last_active_at": "2026-06-22T15:14:03.550Z"
+    "last_active_at": "2026-06-22T17:09:52.853Z"
   }
 }
