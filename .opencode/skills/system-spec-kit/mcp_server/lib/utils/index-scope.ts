@@ -199,6 +199,17 @@ export const EXCLUDED_FOR_CODE_GRAPH = [
   compileSegmentPattern('z_archive'),
 ] as const;
 
+// Authoritative z_* exclusion for generated metadata (description.json and
+// graph-metadata caches). Every z_-prefixed segment is a staging or archive
+// area that must never seed generated JSON, so this is the single source of
+// truth the traversal boundaries share instead of four divergent skip lists.
+// It is deliberately distinct from EXCLUDED_FOR_MEMORY: the memory index keeps
+// z_archive (deprioritized by ARCHIVE_MULTIPLIERS), so the two policies answer
+// different questions and never collide.
+export const EXCLUDED_FOR_GENERATED_METADATA = [
+  compileSegmentPattern('z_[^/]+'),
+] as const;
+
 function getCodeGraphPolicy(
   policyInput?: IndexScopePolicy | ResolveIndexScopePolicyInput,
 ): IndexScopePolicy {
@@ -221,6 +232,15 @@ function matchesOpencodeFolder(filePath: string, folder: string): boolean {
 
 export function shouldIndexForMemory(absolutePath: string): boolean {
   return !matchesAnyPattern(absolutePath, EXCLUDED_FOR_MEMORY);
+}
+
+/**
+ * Returns whether a path sits under a z_* staging or archive segment and must
+ * therefore be excluded from generated metadata. This is the authoritative
+ * z_* check applied at every generated-metadata traversal boundary.
+ */
+export function isExcludedFromGeneratedMetadata(absolutePath: string): boolean {
+  return matchesAnyPattern(absolutePath, EXCLUDED_FOR_GENERATED_METADATA);
 }
 
 export function shouldIndexForCodeGraph(

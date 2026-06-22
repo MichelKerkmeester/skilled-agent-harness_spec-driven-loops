@@ -53,7 +53,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-06-22 |
 | **Branch** | `034-scoped-backfill-boundary` |
 <!-- /ANCHOR:metadata -->

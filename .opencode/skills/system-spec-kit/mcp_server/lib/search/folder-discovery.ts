@@ -15,6 +15,7 @@ import {
 import { stripYamlFrontmatter } from '../parsing/content-normalizer.js';
 import { resolveSpecFolderIdentity, SpecFolderIdentityError } from '../config/spec-doc-paths.js';
 import { isIdentityMergeSafetyEnabled } from '../config/capability-flags.js';
+import { isExcludedFromGeneratedMetadata } from '../utils/index-scope.js';
 
 // ───────────────────────────────────────────────────────────────
 // 1. TYPES
@@ -311,9 +312,26 @@ function normalizeBasePaths(basePaths: string[]): string[] {
   return normalized;
 }
 
+/**
+ * Returns whether the description scanner excludes z_* staging and archive
+ * folders from the descriptions.json cache. Default-on so the global cache
+ * stops admitting prefixed folders; set
+ * SPECKIT_GENERATED_METADATA_Z_EXCLUSION=false to restore the prior scanner
+ * behavior that walked them. Read fresh each call so a caller can toggle it.
+ */
+export function isGeneratedMetadataZExclusionEnabled(): boolean {
+  const rawValue = process.env.SPECKIT_GENERATED_METADATA_Z_EXCLUSION?.trim().toLowerCase();
+  return rawValue !== 'false' && rawValue !== '0';
+}
+
 function shouldSkipDirectoryName(name: string): boolean {
   const normalizedName = name.toLowerCase();
   if (normalizedName.startsWith('.')) {
+    return true;
+  }
+  // The local skip set omits z_*, so route the prefixed staging and archive
+  // folders through the authoritative generated-metadata exclusion instead.
+  if (isGeneratedMetadataZExclusionEnabled() && isExcludedFromGeneratedMetadata(normalizedName)) {
     return true;
   }
   return SCAN_SKIP_DIRECTORIES.has(normalizedName);

@@ -1,7 +1,7 @@
 // ────────────────────────────────────────────────────────────────
-// MODULE: Index — Public API surface
+// MODULE: Index, Public API surface
 // ────────────────────────────────────────────────────────────────
-// @public — Only export what external consumers (scripts/, other packages) need.
+// @public, Only export what external consumers (scripts/, other packages) need.
 // Internal mcp_server code should import from lib/ directly, not through this barrel.
 // ARCH-1: Consumer scripts import from '@spec-kit/mcp-server/api' instead of lib/.
 // Review note: Barrel is wide due to legitimate external consumers in scripts/evals,
@@ -74,7 +74,14 @@ export {
 export {
   isIndexableConstitutionalMemoryPath,
   shouldIndexForMemory,
+  isExcludedFromGeneratedMetadata,
 } from '../lib/utils/index-scope.js';
+export {
+  canClassifyAsGraphMetadataPath,
+  resolveSpecFolderIdentity,
+  SpecFolderIdentityError,
+} from '../lib/config/spec-doc-paths.js';
+export type { SpecFolderIdentity } from '../lib/config/spec-doc-paths.js';
 export {
   validateFolder,
   type ValidateOpts,

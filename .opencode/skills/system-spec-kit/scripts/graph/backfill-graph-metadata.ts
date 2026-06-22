@@ -1,22 +1,28 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Backfill Graph Metadata
 // Usage:
-//   node .opencode/skills/system-spec-kit/scripts/dist/graph/backfill-graph-metadata.js [--dry-run] [--root <specs-dir>]
-//   node .opencode/skills/system-spec-kit/scripts/dist/graph/backfill-graph-metadata.js [--dry-run] --active-only [--root <specs-dir>]
+//   node .../graph/backfill-graph-metadata.js <spec-folder> [--dry-run]
+//   node .../graph/backfill-graph-metadata.js --spec-folder <path> [--dry-run]
+//   node .../graph/backfill-graph-metadata.js --all [--dry-run] [--active-only] [--root <specs-dir>]
 //
-// Default behavior refreshes all packet folders under the selected specs root,
-// including z_archive/. z_future/ is ALWAYS skipped because it is a staging area
-// that is not a supported specs root, so refreshing it makes the parser throw and
-// the walk over-reach. Use --active-only to also skip z_archive/.
+// A default invocation refreshes ONE packet only: it requires a target spec
+// folder, validates it against the supported specs roots, and never walks the
+// repo-wide tree. The broad repo-wide walk lives behind an explicit --all flag
+// so a single-packet intent can no longer dirty unrelated sessions' folders.
+// In --all mode z_future/ is always skipped (it is not a supported specs root)
+// and z_archive/ is included unless --active-only is passed.
 // ───────────────────────────────────────────────────────────────
 
 import fs from 'node:fs';
 import path from 'node:path';
 
 import {
+  canClassifyAsGraphMetadataPath,
   deriveGraphMetadata,
   loadGraphMetadata,
   refreshGraphMetadataForSpecFolder,
+  resolveSpecFolderIdentity,
+  SpecFolderIdentityError,
   type GraphMetadata,
 } from '@spec-kit/mcp-server/api';
 import { dirnameFromImportMeta, isMainModule } from '../lib/esm-entry.js';
@@ -27,14 +33,19 @@ const SPEC_FOLDER_RE = /^\d{3}(?:[-_].+)?$/;
 const EXCLUDED_DIRS = new Set(['memory', 'scratch', 'node_modules', '.git', 'z_future']);
 const ARCHIVE_SEGMENT_RE = /(^|\/)(z_archive|z_future)(\/|$)/;
 
+export type BackfillScope = 'scoped' | 'all';
+
 interface BackfillSummary {
   dryRun: boolean;
+  scope: BackfillScope;
   root: string;
   totalSpecFolders: number;
   created: number;
   refreshed: number;
   existing: number;
   lineageStamped: number;
+  skipped: Array<{ specFolder: string; reason: string }>;
+  failed: Array<{ specFolder: string; error: string }>;
   reviewFlags: Array<{ specFolder: string; flags: string[] }>;
 }
 
@@ -42,7 +53,13 @@ export interface BackfillOptions {
   dryRun: boolean;
   root: string;
   activeOnly?: boolean;
+  // When set, only this single packet folder is refreshed and no tree walk runs.
+  specFolder?: string;
 }
+
+export type BackfillPlan =
+  | { ok: true; options: BackfillOptions }
+  | { ok: false; error: string };
 
 function resolveRepoRoot(): string {
   const cwdCandidate = path.resolve(process.cwd());
@@ -68,10 +85,63 @@ function resolveRepoRoot(): string {
   return path.resolve(moduleDir, '..', '..', '..', '..', '..');
 }
 
-function parseArgs(argv: string[]): { dryRun: boolean; root: string; activeOnly: boolean } {
+function isSpecFolder(dirPath: string): boolean {
+  const base = path.basename(dirPath);
+  return SPEC_FOLDER_RE.test(base) && fs.existsSync(path.join(dirPath, 'spec.md'));
+}
+
+/**
+ * Validate a scoped target through the supported-root checks before any write.
+ *
+ * Rejects a missing target, a folder without spec.md, a path that resolves
+ * outside a supported specs root, and a graph-metadata path the writer rules
+ * would refuse, so a scoped run fails the contract up front rather than later
+ * inside the per-folder refresh.
+ *
+ * @param target - Caller-supplied spec folder (positional or --spec-folder)
+ * @returns The validated absolute folder path or a contract error
+ */
+function resolveScopedTarget(target: string): { ok: true; specFolder: string } | { ok: false; error: string } {
+  const absTarget = path.resolve(target);
+  if (!fs.existsSync(absTarget) || !fs.statSync(absTarget).isDirectory()) {
+    return { ok: false, error: `target spec folder does not exist: ${absTarget}` };
+  }
+  if (!isSpecFolder(absTarget)) {
+    return { ok: false, error: `target is not a spec folder (missing spec.md): ${absTarget}` };
+  }
+  try {
+    resolveSpecFolderIdentity(absTarget);
+  } catch (error) {
+    if (error instanceof SpecFolderIdentityError) {
+      return { ok: false, error: `target resolves outside a supported specs root: ${absTarget}` };
+    }
+    throw error;
+  }
+  const graphPath = path.join(absTarget, 'graph-metadata.json');
+  if (!canClassifyAsGraphMetadataPath(graphPath)) {
+    return { ok: false, error: `target graph-metadata path fails the writer rules: ${graphPath}` };
+  }
+  return { ok: true, specFolder: absTarget };
+}
+
+/**
+ * Parse argv into a validated backfill plan.
+ *
+ * Rejects unknown args, requires a scoped target unless --all is given, and
+ * validates the resolved scoped folder through the supported-root checks. The
+ * broad tree walk stays behind --all so the default path can only touch one
+ * packet.
+ *
+ * @param argv - CLI arguments after the node entrypoint
+ * @returns A ready-to-run plan or a contract error
+ */
+export function planBackfill(argv: string[]): BackfillPlan {
   let dryRun = false;
-  let root = path.join(resolveRepoRoot(), '.opencode', 'specs');
   let activeOnly = false;
+  let all = false;
+  let root = path.join(resolveRepoRoot(), '.opencode', 'specs');
+  let scopedTarget: string | null = null;
+  let sawPositional = false;
 
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index];
@@ -87,18 +157,57 @@ function parseArgs(argv: string[]): { dryRun: boolean; root: string; activeOnly:
       activeOnly = false;
       continue;
     }
-    if (arg === '--root') {
-      root = path.resolve(argv[index + 1] ?? root);
-      index += 1;
+    if (arg === '--all') {
+      all = true;
+      continue;
     }
+    if (arg === '--root') {
+      const value = argv[index + 1];
+      if (value === undefined || value.startsWith('--')) {
+        return { ok: false, error: '--root requires a directory path' };
+      }
+      root = path.resolve(value);
+      index += 1;
+      continue;
+    }
+    if (arg === '--spec-folder') {
+      const value = argv[index + 1];
+      if (value === undefined || value.startsWith('--')) {
+        return { ok: false, error: '--spec-folder requires a directory path' };
+      }
+      scopedTarget = value;
+      index += 1;
+      continue;
+    }
+    if (arg.startsWith('-')) {
+      return { ok: false, error: `unknown argument: ${arg}` };
+    }
+    if (sawPositional) {
+      return { ok: false, error: `unexpected extra argument: ${arg}` };
+    }
+    scopedTarget = arg;
+    sawPositional = true;
   }
 
-  return { dryRun, root, activeOnly };
-}
+  if (all) {
+    if (scopedTarget !== null) {
+      return { ok: false, error: 'cannot combine --all with a target spec folder' };
+    }
+    return { ok: true, options: { dryRun, root, activeOnly } };
+  }
 
-function isSpecFolder(dirPath: string): boolean {
-  const base = path.basename(dirPath);
-  return SPEC_FOLDER_RE.test(base) && fs.existsSync(path.join(dirPath, 'spec.md'));
+  if (scopedTarget === null) {
+    return {
+      ok: false,
+      error: 'a target spec folder is required (or pass --all for a repo-wide refresh)',
+    };
+  }
+
+  const resolved = resolveScopedTarget(scopedTarget);
+  if (!resolved.ok) {
+    return resolved;
+  }
+  return { ok: true, options: { dryRun, root, specFolder: resolved.specFolder } };
 }
 
 function isArchivedTraversalPath(dirPath: string): boolean {
@@ -186,50 +295,77 @@ export function collectReviewFlags(specFolderPath: string, metadata: GraphMetada
 }
 
 /**
- * Backfill graph-metadata files across the selected specs tree.
+ * Backfill graph-metadata files across the selected scope.
+ *
+ * A scoped run (`specFolder` set) refreshes that single packet only. A broad
+ * run collects folders under `root`. Either way, a candidate whose
+ * graph-metadata path fails the writer rules is skipped, and one corrupt
+ * folder is reported failed without aborting the rest of the run.
  *
  * @param options - Backfill execution options
- * @returns Aggregate summary of created, refreshed, and flagged packets
+ * @returns Aggregate summary of created, refreshed, skipped, and failed packets
  */
-export function runBackfill({ dryRun, root, activeOnly = false }: BackfillOptions): BackfillSummary {
-  const specFolders = collectSpecFolders(root, { activeOnly });
+export function runBackfill({ dryRun, root, activeOnly = false, specFolder }: BackfillOptions): BackfillSummary {
+  const specFolders = specFolder
+    ? [specFolder]
+    : collectSpecFolders(root, { activeOnly });
   const summary: BackfillSummary = {
     dryRun,
+    scope: specFolder ? 'scoped' : 'all',
     root,
     totalSpecFolders: specFolders.length,
     created: 0,
     refreshed: 0,
     existing: 0,
     lineageStamped: 0,
+    skipped: [],
+    failed: [],
     reviewFlags: [],
   };
 
   for (const specFolderPath of specFolders) {
     const graphPath = path.join(specFolderPath, 'graph-metadata.json');
-    const existing = loadGraphMetadata(graphPath);
-    const saveLineage = existing?.derived.save_lineage ?? 'graph_only';
-    if (existing) {
-      summary.existing += 1;
+
+    // Match the writer rules so a candidate the writer would reject never
+    // reaches the refresh and cannot throw later inside it.
+    if (!canClassifyAsGraphMetadataPath(graphPath)) {
+      summary.skipped.push({ specFolder: specFolderPath, reason: 'writer_rule' });
+      continue;
     }
 
-    const metadata = dryRun
-      ? deriveGraphMetadata(specFolderPath, existing, { saveLineage })
-      : refreshGraphMetadataForSpecFolder(specFolderPath, { saveLineage }).metadata;
-
-    if (!existing) {
-      summary.created += 1;
-    } else {
-      summary.refreshed += 1;
-      if (!dryRun && !existing.derived.save_lineage && metadata.derived.save_lineage === 'graph_only') {
-        summary.lineageStamped += 1;
+    // Isolate per-folder failures: one corrupt or unsupported folder reports
+    // failed and the run continues over every healthy folder.
+    try {
+      const existing = loadGraphMetadata(graphPath);
+      const saveLineage = existing?.derived.save_lineage ?? 'graph_only';
+      if (existing) {
+        summary.existing += 1;
       }
-    }
 
-    const flags = collectReviewFlags(specFolderPath, metadata);
-    if (flags.length > 0) {
-      summary.reviewFlags.push({
-        specFolder: metadata.spec_folder,
-        flags,
+      const metadata = dryRun
+        ? deriveGraphMetadata(specFolderPath, existing, { saveLineage })
+        : refreshGraphMetadataForSpecFolder(specFolderPath, { saveLineage }).metadata;
+
+      if (!existing) {
+        summary.created += 1;
+      } else {
+        summary.refreshed += 1;
+        if (!dryRun && !existing.derived.save_lineage && metadata.derived.save_lineage === 'graph_only') {
+          summary.lineageStamped += 1;
+        }
+      }
+
+      const flags = collectReviewFlags(specFolderPath, metadata);
+      if (flags.length > 0) {
+        summary.reviewFlags.push({
+          specFolder: metadata.spec_folder,
+          flags,
+        });
+      }
+    } catch (error) {
+      summary.failed.push({
+        specFolder: specFolderPath,
+        error: error instanceof Error ? error.message : String(error),
       });
     }
   }
@@ -238,7 +374,13 @@ export function runBackfill({ dryRun, root, activeOnly = false }: BackfillOption
 }
 
 function run(): void {
-  const summary = runBackfill(parseArgs(process.argv.slice(2)));
+  const plan = planBackfill(process.argv.slice(2));
+  if (!plan.ok) {
+    process.stderr.write(`backfill-graph-metadata: ${plan.error}\n`);
+    process.exitCode = 1;
+    return;
+  }
+  const summary = runBackfill(plan.options);
   process.stdout.write(`${JSON.stringify(summary, null, 2)}\n`);
 }
 
