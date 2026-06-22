@@ -1,18 +1,18 @@
 {
   "level": "3",
   "specFolder": "skilled-agent-orchestration/152-sk-design-md-generator",
-  "description": "Feature Specification: Create sk-design-md-generator skill with an embedded extraction pipeline",
+  "description": "Phase parent: sk-design-md-generator skill (live-CSS to DESIGN.md extraction engine) and its research-driven anti-fabrication hardening (phases 001 build, 002-006 remediation)",
   "keywords": [
-    "feature",
-    "specification",
-    "create",
+    "phase",
+    "parent",
     "sk-design-md-generator",
-    "skill",
-    "embedded",
+    "design",
     "extraction",
-    "pipeline"
+    "hardening",
+    "fabrication",
+    "remediation"
   ],
-  "lastUpdated": "2026-06-21T10:27:31.310Z",
+  "lastUpdated": "2026-06-22T00:00:00Z",
   "specId": "152",
   "folderSlug": "sk-design-md-generator",
   "parentChain": [

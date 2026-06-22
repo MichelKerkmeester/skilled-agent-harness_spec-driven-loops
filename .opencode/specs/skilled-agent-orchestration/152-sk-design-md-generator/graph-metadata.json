@@ -3,36 +3,143 @@
   "packet_id": "skilled-agent-orchestration/152-sk-design-md-generator",
   "spec_folder": "skilled-agent-orchestration/152-sk-design-md-generator",
   "parent_id": null,
-  "children_ids": [],
+  "children_ids": [
+    "skilled-agent-orchestration/152-sk-design-md-generator/001-skill-build-and-deep-review",
+    "skilled-agent-orchestration/152-sk-design-md-generator/002-extraction-data-fixes",
+    "skilled-agent-orchestration/152-sk-design-md-generator/003-doc-prompt-routing-fixes",
+    "skilled-agent-orchestration/152-sk-design-md-generator/004-validator-semantic-checks",
+    "skilled-agent-orchestration/152-sk-design-md-generator/005-doc-as-view-architecture",
+    "skilled-agent-orchestration/152-sk-design-md-generator/006-deferred-enhancements"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
-    "importance_tier": "important",
-    "status": "planned",
-    "key_files": [
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "decision-record.md"
+    "trigger_phrases": [
+      "sk-design-md-generator packet",
+      "design md generator hardening",
+      "prose fabrication remediation",
+      "design extraction phase parent",
+      "DESIGN.md anti-hallucination phases"
     ],
-    "entities": [],
-    "causal_summary": "Create sk-design-md-generator skill with an embedded extraction pipeline",
+    "key_topics": [
+      "sk-design-md-generator",
+      "packet",
+      "design",
+      "generator",
+      "hardening",
+      "prose",
+      "fabrication",
+      "remediation",
+      "extraction",
+      "phase",
+      "parent",
+      "anti-hallucination"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      "research/research.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROOT PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE DOCUMENTATION MAP",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "SCOPE BOUNDARY (PARENT)",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "description:",
+        "kind": "quoted",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger_phrases:   -",
+        "kind": "quoted",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Against Prose Fabrication",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executive Summary The",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Root Causes",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hallucination Class",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Value Fabrication",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Extraction Bugs",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This packet is a **phase parent**. Phase `001` documents the original skill build and its deep-review remediation. Phases `002`–`006` are the **anti-fabrication hardening** program derived from a 50-iteration deep-research loop (`research/research.md`), which found that the AI WRITE phase fabricates interpretive prose not grounded in `tokens.json` and that the validator is blind to prose. The remediation is sequenced so extraction accuracy (002) precedes incentive removal (003), which precedes semantic validation (004), which precedes the optional deterministic-render rebuild (005); deferred enhancements are isolated in 006.",
     "created_at": "2026-06-21T07:44:10Z",
-    "last_save_at": "2026-06-21T07:44:10Z",
+    "last_save_at": "2026-06-22T10:45:11.463Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "decision-record.md"
-    ]
+      "research/research.md"
+    ],
+    "last_active_child_id": "skilled-agent-orchestration/152-sk-design-md-generator/002-extraction-data-fixes",
+    "last_active_at": null
   }
 }

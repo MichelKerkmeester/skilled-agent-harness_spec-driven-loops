@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/152-sk-design-md-generator/003-doc-prompt-routing-fixes",
+  "description": "Feature Specification: Doc, prompt & routing fixes (remove the fabrication mandates)",
+  "keywords": [
+    "feature",
+    "specification",
+    "doc",
+    "prompt",
+    "routing",
+    "fixes",
+    "remove",
+    "fabrication",
+    "mandates"
+  ],
+  "lastUpdated": "2026-06-22T06:59:47.096Z",
+  "specId": "003",
+  "folderSlug": "doc-prompt-routing-fixes",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "152-sk-design-md-generator"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

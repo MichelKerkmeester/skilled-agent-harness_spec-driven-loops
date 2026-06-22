@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/152-sk-design-md-generator/002-extraction-data-fixes",
+  "description": "Feature Specification: Extraction data fixes (stop feeding the AI fake or missing data)",
+  "keywords": [
+    "feature",
+    "specification",
+    "extraction",
+    "data",
+    "fixes",
+    "stop",
+    "feeding",
+    "fake",
+    "missing"
+  ],
+  "lastUpdated": "2026-06-22T06:59:47.091Z",
+  "specId": "002",
+  "folderSlug": "extraction-data-fixes",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "152-sk-design-md-generator"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

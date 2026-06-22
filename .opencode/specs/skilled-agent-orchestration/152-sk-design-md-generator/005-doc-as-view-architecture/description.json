@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/152-sk-design-md-generator/005-doc-as-view-architecture",
+  "description": "Feature Specification: Doc-as-view architecture (deterministic render, AI out of the value tables)",
+  "keywords": [
+    "feature",
+    "specification",
+    "doc-as-view",
+    "architecture",
+    "deterministic",
+    "render",
+    "value",
+    "tables"
+  ],
+  "lastUpdated": "2026-06-22T06:59:47.104Z",
+  "specId": "005",
+  "folderSlug": "doc-as-view-architecture",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "152-sk-design-md-generator"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,53 @@
+{
+  "startTime": "2026-06-21T18:21:10.840Z",
+  "endTime": "2026-06-21T18:22:46.180Z",
+  "totalDuration": 95340,
+  "sourceUrls": [
+    "https://anobel.com",
+    "https://anobel.com/nl"
+  ],
+  "pagesDiscovered": 5,
+  "pagesCrawled": 5,
+  "failedPages": [],
+  "totalElements": 4497,
+  "framework": {
+    "tailwind": null,
+    "uiFramework": null,
+    "designSystemUrl": null,
+    "webflow": true
+  },
+  "darkModeSupported": false,
+  "screenshotCount": 25,
+  "designBoundary": {
+    "groups": [
+      {
+        "label": "anobel.com",
+        "urls": [
+          "https://anobel.com",
+          "https://anobel.com/nl",
+          "https://anobel.com/",
+          "https://anobel.com/",
+          "https://anobel.com/nl/scheepsbunkering"
+        ],
+        "tokenCount": {
+          "colors": 15,
+          "typography": 11,
+          "components": 6
+        }
+      }
+    ],
+    "relationship": "unified",
+    "overallSimilarity": 100,
+    "dimensionScores": {
+      "font": 100,
+      "color": 100,
+      "spacing": 100,
+      "radius": 100,
+      "component": 100,
+      "shadow": 100
+    },
+    "sharedTokenSummary": null,
+    "anomalies": []
+  },
+  "warnings": []
+}

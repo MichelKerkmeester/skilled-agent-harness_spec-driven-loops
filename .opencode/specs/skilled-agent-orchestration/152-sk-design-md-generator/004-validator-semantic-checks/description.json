@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/152-sk-design-md-generator/004-validator-semantic-checks",
+  "description": "Feature Specification: Validator semantic checks (make the checker see prose)",
+  "keywords": [
+    "feature",
+    "specification",
+    "validator",
+    "semantic",
+    "checks",
+    "make",
+    "checker",
+    "see",
+    "prose"
+  ],
+  "lastUpdated": "2026-06-22T06:59:47.100Z",
+  "specId": "004",
+  "folderSlug": "validator-semantic-checks",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "152-sk-design-md-generator"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -966,6 +966,11 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 &nbsp;
 #### OTHER
 
+**sk-design-md-generator**
+- **Capture a live site's real CSS into a `DESIGN.md`.** An embedded Playwright pipeline (extract → write → validate) crawls a URL across five viewports and emits a 17-section design-system reference with every hex, font, radius, and shadow copied verbatim from the running page
+- **Anti-hallucination by construction:** a script validator checks every value against the extracted `tokens.json` and hard-fails on phantom or content-layer (L4) colors. Captures dark mode, motion, icons, framework markers, and interaction states across the viewports
+- **The capture half of the `sk-design-*` family:** it documents what already exists; sibling `sk-design-interface` invents new direction. Produces the authoritative reference that the transports (`mcp-open-design`, `mcp-figma`) and `sk-code` build against
+
 **sk-design-interface**
 - **Design UI that does not look templated.** Aesthetic direction (palette, typography, layout, motion) grounded in the brief, with a critique pass that kills the default AI looks before any code is written
 - **Grounds against real references:** reads a real design system live (via `mcp-open-design`, as reuse-ground or critique-against) and real-world shipped UI (Mobbin and Refero via Code Mode, critique-against) to ground the work or name the category's real-world default and deviate from it. Never a style chooser or a copy source
@@ -1307,6 +1312,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 | `sk-doc`                                            | ✅ Codebase-agnostic                        | Markdown quality + component creation. Works for any project.                                                                                                                                            |
 | `sk-git`                                            | ✅ Codebase-agnostic                        | Worktree + commit + PR workflow. Works for any project.                                                                                                                                                  |
 | `sk-code-review`                                    | ✅ Codebase-agnostic baseline               | Pulls surface evidence FROM `sk-code`. Customize `sk-code` and the review baseline auto-adapts.                                                                                                          |
+| `sk-design-md-generator`                            | ✅ Codebase-agnostic                        | Extracts a live website's real CSS into a 17-section `DESIGN.md` design-system reference via an embedded extract→write→validate pipeline (every value verbatim, script-validated against `tokens.json`). The capture engine of the `sk-design-*` family; pairs with `sk-design-interface`. Works for any project. |
 | `sk-design-interface`                               | ✅ Codebase-agnostic                        | Visual-design direction (palette, typography, layout, motion) that avoids templated AI defaults; grounds against real design systems (`mcp-open-design`) and shipped-UI references (Mobbin/Refero via Code Mode). Pairs with `sk-code` for the build. Works for any project. |
 | `system-spec-kit`                                   | ✅ Codebase-agnostic                        | Spec folder workflow + validator + memory. Works for any project.                                                                                                                                        |
 | `mcp-code-mode`                                     | ✅ Codebase-agnostic                        | Multi-tool MCP orchestration. Works for any project.                                                                                                                                                     |
