@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// TEST: Request-Quality Aggregation — top-dominant + margin-aware
+// TEST: Request-Quality Aggregation, top-dominant + margin-aware
 // ───────────────────────────────────────────────────────────────
 // Covers the "good" rule that lets a strong, well-separated top hit be citable
 // even when the tail is weak, and that caps the quality ratio at the head of the
@@ -15,23 +15,36 @@ import {
 
 const CALIBRATION_FLAG = 'SPECKIT_ABSOLUTE_RELEVANCE_CALIBRATION';
 
-// This file asserts request-quality verdicts that depend on the uncalibrated
-// rebalance confidence labels. The isotonic confidence-calibration model now
-// applies by default and would cap those values; pin it OFF so the aggregation
-// subject stays visible. Isotonic default-on is covered separately.
-const CONFIDENCE_CALIBRATION_FLAG = 'SPECKIT_CONFIDENCE_CALIBRATION';
-let savedConfidenceCalibration: string | undefined;
+// This file asserts the legacy top-dominant and margin-aware band path that
+// reads absolute cosine plus the top margin alone. Three graduated defaults now
+// reshape that read on these synthetic ungrounded results: the isotonic
+// confidence-calibration model caps the rebalance value, the lexical-grounding
+// floor denies good to a hit carrying no lexical signal and no query, and the
+// noise-floor subtraction lowers the banded relevance below the good thresholds.
+// Pin all three OFF so the band arithmetic under test stays visible. Their
+// default-on behavior is covered in the grounding and calibration suites.
+const PINNED_OFF_FLAGS = [
+  'SPECKIT_CONFIDENCE_CALIBRATION',
+  'SPECKIT_LEXICAL_GROUNDING_V1',
+  'SPECKIT_NOISE_FLOOR_SUBTRACTION_V1',
+] as const;
+const savedFlagValues = new Map<string, string | undefined>();
 
 beforeEach(() => {
-  savedConfidenceCalibration = process.env[CONFIDENCE_CALIBRATION_FLAG];
-  process.env[CONFIDENCE_CALIBRATION_FLAG] = 'false';
+  for (const flag of PINNED_OFF_FLAGS) {
+    savedFlagValues.set(flag, process.env[flag]);
+    process.env[flag] = 'false';
+  }
 });
 
 afterEach(() => {
-  if (savedConfidenceCalibration === undefined) {
-    delete process.env[CONFIDENCE_CALIBRATION_FLAG];
-  } else {
-    process.env[CONFIDENCE_CALIBRATION_FLAG] = savedConfidenceCalibration;
+  for (const flag of PINNED_OFF_FLAGS) {
+    const saved = savedFlagValues.get(flag);
+    if (saved === undefined) {
+      delete process.env[flag];
+    } else {
+      process.env[flag] = saved;
+    }
   }
 });
 
@@ -60,7 +73,7 @@ describe('assessRequestQuality — top-dominant + margin-aware (calibration ON)'
 
   it('reads "good" via margin: a strong top (0.78) clearly beats a weak tail', () => {
     // qualityRatio stays below 0.6 (only the top hit is confident), so the
-    // margin disjunct — not the ratio — is what carries the verdict to "good".
+    // margin disjunct, not the ratio, is what carries the verdict to "good".
     const results = [strong(1, 78), weak(2, 50), weak(3, 49), weak(4, 48), weak(5, 47)];
     const confidences = computeResultConfidence(results);
     const highOrMedium = confidences.filter(
@@ -108,7 +121,7 @@ describe('assessRequestQuality — top-dominant + margin-aware (calibration ON)'
   it('degrades to "gap" when the confidences array is not parallel to results', () => {
     // results/confidences are a parallel pair; a length mismatch would pair a
     // result with an unrelated confidence head. A would-be "good" set must not
-    // emit a quality label off misaligned arrays — it falls back to do-not-cite.
+    // emit a quality label off misaligned arrays, it falls back to do-not-cite.
     const results = [strong(1, 81), weak(2, 75)];
     const fullConfidences = computeResultConfidence(results);
     expect(assessRequestQuality(results, fullConfidences).requestQuality.label).toBe('good');

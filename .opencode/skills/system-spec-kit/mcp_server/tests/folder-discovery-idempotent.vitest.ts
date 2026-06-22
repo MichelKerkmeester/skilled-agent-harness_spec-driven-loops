@@ -117,15 +117,40 @@ describe('per-folder description idempotent write (flag on)', () => {
   });
 });
 
-describe('per-folder description legacy write (flag off)', () => {
+describe('per-folder description idempotent write by default (flag unset)', () => {
   let tmpDir: string;
 
   beforeEach(() => {
+    // Graduated default-ON: an unset env now skips the no-op write.
     delete process.env[FLAG];
+    tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'speckit-default-'));
+  });
+
+  afterEach(() => {
+    try {
+      fs.rmSync(tmpDir, { recursive: true, force: true });
+    } catch { /* best effort */ }
+  });
+
+  it('skips the no-op write and preserves the prior stamp by default', () => {
+    savePerFolderDescription(buildDescription({ lastUpdated: '2026-01-01T00:00:00.000Z' }), tmpDir);
+
+    savePerFolderDescription(buildDescription({ lastUpdated: '2026-09-09T09:09:09.000Z' }), tmpDir);
+
+    expect(loadPerFolderDescription(tmpDir)?.lastUpdated).toBe('2026-01-01T00:00:00.000Z');
+  });
+});
+
+describe('per-folder description legacy write (flag explicitly off)', () => {
+  let tmpDir: string;
+
+  beforeEach(() => {
+    process.env[FLAG] = 'false';
     tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'speckit-legacy-'));
   });
 
   afterEach(() => {
+    delete process.env[FLAG];
     try {
       fs.rmSync(tmpDir, { recursive: true, force: true });
     } catch { /* best effort */ }

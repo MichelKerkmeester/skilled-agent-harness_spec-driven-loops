@@ -226,6 +226,9 @@ describe('PE orchestration lineage guard', () => {
           agentId: 'agent-scan',
           sessionId: 'session-scan',
         },
+        // Write-provenance context threads through as the trailing argument. This
+        // call supplies none, so the orchestrator forwards undefined.
+        undefined,
       );
       expect(mocks.findSimilarMemoriesMock).toHaveBeenCalledWith(
         expect.any(Float32Array),

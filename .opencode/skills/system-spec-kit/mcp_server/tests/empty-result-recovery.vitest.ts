@@ -205,8 +205,15 @@ describe('D5 Phase A: empty result recovery', () => {
     const envelope = await formatEnvelope(
       [
         makeResult(1, {
+          // Absolute relevance reads cosine first. The noise-floor subtraction now
+          // applies by default, so the top hit needs a cosine that still clears the
+          // band after the floor comes off. A genuine good hit also carries lexical
+          // grounding, which the default-on grounding floor requires for good.
+          similarity: 95,
+          averageSimilarity: 95,
           intentAdjustedScore: 0.95,
           rrfScore: 0.93,
+          fts_score: 0.64,
           sources: ['semantic', 'fts'],
           anchorMetadata: [
             { id: 'decision-1', type: 'decision' },

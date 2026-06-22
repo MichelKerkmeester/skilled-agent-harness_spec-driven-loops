@@ -51,9 +51,13 @@ const saved = new Map<string, string | undefined>();
 
 beforeEach(() => {
   for (const flag of MANAGED_FLAGS) saved.set(flag, process.env[flag]);
-  // Behavioral flags default OFF; calibration pinned OFF for a visible verdict.
+  // Reset to a stable baseline, then pin the verdict-moving flags OFF for a visible
+  // verdict. The grounding floor and noise-floor flags now default ON, so they are
+  // pinned OFF explicitly here and each opts back in per case.
   for (const flag of MANAGED_FLAGS) delete process.env[flag];
   process.env[CONFIDENCE_CALIBRATION_FLAG] = 'false';
+  process.env[NOISE_FLOOR_FLAG] = 'false';
+  process.env[LEXICAL_GROUNDING_FLAG] = 'false';
 });
 
 afterEach(() => {
@@ -133,6 +137,15 @@ describe('rec 8: corpus noise-floor subtraction', () => {
   it('flag OFF leaves the off-corpus sample scoring good, byte-for-byte the shipped band', () => {
     const results = [offCorpusHit(1, 78)];
     expect(assess(results, { query: 'kubernetes deployment rollout strategy' })).toBe('good');
+  });
+
+  it('subtracts the floor by default with the env unset (graduated default)', () => {
+    // Graduated default-ON: an unset env subtracts the measured floor, so the
+    // off-corpus high-cosine sample reads weak without any explicit opt-in. The
+    // lexical-grounding flag stays pinned off here, so this isolates the noise floor.
+    delete process.env[NOISE_FLOOR_FLAG];
+    const results = [offCorpusHit(1, 78)];
+    expect(assess(results, { query: 'kubernetes deployment rollout strategy' })).toBe('weak');
   });
 });
 

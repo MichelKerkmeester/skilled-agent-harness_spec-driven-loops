@@ -29,14 +29,22 @@ const GROUNDING_FLAG = 'SPECKIT_LEXICAL_GROUNDING_V1';
 // request-quality aggregation suite.
 const CONFIDENCE_CALIBRATION_FLAG = 'SPECKIT_CONFIDENCE_CALIBRATION';
 
+// The noise-floor subtraction now defaults ON and also bands the verdict, so pin it
+// OFF to isolate the grounding floor as the verdict subject under test.
+const NOISE_FLOOR_FLAG = 'SPECKIT_NOISE_FLOOR_SUBTRACTION_V1';
+
 let savedGrounding: string | undefined;
 let savedConfidenceCalibration: string | undefined;
+let savedNoiseFloor: string | undefined;
 
 beforeEach(() => {
   savedGrounding = process.env[GROUNDING_FLAG];
   savedConfidenceCalibration = process.env[CONFIDENCE_CALIBRATION_FLAG];
+  savedNoiseFloor = process.env[NOISE_FLOOR_FLAG];
   process.env[CONFIDENCE_CALIBRATION_FLAG] = 'false';
-  // Default-OFF: each test opts the grounding flag in explicitly.
+  process.env[NOISE_FLOOR_FLAG] = 'false';
+  // Default-ON (graduated): an unset env runs the grounding floor. The legacy
+  // suite opts out explicitly.
   delete process.env[GROUNDING_FLAG];
 });
 
@@ -44,6 +52,7 @@ afterEach(() => {
   for (const [key, saved] of [
     [GROUNDING_FLAG, savedGrounding],
     [CONFIDENCE_CALIBRATION_FLAG, savedConfidenceCalibration],
+    [NOISE_FLOOR_FLAG, savedNoiseFloor],
   ] as const) {
     if (saved === undefined) delete process.env[key];
     else process.env[key] = saved;
@@ -149,11 +158,24 @@ describe('single-hit corroboration (flag ON)', () => {
   });
 });
 
-describe('dark default, flag OFF is the shipped verdict (byte-for-byte)', () => {
-  it('still scores the off-corpus lone hit good exactly as today', () => {
-    // SPECKIT_LEXICAL_GROUNDING_V1 unset (default OFF): the shipped quality-ratio
-    // path still awards good to the single high-cosine hit, proving the dark
-    // default leaves the contract and the existing spec-doc prose untouched.
+describe('graduated default, flag ON is now the shipped verdict (env unset)', () => {
+  it('denies the off-corpus lone hit by default with the env unset', () => {
+    // SPECKIT_LEXICAL_GROUNDING_V1 unset (default ON): the grounding floor runs and
+    // the fluent ungrounded hit is denied good. This is the behavior the benchmark
+    // earned, the inverse of the prior dark default.
+    const results = [offCorpusHit(1, 78)];
+    expect(assess(results, 'kubernetes deployment rollout strategy')).toBe('weak');
+  });
+});
+
+describe('legacy path, explicit opt-out restores the shipped verdict (byte-for-byte)', () => {
+  beforeEach(() => {
+    process.env[GROUNDING_FLAG] = 'false';
+  });
+
+  it('still scores the off-corpus lone hit good when explicitly disabled', () => {
+    // With the flag explicitly off the shipped quality-ratio path still awards good
+    // to the single high-cosine hit, proving the opt-out restores the prior contract.
     const results = [offCorpusHit(1, 78)];
     expect(assess(results, 'kubernetes deployment rollout strategy')).toBe('good');
   });
@@ -179,7 +201,7 @@ describe('no over-denial of the correctly-weak case (flag ON)', () => {
     // threshold stays weak, the floor and the guard do not push it to gap or good.
     const results = [groundedHit(1, 55), groundedHit(2, 52), groundedHit(3, 50)];
     expect(assess(results, 'authentication session token')).toBe('weak');
-    delete process.env[GROUNDING_FLAG];
+    process.env[GROUNDING_FLAG] = 'false';
     expect(assess(results, 'authentication session token')).toBe('weak');
   });
 });

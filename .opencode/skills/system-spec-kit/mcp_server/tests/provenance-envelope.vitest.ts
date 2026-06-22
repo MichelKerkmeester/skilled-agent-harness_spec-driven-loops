@@ -53,6 +53,10 @@ vi.mock('../lib/search/search-flags', () => ({
   isLearnedStage2CombinerEnabled: provenanceMocks.isLearnedStage2CombinerEnabled,
   isResultProvenanceEnabled: provenanceMocks.isResultProvenanceEnabled,
   isEnvelopeFidelityEnabled: () => false,
+  // The formatter reads these two default-OFF citation-policy gates. Mirror the
+  // shipped default so the mock stays a complete stand-in for the module.
+  isCiteWithCaveatEnabled: () => false,
+  isGroundingSignalEnabled: () => false,
 }));
 
 vi.mock('../lib/search/graph-flags', () => ({

@@ -5,23 +5,35 @@ import {
   type ScoredResult,
 } from '../lib/search/confidence-scoring';
 
-// This file asserts uncalibrated retrieval-quality semantics. The isotonic
-// confidence-calibration model now applies by default and would cap the value
-// under test; pin it OFF so the rebalance subject stays visible. Isotonic
-// default-on is covered in confidence-calibration*.vitest.ts.
-const CONFIDENCE_CALIBRATION_FLAG = 'SPECKIT_CONFIDENCE_CALIBRATION';
-let savedConfidenceCalibration: string | undefined;
+// This file asserts the legacy retrieval-quality band on a strong top score with
+// no reranker signals. Three graduated defaults now reshape that read: the
+// isotonic confidence-calibration model caps the rebalance value, the
+// lexical-grounding floor denies good to a hit with no lexical signal and no
+// query, and the noise-floor subtraction lowers the banded relevance below the
+// good thresholds. Pin all three OFF so the rebalance subject stays visible.
+// Their default-on behavior is covered in the grounding and calibration suites.
+const PINNED_OFF_FLAGS = [
+  'SPECKIT_CONFIDENCE_CALIBRATION',
+  'SPECKIT_LEXICAL_GROUNDING_V1',
+  'SPECKIT_NOISE_FLOOR_SUBTRACTION_V1',
+] as const;
+const savedFlagValues = new Map<string, string | undefined>();
 
 beforeEach(() => {
-  savedConfidenceCalibration = process.env[CONFIDENCE_CALIBRATION_FLAG];
-  process.env[CONFIDENCE_CALIBRATION_FLAG] = 'false';
+  for (const flag of PINNED_OFF_FLAGS) {
+    savedFlagValues.set(flag, process.env[flag]);
+    process.env[flag] = 'false';
+  }
 });
 
 afterEach(() => {
-  if (savedConfidenceCalibration === undefined) {
-    delete process.env[CONFIDENCE_CALIBRATION_FLAG];
-  } else {
-    process.env[CONFIDENCE_CALIBRATION_FLAG] = savedConfidenceCalibration;
+  for (const flag of PINNED_OFF_FLAGS) {
+    const saved = savedFlagValues.get(flag);
+    if (saved === undefined) {
+      delete process.env[flag];
+    } else {
+      process.env[flag] = saved;
+    }
   }
 });
 

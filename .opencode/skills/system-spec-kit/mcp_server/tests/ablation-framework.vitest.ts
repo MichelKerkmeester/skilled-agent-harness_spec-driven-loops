@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// 1. TEST — ABLATION FRAMEWORK
+// 1. TEST, ABLATION FRAMEWORK
 // ───────────────────────────────────────────────────────────────
 //
 // Unit and integration tests for the ablation study framework.
@@ -178,7 +178,7 @@ describe('Ablation Framework (R13-S3)', () => {
     }
   });
 
-  // 1. isAblationEnabled() — feature flag gating
+  // 1. isAblationEnabled(), feature flag gating
   describe('isAblationEnabled()', () => {
     it('returns false when SPECKIT_ABLATION is not set', () => {
       delete process.env.SPECKIT_ABLATION;
@@ -475,7 +475,7 @@ describe('Ablation Framework (R13-S3)', () => {
 
         // The live ranker reads active_vec.vec_768 (full), so coverage is
         // complete. The old guard probed bare vec_memories, resolved the empty
-        // shadow through the attach, and reported a false 0% — this assertion
+        // shadow through the attach, and reported a false 0%, this assertion
         // fails under that regression.
         expect(summary.vectorTableAvailable).toBe(true);
         expect(summary.missingVectorMemoryCount).toBe(0);
@@ -586,7 +586,7 @@ describe('Ablation Framework (R13-S3)', () => {
     });
   });
 
-  // 4. runAblation() — returns null when disabled
+  // 4. runAblation(), returns null when disabled
   describe('runAblation() — gating', () => {
     it('returns null when SPECKIT_ABLATION is not set', async () => {
       delete process.env.SPECKIT_ABLATION;
@@ -603,7 +603,7 @@ describe('Ablation Framework (R13-S3)', () => {
     });
   });
 
-  // 5. runAblation() — computes correct baseline and ablated recalls
+  // 5. runAblation(), computes correct baseline and ablated recalls
   describe('runAblation() — computation', () => {
     beforeEach(() => {
       process.env.SPECKIT_ABLATION = 'true';
@@ -938,7 +938,7 @@ describe('Ablation Framework (R13-S3)', () => {
       const md = formatAblationReport(report);
       const lines = md.split('\n');
 
-      // Find the recall-delta table data rows (first table only — between first header and first blank line after it)
+      // Find the recall-delta table data rows (first table only, between first header and first blank line after it)
       const headerIdx = lines.findIndex(l => l.startsWith('| Channel | Baseline'));
       const dataRows: string[] = [];
       for (let i = headerIdx + 2; i < lines.length; i++) {
@@ -1051,7 +1051,7 @@ describe('Ablation Framework (R13-S3)', () => {
     });
   });
 
-  // 7. storeAblationResults() — gating
+  // 7. storeAblationResults(), gating
   describe('storeAblationResults() — gating', () => {
     it('returns false when SPECKIT_ABLATION is not set', () => {
       delete process.env.SPECKIT_ABLATION;
@@ -1068,7 +1068,7 @@ describe('Ablation Framework (R13-S3)', () => {
 });
 
 // ═══════════════════════════════════════════════════════════════════
-// INTEGRATION TESTS — DB persistence
+// INTEGRATION TESTS, DB persistence
 // ═══════════════════════════════════════════════════════════════════
 
 describe('Ablation Framework — DB Integration (R13-S3)', () => {
@@ -1590,6 +1590,10 @@ describe('Ablation Framework — Multi-Metric Wiring (CHK-088–091)', () => {
             importance_tier: index === 0 ? 'critical' : 'normal',
             created_at: '2026-06-19T08:00:00.000Z',
             sources: ['vector', 'bm25'],
+            // A genuine good hit carries lexical grounding. The grounding floor
+            // now applies by default, so the bm25 lane these rows declare must
+            // also score for the strong relevant top hit to read good.
+            bm25_score: 0.95 - index * 0.1,
           })),
         };
       };

@@ -10,6 +10,7 @@ import {
   OFF_CORPUS_CATEGORY,
   DEFAULT_MAX_RATE,
   parseMaxRate,
+  resolveEffectiveMaxRate,
   parseGrandfather,
   computeFalseConfirmRate,
   buildConfusionSample,
@@ -105,8 +106,23 @@ describe('false-confirm metric', () => {
 });
 
 describe('false-confirm gate', () => {
-  it('reports without enforcing when the bar env is unset', () => {
-    const gate = evaluateGate({ rate: 0.5, maxRate: parseMaxRate(undefined), grandfather: false });
+  it('enforces a zero-tolerance ceiling by default when the bar env is unset (graduated)', () => {
+    // The driver resolves an unset env to the zero ceiling, so a non-zero rate fails.
+    const gate = evaluateGate({ rate: 0.5, maxRate: resolveEffectiveMaxRate(undefined), grandfather: false });
+    expect(gate.enforced).toBe(true);
+    expect(gate.pass).toBe(false);
+    expect(gate.exitCode).toBe(1);
+  });
+
+  it('passes the resolved default ceiling when the measured rate is zero', () => {
+    const gate = evaluateGate({ rate: 0, maxRate: resolveEffectiveMaxRate(undefined), grandfather: false });
+    expect(gate.enforced).toBe(true);
+    expect(gate.pass).toBe(true);
+    expect(gate.exitCode).toBe(0);
+  });
+
+  it('reports without enforcing in grandfather mode, the legacy report-only path', () => {
+    const gate = evaluateGate({ rate: 0.5, maxRate: resolveEffectiveMaxRate(undefined), grandfather: true });
     expect(gate.enforced).toBe(false);
     expect(gate.pass).toBe(true);
     expect(gate.exitCode).toBe(0);
@@ -134,10 +150,16 @@ describe('false-confirm gate', () => {
 });
 
 describe('gate env parsing', () => {
-  it('treats an unset or empty bar as default-off', () => {
+  it('parses an unset or empty explicit bar as null', () => {
     expect(parseMaxRate(undefined)).toBeNull();
     expect(parseMaxRate('')).toBeNull();
     expect(parseMaxRate('  ')).toBeNull();
+  });
+
+  it('resolves an unset bar to the graduated zero-tolerance ceiling', () => {
+    expect(resolveEffectiveMaxRate(undefined)).toBe(DEFAULT_MAX_RATE);
+    expect(resolveEffectiveMaxRate('')).toBe(0);
+    expect(resolveEffectiveMaxRate('0.2')).toBe(0.2);
   });
 
   it('parses a numeric bar within range', () => {

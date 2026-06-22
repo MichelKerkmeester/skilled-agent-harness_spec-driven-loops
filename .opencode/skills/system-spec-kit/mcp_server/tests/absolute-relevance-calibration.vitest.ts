@@ -15,28 +15,41 @@ import { resolveAbsoluteRelevance, resolveEffectiveScore } from '../lib/search/p
 
 const FLAG = 'SPECKIT_ABSOLUTE_RELEVANCE_CALIBRATION';
 
-// This file's subject is absolute-relevance (cosine-vs-RRF) calibration. The
-// isotonic confidence-calibration model now applies by default and would reshape
-// the rebalance value those assertions read; pin it OFF so the cosine subject
-// stays visible. Isotonic default-on is covered in confidence-calibration*.vitest.ts.
-const CONFIDENCE_CALIBRATION_FLAG = 'SPECKIT_CONFIDENCE_CALIBRATION';
-let savedConfidenceCalibration: string | undefined;
+// This file's subject is absolute-relevance (cosine-vs-RRF) calibration on the
+// legacy band that reads cosine directly. Three graduated defaults now reshape
+// that read on these ungrounded synthetic cosine hits: the isotonic
+// confidence-calibration model caps the rebalance value, the lexical-grounding
+// floor denies good to a hit with no lexical signal and no query, and the
+// noise-floor subtraction lowers the banded relevance below the good thresholds.
+// Pin all three OFF so the cosine subject stays visible. Their default-on
+// behavior is covered in the grounding and calibration suites.
+const PINNED_OFF_FLAGS = [
+  'SPECKIT_CONFIDENCE_CALIBRATION',
+  'SPECKIT_LEXICAL_GROUNDING_V1',
+  'SPECKIT_NOISE_FLOOR_SUBTRACTION_V1',
+] as const;
+const savedFlagValues = new Map<string, string | undefined>();
 
 beforeEach(() => {
-  savedConfidenceCalibration = process.env[CONFIDENCE_CALIBRATION_FLAG];
-  process.env[CONFIDENCE_CALIBRATION_FLAG] = 'false';
+  for (const flag of PINNED_OFF_FLAGS) {
+    savedFlagValues.set(flag, process.env[flag]);
+    process.env[flag] = 'false';
+  }
 });
 
 afterEach(() => {
-  if (savedConfidenceCalibration === undefined) {
-    delete process.env[CONFIDENCE_CALIBRATION_FLAG];
-  } else {
-    process.env[CONFIDENCE_CALIBRATION_FLAG] = savedConfidenceCalibration;
+  for (const flag of PINNED_OFF_FLAGS) {
+    const saved = savedFlagValues.get(flag);
+    if (saved === undefined) {
+      delete process.env[flag];
+    } else {
+      process.env[flag] = saved;
+    }
   }
 });
 
 // Two strong cosine hits that agree across channels but sit next to each other in
-// rank — exactly the shape that produced a "weak" verdict before the fix.
+// rank, exactly the shape that produced a "weak" verdict before the fix.
 function strongCosineResults(): ScoredResult[] {
   return [
     {
@@ -60,7 +73,7 @@ describe('resolveAbsoluteRelevance', () => {
   it('prefers cosine similarity over the RRF fusion magnitude', () => {
     const row = { id: 1, similarity: 72, rrfScore: 0.03 } as never;
     expect(resolveAbsoluteRelevance(row)).toBeCloseTo(0.72, 5);
-    // The ordering score still resolves to the RRF magnitude — ordering is untouched.
+    // The ordering score still resolves to the RRF magnitude, ordering is untouched.
     expect(resolveEffectiveScore(row)).toBeCloseTo(0.03, 5);
   });
 

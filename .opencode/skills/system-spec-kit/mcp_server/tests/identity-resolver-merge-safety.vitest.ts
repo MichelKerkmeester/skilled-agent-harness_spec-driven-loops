@@ -119,7 +119,20 @@ describe('shared identity across both generators', () => {
     expect(graph.spec_folder).toBe(description?.specFolder);
   });
 
-  it('keeps the legacy caller-base description specFolder when the flag is off', () => {
+  it('resolves the specs-root-relative description specFolder by default with the env unset', () => {
+    // Graduated default-ON: an unset env now resolves the shared specs-root-relative
+    // identity, the behavior the benchmark earned.
+    const track = makeTrackRoot();
+    const folder = path.join(track, '028-feature', '005-quality', '033-identity');
+    writeSpecFolder(folder);
+
+    const description = generatePerFolderDescription(folder, track);
+
+    expect(description?.specFolder).toBe('system-spec-kit/028-feature/005-quality/033-identity');
+  });
+
+  it('keeps the legacy caller-base description specFolder when the flag is explicitly off', () => {
+    process.env[FLAG] = 'false';
     const track = makeTrackRoot();
     const folder = path.join(track, '028-feature', '005-quality', '033-identity');
     writeSpecFolder(folder);
@@ -195,7 +208,8 @@ describe('mergeGraphMetadata lineage safety', () => {
     expect(pruned.children_ids).toEqual(['p/033-identity']);
   });
 
-  it('passes lineage through verbatim from the refreshed snapshot when the flag is off', () => {
+  it('passes lineage through verbatim from the refreshed snapshot when the flag is explicitly off', () => {
+    process.env[FLAG] = 'false';
     const base = deriveRefreshed();
     const refreshed: GraphMetadata = { ...base, parent_id: null, children_ids: ['p/033-identity'] };
     const existing: GraphMetadata = {

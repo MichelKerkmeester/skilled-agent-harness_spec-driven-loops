@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// TEST: D5 Phase A — Per-Result Calibrated Confidence (REQ-D5-004)
+// TEST: D5 Phase A, Per-Result Calibrated Confidence (REQ-D5-004)
 // ───────────────────────────────────────────────────────────────
 // Validates confidence computation, label thresholds, driver list
 // population, request-level quality assessment, and feature flag gating.
@@ -12,24 +12,36 @@ import {
   type ScoredResult,
 } from '../lib/search/confidence-scoring';
 
-// These suites assert on the uncalibrated rebalance value and its label
-// thresholds — the subject of computeResultConfidence itself, not the isotonic
-// calibration model that now applies by default. Pin the calibration flag OFF so
-// the model does not reshape the value under test; the default-on isotonic
-// behavior is covered in confidence-calibration*.vitest.ts.
-const CONFIDENCE_CALIBRATION_FLAG = 'SPECKIT_CONFIDENCE_CALIBRATION';
-let savedConfidenceCalibration: string | undefined;
+// These suites assert on the uncalibrated rebalance value, its label thresholds
+// and the legacy assessRequestQuality band, not the graduated defaults that now
+// reshape those reads. Three of them apply by default: the isotonic calibration
+// model caps the rebalance value, the lexical-grounding floor denies good to a
+// synthetic hit with no lexical signal and no query, and the noise-floor
+// subtraction lowers the banded relevance. Pin all three OFF so the subject
+// stays visible. Their default-on behavior is covered in the grounding and
+// calibration suites.
+const PINNED_OFF_FLAGS = [
+  'SPECKIT_CONFIDENCE_CALIBRATION',
+  'SPECKIT_LEXICAL_GROUNDING_V1',
+  'SPECKIT_NOISE_FLOOR_SUBTRACTION_V1',
+] as const;
+const savedFlagValues = new Map<string, string | undefined>();
 
 beforeEach(() => {
-  savedConfidenceCalibration = process.env[CONFIDENCE_CALIBRATION_FLAG];
-  process.env[CONFIDENCE_CALIBRATION_FLAG] = 'false';
+  for (const flag of PINNED_OFF_FLAGS) {
+    savedFlagValues.set(flag, process.env[flag]);
+    process.env[flag] = 'false';
+  }
 });
 
 afterEach(() => {
-  if (savedConfidenceCalibration === undefined) {
-    delete process.env[CONFIDENCE_CALIBRATION_FLAG];
-  } else {
-    process.env[CONFIDENCE_CALIBRATION_FLAG] = savedConfidenceCalibration;
+  for (const flag of PINNED_OFF_FLAGS) {
+    const saved = savedFlagValues.get(flag);
+    if (saved === undefined) {
+      delete process.env[flag];
+    } else {
+      process.env[flag] = saved;
+    }
   }
 });
 
@@ -83,7 +95,7 @@ describe('isResultConfidenceEnabled() — feature flag', () => {
   });
 });
 
-// -- computeResultConfidence — edge cases --
+// -- computeResultConfidence, edge cases --
 
 describe('computeResultConfidence() — edge cases', () => {
   it('returns empty array for empty input', () => {
@@ -112,7 +124,7 @@ describe('computeResultConfidence() — edge cases', () => {
   });
 });
 
-// -- computeResultConfidence — label thresholds --
+// -- computeResultConfidence, label thresholds --
 
 describe('computeResultConfidence() — label thresholds', () => {
   it('labels "high" when value >= 0.7', () => {
@@ -144,7 +156,7 @@ describe('computeResultConfidence() — label thresholds', () => {
   });
 });
 
-// -- computeResultConfidence — margin factor --
+// -- computeResultConfidence, margin factor --
 
 describe('computeResultConfidence() — score margin', () => {
   it('large margin (>= 0.15) boosts confidence', () => {
@@ -167,7 +179,7 @@ describe('computeResultConfidence() — score margin', () => {
   });
 });
 
-// -- computeResultConfidence — multi-channel agreement --
+// -- computeResultConfidence, multi-channel agreement --
 
 describe('computeResultConfidence() — multi-channel agreement', () => {
   it('adds "multi_channel_agreement" driver when 2+ channels contributed', () => {
@@ -228,7 +240,7 @@ describe('computeResultConfidence() — multi-channel agreement', () => {
   });
 });
 
-// -- computeResultConfidence — anchor density --
+// -- computeResultConfidence, anchor density --
 
 describe('computeResultConfidence() — anchor density', () => {
   it('adds "anchor_density" driver when anchorMetadata has 2+ anchors', () => {
@@ -261,7 +273,7 @@ describe('computeResultConfidence() — anchor density', () => {
   });
 });
 
-// -- computeResultConfidence — score resolution fallback chain --
+// -- computeResultConfidence, score resolution fallback chain --
 
 describe('computeResultConfidence() — score resolution', () => {
   it('uses intentAdjustedScore when available (highest priority)', () => {
@@ -293,7 +305,7 @@ describe('computeResultConfidence() — score resolution', () => {
   });
 });
 
-// -- computeResultConfidence — drivers list --
+// -- computeResultConfidence, drivers list --
 
 describe('computeResultConfidence() — drivers list', () => {
   it('returns empty drivers array when no factors contributed', () => {
@@ -301,7 +313,7 @@ describe('computeResultConfidence() — drivers list', () => {
     const results = makeResults([0.01, 0.009]);
     const [conf] = computeResultConfidence(results);
     expect(Array.isArray(conf.confidence.drivers)).toBe(true);
-    // May have drivers from margin if gap is still >= 0.15 as proportion — but here it's not
+    // May have drivers from margin if gap is still >= 0.15 as proportion, but here it's not
     // The key assertion is the array always exists
   });
 

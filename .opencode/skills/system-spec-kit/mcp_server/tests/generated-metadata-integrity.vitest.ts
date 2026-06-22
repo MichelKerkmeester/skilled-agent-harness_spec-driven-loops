@@ -188,13 +188,18 @@ describe('grandfather report mode arms', () => {
   });
 
   it('reads the grandfather flag from the environment on both arms', () => {
+    // Graduated default-OFF-enforcing: an unset env now enforces rather than
+    // grandfathers, and an explicit opt-in restores the report mode.
     delete process.env[GENERATED_METADATA_GRANDFATHER_ENV];
+    expect(isGeneratedMetadataGrandfatherEnabled()).toBe(false);
+
+    process.env[GENERATED_METADATA_GRANDFATHER_ENV] = 'true';
+    expect(isGeneratedMetadataGrandfatherEnabled()).toBe(true);
+
+    process.env[GENERATED_METADATA_GRANDFATHER_ENV] = '1';
     expect(isGeneratedMetadataGrandfatherEnabled()).toBe(true);
 
     process.env[GENERATED_METADATA_GRANDFATHER_ENV] = 'false';
     expect(isGeneratedMetadataGrandfatherEnabled()).toBe(false);
-
-    process.env[GENERATED_METADATA_GRANDFATHER_ENV] = '1';
-    expect(isGeneratedMetadataGrandfatherEnabled()).toBe(true);
   });
 });
