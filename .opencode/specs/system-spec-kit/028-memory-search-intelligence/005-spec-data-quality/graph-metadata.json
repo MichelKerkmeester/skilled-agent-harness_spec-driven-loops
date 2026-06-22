@@ -33,7 +33,8 @@
     "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/027-retrieval-floor-experiment",
     "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/028-governance-rollout",
     "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/029-vague-query-model-benchmark",
-    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/030-improvement-research"
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/030-improvement-research",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/032-z-future-always-ignored"
   ],
   "manual": {
     "depends_on": [],

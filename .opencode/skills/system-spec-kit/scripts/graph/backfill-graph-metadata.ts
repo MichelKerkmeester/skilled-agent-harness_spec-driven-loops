@@ -4,9 +4,10 @@
 //   node .opencode/skills/system-spec-kit/scripts/dist/graph/backfill-graph-metadata.js [--dry-run] [--root <specs-dir>]
 //   node .opencode/skills/system-spec-kit/scripts/dist/graph/backfill-graph-metadata.js [--dry-run] --active-only [--root <specs-dir>]
 //
-// Default behavior is inclusive: all packet folders under the selected specs root
-// are refreshed, including z_archive/ and z_future/. Use --active-only only when
-// you intentionally want to skip archived trees.
+// Default behavior refreshes all packet folders under the selected specs root,
+// including z_archive/. z_future/ is ALWAYS skipped because it is a staging area
+// that is not a supported specs root, so refreshing it makes the parser throw and
+// the walk over-reach. Use --active-only to also skip z_archive/.
 // ───────────────────────────────────────────────────────────────
 
 import fs from 'node:fs';
@@ -23,7 +24,7 @@ import { dirnameFromImportMeta, isMainModule } from '../lib/esm-entry.js';
 const moduleDir = dirnameFromImportMeta(import.meta.url);
 
 const SPEC_FOLDER_RE = /^\d{3}(?:[-_].+)?$/;
-const EXCLUDED_DIRS = new Set(['memory', 'scratch', 'node_modules', '.git']);
+const EXCLUDED_DIRS = new Set(['memory', 'scratch', 'node_modules', '.git', 'z_future']);
 const ARCHIVE_SEGMENT_RE = /(^|\/)(z_archive|z_future)(\/|$)/;
 
 interface BackfillSummary {
