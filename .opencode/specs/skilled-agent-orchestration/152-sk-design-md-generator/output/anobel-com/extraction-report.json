@@ -1,7 +1,7 @@
 {
-  "startTime": "2026-06-21T18:21:10.840Z",
-  "endTime": "2026-06-21T18:22:46.180Z",
-  "totalDuration": 95340,
+  "startTime": "2026-06-22T14:14:28.882Z",
+  "endTime": "2026-06-22T14:16:07.641Z",
+  "totalDuration": 98759,
   "sourceUrls": [
     "https://anobel.com",
     "https://anobel.com/nl"
@@ -9,7 +9,7 @@
   "pagesDiscovered": 5,
   "pagesCrawled": 5,
   "failedPages": [],
-  "totalElements": 4497,
+  "totalElements": 4531,
   "framework": {
     "tailwind": null,
     "uiFramework": null,

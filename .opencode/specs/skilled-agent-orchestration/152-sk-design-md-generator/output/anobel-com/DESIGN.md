@@ -1,443 +1,412 @@
-<!-- Generated: 2026-06-21 | Source: https://anobel.com/nl | Pages: 5 | Framework: webflow | Format: v2 -->
+<!-- Generated: 2026-06-22 | Source: https://anobel.com | Pages: 5 | Framework: webflow | Format: v2 -->
 <!-- This is not the official design system. Colors, fonts, and spacing may not be 100% accurate. -->
 
-# Design System: Anobel
+# Design System: A. Nobel & Zn
 
 ## 0. Brand Context
 
-A. Nobel & Zn is a maritime total supplier serving global shipping, providing equipment, services, and logistics to vessels worldwide. The website anchors the company's century of nautical expertise in a digital storefront for the Dutch maritime industry.
+A. Nobel & Zn is a Dutch maritime total supplier providing ship bunkering, lubricants, ISPS terminal services, and online webshop access for the shipping industry. The site targets captains, fleet operators, port agents, and maritime procurement professionals who need fuel, services, and logistics support at scale.
 
-Target audience: Maritime procurement officers, ship operators, port authorities, and vessel maintenance teams operating in the global shipping sector. The site serves both existing clients seeking supplies and new customers evaluating partnership.
+- **Authoritative** — weight 600 headlines at 112px–49px on a near-black (`#0a0a0a`) and off-white (`#fefefe`) canvas signal operational confidence without promotional noise
+- **Industrial** — the near-absence of chromaticity outside the blue secondary (`#06458c`) and orange primary (`#fd4f19`) mirrors a working port: functional color, not branded color
+- **Direct** — body text at 16px/23.2px, buttons at 14px–16px weight 600, and uppercase 18px labels collapse navigation and CTA into immediate, scannable instructions
+- **Dutch-pragmatic** — `lang="nl"` across all pages, `e2e2e2` / `cfcfcf` border grays replace decorative visual layers with structural clarity
 
-- **Established** — the 112px weight 600 display headline projects institutional confidence without decorative ornament, matching the company's century-plus history
-- **Technical** — the deep navy palette (#06458c through #031d3c) echoes nautical instrumentation and maritime industrial signaling
-- **Direct** — button labels at 18px weight 600 with tight 1.29 line-height communicate action without marketing flourish ("Klant worden", "Diensten")
-- **Maritime** — the gradient system moves through oceanic blue depths from #031d3c to #06458c, tying the visual identity to the sea
-
-Sources: https://anobel.com/nl (5 pages crawled)
+Sources: `https://anobel.com`, `https://anobel.com/nl`, `https://anobel.com/`, `https://anobel.com/nl/scheepsbunkering`.
 
 ## 1. Visual Theme & Atmosphere
 
-Anobel's website is a study in maritime industrial confidence — a near-black canvas (#0a0a0a) where saturated navy (#06458c) and bright signal orange (#fd4f19) surface with the precision of nautical instrumentation, not the soft gradients of consumer SaaS.
+A. Nobel & Zn's website is maritime logistics rendered as visual infrastructure — a near-black and near-white canvas (`#0a0a0a` / `#fefefe`) where the only color signals are operational blue (`#06458c`) and the urgent orange of a port warning beacon (`#fd4f19`).
 
-The page opens on the deepest near-black (#0a0a0a) that anchors all 13,809 occurrences across borders, text, and backgrounds — it is the visual ocean on which every other color floats. Against this dark expanse, Nobel Navy (#06458c) carries 10,393 occurrences as the system's chromatic backbone: 7,271 border uses, 3,038 text uses, and 82 background uses. Bright White (#fefefe) appears 7,511 times as the primary light text and border color on dark surfaces, creating a high-contrast reading experience at 19.63:1 against #0a0a0a. The overall impression is of a ship's bridge at night — dark, instrumented, with blue and white signals cutting through the dark.
+The overall page opens on a `#fefefe` background carrying `#0a0a0a` text at 16px/23.2px — a near-maximum 19.63:1 contrast ratio that treats reading like navigation: every word must survive scanning from a bridge console. The secondary blue `#06458c` anchors 7280 border elements and 3040 text instances across 4 pages, making it the structural chromatic axis — it marks links, section dividers, and interactive affordances with the same color a maritime chart uses for depth contours. The primary orange `#fd4f19` appears at only 56 total occurrences (44 border, 5 background, 5 icon, 2 gradient), reserved for a single destructive button variant and sparse highlight borders — it signals "pay attention" by being nearly absent.
 
-The Silka Webfont defines the typographic personality. Deployed at a single weight (600) across all headings from 112px display down to 21px subheadings, it creates a monoweight hierarchy where size alone carries the structure. At 112px, "ISPS" fills the viewport as a single-word industrial declaration — no tracking adjustment, no stylistic alternates, just pure geometric letterforms at maximum scale. Body text switches to weight 400 at 16px with a relaxed 1.45 line-height, while uppercase cookie-consent text runs at 18px weight 400 — a rare legal/administrative voice that sits outside the 600-weight heading system.
+The defining typographic element is `Silka Webfont` at weight 600 across every heading tier. There is no weight 700 anywhere in the system — the semibold at 600 is the ceiling. The display hero (112px/112px, weight 600) compresses "ISPS" into a four-letter industrial mark; headlines descend through 63px, 49px, and 21px at identical weight 600 with normal letter-spacing — no negative tracking, no OpenType features, no typographic ornament. This is typography that treats letters like hull plates: uniform thickness, straight edges, zero flourish.
 
-The design is flat: `tokens.json` records zero box-shadow tokens, so there is no shadow-based elevation. The six gradients that exist are decorative surface treatments — image-edge fades (`linear-gradient(90deg, rgb(254,254,254), rgba(254,254,254,0))`), a bottom-fade overlay for text-on-image legibility, a navy card sweep that fades to transparent, and two solid color washes (navy `rgba(6,69,140,0.8)`, orange `rgba(253,79,25,0.55)`). They sit on specific cards and decorative divs; they are not a depth or elevation technique.
+Where the system departs from convention is in its refusal to use CSS `border` for structural separation. The extraction shows 5302 border-color usages via `#fefefe`, 9685 via `#0a0a0a`, and 7280 via `#06458c` — but these operate as explicit `border` properties with colors, not as shadow-borders or pseudo-elevations. The site uses color-on-color borders as spatial grammar: a `#0a0a0a` border on a `#fefefe` background, a `#06458c` border on a `#fefefe` card. No `box-shadow` tokens were extracted — the entire depth system is flat, defined by hard-edged color boundaries rather than atmospheric blur.
 
 **Design Principles:**
-- **Monoweight Hierarchy**: Weight 600 across all headings from 112px to 21px — size and position alone establish information architecture
-- **Flat & Shadowless**: zero box-shadow elevation (`shadowTokens: 0`); depth is not modeled — the six gradients present are decorative overlays, not an elevation system
-- **Signal Accent Isolation**: #fd4f19 appears exclusively on the Destructive button (1 occurrence) — orange is a warning, never decoration
-- **Binary Radius Vocabulary**: Two dominant radii govern the system — 7px for interactive controls, 10.5px for cards and containers
+- **Flat Color Borders**: Structural separation relies entirely on `border` with explicit hex colors — `#0a0a0a` at 9685 border occurrences, `#06458c` at 7280 — replacing elevation with chromatic adjacency (backed by 0 shadow tokens)
+- **Single-Weight Typography**: Weight 600 is the only heading weight; body at 400 and 500 fills the lower register, creating a two-tier system where all headings share identical visual mass regardless of size
 
-**Key Characteristics:**
-- Silka Webfont at weight 600 across all heading levels — a monoweight typographic identity that builds hierarchy through scale alone
-- Near-black #0a0a0a as the system's dominant color at 13,809 occurrences — the canvas from which all signals emerge
-- Nobel Navy #06458c at 10,393 occurrences as the chromatic anchor — border, text, and background workhorse
-- Bright White #fefefe at 7,511 occurrences — high-contrast text at 19.63:1 against #0a0a0a on dark surfaces
-- Flat design with zero box-shadow; six decorative gradients (image-edge fades, directional content fades, solid color washes) used as surface treatments, not elevation
-- Signal Orange #fd4f19 confined to a single Destructive button — accent as alarm, not decoration
-- Two-radius system: 7px governs buttons (164 occurrences) and 10.5px governs cards and images (64 occurrences)
-- 112px display typography for single-word industrial declarations — "ISPS" at weight 600, line-height 1.00
-- Uppercase body text at 18px weight 400 for legal/consent copy — a distinct administrative typographic voice
-- 56px as the dominant spacing value at 222 occurrences — section-level vertical rhythm
-- Dutch-language button labels with weight 600 at tight line-height: "Klant worden", "Diensten"
-- Gradient overlay technique: `rgba(6,69,140,0.8)` and `rgba(253,79,25,0.55)` as semi-transparent washes
-
-Where most maritime-industrial sites default to heavy bold headlines and steel-blue grays, Anobel commits to a single weight, a single chromatic family, and lets size and luminance carry the entire visual hierarchy.
+- Display at 112px/112px weight 600 Silka — text as industrial mark, four letters ("ISPS") occupying full viewport attention
+- All headings at weight 600 across 112px, 63px, 49px, 21px — a single-weight family where size alone drives hierarchy
+- Body text at 16px/23.2px Silka weight 400 — 1.45 line-height ratio producing generous reading lanes without decorative leading
+- `#0a0a0a` on `#fefefe` at 19.63:1 contrast — text legibility engineered for scanning, not comfortable reading
+- `#06458c` as the chromatic workhorse at 10405 total occurrences — border, text, and gradient color unified under a single secondary blue
+- `#fd4f19` reserved at 56 occurrences — primary orange as the exception signal, not the default accent
+- 2482 CSS rules inside `max-width: 991px` — a mobile-first responsive cascade where desktop is the exception
+- `7px` border-radius dominating 170 button/div/a elements — the system's single dominant radius, used for interactive affordances
+- Zero `box-shadow` tokens across 4531 elements — the entire site renders flat, depending on borders and contrast for spatial reading
+- `cfcfcf` / `e2e2e2` at 119 and 75 occurrences serving as border and background grays — the only neutral mid-tones in a deliberately binary palette
+- `lang="nl"` with Dutch sample texts throughout — the system is monolingual Dutch with no detected i18n strategy
+- Gradient cards at `linear-gradient(rgba(6, 69, 140, 0.8), rgba(6, 69, 140, 0.8))` and `linear-gradient(rgba(253, 79, 25, 0.55), rgba(253, 79, 25, 0.55))` — flat-color overlays on card surfaces, not atmospheric depth
 
 ## 2. Color Palette & Roles
 
-### Brand Colors
+| Hex | Usage (measured) | Frequency | CSS var |
+|-----|------------------|-----------|---------|
+| `#0a0a0a` | border 9685, text 4258, background 10, icon 5, gradient 4 | 13962 | `--_color-primitives---neutral--1400` |
+| `#06458c` | border 7280, text 3040, background 83, gradient 2 | 10405 | `--_color-primitives---secondary--500` |
+| `#fefefe` | border 5302, text 2138, background 97, gradient 12 | 7549 | `--_color-primitives---neutral--0` |
+| `#b4120e` | border 125, text 50 | 175 | `--_color-primitives---negative--700` |
+| `#cfcfcf` | border 88, background 31 | 119 | `--_color-primitives---neutral--800` |
+| `#e2e2e2` | border 57, background 18 | 75 | `--_color-primitives---neutral--700` |
+| `#fd4f19` | border 44, background 5, icon 5, gradient 2 | 56 | `--_color-primitives---primary--500` |
+| `#000000` | border 25, text 10 | 35 | - |
+| `#031d3c` | border 20, gradient 4 | 24 | `--_color-primitives---secondary--1000` |
+| `#043367` | background 6, gradient 4 | 10 | `--_color-primitives---secondary--800` |
+| `#8591b3` | border 5 | 5 | `--_color-primitives---secondary--400` |
 
-- **Nobel Navy** (`#06458c`): frequency 10,393. Used as border (7,271), text (3,038), background (82). The chromatic backbone of the system — a saturated medium navy that functions as brand anchor, interactive accent, and structural border color simultaneously. Carries more blue luminosity than corporate navy, reading as maritime rather than financial.
-- **Midnight Navy** (`#031d3c`): frequency 24. Used as border (20), gradient endpoint (4). The deepest navy in the scale, appearing almost exclusively as gradient origins and dark borders. At lightness 0.23, it anchors the dark end of the navy spectrum.
-- **Deep Navy** (`#043367`): frequency 10. Used as background (6), gradient midpoint (4). An intermediate navy at lightness 0.33 that bridges Midnight Navy to Nobel Navy in gradient transitions. A system-level color, not a content color.
-- **Signal Orange** (`#fd4f19`): frequency 56. Used as border (44), background (5), icon (5). A high-chroma orange reserved for the single Destructive button. The system's only warm signal — deployed as a warning, never as decoration or secondary accent.
-- **Rust Red** (`#b4120e`): frequency 140. Used as border (100), text (40). A deep, muted red with warm undertones at lightness 0.49. Functions as a secondary accent for borders and occasional text emphasis, distinct from the brighter campaign reds.
+### Current Campaign Colors (Subject to change)
 
-### Structural Colors
-
-- **Abyssal Black** (`#0a0a0a`): frequency 13,809. Used as border (9,578), text (4,212), background (10). The system's foundation — a near-black with imperceptible warmth that avoids the harshness of pure black. It is the dominant surface, the primary text color on light backgrounds, and the default border color. At 19.63:1 against #fefefe, it delivers maximum readability.
-- **Bright White** (`#fefefe`): frequency 7,511. Used as border (5,277), text (2,128), background (94). The primary light text color on dark #0a0a0a surfaces, and the background for Secondary buttons and light-mode elements. An off-white that prevents the clinical glare of pure #ffffff.
-- **Pure Black** (`#000000`): frequency 35. Used as border (25), text (10). True black, deployed sparingly — primarily as structural borders and minimum-contrast elements. The system prefers #0a0a0a for text and dominant surfaces.
-- **Pale Gray** (`#cfcfcf`): frequency 115. Used as border (84), background (31). The mid-tone structural gray. Functions as Secondary button borders, the inconsistent focus indicator outline, and occasional background fills. The bridge between the system's dark and light extremes.
-- **Cloud Gray** (`#e2e2e2`): frequency 75. Used as border (57), background (18). A lighter gray for subtle borders and section-background alternation. Sits above Pale Gray in the luminance scale.
-- **Steel Blue** (`#8591b3`): frequency 5. Used as border (5). A muted blue-gray border color at the system level. Low frequency signals specialized use — likely section dividers or decorative rules.
-
-### Color Boundary Rules
-
-- The navy scale (#031d3c, #043367, #06458c) is the permanent brand chromatic palette. These colors may appear in backgrounds, borders, text, and gradients across all components.
-- Signal Orange (#fd4f19) is a destructive-action signal. It must never appear in navigation, primary CTAs, or decorative contexts. Its presence always communicates warning or irreversible action.
-- Rust Red (#b4120e) is a supporting accent for borders and emphasis text. It is not a button color and should not replace Nobel Navy for interactive elements.
-- Pale Gray (#cfcfcf) and Cloud Gray (#e2e2e2) are structural divider and background colors. They are not text colors and should not appear as primary content.
-- Campaign colors (L3) are documented below and change per launch cycle. Do not treat them as system-level tokens.
-
-### Current Campaign Colors
-
-> Extracted: 2026-06-21. These colors are campaign-level and will change with the next product launch.
-
-| Hex | Name | Context | Expires |
-|-----|------|---------|---------|
-| `#d31510` | Campaign Crimson | Badge background (Destructive badge) | Next product launch |
-| `#f5e9e9` | Campaign Blush | Badge background (Primary badge) | Next product launch |
-| `#bb3a12` | Campaign Copper | Destructive button border | Next product launch |
+| Hex | Usage (measured) | Frequency | CSS var |
+|-----|------------------|-----------|---------|
+| `#4bae4f` | background 5 | 5 | `--_color-primitives---positive--500` |
+| `#e6f4e5` | background 5 | 5 | `--_color-primitives---positive--100` |
+| `#bb3a12` | border 4 | 4 | `--_color-primitives---primary--800` |
 
 ## 3. Typography Rules
 
-### Font Family
-
-- **Primary**: `Silka Webfont`, geometric sans-serif with weight range 400–600
-- **Fallback**: `sans-serif`
-- **Icon font**: `webflow-icons` (Webflow system icon set)
-- **OpenType Features**: None detected. The font runs at its default glyph set across all sizes.
-
-### Hierarchy
-
-| Role | Font | Size | Weight | Line Height | Letter Spacing | Features | Notes |
-|------|------|------|--------|-------------|----------------|----------|-------|
-| Display Hero | Silka Webfont | 112px (7.00rem) | 600 | 1.00 (tight) | normal | - | Maximum scale, single-word headlines — "ISPS" |
-| Hero Heading | Silka Webfont | 63px (3.94rem) | 600 | 1.20 | normal | - | Primary h1, hero taglines — "Uw maritieme totaalleverancier." |
-| Section Heading | Silka Webfont | 49px (3.06rem) | 600 | 1.20 | normal | - | h2/h3 section titles — "Wereldwijd de maritieme sector in vaart houden." |
-| Subheading Large | Silka Webfont | 21px (1.31rem) | 600 | 1.20 | normal | - | Card titles, feature subheadings — "Nobel lanceert: unieke eigen puzzel." |
-| Body CTA | Silka Webfont | 18px (1.13rem) | 600 | 1.29 | normal | - | Button labels, call-to-action links — "Wij gebruiken Cookies!" |
-| Body Uppercase | Silka Webfont | 18px (1.13rem) | 400 | 1.41 | normal | - | `text-transform: uppercase` — legal/consent body copy |
-| Body Content | Silka Webfont | 18px (1.13rem) | 500 | 0.89 | normal | - | Niche content at tight line-height — "LNG, GTL & HVO" |
-| Body | Silka Webfont | 16px (1.00rem) | 400 | 1.45 | normal | - | Standard body text, navigation, base reading size |
-| Body Strong | Silka Webfont | 16px (1.00rem) | 600 | 1.45 | normal | - | Emphasized body, button labels — "Klant worden" |
-| UI Small | Silka Webfont | 14px (0.88rem) | 400 | 1.66 | normal | - | Secondary navigation, small UI labels — "Diensten" |
-| HTML Base | sans-serif | 14px (0.88rem) | 400 | normal | normal | - | Browser default, `html` element base style |
-
-### Named Strategies
-
-- **Monoweight hierarchy**: Weight 600 governs all headings from 112px to 21px — there is no weight 700 or 300 in the system. Hierarchy is communicated through size and position, not weight contrast. This creates a unified typographic voice where every heading belongs to the same family at the same confidence level.
-- **Single-width geometric identity**: Silka Webfont's consistent stroke width and geometric construction create a technical, engineered feel at every size. At 112px, the letterforms read as industrial signage; at 14px, they remain legible and purposeful.
-- **Administrative typographic voice**: Uppercase body text at 18px weight 400 with 1.41 line-height serves as a distinct register for legal notices and consent copy. This separates administrative text from marketing content without introducing a second font family.
-- **Size-only heading ladder**: The heading scale compresses from 112px → 63px → 49px → 21px with identical weight and line-height (1.20 for 63px/49px/21px). The 112px display breaks the 1.20 pattern with 1.00 line-height — a deliberate tightness for single-word impact.
+| Role | Font | Size / Line | Weight | Letter-spacing | Transform |
+|------|------|-------------|--------|----------------|-----------|
+| div | `Silka Webfont` | 112px / 112px | 600 | normal | none |
+| div | `Silka Webfont` | 63px / 75.6px | 600 | normal | none |
+| h2 | `Silka Webfont` | 49px / 58.8px | 600 | normal | none |
+| div | `Silka Webfont` | 21px / 25.2px | 600 | normal | none |
+| div | `Silka Webfont` | 18px / 25.375px | 400 | normal | uppercase |
+| div | `Silka Webfont` | 18px / 23.2px | 600 | normal | none |
+| p | `Silka Webfont` | 18px / 16px | 500 | normal | none |
+| body | `Silka Webfont` | 16px / 23.2px | 400 | normal | none |
+| button | `Silka Webfont` | 16px / 23.2px | 600 | normal | none |
+| html | `sans-serif` | 14px / normal | 400 | normal | none |
+| button | `Silka Webfont` | 14px / 23.2px | 400 | normal | none |
 
 ## 4. Component Stylings
-
-### Links
-
-**Ghost Link**
-- Background: `rgba(0,0,0,0)` (transparent)
-- Text: `rgb(6,69,140)` (#06458c)
-- Font: 15.75px Silka Webfont, weight 400
-- Radius: 0px
-- Padding: 0px
-- Use: Inline navigation links, content hyperlinks (206 occurrences)
 
 ### Buttons
 
 **Ghost Button**
-- Background: `rgba(0,0,0,0)` (transparent)
-- Text: `rgb(254,254,254)` (#fefefe)
-- Font: 15.75px Silka Webfont, weight 600
-- Radius: 7px
-- Padding: 0px 14px
-- Border: `1px solid rgba(0,0,0,0)` — invisible border reserving box-model space
-- Use: Transparent navigation CTAs on dark backgrounds (132 occurrences)
+- Background: `rgba(0, 0, 0, 0)`
+- Text: `#fefefe`, `15.75px`, `Silka Webfont`, weight 600
+- Padding: `0px 14px 0px 14px`
+- Radius: `7px`
+- Border: `1px solid rgba(0, 0, 0, 0)`
+- Hover: border-color shifts to `#06458c` — the blue border appearance signals actionability against the transparent background
+- Focus-visible: `rgb(207, 207, 207) solid 0px` outline
+- Transition: `color 0.2s ease-out, background-color 0.2s ease-out, border-color 0.2s ease-out`
+- Use: "Klant worden", "Diensten", "Dit is Nobel"
 
 **Secondary Button**
-- Background: `rgb(254,254,254)` (#fefefe)
-- Text: `rgb(10,10,10)` (#0a0a0a)
-- Font: 17.5px Silka Webfont, weight 600
-- Radius: 7px
-- Padding: 0px 17.5px
-- Border: `1px solid rgb(207,207,207)` (#cfcfcf) — Pale Gray border defines the button edge against light backgrounds
-- Use: Secondary actions, cookie consent — "Wij gebruiken Cookies!" (17 occurrences)
+- Background: `#fefefe`
+- Text: `#0a0a0a`, `17.5px`, `Silka Webfont`, weight 600
+- Padding: `0px 17.5px 0px 17.5px`
+- Radius: `7px`
+- Border: `1px solid #cfcfcf`
+- Hover: border-color shifts to `#06458c` — the blue halo signals interactivity on an otherwise neutral button
+- Focus-visible: `rgb(207, 207, 207) solid 0px` outline
+- Transition: `color 0.2s ease-out, background-color 0.2s ease-out, border-color 0.2s ease-out`
+- Use: "Cookie-instellingen", "Nee, bedankt!", "Ontdek meer"
 
 **Primary Button**
-- Background: `rgb(6,69,140)` (#06458c)
-- Text: `rgb(254,254,254)` (#fefefe)
-- Font: 17.5px Silka Webfont, weight 600
-- Radius: 7px
-- Padding: 0px 17.5px
-- Use: Primary CTAs, main calls to action (10 occurrences)
+- Background: `#06458c`
+- Text: `#fefefe`, `17.5px`, `Silka Webfont`, weight 600
+- Padding: `0px 17.5px 0px 17.5px`
+- Radius: `7px`
+- Hover: border-color shifts to `#06458c` — reinforces the filled state without color shift
+- Focus-visible: `rgb(207, 207, 207) solid 0px` outline
+- Transition: `color 0.2s ease-out, background-color 0.2s ease-out, border-color 0.2s ease-out`
+- Use: "Alle cookies accepteren", "Webshop"
 
 **Destructive Button**
-- Background: `rgb(253,79,25)` (#fd4f19)
-- Text: `rgb(254,254,254)` (#fefefe)
-- Font: 16px Silka Webfont, weight 400
-- Radius: 10.5px — distinct from the 7px interactive-button radius, matching card radius
-- Padding: 17.5px (all sides) — generous all-around padding signals high-stakes action
-- Border: `1px solid rgb(187,58,18)` (#bb3a12 campaign copper)
-- Use: Destructive or irreversible actions — the single most visually urgent element on the page (1 occurrence)
+- Background: `#fd4f19`
+- Text: `#fefefe`, `16px`, `Silka Webfont`, weight 400
+- Padding: `17.5px 17.5px 17.5px 17.5px`
+- Radius: `10.5px`
+- Border: `1px solid #bb3a12`
+- Focus-visible: `rgb(207, 207, 207) solid 0px` outline
+- Transition: `color 0.2s ease-out`
+- Use: "Shop de bunkerproducten online."
+
+### Cards & Containers
+
+**Secondary Card**
+- Background: `#f8f8f8`
+- Text: `#06458c`, `16px`, `Silka Webfont`, weight 400
+- Padding: `28px 28px 28px 28px`
+- Radius: `14px`
+- Border: `1px solid #f4f4f4`
+- Transition: `all`
+- Use: "Contact", "Vragen? Nobel staat klaar.", "info@anobel.nl"
+
+**Branded Gradient Card**
+- Gradient: `linear-gradient(rgba(6, 69, 140, 0.8), rgba(6, 69, 140, 0.8))` — a flat-blue overlay used as card surface treatment
+- Secondary gradient: `linear-gradient(rgba(253, 79, 25, 0.55), rgba(253, 79, 25, 0.55))` — an orange overlay reserved for campaign cards
+- Location: card-level decorative overlays, observed on `/nl/scheepsbunkering`
+
+### Badges / Tags / Pills
+
+**Primary Badge**
+- Background: `#4bae4f`
+- Text: `#0a0a0a`, `15.75px`, `Silka Webfont`, weight 600
+- Radius: `100%`
+- Padding: `0px 0px 0px 0px`
+- Transition: `all`
+- Use: campaign status indicators [INFERRED — no sample text captured]
+
+**Variant-1 Badge**
+- Background: `#e6f4e5`
+- Text: `#0a0a0a`, `15.75px`, `Silka Webfont`, weight 600
+- Radius: `100%`
+- Padding: `0px 0px 0px 0px`
+- Transition: `background-color 0.3s`
+- Use: lighter status variant paired with Primary Badge [INFERRED — no sample text captured]
 
 ### Navigation
 
 **Ghost Navigation**
-- Background: `rgba(0,0,0,0)` (transparent)
-- Text: `rgb(10,10,10)` (#0a0a0a)
-- Font: 16px Silka Webfont, weight 400
-- Radius: 0px
-- Padding: 0px
-- Use: Main navigation links — "Diensten" (14 occurrences)
+- Background: `rgba(0, 0, 0, 0)`
+- Text: `#0a0a0a`, `16px`, `Silka Webfont`, weight 400
+- Radius: `0px`
+- Padding: `0px 0px 0px 0px`
+- Transition: `all`
+- Use: "Cookie instellingen", navigation links, registration triggers
+
+### Links
+
+**Ghost Link**
+- Background: `rgba(0, 0, 0, 0)`
+- Text: `#06458c`, `15.75px`, `Silka Webfont`, weight 400
+- Radius: `0px`
+- Padding: `0px 0px 0px 0px`
+- Hover: color shifts to `#031d3c`, border-color to `#031d3c` — darkens the blue to signal the link is traversable
+- Focus-visible: `rgb(207, 207, 207) solid 4px` outline
+- Focus: color shifts to `rgb(4, 42, 85)`, border-color to `rgb(4, 42, 85)`
+- Active: color shifts to `rgb(9, 30, 55)`, border-color to `rgb(9, 30, 55)` — deepest blue at the point of activation
+- Transition: `color 0.2s ease-out`
+- Use: "privacy voorwaarden", "Klant worden"
 
 ### Footer
 
 **Ghost Footer**
-- Background: `rgba(0,0,0,0)` (transparent)
-- Text: `rgb(10,10,10)` (#0a0a0a)
-- Font: 16px Silka Webfont, weight 400
-- Radius: 0px
-- Padding: 0px
-- Use: Footer links and legal copy (117 occurrences)
-
-### Badges / Tags
-
-**Primary Badge**
-- Background: `rgb(245,233,233)` (#f5e9e9 campaign blush)
-- Text: `rgb(10,10,10)` (#0a0a0a)
-- Font: 15.75px Silka Webfont, weight 600
-- Radius: `100%` — fully rounded pill shape
-- Padding: 0px
-- Use: Informational badges, category labels (6 occurrences)
-
-**Destructive Badge**
-- Background: `rgb(211,21,16)` (#d31510 campaign crimson)
-- Text: `rgb(10,10,10)` (#0a0a0a)
-- Font: 15.75px Silka Webfont, weight 600
-- Radius: `100%` — fully rounded pill shape
-- Padding: 0px
-- Use: Warning or urgency badges (5 occurrences)
-
-### Cards
-
-**Secondary Card**
-- Background: `rgb(248,248,248)` — a light gray-white distinct from #fefefe
-- Text: `rgb(6,69,140)` (#06458c)
-- Font: 16px Silka Webfont, weight 400
-- Radius: 10.5px — the system's container radius, distinct from the 7px button radius
-- Padding: 21px (all sides) — generous internal spacing
-- Border: `1px solid rgb(244,244,244)` — near-invisible border for structural definition
-- Use: Content cards, feature containers (4 occurrences)
+- Background: `rgba(0, 0, 0, 0)`
+- Text: `#0a0a0a`, `16px`, `Silka Webfont`, weight 400
+- Radius: `0px`
+- Padding: `0px 0px 0px 0px`
+- Transition: `all`
+- Use: "Contact", "Vragen? Nobel staat klaar.", "info@anobel.nl"
 
 ## 5. Layout Principles
 
 ### Spacing System
 
-Base unit: 4px. Scale: `4px, 28px, 56px, 72px, 92px`.
+Base unit: `4px`. The dominant spacing values across the system:
 
-The scale is sparse — only five values — reflecting a system that favors consistent, repeatable spacing over granular adjustment.
+- 21px (137 occurrences) — internal card and component padding
+- 56px (222 occurrences) — section-level vertical spacing, the system's primary gap
+- 18px (85 occurrences) — compact component spacing
+- 28px (126 occurrences) — card padding and medium component gaps
+- 92px (92 occurrences) — large section separators
+- 11px (93 occurrences) — tight internal spacing
+- 14px (75 occurrences) — button and inline element padding
+- 9px (114 occurrences) — micro-spacing between adjacent elements
 
-Top spacing frequencies:
-- 56px (222 occurrences) — dominant section-level vertical rhythm, the system's primary spatial beat
-- 21px (132 occurrences) — internal component padding, card-to-content spacing
-- 28px (123 occurrences) — secondary vertical gap, likely sub-section spacing
-- 9px (114 occurrences) — compact internal spacing, inline gaps
-- 92px (92 occurrences) — large section separation, hero-to-content transitions
-- 11px (90 occurrences) — micro-spacing, icon-to-text gaps
-- 18px (79 occurrences) — medium internal spacing
-- 14px (74 occurrences) — small element spacing
+Section spacing values: 56px, 70px, 72px, 90px, 92px, 744px.
 
 ### Grid & Container
 
-- **Max content width**: 100% — full-width layout throughout, no centered max-width container
-- **Column counts**: 1, 2, 3, 4, 5, 6 — flexible column grid with six-column maximum
-- **Content alignment**: Full-width — sections span the viewport without constraining to a central column
-- **Section spacing**: Clusters at 56px, 70px, 72px, 90px, 92px, and 744px — the 744px outlier suggests a dedicated full-viewport hero or feature section
+Max content width: `100%` (full-width layout). Column counts range from 1 through 6 across pages. The hero uses a single-column full-width layout with 112px display text. Feature sections collapse into 2- and 3-column card grids. The video container is set to `0px` (edge-to-edge).
 
 ### Whitespace Philosophy
 
-- **Section-first spacing**: Unlike systems that distribute spacing evenly across components, Anobel concentrates whitespace at section boundaries — 56px (222 occurrences) and 92px (92 occurrences) dominate, with component-internal spacing at lower frequencies.
-- **Sparse scale, high repetition**: The spacing scale contains only five values (4, 28, 56, 72, 92), but individual values repeat hundreds of times. This creates visual consistency through disciplined reuse rather than fine-grained adjustment.
-- **Full-width commitment**: With `maxContentWidth: 100%`, the system avoids the centered-column convention entirely. Content spans edge-to-edge, with whitespace managed through internal padding rather than container margins.
+- **Clamp-based vertical rhythm**: Section spacing uses `clamp(2rem, 5vh, 4rem)` through `clamp(15rem, 30vh, 20rem)` across 6 distinct spacing tiers — vertical space scales with viewport, not content
+- **Generous section breathing**: 56px–92px between sections with a 744px maximum (observed on the `/nl/scheepsbunkering` page), creating deliberate content islands rather than continuous scroll
+- **Zero shadow, border-only separation**: With no `box-shadow` tokens, all spatial separation is achieved through `border` properties — a `#0a0a0a` border on white defines a section edge as crisply as a port container stack
 
 ### Border Radius Scale
 
-- 7px (164 occurrences, DOMINANT): Ghost, Secondary, and Primary buttons — the interactive-element workhorse radius
-- 10.5px (64 occurrences): Cards, images, the Destructive button — container-level radius, distinct from interactive controls
-- 14px (37 occurrences): Larger containers, section wrappers, decorative elements
-- 100% (21 occurrences): Badges and pills — fully rounded
-- 0px 0px 14px 14px (13 occurrences): Bottom-rounded containers
-- 3.5px (5 occurrences): Micro-rounding on small elements
-- 14px 14px 0px 0px (4 occurrences): Top-rounded containers
-- 50% (4 occurrences): Circular elements
-- 14px 0px 0px 14px (4 occurrences): Left-rounded elements
-- 225px 0px 0px 14px (4 occurrences): Asymmetric decorative rounding
-- 0px 0px 0px 17.5px (1 occurrence): Single-corner rounding
+- 7px: 170 occurrences — buttons, divs, links. The system's dominant radius.
+- 10.5px: 64 occurrences — images, divs, links. A softer alternative for non-interactive surfaces.
+- 14px: 37 occurrences — divs, images, sections. Card-level corner softening.
+- 100%: 21 occurrences — pill badges, circular treatments.
+- 0px 0px 14px 14px: 13 occurrences — bottom-only radius, asymmetric card treatments.
+- 3.5px: 5 occurrences — micro-radius detail elements.
 
 ## 6. Depth & Elevation
 
-**Principle: Flat, no elevation.** `tokens.json` records **zero box-shadow tokens** — the system has no shadow-based elevation and does not model depth. The six gradients that exist are decorative surface treatments (image-edge fades, directional content fades, and solid color washes), not an elevation or depth scale.
+**Flat.** Zero shadow tokens were extracted; the system uses no box-shadow elevation.
 
-### Decorative Gradients
+6 decorative gradients were captured (surface treatments, NOT a depth or elevation system):
 
-The system has no shadows. The six extracted gradients are unrelated decorative overlays on specific cards and decorative divs — do not read them as an elevation system:
-
-| Gradient | Value | Count | Where / use |
-|----------|-------|-------|-------------|
-| Navy color wash | `linear-gradient(rgba(6,69,140,0.8), rgba(6,69,140,0.8))` | 1 | Solid navy overlay at 80% opacity on a decorative div |
-| Navy card sweep | `linear-gradient(270deg, rgb(3,29,60), rgb(4,51,103) 15%, rgba(6,69,140,0) 28%, rgba(255,255,255,0))` | 1 | Card background that fades navy out to transparent |
-| White edge fade | `linear-gradient(90deg, rgb(254,254,254), rgba(254,254,254,0))` (+ `-90deg` variant) | 2 | Directional fade of content into transparency |
-| Bottom legibility fade | `linear-gradient(rgba(255,255,255,0), rgba(255,255,255,0) 71%, rgba(10,10,10,0.8))` | 1 | Bottom-fade overlay for text-on-image legibility |
-| Orange tint | `linear-gradient(rgba(253,79,25,0.55), rgba(253,79,25,0.55))` | 1 | Solid orange overlay at 55% opacity on a card |
-
-**Dominant treatment:** Flat. The system uses **zero box-shadow** and no elevation model. The gradients above are decorative washes and fades, not depth cues.
+| Gradient | Where |
+|----------|-------|
+| `linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0) 71%, rgba(10, 10,` | decorative |
+| `linear-gradient(90deg, rgb(254, 254, 254), rgba(254, 254, 254, 0))` | decorative |
+| `linear-gradient(-90deg, rgb(254, 254, 254), rgba(254, 254, 254, 0))` | decorative |
+| `linear-gradient(270deg, rgb(3, 29, 60), rgb(4, 51, 103) 15%, rgba(6, 69, 140, 0)` | card |
+| `linear-gradient(rgba(6, 69, 140, 0.8), rgba(6, 69, 140, 0.8))` | decorative |
+| `linear-gradient(rgba(253, 79, 25, 0.55), rgba(253, 79, 25, 0.55))` | card |
 
 ## 6.5. Motion System
 
-**Motion philosophy:** Motion serves utility, not spectacle. Transitions are predominantly `ease` (62 occurrences) — the browser default that communicates responsiveness without character. A smaller population of `ease-out` (30 occurrences) provides gentle deceleration for reveals. The system includes swiper carousel keyframe animations (`spin`, `swiper-preloader-spin`) for content rotation, and crucially respects `prefers-reduced-motion` (10 media query rules detected).
+### Motion Philosophy
+
+Transition timing is slow by web standards — 300ms as the dominant duration (262 occurrences) with 150ms for hover feedback (12 occurrences). Motion serves as structural confirmation, not micro-interaction delight: elements shift color and border over 200ms-300ms `ease` and `ease-out` curves.
 
 ### Duration Scale
 
-| Token | Duration | Frequency | Use |
-|-------|----------|-----------|-----|
-| small | 100ms | - | Quick hover feedback, micro-interactions |
-| medium | 300ms | - | Standard transitions, button state changes |
-| large | 600ms | - | Section reveals, card transitions |
-| xl | 5000000ms | - | Swiper carousel autoplay interval — not a UI transition |
+| Duration | Frequency | Use |
+|----------|-----------|-----|
+| 150ms | 12 | Hover color feedback on buttons and links |
+| 300ms | 262 | System default — color, background-color, border-color transitions across components |
+| 600ms | 46 | Large element transitions (swiper carousel, cookie banner reveal) |
+| 5000000ms | 17 | Swiper infinite-loop timing parameter (not a visual transition) |
 
 ### Easing Functions
 
-- **Primary**: `ease` — 62 occurrences, the system default for most transitions
-- **Decelerate**: `ease-out` — 30 occurrences, content reveals and entrance animations
-- **Smooth**: `cubic-bezier(0.4, 0, 0.2, 1)` — 4 occurrences, Material-style standard easing
-- **Snappy**: `cubic-bezier(0.33, ...)` — 3 occurrences, quick interactions
-- **Symmetric**: `ease-in-out` — 2 occurrences, looped or ping-pong animations
-- **Gradual**: `cubic-bezier(0.625, ...)` — 2 occurrences, slow-build transitions
-- **Constant**: `linear` — 2 occurrences, progress indicators, spinners
-- **Subtle**: `cubic-bezier(0.25, ...)` — 1 occurrence, delicate hover transitions
-- **Swiper variable**: `var(--swiper-wrapper-transition-timing-function, initial)` — 2 occurrences, carousel transitions
+- `ease`: 327 occurrences — the system default; used on color, background, and border transitions
+- `ease-out`: 152 occurrences — button and link hover exits; the deceleration creates a settling effect
+- `ease-in-out`: 10 occurrences
+- `linear`: 8 occurrences
+- `cubic-bezier` variants: 38 occurrences across swiper carousel timing functions
 
-### Keyframes
+### Enter/Exit Choreography
 
-Detected: `spin`, `swiper-preloader-spin` — rotation animations for loading spinners and carousel preloaders. Duration: 0.8s (`spin`).
+No dediated enter/exit animations were detected. The system relies on instant layout changes with transitional color and border properties over 200ms-300ms — elements appear at their final size and position, then transition their visual properties.
 
 ### Reduced-Motion Fallback
 
-**Observed:** `prefers-reduced-motion` support detected (10 media query rules). The system respects the user's OS-level motion preference.
-
-**Recommended policy:** When `prefers-reduced-motion: reduce` is active, replace swiper carousel autoplay with static display, disable spinner rotation animations, and collapse all transitions to instant (0ms) state changes. Preserve opacity-based reveals at 0ms.
+**Observed:** `prefers-reduced-motion: reduce` detected with 10 CSS rules. The system supports reduced-motion natively. 3 keyframe animation definitions exist: `spin` (transform rotation), `download-spin` (0.8s), and `swiper-preloader-spin` (1s).
 
 ## 7. Content & Voice
 
 ### Tone
 
-- **Institutional**: "Uw maritieme totaalleverancier." — a declarative statement of identity, not a marketing proposition
-- **Direct**: "Klant worden" — imperative verb form, minimal syllable count, no softening language
-- **Established**: "A. Nobel & Zn" — the full company name with partnership suffix signals generational continuity
-- **Administrative**: "Wij gebruiken Cookies!" — direct legal disclosure with exclamation, not apology
+- **Direct**: "Klant worden" (not "Become a customer today"), "Shop de bunkerproducten online" — imperative, no softening
+- **Institutional**: "Uw maritieme totaalleverancier" — formal Dutch address ("uw"), positioning the brand as a partner, not a vendor
+- **Functional**: "Wereldwijd de maritieme sector in vaart houden" — the value proposition is operational, not emotional
+- **Transparent**: Cookie consent uses explicit categories ("Cookie-instellingen") with clear opt-out ("Nee, bedankt!") — no dark patterns
 
 ### Capitalization Rules
 
-- Headlines: Sentence case — "Uw maritieme totaalleverancier.", "Wereldwijd de maritieme sector in vaart houden."
-- Buttons: Sentence case — "Klant worden", "Wij gebruiken Cookies!"
-- Navigation: Title Case implied for short labels — "Diensten" (single-word, capitalized)
-- Legal/consent: Sentence case — cookie notice text
-- Display: ALL CAPS for acronyms — "ISPS" (inherently uppercase as an abbreviation)
+- Headlines: Sentence case ("Uw maritieme totaalleverancier.", "Wereldwijde bunkering.")
+- Navigation: Sentence case ("Diensten", "Klant worden")
+- Buttons: Sentence case ("Alle cookies accepteren", "Ontdek meer")
+- Uppercase labels: `text-transform: uppercase` on `18px` weight 400 Silka — used for cookie banner headings and micro-labels
 
 ### Button Label Patterns
 
-- Action verb: "Klant worden" (Become a customer)
-- Navigation: "Diensten" (Services)
-- Consent: "Wij gebruiken Cookies!" (We use Cookies!)
-- Service category: "LNG, GTL & HVO" (fuel types, shown as content label)
+- Action + Object: "Klant worden", "Shop de bunkerproducten online"
+- Navigation: "Diensten", "Webshop", "Ontdek meer"
+- Consent: "Alle cookies accepteren", "Cookie-instellingen", "Nee, bedankt!"
+- Brand: "Dit is Nobel"
 
 ### Error/Empty State Copy
 
-Not directly observed in extraction. Based on the institutional-direct tone, error messages should be brief and factual in Dutch: action-oriented without apology, using the formal "u" address consistent with "Uw maritieme totaalleverancier."
+No error or empty state copy was observed in the extraction. Cookie consent provides the only interactive decision flow: a banner with accept/configure/reject choices using direct Dutch copy.
 
 ### Emoji Policy
 
-None observed. Zero emoji in headings, buttons, navigation, or body copy. The brand communicates through typography and color alone.
+Observed: Zero emoji in any page content, navigation, buttons, or CTAs. Text-only communication throughout.
 
 ### Voice Examples
 
-1. "ISPS" — display hero, 112px weight 600 (homepage)
-2. "Uw maritieme totaalleverancier." — hero heading, 63px weight 600 (homepage)
-3. "Wereldwijd de maritieme sector in vaart houden." — section heading, 49px weight 600 (about/mission)
-4. "Nobel lanceert: unieke eigen puzzel." — subheading, 21px weight 600 (blog/announcement)
-5. "Wij gebruiken Cookies!" — CTA button, 18px weight 600 (cookie consent)
+1. "Uw maritieme totaalleverancier." (hero headline)
+2. "Wereldwijd de maritieme sector in vaart houden." (mission statement)
+3. "Alle expertise op een locatie." (feature section heading)
+4. "Shop uw Nobel producten online." (webshop CTA)
+5. "Wij gebruiken Cookies! We gebruiken cookies om uw ervaring op onze website te verbeteren." (cookie consent banner)
 
 ### Vibe Paragraph
 
-Anobel writes like a maritime institution that has been in business for over a century and sees no need to persuade. Copy is declarative and functional — identity statements, not value propositions. The formal "uw" address maintains professional distance while the exclamation mark on "Wij gebruiken Cookies!" adds a single note of Dutch directness to an otherwise restrained voice. The absence of emoji, marketing superlatives, and softening language signals a brand that lets its navy-blue palette and century of expertise speak.
+A. Nobel & Zn writes like a port operations manual — direct, unambiguous, and procedural. Copy assumes the reader knows what ISPS means, what bunkering entails, and why "wereldwijd" (worldwide) is a claim worth making. The use of formal Dutch "uw" throughout signals institutional reliability over casual engagement. The absence of hedging, exclamation marks beyond the cookie notice, and decorative language treats every word as a signal in a high-stakes operational environment where clarity prevents expensive mistakes.
 
 ## 8. Do's and Don'ts
 
 ### Do
 
-- Use Silka Webfont at weight 600 for all headings from 112px to 21px — the monoweight hierarchy is the typographic identity
-- Use #0a0a0a for primary text on light backgrounds and #fefefe for text on dark #0a0a0a surfaces — the 19.63:1 contrast ratio is the reading baseline
-- Use 7px border-radius for all interactive buttons (Ghost, Secondary, Primary) — this is the interactive-element radius workhorse at 164 occurrences
-- Use 10.5px border-radius for Cards and the Destructive button — container radius is distinct from interactive radius
-- Keep surfaces flat — the design uses no box-shadow and no elevation model; the only gradients are decorative overlays (color washes and edge fades), not depth cues
-- Use #06458c for all interactive text, links, and primary button backgrounds — it is the sole chromatic interactive color
-- Reserve #fd4f19 exclusively for destructive or warning actions — it is a signal, not a decoration
-- Use 56px as the primary section-level vertical gap — it is the dominant spatial beat at 222 occurrences
-- Apply `text-transform: uppercase` at 18px weight 400 for legal and consent copy — the administrative typographic voice
-- Use sentence case for all Dutch-language buttons and headlines
-- Keep padding consistent: 0px horizontal-only for Ghost buttons, generous all-sides for the Destructive button (17.5px)
+- Use `#06458c` for all link colors — it is the system's chromatic anchor at 3040 text and 7280 border occurrences
+- Use `#0a0a0a` on `#fefefe` for body text — the 19.63:1 ratio is the reading contract
+- Use `7px` border-radius on all interactive elements — buttons, links, and interactive divs share this single dominant radius
+- Use `Silka Webfont` at weight 600 for every heading level — 112px, 63px, 49px, 21px, and 18px all at the same weight
+- Use weight 400 for body text (16px/23.2px) and weight 500 only for the rare 18px/16px paragraph style
+- Use `color 0.2s ease-out` for hover transitions on links — the 0.2s duration is the link-specific timing
+- Use `color 0.2s ease-out, background-color 0.2s ease-out, border-color 0.2s ease-out` for button transitions — the full property spread preserves state coherence
+- Use flat `border` with explicit hex colors for all spatial separation — there are zero `box-shadow` tokens in the system
+- Use `28px` padding on cards — it matches the 126-occurrence spacing tier and the extracted card variant
+- Use `14px` border-radius for cards (`#f8f8f8` background) — the 37-occurrence radius distinguishes containers from buttons
 
 ### Don't
 
-- Don't use weight 700 or weight 300 on Silka Webfont — the system operates exclusively at 400, 500, and 600; introducing weight 700 would break the monoweight heading identity
-- Don't apply 7px border-radius to Cards — cards and containers use 10.5px; applying the button radius to cards would blur the interactive-vs-container distinction that 164 vs 64 occurrences establishes
-- Don't use #fd4f19 for primary CTAs, navigation, or decorative elements — at 56 occurrences confined to a single button, orange signals destruction only; using it elsewhere would dilute the warning signal
-- Don't add box-shadow or any elevation effect — the design is flat (`shadowTokens: 0`); and don't treat the decorative gradients as a depth system, they are surface overlays only
-- Don't place #06458c text on #0a0a0a backgrounds — the 2.11:1 ratio fails all accessibility thresholds; Nobel Navy text requires a light background or must be inverted to #fefefe
-- Don't use Pale Gray #cfcfcf as a text color — it is a border and background color only (84 border uses, 0 text uses)
-- Don't center content at a fixed max-width — the system uses 100% width; introducing a max-width container would contradict the full-width layout commitment
-- Don't skip the 1px transparent border on Ghost Buttons — the `1px solid rgba(0,0,0,0)` reserves box-model space to prevent layout shift when the button gains a visible border on state change
-- Don't use Pill radius (100%) on buttons — pill shapes are reserved exclusively for badges; buttons use 7px or 10.5px
-- Don't translate button labels to English — the site is Dutch-language; "Klant worden" and "Diensten" are the observed patterns
+- Don't add `box-shadow` to any element — the system has zero shadow tokens; any shadow is an invention
+- Don't use weight 700 (bold) anywhere — 600 is the ceiling, used exclusively for headings and buttons
+- Don't use negative letter-spacing — all 11 typography levels use `normal` tracking; compressed text is not part of this system
+- Don't use OpenType features — no `ss01`, `cv01`, or ligature features were detected; the font plays straight
+- Don't use `#fd4f19` as a general accent — it appears at only 56 occurrences and is reserved for the destructive button variant and sparse highlight borders
+- Don't exceed `14px` border-radius for containers — 10.5px and 14px are the maximums; higher values would contradict the system's flat-plane identity
+- Don't use gradient overlays as depth — the 6 detected gradients are surface treatments on specific card locations, not an elevation system
+- Don't center-align body text — the Dutch reading layout uses the full `100%` content width with left-aligned or grid-aligned text
+- Don't add decorative icons — the 535-icon system uses stroke-width 1 at sizes 0-188px with mixed color modes; icons are functional, not ornamental
+- Don't translate copy — the system is monolingual Dutch (`lang="nl"`) with zero detected i18n infrastructure; introducing other languages breaks the institutional voice
 
 ## 9. Accessibility Contract
 
-**Inferred target:** WCAG 2.1 AA. Evidence: `prefers-reduced-motion` media queries detected (10 rules), minimum font size of 14px observed, and explicit focus indicator defined. Contrast performance is mixed — several common pairings fail.
+### WCAG Target
+
+**Inferred target:** WCAG 2.1 AA. Evidence: the dominant body-text pair (`#0a0a0a` on `#fefefe`) achieves 19.63:1 contrast, focus indicators are captured on links and buttons, and `prefers-reduced-motion` is supported natively.
 
 ### Contrast Ratios
 
-| Role | Foreground | Background | Ratio | AA Normal | AA Large | AAA |
-|------|-----------|------------|-------|-----------|----------|-----|
-| Body text (light on dark) | `#fefefe` | `#0a0a0a` | 19.63:1 | Pass | Pass | Pass |
-| Body text (dark on light) | `#0a0a0a` | `#fefefe` | 19.63:1 | Pass | Pass | Pass |
-| CTA text on brand | `#fefefe` | `#06458c` | 9.31:1 | Pass | Pass | Pass |
-| Brand text on gray | `#06458c` | `#cfcfcf` | 6.02:1 | Pass | Pass | Fail |
-| Brand text on light | `#06458c` | `rgba(255,255,255,0)` | 9.38:1 | Pass | Pass | Pass |
-| Dark text on brand | `#0a0a0a` | `#06458c` | 2.11:1 | **Fail** | **Fail** | **Fail** |
-| Brand text on transparent | `#06458c` | `rgba(0,0,0,0)` | 2.24:1 | **Fail** | **Fail** | **Fail** |
-| Dark text on transparent | `#0a0a0a` | `rgba(0,0,0,0)` | 1.06:1 | **Fail** | **Fail** | **Fail** |
-| White on white | `#fefefe` | `#fefefe` | 1.00:1 | **Fail** | **Fail** | **Fail** |
-| Brand on brand | `#06458c` | `#06458c` | 1.00:1 | **Fail** | **Fail** | **Fail** |
-| Red accent on transparent | `#b4120e` | `rgba(0,0,0,0)` | 3.03:1 | **Fail** | **Fail** | **Fail** |
-| White on transparent | `#fefefe` | `rgba(255,255,255,0)` | 1.01:1 | **Fail** | **Fail** | **Fail** |
+| Role | Foreground | Background | Ratio | AA | AAA |
+|------|-----------|------------|-------|-----|-----|
+| Body text | `#0a0a0a` | `#fefefe` | 19.63:1 | Yes | Yes |
+| Link text | `#06458c` | `#fefefe` | 9.31:1 | Yes | Yes |
+| Primary button text | `#fefefe` | `#06458c` | 9.31:1 | Yes | Yes |
+| Badge text | `#0a0a0a` | `#4bae4f` | 7.04:1 | Yes | Yes |
+| Badge text (variant) | `#0a0a0a` | `#e6f4e5` | 17.38:1 | Yes | Yes |
+| Card text | `#06458c` | `#f8f8f8` | 8.84:1 | Yes | Yes |
+| Destructive button text | `#fefefe` | `#fd4f19` | 3.30:1 | No | No |
+| Error text | `#b4120e` | `#fefefe` | 6.86:1 | Yes | No |
+| Secondary button border | `#06458c` | `#cfcfcf` | 6.02:1 | Yes | No |
+| Link on neutral | `#0a0a0a` | `#e2e2e2` | 15.28:1 | Yes | Yes |
 
-**Failing pairs note:** Five common pairings fail AA for normal text, primarily when #06458c or #0a0a0a text renders over dark/transparent backgrounds. The transparent-background failures (rgba(0,0,0,0)) likely occur on elements that inherit a solid background from a parent — the contrast tool sees the transparent computed value but the rendered experience may differ. The #0a0a0a-on-#06458c failure at 2.11:1 is a genuine concern for any dark-text-on-navy-background usage.
+The `#fefefe` on `#fd4f19` destructive button at 3.30:1 fails AA — this is the system's only substantive contrast failure in an interactive element.
 
 ### Focus Indicators
 
-**Consistent:** No. Focus indication style varies across the site.
+Focus is captured on links and buttons but is **not consistent** across components:
 
-**Observed style:** `outline: rgb(207,207,207) solid 4px` — a 4px Pale Gray (#cfcfcf) solid outline. This was detected on some but not all interactive elements. The inconsistency means some interactive controls may lack visible focus indication entirely.
+- **Link focus-visible**: `rgb(207, 207, 207) solid 4px` outline — a 4px gray ring unique to links
+- **Button focus-visible**: `rgb(207, 207, 207) solid 0px` outline — a 0px outline on all button variants; functionally invisible
+- **Link focus (non-visible)**: color shifts to `rgb(4, 42, 85)`, border-color to `rgb(4, 42, 85)` — state change without visible ring
+- **Link active**: color shifts to `rgb(9, 30, 55)`, border-color to `rgb(9, 30, 55)` — deepest state without outline
 
-**Recommendation:** Standardize to a single focus style — `outline: #06458c solid 2px` with `outline-offset: 2px` would use the brand color for focus, improving both consistency and contrast (9.31:1 against #fefefe, though only 2.11:1 against #0a0a0a — a light outline on dark background requires a different color).
+The link 4px outline is the only visible focus indicator. Button `0px` focus-visible values provide no visual indication of focus.
 
 ### Touch/Click Targets
 
-- Minimum observed interactive element: 34px × 23px — below WCAG 2.1 Success Criterion 2.5.5 (44×44px target size)
-- Button padding provides additional touch area: Ghost buttons at 0px 14px horizontal, Secondary/Primary at 0px 17.5px
-- Destructive button: 17.5px all-sides padding creates the largest touch target among buttons
-- Minimum font size: 14px (meets WCAG minimum for body text)
+- Minimum observed interactive element: 34px width by 23px height — below the 44px WCAG 2.1 Success Criterion 2.5.5 target
+- Ghost buttons: `0px 14px 0px 14px` padding with `15.75px` text — approximately 44px height
+- Primary/Secondary buttons: `0px 17.5px 0px 17.5px` padding with `17.5px` text — approximately 53px touch area
 
 ### Reduced-Motion Support
 
-**Observed:** Yes — 10 `prefers-reduced-motion` media query rules detected. Swiper carousel animations, spinner keyframes, and CSS transitions are gated behind the user's OS preference.
+**Observed:** `prefers-reduced-motion: reduce` detected with 10 CSS rules. The system respects the OS-level reduced-motion preference.
 
 ### ARIA Patterns
 
-| Role | Count | Context |
-|------|-------|---------|
-| `button` | 8 | Interactive button elements |
-| `list` | 55 | Navigation and content lists |
-| `listitem` | 266 | List items within navigation and content |
-| `status` | 5 | Live region status announcements |
+- `role="button"`: 10 instances
+- `role="list"`: 55 instances
+- `role="listitem"`: 266 instances
+- `role="status"`: 5 instances
+- Tab order: 140 tabbable elements, 0 positive tabindex values
+- `lang="nl"` on `<html>`
 
-ARIA usage is basic — standard `button`, `list`, and `listitem` roles cover interactive and structural elements. No `aria-live` regions for dynamic content updates were detected beyond `status` roles. No `aria-expanded`, `aria-label`, or `aria-describedby` patterns were observed.
+Not observed: `aria-live` regions, skip navigation links, `aria-expanded` on dropdowns.
+
+### Additional Notes
+
+- Alt-text coverage: 23% (15 with alt, 51 without, 66 images total) — significantly below WCAG 1.1.1
+- Minimum font size: 14px — meets the 12px informal readability floor but no smaller
 
 ## 10. Responsive Behavior
 
@@ -445,166 +414,159 @@ ARIA usage is basic — standard `button`, `list`, and `listitem` roles cover in
 
 | Name | Width | CSS Rules | Key Changes |
 |------|-------|-----------|-------------|
-| Desktop (max) | 991px max-width | 2,482 | Primary responsive threshold — likely triggers tablet layout |
-| Mobile Large | 767px max-width | 1,131 | Secondary threshold — single-column layouts |
-| Mobile Small | 479px max-width | 1,237 | Smallest viewport — maximum simplification |
-| Tablet Portrait | 768px max-width | 5 | Minor adjustment threshold |
-| Ultra-Wide | 5120px max-width | 5 | 5K display ceiling |
-| Wide QHD | 2560px max-width | 5 | 1440p display ceiling |
-| Wide FHD | 1920px max-width | 5 | 1080p display ceiling |
-| Standard Wide | 1440px max-width | 5 | Standard desktop ceiling |
-| Motion | prefers-reduced-motion | 10 | Accessibility gate for animations |
-| Hover | hover:hover | 35 | Touch-device hover suppression |
+| Tablet landscape | max-width: 991px | 2482 | Primary responsive cascade; navigation collapse, section reflow |
+| Mobile large | max-width: 767px | 1131 | Column reduction, heading size shifts |
+| Mobile small | max-width: 479px | 1237 | Single-column layout, minimized spacing |
+| Tablet portrait | max-width: 768px | 5 | Supplementary targeting |
+| Large desktop | max-width: 5120px | 5 | Clamp upper-bound targeting |
+| Desktop (hover) | min-width: 992px | 20 | Hover-enabled interactions restored |
+| Pointer fine + hover | min-width: 768px and (hover:hover) | 87 | Precise pointer interactions enabled for desktop-class devices |
+| Reduced motion | prefers-reduced-motion: reduce | 10 | Animation suppression |
 
-### Touch Targets
-
-- Ghost buttons rely on text size (15.75px) and horizontal padding (0px 14px) for touch area — minimal vertical touch surface
-- Secondary/Primary buttons at 17.5px font size with horizontal-only padding — touch height equals font line-height
-- Destructive button with 17.5px all-sides padding provides the largest touch target
-- Navigation links at 16px weight 400 with 0px padding — touch area depends on surrounding layout
-- Minimum detected target of 34×23px is below the WCAG 44×44px recommendation
+The system is mobile-first: desktop-targeted breakpoints (min-width: 992px, min-width: 768px) carry only 20 and 87 rules respectively, while the max-width: 991px breakpoint carries 2482 rules.
 
 ### Collapsing Strategy
 
-- Column grid: 6-column maximum at widest → collapses through 5, 4, 3, 2, to single column at 479px
-- The 991px breakpoint (2,482 rules) is the primary layout reconfiguration point — likely the tablet/desktop boundary
-- 767px breakpoint (1,131 rules) triggers major mobile reflow — navigation likely switches from horizontal to toggle
-- 479px breakpoint (1,237 rules) handles the smallest screens — maximum simplification
-- Section spacing likely compresses from 92px/56px dominant values to tighter values at mobile
-- Display Hero at 112px likely scales down significantly at mobile breakpoints — text at this size would overflow small viewports
+- Page padding: `5vw` (desktop) → `4rem` (tablet) → `2rem` (mobile-large) → `2rem` (mobile)
+- Section spacing: `clamp()`-based values collapse with viewport height, from `clamp(15rem, 30vh, 20rem)` (display) to `clamp(2rem, 5vh, 4rem)` (extra-small)
+- Navigation: collapses through max-width: 991px with 2482 rules governing menu transformation
+- Feature grids: 6-column desktop → 3–2 column at 991px → single column at 479px
+- Typography sizing: CSS variable system with `--_typography---size--h1` at `4rem`, `--_typography---size--h2` at `3.5rem`, scaling through `--_typography---size--h6` at `1.5rem` — breakpoint overrides likely exist within the 2482-rule 991px cascade [INFERRED — exact heading size remapping per breakpoint was not individually captured]
+
+### Touch Targets
+
+- Buttons at `15.75px`–`17.5px` font size with `14px`–`17.5px` horizontal padding produce ~44px–53px touch heights
+- Navigation links at `16px` with `0px` padding rely on the surrounding nav container for touch area
+- Minimum touch target observed: 34px × 23px — smaller than WCAG 2.5.5 recommendation at certain breakpoints
 
 ### Image Behavior
 
-- Images use 10.5px border-radius (64 occurrences) — the container radius applied to media
-- Asymmetric corner rounding observed: `14px 0px 0px 14px` for left-rounded images, `0px 0px 14px 14px` for bottom-rounded
-- Cards contain images with matching 10.5px radius and 21px internal padding
-- Edge-to-edge full-width layout means images have no container max-width constraint
+- Images use `10.5px` border-radius (64 occurrences) — softer than the 7px interactive-element radius
+- Image containers use `14px` border-radius (37 occurrences) and asymmetric corner radii (`14px 0px 0px 14px`, `0px 0px 14px 14px`)
+- Alt-text coverage at 23% indicates images are primarily decorative or the site relies on surrounding copy for context
 
 ## 11. State Matrix
 
 | Component | Loading | Empty | Error | Disabled | Success |
 |-----------|---------|-------|-------|----------|---------|
-| Button (Primary) | Swiper preloader spin, 0.8s rotation | n/a | - | - | - |
-| Button (Destructive) | - | n/a | - | - | - |
-| Button (Ghost/Secondary) | - | n/a | - | - | - |
-| Link (Ghost) | - | n/a | - | - | - |
-| Card | Gradient overlay `rgba(6,69,140,0.8)` as decorative state | - | - | - | - |
-| Badge | - | - | - | - | - |
-| Navigation | - | - | - | - | - |
+| Button (Primary) | - | n/a | - | - | - |
+| Button (Ghost) | - | n/a | - | - | - |
+| Link | Hover: color `#031d3c`, border `#031d3c`; Focus: color `rgb(4, 42, 85)`, border `rgb(4, 42, 85)`; Active: color `rgb(9, 30, 55)`, border `rgb(9, 30, 55)` | n/a | - | - | - |
+| Card | - | "Contact" + info@anobel.nl fallback | - | - | - |
+| Badge | - | - | - | - | Green bg `#4bae4f` or `#e6f4e5` with `#0a0a0a` text |
 
-State observations are sparse — the extraction did not capture interactive state changes (hover, focus, active, disabled) for most components beyond the focus indicator outline. Loading states reference the swiper `spin` keyframe animation at 0.8s, which applies to carousel preloaders.
+### Per-Variant State Detail
+
+**Button Ghost**
+- Hover: `border-color: #06458c` — blue border appears against transparent background
+- Focus-visible: `outline: rgb(207, 207, 207) solid 0px` — no visible indicator
+- No observed loading, disabled, or error states
+
+**Button Secondary**
+- Hover: `border-color: #06458c` — blue border replaces `#cfcfcf` neutral
+- Focus-visible: `outline: rgb(207, 207, 207) solid 0px` — no visible indicator
+- No observed loading, disabled, or error states
+
+**Button Primary**
+- Hover: `border-color: #06458c` — border appears against filled background
+- Focus-visible: `outline: rgb(207, 207, 207) solid 0px` — no visible indicator
+- No observed loading, disabled, or error states
+
+**Button Destructive**
+- Focus-visible: `outline: rgb(207, 207, 207) solid 0px` — no visible indicator
+- No observed hover, loading, disabled, or error states
+
+**Link Ghost**
+- Hover: color `#031d3c`, border-color `#031d3c`, outline `none` — full state transition into deepest blue
+- Focus-visible: `outline: rgb(207, 207, 207) solid 4px` — the system's only visible focus ring at 4px
+- Focus: color `rgb(4, 42, 85)`, border-color `rgb(4, 42, 85)`, outline `none`
+- Active: color `rgb(9, 30, 55)`, border-color `rgb(9, 30, 55)`, outline `none`
+- Transition: `color 0.2s ease-out`
 
 ### Skeleton/Shimmer Patterns
 
-No skeleton or shimmer loading patterns were observed. The site likely relies on spinner animations (swiper preloader `spin` keyframe) for loading states rather than content-placeholder skeletons.
+No skeleton or shimmer loading states were observed in the extraction. The system appears to use instant content rendering without transitional loading placeholders.
 
 ## 12. Iconography
 
 ### Icon System
 
-- **Library detected**: Custom SVG icons via Webflow icon system (`webflow-icons` font)
-- **Stroke weight**: 1px — thin, minimal stroke
-- **Grid sizes observed**: 0px, 18px, 21px — three distinct icon dimensions
-- **Style**: Mixed — 5 occurrences use `currentColor` (inheriting text color), 10 occurrences use fixed fill colors, 0 occurrences are stroke-only
-- **Total icons**: 535 across all extracted pages
+- **Library detected**: Custom SVG icon set (535 total icons, no identifiable open library)
+- **Stroke width**: 1px (421 of 535 icons, 79% — the system default for outlined icons)
+- **Color mode**: Mixed — 5 `currentColor` instances, 10 fixed-fill instances, 0 stroke-only
+- **Style**: Outlined, with a minority of filled variants
 
 ### Sizing Scale
 
 | Size | Frequency | Use |
 |------|-----------|-----|
-| 0px | - | Hidden/decorative icons, possibly spacer elements |
-| 18px | - | Inline with body text (16px–18px), button companions |
-| 21px | - | Larger UI icons, section markers |
+| 0px (viewport-relative) | 389 | Inline icons, navigation elements — inheriting size from parent context |
+| 21px | 66 | Section-level icons, feature demarcation |
+| 18px | 32 | Button icons, inline with 18px text |
+| 14px | 12 | Small inline icons paired with body text |
+| 25px | 16 | Medium display icons |
+| 26px | 4 | Medium display variant |
+| 96px | 4 | Large hero-level iconography |
+| 188px | 5 | Full-size display marks |
 
 ### Icon-to-Text Alignment
 
-- Icons primarily use `currentColor` (5 occurrences) to inherit surrounding text color — principally #06458c and #fefefe
-- Fixed-fill icons (10 occurrences) do not respond to text color changes — likely decorative or brand-locked elements
-- Zero stroke-only icons suggests icons are either solid-filled or font-based, not outlined
-- The 1px stroke weight combined with currentColor inheritance creates fine, text-harmonized icon lines
+Icons use `currentColor` for 5 instances and fixed fills for 10 instances. The 0px size distribution (389 icons) indicates the majority rely on parent container or viewport-relative sizing rather than fixed pixel dimensions.
 
 ### Substitution Recommendation
 
-**Substitution:** Custom Webflow icon font detected. Closest open alternatives: **Lucide** (matching 1px default stroke weight, 24px grid — slightly larger than the observed 18–21px range) or **Phosphor Icons** (thin weight variant at 1px stroke). When substituting, use `currentColor` on all functional icons and reserve fixed fills for brand-locked decorative icons only.
+**Substitution:** Custom SVG icon set detected with 1px stroke weight. Closest open alternative: Lucide (1.5px default stroke, configurable to 1px via `strokeWidth` prop). The stroke-weight mismatch at 1px vs Lucide's 1.5px default is significant — when substituting, set `strokeWidth={1}` explicitly to match the source system's 79% stroke-weight-1 distribution.
 
 ## 13. Agent Prompt Guide
 
 ### Quick Color Reference
 
-- Primary background/dark surface: Abyssal Black (`#0a0a0a`)
-- Light text/surface: Bright White (`#fefefe`)
-- Brand accent/interactive: Nobel Navy (`#06458c`)
-- Destructive signal: Signal Orange (`#fd4f19`)
-- Structural borders: Pale Gray (`#cfcfcf`), Cloud Gray (`#e2e2e2`)
-- Pure black structural: Pure Black (`#000000`)
-- Gradient dark endpoint: Midnight Navy (`#031d3c`)
-- Gradient midpoint: Deep Navy (`#043367`)
-- Secondary accent: Rust Red (`#b4120e`)
-- Steel border: Steel Blue (`#8591b3`)
+- Page background: `#fefefe`
+- Primary text: `#0a0a0a`
+- Link color: `#06458c`
+- Primary button background: `#06458c`
+- Primary button text: `#fefefe`
+- Secondary button border: `#cfcfcf`
+- Destructive button background: `#fd4f19`
+- Card background: `#f8f8f8`
+- Card border: `#f4f4f4`
+- Light border/background: `#e2e2e2`
+- Medium border: `#cfcfcf`
+- Error text/border: `#b4120e`
 
 ### Self-Containment Checklist
 
 Every prompt below satisfies:
 - [ ] Font family, size, weight, line-height, letter-spacing specified
 - [ ] All colors as hex (never "the primary color")
-- [ ] Padding, radius, shadow/gradient values included
-- [ ] Hover/focus state values included where observed
-- [ ] Transition values included where observed
+- [ ] Padding, radius, shadow values included
+- [ ] OpenType features included if system uses them
+- [ ] Hover/focus state values included
+- [ ] Transition values included
 
 **Test:** Can an AI agent build this component without looking anything else up?
 
 ### Example Component Prompts
 
-- "Build a Primary CTA button: background `#06458c`, text `#fefefe`, font Silka Webfont 17.5px weight 600 line-height 1.29, border-radius 7px, padding 0px 17.5px, no border, no shadow. Text label example: 'Klant worden'. This is the primary action button on the page."
+- "Create a hero section on `#fefefe` background. Headline: `Silka Webfont`, weight 600, `112px` size, `112px` line-height, letter-spacing `normal`, color `#0a0a0a`, text `\"ISPS\"`. Subheadline: `Silka Webfont`, weight 600, `63px` size, `75.6px` line-height, letter-spacing `normal`, color `#0a0a0a`, text `\"Uw maritieme totaalleverancier.\"`. Full-width layout, `max-width: 100%`, section spacing `clamp(15rem, 30vh, 20rem)`. No shadow, no gradient."
 
-- "Build a Secondary button: background `#fefefe`, text `#0a0a0a`, font Silka Webfont 17.5px weight 600 line-height 1.29, border-radius 7px, padding 0px 17.5px, border `1px solid #cfcfcf`, no shadow. Text label example: 'Wij gebruiken Cookies!'. Use for secondary actions and consent prompts."
+- "Design a card component: background `#f8f8f8`, `1px solid #f4f4f4` border, `14px` border-radius, `28px 28px 28px 28px` padding. Title: `Silka Webfont`, weight 600, `21px` size, `25.2px` line-height, color `#06458c`. Body: `Silka Webfont`, weight 400, `16px` size, `23.2px` line-height, color `#0a0a0a`. Transition: `all`. Use: 'Contact' / 'Vragen? Nobel staat klaar.'"
 
-- "Build a Ghost button: background transparent, text `#fefefe`, font Silka Webfont 15.75px weight 600, border-radius 7px, padding 0px 14px, border `1px solid rgba(0,0,0,0)`. Use on dark `#0a0a0a` backgrounds only — the invisible border reserves box-model space for state changes."
+- "Create a badge/pill: background `#4bae4f`, text `#0a0a0a`, font `Silka Webfont` weight 600 at `15.75px`, border-radius `100%`, padding `0px 0px 0px 0px`. Variant: background `#e6f4e5` with identical text styling, transition `background-color 0.3s`."
 
-- "Build a Destructive button: background `#fd4f19`, text `#fefefe`, font Silka Webfont 16px weight 400, border-radius 10.5px, padding 17.5px all sides, border `1px solid #bb3a12`. Use exclusively for irreversible or warning actions. The 10.5px radius matches Card radius, not the 7px button radius."
+- "Build a primary button: background `#06458c`, text `#fefefe` at `17.5px` Silka Webfont weight 600, padding `0px 17.5px 0px 17.5px`, border-radius `7px`. Hover: `border-color: #06458c`. Focus-visible: `outline: rgb(207, 207, 207) solid 0px`. Transition: `color 0.2s ease-out, background-color 0.2s ease-out, border-color 0.2s ease-out`."
 
-- "Create a Card component: background `rgb(248,248,248)`, text `#06458c`, font Silka Webfont 16px weight 400, border-radius 10.5px, padding 21px all sides, border `1px solid rgb(244,244,244)`. Optionally apply the decorative navy overlay `linear-gradient(270deg, #031d3c, #043367 15%, rgba(6,69,140,0) 28%, rgba(255,255,255,0))` (a fade-out wash, not a depth cue). No box-shadow."
+- "Build navigation: links use `Silka Webfont` weight 400 at `16px` size, `23.2px` line-height, color `#0a0a0a`, background `rgba(0, 0, 0, 0)`, border-radius `0px`, padding `0px`. Page-level padding: `5vw` on desktop, collapsing to `4rem` at 991px, `2rem` at 767px. No hover state observed on navigation links. ARIA: `role='list'` with `role='listitem'` children."
 
-- "Build a navigation bar: links use Silka Webfont 16px weight 400, color `#0a0a0a`, padding 0px, border-radius 0px, background transparent. Navigation labels are Dutch sentence case: 'Diensten'. Include a right-aligned Ghost CTA button at 15.75px weight 600, text `#fefefe`, radius 7px, padding 0px 14px, on a dark `#0a0a0a` nav background."
-
-- "Create a Primary Badge: background `#f5e9e9`, text `#0a0a0a`, font Silka Webfont 15.75px weight 600, border-radius 100%, padding 0px. For a Destructive Badge variant, change background to `#d31510` and keep all other properties identical. Badges are fully rounded pills, distinct from the 7px and 10.5px radius of buttons and cards."
+- "Create a destructive button: background `#fd4f19`, text `#fefefe` at `16px` Silka Webfont weight 400, padding `17.5px 17.5px 17.5px 17.5px`, border-radius `10.5px`, `1px solid #bb3a12` border. Focus-visible: `outline: rgb(207, 207, 207) solid 0px`. Transition: `color 0.2s ease-out`. Use: 'Shop de bunkerproducten online.' Note: `#fefefe` on `#fd4f19` fails AA contrast at 3.30:1."
 
 ### Iteration Guide
 
-1. Start every component with Silka Webfont — weight 600 for headings and CTAs, weight 400 for body text and navigation, weight 500 for niche content only
-2. Text-on-dark uses `#fefefe`; text-on-light uses `#0a0a0a` — never place `#06458c` text on `#0a0a0a` backgrounds (2.11:1 contrast ratio fails)
-3. Interactive radius is 7px; container radius is 10.5px — never swap these; the 164-occurrence button radius and 64-occurrence card radius serve distinct visual roles
-4. The design is flat — zero box-shadow and no elevation model; do not add depth effects. The decorative gradients (color washes, edge fades) are surface overlays only, not a depth system
-5. `#fd4f19` means destruction — it belongs exclusively on the Destructive button; never use it for primary CTAs, navigation, badges, or decoration
-6. Respect the two-radius vocabulary: 7px (interactive), 10.5px (containers), 100% (badges only) — do not introduce intermediate radii like 8px, 12px, or pill-shaped buttons
-7. Section spacing defaults to 56px vertical — the dominant spatial beat at 222 occurrences; use 92px for major section transitions, 28px for sub-section gaps
-8. All headings use weight 600 — there is no weight 700, 300, or 400 in the heading system; hierarchy comes from size alone (112px → 63px → 49px → 21px)
-
-## 17. Design Tokens Dictionary
-
-| Token | Value | Category | Notes |
-|-------|-------|----------|-------|
-| `--_typography---line-height--body` | `145%` | typography | Body text line-height |
-| `--_typography---size--h1` | `4rem` | typography | h1 font size (64px at default root) |
-| `--_typography---line-height--heading` | `120%` | typography | Heading line-height ratio |
-| `--_typography---size--h2` | `3.5rem` | typography | h2 font size (56px) |
-| `--_typography---size--h3` | `3rem` | typography | h3 font size (48px) |
-| `--_typography---size--h4` | `2.5rem` | typography | h4 font size (40px) |
-| `--_typography---size--h5` | `2rem` | typography | h5 font size (32px) |
-| `--_typography---size--h6` | `1.5rem` | typography | h6 font size (24px) |
-| `--_typography---line-height--component` | `100%` | typography | Component text line-height |
-| `--_layout---radius--small` | `.25rem` | layout | 4px radius (small elements) |
-| `--_layout---radius--base` | `.5rem` | layout | 8px radius (base) |
-| `--_layout---radius--extra-small` | `.125rem` | layout | 2px radius (micro elements) |
-| `--_layout---radius--extra-large` | `1rem` | layout | 16px radius (large containers) |
-| `--_layout---radius--large` | `.75rem` | layout | 12px radius (medium-large) |
-| `--_layout---radius--circle` | `100%` | layout | Pill/circle radius |
-| `--_layout---radius--none` | `0px` | layout | Square, no rounding |
-| `--_layout---radius--display` | `1.5rem` | layout | 24px radius (display elements) |
-| `--_layout---spacing--extra-small` | `clamp(2rem,5vh,4rem)` | layout | Responsive small spacing |
-| `--_layout---spacing--medium` | `clamp(6rem,10vh,8rem)` | layout | Responsive medium spacing |
-| `--_layout---spacing--large` | `clamp(7.5rem,15vh,12.5rem)` | layout | Responsive large spacing |
-| `--_layout---spacing--small` | `clamp(4rem,7.5vh,6rem)` | layout | Responsive small spacing |
-| `--_layout---spacing--extra-large` | `clamp(12.5rem,25vh,17.5rem)` | layout | Responsive extra-large spacing |
-
-Semantic CSS tokens define a systematic typography and layout scale that maps to the extracted design values. Spacing tokens use `clamp()` for viewport-responsive scaling, while radius tokens use fixed `rem` units. Two deleted variable records (`typography-size--h4`, `typography-size--h6`, `typography-line-height--caption`) suggest an active token system under revision, with the `_typography---` and `_layout---` prefix convention indicating a structured design-token naming hierarchy.
+1. Every component uses `Silka Webfont` with no fallback font change — the system has exactly one font family
+2. Weight 600 is the only heading weight; weight 400 is body; weight 500 appears exclusively at 18px/16px paragraph style
+3. No `box-shadow` anywhere — use `border` with explicit hex colors for all spatial separation
+4. Border-radius choices: `7px` for interactive elements (buttons, links), `14px` for cards, `10.5px` for images, `100%` for pills
+5. `0.2s ease-out` is the link hover timing; `0.2s ease-out` three-property spread is the button transition
+6. `#06458c` is the link color, primary button background, and card-text color — it is the system's only chromatic workhorse
+7. Copy must be Dutch — the system is monolingual with `lang="nl"` and no i18n infrastructure
+8. Focus indicators: `4px solid rgb(207, 207, 207)` outline on links; `0px` (invisible) on buttons — test focus with keyboard before shipping
