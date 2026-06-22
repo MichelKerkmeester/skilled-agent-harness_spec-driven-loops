@@ -227,45 +227,64 @@ otherwise evict a higher-scored lexical hit from the truncated top-3.
    `SPECKIT_GRAPH_SIGNALS` and `SPECKIT_DEGREE_BOOST` as a follow-up out of 028 scope. `SPECKIT_TEMPORAL_EDGES`
    is the additive mitigation and is not the source of that harm.
 
-## 005 data-quality flag benchmarks: one measured, twelve deferred to phase 040
+## 005 data-quality flag benchmarks: phase 040 graduation verdicts
 
-The `005-spec-data-quality` build landed thirteen real switches this session, unlike the still-PROPOSED Track-C
-slate above. One carries a measured before-and-after today. The other twelve are built default-off (two ship
-default-ON, one report-only) and their per-flag before-and-after is deferred to the phase
-040 benchmark, the same earn-or-delete discipline that produced the kept five.
+The `005-spec-data-quality` build landed thirteen real switches, unlike the still-PROPOSED Track-C slate above.
+Phase 039 restamped the tree and phase 040 ran the graduation benchmark, so every switch now carries a measured
+verdict rather than a pending read. The benchmark harness toggled each flag in isolation against the phase 039
+migrated tree, reusing the phase 036 integrity validator through the migrate driver verify pass for the
+migration-gated flags and the phase 025 false-confirm driver plus the envelope-fidelity replay checker for the
+behavioral flags. The false-confirm baseline reproduced the documented 0.833 rate exactly, which confirms the
+driver is wired to the live verdict path. The full numbers live in
+[`005-spec-data-quality/040-flag-graduation-benchmark/benchmark-results.md`](./005-spec-data-quality/040-flag-graduation-benchmark/benchmark-results.md).
 
-### Measured: lexical grounding drives the off-corpus false-confirm rate to zero
+**Verdict tally: six graduate, two stay off pending a migration re-run, four stay off on a neutral or
+fixture-blocked read, one stays default-ON by construction.**
 
-`SPECKIT_LEXICAL_GROUNDING_V1` (phase 026) is the lead graduation candidate and the only 005 switch with a
-number taken. A measured pass on the off-corpus eval fixture drove the false-confirm rate from 0.833 to 0. That
-is a before-and-after on the metric the switch exists to move, so it is the one 005 flag positioned to flip on
-the evidence rather than on cost. The companion CI gate `SPECKIT_FALSE_CONFIRM_MAX_RATE` (phase 025) stays
-report-only until that 0 holds on the gate corpus, then a max rate enforces it. Phase 040 confirms both reads
-on live data before either flip lands.
+### Graduated (6)
 
-### Deferred to phase 040: the per-flag before-and-after for the remaining twelve
+Four flip default-ON, one flips OFF to enforce and one sets its CI ceiling. Each rests on a measured before-and-after.
 
-No other 005 switch has a number yet. The migration-gated switches cannot be benchmarked meaningfully until the
-phase 039 full-repo restamp gives them a tree in the new shape to read, and the behavioral switches dark-launch
-off until the phase 040 benchmark measures each one's before-and-after on live data. The table records what each
-proposed measurement would have to clear, not a result.
+| Flag | Phase | Verdict | Measured evidence |
+|------|-------|---------|-------------------|
+| `SPECKIT_IDENTITY_MERGE_SAFETY` | 033 | GRADUATE default-ON | Migrate driver verify pass on the restamped tree read 2049 folders with 0 violations, clean true, exit 0, so the lineage-preserving re-derive now reads a tree written under the new merge. |
+| `SPECKIT_IDEMPOTENT_DESCRIPTION_WRITES` | 035 | GRADUATE default-ON | A double generate held deterministic on 61 of 61 folders, so the no-op-skip no longer mass-rewrites the normalized tree on first save. |
+| `SPECKIT_LEXICAL_GROUNDING_V1` | 026 | GRADUATE default-ON | Off-corpus false-confirm rate fell from the 0.833 baseline to 0.000 with the flag on, a clean before-and-after on the metric the switch exists to move. |
+| `SPECKIT_NOISE_FLOOR_SUBTRACTION_V1` | 028-scoring-hardening | GRADUATE default-ON | Off-corpus false-confirm rate fell from the 0.833 baseline to 0.000 with the flag on, the same measured win lexical grounding cleared. |
+| `SPECKIT_GENERATED_METADATA_GRANDFATHER` | 036 | GRADUATE default-OFF enforcing | Verify pass on the restamped tree read 2049 folders with 0 violations, exit 0, so the integrity rule flips from report-only `info` to a hard strict error. |
+| `SPECKIT_FALSE_CONFIRM_MAX_RATE` | 025 | GRADUATE ceiling 0 | The CI gate exits 0 with lexical grounding on and exits 1 with the verdict flags off, so the ceiling is set to 0 and the gate now fails on any off-corpus false confirm. |
 
-| Flag | Default | Phase | Pending measurement at phase 040 |
-|------|---------|-------|----------------------------------|
-| `SPECKIT_GROUNDING_SIGNAL_V1` | off | 028-scoring-hardening | Whether surfacing the `grounding` field changes the reader's cite decision without a recall regression. |
-| `SPECKIT_NOISE_FLOOR_SUBTRACTION_V1` | off | 028-scoring-hardening | Whether subtracting the per-embedder noise-floor moves the request-quality band the right way on off-corpus hits. |
-| `SPECKIT_CITE_WITH_CAVEAT_V1` | off | 028-scoring-hardening | Whether the hedged tier recovers grounded weak-verdict hits the two-state policy drops, with no ungrounded promotion. |
-| `SPECKIT_EVIDENCE_GAP_VERDICT_V1` | off | 028-scoring-hardening | Whether capping a good verdict at weak on a true Stage 4 gap improves verdict fidelity. |
-| `SPECKIT_ENVELOPE_FIDELITY_V1` | off | 027 | Whether the pre-rendered fragment and the mandatory render slots hold byte-for-byte after a clean grandfather report. |
-| `SPECKIT_IDENTITY_MERGE_SAFETY` | off | 033 | Migration-gated. No before-and-after until phase 039 restamps the graph-metadata tree. |
-| `SPECKIT_IDEMPOTENT_DESCRIPTION_WRITES` | off | 035 | Migration-gated. No before-and-after until phase 039 normalizes the wall-clock stamps. |
-| `SPECKIT_GENERATED_METADATA_DRIFT_GATE` | off (grandfather) | 037 | Migration-gated. No drift baseline until phase 039 persists `source_doc_hashes`. |
-| `SPECKIT_GENERATOR_HARDENING` | off (grandfather) | 038 | Migration-gated. No fingerprint baseline until phase 039 stamps `source_fingerprint`. |
-| `SPECKIT_GENERATED_METADATA_GRANDFATHER` | on (report-only) | 036 | Migration-gated, inverted. Flips off to a hard error once phase 039 leaves the tree clean. |
-| `SPECKIT_GENERATED_METADATA_Z_EXCLUSION` | on (opt-out) | 034 | None. Ships on cost, cannot mass-fail, needs no benchmark to keep. |
+### Stay off, needs a migration re-run (2)
 
-Phase 039 is the full-repo migration that restamps every `description.json` and `graph-metadata.json` in the
-whole tree, including `z_archive` and `z_future`, which unblocks the five migration-gated reads and the
-grandfather flip to error. Phase 040 is the benchmark that takes each behavioral switch's before-and-after on
-live data and graduates the earners to default-ON. Until those two phases run, lexical grounding is the only
-005 flag carrying measured support and the rest stay conservatively in their built state.
+The phase 039 migration restamped the tree under identity-merge-safety and idempotent-writes only, so the two
+fields these flags enforce against were never written. Neither can be measured for a real before-and-after until
+the migration is re-run with its field-writing flag on. The revisit condition is that re-run.
+
+| Flag | Phase | Verdict | Measured evidence |
+|------|-------|---------|-------------------|
+| `SPECKIT_GENERATED_METADATA_DRIFT_GATE` | 037 | STAY-OFF, needs a migration re-run | Field census reads `source_doc_hashes` on 0 of 2093 folders, so the drift gate has no freshness baseline to compare against. |
+| `SPECKIT_GENERATOR_HARDENING` | 038 | STAY-OFF, needs a migration re-run | Field census reads `source_fingerprint` on 0 of 2093 folders. The verify pass with the flag forced on mass-failed 2049 of 2049 folders, all `SOURCE_FINGERPRINT_MISSING`, exit 1. |
+
+### Stay off, neutral or fixture-blocked (4)
+
+Three verdict-or-formatter flags do not move the off-corpus false-confirm rate because the off-corpus class does
+not exercise their input, a measured structural reason rather than a missing run. The fourth has no captured
+render corpus to score against. Each keep-off names the fixture that would exercise it.
+
+| Flag | Phase | Verdict | Measured evidence |
+|------|-------|---------|-------------------|
+| `SPECKIT_GROUNDING_SIGNAL_V1` | 028-scoring-hardening | STAY-OFF, neutral | Inert on the off-corpus fixture, the class does not exercise its input, so the false-confirm rate does not move. |
+| `SPECKIT_CITE_WITH_CAVEAT_V1` | 028-scoring-hardening | STAY-OFF, neutral | Inert on the off-corpus fixture for the same structural reason, no measured before-and-after move. |
+| `SPECKIT_EVIDENCE_GAP_VERDICT_V1` | 028-scoring-hardening | STAY-OFF, neutral | Inert on the off-corpus fixture, the off-corpus class does not exercise the Stage 4 gap signal. |
+| `SPECKIT_ENVELOPE_FIDELITY_V1` | 027 | STAY-OFF, fixture-blocked | The envelope replay proves the mechanics both ways, a conforming render passes and a dropped render fails, but no captured render corpus exists in the repo for a real grandfather report over live renders. |
+
+### Default-ON by construction (1)
+
+| Flag | Phase | Verdict | Measured evidence |
+|------|-------|---------|-------------------|
+| `SPECKIT_GENERATED_METADATA_Z_EXCLUSION` | 034 | Stays default-ON | Cannot mass-fail, ships ON on cost with a one-var opt-out, needs no benchmark to keep. |
+
+The drift gate and generator hardening are the honest blocker. The migration restamped the tree under
+identity-merge-safety and idempotent-writes only, so `source_doc_hashes` and `source_fingerprint` were never
+written, and a re-run with the field-writing flag on is the prerequisite for either verdict. This was measured,
+not assumed.
