@@ -31,7 +31,8 @@
     "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/025-novel-per-doc-quality-slas",
     "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/026-shared-safe-fix-engine",
     "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/027-retrieval-floor-experiment",
-    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/028-governance-rollout"
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/028-governance-rollout",
+    "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/029-vague-query-model-benchmark"
   ],
   "manual": {
     "depends_on": [],

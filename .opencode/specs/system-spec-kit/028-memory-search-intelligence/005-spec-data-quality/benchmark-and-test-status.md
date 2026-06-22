@@ -50,6 +50,8 @@ The program inherits the production-truth finding from the parent `028-memory-se
 | 026 shared-safe-fix-engine | deny-by-default + INV-1 invariant : a body-mutating detector cannot be granted safe, an apply run touches only safe-class targets | vitest pure-runner unit + dirty scratch fixture integration : INV-1 guard, body-mutating class never grantable safe | n/a, shared engine, deny-by-default by construction |
 | 027 retrieval-floor-experiment | prod-lens completeRecall@3 delta per floor setting vs the C2 baseline : signal-or-noise verdict against a pre-stated threshold | run-floor-experiment.mjs over a C2 harness copy DB + floor-experiment-report.md : sweep settings 5/8/10, verdict reads the prod column not eval-at-K | default OFF + SPECKIT_FLOOR_OVERRIDE (env-gated read of DEFAULT_MIN_RESULTS and token budget, not persisted) |
 | 028 governance-rollout | rollout-manifest edge-violation count zero across five inviolable edges, 18-item NO-GO enumeration, runbook-import resolution per gate phase | governance-rollout-manifest.vitest.ts (topological-sort check, planted out-of-order 1-of-1 catch) + validate.sh strict : NO-GO count 18 | n/a, governance read-time docs, no SPECKIT flag introduced |
+| **Meta (029, executed)** | | | |
+| 029 vague-query-model-benchmark | model-behavior characterization across a 4-model by 12-query by 3-sample matrix : no promotion gate, a per-model behavioral profile plus a cross-model verdict-stability finding | scripts/run-benchmark.mjs + scripts/extract-metrics.mjs : read-only bare-query dispatch, every metric traced to a raw stream, launch-race gaps reported not dropped | n/a, read-only benchmark, no flag and no memory write |
 
 ## Reading the table
 
@@ -57,4 +59,4 @@ The program inherits the production-truth finding from the parent `028-memory-se
 - **Test** is the named test file and its key assertion.
 - **Default-safety** is the default-OFF posture and the env flag where the phase declares one. `n/a` means the phase is always-on write-time or read-time work with no flag, by design.
 - Where a Tier-C phase declares a consumer, lane or strategy flag but never names it in its spec or plan, the cell says "flag not named in docs" rather than inventing a name.
-- Nothing in this table has run. Each threshold is a target a future build would have to clear, never a measured outcome.
+- Nothing in the 001-028 lever rows has run. Each threshold is a target a future build would have to clear, never a measured outcome. The 029 meta-benchmark row is the one exception, an executed read-only characterization whose measured results live in its own phase docs.

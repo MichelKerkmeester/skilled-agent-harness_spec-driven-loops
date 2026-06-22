@@ -1,0 +1,23 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/029-vague-query-model-benchmark",
+  "description": "Spec: Vague-Query Model Benchmark",
+  "keywords": [
+    "spec",
+    "vague-query",
+    "model",
+    "benchmark"
+  ],
+  "lastUpdated": "2026-06-22T10:45:35.569Z",
+  "specId": "029",
+  "folderSlug": "vague-query-model-benchmark",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "028-memory-search-intelligence",
+    "005-spec-data-quality"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
