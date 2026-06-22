@@ -63,6 +63,11 @@ export const graphMetadataSchema = z.object({
   packet_id: z.string().min(1),
   spec_folder: z.string().min(1),
   parent_id: z.string().min(1).nullable(),
+  // Set when the merge kept a non-null parent over a null re-derive: the folder might
+  // be genuinely re-parented rather than transiently unresolved, so it stays surfaced
+  // for review instead of being silently retained. Optional so a clean record and the
+  // legacy merge never carry it.
+  parent_id_review_required: z.boolean().optional(),
   children_ids: z.array(z.string().min(1)),
   migrated: z.boolean().optional(),
   migration_source: z.literal('legacy').optional(),

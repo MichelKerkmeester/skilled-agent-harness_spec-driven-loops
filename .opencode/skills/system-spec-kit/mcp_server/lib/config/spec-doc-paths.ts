@@ -2,6 +2,8 @@
 // MODULE: Spec Document Paths
 // ───────────────────────────────────────────────────────────────
 
+import fs from 'node:fs';
+
 import { shouldIndexForMemory } from '../utils/index-scope.js';
 
 export const SPEC_DOCUMENT_FILENAMES = new Set([
@@ -238,4 +240,96 @@ export function extractSpecFolderFromGraphMetadataPath(
   }
 
   return segments.slice(specsIndex + 1, segments.length - 1).join('/');
+}
+
+// ───────────────────────────────────────────────────────────────
+// SHARED SPEC-FOLDER IDENTITY
+// ───────────────────────────────────────────────────────────────
+
+/** Canonical identity for one spec folder, derived from a single specs-root anchor. */
+export interface SpecFolderIdentity {
+  /** Specs-root-relative path, the same shape graph metadata stores in spec_folder. */
+  specFolder: string;
+  /** Specs-root-relative parent packet, or null when the folder sits directly at a root. */
+  parentId: string | null;
+  /** Specs-root-relative direct children that look like spec leaves. */
+  childrenIds: string[];
+}
+
+/**
+ * Raised when an absolute path cannot be anchored to any supported specs root.
+ *
+ * Callers that must keep deriving for a non-specs path can catch this and fall back,
+ * but the resolver itself refuses to fabricate a caller-base or `..`-prefixed value so
+ * the two generators can never disagree on what "outside the tree" means.
+ */
+export class SpecFolderIdentityError extends Error {
+  readonly code = 'SPEC_FOLDER_OUTSIDE_ROOT';
+
+  constructor(absFolder: string) {
+    super(`Path does not resolve under a supported specs root: ${absFolder}`);
+    this.name = 'SpecFolderIdentityError';
+  }
+}
+
+/**
+ * Locate the specs-root anchor index within an absolute folder's path segments.
+ *
+ * Prefers the canonical `.opencode/specs` pair so a repo that nests the string "specs"
+ * elsewhere still resolves against the real root, and falls back to a bare `specs`
+ * segment for legacy roots. Returns -1 when no anchor leaves a folder below it.
+ */
+function findSpecsAnchorIndex(segments: string[]): number {
+  let canonical = -1;
+  for (let index = 1; index < segments.length; index += 1) {
+    if (segments[index] === 'specs' && segments[index - 1] === '.opencode') {
+      canonical = index;
+    }
+  }
+  if (canonical >= 0) {
+    return canonical;
+  }
+  return segments.lastIndexOf('specs');
+}
+
+/**
+ * Resolve the canonical specs-root-relative identity for an absolute spec folder.
+ *
+ * One source of identity for both the description.json and graph-metadata.json
+ * generators: the path shape stops drifting between a caller-base-relative discovery
+ * value and the specs-root-relative graph value, and the merge guard gets a single
+ * parent/children computation to reconcile against. Identity comes from path segments
+ * only; the one filesystem touch is the direct-child enumeration the build already does.
+ *
+ * @param absFolder - Absolute path to the spec folder.
+ * @returns The specs-root-relative specFolder, parentId, and childrenIds.
+ * @throws {SpecFolderIdentityError} When the path resolves outside any supported root.
+ */
+export function resolveSpecFolderIdentity(absFolder: string): SpecFolderIdentity {
+  const normalized = absFolder.replace(/\\/g, '/');
+  const segments = normalized.split('/').filter(Boolean);
+  const anchorIndex = findSpecsAnchorIndex(segments);
+  if (anchorIndex < 0 || anchorIndex >= segments.length - 1) {
+    throw new SpecFolderIdentityError(absFolder);
+  }
+
+  const specFolder = segments.slice(anchorIndex + 1).join('/');
+  const specFolderSegments = specFolder.split('/').filter(Boolean);
+
+  let parentId: string | null = null;
+  if (specFolderSegments.length >= 2 && isSpecLeafSegment(specFolderSegments[specFolderSegments.length - 2])) {
+    parentId = specFolderSegments.slice(0, -1).join('/');
+  }
+
+  let childrenIds: string[] = [];
+  try {
+    childrenIds = fs.readdirSync(absFolder, { withFileTypes: true })
+      .filter((entry) => entry.isDirectory() && isSpecLeafSegment(entry.name))
+      .map((entry) => `${specFolder}/${entry.name}`)
+      .sort();
+  } catch {
+    childrenIds = [];
+  }
+
+  return { specFolder, parentId, childrenIds };
 }

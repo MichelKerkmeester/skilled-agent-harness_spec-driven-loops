@@ -52,7 +52,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | PLANNED |
+| **Status** | IMPLEMENTED (grandfather report listing deferred) |
 | **Created** | 2026-06-22 |
 | **Branch** | `033-identity-resolver-merge-safety` |
 <!-- /ANCHOR:metadata -->

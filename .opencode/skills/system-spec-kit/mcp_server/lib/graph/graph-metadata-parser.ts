@@ -15,7 +15,10 @@ import {
   extractSpecFolderFromGraphMetadataPath,
   GRAPH_METADATA_FILENAME,
   isSpecLeafSegment,
+  resolveSpecFolderIdentity,
+  SpecFolderIdentityError,
 } from '../config/spec-doc-paths.js';
+import { isIdentityMergeSafetyEnabled } from '../config/capability-flags.js';
 import {
   createEmptyGraphMetadataManual,
   type GraphEntityReference,
@@ -689,6 +692,39 @@ function resolveChildrenIds(specFolderPath: string, specFolder: string): string[
   }
 }
 
+interface BuildIdentity {
+  specFolder: string;
+  parentId: string | null;
+  childrenIds: string[];
+}
+
+/**
+ * Resolve the build-time identity for a spec folder, honoring the safety flag.
+ *
+ * With the flag on, identity comes from the one shared resolver so the graph
+ * spec_folder matches the description specFolder; an outside-root path falls back to
+ * the legacy computation so a non-specs path still derives rather than throwing. With
+ * the flag off this is byte-identical to the previous split computation.
+ */
+function resolveBuildIdentity(specFolderPath: string): BuildIdentity {
+  if (isIdentityMergeSafetyEnabled()) {
+    try {
+      return resolveSpecFolderIdentity(specFolderPath);
+    } catch (error) {
+      if (!(error instanceof SpecFolderIdentityError)) {
+        throw error;
+      }
+    }
+  }
+
+  const specFolder = resolveSpecFolderPath(specFolderPath);
+  return {
+    specFolder,
+    parentId: resolveParentId(specFolder),
+    childrenIds: resolveChildrenIds(specFolderPath, specFolder),
+  };
+}
+
 function selectFirstValue(values: Array<string | null | undefined>, fallback: string): string {
   for (const value of values) {
     if (typeof value === 'string' && value.trim().length > 0) {
@@ -1094,7 +1130,8 @@ export function deriveGraphMetadata(
   const nowIso = toIsoString(options.now);
   const collectedDocs = collectPacketDocs(specFolderPath);
   const docs = collectedDocs.docs;
-  const specFolder = resolveSpecFolderPath(specFolderPath);
+  const identity = resolveBuildIdentity(specFolderPath);
+  const specFolder = identity.specFolder;
   const packetId = specFolder;
   const triggerPhrases = normalizeUnique(docs.flatMap((doc) => doc.triggerPhrases)).slice(0, GRAPH_METADATA_TRIGGER_PHRASE_LIMIT);
   const causalSummary = deriveCausalSummary(docs);
@@ -1126,8 +1163,8 @@ export function deriveGraphMetadata(
     schema_version: GRAPH_METADATA_SCHEMA_VERSION,
     packet_id: packetId,
     spec_folder: specFolder,
-    parent_id: resolveParentId(specFolder),
-    children_ids: resolveChildrenIds(specFolderPath, specFolder),
+    parent_id: identity.parentId,
+    children_ids: identity.childrenIds,
     migrated: existing?.migrated ?? undefined,
     migration_source: existing?.migration_source ?? undefined,
     manual: existing?.manual ?? createEmptyGraphMetadataManual(),
@@ -1135,18 +1172,54 @@ export function deriveGraphMetadata(
   });
 }
 
+/** Controls for how the merge treats lineage relationships. */
+export interface MergeGraphMetadataOptions {
+  /**
+   * Sanctioned removal path. When set, the merge takes parent_id and children_ids
+   * verbatim from the refreshed snapshot so a relationship can be dropped on purpose.
+   * Without it, relationship removal can never be a side effect of a scoped scan.
+   */
+  prune?: boolean;
+}
+
+/**
+ * Build a stable union of two child-id lists: existing entries keep their order, then
+ * any refreshed entries not already present append in their order. Deterministic on the
+ * same inputs, so re-running the merge never reshuffles a persisted children_ids.
+ */
+function unionChildrenIds(existing: string[], refreshed: string[]): string[] {
+  const seen = new Set<string>();
+  const union: string[] = [];
+  for (const id of [...existing, ...refreshed]) {
+    if (!seen.has(id)) {
+      seen.add(id);
+      union.push(id);
+    }
+  }
+  return union;
+}
+
 /**
  * Merge refreshed derived metadata with persisted manual relationships.
  *
+ * With the safety flag off, this is byte-identical to the previous spread merge. With
+ * the flag on and an existing record present, it reconciles top-level lineage so a
+ * scoped or null-deriving re-derive can no longer erase it: parent_id resolves as
+ * refreshed-then-existing-then-null, children_ids default to a stable union, and a
+ * non-null parent kept over a null re-derive is flagged for review. Relationship
+ * removal is reserved for the explicit prune path.
+ *
  * @param existing - Previously saved graph metadata, if present
  * @param refreshed - Newly derived graph metadata snapshot
+ * @param options - Merge controls such as the explicit prune path
  * @returns Schema-validated merged metadata payload
  */
 export function mergeGraphMetadata(
   existing: GraphMetadata | null,
   refreshed: GraphMetadata,
+  options: MergeGraphMetadataOptions = {},
 ): GraphMetadata {
-  return graphMetadataSchema.parse({
+  const base = {
     ...refreshed,
     migrated: existing?.migrated ?? refreshed.migrated,
     migration_source: existing?.migration_source ?? refreshed.migration_source,
@@ -1158,12 +1231,34 @@ export function mergeGraphMetadata(
       last_active_child_id: existing?.derived.last_active_child_id ?? refreshed.derived.last_active_child_id ?? null,
       last_active_at: existing?.derived.last_active_at ?? refreshed.derived.last_active_at ?? null,
     },
+  };
+
+  if (!existing || !isIdentityMergeSafetyEnabled()) {
+    return graphMetadataSchema.parse(base);
+  }
+
+  if (options.prune) {
+    // Sanctioned removal: lineage follows the refreshed snapshot verbatim, so a
+    // genuinely deleted parent or child is allowed to drop.
+    return graphMetadataSchema.parse({
+      ...base,
+      parent_id: refreshed.parent_id,
+      children_ids: refreshed.children_ids,
+    });
+  }
+
+  const preservedNonNullParent = refreshed.parent_id === null && existing.parent_id !== null;
+  return graphMetadataSchema.parse({
+    ...base,
+    parent_id: refreshed.parent_id ?? existing.parent_id ?? null,
+    parent_id_review_required: preservedNonNullParent ? true : undefined,
+    children_ids: unionChildrenIds(existing.children_ids, refreshed.children_ids),
   });
 }
 
 function canonicalizeForCompare(value: unknown): unknown {
   if (Array.isArray(value)) {
-    // Array order is content-significant (e.g. entities, children_ids) — preserve it.
+    // Array order is content-significant (e.g. entities, children_ids), preserve it.
     return value.map(canonicalizeForCompare);
   }
   if (value && typeof value === 'object') {
@@ -1275,7 +1370,7 @@ export function refreshGraphMetadataForSpecFolder(
   // Idempotent write: when a re-derive produced no content change (only last_save_at
   // would move), skip the write entirely. Without this, every save rewrites this
   // packet's last_save_at, and a broad re-index churns hundreds of files' timestamps
-  // with no real delta — burying genuine changes in working-tree noise. A no-op
+  // with no real delta, burying genuine changes in working-tree noise. A no-op
   // re-derive has no new state worth stamping, so returning the existing payload is
   // correct. Any real change still writes (and still bumps last_save_at).
   if (existing && graphMetadataEqualIgnoringVolatile(existing, merged)) {

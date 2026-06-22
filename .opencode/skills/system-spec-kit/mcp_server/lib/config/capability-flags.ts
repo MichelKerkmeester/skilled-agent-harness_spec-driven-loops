@@ -29,7 +29,7 @@ interface MemoryRoadmapDefaults {
 
 const PHASE_ENV = 'SPECKIT_MEMORY_ROADMAP_PHASE';
 /**
- * SPECKIT_PARSER — Structural parser backend selector.
+ * SPECKIT_PARSER, Structural parser backend selector.
  *
  * Controls which parsing backend the structural indexer uses for code-graph
  * symbol extraction. Evaluated at first parse call; cannot be changed mid-session.
@@ -37,12 +37,41 @@ const PHASE_ENV = 'SPECKIT_MEMORY_ROADMAP_PHASE';
  * | Value        | Description                                                 |
  * |--------------|-------------------------------------------------------------|
  * | `treesitter` | (default) AST-accurate parsing via web-tree-sitter WASM    |
- * | `regex`      | Lightweight regex-based fallback — no WASM dependencies     |
+ * | `regex`      | Lightweight regex-based fallback, no WASM dependencies     |
  *
  * Runtime: `lib/code-graph/structural-indexer.ts::getParser()`
  * Example: `SPECKIT_PARSER=regex node context-server.js`
  */
 const SPECKIT_PARSER_ENV = 'SPECKIT_PARSER' as const;
+
+/**
+ * SPECKIT_IDENTITY_MERGE_SAFETY: Shared identity resolver and lineage-merge guard.
+ *
+ * Strictly default-OFF and env-only: existing description.json and graph-metadata.json
+ * files on disk still carry the caller-base-relative path shape and the spread-merge
+ * lineage, so the specs-root-relative identity and the parent/children preservation
+ * guard must stay opt-in until a scoped migration graduates them. Unlike the roadmap
+ * capabilities this never consults the rollout policy, so an un-set environment can
+ * never flip it on by chance.
+ *
+ * | Value          | Behavior                                                          |
+ * |----------------|-------------------------------------------------------------------|
+ * | unset / other  | (default) generators keep their legacy identity, merge spreads    |
+ * | `true` / `1`   | both generators resolve specs-root-relative identity and the      |
+ * |                | merge preserves a non-null parent and unions children             |
+ */
+const IDENTITY_MERGE_SAFETY_ENV = 'SPECKIT_IDENTITY_MERGE_SAFETY' as const;
+
+/**
+ * Returns whether the shared identity resolver and the lineage-merge guard are active.
+ *
+ * Reads the environment on every call so a test can flip the behavior per-case, and
+ * stays OFF for any value other than an explicit truthy opt-in.
+ */
+function isIdentityMergeSafetyEnabled(): boolean {
+  const rawValue = process.env[IDENTITY_MERGE_SAFETY_ENV]?.trim().toLowerCase();
+  return rawValue === 'true' || rawValue === '1';
+}
 
 // Keep roadmap controls distinct from existing runtime feature flags so
 // Telemetry/checkpoints describe roadmap rollout state rather than unrelated
@@ -142,6 +171,9 @@ export {
   getMemoryRoadmapCapabilityFlags,
   getMemoryRoadmapDefaults,
   getMemoryRoadmapPhase,
+  /** Documented identity/merge-safety env var name */
+  IDENTITY_MERGE_SAFETY_ENV,
+  isIdentityMergeSafetyEnabled,
   /** @internal — exposed for test utilities only */
   isMemoryRoadmapCapabilityEnabled,
   /** Documented parser backend env var name */

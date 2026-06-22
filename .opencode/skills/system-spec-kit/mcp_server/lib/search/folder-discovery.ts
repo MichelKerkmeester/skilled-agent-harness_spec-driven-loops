@@ -13,6 +13,8 @@ import {
   type DescriptionKnownAuthoredOptionalFields,
 } from '../description/description-schema.js';
 import { stripYamlFrontmatter } from '../parsing/content-normalizer.js';
+import { resolveSpecFolderIdentity, SpecFolderIdentityError } from '../config/spec-doc-paths.js';
+import { isIdentityMergeSafetyEnabled } from '../config/capability-flags.js';
 
 // ───────────────────────────────────────────────────────────────
 // 1. TYPES
@@ -403,7 +405,7 @@ function collectDiscoveredSpecState(basePaths: string[]): DiscoveredSpecState {
             latestMtime = descMtime;
           }
         } catch (_error: unknown) {
-          // Description.json may not exist yet — ignore.
+          // Description.json may not exist yet, ignore.
         }
       } catch (_error: unknown) {
         // Ignore unreadable spec.md entries during staleness probing.
@@ -422,7 +424,7 @@ function collectDiscoveredSpecState(basePaths: string[]): DiscoveredSpecState {
  * Extract a short 1-sentence description from spec.md content.
  *
  * Strategy (in order):
- * 1. Look for the first `#` heading — that is the spec title
+ * 1. Look for the first `#` heading, that is the spec title
  * 2. Look for "Problem Statement" or "Problem & Purpose" section
  *    and take the first non-empty line after the heading
  * 3. Fall back to the first non-empty non-heading line
@@ -442,7 +444,7 @@ export function extractDescription(specContent: string): string {
     return '';
   }
 
-  // Reuse library stripYamlFrontmatter() instead of inline regex — single source
+  // Reuse library stripYamlFrontmatter() instead of inline regex, single source
   // Of truth for frontmatter stripping, handles CRLF via [\s\S]*? matching.
   content = stripYamlFrontmatter(content).trim();
   if (content.length === 0) {
@@ -659,7 +661,7 @@ export function passesPerTokenSimilarityGate(
  * Scan spec base paths for spec.md files and generate a
  * DescriptionCache by extracting descriptions from each.
  *
- * - Uses synchronous file I/O — this is a build-time/cache generation
+ * - Uses synchronous file I/O, this is a build-time/cache generation
  *   function, NOT a hot path.
  * - Expects specsBasePaths to be absolute paths to directories that
  *   contain spec folder subdirectories (e.g., the `specs/` root).
@@ -786,6 +788,27 @@ export function repairStaleDescriptions(specsBasePaths: string[]): void {
  * @param timestamp   - ISO timestamp to set as lastUpdated.
  * @returns A FolderDescription, or null if extraction fails.
  */
+/**
+ * Resolve the specFolder value written into a description record.
+ *
+ * With the safety flag on, identity comes from the shared resolver so the value is
+ * specs-root-relative and matches the graph spec_folder for the same folder; an
+ * outside-root path falls back to the supplied caller-base-relative value. With the
+ * flag off this returns the legacy value unchanged, so the path shape is byte-identical.
+ */
+function resolveSpecFolderForDescription(folderPath: string, legacyValue: string): string {
+  if (isIdentityMergeSafetyEnabled()) {
+    try {
+      return resolveSpecFolderIdentity(folderPath).specFolder;
+    } catch (error) {
+      if (!(error instanceof SpecFolderIdentityError)) {
+        throw error;
+      }
+    }
+  }
+  return legacyValue;
+}
+
 function _processSpecFolder(
   basePath: string,
   folderPath: string,
@@ -796,7 +819,7 @@ function _processSpecFolder(
   try {
     content = fs.readFileSync(specMdPath, 'utf-8');
   } catch (_err: unknown) {
-    // Unreadable spec.md — skip folder
+    // Unreadable spec.md, skip folder
     return null;
   }
 
@@ -806,10 +829,11 @@ function _processSpecFolder(
     rawDescription || slugifyFolderName(path.basename(folderPath)).replace(/-/g, ' ') || path.basename(folderPath);
 
   const keywords = extractKeywords(description);
-  const normalizedRelativeFolder = path.relative(basePath, folderPath).replace(/\\/g, '/');
-  if (!normalizedRelativeFolder || normalizedRelativeFolder.startsWith('..')) {
+  const legacyRelativeFolder = path.relative(basePath, folderPath).replace(/\\/g, '/');
+  if (!legacyRelativeFolder || legacyRelativeFolder.startsWith('..')) {
     return null;
   }
+  const normalizedRelativeFolder = resolveSpecFolderForDescription(folderPath, legacyRelativeFolder);
 
   return {
     specFolder: normalizedRelativeFolder,
@@ -852,7 +876,7 @@ export function generatePerFolderDescription(
   folderPath: string,
   basePath: string,
 ): PerFolderDescription | null {
-  // Path containment check — prevent directory traversal attacks
+  // Path containment check, prevent directory traversal attacks
   const realFolder = resolveRealPathSafe(path.resolve(folderPath));
   const realBase = resolveRealPathSafe(path.resolve(basePath));
   // Equality check covers the case where folderPath IS basePath; path.sep boundary
@@ -891,7 +915,7 @@ export function generatePerFolderDescription(
   const normalizedRelativeFolder = relativePath && !relativePath.startsWith('..') ? relativePath : folderName;
 
   return {
-    specFolder: normalizedRelativeFolder,
+    specFolder: resolveSpecFolderForDescription(folderPath, normalizedRelativeFolder),
     description,
     keywords,
     lastUpdated: new Date().toISOString(),
@@ -954,7 +978,7 @@ export function loadPerFolderDescription(folderPath: string): PerFolderDescripti
  *
  * Note: memorySequence/memoryNameHistory tracking is best-effort.
  * Concurrent processes may cause lost updates (acceptable trade-off
- * for non-critical tracking data — no file lock is used).
+ * for non-critical tracking data, no file lock is used).
  *
  * @param desc       - The PerFolderDescription to persist.
  * @param folderPath - Absolute path to the spec folder.
@@ -977,7 +1001,7 @@ export function savePerFolderDescription(desc: PerFolderDescription, folderPath:
       fs.closeSync(fd);
     }
     fs.renameSync(tempPath, descPath);
-    // Directory fsync omitted — Node.js has no portable dirent fsync;
+    // Directory fsync omitted, Node.js has no portable dirent fsync;
     // OS atomic rename provides sufficient durability for this non-critical metadata.
   } finally {
     // Cleanup temp file on failure
@@ -1026,7 +1050,7 @@ export function loadDescriptionCache(cachePath: string): DescriptionCache | null
     const parsed = JSON.parse(raw) as DescriptionCache;
     return parsed;
   } catch (_err: unknown) {
-    // Corrupt or unparseable cache file — return null for regeneration
+    // Corrupt or unparseable cache file, return null for regeneration
     return null;
   }
 }
@@ -1177,11 +1201,11 @@ export function ensureDescriptionCache(basePaths: string[]): DescriptionCache | 
     try {
       saveDescriptionCache(fresh, cachePath);
     } catch (_error: unknown) {
-      // Cache write failure — still return the generated cache
+      // Cache write failure, still return the generated cache
     }
     return fresh;
   } catch (_error: unknown) {
-    // Never throw — return null for graceful degradation
+    // Never throw, return null for graceful degradation
     return null;
   }
 }
@@ -1220,7 +1244,7 @@ export function discoverSpecFolder(
 
     return best.specFolder;
   } catch (_error: unknown) {
-    // Never throw — graceful degradation
+    // Never throw, graceful degradation
     return null;
   }
 }
