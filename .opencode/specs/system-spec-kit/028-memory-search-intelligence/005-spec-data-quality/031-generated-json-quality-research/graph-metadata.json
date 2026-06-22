@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/031-generated-json-quality-research",
+  "spec_folder": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/031-generated-json-quality-research",
+  "parent_id": "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "generated json quality research",
+      "graph metadata safe regeneration",
+      "description json scoping fix",
+      "spec folder identity canonicalizer",
+      "generated metadata validator",
+      "broad walk over-reach",
+      "non-idempotent metadata writes",
+      "merge path lineage loss",
+      "derived status enum",
+      "recommended build order"
+    ],
+    "key_topics": [
+      "generated-json",
+      "quality",
+      "safety",
+      "research",
+      "over-reach",
+      "idempotency",
+      "identity",
+      "resolver",
+      "lineage",
+      "validator",
+      "schema",
+      "proposals"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "research/research.md",
+      "research/deltas/",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Generated JSON Quality and Safety Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Four Safety Classes",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ranked Proposals",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shared Identity Resolver",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cross-Cutting Themes",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Recommended Build Order",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A 10-angle read-only deep-research study on improving the quality and safety of the spec-kit generated JSON metadata, description.json and graph-metadata.json, and the generators that produce them. Ten gpt-5.5-fast xhigh angle seats reading the live generator, parser, schema, discovery, and validator code converged on a diagnosis: two safety classes dominate, broad-walk over-reach and non-idempotent writes, both surfacing as unscoped cross-session commit churn, plus a latent lineage-loss risk on the merge path. The root-cause fixes are convergent, a single shared spec-folder identity resolver four angles reached and a first-class generated-metadata validator in strict mode three angles reached. A claude skeptical pass confirmed two P0 root causes with file:line, the status normalizer admits em-dash prose and mergeGraphMetadata drops parent_id and children_ids, and downgraded four over-claims, z_future already fixed, z_archive divergence by-design, graph metadata already idempotent, and triple-counted drift merged. The study produced 14 ranked proposals across four safety classes with a recommended build order.",
+    "created_at": "2026-06-22T16:18:00.000Z",
+    "last_save_at": "2026-06-22T16:18:00.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
