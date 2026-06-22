@@ -20,22 +20,22 @@ function tokens(overrides: Record<string, unknown> = {}): DesignTokens {
   } as unknown as DesignTokens;
 }
 
-describe('buildWritePrompt (doc-as-view integration)', () => {
-  it('embeds pre-rendered §2/§3/§6 and a PRESENT/ABSENT manifest, deterministically', () => {
+describe('buildWritePrompt (v3 Style Reference)', () => {
+  it('pre-renders the v3 value sections + a facts block, deterministically', () => {
     const p = buildWritePrompt(tokens());
     expect(p).toBe(buildWritePrompt(tokens())); // deterministic
-    expect(p).toContain('## 2. Color Palette'); // pre-rendered colour table
-    expect(p).toContain('## 6. Depth & Elevation'); // pre-rendered depth
-    expect(p).toContain('**Flat.**'); // flat depth (no shadows)
-    expect(p).toContain('PRE-RENDERED');
-    expect(p).toMatch(/2\.5 Dark Mode \| ABSENT/); // no dark palette
-    expect(p).toMatch(/6\.5 Motion \| PRESENT/); // has durations
-    expect(p).toMatch(/12 Iconography \| ABSENT/); // no icon system
+    expect(p).toContain('## Tokens — Colors'); // pre-rendered named colour table
+    expect(p).toContain('## Quick Start'); // pre-rendered Quick Start
+    expect(p).toContain('@theme'); // Tailwind block
+    expect(p).toContain('PASTE THEM UNCHANGED');
+    expect(p).toContain('FACTS'); // facts block present
+    expect(p).toContain('FLAT'); // 0 shadows -> elevation must be flat, never gradient-as-depth
   });
 
-  it('marks accessibility ABSENT and warns when focus was not captured', () => {
-    const p = buildWritePrompt(tokens({ a11yTokens: { focusIndicator: { captured: false, consistent: false, style: {} }, contrastPairs: [] } }));
-    expect(p).toContain('focus NOT captured');
-    expect(p).toMatch(/9 Accessibility \| ABSENT/);
+  it('states focus honesty in the facts (captured but not consistent → do not call it consistent)', () => {
+    const p = buildWritePrompt(tokens());
+    expect(p).toContain('Do NOT call focus "consistent"'); // fixture: captured:true, consistent:false
+    const p2 = buildWritePrompt(tokens({ a11yTokens: { focusIndicator: { captured: false, consistent: false, style: {} }, contrastPairs: [] } }));
+    expect(p2).toContain('NOT captured — do not assert focus consistency');
   });
 });
