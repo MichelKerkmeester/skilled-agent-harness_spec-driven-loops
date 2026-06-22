@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-skill-advisor/001-advisor-workspace-root-resolution",
+  "specFolder": "system-spec-kit/028-memory-search-intelligence/003-skill-advisor/008-advisor-workspace-root-resolution",
   "description": "Feature Specification: Resolve the skill-advisor workspace root by walk-up to stop nested .opencode/.advisor-state",
   "keywords": [
     "advisor",
