@@ -14,18 +14,18 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/036-metadata-validator-status-enum"
     last_updated_at: "2026-06-22T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded the validator and status-enum phase from recs 6, 9, 7"
-    next_safe_action: "Run speckit plan to decompose the schema enum and validator build"
+    recent_action: "Shipped status enum, integrity validator and legacy re-derive"
+    next_safe_action: "Plan the scoped migration to graduate the grandfather flag"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts"
-      - ".opencode/skills/system-spec-kit/scripts/rules/"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/validation/generated-metadata-integrity.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-036-metadata-validator-status-enum"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
       - "Whether the integrity rule errors or warns on a prefixed specFolder path during the grandfather window"
     answered_questions:
@@ -52,7 +52,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | PLANNED |
+| **Status** | COMPLETE |
 | **Created** | 2026-06-22 |
 | **Branch** | `036-metadata-validator-status-enum` |
 <!-- /ANCHOR:metadata -->
@@ -95,7 +95,7 @@ Close `derived.status` to a shared closed enum at the schema boundary so an unkn
 | `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts` | Modify | Add `GRAPH_METADATA_STATUS_VALUES` and switch `derived.status` to a `z.enum` closed set |
 | `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts` | Modify | Make `normalizeDerivedStatus` return an enum value or null, and preserve a legacy status only when it is already an enum value |
 | `.opencode/skills/system-spec-kit/scripts/rules/` | Create | Add the `GENERATED_METADATA_INTEGRITY` rule bridge validating both JSON files through the shared schemas plus path-prefix and enum invariants |
-| `.opencode/skills/system-spec-kit/scripts/rules/validator-registry.json` | Modify | Register `GENERATED_METADATA_INTEGRITY` as an error in strict mode with a grandfather report mode flag |
+| `.opencode/skills/system-spec-kit/scripts/lib/validator-registry.json` | Modify | Register `GENERATED_METADATA_INTEGRITY` as an error in strict mode with a grandfather report mode flag |
 | `.opencode/skills/system-spec-kit/scripts/tests/` | Create | Add a vitest proving the enum close, the validator verdict and the legacy re-derive behind the flag |
 <!-- /ANCHOR:scope -->
 
@@ -188,8 +188,8 @@ Close `derived.status` to a shared closed enum at the schema boundary so an unkn
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Whether the integrity rule errors or only warns on a prefixed `specFolder` path during the grandfather window, given the identity resolver that normalizes that path is a separate phase.
-- Whether the `planned` fallback for a non-enum legacy status sets the review flag in the JSON or only in the validator report.
+- RESOLVED. The integrity rule reports a prefixed `specFolder` path non-blocking under the grandfather window and errors only when the grandfather flag is off, so the prefixed path stays surfaced until the identity resolver migration lands.
+- RESOLVED. The `planned` fallback for a non-enum legacy status sets `status_review_required` in the graph-metadata JSON, mirroring the existing `parent_id_review_required` field, so the dropped status is surfaced in the file rather than only in the validator report.
 <!-- /ANCHOR:questions -->
 
 ---

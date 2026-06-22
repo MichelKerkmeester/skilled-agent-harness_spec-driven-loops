@@ -73,6 +73,34 @@ function isIdentityMergeSafetyEnabled(): boolean {
   return rawValue === 'true' || rawValue === '1';
 }
 
+/**
+ * SPECKIT_GENERATED_METADATA_GRANDFATHER: Generated-metadata integrity report mode.
+ *
+ * Grandfather report mode is ON by default for the first rollout, because many existing
+ * description.json and graph-metadata.json files carry the prose statuses and prefixed
+ * paths the new contract rejects and would mass-fail strict validation at once. With it
+ * on the GENERATED_METADATA_INTEGRITY rule reports violations non-blocking; an explicit
+ * opt-out graduates the rule to a hard error once a scoped migration has restamped the
+ * legacy files.
+ *
+ * | Value                | Behavior                                                     |
+ * |----------------------|--------------------------------------------------------------|
+ * | unset / `true` / `1` | (default) violations report non-blocking, strict does not fail |
+ * | `false` / `0` / `off`| violations are errors and block strict validation            |
+ */
+const GENERATED_METADATA_GRANDFATHER_ENV = 'SPECKIT_GENERATED_METADATA_GRANDFATHER' as const;
+
+/**
+ * Returns whether generated-metadata integrity violations stay in grandfather report mode.
+ *
+ * Reads the environment on every call so a test can flip the behavior per-case, and stays
+ * ON for any value other than an explicit opt-out so an unset environment never enforces.
+ */
+function isGeneratedMetadataGrandfatherEnabled(): boolean {
+  const rawValue = process.env[GENERATED_METADATA_GRANDFATHER_ENV]?.trim().toLowerCase();
+  return !(rawValue === 'false' || rawValue === '0' || rawValue === 'off');
+}
+
 // Keep roadmap controls distinct from existing runtime feature flags so
 // Telemetry/checkpoints describe roadmap rollout state rather than unrelated
 // Default-on retrieval behavior.
@@ -171,8 +199,11 @@ export {
   getMemoryRoadmapCapabilityFlags,
   getMemoryRoadmapDefaults,
   getMemoryRoadmapPhase,
+  /** Documented generated-metadata grandfather env var name */
+  GENERATED_METADATA_GRANDFATHER_ENV,
   /** Documented identity/merge-safety env var name */
   IDENTITY_MERGE_SAFETY_ENV,
+  isGeneratedMetadataGrandfatherEnabled,
   isIdentityMergeSafetyEnabled,
   /** @internal — exposed for test utilities only */
   isMemoryRoadmapCapabilityEnabled,

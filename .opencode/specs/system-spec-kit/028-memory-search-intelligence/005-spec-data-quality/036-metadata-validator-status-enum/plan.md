@@ -14,19 +14,19 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/036-metadata-validator-status-enum"
     last_updated_at: "2026-06-22T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Planned the schema enum, integrity rule and re-derive behind a flag"
-    next_safe_action: "Hold for implementation, no code change has landed yet"
+    recent_action: "Implementation complete, all planned phases executed and verified"
+    next_safe_action: "Plan the scoped migration that graduates the grandfather flag to error"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts"
-      - ".opencode/skills/system-spec-kit/scripts/rules/"
-      - ".opencode/skills/system-spec-kit/scripts/rules/validator-registry.json"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/validation/generated-metadata-integrity.ts"
+      - ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-036-metadata-validator-status-enum"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -66,14 +66,14 @@ This phase closes the generated-JSON contract at three points the 031 research v
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -125,22 +125,22 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Confirm the shared Zod schemas in `graph-metadata-schema.ts` cover `description.json` and `graph-metadata.json` and can back the integrity rule
-- [ ] Confirm the rule registry and strict-mode pathway in `validate.sh` accept a new error-level rule and a grandfather report mode flag
-- [ ] Enumerate the current `derived.status` values the closed enum must admit, sourced from the existing normalizer cases
-- [ ] Decide the default-off flag name and the grandfather report mode shape for the integrity rule and the re-derive path
+- [x] Confirm the shared Zod schemas in `graph-metadata-schema.ts` cover `description.json` and `graph-metadata.json` and can back the integrity rule
+- [x] Confirm the rule registry and strict-mode pathway in `validate.sh` accept a new error-level rule and a grandfather report mode flag
+- [x] Enumerate the current `derived.status` values the closed enum must admit, sourced from the existing normalizer cases
+- [x] Decide the default-off flag name and the grandfather report mode shape for the integrity rule and the re-derive path
 
 ### Phase 2: Core Implementation
-- [ ] Add `GRAPH_METADATA_STATUS_VALUES` and switch `derived.status` to `z.enum` in `graph-metadata-schema.ts`
-- [ ] Change `normalizeDerivedStatus` so the default branch returns an enum value or null, reading the shared const
-- [ ] Add the `GENERATED_METADATA_INTEGRITY` rule bridge validating both JSON files through the shared schemas plus the path-prefix and enum invariants, and register it as an error in strict mode behind the grandfather flag
-- [ ] Change the parser so a missing `implementation-summary.md` preserves an existing status only when it is already an enum value, otherwise re-derives or falls back to `planned` plus a review flag
+- [x] Add `GRAPH_METADATA_STATUS_VALUES` and switch `derived.status` to `z.enum` in `graph-metadata-schema.ts`
+- [x] Change `normalizeDerivedStatus` so the default branch returns an enum value or null, reading the shared const
+- [x] Add the `GENERATED_METADATA_INTEGRITY` rule bridge validating both JSON files through the shared schemas plus the path-prefix and enum invariants, and register it as an error in strict mode behind the grandfather flag
+- [x] Change the parser so a missing `implementation-summary.md` preserves an existing status only when it is already an enum value, otherwise re-derives or falls back to `planned` plus a review flag
 
 ### Phase 3: Verification
-- [ ] An em-dash prose status fails schema validation and the normalizer returns null for it
-- [ ] A strict run over a prose-status or prefixed-path folder errors from the integrity rule, and a clean folder passes
-- [ ] With the grandfather mode on a legacy folder warns and strict passes, with the flag off the same folder errors
-- [ ] A folder with no `implementation-summary.md` and a prose status re-derives or falls back to `planned` plus a review flag, an enum status is kept
+- [x] An em-dash prose status fails schema validation and the normalizer returns null for it
+- [x] A strict run over a prose-status or prefixed-path folder errors from the integrity rule, and a clean folder passes
+- [x] With the grandfather mode on a legacy folder warns and strict passes, with the flag off the same folder errors
+- [x] A folder with no `implementation-summary.md` and a prose status re-derives or falls back to `planned` plus a review flag, an enum status is kept
 <!-- /ANCHOR:phases -->
 
 ---
@@ -215,9 +215,9 @@ Phase 1 (Setup) ──► Phase 2 (Core) ──► Phase 3 (Verify)
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Grandfather report mode proven to warn rather than block on a legacy folder
-- [ ] The enum admits every current valid status, proven against the existing normalizer cases
-- [ ] The integrity rule errors on a prose-status fixture with the flag off
+- [x] Grandfather report mode proven non-blocking on a legacy folder (resolves to info, strict passes)
+- [x] The enum admits every current valid status, proven against the existing normalizer cases and the green schema suite
+- [x] The integrity rule errors on a prose-status fixture with the flag off
 
 ### Rollback Procedure
 1. Set the grandfather flag to report-only so the integrity rule warns rather than blocks

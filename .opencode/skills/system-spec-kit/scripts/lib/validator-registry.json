@@ -309,5 +309,14 @@
     "category": "operational_runtime",
     "strict_only": true,
     "description": "Strict-mode lint for evidence marker formatting."
+  },
+  {
+    "rule_id": "GENERATED_METADATA_INTEGRITY",
+    "aliases": ["GENERATED_METADATA", "METADATA_INTEGRITY"],
+    "script_path": "validation/generated-metadata-integrity.ts",
+    "severity": "error",
+    "category": "structural",
+    "strict_only": true,
+    "description": "Validates description.json and graph-metadata.json through the shared schemas plus path-prefix and status-enum invariants, error under strict behind a grandfather report mode."
   }
 ]

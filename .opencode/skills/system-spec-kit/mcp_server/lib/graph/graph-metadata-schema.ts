@@ -9,12 +9,30 @@ export const GRAPH_METADATA_DOCUMENT_TYPE = 'graph_metadata' as const;
 export const GRAPH_METADATA_FILENAME = 'graph-metadata.json' as const;
 export const GRAPH_METADATA_MIGRATED_QUALITY_FLAG = 'graph_metadata_migrated' as const;
 export const SAVE_LINEAGE_VALUES = ['description_only', 'graph_only', 'same_pass'] as const;
+
+// Closed set of legitimate lifecycle statuses for derived.status. The schema, the
+// status normalizer, the generated-metadata integrity rule and the parser re-derive
+// all read this one declaration so they agree on what counts as a valid status and
+// reject prose (multi-word narrative, em-dash summaries) at the boundary instead of
+// admitting any non-empty string. Single-token authored states (draft, placeholder,
+// blocked, deferred) stay admitted so a curated status is preserved, not narrative.
+export const GRAPH_METADATA_STATUS_VALUES = [
+  'planned',
+  'draft',
+  'placeholder',
+  'in_progress',
+  'blocked',
+  'deferred',
+  'complete',
+  'unknown',
+] as const;
 export const GRAPH_METADATA_TRIGGER_PHRASE_LIMIT = 12;
 export const GRAPH_METADATA_KEY_TOPIC_LIMIT = 12;
 export const GRAPH_METADATA_KEY_FILE_LIMIT = 20;
 export const GRAPH_METADATA_ENTITY_LIMIT = 24;
 export type GraphMetadataMigrationSource = 'legacy';
 export type SaveLineage = typeof SAVE_LINEAGE_VALUES[number];
+export type GraphMetadataStatus = typeof GRAPH_METADATA_STATUS_VALUES[number];
 
 export const packetReferenceSchema = z.object({
   packet_id: z.string().min(1),
@@ -41,7 +59,7 @@ export const graphMetadataDerivedSchema = z.object({
   trigger_phrases: z.array(z.string().min(1)).max(GRAPH_METADATA_TRIGGER_PHRASE_LIMIT),
   key_topics: z.array(z.string().min(1)).max(GRAPH_METADATA_KEY_TOPIC_LIMIT),
   importance_tier: z.string().min(1),
-  status: z.string().min(1),
+  status: z.enum(GRAPH_METADATA_STATUS_VALUES),
   key_files: z.array(z.string().min(1)).max(GRAPH_METADATA_KEY_FILE_LIMIT),
   entities: z.array(graphEntityReferenceSchema).max(GRAPH_METADATA_ENTITY_LIMIT),
   causal_summary: z.string(),
@@ -68,11 +86,27 @@ export const graphMetadataSchema = z.object({
   // for review instead of being silently retained. Optional so a clean record and the
   // legacy merge never carry it.
   parent_id_review_required: z.boolean().optional(),
+  // Set when a re-derive dropped a non-enum legacy status and fell back to 'planned':
+  // the prior status was prose the closed enum no longer admits, so it stays surfaced
+  // for review rather than being silently rewritten. Optional so a clean record and a
+  // genuinely new packet never carry it.
+  status_review_required: z.boolean().optional(),
   children_ids: z.array(z.string().min(1)),
   migrated: z.boolean().optional(),
   migration_source: z.literal('legacy').optional(),
   manual: graphMetadataManualSchema,
   derived: graphMetadataDerivedSchema,
+});
+
+// Tolerant variant for loading an on-disk file whose derived.status may still be a
+// legacy non-enum string. The strict schema closes the enum for writes and for the
+// integrity rule, but a load must not crash on a legacy prose status: it has to read
+// the raw value so a later re-derive can detect and drop it. Only the load path uses
+// this; everything that writes or validates goes through the strict schema above.
+export const graphMetadataLoadSchema = graphMetadataSchema.extend({
+  derived: graphMetadataDerivedSchema.extend({
+    status: z.string().min(1),
+  }),
 });
 
 export type PacketReference = z.infer<typeof packetReferenceSchema>;

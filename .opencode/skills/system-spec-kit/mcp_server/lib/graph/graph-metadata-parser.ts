@@ -26,15 +26,20 @@ import {
   GRAPH_METADATA_KEY_FILE_LIMIT,
   GRAPH_METADATA_KEY_TOPIC_LIMIT,
   GRAPH_METADATA_SCHEMA_VERSION,
+  GRAPH_METADATA_STATUS_VALUES,
   GRAPH_METADATA_TRIGGER_PHRASE_LIMIT,
+  graphMetadataLoadSchema,
   graphMetadataSchema,
   type GraphMetadata,
   type GraphMetadataDerived,
   type GraphMetadataMigrationSource,
   type GraphMetadataManual,
+  type GraphMetadataStatus,
   type PacketReference,
   type SaveLineage,
 } from './graph-metadata-schema.js';
+
+const GRAPH_METADATA_STATUS_SET: ReadonlySet<string> = new Set(GRAPH_METADATA_STATUS_VALUES);
 
 const CANONICAL_PACKET_DOCS = [
   'spec.md',
@@ -158,7 +163,7 @@ function parseDelimitedValues(raw: string | null | undefined): string[] {
     .filter(Boolean);
 }
 
-function normalizeDerivedStatus(status: string | null | undefined): string | null {
+function normalizeDerivedStatus(status: string | null | undefined): GraphMetadataStatus | null {
   if (typeof status !== 'string') {
     return null;
   }
@@ -180,7 +185,10 @@ function normalizeDerivedStatus(status: string | null | undefined): string | nul
     case 'planned':
       return 'planned';
     default:
-      return normalized;
+      // Closed enum boundary: a synonym above maps in, a value already in the closed
+      // set passes through, and anything else (prose, em-dash narrative) returns null
+      // rather than leaking the raw normalized string forward as a status.
+      return GRAPH_METADATA_STATUS_SET.has(normalized) ? (normalized as GraphMetadataStatus) : null;
   }
 }
 
@@ -355,6 +363,34 @@ export function validateGraphMetadataContent(content: string): GraphMetadataVali
     return { ok: true, metadata, migrated: false, errors: [] };
   } catch (error: unknown) {
     const originalErrors = formatValidationErrors(error);
+
+    // A structurally-valid JSON document that fails only the strict contract (most
+    // often a legacy non-enum status) must still load so a later re-derive can drop
+    // the bad value. Salvage it through the tolerant load schema before treating the
+    // content as a genuinely legacy key:value text file.
+    let jsonParsed: unknown;
+    let jsonOk = false;
+    try {
+      jsonParsed = parseJsonObject(content);
+      jsonOk = true;
+    } catch {
+      jsonOk = false;
+    }
+    if (jsonOk && jsonParsed && typeof jsonParsed === 'object' && !Array.isArray(jsonParsed)) {
+      const lenient = graphMetadataLoadSchema.safeParse(jsonParsed);
+      if (lenient.success) {
+        // The tolerant schema keeps the raw status string; the strict GraphMetadata type
+        // models it as the closed enum. The cast is the documented load-time tolerance,
+        // narrowed back to the enum the next time the folder is re-derived.
+        return {
+          ok: true,
+          metadata: lenient.data as unknown as GraphMetadata,
+          migrated: false,
+          errors: [],
+        };
+      }
+    }
+
     const legacyMetadata = parseLegacyGraphMetadataContent(content);
     if (legacyMetadata) {
       try {
@@ -1043,15 +1079,20 @@ function deriveCausalSummary(docs: ParsedSpecDoc[]): string {
   );
 }
 
+interface DerivedStatusResult {
+  status: GraphMetadataStatus;
+  reviewRequired: boolean;
+}
+
 function deriveStatus(
   docs: ParsedSpecDoc[],
   availability: Map<string, GraphMetadataDocReadResult['status']>,
   override?: string | null,
   existingStatus?: string | null,
-): string {
+): DerivedStatusResult {
   const normalizedOverride = normalizeDerivedStatus(override);
   if (normalizedOverride) {
-    return normalizedOverride;
+    return { status: normalizedOverride, reviewRequired: false };
   }
 
   const rankedPaths = [
@@ -1070,30 +1111,36 @@ function deriveStatus(
   ];
   const frontmatterStatus = normalizeDerivedStatus(selectFirstValue(ranked, ''));
   if (frontmatterStatus) {
-    return frontmatterStatus;
+    return { status: frontmatterStatus, reviewRequired: false };
   }
 
   if (rankedPaths.some((relativePath) => availability.get(relativePath) === 'unknown')) {
-    return 'unknown';
+    return { status: 'unknown', reviewRequired: false };
   }
 
   const implementationSummaryDoc = docs.find((doc) => doc.relativePath === 'implementation-summary.md');
   if (!implementationSummaryDoc) {
     // Lean phase parents have no implementation-summary.md by design, so this branch
-    // is their normal path. Returning 'planned' unconditionally here downgrades a
-    // curated status (e.g. in_progress) on every re-derive. Preserve an existing
-    // status when present; fall back to 'planned' only for genuinely new packets.
-    return normalizeDerivedStatus(existingStatus) ?? 'planned';
+    // is their normal path. Preserve an existing status only when it is already an enum
+    // value; a legacy prose value the closed enum no longer admits is dropped, falling
+    // back to 'planned' with the review flag set so the bad status is not carried forward.
+    const preserved = normalizeDerivedStatus(existingStatus);
+    if (preserved) {
+      return { status: preserved, reviewRequired: false };
+    }
+    const hadNonEnumExisting = typeof existingStatus === 'string' && existingStatus.trim().length > 0;
+    return { status: 'planned', reviewRequired: hadNonEnumExisting };
   }
 
   const checklistDoc = docs.find((doc) => doc.relativePath === 'checklist.md');
   if (!checklistDoc) {
-    return 'complete';
+    return { status: 'complete', reviewRequired: false };
   }
 
-  return evaluateChecklistCompletion(checklistDoc.content) === 'COMPLETE'
-    ? 'complete'
-    : 'in_progress';
+  return {
+    status: evaluateChecklistCompletion(checklistDoc.content) === 'COMPLETE' ? 'complete' : 'in_progress',
+    reviewRequired: false,
+  };
 }
 
 function evaluateChecklistCompletion(content: string): 'COMPLETE' | 'INCOMPLETE' {
@@ -1139,12 +1186,13 @@ export function deriveGraphMetadata(
   const keyTopics = deriveKeyTopics(docs, triggerPhrases, causalSummary);
   const sourceDocs = docs.map((doc) => doc.relativePath);
   const entities = deriveEntities(specFolder, docs, keyFiles);
+  const statusResult = deriveStatus(docs, collectedDocs.availability, options.statusOverride, existing?.derived.status);
 
   const derived: GraphMetadataDerived = {
     trigger_phrases: triggerPhrases,
     key_topics: keyTopics,
     importance_tier: deriveImportanceTier(docs),
-    status: deriveStatus(docs, collectedDocs.availability, options.statusOverride, existing?.derived.status),
+    status: statusResult.status,
     key_files: keyFiles,
     entities,
     causal_summary: causalSummary,
@@ -1164,6 +1212,7 @@ export function deriveGraphMetadata(
     packet_id: packetId,
     spec_folder: specFolder,
     parent_id: identity.parentId,
+    status_review_required: statusResult.reviewRequired ? true : undefined,
     children_ids: identity.childrenIds,
     migrated: existing?.migrated ?? undefined,
     migration_source: existing?.migration_source ?? undefined,
@@ -1464,6 +1513,7 @@ export function packetReferencesToCausalLinks(manual: GraphMetadataManual): Reco
 export const __testables = {
   readDoc,
   deriveStatus,
+  normalizeDerivedStatus,
   keepKeyFile,
   evaluateChecklistCompletion,
   resolveKeyFileCandidate,

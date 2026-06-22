@@ -8,6 +8,11 @@ import { fileURLToPath } from 'node:url';
 import { resolveLevelContract, type SpecKitLevel } from '../templates/level-contract-resolver.js';
 import { isPhaseParent } from '../spec/is-phase-parent.js';
 import { runSpecDocStructureRule, type RuleResult, type SpecDocRuleName } from './spec-doc-structure.js';
+import {
+  checkGeneratedMetadataIntegrity,
+  resolveGeneratedMetadataIntegrity,
+} from './generated-metadata-integrity.js';
+import { isGeneratedMetadataGrandfatherEnabled } from '../config/capability-flags.js';
 
 export interface ValidateOpts {
   strict?: boolean;
@@ -358,6 +363,14 @@ function validateSpecDocRule(folder: string, level: SpecKitLevel, rule: SpecDocR
   );
 }
 
+function validateGeneratedMetadataIntegrity(folder: string): ValidationEntry {
+  const report = checkGeneratedMetadataIntegrity(folder);
+  const resolved = resolveGeneratedMetadataIntegrity(report, {
+    grandfather: isGeneratedMetadataGrandfatherEnabled(),
+  });
+  return entry(resolved.rule, resolved.status, resolved.message, resolved.details);
+}
+
 function validateFrontmatterBasics(folder: string, level: SpecKitLevel): ValidationEntry {
   const missing: string[] = [];
   for (const docName of docsForLevel(level)) {
@@ -395,6 +408,7 @@ export function validateFolder(folderPath: string, opts: ValidateOpts = {}): Val
   entries.push(entry('SECTIONS_PRESENT', 'pass', 'Section presence covered by per-document manifest anchors'));
   entries.push(entry('LEVEL_DECLARED', 'info', `Detected Level ${level}`));
   entries.push(entry('GRAPH_METADATA_PRESENT', fs.existsSync(path.join(folder, 'graph-metadata.json')) ? 'pass' : 'warn', 'Graph metadata checked'));
+  entries.push(validateGeneratedMetadataIntegrity(folder));
 
   const summary = {
     errors: entries.filter((item) => item.status === 'error').length,

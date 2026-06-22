@@ -118,8 +118,10 @@ export {
   GRAPH_METADATA_FILENAME,
   GRAPH_METADATA_MIGRATED_QUALITY_FLAG,
   GRAPH_METADATA_SCHEMA_VERSION,
+  GRAPH_METADATA_STATUS_VALUES,
   SAVE_LINEAGE_VALUES,
   createEmptyGraphMetadataManual,
+  graphMetadataLoadSchema,
   graphMetadataSchema,
   packetReferenceSchema,
   graphEntityReferenceSchema,
@@ -129,10 +131,21 @@ export type {
   GraphMetadataDerived,
   GraphMetadataMigrationSource,
   GraphMetadataManual,
+  GraphMetadataStatus,
   GraphEntityReference,
   PacketReference,
   SaveLineage,
 } from '../lib/graph/graph-metadata-schema.js';
+export {
+  GENERATED_METADATA_INTEGRITY_RULE,
+  checkGeneratedMetadataIntegrity,
+  resolveGeneratedMetadataIntegrity,
+} from '../lib/validation/generated-metadata-integrity.js';
+export type {
+  GeneratedMetadataViolation,
+  GeneratedMetadataIntegrityReport,
+  ResolvedIntegrityStatus,
+} from '../lib/validation/generated-metadata-integrity.js';
 export {
   validateGraphMetadataContent,
   loadGraphMetadata,
@@ -167,8 +180,10 @@ export {
 export type { LayerDefinition, LayerId } from '../lib/architecture/layer-definitions.js';
 
 export {
+  GENERATED_METADATA_GRANDFATHER_ENV,
   getMemoryRoadmapCapabilityFlags,
   getMemoryRoadmapDefaults,
   getMemoryRoadmapPhase,
+  isGeneratedMetadataGrandfatherEnabled,
 } from '../lib/config/capability-flags.js';
 export type { MemoryRoadmapCapabilityFlags } from '../lib/config/capability-flags.js';
