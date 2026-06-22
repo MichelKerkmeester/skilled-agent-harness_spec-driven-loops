@@ -52,7 +52,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | PLANNED |
+| **Status** | IN_PROGRESS |
 | **Created** | 2026-06-22 |
 | **Branch** | `039-full-repo-json-migration` |
 <!-- /ANCHOR:metadata -->
@@ -199,6 +199,7 @@ Regenerate every `description.json` and every `graph-metadata.json` in the whole
 
 - Whether the scoped commits batch by track only or also split the archive trees into per-archive batches for review.
 - Whether the migration runs the validator inline per folder or once over the whole tree after the loop completes.
+- The hardened phase 034 writer rules refuse graph-metadata under `z_future`, so REQ-001 cannot rewrite `z_future` through the scoped path. Decision needed, delete `z_future` legacy generated JSON, confirm the repo-wide validator already skips `z_future`, or relax the writer rule in a separate phase. The driver enumerates `z_future` for coverage and records it skipped on the writer rule in the meantime.
 <!-- /ANCHOR:questions -->
 
 ---
