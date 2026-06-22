@@ -153,8 +153,30 @@ describe('validateDesignMd', () => {
       failures: [{ type: 'test', value: 'x', message: 'fail1' }, { type: 'test', value: 'y', message: 'fail2' }],
       warnings: [{ type: 'test', value: 'z', message: 'warn1' }],
       score: Math.max(0, 100 - 2 * 5 - 1 * 1),
+      valuesScore: Math.max(0, 100 - 2 * 5 - 1 * 1),
+      claimsScore: 100,
     };
     expect(result.score).toBe(89);
+  });
+
+  it('flags interpretive fabrication prose and splits the claims score (WARNING-tier)', () => {
+    const md = VALID_MD + '\n\nThis is a gradient-as-depth technique that replaces shadow elevation. Unlike most systems, this one is flat.\n';
+    const result = validateDesignMd(md, makeTokens());
+    const proseWarns = result.warnings.filter((w) => w.type === 'prose-fabrication');
+    expect(proseWarns.length).toBeGreaterThanOrEqual(2);
+    expect(result.claimsScore).toBeLessThan(result.valuesScore);
+    expect(result.failures.length).toBe(0); // prose checks are WARNING-tier, never hard-fail
+  });
+
+  it('flags a focus-consistent claim when the tokens show it is not', () => {
+    const tokens = makeTokens();
+    (tokens as unknown as { a11yTokens: unknown }).a11yTokens = {
+      focusIndicator: { style: {}, consistent: false, captured: false },
+      contrastPairs: [], minTouchTarget: { width: 44, height: 44 }, minFontSize: '16px',
+    };
+    const md = VALID_MD + '\n\nThe focus indicators are consistent across all elements.\n';
+    const result = validateDesignMd(md, tokens);
+    expect(result.warnings.filter((w) => w.value === 'focus consistent').length).toBe(1);
   });
 
   it('score cannot go below 0', () => {

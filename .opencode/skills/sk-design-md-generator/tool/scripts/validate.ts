@@ -26,6 +26,11 @@ export interface ValidationResult {
   warnings: ValidationIssue[];
   failures: ValidationIssue[];
   score: number;
+  // Split scores so a doc cannot hide invented prose behind hex fidelity. valuesScore =
+  // hex/section/format/stability fidelity; claimsScore = prose provenance (interpretive
+  // fabrication + filled-but-empty sections).
+  valuesScore: number;
+  claimsScore: number;
 }
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
@@ -315,6 +320,54 @@ function checkContent(md: string): { passed: boolean; warnings: ValidationIssue[
 // 4. CORE LOGIC
 // ────────────────────────────────────────────────────────────────
 
+// Interpretive-fabrication prose patterns. WARNING-tier only (never a hard fail) — these
+// specific phrases are inherently ungrounded: tokens.json carries no data about other
+// systems, and the depth/focus claims are the two known hallucinations.
+const PROSE_FABRICATION_PATTERNS: { re: RegExp; label: string }[] = [
+  { re: /\b(unlike most|most systems|where others|the typical approach|the conventional)\b/i, label: 'comparison to other/most systems (no token data about other systems)' },
+  { re: /gradient[\s-]?as[\s-]?depth|replaces?\s+(the\s+)?shadow\s+elevation/i, label: 'gradient-as-depth / replaces-shadow-elevation claim' },
+];
+
+function checkProseDiscipline(md: string, tokens: DesignTokens): { passed: boolean; warnings: ValidationIssue[] } {
+  const cleaned = stripHtmlComments(md);
+  const warnings: ValidationIssue[] = [];
+  for (const { re, label } of PROSE_FABRICATION_PATTERNS) {
+    const m = cleaned.match(re);
+    if (m) warnings.push({ type: 'prose-fabrication', value: m[0], message: `Interpretive fabrication risk: ${label}` });
+  }
+  // The second known hallucination: a "focus ... consistent" claim must be backed by
+  // captured focus styles.
+  const focus = (tokens as unknown as { a11yTokens?: { focusIndicator?: { captured?: boolean; consistent?: boolean } } }).a11yTokens?.focusIndicator;
+  if (focus && (focus.captured === false || focus.consistent === false)) {
+    if (/focus[^.\n]{0,40}\bconsistent\b/i.test(cleaned) && !/\binconsistent\b|not consistent/i.test(cleaned)) {
+      warnings.push({ type: 'prose-fabrication', value: 'focus consistent', message: 'Asserts focus is consistent but tokens show captured=false or consistent=false' });
+    }
+  }
+  return { passed: warnings.length === 0, warnings };
+}
+
+// Flags a high-risk section that is present in the doc while its backing tokens are empty
+// and it was not stamped ABSENT — the mechanical signature of an invented section.
+function checkSectionCoverage(md: string, tokens: DesignTokens): { passed: boolean; warnings: ValidationIssue[] } {
+  const t = tokens as unknown as Record<string, unknown>;
+  const isEmpty = (x: unknown) => !x || (Array.isArray(x) ? x.length === 0 : (typeof x === 'object' ? Object.keys(x as object).length === 0 : !x));
+  const motion = (t.motionSystem as { durationScale?: unknown[] } | undefined)?.durationScale;
+  const icons = (t.iconSystem as { totalCount?: number } | undefined)?.totalCount;
+  const absent = /\bABSENT\b|No (shadow|motion|icon|gradient)[^.\n]*(was|were) extracted|zero shadow tokens/i.test(md);
+  const checks: { section: RegExp; empty: boolean; field: string }[] = [
+    { section: /^##\s*6\.?\s+Depth/im, empty: isEmpty(t.shadowTokens) && isEmpty(t.gradients), field: 'shadowTokens + gradients' },
+    { section: /^##\s*6\.5\.?\s+Motion/im, empty: isEmpty(motion), field: 'motionSystem' },
+    { section: /^##\s*12\.?\s+Icon/im, empty: !icons, field: 'iconSystem' },
+  ];
+  const warnings: ValidationIssue[] = [];
+  for (const c of checks) {
+    if (c.empty && c.section.test(md) && !absent) {
+      warnings.push({ type: 'section-coverage', value: c.field, message: `Section present but backing ${c.field} is empty — stamp ABSENT instead of inventing content` });
+    }
+  }
+  return { passed: warnings.length === 0, warnings };
+}
+
 export function validateDesignMd(mdContent: string, tokens: DesignTokens): ValidationResult {
   const passed: string[] = [];
   const warnings: ValidationIssue[] = [];
@@ -344,9 +397,22 @@ export function validateDesignMd(mdContent: string, tokens: DesignTokens): Valid
   if (content.passed) passed.push('content-checks');
   else warnings.push(...content.warnings);
 
+  const prose = checkProseDiscipline(mdContent, tokens);
+  if (prose.passed) passed.push('prose-discipline');
+  else warnings.push(...prose.warnings);
+
+  const coverage = checkSectionCoverage(mdContent, tokens);
+  if (coverage.passed) passed.push('section-coverage');
+  else warnings.push(...coverage.warnings);
+
+  // Dual score: separate value-fidelity from claim-provenance so a doc with real hexes
+  // but invented prose cannot earn a high combined score on hex-tracing alone.
+  const claimsWarnings = warnings.filter((w) => w.type === 'prose-fabrication' || w.type === 'section-coverage');
+  const valuesScore = Math.max(0, 100 - failures.length * 5 - (warnings.length - claimsWarnings.length) * 1);
+  const claimsScore = Math.max(0, 100 - claimsWarnings.length * 10);
   const score = Math.max(0, 100 - failures.length * 5 - warnings.length * 1);
 
-  return { passed, warnings, failures, score };
+  return { passed, warnings, failures, score, valuesScore, claimsScore };
 }
 
 // ─── CLI ─────────────────────────────────────────────────────────────────────
@@ -403,7 +469,10 @@ function printResult(result: ValidationResult): void {
     }
   }
 
-  console.log(`\n${BOLD}Score: ${result.score}/100${RESET}`);
+  console.log(`\n${BOLD}Score: ${result.score}/100${RESET}  (values ${result.valuesScore}/100, claims ${result.claimsScore}/100)`);
+  if (result.claimsScore < 80) {
+    console.log(`${YELLOW}  Claims score is low — prose may assert relationships/consistency not backed by tokens.${RESET}`);
+  }
   if (isPass(result)) {
     console.log(`${GREEN}Result: PASS${RESET}\n`);
   } else {
