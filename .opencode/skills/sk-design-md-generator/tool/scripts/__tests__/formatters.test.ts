@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { formatColorTable, formatTypographyTable, formatDepthSection } from '../formatters';
+import { formatColorTable, formatTypographyTable, formatDepthSection, formatContrastTable, formatSpacingScale, formatRadiusTable } from '../formatters';
 import type { DesignTokens } from '../types';
 
 function tokens(): DesignTokens {
@@ -52,5 +52,37 @@ describe('formatters (doc-as-view Phase A)', () => {
     expect(out).toContain('decorative gradient');
     expect(out.toLowerCase()).not.toContain('gradient-as-depth');
     expect(out.toLowerCase()).not.toContain('replaces shadow');
+  });
+
+  it('value tables: contrast, spacing, radius render verbatim, sorted, ABSENT when empty', () => {
+    const t = {
+      a11yTokens: {
+        contrastPairs: [
+          { foreground: '#0a0a0a', background: '#fefefe', ratio: 18.5, meetsAA: true, meetsAAA: true, usageCount: 200 },
+          { foreground: '#06458c', background: '#fefefe', ratio: 7.2, meetsAA: true, meetsAAA: false, usageCount: 50 },
+        ],
+      },
+      spacingSystem: { baseUnit: 8, scale: [4, 8, 16, 24, 48], frequencyMap: {}, maxContentWidth: '1200px', sectionSpacing: [] },
+      radiusTokens: [
+        { value: '10.5px', frequency: 40, typicalElements: ['button'] },
+        { value: '7px', frequency: 12, typicalElements: ['div'] },
+      ],
+      colorTokens: [], typographyLevels: [], shadowTokens: [],
+    } as unknown as DesignTokens;
+
+    const c = formatContrastTable(t);
+    expect(c).toBe(formatContrastTable(t)); // deterministic
+    expect(c).toContain('18.50'); // ratio rendered
+    expect(c.indexOf('18.50')).toBeLessThan(c.indexOf('7.20')); // usage-200 row (ratio 18.50) before usage-50 row
+
+    const sp = formatSpacingScale(t);
+    expect(sp).toContain('8px'); // base unit
+    expect(sp).toContain('1200px'); // max content width
+
+    const r = formatRadiusTable(t);
+    expect(r.indexOf('10.5px')).toBeLessThan(r.indexOf('7px')); // sorted by frequency desc
+
+    expect(formatContrastTable({ a11yTokens: { contrastPairs: [] } } as unknown as DesignTokens)).toContain('_No contrast pairs');
+    expect(formatRadiusTable({ radiusTokens: [] } as unknown as DesignTokens)).toContain('_No border-radius');
   });
 });
