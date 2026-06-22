@@ -48,7 +48,7 @@ PRE: Node.js >= 18 must be on PATH. The working directory is the skill root `.op
 1. `bash: node --version`  # -> v18.x.x or higher
 2. `cd .opencode/skills/sk-design-md-generator/tool && npm install`  # -> exits 0, no errors, node_modules populated
 3. `cd .opencode/skills/sk-design-md-generator/tool && npx playwright install chromium`  # -> exits 0, Chromium installed or "already installed"
-4. `cd .opencode/skills/sk-design-md-generator/tool && npx ts-node scripts/extract.ts --help`  # -> prints usage text with --fast, --max-pages, --concurrency, --output, --no-dark-mode, --with-interaction, --wait-for, etc.
+4. `cd .opencode/skills/sk-design-md-generator/tool && npx ts-node scripts/extract.ts --help`  # -> prints usage text with --fast, --max-pages, --concurrency, --output, --no-dark-mode, --no-interaction, --with-interaction, --fast-no-interaction, --wait-for, etc.
 5. smoke: `cd .opencode/skills/sk-design-md-generator/tool && npx ts-node scripts/extract.ts https://example.com --fast --output .opencode/specs/<track>/<packet>/output`  # -> runs; exits 0 (success) or exits non-zero with a crawl-specific error (e.g., timeout, 403); never `Executable doesn't exist`
 6. agent reports tool readiness and smoke-test result
 
@@ -59,6 +59,8 @@ PRE: Node.js >= 18 must be on PATH. The working directory is the skill root `.op
 ### Optional Supplemental Checks
 
 Run `cd tool && npx vitest run` after setup to confirm the clustering and validation unit tests pass — this validates the tool is intact beyond the binary check. Delete `tool/node_modules/` and run `npx ts-node scripts/extract.ts --help` — confirm the error is `command not found: ts-node`, not a cryptic module-resolution error. Re-run `npm install` and confirm the tool recovers.
+
+> Interaction-capture default note: extraction captures interaction state by default (`noInteraction = false`). The CLI accepts `--no-interaction` and `--fast-no-interaction` to opt out, plus the now-redundant `--with-interaction`. The printed `--help` wording for the interaction flags may lag the parsing logic; the parsing logic is authoritative, so trust the flag behavior over the help string.
 
 ---
 

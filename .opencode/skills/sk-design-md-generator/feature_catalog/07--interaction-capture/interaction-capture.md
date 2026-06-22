@@ -3,7 +3,7 @@ title: "Interaction Capture"
 description: "Capture hover, focus, active, and disabled component states from a live page; detect loading, empty, and error states; produce interaction data for DESIGN.md section 11 (State Matrix)."
 trigger_phrases:
   - "capture interaction states"
-  - "--with-interaction flag"
+  - "--fast-no-interaction flag"
   - "state matrix generation"
   - "hover focus active capture"
   - "interaction-capture.ts"
@@ -16,15 +16,15 @@ importance_tier: "normal"
 
 ## 1. OVERVIEW
 
-Records per-element interaction states that the extractor would otherwise miss in a static crawl. The module discovers interactive elements on the page, reads their default computed styles, then simulates hover, focus (click), focus-visible (Tab), active (mouse-down), and disabled states. It computes a style diff for every state and also detects loading, empty, and error states through class-name patterns, ARIA attributes, and text-content heuristics. The resulting `InteractionData` payload feeds into `tokens.json` and ultimately into DESIGN.md `## 11. State Matrix`, which is required by the v2 format specification. Extraction skips interaction capture by default: the `--with-interaction` CLI flag must be passed explicitly to enable it.
+Records per-element interaction states that the extractor would otherwise miss in a static crawl. The module discovers interactive elements on the page, reads their default computed styles, then simulates hover, focus (click), focus-visible (Tab), active (mouse-down), and disabled states. It computes a style diff for every state and also detects loading, empty, and error states through class-name patterns, ARIA attributes, and text-content heuristics. The resulting `InteractionData` payload feeds into `tokens.json` and ultimately into DESIGN.md `## 11. State Matrix`. Interaction capture runs by default: `extract.ts` sets `noInteraction = false`, so the capture runs unless you opt out with `--fast-no-interaction` or `--no-interaction`.
 
 ---
 
 ## 2. HOW IT WORKS
 
-### Gating
+### Flag control
 
-Interaction capture is gated by the `--with-interaction` / `--no-interaction` CLI flags in `extract.ts`. The default is `--no-interaction` (capture skipped). The `--fast` flag also sets `noInteraction = true`. To enable capture with fast mode, pass `--fast --with-interaction` so the later flag overrides the earlier one.
+Interaction capture is controlled by the interaction flags in `extract.ts`. The default is on: `noInteraction = false`, so capture runs unless you opt out. Pass `--no-interaction` or `--fast-no-interaction` to skip it. `--with-interaction` is still accepted but is now redundant — it requests the behavior that is already the default. `--fast` reduces crawl depth (`maxPages = 5`) but STILL captures interaction; `--fast-no-interaction` is the combined fast-crawl-and-skip-interaction mode (the old `--fast` behavior).
 
 ### Element discovery
 
@@ -60,7 +60,7 @@ The `InteractionData` payload contains an array of `InteractionCapture` objects 
 
 ### Validation enforcement
 
-The validator (`validate.ts`) checks that `## 11. State Matrix` is present and non-empty as part of its section-completeness scan. The v2 format specification (`design_md_format.md`) marks section 11 as required. An extraction run without `--with-interaction` can still produce a conformant DESIGN.md as long as section 11 is written with an explicit absence note (e.g., "Interaction state capture was not enabled for this extraction").
+Section 11 (State Matrix) is data-driven: the v2 format specification (`design_md_format.md`) marks it conditional on interaction data being captured. Because capture runs by default, most extractions populate section 11 from real data. When capture is skipped (via `--fast-no-interaction` or `--no-interaction`), section 11 is stamped ABSENT with an explicit absence note (e.g., `_No interaction data was extracted._`) rather than fabricated. The validator (`validate.ts`) flags a section-coverage violation only when section 11 is present and non-empty while its backing interaction tokens are empty and it was not stamped ABSENT.
 
 ---
 
@@ -76,7 +76,7 @@ The validator (`validate.ts`) checks that `## 11. State Matrix` is present and n
 
 | File | Type | Role |
 |---|---|---|
-| `../../manual_testing_playbook/08--interaction/interaction-state-matrix.md` | Manual playbook | Interaction capture end-to-end scenario — confirms --with-interaction flag produces interaction data that feeds DESIGN.md §11 State Matrix |
+| `../../manual_testing_playbook/08--interaction/interaction-state-matrix.md` | Manual playbook | Interaction capture end-to-end scenario — confirms default-on capture produces interaction data that feeds DESIGN.md §11 State Matrix |
 | (no automated test) | Automated test | Covered by the manual playbook scenario |
 
 ---
@@ -88,5 +88,5 @@ The validator (`validate.ts`) checks that `## 11. State Matrix` is present and n
 - Feature file path: `07--interaction-capture/interaction-capture.md`
 
 Related references:
-- [extract.md](../01--extract/extract.md) -- the extraction orchestrator that gates interaction capture via --with-interaction
+- [extract.md](../01--extract/extract.md) -- the extraction orchestrator that runs interaction capture by default (opt out with --fast-no-interaction / --no-interaction)
 - [feature-extractors.md](../06--feature-extractors/feature-extractors.md) -- the six per-feature detectors that run alongside interaction capture during extraction

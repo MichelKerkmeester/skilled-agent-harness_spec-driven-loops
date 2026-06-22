@@ -16,7 +16,7 @@ importance_tier: "normal"
 
 ## 1. OVERVIEW
 
-Confirms that a DESIGN.md is faithful to its source `tokens.json` before any completion claim. The validator runs three checks: hex accuracy (every hex in DESIGN.md traces to a token), section completeness (all required v2 core sections present and non-empty), and format consistency (hex casing, phantom colors, missing sections). An unvalidated DESIGN.md is a draft. Validation is always run after the write phase and can also run standalone on an existing DESIGN.md + tokens.json pair.
+Confirms that a DESIGN.md is faithful to its source `tokens.json` before any completion claim. The validator runs value-fidelity checks — hex accuracy (every hex in DESIGN.md traces to a token), section coverage (required v2 sections present; conditional sections present only when their backing tokens exist, otherwise stamped ABSENT), and format consistency (hex casing, phantom colors) — alongside semantic prose checks that catch invented narrative. It reports a dual score: a `valuesScore` for hex/section/format fidelity and a `claimsScore` for prose provenance. An unvalidated DESIGN.md is a draft. Validation is always run after the write phase and can also run standalone on an existing DESIGN.md + tokens.json pair.
 
 ---
 
@@ -39,9 +39,9 @@ The validator extracts every hex code from DESIGN.md (hex strings matching `#[0-
 
 Any hex in DESIGN.md that cannot be traced to one of these two sources is reported as a phantom color and must be removed or sourced before the document passes validation.
 
-### Section-completeness check
+### Section-coverage check
 
-The validator parses DESIGN.md section headings (`## N. Title`) and checks the required v2 core sections are present. The core section set covers sections 0 through 13, plus section 6.5 (Motion System). Sections 11 (State Matrix) and 12 (Iconography) are specifically checked. Dark-mode section 2.5 is checked only when `tokens.darkMode.supported === true`. The validator also confirms that each required section contains non-whitespace content.
+The validator parses DESIGN.md section headings (`## N. Title`) and checks the required v2 sections are present. Conditional sections (Brand §0, Depth §6, Motion §6.5, Voice §7, Accessibility §9, State Matrix §11, Iconography §12) are data-driven: they are expected only when their backing tokens exist. Dark-mode section 2.5 is checked only when `tokens.darkMode.supported === true`. The semantic section-coverage check flags a high-risk section that is present while its backing tokens are empty and the section was not stamped ABSENT — that combination is the signature of fabricated content. A section with no backing data should be stamped ABSENT, not filled.
 
 ### Format-consistency check
 
@@ -52,9 +52,13 @@ The validator flags:
 - `rgb()` and `hsl()` function notation as an invariant violation (hex-only rule).
 - Phantom colors: hex values in DESIGN.md with no matching token source.
 
+### Prose-discipline check
+
+A WARNING-tier semantic check flags interpretive prose that the tokens cannot support. It catches "gradient-as-depth" / "replaces shadow elevation" claims, comparison-to-other-systems framing ("unlike most systems" and similar), and an unbacked "focus is consistent" assertion (flagged when `tokens.json` shows `focusIndicator.captured === false` or `consistent === false`). These are warnings, not hard failures, but they drive down the `claimsScore`.
+
 ### Score and verdict
 
-The validator produces a score with per-finding messages and a pass/fail verdict. Zero hex mismatches and zero missing sections are required for a pass. Format violations are individually reported. The output guides targeted fixes in DESIGN.md before re-validation.
+The validator produces a dual score with per-finding messages and a pass/fail verdict: `valuesScore` covers hex, section, and format fidelity; `claimsScore` covers prose provenance (the prose-discipline and section-coverage findings). Zero hex mismatches and zero missing required sections are needed for a values pass; a `claimsScore` below 80 surfaces prominently so invented prose cannot hide behind clean hex fidelity. Format violations are individually reported. The output guides targeted fixes in DESIGN.md before re-validation.
 
 ### Escalation triggers
 

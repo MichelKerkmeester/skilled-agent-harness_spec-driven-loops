@@ -24,7 +24,11 @@ Crawls a live URL across five responsive viewports, collects every computed CSS 
 
 ### Crawl orchestration
 
-The orchestrator (`extract.ts`) accepts a URL and dispatch flags, then hands off to the crawl engine (`crawl.ts`). Playwright launches headless Chromium and navigates the target URL. The crawl spiders sub-pages from the same origin (5 pages at 8 concurrency with `--fast`; configurable via `--max-pages` and `--concurrency`). Each page is sampled at five viewport widths: 375px, 640px, 768px, 1024px, and 1440px. At each viewport, the DOM collector walks the rendered element tree and triggers `dom-collector.ts`.
+The orchestrator (`extract.ts`) accepts a URL and dispatch flags, then hands off to the crawl engine (`crawl.ts`). Playwright launches headless Chromium and navigates the target URL. The crawl spiders sub-pages from the same origin (default 8 pages; `--fast` reduces crawl depth to `maxPages = 5`; configurable via `--max-pages` and `--concurrency`). Each page is sampled at five viewport widths: 375px, 640px, 768px, 1024px, and 1440px. At each viewport, the DOM collector walks the rendered element tree and triggers `dom-collector.ts`.
+
+### Interaction capture flags
+
+Interaction state capture (hover, focus, active, disabled) runs by default: `extract.ts` sets `noInteraction = false`, so the extractor captures interaction states unless told to skip. Opt out with `--no-interaction` or `--fast-no-interaction`. `--with-interaction` is still accepted but is now redundant — it requests the behavior that is already the default. `--fast` reduces crawl depth (`maxPages = 5`) but STILL captures interaction; `--fast-no-interaction` is the combined fast-crawl-and-skip-interaction mode (the old `--fast` behavior). The full interaction-capture surface is documented in [interaction-capture.md](../07--interaction-capture/interaction-capture.md).
 
 ### DOM collection and CSS analysis
 
@@ -43,7 +47,7 @@ All values are recorded verbatim from the computed style -- no rounding, no norm
 
 During the crawl, six detectors run inline and write their findings into the token structure:
 
-- `a11y-extract.ts` calculates contrast ratios between sampled text/background pairs, records focus-ring styles, and measures touch-target dimensions.
+- `a11y-extract.ts` calculates contrast ratios between sampled text/background pairs, records focus-ring styles, and measures touch-target dimensions. A per-page async pass also extracts page language, skip-link presence, tab order, alt-text coverage, and reduced-motion support to enrich the §9 Accessibility data.
 - `dark-mode-detect.ts` probes `prefers-color-scheme` media queries, looks for `.dark` / `[data-theme="dark"]` class/attribute toggles, and records variable-value diffs between light and dark modes.
 - `framework-detect.ts` scans for Tailwind class prefixes, Bootstrap grid markers, and custom CSS variable systems.
 - `icon-detect.ts` inspects SVG elements and icon-font usage to identify library signatures (Heroicons v2, Lucide, Font Awesome, custom SVG) and records stroke weights and grid sizes.

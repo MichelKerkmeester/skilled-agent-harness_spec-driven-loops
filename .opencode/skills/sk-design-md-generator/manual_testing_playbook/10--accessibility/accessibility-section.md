@@ -13,6 +13,10 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 This scenario validates the accessibility section's presence and absence-honesty for `A11Y-001`. SKILL.md §4 ALWAYS rule 7 requires an accessibility section in DESIGN.md, noting absence rather than inventing values when no a11y data was captured. The test confirms `a11y-extract.ts` captures contrast ratios, focus indicator styles, minimum touch-target sizes, ARIA role statistics, and alt-text coverage into `tokens.json` under the `accessibility` object, and that DESIGN.md §9 Accessibility Contract reflects exactly that data — populated fields where data exists, explicit absence notes where it does not.
 
+The async accessibility pass (`extractA11yAsync(page)`) now populates the page-dependent fields that were previously null: page language (`langAttribute`), skip-link presence (`skipLinkDetected`), tab order (`tabOrder`), alt-text coverage (`altTextCoverage`), plus reduced-motion support (`reducedMotionSupport`). §9 is richer as a result, so the scenario can assert these fields appear in §9 when the async pass captured them.
+
+Focus-indicator honesty: `focusIndicator` now carries a `captured` boolean. On empty focus data it reports `captured: false` and `consistent: false` rather than fabricating `consistent: true`. A faithful DESIGN.md §9 must NOT assert that focus indicators are "consistent" unless `focusIndicator.captured` is true; when capture failed, §9 must note the absence honestly.
+
 ### Why This Matters
 
 A fabricated accessibility section is worse than none. If DESIGN.md claims contrast ratios that were never measured, downstream AI agents and developers build against false guarantees. Conversely, if real a11y data is captured but DESIGN.md omits it, the design system reference loses critical accessibility information. This scenario guards against both fabrication and omission.
@@ -26,10 +30,10 @@ Operators run the exact command sequence for `A11Y-001` and confirm the expected
 - Objective: confirm DESIGN.md §9 mirrors a11y-extract.ts output faithfully, never inventing values
 - Real user request: `Does the design system capture accessibility data?`
 - Prompt: `Does the design system capture accessibility data?`
-- Expected execution process: inspect `<--output>/tokens.json` for the `accessibility` object, then confirm DESIGN.md §9 Accessibility Contract reflects exactly the captured fields (contrastPairs, focusIndicator, minTouchTarget, minFontSize, ariaRoleStats, reducedMotionSupport, tabOrder, langAttribute, skipLinkDetected, altTextCoverage)
-- Expected signals: `tokens.json` either has a populated `accessibility` object (with at least `contrastPairs` and `focusIndicator`) OR has no `accessibility` key; DESIGN.md §9 mirrors whatever the tokens contain, using "Not captured" or "No data available" language when fields are absent
+- Expected execution process: inspect `<--output>/tokens.json` for the `accessibility` object, then confirm DESIGN.md §9 Accessibility Contract reflects exactly the captured fields (contrastPairs, focusIndicator with its `captured`/`consistent` flags, minTouchTarget, minFontSize, ariaRoleStats, reducedMotionSupport, tabOrder, langAttribute, skipLinkDetected, altTextCoverage)
+- Expected signals: `tokens.json` either has a populated `accessibility` object (with at least `contrastPairs` and `focusIndicator`) OR has no `accessibility` key; the async fields (`langAttribute`, `skipLinkDetected`, `tabOrder`, `altTextCoverage`, `reducedMotionSupport`) are populated when the async pass captured them; `focusIndicator.captured` reflects whether focus styles were actually captured; DESIGN.md §9 mirrors whatever the tokens contain, using "Not captured" or "No data available" language when fields are absent, and never asserts focus indicators are "consistent" when `focusIndicator.captured` is false
 - Desired user-visible outcome: the agent reports which a11y fields were captured and confirms DESIGN.md §9 matches, with no invented values
-- Pass/fail: PASS if a11y data in tokens.json is reflected truthfully in DESIGN.md §9 OR if both lack a11y data and §9 honestly notes the absence; FAIL if a11y data exists in tokens.json but §9 omits or contradicts it OR §9 contains values not present in tokens.json
+- Pass/fail: PASS if a11y data in tokens.json is reflected truthfully in DESIGN.md §9 OR if both lack a11y data and §9 honestly notes the absence; FAIL if a11y data exists in tokens.json but §9 omits or contradicts it OR §9 contains values not present in tokens.json OR §9 asserts focus indicators are "consistent" while `focusIndicator.captured` is false
 
 ---
 
@@ -46,7 +50,7 @@ Operators run the exact command sequence for `A11Y-001` and confirm the expected
 PRE: Wave 1 (SETUP-001) must be PASS. A prior extraction must have produced `<--output>/tokens.json` and `DESIGN.md`; if none exists, run the full extract-write pipeline first.
 
 1. `bash: ls <--output>/tokens.json <--output>/DESIGN.md` (run from `tool/`)  # -> both files exist
-2. `bash: node -e "const t = require('./<--output>/tokens.json'); const a = t.accessibility; if (!a) { console.log('NO_ACCESSIBILITY_OBJECT'); } else { console.log('contrastPairs:', a.contrastPairs?.length ?? 0, '| focusIndicator:', JSON.stringify(a.focusIndicator?.style ?? {}), '| minTouchTarget:', JSON.stringify(a.minTouchTarget), '| minFontSize:', a.minFontSize, '| ariaRoleStats:', a.ariaRoleStats ? Object.keys(a.ariaRoleStats).length : 0, 'roles', '| reducedMotionSupport:', a.reducedMotionSupport, '| tabOrder:', JSON.stringify(a.tabOrder), '| langAttribute:', a.langAttribute, '| skipLinkDetected:', a.skipLinkDetected, '| altTextCoverage:', JSON.stringify(a.altTextCoverage)) }"` (run from `tool/`)  # -> prints a11y field counts
+2. `bash: node -e "const t = require('./<--output>/tokens.json'); const a = t.accessibility; if (!a) { console.log('NO_ACCESSIBILITY_OBJECT'); } else { console.log('contrastPairs:', a.contrastPairs?.length ?? 0, '| focusIndicator.captured:', a.focusIndicator?.captured, '| focusIndicator.consistent:', a.focusIndicator?.consistent, '| focusIndicator.style:', JSON.stringify(a.focusIndicator?.style ?? {}), '| minTouchTarget:', JSON.stringify(a.minTouchTarget), '| minFontSize:', a.minFontSize, '| ariaRoleStats:', a.ariaRoleStats ? Object.keys(a.ariaRoleStats).length : 0, 'roles', '| reducedMotionSupport:', a.reducedMotionSupport, '| tabOrder:', JSON.stringify(a.tabOrder), '| langAttribute:', a.langAttribute, '| skipLinkDetected:', a.skipLinkDetected, '| altTextCoverage:', JSON.stringify(a.altTextCoverage)) }"` (run from `tool/`)  # -> prints a11y field counts including focusIndicator.captured/consistent
 3. agent reads `<--output>/DESIGN.md` §9 Accessibility Contract
 4. agent compares step 2 output against step 3 content, reporting field-by-field matches
 5. if tokens.json has no `accessibility` object, agent confirms DESIGN.md §9 notes absence explicitly
@@ -58,6 +62,8 @@ PRE: Wave 1 (SETUP-001) must be PASS. A prior extraction must have produced `<--
 ### Optional Supplemental Checks
 
 To test absence-honesty directly, extract from a minimal site with no interactive elements (e.g., a single-paragraph page) and confirm `tokens.json` has no `accessibility` object and DESIGN.md §9 reads "No accessibility data was captured" or equivalent. To test a full a11y capture, extract from a WCAG-compliant site like gov.uk or a known design-system page and confirm contrast ratios, ARIA roles, and touch-target sizes are populated and traceable.
+
+To test focus-indicator honesty, extract from a site where focus styles cannot be captured and confirm `focusIndicator.captured` is `false` and `consistent` is `false` in tokens.json — then confirm DESIGN.md §9 does NOT claim focus indicators are "consistent" and instead notes the absence. To test the async fields, extract from a site with a `lang` attribute and a skip link and confirm `langAttribute`, `skipLinkDetected`, `tabOrder`, and `altTextCoverage` are populated in tokens.json and mirrored in §9.
 
 ---
 

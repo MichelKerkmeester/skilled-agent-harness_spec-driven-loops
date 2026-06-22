@@ -195,9 +195,10 @@ Options:
   --wait-for <strategy>  Wait strategy: networkidle (default), css, selector:<css>
   --merge-with <path>    Merge with existing tokens.json (incremental extraction)
   --no-dark-mode         Skip dark mode detection
-  --no-interaction       Skip interaction state capture (default: skipped)
-  --with-interaction     Enable interaction state capture (hover/focus/active)
-  --fast                 Fast mode: maxPages=5, noInteraction, concurrency=8
+  --no-interaction       Skip interaction state capture (capture is ON by default)
+  --with-interaction     Enable interaction state capture (now the default; kept for clarity)
+  --fast                 Fast mode: maxPages=5, concurrency=8 (still captures interaction)
+  --fast-no-interaction  Fast mode AND skip interaction capture (the old --fast behavior)
   --verbose              Detailed logging
   --help, -h             Show this help
 `);

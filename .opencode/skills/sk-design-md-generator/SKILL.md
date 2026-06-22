@@ -76,7 +76,7 @@ TASK CONTEXT
     +- STEP 0: Detect pipeline phase -> EXTRACT_WRITE | VALIDATE | REPORT | STUDY
     +- STEP 1: Verify tool readiness (tool/node_modules + playwright chromium installed)
     +- Phase 1: EXTRACT — crawl URL across 5 viewports, emit tokens.json
-    +- Phase 2: WRITE — produce DESIGN.md conforming to v2 format, every value verbatim
+    +- Phase 2: WRITE — run build-write-prompt.ts (pre-renders §2/§3/§6, PRESENT/ABSENT manifest), then produce DESIGN.md conforming to v2 format, every value verbatim
     +- Phase 3: VALIDATE — check hex accuracy + section completeness via validate.ts
     +- Phase 4 (optional): REPORT — render visual HTML preview + diff report
 ```
@@ -216,8 +216,14 @@ EXTRACT (Phase 1)
     └─ Output: tokens.json (verbatim measured values)
          ↓
 WRITE (Phase 2)
+    ├─ Run build-write-prompt.ts FIRST: it pre-renders §2 Color, §3 Typography, §6 Depth
+    │    deterministically from tokens (doc-as-view, no AI on the value tables) via formatters.ts
+    │    and emits a PRESENT/ABSENT manifest for the data-gated sections
     ├─ Read tokens.json and tool/resources/design_md_format.md for the v2 section specification
-    ├─ Compose 17-section DESIGN.md, copying EVERY numeric value verbatim from tokens.json
+    ├─ Paste the pre-rendered §2/§3/§6 tables UNCHANGED; copy every other numeric value verbatim
+    ├─ Data-driven sections (§0, §6, §6.5, §7, §9, §11, §12) are gated on token presence:
+    │    PRESENT → write from tokens; ABSENT → stamp `_No <X> data was extracted._`, never invent
+    ├─ Every interpretive claim cites a token or is labelled `[INFERRED]`
     ├─ L1 (permanent) + L2 (system) tokens go in main sections
     ├─ L3 (campaign) tokens marked "subject to change"
     ├─ L4 (content) tokens excluded entirely
@@ -250,10 +256,13 @@ REPORT (Phase 4, optional)
 cd tool && npm install && npx playwright install chromium
 
 # Phase 1 — extract. --fast crawls 5 pages at 8 concurrency (default is 8 pages).
+# Interaction capture (hover/focus/active) runs by DEFAULT, including under --fast.
 # tokens.json is written to <--output>/.
 npx ts-node scripts/extract.ts <url> --fast --output .opencode/specs/<track>/<packet>/output
 
 # Phase 2 — write DESIGN.md per tool/resources/design_md_format.md, every value from tokens.json.
+# Run build-write-prompt.ts first to pre-render §2/§3/§6 and get the PRESENT/ABSENT manifest:
+npx ts-node scripts/build-write-prompt.ts <--output>/tokens.json
 
 # Phase 3 — validate (DESIGN.md first, tokens.json second):
 npx ts-node scripts/validate.ts <DESIGN.md> <--output>/tokens.json
@@ -264,7 +273,7 @@ npx ts-node scripts/report-gen.ts <--output>/tokens.json <dir> <DESIGN.md>
 npx ts-node scripts/preview-gen.ts <--output>/tokens.json <dir>
 ```
 
-Real extract flags (see `tool/README.md`): `--fast` (5 pages, 8 concurrency), `--max-pages <n>` (default 8), `--concurrency <n>` (default 5), `--with-interaction` / `--no-interaction`, `--no-dark-mode` (skip dark detection), `--wait-for <strategy>`, `--extra-urls`, `--merge-with`, `--output <dir>`, `--verbose`.
+Real extract flags (see `tool/README.md`): `--fast` (5 pages, 8 concurrency — still captures interaction), `--max-pages <n>` (default 8), `--concurrency <n>` (default 5), `--with-interaction` (the default — capture hover/focus/active states), `--no-interaction` (opt OUT of interaction capture), `--fast-no-interaction` (fast crawl AND skip interaction — the old `--fast` behavior), `--no-dark-mode` (skip dark detection), `--wait-for <strategy>`, `--extra-urls`, `--merge-with`, `--output <dir>`, `--verbose`. Interaction capture is **default-on**; opt out only with `--no-interaction` or `--fast-no-interaction`.
 
 ### Token Stability Classes (L1–L4)
 
@@ -406,7 +415,7 @@ The router (Section 2) discovers resource and reference docs dynamically. Start 
 
 Examples: `tool/examples/{stripe,vercel,linear,supabase}/` provide gold-standard DESIGN.md + tokens.json pairs, loaded in STUDY intent. Study the DESIGN.md alongside the matching tokens.json to understand the format conventions.
 
-Scripts: the embedded `tool/scripts/` directory contains 19 TypeScript modules. The primary entry points are `extract.ts` (Phase 1), `validate.ts` (Phase 3), `report-gen.ts`, and `preview-gen.ts` (Phase 4). The remaining modules are internal pipeline stages called by the orchestrator.
+Scripts: the embedded `tool/scripts/` directory contains 20 TypeScript modules. The primary entry points are `extract.ts` (Phase 1), `build-write-prompt.ts` (Phase 2 doc-as-view: pre-renders §2/§3/§6 and emits the PRESENT/ABSENT manifest), `validate.ts` (Phase 3), `report-gen.ts`, and `preview-gen.ts` (Phase 4). `formatters.ts` holds the deterministic §2 Color / §3 Typography / §6 Depth renderers that `build-write-prompt.ts` calls. The remaining modules are internal pipeline stages called by the orchestrator.
 
 Related skills: `sk-design-interface` (the design-judgment sibling — invents new direction, consumes DESIGN.md as ground truth), `sk-code` (consumes DESIGN.md as the implementation contract), `mcp-figma` (extracts from Figma Desktop, not live URLs), `mcp-open-design` (extracts from Open Design projects), `mcp-chrome-devtools` (for browser inspection and visual preview, not structured extraction), and `system-spec-kit` when the extraction is part of a tracked packet.
 

@@ -59,6 +59,8 @@ PRE: A prior extraction (EXTRACT-001 or equivalent) must have produced a valid `
 
 Test additional negative controls: plant a 3-digit hex (`#333`) and confirm it is flagged as `hex-format`; plant an uppercase hex (`#FF0000`) and confirm it is flagged as `hex-format` (should be lowercase); plant a font weight word (`bold`) in backticks and confirm it is flagged as `weight-format` (should be numeric). Remove a required v2 core section from the DESIGN.md and confirm `checkSectionCompleteness` reports it as missing.
 
+Prose-discipline / dual-score assertion: `validate.ts` reports two scores — `valuesScore` (hex/section/format/stability fidelity) and `claimsScore` (prose provenance) — and the score line prints `(values X/100, claims Y/100)`. Plant a prose line such as "the gradient replaces shadow elevation" (a `gradient-as-depth` claim) into a copy of the DESIGN.md whose `tokens.json` has no shadow tokens, re-run validation, and confirm a `prose-fabrication` WARNING is raised and `claimsScore` drops below `valuesScore`. Likewise, an asserted "focus indicators are consistent" with `focusIndicator.captured = false` (or `consistent = false`) in tokens.json should raise a `prose-fabrication` WARNING. These prose checks are WARNING-tier (never a hard fail), so the run can still pass on values while honestly lowering the claims score.
+
 ---
 
 ## 4. SOURCE FILES
@@ -73,7 +75,7 @@ Test additional negative controls: plant a 3-digit hex (`#333`) and confirm it i
 
 | File | Role |
 |---|---|
-| `../../tool/scripts/validate.ts` | Fidelity validator — `checkPhantomColors`, `checkUnknownFonts`, `checkFormatConsistency`, `checkSectionCompleteness` |
+| `../../tool/scripts/validate.ts` | Fidelity validator — `checkPhantomColors`, `checkStabilityGating`, `checkUnknownFonts`, `checkFormatConsistency`, `checkSectionCompleteness`, plus semantic checks `checkProseDiscipline` and `checkSectionCoverage` (WARNING-tier); emits dual `valuesScore` + `claimsScore` |
 | `../../tool/scripts/cluster.ts` | Token classifier — produces the colorTokens that validate.ts checks against |
 | `../../tool/scripts/types.ts` | Shared type definitions — `DesignTokens`, `ValidationResult`, `ValidationIssue` |
 | `../../tool/resources/design_md_format.md` | v2 DESIGN.md section specification — defines the 17 required sections |

@@ -58,7 +58,7 @@ PRE: Wave 1 (SETUP-001) must be PASS. The `tool/node_modules/` directory must ex
 
 ### Optional Supplemental Checks
 
-If the user requests a deeper crawl, re-run with `--max-pages 10` (no `--fast`) and confirm more tokens are captured. If the user wants interaction-state tokens, add `--with-interaction` and confirm hover/focus/active tokens appear in the output with `stabilityClass: "L3"`. The `--fast` flag is sufficient for the default scenario.
+If the user requests a deeper crawl, re-run with `--max-pages 10` (no `--fast`) and confirm more tokens are captured. Interaction-state capture is default-on, so a plain `--fast` run already captures hover/focus/active tokens; confirm they appear in the output with `stabilityClass: "L3"`. To deliberately skip interaction capture (the old `--fast` behavior), use `--fast-no-interaction` (or `--no-interaction`) and confirm the interaction block is absent. The `--fast` flag is sufficient for the default scenario.
 
 ---
 

@@ -16,7 +16,9 @@ importance_tier: "normal"
 
 ## 1. OVERVIEW
 
-Produces the 17-section `DESIGN.md` that AI agents consume as a hallucination-proof design-system reference. This is the highest-risk phase: an agent reading `tokens.json` must transcribe every value without estimating, rounding, normalizing, or inventing. The cardinal fidelity rule is the single non-negotiable contract of the skill. The writer loads the v2 section specification from `tool/resources/design_md_format.md` and the voice/tone rules from `tool/resources/writing_style_guide.md` before composing. The write-phase prompt template (`assets/design_md_prompt_template.md`) and the cardinal rules card (`assets/cardinal_rules_card.md`) front-load the fidelity contract.
+Produces the v2 `DESIGN.md` that AI agents consume as a hallucination-proof design-system reference. This is the highest-risk phase: an agent reading `tokens.json` must transcribe every value without estimating, rounding, normalizing, or inventing. The cardinal fidelity rule is the single non-negotiable contract of the skill. The writer loads the v2 section specification from `tool/resources/design_md_format.md` and the voice/tone rules from `tool/resources/writing_style_guide.md` before composing. The write-phase prompt template (`assets/design_md_prompt_template.md`) and the cardinal rules card (`assets/cardinal_rules_card.md`) front-load the fidelity contract.
+
+To remove the AI from the highest-risk value tables, the phase runs `tool/scripts/build-write-prompt.ts` first: it pre-renders the deterministic value sections (§2 Color, §3 Typography, §6 Depth) directly from tokens via `tool/scripts/formatters.ts` and emits a PRESENT/ABSENT manifest for the data-gated sections. The WRITE phase pastes those pre-rendered tables unchanged and writes prose only for the remaining sections.
 
 ---
 
@@ -25,6 +27,10 @@ Produces the 17-section `DESIGN.md` that AI agents consume as a hallucination-pr
 ### Cardinal fidelity rule
 
 Every hex code, pixel value, font weight, box shadow, border radius, and spacing value in `DESIGN.md` must be copied verbatim from `tokens.json`. No estimation, no rounding, no invention, no close-enough substitution. If a value is not in `tokens.json`, it does not appear in the document. This rule is what makes `DESIGN.md` a trustworthy reference: every claim is traceable to a measured browser value.
+
+### Doc-as-view value rendering
+
+The value-bearing tables are rendered deterministically, not authored by the AI. `tool/scripts/formatters.ts` renders §2 Color, §3 Typography, and §6 Depth straight from tokens — functional naming, L4 excluded, zero AI in those tables. `tool/scripts/build-write-prompt.ts` pre-renders those sections and emits a PRESENT/ABSENT manifest for the data-gated sections; the WRITE phase runs it first and pastes the pre-rendered tables unchanged. The AI composes only the interpretive and non-value sections, and must obey the manifest: PRESENT sections are written from tokens, ABSENT sections are stamped, not invented.
 
 ### Hex format requirements
 
@@ -40,15 +46,19 @@ A dark-mode section (section 2.5) appears only when `tokens.json` contains a det
 
 ### Accessibility section
 
-Section 9 (Accessibility Contract) is always present and drawn from `tokens.json` a11y data: contrast ratios, focus indicator styles, touch-target dimensions, ARIA patterns. If the extractor captured no a11y data, note the absence rather than inventing values.
+Section 9 (Accessibility Contract) is gated on `a11yTokens` presence and drawn from `tokens.json` a11y data: contrast ratios, focus indicator styles, touch-target dimensions, page language, skip-link presence, tab order, alt-text coverage, reduced-motion support, and ARIA patterns. The focus-indicator claim is provenance-checked: `focusIndicator.captured` and `focusIndicator.consistent` must be true before the document may call focus "consistent." If the extractor captured no a11y data, stamp the section ABSENT rather than inventing values.
 
-### The 17-section contract
+### Data-driven sections
 
-The v2 DESIGN.md format specifies 14 numbered core sections (0-13), one half-section (6.5 Motion System), and 4 optional sections (14-17). Every core section is present and non-empty. Section numbering follows the specification in `tool/resources/design_md_format.md` exactly. The file opens with two HTML comment lines (generation date, source URL, page count, framework detection, format version).
+Conditional sections are gated on token presence, not authored to fill a fixed count. Brand (§0), Depth (§6), Motion (§6.5), Voice (§7), Accessibility (§9), State Matrix (§11), and Iconography (§12) are written only when their backing tokens exist; when a section has no backing tokens it is stamped ABSENT with a one-line `_No <X> data was extracted._` instead of being invented. Interpretive claims — relationships, named principles, or calling something "consistent" — must cite a real token value or be labeled `[INFERRED]`. The earlier fabrication mandates have been removed: there is no required comparative framing, no required named principle, and no rule that "all 17 sections must be present and non-empty." Anti-pattern AP-29 (Interpretive Fabrication) governs this contract.
+
+### Section numbering and header
+
+The v2 DESIGN.md format specifies numbered core sections plus conditional and optional sections, with section numbering following the specification in `tool/resources/design_md_format.md` exactly. The file opens with two HTML comment lines (generation date, source URL, page count, framework detection, format version).
 
 ### Write-phase prompt
 
-The prompt template in `assets/design_md_prompt_template.md` provides a ready-to-fill composition prompt. Fill the three placeholders (domain label, tokens.json path, DESIGN.md output path), load the format spec and writing style guide alongside, and hand to the writing agent. The prompt encodes all six cardinal rules inline so the run stays faithful.
+The WRITE phase runs `tool/scripts/build-write-prompt.ts` first to pre-render the deterministic value sections and the PRESENT/ABSENT manifest. The prompt template in `assets/design_md_prompt_template.md` then provides a ready-to-fill composition prompt for the remaining sections. Fill the three placeholders (domain label, tokens.json path, DESIGN.md output path), load the format spec and writing style guide alongside, paste the pre-rendered tables unchanged, and hand to the writing agent. The prompt encodes all six cardinal rules inline so the run stays faithful.
 
 ### Pre-validate self-check
 
@@ -62,16 +72,20 @@ The cardinal rules card (`assets/cardinal_rules_card.md`) is a one-page checklis
 
 | File | Layer | Role |
 |---|---|---|
-| `assets/design_md_prompt_template.md` | Script | Write-phase prompt encoding the cardinal rules and the 17-section contract |
+| `tool/scripts/build-write-prompt.ts` | Script | Pre-renders the deterministic value sections and emits the PRESENT/ABSENT manifest; run first by the WRITE phase |
+| `tool/scripts/formatters.ts` | Script | Deterministic doc-as-view renderers for §2 Color, §3 Typography, and §6 Depth from tokens (functional naming, L4 excluded) |
+| `assets/design_md_prompt_template.md` | Script | Write-phase prompt encoding the cardinal rules and the section contract |
 | `assets/cardinal_rules_card.md` | Script | One-page fidelity checklist for pre-validate self-check |
 | `tool/resources/design_md_format.md` | Shared | Authoritative v2 DESIGN.md section specification |
+| `tool/resources/anti_patterns.md` | Shared | Authoring anti-patterns including AP-29 Interpretive Fabrication |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
 | `../../manual_testing_playbook/03--fidelity/verbatim-value-fidelity.md` | Manual playbook | Cardinal verbatim-value rule enforcement — confirms every value is copied verbatim with no estimation |
-| (no automated test) | Automated test | Covered by the manual playbook scenario |
+| `tool/scripts/__tests__/formatters.test.ts` | Automated test | Doc-as-view formatter unit tests for §2 Color, §3 Typography, and §6 Depth rendering |
+| `tool/scripts/__tests__/build-write-prompt.test.ts` | Automated test | Pre-render and PRESENT/ABSENT manifest unit tests |
 
 ---
 

@@ -23,6 +23,8 @@ Use this checklist to validate every generated design system document before del
 
 Use this checklist to validate every generated design system document before delivery. Each item includes verification steps, common failure modes, and fixes.
 
+**Data-driven, not fabrication-driven.** Sections are gated on token presence. When a section has no backing token data, stamp it ABSENT (`_No <X> data was extracted._`) — never invent content, a minimum count, comparative framing, or a named principle to fill it. The conditional sections (§0, §6, §6.5, §7, §9, §11, §12) are ABSENT-stamped when their backing token field is empty; "all sections present and non-empty" is a data-driven expectation, not a mandate to fabricate. Every interpretive claim must cite a token or be labelled `[INFERRED]`. `validate.ts` enforces this with prose-discipline and section-coverage checks (both WARNING-tier) and reports a dual score: `valuesScore` (hex/section/format fidelity) and `claimsScore` (prose provenance).
+
 ---
 
 ## 2. Numerical Accuracy
@@ -125,35 +127,35 @@ Use this checklist to validate every generated design system document before del
 
 ## 4. Completeness
 
-- [ ] **[CP-01]** All 9 core sections are present
-  - Check: Verify document contains: Overview, Color, Typography, Spacing, Components, Shadows/Depth, Layout, Dark Mode (if applicable), Agent Prompt Guide
-  - Fail reason: LLM omitted a section because the extraction data was sparse for that category
-  - Fix: Include all sections; use "Limited data extracted" notes rather than omitting entire sections
+- [ ] **[CP-01]** Sections present per the data-driven gate
+  - Check: Core value sections (Color, Typography, Spacing, Components, Shadows/Depth, Layout) are present when their tokens exist. Conditional sections (§0, §6, §6.5, §7, §9, §11, §12) are present-and-filled when backing tokens exist, or ABSENT-stamped (`_No <X> data was extracted._`) when the backing field is empty. Dark Mode is omitted entirely when no dark palette was detected.
+  - Fail reason: LLM either omitted a section with backing data, or invented content for a section with no backing data
+  - Fix: Drive section presence from token presence. When data exists, write the section; when it is empty, stamp ABSENT rather than fabricating filler. Do not require a fixed section count.
 
-- [ ] **[CP-02]** Minimum 8 colors documented
-  - Check: Count distinct color entries in the color section
-  - Fail reason: LLM documented only primary/accent colors and skipped neutrals, borders, or backgrounds
-  - Fix: Include full neutral scale, semantic colors (success/error/warning/info), and all surface colors
+- [ ] **[CP-02]** Every extracted color is documented
+  - Check: Count distinct color entries; cross-check against the L1/L2 color tokens in tokens.json
+  - Fail reason: LLM documented only primary/accent colors and skipped neutrals, borders, or backgrounds that ARE present in the tokens
+  - Fix: Include every extracted L1/L2 color (neutrals, borders, surfaces, semantic colors). Do not pad to a minimum count with invented colors; if the system genuinely has few colors, document only those.
 
-- [ ] **[CP-03]** Typography table has 8+ rows
-  - Check: Count rows in the typography scale table
-  - Fail reason: LLM collapsed similar sizes or omitted caption/overline/label styles
-  - Fix: Document every distinct text style observed: display, h1-h6, body, small, caption, label, overline, code
+- [ ] **[CP-03]** Typography table covers every extracted level
+  - Check: Compare table rows against the typography levels in tokens.json
+  - Fail reason: LLM collapsed distinct extracted sizes into fewer rows
+  - Fix: Document every distinct text style present in the tokens. Do not invent caption/overline/label styles to reach a row count if they were not extracted.
 
 - [ ] **[CP-04]** At least 3 component types documented
   - Check: Count distinct component categories (Button, Input, Card, Navigation, etc.)
   - Fail reason: LLM only documented buttons because they had the richest extraction data
   - Fix: Document all identifiable components; even minimal entries (base style + one state) add value
 
-- [ ] **[CP-05]** Hover/focus states documented for interactive components
-  - Check: Every button, link, and input has at least hover and focus state descriptions
-  - Fail reason: LLM documented only the default/resting state
-  - Fix: Extract or infer hover (color shift, shadow change), focus (outline, ring), active (scale, darken) states
+- [ ] **[CP-05]** Captured interaction states are documented; uncaptured states are not invented
+  - Check: Interaction capture runs by default, so hover/focus/active data is normally present in tokens.json — document the states that were captured for each interactive component
+  - Fail reason: LLM documented only the default/resting state despite captured states, OR fabricated states that were not captured
+  - Fix: Document hover/focus/active from the captured interaction tokens. If a state was not captured, note its absence rather than inferring a color shift or ring. Never assert focus consistency when `focusIndicator.captured` is false.
 
-- [ ] **[CP-06]** Shadow scale has 3+ levels
-  - Check: Count distinct shadow definitions in the depth/shadow section
-  - Fail reason: LLM documented only one shadow value
-  - Fix: Look for shadows across components (cards, modals, dropdowns, buttons); document each unique shadow
+- [ ] **[CP-06]** Every extracted shadow is documented; flat systems say so
+  - Check: Compare the depth/shadow section against the shadow tokens in tokens.json
+  - Fail reason: LLM documented fewer shadows than were extracted, OR invented a multi-level scale for a system with zero or one shadow
+  - Fix: Document each unique extracted shadow. When zero shadows were extracted, the §6 Depth section is rendered FLAT by construction (no box-shadow elevation) — do not fabricate an elevation scale, and never label a gradient as depth.
 
 - [ ] **[CP-07]** Border-radius scale documented
   - Check: A radius scale or set of radius tokens is present
@@ -180,10 +182,10 @@ Use this checklist to validate every generated design system document before del
   - Fail reason: LLM focused on spacing and missed the overall layout container dimensions
   - Fix: Extract max-width from container/wrapper elements; document content width at each breakpoint if available
 
-- [ ] **[CP-12]** Agent prompt guide has 5+ examples
-  - Check: Count example prompts in the agent guide section
-  - Fail reason: LLM wrote 2-3 generic examples instead of covering different design scenarios
-  - Fix: Include examples for: color usage, typography pairing, spacing, component creation, layout, responsive, dark mode
+- [ ] **[CP-12]** Agent prompt guide examples are grounded in extracted tokens
+  - Check: Each example prompt embeds real token values from tokens.json (hex, px, font names)
+  - Fail reason: LLM wrote generic examples not tied to the extracted system, or padded to a count with invented scenarios
+  - Fix: Write examples that exercise the system's actual extracted tokens (color usage, typography pairing, spacing, component creation, layout, responsive, dark mode where data exists). Cover the scenarios the tokens support rather than meeting a fixed example count.
 
 ---
 
@@ -204,10 +206,10 @@ Use this checklist to validate every generated design system document before del
   - Fail reason: LLM described characteristics abstractly ("uses generous spacing") without numbers
   - Fix: Embed values inline: "generous vertical rhythm anchored at 48px section gaps and 24px component spacing"
 
-- [ ] **[DQ-04]** Color personality descriptions are present
-  - Check: Each primary/accent color has a personality description beyond just the role name
-  - Fail reason: LLM listed colors as a table without explaining the palette's character or relationships
-  - Fix: Add 1-2 sentences per color group explaining warmth/coolness, saturation strategy, and emotional register
+- [ ] **[DQ-04]** Color descriptions stay grounded in token data
+  - Check: Any description of a color's character cites a measurable property (hue, saturation, usage frequency) from the tokens; it is not a free-floating "personality" claim
+  - Fail reason: LLM invented an emotional register or palette "character" with no token backing
+  - Fix: Describe only what the tokens support (e.g., "low-saturation neutral used on 62% of surfaces"). Do not fabricate a personality narrative; an interpretive read must cite a token or be labelled `[INFERRED]`. A bare color table with no descriptive prose is acceptable when the data does not support more.
 
 - [ ] **[DQ-05]** Numeric values are embedded in prose, not just tables
   - Check: The descriptive paragraphs contain inline values, not just "see table below"
@@ -219,10 +221,10 @@ Use this checklist to validate every generated design system document before del
   - Fail reason: LLM wrote vague do's like "Use consistent spacing"
   - Fix: Make specific: "Use 8px padding inside badges and 16px padding inside cards"
 
-- [ ] **[DQ-07]** Don'ts are counter-intuitive or surprising
-  - Check: At least 3 don'ts would surprise someone unfamiliar with this design system
-  - Fail reason: LLM listed obvious don'ts ("Don't use random colors") that apply to any system
-  - Fix: Derive don'ts from the system's specific constraints: "Don't pair the accent orange with the warning yellow — use accent only on interactive elements"
+- [ ] **[DQ-07]** Don'ts are derived from token evidence, not a surprise quota
+  - Check: Each don't traces to a specific extracted constraint (a token relationship, a usage pattern, a frequency)
+  - Fail reason: LLM either listed generic don'ts that apply to any system, or invented "surprising" constraints with no token backing to hit a count
+  - Fix: Write only the don'ts the extracted data supports, citing the token (e.g., "accent orange appears only on interactive elements — don't use it for static text"). There is no required number of surprising don'ts; an inference with no token backing is a fabrication.
 
 - [ ] **[DQ-08]** Agent prompts are self-contained
   - Check: Each example prompt includes enough context that an AI agent could act on it without reading the rest of the document
@@ -239,29 +241,29 @@ Use this checklist to validate every generated design system document before del
   - Fail reason: LLM listed "hover, focus, active" without describing the visual transitions
   - Fix: Describe transitions: "Hover: background shifts from #2563eb to #1d4ed8, shadow adds 0 2px 4px rgba(0,0,0,0.1)"
 
-- [ ] **[DQ-11]** Typography principles are explained
-  - Check: A rationale exists for the type scale — why these sizes, why this line-height strategy
-  - Fail reason: LLM presented the type scale as raw data without explaining the system logic
-  - Fix: Explain the scale relationship (modular, linear, custom), line-height strategy, and intended reading contexts
+- [ ] **[DQ-11]** Any typography rationale is backed by the measured scale
+  - Check: If the doc characterizes the type scale (modular, linear, custom), the claim is verifiable from the extracted size ratios; it is not asserted as a named principle without evidence
+  - Fail reason: LLM invented a scale rationale or named principle the tokens do not demonstrate
+  - Fix: State only what the measured sizes show (e.g., "sizes step ~1.25x: 16/20/25/31px"). A bare size table is acceptable; do not fabricate a system-logic narrative or label an unobserved principle. Mark any genuine inference `[INFERRED]`.
 
-- [ ] **[DQ-12]** Depth/shadow philosophy is described
-  - Check: The shadow section explains the elevation model — how shadow levels map to UI hierarchy
-  - Fail reason: LLM listed shadow values without explaining when to use each level
-  - Fix: Describe the elevation model: "Level 1 for cards at rest, Level 2 for hover/raised state, Level 3 for modals and popovers"
+- [ ] **[DQ-12]** Any depth/elevation description matches the extracted shadows
+  - Check: If the doc describes an elevation model, each level maps to an actual extracted shadow token
+  - Fail reason: LLM invented an elevation hierarchy, or labelled a gradient as depth, with no shadow tokens to back it
+  - Fix: Describe only the elevation the shadow tokens support. When zero shadows were extracted, the system is FLAT — say so and do not fabricate levels. Never frame a gradient as a depth/elevation system.
 
 ---
 
 ## 6. Publication Quality
 
-- [ ] **[PQ-01]** Passes the "10 tech companies" differentiation test
-  - Check: Give the document to someone unfamiliar; ask "could this be from any of 10 different companies?" -- should be clearly one
-  - Fail reason: LLM produced a generic template that reads like boilerplate
-  - Fix: Audit every section for specificity; add the unique values, constraints, and personality of this particular system
+- [ ] **[PQ-01]** Specificity comes from token values, not invented differentiation
+  - Check: The document reads as specific because it is full of this system's real extracted values (hexes, sizes, frequencies), not because comparative or personality framing was added
+  - Fail reason: LLM produced generic boilerplate, OR padded with invented "unique personality" claims to pass a differentiation test
+  - Fix: Achieve specificity by surfacing the real extracted values and usage data. Do not fabricate differentiation or comparative framing ("unlike most systems") — `validate.ts` flags that as interpretive fabrication.
 
-- [ ] **[PQ-02]** At least 3 do/don'ts that would surprise a reader
-  - Check: Count surprising or non-obvious guidelines that are specific to this design system
-  - Fail reason: All do/don'ts are generic best practices applicable to any system
-  - Fix: Derive system-specific constraints: unusual color pairings to avoid, specific spacing exceptions, component-specific rules
+- [ ] **[PQ-02]** Do/don'ts are token-derived, with no surprise quota
+  - Check: Each guideline traces to an extracted constraint (a usage pattern, frequency, or token relationship)
+  - Fail reason: All do/don'ts are generic best practices, OR invented to meet a "surprising guideline" count
+  - Fix: Write only the do/don'ts the tokens support, citing the evidence. There is no minimum number of surprising guidelines; an unbacked claim is a fabrication.
 
 - [ ] **[PQ-03]** Example prompts work standalone
   - Check: Copy each agent prompt into an AI tool without the rest of the document; it should produce a reasonable result
@@ -365,20 +367,20 @@ Use this checklist to validate every generated design system document before del
   - Fail reason: LLM listed hex values without computing whether they meet WCAG requirements
   - Fix: Calculate contrast ratios for all text/background pairs; flag any below 4.5:1 (AA normal text) or 3:1 (AA large text)
 
-- [ ] **[AC-03]** Focus indicator specification exists
-  - Check: A focus ring or focus indicator is documented with color, width, offset, and style
-  - Fail reason: LLM documented interactive states but omitted keyboard focus indicators
-  - Fix: Extract focus styles from `:focus-visible` or `:focus` pseudo-class; document the ring color, width, and offset
+- [ ] **[AC-03]** Focus indicator reflects captured state honestly
+  - Check: The a11y `focusIndicator` carries a `captured` boolean. When `captured` is true, document the ring color, width, offset, and the `consistent` flag. When `captured` is false, state that no focus indicator data was captured — do NOT assert the focus ring is consistent.
+  - Fail reason: LLM asserted "focus indicators are consistent" on empty data (the extractor no longer fabricates `consistent:true`)
+  - Fix: Gate the focus claim on `focusIndicator.captured`. `validate.ts` flags an unbacked "focus is consistent" claim as prose fabrication.
 
 - [ ] **[AC-04]** Touch target minimums are stated
   - Check: Interactive element minimum sizes are documented (typically 44x44px for WCAG, 48x48px for mobile)
   - Fail reason: LLM documented button padding without computing whether the resulting target meets minimum size
   - Fix: Calculate minimum clickable area from padding + content; state the minimum and verify it meets 44x44px
 
-- [ ] **[AC-05]** Reduced motion strategy is documented
-  - Check: The document states how animations behave under `prefers-reduced-motion: reduce`
-  - Fail reason: LLM documented animations and transitions without addressing motion sensitivity
-  - Fix: Add a note for each transition/animation: "Respects `prefers-reduced-motion`: [disables / reduces duration / replaces with opacity fade]"
+- [ ] **[AC-05]** Reduced motion strategy reflects captured a11y data
+  - Check: Per-page async a11y now populates reduced-motion support (alongside page language, skip-link, tab order, alt-text coverage). Document what was captured.
+  - Fail reason: LLM documented animations without addressing motion sensitivity, OR invented a reduced-motion behavior the tokens do not show
+  - Fix: Report the captured `reducedMotionSupport` data. If the tokens show no reduced-motion handling, note its absence rather than asserting one.
 
 ---
 
@@ -436,3 +438,24 @@ Use this checklist to validate every generated design system document before del
   - Check: The radius scale includes frequency data showing the dominant radius value
   - Fail reason: LLM listed radius values without indicating which one is the system default
   - Fix: Add frequency: "6px (78% of rounded elements), 9999px (pill, 15%), 12px (cards, 7%)"
+
+---
+
+## 13. Validator Semantic Checks (validate.ts)
+
+These items mirror the WARNING-tier semantic checks `validate.ts` runs and the dual score it reports. They are not hard fails on their own, but each warning is a fabrication or coverage signal to resolve before delivery.
+
+- [ ] **[VS-01]** Prose-discipline: no interpretive fabrication
+  - Check: Scan for unbacked interpretive phrasing — comparison to other systems ("unlike most", "most systems", "the conventional approach"), "gradient-as-depth" / "replaces shadow elevation", and an "is consistent" focus claim when the data does not support it
+  - Fail reason: AP-29 Interpretive Fabrication — an interpretive claim (relationship, cause, consistency, or named principle) with no token backing
+  - Fix: Remove the claim, or cite the token it rests on, or label a genuine inference `[INFERRED]`. `validate.ts` `checkProseDiscipline` flags these as WARNING-tier.
+
+- [ ] **[VS-02]** Section-coverage: no filled-but-empty high-risk section
+  - Check: No section is written with content when its backing token field is empty
+  - Fail reason: A conditional section (e.g., motion, accessibility, iconography) was filled with invented content instead of being stamped ABSENT
+  - Fix: Stamp the empty section `_No <X> data was extracted._`. `validate.ts` `checkSectionCoverage` flags "present but backing field empty" as WARNING-tier.
+
+- [ ] **[VS-03]** Dual score reviewed (valuesScore + claimsScore)
+  - Check: Both scores from `validate.ts` are reviewed — `valuesScore` (hex/section/format/stability fidelity) AND `claimsScore` (prose provenance: interpretive claims cited or `[INFERRED]`)
+  - Fail reason: A high `valuesScore` masked invented prose because `claimsScore` was ignored — a doc cannot hide fabricated claims behind hex fidelity
+  - Fix: Resolve the prose-fabrication and section-coverage warnings that lower `claimsScore`, not just the value-level findings.

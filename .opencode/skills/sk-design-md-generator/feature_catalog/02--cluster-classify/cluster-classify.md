@@ -35,6 +35,10 @@ After clustering, each token receives a stability class. The heuristic is determ
 - **L3 (Campaign)**: hero-section gradient endpoints, seasonal accent colors, launch-specific background treatments. These are temporary and tagged with the extraction date.
 - **L4 (Content)**: colors derived from images, hero photographs, product thumbnails, or single-use text treatments. These are one-off values that do not represent a design rule.
 
+### Coverage-election pre-gate
+
+Before boundary disambiguation, a coverage gate caps low-reach colors. A color appearing on under 30% of the crawled pages is treated as a one-off rather than a site-wide system color: even when its frequency would otherwise elect it to L1 (permanent) or L2 (system), it is capped at L3 (campaign). This stops a single-page or hero-only color from being promoted into the main sections on frequency alone.
+
 ### Boundary disambiguation
 
 When a token straddles the L2/L3 or L3/L4 boundary, the classifier assigns the higher (more restrictive) class. An L2/L3 boundary token becomes L3; an L3/L4 boundary token becomes L4 and is excluded. Tokens on the L1/L2 boundary become L2. This conservative rule prevents campaign colors from leaking into main sections and content colors from appearing at all.

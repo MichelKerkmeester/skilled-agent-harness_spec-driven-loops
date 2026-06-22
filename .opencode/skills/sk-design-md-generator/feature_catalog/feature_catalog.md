@@ -8,7 +8,7 @@ trigger_phrases:
   - "extract design tokens from url"
   - "anti-hallucination design reference"
   - "design md feature catalog"
-last_updated: "2026-06-21"
+last_updated: "2026-06-22"
 ---
 
 # sk-design-md-generator: Feature Catalog
@@ -50,9 +50,9 @@ Crawls a live URL across five viewports with Playwright, collects computed CSS v
 - Five viewports from mobile (375px) through wide desktop (1440px).
 - Computed color, typography, shadow, radius, spacing, and CSS variable collection.
 - Dark-mode palette detection via `prefers-color-scheme` media query and class/attribute toggles.
-- Per-feature detectors run inline during extraction (accessibility, framework, icons, motion).
+- Per-feature detectors run inline during extraction (accessibility, framework, icons, motion), including per-page async accessibility (page language, skip-link, tab-order, alt-text coverage, reduced-motion support).
 - Output written to `<--output>/tokens.json`.
-- The `--fast` flag controls crawl depth; `--with-interaction` captures hover, focus, and active state styles.
+- Interaction capture (hover/focus/active state styles) runs by DEFAULT; `--fast-no-interaction` (or `--no-interaction`) opts out for speed. `--fast` reduces crawl depth while still capturing states; `--with-interaction` remains accepted (now the default).
 - If Playwright cannot reach the URL or the page emits no measurable CSS, the extractor exits with an error.
 
 #### Source Files
@@ -74,6 +74,7 @@ Transforms raw color data from `tokens.json` into stability-classified tokens vi
 - L3 (campaign, temporary) tokens enter with a "Subject to change" annotation.
 - L4 (content, one-off, image-derived) tokens are excluded entirely.
 - Boundary tokens are assigned the higher (more restrictive) class.
+- Coverage-election pre-gate: a color present on under 30% of crawled pages is capped at L3 (campaign) even when its frequency would otherwise elect it to L1/L2 — a high-frequency color confined to a single page is not a system-wide token.
 - The classification is deterministic; token gating drives the write phase.
 - Incremental extraction: `mergeTokenSets` (exported from `cluster.ts`) merges a prior `tokens.json` with a fresh run when extraction is invoked with `--merge-with`, deduplicating and re-clustering the combined set.
 
@@ -97,6 +98,8 @@ Produces the 17-section `DESIGN.md` from `tokens.json` under the cardinal fideli
 - Accessibility section drawn from a11y data in `tokens.json`.
 - The write-phase prompt template (`assets/design_md_prompt_template.md`) and cardinal rules card (`assets/cardinal_rules_card.md`) front-load the fidelity contract.
 - The writer loads the v2 section spec from `tool/resources/design_md_format.md` and voice rules from `tool/resources/writing_style_guide.md` before composing.
+- Doc-as-view: the value-bearing sections §2 Color, §3 Typography, and §6 Depth are rendered DETERMINISTICALLY from tokens by `tool/scripts/formatters.ts` (no AI on the value surface). `tool/scripts/build-write-prompt.ts` pre-renders them and emits a PRESENT/ABSENT manifest for the data-gated sections, which the writer pastes unchanged.
+- Sections are data-driven: a section with no backing tokens is stamped ABSENT (`_No <X> data was extracted._`) rather than invented, and interpretive claims (relationships, named principles, "consistent") must cite a token or be labeled `[INFERRED]`.
 
 #### Source Files
 
@@ -108,15 +111,18 @@ See [`03--write-design-md/write-design-md.md`](03--write-design-md/write-design-
 
 #### Description
 
-Confirms every hex in DESIGN.md traces to `tokens.json`, all v2 core sections are present and non-empty, and no format violations exist — the gating step before any completion claim.
+Confirms every hex in DESIGN.md traces to `tokens.json`, the required sections are present (conditional sections are data-gated — ABSENT-stamped when their tokens are empty, not invented), prose claims are token-backed, and no format violations exist — the gating step before any completion claim.
 
 #### Current Reality
 
 - Hex-accuracy check cross-references every hex in DESIGN.md against `tokens.colorTokens[].hex` and `tokens.cssVariables[].value`.
-- Section-completeness check confirms all 14 core sections, section 6.5 (Motion System), and sections 11 (State Matrix) and 12 (Iconography) are present.
+- Section-coverage check confirms the required sections are present; the conditional sections (6.5 Motion System, 11 State Matrix, 12 Iconography) are data-gated — flagged only when present while their backing tokens are empty and not stamped ABSENT.
 - Hex casing check flags uppercase hex, 3-digit shortcuts, `rgb()`, and `hsl()` as format violations.
 - Phantom-color detection flags hex values in DESIGN.md with no token source.
 - Score output with per-finding messages and a pass/fail verdict.
+- Prose-discipline check (WARNING-tier): flags interpretive-fabrication phrases ("gradient-as-depth", "unlike most systems", "replaces shadow elevation") and a "focus is consistent" claim unbacked by captured focus styles.
+- Section-coverage check: flags a high-risk section (Depth, Motion, Iconography) present while its backing tokens are empty and not stamped ABSENT.
+- Dual score: a value-fidelity score (hex/section/format) and a separate claims-provenance score, so invented prose cannot hide behind verbatim hexes.
 - Four escalation conditions require human judgment rather than automated correction.
 
 #### Source Files
@@ -174,7 +180,7 @@ Captures hover, focus, active, and disabled component states when extraction run
 
 #### Current Reality
 
-- Gated by the `--with-interaction` flag; default extraction skips interaction capture.
+- Runs by DEFAULT during extraction; `--fast-no-interaction` (or `--no-interaction`) opts out. `--with-interaction` remains accepted but is now the default.
 - `captureInteractions()` drives a real page, triggering hover, focus, active, and disabled states and recording the resulting computed styles per component.
 - The captured state data populates DESIGN.md section 11 (State Matrix), which `validate.ts` checks as a required section.
 - State tokens are classified L3 (interaction states are component-specific) and feed the accessibility focus-indicator data.

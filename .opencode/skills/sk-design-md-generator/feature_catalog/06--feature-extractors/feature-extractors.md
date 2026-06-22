@@ -25,7 +25,7 @@ Six per-feature detectors that run inline during the extraction phase, each targ
 
 ### Accessibility detector (a11y-extract.ts)
 
-Samples text/background color pairs from heading, body, button, link, and input elements. Calculates WCAG 2.1 contrast ratios for each pair. Records observed focus-ring styles (`outline`, `box-shadow` focus indicators), touch-target dimensions (minimum button height, minimum link padding), and ARIA attribute patterns (`aria-label`, `aria-expanded`, `aria-disabled`, `aria-live`). Writes into `tokens.a11y` with contrast-ratio table, focus-indicator CSS, touch-target px measurements, and ARIA-usage flags.
+Samples text/background color pairs from heading, body, button, link, and input elements. Calculates WCAG 2.1 contrast ratios for each pair. Records observed focus-ring styles (`outline`, `box-shadow` focus indicators), touch-target dimensions (minimum button height, minimum link padding), and ARIA attribute patterns (`aria-label`, `aria-expanded`, `aria-disabled`, `aria-live`). A per-page async pass also fills page language (`langAttribute`), skip-link presence (`skipLinkDetected`), tab order (`tabOrder`), alt-text coverage (`altTextCoverage`), and reduced-motion support — fields that were previously null. The focus indicator carries an honest `captured` boolean: when no focus styles were captured it reports `captured: false` and `consistent: false` rather than fabricating a consistent result on empty data. Writes into `tokens.a11y` with contrast-ratio table, focus-indicator CSS (plus its `captured`/`consistent` flags), touch-target px measurements, the async page-level a11y fields, and ARIA-usage flags.
 
 ### Dark-mode detector (dark-mode-detect.ts)
 
