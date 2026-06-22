@@ -40,9 +40,11 @@ import {
 import {
   computeResultConfidence,
   assessRequestQuality,
+  assessGrounding,
   isResultConfidenceEnabled,
   type ScoredResult,
   type RequestQualityAssessment,
+  type GroundingAssessment,
 } from '../lib/search/confidence-scoring.js';
 
 // Two-Tier Explainability
@@ -58,8 +60,12 @@ import {
   type WhyRankedTrace,
 } from '../lib/observability/retrieval-observability.js';
 
-// Envelope-fidelity render fragment gate
-import { isEnvelopeFidelityEnabled } from '../lib/search/search-flags.js';
+// Envelope-fidelity render fragment gate, grounding signal, and caveat tier gates
+import {
+  isEnvelopeFidelityEnabled,
+  isGroundingSignalEnabled,
+  isCiteWithCaveatEnabled,
+} from '../lib/search/search-flags.js';
 
 // Consolidated path validation from core/config.js (single source of truth)
 import { ALLOWED_BASE_PATHS } from '../core/config.js';
@@ -218,7 +224,12 @@ export interface MemoryParserLike {
 }
 
 type ResponsePolicyAction = 'ask_disambiguation' | 'broaden_or_ask' | 'refuse_without_evidence';
-type CitationPolicy = 'cite_results' | 'do_not_cite_results';
+type CitationPolicy = 'cite_results' | 'cite_with_caveat' | 'do_not_cite_results';
+
+// The borderline-grounding relevance floor for the cite_with_caveat tier. Mirrors
+// the weak-verdict relevance floor, so a hit that is grounded and clears the weak
+// band is hedged with a caveat rather than dropped, while a lower hit still drops.
+const CITE_CAVEAT_MIN_RELEVANCE = 0.4;
 
 interface ResponsePolicy {
   requiredAction: ResponsePolicyAction;
@@ -368,9 +379,25 @@ function deriveResponsePolicy(
   };
 }
 
-function deriveCitationPolicy(requestQuality: RequestQualityAssessment | null): CitationPolicy {
+function deriveCitationPolicy(
+  requestQuality: RequestQualityAssessment | null,
+  grounding?: GroundingAssessment | null,
+): CitationPolicy {
   const label = requestQuality?.requestQuality?.label;
-  return label === 'good' ? 'cite_results' : 'do_not_cite_results';
+  if (label === 'good') return 'cite_results';
+  // Caveat tier: a weak verdict whose top hit is still lexically grounded and
+  // clears the borderline floor is hedged rather than dropped. A fully ungrounded
+  // hit is never promoted here, so the tier never cites a pure off-corpus miss.
+  // Default-OFF: with the flag off this reduces to the shipped two-state output.
+  if (
+    isCiteWithCaveatEnabled() &&
+    label === 'weak' &&
+    grounding?.topHitGrounded === true &&
+    grounding.topRelevance >= CITE_CAVEAT_MIN_RELEVANCE
+  ) {
+    return 'cite_with_caveat';
+  }
+  return 'do_not_cite_results';
 }
 
 /**
@@ -1099,11 +1126,22 @@ export async function formatSearchResults(
   const confidenceEnabled = isResultConfidenceEnabled();
   let confidenceData: ReturnType<typeof computeResultConfidence> | null = null;
   let requestQualityData: ReturnType<typeof assessRequestQuality> | null = null;
+  // Grounding assessment is computed whenever confidence is on: it reads only the
+  // lexical signal already on the rows, has no side effects, and is surfaced /
+  // consumed only behind its own default-OFF flags below, so computing it here
+  // does not change the flag-OFF response shape.
+  let groundingData: GroundingAssessment | null = null;
   if (confidenceEnabled) {
     // Cast to ScoredResult, RawSearchResult extends Record<string,unknown> and has the same shape
     const scoredResults = results as unknown as ScoredResult[];
     confidenceData = computeResultConfidence(scoredResults);
-    requestQualityData = assessRequestQuality(scoredResults, confidenceData, { query: query ?? undefined });
+    // Bridge the Stage 4 evidence-gap signal into the verdict (gated in the
+    // assessor): read the same evidenceGap the recovery path reads, never recomputed.
+    requestQualityData = assessRequestQuality(scoredResults, confidenceData, {
+      query: query ?? undefined,
+      evidenceGapDetected: Boolean(safeExtraData?.evidenceGap),
+    });
+    groundingData = assessGrounding(scoredResults, { query: query ?? undefined });
   }
 
   // Compute recovery payload for weak/partial results when flag is enabled
@@ -1177,13 +1215,16 @@ export async function formatSearchResults(
   );
 
   const responsePolicy = deriveResponsePolicy(requestQualityData, recoveryPayload);
-  const citationPolicy = deriveCitationPolicy(requestQualityData);
+  const citationPolicy = deriveCitationPolicy(requestQualityData, groundingData);
   // Pre-rendered verdict fragment, gated dark. Built from the same verdict pair
   // shipped below so a label change propagates without a second edit. Off by
   // default keeps the response shape byte-for-byte the shipped behavior.
   const envelopeRender = isEnvelopeFidelityEnabled()
     ? buildEnvelopeRenderFragment(requestQualityData, citationPolicy)
     : null;
+  // Grounding signal, gated dark. Surfaces the grounded / low_grounding label so a
+  // downgrade or borderline cite is legible. Off by default adds no grounding field.
+  const groundingSignal = isGroundingSignalEnabled() ? groundingData : null;
   const inlineWarnings: RetrievalConflictWarning[] = includeTrace
     ? findInlineConflictWarnings(results, requireDb)
     : [];
@@ -1200,6 +1241,7 @@ export async function formatSearchResults(
     ...(recoveryPayload !== null ? { recovery: recoveryPayload } : {}),
     citationPolicy,
     ...(envelopeRender !== null ? { envelopeRender } : {}),
+    ...(groundingSignal !== null ? { grounding: groundingSignal } : {}),
     ...(inlineWarnings.length > 0 ? { inlineWarnings, retrievalWarnings: inlineWarnings } : {}),
     ...(responsePolicy !== null ? { responsePolicy } : {}),
   };
@@ -1213,6 +1255,7 @@ export async function formatSearchResults(
       results: _r,
       citationPolicy: _cp,
       envelopeRender: _er,
+      grounding: _g,
       responsePolicy: _rp,
       ...safeExtra
     } = safeExtraData as Record<string, unknown>;

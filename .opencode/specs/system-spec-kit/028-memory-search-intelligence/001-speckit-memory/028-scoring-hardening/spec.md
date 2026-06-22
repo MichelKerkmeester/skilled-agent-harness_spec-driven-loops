@@ -14,21 +14,21 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/028-scoring-hardening"
     last_updated_at: "2026-06-22T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded scoring-hardening phase from recs 7 8 10 11 12"
-    next_safe_action: "Run /speckit:plan to sequence the flag-gated banding changes"
+    recent_action: "Implemented recs 7 8 10 11 12 behind default-OFF flags, built dist, vitest green"
+    next_safe_action: "Graduate a flag only after its off-corpus fixture arm is green"
     blockers: []
     key_files:
-      - ".opencode/skills/system-spec-kit/mcp_server/dist/lib/search/confidence-scoring.d.ts"
-      - ".opencode/skills/system-spec-kit/mcp_server/dist/lib/search/search-results.d.ts"
-      - ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-eval-v2.mjs"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/noise-floor.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-opus-session"
       parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Which embedder the corpus noise-floor is measured against and whether the floor is stored per embedder"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "The corpus noise-floor is measured against nomic-embed-text-v1.5 and stored per embedder, failing closed for an unmeasured one"
 ---
 # Feature Specification: Scoring Hardening
 
@@ -51,8 +51,9 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | PLANNED |
+| **Status** | COMPLETE |
 | **Created** | 2026-06-22 |
+| **Completed** | 2026-06-22 |
 | **Branch** | `028-scoring-hardening` |
 <!-- /ANCHOR:metadata -->
 
@@ -203,5 +204,5 @@ Harden the scoring path so a borderline or off-corpus hit is legible, corrected 
 <!-- ANCHOR:verdict -->
 ## 11. VERDICT
 
-PLANNED. This phase hardens the scoring path around the convergent root-cause fix rather than replacing it. It surfaces a grounding signal so a downgrade is legible (rec 7), subtracts a measured corpus noise-floor before banding so the background cosine no longer inflates the band (rec 8), adds a `cite_with_caveat` tier so borderline grounding is hedged rather than dropped (rec 10), bridges `stage4.evidenceGapDetected` into the verdict so a known gap lowers the band (rec 11), and documents the calibration re-fit as a proven non-fix because banding is taken off the pre-calibration value and the curve cannot move the verdict (rec 12). Every behavioral change ships behind a default-OFF flag and graduates only against the off-corpus fixtures, with a grandfather report mode for the existing fixtures that carry the prose statuses and prefixed paths the new contract rejects, so the aligned good queries and the correctly-weak authentication case provably do not regress.
+COMPLETE. This phase hardens the scoring path around the convergent root-cause fix rather than replacing it. It surfaces a grounding signal so a downgrade is legible (rec 7), subtracts a measured corpus noise-floor before banding so the background cosine no longer inflates the band (rec 8), adds a `cite_with_caveat` tier so borderline grounding is hedged rather than dropped (rec 10), bridges `stage4.evidenceGapDetected` into the verdict so a known gap lowers the band (rec 11), and documents the calibration re-fit as a proven non-fix because banding is taken off the pre-calibration value and the curve cannot move the verdict (rec 12). Every behavioral change ships behind a default-OFF flag and graduates only against the off-corpus fixtures, with a grandfather report mode for the existing fixtures that carry the prose statuses and prefixed paths the new contract rejects, so the aligned good queries and the correctly-weak authentication case provably do not regress.
 <!-- /ANCHOR:verdict -->

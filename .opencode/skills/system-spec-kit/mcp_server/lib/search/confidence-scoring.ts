@@ -29,9 +29,12 @@ import {
   isAbsoluteRelevanceCalibrationEnabled,
   isConfidenceCalibrationEnabled,
   isLexicalGroundingEnabled,
+  isNoiseFloorSubtractionEnabled,
+  isEvidenceGapVerdictEnabled,
   getConfidenceCalibrationModelPath,
 } from './search-flags.js';
 import { applyCalibration, loadCalibrationModel, type CalibrationModel } from './confidence-calibration.js';
+import { resolveNoiseFloor } from './noise-floor.js';
 
 declare const rankingConfidenceBrand: unique symbol;
 
@@ -407,6 +410,39 @@ function isTopHitGrounded(result: ScoredResult, query: string | undefined): bool
   return hasQueryTermOverlap(result, query);
 }
 
+/** A legible grounding label for the result envelope. */
+export type GroundingSignalLabel = 'grounded' | 'low_grounding';
+
+/**
+ * Whether the top hit is lexically grounded, and the absolute relevance behind
+ * the verdict band. Surfaced so a downgrade or a borderline cite is legible to
+ * the reader, and reused by the citation policy to decide the caveat tier.
+ */
+export interface GroundingAssessment {
+  signal: GroundingSignalLabel;
+  topHitGrounded: boolean;
+  topRelevance: number;
+}
+
+/**
+ * Assess grounding for a ranked result set: grounded when the top hit carries a
+ * query-term or lexical overlap above the floor, low_grounding otherwise. Reads
+ * the lexical signal already on the rows, so it adds no query or DB read and has
+ * no side effects. Returns null for an empty set, there is nothing to ground.
+ */
+export function assessGrounding(
+  results: ScoredResult[],
+  options?: { query?: string },
+): GroundingAssessment | null {
+  if (!Array.isArray(results) || results.length === 0) return null;
+  const topHitGrounded = isTopHitGrounded(results[0], options?.query);
+  return {
+    signal: topHitGrounded ? 'grounded' : 'low_grounding',
+    topHitGrounded,
+    topRelevance: resolveCalibrationScore(results[0]),
+  };
+}
+
 /**
  * Map raw confidence value to a coarse label.
  */
@@ -528,7 +564,7 @@ export function computeResultConfidence(results: ScoredResult[]): ResultConfiden
 export function assessRequestQuality(
   results: ScoredResult[],
   confidences: ResultConfidence[],
-  options?: { query?: string },
+  options?: { query?: string; evidenceGapDetected?: boolean; embedder?: string },
 ): RequestQualityAssessment {
   if (!Array.isArray(results) || results.length === 0) {
     return { requestQuality: { label: 'gap' } };
@@ -546,7 +582,20 @@ export function assessRequestQuality(
   // Absolute relevance, not the RRF ordering score: HIGH_THRESHOLD/LOW_THRESHOLD
   // are calibrated for a 0–1 cosine scale, so an RRF-magnitude topScore (~0.03)
   // would put "good" out of reach and collapse every query to weak/gap.
-  const topScore = resolveCalibrationScore(results[0]);
+  const rawTopScore = resolveCalibrationScore(results[0]);
+
+  // Noise-floor subtraction before banding. The embedder hands fluent but
+  // unrelated text a high background cosine, so banding the raw relevance lets an
+  // off-corpus hit reach good on background alone. When enabled, the band reads
+  // relevance minus the measured floor, floored at zero. An embedder with no
+  // measured floor resolves null and fails closed to the raw band. Default-OFF:
+  // topScore equals rawTopScore so the bands below are byte-identical.
+  const noiseFloor = isNoiseFloorSubtractionEnabled()
+    ? resolveNoiseFloor(options?.embedder)
+    : null;
+  const topScore = noiseFloor
+    ? Math.max(0, rawTopScore - noiseFloor.floor)
+    : rawTopScore;
 
   // Quality ratio over the head of the ranking only, so recall expansion does
   // not depress it (see QUALITY_RATIO_HEAD).
@@ -557,10 +606,11 @@ export function assessRequestQuality(
     .length;
   const qualityRatio = head > 0 ? highOrMediumCount / head : 0;
 
-  // Margin between #1 and #2 on the same absolute scale as topScore. A clear gap
-  // to the runner-up marks a dominant top hit even when the tail is weak.
+  // Margin between #1 and #2. Computed off the raw scores: a constant noise-floor
+  // cancels in the subtraction (a-f)-(b-f) = a-b, so the margin is invariant to it
+  // and stays byte-identical to the shipped value whether or not the floor applies.
   const topMargin = results.length > 1
-    ? computeMargin(topScore, resolveCalibrationScore(results[1]))
+    ? computeMargin(rawTopScore, resolveCalibrationScore(results[1]))
     : 0;
 
   // Lexical-grounding floor + single-hit corroboration. The absolute cosine plus
@@ -568,6 +618,7 @@ export function assessRequestQuality(
   // when enabled good additionally requires the top hit to carry a query-term or
   // BM25 overlap above the floor, and the margin / quality-ratio paths require a
   // corroborating second hit. Default-OFF: the shipped branch below is unchanged.
+  let label: RequestQualityLabel;
   if (isLexicalGroundingEnabled()) {
     const grounded = isTopHitGrounded(results[0], options?.query);
     const corroboratingHits = results.filter(
@@ -577,41 +628,48 @@ export function assessRequestQuality(
 
     // A grounded, absolutely-dominant top hit stands on its own, even single.
     if (grounded && topScore >= TOP_DOMINANT_THRESHOLD) {
-      return { requestQuality: { label: 'good' } };
-    }
-    // The margin and quality-ratio paths need grounding AND corroboration, so a
-    // lone off-corpus hit with a zero margin can no longer reach good through the
-    // ratio on a single result.
-    if (
+      label = 'good';
+    } else if (
+      // The margin and quality-ratio paths need grounding AND corroboration, so a
+      // lone off-corpus hit with a zero margin can no longer reach good through the
+      // ratio on a single result.
       grounded &&
       corroborated &&
       topScore >= HIGH_THRESHOLD &&
       (qualityRatio >= 0.6 || topMargin >= LARGE_MARGIN_THRESHOLD)
     ) {
-      return { requestQuality: { label: 'good' } };
+      label = 'good';
+    } else if (topScore >= LOW_THRESHOLD || qualityRatio >= 0.3) {
+      // weak/gap floor unchanged from the shipped path.
+      label = 'weak';
+    } else {
+      label = 'gap';
     }
-    // weak/gap floor unchanged from the shipped path.
-    if (topScore >= LOW_THRESHOLD || qualityRatio >= 0.3) {
-      return { requestQuality: { label: 'weak' } };
-    }
-    return { requestQuality: { label: 'gap' } };
+  } else if (topScore >= TOP_DOMINANT_THRESHOLD) {
+    // A sufficiently strong top hit is citable on its own, regardless of the tail.
+    label = 'good';
+  } else if (topScore >= HIGH_THRESHOLD && (qualityRatio >= 0.6 || topMargin >= LARGE_MARGIN_THRESHOLD)) {
+    // Otherwise a healthy top hit reads "good" when the head is mostly confident
+    // OR the top hit clearly dominates the runner-up.
+    label = 'good';
+  } else if (topScore >= LOW_THRESHOLD || qualityRatio >= 0.3) {
+    // weak/gap thresholds unchanged, preserves the do-not-cite safety net for
+    // genuinely low-signal queries.
+    label = 'weak';
+  } else {
+    label = 'gap';
   }
 
-  // A sufficiently strong top hit is citable on its own, regardless of the tail.
-  if (topScore >= TOP_DOMINANT_THRESHOLD) {
-    return { requestQuality: { label: 'good' } };
+  // Evidence-gap bridge. Stage 4 detects an evidence gap the verdict never reads,
+  // so a known gap can ride along as a confident good. When enabled, a true
+  // evidenceGapDetected caps a good verdict at weak. The gap is read from the
+  // signal the caller threads in, never recomputed. Default-OFF: the verdict
+  // ignores the gap exactly as the shipped path does.
+  if (isEvidenceGapVerdictEnabled() && options?.evidenceGapDetected === true && label === 'good') {
+    label = 'weak';
   }
-  // Otherwise a healthy top hit reads "good" when the head is mostly confident
-  // OR the top hit clearly dominates the runner-up.
-  if (topScore >= HIGH_THRESHOLD && (qualityRatio >= 0.6 || topMargin >= LARGE_MARGIN_THRESHOLD)) {
-    return { requestQuality: { label: 'good' } };
-  }
-  // weak/gap thresholds unchanged, preserves the do-not-cite safety net for
-  // genuinely low-signal queries.
-  if (topScore >= LOW_THRESHOLD || qualityRatio >= 0.3) {
-    return { requestQuality: { label: 'weak' } };
-  }
-  return { requestQuality: { label: 'gap' } };
+
+  return { requestQuality: { label } };
 }
 
 /**

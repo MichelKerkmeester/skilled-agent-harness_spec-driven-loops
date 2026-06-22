@@ -703,6 +703,82 @@ export function isEnvelopeFidelityEnabled(): boolean {
 }
 
 /**
+ * Surface a grounding or low-grounding signal on the search envelope. When
+ * enabled, the formatter attaches a `grounding` field built from the lexical
+ * overlap already present on the result rows, so a downgrade or a borderline
+ * cite is legible to the reader rather than silent: a clear good carries a
+ * grounded signal and a borderline or off-corpus top hit carries low_grounding.
+ * The signal reads the same lexical lane the verdict path reads and adds no new
+ * query or DB read.
+ *
+ * Default: FALSE (opt-in). It adds a field to the response shape, so it ships
+ * dark and graduates only after validating on the off-corpus fixtures. With the
+ * flag OFF no grounding field is added and the response shape is byte-for-byte
+ * the shipped behavior. An unparseable value resolves to OFF. Set
+ * SPECKIT_GROUNDING_SIGNAL_V1=true to enable.
+ */
+export function isGroundingSignalEnabled(): boolean {
+  return isOptInEnabled('SPECKIT_GROUNDING_SIGNAL_V1');
+}
+
+/**
+ * Subtract a measured corpus noise-floor from absolute relevance before the
+ * request-quality band read. The nomic embedder hands fluent but unrelated text
+ * a high background cosine, so an off-corpus hit inflates the band. When enabled,
+ * the verdict bands on `relevance minus noiseFloor` (floored at zero) instead of
+ * the raw relevance, so the background cosine no longer reaches good. The floor is
+ * recorded against the embedder it was measured on, since the background cosine is
+ * embedder-specific; an embedder with no measured floor fails closed to the raw
+ * relevance band rather than subtracting an unknown floor.
+ *
+ * Default: FALSE (opt-in). It changes the verdict band, so it ships dark and
+ * graduates only after validating on the off-corpus fixtures. With the flag OFF
+ * the band reads the raw relevance unchanged, byte-for-byte the shipped behavior.
+ * An unparseable value resolves to OFF. Set SPECKIT_NOISE_FLOOR_SUBTRACTION_V1=true
+ * to enable.
+ */
+export function isNoiseFloorSubtractionEnabled(): boolean {
+  return isOptInEnabled('SPECKIT_NOISE_FLOOR_SUBTRACTION_V1');
+}
+
+/**
+ * Add a cite_with_caveat tier between cite_results and the do-not-cite drop. A
+ * weak verdict whose top hit still carries lexical grounding is a borderline
+ * case, not a clear miss, so dropping it to do_not_cite loses a hedged-but-usable
+ * result. When enabled, the citation policy resolves such a borderline-grounded
+ * weak verdict to cite_with_caveat, a clear good stays cite_results and a clear
+ * miss (ungrounded or gap) stays do_not_cite_results. A fully ungrounded hit is
+ * never promoted to the caveat tier.
+ *
+ * Default: FALSE (opt-in). It adds a citation-policy state the shipped contract
+ * does not carry, so it ships dark and graduates only after validating on the
+ * off-corpus fixtures. With the flag OFF the citation policy is the shipped
+ * two-state output. An unparseable value resolves to OFF. Set
+ * SPECKIT_CITE_WITH_CAVEAT_V1=true to enable.
+ */
+export function isCiteWithCaveatEnabled(): boolean {
+  return isOptInEnabled('SPECKIT_CITE_WITH_CAVEAT_V1');
+}
+
+/**
+ * Bridge the Stage 4 evidence-gap signal into the request-quality verdict. Stage 4
+ * already detects an evidence gap but the verdict never reads it, so a known gap
+ * does not lower the band. When enabled, a verdict computed as good is capped at
+ * weak when the caller passes a true evidenceGapDetected, so a detected gap can no
+ * longer ride along as a confident good. The gap is read from the Stage 4 signal
+ * the caller threads in, never recomputed here.
+ *
+ * Default: FALSE (opt-in). It lowers a verdict the shipped path would award good,
+ * so it ships dark and graduates only after validating on the off-corpus fixtures.
+ * With the flag OFF the verdict ignores evidenceGapDetected exactly as today. An
+ * unparseable value resolves to OFF. Set SPECKIT_EVIDENCE_GAP_VERDICT_V1=true to
+ * enable.
+ */
+export function isEvidenceGapVerdictEnabled(): boolean {
+  return isOptInEnabled('SPECKIT_EVIDENCE_GAP_VERDICT_V1');
+}
+
+/**
  * Calibrate confidence/request-quality and result-set digests on an absolute
  * relevance signal (cosine similarity) instead of the RRF fusion score. RRF
  * magnitudes (~0.01–0.05) understate relevance and make "good" unreachable, so

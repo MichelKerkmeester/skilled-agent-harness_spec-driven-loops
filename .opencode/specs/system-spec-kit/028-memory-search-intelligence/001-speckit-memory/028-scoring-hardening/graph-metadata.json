@@ -39,15 +39,16 @@
       "banding"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/mcp_server/dist/lib/search/confidence-scoring.d.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/dist/lib/search/search-results.d.ts"
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/noise-floor.ts"
     ],
     "entities": [
       {
@@ -81,15 +82,21 @@
         "source": "derived"
       },
       {
-        "name": "confidence-scoring.d.ts",
+        "name": "confidence-scoring.ts",
         "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/dist/lib/search/confidence-scoring.d.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts",
         "source": "derived"
       },
       {
-        "name": "search-results.d.ts",
+        "name": "search-results.ts",
         "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/dist/lib/search/search-results.d.ts",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts",
+        "source": "derived"
+      },
+      {
+        "name": "noise-floor.ts",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/noise-floor.ts",
         "source": "derived"
       },
       {

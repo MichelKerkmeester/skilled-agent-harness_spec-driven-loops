@@ -14,18 +14,18 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/028-scoring-hardening"
     last_updated_at: "2026-06-22T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Planned flag-gated banding and envelope changes for recs 7 8 10 11 12"
-    next_safe_action: "Hold for implementation, no code change has landed yet"
+    recent_action: "Implemented the flag-gated banding and envelope changes for recs 7 8 10 11 12"
+    next_safe_action: "Graduate a flag only after its off-corpus fixture arm is green"
     blockers: []
     key_files:
-      - ".opencode/skills/system-spec-kit/mcp_server/dist/lib/search/confidence-scoring.d.ts"
-      - ".opencode/skills/system-spec-kit/mcp_server/dist/lib/search/search-results.d.ts"
-      - ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-eval-v2.mjs"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/noise-floor.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-opus-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -65,14 +65,14 @@ This phase hardens the scoring path around the convergent root-cause fix rather 
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met (REQ-001 through REQ-006)
+- [x] Tests passing (scoring-hardening.vitest.ts 16/16; 248/248 across touched suites; typecheck and build exit 0)
+- [x] Docs updated (spec/plan/tasks/checklist/implementation-summary, ENV_REFERENCE)
 <!-- /ANCHOR:quality-gates -->
 
 ---

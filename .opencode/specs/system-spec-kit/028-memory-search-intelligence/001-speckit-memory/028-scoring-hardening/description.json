@@ -3,14 +3,12 @@
   "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/028-scoring-hardening",
   "description": "Feature Specification: Scoring Hardening",
   "keywords": [
+    "feature",
+    "specification",
     "scoring",
-    "hardening",
-    "grounding",
-    "noise-floor",
-    "cite-with-caveat",
-    "evidence-gap"
+    "hardening"
   ],
-  "lastUpdated": "2026-06-22T00:00:00.000Z",
+  "lastUpdated": "2026-06-22T16:10:27.250Z",
   "specId": "028",
   "folderSlug": "scoring-hardening",
   "parentChain": [
