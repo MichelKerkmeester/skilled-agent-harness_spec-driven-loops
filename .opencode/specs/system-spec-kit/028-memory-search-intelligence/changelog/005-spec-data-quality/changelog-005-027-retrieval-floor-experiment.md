@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ### Summary
 
-Status PLANNED. This phase is scaffolded and not yet implemented. No code change has landed and nothing below has shipped. The section describes the change the phase will make once it is built.
+Status PLANNED. This phase is scaffolded and not yet implemented. No code change has landed and nothing below has shipped. The section describes the change the phase will make once it is built. The prod path guarantees a never-cut-below-3 minimum, not a cap, then narrows the set through a cliff-conditional confidence cut that returns 3 to 20 and a token budget that is the real prod-limiting stage. This experiment raises the floor and budget across a small sweep to read whether the recovered tail is signal or noise, and it consumes the C2 gate unchanged.
 
 ### Added
 
@@ -35,7 +35,7 @@ Status PLANNED. This phase is scaffolded and not yet implemented. No code change
 
 ### Verification
 
-- A no-flag run uses the 3-floor and the literal 3 at confidence-truncation.ts:35 is unchanged by diff - PLANNED, not yet run
+- A no-flag run uses the never-cut-below-3 minimum and the literal 3 at confidence-truncation.ts:35 is unchanged by diff - PLANNED, not yet run
 - The driver reads only the prod completeRecall@3 column and refuses an eval-lens input - PLANNED, not yet run
 - The driver fails closed when the env override is set but the floor did not move - PLANNED, not yet run
 - The report states the threshold before the numbers and one prod-column delta per floor setting against the C2 baseline - PLANNED, not yet run

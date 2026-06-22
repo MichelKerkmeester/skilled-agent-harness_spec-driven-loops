@@ -12,6 +12,36 @@ contextType: "implementation"
 
 <!-- SPECKIT_TEMPLATE_SOURCE: changelog/root.md | v1.0 -->
 
+## 2026-06-22
+
+> Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality` (Level 3)
+
+### Summary
+
+A round-2 deep review ran 30 iterations across 6 angles as parallel opus seats reading the live system-spec-kit code, not only the 005 docs, and returned the verdict CONDITIONAL. It surfaced roughly 100 findings, 1 design-blocking and about 29 P1 and 40 P2, clustered into six themes. A same-session remediation then fixed every P0 and P1 and the actionable P2 findings across the affected docs. Nothing was built. Every phase stays PLANNED at completion 0, SPECIFIED and not run. The program direction held. The remediation corrected magnitude and metric design, not the tiering.
+
+### Changed
+
+- Truncation law corrected from a cap to a floor across the decision-facing docs. `DEFAULT_MIN_RESULTS = 3` is a never-cut-below-3 minimum guarantee, not a top-3 cap. Confidence truncation is cliff-conditional and returns 3 to 20 and token-budget truncation is the real prod-limiting stage. The surviving direction held, retrieval candidates still need a prod-mode proof because eval-mode gains do not transfer and write-time still ships on cost. Only the every-query-to-3 magnitude was wrong.
+- C2 gate (`015-c2-prodmode-recall-gate`) widened from completeRecall@3 alone to the @3/@5/@8 prod-window columns the harness already emits plus an order-sensitive NDCG@K companion with a top1 guard. A promotion now needs a recall rise AND a ranking-quality hold. `run-eval-v2.mjs` is verify-no-change because the export at line 361 already exists, so the gate adds no harness change.
+- A4 census (`004-a4-schema-warn-to-error`) re-sized. A real graphMetadataSchema run fails 24 files, 16 excluding archives, not 11. A4 stays unconditional as a DECISION but the error flip is gated on a re-measure-to-zero backfill, and the genuine failing roots are named rather than the 11 nested research-iteration text stubs.
+- A3 producer guard (`003-a3-enum-constrain-schemas`) widened to cover all three out-of-enum paths, the normalizeDerivedStatus default and the deriveStatus unknown branch and the deriveImportanceTier raw-tier return, through a dual lenient and strict schema behind a flag seam rather than a bare z.enum swap.
+- Over-scaffolding reframed honestly. The buildable-now subset is A4 and the shared engine and A1 and A3. The retrieval tier and the thin novel items are deferred-until-measured behind a real prod read. No phase was deleted and all 28 scaffolds are kept per operator intent.
+- Documentation accuracy fixes landed in the tracking doc and the research.md internal counts so the metric rows and tier counts reconcile.
+
+### Verification
+
+- Round-2 deep review - COMPLETE, verdict CONDITIONAL, 30 iterations across 6 angles, all 30 slices returned findings
+- Remediation across all six themes - COMPLETE, every P0 and P1 and the actionable P2 fixed across the affected docs
+- Recursive validate.sh --strict over the remediated phases - PASS, exit 0
+- HVR voice across the remediated docs - PASS, no em-dashes, no prose semicolons, no Oxford commas
+- Build status - UNCHANGED, nothing shipped, every phase PLANNED at completion 0
+
+### Follow-Ups
+
+- Build the minimal high-value subset first, 004 and 026 and 001 and 003, then read a prod-mode completeRecall@3/@5/@8 result before scaffolding any retrieval-tier or thin-novel build.
+- Keep every retrieval-class phase default-off until that prod read moves and holds NDCG@K and top1, because eval-mode gains do not transfer. The eval lens skips truncation while the prod path applies the cliff-conditional cut over the never-cut-below-3 minimum and the token budget.
+
 ## 2026-06-21
 
 > Spec folder: `.opencode/specs/system-spec-kit/028-memory-search-intelligence/005-spec-data-quality` (Level 3)
@@ -95,5 +125,5 @@ _No file-level detail recorded._
 ### Follow-Ups
 
 - Build the program in the order recorded in `028-governance-rollout`. The shared safe-fix engine and the prod-mode recall benchmark land before their dependents.
-- Every retrieval-class phase stays default-off until a prod-mode completeRecall@3 read moves, because the 3-result truncation floor hides eval-mode gains.
+- Every retrieval-class phase stays default-off until a prod-mode completeRecall@3/@5/@8 read moves and holds NDCG@K and top1, because eval-mode gains do not transfer. The eval lens skips truncation while the prod path applies the cliff-conditional confidence cut over the never-cut-below-3 minimum and the token budget. `DEFAULT_MIN_RESULTS = 3` is a floor not a cap.
 - Nothing in this track has shipped. Each child is a scaffold awaiting its build stage.

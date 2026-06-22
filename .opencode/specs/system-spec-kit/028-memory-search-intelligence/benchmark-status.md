@@ -113,25 +113,35 @@ metric side.
 
 The Track-C data-quality program (005-spec-data-quality, 28 phases) is research-only and scaffolded. Every
 phase carries a Level-2 doc set marked PLANNED and no code has landed, so NOTHING in the program is measured
-yet. The status below records what each proposed measurement would have to clear, not a result.
+yet. The status below records what each proposed measurement would have to clear, not a result. The honest
+buildable-now subset is single-digit: A4 (004), the shared engine (026), A1 (001) and A3 (003). The
+retrieval tier and the thin novel items are deferred until a prod-mode read justifies them. No phase was
+deleted, all 28 scaffolds are kept by operator intent.
 
-The keystone retrieval unblocker is a spec-corpus prod-mode `completeRecall@3` benchmark (phase
+The keystone retrieval unblocker is a spec-corpus prod-mode benchmark (phase
 015-c2-prodmode-recall-gate) built around the existing dual-mode `run-eval-v2.mjs`. It would read the
-spec-doc corpus through the production default route and score completeRecall at the 3-result floor the prod
-reader actually serves. It is PROPOSED and not yet built or run. The operator-agreed retrieval-floor
-experiment (phase 027-retrieval-floor-experiment) to raise the token budget and measure whether results 4
-through 10 are signal or truncation noise is also PROPOSED, not run.
+spec-doc corpus through the production default route and score completeRecall across the @3/@5/@8 window the
+harness already emits plus an order-sensitive NDCG@K with a top1 guard, so a promotion needs a recall rise
+AND a ranking-quality hold rather than a single set-membership number. It is PROPOSED and not yet built or
+run. The operator-agreed retrieval-floor experiment (phase 027-retrieval-floor-experiment) to raise the
+token budget and measure whether results 4 through 10 are signal or truncation noise is also PROPOSED, not
+run.
 
-The program explicitly inherits the production-truth 3-result-floor finding above. That floor is why every
-Tier-C retrieval phase (014 through 018) stays default-off: a retrieval candidate cannot earn a prod-path
-keep until the prod-mode read at phase 015 moves, and the floor itself does not move until the phase-027
-experiment shows results past rank 3 are signal rather than noise. Until both run, no Tier-C retrieval claim
-carries measured support.
+The program explicitly inherits the production-truth eval-vs-prod fidelity finding above. Token-budget
+truncation is the real prod-limiting stage and confidence truncation only guarantees a never-cut-below-3
+minimum (it returns 3 to 20, cliff-conditional), so an eval-mode recall gain that lands past the prod window
+does not transfer to the prod reader. That is why every Tier-C retrieval phase (014 through 018) stays
+default-off: a retrieval candidate cannot earn a prod-path keep until the prod-mode read at phase 015 moves,
+and the prod window itself does not widen until the phase-027 experiment shows results past rank 3 are signal
+rather than noise. Until both run, no Tier-C retrieval claim carries measured support.
 
-The one measured-class item in the whole program is A4 (phase 004-a4-schema-warn-to-error, the JSON-schema
-shape-rule warn-to-error promotion). It touches write-time validation not retrieval ranking, so it bypasses
-the truncation floor entirely and carries zero prod-retrieval risk. Every other phase ships on cost reasoning
-or stays gated, none on a measured retrieval gain.
+The nearest-to-measured item in the whole program is A4 (phase 004-a4-schema-warn-to-error, the JSON-schema
+shape-rule warn-to-error promotion). It touches write-time validation not retrieval ranking, so it sits
+upstream of the prod truncation stages and carries zero prod-retrieval risk. A4 is unconditional as a
+DECISION but its error flip is gated on a backfill-to-zero: a real `graphMetadataSchema` run fails 24 files
+today (16 excluding archives), not the 11 an earlier JSON-parse subcount reported, so the warn-to-error flip
+waits until the re-measure reads zero. Every other phase ships on cost reasoning or stays gated, none on a
+measured retrieval gain.
 
 ## Criterion 6 - release-cleanup: 9/9 executed, two file-subsets deferred to a concurrent session
 

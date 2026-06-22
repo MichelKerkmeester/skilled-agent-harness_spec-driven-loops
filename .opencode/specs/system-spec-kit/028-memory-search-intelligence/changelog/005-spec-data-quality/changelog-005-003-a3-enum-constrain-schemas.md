@@ -35,9 +35,9 @@ Status PLANNED. This phase is scaffolded and not yet implemented. No code change
 
 ### Verification
 
-- An out-of-enum importance_tier, status, or content_type fixture fails on both schemas - PLANNED, not yet run
-- An in-enum fixture passes on both schemas - PLANNED, not yet run
-- A derive-then-parse round trip over a real packet produces only in-enum values - PLANNED, not yet run
+- An out-of-enum importance_tier, status or content_type fixture fails on the strict schema variant while the default-off parse-on-load path accepts it - PLANNED, not yet run
+- An in-enum fixture passes either way and a default-off parse of a legacy fixture is byte-identical to baseline - PLANNED, not yet run
+- A derive-then-parse round trip over fixtures exercising all three producer paths, malformed source status, an unknown-availability ranked doc and a frontmatter importance_tier of high, produces only in-enum values - PLANNED, not yet run
 - A description fixture with extra authored keys still parses - PLANNED, not yet run
 - An out-of-enum value yields a precise per-field message through formatDescriptionSchemaIssues - PLANNED, not yet run
 
@@ -45,9 +45,10 @@ Status PLANNED. This phase is scaffolded and not yet implemented. No code change
 
 | File | Action | What changed |
 |---|---|---|
-| `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts` | Planned modify | Add the three as const vocabularies, swap importance_tier and status to z.enum(...), add the content_type enum |
-| `.opencode/skills/system-spec-kit/mcp_server/lib/description/description-schema.ts` | Planned modify | Add importance_tier and content_type enums, tighten type, keep .passthrough() and the per-field issue formatter |
-| `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts` | Planned modify | Close the normalizeDerivedStatus default so the producer only emits in-enum values |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts` | Planned modify | Add the three as const vocabularies, add a flag-gated strict enum variant (or superRefine) for importance_tier, status and content_type so the base schema stays free-string when SPECKIT_SCHEMA_ENUM_ENFORCE is off, not a bare z.enum baked into the base |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/description/description-schema.ts` | Planned modify | Add importance_tier and content_type enums behind the same flag seam, tighten type, keep .passthrough() and the per-field issue formatter |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts` | Planned modify | Guard all three out-of-enum producer paths so a derived file is in-enum: the normalizeDerivedStatus default-passthrough, the deriveStatus 'unknown' branch and the unnormalized deriveImportanceTier raw-tier return |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts` | Planned modify | Add the isSchemaEnumEnforceEnabled() resolver wrapping isFeatureEnabled('SPECKIT_SCHEMA_ENUM_ENFORCE') so the strict path is reachable only when the flag is on |
 
 ### Follow-Ups
 
