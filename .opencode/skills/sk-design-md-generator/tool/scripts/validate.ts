@@ -442,7 +442,10 @@ function hasCriticalFailure(result: ValidationResult): boolean {
 }
 
 function isPass(result: ValidationResult): boolean {
-  return result.score >= 80 && !hasCriticalFailure(result);
+  // claimsScore is gated too: a doc cannot pass on hex-fidelity alone while its prose
+  // carries unverified fabrication claims. Without this, the 99/100-with-fabrication case
+  // the validator exists to catch could still PASS.
+  return result.score >= 80 && result.claimsScore >= 80 && !hasCriticalFailure(result);
 }
 
 function printResult(result: ValidationResult): void {

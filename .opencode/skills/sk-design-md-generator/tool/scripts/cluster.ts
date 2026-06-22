@@ -1336,7 +1336,8 @@ export function clusterTokens(pages: PageExtraction[], cssVariables: CSSVariable
         .filter((t) => t.length > 0)
         .slice(0, 3);
 
-      const displayName = name === 'Primary' || name === 'Secondary' || name === 'Ghost' || name === 'Destructive'
+      const NAMED_VARIANTS = ['Primary', 'Secondary', 'Ghost', 'Destructive', 'Outline', 'Tertiary'];
+      const displayName = NAMED_VARIANTS.includes(name)
         ? name
         : `Variant-${variantCounter++}`;
 
