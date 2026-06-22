@@ -142,6 +142,14 @@ code-graph.sqlite
 .opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite*
 .opencode/skills/system-code-graph/mcp_server/database/.code-graph-*
 .opencode/skills/system-code-graph/mcp_server/database/.mk-code-index-launcher.*
+# Local activation symlink for the Barter Copywriter skill. The real source lives in the
+# Barter repo at Copywriter/barter-copywriter/; this is a machine-local discovery pointer.
+.opencode/skills/barter-copywriter
+
+.opencode/specs/00--anobel.com
+.claude/specs/00--anobel.com
+.codex/specs/00--anobel.com
+.agents/specs/00--anobel.com
 
 # Apply-pipeline runtime artifacts (audit journals, known-good/bad-apply snapshots,
 # quarantine/recovery triplets) — generated per apply run, database-local only.
