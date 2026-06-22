@@ -14,7 +14,10 @@ import {
 } from '../description/description-schema.js';
 import { stripYamlFrontmatter } from '../parsing/content-normalizer.js';
 import { resolveSpecFolderIdentity, SpecFolderIdentityError } from '../config/spec-doc-paths.js';
-import { isIdentityMergeSafetyEnabled } from '../config/capability-flags.js';
+import {
+  isIdentityMergeSafetyEnabled,
+  isIdempotentDescriptionWritesEnabled,
+} from '../config/capability-flags.js';
 import { isExcludedFromGeneratedMetadata } from '../utils/index-scope.js';
 
 // ───────────────────────────────────────────────────────────────
@@ -275,6 +278,79 @@ function getDescriptionWritePayload(
 
 export function getRepairMergeSafe(): boolean {
   return DESCRIPTION_REPAIR_MERGE_SAFE;
+}
+
+// ───────────────────────────────────────────────────────────────
+// 5a. CONTENT FINGERPRINTS
+// ───────────────────────────────────────────────────────────────
+
+/**
+ * Serialize a value with sorted object keys so two structurally-equal payloads
+ * with different key order produce the same string. Used as the input to a
+ * content fingerprint, so the comparison is independent of merge key ordering.
+ */
+function stableStringify(value: unknown): string {
+  if (Array.isArray(value)) {
+    return `[${value.map(stableStringify).join(',')}]`;
+  }
+  if (value !== null && typeof value === 'object') {
+    const record = value as Record<string, unknown>;
+    const keys = Object.keys(record).sort();
+    return `{${keys
+      .map((key) => `${JSON.stringify(key)}:${stableStringify(record[key])}`)
+      .join(',')}}`;
+  }
+  return JSON.stringify(value) ?? 'null';
+}
+
+/**
+ * Fingerprint a per-folder description payload over its content fields, excluding
+ * the volatile lastUpdated stamp. Two derivations of identical content hash equal
+ * even when their lastUpdated differs, so a no-op re-derive can be detected.
+ */
+function descriptionContentFingerprint(payload: Record<string, unknown>): string {
+  const { lastUpdated: _volatile, ...content } = payload;
+  return crypto.createHash('sha256').update(stableStringify(content)).digest('hex');
+}
+
+/**
+ * Fingerprint the member rows of a description cache, excluding the volatile
+ * top-level generated stamp. Each folder row keeps its own lastUpdated because a
+ * member-row change is exactly the semantic delta the aggregate gate must catch.
+ */
+function cacheContentFingerprint(cache: DescriptionCache): string {
+  return crypto
+    .createHash('sha256')
+    .update(stableStringify(cache.folders))
+    .digest('hex');
+}
+
+/**
+ * Compare two cache member rows ignoring the volatile lastUpdated stamp. A row
+ * whose content fields match but whose timestamp differs is not a real delta, so
+ * the targeted upsert leaves it untouched.
+ */
+function cacheEntryEqualIgnoringVolatile(a: FolderDescription, b: FolderDescription): boolean {
+  return (
+    a.specFolder === b.specFolder
+    && a.description === b.description
+    && stableStringify(a.keywords) === stableStringify(b.keywords)
+  );
+}
+
+/**
+ * Read and parse a per-folder description.json into a raw record for comparison.
+ * Returns null when the file is missing or unparseable, in which case the caller
+ * falls back to an unconditional write.
+ */
+function readRawPerFolderDescription(descPath: string): Record<string, unknown> | null {
+  try {
+    const raw = fs.readFileSync(descPath, 'utf-8');
+    const parsed = JSON.parse(raw);
+    return parsed && typeof parsed === 'object' ? (parsed as Record<string, unknown>) : null;
+  } catch (_error: unknown) {
+    return null;
+  }
 }
 
 export function getPerTokenSimilarityThreshold(): number {
@@ -998,15 +1074,38 @@ export function loadPerFolderDescription(folderPath: string): PerFolderDescripti
  * Concurrent processes may cause lost updates (acceptable trade-off
  * for non-critical tracking data, no file lock is used).
  *
+ * When the idempotent-writes flag is on, a save whose content fingerprint matches
+ * the on-disk file is skipped so the prior lastUpdated survives and the working
+ * tree stays clean. A canonical save opts out of the skip through options so an
+ * intentional save is still allowed to bump the timestamp on unchanged content.
+ *
  * @param desc       - The PerFolderDescription to persist.
  * @param folderPath - Absolute path to the spec folder.
+ * @param options    - canonicalSave bypasses the no-op skip for an intentional bump.
  */
-export function savePerFolderDescription(desc: PerFolderDescription, folderPath: string): void {
+export function savePerFolderDescription(
+  desc: PerFolderDescription,
+  folderPath: string,
+  options: { canonicalSave?: boolean } = {},
+): void {
   if (!fs.existsSync(folderPath)) {
     fs.mkdirSync(folderPath, { recursive: true });
   }
   const descPath = path.join(folderPath, 'description.json');
   const payload = getDescriptionWritePayload(desc, loadExistingDescription(folderPath));
+
+  // Idempotent skip: a re-derive that changes only the volatile lastUpdated leaves
+  // the file untouched, so reruns on unchanged content do not churn the working tree.
+  // A canonical save bypasses this so a deliberate save can still advance the stamp.
+  if (isIdempotentDescriptionWritesEnabled() && !options.canonicalSave) {
+    const prior = readRawPerFolderDescription(descPath);
+    if (
+      prior
+      && descriptionContentFingerprint(prior) === descriptionContentFingerprint(payload)
+    ) {
+      return;
+    }
+  }
   // Atomic write with random suffix, fsync, and cleanup to prevent partial writes
   const tempSuffix = crypto.randomBytes(4).toString('hex');
   const tempPath = `${descPath}.tmp.${tempSuffix}`;
@@ -1077,13 +1176,31 @@ export function loadDescriptionCache(cachePath: string): DescriptionCache | null
  * Write a DescriptionCache to a JSON file on disk.
  * Creates parent directories if they do not exist.
  *
+ * When the idempotent-writes flag is on and the caller opts in, the write is gated
+ * on a real member-row delta so a rebuild over an unchanged tree preserves the
+ * generated stamp and rows rather than churning them with a fresh wall-clock time.
+ *
  * @param cache     - The DescriptionCache to persist.
  * @param cachePath - Absolute path to write the descriptions.json file.
+ * @param options   - idempotent gates the write on a member-row delta.
  */
-export function saveDescriptionCache(cache: DescriptionCache, cachePath: string): void {
+export function saveDescriptionCache(
+  cache: DescriptionCache,
+  cachePath: string,
+  options: { idempotent?: boolean } = {},
+): void {
   const dir = path.dirname(cachePath);
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true });
+  }
+
+  // Aggregate content gate: when nothing but the volatile generated stamp would
+  // change, leave the cache file alone so a no-op rebuild does not dirty it.
+  if (isIdempotentDescriptionWritesEnabled() && options.idempotent) {
+    const prior = loadDescriptionCache(cachePath);
+    if (prior && cacheContentFingerprint(prior) === cacheContentFingerprint(cache)) {
+      return;
+    }
   }
   // Atomic write with random suffix, fsync, and cleanup (same pattern as savePerFolderDescription)
   const tempSuffix = crypto.randomBytes(4).toString('hex');
@@ -1100,6 +1217,64 @@ export function saveDescriptionCache(cache: DescriptionCache, cachePath: string)
   } finally {
     try { fs.unlinkSync(tempPath); } catch (_e: unknown) { /* already renamed or missing */ }
   }
+}
+
+/** Outcome of a targeted cache upsert, distinguishing a real write from a no-op. */
+export interface UpsertCacheResult {
+  written: boolean;
+  reason: 'unchanged' | 'updated' | 'inserted' | 'created';
+}
+
+/**
+ * Replace a single folder entry in the aggregate descriptions.json cache, writing
+ * only when that entry actually changed. A per-folder save routes through this
+ * instead of a whole-tree rescan, so it never pulls unrelated folders into the
+ * write. The full rebuild stays reserved for structural changes such as a folder
+ * delete or rename, which a single-entry upsert cannot express.
+ *
+ * Sibling entries are carried through untouched, including their own lastUpdated,
+ * so only the target row and the generated stamp move on a real delta.
+ *
+ * @param cachePath - Absolute path to the descriptions.json file.
+ * @param entry     - The folder row to insert or replace.
+ * @param options   - now overrides the generated stamp for deterministic tests.
+ * @returns Whether a write occurred and which path it took.
+ */
+export function upsertDescriptionCacheEntry(
+  cachePath: string,
+  entry: FolderDescription,
+  options: { now?: string } = {},
+): UpsertCacheResult {
+  const now = options.now ?? new Date().toISOString();
+  const existing = loadDescriptionCache(cachePath);
+
+  // No cache yet: bootstrap with this single entry rather than scanning the tree.
+  if (!existing) {
+    saveDescriptionCache({ version: 1, generated: now, folders: [entry] }, cachePath);
+    return { written: true, reason: 'created' };
+  }
+
+  const folders = existing.folders.slice();
+  const targetIndex = folders.findIndex((folder) => folder.specFolder === entry.specFolder);
+
+  if (targetIndex >= 0) {
+    if (cacheEntryEqualIgnoringVolatile(folders[targetIndex]!, entry)) {
+      return { written: false, reason: 'unchanged' };
+    }
+    folders[targetIndex] = entry;
+  } else {
+    folders.push(entry);
+  }
+
+  // Keep the same ordering generateFolderDescriptions emits so the upsert path and
+  // the rebuild path produce a byte-identical layout for an identical folder set.
+  folders.sort((a, b) => a.specFolder.localeCompare(b.specFolder));
+
+  saveDescriptionCache(
+    { version: existing.version ?? 1, generated: now, folders },
+    cachePath,
+  );
+  return { written: true, reason: targetIndex >= 0 ? 'updated' : 'inserted' };
 }
 
 // ───────────────────────────────────────────────────────────────
@@ -1214,10 +1389,11 @@ export function ensureDescriptionCache(basePaths: string[]): DescriptionCache | 
       return existing;
     }
 
-    // Regenerate
+    // Regenerate. The idempotent gate keeps a content-identical rebuild from
+    // restamping the cache when only mtimes moved, the flag-off path is unchanged.
     const fresh = generateFolderDescriptions(normalizedBasePaths);
     try {
-      saveDescriptionCache(fresh, cachePath);
+      saveDescriptionCache(fresh, cachePath, { idempotent: true });
     } catch (_error: unknown) {
       // Cache write failure, still return the generated cache
     }

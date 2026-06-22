@@ -1,12 +1,14 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Workflow canonical-save metadata freshness regression
 // ───────────────────────────────────────────────────────────────
-// Wave A — + (H-56-1 compound headline)
+// Wave A, + (H-56-1 compound headline)
 //
 // These tests assert that the canonical-save path writes fresh
-// Description.json.lastUpdated on every invocation and that
-// refreshGraphMetadata runs unconditionally — even in plan-only mode —
-// So graph-metadata.json.derived.last_save_at advances
+// Description.json.lastUpdated on every invocation through the explicit
+// per-save bump, and that refreshGraphMetadata follows the idempotent
+// contract: a re-derive with no content change preserves
+// graph-metadata.json.derived.last_save_at, while an explicit canonical
+// save still advances it.
 //
 // Two layers of coverage:
 //   1. Tight unit asserts that mirror the exact workflow.ts update block
@@ -15,7 +17,7 @@
 //      (e.g., a future ctxFileWritten stub re-introduction or dropping
 //      the lastUpdated assignment) fails loudly here.
 //   2. A full-workflow integration harness marked skip-pending. The
-//      skip mirrors the pattern in workflow-session-id.vitest.ts —
+//      skip mirrors the pattern in workflow-session-id.vitest.ts -
 //      runWorkflow requires collect-session-data + template-contract
 //      scaffolding that the unit harness already covers. Kept as
 //      a TODO fixture for when the compact wrapper fixtures land.
@@ -142,7 +144,7 @@ describe('T-CNS-01 canonical save advances description.json.lastUpdated', () => 
 
   it('keeps lastUpdated assignment independent of memorySequence retry path', () => {
     // Even on the first attempt (no retry), lastUpdated must still be
-    // written — it is not gated on memorySequenceUpdated.
+    // written, it is not gated on memorySequenceUpdated.
     const result = applyWorkflowCanonicalSaveUpdate(tempSpecFolder, 'ctx-single.md');
     expect(typeof result.lastUpdated).toBe('string');
     // Defensive: ensure ISO-8601 parseability rather than raw string.
@@ -150,7 +152,7 @@ describe('T-CNS-01 canonical save advances description.json.lastUpdated', () => 
   });
 });
 
-describe('T-W1-CNS-04 refreshGraphMetadata runs on every canonical save', () => {
+describe('T-W1-CNS-04 refreshGraphMetadata is idempotent on unchanged content', () => {
   let tempRoot: string;
   let tempSpecFolder: string;
 
@@ -213,7 +215,7 @@ describe('T-W1-CNS-04 refreshGraphMetadata runs on every canonical save', () => 
     }
   });
 
-  it('advances graph-metadata.json.derived.last_save_at (plan-only path)', async () => {
+  it('preserves last_save_at on an unchanged re-derive, advances on an explicit save', async () => {
     // First call creates graph-metadata.json.
     const first = refreshGraphMetadata(tempSpecFolder);
     expect(first.created).toBe(true);
@@ -223,17 +225,29 @@ describe('T-W1-CNS-04 refreshGraphMetadata runs on every canonical save', () => 
     expect(firstSaved?.derived.last_save_at).toBeTruthy();
     const firstStamp = firstSaved?.derived.last_save_at as string;
 
-    // 10ms delta so the second timestamp is strictly greater.
+    // 10ms delta so any write would produce a strictly-greater stamp.
     await new Promise((resolve) => setTimeout(resolve, 10));
 
+    // Idempotent contract: a re-derive with no content change is a no-op skip,
+    // so the stamp is preserved rather than churned on every plan-only save.
     const second = refreshGraphMetadata(tempSpecFolder);
     expect(second.created).toBe(false);
     const secondSaved = loadGraphMetadata(second.filePath);
     const secondStamp = secondSaved?.derived.last_save_at as string;
+    expect(secondStamp).toBe(firstStamp);
 
-    // T-W1-CNS-04 contract: the default plan-only canonical save no longer
-    // suppresses this refresh. Second invocation must advance the stamp.
-    expect(secondStamp > firstStamp).toBe(true);
+    // A real content change still advances the stamp, so genuine deltas are
+    // never suppressed by the idempotency skip. A status change is a compared
+    // field, unlike the volatile-ignored last_save_at and save_lineage.
+    const third = refreshGraphMetadata(tempSpecFolder, {
+      now: '2026-05-01T00:00:00.000Z',
+      statusOverride: 'in_progress',
+    });
+    const thirdSaved = loadGraphMetadata(third.filePath);
+    expect(thirdSaved?.derived.status).toBe('in_progress');
+    const thirdStamp = thirdSaved?.derived.last_save_at as string;
+    expect(thirdStamp).toBe('2026-05-01T00:00:00.000Z');
+    expect(thirdStamp).not.toBe(firstStamp);
   });
 
   it('persists same_pass lineage when the canonical-save path requests it', () => {
@@ -263,6 +277,6 @@ describe('T-W1-CNS-04 refreshGraphMetadata runs on every canonical save', () => 
 //   * Repeat for plannerMode: 'full-auto' to prove parity
 describe.skip('full runWorkflow canonical-save metadata integration', () => {
   it('plan-only mode writes description.json.lastUpdated + refreshes graph metadata', () => {
-    // Intentionally empty — see TODO above.
+    // Intentionally empty, see TODO above.
   });
 });

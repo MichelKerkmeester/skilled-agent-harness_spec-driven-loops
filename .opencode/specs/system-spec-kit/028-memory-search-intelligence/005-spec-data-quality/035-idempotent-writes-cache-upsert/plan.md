@@ -14,17 +14,18 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/035-idempotent-writes-cache-upsert"
     last_updated_at: "2026-06-22T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Planned the fingerprint, the no-op skip, the upsert split, all flag-gated"
-    next_safe_action: "Hold for implementation, no code change has landed yet"
+    recent_action: "Built the skip, the gate, and the upsert split flag-gated, vitest green"
+    next_safe_action: "Graduation follow-on, scoped migration then flip the flag on"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts"
-      - ".opencode/skills/system-spec-kit/mcp_server/scripts/tests/folder-discovery-idempotent.vitest.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/folder-discovery-idempotent.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-035-idempotent-writes-cache-upsert"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -64,14 +65,14 @@ This phase makes the description-side writes deterministic and scoped, implement
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met, REQ-007 grandfather reporter deferred with rationale
+- [x] Tests passing
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---

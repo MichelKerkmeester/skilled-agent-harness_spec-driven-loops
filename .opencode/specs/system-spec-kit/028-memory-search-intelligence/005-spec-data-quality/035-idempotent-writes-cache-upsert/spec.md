@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/005-spec-data-quality/035-idempotent-writes-cache-upsert"
     last_updated_at: "2026-06-22T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded PLANNED spec from research recs 5 and 8, both flag-gated"
-    next_safe_action: "Run speckit plan to decompose the fingerprint helper and the upsert split"
+    recent_action: "Shipped recs 5 and 8 behind the default-OFF flag, skip plus gate plus upsert"
+    next_safe_action: "Graduation follow-on, scoped migration then flip the flag on"
     blockers: []
     key_files:
       - "../031-generated-json-quality-research/research/research.md"
@@ -24,11 +24,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-035-idempotent-writes-cache-upsert"
       parent_session_id: "phase-035-idempotent-writes-cache-upsert"
-    completion_pct: 0
-    open_questions:
-      - "Which canonical fields enter the description fingerprint versus the volatile lastUpdated and generated stamps"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
-      - "Whether the fix ships behind a flag, it does, default-OFF with a grandfather report mode for the existing wall-clock files"
+      - "Whether the fix ships behind a flag, it does, default-OFF SPECKIT_IDEMPOTENT_DESCRIPTION_WRITES so the existing wall-clock files are untouched"
+      - "Which fields enter the fingerprint, the full write payload with only the volatile lastUpdated stripped, so memory-tracking deltas still write while a pure timestamp churn skips"
 ---
 # Feature Specification: Idempotent Writes and Global-Cache Upsert
 
@@ -51,7 +51,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | PLANNED |
+| **Status** | COMPLETE |
 | **Created** | 2026-06-22 |
 | **Branch** | `035-idempotent-writes-cache-upsert` |
 <!-- /ANCHOR:metadata -->

@@ -101,6 +101,36 @@ function isGeneratedMetadataGrandfatherEnabled(): boolean {
   return !(rawValue === 'false' || rawValue === '0' || rawValue === 'off');
 }
 
+/**
+ * SPECKIT_IDEMPOTENT_DESCRIPTION_WRITES: Content-gated description and global-cache writes.
+ *
+ * Strictly default-OFF and env-only: existing description.json and descriptions.json
+ * files on disk carry wall-clock lastUpdated and generated stamps that a content-hash
+ * gate would treat as drift, so a hard cutover would mass-rewrite them. With the flag on,
+ * a per-folder save that changes only the volatile stamp is skipped and the prior
+ * timestamp is preserved, the aggregate-cache write is gated on a real member delta, and
+ * the targeted upsert replaces only the changed entry. An explicit canonical save still
+ * bumps the timestamp through the escape hatch. Like the other safety flags this never
+ * consults the rollout policy, so an un-set environment can never flip it on by chance.
+ *
+ * | Value          | Behavior                                                          |
+ * |----------------|-------------------------------------------------------------------|
+ * | unset / other  | (default) writes are unconditional and stamp wall-clock time      |
+ * | `true` / `1`   | unchanged content skips the write and preserves the prior stamp   |
+ */
+const IDEMPOTENT_DESCRIPTION_WRITES_ENV = 'SPECKIT_IDEMPOTENT_DESCRIPTION_WRITES' as const;
+
+/**
+ * Returns whether content-gated idempotent description and cache writes are active.
+ *
+ * Reads the environment on every call so a test can flip the behavior per-case, and
+ * stays OFF for any value other than an explicit truthy opt-in.
+ */
+function isIdempotentDescriptionWritesEnabled(): boolean {
+  const rawValue = process.env[IDEMPOTENT_DESCRIPTION_WRITES_ENV]?.trim().toLowerCase();
+  return rawValue === 'true' || rawValue === '1';
+}
+
 // Keep roadmap controls distinct from existing runtime feature flags so
 // Telemetry/checkpoints describe roadmap rollout state rather than unrelated
 // Default-on retrieval behavior.
@@ -201,9 +231,12 @@ export {
   getMemoryRoadmapPhase,
   /** Documented generated-metadata grandfather env var name */
   GENERATED_METADATA_GRANDFATHER_ENV,
+  /** Documented idempotent-description-writes env var name */
+  IDEMPOTENT_DESCRIPTION_WRITES_ENV,
   /** Documented identity/merge-safety env var name */
   IDENTITY_MERGE_SAFETY_ENV,
   isGeneratedMetadataGrandfatherEnabled,
+  isIdempotentDescriptionWritesEnabled,
   isIdentityMergeSafetyEnabled,
   /** @internal — exposed for test utilities only */
   isMemoryRoadmapCapabilityEnabled,
