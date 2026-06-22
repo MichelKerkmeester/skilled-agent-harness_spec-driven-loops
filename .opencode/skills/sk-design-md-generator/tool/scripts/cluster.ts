@@ -397,7 +397,7 @@ export function classifyShadow(value: string): 'border-shadow' | 'ring' | 'eleva
 
 // ─── Stability Classification ───────────────────────────────────────────────
 
-function classifyColorStability(color: ColorToken, _totalPages: number): StabilityClassification {
+export function classifyColorStability(color: ColorToken, _totalPages: number): StabilityClassification {
   const signals: string[] = [];
   let score = 0;
 
@@ -572,6 +572,24 @@ export function classifyTokenStability(tokens: DesignTokens): void {
   for (const component of tokens.components) {
     component.stability = classifyComponentStability(component);
   }
+}
+
+// Button/control variant from its element styles. Top-level + exported so the heuristic
+// (including the Outline/Tertiary branches) is unit-testable; clusterTokens calls it.
+export function classifyVariant(el: ElementStyle): string {
+  const bg = parseColor(el.backgroundColor);
+  const text = parseColor(el.color);
+  if (!bg || bg.a < 0.05) return 'Ghost'; // transparent fill
+  const bgLum = bg ? relativeLuminance(bg.r, bg.g, bg.b) : 1;
+  const textLum = text ? relativeLuminance(text.r, text.g, text.b) : 0;
+  if (bg && bg.r > 180 && bg.g < 100 && bg.b < 100) return 'Destructive'; // red-ish fill
+  if (bgLum < 0.3 && textLum > 0.5) return 'Primary'; // dark fill + light text
+  const hasShadow = !!el.boxShadow && el.boxShadow !== 'none';
+  const hasBorder = parseFloat(el.borderTopWidth) > 0;
+  if (bgLum > 0.7 && textLum < 0.4 && (hasShadow || hasBorder)) return 'Secondary';
+  if (hasBorder && !hasShadow && bgLum > 0.5) return 'Outline'; // bordered, unfilled
+  if (bgLum > 0.7 && !hasBorder && !hasShadow) return 'Tertiary'; // flat, subtle
+  return 'Primary'; // solid mid/dark fill default
 }
 
 // ─── Main Export ─────────────────────────────────────────────────────────────
@@ -1220,38 +1238,6 @@ export function clusterTokens(pages: PageExtraction[], cssVariables: CSSVariable
   }
 
   // ── Variant Detection ─────────────────────────────────────────────────
-
-  function classifyVariant(el: ElementStyle): string {
-    const bg = parseColor(el.backgroundColor);
-    const text = parseColor(el.color);
-
-    // Transparent bg → Ghost
-    if (!bg || bg.a < 0.05) return 'Ghost';
-
-    const bgLum = bg ? relativeLuminance(bg.r, bg.g, bg.b) : 1;
-    const textLum = text ? relativeLuminance(text.r, text.g, text.b) : 0;
-
-    // Red-ish bg → Destructive
-    if (bg && bg.r > 180 && bg.g < 100 && bg.b < 100) return 'Destructive';
-
-    // Dark bg + light text → Primary
-    if (bgLum < 0.3 && textLum > 0.5) return 'Primary';
-
-    // Light/white bg + dark text + border/shadow → Secondary
-    const hasShadow = !!el.boxShadow && el.boxShadow !== 'none';
-    const hasBorder = parseFloat(el.borderTopWidth) > 0;
-    const hasShadowOrBorder = hasShadow || hasBorder;
-    if (bgLum > 0.7 && textLum < 0.4 && hasShadowOrBorder) return 'Secondary';
-
-    // Visible border, no fill contrast, no shadow → Outline (bordered, unfilled button).
-    if (hasBorder && !hasShadow && bgLum > 0.5) return 'Outline';
-
-    // Light, flat, no border or shadow → Tertiary (subtle / text-style button).
-    if (bgLum > 0.7 && !hasBorder && !hasShadow) return 'Tertiary';
-
-    // Solid mid/dark fill that matched none of the above → Primary (the CTA default).
-    return 'Primary';
-  }
 
   // Group by component type, then by variant
   const componentTypeGroups = new Map<string, Map<string, { count: number; elements: ElementStyle[]; pageUrls: string[] }>>();
