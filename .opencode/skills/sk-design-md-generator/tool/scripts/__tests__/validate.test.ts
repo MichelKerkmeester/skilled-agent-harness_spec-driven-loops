@@ -163,7 +163,9 @@ describe('validateDesignMd', () => {
     const md = VALID_MD + '\n\nThis is a gradient-as-depth technique that replaces shadow elevation. Unlike most systems, this one is flat.\n';
     const result = validateDesignMd(md, makeTokens());
     const proseWarns = result.warnings.filter((w) => w.type === 'prose-fabrication');
-    expect(proseWarns.length).toBeGreaterThanOrEqual(2);
+    // assert WHICH patterns fired, not just a loose count
+    expect(proseWarns.some((w) => /gradient-as-depth|replaces-shadow/i.test(w.message))).toBe(true);
+    expect(proseWarns.some((w) => /most systems/i.test(w.message))).toBe(true);
     expect(result.claimsScore).toBeLessThan(result.valuesScore);
     expect(result.failures.length).toBe(0); // prose checks are WARNING-tier, never hard-fail
   });

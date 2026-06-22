@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { nameColors, formatSpacingShapesV3, emitQuickStart } from '../formatters-v3';
+import { nameColors, formatSpacingShapesV3, emitQuickStart, formatColorsV3, formatSurfacesV3 } from '../formatters-v3';
 import type { DesignTokens } from '../types';
 
 function tokens(over: Record<string, unknown> = {}): DesignTokens {
@@ -48,5 +48,14 @@ describe('formatters-v3 (Style Reference emitters)', () => {
     const hexes = new Set(tokens().colorTokens.map((c) => c.hex.toLowerCase()));
     const phantom = (a.match(/#[0-9a-f]{6}/gi) || []).map((h) => h.toLowerCase()).filter((h) => !hexes.has(h));
     expect(phantom).toHaveLength(0);
+  });
+
+  it('empty/missing token sets render absence cleanly and never throw', () => {
+    const t = { colorTokens: [], typographyLevels: [], shadowTokens: [], spacingSystem: undefined, radiusTokens: [] } as unknown as DesignTokens;
+    expect(formatColorsV3(t)).toContain('No L1/L2 system colours');
+    expect(formatSurfacesV3(t)).toContain('No background-surface');
+    expect(() => formatSpacingShapesV3(t)).not.toThrow();
+    expect(() => emitQuickStart(t)).not.toThrow();
+    expect(formatSpacingShapesV3(t)).toContain('not measured'); // no spacingSystem -> honest, not a fabricated max-width
   });
 });
