@@ -149,6 +149,8 @@ function checkUnknownFonts(md: string, tokens: DesignTokens): { passed: boolean;
     // is not a hex code, and doesn't look like a CSS property
     if (!/[A-Z]/.test(val)) continue;
     if (/^#[0-9a-fA-F]{3,8}$/.test(val)) continue;
+    if (/[{}<>=()]/.test(val)) continue; // code/JSX (e.g. strokeWidth={1}) is not a font
+    if (/[.!?]$/.test(val)) continue; // sentence-ending punctuation -> content phrase, not a font
     if (/^[a-z-]+:/.test(val)) continue;
     if (/^\d/.test(val)) continue;
     if (val.length > 40) continue;
@@ -340,7 +342,7 @@ function checkContent(md: string): { passed: boolean; warnings: ValidationIssue[
 // specific phrases are inherently ungrounded: tokens.json carries no data about other
 // systems, and the depth/focus claims are the two known hallucinations.
 const PROSE_FABRICATION_PATTERNS: { re: RegExp; label: string }[] = [
-  { re: /\b(unlike most|most systems|where others|the typical approach|the conventional)\b/i, label: 'comparison to other/most systems (no token data about other systems)' },
+  { re: /\b(unlike most|most systems|where others|the typical approach|the conventional|departs? from convention|refuses? to)\b/i, label: 'comparison to other/most systems / convention (no token data about other systems)' },
   { re: /gradient[\s-]?as[\s-]?depth|replaces?\s+(the\s+)?shadow\s+elevation/i, label: 'gradient-as-depth / replaces-shadow-elevation claim' },
 ];
 
@@ -355,7 +357,7 @@ function checkProseDiscipline(md: string, tokens: DesignTokens): { passed: boole
   // captured focus styles.
   const focus = (tokens as unknown as { a11yTokens?: { focusIndicator?: { captured?: boolean; consistent?: boolean } } }).a11yTokens?.focusIndicator;
   if (focus && (focus.captured === false || focus.consistent === false)) {
-    if (/focus[^.\n]{0,40}\bconsistent\b/i.test(cleaned) && !/\binconsistent\b|not consistent/i.test(cleaned)) {
+    if (/focus[^.\n]{0,40}\bconsistent(ly)?\b/i.test(cleaned) && !/\binconsistent\b|not consistent/i.test(cleaned)) {
       warnings.push({ type: 'prose-fabrication', value: 'focus consistent', message: 'Asserts focus is consistent but tokens show captured=false or consistent=false' });
     }
   }

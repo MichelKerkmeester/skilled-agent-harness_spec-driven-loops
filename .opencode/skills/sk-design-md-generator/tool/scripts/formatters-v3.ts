@@ -75,12 +75,13 @@ function baseName(hex: string): { name: string; descriptor: string } {
 
 // Dominant measured usage, as a role phrase (no frequency numbers).
 function usageRole(c: ColorToken): string {
+  const u = c.usedAs ?? ({} as ColorToken['usedAs']);
   const dims: [string, number][] = [
-    ['text', c.usedAs.textColor],
-    ['borders', c.usedAs.borderColor],
-    ['backgrounds', c.usedAs.bgColor],
-    ['icons', c.usedAs.iconColor],
-    ['gradients', c.usedAs.gradientColor],
+    ['text', u.textColor ?? 0],
+    ['borders', u.borderColor ?? 0],
+    ['backgrounds', u.bgColor ?? 0],
+    ['icons', u.iconColor ?? 0],
+    ['gradients', u.gradientColor ?? 0],
   ];
   const used = dims.filter(([, n]) => n > 0).sort((a, b) => b[1] - a[1]).slice(0, 3).map(([k]) => k);
   return used.length ? used.join(', ') : 'decorative use';
@@ -116,7 +117,9 @@ export function nameColors(tokens: DesignTokens): NamedColor[] {
 // ── §3 Tokens — Colors ──────────────────────────────────────────
 export function formatColorsV3(tokens: DesignTokens): string {
   const named = nameColors(tokens);
-  const main = named.filter((n) => n.layer === 'infrastructure' || n.layer === 'system');
+  // Anything not explicitly campaign or content lands in the main table — a token whose
+  // stability layer never got classified must not silently vanish from the palette.
+  const main = named.filter((n) => n.layer !== 'campaign' && n.layer !== 'content');
   const campaign = named.filter((n) => n.layer === 'campaign');
   const row = (n: NamedColor) => `| ${n.name} | \`${n.hex}\` | \`${n.token}\` | ${n.role} |`;
   const header = '| Name | Value | Token | Role |\n|------|-------|-------|------|\n';

@@ -86,6 +86,11 @@ function parseArgs(argv: string[]): ExtractOptions {
   let waitFor: WaitStrategy | undefined;
   let mergeWith: string | undefined;
   let insecure = false;
+  // --fast applies its page/concurrency defaults only to values not explicitly set, so
+  // the flag is order-independent and never clobbers an explicit --max-pages/--concurrency.
+  let fast = false;
+  let maxPagesSet = false;
+  let concurrencySet = false;
 
   let i = 0;
   while (i < args.length) {
@@ -97,8 +102,10 @@ function parseArgs(argv: string[]): ExtractOptions {
       output = args[++i];
     } else if (arg === '--concurrency') {
       concurrency = parsePositiveInt(args[++i], '--concurrency');
+      concurrencySet = true;
     } else if (arg === '--max-pages') {
       maxPages = parsePositiveInt(args[++i], '--max-pages');
+      maxPagesSet = true;
     } else if (arg === '--extra-urls') {
       const file = args[++i];
       if (fs.existsSync(file)) {
@@ -106,8 +113,12 @@ function parseArgs(argv: string[]): ExtractOptions {
         extraUrls.push(...content.split('\n').map(l => l.trim()).filter(Boolean));
       }
     } else if (arg === '--wait-for') {
-      const val = args[++i] as WaitStrategy;
-      waitFor = val;
+      const val = args[++i];
+      if (val !== 'networkidle' && val !== 'css' && !val?.startsWith('selector:')) {
+        console.error(`Invalid --wait-for "${val}". Use: networkidle, css, or selector:<css>.`);
+        process.exit(1);
+      }
+      waitFor = val as WaitStrategy;
     } else if (arg === '--merge-with') {
       mergeWith = args[++i];
     } else if (arg === '--no-dark-mode') {
@@ -118,12 +129,10 @@ function parseArgs(argv: string[]): ExtractOptions {
     } else if (arg === '--with-interaction') {
       noInteraction = false;
     } else if (arg === '--fast') {
-      maxPages = 5;
-      concurrency = 8;
+      fast = true;
     } else if (arg === '--fast-no-interaction') {
       // Fast crawl AND skip interaction capture (the old --fast behavior).
-      maxPages = 5;
-      concurrency = 8;
+      fast = true;
       noInteraction = true;
     } else if (arg === '--verbose') {
       verbose = true;
@@ -133,6 +142,12 @@ function parseArgs(argv: string[]): ExtractOptions {
       urls.push(arg);
     }
     i++;
+  }
+
+  // Apply --fast defaults only where the user did not set an explicit value.
+  if (fast) {
+    if (!maxPagesSet) maxPages = 5;
+    if (!concurrencySet) concurrency = 8;
   }
 
   if (urls.length === 0) {
@@ -468,7 +483,9 @@ async function extract(options: ExtractOptions): Promise<void> {
   const a11yTokens = extractA11y(domCollections, interactionSets, cssAnalyses);
   // Merge the page-level async a11y from the representative (first available) page;
   // extractA11y cannot compute tab order / lang / skip-link / alt-text without a live page.
-  const primaryAsyncA11y = pageExtractions.find((p) => p.asyncA11y)?.asyncA11y;
+  // First page whose async a11y actually populated — skip pages where every sub-extraction
+  // failed and left an empty {}, which would otherwise overwrite nothing with nothing.
+  const primaryAsyncA11y = pageExtractions.find((p) => p.asyncA11y && Object.keys(p.asyncA11y).length > 0)?.asyncA11y;
   if (primaryAsyncA11y) Object.assign(a11yTokens, primaryAsyncA11y);
 
   // ── Step 12: Cluster tokens ──────────────────────────────────────────────

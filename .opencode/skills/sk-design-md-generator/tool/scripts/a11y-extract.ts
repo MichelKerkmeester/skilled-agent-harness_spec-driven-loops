@@ -355,7 +355,7 @@ export function extractA11y(
     focusIndicator,
     contrastPairs,
     minTouchTarget,
-    minFontSize: smallestFontSizeStr,
+    minFontSize: smallestFontSize === Infinity ? '' : smallestFontSizeStr,
     ariaRoleStats: Object.keys(ariaRoleStats).length > 0 ? ariaRoleStats : undefined,
     reducedMotionSupport,
   };
