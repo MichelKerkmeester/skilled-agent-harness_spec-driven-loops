@@ -17,12 +17,12 @@
 // falseGoodOnHardNegatives metric to report a false-confirm rate. The rate is
 // embedder-scoped, so the active embedder name is recorded in the report.
 //
-// The gate is default-off. With SPECKIT_FALSE_CONFIRM_MAX_RATE unset the driver
-// reports the rate and exits zero. Set the env to a bar (0.0 for zero
-// tolerance) to enforce: a measured rate past the bar exits non-zero. A
-// grandfather report mode records the rate and exits zero regardless, so the
-// existing corpus does not block adoption before the downstream
-// lexical-grounding floor lands. This driver measures, it does not move the
+// The gate enforces a zero-tolerance ceiling by default, graduated on a measured
+// benchmark now that the lexical-grounding floor is default-on. With
+// SPECKIT_FALSE_CONFIRM_MAX_RATE unset the driver bars any rate past 0.0, so an
+// absent-term false confirm exits non-zero. An explicit bar overrides the ceiling,
+// and a grandfather report mode records the rate and exits zero regardless, kept for
+// a corpus that has not adopted the floor. This driver measures, it does not move the
 // verdict.
 //
 // The DB is opened read-only via a tempdir backup, this driver never mutates the
@@ -52,16 +52,16 @@ export const GATE_ENV = 'SPECKIT_FALSE_CONFIRM_MAX_RATE';
 // until the downstream verdict fix lands.
 export const GRANDFATHER_ENV = 'SPECKIT_FALSE_CONFIRM_GRANDFATHER';
 
-// The recommended bar once the gate is enforced. Zero tolerance: a corpus that
-// never false-confirms an absent term is the target the verdict fix exists to
-// reach.
+// The default bar the gate enforces when the env is unset. Zero tolerance: a corpus
+// that never false-confirms an absent term is the target the lexical-grounding floor
+// reaches, so an unset env now enforces this ceiling rather than disabling the gate.
 export const DEFAULT_MAX_RATE = 0.0;
 
 const SEARCH_LIMIT = Number.parseInt(process.env.SPECKIT_FALSE_CONFIRM_LIMIT ?? '20', 10);
 
-// Parse the gate bar from the env value. Unset or empty disables the gate
-// (returns null). A non-numeric or out-of-range value is rejected at parse so
-// the gate is never silently disabled by a typo.
+// Parse an explicit gate bar from the env value. Unset or empty returns null, which
+// the driver resolves to the default ceiling. A non-numeric or out-of-range value is
+// rejected at parse so the gate is never silently disabled by a typo.
 export function parseMaxRate(raw) {
   if (raw === undefined || raw === null || String(raw).trim() === '') {
     return null;
@@ -74,6 +74,13 @@ export function parseMaxRate(raw) {
     throw new Error(`${GATE_ENV} must be within [0,1], received: ${String(raw)}`);
   }
   return value;
+}
+
+// Resolve the bar the driver actually enforces. An explicit env value wins, an unset
+// env resolves to the graduated zero-tolerance ceiling rather than disabling the gate.
+export function resolveEffectiveMaxRate(raw) {
+  const parsed = parseMaxRate(raw);
+  return parsed === null ? DEFAULT_MAX_RATE : parsed;
 }
 
 // Parse the grandfather flag from env or argv.
@@ -240,7 +247,7 @@ async function main() {
     throw new Error(`Invalid search limit: ${SEARCH_LIMIT}`);
   }
 
-  const maxRate = parseMaxRate(process.env[GATE_ENV]);
+  const maxRate = resolveEffectiveMaxRate(process.env[GATE_ENV]);
   const grandfather = parseGrandfather();
 
   const evalDatabase = await prepareEvalDatabase(SOURCE_DB_PATH);

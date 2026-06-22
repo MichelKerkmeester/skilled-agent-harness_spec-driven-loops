@@ -671,14 +671,16 @@ export function isResultConfidenceEnabled(): boolean {
  * before it can reach good through the margin or quality-ratio path. Both read the
  * lexical signal already on the result rows and add no new query or DB read.
  *
- * Default: FALSE (opt-in). The gate sits on the citation verdict, so over-denial
- * is the live risk; it ships dark and graduates only after validating on the
- * off-corpus fixtures. With the flag OFF the verdict is byte-for-byte the shipped
- * behavior. An unparseable value resolves to OFF. Set
- * SPECKIT_LEXICAL_GROUNDING_V1=true to enable.
+ * Default: TRUE (graduated on a measured benchmark that drove the off-corpus
+ * false-confirm rate to 0.000). The grounding floor and the single-hit
+ * corroboration guard run by default so a fluent but ungrounded hit can no longer
+ * reach good. An explicit opt-out restores the prior verdict that bands on absolute
+ * cosine and the top margin alone. An unparseable value resolves to ON. Set
+ * SPECKIT_LEXICAL_GROUNDING_V1=false to disable.
  */
 export function isLexicalGroundingEnabled(): boolean {
-  return isOptInEnabled('SPECKIT_LEXICAL_GROUNDING_V1');
+  const value = process.env.SPECKIT_LEXICAL_GROUNDING_V1?.toLowerCase().trim();
+  return !(value === 'false' || value === '0' || value === 'off');
 }
 
 /**
@@ -731,14 +733,17 @@ export function isGroundingSignalEnabled(): boolean {
  * embedder-specific; an embedder with no measured floor fails closed to the raw
  * relevance band rather than subtracting an unknown floor.
  *
- * Default: FALSE (opt-in). It changes the verdict band, so it ships dark and
- * graduates only after validating on the off-corpus fixtures. With the flag OFF
- * the band reads the raw relevance unchanged, byte-for-byte the shipped behavior.
- * An unparseable value resolves to OFF. Set SPECKIT_NOISE_FLOOR_SUBTRACTION_V1=true
- * to enable.
+ * Default: TRUE (graduated on a measured benchmark that drove the off-corpus
+ * false-confirm rate to 0.000). The verdict bands on relevance minus the measured
+ * floor by default so a background cosine no longer reaches good. An explicit
+ * opt-out restores the raw-relevance band. An embedder with no measured floor still
+ * fails closed to the raw band rather than subtracting an unknown floor. An
+ * unparseable value resolves to ON. Set SPECKIT_NOISE_FLOOR_SUBTRACTION_V1=false to
+ * disable.
  */
 export function isNoiseFloorSubtractionEnabled(): boolean {
-  return isOptInEnabled('SPECKIT_NOISE_FLOOR_SUBTRACTION_V1');
+  const value = process.env.SPECKIT_NOISE_FLOOR_SUBTRACTION_V1?.toLowerCase().trim();
+  return !(value === 'false' || value === '0' || value === 'off');
 }
 
 /**

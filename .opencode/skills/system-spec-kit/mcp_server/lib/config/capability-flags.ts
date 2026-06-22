@@ -47,18 +47,17 @@ const SPECKIT_PARSER_ENV = 'SPECKIT_PARSER' as const;
 /**
  * SPECKIT_IDENTITY_MERGE_SAFETY: Shared identity resolver and lineage-merge guard.
  *
- * Strictly default-OFF and env-only: existing description.json and graph-metadata.json
- * files on disk still carry the caller-base-relative path shape and the spread-merge
- * lineage, so the specs-root-relative identity and the parent/children preservation
- * guard must stay opt-in until a scoped migration graduates them. Unlike the roadmap
- * capabilities this never consults the rollout policy, so an un-set environment can
- * never flip it on by chance.
+ * Default-ON, graduated on a measured benchmark. The scoped migration restamped the
+ * tree, so both generators resolve the specs-root-relative identity and the merge
+ * preserves a non-null parent and unions children by default. An explicit opt-out
+ * restores the legacy caller-base path shape and the spread-merge lineage for a tree
+ * that has not been restamped. Unlike the roadmap capabilities this never consults the
+ * rollout policy, so the graduated default holds without the rollout percentage.
  *
- * | Value          | Behavior                                                          |
- * |----------------|-------------------------------------------------------------------|
- * | unset / other  | (default) generators keep their legacy identity, merge spreads    |
- * | `true` / `1`   | both generators resolve specs-root-relative identity and the      |
- * |                | merge preserves a non-null parent and unions children             |
+ * | Value                 | Behavior                                                   |
+ * |-----------------------|------------------------------------------------------------|
+ * | unset / `true` / `1`  | (default) specs-root-relative identity, parent preserved, children unioned |
+ * | `false` / `0` / `off` | legacy caller-base identity, merge spreads                 |
  */
 const IDENTITY_MERGE_SAFETY_ENV = 'SPECKIT_IDENTITY_MERGE_SAFETY' as const;
 
@@ -66,27 +65,28 @@ const IDENTITY_MERGE_SAFETY_ENV = 'SPECKIT_IDENTITY_MERGE_SAFETY' as const;
  * Returns whether the shared identity resolver and the lineage-merge guard are active.
  *
  * Reads the environment on every call so a test can flip the behavior per-case, and
- * stays OFF for any value other than an explicit truthy opt-in.
+ * stays ON for any value other than an explicit opt-out so the graduated default holds.
  */
 function isIdentityMergeSafetyEnabled(): boolean {
   const rawValue = process.env[IDENTITY_MERGE_SAFETY_ENV]?.trim().toLowerCase();
-  return rawValue === 'true' || rawValue === '1';
+  return !(rawValue === 'false' || rawValue === '0' || rawValue === 'off');
 }
 
 /**
  * SPECKIT_GENERATED_METADATA_GRANDFATHER: Generated-metadata integrity report mode.
  *
- * Grandfather report mode is ON by default for the first rollout, because many existing
- * description.json and graph-metadata.json files carry the prose statuses and prefixed
- * paths the new contract rejects and would mass-fail strict validation at once. With it
- * on the GENERATED_METADATA_INTEGRITY rule reports violations non-blocking; an explicit
- * opt-out graduates the rule to a hard error once a scoped migration has restamped the
- * legacy files.
+ * Default-OFF-enforcing, graduated on a measured benchmark. The scoped migration
+ * restamped the legacy description.json and graph-metadata.json files, so the
+ * GENERATED_METADATA_INTEGRITY rule runs as a hard error by default and a violation
+ * blocks strict validation. An explicit opt-in restores the grandfather report mode that
+ * records violations non-blocking, kept only for a tree that has not been restamped yet.
+ * The enforcing default measures clean because the migrated tree carries zero violations,
+ * which holds only while the drift-gate and generator-hardening flags stay off.
  *
- * | Value                | Behavior                                                     |
- * |----------------------|--------------------------------------------------------------|
- * | unset / `true` / `1` | (default) violations report non-blocking, strict does not fail |
- * | `false` / `0` / `off`| violations are errors and block strict validation            |
+ * | Value                         | Behavior                                            |
+ * |-------------------------------|-----------------------------------------------------|
+ * | unset / `false` / `0` / `off` | (default) violations are errors and block strict validation |
+ * | `true` / `1`                  | grandfather report mode, violations report non-blocking     |
  */
 const GENERATED_METADATA_GRANDFATHER_ENV = 'SPECKIT_GENERATED_METADATA_GRANDFATHER' as const;
 
@@ -94,11 +94,11 @@ const GENERATED_METADATA_GRANDFATHER_ENV = 'SPECKIT_GENERATED_METADATA_GRANDFATH
  * Returns whether generated-metadata integrity violations stay in grandfather report mode.
  *
  * Reads the environment on every call so a test can flip the behavior per-case, and stays
- * ON for any value other than an explicit opt-out so an unset environment never enforces.
+ * OFF for any value other than an explicit opt-in so an unset environment enforces.
  */
 function isGeneratedMetadataGrandfatherEnabled(): boolean {
   const rawValue = process.env[GENERATED_METADATA_GRANDFATHER_ENV]?.trim().toLowerCase();
-  return !(rawValue === 'false' || rawValue === '0' || rawValue === 'off');
+  return rawValue === 'true' || rawValue === '1';
 }
 
 /**
@@ -168,19 +168,19 @@ function isGeneratorHardeningEnabled(): boolean {
 /**
  * SPECKIT_IDEMPOTENT_DESCRIPTION_WRITES: Content-gated description and global-cache writes.
  *
- * Strictly default-OFF and env-only: existing description.json and descriptions.json
- * files on disk carry wall-clock lastUpdated and generated stamps that a content-hash
- * gate would treat as drift, so a hard cutover would mass-rewrite them. With the flag on,
- * a per-folder save that changes only the volatile stamp is skipped and the prior
- * timestamp is preserved, the aggregate-cache write is gated on a real member delta, and
- * the targeted upsert replaces only the changed entry. An explicit canonical save still
- * bumps the timestamp through the escape hatch. Like the other safety flags this never
- * consults the rollout policy, so an un-set environment can never flip it on by chance.
+ * Default-ON, graduated on a measured benchmark that proved a double generate stays
+ * deterministic. A per-folder save that changes only the volatile stamp is skipped and
+ * the prior timestamp is preserved, the aggregate-cache write is gated on a real member
+ * delta, and the targeted upsert replaces only the changed entry. An explicit canonical
+ * save still bumps the timestamp through the escape hatch. An explicit opt-out restores
+ * the unconditional legacy write that stamps wall-clock time. Like the other safety flags
+ * this never consults the rollout policy, so the graduated default holds without the
+ * rollout percentage.
  *
- * | Value          | Behavior                                                          |
- * |----------------|-------------------------------------------------------------------|
- * | unset / other  | (default) writes are unconditional and stamp wall-clock time      |
- * | `true` / `1`   | unchanged content skips the write and preserves the prior stamp   |
+ * | Value                 | Behavior                                                   |
+ * |-----------------------|------------------------------------------------------------|
+ * | unset / `true` / `1`  | (default) unchanged content skips the write and preserves the prior stamp |
+ * | `false` / `0` / `off` | writes are unconditional and stamp wall-clock time         |
  */
 const IDEMPOTENT_DESCRIPTION_WRITES_ENV = 'SPECKIT_IDEMPOTENT_DESCRIPTION_WRITES' as const;
 
@@ -188,11 +188,11 @@ const IDEMPOTENT_DESCRIPTION_WRITES_ENV = 'SPECKIT_IDEMPOTENT_DESCRIPTION_WRITES
  * Returns whether content-gated idempotent description and cache writes are active.
  *
  * Reads the environment on every call so a test can flip the behavior per-case, and
- * stays OFF for any value other than an explicit truthy opt-in.
+ * stays ON for any value other than an explicit opt-out so the graduated default holds.
  */
 function isIdempotentDescriptionWritesEnabled(): boolean {
   const rawValue = process.env[IDEMPOTENT_DESCRIPTION_WRITES_ENV]?.trim().toLowerCase();
-  return rawValue === 'true' || rawValue === '1';
+  return !(rawValue === 'false' || rawValue === '0' || rawValue === 'off');
 }
 
 // Keep roadmap controls distinct from existing runtime feature flags so
