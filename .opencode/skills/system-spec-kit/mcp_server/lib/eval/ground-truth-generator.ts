@@ -6,9 +6,9 @@
 // live-DB-aligned ground truth dataset for retrieval evaluation.
 //
 // Exports:
-// GenerateGroundTruth()          — produce the full dataset
-// LoadGroundTruth(evalDb)        — populate eval DB tables
-// ValidateGroundTruthDiversity() — check all diversity gates
+// GenerateGroundTruth(), produce the full dataset
+// LoadGroundTruth(evalDb), populate eval DB tables
+// ValidateGroundTruthDiversity(), check all diversity gates
 import type Database from 'better-sqlite3';
 
 import {
@@ -70,6 +70,11 @@ const GATES = {
   MIN_PER_COMPLEXITY_TIER: 10,
   MIN_RELEVANCE_PER_QUERY: 1,
   MIN_EXACT_RELEVANCE_PER_QUERY: 1,
+  // Classes that legitimately carry zero relevance rows. The off-corpus
+  // absent-term class names technologies structurally missing from the corpus,
+  // so the only correct verdict is non-citable and demanding a target row would
+  // contradict the fixture. The per-query target gates skip these.
+  TARGET_FREE_CATEGORIES: ['off_corpus'] as string[],
   INTENT_TYPES: [
     'add_feature',
     'fix_bug',
@@ -265,28 +270,33 @@ export function validateGroundTruthDiversity(
     }
   }
 
-  // Gate 5: Every query has at least one relevance label.
-  const labeledQueryCount = queries.filter(q => (relevanceCounts.get(q.id) ?? 0) >= GATES.MIN_RELEVANCE_PER_QUERY).length;
+  // The per-query target gates apply only to queries expected to have a target.
+  // Target-free classes such as off-corpus absent-term queries are exempt, so a
+  // class that is non-citable by design does not fail a known-item gate.
+  const targetedQueries = queries.filter(q => !GATES.TARGET_FREE_CATEGORIES.includes(q.category));
+
+  // Gate 5: Every targeted query has at least one relevance label.
+  const labeledQueryCount = targetedQueries.filter(q => (relevanceCounts.get(q.id) ?? 0) >= GATES.MIN_RELEVANCE_PER_QUERY).length;
   gates.push({
     dimension: 'Queries with relevance labels',
-    required: queries.length,
+    required: targetedQueries.length,
     actual: labeledQueryCount,
-    passed: labeledQueryCount === queries.length,
+    passed: labeledQueryCount === targetedQueries.length,
     detail: invalidRelevanceRefs > 0 ? `${invalidRelevanceRefs} relevance label(s) reference unknown query IDs` : undefined,
   });
 
-  // Gate 6: Every query has one exact target.
-  const exactLabeledQueryCount = queries.filter(
+  // Gate 6: Every targeted query has one exact target.
+  const exactLabeledQueryCount = targetedQueries.filter(
     q => (exactRelevanceCounts.get(q.id) ?? 0) >= GATES.MIN_EXACT_RELEVANCE_PER_QUERY,
   ).length;
   gates.push({
     dimension: 'Queries with relevance=3 target',
-    required: queries.length,
+    required: targetedQueries.length,
     actual: exactLabeledQueryCount,
-    passed: exactLabeledQueryCount === queries.length,
+    passed: exactLabeledQueryCount === targetedQueries.length,
   });
 
-  // Gate 7: Uniqueness — no duplicate query strings
+  // Gate 7: Uniqueness, no duplicate query strings
   const queryStrings = queries.map(q => q.query.toLowerCase().trim());
   const uniqueCount = new Set(queryStrings).size;
   const duplicateCount = queries.length - uniqueCount;

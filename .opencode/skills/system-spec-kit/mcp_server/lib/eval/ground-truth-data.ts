@@ -25,9 +25,14 @@ export type QueryCategory =
   | 'scope_filtered'
   // eval-v2 multi-target measurability classes. These carry multiple
   // graded-relevant targets per query so completeRecall@K at tight cutoffs has
-  // something to be incomplete about — the saturated known-item set cannot.
+  // something to be incomplete about, the saturated known-item set cannot.
   | 'thematic_multi_target'
-  | 'causal_chain';
+  | 'causal_chain'
+  // Absent-term class for the false-confirm benchmark. Every query names a
+  // technology structurally absent from the corpus and carries zero relevance
+  // rows, so the only correct verdict is non-citable. A good verdict here is a
+  // false confirm, the defect this class exists to measure.
+  | 'off_corpus';
 
 export type QuerySource = 'manual' | 'trigger_derived' | 'pattern_derived' | 'seed';
 

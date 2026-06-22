@@ -969,6 +969,66 @@
       "source": "manual",
       "expectedResultDescription": "Flap-guard spec (10762). Decoy EXCLUDED: 10813 RC-2 re-election foundation — same daemon-lifecycle cluster, re-election is a different later approach.",
       "notes": "eval-v2 multi-target measurability fixture; hand-authored, gold ids live-DB verified."
+    },
+    {
+      "id": 98,
+      "query": "kubernetes",
+      "intentType": "understand",
+      "complexityTier": "simple",
+      "category": "off_corpus",
+      "source": "manual",
+      "expectedResultDescription": "No target. Kubernetes is structurally absent from this memory corpus so the correct verdict is never good. This is the permanent regression anchor for the off-corpus false-confirm benchmark.",
+      "notes": "off-corpus absent-term fixture with zero relevance rows. PERMANENT ANCHOR, a deletion guard asserts kubernetes stays present."
+    },
+    {
+      "id": 99,
+      "query": "oauth",
+      "intentType": "understand",
+      "complexityTier": "simple",
+      "category": "off_corpus",
+      "source": "manual",
+      "expectedResultDescription": "No target. OAuth is structurally absent from this memory corpus so the correct verdict is never good.",
+      "notes": "off-corpus absent-term fixture with zero relevance rows."
+    },
+    {
+      "id": 100,
+      "query": "kafka",
+      "intentType": "understand",
+      "complexityTier": "simple",
+      "category": "off_corpus",
+      "source": "manual",
+      "expectedResultDescription": "No target. Kafka is structurally absent from this memory corpus so the correct verdict is never good.",
+      "notes": "off-corpus absent-term fixture with zero relevance rows."
+    },
+    {
+      "id": 101,
+      "query": "terraform",
+      "intentType": "understand",
+      "complexityTier": "simple",
+      "category": "off_corpus",
+      "source": "manual",
+      "expectedResultDescription": "No target. Terraform is structurally absent from this memory corpus so the correct verdict is never good.",
+      "notes": "off-corpus absent-term fixture with zero relevance rows."
+    },
+    {
+      "id": 102,
+      "query": "graphql",
+      "intentType": "understand",
+      "complexityTier": "simple",
+      "category": "off_corpus",
+      "source": "manual",
+      "expectedResultDescription": "No target. GraphQL is structurally absent from this memory corpus so the correct verdict is never good.",
+      "notes": "off-corpus absent-term fixture with zero relevance rows."
+    },
+    {
+      "id": 103,
+      "query": "webpack",
+      "intentType": "understand",
+      "complexityTier": "simple",
+      "category": "off_corpus",
+      "source": "manual",
+      "expectedResultDescription": "No target. Webpack is structurally absent from this memory corpus so the correct verdict is never good.",
+      "notes": "off-corpus absent-term fixture with zero relevance rows."
     }
   ],
   "relevances": [

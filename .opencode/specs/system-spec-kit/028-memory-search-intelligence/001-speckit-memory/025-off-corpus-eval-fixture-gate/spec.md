@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/025-off-corpus-eval-fixture-gate"
     last_updated_at: "2026-06-22T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Scaffolded the off-corpus fixture and false-confirm gate spec"
-    next_safe_action: "Run /speckit:plan to decompose the fixture and gate build"
+    recent_action: "Shipped the off-corpus fixture and false-confirm gate, status COMPLETE, live rate 0.833 on nomic"
+    next_safe_action: "Hand the fixture to the downstream lexical-grounding floor phase that this guard validates"
     blockers: []
     key_files:
       - "../../005-spec-data-quality/030-improvement-research/research/research.md"
@@ -25,9 +25,9 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-025-off-corpus-eval-fixture-gate"
       parent_session_id: "phase-025-off-corpus-eval-fixture-gate"
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
-      - "What false-confirm rate the SPECKIT_FALSE_CONFIRM_MAX_RATE gate should freeze at for the active nomic embedder"
+      - "What false-confirm rate the SPECKIT_FALSE_CONFIRM_MAX_RATE gate should freeze at for enforcement, the live corpus measures 0.833 on nomic today so the bar waits on the downstream verdict fix"
     answered_questions:
       - "Whether the kubernetes case is a calibration miss or an envelope miss, it is a calibration miss so the fixture targets the verdict not the render"
       - "Whether the metric needs writing, it already exists at eval-metrics.js so only a driver and a gate are new"
@@ -53,7 +53,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | PLANNED |
+| **Status** | COMPLETE |
 | **Created** | 2026-06-22 |
 | **Branch** | `025-off-corpus-eval-fixture-gate` |
 <!-- /ANCHOR:metadata -->

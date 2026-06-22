@@ -14,19 +14,20 @@ _memory:
     packet_pointer: "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/025-off-corpus-eval-fixture-gate"
     last_updated_at: "2026-06-22T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Scoped QA for the off-corpus fixture and false-confirm gate"
-    next_safe_action: "Hold for implementation, no item has been verified yet"
+    recent_action: "Verified the off-corpus fixture, the false-confirm driver and the gate, all checks pass"
+    next_safe_action: "Hand the fixture to the downstream lexical-grounding floor phase that this guard validates"
     blockers: []
     key_files:
-      - ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/ground-truth.json"
-      - ".opencode/skills/system-spec-kit/mcp_server/dist/lib/eval/ground-truth-data.js"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/eval/data/ground-truth.json"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-data.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-generator.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-false-confirm-eval.mjs"
-      - ".opencode/skills/system-spec-kit/mcp_server/dist/lib/eval/eval-metrics.js"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/false-confirm-eval.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-025-off-corpus-eval-fixture-gate"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -59,9 +60,9 @@ FAILURE MODES:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Existing confusion metric export, the six in-corpus decoys and the active embedder readability identified and available
+- [x] CHK-001 [P0] Requirements documented in spec.md
+- [x] CHK-002 [P0] Technical approach defined in plan.md
+- [x] CHK-003 [P1] Confirmed `computeCitabilityConfusionMetrics` export at `eval-metrics.ts:885-902`, the six in-corpus decoys (ids 92-97) carry relevance-3 targets, and the active embedder reads from `vec_metadata`
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -69,10 +70,10 @@ FAILURE MODES:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] The driver reuses `computeCitabilityConfusionMetrics` and `falseGoodOnHardNegatives` verbatim, with no metric body re-implemented
-- [ ] CHK-011 [P0] No console errors or warnings from the driver on a valid run
-- [ ] CHK-012 [P1] Missing baseline, a non-numeric env value and a drifted off-corpus term branches handled
-- [ ] CHK-013 [P1] Change follows the existing eval-script patterns
+- [x] CHK-010 [P0] The driver imports `computeCitabilityConfusionMetrics` from the existing module and re-implements no part of it, asserting the export exists at import and failing with a contract error otherwise
+- [x] CHK-011 [P0] The live run emits the report cleanly, the only stderr line is the harness token-budget info log shared with the sibling drivers
+- [x] CHK-012 [P1] Handled: `resolveOffCorpusClass` throws on a drifted target, `parseMaxRate` rejects non-numeric and out-of-range, an empty class throws, the import contract check fails loudly on a renamed metric
+- [x] CHK-013 [P1] Follows the `run-eval-v2.mjs` copy-DB discipline, the same embedder read, the same invoked-directly guard, and exports pure helpers for the vitest
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -80,10 +81,10 @@ FAILURE MODES:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] All acceptance criteria met (REQ-001 through REQ-006)
-- [ ] CHK-021 [P0] Every `off_corpus` query has zero relevance rows, no fabricated targets, and the kubernetes anchor deletion-guard test fails when the anchor is removed
-- [ ] CHK-022 [P1] The env unset and grandfather report mode record the rate and exit zero, the env below the rate exits non-zero, and a non-numeric env is rejected
-- [ ] CHK-023 [P1] The report carries the active embedder name and the scored off-corpus terms so the qualitative good-is-wrong verdict ports across an embedder change
+- [x] CHK-020 [P0] REQ-001 through REQ-006 met, evidenced in implementation-summary.md
+- [x] CHK-021 [P0] The vitest asserts zero relevance rows per `off_corpus` query, no fabricated targets, disjointness from the in-corpus decoys, the kubernetes anchor present, and `resolveOffCorpusClass` throwing on a drifted target
+- [x] CHK-022 [P1] Verified live: env unset exits 0, grandfather at a 0.0 bar exits 0, env 0.0 below the 0.833 rate exits 1, env 0.9 above the rate exits 0, a non-numeric env exits 1 at parse
+- [x] CHK-023 [P1] The report carries the embedder block (`nomic-embed-text-v1.5`) and the scored off-corpus terms, the fixture asserts good-is-wrong qualitatively with no baked cosine number
 <!-- /ANCHOR:testing -->
 
 ---
@@ -91,13 +92,13 @@ FAILURE MODES:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
-- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
-- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
-- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
+- [x] CHK-FIX-001 [P0] The one integration finding (the per-query target gate rejecting the new zero-target class) is class `cross-consumer`, the validator and the legacy test both consume the query-category contract
+- [x] CHK-FIX-002 [P0] Producer inventory by grep: `off_corpus` and `falseGoodOnHardNegatives` have a single producer each (the fixture and the dormant metric), no sibling producers to update
+- [x] CHK-FIX-003 [P0] Consumer inventory of the changed `QueryCategory` and the target gates ran the 10 eval/scoring test files that import these modules, all 212 passed
+- [x] CHK-FIX-004 [P0] The env parser carries an adversarial table in the vitest: unset, empty, whitespace, numeric in-range, non-numeric, negative, above-one
+- [x] CHK-FIX-005 [P1] Matrix axes listed: env unset, above the rate, below the rate, grandfather, non-numeric, empty class, drifted target, all exercised by the vitest or the live run
+- [x] CHK-FIX-006 [P1] Hostile env variant executed: a non-numeric `SPECKIT_FALSE_CONFIRM_MAX_RATE` exits 1 at parse live, and `parseGrandfather` is tested over env and argv
+- [x] CHK-FIX-007 [P1] Evidence is pinned to the working-tree diff named in implementation-summary.md, the change is uncommitted by instruction
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -105,9 +106,9 @@ FAILURE MODES:
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets
-- [ ] CHK-031 [P0] The driver reads the existing copy DB and fixture and introduces no new untrusted input
-- [ ] CHK-032 [P1] The `SPECKIT_FALSE_CONFIRM_MAX_RATE` env is parsed safely and a non-numeric value is rejected rather than silently disabling the gate
+- [x] CHK-030 [P0] No hardcoded secrets
+- [x] CHK-031 [P0] The driver reads a read-only tempdir backup of the live DB and the fixture, it never mutates the live DB and reads no new untrusted input
+- [x] CHK-032 [P1] `parseMaxRate` rejects a non-numeric or out-of-range env at parse rather than silently disabling the gate, proven live and in the vitest
 <!-- /ANCHOR:security -->
 
 ---
@@ -115,9 +116,9 @@ FAILURE MODES:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P1] Code comments adequate
-- [ ] CHK-042 [P2] ENV reference updated for `SPECKIT_FALSE_CONFIRM_MAX_RATE` (if applicable)
+- [x] CHK-040 [P1] tasks.md, checklist.md and implementation-summary.md synchronized to the shipped state
+- [x] CHK-041 [P1] The driver and the fixture carry durable WHY comments, no artifact ids or spec paths embedded
+- [x] CHK-042 [P2] N/A, eval-driver envs are not registered in ENV_REFERENCE.md, the sibling `SPECKIT_EVAL_V2_*` driver envs are absent there too, the env is documented in the driver header instead
 <!-- /ANCHOR:docs -->
 
 ---
@@ -125,8 +126,8 @@ FAILURE MODES:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-050 [P1] The driver writes its report to `/tmp` only, no scratch artifacts land in the repo
+- [x] CHK-051 [P1] No scratch directory created, nothing to clean
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -136,11 +137,11 @@ FAILURE MODES:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 0/12 |
-| P1 Items | 12 | 0/12 |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 12 | 12/12 |
+| P1 Items | 12 | 12/12 |
+| P2 Items | 1 | 1/1 (N/A) |
 
-**Verification Date**: Pending (scaffold, not yet verified)
+**Verification Date**: 2026-06-22
 <!-- /ANCHOR:summary -->
 
 ---

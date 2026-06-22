@@ -41,7 +41,12 @@ const VALID_CATEGORIES: QueryCategory[] = [
   'hard_negative',
   'anchor_based',
   'scope_filtered',
+  'off_corpus',
 ];
+
+// Classes that carry zero relevance rows by design, so the per-query target
+// assertions skip them.
+const TARGET_FREE_CATEGORIES: QueryCategory[] = ['off_corpus'];
 
 const VALID_SOURCES: QuerySource[] = ['manual', 'trigger_derived', 'pattern_derived', 'seed'];
 
@@ -149,6 +154,7 @@ describe('known-item ground truth dataset', () => {
     }
 
     for (const query of GROUND_TRUTH_QUERIES) {
+      if (TARGET_FREE_CATEGORIES.includes(query.category)) continue;
       expect(labelsByQuery.get(query.id) ?? 0).toBeGreaterThanOrEqual(1);
       expect(exactLabelsByQuery.get(query.id) ?? 0).toBeGreaterThanOrEqual(1);
     }
